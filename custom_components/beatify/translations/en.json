@@ -7,7 +7,7 @@
             }
         },
         "error": {
-            "ma_not_found": "Music Assistant not found or not fully loaded. Please install and configure Music Assistant first. [Setup Guide]({ma_url})",
+            "ma_not_found": "Music Assistant integration not found. If you have the Music Assistant **add-on** installed, you also need to add the **integration**: Go to Settings → Devices & Services → Add Integration → Music Assistant. [Setup Guide]({ma_url})",
             "ma_not_configured": "Music Assistant is installed but not fully configured. Please complete Music Assistant setup first.",
             "unknown": "An unknown error occurred."
         },

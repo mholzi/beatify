@@ -47,14 +47,38 @@ class BeatifyConfigFlow(ConfigFlow, domain=DOMAIN):
         return self.async_show_form(step_id="user")
 
     async def _async_is_music_assistant_configured(self) -> bool:
-        """Check if Music Assistant is installed and fully loaded."""
+        """Check if Music Assistant integration is installed and fully loaded.
+
+        Note: The Music Assistant add-on (server) and integration are separate.
+        The add-on runs the MA server, but the integration must also be added
+        to Home Assistant for Beatify to work.
+        """
         entries = self.hass.config_entries.async_entries("music_assistant")
+
+        if not entries:
+            _LOGGER.warning(
+                "Music Assistant integration not found. "
+                "If you have the add-on installed, you also need to add the integration: "
+                "Settings → Devices & Services → Add Integration → Music Assistant"
+            )
+            return False
+
+        for entry in entries:
+            _LOGGER.debug(
+                "Music Assistant entry: %s, state=%s",
+                entry.title,
+                entry.state,
+            )
+
         is_configured = any(
             entry.state == ConfigEntryState.LOADED for entry in entries
         )
-        _LOGGER.debug(
-            "Music Assistant check: %d entries, configured=%s",
-            len(entries),
-            is_configured,
-        )
+
+        if entries and not is_configured:
+            states = [entry.state.name for entry in entries]
+            _LOGGER.warning(
+                "Music Assistant integration found but not loaded. States: %s",
+                states,
+            )
+
         return is_configured
