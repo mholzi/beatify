@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatify Admin</title>
+    <link rel="stylesheet" href="/beatify/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Beatify</h1>
+    </header>
+
+    <main>
+        <section id="ma-status" class="status-section">
+            <h2>Music Assistant</h2>
+            <div id="ma-status-content">Loading...</div>
+        </section>
+
+        <section id="media-players" class="card-section">
+            <h2>Media Players</h2>
+            <div id="media-players-list">Loading...</div>
+        </section>
+
+        <section id="playlists" class="card-section">
+            <h2>Playlists</h2>
+            <div id="playlists-list">Loading...</div>
+        </section>
+
+        <!-- Game controls added in Epic 2 -->
+        <section id="game-controls" class="card-section hidden">
+            <h2>Game Controls</h2>
+            <button id="start-game" class="btn btn-primary" disabled>Start Game</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Beatify v0.0.1</p>
+    </footer>
+
+    <script src="/beatify/static/js/admin.js"></script>
+</body>
+</html>

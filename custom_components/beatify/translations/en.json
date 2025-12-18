@@ -1,0 +1,18 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Set up Beatify",
+                "description": "Beatify is a party game integration for Home Assistant that works with Music Assistant."
+            }
+        },
+        "error": {
+            "ma_not_found": "Music Assistant not found or not fully loaded. Please install and configure Music Assistant first. [Setup Guide]({ma_url})",
+            "ma_not_configured": "Music Assistant is installed but not fully configured. Please complete Music Assistant setup first.",
+            "unknown": "An unknown error occurred."
+        },
+        "abort": {
+            "already_configured": "Beatify is already configured."
+        }
+    }
+}

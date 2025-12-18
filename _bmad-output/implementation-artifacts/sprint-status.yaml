@@ -1,0 +1,105 @@
+# generated: 2025-12-18
+# project: Beatify
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2025-12-18
+project: Beatify
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Project Foundation & HA Integration
+  epic-1: done
+  1-1-initialize-project-from-starter-template: done
+  1-2-hacs-installation-and-integration-setup: done
+  1-3-music-assistant-detection: done
+  1-4-media-player-and-playlist-discovery: done
+  1-5-admin-page-access: done
+  epic-1-retrospective: optional
+
+  # Epic 2: Game Session Creation
+  epic-2: backlog
+  2-1-select-playlists-for-game: backlog
+  2-2-select-media-player: backlog
+  2-3-start-game-and-create-lobby: backlog
+  2-4-qr-code-generation-and-display: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Player Onboarding & Lobby
+  epic-3: backlog
+  3-1-player-page-and-qr-scan-entry: backlog
+  3-2-name-entry-and-join: backlog
+  3-3-lobby-view-and-player-list: backlog
+  3-4-player-to-player-qr-sharing: backlog
+  3-5-admin-participation: backlog
+  3-6-late-join-support: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Core Gameplay Loop
+  epic-4: backlog
+  4-1-song-playback-via-music-assistant: backlog
+  4-2-round-display-album-cover-and-timer: backlog
+  4-3-year-selector-and-guess-submission: backlog
+  4-4-submission-tracking-display: backlog
+  4-5-timer-expiry-and-auto-advance: backlog
+  4-6-reveal-and-scoring: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Advanced Scoring & Leaderboard
+  epic-5: backlog
+  5-1-speed-bonus-multiplier: backlog
+  5-2-streak-tracking-and-bonuses: backlog
+  5-3-betting-mechanic: backlog
+  5-4-no-submission-penalty: backlog
+  5-5-live-leaderboard: backlog
+  5-6-final-leaderboard: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Host Game Control
+  epic-6: backlog
+  6-1-admin-control-bar-ui: backlog
+  6-2-stop-song-control: backlog
+  6-3-next-round-control: backlog
+  6-4-volume-control: backlog
+  6-5-end-game-control: backlog
+  6-6-start-new-game-reset: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Resilience & Recovery
+  epic-7: backlog
+  7-1-admin-disconnect-and-game-pause: backlog
+  7-2-admin-reconnection: backlog
+  7-3-player-auto-reconnect: backlog
+  7-4-network-error-messages: backlog
+  7-5-game-end-full-reset: backlog
+  epic-7-retrospective: optional

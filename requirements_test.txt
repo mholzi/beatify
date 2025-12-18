@@ -1,0 +1,21 @@
+# Beatify Test Dependencies
+# Install: pip install -r requirements_test.txt
+
+# Core test framework
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-aiohttp>=1.0.5
+pytest-cov>=4.1.0
+
+# Code quality
+ruff>=0.1.0
+
+# Data factories
+faker>=22.0.0
+
+# Type checking (optional)
+mypy>=1.8.0
+
+# Playwright for E2E tests (optional)
+# playwright>=1.40.0
+# pytest-playwright>=0.4.0
