@@ -24,9 +24,10 @@ from custom_components.beatify.const import (
 
 from .player import PlayerSession
 from .playlist import PlaylistManager
+from .scoring import calculate_accuracy_score
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
+    from collections.abc import Awaitable, Callable
 
     from aiohttp import web
     from homeassistant.core import HomeAssistant
@@ -81,6 +82,10 @@ class GameState:
         self._playlist_manager: PlaylistManager | None = None
         self._media_player_service: MediaPlayerService | None = None
 
+        # Timer task for round expiry (Story 4.5)
+        self._timer_task: asyncio.Task | None = None
+        self._on_round_end: Callable[[], Awaitable[None]] | None = None
+
     def create_game(
         self,
         playlists: list[str],
@@ -120,6 +125,9 @@ class GameState:
         self.last_round = False
         self.pause_reason = None
         self._previous_phase = None
+
+        # Reset timer task for new game
+        self.cancel_timer()
 
         _LOGGER.info("Game created: %s with %d songs", self.game_id, len(songs))
 
@@ -165,6 +173,11 @@ class GameState:
                 if self._playlist_manager
                 else 0
             )
+            # Submission tracking (Story 4.4)
+            state["submitted_count"] = sum(
+                1 for p in self.players.values() if p.submitted
+            )
+            state["all_submitted"] = self.all_submitted()
             # Song info WITHOUT year during PLAYING (hidden until reveal)
             if self.current_song:
                 state["song"] = {
@@ -183,6 +196,8 @@ class GameState:
             # Full song info INCLUDING year and fun_fact during REVEAL
             if self.current_song:
                 state["song"] = self.current_song
+            # Include reveal-specific player data (guesses, round_score, missed)
+            state["players"] = self.get_reveal_players_state()
 
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason
@@ -198,6 +213,8 @@ class GameState:
     def end_game(self) -> None:
         """End the current game and reset state."""
         _LOGGER.info("Game ended: %s", self.game_id)
+        # Cancel any running timer
+        self.cancel_timer()
         self.game_id = None
         self.phase = GamePhase.LOBBY
         self.playlists = []
@@ -296,7 +313,8 @@ class GameState:
         Get player list for state broadcast.
 
         Returns:
-            List of player dicts with name, score, connected, streak, is_admin
+            List of player dicts with name, score, connected, streak, is_admin,
+            submitted
 
         """
         return [
@@ -306,9 +324,35 @@ class GameState:
                 "connected": p.connected,
                 "streak": p.streak,
                 "is_admin": p.is_admin,
+                "submitted": p.submitted,
             }
             for p in self.players.values()
         ]
+
+    def all_submitted(self) -> bool:
+        """
+        Check if all connected players have submitted their guess.
+
+        Returns:
+            True if all connected players have submitted, False otherwise
+
+        """
+        connected_players = [p for p in self.players.values() if p.connected]
+        if not connected_players:
+            return False
+        return all(p.submitted for p in connected_players)
+
+    def set_round_end_callback(
+        self, callback: Callable[[], Awaitable[None]]
+    ) -> None:
+        """
+        Set callback to invoke when round ends (for broadcasting).
+
+        Args:
+            callback: Async function to call when round ends
+
+        """
+        self._on_round_end = callback
 
     def set_admin(self, name: str) -> bool:
         """
@@ -358,7 +402,7 @@ class GameState:
 
         """
         # Import here to avoid circular imports
-        from custom_components.beatify.services.media_player import (
+        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
             MediaPlayerService,
         )
 
@@ -420,15 +464,151 @@ class GameState:
 
         # Reset player submissions for new round
         for player in self.players.values():
-            player.submitted = False
-            player.current_guess = None
+            player.reset_round()
+
+        # Cancel any existing timer
+        self.cancel_timer()
+
+        # Calculate delay until deadline
+        now_ms = int(self._now() * 1000)
+        delay_seconds = (self.deadline - now_ms) / 1000.0
+
+        # Start timer task for round expiry
+        self._timer_task = asyncio.create_task(
+            self._timer_countdown(delay_seconds)
+        )
 
         # Transition to PLAYING
         self.phase = GamePhase.PLAYING
         _LOGGER.info(
-            "Round %d started: %s - %s",
+            "Round %d started: %s - %s (%.1fs timer)",
             self.round,
             self.current_song.get("artist"),
             self.current_song.get("title"),
+            delay_seconds,
         )
         return True
+
+    async def _timer_countdown(self, delay_seconds: float) -> None:
+        """
+        Wait for round to end, then trigger reveal.
+
+        This task may be cancelled by:
+        - Admin advancing to next round early
+        - All players submitting (if auto_advance enabled)
+        - Game pause/end
+
+        Always handle CancelledError gracefully.
+
+        Args:
+            delay_seconds: Seconds to wait before triggering reveal
+
+        """
+        try:
+            await asyncio.sleep(delay_seconds)
+            # Check we're still in PLAYING phase (could have changed)
+            if self.phase == GamePhase.PLAYING:
+                _LOGGER.info("Round timer expired, transitioning to REVEAL")
+                await self.end_round()
+            else:
+                _LOGGER.debug(
+                    "Timer expired but phase already changed to %s", self.phase
+                )
+        except asyncio.CancelledError:
+            _LOGGER.debug("Timer task cancelled")
+            # Re-raise to properly complete cancellation
+            raise
+
+    async def end_round(self) -> None:
+        """
+        End the current round and transition to REVEAL.
+
+        Calculates scores for all players and invokes round end callback.
+
+        """
+        # Cancel timer if still running
+        self.cancel_timer()
+
+        # Get correct year from current song
+        correct_year = self.current_song.get("year") if self.current_song else None
+
+        # Calculate scores for all players
+        for player in self.players.values():
+            if player.submitted and correct_year is not None:
+                # Calculate accuracy score
+                player.round_score = calculate_accuracy_score(
+                    player.current_guess, correct_year
+                )
+                player.years_off = abs(player.current_guess - correct_year)
+                player.missed_round = False
+
+                # Update streak - any points continues streak
+                if player.round_score > 0:
+                    player.streak += 1
+                else:
+                    player.streak = 0
+
+                # Add to total score
+                player.score += player.round_score
+            else:
+                # Non-submitter
+                player.round_score = 0
+                player.years_off = None
+                player.missed_round = True
+                player.streak = 0  # Break streak
+
+        # Transition to REVEAL
+        self.phase = GamePhase.REVEAL
+        _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
+
+        # Invoke callback to broadcast state
+        if self._on_round_end:
+            await self._on_round_end()
+
+    def cancel_timer(self) -> None:
+        """Cancel the round timer (synchronous, for cleanup)."""
+        if self._timer_task and not self._timer_task.done():
+            self._timer_task.cancel()
+        self._timer_task = None
+
+    def is_deadline_passed(self) -> bool:
+        """
+        Check if the round deadline has passed.
+
+        Uses the injected time function for testability.
+
+        Returns:
+            True if deadline has passed, False otherwise.
+
+        """
+        if self.deadline is None:
+            return False
+        now_ms = int(self._now() * 1000)
+        return now_ms > self.deadline
+
+    def get_reveal_players_state(self) -> list[dict[str, Any]]:
+        """
+        Get player state with reveal info for REVEAL phase.
+
+        Returns:
+            List of player dicts including guess, round_score, and years_off,
+            sorted by total score descending.
+
+        """
+        players = [
+            {
+                "name": p.name,
+                "score": p.score,
+                "streak": p.streak,
+                "is_admin": p.is_admin,
+                "connected": p.connected,
+                "guess": p.current_guess,
+                "round_score": p.round_score,
+                "years_off": p.years_off,
+                "missed_round": p.missed_round,
+            }
+            for p in self.players.values()
+        ]
+        # Sort by score descending for leaderboard preview
+        players.sort(key=lambda p: p["score"], reverse=True)
+        return players

@@ -386,6 +386,84 @@
 
             albumCover.src = newSrc;
         }
+
+        // Render submission tracker
+        renderSubmissionTracker(data.players);
+    }
+
+    // ============================================
+    // Submission Tracker (Story 4.4)
+    // ============================================
+
+    /**
+     * Get initials from player name
+     * @param {string} name - Player name
+     * @returns {string} Initials (1-2 characters)
+     */
+    function getInitials(name) {
+        if (!name) return '?';
+        var trimmed = name.trim();
+        if (!trimmed) return '?';
+
+        // Handle hyphenated names: "Mary-Jane" -> "MJ"
+        var parts = trimmed.split(/[\s-]+/).filter(Boolean);
+        if (parts.length >= 2) {
+            return (parts[0][0] + parts[1][0]).toUpperCase();
+        }
+        // Single word: take first 2 chars, or 1 if single char name
+        return trimmed.slice(0, Math.min(2, trimmed.length)).toUpperCase();
+    }
+
+    /**
+     * Render submission tracker showing who has submitted
+     * @param {Array} players - Array of player objects
+     */
+    function renderSubmissionTracker(players) {
+        var tracker = document.getElementById('submission-tracker');
+        var container = document.getElementById('submitted-players');
+        var countEl = document.getElementById('submission-count');
+
+        if (!tracker || !container || !countEl) return;
+
+        var playerList = players || [];
+        var submittedCount = playerList.filter(function(p) {
+            return p.submitted;
+        }).length;
+        var totalCount = playerList.length;
+
+        // Update count
+        countEl.textContent = submittedCount + '/' + totalCount + ' submitted';
+
+        // Check if all submitted
+        var allSubmitted = submittedCount === totalCount && totalCount > 0;
+        tracker.classList.toggle('all-submitted', allSubmitted);
+
+        // Compact mode for many players
+        var isCompact = playerList.length > 10;
+        tracker.classList.toggle('is-compact', isCompact);
+
+        if (isCompact) {
+            container.innerHTML = '';
+            return;
+        }
+
+        // Render player indicators
+        container.innerHTML = playerList.map(function(player) {
+            var initials = getInitials(player.name);
+            var isCurrentPlayer = player.name === playerName;
+            var classes = [
+                'player-indicator',
+                player.submitted ? 'is-submitted' : '',
+                isCurrentPlayer ? 'is-current-player' : ''
+            ].filter(Boolean).join(' ');
+
+            return '<div class="' + classes + '">' +
+                '<div class="player-avatar">' +
+                    '<span class="player-initials">' + escapeHtml(initials) + '</span>' +
+                '</div>' +
+                '<span class="player-name">' + escapeHtml(player.name) + '</span>' +
+            '</div>';
+        }).join('');
     }
 
     // ============================================
@@ -540,6 +618,165 @@
             slider.value = 1990;
             var yearDisplay = document.getElementById('selected-year');
             if (yearDisplay) yearDisplay.textContent = '1990';
+        }
+    }
+
+    // ============================================
+    // Reveal View (Story 4.6)
+    // ============================================
+
+    /**
+     * Update reveal view with round results
+     * @param {Object} data - State data from server
+     */
+    function updateRevealView(data) {
+        var song = data.song || {};
+        var players = data.players || [];
+
+        // Update round info
+        var roundEl = document.getElementById('reveal-round');
+        var totalEl = document.getElementById('reveal-total');
+        if (roundEl) roundEl.textContent = data.round || 1;
+        if (totalEl) totalEl.textContent = data.total_rounds || 10;
+
+        // Update album cover
+        var albumCover = document.getElementById('reveal-album-cover');
+        if (albumCover) {
+            albumCover.src = song.album_art || '/beatify/static/img/no-artwork.svg';
+        }
+
+        // Update correct year
+        var correctYear = document.getElementById('correct-year');
+        if (correctYear) {
+            correctYear.textContent = song.year || '????';
+        }
+
+        // Update song info
+        var titleEl = document.getElementById('song-title');
+        var artistEl = document.getElementById('song-artist');
+        if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
+        if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
+
+        // Update fun fact
+        var funFactContainer = document.getElementById('fun-fact-container');
+        var funFactText = document.getElementById('fun-fact');
+        if (funFactContainer && funFactText) {
+            if (song.fun_fact) {
+                funFactText.textContent = song.fun_fact;
+                funFactContainer.classList.remove('hidden');
+            } else {
+                funFactContainer.classList.add('hidden');
+            }
+        }
+
+        // Find current player's result
+        var currentPlayer = null;
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].name === playerName) {
+                currentPlayer = players[i];
+                break;
+            }
+        }
+        renderPersonalResult(currentPlayer, song.year);
+
+        // Show admin controls if admin
+        var adminControls = document.getElementById('reveal-admin-controls');
+        var nextRoundBtn = document.getElementById('next-round-btn');
+        if (adminControls && currentPlayer && currentPlayer.is_admin) {
+            adminControls.classList.remove('hidden');
+
+            // Update button text for last round
+            if (nextRoundBtn) {
+                if (data.last_round) {
+                    nextRoundBtn.textContent = 'Final Results';
+                    nextRoundBtn.classList.add('is-final');
+                } else {
+                    nextRoundBtn.textContent = 'Next Round';
+                    nextRoundBtn.classList.remove('is-final');
+                }
+                nextRoundBtn.disabled = false;
+            }
+        } else if (adminControls) {
+            adminControls.classList.add('hidden');
+        }
+    }
+
+    /**
+     * Render personal result in reveal view
+     * @param {Object} player - Current player data
+     * @param {number} correctYear - The correct year
+     */
+    function renderPersonalResult(player, correctYear) {
+        var resultContent = document.getElementById('result-content');
+        if (!resultContent) return;
+
+        if (!player) {
+            resultContent.innerHTML = '<div class="result-missed">Player not found</div>';
+            return;
+        }
+
+        if (player.missed_round) {
+            resultContent.innerHTML =
+                '<div class="result-missed">No guess submitted</div>' +
+                '<div class="result-score">0 pts</div>';
+            return;
+        }
+
+        var yearsOff = player.years_off || 0;
+        var yearsOffText = yearsOff === 0 ? 'Exact!' :
+                           yearsOff === 1 ? '1 year off' :
+                           yearsOff + ' years off';
+
+        var resultClass = yearsOff === 0 ? 'is-exact' :
+                          yearsOff <= 3 ? 'is-close' : 'is-far';
+
+        resultContent.innerHTML =
+            '<div class="result-row">' +
+                '<span class="result-label">Your guess</span>' +
+                '<span class="result-value">' + player.guess + '</span>' +
+            '</div>' +
+            '<div class="result-row">' +
+                '<span class="result-label">Correct year</span>' +
+                '<span class="result-value">' + correctYear + '</span>' +
+            '</div>' +
+            '<div class="result-row">' +
+                '<span class="result-label">Accuracy</span>' +
+                '<span class="result-value ' + resultClass + '">' + yearsOffText + '</span>' +
+            '</div>' +
+            '<div class="result-score">+' + player.round_score + ' pts</div>';
+    }
+
+    // Debounce state to prevent rapid clicks
+    var nextRoundPending = false;
+    var NEXT_ROUND_DEBOUNCE_MS = 2000;
+
+    /**
+     * Handle next round button click
+     */
+    function handleNextRound() {
+        // Prevent rapid clicks
+        if (nextRoundPending) {
+            return;
+        }
+
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            nextRoundPending = true;
+            var btn = document.getElementById('next-round-btn');
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = 'Loading...';
+            }
+
+            ws.send(JSON.stringify({
+                type: 'admin',
+                action: 'next_round'
+            }));
+
+            // Reset after debounce period (server state change will also update UI)
+            setTimeout(function() {
+                nextRoundPending = false;
+                if (btn) btn.disabled = false;
+            }, NEXT_ROUND_DEBOUNCE_MS);
         }
     }
 
@@ -707,11 +944,20 @@
             } else if (data.phase === 'REVEAL') {
                 stopCountdown();
                 showView('reveal-view');
+                updateRevealView(data);
             } else if (data.phase === 'END') {
                 stopCountdown();
                 showView('end-view');
             }
+        } else if (data.type === 'submit_ack') {
+            // Handle successful guess submission
+            handleSubmitAck();
         } else if (data.type === 'error') {
+            // Handle submission-related errors
+            if (data.code === 'ROUND_EXPIRED' || data.code === 'ALREADY_SUBMITTED') {
+                handleSubmitError(data);
+                return;
+            }
             // Handle GAME_ENDED error specially
             if (data.code === 'GAME_ENDED') {
                 showView('end-view');
@@ -820,11 +1066,22 @@
         }
     };
 
+    /**
+     * Setup reveal view event handlers
+     */
+    function setupRevealControls() {
+        var nextRoundBtn = document.getElementById('next-round-btn');
+        if (nextRoundBtn) {
+            nextRoundBtn.addEventListener('click', handleNextRound);
+        }
+    }
+
     // Initialize form, QR modal, and admin controls when DOM ready
     function initAll() {
         setupJoinForm();
         setupQRModal();
         setupAdminControls();
+        setupRevealControls();
 
         // Check if this is an admin redirect
         if (checkAdminStatus() && playerName) {

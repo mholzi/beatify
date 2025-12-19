@@ -1013,6 +1013,129 @@ footer {
     50% { opacity: 0.7; }
 }
 
+/* Submission Tracker (Story 4.4) */
+.submission-tracker {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 12px;
+}
+
+.submission-header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.submission-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* Player Indicators Row */
+.submitted-players {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.submitted-players::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+/* Player Indicator */
+.player-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 48px;
+    flex-shrink: 0;
+}
+
+.player-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.player-indicator.is-submitted .player-avatar {
+    background: #10b981;
+    color: white;
+    border-color: #059669;
+    animation: submitted-pulse 0.5s ease-out;
+}
+
+.player-indicator.is-submitted .player-initials {
+    display: none;
+}
+
+.player-indicator.is-submitted .player-avatar::after {
+    content: '✓';
+    font-size: 16px;
+}
+
+@keyframes submitted-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.player-indicator .player-name {
+    font-size: 10px;
+    color: #6b7280;
+    max-width: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 4px;
+}
+
+/* Current Player Highlight */
+.player-indicator.is-current-player .player-avatar {
+    border-color: #6366f1;
+}
+
+.player-indicator.is-current-player .player-name {
+    font-weight: 600;
+    color: #6366f1;
+}
+
+/* Compact Mode for Many Players */
+.submission-tracker.is-compact .submitted-players {
+    display: none;
+}
+
+.submission-tracker.is-compact .submission-count {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* All Submitted State */
+.submission-tracker.all-submitted {
+    background: #d1fae5;
+}
+
+.submission-tracker.all-submitted .submission-count {
+    color: #059669;
+    font-weight: 600;
+}
+
 /* Year Selector (Story 4.3) */
 .year-selector-container {
     width: 100%;
@@ -1217,5 +1340,237 @@ footer {
 
     .card-section {
         padding: 20px;
+    }
+}
+
+/* ============================================
+   Reveal View (Story 4.6)
+   ============================================ */
+
+.reveal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.reveal-round-info {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+/* Album Cover (smaller for reveal) */
+.reveal-album {
+    margin-bottom: 24px;
+}
+
+.reveal-album-cover {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Correct Year */
+.correct-year-container {
+    margin-bottom: 16px;
+}
+
+.correct-year-label {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.correct-year {
+    font-size: 72px;
+    font-weight: 800;
+    color: #10b981;
+    font-variant-numeric: tabular-nums;
+    animation: reveal-pop 0.5s ease-out;
+}
+
+@keyframes reveal-pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Song Info */
+.song-info {
+    margin-bottom: 16px;
+}
+
+.song-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.song-artist {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+/* Fun Fact */
+.fun-fact-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #fef3c7;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    text-align: left;
+    max-width: 100%;
+}
+
+.fun-fact-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.fun-fact-text {
+    font-size: 14px;
+    color: #92400e;
+    line-height: 1.4;
+}
+
+/* Personal Result */
+.personal-result {
+    width: 100%;
+    background: #f3f4f6;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.result-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-label {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.result-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.result-value.is-exact {
+    color: #10b981;
+}
+
+.result-value.is-close {
+    color: #f59e0b;
+}
+
+.result-value.is-far {
+    color: #ef4444;
+}
+
+.result-score {
+    font-size: 32px;
+    font-weight: 700;
+    color: #6366f1;
+    margin-top: 8px;
+}
+
+.result-missed {
+    font-size: 16px;
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Admin Controls */
+.reveal-admin-controls {
+    margin-top: 16px;
+}
+
+.next-round-btn {
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background: #6366f1;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.next-round-btn:hover {
+    background: #4f46e5;
+}
+
+.next-round-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.next-round-btn.is-final {
+    background: #10b981;
+}
+
+.next-round-btn.is-final:hover {
+    background: #059669;
+}
+
+/* Responsive adjustments for Reveal View */
+@media (max-width: 360px) {
+    .correct-year {
+        font-size: 56px;
+    }
+
+    .reveal-album-cover {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (min-width: 768px) {
+    .reveal-container {
+        max-width: 500px;
+    }
+
+    .reveal-album-cover {
+        width: 180px;
+        height: 180px;
+    }
+
+    .correct-year {
+        font-size: 84px;
     }
 }

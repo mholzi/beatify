@@ -120,6 +120,16 @@
                     <div id="timer" class="timer">30</div>
                 </div>
 
+                <!-- Submission Tracker (Story 4.4) -->
+                <div id="submission-tracker" class="submission-tracker">
+                    <div class="submission-header">
+                        <span id="submission-count" class="submission-count">0/0 submitted</span>
+                    </div>
+                    <div id="submitted-players" class="submitted-players">
+                        <!-- Player indicators populated dynamically -->
+                    </div>
+                </div>
+
                 <!-- Year Selector (Story 4.3) -->
                 <div id="year-selector-container" class="year-selector-container">
                     <div id="year-selector" class="year-selector">
@@ -151,11 +161,54 @@
             </div>
         </div>
 
-        <!-- Reveal View (placeholder - full implementation in Epic 4) -->
+        <!-- Reveal View (Story 4.6) -->
         <div id="reveal-view" class="view hidden">
-            <div class="reveal-placeholder">
-                <h1>🎉 Round Reveal</h1>
-                <p>Full reveal UI coming in Epic 4.</p>
+            <div class="reveal-container">
+                <!-- Round Info -->
+                <div class="reveal-round-info">
+                    Round <span id="reveal-round">1</span> of <span id="reveal-total">10</span>
+                </div>
+
+                <!-- Album Cover (smaller) -->
+                <div class="reveal-album">
+                    <img id="reveal-album-cover"
+                         src="/beatify/static/img/no-artwork.svg"
+                         alt="Album Cover"
+                         class="reveal-album-cover">
+                </div>
+
+                <!-- Correct Year -->
+                <div class="correct-year-container">
+                    <div class="correct-year-label">The year was</div>
+                    <div id="correct-year" class="correct-year">1984</div>
+                </div>
+
+                <!-- Song Info -->
+                <div class="song-info">
+                    <div id="song-title" class="song-title">Unknown Song</div>
+                    <div id="song-artist" class="song-artist">Unknown Artist</div>
+                </div>
+
+                <!-- Fun Fact -->
+                <div id="fun-fact-container" class="fun-fact-container hidden">
+                    <div class="fun-fact-icon">&#128161;</div>
+                    <div id="fun-fact" class="fun-fact-text"></div>
+                </div>
+
+                <!-- Personal Result -->
+                <div id="personal-result" class="personal-result">
+                    <div class="result-header">Your Result</div>
+                    <div id="result-content" class="result-content">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Admin Controls -->
+                <div id="reveal-admin-controls" class="reveal-admin-controls hidden">
+                    <button id="next-round-btn" class="next-round-btn">
+                        Next Round
+                    </button>
+                </div>
             </div>
         </div>
 

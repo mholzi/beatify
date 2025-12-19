@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import time
 from typing import TYPE_CHECKING
 
 from aiohttp import WSMsgType, web
@@ -11,14 +12,21 @@ from aiohttp import WSMsgType, web
 from custom_components.beatify.const import (
     DOMAIN,
     ERR_ADMIN_EXISTS,
+    ERR_ALREADY_SUBMITTED,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
+    ERR_INVALID_ACTION,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
     ERR_NOT_ADMIN,
+    ERR_NOT_IN_GAME,
+    ERR_ROUND_EXPIRED,
     LOBBY_DISCONNECT_GRACE_PERIOD,
+    YEAR_MAX,
+    YEAR_MIN,
 )
+from custom_components.beatify.game.state import GamePhase, GameState
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -75,7 +83,7 @@ class BeatifyWebSocketHandler:
 
         return ws
 
-    async def _handle_message(
+    async def _handle_message(  # noqa: PLR0912, PLR0915
         self, ws: web.WebSocketResponse, data: dict
     ) -> None:
         """
@@ -148,6 +156,9 @@ class BeatifyWebSocketHandler:
                     "message": error_messages.get(error_code, "Join failed"),
                 })
 
+        elif msg_type == "submit":
+            await self._handle_submit(ws, data, game_state)
+
         elif msg_type == "admin":
             action = data.get("action")
 
@@ -167,20 +178,139 @@ class BeatifyWebSocketHandler:
                 return
 
             if action == "start_game":
-                success, error_code = game_state.start_game()
+                if game_state.phase != GamePhase.LOBBY:
+                    await ws.send_json({
+                        "type": "error",
+                        "code": ERR_INVALID_ACTION,
+                        "message": "Game already started",
+                    })
+                    return
+
+                # Start the first round (plays song, sets timer)
+                success = await game_state.start_round(self.hass)
                 if success:
                     await self.broadcast_state()
                 else:
                     await ws.send_json({
                         "type": "error",
-                        "code": error_code,
-                        "message": "Failed to start game",
+                        "code": ERR_GAME_NOT_STARTED,
+                        "message": "Failed to start game - no songs available",
                     })
+
+            elif action == "next_round":
+                if game_state.phase == GamePhase.PLAYING:
+                    # Early advance - end current round first
+                    await game_state.end_round()
+                    # Broadcast handled by round_end_callback
+                elif game_state.phase == GamePhase.REVEAL:
+                    # Start next round or end game
+                    if game_state.last_round:
+                        # No more rounds, end game
+                        game_state.phase = GamePhase.END
+                        await self.broadcast_state()
+                    else:
+                        # Start next round
+                        success = await game_state.start_round(self.hass)
+                        if success:
+                            await self.broadcast_state()
+                        else:
+                            # No more songs
+                            game_state.phase = GamePhase.END
+                            await self.broadcast_state()
+                else:
+                    await ws.send_json({
+                        "type": "error",
+                        "code": ERR_INVALID_ACTION,
+                        "message": "Cannot advance round in current phase",
+                    })
+
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
 
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
+
+    async def _handle_submit(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle guess submission from player.
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing year guess
+            game_state: Current game state
+
+        """
+        # Find player by WebSocket
+        player = None
+        for p in game_state.players.values():
+            if p.ws == ws:
+                player = p
+                break
+
+        if not player:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            })
+            return
+
+        # Check phase
+        if game_state.phase != GamePhase.PLAYING:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Not in playing phase",
+            })
+            return
+
+        # Check if already submitted
+        if player.submitted:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_ALREADY_SUBMITTED,
+                "message": "Already submitted",
+            })
+            return
+
+        # Check deadline (uses game_state's time function for testability)
+        if game_state.is_deadline_passed():
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
+            })
+            return
+
+        # Validate year
+        year = data.get("year")
+        if not isinstance(year, int) or year < YEAR_MIN or year > YEAR_MAX:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid year",
+            })
+            return
+
+        # Record submission
+        submission_time = time.time()
+        player.submit_guess(year, submission_time)
+
+        # Send acknowledgment
+        await ws.send_json({
+            "type": "submit_ack",
+            "year": year,
+        })
+
+        # Broadcast updated state (player.submitted now True)
+        await self.broadcast_state()
+
+        _LOGGER.info(
+            "Player %s submitted guess: %d at %.2f",
+            player.name, year, submission_time
+        )
 
     async def broadcast(self, message: dict) -> None:
         """

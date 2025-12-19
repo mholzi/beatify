@@ -61,6 +61,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Initialize WebSocket handler
     ws_handler = BeatifyWebSocketHandler(hass)
 
+    # Set up round end callback for timer expiry (Story 4.5)
+    game_state.set_round_end_callback(ws_handler.broadcast_state)
+
     # Store discovery results and game infrastructure
     hass.data[DOMAIN] = {
         "entry_id": entry.entry_id,

@@ -74,13 +74,13 @@ development_status:
   # Epic 4: Core Gameplay Loop
   # Goal: Full game round experience - song plays, guess year, reveal with score
   # FRs: FR22, FR23, FR24, FR25, FR26, FR27, FR28, FR29, FR30, FR31, FR32
-  epic-4: in-progress
+  epic-4: done
   4-1-song-playback-via-media-player: done
   4-2-round-display-album-cover-and-timer: done
-  4-3-year-selector-and-guess-submission: in-progress
-  4-4-submission-tracking-display: ready-for-dev
-  4-5-timer-expiry-and-auto-advance: ready-for-dev
-  4-6-reveal-and-scoring: ready-for-dev
+  4-3-year-selector-and-guess-submission: done
+  4-4-submission-tracking-display: done
+  4-5-timer-expiry-and-auto-advance: done
+  4-6-reveal-and-scoring: done
   epic-4-retrospective: optional
 
   # Epic 5: Advanced Scoring & Leaderboard
