@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('end-game')?.addEventListener('click', endGame);
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
 
+    // Admin join setup
+    setupAdminJoin();
+
     await loadStatus();
 });
 
@@ -559,4 +562,109 @@ function printQRCode() {
 function showError(message) {
     // Simple alert for now - can be enhanced with toast notifications
     alert(message);
+}
+
+// ==========================================
+// Admin Join Functions (Story 3.5)
+// ==========================================
+
+/**
+ * Open admin join modal
+ */
+function openAdminJoinModal() {
+    const modal = document.getElementById('admin-join-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.getElementById('admin-name-input')?.focus();
+    }
+}
+
+/**
+ * Close admin join modal
+ */
+function closeAdminJoinModal() {
+    const modal = document.getElementById('admin-join-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+    // Reset form
+    const nameInput = document.getElementById('admin-name-input');
+    const joinBtn = document.getElementById('admin-join-btn');
+    const errorMsg = document.getElementById('admin-name-error');
+    if (nameInput) nameInput.value = '';
+    if (joinBtn) {
+        joinBtn.disabled = true;
+        joinBtn.textContent = 'Join';
+    }
+    if (errorMsg) errorMsg.classList.add('hidden');
+}
+
+/**
+ * Setup admin join modal and button handlers
+ */
+function setupAdminJoin() {
+    const participateBtn = document.getElementById('participate-btn');
+    const cancelBtn = document.getElementById('admin-cancel-btn');
+    const joinBtn = document.getElementById('admin-join-btn');
+    const nameInput = document.getElementById('admin-name-input');
+    const backdrop = document.querySelector('#admin-join-modal .modal-backdrop');
+
+    participateBtn?.addEventListener('click', openAdminJoinModal);
+    cancelBtn?.addEventListener('click', closeAdminJoinModal);
+    backdrop?.addEventListener('click', closeAdminJoinModal);
+
+    nameInput?.addEventListener('input', function() {
+        const name = this.value.trim();
+        joinBtn.disabled = !name || name.length > 20;
+    });
+
+    nameInput?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !joinBtn.disabled) {
+            handleAdminJoin();
+        }
+    });
+
+    joinBtn?.addEventListener('click', handleAdminJoin);
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('admin-join-modal');
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeAdminJoinModal();
+        }
+    });
+}
+
+/**
+ * Handle admin join button click
+ */
+function handleAdminJoin() {
+    const nameInput = document.getElementById('admin-name-input');
+    const joinBtn = document.getElementById('admin-join-btn');
+    const name = nameInput?.value.trim();
+
+    if (!name) return;
+
+    joinBtn.disabled = true;
+    joinBtn.textContent = 'Joining...';
+
+    try {
+        // Store admin name for player page
+        sessionStorage.setItem('beatify_admin_name', name);
+        sessionStorage.setItem('beatify_is_admin', 'true');
+
+        // Redirect to player page with game ID
+        const gameId = currentGame?.game_id;
+        if (gameId) {
+            window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
+        } else {
+            showError('No active game found');
+            joinBtn.disabled = false;
+            joinBtn.textContent = 'Join';
+        }
+    } catch (err) {
+        console.error('Admin join failed:', err);
+        joinBtn.disabled = false;
+        joinBtn.textContent = 'Join';
+    }
 }

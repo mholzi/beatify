@@ -16,7 +16,6 @@ _Critical rules and patterns for implementing Beatify - a Home Assistant party g
 |------------|---------|-------|
 | Python | 3.11+ | HA requirement |
 | Home Assistant | 2025.11+ | Target platform |
-| Music Assistant | 2.4+ | Required dependency |
 | aiohttp | (HA bundled) | WebSocket & HTTP |
 
 ---
@@ -31,16 +30,20 @@ RECONNECT_TIMEOUT = 60  # seconds
 DEFAULT_ROUND_DURATION = 30  # seconds
 MAX_NAME_LENGTH = 20
 MIN_NAME_LENGTH = 1
+LOBBY_DISCONNECT_GRACE_PERIOD = 5  # seconds before removing disconnected player
 
 # Error codes
 ERR_NAME_TAKEN = "NAME_TAKEN"
 ERR_NAME_INVALID = "NAME_INVALID"
 ERR_GAME_NOT_STARTED = "GAME_NOT_STARTED"
 ERR_GAME_ALREADY_STARTED = "GAME_ALREADY_STARTED"
+ERR_GAME_ENDED = "GAME_ENDED"
 ERR_NOT_ADMIN = "NOT_ADMIN"
+ERR_ADMIN_EXISTS = "ADMIN_EXISTS"
 ERR_ROUND_EXPIRED = "ROUND_EXPIRED"
-ERR_MA_UNAVAILABLE = "MA_UNAVAILABLE"
+ERR_MEDIA_PLAYER_UNAVAILABLE = "MEDIA_PLAYER_UNAVAILABLE"
 ERR_INVALID_ACTION = "INVALID_ACTION"
+ERR_GAME_FULL = "GAME_FULL"
 ```
 
 ---
@@ -52,8 +55,7 @@ ERR_INVALID_ACTION = "INVALID_ACTION"
 - Use `async_setup_entry` / `async_unload_entry` pattern
 - Store integration data in `hass.data[DOMAIN]`
 - Use `_LOGGER = logging.getLogger(__name__)` for all logging
-- Validate Music Assistant presence in config flow
-- Use `after_dependencies: ["music_assistant"]` in manifest
+- Validate at least one media_player entity exists in config flow
 
 ### WebSocket (Custom, NOT HA's websocket_api)
 
@@ -97,19 +99,25 @@ Reject invalid transitions with error, do not silently ignore.
 - Reconnect by same name within window → restore score
 - After timeout → session discarded, name available
 
-### Music Assistant Service Calls
+### Media Player Service Calls
 
 ```python
+# Play a track
 await hass.services.async_call(
-    "music_assistant",
+    "media_player",
     "play_media",
     {
         "entity_id": media_player_entity,
-        "media_id": song_uri,  # e.g., "spotify:track:xxx"
-        "media_type": "track",
-        "enqueue": "replace"
+        "media_content_id": song_uri,  # e.g., "spotify:track:xxx"
+        "media_content_type": "music"
     }
 )
+
+# Get track metadata after playback starts
+state = hass.states.get(media_player_entity)
+artist = state.attributes.get("media_artist", "Unknown Artist")
+title = state.attributes.get("media_title", "Unknown Title")
+artwork = state.attributes.get("entity_picture", "/beatify/static/img/no-artwork.svg")
 ```
 
 ### Playlist Format
@@ -126,7 +134,7 @@ Location: `{HA_CONFIG}/beatify/playlists/*.json`
 ```
 
 - `year` and `fun_fact` are authoritative (manually curated)
-- `artist`, `title`, `album_art` fetched from MA at runtime
+- `artist`, `title`, `album_art` fetched from media_player entity attributes at runtime
 - Validate all URIs at game start, warn host of failures
 
 ---
@@ -239,7 +247,7 @@ async def test_player_join(ws_client):
 
 ### Mocking
 - Mock HA: `MagicMock()`
-- Mock MA service: `AsyncMock()`
+- Mock media_player service: `AsyncMock()`
 - Test each state transition as a separate test case
 
 ---
@@ -265,7 +273,7 @@ async def test_player_join(ws_client):
 custom_components/beatify/
 ├── __init__.py          # async_setup_entry, async_unload_entry
 ├── const.py             # DOMAIN, MAX_PLAYERS, error codes
-├── config_flow.py       # UI setup, MA validation
+├── config_flow.py       # UI setup, media player validation
 ├── game/
 │   ├── state.py         # GameState class, state machine
 │   ├── scoring.py       # Points calculation (exact formula)
@@ -276,7 +284,6 @@ custom_components/beatify/
 │   ├── websocket.py     # Custom aiohttp WS handler
 │   └── messages.py      # Serialize/deserialize
 ├── services/
-│   ├── music_assistant.py
 │   └── media_player.py
 └── www/
     ├── admin.html

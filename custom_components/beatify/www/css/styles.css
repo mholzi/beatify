@@ -478,6 +478,447 @@ footer {
     }
 }
 
+/* ==========================================
+   Join Form Styles (Story 3.1)
+   ========================================== */
+
+.join-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 24px;
+    text-align: center;
+}
+
+.join-form h1 {
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.join-form > p {
+    margin-bottom: 24px;
+    color: #6b7280;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.name-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+
+.name-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.join-btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.validation-msg {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ef4444;
+    text-align: left;
+}
+
+/* ==========================================
+   Lobby Styles (Story 3.3)
+   ========================================== */
+
+.lobby-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.lobby-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.lobby-header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #1f2937;
+}
+
+.player-count {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+/* Player List */
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.player-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    min-height: 48px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.player-card--you {
+    background: #eff6ff;
+    border-color: #3b82f6;
+}
+
+.player-card--disconnected {
+    opacity: 0.5;
+}
+
+.player-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.admin-badge {
+    font-size: 18px;
+}
+
+.you-badge {
+    font-size: 12px;
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+/* New player animation */
+.player-card.is-new {
+    animation: playerJoin 0.5s ease-out;
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+@keyframes playerJoin {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* QR Share Area (Story 3.4) */
+.qr-share-area {
+    text-align: center;
+    padding: 24px 16px;
+    background: #f9fafb;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.qr-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 16px;
+}
+
+.qr-icon {
+    font-size: 20px;
+}
+
+.qr-container {
+    display: inline-block;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    min-width: 150px;
+    min-height: 150px;
+    transition: transform 0.2s ease;
+}
+
+.qr-container:hover,
+.qr-container:focus {
+    transform: scale(1.02);
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.qr-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.qr-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* QR Modal (Story 3.4) */
+.qr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-modal.hidden {
+    display: none;
+}
+
+.qr-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.qr-modal-content {
+    position: relative;
+    background: white;
+    padding: 32px 24px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 90vw;
+    max-height: 90vh;
+    animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.qr-modal-code {
+    display: inline-block;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    min-width: 250px;
+}
+
+.qr-modal-code img {
+    display: block;
+    width: 100%;
+    max-width: 80vw;
+    height: auto;
+}
+
+.qr-modal-label {
+    margin: 16px 0;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+.qr-modal-close {
+    min-width: 120px;
+    min-height: 48px;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Lobby Status */
+.lobby-status {
+    text-align: center;
+    padding: 16px;
+    color: #6b7280;
+}
+
+/* Admin Controls (Story 3.5) */
+.admin-controls {
+    padding: 24px 16px;
+    text-align: center;
+    background: linear-gradient(to top, #f9fafb, transparent);
+    position: sticky;
+    bottom: 0;
+}
+
+.admin-controls.hidden {
+    display: none;
+}
+
+.btn-large {
+    min-height: 56px;
+    font-size: 20px;
+    padding: 16px 32px;
+}
+
+.btn-icon {
+    margin-right: 8px;
+}
+
+.admin-hint {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Admin page modal and actions */
+.admin-lobby-actions {
+    text-align: center;
+    margin-top: 24px;
+}
+
+/* Modal styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    animation: modalFadeIn 0.2s ease-out;
+}
+
+.modal-content h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.modal-content p {
+    margin-bottom: 16px;
+    color: #6b7280;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.modal-actions .btn {
+    flex: 1;
+}
+
+/* Game placeholder (Epic 4 prep) */
+.game-placeholder {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.game-placeholder h1 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.game-placeholder p {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+/* Reveal placeholder (Story 3.6 / Epic 4 prep) */
+.reveal-placeholder {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.reveal-placeholder h1 {
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.reveal-placeholder p {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+/* End View (Story 3.6) */
+.end-container {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.end-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.end-container h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: #1f2937;
+}
+
+.end-message {
+    font-size: 18px;
+    color: #4b5563;
+    margin-bottom: 8px;
+}
+
 /* Tablet+ breakpoint (min-width for mobile-first) */
 @media (min-width: 768px) {
     body {

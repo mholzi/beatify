@@ -1,6 +1,6 @@
 # Story 2.3: Start Game & Create Lobby
 
-Status: review
+Status: done
 
 ## Story
 

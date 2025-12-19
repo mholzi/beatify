@@ -3,12 +3,10 @@
         "step": {
             "user": {
                 "title": "Set up Beatify",
-                "description": "Beatify is a party game integration for Home Assistant that works with Music Assistant."
+                "description": "Beatify is a party game integration for Home Assistant that plays music through your media players.\n\n{warning}"
             }
         },
         "error": {
-            "ma_not_found": "Music Assistant integration not found. If you have the Music Assistant **add-on** installed, you also need to add the **integration**: Go to Settings → Devices & Services → Add Integration → Music Assistant. [Setup Guide]({ma_url})",
-            "ma_not_configured": "Music Assistant is installed but not fully configured. Please complete Music Assistant setup first.",
             "unknown": "An unknown error occurred."
         },
         "abort": {

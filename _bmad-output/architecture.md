@@ -21,7 +21,7 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 ### Requirements Overview
 
 **Functional Requirements:**
-59 requirements across 10 categories, with the core game loop (10 FRs) and scoring system (7 FRs) representing the heaviest architectural components. The integration spans HACS installation, Music Assistant playback, and real-time WebSocket communication for up to 20 concurrent players.
+58 requirements across 10 categories, with the core game loop (10 FRs) and scoring system (7 FRs) representing the heaviest architectural components. The integration spans HACS installation, direct media player control, and real-time WebSocket communication for up to 20 concurrent players.
 
 **Non-Functional Requirements:**
 - Performance: <2s page load, <200ms WebSocket latency, 60fps interactions
@@ -39,7 +39,6 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 | Constraint | Impact |
 |------------|--------|
 | Python within HA environment | Must use HA's async patterns (aiohttp) |
-| Music Assistant dependency | Required for playback; defines service call interface |
 | Local network only | No cloud, no CDN; QR contains local IP |
 | WebSocket coexistence | Must not conflict with HA's native WebSocket |
 | No authentication | Custom WebSocket endpoint (not HA's `websocket_api`) |
@@ -47,7 +46,7 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 ### Cross-Cutting Concerns Identified
 
 1. **Real-time state synchronization** — All clients must see consistent game state
-2. **Error recovery and resilience** — Admin/player disconnects, MA unavailable
+2. **Error recovery and resilience** — Admin/player disconnects, media player unavailable
 3. **Mobile-first responsive design** — Primary interaction device is phone
 4. **Admin role duality** — Single user plays and controls simultaneously
 5. **Late-join state recovery** — Players entering mid-game need current round state
@@ -112,9 +111,9 @@ mv custom_components/integration_blueprint custom_components/beatify
 |---|----------|----------|-----------|
 | 1 | WebSocket | Custom aiohttp WebSocket | Frictionless player access (no HA auth) |
 | 2 | State Management | State machine pattern | Clear phases: LOBBY → PLAYING → REVEAL → END |
-| 3 | MA Integration | Required at setup, graceful runtime | Clear dependency, handles mid-game failures |
+| 3 | Media Player | Direct HA service calls | Simple integration, no external dependencies |
 | 4 | Frontend Delivery | Static files in `www/` | Fastest load, no build step |
-| 5 | Playlist Format | JSON (year + uri + fun_fact) | Metadata from MA, year is game-critical |
+| 5 | Playlist Format | JSON (year + uri + fun_fact) | Metadata from media_player, year is game-critical |
 | 6 | Player Sessions | Name-based + 60s reconnect | Survives brief disconnects, preserves score |
 | 7 | Admin Identity | Via admin "Participate" button | Explicit admin route per PRD |
 | 8 | Real-time Sync | Full state broadcast | Simple, state is small (20 players) |
@@ -171,19 +170,35 @@ mv custom_components/integration_blueprint custom_components/beatify
 - Invalid transitions rejected with error message
 - Admin disconnect → PAUSED state, resume on reconnect
 
-### Music Assistant Integration
+### Media Player Integration
 
-**Decision:** Required dependency with graceful runtime handling
+**Decision:** Direct HA media_player service calls
 
-- Config flow validates MA presence at setup
-- Runtime: If MA unavailable, pause game with "Music service unavailable" message
-- Service calls: `music_assistant.play_media` for playback
-- Metadata fetch: Artist/title/album art retrieved from MA at runtime
+- Config flow validates at least one media_player entity exists
+- Runtime: If media player unavailable, pause game with "Media player unavailable" message
+- Service calls: `media_player.play_media` for playback
+- Metadata fetch: Artist/title/album art retrieved from media_player entity attributes after playback starts
 
-**Playlist Validation:**
-- Validate all track URIs at game start before players join
-- Warn host of unavailable tracks
-- Continue with valid subset
+**Playback Control:**
+```python
+await hass.services.async_call(
+    "media_player",
+    "play_media",
+    {
+        "entity_id": media_player_entity,
+        "media_content_id": song_uri,
+        "media_content_type": "music"
+    }
+)
+```
+
+**Metadata Retrieval:**
+```python
+state = hass.states.get(media_player_entity)
+artist = state.attributes.get("media_artist", "Unknown Artist")
+title = state.attributes.get("media_title", "Unknown Title")
+artwork = state.attributes.get("entity_picture", "/beatify/static/img/no-artwork.svg")
+```
 
 ### Playlist Data Format
 
@@ -204,7 +219,7 @@ mv custom_components/integration_blueprint custom_components/beatify
 
 - Stored in HA config directory: `config/beatify/playlists/`
 - Year and fun_fact are authoritative (manually curated)
-- Artist, title, album art fetched from MA at runtime
+- Artist, title, album art fetched from media_player entity attributes at runtime
 
 ### Frontend Architecture
 
@@ -361,7 +376,7 @@ _LOGGER = logging.getLogger(__name__)
 _LOGGER.debug("State: %s -> %s", old, new)  # Dev only
 _LOGGER.info("Game started: %d players", n)  # Events
 _LOGGER.warning("Player disconnected: %s", name)  # Issues
-_LOGGER.error("MA unavailable: %s", err)  # Failures
+_LOGGER.error("Media player error: %s", err)  # Failures
 ```
 
 ### Error Codes
@@ -374,7 +389,7 @@ _LOGGER.error("MA unavailable: %s", err)  # Failures
 | `GAME_ALREADY_STARTED` | Can't join after start |
 | `NOT_ADMIN` | Admin action by non-admin |
 | `ROUND_EXPIRED` | Submission after deadline |
-| `MA_UNAVAILABLE` | Music Assistant offline |
+| `MEDIA_PLAYER_UNAVAILABLE` | Media player offline or unresponsive |
 | `INVALID_ACTION` | Unknown action type |
 
 ### Import Order (Python)
@@ -448,8 +463,7 @@ beatify/
 │       │
 │       ├── services/                   # HA service integration
 │       │   ├── __init__.py
-│       │   ├── music_assistant.py      # MA service calls
-│       │   └── media_player.py         # Volume, playback control
+│       │   └── media_player.py         # Playback, volume, metadata
 │       │
 │       ├── translations/
 │       │   └── en.json                 # Config flow strings
@@ -483,7 +497,7 @@ beatify/
 | **FR7-11: Game Configuration** | `game/playlist.py`, `server/views.py` (admin) |
 | **FR12-16: Player Onboarding** | `server/websocket.py`, `game/player.py`, `www/player.html` |
 | **FR17-21: Lobby Management** | `game/state.py` (LOBBY phase), `server/messages.py` |
-| **FR22-31: Core Game Loop** | `game/state.py` (PLAYING/REVEAL), `services/music_assistant.py` |
+| **FR22-31: Core Game Loop** | `game/state.py` (PLAYING/REVEAL), `services/media_player.py` |
 | **FR32-38: Scoring System** | `game/scoring.py` |
 | **FR39-42: Leaderboard** | `server/messages.py` (state broadcast), `www/js/player.js` |
 | **FR43-48: Admin Controls** | `server/websocket.py`, `www/js/admin.js` |
@@ -520,13 +534,13 @@ beatify/
 │  │         ▼                      ▼                │    │
 │  │  ┌──────────────────────────────────────────┐  │    │
 │  │  │              services/                    │  │    │
-│  │  │   music_assistant.py    media_player.py  │  │    │
+│  │  │            media_player.py               │  │    │
 │  │  └──────────────────────────────────────────┘  │    │
 │  │                       │                         │    │
 │  └───────────────────────│─────────────────────────┘    │
 │                          ▼                              │
 │  ┌───────────────────────────────────────────────────┐  │
-│  │     Music Assistant    │    Media Player Entities │  │
+│  │              Media Player Entities                 │  │
 │  └───────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -549,13 +563,9 @@ Player Phone                    Beatify                     Home Assistant
      │                            │ game/scoring.py              │
      │                            │ calculate points             │
      │                            │                              │
-     │                            │ services/music_assistant.py  │
-     │                            │────────────────────────────▶│
-     │                            │     play_media service call  │
-     │                            │                              │
      │                            │ services/media_player.py     │
      │                            │────────────────────────────▶│
-     │                            │     volume_set service call  │
+     │                            │  play_media / volume_set     │
 ```
 
 ### Key File Responsibilities
@@ -572,8 +582,7 @@ Player Phone                    Beatify                     Home Assistant
 | `server/views.py` | HTTP endpoints only |
 | `server/websocket.py` | WS connection handling |
 | `server/messages.py` | Serialize/deserialize messages |
-| `services/music_assistant.py` | MA service wrapper |
-| `services/media_player.py` | Volume/playback control |
+| `services/media_player.py` | Playback, volume, metadata retrieval |
 
 ## Architecture Validation Results
 
@@ -582,7 +591,7 @@ Player Phone                    Beatify                     Home Assistant
 | Category | Result |
 |----------|--------|
 | Coherence | ✅ All decisions compatible |
-| Requirements Coverage | ✅ 59/59 FRs supported |
+| Requirements Coverage | ✅ 58/58 FRs supported |
 | Implementation Readiness | ✅ Complete |
 | Critical Gaps | ✅ None |
 
@@ -609,13 +618,13 @@ def mock_hass():
     return hass
 
 @pytest.fixture
-def mock_ma_service():
-    """Mock Music Assistant service calls."""
+def mock_media_player():
+    """Mock media_player service calls."""
     return AsyncMock()
 ```
 
 **Album Art Fallback:**
-- If MA returns no album art → use generic placeholder image
+- If media_player returns no album art → use generic placeholder image
 - Placeholder stored at: `www/img/no-artwork.svg`
 
 **Scalability Note:**
@@ -628,7 +637,7 @@ def mock_ma_service():
 **✅ Requirements Analysis**
 - [x] Project context analyzed (HA integration + party game)
 - [x] Scale assessed (20 players MVP, scalable beyond)
-- [x] Constraints identified (local network, no auth, MA dependency)
+- [x] Constraints identified (local network, no auth)
 - [x] Cross-cutting concerns mapped (state sync, error recovery)
 
 **✅ Architectural Decisions**

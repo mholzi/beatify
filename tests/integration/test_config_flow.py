@@ -3,11 +3,10 @@ ATDD Tests: Stories 1.2, 1.3, 1.4 - Config Flow & Discovery
 
 These tests verify the Home Assistant config flow works correctly:
 - Story 1.2: HACS Installation & Integration Setup
-- Story 1.3: Music Assistant Detection
+- Story 1.3: Media Player Validation
 - Story 1.4: Media Player & Playlist Discovery
 
-Status: RED PHASE (Tests written before implementation)
-Expected: All tests FAIL until implementation is complete
+Status: Updated for course correction (2025-12-19)
 """
 
 from __future__ import annotations
@@ -111,75 +110,225 @@ class TestConfigFlowSetup:
 
 
 # =============================================================================
-# STORY 1.3: Music Assistant Detection
+# STORY 1.3: Media Player Validation
 # =============================================================================
 
 
 @pytest.mark.integration
-class TestMusicAssistantDetection:
+class TestMediaPlayerValidation:
     """
     GIVEN Beatify config flow runs
-    WHEN checking for Music Assistant
-    THEN MA status is correctly detected
+    WHEN checking for media players
+    THEN media player availability is correctly detected
     """
 
     @pytest.fixture
-    def mock_hass_with_ma(self) -> MagicMock:
-        """HA instance with Music Assistant configured."""
-        hass = MagicMock()
-        hass.data = {
-            "music_assistant": {
-                "server": AsyncMock(),
-            }
-        }
-        return hass
+    def mock_entity_registry_with_players(self) -> MagicMock:
+        """Mock entity registry with media players."""
+        mock_reg = MagicMock()
+        # Create mock entities with all required attributes
+        player1 = MagicMock()
+        player1.entity_id = "media_player.living_room"
+        player1.domain = "media_player"
+        player1.name = "Living Room Speaker"
+        player1.original_name = None
+
+        player2 = MagicMock()
+        player2.entity_id = "media_player.kitchen"
+        player2.domain = "media_player"
+        player2.name = None
+        player2.original_name = "Kitchen Speaker"
+
+        mock_reg.entities = MagicMock()
+        mock_reg.entities.values.return_value = [player1, player2]
+        return mock_reg
 
     @pytest.fixture
-    def mock_hass_without_ma(self) -> MagicMock:
-        """HA instance without Music Assistant."""
+    def mock_entity_registry_no_players(self) -> MagicMock:
+        """Mock entity registry with no media players."""
+        mock_reg = MagicMock()
+        mock_reg.entities = MagicMock()
+        mock_reg.entities.values.return_value = []
+        return mock_reg
+
+    @pytest.fixture
+    def mock_hass(self) -> MagicMock:
+        """Mock Home Assistant instance for config flow."""
         hass = MagicMock()
         hass.data = {}
         return hass
 
-    @pytest.mark.skip(reason="MA detection not implemented yet")
-    async def test_ma_detected_when_installed(self, mock_hass_with_ma):
-        """
-        AC: Music Assistant is detected as available when installed.
-        GIVEN Music Assistant integration is installed and configured in HA
-        WHEN Beatify config flow runs
-        THEN Music Assistant is detected as available
-        """
-        from custom_components.beatify.config_flow import detect_music_assistant
+    def test_media_player_detection_method_exists(self):
+        """AC: Config flow has media player detection method."""
+        config_flow_path = Path("custom_components/beatify/config_flow.py")
+        content = config_flow_path.read_text()
 
-        result = await detect_music_assistant(mock_hass_with_ma)
-        assert result is True, "MA should be detected when installed"
+        assert "_get_media_player_entities" in content, (
+            "config_flow.py should have _get_media_player_entities method"
+        )
 
-    @pytest.mark.skip(reason="MA detection not implemented yet")
-    async def test_ma_not_detected_when_missing(self, mock_hass_without_ma):
-        """
-        AC: Error shown when MA is not installed.
-        GIVEN Music Assistant integration is NOT installed
-        WHEN Beatify config flow runs
-        THEN error message displays with setup guide link
-        """
-        from custom_components.beatify.config_flow import detect_music_assistant
+    def test_uses_entity_registry(self):
+        """AC: Config flow uses entity_registry for media player detection."""
+        config_flow_path = Path("custom_components/beatify/config_flow.py")
+        content = config_flow_path.read_text()
 
-        result = await detect_music_assistant(mock_hass_without_ma)
-        assert result is False, "MA should not be detected when missing"
+        assert "entity_registry" in content, (
+            "config_flow.py should use entity_registry for media player detection"
+        )
 
-    @pytest.mark.skip(reason="MA detection not implemented yet")
-    async def test_ma_error_message_content(self, mock_hass_without_ma):
-        """
-        AC: Error includes setup guide link (FR54).
-        GIVEN Music Assistant is not configured
-        WHEN Beatify shows error
-        THEN error includes: 'Music Assistant not found' and link to setup guide
-        """
-        from custom_components.beatify.config_flow import get_ma_error_message
+    def test_no_music_assistant_references(self):
+        """AC: Config flow should not reference Music Assistant."""
+        config_flow_path = Path("custom_components/beatify/config_flow.py")
+        content = config_flow_path.read_text()
 
-        message = get_ma_error_message()
-        assert "Music Assistant not found" in message
-        assert "setup guide" in message.lower() or "http" in message
+        # Should not have any Music Assistant references
+        assert "music_assistant" not in content.lower(), (
+            "config_flow.py should not reference Music Assistant"
+        )
+        assert "MA_SETUP_URL" not in content, (
+            "config_flow.py should not use MA_SETUP_URL"
+        )
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    def test_get_media_player_entities_with_players(
+        self, mock_hass, mock_entity_registry_with_players
+    ):
+        """AC1: Media players detected - returns list with entity_id and friendly_name."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_with_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+
+            result = flow._get_media_player_entities()
+
+            assert len(result) == 2
+            assert result[0]["entity_id"] == "media_player.living_room"
+            assert result[0]["friendly_name"] == "Living Room Speaker"
+            assert result[1]["entity_id"] == "media_player.kitchen"
+            assert result[1]["friendly_name"] == "Kitchen Speaker"
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    def test_get_media_player_entities_no_players(
+        self, mock_hass, mock_entity_registry_no_players
+    ):
+        """AC2: No media players - returns empty list."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_no_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+
+            result = flow._get_media_player_entities()
+
+            assert result == []
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    @pytest.mark.asyncio
+    async def test_config_flow_shows_warning_no_players(
+        self, mock_hass, mock_entity_registry_no_players
+    ):
+        """AC2: Config flow shows warning but allows proceeding when no media players."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_no_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+            # Mock async_set_unique_id to avoid issues
+            flow.async_set_unique_id = AsyncMock()
+            flow._abort_if_unique_id_configured = MagicMock()
+
+            result = await flow.async_step_user(user_input=None)
+
+            # Should show form (not abort/error)
+            assert result["type"] == "form"
+            assert result["step_id"] == "user"
+            # Should have warning in description_placeholders
+            assert "description_placeholders" in result
+            assert "warning" in result["description_placeholders"]
+            assert "No media players found" in result["description_placeholders"]["warning"]
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    @pytest.mark.asyncio
+    async def test_config_flow_shows_players_found(
+        self, mock_hass, mock_entity_registry_with_players
+    ):
+        """AC1/AC3: Config flow shows media players with friendly names when found."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_with_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+            flow.async_set_unique_id = AsyncMock()
+            flow._abort_if_unique_id_configured = MagicMock()
+
+            result = await flow.async_step_user(user_input=None)
+
+            assert result["type"] == "form"
+            assert "description_placeholders" in result
+            assert "warning" in result["description_placeholders"]
+            # Should show friendly names
+            assert "Living Room Speaker" in result["description_placeholders"]["warning"]
+            assert "Kitchen Speaker" in result["description_placeholders"]["warning"]
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    @pytest.mark.asyncio
+    async def test_config_flow_creates_entry_with_players(
+        self, mock_hass, mock_entity_registry_with_players
+    ):
+        """AC1: Config flow creates entry when media players exist."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_with_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+            flow.async_set_unique_id = AsyncMock()
+            flow._abort_if_unique_id_configured = MagicMock()
+
+            result = await flow.async_step_user(user_input={})
+
+            assert result["type"] == "create_entry"
+            assert result["title"] == "Beatify"
+            assert result["data"]["has_media_players"] is True
+
+    @pytest.mark.skipif(not HA_AVAILABLE, reason="Home Assistant not installed")
+    @pytest.mark.asyncio
+    async def test_config_flow_creates_entry_without_players(
+        self, mock_hass, mock_entity_registry_no_players
+    ):
+        """AC2: Config flow allows creating entry even without media players (with warning)."""
+        from custom_components.beatify.config_flow import BeatifyConfigFlow
+
+        with patch(
+            "custom_components.beatify.config_flow.er.async_get",
+            return_value=mock_entity_registry_no_players,
+        ):
+            flow = BeatifyConfigFlow()
+            flow.hass = mock_hass
+            flow.async_set_unique_id = AsyncMock()
+            flow._abort_if_unique_id_configured = MagicMock()
+
+            result = await flow.async_step_user(user_input={})
+
+            # Should still create entry (AC2: setup can proceed but warns)
+            assert result["type"] == "create_entry"
+            assert result["title"] == "Beatify"
+            assert result["data"]["has_media_players"] is False
 
 
 # =============================================================================
@@ -190,7 +339,7 @@ class TestMusicAssistantDetection:
 @pytest.mark.integration
 class TestMediaPlayerDiscovery:
     """
-    GIVEN Music Assistant is configured
+    GIVEN Beatify config flow is running
     WHEN Beatify scans for media players
     THEN all HA media_player entities are listed (FR4)
     """

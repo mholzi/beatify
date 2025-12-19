@@ -1,6 +1,6 @@
 # Story 2.4: QR Code Generation & Display
 
-Status: review
+Status: done
 
 ## Story
 

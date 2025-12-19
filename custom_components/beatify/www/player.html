@@ -19,7 +19,7 @@
             <div class="error-icon">🎵</div>
             <h1>Game Not Found</h1>
             <p>This game doesn't exist or the link is incorrect.</p>
-            <p class="hint">Scan a new QR code from the host's screen.</p>
+            <p class="hint">Ask the host for a new QR code.</p>
             <button id="refresh-btn" class="btn btn-primary">Try Again</button>
         </div>
 
@@ -39,15 +39,103 @@
             <button id="retry-btn" class="btn btn-primary">Try Again</button>
         </div>
 
-        <!-- Join form (stub for Epic 3) -->
+        <!-- Join form -->
         <div id="join-view" class="view hidden">
-            <h1>Join Beatify</h1>
-            <p>Enter your name to join the game</p>
-            <!-- Full implementation in Story 3.2 -->
-            <p class="coming-soon">Name entry coming in next update...</p>
+            <div class="join-form">
+                <h1>Join Beatify</h1>
+                <p>Enter your name to play</p>
+                <div class="form-group">
+                    <input type="text" id="name-input" class="name-input"
+                           placeholder="Your name" maxlength="20"
+                           autocomplete="off" autocapitalize="words"
+                           aria-describedby="name-validation-msg">
+                    <p id="name-validation-msg" class="validation-msg hidden"></p>
+                </div>
+                <button id="join-btn" class="btn btn-primary join-btn" disabled>Join Game</button>
+            </div>
+        </div>
+
+        <!-- Lobby view -->
+        <div id="lobby-view" class="view hidden">
+            <div class="lobby-container">
+                <header class="lobby-header">
+                    <h1>Game Lobby</h1>
+                    <p id="player-count" class="player-count">0 players</p>
+                </header>
+
+                <div id="player-list" class="player-list">
+                    <!-- Player cards rendered by JS -->
+                </div>
+
+                <div id="qr-share-area" class="qr-share-area">
+                    <p class="qr-label">
+                        <span class="qr-icon">📲</span>
+                        Invite friends
+                    </p>
+                    <div id="player-qr-code" class="qr-container" role="button" tabindex="0"
+                         aria-label="Tap to enlarge QR code">
+                        <!-- QR code rendered here by JS -->
+                    </div>
+                    <p class="qr-hint">Tap to enlarge</p>
+                </div>
+
+                <div id="lobby-status" class="lobby-status">
+                    <p>Waiting for host to start the game...</p>
+                </div>
+
+                <div id="admin-controls" class="admin-controls hidden">
+                    <button id="start-game-btn" class="btn btn-primary btn-large">
+                        <span class="btn-icon">▶️</span>
+                        Start Game
+                    </button>
+                    <p class="admin-hint">Press when everyone is ready</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game view placeholder (Epic 4) -->
+        <div id="game-view" class="view hidden">
+            <div class="game-placeholder">
+                <h1>Game Started!</h1>
+                <p>Game functionality coming in Epic 4</p>
+            </div>
+        </div>
+
+        <!-- Reveal View (placeholder - full implementation in Epic 4) -->
+        <div id="reveal-view" class="view hidden">
+            <div class="reveal-placeholder">
+                <h1>🎉 Round Reveal</h1>
+                <p>Full reveal UI coming in Epic 4.</p>
+            </div>
+        </div>
+
+        <!-- End View -->
+        <div id="end-view" class="view hidden">
+            <div class="end-container">
+                <div class="end-icon">🎮</div>
+                <h1>Game Has Ended</h1>
+                <p class="end-message">Thanks for playing Beatify!</p>
+                <p class="hint">Ask the host to start a new game.</p>
+            </div>
         </div>
     </main>
 
+    <!-- QR Modal -->
+    <div id="qr-modal" class="qr-modal hidden" role="dialog" aria-modal="true"
+         aria-labelledby="qr-modal-title">
+        <div class="qr-modal-backdrop"></div>
+        <div class="qr-modal-content">
+            <h2 id="qr-modal-title" class="sr-only">Join Game QR Code</h2>
+            <div id="qr-modal-code" class="qr-modal-code">
+                <!-- Large QR code rendered here -->
+            </div>
+            <p class="qr-modal-label">Scan to join the game</p>
+            <button id="qr-modal-close" class="btn btn-secondary qr-modal-close"
+                    aria-label="Close QR code">Close</button>
+        </div>
+    </div>
+
+    <script src="/beatify/static/js/vendor/qrcode.min.js"></script>
     <script src="/beatify/static/js/player.js"></script>
 </body>
 </html>

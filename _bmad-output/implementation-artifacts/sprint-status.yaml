@@ -39,43 +39,53 @@ story_location: _bmad-output/implementation-artifacts
 
 development_status:
   # Epic 1: Project Foundation & HA Integration
+  # Goal: HA enthusiasts can install Beatify via HACS, configure it, and verify dependencies
+  # FRs: FR1, FR2, FR3, FR4, FR5, FR6, FR54
   epic-1: done
   1-1-initialize-project-from-starter-template: done
   1-2-hacs-installation-and-integration-setup: done
-  1-3-music-assistant-detection: done
+  1-3-media-player-validation: done
   1-4-media-player-and-playlist-discovery: done
   1-5-admin-page-access: done
   epic-1-retrospective: optional
 
   # Epic 2: Game Session Creation
-  epic-2: in-progress
+  # Goal: Host can set up game session, select playlists/media player, generate QR code
+  # FRs: FR7, FR8, FR9, FR10, FR11, FR55, FR56
+  epic-2: done
   2-1-select-playlists-for-game: done
   2-2-select-media-player: done
   2-3-start-game-and-create-lobby: done
   2-4-qr-code-generation-and-display: done
-  epic-2-retrospective: optional
+  epic-2-retrospective: done
 
   # Epic 3: Player Onboarding & Lobby
-  epic-3: backlog
-  3-1-player-page-and-qr-scan-entry: backlog
-  3-2-name-entry-and-join: backlog
-  3-3-lobby-view-and-player-list: backlog
-  3-4-player-to-player-qr-sharing: backlog
-  3-5-admin-participation: backlog
-  3-6-late-join-support: backlog
+  # Goal: Guests scan QR, enter name, join lobby with real-time updates and admin badge
+  # FRs: FR12, FR13, FR14, FR15, FR16, FR17, FR18, FR19, FR20, FR21
+  epic-3: done
+  3-1-player-page-and-qr-scan-entry: done
+  3-2-name-entry-and-join: done
+  3-3-lobby-view-and-player-list: done
+  3-4-player-to-player-qr-sharing: done
+  3-5-admin-participation: done
+  3-6-late-join-support: done
   epic-3-retrospective: optional
 
   # Epic 4: Core Gameplay Loop
-  epic-4: backlog
-  4-1-song-playback-via-music-assistant: backlog
-  4-2-round-display-album-cover-and-timer: backlog
-  4-3-year-selector-and-guess-submission: backlog
-  4-4-submission-tracking-display: backlog
-  4-5-timer-expiry-and-auto-advance: backlog
-  4-6-reveal-and-scoring: backlog
+  # Goal: Full game round experience - song plays, guess year, reveal with score
+  # FRs: FR22, FR23, FR24, FR25, FR26, FR27, FR28, FR29, FR30, FR31, FR32
+  epic-4: in-progress
+  4-1-song-playback-via-media-player: ready-for-dev
+  4-2-round-display-album-cover-and-timer: ready-for-dev
+  4-3-year-selector-and-guess-submission: ready-for-dev
+  4-4-submission-tracking-display: ready-for-dev
+  4-5-timer-expiry-and-auto-advance: ready-for-dev
+  4-6-reveal-and-scoring: ready-for-dev
   epic-4-retrospective: optional
 
   # Epic 5: Advanced Scoring & Leaderboard
+  # Goal: Full gamification with speed bonuses, streaks, betting, live leaderboard
+  # FRs: FR33, FR34, FR35, FR36, FR37, FR38, FR39, FR40, FR41, FR42
   epic-5: backlog
   5-1-speed-bonus-multiplier: backlog
   5-2-streak-tracking-and-bonuses: backlog
@@ -86,6 +96,8 @@ development_status:
   epic-5-retrospective: optional
 
   # Epic 6: Host Game Control
+  # Goal: Host controls game flow from player screen - stop song, next round, volume, end game
+  # FRs: FR43, FR44, FR45, FR46, FR47, FR48
   epic-6: backlog
   6-1-admin-control-bar-ui: backlog
   6-2-stop-song-control: backlog
@@ -96,6 +108,8 @@ development_status:
   epic-6-retrospective: optional
 
   # Epic 7: Resilience & Recovery
+  # Goal: Graceful error handling - auto-reconnect, admin recovery, clear error messages
+  # FRs: FR49, FR50, FR51, FR52, FR53, FR57, FR58, FR59
   epic-7: backlog
   7-1-admin-disconnect-and-game-pause: backlog
   7-2-admin-reconnection: backlog

@@ -1,9 +1,5 @@
 """Constants for Beatify."""
 
-import logging
-
-_LOGGER = logging.getLogger(__name__)
-
 DOMAIN = "beatify"
 
 # Game configuration
@@ -13,19 +9,22 @@ RECONNECT_TIMEOUT = 60  # seconds
 DEFAULT_ROUND_DURATION = 30  # seconds
 MAX_NAME_LENGTH = 20
 MIN_NAME_LENGTH = 1
+LOBBY_DISCONNECT_GRACE_PERIOD = 5  # seconds before removing disconnected player
 
 # Error codes
 ERR_NAME_TAKEN = "NAME_TAKEN"
 ERR_NAME_INVALID = "NAME_INVALID"
 ERR_GAME_NOT_STARTED = "GAME_NOT_STARTED"
 ERR_GAME_ALREADY_STARTED = "GAME_ALREADY_STARTED"
+ERR_GAME_ENDED = "GAME_ENDED"
 ERR_NOT_ADMIN = "NOT_ADMIN"
+ERR_ADMIN_EXISTS = "ADMIN_EXISTS"
 ERR_ROUND_EXPIRED = "ROUND_EXPIRED"
-ERR_MA_UNAVAILABLE = "MA_UNAVAILABLE"
+ERR_MEDIA_PLAYER_UNAVAILABLE = "MEDIA_PLAYER_UNAVAILABLE"
 ERR_INVALID_ACTION = "INVALID_ACTION"
+ERR_GAME_FULL = "GAME_FULL"
 
 # External URLs
-MA_SETUP_URL = "https://music-assistant.io/getting-started/"
 PLAYLIST_DOCS_URL = "https://github.com/mholzi/beatify/wiki/Creating-Playlists"
 MEDIA_PLAYER_DOCS_URL = "https://www.home-assistant.io/integrations/#media-player"
 

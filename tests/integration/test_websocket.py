@@ -27,7 +27,7 @@ from tests.support.factories import create_player, create_song
 class TestJoinFlow:
     """Tests for player join message handling."""
 
-    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    @pytest.mark.skip(reason="Requires ws_client fixture with HA integration")
     async def test_player_join_creates_session(self, ws_client):
         """Join message should create player session and broadcast state."""
         async with ws_client.ws_connect("/beatify/ws") as ws:
@@ -37,7 +37,7 @@ class TestJoinFlow:
             assert msg["type"] == "state"
             assert any(p["name"] == "Alice" for p in msg["players"])
 
-    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    @pytest.mark.skip(reason="Requires ws_client fixture with HA integration")
     async def test_duplicate_name_rejected(self, ws_client):
         """Duplicate player names should be rejected."""
         async with ws_client.ws_connect("/beatify/ws") as ws1:
@@ -51,7 +51,7 @@ class TestJoinFlow:
                 assert msg["type"] == "error"
                 assert msg["code"] == "NAME_TAKEN"
 
-    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    @pytest.mark.skip(reason="Requires ws_client fixture with HA integration")
     async def test_empty_name_rejected(self, ws_client):
         """Empty player names should be rejected."""
         async with ws_client.ws_connect("/beatify/ws") as ws:
@@ -59,7 +59,20 @@ class TestJoinFlow:
             msg = await ws.receive_json()
 
             assert msg["type"] == "error"
-            assert msg["code"] == "INVALID_NAME"
+            assert msg["code"] == "NAME_INVALID"
+
+    @pytest.mark.skip(reason="Requires ws_client fixture with HA integration and 20 pre-joined players")
+    async def test_game_full_rejected(self, ws_client):
+        """Joining full game should be rejected (Story 3.2)."""
+        # This test requires 20 players to be added first
+        # Implementation would need to add MAX_PLAYERS players
+        # then try to add one more
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            await ws.send_json({"type": "join", "name": "Player21"})
+            msg = await ws.receive_json()
+
+            assert msg["type"] == "error"
+            assert msg["code"] == "GAME_FULL"
 
 
 # =============================================================================

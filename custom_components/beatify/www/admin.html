@@ -55,6 +55,12 @@
             <div id="lobby-players" class="player-list">
                 <p class="empty-state">Waiting for players to join...</p>
             </div>
+            <div class="admin-lobby-actions no-print">
+                <button id="participate-btn" class="btn btn-primary">
+                    <span class="btn-icon">🎮</span>
+                    Join as Player
+                </button>
+            </div>
             <div class="game-controls-bar no-print">
                 <button id="end-game-lobby" class="btn btn-secondary">End Game</button>
             </div>
@@ -74,6 +80,25 @@
             </div>
         </section>
     </main>
+
+    <!-- Admin join modal -->
+    <div id="admin-join-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2>Join the Game</h2>
+            <p>Enter your display name to join as a player with admin controls.</p>
+            <div class="form-group">
+                <input type="text" id="admin-name-input" class="name-input"
+                       placeholder="Your name" maxlength="20"
+                       autocomplete="off" autocapitalize="words">
+                <p id="admin-name-error" class="validation-msg hidden"></p>
+            </div>
+            <div class="modal-actions">
+                <button id="admin-join-btn" class="btn btn-primary" disabled>Join</button>
+                <button id="admin-cancel-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>Beatify v0.0.1</p>

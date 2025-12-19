@@ -89,7 +89,7 @@ This is a side project with reach—not a startup, but something the HA communit
 |--------|--------|
 | HA compatibility | Works on current HA versions without breaking |
 | Documentation | Clear enough for self-service installation |
-| Error handling | Fails gracefully (bad playlist, Music Assistant offline, etc.) |
+| Error handling | Fails gracefully (bad playlist, media player unavailable, etc.) |
 | Reliability | Stable enough that strangers can depend on it |
 
 ### Measurable Outcomes
@@ -117,8 +117,7 @@ The MVP is a complete, polished party game—not a skeleton:
 
 **Technical Foundation:**
 - HACS integration
-- Music Assistant for playlist/playback
-- HA media player output
+- Direct HA media player control for playback
 - Local web server for player interface
 
 ### Growth Features (Post-MVP)
@@ -143,7 +142,7 @@ These features are out of scope permanently, not deferred:
 
 Marcus is a Home Assistant enthusiast who's always looking for ways to make his smart home the center of social gatherings. He sees Beatify mentioned on Reddit's r/homeassistant and thinks "this would be perfect for New Year's Eve."
 
-He finds Beatify in HACS, installs it, and adds the integration via Settings → Integrations. He already has Music Assistant running his Spotify playlists, so the integration detects it automatically. He creates a test playlist JSON with 10 songs—just artist, year, and Spotify URI for each track.
+He finds Beatify in HACS, installs it, and adds the integration via Settings → Integrations. The integration detects his media players automatically. He creates a test playlist JSON with 10 songs—year, URI, and fun facts for each track.
 
 He opens the Beatify admin page—just a local URL, no login needed. From there, he selects his test playlist, picks his living room speaker, and hits "Start Game." The QR code appears. He prints the page and sticks it on the fridge for the party. He scans the QR with his phone, enters "Test Player," and the lobby shows him waiting. He starts the game from the admin page, a song plays through his living room speakers, and he guesses the year. It works. He's ready for the party.
 
@@ -207,9 +206,7 @@ Round 15. Sarah decides that's enough. She taps **End Game**. The final leaderbo
 
 Marcus is setting up Beatify for the first time, but his setup isn't perfect.
 
-He installs the HACS integration and opens the admin page. Instead of playlist options, he sees: "Music Assistant not found. Beatify requires Music Assistant to play songs. [Setup Guide]" He clicks the link, realizes he never installed Music Assistant, and fixes it. He reloads—now the admin page shows his media players.
-
-He selects his living room speaker and hits "Start Game." Error: "No playlists found. Add playlist JSON files to [folder path]. [How to create playlists]" He checks the docs, creates a quick 5-song test playlist, drops it in the folder. Refresh—now he sees his playlist.
+He installs the HACS integration and opens the admin page. He sees his media players listed. He selects his living room speaker and hits "Start Game." Error: "No playlists found. Add playlist JSON files to [folder path]. [How to create playlists]" He checks the docs, creates a quick 5-song test playlist, drops it in the folder. Refresh—now he sees his playlist.
 
 Later, at the party. Tom's girlfriend tries to scan the QR but she's still on cellular, not the home WiFi. Her browser spins, then shows: "Can't reach Beatify. Make sure you're on the home WiFi." She switches networks, scans again, and she's in.
 
@@ -222,7 +219,7 @@ Round 10. Everyone's arguing about the song and forgets to submit. Timer hits ze
 | Capability | Revealed By |
 |------------|-------------|
 | HACS installation + HA integration setup | Marcus (Installer) |
-| Music Assistant auto-detection | Marcus (Installer) |
+| Media player auto-detection | Marcus (Installer) |
 | Playlist JSON format + documentation | Marcus (Installer) |
 | Standalone admin web page (no auth, mobile-first) | Marcus, Sarah |
 | Admin page state detection (no game → setup, active game → Rejoin) | Marcus (Error Recovery) |
@@ -250,7 +247,6 @@ Round 10. Everyone's arguing about the song and forgets to submit. Timer hits ze
 
 | Scenario | Behavior |
 |----------|----------|
-| Music Assistant not configured | Admin page shows error + setup guide link |
 | No playlists found | Admin page shows error + how-to link |
 | Media player unavailable | Admin page shows error + troubleshooting hint |
 | Player on wrong network | Player page shows "Can't reach Beatify" + WiFi hint |
@@ -453,10 +449,9 @@ This "MVP of the MVP" proves the concept but loses the gamification that makes i
 
 - FR1: Admin can install Beatify via HACS
 - FR2: Admin can add Beatify integration via HA Settings → Integrations
-- FR3: System can detect Music Assistant installation status
-- FR4: System can display available HA media players for selection
-- FR5: System can detect and list available playlist JSON files
-- FR6: Admin can access standalone admin web page without authentication
+- FR3: System can display available HA media players for selection
+- FR4: System can detect and list available playlist JSON files
+- FR5: Admin can access standalone admin web page without authentication
 
 ### Game Configuration
 
@@ -531,12 +526,11 @@ This "MVP of the MVP" proves the concept but loses the gamification that makes i
 
 ### Error Handling
 
-- FR54: System can display error when Music Assistant not configured (with setup guide link)
-- FR55: System can display error when no playlists found (with how-to link)
-- FR56: System can display error when media player unavailable
-- FR57: Player can see error when not on correct network (with WiFi hint)
-- FR58: System can auto-reconnect player on connection drop
-- FR59: System can recover player state on reconnection (rejoin current round)
+- FR54: System can display error when no playlists found (with how-to link)
+- FR55: System can display error when media player unavailable
+- FR56: Player can see error when not on correct network (with WiFi hint)
+- FR57: System can auto-reconnect player on connection drop
+- FR58: System can recover player state on reconnection (rejoin current round)
 
 ## Non-Functional Requirements
 
@@ -572,7 +566,7 @@ This "MVP of the MVP" proves the concept but loses the gamification that makes i
 **Critical reliability scenarios:**
 - Admin disconnect → Game pauses (not crashes)
 - Player disconnect → Player can rejoin (state preserved)
-- Music Assistant unavailable mid-game → Clear error, game paused
+- Media player unavailable mid-game → Clear error, game paused
 - HA restart mid-game → Game state lost (acceptable, document this limitation)
 
 ### Integration
@@ -583,13 +577,6 @@ This "MVP of the MVP" proves the concept but loses the gamification that makes i
 | Minimum HA version | 2025.11 |
 | Installation method | HACS |
 | Configuration | Via HA Settings → Integrations |
-
-**Music Assistant:**
-| Requirement | Specification |
-|-------------|---------------|
-| Dependency | Required (not optional) |
-| Detection | Auto-detect on admin page load |
-| Error handling | Clear message + setup guide if not found |
 
 **Media Player:**
 | Requirement | Specification |

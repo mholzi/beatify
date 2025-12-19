@@ -23,7 +23,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 **Installation & Setup (FR1-FR6)**
 - FR1: Admin can install Beatify via HACS
 - FR2: Admin can add Beatify integration via HA Settings → Integrations
-- FR3: System can detect Music Assistant installation status
+- FR3: System can display available HA media players for selection
 - FR4: System can display available HA media players for selection
 - FR5: System can detect and list available playlist JSON files
 - FR6: Admin can access standalone admin web page without authentication
@@ -92,7 +92,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 - FR53: System can perform full reset when game ends (all players disconnected)
 
 **Error Handling (FR54-FR59)**
-- FR54: System can display error when Music Assistant not configured (with setup guide link)
+- FR54: System can display error when no playlists found (with how-to link)
 - FR55: System can display error when no playlists found (with how-to link)
 - FR56: System can display error when media player unavailable
 - FR57: Player can see error when not on correct network (with WiFi hint)
@@ -120,7 +120,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 **Integration**
 - NFR11: Minimum HA version: 2025.11
 - NFR12: Installation via HACS
-- NFR13: Music Assistant required (auto-detect on admin page load)
+- NFR13: At least one media_player entity required
 - NFR14: Support any HA media_player entity
 
 **Security (Intentionally Minimal)**
@@ -164,7 +164,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 |----|------|-------------|
 | FR1 | Epic 1 | HACS installation |
 | FR2 | Epic 1 | HA integration setup |
-| FR3 | Epic 1 | Music Assistant detection |
+| FR3 | Epic 1 | Media player detection |
 | FR4 | Epic 1 | Media player display |
 | FR5 | Epic 1 | Playlist detection |
 | FR6 | Epic 1 | Admin page access |
@@ -226,7 +226,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 
 ### Epic 1: Project Foundation & HA Integration
 
-**Goal:** HA enthusiasts can install Beatify via HACS, configure it through the HA integrations UI, and verify all dependencies (Music Assistant, media players, playlists) are detected and ready—with clear error messages if Music Assistant isn't configured.
+**Goal:** HA enthusiasts can install Beatify via HACS, configure it through the HA integrations UI, and verify all dependencies (media players, playlists) are detected and ready—with clear error messages if no media players are available.
 
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR54
 
@@ -302,7 +302,7 @@ This document provides the complete epic and story breakdown for Beatify, decomp
 
 ## Epic 1: Project Foundation & HA Integration
 
-**Goal:** HA enthusiasts can install Beatify via HACS, configure it through the HA integrations UI, and verify all dependencies (Music Assistant, media players, playlists) are detected and ready—with clear error messages if Music Assistant isn't configured.
+**Goal:** HA enthusiasts can install Beatify via HACS, configure it through the HA integrations UI, and verify all dependencies (media players, playlists) are detected and ready—with clear error messages if no media players are available.
 
 **FRs covered:** FR1, FR2, FR3, FR4, FR5, FR6, FR54
 
@@ -355,28 +355,27 @@ So that **Beatify is properly registered in my Home Assistant instance**.
 
 ---
 
-### Story 1.3: Music Assistant Detection
+### Story 1.3: Media Player Validation
 
 As a **Home Assistant admin**,
-I want **Beatify to detect if Music Assistant is installed and configured**,
-So that **I know immediately if a required dependency is missing**.
+I want **Beatify to validate that media players are available**,
+So that **I know the system can play audio for the game**.
 
 **Acceptance Criteria:**
 
-**Given** Music Assistant integration is installed and configured in HA
+**Given** at least one `media_player` entity exists in HA
 **When** Beatify config flow runs
-**Then** Music Assistant is detected as available
+**Then** media players are detected as available
 **And** setup proceeds to the next step
 
-**Given** Music Assistant integration is NOT installed
+**Given** no `media_player` entities exist in HA
 **When** Beatify config flow runs
-**Then** an error message displays: "Music Assistant not found. Beatify requires Music Assistant to play songs."
-**And** a link to the Music Assistant setup guide is provided
-**And** setup is blocked until MA is configured (FR54)
+**Then** a warning message displays: "No media players found. Beatify requires at least one media player."
+**And** setup can proceed but warns that playback won't work without media players
 
-**Given** Music Assistant is installed but not properly configured
-**When** Beatify attempts to detect MA
-**Then** appropriate error message displays with troubleshooting guidance
+**Given** media players are detected
+**When** Beatify lists available players
+**Then** all `media_player` entities are shown with their friendly names
 
 ---
 
@@ -388,7 +387,7 @@ So that **I can verify my system is ready to run Beatify games**.
 
 **Acceptance Criteria:**
 
-**Given** Music Assistant is configured
+**Given** Beatify config flow is running
 **When** Beatify scans for media players
 **Then** all HA `media_player` entities are listed with friendly names (FR4)
 **And** at least one media player must be available to proceed
@@ -427,8 +426,7 @@ So that **I can manage Beatify games from any device on my network**.
 **Then** it displays:
 - Detected media players from Story 1.4
 - Detected playlists from Story 1.4
-- Music Assistant status (connected/not found)
-**And** if MA is not configured, shows error with setup guide link (FR54)
+**And** if no playlists are found, shows helpful message with how-to link (FR54)
 
 **Given** admin accesses the page from a mobile device
 **When** the page renders
@@ -757,9 +755,9 @@ So that **I don't have to wait for the next game**.
 
 ---
 
-### Story 4.1: Song Playback via Music Assistant
+### Story 4.1: Song Playback via Media Player
 
-**Complexity Note:** Medium effort - includes played-song tracking logic in addition to MA integration.
+**Complexity Note:** Medium effort - includes played-song tracking logic and direct HA media player control.
 
 As a **player**,
 I want **to hear the song playing through the home speakers**,
@@ -769,12 +767,15 @@ So that **everyone in the room experiences the same audio together**.
 
 **Given** game transitions to PLAYING state for a new round
 **When** round starts
-**Then** the selected song plays through the configured HA media player via Music Assistant (FR22)
+**Then** the selected song plays through the configured HA media player (FR22)
 **And** playback begins within 1 second of round start
 
 **Given** song is playing
-**When** Music Assistant receives the play command
-**Then** `music_assistant.play_media` service is called with the song's URI
+**When** media player receives the play command
+**Then** `media_player.play_media` service is called with:
+- `entity_id`: selected media player
+- `media_content_id`: song URI from playlist
+- `media_content_type`: "music"
 **And** volume is set to the configured level
 
 **Given** a song has been played in the current game session
@@ -797,10 +798,10 @@ So that **everyone in the room experiences the same audio together**.
 **Then** system marks song as played and skips to next song in playlist
 **And** logs warning for host review
 
-**Given** Music Assistant becomes unavailable mid-game
+**Given** media player becomes unavailable mid-game
 **When** playback fails
-**Then** game pauses with message "Music service unavailable"
-**And** game can resume when MA is restored
+**Then** game pauses with message "Media player unavailable"
+**And** game can resume when media player is restored
 
 ---
 
@@ -815,8 +816,8 @@ So that **I have visual context and know how much time I have to guess**.
 **Given** round starts
 **When** player view updates
 **Then** album cover image is displayed prominently (FR23)
-**And** image is fetched from Music Assistant metadata
-**And** if no artwork available, placeholder image is shown
+**And** image is fetched from media_player entity's `entity_picture` attribute
+**And** if no artwork available, placeholder image (`no-artwork.svg`) is shown
 
 **Given** round starts
 **When** player view updates
