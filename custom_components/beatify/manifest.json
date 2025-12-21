@@ -6,6 +6,6 @@
   "documentation": "https://github.com/mholzi/beatify",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/mholzi/beatify/issues",
-  "version": "0.5.0",
+  "version": "0.7.1",
   "after_dependencies": ["music_assistant"]
 }

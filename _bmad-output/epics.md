@@ -1692,3 +1692,40 @@ new QRCode(container, {
 - `custom_components/beatify/www/js/player.js`:
   - `renderQRCode()` function (lines 198-225)
   - `openQRModal()` function (lines 230-243)
+
+---
+
+### Story 8.5: Remove Automatic Volume Setting on Song Start
+
+As a **host**,
+I want **Beatify to not change the speaker volume when a song starts**,
+So that **my speaker stays at whatever volume I set it to, and only changes when I use the volume buttons**.
+
+**Root Cause:** When each song started, `start_round()` called `set_volume(self.volume_level)` forcing the speaker to 50% (or whatever the internal tracker was set to). Additionally, the volume tracker reset to 0.5 on game create/end.
+
+**Acceptance Criteria:**
+
+**Given** a song starts playing
+**When** the round begins
+**Then** the speaker volume is NOT changed by Beatify
+**And** the volume remains at whatever level it was before
+
+**Given** the admin presses volume up/down buttons
+**When** the button is pressed
+**Then** the speaker volume changes as expected
+**And** this is the ONLY way Beatify modifies volume
+
+**Given** a new game is created or a game ends
+**When** the game state resets
+**Then** the internal volume tracker is NOT reset
+**And** volume button behavior remains consistent across games
+
+**Implementation (completed):**
+- Removed `set_volume()` call in `start_round()` (was line 583)
+- Removed volume reset to 0.5 in `create_game()` (was lines 149-150)
+- Removed volume reset to 0.5 in `end_game()` (was lines 277-278)
+- Kept initial `volume_level = 0.5` default (line 97) for first load
+- Kept all volume button logic intact
+
+**Files modified:**
+- `custom_components/beatify/game/state.py`

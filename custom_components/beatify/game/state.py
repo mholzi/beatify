@@ -146,9 +146,6 @@ class GameState:
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
 
-        # Reset volume to default (Story 6.4)
-        self.volume_level = 0.5
-
         # Reset timer task for new game
         self.cancel_timer()
 
@@ -273,9 +270,6 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
-
-        # Reset volume to default (Story 6.4)
-        self.volume_level = 0.5
 
         # Reset admin disconnect tracking (Epic 7)
         self.disconnected_admin_name = None
@@ -578,9 +572,6 @@ class GameState:
 
             # Wait for playback to start
             await asyncio.sleep(0.5)
-
-            # Apply stored volume level to ensure sync after song change (M1 fix)
-            await self._media_player_service.set_volume(self.volume_level)
 
             # Get metadata from media player
             metadata = await self._media_player_service.get_metadata()
