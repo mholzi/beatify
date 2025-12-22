@@ -452,6 +452,48 @@ body.theme-dark .player-container {
     background: var(--color-bg-primary);
 }
 
+/* Admin page cards in dark mode need dark text on light backgrounds */
+body.theme-dark .card-section {
+    color: var(--color-text-primary);
+}
+
+body.theme-dark .card-section h2 {
+    color: var(--color-text-heading);
+}
+
+body.theme-dark .card-section p,
+body.theme-dark .card-section .name,
+body.theme-dark .card-section .player-name,
+body.theme-dark .card-section .playlist-name,
+body.theme-dark .card-section .list-item,
+body.theme-dark .card-section .radio-label,
+body.theme-dark .card-section .checkbox-label,
+body.theme-dark .card-section .meta,
+body.theme-dark .card-section strong,
+body.theme-dark .card-section span {
+    color: var(--color-text-primary);
+}
+
+body.theme-dark .game-info {
+    color: var(--color-text-primary);
+}
+
+body.theme-dark .game-info p,
+body.theme-dark .game-info strong,
+body.theme-dark .game-info span {
+    color: var(--color-text-primary);
+}
+
+/* Modal content in dark mode needs dark text on light backgrounds */
+body.theme-dark .modal-content {
+    color: var(--color-text-primary);
+}
+
+body.theme-dark .modal-content h2,
+body.theme-dark .modal-content p {
+    color: var(--color-text-primary);
+}
+
 /* Card component classes */
 .card {
     background: var(--color-dark-surface);

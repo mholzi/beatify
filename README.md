@@ -9,7 +9,7 @@
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.11+-41BDF5?style=flat-square&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.9.0-blue?style=flat-square)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-0.9.1-blue?style=flat-square)](https://github.com/mholzi/beatify/releases)
 
 *Turn any gathering into an epic music trivia showdown!*
 
