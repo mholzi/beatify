@@ -201,6 +201,8 @@
 .lobby-players-section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     max-height: 60vh;
 }
@@ -215,6 +217,7 @@
 .dashboard-player-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-sm);
     overflow-y: auto;
     padding-right: var(--space-sm);
