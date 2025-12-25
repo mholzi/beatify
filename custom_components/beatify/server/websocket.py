@@ -347,6 +347,12 @@ class BeatifyWebSocketHandler:
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
 
+        elif msg_type == "get_state":
+            # Dashboard/observer requesting current state (Story 10.4)
+            state = game_state.get_state()
+            if state:
+                await ws.send_json({"type": "state", **state})
+
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
 

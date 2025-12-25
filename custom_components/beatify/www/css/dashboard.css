@@ -1,0 +1,809 @@
+/* Beatify Dashboard - Spectator Display Styles (Story 10.4) */
+
+/* ==========================================
+   Base Dashboard Styles
+   ========================================== */
+
+.dashboard-body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-white);
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   View Management
+   ========================================== */
+
+.dashboard-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: var(--space-lg);
+}
+
+.dashboard-view.hidden {
+    display: none;
+}
+
+/* ==========================================
+   Portrait Orientation Message (AC 10.4.6)
+   ========================================== */
+
+.dashboard-rotate-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-bg-primary);
+    z-index: var(--z-overlay);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.rotate-content {
+    padding: var(--space-xl);
+}
+
+.rotate-icon {
+    color: var(--color-accent-secondary);
+    margin-bottom: var(--space-lg);
+    animation: rotate-hint 2s ease-in-out infinite;
+}
+
+@keyframes rotate-hint {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+.rotate-content h1 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-white);
+}
+
+.rotate-content p {
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-lg);
+}
+
+/* Show rotation message on portrait (mobile devices) */
+@media (orientation: portrait) and (max-height: 900px) {
+    .dashboard-rotate-message {
+        display: flex;
+    }
+    .dashboard-container {
+        display: none;
+    }
+}
+
+@media (orientation: landscape) {
+    .dashboard-rotate-message {
+        display: none;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .rotate-icon {
+        animation: none;
+    }
+}
+
+/* ==========================================
+   Loading & No Game States
+   ========================================== */
+
+.dashboard-loading-content,
+.dashboard-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.loading-text {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-neon-muted);
+    margin-top: var(--space-lg);
+}
+
+.dashboard-message {
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-lg);
+}
+
+.dashboard-hint {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-neon-muted);
+    margin-top: var(--space-sm);
+}
+
+.paused-icon {
+    font-size: 96px;
+    color: var(--color-warning);
+    margin-bottom: var(--space-lg);
+}
+
+/* ==========================================
+   Dashboard Header
+   ========================================== */
+
+.dashboard-header {
+    text-align: center;
+    padding: var(--space-md) 0;
+    flex-shrink: 0;
+}
+
+.dashboard-header .wordmark {
+    font-size: 48px;
+}
+
+/* ==========================================
+   Lobby View (AC 10.4.2)
+   ========================================== */
+
+.dashboard-lobby-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    flex: 1;
+    align-items: center;
+    padding: var(--space-lg);
+}
+
+.lobby-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-qr-code {
+    background: var(--color-bg-white);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* QR code minimum size for scanning from distance */
+.dashboard-qr-code img,
+.dashboard-qr-code canvas {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.dashboard-player-count {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--space-lg);
+    color: var(--color-accent-secondary);
+}
+
+.lobby-players-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 60vh;
+}
+
+.players-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-white);
+}
+
+.dashboard-player-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+}
+
+.dashboard-player-card {
+    background: var(--color-dark-surface);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    animation: slide-in 0.3s ease;
+}
+
+.dashboard-player-card.is-new {
+    animation: slide-in 0.5s ease;
+    background: var(--color-accent-primary);
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================
+   Playing View (AC 10.4.3)
+   ========================================== */
+
+.dashboard-round-indicator {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    font-size: var(--font-size-xl);
+    color: var(--color-text-neon-muted);
+    background: var(--color-dark-surface);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.dashboard-playing-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    flex: 1;
+    align-items: center;
+    padding: var(--space-lg);
+}
+
+.playing-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+}
+
+.dashboard-album-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.dashboard-album-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Blurred album art during playing (AC 10.4.3) */
+.dashboard-album-art--playing {
+    filter: blur(20px);
+    transform: scale(1.1);
+}
+
+/* Clear album art during reveal */
+.dashboard-album-art--reveal {
+    filter: none;
+    transition: filter 0.5s ease;
+}
+
+/* Timer (large and prominent) - base size for iPad */
+.dashboard-timer {
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-white);
+    text-align: center;
+    line-height: 1;
+}
+
+.dashboard-timer.timer--warning {
+    color: var(--color-warning);
+    animation: timer-pulse 1s ease-in-out infinite;
+}
+
+.dashboard-timer.timer--critical {
+    color: var(--color-error);
+    text-shadow: var(--glow-error);
+    animation: timer-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dashboard-timer.timer--warning,
+    .dashboard-timer.timer--critical {
+        animation: none;
+    }
+}
+
+.playing-right-section,
+.reveal-right-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 70vh;
+}
+
+.leaderboard-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-white);
+}
+
+.dashboard-leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    overflow-y: auto;
+    flex: 1;
+    padding-right: var(--space-sm);
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    transition: transform 0.5s ease, background 0.3s ease;
+}
+
+.leaderboard-entry--climbing {
+    animation: climb-up 0.5s ease;
+}
+
+.leaderboard-entry--falling {
+    animation: fall-down 0.5s ease;
+}
+
+@keyframes climb-up {
+    from { transform: translateY(40px); opacity: 0.5; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fall-down {
+    from { transform: translateY(-40px); opacity: 0.5; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.entry-rank {
+    font-weight: var(--font-weight-bold);
+    min-width: 40px;
+    color: var(--color-text-neon-muted);
+}
+
+.leaderboard-entry.is-top-1 .entry-rank {
+    color: gold;
+}
+
+.leaderboard-entry.is-top-2 .entry-rank {
+    color: silver;
+}
+
+.leaderboard-entry.is-top-3 .entry-rank {
+    color: #cd7f32;
+}
+
+.entry-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.entry-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.streak-indicator {
+    font-size: var(--font-size-base);
+}
+
+.streak-indicator--hot {
+    animation: fire-glow 1s ease-in-out infinite;
+}
+
+@keyframes fire-glow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.rank-up {
+    color: var(--color-success-neon);
+    font-size: var(--font-size-sm);
+}
+
+.rank-down {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+}
+
+.entry-score {
+    font-weight: var(--font-weight-bold);
+    min-width: 60px;
+    text-align: right;
+    color: var(--color-accent-secondary);
+}
+
+.entry-change {
+    font-size: var(--font-size-sm);
+    min-width: 50px;
+    text-align: right;
+}
+
+.entry-change.is-positive {
+    color: var(--color-success-neon);
+}
+
+.entry-change.is-negative {
+    color: var(--color-error);
+}
+
+/* Submission indicator (AC 10.4.3) */
+.entry-submitted {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+}
+
+.entry-submitted.is-submitted {
+    background: var(--color-success-neon);
+    box-shadow: 0 0 8px var(--color-success-neon);
+}
+
+/* ==========================================
+   Reveal View (AC 10.4.4)
+   ========================================== */
+
+.dashboard-reveal-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    flex: 1;
+    padding: var(--space-lg);
+}
+
+.reveal-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.reveal-song-info {
+    text-align: center;
+}
+
+.reveal-artist {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-white);
+    margin-bottom: var(--space-sm);
+}
+
+.reveal-title {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-neon-muted);
+    margin-bottom: var(--space-md);
+}
+
+.reveal-year {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-accent-primary);
+}
+
+.text-glow {
+    text-shadow: var(--glow-primary);
+}
+
+.reveal-top-guesses {
+    margin-bottom: var(--space-lg);
+}
+
+.top-guesses-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-md);
+    color: var(--color-accent-secondary);
+}
+
+.top-guesses-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.top-guess-entry {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-accent-primary);
+}
+
+.top-guess-rank {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-primary);
+}
+
+.top-guess-name {
+    flex: 1;
+}
+
+.top-guess-points {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-success-neon);
+}
+
+/* ==========================================
+   End View (AC 10.4.5)
+   ========================================== */
+
+.dashboard-end-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-lg);
+    height: 100%;
+}
+
+.end-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.end-title {
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-white);
+    text-shadow: var(--glow-primary);
+}
+
+.end-subtitle {
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-neon-muted);
+}
+
+/* Podium */
+.dashboard-podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.podium-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.podium-medal {
+    font-size: 48px;
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: var(--space-sm);
+}
+
+.podium-1 .podium-medal {
+    color: gold;
+    text-shadow: 0 0 20px gold;
+}
+
+.podium-2 .podium-medal {
+    color: silver;
+}
+
+.podium-3 .podium-medal {
+    color: #cd7f32;
+}
+
+.podium-name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-xs);
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.podium-score {
+    font-size: var(--font-size-lg);
+    color: var(--color-accent-secondary);
+}
+
+.podium-stand {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-neon-muted);
+    margin-top: var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.podium-1 .podium-stand {
+    height: 120px;
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.3) 0%, var(--color-dark-surface) 100%);
+}
+
+.podium-2 .podium-stand {
+    height: 90px;
+    background: linear-gradient(180deg, rgba(192, 192, 192, 0.3) 0%, var(--color-dark-surface) 100%);
+}
+
+.podium-3 .podium-stand {
+    height: 60px;
+    background: linear-gradient(180deg, rgba(205, 127, 50, 0.3) 0%, var(--color-dark-surface) 100%);
+}
+
+.end-leaderboard-section {
+    width: 100%;
+    max-width: 600px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dashboard-leaderboard--final {
+    max-height: 300px;
+}
+
+/* ==========================================
+   Medium Desktop Breakpoint (AC 10.4.6) - 1200px+
+   Using min-width for mobile-first approach
+   ========================================== */
+
+@media (min-width: 1200px) {
+    .dashboard-album-container {
+        width: 280px;
+        height: 280px;
+    }
+
+    .dashboard-timer {
+        font-size: 120px;
+    }
+
+    .reveal-year {
+        font-size: 80px;
+    }
+}
+
+/* ==========================================
+   TV Breakpoint (AC 10.4.6) - 1920x1080+
+   ========================================== */
+
+@media (min-width: 1400px) {
+    .dashboard-header .wordmark {
+        font-size: 64px;
+    }
+
+    .dashboard-qr-code img,
+    .dashboard-qr-code canvas {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
+    .dashboard-player-count {
+        font-size: var(--font-size-3xl);
+    }
+
+    .dashboard-album-container {
+        width: 350px;
+        height: 350px;
+    }
+
+    .dashboard-timer {
+        font-size: 160px;
+    }
+
+    .leaderboard-entry {
+        font-size: var(--font-size-xl);
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    .reveal-artist {
+        font-size: var(--font-size-3xl);
+    }
+
+    .reveal-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .reveal-year {
+        font-size: 100px;
+    }
+
+    .end-title {
+        font-size: 80px;
+    }
+
+    .podium-medal {
+        font-size: 64px;
+    }
+
+    .podium-name {
+        font-size: var(--font-size-2xl);
+        max-width: 200px;
+    }
+
+    .podium-stand {
+        width: 140px;
+    }
+
+    .podium-1 .podium-stand {
+        height: 160px;
+    }
+
+    .podium-2 .podium-stand {
+        height: 120px;
+    }
+
+    .podium-3 .podium-stand {
+        height: 80px;
+    }
+}
+
+
+/* ==========================================
+   Scrollbar Styling
+   ========================================== */
+
+.dashboard-player-list::-webkit-scrollbar,
+.dashboard-leaderboard::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dashboard-player-list::-webkit-scrollbar-track,
+.dashboard-leaderboard::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-player-list::-webkit-scrollbar-thumb,
+.dashboard-leaderboard::-webkit-scrollbar-thumb {
+    background: var(--color-dark-surface-hover);
+    border-radius: var(--radius-full);
+}
+
+.dashboard-player-list::-webkit-scrollbar-thumb:hover,
+.dashboard-leaderboard::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}

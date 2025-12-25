@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Beatify - Dashboard</title>
+    <!-- Preconnect for faster font loading (Story 9.8) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/beatify/static/css/styles.css">
+    <link rel="stylesheet" href="/beatify/static/css/dashboard.css">
+</head>
+<body class="theme-dark dashboard-body">
+    <!-- Portrait orientation message (AC 10.4.6) -->
+    <div id="rotate-message" class="dashboard-rotate-message">
+        <div class="rotate-content">
+            <div class="rotate-icon">
+                <svg viewBox="0 0 24 24" width="64" height="64" fill="currentColor">
+                    <path d="M7.34 6.41L.86 12.9l6.49 6.48 6.49-6.48-6.5-6.49zM3.69 12.9l3.66-3.66L11 12.9l-3.66 3.66-3.65-3.66zm15.67-6.26A8.95 8.95 0 0 0 13 4V.76L8.76 5 13 9.24V6c1.79 0 3.58.68 4.95 2.05a7.007 7.007 0 0 1 0 9.9 6.973 6.973 0 0 1-7.79 1.44l-1.49 1.49C10.02 21.62 11.51 22 13 22c2.3 0 4.61-.88 6.36-2.64a8.98 8.98 0 0 0 0-12.72z"/>
+                </svg>
+            </div>
+            <h1>Please Rotate</h1>
+            <p>This dashboard works best in landscape mode</p>
+        </div>
+    </div>
+
+    <!-- Main dashboard content -->
+    <main class="dashboard-container">
+        <!-- Loading state -->
+        <div id="dashboard-loading" class="dashboard-view">
+            <div class="dashboard-loading-content">
+                <h1 class="wordmark wordmark-hero logo-loading">
+                    <span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span>
+                </h1>
+                <p class="loading-text">Connecting to game...</p>
+            </div>
+        </div>
+
+        <!-- No game state -->
+        <div id="dashboard-no-game" class="dashboard-view hidden">
+            <div class="dashboard-centered">
+                <h1 class="wordmark wordmark-hero">
+                    <span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span>
+                </h1>
+                <p class="dashboard-message">No active game</p>
+                <p class="dashboard-hint">Start a game from the admin page</p>
+            </div>
+        </div>
+
+        <!-- Lobby view (AC 10.4.2) -->
+        <div id="dashboard-lobby" class="dashboard-view hidden">
+            <header class="dashboard-header">
+                <h1 class="wordmark">
+                    <span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span>
+                </h1>
+            </header>
+            <div class="dashboard-lobby-content">
+                <!-- QR Code Section (left) -->
+                <div class="lobby-qr-section">
+                    <div id="dashboard-qr-code" class="dashboard-qr-code">
+                        <!-- QR code rendered here -->
+                    </div>
+                    <p id="dashboard-player-count" class="dashboard-player-count">0 players joined</p>
+                </div>
+                <!-- Player List Section (right) -->
+                <div class="lobby-players-section">
+                    <h2 class="players-title">Players</h2>
+                    <div id="dashboard-player-list" class="dashboard-player-list">
+                        <!-- Player cards rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Playing view (AC 10.4.3) -->
+        <div id="dashboard-playing" class="dashboard-view hidden">
+            <!-- Round counter (top-right) -->
+            <div class="dashboard-round-indicator">
+                Round <span id="dashboard-current-round">1</span> of <span id="dashboard-total-rounds">10</span>
+            </div>
+
+            <div class="dashboard-playing-content">
+                <!-- Left side: Album art + Timer -->
+                <div class="playing-left-section">
+                    <div class="dashboard-album-container">
+                        <img id="dashboard-album-art"
+                             src="/beatify/static/img/no-artwork.svg"
+                             alt="Album Cover"
+                             class="dashboard-album-art dashboard-album-art--playing">
+                    </div>
+                    <div id="dashboard-timer" class="dashboard-timer" role="timer" aria-live="polite">30</div>
+                </div>
+
+                <!-- Right side: Leaderboard -->
+                <div class="playing-right-section">
+                    <h2 class="leaderboard-title">Leaderboard</h2>
+                    <div id="dashboard-leaderboard" class="dashboard-leaderboard">
+                        <!-- Leaderboard entries rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reveal view (AC 10.4.4) -->
+        <div id="dashboard-reveal" class="dashboard-view hidden">
+            <div class="dashboard-reveal-content">
+                <!-- Left side: Song info -->
+                <div class="reveal-left-section">
+                    <div class="dashboard-album-container">
+                        <img id="reveal-album-art"
+                             src="/beatify/static/img/no-artwork.svg"
+                             alt="Album Cover"
+                             class="dashboard-album-art dashboard-album-art--reveal">
+                    </div>
+                    <div class="reveal-song-info">
+                        <div id="reveal-artist" class="reveal-artist">Unknown Artist</div>
+                        <div id="reveal-title" class="reveal-title">Unknown Song</div>
+                        <div id="reveal-year" class="reveal-year text-glow">1984</div>
+                    </div>
+                </div>
+
+                <!-- Right side: Results + Leaderboard -->
+                <div class="reveal-right-section">
+                    <!-- Top 3 this round -->
+                    <div class="reveal-top-guesses">
+                        <h2 class="top-guesses-title">Top Guesses This Round</h2>
+                        <div id="reveal-top-guesses-list" class="top-guesses-list">
+                            <!-- Top 3 rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Full leaderboard -->
+                    <h2 class="leaderboard-title">Standings</h2>
+                    <div id="reveal-leaderboard" class="dashboard-leaderboard">
+                        <!-- Leaderboard entries rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End view (AC 10.4.5) -->
+        <div id="dashboard-end" class="dashboard-view hidden">
+            <div class="dashboard-end-content">
+                <header class="end-header">
+                    <h1 class="end-title">Game Over</h1>
+                    <p class="end-subtitle">Final Results</p>
+                </header>
+
+                <!-- Podium (AC 10.4.5 - with medal emojis) -->
+                <div class="dashboard-podium">
+                    <div class="podium-place podium-2">
+                        <div class="podium-medal">🥈</div>
+                        <div class="podium-name" id="end-podium-2-name">---</div>
+                        <div class="podium-score" id="end-podium-2-score">0</div>
+                        <div class="podium-stand">2</div>
+                    </div>
+                    <div class="podium-place podium-1">
+                        <div class="podium-medal">🥇</div>
+                        <div class="podium-name" id="end-podium-1-name">---</div>
+                        <div class="podium-score" id="end-podium-1-score">0</div>
+                        <div class="podium-stand">1</div>
+                    </div>
+                    <div class="podium-place podium-3">
+                        <div class="podium-medal">🥉</div>
+                        <div class="podium-name" id="end-podium-3-name">---</div>
+                        <div class="podium-score" id="end-podium-3-score">0</div>
+                        <div class="podium-stand">3</div>
+                    </div>
+                </div>
+
+                <!-- Full leaderboard -->
+                <div class="end-leaderboard-section">
+                    <h2 class="leaderboard-title">Full Rankings</h2>
+                    <div id="end-leaderboard" class="dashboard-leaderboard dashboard-leaderboard--final">
+                        <!-- Final leaderboard entries rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paused view -->
+        <div id="dashboard-paused" class="dashboard-view hidden">
+            <div class="dashboard-centered">
+                <div class="paused-icon">||</div>
+                <h1>Game Paused</h1>
+                <p class="dashboard-message">Waiting for host to reconnect...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="/beatify/static/js/vendor/qrcode.min.js"></script>
+    <script src="/beatify/static/js/dashboard.js"></script>
+</body>
+</html>

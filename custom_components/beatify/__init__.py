@@ -24,6 +24,7 @@ from .game.state import GameState
 from .server import async_register_static_paths
 from .server.views import (
     AdminView,
+    DashboardView,
     EndGameView,
     GameStatusView,
     LauncherView,
@@ -90,6 +91,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(EndGameView(hass))
     hass.http.register_view(PlayerView(hass))
     hass.http.register_view(GameStatusView(hass))
+    hass.http.register_view(DashboardView(hass))
 
     # Register WebSocket endpoint
     hass.http.app.router.add_get("/beatify/ws", ws_handler.handle)
