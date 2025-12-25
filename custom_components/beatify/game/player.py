@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+import uuid
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
@@ -16,6 +17,7 @@ class PlayerSession:
 
     name: str
     ws: web.WebSocketResponse
+    session_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     score: int = 0
     streak: int = 0
     connected: bool = True

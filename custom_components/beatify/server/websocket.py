@@ -11,6 +11,7 @@ from aiohttp import WSMsgType, web
 
 from custom_components.beatify.const import (
     DOMAIN,
+    ERR_ADMIN_CANNOT_LEAVE,
     ERR_ADMIN_EXISTS,
     ERR_ALREADY_SUBMITTED,
     ERR_GAME_ENDED,
@@ -22,6 +23,8 @@ from custom_components.beatify.const import (
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
+    ERR_SESSION_NOT_FOUND,
+    ERR_SESSION_TAKEOVER,
     LOBBY_DISCONNECT_GRACE_PERIOD,
     YEAR_MAX,
     YEAR_MIN,
@@ -113,6 +116,9 @@ class BeatifyWebSocketHandler:
             success, error_code = game_state.add_player(name, ws)
 
             if success:
+                # Get the player session for session_id (Story 11.1)
+                player = game_state.get_player(name)
+
                 # Handle admin join/reconnection (Story 7-2)
                 if is_admin:
                     # Check if reconnecting as the disconnected admin
@@ -161,6 +167,15 @@ class BeatifyWebSocketHandler:
                 else:
                     # Regular player - cancel pending removal on reconnect
                     self.cancel_pending_removal(name)
+
+                # Send join acknowledgment with session_id (Story 11.1)
+                # Only the joining player receives their session_id (security)
+                if player:
+                    await ws.send_json({
+                        "type": "join_ack",
+                        "session_id": player.session_id,
+                        "game_id": game_state.game_id,
+                    })
 
                 # Send full state to newly joined player
                 state_msg = {"type": "state", **game_state.get_state()}
@@ -341,11 +356,23 @@ class BeatifyWebSocketHandler:
                 # Send game_ended notification (Story 7-5)
                 await self.broadcast({"type": "game_ended"})
 
+                # Clear all session mappings AFTER broadcast (Story 11.6)
+                # Players have already received END state, now invalidate sessions
+                game_state.clear_all_sessions()
+
                 # Cleanup pending tasks (Story 7-5)
                 await self.cleanup_game_tasks()
 
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
+
+        elif msg_type == "reconnect":
+            # Session-based reconnection (Story 11.2)
+            await self._handle_reconnect(ws, data, game_state)
+
+        elif msg_type == "leave":
+            # Intentional leave game (Story 11.5)
+            await self._handle_leave(ws, game_state)
 
         elif msg_type == "get_state":
             # Dashboard/observer requesting current state (Story 10.4)
@@ -442,6 +469,145 @@ class BeatifyWebSocketHandler:
             player.name, year, submission_time
         )
 
+    async def _handle_reconnect(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle session-based reconnection (Story 11.2).
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing session_id
+            game_state: Current game state
+
+        """
+        session_id = data.get("session_id")
+        if not session_id:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_SESSION_NOT_FOUND,
+                "message": "Session ID required",
+            })
+            return
+
+        # Find player by session ID
+        player = game_state.get_player_by_session_id(session_id)
+        if not player:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_SESSION_NOT_FOUND,
+                "message": "Session not found or game was reset",
+            })
+            return
+
+        # Check game phase - cannot reconnect to ended game
+        if game_state.phase == GamePhase.END:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_GAME_ENDED,
+                "message": "Game has ended",
+            })
+            return
+
+        # Handle dual-tab scenario: close old connection if still active
+        if player.connected and player.ws and not player.ws.closed:
+            try:
+                await player.ws.send_json({
+                    "type": "error",
+                    "code": ERR_SESSION_TAKEOVER,
+                    "message": "Session taken over by another tab",
+                })
+                await player.ws.close()
+            except Exception:  # noqa: BLE001
+                pass  # Old connection may already be dead
+            _LOGGER.info(
+                "Session takeover: %s (old tab disconnected)", player.name
+            )
+
+        # Update connection
+        player.ws = ws
+        player.connected = True
+
+        # Cancel any pending removal for this player
+        self.cancel_pending_removal(player.name)
+
+        # If admin, handle reconnect logic
+        if player.is_admin:
+            if self._admin_disconnect_task:
+                self._admin_disconnect_task.cancel()
+                self._admin_disconnect_task = None
+                _LOGGER.info("Admin reconnected via session, cancelled pause task")
+
+            # Resume game if paused
+            if game_state.phase == GamePhase.PAUSED:
+                if await game_state.resume_game():
+                    _LOGGER.info("Game resumed by admin session reconnection")
+
+        # Send reconnect acknowledgment
+        await ws.send_json({
+            "type": "reconnect_ack",
+            "name": player.name,
+            "success": True,
+        })
+
+        # Send current state to reconnected player
+        state_msg = {"type": "state", **game_state.get_state()}
+        await ws.send_json(state_msg)
+
+        # Broadcast updated state to all players (connected status changed)
+        await self.broadcast_state()
+
+        _LOGGER.info(
+            "Player reconnected via session: %s (score: %d)",
+            player.name, player.score
+        )
+
+    async def _handle_leave(
+        self, ws: web.WebSocketResponse, game_state: GameState
+    ) -> None:
+        """
+        Handle intentional leave game (Story 11.5).
+
+        Args:
+            ws: WebSocket connection
+            game_state: Current game state
+
+        """
+        # Find player by WebSocket
+        player = None
+        player_name = None
+        for name, p in game_state.players.items():
+            if p.ws == ws:
+                player = p
+                player_name = name
+                break
+
+        if not player:
+            return
+
+        # Block admin leave
+        if player.is_admin:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_ADMIN_CANNOT_LEAVE,
+                "message": "Host cannot leave. End the game instead.",
+            })
+            return
+
+        # Remove player completely (also clears session mapping via Story 11.1)
+        game_state.remove_player(player_name)
+
+        # Confirm to leaving player
+        await ws.send_json({"type": "left"})
+
+        # Close WebSocket from server side (prevents client auto-reconnect)
+        await ws.close()
+
+        # Broadcast state update to remaining players
+        await self.broadcast_state()
+
+        _LOGGER.info("Player left game intentionally: %s", player_name)
+
     async def broadcast(self, message: dict) -> None:
         """
         Broadcast message to all connected clients.
@@ -515,20 +681,9 @@ class BeatifyWebSocketHandler:
 
             # Store task for cancellation on reconnect
             self._admin_disconnect_task = asyncio.create_task(pause_after_timeout())
-        else:
-            # Regular player: remove after grace period (existing behavior)
-            async def remove_after_timeout() -> None:
-                await asyncio.sleep(LOBBY_DISCONNECT_GRACE_PERIOD)
-                if player_name in game_state.players:
-                    if not game_state.players[player_name].connected:
-                        game_state.remove_player(player_name)
-                        await self.broadcast_state()
-                        _LOGGER.info("Player removed after timeout: %s", player_name)
-                if player_name in self._pending_removals:
-                    del self._pending_removals[player_name]
-
-            task = asyncio.create_task(remove_after_timeout())
-            self._pending_removals[player_name] = task
+        # Story 11.3: Regular players persist indefinitely - no removal timeout
+        # Player stays in game with connected=false, session allows reconnect
+        # Score and stats preserved, counts toward MAX_PLAYERS (intentional)
 
     async def cleanup_game_tasks(self) -> None:
         """

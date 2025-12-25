@@ -1439,6 +1439,15 @@ body.theme-dark .qr-modal-label {
 
 .player-card--disconnected {
     opacity: 0.5;
+    filter: grayscale(0.3);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.away-badge {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-left: var(--space-xs);
 }
 
 .player-name {
@@ -1619,6 +1628,25 @@ body.theme-dark .qr-modal-label {
     text-align: center;
     padding: var(--space-md);
     color: var(--color-text-muted);
+}
+
+/* Leave Game Container (Story 11.5) */
+.leave-game-container {
+    text-align: center;
+    padding: var(--space-md);
+}
+
+.leave-game-container.hidden {
+    display: none;
+}
+
+.btn-leave {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.btn-leave:hover {
+    opacity: 1;
 }
 
 /* Admin Controls (Story 3.5) */
@@ -2000,6 +2028,11 @@ body.theme-dark .admin-controls {
 .player-indicator.is-current-player .player-name {
     font-weight: var(--font-weight-semibold);
     color: var(--color-accent-brand);
+}
+
+/* Disconnected player indicator (Story 11.4) */
+.player-indicator--disconnected {
+    opacity: 0.4;
 }
 
 /* Compact Mode for Many Players */
@@ -2825,6 +2858,12 @@ body.theme-dark .result-value.is-bet-lost {
     animation: leaderboard-fall 400ms ease-out;
 }
 
+/* Disconnected player in leaderboard (Story 11.4) */
+.leaderboard-entry--disconnected {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
 @keyframes leaderboard-climb {
     0% { transform: translateY(10px); opacity: 0.7; background: rgba(0, 255, 136, 0.2); }
     100% { transform: translateY(0); opacity: 1; background: transparent; }
@@ -3062,6 +3101,11 @@ body.theme-dark .result-value.is-bet-lost {
 
 .final-entry.is-current {
     background: #eff6ff;
+}
+
+/* Disconnected player in final leaderboard (Story 11.4) */
+.final-entry--disconnected {
+    opacity: 0.5;
 }
 
 .final-rank {

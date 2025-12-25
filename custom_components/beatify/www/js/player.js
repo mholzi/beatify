@@ -83,8 +83,14 @@
             }
 
             if (data.can_join) {
-                showView('join-view');
-                // Full WebSocket connection in Epic 3
+                // Story 11.2: Check for session cookie to auto-reconnect
+                var sessionCookie = getSessionCookie();
+                if (sessionCookie) {
+                    // Attempt session-based reconnection
+                    connectWithSession();
+                } else {
+                    showView('join-view');
+                }
             } else {
                 // REVEAL or PAUSED - can't join right now
                 showView('in-progress-view');
@@ -109,6 +115,143 @@
         showView('loading-view');
         checkGameStatus();
     });
+
+    // ============================================
+    // Session Cookie Management (Story 11.1)
+    // ============================================
+
+    var SESSION_COOKIE_NAME = 'beatify_session';
+
+    /**
+     * Set session cookie with session ID
+     * @param {string} sessionId - Session ID from server
+     */
+    function setSessionCookie(sessionId) {
+        // Add Secure flag when on HTTPS (security best practice)
+        var secureFlag = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = SESSION_COOKIE_NAME + '=' + sessionId +
+            '; path=/beatify; SameSite=Strict; max-age=86400' + secureFlag;
+    }
+
+    /**
+     * Get session cookie value
+     * @returns {string|null} Session ID or null if not found
+     */
+    function getSessionCookie() {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf(SESSION_COOKIE_NAME + '=') === 0) {
+                return cookie.substring(SESSION_COOKIE_NAME.length + 1);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Clear session cookie
+     */
+    function clearSessionCookie() {
+        document.cookie = SESSION_COOKIE_NAME + '=; path=/beatify; max-age=0';
+    }
+
+    /**
+     * Validate UUID format (basic check)
+     * @param {string} str - String to validate
+     * @returns {boolean} True if valid UUID format
+     */
+    function isValidUUID(str) {
+        if (!str || typeof str !== 'string') return false;
+        // UUID v4 format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (36 chars with dashes)
+        // Python uuid.uuid4() without dashes: 32 hex chars
+        // Allow both formats
+        return /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(str) ||
+               /^[a-f0-9]{32}$/i.test(str);
+    }
+
+    /**
+     * Attempt to connect with existing session (Story 11.2)
+     * Called when page loads and session cookie exists
+     */
+    function connectWithSession() {
+        var sessionId = getSessionCookie();
+        if (!sessionId || !isValidUUID(sessionId)) {
+            // No session or invalid format, clear and show join form
+            if (sessionId) clearSessionCookie();
+            showView('join-view');
+            return;
+        }
+
+        var wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        var wsUrl = wsProtocol + '//' + window.location.host + '/beatify/ws';
+
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = function() {
+            reconnectAttempts = 0;
+            isReconnecting = false;
+            hideReconnectingOverlay();
+
+            // Send reconnect message with session ID
+            ws.send(JSON.stringify({
+                type: 'reconnect',
+                session_id: sessionId
+            }));
+        };
+
+        ws.onmessage = function(event) {
+            try {
+                var data = JSON.parse(event.data);
+                handleServerMessage(data);
+            } catch (e) {
+                console.error('Failed to parse WebSocket message:', e);
+            }
+        };
+
+        ws.onclose = function() {
+            // If we have a playerName (reconnect succeeded), try to reconnect
+            if (playerName && reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                isReconnecting = true;
+                reconnectAttempts++;
+                showReconnectingOverlay();
+                updateReconnectStatus(reconnectAttempts);
+
+                var delay = getReconnectDelay();
+                console.log('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + reconnectAttempts + ')');
+                setTimeout(function() { connectWithSession(); }, delay);
+            } else if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+                isReconnecting = false;
+                hideReconnectingOverlay();
+                showConnectionLostView();
+            } else {
+                // No playerName means reconnect failed, show join form
+                showView('join-view');
+            }
+        };
+
+        ws.onerror = function(err) {
+            console.error('WebSocket error:', err);
+        };
+    }
+
+    /**
+     * Show welcome back toast (Story 11.2)
+     * @param {string} name - Player name
+     */
+    function showWelcomeBackToast(name) {
+        var indicator = document.getElementById('volume-indicator');
+        if (indicator) {
+            indicator.textContent = 'Welcome back, ' + name + '!';
+            indicator.classList.remove('hidden');
+            indicator.classList.add('is-visible');
+            setTimeout(function() {
+                indicator.classList.remove('is-visible');
+                setTimeout(function() {
+                    indicator.classList.add('hidden');
+                }, 300);
+            }, 2000);
+        }
+    }
 
     // ============================================
     // Name Entry & Join Form (Story 3.1)
@@ -148,27 +291,40 @@
             countEl.textContent = count + ' player' + (count !== 1 ? 's' : '');
         }
 
+        // Story 11.4: Sort players - connected first, then disconnected
+        var sortedPlayers = players.slice().sort(function(a, b) {
+            if (a.connected !== b.connected) {
+                return a.connected ? -1 : 1;
+            }
+            return 0;  // Preserve order within groups
+        });
+
         // Find new players by comparing with previous list
         const previousNames = previousPlayers.map(function(p) { return p.name; });
-        const newNames = players
+        const newNames = sortedPlayers
             .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
             .map(function(p) { return p.name; });
 
         // Render player cards
-        listEl.innerHTML = players.map(function(player) {
+        listEl.innerHTML = sortedPlayers.map(function(player) {
             const isNew = newNames.indexOf(player.name) !== -1;
             const isYou = player.name === playerName;
+            const isDisconnected = player.connected === false;
             const classes = [
                 'player-card',
                 isNew ? 'is-new' : '',
                 isYou ? 'player-card--you' : '',
-                !player.connected ? 'player-card--disconnected' : ''
+                isDisconnected ? 'player-card--disconnected' : ''
             ].filter(Boolean).join(' ');
+
+            // Story 11.4: Add "(away)" badge for disconnected players
+            var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
 
             return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
                 '<span class="player-name">' +
                     escapeHtml(player.name) +
                     (isYou ? '<span class="you-badge">(You)</span>' : '') +
+                    awayBadge +
                 '</span>' +
             '</div>';
         }).join('');
@@ -479,15 +635,17 @@
             return;
         }
 
-        // Render player indicators (Story 9.10: added is-betting class)
+        // Render player indicators (Story 9.10: added is-betting class, Story 11.4: disconnected)
         container.innerHTML = playerList.map(function(player) {
             var initials = getInitials(player.name);
             var isCurrentPlayer = player.name === playerName;
+            var isDisconnected = player.connected === false;
             var classes = [
                 'player-indicator',
                 player.submitted ? 'is-submitted' : '',
                 isCurrentPlayer ? 'is-current-player' : '',
-                player.bet ? 'is-betting' : ''
+                player.bet ? 'is-betting' : '',
+                isDisconnected ? 'player-indicator--disconnected' : ''
             ].filter(Boolean).join(' ');
 
             return '<div class="' + classes + '">' +
@@ -555,9 +713,13 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + '" data-rank="' + entry.rank + '">' +
+            // Story 11.4: Disconnected player styling
+            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + ' ' + disconnectedClass + '" data-rank="' + entry.rank + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + '</span>' +
+                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
@@ -1284,14 +1446,16 @@
             if (betsEl) betsEl.textContent = currentPlayer.bets_won || 0;
         }
 
-        // Update full leaderboard
+        // Update full leaderboard (Story 11.4: disconnected styling)
         var listEl = document.getElementById('final-leaderboard-list');
         if (listEl) {
             listEl.innerHTML = leaderboard.map(function(entry) {
                 var currentClass = entry.is_current ? 'is-current' : '';
-                return '<div class="final-entry ' + currentClass + '">' +
+                var disconnectedClass = entry.connected === false ? 'final-entry--disconnected' : '';
+                var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+                return '<div class="final-entry ' + currentClass + ' ' + disconnectedClass + '">' +
                     '<span class="final-rank">#' + entry.rank + '</span>' +
-                    '<span class="final-name">' + escapeHtml(entry.name) + '</span>' +
+                    '<span class="final-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
                     '<span class="final-score">' + entry.score + '</span>' +
                 '</div>';
             }).join('');
@@ -1732,6 +1896,7 @@
     function updateAdminControls(players) {
         const adminControls = document.getElementById('admin-controls');
         const lobbyStatus = document.getElementById('lobby-status');
+        const leaveGameContainer = document.getElementById('leave-game-container');
         if (!adminControls) return;
 
         // Find if current player is admin from state
@@ -1741,9 +1906,13 @@
         if (playerIsAdmin) {
             adminControls.classList.remove('hidden');
             if (lobbyStatus) lobbyStatus.classList.add('hidden');
+            // Story 11.5: Admin cannot leave, hide button
+            if (leaveGameContainer) leaveGameContainer.classList.add('hidden');
         } else {
             adminControls.classList.add('hidden');
             if (lobbyStatus) lobbyStatus.classList.remove('hidden');
+            // Story 11.5: Non-admin can leave
+            if (leaveGameContainer) leaveGameContainer.classList.remove('hidden');
         }
     }
 
@@ -1764,6 +1933,12 @@
                 action: 'start_game'
             }));
         });
+
+        // Story 11.5: Leave Game button
+        const leaveBtn = document.getElementById('leave-game-btn');
+        leaveBtn?.addEventListener('click', function() {
+            handleLeaveGame();
+        });
     }
 
     // ============================================
@@ -1780,6 +1955,9 @@
 
     // Reconnection state (Story 7-3)
     let isReconnecting = false;
+
+    // Intentional leave flag (Story 11.5) - prevents auto-reconnect after Leave Game
+    let intentionalLeave = false;
 
     /**
      * Get reconnection delay with exponential backoff
@@ -1936,6 +2114,11 @@
         };
 
         ws.onclose = function() {
+            // Story 11.5: Skip auto-reconnect if user intentionally left
+            if (intentionalLeave) {
+                intentionalLeave = false;  // Reset flag
+                return;
+            }
             // Attempt reconnection if we were connected and have a name
             if (playerName && reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
                 isReconnecting = true;
@@ -2031,6 +2214,19 @@
                 // Clear stored player name (game is over - Story 7-3)
                 clearStoredPlayerName();
             }
+        } else if (data.type === 'join_ack') {
+            // Handle join acknowledgment with session_id (Story 11.1)
+            if (data.session_id) {
+                setSessionCookie(data.session_id);
+            }
+        } else if (data.type === 'reconnect_ack') {
+            // Handle session-based reconnect acknowledgment (Story 11.2)
+            if (data.success && data.name) {
+                playerName = data.name;
+                storePlayerName(data.name);
+                showWelcomeBackToast(data.name);
+                // State message will follow with full game state
+            }
         } else if (data.type === 'submit_ack') {
             // Handle successful guess submission
             handleSubmitAck();
@@ -2050,6 +2246,37 @@
                 isAdmin = false;
                 hideAdminControlBar();
                 console.warn('Admin action rejected: not admin');
+                return;
+            }
+            // Handle SESSION_TAKEOVER - another tab took over (Story 11.2)
+            if (data.code === 'SESSION_TAKEOVER') {
+                isReconnecting = false;
+                hideReconnectingOverlay();
+                // Don't clear session cookie - other tab is using it
+                playerName = null;
+                showConnectionLostView();
+                console.warn('Session taken over by another tab');
+                return;
+            }
+            // Handle SESSION_NOT_FOUND - session expired or game reset (Story 11.2)
+            if (data.code === 'SESSION_NOT_FOUND') {
+                clearSessionCookie();
+                // Prevent reconnect attempts by reusing intentionalLeave flag
+                intentionalLeave = true;
+                // Close WebSocket cleanly to prevent onclose reconnect
+                if (ws) {
+                    ws.close();
+                }
+                // Fall back to join form
+                showView('join-view');
+                return;
+            }
+            // Handle ADMIN_CANNOT_LEAVE - host tried to leave (Story 11.5)
+            if (data.code === 'ADMIN_CANNOT_LEAVE') {
+                // Reset intentional leave flag since action was blocked
+                intentionalLeave = false;
+                // Show user-friendly error message
+                alert(data.message || 'Host cannot leave. End the game instead.');
                 return;
             }
             // Show error, re-enable form
@@ -2072,7 +2299,52 @@
         } else if (data.type === 'game_ended') {
             // Story 7-5 - game has fully ended
             handleGameEnded();
+        } else if (data.type === 'left') {
+            // Story 11.5 - player left game successfully
+            handleLeftGame();
         }
+    }
+
+    /**
+     * Handle successful leave game response (Story 11.5)
+     */
+    function handleLeftGame() {
+        // Clear all stored session data
+        clearStoredPlayerName();
+        clearSessionCookie();
+
+        // Reset local state
+        playerName = null;
+        isAdmin = false;
+
+        // Show join view for potential rejoin
+        showView('join-view');
+    }
+
+    /**
+     * Handle leave game button click (Story 11.5)
+     */
+    function handleLeaveGame() {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+            return;
+        }
+
+        // Safety check - admin shouldn't see button, but double-check
+        if (isAdmin) {
+            alert('Host cannot leave. End the game instead.');
+            return;
+        }
+
+        // Confirmation dialog per AC #1
+        if (!confirm('Leave the game? Your score will be lost.')) {
+            return;
+        }
+
+        // Set intentional leave flag to prevent auto-reconnect
+        intentionalLeave = true;
+
+        // Send leave message to server
+        ws.send(JSON.stringify({ type: 'leave' }));
     }
 
     /**
@@ -2081,6 +2353,7 @@
     function handleGameEnded() {
         // Clear all stored session data
         clearStoredPlayerName();
+        clearSessionCookie();  // Story 11.1 - clear session cookie on game end
         try {
             sessionStorage.removeItem('beatify_admin_name');
             sessionStorage.removeItem('beatify_is_admin');

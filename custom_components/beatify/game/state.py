@@ -66,6 +66,7 @@ class GameState:
         self.media_player: str | None = None
         self.join_url: str | None = None
         self.players: dict[str, PlayerSession] = {}
+        self._sessions: dict[str, str] = {}  # session_id → player_name
 
         # Round tracking (Epic 4)
         self.round: int = 0
@@ -119,6 +120,9 @@ class GameState:
             dict with game_id, join_url, song_count, phase
 
         """
+        # Clear any leftover sessions from previous/crashed game (Story 11.6)
+        self.clear_all_sessions()
+
         self.game_id = secrets.token_urlsafe(8)
         self.phase = GamePhase.LOBBY
         self.playlists = playlists
@@ -252,6 +256,8 @@ class GameState:
         self.media_player = None
         self.join_url = None
         self.players = {}
+        # Clear all session mappings (Story 11.6)
+        self.clear_all_sessions()
 
         # Reset round tracking (Epic 4)
         self.round = 0
@@ -429,9 +435,11 @@ class GameState:
         initial_score = self.get_average_score() if joined_late else 0
 
         # Add new player
-        self.players[name] = PlayerSession(
+        player = PlayerSession(
             name=name, ws=ws, score=initial_score, streak=0, joined_late=joined_late
         )
+        self.players[name] = player
+        self._sessions[player.session_id] = name
 
         # Log join with score info
         if joined_late and initial_score > 0:
@@ -459,6 +467,20 @@ class GameState:
         """
         return self.players.get(name)
 
+    def get_player_by_session_id(self, session_id: str) -> PlayerSession | None:
+        """
+        Get player by session ID (Story 11.1).
+
+        Args:
+            session_id: Session ID from cookie
+
+        Returns:
+            PlayerSession or None if not found
+
+        """
+        name = self._sessions.get(session_id)
+        return self.players.get(name) if name else None
+
     def remove_player(self, name: str) -> None:
         """
         Remove player from game.
@@ -468,8 +490,23 @@ class GameState:
 
         """
         if name in self.players:
+            player = self.players[name]
+            # Clean up session mapping (Story 11.1)
+            self._sessions.pop(player.session_id, None)
             del self.players[name]
             _LOGGER.info("Player removed: %s", name)
+
+    def clear_all_sessions(self) -> None:
+        """
+        Clear all session mappings for game reset (Story 11.6).
+
+        Called after broadcasting final state to ensure players receive
+        END state before sessions are invalidated.
+
+        """
+        session_count = len(self._sessions)
+        self._sessions.clear()
+        _LOGGER.info("Cleared %d player sessions", session_count)
 
     def get_players_state(self) -> list[dict[str, Any]]:
         """

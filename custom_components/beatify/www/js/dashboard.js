@@ -224,20 +224,32 @@
         var listEl = document.getElementById('dashboard-player-list');
         if (!listEl) return;
 
+        // Story 11.4: Sort players - connected first, then disconnected
+        var sortedPlayers = players.slice().sort(function(a, b) {
+            if (a.connected !== b.connected) {
+                return a.connected ? -1 : 1;
+            }
+            return 0;
+        });
+
         // Find new players
         var previousNames = previousPlayers.map(function(p) { return p.name; });
-        var newNames = players
+        var newNames = sortedPlayers
             .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
             .map(function(p) { return p.name; });
 
         // Render player cards
-        listEl.innerHTML = players.map(function(player) {
+        listEl.innerHTML = sortedPlayers.map(function(player) {
             var isNew = newNames.indexOf(player.name) !== -1;
+            var isDisconnected = player.connected === false;
             var classes = ['dashboard-player-card'];
             if (isNew) classes.push('is-new');
+            if (isDisconnected) classes.push('dashboard-player-card--disconnected');
+
+            var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
 
             return '<div class="' + classes.join(' ') + '">' +
-                escapeHtml(player.name) +
+                escapeHtml(player.name) + awayBadge +
             '</div>';
         }).join('');
 
@@ -284,8 +296,8 @@
             startCountdown(data.deadline);
         }
 
-        // Render leaderboard with submission indicators
-        renderLeaderboard(data.leaderboard || [], players, 'dashboard-leaderboard', true);
+        // Render leaderboard with submission indicators and bet badges
+        renderLeaderboard(data.leaderboard || [], players, 'dashboard-leaderboard', true, true);
     }
 
     /**
@@ -342,16 +354,19 @@
      * @param {Array} players - Players list (for submission status)
      * @param {string} containerId - Container element ID
      * @param {boolean} showSubmitted - Whether to show submission indicators
+     * @param {boolean} showBet - Whether to show bet badges next to names
      */
-    function renderLeaderboard(leaderboard, players, containerId, showSubmitted) {
+    function renderLeaderboard(leaderboard, players, containerId, showSubmitted, showBet) {
         var container = document.getElementById(containerId);
         if (!container) return;
 
-        // Build player submission map
+        // Build player submission and bet maps
         var submissionMap = {};
+        var betMap = {};
         if (players) {
             players.forEach(function(p) {
                 submissionMap[p.name] = p.submitted;
+                betMap[p.name] = p.bet;
             });
         }
 
@@ -366,6 +381,10 @@
             } else if (entry.rank_change < 0) {
                 animationClass = 'leaderboard-entry--falling';
             }
+
+            // Story 11.4: Disconnected player styling
+            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
             // Rank change indicator (AC 10.4.4 - with arrows)
             var changeIndicator = '';
@@ -382,6 +401,12 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
+            // Bet badge next to name during playing phase
+            var betBadge = '';
+            if (showBet && betMap[entry.name]) {
+                betBadge = '<span class="bet-badge">BET</span>';
+            }
+
             // Submission indicator (AC 10.4.3)
             var submittedIndicator = '';
             if (showSubmitted) {
@@ -389,9 +414,9 @@
                 submittedIndicator = '<div class="entry-submitted ' + (isSubmitted ? 'is-submitted' : '') + '"></div>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + '">' +
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + '</span>' +
+                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
@@ -459,10 +484,22 @@
 
         var html = '';
         sorted.forEach(function(player, index) {
+            // Show guessed year in brackets
+            var yearDisplay = player.guess ? '<span class="top-guess-year">(' + player.guess + ')</span>' : '';
+
+            // Show BET badge with outcome
+            var betBadge = '';
+            if (player.bet) {
+                var badgeClass = 'bet-badge';
+                if (player.bet_outcome === 'won') badgeClass += ' bet-badge--won';
+                else if (player.bet_outcome === 'lost') badgeClass += ' bet-badge--lost';
+                betBadge = '<span class="' + badgeClass + '">BET</span>';
+            }
+
             html += '<div class="top-guess-entry">' +
                 '<span class="top-guess-rank">#' + (index + 1) + '</span>' +
-                '<span class="top-guess-name">' + escapeHtml(player.name) + '</span>' +
-                '<span class="top-guess-points">+' + (player.round_score || 0) + '</span>' +
+                '<span class="top-guess-name">' + escapeHtml(player.name) + yearDisplay + '</span>' +
+                '<span class="top-guess-points">+' + (player.round_score || 0) + betBadge + '</span>' +
             '</div>';
         });
 
@@ -489,6 +526,10 @@
                 animationClass = 'leaderboard-entry--falling';
             }
 
+            // Story 11.4: Disconnected player styling
+            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+
             // Position change indicator (AC 10.4.4 - with arrows)
             var changeHtml = '';
             if (entry.rank_change > 0) {
@@ -504,9 +545,9 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + '">' +
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + '</span>' +
+                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeHtml +
@@ -539,16 +580,18 @@
             if (scoreEl) scoreEl.textContent = player ? player.score : '0';
         });
 
-        // Render full leaderboard
+        // Render full leaderboard (Story 11.4: disconnected styling)
         var container = document.getElementById('end-leaderboard');
         if (container) {
             var html = '';
             leaderboard.forEach(function(entry) {
                 var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
+                var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+                var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
-                html += '<div class="leaderboard-entry ' + rankClass + '">' +
+                html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
                     '<span class="entry-rank">#' + entry.rank + '</span>' +
-                    '<span class="entry-name">' + escapeHtml(entry.name) + '</span>' +
+                    '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
                     '<span class="entry-score">' + entry.score + '</span>' +
                 '</div>';
             });

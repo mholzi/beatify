@@ -236,6 +236,12 @@
     background: var(--color-accent-primary);
 }
 
+/* Story 11.4: Disconnected player styling */
+.dashboard-player-card--disconnected {
+    opacity: 0.5;
+    filter: grayscale(0.3);
+}
+
 @keyframes slide-in {
     from {
         opacity: 0;
@@ -567,6 +573,47 @@
 .top-guess-points {
     font-weight: var(--font-weight-bold);
     color: var(--color-success-neon);
+}
+
+.top-guess-year {
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-base);
+    margin-left: var(--space-xs);
+}
+
+/* BET badge styling */
+.bet-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-warning) 0%, var(--color-warning-dark) 100%);
+    color: var(--color-text-dark);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: bet-pulse 2s ease-in-out infinite;
+}
+
+.bet-badge--won {
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-hover) 100%);
+}
+
+.bet-badge--lost {
+    background: linear-gradient(135deg, var(--color-error) 0%, var(--color-error-dark) 100%);
+    color: var(--color-text-white);
+}
+
+@keyframes bet-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bet-badge {
+        animation: none;
+    }
 }
 
 /* ==========================================
