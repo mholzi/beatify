@@ -487,16 +487,16 @@ body.theme-dark .game-info span {
 /* Language Selector (Story 12.4) */
 .language-selector {
     display: flex;
+    justify-content: center;
     gap: var(--space-sm);
 }
 
 .lang-btn {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-xs);
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
     border: 2px solid var(--color-border-medium);
     border-radius: var(--radius-md);
     background: var(--color-bg-white);
