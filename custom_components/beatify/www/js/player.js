@@ -83,6 +83,13 @@
             }
 
             if (data.can_join) {
+                // Check for admin redirect first (from admin.js) - let initAll() handle it
+                var adminName = sessionStorage.getItem('beatify_admin_name');
+                if (adminName && sessionStorage.getItem('beatify_is_admin') === 'true') {
+                    // Admin redirect - initAll() will handle connection
+                    return;
+                }
+
                 // Story 11.2: Check for session cookie to auto-reconnect
                 var sessionCookie = getSessionCookie();
                 if (sessionCookie) {
