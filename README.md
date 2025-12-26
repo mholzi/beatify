@@ -1,308 +1,343 @@
-# 🎵 Beatify
+# Beatify
 
 <div align="center">
 
-![Beatify Logo](https://img.shields.io/badge/Beat-ify-ff00ff?style=for-the-badge&labelColor=00f5ff&logo=music&logoColor=white)
+<img src="docs/images/beatify-logo.png" alt="Beatify" width="400">
 
-**The Ultimate Music Year-Guessing Party Game for Home Assistant**
+### **Turn Your Living Room Into a Music Game Show**
 
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.11+-41BDF5?style=flat-square&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.9.7-blue?style=flat-square)](https://github.com/mholzi/beatify/releases)
+The multiplayer music year-guessing party game that runs on your Home Assistant.
+No apps. No downloads. Just scan, play, and party.
 
-*Turn any gathering into an epic music trivia showdown!*
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
+[![Version](https://img.shields.io/badge/Version-0.11.2-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[Features](#-features) • [Installation](#-installation) • [How to Play](#-how-to-play) • [Screenshots](#-screenshots) • [FAQ](#-faq)
+**[Get Started](#-quick-start)** | **[See It In Action](#-how-it-works)** | **[Install Now](#-installation)**
+
+---
 
 </div>
 
----
+## The Party Game Your Smart Home Was Made For
 
-## 🎉 What is Beatify?
+Remember the last time everyone at your party was actually *present*? Not scrolling, not distracted—just laughing, competing, and having fun together?
 
-Beatify transforms your Home Assistant setup into a **multiplayer music party game** where players compete to guess the release year of songs. It's like having a professional game show host in your living room!
+**Beatify makes that happen.**
 
-> 🎧 A song plays... 🤔 Players guess the year... 🏆 Points are awarded... 🎊 Champions are crowned!
+A song plays through your speakers. Everyone grabs their phone. The race is on to guess the release year. Points fly. Bets are placed. Champions are crowned. And somewhere between "I *know* this song!" and "No way that's from the 80s!", something magical happens:
 
-Perfect for:
-- 🏠 **House parties** - Get everyone off their phones and into the game!
-- 🎂 **Birthday celebrations** - Who knows their era best?
-- 🍻 **Game nights** - Add music trivia to your rotation
-- 👨‍👩‍👧‍👦 **Family gatherings** - Bridge generations through music
-- 🎄 **Holiday events** - Create lasting memories
+**People connect.**
 
 ---
 
-## ✨ Features
+## Why Beatify?
 
-### 🎮 Core Gameplay
-- **Instant Join via QR Code** - Guests scan and play in seconds, no app downloads!
-- **Real-time Multiplayer** - Everyone plays simultaneously on their own devices
-- **Smart Scoring System** - Accuracy matters! Closer guesses = more points
-- **Speed Bonuses** - Quick thinkers get rewarded
-- **Streak Multipliers** - Stay hot and watch your score soar!
+<table>
+<tr>
+<td width="50%">
 
-### 🎲 Betting System
-- **High-Risk, High-Reward** - Feeling confident? Double down!
-- **Dice Indicators** - See who's betting in real-time
-- **Dramatic Reveals** - Watch bets pay off (or backfire spectacularly!)
+### Zero Friction
+- **Scan a QR code. That's it.** No app downloads, no accounts, no waiting.
+- Works on any phone, tablet, or browser
+- Guests playing in under 10 seconds
 
-### 🏆 Competition Features
-- **Live Leaderboard** - Real-time rankings keep the tension high
-- **Animated Standings** - Watch players rise and fall after each round
-- **Final Podium** - Celebrate the top 3 in style
-- **Personal Stats** - Track your accuracy across rounds
+</td>
+<td width="50%">
 
-### 🎨 Neon Party Mode Theme
-- **Stunning Dark Mode** - Gorgeous neon aesthetics that pop
-- **Celebration Animations** - Confetti, glows, and party vibes
-- **Responsive Design** - Looks amazing on any screen size
-- **Accessibility First** - Reduced motion options available
+### Instant Fun
+- **Music plays. Tension builds.** Everyone's racing against the clock.
+- Real-time scoring keeps competition fierce
+- Dramatic reveals that get everyone cheering (or groaning)
 
-### 🛠️ Host Controls
-- **Admin Control Bar** - Skip songs, adjust volume, manage the game
-- **Pause & Resume** - Life happens, the game waits
-- **Flexible Playlists** - Use JSON playlist files with any media URIs
-- **Late Join Support** - Latecomers can jump in mid-game
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### Your Music, Your Speakers
+- **Plays through your existing setup.** Sonos, HomePod, Chromecast, anything.
+- Use any Spotify, Apple Music, or local media files
+- Create playlists that match your crowd
+
+</td>
+<td width="50%">
+
+### Built for Home Assistant
+- **Native integration.** Not a hack, not a workaround.
+- Leverages your smart home infrastructure
+- Runs locally—fast, private, reliable
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 📦 Installation
+## How It Works
 
-### Prerequisites
+```
+1. HOST opens Beatify on Home Assistant
+2. HOST picks speakers + playlists, hits "Start Game"
+3. QR CODE appears—guests scan with their phones
+4. SONG PLAYS through your speakers
+5. EVERYONE GUESSES the release year (before time runs out!)
+6. SCORES REVEALED—watch the leaderboard shuffle
+7. REPEAT until a champion emerges
+8. CELEBRATE (responsibly)
+```
 
-| Requirement | Version | Notes |
-|-------------|---------|-------|
-| Home Assistant | 2025.11+ | Core platform |
-| Media Player | Any | Any HA media player entity |
-| HACS | Latest | Recommended for easy install |
+**That's the whole thing.** No complicated setup. No technical knowledge required for guests. Just pure, competitive fun.
 
-### Option 1: HACS (Recommended)
+---
+
+## Features That Make The Difference
+
+### The Game
+
+| Feature | What It Does |
+|---------|--------------|
+| **Smart Scoring** | Closer guesses = more points. Exact year? Maximum glory. |
+| **Speed Bonus** | Quick answers earn extra points. No more stalling! |
+| **Streak Multiplier** | Stay hot, stack bonuses. Miss one? Start over. |
+| **Betting System** | Feeling confident? Double down and risk it all. |
+| **Late Join** | Latecomers jump in mid-game with fair scoring. |
+
+### The Experience
+
+| Feature | What It Does |
+|---------|--------------|
+| **Live Leaderboard** | Real-time rankings that update after every round |
+| **Animated Reveals** | Dramatic score announcements with smooth animations |
+| **Neon Party Theme** | Gorgeous dark mode aesthetic that looks stunning |
+| **Multi-Language** | English and German—more languages coming |
+| **Mobile-First Design** | Buttery smooth on any device |
+
+### The Control
+
+| Feature | What It Does |
+|---------|--------------|
+| **Admin Controls** | Skip songs, adjust volume, pause anytime |
+| **Spectator Dashboard** | Big-screen display for TV viewing |
+| **Session Persistence** | Reconnect if you drop—your progress is saved |
+| **Flexible Playlists** | JSON-based, easy to create and share |
+
+---
+
+## Quick Start
+
+### 1. Install via HACS (2 minutes)
+
+```
+HACS → Menu (⋮) → Custom Repositories
+→ Add: https://github.com/mholzi/beatify
+→ Category: Integration
+→ Install "Beatify"
+→ Restart Home Assistant
+```
+
+### 2. Set Up (1 minute)
+
+```
+Settings → Devices & Services → Add Integration → "Beatify"
+```
+
+### 3. Play (immediately)
+
+```
+Open Beatify → Pick speakers → Pick playlist → Start Game → Share QR → GO!
+```
+
+**Total time from zero to party: under 5 minutes.**
+
+---
+
+## Installation
+
+### Requirements
+
+- **Home Assistant** 2024.1 or newer
+- **Any media player** entity (Sonos, Chromecast, HomePod, etc.)
+- **HACS** (recommended) or manual install
+
+### Option A: HACS (Recommended)
 
 1. Open **HACS** in Home Assistant
-2. Click the **⋮** menu → **Custom repositories**
-3. Add: `https://github.com/mholzi/beatify`
+2. Click **⋮** menu → **Custom repositories**
+3. Add URL: `https://github.com/mholzi/beatify`
 4. Select category: **Integration**
-5. Find "Beatify" and click **Install**
+5. Search "Beatify" and click **Install**
 6. **Restart Home Assistant**
+7. Add the integration via Settings → Devices & Services
 
-### Option 2: Manual Installation
+### Option B: Manual
 
 ```bash
-# Navigate to your config directory
 cd /config/custom_components
-
-# Clone the repository
 git clone https://github.com/mholzi/beatify.git beatify
-
 # Restart Home Assistant
 ```
 
-### Setup
-
-1. Go to **Settings** → **Devices & Services**
-2. Click **+ Add Integration**
-3. Search for **"Beatify"**
-4. Follow the setup wizard
-5. Access the admin panel from the sidebar!
-
 ---
 
-## 🎮 How to Play
+## Creating Playlists
 
-### For the Host
+Beatify uses simple JSON playlists. A sample is included to get you started.
 
-1. **Open Beatify** from the Home Assistant sidebar
-2. **Select a media player** (your speakers/TV)
-3. **Choose playlists** to pull songs from
-4. **Click "Start Game"** to create a lobby
-5. **Share the QR code** with your guests
-6. **Press "Start Game"** when everyone's ready!
+**Location:** `config/beatify/playlists/`
 
-### For Players
-
-1. **Scan the QR code** with your phone camera
-2. **Enter your name** to join the lobby
-3. **Wait for the host** to start the game
-4. When a song plays:
-   - **Listen carefully** 🎧
-   - **Slide to select a year** 📅
-   - **Hit Submit** before time runs out! ⏱️
-   - **Optional: Place a bet** to double your points! 🎲
-5. **Watch the reveal** and see how you scored!
-6. **Repeat** until a champion emerges! 🏆
-
-### Scoring
-
-| Result | Base Points | Notes |
-|--------|-------------|-------|
-| Exact year | 20 pts | 🎯 Perfect! |
-| 1 year off | 18 pts | So close! |
-| 2 years off | 16 pts | Great guess! |
-| 3 years off | 14 pts | Not bad! |
-| 4+ years off | Decreasing | Keep trying! |
-| No submission | 0 pts | 😴 Wake up! |
-
-**Bonuses:**
-- ⚡ **Speed Bonus**: Submit in first 25% of time = +3 pts
-- 🔥 **Streak Bonus**: 3+ correct in a row = +5 pts per round
-- 🎲 **Bet Won**: Double your round score!
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-
-| Player View | Reveal Screen | Leaderboard |
-|:-----------:|:-------------:|:-----------:|
-| Guess the year! | See the results! | Who's winning? |
-
-*Screenshots coming soon - the game looks even better in person!*
-
-</div>
-
----
-
-## 🔧 Configuration
-
-### Admin Settings
-
-Access advanced settings through the integration configuration:
-
-| Setting | Default | Description |
-|---------|---------|-------------|
-| Round Timer | 30s | Time to submit guesses |
-| Rounds per Game | 10 | Songs per game session |
-| Year Range | 1960-2024 | Selectable year range |
-
-### Playlist Tips
-
-- 🎵 **Mix eras** for maximum challenge
-- 🌍 **Include variety** - rock, pop, disco, hip-hop
-- 🎤 **Famous songs work best** - recognizable but not too obvious
-- ⏱️ **30-60 second clips** are ideal
-
----
-
-## ❓ FAQ
-
-<details>
-<summary><b>Can players join mid-game?</b></summary>
-
-Yes! Late joiners receive average points for missed rounds, so they're not too far behind.
-</details>
-
-<details>
-<summary><b>What happens if the host disconnects?</b></summary>
-
-The game pauses automatically and resumes when the host reconnects. Player progress is preserved!
-</details>
-
-<details>
-<summary><b>How many players can join?</b></summary>
-
-There's no hard limit! We've tested with 20+ players. Your WiFi is the only constraint.
-</details>
-
-<details>
-<summary><b>How do playlists work?</b></summary>
-
-Beatify uses JSON playlist files stored in `config/beatify/playlists/`. Each playlist contains songs with their release year, media URI, and optional fun facts. A sample playlist is included to get you started!
-</details>
-
-<details>
-<summary><b>Can I customize the theme?</b></summary>
-
-The Neon Party Mode theme is built-in. Custom theming may come in future updates!
-</details>
-
----
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**"No playlists found"**
-- Check that JSON playlist files exist in `config/beatify/playlists/`
-- Restart Home Assistant after adding playlists
-
-**Players can't connect**
-- Check that your HA instance is accessible on your network
-- Try the direct IP URL instead of hostname
-- Ensure port 8123 (or your custom port) is accessible
-
-**Songs not playing**
-- Verify your media player is online and working
-- Check that the media URIs in your playlist are valid
-- Look for errors in Home Assistant logs
-
-**QR code not scanning**
-- Ensure good lighting on the screen
-- Try zooming in on the QR code
-- Use a QR scanner app if camera doesn't work
-
----
-
-## 🚀 What's New in v0.9.0
-
-### 🎨 Epic 9: UX Design Overhaul Complete!
-
-This release brings the **Neon Party Mode** theme to life:
-
-- ✅ **Dark mode everywhere** - Admin page now matches the party vibe
-- ✅ **Polished animations** - Smoother, more satisfying interactions
-- ✅ **Better betting UX** - Clear indicators for who's feeling lucky
-- ✅ **Player result cards** - See everyone's guesses on reveal
-- ✅ **Improved layouts** - Everything in the right place
-- ✅ **Accessibility improvements** - Reduced motion support
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Clone the repo
-git clone https://github.com/mholzi/beatify.git
-cd beatify
-
-# Run tests
-pytest tests/
-
-# Lint code
-ruff check custom_components/beatify/
+**Format:**
+```json
+{
+  "name": "80s Hits",
+  "songs": [
+    {
+      "year": 1983,
+      "uri": "spotify:track:4cOdK2wGLETKBW3PvgPWqT",
+      "fun_fact": "This song spent 8 weeks at #1"
+    }
+  ]
+}
 ```
 
+**Tips for great playlists:**
+- Mix different decades for variety
+- Include recognizable songs (obscure = frustrating)
+- Add fun facts for reveal screens
+- 10-20 songs per playlist is ideal
+
 ---
 
-## 📜 License
+## Scoring System
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+| Accuracy | Points | Vibe |
+|----------|--------|------|
+| Exact year | 20 | **LEGENDARY** |
+| 1 year off | 18 | So close! |
+| 2 years off | 16 | Nice! |
+| 3 years off | 14 | Not bad |
+| 4+ years off | 12→0 | Keep trying |
+| No answer | 0 | Wake up! |
+
+**Bonuses:**
+- **Speed Bonus:** +3 pts for answering in the first 25% of time
+- **Streak Bonus:** +5 pts per round when you're on a 3+ correct streak
+- **Bet Won:** 2x your round score (bet lost = 0 pts)
 
 ---
 
-## 🙏 Acknowledgments
+## Perfect For
 
-- Built for [Home Assistant](https://www.home-assistant.io/) - the best smart home platform
-- Inspired by countless game nights and the joy of music trivia
+- **House Parties** — Get people off their phones and into the game
+- **Birthday Parties** — Who knows their birth year's hits?
+- **Game Nights** — Add music trivia to your rotation
+- **Family Gatherings** — Bridge generations through music
+- **Corporate Events** — Team building that's actually fun
+- **Holiday Parties** — Create memories, not awkward silences
+
+---
+
+## FAQ
+
+<details>
+<summary><strong>How many players can join?</strong></summary>
+
+No hard limit. We've tested 20+ players without issues. Your WiFi is the constraint.
+</details>
+
+<details>
+<summary><strong>Can someone join mid-game?</strong></summary>
+
+Yes! Late joiners get fair average scores for missed rounds so they can compete.
+</details>
+
+<details>
+<summary><strong>What if the host disconnects?</strong></summary>
+
+Game pauses automatically. Reconnect and pick up where you left off.
+</details>
+
+<details>
+<summary><strong>What music services work?</strong></summary>
+
+Anything your Home Assistant media player supports: Spotify, Apple Music, YouTube Music, local files, etc.
+</details>
+
+<details>
+<summary><strong>Is an internet connection required?</strong></summary>
+
+Only for streaming music. The game itself runs entirely on your local network.
+</details>
+
+<details>
+<summary><strong>Can I customize the look?</strong></summary>
+
+The Neon Party theme is built-in and looks amazing. Custom theming is on the roadmap.
+</details>
+
+---
+
+## What's New in v0.11
+
+### Multi-Language Support
+- **English and German** fully supported
+- Language selector on admin setup
+- All UI text translated
+
+### Quality of Life
+- **Spectator Dashboard** — Big-screen display for TV/iPad
+- **Session Persistence** — Reconnect without losing progress
+- **Bundled Playlists** — Sample playlists included out of the box
+
+---
+
+## Troubleshooting
+
+**Players can't connect?**
+- Check HA is accessible on your network
+- Try IP address instead of hostname
+- Ensure port 8123 is open
+
+**Music not playing?**
+- Verify media player is online
+- Check playlist URIs are valid
+- Look at HA logs for errors
+
+**QR code won't scan?**
+- Improve lighting on display
+- Zoom in on the code
+- Use a QR scanner app
+
+---
+
+## Contributing
+
+We welcome contributions!
+
+1. Fork the repo
+2. Create feature branch (`git checkout -b feature/cool-thing`)
+3. Commit changes (`git commit -m 'Add cool thing'`)
+4. Push (`git push origin feature/cool-thing`)
+5. Open a Pull Request
+
+---
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-**Made with 🎵 and ❤️ for music lovers everywhere**
+### Ready to transform your next gathering?
 
-[Report Bug](https://github.com/mholzi/beatify/issues) • [Request Feature](https://github.com/mholzi/beatify/issues) • [Discussions](https://github.com/mholzi/beatify/discussions)
+**[Install Beatify Now](#-installation)**
+
+---
+
+**Built for Home Assistant. Built for fun.**
+
+[Report Bug](https://github.com/mholzi/beatify/issues) · [Request Feature](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions)
 
 </div>
