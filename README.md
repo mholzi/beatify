@@ -10,7 +10,7 @@ The multiplayer music year-guessing party game that runs on your Home Assistant.
 No apps. No downloads. Just scan, play, and party.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-0.11.2-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-0.11.3-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 **[Get Started](#-quick-start)** | **[See It In Action](#-how-it-works)** | **[Install Now](#-installation)**
