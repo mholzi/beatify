@@ -82,26 +82,30 @@
                 return;
             }
 
-            if (data.can_join) {
-                // Check for admin redirect first (from admin.js) - let initAll() handle it
-                // Only check beatify_admin_name since beatify_is_admin may be cleared
-                // by checkAdminStatus() before this async function completes
-                var adminName = sessionStorage.getItem('beatify_admin_name');
-                if (adminName) {
-                    // Admin redirect - initAll() will handle connection
-                    return;
-                }
+            // Check for admin redirect first (from admin.js) - let initAll() handle it
+            // Only check beatify_admin_name since beatify_is_admin may be cleared
+            // by checkAdminStatus() before this async function completes
+            var adminName = sessionStorage.getItem('beatify_admin_name');
+            if (adminName) {
+                // Admin redirect - initAll() will handle connection
+                return;
+            }
 
-                // Story 11.2: Check for session cookie to auto-reconnect
-                var sessionCookie = getSessionCookie();
-                if (sessionCookie) {
-                    // Attempt session-based reconnection
-                    connectWithSession();
-                } else {
-                    showView('join-view');
-                }
+            // Story 11.2: Check for session cookie to auto-reconnect
+            // This must happen BEFORE can_join check - existing players should
+            // be able to reconnect even during REVEAL/PAUSED phases
+            var sessionCookie = getSessionCookie();
+            if (sessionCookie) {
+                // Attempt session-based reconnection (works for any phase except END)
+                connectWithSession();
+                return;
+            }
+
+            // New players: can only join during LOBBY or PLAYING
+            if (data.can_join) {
+                showView('join-view');
             } else {
-                // REVEAL or PAUSED - can't join right now
+                // REVEAL or PAUSED - new players can't join right now
                 showView('in-progress-view');
             }
 
@@ -1961,6 +1965,7 @@
     const MAX_RECONNECT_DELAY_MS = 30000;
     const STORAGE_KEY_NAME = 'beatify_player_name';
     const STORAGE_KEY_GAME_ID = 'beatify_game_id';
+    const STORAGE_KEY_LANGUAGE = 'beatify_language';
 
     // Reconnection state (Story 7-3)
     let isReconnecting = false;
@@ -2027,6 +2032,30 @@
             localStorage.removeItem(STORAGE_KEY_GAME_ID);
         } catch (e) {
             // localStorage unavailable
+        }
+    }
+
+    /**
+     * Store game language in localStorage for consistent UI on reload
+     * @param {string} lang - Language code ('en' or 'de')
+     */
+    function storeGameLanguage(lang) {
+        try {
+            localStorage.setItem(STORAGE_KEY_LANGUAGE, lang);
+        } catch (e) {
+            // localStorage unavailable
+        }
+    }
+
+    /**
+     * Get stored game language from localStorage
+     * @returns {string|null} Language code or null
+     */
+    function getStoredLanguage() {
+        try {
+            return localStorage.getItem(STORAGE_KEY_LANGUAGE);
+        } catch (e) {
+            return null;
         }
     }
 
@@ -2161,10 +2190,15 @@
 
         if (data.type === 'state') {
             // Apply language from game state (Story 12.4)
-            if (data.language && data.language !== BeatifyI18n.getLanguage()) {
-                BeatifyI18n.setLanguage(data.language).then(function() {
-                    BeatifyI18n.initPageTranslations();
-                });
+            if (data.language) {
+                // Store language for future page loads
+                storeGameLanguage(data.language);
+                // Apply if different from current
+                if (data.language !== BeatifyI18n.getLanguage()) {
+                    BeatifyI18n.setLanguage(data.language).then(function() {
+                        BeatifyI18n.initPageTranslations();
+                    });
+                }
             }
 
             // Update isAdmin from players list (Story 6.1)
@@ -2249,6 +2283,12 @@
                 storePlayerName(data.name);
                 showWelcomeBackToast(data.name);
                 // State message will follow with full game state
+            } else {
+                // Reconnect failed - clear session and show join form
+                clearSessionCookie();
+                clearStoredPlayerName();
+                playerName = null;
+                showView('join-view');
             }
         } else if (data.type === 'submit_ack') {
             // Handle successful guess submission
@@ -2302,17 +2342,21 @@
                 alert(data.message || 'Host cannot leave. End the game instead.');
                 return;
             }
+            // Show join view first (user may be on loading-view from auto-reconnect)
+            showView('join-view');
             // Show error, re-enable form
             showJoinError(data.message);
             if (joinBtn) {
                 joinBtn.disabled = false;
-                joinBtn.textContent = 'Join Game';
+                joinBtn.textContent = t('join.joinButton');
             }
             if (nameInput) {
                 nameInput.focus();
             }
             // Clear stored name on join error
             playerName = null;
+            // Clear localStorage to prevent repeated auto-reconnect failures
+            clearStoredPlayerName();
         } else if (data.type === 'song_stopped') {
             // Story 6.2 - handle song stopped notification
             handleSongStopped();
@@ -2674,8 +2718,10 @@
 
     // Initialize form, QR modal, and admin controls when DOM ready
     async function initAll() {
-        // Initialize i18n (Story 12.4)
-        await BeatifyI18n.init();
+        // Initialize i18n with stored language preference (Story 12.4)
+        // This ensures consistent UI language on page reload before WebSocket connects
+        var storedLang = getStoredLanguage();
+        await BeatifyI18n.init(storedLang);
         BeatifyI18n.initPageTranslations();
 
         setupJoinForm();
