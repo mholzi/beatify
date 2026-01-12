@@ -56,3 +56,4 @@ Thumbs.db
 # Home Assistant dev config
 config/*
 !config/configuration.yaml
+community-post.md
