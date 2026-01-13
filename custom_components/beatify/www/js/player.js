@@ -1463,8 +1463,8 @@
             }
         }
 
-        // Render histogram (AC5, AC6)
-        var histogramHtml = renderHistogram(analytics.decade_distribution, analytics.correct_decade);
+        // Render histogram with 7 dynamic year bins based on actual guesses
+        var histogramHtml = renderHistogram(analytics.all_guesses, correctYear);
 
         // Build achievements HTML (AC9, AC10)
         var achievementsHtml = '';
@@ -1502,20 +1502,20 @@
             }
         }
 
-        // Build full HTML
+        // Build full HTML - stats in single row
         var avgDisplay = analytics.average_guess !== null ? Math.round(analytics.average_guess) : '?';
         container.innerHTML = '<h3 class="analytics-title">' + t('analytics.title') + '</h3>' +
-            '<div class="analytics-stats">' +
-            '<div class="stat-item">' +
+            '<div class="analytics-stats-row">' +
+            '<div class="stat-primary">' +
             '<span class="stat-label">' + t('analytics.averageGuess') + '</span>' +
             '<span class="stat-value">' + avgDisplay + '</span>' +
-            '<span class="stat-comparison">' + avgComparison + '</span>' +
             '</div>' +
-            '<div class="stat-item">' +
+            '<div class="stat-secondary">' +
             '<span class="stat-value">' + analytics.accuracy_percentage + '%</span>' +
             '<span class="stat-label">' + t('analytics.accuracy', { percent: '' }).replace('%', '') + '</span>' +
             '</div>' +
             '</div>' +
+            '<div class="stat-comparison-line">' + avgComparison + '</div>' +
             '<div class="analytics-histogram">' +
             '<h4 class="histogram-title">' + t('analytics.histogram') + '</h4>' +
             histogramHtml +
@@ -1526,38 +1526,82 @@
     }
 
     /**
-     * Render histogram with decade distribution (Story 13.3 AC5, AC6)
-     * @param {Object} decadeDistribution - Object with decade keys and count values
-     * @param {string} correctDecade - The correct decade (e.g., "1980s")
+     * Render histogram with 7 dynamic year bins based on actual guesses
+     * @param {Array} allGuesses - Array of {name, guess, years_off} sorted by years_off
+     * @param {number} correctYear - The correct year for highlighting
      * @returns {string} HTML string for histogram
      */
-    function renderHistogram(decadeDistribution, correctDecade) {
-        var decades = ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+    function renderHistogram(allGuesses, correctYear) {
+        var NUM_BINS = 7;
 
-        // Find max count for proportional bar heights
-        var maxCount = 1;
-        for (var i = 0; i < decades.length; i++) {
-            var count = decadeDistribution[decades[i]] || 0;
-            if (count > maxCount) maxCount = count;
+        // Handle empty or invalid data
+        if (!allGuesses || allGuesses.length === 0) {
+            return '<div class="histogram-empty">No guesses</div>';
         }
 
-        var barsHtml = '';
-        for (var j = 0; j < decades.length; j++) {
-            var decade = decades[j];
-            var count = decadeDistribution[decade] || 0;
-            var heightPercent = (count / maxCount) * 100;
-            var isCorrect = decade === correctDecade;
-            var delay = j * 0.05;
+        // Extract guess years
+        var guesses = allGuesses.map(function(g) { return g.guess; });
+        var minGuess = Math.min.apply(null, guesses);
+        var maxGuess = Math.max.apply(null, guesses);
+        var range = maxGuess - minGuess;
 
-            var barClass = 'histogram-bar' + (isCorrect ? ' is-correct' : '');
-            var barHeight = count > 0 ? Math.max(heightPercent, 10) : 0;
-            var countHtml = count > 0 ? '<span class="bar-count">' + count + '</span>' : '';
+        // Calculate years per bin (minimum 1 year per bin)
+        var yearsPerBin = Math.max(1, Math.ceil(range / NUM_BINS));
+
+        // Adjust range to fit exactly 7 bins, centered on guesses
+        var totalYears = yearsPerBin * NUM_BINS;
+        var extraYears = totalYears - range - 1;
+        var startYear = minGuess - Math.floor(extraYears / 2);
+
+        // Build bins
+        var bins = [];
+        for (var i = 0; i < NUM_BINS; i++) {
+            var binStart = startYear + (i * yearsPerBin);
+            var binEnd = binStart + yearsPerBin - 1;
+            bins.push({
+                start: binStart,
+                end: binEnd,
+                count: 0,
+                containsCorrect: correctYear >= binStart && correctYear <= binEnd
+            });
+        }
+
+        // Count guesses per bin
+        for (var j = 0; j < guesses.length; j++) {
+            var guess = guesses[j];
+            for (var k = 0; k < bins.length; k++) {
+                if (guess >= bins[k].start && guess <= bins[k].end) {
+                    bins[k].count++;
+                    break;
+                }
+            }
+        }
+
+        // Find max count for proportional heights
+        var maxCount = 1;
+        for (var m = 0; m < bins.length; m++) {
+            if (bins[m].count > maxCount) maxCount = bins[m].count;
+        }
+
+        // Render bars
+        var barsHtml = '';
+        for (var n = 0; n < bins.length; n++) {
+            var bin = bins[n];
+            var heightPercent = (bin.count / maxCount) * 100;
+            var delay = n * 0.05;
+
+            var barClass = 'histogram-bar' + (bin.containsCorrect ? ' is-correct' : '');
+            var barHeight = bin.count > 0 ? Math.max(heightPercent, 10) : 0;
+            var countHtml = bin.count > 0 ? '<span class="bar-count">' + bin.count + '</span>' : '';
+
+            // Label: single year or range
+            var label = yearsPerBin === 1 ? String(bin.start) : bin.start + '-' + String(bin.end).slice(-2);
 
             barsHtml += '<div class="histogram-bar-wrapper" style="animation-delay: ' + delay + 's">' +
                 '<div class="' + barClass + '" style="height: ' + barHeight + '%">' +
                 countHtml +
                 '</div>' +
-                '<span class="histogram-label">' + decade.replace('s', '') + '</span>' +
+                '<span class="histogram-label">' + label + '</span>' +
                 '</div>';
         }
 
