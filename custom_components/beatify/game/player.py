@@ -54,11 +54,21 @@ class PlayerSession:
     rounds_played: int = 0  # Rounds where player submitted
     bets_won: int = 0  # Successful bets
 
-    def submit_guess(self, year: int, timestamp: float) -> None:
+    # Artist guess tracking (Story 10.1)
+    artist_guess: str | None = None
+    artist_score: int = 0
+    artist_match: str | None = None  # "exact", "partial", or None
+
+    def submit_guess(self, year: int, timestamp: float, artist: str | None = None) -> None:
         """Record a guess submission."""
         self.submitted = True
         self.current_guess = year
         self.submission_time = timestamp
+        # Store trimmed artist or None if empty (Story 10.1)
+        if artist and artist.strip():
+            self.artist_guess = artist.strip()
+        else:
+            self.artist_guess = None
 
     def reset_round(self) -> None:
         """Reset round-specific state for new round."""
@@ -78,3 +88,7 @@ class PlayerSession:
         self.bet_outcome = None
         # Reset previous streak (Story 5.4)
         self.previous_streak = 0
+        # Reset artist fields (Story 10.1)
+        self.artist_guess = None
+        self.artist_score = 0
+        self.artist_match = None

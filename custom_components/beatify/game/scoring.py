@@ -19,6 +19,10 @@ POINTS_CLOSE = 5
 POINTS_NEAR = 1
 POINTS_WRONG = 0
 
+# Artist scoring constants (Story 10.1)
+POINTS_ARTIST_EXACT = 10
+POINTS_ARTIST_PARTIAL = 5
+
 
 def calculate_accuracy_score(guess: int, actual: int) -> int:
     """
@@ -47,6 +51,40 @@ def calculate_accuracy_score(guess: int, actual: int) -> int:
     if diff <= THRESHOLD_NEAR:
         return POINTS_NEAR
     return POINTS_WRONG
+
+
+def calculate_artist_score(guess: str | None, actual: str) -> tuple[int, str | None]:
+    """
+    Calculate artist scoring based on guess vs actual (Story 10.1).
+
+    Scoring rules:
+    - Exact match (case-insensitive): 10 points
+    - Partial match (guess in actual OR actual in guess): 5 points
+    - No match: 0 points
+
+    Args:
+        guess: Player's guessed artist (may be None or empty)
+        actual: Correct artist from playlist
+
+    Returns:
+        Tuple of (points, match_type) where match_type is "exact", "partial", or None
+
+    """
+    if not guess or not guess.strip():
+        return 0, None
+
+    guess_normalized = guess.strip().lower()
+    actual_normalized = actual.strip().lower()
+
+    # Exact match
+    if guess_normalized == actual_normalized:
+        return POINTS_ARTIST_EXACT, "exact"
+
+    # Partial match (bidirectional - either direction)
+    if guess_normalized in actual_normalized or actual_normalized in guess_normalized:
+        return POINTS_ARTIST_PARTIAL, "partial"
+
+    return 0, None
 
 
 def calculate_speed_multiplier(elapsed_time: float, round_duration: float) -> float:

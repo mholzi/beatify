@@ -165,6 +165,19 @@
     "allowPopups": "Your browser blocked the pop-up. Please allow pop-ups for this site.",
     "description": "Music guessing party game"
   },
+  "analytics": {
+    "title": "Round Stats",
+    "averageGuess": "Average guess",
+    "yearsEarly": "{years} years too early",
+    "yearsLate": "{years} years too late",
+    "onTarget": "Right on target!",
+    "accuracy": "{percent}% scored points",
+    "exactMatches": "Exact matches",
+    "speedChampion": "Speed champion",
+    "furthestGuess": "Most off",
+    "noSubmissions": "No submissions this round",
+    "histogram": "Guess distribution"
+  },
   "errors": {
     "NAME_TAKEN": "Name already taken",
     "NAME_INVALID": "Invalid name",

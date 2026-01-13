@@ -6,7 +6,9 @@ import asyncio
 import logging
 import secrets
 import time
+from dataclasses import dataclass, field
 from enum import Enum
+from statistics import mean, median
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
@@ -26,7 +28,12 @@ from custom_components.beatify.const import (
 
 from .player import PlayerSession
 from .playlist import PlaylistManager
-from .scoring import apply_bet_multiplier, calculate_round_score, calculate_streak_bonus
+from .scoring import (
+    apply_bet_multiplier,
+    calculate_artist_score,
+    calculate_round_score,
+    calculate_streak_bonus,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
@@ -47,6 +54,51 @@ class GamePhase(Enum):
     REVEAL = "REVEAL"
     END = "END"
     PAUSED = "PAUSED"
+
+
+@dataclass
+class RoundAnalytics:
+    """Analytics calculated at end of each round for reveal display (Story 13.3)."""
+
+    # Guesses data (AC1)
+    all_guesses: list[dict[str, Any]] = field(default_factory=list)
+    average_guess: float | None = None
+    median_guess: int | None = None
+
+    # Performance metrics (AC2, AC3)
+    closest_players: list[str] = field(default_factory=list)
+    furthest_players: list[str] = field(default_factory=list)
+    exact_match_players: list[str] = field(default_factory=list)
+    exact_match_count: int = 0
+    scored_count: int = 0
+    total_submitted: int = 0
+    accuracy_percentage: int = 0
+
+    # Speed champion (AC3)
+    speed_champion: dict[str, Any] | None = None
+
+    # Histogram data (AC5, AC6)
+    decade_distribution: dict[str, int] = field(default_factory=dict)
+    correct_decade: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        """Convert to JSON-serializable dictionary."""
+        avg = round(self.average_guess, 1) if self.average_guess else None
+        return {
+            "all_guesses": self.all_guesses,
+            "average_guess": avg,
+            "median_guess": self.median_guess,
+            "closest_players": self.closest_players,
+            "furthest_players": self.furthest_players,
+            "exact_match_players": self.exact_match_players,
+            "exact_match_count": self.exact_match_count,
+            "scored_count": self.scored_count,
+            "total_submitted": self.total_submitted,
+            "accuracy_percentage": self.accuracy_percentage,
+            "speed_champion": self.speed_champion,
+            "decade_distribution": self.decade_distribution,
+            "correct_decade": self.correct_decade,
+        }
 
 
 class GameState:
@@ -104,6 +156,9 @@ class GameState:
 
         # Language setting (Epic 12)
         self.language: str = "en"
+
+        # Round analytics (Story 13.3)
+        self.round_analytics: RoundAnalytics | None = None
 
     def create_game(
         self,
@@ -166,6 +221,9 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
+
+        # Reset round analytics (Story 13.3)
+        self.round_analytics = None
 
         # Reset timer task for new game
         self.cancel_timer()
@@ -244,6 +302,9 @@ class GameState:
             state["players"] = self.get_reveal_players_state()
             # Leaderboard (Story 5.5)
             state["leaderboard"] = self.get_leaderboard()
+            # Round analytics (Story 13.3 AC4)
+            if self.round_analytics:
+                state["round_analytics"] = self.round_analytics.to_dict()
 
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason
@@ -294,6 +355,9 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
+
+        # Reset round analytics (Story 13.3)
+        self.round_analytics = None
 
         # Reset admin disconnect tracking (Epic 7)
         self.disconnected_admin_name = None
@@ -694,6 +758,9 @@ class GameState:
         # Reset song stopped flag for new round (Story 6.2)
         self.song_stopped = False
 
+        # Reset round analytics for new round (Story 13.3)
+        self.round_analytics = None
+
         # Cancel any existing timer
         self.cancel_timer()
 
@@ -760,8 +827,9 @@ class GameState:
         # Store current ranks before scoring for rank change detection (5.5)
         self._store_previous_ranks()
 
-        # Get correct year from current song
+        # Get correct year and artist from current song
         correct_year = self.current_song.get("year") if self.current_song else None
+        correct_artist = self.current_song.get("artist", "") if self.current_song else ""
 
         # Calculate scores for all players
         for player in self.players.values():
@@ -775,8 +843,8 @@ class GameState:
                 else:
                     elapsed = self.round_duration  # No bonus if timing unavailable
 
-                # Calculate score with speed bonus
-                speed_score, player.base_score, player.speed_multiplier = (
+                # Calculate year score with speed bonus (gets year base and speed multiplier)
+                year_speed_score, player.base_score, player.speed_multiplier = (
                     calculate_round_score(
                         player.current_guess,
                         correct_year,
@@ -786,6 +854,16 @@ class GameState:
                 )
                 player.years_off = abs(player.current_guess - correct_year)
                 player.missed_round = False
+
+                # Calculate artist score (Story 10.1)
+                player.artist_score, player.artist_match = calculate_artist_score(
+                    player.artist_guess, correct_artist
+                )
+
+                # Combined score: (year_base + artist) * speed_multiplier
+                # Artist score is added to base before speed multiplier
+                combined_base = player.base_score + player.artist_score
+                speed_score = int(combined_base * player.speed_multiplier)
 
                 # Apply bet multiplier (Story 5.3)
                 player.round_score, player.bet_outcome = apply_bet_multiplier(
@@ -824,6 +902,9 @@ class GameState:
                 player.streak = 0  # Break streak
                 player.streak_bonus = 0
                 player.bet_outcome = None
+
+        # Calculate round analytics after scoring (Story 13.3)
+        self.round_analytics = self.calculate_round_analytics()
 
         # Transition to REVEAL
         self.phase = GamePhase.REVEAL
@@ -885,6 +966,10 @@ class GameState:
                 "bet_outcome": p.bet_outcome,
                 # Missed round data (Story 5.4)
                 "previous_streak": p.previous_streak,
+                # Artist data (Story 10.1)
+                "artist_guess": p.artist_guess,
+                "artist_score": p.artist_score,
+                "artist_match": p.artist_match,
             }
             for p in self.players.values()
         ]
@@ -1014,3 +1099,117 @@ class GameState:
             self.volume_level = max(0.0, self.volume_level - VOLUME_STEP)
 
         return self.volume_level
+
+    def calculate_round_analytics(self) -> RoundAnalytics:
+        """
+        Calculate analytics for current round reveal (Story 13.3).
+
+        Returns:
+            RoundAnalytics with all calculated fields.
+
+        """
+        correct_year = self.current_song.get("year") if self.current_song else None
+        if correct_year is None:
+            return RoundAnalytics()
+
+        # Collect submitted player data
+        submitted_players = [
+            p for p in self.players.values()
+            if p.submitted and p.current_guess is not None
+        ]
+
+        # Handle empty submissions (AC11)
+        if not submitted_players:
+            return RoundAnalytics(
+                correct_decade=self._get_decade_label(correct_year)
+            )
+
+        # Build all_guesses sorted by years_off (AC1)
+        all_guesses = sorted(
+            [
+                {
+                    "name": p.name,
+                    "guess": p.current_guess,
+                    "years_off": p.years_off or 0,
+                }
+                for p in submitted_players
+            ],
+            key=lambda x: x["years_off"],
+        )
+
+        guesses = [p.current_guess for p in submitted_players]
+
+        # Calculate average and median values
+        avg_guess = mean(guesses)
+        med_guess = int(median(guesses))
+
+        # Find closest players (min years_off) - handle ties (AC2, AC10)
+        min_off = min(p.years_off or 0 for p in submitted_players)
+        closest = [p.name for p in submitted_players if (p.years_off or 0) == min_off]
+
+        # Find furthest players (max years_off) - handle ties (AC2, AC10)
+        max_off = max(p.years_off or 0 for p in submitted_players)
+        furthest = [p.name for p in submitted_players if (p.years_off or 0) == max_off]
+
+        # Exact matches (AC2)
+        exact = [p.name for p in submitted_players if p.years_off == 0]
+
+        # Scored count and accuracy percentage (AC3, AC8)
+        scored = sum(1 for p in submitted_players if p.round_score > 0)
+        accuracy_pct = int((scored / len(submitted_players)) * 100)
+
+        # Speed champion - fastest submission (AC3, AC10)
+        speed_champion = None
+        players_with_time = [
+            p for p in submitted_players
+            if p.submission_time is not None and self.round_start_time is not None
+        ]
+        if players_with_time:
+            fastest_time = min(
+                p.submission_time - self.round_start_time
+                for p in players_with_time
+            )
+            speed_champs = [
+                p.name for p in players_with_time
+                if (p.submission_time - self.round_start_time) == fastest_time
+            ]
+            speed_champion = {
+                "names": speed_champs,
+                "time": round(fastest_time, 1),
+            }
+
+        # Decade distribution for histogram (AC5)
+        decade_dist: dict[str, int] = {}
+        for guess in guesses:
+            decade = self._get_decade_label(guess)
+            decade_dist[decade] = decade_dist.get(decade, 0) + 1
+
+        return RoundAnalytics(
+            all_guesses=all_guesses,
+            average_guess=avg_guess,
+            median_guess=med_guess,
+            closest_players=closest,
+            furthest_players=furthest,
+            exact_match_players=exact,
+            exact_match_count=len(exact),
+            scored_count=scored,
+            total_submitted=len(submitted_players),
+            accuracy_percentage=accuracy_pct,
+            speed_champion=speed_champion,
+            decade_distribution=decade_dist,
+            correct_decade=self._get_decade_label(correct_year),
+        )
+
+    def _get_decade_label(self, year: int) -> str:
+        """
+        Get decade label for a year (e.g., 1985 -> '1980s').
+
+        Args:
+            year: Year to get decade for
+
+        Returns:
+            Decade label string (e.g., "1980s")
+
+        """
+        decade = (year // 10) * 10
+        return f"{decade}s"

@@ -12,6 +12,7 @@ ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
 ROUND_DURATION_PRESETS: dict[str, int] = {"quick": 15, "normal": 30, "relaxed": 45}
 MAX_NAME_LENGTH = 20
 MIN_NAME_LENGTH = 1
+MAX_ARTIST_GUESS_LENGTH = 100  # Story 10.1
 LOBBY_DISCONNECT_GRACE_PERIOD = 5  # seconds before removing disconnected player
 
 # Year range for guesses

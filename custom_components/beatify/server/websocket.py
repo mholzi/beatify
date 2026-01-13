@@ -26,6 +26,7 @@ from custom_components.beatify.const import (
     ERR_SESSION_NOT_FOUND,
     ERR_SESSION_TAKEOVER,
     LOBBY_DISCONNECT_GRACE_PERIOD,
+    MAX_ARTIST_GUESS_LENGTH,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
     YEAR_MAX,
@@ -494,15 +495,24 @@ class BeatifyWebSocketHandler:
         bet = data.get("bet", False)
         player.bet = bool(bet)
 
+        # Parse artist guess (Story 10.1) - optional
+        artist: str | None = None
+        raw_artist = data.get("artist")
+        if raw_artist and isinstance(raw_artist, str):
+            artist = raw_artist.strip()[:MAX_ARTIST_GUESS_LENGTH] or None
+
         # Record submission
         submission_time = time.time()
-        player.submit_guess(year, submission_time)
+        player.submit_guess(year, submission_time, artist)
 
         # Send acknowledgment
-        await ws.send_json({
+        ack_msg: dict = {
             "type": "submit_ack",
             "year": year,
-        })
+        }
+        if artist:
+            ack_msg["artist"] = artist
+        await ws.send_json(ack_msg)
 
         # Broadcast updated state (player.submitted now True)
         await self.broadcast_state()

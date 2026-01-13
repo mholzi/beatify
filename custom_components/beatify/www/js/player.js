@@ -168,6 +168,279 @@
         document.cookie = SESSION_COOKIE_NAME + '=; path=/beatify; max-age=0';
     }
 
+    // ============================================
+    // Score Animation Utilities (Story 13.2)
+    // ============================================
+
+    /**
+     * Check if user prefers reduced motion
+     * @returns {boolean} True if reduced motion is preferred
+     */
+    function prefersReducedMotion() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    /**
+     * Easing function for smooth deceleration
+     * @param {number} t - Progress value 0-1
+     * @returns {number} Eased value
+     */
+    function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+    }
+
+    /**
+     * Animate a numeric value from start to end
+     * @param {HTMLElement} element - Element to update textContent
+     * @param {number} start - Starting value
+     * @param {number} end - Ending value
+     * @param {number} duration - Animation duration in ms
+     * @param {Function} easing - Easing function (optional, defaults to easeOutQuart)
+     * @returns {Object} Controller with cancel() method
+     */
+    function animateValue(element, start, end, duration, easing) {
+        // Skip animation if reduced motion or start equals end
+        if (prefersReducedMotion() || start === end) {
+            element.textContent = end;
+            return { cancel: function() {} };
+        }
+
+        easing = easing || easeOutQuart;
+        var startTime = null;
+        var animationId = null;
+        var cancelled = false;
+
+        function step(timestamp) {
+            if (cancelled) return;
+
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var easedProgress = easing(progress);
+
+            var currentValue = Math.round(start + (end - start) * easedProgress);
+            element.textContent = currentValue;
+
+            if (progress < 1) {
+                animationId = requestAnimationFrame(step);
+            }
+        }
+
+        animationId = requestAnimationFrame(step);
+
+        return {
+            cancel: function() {
+                cancelled = true;
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+            }
+        };
+    }
+
+    /**
+     * Animate score change with visual effects
+     * @param {HTMLElement} element - Score element to animate
+     * @param {number} oldScore - Previous score value
+     * @param {number} newScore - New score value
+     * @param {Object} options - Effect options: { betWon, betLost, streakMilestone, isBigScore }
+     */
+    function animateScoreChange(element, oldScore, newScore, options) {
+        options = options || {};
+
+        // Determine animation duration based on effect type
+        var duration = 500; // default
+        if (options.betWon) {
+            duration = 800;
+        } else if (options.isBigScore) {
+            duration = 700;
+        } else if (options.betLost) {
+            duration = 400;
+        }
+
+        // Add tabular-nums class for stable width during animation
+        element.classList.add('score-animating');
+
+        // Apply appropriate CSS animation class
+        var animationClass = null;
+        if (options.betWon) {
+            animationClass = 'score-glow-gold';
+        } else if (options.betLost) {
+            animationClass = 'score-shake';
+            element.classList.add('score-flash-red');
+        } else if (options.streakMilestone) {
+            animationClass = 'score-burst';
+        } else if (options.isBigScore) {
+            animationClass = 'score-pop';
+        }
+
+        if (animationClass && !prefersReducedMotion()) {
+            element.classList.add(animationClass);
+        }
+
+        // Animate the number value
+        animateValue(element, oldScore, newScore, duration);
+
+        // Remove animation classes after animation completes
+        function cleanup() {
+            element.classList.remove('score-animating');
+            if (animationClass) {
+                element.classList.remove(animationClass);
+            }
+            element.classList.remove('score-flash-red');
+        }
+
+        // Use animationend for CSS animations, or timeout for value animation only
+        if (animationClass && !prefersReducedMotion()) {
+            element.addEventListener('animationend', function onEnd() {
+                element.removeEventListener('animationend', onEnd);
+                cleanup();
+            });
+        } else {
+            setTimeout(cleanup, duration + 50);
+        }
+    }
+
+    /**
+     * Show floating points popup above target element
+     * @param {HTMLElement} targetElement - Element to position popup relative to
+     * @param {number} points - Points value to display
+     * @param {Object} options - Options: { text, isStreak, isBetWin }
+     */
+    function showPointsPopup(targetElement, points, options) {
+        options = options || {};
+
+        // Skip popup entirely for reduced motion
+        if (prefersReducedMotion()) {
+            return;
+        }
+
+        var popup = document.createElement('div');
+        popup.className = 'points-popup';
+        popup.textContent = options.text || ('+' + points);
+
+        if (options.isStreak) {
+            popup.classList.add('points-popup--streak');
+        } else if (options.isBetWin) {
+            popup.classList.add('points-popup--gold');
+        }
+
+        // Position above target
+        var rect = targetElement.getBoundingClientRect();
+        popup.style.left = (rect.left + rect.width / 2) + 'px';
+        popup.style.top = rect.top + 'px';
+
+        document.body.appendChild(popup);
+
+        // Remove after animation
+        popup.addEventListener('animationend', function() {
+            if (popup.parentNode) {
+                popup.parentNode.removeChild(popup);
+            }
+        });
+
+        // Fallback removal in case animationend doesn't fire
+        setTimeout(function() {
+            if (popup.parentNode) {
+                popup.parentNode.removeChild(popup);
+            }
+        }, 1200);
+    }
+
+    // Previous state cache for detecting score changes (Story 13.2)
+    var previousState = {
+        players: {},      // name -> { score, rank, streak }
+        leaderboard: [],  // ordered list of names
+        initialized: false // Flag to skip animations on first state (reconnect case)
+    };
+
+    /**
+     * Check if previous state has been initialized
+     * Used to skip animations when player reconnects mid-game
+     * @returns {boolean} True if state has been initialized
+     */
+    function isPreviousStateInitialized() {
+        return previousState.initialized;
+    }
+
+    // Streak milestones for bonus detection
+    var STREAK_MILESTONES = [3, 5, 10];
+
+    /**
+     * Check if a streak milestone was just reached
+     * @param {number} oldStreak - Previous streak value
+     * @param {number} newStreak - Current streak value
+     * @returns {number|null} Milestone reached or null
+     */
+    function isStreakMilestone(oldStreak, newStreak) {
+        for (var i = 0; i < STREAK_MILESTONES.length; i++) {
+            var milestone = STREAK_MILESTONES[i];
+            if (oldStreak < milestone && newStreak >= milestone) {
+                return milestone;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Detect rank changes in leaderboard
+     * @param {Array} newLeaderboard - New leaderboard array
+     * @returns {Object} Map of name -> 'up', 'down', 'new', or undefined
+     */
+    function detectRankChanges(newLeaderboard) {
+        var newOrder = newLeaderboard.map(function(entry) { return entry.name; });
+        var changes = {};
+
+        newOrder.forEach(function(name, newRank) {
+            var oldRank = previousState.leaderboard.indexOf(name);
+            if (oldRank === -1) {
+                changes[name] = 'new';
+            } else if (newRank < oldRank) {
+                changes[name] = 'up';
+            } else if (newRank > oldRank) {
+                changes[name] = 'down';
+            }
+        });
+
+        return changes;
+    }
+
+    /**
+     * Update previous state cache after rendering
+     * @param {Array} players - Current players array
+     * @param {Array} leaderboard - Current leaderboard array
+     */
+    function updatePreviousState(players, leaderboard) {
+        // Update players cache
+        previousState.players = {};
+        players.forEach(function(player) {
+            previousState.players[player.name] = {
+                score: player.score,
+                rank: player.rank || 0,
+                streak: player.streak || 0
+            };
+        });
+
+        // Update leaderboard order
+        if (leaderboard) {
+            previousState.leaderboard = leaderboard.map(function(entry) {
+                return entry.name;
+            });
+        }
+
+        // Mark as initialized after first update (Story 13.2 - reconnect fix)
+        previousState.initialized = true;
+    }
+
+    /**
+     * Reset previous state (called on game end/new game)
+     */
+    function resetPreviousState() {
+        previousState.players = {};
+        previousState.leaderboard = [];
+        previousState.initialized = false;
+    }
+
     /**
      * Validate UUID format (basic check)
      * @param {string} str - String to validate
@@ -678,11 +951,18 @@
      * Update leaderboard display
      * @param {Object} data - State data containing leaderboard
      * @param {string} targetListId - ID of list container (for different views)
+     * @param {boolean} isRevealPhase - True if rendering during REVEAL phase (animate scores)
      */
-    function updateLeaderboard(data, targetListId) {
+    function updateLeaderboard(data, targetListId, isRevealPhase) {
         var leaderboard = data.leaderboard || [];
         var listEl = document.getElementById(targetListId || 'leaderboard-list');
         if (!listEl) return;
+
+        // Story 13.2: Skip animations on first state (reconnect case)
+        var shouldAnimate = isRevealPhase && isPreviousStateInitialized();
+
+        // Detect rank changes using Story 13.2 utilities (only if animating)
+        var rankChanges = shouldAnimate ? detectRankChanges(leaderboard) : {};
 
         // Mark is_current client-side
         leaderboard.forEach(function(entry) {
@@ -691,6 +971,9 @@
 
         // Smart compression for >10 players (Story 9.5)
         var displayList = compressLeaderboard(leaderboard, playerName);
+
+        // Store entries that need score animation (Story 13.2)
+        var scoreAnimations = [];
 
         var html = '';
         displayList.forEach(function(entry) {
@@ -703,12 +986,13 @@
             var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
             var currentClass = entry.is_current ? 'is-current' : '';
 
-            // Rank change animation class (Story 9.5)
+            // Rank change animation class (Story 9.5 + Story 13.2 enhanced)
             var animationClass = '';
-            if (entry.rank_change > 0) {
-                animationClass = 'leaderboard-entry--climbing';
-            } else if (entry.rank_change < 0) {
-                animationClass = 'leaderboard-entry--falling';
+            var rankChange = rankChanges[entry.name];
+            if (entry.rank_change > 0 || rankChange === 'up') {
+                animationClass = 'leaderboard-entry--climbing leaderboard-entry--slide-up';
+            } else if (entry.rank_change < 0 || rankChange === 'down') {
+                animationClass = 'leaderboard-entry--falling leaderboard-entry--slide-down';
             }
 
             // Rank change indicator
@@ -730,18 +1014,55 @@
             var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
             var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + ' ' + disconnectedClass + '" data-rank="' + entry.rank + '">' +
+            // Get previous score for animation (Story 13.2)
+            var prevPlayer = previousState.players[entry.name];
+            var prevScore = prevPlayer ? prevPlayer.score : entry.score;
+
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + ' ' + disconnectedClass + '" data-rank="' + entry.rank + '" data-name="' + escapeHtml(entry.name) + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
                 '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
                 '</span>' +
-                '<span class="entry-score">' + entry.score + '</span>' +
+                '<span class="entry-score" data-prev-score="' + prevScore + '">' + (isRevealPhase ? prevScore : entry.score) + '</span>' +
             '</div>';
+
+            // Queue score animation if score changed and should animate (Story 13.2)
+            if (shouldAnimate && prevScore !== entry.score) {
+                scoreAnimations.push({
+                    name: entry.name,
+                    prevScore: prevScore,
+                    newScore: entry.score
+                });
+            }
         });
 
         listEl.innerHTML = html;
+
+        // Animate score values within leaderboard entries (Story 13.2)
+        if (shouldAnimate && scoreAnimations.length > 0) {
+            // Build a map of name -> entry element for safe lookup (avoids CSS selector injection)
+            var entryMap = {};
+            var entries = listEl.querySelectorAll('.leaderboard-entry[data-name]');
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
+                var name = entry.getAttribute('data-name');
+                if (name) {
+                    entryMap[name] = entry;
+                }
+            }
+
+            scoreAnimations.forEach(function(anim) {
+                var entryEl = entryMap[anim.name];
+                if (entryEl) {
+                    var scoreEl = entryEl.querySelector('.entry-score');
+                    if (scoreEl) {
+                        animateValue(scoreEl, anim.prevScore, anim.newScore, 500);
+                    }
+                }
+            });
+        }
 
         // Scroll to current player if many players
         if (leaderboard.length > 8) {
@@ -750,6 +1071,9 @@
 
         // Update quick indicator
         updateYouIndicator(leaderboard);
+
+        // Update previous state for next comparison (Story 13.2)
+        updatePreviousState(data.players || [], leaderboard);
     }
 
     /**
@@ -877,20 +1201,28 @@
 
         var slider = document.getElementById('year-slider');
         var submitBtn = document.getElementById('submit-btn');
+        var artistInput = document.getElementById('artist-input');
 
         if (!slider || !submitBtn) return;
 
         var year = parseInt(slider.value, 10);
+        var artist = artistInput ? artistInput.value.trim() : '';
 
         // Disable and show loading
         submitBtn.disabled = true;
         submitBtn.classList.add('is-loading');
 
-        // Send submission via WebSocket (with bet flag - Story 5.3)
+        // Disable artist input while submitting (Story 10.1)
+        if (artistInput) {
+            artistInput.disabled = true;
+        }
+
+        // Send submission via WebSocket (with bet flag - Story 5.3, artist - Story 10.1)
         if (ws && ws.readyState === WebSocket.OPEN) {
             ws.send(JSON.stringify({
                 type: 'submit',
                 year: year,
+                artist: artist,
                 bet: betActive
             }));
         } else {
@@ -898,6 +1230,10 @@
             showSubmitError('Connection lost. Please refresh.');
             submitBtn.disabled = false;
             submitBtn.classList.remove('is-loading');
+            // Re-enable artist input (Story 10.1)
+            if (artistInput) {
+                artistInput.disabled = false;
+            }
         }
     }
 
@@ -936,6 +1272,7 @@
      */
     function handleSubmitError(data) {
         var submitBtn = document.getElementById('submit-btn');
+        var artistInput = document.getElementById('artist-input');
 
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -947,11 +1284,14 @@
             // Disable further attempts
             hasSubmitted = true;
             if (submitBtn) submitBtn.disabled = true;
+            if (artistInput) artistInput.disabled = true;
         } else if (data.code === 'ALREADY_SUBMITTED') {
             // Already submitted, update UI
             handleSubmitAck();
         } else {
             showSubmitError(data.message || 'Submission failed');
+            // Re-enable artist input (Story 10.1)
+            if (artistInput) artistInput.disabled = false;
         }
     }
 
@@ -983,6 +1323,7 @@
         var confirmation = document.getElementById('submitted-confirmation');
         var slider = document.getElementById('year-slider');
         var betToggle = document.getElementById('bet-toggle');
+        var artistInput = document.getElementById('artist-input');
 
         if (yearSelector) {
             yearSelector.classList.remove('is-submitted');
@@ -997,6 +1338,12 @@
         // Reset bet toggle (Story 5.3)
         if (betToggle) {
             betToggle.classList.remove('hidden', 'is-active');
+        }
+
+        // Reset artist input (Story 10.1)
+        if (artistInput) {
+            artistInput.value = '';
+            artistInput.disabled = false;
         }
 
         if (confirmation) {
@@ -1075,9 +1422,14 @@
         // Render player result cards (Story 9.10)
         renderPlayerResultCards(players);
 
-        // Update leaderboard (Story 5.5)
+        // Render round analytics (Story 13.3)
+        if (data.round_analytics) {
+            renderRoundAnalytics(data.round_analytics, song.year);
+        }
+
+        // Update leaderboard (Story 5.5) with score animations (Story 13.2)
         if (data.leaderboard) {
-            updateLeaderboard(data, 'reveal-leaderboard-list');
+            updateLeaderboard(data, 'reveal-leaderboard-list', true);
         }
 
         // Show admin controls if admin
@@ -1100,6 +1452,139 @@
         } else if (adminControls) {
             adminControls.classList.add('hidden');
         }
+    }
+
+    /**
+     * Render round analytics section (Story 13.3)
+     * @param {Object} analytics - Round analytics data from server
+     * @param {number} correctYear - The correct year for comparison
+     */
+    function renderRoundAnalytics(analytics, correctYear) {
+        var container = document.getElementById('round-analytics');
+        if (!container || !analytics) {
+            if (container) container.classList.add('hidden');
+            return;
+        }
+
+        // Handle empty state (AC11)
+        if (analytics.total_submitted === 0) {
+            container.innerHTML = '<div class="analytics-empty">' + t('analytics.noSubmissions') + '</div>';
+            container.classList.remove('hidden');
+            return;
+        }
+
+        // Average comparison (AC7)
+        var avgComparison = '';
+        if (analytics.average_guess !== null && correctYear) {
+            var diff = Math.round(analytics.average_guess - correctYear);
+            if (diff === 0) {
+                avgComparison = t('analytics.onTarget');
+            } else if (diff > 0) {
+                avgComparison = t('analytics.yearsLate', { years: diff });
+            } else {
+                avgComparison = t('analytics.yearsEarly', { years: Math.abs(diff) });
+            }
+        }
+
+        // Render histogram (AC5, AC6)
+        var histogramHtml = renderHistogram(analytics.decade_distribution, analytics.correct_decade);
+
+        // Build achievements HTML (AC9, AC10)
+        var achievementsHtml = '';
+
+        // Exact matches
+        if (analytics.exact_match_players && analytics.exact_match_players.length > 0) {
+            achievementsHtml += '<div class="achievement-item">' +
+                '<span class="achievement-emoji">&#127919;</span>' +
+                '<span class="achievement-label">' + t('analytics.exactMatches') + ':</span>' +
+                '<span class="achievement-names">' + analytics.exact_match_players.join(', ') + '</span>' +
+                '</div>';
+        }
+
+        // Speed champion
+        if (analytics.speed_champion && analytics.speed_champion.names) {
+            var names = analytics.speed_champion.names.join(', ');
+            achievementsHtml += '<div class="achievement-item">' +
+                '<span class="achievement-emoji">&#9889;</span>' +
+                '<span class="achievement-label">' + t('analytics.speedChampion') + ':</span>' +
+                '<span class="achievement-names">' + names + '</span>' +
+                '<span class="achievement-value">(' + analytics.speed_champion.time + 's)</span>' +
+                '</div>';
+        }
+
+        // Furthest guess (for fun)
+        if (analytics.furthest_players && analytics.furthest_players.length > 0 && analytics.all_guesses && analytics.all_guesses.length > 0) {
+            var furthestOff = analytics.all_guesses[analytics.all_guesses.length - 1].years_off;
+            if (furthestOff > 0) {
+                achievementsHtml += '<div class="achievement-item">' +
+                    '<span class="achievement-emoji">&#128517;</span>' +
+                    '<span class="achievement-label">' + t('analytics.furthestGuess') + ':</span>' +
+                    '<span class="achievement-names">' + analytics.furthest_players.join(', ') + '</span>' +
+                    '<span class="achievement-value">(' + furthestOff + ' years)</span>' +
+                    '</div>';
+            }
+        }
+
+        // Build full HTML
+        var avgDisplay = analytics.average_guess !== null ? Math.round(analytics.average_guess) : '?';
+        container.innerHTML = '<h3 class="analytics-title">' + t('analytics.title') + '</h3>' +
+            '<div class="analytics-stats">' +
+            '<div class="stat-item">' +
+            '<span class="stat-label">' + t('analytics.averageGuess') + '</span>' +
+            '<span class="stat-value">' + avgDisplay + '</span>' +
+            '<span class="stat-comparison">' + avgComparison + '</span>' +
+            '</div>' +
+            '<div class="stat-item">' +
+            '<span class="stat-value">' + analytics.accuracy_percentage + '%</span>' +
+            '<span class="stat-label">' + t('analytics.accuracy', { percent: '' }).replace('%', '') + '</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="analytics-histogram">' +
+            '<h4 class="histogram-title">' + t('analytics.histogram') + '</h4>' +
+            histogramHtml +
+            '</div>' +
+            (achievementsHtml ? '<div class="analytics-achievements">' + achievementsHtml + '</div>' : '');
+
+        container.classList.remove('hidden');
+    }
+
+    /**
+     * Render histogram with decade distribution (Story 13.3 AC5, AC6)
+     * @param {Object} decadeDistribution - Object with decade keys and count values
+     * @param {string} correctDecade - The correct decade (e.g., "1980s")
+     * @returns {string} HTML string for histogram
+     */
+    function renderHistogram(decadeDistribution, correctDecade) {
+        var decades = ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+
+        // Find max count for proportional bar heights
+        var maxCount = 1;
+        for (var i = 0; i < decades.length; i++) {
+            var count = decadeDistribution[decades[i]] || 0;
+            if (count > maxCount) maxCount = count;
+        }
+
+        var barsHtml = '';
+        for (var j = 0; j < decades.length; j++) {
+            var decade = decades[j];
+            var count = decadeDistribution[decade] || 0;
+            var heightPercent = (count / maxCount) * 100;
+            var isCorrect = decade === correctDecade;
+            var delay = j * 0.05;
+
+            var barClass = 'histogram-bar' + (isCorrect ? ' is-correct' : '');
+            var barHeight = count > 0 ? Math.max(heightPercent, 10) : 0;
+            var countHtml = count > 0 ? '<span class="bar-count">' + count + '</span>' : '';
+
+            barsHtml += '<div class="histogram-bar-wrapper" style="animation-delay: ' + delay + 's">' +
+                '<div class="' + barClass + '" style="height: ' + barHeight + '%">' +
+                countHtml +
+                '</div>' +
+                '<span class="histogram-label">' + decade.replace('s', '') + '</span>' +
+                '</div>';
+        }
+
+        return '<div class="histogram-bars">' + barsHtml + '</div>';
     }
 
     /**
@@ -1300,6 +1785,41 @@
         // Streak bonus display (Story 5.2)
         var streakBonus = player.streak_bonus || 0;
 
+        // Artist scoring display (Story 10.1)
+        var artistGuess = player.artist_guess || null;
+        var artistScore = player.artist_score || 0;
+        var artistMatch = player.artist_match || null;
+        var correctArtist = (song && song.artist) ? song.artist : 'Unknown';
+
+        // Artist result row (Story 10.1)
+        var artistResultHtml = '';
+        if (artistGuess) {
+            var artistClass = artistMatch === 'exact' ? 'is-exact' :
+                              artistMatch === 'partial' ? 'is-close' : 'is-far';
+            var artistResultText = artistMatch === 'exact' ? 'Exact!' :
+                                   artistMatch === 'partial' ? 'Partial' : 'No match';
+            artistResultHtml =
+                '<div class="result-row artist-row">' +
+                    '<span class="result-label">Artist guess</span>' +
+                    '<span class="result-value ' + artistClass + '">' + escapeHtml(artistGuess) + '</span>' +
+                '</div>' +
+                '<div class="result-row">' +
+                    '<span class="result-label">Correct artist</span>' +
+                    '<span class="result-value">' + escapeHtml(correctArtist) + '</span>' +
+                '</div>' +
+                (artistScore > 0 ?
+                '<div class="result-row">' +
+                    '<span class="result-label">Artist points</span>' +
+                    '<span class="result-value is-bonus">+' + artistScore + ' pts</span>' +
+                '</div>' : '');
+        } else {
+            artistResultHtml =
+                '<div class="result-row artist-row">' +
+                    '<span class="result-label">Artist guess</span>' +
+                    '<span class="result-value is-muted">No guess</span>' +
+                '</div>';
+        }
+
         var scoreBreakdown = '';
         if (hasSpeedBonus && baseScore > 0) {
             scoreBreakdown =
@@ -1342,6 +1862,13 @@
         // Calculate total (round_score already includes bet + speed bonus, add streak separately)
         var totalScore = player.round_score + streakBonus;
 
+        // Story 13.2: Determine animation effects
+        var isBigScore = player.round_score >= 20;
+        var prevPlayer = previousState.players[player.name];
+        var prevScore = prevPlayer ? prevPlayer.score : (player.score - totalScore);
+        var prevStreak = prevPlayer ? prevPlayer.streak : 0;
+        var streakMilestone = isStreakMilestone(prevStreak, player.streak || 0);
+
         resultContent.innerHTML =
             '<div class="result-row">' +
                 '<span class="result-label">Your guess</span>' +
@@ -1355,11 +1882,56 @@
                 '<span class="result-label">Accuracy</span>' +
                 '<span class="result-value ' + resultClass + '">' + yearsOffText + '</span>' +
             '</div>' +
+            artistResultHtml +
             scoreBreakdown +
             betOutcomeHtml +
-            '<div class="result-score">+' + player.round_score + ' pts</div>' +
+            '<div class="result-score" id="personal-result-score">+<span class="score-value">0</span> pts</div>' +
             streakBonusHtml +
-            (streakBonus > 0 ? '<div class="result-total">Total: +' + totalScore + ' pts</div>' : '');
+            (streakBonus > 0 ? '<div class="result-total">Total: +<span class="total-value">0</span> pts</div>' : '');
+
+        // Story 13.2: Animate personal score with visual effects
+        var scoreValueEl = resultContent.querySelector('.score-value');
+        if (scoreValueEl) {
+            animateScoreChange(scoreValueEl, 0, player.round_score, {
+                betWon: player.bet_outcome === 'won',
+                betLost: player.bet_outcome === 'lost',
+                streakMilestone: streakMilestone,
+                isBigScore: isBigScore
+            });
+
+            // Show floating popup for bet win
+            if (player.bet_outcome === 'won' && player.round_score > 0) {
+                setTimeout(function() {
+                    var scoreEl = document.getElementById('personal-result-score');
+                    if (scoreEl) {
+                        showPointsPopup(scoreEl, player.round_score, { isBetWin: true });
+                    }
+                }, 200);
+            }
+        }
+
+        // Story 13.2: Animate total score and show streak popup
+        var totalValueEl = resultContent.querySelector('.total-value');
+        if (totalValueEl && streakBonus > 0) {
+            // Slight delay for total to start after round score
+            setTimeout(function() {
+                animateValue(totalValueEl, 0, totalScore, 600);
+            }, 300);
+
+            // Show streak milestone popup
+            if (streakMilestone) {
+                setTimeout(function() {
+                    var totalEl = resultContent.querySelector('.result-total');
+                    if (totalEl) {
+                        var milestoneBonus = {3: 20, 5: 50, 10: 100}[streakMilestone] || 0;
+                        showPointsPopup(totalEl, milestoneBonus, {
+                            isStreak: true,
+                            text: '+' + milestoneBonus + ' ' + streakMilestone + '-Streak!'
+                        });
+                    }
+                }, 500);
+            }
+        }
     }
 
     /**

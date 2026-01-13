@@ -165,6 +165,19 @@
     "allowPopups": "Dein Browser hat das Pop-up blockiert. Bitte erlaube Pop-ups für diese Seite.",
     "description": "Musik-Rate-Partyspiel"
   },
+  "analytics": {
+    "title": "Runden-Statistik",
+    "averageGuess": "Durchschnittliche Antwort",
+    "yearsEarly": "{years} Jahre zu frueh",
+    "yearsLate": "{years} Jahre zu spaet",
+    "onTarget": "Genau richtig!",
+    "accuracy": "{percent}% haben gepunktet",
+    "exactMatches": "Volltreffer",
+    "speedChampion": "Schnellster Spieler",
+    "furthestGuess": "Am weitesten daneben",
+    "noSubmissions": "Keine Antworten in dieser Runde",
+    "histogram": "Antwort-Verteilung"
+  },
   "errors": {
     "NAME_TAKEN": "Name bereits vergeben",
     "NAME_INVALID": "Ungültiger Name",

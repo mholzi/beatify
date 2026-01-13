@@ -2181,6 +2181,41 @@ body.theme-dark .admin-controls {
     font-weight: var(--font-weight-semibold);
 }
 
+/* Artist Input (Story 10.1) */
+.artist-input-container {
+    width: 100%;
+    margin-top: var(--space-md);
+    padding: 0 var(--space-md);
+}
+
+.artist-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-lg);
+    font-family: var(--font-body);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    color: var(--color-text-white);
+    text-align: center;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.artist-input::placeholder {
+    color: var(--color-text-neon-muted);
+}
+
+.artist-input:focus {
+    outline: none;
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+}
+
+.artist-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Year Selector (Story 4.3) */
 .year-selector-container {
     width: 100%;
@@ -2495,6 +2530,181 @@ body.theme-dark .admin-controls {
     font-size: var(--font-size-base);
     color: #92400e;
     line-height: 1.4;
+}
+
+/* ============================================
+   Round Analytics (Story 13.3)
+   ============================================ */
+
+.round-analytics {
+    width: 100%;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.analytics-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-white);
+    margin-bottom: var(--space-md);
+}
+
+.analytics-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.analytics-stats .stat-item {
+    text-align: center;
+}
+
+.analytics-stats .stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-secondary);
+    display: block;
+}
+
+.analytics-stats .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    display: block;
+}
+
+.analytics-stats .stat-comparison {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    margin-top: var(--space-xs);
+}
+
+/* Histogram */
+.analytics-histogram {
+    margin-bottom: var(--space-lg);
+}
+
+.histogram-title {
+    font-size: var(--font-size-base);
+    color: var(--color-text-neon-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.histogram-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 120px;
+    gap: var(--space-xs);
+    padding: 0 var(--space-xs);
+}
+
+.histogram-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    animation: histogram-fade-in 0.3s ease forwards;
+    opacity: 0;
+}
+
+.histogram-bar {
+    width: 100%;
+    max-width: 40px;
+    background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-brand));
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    transition: height 0.5s ease;
+    min-height: 0;
+}
+
+.histogram-bar.is-correct {
+    background: linear-gradient(180deg, var(--color-success-neon), var(--color-success));
+    box-shadow: var(--glow-success);
+}
+
+.bar-count {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-white);
+    padding-top: var(--space-xs);
+}
+
+.histogram-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-neon-muted);
+    margin-top: var(--space-xs);
+}
+
+@keyframes histogram-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Achievements */
+.analytics-achievements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: left;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-white);
+}
+
+.achievement-emoji {
+    font-size: var(--font-size-lg);
+}
+
+.achievement-label {
+    color: var(--color-text-neon-muted);
+}
+
+.achievement-names {
+    font-weight: var(--font-weight-semibold);
+}
+
+.achievement-value {
+    color: var(--color-text-neon-muted);
+}
+
+/* Empty state */
+.analytics-empty {
+    text-align: center;
+    color: var(--color-text-neon-muted);
+    padding: var(--space-lg);
+    font-style: italic;
+}
+
+/* Reduced motion support (AC6) */
+@media (prefers-reduced-motion: reduce) {
+    .histogram-bar-wrapper {
+        animation: none;
+        opacity: 1;
+    }
+
+    .histogram-bar {
+        transition: none;
+    }
 }
 
 /* Reveal Emotion (Story 9.4) */
@@ -3895,5 +4105,188 @@ body.energy-party .year-display {
     }
     .view {
         animation: none;
+    }
+}
+
+/* ============================================
+   Score Animations (Story 13.2)
+   ============================================ */
+
+/* Tabular figures for score stability during animation */
+.score-animating {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Pop effect for big scores (20+ points) */
+@keyframes score-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.score-pop {
+    animation: score-pop 700ms ease-out;
+    display: inline-block; /* Required for transform */
+}
+
+/* Shake effect for bet loss */
+@keyframes score-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+}
+
+.score-shake {
+    animation: score-shake 400ms ease-out;
+    display: inline-block;
+}
+
+/* Red flash for bet loss */
+@keyframes score-flash-red {
+    0%, 100% { color: inherit; }
+    50% { color: var(--color-error); }
+}
+
+.score-flash-red {
+    animation: score-flash-red 400ms ease-out;
+}
+
+/* Golden glow for bet wins */
+@keyframes score-glow-gold {
+    0%, 100% {
+        text-shadow: 0 0 0 transparent;
+        color: inherit;
+    }
+    50% {
+        text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+        color: #ffd700;
+    }
+}
+
+.score-glow-gold {
+    animation: score-glow-gold 800ms ease-out;
+    display: inline-block;
+}
+
+/* Burst effect for streak milestones */
+@keyframes score-burst {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 0 transparent;
+    }
+    30% {
+        transform: scale(1.4);
+        text-shadow: 0 0 30px #ff6600;
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 0 transparent;
+    }
+}
+
+.score-burst {
+    animation: score-burst 700ms ease-out;
+    display: inline-block;
+}
+
+/* ============================================
+   Floating Points Popup (Story 13.2)
+   ============================================ */
+
+@keyframes popup-float {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -30px);
+    }
+}
+
+.points-popup {
+    position: fixed;
+    z-index: var(--z-toast);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-success);
+    pointer-events: none;
+    animation: popup-float 1000ms ease-out forwards;
+    transform: translateX(-50%);
+}
+
+.points-popup--gold {
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700;
+}
+
+.points-popup--streak {
+    color: #ff6600;
+    text-shadow: 0 0 10px #ff6600;
+    font-size: var(--font-size-xl);
+}
+
+/* ============================================
+   Leaderboard Slide Animations (Story 13.2)
+   ============================================ */
+
+/* Enhanced climbing animation with green highlight */
+.leaderboard-entry--slide-up {
+    animation: leaderboard-slide-up 500ms ease-out;
+}
+
+@keyframes leaderboard-slide-up {
+    0% {
+        transform: translateY(10px);
+        background: rgba(0, 255, 136, 0.3);
+    }
+    100% {
+        transform: translateY(0);
+        background: transparent;
+    }
+}
+
+/* Enhanced falling animation with opacity */
+.leaderboard-entry--slide-down {
+    animation: leaderboard-slide-down 500ms ease-out;
+}
+
+@keyframes leaderboard-slide-down {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Reduced Motion Support (Story 13.2)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .score-pop,
+    .score-shake,
+    .score-glow-gold,
+    .score-burst,
+    .score-flash-red {
+        animation: none !important;
+    }
+
+    .points-popup {
+        animation: none !important;
+        display: none !important;
+    }
+
+    .leaderboard-entry--slide-up,
+    .leaderboard-entry--slide-down {
+        animation: none !important;
     }
 }
