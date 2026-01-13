@@ -1418,10 +1418,10 @@
             // Update button text for last round
             if (nextRoundBtn) {
                 if (data.last_round) {
-                    nextRoundBtn.textContent = 'Final Results';
+                    nextRoundBtn.textContent = t('leaderboard.finalResults');
                     nextRoundBtn.classList.add('is-final');
                 } else {
-                    nextRoundBtn.textContent = 'Next Round';
+                    nextRoundBtn.textContent = t('admin.nextRound');
                     nextRoundBtn.classList.remove('is-final');
                 }
                 nextRoundBtn.disabled = false;
@@ -1631,104 +1631,51 @@
         // Stop any existing confetti
         stopConfetti();
 
-        // Fun text alternatives for each outcome (20 each)
-        var exactTexts = [
-            'NAILED IT!', 'PERFECT!', 'BULLSEYE!', 'GENIUS!', 'LEGENDARY!',
-            'FLAWLESS!', 'SPOT ON!', 'CRUSHING IT!', 'UNSTOPPABLE!', 'GODLIKE!',
-            'MIND READER!', 'TIME LORD!', 'AMAZING!', 'SUPERSTAR!', 'EPIC WIN!',
-            'BOOM!', 'WIZARDRY!', 'SORCERY!', 'UNREAL!', 'INCREDIBLE!'
-        ];
-        var exactSubtitles = [
-            'Perfect guess!', 'You absolute legend!', 'Are you from this era?',
-            'Living encyclopedia!', 'Music historian!', 'Ears of gold!',
-            'Did you write this song?', 'Spooky accurate!', 'Take a bow!',
-            'Chef\'s kiss!', 'No notes!', 'Mic drop moment!', 'Hall of fame!',
-            'Pure perfection!', 'Textbook answer!', 'Nerd alert!', 'Scary good!',
-            'You\'re on fire!', 'The oracle speaks!', 'Bow down everyone!'
-        ];
-
-        var closeTexts = [
-            'SO CLOSE!', 'ALMOST!', 'NEARLY!', 'CLOSE ONE!', 'JUST MISSED!',
-            'HOT!', 'WARM!', 'NICE TRY!', 'GOOD EAR!', 'SOLID!',
-            'RESPECTABLE!', 'NOT BAD!', 'DECENT!', 'FAIR PLAY!', 'CLOSE CALL!',
-            'INCHES AWAY!', 'HAIR\'S WIDTH!', 'TANTALIZINGLY CLOSE!', 'OOH!', 'AHH!'
-        ];
-        var closeSubtitles = [
-            'So tantalizingly close!', 'You could taste it!', 'Almost had it!',
-            'Just a whisker off!', 'The vibes were right!', 'Trust your gut more!',
-            'Your instincts are good!', 'Nearly nailed it!', 'Close but no cigar!',
-            'A worthy attempt!', 'You\'re getting warmer!', 'In the ballpark!',
-            'Right neighborhood!', 'Solid guess!', 'Can\'t be mad at that!',
-            'Points on the board!', 'That\'ll do!', 'Respectable effort!',
-            'Keep that energy!', 'You\'re onto something!'
-        ];
-
-        var wrongTexts = [
-            'OOPS!', 'YIKES!', 'UH OH!', 'WELP!', 'SWING AND A MISS!',
-            'NOT QUITE!', 'WAY OFF!', 'NOPE!', 'WRONG ERA!', 'TIME WARP!',
-            'PLOT TWIST!', 'SURPRISE!', 'WHOOPSIE!', 'AWKWARD!', 'BRUH!',
-            'REALLY?', 'NICE TRY!', 'OOF!', 'YEET!', 'RIP!'
-        ];
-        var wrongSubtitles = [
-            'That was... creative!', 'Bold strategy!', 'Points for confidence!',
-            'Wrong decade, friend!', 'Time machine needed!', 'History is hard!',
-            'We\'ve all been there!', 'Shake it off!', 'Next round is yours!',
-            'Interesting theory!', 'Alternative timeline!', 'Parallel universe guess!',
-            'The vibes deceived you!', 'Music is tricky!', 'Happens to the best!',
-            'Plot twist energy!', 'Confidently incorrect!', 'Swing for the fences!',
-            'At least you tried!', 'Character building moment!'
-        ];
-
-        var missedTexts = [
-            'NO GUESS', 'TIME\'S UP!', 'TOO SLOW!', 'MISSED IT!', 'SNOOZE!',
-            'ASLEEP?', 'HELLO?', 'EARTH TO YOU!', 'FROZEN!', 'AFK!',
-            'BUFFERING...', 'TIMED OUT!', 'GHOST MODE!', 'VANISHED!', 'INVISIBLE!',
-            'SILENCE!', 'CRICKETS!', 'NADA!', 'ZILCH!', 'ABSENT!'
-        ];
-        var missedSubtitles = [
-            'Time ran out!', 'The clock waits for no one!', 'Too busy vibing?',
-            'Song was that good huh?', 'Analysis paralysis!', 'Indecision is a decision!',
-            'Phone died?', 'Cat walked on keyboard?', 'Snack break?',
-            'Lost in the music!', 'Daydreaming!', 'Zoned out!',
-            'Brain freeze!', 'Decision fatigue!', 'Overthinking it!',
-            'Commitment issues!', 'Stage fright!', 'Performance anxiety!',
-            'Better luck next round!', 'Wake up call!'
-        ];
+        // Get translated emotion arrays
+        var emotions = translations[currentLanguage].reveal.emotions || translations.en.reveal.emotions;
 
         // Helper to pick random from array
         function randomFrom(arr) {
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
+        // Helper for "Off by X years" text
+        function getOffByText(years) {
+            if (years === 1) {
+                return t('reveal.offByYear');
+            }
+            return t('reveal.offByYears', { years: years });
+        }
+
         // Determine emotion category
         var emotionType = 'missed';
-        var emotionText = randomFrom(missedTexts);
-        var subtitle = randomFrom(missedSubtitles);
+        var emotionText = randomFrom(emotions.missed);
+        var subtitle = randomFrom(emotions.missedSub);
 
         if (player && !player.missed_round) {
             var yearsOff = player.years_off || 0;
 
             if (yearsOff === 0) {
                 emotionType = 'exact';
-                emotionText = randomFrom(exactTexts);
-                subtitle = randomFrom(exactSubtitles);
+                emotionText = randomFrom(emotions.exact);
+                subtitle = randomFrom(emotions.exactSub);
             } else if (yearsOff <= 2) {
                 emotionType = 'close';
-                emotionText = randomFrom(closeTexts);
-                subtitle = randomFrom(closeSubtitles) + ' Off by ' + yearsOff + ' year' + (yearsOff > 1 ? 's' : '') + '!';
+                emotionText = randomFrom(emotions.close);
+                subtitle = randomFrom(emotions.closeSub) + ' ' + getOffByText(yearsOff);
             } else if (yearsOff <= 5) {
                 emotionType = 'close';
-                emotionText = randomFrom(closeTexts);
-                subtitle = 'Off by ' + yearsOff + ' years';
+                emotionText = randomFrom(emotions.close);
+                subtitle = getOffByText(yearsOff);
             } else {
                 emotionType = 'wrong';
-                emotionText = randomFrom(wrongTexts);
-                subtitle = randomFrom(wrongSubtitles) + ' Off by ' + yearsOff + ' years!';
+                emotionText = randomFrom(emotions.wrong);
+                subtitle = randomFrom(emotions.wrongSub) + ' ' + getOffByText(yearsOff);
             }
         } else if (player && player.missed_round) {
             emotionType = 'missed';
-            emotionText = randomFrom(missedTexts);
-            subtitle = randomFrom(missedSubtitles);
+            emotionText = randomFrom(emotions.missed);
+            subtitle = randomFrom(emotions.missedSub);
         }
 
         // Build emotion HTML
