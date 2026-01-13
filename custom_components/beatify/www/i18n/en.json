@@ -136,7 +136,11 @@
     "enterDisplayName": "Enter your display name to join as a player with admin controls.",
     "selected": "Selected:",
     "playlistsLabel": "playlists,",
-    "songsLabel": "songs"
+    "songsLabel": "songs",
+    "selectTimer": "Round Timer",
+    "timerQuick": "Quick",
+    "timerNormal": "Normal",
+    "timerRelaxed": "Relaxed"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

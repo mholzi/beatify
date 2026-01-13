@@ -136,7 +136,11 @@
     "enterDisplayName": "Gib deinen Namen ein um als Spieler mit Admin-Rechten beizutreten.",
     "selected": "Ausgewählt:",
     "playlistsLabel": "Playlisten,",
-    "songsLabel": "Songs"
+    "songsLabel": "Songs",
+    "selectTimer": "Rundentimer",
+    "timerQuick": "Schnell",
+    "timerNormal": "Normal",
+    "timerRelaxed": "Entspannt"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

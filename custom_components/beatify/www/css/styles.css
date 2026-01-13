@@ -530,6 +530,86 @@ body.theme-dark .game-info span {
     font-weight: 600;
 }
 
+/* Timer Selector (Story 13.1) */
+.timer-selector {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.timer-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs);
+    padding: var(--space-sm) var(--space-md);
+    min-width: 90px;
+    border: 2px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.timer-btn:hover {
+    border-color: var(--color-accent-brand);
+    background: var(--color-bg-card-alt);
+}
+
+.timer-btn:focus {
+    outline: none;
+    border-color: var(--color-accent-brand);
+    box-shadow: 0 0 0 3px rgba(30, 215, 96, 0.3);
+}
+
+.timer-btn:focus-visible {
+    outline: 2px solid var(--color-accent-brand);
+    outline-offset: 2px;
+}
+
+.timer-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--color-border-neon);
+    background: var(--color-bg-card);
+}
+
+.timer-btn:disabled:hover {
+    border-color: var(--color-border-neon);
+    background: var(--color-bg-card);
+}
+
+.timer-btn--active {
+    border-color: var(--color-accent-brand);
+    background: var(--color-accent-brand);
+    color: var(--color-text-white);
+}
+
+.timer-btn--active:hover {
+    background: var(--color-accent-brand-hover);
+}
+
+.timer-icon {
+    font-size: 1.5em;
+}
+
+.timer-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.timer-value {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.timer-btn--active .timer-value {
+    opacity: 1;
+}
+
 /* Modal content in dark mode needs dark text on light backgrounds */
 body.theme-dark .modal-content {
     color: var(--color-text-primary);

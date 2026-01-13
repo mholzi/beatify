@@ -14,6 +14,8 @@ from custom_components.beatify.const import (
     DOMAIN,
     MEDIA_PLAYER_DOCS_URL,
     PLAYLIST_DOCS_URL,
+    ROUND_DURATION_MAX,
+    ROUND_DURATION_MIN,
 )
 from custom_components.beatify.game.state import GameState
 from custom_components.beatify.services.media_player import async_get_media_players
@@ -145,6 +147,25 @@ class StartGameView(HomeAssistantView):
         playlist_paths = body.get("playlists", [])
         media_player = body.get("media_player")
         language = body.get("language", "en")
+        round_duration = body.get("round_duration")  # Story 13.1
+
+        # Validate round_duration if provided (Story 13.1)
+        if round_duration is not None:
+            try:
+                round_duration = int(round_duration)
+                if not (ROUND_DURATION_MIN <= round_duration <= ROUND_DURATION_MAX):
+                    return web.json_response(
+                        {
+                            "error": "INVALID_REQUEST",
+                            "message": f"Round duration must be between {ROUND_DURATION_MIN} and {ROUND_DURATION_MAX} seconds",
+                        },
+                        status=400,
+                    )
+            except (ValueError, TypeError):
+                return web.json_response(
+                    {"error": "INVALID_REQUEST", "message": "Invalid round duration value"},
+                    status=400,
+                )
 
         if not playlist_paths:
             return web.json_response(
@@ -227,7 +248,17 @@ class StartGameView(HomeAssistantView):
             game_state = GameState()
             self.hass.data[DOMAIN]["game"] = game_state
 
-        result = game_state.create_game(playlist_paths, songs, media_player, base_url)
+        # Build create_game kwargs with optional round_duration (Story 13.1)
+        create_kwargs: dict[str, Any] = {
+            "playlists": playlist_paths,
+            "songs": songs,
+            "media_player": media_player,
+            "base_url": base_url,
+        }
+        if round_duration is not None:
+            create_kwargs["round_duration"] = round_duration
+
+        result = game_state.create_game(**create_kwargs)
         result["warnings"] = warnings
 
         # Set game language (Story 12.4)

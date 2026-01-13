@@ -46,6 +46,28 @@
             </div>
         </section>
 
+        <!-- Timer Selector (Story 13.1) -->
+        <section id="timer-section" class="card-section">
+            <h2 data-i18n="admin.selectTimer">Round Timer</h2>
+            <div class="timer-selector" role="group" aria-label="Round timer duration">
+                <button type="button" id="timer-quick" class="timer-btn" data-duration="15" tabindex="0">
+                    <span class="timer-icon" aria-hidden="true">⚡</span>
+                    <span class="timer-label" data-i18n="admin.timerQuick">Quick</span>
+                    <span class="timer-value">15s</span>
+                </button>
+                <button type="button" id="timer-normal" class="timer-btn timer-btn--active" data-duration="30" tabindex="0">
+                    <span class="timer-icon" aria-hidden="true">⏱️</span>
+                    <span class="timer-label" data-i18n="admin.timerNormal">Normal</span>
+                    <span class="timer-value">30s</span>
+                </button>
+                <button type="button" id="timer-relaxed" class="timer-btn" data-duration="45" tabindex="0">
+                    <span class="timer-icon" aria-hidden="true">🧘</span>
+                    <span class="timer-label" data-i18n="admin.timerRelaxed">Relaxed</span>
+                    <span class="timer-value">45s</span>
+                </button>
+            </div>
+        </section>
+
         <!-- Start Game button (Story 9.10: moved from Game Controls card) -->
         <p id="playlist-validation-msg" class="status-error hidden" style="margin: var(--space-md) 0;" data-i18n="admin.selectPlaylistHint">Select at least one playlist</p>
         <button id="start-game" class="btn btn-primary btn-large btn-full-width hidden" disabled data-i18n="admin.startGame">Start Game</button>

@@ -26,6 +26,8 @@ from custom_components.beatify.const import (
     ERR_SESSION_NOT_FOUND,
     ERR_SESSION_TAKEOVER,
     LOBBY_DISCONNECT_GRACE_PERIOD,
+    ROUND_DURATION_MAX,
+    ROUND_DURATION_MIN,
     YEAR_MAX,
     YEAR_MIN,
 )
@@ -233,6 +235,27 @@ class BeatifyWebSocketHandler:
                         "message": "Game already started",
                     })
                     return
+
+                # Parse optional duration parameter (Story 13.1)
+                duration = data.get("duration")
+                if duration is not None:
+                    try:
+                        duration = int(duration)
+                        if not (ROUND_DURATION_MIN <= duration <= ROUND_DURATION_MAX):
+                            await ws.send_json({
+                                "type": "error",
+                                "code": ERR_INVALID_ACTION,
+                                "message": f"Duration must be between {ROUND_DURATION_MIN} and {ROUND_DURATION_MAX} seconds",
+                            })
+                            return
+                        game_state.round_duration = duration
+                    except (ValueError, TypeError):
+                        await ws.send_json({
+                            "type": "error",
+                            "code": ERR_INVALID_ACTION,
+                            "message": "Invalid duration value",
+                        })
+                        return
 
                 # Start the first round (plays song, sets timer)
                 success = await game_state.start_round(self.hass)

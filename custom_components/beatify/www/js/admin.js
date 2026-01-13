@@ -18,8 +18,11 @@ let cachedQRUrl = null;
 // Language state (Story 12.4)
 let selectedLanguage = 'en';
 
+// Timer state (Story 13.1)
+let selectedDuration = 30;
+
 // Setup sections to hide/show as a group (Story 9.10: game-controls removed, button is standalone)
-const setupSections = ['media-players', 'playlists', 'language-section'];
+const setupSections = ['media-players', 'playlists', 'language-section', 'timer-section'];
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize i18n based on browser language (Story 12.4)
@@ -43,6 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Language selector setup (Story 12.4)
     setupLanguageSelector();
+
+    // Timer selector setup (Story 13.1)
+    setupTimerSelector();
 
     await loadStatus();
 });
@@ -497,7 +503,8 @@ async function startGame() {
             body: JSON.stringify({
                 playlists: selectedPlaylists.map(p => p.path),
                 media_player: selectedMediaPlayer?.entityId,
-                language: selectedLanguage
+                language: selectedLanguage,
+                round_duration: selectedDuration  // Story 13.1
             })
         });
 
@@ -776,4 +783,54 @@ async function setLanguage(lang) {
     // Update i18n and re-render page
     await BeatifyI18n.setLanguage(lang);
     BeatifyI18n.initPageTranslations();
+}
+
+// ==========================================
+// Timer Selector Functions (Story 13.1)
+// ==========================================
+
+/**
+ * Setup timer selector buttons
+ */
+function setupTimerSelector() {
+    var timerButtons = document.querySelectorAll('.timer-btn');
+
+    timerButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var duration = parseInt(btn.getAttribute('data-duration'), 10);
+            if (duration && duration !== selectedDuration) {
+                setTimerDuration(duration);
+            }
+        });
+    });
+}
+
+/**
+ * Update timer button states
+ * @param {number} duration - Duration in seconds (15, 30, or 45)
+ */
+function updateTimerButtons(duration) {
+    var timerButtons = document.querySelectorAll('.timer-btn');
+    timerButtons.forEach(function(btn) {
+        var btnDuration = parseInt(btn.getAttribute('data-duration'), 10);
+        if (btnDuration === duration) {
+            btn.classList.add('timer-btn--active');
+        } else {
+            btn.classList.remove('timer-btn--active');
+        }
+    });
+}
+
+/**
+ * Set timer duration
+ * @param {number} duration - Duration in seconds (10-60 range)
+ */
+function setTimerDuration(duration) {
+    // Validate duration is within valid range (matches backend: 10-60)
+    if (typeof duration !== 'number' || duration < 10 || duration > 60) {
+        duration = 30;
+    }
+
+    selectedDuration = duration;
+    updateTimerButtons(duration);
 }

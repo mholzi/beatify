@@ -20,6 +20,8 @@ from custom_components.beatify.const import (
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
+    ROUND_DURATION_MAX,
+    ROUND_DURATION_MIN,
 )
 
 from .player import PlayerSession
@@ -109,6 +111,7 @@ class GameState:
         songs: list[dict[str, Any]],
         media_player: str,
         base_url: str,
+        round_duration: int = DEFAULT_ROUND_DURATION,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -118,11 +121,22 @@ class GameState:
             songs: List of song dicts loaded from playlists
             media_player: Entity ID of media player
             base_url: HA base URL for join URL construction
+            round_duration: Round timer duration in seconds (10-60, default 30)
 
         Returns:
             dict with game_id, join_url, song_count, phase
 
+        Raises:
+            ValueError: If round_duration is outside valid range (10-60)
+
         """
+        # Validate round duration (Story 13.1)
+        if not (ROUND_DURATION_MIN <= round_duration <= ROUND_DURATION_MAX):
+            raise ValueError(
+                f"Round duration must be between {ROUND_DURATION_MIN} "
+                f"and {ROUND_DURATION_MAX} seconds"
+            )
+
         # Clear any leftover sessions from previous/crashed game (Story 11.6)
         self.clear_all_sessions()
 
@@ -146,9 +160,9 @@ class GameState:
         self.pause_reason = None
         self._previous_phase = None
 
-        # Reset timing for speed bonus (Story 5.1)
+        # Reset timing for speed bonus (Story 5.1) and configurable duration (Story 13.1)
         self.round_start_time = None
-        self.round_duration = DEFAULT_ROUND_DURATION
+        self.round_duration = round_duration
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
@@ -669,8 +683,8 @@ class GameState:
         self.total_rounds = self._playlist_manager.get_total_count()
 
         # Record round start time for speed bonus calculation (Story 5.1)
+        # Note: self.round_duration is set in create_game() (Story 13.1)
         self.round_start_time = self._now()
-        self.round_duration = DEFAULT_ROUND_DURATION
         self.deadline = int((self.round_start_time + self.round_duration) * 1000)
 
         # Reset player submissions for new round
