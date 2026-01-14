@@ -2637,7 +2637,8 @@ body.theme-dark .admin-controls {
 }
 
 .chart-weeks,
-.chart-uk {
+.chart-uk,
+.chart-secondary {
     color: var(--color-text-neon-muted);
 }
 

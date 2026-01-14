@@ -99,9 +99,10 @@
       "missed": ["NO GUESS", "TIME'S UP!", "TOO SLOW!", "MISSED IT!", "HELLO?", "AFK!", "TIMED OUT!"],
       "missedSub": ["Time ran out!", "The clock waits for no one!", "Better luck next round!", "Overthinking it!"]
     },
-    "chartPosition": "on Billboard Hot 100",
+    "chartBillboard": "Billboard Hot 100",
+    "chartGerman": "German Charts",
+    "chartUK": "UK Charts",
     "weeksOnChart": "weeks on chart",
-    "ukPeak": "UK Charts",
     "moreAwards": "more"
   },
   "leaderboard": {

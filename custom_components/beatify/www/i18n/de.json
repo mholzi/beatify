@@ -99,9 +99,10 @@
       "missed": ["KEIN TIPP", "ZEIT UM!", "ZU LANGSAM!", "VERPASST!", "HALLO?", "AFK!", "TIMEOUT!"],
       "missedSub": ["Zeit abgelaufen!", "Die Uhr wartet nicht!", "Nächstes Mal mehr Glück!", "Zu lange überlegt!"]
     },
-    "chartPosition": "auf Billboard Hot 100",
+    "chartBillboard": "Billboard Hot 100",
+    "chartGerman": "Deutsche Charts",
+    "chartUK": "UK Charts",
     "weeksOnChart": "Wochen in den Charts",
-    "ukPeak": "UK Charts",
     "moreAwards": "weitere"
   },
   "leaderboard": {

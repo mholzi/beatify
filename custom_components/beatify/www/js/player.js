@@ -1676,21 +1676,40 @@
      * @returns {string} HTML string for chart info section
      */
     function renderChartInfo(chartInfo) {
-        if (!chartInfo.billboard_peak || chartInfo.billboard_peak <= 0) {
-            return '';
+        if (!chartInfo) return '';
+
+        // Determine primary chart to display (prioritize by region relevance)
+        var primaryPeak = null;
+        var primaryLabel = '';
+
+        if (chartInfo.billboard_peak && chartInfo.billboard_peak > 0) {
+            primaryPeak = chartInfo.billboard_peak;
+            primaryLabel = t('reveal.chartBillboard');
+        } else if (chartInfo.german_peak && chartInfo.german_peak > 0) {
+            primaryPeak = chartInfo.german_peak;
+            primaryLabel = t('reveal.chartGerman');
+        } else if (chartInfo.uk_peak && chartInfo.uk_peak > 0) {
+            primaryPeak = chartInfo.uk_peak;
+            primaryLabel = t('reveal.chartUK');
         }
+
+        // No chart data to show
+        if (!primaryPeak) return '';
 
         var html = '<div class="chart-info">' +
             '<span class="chart-icon">📊</span>' +
-            '<span class="chart-peak">#' + escapeHtml(String(chartInfo.billboard_peak)) + ' ' + t('reveal.chartPosition') + '</span>';
+            '<span class="chart-peak">#' + escapeHtml(String(primaryPeak)) + ' ' + primaryLabel + '</span>';
 
         // Show weeks on chart if available
         if (chartInfo.weeks_on_chart) {
             html += '<span class="chart-weeks">' + escapeHtml(String(chartInfo.weeks_on_chart)) + ' ' + t('reveal.weeksOnChart') + '</span>';
         }
-        // Or show UK peak if available (some songs have this instead)
-        else if (chartInfo.uk_peak) {
-            html += '<span class="chart-uk">#' + escapeHtml(String(chartInfo.uk_peak)) + ' ' + t('reveal.ukPeak') + '</span>';
+
+        // Show secondary chart if different from primary
+        if (chartInfo.billboard_peak && primaryLabel !== t('reveal.chartBillboard') && chartInfo.billboard_peak > 0) {
+            html += '<span class="chart-secondary">#' + escapeHtml(String(chartInfo.billboard_peak)) + ' ' + t('reveal.chartBillboard') + '</span>';
+        } else if (chartInfo.uk_peak && primaryLabel !== t('reveal.chartUK') && chartInfo.uk_peak > 0) {
+            html += '<span class="chart-secondary">#' + escapeHtml(String(chartInfo.uk_peak)) + ' ' + t('reveal.chartUK') + '</span>';
         }
 
         html += '</div>';
