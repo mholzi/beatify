@@ -23,6 +23,9 @@ sys.modules["homeassistant"] = MagicMock()
 sys.modules["homeassistant.core"] = MagicMock()
 sys.modules["homeassistant.components"] = MagicMock()
 sys.modules["homeassistant.components.http"] = MagicMock()
+sys.modules["homeassistant.components.frontend"] = MagicMock()
+sys.modules["homeassistant.helpers"] = MagicMock()
+sys.modules["homeassistant.helpers.aiohttp_client"] = MagicMock()
 
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.game.playlist import PlaylistManager
@@ -279,3 +282,97 @@ class TestGetStatePlayingPhase:
         result = state.get_state()
 
         assert result["last_round"] is True
+
+
+@pytest.mark.unit
+class TestStartRoundRichSongInfo:
+    """Tests for rich song info fields during start_round (Story 14.3)."""
+
+    @pytest.mark.asyncio
+    async def test_start_round_preserves_chart_info(self, mock_hass):
+        """start_round preserves chart_info from enriched playlist songs."""
+        state = GameState(time_fn=lambda: 1000.0)
+        songs = [
+            {
+                "year": 1982,
+                "uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+                "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
+            }
+        ]
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        await state.start_round(mock_hass)
+
+        assert state.current_song["chart_info"] == {"billboard_peak": 1, "weeks_on_chart": 22}
+
+    @pytest.mark.asyncio
+    async def test_start_round_preserves_certifications(self, mock_hass):
+        """start_round preserves certifications from enriched playlist songs."""
+        state = GameState(time_fn=lambda: 1000.0)
+        songs = [
+            {
+                "year": 1982,
+                "uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+                "certifications": ["4x Platinum (US)", "2x Platinum (UK)"],
+            }
+        ]
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        await state.start_round(mock_hass)
+
+        assert state.current_song["certifications"] == ["4x Platinum (US)", "2x Platinum (UK)"]
+
+    @pytest.mark.asyncio
+    async def test_start_round_preserves_awards(self, mock_hass):
+        """start_round preserves awards from enriched playlist songs."""
+        state = GameState(time_fn=lambda: 1000.0)
+        songs = [
+            {
+                "year": 1982,
+                "uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+                "awards": ["Grammy Hall of Fame (2004)"],
+            }
+        ]
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        await state.start_round(mock_hass)
+
+        assert state.current_song["awards"] == ["Grammy Hall of Fame (2004)"]
+
+    @pytest.mark.asyncio
+    async def test_start_round_defaults_missing_rich_info(self, mock_hass):
+        """start_round provides defaults for missing rich info fields."""
+        state = GameState(time_fn=lambda: 1000.0)
+        # Song without any rich info fields (backward compatibility)
+        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        await state.start_round(mock_hass)
+
+        # Should have empty defaults
+        assert state.current_song["chart_info"] == {}
+        assert state.current_song["certifications"] == []
+        assert state.current_song["awards"] == []

@@ -747,10 +747,14 @@ class GameState:
         self._playlist_manager.mark_played(song["uri"])
 
         # Set current song (year and fun_fact from playlist, rest from metadata)
+        # Story 14.3: Include rich song info fields from enriched playlists
         self.current_song = {
             "year": song["year"],
             "fun_fact": song.get("fun_fact", ""),
             "uri": song["uri"],
+            "chart_info": song.get("chart_info", {}),
+            "certifications": song.get("certifications", []),
+            "awards": song.get("awards", []),
             **metadata,
         }
 

@@ -1415,6 +1415,9 @@
             }
         }
 
+        // Render rich song info (Story 14.3)
+        renderRichSongInfo(song);
+
         // Find current player's result
         var currentPlayer = null;
         for (var i = 0; i < players.length; i++) {
@@ -1638,6 +1641,115 @@
         }
 
         return '<div class="histogram-bars">' + barsHtml + '</div>';
+    }
+
+    // ============================================
+    // Rich Song Info (Story 14.3)
+    // ============================================
+
+    /**
+     * Render rich song info (chart position, certifications, awards)
+     * @param {Object} song - Song data with optional chart_info, certifications, awards
+     */
+    function renderRichSongInfo(song) {
+        var container = document.getElementById('song-rich-info');
+        if (!container) return;
+
+        var html = '';
+
+        // Chart info section
+        html += renderChartInfo(song.chart_info || {});
+
+        // Certifications section
+        html += renderCertifications(song.certifications || []);
+
+        // Awards section
+        html += renderAwards(song.awards || []);
+
+        container.innerHTML = html;
+        container.classList.toggle('hidden', html === '');
+    }
+
+    /**
+     * Render chart info (Billboard peak, weeks on chart, UK peak)
+     * @param {Object} chartInfo - Chart info data
+     * @returns {string} HTML string for chart info section
+     */
+    function renderChartInfo(chartInfo) {
+        if (!chartInfo.billboard_peak || chartInfo.billboard_peak <= 0) {
+            return '';
+        }
+
+        var html = '<div class="chart-info">' +
+            '<span class="chart-icon">📊</span>' +
+            '<span class="chart-peak">#' + escapeHtml(String(chartInfo.billboard_peak)) + ' ' + t('reveal.chartPosition') + '</span>';
+
+        // Show weeks on chart if available
+        if (chartInfo.weeks_on_chart) {
+            html += '<span class="chart-weeks">' + escapeHtml(String(chartInfo.weeks_on_chart)) + ' ' + t('reveal.weeksOnChart') + '</span>';
+        }
+        // Or show UK peak if available (some songs have this instead)
+        else if (chartInfo.uk_peak) {
+            html += '<span class="chart-uk">#' + escapeHtml(String(chartInfo.uk_peak)) + ' ' + t('reveal.ukPeak') + '</span>';
+        }
+
+        html += '</div>';
+        return html;
+    }
+
+    /**
+     * Render certification badges
+     * @param {Array} certifications - Array of certification strings
+     * @returns {string} HTML string for certifications section
+     */
+    function renderCertifications(certifications) {
+        if (!certifications || certifications.length === 0) {
+            return '';
+        }
+
+        var html = '<div class="certifications">';
+        for (var i = 0; i < certifications.length; i++) {
+            var cert = certifications[i];
+            var badgeClass = getCertificationClass(cert);
+            html += '<span class="certification-badge ' + badgeClass + '">' + escapeHtml(cert) + '</span>';
+        }
+        html += '</div>';
+        return html;
+    }
+
+    /**
+     * Get CSS class for certification type
+     * @param {string} cert - Certification string
+     * @returns {string} CSS class name
+     */
+    function getCertificationClass(cert) {
+        var certLower = cert.toLowerCase();
+        if (certLower.indexOf('diamond') !== -1) return 'certification-badge--diamond';
+        if (certLower.indexOf('platinum') !== -1) return 'certification-badge--platinum';
+        if (certLower.indexOf('gold') !== -1) return 'certification-badge--gold';
+        return '';
+    }
+
+    /**
+     * Render awards
+     * @param {Array} awards - Array of award strings
+     * @returns {string} HTML string for awards section
+     */
+    function renderAwards(awards) {
+        if (!awards || awards.length === 0) {
+            return '';
+        }
+
+        var html = '<div class="awards">';
+        var displayAwards = awards.slice(0, 3);
+        for (var i = 0; i < displayAwards.length; i++) {
+            html += '<div class="award-item">🏆 ' + escapeHtml(displayAwards[i]) + '</div>';
+        }
+        if (awards.length > 3) {
+            html += '<div class="awards-more">+' + (awards.length - 3) + ' ' + t('reveal.moreAwards') + '</div>';
+        }
+        html += '</div>';
+        return html;
     }
 
     /**

@@ -98,7 +98,11 @@
       "wrongSub": ["Bold strategy!", "Time machine needed!", "Shake it off!", "Next round is yours!", "Happens to the best!"],
       "missed": ["NO GUESS", "TIME'S UP!", "TOO SLOW!", "MISSED IT!", "HELLO?", "AFK!", "TIMED OUT!"],
       "missedSub": ["Time ran out!", "The clock waits for no one!", "Better luck next round!", "Overthinking it!"]
-    }
+    },
+    "chartPosition": "on Billboard Hot 100",
+    "weeksOnChart": "weeks on chart",
+    "ukPeak": "UK Charts",
+    "moreAwards": "more"
   },
   "leaderboard": {
     "title": "Leaderboard",

@@ -2601,6 +2601,102 @@ body.theme-dark .admin-controls {
 }
 
 /* ============================================
+   Rich Song Info (Story 14.3)
+   ============================================ */
+
+.song-rich-info {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-lg);
+    text-align: left;
+}
+
+.song-rich-info.hidden {
+    display: none;
+}
+
+/* Chart info */
+.chart-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
+
+.chart-icon {
+    font-size: var(--font-size-md);
+}
+
+.chart-peak {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-white);
+}
+
+.chart-weeks,
+.chart-uk {
+    color: var(--color-text-neon-muted);
+}
+
+/* Certifications */
+.certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+}
+
+.certification-badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    color: var(--color-text-white);
+}
+
+.certification-badge--gold {
+    background: linear-gradient(135deg, #ffd700, #ffec8b);
+    color: #8b6914;
+    border-color: #daa520;
+}
+
+.certification-badge--platinum {
+    background: linear-gradient(135deg, #e5e4e2, #c0c0c0);
+    color: #4a4a4a;
+    border-color: #a8a8a8;
+}
+
+.certification-badge--diamond {
+    background: linear-gradient(135deg, #b9f2ff, #e0f7fa);
+    color: #006064;
+    border-color: #80deea;
+}
+
+/* Awards */
+.awards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.award-item {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
+
+.awards-more {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+/* ============================================
    Round Analytics (Story 13.3)
    ============================================ */
 

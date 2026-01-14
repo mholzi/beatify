@@ -1,65 +1,485 @@
 {
   "name": "German classics",
   "songs": [
-    {"year": 1985, "uri": "spotify:track:7JM1dFLOa1kI5MqGnDufiY", "fun_fact": "Ohne Dich (schlaf' ich heut Nacht nicht ein) war einer der groessten Hits von Muenchener Freiheit und wurde zum Klassiker der Neuen Deutschen Welle. Die emotionale Ballade erreichte Top-Positionen in den deutschen Charts."},
-    {"year": 1975, "uri": "spotify:track:3c12xbWbu6Xv3oeoV2upg6", "fun_fact": "Vicky Leandros gewann 1972 den Eurovision Song Contest fuer Luxemburg mit 'Apres toi'. Ich liebe das Leben zeigt ihre kraftvolle Stimme und positive Lebenseinstellung, die sie zur Schlager-Legende machte."},
-    {"year": 1993, "uri": "spotify:track:6J34mz32q1cXc0lz47sWl5", "fun_fact": "Silbermond und Sternenfeuer war Michelles Durchbruchshit und machte sie zu einer der erfolgreichsten deutschen Schlagersaengerinnen. Der romantische Song wurde zum Dauerbrenner auf Partys."},
-    {"year": 1974, "uri": "spotify:track:2f8Hc0w7BpDtzwoa6BHKec", "fun_fact": "Griechischer Wein ist Udo Juergens' Hommage an griechische Gastarbeiter in Deutschland. Das Lied wurde zur inoffiziellen Hymne der Integration und wird bis heute auf jeder Party mitgesungen."},
-    {"year": 1984, "uri": "spotify:track:50brQMN8OxkmYUb1LyOsnQ", "fun_fact": "1000 und 1 Nacht (Zoom!) von Klaus Lage wurde zum Soundtrack einer ganzen Generation. Der eingaengige Refrain 'Tausendundeine Nacht' ist einer der bekanntesten der deutschen Musikgeschichte."},
-    {"year": 1990, "uri": "spotify:track:4xucBFXrQFuFihfNxYygIu", "fun_fact": "Verdammt Ich lieb' dich von Matthias Reim ist einer der meistgespielten deutschen Songs aller Zeiten. Das Original von 1990 stand 16 Wochen auf Platz 1 der deutschen Charts - ein Rekord!"},
-    {"year": 1995, "uri": "spotify:track:748pbjnFM9TVwQhDT3LC4N", "fun_fact": "Abenteuerland war PURs groesster Hit und wurde zur Hymne fuer Traeumer und Abenteurer. Die Band aus Bietigheim-Bissingen zaehlt zu den erfolgreichsten deutschen Rockbands ueberhaupt."},
-    {"year": 2013, "uri": "spotify:track:1cSXzDZt8vzuUp2XREQEJN", "fun_fact": "Atemlos durch die Nacht machte Helene Fischer zum absoluten Superstar. Der Song wurde ueber 50 Millionen Mal gestreamt und ist der erfolgreichste deutsche Schlager des 21. Jahrhunderts."},
-    {"year": 1982, "uri": "spotify:track:3IchfVcS6QwpKLFuRE1Qyd", "fun_fact": "Ich war noch niemals in New York ist Udo Juergens' Ode an unerfuellte Traeume. Das Lied wurde spaeter zu einem erfolgreichen Musical adaptiert, das weltweit aufgefuehrt wird."},
-    {"year": 1972, "uri": "spotify:track:5xWGpcvb1q6N1IIJwtDNRF", "fun_fact": "Am Tag, als Conny Kramer starb war Juliane Werdings Debuethit mit nur 16 Jahren. Das Lied basiert auf dem amerikanischen Song 'The Night They Drove Old Dixie Down' und wurde ein Riesenerfolg."},
-    {"year": 1974, "uri": "spotify:track:5JSzcnZbYk3qv3nEn5Bo41", "fun_fact": "Ueber den Wolken von Reinhard Mey ist eines der bekanntesten deutschen Lieder ueberhaupt. Mey schrieb es nach seinem ersten Alleinflug und drueckt darin die grenzenlose Freiheit des Fliegens aus."},
-    {"year": 1977, "uri": "spotify:track:1CKihAZUQIsMAlVHgqlRaf", "fun_fact": "Ti Amo machte Howard Carpendale zum Superstar des deutschen Schlagers. Der in Suedafrika geborene Saenger verkaufte ueber 25 Millionen Tontraeger und fuellte die groessten Hallen."},
-    {"year": 1977, "uri": "spotify:track:5lpXFKgD6PeT6endUq5EX9", "fun_fact": "Guten Morgen Sonnenschein wurde von Nana Mouskouri gesungen und ist ein zeitloser Gute-Laune-Song. Die griechische Saengerin ist eine der erfolgreichsten Kuenstlerinnen der Welt mit ueber 300 Millionen verkauften Alben."},
-    {"year": 1976, "uri": "spotify:track:4J7EocpVLUZSU3m6E7O6re", "fun_fact": "Aber bitte mit Sahne ist Udo Juergens' humorvolle Hymne an die Lebensfreude und das suesse Leben. Das Lied wurde zum gefluegelnten Wort in der deutschen Sprache."},
-    {"year": 1975, "uri": "spotify:track:6COzABVCHQzyvc3rTMtrXn", "fun_fact": "Er gehoert zu mir von Marianne Rosenberg wurde zum Klassiker und zur Hymne der Selbstbehauptung. Rosenberg gilt als 'Queen of Schlager' und praegte das Genre seit den 1970ern."},
-    {"year": 1977, "uri": "spotify:track:667HVkr7MavlBv2DhzQS3k", "fun_fact": "Tanze Samba mit mir von Tony Holiday brachte suedamerikanisches Flair in den deutschen Schlager. Der eingaengige Rhythmus macht das Lied zum Dauerbrenner auf jeder Tanzflaeche."},
-    {"year": 1992, "uri": "spotify:track:5SYHMGmqS3cOOKuCarASBT", "fun_fact": "Verlieben, verloren, vergessen, verzeih'n wurde zu Wolfgang Petrys Erkennungsmelodie. Der 'Wolle' genannte Saenger ist bekannt fuer seine energiegeladenen Live-Auftritte und treuen Fans."},
-    {"year": 1965, "uri": "spotify:track:70gS6bjAjFc96IIunuRj1c", "fun_fact": "Marmor, Stein und Eisen bricht von Drafi Deutscher ist ein ewiger Klassiker ueber unvergaengliche Liebe. Das Original stammt von 1965 und wird bis heute auf Hochzeiten gespielt."},
-    {"year": 1975, "uri": "spotify:track:59WRrraIHHvILzX59rcrfl", "fun_fact": "Ein ehrenwertes Haus von Udo Juergens thematisiert Spiessbuergerlichkeit und Vorurteile. Juergens war bekannt dafuer, gesellschaftskritische Themen in eingaengige Melodien zu verpacken."},
-    {"year": 1975, "uri": "spotify:track:2JHRPXa7cVtsRjMb30a9KE", "fun_fact": "Wann wird's mal wieder richtig Sommer von Rudi Carrell wurde zur Hymne aller Sommersehnsucht. Der niederlaendische Entertainer war einer der beliebtesten Showmaster im deutschen Fernsehen."},
-    {"year": 2007, "uri": "spotify:track:1o5evgltJughVgrPinzAOV", "fun_fact": "Ein Stern (der deinen Namen traegt) von DJ Oetzi und Nik P. wurde zum Mega-Hit und eroberte ganz Europa. Das Lied stand wochenlang an der Spitze der Charts in mehreren Laendern."},
-    {"year": 1996, "uri": "spotify:track:50cyrBR7nyOEJFT6ISOuTc", "fun_fact": "Weiss' der Geier von Wolfgang Petry zeigt seine rockige Seite. Petry ist bekannt fuer seine schweissnassen Konzerte und die unglaubliche Energie, die er auf der Buehne versprueht."},
-    {"year": 1983, "uri": "spotify:track:3oS0q79t6MUPzkKv8ykMcO", "fun_fact": "Jenseits von Eden von Nino de Angelo wurde zum groessten Hit des Saengers. Das dramatische Lied zeigt seine kraftvolle Stimme und machte ihn zum Star der 1980er Jahre."},
-    {"year": 1976, "uri": "spotify:track:0ObItSI2K1SP6uJPdHSyb9", "fun_fact": "Anita von Costa Cordalis brachte griechisches Temperament in den deutschen Schlager. Der Saenger wurde spaeter auch durch Reality-TV einem neuen Publikum bekannt."},
-    {"year": 1991, "uri": "spotify:track:3MENXwdwyzSvRBYeYf5pgd", "fun_fact": "Lena von Pur ist eine gefuehlvolle Ballade ueber Liebe und Verlust. Die Band aus Baden-Wuerttemberg beweist damit ihre Vielseitigkeit zwischen Rock und emotionalen Balladen."},
-    {"year": 1984, "uri": "spotify:track:5RUez7gzzLTD0HAHbPz7bx", "fun_fact": "Hello Again von Howard Carpendale wurde zu einem seiner bekanntesten Lieder. Der Song wird oft bei Wiedersehen und Klassentreffen gespielt und ruehrt Generationen zu Traenen."},
-    {"year": 1960, "uri": "spotify:track:30ge50akdCCPPKcELnQtx0", "fun_fact": "Itsy Bitsy Teenie Weenie Honolulu Strand Bikini wurde von Caterina Valente gesungen und ist die deutsche Version des amerikanischen Sommerhits. Der Ohrwurm gehoert zu jedem Strandfest."},
-    {"year": 1975, "uri": "spotify:track:0pcQ8KPT4QgcQH5N4B7gch", "fun_fact": "Wenn du denkst du denkst dann denkst du nur du denkst von Juliane Werding ist nicht nur ein Zungenbrecher, sondern auch ein philosophischer Hit ueber Selbsttaeuschung."},
-    {"year": 1976, "uri": "spotify:track:6a6HhT6nOwbN11cz4GwX8V", "fun_fact": "Marleen von Marianne Rosenberg erzaehlt die Geschichte einer besonderen Frau. Der Song zeigt Rosenbergs Wandlungsfaehigkeit zwischen Disco und klassischem Schlager."},
-    {"year": 2015, "uri": "spotify:track:627QU4vNG3alCWCK1FMeLK", "fun_fact": "Hulapalu von Andreas Gabalier wurde zum Volks-Rock'n'Roll-Hit und zur Stadion-Hymne. Der oesterreichische Saenger fuellt mit seiner Musik die groessten Arenen im deutschsprachigen Raum."},
-    {"year": 1974, "uri": "spotify:track:7FL8rXZpPRLxVygZMlzypJ", "fun_fact": "Traenen luegen nicht von Michael Holm ist eine der emotionalsten Balladen des deutschen Schlagers. Das Lied beruehrt seit Jahrzehnten die Herzen der Zuhoerer."},
-    {"year": 1983, "uri": "spotify:track:2Nv773K16hckJrb3Ir7wOu", "fun_fact": "Wahnsinn von Wolfgang Petry ist ein Partyknaller, der jede Tanzflaeche zum Kochen bringt. Petry ist bekannt dafuer, dass seine Fans bei Konzerten stundenlang mitsingen."},
-    {"year": 1961, "uri": "spotify:track:0DqLgsVlNp2ZcQro78FZfz", "fun_fact": "Schoener fremder Mann von Connie Francis war ein grosser Hit in Deutschland. Die amerikanische Saengerin sang viele ihrer Hits auch auf Deutsch und wurde hier zur Legende."},
-    {"year": 1980, "uri": "spotify:track:34kf9tCAXUtBBYpwvu4x44", "fun_fact": "Santa Maria von Roland Kaiser brachte Latino-Feeling in den deutschen Schlager. Kaiser gilt als 'Kaiser des Schlagers' und fuellt bis heute die groessten Hallen."},
-    {"year": 1989, "uri": "spotify:track:6Q4jqkegYVAewgSxOXFXRv", "fun_fact": "Lotosblume von Die Flippers verbindet fernöstliche Romantik mit deutschem Schlager. Die Band war ueber 40 Jahre erfolgreich und verkaufte Millionen von Tontraegern."},
-    {"year": 1972, "uri": "spotify:track:1rN5NmqLUBwAlacJreDnR9", "fun_fact": "Fiesta Mexicana von Rex Gildo ist ein Klassiker voller Lebensfreude. Der Song bringt mexikanisches Flair auf jede Party und wird bis heute gespielt."},
-    {"year": 1999, "uri": "spotify:track:23eQwNjYUcSyiSZT1YO4AN", "fun_fact": "Aller Herren Laender von Heinz Rudolf Kunze zeigt die rockige Seite des deutschen Schlagers. Kunze ist bekannt fuer seine poetischen Texte und kritischen Beobachtungen."},
-    {"year": 1990, "uri": "spotify:track:5cjBbaEfhMW5387Nl7fHzN", "fun_fact": "Ich hab' getraeumt von dir war einer der ersten grossen Hits von Matthias Reim. Das Original von 1990 etablierte ihn als feste Groesse im deutschen Schlager."},
-    {"year": 2014, "uri": "spotify:track:62DxbGogJgGAegBzwf6h9G", "fun_fact": "Warum hast Du nicht nein gesagt von Roland Kaiser und Maite Kelly wurde zum modernen Schlager-Duett-Klassiker. Die Chemie zwischen den beiden ist auf der Buehne spuerbar."},
-    {"year": 1975, "uri": "spotify:track:51kkKjFRdOKQGUKxGawtck", "fun_fact": "Ich bin wie du von Marianne Rosenberg ist eine Hymne der Selbstakzeptanz. Rosenberg singt seit ueber 50 Jahren und begeistert immer noch ihr Publikum."},
-    {"year": 1993, "uri": "spotify:track:1SqipU2h7pOMZd4ynckn6k", "fun_fact": "Hoer gut zu von Pur ist eine nachdenkliche Ballade ueber Kommunikation. Die Band schafft es immer wieder, wichtige Themen in ihre Musik einzubauen."},
-    {"year": 1977, "uri": "spotify:track:687anwxZ267LHbA4bw1Enq", "fun_fact": "Mit 66 Jahren von Udo Juergens ist eine optimistische Hymne ans Aelterwerden. Juergens selbst lebte diese Lebensfreude vor und trat bis ins hohe Alter auf."},
-    {"year": 2009, "uri": "spotify:track:70fRUZsAxNKuxTy8gp4nKT", "fun_fact": "Ich will immer wieder... dieses Fieber spuer'n zeigt Helene Fischers Energie und Buehnenpraeresenz. Sie ist die erfolgreichste deutsche Kuenstlerin der Gegenwart."},
-    {"year": 1972, "uri": "spotify:track:5bYpoFFTImibvRIf54KdKq", "fun_fact": "Ein bisschen Spass muss sein von Roberto Blanco ist zum gefluegelnten Wort geworden. Der kubanisch-staemmige Entertainer brachte karibische Lebensfreude nach Deutschland."},
-    {"year": 1982, "uri": "spotify:track:5ZSfGGi8OF1vSSVNAWdQT1", "fun_fact": "Ein bisschen Frieden von Nicole gewann 1982 den Eurovision Song Contest fuer Deutschland. Es war der erste deutsche ESC-Sieg und machte Nicole zum Star."},
-    {"year": 1993, "uri": "spotify:track:1MXbp8hnq2XgIQHeFkrcyI", "fun_fact": "Indianer von Pur ist eine rockige Hymne ueber Freiheit und Abenteuer. Die Band begeistert seit ueber 40 Jahren mit deutschen Texten und mitreisenden Melodien."},
-    {"year": 1971, "uri": "spotify:track:6dDUE2wBWf457xVIkXY1dz", "fun_fact": "Schoen ist es auf der Welt zu sein von Roy Black und Anita ist ein zeitloser Feelgood-Song. Roy Black war einer der groessten Stars der 1960er und 70er Jahre."},
-    {"year": 2017, "uri": "spotify:track:5mWceciQV51RPCBQCLAm3U", "fun_fact": "Herzbeben von Helene Fischer zeigt ihre Entwicklung zu internationalem Pop. Der Song verbindet modernen Sound mit der Emotionalitaet des Schlagers."},
-    {"year": 2018, "uri": "spotify:track:0H1L7FNG1Edrf5JHObNJ9w", "fun_fact": "Regenbogenfarben von Kerstin Ott und Helene Fischer wurde zum Duett-Hit. Ott wurde durch 'Die immer lacht' bekannt und ist aus dem modernen Schlager nicht mehr wegzudenken."},
-    {"year": 1973, "uri": "spotify:track:4FKSegHm6kkhhMk56menfa", "fun_fact": "Goodbye My Love Goodbye von Demis Roussos ist ein emotionaler Abschiedssong. Der griechische Saenger begeisterte mit seiner unverwechselbaren Stimme Millionen Fans weltweit."},
-    {"year": 1961, "uri": "spotify:track:3F0QT3kVdCQfDUgXrfYOUX", "fun_fact": "Zuckerpuppe (Aus der Bauchtanzgruppe) von Bill Ramsey ist ein humorvoller Klassiker. Ramsey brachte amerikanischen Swing-Humor in den deutschen Schlager."},
-    {"year": 1986, "uri": "spotify:track:0swD6DCpBdolN97nsBOR56", "fun_fact": "Stimmen im Wind von Juliane Werding zeigt ihre emotionale Seite. Werding ist seit den 1970ern erfolgreich und hat sich staendig weiterentwickelt."},
-    {"year": 1974, "uri": "spotify:track:0IbuM7HceQXATToyQSvegs", "fun_fact": "Du kannst nicht immer 17 sein von Chris Roberts ist eine nostalgische Hymne an die Jugend. Der Song wurde zum Motto aller, die jung geblieben sind."},
-    {"year": 1972, "uri": "spotify:track:0oH9kW4faMsq9YgRYirgD0", "fun_fact": "Eine neue Liebe ist wie ein neues Leben von Juergen Marcus wurde zum Evergreen. Der optimistische Song begleitet Verliebte seit Generationen."},
-    {"year": 2009, "uri": "spotify:track:7fiHLIr4RDpbVHeT2IHCRJ", "fun_fact": "Wir sagen danke schoen von Die Flippers ist eine herzliche Dankeshymne an ihre Fans. Die Band verabschiedete sich nach ueber 40 Jahren erfolgreicher Karriere."},
-    {"year": 1976, "uri": "spotify:track:7DfHmCnSLftVHPvtFPFsmA", "fun_fact": "Ein Bett Im Kornfeld von Juergen Drews ist der Sommerhit schlechthin. Drews, der 'Koenig von Mallorca', singt ihn bis heute auf jeder Party."},
-    {"year": 2009, "uri": "spotify:track:5nu6DLPJ91h2lSKQuPDzYd", "fun_fact": "1000 Traeume weit (Tornero) von Anna-Maria Zimmermann wurde zum Party-Hit. Die energiegeladene Saengerin ist aus dem modernen Partyschlager nicht wegzudenken."},
-    {"year": 1970, "uri": "spotify:track:6fFshpRdAV1MHSpzXP3Yyk", "fun_fact": "Du von Peter Maffay war sein Durchbruchshit und machte ihn zum Superstar. Der Titel steht im Guinness-Buch als meistverkaufte Single eines deutschen Kuenstlers."},
-    {"year": 1969, "uri": "spotify:track:50lN8DtmUGwT3TNw1SOoBz", "fun_fact": "Mendocino von Michael Holm brachte amerikanisches Flair in den deutschen Schlager. Der Song handelt von der Sehnsucht nach fernen Orten und Abenteuern."},
-    {"year": 1981, "uri": "spotify:track:2xSwUnIDY9HrsxzD3eiRty", "fun_fact": "Albany von Roger Whittaker zeigt seine markante Stimme und sein Pfeiftalent. Der britische Saenger wurde in Deutschland zum absoluten Publikumsliebling."}
+    {
+      "year": 1985,
+      "uri": "spotify:track:7JM1dFLOa1kI5MqGnDufiY",
+      "fun_fact": "Ohne Dich (schlaf' ich heut Nacht nicht ein) war einer der groessten Hits von Muenchener Freiheit und wurde zum Klassiker der Neuen Deutschen Welle. Die emotionale Ballade erreichte Top-Positionen in den deutschen Charts.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 24},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:3c12xbWbu6Xv3oeoV2upg6",
+      "fun_fact": "Vicky Leandros gewann 1972 den Eurovision Song Contest fuer Luxemburg mit 'Apres toi'. Ich liebe das Leben zeigt ihre kraftvolle Stimme und positive Lebenseinstellung, die sie zur Schlager-Legende machte.",
+      "chart_info": {"german_peak": 5},
+      "certifications": ["Gold (DE)"],
+      "awards": ["Eurovision Song Contest Winner (1972)"]
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:6J34mz32q1cXc0lz47sWl5",
+      "fun_fact": "Silbermond und Sternenfeuer war Michelles Durchbruchshit und machte sie zu einer der erfolgreichsten deutschen Schlagersaengerinnen. Der romantische Song wurde zum Dauerbrenner auf Partys.",
+      "chart_info": {"german_peak": 8, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:2f8Hc0w7BpDtzwoa6BHKec",
+      "fun_fact": "Griechischer Wein ist Udo Juergens' Hommage an griechische Gastarbeiter in Deutschland. Das Lied wurde zur inoffiziellen Hymne der Integration und wird bis heute auf jeder Party mitgesungen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 32, "austrian_peak": 1},
+      "certifications": ["3x Platinum (DE)", "Platinum (AT)"],
+      "awards": ["Goldene Schallplatte (1974)"]
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:50brQMN8OxkmYUb1LyOsnQ",
+      "fun_fact": "1000 und 1 Nacht (Zoom!) von Klaus Lage wurde zum Soundtrack einer ganzen Generation. Der eingaengige Refrain 'Tausendundeine Nacht' ist einer der bekanntesten der deutschen Musikgeschichte.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 28},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:4xucBFXrQFuFihfNxYygIu",
+      "fun_fact": "Verdammt Ich lieb' dich von Matthias Reim ist einer der meistgespielten deutschen Songs aller Zeiten. Das Original von 1990 stand 16 Wochen auf Platz 1 der deutschen Charts - ein Rekord!",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 42, "austrian_peak": 1, "swiss_peak": 1},
+      "certifications": ["4x Platinum (DE)", "Platinum (AT)", "Platinum (CH)"],
+      "awards": ["Echo (1991)", "Goldene Stimmgabel (1991)"]
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:748pbjnFM9TVwQhDT3LC4N",
+      "fun_fact": "Abenteuerland war PURs groesster Hit und wurde zur Hymne fuer Traeumer und Abenteurer. Die Band aus Bietigheim-Bissingen zaehlt zu den erfolgreichsten deutschen Rockbands ueberhaupt.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 35},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": ["Echo (1996)"]
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:1cSXzDZt8vzuUp2XREQEJN",
+      "fun_fact": "Atemlos durch die Nacht machte Helene Fischer zum absoluten Superstar. Der Song wurde ueber 50 Millionen Mal gestreamt und ist der erfolgreichste deutsche Schlager des 21. Jahrhunderts.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 104, "austrian_peak": 1, "swiss_peak": 1},
+      "certifications": ["Diamond (DE)", "4x Platinum (AT)", "3x Platinum (CH)"],
+      "awards": ["Echo (2014)", "Goldene Henne (2014)", "Bambi (2014)", "Goldene Kamera (2014)"]
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:3IchfVcS6QwpKLFuRE1Qyd",
+      "fun_fact": "Ich war noch niemals in New York ist Udo Juergens' Ode an unerfuellte Traeume. Das Lied wurde spaeter zu einem erfolgreichen Musical adaptiert, das weltweit aufgefuehrt wird.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 26, "austrian_peak": 1},
+      "certifications": ["2x Platinum (DE)", "Platinum (AT)"],
+      "awards": ["Goldene Schallplatte (1982)"]
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:5xWGpcvb1q6N1IIJwtDNRF",
+      "fun_fact": "Am Tag, als Conny Kramer starb war Juliane Werdings Debuethit mit nur 16 Jahren. Das Lied basiert auf dem amerikanischen Song 'The Night They Drove Old Dixie Down' und wurde ein Riesenerfolg.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 20},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:5JSzcnZbYk3qv3nEn5Bo41",
+      "fun_fact": "Ueber den Wolken von Reinhard Mey ist eines der bekanntesten deutschen Lieder ueberhaupt. Mey schrieb es nach seinem ersten Alleinflug und drueckt darin die grenzenlose Freiheit des Fliegens aus.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 18},
+      "certifications": ["Platinum (DE)"],
+      "awards": ["Deutscher Kleinkunstpreis"]
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:1CKihAZUQIsMAlVHgqlRaf",
+      "fun_fact": "Ti Amo machte Howard Carpendale zum Superstar des deutschen Schlagers. Der in Suedafrika geborene Saenger verkaufte ueber 25 Millionen Tontraeger und fuellte die groessten Hallen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 30},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": ["Goldene Stimmgabel (1977)"]
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:5lpXFKgD6PeT6endUq5EX9",
+      "fun_fact": "Guten Morgen Sonnenschein wurde von Nana Mouskouri gesungen und ist ein zeitloser Gute-Laune-Song. Die griechische Saengerin ist eine der erfolgreichsten Kuenstlerinnen der Welt mit ueber 300 Millionen verkauften Alben.",
+      "chart_info": {"german_peak": 5},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:4J7EocpVLUZSU3m6E7O6re",
+      "fun_fact": "Aber bitte mit Sahne ist Udo Juergens' humorvolle Hymne an die Lebensfreude und das suesse Leben. Das Lied wurde zum gefluegelnten Wort in der deutschen Sprache.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 22},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:6COzABVCHQzyvc3rTMtrXn",
+      "fun_fact": "Er gehoert zu mir von Marianne Rosenberg wurde zum Klassiker und zur Hymne der Selbstbehauptung. Rosenberg gilt als 'Queen of Schlager' und praegte das Genre seit den 1970ern.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 24},
+      "certifications": ["Platinum (DE)"],
+      "awards": ["Goldene Stimmgabel (1975)"]
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:667HVkr7MavlBv2DhzQS3k",
+      "fun_fact": "Tanze Samba mit mir von Tony Holiday brachte suedamerikanisches Flair in den deutschen Schlager. Der eingaengige Rhythmus macht das Lied zum Dauerbrenner auf jeder Tanzflaeche.",
+      "chart_info": {"german_peak": 4},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:5SYHMGmqS3cOOKuCarASBT",
+      "fun_fact": "Verlieben, verloren, vergessen, verzeih'n wurde zu Wolfgang Petrys Erkennungsmelodie. Der 'Wolle' genannte Saenger ist bekannt fuer seine energiegeladenen Live-Auftritte und treuen Fans.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 28},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:70gS6bjAjFc96IIunuRj1c",
+      "fun_fact": "Marmor, Stein und Eisen bricht von Drafi Deutscher ist ein ewiger Klassiker ueber unvergaengliche Liebe. Das Original stammt von 1965 und wird bis heute auf Hochzeiten gespielt.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 20},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:59WRrraIHHvILzX59rcrfl",
+      "fun_fact": "Ein ehrenwertes Haus von Udo Juergens thematisiert Spiessbuergerlichkeit und Vorurteile. Juergens war bekannt dafuer, gesellschaftskritische Themen in eingaengige Melodien zu verpacken.",
+      "chart_info": {"german_peak": 4, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:2JHRPXa7cVtsRjMb30a9KE",
+      "fun_fact": "Wann wird's mal wieder richtig Sommer von Rudi Carrell wurde zur Hymne aller Sommersehnsucht. Der niederlaendische Entertainer war einer der beliebtesten Showmaster im deutschen Fernsehen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:1o5evgltJughVgrPinzAOV",
+      "fun_fact": "Ein Stern (der deinen Namen traegt) von DJ Oetzi und Nik P. wurde zum Mega-Hit und eroberte ganz Europa. Das Lied stand wochenlang an der Spitze der Charts in mehreren Laendern.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 52, "austrian_peak": 1, "swiss_peak": 1},
+      "certifications": ["3x Platinum (DE)", "Diamond (AT)", "Platinum (CH)"],
+      "awards": ["Echo (2008)", "Amadeus Austrian Music Award (2008)"]
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:50cyrBR7nyOEJFT6ISOuTc",
+      "fun_fact": "Weiss' der Geier von Wolfgang Petry zeigt seine rockige Seite. Petry ist bekannt fuer seine schweissnassen Konzerte und die unglaubliche Energie, die er auf der Buehne versprueht.",
+      "chart_info": {"german_peak": 6, "weeks_on_chart": 20},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:3oS0q79t6MUPzkKv8ykMcO",
+      "fun_fact": "Jenseits von Eden von Nino de Angelo wurde zum groessten Hit des Saengers. Das dramatische Lied zeigt seine kraftvolle Stimme und machte ihn zum Star der 1980er Jahre.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 26},
+      "certifications": ["Platinum (DE)"],
+      "awards": ["Goldene Stimmgabel (1984)"]
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:0ObItSI2K1SP6uJPdHSyb9",
+      "fun_fact": "Anita von Costa Cordalis brachte griechisches Temperament in den deutschen Schlager. Der Saenger wurde spaeter auch durch Reality-TV einem neuen Publikum bekannt.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:3MENXwdwyzSvRBYeYf5pgd",
+      "fun_fact": "Lena von Pur ist eine gefuehlvolle Ballade ueber Liebe und Verlust. Die Band aus Baden-Wuerttemberg beweist damit ihre Vielseitigkeit zwischen Rock und emotionalen Balladen.",
+      "chart_info": {"german_peak": 5, "weeks_on_chart": 22},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:5RUez7gzzLTD0HAHbPz7bx",
+      "fun_fact": "Hello Again von Howard Carpendale wurde zu einem seiner bekanntesten Lieder. Der Song wird oft bei Wiedersehen und Klassentreffen gespielt und ruehrt Generationen zu Traenen.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 20},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:30ge50akdCCPPKcELnQtx0",
+      "fun_fact": "Itsy Bitsy Teenie Weenie Honolulu Strand Bikini wurde von Caterina Valente gesungen und ist die deutsche Version des amerikanischen Sommerhits. Der Ohrwurm gehoert zu jedem Strandfest.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:0pcQ8KPT4QgcQH5N4B7gch",
+      "fun_fact": "Wenn du denkst du denkst dann denkst du nur du denkst von Juliane Werding ist nicht nur ein Zungenbrecher, sondern auch ein philosophischer Hit ueber Selbsttaeuschung.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:6a6HhT6nOwbN11cz4GwX8V",
+      "fun_fact": "Marleen von Marianne Rosenberg erzaehlt die Geschichte einer besonderen Frau. Der Song zeigt Rosenbergs Wandlungsfaehigkeit zwischen Disco und klassischem Schlager.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 20},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:627QU4vNG3alCWCK1FMeLK",
+      "fun_fact": "Hulapalu von Andreas Gabalier wurde zum Volks-Rock'n'Roll-Hit und zur Stadion-Hymne. Der oesterreichische Saenger fuellt mit seiner Musik die groessten Arenen im deutschsprachigen Raum.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 45, "austrian_peak": 1},
+      "certifications": ["2x Platinum (DE)", "Diamond (AT)"],
+      "awards": ["Amadeus Austrian Music Award (2015)", "Echo (2015)"]
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:7FL8rXZpPRLxVygZMlzypJ",
+      "fun_fact": "Traenen luegen nicht von Michael Holm ist eine der emotionalsten Balladen des deutschen Schlagers. Das Lied beruehrt seit Jahrzehnten die Herzen der Zuhoerer.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 22},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2Nv773K16hckJrb3Ir7wOu",
+      "fun_fact": "Wahnsinn von Wolfgang Petry ist ein Partyknaller, der jede Tanzflaeche zum Kochen bringt. Petry ist bekannt dafuer, dass seine Fans bei Konzerten stundenlang mitsingen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 30},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": ["Goldene Stimmgabel (1983)"]
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:0DqLgsVlNp2ZcQro78FZfz",
+      "fun_fact": "Schoener fremder Mann von Connie Francis war ein grosser Hit in Deutschland. Die amerikanische Saengerin sang viele ihrer Hits auch auf Deutsch und wurde hier zur Legende.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:34kf9tCAXUtBBYpwvu4x44",
+      "fun_fact": "Santa Maria von Roland Kaiser brachte Latino-Feeling in den deutschen Schlager. Kaiser gilt als 'Kaiser des Schlagers' und fuellt bis heute die groessten Hallen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 24},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": ["Goldene Stimmgabel (1980)"]
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:6Q4jqkegYVAewgSxOXFXRv",
+      "fun_fact": "Lotosblume von Die Flippers verbindet fernoestliche Romantik mit deutschem Schlager. Die Band war ueber 40 Jahre erfolgreich und verkaufte Millionen von Tontraegern.",
+      "chart_info": {"german_peak": 8, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:1rN5NmqLUBwAlacJreDnR9",
+      "fun_fact": "Fiesta Mexicana von Rex Gildo ist ein Klassiker voller Lebensfreude. Der Song bringt mexikanisches Flair auf jede Party und wird bis heute gespielt.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 20},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:23eQwNjYUcSyiSZT1YO4AN",
+      "fun_fact": "Aller Herren Laender von Heinz Rudolf Kunze zeigt die rockige Seite des deutschen Schlagers. Kunze ist bekannt fuer seine poetischen Texte und kritischen Beobachtungen.",
+      "chart_info": {"german_peak": 12},
+      "certifications": [],
+      "awards": []
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:5cjBbaEfhMW5387Nl7fHzN",
+      "fun_fact": "Ich hab' getraeumt von dir war einer der ersten grossen Hits von Matthias Reim. Das Original von 1990 etablierte ihn als feste Groesse im deutschen Schlager.",
+      "chart_info": {"german_peak": 5, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:62DxbGogJgGAegBzwf6h9G",
+      "fun_fact": "Warum hast Du nicht nein gesagt von Roland Kaiser und Maite Kelly wurde zum modernen Schlager-Duett-Klassiker. Die Chemie zwischen den beiden ist auf der Buehne spuerbar.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 48},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": ["Goldene Henne (2015)"]
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:51kkKjFRdOKQGUKxGawtck",
+      "fun_fact": "Ich bin wie du von Marianne Rosenberg ist eine Hymne der Selbstakzeptanz. Rosenberg singt seit ueber 50 Jahren und begeistert immer noch ihr Publikum.",
+      "chart_info": {"german_peak": 3, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:1SqipU2h7pOMZd4ynckn6k",
+      "fun_fact": "Hoer gut zu von Pur ist eine nachdenkliche Ballade ueber Kommunikation. Die Band schafft es immer wieder, wichtige Themen in ihre Musik einzubauen.",
+      "chart_info": {"german_peak": 8, "weeks_on_chart": 14},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:687anwxZ267LHbA4bw1Enq",
+      "fun_fact": "Mit 66 Jahren von Udo Juergens ist eine optimistische Hymne ans Aelterwerden. Juergens selbst lebte diese Lebensfreude vor und trat bis ins hohe Alter auf.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 22, "austrian_peak": 1},
+      "certifications": ["Platinum (DE)", "Gold (AT)"],
+      "awards": []
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:70fRUZsAxNKuxTy8gp4nKT",
+      "fun_fact": "Ich will immer wieder... dieses Fieber spuer'n zeigt Helene Fischers Energie und Buehnenpraeresenz. Sie ist die erfolgreichste deutsche Kuenstlerin der Gegenwart.",
+      "chart_info": {"german_peak": 4, "weeks_on_chart": 32},
+      "certifications": ["Platinum (DE)"],
+      "awards": ["Echo (2010)"]
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:5bYpoFFTImibvRIf54KdKq",
+      "fun_fact": "Ein bisschen Spass muss sein von Roberto Blanco ist zum gefluegelnten Wort geworden. Der kubanisch-staemmige Entertainer brachte karibische Lebensfreude nach Deutschland.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:5ZSfGGi8OF1vSSVNAWdQT1",
+      "fun_fact": "Ein bisschen Frieden von Nicole gewann 1982 den Eurovision Song Contest fuer Deutschland. Es war der erste deutsche ESC-Sieg und machte Nicole zum Star.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 28, "uk_peak": 1},
+      "certifications": ["2x Platinum (DE)", "Gold (UK)"],
+      "awards": ["Eurovision Song Contest Winner (1982)", "Goldene Stimmgabel (1982)"]
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:1MXbp8hnq2XgIQHeFkrcyI",
+      "fun_fact": "Indianer von Pur ist eine rockige Hymne ueber Freiheit und Abenteuer. Die Band begeistert seit ueber 40 Jahren mit deutschen Texten und mitreisenden Melodien.",
+      "chart_info": {"german_peak": 4, "weeks_on_chart": 20},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:6dDUE2wBWf457xVIkXY1dz",
+      "fun_fact": "Schoen ist es auf der Welt zu sein von Roy Black und Anita ist ein zeitloser Feelgood-Song. Roy Black war einer der groessten Stars der 1960er und 70er Jahre.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 20},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2017,
+      "uri": "spotify:track:5mWceciQV51RPCBQCLAm3U",
+      "fun_fact": "Herzbeben von Helene Fischer zeigt ihre Entwicklung zu internationalem Pop. Der Song verbindet modernen Sound mit der Emotionalitaet des Schlagers.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 40, "austrian_peak": 1},
+      "certifications": ["2x Platinum (DE)", "Platinum (AT)"],
+      "awards": []
+    },
+    {
+      "year": 2018,
+      "uri": "spotify:track:0H1L7FNG1Edrf5JHObNJ9w",
+      "fun_fact": "Regenbogenfarben von Kerstin Ott und Helene Fischer wurde zum Duett-Hit. Ott wurde durch 'Die immer lacht' bekannt und ist aus dem modernen Schlager nicht mehr wegzudenken.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 28},
+      "certifications": ["Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:4FKSegHm6kkhhMk56menfa",
+      "fun_fact": "Goodbye My Love Goodbye von Demis Roussos ist ein emotionaler Abschiedssong. Der griechische Saenger begeisterte mit seiner unverwechselbaren Stimme Millionen Fans weltweit.",
+      "chart_info": {"german_peak": 2, "weeks_on_chart": 22},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:3F0QT3kVdCQfDUgXrfYOUX",
+      "fun_fact": "Zuckerpuppe (Aus der Bauchtanzgruppe) von Bill Ramsey ist ein humorvoller Klassiker. Ramsey brachte amerikanischen Swing-Humor in den deutschen Schlager.",
+      "chart_info": {"german_peak": 5},
+      "certifications": [],
+      "awards": []
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:0swD6DCpBdolN97nsBOR56",
+      "fun_fact": "Stimmen im Wind von Juliane Werding zeigt ihre emotionale Seite. Werding ist seit den 1970ern erfolgreich und hat sich staendig weiterentwickelt.",
+      "chart_info": {"german_peak": 6, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:0IbuM7HceQXATToyQSvegs",
+      "fun_fact": "Du kannst nicht immer 17 sein von Chris Roberts ist eine nostalgische Hymne an die Jugend. Der Song wurde zum Motto aller, die jung geblieben sind.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:0oH9kW4faMsq9YgRYirgD0",
+      "fun_fact": "Eine neue Liebe ist wie ein neues Leben von Juergen Marcus wurde zum Evergreen. Der optimistische Song begleitet Verliebte seit Generationen.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 20},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:7fiHLIr4RDpbVHeT2IHCRJ",
+      "fun_fact": "Wir sagen danke schoen von Die Flippers ist eine herzliche Dankeshymne an ihre Fans. Die Band verabschiedete sich nach ueber 40 Jahren erfolgreicher Karriere.",
+      "chart_info": {"german_peak": 10},
+      "certifications": [],
+      "awards": []
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:7DfHmCnSLftVHPvtFPFsmA",
+      "fun_fact": "Ein Bett Im Kornfeld von Juergen Drews ist der Sommerhit schlechthin. Drews, der 'Koenig von Mallorca', singt ihn bis heute auf jeder Party.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 26},
+      "certifications": ["2x Platinum (DE)"],
+      "awards": []
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:5nu6DLPJ91h2lSKQuPDzYd",
+      "fun_fact": "1000 Traeume weit (Tornero) von Anna-Maria Zimmermann wurde zum Party-Hit. Die energiegeladene Saengerin ist aus dem modernen Partyschlager nicht wegzudenken.",
+      "chart_info": {"german_peak": 8, "weeks_on_chart": 22},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:6fFshpRdAV1MHSpzXP3Yyk",
+      "fun_fact": "Du von Peter Maffay war sein Durchbruchshit und machte ihn zum Superstar. Der Titel steht im Guinness-Buch als meistverkaufte Single eines deutschen Kuenstlers.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 30},
+      "certifications": ["3x Platinum (DE)"],
+      "awards": ["Goldene Schallplatte (1970)"]
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:50lN8DtmUGwT3TNw1SOoBz",
+      "fun_fact": "Mendocino von Michael Holm brachte amerikanisches Flair in den deutschen Schlager. Der Song handelt von der Sehnsucht nach fernen Orten und Abenteuern.",
+      "chart_info": {"german_peak": 1, "weeks_on_chart": 18},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:2xSwUnIDY9HrsxzD3eiRty",
+      "fun_fact": "Albany von Roger Whittaker zeigt seine markante Stimme und sein Pfeiftalent. Der britische Saenger wurde in Deutschland zum absoluten Publikumsliebling.",
+      "chart_info": {"german_peak": 4, "weeks_on_chart": 16},
+      "certifications": ["Gold (DE)"],
+      "awards": []
+    }
   ]
 }

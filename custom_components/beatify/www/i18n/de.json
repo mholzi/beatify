@@ -98,7 +98,11 @@
       "wrongSub": ["Mutige Strategie!", "Zeitmaschine nötig!", "Schüttel es ab!", "Nächste Runde gehört dir!", "Passiert den Besten!"],
       "missed": ["KEIN TIPP", "ZEIT UM!", "ZU LANGSAM!", "VERPASST!", "HALLO?", "AFK!", "TIMEOUT!"],
       "missedSub": ["Zeit abgelaufen!", "Die Uhr wartet nicht!", "Nächstes Mal mehr Glück!", "Zu lange überlegt!"]
-    }
+    },
+    "chartPosition": "auf Billboard Hot 100",
+    "weeksOnChart": "Wochen in den Charts",
+    "ukPeak": "UK Charts",
+    "moreAwards": "weitere"
   },
   "leaderboard": {
     "title": "Rangliste",
