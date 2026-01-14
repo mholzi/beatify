@@ -1663,8 +1663,8 @@
         // Stop any existing confetti
         stopConfetti();
 
-        // Get translated emotion arrays
-        var emotions = translations[currentLanguage].reveal.emotions || translations.en.reveal.emotions;
+        // Get translated emotion arrays using i18n
+        var emotions = t('reveal.emotions');
 
         // Helper to pick random from array
         function randomFrom(arr) {
