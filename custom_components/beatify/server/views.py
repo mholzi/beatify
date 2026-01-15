@@ -257,6 +257,10 @@ class StartGameView(HomeAssistantView):
         if not game_state:
             game_state = GameState()
             self.hass.data[DOMAIN]["game"] = game_state
+            # Connect stats service if available (Story 14.4)
+            stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
+            if stats_service:
+                game_state.set_stats_service(stats_service)
 
         # Build create_game kwargs with optional round_duration (Story 13.1) and difficulty (Story 14.1)
         create_kwargs: dict[str, Any] = {

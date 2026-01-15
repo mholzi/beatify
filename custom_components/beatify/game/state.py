@@ -722,6 +722,7 @@ class GameState:
 
         """
         self._stats_service = stats_service
+        _LOGGER.info("Stats service connected to GameState")
 
     def _calculate_current_avg(self) -> float:
         """
@@ -752,6 +753,7 @@ class GameState:
 
         """
         if not self._stats_service:
+            _LOGGER.debug("get_game_performance: No stats service connected")
             return None
 
         current_avg = self._calculate_current_avg()

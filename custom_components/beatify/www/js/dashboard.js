@@ -109,6 +109,10 @@
      */
     function handleServerMessage(data) {
         if (data.type === 'state') {
+            // Debug: Log game_performance data (Story 14.4)
+            if (data.game_performance) {
+                console.log('[Dashboard] game_performance:', data.game_performance);
+            }
             handleStateUpdate(data);
         } else if (data.type === 'error') {
             console.log('[Dashboard] Server error:', data.message);
