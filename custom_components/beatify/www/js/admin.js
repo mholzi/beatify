@@ -19,7 +19,7 @@ let cachedQRUrl = null;
 let selectedLanguage = 'en';
 
 // Timer state (Story 13.1)
-let selectedDuration = 30;
+let selectedDuration = 45;
 
 // Difficulty state (Story 14.1)
 let selectedDifficulty = 'normal';

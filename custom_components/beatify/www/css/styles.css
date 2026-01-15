@@ -1486,6 +1486,7 @@ body.theme-dark .qr-modal-label {
 
 .view {
     display: block;
+    overflow-x: hidden;
 }
 
 .view.hidden {
@@ -3746,6 +3747,8 @@ body.theme-dark .result-value.is-bet-lost {
 
 .reveal-results-cards {
     margin-top: var(--space-lg);
+    width: 100%;
+    overflow: hidden;
 }
 
 .results-cards-header {
@@ -3761,8 +3764,10 @@ body.theme-dark .result-value.is-bet-lost {
     display: flex;
     gap: var(--space-sm);
     overflow-x: auto;
+    overflow-y: hidden;
     padding-bottom: var(--space-sm);
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
 }
 
 .results-cards-scroll::-webkit-scrollbar {
