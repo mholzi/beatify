@@ -1403,20 +1403,31 @@
         if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
         if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
 
-        // Update fun fact
+        // Update fun fact and rich song info (Story 14.3)
         var funFactContainer = document.getElementById('fun-fact-container');
         var funFactText = document.getElementById('fun-fact');
-        if (funFactContainer && funFactText) {
-            if (song.fun_fact) {
-                funFactText.textContent = song.fun_fact;
-                funFactContainer.classList.remove('hidden');
-            } else {
-                funFactContainer.classList.add('hidden');
-            }
+        var funFactHeader = funFactContainer ? funFactContainer.querySelector('.fun-fact-header') : null;
+
+        // Set fun fact text
+        if (funFactText) {
+            funFactText.textContent = song.fun_fact || '';
+        }
+
+        // Show/hide fun fact header based on whether there's a fun fact
+        if (funFactHeader) {
+            funFactHeader.style.display = song.fun_fact ? 'flex' : 'none';
         }
 
         // Render rich song info (Story 14.3)
         renderRichSongInfo(song);
+
+        // Show container if there's fun fact OR rich info
+        if (funFactContainer) {
+            var richInfo = document.getElementById('song-rich-info');
+            var hasRichInfo = richInfo && richInfo.innerHTML.trim() !== '';
+            var hasFunFact = song.fun_fact && song.fun_fact.trim() !== '';
+            funFactContainer.classList.toggle('hidden', !hasFunFact && !hasRichInfo);
+        }
 
         // Find current player's result
         var currentPlayer = null;
@@ -1667,7 +1678,6 @@
         html += renderAwards(song.awards || []);
 
         container.innerHTML = html;
-        container.classList.toggle('hidden', html === '');
     }
 
     /**

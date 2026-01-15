@@ -2576,17 +2576,23 @@ body.theme-dark .admin-controls {
     color: var(--color-text-muted);
 }
 
-/* Fun Fact */
+/* Fun Fact + Rich Song Info Container */
 .fun-fact-container {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     gap: var(--space-sm);
     background: var(--color-warning-light);
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-md);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-lg);
     text-align: left;
     max-width: 100%;
+}
+
+.fun-fact-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
 }
 
 .fun-fact-icon {
@@ -2600,23 +2606,25 @@ body.theme-dark .admin-controls {
     line-height: 1.4;
 }
 
-/* ============================================
-   Rich Song Info (Story 14.3)
-   ============================================ */
-
-.song-rich-info {
-    margin-top: var(--space-md);
-    padding: var(--space-md);
-    background: var(--color-dark-surface);
-    border-radius: var(--radius-lg);
-    text-align: left;
-}
-
-.song-rich-info.hidden {
+/* Hide fun fact header when no fun fact text */
+.fun-fact-header:empty,
+.fun-fact-text:empty {
     display: none;
 }
 
-/* Chart info */
+/* ============================================
+   Rich Song Info (Story 14.3) - inside fun fact box
+   ============================================ */
+
+.song-rich-info {
+    text-align: left;
+}
+
+.song-rich-info:empty {
+    display: none;
+}
+
+/* Chart info - styled for fun fact box (light background) */
 .chart-info {
     display: flex;
     align-items: center;
@@ -2624,7 +2632,9 @@ body.theme-dark .admin-controls {
     gap: var(--space-sm);
     margin-bottom: var(--space-sm);
     font-size: var(--font-size-sm);
-    color: var(--color-text-neon-muted);
+    color: #78350f;
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(120, 53, 15, 0.2);
 }
 
 .chart-icon {
@@ -2633,13 +2643,13 @@ body.theme-dark .admin-controls {
 
 .chart-peak {
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-white);
+    color: #92400e;
 }
 
 .chart-weeks,
 .chart-uk,
 .chart-secondary {
-    color: var(--color-text-neon-muted);
+    color: #78350f;
 }
 
 /* Certifications */
@@ -2656,9 +2666,9 @@ body.theme-dark .admin-controls {
     border-radius: var(--radius-sm);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    background: var(--color-dark-surface);
-    border: 1px solid var(--color-border-neon);
-    color: var(--color-text-white);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(120, 53, 15, 0.3);
+    color: #78350f;
 }
 
 .certification-badge--gold {
@@ -2679,7 +2689,7 @@ body.theme-dark .admin-controls {
     border-color: #80deea;
 }
 
-/* Awards */
+/* Awards - styled for fun fact box (light background) */
 .awards {
     display: flex;
     flex-direction: column;
@@ -2688,12 +2698,12 @@ body.theme-dark .admin-controls {
 
 .award-item {
     font-size: var(--font-size-sm);
-    color: var(--color-text-neon-muted);
+    color: #78350f;
 }
 
 .awards-more {
     font-size: var(--font-size-xs);
-    color: var(--color-text-light);
+    color: #92400e;
     font-style: italic;
 }
 
