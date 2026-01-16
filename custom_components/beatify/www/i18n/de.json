@@ -60,6 +60,17 @@
     "difficultyNormal": "Normal",
     "difficultyHard": "Schwer"
   },
+  "steal": {
+    "available": "Klauen verfügbar!",
+    "button": "Antwort klauen",
+    "selectTarget": "Wähle ein Ziel",
+    "selectTargetHint": "Kopiere deren Antwort für diese Runde",
+    "waitForSubmit": "Noch niemand hat abgegeben. Warte bis jemand tippt.",
+    "confirm": "{name}s Antwort klauen?",
+    "success": "{name}s Antwort geklaut: {year}",
+    "stolenFrom": "Geklaut von {name}",
+    "stolenBy": "Antwort geklaut von {name}"
+  },
   "reveal": {
     "correct": "Richtig!",
     "close": "Knapp!",

@@ -421,6 +421,14 @@ class BeatifyWebSocketHandler:
             if state:
                 await ws.send_json({"type": "state", **state})
 
+        elif msg_type == "get_steal_targets":
+            # Request available steal targets (Story 15.3 AC2, AC5)
+            await self._handle_get_steal_targets(ws, game_state)
+
+        elif msg_type == "steal":
+            # Execute steal power-up (Story 15.3 AC2, AC3)
+            await self._handle_steal(ws, data, game_state)
+
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
 
@@ -648,6 +656,118 @@ class BeatifyWebSocketHandler:
         await self.broadcast_state()
 
         _LOGGER.info("Player left game intentionally: %s", player_name)
+
+    async def _handle_get_steal_targets(
+        self, ws: web.WebSocketResponse, game_state: GameState
+    ) -> None:
+        """
+        Handle request for available steal targets (Story 15.3 AC2, AC5).
+
+        Args:
+            ws: WebSocket connection
+            game_state: Current game state
+
+        """
+        # Find player by WebSocket
+        player = None
+        for p in game_state.players.values():
+            if p.ws == ws:
+                player = p
+                break
+
+        if not player:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            })
+            return
+
+        # Check if player has steal available
+        if not player.steal_available:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "No steal available",
+            })
+            return
+
+        # Get available targets (privacy: only requesting player sees this)
+        targets = game_state.get_steal_targets(player.name)
+
+        await ws.send_json({
+            "type": "steal_targets",
+            "targets": targets,
+        })
+
+    async def _handle_steal(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle steal execution (Story 15.3 AC2, AC3).
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing target name
+            game_state: Current game state
+
+        """
+        # Find player by WebSocket
+        player = None
+        for p in game_state.players.values():
+            if p.ws == ws:
+                player = p
+                break
+
+        if not player:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            })
+            return
+
+        target_name = data.get("target")
+        if not target_name:
+            await ws.send_json({
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Target name required",
+            })
+            return
+
+        # Execute steal via GameState
+        result = game_state.use_steal(player.name, target_name)
+
+        if result["success"]:
+            # Send acknowledgment to stealer
+            await ws.send_json({
+                "type": "steal_ack",
+                "success": True,
+                "target": result["target"],
+                "year": result["year"],
+            })
+
+            # Broadcast updated state (stealer now has submitted)
+            await self.broadcast_state()
+        else:
+            # Send error to stealer
+            await ws.send_json({
+                "type": "error",
+                "code": result["error"],
+                "message": self._get_steal_error_message(result["error"]),
+            })
+
+    def _get_steal_error_message(self, error_code: str) -> str:
+        """Get human-readable message for steal error codes."""
+        messages = {
+            ERR_NOT_IN_GAME: "Not in game",
+            ERR_INVALID_ACTION: "Cannot steal now",
+            "NO_STEAL_AVAILABLE": "No steal available",
+            "TARGET_NOT_SUBMITTED": "Target has not submitted yet",
+            "CANNOT_STEAL_SELF": "Cannot steal from yourself",
+        }
+        return messages.get(error_code, "Steal failed")
 
     async def broadcast(self, message: dict) -> None:
         """

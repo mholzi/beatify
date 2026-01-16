@@ -768,3 +768,162 @@ class TestResetRoundClearsArtist:
         # Also verify other round fields are reset
         assert player.submitted is False
         assert player.current_guess is None
+
+
+# =============================================================================
+# STEAL POWER-UP TESTS (Story 15.3)
+# =============================================================================
+
+
+@pytest.mark.unit
+class TestStealFields:
+    """Tests for steal power-up fields on PlayerSession (Story 15.3)."""
+
+    def test_player_session_has_steal_fields(self, mock_ws):
+        """PlayerSession has steal tracking fields."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+
+        assert hasattr(player, "steal_available")
+        assert hasattr(player, "steal_used")
+        assert hasattr(player, "stole_from")
+        assert hasattr(player, "was_stolen_by")
+
+    def test_steal_fields_default_values(self, mock_ws):
+        """Steal fields have correct default values."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+
+        assert player.steal_available is False
+        assert player.steal_used is False
+        assert player.stole_from is None
+        assert player.was_stolen_by == []
+
+
+@pytest.mark.unit
+class TestUnlockSteal:
+    """Tests for unlock_steal method (Story 15.3)."""
+
+    def test_unlock_steal_success(self, mock_ws):
+        """unlock_steal sets steal_available to True."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        result = player.unlock_steal()
+
+        assert result is True
+        assert player.steal_available is True
+        assert player.steal_used is False
+
+    def test_unlock_steal_already_available(self, mock_ws):
+        """unlock_steal returns False if already available."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_available = True
+
+        result = player.unlock_steal()
+
+        assert result is False
+        assert player.steal_available is True
+
+    def test_unlock_steal_already_used(self, mock_ws):
+        """unlock_steal returns False if already used."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_used = True
+
+        result = player.unlock_steal()
+
+        assert result is False
+        assert player.steal_available is False
+
+
+@pytest.mark.unit
+class TestConsumeSteal:
+    """Tests for consume_steal method (Story 15.3)."""
+
+    def test_consume_steal_success(self, mock_ws):
+        """consume_steal marks steal as used and records target."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_available = True
+
+        player.consume_steal("Alice")
+
+        assert player.steal_available is False
+        assert player.steal_used is True
+        assert player.stole_from == "Alice"
+
+    def test_consume_steal_records_target_name(self, mock_ws):
+        """consume_steal records target name correctly."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_available = True
+
+        player.consume_steal("Charlie")
+
+        assert player.stole_from == "Charlie"
+
+
+@pytest.mark.unit
+class TestResetRoundClearsSteal:
+    """Tests for reset_round clearing steal fields (Story 15.3)."""
+
+    def test_reset_round_clears_per_round_steal_fields(self, mock_ws):
+        """reset_round clears stole_from and was_stolen_by but NOT steal_available."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_available = True
+        player.stole_from = "Alice"
+        player.was_stolen_by = ["Bob", "Charlie"]
+
+        player.reset_round()
+
+        # Per-round fields should be cleared
+        assert player.stole_from is None
+        assert player.was_stolen_by == []
+        # Game-level fields should remain
+        assert player.steal_available is True
+
+    def test_reset_round_preserves_steal_used(self, mock_ws):
+        """reset_round preserves steal_used flag."""
+        from custom_components.beatify.game.player import PlayerSession
+
+        player = PlayerSession(name="Tom", ws=mock_ws)
+        player.steal_used = True
+
+        player.reset_round()
+
+        assert player.steal_used is True
+
+
+@pytest.mark.unit
+class TestGetPlayersStateIncludesSteal:
+    """Tests that get_players_state includes steal_available (Story 15.3)."""
+
+    def test_get_players_state_includes_steal_available(self, game_state_with_game, mock_ws):
+        """get_players_state includes steal_available field."""
+        game_state_with_game.add_player("Tom", mock_ws)
+        player = game_state_with_game.get_player("Tom")
+        player.steal_available = True
+
+        result = game_state_with_game.get_players_state()
+
+        assert len(result) == 1
+        assert "steal_available" in result[0]
+        assert result[0]["steal_available"] is True
+
+    def test_get_players_state_steal_available_default_false(self, game_state_with_game, mock_ws):
+        """get_players_state shows steal_available as False by default."""
+        game_state_with_game.add_player("Tom", mock_ws)
+
+        result = game_state_with_game.get_players_state()
+
+        assert result[0]["steal_available"] is False

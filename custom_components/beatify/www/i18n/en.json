@@ -60,6 +60,17 @@
     "difficultyNormal": "Normal",
     "difficultyHard": "Hard"
   },
+  "steal": {
+    "available": "Steal Available!",
+    "button": "Steal Answer",
+    "selectTarget": "Select a target",
+    "selectTargetHint": "Copy their answer for this round",
+    "waitForSubmit": "No players have submitted yet. Wait for someone to submit their guess.",
+    "confirm": "Steal {name}'s answer?",
+    "success": "Stole {name}'s answer: {year}",
+    "stolenFrom": "Stolen from {name}",
+    "stolenBy": "Answer stolen by {name}"
+  },
   "reveal": {
     "correct": "Correct!",
     "close": "Close!",

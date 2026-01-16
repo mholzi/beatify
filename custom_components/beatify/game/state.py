@@ -14,17 +14,23 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
+    ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
+    ERR_INVALID_ACTION,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
+    ERR_NO_STEAL_AVAILABLE,
+    ERR_NOT_IN_GAME,
+    ERR_TARGET_NOT_SUBMITTED,
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    STEAL_UNLOCK_STREAK,
 )
 
 from .player import PlayerSession
@@ -640,6 +646,82 @@ class GameState:
         name = self._sessions.get(session_id)
         return self.players.get(name) if name else None
 
+    def get_steal_targets(self, stealer_name: str) -> list[str]:
+        """
+        Get list of players who have submitted and can be stolen from (Story 15.3).
+
+        Args:
+            stealer_name: Name of the player attempting to steal
+
+        Returns:
+            List of player names who have submitted this round, excluding self
+
+        """
+        targets = []
+        for name, player in self.players.items():
+            if name != stealer_name and player.submitted:
+                targets.append(name)
+        return targets
+
+    def use_steal(self, stealer_name: str, target_name: str) -> dict[str, Any]:
+        """
+        Execute steal: copy target's guess to stealer (Story 15.3).
+
+        Args:
+            stealer_name: Name of the player using steal
+            target_name: Name of the player to copy from
+
+        Returns:
+            dict with success status, or error code on failure
+
+        """
+        stealer = self.players.get(stealer_name)
+        target = self.players.get(target_name)
+
+        # Validations
+        if not stealer:
+            return {"success": False, "error": ERR_NOT_IN_GAME}
+
+        if not stealer.steal_available:
+            return {"success": False, "error": ERR_NO_STEAL_AVAILABLE}
+
+        if self.phase != GamePhase.PLAYING:
+            return {"success": False, "error": ERR_INVALID_ACTION}
+
+        if stealer_name == target_name:
+            return {"success": False, "error": ERR_CANNOT_STEAL_SELF}
+
+        if not target:
+            return {"success": False, "error": ERR_NOT_IN_GAME}
+
+        if not target.submitted or target.current_guess is None:
+            return {"success": False, "error": ERR_TARGET_NOT_SUBMITTED}
+
+        # Execute steal
+        stolen_year = target.current_guess
+
+        # Copy guess to stealer (keeping stealer's bet status)
+        stealer.current_guess = stolen_year
+        stealer.submitted = True
+        stealer.submission_time = self._now()
+
+        # Track steal relationship
+        stealer.consume_steal(target_name)
+        target.was_stolen_by.append(stealer_name)
+
+        _LOGGER.info(
+            "Player %s stole answer from %s (year: %d)",
+            stealer_name,
+            target_name,
+            stolen_year,
+        )
+
+        return {
+            "success": True,
+            "target": target_name,
+            "year": stolen_year,
+        }
+
     def remove_player(self, name: str) -> None:
         """
         Remove player from game.
@@ -684,6 +766,8 @@ class GameState:
                 "streak": p.streak,
                 "is_admin": p.is_admin,
                 "submitted": p.submitted,
+                # Steal availability (Story 15.3 AC1)
+                "steal_available": p.steal_available,
             }
             for p in self.players.values()
         ]
@@ -1002,6 +1086,10 @@ class GameState:
                     player.streak += 1
                     # Check for streak milestone bonus (awarded at exact milestones)
                     player.streak_bonus = calculate_streak_bonus(player.streak)
+                    # Check for steal unlock at 3-streak milestone (Story 15.3)
+                    if player.streak == STEAL_UNLOCK_STREAK:
+                        if player.unlock_steal():
+                            _LOGGER.info("Player %s unlocked steal at %d streak", player.name, player.streak)
                 else:
                     player.previous_streak = player.streak  # Store for display (5.4)
                     player.streak = 0
@@ -1091,6 +1179,10 @@ class GameState:
                 "bet_outcome": p.bet_outcome,
                 # Missed round data (Story 5.4)
                 "previous_streak": p.previous_streak,
+                # Steal data (Story 15.3 AC4)
+                "stole_from": p.stole_from,
+                "was_stolen_by": p.was_stolen_by.copy() if p.was_stolen_by else [],
+                "steal_available": p.steal_available,
             }
             for p in self.players.values()
         ]

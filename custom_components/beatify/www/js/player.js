@@ -895,6 +895,9 @@
         if (data.leaderboard) {
             updateLeaderboard(data, 'leaderboard-list');
         }
+
+        // Update steal UI (Story 15.3)
+        updateStealUI(data.players);
     }
 
     // ============================================
@@ -1193,6 +1196,7 @@
     let hasSubmitted = false;
     let betActive = false;  // Betting state (Story 5.3)
     let currentRoundNumber = 0;  // Track round to detect new rounds
+    let hasStealAvailable = false;  // Steal power-up state (Story 15.3)
 
     /**
      * Initialize year selector interaction
@@ -1222,6 +1226,27 @@
         var submitBtn = document.getElementById('submit-btn');
         if (submitBtn) {
             submitBtn.addEventListener('click', handleSubmitGuess);
+        }
+
+        // Steal button handler (Story 15.3)
+        var stealBtn = document.getElementById('steal-btn');
+        if (stealBtn) {
+            stealBtn.addEventListener('click', handleStealClick);
+        }
+
+        // Steal modal close handler
+        var stealModalClose = document.getElementById('steal-modal-close');
+        if (stealModalClose) {
+            stealModalClose.addEventListener('click', closeStealModal);
+        }
+
+        // Steal modal backdrop click to close
+        var stealModal = document.getElementById('steal-modal');
+        if (stealModal) {
+            var backdrop = stealModal.querySelector('.steal-modal-backdrop');
+            if (backdrop) {
+                backdrop.addEventListener('click', closeStealModal);
+            }
         }
     }
 
@@ -1365,6 +1390,199 @@
             var yearDisplay = document.getElementById('selected-year');
             if (yearDisplay) yearDisplay.textContent = '1990';
         }
+
+        // Reset steal UI (Story 15.3)
+        hasStealAvailable = false;
+        hideStealUI();
+    }
+
+    // ============================================
+    // Steal Power-up (Story 15.3)
+    // ============================================
+
+    /**
+     * Update steal UI based on player state
+     * @param {Array} players - Array of player objects
+     */
+    function updateStealUI(players) {
+        if (!playerName || !players) return;
+
+        // Find current player's data
+        var currentPlayer = players.find(function(p) {
+            return p.name === playerName;
+        });
+
+        if (!currentPlayer) return;
+
+        hasStealAvailable = currentPlayer.steal_available && !hasSubmitted;
+
+        var stealIndicator = document.getElementById('steal-indicator');
+        var stealBtn = document.getElementById('steal-btn');
+
+        if (hasStealAvailable) {
+            // Show steal indicator and button
+            if (stealIndicator) stealIndicator.classList.remove('hidden');
+            if (stealBtn) stealBtn.classList.remove('hidden');
+        } else {
+            // Hide steal UI
+            hideStealUI();
+        }
+    }
+
+    /**
+     * Hide all steal UI elements
+     */
+    function hideStealUI() {
+        var stealIndicator = document.getElementById('steal-indicator');
+        var stealBtn = document.getElementById('steal-btn');
+
+        if (stealIndicator) stealIndicator.classList.add('hidden');
+        if (stealBtn) stealBtn.classList.add('hidden');
+    }
+
+    /**
+     * Handle steal button click - request targets and open modal
+     */
+    function handleStealClick() {
+        if (!hasStealAvailable || hasSubmitted) return;
+
+        // Request available steal targets from server
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ type: 'get_steal_targets' }));
+        }
+    }
+
+    /**
+     * Open steal modal with available targets
+     * @param {Array} targets - Array of player names who have submitted
+     */
+    function openStealModal(targets) {
+        var modal = document.getElementById('steal-modal');
+        var targetList = document.getElementById('steal-target-list');
+
+        if (!modal || !targetList) return;
+
+        // Clear previous targets
+        targetList.innerHTML = '';
+
+        if (!targets || targets.length === 0) {
+            // No valid targets - show waiting message
+            var noTargets = document.createElement('p');
+            noTargets.className = 'steal-no-targets';
+            noTargets.textContent = t('steal.waitForSubmit');
+            targetList.appendChild(noTargets);
+        } else {
+            // Render target buttons
+            targets.forEach(function(target) {
+                var btn = document.createElement('button');
+                btn.className = 'steal-target-btn';
+                btn.textContent = target;
+                btn.addEventListener('click', function() {
+                    selectStealTarget(target);
+                });
+                targetList.appendChild(btn);
+            });
+        }
+
+        modal.classList.remove('hidden');
+    }
+
+    /**
+     * Close steal modal
+     */
+    function closeStealModal() {
+        var modal = document.getElementById('steal-modal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    /**
+     * Select a steal target and confirm
+     * @param {string} targetName - Name of player to steal from
+     */
+    function selectStealTarget(targetName) {
+        // Show confirmation dialog
+        var confirmMsg = t('steal.confirm').replace('{name}', targetName);
+        if (!confirm(confirmMsg)) {
+            return;
+        }
+
+        // Send steal request to server
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
+                type: 'steal',
+                target: targetName
+            }));
+        }
+
+        // Close modal
+        closeStealModal();
+    }
+
+    /**
+     * Handle steal acknowledgment from server
+     * @param {Object} data - Response data with target and year
+     */
+    function handleStealAck(data) {
+        if (data.success) {
+            // Update local state
+            hasStealAvailable = false;
+            hasSubmitted = true;
+
+            // Hide steal UI
+            hideStealUI();
+
+            // Show submit confirmation
+            var yearSelector = document.getElementById('year-selector');
+            var submitBtn = document.getElementById('submit-btn');
+            var confirmation = document.getElementById('submitted-confirmation');
+
+            if (yearSelector) yearSelector.classList.add('is-submitted');
+            if (submitBtn) submitBtn.classList.add('hidden');
+            if (confirmation) confirmation.classList.remove('hidden');
+
+            // Show steal-specific confirmation toast
+            showStealConfirmation(data.target, data.year);
+
+            // Update year display to show stolen year
+            var yearDisplay = document.getElementById('selected-year');
+            var slider = document.getElementById('year-slider');
+            if (yearDisplay) yearDisplay.textContent = data.year;
+            if (slider) slider.value = data.year;
+        }
+    }
+
+    /**
+     * Handle steal targets response from server
+     * @param {Object} data - Response data with targets array
+     */
+    function handleStealTargets(data) {
+        openStealModal(data.targets || []);
+    }
+
+    /**
+     * Show steal confirmation toast
+     * @param {string} target - Name of player stolen from
+     * @param {number} year - The stolen year guess
+     */
+    function showStealConfirmation(target, year) {
+        var toast = document.getElementById('steal-confirmation');
+        var text = document.getElementById('steal-confirmation-text');
+
+        if (!toast || !text) return;
+
+        // Set message
+        var msg = t('steal.success')
+            .replace('{name}', target)
+            .replace('{year}', year);
+        text.textContent = msg;
+
+        // Show toast
+        toast.classList.remove('hidden');
+
+        // Hide after 3 seconds
+        setTimeout(function() {
+            toast.classList.add('hidden');
+        }, 3000);
     }
 
     // ============================================
@@ -2115,10 +2333,22 @@
             // Bet indicator
             var betIndicator = player.bet ? '<span class="card-bet">🎲</span>' : '';
 
+            // Steal indicator (Story 15.3 AC4)
+            var stealIndicator = '';
+            if (player.stole_from) {
+                stealIndicator = '<div class="steal-badge"><span class="steal-badge-icon">🥷</span>' +
+                    t('steal.stolenFrom', { name: escapeHtml(player.stole_from) }) + '</div>';
+            } else if (player.was_stolen_by && player.was_stolen_by.length > 0) {
+                var stealerNames = player.was_stolen_by.map(escapeHtml).join(', ');
+                stealIndicator = '<div class="steal-badge steal-badge-victim"><span class="steal-badge-icon">🎯</span>' +
+                    t('steal.stolenBy', { name: stealerNames }) + '</div>';
+            }
+
             html += '<div class="result-card ' + scoreClass + (isCurrentPlayer ? ' is-current' : '') + '">' +
                 '<div class="card-name">' + escapeHtml(player.name) + betIndicator + '</div>' +
                 '<div class="card-guess">' + guessDisplay + '</div>' +
                 '<div class="card-accuracy">' + yearsOffDisplay + '</div>' +
+                stealIndicator +
                 '<div class="card-score">+' + roundScore + '</div>' +
             '</div>';
         });
@@ -3105,6 +3335,12 @@
         } else if (data.type === 'left') {
             // Story 11.5 - player left game successfully
             handleLeftGame();
+        } else if (data.type === 'steal_targets') {
+            // Story 15.3 - handle steal targets response
+            handleStealTargets(data);
+        } else if (data.type === 'steal_ack') {
+            // Story 15.3 - handle steal acknowledgment
+            handleStealAck(data);
         }
     }
 

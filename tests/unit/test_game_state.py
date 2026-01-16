@@ -985,3 +985,218 @@ class TestRoundAnalyticsStateIntegration:
         state.round_analytics = None
 
         assert state.round_analytics is None
+
+
+# =============================================================================
+# STEAL POWER-UP TESTS (Story 15.3)
+# =============================================================================
+
+
+@pytest.mark.unit
+class TestGetStealTargets:
+    """Tests for get_steal_targets method (Story 15.3)."""
+
+    def test_get_steal_targets_returns_submitted_players(self):
+        """get_steal_targets returns players who have submitted."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.add_player("Alice", mock_ws)
+        state.add_player("Bob", mock_ws)
+
+        # Alice submitted, Bob did not
+        state.players["Alice"].submitted = True
+        state.players["Alice"].current_guess = 1985
+        state.players["Bob"].submitted = False
+
+        targets = state.get_steal_targets("Stealer")
+
+        assert "Alice" in targets
+        assert "Bob" not in targets
+        assert "Stealer" not in targets
+
+    def test_get_steal_targets_excludes_self(self):
+        """get_steal_targets excludes the requesting player."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Tom", mock_ws)
+        state.players["Tom"].submitted = True
+        state.players["Tom"].current_guess = 1985
+
+        targets = state.get_steal_targets("Tom")
+
+        assert "Tom" not in targets
+        assert targets == []
+
+
+@pytest.mark.unit
+class TestUseSteal:
+    """Tests for use_steal method (Story 15.3)."""
+
+    def test_use_steal_success(self):
+        """use_steal copies target's guess to stealer."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.add_player("Target", mock_ws)
+
+        # Setup: Target submitted, Stealer has steal available
+        state.players["Target"].submitted = True
+        state.players["Target"].current_guess = 1990
+        state.players["Stealer"].steal_available = True
+        state.phase = GamePhase.PLAYING
+
+        result = state.use_steal("Stealer", "Target")
+
+        assert result["success"] is True
+        assert result["target"] == "Target"
+        assert result["year"] == 1990
+        assert state.players["Stealer"].current_guess == 1990
+        assert state.players["Stealer"].submitted is True
+        assert state.players["Stealer"].steal_available is False
+        assert state.players["Stealer"].steal_used is True
+        assert state.players["Stealer"].stole_from == "Target"
+        assert "Stealer" in state.players["Target"].was_stolen_by
+
+    def test_use_steal_no_steal_available(self):
+        """use_steal fails if player has no steal available."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.const import ERR_NO_STEAL_AVAILABLE
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.add_player("Target", mock_ws)
+        state.players["Target"].submitted = True
+        state.players["Target"].current_guess = 1990
+        state.phase = GamePhase.PLAYING
+        # steal_available is False by default
+
+        result = state.use_steal("Stealer", "Target")
+
+        assert result["success"] is False
+        assert result["error"] == ERR_NO_STEAL_AVAILABLE
+
+    def test_use_steal_target_not_submitted(self):
+        """use_steal fails if target hasn't submitted."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.const import ERR_TARGET_NOT_SUBMITTED
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.add_player("Target", mock_ws)
+        state.players["Stealer"].steal_available = True
+        state.phase = GamePhase.PLAYING
+        # Target hasn't submitted
+
+        result = state.use_steal("Stealer", "Target")
+
+        assert result["success"] is False
+        assert result["error"] == ERR_TARGET_NOT_SUBMITTED
+
+    def test_use_steal_cannot_steal_self(self):
+        """use_steal fails if trying to steal from self."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.const import ERR_CANNOT_STEAL_SELF
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.players["Stealer"].steal_available = True
+        state.players["Stealer"].submitted = True
+        state.players["Stealer"].current_guess = 1985
+        state.phase = GamePhase.PLAYING
+
+        result = state.use_steal("Stealer", "Stealer")
+
+        assert result["success"] is False
+        assert result["error"] == ERR_CANNOT_STEAL_SELF
+
+    def test_use_steal_wrong_phase(self):
+        """use_steal fails if not in PLAYING phase."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.const import ERR_INVALID_ACTION
+        from custom_components.beatify.game.state import GamePhase, GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+
+        mock_ws = MagicMock()
+        state.add_player("Stealer", mock_ws)
+        state.add_player("Target", mock_ws)
+        state.players["Target"].submitted = True
+        state.players["Target"].current_guess = 1990
+        state.players["Stealer"].steal_available = True
+        state.phase = GamePhase.REVEAL  # Wrong phase
+
+        result = state.use_steal("Stealer", "Target")
+
+        assert result["success"] is False
+        assert result["error"] == ERR_INVALID_ACTION

@@ -128,6 +128,12 @@
                     Final Round!
                 </div>
 
+                <!-- Steal Available Indicator (Story 15.3 AC1) -->
+                <div id="steal-indicator" class="steal-indicator hidden">
+                    <span class="steal-indicator-icon">🥷</span>
+                    <span class="steal-indicator-text" data-i18n="steal.available">Steal Available!</span>
+                </div>
+
                 <!-- Album Cover -->
                 <div class="album-cover-container">
                     <img id="album-cover"
@@ -182,6 +188,12 @@
 
                         <button id="submit-btn" class="submit-btn" data-i18n="game.submitGuess">
                             Submit Guess
+                        </button>
+
+                        <!-- Steal Power-up Button (Story 15.3) -->
+                        <button id="steal-btn" class="steal-btn hidden" type="button">
+                            <span class="steal-btn-icon">🥷</span>
+                            <span class="steal-btn-label" data-i18n="steal.button">Steal Answer</span>
                         </button>
 
                         <div id="submitted-confirmation" class="submitted-confirmation hidden">
@@ -441,6 +453,27 @@
             <button id="qr-modal-close" class="btn btn-secondary qr-modal-close"
                     aria-label="Close QR code" data-i18n="common.close">Close</button>
         </div>
+    </div>
+
+    <!-- Steal Target Modal (Story 15.3 AC2, AC5) -->
+    <div id="steal-modal" class="steal-modal hidden" role="dialog" aria-modal="true"
+         aria-labelledby="steal-modal-title">
+        <div class="steal-modal-backdrop"></div>
+        <div class="steal-modal-content">
+            <h2 id="steal-modal-title" class="steal-modal-title" data-i18n="steal.selectTarget">Select a target</h2>
+            <p class="steal-modal-subtitle" data-i18n="steal.selectTargetHint">Copy their answer for this round</p>
+            <div id="steal-target-list" class="steal-target-list">
+                <!-- Populated by JavaScript -->
+            </div>
+            <button id="steal-modal-close" class="btn btn-secondary steal-modal-cancel"
+                    aria-label="Cancel steal" data-i18n="common.cancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Steal Confirmation Toast (Story 15.3 AC3) -->
+    <div id="steal-confirmation" class="steal-confirmation hidden">
+        <span class="steal-confirmation-icon">🥷</span>
+        <span id="steal-confirmation-text" class="steal-confirmation-text"></span>
     </div>
 
     <script src="/beatify/static/js/vendor/qrcode.min.js"></script>

@@ -24,6 +24,10 @@ VOLUME_STEP = 0.1
 # Key = streak count, Value = bonus points
 STREAK_MILESTONES: dict[int, int] = {3: 20, 5: 50, 10: 100}
 
+# Steal power-up constants (Story 15.3)
+STEAL_UNLOCK_STREAK = 3  # Consecutive correct answers to unlock steal
+MAX_STEALS_PER_GAME = 1  # Maximum number of steals allowed per game
+
 # Difficulty presets (Story 14.1)
 DIFFICULTY_EASY = "easy"
 DIFFICULTY_NORMAL = "normal"
@@ -58,6 +62,9 @@ ERR_NO_SONGS_REMAINING = "NO_SONGS_REMAINING"
 ERR_SESSION_NOT_FOUND = "SESSION_NOT_FOUND"  # Story 11.2
 ERR_SESSION_TAKEOVER = "SESSION_TAKEOVER"  # Story 11.2 - dual-tab scenario
 ERR_ADMIN_CANNOT_LEAVE = "ADMIN_CANNOT_LEAVE"  # Story 11.5
+ERR_NO_STEAL_AVAILABLE = "NO_STEAL_AVAILABLE"  # Story 15.3 - player has no steal
+ERR_TARGET_NOT_SUBMITTED = "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
+ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
 
 # External URLs
 PLAYLIST_DOCS_URL = "https://github.com/mholzi/beatify/wiki/Creating-Playlists"

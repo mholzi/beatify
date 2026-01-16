@@ -54,6 +54,12 @@ class PlayerSession:
     rounds_played: int = 0  # Rounds where player submitted
     bets_won: int = 0  # Successful bets
 
+    # Steal power-up tracking (Story 15.3)
+    steal_available: bool = False  # True if steal unlocked and not yet used
+    steal_used: bool = False  # True if steal was used this game (max 1 per game)
+    stole_from: str | None = None  # Per-round: who was stolen from
+    was_stolen_by: list[str] = field(default_factory=list)  # Per-round: who stole this player's answer
+
     def submit_guess(self, year: int, timestamp: float) -> None:
         """Record a guess submission."""
         self.submitted = True
@@ -78,3 +84,19 @@ class PlayerSession:
         self.bet_outcome = None
         # Reset previous streak (Story 5.4)
         self.previous_streak = 0
+        # Reset per-round steal fields (Story 15.3)
+        self.stole_from = None
+        self.was_stolen_by = []
+
+    def unlock_steal(self) -> bool:
+        """Unlock steal power-up if not already used. Returns True if newly unlocked."""
+        if self.steal_used or self.steal_available:
+            return False
+        self.steal_available = True
+        return True
+
+    def consume_steal(self, target_name: str) -> None:
+        """Use the steal power-up to copy target's answer."""
+        self.steal_available = False
+        self.steal_used = True
+        self.stole_from = target_name

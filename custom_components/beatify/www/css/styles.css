@@ -36,6 +36,10 @@
     --color-error-light: #fee2e2;
     --color-error-neon: #ff0040;
 
+    /* Purple colors for steal power-up (Story 15.3) */
+    --color-purple-primary: #8b5cf6;
+    --color-purple-secondary: #7c3aed;
+
     /* Color Tokens - Badge Backgrounds (Story 14.1) */
     --color-success-bg: rgba(16, 185, 129, 0.15);
     --color-accent-brand-bg: rgba(99, 102, 241, 0.15);
@@ -4344,6 +4348,245 @@ body.energy-party .year-display {
         animation: none;
     }
     .view {
+        animation: none;
+    }
+}
+
+/* ============================================
+   Steal Power-up Styles (Story 15.3)
+   ============================================ */
+
+/* Steal Available Indicator */
+.steal-indicator {
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: linear-gradient(135deg, var(--color-purple-primary), var(--color-purple-secondary, #9333ea));
+    color: var(--color-text-white);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+    animation: steal-pulse 2s ease-in-out infinite;
+    z-index: var(--z-tooltip);
+}
+
+.steal-indicator-icon {
+    font-size: var(--font-size-base);
+}
+
+@keyframes steal-pulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(147, 51, 234, 0.8), 0 0 35px rgba(147, 51, 234, 0.4);
+        transform: scale(1.02);
+    }
+}
+
+/* Steal Button */
+.steal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-sm);
+    background: linear-gradient(135deg, var(--color-purple-primary, #8b5cf6), var(--color-purple-secondary, #7c3aed));
+    border: none;
+    border-radius: var(--radius-lg);
+    color: var(--color-text-white);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    transition: all var(--transition-fast);
+}
+
+.steal-btn:hover:not(:disabled) {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+}
+
+.steal-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.steal-btn-icon {
+    font-size: var(--font-size-lg);
+}
+
+/* Steal Modal */
+.steal-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+}
+
+.steal-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.steal-modal-content {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-purple-primary, #8b5cf6);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    max-width: 320px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+.steal-modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.steal-modal-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.steal-target-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.steal-target-btn {
+    display: block;
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-accent-secondary);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.steal-target-btn:hover {
+    background: var(--color-accent-secondary);
+    color: var(--color-bg-primary);
+    transform: scale(1.02);
+}
+
+.steal-no-targets {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    padding: var(--space-md);
+}
+
+.steal-modal-cancel {
+    width: 100%;
+}
+
+/* Steal Confirmation Toast */
+.steal-confirmation {
+    position: fixed;
+    bottom: calc(var(--space-xl) + 60px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: linear-gradient(135deg, var(--color-purple-primary, #8b5cf6), var(--color-purple-secondary, #7c3aed));
+    color: var(--color-text-white);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.5);
+    animation: steal-toast-in 0.3s ease-out;
+    z-index: var(--z-tooltip);
+}
+
+@keyframes steal-toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.steal-confirmation-icon {
+    font-size: var(--font-size-lg);
+}
+
+/* Steal badge in reveal view */
+.steal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--color-purple-primary, #8b5cf6);
+    border-radius: var(--radius-full);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-xs);
+    color: var(--color-purple-primary, #8b5cf6);
+    margin-top: var(--space-xs);
+}
+
+.steal-badge-icon {
+    font-size: 0.9em;
+}
+
+/* Victim variant - shows who was stolen from */
+.steal-badge-victim {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+/* Dark mode adjustments */
+body.theme-dark .steal-modal-content {
+    background: var(--color-bg-card);
+}
+
+body.theme-dark .steal-target-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-accent-secondary);
+}
+
+body.theme-dark .steal-target-btn:hover {
+    background: var(--color-accent-secondary);
+    color: var(--color-bg-primary);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .steal-indicator {
+        animation: none;
+    }
+    .steal-confirmation {
         animation: none;
     }
 }
