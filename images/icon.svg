@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="beatifyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5ce1e6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e91e9b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d0d1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bgGradient)"/>
+
+  <!-- Stylized "B" with music wave elements -->
+  <g fill="url(#beatifyGradient)">
+    <!-- Main B shape -->
+    <path d="M72 48 L72 208 L120 208
+             C156 208 176 188 176 160
+             C176 140 164 124 144 118
+             C160 112 172 96 172 76
+             C172 52 152 48 120 48
+             L72 48 Z
+             M100 76 L120 76
+             C136 76 144 82 144 92
+             C144 102 136 108 120 108
+             L100 108 L100 76 Z
+             M100 132 L124 132
+             C142 132 150 140 150 152
+             C150 164 142 172 124 172
+             L100 172 L100 132 Z"/>
+
+    <!-- Music beat lines (right side) -->
+    <rect x="184" y="88" width="8" height="80" rx="4"/>
+    <rect x="200" y="104" width="8" height="48" rx="4"/>
+    <rect x="216" y="96" width="8" height="64" rx="4"/>
+  </g>
+</svg>

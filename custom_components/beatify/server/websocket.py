@@ -793,12 +793,20 @@ class BeatifyWebSocketHandler:
         """Broadcast current game state to all connected players."""
         game_state = self.hass.data.get(DOMAIN, {}).get("game")
         if not game_state:
+            _LOGGER.warning("broadcast_state: No game state found")
             return
 
         state = game_state.get_state()
         if state:
+            _LOGGER.info(
+                "Broadcasting state: phase=%s, connections=%d",
+                state.get("phase"),
+                len(self.connections),
+            )
             state_msg = {"type": "state", **state}
             await self.broadcast(state_msg)
+        else:
+            _LOGGER.warning("broadcast_state: get_state() returned None")
 
     async def _handle_disconnect(self, ws: web.WebSocketResponse) -> None:
         """

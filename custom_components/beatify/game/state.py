@@ -1173,8 +1173,16 @@ class GameState:
         _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
 
         # Invoke callback to broadcast state
+        _LOGGER.debug("Checking round_end callback: %s", self._on_round_end)
         if self._on_round_end:
-            await self._on_round_end()
+            _LOGGER.info("Invoking round_end callback to broadcast state")
+            try:
+                await self._on_round_end()
+                _LOGGER.info("Round_end callback completed successfully")
+            except Exception as err:
+                _LOGGER.error("Round_end callback failed: %s", err)
+        else:
+            _LOGGER.warning("No round_end callback set - state will not be broadcast!")
 
     def cancel_timer(self) -> None:
         """Cancel the round timer (synchronous, for cleanup)."""
