@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
@@ -9,6 +10,9 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
+
+# Timeout for pre-flight connectivity check (seconds)
+PREFLIGHT_TIMEOUT = 5.0
 
 
 class MediaPlayerService:
@@ -147,6 +151,47 @@ class MediaPlayerService:
         """
         state = self._hass.states.get(self._entity_id)
         return state is not None and state.state != "unavailable"
+
+    async def verify_responsive(self) -> bool:
+        """
+        Verify media player is actually responsive (pre-flight check).
+
+        Sends a lightweight command to wake up the speaker and verify
+        it responds within PREFLIGHT_TIMEOUT seconds.
+
+        Returns:
+            True if media player responded, False if timeout or error
+
+        """
+        try:
+            # Use volume_set with current volume as a lightweight ping
+            # This wakes up sleeping speakers without changing anything
+            current_volume = self.get_volume()
+
+            async with asyncio.timeout(PREFLIGHT_TIMEOUT):
+                await self._hass.services.async_call(
+                    "media_player",
+                    "volume_set",
+                    {
+                        "entity_id": self._entity_id,
+                        "volume_level": current_volume,
+                    },
+                    blocking=True,
+                )
+            _LOGGER.debug("Media player %s is responsive", self._entity_id)
+            return True
+        except TimeoutError:
+            _LOGGER.warning(
+                "Media player %s not responsive (timeout after %.1fs)",
+                self._entity_id,
+                PREFLIGHT_TIMEOUT,
+            )
+            return False
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.warning(
+                "Media player %s not responsive: %s", self._entity_id, err
+            )
+            return False
 
 
 async def async_get_media_players(hass: HomeAssistant) -> list[dict]:

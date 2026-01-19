@@ -947,6 +947,13 @@ class GameState:
 
         # Play song via media player
         if self._media_player_service:
+            # Pre-flight check: verify speaker is responsive before playing
+            # This wakes up sleeping speakers and detects unresponsive ones early
+            if not await self._media_player_service.verify_responsive():
+                _LOGGER.error("Media player not responsive, pausing game")
+                await self.pause_game("media_player_error")
+                return False
+
             success = await self._media_player_service.play_song(song["uri"])
             if not success:
                 _LOGGER.warning("Failed to play song: %s", song["uri"])
