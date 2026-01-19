@@ -320,6 +320,9 @@
      * @param {Array} players - Players array
      */
     function renderRoundStats(data, players) {
+        console.log('[Dashboard] renderRoundStats called, players:', players);
+        console.log('[Dashboard] data.players:', data.players);
+
         // Calculate submission count
         var submitted = 0;
         var total = players.length;
@@ -327,9 +330,14 @@
             if (p.submitted) submitted++;
         });
 
+        console.log('[Dashboard] Submissions:', submitted, '/', total);
+
         var submissionsEl = document.getElementById('dashboard-submissions');
         if (submissionsEl) {
             submissionsEl.textContent = submitted + '/' + total;
+            console.log('[Dashboard] Updated submissions element');
+        } else {
+            console.warn('[Dashboard] dashboard-submissions element not found');
         }
 
         // Time remaining is already shown in the main timer, but we update the stat too
