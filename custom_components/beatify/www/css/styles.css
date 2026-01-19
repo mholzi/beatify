@@ -497,6 +497,12 @@ body.theme-dark .game-info span {
     color: var(--color-text-primary);
 }
 
+/* Ensure button text stays white in dark mode (override card-section span rule) */
+body.theme-dark .btn-primary span,
+body.theme-dark .btn-secondary span {
+    color: inherit;
+}
+
 /* Language Selector (Story 12.4) */
 .language-selector {
     display: flex;
