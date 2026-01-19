@@ -446,7 +446,8 @@ class GameStatusView(HomeAssistantView):
 
         # Game exists - return status
         phase = game_state.phase.value
-        can_join = phase in ("LOBBY", "PLAYING")  # Late join supported
+        # Late join supported during LOBBY, PLAYING, and REVEAL (Story 16.5)
+        can_join = phase in ("LOBBY", "PLAYING", "REVEAL")
 
         return web.json_response({
             "exists": True,

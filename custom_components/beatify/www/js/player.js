@@ -121,11 +121,11 @@
                 return;
             }
 
-            // New players: can only join during LOBBY or PLAYING
+            // New players: can join during LOBBY, PLAYING, or REVEAL (Story 16.5)
             if (data.can_join) {
                 showView('join-view');
             } else {
-                // REVEAL or PAUSED - new players can't join right now
+                // PAUSED or END - new players can't join right now
                 showView('in-progress-view');
             }
 
