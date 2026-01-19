@@ -1187,7 +1187,11 @@ class GameState:
     def cancel_timer(self) -> None:
         """Cancel the round timer (synchronous, for cleanup)."""
         if self._timer_task and not self._timer_task.done():
-            self._timer_task.cancel()
+            # Don't cancel if we're being called from within the timer task itself
+            # (happens when timer naturally expires and calls end_round)
+            current_task = asyncio.current_task()
+            if current_task != self._timer_task:
+                self._timer_task.cancel()
         self._timer_task = None
 
     def is_deadline_passed(self) -> bool:
