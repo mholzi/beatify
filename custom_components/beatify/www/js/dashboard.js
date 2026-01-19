@@ -543,17 +543,25 @@
         var container = document.getElementById('dashboard-fun-fact');
         var textEl = document.getElementById('dashboard-fun-fact-text');
 
-        if (!container || !textEl) return;
+        console.log('[Dashboard] renderFunFact called with song:', song);
+        console.log('[Dashboard] fun_fact value:', song ? song.fun_fact : 'no song');
+
+        if (!container || !textEl) {
+            console.warn('[Dashboard] Fun fact elements not found');
+            return;
+        }
 
         // Hide if no fun fact
         if (!song || !song.fun_fact || song.fun_fact.trim() === '') {
             container.classList.add('hidden');
+            console.log('[Dashboard] No fun_fact, hiding container');
             return;
         }
 
         // Show fun fact
         textEl.textContent = song.fun_fact;
         container.classList.remove('hidden');
+        console.log('[Dashboard] Fun fact shown:', song.fun_fact);
     }
 
     /**
