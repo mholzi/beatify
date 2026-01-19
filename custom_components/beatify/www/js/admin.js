@@ -24,6 +24,10 @@ let selectedDuration = 45;
 // Difficulty state (Story 14.1)
 let selectedDifficulty = 'normal';
 
+// Lobby state (Story 16.8)
+let previousLobbyPlayers = [];
+let lobbyPollingInterval = null;
+
 // Setup sections to hide/show as a group (Story 9.10: game-controls removed, button is standalone)
 const setupSections = ['media-players', 'playlists', 'language-section', 'timer-section', 'difficulty-section'];
 
@@ -390,6 +394,10 @@ function showSetupView() {
     currentView = 'setup';
     currentGame = null;
 
+    // Stop lobby polling (Story 16.8)
+    stopLobbyPolling();
+    previousLobbyPlayers = [];
+
     // Show setup sections
     setupSections.forEach(id => {
         const el = document.getElementById(id);
@@ -459,6 +467,10 @@ function showLobbyView(gameData) {
     if (urlEl && gameData.join_url) {
         urlEl.textContent = gameData.join_url;
     }
+
+    // Render initial player list and start polling (Story 16.8)
+    renderLobbyPlayers(gameData.players || []);
+    startLobbyPolling();
 }
 
 /**
@@ -610,17 +622,26 @@ function setupEndGameModal() {
 }
 
 /**
- * Rejoin the current game
+ * Rejoin the current game - fetches fresh status first
  */
-function rejoinGame() {
+async function rejoinGame() {
     if (!currentGame) return;
 
-    if (currentGame.phase === 'LOBBY') {
-        showLobbyView(currentGame);
-    } else {
-        // For other phases, show lobby view for now (future: show game view)
-        showLobbyView(currentGame);
+    // Fetch fresh status to get latest player list
+    try {
+        var response = await fetch('/beatify/api/status');
+        if (response.ok) {
+            var status = await response.json();
+            if (status.active_game) {
+                currentGame = status.active_game;
+            }
+        }
+    } catch (err) {
+        console.error('Failed to refresh game status:', err);
     }
+
+    // Show lobby view with current (possibly refreshed) game data
+    showLobbyView(currentGame);
 }
 
 /**
@@ -916,5 +937,139 @@ function setDifficulty(difficulty) {
         if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
             descriptionEl.textContent = BeatifyI18n.t(descKey);
         }
+    }
+}
+
+// ==========================================
+// Lobby Player List Functions (Story 16.8)
+// ==========================================
+
+/**
+ * Helper to safely get i18n translation with fallback
+ * @param {string} key - Translation key
+ * @param {string} fallback - Fallback string if i18n unavailable
+ * @returns {string}
+ */
+function t(key, fallback) {
+    if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
+        return BeatifyI18n.t(key) || fallback;
+    }
+    return fallback;
+}
+
+/**
+ * Render player list in admin lobby
+ * @param {Array} players - Array of player objects from game state
+ */
+function renderLobbyPlayers(players) {
+    var listEl = document.getElementById('lobby-players');
+    var countEl = document.getElementById('lobby-player-count');
+    if (!listEl) return;
+
+    players = players || [];
+    var waitingText = t('lobby.waitingForPlayers', 'Waiting for players to join...');
+
+    // Update player count
+    if (countEl) {
+        var count = players.length;
+        if (count === 0) {
+            countEl.textContent = waitingText;
+        } else {
+            countEl.textContent = count + ' player' + (count !== 1 ? 's' : '');
+        }
+    }
+
+    // Handle empty state
+    if (players.length === 0) {
+        listEl.innerHTML = '<p class="empty-state">' + escapeHtml(waitingText) + '</p>';
+        previousLobbyPlayers = [];
+        return;
+    }
+
+    // Sort: connected first, disconnected last
+    var sortedPlayers = players.slice().sort(function(a, b) {
+        if (a.connected !== b.connected) {
+            return a.connected ? -1 : 1;
+        }
+        return 0;
+    });
+
+    // Find new players by comparing with previous list
+    var previousNames = previousLobbyPlayers.map(function(p) { return p.name; });
+    var newNames = sortedPlayers
+        .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
+        .map(function(p) { return p.name; });
+
+    // Render player cards
+    listEl.innerHTML = sortedPlayers.map(function(player) {
+        var isNew = newNames.indexOf(player.name) !== -1;
+        var isDisconnected = player.connected === false;
+        var isAdmin = player.is_admin === true;
+        var classes = [
+            'player-card',
+            isNew ? 'is-new' : '',
+            isDisconnected ? 'player-card--disconnected' : ''
+        ].filter(Boolean).join(' ');
+
+        // Badge for disconnected players
+        var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
+        // Crown badge for admin
+        var adminBadge = isAdmin ? '<span class="admin-badge">👑</span>' : '';
+
+        return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
+            '<span class="player-name">' +
+                escapeHtml(player.name) +
+                adminBadge +
+                awayBadge +
+            '</span>' +
+        '</div>';
+    }).join('');
+
+    // Remove .is-new class after animation
+    setTimeout(function() {
+        var newCards = listEl.querySelectorAll('.is-new');
+        for (var i = 0; i < newCards.length; i++) {
+            newCards[i].classList.remove('is-new');
+        }
+    }, 2000);
+
+    previousLobbyPlayers = players.slice();
+}
+
+/**
+ * Start polling for lobby state updates
+ */
+function startLobbyPolling() {
+    // Clear any existing interval
+    stopLobbyPolling();
+
+    // Poll every 3 seconds (balanced between responsiveness and server load)
+    lobbyPollingInterval = setInterval(async function() {
+        if (currentView !== 'lobby') {
+            stopLobbyPolling();
+            return;
+        }
+
+        try {
+            var response = await fetch('/beatify/api/status');
+            if (!response.ok) return;
+
+            var status = await response.json();
+            if (status.active_game && status.active_game.players) {
+                renderLobbyPlayers(status.active_game.players);
+            }
+        } catch (err) {
+            console.error('Lobby polling error:', err);
+        }
+    }, 3000);
+}
+
+/**
+ * Stop polling for lobby state updates
+ */
+function stopLobbyPolling() {
+    if (lobbyPollingInterval) {
+        clearInterval(lobbyPollingInterval);
+        lobbyPollingInterval = null;
     }
 }

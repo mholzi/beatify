@@ -118,8 +118,11 @@
                     <a id="admin-dashboard-url" href="#" class="dashboard-hint-url" target="_blank"></a>
                 </p>
             </div>
-            <div id="lobby-players" class="player-list">
-                <p class="empty-state" data-i18n="lobby.waitingForPlayers">Waiting for players to join...</p>
+            <div class="lobby-player-count-container">
+                <span id="lobby-player-count" class="player-count" aria-live="polite">0 players</span>
+            </div>
+            <div id="lobby-players" class="player-list" aria-live="polite" aria-label="Player list">
+                <!-- Rendered dynamically by renderLobbyPlayers() -->
             </div>
             <div class="admin-lobby-actions no-print">
                 <button id="participate-btn" class="btn btn-primary btn-large">

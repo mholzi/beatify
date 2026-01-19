@@ -1973,6 +1973,86 @@ body.theme-dark .admin-controls {
     margin-top: var(--space-lg);
 }
 
+/* ==========================================
+   Admin Lobby Dark Theme (Story 16.7)
+   ========================================== */
+
+/* Dark background for admin lobby section - matches player lobby */
+#lobby-section {
+    background: var(--color-bg-primary);
+    color: var(--color-text-white);
+    border-radius: var(--radius-lg);
+}
+
+/* Lobby heading - light text for dark background */
+#lobby-section h2 {
+    color: var(--color-text-white);
+}
+
+/* QR instruction text */
+#lobby-section .qr-instruction {
+    color: var(--color-text-white);
+}
+
+/* Join URL - accent color for visibility */
+#lobby-section .join-url {
+    color: var(--color-accent-secondary);
+}
+
+/* Empty state text (Waiting for players) */
+#lobby-section .empty-state {
+    color: var(--color-text-neon-muted);
+}
+
+/* Player list border - use dark theme border */
+#lobby-section .player-list {
+    border-top-color: var(--color-border-neon);
+}
+
+/* Game controls bar border - use dark theme border */
+#lobby-section .game-controls-bar {
+    border-top-color: var(--color-border-neon);
+}
+
+/* QR container - maintain white background for QR visibility */
+#lobby-section .qr-container {
+    background: var(--color-bg-white);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Player cards in admin lobby - dark theme styling */
+#lobby-section .player-card {
+    background: var(--color-dark-surface);
+    border-color: var(--color-border-neon);
+}
+
+#lobby-section .player-card .player-name {
+    color: var(--color-text-white);
+}
+
+#lobby-section .player-card.is-new {
+    background: rgba(57, 255, 20, 0.1);
+    border-color: var(--color-success-neon);
+}
+
+/* Admin badge styling (Story 16.8) */
+.admin-badge {
+    font-size: var(--font-size-sm);
+    color: var(--color-warning);
+    margin-left: var(--space-xs);
+}
+
+/* Player count styling for admin lobby */
+.lobby-player-count-container {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+#lobby-player-count {
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-sm);
+}
+
 /* Modal styles */
 .modal {
     position: fixed;
