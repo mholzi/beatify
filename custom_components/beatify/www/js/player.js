@@ -2547,6 +2547,8 @@
         if (messageEl) {
             if (data.pause_reason === 'admin_disconnected') {
                 messageEl.textContent = 'Waiting for host to reconnect...';
+            } else if (data.pause_reason === 'media_player_error') {
+                messageEl.textContent = 'Speaker unavailable. Please check your media player and try again.';
             } else {
                 messageEl.textContent = 'Game paused. Please wait...';
             }

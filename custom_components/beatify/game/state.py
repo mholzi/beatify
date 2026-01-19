@@ -905,12 +905,15 @@ class GameState:
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
 
-    async def start_round(self, hass: HomeAssistant) -> bool:
+    async def start_round(
+        self, hass: HomeAssistant, _retry_count: int = 0
+    ) -> bool:
         """
         Start a new round with song playback.
 
         Args:
             hass: Home Assistant instance for media player control
+            _retry_count: Internal counter for failed song attempts (max 3)
 
         Returns:
             True if round started successfully, False otherwise
@@ -920,6 +923,9 @@ class GameState:
         from custom_components.beatify.services.media_player import (  # noqa: PLC0415
             MediaPlayerService,
         )
+
+        # Maximum retries to prevent runaway loop when media player is down
+        MAX_SONG_RETRIES = 3
 
         if not self._playlist_manager:
             _LOGGER.error("No playlist manager configured")
@@ -945,8 +951,21 @@ class GameState:
             if not success:
                 _LOGGER.warning("Failed to play song: %s", song["uri"])
                 self._playlist_manager.mark_played(song["uri"])
-                # Try next song recursively
-                return await self.start_round(hass)
+
+                # Check retry limit to prevent runaway loop
+                if _retry_count >= MAX_SONG_RETRIES:
+                    _LOGGER.error(
+                        "Media player unreachable after %d attempts, pausing game",
+                        MAX_SONG_RETRIES,
+                    )
+                    await self.pause_game("media_player_error")
+                    return False
+
+                # Brief delay before retry to allow media player recovery
+                await asyncio.sleep(1.0)
+
+                # Try next song with incremented retry count
+                return await self.start_round(hass, _retry_count + 1)
 
             # Wait for playback to start
             await asyncio.sleep(0.5)
