@@ -7,1000 +7,2041 @@
       "uri": "spotify:track:4u7EnebtmKWzUH433cf5Qv",
       "artist": "Queen",
       "title": "Bohemian Rhapsody",
-      "chart_info": {"billboard_peak": 9, "weeks_on_chart": 17},
-      "certifications": ["Diamond (US)", "3x Platinum (UK)"],
-      "awards": ["Grammy Hall of Fame (2004)"],
-      "fun_fact": "Bohemian Rhapsody was initially rejected by record labels who thought a 6-minute operatic rock song would never get radio play. Freddie Mercury spent three weeks recording the complex vocal harmonies, stacking 180 separate overdubs. It became Queen's signature song."
+      "chart_info": {
+        "billboard_peak": 9,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Diamond (US)",
+        "3x Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2004)"
+      ],
+      "fun_fact": "Bohemian Rhapsody was initially rejected by record labels who thought a 6-minute operatic rock song would never get radio play. Freddie Mercury spent three weeks recording the complex vocal harmonies, stacking 180 separate overdubs. It became Queen's signature song.",
+      "fun_fact_de": "Bohemian Rhapsody wurde zunächst von Plattenfirmen abgelehnt, die glaubten, ein 6-minütiger Opern-Rocksong würde nie im Radio gespielt werden. Freddie Mercury verbrachte drei Wochen damit, die komplexen Gesangsharmonien aufzunehmen und schichtete dabei 180 separate Overdubs übereinander. Es wurde zu Queens Erkennungslied.",
+      "fun_fact_es": "Bohemian Rhapsody fue rechazada inicialmente por las discográficas que pensaban que una canción de rock operístico de 6 minutos nunca sonaría en la radio. Freddie Mercury pasó tres semanas grabando las complejas armonías vocales, apilando 180 sobregrabaciones separadas. Se convirtió en la canción emblemática de Queen.",
+      "awards_de": [
+        "Grammy Hall of Fame (2004)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2004)"
+      ]
     },
     {
       "year": 1982,
       "uri": "spotify:track:2374M0fQpWi3dLnB54qaLX",
       "artist": "Toto",
       "title": "Africa",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
-      "certifications": ["4x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Africa was written by TOTO's David Paich about a man who has never been to Africa but romanticizes the continent. The distinctive keyboard intro was inspired by a documentary about African wildlife. The song has experienced multiple viral revivals decades after release."
+      "fun_fact": "Africa was written by TOTO's David Paich about a man who has never been to Africa but romanticizes the continent. The distinctive keyboard intro was inspired by a documentary about African wildlife. The song has experienced multiple viral revivals decades after release.",
+      "fun_fact_de": "Africa wurde von TOTOs David Paich über einen Mann geschrieben, der noch nie in Afrika war, aber den Kontinent romantisiert. Das markante Keyboard-Intro wurde von einer Dokumentation über afrikanische Tierwelt inspiriert. Der Song erlebte Jahrzehnte nach seiner Veröffentlichung mehrere virale Revivals.",
+      "fun_fact_es": "Africa fue escrita por David Paich de TOTO sobre un hombre que nunca ha estado en África pero que romantiza el continente. La distintiva introducción de teclado fue inspirada por un documental sobre la vida salvaje africana. La canción ha experimentado múltiples resurgimientos virales décadas después de su lanzamiento."
     },
     {
       "year": 1997,
       "uri": "spotify:track:1M2nd8jNUkkwrc1dgBPTJz",
       "artist": "Robbie Williams",
       "title": "Angels",
-      "chart_info": {"billboard_peak": 53, "uk_peak": 4},
-      "certifications": ["2x Platinum (UK)"],
+      "chart_info": {
+        "billboard_peak": 53,
+        "uk_peak": 4
+      },
+      "certifications": [
+        "2x Platinum (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Angels was written by Robbie Williams and Guy Chambers in just 25 minutes at Chambers' home. It became the song most requested at British funerals for years. Williams has said it's about his belief in guardian angels and the connection between people."
+      "fun_fact": "Angels was written by Robbie Williams and Guy Chambers in just 25 minutes at Chambers' home. It became the song most requested at British funerals for years. Williams has said it's about his belief in guardian angels and the connection between people.",
+      "fun_fact_de": "Angels wurde von Robbie Williams und Guy Chambers in nur 25 Minuten in Chambers' Haus geschrieben. Es wurde jahrelang der meistgewünschte Song bei britischen Beerdigungen. Williams hat gesagt, es handelt von seinem Glauben an Schutzengel und die Verbindung zwischen Menschen.",
+      "fun_fact_es": "Angels fue escrita por Robbie Williams y Guy Chambers en solo 25 minutos en la casa de Chambers. Se convirtió en la canción más solicitada en funerales británicos durante años. Williams ha dicho que trata sobre su creencia en los ángeles guardianes y la conexión entre las personas."
     },
     {
       "year": 1980,
       "uri": "spotify:track:08mG3Y1vljYA6bvDt4Wqkj",
       "artist": "AC/DC",
       "title": "Back In Black",
-      "chart_info": {"billboard_peak": 37, "weeks_on_chart": 22},
-      "certifications": ["27x Platinum (US)", "6x Platinum (UK)"],
+      "chart_info": {
+        "billboard_peak": 37,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "27x Platinum (US)",
+        "6x Platinum (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Back In Black was recorded as a tribute to late AC/DC frontman Bon Scott, who died in February 1980. The album of the same name became one of the best-selling records in history. Brian Johnson was selected as Scott's replacement just weeks before recording began."
+      "fun_fact": "Back In Black was recorded as a tribute to late AC/DC frontman Bon Scott, who died in February 1980. The album of the same name became one of the best-selling records in history. Brian Johnson was selected as Scott's replacement just weeks before recording began.",
+      "fun_fact_de": "Back In Black wurde als Tribut an den verstorbenen AC/DC-Frontmann Bon Scott aufgenommen, der im Februar 1980 starb. Das gleichnamige Album wurde zu einer der meistverkauften Platten der Geschichte. Brian Johnson wurde nur wenige Wochen vor Aufnahmebeginn als Scotts Nachfolger ausgewählt.",
+      "fun_fact_es": "Back In Black fue grabada como tributo al fallecido vocalista de AC/DC Bon Scott, quien murió en febrero de 1980. El álbum del mismo nombre se convirtió en uno de los discos más vendidos de la historia. Brian Johnson fue seleccionado como reemplazo de Scott solo semanas antes de comenzar la grabación."
     },
     {
       "year": 1982,
       "uri": "spotify:track:7azo4rpSUh8nXgtonC6Pkq",
       "artist": "Michael Jackson",
       "title": "Thriller",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 21},
-      "certifications": ["6x Platinum (US)"],
-      "awards": ["Grammy - Best Male Pop Vocal (1984)"],
-      "fun_fact": "Thriller's iconic music video was directed by John Landis and cost $500,000 to produce—unprecedented for the time. It premiered as a 14-minute short film and transformed the music video industry forever. Vincent Price recorded his famous rap in just two takes."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "6x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Male Pop Vocal (1984)"
+      ],
+      "fun_fact": "Thriller's iconic music video was directed by John Landis and cost $500,000 to produce—unprecedented for the time. It premiered as a 14-minute short film and transformed the music video industry forever. Vincent Price recorded his famous rap in just two takes.",
+      "fun_fact_de": "Thrillers ikonisches Musikvideo wurde von John Landis inszeniert und kostete 500.000 Dollar in der Produktion – beispiellos für die damalige Zeit. Es wurde als 14-minütiger Kurzfilm uraufgeführt und veränderte die Musikvideoindustrie für immer. Vincent Price nahm seinen berühmten Rap in nur zwei Takes auf.",
+      "fun_fact_es": "El icónico video musical de Thriller fue dirigido por John Landis y costó 500.000 dólares producirlo, algo sin precedentes para la época. Se estrenó como un cortometraje de 14 minutos y transformó la industria del videoclip para siempre. Vincent Price grabó su famoso rap en solo dos tomas.",
+      "awards_de": [
+        "Grammy - Beste männliche Pop-Gesangsdarbietung (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Masculina (1984)"
+      ]
     },
     {
       "year": 1984,
       "uri": "spotify:track:7yzbimr8WVyAtBX3Eg6UL9",
       "artist": "Leonard Cohen",
       "title": "Hallelujah",
-      "chart_info": {"billboard_peak": 59},
-      "certifications": ["5x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 59
+      },
+      "certifications": [
+        "5x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Leonard Cohen wrote approximately 80 draft verses of Hallelujah over five years before settling on the final version. The song was initially ignored but gained fame through Jeff Buckley's 1994 cover. Cohen reportedly worked on verses while sitting in his underwear at hotels."
+      "fun_fact": "Leonard Cohen wrote approximately 80 draft verses of Hallelujah over five years before settling on the final version. The song was initially ignored but gained fame through Jeff Buckley's 1994 cover. Cohen reportedly worked on verses while sitting in his underwear at hotels.",
+      "fun_fact_de": "Leonard Cohen schrieb über fünf Jahre hinweg etwa 80 Entwürfe von Hallelujah-Strophen, bevor er sich für die endgültige Version entschied. Der Song wurde zunächst ignoriert, erlangte aber durch Jeff Buckleys Cover von 1994 Berühmtheit. Cohen arbeitete Berichten zufolge in Unterwäsche an den Strophen in Hotels.",
+      "fun_fact_es": "Leonard Cohen escribió aproximadamente 80 borradores de versos de Hallelujah durante cinco años antes de decidirse por la versión final. La canción fue inicialmente ignorada pero ganó fama a través de la versión de Jeff Buckley de 1994. Según los informes, Cohen trabajaba en los versos sentado en ropa interior en hoteles."
     },
     {
       "year": 1970,
       "uri": "spotify:track:19slC7k8bsPOAKDjHYLU2W",
       "artist": "Cat Stevens",
       "title": "Father and Son",
-      "chart_info": {"billboard_peak": 11, "uk_peak": 2},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": 2
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Father and Son features Cat Stevens singing both parts—the father in a deeper voice and the son in a higher register. It was originally written for a musical called Revolussia that was never produced. The song has become an anthem for generational understanding worldwide."
+      "fun_fact": "Father and Son features Cat Stevens singing both parts—the father in a deeper voice and the son in a higher register. It was originally written for a musical called Revolussia that was never produced. The song has become an anthem for generational understanding worldwide.",
+      "fun_fact_de": "Father and Son zeigt Cat Stevens, der beide Rollen singt – den Vater mit tieferer Stimme und den Sohn in höherer Lage. Es wurde ursprünglich für ein Musical namens Revolussia geschrieben, das nie produziert wurde. Der Song ist weltweit zu einer Hymne für generationsübergreifendes Verständnis geworden.",
+      "fun_fact_es": "Father and Son presenta a Cat Stevens cantando ambas partes: el padre con una voz más grave y el hijo en un registro más alto. Fue escrita originalmente para un musical llamado Revolussia que nunca se produjo. La canción se ha convertido en un himno mundial para el entendimiento generacional."
     },
     {
       "year": 1968,
       "uri": "spotify:track:0aym2LBJBk9DAYuHHutrIl",
       "artist": "The Beatles",
       "title": "Hey Jude",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 19},
-      "certifications": ["4x Platinum (US)", "Platinum (UK)"],
-      "awards": ["Grammy Hall of Fame (2001)"],
-      "fun_fact": "Hey Jude was written by Paul McCartney to comfort John Lennon's son Julian during his parents' divorce. At 7 minutes and 11 seconds, it was the longest single ever to top the UK charts at that time. The famous 'na-na-na' outro was improvised during recording."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2001)"
+      ],
+      "fun_fact": "Hey Jude was written by Paul McCartney to comfort John Lennon's son Julian during his parents' divorce. At 7 minutes and 11 seconds, it was the longest single ever to top the UK charts at that time. The famous 'na-na-na' outro was improvised during recording.",
+      "fun_fact_de": "Hey Jude wurde von Paul McCartney geschrieben, um John Lennons Sohn Julian während der Scheidung seiner Eltern zu trösten. Mit 7 Minuten und 11 Sekunden war es damals die längste Single, die je die britischen Charts anführte. Das berühmte 'na-na-na'-Outro wurde während der Aufnahme improvisiert.",
+      "fun_fact_es": "Hey Jude fue escrita por Paul McCartney para consolar al hijo de John Lennon, Julian, durante el divorcio de sus padres. Con 7 minutos y 11 segundos, fue el sencillo más largo en alcanzar el número uno en las listas del Reino Unido en ese momento. El famoso final 'na-na-na' fue improvisado durante la grabación.",
+      "awards_de": [
+        "Grammy Hall of Fame (2001)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2001)"
+      ]
     },
     {
       "year": 1984,
       "uri": "spotify:track:0GONea6G2XdnHWjNZd6zt3",
       "artist": "Bryan Adams",
       "title": "Summer of '69",
-      "chart_info": {"billboard_peak": 5, "weeks_on_chart": 18},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 5,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Summer of '69 is not about the year 1969—Bryan Adams was only 9 years old then. Adams has confirmed the title refers to the sexual position. The song captures the nostalgic feeling of youthful summers and first bands, becoming a rock radio staple worldwide."
+      "fun_fact": "Summer of '69 is not about the year 1969—Bryan Adams was only 9 years old then. Adams has confirmed the title refers to the sexual position. The song captures the nostalgic feeling of youthful summers and first bands, becoming a rock radio staple worldwide.",
+      "fun_fact_de": "Summer of '69 handelt nicht vom Jahr 1969 – Bryan Adams war damals erst 9 Jahre alt. Adams hat bestätigt, dass sich der Titel auf die Sexstellung bezieht. Der Song fängt das nostalgische Gefühl jugendlicher Sommer und erster Bands ein und wurde weltweit zu einem Rock-Radio-Klassiker.",
+      "fun_fact_es": "Summer of '69 no trata sobre el año 1969: Bryan Adams tenía solo 9 años entonces. Adams ha confirmado que el título se refiere a la posición sexual. La canción captura el sentimiento nostálgico de los veranos juveniles y las primeras bandas, convirtiéndose en un clásico de la radio rock mundial."
     },
     {
       "year": 1970,
       "uri": "spotify:track:7iN1s7xHE4ifF5povM6A48",
       "artist": "The Beatles",
       "title": "Let It Be",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 14},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2004)", "Grammy - Best Original Score (1971)"],
-      "fun_fact": "Let It Be was inspired by a dream Paul McCartney had about his mother Mary, who died when he was 14. In the dream, she came to him during a troubled time and said 'Let it be.' The gospel-influenced song became The Beatles' final UK number one single."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2004)",
+        "Grammy - Best Original Score (1971)"
+      ],
+      "fun_fact": "Let It Be was inspired by a dream Paul McCartney had about his mother Mary, who died when he was 14. In the dream, she came to him during a troubled time and said 'Let it be.' The gospel-influenced song became The Beatles' final UK number one single.",
+      "fun_fact_de": "Let It Be wurde durch einen Traum inspiriert, den Paul McCartney von seiner Mutter Mary hatte, die starb, als er 14 war. Im Traum kam sie in einer schwierigen Zeit zu ihm und sagte 'Let it be'. Der vom Gospel beeinflusste Song wurde die letzte UK-Nummer-eins-Single der Beatles.",
+      "fun_fact_es": "Let It Be fue inspirada por un sueño que Paul McCartney tuvo sobre su madre Mary, quien murió cuando él tenía 14 años. En el sueño, ella vino a él durante un momento difícil y dijo 'Let it be'. La canción influenciada por el gospel se convirtió en el último sencillo número uno de The Beatles en el Reino Unido.",
+      "awards_de": [
+        "Grammy Hall of Fame (2004)",
+        "Grammy - Beste Originalmusik (1971)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2004)",
+        "Grammy - Mejor Banda Sonora Original (1971)"
+      ]
     },
     {
       "year": 1979,
       "uri": "spotify:track:2zYzyRzz6pRmhPzyfMEC8s",
       "artist": "AC/DC",
       "title": "Highway to Hell",
-      "chart_info": {"billboard_peak": 47, "uk_peak": 56},
-      "certifications": ["6x Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2020)"],
-      "fun_fact": "Highway to Hell was the last AC/DC album with original vocalist Bon Scott, who died six months after its release. The title refers to the grueling life of touring, not Satanism. Producer Mutt Lange pushed the band toward a more polished sound that defined their future work."
+      "chart_info": {
+        "billboard_peak": 47,
+        "uk_peak": 56
+      },
+      "certifications": [
+        "6x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2020)"
+      ],
+      "fun_fact": "Highway to Hell was the last AC/DC album with original vocalist Bon Scott, who died six months after its release. The title refers to the grueling life of touring, not Satanism. Producer Mutt Lange pushed the band toward a more polished sound that defined their future work.",
+      "fun_fact_de": "Highway to Hell war das letzte AC/DC-Album mit Originalsänger Bon Scott, der sechs Monate nach der Veröffentlichung starb. Der Titel bezieht sich auf das anstrengende Tourleben, nicht auf Satanismus. Produzent Mutt Lange drängte die Band zu einem ausgefeilteren Sound, der ihre zukünftige Arbeit prägte.",
+      "fun_fact_es": "Highway to Hell fue el último álbum de AC/DC con el vocalista original Bon Scott, quien murió seis meses después de su lanzamiento. El título se refiere a la agotadora vida de gira, no al satanismo. El productor Mutt Lange empujó a la banda hacia un sonido más pulido que definió su trabajo futuro.",
+      "awards_de": [
+        "Grammy Hall of Fame (2020)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2020)"
+      ]
     },
     {
       "year": 1976,
       "uri": "spotify:track:40riOy7x9W7GXjyGp4pjAv",
       "artist": "Eagles",
       "title": "Hotel California",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 19},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy - Record of the Year (1978)", "Grammy Hall of Fame (2003)"],
-      "fun_fact": "Hotel California took the Eagles four months to record and features one of rock's most famous guitar duets. Don Henley has said the song is about the dark underbelly of the American Dream and excess of California. The iconic guitar solo was recorded in one complete take."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
+      "fun_fact": "Hotel California took the Eagles four months to record and features one of rock's most famous guitar duets. Don Henley has said the song is about the dark underbelly of the American Dream and excess of California. The iconic guitar solo was recorded in one complete take.",
+      "fun_fact_de": "Hotel California brauchte vier Monate Aufnahmezeit und enthält eines der berühmtesten Gitarrenduette des Rock. Don Henley hat gesagt, der Song handelt von der dunklen Seite des amerikanischen Traums und dem Exzess Kaliforniens. Das ikonische Gitarrensolo wurde in einer einzigen kompletten Aufnahme eingespielt.",
+      "fun_fact_es": "Hotel California tomó cuatro meses de grabación a los Eagles y presenta uno de los duelos de guitarra más famosos del rock. Don Henley ha dicho que la canción trata sobre el lado oscuro del sueño americano y el exceso de California. El icónico solo de guitarra fue grabado en una sola toma completa.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1978)",
+        "Salón de la Fama del Grammy (2003)"
+      ]
     },
     {
       "year": 1980,
       "uri": "spotify:track:5vdp5UmvTsnMEMESIF2Ym7",
       "artist": "Queen",
       "title": "Another One Bites the Dust",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 31},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["American Music Award (1981)"],
-      "fun_fact": "Another One Bites the Dust was initially opposed by Queen's management who thought it was too disco. Michael Jackson personally encouraged the band to release it as a single. John Deacon's bass line was inspired by Chic's 'Good Times' and became a worldwide phenomenon."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 31
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "American Music Award (1981)"
+      ],
+      "fun_fact": "Another One Bites the Dust was initially opposed by Queen's management who thought it was too disco. Michael Jackson personally encouraged the band to release it as a single. John Deacon's bass line was inspired by Chic's 'Good Times' and became a worldwide phenomenon.",
+      "fun_fact_de": "Another One Bites the Dust wurde zunächst vom Queen-Management abgelehnt, das es für zu sehr nach Disco hielt. Michael Jackson persönlich ermutigte die Band, es als Single zu veröffentlichen. John Deacons Basslinie wurde von Chics 'Good Times' inspiriert und wurde zu einem weltweiten Phänomen.",
+      "fun_fact_es": "Another One Bites the Dust fue inicialmente rechazada por la gerencia de Queen, que pensaba que era demasiado disco. Michael Jackson personalmente animó a la banda a lanzarla como sencillo. La línea de bajo de John Deacon fue inspirada por 'Good Times' de Chic y se convirtió en un fenómeno mundial.",
+      "awards_de": [
+        "American Music Award (1981)"
+      ],
+      "awards_es": [
+        "Premio American Music (1981)"
+      ]
     },
     {
       "year": 1982,
       "uri": "spotify:track:1OOtq8tRnDM8kG2gqUPjAj",
       "artist": "Michael Jackson",
       "title": "Beat It",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 25},
-      "certifications": ["5x Platinum (US)"],
-      "awards": ["Grammy - Record of the Year (1984)", "Grammy - Best Male Rock Vocal (1984)"],
-      "fun_fact": "Beat It features Eddie Van Halen's guitar solo, which he recorded for free as a favor. Van Halen reportedly didn't even want credit initially. Michael Jackson wanted to prove he could make a rock song, and the result became one of his most iconic tracks."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "5x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1984)",
+        "Grammy - Best Male Rock Vocal (1984)"
+      ],
+      "fun_fact": "Beat It features Eddie Van Halen's guitar solo, which he recorded for free as a favor. Van Halen reportedly didn't even want credit initially. Michael Jackson wanted to prove he could make a rock song, and the result became one of his most iconic tracks.",
+      "fun_fact_de": "Beat It enthält ein Gitarrensolo von Eddie Van Halen, das er kostenlos als Gefallen aufnahm. Van Halen wollte zunächst nicht einmal genannt werden. Michael Jackson wollte beweisen, dass er einen Rocksong machen kann, und das Ergebnis wurde einer seiner ikonischsten Tracks.",
+      "fun_fact_es": "Beat It presenta un solo de guitarra de Eddie Van Halen, quien lo grabó gratis como favor. Van Halen supuestamente ni siquiera quería crédito inicialmente. Michael Jackson quería demostrar que podía hacer una canción de rock, y el resultado se convirtió en una de sus canciones más icónicas.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1984)",
+        "Grammy - Beste männliche Rock-Gesangsdarbietung (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1984)",
+        "Grammy - Mejor Interpretación Vocal Rock Masculina (1984)"
+      ]
     },
     {
       "year": 1970,
       "uri": "spotify:track:78lgmZwycJ3nzsdgmPPGNx",
       "artist": "Led Zeppelin",
       "title": "Immigrant Song",
-      "chart_info": {"billboard_peak": 16, "weeks_on_chart": 8},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 16,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Immigrant Song was inspired by Led Zeppelin's 1970 concert in Iceland. Robert Plant's distinctive war cry was meant to evoke Viking raiders. The band initially resisted releasing it as a single, preferring to keep their music on albums only, but relented due to demand."
+      "fun_fact": "Immigrant Song was inspired by Led Zeppelin's 1970 concert in Iceland. Robert Plant's distinctive war cry was meant to evoke Viking raiders. The band initially resisted releasing it as a single, preferring to keep their music on albums only, but relented due to demand.",
+      "fun_fact_de": "Immigrant Song wurde durch Led Zeppelins Konzert in Island 1970 inspiriert. Robert Plants markanter Kampfschrei sollte Wikingerüberfälle heraufbeschwören. Die Band widersetzte sich zunächst einer Veröffentlichung als Single und bevorzugte es, ihre Musik nur auf Alben zu belassen, gab aber aufgrund der Nachfrage nach.",
+      "fun_fact_es": "Immigrant Song fue inspirada por el concierto de Led Zeppelin en Islandia en 1970. El distintivo grito de guerra de Robert Plant pretendía evocar a los invasores vikingos. La banda inicialmente se resistió a lanzarla como sencillo, prefiriendo mantener su música solo en álbumes, pero cedió debido a la demanda."
     },
     {
       "year": 1972,
       "uri": "spotify:track:3gdewACMIVMEWVbyb8O9sY",
       "artist": "Elton John",
       "title": "Rocket Man",
-      "chart_info": {"billboard_peak": 6, "weeks_on_chart": 13},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy Hall of Fame (1998)"],
-      "fun_fact": "Rocket Man was written after Bernie Taupin was inspired by Ray Bradbury's short story 'The Rocket Man.' It was released three weeks before David Bowie's 'Starman,' leading to comparisons between the space-themed songs. Elton John recorded the piano and vocal in one session."
+      "chart_info": {
+        "billboard_peak": 6,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1998)"
+      ],
+      "fun_fact": "Rocket Man was written after Bernie Taupin was inspired by Ray Bradbury's short story 'The Rocket Man.' It was released three weeks before David Bowie's 'Starman,' leading to comparisons between the space-themed songs. Elton John recorded the piano and vocal in one session.",
+      "fun_fact_de": "Rocket Man wurde geschrieben, nachdem Bernie Taupin durch Ray Bradburys Kurzgeschichte 'The Rocket Man' inspiriert wurde. Es erschien drei Wochen vor David Bowies 'Starman', was zu Vergleichen zwischen den Weltraum-Songs führte. Elton John nahm Klavier und Gesang in einer einzigen Session auf.",
+      "fun_fact_es": "Rocket Man fue escrita después de que Bernie Taupin se inspirara en el cuento de Ray Bradbury 'The Rocket Man'. Fue lanzada tres semanas antes de 'Starman' de David Bowie, lo que llevó a comparaciones entre las canciones temáticas del espacio. Elton John grabó el piano y la voz en una sola sesión.",
+      "awards_de": [
+        "Grammy Hall of Fame (1998)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1998)"
+      ]
     },
     {
       "year": 1982,
       "uri": "spotify:track:2HHtWyy5CgaQbC7XSoOb0e",
       "artist": "Survivor",
       "title": "Eye of the Tiger",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["Grammy - Best Rock Performance (1983)"],
-      "fun_fact": "Eye of the Tiger was written in response to Sylvester Stallone's request for a theme song for Rocky III after Queen's 'Another One Bites the Dust' couldn't be licensed. The band wrote it using footage from the first two Rocky films as inspiration. It topped charts worldwide."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Rock Performance (1983)"
+      ],
+      "fun_fact": "Eye of the Tiger was written in response to Sylvester Stallone's request for a theme song for Rocky III after Queen's 'Another One Bites the Dust' couldn't be licensed. The band wrote it using footage from the first two Rocky films as inspiration. It topped charts worldwide.",
+      "fun_fact_de": "Eye of the Tiger wurde als Antwort auf Sylvester Stallones Anfrage nach einem Titelsong für Rocky III geschrieben, nachdem Queens 'Another One Bites the Dust' nicht lizenziert werden konnte. Die Band schrieb ihn mit Filmmaterial aus den ersten beiden Rocky-Filmen als Inspiration. Er führte weltweit die Charts an.",
+      "fun_fact_es": "Eye of the Tiger fue escrita en respuesta a la solicitud de Sylvester Stallone de una canción tema para Rocky III después de que 'Another One Bites the Dust' de Queen no pudiera ser licenciada. La banda la escribió usando metraje de las dos primeras películas de Rocky como inspiración. Encabezó las listas en todo el mundo.",
+      "awards_de": [
+        "Grammy - Beste Rock-Darbietung (1983)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Rock (1983)"
+      ]
     },
     {
       "year": 1990,
       "uri": "spotify:track:57bgtoPSgt236HzfBOd8kj",
       "artist": "AC/DC",
       "title": "Thunderstruck",
-      "chart_info": {"billboard_peak": 5, "weeks_on_chart": 14},
-      "certifications": ["3x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Thunderstruck's opening guitar riff took Angus Young so long to perfect that he developed arm cramps during recording. The technique involves rapid-fire hammer-ons and pull-offs on one string. The song has become AC/DC's most-played track at sporting events globally."
+      "fun_fact": "Thunderstruck's opening guitar riff took Angus Young so long to perfect that he developed arm cramps during recording. The technique involves rapid-fire hammer-ons and pull-offs on one string. The song has become AC/DC's most-played track at sporting events globally.",
+      "fun_fact_de": "Thunderstrucks Eröffnungsriff brauchte so lange zur Perfektionierung, dass Angus Young während der Aufnahmen Armkrämpfe bekam. Die Technik beinhaltet schnelle Hammer-ons und Pull-offs auf einer Saite. Der Song ist weltweit der meistgespielte AC/DC-Track bei Sportveranstaltungen geworden.",
+      "fun_fact_es": "El riff de apertura de Thunderstruck tomó tanto tiempo para perfeccionar que Angus Young desarrolló calambres en el brazo durante la grabación. La técnica involucra hammer-ons y pull-offs rápidos en una sola cuerda. La canción se ha convertido en la pista más reproducida de AC/DC en eventos deportivos a nivel mundial."
     },
     {
       "year": 1972,
       "uri": "spotify:track:5MMnwYs0hIxkENRsbkWJ2G",
       "artist": "Deep Purple",
       "title": "Smoke on the Water",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 13},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy Hall of Fame (2023)"],
-      "fun_fact": "Smoke on the Water tells the true story of a fire at the Montreux Casino during a Frank Zappa concert in 1971. Deep Purple watched the fire from across Lake Geneva where they were staying. The smoke literally went over the water, inspiring rock's most famous guitar riff."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2023)"
+      ],
+      "fun_fact": "Smoke on the Water tells the true story of a fire at the Montreux Casino during a Frank Zappa concert in 1971. Deep Purple watched the fire from across Lake Geneva where they were staying. The smoke literally went over the water, inspiring rock's most famous guitar riff.",
+      "fun_fact_de": "Smoke on the Water erzählt die wahre Geschichte eines Brandes im Montreux Casino während eines Frank-Zappa-Konzerts 1971. Deep Purple beobachtete das Feuer von der anderen Seite des Genfer Sees, wo sie wohnten. Der Rauch zog buchstäblich übers Wasser und inspirierte das berühmteste Gitarrenriff des Rock.",
+      "fun_fact_es": "Smoke on the Water cuenta la historia real de un incendio en el Casino de Montreux durante un concierto de Frank Zappa en 1971. Deep Purple observó el fuego desde el otro lado del lago Lemán donde se alojaban. El humo literalmente pasó sobre el agua, inspirando el riff de guitarra más famoso del rock.",
+      "awards_de": [
+        "Grammy Hall of Fame (2023)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2023)"
+      ]
     },
     {
       "year": 1977,
       "uri": "spotify:track:79hJaqmVdohltPBNN6BULM",
       "artist": "Bee Gees",
       "title": "Stayin' Alive",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 27},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy - Best Pop Vocal Performance (1979)"],
-      "fun_fact": "Stayin' Alive's tempo of 104 BPM matches the ideal rate for performing CPR chest compressions, making it a recommended song for medical training. The song was written in just a few hours during a break in filming Saturday Night Fever. It defined the disco era."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 27
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Pop Vocal Performance (1979)"
+      ],
+      "fun_fact": "Stayin' Alive's tempo of 104 BPM matches the ideal rate for performing CPR chest compressions, making it a recommended song for medical training. The song was written in just a few hours during a break in filming Saturday Night Fever. It defined the disco era.",
+      "fun_fact_de": "Stayin' Alives Tempo von 104 BPM entspricht der idealen Rate für Herzdruckmassage, was es zu einem empfohlenen Song für medizinische Schulungen macht. Der Song wurde in nur wenigen Stunden während einer Drehpause für Saturday Night Fever geschrieben. Er prägte die Disco-Ära.",
+      "fun_fact_es": "El tempo de Stayin' Alive de 104 BPM coincide con la frecuencia ideal para realizar compresiones torácicas de RCP, convirtiéndola en una canción recomendada para entrenamiento médico. La canción fue escrita en solo unas horas durante un descanso en el rodaje de Fiebre del Sábado Noche. Definió la era disco.",
+      "awards_de": [
+        "Grammy - Beste Pop-Gesangsdarbietung (1979)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop (1979)"
+      ]
     },
     {
       "year": 1977,
       "uri": "spotify:track:1lCRw5FEZ1gPDNPzy1K4zW",
       "artist": "Queen",
       "title": "We Are the Champions",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 27},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2009)"],
-      "fun_fact": "We Are the Champions has been scientifically proven to be the catchiest song ever written, according to a study by Goldsmiths University. Freddie Mercury wrote it as an audience participation anthem. It's been adopted as a victory song by sports teams worldwide for decades."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 27
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "fun_fact": "We Are the Champions has been scientifically proven to be the catchiest song ever written, according to a study by Goldsmiths University. Freddie Mercury wrote it as an audience participation anthem. It's been adopted as a victory song by sports teams worldwide for decades.",
+      "fun_fact_de": "We Are the Champions wurde laut einer Studie der Goldsmiths University wissenschaftlich als der eingängigste Song aller Zeiten nachgewiesen. Freddie Mercury schrieb ihn als Publikumsmitmach-Hymne. Er wurde seit Jahrzehnten weltweit von Sportteams als Siegessong übernommen.",
+      "fun_fact_es": "We Are the Champions ha sido científicamente probada como la canción más pegadiza jamás escrita, según un estudio de la Universidad Goldsmiths. Freddie Mercury la escribió como un himno de participación del público. Ha sido adoptada como canción de victoria por equipos deportivos de todo el mundo durante décadas.",
+      "awards_de": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2009)"
+      ]
     },
     {
       "year": 1985,
       "uri": "spotify:track:2WfaOiMkCvy7F5fcp2zZ8L",
       "artist": "a-ha",
       "title": "Take On Me",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 23},
-      "certifications": ["Platinum (US)"],
-      "awards": ["MTV VMA - Best New Artist (1986)"],
-      "fun_fact": "Take on Me was released three times before becoming a hit. The innovative music video, combining pencil-sketch animation with live action, cost $100,000 and took 16 weeks to produce. The video's success proved that MTV could make or break a song's popularity."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "MTV VMA - Best New Artist (1986)"
+      ],
+      "fun_fact": "Take on Me was released three times before becoming a hit. The innovative music video, combining pencil-sketch animation with live action, cost $100,000 and took 16 weeks to produce. The video's success proved that MTV could make or break a song's popularity.",
+      "fun_fact_de": "Take on Me wurde dreimal veröffentlicht, bevor es ein Hit wurde. Das innovative Musikvideo, das Bleistiftskizzen-Animation mit Live-Action kombinierte, kostete 100.000 Dollar und brauchte 16 Wochen Produktion. Der Erfolg des Videos bewies, dass MTV über den Erfolg eines Songs entscheiden konnte.",
+      "fun_fact_es": "Take on Me fue lanzada tres veces antes de convertirse en un éxito. El innovador video musical, que combinaba animación a lápiz con acción real, costó 100.000 dólares y tomó 16 semanas producir. El éxito del video demostró que MTV podía determinar la popularidad de una canción.",
+      "awards_de": [
+        "MTV VMA - Bester neuer Künstler (1986)"
+      ],
+      "awards_es": [
+        "MTV VMA - Mejor Artista Nuevo (1986)"
+      ]
     },
     {
       "year": 1976,
       "uri": "spotify:track:7LRMbd3LEoV5wZJvXT1Lwb",
       "artist": "AC/DC",
       "title": "T.N.T.",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 0},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "T.N.T. was written about Angus Young's explosive energy on stage and his tendency to blow up amplifiers. The song became AC/DC's concert opener for years. Originally released only in Australia, it became an international hit when the band gained global recognition."
+      "fun_fact": "T.N.T. was written about Angus Young's explosive energy on stage and his tendency to blow up amplifiers. The song became AC/DC's concert opener for years. Originally released only in Australia, it became an international hit when the band gained global recognition.",
+      "fun_fact_de": "T.N.T. wurde über Angus Youngs explosive Energie auf der Bühne und seine Tendenz, Verstärker zu sprengen, geschrieben. Der Song wurde jahrelang AC/DCs Konzertopener. Ursprünglich nur in Australien veröffentlicht, wurde er ein internationaler Hit, als die Band weltweite Anerkennung erlangte.",
+      "fun_fact_es": "T.N.T. fue escrita sobre la energía explosiva de Angus Young en el escenario y su tendencia a hacer explotar amplificadores. La canción se convirtió en la canción de apertura de conciertos de AC/DC durante años. Originalmente lanzada solo en Australia, se convirtió en un éxito internacional cuando la banda ganó reconocimiento global."
     },
     {
       "year": 1965,
       "uri": "spotify:track:3BQHpFgAp4l80e1XslIjNI",
       "artist": "The Beatles",
       "title": "Yesterday",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 11},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Ivor Novello Award (1966)", "Grammy Hall of Fame (1997)"],
-      "fun_fact": "Yesterday is the most covered song in history with over 2,200 recorded versions. Paul McCartney woke up with the melody in his head and initially thought he must have subconsciously plagiarized it. The working title was 'Scrambled Eggs' before the lyrics were finalized."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Ivor Novello Award (1966)",
+        "Grammy Hall of Fame (1997)"
+      ],
+      "fun_fact": "Yesterday is the most covered song in history with over 2,200 recorded versions. Paul McCartney woke up with the melody in his head and initially thought he must have subconsciously plagiarized it. The working title was 'Scrambled Eggs' before the lyrics were finalized.",
+      "fun_fact_de": "Yesterday ist mit über 2.200 aufgenommenen Versionen der meistgecoverte Song der Geschichte. Paul McCartney wachte mit der Melodie im Kopf auf und dachte zunächst, er müsse sie unbewusst plagiiert haben. Der Arbeitstitel war 'Scrambled Eggs', bevor der Text fertiggestellt wurde.",
+      "fun_fact_es": "Yesterday es la canción más versionada de la historia con más de 2.200 versiones grabadas. Paul McCartney despertó con la melodía en su cabeza y pensó inicialmente que debía haberla plagiado inconscientemente. El título provisional era 'Scrambled Eggs' antes de que se finalizara la letra.",
+      "awards_de": [
+        "Ivor Novello Award (1966)",
+        "Grammy Hall of Fame (1997)"
+      ],
+      "awards_es": [
+        "Premio Ivor Novello (1966)",
+        "Salón de la Fama del Grammy (1997)"
+      ]
     },
     {
       "year": 1983,
       "uri": "spotify:track:1TfqLAPs4K3s2rJMoCokcS",
       "artist": "Eurythmics",
       "title": "Sweet Dreams (Are Made of This)",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 24},
-      "certifications": ["Platinum (US)"],
-      "awards": ["MTV VMA - Best New Artist (1984)"],
-      "fun_fact": "Sweet Dreams was written by Annie Lennox and Dave Stewart during the breakup of their romantic relationship. The song's synthesizer hook was created accidentally when Stewart misconnected equipment. It became the defining sound of 1980s synth-pop and launched Eurythmics to fame."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "MTV VMA - Best New Artist (1984)"
+      ],
+      "fun_fact": "Sweet Dreams was written by Annie Lennox and Dave Stewart during the breakup of their romantic relationship. The song's synthesizer hook was created accidentally when Stewart misconnected equipment. It became the defining sound of 1980s synth-pop and launched Eurythmics to fame.",
+      "fun_fact_de": "Sweet Dreams wurde von Annie Lennox und Dave Stewart während der Trennung ihrer Liebesbeziehung geschrieben. Der Synthesizer-Hook des Songs entstand zufällig, als Stewart Geräte falsch anschloss. Er wurde zum prägenden Sound des 1980er-Jahre-Synth-Pop und machte Eurythmics berühmt.",
+      "fun_fact_es": "Sweet Dreams fue escrita por Annie Lennox y Dave Stewart durante la ruptura de su relación romántica. El gancho de sintetizador de la canción fue creado accidentalmente cuando Stewart conectó mal el equipo. Se convirtió en el sonido definitorio del synth-pop de los años 80 y lanzó a Eurythmics a la fama.",
+      "awards_de": [
+        "MTV VMA - Bester neuer Künstler (1984)"
+      ],
+      "awards_es": [
+        "MTV VMA - Mejor Artista Nuevo (1984)"
+      ]
     },
     {
       "year": 2000,
       "uri": "spotify:track:0v1XpBHnsbkCn7iJ9Ucr1l",
       "artist": "Bon Jovi",
       "title": "It's My Life",
-      "chart_info": {"billboard_peak": 33, "weeks_on_chart": 20},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 33,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "It's My Life marked Bon Jovi's successful comeback after a five-year hiatus. The song was written to appeal to both longtime fans and a new generation. It has been certified platinum multiple times and became a defining rock anthem of the early 2000s across the globe."
+      "fun_fact": "It's My Life marked Bon Jovi's successful comeback after a five-year hiatus. The song was written to appeal to both longtime fans and a new generation. It has been certified platinum multiple times and became a defining rock anthem of the early 2000s across the globe.",
+      "fun_fact_de": "It's My Life markierte Bon Jovis erfolgreiches Comeback nach einer fünfjährigen Pause. Der Song wurde geschrieben, um sowohl langjährige Fans als auch eine neue Generation anzusprechen. Er wurde mehrfach mit Platin ausgezeichnet und wurde weltweit zu einer prägenden Rock-Hymne der frühen 2000er.",
+      "fun_fact_es": "It's My Life marcó el exitoso regreso de Bon Jovi después de un paréntesis de cinco años. La canción fue escrita para atraer tanto a los fans de siempre como a una nueva generación. Ha sido certificada platino múltiples veces y se convirtió en un himno de rock definitorio de principios de los 2000 en todo el mundo."
     },
     {
       "year": 1984,
       "uri": "spotify:track:0ikz6tENMONtK6qGkOrU3c",
       "artist": "Wham!",
       "title": "Wake Me Up Before You Go-Go",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Wake Me Up Before You Go-Go was inspired by a note left by Andrew Ridgeley for his parents. The double 'go-go' came from a scribbling error. George Michael wrote the song in just a few hours, and it became Wham!'s biggest international hit, reaching number one globally."
+      "fun_fact": "Wake Me Up Before You Go-Go was inspired by a note left by Andrew Ridgeley for his parents. The double 'go-go' came from a scribbling error. George Michael wrote the song in just a few hours, and it became Wham!'s biggest international hit, reaching number one globally.",
+      "fun_fact_de": "Wake Me Up Before You Go-Go wurde durch eine Notiz inspiriert, die Andrew Ridgeley für seine Eltern hinterließ. Das doppelte 'go-go' entstand durch einen Schreibfehler. George Michael schrieb den Song in nur wenigen Stunden, und er wurde Wham!s größter internationaler Hit mit Nummer-eins-Platzierungen weltweit.",
+      "fun_fact_es": "Wake Me Up Before You Go-Go fue inspirada por una nota que Andrew Ridgeley dejó a sus padres. El doble 'go-go' vino de un error de escritura. George Michael escribió la canción en solo unas horas, y se convirtió en el mayor éxito internacional de Wham!, alcanzando el número uno a nivel mundial."
     },
     {
       "year": 1977,
       "uri": "spotify:track:4pbJqGIASGPr0ZpGpnWkDn",
       "artist": "Queen",
       "title": "We Will Rock You",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 12},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2009)"],
-      "fun_fact": "We Will Rock You's iconic stomp-stomp-clap beat was designed by Brian May to be performed by stadium audiences. May wanted to create something that 'even a stadium full of people could do.' The song is played at virtually every sporting event worldwide to this day."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "fun_fact": "We Will Rock You's iconic stomp-stomp-clap beat was designed by Brian May to be performed by stadium audiences. May wanted to create something that 'even a stadium full of people could do.' The song is played at virtually every sporting event worldwide to this day.",
+      "fun_fact_de": "We Will Rock Yous ikonischer Stampf-Stampf-Klatsch-Beat wurde von Brian May entworfen, um von Stadionpublikum mitgemacht zu werden. May wollte etwas erschaffen, das 'sogar ein volles Stadion machen kann'. Der Song wird bis heute bei praktisch jeder Sportveranstaltung weltweit gespielt.",
+      "fun_fact_es": "El icónico ritmo de pisotón-pisotón-palmada de We Will Rock You fue diseñado por Brian May para ser interpretado por el público de los estadios. May quería crear algo que 'incluso un estadio lleno de gente pudiera hacer'. La canción se toca en prácticamente todos los eventos deportivos del mundo hasta hoy.",
+      "awards_de": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2009)"
+      ]
     },
     {
       "year": 1990,
       "uri": "spotify:track:3ovjw5HZZv43SxTwApooCM",
       "artist": "Scorpions",
       "title": "Wind of Change",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 24},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Wind of Change was written about the fall of the Berlin Wall and the end of the Cold War. The Scorpions' Klaus Meine wrote it after visiting Moscow during glasnost. It became an anthem for German reunification and has sold over 14 million copies, symbolizing hope and freedom."
+      "fun_fact": "Wind of Change was written about the fall of the Berlin Wall and the end of the Cold War. The Scorpions' Klaus Meine wrote it after visiting Moscow during glasnost. It became an anthem for German reunification and has sold over 14 million copies, symbolizing hope and freedom.",
+      "fun_fact_de": "Wind of Change wurde über den Fall der Berliner Mauer und das Ende des Kalten Krieges geschrieben. Scorpions' Klaus Meine schrieb ihn nach einem Besuch in Moskau während der Glasnost. Er wurde zu einer Hymne der deutschen Wiedervereinigung und hat über 14 Millionen Exemplare verkauft, als Symbol für Hoffnung und Freiheit.",
+      "fun_fact_es": "Wind of Change fue escrita sobre la caída del Muro de Berlín y el fin de la Guerra Fría. Klaus Meine de los Scorpions la escribió después de visitar Moscú durante la glasnost. Se convirtió en un himno de la reunificación alemana y ha vendido más de 14 millones de copias, simbolizando esperanza y libertad."
     },
     {
       "year": 1995,
       "uri": "spotify:track:3ic5SdHoppddKCuXPUz2fV",
       "artist": "Oasis",
       "title": "Wonderwall",
-      "chart_info": {"billboard_peak": 8, "weeks_on_chart": 24},
-      "certifications": ["3x Platinum (US)", "Platinum (UK)"],
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Platinum (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Wonderwall was inspired by Noel Gallagher's then-girlfriend Meg Mathews, though he later said it was about an 'imaginary friend' who'll save you. The title comes from a George Harrison album. It's one of the most-played songs on streaming platforms and a karaoke staple worldwide."
+      "fun_fact": "Wonderwall was inspired by Noel Gallagher's then-girlfriend Meg Mathews, though he later said it was about an 'imaginary friend' who'll save you. The title comes from a George Harrison album. It's one of the most-played songs on streaming platforms and a karaoke staple worldwide.",
+      "fun_fact_de": "Wonderwall wurde von Noel Gallaghers damaliger Freundin Meg Mathews inspiriert, obwohl er später sagte, es gehe um einen 'imaginären Freund', der einen rettet. Der Titel stammt von einem George-Harrison-Album. Er ist einer der meistgestreamten Songs und ein Karaoke-Klassiker weltweit.",
+      "fun_fact_es": "Wonderwall fue inspirada por la entonces novia de Noel Gallagher, Meg Mathews, aunque luego dijo que era sobre un 'amigo imaginario' que te salvará. El título viene de un álbum de George Harrison. Es una de las canciones más reproducidas en plataformas de streaming y un clásico del karaoke en todo el mundo."
     },
     {
       "year": 1961,
       "uri": "spotify:track:44AyOl4qVkzS48vBsbNXaC",
       "artist": "Elvis Presley",
       "title": "Can't Help Falling in Love",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 14},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Can't Help Falling in Love was adapted from the 18th-century French song 'Plaisir d'Amour.' Elvis Presley performed it at the end of his concerts for years. It was featured in the film Blue Hawaii and has been covered by over 500 artists, becoming a wedding favorite."
+      "fun_fact": "Can't Help Falling in Love was adapted from the 18th-century French song 'Plaisir d'Amour.' Elvis Presley performed it at the end of his concerts for years. It was featured in the film Blue Hawaii and has been covered by over 500 artists, becoming a wedding favorite.",
+      "fun_fact_de": "Can't Help Falling in Love wurde aus dem französischen Lied 'Plaisir d'Amour' aus dem 18. Jahrhundert adaptiert. Elvis Presley spielte es jahrelang am Ende seiner Konzerte. Es war im Film Blue Hawaii zu sehen und wurde von über 500 Künstlern gecovert – ein Favorit bei Hochzeiten.",
+      "fun_fact_es": "Can't Help Falling in Love fue adaptada de la canción francesa del siglo XVIII 'Plaisir d'Amour'. Elvis Presley la interpretó al final de sus conciertos durante años. Apareció en la película Blue Hawaii y ha sido versionada por más de 500 artistas, convirtiéndose en una favorita de bodas."
     },
     {
       "year": 1984,
       "uri": "spotify:track:4S1VYqwfkLit9mKVY3MXoo",
       "artist": "Alphaville",
       "title": "Forever Young",
-      "chart_info": {"billboard_peak": 65, "uk_peak": 0},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 65,
+        "uk_peak": 0
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Forever Young became a Cold War anthem about nuclear annihilation and the desire to live fully despite uncertainty. Alphaville's Marian Gold wrote two versions—one slow and one uptempo—and couldn't decide which to release, so both appeared on the album. It's now a graduation staple."
+      "fun_fact": "Forever Young became a Cold War anthem about nuclear annihilation and the desire to live fully despite uncertainty. Alphaville's Marian Gold wrote two versions—one slow and one uptempo—and couldn't decide which to release, so both appeared on the album. It's now a graduation staple.",
+      "fun_fact_de": "Forever Young wurde zu einer Hymne des Kalten Krieges über nukleare Vernichtung und den Wunsch, trotz Ungewissheit voll zu leben. Alphavilles Marian Gold schrieb zwei Versionen – eine langsame und eine schnelle – und konnte sich nicht entscheiden, welche er veröffentlichen sollte, also erschienen beide auf dem Album. Heute ist es ein Abschlussfeier-Klassiker.",
+      "fun_fact_es": "Forever Young se convirtió en un himno de la Guerra Fría sobre la aniquilación nuclear y el deseo de vivir plenamente a pesar de la incertidumbre. Marian Gold de Alphaville escribió dos versiones, una lenta y otra rápida, y no podía decidir cuál lanzar, así que ambas aparecieron en el álbum. Ahora es un clásico de graduación."
     },
     {
       "year": 1969,
       "uri": "spotify:track:62AuGbAkt8Ox2IrFFb8GKV",
       "artist": "Neil Diamond",
       "title": "Sweet Caroline",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 12},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2017)"],
-      "fun_fact": "Sweet Caroline was written about Caroline Kennedy, President JFK's daughter, after Neil Diamond saw a photo of her on a magazine cover. Diamond didn't confirm this until 2007. The 'Bah bah bah' hook has made it a stadium singalong favorite, especially at Boston Red Sox games."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2017)"
+      ],
+      "fun_fact": "Sweet Caroline was written about Caroline Kennedy, President JFK's daughter, after Neil Diamond saw a photo of her on a magazine cover. Diamond didn't confirm this until 2007. The 'Bah bah bah' hook has made it a stadium singalong favorite, especially at Boston Red Sox games.",
+      "fun_fact_de": "Sweet Caroline wurde über Caroline Kennedy, Präsident JFKs Tochter, geschrieben, nachdem Neil Diamond ein Foto von ihr auf einer Zeitschrift sah. Diamond bestätigte dies erst 2007. Der 'Bah bah bah'-Hook hat ihn zu einem Stadion-Mitsing-Favoriten gemacht, besonders bei Boston Red Sox-Spielen.",
+      "fun_fact_es": "Sweet Caroline fue escrita sobre Caroline Kennedy, la hija del presidente JFK, después de que Neil Diamond viera una foto de ella en la portada de una revista. Diamond no confirmó esto hasta 2007. El gancho 'Bah bah bah' la ha convertido en una favorita para cantar en estadios, especialmente en los juegos de los Boston Red Sox.",
+      "awards_de": [
+        "Grammy Hall of Fame (2017)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2017)"
+      ]
     },
     {
       "year": 1962,
       "uri": "spotify:track:3SdTKo2uVsxFblQjpScoHy",
       "artist": "Ben E. King",
       "title": "Stand By Me",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 23},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (1999)"],
-      "fun_fact": "Stand By Me was written in the basement of Ben E. King's New York apartment in just 15 minutes. The song was inspired by a gospel hymn. It has been used in over 150 films and TV shows, and was named one of the Songs of the Century by the Recording Industry Association."
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "fun_fact": "Stand By Me was written in the basement of Ben E. King's New York apartment in just 15 minutes. The song was inspired by a gospel hymn. It has been used in over 150 films and TV shows, and was named one of the Songs of the Century by the Recording Industry Association.",
+      "fun_fact_de": "Stand By Me wurde im Keller von Ben E. Kings New Yorker Wohnung in nur 15 Minuten geschrieben. Der Song wurde von einem Gospel-Lied inspiriert. Er wurde in über 150 Filmen und TV-Shows verwendet und wurde von der Recording Industry Association zu einem der Songs des Jahrhunderts ernannt.",
+      "fun_fact_es": "Stand By Me fue escrita en el sótano del apartamento de Ben E. King en Nueva York en solo 15 minutos. La canción fue inspirada por un himno gospel. Ha sido usada en más de 150 películas y programas de TV, y fue nombrada una de las Canciones del Siglo por la Asociación de la Industria Discográfica.",
+      "awards_de": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1999)"
+      ]
     },
     {
       "year": 1968,
       "uri": "spotify:track:1qCQTy0fTXerET4x8VHyr9",
       "artist": "Louis Armstrong",
       "title": "What a Wonderful World",
-      "chart_info": {"billboard_peak": 116, "uk_peak": 1},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy Hall of Fame (1999)"],
-      "fun_fact": "What a Wonderful World was written specifically for Louis Armstrong's gravelly voice and optimistic persona. It was a commercial failure in the US initially but hit number one in the UK. The song gained renewed popularity after being featured in the 1987 film Good Morning, Vietnam."
+      "chart_info": {
+        "billboard_peak": 116,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "fun_fact": "What a Wonderful World was written specifically for Louis Armstrong's gravelly voice and optimistic persona. It was a commercial failure in the US initially but hit number one in the UK. The song gained renewed popularity after being featured in the 1987 film Good Morning, Vietnam.",
+      "fun_fact_de": "What a Wonderful World wurde speziell für Louis Armstrongs raue Stimme und seine optimistische Persönlichkeit geschrieben. Es war zunächst ein kommerzieller Misserfolg in den USA, erreichte aber Platz eins in Großbritannien. Der Song gewann durch seinen Einsatz im Film Good Morning, Vietnam 1987 erneute Popularität.",
+      "fun_fact_es": "What a Wonderful World fue escrita específicamente para la voz ronca de Louis Armstrong y su personalidad optimista. Fue un fracaso comercial en EE.UU. inicialmente pero alcanzó el número uno en el Reino Unido. La canción ganó renovada popularidad después de aparecer en la película Good Morning, Vietnam de 1987.",
+      "awards_de": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1999)"
+      ]
     },
     {
       "year": 1969,
       "uri": "spotify:track:5LxvwujISqiB8vpRYv887S",
       "artist": "The Jackson 5",
       "title": "I Want You Back",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 16},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (1999)"],
-      "fun_fact": "I Want You Back was the debut single from the Jackson 5, featuring 11-year-old Michael Jackson on lead vocals. Motown founder Berry Gordy personally oversaw the production. The song showcased Michael's incredible vocal abilities and launched one of music's most legendary careers."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "fun_fact": "I Want You Back was the debut single from the Jackson 5, featuring 11-year-old Michael Jackson on lead vocals. Motown founder Berry Gordy personally oversaw the production. The song showcased Michael's incredible vocal abilities and launched one of music's most legendary careers.",
+      "fun_fact_de": "I Want You Back war die Debütsingle der Jackson 5 mit dem 11-jährigen Michael Jackson als Leadsänger. Motown-Gründer Berry Gordy überwachte die Produktion persönlich. Der Song zeigte Michaels unglaubliche stimmliche Fähigkeiten und startete eine der legendärsten Karrieren der Musik.",
+      "fun_fact_es": "I Want You Back fue el sencillo debut de los Jackson 5, con Michael Jackson de 11 años como vocalista principal. El fundador de Motown, Berry Gordy, supervisó personalmente la producción. La canción mostró las increíbles habilidades vocales de Michael y lanzó una de las carreras más legendarias de la música.",
+      "awards_de": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1999)"
+      ]
     },
     {
       "year": 1971,
       "uri": "spotify:track:2xYlyywNgefLCRDG8hlxZq",
       "artist": "John Denver",
       "title": "Take Me Home, Country Roads",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 15},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Take Me Home, Country Roads was written about West Virginia by two songwriters who had never visited the state. John Denver added final touches and made it his signature song. It became the official state anthem of West Virginia in 2014, beloved by fans worldwide."
+      "fun_fact": "Take Me Home, Country Roads was written about West Virginia by two songwriters who had never visited the state. John Denver added final touches and made it his signature song. It became the official state anthem of West Virginia in 2014, beloved by fans worldwide.",
+      "fun_fact_de": "Take Me Home, Country Roads wurde über West Virginia von zwei Songwritern geschrieben, die den Staat nie besucht hatten. John Denver fügte die letzten Details hinzu und machte ihn zu seinem Erkennungslied. Er wurde 2014 zur offiziellen Staatshymne von West Virginia – von Fans weltweit geliebt.",
+      "fun_fact_es": "Take Me Home, Country Roads fue escrita sobre Virginia Occidental por dos compositores que nunca habían visitado el estado. John Denver añadió los toques finales y la convirtió en su canción insignia. Se convirtió en el himno oficial del estado de Virginia Occidental en 2014, amada por fans de todo el mundo."
     },
     {
       "year": 1985,
       "uri": "spotify:track:3Z2tPWiNiIpg8UMMoowHIk",
       "artist": "USA for Africa",
       "title": "We Are the World",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 16},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["Grammy - Record of the Year (1986)", "Grammy - Song of the Year (1986)"],
-      "fun_fact": "We Are the World was recorded in one overnight session with 46 of the biggest stars in music. Producer Quincy Jones posted a sign saying 'Check your egos at the door.' It raised over $63 million for African famine relief and became the fastest-selling American pop single ever."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1986)",
+        "Grammy - Song of the Year (1986)"
+      ],
+      "fun_fact": "We Are the World was recorded in one overnight session with 46 of the biggest stars in music. Producer Quincy Jones posted a sign saying 'Check your egos at the door.' It raised over $63 million for African famine relief and became the fastest-selling American pop single ever.",
+      "fun_fact_de": "We Are the World wurde in einer einzigen Nachtschicht mit 46 der größten Stars der Musik aufgenommen. Produzent Quincy Jones hängte ein Schild auf: 'Lasst eure Egos an der Tür'. Es sammelte über 63 Millionen Dollar für die Hungerhilfe in Afrika und wurde die schnellstverkaufte amerikanische Pop-Single aller Zeiten.",
+      "fun_fact_es": "We Are the World fue grabada en una sola sesión nocturna con 46 de las mayores estrellas de la música. El productor Quincy Jones puso un cartel que decía 'Dejen sus egos en la puerta'. Recaudó más de 63 millones de dólares para el alivio de la hambruna en África y se convirtió en el sencillo pop estadounidense más vendido de la historia.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1986)",
+        "Grammy - Song des Jahres (1986)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1986)",
+        "Grammy - Canción del Año (1986)"
+      ]
     },
     {
       "year": 1975,
       "uri": "spotify:track:2TxCwUlqaOH3TIyJqGgR91",
       "artist": "ABBA",
       "title": "Mamma Mia",
-      "chart_info": {"billboard_peak": 32, "uk_peak": 1},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 32,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Mamma Mia launched a global phenomenon including a stage musical and two films. ABBA's Benny Andersson wrote the distinctive keyboard hook. The song's title and lyrics play with the Italian exclamation. It was ABBA's first UK number one and helped establish them internationally."
+      "fun_fact": "Mamma Mia launched a global phenomenon including a stage musical and two films. ABBA's Benny Andersson wrote the distinctive keyboard hook. The song's title and lyrics play with the Italian exclamation. It was ABBA's first UK number one and helped establish them internationally.",
+      "fun_fact_de": "Mamma Mia löste ein weltweites Phänomen aus, einschließlich eines Bühnenmusicals und zweier Filme. ABBAs Benny Andersson schrieb den markanten Keyboard-Hook. Der Songtitel und die Texte spielen mit dem italienischen Ausruf. Es war ABBAs erste UK-Nummer-eins und half, sie international zu etablieren.",
+      "fun_fact_es": "Mamma Mia lanzó un fenómeno global que incluye un musical de teatro y dos películas. Benny Andersson de ABBA escribió el distintivo gancho de teclado. El título y la letra de la canción juegan con la exclamación italiana. Fue el primer número uno de ABBA en el Reino Unido y ayudó a establecerlos internacionalmente."
     },
     {
       "year": 1976,
       "uri": "spotify:track:3pf96IFggfQuT6Gafqx2rt",
       "artist": "Boney M.",
       "title": "Sunny",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 3},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 3
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Sunny was originally written by Bobby Hebb in 1963 after the assassination of JFK and his brother's murder. Boney M.'s disco version became one of the biggest hits of 1976. The song has been covered over 300 times, making it one of the most-recorded songs in history."
+      "fun_fact": "Sunny was originally written by Bobby Hebb in 1963 after the assassination of JFK and his brother's murder. Boney M.'s disco version became one of the biggest hits of 1976. The song has been covered over 300 times, making it one of the most-recorded songs in history.",
+      "fun_fact_de": "Sunny wurde ursprünglich 1963 von Bobby Hebb nach der Ermordung JFKs und dem Mord an seinem Bruder geschrieben. Boney M.s Disco-Version wurde einer der größten Hits von 1976. Der Song wurde über 300 Mal gecovert und ist damit einer der meistaufgenommenen Songs der Geschichte.",
+      "fun_fact_es": "Sunny fue escrita originalmente por Bobby Hebb en 1963 después del asesinato de JFK y el asesinato de su hermano. La versión disco de Boney M. se convirtió en uno de los mayores éxitos de 1976. La canción ha sido versionada más de 300 veces, convirtiéndola en una de las canciones más grabadas de la historia."
     },
     {
       "year": 1995,
       "uri": "spotify:track:4fXGWiVhlOLdhwRDP6pIFG",
       "artist": "Fools Garden",
       "title": "Lemon Tree",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 26},
-      "certifications": ["Gold (Germany)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 26
+      },
+      "certifications": [
+        "Gold (Germany)"
+      ],
       "awards": [],
-      "fun_fact": "Lemon Tree was written by Fools Garden's Peter Freudenthaler about a boring Sunday afternoon spent staring at a lemon tree picture. The German band became one-hit wonders internationally but remain popular in Europe. The song's upbeat melody contrasts with its melancholic lyrics."
+      "fun_fact": "Lemon Tree was written by Fools Garden's Peter Freudenthaler about a boring Sunday afternoon spent staring at a lemon tree picture. The German band became one-hit wonders internationally but remain popular in Europe. The song's upbeat melody contrasts with its melancholic lyrics.",
+      "fun_fact_de": "Lemon Tree wurde von Fools Gardens Peter Freudenthaler über einen langweiligen Sonntagnachmittag geschrieben, an dem er ein Zitronenbaum-Bild anstarrte. Die deutsche Band wurde international zu One-Hit-Wondern, blieb aber in Europa beliebt. Die fröhliche Melodie des Songs steht im Kontrast zu seinen melancholischen Texten.",
+      "fun_fact_es": "Lemon Tree fue escrita por Peter Freudenthaler de Fools Garden sobre una aburrida tarde de domingo pasada mirando una imagen de un limonero. La banda alemana se convirtió en éxitos de un solo tema internacionalmente pero sigue siendo popular en Europa. La melodía alegre de la canción contrasta con su letra melancólica."
     },
     {
       "year": 1988,
       "uri": "spotify:track:4hObp5bmIJ3PP3cKA9K9GY",
       "artist": "Bobby McFerrin",
       "title": "Don't Worry, Be Happy",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 19},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy - Record of the Year (1989)", "Grammy - Song of the Year (1989)"],
-      "fun_fact": "Don't Worry, Be Happy was the first a cappella song to reach number one on the Billboard Hot 100. Bobby McFerrin recorded all the vocals himself using only his voice and body percussion. The phrase later became associated with Bob Marley, though he never actually sang those words."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1989)",
+        "Grammy - Song of the Year (1989)"
+      ],
+      "fun_fact": "Don't Worry, Be Happy was the first a cappella song to reach number one on the Billboard Hot 100. Bobby McFerrin recorded all the vocals himself using only his voice and body percussion. The phrase later became associated with Bob Marley, though he never actually sang those words.",
+      "fun_fact_de": "Don't Worry, Be Happy war der erste A-cappella-Song, der Platz eins der Billboard Hot 100 erreichte. Bobby McFerrin nahm alle Stimmen selbst auf und verwendete nur seine Stimme und Körperperkussion. Der Satz wurde später mit Bob Marley assoziiert, obwohl er diese Worte nie sang.",
+      "fun_fact_es": "Don't Worry, Be Happy fue la primera canción a cappella en alcanzar el número uno en el Billboard Hot 100. Bobby McFerrin grabó todas las voces él mismo usando solo su voz y percusión corporal. La frase se asoció más tarde con Bob Marley, aunque él nunca cantó realmente esas palabras.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1989)",
+        "Grammy - Song des Jahres (1989)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1989)",
+        "Grammy - Canción del Año (1989)"
+      ]
     },
     {
       "year": 1974,
       "uri": "spotify:track:3Dy4REq8O09IlgiwuHQ3sk",
       "artist": "ABBA",
       "title": "Waterloo",
-      "chart_info": {"billboard_peak": 6, "uk_peak": 1},
-      "certifications": ["Gold (US)"],
-      "awards": ["Eurovision Winner (1974)"],
-      "fun_fact": "Waterloo was ABBA's breakthrough hit that won the 1974 Eurovision Song Contest. The song compares surrender in love to Napoleon's defeat at Waterloo. It was released in both English and Swedish versions and launched ABBA's career as one of the best-selling groups in history."
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Eurovision Winner (1974)"
+      ],
+      "fun_fact": "Waterloo was ABBA's breakthrough hit that won the 1974 Eurovision Song Contest. The song compares surrender in love to Napoleon's defeat at Waterloo. It was released in both English and Swedish versions and launched ABBA's career as one of the best-selling groups in history.",
+      "fun_fact_de": "Waterloo war ABBAs Durchbruchshit, der den Eurovision Song Contest 1974 gewann. Der Song vergleicht die Kapitulation in der Liebe mit Napoleons Niederlage bei Waterloo. Er wurde sowohl auf Englisch als auch auf Schwedisch veröffentlicht und startete ABBAs Karriere als eine der meistverkauften Gruppen der Geschichte.",
+      "fun_fact_es": "Waterloo fue el éxito revelación de ABBA que ganó el Festival de Eurovisión de 1974. La canción compara la rendición en el amor con la derrota de Napoleón en Waterloo. Fue lanzada en versiones en inglés y sueco y lanzó la carrera de ABBA como uno de los grupos más vendidos de la historia.",
+      "awards_de": [
+        "Eurovision-Gewinner (1974)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovisión (1974)"
+      ]
     },
     {
       "year": 1978,
       "uri": "spotify:track:3ypMsqUwfNFMiooMLVHfkp",
       "artist": "Village People",
       "title": "Y.M.C.A.",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 20},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "YMCA was written by Jacques Morali after he visited a YMCA in New York and found it a great place for young people to hang out. The Village People song became a gay anthem and disco classic. The famous arm movements were invented by audience members, not choreographed."
+      "fun_fact": "YMCA was written by Jacques Morali after he visited a YMCA in New York and found it a great place for young people to hang out. The Village People song became a gay anthem and disco classic. The famous arm movements were invented by audience members, not choreographed.",
+      "fun_fact_de": "YMCA wurde von Jacques Morali geschrieben, nachdem er ein YMCA in New York besucht hatte und es als großartigen Ort für junge Leute fand. Der Village People-Song wurde zu einer Schwulenhymne und einem Disco-Klassiker. Die berühmten Armbewegungen wurden vom Publikum erfunden, nicht choreografiert.",
+      "fun_fact_es": "YMCA fue escrita por Jacques Morali después de visitar un YMCA en Nueva York y encontrarlo un gran lugar para los jóvenes. La canción de Village People se convirtió en un himno gay y un clásico del disco. Los famosos movimientos de brazos fueron inventados por el público, no coreografiados."
     },
     {
       "year": 1978,
       "uri": "spotify:track:5nNmj1cLH3r4aA4XDJ2bgY",
       "artist": "Earth, Wind & Fire",
       "title": "September",
-      "chart_info": {"billboard_peak": 8, "weeks_on_chart": 16},
-      "certifications": ["4x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "September's opening line 'Do you remember the 21st night of September?' refers to no specific event—songwriter Allee Willis chose it purely for the sound. Maurice White confirmed there's no special meaning. The song has become an essential party anthem for over four decades now."
+      "fun_fact": "September's opening line 'Do you remember the 21st night of September?' refers to no specific event—songwriter Allee Willis chose it purely for the sound. Maurice White confirmed there's no special meaning. The song has become an essential party anthem for over four decades now.",
+      "fun_fact_de": "Septembers Eröffnungszeile 'Erinnerst du dich an die 21. Nacht im September?' bezieht sich auf kein bestimmtes Ereignis – Songwriterin Allee Willis wählte es rein wegen des Klangs. Maurice White bestätigte, dass es keine besondere Bedeutung gibt. Der Song ist seit über vier Jahrzehnten eine unverzichtbare Party-Hymne.",
+      "fun_fact_es": "La línea inicial de September '¿Recuerdas la noche del 21 de septiembre?' no se refiere a ningún evento específico: la compositora Allee Willis la eligió puramente por el sonido. Maurice White confirmó que no hay un significado especial. La canción se ha convertido en un himno esencial de fiestas por más de cuatro décadas."
     },
     {
       "year": 1999,
       "uri": "spotify:track:6x4tKaOzfNJpEJHySoiJcs",
       "artist": "Lou Bega",
       "title": "Mambo No. 5",
-      "chart_info": {"billboard_peak": 3, "weeks_on_chart": 23},
-      "certifications": ["3x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 3,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Mambo No. 5 originally was a 1949 Cuban instrumental. Lou Bega added lyrics listing women's names, which were supposedly real girlfriends. The song became a global phenomenon, topping charts in over 10 countries. Bega reportedly made $6 million from this single alone worldwide."
+      "fun_fact": "Mambo No. 5 originally was a 1949 Cuban instrumental. Lou Bega added lyrics listing women's names, which were supposedly real girlfriends. The song became a global phenomenon, topping charts in over 10 countries. Bega reportedly made $6 million from this single alone worldwide.",
+      "fun_fact_de": "Mambo No. 5 war ursprünglich ein kubanisches Instrumental von 1949. Lou Bega fügte Texte mit Frauennamen hinzu, die angeblich echte Freundinnen waren. Der Song wurde ein weltweites Phänomen und führte die Charts in über 10 Ländern an. Bega verdiente Berichten zufolge allein mit dieser Single 6 Millionen Dollar weltweit.",
+      "fun_fact_es": "Mambo No. 5 fue originalmente un instrumental cubano de 1949. Lou Bega añadió letras con nombres de mujeres, que supuestamente eran novias reales. La canción se convirtió en un fenómeno global, encabezando las listas en más de 10 países. Según los informes, Bega ganó 6 millones de dólares solo con este sencillo a nivel mundial."
     },
     {
       "year": 1974,
       "uri": "spotify:track:7e89621JPkKaeDSTQ3avtg",
       "artist": "Lynyrd Skynyrd",
       "title": "Sweet Home Alabama",
-      "chart_info": {"billboard_peak": 8, "weeks_on_chart": 13},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Sweet Home Alabama was written as a response to Neil Young's critical songs about the American South. Despite the perceived feud, Young and Lynyrd Skynyrd were actually friends. The song became an anthem for Southern pride and is still played at Alabama Crimson Tide football games."
+      "fun_fact": "Sweet Home Alabama was written as a response to Neil Young's critical songs about the American South. Despite the perceived feud, Young and Lynyrd Skynyrd were actually friends. The song became an anthem for Southern pride and is still played at Alabama Crimson Tide football games.",
+      "fun_fact_de": "Sweet Home Alabama wurde als Antwort auf Neil Youngs kritische Songs über den amerikanischen Süden geschrieben. Trotz der vermeintlichen Fehde waren Young und Lynyrd Skynyrd eigentlich Freunde. Der Song wurde zu einer Hymne des Südstaaten-Stolzes und wird noch heute bei Alabama Crimson Tide Football-Spielen gespielt.",
+      "fun_fact_es": "Sweet Home Alabama fue escrita como respuesta a las canciones críticas de Neil Young sobre el sur estadounidense. A pesar de la supuesta rivalidad, Young y Lynyrd Skynyrd eran en realidad amigos. La canción se convirtió en un himno del orgullo sureño y todavía se toca en los partidos de fútbol americano de Alabama Crimson Tide."
     },
     {
       "year": 1976,
       "uri": "spotify:track:3WMbD1OyfKuwWDWMNbPQ4g",
       "artist": "Boney M.",
       "title": "Daddy Cool",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 6},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 6
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Daddy Cool was one of Boney M.'s first major hits, featuring Frank Farian's production techniques that later caused controversy. The song's infectious rhythm made it a disco staple. Farian would later admit to using session singers on some recordings, but Daddy Cool showcased the group's talent."
+      "fun_fact": "Daddy Cool was one of Boney M.'s first major hits, featuring Frank Farian's production techniques that later caused controversy. The song's infectious rhythm made it a disco staple. Farian would later admit to using session singers on some recordings, but Daddy Cool showcased the group's talent.",
+      "fun_fact_de": "Daddy Cool war einer von Boney M.s ersten großen Hits mit Frank Farians Produktionstechniken, die später Kontroversen auslösten. Der ansteckende Rhythmus des Songs machte ihn zu einem Disco-Klassiker. Farian gab später zu, bei einigen Aufnahmen Session-Sänger verwendet zu haben, aber Daddy Cool zeigte das Talent der Gruppe.",
+      "fun_fact_es": "Daddy Cool fue uno de los primeros grandes éxitos de Boney M., presentando las técnicas de producción de Frank Farian que más tarde causaron controversia. El ritmo contagioso de la canción la convirtió en un clásico del disco. Farian luego admitiría usar cantantes de sesión en algunas grabaciones, pero Daddy Cool mostró el talento del grupo."
     },
     {
       "year": 1986,
       "uri": "spotify:track:6I9HXaU8zbTgASGe7evWnu",
       "artist": "Europe",
       "title": "The Final Countdown",
-      "chart_info": {"billboard_peak": 8, "weeks_on_chart": 17},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "The Final Countdown was written about space travel and leaving Earth behind. The iconic synthesizer intro has made it one of the most recognized riffs in rock history. Europe's Joey Tempest was inspired by David Bowie's 'Space Oddity.' The song is played at countless sporting events today."
+      "fun_fact": "The Final Countdown was written about space travel and leaving Earth behind. The iconic synthesizer intro has made it one of the most recognized riffs in rock history. Europe's Joey Tempest was inspired by David Bowie's 'Space Oddity.' The song is played at countless sporting events today.",
+      "fun_fact_de": "The Final Countdown wurde über Raumfahrt und das Verlassen der Erde geschrieben. Das ikonische Synthesizer-Intro hat es zu einem der bekanntesten Riffs der Rockgeschichte gemacht. Europes Joey Tempest wurde von David Bowies 'Space Oddity' inspiriert. Der Song wird heute bei unzähligen Sportveranstaltungen gespielt.",
+      "fun_fact_es": "The Final Countdown fue escrita sobre viajes espaciales y dejar la Tierra atrás. La icónica introducción de sintetizador la ha convertido en uno de los riffs más reconocidos en la historia del rock. Joey Tempest de Europe se inspiró en 'Space Oddity' de David Bowie. La canción se toca en innumerables eventos deportivos hoy en día."
     },
     {
       "year": 1981,
       "uri": "spotify:track:2Cdvbe2G4hZsnhNMKyGrie",
       "artist": "Joan Jett & The Blackhearts",
       "title": "I Love Rock 'n' Roll",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 23},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "I Love Rock 'n' Roll was originally recorded by Arrows in 1975. Joan Jett saw them perform it on British TV and became obsessed with the song. Her version became one of the biggest hits of the early 1980s and defined her career as the queen of rock and roll attitude."
+      "fun_fact": "I Love Rock 'n' Roll was originally recorded by Arrows in 1975. Joan Jett saw them perform it on British TV and became obsessed with the song. Her version became one of the biggest hits of the early 1980s and defined her career as the queen of rock and roll attitude.",
+      "fun_fact_de": "I Love Rock 'n' Roll wurde ursprünglich 1975 von Arrows aufgenommen. Joan Jett sah sie den Song im britischen Fernsehen spielen und war besessen davon. Ihre Version wurde einer der größten Hits der frühen 1980er und definierte ihre Karriere als Königin der Rock-and-Roll-Attitüde.",
+      "fun_fact_es": "I Love Rock 'n' Roll fue grabada originalmente por Arrows en 1975. Joan Jett los vio interpretarla en la televisión británica y quedó obsesionada con la canción. Su versión se convirtió en uno de los mayores éxitos de principios de los 80 y definió su carrera como la reina de la actitud del rock and roll."
     },
     {
       "year": 1984,
       "uri": "spotify:track:7N3PAbqfTjSEU1edb2tY8j",
       "artist": "Van Halen",
       "title": "Jump",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Jump was the first Van Halen song to feature David Lee Roth's idea of using synthesizers prominently. Eddie Van Halen actually disliked the keyboard riff initially. The song's optimistic message about taking risks made it an instant anthem and Van Halen's biggest commercial success."
+      "fun_fact": "Jump was the first Van Halen song to feature David Lee Roth's idea of using synthesizers prominently. Eddie Van Halen actually disliked the keyboard riff initially. The song's optimistic message about taking risks made it an instant anthem and Van Halen's biggest commercial success.",
+      "fun_fact_de": "Jump war der erste Van-Halen-Song, bei dem David Lee Roths Idee umgesetzt wurde, Synthesizer prominent einzusetzen. Eddie Van Halen mochte das Keyboard-Riff anfangs nicht. Die optimistische Botschaft des Songs über das Eingehen von Risiken machte ihn sofort zur Hymne und Van Halens größtem kommerziellen Erfolg.",
+      "fun_fact_es": "Jump fue la primera canción de Van Halen que presentó la idea de David Lee Roth de usar sintetizadores de manera prominente. Eddie Van Halen en realidad no le gustaba el riff de teclado inicialmente. El mensaje optimista de la canción sobre tomar riesgos la convirtió en un himno instantáneo y el mayor éxito comercial de Van Halen."
     },
     {
       "year": 1982,
       "uri": "spotify:track:4caiYv89C9GZdDD1RzshWd",
       "artist": "The Weather Girls",
       "title": "It's Raining Men",
-      "chart_info": {"billboard_peak": 46, "uk_peak": 2},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 46,
+        "uk_peak": 2
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "It's Raining Men was originally offered to Donna Summer, who rejected it for being too risqué. The Weather Girls turned it into a disco anthem that has endured as a camp classic. Songwriters Paul Jabara and Paul Shaffer wrote it as a humorous celebration of female desire."
+      "fun_fact": "It's Raining Men was originally offered to Donna Summer, who rejected it for being too risqué. The Weather Girls turned it into a disco anthem that has endured as a camp classic. Songwriters Paul Jabara and Paul Shaffer wrote it as a humorous celebration of female desire.",
+      "fun_fact_de": "It's Raining Men wurde ursprünglich Donna Summer angeboten, die es als zu gewagt ablehnte. The Weather Girls machten daraus eine Disco-Hymne, die als Camp-Klassiker überdauert hat. Die Songwriter Paul Jabara und Paul Shaffer schrieben es als humorvolle Feier weiblichen Begehrens.",
+      "fun_fact_es": "It's Raining Men fue ofrecida originalmente a Donna Summer, quien la rechazó por considerarla demasiado atrevida. The Weather Girls la convirtieron en un himno disco que ha perdurado como un clásico camp. Los compositores Paul Jabara y Paul Shaffer la escribieron como una celebración humorística del deseo femenino."
     },
     {
       "year": 1982,
       "uri": "spotify:track:39shmbIHICJ2Wxnk1fPSdz",
       "artist": "The Clash",
       "title": "Should I Stay or Should I Go",
-      "chart_info": {"billboard_peak": 45, "uk_peak": 1},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 45,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Should I Stay or Should I Go was written by Mick Jones about his relationship with Ellen Foley. The Spanish backing vocals were recorded by the band without understanding what they were singing. The song gained renewed fame in the Netflix series 'Stranger Things' decades later."
+      "fun_fact": "Should I Stay or Should I Go was written by Mick Jones about his relationship with Ellen Foley. The Spanish backing vocals were recorded by the band without understanding what they were singing. The song gained renewed fame in the Netflix series 'Stranger Things' decades later.",
+      "fun_fact_de": "Should I Stay or Should I Go wurde von Mick Jones über seine Beziehung mit Ellen Foley geschrieben. Die spanischen Background-Vocals wurden von der Band aufgenommen, ohne zu verstehen, was sie sangen. Der Song gewann Jahrzehnte später durch die Netflix-Serie 'Stranger Things' erneute Berühmtheit.",
+      "fun_fact_es": "Should I Stay or Should I Go fue escrita por Mick Jones sobre su relación con Ellen Foley. Los coros en español fueron grabados por la banda sin entender lo que estaban cantando. La canción ganó renovada fama en la serie de Netflix 'Stranger Things' décadas después."
     },
     {
       "year": 1980,
       "uri": "spotify:track:7AMnWNkwYPxaVDgkwmEEKj",
       "artist": "ABBA",
       "title": "Super Trouper",
-      "chart_info": {"billboard_peak": 45, "uk_peak": 1},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 45,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Super Trouper was named after the follow-spot lights used at concerts. ABBA wrote it during the peak of their fame when they felt exhausted by touring. The opening line 'I was sick and tired of everything' reflected their genuine feelings at the time despite worldwide success."
+      "fun_fact": "Super Trouper was named after the follow-spot lights used at concerts. ABBA wrote it during the peak of their fame when they felt exhausted by touring. The opening line 'I was sick and tired of everything' reflected their genuine feelings at the time despite worldwide success.",
+      "fun_fact_de": "Super Trouper wurde nach den Verfolgungsscheinwerfern benannt, die bei Konzerten verwendet werden. ABBA schrieb ihn auf dem Höhepunkt ihres Ruhms, als sie sich vom Touren erschöpft fühlten. Die Eröffnungszeile 'I was sick and tired of everything' spiegelte trotz weltweiten Erfolgs ihre echten Gefühle zu dieser Zeit wider.",
+      "fun_fact_es": "Super Trouper fue nombrada por los focos de seguimiento usados en conciertos. ABBA la escribió en la cima de su fama cuando se sentían agotados de las giras. La línea inicial 'I was sick and tired of everything' reflejaba sus sentimientos genuinos en ese momento a pesar del éxito mundial."
     },
     {
       "year": 1985,
       "uri": "spotify:track:05wIrZSwuaVWhcv5FfqeH0",
       "artist": "Katrina and the Waves",
       "title": "Walking on Sunshine",
-      "chart_info": {"billboard_peak": 9, "weeks_on_chart": 16},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 9,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Walking on Sunshine was rejected by multiple labels before finally being released. The song's relentless optimism has made it one of the most-licensed tracks in advertising history. Katrina Leskanich said she was actually going through a rough time when she recorded the joyful song."
+      "fun_fact": "Walking on Sunshine was rejected by multiple labels before finally being released. The song's relentless optimism has made it one of the most-licensed tracks in advertising history. Katrina Leskanich said she was actually going through a rough time when she recorded the joyful song.",
+      "fun_fact_de": "Walking on Sunshine wurde von mehreren Labels abgelehnt, bevor es endlich veröffentlicht wurde. Der unermüdliche Optimismus des Songs hat ihn zu einem der meistlizenzierten Tracks in der Werbegeschichte gemacht. Katrina Leskanich sagte, sie durchlebte tatsächlich eine schwere Zeit, als sie den fröhlichen Song aufnahm.",
+      "fun_fact_es": "Walking on Sunshine fue rechazada por múltiples sellos antes de ser finalmente lanzada. El optimismo implacable de la canción la ha convertido en una de las pistas más licenciadas en la historia de la publicidad. Katrina Leskanich dijo que en realidad estaba pasando por un momento difícil cuando grabó la alegre canción."
     },
     {
       "year": 1976,
       "uri": "spotify:track:4rDbp1vnvEhieiccprPMdI",
       "artist": "Queen",
       "title": "Somebody to Love",
-      "chart_info": {"billboard_peak": 13, "weeks_on_chart": 14},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 13,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Somebody to Love was Queen's tribute to gospel music, featuring over 100 vocal overdubs. Freddie Mercury was inspired by Aretha Franklin's gospel-influenced performances. The song showcases Queen's incredible harmonies and Mercury's four-octave vocal range at its absolute finest."
+      "fun_fact": "Somebody to Love was Queen's tribute to gospel music, featuring over 100 vocal overdubs. Freddie Mercury was inspired by Aretha Franklin's gospel-influenced performances. The song showcases Queen's incredible harmonies and Mercury's four-octave vocal range at its absolute finest.",
+      "fun_fact_de": "Somebody to Love war Queens Hommage an Gospel-Musik mit über 100 Gesangs-Overdubs. Freddie Mercury wurde von Aretha Franklins Gospel-beeinflussten Auftritten inspiriert. Der Song zeigt Queens unglaubliche Harmonien und Mercurys Vier-Oktaven-Stimmumfang in absoluter Perfektion.",
+      "fun_fact_es": "Somebody to Love fue el tributo de Queen a la música gospel, con más de 100 sobregrabaciones vocales. Freddie Mercury se inspiró en las interpretaciones influenciadas por el gospel de Aretha Franklin. La canción muestra las increíbles armonías de Queen y el rango vocal de cuatro octavas de Mercury en su máxima expresión."
     },
     {
       "year": 1967,
       "uri": "spotify:track:7s25THrKz86DM225dOYwnr",
       "artist": "Aretha Franklin",
       "title": "Respect",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 12},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy - Best R&B Recording (1968)", "Grammy - Best R&B Vocal (1968)", "Grammy Hall of Fame (1998)"],
-      "fun_fact": "Respect was originally written and recorded by Otis Redding about a man demanding respect from his woman. Aretha Franklin flipped the gender perspective and added the iconic 'R-E-S-P-E-C-T' spelling. It became a feminist and civil rights anthem that defined the soul era of music."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best R&B Recording (1968)",
+        "Grammy - Best R&B Vocal (1968)",
+        "Grammy Hall of Fame (1998)"
+      ],
+      "fun_fact": "Respect was originally written and recorded by Otis Redding about a man demanding respect from his woman. Aretha Franklin flipped the gender perspective and added the iconic 'R-E-S-P-E-C-T' spelling. It became a feminist and civil rights anthem that defined the soul era of music.",
+      "fun_fact_de": "Respect wurde ursprünglich von Otis Redding geschrieben und aufgenommen – über einen Mann, der Respekt von seiner Frau fordert. Aretha Franklin drehte die Geschlechterperspektive um und fügte das ikonische 'R-E-S-P-E-C-T'-Buchstabieren hinzu. Es wurde zu einer Hymne des Feminismus und der Bürgerrechte, die die Soul-Ära prägte.",
+      "fun_fact_es": "Respect fue escrita y grabada originalmente por Otis Redding sobre un hombre exigiendo respeto de su mujer. Aretha Franklin invirtió la perspectiva de género y añadió el icónico deletreo 'R-E-S-P-E-C-T'. Se convirtió en un himno feminista y de derechos civiles que definió la era del soul.",
+      "awards_de": [
+        "Grammy - Beste R&B-Aufnahme (1968)",
+        "Grammy - Beste R&B-Gesangsdarbietung (1968)",
+        "Grammy Hall of Fame (1998)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación de R&B (1968)",
+        "Grammy - Mejor Interpretación Vocal de R&B (1968)",
+        "Salón de la Fama del Grammy (1998)"
+      ]
     },
     {
       "year": 1982,
       "uri": "spotify:track:37BTh5g05cxBIRYMbw8g2T",
       "artist": "Toto",
       "title": "Rosanna",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 21},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy - Record of the Year (1983)"],
-      "fun_fact": "Rosanna was written by TOTO's David Paich about actress Rosanna Arquette, who he dated briefly. The complex shuffle rhythm, known as the 'Rosanna Shuffle,' has become a benchmark for drummers worldwide. The song won the Grammy for Record of the Year in 1983 for its innovative sound."
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1983)"
+      ],
+      "fun_fact": "Rosanna was written by TOTO's David Paich about actress Rosanna Arquette, who he dated briefly. The complex shuffle rhythm, known as the 'Rosanna Shuffle,' has become a benchmark for drummers worldwide. The song won the Grammy for Record of the Year in 1983 for its innovative sound.",
+      "fun_fact_de": "Rosanna wurde von TOTOs David Paich über die Schauspielerin Rosanna Arquette geschrieben, mit der er kurz zusammen war. Der komplexe Shuffle-Rhythmus, bekannt als 'Rosanna Shuffle', ist weltweit zum Maßstab für Schlagzeuger geworden. Der Song gewann 1983 den Grammy für Aufnahme des Jahres für seinen innovativen Sound.",
+      "fun_fact_es": "Rosanna fue escrita por David Paich de TOTO sobre la actriz Rosanna Arquette, con quien salió brevemente. El complejo ritmo shuffle, conocido como el 'Rosanna Shuffle', se ha convertido en un punto de referencia para bateristas en todo el mundo. La canción ganó el Grammy a la Grabación del Año en 1983 por su sonido innovador.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1983)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1983)"
+      ]
     },
     {
       "year": 1976,
       "uri": "spotify:track:0GjEhVFGZW8afUYGChu3Rr",
       "artist": "ABBA",
       "title": "Dancing Queen",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["Platinum (US)", "Platinum (UK)"],
-      "awards": ["Grammy Hall of Fame (2015)"],
-      "fun_fact": "Dancing Queen remains ABBA's most successful single and the only one to reach number one in the US. It was inspired by George McCrae's 'Rock Your Baby.' ABBA performed it for the first time the night before Sweden's King Carl XVI Gustaf's wedding as a tribute to the new queen."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2015)"
+      ],
+      "fun_fact": "Dancing Queen remains ABBA's most successful single and the only one to reach number one in the US. It was inspired by George McCrae's 'Rock Your Baby.' ABBA performed it for the first time the night before Sweden's King Carl XVI Gustaf's wedding as a tribute to the new queen.",
+      "fun_fact_de": "Dancing Queen bleibt ABBAs erfolgreichste Single und die einzige, die in den USA Platz eins erreichte. Sie wurde von George McCraes 'Rock Your Baby' inspiriert. ABBA spielte sie zum ersten Mal in der Nacht vor der Hochzeit von König Carl XVI. Gustaf als Hommage an die neue Königin.",
+      "fun_fact_es": "Dancing Queen sigue siendo el sencillo más exitoso de ABBA y el único en alcanzar el número uno en EE.UU. Fue inspirada por 'Rock Your Baby' de George McCrae. ABBA la interpretó por primera vez la noche antes de la boda del rey Carlos XVI Gustavo de Suecia como tributo a la nueva reina.",
+      "awards_de": [
+        "Grammy Hall of Fame (2015)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2015)"
+      ]
     },
     {
       "year": 1978,
       "uri": "spotify:track:5T8EDUDqKcs6OSOwEsfqG7",
       "artist": "Queen",
       "title": "Don't Stop Me Now",
-      "chart_info": {"billboard_peak": 86, "uk_peak": 9},
-      "certifications": ["Platinum (UK)"],
+      "chart_info": {
+        "billboard_peak": 86,
+        "uk_peak": 9
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Don't Stop Me Now was written by Freddie Mercury during a particularly hedonistic period of his life. Other band members initially disliked it for promoting excess. In 2020, a scientific study named it the 'happiest song ever' based on tempo, lyrics, and key. Mercury's favorite Queen song."
+      "fun_fact": "Don't Stop Me Now was written by Freddie Mercury during a particularly hedonistic period of his life. Other band members initially disliked it for promoting excess. In 2020, a scientific study named it the 'happiest song ever' based on tempo, lyrics, and key. Mercury's favorite Queen song.",
+      "fun_fact_de": "Don't Stop Me Now wurde von Freddie Mercury während einer besonders hedonistischen Phase seines Lebens geschrieben. Andere Bandmitglieder mochten es zunächst nicht, weil es Exzess förderte. 2020 nannte eine wissenschaftliche Studie es aufgrund von Tempo, Text und Tonart den 'glücklichsten Song aller Zeiten'. Mercurys Lieblings-Queen-Song.",
+      "fun_fact_es": "Don't Stop Me Now fue escrita por Freddie Mercury durante un período particularmente hedonista de su vida. Otros miembros de la banda inicialmente no les gustó porque promovía el exceso. En 2020, un estudio científico la nombró la 'canción más feliz de todos los tiempos' basándose en tempo, letra y tonalidad. La canción favorita de Queen de Mercury."
     },
     {
       "year": 1992,
       "uri": "spotify:track:4eHbdreAnSOrDDsFfc4Fpm",
       "artist": "Whitney Houston",
       "title": "I Will Always Love You",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 24},
-      "certifications": ["Diamond (US)"],
-      "awards": ["Grammy - Record of the Year (1994)", "Grammy - Best Pop Vocal (1994)"],
-      "fun_fact": "I Will Always Love You was written by Dolly Parton in 1973 about her professional split from Porter Wagoner. Whitney Houston's powerful version for The Bodyguard became one of the best-selling singles of all time. Houston held the final note for an incredible 17 seconds in the recording."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1994)",
+        "Grammy - Best Pop Vocal (1994)"
+      ],
+      "fun_fact": "I Will Always Love You was written by Dolly Parton in 1973 about her professional split from Porter Wagoner. Whitney Houston's powerful version for The Bodyguard became one of the best-selling singles of all time. Houston held the final note for an incredible 17 seconds in the recording.",
+      "fun_fact_de": "I Will Always Love You wurde 1973 von Dolly Parton über ihre berufliche Trennung von Porter Wagoner geschrieben. Whitney Houstons kraftvolle Version für The Bodyguard wurde zu einer der meistverkauften Singles aller Zeiten. Houston hielt den letzten Ton in der Aufnahme unglaubliche 17 Sekunden.",
+      "fun_fact_es": "I Will Always Love You fue escrita por Dolly Parton en 1973 sobre su separación profesional de Porter Wagoner. La poderosa versión de Whitney Houston para El Guardaespaldas se convirtió en uno de los sencillos más vendidos de todos los tiempos. Houston mantuvo la nota final durante increíbles 17 segundos en la grabación.",
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1994)",
+        "Grammy - Beste Pop-Gesangsdarbietung (1994)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1994)",
+        "Grammy - Mejor Interpretación Vocal Pop (1994)"
+      ]
     },
     {
       "year": 1963,
       "uri": "spotify:track:0wz1LjDb9ZNEYwOmDJ3Q4b",
       "artist": "The Beach Boys",
       "title": "Surfin' U.S.A.",
-      "chart_info": {"billboard_peak": 3, "weeks_on_chart": 15},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy Hall of Fame (2003)"],
-      "fun_fact": "Surfin' U.S.A. melody was adapted from Chuck Berry's 'Sweet Little Sixteen,' leading to a lawsuit. The Beach Boys' Brian Wilson was forced to give Berry songwriting credit. Despite the controversy, the song captured California surf culture and remains an American classic to this day."
+      "chart_info": {
+        "billboard_peak": 3,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2003)"
+      ],
+      "fun_fact": "Surfin' U.S.A. melody was adapted from Chuck Berry's 'Sweet Little Sixteen,' leading to a lawsuit. The Beach Boys' Brian Wilson was forced to give Berry songwriting credit. Despite the controversy, the song captured California surf culture and remains an American classic to this day.",
+      "fun_fact_de": "Surfin' U.S.A.s Melodie wurde von Chuck Berrys 'Sweet Little Sixteen' adaptiert, was zu einem Rechtsstreit führte. Die Beach Boys' Brian Wilson war gezwungen, Berry als Songwriter anzuerkennen. Trotz der Kontroverse fing der Song die kalifornische Surfkultur ein und bleibt bis heute ein amerikanischer Klassiker.",
+      "fun_fact_es": "La melodía de Surfin' U.S.A. fue adaptada de 'Sweet Little Sixteen' de Chuck Berry, lo que llevó a una demanda. Brian Wilson de los Beach Boys fue obligado a dar crédito de composición a Berry. A pesar de la controversia, la canción capturó la cultura del surf de California y sigue siendo un clásico estadounidense hasta hoy.",
+      "awards_de": [
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2003)"
+      ]
     },
     {
       "year": 1987,
       "uri": "spotify:track:2bCQHF9gdG5BNDVuEIEnNk",
       "artist": "Michael Jackson",
       "title": "Smooth Criminal",
-      "chart_info": {"billboard_peak": 7, "weeks_on_chart": 14},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 7,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Smooth Criminal's distinctive lean was achieved by Michael Jackson using special patented shoes that locked into pegs on the stage floor. Jackson invented and patented this footwear technology. The song's music video was an 11-minute film featuring elaborate choreography and groundbreaking effects."
+      "fun_fact": "Smooth Criminal's distinctive lean was achieved by Michael Jackson using special patented shoes that locked into pegs on the stage floor. Jackson invented and patented this footwear technology. The song's music video was an 11-minute film featuring elaborate choreography and groundbreaking effects.",
+      "fun_fact_de": "Smooth Criminals markante Neigung wurde von Michael Jackson mit speziell patentierten Schuhen erreicht, die sich in Stifte auf dem Bühnenboden einrasteten. Jackson erfand und patentierte diese Schuhtechnologie. Das Musikvideo war ein 11-minütiger Film mit aufwendiger Choreografie und bahnbrechenden Effekten.",
+      "fun_fact_es": "La distintiva inclinación de Smooth Criminal fue lograda por Michael Jackson usando zapatos especiales patentados que se enganchaban en clavijas en el suelo del escenario. Jackson inventó y patentó esta tecnología de calzado. El video musical fue una película de 11 minutos con coreografía elaborada y efectos revolucionarios."
     },
     {
       "year": 1982,
       "uri": "spotify:track:1ot6jEe4w4hYnsOPjd3xKQ",
       "artist": "The Pointer Sisters",
       "title": "I'm So Excited",
-      "chart_info": {"billboard_peak": 9, "weeks_on_chart": 22},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 9,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "I'm So Excited was originally released in 1982 but became a bigger hit when remixed and re-released in 1984. The Pointer Sisters wrote it about the excitement of romantic anticipation. It became a cultural touchstone through its appearance in the famous 'Saved by the Bell' caffeine pill episode."
+      "fun_fact": "I'm So Excited was originally released in 1982 but became a bigger hit when remixed and re-released in 1984. The Pointer Sisters wrote it about the excitement of romantic anticipation. It became a cultural touchstone through its appearance in the famous 'Saved by the Bell' caffeine pill episode.",
+      "fun_fact_de": "I'm So Excited wurde ursprünglich 1982 veröffentlicht, wurde aber ein größerer Hit, als es 1984 remixed und neu veröffentlicht wurde. The Pointer Sisters schrieben es über die Aufregung romantischer Vorfreude. Es wurde durch seinen Auftritt in der berühmten 'Saved by the Bell'-Koffeinpillen-Folge zum Kulturgut.",
+      "fun_fact_es": "I'm So Excited fue lanzada originalmente en 1982 pero se convirtió en un éxito mayor cuando fue remezclada y relanzada en 1984. Las Pointer Sisters la escribieron sobre la emoción de la anticipación romántica. Se convirtió en un ícono cultural a través de su aparición en el famoso episodio de las pastillas de cafeína de 'Salvados por la Campana'."
     },
     {
       "year": 1987,
       "uri": "spotify:track:2tUBqZG2AbRi7Q0BIrVrEj",
       "artist": "Whitney Houston",
       "title": "I Wanna Dance with Somebody",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy - Best Pop Vocal (1988)"],
-      "fun_fact": "I Wanna Dance with Somebody was written specifically for Whitney Houston's powerful voice. Songwriters George Merrill and Shannon Rubicam crafted it as an upbeat complement to her ballads. The song won the Grammy for Best Female Pop Vocal Performance and became a dance floor essential."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Pop Vocal (1988)"
+      ],
+      "fun_fact": "I Wanna Dance with Somebody was written specifically for Whitney Houston's powerful voice. Songwriters George Merrill and Shannon Rubicam crafted it as an upbeat complement to her ballads. The song won the Grammy for Best Female Pop Vocal Performance and became a dance floor essential.",
+      "fun_fact_de": "I Wanna Dance with Somebody wurde speziell für Whitney Houstons kraftvolle Stimme geschrieben. Die Songwriter George Merrill und Shannon Rubicam schufen es als fröhliches Gegenstück zu ihren Balladen. Der Song gewann den Grammy für die beste weibliche Pop-Gesangsdarbietung und wurde zu einem Tanzflächen-Essential.",
+      "fun_fact_es": "I Wanna Dance with Somebody fue escrita específicamente para la poderosa voz de Whitney Houston. Los compositores George Merrill y Shannon Rubicam la crearon como un complemento alegre a sus baladas. La canción ganó el Grammy a la Mejor Interpretación Vocal Pop Femenina y se convirtió en un esencial de la pista de baile.",
+      "awards_de": [
+        "Grammy - Beste Pop-Gesangsdarbietung (1988)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop (1988)"
+      ]
     },
     {
       "year": 1983,
       "uri": "spotify:track:5zA8vzDGqPl2AzZkEYQGKh",
       "artist": "Billy Joel",
       "title": "Uptown Girl",
-      "chart_info": {"billboard_peak": 3, "weeks_on_chart": 18},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 3,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Uptown Girl was written by Billy Joel about supermodel Elle Macpherson, though he later married Christie Brinkley who starred in the music video. The song was inspired by Frankie Valli and The Four Seasons' sound. It became one of Joel's biggest international hits, reaching number one in the UK."
+      "fun_fact": "Uptown Girl was written by Billy Joel about supermodel Elle Macpherson, though he later married Christie Brinkley who starred in the music video. The song was inspired by Frankie Valli and The Four Seasons' sound. It became one of Joel's biggest international hits, reaching number one in the UK.",
+      "fun_fact_de": "Uptown Girl wurde von Billy Joel über das Supermodel Elle Macpherson geschrieben, obwohl er später Christie Brinkley heiratete, die im Musikvideo mitspielte. Der Song wurde vom Sound von Frankie Valli and The Four Seasons inspiriert. Er wurde einer von Joels größten internationalen Hits und erreichte Platz eins in Großbritannien.",
+      "fun_fact_es": "Uptown Girl fue escrita por Billy Joel sobre la supermodelo Elle Macpherson, aunque luego se casó con Christie Brinkley, quien apareció en el video musical. La canción fue inspirada por el sonido de Frankie Valli and The Four Seasons. Se convirtió en uno de los mayores éxitos internacionales de Joel, alcanzando el número uno en el Reino Unido."
     },
     {
       "year": 1976,
       "uri": "spotify:track:2oXchyEBxQBe8vH6iFgbv0",
       "artist": "John Miles",
       "title": "Music",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 3},
-      "certifications": ["Silver (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 3
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Music by John Miles builds from a gentle ballad to a symphonic rock epic with full orchestra. Miles wrote it as a tribute to the power of music itself. The song remains a concert favorite and is considered one of the greatest progressive rock compositions of the 1970s."
+      "fun_fact": "Music by John Miles builds from a gentle ballad to a symphonic rock epic with full orchestra. Miles wrote it as a tribute to the power of music itself. The song remains a concert favorite and is considered one of the greatest progressive rock compositions of the 1970s.",
+      "fun_fact_de": "Music von John Miles baut sich von einer sanften Ballade zu einem symphonischen Rock-Epos mit vollem Orchester auf. Miles schrieb es als Hommage an die Kraft der Musik selbst. Der Song bleibt ein Konzertfavorit und gilt als eine der größten Progressive-Rock-Kompositionen der 1970er.",
+      "fun_fact_es": "Music de John Miles se construye desde una balada suave hasta una épica de rock sinfónico con orquesta completa. Miles la escribió como tributo al poder de la música misma. La canción sigue siendo una favorita en conciertos y se considera una de las mejores composiciones de rock progresivo de los años 70."
     },
     {
       "year": 1981,
       "uri": "spotify:track:4bHsxqR3GMrXTxEPLuK5ue",
       "artist": "Journey",
       "title": "Don't Stop Believin'",
-      "chart_info": {"billboard_peak": 9, "weeks_on_chart": 19},
-      "certifications": ["Diamond (US)"],
-      "awards": ["Grammy Hall of Fame (2021)"],
-      "fun_fact": "Don't Stop Believin' became the top-selling digital track from the 20th century after its use in The Sopranos finale. Journey's Steve Perry wrote it about his own small-town origins. The song experienced a massive revival three decades after release, introducing it to new generations of fans."
+      "chart_info": {
+        "billboard_peak": 9,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "fun_fact": "Don't Stop Believin' became the top-selling digital track from the 20th century after its use in The Sopranos finale. Journey's Steve Perry wrote it about his own small-town origins. The song experienced a massive revival three decades after release, introducing it to new generations of fans.",
+      "fun_fact_de": "Don't Stop Believin' wurde nach seiner Verwendung im Sopranos-Finale zum meistverkauften digitalen Track des 20. Jahrhunderts. Journeys Steve Perry schrieb ihn über seine eigene Kleinstadtherkunft. Der Song erlebte drei Jahrzehnte nach seiner Veröffentlichung ein massives Revival und stellte ihn neuen Generationen von Fans vor.",
+      "fun_fact_es": "Don't Stop Believin' se convirtió en la pista digital más vendida del siglo XX después de su uso en el final de Los Soprano. Steve Perry de Journey la escribió sobre sus propios orígenes de pueblo pequeño. La canción experimentó un resurgimiento masivo tres décadas después de su lanzamiento, presentándola a nuevas generaciones de fans.",
+      "awards_de": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2021)"
+      ]
     },
     {
       "year": 1994,
       "uri": "spotify:track:2IZZqH4K02UIYg5EohpNHF",
       "artist": "The Cranberries",
       "title": "Zombie",
-      "chart_info": {"billboard_peak": 22, "uk_peak": 14},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 22,
+        "uk_peak": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Zombie was written by Dolores O'Riordan after the 1993 IRA bombing in Warrington that killed two children. The Cranberries' most political song became a worldwide hit and anthem against violence. O'Riordan's distinctive yodel-like vocals made it instantly recognizable and emotionally powerful."
+      "fun_fact": "Zombie was written by Dolores O'Riordan after the 1993 IRA bombing in Warrington that killed two children. The Cranberries' most political song became a worldwide hit and anthem against violence. O'Riordan's distinctive yodel-like vocals made it instantly recognizable and emotionally powerful.",
+      "fun_fact_de": "Zombie wurde von Dolores O'Riordan nach dem IRA-Bombenanschlag in Warrington 1993 geschrieben, bei dem zwei Kinder starben. Der politischste Song der Cranberries wurde ein weltweiter Hit und eine Hymne gegen Gewalt. O'Riordans markanter jodelartiger Gesang machte ihn sofort erkennbar und emotional kraftvoll.",
+      "fun_fact_es": "Zombie fue escrita por Dolores O'Riordan después del atentado del IRA en Warrington en 1993 que mató a dos niños. La canción más política de The Cranberries se convirtió en un éxito mundial y un himno contra la violencia. Las distintivas voces tipo yodel de O'Riordan la hicieron instantáneamente reconocible y emocionalmente poderosa."
     },
     {
       "year": 1978,
       "uri": "spotify:track:4xmjDH6auBwuZ4GHimjXGe",
       "artist": "Gloria Gaynor",
       "title": "I Will Survive",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["2x Platinum (US)"],
-      "awards": ["Grammy - Best Disco Recording (1980)"],
-      "fun_fact": "I Will Survive was originally released as a B-side before DJs started playing it in clubs. Gloria Gaynor recorded it in one take despite having just recovered from spinal surgery. The song became a disco anthem and later a symbol of empowerment for the LGBTQ+ community worldwide."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Disco Recording (1980)"
+      ],
+      "fun_fact": "I Will Survive was originally released as a B-side before DJs started playing it in clubs. Gloria Gaynor recorded it in one take despite having just recovered from spinal surgery. The song became a disco anthem and later a symbol of empowerment for the LGBTQ+ community worldwide.",
+      "fun_fact_de": "I Will Survive wurde ursprünglich als B-Seite veröffentlicht, bevor DJs begannen, sie in Clubs zu spielen. Gloria Gaynor nahm sie in einer Aufnahme auf, obwohl sie gerade von einer Wirbelsäulenoperation genesen war. Der Song wurde zu einer Disco-Hymne und später weltweit zu einem Symbol der Ermächtigung für die LGBTQ+-Community.",
+      "fun_fact_es": "I Will Survive fue lanzada originalmente como cara B antes de que los DJs comenzaran a tocarla en los clubes. Gloria Gaynor la grabó en una sola toma a pesar de haberse recuperado recientemente de una cirugía de columna. La canción se convirtió en un himno disco y más tarde en un símbolo de empoderamiento para la comunidad LGBTQ+ en todo el mundo.",
+      "awards_de": [
+        "Grammy - Beste Disco-Aufnahme (1980)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación Disco (1980)"
+      ]
     },
     {
       "year": 1978,
       "uri": "spotify:track:5gOd6zDC8vhlYjqbQdJVWP",
       "artist": "Gerry Rafferty",
       "title": "Baker Street",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 18},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Baker Street's iconic saxophone riff was played by Raphael Ravenscroft, who was reportedly paid only £27.50 for the session. He later claimed his royalty check bounced. Gerry Rafferty wrote the song about his frustration with the music industry and London's nightlife scene in the late 1970s."
+      "fun_fact": "Baker Street's iconic saxophone riff was played by Raphael Ravenscroft, who was reportedly paid only £27.50 for the session. He later claimed his royalty check bounced. Gerry Rafferty wrote the song about his frustration with the music industry and London's nightlife scene in the late 1970s.",
+      "fun_fact_de": "Baker Streets ikonisches Saxophon-Riff wurde von Raphael Ravenscroft gespielt, der Berichten zufolge nur 27,50 Pfund für die Session bezahlt wurde. Er behauptete später, sein Tantiemenscheck sei geplatzt. Gerry Rafferty schrieb den Song über seine Frustration mit der Musikindustrie und Londons Nachtleben in den späten 1970ern.",
+      "fun_fact_es": "El icónico riff de saxofón de Baker Street fue tocado por Raphael Ravenscroft, quien supuestamente recibió solo 27,50 libras por la sesión. Más tarde afirmó que su cheque de regalías rebotó. Gerry Rafferty escribió la canción sobre su frustración con la industria musical y la vida nocturna de Londres a finales de los 70."
     },
     {
       "year": 1979,
       "uri": "spotify:track:3vkQ5DAB1qQMYO4Mr9zJN6",
       "artist": "ABBA",
       "title": "Gimme! Gimme! Gimme!",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 3},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 3
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Gimme! Gimme! Gimme! was originally an ABBA song that became the basis for Madonna's 'Hung Up' in 2005—the first time ABBA approved a sample of their work. The song's driving disco beat and desperate lyrics about loneliness created one of their most dramatic recordings ever produced."
+      "fun_fact": "Gimme! Gimme! Gimme! was originally an ABBA song that became the basis for Madonna's 'Hung Up' in 2005—the first time ABBA approved a sample of their work. The song's driving disco beat and desperate lyrics about loneliness created one of their most dramatic recordings ever produced.",
+      "fun_fact_de": "Gimme! Gimme! Gimme! war ursprünglich ein ABBA-Song, der 2005 zur Grundlage für Madonnas 'Hung Up' wurde – das erste Mal, dass ABBA eine Sampling-Anfrage genehmigte. Der treibende Disco-Beat und die verzweifelten Texte über Einsamkeit schufen eine ihrer dramatischsten Aufnahmen überhaupt.",
+      "fun_fact_es": "Gimme! Gimme! Gimme! fue originalmente una canción de ABBA que se convirtió en la base de 'Hung Up' de Madonna en 2005, la primera vez que ABBA aprobó un sample de su trabajo. El ritmo disco impulsivo y las letras desesperadas sobre la soledad crearon una de sus grabaciones más dramáticas."
     },
     {
       "year": 1982,
       "uri": "spotify:track:5ChkMS8OtdzJeqyybCc9R5",
       "artist": "Michael Jackson",
       "title": "Billie Jean",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 24},
-      "certifications": ["6x Platinum (US)"],
-      "awards": ["Grammy - Best R&B Vocal (1984)", "Grammy - Best R&B Song (1984)"],
-      "fun_fact": "Billie Jean's bass line is one of the most recognized in pop music history. Michael Jackson wrote it about a fan who falsely claimed he was the father of her child. The song was the first video by a Black artist played in heavy rotation on MTV, breaking a significant barrier."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "6x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best R&B Vocal (1984)",
+        "Grammy - Best R&B Song (1984)"
+      ],
+      "fun_fact": "Billie Jean's bass line is one of the most recognized in pop music history. Michael Jackson wrote it about a fan who falsely claimed he was the father of her child. The song was the first video by a Black artist played in heavy rotation on MTV, breaking a significant barrier.",
+      "fun_fact_de": "Billie Jeans Basslinie ist eine der bekanntesten der Pop-Musikgeschichte. Michael Jackson schrieb es über einen Fan, der fälschlicherweise behauptete, er sei der Vater ihres Kindes. Der Song war das erste Video eines schwarzen Künstlers, das auf MTV in hoher Rotation lief und durchbrach damit eine bedeutende Barriere.",
+      "fun_fact_es": "La línea de bajo de Billie Jean es una de las más reconocidas en la historia de la música pop. Michael Jackson la escribió sobre una fan que falsamente afirmó que él era el padre de su hijo. La canción fue el primer video de un artista negro reproducido en alta rotación en MTV, rompiendo una barrera significativa.",
+      "awards_de": [
+        "Grammy - Beste R&B-Gesangsdarbietung (1984)",
+        "Grammy - Bester R&B-Song (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal de R&B (1984)",
+        "Grammy - Mejor Canción de R&B (1984)"
+      ]
     },
     {
       "year": 1983,
       "uri": "spotify:track:0QKfiqpEU4h9ycPSzIFwYe",
       "artist": "Michael Sembello",
       "title": "Maniac",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 21},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Maniac was written for the film Flashdance about the story of a steel welder who dreams of becoming a ballet dancer. Michael Sembello originally wrote it about a serial killer but changed the lyrics for the film. The song perfectly captures the 80s workout and aerobics craze phenomenon."
+      "fun_fact": "Maniac was written for the film Flashdance about the story of a steel welder who dreams of becoming a ballet dancer. Michael Sembello originally wrote it about a serial killer but changed the lyrics for the film. The song perfectly captures the 80s workout and aerobics craze phenomenon.",
+      "fun_fact_de": "Maniac wurde für den Film Flashdance über die Geschichte einer Stahlarbeiterin geschrieben, die davon träumt, Balletttänzerin zu werden. Michael Sembello schrieb es ursprünglich über einen Serienkiller, änderte aber die Texte für den Film. Der Song fängt das Workout- und Aerobic-Phänomen der 80er perfekt ein.",
+      "fun_fact_es": "Maniac fue escrita para la película Flashdance sobre la historia de una trabajadora del acero que sueña con convertirse en bailarina de ballet. Michael Sembello la escribió originalmente sobre un asesino en serie pero cambió la letra para la película. La canción captura perfectamente el fenómeno del ejercicio y aeróbicos de los 80."
     },
     {
       "year": 1978,
       "uri": "spotify:track:4aVuWgvD0X63hcOCnZtNFA",
       "artist": "Toto",
       "title": "Hold the Line",
-      "chart_info": {"billboard_peak": 5, "weeks_on_chart": 20},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 5,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Hold the Line was TOTO's debut single and showcased their exceptional musicianship. The band consisted of session musicians who had played on hundreds of hit records. The guitar riff and keyboard solo became instantly recognizable, establishing TOTO as a major force in rock music."
+      "fun_fact": "Hold the Line was TOTO's debut single and showcased their exceptional musicianship. The band consisted of session musicians who had played on hundreds of hit records. The guitar riff and keyboard solo became instantly recognizable, establishing TOTO as a major force in rock music.",
+      "fun_fact_de": "Hold the Line war TOTOs Debütsingle und zeigte ihre außergewöhnliche Musikalität. Die Band bestand aus Session-Musikern, die auf Hunderten von Hit-Platten gespielt hatten. Das Gitarrenriff und das Keyboard-Solo wurden sofort erkennbar und etablierten TOTO als bedeutende Kraft in der Rockmusik.",
+      "fun_fact_es": "Hold the Line fue el sencillo debut de TOTO y mostró su excepcional musicalidad. La banda estaba formada por músicos de sesión que habían tocado en cientos de discos exitosos. El riff de guitarra y el solo de teclado se volvieron instantáneamente reconocibles, estableciendo a TOTO como una fuerza importante en la música rock."
     },
     {
       "year": 1980,
       "uri": "spotify:track:0CUEc6T65lrU6rVW3HVYsl",
       "artist": "Kool & The Gang",
       "title": "Celebration",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 25},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Celebration was written by Kool & The Gang's bassist and eunice to commemorate special occasions. The song has been played at countless parties, sports events, and celebrations since its release. It was used extensively during the hostages' return home from Iran in 1981, becoming an American anthem."
+      "fun_fact": "Celebration was written by Kool & The Gang's bassist and eunice to commemorate special occasions. The song has been played at countless parties, sports events, and celebrations since its release. It was used extensively during the hostages' return home from Iran in 1981, becoming an American anthem.",
+      "fun_fact_de": "Celebration wurde von Kool & The Gangs Bassist geschrieben, um besondere Anlässe zu feiern. Der Song wurde seit seiner Veröffentlichung auf unzähligen Partys, Sportveranstaltungen und Feierlichkeiten gespielt. Er wurde während der Rückkehr der Geiseln aus dem Iran 1981 ausgiebig gespielt und wurde zu einer amerikanischen Hymne.",
+      "fun_fact_es": "Celebration fue escrita por el bajista de Kool & The Gang para conmemorar ocasiones especiales. La canción ha sido tocada en innumerables fiestas, eventos deportivos y celebraciones desde su lanzamiento. Fue usada extensivamente durante el regreso de los rehenes de Irán en 1981, convirtiéndose en un himno estadounidense."
     },
     {
       "year": 1994,
       "uri": "spotify:track:6L89mwZXSOwYl76YXfX13s",
       "artist": "Green Day",
       "title": "Basket Case",
-      "chart_info": {"billboard_peak": 0, "weeks_on_chart": 0},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Basket Case was written by Billie Joe Armstrong about his panic attacks and anxiety before he was diagnosed with panic disorder. Green Day recorded the song in their producer's living room. It became the anthem of 90s punk rock and helped define the pop-punk genre for a generation."
+      "fun_fact": "Basket Case was written by Billie Joe Armstrong about his panic attacks and anxiety before he was diagnosed with panic disorder. Green Day recorded the song in their producer's living room. It became the anthem of 90s punk rock and helped define the pop-punk genre for a generation.",
+      "fun_fact_de": "Basket Case wurde von Billie Joe Armstrong über seine Panikattacken und Angstzustände geschrieben, bevor er mit Panikstörung diagnostiziert wurde. Green Day nahm den Song im Wohnzimmer ihres Produzenten auf. Er wurde zur Hymne des 90er-Jahre-Punkrock und half, das Pop-Punk-Genre für eine Generation zu definieren.",
+      "fun_fact_es": "Basket Case fue escrita por Billie Joe Armstrong sobre sus ataques de pánico y ansiedad antes de que le diagnosticaran trastorno de pánico. Green Day grabó la canción en la sala de estar de su productor. Se convirtió en el himno del punk rock de los 90 y ayudó a definir el género pop-punk para una generación."
     },
     {
       "year": 1997,
       "uri": "spotify:track:1di1BEgJYzPvXUuinsYJGP",
       "artist": "Backstreet Boys",
       "title": "Everybody (Backstreet's Back)",
-      "chart_info": {"billboard_peak": 4, "weeks_on_chart": 24},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Everybody (Backstreet's Back) was released only internationally at first because the US label thought it was too cheesy. The horror-themed music video was inspired by Michael Jackson's 'Thriller.' The song became one of the Backstreet Boys' signature hits and a 90s pop culture milestone."
+      "fun_fact": "Everybody (Backstreet's Back) was released only internationally at first because the US label thought it was too cheesy. The horror-themed music video was inspired by Michael Jackson's 'Thriller.' The song became one of the Backstreet Boys' signature hits and a 90s pop culture milestone.",
+      "fun_fact_de": "Everybody (Backstreet's Back) wurde zunächst nur international veröffentlicht, weil das US-Label es für zu kitschig hielt. Das Horror-Musikvideo wurde von Michael Jacksons 'Thriller' inspiriert. Der Song wurde einer der Signature-Hits der Backstreet Boys und ein Meilenstein der 90er-Popkultur.",
+      "fun_fact_es": "Everybody (Backstreet's Back) fue lanzada inicialmente solo internacionalmente porque el sello de EE.UU. pensó que era demasiado cursi. El video musical temático de terror fue inspirado por 'Thriller' de Michael Jackson. La canción se convirtió en uno de los éxitos insignia de los Backstreet Boys y un hito de la cultura pop de los 90."
     },
     {
       "year": 1998,
       "uri": "spotify:track:1H5VQuShs4qfwBXyHF0PeH",
       "artist": "Liquido",
       "title": "Narcotic",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 0},
-      "certifications": ["Gold (Germany)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0
+      },
+      "certifications": [
+        "Gold (Germany)"
+      ],
       "awards": [],
-      "fun_fact": "Narcotic launched German band Liquido to international fame. The song's catchy guitar riff and straightforward lyrics about addiction made it an alternative rock staple of the late 1990s. It topped charts across Europe and remains a nostalgic favorite for fans of 90s rock music."
+      "fun_fact": "Narcotic launched German band Liquido to international fame. The song's catchy guitar riff and straightforward lyrics about addiction made it an alternative rock staple of the late 1990s. It topped charts across Europe and remains a nostalgic favorite for fans of 90s rock music.",
+      "fun_fact_de": "Narcotic brachte die deutsche Band Liquido zu internationalem Ruhm. Das eingängige Gitarrenriff und die direkten Texte über Sucht machten ihn zu einem Alternative-Rock-Klassiker der späten 1990er. Er führte die Charts in ganz Europa an und bleibt ein nostalgischer Favorit für Fans der 90er-Rockmusik.",
+      "fun_fact_es": "Narcotic lanzó a la banda alemana Liquido a la fama internacional. El pegadizo riff de guitarra y las letras directas sobre la adicción la convirtieron en un clásico del rock alternativo de finales de los 90. Encabezó las listas en toda Europa y sigue siendo un favorito nostálgico para los fans del rock de los 90."
     },
     {
       "year": 1997,
       "uri": "spotify:track:0Dmao2oWlAZzIBX2Q1B5AH",
       "artist": "The Verve",
       "title": "Bitter Sweet Symphony",
-      "chart_info": {"billboard_peak": 12, "uk_peak": 2},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 2
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Bitter Sweet Symphony samples an orchestral version of The Rolling Stones' 'The Last Time.' Due to legal issues, the Verve lost all royalties to the Stones until 2019 when Jagger and Richards gave the rights back to Richard Ashcroft. The song defines 90s Britpop melancholy perfectly."
+      "fun_fact": "Bitter Sweet Symphony samples an orchestral version of The Rolling Stones' 'The Last Time.' Due to legal issues, the Verve lost all royalties to the Stones until 2019 when Jagger and Richards gave the rights back to Richard Ashcroft. The song defines 90s Britpop melancholy perfectly.",
+      "fun_fact_de": "Bitter Sweet Symphony samplet eine Orchesterversion von The Rolling Stones' 'The Last Time'. Aufgrund rechtlicher Probleme verlor The Verve alle Tantiemen an die Stones, bis 2019 Jagger und Richards die Rechte an Richard Ashcroft zurückgaben. Der Song definiert die Melancholie des 90er-Britpop perfekt.",
+      "fun_fact_es": "Bitter Sweet Symphony samplea una versión orquestal de 'The Last Time' de los Rolling Stones. Debido a problemas legales, The Verve perdió todas las regalías a favor de los Stones hasta 2019, cuando Jagger y Richards devolvieron los derechos a Richard Ashcroft. La canción define perfectamente la melancolía del Britpop de los 90."
     },
     {
       "year": 2005,
       "uri": "spotify:track:1bx7OUl2UmAnA5oZkm9If7",
       "artist": "Caesars",
       "title": "Jerk It Out",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 8},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 8
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Jerk It Out was used in the iPod commercial that helped launch it to international success. Swedish band Caesars had been together for years before this breakthrough. The high-energy garage rock song perfectly captured the early 2000s indie rock revival and became a party anthem."
+      "fun_fact": "Jerk It Out was used in the iPod commercial that helped launch it to international success. Swedish band Caesars had been together for years before this breakthrough. The high-energy garage rock song perfectly captured the early 2000s indie rock revival and became a party anthem.",
+      "fun_fact_de": "Jerk It Out wurde in der iPod-Werbung verwendet, die half, ihn zum internationalen Erfolg zu führen. Die schwedische Band Caesars war jahrelang zusammen, bevor dieser Durchbruch kam. Der energiegeladene Garagen-Rock-Song fing das Indie-Rock-Revival der frühen 2000er perfekt ein und wurde zur Party-Hymne.",
+      "fun_fact_es": "Jerk It Out fue usada en el comercial del iPod que ayudó a lanzarla al éxito internacional. La banda sueca Caesars había estado juntos durante años antes de este avance. La canción de garage rock llena de energía capturó perfectamente el resurgimiento del indie rock de principios de los 2000 y se convirtió en un himno de fiestas."
     },
     {
       "year": 1997,
       "uri": "spotify:track:0SLtqCrXBRrnkxSOMA3X4W",
       "artist": "Robbie Williams",
       "title": "Let Me Entertain You",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 3},
-      "certifications": ["Platinum (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 3
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
       "awards": [],
-      "fun_fact": "Let Me Entertain You was written by Robbie Williams and Guy Chambers as an anthemic statement of Williams' solo career. The song samples 'Rock DJ' elements and established his reputation as a showman. It became a concert opener for years and defined Williams' provocative stage persona."
+      "fun_fact": "Let Me Entertain You was written by Robbie Williams and Guy Chambers as an anthemic statement of Williams' solo career. The song samples 'Rock DJ' elements and established his reputation as a showman. It became a concert opener for years and defined Williams' provocative stage persona.",
+      "fun_fact_de": "Let Me Entertain You wurde von Robbie Williams und Guy Chambers als hymnenhaftes Statement für Williams' Solokarriere geschrieben. Der Song samplet 'Rock DJ'-Elemente und etablierte seinen Ruf als Showman. Er wurde jahrelang zum Konzertopener und definierte Williams' provokante Bühnenpersönlichkeit.",
+      "fun_fact_es": "Let Me Entertain You fue escrita por Robbie Williams y Guy Chambers como una declaración de himno de la carrera en solitario de Williams. La canción samplea elementos de 'Rock DJ' y estableció su reputación como showman. Se convirtió en la canción de apertura de conciertos durante años y definió la provocativa personalidad escénica de Williams."
     },
     {
       "year": 1991,
       "uri": "spotify:track:5n6RDaGFSN88oRWuGtYAIN",
       "artist": "Queen",
       "title": "The Show Must Go On",
-      "chart_info": {"billboard_peak": 0, "uk_peak": 16},
-      "certifications": ["Gold (UK)"],
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 16
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
       "awards": [],
-      "fun_fact": "The Show Must Go On was recorded while Freddie Mercury was gravely ill with AIDS. Mercury reportedly drank vodka to numb his pain during recording, then delivered one of rock's most powerful vocal performances. Brian May said he didn't know how Mercury physically managed to sing it."
+      "fun_fact": "The Show Must Go On was recorded while Freddie Mercury was gravely ill with AIDS. Mercury reportedly drank vodka to numb his pain during recording, then delivered one of rock's most powerful vocal performances. Brian May said he didn't know how Mercury physically managed to sing it.",
+      "fun_fact_de": "The Show Must Go On wurde aufgenommen, als Freddie Mercury schwer an AIDS erkrankt war. Mercury trank Berichten zufolge Wodka, um seine Schmerzen während der Aufnahme zu betäuben, und lieferte dann eine der kraftvollsten Gesangsdarbietungen des Rock ab. Brian May sagte, er wisse nicht, wie Mercury es physisch schaffte, zu singen.",
+      "fun_fact_es": "The Show Must Go On fue grabada mientras Freddie Mercury estaba gravemente enfermo de SIDA. Según los informes, Mercury bebió vodka para adormecer su dolor durante la grabación, luego entregó una de las interpretaciones vocales más poderosas del rock. Brian May dijo que no sabía cómo Mercury físicamente logró cantarla."
     },
     {
       "year": 1961,
       "uri": "spotify:track:1INWPr855fwWdAOeecbu0W",
       "artist": "Chubby Checker",
       "title": "Let's Twist Again",
-      "chart_info": {"billboard_peak": 8, "weeks_on_chart": 14},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy - Best Rock and Roll Recording (1962)"],
-      "fun_fact": "Let's Twist Again was written as a sequel to 'The Twist' and won a Grammy Award. Chubby Checker became synonymous with the dance craze that swept America in the early 1960s. The twist was the first modern dance where partners didn't touch, revolutionizing how people danced."
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy - Best Rock and Roll Recording (1962)"
+      ],
+      "fun_fact": "Let's Twist Again was written as a sequel to 'The Twist' and won a Grammy Award. Chubby Checker became synonymous with the dance craze that swept America in the early 1960s. The twist was the first modern dance where partners didn't touch, revolutionizing how people danced.",
+      "fun_fact_de": "Let's Twist Again wurde als Fortsetzung von 'The Twist' geschrieben und gewann einen Grammy Award. Chubby Checker wurde zum Synonym für den Tanzwahn, der Amerika in den frühen 1960ern erfasste. Der Twist war der erste moderne Tanz, bei dem sich die Partner nicht berührten, und revolutionierte das Tanzen.",
+      "fun_fact_es": "Let's Twist Again fue escrita como secuela de 'The Twist' y ganó un Premio Grammy. Chubby Checker se convirtió en sinónimo de la moda de baile que arrasó Estados Unidos a principios de los años 60. El twist fue el primer baile moderno donde las parejas no se tocaban, revolucionando la forma de bailar.",
+      "awards_de": [
+        "Grammy - Beste Rock-and-Roll-Aufnahme (1962)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación de Rock and Roll (1962)"
+      ]
     },
     {
       "year": 1982,
       "uri": "spotify:track:2fuCquhmrzHpu5xcA1ci9x",
       "artist": "Queen & David Bowie",
       "title": "Under Pressure",
-      "chart_info": {"billboard_peak": 29, "uk_peak": 1},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 29,
+        "uk_peak": 1
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Under Pressure was created during an impromptu jam session between Queen and David Bowie. The famous bass line was played by John Deacon. Bowie and Mercury reportedly clashed over creative control, with each recording vocals separately. The song became a landmark collaboration in rock history."
+      "fun_fact": "Under Pressure was created during an impromptu jam session between Queen and David Bowie. The famous bass line was played by John Deacon. Bowie and Mercury reportedly clashed over creative control, with each recording vocals separately. The song became a landmark collaboration in rock history.",
+      "fun_fact_de": "Under Pressure entstand während einer spontanen Jam-Session zwischen Queen und David Bowie. Die berühmte Basslinie wurde von John Deacon gespielt. Bowie und Mercury gerieten Berichten zufolge über die kreative Kontrolle aneinander und nahmen ihre Gesangsstimmen getrennt auf. Der Song wurde zu einer wegweisenden Zusammenarbeit der Rockgeschichte.",
+      "fun_fact_es": "Under Pressure fue creada durante una sesión de jam improvisada entre Queen y David Bowie. La famosa línea de bajo fue tocada por John Deacon. Bowie y Mercury supuestamente chocaron por el control creativo, grabando cada uno sus voces por separado. La canción se convirtió en una colaboración histórica en la historia del rock."
     },
     {
       "year": 1963,
       "uri": "spotify:track:5ZBeML7Lf3FMEVviTyvi8l",
       "artist": "The Beatles",
       "title": "Twist and Shout",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 11},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Twist and Shout was recorded last during The Beatles' marathon first album session. John Lennon's voice was nearly gone, giving the track its raw, raspy quality. The song was actually a cover, originally recorded by the Top Notes. The Beatles' version became definitive and iconic."
+      "fun_fact": "Twist and Shout was recorded last during The Beatles' marathon first album session. John Lennon's voice was nearly gone, giving the track its raw, raspy quality. The song was actually a cover, originally recorded by the Top Notes. The Beatles' version became definitive and iconic.",
+      "fun_fact_de": "Twist and Shout wurde als letztes während der Marathon-Aufnahmesession zum ersten Beatles-Album aufgenommen. John Lennons Stimme war fast weg, was dem Track seine raue, heisere Qualität verlieh. Der Song war eigentlich ein Cover, ursprünglich von den Top Notes aufgenommen. Die Beatles-Version wurde zur definitiven und ikonischen Fassung.",
+      "fun_fact_es": "Twist and Shout fue grabada al final durante la maratónica sesión del primer álbum de The Beatles. La voz de John Lennon estaba casi perdida, dando a la pista su cualidad cruda y ronca. La canción era en realidad un cover, grabada originalmente por los Top Notes. La versión de los Beatles se convirtió en la definitiva e icónica."
     },
     {
       "year": 1964,
       "uri": "spotify:track:5y788ya4NvwhBznoDIcXwK",
       "artist": "Simon & Garfunkel",
       "title": "The Sound of Silence",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 14},
-      "certifications": ["Gold (US)"],
-      "awards": ["Grammy Hall of Fame (1999)"],
-      "fun_fact": "The Sound of Silence was originally a flop until a producer added electric instruments without Simon & Garfunkel's knowledge. The duo had broken up by then. When the remixed version became a hit, they reunited and launched one of music's most celebrated partnerships. Truly a tale of serendipity."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "fun_fact": "The Sound of Silence was originally a flop until a producer added electric instruments without Simon & Garfunkel's knowledge. The duo had broken up by then. When the remixed version became a hit, they reunited and launched one of music's most celebrated partnerships. Truly a tale of serendipity.",
+      "fun_fact_de": "The Sound of Silence war ursprünglich ein Flop, bis ein Produzent ohne Wissen von Simon & Garfunkel elektrische Instrumente hinzufügte. Das Duo hatte sich da bereits getrennt. Als die remixte Version ein Hit wurde, vereinten sie sich wieder und starteten eine der gefeiertsten Partnerschaften der Musik. Wahrhaft eine Geschichte glücklicher Zufälle.",
+      "fun_fact_es": "The Sound of Silence fue originalmente un fracaso hasta que un productor añadió instrumentos eléctricos sin el conocimiento de Simon & Garfunkel. El dúo se había separado para entonces. Cuando la versión remezclada se convirtió en un éxito, se reunieron y lanzaron una de las asociaciones más celebradas de la música. Verdaderamente una historia de serendipia.",
+      "awards_de": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1999)"
+      ]
     },
     {
       "year": 1989,
       "uri": "spotify:track:3Cx4yrFaX8CeHwBMReOWXI",
       "artist": "Billy Joel",
       "title": "We Didn't Start the Fire",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 17},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "We Didn't Start the Fire lists 118 historical events and figures from 1949-1989. Billy Joel wrote it after a 21-year-old told him it was a boring time to grow up. Joel memorized all the lyrics by creating mental images and has said he hates performing it live because it's exhausting."
+      "fun_fact": "We Didn't Start the Fire lists 118 historical events and figures from 1949-1989. Billy Joel wrote it after a 21-year-old told him it was a boring time to grow up. Joel memorized all the lyrics by creating mental images and has said he hates performing it live because it's exhausting.",
+      "fun_fact_de": "We Didn't Start the Fire listet 118 historische Ereignisse und Persönlichkeiten von 1949-1989 auf. Billy Joel schrieb es, nachdem ein 21-Jähriger ihm sagte, es sei eine langweilige Zeit zum Aufwachsen. Joel merkte sich alle Texte, indem er mentale Bilder erstellte, und hat gesagt, er hasst es, ihn live zu spielen, weil es erschöpfend ist.",
+      "fun_fact_es": "We Didn't Start the Fire enumera 118 eventos históricos y figuras de 1949-1989. Billy Joel la escribió después de que un joven de 21 años le dijera que era un momento aburrido para crecer. Joel memorizó toda la letra creando imágenes mentales y ha dicho que odia interpretarla en vivo porque es agotadora."
     },
     {
       "year": 1973,
       "uri": "spotify:track:6WCeFNVAXUtNczb7lqLiZU",
       "artist": "Elton John",
       "title": "Crocodile Rock",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 15},
-      "certifications": ["Gold (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Crocodile Rock was Elton John's first US number one single. It was written as a nostalgic tribute to 1950s rock and roll and the fictional dances of that era. The 'la la la' chorus was intentionally silly, capturing the innocent fun of early rock and roll dance hall culture."
+      "fun_fact": "Crocodile Rock was Elton John's first US number one single. It was written as a nostalgic tribute to 1950s rock and roll and the fictional dances of that era. The 'la la la' chorus was intentionally silly, capturing the innocent fun of early rock and roll dance hall culture.",
+      "fun_fact_de": "Crocodile Rock war Elton Johns erste US-Nummer-eins-Single. Er wurde als nostalgische Hommage an den Rock and Roll der 1950er und die fiktiven Tänze dieser Ära geschrieben. Der 'la la la'-Refrain war absichtlich albern und fängt den unschuldigen Spaß der frühen Rock-and-Roll-Tanzhallenkultur ein.",
+      "fun_fact_es": "Crocodile Rock fue el primer sencillo número uno de Elton John en EE.UU. Fue escrita como un tributo nostálgico al rock and roll de los años 50 y los bailes ficticios de esa era. El coro 'la la la' era intencionalmente tonto, capturando la diversión inocente de la cultura de los salones de baile del rock and roll temprano."
     },
     {
       "year": 1986,
       "uri": "spotify:track:0rmGAIH9LNJewFw7nKzZnc",
       "artist": "Bon Jovi",
       "title": "You Give Love a Bad Name",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "You Give Love a Bad Name was Bon Jovi's breakthrough hit that launched them to superstardom. The song was co-written with Desmond Child, who helped craft its massive arena rock sound. The opening a cappella scream became one of rock's most dramatic opening lines ever recorded."
+      "fun_fact": "You Give Love a Bad Name was Bon Jovi's breakthrough hit that launched them to superstardom. The song was co-written with Desmond Child, who helped craft its massive arena rock sound. The opening a cappella scream became one of rock's most dramatic opening lines ever recorded.",
+      "fun_fact_de": "You Give Love a Bad Name war Bon Jovis Durchbruchshit, der sie zum Superstarstatus katapultierte. Der Song wurde gemeinsam mit Desmond Child geschrieben, der half, seinen massiven Arena-Rock-Sound zu formen. Der a-cappella-Eröffnungsschrei wurde zu einer der dramatischsten Eröffnungszeilen, die je aufgenommen wurden.",
+      "fun_fact_es": "You Give Love a Bad Name fue el éxito revelación de Bon Jovi que los lanzó al estrellato. La canción fue coescrita con Desmond Child, quien ayudó a crear su masivo sonido de rock de arena. El grito a cappella de apertura se convirtió en una de las líneas de apertura más dramáticas jamás grabadas."
     },
     {
       "year": 1991,
       "uri": "spotify:track:1f3yAtsJtY87CTmM8RLnxf",
       "artist": "Nirvana",
       "title": "Smells Like Teen Spirit",
-      "chart_info": {"billboard_peak": 6, "weeks_on_chart": 20},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy Hall of Fame (2017)"],
-      "fun_fact": "Smells Like Teen Spirit was named after a deodorant brand that Kurt Cobain's friend Kathleen Hanna wrote on his wall. Cobain didn't know it was a deodorant. The song's explosive dynamics defined grunge and Generation X. MTV played it constantly, making Nirvana reluctant superstars overnight."
+      "chart_info": {
+        "billboard_peak": 6,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2017)"
+      ],
+      "fun_fact": "Smells Like Teen Spirit was named after a deodorant brand that Kurt Cobain's friend Kathleen Hanna wrote on his wall. Cobain didn't know it was a deodorant. The song's explosive dynamics defined grunge and Generation X. MTV played it constantly, making Nirvana reluctant superstars overnight.",
+      "fun_fact_de": "Smells Like Teen Spirit wurde nach einer Deodorantmarke benannt, die Kurt Cobains Freundin Kathleen Hanna an seine Wand schrieb. Cobain wusste nicht, dass es ein Deodorant war. Die explosive Dynamik des Songs definierte Grunge und Generation X. MTV spielte ihn ständig und machte Nirvana über Nacht zu widerwilligen Superstars.",
+      "fun_fact_es": "Smells Like Teen Spirit fue nombrada por una marca de desodorante que la amiga de Kurt Cobain, Kathleen Hanna, escribió en su pared. Cobain no sabía que era un desodorante. La dinámica explosiva de la canción definió el grunge y la Generación X. MTV la tocaba constantemente, convirtiendo a Nirvana en superestrellas reluctantes de la noche a la mañana.",
+      "awards_de": [
+        "Grammy Hall of Fame (2017)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2017)"
+      ]
     },
     {
       "year": 1983,
       "uri": "spotify:track:4y1LsJpmMti1PfRQV9AWWe",
       "artist": "Cyndi Lauper",
       "title": "Girls Just Want to Have Fun",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 25},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Girls Just Want to Have Fun was originally written by Robert Hazard as a song from a male perspective. Cyndi Lauper changed pronouns and the tone, transforming it into a feminist anthem. The colorful music video featured Lauper's real mother and helped establish MTV's visual culture."
+      "fun_fact": "Girls Just Want to Have Fun was originally written by Robert Hazard as a song from a male perspective. Cyndi Lauper changed pronouns and the tone, transforming it into a feminist anthem. The colorful music video featured Lauper's real mother and helped establish MTV's visual culture.",
+      "fun_fact_de": "Girls Just Want to Have Fun wurde ursprünglich von Robert Hazard aus männlicher Perspektive geschrieben. Cyndi Lauper änderte die Pronomen und den Ton und verwandelte ihn in eine feministische Hymne. Das bunte Musikvideo mit Laupers echter Mutter half, MTVs visuelle Kultur zu etablieren.",
+      "fun_fact_es": "Girls Just Want to Have Fun fue escrita originalmente por Robert Hazard desde una perspectiva masculina. Cyndi Lauper cambió los pronombres y el tono, transformándola en un himno feminista. El colorido video musical presentó a la madre real de Lauper y ayudó a establecer la cultura visual de MTV."
     },
     {
       "year": 1993,
       "uri": "spotify:track:3NvS0SxNWIPiAJoPWUpZzr",
       "artist": "Haddaway",
       "title": "What Is Love",
-      "chart_info": {"billboard_peak": 11, "weeks_on_chart": 28},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 11,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "What Is Love was Haddaway's debut single and became a Eurodance classic. The song gained cult status through its use in the Saturday Night Live 'Night at the Roxbury' sketches. The head-bobbing dance move became iconic. Haddaway was genuinely asking a philosophical question about love."
+      "fun_fact": "What Is Love was Haddaway's debut single and became a Eurodance classic. The song gained cult status through its use in the Saturday Night Live 'Night at the Roxbury' sketches. The head-bobbing dance move became iconic. Haddaway was genuinely asking a philosophical question about love.",
+      "fun_fact_de": "What Is Love war Haddaways Debütsingle und wurde zu einem Eurodance-Klassiker. Der Song erlangte Kultstatus durch seine Verwendung in den Saturday Night Live 'Night at the Roxbury'-Sketchen. Die Kopfwackel-Tanzbewegung wurde ikonisch. Haddaway stellte aufrichtig eine philosophische Frage über die Liebe.",
+      "fun_fact_es": "What Is Love fue el sencillo debut de Haddaway y se convirtió en un clásico del Eurodance. La canción ganó estatus de culto a través de su uso en los sketches de Saturday Night Live 'Night at the Roxbury'. El movimiento de cabeza se volvió icónico. Haddaway estaba genuinamente haciendo una pregunta filosófica sobre el amor."
     },
     {
       "year": 1987,
       "uri": "spotify:track:6eN1f9KNmiWEhpE2RhQqB5",
       "artist": "Guns N' Roses",
       "title": "Paradise City",
-      "chart_info": {"billboard_peak": 5, "weeks_on_chart": 15},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 5,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Paradise City was inspired by Los Angeles and its promise of fame and fortune. The outro was recorded with the band playing live in the studio for 12 minutes straight. The song's epic length and guitar solos made it a perfect concert closer and one of Guns N' Roses' defining tracks."
+      "fun_fact": "Paradise City was inspired by Los Angeles and its promise of fame and fortune. The outro was recorded with the band playing live in the studio for 12 minutes straight. The song's epic length and guitar solos made it a perfect concert closer and one of Guns N' Roses' defining tracks.",
+      "fun_fact_de": "Paradise City wurde von Los Angeles und seinem Versprechen von Ruhm und Reichtum inspiriert. Das Outro wurde aufgenommen, während die Band 12 Minuten lang live im Studio spielte. Die epische Länge und die Gitarrensoli des Songs machten ihn zu einem perfekten Konzertabschluss und einem der prägenden Tracks von Guns N' Roses.",
+      "fun_fact_es": "Paradise City fue inspirada por Los Ángeles y su promesa de fama y fortuna. El outro fue grabado con la banda tocando en vivo en el estudio durante 12 minutos seguidos. La duración épica de la canción y los solos de guitarra la hicieron un cierre de concierto perfecto y una de las canciones definitorias de Guns N' Roses."
     },
     {
       "year": 1983,
       "uri": "spotify:track:3cbV252akVZInSvJk7jAYX",
       "artist": "Irene Cara",
       "title": "Flashdance... What a Feeling",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 23},
-      "certifications": ["Platinum (US)"],
-      "awards": ["Grammy - Best Pop Vocal (1984)", "Oscar - Best Original Song (1984)"],
-      "fun_fact": "Flashdance... What a Feeling was written by Giorgio Moroder and Keith Forsey. Irene Cara co-wrote the lyrics about pursuing dreams against all odds. The song won the Academy Award and Golden Globe for Best Original Song. It captured the aspirational spirit of 1980s pop culture perfectly."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Pop Vocal (1984)",
+        "Oscar - Best Original Song (1984)"
+      ],
+      "fun_fact": "Flashdance... What a Feeling was written by Giorgio Moroder and Keith Forsey. Irene Cara co-wrote the lyrics about pursuing dreams against all odds. The song won the Academy Award and Golden Globe for Best Original Song. It captured the aspirational spirit of 1980s pop culture perfectly.",
+      "fun_fact_de": "Flashdance... What a Feeling wurde von Giorgio Moroder und Keith Forsey geschrieben. Irene Cara schrieb den Text über das Verfolgen von Träumen gegen alle Widerstände mit. Der Song gewann den Oscar und den Golden Globe für den besten Originalsong. Er fing den Geist des Strebens der 1980er-Popkultur perfekt ein.",
+      "fun_fact_es": "Flashdance... What a Feeling fue escrita por Giorgio Moroder y Keith Forsey. Irene Cara coescribió la letra sobre perseguir sueños contra todo pronóstico. La canción ganó el Oscar y el Globo de Oro a la Mejor Canción Original. Capturó perfectamente el espíritu aspiracional de la cultura pop de los años 80.",
+      "awards_de": [
+        "Grammy - Beste Pop-Gesangsdarbietung (1984)",
+        "Oscar - Bester Originalsong (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop (1984)",
+        "Oscar - Mejor Canción Original (1984)"
+      ]
     },
     {
       "year": 2002,
       "uri": "spotify:track:3ZOEytgrvLwQaqXreDs2Jx",
       "artist": "Red Hot Chili Peppers",
       "title": "Can't Stop",
-      "chart_info": {"billboard_peak": 57, "weeks_on_chart": 20},
-      "certifications": ["Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 57,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Can't Stop features one of the most recognizable guitar riffs of the 2000s, played by John Frusciante. The song's funk-rock energy showcased Red Hot Chili Peppers at their peak. Chad Smith's drumming on this track is considered some of his best work with the band."
+      "fun_fact": "Can't Stop features one of the most recognizable guitar riffs of the 2000s, played by John Frusciante. The song's funk-rock energy showcased Red Hot Chili Peppers at their peak. Chad Smith's drumming on this track is considered some of his best work with the band.",
+      "fun_fact_de": "Can't Stop enthält eines der bekanntesten Gitarrenriffs der 2000er, gespielt von John Frusciante. Die Funk-Rock-Energie des Songs zeigte die Red Hot Chili Peppers auf ihrem Höhepunkt. Chad Smiths Schlagzeugspiel auf diesem Track gilt als eine seiner besten Arbeiten mit der Band.",
+      "fun_fact_es": "Can't Stop presenta uno de los riffs de guitarra más reconocibles de los 2000, tocado por John Frusciante. La energía funk-rock de la canción mostró a los Red Hot Chili Peppers en su mejor momento. La batería de Chad Smith en esta pista se considera uno de sus mejores trabajos con la banda."
     },
     {
       "year": 1999,
       "uri": "spotify:track:6e40mgJiCid5HRAGrbpGA6",
       "artist": "Backstreet Boys",
       "title": "I Want It That Way",
-      "chart_info": {"billboard_peak": 6, "weeks_on_chart": 28},
-      "certifications": ["2x Platinum (US)"],
+      "chart_info": {
+        "billboard_peak": 6,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "I Want It That Way was written by Max Martin, who went on to become one of pop's most successful producers. Backstreet Boys admit the lyrics don't make complete grammatical sense, but Martin convinced them the emotion mattered more. It remains one of the best-selling singles of all time."
+      "fun_fact": "I Want It That Way was written by Max Martin, who went on to become one of pop's most successful producers. Backstreet Boys admit the lyrics don't make complete grammatical sense, but Martin convinced them the emotion mattered more. It remains one of the best-selling singles of all time.",
+      "fun_fact_de": "I Want It That Way wurde von Max Martin geschrieben, der zu einem der erfolgreichsten Pop-Produzenten werden sollte. Die Backstreet Boys geben zu, dass die Texte grammatikalisch nicht ganz sinnvoll sind, aber Martin überzeugte sie, dass die Emotion wichtiger ist. Er bleibt einer der meistverkauften Singles aller Zeiten.",
+      "fun_fact_es": "I Want It That Way fue escrita por Max Martin, quien se convertiría en uno de los productores pop más exitosos. Los Backstreet Boys admiten que la letra no tiene completo sentido gramatical, pero Martin los convenció de que la emoción importaba más. Sigue siendo uno de los sencillos más vendidos de todos los tiempos."
     },
     {
       "year": 1986,
       "uri": "spotify:track:37ZJ0p5Jm13JPevGcx4SkF",
       "artist": "Bon Jovi",
       "title": "Livin' on a Prayer",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
-      "certifications": ["Diamond (US)"],
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
       "awards": [],
-      "fun_fact": "Livin' on a Prayer tells the story of Tommy and Gina, working-class characters struggling to survive. Jon Bon Jovi initially disliked the song's talk-box effect but was convinced by producer. The song became one of the most-played rock anthems at sporting events and karaoke nights worldwide."
+      "fun_fact": "Livin' on a Prayer tells the story of Tommy and Gina, working-class characters struggling to survive. Jon Bon Jovi initially disliked the song's talk-box effect but was convinced by producer. The song became one of the most-played rock anthems at sporting events and karaoke nights worldwide.",
+      "fun_fact_de": "Livin' on a Prayer erzählt die Geschichte von Tommy und Gina, Arbeiterfiguren, die ums Überleben kämpfen. Jon Bon Jovi mochte den Talk-Box-Effekt des Songs anfangs nicht, wurde aber vom Produzenten überzeugt. Der Song wurde weltweit zu einer der meistgespielten Rock-Hymnen bei Sportveranstaltungen und Karaoke-Abenden.",
+      "fun_fact_es": "Livin' on a Prayer cuenta la historia de Tommy y Gina, personajes de clase trabajadora que luchan por sobrevivir. A Jon Bon Jovi inicialmente no le gustó el efecto de talk-box de la canción pero fue convencido por el productor. La canción se convirtió en uno de los himnos de rock más tocados en eventos deportivos y noches de karaoke en todo el mundo."
     },
     {
       "year": 1987,
       "uri": "spotify:track:7o2CTH4ctstm8TNelqjb51",
       "artist": "Guns N' Roses",
       "title": "Sweet Child O' Mine",
-      "chart_info": {"billboard_peak": 1, "weeks_on_chart": 24},
-      "certifications": ["3x Platinum (US)"],
-      "awards": ["American Music Award - Favorite Pop/Rock Single (1989)"],
-      "fun_fact": "Sweet Child O' Mine's iconic guitar riff was actually a warm-up exercise Slash was playing. Axl Rose overheard it and demanded they turn it into a song. The song was written in just five days. It became Guns N' Roses' biggest hit and one of rock's most beloved ballads."
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [
+        "American Music Award - Favorite Pop/Rock Single (1989)"
+      ],
+      "fun_fact": "Sweet Child O' Mine's iconic guitar riff was actually a warm-up exercise Slash was playing. Axl Rose overheard it and demanded they turn it into a song. The song was written in just five days. It became Guns N' Roses' biggest hit and one of rock's most beloved ballads.",
+      "fun_fact_de": "Sweet Child O' Mines ikonisches Gitarrenriff war eigentlich eine Aufwärmübung, die Slash spielte. Axl Rose hörte es und forderte, daraus einen Song zu machen. Der Song wurde in nur fünf Tagen geschrieben. Er wurde Guns N' Roses' größter Hit und eine der beliebtesten Rockballaden überhaupt.",
+      "fun_fact_es": "El icónico riff de guitarra de Sweet Child O' Mine era en realidad un ejercicio de calentamiento que Slash estaba tocando. Axl Rose lo escuchó y exigió que lo convirtieran en una canción. La canción fue escrita en solo cinco días. Se convirtió en el mayor éxito de Guns N' Roses y una de las baladas de rock más queridas.",
+      "awards_de": [
+        "American Music Award - Beliebteste Pop/Rock-Single (1989)"
+      ],
+      "awards_es": [
+        "American Music Award - Sencillo Pop/Rock Favorito (1989)"
+      ]
     },
     {
       "year": 2000,
       "uri": "spotify:track:60a0Rd6pjrkxjPbaKzXjfq",
       "artist": "Linkin Park",
       "title": "In the End",
-      "chart_info": {"billboard_peak": 2, "weeks_on_chart": 38},
-      "certifications": ["Diamond (US)"],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 38
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
       "awards": [],
-      "fun_fact": "In the End became Linkin Park's signature song and defined the nu-metal era. Mike Shinoda's rapping combined with Chester Bennington's singing created their distinctive sound. The song's themes of trying hard but ultimately failing resonated with millions of fans worldwide, becoming a generational anthem."
+      "fun_fact": "In the End became Linkin Park's signature song and defined the nu-metal era. Mike Shinoda's rapping combined with Chester Bennington's singing created their distinctive sound. The song's themes of trying hard but ultimately failing resonated with millions of fans worldwide, becoming a generational anthem.",
+      "fun_fact_de": "In the End wurde zu Linkin Parks Erkennungslied und definierte die Nu-Metal-Ära. Mike Shinodas Rap kombiniert mit Chester Benningtons Gesang schuf ihren unverwechselbaren Sound. Die Themen des Songs über hartes Bemühen, aber letztendliches Scheitern, sprachen Millionen von Fans weltweit an und wurde zu einer Generationenhymne.",
+      "fun_fact_es": "In the End se convirtió en la canción insignia de Linkin Park y definió la era del nu-metal. El rap de Mike Shinoda combinado con el canto de Chester Bennington creó su sonido distintivo. Los temas de la canción sobre esforzarse mucho pero finalmente fallar resonaron con millones de fans en todo el mundo, convirtiéndose en un himno generacional."
     }
   ]
 }
