@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-1.3.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-1.4.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#-5-minute-setup) • [**See It In Action**](#-the-experience) • [**Install Now**](#-installation)
@@ -285,8 +285,9 @@ Beatify speaks your guests' language.
 
 - **English** — Full support
 - **Deutsch** — Vollständige Unterstützung
+- **Español** — Soporte completo
 
-Select during game setup. All players see the chosen language.
+Select during game setup. All players see the chosen language. Fun facts and awards are also translated!
 
 ---
 
@@ -378,6 +379,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v1.4.0 — Fiesta Internacional 🌍
+- **Spanish language support** — Full UI and playlist content in Spanish
+- **German playlist content** — Fun facts and awards translated for all 370 songs
+- **TV Dashboard improvements** — Easier to find, shows round stats and fun facts
+- **Invite late joiners** — QR popup during gameplay for latecomers
+- **Admin lobby makeover** — Dark theme, player list, real-time updates
+- **Alexa fix** — Spotify playback now works on Alexa devices
 
 ### v1.3.0 — Steal the Show 🥷
 - **Steal power-up** — Build a 3-streak, then copy another player's answer
