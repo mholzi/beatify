@@ -699,6 +699,98 @@ body.theme-dark .btn-secondary span {
     margin-right: auto;
 }
 
+/* Provider Selector (Story 17.2) */
+.provider-selector {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.provider-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs);
+    padding: var(--space-sm) var(--space-md);
+    min-width: 100px;
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.provider-btn:hover:not(.provider-btn--disabled) {
+    border-color: var(--color-accent-brand);
+    background: var(--color-bg-card-alt);
+}
+
+.provider-btn:focus {
+    outline: none;
+    border-color: var(--color-accent-brand);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.provider-btn:focus-visible {
+    outline: 2px solid var(--color-accent-brand);
+    outline-offset: 2px;
+}
+
+.provider-btn--active {
+    border-color: var(--color-accent-brand);
+    background: var(--color-accent-brand);
+    color: var(--color-text-white);
+}
+
+.provider-btn--active:hover {
+    background: var(--color-accent-brand-hover);
+}
+
+.provider-btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--color-border-light);
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+}
+
+.provider-icon {
+    font-size: 1.5em;
+}
+
+.provider-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.provider-help {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+}
+
+.provider-help a {
+    color: var(--color-accent-brand);
+}
+
+/* Playlist coverage warning (Story 17.2) */
+.playlist-coverage {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.playlist-coverage--warning {
+    color: var(--color-warning);
+}
+
+.playlist-coverage--none {
+    color: var(--color-error);
+}
+
 /* Difficulty Badge (Story 14.1) */
 .difficulty-badge {
     display: inline-block;
@@ -1799,14 +1891,22 @@ body.theme-dark .qr-modal-label {
 
 .dashboard-hint-text {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
     gap: var(--space-xs);
     font-size: var(--font-size-sm);
-    color: var(--color-text-neon-muted);
+    color: #ffffff;
     background: var(--color-dark-surface);
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-md);
     margin: 0;
+}
+
+.dashboard-hint-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: white;
 }
 
 .dashboard-hint-icon {
@@ -1816,7 +1916,7 @@ body.theme-dark .qr-modal-label {
 .dashboard-hint-url {
     font-family: monospace;
     color: var(--color-accent-secondary);
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
 }
 
 /* QR Modal (Story 3.4) */
