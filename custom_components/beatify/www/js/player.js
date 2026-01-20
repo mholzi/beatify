@@ -591,10 +591,12 @@
         const countEl = document.getElementById('player-count');
         if (!listEl) return;
 
-        // Update player count
+        // Update player count (Story 16.3 - i18n)
         if (countEl) {
             const count = players.length;
-            countEl.textContent = count + ' player' + (count !== 1 ? 's' : '');
+            countEl.textContent = count === 1
+                ? t('lobby.playerJoined')
+                : t('lobby.playersJoined', { count: count });
         }
 
         // Story 11.4: Sort players - connected first, then disconnected
@@ -629,7 +631,7 @@
             return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
                 '<span class="player-name">' +
                     escapeHtml(player.name) +
-                    (isYou ? '<span class="you-badge">(You)</span>' : '') +
+                    (isYou ? '<span class="you-badge">' + t('leaderboard.you') + '</span>' : '') +
                     awayBadge +
                 '</span>' +
             '</div>';
@@ -2890,10 +2892,10 @@
                 if (labelEl) labelEl.textContent = 'Skip';
             }
         } else if (phase === 'REVEAL') {
-            // Stop Song disabled, Next Round enabled
-            if (stopBtn) {
-                stopBtn.classList.add('is-disabled');
-                stopBtn.disabled = true;
+            // Stop Song still enabled (song may continue during reveal), Next Round enabled
+            if (stopBtn && !songStopped) {
+                stopBtn.classList.remove('is-disabled');
+                stopBtn.disabled = false;
             }
             if (nextBtn) {
                 nextBtn.classList.remove('is-disabled');
@@ -3442,7 +3444,15 @@
         const nameInput = document.getElementById('name-input');
 
         if (data.type === 'state') {
-            // Apply language from game state (Story 12.4)
+            // Update isAdmin from players list (Story 6.1)
+            var players = data.players || [];
+            var currentPlayer = players.find(function(p) { return p.name === playerName; });
+            if (currentPlayer) {
+                isAdmin = currentPlayer.is_admin === true;
+            }
+
+            // Apply language from game state (Story 12.4, 16.3)
+            // Must re-render dynamic content after language loads
             if (data.language) {
                 // Store language for future page loads
                 storeGameLanguage(data.language);
@@ -3450,15 +3460,13 @@
                 if (data.language !== BeatifyI18n.getLanguage()) {
                     BeatifyI18n.setLanguage(data.language).then(function() {
                         BeatifyI18n.initPageTranslations();
+                        // Re-render dynamic content with new language
+                        renderPlayerList(players);
+                        if (data.difficulty) {
+                            renderDifficultyBadge(data.difficulty);
+                        }
                     });
                 }
-            }
-
-            // Update isAdmin from players list (Story 6.1)
-            var players = data.players || [];
-            var currentPlayer = players.find(function(p) { return p.name === playerName; });
-            if (currentPlayer) {
-                isAdmin = currentPlayer.is_admin === true;
             }
 
             if (data.phase === 'LOBBY') {
