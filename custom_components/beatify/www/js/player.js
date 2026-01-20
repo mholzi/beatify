@@ -1100,8 +1100,8 @@
         }).length;
         var totalCount = playerList.length;
 
-        // Update count
-        countEl.textContent = submittedCount + '/' + totalCount + ' submitted';
+        // Update count (Story 16.3 - i18n)
+        countEl.textContent = t('game.submittedCount', { count: submittedCount, total: totalCount });
 
         // Check if all submitted
         var allSubmitted = submittedCount === totalCount && totalCount > 0;
@@ -1327,7 +1327,7 @@
         var youEl = document.getElementById('leaderboard-you');
         var currentPlayer = leaderboard.find(function(e) { return e.is_current; });
         if (youEl && currentPlayer) {
-            youEl.textContent = 'You: #' + currentPlayer.rank;
+            youEl.textContent = t('leaderboard.you') + ' #' + currentPlayer.rank;
             youEl.classList.remove('hidden');
         }
     }
@@ -1506,7 +1506,7 @@
             submitBtn.textContent = message;
             submitBtn.classList.add('is-error');
             setTimeout(function() {
-                submitBtn.textContent = 'Submit Guess';
+                submitBtn.textContent = t('game.submitGuess');
                 submitBtn.classList.remove('is-error');
             }, 2000);
         }
@@ -1532,7 +1532,7 @@
         if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.classList.remove('hidden', 'is-loading', 'is-error');
-            submitBtn.textContent = 'Submit Guess';
+            submitBtn.textContent = t('game.submitGuess');
         }
 
         // Reset bet toggle (Story 5.3)
