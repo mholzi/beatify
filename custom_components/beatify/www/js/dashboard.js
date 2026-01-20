@@ -148,11 +148,16 @@
     function handleStateUpdate(data) {
         var phase = data.phase;
 
-        // Apply language from game state (Story 12.5)
+        // Apply language from game state (Story 12.5, 16.3)
+        // Must re-render after language loads to update dynamic content
         if (data.language && data.language !== BeatifyI18n.getLanguage()) {
             BeatifyI18n.setLanguage(data.language).then(function() {
                 BeatifyI18n.initPageTranslations();
+                // Re-render current view with correct language
+                handleStateUpdate(data);
             });
+            // Don't render yet - wait for language to load
+            return;
         }
 
         if (!phase || phase === 'END' && !data.game_id) {
