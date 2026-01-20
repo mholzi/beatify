@@ -18,6 +18,9 @@ from custom_components.beatify.const import (
     DOMAIN,
     MEDIA_PLAYER_DOCS_URL,
     PLAYLIST_DOCS_URL,
+    PROVIDER_APPLE_MUSIC,
+    PROVIDER_DEFAULT,
+    PROVIDER_SPOTIFY,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
@@ -153,11 +156,17 @@ class StartGameView(HomeAssistantView):
         language = body.get("language", "en")
         round_duration = body.get("round_duration")  # Story 13.1
         difficulty = body.get("difficulty", DIFFICULTY_DEFAULT)  # Story 14.1
+        provider = body.get("provider", PROVIDER_DEFAULT)  # Story 17.2
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)
         if difficulty not in valid_difficulties:
             difficulty = DIFFICULTY_DEFAULT
+
+        # Validate provider (Story 17.2)
+        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC)
+        if provider not in valid_providers:
+            provider = PROVIDER_DEFAULT
 
         # Validate round_duration if provided (Story 13.1)
         if round_duration is not None:
@@ -262,13 +271,14 @@ class StartGameView(HomeAssistantView):
             if stats_service:
                 game_state.set_stats_service(stats_service)
 
-        # Build create_game kwargs with optional round_duration (Story 13.1) and difficulty (Story 14.1)
+        # Build create_game kwargs with optional round_duration (Story 13.1), difficulty (Story 14.1), and provider (Story 17.2)
         create_kwargs: dict[str, Any] = {
             "playlists": playlist_paths,
             "songs": songs,
             "media_player": media_player,
             "base_url": base_url,
             "difficulty": difficulty,
+            "provider": provider,
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration

@@ -193,7 +193,11 @@
     "difficultyHard": "Hard",
     "difficultyEasyDesc": "Forgiving scoring: Guess within 7 years to score. Exact match = 10 pts, within 7 years = 5 pts, within 10 years = 1 pt.",
     "difficultyNormalDesc": "Standard scoring: Guess within 3 years to score. Exact match = 10 pts, within 3 years = 5 pts, within 5 years = 1 pt.",
-    "difficultyHardDesc": "Challenging scoring: Only close guesses count. Exact match = 10 pts, within 2 years = 3 pts, otherwise no points."
+    "difficultyHardDesc": "Challenging scoring: Only close guesses count. Exact match = 10 pts, within 2 years = 3 pts, otherwise no points.",
+    "selectProvider": "Music Provider",
+    "providerSpotify": "Spotify",
+    "providerAppleMusic": "Apple Music",
+    "providerRequiresMA": "Requires Music Assistant"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

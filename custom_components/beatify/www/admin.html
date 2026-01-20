@@ -31,6 +31,25 @@
             </div>
         </section>
 
+        <!-- Provider Selector (Story 17.2) -->
+        <section id="provider-section" class="card-section">
+            <h2 data-i18n="admin.selectProvider">Music Provider</h2>
+            <div class="provider-selector" role="group" aria-label="Music provider selection">
+                <button type="button" class="provider-btn provider-btn--active" data-provider="spotify" tabindex="0">
+                    <span class="provider-icon" aria-hidden="true">🎵</span>
+                    <span class="provider-label" data-i18n="admin.providerSpotify">Spotify</span>
+                </button>
+                <button type="button" class="provider-btn" data-provider="apple_music" tabindex="0">
+                    <span class="provider-icon" aria-hidden="true">🍎</span>
+                    <span class="provider-label" data-i18n="admin.providerAppleMusic">Apple Music</span>
+                </button>
+            </div>
+            <p id="provider-help-link" class="provider-help hidden">
+                <span data-i18n="admin.providerRequiresMA">Requires Music Assistant</span> -
+                <a href="https://music-assistant.io/integration/installation/" target="_blank" rel="noopener">Setup Guide</a>
+            </p>
+        </section>
+
         <!-- Language Selector (Story 12.4) -->
         <section id="language-section" class="card-section">
             <h2 data-i18n="admin.selectLanguage">Game Language</h2>
@@ -112,11 +131,13 @@
                 <button id="print-qr" class="btn btn-secondary" data-i18n="admin.printQr">Print QR Code</button>
             </div>
             <div class="dashboard-hint-container no-print">
-                <p class="dashboard-hint-text">
-                    <span class="dashboard-hint-icon">📺</span>
-                    <span data-i18n="dashboard.castToTv">Cast to TV:</span>
+                <div class="dashboard-hint-text">
+                    <span class="dashboard-hint-label">
+                        <span class="dashboard-hint-icon">📺</span>
+                        <span data-i18n="dashboard.castToTv">Cast to TV:</span>
+                    </span>
                     <a id="admin-dashboard-url" href="#" class="dashboard-hint-url" target="_blank"></a>
-                </p>
+                </div>
             </div>
             <div class="lobby-player-count-container">
                 <span id="lobby-player-count" class="player-count" aria-live="polite">0 players</span>

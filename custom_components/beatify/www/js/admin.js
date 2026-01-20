@@ -24,12 +24,16 @@ let selectedDuration = 45;
 // Difficulty state (Story 14.1)
 let selectedDifficulty = 'normal';
 
+// Provider state (Story 17.2)
+let selectedProvider = 'spotify';
+let hasMusicAssistant = false;
+
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
 
 // Setup sections to hide/show as a group (Story 9.10: game-controls removed, button is standalone)
-const setupSections = ['media-players', 'playlists', 'language-section', 'timer-section', 'difficulty-section'];
+const setupSections = ['media-players', 'playlists', 'provider-section', 'language-section', 'timer-section', 'difficulty-section'];
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize i18n based on browser language (Story 12.4)
@@ -68,6 +72,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Difficulty selector setup (Story 14.1)
     setupDifficultySelector();
 
+    // Provider selector setup (Story 17.2)
+    setupProviderSelector();
+
     await loadStatus();
 });
 
@@ -87,6 +94,7 @@ async function loadStatus() {
         playlistDocsUrl = status.playlist_docs_url || '';
         mediaPlayerDocsUrl = status.media_player_docs_url || '';
         renderMediaPlayers(status.media_players);
+        updateProviderAvailability();  // Story 17.2: Update Apple Music availability
         renderPlaylists(status.playlists, status.playlist_dir);
         updateStartButtonState();
 
@@ -118,6 +126,11 @@ function renderMediaPlayers(players) {
 
     // Reset selection state
     selectedMediaPlayer = null;
+
+    // Detect Music Assistant players (Story 17.2)
+    hasMusicAssistant = (players || []).some(p =>
+        p.entity_id && p.entity_id.toLowerCase().includes('music_assistant')
+    );
 
     // Filter out unavailable players
     const availablePlayers = (players || []).filter(p => p.state !== 'unavailable');
@@ -242,17 +255,31 @@ function renderPlaylists(playlists, playlistDir) {
     container.innerHTML = playlists.map(playlist => {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
-            const songCount = escapeHtml(String(playlist.song_count));
+            const songCount = playlist.song_count || 0;
+            // Get provider-specific count (Story 17.2)
+            const providerCount = selectedProvider === 'apple_music'
+                ? (playlist.apple_music_count || 0)
+                : (playlist.spotify_count || songCount);
+
+            // Build coverage indicator
+            let coverageHtml = '';
+            if (providerCount < songCount) {
+                const coverageClass = providerCount === 0
+                    ? 'playlist-coverage playlist-coverage--none'
+                    : 'playlist-coverage playlist-coverage--warning';
+                coverageHtml = `<span class="${coverageClass}">${providerCount}/${songCount}</span>`;
+            }
+
             return `
                 <div class="playlist-item list-item is-selectable">
                     <label class="checkbox-label">
                         <input type="checkbox"
                                class="playlist-checkbox"
                                data-path="${escapeHtml(playlist.path)}"
-                               data-song-count="${songCount}">
+                               data-song-count="${escapeHtml(String(songCount))}">
                         <span class="playlist-name">${escapeHtml(playlist.name)}</span>
                     </label>
-                    <span class="meta">${songCount} songs</span>
+                    <span class="meta">${coverageHtml || escapeHtml(String(songCount))} songs</span>
                 </div>
             `;
         } else {
@@ -531,7 +558,8 @@ async function startGame() {
                 media_player: selectedMediaPlayer?.entityId,
                 language: selectedLanguage,
                 round_duration: selectedDuration,  // Story 13.1
-                difficulty: selectedDifficulty  // Story 14.1
+                difficulty: selectedDifficulty,  // Story 14.1
+                provider: selectedProvider  // Story 17.2
             })
         });
 
@@ -936,6 +964,96 @@ function setDifficulty(difficulty) {
         // Use i18n translation if available
         if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
             descriptionEl.textContent = BeatifyI18n.t(descKey);
+        }
+    }
+}
+
+// ==========================================
+// Provider Selector Functions (Story 17.2)
+// ==========================================
+
+/**
+ * Setup provider selector buttons
+ */
+function setupProviderSelector() {
+    var providerButtons = document.querySelectorAll('.provider-btn');
+
+    providerButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Don't allow clicking disabled buttons
+            if (btn.classList.contains('provider-btn--disabled')) {
+                return;
+            }
+            var provider = btn.getAttribute('data-provider');
+            if (provider && provider !== selectedProvider) {
+                setProvider(provider);
+            }
+        });
+    });
+}
+
+/**
+ * Update provider button states
+ * @param {string} provider - Provider identifier ('spotify' or 'apple_music')
+ */
+function updateProviderButtons(provider) {
+    var providerButtons = document.querySelectorAll('.provider-btn');
+    providerButtons.forEach(function(btn) {
+        var btnProvider = btn.getAttribute('data-provider');
+        if (btnProvider === provider) {
+            btn.classList.add('provider-btn--active');
+        } else {
+            btn.classList.remove('provider-btn--active');
+        }
+    });
+}
+
+/**
+ * Set music provider and update UI
+ * @param {string} provider - Provider identifier ('spotify' or 'apple_music')
+ */
+function setProvider(provider) {
+    // Validate provider
+    var validProviders = ['spotify', 'apple_music'];
+    if (validProviders.indexOf(provider) === -1) {
+        provider = 'spotify';
+    }
+
+    selectedProvider = provider;
+    updateProviderButtons(provider);
+
+    // Re-render playlists to show coverage for selected provider
+    if (playlistData.length > 0) {
+        renderPlaylists(playlistData, '');
+    }
+}
+
+/**
+ * Update Apple Music button availability based on Music Assistant detection
+ * Disables Apple Music option if no Music Assistant media players are found
+ */
+function updateProviderAvailability() {
+    var appleMusicBtn = document.querySelector('.provider-btn[data-provider="apple_music"]');
+    var helpLink = document.getElementById('provider-help-link');
+
+    if (!appleMusicBtn) return;
+
+    if (hasMusicAssistant) {
+        // Enable Apple Music
+        appleMusicBtn.classList.remove('provider-btn--disabled');
+        appleMusicBtn.removeAttribute('disabled');
+        appleMusicBtn.removeAttribute('aria-disabled');
+        if (helpLink) helpLink.classList.add('hidden');
+    } else {
+        // Disable Apple Music - no Music Assistant detected
+        appleMusicBtn.classList.add('provider-btn--disabled');
+        appleMusicBtn.setAttribute('disabled', 'disabled');
+        appleMusicBtn.setAttribute('aria-disabled', 'true');
+        if (helpLink) helpLink.classList.remove('hidden');
+
+        // If Apple Music was selected, switch back to Spotify
+        if (selectedProvider === 'apple_music') {
+            setProvider('spotify');
         }
     }
 }

@@ -34,6 +34,7 @@ from custom_components.beatify.const import (
     MIN_ROUNDS_FOR_CLUTCH,
     MIN_STREAK_FOR_AWARD,
     MIN_SUBMISSIONS_FOR_SPEED,
+    PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
     STEAL_UNLOCK_STREAK,
@@ -173,6 +174,9 @@ class GameState:
         # Difficulty setting (Story 14.1)
         self.difficulty: str = DIFFICULTY_DEFAULT
 
+        # Provider setting (Story 17.2)
+        self.provider: str = PROVIDER_DEFAULT
+
         # Round analytics (Story 13.3)
         self.round_analytics: RoundAnalytics | None = None
 
@@ -187,6 +191,7 @@ class GameState:
         base_url: str,
         round_duration: int = DEFAULT_ROUND_DURATION,
         difficulty: str = DIFFICULTY_DEFAULT,
+        provider: str = PROVIDER_DEFAULT,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -198,6 +203,7 @@ class GameState:
             base_url: HA base URL for join URL construction
             round_duration: Round timer duration in seconds (10-60, default 30)
             difficulty: Difficulty level (easy/normal/hard, default normal)
+            provider: Music provider (spotify/apple_music, default spotify)
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -224,8 +230,11 @@ class GameState:
         self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
         self.players = {}
 
-        # Initialize PlaylistManager for song selection (Epic 4)
-        self._playlist_manager = PlaylistManager(songs)
+        # Store provider setting (Story 17.2)
+        self.provider = provider
+
+        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
+        self._playlist_manager = PlaylistManager(songs, provider)
 
         # Reset round tracking for new game
         self.round = 0
@@ -459,6 +468,9 @@ class GameState:
 
         # Reset difficulty (Story 14.1)
         self.difficulty = DIFFICULTY_DEFAULT
+
+        # Reset provider (Story 17.2)
+        self.provider = PROVIDER_DEFAULT
 
     async def pause_game(self, reason: str) -> bool:
         """

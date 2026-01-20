@@ -193,7 +193,11 @@
     "difficultyHard": "Schwer",
     "difficultyEasyDesc": "Nachsichtige Wertung: Tipps bis 7 Jahre daneben zählen. Volltreffer = 10 Pkt, bis 7 Jahre = 5 Pkt, bis 10 Jahre = 1 Pkt.",
     "difficultyNormalDesc": "Standard-Wertung: Tipps bis 3 Jahre daneben zählen. Volltreffer = 10 Pkt, bis 3 Jahre = 5 Pkt, bis 5 Jahre = 1 Pkt.",
-    "difficultyHardDesc": "Anspruchsvolle Wertung: Nur knappe Tipps zählen. Volltreffer = 10 Pkt, bis 2 Jahre = 3 Pkt, sonst keine Punkte."
+    "difficultyHardDesc": "Anspruchsvolle Wertung: Nur knappe Tipps zählen. Volltreffer = 10 Pkt, bis 2 Jahre = 3 Pkt, sonst keine Punkte.",
+    "selectProvider": "Musikdienst",
+    "providerSpotify": "Spotify",
+    "providerAppleMusic": "Apple Music",
+    "providerRequiresMA": "Erfordert Music Assistant"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

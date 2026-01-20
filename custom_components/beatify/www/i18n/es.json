@@ -193,7 +193,11 @@
     "difficultyHard": "Dificil",
     "difficultyEasyDesc": "Puntuacion indulgente: Acierta dentro de 7 anos para puntuar. Exacto = 10 pts, dentro de 7 anos = 5 pts, dentro de 10 anos = 1 pt.",
     "difficultyNormalDesc": "Puntuacion estandar: Acierta dentro de 3 anos para puntuar. Exacto = 10 pts, dentro de 3 anos = 5 pts, dentro de 5 anos = 1 pt.",
-    "difficultyHardDesc": "Puntuacion desafiante: Solo cuentan las respuestas cercanas. Exacto = 10 pts, dentro de 2 anos = 3 pts, sino no hay puntos."
+    "difficultyHardDesc": "Puntuacion desafiante: Solo cuentan las respuestas cercanas. Exacto = 10 pts, dentro de 2 anos = 3 pts, sino no hay puntos.",
+    "selectProvider": "Proveedor de musica",
+    "providerSpotify": "Spotify",
+    "providerAppleMusic": "Apple Music",
+    "providerRequiresMA": "Requiere Music Assistant"
   },
   "dashboard": {
     "title": "Beatify - Panel",
