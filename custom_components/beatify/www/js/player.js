@@ -3465,6 +3465,10 @@
                         if (data.difficulty) {
                             renderDifficultyBadge(data.difficulty);
                         }
+                        // Re-render reveal view for localized fun facts (Story 16.3)
+                        if (data.phase === 'REVEAL') {
+                            updateRevealView(data);
+                        }
                     });
                 }
             }
