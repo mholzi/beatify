@@ -1828,6 +1828,33 @@ body.theme-dark .qr-modal-label {
     }
 }
 
+/* Story 18.2: Virtual scrolling for player lists */
+.player-list--virtual {
+    position: relative;
+    overflow-y: auto;
+    max-height: 320px;
+    -webkit-overflow-scrolling: touch;
+    contain: layout style paint;
+}
+
+.player-list--virtual .virtual-spacer-top,
+.player-list--virtual .virtual-spacer-bottom {
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.player-list--virtual .virtual-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.player-list--virtual .player-card {
+    flex-shrink: 0;
+    height: 52px;
+    box-sizing: border-box;
+}
+
 /* QR Share Area (Story 3.4) */
 .qr-share-area {
     text-align: center;
@@ -3707,6 +3734,23 @@ body.theme-dark .result-value.is-bet-lost {
 .leaderboard-list {
     max-height: 200px;
     overflow-y: auto;
+    /* Story 18.1: CSS containment for scroll performance (layout style paint, not strict/size) */
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Story 18.1: Spacer elements for lazy loading virtual scroll */
+.leaderboard-spacer-top,
+.leaderboard-spacer-bottom {
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+/* Story 18.1: Sentinel elements for IntersectionObserver */
+.leaderboard-sentinel {
+    flex-shrink: 0;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 /* Leaderboard entries */
@@ -3717,6 +3761,10 @@ body.theme-dark .result-value.is-bet-lost {
     padding: 10px var(--space-md);
     border-bottom: 1px solid var(--color-bg-card-alt);
     transition: background var(--transition-fast);
+    /* Story 18.1: CSS containment for layout isolation */
+    contain: content;
+    height: 48px;
+    box-sizing: border-box;
 }
 
 .leaderboard-entry:last-child {
@@ -5351,4 +5399,79 @@ body.theme-dark .steal-target-btn:hover {
     .leaderboard-entry--slide-down {
         animation: none !important;
     }
+}
+
+/* ============================================
+   Device Tier Performance Optimizations (Story 18.3)
+   ============================================ */
+
+/* Low-end device optimizations - disable complex animations */
+body.device-tier-low .leaderboard-entry--climbing,
+body.device-tier-low .leaderboard-entry--falling,
+body.device-tier-low .leaderboard-entry--slide-up,
+body.device-tier-low .leaderboard-entry--slide-down {
+    animation: none !important;
+}
+
+body.device-tier-low .neon-glow,
+body.device-tier-low .btn-glow:hover {
+    box-shadow: none !important;
+}
+
+body.device-tier-low .score-pop,
+body.device-tier-low .score-shake,
+body.device-tier-low .score-glow-gold,
+body.device-tier-low .score-burst {
+    animation: none !important;
+}
+
+body.device-tier-low .points-popup {
+    display: none !important;
+}
+
+/* Medium-tier device optimizations - simplify animations */
+body.device-tier-medium .leaderboard-entry--climbing,
+body.device-tier-medium .leaderboard-entry--falling {
+    animation-duration: 0.2s !important;
+}
+
+body.device-tier-medium .neon-glow {
+    animation: none !important;
+}
+
+body.device-tier-medium .score-pop,
+body.device-tier-medium .score-shake,
+body.device-tier-medium .score-glow-gold,
+body.device-tier-medium .score-burst {
+    animation-duration: 0.2s !important;
+}
+
+/* Tap-to-skip hint for reveal view (Story 18.3) */
+.reveal-skip-hint {
+    position: absolute;
+    bottom: var(--space-md);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    opacity: 0;
+    animation: fadeInDelayed 0.3s ease-out 1s forwards;
+}
+
+@keyframes fadeInDelayed {
+    to {
+        opacity: 0.6;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-skip-hint {
+        animation: none;
+        opacity: 0.6;
+    }
+}
+
+body.device-tier-low .reveal-skip-hint {
+    animation: none;
+    opacity: 0.6;
 }

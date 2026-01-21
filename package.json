@@ -1,0 +1,21 @@
+{
+  "name": "beatify",
+  "version": "1.4.0",
+  "private": true,
+  "description": "Beatify - Music trivia game for Home Assistant",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:dev": "node scripts/build.js --dev",
+    "build:watch": "node scripts/build.js --watch",
+    "clean": "rm -f custom_components/beatify/www/js/*.min.js custom_components/beatify/www/css/*.min.css",
+    "size": "node scripts/size-report.js"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "esbuild": "^0.20.0",
+    "lightningcss": "^1.23.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

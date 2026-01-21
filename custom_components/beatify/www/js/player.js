@@ -211,34 +211,47 @@
 
     /**
      * Animate a numeric value from start to end
+     * Story 18.3: Now device-tier aware with instant updates for low-end devices
      * @param {HTMLElement} element - Element to update textContent
      * @param {number} start - Starting value
      * @param {number} end - Ending value
      * @param {number} duration - Animation duration in ms
      * @param {Function} easing - Easing function (optional, defaults to easeOutQuart)
-     * @returns {Object} Controller with cancel() method
+     * @returns {Object} Controller with cancel() and skipToEnd() methods
      */
     function animateValue(element, start, end, duration, easing) {
         // Skip animation if reduced motion or start equals end
         if (prefersReducedMotion() || start === end) {
             element.textContent = end;
-            return { cancel: function() {} };
+            return { cancel: function() {}, skipToEnd: function() { element.textContent = end; } };
         }
+
+        // Story 18.3: Get device-aware duration
+        var quality = AnimationUtils.getQualitySettings();
+        if (quality.scoreDuration === 0) {
+            // Low-end device: instant update
+            element.textContent = end;
+            return { cancel: function() {}, skipToEnd: function() { element.textContent = end; } };
+        }
+
+        // Scale duration based on device tier
+        var adjustedDuration = Math.min(duration, quality.scoreDuration || duration);
 
         easing = easing || easeOutQuart;
         var startTime = null;
         var animationId = null;
         var cancelled = false;
+        var finalValue = end;
 
         function step(timestamp) {
             if (cancelled) return;
 
             if (!startTime) startTime = timestamp;
             var elapsed = timestamp - startTime;
-            var progress = Math.min(elapsed / duration, 1);
+            var progress = Math.min(elapsed / adjustedDuration, 1);
             var easedProgress = easing(progress);
 
-            var currentValue = Math.round(start + (end - start) * easedProgress);
+            var currentValue = Math.round(start + (finalValue - start) * easedProgress);
             element.textContent = currentValue;
 
             if (progress < 1) {
@@ -254,6 +267,13 @@
                 if (animationId) {
                     cancelAnimationFrame(animationId);
                 }
+            },
+            skipToEnd: function() {
+                cancelled = true;
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+                element.textContent = finalValue;
             }
         };
     }
@@ -385,6 +405,722 @@
 
     // Streak milestones for bonus detection
     var STREAK_MILESTONES = [3, 5, 10];
+
+    // ============================================
+    // Animation Performance Utilities (Story 18.3)
+    // ============================================
+
+    /**
+     * Centralized animation utilities with device-aware performance optimization
+     */
+    var AnimationUtils = (function() {
+        // Cache reduced-motion preference
+        var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var _prefersReducedMotion = reducedMotionQuery.matches;
+
+        // Listen for preference changes (user toggles OS setting)
+        reducedMotionQuery.addEventListener('change', function(e) {
+            _prefersReducedMotion = e.matches;
+        });
+
+        // Cache device tier (computed once on load)
+        var _deviceTier = null;
+
+        /**
+         * Detect device capability tier
+         * @returns {'high'|'medium'|'low'} Device performance tier
+         */
+        function getDeviceTier() {
+            if (_deviceTier !== null) return _deviceTier;
+
+            var cores = navigator.hardwareConcurrency || 2;
+            var memory = navigator.deviceMemory || 4;
+
+            // iOS Safari detection (often resource-constrained)
+            var isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            if (cores <= 2 || memory <= 2) {
+                _deviceTier = 'low';
+            } else if (cores <= 4 || memory <= 4 || isIOSSafari) {
+                _deviceTier = 'medium';
+            } else {
+                _deviceTier = 'high';
+            }
+
+            return _deviceTier;
+        }
+
+        // Initialize tier on load
+        getDeviceTier();
+
+        return {
+            /**
+             * Check if reduced motion is preferred
+             * @returns {boolean}
+             */
+            prefersReducedMotion: function() {
+                return _prefersReducedMotion;
+            },
+
+            /**
+             * Get device performance tier
+             * @returns {'high'|'medium'|'low'}
+             */
+            getDeviceTier: getDeviceTier,
+
+            /**
+             * Get animation quality settings based on device tier
+             * @returns {Object} Quality settings for various animation types
+             */
+            getQualitySettings: function() {
+                var tier = getDeviceTier();
+                if (_prefersReducedMotion) {
+                    return {
+                        confettiParticles: 0,
+                        scoreDuration: 0,
+                        leaderboardAnimation: 'none',
+                        neonGlow: false,
+                        enableAnimations: false
+                    };
+                }
+                switch (tier) {
+                    case 'low':
+                        return {
+                            confettiParticles: 5,
+                            scoreDuration: 0,
+                            leaderboardAnimation: 'none',
+                            neonGlow: false,
+                            enableAnimations: true
+                        };
+                    case 'medium':
+                        return {
+                            confettiParticles: 10,
+                            scoreDuration: 300,
+                            leaderboardAnimation: 'simplified',
+                            neonGlow: false,
+                            enableAnimations: true
+                        };
+                    default: // high
+                        return {
+                            confettiParticles: 15,
+                            scoreDuration: 500,
+                            leaderboardAnimation: 'full',
+                            neonGlow: true,
+                            enableAnimations: true
+                        };
+                }
+            },
+
+            /**
+             * Execute animation with reduced-motion fallback
+             * @param {Function} animationFn - Animation function to run
+             * @param {Function} fallbackFn - Fallback for reduced motion (optional)
+             */
+            ifMotionAllowed: function(animationFn, fallbackFn) {
+                if (_prefersReducedMotion) {
+                    if (fallbackFn) fallbackFn();
+                } else {
+                    animationFn();
+                }
+            },
+
+            /**
+             * Apply will-change before animation, clean up after
+             * @param {HTMLElement} element - Element to optimize
+             * @param {string} properties - CSS properties (e.g., 'transform, opacity')
+             * @param {number} durationMs - Expected animation duration in milliseconds
+             */
+            withWillChange: function(element, properties, durationMs) {
+                if (!element) return;
+                element.style.willChange = properties;
+                // Schedule cleanup after animation duration + buffer
+                setTimeout(function() {
+                    if (element && element.style) {
+                        element.style.willChange = 'auto';
+                    }
+                }, (durationMs || 500) + 100);
+            }
+        };
+    })();
+
+    /**
+     * Interruptible animation queue for reveal phase (Story 18.3)
+     * Caps total animation time and allows skip-to-end
+     */
+    var AnimationQueue = (function() {
+        var queue = [];
+        var running = false;
+        var currentAnimation = null;
+        var animationTimeoutId = null;
+        var MAX_ANIMATION_DURATION = 2000; // AC4: 2 second cap per animation
+
+        function processNext() {
+            // Clear any previous timeout
+            if (animationTimeoutId) {
+                clearTimeout(animationTimeoutId);
+                animationTimeoutId = null;
+            }
+
+            if (queue.length === 0) {
+                running = false;
+                currentAnimation = null;
+                return;
+            }
+            currentAnimation = queue.shift();
+
+            // Set timeout to force skip if animation takes too long (AC4)
+            animationTimeoutId = setTimeout(function() {
+                if (currentAnimation && currentAnimation.skipToEnd) {
+                    currentAnimation.skipToEnd();
+                }
+                processNext();
+            }, MAX_ANIMATION_DURATION);
+
+            currentAnimation.run(function() {
+                // Clear timeout if animation completes normally
+                if (animationTimeoutId) {
+                    clearTimeout(animationTimeoutId);
+                    animationTimeoutId = null;
+                }
+                processNext();
+            });
+        }
+
+        return {
+            /**
+             * Add animation to queue
+             * @param {Object} animation - { run: function(done), skipToEnd: function() }
+             */
+            add: function(animation) {
+                queue.push(animation);
+                if (!running) {
+                    running = true;
+                    processNext();
+                }
+            },
+
+            /**
+             * Skip current animation and clear queue
+             */
+            skipAll: function() {
+                // Clear timeout
+                if (animationTimeoutId) {
+                    clearTimeout(animationTimeoutId);
+                    animationTimeoutId = null;
+                }
+                // Skip current animation
+                if (currentAnimation && currentAnimation.skipToEnd) {
+                    currentAnimation.skipToEnd();
+                }
+                // Skip all queued animations
+                queue.forEach(function(anim) {
+                    if (anim.skipToEnd) anim.skipToEnd();
+                });
+                queue = [];
+                running = false;
+                currentAnimation = null;
+            },
+
+            /**
+             * Clear queue without running skip callbacks
+             */
+            clear: function() {
+                // Clear timeout
+                if (animationTimeoutId) {
+                    clearTimeout(animationTimeoutId);
+                    animationTimeoutId = null;
+                }
+                queue = [];
+                running = false;
+                currentAnimation = null;
+            },
+
+            /**
+             * Check if queue is running
+             * @returns {boolean}
+             */
+            isRunning: function() {
+                return running;
+            },
+
+            /**
+             * Get max duration setting
+             * @returns {number}
+             */
+            getMaxDuration: function() {
+                return maxDuration;
+            }
+        };
+    })();
+
+    // ============================================
+    // Lazy Loading Configuration (Story 18.1)
+    // ============================================
+
+    var LEADERBOARD_LAZY_CONFIG = {
+        VISIBLE_BUFFER: 2,      // Extra entries above/below viewport
+        ENTRY_HEIGHT: 48,       // Fixed height per leaderboard entry (px)
+        MIN_PLAYERS_FOR_LAZY: 10, // Only use lazy loading with 10+ players
+        ROOT_MARGIN: '96px 0px', // 2 entries buffer for IntersectionObserver
+        DEFAULT_VIEWPORT_HEIGHT: 280 // Default viewport height for leaderboard (px)
+    };
+
+    // Lazy loading state
+    var lazyLeaderboardState = {
+        observer: null,           // IntersectionObserver instance
+        fullData: [],             // Complete leaderboard data
+        visibleRange: { start: 0, end: 10 }, // Currently rendered range
+        listEl: null,             // Reference to list element
+        isLazyEnabled: false      // Whether lazy loading is active
+    };
+
+    /**
+     * Initialize IntersectionObserver for lazy leaderboard loading
+     * @param {Element} listEl - Leaderboard list element
+     */
+    function initLeaderboardObserver(listEl) {
+        if (!listEl) return;
+
+        // Clean up existing observer if list element changed (prevents memory leak)
+        if (lazyLeaderboardState.observer && lazyLeaderboardState.listEl !== listEl) {
+            lazyLeaderboardState.observer.disconnect();
+            lazyLeaderboardState.observer = null;
+        }
+
+        if (lazyLeaderboardState.observer) return;
+
+        lazyLeaderboardState.listEl = listEl;
+
+        // Observer callback for lazy loading (sentinels created inline in renderLazyLeaderboardRange)
+        lazyLeaderboardState.observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting || !lazyLeaderboardState.isLazyEnabled) return;
+
+                var fullData = lazyLeaderboardState.fullData;
+                var range = lazyLeaderboardState.visibleRange;
+                var buffer = LEADERBOARD_LAZY_CONFIG.VISIBLE_BUFFER;
+
+                if (entry.target.classList.contains('leaderboard-sentinel--top')) {
+                    // Scrolled to top - load more entries above
+                    if (range.start > 0) {
+                        var newStart = Math.max(0, range.start - buffer);
+                        lazyLeaderboardState.visibleRange.start = newStart;
+                        renderLazyLeaderboardRange();
+                    }
+                } else if (entry.target.classList.contains('leaderboard-sentinel--bottom')) {
+                    // Scrolled to bottom - load more entries below
+                    if (range.end < fullData.length) {
+                        var newEnd = Math.min(fullData.length, range.end + buffer);
+                        lazyLeaderboardState.visibleRange.end = newEnd;
+                        renderLazyLeaderboardRange();
+                    }
+                }
+            });
+        }, {
+            root: listEl,
+            rootMargin: LEADERBOARD_LAZY_CONFIG.ROOT_MARGIN,
+            threshold: 0
+        });
+    }
+
+    /**
+     * Render the visible range of leaderboard entries with spacers
+     */
+    function renderLazyLeaderboardRange() {
+        var listEl = lazyLeaderboardState.listEl;
+        var fullData = lazyLeaderboardState.fullData;
+        var range = lazyLeaderboardState.visibleRange;
+
+        if (!listEl || !fullData.length) return;
+
+        var entryHeight = LEADERBOARD_LAZY_CONFIG.ENTRY_HEIGHT;
+        var topSpacerHeight = range.start * entryHeight;
+        var bottomSpacerHeight = (fullData.length - range.end) * entryHeight;
+
+        // Preserve scroll position
+        var scrollTop = listEl.scrollTop;
+
+        // Build HTML with spacers
+        var html = '';
+
+        // Top spacer
+        if (topSpacerHeight > 0) {
+            html += '<div class="leaderboard-spacer-top" style="height: ' + topSpacerHeight + 'px;"></div>';
+        }
+
+        // Top sentinel for IntersectionObserver
+        html += '<div class="leaderboard-sentinel leaderboard-sentinel--top" style="height: 1px;"></div>';
+
+        // Render visible entries
+        for (var i = range.start; i < range.end && i < fullData.length; i++) {
+            html += renderLeaderboardEntry(fullData[i]);
+        }
+
+        // Bottom sentinel for IntersectionObserver
+        html += '<div class="leaderboard-sentinel leaderboard-sentinel--bottom" style="height: 1px;"></div>';
+
+        // Bottom spacer
+        if (bottomSpacerHeight > 0) {
+            html += '<div class="leaderboard-spacer-bottom" style="height: ' + bottomSpacerHeight + 'px;"></div>';
+        }
+
+        listEl.innerHTML = html;
+
+        // Restore scroll position
+        listEl.scrollTop = scrollTop;
+
+        // Re-attach observer to sentinels
+        if (lazyLeaderboardState.observer) {
+            var sentinels = listEl.querySelectorAll('.leaderboard-sentinel');
+            sentinels.forEach(function(sentinel) {
+                lazyLeaderboardState.observer.observe(sentinel);
+            });
+        }
+    }
+
+    /**
+     * Render a single leaderboard entry HTML
+     * @param {Object} entry - Leaderboard entry data
+     * @returns {string} HTML string
+     */
+    function renderLeaderboardEntry(entry) {
+        // Validate entry exists
+        if (!entry) return '';
+
+        if (entry.separator) {
+            return '<div class="leaderboard-separator">...</div>';
+        }
+
+        // Validate required fields with safe defaults
+        var name = entry.name || 'Unknown';
+        var rank = entry.rank || 0;
+        var score = entry.score || 0;
+
+        var rankClass = rank <= 3 ? 'is-top-' + rank : '';
+        var currentClass = entry.is_current ? 'is-current' : '';
+
+        // Rank change animation class
+        var animationClass = '';
+        if (entry.rank_change > 0 || entry._rankChange === 'up') {
+            animationClass = 'leaderboard-entry--climbing leaderboard-entry--slide-up';
+        } else if (entry.rank_change < 0 || entry._rankChange === 'down') {
+            animationClass = 'leaderboard-entry--falling leaderboard-entry--slide-down';
+        }
+
+        // Rank change indicator
+        var changeIndicator = '';
+        if (entry.rank_change > 0) {
+            changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
+        } else if (entry.rank_change < 0) {
+            changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
+        }
+
+        // Streak indicator with hot glow for 5+
+        var streakIndicator = '';
+        if (entry.streak >= 2) {
+            var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
+            streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
+        }
+
+        // Disconnected player styling
+        var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+        var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+
+        // Score display (use validated score variable)
+        var displayScore = entry._displayScore !== undefined ? entry._displayScore : score;
+
+        return '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + ' ' + disconnectedClass + '" data-rank="' + rank + '" data-name="' + escapeHtml(name) + '">' +
+            '<span class="entry-rank">#' + rank + '</span>' +
+            '<span class="entry-name">' + escapeHtml(name) + awayBadge + '</span>' +
+            '<span class="entry-meta">' +
+                streakIndicator +
+                changeIndicator +
+            '</span>' +
+            '<span class="entry-score" data-prev-score="' + (entry._prevScore || score) + '">' + displayScore + '</span>' +
+        '</div>';
+    }
+
+    /**
+     * Calculate initial visible range based on viewport and current player position
+     * @param {Array} displayList - Processed leaderboard data
+     * @param {string} currentPlayerName - Name of current player
+     * @returns {Object} Range object with start and end indices
+     */
+    function calculateInitialVisibleRange(displayList, currentPlayerName) {
+        var config = LEADERBOARD_LAZY_CONFIG;
+        // Use actual list element height if available, otherwise fall back to config default
+        var viewportHeight = lazyLeaderboardState.listEl
+            ? lazyLeaderboardState.listEl.clientHeight || config.DEFAULT_VIEWPORT_HEIGHT
+            : config.DEFAULT_VIEWPORT_HEIGHT;
+        var viewportEntries = Math.ceil(viewportHeight / config.ENTRY_HEIGHT);
+        var buffer = config.VISIBLE_BUFFER;
+
+        // Find current player index
+        var currentIdx = -1;
+        for (var i = 0; i < displayList.length; i++) {
+            if (displayList[i].name === currentPlayerName) {
+                currentIdx = i;
+                break;
+            }
+        }
+
+        var start, end;
+        if (currentIdx === -1 || currentIdx < viewportEntries) {
+            // Current player at top or not found - start from beginning
+            start = 0;
+            end = Math.min(displayList.length, viewportEntries + buffer * 2);
+        } else if (currentIdx >= displayList.length - viewportEntries) {
+            // Current player near bottom
+            start = Math.max(0, displayList.length - viewportEntries - buffer);
+            end = displayList.length;
+        } else {
+            // Current player in middle - center around them
+            start = Math.max(0, currentIdx - Math.floor(viewportEntries / 2) - buffer);
+            end = Math.min(displayList.length, currentIdx + Math.ceil(viewportEntries / 2) + buffer);
+        }
+
+        return { start: start, end: end };
+    }
+
+    /**
+     * Clean up lazy loading observer
+     */
+    function cleanupLeaderboardObserver() {
+        if (lazyLeaderboardState.observer) {
+            lazyLeaderboardState.observer.disconnect();
+            lazyLeaderboardState.observer = null;
+        }
+        lazyLeaderboardState.isLazyEnabled = false;
+        lazyLeaderboardState.fullData = [];
+    }
+
+    /**
+     * Setup resize/orientation change handler for lazy leaderboard (Story 18.1)
+     * Recalculates visible range when viewport size changes
+     */
+    function setupLeaderboardResizeHandler() {
+        var resizeTimeout;
+
+        function handleResize() {
+            // Debounce resize events
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                if (lazyLeaderboardState.isLazyEnabled && lazyLeaderboardState.fullData.length > 0) {
+                    // Recalculate visible range based on new viewport
+                    lazyLeaderboardState.visibleRange = calculateInitialVisibleRange(
+                        lazyLeaderboardState.fullData,
+                        playerName
+                    );
+                    renderLazyLeaderboardRange();
+                }
+            }, 150);
+        }
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+    }
+
+    // ============================================
+    // Virtual List for Player Lists (Story 18.2)
+    // ============================================
+
+    var VIRTUAL_LIST_CONFIG = {
+        ITEM_HEIGHT: 60,        // Player card height + gap (52px card + 8px gap)
+        OVERSCAN: 3,            // Extra items above/below viewport
+        THRESHOLD: 15,          // Min players before virtualizing
+        CONTAINER_HEIGHT: 320   // Default container height
+    };
+
+    // Virtual list state
+    var virtualPlayerList = {
+        container: null,
+        items: [],
+        scrollTop: 0,
+        isVirtual: false,
+        topSpacer: null,
+        bottomSpacer: null,
+        contentWrapper: null,
+        scrollHandler: null,
+        resizeHandler: null
+    };
+
+    /**
+     * Initialize virtual list for player list container
+     * @param {Element} container - The player list container element
+     */
+    function initVirtualPlayerList(container) {
+        if (!container) return;
+
+        virtualPlayerList.container = container;
+
+        // Create scroll handler with requestAnimationFrame batching
+        var ticking = false;
+        virtualPlayerList.scrollHandler = function() {
+            virtualPlayerList.scrollTop = container.scrollTop;
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    renderVirtualPlayerList();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        // Create resize handler with debouncing
+        var resizeTimeout;
+        virtualPlayerList.resizeHandler = function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                if (virtualPlayerList.isVirtual) {
+                    renderVirtualPlayerList();
+                }
+            }, 100);
+        };
+
+        container.addEventListener('scroll', virtualPlayerList.scrollHandler, { passive: true });
+        window.addEventListener('resize', virtualPlayerList.resizeHandler);
+    }
+
+    /**
+     * Set items for virtual list and render
+     * @param {Array} items - Array of player objects
+     * @param {Function} renderItemFn - Function to render a single item HTML
+     */
+    function setVirtualPlayerListItems(items, renderItemFn) {
+        virtualPlayerList.items = items;
+        virtualPlayerList.renderItem = renderItemFn;
+
+        var container = virtualPlayerList.container;
+        if (!container) return;
+
+        // Preserve scroll position when crossing threshold
+        var prevScrollTop = container.scrollTop;
+        var wasVirtual = virtualPlayerList.isVirtual;
+
+        if (items.length < VIRTUAL_LIST_CONFIG.THRESHOLD) {
+            // Below threshold: render all (non-virtual)
+            virtualPlayerList.isVirtual = false;
+            container.classList.remove('player-list--virtual');
+            renderAllPlayerCards(items, renderItemFn);
+        } else {
+            // Above threshold: use virtual scrolling
+            virtualPlayerList.isVirtual = true;
+            container.classList.add('player-list--virtual');
+            setupVirtualContainer();
+            renderVirtualPlayerList();
+        }
+
+        // Restore scroll position after mode change
+        if (wasVirtual !== virtualPlayerList.isVirtual && prevScrollTop > 0) {
+            container.scrollTop = prevScrollTop;
+            virtualPlayerList.scrollTop = prevScrollTop;
+        }
+    }
+
+    /**
+     * Setup virtual container with spacers
+     */
+    function setupVirtualContainer() {
+        var container = virtualPlayerList.container;
+        if (!container) return;
+
+        // Clear and create structure
+        container.innerHTML = '';
+
+        // Create top spacer
+        var topSpacer = document.createElement('div');
+        topSpacer.className = 'virtual-spacer-top';
+        virtualPlayerList.topSpacer = topSpacer;
+
+        // Create content wrapper for positioned items
+        var contentWrapper = document.createElement('div');
+        contentWrapper.className = 'virtual-content-wrapper';
+        virtualPlayerList.contentWrapper = contentWrapper;
+
+        // Create bottom spacer
+        var bottomSpacer = document.createElement('div');
+        bottomSpacer.className = 'virtual-spacer-bottom';
+        virtualPlayerList.bottomSpacer = bottomSpacer;
+
+        container.appendChild(topSpacer);
+        container.appendChild(contentWrapper);
+        container.appendChild(bottomSpacer);
+    }
+
+    /**
+     * Render visible items in virtual list
+     */
+    function renderVirtualPlayerList() {
+        var config = VIRTUAL_LIST_CONFIG;
+        var items = virtualPlayerList.items;
+        var container = virtualPlayerList.container;
+        var contentWrapper = virtualPlayerList.contentWrapper;
+
+        if (!container || !contentWrapper || !items.length) return;
+
+        var containerHeight = container.clientHeight || config.CONTAINER_HEIGHT;
+        var scrollTop = virtualPlayerList.scrollTop;
+        var itemHeight = config.ITEM_HEIGHT;
+        var overscan = config.OVERSCAN;
+
+        // Calculate visible range
+        var startIdx = Math.max(0, Math.floor(scrollTop / itemHeight) - overscan);
+        var endIdx = Math.min(
+            items.length,
+            Math.ceil((scrollTop + containerHeight) / itemHeight) + overscan
+        );
+
+        // Update spacer heights
+        if (virtualPlayerList.topSpacer) {
+            virtualPlayerList.topSpacer.style.height = (startIdx * itemHeight) + 'px';
+        }
+        if (virtualPlayerList.bottomSpacer) {
+            virtualPlayerList.bottomSpacer.style.height = ((items.length - endIdx) * itemHeight) + 'px';
+        }
+
+        // Build HTML for visible items
+        var html = '';
+        for (var i = startIdx; i < endIdx; i++) {
+            html += virtualPlayerList.renderItem(items[i], i);
+        }
+
+        contentWrapper.innerHTML = html;
+    }
+
+    /**
+     * Render all player cards (non-virtual mode)
+     * @param {Array} items - Player items
+     * @param {Function} renderItemFn - Render function
+     */
+    function renderAllPlayerCards(items, renderItemFn) {
+        var container = virtualPlayerList.container;
+        if (!container) return;
+
+        var html = '';
+        for (var i = 0; i < items.length; i++) {
+            html += renderItemFn(items[i], i);
+        }
+        container.innerHTML = html;
+    }
+
+    /**
+     * Clean up virtual player list
+     */
+    function cleanupVirtualPlayerList() {
+        var container = virtualPlayerList.container;
+        if (container && virtualPlayerList.scrollHandler) {
+            container.removeEventListener('scroll', virtualPlayerList.scrollHandler);
+        }
+        if (virtualPlayerList.resizeHandler) {
+            window.removeEventListener('resize', virtualPlayerList.resizeHandler);
+        }
+        virtualPlayerList.container = null;
+        virtualPlayerList.items = [];
+        virtualPlayerList.isVirtual = false;
+        virtualPlayerList.topSpacer = null;
+        virtualPlayerList.bottomSpacer = null;
+        virtualPlayerList.contentWrapper = null;
+    }
 
     /**
      * Check if a streak milestone was just reached
@@ -583,7 +1319,7 @@
     }
 
     /**
-     * Render player list in lobby
+     * Render player list in lobby (Story 18.2: Virtual scrolling for 15+ players)
      * @param {Array} players - Array of player objects
      */
     function renderPlayerList(players) {
@@ -613,12 +1349,17 @@
             .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
             .map(function(p) { return p.name; });
 
-        // Render player cards
-        listEl.innerHTML = sortedPlayers.map(function(player) {
-            const isNew = newNames.indexOf(player.name) !== -1;
-            const isYou = player.name === playerName;
-            const isDisconnected = player.connected === false;
-            const classes = [
+        // Story 18.2: Initialize virtual list if not already done
+        if (!virtualPlayerList.container) {
+            initVirtualPlayerList(listEl);
+        }
+
+        // Create render function for player cards
+        var renderPlayerCard = function(player) {
+            var isNew = newNames.indexOf(player.name) !== -1;
+            var isYou = player.name === playerName;
+            var isDisconnected = player.connected === false;
+            var classes = [
                 'player-card',
                 isNew ? 'is-new' : '',
                 isYou ? 'player-card--you' : '',
@@ -635,11 +1376,16 @@
                     awayBadge +
                 '</span>' +
             '</div>';
-        }).join('');
+        };
+
+        // Story 18.2: Use virtual list (threshold-based)
+        setVirtualPlayerListItems(sortedPlayers, renderPlayerCard);
 
         // Remove .is-new class after animation
         setTimeout(function() {
-            const newCards = listEl.querySelectorAll('.is-new');
+            var container = virtualPlayerList.isVirtual ? virtualPlayerList.contentWrapper : listEl;
+            if (!container) return;
+            const newCards = container.querySelectorAll('.is-new');
             for (let i = 0; i < newCards.length; i++) {
                 newCards[i].classList.remove('is-new');
             }
@@ -1143,7 +1889,7 @@
     // ============================================
 
     /**
-     * Update leaderboard display
+     * Update leaderboard display (Story 18.1: Lazy loading for 10+ players)
      * @param {Object} data - State data containing leaderboard
      * @param {string} targetListId - ID of list container (for different views)
      * @param {boolean} isRevealPhase - True if rendering during REVEAL phase (animate scores)
@@ -1159,103 +1905,96 @@
         // Detect rank changes using Story 13.2 utilities (only if animating)
         var rankChanges = shouldAnimate ? detectRankChanges(leaderboard) : {};
 
-        // Mark is_current client-side
+        // Mark is_current client-side and add metadata for rendering
         leaderboard.forEach(function(entry) {
             entry.is_current = (entry.name === playerName);
+
+            // Add rank change class for renderLeaderboardEntry
+            var rankChange = rankChanges[entry.name];
+            if (rankChange) {
+                entry._rankChange = rankChange;
+            }
+
+            // Get previous score for animation (Story 13.2)
+            var prevPlayer = previousState.players[entry.name];
+            var prevScore = prevPlayer ? prevPlayer.score : entry.score;
+            entry._prevScore = prevScore;
+            entry._displayScore = isRevealPhase ? prevScore : entry.score;
         });
 
         // Smart compression for >10 players (Story 9.5)
         var displayList = compressLeaderboard(leaderboard, playerName);
 
+        // Story 18.1: Use lazy loading for large player lists
+        var useLazyLoading = leaderboard.length >= LEADERBOARD_LAZY_CONFIG.MIN_PLAYERS_FOR_LAZY;
+
+        if (useLazyLoading) {
+            // Initialize observer if not already done
+            if (!lazyLeaderboardState.observer) {
+                initLeaderboardObserver(listEl);
+            }
+
+            // Store full data for lazy rendering
+            lazyLeaderboardState.fullData = displayList;
+            lazyLeaderboardState.isLazyEnabled = true;
+            lazyLeaderboardState.listEl = listEl;
+
+            // Calculate initial visible range centered on current player
+            lazyLeaderboardState.visibleRange = calculateInitialVisibleRange(displayList, playerName);
+
+            // Render visible range with spacers
+            renderLazyLeaderboardRange();
+        } else {
+            // Disable lazy loading for small lists
+            lazyLeaderboardState.isLazyEnabled = false;
+
+            // Standard rendering for small lists
+            var html = '';
+            displayList.forEach(function(entry) {
+                html += renderLeaderboardEntry(entry);
+            });
+
+            listEl.innerHTML = html;
+        }
+
         // Store entries that need score animation (Story 13.2)
         var scoreAnimations = [];
-
-        var html = '';
-        displayList.forEach(function(entry) {
-            // Handle separator
-            if (entry.separator) {
-                html += '<div class="leaderboard-separator">...</div>';
-                return;
-            }
-
-            var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
-            var currentClass = entry.is_current ? 'is-current' : '';
-
-            // Rank change animation class (Story 9.5 + Story 13.2 enhanced)
-            var animationClass = '';
-            var rankChange = rankChanges[entry.name];
-            if (entry.rank_change > 0 || rankChange === 'up') {
-                animationClass = 'leaderboard-entry--climbing leaderboard-entry--slide-up';
-            } else if (entry.rank_change < 0 || rankChange === 'down') {
-                animationClass = 'leaderboard-entry--falling leaderboard-entry--slide-down';
-            }
-
-            // Rank change indicator
-            var changeIndicator = '';
-            if (entry.rank_change > 0) {
-                changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
-            } else if (entry.rank_change < 0) {
-                changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
-            }
-
-            // Streak indicator with hot glow for 5+ (Story 9.5)
-            var streakIndicator = '';
-            if (entry.streak >= 2) {
-                var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
-                streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
-            }
-
-            // Story 11.4: Disconnected player styling
-            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
-
-            // Get previous score for animation (Story 13.2)
-            var prevPlayer = previousState.players[entry.name];
-            var prevScore = prevPlayer ? prevPlayer.score : entry.score;
-
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + currentClass + ' ' + animationClass + ' ' + disconnectedClass + '" data-rank="' + entry.rank + '" data-name="' + escapeHtml(entry.name) + '">' +
-                '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
-                '<span class="entry-meta">' +
-                    streakIndicator +
-                    changeIndicator +
-                '</span>' +
-                '<span class="entry-score" data-prev-score="' + prevScore + '">' + (isRevealPhase ? prevScore : entry.score) + '</span>' +
-            '</div>';
-
-            // Queue score animation if score changed and should animate (Story 13.2)
-            if (shouldAnimate && prevScore !== entry.score) {
-                scoreAnimations.push({
-                    name: entry.name,
-                    prevScore: prevScore,
-                    newScore: entry.score
-                });
-            }
-        });
-
-        listEl.innerHTML = html;
+        if (shouldAnimate) {
+            displayList.forEach(function(entry) {
+                if (!entry.separator && entry._prevScore !== entry.score) {
+                    scoreAnimations.push({
+                        name: entry.name,
+                        prevScore: entry._prevScore,
+                        newScore: entry.score
+                    });
+                }
+            });
+        }
 
         // Animate score values within leaderboard entries (Story 13.2)
         if (shouldAnimate && scoreAnimations.length > 0) {
-            // Build a map of name -> entry element for safe lookup (avoids CSS selector injection)
-            var entryMap = {};
-            var entries = listEl.querySelectorAll('.leaderboard-entry[data-name]');
-            for (var i = 0; i < entries.length; i++) {
-                var entry = entries[i];
-                var name = entry.getAttribute('data-name');
-                if (name) {
-                    entryMap[name] = entry;
-                }
-            }
-
-            scoreAnimations.forEach(function(anim) {
-                var entryEl = entryMap[anim.name];
-                if (entryEl) {
-                    var scoreEl = entryEl.querySelector('.entry-score');
-                    if (scoreEl) {
-                        animateValue(scoreEl, anim.prevScore, anim.newScore, 500);
+            // Use requestAnimationFrame for batched DOM updates (Story 18.1)
+            requestAnimationFrame(function() {
+                // Build a map of name -> entry element for safe lookup (avoids CSS selector injection)
+                var entryMap = {};
+                var entries = listEl.querySelectorAll('.leaderboard-entry[data-name]');
+                for (var i = 0; i < entries.length; i++) {
+                    var entry = entries[i];
+                    var name = entry.getAttribute('data-name');
+                    if (name) {
+                        entryMap[name] = entry;
                     }
                 }
+
+                scoreAnimations.forEach(function(anim) {
+                    var entryEl = entryMap[anim.name];
+                    if (entryEl) {
+                        var scoreEl = entryEl.querySelector('.entry-score');
+                        if (scoreEl) {
+                            animateValue(scoreEl, anim.prevScore, anim.newScore, 500);
+                        }
+                    }
+                });
             });
         }
 
@@ -3715,6 +4454,16 @@
             // Ignore storage errors
         }
 
+        // Story 18.1: Clean up lazy loading observer to prevent memory leak
+        cleanupLeaderboardObserver();
+
+        // Story 18.2: Clean up virtual player list
+        cleanupVirtualPlayerList();
+
+        // Story 18.3: Clear animation queue and stop confetti
+        AnimationQueue.clear();
+        stopConfetti();
+
         // Reset local state
         playerName = null;
         isAdmin = false;
@@ -3863,11 +4612,12 @@
     /**
      * Trigger confetti celebration animation (Story 14.5)
      * Uses canvas-confetti library for various celebration types
+     * Story 18.3: Now device-aware with reduced particle counts on low-end devices
      * @param {string} type - 'exact', 'record', 'winner', or 'perfect'
      */
     function triggerConfetti(type) {
-        // AC5: Respect accessibility preference
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // AC5: Respect accessibility preference (Story 18.3: use cached value)
+        if (AnimationUtils.prefersReducedMotion()) {
             showStaticCelebration();
             return;
         }
@@ -3881,17 +4631,31 @@
         // Stop any existing animation before starting new one (M3 fix)
         stopConfetti();
 
+        // Story 18.3: Get device-aware particle count
+        var quality = AnimationUtils.getQualitySettings();
+        var baseParticles = quality.confettiParticles;
+
+        // Skip confetti entirely for low-end devices with 0 particles
+        if (baseParticles === 0) {
+            showStaticCelebration();
+            return;
+        }
+
+        // Story 18.3: Scale durations for low-end devices
+        var tier = AnimationUtils.getDeviceTier();
+        var durationMultiplier = tier === 'low' ? 0.5 : (tier === 'medium' ? 0.75 : 1);
+
         // Default to 'exact' for backward compatibility
         type = type || 'exact';
 
         switch (type) {
             case 'exact':
-                // AC1: Gold burst for exact guess, 2 seconds (H1 fix - enforced duration)
-                var exactDuration = 2 * 1000;
+                // AC1: Gold burst for exact guess, 2 seconds (scaled by device tier)
+                var exactDuration = Math.round(2000 * durationMultiplier);
                 var exactEnd = Date.now() + exactDuration;
                 (function exactFrame() {
                     confetti({
-                        particleCount: 15,
+                        particleCount: baseParticles,
                         spread: 70,
                         origin: { y: 0.6 },
                         colors: ['#FFD700', '#FFA500', '#FFEC8B']
@@ -3903,12 +4667,12 @@
                 break;
 
             case 'record':
-                // AC2: Rainbow shower for new record, 3 seconds (H1 fix - enforced duration)
-                var recordDuration = 3 * 1000;
+                // AC2: Rainbow shower for new record, 3 seconds (scaled)
+                var recordDuration = Math.round(3000 * durationMultiplier);
                 var recordEnd = Date.now() + recordDuration;
                 (function recordFrame() {
                     confetti({
-                        particleCount: 10,
+                        particleCount: Math.round(baseParticles * 0.67),
                         spread: 180,
                         origin: { y: 0.3, x: Math.random() },
                         colors: ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#8b00ff']
@@ -3920,19 +4684,19 @@
                 break;
 
             case 'winner':
-                // AC3: Dual-side fireworks for winner, 4 seconds
-                var winnerDuration = 4 * 1000;
+                // AC3: Dual-side fireworks for winner, 4 seconds (scaled)
+                var winnerDuration = Math.round(4000 * durationMultiplier);
                 var winnerEnd = Date.now() + winnerDuration;
                 (function winnerFrame() {
                     confetti({
-                        particleCount: 10,
+                        particleCount: Math.round(baseParticles * 0.67),
                         angle: 60,
                         spread: 55,
                         origin: { x: 0 },
                         colors: ['#ff2d6a', '#00f5ff', '#00ff88', '#ffdd00']
                     });
                     confetti({
-                        particleCount: 10,
+                        particleCount: Math.round(baseParticles * 0.67),
                         angle: 120,
                         spread: 55,
                         origin: { x: 1 },
@@ -3945,19 +4709,19 @@
                 break;
 
             case 'perfect':
-                // AC4: Epic celebration for perfect game, 5 seconds
-                var perfectDuration = 5 * 1000;
+                // AC4: Epic celebration for perfect game, 5 seconds (scaled)
+                var perfectDuration = Math.round(5000 * durationMultiplier);
                 var perfectEnd = Date.now() + perfectDuration;
 
                 // M4 fix: Use setInterval for reliable center bursts
                 confettiIntervalId = setInterval(function() {
                     confetti({
-                        particleCount: 30,
+                        particleCount: baseParticles * 2,
                         spread: 100,
                         origin: { y: 0.6 },
                         colors: ['#FFD700', '#FFA500', '#FFEC8B']
                     });
-                }, 500);
+                }, tier === 'low' ? 750 : 500);
 
                 // Clear interval when duration ends
                 setTimeout(function() {
@@ -3969,14 +4733,14 @@
 
                 (function perfectFrame() {
                     confetti({
-                        particleCount: 7,
+                        particleCount: Math.round(baseParticles * 0.5),
                         angle: 60,
                         spread: 55,
                         origin: { x: 0 },
                         colors: ['#FFD700', '#ff2d6a', '#00f5ff', '#00ff88']
                     });
                     confetti({
-                        particleCount: 7,
+                        particleCount: Math.round(baseParticles * 0.5),
                         angle: 120,
                         spread: 55,
                         origin: { x: 1 },
@@ -4031,16 +4795,37 @@
 
     /**
      * Setup reveal view event handlers
+     * Story 18.3: Added tap-to-skip animations (AC4)
      */
     function setupRevealControls() {
         var nextRoundBtn = document.getElementById('next-round-btn');
         if (nextRoundBtn) {
             nextRoundBtn.addEventListener('click', handleNextRound);
         }
+
+        // Story 18.3: Add tap-to-skip for reveal animations (AC4)
+        var revealViewEl = document.getElementById('reveal-view');
+        if (revealViewEl) {
+            revealViewEl.addEventListener('click', function(e) {
+                // Don't skip if clicking on buttons
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    return;
+                }
+                // Skip all queued animations and stop confetti
+                if (AnimationQueue.isRunning()) {
+                    AnimationQueue.skipAll();
+                }
+                stopConfetti();
+            });
+        }
     }
 
     // Initialize form, QR modal, and admin controls when DOM ready
     async function initAll() {
+        // Story 18.3: Apply device tier class for CSS-based optimizations
+        var deviceTier = AnimationUtils.getDeviceTier();
+        document.body.classList.add('device-tier-' + deviceTier);
+
         // Initialize i18n with stored language preference (Story 12.4)
         // This ensures consistent UI language on page reload before WebSocket connects
         var storedLang = getStoredLanguage();
@@ -4060,6 +4845,7 @@
         setupRevealControls();
         setupAdminControlBar();  // Story 6.1
         setupRetryConnection();  // Story 7-4
+        setupLeaderboardResizeHandler();  // Story 18.1
         // Note: canvas-confetti library (Story 14.5) needs no initialization
 
         // Check if this is an admin redirect
@@ -4096,6 +4882,26 @@
         document.addEventListener('DOMContentLoaded', initAll);
     } else {
         initAll();
+    }
+
+    // ============================================
+    // Service Worker Registration (Story 18.5)
+    // ============================================
+
+    /**
+     * Register service worker for asset caching
+     * AC1: Register on first visit to cache critical assets
+     */
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/beatify/static/sw.js', {
+                scope: '/beatify/'
+            }).then(function(registration) {
+                console.log('[Beatify] SW registered:', registration.scope);
+            }).catch(function(error) {
+                console.warn('[Beatify] SW registration failed:', error);
+            });
+        });
     }
 
 })();

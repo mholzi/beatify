@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/beatify/static/css/styles.css">
+    <!-- Story 18.4: Use minified CSS in production -->
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css" onerror="this.onerror=null;this.href='/beatify/static/css/styles.css'">
     <!-- Confetti library for celebrations (Story 14.5) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
@@ -527,7 +528,8 @@
     </div>
 
     <script src="/beatify/static/js/vendor/qrcode.min.js"></script>
-    <script src="/beatify/static/js/i18n.js"></script>
-    <script src="/beatify/static/js/player.js"></script>
+    <!-- Story 18.4: Use minified JS in production with fallback to source -->
+    <script src="/beatify/static/js/i18n.min.js" onerror="var s=document.createElement('script');s.src='/beatify/static/js/i18n.js';document.head.appendChild(s);"></script>
+    <script src="/beatify/static/js/player.min.js" onerror="var s=document.createElement('script');s.src='/beatify/static/js/player.js';document.head.appendChild(s);"></script>
 </body>
 </html>

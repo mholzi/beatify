@@ -1221,3 +1221,22 @@ function stopLobbyPolling() {
         lobbyPollingInterval = null;
     }
 }
+
+// ============================================
+// Service Worker Registration (Story 18.5)
+// ============================================
+
+/**
+ * Register service worker for asset caching
+ */
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/beatify/static/sw.js', {
+            scope: '/beatify/'
+        }).then(function(registration) {
+            console.log('[Admin] SW registered:', registration.scope);
+        }).catch(function(error) {
+            console.warn('[Admin] SW registration failed:', error);
+        });
+    });
+}

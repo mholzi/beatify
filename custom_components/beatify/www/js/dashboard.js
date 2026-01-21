@@ -1081,4 +1081,23 @@
         init();
     }
 
+    // ============================================
+    // Service Worker Registration (Story 18.5)
+    // ============================================
+
+    /**
+     * Register service worker for asset caching
+     */
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/beatify/static/sw.js', {
+                scope: '/beatify/'
+            }).then(function(registration) {
+                console.log('[Dashboard] SW registered:', registration.scope);
+            }).catch(function(error) {
+                console.warn('[Dashboard] SW registration failed:', error);
+            });
+        });
+    }
+
 })();
