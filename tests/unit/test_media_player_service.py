@@ -253,8 +253,13 @@ class TestMediaContentTypeDetection:
         assert get_media_content_type("spotify:playlist:def456") == "spotify"
 
     def test_apple_music_uri_returns_apple_music_type(self):
-        """Apple Music URI returns 'apple_music' content type (future support)."""
+        """Apple Music URI returns 'apple_music' content type (legacy format)."""
         assert get_media_content_type("apple_music:track:abc123") == "apple_music"
+
+    def test_applemusic_via_music_assistant_returns_music_type(self):
+        """Apple Music via Music Assistant uses 'music' content type (Story 17.3)."""
+        # Music Assistant uses applemusic:// scheme, not apple_music: prefix
+        assert get_media_content_type("applemusic://track/1234567890") == "music"
 
     def test_tidal_uri_returns_tidal_type(self):
         """Tidal URI returns 'tidal' content type (future support)."""

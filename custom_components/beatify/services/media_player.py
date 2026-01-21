@@ -22,8 +22,12 @@ def get_media_content_type(uri: str) -> str:
     content types. For example, Alexa devices return "Sorry, direct music
     streaming isn't supported" when using generic "music" type for Spotify URIs.
 
+    For Apple Music via Music Assistant, URIs use the "applemusic://" scheme.
+    Music Assistant handles the actual routing to Apple Music internally,
+    so the content type "music" is appropriate.
+
     Args:
-        uri: Media content URI (e.g., "spotify:track:xxx", "apple_music:track:xxx")
+        uri: Media content URI (e.g., "spotify:track:xxx", "applemusic://track/123")
 
     Returns:
         Provider-specific content type (e.g., "spotify") or default "music"
@@ -31,8 +35,8 @@ def get_media_content_type(uri: str) -> str:
     Examples:
         >>> get_media_content_type("spotify:track:abc123")
         'spotify'
-        >>> get_media_content_type("apple_music:track:xyz")
-        'apple_music'
+        >>> get_media_content_type("applemusic://track/123456789")
+        'music'
         >>> get_media_content_type("http://example.com/song.mp3")
         'music'
 

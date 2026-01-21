@@ -7,137 +7,245 @@
       "uri": "spotify:track:3ijeTyo5ggRvM0DTfZflBB",
       "artist": "Lys Assia",
       "title": "Refrain",
-      "chart_info": {"eurovision_position": 1, "country": "Switzerland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "country": "Switzerland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1956"],
-      "awards_de": ["Eurovision-Sieger 1956"],
-      "awards_es": ["Ganador de Eurovision 1956"],
+      "awards": [
+        "Eurovision Winner 1956"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1956"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1956"
+      ],
       "fun_fact": "Refrain won the very first Eurovision Song Contest held in Lugano, Switzerland. Lys Assia was the only competitor from Switzerland and won with a simple, elegant performance. The 1956 contest had no public voting system - only jury votes counted.",
       "fun_fact_de": "Refrain gewann den allerersten Eurovision Song Contest in Lugano, Schweiz. Lys Assia war die einzige Vertreterin der Schweiz und siegte mit einer schlichten, eleganten Darbietung. Beim Wettbewerb 1956 gab es noch keine offentliche Abstimmung - nur die Jury-Stimmen zahlten.",
-      "fun_fact_es": "Refrain gano el primer Festival de Eurovision celebrado en Lugano, Suiza. Lys Assia era la unica representante de Suiza y triunfo con una actuacion sencilla y elegante. El concurso de 1956 no tenia sistema de votacion publica - solo contaban los votos del jurado."
+      "fun_fact_es": "Refrain gano el primer Festival de Eurovision celebrado en Lugano, Suiza. Lys Assia era la unica representante de Suiza y triunfo con una actuacion sencilla y elegante. El concurso de 1956 no tenia sistema de votacion publica - solo contaban los votos del jurado.",
+      "uri_apple_music": "applemusic://track/254285129"
     },
     {
       "year": 1957,
       "uri": "spotify:track:1I9fugKDEYETuxJME3aesv",
       "artist": "Corry Brokken",
       "title": "Net Als Toen",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 31, "country": "Netherlands"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 31,
+        "country": "Netherlands"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1957"],
-      "awards_de": ["Eurovision-Sieger 1957"],
-      "awards_es": ["Ganador de Eurovision 1957"],
+      "awards": [
+        "Eurovision Winner 1957"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1957"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1957"
+      ],
       "fun_fact": "Net Als Toen (Just Like Then) gave the Netherlands their first Eurovision victory. Corry Brokken had previously competed in 1956, placing seventh. She remains one of few artists to win after a previous Eurovision appearance.",
       "fun_fact_de": "Net Als Toen (Genau wie damals) bescherte den Niederlanden ihren ersten Eurovision-Sieg. Corry Brokken hatte bereits 1956 teilgenommen und den siebten Platz belegt. Sie gehort zu den wenigen Kunstlern, die nach einer fruheren Eurovision-Teilnahme gewonnen haben.",
-      "fun_fact_es": "Net Als Toen (Igual que entonces) dio a los Paises Bajos su primera victoria en Eurovision. Corry Brokken habia competido previamente en 1956, quedando en septimo lugar. Sigue siendo una de las pocas artistas en ganar tras una participacion anterior en Eurovision."
+      "fun_fact_es": "Net Als Toen (Igual que entonces) dio a los Paises Bajos su primera victoria en Eurovision. Corry Brokken habia competido previamente en 1956, quedando en septimo lugar. Sigue siendo una de las pocas artistas en ganar tras una participacion anterior en Eurovision.",
+      "uri_apple_music": "applemusic://track/986305357"
     },
     {
       "year": 1958,
       "uri": "spotify:track:3W05oiilHd4xRcLb66N51o",
       "artist": "Andre Claveau",
       "title": "Dors mon amour",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 27, "country": "France"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 27,
+        "country": "France"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1958"],
-      "awards_de": ["Eurovision-Sieger 1958"],
-      "awards_es": ["Ganador de Eurovision 1958"],
+      "awards": [
+        "Eurovision Winner 1958"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1958"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1958"
+      ],
       "fun_fact": "Dors mon amour (Sleep My Love) was a gentle lullaby that won France their first Eurovision title. Andre Claveau was already a well-established French chansonnier before his victory, known for his smooth vocal style.",
       "fun_fact_de": "Dors mon amour (Schlaf, meine Liebe) war ein sanftes Schlaflied, das Frankreich seinen ersten Eurovision-Titel brachte. Andre Claveau war bereits vor seinem Sieg ein etablierter franzosischer Chansonnier, bekannt fur seinen samtigen Gesangsstil.",
-      "fun_fact_es": "Dors mon amour (Duerme, mi amor) fue una suave cancion de cuna que dio a Francia su primer titulo en Eurovision. Andre Claveau ya era un reconocido cantante de chanson frances antes de su victoria, conocido por su estilo vocal aterciopelado."
+      "fun_fact_es": "Dors mon amour (Duerme, mi amor) fue una suave cancion de cuna que dio a Francia su primer titulo en Eurovision. Andre Claveau ya era un reconocido cantante de chanson frances antes de su victoria, conocido por su estilo vocal aterciopelado.",
+      "uri_apple_music": "applemusic://track/794472283"
     },
     {
       "year": 1959,
       "uri": "spotify:track:6fQfOgajFEdUTOvAQNoinK",
       "artist": "Teddy Scholten",
       "title": "Een Beetje",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 21, "country": "Netherlands"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 21,
+        "country": "Netherlands"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1959"],
-      "awards_de": ["Eurovision-Sieger 1959"],
-      "awards_es": ["Ganador de Eurovision 1959"],
+      "awards": [
+        "Eurovision Winner 1959"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1959"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1959"
+      ],
       "fun_fact": "Een Beetje (A Little Bit) became a surprise international hit, reaching the charts in multiple countries. Teddy Scholten's playful performance gave the Netherlands their second Eurovision victory in three years.",
       "fun_fact_de": "Een Beetje (Ein bisschen) wurde uberraschend ein internationaler Hit und erreichte die Charts in mehreren Landern. Teddy Scholtens verspielte Darbietung brachte den Niederlanden ihren zweiten Eurovision-Sieg innerhalb von drei Jahren.",
-      "fun_fact_es": "Een Beetje (Un poquito) se convirtio en un exito internacional inesperado, llegando a las listas de varios paises. La alegre actuacion de Teddy Scholten dio a los Paises Bajos su segunda victoria en Eurovision en tres anos."
+      "fun_fact_es": "Een Beetje (Un poquito) se convirtio en un exito internacional inesperado, llegando a las listas de varios paises. La alegre actuacion de Teddy Scholten dio a los Paises Bajos su segunda victoria en Eurovision en tres anos.",
+      "uri_apple_music": "applemusic://track/420371297"
     },
     {
       "year": 1960,
       "uri": "spotify:track:2ExzWeo5f3FL9pn61hhOJp",
       "artist": "Jacqueline Boyer",
       "title": "Tom Pillibi",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 32, "country": "France"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 32,
+        "country": "France"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1960"],
-      "awards_de": ["Eurovision-Sieger 1960"],
-      "awards_es": ["Ganador de Eurovision 1960"],
+      "awards": [
+        "Eurovision Winner 1960"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1960"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1960"
+      ],
       "fun_fact": "Tom Pillibi tells the story of a charming liar who makes up fantastic tales. Jacqueline Boyer was only 18 years old when she won, and her mother Lucienne Boyer was also a famous French singer.",
       "fun_fact_de": "Tom Pillibi erzahlt die Geschichte eines charmanten Lugners, der fantastische Geschichten erfindet. Jacqueline Boyer war erst 18 Jahre alt, als sie gewann, und ihre Mutter Lucienne Boyer war ebenfalls eine beruhmte franzosische Sangerin.",
-      "fun_fact_es": "Tom Pillibi cuenta la historia de un mentiroso encantador que inventa relatos fantasticos. Jacqueline Boyer tenia solo 18 anos cuando gano, y su madre Lucienne Boyer tambien era una famosa cantante francesa."
+      "fun_fact_es": "Tom Pillibi cuenta la historia de un mentiroso encantador que inventa relatos fantasticos. Jacqueline Boyer tenia solo 18 anos cuando gano, y su madre Lucienne Boyer tambien era una famosa cantante francesa.",
+      "uri_apple_music": "applemusic://track/1484516430"
     },
     {
       "year": 1961,
       "uri": "spotify:track:35PWl4T8d2U3a5AboajXXw",
       "artist": "Jean-Claude Pascal",
       "title": "Nous les amoureux",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 31, "country": "Luxembourg"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 31,
+        "country": "Luxembourg"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1961"],
-      "awards_de": ["Eurovision-Sieger 1961"],
-      "awards_es": ["Ganador de Eurovision 1961"],
+      "awards": [
+        "Eurovision Winner 1961"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1961"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1961"
+      ],
       "fun_fact": "Nous les amoureux (We the Lovers) was Luxembourg's first Eurovision victory. Jean-Claude Pascal was primarily known as a film actor before his singing career. The song's theme of forbidden love resonated with audiences across Europe.",
       "fun_fact_de": "Nous les amoureux (Wir Liebenden) war Luxemburgs erster Eurovision-Sieg. Jean-Claude Pascal war vor seiner Gesangskarriere hauptsachlich als Filmschauspieler bekannt. Das Thema der verbotenen Liebe fand beim Publikum in ganz Europa Anklang.",
-      "fun_fact_es": "Nous les amoureux (Nosotros los enamorados) fue la primera victoria de Luxemburgo en Eurovision. Jean-Claude Pascal era conocido principalmente como actor de cine antes de su carrera musical. El tema del amor prohibido resono con el publico de toda Europa."
+      "fun_fact_es": "Nous les amoureux (Nosotros los enamorados) fue la primera victoria de Luxemburgo en Eurovision. Jean-Claude Pascal era conocido principalmente como actor de cine antes de su carrera musical. El tema del amor prohibido resono con el publico de toda Europa.",
+      "uri_apple_music": "applemusic://track/695906718"
     },
     {
       "year": 1962,
       "uri": "spotify:track:64EE5jxbZLyb2SElNSyuUD",
       "artist": "Isabelle Aubret",
       "title": "Un premier amour",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 26, "country": "France"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 26,
+        "country": "France"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1962"],
-      "awards_de": ["Eurovision-Sieger 1962"],
-      "awards_es": ["Ganador de Eurovision 1962"],
+      "awards": [
+        "Eurovision Winner 1962"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1962"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1962"
+      ],
       "fun_fact": "Un premier amour (A First Love) secured France's third Eurovision victory. Isabelle Aubret survived a near-fatal car accident in 1963 but made a remarkable comeback. She represented France again in 1968, finishing third.",
       "fun_fact_de": "Un premier amour (Eine erste Liebe) sicherte Frankreich seinen dritten Eurovision-Sieg. Isabelle Aubret uberlebte 1963 einen beinahe todlichen Autounfall, feierte aber ein bemerkenswertes Comeback. 1968 vertrat sie Frankreich erneut und belegte den dritten Platz.",
-      "fun_fact_es": "Un premier amour (Un primer amor) aseguro la tercera victoria de Francia en Eurovision. Isabelle Aubret sobrevivio a un accidente de coche casi mortal en 1963, pero hizo un regreso extraordinario. Represento a Francia nuevamente en 1968, quedando tercera."
+      "fun_fact_es": "Un premier amour (Un primer amor) aseguro la tercera victoria de Francia en Eurovision. Isabelle Aubret sobrevivio a un accidente de coche casi mortal en 1963, pero hizo un regreso extraordinario. Represento a Francia nuevamente en 1968, quedando tercera.",
+      "uri_apple_music": "applemusic://track/1682977904"
     },
     {
       "year": 1963,
       "uri": "spotify:track:1oIVUqdVUFouSa6xsSN5aM",
       "artist": "Grethe Ingmann;Jorgen Ingmann",
       "title": "Dansevise",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 42, "country": "Denmark"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 42,
+        "country": "Denmark"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1963"],
-      "awards_de": ["Eurovision-Sieger 1963"],
-      "awards_es": ["Ganador de Eurovision 1963"],
+      "awards": [
+        "Eurovision Winner 1963"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1963"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1963"
+      ],
       "fun_fact": "Dansevise (Dancing Ballad) gave Denmark their first and only Eurovision victory for 37 years. Grethe and Jorgen Ingmann were a married couple, and Jorgen was already internationally known for his guitar instrumental 'Apache'.",
       "fun_fact_de": "Dansevise (Tanzballade) bescherte Danemark seinen ersten und fur 37 Jahre einzigen Eurovision-Sieg. Grethe und Jorgen Ingmann waren ein Ehepaar, und Jorgen war bereits international bekannt fur sein Gitarreninstrumental 'Apache'.",
-      "fun_fact_es": "Dansevise (Balada de baile) dio a Dinamarca su primera y unica victoria en Eurovision durante 37 anos. Grethe y Jorgen Ingmann eran un matrimonio, y Jorgen ya era conocido internacionalmente por su instrumental de guitarra 'Apache'."
+      "fun_fact_es": "Dansevise (Balada de baile) dio a Dinamarca su primera y unica victoria en Eurovision durante 37 anos. Grethe y Jorgen Ingmann eran un matrimonio, y Jorgen ya era conocido internacionalmente por su instrumental de guitarra 'Apache'.",
+      "uri_apple_music": "applemusic://track/1235564140"
     },
     {
       "year": 1964,
       "uri": "spotify:track:07rZol7bEXJSUHIcwah0eq",
       "artist": "Gigliola Cinquetti",
       "title": "Non ho l'eta (Per amarti)",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 49, "country": "Italy"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 49,
+        "country": "Italy"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1964"],
-      "awards_de": ["Eurovision-Sieger 1964"],
-      "awards_es": ["Ganador de Eurovision 1964"],
+      "awards": [
+        "Eurovision Winner 1964"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1964"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1964"
+      ],
       "fun_fact": "Non ho l'eta (I'm Not Old Enough) was performed by 16-year-old Gigliola Cinquetti, one of the youngest ever Eurovision winners. The song became a massive international hit and is considered one of Eurovision's greatest winning songs.",
       "fun_fact_de": "Non ho l'eta (Ich bin nicht alt genug) wurde von der 16-jahrigen Gigliola Cinquetti vorgetragen, einer der jungsten Eurovision-Siegerinnen uberhaupt. Das Lied wurde ein riesiger internationaler Hit und gilt als eines der grossten Eurovision-Siegerlieder.",
-      "fun_fact_es": "Non ho l'eta (No tengo edad) fue interpretada por Gigliola Cinquetti de 16 anos, una de las ganadoras mas jovenes de Eurovision. La cancion se convirtio en un gran exito internacional y se considera una de las mejores canciones ganadoras de Eurovision."
+      "fun_fact_es": "Non ho l'eta (No tengo edad) fue interpretada por Gigliola Cinquetti de 16 anos, una de las ganadoras mas jovenes de Eurovision. La cancion se convirtio en un gran exito internacional y se considera una de las mejores canciones ganadoras de Eurovision.",
+      "uri_apple_music": "applemusic://track/297960817"
     },
     {
       "year": 1965,
       "uri": "spotify:track:68jKFhKRqnatqtLYIiz3c1",
       "artist": "France Gall",
       "title": "Poupee de cire poupee de son",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 32, "country": "Luxembourg"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 32,
+        "country": "Luxembourg"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1965"],
-      "awards_de": ["Eurovision-Sieger 1965"],
-      "awards_es": ["Ganador de Eurovision 1965"],
+      "awards": [
+        "Eurovision Winner 1965"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1965"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1965"
+      ],
       "fun_fact": "Poupee de cire, poupee de son (Wax Doll, Rag Doll) was written by legendary French songwriter Serge Gainsbourg. France Gall was only 17 and reportedly unaware of the song's double meanings. It became a defining ye-ye pop classic.",
       "fun_fact_de": "Poupee de cire, poupee de son (Wachspuppe, Stoffpuppe) wurde vom legendaren franzosischen Liedermacher Serge Gainsbourg geschrieben. France Gall war erst 17 und wusste angeblich nichts von den Doppeldeutigkeiten des Liedes. Es wurde zu einem pragenden Ye-Ye-Pop-Klassiker.",
       "fun_fact_es": "Poupee de cire, poupee de son (Muneca de cera, muneca de trapo) fue escrita por el legendario compositor frances Serge Gainsbourg. France Gall tenia solo 17 anos y supuestamente desconocia los dobles sentidos de la cancion. Se convirtio en un clasico definitivo del pop ye-ye."
@@ -147,179 +255,327 @@
       "uri": "spotify:track:07MEgnJdMyU2vNjOMskxSu",
       "artist": "Udo Jurgens",
       "title": "Merci Cherie",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 31, "country": "Austria"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 31,
+        "country": "Austria"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1966"],
-      "awards_de": ["Eurovision-Sieger 1966"],
-      "awards_es": ["Ganador de Eurovision 1966"],
+      "awards": [
+        "Eurovision Winner 1966"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1966"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1966"
+      ],
       "fun_fact": "Merci Cherie was Austria's first Eurovision victory. Udo Jurgens had competed twice before (1964, 1965) before finally winning. He became one of Europe's most successful artists, selling over 100 million records worldwide.",
       "fun_fact_de": "Merci Cherie war Osterreichs erster Eurovision-Sieg. Udo Jurgens hatte zweimal zuvor teilgenommen (1964, 1965), bevor er endlich gewann. Er wurde einer der erfolgreichsten Kunstler Europas mit uber 100 Millionen verkauften Tonträgern weltweit.",
-      "fun_fact_es": "Merci Cherie fue la primera victoria de Austria en Eurovision. Udo Jurgens habia competido dos veces antes (1964, 1965) antes de finalmente ganar. Se convirtio en uno de los artistas mas exitosos de Europa, vendiendo mas de 100 millones de discos en todo el mundo."
+      "fun_fact_es": "Merci Cherie fue la primera victoria de Austria en Eurovision. Udo Jurgens habia competido dos veces antes (1964, 1965) antes de finalmente ganar. Se convirtio en uno de los artistas mas exitosos de Europa, vendiendo mas de 100 millones de discos en todo el mundo.",
+      "uri_apple_music": "applemusic://track/924201291"
     },
     {
       "year": 1967,
       "uri": "spotify:track:7f5w4aiYgVZrp9w4bNaBLu",
       "artist": "Sandie Shaw",
       "title": "Puppet On A String",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 47, "country": "United Kingdom"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 47,
+        "country": "United Kingdom"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1967"],
-      "awards_de": ["Eurovision-Sieger 1967"],
-      "awards_es": ["Ganador de Eurovision 1967"],
+      "awards": [
+        "Eurovision Winner 1967"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1967"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1967"
+      ],
       "fun_fact": "Puppet On A String gave the UK their first Eurovision victory. Sandie Shaw famously performed barefoot, which became her trademark. She reportedly disliked the song but it became one of the biggest hits of 1967.",
       "fun_fact_de": "Puppet On A String brachte dem Vereinigten Konigreich seinen ersten Eurovision-Sieg. Sandie Shaw trat beruhmt barfuss auf, was zu ihrem Markenzeichen wurde. Sie mochte das Lied angeblich nicht, aber es wurde einer der grossten Hits von 1967.",
-      "fun_fact_es": "Puppet On A String dio al Reino Unido su primera victoria en Eurovision. Sandie Shaw actuo famosamente descalza, lo que se convirtio en su sello distintivo. Segun se dice, no le gustaba la cancion, pero se convirtio en uno de los mayores exitos de 1967."
+      "fun_fact_es": "Puppet On A String dio al Reino Unido su primera victoria en Eurovision. Sandie Shaw actuo famosamente descalza, lo que se convirtio en su sello distintivo. Segun se dice, no le gustaba la cancion, pero se convirtio en uno de los mayores exitos de 1967.",
+      "uri_apple_music": "applemusic://track/1467380894"
     },
     {
       "year": 1968,
       "uri": "spotify:track:1ApXNkjfjxkSDoezO8Kh8g",
       "artist": "Massiel",
       "title": "La, La, La",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 29, "country": "Spain"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 29,
+        "country": "Spain"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1968"],
-      "awards_de": ["Eurovision-Sieger 1968"],
-      "awards_es": ["Ganador de Eurovision 1968"],
+      "awards": [
+        "Eurovision Winner 1968"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1968"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1968"
+      ],
       "fun_fact": "La, La, La won Spain's first Eurovision by just one point over Cliff Richard's 'Congratulations'. Massiel replaced the original singer Joan Manuel Serrat just days before the contest after he refused to sing in Spanish instead of Catalan.",
       "fun_fact_de": "La, La, La gewann Spaniens ersten Eurovision-Sieg mit nur einem Punkt Vorsprung vor Cliff Richards 'Congratulations'. Massiel ersetzte den ursprunglichen Sanger Joan Manuel Serrat nur wenige Tage vor dem Wettbewerb, nachdem dieser sich geweigert hatte, auf Spanisch statt auf Katalanisch zu singen.",
-      "fun_fact_es": "La, La, La gano el primer Eurovision de Espana por solo un punto sobre 'Congratulations' de Cliff Richard. Massiel reemplazo al cantante original Joan Manuel Serrat pocos dias antes del concurso despues de que este se negara a cantar en espanol en lugar de catalan."
+      "fun_fact_es": "La, La, La gano el primer Eurovision de Espana por solo un punto sobre 'Congratulations' de Cliff Richard. Massiel reemplazo al cantante original Joan Manuel Serrat pocos dias antes del concurso despues de que este se negara a cantar en espanol en lugar de catalan.",
+      "uri_apple_music": "applemusic://track/1344881200"
     },
     {
       "year": 1969,
       "uri": "spotify:track:31VRNSB6FA4KP7TOkW3k3A",
       "artist": "Lenny Kuhr",
       "title": "De Troubadour",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 18, "country": "Netherlands"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 18,
+        "country": "Netherlands"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1969 (4-way tie)"],
-      "awards_de": ["Eurovision-Sieger 1969 (Vierfacher Gleichstand)"],
-      "awards_es": ["Ganador de Eurovision 1969 (Empate a cuatro)"],
+      "awards": [
+        "Eurovision Winner 1969 (4-way tie)"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1969 (Vierfacher Gleichstand)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1969 (Empate a cuatro)"
+      ],
       "fun_fact": "De Troubadour was part of Eurovision's only four-way tie in history. The Netherlands, France, Spain, and UK all shared first place with 18 points each. This controversial result led to rule changes to prevent future ties.",
       "fun_fact_de": "De Troubadour war Teil des einzigen vierfachen Gleichstands in der Eurovision-Geschichte. Die Niederlande, Frankreich, Spanien und das Vereinigte Konigreich teilten sich mit jeweils 18 Punkten den ersten Platz. Dieses umstrittene Ergebnis fuhrte zu Regelanderungen, um zukunftige Gleichstande zu verhindern.",
-      "fun_fact_es": "De Troubadour fue parte del unico empate a cuatro en la historia de Eurovision. Paises Bajos, Francia, Espana y Reino Unido compartieron el primer lugar con 18 puntos cada uno. Este resultado controversial llevo a cambios en las reglas para evitar futuros empates."
+      "fun_fact_es": "De Troubadour fue parte del unico empate a cuatro en la historia de Eurovision. Paises Bajos, Francia, Espana y Reino Unido compartieron el primer lugar con 18 puntos cada uno. Este resultado controversial llevo a cambios en las reglas para evitar futuros empates.",
+      "uri_apple_music": "applemusic://track/1442813455"
     },
     {
       "year": 1969,
       "uri": "spotify:track:0vaRIQTdMIEnXjhWlVS95p",
       "artist": "Lulu",
       "title": "Boom Bang a Bang",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 18, "country": "United Kingdom"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 18,
+        "country": "United Kingdom"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1969 (4-way tie)"],
-      "awards_de": ["Eurovision-Sieger 1969 (Vierfacher Gleichstand)"],
-      "awards_es": ["Ganador de Eurovision 1969 (Empate a cuatro)"],
+      "awards": [
+        "Eurovision Winner 1969 (4-way tie)"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1969 (Vierfacher Gleichstand)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1969 (Empate a cuatro)"
+      ],
       "fun_fact": "Boom Bang a Bang was one of four joint winners in 1969. Scottish singer Lulu was already famous for 'Shout' and 'To Sir with Love'. The upbeat, catchy song became a UK chart success despite the shared victory.",
       "fun_fact_de": "Boom Bang a Bang war einer von vier gemeinsamen Siegern 1969. Die schottische Sangerin Lulu war bereits beruhmt fur 'Shout' und 'To Sir with Love'. Das frohliche, eingangige Lied wurde trotz des geteilten Sieges ein Charterfolg in Grossbritannien.",
-      "fun_fact_es": "Boom Bang a Bang fue una de las cuatro canciones ganadoras conjuntas en 1969. La cantante escocesa Lulu ya era famosa por 'Shout' y 'To Sir with Love'. La cancion alegre y pegadiza se convirtio en un exito en las listas del Reino Unido a pesar de la victoria compartida."
+      "fun_fact_es": "Boom Bang a Bang fue una de las cuatro canciones ganadoras conjuntas en 1969. La cantante escocesa Lulu ya era famosa por 'Shout' y 'To Sir with Love'. La cancion alegre y pegadiza se convirtio en un exito en las listas del Reino Unido a pesar de la victoria compartida.",
+      "uri_apple_music": "applemusic://track/1323002159"
     },
     {
       "year": 1969,
       "uri": "spotify:track:059G9tpE3kl6wz3kiddaN0",
       "artist": "Salome",
       "title": "Vivo Cantando",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 18, "country": "Spain"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 18,
+        "country": "Spain"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1969 (4-way tie)"],
-      "awards_de": ["Eurovision-Sieger 1969 (Vierfacher Gleichstand)"],
-      "awards_es": ["Ganador de Eurovision 1969 (Empate a cuatro)"],
+      "awards": [
+        "Eurovision Winner 1969 (4-way tie)"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1969 (Vierfacher Gleichstand)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1969 (Empate a cuatro)"
+      ],
       "fun_fact": "Vivo Cantando (I Live Singing) gave Spain a joint victory in 1969. Salome's powerful vocals and dramatic performance style made her a star across the Spanish-speaking world. She went on to have a successful recording career.",
       "fun_fact_de": "Vivo Cantando (Ich lebe singend) brachte Spanien 1969 einen geteilten Sieg. Salomes kraftvolle Stimme und ihr dramatischer Auftritt machten sie zu einem Star in der spanischsprachigen Welt. Sie hatte anschliessend eine erfolgreiche Karriere als Sangerin.",
-      "fun_fact_es": "Vivo Cantando dio a Espana una victoria compartida en 1969. La poderosa voz de Salome y su dramatico estilo de actuacion la convirtieron en una estrella en todo el mundo hispanohablante. Continuo teniendo una exitosa carrera discografica."
+      "fun_fact_es": "Vivo Cantando dio a Espana una victoria compartida en 1969. La poderosa voz de Salome y su dramatico estilo de actuacion la convirtieron en una estrella en todo el mundo hispanohablante. Continuo teniendo una exitosa carrera discografica.",
+      "uri_apple_music": "applemusic://track/175107275"
     },
     {
       "year": 1969,
       "uri": "spotify:track:1XNnJeGSYasJctGndU8mCu",
       "artist": "Frida Boccara",
       "title": "Un jour, un enfant",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 18, "country": "France"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 18,
+        "country": "France"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1969 (4-way tie)"],
-      "awards_de": ["Eurovision-Sieger 1969 (Vierfacher Gleichstand)"],
-      "awards_es": ["Ganador de Eurovision 1969 (Empate a cuatro)"],
+      "awards": [
+        "Eurovision Winner 1969 (4-way tie)"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1969 (Vierfacher Gleichstand)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1969 (Empate a cuatro)"
+      ],
       "fun_fact": "Un jour, un enfant (One Day, A Child) completed the historic four-way tie of 1969. Frida Boccara was born in Morocco and became one of France's most respected chanteuses. Her emotional ballad stood out among the tied winners.",
       "fun_fact_de": "Un jour, un enfant (Eines Tages, ein Kind) vervollstandigte den historischen vierfachen Gleichstand von 1969. Frida Boccara wurde in Marokko geboren und wurde eine der angesehensten franzosischen Chansonsangerinnen. Ihre gefuhlvolle Ballade stach unter den punktgleichen Siegern hervor.",
-      "fun_fact_es": "Un jour, un enfant (Un dia, un nino) completo el historico empate a cuatro de 1969. Frida Boccara nacio en Marruecos y se convirtio en una de las cantantes de chanson mas respetadas de Francia. Su emotiva balada destaco entre los ganadores empatados."
+      "fun_fact_es": "Un jour, un enfant (Un dia, un nino) completo el historico empate a cuatro de 1969. Frida Boccara nacio en Marruecos y se convirtio en una de las cantantes de chanson mas respetadas de Francia. Su emotiva balada destaco entre los ganadores empatados.",
+      "uri_apple_music": "applemusic://track/1243859629"
     },
     {
       "year": 1970,
       "uri": "spotify:track:2kwAhlh7BDsJkES19zaYqs",
       "artist": "Dana",
       "title": "All Kinds Of Everything",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 32, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 32,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1970"],
-      "awards_de": ["Eurovision-Sieger 1970"],
-      "awards_es": ["Ganador de Eurovision 1970"],
+      "awards": [
+        "Eurovision Winner 1970"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1970"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1970"
+      ],
       "fun_fact": "All Kinds Of Everything launched Ireland's Eurovision dominance. Dana was only 18 and still a schoolgirl when she won. The gentle song topped charts across Europe and she later became a member of the European Parliament.",
       "fun_fact_de": "All Kinds Of Everything leitete Irlands Eurovision-Dominanz ein. Dana war erst 18 und noch Schulerin, als sie gewann. Das sanfte Lied fuhrte die Charts in ganz Europa an und sie wurde spater Mitglied des Europaischen Parlaments.",
-      "fun_fact_es": "All Kinds Of Everything inicio el dominio de Irlanda en Eurovision. Dana tenia solo 18 anos y aun era estudiante cuando gano. La suave cancion encabezo las listas de toda Europa y mas tarde se convirtio en miembro del Parlamento Europeo."
+      "fun_fact_es": "All Kinds Of Everything inicio el dominio de Irlanda en Eurovision. Dana tenia solo 18 anos y aun era estudiante cuando gano. La suave cancion encabezo las listas de toda Europa y mas tarde se convirtio en miembro del Parlamento Europeo.",
+      "uri_apple_music": "applemusic://track/1078014787"
     },
     {
       "year": 1971,
       "uri": "spotify:track:15mVQWoiwjwXrs5LBybM0A",
       "artist": "Severine",
       "title": "Un Banc, Un Arbre, Une Rue",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 128, "country": "Monaco"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 128,
+        "country": "Monaco"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1971"],
-      "awards_de": ["Eurovision-Sieger 1971"],
-      "awards_es": ["Ganador de Eurovision 1971"],
+      "awards": [
+        "Eurovision Winner 1971"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1971"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1971"
+      ],
       "fun_fact": "Un Banc, Un Arbre, Une Rue (A Bench, A Tree, A Street) gave Monaco their only Eurovision victory. Severine was actually French and the song was written by Yves Dessca. The win came at the same contest where new voting rules were introduced.",
       "fun_fact_de": "Un Banc, Un Arbre, Une Rue (Eine Bank, ein Baum, eine Strasse) brachte Monaco seinen einzigen Eurovision-Sieg. Severine war eigentlich Franzosin und das Lied wurde von Yves Dessca geschrieben. Der Sieg kam bei demselben Wettbewerb, bei dem neue Abstimmungsregeln eingefuhrt wurden.",
-      "fun_fact_es": "Un Banc, Un Arbre, Une Rue (Un banco, un arbol, una calle) dio a Monaco su unica victoria en Eurovision. Severine era en realidad francesa y la cancion fue escrita por Yves Dessca. La victoria llego en el mismo concurso donde se introdujeron nuevas reglas de votacion."
+      "fun_fact_es": "Un Banc, Un Arbre, Une Rue (Un banco, un arbol, una calle) dio a Monaco su unica victoria en Eurovision. Severine era en realidad francesa y la cancion fue escrita por Yves Dessca. La victoria llego en el mismo concurso donde se introdujeron nuevas reglas de votacion.",
+      "uri_apple_music": "applemusic://track/104660824"
     },
     {
       "year": 1972,
       "uri": "spotify:track:13tx9je0ftBgu6BKpsQDo4",
       "artist": "Vicky Leandros",
       "title": "Apres toi",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 128, "country": "Luxembourg"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 128,
+        "country": "Luxembourg"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1972"],
-      "awards_de": ["Eurovision-Sieger 1972"],
-      "awards_es": ["Ganador de Eurovision 1972"],
+      "awards": [
+        "Eurovision Winner 1972"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1972"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1972"
+      ],
       "fun_fact": "Apres toi (After You) is considered one of Eurovision's most beautiful winning songs. Greek-German singer Vicky Leandros had previously represented Luxembourg in 1967. The song became a massive hit across Europe in multiple language versions.",
       "fun_fact_de": "Apres toi (Nach dir) gilt als eines der schonsten Eurovision-Siegerlieder. Die griechisch-deutsche Sangerin Vicky Leandros hatte Luxemburg bereits 1967 vertreten. Das Lied wurde in mehreren Sprachversionen ein Riesenhit in ganz Europa.",
-      "fun_fact_es": "Apres toi (Despues de ti) se considera una de las canciones ganadoras mas hermosas de Eurovision. La cantante greco-alemana Vicky Leandros habia representado previamente a Luxemburgo en 1967. La cancion se convirtio en un gran exito en toda Europa en multiples versiones idiomaticas."
+      "fun_fact_es": "Apres toi (Despues de ti) se considera una de las canciones ganadoras mas hermosas de Eurovision. La cantante greco-alemana Vicky Leandros habia representado previamente a Luxemburgo en 1967. La cancion se convirtio en un gran exito en toda Europa en multiples versiones idiomaticas.",
+      "uri_apple_music": "applemusic://track/1442450412"
     },
     {
       "year": 1973,
       "uri": "spotify:track:3682WlWtLmx44QNpB6Py4X",
       "artist": "Anne-Marie David",
       "title": "Tu te reconnaitras",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 129, "country": "Luxembourg"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 129,
+        "country": "Luxembourg"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1973"],
-      "awards_de": ["Eurovision-Sieger 1973"],
-      "awards_es": ["Ganador de Eurovision 1973"],
+      "awards": [
+        "Eurovision Winner 1973"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1973"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1973"
+      ],
       "fun_fact": "Tu te reconnaitras (You Will Recognize Yourself) was Luxembourg's fourth win in 12 years. Anne-Marie David represented France at Eurovision in 1979, making her one of few artists to compete for two different countries.",
       "fun_fact_de": "Tu te reconnaitras (Du wirst dich wiedererkennen) war Luxemburgs vierter Sieg in 12 Jahren. Anne-Marie David vertrat Frankreich beim Eurovision 1979, was sie zu einer der wenigen Kunstlerinnen macht, die fur zwei verschiedene Lander angetreten sind.",
-      "fun_fact_es": "Tu te reconnaitras (Te reconoceras) fue la cuarta victoria de Luxemburgo en 12 anos. Anne-Marie David represento a Francia en Eurovision 1979, convirtiendola en una de las pocas artistas en competir por dos paises diferentes."
+      "fun_fact_es": "Tu te reconnaitras (Te reconoceras) fue la cuarta victoria de Luxemburgo en 12 anos. Anne-Marie David represento a Francia en Eurovision 1979, convirtiendola en una de las pocas artistas en competir por dos paises diferentes.",
+      "uri_apple_music": "applemusic://track/1230500284"
     },
     {
       "year": 1974,
       "uri": "spotify:track:1CsuK5dlnWAkWhffeteqH3",
       "artist": "ABBA",
       "title": "Waterloo",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 24, "country": "Sweden"},
-      "certifications": ["Gold (US)", "Platinum (UK)"],
-      "awards": ["Eurovision Winner 1974", "Best Eurovision Song Ever (2005 poll)"],
-      "awards_de": ["Eurovision-Sieger 1974", "Bester Eurovision-Song aller Zeiten (Umfrage 2005)"],
-      "awards_es": ["Ganador de Eurovision 1974", "Mejor cancion de Eurovision de todos los tiempos (encuesta 2005)"],
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 24,
+        "country": "Sweden"
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Eurovision Winner 1974",
+        "Best Eurovision Song Ever (2005 poll)"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1974",
+        "Bester Eurovision-Song aller Zeiten (Umfrage 2005)"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1974",
+        "Mejor cancion de Eurovision de todos los tiempos (encuesta 2005)"
+      ],
       "fun_fact": "Waterloo launched ABBA to global superstardom and is considered the greatest Eurovision song ever. The UK jury gave them zero points, yet they won anyway. In 2005, it was voted the best Eurovision song of all time in a 50th anniversary poll.",
       "fun_fact_de": "Waterloo machte ABBA zu globalen Superstars und gilt als der grosste Eurovision-Song aller Zeiten. Die britische Jury gab ihnen null Punkte, dennoch gewannen sie. 2005 wurde es in einer Umfrage zum 50-jahrigen Jubilaum zum besten Eurovision-Song aller Zeiten gewahlt.",
-      "fun_fact_es": "Waterloo lanzo a ABBA al estrellato mundial y se considera la mejor cancion de Eurovision de todos los tiempos. El jurado del Reino Unido les dio cero puntos, pero aun asi ganaron. En 2005, fue votada como la mejor cancion de Eurovision en una encuesta del 50 aniversario."
+      "fun_fact_es": "Waterloo lanzo a ABBA al estrellato mundial y se considera la mejor cancion de Eurovision de todos los tiempos. El jurado del Reino Unido les dio cero puntos, pero aun asi ganaron. En 2005, fue votada como la mejor cancion de Eurovision en una encuesta del 50 aniversario.",
+      "uri_apple_music": "applemusic://track/1440861750"
     },
     {
       "year": 1975,
       "uri": "spotify:track:4ARCWS3l327M1YulCf74Uu",
       "artist": "Teach In",
       "title": "Ding-A-Dong",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 152, "country": "Netherlands"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 152,
+        "country": "Netherlands"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1975"],
-      "awards_de": ["Eurovision-Sieger 1975"],
-      "awards_es": ["Ganador de Eurovision 1975"],
+      "awards": [
+        "Eurovision Winner 1975"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1975"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1975"
+      ],
       "fun_fact": "Ding-A-Dong gave the Netherlands their fourth Eurovision victory. The catchy pop song faced tough competition in a year featuring many strong entries. Teach-In had a brief international career following their win.",
       "fun_fact_de": "Ding-A-Dong brachte den Niederlanden ihren vierten Eurovision-Sieg. Der eingangige Popsong hatte harte Konkurrenz in einem Jahr mit vielen starken Beitragen. Teach-In hatte nach ihrem Sieg eine kurze internationale Karriere.",
       "fun_fact_es": "Ding-A-Dong dio a los Paises Bajos su cuarta victoria en Eurovision. La pegadiza cancion pop enfrento dura competencia en un ano con muchas entradas fuertes. Teach-In tuvo una breve carrera internacional tras su victoria."
@@ -329,39 +585,71 @@
       "uri": "spotify:track:0E19RAvUkhjMM0rdICkidE",
       "artist": "Brotherhood of Man",
       "title": "Save Your Kisses For Me",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 164, "country": "United Kingdom"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 164,
+        "country": "United Kingdom"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1976"],
-      "awards_de": ["Eurovision-Sieger 1976"],
-      "awards_es": ["Ganador de Eurovision 1976"],
+      "awards": [
+        "Eurovision Winner 1976"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1976"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1976"
+      ],
       "fun_fact": "Save Your Kisses For Me was the UK's third Eurovision victory and became one of the best-selling singles of 1976 worldwide. The song appears to be about romantic love but reveals at the end it's about a three-year-old daughter.",
       "fun_fact_de": "Save Your Kisses For Me war der dritte Eurovision-Sieg des Vereinigten Konigreichs und wurde eine der meistverkauften Singles des Jahres 1976 weltweit. Das Lied scheint von romantischer Liebe zu handeln, enthullt aber am Ende, dass es um eine dreijahrige Tochter geht.",
-      "fun_fact_es": "Save Your Kisses For Me fue la tercera victoria del Reino Unido en Eurovision y se convirtio en uno de los sencillos mas vendidos de 1976 en todo el mundo. La cancion parece tratar sobre amor romantico, pero al final revela que es sobre una hija de tres anos."
+      "fun_fact_es": "Save Your Kisses For Me fue la tercera victoria del Reino Unido en Eurovision y se convirtio en uno de los sencillos mas vendidos de 1976 en todo el mundo. La cancion parece tratar sobre amor romantico, pero al final revela que es sobre una hija de tres anos.",
+      "uri_apple_music": "applemusic://track/286882661"
     },
     {
       "year": 1977,
       "uri": "spotify:track:7Hy0CZtFcREucLDXB5jp6m",
       "artist": "Marie Myriam",
       "title": "L'oiseau et l'enfant",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 136, "country": "France"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 136,
+        "country": "France"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1977"],
-      "awards_de": ["Eurovision-Sieger 1977"],
-      "awards_es": ["Ganador de Eurovision 1977"],
+      "awards": [
+        "Eurovision Winner 1977"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1977"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1977"
+      ],
       "fun_fact": "L'oiseau et l'enfant (The Bird and the Child) remains France's last Eurovision victory to date. Marie Myriam's soaring vocals made the song a classic. France has since had the longest drought of any former winning country.",
       "fun_fact_de": "L'oiseau et l'enfant (Der Vogel und das Kind) ist bis heute Frankreichs letzter Eurovision-Sieg. Marie Myriams kraftvolle Stimme machte das Lied zu einem Klassiker. Frankreich hat seitdem die langste Durststrecke aller ehemaligen Siegerlander.",
-      "fun_fact_es": "L'oiseau et l'enfant (El pajaro y el nino) sigue siendo la ultima victoria de Francia en Eurovision hasta la fecha. La voz elevada de Marie Myriam convirtio la cancion en un clasico. Desde entonces, Francia ha tenido la sequia mas larga de cualquier pais ganador anterior."
+      "fun_fact_es": "L'oiseau et l'enfant (El pajaro y el nino) sigue siendo la ultima victoria de Francia en Eurovision hasta la fecha. La voz elevada de Marie Myriam convirtio la cancion en un clasico. Desde entonces, Francia ha tenido la sequia mas larga de cualquier pais ganador anterior.",
+      "uri_apple_music": "applemusic://track/1222623640"
     },
     {
       "year": 1978,
       "uri": "spotify:track:1njC0GQXuhxnplvR9DK6NZ",
       "artist": "Izhar Cohen",
       "title": "A-Ba-Ni-Bi",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 157, "country": "Israel"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 157,
+        "country": "Israel"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1978"],
-      "awards_de": ["Eurovision-Sieger 1978"],
-      "awards_es": ["Ganador de Eurovision 1978"],
+      "awards": [
+        "Eurovision Winner 1978"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1978"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1978"
+      ],
       "fun_fact": "A-Ba-Ni-Bi was Israel's first Eurovision victory and used a Hebrew children's language game in its lyrics. Izhar Cohen and the Alphabeta performed with high energy choreography that was groundbreaking for the era.",
       "fun_fact_de": "A-Ba-Ni-Bi war Israels erster Eurovision-Sieg und verwendete ein hebraisches Kindersprachspiel in seinen Texten. Izhar Cohen und die Alphabeta traten mit einer energiegeladenen Choreografie auf, die fur die damalige Zeit bahnbrechend war.",
       "fun_fact_es": "A-Ba-Ni-Bi fue la primera victoria de Israel en Eurovision y utilizo un juego linguistico infantil hebreo en sus letras. Izhar Cohen y Alphabeta actuaron con una coreografia de alta energia que fue revolucionaria para la epoca."
@@ -371,179 +659,321 @@
       "uri": "spotify:track:557ZG0nAvOppPxR3e1DP42",
       "artist": "Gali Atari",
       "title": "Hallelujah",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 125, "country": "Israel"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 125,
+        "country": "Israel"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1979"],
-      "awards_de": ["Eurovision-Sieger 1979"],
-      "awards_es": ["Ganador de Eurovision 1979"],
+      "awards": [
+        "Eurovision Winner 1979"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1979"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1979"
+      ],
       "fun_fact": "Hallelujah gave Israel back-to-back victories. Performed by Gali Atari with Milk and Honey, the song's message of peace resonated deeply during tense Middle East times. Israel hosted Eurovision 1979 in Jerusalem following their 1978 win.",
       "fun_fact_de": "Hallelujah bescherte Israel zwei aufeinanderfolgende Siege. Aufgefuhrt von Gali Atari mit Milk and Honey, fand die Friedensbotschaft des Liedes in den angespannten Zeiten im Nahen Osten grossen Anklang. Israel richtete nach seinem Sieg 1978 den Eurovision 1979 in Jerusalem aus.",
-      "fun_fact_es": "Hallelujah dio a Israel victorias consecutivas. Interpretada por Gali Atari con Milk and Honey, el mensaje de paz de la cancion resono profundamente durante los tiempos tensos en Oriente Medio. Israel fue anfitrion de Eurovision 1979 en Jerusalen tras su victoria en 1978."
+      "fun_fact_es": "Hallelujah dio a Israel victorias consecutivas. Interpretada por Gali Atari con Milk and Honey, el mensaje de paz de la cancion resono profundamente durante los tiempos tensos en Oriente Medio. Israel fue anfitrion de Eurovision 1979 en Jerusalen tras su victoria en 1978.",
+      "uri_apple_music": "applemusic://track/1724997885"
     },
     {
       "year": 1980,
       "uri": "spotify:track:2VPyWgAjdIRlMvk4XQCO44",
       "artist": "Johnny Logan",
       "title": "What's Another Year",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 143, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 143,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1980"],
-      "awards_de": ["Eurovision-Sieger 1980"],
-      "awards_es": ["Ganador de Eurovision 1980"],
+      "awards": [
+        "Eurovision Winner 1980"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1980"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1980"
+      ],
       "fun_fact": "What's Another Year began Johnny Logan's legendary Eurovision career. He would win again in 1987 as a performer and 1992 as a songwriter, making him the only person to win Eurovision three times. He's known as 'Mr. Eurovision'.",
       "fun_fact_de": "What's Another Year begann Johnny Logans legendare Eurovision-Karriere. Er wurde 1987 als Interpret und 1992 als Songwriter erneut gewinnen, was ihn zur einzigen Person macht, die den Eurovision dreimal gewonnen hat. Er ist als 'Mr. Eurovision' bekannt.",
-      "fun_fact_es": "What's Another Year inicio la legendaria carrera de Johnny Logan en Eurovision. Ganaria nuevamente en 1987 como interprete y en 1992 como compositor, convirtiendolo en la unica persona en ganar Eurovision tres veces. Se le conoce como 'Mr. Eurovision'."
+      "fun_fact_es": "What's Another Year inicio la legendaria carrera de Johnny Logan en Eurovision. Ganaria nuevamente en 1987 como interprete y en 1992 como compositor, convirtiendolo en la unica persona en ganar Eurovision tres veces. Se le conoce como 'Mr. Eurovision'.",
+      "uri_apple_music": "applemusic://track/735689364"
     },
     {
       "year": 1981,
       "uri": "spotify:track:5tK13ThQnZJF1YOVjQ0FAx",
       "artist": "Bucks Fizz",
       "title": "Making Your Mind Up",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 136, "country": "United Kingdom"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 136,
+        "country": "United Kingdom"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1981"],
-      "awards_de": ["Eurovision-Sieger 1981"],
-      "awards_es": ["Ganador de Eurovision 1981"],
+      "awards": [
+        "Eurovision Winner 1981"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1981"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1981"
+      ],
       "fun_fact": "Making Your Mind Up is famous for the skirt-ripping routine where the men tore off the women's skirts to reveal shorter ones underneath. This moment became one of Eurovision's most iconic performances and boosted Bucks Fizz to stardom.",
       "fun_fact_de": "Making Your Mind Up ist beruhmt fur die Rock-Abreiss-Routine, bei der die Manner den Frauen die Rocke abrissen und darunter kurzere enthullten. Dieser Moment wurde zu einer der ikonischsten Eurovision-Darbietungen und machte Bucks Fizz zu Stars.",
-      "fun_fact_es": "Making Your Mind Up es famosa por la rutina de arrancar las faldas donde los hombres arrancaban las faldas de las mujeres para revelar otras mas cortas debajo. Este momento se convirtio en una de las actuaciones mas iconicas de Eurovision e impulso a Bucks Fizz al estrellato."
+      "fun_fact_es": "Making Your Mind Up es famosa por la rutina de arrancar las faldas donde los hombres arrancaban las faldas de las mujeres para revelar otras mas cortas debajo. Este momento se convirtio en una de las actuaciones mas iconicas de Eurovision e impulso a Bucks Fizz al estrellato.",
+      "uri_apple_music": "applemusic://track/250583272"
     },
     {
       "year": 1982,
       "uri": "spotify:track:7JZHsMxhcaRKug5kA0DmDE",
       "artist": "Nicole",
       "title": "Ein bisschen Frieden",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 161, "country": "Germany"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 161,
+        "country": "Germany"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1982"],
-      "awards_de": ["Eurovision-Sieger 1982"],
-      "awards_es": ["Ganador de Eurovision 1982"],
+      "awards": [
+        "Eurovision Winner 1982"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1982"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1982"
+      ],
       "fun_fact": "Ein bisschen Frieden (A Little Peace) was Germany's first Eurovision victory and topped charts across Europe. The anti-war ballad resonated during Cold War tensions. Nicole was only 17 and performed with a simple, heartfelt presentation.",
       "fun_fact_de": "Ein bisschen Frieden war Deutschlands erster Eurovision-Sieg und fuhrte die Charts in ganz Europa an. Die Antikriegsballade fand wahrend der Spannungen des Kalten Krieges grossen Anklang. Nicole war erst 17 und trat mit einer schlichten, herzlichen Darbietung auf.",
-      "fun_fact_es": "Ein bisschen Frieden (Un poco de paz) fue la primera victoria de Alemania en Eurovision y encabezo las listas de toda Europa. La balada antibélica resono durante las tensiones de la Guerra Fria. Nicole tenia solo 17 anos y actuo con una presentacion sencilla y sincera."
+      "fun_fact_es": "Ein bisschen Frieden (Un poco de paz) fue la primera victoria de Alemania en Eurovision y encabezo las listas de toda Europa. La balada antibélica resono durante las tensiones de la Guerra Fria. Nicole tenia solo 17 anos y actuo con una presentacion sencilla y sincera.",
+      "uri_apple_music": "applemusic://track/274740408"
     },
     {
       "year": 1983,
       "uri": "spotify:track:0u8AjgsFdyKA1rAca57GC4",
       "artist": "Corinne Hermes",
       "title": "Si la vie est cadeau",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 142, "country": "Luxembourg"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 142,
+        "country": "Luxembourg"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1983"],
-      "awards_de": ["Eurovision-Sieger 1983"],
-      "awards_es": ["Ganador de Eurovision 1983"],
+      "awards": [
+        "Eurovision Winner 1983"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1983"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1983"
+      ],
       "fun_fact": "Si la vie est cadeau (If Life Is a Gift) gave Luxembourg their fifth and final Eurovision victory. The power ballad showcased Corinne Hermes' impressive vocal range. Luxembourg withdrew from Eurovision in 1994 and hasn't returned since.",
       "fun_fact_de": "Si la vie est cadeau (Wenn das Leben ein Geschenk ist) brachte Luxemburg seinen funften und letzten Eurovision-Sieg. Die kraftvolle Ballade zeigte Corinne Hermes' beeindruckenden Stimmumfang. Luxemburg zog sich 1994 vom Eurovision zuruck und ist seitdem nicht zuruckgekehrt.",
-      "fun_fact_es": "Si la vie est cadeau (Si la vida es un regalo) dio a Luxemburgo su quinta y ultima victoria en Eurovision. La poderosa balada mostro el impresionante rango vocal de Corinne Hermes. Luxemburgo se retiro de Eurovision en 1994 y no ha regresado desde entonces."
+      "fun_fact_es": "Si la vie est cadeau (Si la vida es un regalo) dio a Luxemburgo su quinta y ultima victoria en Eurovision. La poderosa balada mostro el impresionante rango vocal de Corinne Hermes. Luxemburgo se retiro de Eurovision en 1994 y no ha regresado desde entonces.",
+      "uri_apple_music": "applemusic://track/1568840214"
     },
     {
       "year": 1984,
       "uri": "spotify:track:4NzirQ4BrNkVaPEla2ipG4",
       "artist": "Herreys",
       "title": "Diggiloo Diggiley",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 145, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 145,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1984"],
-      "awards_de": ["Eurovision-Sieger 1984"],
-      "awards_es": ["Ganador de Eurovision 1984"],
+      "awards": [
+        "Eurovision Winner 1984"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1984"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1984"
+      ],
       "fun_fact": "Diggi-Loo Diggi-Ley was performed by three brothers in shiny gold boots that became their trademark. The upbeat Eurodisco song gave Sweden their second victory after ABBA. The Herreys' energetic choreography defined 80s Eurovision style.",
       "fun_fact_de": "Diggi-Loo Diggi-Ley wurde von drei Brudern in glanzenden goldenen Stiefeln aufgefuhrt, die zu ihrem Markenzeichen wurden. Der frohliche Eurodisco-Song brachte Schweden nach ABBA seinen zweiten Sieg. Die energiegeladene Choreografie der Herreys pragte den Eurovision-Stil der 80er Jahre.",
-      "fun_fact_es": "Diggi-Loo Diggi-Ley fue interpretada por tres hermanos con brillantes botas doradas que se convirtieron en su marca distintiva. La alegre cancion eurodisco dio a Suecia su segunda victoria despues de ABBA. La energetica coreografia de los Herreys definio el estilo de Eurovision de los anos 80."
+      "fun_fact_es": "Diggi-Loo Diggi-Ley fue interpretada por tres hermanos con brillantes botas doradas que se convirtieron en su marca distintiva. La alegre cancion eurodisco dio a Suecia su segunda victoria despues de ABBA. La energetica coreografia de los Herreys definio el estilo de Eurovision de los anos 80.",
+      "uri_apple_music": "applemusic://track/440309422"
     },
     {
       "year": 1985,
       "uri": "spotify:track:0LmEzNrxk0lecRm8X58jiC",
       "artist": "Bobbysocks",
       "title": "La det swinge",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 123, "country": "Norway"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 123,
+        "country": "Norway"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1985"],
-      "awards_de": ["Eurovision-Sieger 1985"],
-      "awards_es": ["Ganador de Eurovision 1985"],
+      "awards": [
+        "Eurovision Winner 1985"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1985"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1985"
+      ],
       "fun_fact": "La det swinge (Let It Swing) ended Norway's notorious streak of poor Eurovision results with their first-ever victory. The Norwegian female duo Bobbysocks broke through with an energetic pop-rock performance that charmed voters across Europe.",
       "fun_fact_de": "La det swinge (Lass es schwingen) beendete Norwegens beruchtigte Serie schlechter Eurovision-Ergebnisse mit ihrem allerersten Sieg. Das norwegische Frauen-Duo Bobbysocks schaffte den Durchbruch mit einer energiegeladenen Pop-Rock-Darbietung, die Wahler in ganz Europa begeisterte.",
-      "fun_fact_es": "La det swinge (Dejalo balancearse) termino con la notoria racha de malos resultados de Noruega en Eurovision con su primera victoria. El duo femenino noruego Bobbysocks triunfo con una energetica actuacion de pop-rock que encanto a los votantes de toda Europa."
+      "fun_fact_es": "La det swinge (Dejalo balancearse) termino con la notoria racha de malos resultados de Noruega en Eurovision con su primera victoria. El duo femenino noruego Bobbysocks triunfo con una energetica actuacion de pop-rock que encanto a los votantes de toda Europa.",
+      "uri_apple_music": "applemusic://track/876486003"
     },
     {
       "year": 1986,
       "uri": "spotify:track:0Kr57gzJjexm8TF0l0JPLD",
       "artist": "Sandra Kim",
       "title": "J'aime la vie",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 176, "country": "Belgium"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 176,
+        "country": "Belgium"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1986"],
-      "awards_de": ["Eurovision-Sieger 1986"],
-      "awards_es": ["Ganador de Eurovision 1986"],
+      "awards": [
+        "Eurovision Winner 1986"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1986"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1986"
+      ],
       "fun_fact": "J'aime la vie (I Love Life) remains Belgium's only Eurovision victory. Sandra Kim claimed to be 15 but was actually only 13, making her the youngest ever Eurovision winner. The truth only emerged after her victory.",
       "fun_fact_de": "J'aime la vie (Ich liebe das Leben) bleibt Belgiens einziger Eurovision-Sieg. Sandra Kim behauptete, 15 zu sein, war aber tatsachlich erst 13, was sie zur jungsten Eurovision-Siegerin aller Zeiten macht. Die Wahrheit kam erst nach ihrem Sieg ans Licht.",
-      "fun_fact_es": "J'aime la vie (Amo la vida) sigue siendo la unica victoria de Belgica en Eurovision. Sandra Kim afirmaba tener 15 anos pero en realidad tenia solo 13, convirtiendola en la ganadora mas joven de Eurovision. La verdad solo surgio despues de su victoria."
+      "fun_fact_es": "J'aime la vie (Amo la vida) sigue siendo la unica victoria de Belgica en Eurovision. Sandra Kim afirmaba tener 15 anos pero en realidad tenia solo 13, convirtiendola en la ganadora mas joven de Eurovision. La verdad solo surgio despues de su victoria.",
+      "uri_apple_music": "applemusic://track/775105607"
     },
     {
       "year": 1987,
       "uri": "spotify:track:3wAfLEy1KQjpmbZdBrAW1U",
       "artist": "Johnny Logan",
       "title": "Hold Me Now",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 172, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 172,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1987"],
-      "awards_de": ["Eurovision-Sieger 1987"],
-      "awards_es": ["Ganador de Eurovision 1987"],
+      "awards": [
+        "Eurovision Winner 1987"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1987"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1987"
+      ],
       "fun_fact": "Hold Me Now made Johnny Logan the first artist to win Eurovision twice as a performer. He wrote this power ballad himself, unlike his 1980 entry. Logan would win a third time in 1992 as songwriter for Linda Martin's 'Why Me?'.",
       "fun_fact_de": "Hold Me Now machte Johnny Logan zum ersten Kunstler, der den Eurovision zweimal als Interpret gewann. Er schrieb diese kraftvolle Ballade selbst, im Gegensatz zu seinem Beitrag von 1980. Logan wurde 1992 als Songwriter fur Linda Martins 'Why Me?' ein drittes Mal gewinnen.",
-      "fun_fact_es": "Hold Me Now convirtio a Johnny Logan en el primer artista en ganar Eurovision dos veces como interprete. El mismo escribio esta poderosa balada, a diferencia de su entrada de 1980. Logan ganaria por tercera vez en 1992 como compositor de 'Why Me?' de Linda Martin."
+      "fun_fact_es": "Hold Me Now convirtio a Johnny Logan en el primer artista en ganar Eurovision dos veces como interprete. El mismo escribio esta poderosa balada, a diferencia de su entrada de 1980. Logan ganaria por tercera vez en 1992 como compositor de 'Why Me?' de Linda Martin.",
+      "uri_apple_music": "applemusic://track/429802667"
     },
     {
       "year": 1988,
       "uri": "spotify:track:0Kv4i96E41jbULmUajBYOe",
       "artist": "Celine Dion",
       "title": "Ne partez pas sans moi",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 137, "country": "Switzerland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 137,
+        "country": "Switzerland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1988"],
-      "awards_de": ["Eurovision-Sieger 1988"],
-      "awards_es": ["Ganador de Eurovision 1988"],
+      "awards": [
+        "Eurovision Winner 1988"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1988"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1988"
+      ],
       "fun_fact": "Ne partez pas sans moi (Don't Leave Without Me) launched Celine Dion to European fame. She won by just one point in a nail-biting finish. Dion represented Switzerland because Canadian artists weren't eligible for their own country.",
       "fun_fact_de": "Ne partez pas sans moi (Geht nicht ohne mich) machte Celine Dion in Europa beruhmt. Sie gewann mit nur einem Punkt Vorsprung in einem nervenaufreibenden Finale. Dion vertrat die Schweiz, weil kanadische Kunstler fur ihr eigenes Land nicht teilnahmeberechtigt waren.",
-      "fun_fact_es": "Ne partez pas sans moi (No se vayan sin mi) lanzo a Celine Dion a la fama europea. Gano por solo un punto en un final de infarto. Dion represento a Suiza porque los artistas canadienses no eran elegibles para su propio pais."
+      "fun_fact_es": "Ne partez pas sans moi (No se vayan sin mi) lanzo a Celine Dion a la fama europea. Gano por solo un punto en un final de infarto. Dion represento a Suiza porque los artistas canadienses no eran elegibles para su propio pais.",
+      "uri_apple_music": "applemusic://track/253634992"
     },
     {
       "year": 1989,
       "uri": "spotify:track:2WXogQGOO7qo2hlHyzpwhg",
       "artist": "Riva",
       "title": "Rock Me",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 137, "country": "Yugoslavia"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 137,
+        "country": "Yugoslavia"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1989"],
-      "awards_de": ["Eurovision-Sieger 1989"],
-      "awards_es": ["Ganador de Eurovision 1989"],
+      "awards": [
+        "Eurovision Winner 1989"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1989"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1989"
+      ],
       "fun_fact": "Rock Me was Yugoslavia's only Eurovision victory before the country dissolved. The Croatian band Riva performed with infectious energy. Tragically, the breakup of Yugoslavia meant no unified country could celebrate this historic win for long.",
       "fun_fact_de": "Rock Me war Jugoslawiens einziger Eurovision-Sieg, bevor das Land zerbrach. Die kroatische Band Riva trat mit ansteckender Energie auf. Tragischerweise bedeutete der Zerfall Jugoslawiens, dass kein vereintes Land diesen historischen Sieg lange feiern konnte.",
-      "fun_fact_es": "Rock Me fue la unica victoria de Yugoslavia en Eurovision antes de que el pais se disolviera. La banda croata Riva actuo con energia contagiosa. Tragicamente, la disolucion de Yugoslavia significo que ningun pais unificado pudo celebrar esta victoria historica por mucho tiempo."
+      "fun_fact_es": "Rock Me fue la unica victoria de Yugoslavia en Eurovision antes de que el pais se disolviera. La banda croata Riva actuo con energia contagiosa. Tragicamente, la disolucion de Yugoslavia significo que ningun pais unificado pudo celebrar esta victoria historica por mucho tiempo.",
+      "uri_apple_music": "applemusic://track/504583865"
     },
     {
       "year": 1990,
       "uri": "spotify:track:44noNMO0iv87Tds7dwcpQU",
       "artist": "Toto Cutugno",
       "title": "Insieme: 1992",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 149, "country": "Italy"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 149,
+        "country": "Italy"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1990"],
-      "awards_de": ["Eurovision-Sieger 1990"],
-      "awards_es": ["Ganador de Eurovision 1990"],
+      "awards": [
+        "Eurovision Winner 1990"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1990"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1990"
+      ],
       "fun_fact": "Insieme: 1992 (Together: 1992) celebrated European unity ahead of the EU single market. Toto Cutugno had competed at Eurovision many times before finally winning. The song became an anthem for European integration during a pivotal historical moment.",
       "fun_fact_de": "Insieme: 1992 (Zusammen: 1992) feierte die europaische Einheit im Vorfeld des EU-Binnenmarktes. Toto Cutugno hatte viele Male am Eurovision teilgenommen, bevor er schliesslich gewann. Das Lied wurde wahrend eines entscheidenden historischen Moments zu einer Hymne fur die europaische Integration.",
-      "fun_fact_es": "Insieme: 1992 (Juntos: 1992) celebro la unidad europea antes del mercado unico de la UE. Toto Cutugno habia competido en Eurovision muchas veces antes de finalmente ganar. La cancion se convirtio en un himno para la integracion europea durante un momento historico crucial."
+      "fun_fact_es": "Insieme: 1992 (Juntos: 1992) celebro la unidad europea antes del mercado unico de la UE. Toto Cutugno habia competido en Eurovision muchas veces antes de finalmente ganar. La cancion se convirtio en un himno para la integracion europea durante un momento historico crucial.",
+      "uri_apple_music": "applemusic://track/1329254875"
     },
     {
       "year": 1991,
       "uri": "spotify:track:5I6eq9wK0SOkeUWEPHqD39",
       "artist": "Carola",
       "title": "Fangad av en stormvind",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 146, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 146,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1991"],
-      "awards_de": ["Eurovision-Sieger 1991"],
-      "awards_es": ["Ganador de Eurovision 1991"],
+      "awards": [
+        "Eurovision Winner 1991"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1991"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1991"
+      ],
       "fun_fact": "Fangad av en stormvind (Captured by a Lovestorm) won in a contest held in Rome. Carola had previously represented Sweden in 1983. The dramatic ballad showcased Sweden's knack for producing Eurovision winners.",
       "fun_fact_de": "Fangad av en stormvind (Gefangen von einem Liebessturm) gewann bei einem Wettbewerb in Rom. Carola hatte Schweden bereits 1983 vertreten. Die dramatische Ballade zeigte Schwedens Talent, Eurovision-Sieger hervorzubringen.",
       "fun_fact_es": "Fangad av en stormvind (Atrapada por una tormenta de amor) gano en un concurso celebrado en Roma. Carola habia representado previamente a Suecia en 1983. La dramatica balada demostro la habilidad de Suecia para producir ganadores de Eurovision."
@@ -553,11 +983,21 @@
       "uri": "spotify:track:3Y81Q8dLI74Mgi1wbXvscv",
       "artist": "Linda Martin",
       "title": "Why Me?",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 155, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 155,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1992"],
-      "awards_de": ["Eurovision-Sieger 1992"],
-      "awards_es": ["Ganador de Eurovision 1992"],
+      "awards": [
+        "Eurovision Winner 1992"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1992"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1992"
+      ],
       "fun_fact": "Why Me? was written by Johnny Logan, giving him his third Eurovision victory (this time as songwriter). Linda Martin had previously competed in 1984. This began Ireland's unprecedented streak of four consecutive wins.",
       "fun_fact_de": "Why Me? wurde von Johnny Logan geschrieben, was ihm seinen dritten Eurovision-Sieg bescherte (diesmal als Songwriter). Linda Martin hatte bereits 1984 teilgenommen. Dies begann Irlands beispiellose Serie von vier aufeinanderfolgenden Siegen.",
       "fun_fact_es": "Why Me? fue escrita por Johnny Logan, dandole su tercera victoria en Eurovision (esta vez como compositor). Linda Martin habia competido previamente en 1984. Esto inicio la racha sin precedentes de Irlanda de cuatro victorias consecutivas."
@@ -567,39 +1007,71 @@
       "uri": "spotify:track:7LBBL20GLOtjBJwxgVmzPK",
       "artist": "Niamh Kavanagh",
       "title": "In Your Eyes",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 187, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 187,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1993"],
-      "awards_de": ["Eurovision-Sieger 1993"],
-      "awards_es": ["Ganador de Eurovision 1993"],
+      "awards": [
+        "Eurovision Winner 1993"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1993"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1993"
+      ],
       "fun_fact": "In Your Eyes extended Ireland's winning streak to two consecutive years. Niamh Kavanagh's powerful vocals earned the highest points total to that date. She returned to Eurovision in 2010, representing Ireland again.",
       "fun_fact_de": "In Your Eyes verlangerte Irlands Siegesserie auf zwei aufeinanderfolgende Jahre. Niamh Kavanaghs kraftvolle Stimme erzielte die bis dahin hochste Punktzahl. Sie kehrte 2010 zum Eurovision zuruck und vertrat erneut Irland.",
-      "fun_fact_es": "In Your Eyes extendio la racha ganadora de Irlanda a dos anos consecutivos. La poderosa voz de Niamh Kavanagh obtuvo la puntuacion mas alta hasta esa fecha. Regreso a Eurovision en 2010, representando nuevamente a Irlanda."
+      "fun_fact_es": "In Your Eyes extendio la racha ganadora de Irlanda a dos anos consecutivos. La poderosa voz de Niamh Kavanagh obtuvo la puntuacion mas alta hasta esa fecha. Regreso a Eurovision en 2010, representando nuevamente a Irlanda.",
+      "uri_apple_music": "applemusic://track/348924038"
     },
     {
       "year": 1994,
       "uri": "spotify:track:4qVX2nHuFlVNp6AOVrDBGb",
       "artist": "Paul Harrington;Charlie McGettigan",
       "title": "Rock 'n' Roll Kids",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 226, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 226,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1994"],
-      "awards_de": ["Eurovision-Sieger 1994"],
-      "awards_es": ["Ganador de Eurovision 1994"],
+      "awards": [
+        "Eurovision Winner 1994"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1994"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1994"
+      ],
       "fun_fact": "Rock 'n' Roll Kids was Ireland's third consecutive victory. The nostalgic duet about childhood dreams broke the points record. This contest also featured the interval act 'Riverdance', which became a global phenomenon.",
       "fun_fact_de": "Rock 'n' Roll Kids war Irlands dritter aufeinanderfolgender Sieg. Das nostalgische Duett uber Kindheitstraume brach den Punkterekord. Bei diesem Wettbewerb gab es auch die Pausenshow 'Riverdance', die zu einem weltweiten Phanomen wurde.",
-      "fun_fact_es": "Rock 'n' Roll Kids fue la tercera victoria consecutiva de Irlanda. El dueto nostalgico sobre suenos de infancia rompio el record de puntos. Este concurso tambien presento el espectaculo de intermedio 'Riverdance', que se convirtio en un fenomeno global."
+      "fun_fact_es": "Rock 'n' Roll Kids fue la tercera victoria consecutiva de Irlanda. El dueto nostalgico sobre suenos de infancia rompio el record de puntos. Este concurso tambien presento el espectaculo de intermedio 'Riverdance', que se convirtio en un fenomeno global.",
+      "uri_apple_music": "applemusic://track/212118856"
     },
     {
       "year": 1995,
       "uri": "spotify:track:4zHzxmGa8ywcOBBvPvnYcp",
       "artist": "Rolf Lovland;Secret Garden",
       "title": "Nocturne",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 148, "country": "Norway"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 148,
+        "country": "Norway"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1995"],
-      "awards_de": ["Eurovision-Sieger 1995"],
-      "awards_es": ["Ganador de Eurovision 1995"],
+      "awards": [
+        "Eurovision Winner 1995"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1995"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1995"
+      ],
       "fun_fact": "Nocturne is the only mostly instrumental song to win Eurovision, featuring just 24 words of lyrics. Secret Garden's haunting violin melody captivated Europe. The Norwegian-Irish duo proved Eurovision wasn't just about catchy pop songs.",
       "fun_fact_de": "Nocturne ist das einzige uberwiegend instrumentale Lied, das den Eurovision gewann, mit nur 24 Wortern Text. Secret Gardens eindringliche Violinmelodie faszinierte Europa. Das norwegisch-irische Duo bewies, dass Eurovision nicht nur eingangige Popsongs bedeutet.",
       "fun_fact_es": "Nocturne es la unica cancion mayoritariamente instrumental en ganar Eurovision, con solo 24 palabras de letra. La cautivadora melodia de violin de Secret Garden fascino a Europa. El duo noruego-irlandes demostro que Eurovision no se trataba solo de canciones pop pegadizas."
@@ -609,39 +1081,71 @@
       "uri": "spotify:track:6SA7BxY6zh5SaxUBp3tCtb",
       "artist": "Eimear Quinn",
       "title": "The Voice",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 162, "country": "Ireland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 162,
+        "country": "Ireland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1996"],
-      "awards_de": ["Eurovision-Sieger 1996"],
-      "awards_es": ["Ganador de Eurovision 1996"],
+      "awards": [
+        "Eurovision Winner 1996"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1996"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1996"
+      ],
       "fun_fact": "The Voice gave Ireland their record-breaking seventh Eurovision victory (fourth in five years). Eimear Quinn's ethereal Celtic performance continued Ireland's dominance. No country has won Eurovision more times than Ireland.",
       "fun_fact_de": "The Voice brachte Irland seinen rekordverdachtigen siebten Eurovision-Sieg (den vierten in funf Jahren). Eimear Quinns atherische keltische Darbietung setzte Irlands Dominanz fort. Kein Land hat den Eurovision ofter gewonnen als Irland.",
-      "fun_fact_es": "The Voice dio a Irlanda su septima victoria record en Eurovision (la cuarta en cinco anos). La eterea actuacion celta de Eimear Quinn continuo el dominio de Irlanda. Ningun pais ha ganado Eurovision mas veces que Irlanda."
+      "fun_fact_es": "The Voice dio a Irlanda su septima victoria record en Eurovision (la cuarta en cinco anos). La eterea actuacion celta de Eimear Quinn continuo el dominio de Irlanda. Ningun pais ha ganado Eurovision mas veces que Irlanda.",
+      "uri_apple_music": "applemusic://track/74409108"
     },
     {
       "year": 1997,
       "uri": "spotify:track:3QzYNbqWxef2iBsRWUyCUc",
       "artist": "Katrina & The Waves",
       "title": "Love Shine a Light",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 227, "country": "United Kingdom"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 227,
+        "country": "United Kingdom"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1997"],
-      "awards_de": ["Eurovision-Sieger 1997"],
-      "awards_es": ["Ganador de Eurovision 1997"],
+      "awards": [
+        "Eurovision Winner 1997"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1997"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1997"
+      ],
       "fun_fact": "Love Shine a Light was the UK's fifth and most recent Eurovision victory. Katrina & The Waves won by the largest margin ever at that time, with 70 points ahead of second place. Katrina Leskanich was already famous for 'Walking on Sunshine'.",
       "fun_fact_de": "Love Shine a Light war der funfte und jungste Eurovision-Sieg des Vereinigten Konigreichs. Katrina & The Waves gewannen mit dem grossten Vorsprung aller Zeiten, 70 Punkte vor dem zweiten Platz. Katrina Leskanich war bereits beruhmt durch 'Walking on Sunshine'.",
-      "fun_fact_es": "Love Shine a Light fue la quinta y mas reciente victoria del Reino Unido en Eurovision. Katrina & The Waves ganaron con el mayor margen de la historia hasta ese momento, 70 puntos por delante del segundo lugar. Katrina Leskanich ya era famosa por 'Walking on Sunshine'."
+      "fun_fact_es": "Love Shine a Light fue la quinta y mas reciente victoria del Reino Unido en Eurovision. Katrina & The Waves ganaron con el mayor margen de la historia hasta ese momento, 70 puntos por delante del segundo lugar. Katrina Leskanich ya era famosa por 'Walking on Sunshine'.",
+      "uri_apple_music": "applemusic://track/1438446169"
     },
     {
       "year": 1998,
       "uri": "spotify:track:2v2SuFiCqmxqlqRyonSycx",
       "artist": "Dana International",
       "title": "Diva",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 172, "country": "Israel"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 172,
+        "country": "Israel"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1998"],
-      "awards_de": ["Eurovision-Sieger 1998"],
-      "awards_es": ["Ganador de Eurovision 1998"],
+      "awards": [
+        "Eurovision Winner 1998"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1998"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1998"
+      ],
       "fun_fact": "Diva made history as Dana International became the first transgender winner of Eurovision. Her victory was controversial in some quarters but celebrated as a milestone for LGBTQ+ representation. The song became a global dance hit.",
       "fun_fact_de": "Diva schrieb Geschichte, als Dana International die erste transsexuelle Siegerin des Eurovision wurde. Ihr Sieg war in manchen Kreisen umstritten, wurde aber als Meilenstein fur die LGBTQ+-Reprasentation gefeiert. Das Lied wurde ein weltweiter Dance-Hit.",
       "fun_fact_es": "Diva hizo historia cuando Dana International se convirtio en la primera ganadora transgenero de Eurovision. Su victoria fue controvertida en algunos sectores pero celebrada como un hito para la representacion LGBTQ+. La cancion se convirtio en un exito de baile mundial."
@@ -651,39 +1155,71 @@
       "uri": "spotify:track:4omWhsNIPxarzpBgMsWBmB",
       "artist": "Charlotte Perrelli",
       "title": "Take Me to Your Heaven",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 163, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 163,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 1999"],
-      "awards_de": ["Eurovision-Sieger 1999"],
-      "awards_es": ["Ganador de Eurovision 1999"],
+      "awards": [
+        "Eurovision Winner 1999"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 1999"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 1999"
+      ],
       "fun_fact": "Take Me to Your Heaven was Sweden's fourth Eurovision victory. Charlotte Nilsson (later Perrelli) performed a classic Scandinavian pop song. She returned to Eurovision in 2008 with 'Hero', finishing 18th.",
       "fun_fact_de": "Take Me to Your Heaven war Schwedens vierter Eurovision-Sieg. Charlotte Nilsson (spater Perrelli) trug einen klassischen skandinavischen Popsong vor. Sie kehrte 2008 mit 'Hero' zum Eurovision zuruck und belegte den 18. Platz.",
-      "fun_fact_es": "Take Me to Your Heaven fue la cuarta victoria de Suecia en Eurovision. Charlotte Nilsson (luego Perrelli) interpreto una clasica cancion pop escandinava. Regreso a Eurovision en 2008 con 'Hero', quedando en el puesto 18."
+      "fun_fact_es": "Take Me to Your Heaven fue la cuarta victoria de Suecia en Eurovision. Charlotte Nilsson (luego Perrelli) interpreto una clasica cancion pop escandinava. Regreso a Eurovision en 2008 con 'Hero', quedando en el puesto 18.",
+      "uri_apple_music": "applemusic://track/1477474325"
     },
     {
       "year": 2000,
       "uri": "spotify:track:4v2RaPHSsTvNkggw3RqyeT",
       "artist": "Olsen Brothers",
       "title": "Fly on the Wings of Love",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 195, "country": "Denmark"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 195,
+        "country": "Denmark"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2000"],
-      "awards_de": ["Eurovision-Sieger 2000"],
-      "awards_es": ["Ganador de Eurovision 2000"],
+      "awards": [
+        "Eurovision Winner 2000"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2000"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2000"
+      ],
       "fun_fact": "Fly on the Wings of Love ended Denmark's 37-year Eurovision drought since 1963. The Olsen Brothers (Jorgen and Niels) were veteran musicians in their 50s when they won. Their victory proved age was no barrier to Eurovision success.",
       "fun_fact_de": "Fly on the Wings of Love beendete Danemarks 37-jahrige Eurovision-Durststrecke seit 1963. Die Olsen Brothers (Jorgen und Niels) waren erfahrene Musiker in ihren 50ern, als sie gewannen. Ihr Sieg bewies, dass das Alter kein Hindernis fur den Eurovision-Erfolg ist.",
-      "fun_fact_es": "Fly on the Wings of Love termino con la sequia de 37 anos de Dinamarca en Eurovision desde 1963. Los hermanos Olsen (Jorgen y Niels) eran musicos veteranos en sus 50 anos cuando ganaron. Su victoria demostro que la edad no era una barrera para el exito en Eurovision."
+      "fun_fact_es": "Fly on the Wings of Love termino con la sequia de 37 anos de Dinamarca en Eurovision desde 1963. Los hermanos Olsen (Jorgen y Niels) eran musicos veteranos en sus 50 anos cuando ganaron. Su victoria demostro que la edad no era una barrera para el exito en Eurovision.",
+      "uri_apple_music": "applemusic://track/690981282"
     },
     {
       "year": 2001,
       "uri": "spotify:track:3h5mWmIOf44J2AzSfZ1pbN",
       "artist": "Tanel Padar;Dave Benton",
       "title": "Everybody",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 198, "country": "Estonia"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 198,
+        "country": "Estonia"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2001"],
-      "awards_de": ["Eurovision-Sieger 2001"],
-      "awards_es": ["Ganador de Eurovision 2001"],
+      "awards": [
+        "Eurovision Winner 2001"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2001"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2001"
+      ],
       "fun_fact": "Everybody was Estonia's first Eurovision victory and the first for any former Soviet republic. Dave Benton became the oldest winner at 50 and the first Black performer to win. Estonia went from debut in 1994 to champions in just seven years.",
       "fun_fact_de": "Everybody war Estlands erster Eurovision-Sieg und der erste fur eine ehemalige Sowjetrepublik. Dave Benton wurde mit 50 Jahren der alteste Sieger und der erste schwarze Kunstler, der gewann. Estland entwickelte sich vom Debut 1994 zum Champion in nur sieben Jahren.",
       "fun_fact_es": "Everybody fue la primera victoria de Estonia en Eurovision y la primera para cualquier antigua republica sovietica. Dave Benton se convirtio en el ganador mas viejo a los 50 anos y el primer interprete negro en ganar. Estonia paso del debut en 1994 a campeones en solo siete anos."
@@ -693,81 +1229,146 @@
       "uri": "spotify:track:70tFqMdkFXCPeirRaLAKKM",
       "artist": "Marie N",
       "title": "I Wanna",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 176, "country": "Latvia"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 176,
+        "country": "Latvia"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2002"],
-      "awards_de": ["Eurovision-Sieger 2002"],
-      "awards_es": ["Ganador de Eurovision 2002"],
+      "awards": [
+        "Eurovision Winner 2002"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2002"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2002"
+      ],
       "fun_fact": "I Wanna gave Latvia their first Eurovision victory at only their third attempt. Marie N's sultry performance and costume changes during the song created a memorable spectacle. Latvia hosted Eurovision 2003 in Riga.",
       "fun_fact_de": "I Wanna brachte Lettland bei erst seinem dritten Versuch den ersten Eurovision-Sieg. Marie Ns verfuhrerische Darbietung und Kostumwechsel wahrend des Liedes schufen ein unvergessliches Spektakel. Lettland richtete 2003 den Eurovision in Riga aus.",
-      "fun_fact_es": "I Wanna dio a Letonia su primera victoria en Eurovision en solo su tercer intento. La sensual actuacion de Marie N y los cambios de vestuario durante la cancion crearon un espectaculo memorable. Letonia fue anfitrion de Eurovision 2003 en Riga."
+      "fun_fact_es": "I Wanna dio a Letonia su primera victoria en Eurovision en solo su tercer intento. La sensual actuacion de Marie N y los cambios de vestuario durante la cancion crearon un espectaculo memorable. Letonia fue anfitrion de Eurovision 2003 en Riga.",
+      "uri_apple_music": "applemusic://track/260662904"
     },
     {
       "year": 2003,
       "uri": "spotify:track:5I8ENb7zzrbYLwhGESY9CF",
       "artist": "Sertab Erener",
       "title": "Every Way That I Can",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 167, "country": "Turkey"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 167,
+        "country": "Turkey"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2003"],
-      "awards_de": ["Eurovision-Sieger 2003"],
-      "awards_es": ["Ganador de Eurovision 2003"],
+      "awards": [
+        "Eurovision Winner 2003"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2003"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2003"
+      ],
       "fun_fact": "Everyway That I Can was Turkey's first and only Eurovision victory. Sertab Erener's belly dancing and Turkish-influenced pop sound brought something new to the contest. The song featured backing dancers and elaborate choreography.",
       "fun_fact_de": "Everyway That I Can war der erste und einzige Eurovision-Sieg der Turkei. Sertab Ereners Bauchtanz und turkisch beeinflusster Pop brachten etwas Neues in den Wettbewerb. Das Lied enthielt Backgroundtanzer und aufwendige Choreografie.",
-      "fun_fact_es": "Everyway That I Can fue la primera y unica victoria de Turquia en Eurovision. La danza del vientre de Sertab Erener y el sonido pop con influencia turca trajeron algo nuevo al concurso. La cancion presento bailarines de apoyo y una elaborada coreografia."
+      "fun_fact_es": "Everyway That I Can fue la primera y unica victoria de Turquia en Eurovision. La danza del vientre de Sertab Erener y el sonido pop con influencia turca trajeron algo nuevo al concurso. La cancion presento bailarines de apoyo y una elaborada coreografia.",
+      "uri_apple_music": "applemusic://track/400705407"
     },
     {
       "year": 2004,
       "uri": "spotify:track:1Lav2Z3RKu71MJLIjQz4dQ",
       "artist": "Ruslana",
       "title": "Wild Dances",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 280, "country": "Ukraine"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 280,
+        "country": "Ukraine"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2004"],
-      "awards_de": ["Eurovision-Sieger 2004"],
-      "awards_es": ["Ganador de Eurovision 2004"],
+      "awards": [
+        "Eurovision Winner 2004"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2004"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2004"
+      ],
       "fun_fact": "Wild Dances was Ukraine's first Eurovision victory and featured Hutsul folk music elements from the Carpathian Mountains. Ruslana's high-energy performance with fire and tribal dancing was revolutionary. She later became a prominent activist during Ukraine's political upheavals.",
       "fun_fact_de": "Wild Dances war der erste Eurovision-Sieg der Ukraine und enthielt Hutsul-Volksmusik-Elemente aus den Karpaten. Ruslanas energiegeladene Darbietung mit Feuer und Stammestanzen war revolutionar. Sie wurde spater wahrend der politischen Umwalzungen in der Ukraine zu einer prominenten Aktivistin.",
-      "fun_fact_es": "Wild Dances fue la primera victoria de Ucrania en Eurovision y presento elementos de musica folclorica hutsul de los Montes Carpatos. La actuacion de alta energia de Ruslana con fuego y danzas tribales fue revolucionaria. Mas tarde se convirtio en una activista prominente durante las convulsiones politicas de Ucrania."
+      "fun_fact_es": "Wild Dances fue la primera victoria de Ucrania en Eurovision y presento elementos de musica folclorica hutsul de los Montes Carpatos. La actuacion de alta energia de Ruslana con fuego y danzas tribales fue revolucionaria. Mas tarde se convirtio en una activista prominente durante las convulsiones politicas de Ucrania.",
+      "uri_apple_music": "applemusic://track/724020692"
     },
     {
       "year": 2005,
       "uri": "spotify:track:6LkCvCc9oFoLDv4DLhzTox",
       "artist": "Helena Paparizou",
       "title": "My Number One",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 230, "country": "Greece"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 230,
+        "country": "Greece"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2005"],
-      "awards_de": ["Eurovision-Sieger 2005"],
-      "awards_es": ["Ganador de Eurovision 2005"],
+      "awards": [
+        "Eurovision Winner 2005"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2005"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2005"
+      ],
       "fun_fact": "My Number One was Greece's first Eurovision victory after decades of participation. Helena Paparizou's Greek-Swedish background and polished pop performance captivated voters. She previously competed in 2001 as part of the duo Antique.",
       "fun_fact_de": "My Number One war Griechenlands erster Eurovision-Sieg nach Jahrzehnten der Teilnahme. Helena Paparizous griechisch-schwedischer Hintergrund und ihre ausgefeilte Pop-Darbietung begeisterten die Wahler. Sie hatte 2001 als Teil des Duos Antique teilgenommen.",
-      "fun_fact_es": "My Number One fue la primera victoria de Grecia en Eurovision despues de decadas de participacion. El trasfondo greco-sueco de Helena Paparizou y su pulida actuacion pop cautivaron a los votantes. Previamente habia competido en 2001 como parte del duo Antique."
+      "fun_fact_es": "My Number One fue la primera victoria de Grecia en Eurovision despues de decadas de participacion. El trasfondo greco-sueco de Helena Paparizou y su pulida actuacion pop cautivaron a los votantes. Previamente habia competido en 2001 como parte del duo Antique.",
+      "uri_apple_music": "applemusic://track/299636095"
     },
     {
       "year": 2006,
       "uri": "spotify:track:7BxBHNoIqiybZHlbeqMmvP",
       "artist": "Lordi",
       "title": "Hard Rock Hallelujah",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 292, "country": "Finland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 292,
+        "country": "Finland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2006"],
-      "awards_de": ["Eurovision-Sieger 2006"],
-      "awards_es": ["Ganador de Eurovision 2006"],
+      "awards": [
+        "Eurovision Winner 2006"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2006"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2006"
+      ],
       "fun_fact": "Hard Rock Hallelujah shocked Eurovision with Finnish monster-costumed heavy metal winning the contest. Lordi's theatrical rock performance proved Eurovision could embrace all genres. Finland had never won before despite competing since 1961.",
       "fun_fact_de": "Hard Rock Hallelujah schockierte den Eurovision, als finnischer Heavy Metal in Monsterkostumen den Wettbewerb gewann. Lordis theatralische Rock-Darbietung bewies, dass der Eurovision alle Genres umfassen kann. Finnland hatte trotz Teilnahme seit 1961 noch nie gewonnen.",
-      "fun_fact_es": "Hard Rock Hallelujah sorprendio a Eurovision cuando el heavy metal finlandes con disfraces de monstruos gano el concurso. La teatral actuacion de rock de Lordi demostro que Eurovision podia abrazar todos los generos. Finlandia nunca habia ganado a pesar de competir desde 1961."
+      "fun_fact_es": "Hard Rock Hallelujah sorprendio a Eurovision cuando el heavy metal finlandes con disfraces de monstruos gano el concurso. La teatral actuacion de rock de Lordi demostro que Eurovision podia abrazar todos los generos. Finlandia nunca habia ganado a pesar de competir desde 1961.",
+      "uri_apple_music": "applemusic://track/389516413"
     },
     {
       "year": 2007,
       "uri": "spotify:track:1ue71r2sNUvl4LSqvgVVcZ",
       "artist": "Marija Serifovic",
       "title": "Molitva",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 268, "country": "Serbia"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 268,
+        "country": "Serbia"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2007"],
-      "awards_de": ["Eurovision-Sieger 2007"],
-      "awards_es": ["Ganador de Eurovision 2007"],
+      "awards": [
+        "Eurovision Winner 2007"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2007"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2007"
+      ],
       "fun_fact": "Molitva (Prayer) was Serbia's first entry and first victory as an independent nation after Yugoslavia's dissolution. Marija Serifovic's emotional ballad, performed entirely in Serbian, won overwhelmingly. The powerful song needed no gimmicks.",
       "fun_fact_de": "Molitva (Gebet) war Serbiens erster Beitrag und erster Sieg als unabhangige Nation nach der Auflosung Jugoslawiens. Marija Serifovics emotionale Ballade, ganz auf Serbisch vorgetragen, gewann uberwaltigend. Das kraftvolle Lied brauchte keine Gimmicks.",
       "fun_fact_es": "Molitva (Oracion) fue la primera entrada y primera victoria de Serbia como nacion independiente despues de la disolucion de Yugoslavia. La emotiva balada de Marija Serifovic, interpretada enteramente en serbio, gano de manera abrumadora. La poderosa cancion no necesito trucos."
@@ -777,53 +1378,96 @@
       "uri": "spotify:track:3tYLiiS9VlIXWaB677KJjQ",
       "artist": "Dima Bilan",
       "title": "Believe",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 272, "country": "Russia"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 272,
+        "country": "Russia"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2008"],
-      "awards_de": ["Eurovision-Sieger 2008"],
-      "awards_es": ["Ganador de Eurovision 2008"],
+      "awards": [
+        "Eurovision Winner 2008"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2008"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2008"
+      ],
       "fun_fact": "Believe gave Russia their first and only Eurovision victory. Dima Bilan performed with Hungarian violinist Edvin Marton and an Olympic ice skater on stage. He had finished second in 2006, making 2008 his redemption year.",
       "fun_fact_de": "Believe brachte Russland seinen ersten und einzigen Eurovision-Sieg. Dima Bilan trat mit dem ungarischen Geiger Edvin Marton und einem olympischen Eislaufer auf der Buhne auf. Er war 2006 Zweiter geworden, was 2008 zu seinem Jahr der Rehabilitation machte.",
-      "fun_fact_es": "Believe dio a Rusia su primera y unica victoria en Eurovision. Dima Bilan actuo con el violinista hungaro Edvin Marton y un patinador olimpico sobre hielo en el escenario. Habia quedado segundo en 2006, haciendo de 2008 su ano de redencion."
+      "fun_fact_es": "Believe dio a Rusia su primera y unica victoria en Eurovision. Dima Bilan actuo con el violinista hungaro Edvin Marton y un patinador olimpico sobre hielo en el escenario. Habia quedado segundo en 2006, haciendo de 2008 su ano de redencion.",
+      "uri_apple_music": "applemusic://track/1859966612"
     },
     {
       "year": 2009,
       "uri": "spotify:track:2kWAsHovOITGRmAwXoWoJE",
       "artist": "Alexander Rybak",
       "title": "Fairytale",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 387, "country": "Norway"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 387,
+        "country": "Norway"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2009"],
-      "awards_de": ["Eurovision-Sieger 2009"],
-      "awards_es": ["Ganador de Eurovision 2009"],
+      "awards": [
+        "Eurovision Winner 2009"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2009"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2009"
+      ],
       "fun_fact": "Fairytale won with 387 points, the highest score ever achieved at the time under the voting system. Alexander Rybak's folk-pop song and violin playing charmed all of Europe. The Belarusian-Norwegian performer was just 22 years old.",
       "fun_fact_de": "Fairytale gewann mit 387 Punkten, der hochsten jemals erreichten Punktzahl unter dem damaligen Abstimmungssystem. Alexander Rybaks Folk-Pop-Lied und Geigenspiel bezauberten ganz Europa. Der weissrussisch-norwegische Kunstler war erst 22 Jahre alt.",
-      "fun_fact_es": "Fairytale gano con 387 puntos, la puntuacion mas alta jamas alcanzada bajo el sistema de votacion de entonces. La cancion folk-pop de Alexander Rybak y su violin encantaron a toda Europa. El interprete bielorruso-noruego tenia solo 22 anos."
+      "fun_fact_es": "Fairytale gano con 387 puntos, la puntuacion mas alta jamas alcanzada bajo el sistema de votacion de entonces. La cancion folk-pop de Alexander Rybak y su violin encantaron a toda Europa. El interprete bielorruso-noruego tenia solo 22 anos.",
+      "uri_apple_music": "applemusic://track/1438988564"
     },
     {
       "year": 2010,
       "uri": "spotify:track:6V3OVnS8A0P2I7j5e7YRBb",
       "artist": "Lena",
       "title": "Satellite",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 246, "country": "Germany"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 246,
+        "country": "Germany"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2010"],
-      "awards_de": ["Eurovision-Sieger 2010"],
-      "awards_es": ["Ganador de Eurovision 2010"],
+      "awards": [
+        "Eurovision Winner 2010"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2010"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2010"
+      ],
       "fun_fact": "Satellite gave Germany their second Eurovision victory and first since 1982. Lena Meyer-Landrut's quirky, charming performance captured hearts across Europe. She was discovered through the German TV show 'Unser Star fur Oslo'.",
       "fun_fact_de": "Satellite brachte Deutschland seinen zweiten Eurovision-Sieg und den ersten seit 1982. Lena Meyer-Landruts schrullige, charmante Darbietung eroberte die Herzen in ganz Europa. Sie wurde durch die deutsche TV-Show 'Unser Star fur Oslo' entdeckt.",
-      "fun_fact_es": "Satellite dio a Alemania su segunda victoria en Eurovision y la primera desde 1982. La peculiar y encantadora actuacion de Lena Meyer-Landrut conquisto corazones en toda Europa. Fue descubierta a traves del programa de television aleman 'Unser Star fur Oslo'."
+      "fun_fact_es": "Satellite dio a Alemania su segunda victoria en Eurovision y la primera desde 1982. La peculiar y encantadora actuacion de Lena Meyer-Landrut conquisto corazones en toda Europa. Fue descubierta a traves del programa de television aleman 'Unser Star fur Oslo'.",
+      "uri_apple_music": "applemusic://track/1445293252"
     },
     {
       "year": 2011,
       "uri": "spotify:track:5UoNgkMxD3JbWGFW9hmQAg",
       "artist": "Ell/Nikki",
       "title": "Running Scared",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 221, "country": "Azerbaijan"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 221,
+        "country": "Azerbaijan"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2011"],
-      "awards_de": ["Eurovision-Sieger 2011"],
-      "awards_es": ["Ganador de Eurovision 2011"],
+      "awards": [
+        "Eurovision Winner 2011"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2011"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2011"
+      ],
       "fun_fact": "Running Scared was Azerbaijan's first Eurovision victory after debuting only in 2008. The romantic duet by Ell and Nikki narrowly beat Italy. The win led Azerbaijan to host Eurovision 2012 in their specially-built Crystal Hall.",
       "fun_fact_de": "Running Scared war Aserbaidschans erster Eurovision-Sieg nach dem Debut erst 2008. Das romantische Duett von Ell und Nikki schlug Italien knapp. Der Sieg fuhrte dazu, dass Aserbaidschan den Eurovision 2012 in seiner eigens erbauten Crystal Hall ausrichtete.",
       "fun_fact_es": "Running Scared fue la primera victoria de Azerbaiyan en Eurovision despues de debutar apenas en 2008. El romantico duo de Ell y Nikki vencio a Italia por poco. La victoria llevo a Azerbaiyan a ser anfitrion de Eurovision 2012 en su Crystal Hall especialmente construido."
@@ -833,182 +1477,327 @@
       "uri": "spotify:track:1xN7BpTAWnZkuSLOtRP6Qc",
       "artist": "Loreen",
       "title": "Euphoria",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 372, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 372,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2012"],
-      "awards_de": ["Eurovision-Sieger 2012"],
-      "awards_es": ["Ganador de Eurovision 2012"],
+      "awards": [
+        "Eurovision Winner 2012"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2012"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2012"
+      ],
       "fun_fact": "Euphoria is considered one of Eurovision's greatest winning songs ever. Loreen received first place votes from 18 countries - a record. The haunting dance track topped charts worldwide and has over 300 million Spotify streams.",
       "fun_fact_de": "Euphoria gilt als eines der grossten Eurovision-Siegerlieder aller Zeiten. Loreen erhielt von 18 Landern den ersten Platz - ein Rekord. Der eindringliche Dance-Track fuhrte weltweit die Charts an und hat uber 300 Millionen Spotify-Streams.",
-      "fun_fact_es": "Euphoria se considera una de las mejores canciones ganadoras de Eurovision de todos los tiempos. Loreen recibio votos de primer lugar de 18 paises - un record. La cautivadora pista de baile encabezo las listas en todo el mundo y tiene mas de 300 millones de reproducciones en Spotify."
+      "fun_fact_es": "Euphoria se considera una de las mejores canciones ganadoras de Eurovision de todos los tiempos. Loreen recibio votos de primer lugar de 18 paises - un record. La cautivadora pista de baile encabezo las listas en todo el mundo y tiene mas de 300 millones de reproducciones en Spotify.",
+      "uri_apple_music": "applemusic://track/534019647"
     },
     {
       "year": 2013,
       "uri": "spotify:track:3yRwgprKX3If2zcuGfKFBu",
       "artist": "Emmelie de Forest",
       "title": "Only Teardrops",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 281, "country": "Denmark"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 281,
+        "country": "Denmark"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2013"],
-      "awards_de": ["Eurovision-Sieger 2013"],
-      "awards_es": ["Ganador de Eurovision 2013"],
+      "awards": [
+        "Eurovision Winner 2013"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2013"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2013"
+      ],
       "fun_fact": "Only Teardrops gave Denmark their third Eurovision victory. Emmelie de Forest's ethereal folk-pop performance featured barefoot dancing and tin whistle. The song's message about letting go of pain resonated with viewers across Europe.",
       "fun_fact_de": "Only Teardrops brachte Danemark seinen dritten Eurovision-Sieg. Emmelie de Forests atherische Folk-Pop-Darbietung enthielt barfussiges Tanzen und Blechflote. Die Botschaft des Liedes uber das Loslassen von Schmerz fand bei den Zuschauern in ganz Europa Anklang.",
-      "fun_fact_es": "Only Teardrops dio a Dinamarca su tercera victoria en Eurovision. La eterea actuacion folk-pop de Emmelie de Forest incluyo baile descalzo y flauta de hojalata. El mensaje de la cancion sobre dejar ir el dolor resono con los espectadores de toda Europa."
+      "fun_fact_es": "Only Teardrops dio a Dinamarca su tercera victoria en Eurovision. La eterea actuacion folk-pop de Emmelie de Forest incluyo baile descalzo y flauta de hojalata. El mensaje de la cancion sobre dejar ir el dolor resono con los espectadores de toda Europa.",
+      "uri_apple_music": "applemusic://track/643675723"
     },
     {
       "year": 2014,
       "uri": "spotify:track:1ijX03QOR6a1wI322HifSV",
       "artist": "Conchita Wurst",
       "title": "Rise Like a Phoenix",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 290, "country": "Austria"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 290,
+        "country": "Austria"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2014"],
-      "awards_de": ["Eurovision-Sieger 2014"],
-      "awards_es": ["Ganador de Eurovision 2014"],
+      "awards": [
+        "Eurovision Winner 2014"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2014"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2014"
+      ],
       "fun_fact": "Rise Like a Phoenix made Conchita Wurst (drag persona of Tom Neuwirth) a global icon and LGBTQ+ symbol. The bearded drag queen's powerful ballad was Austria's second win. She performed without backup dancers - the first winner to do so since 1970.",
       "fun_fact_de": "Rise Like a Phoenix machte Conchita Wurst (Drag-Persona von Tom Neuwirth) zu einer globalen Ikone und einem LGBTQ+-Symbol. Die kraftvolle Ballade der bartigen Drag Queen war Osterreichs zweiter Sieg. Sie trat ohne Backgroundtanzer auf - der erste Sieger seit 1970, der das tat.",
-      "fun_fact_es": "Rise Like a Phoenix convirtio a Conchita Wurst (personaje drag de Tom Neuwirth) en un icono global y simbolo LGBTQ+. La poderosa balada de la drag queen con barba fue la segunda victoria de Austria. Actuo sin bailarines de apoyo - la primera ganadora en hacerlo desde 1970."
+      "fun_fact_es": "Rise Like a Phoenix convirtio a Conchita Wurst (personaje drag de Tom Neuwirth) en un icono global y simbolo LGBTQ+. La poderosa balada de la drag queen con barba fue la segunda victoria de Austria. Actuo sin bailarines de apoyo - la primera ganadora en hacerlo desde 1970.",
+      "uri_apple_music": "applemusic://track/844169216"
     },
     {
       "year": 2015,
       "uri": "spotify:track:33lbkEAr4M93uGWveuCPCf",
       "artist": "Mans Zelmerlow",
       "title": "Heroes",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 365, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 365,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2015"],
-      "awards_de": ["Eurovision-Sieger 2015"],
-      "awards_es": ["Ganador de Eurovision 2015"],
+      "awards": [
+        "Eurovision Winner 2015"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2015"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2015"
+      ],
       "fun_fact": "Heroes featured groundbreaking visual effects with animated stick figures interacting with the performer live on stage. Mans Zelmerlow's performance revolutionized Eurovision staging. The technology used cost over one million euros to develop.",
       "fun_fact_de": "Heroes enthielt bahnbrechende visuelle Effekte mit animierten Strichmännchen, die live auf der Buhne mit dem Kunstler interagierten. Mans Zelmerlows Darbietung revolutionierte die Eurovision-Buhnengestaltung. Die verwendete Technologie kostete uber eine Million Euro in der Entwicklung.",
-      "fun_fact_es": "Heroes presento efectos visuales revolucionarios con figuras de palitos animadas interactuando con el interprete en vivo en el escenario. La actuacion de Mans Zelmerlow revoluciono la puesta en escena de Eurovision. La tecnologia utilizada costo mas de un millon de euros desarrollar."
+      "fun_fact_es": "Heroes presento efectos visuales revolucionarios con figuras de palitos animadas interactuando con el interprete en vivo en el escenario. La actuacion de Mans Zelmerlow revoluciono la puesta en escena de Eurovision. La tecnologia utilizada costo mas de un millon de euros desarrollar.",
+      "uri_apple_music": "applemusic://track/968817858"
     },
     {
       "year": 2016,
       "uri": "spotify:track:2nxTpjhxLXeyBOxYnRnT76",
       "artist": "Jamala",
       "title": "1944",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 534, "country": "Ukraine"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 534,
+        "country": "Ukraine"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2016"],
-      "awards_de": ["Eurovision-Sieger 2016"],
-      "awards_es": ["Ganador de Eurovision 2016"],
+      "awards": [
+        "Eurovision Winner 2016"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2016"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2016"
+      ],
       "fun_fact": "1944 told the story of Stalin's deportation of Crimean Tatars, including Jamala's great-grandmother. The politically charged song won controversially amid Russia-Ukraine tensions. It remains one of Eurovision's most powerful and emotional winning entries.",
       "fun_fact_de": "1944 erzahlte die Geschichte von Stalins Deportation der Krimtataren, einschliesslich Jamalas Urgrossmutter. Das politisch aufgeladene Lied gewann umstritten inmitten russisch-ukrainischer Spannungen. Es bleibt einer der kraftvollsten und emotionalsten Siegerbeitrage des Eurovision.",
-      "fun_fact_es": "1944 conto la historia de la deportacion de los tartaros de Crimea por Stalin, incluyendo a la bisabuela de Jamala. La cancion cargada politicamente gano de manera controvertida en medio de las tensiones entre Rusia y Ucrania. Sigue siendo una de las entradas ganadoras mas poderosas y emotivas de Eurovision."
+      "fun_fact_es": "1944 conto la historia de la deportacion de los tartaros de Crimea por Stalin, incluyendo a la bisabuela de Jamala. La cancion cargada politicamente gano de manera controvertida en medio de las tensiones entre Rusia y Ucrania. Sigue siendo una de las entradas ganadoras mas poderosas y emotivas de Eurovision.",
+      "uri_apple_music": "applemusic://track/1664506710"
     },
     {
       "year": 2017,
       "uri": "spotify:track:3UjSOJ00E1eLMcayBm827Q",
       "artist": "Salvador Sobral",
       "title": "Amar Pelos Dois",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 758, "country": "Portugal"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 758,
+        "country": "Portugal"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2017"],
-      "awards_de": ["Eurovision-Sieger 2017"],
-      "awards_es": ["Ganador de Eurovision 2017"],
+      "awards": [
+        "Eurovision Winner 2017"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2017"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2017"
+      ],
       "fun_fact": "Amar Pelos Dois (Love for Both of Us) won with 758 points - the highest score ever in Eurovision history. Salvador Sobral's intimate jazz ballad, written by his sister Luisa, broke all records. He performed awaiting a heart transplant, which he received months later.",
       "fun_fact_de": "Amar Pelos Dois (Liebe fur uns beide) gewann mit 758 Punkten - die hochste Punktzahl in der Eurovision-Geschichte uberhaupt. Salvador Sobrals intime Jazzballade, geschrieben von seiner Schwester Luisa, brach alle Rekorde. Er trat auf, wahrend er auf eine Herztransplantation wartete, die er Monate spater erhielt.",
-      "fun_fact_es": "Amar Pelos Dois (Amor por los dos) gano con 758 puntos - la puntuacion mas alta en la historia de Eurovision. La intima balada de jazz de Salvador Sobral, escrita por su hermana Luisa, rompio todos los records. Actuo esperando un trasplante de corazon, que recibio meses despues."
+      "fun_fact_es": "Amar Pelos Dois (Amor por los dos) gano con 758 puntos - la puntuacion mas alta en la historia de Eurovision. La intima balada de jazz de Salvador Sobral, escrita por su hermana Luisa, rompio todos los records. Actuo esperando un trasplante de corazon, que recibio meses despues.",
+      "uri_apple_music": "applemusic://track/1812636468"
     },
     {
       "year": 2018,
       "uri": "spotify:track:7vuTcvFnvlqWlWb4u60nvY",
       "artist": "Netta",
       "title": "Toy",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 529, "country": "Israel"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 529,
+        "country": "Israel"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2018"],
-      "awards_de": ["Eurovision-Sieger 2018"],
-      "awards_es": ["Ganador de Eurovision 2018"],
+      "awards": [
+        "Eurovision Winner 2018"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2018"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2018"
+      ],
       "fun_fact": "Toy's chicken sounds and loop-pedal performance made it unforgettable. Netta Barzilai's empowerment anthem with its 'I'm not your toy' message resonated with the #MeToo movement. The quirky electronic track divided opinions but won decisively.",
       "fun_fact_de": "Toys Huhnergerausche und Loop-Pedal-Darbietung machten es unvergesslich. Netta Barzilais Empowerment-Hymne mit ihrer 'Ich bin nicht dein Spielzeug'-Botschaft fand Anklang bei der #MeToo-Bewegung. Der schrullige elektronische Track spaltete die Meinungen, gewann aber entscheidend.",
-      "fun_fact_es": "Los sonidos de gallina de Toy y la actuacion con pedal de loop la hicieron inolvidable. El himno de empoderamiento de Netta Barzilai con su mensaje 'No soy tu juguete' resono con el movimiento #MeToo. La peculiar pista electronica dividio opiniones pero gano de manera decisiva."
+      "fun_fact_es": "Los sonidos de gallina de Toy y la actuacion con pedal de loop la hicieron inolvidable. El himno de empoderamiento de Netta Barzilai con su mensaje 'No soy tu juguete' resono con el movimiento #MeToo. La peculiar pista electronica dividio opiniones pero gano de manera decisiva.",
+      "uri_apple_music": "applemusic://track/1518643036"
     },
     {
       "year": 2019,
       "uri": "spotify:track:1Xi84slp6FryDSCbzq4UCD",
       "artist": "Duncan Laurence",
       "title": "Arcade",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 498, "country": "Netherlands"},
-      "certifications": ["4x Platinum (US)"],
-      "awards": ["Eurovision Winner 2019"],
-      "awards_de": ["Eurovision-Sieger 2019"],
-      "awards_es": ["Ganador de Eurovision 2019"],
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 498,
+        "country": "Netherlands"
+      },
+      "certifications": [
+        "4x Platinum (US)"
+      ],
+      "awards": [
+        "Eurovision Winner 2019"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2019"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2019"
+      ],
       "fun_fact": "Arcade became the biggest post-Eurovision hit in history after going viral on TikTok in 2021, two years after winning. The emotional piano ballad about lost love has over 1 billion streams. It gave the Netherlands their fifth Eurovision victory.",
       "fun_fact_de": "Arcade wurde der grosste Post-Eurovision-Hit der Geschichte, nachdem es 2021 auf TikTok viral ging, zwei Jahre nach dem Sieg. Die emotionale Klavierballade uber verlorene Liebe hat uber 1 Milliarde Streams. Sie brachte den Niederlanden ihren funften Eurovision-Sieg.",
-      "fun_fact_es": "Arcade se convirtio en el mayor exito post-Eurovision de la historia despues de volverse viral en TikTok en 2021, dos anos despues de ganar. La emotiva balada de piano sobre el amor perdido tiene mas de mil millones de reproducciones. Dio a los Paises Bajos su quinta victoria en Eurovision."
+      "fun_fact_es": "Arcade se convirtio en el mayor exito post-Eurovision de la historia despues de volverse viral en TikTok en 2021, dos anos despues de ganar. La emotiva balada de piano sobre el amor perdido tiene mas de mil millones de reproducciones. Dio a los Paises Bajos su quinta victoria en Eurovision.",
+      "uri_apple_music": "applemusic://track/1455090089"
     },
     {
       "year": 2021,
       "uri": "spotify:track:1lWWoec2z1j88GRblI5anV",
       "artist": "Maneskin",
       "title": "ZITTI E BUONI",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 524, "country": "Italy"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 524,
+        "country": "Italy"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2021"],
-      "awards_de": ["Eurovision-Sieger 2021"],
-      "awards_es": ["Ganador de Eurovision 2021"],
+      "awards": [
+        "Eurovision Winner 2021"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2021"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2021"
+      ],
       "fun_fact": "ZITTI E BUONI (Shut Up and Behave) was the first rock song to win Eurovision since Lordi in 2006. Maneskin went on to become global superstars, topping charts worldwide and performing at major festivals. Frontman Damiano faced false drug allegations that were quickly disproven.",
       "fun_fact_de": "ZITTI E BUONI (Halt die Klappe und benimm dich) war das erste Rocklied, das den Eurovision seit Lordi 2006 gewann. Maneskin wurden zu globalen Superstars, fuhrten weltweit die Charts an und traten auf grossen Festivals auf. Frontmann Damiano sah sich falschen Drogenvorwurfen gegenuber, die schnell widerlegt wurden.",
-      "fun_fact_es": "ZITTI E BUONI (Callense y comportense) fue la primera cancion de rock en ganar Eurovision desde Lordi en 2006. Maneskin se convirtieron en superestrellas globales, encabezando listas en todo el mundo y actuando en festivales importantes. El vocalista Damiano enfrento falsas acusaciones de drogas que fueron rapidamente desmentidas."
+      "fun_fact_es": "ZITTI E BUONI (Callense y comportense) fue la primera cancion de rock en ganar Eurovision desde Lordi en 2006. Maneskin se convirtieron en superestrellas globales, encabezando listas en todo el mundo y actuando en festivales importantes. El vocalista Damiano enfrento falsas acusaciones de drogas que fueron rapidamente desmentidas.",
+      "uri_apple_music": "applemusic://track/1554925274"
     },
     {
       "year": 2022,
       "uri": "spotify:track:2vHzOWRKYPLu8umRPIFuOq",
       "artist": "Kalush Orchestra",
       "title": "Stefania",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 631, "country": "Ukraine"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 631,
+        "country": "Ukraine"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2022"],
-      "awards_de": ["Eurovision-Sieger 2022"],
-      "awards_es": ["Ganador de Eurovision 2022"],
+      "awards": [
+        "Eurovision Winner 2022"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2022"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2022"
+      ],
       "fun_fact": "Stefania won Eurovision during Russia's invasion of Ukraine, with band members returning to fight after the contest. Originally written about frontman Oleh Psiuk's mother, the lyrics took on new meaning about the motherland. It received overwhelming public votes as solidarity with Ukraine.",
       "fun_fact_de": "Stefania gewann den Eurovision wahrend Russlands Invasion in der Ukraine, wobei Bandmitglieder nach dem Wettbewerb zuruckkehrten, um zu kampfen. Ursprunglich uber die Mutter von Frontmann Oleh Psiuk geschrieben, bekamen die Texte eine neue Bedeutung uber das Vaterland. Es erhielt uberwältigende offentliche Stimmen als Solidaritat mit der Ukraine.",
-      "fun_fact_es": "Stefania gano Eurovision durante la invasion rusa de Ucrania, con los miembros de la banda regresando a luchar despues del concurso. Originalmente escrita sobre la madre del vocalista Oleh Psiuk, la letra adquirio un nuevo significado sobre la patria. Recibio una abrumadora votacion publica como solidaridad con Ucrania."
+      "fun_fact_es": "Stefania gano Eurovision durante la invasion rusa de Ucrania, con los miembros de la banda regresando a luchar despues del concurso. Originalmente escrita sobre la madre del vocalista Oleh Psiuk, la letra adquirio un nuevo significado sobre la patria. Recibio una abrumadora votacion publica como solidaridad con Ucrania.",
+      "uri_apple_music": "applemusic://track/1614859013"
     },
     {
       "year": 2023,
       "uri": "spotify:track:1DmW5Ep6ywYwxc2HMT5BG6",
       "artist": "Loreen",
       "title": "Tattoo",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 583, "country": "Sweden"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 583,
+        "country": "Sweden"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2023"],
-      "awards_de": ["Eurovision-Sieger 2023"],
-      "awards_es": ["Ganador de Eurovision 2023"],
+      "awards": [
+        "Eurovision Winner 2023"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2023"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2023"
+      ],
       "fun_fact": "Tattoo made Loreen only the second artist ever to win Eurovision twice (after Johnny Logan). Her haunting performance 11 years after 'Euphoria' proved lightning can strike twice. Sweden tied with Ireland for most Eurovision wins with seven victories.",
       "fun_fact_de": "Tattoo machte Loreen zur erst zweiten Kunstlerin uberhaupt, die den Eurovision zweimal gewann (nach Johnny Logan). Ihre eindringliche Darbietung 11 Jahre nach 'Euphoria' bewies, dass der Blitz zweimal einschlagen kann. Schweden zog mit Irland bei den meisten Eurovision-Siegen mit sieben Siegen gleich.",
-      "fun_fact_es": "Tattoo hizo de Loreen solo la segunda artista en ganar Eurovision dos veces (despues de Johnny Logan). Su cautivadora actuacion 11 anos despues de 'Euphoria' demostro que el rayo puede caer dos veces. Suecia empato con Irlanda en la mayoria de victorias de Eurovision con siete triunfos."
+      "fun_fact_es": "Tattoo hizo de Loreen solo la segunda artista en ganar Eurovision dos veces (despues de Johnny Logan). Su cautivadora actuacion 11 anos despues de 'Euphoria' demostro que el rayo puede caer dos veces. Suecia empato con Irlanda en la mayoria de victorias de Eurovision con siete triunfos.",
+      "uri_apple_music": "applemusic://track/1672056675"
     },
     {
       "year": 2024,
       "uri": "spotify:track:1EjIXKhNHI00ZLMRpS8iz8",
       "artist": "Nemo",
       "title": "The Code",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 591, "country": "Switzerland"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 591,
+        "country": "Switzerland"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2024"],
-      "awards_de": ["Eurovision-Sieger 2024"],
-      "awards_es": ["Ganador de Eurovision 2024"],
+      "awards": [
+        "Eurovision Winner 2024"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2024"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2024"
+      ],
       "fun_fact": "The Code made history as Nemo became the first non-binary artist to win Eurovision. The theatrical performance combined opera, rap, and drum and bass. Switzerland's third victory came in a controversial contest held in Malmo, Sweden.",
       "fun_fact_de": "The Code schrieb Geschichte, als Nemo die erste nicht-binare Person wurde, die den Eurovision gewann. Die theatralische Darbietung kombinierte Oper, Rap und Drum and Bass. Die Schweiz errang ihren dritten Sieg bei einem umstrittenen Wettbewerb in Malmo, Schweden.",
-      "fun_fact_es": "The Code hizo historia cuando Nemo se convirtio en la primera persona no binaria en ganar Eurovision. La teatral actuacion combino opera, rap y drum and bass. La tercera victoria de Suiza llego en un controvertido concurso celebrado en Malmo, Suecia."
+      "fun_fact_es": "The Code hizo historia cuando Nemo se convirtio en la primera persona no binaria en ganar Eurovision. La teatral actuacion combino opera, rap y drum and bass. La tercera victoria de Suiza llego en un controvertido concurso celebrado en Malmo, Suecia.",
+      "uri_apple_music": "applemusic://track/1730730673"
     },
     {
       "year": 2025,
       "uri": "spotify:track:321yySUTzRXUbzkRTeTzDB",
       "artist": "JJ",
       "title": "Wasted Love",
-      "chart_info": {"eurovision_position": 1, "eurovision_points": 436, "country": "Austria"},
+      "chart_info": {
+        "eurovision_position": 1,
+        "eurovision_points": 436,
+        "country": "Austria"
+      },
       "certifications": [],
-      "awards": ["Eurovision Winner 2025"],
-      "awards_de": ["Eurovision-Sieger 2025"],
-      "awards_es": ["Ganador de Eurovision 2025"],
+      "awards": [
+        "Eurovision Winner 2025"
+      ],
+      "awards_de": [
+        "Eurovision-Sieger 2025"
+      ],
+      "awards_es": [
+        "Ganador de Eurovision 2025"
+      ],
       "fun_fact": "Wasted Love showcased JJ's extraordinary countertenor opera voice in a song that builds from orchestral swells to a club finish. Johannes Pietsch, who performs at the Vienna State Opera, won jury support from 8 countries giving him douze points. Austria will host Eurovision 2026.",
       "fun_fact_de": "Wasted Love prasentierte JJs aussergewohnliche Countertenor-Opernstimme in einem Lied, das von orchestralen Schwellungen zu einem Club-Finish aufbaut. Johannes Pietsch, der an der Wiener Staatsoper auftritt, gewann die Jury-Unterstutzung von 8 Landern, die ihm die Hochstwertung gaben. Osterreich wird den Eurovision 2026 ausrichten.",
-      "fun_fact_es": "Wasted Love mostro la extraordinaria voz de contratenor operistico de JJ en una cancion que crece desde crescendos orquestales hasta un final de club. Johannes Pietsch, quien actua en la Opera Estatal de Viena, gano el apoyo del jurado de 8 paises dandole la maxima puntuacion. Austria sera anfitrion de Eurovision 2026."
+      "fun_fact_es": "Wasted Love mostro la extraordinaria voz de contratenor operistico de JJ en una cancion que crece desde crescendos orquestales hasta un final de club. Johannes Pietsch, quien actua en la Opera Estatal de Viena, gano el apoyo del jurado de 8 paises dandole la maxima puntuacion. Austria sera anfitrion de Eurovision 2026.",
+      "uri_apple_music": "applemusic://track/1797320660"
     }
   ]
 }

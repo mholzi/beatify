@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
+    ERR_APPLE_MUSIC_PLAYBACK,
     ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
@@ -950,6 +951,27 @@ class GameState:
             self.phase = GamePhase.END
             return False
 
+        # Story 17.3: Check for resolved URI, skip songs without URI for selected provider
+        resolved_uri = song.get("_resolved_uri")
+        if not resolved_uri:
+            _LOGGER.warning(
+                "Skipping song (year %s) - no URI for provider",
+                song.get("year", "?"),
+            )
+            self._playlist_manager.mark_played(song.get("uri"))
+
+            # Check retry limit to prevent infinite loop when no songs have URIs
+            if _retry_count >= MAX_SONG_RETRIES:
+                _LOGGER.error(
+                    "No playable songs found after %d attempts, pausing game",
+                    MAX_SONG_RETRIES,
+                )
+                await self.pause_game("no_songs_available")
+                return False
+
+            # Try next song with incremented retry count
+            return await self.start_round(hass, _retry_count + 1)
+
         # Check if this is the last round (1 song remaining after this one)
         self.last_round = self._playlist_manager.get_remaining_count() <= 1
 
@@ -972,6 +994,14 @@ class GameState:
             if not success:
                 _LOGGER.warning("Failed to play song: %s", song["uri"])  # Log original for debug
                 self._playlist_manager.mark_played(resolved_uri)
+
+                # Story 17.3: Apple Music specific error handling
+                if resolved_uri and resolved_uri.startswith("applemusic://"):
+                    _LOGGER.error(
+                        "Apple Music playback failed. Check Music Assistant setup."
+                    )
+                    await self.pause_game(ERR_APPLE_MUSIC_PLAYBACK)
+                    return False
 
                 # Check retry limit to prevent runaway loop
                 if _retry_count >= MAX_SONG_RETRIES:
@@ -1011,7 +1041,7 @@ class GameState:
             "fun_fact": song.get("fun_fact", ""),
             "fun_fact_de": song.get("fun_fact_de", ""),
             "fun_fact_es": song.get("fun_fact_es", ""),
-            "uri": song["uri"],
+            "uri": song.get("_resolved_uri") or song.get("uri"),  # Story 17.3
             "chart_info": song.get("chart_info", {}),
             "certifications": song.get("certifications", []),
             "awards": song.get("awards", []),
