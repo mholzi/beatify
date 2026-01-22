@@ -1,6 +1,6 @@
 {
   "name": "beatify",
-  "version": "1.5.0-alpha.18",
+  "version": "1.5.0-alpha.19",
   "private": true,
   "description": "Beatify - Music trivia game for Home Assistant",
   "scripts": {
