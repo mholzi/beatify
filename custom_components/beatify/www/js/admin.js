@@ -195,22 +195,29 @@ function renderMediaPlayers(players) {
     }
 
     // AC1: Render only available players with radio buttons
-    container.innerHTML = availablePlayers.map(player => `
-        <div class="media-player-item list-item is-selectable">
+    container.innerHTML = availablePlayers.map(player => {
+        // Show Music Assistant badge for MA players (enables Apple Music)
+        const massBadge = player.is_mass
+            ? '<span class="mass-badge" title="Music Assistant - Apple Music enabled">MA</span>'
+            : '';
+        return `
+        <div class="media-player-item list-item is-selectable${player.is_mass ? ' is-mass-player' : ''}">
             <label class="radio-label">
                 <input type="radio"
                        class="media-player-radio"
                        name="media-player"
                        data-entity-id="${escapeHtml(player.entity_id)}"
-                       data-state="${escapeHtml(player.state)}">
-                <span class="player-name">${escapeHtml(player.friendly_name)}</span>
+                       data-state="${escapeHtml(player.state)}"
+                       data-is-mass="${player.is_mass ? 'true' : 'false'}">
+                <span class="player-name">${escapeHtml(player.friendly_name)}${massBadge}</span>
             </label>
             <span class="meta">
                 <span class="state-dot state-${escapeHtml(player.state)}"></span>
                 ${escapeHtml(player.state)}
             </span>
         </div>
-    `).join('');
+    `;
+    }).join('');
 
     // Attach event listeners to radio buttons
     container.querySelectorAll('.media-player-radio').forEach(radio => {

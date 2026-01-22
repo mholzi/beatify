@@ -342,15 +342,27 @@ class MediaPlayerService:
 
 
 async def async_get_media_players(hass: HomeAssistant) -> list[dict]:
-    """Get all available media player entities."""
-    media_players = [
-        {
+    """Get all available media player entities with Music Assistant detection."""
+    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+    # Get entity registry to check which platform created each entity
+    ent_reg = er.async_get(hass)
+
+    media_players = []
+    for state in hass.states.async_all("media_player"):
+        # Check if this entity is from Music Assistant integration
+        entity_entry = ent_reg.async_get(state.entity_id)
+        is_mass = (
+            entity_entry is not None
+            and entity_entry.platform == "music_assistant"
+        )
+
+        media_players.append({
             "entity_id": state.entity_id,
             "friendly_name": state.attributes.get("friendly_name", state.entity_id),
             "state": state.state,
-        }
-        for state in hass.states.async_all("media_player")
-    ]
+            "is_mass": is_mass,
+        })
 
     _LOGGER.debug("Found %d media players", len(media_players))
     return media_players
