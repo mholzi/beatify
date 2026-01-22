@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css" onerror="this.onerror=null;this.href='/beatify/static/css/styles.css'">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=1.5.0" onerror="this.onerror=null;this.href='/beatify/static/css/styles.css?v=1.5.0'">
 </head>
 <body class="theme-dark">
     <header>
@@ -216,7 +216,8 @@
 
     <script src="/beatify/static/js/vendor/qrcode.min.js"></script>
     <!-- Story 18.4: Use minified JS in production with fallback to source -->
-    <script src="/beatify/static/js/i18n.min.js" onerror="var s=document.createElement('script');s.src='/beatify/static/js/i18n.js';document.head.appendChild(s);"></script>
-    <script src="/beatify/static/js/admin.min.js" onerror="var s=document.createElement('script');s.src='/beatify/static/js/admin.js';document.head.appendChild(s);"></script>
+    <!-- Version query strings prevent browser caching issues -->
+    <script src="/beatify/static/js/i18n.min.js?v=1.5.0" onerror="var s=document.createElement('script');s.src='/beatify/static/js/i18n.js?v=1.5.0';document.head.appendChild(s);"></script>
+    <script src="/beatify/static/js/admin.min.js?v=1.5.0" onerror="var s=document.createElement('script');s.src='/beatify/static/js/admin.js?v=1.5.0';document.head.appendChild(s);"></script>
 </body>
 </html>
