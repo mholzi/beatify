@@ -14,12 +14,15 @@ from custom_components.beatify.const import (
     ERR_ADMIN_CANNOT_LEAVE,
     ERR_ADMIN_EXISTS,
     ERR_ALREADY_SUBMITTED,
+    ERR_APPLE_MUSIC_PLAYBACK,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
     ERR_INVALID_ACTION,
+    ERR_MEDIA_PLAYER_UNAVAILABLE,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
+    ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
@@ -276,10 +279,31 @@ class BeatifyWebSocketHandler:
                 if success:
                     await self.broadcast_state()
                 else:
+                    # Determine specific error based on game state
+                    error_code = ERR_GAME_NOT_STARTED
+                    error_message = "Failed to start game"
+
+                    if game_state.phase == GamePhase.PAUSED:
+                        # Game paused due to specific error
+                        pause_reason = game_state.pause_reason
+                        if pause_reason == "media_player_error":
+                            error_code = ERR_MEDIA_PLAYER_UNAVAILABLE
+                            error_message = "Media player not responding - check speaker connection"
+                        elif pause_reason == "no_songs_available":
+                            error_message = "No playable songs for selected provider"
+                        elif pause_reason == ERR_APPLE_MUSIC_PLAYBACK:
+                            error_code = ERR_APPLE_MUSIC_PLAYBACK
+                            error_message = "Apple Music playback failed - check Music Assistant setup"
+                        else:
+                            error_message = f"Game paused: {pause_reason}"
+                    elif game_state.phase == GamePhase.END:
+                        error_code = ERR_NO_SONGS_REMAINING
+                        error_message = "No songs available in playlist"
+
                     await ws.send_json({
                         "type": "error",
-                        "code": ERR_GAME_NOT_STARTED,
-                        "message": "Failed to start game - no songs available",
+                        "code": error_code,
+                        "message": error_message,
                     })
 
             elif action == "next_round":
