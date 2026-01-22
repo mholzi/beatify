@@ -26,6 +26,25 @@
     var lastQRCodeUrl = null;
 
     /**
+     * Wait for BeatifyI18n to be available (handles fallback script race condition)
+     * @param {number} timeout - Max wait time in ms
+     * @param {number} interval - Check interval in ms
+     * @returns {Promise<boolean>} - true if available, false if timeout
+     */
+    async function waitForI18n(timeout, interval) {
+        timeout = timeout || 3000;
+        interval = interval || 50;
+        var start = Date.now();
+        while (typeof BeatifyI18n === 'undefined') {
+            if (Date.now() - start > timeout) {
+                return false;
+            }
+            await new Promise(function(resolve) { setTimeout(resolve, interval); });
+        }
+        return true;
+    }
+
+    /**
      * Get localized content field from song with English fallback (Story 16.3)
      * @param {Object} song - Song object
      * @param {string} field - Base field name ('fun_fact' or 'awards')
@@ -1069,8 +1088,14 @@
     async function init() {
         console.log('[Dashboard] Initializing...');
         // Initialize i18n (Story 12.5)
-        await BeatifyI18n.init();
-        BeatifyI18n.initPageTranslations();
+        // Guard clause: wait for BeatifyI18n in case fallback script is loading
+        var i18nAvailable = await waitForI18n();
+        if (!i18nAvailable) {
+            console.error('[Dashboard] BeatifyI18n module failed to load - UI will use fallback text');
+        } else {
+            await BeatifyI18n.init();
+            BeatifyI18n.initPageTranslations();
+        }
         connectWebSocket();
     }
 

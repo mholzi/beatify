@@ -35,11 +35,34 @@ let lobbyPollingInterval = null;
 // Setup sections to hide/show as a group (Story 9.10: game-controls removed, button is standalone)
 const setupSections = ['media-players', 'playlists', 'provider-section', 'language-section', 'timer-section', 'difficulty-section'];
 
+/**
+ * Wait for BeatifyI18n to be available (handles fallback script race condition)
+ * @param {number} timeout - Max wait time in ms
+ * @param {number} interval - Check interval in ms
+ * @returns {Promise<boolean>} - true if available, false if timeout
+ */
+async function waitForI18n(timeout = 3000, interval = 50) {
+    const start = Date.now();
+    while (typeof BeatifyI18n === 'undefined') {
+        if (Date.now() - start > timeout) {
+            return false;
+        }
+        await new Promise(resolve => setTimeout(resolve, interval));
+    }
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize i18n based on browser language (Story 12.4)
-    await BeatifyI18n.init();
-    BeatifyI18n.initPageTranslations();
-    selectedLanguage = BeatifyI18n.getLanguage();
+    // Guard clause: wait for BeatifyI18n in case fallback script is loading
+    const i18nAvailable = await waitForI18n();
+    if (!i18nAvailable) {
+        console.error('[Beatify] BeatifyI18n module failed to load - UI will use fallback text');
+    } else {
+        await BeatifyI18n.init();
+        BeatifyI18n.initPageTranslations();
+        selectedLanguage = BeatifyI18n.getLanguage();
+    }
     updateLanguageButtons(selectedLanguage);
 
     // Wire event listeners
