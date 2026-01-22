@@ -45,6 +45,31 @@
     }
 
     /**
+     * Fallback translation function when BeatifyI18n is unavailable
+     * Returns the last part of the translation key as readable text
+     * @param {string} key - Translation key (e.g., 'lobby.playerJoined')
+     * @param {Object} params - Optional interpolation params
+     * @returns {string} - Translated text or fallback
+     */
+    function t(key, params) {
+        // Use BeatifyI18n.t if available
+        if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
+            return BeatifyI18n.t(key, params);
+        }
+        // Fallback: extract last part of key and make it readable
+        var fallback = key.split('.').pop()
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function(str) { return str.toUpperCase(); })
+            .trim();
+        if (params && typeof params === 'object') {
+            Object.keys(params).forEach(function(param) {
+                fallback = fallback.replace(new RegExp('\\{' + param + '\\}', 'g'), params[param]);
+            });
+        }
+        return fallback;
+    }
+
+    /**
      * Get localized content field from song with English fallback (Story 16.3)
      * @param {Object} song - Song object
      * @param {string} field - Base field name ('fun_fact' or 'awards')
