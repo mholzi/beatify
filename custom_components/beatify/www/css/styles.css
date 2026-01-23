@@ -2151,14 +2151,24 @@ body.theme-dark .qr-modal-label {
     color: var(--color-text-muted);
 }
 
-/* Leave Game Container (Story 11.5) */
+/* Leave Game Container (Story 11.5, Story 18.6) */
 .leave-game-container {
     text-align: center;
     padding: var(--space-md);
+    /* Story 18.6: Sticky positioning for mobile */
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, var(--color-bg-card), transparent);
+    z-index: var(--z-controls, 10);
 }
 
 .leave-game-container.hidden {
     display: none;
+}
+
+/* Story 18.6: Remove gradient background in dark theme (matching admin-controls) */
+body.theme-dark .leave-game-container {
+    background: transparent;
 }
 
 .btn-leave {
