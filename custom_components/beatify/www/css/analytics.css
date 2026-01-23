@@ -794,12 +794,18 @@
     color: var(--color-text-neon-muted);
 }
 
-.modal-content {
+.playlist-modal .modal-content {
     flex: 1;
     overflow-y: auto;
     overflow-x: auto;
     padding: var(--space-md);
     background: var(--color-surface-dark);
+    /* Reset conflicting styles from styles.css */
+    position: static;
+    max-width: none;
+    width: 100%;
+    border-radius: 0;
+    animation: none;
 }
 
 /* Song Table */
