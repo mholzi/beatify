@@ -1146,17 +1146,16 @@ function renderLobbyPlayers(players) {
     players = players || [];
     var waitingText = t('lobby.waitingForPlayers', 'Waiting for players to join...');
 
-    // Update player count
+    // Update player count - waiting text shown in list area only
     if (countEl) {
         var count = players.length;
-        if (count === 0) {
-            countEl.textContent = waitingText;
-        } else {
-            countEl.textContent = count + ' player' + (count !== 1 ? 's' : '');
-        }
+        var playerWord = count === 1
+            ? t('lobby.player', 'player')
+            : t('lobby.players', 'players');
+        countEl.textContent = count + ' ' + playerWord;
     }
 
-    // Handle empty state
+    // Handle empty state - show waiting text only here
     if (players.length === 0) {
         listEl.innerHTML = '<p class="empty-state">' + escapeHtml(waitingText) + '</p>';
         previousLobbyPlayers = [];
