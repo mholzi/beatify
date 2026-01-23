@@ -776,14 +776,6 @@ body.theme-dark .btn-secondary span {
     background: var(--color-accent-brand-hover);
 }
 
-.provider-btn--disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    border-color: var(--color-border-light);
-    background: var(--color-bg-card);
-    color: var(--color-text-muted);
-}
-
 .provider-icon {
     font-size: 1.5em;
 }
@@ -791,17 +783,6 @@ body.theme-dark .btn-secondary span {
 .provider-label {
     font-weight: 600;
     font-size: 0.875rem;
-}
-
-.provider-help {
-    text-align: center;
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
-    margin-top: var(--space-sm);
-}
-
-.provider-help a {
-    color: var(--color-accent-brand);
 }
 
 /* Playlist coverage warning (Story 17.2) */

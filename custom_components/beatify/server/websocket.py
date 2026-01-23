@@ -14,7 +14,6 @@ from custom_components.beatify.const import (
     ERR_ADMIN_CANNOT_LEAVE,
     ERR_ADMIN_EXISTS,
     ERR_ALREADY_SUBMITTED,
-    ERR_APPLE_MUSIC_PLAYBACK,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
@@ -295,9 +294,6 @@ class BeatifyWebSocketHandler:
                                 error_message = "Media player not responding - check speaker connection"
                         elif pause_reason == "no_songs_available":
                             error_message = "No playable songs for selected provider"
-                        elif pause_reason == ERR_APPLE_MUSIC_PLAYBACK:
-                            error_code = ERR_APPLE_MUSIC_PLAYBACK
-                            error_message = "Apple Music playback failed - check Music Assistant setup"
                         else:
                             error_message = f"Game paused: {pause_reason}"
                     elif game_state.phase == GamePhase.END:

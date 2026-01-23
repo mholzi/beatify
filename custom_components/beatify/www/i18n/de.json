@@ -208,9 +208,6 @@
     "difficultyHardDesc": "Anspruchsvolle Wertung: Nur knappe Tipps zählen. Volltreffer = 10 Pkt, bis 2 Jahre = 3 Pkt, sonst keine Punkte.",
     "selectProvider": "Musikdienst",
     "providerSpotify": "Spotify",
-    "providerAppleMusic": "Apple Music",
-    "providerRequiresMA": "Erfordert Music Assistant",
-    "appleSetupLink": "Apple Music einrichten \u2192",
     "viewAnalytics": "Statistik"
   },
   "analyticsDashboard": {
@@ -356,7 +353,6 @@
     "SESSION_NOT_FOUND": "Sitzung abgelaufen",
     "SESSION_TAKEOVER": "Sitzung von anderem Tab übernommen",
     "ADMIN_CANNOT_LEAVE": "Gastgeber kann das Spiel nicht verlassen",
-    "APPLE_MUSIC_PLAYBACK": "Apple Music Wiedergabe fehlgeschlagen. Prüfe Music Assistant Einrichtung.",
     "CONNECTION_LOST": "Verbindung verloren",
     "RECONNECTING": "Verbinde erneut...",
     "UNKNOWN": "Ein Fehler ist aufgetreten",

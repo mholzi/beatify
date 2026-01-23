@@ -208,9 +208,6 @@
     "difficultyHardDesc": "Challenging scoring: Only close guesses count. Exact match = 10 pts, within 2 years = 3 pts, otherwise no points.",
     "selectProvider": "Music Provider",
     "providerSpotify": "Spotify",
-    "providerAppleMusic": "Apple Music",
-    "providerRequiresMA": "Requires Music Assistant",
-    "appleSetupLink": "How to set up Apple Music \u2192",
     "viewAnalytics": "Analytics"
   },
   "analyticsDashboard": {
@@ -356,7 +353,6 @@
     "SESSION_NOT_FOUND": "Session expired",
     "SESSION_TAKEOVER": "Session taken over by another tab",
     "ADMIN_CANNOT_LEAVE": "Host cannot leave the game",
-    "APPLE_MUSIC_PLAYBACK": "Apple Music playback failed. Check Music Assistant setup.",
     "CONNECTION_LOST": "Connection Lost",
     "RECONNECTING": "Reconnecting...",
     "UNKNOWN": "An error occurred",

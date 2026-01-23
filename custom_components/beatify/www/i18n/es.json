@@ -208,9 +208,6 @@
     "difficultyHardDesc": "Puntuacion desafiante: Solo cuentan las respuestas cercanas. Exacto = 10 pts, dentro de 2 anos = 3 pts, sino no hay puntos.",
     "selectProvider": "Proveedor de musica",
     "providerSpotify": "Spotify",
-    "providerAppleMusic": "Apple Music",
-    "providerRequiresMA": "Requiere Music Assistant",
-    "appleSetupLink": "Como configurar Apple Music \u2192",
     "viewAnalytics": "Estadisticas"
   },
   "analyticsDashboard": {
@@ -356,7 +353,6 @@
     "SESSION_NOT_FOUND": "Sesion expirada",
     "SESSION_TAKEOVER": "Sesion tomada por otra pestana",
     "ADMIN_CANNOT_LEAVE": "El anfitrion no puede abandonar el juego",
-    "APPLE_MUSIC_PLAYBACK": "Error de reproduccion de Apple Music. Verifica la configuracion de Music Assistant.",
     "CONNECTION_LOST": "Conexion perdida",
     "RECONNECTING": "Reconectando...",
     "UNKNOWN": "Ocurrio un error",

@@ -14,7 +14,6 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
-    ERR_APPLE_MUSIC_PLAYBACK,
     ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
@@ -1020,14 +1019,6 @@ class GameState:
             if not success:
                 _LOGGER.warning("Failed to play song: %s", song["uri"])  # Log original for debug
                 self._playlist_manager.mark_played(resolved_uri)
-
-                # Story 17.3: Apple Music specific error handling
-                if resolved_uri and resolved_uri.startswith("applemusic://"):
-                    _LOGGER.error(
-                        "Apple Music playback failed. Check Music Assistant setup."
-                    )
-                    await self.pause_game(ERR_APPLE_MUSIC_PLAYBACK)
-                    return False
 
                 # Check retry limit to prevent runaway loop
                 if _retry_count >= MAX_SONG_RETRIES:

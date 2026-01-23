@@ -119,7 +119,6 @@ async function loadStatus() {
         // Set Music Assistant availability from backend (not based on entity names)
         hasMusicAssistant = status.has_music_assistant === true;
         renderMediaPlayers(status.media_players);
-        updateProviderAvailability();  // Story 17.2: Update Apple Music availability
         renderPlaylists(status.playlists, status.playlist_dir);
         updateStartButtonState();
 
@@ -285,10 +284,8 @@ function renderPlaylists(playlists, playlistDir) {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
-            // Get provider-specific count (Story 17.2)
-            const providerCount = selectedProvider === 'apple_music'
-                ? (playlist.apple_music_count || 0)
-                : (playlist.spotify_count || songCount);
+            // Provider count - Spotify only (Story 17.6)
+            const providerCount = playlist.spotify_count || songCount;
 
             // Build coverage indicator
             let coverageHtml = '';
@@ -1039,81 +1036,16 @@ function updateProviderButtons(provider) {
 
 /**
  * Set music provider and update UI
- * @param {string} provider - Provider identifier ('spotify' or 'apple_music')
+ * @param {string} provider - Provider identifier (only 'spotify' supported, Story 17.6)
  */
 function setProvider(provider) {
-    // Validate provider
-    var validProviders = ['spotify', 'apple_music'];
-    if (validProviders.indexOf(provider) === -1) {
-        provider = 'spotify';
-    }
-
-    selectedProvider = provider;
-    updateProviderButtons(provider);
-    updateProviderHelpLink();
+    // Only Spotify is supported (Story 17.6: Apple Music removed)
+    selectedProvider = 'spotify';
+    updateProviderButtons('spotify');
 
     // Re-render playlists to show coverage for selected provider
     if (playlistData.length > 0) {
         renderPlaylists(playlistData, '');
-    }
-}
-
-/**
- * Update Apple Music button availability based on Music Assistant detection
- * Disables Apple Music option if no Music Assistant media players are found
- */
-function updateProviderAvailability() {
-    var appleMusicBtn = document.querySelector('.provider-btn[data-provider="apple_music"]');
-
-    if (!appleMusicBtn) return;
-
-    if (hasMusicAssistant) {
-        // Enable Apple Music
-        appleMusicBtn.classList.remove('provider-btn--disabled');
-        appleMusicBtn.removeAttribute('disabled');
-        appleMusicBtn.removeAttribute('aria-disabled');
-    } else {
-        // Disable Apple Music - no Music Assistant detected
-        appleMusicBtn.classList.add('provider-btn--disabled');
-        appleMusicBtn.setAttribute('disabled', 'disabled');
-        appleMusicBtn.setAttribute('aria-disabled', 'true');
-
-        // If Apple Music was selected, switch back to Spotify
-        if (selectedProvider === 'apple_music') {
-            setProvider('spotify');
-        }
-    }
-
-    updateProviderHelpLink();
-}
-
-/**
- * Update provider help link based on selected provider and Music Assistant availability
- * Shows setup documentation link when Apple Music is selected (Story 17.4)
- */
-function updateProviderHelpLink() {
-    var helpLink = document.getElementById('provider-help-link');
-    if (!helpLink) return;
-
-    // Apple Music setup documentation URL
-    var appleSetupUrl = 'https://github.com/markusholzhaeuser/beatify/blob/main/docs/apple-music-setup.md';
-
-    if (selectedProvider === 'apple_music') {
-        if (hasMusicAssistant) {
-            // Show setup guide link for Apple Music users
-            var linkText = t('admin.appleSetupLink', 'How to set up Apple Music \u2192');
-            helpLink.innerHTML = '<a href="' + escapeHtml(appleSetupUrl) + '" target="_blank" rel="noopener">' + escapeHtml(linkText) + '</a>';
-            helpLink.classList.remove('hidden');
-        } else {
-            // Show "Requires Music Assistant" message with setup guide
-            var requiresText = t('admin.providerRequiresMA', 'Requires Music Assistant');
-            helpLink.innerHTML = '<span>' + escapeHtml(requiresText) + '</span> - ' +
-                '<a href="https://music-assistant.io/integration/installation/" target="_blank" rel="noopener">Setup Guide</a>';
-            helpLink.classList.remove('hidden');
-        }
-    } else {
-        // Hide for Spotify
-        helpLink.classList.add('hidden');
     }
 }
 

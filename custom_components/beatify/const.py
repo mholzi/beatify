@@ -65,7 +65,6 @@ ERR_ADMIN_CANNOT_LEAVE = "ADMIN_CANNOT_LEAVE"  # Story 11.5
 ERR_NO_STEAL_AVAILABLE = "NO_STEAL_AVAILABLE"  # Story 15.3 - player has no steal
 ERR_TARGET_NOT_SUBMITTED = "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
 ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
-ERR_APPLE_MUSIC_PLAYBACK = "APPLE_MUSIC_PLAYBACK"  # Story 17.3 - Apple Music playback failure
 
 # Song difficulty rating constants (Story 15.1)
 MIN_PLAYS_FOR_DIFFICULTY = 3  # Minimum plays before showing difficulty rating
@@ -107,9 +106,9 @@ MEDIA_CONTENT_TYPE_DEFAULT = "music"  # Fallback for unknown providers
 
 # Multi-provider URI patterns (Story 17.1)
 URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"
-URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"
+URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"  # Preserved for playlist validation
 
 # Provider identifiers (Story 17.1)
 PROVIDER_SPOTIFY = "spotify"
-PROVIDER_APPLE_MUSIC = "apple_music"
+PROVIDER_APPLE_MUSIC = "apple_music"  # Preserved for future use
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY
