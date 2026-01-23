@@ -4751,9 +4751,12 @@
         }
         ws = null;
 
-        // If admin ended the game, redirect to admin setup page
+        // If admin ended the game, delay redirect so they can see final results
         if (wasAdmin) {
-            window.location.href = '/beatify/admin';
+            // Show end view for 5 seconds before redirecting to admin setup
+            setTimeout(function() {
+                window.location.href = '/beatify/admin';
+            }, 5000);
             return;
         }
 

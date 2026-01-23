@@ -444,9 +444,9 @@ class BeatifyWebSocketHandler:
                 # Send game_ended notification (Story 7-5)
                 await self.broadcast({"type": "game_ended"})
 
-                # Clear all session mappings AFTER broadcast (Story 11.6)
-                # Players have already received END state, now invalidate sessions
-                game_state.clear_all_sessions()
+                # Fully reset game state AFTER broadcast (Story 7-5)
+                # Players have already received END state, now clear everything
+                game_state.end_game()
 
                 # Cleanup pending tasks (Story 7-5)
                 await self.cleanup_game_tasks()
