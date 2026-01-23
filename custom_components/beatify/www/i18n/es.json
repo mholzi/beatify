@@ -274,6 +274,7 @@
     "landscapeHint": "Este panel funciona mejor en modo horizontal",
     "spectatorHint": "Vista de espectador",
     "round": "Ronda {current}/{total}",
+    "rounds": "rondas",
     "players": "Jugadores",
     "topGuesses": "Mejores respuestas de esta ronda",
     "submissions": "Respuestas",

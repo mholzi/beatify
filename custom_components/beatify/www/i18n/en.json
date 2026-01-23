@@ -274,6 +274,7 @@
     "landscapeHint": "This dashboard works best in landscape mode",
     "spectatorHint": "Spectator View",
     "round": "Round {current}/{total}",
+    "rounds": "rounds",
     "players": "Players",
     "topGuesses": "Top Guesses This Round",
     "submissions": "Submissions",

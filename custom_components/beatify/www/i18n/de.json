@@ -274,6 +274,7 @@
     "landscapeHint": "Dieses Dashboard funktioniert am besten im Querformat",
     "spectatorHint": "Zuschaueransicht",
     "round": "Runde {current}/{total}",
+    "rounds": "Runden",
     "players": "Spieler",
     "topGuesses": "Beste Tipps dieser Runde",
     "submissions": "Abgaben",

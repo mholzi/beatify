@@ -258,6 +258,9 @@
             renderQRCode(data.join_url);
         }
 
+        // Render game settings indicator (top-right corner)
+        renderGameSettings(data);
+
         // Update player count
         var countEl = document.getElementById('dashboard-player-count');
         if (countEl) {
@@ -267,6 +270,23 @@
 
         // Render player list with slide-in animation
         renderPlayerList(players);
+    }
+
+    /**
+     * Render game settings indicator (rounds, difficulty)
+     * @param {Object} data - State data with total_rounds and difficulty
+     */
+    function renderGameSettings(data) {
+        var el = document.getElementById('dashboard-game-settings');
+        if (!el) return;
+
+        var rounds = data.total_rounds || 10;
+        var difficulty = data.difficulty || 'normal';
+
+        // Translate difficulty label
+        var difficultyLabel = t('admin.difficulty' + difficulty.charAt(0).toUpperCase() + difficulty.slice(1), difficulty);
+
+        el.textContent = rounds + ' ' + t('dashboard.rounds', 'rounds') + ' • ' + difficultyLabel;
     }
 
     /**

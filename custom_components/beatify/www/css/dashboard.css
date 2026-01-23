@@ -149,10 +149,31 @@
     text-align: center;
     padding: var(--space-md) 0;
     flex-shrink: 0;
+    position: relative;
 }
 
 .dashboard-header .wordmark {
     font-size: 48px;
+}
+
+/* Game settings indicator (top-right corner) */
+.dashboard-game-settings {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text-neon-muted);
+    background: var(--color-dark-surface);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    opacity: 0.9;
+}
+
+@media (min-width: 1400px) {
+    .dashboard-game-settings {
+        font-size: var(--font-size-lg);
+        padding: var(--space-sm) var(--space-lg);
+    }
 }
 
 /* ==========================================

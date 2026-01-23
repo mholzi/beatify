@@ -784,7 +784,7 @@
         });
 
         var t = window.t || function(key, fallback) { return fallback; };
-        el.textContent = t('analytics.lastUpdated', 'Updated') + ': ' + timeStr;
+        el.textContent = t('analyticsDashboard.lastUpdated', 'Updated') + ': ' + timeStr;
     }
 
     /**
