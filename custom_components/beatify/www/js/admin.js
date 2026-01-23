@@ -198,7 +198,7 @@ function renderMediaPlayers(players) {
     container.innerHTML = availablePlayers.map(player => {
         // Show Music Assistant badge for MA players (enables Apple Music)
         const massBadge = player.is_mass
-            ? '<span class="mass-badge" title="Music Assistant - Apple Music enabled">MA</span>'
+            ? '<span class="mass-badge" title="Music Assistant - Apple Music enabled">Music Assistant</span>'
             : '';
         return `
         <div class="media-player-item list-item is-selectable${player.is_mass ? ' is-mass-player' : ''}">
