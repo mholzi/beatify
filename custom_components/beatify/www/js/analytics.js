@@ -458,9 +458,16 @@
             var avgAccuracy = ((p.avg_accuracy || 0) * 100).toFixed(0);
             var accuracyClass = getAccuracyClass(avgAccuracy);
 
+            // Strip file path to get clean playlist name
+            var displayName = p.playlist_name;
+            if (displayName && displayName.includes('/')) {
+                displayName = displayName.split('/').pop();
+            }
+            displayName = displayName.replace(/\.json$/i, '');
+
             return '<div class="playlist-song-card" data-playlist-id="' + escapeHtml(p.playlist_id) + '">' +
                 '<div class="playlist-song-header">' +
-                    '<h3 class="playlist-song-name">' + escapeHtml(p.playlist_name) + '</h3>' +
+                    '<h3 class="playlist-song-name">' + escapeHtml(displayName) + '</h3>' +
                     '<div class="playlist-song-summary">' +
                         '<span class="summary-stat">' +
                             '<span class="summary-value">' + p.unique_songs_played + '</span>' +
@@ -473,7 +480,7 @@
                     '</div>' +
                 '</div>' +
                 '<button type="button" class="view-details-btn" data-playlist-id="' + escapeHtml(p.playlist_id) + '" ' +
-                    'aria-label="View details for ' + escapeHtml(p.playlist_name) + '">' +
+                    'aria-label="View details for ' + escapeHtml(displayName) + '">' +
                     '<span data-i18n="analyticsDashboard.viewDetails">View Details</span>' +
                 '</button>' +
             '</div>';
