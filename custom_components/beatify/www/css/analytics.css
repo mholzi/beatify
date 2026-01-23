@@ -812,12 +812,29 @@
     border-collapse: collapse;
     font-size: 0.875rem;
     background: transparent;
-    table-layout: auto;
+    table-layout: fixed;
 }
 
 /* Ensure table fills modal width */
 .modal-content .song-table {
     min-width: 100%;
+}
+
+/* Column widths for modal table */
+.song-table th:nth-child(1),
+.song-table td:nth-child(1) {
+    width: 45%;
+}
+
+.song-table th:nth-child(2),
+.song-table td:nth-child(2),
+.song-table th:nth-child(3),
+.song-table td:nth-child(3),
+.song-table th:nth-child(4),
+.song-table td:nth-child(4),
+.song-table th:nth-child(5),
+.song-table td:nth-child(5) {
+    width: 13.75%;
 }
 
 .song-table thead,
@@ -898,16 +915,23 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    overflow: hidden;
 }
 
 .song-title {
     font-weight: 500;
     color: var(--text-primary, #ffffff);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .song-artist {
     font-size: 0.8em;
     color: var(--text-secondary, #888);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .empty-cell {
