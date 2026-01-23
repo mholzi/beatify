@@ -189,6 +189,19 @@ class GameState:
         # Stats service reference (Story 14.4)
         self._stats_service: StatsService | None = None
 
+        # Story 19.11: Streak achievement tracking for analytics
+        self.streak_achievements: dict[str, int] = {
+            "streak_3": 0,  # Count of 3+ streaks
+            "streak_5": 0,  # Count of 5+ streaks
+            "streak_7": 0,  # Count of 7+ streaks
+        }
+
+        # Story 19.12: Bet outcome tracking for analytics
+        self.bet_tracking: dict[str, int] = {
+            "total_bets": 0,  # Total bets placed in game
+            "bets_won": 0,  # Bets that won
+        }
+
     def create_game(
         self,
         playlists: list[str],
@@ -271,6 +284,12 @@ class GameState:
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
+
+        # Story 19.11: Reset streak tracking for new game
+        self.streak_achievements = {"streak_3": 0, "streak_5": 0, "streak_7": 0}
+
+        # Story 19.12: Reset bet tracking for new game
+        self.bet_tracking = {"total_bets": 0, "bets_won": 0}
 
         # Reset timer task for new game
         self.cancel_timer()
@@ -436,6 +455,13 @@ class GameState:
             "winner_score": winner_score,
             "total_points": total_points,
             "avg_score_per_round": round(avg_score_per_round, 2),
+            # Story 19.11: Include streak achievements
+            "streak_3_count": self.streak_achievements.get("streak_3", 0),
+            "streak_5_count": self.streak_achievements.get("streak_5", 0),
+            "streak_7_count": self.streak_achievements.get("streak_7", 0),
+            # Story 19.12: Include bet tracking
+            "total_bets": self.bet_tracking.get("total_bets", 0),
+            "bets_won": self.bet_tracking.get("bets_won", 0),
         }
 
     def end_game(self) -> None:
@@ -485,6 +511,12 @@ class GameState:
 
         # Reset provider (Story 17.2)
         self.provider = PROVIDER_DEFAULT
+
+        # Story 19.11: Reset streak tracking
+        self.streak_achievements = {"streak_3": 0, "streak_5": 0, "streak_7": 0}
+
+        # Story 19.12: Reset bet tracking
+        self.bet_tracking = {"total_bets": 0, "bets_won": 0}
 
     async def pause_game(self, reason: str) -> bool:
         """
@@ -1190,6 +1222,16 @@ class GameState:
                 if speed_score > 0:
                     player.previous_streak = 0  # Not relevant when scoring
                     player.streak += 1
+
+                    # Story 19.11: Record streak achievements at milestones
+                    # Only count each milestone once (when first reached at exact value)
+                    if player.streak == 3:
+                        self.streak_achievements["streak_3"] += 1
+                    elif player.streak == 5:
+                        self.streak_achievements["streak_5"] += 1
+                    elif player.streak == 7:
+                        self.streak_achievements["streak_7"] += 1
+
                     # Check for streak milestone bonus (awarded at exact milestones)
                     player.streak_bonus = calculate_streak_bonus(player.streak)
                     # Check for steal unlock at 3-streak milestone (Story 15.3)
@@ -1223,6 +1265,10 @@ class GameState:
                 # Track bets placed (AC3: Risk Taker)
                 if player.bet:
                     player.bets_placed += 1
+                    # Story 19.12: Track game-level bet stats for analytics
+                    self.bet_tracking["total_bets"] += 1
+                    if player.bet_outcome == "won":
+                        self.bet_tracking["bets_won"] += 1
 
                 # Track close calls - +/-1 year but not exact (AC3: Close Calls)
                 if player.years_off == 1:

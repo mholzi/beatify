@@ -20,7 +20,6 @@
         </a>
         <h1 class="wordmark">
             <span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span>
-            <span class="analytics-subtitle" data-i18n="analyticsDashboard.subtitle">Analytics</span>
         </h1>
     </header>
 
@@ -64,11 +63,107 @@
                 <div class="stat-trend"></div>
             </div>
 
-            <div class="stat-card" id="stat-error-rate">
-                <div class="stat-icon" aria-hidden="true">⚡</div>
+            <!-- Story 19.8: Peak Players -->
+            <div class="stat-card" id="stat-peak-players">
+                <div class="stat-icon" aria-hidden="true">🎉</div>
                 <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.errorRate">Error Rate</div>
+                <div class="stat-label" data-i18n="analyticsDashboard.peakPlayers">Peak Players</div>
+            </div>
+
+            <!-- Story 19.9: Avg Rounds Per Game -->
+            <div class="stat-card" id="stat-avg-rounds">
+                <div class="stat-icon" aria-hidden="true">🎲</div>
+                <div class="stat-value">--</div>
+                <div class="stat-label" data-i18n="analyticsDashboard.avgRounds">Avg Rounds</div>
                 <div class="stat-trend"></div>
+            </div>
+        </section>
+
+        <!-- Story 19.11: Streak Achievements Section -->
+        <section class="streak-analytics" aria-labelledby="streak-stats-heading">
+            <h2 class="section-header" id="streak-stats-heading">
+                <span class="section-icon" aria-hidden="true">🔥</span>
+                <span data-i18n="analyticsDashboard.streakAchievements">Streak Achievements</span>
+            </h2>
+
+            <div class="streak-cards" id="streak-cards">
+                <div class="streak-card" id="streak-3-card">
+                    <div class="streak-icon" aria-hidden="true">🔥</div>
+                    <div class="streak-value" id="streak-3-value">--</div>
+                    <div class="streak-label">
+                        <span data-i18n="analyticsDashboard.streak3Plus">3+ Streaks</span>
+                    </div>
+                    <div class="streak-description" data-i18n="analyticsDashboard.streak3Desc">Hot start!</div>
+                </div>
+
+                <div class="streak-card" id="streak-5-card">
+                    <div class="streak-icon" aria-hidden="true">🔥🔥</div>
+                    <div class="streak-value" id="streak-5-value">--</div>
+                    <div class="streak-label">
+                        <span data-i18n="analyticsDashboard.streak5Plus">5+ Streaks</span>
+                    </div>
+                    <div class="streak-description" data-i18n="analyticsDashboard.streak5Desc">On fire!</div>
+                </div>
+
+                <div class="streak-card streak-card--legendary" id="streak-7-card">
+                    <div class="streak-icon" aria-hidden="true">🔥🔥🔥</div>
+                    <div class="streak-value" id="streak-7-value">--</div>
+                    <div class="streak-label">
+                        <span data-i18n="analyticsDashboard.streak7Plus">7+ Streaks</span>
+                    </div>
+                    <div class="streak-description" data-i18n="analyticsDashboard.streak7Desc">Legendary!</div>
+                </div>
+            </div>
+
+            <!-- Empty State (AC4) -->
+            <div class="empty-state hidden" id="streak-empty">
+                <div class="empty-icon" aria-hidden="true">🔥</div>
+                <p data-i18n="analyticsDashboard.noStreakData">No streak data yet</p>
+                <p class="empty-hint" data-i18n="analyticsDashboard.streakHint">Players earn streaks by guessing correctly multiple times in a row</p>
+            </div>
+        </section>
+
+        <!-- Story 19.12: Bet Win/Loss Tracking Section -->
+        <section class="betting-analytics" aria-labelledby="betting-stats-heading">
+            <h2 class="section-header" id="betting-stats-heading">
+                <span class="section-icon" aria-hidden="true">🎲</span>
+                <span data-i18n="analyticsDashboard.bettingStats">Betting Statistics</span>
+            </h2>
+
+            <div class="betting-cards" id="betting-cards">
+                <div class="betting-card" id="betting-total-card">
+                    <div class="betting-icon" aria-hidden="true">🎯</div>
+                    <div class="betting-value" id="betting-total-value">--</div>
+                    <div class="betting-label">
+                        <span data-i18n="analyticsDashboard.totalBets">Total Bets</span>
+                    </div>
+                    <div class="betting-description" data-i18n="analyticsDashboard.totalBetsDesc">Bets placed</div>
+                </div>
+
+                <div class="betting-card" id="betting-won-card">
+                    <div class="betting-icon" aria-hidden="true">🏆</div>
+                    <div class="betting-value" id="betting-won-value">--</div>
+                    <div class="betting-label">
+                        <span data-i18n="analyticsDashboard.betsWon">Bets Won</span>
+                    </div>
+                    <div class="betting-description" data-i18n="analyticsDashboard.betsWonDesc">Double points!</div>
+                </div>
+
+                <div class="betting-card betting-card--highlight" id="betting-rate-card">
+                    <div class="betting-icon" aria-hidden="true">📊</div>
+                    <div class="betting-value" id="betting-rate-value">--</div>
+                    <div class="betting-label">
+                        <span data-i18n="analyticsDashboard.winRate">Win Rate</span>
+                    </div>
+                    <div class="betting-description" data-i18n="analyticsDashboard.winRateDesc">Success percentage</div>
+                </div>
+            </div>
+
+            <!-- Empty State (AC4) -->
+            <div class="empty-state hidden" id="betting-empty">
+                <div class="empty-icon" aria-hidden="true">🎲</div>
+                <p data-i18n="analyticsDashboard.noBettingData">No betting data yet</p>
+                <p class="empty-hint" data-i18n="analyticsDashboard.bettingHint">Players can bet to double their points on confident guesses</p>
             </div>
         </section>
 
@@ -172,7 +267,7 @@
                 <table class="song-table" id="modal-song-table">
                     <thead>
                         <tr>
-                            <th scope="col" class="sortable" data-sort="title" data-i18n="analyticsDashboard.colSong">Song <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="title" data-i18n="analyticsDashboard.colTitle">Song <span class="sort-arrow"></span></th>
                             <th scope="col" class="sortable" data-sort="year" data-i18n="analyticsDashboard.colYear">Year <span class="sort-arrow"></span></th>
                             <th scope="col" class="sortable" data-sort="play_count" data-i18n="analyticsDashboard.colPlays">Plays <span class="sort-arrow"></span></th>
                             <th scope="col" class="sortable" data-sort="accuracy" data-i18n="analyticsDashboard.colAccuracy">Accuracy <span class="sort-arrow"></span></th>
@@ -213,45 +308,6 @@
             </table>
         </section>
 
-        <!-- System Health / Error Panel (Story 19.6) -->
-        <section class="error-analytics">
-            <h2 class="section-header">
-                <span class="section-icon">🔧</span>
-                <span data-i18n="analyticsDashboard.systemHealth">System Health</span>
-            </h2>
-            <div class="error-panel" id="error-panel">
-                <div class="error-summary">
-                    <div class="error-rate-display">
-                        <span class="error-rate-value" id="error-rate-value">0%</span>
-                        <span class="error-rate-label" data-i18n="analyticsDashboard.errorRateLabel">Error Rate</span>
-                    </div>
-                    <div class="health-badge healthy" id="health-badge">
-                        <span class="badge-icon">✓</span>
-                        <span class="badge-text" data-i18n="analyticsDashboard.healthy">Healthy</span>
-                    </div>
-                </div>
-                <button type="button" class="expand-btn hidden" id="error-expand-btn">
-                    <span data-i18n="analyticsDashboard.viewDetails">View Details</span>
-                    <span class="expand-icon">▼</span>
-                </button>
-                <div class="error-list-container hidden" id="error-list-container">
-                    <ul class="error-list" id="error-list"></ul>
-                </div>
-                <div class="no-errors hidden" id="no-errors-msg">
-                    <span class="success-icon">✓</span>
-                    <span data-i18n="analyticsDashboard.noErrors">No errors recorded</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Refresh Button -->
-        <div class="refresh-section">
-            <button type="button" id="refresh-btn" class="btn btn-secondary">
-                <span class="refresh-icon" aria-hidden="true">🔄</span>
-                <span data-i18n="analyticsDashboard.refresh">Refresh</span>
-            </button>
-            <span id="last-updated" class="last-updated"></span>
-        </div>
     </main>
 
     <!-- Translation Script -->

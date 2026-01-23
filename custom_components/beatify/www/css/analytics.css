@@ -36,14 +36,6 @@
     font-size: 1.25rem;
 }
 
-.analytics-subtitle {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--text-secondary, #a0a0a0);
-    margin-top: var(--spacing-xs, 4px);
-}
-
 /* Main Content */
 .analytics-main {
     padding: var(--spacing-md, 16px);
@@ -99,10 +91,10 @@
     }
 }
 
-/* Desktop: 4 columns */
+/* Desktop: 3 columns */
 @media (min-width: 768px) {
     .stat-cards {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -198,24 +190,6 @@
 
 .error-icon {
     font-size: 3rem;
-}
-
-/* Refresh Section */
-.refresh-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md, 16px);
-    margin-top: var(--spacing-lg, 24px);
-}
-
-.refresh-icon {
-    display: inline-block;
-}
-
-.last-updated {
-    font-size: 0.75rem;
-    color: var(--text-secondary, #a0a0a0);
 }
 
 /* Button Styles */
@@ -373,163 +347,6 @@
     border: 0;
 }
 
-/* Error Analytics (Story 19.6) */
-.error-analytics {
-    margin-top: var(--spacing-xl, 32px);
-}
-
-.error-panel {
-    background: var(--surface-color, #1a1a2e);
-    border: 1px solid var(--neon-purple, #9d4edd);
-    border-radius: var(--border-radius, 12px);
-    padding: var(--spacing-lg, 24px);
-}
-
-.error-summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.error-rate-display {
-    display: flex;
-    flex-direction: column;
-}
-
-.error-rate-value {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--text-primary, #ffffff);
-    font-family: 'Outfit', sans-serif;
-}
-
-.error-rate-label {
-    font-size: 0.875rem;
-    color: var(--text-secondary, #a0a0a0);
-}
-
-.health-badge {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs, 4px);
-    padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
-    border-radius: var(--border-radius-sm, 6px);
-    font-weight: 600;
-    font-size: 0.875rem;
-}
-
-.health-badge.healthy {
-    background: rgba(0, 255, 136, 0.1);
-    color: var(--success-color, #00ff88);
-    border: 1px solid var(--success-color, #00ff88);
-}
-
-.health-badge.warning {
-    background: rgba(255, 193, 7, 0.1);
-    color: #ffc107;
-    border: 1px solid #ffc107;
-}
-
-.health-badge.critical {
-    background: rgba(255, 68, 68, 0.1);
-    color: var(--error-color, #ff4444);
-    border: 1px solid var(--error-color, #ff4444);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-.expand-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-xs, 4px);
-    width: 100%;
-    margin-top: var(--spacing-md, 16px);
-    padding: var(--spacing-sm, 8px);
-    background: transparent;
-    border: 1px solid var(--surface-border, #333);
-    border-radius: var(--border-radius-sm, 6px);
-    color: var(--text-secondary, #a0a0a0);
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.expand-btn:hover {
-    color: var(--text-primary, #ffffff);
-    border-color: var(--neon-purple, #9d4edd);
-}
-
-.error-list-container {
-    margin-top: var(--spacing-md, 16px);
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.error-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.error-item {
-    display: flex;
-    gap: var(--spacing-sm, 8px);
-    padding: var(--spacing-sm, 8px) 0;
-    border-bottom: 1px solid var(--surface-border, #333);
-}
-
-.error-item:last-child {
-    border-bottom: none;
-}
-
-.error-item .error-icon {
-    font-size: 1.25rem;
-    flex-shrink: 0;
-}
-
-.error-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-}
-
-.error-type {
-    font-weight: 600;
-    color: var(--text-primary, #ffffff);
-    font-size: 0.875rem;
-}
-
-.error-message {
-    color: var(--text-secondary, #a0a0a0);
-    font-size: 0.875rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.error-time {
-    font-size: 0.75rem;
-    color: var(--text-secondary, #a0a0a0);
-}
-
-.no-errors {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm, 8px);
-    padding: var(--spacing-lg, 24px);
-    color: var(--success-color, #00ff88);
-}
-
-.success-icon {
-    font-size: 1.5rem;
-}
-
 /* Empty State */
 .empty-state {
     text-align: center;
@@ -545,6 +362,143 @@
 .empty-hint {
     font-size: 0.875rem;
     margin-top: var(--spacing-sm, 8px);
+}
+
+/* =====================================================
+   Streak Achievements (Story 19.11)
+   ===================================================== */
+
+.streak-analytics {
+    margin-top: var(--spacing-xl, 32px);
+}
+
+.streak-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md, 16px);
+    margin-top: var(--spacing-md, 16px);
+}
+
+.streak-card {
+    background: var(--surface-color, #1a1a2e);
+    border-radius: var(--border-radius, 12px);
+    padding: var(--spacing-lg, 24px);
+    text-align: center;
+    border: 1px solid var(--surface-border, #333);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.streak-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.streak-card--legendary {
+    background: linear-gradient(135deg, var(--surface-color, #1a1a2e) 0%, rgba(255, 107, 0, 0.1) 100%);
+    border-color: #ff6b00;
+}
+
+.streak-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm, 8px);
+}
+
+.streak-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--neon-cyan, #00f5ff);
+    font-family: 'Outfit', sans-serif;
+}
+
+.streak-card--legendary .streak-value {
+    color: #ff6b00;
+}
+
+.streak-label {
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-secondary, #a0a0a0);
+    margin-top: var(--spacing-xs, 4px);
+}
+
+.streak-description {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted, #666);
+    margin-top: var(--spacing-xs, 4px);
+}
+
+/* =====================================================
+   Betting Statistics (Story 19.12)
+   ===================================================== */
+
+.betting-analytics {
+    margin-top: var(--spacing-xl, 32px);
+}
+
+.betting-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md, 16px);
+    margin-top: var(--spacing-md, 16px);
+}
+
+.betting-card {
+    background: var(--surface-color, #1a1a2e);
+    border-radius: var(--border-radius, 12px);
+    padding: var(--spacing-lg, 24px);
+    text-align: center;
+    border: 1px solid var(--surface-border, #333);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.betting-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.betting-card--highlight {
+    background: linear-gradient(135deg, var(--surface-color, #1a1a2e) 0%, rgba(0, 245, 255, 0.1) 100%);
+    border-color: var(--neon-cyan, #00f5ff);
+}
+
+.betting-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm, 8px);
+}
+
+.betting-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--neon-cyan, #00f5ff);
+    font-family: 'Outfit', sans-serif;
+}
+
+.betting-card--highlight .betting-value {
+    color: var(--neon-purple, #9d4edd);
+}
+
+.betting-label {
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-secondary, #a0a0a0);
+    margin-top: var(--spacing-xs, 4px);
+}
+
+.betting-description {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted, #666);
+    margin-top: var(--spacing-xs, 4px);
+}
+
+/* Win rate color indicators */
+.betting-value.win-rate-high {
+    color: var(--success-color, #00ff88) !important;
+}
+
+.betting-value.win-rate-mid {
+    color: #ffc107 !important;
+}
+
+.betting-value.win-rate-low {
+    color: var(--error-color, #ff4444) !important;
 }
 
 /* =====================================================
@@ -1025,10 +979,6 @@
 
     .stat-card.loading .stat-value,
     .stat-card.loading .stat-trend {
-        animation: none;
-    }
-
-    .health-badge.critical {
         animation: none;
     }
 }

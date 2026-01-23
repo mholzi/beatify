@@ -39,6 +39,13 @@ class GameRecord(TypedDict):
     average_score: float
     difficulty: str
     error_count: int
+    # Story 19.11: Streak achievements
+    streak_3_count: int  # Number of 3+ streaks achieved
+    streak_5_count: int  # Number of 5+ streaks achieved
+    streak_7_count: int  # Number of 7+ streaks achieved
+    # Story 19.12: Bet tracking
+    total_bets: int  # Total bets placed in game
+    bets_won: int  # Bets that won (doubled points)
 
 
 class ErrorEvent(TypedDict):
@@ -563,6 +570,9 @@ class AnalyticsStorage:
         # Error rate = errors per round (should be a small decimal, e.g., 0.05 = 5%)
         error_rate = total_errors / total_rounds if total_rounds > 0 else 0
 
+        # Story 19.9: Calculate average rounds per game
+        avg_rounds = total_rounds / total_games if total_games > 0 else 0
+
         # Compute previous period metrics for trends
         prev_total_games = len(previous_games)
         prev_total_players = sum(g["player_count"] for g in previous_games)
@@ -574,6 +584,9 @@ class AnalyticsStorage:
         prev_avg_players = prev_total_players / prev_total_games if prev_total_games > 0 else 0
         prev_avg_score = prev_total_score / prev_total_players if prev_total_players > 0 else 0
         prev_error_rate = prev_total_errors / prev_total_rounds if prev_total_rounds > 0 else 0
+
+        # Story 19.9: Calculate previous period average rounds
+        prev_avg_rounds = prev_total_rounds / prev_total_games if prev_total_games > 0 else 0
 
         # Calculate trends (percentage change)
         def calc_trend(current: float, previous: float) -> float:
@@ -588,22 +601,108 @@ class AnalyticsStorage:
             current_games, self._data["errors"], period
         )
 
+        # Story 19.8: Calculate peak concurrent players
+        peak_players = max(
+            (g["player_count"] for g in current_games),
+            default=0
+        )
+
         return {
             "period": period,
             "total_games": total_games,
             "avg_players_per_game": round(avg_players, 1),
             "avg_score": round(avg_score, 1),
             "error_rate": round(error_rate, 3),
+            "peak_players": peak_players,
+            "avg_rounds": round(avg_rounds, 1),  # Story 19.9
+            # Story 19.11: Include streak stats
+            "streak_stats": self.compute_streak_stats(period),
+            # Story 19.12: Include bet stats
+            "bet_stats": self.compute_bet_stats(period),
             "trends": {
                 "games": round(calc_trend(total_games, prev_total_games), 2),
                 "players": round(calc_trend(avg_players, prev_avg_players), 2),
                 "score": round(calc_trend(avg_score, prev_avg_score), 2),
                 "errors": round(calc_trend(error_rate, prev_error_rate), 2),
+                "rounds": round(calc_trend(avg_rounds, prev_avg_rounds), 2),  # Story 19.9
             },
             "playlists": playlists,
             "chart_data": chart_data,
             "error_stats": error_stats,
             "generated_at": now,
+        }
+
+    def compute_streak_stats(
+        self, period: str = "30d"
+    ) -> dict[str, Any]:
+        """
+        Compute streak achievement statistics for a given period (Story 19.11).
+
+        Args:
+            period: Time period - "7d", "30d", "90d", or "all"
+
+        Returns:
+            Dict with streak counts and distribution
+        """
+        now = int(time.time())
+
+        # Calculate period boundaries
+        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
+        days = days_map.get(period, 30)
+        start_ts = now - (days * 86400)
+
+        # Get games for current period
+        games = self.get_games(start_date=start_ts, end_date=now)
+
+        # Sum streak achievements across all games
+        streak_3_total = sum(g.get("streak_3_count", 0) for g in games)
+        streak_5_total = sum(g.get("streak_5_count", 0) for g in games)
+        streak_7_total = sum(g.get("streak_7_count", 0) for g in games)
+
+        total_streaks = streak_3_total + streak_5_total + streak_7_total
+
+        return {
+            "streak_3_count": streak_3_total,
+            "streak_5_count": streak_5_total,
+            "streak_7_count": streak_7_total,
+            "total_streaks": total_streaks,
+            "has_data": total_streaks > 0,
+        }
+
+    def compute_bet_stats(
+        self, period: str = "30d"
+    ) -> dict[str, Any]:
+        """
+        Compute betting statistics for a given period (Story 19.12).
+
+        Args:
+            period: Time period - "7d", "30d", "90d", or "all"
+
+        Returns:
+            Dict with bet counts and win rate
+        """
+        now = int(time.time())
+
+        # Calculate period boundaries
+        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
+        days = days_map.get(period, 30)
+        start_ts = now - (days * 86400)
+
+        # Get games for current period
+        games = self.get_games(start_date=start_ts, end_date=now)
+
+        # Sum bet outcomes across all games
+        total_bets = sum(g.get("total_bets", 0) for g in games)
+        bets_won = sum(g.get("bets_won", 0) for g in games)
+
+        # Calculate win rate (avoid division by zero)
+        win_rate = (bets_won / total_bets * 100) if total_bets > 0 else 0.0
+
+        return {
+            "total_bets": total_bets,
+            "bets_won": bets_won,
+            "win_rate": round(win_rate, 1),
+            "has_data": total_bets > 0,
         }
 
 

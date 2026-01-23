@@ -37,7 +37,6 @@
             }
             var data = await response.json();
             renderStats(data);
-            updateLastUpdated(data.generated_at);
             retryCount = 0;
             showLoading(false);
         } catch (err) {
@@ -64,20 +63,149 @@
         updateStatCard('stat-avg-players', data.avg_players_per_game.toFixed(1), data.trends.players);
         updateStatCard('stat-avg-score', data.avg_score.toFixed(1), data.trends.score);
 
-        // Format error rate as percentage
-        var errorPct = (data.error_rate * 100).toFixed(1) + '%';
-        // For error rate, negative trend (fewer errors) is good
-        updateStatCard('stat-error-rate', errorPct, data.trends.errors, true);
+        // Story 19.8: Peak Players (no trend)
+        updatePeakPlayersCard('stat-peak-players', data.peak_players);
 
-        // Render additional sections (Stories 19.4, 19.5, 19.6)
+        // Story 19.9: Avg Rounds Per Game (with trend)
+        updateStatCard('stat-avg-rounds',
+            data.avg_rounds > 0 ? data.avg_rounds.toFixed(1) : '--',
+            data.trends.rounds || 0
+        );
+
+        // Story 19.11: Streak Achievements
+        if (data.streak_stats) {
+            renderStreakStats(data.streak_stats);
+        }
+
+        // Story 19.12: Betting Statistics
+        if (data.bet_stats) {
+            renderBetStats(data.bet_stats);
+        }
+
+        // Render additional sections (Stories 19.4, 19.5)
         if (data.playlists) {
             renderPlaylists(data.playlists);
         }
         if (data.chart_data) {
             renderChart(data.chart_data);
         }
-        if (data.error_stats) {
-            renderErrorStats(data.error_stats);
+    }
+
+    /**
+     * Render streak achievements section (Story 19.11)
+     * @param {Object} streakStats - Streak statistics from API
+     */
+    function renderStreakStats(streakStats) {
+        var cardsEl = document.getElementById('streak-cards');
+        var emptyEl = document.getElementById('streak-empty');
+
+        // Check for data
+        if (!streakStats || !streakStats.has_data) {
+            if (cardsEl) cardsEl.classList.add('hidden');
+            if (emptyEl) emptyEl.classList.remove('hidden');
+            return;
+        }
+
+        if (cardsEl) cardsEl.classList.remove('hidden');
+        if (emptyEl) emptyEl.classList.add('hidden');
+
+        // Update streak values
+        updateStreakCard('streak-3-value', streakStats.streak_3_count);
+        updateStreakCard('streak-5-value', streakStats.streak_5_count);
+        updateStreakCard('streak-7-value', streakStats.streak_7_count);
+    }
+
+    /**
+     * Update a streak card value
+     * @param {string} id - Element ID
+     * @param {number} value - Streak count
+     */
+    function updateStreakCard(id, value) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.textContent = value > 0 ? value : '--';
+        }
+    }
+
+    /**
+     * Render betting statistics section (Story 19.12)
+     * @param {Object} betStats - Betting statistics from API
+     */
+    function renderBetStats(betStats) {
+        var cardsEl = document.getElementById('betting-cards');
+        var emptyEl = document.getElementById('betting-empty');
+
+        // Check for data
+        if (!betStats || !betStats.has_data) {
+            if (cardsEl) cardsEl.classList.add('hidden');
+            if (emptyEl) emptyEl.classList.remove('hidden');
+            return;
+        }
+
+        if (cardsEl) cardsEl.classList.remove('hidden');
+        if (emptyEl) emptyEl.classList.add('hidden');
+
+        // Update betting values
+        updateBettingCard('betting-total-value', betStats.total_bets);
+        updateBettingCard('betting-won-value', betStats.bets_won);
+        updateBettingCardWithRate('betting-rate-value', betStats.win_rate);
+    }
+
+    /**
+     * Update a betting card value
+     * @param {string} id - Element ID
+     * @param {number} value - Bet count
+     */
+    function updateBettingCard(id, value) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.textContent = value > 0 ? value : '--';
+        }
+    }
+
+    /**
+     * Update betting card with win rate and color coding
+     * @param {string} id - Element ID
+     * @param {number} rate - Win rate percentage
+     */
+    function updateBettingCardWithRate(id, rate) {
+        var el = document.getElementById(id);
+        if (!el) return;
+
+        // Remove existing color classes
+        el.classList.remove('win-rate-high', 'win-rate-mid', 'win-rate-low');
+
+        if (rate > 0) {
+            el.textContent = rate.toFixed(1) + '%';
+            // Color code based on win rate
+            if (rate >= 60) {
+                el.classList.add('win-rate-high');
+            } else if (rate >= 40) {
+                el.classList.add('win-rate-mid');
+            } else {
+                el.classList.add('win-rate-low');
+            }
+        } else {
+            el.textContent = '--';
+        }
+    }
+
+    /**
+     * Update the Peak Players card (Story 19.8)
+     * Peak is an absolute value, no trend indicator
+     * @param {string} id - Card element ID
+     * @param {number} value - Peak player count
+     */
+    function updatePeakPlayersCard(id, value) {
+        var card = document.getElementById(id);
+        if (!card) return;
+
+        card.classList.remove('loading');
+
+        var valueEl = card.querySelector('.stat-value');
+        if (valueEl) {
+            // Show "--" if no games (value is 0 or undefined)
+            valueEl.textContent = value > 0 ? value : '--';
         }
     }
 
@@ -99,10 +227,18 @@
         var maxCount = playlists[0].play_count;
 
         listEl.innerHTML = playlists.map(function(p) {
+            // Strip file path to get clean playlist name
+            var displayName = p.name;
+            if (displayName && displayName.includes('/')) {
+                displayName = displayName.split('/').pop();
+            }
+            // Remove .json extension if present
+            displayName = displayName.replace(/\.json$/i, '');
+
             var barWidth = (p.play_count / maxCount * 100).toFixed(1);
             return '<div class="playlist-row">' +
                 '<div class="playlist-info">' +
-                    '<span class="playlist-name">' + escapeHtml(p.name) + '</span>' +
+                    '<span class="playlist-name">' + escapeHtml(displayName) + '</span>' +
                     '<span class="playlist-stats">' + p.play_count + ' games (' + p.percentage + '%)</span>' +
                 '</div>' +
                 '<div class="playlist-bar-container">' +
@@ -209,80 +345,6 @@
         tbody.innerHTML = labels.map(function(label, i) {
             return '<tr><td>' + label + '</td><td>' + values[i] + '</td></tr>';
         }).join('');
-    }
-
-    /**
-     * Render error stats panel (Story 19.6)
-     * @param {Object} errorStats - Error statistics
-     */
-    function renderErrorStats(errorStats) {
-        var rateEl = document.getElementById('error-rate-value');
-        var badgeEl = document.getElementById('health-badge');
-        var expandBtn = document.getElementById('error-expand-btn');
-        var listContainer = document.getElementById('error-list-container');
-        var listEl = document.getElementById('error-list');
-        var noErrorsMsg = document.getElementById('no-errors-msg');
-
-        // Display error rate
-        var ratePercent = (errorStats.error_rate * 100).toFixed(1) + '%';
-        if (rateEl) rateEl.textContent = ratePercent;
-
-        // Update health badge
-        if (badgeEl) {
-            badgeEl.className = 'health-badge ' + errorStats.status;
-            var badgeText = {
-                healthy: 'Healthy',
-                warning: 'Warning',
-                critical: 'Critical'
-            };
-            var badgeIcon = {
-                healthy: '✓',
-                warning: '⚠',
-                critical: '✕'
-            };
-            var textEl = badgeEl.querySelector('.badge-text');
-            var iconEl = badgeEl.querySelector('.badge-icon');
-            if (textEl) textEl.textContent = badgeText[errorStats.status] || 'Healthy';
-            if (iconEl) iconEl.textContent = badgeIcon[errorStats.status] || '✓';
-        }
-
-        // Handle error list
-        if (errorStats.recent_errors && errorStats.recent_errors.length > 0) {
-            if (noErrorsMsg) noErrorsMsg.classList.add('hidden');
-            if (expandBtn) expandBtn.classList.remove('hidden');
-
-            if (listEl) {
-                listEl.innerHTML = errorStats.recent_errors.map(function(err) {
-                    var timeAgo = formatRelativeTime(err.timestamp);
-                    var icon = getErrorTypeIcon(err.type);
-                    return '<li class="error-item">' +
-                        '<span class="error-icon">' + icon + '</span>' +
-                        '<div class="error-content">' +
-                            '<span class="error-type">' + escapeHtml(err.type) + '</span>' +
-                            '<span class="error-message">' + escapeHtml(err.message) + '</span>' +
-                            '<span class="error-time">' + timeAgo + '</span>' +
-                        '</div>' +
-                    '</li>';
-                }).join('');
-            }
-        } else {
-            if (expandBtn) expandBtn.classList.add('hidden');
-            if (listContainer) listContainer.classList.add('hidden');
-            if (noErrorsMsg) noErrorsMsg.classList.remove('hidden');
-        }
-    }
-
-    /**
-     * Get icon for error type
-     */
-    function getErrorTypeIcon(type) {
-        var icons = {
-            'WEBSOCKET_DISCONNECT': '🔌',
-            'MEDIA_PLAYER_ERROR': '🔇',
-            'PLAYBACK_FAILURE': '⏸',
-            'STATE_TRANSITION_ERROR': '⚙️'
-        };
-        return icons[type] || '❌';
     }
 
     // =====================================================
@@ -689,19 +751,6 @@
     }
 
     /**
-     * Format timestamp as relative time
-     */
-    function formatRelativeTime(timestamp) {
-        var now = Date.now() / 1000;
-        var diff = now - timestamp;
-
-        if (diff < 60) return 'just now';
-        if (diff < 3600) return Math.floor(diff / 60) + ' min ago';
-        if (diff < 86400) return Math.floor(diff / 3600) + ' hours ago';
-        return Math.floor(diff / 86400) + ' days ago';
-    }
-
-    /**
      * Escape HTML special characters
      */
     function escapeHtml(str) {
@@ -796,24 +845,6 @@
     }
 
     /**
-     * Update last updated timestamp
-     * @param {number} timestamp - Unix timestamp
-     */
-    function updateLastUpdated(timestamp) {
-        var el = document.getElementById('last-updated');
-        if (!el) return;
-
-        var date = new Date(timestamp * 1000);
-        var timeStr = date.toLocaleTimeString(undefined, {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-
-        var t = window.t || function(key, fallback) { return fallback; };
-        el.textContent = t('analyticsDashboard.lastUpdated', 'Updated') + ': ' + timeStr;
-    }
-
-    /**
      * Handle period button click
      * @param {Event} e
      */
@@ -836,14 +867,6 @@
     }
 
     /**
-     * Handle refresh button click
-     */
-    function handleRefreshClick() {
-        retryCount = 0;
-        loadAnalytics(currentPeriod);
-    }
-
-    /**
      * Handle retry button click
      */
     function handleRetryClick() {
@@ -862,29 +885,10 @@
             periodSelector.addEventListener('click', handlePeriodClick);
         }
 
-        // Refresh button
-        var refreshBtn = document.getElementById('refresh-btn');
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', handleRefreshClick);
-        }
-
         // Retry button
         var retryBtn = document.getElementById('retry-btn');
         if (retryBtn) {
             retryBtn.addEventListener('click', handleRetryClick);
-        }
-
-        // Error panel expand/collapse (Story 19.6)
-        var errorExpandBtn = document.getElementById('error-expand-btn');
-        if (errorExpandBtn) {
-            errorExpandBtn.addEventListener('click', function() {
-                var container = document.getElementById('error-list-container');
-                var icon = this.querySelector('.expand-icon');
-                if (container) {
-                    container.classList.toggle('hidden');
-                    if (icon) icon.textContent = container.classList.contains('hidden') ? '▼' : '▲';
-                }
-            });
         }
 
         // Window resize handler for chart (Story 19.5)

@@ -166,6 +166,13 @@ class StatsService:
                 "average_score": round(avg_score_per_round, 2),
                 "difficulty": difficulty,
                 "error_count": self._analytics.session_error_count,
+                # Story 19.11: Streak achievements
+                "streak_3_count": game_summary.get("streak_3_count", 0),
+                "streak_5_count": game_summary.get("streak_5_count", 0),
+                "streak_7_count": game_summary.get("streak_7_count", 0),
+                # Story 19.12: Bet tracking
+                "total_bets": game_summary.get("total_bets", 0),
+                "bets_won": game_summary.get("bets_won", 0),
             }
             await self._analytics.add_game(analytics_record)
             self._game_start_time = None  # Reset for next game
@@ -560,8 +567,13 @@ class StatsService:
         # Find most played (AC3)
         most_played = max(song_list, key=lambda s: s["play_count"])
 
-        # Find hardest song - lowest accuracy with min 3 plays (AC3, AC7)
-        songs_with_enough_plays = [s for s in song_list if s["play_count"] >= 3]
+        # Story 19.10: Dynamic threshold for hardest/easiest songs
+        # Use min(max_play_count, 3) to always show data when possible
+        max_play_count = max(s["play_count"] for s in song_list)
+        min_plays_threshold = min(max_play_count, 3)
+
+        # Find hardest song - lowest accuracy with dynamic threshold
+        songs_with_enough_plays = [s for s in song_list if s["play_count"] >= min_plays_threshold]
 
         hardest = None
         easiest = None
