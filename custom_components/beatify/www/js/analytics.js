@@ -469,12 +469,16 @@
         var modal = document.getElementById('playlist-modal');
         var titleEl = document.getElementById('modal-title');
         var searchEl = document.getElementById('modal-search');
-        var sortEl = document.getElementById('modal-sort-select');
 
-        if (titleEl) titleEl.textContent = playlist.playlist_name;
+        // Extract just the playlist name from path (e.g., "/Config/.../Greatest Hits" -> "Greatest Hits")
+        var displayName = playlist.playlist_name;
+        if (displayName && displayName.includes('/')) {
+            displayName = displayName.split('/').pop();
+        }
+        if (titleEl) titleEl.textContent = displayName;
         if (searchEl) searchEl.value = '';
-        if (sortEl) sortEl.value = 'play_count';
 
+        updateSortIndicators();
         renderModalTable();
 
         if (modal && modal.showModal) {
@@ -610,11 +614,16 @@
     }
 
     /**
-     * Handle modal sort change
-     * @param {Event} e - Change event
+     * Handle column header click for sorting
+     * @param {Event} e - Click event
      */
-    function handleModalSort(e) {
-        var newField = e.target.value;
+    function handleColumnSort(e) {
+        var th = e.target.closest('th.sortable');
+        if (!th) return;
+
+        var newField = th.dataset.sort;
+        if (!newField) return;
+
         if (newField === modalSortField) {
             // Toggle direction
             modalSortDir = modalSortDir === 'asc' ? 'desc' : 'asc';
@@ -624,7 +633,22 @@
             modalSortDir = (newField === 'title' || newField === 'artist') ? 'asc' : 'desc';
         }
         modalCurrentPage = 1;
+        updateSortIndicators();
         renderModalTable();
+    }
+
+    /**
+     * Update sort indicators on column headers
+     */
+    function updateSortIndicators() {
+        var headers = document.querySelectorAll('#modal-song-table th.sortable');
+        headers.forEach(function(th) {
+            th.classList.remove('sort-active', 'sort-asc', 'sort-desc');
+            if (th.dataset.sort === modalSortField) {
+                th.classList.add('sort-active');
+                th.classList.add(modalSortDir === 'asc' ? 'sort-asc' : 'sort-desc');
+            }
+        });
     }
 
     /**
@@ -925,10 +949,13 @@
             });
         }
 
-        // Modal sort (AC4)
-        var modalSort = document.getElementById('modal-sort-select');
-        if (modalSort) {
-            modalSort.addEventListener('change', handleModalSort);
+        // Modal column header sort (AC4)
+        var modalTable = document.getElementById('modal-song-table');
+        if (modalTable) {
+            var thead = modalTable.querySelector('thead');
+            if (thead) {
+                thead.addEventListener('click', handleColumnSort);
+            }
         }
 
         // Modal pagination (AC4)

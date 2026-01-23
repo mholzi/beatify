@@ -560,18 +560,20 @@ class AnalyticsStorage:
 
         avg_players = total_players / total_games if total_games > 0 else 0
         avg_score = total_score / total_players if total_players > 0 else 0
-        error_rate = total_errors / total_games if total_games > 0 else 0
+        # Error rate = errors per round (should be a small decimal, e.g., 0.05 = 5%)
+        error_rate = total_errors / total_rounds if total_rounds > 0 else 0
 
         # Compute previous period metrics for trends
         prev_total_games = len(previous_games)
         prev_total_players = sum(g["player_count"] for g in previous_games)
+        prev_total_rounds = sum(g["rounds_played"] for g in previous_games)
         prev_total_score = sum(g["average_score"] * g["player_count"] for g in previous_games)
         prev_errors = self.get_errors(start_date=previous_start, end_date=current_start - 1)
         prev_total_errors = len(prev_errors)
 
         prev_avg_players = prev_total_players / prev_total_games if prev_total_games > 0 else 0
         prev_avg_score = prev_total_score / prev_total_players if prev_total_players > 0 else 0
-        prev_error_rate = prev_total_errors / prev_total_games if prev_total_games > 0 else 0
+        prev_error_rate = prev_total_errors / prev_total_rounds if prev_total_rounds > 0 else 0
 
         # Calculate trends (percentage change)
         def calc_trend(current: float, previous: float) -> float:

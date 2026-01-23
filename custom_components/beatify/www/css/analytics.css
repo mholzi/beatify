@@ -843,63 +843,96 @@
     color: var(--text-secondary, #a0a0a0);
 }
 
-.modal-sort {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm, 8px);
-}
-
-.modal-sort-select {
-    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
-    background: var(--surface-color, #1a1a2e);
-    border: 1px solid var(--surface-border, #333);
-    border-radius: var(--border-radius-sm, 6px);
-    color: var(--text-primary, #ffffff);
-    font-size: 0.875rem;
-    cursor: pointer;
-}
-
-.modal-sort-select:focus {
-    outline: none;
-    border-color: var(--neon-cyan, #00f5ff);
-}
-
 .modal-content {
     flex: 1;
     overflow-y: auto;
+    overflow-x: auto;
     padding: var(--spacing-md, 16px);
 }
 
 /* Song Table */
 .song-table {
     width: 100%;
+    min-width: 100%;
     border-collapse: collapse;
     font-size: 0.875rem;
+    background: transparent;
+}
+
+.song-table thead,
+.song-table tbody,
+.song-table tr {
+    background: transparent;
 }
 
 .song-table th {
     text-align: left;
-    padding: var(--spacing-sm, 8px);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
     border-bottom: 2px solid var(--neon-purple, #9d4edd);
     color: var(--text-secondary, #a0a0a0);
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
+    background: transparent;
+    white-space: nowrap;
+}
+
+.song-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.song-table th.sortable:hover {
+    color: var(--neon-cyan, #00f5ff);
+}
+
+.song-table th.sortable.sort-active {
+    color: var(--neon-cyan, #00f5ff);
+}
+
+.song-table th .sort-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    opacity: 0.3;
+    font-size: 0.65rem;
+}
+
+.song-table th.sortable:hover .sort-arrow {
+    opacity: 0.6;
+}
+
+.song-table th.sort-active .sort-arrow {
+    opacity: 1;
+}
+
+.song-table th.sort-asc .sort-arrow::after {
+    content: '▲';
+}
+
+.song-table th.sort-desc .sort-arrow::after {
+    content: '▼';
 }
 
 .song-table td {
-    padding: var(--spacing-sm, 8px);
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
     border-bottom: 1px solid var(--surface-border, #333);
     vertical-align: middle;
+    background: transparent;
+    color: var(--text-secondary, #a0a0a0);
 }
 
-.song-table tr:hover td {
+.song-table tbody tr:hover td {
     background: rgba(157, 78, 221, 0.1);
 }
 
 .song-table td:first-child {
     font-weight: 500;
+    color: var(--text-primary, #ffffff);
+}
+
+.song-table td:nth-child(2) {
     color: var(--text-primary, #ffffff);
 }
 

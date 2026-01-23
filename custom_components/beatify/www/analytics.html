@@ -167,27 +167,17 @@
                        placeholder="Search songs..."
                        data-i18n-placeholder="analyticsDashboard.searchSongs"
                        aria-label="Search songs">
-                <div class="modal-sort">
-                    <label for="modal-sort-select" class="sr-only" data-i18n="analyticsDashboard.sortBy">Sort by</label>
-                    <select id="modal-sort-select" class="modal-sort-select">
-                        <option value="play_count" data-i18n="analyticsDashboard.sortPlayCount">Play Count</option>
-                        <option value="accuracy" data-i18n="analyticsDashboard.sortAccuracy">Accuracy</option>
-                        <option value="title" data-i18n="analyticsDashboard.sortTitle">Title</option>
-                        <option value="artist" data-i18n="analyticsDashboard.sortArtist">Artist</option>
-                        <option value="year" data-i18n="analyticsDashboard.sortYear">Year</option>
-                    </select>
-                </div>
             </div>
             <div class="modal-content">
                 <table class="song-table" id="modal-song-table">
                     <thead>
                         <tr>
-                            <th scope="col" data-i18n="analyticsDashboard.colTitle">Title</th>
-                            <th scope="col" data-i18n="analyticsDashboard.colArtist">Artist</th>
-                            <th scope="col" data-i18n="analyticsDashboard.colYear">Year</th>
-                            <th scope="col" data-i18n="analyticsDashboard.colPlays">Plays</th>
-                            <th scope="col" data-i18n="analyticsDashboard.colAccuracy">Accuracy</th>
-                            <th scope="col" data-i18n="analyticsDashboard.colAvgOff">Avg Off</th>
+                            <th scope="col" class="sortable" data-sort="title" data-i18n="analyticsDashboard.colTitle">Title <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="artist" data-i18n="analyticsDashboard.colArtist">Artist <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="year" data-i18n="analyticsDashboard.colYear">Year <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="play_count" data-i18n="analyticsDashboard.colPlays">Plays <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="accuracy" data-i18n="analyticsDashboard.colAccuracy">Accuracy <span class="sort-arrow"></span></th>
+                            <th scope="col" class="sortable" data-sort="avg_year_diff" data-i18n="analyticsDashboard.colAvgOff">Avg Off <span class="sort-arrow"></span></th>
                         </tr>
                     </thead>
                     <tbody id="modal-song-tbody">
