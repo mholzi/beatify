@@ -31,6 +31,22 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+# Cache the version at module load time
+_VERSION: str | None = None
+
+
+def _get_version() -> str:
+    """Get the version from manifest.json (cached)."""
+    global _VERSION  # noqa: PLW0603
+    if _VERSION is None:
+        try:
+            manifest_path = Path(__file__).parent.parent / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            _VERSION = manifest.get("version", "unknown")
+        except Exception:  # noqa: BLE001
+            _VERSION = "unknown"
+    return _VERSION
+
 
 def _read_file(path: Path) -> str:
     """Read file contents (runs in executor)."""
@@ -115,6 +131,7 @@ class StatusView(HomeAssistantView):
         )
 
         status = {
+            "version": _get_version(),
             "media_players": media_players,
             "playlists": data.get("playlists", []),
             "playlist_dir": data.get("playlist_dir", ""),

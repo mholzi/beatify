@@ -118,6 +118,11 @@ async function loadStatus() {
         mediaPlayerDocsUrl = status.media_player_docs_url || '';
         // Set Music Assistant availability from backend (not based on entity names)
         hasMusicAssistant = status.has_music_assistant === true;
+        // Display version in footer
+        const versionEl = document.getElementById('app-version');
+        if (versionEl && status.version) {
+            versionEl.textContent = 'v' + status.version;
+        }
         renderMediaPlayers(status.media_players);
         renderPlaylists(status.playlists, status.playlist_dir);
         updateStartButtonState();

@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-1.4.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-1.5.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#-5-minute-setup) • [**See It In Action**](#-the-experience) • [**Install Now**](#-installation)
@@ -379,6 +379,13 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v1.5.0 — Data & Speed 📊⚡
+- **Admin analytics dashboard** — Track games played, popular playlists, player stats, and error rates
+- **Mobile performance boost** — 53% smaller bundles, lazy loading, adaptive animations
+- **Music Assistant support** — Native playback service for reliable MA integration
+- **Styled confirmation dialogs** — No more ugly browser popups
+- **Game settings display** — See rounds and difficulty in the player lobby
 
 ### v1.4.0 — Fiesta Internacional 🌍
 - **Spanish language support** — Full UI and playlist content in Spanish
