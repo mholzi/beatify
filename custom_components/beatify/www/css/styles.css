@@ -213,31 +213,40 @@ header h1 {
     color: var(--color-text-dark);
 }
 
-/* Header Link (Story 19.2) */
-.header-link {
-    display: inline-flex;
+/* Admin Header with Analytics Icon (Story 19.13) */
+.admin-header {
+    display: flex;
     align-items: center;
-    gap: var(--space-xs, 4px);
-    padding: var(--space-xs, 4px) var(--space-sm, 8px);
-    margin-top: var(--space-sm, 8px);
-    border-radius: var(--radius-sm, 8px);
+    justify-content: space-between;
+    gap: var(--space-md, 16px);
+}
+
+.admin-header h1 {
+    margin: 0;
+}
+
+/* Analytics Icon Link (Story 19.13) */
+.analytics-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     text-decoration: none;
-    font-size: var(--font-size-sm, 0.875rem);
-    transition: background-color 0.2s ease;
+    font-size: 1.5rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.header-link-icon {
-    font-size: 1.125rem;
-}
-
-body.theme-dark .header-link {
-    color: var(--neon-cyan, #00f5ff);
+body.theme-dark .analytics-icon-link {
     background: rgba(0, 245, 255, 0.1);
 }
 
-body.theme-dark .header-link:hover,
-body.theme-dark .header-link:focus {
+body.theme-dark .analytics-icon-link:hover,
+body.theme-dark .analytics-icon-link:focus {
     background: rgba(0, 245, 255, 0.2);
+    transform: scale(1.1);
+    outline: none;
 }
 
 /* Sections */
