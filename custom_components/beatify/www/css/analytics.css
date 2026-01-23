@@ -77,8 +77,13 @@
     color: var(--color-accent-secondary);
 }
 
+/* Stat Cards Section */
+.stat-cards-section {
+    /* Styling handled by .card-section */
+}
+
 /* Stat Cards Grid */
-.stat-cards {
+.stat-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
@@ -86,23 +91,23 @@
 
 /* Tablet: 2 columns */
 @media (min-width: 480px) {
-    .stat-cards {
+    .stat-cards-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Desktop: 3 columns */
 @media (min-width: 768px) {
-    .stat-cards {
+    .stat-cards-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Individual Stat Card */
+/* Individual Stat Card - lighter background to stand out from section */
 .stat-card {
-    background: var(--color-surface-dark);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--color-neon-purple);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: var(--space-lg) var(--space-md);
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -520,15 +525,15 @@
     }
 }
 
-/* Individual Summary Card */
+/* Individual Summary Card - lighter background to stand out from section */
 .song-summary-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: var(--space-lg) var(--space-md);
-    background: var(--color-surface-dark);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--color-neon-purple);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     text-align: center;
@@ -641,11 +646,11 @@
     }
 }
 
-/* Playlist Song Card */
+/* Playlist Song Card - lighter background to stand out from section */
 .playlist-song-card {
-    background: var(--color-surface-dark);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--color-neon-purple);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     padding: var(--space-md);
     transition: box-shadow 0.2s ease;
 }
