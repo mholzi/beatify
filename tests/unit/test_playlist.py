@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from custom_components.beatify.const import (
     PROVIDER_APPLE_MUSIC,
+    PROVIDER_PLEX,
     PROVIDER_SPOTIFY,
+    PROVIDER_YOUTUBE_MUSIC,
 )
 from custom_components.beatify.game.playlist import (
     PlaylistManager,
@@ -130,6 +132,88 @@ class TestValidatePlaylist:
         assert is_valid is False
         assert "Song 1: no valid URI" in errors
 
+    def test_youtube_music_uri_validates(self):
+        """YouTube Music URIs validate correctly."""
+        data = {
+            "name": "YouTube Music Playlist",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ",
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is True
+        assert errors == []
+
+    def test_plex_uri_validates(self):
+        """Plex URIs validate correctly."""
+        data = {
+            "name": "Plex Playlist",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_plex": "plex://track/12345",
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is True
+        assert errors == []
+
+    def test_all_providers_uri_validates(self):
+        """Playlists with all provider URIs validate correctly."""
+        data = {
+            "name": "All Providers Playlist",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_spotify": "spotify:track:2WfaOiMkCvy7F5fcp2zZ8L",
+                    "uri_apple_music": "applemusic://track/1035048414",
+                    "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ",
+                    "uri_plex": "plex://track/12345",
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is True
+        assert errors == []
+
+    def test_invalid_youtube_music_pattern_rejected(self):
+        """YouTube Music URIs must match pattern ytmusic://track/{id}."""
+        data = {
+            "name": "Invalid YouTube Music",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_youtube_music": "ytmusic://album/abc123",  # Invalid: album not track
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is False
+        assert len(errors) == 2  # Invalid pattern + no valid URI
+        assert "uri_youtube_music" in errors[0]
+        assert "ytmusic://track/id" in errors[0]
+
+    def test_invalid_plex_pattern_rejected(self):
+        """Plex URIs must match pattern plex://track/{id}."""
+        data = {
+            "name": "Invalid Plex",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_plex": "plex://album/abc123",  # Invalid: album not track
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is False
+        assert len(errors) == 2  # Invalid pattern + no valid URI
+        assert "uri_plex" in errors[0]
+        assert "plex://track/id" in errors[0]
+
 
 # =============================================================================
 # GET_SONG_URI TESTS
@@ -197,6 +281,44 @@ class TestGetSongUri:
         result = get_song_uri(song, "unknown_provider")
         assert result is None
 
+    def test_youtube_music_provider_returns_uri_youtube_music(self):
+        """For YouTube Music, return uri_youtube_music field."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+            "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ",
+        }
+        result = get_song_uri(song, PROVIDER_YOUTUBE_MUSIC)
+        assert result == "ytmusic://track/dQw4w9WgXcQ"
+
+    def test_youtube_music_provider_returns_none_without_field(self):
+        """For YouTube Music, return None if uri_youtube_music not present."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+        }
+        result = get_song_uri(song, PROVIDER_YOUTUBE_MUSIC)
+        assert result is None
+
+    def test_plex_provider_returns_uri_plex(self):
+        """For Plex, return uri_plex field."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+            "uri_plex": "plex://track/12345",
+        }
+        result = get_song_uri(song, PROVIDER_PLEX)
+        assert result == "plex://track/12345"
+
+    def test_plex_provider_returns_none_without_field(self):
+        """For Plex, return None if uri_plex not present."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+        }
+        result = get_song_uri(song, PROVIDER_PLEX)
+        assert result is None
+
 
 # =============================================================================
 # FILTER_SONGS_FOR_PROVIDER TESTS
@@ -248,6 +370,30 @@ class TestFilterSongsForProvider:
         filtered, skipped = filter_songs_for_provider([], PROVIDER_SPOTIFY)
         assert filtered == []
         assert skipped == 0
+
+    def test_filters_youtube_music_songs(self):
+        """Filter returns songs with YouTube Music URIs."""
+        songs = [
+            {"year": 1984, "uri": "spotify:track:SONG1234567890123456"},
+            {"year": 1985, "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ"},
+            {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
+        ]
+        filtered, skipped = filter_songs_for_provider(songs, PROVIDER_YOUTUBE_MUSIC)
+        assert len(filtered) == 1
+        assert skipped == 2
+        assert filtered[0]["year"] == 1985
+
+    def test_filters_plex_songs(self):
+        """Filter returns songs with Plex URIs."""
+        songs = [
+            {"year": 1984, "uri": "spotify:track:SONG1234567890123456"},
+            {"year": 1985, "uri_plex": "plex://track/12345"},
+            {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
+        ]
+        filtered, skipped = filter_songs_for_provider(songs, PROVIDER_PLEX)
+        assert len(filtered) == 1
+        assert skipped == 2
+        assert filtered[0]["year"] == 1985
 
 
 # =============================================================================
@@ -329,8 +475,56 @@ class TestPlaylistManager:
         ]
         original_count = len(songs)
         manager = PlaylistManager(songs)
-        song = manager.get_next_song()
+        _ = manager.get_next_song()
         # Original list unchanged
         assert len(songs) == original_count
         # And original song dict doesn't have _resolved_uri
         assert "_resolved_uri" not in songs[0]
+
+    def test_youtube_music_provider_filtering(self):
+        """PlaylistManager correctly filters YouTube Music songs."""
+        songs = [
+            {"year": 1984, "uri": "spotify:track:SONG1234567890123456"},
+            {"year": 1985, "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ"},
+            {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
+        ]
+        manager = PlaylistManager(songs, provider=PROVIDER_YOUTUBE_MUSIC)
+        assert manager.get_total_count() == 1
+
+    def test_plex_provider_filtering(self):
+        """PlaylistManager correctly filters Plex songs."""
+        songs = [
+            {"year": 1984, "uri": "spotify:track:SONG1234567890123456"},
+            {"year": 1985, "uri_plex": "plex://track/12345"},
+            {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
+        ]
+        manager = PlaylistManager(songs, provider=PROVIDER_PLEX)
+        assert manager.get_total_count() == 1
+
+    def test_youtube_music_resolved_uri(self):
+        """get_next_song() resolves YouTube Music URI correctly."""
+        songs = [
+            {
+                "year": 1984,
+                "uri_spotify": "spotify:track:SPOTIFY_URI_12345678",
+                "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ",
+            },
+        ]
+        manager = PlaylistManager(songs, provider=PROVIDER_YOUTUBE_MUSIC)
+        song = manager.get_next_song()
+        assert song is not None
+        assert song["_resolved_uri"] == "ytmusic://track/dQw4w9WgXcQ"
+
+    def test_plex_resolved_uri(self):
+        """get_next_song() resolves Plex URI correctly."""
+        songs = [
+            {
+                "year": 1984,
+                "uri_spotify": "spotify:track:SPOTIFY_URI_12345678",
+                "uri_plex": "plex://track/12345",
+            },
+        ]
+        manager = PlaylistManager(songs, provider=PROVIDER_PLEX)
+        song = manager.get_next_song()
+        assert song is not None
+        assert song["_resolved_uri"] == "plex://track/12345"
