@@ -3812,11 +3812,15 @@ body.theme-dark .artist-option-btn:hover {
 
 /* Artist Reveal Section (Story 20.6) */
 .artist-reveal-section {
-    text-align: center;
     padding: var(--space-md);
     margin-bottom: var(--space-md);
     background: var(--color-surface-alt, rgba(255, 255, 255, 0.05));
     border-radius: var(--radius-lg);
+}
+
+/* Center the artist name and winner content, not the header */
+.artist-reveal-section .section-content-padded {
+    text-align: center;
 }
 
 .artist-reveal-label {
