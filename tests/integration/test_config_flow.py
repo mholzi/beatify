@@ -16,12 +16,14 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-# Attempt to import HA test utilities (may not exist yet)
+# Check if REAL Home Assistant is available (not just mocked)
+# The conftest.py mocks homeassistant, so we need to check for actual installation
 try:
     from homeassistant.config_entries import ConfigFlow
     from homeassistant.core import HomeAssistant
 
-    HA_AVAILABLE = True
+    # Check if ConfigFlow is a real class, not a MagicMock
+    HA_AVAILABLE = not isinstance(ConfigFlow, MagicMock) and hasattr(ConfigFlow, "__mro__")
 except ImportError:
     HA_AVAILABLE = False
     HomeAssistant = MagicMock
