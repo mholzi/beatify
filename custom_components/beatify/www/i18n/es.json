@@ -381,6 +381,9 @@
     "winnerWas": "¡{winner} lo adivinó primero!",
     "loading": "Verificando..."
   },
+  "earlyReveal": {
+    "message": "¡Todos han respondido!"
+  },
   "difficulty": {
     "easy": "Cancion facil",
     "medium": "Cancion media",

@@ -1394,6 +1394,25 @@
         }
     }
 
+    /**
+     * Show early reveal toast (Story 20.9)
+     * Displays when all players have submitted their guesses
+     */
+    function showEarlyRevealToast() {
+        var indicator = document.getElementById('volume-indicator');
+        if (indicator) {
+            indicator.textContent = i18n.t('earlyReveal.message') || 'All guesses in!';
+            indicator.classList.remove('hidden');
+            indicator.classList.add('is-visible');
+            setTimeout(function() {
+                indicator.classList.remove('is-visible');
+                setTimeout(function() {
+                    indicator.classList.add('hidden');
+                }, 300);
+            }, 1500);
+        }
+    }
+
     // ============================================
     // Name Entry & Join Form (Story 3.1)
     // ============================================
@@ -4830,6 +4849,10 @@
                 hideReactionBar();  // Story 18.9 - only visible during REVEAL
             } else if (data.phase === 'REVEAL') {
                 stopCountdown();
+                // Story 20.9: Show toast if early reveal triggered
+                if (data.early_reveal) {
+                    showEarlyRevealToast();
+                }
                 setEnergyLevel('party');  // Story 9.9 - maintain party for reveal
                 showView('reveal-view');
                 updateRevealView(data);

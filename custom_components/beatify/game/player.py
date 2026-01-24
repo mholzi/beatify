@@ -42,6 +42,9 @@ class PlayerSession:
     # Artist challenge bonus tracking (Story 20.4)
     artist_bonus: int = 0
 
+    # Artist guess tracking (Story 20.9)
+    has_artist_guess: bool = False
+
     # Betting tracking (Story 5.3)
     bet: bool = False
     bet_outcome: str | None = None  # "won", "lost", or None
@@ -90,6 +93,8 @@ class PlayerSession:
         self.streak_bonus = 0
         # Reset artist bonus (Story 20.4)
         self.artist_bonus = 0
+        # Reset artist guess tracking (Story 20.9)
+        self.has_artist_guess = False
         # Reset bet fields (Story 5.3)
         self.bet = False
         self.bet_outcome = None

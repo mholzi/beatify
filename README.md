@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-1.6.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.0.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#-5-minute-setup) • [**See It In Action**](#-the-experience) • [**Install Now**](#-installation)
@@ -174,6 +174,11 @@ Miss one? Streak resets. The pressure is real.
 Feeling confident? Toggle the bet before submitting.
 Score points: **Double them.**
 Score zero: **Lose it all.**
+
+### Artist Challenge (Optional)
+Know your artists? Enable this mode in game setup.
+Guess the artist after the song: **+5 bonus points.**
+Alternate names accepted—"Prince" or "The Artist" both count.
 
 ---
 
@@ -380,12 +385,13 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
-### v1.6.0 — React & Connect 🎉📲
-- **Live emoji reactions** — Send 🔥 😂 😱 👏 🤔 reactions during reveals that float across all screens
-- **Improved lobby experience** — Collapsible How-to-Play and QR sections, sticky Leave Game footer
+### v2.0.0 — React & Reveal 🎭✨
+- **Live emoji reactions** — Send 🔥 😂 😮 👏 💀 reactions during reveals that float across all screens
+- **Artist Challenge mode** — Guess the artist for +5 bonus points, with alternate name support
+- **Early reveal** — Round ends instantly when all players have guessed
+- **Complete UI redesign** — Collapsible admin sections, unified lobbies, compact reveal view
 - **One-Hit Wonders playlist** — 98 songs celebrating flash-in-the-pan hits
 - **Kölner Karneval playlist** — 291 songs of Cologne carnival tradition
-- **UI polish** — Analytics icon in admin header, dark mode consistency
 
 ### v1.5.0 — Data & Speed 📊⚡
 - **Admin analytics dashboard** — Track games played, popular playlists, player stats, and error rates

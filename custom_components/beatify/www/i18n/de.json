@@ -381,6 +381,9 @@
     "winnerWas": "{winner} war schneller!",
     "loading": "Prüfe..."
   },
+  "earlyReveal": {
+    "message": "Alle haben geraten!"
+  },
   "difficulty": {
     "easy": "Leichter Song",
     "medium": "Mittlerer Song",

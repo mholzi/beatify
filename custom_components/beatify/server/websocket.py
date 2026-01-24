@@ -606,6 +606,11 @@ class BeatifyWebSocketHandler:
         # Broadcast updated state (player.submitted now True)
         await self.broadcast_state()
 
+        # Story 20.9: Check for early reveal when all guesses are complete
+        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
+        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+            await game_state._trigger_early_reveal()
+
         _LOGGER.info(
             "Player %s submitted guess: %d at %.2f",
             player.name, year, submission_time
@@ -916,6 +921,9 @@ class BeatifyWebSocketHandler:
         guess_time = time.time()
         result = game_state.submit_artist_guess(player.name, artist, guess_time)
 
+        # Story 20.9: Track that player has made an artist guess
+        player.has_artist_guess = True
+
         # Send acknowledgment
         response: dict = {
             "type": "artist_guess_ack",
@@ -934,6 +942,11 @@ class BeatifyWebSocketHandler:
         # Broadcast state if winner changed (so all players see winner)
         if result.get("first"):
             await self.broadcast_state()
+
+        # Story 20.9: Check for early reveal when all guesses are complete
+        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
+        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+            await game_state._trigger_early_reveal()
 
         _LOGGER.debug(
             "Artist guess from %s: '%s' -> correct=%s, first=%s",

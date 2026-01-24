@@ -277,6 +277,9 @@ class GameState:
         self.artist_challenge: ArtistChallenge | None = None
         self.artist_challenge_enabled: bool = False
 
+        # Story 20.9: Early reveal flag
+        self._early_reveal: bool = False
+
     def create_game(
         self,
         playlists: list[str],
@@ -474,6 +477,9 @@ class GameState:
                 state["artist_challenge"] = self.artist_challenge.to_dict(
                     include_answer=True
                 )
+            # Story 20.9: Early reveal flag for client-side toast
+            if self._early_reveal:
+                state["early_reveal"] = True
 
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason
@@ -587,6 +593,9 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
+
+        # Reset early reveal flag (Story 20.9)
+        self._early_reveal = False
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
@@ -991,6 +1000,42 @@ class GameState:
             return False
         return all(p.submitted for p in connected_players)
 
+    def check_all_guesses_complete(self) -> bool:
+        """
+        Check if all connected players have submitted all required guesses (Story 20.9).
+
+        For early reveal: checks year guesses, and if artist challenge is active,
+        also checks artist guesses.
+
+        Returns:
+            True if all connected players have completed all required guesses
+
+        """
+        # First check year guesses using existing method
+        # Note: all_submitted() already returns False for zero connected players
+        if not self.all_submitted():
+            return False
+
+        # If artist challenge enabled and active, also check artist guesses
+        if self.artist_challenge_enabled and self.artist_challenge:
+            for player in self.players.values():
+                if player.connected and not player.has_artist_guess:
+                    return False
+
+        return True
+
+    async def _trigger_early_reveal(self) -> None:
+        """
+        Trigger early transition to reveal when all guesses are in (Story 20.9).
+
+        Cancels timer, sets early_reveal flag, and calls end_round.
+
+        """
+        _LOGGER.info("All guesses complete - triggering early reveal")
+        self.cancel_timer()
+        self._early_reveal = True
+        await self.end_round()
+
     def set_round_end_callback(
         self, callback: Callable[[], Awaitable[None]]
     ) -> None:
@@ -1250,6 +1295,9 @@ class GameState:
 
         # Reset song stopped flag for new round (Story 6.2)
         self.song_stopped = False
+
+        # Reset early reveal flag for new round (Story 20.9)
+        self._early_reveal = False
 
         # Reset round analytics for new round (Story 13.3)
         self.round_analytics = None

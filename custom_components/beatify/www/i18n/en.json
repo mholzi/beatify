@@ -381,6 +381,9 @@
     "winnerWas": "{winner} got it first!",
     "loading": "Checking..."
   },
+  "earlyReveal": {
+    "message": "All guesses in!"
+  },
   "difficulty": {
     "easy": "Easy Song",
     "medium": "Medium Song",
