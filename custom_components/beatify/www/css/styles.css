@@ -277,7 +277,7 @@ body.theme-dark .analytics-icon-link:focus {
 .card-section {
     background: var(--color-bg-white);
     border-radius: var(--radius-lg);
-    padding: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
     margin-bottom: var(--space-md);
     box-shadow: var(--shadow-sm);
     border: 1px solid transparent;
@@ -640,6 +640,12 @@ body.theme-dark .game-info span {
 /* Ensure button text stays white in dark mode (override card-section span rule) */
 body.theme-dark .btn-primary span,
 body.theme-dark .btn-secondary span {
+    color: inherit;
+}
+
+/* Preserve badge colors in dark mode - don't override with white */
+body.theme-dark .card-section .song-badge,
+body.theme-dark .card-section .song-badge span {
     color: inherit;
 }
 
@@ -3018,7 +3024,7 @@ body.theme-dark .admin-controls {
 }
 
 .lobby-container--compact .section-toggle {
-    margin-left: auto;
+    margin-left: var(--space-sm);
     font-size: 0.625rem;
     color: var(--color-text-neon-muted);
     transition: transform 0.2s ease;
@@ -3111,7 +3117,7 @@ body.theme-dark .admin-controls {
 }
 
 .admin-content .section-header-collapsible .section-toggle {
-    margin-left: auto;
+    margin-left: var(--space-sm);
     font-size: 0.625rem;
     color: var(--color-text-neon-muted);
     transition: transform 0.2s ease;
@@ -4069,7 +4075,7 @@ body.theme-dark .artist-reveal-section {
     }
 
     .card-section {
-        padding: var(--space-xl);
+        padding: var(--space-md) var(--space-lg);
     }
 }
 
@@ -4259,6 +4265,11 @@ body.theme-dark .artist-reveal-section {
     padding: 0 var(--space-md) var(--space-md);
 }
 
+/* Remove side padding when inside card-section (card already has padding) */
+.card-section .section-content-padded {
+    padding: 0 0 var(--space-sm);
+}
+
 /* All Guesses Card Section */
 .guesses-section {
     text-align: left;
@@ -4306,6 +4317,14 @@ body.theme-dark .artist-reveal-section {
 /* Round Analytics Card Section */
 .round-analytics-section {
     text-align: left;
+}
+
+.round-analytics-section .section-content {
+    padding: 0 var(--space-md) var(--space-sm);
+}
+
+.round-analytics-section.collapsed .section-content {
+    display: none;
 }
 
 /* Legacy styles preserved */
