@@ -435,6 +435,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             songs = data.get("songs", [])
             spotify_count = sum(1 for s in songs if s.get("uri") or s.get("uri_spotify"))
             apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
+            youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
+            plex_count = sum(1 for s in songs if s.get("uri_plex"))
 
             playlists.append(
                 {
@@ -444,6 +446,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "song_count": len(songs),
                     "spotify_count": spotify_count,
                     "apple_music_count": apple_music_count,
+                    "youtube_music_count": youtube_music_count,
+                    "plex_count": plex_count,
                     "is_valid": is_valid,
                     "errors": errors,
                 }
@@ -457,6 +461,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "song_count": 0,
                     "spotify_count": 0,
                     "apple_music_count": 0,
+                    "youtube_music_count": 0,
+                    "plex_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                 }

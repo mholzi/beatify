@@ -515,8 +515,18 @@ function renderPlaylists(playlists, playlistDir) {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
-            // Provider count - Spotify only (Story 17.6)
-            const providerCount = playlist.spotify_count || songCount;
+            
+            // Provider count - get count based on selected provider
+            let providerCount = songCount;
+            if (selectedProvider === 'spotify') {
+                providerCount = playlist.spotify_count || songCount;
+            } else if (selectedProvider === 'apple_music') {
+                providerCount = playlist.apple_music_count || 0;
+            } else if (selectedProvider === 'youtube_music') {
+                providerCount = playlist.youtube_music_count || 0;
+            } else if (selectedProvider === 'plex') {
+                providerCount = playlist.plex_count || 0;
+            }
 
             // Build coverage indicator
             let coverageHtml = '';
