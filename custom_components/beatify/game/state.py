@@ -35,7 +35,6 @@ from custom_components.beatify.const import (
     MIN_NAME_LENGTH,
     MIN_ROUNDS_FOR_CLUTCH,
     MIN_STREAK_FOR_AWARD,
-    MIN_SUBMISSIONS_FOR_SPEED,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
