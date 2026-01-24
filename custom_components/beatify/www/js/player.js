@@ -1401,7 +1401,7 @@
     function showEarlyRevealToast() {
         var indicator = document.getElementById('volume-indicator');
         if (indicator) {
-            indicator.textContent = i18n.t('earlyReveal.message') || 'All guesses in!';
+            indicator.textContent = utils.t('earlyReveal.message') || 'All guesses in!';
             indicator.classList.remove('hidden');
             indicator.classList.add('is-visible');
             setTimeout(function() {
