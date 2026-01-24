@@ -2590,14 +2590,14 @@
             artistChallengeComplete = true;
 
         } else {
-            // Wrong guess
+            // Wrong guess - lock selection (one guess only)
             if (btn) {
                 btn.classList.remove('is-loading');
-                btn.classList.add('is-wrong');
-                setTimeout(function() {
-                    btn.classList.remove('is-wrong');
-                }, 500);
+                btn.classList.add('is-wrong', 'is-selected');
             }
+            disableAllArtistButtons();
+            showArtistResult(utils.t('artistChallenge.wrongGuess') || 'Wrong guess!', false);
+            artistChallengeComplete = true;
         }
 
         pendingArtistGuess = null;

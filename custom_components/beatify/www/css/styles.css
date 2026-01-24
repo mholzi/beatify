@@ -3726,6 +3726,14 @@ body.theme-dark .admin-controls {
     animation: artistWrongFlash 0.5s ease;
 }
 
+.artist-option-btn.is-wrong.is-selected {
+    background: var(--color-error);
+    border-color: var(--color-error);
+    color: white;
+    animation: none;
+    opacity: 0.8;
+}
+
 @keyframes artistWrongFlash {
     0%, 100% { background: var(--color-surface); }
     50% { background: rgba(239, 68, 68, 0.3); }
