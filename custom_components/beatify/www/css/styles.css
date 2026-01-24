@@ -2795,12 +2795,14 @@ body.theme-dark .admin-controls {
     justify-content: space-between;
     gap: var(--space-sm);
     margin-bottom: var(--space-md);
+    text-align: left;
 }
 
 .section-header--inline {
     margin-bottom: 0;
     flex: 1;
     min-width: 120px;
+    text-align: left;
 }
 
 /* Stat Badge Bar */
@@ -4240,14 +4242,6 @@ body.theme-dark .artist-reveal-section {
     text-align: left;
 }
 
-.fun-fact-section .section-header {
-    margin-bottom: var(--space-sm);
-}
-
-.fun-fact-content {
-    padding: 0 var(--space-sm);
-}
-
 .fun-fact-section .fun-fact-text {
     font-size: 0.875rem;
     color: var(--color-text-white);
@@ -4260,6 +4254,11 @@ body.theme-dark .artist-reveal-section {
     color: var(--color-text-neon-muted);
 }
 
+/* Consistent section content padding */
+.section-content-padded {
+    padding: 0 var(--space-md) var(--space-md);
+}
+
 /* All Guesses Card Section */
 .guesses-section {
     text-align: left;
@@ -4269,7 +4268,44 @@ body.theme-dark .artist-reveal-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xs);
-    padding: 0 var(--space-sm) var(--space-sm);
+}
+
+/* Personal Result Card Section */
+.personal-result-section {
+    text-align: left;
+}
+
+.personal-result-section .result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.personal-result-section .result-row:last-child {
+    border-bottom: none;
+}
+
+/* Artist Reveal Card Section */
+.artist-reveal-section {
+    text-align: left;
+}
+
+.artist-reveal-section .artist-reveal-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.artist-reveal-section .artist-reveal-winner {
+    font-size: 0.875rem;
+    color: var(--color-text-neon-muted);
+}
+
+/* Round Analytics Card Section */
+.round-analytics-section {
+    text-align: left;
 }
 
 /* Legacy styles preserved */

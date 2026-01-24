@@ -971,6 +971,9 @@ class GameState:
                 "submitted": p.submitted,
                 # Steal availability (Story 15.3 AC1)
                 "steal_available": p.steal_available,
+                # Bet and steal status for submission tracker badges
+                "bet": p.bet,
+                "steal_used": p.steal_used,
             }
             for p in self.players.values()
         ]

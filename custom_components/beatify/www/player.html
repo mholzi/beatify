@@ -332,27 +332,13 @@
                 <!-- Confetti Canvas (Story 9.4) -->
                 <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 
-                <!-- Personal Result - Compact single line -->
-                <div id="personal-result" class="personal-result-compact">
-                    <span id="result-content" class="result-content-inline">
-                        <!-- Populated dynamically: "You guessed 1985 • +8 pts" -->
-                    </span>
-                </div>
-
-                <!-- Artist Challenge Reveal - Compact (Story 20.6) -->
-                <div id="artist-reveal-section" class="artist-reveal-compact hidden">
-                    <span class="artist-reveal-icon" aria-hidden="true">🎤</span>
-                    <span id="artist-reveal-name" class="artist-reveal-name-inline"></span>
-                    <span id="artist-reveal-winner" class="artist-reveal-winner-inline hidden"></span>
-                </div>
-
                 <!-- Fun Fact Card Section (Story 14.3) -->
                 <section id="fun-fact-container" class="card-section fun-fact-section hidden">
                     <h2 class="section-header">
                         <span class="section-icon" aria-hidden="true">💡</span>
                         <span data-i18n="reveal.funFact">Fun Fact</span>
                     </h2>
-                    <div class="fun-fact-content">
+                    <div class="section-content-padded">
                         <div id="fun-fact" class="fun-fact-text"></div>
                         <div id="song-rich-info" class="song-rich-info">
                             <!-- Populated by JavaScript: chart info, certifications, awards -->
@@ -366,14 +352,37 @@
                         <span class="section-icon" aria-hidden="true">👥</span>
                         <span data-i18n="reveal.allGuesses">All Guesses</span>
                     </h2>
-                    <div id="reveal-results-cards" class="reveal-results-grid">
+                    <div id="reveal-results-cards" class="reveal-results-grid section-content-padded">
                         <!-- Populated by JavaScript: shows all player guesses -->
                     </div>
                 </section>
 
-                <!-- Leaderboard - Collapsible -->
-                <section id="reveal-leaderboard" class="section-collapsible leaderboard-section collapsed">
-                    <button type="button" class="section-header-collapsible" id="reveal-leaderboard-toggle" aria-expanded="false" aria-controls="reveal-leaderboard-content">
+                <!-- Personal Result - Card Section -->
+                <section id="personal-result" class="card-section personal-result-section">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎯</span>
+                        <span data-i18n="reveal.yourResult">Your Result</span>
+                    </h2>
+                    <div id="result-content" class="section-content-padded">
+                        <!-- Populated dynamically -->
+                    </div>
+                </section>
+
+                <!-- Artist Challenge Reveal - Card Section (Story 20.6) -->
+                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎤</span>
+                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
+                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
+                    </div>
+                </section>
+
+                <!-- Leaderboard - Expanded by default -->
+                <section id="reveal-leaderboard" class="section-collapsible leaderboard-section">
+                    <button type="button" class="section-header-collapsible" id="reveal-leaderboard-toggle" aria-expanded="true" aria-controls="reveal-leaderboard-content">
                         <span class="section-icon" aria-hidden="true">🏆</span>
                         <span data-i18n="leaderboard.standings">Standings</span>
                         <span class="section-summary" id="reveal-leaderboard-summary">--</span>
@@ -386,10 +395,21 @@
                     </div>
                 </section>
 
-                <!-- Round Analytics (Story 13.3) -->
-                <div id="round-analytics" class="round-analytics hidden">
-                    <!-- Populated by JavaScript -->
-                </div>
+                <!-- Round Analytics (Story 13.3) - Collapsible, collapsed by default -->
+                <section id="round-analytics" class="section-collapsible round-analytics-section collapsed hidden">
+                    <button type="button" class="section-header-collapsible" id="round-analytics-toggle" aria-expanded="false">
+                        <span class="section-header-content">
+                            <span class="section-icon" aria-hidden="true">📊</span>
+                            <span data-i18n="analytics.title">Round Stats</span>
+                        </span>
+                        <span class="section-toggle" aria-hidden="true"></span>
+                    </button>
+                    <div class="section-content">
+                        <div id="round-analytics-content" class="section-content-padded">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Song difficulty rating - hidden, used for badge (Story 15.1) -->
                 <div id="song-difficulty" class="hidden"></div>

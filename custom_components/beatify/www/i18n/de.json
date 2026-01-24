@@ -372,7 +372,7 @@
   },
   "artistChallenge": {
     "whoSings": "Wer singt diesen Song?",
-    "youGotIt": "Richtig! +5 Punkte",
+    "youGotIt": "Richtig! +{points} Punkte",
     "someoneBeatYou": "{winner} war schneller!",
     "wrongGuess": "Leider falsch...",
     "artistBonus": "Künstler-Bonus",

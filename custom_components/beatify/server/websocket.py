@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 from aiohttp import WSMsgType, web
 
 from custom_components.beatify.const import (
+    ARTIST_BONUS_POINTS,
     DOMAIN,
     ERR_ADMIN_CANNOT_LEAVE,
     ERR_ADMIN_EXISTS,
@@ -923,7 +924,9 @@ class BeatifyWebSocketHandler:
 
         if result["correct"]:
             response["first"] = result["first"]
-            if not result["first"]:
+            if result["first"]:
+                response["bonus_points"] = ARTIST_BONUS_POINTS
+            else:
                 response["winner"] = result["winner"]
 
         await ws.send_json(response)

@@ -2203,7 +2203,8 @@
     function setupLeaderboardToggle() {
         var toggle = document.getElementById('leaderboard-toggle');
         var leaderboard = document.getElementById('game-leaderboard');
-        if (toggle && leaderboard) {
+        if (toggle && leaderboard && !toggle.hasAttribute('data-initialized')) {
+            toggle.setAttribute('data-initialized', 'true');
             toggle.addEventListener('click', function() {
                 var isCollapsed = leaderboard.classList.toggle('collapsed');
                 toggle.setAttribute('aria-expanded', !isCollapsed);
@@ -2241,6 +2242,21 @@
             toggle.setAttribute('data-initialized', 'true');
             toggle.addEventListener('click', function() {
                 var isCollapsed = leaderboard.classList.toggle('collapsed');
+                toggle.setAttribute('aria-expanded', !isCollapsed);
+            });
+        }
+    }
+
+    /**
+     * Setup toggle for round analytics section (collapsed by default)
+     */
+    function setupRoundAnalyticsToggle() {
+        var toggle = document.getElementById('round-analytics-toggle');
+        var section = document.getElementById('round-analytics');
+        if (toggle && section && !toggle.hasAttribute('data-initialized')) {
+            toggle.setAttribute('data-initialized', 'true');
+            toggle.addEventListener('click', function() {
+                var isCollapsed = section.classList.toggle('collapsed');
                 toggle.setAttribute('aria-expanded', !isCollapsed);
             });
         }
@@ -2590,11 +2606,13 @@
                 btn.classList.add('is-correct');
                 var badge = document.createElement('span');
                 badge.className = 'artist-points-badge';
-                badge.textContent = '+10';
+                badge.textContent = '+' + (data.bonus_points || 5);
                 btn.appendChild(badge);
             }
             disableAllArtistButtons();
-            showArtistResult(utils.t('artistChallenge.youGotIt') || 'You got it! +5 points', true);
+            var bonusText = (utils.t('artistChallenge.youGotIt') || 'You got it! +{points} points')
+                .replace('{points}', data.bonus_points || 5);
+            showArtistResult(bonusText, true);
             artistChallengeComplete = true;
 
         } else if (data.correct && !data.first) {
@@ -3045,16 +3063,17 @@
      * @param {number} correctYear - The correct year for comparison
      */
     function renderRoundAnalytics(analytics, correctYear) {
-        var container = document.getElementById('round-analytics');
-        if (!container || !analytics) {
-            if (container) container.classList.add('hidden');
+        var section = document.getElementById('round-analytics');
+        var container = document.getElementById('round-analytics-content');
+        if (!section || !container || !analytics) {
+            if (section) section.classList.add('hidden');
             return;
         }
 
         // Handle empty state (AC11)
         if (analytics.total_submitted === 0) {
             container.innerHTML = '<div class="analytics-empty">' + utils.t('analytics.noSubmissions') + '</div>';
-            container.classList.remove('hidden');
+            section.classList.remove('hidden');
             return;
         }
 
@@ -3110,9 +3129,9 @@
             }
         }
 
-        // Build full HTML - stats in single row
+        // Build full HTML - stats in single row (title is now in section header)
         var avgDisplay = analytics.average_guess !== null ? Math.round(analytics.average_guess) : '?';
-        container.innerHTML = '<h3 class="analytics-title">' + utils.t('analytics.title') + '</h3>' +
+        container.innerHTML =
             '<div class="analytics-stats-row">' +
             '<div class="stat-primary">' +
             '<span class="stat-label">' + utils.t('analytics.averageGuess') + '</span>' +
@@ -3130,7 +3149,7 @@
             '</div>' +
             (achievementsHtml ? '<div class="analytics-achievements">' + achievementsHtml + '</div>' : '');
 
-        container.classList.remove('hidden');
+        section.classList.remove('hidden');
     }
 
     /**
@@ -3695,7 +3714,7 @@
         resultContent.innerHTML =
             '<div class="result-row">' +
                 '<span class="result-label">' + utils.t('reveal.yourGuess') + '</span>' +
-                '<span class="result-value">' + player.guess + '</span>' +
+                '<span class="result-value">' + (player.guess || 'n/a') + '</span>' +
             '</div>' +
             '<div class="result-row">' +
                 '<span class="result-label">' + utils.t('reveal.correctYear') + '</span>' +
@@ -3776,8 +3795,7 @@
             return (b.round_score || 0) - (a.round_score || 0);
         });
 
-        var html = '<div class="results-cards-header">' + utils.t('reveal.allPlayers') + '</div>';
-        html += '<div class="results-cards-scroll">';
+        var html = '<div class="results-cards-scroll">';
 
         sorted.forEach(function(player) {
             var isCurrentPlayer = player.name === playerName;
@@ -3791,7 +3809,7 @@
                              roundScore >= 1 ? 'is-score-medium' : 'is-score-zero';
 
             // Guess display
-            var guessDisplay = isMissed ? '—' : player.guess;
+            var guessDisplay = isMissed ? '—' : (player.guess || 'n/a');
             var yearsOffDisplay = isMissed ? utils.t('reveal.noGuessShort') :
                                   yearsOff === 0 ? utils.t('reveal.exact') :
                                   t('reveal.shortOff', { years: yearsOff });
@@ -4816,6 +4834,7 @@
                 showView('reveal-view');
                 updateRevealView(data);
                 setupRevealLeaderboardToggle();  // Collapsible reveal leaderboard
+                setupRoundAnalyticsToggle();     // Collapsible round analytics (collapsed by default)
                 // Show admin control bar (Story 6.1)
                 showAdminControlBar();
                 updateControlBarState('REVEAL');
