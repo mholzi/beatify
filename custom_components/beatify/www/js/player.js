@@ -2512,7 +2512,7 @@
 
             // Show result
             if (artistChallenge.winner === playerName) {
-                resultEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +10 points';
+                resultEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +5 points';
                 resultEl.className = 'artist-result is-winner';
             } else {
                 var msg = (t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
@@ -2583,7 +2583,7 @@
                 btn.appendChild(badge);
             }
             disableAllArtistButtons();
-            showArtistResult(t('artistChallenge.youGotIt') || 'You got it! +10 points', true);
+            showArtistResult(t('artistChallenge.youGotIt') || 'You got it! +5 points', true);
             artistChallengeComplete = true;
 
         } else if (data.correct && !data.first) {
@@ -2689,7 +2689,7 @@
                 winnerEl.classList.remove('hidden');
                 if (artistChallenge.winner === currentPlayerName) {
                     // Current player won
-                    winnerEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +10 points';
+                    winnerEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +5 points';
                     winnerEl.className = 'artist-reveal-winner is-you';
                 } else {
                     // Someone else won

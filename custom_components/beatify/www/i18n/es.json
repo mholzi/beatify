@@ -223,7 +223,7 @@
     "viewAnalytics": "Estadisticas",
     "artistChallenge": "Desafío de Artista",
     "enableArtistChallenge": "Activar Desafío de Artista",
-    "artistChallengeDesc": "Primera respuesta correcta: +10 pts"
+    "artistChallengeDesc": "Primera respuesta correcta: +5 pts"
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",
@@ -339,7 +339,7 @@
   },
   "artistChallenge": {
     "whoSings": "¿Quién canta esta canción?",
-    "youGotIt": "¡Lo adivinaste! +10 puntos",
+    "youGotIt": "¡Lo adivinaste! +5 puntos",
     "someoneBeatYou": "¡{winner} lo adivinó primero!",
     "wrongGuess": "Casi...",
     "artistBonus": "Bonus de Artista",

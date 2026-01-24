@@ -223,7 +223,7 @@
     "viewAnalytics": "Statistik",
     "artistChallenge": "Künstler-Challenge",
     "enableArtistChallenge": "Künstler-Challenge aktivieren",
-    "artistChallengeDesc": "Erster richtiger Tipp: +10 Pkt"
+    "artistChallengeDesc": "Erster richtiger Tipp: +5 Pkt"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -339,7 +339,7 @@
   },
   "artistChallenge": {
     "whoSings": "Wer singt diesen Song?",
-    "youGotIt": "Richtig! +10 Punkte",
+    "youGotIt": "Richtig! +5 Punkte",
     "someoneBeatYou": "{winner} war schneller!",
     "wrongGuess": "Leider falsch...",
     "artistBonus": "Künstler-Bonus",

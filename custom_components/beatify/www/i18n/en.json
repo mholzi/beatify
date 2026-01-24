@@ -223,7 +223,7 @@
     "viewAnalytics": "Analytics",
     "artistChallenge": "Artist Challenge",
     "enableArtistChallenge": "Enable Artist Challenge",
-    "artistChallengeDesc": "First correct guess: +10 pts"
+    "artistChallengeDesc": "First correct guess: +5 pts"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -339,7 +339,7 @@
   },
   "artistChallenge": {
     "whoSings": "Who sings this song?",
-    "youGotIt": "You got it! +10 points",
+    "youGotIt": "You got it! +5 points",
     "someoneBeatYou": "{winner} got it first!",
     "wrongGuess": "Not quite...",
     "artistBonus": "Artist Bonus",
