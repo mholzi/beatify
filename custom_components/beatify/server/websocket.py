@@ -639,7 +639,14 @@ class BeatifyWebSocketHandler:
 
         # Story 20.9: Check for early reveal when all guesses are complete
         # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+        all_complete = game_state.check_all_guesses_complete()
+        _LOGGER.debug(
+            "Early reveal check: phase=%s, all_complete=%s, artist_challenge=%s",
+            game_state.phase.value,
+            all_complete,
+            game_state.artist_challenge_enabled,
+        )
+        if game_state.phase == GamePhase.PLAYING and all_complete:
             await game_state._trigger_early_reveal()
 
         _LOGGER.info("Player %s submitted guess: %d at %.2f", player.name, year, submission_time)
@@ -1030,12 +1037,20 @@ class BeatifyWebSocketHandler:
         """Broadcast current game state to all connected players."""
         game_state = self.hass.data.get(DOMAIN, {}).get("game")
         if not game_state:
+            _LOGGER.warning("broadcast_state: No game state found in hass.data")
             return
 
         state = game_state.get_state()
         if state:
+            _LOGGER.debug(
+                "broadcast_state: phase=%s, connections=%d",
+                state.get("phase"),
+                len(self.connections),
+            )
             state_msg = {"type": "state", **state}
             await self.broadcast(state_msg)
+        else:
+            _LOGGER.warning("broadcast_state: get_state() returned None")
 
     async def _handle_disconnect(self, ws: web.WebSocketResponse) -> None:
         """

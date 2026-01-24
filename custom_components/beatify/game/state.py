@@ -1023,10 +1023,15 @@ class GameState:
         Cancels timer, sets early_reveal flag, and calls end_round.
 
         """
-        _LOGGER.info("All guesses complete - triggering early reveal")
+        _LOGGER.info(
+            "All guesses complete - triggering early reveal (phase=%s, callback=%s)",
+            self.phase.value,
+            self._on_round_end is not None,
+        )
         self.cancel_timer()
         self._early_reveal = True
         await self.end_round()
+        _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
 
     def set_round_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
         """
@@ -1508,10 +1513,14 @@ class GameState:
 
         # Invoke callback to broadcast state
         if self._on_round_end:
+            _LOGGER.debug("Invoking round_end callback to broadcast REVEAL state")
             try:
                 await self._on_round_end()
+                _LOGGER.debug("Round_end callback completed successfully")
             except Exception as err:
                 _LOGGER.error("Round_end callback failed: %s", err)
+        else:
+            _LOGGER.warning("No round_end callback set - REVEAL state will not be broadcast!")
 
     def cancel_timer(self) -> None:
         """Cancel the round timer (synchronous, for cleanup)."""
