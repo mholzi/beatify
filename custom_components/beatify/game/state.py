@@ -1472,39 +1472,47 @@ class GameState:
                     player.artist_bonus = 0
 
         # Calculate round analytics after scoring (Story 13.3)
-        self.round_analytics = self.calculate_round_analytics()
+        try:
+            self.round_analytics = self.calculate_round_analytics()
+        except Exception as err:
+            _LOGGER.error("Failed to calculate round analytics: %s", err)
+            self.round_analytics = None
 
         # Record song results for difficulty tracking (Story 15.1 AC3)
         # Extended for song statistics (Story 19.7)
+        # Wrapped in try/catch to ensure round transition completes even if stats fail
         if self._stats_service and self.current_song:
             song_uri = self.current_song.get("uri")
             if song_uri:
-                # Build player results list for song difficulty calculation
-                player_results = [
-                    {
-                        "submitted": p.submitted,
-                        "years_off": p.years_off if p.years_off is not None else 0,
+                try:
+                    # Build player results list for song difficulty calculation
+                    player_results = [
+                        {
+                            "submitted": p.submitted,
+                            "years_off": p.years_off if p.years_off is not None else 0,
+                        }
+                        for p in self.players.values()
+                    ]
+                    # Story 19.7: Pass song metadata and playlist info
+                    song_metadata = {
+                        "title": self.current_song.get("title", "Unknown"),
+                        "artist": self.current_song.get("artist", "Unknown"),
+                        "year": self.current_song.get("year", 0),
                     }
-                    for p in self.players.values()
-                ]
-                # Story 19.7: Pass song metadata and playlist info
-                song_metadata = {
-                    "title": self.current_song.get("title", "Unknown"),
-                    "artist": self.current_song.get("artist", "Unknown"),
-                    "year": self.current_song.get("year", 0),
-                }
-                # Extract playlist name from path (e.g., "greatest-hits.json" -> "Greatest Hits")
-                playlist_name = None
-                if self.playlists:
-                    playlist_path = self.playlists[0]
-                    playlist_name = playlist_path.replace(".json", "").replace("-", " ").title()
-                await self._stats_service.record_song_result(
-                    song_uri,
-                    player_results,
-                    song_metadata=song_metadata,
-                    playlist_name=playlist_name,
-                    difficulty=self.difficulty,
-                )
+                    # Extract playlist name from path (e.g., "greatest-hits.json" -> "Greatest Hits")
+                    playlist_name = None
+                    if self.playlists:
+                        playlist_path = self.playlists[0]
+                        playlist_name = playlist_path.replace(".json", "").replace("-", " ").title()
+                    await self._stats_service.record_song_result(
+                        song_uri,
+                        player_results,
+                        song_metadata=song_metadata,
+                        playlist_name=playlist_name,
+                        difficulty=self.difficulty,
+                    )
+                except Exception as err:
+                    _LOGGER.error("Failed to record song results: %s", err)
 
         # Transition to REVEAL
         self._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
