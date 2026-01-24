@@ -5016,32 +5016,32 @@ body.theme-dark .result-value.is-bet-lost {
     padding: var(--space-sm) var(--space-md);
     background: transparent;
     border: none;
-    color: var(--color-text-neon);
+    color: var(--color-text-white);
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    text-align: left;
 }
 
-.leaderboard-section .section-header-collapsible:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.leaderboard-section .section-icon {
+.leaderboard-section .section-header-collapsible .section-icon {
     font-size: 1rem;
 }
 
-.leaderboard-section .section-summary {
+.leaderboard-section .section-header-collapsible .section-summary {
     margin-left: auto;
-    font-weight: 400;
-    color: var(--color-text-neon-muted);
     font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-accent-secondary);
+    background: rgba(0, 245, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
 }
 
-.leaderboard-section .section-toggle {
-    transition: transform 0.2s ease;
-    font-size: 0.75rem;
+.leaderboard-section .section-header-collapsible .section-toggle {
+    margin-left: var(--space-sm);
+    font-size: 0.625rem;
     color: var(--color-text-neon-muted);
+    transition: transform 0.2s ease;
 }
 
 .leaderboard-section .section-content {
