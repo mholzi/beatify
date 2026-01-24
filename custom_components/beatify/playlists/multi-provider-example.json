@@ -1,0 +1,42 @@
+{
+  "name": "Multi-Provider Example",
+  "version": "1.0",
+  "songs": [
+    {
+      "year": 1982,
+      "uri": "spotify:track:4cOdK2wGLETKBW3PvgPWqT",
+      "uri_spotify": "spotify:track:4cOdK2wGLETKBW3PvgPWqT",
+      "uri_apple_music": "applemusic://track/203709340",
+      "uri_youtube_music": "ytmusic://track/dQw4w9WgXcQ",
+      "uri_plex": "plex://track/example-track-1",
+      "artist": "Michael Jackson",
+      "title": "Thriller",
+      "fun_fact": "Thriller is the best-selling album of all time with estimated sales of 70 million copies worldwide.",
+      "awards": ["Grammy Award for Album of the Year 1984"]
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:1KxwZYyzWNyZSRyErj2ojT",
+      "uri_spotify": "spotify:track:1KxwZYyzWNyZSRyErj2ojT",
+      "uri_apple_music": "applemusic://track/1440806811",
+      "uri_youtube_music": "ytmusic://track/rY0WxgSXdEE",
+      "uri_plex": "plex://track/example-track-2",
+      "artist": "Queen",
+      "title": "Bohemian Rhapsody",
+      "fun_fact": "This iconic song took three weeks to record and used 180 separate overdubs.",
+      "awards": ["Grammy Hall of Fame 2004"]
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:5ChkMS8OtdzJeqyybCc9R5",
+      "uri_spotify": "spotify:track:5ChkMS8OtdzJeqyybCc9R5",
+      "uri_apple_music": "applemusic://track/934799896",
+      "uri_youtube_music": "ytmusic://track/A_MjCqQoLLA",
+      "uri_plex": "plex://track/example-track-3",
+      "artist": "U2",
+      "title": "With or Without You",
+      "fun_fact": "The song spent three weeks at number one on the Billboard Hot 100.",
+      "awards": ["Grammy Award nomination"]
+    }
+  ]
+}
