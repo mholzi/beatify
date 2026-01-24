@@ -2214,14 +2214,35 @@
     /**
      * Update leaderboard summary badge with leader info
      * @param {Array} leaderboard - Leaderboard array
+     * @param {string} summaryId - Optional specific summary element ID
      */
-    function updateLeaderboardSummary(leaderboard) {
-        var summaryEl = document.getElementById('leaderboard-summary');
-        if (!summaryEl || !leaderboard || leaderboard.length === 0) return;
+    function updateLeaderboardSummary(leaderboard, summaryId) {
+        // Update both game and reveal summaries if no specific ID
+        var summaryIds = summaryId ? [summaryId] : ['leaderboard-summary', 'reveal-leaderboard-summary'];
 
-        var leader = leaderboard[0];
-        if (leader) {
-            summaryEl.textContent = leader.name + ': ' + leader.score;
+        summaryIds.forEach(function(id) {
+            var summaryEl = document.getElementById(id);
+            if (!summaryEl || !leaderboard || leaderboard.length === 0) return;
+
+            var leader = leaderboard[0];
+            if (leader) {
+                summaryEl.textContent = leader.name + ': ' + leader.score;
+            }
+        });
+    }
+
+    /**
+     * Setup reveal leaderboard toggle behavior (collapsible section pattern)
+     */
+    function setupRevealLeaderboardToggle() {
+        var toggle = document.getElementById('reveal-leaderboard-toggle');
+        var leaderboard = document.getElementById('reveal-leaderboard');
+        if (toggle && leaderboard && !toggle.hasAttribute('data-initialized')) {
+            toggle.setAttribute('data-initialized', 'true');
+            toggle.addEventListener('click', function() {
+                var isCollapsed = leaderboard.classList.toggle('collapsed');
+                toggle.setAttribute('aria-expanded', !isCollapsed);
+            });
         }
     }
 
@@ -3471,8 +3492,10 @@
         var personalResult = document.getElementById('personal-result');
         if (!emotionEl) return;
 
-        // Reset emotion element
-        emotionEl.className = 'reveal-emotion';
+        // Reset emotion element - detect compact vs legacy class
+        var isCompact = emotionEl.classList.contains('reveal-emotion-inline') ||
+                        document.querySelector('.reveal-container--compact');
+        emotionEl.className = isCompact ? 'reveal-emotion-inline' : 'reveal-emotion';
         emotionEl.innerHTML = '';
         emotionEl.classList.add('hidden');
 
@@ -4792,6 +4815,7 @@
                 setEnergyLevel('party');  // Story 9.9 - maintain party for reveal
                 showView('reveal-view');
                 updateRevealView(data);
+                setupRevealLeaderboardToggle();  // Collapsible reveal leaderboard
                 // Show admin control bar (Story 6.1)
                 showAdminControlBar();
                 updateControlBarState('REVEAL');

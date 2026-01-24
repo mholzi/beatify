@@ -4085,13 +4085,201 @@ body.theme-dark .artist-reveal-section {
     text-align: center;
 }
 
+/* Compact Reveal Container */
+.reveal-container--compact {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    align-items: stretch;
+}
+
+/* Compact Header Bar */
+.reveal-header-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xs) 0;
+    margin-bottom: var(--space-xs);
+}
+
+.reveal-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.reveal-header-compact .section-icon {
+    font-size: 1rem;
+}
+
+.reveal-header-compact .round-indicator-text {
+    font-size: 0.875rem;
+    color: var(--color-text-neon-muted);
+}
+
+/* Song Hero - Album + Info side by side */
+.reveal-song-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    background: var(--color-surface-dark);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+}
+
+.reveal-album-cover-compact {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.reveal-song-info {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+.reveal-song-info .song-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.reveal-song-info .song-artist {
+    font-size: 0.875rem;
+    color: var(--color-text-neon-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Year Section with Emotion */
+.reveal-year-section {
+    text-align: center;
+    padding: var(--space-sm) 0;
+}
+
+.reveal-emotion-inline {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    animation: reveal-emotion-entrance 0.5s ease-out;
+}
+
+.reveal-year-section .correct-year-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-neon-muted);
+    margin-bottom: var(--space-xs);
+}
+
+.reveal-year-section .correct-year {
+    font-size: 3rem;
+}
+
+/* Personal Result - Compact */
+.personal-result-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+}
+
+.result-content-inline {
+    font-size: 0.875rem;
+    color: var(--color-text-white);
+}
+
+/* Artist Reveal - Compact */
+.artist-reveal-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface-dark);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+}
+
+.artist-reveal-icon {
+    font-size: 1rem;
+}
+
+.artist-reveal-name-inline {
+    font-weight: 600;
+    color: var(--color-accent-secondary);
+}
+
+.artist-reveal-winner-inline {
+    font-size: 0.75rem;
+    color: var(--color-text-neon-muted);
+}
+
+.artist-reveal-winner-inline::before {
+    content: "•";
+    margin-right: var(--space-xs);
+}
+
+/* Fun Fact Card Section */
+.fun-fact-section {
+    text-align: left;
+}
+
+.fun-fact-section .section-header {
+    margin-bottom: var(--space-sm);
+}
+
+.fun-fact-content {
+    padding: 0 var(--space-sm);
+}
+
+.fun-fact-section .fun-fact-text {
+    font-size: 0.875rem;
+    color: var(--color-text-white);
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+}
+
+.fun-fact-section .song-rich-info {
+    font-size: 0.75rem;
+    color: var(--color-text-neon-muted);
+}
+
+/* All Guesses Card Section */
+.guesses-section {
+    text-align: left;
+}
+
+.reveal-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+    padding: 0 var(--space-sm) var(--space-sm);
+}
+
+/* Legacy styles preserved */
 .reveal-round-info {
     font-size: var(--font-size-base);
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
 }
 
-/* Album Cover (smaller for reveal) */
+/* Album Cover (smaller for reveal) - legacy */
 .reveal-album {
     margin-bottom: var(--space-lg);
 }
