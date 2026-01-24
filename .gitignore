@@ -12,7 +12,6 @@ _bmad-output/
 # Development files
 scripts/
 pyproject.toml
-requirements*.txt
 .ruff.toml
 
 # Node
@@ -31,7 +30,6 @@ eggs/
 .eggs/
 
 # Testing
-tests/
 .pytest_cache/
 .pytest/
 .coverage
