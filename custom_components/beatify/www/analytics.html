@@ -122,21 +122,9 @@
             <button type="button" id="retry-btn" class="btn btn-primary" data-i18n="common.retry">Retry</button>
         </div>
 
-        <!-- Top Playlists Section (Story 19.4) -->
-        <section class="playlist-analytics card-section">
-            <h2 class="section-header">
-                <span class="section-icon">🎵</span>
-                <span data-i18n="analyticsDashboard.topPlaylists">Top Playlists</span>
-            </h2>
-            <div class="playlist-list" id="playlist-list"></div>
-            <div class="empty-state hidden" id="playlist-empty">
-                <span data-i18n="analyticsDashboard.noPlaylists">No playlists played yet</span>
-            </div>
-        </section>
-
-        <!-- Song Statistics Section - Compact Collapsible -->
-        <section class="section-collapsible collapsed" id="song-section" aria-labelledby="song-stats-heading">
-            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="song-content">
+        <!-- Song Statistics Section - Compact Collapsible (expanded by default) -->
+        <section class="section-collapsible" id="song-section" aria-labelledby="song-stats-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="song-content">
                 <span class="section-icon" aria-hidden="true">🎤</span>
                 <span data-i18n="analyticsDashboard.songs">Songs</span>
                 <span class="section-summary" id="song-summary">No data</span>
@@ -168,6 +156,22 @@
                 <button type="button" class="btn btn-secondary btn-full-width" id="view-all-songs-btn">
                     <span data-i18n="analyticsDashboard.viewAllSongs">View All Songs</span>
                 </button>
+            </div>
+        </section>
+
+        <!-- Top Playlists Section (Story 19.4) - Collapsible -->
+        <section class="section-collapsible collapsed" id="playlist-section" aria-labelledby="playlist-stats-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="playlist-content">
+                <span class="section-icon" aria-hidden="true">🎵</span>
+                <span data-i18n="analyticsDashboard.topPlaylists">Top Playlists</span>
+                <span class="section-summary" id="playlist-summary">None</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="playlist-content">
+                <div class="playlist-list" id="playlist-list"></div>
+                <div class="empty-state hidden" id="playlist-empty">
+                    <span data-i18n="analyticsDashboard.noPlaylists">No playlists played yet</span>
+                </div>
             </div>
         </section>
 

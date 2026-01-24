@@ -219,15 +219,27 @@
     function renderPlaylists(playlists) {
         var listEl = document.getElementById('playlist-list');
         var emptyEl = document.getElementById('playlist-empty');
+        var headerSummary = document.getElementById('playlist-summary');
 
         if (!playlists || playlists.length === 0) {
             listEl.innerHTML = '';
             emptyEl.classList.remove('hidden');
+            if (headerSummary) headerSummary.textContent = 'None';
             return;
         }
 
         emptyEl.classList.add('hidden');
         var maxCount = playlists[0].play_count;
+
+        // Update header summary with top playlist name
+        if (headerSummary && playlists[0]) {
+            var topName = playlists[0].name || '';
+            // Truncate long names for header
+            if (topName.length > 20) {
+                topName = topName.substring(0, 18) + '...';
+            }
+            headerSummary.textContent = topName;
+        }
 
         listEl.innerHTML = playlists.map(function(p) {
             // Strip file path to get clean playlist name
@@ -379,15 +391,22 @@
         var emptyEl = document.getElementById('song-stats-empty');
         var summaryEl = document.getElementById('song-summary-cards');
         var playlistEl = document.getElementById('playlist-song-stats');
+        var headerSummary = document.getElementById('song-summary');
 
         // Check if we have any data
         if (!data || (!data.most_played && !data.by_playlist.length)) {
             showSongStatsEmpty();
+            if (headerSummary) headerSummary.textContent = 'No data';
             return;
         }
 
         if (emptyEl) emptyEl.classList.add('hidden');
         if (summaryEl) summaryEl.classList.remove('hidden');
+
+        // Update header summary with most played song
+        if (headerSummary && data.most_played) {
+            headerSummary.textContent = data.most_played.title || 'Songs';
+        }
 
         // Render summary cards (AC1)
         renderSongSummaryCard('song-most-played', data.most_played, 'play_count');

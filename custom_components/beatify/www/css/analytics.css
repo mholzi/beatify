@@ -1092,7 +1092,7 @@
 /* Collapsible Sections */
 .section-collapsible {
     background: var(--color-surface-dark);
-    border: 1px solid var(--color-border-dark);
+    border: 1px solid var(--color-border-neon);
     border-radius: var(--radius-md);
     margin-bottom: var(--space-sm);
     overflow: hidden;

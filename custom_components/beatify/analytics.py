@@ -99,6 +99,7 @@ class AnalyticsStorage:
         self._games_since_prune = 0
         self._session_error_count = 0
         self._save_lock = asyncio.Lock()
+        self._playlist_display_names: dict[str, str] | None = None
 
     def _empty_data(self) -> AnalyticsData:
         """Return empty analytics data structure."""
@@ -371,6 +372,38 @@ class AnalyticsStorage:
         """Get total errors recorded."""
         return len(self._data["errors"])
 
+    def _get_playlist_display_names(self) -> dict[str, str]:
+        """
+        Load playlist display names from JSON files.
+
+        Returns:
+            Dict mapping slug (e.g., 'greatest-hits-of-all-time') to display name
+            (e.g., 'Greatest Hits of All Time')
+        """
+        if self._playlist_display_names is not None:
+            return self._playlist_display_names
+
+        display_names: dict[str, str] = {}
+        playlist_dir = Path(self._hass.config.path("custom_components/beatify/playlists"))
+
+        if not playlist_dir.exists():
+            _LOGGER.debug("Playlist directory not found: %s", playlist_dir)
+            return display_names
+
+        for json_file in playlist_dir.glob("*.json"):
+            try:
+                data = json.loads(json_file.read_text(encoding="utf-8"))
+                slug = json_file.stem  # filename without .json
+                if "name" in data:
+                    display_names[slug] = data["name"]
+                else:
+                    display_names[slug] = slug  # fallback to slug
+            except (json.JSONDecodeError, OSError) as err:
+                _LOGGER.warning("Failed to read playlist %s: %s", json_file, err)
+
+        self._playlist_display_names = display_names
+        _LOGGER.debug("Loaded %d playlist display names", len(display_names))
+        return display_names
 
     def compute_playlist_stats(
         self, games: list[GameRecord]
@@ -400,13 +433,16 @@ class AnalyticsStorage:
         # Calculate percentage relative to total games with playlists
         total = sum(count for _, count in sorted_playlists)
 
+        # Get display names mapping
+        display_names = self._get_playlist_display_names()
+
         return [
             {
-                "name": name,
+                "name": display_names.get(slug, slug),  # Use display name or fallback to slug
                 "play_count": count,
                 "percentage": round(count / total * 100, 1) if total > 0 else 0,
             }
-            for name, count in sorted_playlists
+            for slug, count in sorted_playlists
         ]
 
     def compute_games_over_time(
