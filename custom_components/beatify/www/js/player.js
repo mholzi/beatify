@@ -5,6 +5,9 @@
 (function() {
     'use strict';
 
+    // Alias BeatifyUtils for convenience
+    var utils = window.BeatifyUtils || {};
+
     // Get game ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const gameId = urlParams.get('game');
@@ -22,20 +25,15 @@
     const endView = document.getElementById('end-view');
     const connectionLostView = document.getElementById('connection-lost-view');
 
+    // All views array for showView helper
+    const allViews = [loadingView, notFoundView, endedView, inProgressView, joinView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
+
     /**
      * Show a specific view and hide all others
      * @param {string} viewId - ID of view to show
      */
     function showView(viewId) {
-        [loadingView, notFoundView, endedView, inProgressView, joinView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView].forEach(function(v) {
-            if (v) {
-                v.classList.add('hidden');
-            }
-        });
-        const view = document.getElementById(viewId);
-        if (view) {
-            view.classList.remove('hidden');
-        }
+        utils.showView(allViews, viewId);
     }
 
     /**
@@ -52,51 +50,9 @@
         return /^[a-zA-Z0-9_-]{8,16}$/.test(id);
     }
 
-    /**
-     * Wait for BeatifyI18n to be available (handles fallback script race condition)
-     * @param {number} timeout - Max wait time in ms
-     * @param {number} interval - Check interval in ms
-     * @returns {Promise<boolean>} - true if available, false if timeout
-     */
-    async function waitForI18n(timeout, interval) {
-        timeout = timeout || 3000;
-        interval = interval || 50;
-        var start = Date.now();
-        while (typeof BeatifyI18n === 'undefined') {
-            if (Date.now() - start > timeout) {
-                return false;
-            }
-            await new Promise(function(resolve) { setTimeout(resolve, interval); });
-        }
-        return true;
-    }
+    // waitForI18n moved to BeatifyUtils
 
-    /**
-     * Fallback translation function when BeatifyI18n is unavailable
-     * Returns the last part of the translation key as readable text
-     * @param {string} key - Translation key (e.g., 'lobby.playerJoined')
-     * @param {Object} params - Optional interpolation params
-     * @returns {string} - Translated text or fallback
-     */
-    function t(key, params) {
-        // Use BeatifyI18n.t if available
-        if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
-            return BeatifyI18n.t(key, params);
-        }
-        // Fallback: extract last part of key and make it readable
-        // e.g., 'lobby.playerJoined' -> 'Player Joined'
-        var fallback = key.split('.').pop()
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, function(str) { return str.toUpperCase(); })
-            .trim();
-        // Handle params substitution if provided
-        if (params && typeof params === 'object') {
-            Object.keys(params).forEach(function(param) {
-                fallback = fallback.replace(new RegExp('\\{' + param + '\\}', 'g'), params[param]);
-            });
-        }
-        return fallback;
-    }
+    // t() moved to BeatifyUtils - use utils.t(key, params)
 
     /**
      * Show a styled confirmation modal instead of browser confirm()
@@ -123,8 +79,8 @@
             // Set content
             titleEl.textContent = title;
             messageEl.textContent = message;
-            yesBtn.textContent = confirmText || t('common.confirm') || 'Confirm';
-            noBtn.textContent = cancelText || t('common.cancel') || 'Cancel';
+            yesBtn.textContent = confirmText || utils.t('common.confirm') || 'Confirm';
+            noBtn.textContent = cancelText || utils.t('common.cancel') || 'Cancel';
 
             // Show modal
             modal.classList.remove('hidden');
@@ -155,26 +111,7 @@
         });
     }
 
-    /**
-     * Get localized content field from song with English fallback (Story 16.1, 16.3)
-     * @param {Object} song - Song object
-     * @param {string} field - Base field name ('fun_fact' or 'awards')
-     * @returns {string|Array|null} Localized content or English fallback
-     */
-    function getLocalizedSongField(song, field) {
-        if (!song) return null;
-        // Guard: fall back to English if i18n unavailable
-        var lang = (typeof BeatifyI18n !== 'undefined') ? BeatifyI18n.getLanguage() : 'en';
-        // Try localized field first (for non-English)
-        if (lang && lang !== 'en') {
-            var localizedKey = field + '_' + lang;
-            if (song[localizedKey]) {
-                return song[localizedKey];
-            }
-        }
-        // Fallback to base field (English)
-        return song[field] || null;
-    }
+    // getLocalizedSongField moved to BeatifyUtils
 
     /**
      * Check game status with the server
@@ -1473,7 +1410,7 @@
         if (countEl) {
             const count = players.length;
             countEl.textContent = count === 1
-                ? t('lobby.playerJoined')
+                ? utils.t('lobby.playerJoined')
                 : t('lobby.playersJoined', { count: count });
         }
 
@@ -1514,7 +1451,7 @@
             return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
                 '<span class="player-name">' +
                     escapeHtml(player.name) +
-                    (isYou ? '<span class="you-badge">' + t('leaderboard.you') + '</span>' : '') +
+                    (isYou ? '<span class="you-badge">' + utils.t('leaderboard.you') + '</span>' : '') +
                     awayBadge +
                 '</span>' +
             '</div>';
@@ -1994,7 +1931,7 @@
         var totalCount = playerList.length;
 
         // Update count (Story 16.3 - i18n)
-        countEl.textContent = t('game.submittedCount', { count: submittedCount, total: totalCount });
+        countEl.textContent = utils.t('game.submittedCount', { count: submittedCount, total: totalCount });
 
         // Check if all submitted
         var allSubmitted = submittedCount === totalCount && totalCount > 0;
@@ -2213,7 +2150,7 @@
         var youEl = document.getElementById('leaderboard-you');
         var currentPlayer = leaderboard.find(function(e) { return e.is_current; });
         if (youEl && currentPlayer) {
-            youEl.textContent = t('leaderboard.you') + ' #' + currentPlayer.rank;
+            youEl.textContent = utils.t('leaderboard.you') + ' #' + currentPlayer.rank;
             youEl.classList.remove('hidden');
         }
     }
@@ -2399,7 +2336,7 @@
             submitBtn.textContent = message;
             submitBtn.classList.add('is-error');
             setTimeout(function() {
-                submitBtn.textContent = t('game.submitGuess');
+                submitBtn.textContent = utils.t('game.submitGuess');
                 submitBtn.classList.remove('is-error');
             }, 2000);
         }
@@ -2425,7 +2362,7 @@
         if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.classList.remove('hidden', 'is-loading', 'is-error');
-            submitBtn.textContent = t('game.submitGuess');
+            submitBtn.textContent = utils.t('game.submitGuess');
         }
 
         // Reset bet toggle (Story 5.3)
@@ -2512,10 +2449,10 @@
 
             // Show result
             if (artistChallenge.winner === playerName) {
-                resultEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +5 points';
+                resultEl.textContent = utils.t('artistChallenge.youGotIt') || 'You got it! +5 points';
                 resultEl.className = 'artist-result is-winner';
             } else {
-                var msg = (t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
+                var msg = (utils.t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
                     .replace('{winner}', artistChallenge.winner);
                 resultEl.textContent = msg;
                 resultEl.className = 'artist-result is-late';
@@ -2583,7 +2520,7 @@
                 btn.appendChild(badge);
             }
             disableAllArtistButtons();
-            showArtistResult(t('artistChallenge.youGotIt') || 'You got it! +5 points', true);
+            showArtistResult(utils.t('artistChallenge.youGotIt') || 'You got it! +5 points', true);
             artistChallengeComplete = true;
 
         } else if (data.correct && !data.first) {
@@ -2594,7 +2531,7 @@
                 btn.classList.add('is-correct');
             }
             disableAllArtistButtons();
-            var msg = (t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
+            var msg = (utils.t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
                 .replace('{winner}', data.winner || 'Someone');
             showArtistResult(msg, false);
             artistChallengeComplete = true;
@@ -2689,18 +2626,18 @@
                 winnerEl.classList.remove('hidden');
                 if (artistChallenge.winner === currentPlayerName) {
                     // Current player won
-                    winnerEl.textContent = t('artistChallenge.youGotIt') || 'You got it! +5 points';
+                    winnerEl.textContent = utils.t('artistChallenge.youGotIt') || 'You got it! +5 points';
                     winnerEl.className = 'artist-reveal-winner is-you';
                 } else {
                     // Someone else won
-                    var msg = (t('artistChallenge.winnerWas') || '{winner} got it first!')
+                    var msg = (utils.t('artistChallenge.winnerWas') || '{winner} got it first!')
                         .replace('{winner}', artistChallenge.winner);
                     winnerEl.textContent = msg;
                     winnerEl.className = 'artist-reveal-winner is-other';
                 }
             } else {
                 // No winner
-                winnerEl.textContent = t('artistChallenge.noWinner') || 'No one guessed the artist';
+                winnerEl.textContent = utils.t('artistChallenge.noWinner') || 'No one guessed the artist';
                 winnerEl.className = 'artist-reveal-winner artist-reveal-no-winner';
                 winnerEl.classList.remove('hidden');
             }
@@ -2780,7 +2717,7 @@
             // No valid targets - show waiting message
             var noTargets = document.createElement('p');
             noTargets.className = 'steal-no-targets';
-            noTargets.textContent = t('steal.waitForSubmit');
+            noTargets.textContent = utils.t('steal.waitForSubmit');
             targetList.appendChild(noTargets);
         } else {
             // Render target buttons
@@ -2812,12 +2749,12 @@
      */
     async function selectStealTarget(targetName) {
         // Show confirmation dialog
-        var confirmMsg = t('steal.confirm').replace('{name}', targetName);
+        var confirmMsg = utils.t('steal.confirm').replace('{name}', targetName);
         var confirmed = await showConfirmModal(
-            t('steal.confirmTitle') || 'Steal Answer?',
+            utils.t('steal.confirmTitle') || 'Steal Answer?',
             confirmMsg,
-            t('steal.confirmButton') || 'Steal',
-            t('common.cancel')
+            utils.t('steal.confirmButton') || 'Steal',
+            utils.t('common.cancel')
         );
         if (!confirmed) {
             return;
@@ -2888,7 +2825,7 @@
         if (!toast || !text) return;
 
         // Set message
-        var msg = t('steal.success')
+        var msg = utils.t('steal.success')
             .replace('{name}', target)
             .replace('{year}', year);
         text.textContent = msg;
@@ -2944,7 +2881,7 @@
         var funFactHeader = funFactContainer ? funFactContainer.querySelector('.fun-fact-header') : null;
 
         // Get localized fun fact (Story 16.1, 16.3)
-        var localizedFunFact = getLocalizedSongField(song, 'fun_fact');
+        var localizedFunFact = utils.getLocalizedSongField(song, 'fun_fact');
 
         // Set fun fact text
         if (funFactText) {
@@ -3015,10 +2952,10 @@
             // Update button text for last round
             if (nextRoundBtn) {
                 if (data.last_round) {
-                    nextRoundBtn.textContent = t('leaderboard.finalResults');
+                    nextRoundBtn.textContent = utils.t('leaderboard.finalResults');
                     nextRoundBtn.classList.add('is-final');
                 } else {
-                    nextRoundBtn.textContent = t('admin.nextRound');
+                    nextRoundBtn.textContent = utils.t('admin.nextRound');
                     nextRoundBtn.classList.remove('is-final');
                 }
                 nextRoundBtn.disabled = false;
@@ -3042,7 +2979,7 @@
 
         // Handle empty state (AC11)
         if (analytics.total_submitted === 0) {
-            container.innerHTML = '<div class="analytics-empty">' + t('analytics.noSubmissions') + '</div>';
+            container.innerHTML = '<div class="analytics-empty">' + utils.t('analytics.noSubmissions') + '</div>';
             container.classList.remove('hidden');
             return;
         }
@@ -3052,11 +2989,11 @@
         if (analytics.average_guess !== null && correctYear) {
             var diff = Math.round(analytics.average_guess - correctYear);
             if (diff === 0) {
-                avgComparison = t('analytics.onTarget');
+                avgComparison = utils.t('analytics.onTarget');
             } else if (diff > 0) {
-                avgComparison = t('analytics.yearsLate', { years: diff });
+                avgComparison = utils.t('analytics.yearsLate', { years: diff });
             } else {
-                avgComparison = t('analytics.yearsEarly', { years: Math.abs(diff) });
+                avgComparison = utils.t('analytics.yearsEarly', { years: Math.abs(diff) });
             }
         }
 
@@ -3070,7 +3007,7 @@
         if (analytics.exact_match_players && analytics.exact_match_players.length > 0) {
             achievementsHtml += '<div class="achievement-item">' +
                 '<span class="achievement-emoji">&#127919;</span>' +
-                '<span class="achievement-label">' + t('analytics.exactMatches') + ':</span>' +
+                '<span class="achievement-label">' + utils.t('analytics.exactMatches') + ':</span>' +
                 '<span class="achievement-names">' + analytics.exact_match_players.join(', ') + '</span>' +
                 '</div>';
         }
@@ -3080,7 +3017,7 @@
             var names = analytics.speed_champion.names.join(', ');
             achievementsHtml += '<div class="achievement-item">' +
                 '<span class="achievement-emoji">&#9889;</span>' +
-                '<span class="achievement-label">' + t('analytics.speedChampion') + ':</span>' +
+                '<span class="achievement-label">' + utils.t('analytics.speedChampion') + ':</span>' +
                 '<span class="achievement-names">' + names + '</span>' +
                 '<span class="achievement-value">(' + analytics.speed_champion.time + 's)</span>' +
                 '</div>';
@@ -3092,7 +3029,7 @@
             if (furthestOff > 0) {
                 achievementsHtml += '<div class="achievement-item">' +
                     '<span class="achievement-emoji">&#128517;</span>' +
-                    '<span class="achievement-label">' + t('analytics.furthestGuess') + ':</span>' +
+                    '<span class="achievement-label">' + utils.t('analytics.furthestGuess') + ':</span>' +
                     '<span class="achievement-names">' + analytics.furthest_players.join(', ') + '</span>' +
                     '<span class="achievement-value">(' + furthestOff + ' years)</span>' +
                     '</div>';
@@ -3101,20 +3038,20 @@
 
         // Build full HTML - stats in single row
         var avgDisplay = analytics.average_guess !== null ? Math.round(analytics.average_guess) : '?';
-        container.innerHTML = '<h3 class="analytics-title">' + t('analytics.title') + '</h3>' +
+        container.innerHTML = '<h3 class="analytics-title">' + utils.t('analytics.title') + '</h3>' +
             '<div class="analytics-stats-row">' +
             '<div class="stat-primary">' +
-            '<span class="stat-label">' + t('analytics.averageGuess') + '</span>' +
+            '<span class="stat-label">' + utils.t('analytics.averageGuess') + '</span>' +
             '<span class="stat-value">' + avgDisplay + '</span>' +
             '</div>' +
             '<div class="stat-secondary">' +
             '<span class="stat-value">' + analytics.accuracy_percentage + '%</span>' +
-            '<span class="stat-label">' + t('analytics.accuracy', { percent: '' }).replace('%', '') + '</span>' +
+            '<span class="stat-label">' + utils.t('analytics.accuracy', { percent: '' }).replace('%', '') + '</span>' +
             '</div>' +
             '</div>' +
             '<div class="stat-comparison-line">' + avgComparison + '</div>' +
             '<div class="analytics-histogram">' +
-            '<h4 class="histogram-title">' + t('analytics.histogram') + '</h4>' +
+            '<h4 class="histogram-title">' + utils.t('analytics.histogram') + '</h4>' +
             histogramHtml +
             '</div>' +
             (achievementsHtml ? '<div class="analytics-achievements">' + achievementsHtml + '</div>' : '');
@@ -3133,7 +3070,7 @@
 
         // Handle empty or invalid data
         if (!allGuesses || allGuesses.length === 0) {
-            return '<div class="histogram-empty">' + t('analytics.noGuesses') + '</div>';
+            return '<div class="histogram-empty">' + utils.t('analytics.noGuesses') + '</div>';
         }
 
         // Extract guess years
@@ -3228,19 +3165,19 @@
             var valueText = '';
             switch (award.value_label) {
                 case 'avg_time':
-                    valueText = award.value + 's ' + t('superlatives.avgTime');
+                    valueText = award.value + 's ' + utils.t('superlatives.avgTime');
                     break;
                 case 'streak':
-                    valueText = award.value + ' ' + t('superlatives.streak');
+                    valueText = award.value + ' ' + utils.t('superlatives.streak');
                     break;
                 case 'bets':
-                    valueText = award.value + ' ' + t('superlatives.bets');
+                    valueText = award.value + ' ' + utils.t('superlatives.bets');
                     break;
                 case 'points':
-                    valueText = award.value + ' ' + t('superlatives.points');
+                    valueText = award.value + ' ' + utils.t('superlatives.points');
                     break;
                 case 'close_guesses':
-                    valueText = award.value + ' ' + t('superlatives.closeGuesses');
+                    valueText = award.value + ' ' + utils.t('superlatives.closeGuesses');
                     break;
                 default:
                     valueText = award.value;
@@ -3248,7 +3185,7 @@
 
             html += '<div class="superlative-card superlative-card--' + award.id + '" style="animation-delay: ' + (index * 0.2) + 's">' +
                 '<div class="superlative-emoji">' + award.emoji + '</div>' +
-                '<div class="superlative-title">' + t('superlatives.' + award.title) + '</div>' +
+                '<div class="superlative-title">' + utils.t('superlatives.' + award.title) + '</div>' +
                 '<div class="superlative-player">' + escapeHtml(award.player_name) + '</div>' +
                 '<div class="superlative-value">' + valueText + '</div>' +
             '</div>';
@@ -3281,8 +3218,8 @@
         // Render difficulty display
         el.innerHTML =
             '<div class="difficulty-stars difficulty-' + difficulty.stars + '">' + stars + '</div>' +
-            '<span class="difficulty-label">' + t('difficulty.' + difficulty.label) + '</span>' +
-            '<span class="difficulty-accuracy">' + difficulty.accuracy + '% ' + t('difficulty.accuracy') + '</span>';
+            '<span class="difficulty-label">' + utils.t('difficulty.' + difficulty.label) + '</span>' +
+            '<span class="difficulty-accuracy">' + difficulty.accuracy + '% ' + utils.t('difficulty.accuracy') + '</span>';
 
         el.classList.remove('hidden');
     }
@@ -3307,7 +3244,7 @@
         if (certBadges.length > 0) badges = badges.concat(certBadges);
 
         // Collect award badges (Story 16.1, 16.3 - use localized awards)
-        var localizedAwards = getLocalizedSongField(song, 'awards') || [];
+        var localizedAwards = utils.getLocalizedSongField(song, 'awards') || [];
         var awardBadges = renderAwardBadges(localizedAwards);
         if (awardBadges.length > 0) badges = badges.concat(awardBadges);
 
@@ -3332,12 +3269,12 @@
         // Billboard chart
         if (chartInfo.billboard_peak && chartInfo.billboard_peak > 0) {
             var weeksText = chartInfo.weeks_on_chart
-                ? ' <span class="chart-weeks">· ' + chartInfo.weeks_on_chart + ' ' + t('reveal.weeksShort') + '</span>'
+                ? ' <span class="chart-weeks">· ' + chartInfo.weeks_on_chart + ' ' + utils.t('reveal.weeksShort') + '</span>'
                 : '';
             badges.push(
                 '<span class="song-badge song-badge--chart">' +
                 '<span class="song-badge-icon">📊</span>' +
-                '#' + chartInfo.billboard_peak + ' ' + t('reveal.chartBillboard') + weeksText +
+                '#' + chartInfo.billboard_peak + ' ' + utils.t('reveal.chartBillboard') + weeksText +
                 '</span>'
             );
         }
@@ -3347,7 +3284,7 @@
             badges.push(
                 '<span class="song-badge song-badge--chart">' +
                 '<span class="song-badge-icon">📊</span>' +
-                '#' + chartInfo.german_peak + ' ' + t('reveal.chartGerman') +
+                '#' + chartInfo.german_peak + ' ' + utils.t('reveal.chartGerman') +
                 '</span>'
             );
         }
@@ -3357,7 +3294,7 @@
             badges.push(
                 '<span class="song-badge song-badge--chart">' +
                 '<span class="song-badge-icon">📊</span>' +
-                '#' + chartInfo.uk_peak + ' ' + t('reveal.chartUK') +
+                '#' + chartInfo.uk_peak + ' ' + utils.t('reveal.chartUK') +
                 '</span>'
             );
         }
@@ -3495,7 +3432,7 @@
         stopConfetti();
 
         // Get translated emotion arrays using i18n
-        var emotions = t('reveal.emotions');
+        var emotions = utils.t('reveal.emotions');
 
         // Helper to pick random from array
         function randomFrom(arr) {
@@ -3505,9 +3442,9 @@
         // Helper for "Off by X years" text
         function getOffByText(years) {
             if (years === 1) {
-                return t('reveal.offByYear');
+                return utils.t('reveal.offByYear');
             }
-            return t('reveal.offByYears', { years: years });
+            return utils.t('reveal.offByYears', { years: years });
         }
 
         // Determine emotion category
@@ -3582,7 +3519,7 @@
             var missedHtml =
                 '<div class="result-missed-container">' +
                     '<div class="result-missed-icon">⏰</div>' +
-                    '<div class="result-missed-text">' + t('reveal.noSubmission') + '</div>' +
+                    '<div class="result-missed-text">' + utils.t('reveal.noSubmission') + '</div>' +
                 '</div>';
 
             // Show broken streak if they had one (>= 2)
@@ -3601,8 +3538,8 @@
         }
 
         var yearsOff = player.years_off || 0;
-        var yearsOffText = yearsOff === 0 ? t('reveal.exact') :
-                           yearsOff === 1 ? t('reveal.yearOff', { years: 1 }) :
+        var yearsOffText = yearsOff === 0 ? utils.t('reveal.exact') :
+                           yearsOff === 1 ? utils.t('reveal.yearOff', { years: 1 }) :
                            t('reveal.yearsOff', { years: yearsOff });
 
         var resultClass = yearsOff === 0 ? 'is-exact' :
@@ -3623,11 +3560,11 @@
         if (hasSpeedBonus && baseScore > 0) {
             scoreBreakdown =
                 '<div class="result-row">' +
-                    '<span class="result-label">' + t('reveal.baseScore') + '</span>' +
+                    '<span class="result-label">' + utils.t('reveal.baseScore') + '</span>' +
                     '<span class="result-value">' + baseScore + ' pts</span>' +
                 '</div>' +
                 '<div class="result-row">' +
-                    '<span class="result-label">' + t('reveal.speedBonus') + '</span>' +
+                    '<span class="result-label">' + utils.t('reveal.speedBonus') + '</span>' +
                     '<span class="result-value is-bonus">' + speedMultiplier.toFixed(2) + 'x</span>' +
                 '</div>';
         }
@@ -3637,13 +3574,13 @@
         if (player.bet_outcome === 'won') {
             betOutcomeHtml =
                 '<div class="result-row bet-won-row">' +
-                    '<span class="result-label">🎲 ' + t('reveal.betWon').replace('! 2x points', '') + '</span>' +
+                    '<span class="result-label">🎲 ' + utils.t('reveal.betWon').replace('! 2x points', '') + '</span>' +
                     '<span class="result-value is-bet-won">2x</span>' +
                 '</div>';
         } else if (player.bet_outcome === 'lost') {
             betOutcomeHtml =
                 '<div class="result-row bet-lost-row">' +
-                    '<span class="result-label">🎲 ' + t('reveal.betLost') + '</span>' +
+                    '<span class="result-label">🎲 ' + utils.t('reveal.betLost') + '</span>' +
                     '<span class="result-value is-bet-lost">-</span>' +
                 '</div>';
         }
@@ -3663,7 +3600,7 @@
         if (artistBonus > 0) {
             artistBonusHtml =
                 '<div class="result-row artist-bonus-row">' +
-                    '<span class="result-label">🎤 ' + (t('artistChallenge.artistBonus') || 'Artist Bonus') + '</span>' +
+                    '<span class="result-label">🎤 ' + (utils.t('artistChallenge.artistBonus') || 'Artist Bonus') + '</span>' +
                     '<span class="result-value">+' + artistBonus + ' pts</span>' +
                 '</div>';
         }
@@ -3681,15 +3618,15 @@
 
         resultContent.innerHTML =
             '<div class="result-row">' +
-                '<span class="result-label">' + t('reveal.yourGuess') + '</span>' +
+                '<span class="result-label">' + utils.t('reveal.yourGuess') + '</span>' +
                 '<span class="result-value">' + player.guess + '</span>' +
             '</div>' +
             '<div class="result-row">' +
-                '<span class="result-label">' + t('reveal.correctYear') + '</span>' +
+                '<span class="result-label">' + utils.t('reveal.correctYear') + '</span>' +
                 '<span class="result-value">' + correctYear + '</span>' +
             '</div>' +
             '<div class="result-row">' +
-                '<span class="result-label">' + t('reveal.accuracy') + '</span>' +
+                '<span class="result-label">' + utils.t('reveal.accuracy') + '</span>' +
                 '<span class="result-value ' + resultClass + '">' + yearsOffText + '</span>' +
             '</div>' +
             scoreBreakdown +
@@ -3697,7 +3634,7 @@
             '<div class="result-score" id="personal-result-score">+<span class="score-value">0</span> pts</div>' +
             streakBonusHtml +
             artistBonusHtml +
-            (hasBonuses ? '<div class="result-total">' + t('reveal.total') + ': +<span class="total-value">0</span> pts</div>' : '');
+            (hasBonuses ? '<div class="result-total">' + utils.t('reveal.total') + ': +<span class="total-value">0</span> pts</div>' : '');
 
         // Story 13.2: Animate personal score with visual effects
         var scoreValueEl = resultContent.querySelector('.score-value');
@@ -3763,7 +3700,7 @@
             return (b.round_score || 0) - (a.round_score || 0);
         });
 
-        var html = '<div class="results-cards-header">' + t('reveal.allPlayers') + '</div>';
+        var html = '<div class="results-cards-header">' + utils.t('reveal.allPlayers') + '</div>';
         html += '<div class="results-cards-scroll">';
 
         sorted.forEach(function(player) {
@@ -3779,8 +3716,8 @@
 
             // Guess display
             var guessDisplay = isMissed ? '—' : player.guess;
-            var yearsOffDisplay = isMissed ? t('reveal.noGuessShort') :
-                                  yearsOff === 0 ? t('reveal.exact') :
+            var yearsOffDisplay = isMissed ? utils.t('reveal.noGuessShort') :
+                                  yearsOff === 0 ? utils.t('reveal.exact') :
                                   t('reveal.shortOff', { years: yearsOff });
 
             // Bet indicator
@@ -3853,7 +3790,7 @@
 
         if (currentPlayer) {
             if (rankEl) rankEl.textContent = '#' + currentPlayer.rank;
-            if (scoreEl) scoreEl.textContent = currentPlayer.score + ' ' + t('leaderboard.points');
+            if (scoreEl) scoreEl.textContent = currentPlayer.score + ' ' + utils.t('leaderboard.points');
             if (bestStreakEl) bestStreakEl.textContent = currentPlayer.best_streak || 0;
             if (roundsEl) roundsEl.textContent = currentPlayer.rounds_played || 0;
             if (betsEl) betsEl.textContent = currentPlayer.bets_won || 0;
@@ -3938,10 +3875,10 @@
      */
     async function handleNewGame() {
         var confirmed = await showConfirmModal(
-            t('admin.newGameTitle') || 'New Game?',
-            t('admin.newGameConfirm') || 'Start a new game?',
-            t('admin.newGame') || 'New Game',
-            t('common.cancel')
+            utils.t('admin.newGameTitle') || 'New Game?',
+            utils.t('admin.newGameConfirm') || 'Start a new game?',
+            utils.t('admin.newGame') || 'New Game',
+            utils.t('common.cancel')
         );
         if (!confirmed) {
             return;
@@ -4288,15 +4225,15 @@
      */
     async function handleEndGame() {
         var confirmed = await showConfirmModal(
-            t('admin.endGameConfirm') || 'End Game?',
-            t('admin.endGameWarning') || 'All players will be disconnected.',
-            t('admin.endGame') || 'End Game',
-            t('common.cancel')
+            utils.t('admin.endGameConfirm') || 'End Game?',
+            utils.t('admin.endGameWarning') || 'All players will be disconnected.',
+            utils.t('admin.endGame') || 'End Game',
+            utils.t('common.cancel')
         );
         if (!confirmed) return;
         if (!debounceAdminAction()) return;
         if (!ws || ws.readyState !== WebSocket.OPEN) {
-            alert(t('errors.CONNECTION_LOST'));
+            alert(utils.t('errors.CONNECTION_LOST'));
             return;
         }
 
@@ -4929,7 +4866,7 @@
             showJoinError(data.message);
             if (joinBtn) {
                 joinBtn.disabled = false;
-                joinBtn.textContent = t('join.joinButton');
+                joinBtn.textContent = utils.t('join.joinButton');
             }
             if (nameInput) {
                 nameInput.focus();
@@ -4997,10 +4934,10 @@
 
         // Confirmation dialog per AC #1
         var confirmed = await showConfirmModal(
-            t('player.leaveGameTitle') || 'Leave Game?',
-            t('player.leaveGameWarning') || 'Your score will be lost.',
-            t('player.leaveGame') || 'Leave',
-            t('common.cancel')
+            utils.t('player.leaveGameTitle') || 'Leave Game?',
+            utils.t('player.leaveGameWarning') || 'Your score will be lost.',
+            utils.t('player.leaveGame') || 'Leave',
+            utils.t('common.cancel')
         );
         if (!confirmed) {
             return;
@@ -5414,7 +5351,7 @@
         // Initialize i18n with stored language preference (Story 12.4)
         // This ensures consistent UI language on page reload before WebSocket connects
         // Guard clause: wait for BeatifyI18n in case fallback script is loading
-        var i18nAvailable = await waitForI18n();
+        var i18nAvailable = await utils.waitForI18n();
         if (!i18nAvailable) {
             console.error('[Player] BeatifyI18n module failed to load - UI will use fallback text');
         } else {

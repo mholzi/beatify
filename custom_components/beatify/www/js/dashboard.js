@@ -5,6 +5,9 @@
 (function() {
     'use strict';
 
+    // Alias BeatifyUtils for convenience
+    var utils = window.BeatifyUtils || {};
+
     // View elements
     var loadingView = document.getElementById('dashboard-loading');
     var noGameView = document.getElementById('dashboard-no-game');
@@ -13,6 +16,9 @@
     var revealView = document.getElementById('dashboard-reveal');
     var endView = document.getElementById('dashboard-end');
     var pausedView = document.getElementById('dashboard-paused');
+
+    // All views array for showView helper
+    var allViews = [loadingView, noGameView, lobbyView, playingView, revealView, endView, pausedView];
 
     // WebSocket connection
     var ws = null;
@@ -25,97 +31,15 @@
     var countdownInterval = null;
     var lastQRCodeUrl = null;
 
-    /**
-     * Wait for BeatifyI18n to be available (handles fallback script race condition)
-     * @param {number} timeout - Max wait time in ms
-     * @param {number} interval - Check interval in ms
-     * @returns {Promise<boolean>} - true if available, false if timeout
-     */
-    async function waitForI18n(timeout, interval) {
-        timeout = timeout || 3000;
-        interval = interval || 50;
-        var start = Date.now();
-        while (typeof BeatifyI18n === 'undefined') {
-            if (Date.now() - start > timeout) {
-                return false;
-            }
-            await new Promise(function(resolve) { setTimeout(resolve, interval); });
-        }
-        return true;
-    }
-
-    /**
-     * Fallback translation function when BeatifyI18n is unavailable
-     * Returns the last part of the translation key as readable text
-     * @param {string} key - Translation key (e.g., 'lobby.playerJoined')
-     * @param {Object} params - Optional interpolation params
-     * @returns {string} - Translated text or fallback
-     */
-    function t(key, params) {
-        // Use BeatifyI18n.t if available
-        if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
-            return BeatifyI18n.t(key, params);
-        }
-        // Fallback: extract last part of key and make it readable
-        var fallback = key.split('.').pop()
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, function(str) { return str.toUpperCase(); })
-            .trim();
-        if (params && typeof params === 'object') {
-            Object.keys(params).forEach(function(param) {
-                fallback = fallback.replace(new RegExp('\\{' + param + '\\}', 'g'), params[param]);
-            });
-        }
-        return fallback;
-    }
-
-    /**
-     * Get localized content field from song with English fallback (Story 16.3)
-     * @param {Object} song - Song object
-     * @param {string} field - Base field name ('fun_fact' or 'awards')
-     * @returns {string|Array|null} Localized content or English fallback
-     */
-    function getLocalizedSongField(song, field) {
-        if (!song) return null;
-        // Guard: fall back to English if i18n unavailable
-        var lang = (typeof BeatifyI18n !== 'undefined') ? BeatifyI18n.getLanguage() : 'en';
-        // Try localized field first (for non-English)
-        if (lang && lang !== 'en') {
-            var localizedKey = field + '_' + lang;
-            if (song[localizedKey]) {
-                return song[localizedKey];
-            }
-        }
-        // Fallback to base field (English)
-        return song[field] || null;
-    }
+    // Utility functions from BeatifyUtils
+    // waitForI18n, t, getLocalizedSongField, escapeHtml moved to BeatifyUtils
 
     /**
      * Show a specific view and hide all others
      * @param {string} viewId - ID of view to show
      */
     function showView(viewId) {
-        var views = [loadingView, noGameView, lobbyView, playingView, revealView, endView, pausedView];
-        views.forEach(function(v) {
-            if (v) {
-                v.classList.add('hidden');
-            }
-        });
-        var view = document.getElementById(viewId);
-        if (view) {
-            view.classList.remove('hidden');
-        }
-    }
-
-    /**
-     * Escape HTML to prevent XSS
-     * @param {string} text - Text to escape
-     * @returns {string} Escaped text
-     */
-    function escapeHtml(text) {
-        var div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+        utils.showView(allViews, viewId);
     }
 
     /**
@@ -289,7 +213,7 @@
         // Translate difficulty label
         var difficultyLabel = t('admin.difficulty' + difficulty.charAt(0).toUpperCase() + difficulty.slice(1), difficulty);
 
-        el.textContent = rounds + ' ' + t('dashboard.rounds', 'rounds') + ' • ' + difficultyLabel;
+        el.textContent = rounds + ' ' + utils.t('dashboard.rounds', 'rounds') + ' • ' + difficultyLabel;
     }
 
     /**
@@ -354,7 +278,7 @@
             var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
 
             return '<div class="' + classes.join(' ') + '">' +
-                escapeHtml(player.name) + awayBadge +
+                utils.escapeHtml(player.name) + awayBadge +
             '</div>';
         }).join('');
 
@@ -564,7 +488,7 @@
 
             html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
+                '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
@@ -646,7 +570,7 @@
         var textEl = document.getElementById('dashboard-fun-fact-text');
 
         // Get localized fun fact (Story 16.3)
-        var funFact = getLocalizedSongField(song, 'fun_fact');
+        var funFact = utils.getLocalizedSongField(song, 'fun_fact');
 
         console.log('[Dashboard] renderFunFact called with song:', song);
         console.log('[Dashboard] fun_fact value:', funFact || 'no fun fact');
@@ -725,8 +649,8 @@
         // Render difficulty display
         el.innerHTML =
             '<div class="difficulty-stars difficulty-' + difficulty.stars + '">' + stars + '</div>' +
-            '<span class="difficulty-label">' + t('difficulty.' + difficulty.label) + '</span>' +
-            '<span class="difficulty-accuracy">' + difficulty.accuracy + '% ' + t('difficulty.accuracy') + '</span>';
+            '<span class="difficulty-label">' + utils.t('difficulty.' + difficulty.label) + '</span>' +
+            '<span class="difficulty-accuracy">' + difficulty.accuracy + '% ' + utils.t('difficulty.accuracy') + '</span>';
 
         el.classList.remove('hidden');
     }
@@ -763,7 +687,7 @@
 
             html += '<div class="top-guess-entry">' +
                 '<span class="top-guess-rank">#' + (index + 1) + '</span>' +
-                '<span class="top-guess-name">' + escapeHtml(player.name) + yearDisplay + '</span>' +
+                '<span class="top-guess-name">' + utils.escapeHtml(player.name) + yearDisplay + '</span>' +
                 '<span class="top-guess-points">+' + (player.round_score || 0) + betBadge + '</span>' +
             '</div>';
         });
@@ -812,7 +736,7 @@
 
             html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
+                '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeHtml +
@@ -841,7 +765,7 @@
             var nameEl = document.getElementById('end-podium-' + place + '-name');
             var scoreEl = document.getElementById('end-podium-' + place + '-score');
 
-            if (nameEl) nameEl.textContent = player ? escapeHtml(player.name) : '---';
+            if (nameEl) nameEl.textContent = player ? utils.escapeHtml(player.name) : '---';
             if (scoreEl) scoreEl.textContent = player ? player.score : '0';
         });
 
@@ -869,7 +793,7 @@
 
                 html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
                     '<span class="entry-rank">#' + entry.rank + '</span>' +
-                    '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
+                    '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
                     '<span class="entry-score">' + entry.score + '</span>' +
                 '</div>';
             });
@@ -942,19 +866,19 @@
             var valueText = '';
             switch (award.value_label) {
                 case 'avg_time':
-                    valueText = award.value + 's ' + t('superlatives.avgTime');
+                    valueText = award.value + 's ' + utils.t('superlatives.avgTime');
                     break;
                 case 'streak':
-                    valueText = award.value + ' ' + t('superlatives.streak');
+                    valueText = award.value + ' ' + utils.t('superlatives.streak');
                     break;
                 case 'bets':
-                    valueText = award.value + ' ' + t('superlatives.bets');
+                    valueText = award.value + ' ' + utils.t('superlatives.bets');
                     break;
                 case 'points':
-                    valueText = award.value + ' ' + t('superlatives.points');
+                    valueText = award.value + ' ' + utils.t('superlatives.points');
                     break;
                 case 'close_guesses':
-                    valueText = award.value + ' ' + t('superlatives.closeGuesses');
+                    valueText = award.value + ' ' + utils.t('superlatives.closeGuesses');
                     break;
                 default:
                     valueText = award.value;
@@ -962,8 +886,8 @@
 
             html += '<div class="superlative-card superlative-card--' + award.id + '" style="animation-delay: ' + (index * 0.2) + 's">' +
                 '<div class="superlative-emoji">' + award.emoji + '</div>' +
-                '<div class="superlative-title">' + t('superlatives.' + award.title) + '</div>' +
-                '<div class="superlative-player">' + escapeHtml(award.player_name) + '</div>' +
+                '<div class="superlative-title">' + utils.t('superlatives.' + award.title) + '</div>' +
+                '<div class="superlative-player">' + utils.escapeHtml(award.player_name) + '</div>' +
                 '<div class="superlative-value">' + valueText + '</div>' +
             '</div>';
         });
@@ -1167,7 +1091,7 @@
         console.log('[Dashboard] Initializing...');
         // Initialize i18n (Story 12.5)
         // Guard clause: wait for BeatifyI18n in case fallback script is loading
-        var i18nAvailable = await waitForI18n();
+        var i18nAvailable = await utils.waitForI18n();
         if (!i18nAvailable) {
             console.error('[Dashboard] BeatifyI18n module failed to load - UI will use fallback text');
         } else {

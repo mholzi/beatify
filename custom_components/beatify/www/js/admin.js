@@ -38,27 +38,13 @@ let lobbyPollingInterval = null;
 // Setup sections to hide/show as a group (Story 9.10: game-controls removed, button is standalone)
 const setupSections = ['media-players', 'playlists', 'provider-section', 'language-section', 'timer-section', 'difficulty-section', 'artist-challenge-section'];
 
-/**
- * Wait for BeatifyI18n to be available (handles fallback script race condition)
- * @param {number} timeout - Max wait time in ms
- * @param {number} interval - Check interval in ms
- * @returns {Promise<boolean>} - true if available, false if timeout
- */
-async function waitForI18n(timeout = 3000, interval = 50) {
-    const start = Date.now();
-    while (typeof BeatifyI18n === 'undefined') {
-        if (Date.now() - start > timeout) {
-            return false;
-        }
-        await new Promise(resolve => setTimeout(resolve, interval));
-    }
-    return true;
-}
+// Alias BeatifyUtils for convenience
+const utils = window.BeatifyUtils || {};
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize i18n based on browser language (Story 12.4)
     // Guard clause: wait for BeatifyI18n in case fallback script is loading
-    const i18nAvailable = await waitForI18n();
+    const i18nAvailable = await utils.waitForI18n();
     if (!i18nAvailable) {
         console.error('[Beatify] BeatifyI18n module failed to load - UI will use fallback text');
     } else {
@@ -173,7 +159,7 @@ function renderMediaPlayers(players) {
     if (totalPlayers === 0) {
         // AC2: No players configured at all
         const docsLink = mediaPlayerDocsUrl
-            ? `<a href="${escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Setup Guide</a>`
+            ? `<a href="${utils.escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Setup Guide</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
@@ -190,7 +176,7 @@ function renderMediaPlayers(players) {
     if (availablePlayers.length === 0) {
         // AC3: Players exist but all unavailable
         const docsLink = mediaPlayerDocsUrl
-            ? `<a href="${escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
+            ? `<a href="${utils.escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
@@ -216,14 +202,14 @@ function renderMediaPlayers(players) {
                 <input type="radio"
                        class="media-player-radio"
                        name="media-player"
-                       data-entity-id="${escapeHtml(player.entity_id)}"
-                       data-state="${escapeHtml(player.state)}"
+                       data-entity-id="${utils.escapeHtml(player.entity_id)}"
+                       data-state="${utils.escapeHtml(player.state)}"
                        data-is-mass="${player.is_mass ? 'true' : 'false'}">
-                <span class="player-name">${escapeHtml(player.friendly_name)}${massBadge}</span>
+                <span class="player-name">${utils.escapeHtml(player.friendly_name)}${massBadge}</span>
             </label>
             <span class="meta">
-                <span class="state-dot state-${escapeHtml(player.state)}"></span>
-                ${escapeHtml(player.state)}
+                <span class="state-dot state-${utils.escapeHtml(player.state)}"></span>
+                ${utils.escapeHtml(player.state)}
             </span>
         </div>
     `;
@@ -277,12 +263,12 @@ function renderPlaylists(playlists, playlistDir) {
     if (!playlists || playlists.length === 0) {
         // AC2: No playlists error with documentation link
         const docsLink = playlistDocsUrl
-            ? `<a href="${escapeHtml(playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
+            ? `<a href="${utils.escapeHtml(playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
                 <p class="status-error">No playlists found. Add playlist JSON files to:</p>
-                <p style="font-size: 14px;"><code>${escapeHtml(playlistDir)}</code></p>
+                <p style="font-size: 14px;"><code>${utils.escapeHtml(playlistDir)}</code></p>
                 ${docsLink ? `<p style="margin-top: 12px;">${docsLink}</p>` : ''}
             </div>
         `;
@@ -312,11 +298,11 @@ function renderPlaylists(playlists, playlistDir) {
                     <label class="checkbox-label">
                         <input type="checkbox"
                                class="playlist-checkbox"
-                               data-path="${escapeHtml(playlist.path)}"
-                               data-song-count="${escapeHtml(String(songCount))}">
-                        <span class="playlist-name">${escapeHtml(playlist.name)}</span>
+                               data-path="${utils.escapeHtml(playlist.path)}"
+                               data-song-count="${utils.escapeHtml(String(songCount))}">
+                        <span class="playlist-name">${utils.escapeHtml(playlist.name)}</span>
                     </label>
-                    <span class="meta">${coverageHtml || escapeHtml(String(songCount))} songs</span>
+                    <span class="meta">${coverageHtml || utils.escapeHtml(String(songCount))} songs</span>
                 </div>
             `;
         } else {
@@ -324,8 +310,8 @@ function renderPlaylists(playlists, playlistDir) {
             const errorMsg = (playlist.errors && playlist.errors[0]) || 'Unknown error';
             return `
                 <div class="list-item is-invalid">
-                    <span class="name">${escapeHtml(playlist.name)}</span>
-                    <span class="meta">Invalid: ${escapeHtml(errorMsg)}</span>
+                    <span class="name">${utils.escapeHtml(playlist.name)}</span>
+                    <span class="meta">Invalid: ${utils.escapeHtml(errorMsg)}</span>
                 </div>
             `;
         }
@@ -433,19 +419,7 @@ function updateStartButtonState() {
     }
 }
 
-/**
- * Escape HTML to prevent XSS
- * @param {string} text
- * @returns {string}
- */
-function escapeHtml(text) {
-    if (text === null || text === undefined) {
-        return '';
-    }
-    const div = document.createElement('div');
-    div.textContent = String(text);
-    return div.innerHTML;
-}
+// escapeHtml moved to BeatifyUtils
 
 // ==========================================
 // View State Machine (Story 2.3)
@@ -1090,18 +1064,7 @@ function setProvider(provider) {
 // Lobby Player List Functions (Story 16.8)
 // ==========================================
 
-/**
- * Helper to safely get i18n translation with fallback
- * @param {string} key - Translation key
- * @param {string} fallback - Fallback string if i18n unavailable
- * @returns {string}
- */
-function t(key, fallback) {
-    if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
-        return BeatifyI18n.t(key) || fallback;
-    }
-    return fallback;
-}
+// t() moved to BeatifyUtils
 
 /**
  * Render player list in admin lobby
@@ -1113,20 +1076,20 @@ function renderLobbyPlayers(players) {
     if (!listEl) return;
 
     players = players || [];
-    var waitingText = t('lobby.waitingForPlayers', 'Waiting for players to join...');
+    var waitingText = utils.t('lobby.waitingForPlayers', 'Waiting for players to join...');
 
     // Update player count - waiting text shown in list area only
     if (countEl) {
         var count = players.length;
         var playerWord = count === 1
-            ? t('lobby.player', 'player')
-            : t('lobby.players', 'players');
+            ? utils.t('lobby.player', 'player')
+            : utils.t('lobby.players', 'players');
         countEl.textContent = count + ' ' + playerWord;
     }
 
     // Handle empty state - show waiting text only here
     if (players.length === 0) {
-        listEl.innerHTML = '<p class="empty-state">' + escapeHtml(waitingText) + '</p>';
+        listEl.innerHTML = '<p class="empty-state">' + utils.escapeHtml(waitingText) + '</p>';
         previousLobbyPlayers = [];
         return;
     }
@@ -1161,9 +1124,9 @@ function renderLobbyPlayers(players) {
         // Crown badge for admin
         var adminBadge = isAdmin ? '<span class="admin-badge">👑</span>' : '';
 
-        return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
+        return '<div class="' + classes + '" data-player="' + utils.escapeHtml(player.name) + '">' +
             '<span class="player-name">' +
-                escapeHtml(player.name) +
+                utils.escapeHtml(player.name) +
                 adminBadge +
                 awayBadge +
             '</span>' +

@@ -25,6 +25,7 @@ const CSS_DIR = path.join(WWW_DIR, 'css');
 
 // Files to process
 const JS_FILES = [
+    { src: 'utils.js', out: 'utils.min.js' },
     { src: 'player.js', out: 'player.min.js' },
     { src: 'admin.js', out: 'admin.min.js' },
     { src: 'dashboard.js', out: 'dashboard.min.js' },

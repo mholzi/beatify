@@ -130,34 +130,60 @@
         <p id="playlist-validation-msg" class="status-error hidden" style="margin: var(--space-md) 0;" data-i18n="admin.selectPlaylistHint">Select at least one playlist</p>
         <button id="start-game" class="btn btn-primary btn-large btn-full-width hidden" disabled data-i18n="admin.startGame">Start Game</button>
 
-        <!-- Lobby view (Story 2.3) -->
+        <!-- Lobby view (Story 2.3, restructured to analytics layout) -->
         <section id="lobby-section" class="card-section hidden">
             <h2 class="section-header"><span class="section-icon" aria-hidden="true">🎮</span><span data-i18n="lobby.gameLobby">Game Lobby</span></h2>
-            <div class="qr-print-area">
+
+            <!-- Stats Grid (analytics pattern) -->
+            <div class="lobby-stats-grid">
+                <div class="stat-card" id="lobby-player-count-card">
+                    <div class="stat-icon" aria-hidden="true">👥</div>
+                    <div class="stat-value" id="lobby-player-count" aria-live="polite">0</div>
+                    <div class="stat-label" data-i18n="lobby.playersJoined">Players Joined</div>
+                </div>
+                <div class="stat-card" id="lobby-status-card">
+                    <div class="stat-icon" aria-hidden="true">⏳</div>
+                    <div class="stat-value" id="lobby-status-value" data-i18n="lobby.statusWaiting">Waiting</div>
+                    <div class="stat-label" data-i18n="lobby.gameStatus">Game Status</div>
+                </div>
+            </div>
+
+            <!-- QR Section (centered card) -->
+            <div class="qr-section qr-print-area">
                 <div class="qr-container">
                     <div id="qr-code" aria-label="QR code to join Beatify game"></div>
                 </div>
-                <p class="qr-instruction" data-i18n="admin.scanToPlay">Scan to Play Beatify!</p>
-                <p id="join-url" class="join-url"></p>
+                <p class="qr-hint" data-i18n="admin.scanToPlay">Scan to Play Beatify!</p>
+                <p id="join-url" class="qr-url-display"></p>
             </div>
-            <div class="dashboard-hint-container no-print">
-                <div class="dashboard-hint-text">
-                    <span class="dashboard-hint-label">
-                        <span class="dashboard-hint-icon">📺</span>
-                        <span data-i18n="dashboard.castToTv">Cast to TV:</span>
-                    </span>
-                    <a id="admin-dashboard-url" href="#" class="dashboard-hint-url" target="_blank"></a>
+
+            <!-- Dashboard Hint Card (analytics pattern) -->
+            <a href="#" id="admin-dashboard-url" class="stat-card stat-card--clickable dashboard-hint-card no-print" target="_blank">
+                <div class="stat-icon" aria-hidden="true">📺</div>
+                <div class="stat-value stat-value--small" id="dashboard-url-display"></div>
+                <div class="stat-label" data-i18n="dashboard.castToTv">Cast to TV</div>
+            </a>
+
+            <!-- Player List Section -->
+            <div class="player-list-section">
+                <h3 class="section-subheader">
+                    <span class="section-icon" aria-hidden="true">🎯</span>
+                    <span data-i18n="lobby.connectedPlayers">Connected Players</span>
+                </h3>
+                <div id="lobby-players" class="player-cards-grid" aria-live="polite" aria-label="Player list">
+                    <!-- Rendered dynamically by renderLobbyPlayers() -->
+                </div>
+                <div id="lobby-players-empty" class="empty-state">
+                    <div class="empty-icon" aria-hidden="true">👥</div>
+                    <p data-i18n="lobby.waitingForPlayers">Waiting for players to join...</p>
+                    <p class="empty-hint" data-i18n="lobby.scanQrHint">Share the QR code or URL above</p>
                 </div>
             </div>
-            <div class="lobby-player-count-container">
-                <span id="lobby-player-count" class="player-count" aria-live="polite">0 players</span>
-            </div>
-            <div id="lobby-players" class="player-list" aria-live="polite" aria-label="Player list">
-                <!-- Rendered dynamically by renderLobbyPlayers() -->
-            </div>
-            <div class="admin-lobby-actions no-print">
-                <button id="participate-btn" class="btn btn-primary btn-large">
-                    <span class="btn-icon">🎮</span>
+
+            <!-- Lobby Actions (sticky bottom) -->
+            <div class="lobby-actions no-print">
+                <button id="participate-btn" class="btn btn-primary btn-large btn-full-width">
+                    <span class="btn-icon" aria-hidden="true">🎮</span>
                     <span data-i18n="admin.joinAsPlayer">Join as Player</span>
                 </button>
             </div>
@@ -218,6 +244,7 @@
     <!-- Story 18.4: Use minified JS in production with fallback to source -->
     <!-- Version query strings prevent browser caching issues -->
     <script src="/beatify/static/js/i18n.min.js?v=1.7.0" onerror="var s=document.createElement('script');s.src='/beatify/static/js/i18n.js?v=1.7.0';document.head.appendChild(s);"></script>
+    <script src="/beatify/static/js/utils.min.js?v=1.7.0" onerror="var s=document.createElement('script');s.src='/beatify/static/js/utils.js?v=1.7.0';document.head.appendChild(s);"></script>
     <script src="/beatify/static/js/admin.min.js?v=1.7.0" onerror="var s=document.createElement('script');s.src='/beatify/static/js/admin.js?v=1.7.0';document.head.appendChild(s);"></script>
 </body>
 </html>
