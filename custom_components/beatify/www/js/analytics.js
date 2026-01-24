@@ -96,23 +96,24 @@
      * @param {Object} streakStats - Streak statistics from API
      */
     function renderStreakStats(streakStats) {
-        var cardsEl = document.getElementById('streak-cards');
-        var emptyEl = document.getElementById('streak-empty');
+        var summaryEl = document.getElementById('streak-summary');
 
         // Check for data
         if (!streakStats || !streakStats.has_data) {
-            if (cardsEl) cardsEl.classList.add('hidden');
-            if (emptyEl) emptyEl.classList.remove('hidden');
+            if (summaryEl) summaryEl.textContent = 'None';
             return;
         }
 
-        if (cardsEl) cardsEl.classList.remove('hidden');
-        if (emptyEl) emptyEl.classList.add('hidden');
-
-        // Update streak values
+        // Update streak values (works with both old cards and new badges)
         updateStreakCard('streak-3-value', streakStats.streak_3_count);
         updateStreakCard('streak-5-value', streakStats.streak_5_count);
         updateStreakCard('streak-7-value', streakStats.streak_7_count);
+
+        // Update summary badge
+        var total = (streakStats.streak_3_count || 0) + (streakStats.streak_5_count || 0) + (streakStats.streak_7_count || 0);
+        if (summaryEl) {
+            summaryEl.textContent = total > 0 ? total + ' total' : 'None';
+        }
     }
 
     /**
@@ -132,23 +133,24 @@
      * @param {Object} betStats - Betting statistics from API
      */
     function renderBetStats(betStats) {
-        var cardsEl = document.getElementById('betting-cards');
-        var emptyEl = document.getElementById('betting-empty');
+        var summaryEl = document.getElementById('betting-summary');
 
         // Check for data
         if (!betStats || !betStats.has_data) {
-            if (cardsEl) cardsEl.classList.add('hidden');
-            if (emptyEl) emptyEl.classList.remove('hidden');
+            if (summaryEl) summaryEl.textContent = 'None';
             return;
         }
 
-        if (cardsEl) cardsEl.classList.remove('hidden');
-        if (emptyEl) emptyEl.classList.add('hidden');
-
-        // Update betting values
+        // Update betting values (works with both old cards and new badges)
         updateBettingCard('betting-total-value', betStats.total_bets);
         updateBettingCard('betting-won-value', betStats.bets_won);
         updateBettingCardWithRate('betting-rate-value', betStats.win_rate);
+
+        // Update summary badge
+        if (summaryEl) {
+            var rate = betStats.win_rate || 0;
+            summaryEl.textContent = betStats.total_bets > 0 ? rate.toFixed(0) + '% win' : 'None';
+        }
     }
 
     /**
@@ -202,7 +204,8 @@
 
         card.classList.remove('loading');
 
-        var valueEl = card.querySelector('.stat-value');
+        // Support both old (.stat-value) and new (.stat-mini-value) structures
+        var valueEl = card.querySelector('.stat-mini-value') || card.querySelector('.stat-value');
         if (valueEl) {
             // Show "--" if no games (value is 0 or undefined)
             valueEl.textContent = value > 0 ? value : '--';
@@ -405,20 +408,21 @@
         var card = document.getElementById(cardId);
         if (!card) return;
 
-        var titleEl = card.querySelector('.song-card-title');
+        // Support both old card format and new compact row format
+        var titleEl = card.querySelector('.song-card-title') || card.querySelector('.song-row-title');
         var artistEl = card.querySelector('.song-card-artist');
-        var statEl = card.querySelector('.stat-number');
+        var statEl = card.querySelector('.stat-number') || card.querySelector('.song-row-stat');
 
         if (!song) {
             if (titleEl) titleEl.textContent = '--';
             if (artistEl) artistEl.textContent = '--';
             if (statEl) statEl.textContent = '--';
-            card.disabled = true;
+            if (card.disabled !== undefined) card.disabled = true;
             card.dataset.playlist = '';
             return;
         }
 
-        card.disabled = false;
+        if (card.disabled !== undefined) card.disabled = false;
         card.dataset.playlist = song.playlist || '';
         card.dataset.songTitle = song.title || '';
 
@@ -782,7 +786,8 @@
 
         card.classList.remove('loading');
 
-        var valueEl = card.querySelector('.stat-value');
+        // Support both old (.stat-value) and new (.stat-mini-value) structures
+        var valueEl = card.querySelector('.stat-mini-value') || card.querySelector('.stat-value');
         var trendEl = card.querySelector('.stat-trend');
 
         if (valueEl) {
@@ -982,6 +987,31 @@
         if (nextBtn) {
             nextBtn.addEventListener('click', function() {
                 handlePagination(1);
+            });
+        }
+
+        // Collapsible section toggles
+        var collapsibleHeaders = document.querySelectorAll('.section-header-collapsible');
+        collapsibleHeaders.forEach(function(header) {
+            header.addEventListener('click', function() {
+                var section = header.closest('.section-collapsible');
+                if (section) {
+                    section.classList.toggle('collapsed');
+                    var expanded = !section.classList.contains('collapsed');
+                    header.setAttribute('aria-expanded', expanded);
+                }
+            });
+        });
+
+        // View All Songs button
+        var viewAllSongsBtn = document.getElementById('view-all-songs-btn');
+        if (viewAllSongsBtn) {
+            viewAllSongsBtn.addEventListener('click', function() {
+                // Open modal with first playlist that has data
+                var firstPlaylist = document.querySelector('[data-playlist-id]');
+                if (firstPlaylist) {
+                    openPlaylistModal(firstPlaylist.dataset.playlistId);
+                }
             });
         }
 

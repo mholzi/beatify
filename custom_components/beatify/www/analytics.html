@@ -40,136 +40,72 @@
             </button>
         </section>
 
-        <!-- Stat Cards Grid -->
+        <!-- Stat Cards Grid - Compact Mini Grid for Mobile -->
         <section class="stat-cards-section card-section">
             <h2 class="section-header">
                 <span class="section-icon" aria-hidden="true">📊</span>
                 <span data-i18n="analyticsDashboard.overview">Overview</span>
             </h2>
-            <div class="stat-cards-grid">
-                <div class="stat-card" id="stat-total-games">
-                <div class="stat-icon" aria-hidden="true">🎮</div>
-                <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.totalGames">Total Games</div>
-                <div class="stat-trend"></div>
-            </div>
-
-            <div class="stat-card" id="stat-avg-players">
-                <div class="stat-icon" aria-hidden="true">👥</div>
-                <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.avgPlayers">Avg Players</div>
-                <div class="stat-trend"></div>
-            </div>
-
-            <div class="stat-card" id="stat-avg-score">
-                <div class="stat-icon" aria-hidden="true">🏆</div>
-                <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.avgScore">Avg Score</div>
-                <div class="stat-trend"></div>
-            </div>
-
-            <!-- Story 19.8: Peak Players -->
-            <div class="stat-card" id="stat-peak-players">
-                <div class="stat-icon" aria-hidden="true">🎉</div>
-                <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.peakPlayers">Peak Players</div>
-            </div>
-
-            <!-- Story 19.9: Avg Rounds Per Game -->
-            <div class="stat-card" id="stat-avg-rounds">
-                <div class="stat-icon" aria-hidden="true">🎲</div>
-                <div class="stat-value">--</div>
-                <div class="stat-label" data-i18n="analyticsDashboard.avgRounds">Avg Rounds</div>
-                <div class="stat-trend"></div>
-            </div>
+            <div class="stat-cards-mini-grid">
+                <div class="stat-card-mini" id="stat-total-games">
+                    <div class="stat-mini-icon" aria-hidden="true">🎮</div>
+                    <div class="stat-mini-value">--</div>
+                    <div class="stat-mini-label" data-i18n="analyticsDashboard.games">Games</div>
+                </div>
+                <div class="stat-card-mini" id="stat-avg-players">
+                    <div class="stat-mini-icon" aria-hidden="true">👥</div>
+                    <div class="stat-mini-value">--</div>
+                    <div class="stat-mini-label" data-i18n="analyticsDashboard.avgPlayersShort">Avg Plrs</div>
+                </div>
+                <div class="stat-card-mini" id="stat-avg-score">
+                    <div class="stat-mini-icon" aria-hidden="true">🏆</div>
+                    <div class="stat-mini-value">--</div>
+                    <div class="stat-mini-label" data-i18n="analyticsDashboard.score">Score</div>
+                </div>
+                <div class="stat-card-mini" id="stat-peak-players">
+                    <div class="stat-mini-icon" aria-hidden="true">🎉</div>
+                    <div class="stat-mini-value">--</div>
+                    <div class="stat-mini-label" data-i18n="analyticsDashboard.peak">Peak</div>
+                </div>
+                <div class="stat-card-mini" id="stat-avg-rounds">
+                    <div class="stat-mini-icon" aria-hidden="true">🎲</div>
+                    <div class="stat-mini-value">--</div>
+                    <div class="stat-mini-label" data-i18n="analyticsDashboard.rounds">Rounds</div>
+                </div>
             </div>
         </section>
 
-        <!-- Story 19.11: Streak Achievements Section -->
-        <section class="streak-analytics card-section" aria-labelledby="streak-stats-heading">
-            <h2 class="section-header" id="streak-stats-heading">
+        <!-- Story 19.11: Streak Achievements Section - Collapsible -->
+        <section class="section-collapsible collapsed" id="streak-section" aria-labelledby="streak-stats-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="streak-content">
                 <span class="section-icon" aria-hidden="true">🔥</span>
-                <span data-i18n="analyticsDashboard.streakAchievements">Streak Achievements</span>
-            </h2>
-
-            <div class="streak-cards" id="streak-cards">
-                <div class="streak-card" id="streak-3-card">
-                    <div class="streak-icon" aria-hidden="true">🔥</div>
-                    <div class="streak-value" id="streak-3-value">--</div>
-                    <div class="streak-label">
-                        <span data-i18n="analyticsDashboard.streak3Plus">3+ Streaks</span>
-                    </div>
-                    <div class="streak-description" data-i18n="analyticsDashboard.streak3Desc">Hot start!</div>
+                <span data-i18n="analyticsDashboard.streaks">Streaks</span>
+                <span class="section-summary" id="streak-summary">None</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="streak-content">
+                <div class="streak-badges" id="streak-badges">
+                    <span class="mini-badge" id="streak-3-badge">🔥 <span id="streak-3-value">0</span></span>
+                    <span class="mini-badge" id="streak-5-badge">🔥🔥 <span id="streak-5-value">0</span></span>
+                    <span class="mini-badge mini-badge--legendary" id="streak-7-badge">🔥🔥🔥 <span id="streak-7-value">0</span></span>
                 </div>
-
-                <div class="streak-card" id="streak-5-card">
-                    <div class="streak-icon" aria-hidden="true">🔥🔥</div>
-                    <div class="streak-value" id="streak-5-value">--</div>
-                    <div class="streak-label">
-                        <span data-i18n="analyticsDashboard.streak5Plus">5+ Streaks</span>
-                    </div>
-                    <div class="streak-description" data-i18n="analyticsDashboard.streak5Desc">On fire!</div>
-                </div>
-
-                <div class="streak-card streak-card--legendary" id="streak-7-card">
-                    <div class="streak-icon" aria-hidden="true">🔥🔥🔥</div>
-                    <div class="streak-value" id="streak-7-value">--</div>
-                    <div class="streak-label">
-                        <span data-i18n="analyticsDashboard.streak7Plus">7+ Streaks</span>
-                    </div>
-                    <div class="streak-description" data-i18n="analyticsDashboard.streak7Desc">Legendary!</div>
-                </div>
-            </div>
-
-            <!-- Empty State (AC4) -->
-            <div class="empty-state hidden" id="streak-empty">
-                <div class="empty-icon" aria-hidden="true">🔥</div>
-                <p data-i18n="analyticsDashboard.noStreakData">No streak data yet</p>
-                <p class="empty-hint" data-i18n="analyticsDashboard.streakHint">Players earn streaks by guessing correctly multiple times in a row</p>
             </div>
         </section>
 
-        <!-- Story 19.12: Bet Win/Loss Tracking Section -->
-        <section class="betting-analytics card-section" aria-labelledby="betting-stats-heading">
-            <h2 class="section-header" id="betting-stats-heading">
+        <!-- Story 19.12: Bet Win/Loss Tracking Section - Collapsible -->
+        <section class="section-collapsible collapsed" id="betting-section" aria-labelledby="betting-stats-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="betting-content">
                 <span class="section-icon" aria-hidden="true">🎲</span>
-                <span data-i18n="analyticsDashboard.bettingStats">Betting Statistics</span>
-            </h2>
-
-            <div class="betting-cards" id="betting-cards">
-                <div class="betting-card" id="betting-total-card">
-                    <div class="betting-icon" aria-hidden="true">🎯</div>
-                    <div class="betting-value" id="betting-total-value">--</div>
-                    <div class="betting-label">
-                        <span data-i18n="analyticsDashboard.totalBets">Total Bets</span>
-                    </div>
-                    <div class="betting-description" data-i18n="analyticsDashboard.totalBetsDesc">Bets placed</div>
+                <span data-i18n="analyticsDashboard.betting">Betting</span>
+                <span class="section-summary" id="betting-summary">None</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="betting-content">
+                <div class="betting-badges" id="betting-badges">
+                    <span class="mini-badge"><span id="betting-total-value">0</span> bets</span>
+                    <span class="mini-badge mini-badge--success"><span id="betting-won-value">0</span> won</span>
+                    <span class="mini-badge mini-badge--highlight"><span id="betting-rate-value">0%</span> rate</span>
                 </div>
-
-                <div class="betting-card" id="betting-won-card">
-                    <div class="betting-icon" aria-hidden="true">🏆</div>
-                    <div class="betting-value" id="betting-won-value">--</div>
-                    <div class="betting-label">
-                        <span data-i18n="analyticsDashboard.betsWon">Bets Won</span>
-                    </div>
-                    <div class="betting-description" data-i18n="analyticsDashboard.betsWonDesc">Double points!</div>
-                </div>
-
-                <div class="betting-card betting-card--highlight" id="betting-rate-card">
-                    <div class="betting-icon" aria-hidden="true">📊</div>
-                    <div class="betting-value" id="betting-rate-value">--</div>
-                    <div class="betting-label">
-                        <span data-i18n="analyticsDashboard.winRate">Win Rate</span>
-                    </div>
-                    <div class="betting-description" data-i18n="analyticsDashboard.winRateDesc">Success percentage</div>
-                </div>
-            </div>
-
-            <!-- Empty State (AC4) -->
-            <div class="empty-state hidden" id="betting-empty">
-                <div class="empty-icon" aria-hidden="true">🎲</div>
-                <p data-i18n="analyticsDashboard.noBettingData">No betting data yet</p>
-                <p class="empty-hint" data-i18n="analyticsDashboard.bettingHint">Players can bet to double their points on confident guesses</p>
             </div>
         </section>
 
@@ -198,62 +134,40 @@
             </div>
         </section>
 
-        <!-- Song Statistics Section (Story 19.7 AC1) -->
-        <section class="song-analytics card-section" aria-labelledby="song-stats-heading">
-            <h2 class="section-header" id="song-stats-heading">
-                <span class="section-icon" aria-hidden="true">🎵</span>
-                <span data-i18n="analyticsDashboard.songStatistics">Song Statistics</span>
-            </h2>
-
-            <!-- Summary Cards (AC1) -->
-            <div class="song-summary-cards" id="song-summary-cards">
-                <button type="button" class="song-summary-card" id="song-most-played"
-                        aria-label="Most played song - click to view in playlist">
-                    <div class="song-card-icon" aria-hidden="true">🔥</div>
-                    <div class="song-card-label" data-i18n="analyticsDashboard.mostPlayed">Most Played</div>
-                    <div class="song-card-title">--</div>
-                    <div class="song-card-artist">--</div>
-                    <div class="song-card-stat">
-                        <span class="stat-number">--</span>
-                        <span data-i18n="analyticsDashboard.timesPlayed">times played</span>
+        <!-- Song Statistics Section - Compact Collapsible -->
+        <section class="section-collapsible collapsed" id="song-section" aria-labelledby="song-stats-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="song-content">
+                <span class="section-icon" aria-hidden="true">🎤</span>
+                <span data-i18n="analyticsDashboard.songs">Songs</span>
+                <span class="section-summary" id="song-summary">No data</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="song-content">
+                <!-- Compact Song Summary List -->
+                <div class="song-summary-compact" id="song-summary-compact">
+                    <div class="song-row" id="song-most-played">
+                        <span class="song-row-icon" aria-hidden="true">🔥</span>
+                        <span class="song-row-label" data-i18n="analyticsDashboard.mostPlayed">Most Played</span>
+                        <span class="song-row-title">--</span>
+                        <span class="song-row-stat">--</span>
                     </div>
-                </button>
-
-                <button type="button" class="song-summary-card" id="song-hardest"
-                        aria-label="Hardest song - click to view in playlist">
-                    <div class="song-card-icon" aria-hidden="true">💀</div>
-                    <div class="song-card-label" data-i18n="analyticsDashboard.hardestSong">Hardest Song</div>
-                    <div class="song-card-title">--</div>
-                    <div class="song-card-artist">--</div>
-                    <div class="song-card-stat">
-                        <span class="stat-number accuracy-low">--</span>
-                        <span data-i18n="analyticsDashboard.accuracy">accuracy</span>
+                    <div class="song-row" id="song-hardest">
+                        <span class="song-row-icon" aria-hidden="true">💀</span>
+                        <span class="song-row-label" data-i18n="analyticsDashboard.hardest">Hardest</span>
+                        <span class="song-row-title">--</span>
+                        <span class="song-row-stat accuracy-low">--</span>
                     </div>
-                </button>
-
-                <button type="button" class="song-summary-card" id="song-easiest"
-                        aria-label="Easiest song - click to view in playlist">
-                    <div class="song-card-icon" aria-hidden="true">🎯</div>
-                    <div class="song-card-label" data-i18n="analyticsDashboard.easiestSong">Easiest Song</div>
-                    <div class="song-card-title">--</div>
-                    <div class="song-card-artist">--</div>
-                    <div class="song-card-stat">
-                        <span class="stat-number accuracy-high">--</span>
-                        <span data-i18n="analyticsDashboard.accuracy">accuracy</span>
+                    <div class="song-row" id="song-easiest">
+                        <span class="song-row-icon" aria-hidden="true">🎯</span>
+                        <span class="song-row-label" data-i18n="analyticsDashboard.easiest">Easiest</span>
+                        <span class="song-row-title">--</span>
+                        <span class="song-row-stat accuracy-high">--</span>
                     </div>
+                </div>
+                <!-- Playlist Details - Hidden by default, view button -->
+                <button type="button" class="btn btn-secondary btn-full-width" id="view-all-songs-btn">
+                    <span data-i18n="analyticsDashboard.viewAllSongs">View All Songs</span>
                 </button>
-            </div>
-
-            <!-- Playlist Song Statistics Grid (AC2) -->
-            <div class="playlist-song-stats" id="playlist-song-stats">
-                <!-- Dynamic content: playlist cards with song tables -->
-            </div>
-
-            <!-- Empty State (AC7) -->
-            <div class="empty-state hidden" id="song-stats-empty">
-                <div class="empty-icon" aria-hidden="true">📭</div>
-                <p data-i18n="analyticsDashboard.noSongsPlayed">No songs played yet</p>
-                <p class="empty-hint" data-i18n="analyticsDashboard.playToTrack">Play some games to start tracking song statistics</p>
             </div>
         </section>
 
@@ -298,14 +212,18 @@
             </div>
         </dialog>
 
-        <!-- Games Over Time Chart (Story 19.5) -->
-        <section class="chart-analytics card-section">
-            <h2 class="section-header">
-                <span class="section-icon">📈</span>
-                <span data-i18n="analyticsDashboard.gamesOverTime">Games Over Time</span>
-            </h2>
-            <div class="chart-container">
-                <canvas id="games-chart" width="600" height="300"></canvas>
+        <!-- Games Over Time Chart - Collapsible -->
+        <section class="section-collapsible collapsed" id="chart-section">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="chart-content">
+                <span class="section-icon" aria-hidden="true">📈</span>
+                <span data-i18n="analyticsDashboard.chart">Chart</span>
+                <span class="section-summary" id="chart-summary">Trend</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="chart-content">
+                <div class="chart-container chart-container--compact">
+                    <canvas id="games-chart" width="400" height="150"></canvas>
+                </div>
             </div>
             <table class="sr-only" id="games-chart-data">
                 <caption>Games played over time</caption>

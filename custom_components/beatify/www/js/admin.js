@@ -471,7 +471,7 @@ function showLobbyView(gameData) {
     // Show lobby
     document.getElementById('lobby-section')?.classList.remove('hidden');
 
-    // Generate QR code (only if URL changed)
+    // Generate QR code (only if URL changed) - compact size, CSS scales for desktop
     const qrContainer = document.getElementById('qr-code');
     if (qrContainer && gameData.join_url) {
         if (cachedQRUrl !== gameData.join_url) {
@@ -480,8 +480,8 @@ function showLobbyView(gameData) {
             if (typeof QRCode !== 'undefined') {
                 new QRCode(qrContainer, {
                     text: gameData.join_url,
-                    width: 300,
-                    height: 300,
+                    width: 180,
+                    height: 180,
                     colorDark: '#000000',
                     colorLight: '#ffffff',
                     correctLevel: QRCode.CorrectLevel.M
@@ -500,16 +500,11 @@ function showLobbyView(gameData) {
         urlEl.textContent = gameData.join_url;
     }
 
-    // Update dashboard URL display (analytics layout)
+    // Update dashboard URL (compact inline link)
     var dashboardUrl = window.location.origin + '/beatify/dashboard';
     var dashboardLink = document.getElementById('admin-dashboard-url');
-    var dashboardDisplay = document.getElementById('dashboard-url-display');
     if (dashboardLink) {
         dashboardLink.href = dashboardUrl;
-    }
-    if (dashboardDisplay) {
-        // Show shortened URL for display
-        dashboardDisplay.textContent = dashboardUrl.replace(/^https?:\/\//, '');
     }
 
     // Render initial player list and start polling (Story 16.8)

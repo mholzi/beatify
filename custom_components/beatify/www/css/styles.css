@@ -2758,18 +2758,163 @@ body.theme-dark .admin-controls {
     border-top: 1px solid var(--color-border-dark);
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .lobby-stats-grid {
-        grid-template-columns: 1fr;
+/* =====================================================
+   Mobile-Optimized Compact Lobby Layout
+   ===================================================== */
+
+/* Compact header with inline badges */
+.lobby-header-compact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.section-header--inline {
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Stat Badge Bar */
+.stat-badge-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.stat-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+}
+
+.stat-badge-icon {
+    font-size: 1rem;
+}
+
+.stat-badge-value {
+    font-weight: 600;
+    color: var(--color-accent-secondary);
+}
+
+.stat-badge--status .stat-badge-value {
+    color: var(--color-text-white);
+}
+
+/* Compact QR Section */
+.qr-section--compact {
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.qr-section--compact .qr-container {
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.qr-section--compact #qr-code {
+    width: 180px !important;
+    height: 180px !important;
+}
+
+.qr-section--compact #qr-code img,
+.qr-section--compact #qr-code canvas {
+    width: 180px !important;
+    height: 180px !important;
+}
+
+.qr-section--compact .qr-hint {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-xs);
+}
+
+.qr-url-display--compact {
+    font-size: 0.75rem;
+    margin-bottom: var(--space-sm);
+}
+
+/* Inline Dashboard Link */
+.dashboard-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid var(--color-accent-secondary);
+    border-radius: var(--radius-md);
+    color: var(--color-accent-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.dashboard-link:hover {
+    background: rgba(0, 245, 255, 0.2);
+}
+
+.dashboard-link-arrow {
+    opacity: 0.7;
+}
+
+/* Compact Player List */
+.player-list-section--compact {
+    margin-bottom: var(--space-sm);
+}
+
+.section-subheader--compact {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-sm);
+}
+
+/* Inline Empty State */
+.empty-state-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    color: var(--color-text-neon-muted);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Sticky Lobby Actions */
+.lobby-actions--sticky {
+    position: sticky;
+    bottom: 0;
+    margin: 0 calc(-1 * var(--space-md));
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-primary);
+    border-top: 1px solid var(--color-border-dark);
+    z-index: 10;
+}
+
+/* Desktop: Keep larger layout */
+@media (min-width: 481px) {
+    .qr-section--compact #qr-code,
+    .qr-section--compact #qr-code img,
+    .qr-section--compact #qr-code canvas {
+        width: 240px !important;
+        height: 240px !important;
     }
 
-    #lobby-section .stat-value {
-        font-size: 2rem;
+    .qr-section--compact {
+        padding: var(--space-lg);
     }
 
-    .player-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .lobby-actions--sticky {
+        position: relative;
+        margin: var(--space-lg) 0 0 0;
+        padding: var(--space-md) 0 0 0;
+        background: transparent;
     }
 }
 

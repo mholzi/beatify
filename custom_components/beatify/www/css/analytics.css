@@ -1042,3 +1042,249 @@
         animation: none;
     }
 }
+
+/* =====================================================
+   Mobile-Optimized Compact Analytics Layout
+   ===================================================== */
+
+/* Mini Stat Cards Grid - 3+2 layout */
+.stat-cards-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+
+.stat-card-mini {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    text-align: center;
+}
+
+.stat-mini-icon {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.stat-mini-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent-secondary);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.1;
+}
+
+.stat-mini-label {
+    font-size: 0.625rem;
+    color: var(--color-text-neon-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Last 2 cards span to fill row */
+.stat-cards-mini-grid .stat-card-mini:nth-child(4),
+.stat-cards-mini-grid .stat-card-mini:nth-child(5) {
+    grid-column: span 1;
+}
+
+/* Collapsible Sections */
+.section-collapsible {
+    background: var(--color-surface-dark);
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    overflow: hidden;
+}
+
+.section-header-collapsible {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background: transparent;
+    border: none;
+    color: var(--color-text-white);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+}
+
+.section-header-collapsible .section-icon {
+    font-size: 1rem;
+}
+
+.section-summary {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-text-neon-muted);
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+}
+
+.section-toggle {
+    font-size: 0.625rem;
+    color: var(--color-text-neon-muted);
+    transition: transform 0.2s ease;
+}
+
+.section-collapsible:not(.collapsed) .section-toggle {
+    transform: rotate(180deg);
+}
+
+.section-content {
+    padding: 0 var(--space-md) var(--space-md);
+}
+
+.section-collapsible.collapsed .section-content {
+    display: none;
+}
+
+/* Mini Badges for Streaks/Betting */
+.streak-badges,
+.betting-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.mini-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--color-text-neon-muted);
+}
+
+.mini-badge--legendary {
+    border-color: #ff6b00;
+    color: #ff6b00;
+}
+
+.mini-badge--success {
+    border-color: var(--color-success-neon);
+    color: var(--color-success-neon);
+}
+
+.mini-badge--highlight {
+    border-color: var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+}
+
+/* Compact Song Summary */
+.song-summary-compact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+}
+
+.song-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+}
+
+.song-row-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.song-row-label {
+    color: var(--color-text-neon-muted);
+    flex-shrink: 0;
+    width: 70px;
+}
+
+.song-row-title {
+    flex: 1;
+    color: var(--color-text-white);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.song-row-stat {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--color-accent-secondary);
+}
+
+/* Compact Chart */
+.chart-container--compact {
+    max-height: 150px;
+}
+
+.chart-container--compact canvas {
+    max-height: 150px;
+}
+
+/* Button full width */
+.btn-full-width {
+    width: 100%;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--color-border-neon);
+    color: var(--color-text-neon-muted);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+}
+
+/* Desktop: Expand by default */
+@media (min-width: 481px) {
+    .stat-cards-mini-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .stat-card-mini {
+        padding: var(--space-md);
+    }
+
+    .stat-mini-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-mini-label {
+        font-size: 0.75rem;
+    }
+
+    .section-collapsible:not(.collapsed) .section-content,
+    .section-collapsible.collapsed .section-content {
+        display: block;
+    }
+
+    .section-toggle {
+        display: none;
+    }
+
+    .chart-container--compact {
+        max-height: 300px;
+    }
+
+    .chart-container--compact canvas {
+        max-height: 300px;
+    }
+}
