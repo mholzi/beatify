@@ -18,8 +18,11 @@ from custom_components.beatify.const import (
     DOMAIN,
     MEDIA_PLAYER_DOCS_URL,
     PLAYLIST_DOCS_URL,
+    PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
+    PROVIDER_PLEX,
     PROVIDER_SPOTIFY,
+    PROVIDER_YOUTUBE_MUSIC,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
@@ -187,8 +190,8 @@ class StartGameView(HomeAssistantView):
         if difficulty not in valid_difficulties:
             difficulty = DIFFICULTY_DEFAULT
 
-        # Validate provider (Story 17.6: only Spotify supported)
-        valid_providers = (PROVIDER_SPOTIFY,)
+        # Validate provider - now supporting Spotify, Apple Music, YouTube Music, and Plex
+        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC, PROVIDER_YOUTUBE_MUSIC, PROVIDER_PLEX)
         if provider not in valid_providers:
             provider = PROVIDER_DEFAULT
 

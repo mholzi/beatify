@@ -207,6 +207,15 @@ function setupGameSettings() {
         });
     });
 
+    // Provider chips
+    document.querySelectorAll('.chip[data-provider]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            const provider = this.dataset.provider;
+            setProvider(provider);
+            saveGameSettings();
+        });
+    });
+
     // Artist Challenge toggle
     document.getElementById('artist-challenge-toggle')?.addEventListener('change', function() {
         artistChallengeEnabled = this.checked;
@@ -251,6 +260,11 @@ function loadSavedSettings() {
                 });
             }
 
+            // Apply provider
+            if (settings.provider) {
+                setProvider(settings.provider);
+            }
+
             // Apply artist challenge
             if (typeof settings.artistChallenge === 'boolean') {
                 artistChallengeEnabled = settings.artistChallenge;
@@ -274,6 +288,7 @@ function saveGameSettings() {
             language: selectedLanguage,
             duration: selectedDuration,
             difficulty: selectedDifficulty,
+            provider: selectedProvider,
             artistChallenge: artistChallengeEnabled
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -1378,7 +1393,7 @@ function setupProviderSelector() {
 
 /**
  * Update provider button states
- * @param {string} provider - Provider identifier ('spotify' or 'apple_music')
+ * @param {string} provider - Provider identifier ('spotify', 'apple_music', 'youtube_music', or 'plex')
  */
 function updateProviderButtons(provider) {
     var providerButtons = document.querySelectorAll('.provider-btn');
@@ -1394,12 +1409,19 @@ function updateProviderButtons(provider) {
 
 /**
  * Set music provider and update UI
- * @param {string} provider - Provider identifier (only 'spotify' supported, Story 17.6)
+ * @param {string} provider - Provider identifier (spotify, apple_music, youtube_music, plex)
  */
 function setProvider(provider) {
-    // Only Spotify is supported (Story 17.6: Apple Music removed)
-    selectedProvider = 'spotify';
-    updateProviderButtons('spotify');
+    // Support for Spotify, Apple Music, YouTube Music, and Plex
+    const validProviders = ['spotify', 'apple_music', 'youtube_music', 'plex'];
+    if (validProviders.includes(provider)) {
+        selectedProvider = provider;
+        updateProviderButtons(provider);
+    } else {
+        // Fallback to default
+        selectedProvider = 'spotify';
+        updateProviderButtons('spotify');
+    }
 
     // Re-render playlists to show coverage for selected provider
     if (playlistData.length > 0) {

@@ -119,6 +119,8 @@ MEDIA_CONTENT_TYPES: dict[str, str] = {
     "spotify": "spotify",  # Spotify URIs (spotify:track:xxx)
     "applemusic": "music",  # Apple Music URIs (applemusic://track/123) via Music Assistant
     "apple_music": "apple_music",  # Legacy: Apple Music URIs with underscore prefix
+    "ytmusic": "music",  # YouTube Music URIs (ytmusic://track/xxx)
+    "plex": "music",  # Plex URIs (plex://track/xxx)
     "tidal": "tidal",  # Future: Tidal URIs
 }
 MEDIA_CONTENT_TYPE_DEFAULT = "music"  # Fallback for unknown providers
@@ -126,8 +128,12 @@ MEDIA_CONTENT_TYPE_DEFAULT = "music"  # Fallback for unknown providers
 # Multi-provider URI patterns (Story 17.1)
 URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"
 URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"  # Preserved for playlist validation
+URI_PATTERN_YOUTUBE_MUSIC = r"^ytmusic://track/[a-zA-Z0-9_-]+$"  # YouTube Music URIs
+URI_PATTERN_PLEX = r"^plex://track/[a-zA-Z0-9_-]+$"  # Plex URIs
 
 # Provider identifiers (Story 17.1)
 PROVIDER_SPOTIFY = "spotify"
 PROVIDER_APPLE_MUSIC = "apple_music"  # Preserved for future use
+PROVIDER_YOUTUBE_MUSIC = "youtube_music"
+PROVIDER_PLEX = "plex"
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY

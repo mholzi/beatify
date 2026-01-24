@@ -14,9 +14,13 @@ from custom_components.beatify.const import (
     PLAYLIST_DIR,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
+    PROVIDER_PLEX,
     PROVIDER_SPOTIFY,
+    PROVIDER_YOUTUBE_MUSIC,
     URI_PATTERN_APPLE_MUSIC,
+    URI_PATTERN_PLEX,
     URI_PATTERN_SPOTIFY,
+    URI_PATTERN_YOUTUBE_MUSIC,
 )
 
 if TYPE_CHECKING:
@@ -37,7 +41,8 @@ class PlaylistManager:
 
         Args:
             songs: List of song dictionaries
-            provider: Music provider to use (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+            provider: Music provider to use (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC,
+                      PROVIDER_YOUTUBE_MUSIC, or PROVIDER_PLEX)
 
         """
         self._provider = provider
@@ -302,6 +307,26 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                     f"Song {i + 1}: 'uri_apple_music' invalid (expected applemusic://track/id)"
                 )
 
+        # Check 'uri_youtube_music' field
+        uri_youtube_music = song.get("uri_youtube_music")
+        if isinstance(uri_youtube_music, str) and uri_youtube_music.strip():
+            if re.match(URI_PATTERN_YOUTUBE_MUSIC, uri_youtube_music):
+                has_valid_uri = True
+            else:
+                errors.append(
+                    f"Song {i + 1}: 'uri_youtube_music' invalid (expected ytmusic://track/id)"
+                )
+
+        # Check 'uri_plex' field
+        uri_plex = song.get("uri_plex")
+        if isinstance(uri_plex, str) and uri_plex.strip():
+            if re.match(URI_PATTERN_PLEX, uri_plex):
+                has_valid_uri = True
+            else:
+                errors.append(
+                    f"Song {i + 1}: 'uri_plex' invalid (expected plex://track/id)"
+                )
+
         # Error if no valid URI found
         if not has_valid_uri:
             errors.append(f"Song {i + 1}: no valid URI")
@@ -333,7 +358,8 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
 
     Args:
         song: Song dictionary with uri fields
-        provider: Provider identifier (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+        provider: Provider identifier (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC,
+                  PROVIDER_YOUTUBE_MUSIC, or PROVIDER_PLEX)
 
     Returns:
         URI string for the provider, or None if not available
@@ -345,6 +371,12 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
     if provider == PROVIDER_APPLE_MUSIC:
         # For Apple Music, only use uri_apple_music
         return song.get("uri_apple_music") or None
+    if provider == PROVIDER_YOUTUBE_MUSIC:
+        # For YouTube Music, only use uri_youtube_music
+        return song.get("uri_youtube_music") or None
+    if provider == PROVIDER_PLEX:
+        # For Plex, only use uri_plex
+        return song.get("uri_plex") or None
     return None
 
 
@@ -356,7 +388,8 @@ def filter_songs_for_provider(
 
     Args:
         songs: List of song dictionaries
-        provider: Provider identifier (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+        provider: Provider identifier (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC,
+                  PROVIDER_YOUTUBE_MUSIC, or PROVIDER_PLEX)
 
     Returns:
         Tuple of (filtered_songs, skipped_count)
