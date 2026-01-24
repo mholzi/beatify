@@ -6,6 +6,7 @@
       "year": 1956,
       "uri": "spotify:track:3ijeTyo5ggRvM0DTfZflBB",
       "artist": "Lys Assia",
+      "alt_artists": ["Paola Felix", "Peter Reber"],
       "title": "Refrain",
       "chart_info": {
         "eurovision_position": 1,
@@ -30,6 +31,7 @@
       "year": 1957,
       "uri": "spotify:track:1I9fugKDEYETuxJME3aesv",
       "artist": "Corry Brokken",
+      "alt_artists": ["Teddy Scholten", "Greetje Kauffeld"],
       "title": "Net Als Toen",
       "chart_info": {
         "eurovision_position": 1,
@@ -55,6 +57,7 @@
       "year": 1958,
       "uri": "spotify:track:3W05oiilHd4xRcLb66N51o",
       "artist": "Andre Claveau",
+      "alt_artists": ["Jacqueline Boyer", "Isabelle Aubret"],
       "title": "Dors mon amour",
       "chart_info": {
         "eurovision_position": 1,
@@ -80,6 +83,7 @@
       "year": 1959,
       "uri": "spotify:track:6fQfOgajFEdUTOvAQNoinK",
       "artist": "Teddy Scholten",
+      "alt_artists": ["Corry Brokken", "Milly Scott"],
       "title": "Een Beetje",
       "chart_info": {
         "eurovision_position": 1,
@@ -105,6 +109,7 @@
       "year": 1960,
       "uri": "spotify:track:2ExzWeo5f3FL9pn61hhOJp",
       "artist": "Jacqueline Boyer",
+      "alt_artists": ["Isabelle Aubret", "France Gall"],
       "title": "Tom Pillibi",
       "chart_info": {
         "eurovision_position": 1,
@@ -130,6 +135,7 @@
       "year": 1961,
       "uri": "spotify:track:35PWl4T8d2U3a5AboajXXw",
       "artist": "Jean-Claude Pascal",
+      "alt_artists": ["Vicky Leandros", "France Gall"],
       "title": "Nous les amoureux",
       "chart_info": {
         "eurovision_position": 1,
@@ -155,6 +161,7 @@
       "year": 1962,
       "uri": "spotify:track:64EE5jxbZLyb2SElNSyuUD",
       "artist": "Isabelle Aubret",
+      "alt_artists": ["Jacqueline Boyer", "Frida Boccara"],
       "title": "Un premier amour",
       "chart_info": {
         "eurovision_position": 1,
@@ -180,6 +187,7 @@
       "year": 1963,
       "uri": "spotify:track:1oIVUqdVUFouSa6xsSN5aM",
       "artist": "Grethe Ingmann;Jorgen Ingmann",
+      "alt_artists": ["Ditte & Louise", "Tommy Seebach"],
       "title": "Dansevise",
       "chart_info": {
         "eurovision_position": 1,
@@ -205,6 +213,7 @@
       "year": 1964,
       "uri": "spotify:track:07rZol7bEXJSUHIcwah0eq",
       "artist": "Gigliola Cinquetti",
+      "alt_artists": ["Orietta Berti", "Iva Zanicchi"],
       "title": "Non ho l'eta (Per amarti)",
       "chart_info": {
         "eurovision_position": 1,
@@ -230,6 +239,7 @@
       "year": 1965,
       "uri": "spotify:track:68jKFhKRqnatqtLYIiz3c1",
       "artist": "France Gall",
+      "alt_artists": ["Vicky Leandros", "Anne-Marie David"],
       "title": "Poupee de cire poupee de son",
       "chart_info": {
         "eurovision_position": 1,
@@ -254,6 +264,7 @@
       "year": 1966,
       "uri": "spotify:track:07MEgnJdMyU2vNjOMskxSu",
       "artist": "Udo Jurgens",
+      "alt_artists": ["Peter Alexander", "Falco"],
       "title": "Merci Cherie",
       "chart_info": {
         "eurovision_position": 1,
@@ -279,6 +290,7 @@
       "year": 1967,
       "uri": "spotify:track:7f5w4aiYgVZrp9w4bNaBLu",
       "artist": "Sandie Shaw",
+      "alt_artists": ["Lulu", "Petula Clark"],
       "title": "Puppet On A String",
       "chart_info": {
         "eurovision_position": 1,
@@ -304,6 +316,7 @@
       "year": 1968,
       "uri": "spotify:track:1ApXNkjfjxkSDoezO8Kh8g",
       "artist": "Massiel",
+      "alt_artists": ["Salome", "Julio Iglesias"],
       "title": "La, La, La",
       "chart_info": {
         "eurovision_position": 1,
@@ -329,6 +342,7 @@
       "year": 1969,
       "uri": "spotify:track:31VRNSB6FA4KP7TOkW3k3A",
       "artist": "Lenny Kuhr",
+      "alt_artists": ["Teach In", "Maggie MacNeal"],
       "title": "De Troubadour",
       "chart_info": {
         "eurovision_position": 1,
@@ -354,6 +368,7 @@
       "year": 1969,
       "uri": "spotify:track:0vaRIQTdMIEnXjhWlVS95p",
       "artist": "Lulu",
+      "alt_artists": ["Sandie Shaw", "Cliff Richard"],
       "title": "Boom Bang a Bang",
       "chart_info": {
         "eurovision_position": 1,
@@ -379,6 +394,7 @@
       "year": 1969,
       "uri": "spotify:track:059G9tpE3kl6wz3kiddaN0",
       "artist": "Salome",
+      "alt_artists": ["Massiel", "Julio Iglesias"],
       "title": "Vivo Cantando",
       "chart_info": {
         "eurovision_position": 1,
@@ -404,6 +420,7 @@
       "year": 1969,
       "uri": "spotify:track:1XNnJeGSYasJctGndU8mCu",
       "artist": "Frida Boccara",
+      "alt_artists": ["Marie Myriam", "Isabelle Aubret"],
       "title": "Un jour, un enfant",
       "chart_info": {
         "eurovision_position": 1,
@@ -429,6 +446,7 @@
       "year": 1970,
       "uri": "spotify:track:2kwAhlh7BDsJkES19zaYqs",
       "artist": "Dana",
+      "alt_artists": ["Johnny Logan", "Linda Martin"],
       "title": "All Kinds Of Everything",
       "chart_info": {
         "eurovision_position": 1,
@@ -454,6 +472,7 @@
       "year": 1971,
       "uri": "spotify:track:15mVQWoiwjwXrs5LBybM0A",
       "artist": "Severine",
+      "alt_artists": ["Anne-Marie David", "France Gall"],
       "title": "Un Banc, Un Arbre, Une Rue",
       "chart_info": {
         "eurovision_position": 1,
@@ -479,6 +498,7 @@
       "year": 1972,
       "uri": "spotify:track:13tx9je0ftBgu6BKpsQDo4",
       "artist": "Vicky Leandros",
+      "alt_artists": ["France Gall", "Anne-Marie David"],
       "title": "Apres toi",
       "chart_info": {
         "eurovision_position": 1,
@@ -504,6 +524,7 @@
       "year": 1973,
       "uri": "spotify:track:3682WlWtLmx44QNpB6Py4X",
       "artist": "Anne-Marie David",
+      "alt_artists": ["Vicky Leandros", "Corinne Hermes"],
       "title": "Tu te reconnaitras",
       "chart_info": {
         "eurovision_position": 1,
@@ -529,6 +550,7 @@
       "year": 1974,
       "uri": "spotify:track:1CsuK5dlnWAkWhffeteqH3",
       "artist": "ABBA",
+      "alt_artists": ["Harpo", "Björn Skifs"],
       "title": "Waterloo",
       "chart_info": {
         "eurovision_position": 1,
@@ -560,6 +582,7 @@
       "year": 1975,
       "uri": "spotify:track:4ARCWS3l327M1YulCf74Uu",
       "artist": "Teach In",
+      "alt_artists": ["Lenny Kuhr", "Maggie MacNeal"],
       "title": "Ding-A-Dong",
       "chart_info": {
         "eurovision_position": 1,
@@ -584,6 +607,7 @@
       "year": 1976,
       "uri": "spotify:track:0E19RAvUkhjMM0rdICkidE",
       "artist": "Brotherhood of Man",
+      "alt_artists": ["Bucks Fizz", "Hot Chocolate"],
       "title": "Save Your Kisses For Me",
       "chart_info": {
         "eurovision_position": 1,
@@ -609,6 +633,7 @@
       "year": 1977,
       "uri": "spotify:track:7Hy0CZtFcREucLDXB5jp6m",
       "artist": "Marie Myriam",
+      "alt_artists": ["Frida Boccara", "Patricia Kaas"],
       "title": "L'oiseau et l'enfant",
       "chart_info": {
         "eurovision_position": 1,
@@ -634,6 +659,7 @@
       "year": 1978,
       "uri": "spotify:track:1njC0GQXuhxnplvR9DK6NZ",
       "artist": "Izhar Cohen",
+      "alt_artists": ["Gali Atari", "Ofra Haza"],
       "title": "A-Ba-Ni-Bi",
       "chart_info": {
         "eurovision_position": 1,
@@ -658,6 +684,7 @@
       "year": 1979,
       "uri": "spotify:track:557ZG0nAvOppPxR3e1DP42",
       "artist": "Gali Atari",
+      "alt_artists": ["Izhar Cohen", "Ofra Haza"],
       "title": "Hallelujah",
       "chart_info": {
         "eurovision_position": 1,
@@ -683,6 +710,7 @@
       "year": 1980,
       "uri": "spotify:track:2VPyWgAjdIRlMvk4XQCO44",
       "artist": "Johnny Logan",
+      "alt_artists": ["Dana", "Linda Martin"],
       "title": "What's Another Year",
       "chart_info": {
         "eurovision_position": 1,
@@ -708,6 +736,7 @@
       "year": 1981,
       "uri": "spotify:track:5tK13ThQnZJF1YOVjQ0FAx",
       "artist": "Bucks Fizz",
+      "alt_artists": ["Brotherhood of Man", "Katrina and the Waves"],
       "title": "Making Your Mind Up",
       "chart_info": {
         "eurovision_position": 1,
@@ -733,6 +762,7 @@
       "year": 1982,
       "uri": "spotify:track:7JZHsMxhcaRKug5kA0DmDE",
       "artist": "Nicole",
+      "alt_artists": ["Lena Meyer-Landrut", "Mary Roos"],
       "title": "Ein bisschen Frieden",
       "chart_info": {
         "eurovision_position": 1,
@@ -758,6 +788,7 @@
       "year": 1983,
       "uri": "spotify:track:0u8AjgsFdyKA1rAca57GC4",
       "artist": "Corinne Hermes",
+      "alt_artists": ["Anne-Marie David", "Vicky Leandros"],
       "title": "Si la vie est cadeau",
       "chart_info": {
         "eurovision_position": 1,
@@ -783,6 +814,7 @@
       "year": 1984,
       "uri": "spotify:track:4NzirQ4BrNkVaPEla2ipG4",
       "artist": "Herreys",
+      "alt_artists": ["ABBA", "Carola"],
       "title": "Diggiloo Diggiley",
       "chart_info": {
         "eurovision_position": 1,
@@ -808,6 +840,7 @@
       "year": 1985,
       "uri": "spotify:track:0LmEzNrxk0lecRm8X58jiC",
       "artist": "Bobbysocks",
+      "alt_artists": ["Alexander Rybak", "Secret Garden"],
       "title": "La det swinge",
       "chart_info": {
         "eurovision_position": 1,
@@ -833,6 +866,7 @@
       "year": 1986,
       "uri": "spotify:track:0Kr57gzJjexm8TF0l0JPLD",
       "artist": "Sandra Kim",
+      "alt_artists": ["Axelle Red", "Kate Ryan"],
       "title": "J'aime la vie",
       "chart_info": {
         "eurovision_position": 1,
@@ -858,6 +892,7 @@
       "year": 1987,
       "uri": "spotify:track:3wAfLEy1KQjpmbZdBrAW1U",
       "artist": "Johnny Logan",
+      "alt_artists": ["Linda Martin", "Niamh Kavanagh"],
       "title": "Hold Me Now",
       "chart_info": {
         "eurovision_position": 1,
@@ -883,6 +918,7 @@
       "year": 1988,
       "uri": "spotify:track:0Kv4i96E41jbULmUajBYOe",
       "artist": "Celine Dion",
+      "alt_artists": ["DJ Bobo", "Lys Assia"],
       "title": "Ne partez pas sans moi",
       "chart_info": {
         "eurovision_position": 1,
@@ -908,6 +944,7 @@
       "year": 1989,
       "uri": "spotify:track:2WXogQGOO7qo2hlHyzpwhg",
       "artist": "Riva",
+      "alt_artists": ["Doris Dragović", "Danijela Martinović"],
       "title": "Rock Me",
       "chart_info": {
         "eurovision_position": 1,
@@ -933,6 +970,7 @@
       "year": 1990,
       "uri": "spotify:track:44noNMO0iv87Tds7dwcpQU",
       "artist": "Toto Cutugno",
+      "alt_artists": ["Eros Ramazzotti", "Andrea Bocelli"],
       "title": "Insieme: 1992",
       "chart_info": {
         "eurovision_position": 1,
@@ -958,6 +996,7 @@
       "year": 1991,
       "uri": "spotify:track:5I6eq9wK0SOkeUWEPHqD39",
       "artist": "Carola",
+      "alt_artists": ["Loreen", "Charlotte Perrelli"],
       "title": "Fangad av en stormvind",
       "chart_info": {
         "eurovision_position": 1,
@@ -982,6 +1021,7 @@
       "year": 1992,
       "uri": "spotify:track:3Y81Q8dLI74Mgi1wbXvscv",
       "artist": "Linda Martin",
+      "alt_artists": ["Niamh Kavanagh", "Eimear Quinn"],
       "title": "Why Me?",
       "chart_info": {
         "eurovision_position": 1,
@@ -1006,6 +1046,7 @@
       "year": 1993,
       "uri": "spotify:track:7LBBL20GLOtjBJwxgVmzPK",
       "artist": "Niamh Kavanagh",
+      "alt_artists": ["Linda Martin", "Eimear Quinn"],
       "title": "In Your Eyes",
       "chart_info": {
         "eurovision_position": 1,
@@ -1031,6 +1072,7 @@
       "year": 1994,
       "uri": "spotify:track:4qVX2nHuFlVNp6AOVrDBGb",
       "artist": "Paul Harrington;Charlie McGettigan",
+      "alt_artists": ["Johnny Logan", "Eimear Quinn"],
       "title": "Rock 'n' Roll Kids",
       "chart_info": {
         "eurovision_position": 1,
@@ -1056,6 +1098,7 @@
       "year": 1995,
       "uri": "spotify:track:4zHzxmGa8ywcOBBvPvnYcp",
       "artist": "Rolf Lovland;Secret Garden",
+      "alt_artists": ["Bobbysocks", "Alexander Rybak"],
       "title": "Nocturne",
       "chart_info": {
         "eurovision_position": 1,
@@ -1080,6 +1123,7 @@
       "year": 1996,
       "uri": "spotify:track:6SA7BxY6zh5SaxUBp3tCtb",
       "artist": "Eimear Quinn",
+      "alt_artists": ["Niamh Kavanagh", "Linda Martin"],
       "title": "The Voice",
       "chart_info": {
         "eurovision_position": 1,
@@ -1105,6 +1149,7 @@
       "year": 1997,
       "uri": "spotify:track:3QzYNbqWxef2iBsRWUyCUc",
       "artist": "Katrina & The Waves",
+      "alt_artists": ["Bucks Fizz", "Lulu"],
       "title": "Love Shine a Light",
       "chart_info": {
         "eurovision_position": 1,
@@ -1130,6 +1175,7 @@
       "year": 1998,
       "uri": "spotify:track:2v2SuFiCqmxqlqRyonSycx",
       "artist": "Dana International",
+      "alt_artists": ["Netta", "Gali Atari"],
       "title": "Diva",
       "chart_info": {
         "eurovision_position": 1,
@@ -1154,6 +1200,7 @@
       "year": 1999,
       "uri": "spotify:track:4omWhsNIPxarzpBgMsWBmB",
       "artist": "Charlotte Perrelli",
+      "alt_artists": ["Carola", "Loreen"],
       "title": "Take Me to Your Heaven",
       "chart_info": {
         "eurovision_position": 1,
@@ -1179,6 +1226,7 @@
       "year": 2000,
       "uri": "spotify:track:4v2RaPHSsTvNkggw3RqyeT",
       "artist": "Olsen Brothers",
+      "alt_artists": ["Emmelie de Forest", "Tommy Seebach"],
       "title": "Fly on the Wings of Love",
       "chart_info": {
         "eurovision_position": 1,
@@ -1204,6 +1252,7 @@
       "year": 2001,
       "uri": "spotify:track:3h5mWmIOf44J2AzSfZ1pbN",
       "artist": "Tanel Padar;Dave Benton",
+      "alt_artists": ["Urban Symphony", "Ines"],
       "title": "Everybody",
       "chart_info": {
         "eurovision_position": 1,
@@ -1228,6 +1277,7 @@
       "year": 2002,
       "uri": "spotify:track:70tFqMdkFXCPeirRaLAKKM",
       "artist": "Marie N",
+      "alt_artists": ["Brainstorm", "Aminata"],
       "title": "I Wanna",
       "chart_info": {
         "eurovision_position": 1,
@@ -1253,6 +1303,7 @@
       "year": 2003,
       "uri": "spotify:track:5I8ENb7zzrbYLwhGESY9CF",
       "artist": "Sertab Erener",
+      "alt_artists": ["Tarkan", "Sezen Aksu"],
       "title": "Every Way That I Can",
       "chart_info": {
         "eurovision_position": 1,
@@ -1278,6 +1329,7 @@
       "year": 2004,
       "uri": "spotify:track:1Lav2Z3RKu71MJLIjQz4dQ",
       "artist": "Ruslana",
+      "alt_artists": ["Jamala", "Verka Serduchka"],
       "title": "Wild Dances",
       "chart_info": {
         "eurovision_position": 1,
@@ -1303,6 +1355,7 @@
       "year": 2005,
       "uri": "spotify:track:6LkCvCc9oFoLDv4DLhzTox",
       "artist": "Helena Paparizou",
+      "alt_artists": ["Despina Vandi", "Anna Vissi"],
       "title": "My Number One",
       "chart_info": {
         "eurovision_position": 1,
@@ -1328,6 +1381,7 @@
       "year": 2006,
       "uri": "spotify:track:7BxBHNoIqiybZHlbeqMmvP",
       "artist": "Lordi",
+      "alt_artists": ["HIM", "Nightwish"],
       "title": "Hard Rock Hallelujah",
       "chart_info": {
         "eurovision_position": 1,
@@ -1353,6 +1407,7 @@
       "year": 2007,
       "uri": "spotify:track:1ue71r2sNUvl4LSqvgVVcZ",
       "artist": "Marija Serifovic",
+      "alt_artists": ["Željko Joksimović", "Ceca"],
       "title": "Molitva",
       "chart_info": {
         "eurovision_position": 1,
@@ -1377,6 +1432,7 @@
       "year": 2008,
       "uri": "spotify:track:3tYLiiS9VlIXWaB677KJjQ",
       "artist": "Dima Bilan",
+      "alt_artists": ["Philipp Kirkorov", "Alsou"],
       "title": "Believe",
       "chart_info": {
         "eurovision_position": 1,
@@ -1402,6 +1458,7 @@
       "year": 2009,
       "uri": "spotify:track:2kWAsHovOITGRmAwXoWoJE",
       "artist": "Alexander Rybak",
+      "alt_artists": ["Bobbysocks", "Secret Garden"],
       "title": "Fairytale",
       "chart_info": {
         "eurovision_position": 1,
@@ -1427,6 +1484,7 @@
       "year": 2010,
       "uri": "spotify:track:6V3OVnS8A0P2I7j5e7YRBb",
       "artist": "Lena",
+      "alt_artists": ["Nicole", "Max Mutzke"],
       "title": "Satellite",
       "chart_info": {
         "eurovision_position": 1,
@@ -1452,6 +1510,7 @@
       "year": 2011,
       "uri": "spotify:track:5UoNgkMxD3JbWGFW9hmQAg",
       "artist": "Ell/Nikki",
+      "alt_artists": ["Sabina Babayeva", "Aisel"],
       "title": "Running Scared",
       "chart_info": {
         "eurovision_position": 1,
@@ -1476,6 +1535,7 @@
       "year": 2012,
       "uri": "spotify:track:1xN7BpTAWnZkuSLOtRP6Qc",
       "artist": "Loreen",
+      "alt_artists": ["Carola", "Charlotte Perrelli"],
       "title": "Euphoria",
       "chart_info": {
         "eurovision_position": 1,
@@ -1501,6 +1561,7 @@
       "year": 2013,
       "uri": "spotify:track:3yRwgprKX3If2zcuGfKFBu",
       "artist": "Emmelie de Forest",
+      "alt_artists": ["Olsen Brothers", "Tommy Seebach"],
       "title": "Only Teardrops",
       "chart_info": {
         "eurovision_position": 1,
@@ -1526,6 +1587,7 @@
       "year": 2014,
       "uri": "spotify:track:1ijX03QOR6a1wI322HifSV",
       "artist": "Conchita Wurst",
+      "alt_artists": ["Udo Jürgens", "Falco"],
       "title": "Rise Like a Phoenix",
       "chart_info": {
         "eurovision_position": 1,
@@ -1551,6 +1613,7 @@
       "year": 2015,
       "uri": "spotify:track:33lbkEAr4M93uGWveuCPCf",
       "artist": "Mans Zelmerlow",
+      "alt_artists": ["Loreen", "Eric Saade"],
       "title": "Heroes",
       "chart_info": {
         "eurovision_position": 1,
@@ -1576,6 +1639,7 @@
       "year": 2016,
       "uri": "spotify:track:2nxTpjhxLXeyBOxYnRnT76",
       "artist": "Jamala",
+      "alt_artists": ["Ruslana", "Verka Serduchka"],
       "title": "1944",
       "chart_info": {
         "eurovision_position": 1,
@@ -1601,6 +1665,7 @@
       "year": 2017,
       "uri": "spotify:track:3UjSOJ00E1eLMcayBm827Q",
       "artist": "Salvador Sobral",
+      "alt_artists": ["Dulce Pontes", "Paulo de Carvalho"],
       "title": "Amar Pelos Dois",
       "chart_info": {
         "eurovision_position": 1,
@@ -1626,6 +1691,7 @@
       "year": 2018,
       "uri": "spotify:track:7vuTcvFnvlqWlWb4u60nvY",
       "artist": "Netta",
+      "alt_artists": ["Dana International", "Eden Golan"],
       "title": "Toy",
       "chart_info": {
         "eurovision_position": 1,
@@ -1651,6 +1717,7 @@
       "year": 2019,
       "uri": "spotify:track:1Xi84slp6FryDSCbzq4UCD",
       "artist": "Duncan Laurence",
+      "alt_artists": ["Teach In", "Waylon"],
       "title": "Arcade",
       "chart_info": {
         "eurovision_position": 1,
@@ -1678,6 +1745,7 @@
       "year": 2021,
       "uri": "spotify:track:1lWWoec2z1j88GRblI5anV",
       "artist": "Maneskin",
+      "alt_artists": ["Toto Cutugno", "Eros Ramazzotti"],
       "title": "ZITTI E BUONI",
       "chart_info": {
         "eurovision_position": 1,
@@ -1703,6 +1771,7 @@
       "year": 2022,
       "uri": "spotify:track:2vHzOWRKYPLu8umRPIFuOq",
       "artist": "Kalush Orchestra",
+      "alt_artists": ["Jamala", "Ruslana"],
       "title": "Stefania",
       "chart_info": {
         "eurovision_position": 1,
@@ -1728,6 +1797,7 @@
       "year": 2023,
       "uri": "spotify:track:1DmW5Ep6ywYwxc2HMT5BG6",
       "artist": "Loreen",
+      "alt_artists": ["Carola", "Måns Zelmerlöw"],
       "title": "Tattoo",
       "chart_info": {
         "eurovision_position": 1,
@@ -1753,6 +1823,7 @@
       "year": 2024,
       "uri": "spotify:track:1EjIXKhNHI00ZLMRpS8iz8",
       "artist": "Nemo",
+      "alt_artists": ["DJ Bobo", "Lys Assia"],
       "title": "The Code",
       "chart_info": {
         "eurovision_position": 1,
@@ -1778,6 +1849,7 @@
       "year": 2025,
       "uri": "spotify:track:321yySUTzRXUbzkRTeTzDB",
       "artist": "JJ",
+      "alt_artists": ["Conchita Wurst", "Udo Jürgens"],
       "title": "Wasted Love",
       "chart_info": {
         "eurovision_position": 1,

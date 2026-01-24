@@ -6,6 +6,10 @@
       "year": 1965,
       "uri": "spotify:track:1Zi2ezNOqt9y9irC11xYpN",
       "artist": "Barry McGuire",
+      "alt_artists": [
+        "P.F. Sloan",
+        "The Turtles"
+      ],
       "title": "Eve Of Destruction",
       "chart_info": {
         "billboard_peak": 1,
@@ -21,6 +25,10 @@
       "year": 1966,
       "uri": "spotify:track:4PEeZ2U4UfP2Jo8EtIOjus",
       "artist": "? & The Mysterians",
+      "alt_artists": [
+        "Sam the Sham",
+        "The Seeds"
+      ],
       "title": "96 Tears",
       "chart_info": {
         "billboard_peak": 1,
@@ -36,6 +44,10 @@
       "year": 1967,
       "uri": "spotify:track:6vcNJUWtUPB0hKC6VbZriY",
       "artist": "Scott McKenzie",
+      "alt_artists": [
+        "John Phillips",
+        "The Mamas & the Papas"
+      ],
       "title": "San Francisco (Be Sure to Wear Flowers in Your Hair)",
       "chart_info": {
         "billboard_peak": 4,
@@ -51,6 +63,10 @@
       "year": 1968,
       "uri": "spotify:track:412zahdI6CyYeTuVz8ZRSQ",
       "artist": "Iron Butterfly",
+      "alt_artists": [
+        "Blue Cheer",
+        "Vanilla Fudge"
+      ],
       "title": "In-A-Gadda-Da-Vida",
       "chart_info": {
         "billboard_peak": 30,
@@ -66,6 +82,10 @@
       "year": 1968,
       "uri": "spotify:track:6cVdoWiwNGbmE6tcpZ2GSc",
       "artist": "The Crazy World of Arthur Brown",
+      "alt_artists": [
+        "The Move",
+        "Procol Harum"
+      ],
       "title": "Fire",
       "chart_info": {
         "billboard_peak": 2,
@@ -81,6 +101,10 @@
       "year": 1969,
       "uri": "spotify:track:701bCRC5JBO5MiJeFfAOsT",
       "artist": "It's A Beautiful Day",
+      "alt_artists": [
+        "Jefferson Airplane",
+        "Moby Grape"
+      ],
       "title": "White Bird",
       "chart_info": {
         "billboard_peak": 118
@@ -95,6 +119,10 @@
       "year": 1969,
       "uri": "spotify:track:5gcFsUsvHvByxrZWHfQ1Tk",
       "artist": "Peter Sarstedt",
+      "alt_artists": [
+        "Scott Walker",
+        "Engelbert Humperdinck"
+      ],
       "title": "Where Do You Go to (My Lovely)",
       "chart_info": {
         "uk_peak": 1,
@@ -110,6 +138,10 @@
       "year": 1969,
       "uri": "spotify:track:0Z3xhSOhrawLV81YdiDiiJ",
       "artist": "Shocking Blue",
+      "alt_artists": [
+        "The Supremes",
+        "Dusty Springfield"
+      ],
       "title": "Venus",
       "chart_info": {
         "billboard_peak": 1,
@@ -125,6 +157,10 @@
       "year": 1969,
       "uri": "spotify:track:6MTd61g9zq6CB1FnJydjEb",
       "artist": "The Archies",
+      "alt_artists": [
+        "The Monkees",
+        "The Partridge Family"
+      ],
       "title": "Sugar Sugar",
       "chart_info": {
         "billboard_peak": 1,
@@ -140,6 +176,10 @@
       "year": 1969,
       "uri": "spotify:track:0emd9tHSVP4dK6UG4pcOFD",
       "artist": "Thunderclap Newman",
+      "alt_artists": [
+        "The Who",
+        "Small Faces"
+      ],
       "title": "Something In The Air",
       "chart_info": {
         "uk_peak": 1,
@@ -155,6 +195,10 @@
       "year": 1969,
       "uri": "spotify:track:5UVsbUV0Kh033cqsZ5sLQi",
       "artist": "Zager & Evans",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "In the Year 2525",
       "chart_info": {
         "billboard_peak": 1,
@@ -170,6 +214,10 @@
       "year": 1970,
       "uri": "spotify:track:0jvN7eQJJt4nxQzgQfZ1SP",
       "artist": "Norman Greenbaum",
+      "alt_artists": [
+        "Joe Cocker",
+        "Three Dog Night"
+      ],
       "title": "Spirit In The Sky",
       "chart_info": {
         "billboard_peak": 3,
@@ -185,6 +233,10 @@
       "year": 1970,
       "uri": "spotify:track:1Yz4f8rXtp24nC5ODB2hbf",
       "artist": "Rare Bird",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Sympathy",
       "chart_info": {
         "uk_peak": 27
@@ -199,6 +251,10 @@
       "year": 1972,
       "uri": "spotify:track:6Ro2z4RtAUew9Kz2HZWZUi",
       "artist": "Billy Paul",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Me and Mrs. Jones",
       "chart_info": {
         "billboard_peak": 1,
@@ -214,6 +270,10 @@
       "year": 1972,
       "uri": "spotify:track:722E6CPY8biq4sUnf40u6Y",
       "artist": "Timmy Thomas",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Why Can't We Live Together",
       "chart_info": {
         "billboard_peak": 3,
@@ -229,6 +289,10 @@
       "year": 1974,
       "uri": "spotify:track:7K8QsHbmUpSX37oOCL4e2g",
       "artist": "Carl Douglas",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Kung Fu Fighting",
       "chart_info": {
         "billboard_peak": 1,
@@ -244,6 +308,10 @@
       "year": 1974,
       "uri": "spotify:track:6pMHMzwTsWIxLigr54GGVm",
       "artist": "George McCrae",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Rock Your Baby",
       "chart_info": {
         "billboard_peak": 1,
@@ -259,6 +327,10 @@
       "year": 1974,
       "uri": "spotify:track:7pGMRy91RcQT9oHdPgYz3A",
       "artist": "Terry Jacks",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles"
+      ],
       "title": "Seasons in the Sun",
       "chart_info": {
         "billboard_peak": 1,
@@ -274,6 +346,10 @@
       "year": 1976,
       "uri": "spotify:track:5ny9QttFBb8eMDe3fOv8XB",
       "artist": "A Band Called 'O'",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "A Smile is Diamond",
       "chart_info": {
         "uk_peak": 61
@@ -288,6 +364,10 @@
       "year": 1977,
       "uri": "spotify:track:2ZOTtG7v1OrSNs6EINIGb4",
       "artist": "Ram Jam",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Black Betty",
       "chart_info": {
         "billboard_peak": 18,
@@ -303,6 +383,10 @@
       "year": 1978,
       "uri": "spotify:track:34zWZOSpU2V1ab0PiZCcv4",
       "artist": "Althea and Donna",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Uptown Top Ranking",
       "chart_info": {
         "uk_peak": 1,
@@ -318,6 +402,10 @@
       "year": 1979,
       "uri": "spotify:track:7GK2KVYH8FrTC9zehmjVMd",
       "artist": "Anita Ward",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Ring My Bell",
       "chart_info": {
         "billboard_peak": 1,
@@ -333,6 +421,10 @@
       "year": 1979,
       "uri": "spotify:track:0FBeVAGy58YREuZK2rpRVm",
       "artist": "M",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Pop Muzik",
       "chart_info": {
         "billboard_peak": 1,
@@ -348,6 +440,10 @@
       "year": 1979,
       "uri": "spotify:track:7o7E1nrHWncYY7PY94gCiX",
       "artist": "The Buggles",
+      "alt_artists": [
+        "Gary Numan",
+        "Tubeway Army"
+      ],
       "title": "Video Killed The Radio Star",
       "chart_info": {
         "billboard_peak": 40,
@@ -363,6 +459,10 @@
       "year": 1979,
       "uri": "spotify:track:1HOMkjp0nHMaTnfAkslCQj",
       "artist": "The Knack",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "My Sharona",
       "chart_info": {
         "billboard_peak": 1,
@@ -378,6 +478,10 @@
       "year": 1979,
       "uri": "spotify:track:0tm6gsXe0LSm9zeSspyMQu",
       "artist": "The Sugarhill Gang",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Rapper's Delight",
       "chart_info": {
         "billboard_peak": 36,
@@ -393,6 +497,10 @@
       "year": 1980,
       "uri": "spotify:track:7723JnKU2R15Iv4T7OJrly",
       "artist": "Lipps Inc.",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Funkytown",
       "chart_info": {
         "billboard_peak": 1,
@@ -408,6 +516,10 @@
       "year": 1980,
       "uri": "spotify:track:4A7jHGSXuFxNIkGc9AkD4p",
       "artist": "Richard Sanderson",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Reality",
       "chart_info": {
         "uk_peak": 60
@@ -422,6 +534,10 @@
       "year": 1980,
       "uri": "spotify:track:30cHDhxUqgnHq78hv5UjMx",
       "artist": "The Vapors",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Turning Japanese",
       "chart_info": {
         "billboard_peak": 36,
@@ -437,6 +553,10 @@
       "year": 1980,
       "uri": "spotify:track:3yobQNuKVJ62WDU7h725Fu",
       "artist": "Visage",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Fade To Grey",
       "chart_info": {
         "uk_peak": 8,
@@ -452,6 +572,10 @@
       "year": 1982,
       "uri": "spotify:track:4s0QpaeB5a3C9cxNGqPXxk",
       "artist": "A Flock Of Seagulls",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "I Ran (So Far Away)",
       "chart_info": {
         "billboard_peak": 9,
@@ -467,6 +591,10 @@
       "year": 1982,
       "uri": "spotify:track:4UB3TaEGEY9WoOpxYNMgy4",
       "artist": "Men Without Hats",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "The Safety Dance",
       "chart_info": {
         "billboard_peak": 3,
@@ -482,6 +610,10 @@
       "year": 1982,
       "uri": "spotify:track:78ocJAEFOYKVjYgXZ8fggD",
       "artist": "Modern English",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "I Melt With You",
       "chart_info": {
         "billboard_peak": 78
@@ -496,6 +628,10 @@
       "year": 1982,
       "uri": "spotify:track:1SfYqNab6yiVBKUHhEXGAD",
       "artist": "The Weather Girls",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "It's Raining Men",
       "chart_info": {
         "billboard_peak": 46,
@@ -511,6 +647,10 @@
       "year": 1983,
       "uri": "spotify:track:6WEBIVqiEsevfgJefTyuQQ",
       "artist": "Kajagoogoo",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Too Shy",
       "chart_info": {
         "billboard_peak": 5,
@@ -526,6 +666,10 @@
       "year": 1983,
       "uri": "spotify:track:1xPSDf8z4dH46gkvlLtvDO",
       "artist": "Michael Sembello",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Maniac",
       "chart_info": {
         "billboard_peak": 1,
@@ -541,6 +685,10 @@
       "year": 1983,
       "uri": "spotify:track:6lXKNdOsnaLv9LwulZbxNl",
       "artist": "Peter Schilling",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Major Tom (Coming Home)",
       "chart_info": {
         "billboard_peak": 14,
@@ -556,6 +704,10 @@
       "year": 1983,
       "uri": "spotify:track:0b2VKbY2vZonEfFBImGLT3",
       "artist": "The Catch",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "25 Years",
       "chart_info": {
         "uk_peak": 36
@@ -570,6 +722,10 @@
       "year": 1984,
       "uri": "spotify:track:1QbQL5m30YNvukitIqAnFG",
       "artist": "Corey Hart",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Sunglasses At Night",
       "chart_info": {
         "billboard_peak": 7,
@@ -585,6 +741,10 @@
       "year": 1984,
       "uri": "spotify:track:6A4Jc8npNo79BOgsrPptLA",
       "artist": "Rockwell",
+      "alt_artists": [
+        "Depeche Mode",
+        "Gary Numan"
+      ],
       "title": "Somebody's Watching Me",
       "chart_info": {
         "billboard_peak": 2,
@@ -600,6 +760,10 @@
       "year": 1985,
       "uri": "spotify:track:1ChulFMnwxoD74Me8eX2TU",
       "artist": "Dead Or Alive",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "You Spin Me Round (Like a Record)",
       "chart_info": {
         "billboard_peak": 11,
@@ -615,6 +779,10 @@
       "year": 1985,
       "uri": "spotify:track:5fVFdkU5U6ULjXgwm5q89Q",
       "artist": "Paul Hardcastle",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "19",
       "chart_info": {
         "billboard_peak": 15,
@@ -630,6 +798,10 @@
       "year": 1986,
       "uri": "spotify:track:3MrRksHupTVEQ7YbA0FsZK",
       "artist": "Europe",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "The Final Countdown",
       "chart_info": {
         "billboard_peak": 8,
@@ -645,6 +817,10 @@
       "year": 1987,
       "uri": "spotify:track:0IWtEFQBwRHaMXZQtGEVcM",
       "artist": "Black",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Wonderful Life",
       "chart_info": {
         "uk_peak": 8,
@@ -660,6 +836,10 @@
       "year": 1987,
       "uri": "spotify:track:369JKykZZr1qzv9pg5zAhz",
       "artist": "M/A/R/R/S",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Pump Up The Volume",
       "chart_info": {
         "billboard_peak": 13,
@@ -675,6 +855,10 @@
       "year": 1988,
       "uri": "spotify:track:4hObp5bmIJ3PP3cKA9K9GY",
       "artist": "Bobby McFerrin",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Don't Worry Be Happy",
       "chart_info": {
         "billboard_peak": 1,
@@ -690,6 +874,10 @@
       "year": 1988,
       "uri": "spotify:track:6hHUiDe461VUoTHnsplRYs",
       "artist": "Edie Brickell & New Bohemians",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "What I Am",
       "chart_info": {
         "billboard_peak": 7,
@@ -705,6 +893,10 @@
       "year": 1988,
       "uri": "spotify:track:3G3lahQSMk4BHnap1i853u",
       "artist": "J.J. Fad",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Supersonic",
       "chart_info": {
         "billboard_peak": 31,
@@ -720,6 +912,10 @@
       "year": 1988,
       "uri": "spotify:track:7I5eQZFdlPV8LZWH2FeqaW",
       "artist": "Q Lazzarus",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Goodbye Horses",
       "chart_info": {
         "billboard_peak": 0
@@ -734,6 +930,10 @@
       "year": 1988,
       "uri": "spotify:track:6wWlaSxOrBizAcpqkuv1FJ",
       "artist": "Tanita Tikaram",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Twist in My Sobriety",
       "chart_info": {
         "uk_peak": 22
@@ -748,6 +948,10 @@
       "year": 1988,
       "uri": "spotify:track:1RCtHLyq1xIbgGMrYRrKJ2",
       "artist": "The Church",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Under the Milky Way",
       "chart_info": {
         "billboard_peak": 24,
@@ -763,6 +967,10 @@
       "year": 1989,
       "uri": "spotify:track:6AxqU1NcIvnBC3W62TSk3n",
       "artist": "Laid Back",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Bakerman",
       "chart_info": {
         "germany_peak": 5,
@@ -778,6 +986,10 @@
       "year": 1989,
       "uri": "spotify:track:2IWYi4NJyJvhpJVjVs2pm8",
       "artist": "Sam Brown",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Stop",
       "chart_info": {
         "uk_peak": 4,
@@ -793,6 +1005,10 @@
       "year": 1989,
       "uri": "spotify:track:3IeCYkdKI55mNMl2o4vX0k",
       "artist": "Young MC",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Bust A Move",
       "chart_info": {
         "billboard_peak": 7,
@@ -808,6 +1024,10 @@
       "year": 1990,
       "uri": "spotify:track:2He3NOyqtLNE3RQPpeDdSb",
       "artist": "Deee-Lite",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Groove Is in the Heart",
       "chart_info": {
         "billboard_peak": 4,
@@ -823,6 +1043,10 @@
       "year": 1990,
       "uri": "spotify:track:4rJdaSwOCHLBhxdMsymeMw",
       "artist": "Héroes del Silencio",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Entre dos tierras",
       "chart_info": {
         "spain_peak": 1
@@ -837,6 +1061,10 @@
       "year": 1990,
       "uri": "spotify:track:1B75hgRqe7A4fwee3g3Wmu",
       "artist": "MC Hammer",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "U Can't Touch This",
       "chart_info": {
         "billboard_peak": 8,
@@ -852,6 +1080,10 @@
       "year": 1990,
       "uri": "spotify:track:4c6vZqYHFur11FbWATIJ9P",
       "artist": "The La's",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "There She Goes",
       "chart_info": {
         "billboard_peak": 49,
@@ -867,6 +1099,10 @@
       "year": 1990,
       "uri": "spotify:track:11d9oUiwHuYt216EFA2tiz",
       "artist": "Vanilla Ice",
+      "alt_artists": [
+        "MC Hammer",
+        "Snow"
+      ],
       "title": "Ice Ice Baby",
       "chart_info": {
         "billboard_peak": 1,
@@ -882,6 +1118,10 @@
       "year": 1991,
       "uri": "spotify:track:6oNvmplQGUkmAh441Teows",
       "artist": "Divinyls",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "I Touch Myself",
       "chart_info": {
         "billboard_peak": 4,
@@ -897,6 +1137,10 @@
       "year": 1991,
       "uri": "spotify:track:5VYTKiOnHw4iTrB9pG3yum",
       "artist": "EMF",
+      "alt_artists": [
+        "Jesus Jones",
+        "The Wonder Stuff"
+      ],
       "title": "Unbelievable",
       "chart_info": {
         "billboard_peak": 1,
@@ -912,6 +1156,10 @@
       "year": 1991,
       "uri": "spotify:track:4ePP9So5xRzspjLFVVbj90",
       "artist": "Spin Doctors",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Two Princes",
       "chart_info": {
         "billboard_peak": 7,
@@ -927,6 +1175,10 @@
       "year": 1992,
       "uri": "spotify:track:6txWz9UapYHVxEd7dDIHXT",
       "artist": "Blind Melon",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "No Rain",
       "chart_info": {
         "billboard_peak": 20,
@@ -942,6 +1194,10 @@
       "year": 1992,
       "uri": "spotify:track:7L93GESzq43UkKUt5FsOCq",
       "artist": "House Of Pain",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Jump Around",
       "chart_info": {
         "billboard_peak": 3,
@@ -957,6 +1213,10 @@
       "year": 1993,
       "uri": "spotify:track:0jWgAnTrNZmOGmqgvHhZEm",
       "artist": "4 Non Blondes",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "What's Up?",
       "chart_info": {
         "billboard_peak": 14,
@@ -972,6 +1232,10 @@
       "year": 1993,
       "uri": "spotify:track:31v2AQlx4pDI7kmnLxBkem",
       "artist": "Crash Test Dummies",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Mmm Mmm Mmm Mmm",
       "chart_info": {
         "billboard_peak": 4,
@@ -987,6 +1251,10 @@
       "year": 1993,
       "uri": "spotify:track:5lSOVaPDk7x9Ey6c9DqGZx",
       "artist": "The Beloved",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Sweet Harmony",
       "chart_info": {
         "uk_peak": 8
@@ -1001,6 +1269,10 @@
       "year": 1993,
       "uri": "spotify:track:2hjGuRIEfEGzQ5MEWLowiU",
       "artist": "The Breeders",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Cannonball",
       "chart_info": {
         "billboard_peak": 44,
@@ -1016,6 +1288,10 @@
       "year": 1994,
       "uri": "spotify:track:3jxxYgf0lK155eeuSO5sH1",
       "artist": "Lucilectric",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Mädchen",
       "chart_info": {
         "germany_peak": 2
@@ -1030,6 +1306,10 @@
       "year": 1994,
       "uri": "spotify:track:59VRFpPnC8pOhIH2WCWXF9",
       "artist": "Whigfield",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Saturday Night",
       "chart_info": {
         "uk_peak": 1,
@@ -1045,6 +1325,10 @@
       "year": 1995,
       "uri": "spotify:track:3GpdNg7Krt9vjc6tgDoKe1",
       "artist": "Deep Blue Something",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Breakfast At Tiffany's",
       "chart_info": {
         "billboard_peak": 5,
@@ -1060,6 +1344,10 @@
       "year": 1995,
       "uri": "spotify:track:6XOINCZBv8Q7RXgNNiTwIN",
       "artist": "Edwyn Collins",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "A Girl Like You",
       "chart_info": {
         "billboard_peak": 32,
@@ -1075,6 +1363,10 @@
       "year": 1995,
       "uri": "spotify:track:4fXGWiVhlOLdhwRDP6pIFG",
       "artist": "Fool's Garden",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Lemon Tree",
       "chart_info": {
         "germany_peak": 1,
@@ -1090,6 +1382,10 @@
       "year": 1995,
       "uri": "spotify:track:1xNmF1Uep5OGutizZSbKvd",
       "artist": "Joan Osborne",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "One Of Us",
       "chart_info": {
         "billboard_peak": 4,
@@ -1105,6 +1401,10 @@
       "year": 1995,
       "uri": "spotify:track:0QMHVTnrFTQJoaqmkdsKhT",
       "artist": "Skee-Lo",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "I Wish",
       "chart_info": {
         "billboard_peak": 13,
@@ -1120,6 +1420,10 @@
       "year": 1995,
       "uri": "spotify:track:4Zjf4XQZushvULDYoYq7VG",
       "artist": "Whale",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Hobo Humpin' Slobo Babe",
       "chart_info": {
         "billboard_peak": 24,
@@ -1135,6 +1439,10 @@
       "year": 1996,
       "uri": "spotify:track:0uQcP7QVoLvaFsORsdrgNh",
       "artist": "Babylon Zoo",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Spaceman",
       "chart_info": {
         "uk_peak": 1,
@@ -1150,6 +1458,10 @@
       "year": 1996,
       "uri": "spotify:track:46q5BtHso0ECuTKeq70ZhW",
       "artist": "OMC",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "How Bizarre",
       "chart_info": {
         "billboard_peak": 4,
@@ -1165,6 +1477,10 @@
       "year": 1996,
       "uri": "spotify:track:5GbHxj0z6d2v6vx2SbGXgl",
       "artist": "Stiltskin",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Inside",
       "chart_info": {
         "uk_peak": 1
@@ -1179,6 +1495,10 @@
       "year": 1997,
       "uri": "spotify:track:4WEaJQLlhlkOU7YJDLhn7x",
       "artist": "Bran Van 3000",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Drinking in L.A.",
       "chart_info": {
         "uk_peak": 3,
@@ -1194,6 +1514,10 @@
       "year": 1997,
       "uri": "spotify:track:22HYEJveCvykVDHDiEEmjZ",
       "artist": "Chumbawamba",
+      "alt_artists": [
+        "The Proclaimers",
+        "Blur"
+      ],
       "title": "Tubthumping",
       "chart_info": {
         "billboard_peak": 6,
@@ -1209,6 +1533,10 @@
       "year": 1997,
       "uri": "spotify:track:5mkGfmJGFZpwK9nA5amOhv",
       "artist": "Marcy Playground",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Sex & Candy",
       "chart_info": {
         "billboard_peak": 8,
@@ -1224,6 +1552,10 @@
       "year": 1997,
       "uri": "spotify:track:3i6qNxyVgIdUZTTi5m25EM",
       "artist": "Meredith Brooks",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Bitch",
       "chart_info": {
         "billboard_peak": 2,
@@ -1239,6 +1571,10 @@
       "year": 1997,
       "uri": "spotify:track:1Jaah2tmN9Hv81A87KZ1MU",
       "artist": "Natalie Imbruglia",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Torn",
       "chart_info": {
         "billboard_peak": 42,
@@ -1254,6 +1590,10 @@
       "year": 1997,
       "uri": "spotify:track:4ACxa9buEUnOdYEoPcnMpi",
       "artist": "White Town",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Your Woman",
       "chart_info": {
         "uk_peak": 1,
@@ -1269,6 +1609,10 @@
       "year": 1998,
       "uri": "spotify:track:5cDuEMa0P4gvLL9hEKUabg",
       "artist": "Cornershop",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Brimful of Asha",
       "chart_info": {
         "uk_peak": 1,
@@ -1284,6 +1628,10 @@
       "year": 1998,
       "uri": "spotify:track:0smyCrJiibi2uwCiq5R1vj",
       "artist": "Eagle-Eye Cherry",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Save Tonight",
       "chart_info": {
         "billboard_peak": 5,
@@ -1299,6 +1647,10 @@
       "year": 1998,
       "uri": "spotify:track:1Cwsd5xI8CajJz795oy4XF",
       "artist": "New Radicals",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "You Get What You Give",
       "chart_info": {
         "billboard_peak": 36,
@@ -1314,6 +1666,10 @@
       "year": 1998,
       "uri": "spotify:track:087OBLtoeS3Q6j0k6tMNAI",
       "artist": "Semisonic",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Closing Time",
       "chart_info": {
         "billboard_peak": 11,
@@ -1329,6 +1685,10 @@
       "year": 1999,
       "uri": "spotify:track:4ek71wqDqmg2nrPHpFNRnU",
       "artist": "Mr. Oizo",
+      "alt_artists": [
+        "EMF",
+        "Jesus Jones"
+      ],
       "title": "Flat Beat",
       "chart_info": {
         "uk_peak": 1,
@@ -1344,6 +1704,10 @@
       "year": 2000,
       "uri": "spotify:track:6GQ3WTaNHMFlVmN4burGat",
       "artist": "Crazy Town",
+      "alt_artists": [
+        "Linkin Park",
+        "Limp Bizkit"
+      ],
       "title": "Butterfly",
       "chart_info": {
         "billboard_peak": 1,
@@ -1359,6 +1723,10 @@
       "year": 2000,
       "uri": "spotify:track:25FTMokYEbEWHEdss5JLZS",
       "artist": "Wheatus",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "Teenage Dirtbag",
       "chart_info": {
         "billboard_peak": 24,
@@ -1374,6 +1742,10 @@
       "year": 2002,
       "uri": "spotify:track:4hMB4hoIBitJLpgad18J6T",
       "artist": "Khia",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "My Neck, My Back (Lick It)",
       "chart_info": {
         "billboard_peak": 42,
@@ -1389,6 +1761,10 @@
       "year": 2002,
       "uri": "spotify:track:6UEfyhyfhYQsyipxOd95Ie",
       "artist": "Las Ketchup",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "The Ketchup Song (Aserejé)",
       "chart_info": {
         "uk_peak": 1,
@@ -1404,6 +1780,10 @@
       "year": 2002,
       "uri": "spotify:track:497Fkp3gRiGrRMoqBTDudr",
       "artist": "Phantom Planet",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "California",
       "chart_info": {
         "billboard_peak": 84
@@ -1418,6 +1798,10 @@
       "year": 2005,
       "uri": "spotify:track:1mnqraQ8oV8MX92rdOFLWW",
       "artist": "Amerie",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "1 Thing",
       "chart_info": {
         "billboard_peak": 8,
@@ -1433,6 +1817,10 @@
       "year": 2006,
       "uri": "spotify:track:1vxw6aYJls2oq3gW0DujAo",
       "artist": "Gnarls Barkley",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "Crazy",
       "chart_info": {
         "billboard_peak": 2,
@@ -1448,6 +1836,10 @@
       "year": 2011,
       "uri": "spotify:track:6md4w95cnKaW64JyEQ3A0L",
       "artist": "Gotye",
+      "alt_artists": [
+        "MGMT",
+        "Foster the People"
+      ],
       "title": "Somebody That I Used To Know",
       "chart_info": {
         "billboard_peak": 1,
