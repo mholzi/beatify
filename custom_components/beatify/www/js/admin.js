@@ -243,7 +243,7 @@ function setupGameSettings() {
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
             // Don't allow clicking disabled chips
-            if (this.disabled || this.classList.contains('provider-btn--disabled')) {
+            if (this.disabled || this.classList.contains('chip--disabled')) {
                 return;
             }
             const provider = this.dataset.provider;
@@ -252,6 +252,10 @@ function setupGameSettings() {
             selectedProvider = provider;
             updateGameSettingsSummary();
             saveGameSettings();
+            // Re-render playlists to show coverage for selected provider (preserve valid selections)
+            if (playlistData.length > 0) {
+                renderPlaylists(playlistData, '', true);
+            }
         });
     });
 }
@@ -685,11 +689,15 @@ function updateProviderWarning(player) {
  * Render playlists list with checkboxes for valid playlists
  * @param {Array} playlists
  * @param {string} playlistDir
+ * @param {boolean} preserveSelection - If true, preserve valid selections (used when provider changes)
  */
-function renderPlaylists(playlists, playlistDir) {
+function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
     const container = document.getElementById('playlists-list');
     // Remove data-i18n to prevent initPageTranslations from overwriting rendered content
     container?.removeAttribute('data-i18n');
+
+    // Store previous selections before reset (for preserveSelection mode)
+    const previousSelections = preserveSelection ? [...selectedPlaylists] : [];
 
     // Reset selection state
     selectedPlaylists = [];
@@ -719,8 +727,24 @@ function renderPlaylists(playlists, playlistDir) {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
-            // Provider count - Spotify only (Story 17.6)
-            const providerCount = playlist.spotify_count || songCount;
+            const spotifyCount = playlist.spotify_count || 0;
+            const appleMusicCount = playlist.apple_music_count || 0;
+            const youtubeMusicCount = playlist.youtube_music_count || 0;
+
+            // Get provider count based on selected provider
+            let providerCount = songCount;
+            if (selectedProvider === 'spotify') {
+                providerCount = spotifyCount || songCount; // fallback for legacy playlists
+            } else if (selectedProvider === 'apple_music') {
+                providerCount = appleMusicCount;
+            } else if (selectedProvider === 'youtube_music') {
+                providerCount = youtubeMusicCount;
+            }
+
+            // Disable playlist if no songs for selected provider
+            const isDisabled = providerCount === 0;
+            const disabledClass = isDisabled ? 'is-disabled' : '';
+            const disabledAttr = isDisabled ? 'disabled' : '';
 
             // Build coverage indicator
             let coverageHtml = '';
@@ -732,12 +756,15 @@ function renderPlaylists(playlists, playlistDir) {
             }
 
             return `
-                <div class="playlist-item list-item is-selectable">
+                <div class="playlist-item list-item ${isDisabled ? '' : 'is-selectable'} ${disabledClass}"
+                     data-provider-count="${providerCount}">
                     <label class="checkbox-label">
                         <input type="checkbox"
                                class="playlist-checkbox"
                                data-path="${utils.escapeHtml(playlist.path)}"
-                               data-song-count="${utils.escapeHtml(String(songCount))}">
+                               data-song-count="${utils.escapeHtml(String(songCount))}"
+                               data-provider-count="${providerCount}"
+                               ${disabledAttr}>
                         <span class="playlist-name">${utils.escapeHtml(playlist.name)}</span>
                     </label>
                     <span class="meta">${coverageHtml || utils.escapeHtml(String(songCount))} songs</span>
@@ -776,6 +803,22 @@ function renderPlaylists(playlists, playlistDir) {
         });
     });
 
+    // Restore valid selections when preserving (provider change)
+    if (preserveSelection && previousSelections.length > 0) {
+        previousSelections.forEach(prev => {
+            const checkbox = container.querySelector(`.playlist-checkbox[data-path="${CSS.escape(prev.path)}"]`);
+            if (checkbox && !checkbox.disabled) {
+                checkbox.checked = true;
+                const providerCount = parseInt(checkbox.dataset.providerCount, 10) || 0;
+                const item = checkbox.closest('.playlist-item');
+                if (providerCount > 0) {
+                    selectedPlaylists.push({ path: prev.path, songCount: providerCount });
+                    item?.classList.add('is-selected');
+                }
+            }
+        });
+    }
+
     // Show start button if we have valid playlists (Story 9.10)
     if (hasValidPlaylists) {
         document.getElementById('start-game')?.classList.remove('hidden');
@@ -785,6 +828,7 @@ function renderPlaylists(playlists, playlistDir) {
 
     // Initialize summary as hidden
     updateSelectionSummary();
+    updateStartButtonState();
 }
 
 /**
@@ -793,13 +837,14 @@ function renderPlaylists(playlists, playlistDir) {
  */
 function handlePlaylistToggle(checkbox) {
     const path = checkbox.dataset.path;
-    const songCount = parseInt(checkbox.dataset.songCount, 10) || 0;
+    // Use provider-specific count for selection tracking
+    const providerCount = parseInt(checkbox.dataset.providerCount, 10) || 0;
     const item = checkbox.closest('.playlist-item');
 
     if (checkbox.checked) {
         // Prevent duplicate selections
         if (!selectedPlaylists.some(p => p.path === path)) {
-            selectedPlaylists.push({ path, songCount });
+            selectedPlaylists.push({ path, songCount: providerCount });
         }
         item.classList.add('is-selected');
     } else {

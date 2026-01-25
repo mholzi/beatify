@@ -372,6 +372,20 @@ body.theme-dark .list-item:hover {
     border-left: 3px solid var(--color-error);
 }
 
+/* Disabled playlist (no songs for selected provider) */
+.playlist-item.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.playlist-item.is-disabled .checkbox-label {
+    cursor: not-allowed;
+}
+
+.playlist-item.is-disabled .playlist-checkbox {
+    cursor: not-allowed;
+}
+
 /* Playlist selection (Story 2.1) */
 .playlist-item.is-selectable {
     cursor: pointer;
