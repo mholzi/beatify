@@ -10,10 +10,10 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.1.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.2.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[**Get Started**](#5-minute-setup) • [**See It In Action**](#the-experience) • [**Install Now**](#installation)
+[**Get Started**](#5-minute-setup) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience) • [**Install Now**](#installation)
 
 ---
 
@@ -28,6 +28,8 @@ Guests scan, songs play, everyone competes. It's that simple.
 A song plays through your speakers. Everyone races to guess the release year. Points fly. Streaks build. Champions emerge.
 
 No apps to download. No accounts to create. Just scan a QR code and play.
+
+> **Speaker Compatibility:** Works with Music Assistant, Sonos, and Alexa speakers. Chromecast/Nest devices need [Music Assistant](https://music-assistant.io/). See [Supported Speakers](#supported-speakers).
 
 ---
 
@@ -50,15 +52,15 @@ No "download this app" delays. No "create an account" friction. No "what's the W
 <td width="50%" valign="top">
 
 ### Your Existing Setup
-Works with your smart speakers:
+Works with these Home Assistant integrations:
 
-| Platform | Spotify | Apple Music | Notes |
-|----------|---------|-------------|-------|
-| **Music Assistant** | ✅ | ✅ | Recommended - works with any speaker |
+| Integration | Spotify | Apple Music | Notes |
+|-------------|---------|-------------|-------|
+| **Music Assistant** | ✅ | ✅ | **Recommended** - works with any speaker |
 | **Sonos** | ✅ | ❌ | Direct Spotify playback |
-| **Alexa** | ✅ | ✅ | Voice search mode |
+| **Alexa Media Player** | ✅ | ✅ | Voice search mode |
 
-**No new hardware required.**
+> ⚠️ **Chromecast, Nest, and Google TV** devices require [Music Assistant](https://music-assistant.io/) to work with Beatify.
 
 </td>
 </tr>
@@ -379,11 +381,39 @@ Select during game setup. All players see the chosen language. Fun facts and awa
 
 <br>
 
+## Supported Speakers
+
+Beatify works with specific Home Assistant integrations that support music playback:
+
+| Integration | Supported | Spotify | Apple Music | How It Works |
+|-------------|-----------|---------|-------------|--------------|
+| **[Music Assistant](https://music-assistant.io/)** | ✅ Yes | ✅ | ✅ | Direct URI playback to any connected speaker |
+| **Sonos** | ✅ Yes | ✅ | ❌ | Direct Spotify playback via Sonos integration |
+| **Alexa Media Player** | ✅ Yes | ✅ | ✅ | Voice search playback ("Play [song] on Spotify") |
+| **Cast (Chromecast/Nest/Google TV)** | ❌ No | — | — | Use Music Assistant instead |
+| **HomePod** | ❌ No | — | — | Use Music Assistant instead |
+
+### Why Some Speakers Don't Work Directly
+
+**Cast devices** (Chromecast, Nest Audio, Nest Hub, Google TV) and **HomePod** don't support direct music playback from Home Assistant. They require a streaming source.
+
+**The solution:** Install [Music Assistant](https://music-assistant.io/) and add your Cast/HomePod devices there. Music Assistant acts as the streaming source and works perfectly with Beatify.
+
+### Quick Compatibility Check
+
+In Beatify's admin screen:
+- ✅ **Supported players** show with a platform badge (Music Assistant, Sonos, Alexa)
+- ❌ **Unsupported players** (Cast, etc.) are hidden with a hint to use Music Assistant
+
+---
+
+<br>
+
 ## Technical Details
 
 ### Requirements
 - **Home Assistant** 2024.1+
-- **Any media player entity** (Sonos, Chromecast, HomePod, etc.)
+- **Supported media player** (see [Supported Speakers](#supported-speakers) above)
 - **HACS** (recommended) or manual installation
 
 ### How It Works
@@ -430,7 +460,13 @@ Game pauses automatically. Reconnect and continue exactly where you left off.
 <details>
 <summary><strong>What music services work?</strong></summary>
 <br>
-Anything your Home Assistant media player supports: Spotify, Apple Music, YouTube Music, local files, etc.
+Spotify and Apple Music. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details.
+</details>
+
+<details>
+<summary><strong>Why don't my Chromecast/Nest speakers appear?</strong></summary>
+<br>
+Cast devices (Chromecast, Nest Audio, Nest Hub, Google TV) don't support direct music playback from Home Assistant. Install <a href="https://music-assistant.io/">Music Assistant</a> and add your Cast devices there—they'll then appear in Beatify and work perfectly.
 </details>
 
 <details>
@@ -500,6 +536,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## Troubleshooting
 
+**No speakers appearing in Beatify?**
+- Only Music Assistant, Sonos, and Alexa Media Player speakers are supported
+- Cast devices (Chromecast, Nest, Google TV) require [Music Assistant](https://music-assistant.io/)
+- HomePod requires Music Assistant
+- See [Supported Speakers](#supported-speakers) for the full compatibility table
+
 **Players can't connect?**
 - Verify Home Assistant is accessible on your network
 - Try IP address instead of hostname
@@ -507,7 +549,9 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 **Music won't play?**
 - Check media player is online in Home Assistant
-- Verify playlist URIs are valid
+- Verify playlist URIs are valid for your music service
+- For Sonos: Only Spotify is supported (not Apple Music)
+- For Alexa: Ensure your music service is linked in the Alexa app
 - Check Home Assistant logs for errors
 
 **QR code won't scan?**
