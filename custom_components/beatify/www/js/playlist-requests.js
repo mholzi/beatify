@@ -10,6 +10,9 @@
     const GITHUB_API = 'https://api.github.com/repos/mholzi/beatify/issues';
     const POLL_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
 
+    // Debug: Log origin on load
+    console.log('[PlaylistRequests] Module loaded. Origin:', window.location.origin);
+
     /**
      * Load requests from localStorage
      * @returns {Object} Storage object with requests array and last_poll timestamp
@@ -17,11 +20,14 @@
     function loadRequests() {
         try {
             const stored = localStorage.getItem(STORAGE_KEY);
+            console.log('[PlaylistRequests] Loading from localStorage:', stored ? `${stored.length} bytes` : 'null');
             if (stored) {
-                return JSON.parse(stored);
+                const parsed = JSON.parse(stored);
+                console.log('[PlaylistRequests] Loaded', parsed.requests?.length || 0, 'requests');
+                return parsed;
             }
         } catch (e) {
-            console.error('Failed to load playlist requests:', e);
+            console.error('[PlaylistRequests] Failed to load:', e);
         }
         return { requests: [], last_poll: null };
     }
@@ -32,9 +38,16 @@
      */
     function saveRequests(data) {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            const json = JSON.stringify(data);
+            localStorage.setItem(STORAGE_KEY, json);
+            console.log('[PlaylistRequests] Saved', data.requests?.length || 0, 'requests,', json.length, 'bytes');
+            // Verify it was saved
+            const verify = localStorage.getItem(STORAGE_KEY);
+            if (verify !== json) {
+                console.error('[PlaylistRequests] VERIFY FAILED! Data not saved correctly');
+            }
         } catch (e) {
-            console.error('Failed to save playlist requests:', e);
+            console.error('[PlaylistRequests] Failed to save:', e);
         }
     }
 
