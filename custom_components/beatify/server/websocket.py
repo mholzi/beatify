@@ -1096,6 +1096,24 @@ class BeatifyWebSocketHandler:
         else:
             _LOGGER.warning("broadcast_state: get_state() returned None")
 
+    async def broadcast_metadata_update(self, metadata: dict) -> None:
+        """
+        Broadcast song metadata update to all connected players (Issue #42).
+
+        This is called when metadata becomes available after round start,
+        allowing clients to update album art/artist/title with animation.
+
+        Args:
+            metadata: Dict with artist, title, album_art
+
+        """
+        _LOGGER.debug(
+            "broadcast_metadata_update: %s - %s",
+            metadata.get("artist"),
+            metadata.get("title"),
+        )
+        await self.broadcast({"type": "metadata_update", "song": metadata})
+
     async def _handle_disconnect(self, ws: web.WebSocketResponse) -> None:
         """
         Handle WebSocket disconnection with grace period.

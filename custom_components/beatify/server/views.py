@@ -409,6 +409,8 @@ class StartGameplayView(HomeAssistantView):
         ws_handler = data.get("ws_handler")
         if ws_handler:
             game_state.set_round_end_callback(ws_handler.broadcast_state)
+            # Set metadata update callback for fast transitions (Issue #42)
+            game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)
 
         # Start the first round
         success = await game_state.start_round(self.hass)

@@ -94,6 +94,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Set up round end callback for timer expiry (Story 4.5)
     game_state.set_round_end_callback(ws_handler.broadcast_state)
 
+    # Set up metadata update callback for fast transitions (Issue #42)
+    game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)
+
     # Connect analytics to websocket handler for error recording (Story 19.1)
     ws_handler.set_analytics(analytics)
 

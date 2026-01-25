@@ -109,8 +109,46 @@
         } else if (data.type === 'player_reaction') {
             // Live reactions from players (Story 18.9)
             showFloatingReaction(data.player_name, data.emoji);
+        } else if (data.type === 'metadata_update') {
+            // Issue #42: Handle async metadata update for fast transitions
+            handleMetadataUpdate(data.song);
         }
         // Dashboard ignores submit_ack, song_stopped, volume_changed since it doesn't interact
+    }
+
+    /**
+     * Handle async metadata update for fast transitions (Issue #42)
+     * Updates album art with fade transition when metadata becomes available
+     * @param {Object} song - Song metadata with artist, title, album_art
+     */
+    function handleMetadataUpdate(song) {
+        if (!song) return;
+
+        var albumArt = document.getElementById('dashboard-album-art');
+        if (albumArt && song.album_art) {
+            var newSrc = song.album_art;
+
+            // Skip if already showing this image
+            if (albumArt.src === newSrc) return;
+
+            // Fade transition for smooth update
+            albumArt.style.transition = 'opacity 0.3s ease-in-out';
+            albumArt.style.opacity = '0.5';
+
+            // Preload and swap
+            var preloader = new Image();
+            preloader.onload = function() {
+                albumArt.src = newSrc;
+                albumArt.style.opacity = '1';
+            };
+            preloader.onerror = function() {
+                albumArt.src = '/beatify/static/img/no-artwork.svg';
+                albumArt.style.opacity = '1';
+            };
+            preloader.src = newSrc;
+        }
+
+        console.log('[Dashboard] Metadata updated:', song.artist, '-', song.title);
     }
 
     /**

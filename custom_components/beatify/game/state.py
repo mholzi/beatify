@@ -278,6 +278,11 @@ class GameState:
         self.artist_challenge: ArtistChallenge | None = None
         self.artist_challenge_enabled: bool = False
 
+        # Issue #42: Async metadata for fast transitions
+        self.metadata_pending: bool = False
+        self._metadata_task: asyncio.Task | None = None
+        self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = None
+
         # Story 20.9: Early reveal flag
         self._early_reveal: bool = False
 
@@ -1043,6 +1048,18 @@ class GameState:
         """
         self._on_round_end = callback
 
+    def set_metadata_update_callback(
+        self, callback: Callable[[dict[str, Any]], Awaitable[None]]
+    ) -> None:
+        """
+        Set callback to invoke when song metadata is ready (Issue #42).
+
+        Args:
+            callback: Async function to call with metadata dict when available
+
+        """
+        self._on_metadata_update = callback
+
     def set_stats_service(self, stats_service: StatsService) -> None:
         """
         Set stats service reference (Story 14.4).
@@ -1241,10 +1258,21 @@ class GameState:
                 # Try next song with incremented retry count
                 return await self.start_round(hass, _retry_count + 1)
 
-            # Wait for metadata to update (polls until track ID matches or timeout)
-            metadata = await self._media_player_service.wait_for_metadata_update(resolved_uri)
+            # Issue #42: Start round immediately with placeholder metadata
+            # Fetch real metadata in background for fast transitions
+            self.metadata_pending = True
+            metadata = {
+                "artist": None,  # Pending - will update async
+                "title": None,   # Pending - will update async
+                "album_art": "/beatify/static/img/no-artwork.svg",
+            }
+            # Start background task to fetch metadata
+            self._metadata_task = asyncio.create_task(
+                self._fetch_metadata_async(resolved_uri)
+            )
         else:
             # No media player (testing mode)
+            self.metadata_pending = False
             metadata = {
                 "artist": "Test Artist",
                 "title": "Test Song",
@@ -1344,6 +1372,59 @@ class GameState:
             _LOGGER.debug("Timer task cancelled")
             # Re-raise to properly complete cancellation
             raise
+
+    async def _fetch_metadata_async(self, uri: str) -> None:
+        """
+        Fetch song metadata in background and update current_song (Issue #42).
+
+        This runs after round has started, allowing fast transitions.
+        When metadata arrives, updates current_song and invokes callback.
+
+        Args:
+            uri: The song URI to fetch metadata for
+
+        """
+        try:
+            if not self._media_player_service:
+                _LOGGER.warning("No media player service for metadata fetch")
+                return
+
+            # Wait for metadata (this is the slow part we moved to background)
+            metadata = await self._media_player_service.wait_for_metadata_update(uri)
+
+            # Update current_song with real metadata
+            if self.current_song and self.current_song.get("uri") == uri:
+                self.current_song["artist"] = metadata.get("artist", "Unknown")
+                self.current_song["title"] = metadata.get("title", "Unknown")
+                self.current_song["album_art"] = metadata.get(
+                    "album_art", "/beatify/static/img/no-artwork.svg"
+                )
+                self.metadata_pending = False
+
+                _LOGGER.info(
+                    "Metadata updated: %s - %s",
+                    self.current_song.get("artist"),
+                    self.current_song.get("title"),
+                )
+
+                # Invoke callback to broadcast update
+                if self._on_metadata_update:
+                    await self._on_metadata_update(
+                        {
+                            "artist": self.current_song["artist"],
+                            "title": self.current_song["title"],
+                            "album_art": self.current_song["album_art"],
+                        }
+                    )
+            else:
+                _LOGGER.debug("Metadata arrived for different song, ignoring")
+
+        except asyncio.CancelledError:
+            _LOGGER.debug("Metadata fetch cancelled")
+            raise
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.warning("Failed to fetch metadata: %s", err)
+            self.metadata_pending = False
 
     async def end_round(self) -> None:
         """

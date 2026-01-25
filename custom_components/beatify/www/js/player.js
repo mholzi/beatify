@@ -1952,6 +1952,45 @@
         }
     }
 
+    /**
+     * Handle async metadata update for fast transitions (Issue #42)
+     * Updates album art with fade transition when metadata becomes available
+     * @param {Object} song - Song metadata with artist, title, album_art
+     */
+    function handleMetadataUpdate(song) {
+        if (!song) return;
+
+        var albumCover = document.getElementById('album-cover');
+        var albumLoading = document.getElementById('album-loading');
+
+        if (albumCover && song.album_art) {
+            var newSrc = song.album_art;
+
+            // Skip if already showing this image
+            if (albumCover.src === newSrc) return;
+
+            // Fade out, swap, fade in
+            albumCover.style.transition = 'opacity 0.3s ease-in-out';
+            albumCover.style.opacity = '0.5';
+
+            // Preload new image
+            var preloader = new Image();
+            preloader.onload = function() {
+                albumCover.src = newSrc;
+                albumCover.style.opacity = '1';
+                if (albumLoading) albumLoading.classList.add('hidden');
+            };
+            preloader.onerror = function() {
+                albumCover.src = '/beatify/static/img/no-artwork.svg';
+                albumCover.style.opacity = '1';
+                if (albumLoading) albumLoading.classList.add('hidden');
+            };
+            preloader.src = newSrc;
+        }
+
+        console.log('[Metadata] Updated:', song.artist, '-', song.title);
+    }
+
     // ============================================
     // Submission Tracker (Story 4.4)
     // ============================================
@@ -2558,7 +2597,9 @@
 
             // Show result
             if (artistChallenge.winner === playerName) {
-                resultEl.textContent = utils.t('artistChallenge.youGotIt') || 'You got it! +5 points';
+                var bonusPoints = artistChallenge.bonus_points || 5;
+                resultEl.textContent = (utils.t('artistChallenge.youGotIt') || 'You got it! +{points} points')
+                    .replace('{points}', bonusPoints);
                 resultEl.className = 'artist-result is-winner';
             } else {
                 var msg = (utils.t('artistChallenge.someoneBeatYou') || '{winner} got it first!')
@@ -2737,7 +2778,9 @@
                 winnerEl.classList.remove('hidden');
                 if (artistChallenge.winner === currentPlayerName) {
                     // Current player won
-                    winnerEl.textContent = utils.t('artistChallenge.youGotIt') || 'You got it! +5 points';
+                    var bonusPoints = artistChallenge.bonus_points || 5;
+                    winnerEl.textContent = (utils.t('artistChallenge.youGotIt') || 'You got it! +{points} points')
+                        .replace('{points}', bonusPoints);
                     winnerEl.className = 'artist-reveal-winner is-you';
                 } else {
                     // Someone else won
@@ -4912,6 +4955,9 @@
         } else if (data.type === 'submit_ack') {
             // Handle successful guess submission
             handleSubmitAck();
+        } else if (data.type === 'metadata_update') {
+            // Issue #42: Handle async metadata update for fast transitions
+            handleMetadataUpdate(data.song);
         } else if (data.type === 'error') {
             // Handle submission-related errors
             if (data.code === 'ROUND_EXPIRED' || data.code === 'ALREADY_SUBMITTED') {
