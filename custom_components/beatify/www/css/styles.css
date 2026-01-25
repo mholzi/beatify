@@ -1114,10 +1114,24 @@ body.theme-dark .player-caveat {
     margin-top: var(--space-xs);
 }
 
-/* Disabled provider button */
+/* Disabled chip state (for provider/feature chips) */
+.chip--disabled,
 .provider-btn--disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Hint text styling */
+.hint-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin: var(--space-xs) 0 0 calc(var(--space-md) + 24px);
+    font-style: italic;
+}
+
+body.theme-dark .hint-text {
+    color: var(--color-text-neon-muted);
 }
 
 /* Modal content in dark mode needs dark text on light backgrounds */

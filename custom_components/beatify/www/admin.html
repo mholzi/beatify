@@ -103,6 +103,20 @@
                         <span class="toggle-switch-compact"></span>
                     </label>
                 </div>
+
+                <!-- Music Service (Provider) - Dynamic based on speaker -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🎵</span>
+                        <span data-i18n="admin.musicService">Music Service</span>
+                    </span>
+                    <div class="chip-group" role="group" aria-label="Music service">
+                        <button type="button" class="chip chip--active" data-provider="spotify">Spotify</button>
+                        <button type="button" class="chip" data-provider="apple_music">Apple Music</button>
+                    </div>
+                </div>
+                <p id="provider-hint" class="hint-text hidden"></p>
+                <div id="provider-warning" class="hidden"></div>
             </div>
         </section>
 

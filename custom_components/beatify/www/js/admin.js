@@ -221,6 +221,22 @@ function setupGameSettings() {
         updateGameSettingsSummary();
         saveGameSettings();
     });
+
+    // Provider chips (Music Service)
+    document.querySelectorAll('.chip[data-provider]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            // Don't allow clicking disabled chips
+            if (this.disabled || this.classList.contains('provider-btn--disabled')) {
+                return;
+            }
+            const provider = this.dataset.provider;
+            document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            selectedProvider = provider;
+            updateGameSettingsSummary();
+            saveGameSettings();
+        });
+    });
 }
 
 /**
@@ -265,6 +281,14 @@ function loadSavedSettings() {
                 const toggle = document.getElementById('artist-challenge-toggle');
                 if (toggle) toggle.checked = settings.artistChallenge;
             }
+
+            // Apply provider
+            if (settings.provider) {
+                selectedProvider = settings.provider;
+                document.querySelectorAll('.chip[data-provider]').forEach(c => {
+                    c.classList.toggle('chip--active', c.dataset.provider === settings.provider);
+                });
+            }
         }
     } catch (e) {
         console.warn('Failed to load saved settings:', e);
@@ -282,7 +306,8 @@ function saveGameSettings() {
             language: selectedLanguage,
             duration: selectedDuration,
             difficulty: selectedDifficulty,
-            artistChallenge: artistChallengeEnabled
+            artistChallenge: artistChallengeEnabled,
+            provider: selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
     } catch (e) {
@@ -552,22 +577,25 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
  * @param {Object} player - Selected player with capability flags
  */
 function updateProviderOptions(player) {
-    const spotifyBtn = document.querySelector('[data-provider="spotify"]');
-    const appleBtn = document.querySelector('[data-provider="apple_music"]');
+    const spotifyBtn = document.querySelector('.chip[data-provider="spotify"]');
+    const appleBtn = document.querySelector('.chip[data-provider="apple_music"]');
 
     if (spotifyBtn) {
         spotifyBtn.disabled = !player.supportsSpotify;
-        spotifyBtn.classList.toggle('provider-btn--disabled', !player.supportsSpotify);
+        spotifyBtn.classList.toggle('chip--disabled', !player.supportsSpotify);
     }
 
     if (appleBtn) {
         appleBtn.disabled = !player.supportsAppleMusic;
-        appleBtn.classList.toggle('provider-btn--disabled', !player.supportsAppleMusic);
+        appleBtn.classList.toggle('chip--disabled', !player.supportsAppleMusic);
     }
 
     // If current selection is now disabled, switch to Spotify
     if (selectedProvider === 'apple_music' && !player.supportsAppleMusic) {
-        setProvider('spotify');
+        // Update UI
+        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
+        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
+        selectedProvider = 'spotify';
     }
 
     // Show hint for disabled Apple Music
