@@ -423,24 +423,8 @@ function renderMediaPlayers(players) {
         return;
     }
 
-    // Group players by platform
-    const grouped = groupPlayersByPlatform(availablePlayers);
-
-    // Render grouped players
-    let html = '';
-    for (const [platform, platformPlayers] of Object.entries(grouped)) {
-        const info = PLATFORM_LABELS[platform] || { icon: '🔈', label: platform };
-        const recommended = info.recommended ? ' <span class="badge-recommended">Recommended</span>' : '';
-
-        html += `
-            <div class="player-group">
-                <h4 class="player-group-header">${info.icon} ${info.label}${recommended}</h4>
-                ${platformPlayers.map(player => renderPlayerItem(player)).join('')}
-            </div>
-        `;
-    }
-
-    container.innerHTML = html;
+    // Render all players with platform badges on each item
+    container.innerHTML = availablePlayers.map(player => renderPlayerItem(player)).join('');
     attachPlayerSelectionHandlers();
 
     // Try to auto-select last used player from localStorage
@@ -462,12 +446,13 @@ function renderMediaPlayers(players) {
 }
 
 /**
- * Render a single player item with capability data attributes
+ * Render a single player item with platform badge and capability data attributes
  * @param {Object} player - Player object from backend
  * @returns {string} HTML string
  */
 function renderPlayerItem(player) {
-    const caveat = player.caveat ? `<div class="player-caveat">${utils.escapeHtml(player.caveat)}</div>` : '';
+    const info = PLATFORM_LABELS[player.platform] || { icon: '🔈', label: player.platform };
+    const platformBadge = `<span class="platform-badge platform-badge--${utils.escapeHtml(player.platform)}">${info.icon} ${info.label}</span>`;
 
     return `
         <div class="media-player-item list-item is-selectable"
@@ -484,13 +469,15 @@ function renderPlayerItem(player) {
                        data-platform="${utils.escapeHtml(player.platform)}"
                        data-supports-spotify="${player.supports_spotify}"
                        data-supports-apple-music="${player.supports_apple_music}">
-                <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
+                <span class="player-info">
+                    <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
+                    ${platformBadge}
+                </span>
             </label>
             <span class="meta">
                 <span class="state-dot state-${utils.escapeHtml(player.state)}"></span>
                 ${utils.escapeHtml(player.state)}
             </span>
-            ${caveat}
         </div>
     `;
 }
@@ -556,6 +543,12 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     const playerName = playerItem.querySelector('.player-name')?.textContent?.trim() || entityId;
     updateMediaPlayerSummary(playerName);
 
+    // Show Music Service section
+    const musicServiceSection = document.getElementById('music-service');
+    if (musicServiceSection) {
+        musicServiceSection.classList.remove('hidden');
+    }
+
     // Update provider options based on platform capabilities
     updateProviderOptions(selectedMediaPlayer);
 
@@ -614,22 +607,37 @@ function updateProviderOptions(player) {
 
 /**
  * Update provider warning based on selected speaker platform
+ * Shows setup requirements and caveats per platform
  * @param {Object} player - Selected player with platform info
  */
 function updateProviderWarning(player) {
     const warningEl = document.getElementById('provider-warning');
     if (!warningEl) return;
 
-    const platformWarnings = {
-        music_assistant: 'Premium account must be configured in Music Assistant',
-        sonos: 'Spotify must be linked in Sonos app',
-        alexa_media: 'Service must be linked in Alexa app',
-        alexa: 'Service must be linked in Alexa app',
+    const platformInfo = {
+        music_assistant: {
+            warning: 'Premium account must be configured in Music Assistant',
+        },
+        sonos: {
+            warning: 'Spotify must be linked in Sonos app',
+        },
+        alexa_media: {
+            warning: 'Service must be linked in Alexa app',
+            caveat: 'Uses voice search - may occasionally play a different version of the song',
+        },
+        alexa: {
+            warning: 'Service must be linked in Alexa app',
+            caveat: 'Uses voice search - may occasionally play a different version of the song',
+        },
     };
 
-    const warning = platformWarnings[player.platform];
-    if (warning) {
-        warningEl.innerHTML = `<p>⚠️ ${utils.escapeHtml(warning)}</p>`;
+    const info = platformInfo[player.platform];
+    if (info) {
+        let html = `<p>⚠️ ${utils.escapeHtml(info.warning)}</p>`;
+        if (info.caveat) {
+            html += `<p class="warning-caveat">ℹ️ ${utils.escapeHtml(info.caveat)}</p>`;
+        }
+        warningEl.innerHTML = html;
         warningEl.classList.remove('hidden');
     } else {
         warningEl.classList.add('hidden');
