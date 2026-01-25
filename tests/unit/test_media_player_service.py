@@ -2,14 +2,14 @@
 Unit Tests: MediaPlayerService
 
 Tests media player integration for Epic 4 gameplay:
-- Song playback via HA services
+- Song playback via HA services (platform-based routing)
 - Metadata retrieval from entity attributes
 - Stop and volume control
 - Error handling for unavailable player
-- Provider-specific content type detection (Story 16.2)
+- Platform capability detection
 
 Story 4.1 - AC: #2, #6, #7
-Story 16.2 - AC: #1, #5 (Spotify playback fix for Alexa)
+Platform routing - AC: #1, #2, #3 (Multi-platform support: MA, Sonos, Alexa)
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ sys.modules["voluptuous"] = MagicMock()
 
 from custom_components.beatify.services.media_player import (
     MediaPlayerService,
-    get_media_content_type,
+    get_platform_capabilities,
 )
 
 
@@ -48,36 +48,109 @@ def mock_hass():
 
 @pytest.mark.unit
 class TestMediaPlayerServicePlayback:
-    """Tests for song playback."""
+    """Tests for song playback with platform-based routing."""
 
     @pytest.mark.asyncio
-    async def test_play_song_calls_ha_service_with_spotify_content_type(self, mock_hass):
-        """play_song calls HA service with 'spotify' content type for Spotify URIs (Story 16.2)."""
-        service = MediaPlayerService(mock_hass, "media_player.living_room")
+    async def test_play_song_via_music_assistant(self, mock_hass):
+        """Music Assistant players use music_assistant.play_media service."""
+        service = MediaPlayerService(
+            mock_hass, "media_player.living_room", platform="music_assistant"
+        )
+        song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
 
-        result = await service.play_song("spotify:track:abc123")
+        result = await service.play_song(song)
+
+        assert result is True
+        mock_hass.services.async_call.assert_called_once_with(
+            "music_assistant",
+            "play_media",
+            {"media_id": "spotify:track:abc123", "media_type": "track"},
+            target={"entity_id": "media_player.living_room"},
+            blocking=True,
+        )
+
+    @pytest.mark.asyncio
+    async def test_play_song_via_sonos(self, mock_hass):
+        """Sonos players use media_player.play_media with URI."""
+        service = MediaPlayerService(
+            mock_hass, "media_player.sonos_speaker", platform="sonos"
+        )
+        song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
+
+        result = await service.play_song(song)
 
         assert result is True
         mock_hass.services.async_call.assert_called_once_with(
             "media_player",
             "play_media",
             {
-                "entity_id": "media_player.living_room",
+                "entity_id": "media_player.sonos_speaker",
                 "media_content_id": "spotify:track:abc123",
-                "media_content_type": "spotify",  # Story 16.2: Must be "spotify" for Alexa
+                "media_content_type": "music",
             },
             blocking=True,
         )
 
     @pytest.mark.asyncio
+    async def test_play_song_via_alexa_spotify(self, mock_hass):
+        """Alexa players use text search with SPOTIFY content type."""
+        service = MediaPlayerService(
+            mock_hass, "media_player.echo", platform="alexa_media", provider="spotify"
+        )
+        song = {"_resolved_uri": "spotify:track:abc", "artist": "Test Artist", "title": "Test Song"}
+
+        result = await service.play_song(song)
+
+        assert result is True
+        mock_hass.services.async_call.assert_called_once_with(
+            "media_player",
+            "play_media",
+            {
+                "entity_id": "media_player.echo",
+                "media_content_id": "Test Song by Test Artist",
+                "media_content_type": "SPOTIFY",
+            },
+            blocking=True,
+        )
+
+    @pytest.mark.asyncio
+    async def test_play_song_via_alexa_apple_music(self, mock_hass):
+        """Alexa players use text search with APPLE_MUSIC content type."""
+        service = MediaPlayerService(
+            mock_hass, "media_player.echo", platform="alexa_media", provider="apple_music"
+        )
+        song = {"_resolved_uri": "applemusic://track/123", "artist": "Test Artist", "title": "Test Song"}
+
+        result = await service.play_song(song)
+
+        assert result is True
+        call_args = mock_hass.services.async_call.call_args
+        assert call_args[0][2]["media_content_type"] == "APPLE_MUSIC"
+        assert call_args[0][2]["media_content_id"] == "Test Song by Test Artist"
+
+    @pytest.mark.asyncio
     async def test_play_song_returns_false_on_error(self, mock_hass):
         """play_song returns False when service call fails."""
         mock_hass.services.async_call = AsyncMock(side_effect=Exception("Service error"))
-        service = MediaPlayerService(mock_hass, "media_player.living_room")
+        service = MediaPlayerService(mock_hass, "media_player.living_room", platform="sonos")
+        song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
 
-        result = await service.play_song("spotify:track:abc123")
+        result = await service.play_song(song)
 
         assert result is False
+
+    @pytest.mark.asyncio
+    async def test_play_song_unsupported_platform_returns_false(self, mock_hass):
+        """play_song returns False for unsupported platforms."""
+        service = MediaPlayerService(
+            mock_hass, "media_player.unknown", platform="unknown_platform"
+        )
+        song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
+
+        result = await service.play_song(song)
+
+        assert result is False
+        mock_hass.services.async_call.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_stop_calls_ha_service(self, mock_hass):
@@ -233,96 +306,52 @@ class TestMediaPlayerServiceAvailability:
 
 
 @pytest.mark.unit
-class TestMediaContentTypeDetection:
+class TestPlatformCapabilities:
     """
-    Tests for provider-specific content type detection (Story 16.2).
+    Tests for platform capability detection.
 
-    AC #1: media_content_type shall be "spotify" for Spotify URIs
-    AC #5: Content type shall be parameterizable per provider
-    """
-
-    def test_spotify_track_uri_returns_spotify_type(self):
-        """Spotify track URI returns 'spotify' content type."""
-        assert get_media_content_type("spotify:track:abc123") == "spotify"
-
-    def test_spotify_album_uri_returns_spotify_type(self):
-        """Spotify album URI returns 'spotify' content type."""
-        assert get_media_content_type("spotify:album:xyz789") == "spotify"
-
-    def test_spotify_playlist_uri_returns_spotify_type(self):
-        """Spotify playlist URI returns 'spotify' content type."""
-        assert get_media_content_type("spotify:playlist:def456") == "spotify"
-
-    def test_apple_music_uri_returns_apple_music_type(self):
-        """Apple Music URI returns 'apple_music' content type (legacy format)."""
-        assert get_media_content_type("apple_music:track:abc123") == "apple_music"
-
-    def test_applemusic_via_music_assistant_returns_music_type(self):
-        """Apple Music via Music Assistant uses 'music' content type (Story 17.3)."""
-        # Music Assistant uses applemusic:// scheme, not apple_music: prefix
-        assert get_media_content_type("applemusic://track/1234567890") == "music"
-
-    def test_tidal_uri_returns_tidal_type(self):
-        """Tidal URI returns 'tidal' content type (future support)."""
-        assert get_media_content_type("tidal:track:abc123") == "tidal"
-
-    def test_http_url_returns_default_music_type(self):
-        """HTTP URLs fall back to generic 'music' content type."""
-        assert get_media_content_type("http://example.com/song.mp3") == "music"
-
-    def test_https_url_returns_default_music_type(self):
-        """HTTPS URLs fall back to generic 'music' content type."""
-        assert get_media_content_type("https://example.com/song.mp3") == "music"
-
-    def test_unknown_provider_returns_default_music_type(self):
-        """Unknown provider prefix falls back to generic 'music' content type."""
-        assert get_media_content_type("unknown:track:abc123") == "music"
-
-    def test_uri_without_colon_returns_default_music_type(self):
-        """URI without colon separator returns default 'music' type."""
-        assert get_media_content_type("simplestring") == "music"
-
-    def test_case_insensitive_provider_detection(self):
-        """Provider detection is case-insensitive."""
-        assert get_media_content_type("SPOTIFY:track:abc123") == "spotify"
-        assert get_media_content_type("Spotify:track:abc123") == "spotify"
-
-
-@pytest.mark.unit
-class TestMediaPlayerServiceProviderPlayback:
-    """
-    Tests for playback with different providers (Story 16.2).
-
-    AC #3: Sonos speaker playback works as before (no regression)
-    AC #4: Chromecast device playback works as before (no regression)
+    Verifies each platform returns correct capability flags.
     """
 
-    @pytest.mark.asyncio
-    async def test_play_song_with_http_url_uses_music_type(self, mock_hass):
-        """play_song with HTTP URL uses 'music' content type (Sonos/Chromecast)."""
-        service = MediaPlayerService(mock_hass, "media_player.sonos_speaker")
+    def test_music_assistant_capabilities(self):
+        """Music Assistant supports Spotify and Apple Music via URI."""
+        caps = get_platform_capabilities("music_assistant")
+        assert caps["supported"] is True
+        assert caps["spotify"] is True
+        assert caps["apple_music"] is True
+        assert caps["method"] == "uri"
 
-        result = await service.play_song("http://example.com/song.mp3")
+    def test_sonos_capabilities(self):
+        """Sonos supports Spotify only via URI."""
+        caps = get_platform_capabilities("sonos")
+        assert caps["supported"] is True
+        assert caps["spotify"] is True
+        assert caps["apple_music"] is False
+        assert caps["method"] == "uri"
 
-        assert result is True
-        mock_hass.services.async_call.assert_called_once_with(
-            "media_player",
-            "play_media",
-            {
-                "entity_id": "media_player.sonos_speaker",
-                "media_content_id": "http://example.com/song.mp3",
-                "media_content_type": "music",  # Generic type for HTTP URLs
-            },
-            blocking=True,
-        )
+    def test_alexa_media_capabilities(self):
+        """Alexa supports Spotify and Apple Music via text search."""
+        caps = get_platform_capabilities("alexa_media")
+        assert caps["supported"] is True
+        assert caps["spotify"] is True
+        assert caps["apple_music"] is True
+        assert caps["method"] == "text_search"
+        assert "caveat" in caps  # Alexa has search caveat
 
-    @pytest.mark.asyncio
-    async def test_play_song_with_spotify_playlist_uri(self, mock_hass):
-        """play_song with Spotify playlist URI uses 'spotify' content type."""
-        service = MediaPlayerService(mock_hass, "media_player.alexa_echo")
+    def test_alexa_alias_maps_to_alexa_media(self):
+        """'alexa' is an alias for 'alexa_media'."""
+        caps = get_platform_capabilities("alexa")
+        assert caps["supported"] is True
+        assert caps["method"] == "text_search"
 
-        result = await service.play_song("spotify:playlist:37i9dQZF1DXcBWIGoYBM5M")
+    def test_cast_not_supported(self):
+        """Cast devices are not supported (require Music Assistant)."""
+        caps = get_platform_capabilities("cast")
+        assert caps["supported"] is False
+        assert "reason" in caps
 
-        assert result is True
-        call_args = mock_hass.services.async_call.call_args
-        assert call_args[0][2]["media_content_type"] == "spotify"
+    def test_unknown_platform_not_supported(self):
+        """Unknown platforms are not supported."""
+        caps = get_platform_capabilities("unknown_platform")
+        assert caps["supported"] is False
+        assert "reason" in caps

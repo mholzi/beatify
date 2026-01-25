@@ -50,11 +50,13 @@ No "download this app" delays. No "create an account" friction. No "what's the W
 <td width="50%" valign="top">
 
 ### Your Existing Setup
-Works with whatever you already have:
-- Sonos
-- HomePod
-- Chromecast
-- Any Home Assistant media player
+Works with your smart speakers:
+
+| Platform | Spotify | Apple Music | Notes |
+|----------|---------|-------------|-------|
+| **Music Assistant** | ✅ | ✅ | Recommended - works with any speaker |
+| **Sonos** | ✅ | ❌ | Direct Spotify playback |
+| **Alexa** | ✅ | ✅ | Voice search mode |
 
 **No new hardware required.**
 

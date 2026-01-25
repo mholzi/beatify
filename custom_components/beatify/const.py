@@ -112,16 +112,9 @@ MEDIA_PLAYER_DOCS_URL = "https://www.home-assistant.io/integrations/#media-playe
 # Playlist configuration
 PLAYLIST_DIR = "beatify/playlists"
 
-# Media content type mapping for different providers (Story 16.2)
-# Maps URI prefix to the media_content_type required by different devices
-# Alexa devices require "spotify" content type, not generic "music"
-MEDIA_CONTENT_TYPES: dict[str, str] = {
-    "spotify": "spotify",  # Spotify URIs (spotify:track:xxx)
-    "applemusic": "music",  # Apple Music URIs (applemusic://track/123) via Music Assistant
-    "apple_music": "apple_music",  # Legacy: Apple Music URIs with underscore prefix
-    "tidal": "tidal",  # Future: Tidal URIs
-}
-MEDIA_CONTENT_TYPE_DEFAULT = "music"  # Fallback for unknown providers
+# Supported platforms for media playback routing
+# See services/media_player.py PLATFORM_CAPABILITIES for full capability matrix
+SUPPORTED_PLATFORMS = ("music_assistant", "sonos", "alexa_media")
 
 # Multi-provider URI patterns (Story 17.1)
 URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"

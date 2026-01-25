@@ -24,7 +24,10 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MIN,
 )
 from custom_components.beatify.game.state import GameState
-from custom_components.beatify.services.media_player import async_get_media_players
+from custom_components.beatify.services.media_player import (
+    async_get_media_players,
+    get_platform_capabilities,
+)
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -294,14 +297,35 @@ class StartGameView(HomeAssistantView):
             if stats_service:
                 game_state.set_stats_service(stats_service)
 
-        # Check if selected media player is a Music Assistant player
+        # Detect platform and validate compatibility (resolves #38, #39)
         from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
 
         ent_reg = er.async_get(self.hass)
         entity_entry = ent_reg.async_get(media_player)
-        is_mass = entity_entry is not None and entity_entry.platform == "music_assistant"
+        platform = entity_entry.platform if entity_entry else "unknown"
 
-        # Build create_game kwargs with optional round_duration (Story 13.1), difficulty (Story 14.1), provider (Story 17.2), and artist_challenge_enabled (Story 20.7)
+        # Validate platform is supported
+        capabilities = get_platform_capabilities(platform)
+        if not capabilities.get("supported"):
+            return web.json_response(
+                {
+                    "error": "UNSUPPORTED_PLAYER",
+                    "message": capabilities.get("reason", "This player type is not supported"),
+                },
+                status=400,
+            )
+
+        # Validate provider is supported by platform
+        if provider == "apple_music" and not capabilities.get("apple_music"):
+            return web.json_response(
+                {
+                    "error": "PROVIDER_NOT_SUPPORTED",
+                    "message": "Apple Music is not supported on this speaker. Use Music Assistant.",
+                },
+                status=400,
+            )
+
+        # Build create_game kwargs with optional round_duration (Story 13.1), difficulty (Story 14.1), provider (Story 17.2), platform, and artist_challenge_enabled (Story 20.7)
         create_kwargs: dict[str, Any] = {
             "playlists": playlist_paths,
             "songs": songs,
@@ -309,7 +333,7 @@ class StartGameView(HomeAssistantView):
             "base_url": base_url,
             "difficulty": difficulty,
             "provider": provider,
-            "is_mass": is_mass,
+            "platform": platform,
             "artist_challenge_enabled": artist_challenge_enabled,  # Story 20.7
         }
         if round_duration is not None:

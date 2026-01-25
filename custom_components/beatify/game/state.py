@@ -246,8 +246,8 @@ class GameState:
         # Provider setting (Story 17.2)
         self.provider: str = PROVIDER_DEFAULT
 
-        # Music Assistant player flag
-        self.is_mass: bool = False
+        # Platform identifier for playback routing (replaces is_mass)
+        self.platform: str = "unknown"
 
         # Last error detail for diagnostics
         self.last_error_detail: str = ""
@@ -295,7 +295,7 @@ class GameState:
         round_duration: int = DEFAULT_ROUND_DURATION,
         difficulty: str = DIFFICULTY_DEFAULT,
         provider: str = PROVIDER_DEFAULT,
-        is_mass: bool = False,
+        platform: str = "unknown",
         artist_challenge_enabled: bool = True,
     ) -> dict[str, Any]:
         """
@@ -309,7 +309,7 @@ class GameState:
             round_duration: Round timer duration in seconds (10-60, default 30)
             difficulty: Difficulty level (easy/normal/hard, default normal)
             provider: Music provider (spotify/apple_music, default spotify)
-            is_mass: Whether the media player is a Music Assistant player
+            platform: Platform identifier for playback routing (music_assistant, sonos, alexa_media)
             artist_challenge_enabled: Whether to enable artist guessing (default True)
 
         Returns:
@@ -340,8 +340,8 @@ class GameState:
         # Store provider setting (Story 17.2)
         self.provider = provider
 
-        # Store Music Assistant player flag for service routing
-        self.is_mass = is_mass
+        # Store platform for playback routing
+        self.platform = platform
 
         # Reset error detail
         self.last_error_detail = ""
@@ -1211,7 +1211,10 @@ class GameState:
         # Create media player service if needed
         if self.media_player and not self._media_player_service:
             self._media_player_service = MediaPlayerService(
-                hass, self.media_player, is_mass=self.is_mass
+                hass,
+                self.media_player,
+                platform=self.platform,
+                provider=self.provider,
             )
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
@@ -1222,7 +1225,7 @@ class GameState:
             # Pre-flight check: verify speaker is responsive before playing
             # Skip for MA players since they use music_assistant.play_media service
             # which handles speaker state differently
-            if not self.is_mass:
+            if self.platform != "music_assistant":
                 (
                     responsive,
                     error_detail,
@@ -1236,12 +1239,11 @@ class GameState:
                     await self.pause_game("media_player_error")
                     return False
 
-            # Use _resolved_uri if available (Story 17.3: multi-provider support)
-            resolved_uri = song.get("_resolved_uri") or song.get("uri")
-            success = await self._media_player_service.play_song(resolved_uri)
+            # Pass entire song dict for platform-specific playback routing
+            success = await self._media_player_service.play_song(song)
             if not success:
-                _LOGGER.warning("Failed to play song: %s", song["uri"])  # Log original for debug
-                self._playlist_manager.mark_played(resolved_uri)
+                _LOGGER.warning("Failed to play song: %s", song.get("uri"))  # Log original for debug
+                self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
 
                 # Check retry limit to prevent runaway loop
                 if _retry_count >= MAX_SONG_RETRIES:

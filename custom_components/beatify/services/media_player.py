@@ -6,8 +6,6 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
-from ..const import MEDIA_CONTENT_TYPE_DEFAULT, MEDIA_CONTENT_TYPES
-
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -16,46 +14,57 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-def get_media_content_type(uri: str) -> str:
+# Platform capability definitions for multi-platform routing
+# Resolves GitHub issues #38 (Nest Audio) and #39 (Google TV Streamer)
+PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
+    "music_assistant": {
+        "supported": True,
+        "spotify": True,
+        "apple_music": True,
+        "method": "uri",
+        "warning": "Premium account must be configured in Music Assistant",
+    },
+    "sonos": {
+        "supported": True,
+        "spotify": True,
+        "apple_music": False,
+        "method": "uri",
+        "warning": "Spotify must be linked in Sonos app",
+    },
+    "alexa_media": {
+        "supported": True,
+        "spotify": True,
+        "apple_music": True,
+        "method": "text_search",
+        "warning": "Service must be linked in Alexa app",
+        "caveat": "Uses voice search - may occasionally play different version",
+    },
+    "cast": {
+        "supported": False,
+        "reason": "Cast devices require Music Assistant",
+    },
+}
+
+
+def get_platform_capabilities(platform: str) -> dict[str, Any]:
     """
-    Determine the appropriate media_content_type for a given URI.
-
-    Different media players (especially Alexa) require provider-specific
-    content types. For example, Alexa devices return "Sorry, direct music
-    streaming isn't supported" when using generic "music" type for Spotify URIs.
-
-    For Apple Music via Music Assistant, URIs use the "applemusic://" scheme.
-    Music Assistant handles the actual routing to Apple Music internally,
-    so the content type "music" is appropriate.
+    Get playback capabilities for a platform.
 
     Args:
-        uri: Media content URI (e.g., "spotify:track:xxx", "applemusic://track/123")
+        platform: Platform identifier from entity registry (e.g., "music_assistant", "sonos")
 
     Returns:
-        Provider-specific content type (e.g., "spotify") or default "music"
-
-    Examples:
-        >>> get_media_content_type("spotify:track:abc123")
-        'spotify'
-        >>> get_media_content_type("applemusic://track/123456789")
-        'music'
-        >>> get_media_content_type("http://example.com/song.mp3")
-        'music'
+        Dict with supported, spotify, apple_music, method, warning, caveat, reason keys
 
     """
-    # Extract provider prefix from URI (e.g., "spotify" from "spotify:track:xxx")
-    if ":" in uri:
-        provider = uri.split(":")[0].lower()
-        content_type = MEDIA_CONTENT_TYPES.get(provider, MEDIA_CONTENT_TYPE_DEFAULT)
-        _LOGGER.debug(
-            "URI '%s' detected as provider '%s', using content_type '%s'",
-            uri,
-            provider,
-            content_type,
-        )
-        return content_type
+    # Handle alexa as alias for alexa_media
+    if platform == "alexa":
+        platform = "alexa_media"
 
-    return MEDIA_CONTENT_TYPE_DEFAULT
+    return PLATFORM_CAPABILITIES.get(
+        platform,
+        {"supported": False, "reason": "Unknown player type"},
+    )
 
 
 # Timeout for pre-flight connectivity check (seconds)
@@ -69,19 +78,27 @@ METADATA_POLL_INTERVAL = 0.3
 class MediaPlayerService:
     """Service for controlling HA media player."""
 
-    def __init__(self, hass: HomeAssistant, entity_id: str, is_mass: bool = False) -> None:
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        entity_id: str,
+        platform: str = "unknown",
+        provider: str = "spotify",
+    ) -> None:
         """
         Initialize with HomeAssistant and entity_id.
 
         Args:
             hass: Home Assistant instance
             entity_id: Media player entity ID
-            is_mass: Whether this is a Music Assistant player
+            platform: Platform identifier (music_assistant, sonos, alexa_media, etc.)
+            provider: Music provider (spotify or apple_music)
 
         """
         self._hass = hass
         self._entity_id = entity_id
-        self._is_mass = is_mass
+        self._platform = platform
+        self._provider = provider
         self._analytics: AnalyticsStorage | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
@@ -106,61 +123,104 @@ class MediaPlayerService:
         if self._analytics:
             self._analytics.record_error(error_type, message)
 
-    async def play_song(self, uri: str) -> bool:
+    async def play_song(self, song: dict[str, Any]) -> bool:
         """
-        Play a song by URI.
+        Play a song using appropriate method for platform.
 
-        For Music Assistant players, uses the music_assistant.play_media service
-        which provides more reliable playback. For regular players, uses
-        media_player.play_media with provider-specific content types.
+        Routes playback based on platform:
+        - music_assistant: Uses music_assistant.play_media with URI
+        - sonos: Uses media_player.play_media with Spotify URI
+        - alexa_media: Uses media_player.play_media with text search
 
         Args:
-            uri: Media content URI (e.g., spotify:track:xxx, applemusic://track/123)
+            song: Song dict with _resolved_uri, artist, title keys
 
         Returns:
             True if playback started successfully, False otherwise
 
         """
         try:
-            if self._is_mass:
-                # Use Music Assistant's native play_media service for MA players
-                # This handles Spotify/Apple Music URIs more reliably
-                _LOGGER.debug(
-                    "Using music_assistant.play_media for MA player %s with URI %s",
-                    self._entity_id,
-                    uri,
-                )
-                await self._hass.services.async_call(
-                    "music_assistant",
-                    "play_media",
-                    {
-                        "media_id": uri,
-                        "media_type": "track",
-                    },
-                    target={"entity_id": self._entity_id},
-                    blocking=True,
-                )
+            if self._platform == "music_assistant":
+                return await self._play_via_music_assistant(song)
+            elif self._platform == "sonos":
+                return await self._play_via_sonos(song)
+            elif self._platform in ("alexa_media", "alexa"):
+                return await self._play_via_alexa(song)
             else:
-                # Use standard media_player service for non-MA players
-                # Determine content type from URI prefix (Story 16.2)
-                # Alexa devices require "spotify" content type, not generic "music"
-                content_type = get_media_content_type(uri)
-
-                await self._hass.services.async_call(
-                    "media_player",
-                    "play_media",
-                    {
-                        "entity_id": self._entity_id,
-                        "media_content_id": uri,
-                        "media_content_type": content_type,
-                    },
-                    blocking=True,
-                )
-            return True  # noqa: TRY300
+                _LOGGER.error("Unsupported platform: %s", self._platform)
+                return False
         except Exception as err:  # noqa: BLE001
-            _LOGGER.error("Failed to play song %s: %s", uri, err)  # noqa: TRY400
-            self._record_error("PLAYBACK_FAILURE", f"Failed to play {uri}: {err}")
+            _LOGGER.error("Playback failed: %s", err)  # noqa: TRY400
+            self._record_error("PLAYBACK_FAILURE", f"Failed to play: {err}")
             return False
+
+    async def _play_via_music_assistant(self, song: dict[str, Any]) -> bool:
+        """Play via Music Assistant (URI-based)."""
+        uri = song.get("_resolved_uri")
+        _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
+
+        await self._hass.services.async_call(
+            "music_assistant",
+            "play_media",
+            {"media_id": uri, "media_type": "track"},
+            target={"entity_id": self._entity_id},
+            blocking=True,
+        )
+        return True
+
+    async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
+        """Play via Sonos (URI-based)."""
+        uri = song.get("_resolved_uri")
+        _LOGGER.debug("Sonos playback: %s on %s", uri, self._entity_id)
+
+        await self._hass.services.async_call(
+            "media_player",
+            "play_media",
+            {
+                "entity_id": self._entity_id,
+                "media_content_id": uri,
+                "media_content_type": "music",
+            },
+            blocking=True,
+        )
+        return True
+
+    async def _play_via_alexa(self, song: dict[str, Any]) -> bool:
+        """Play via Alexa (text search-based)."""
+        search_text = self._get_alexa_search_text(song)
+        content_type = "SPOTIFY" if self._provider == "spotify" else "APPLE_MUSIC"
+
+        _LOGGER.debug(
+            "Alexa playback: '%s' (%s) on %s",
+            search_text,
+            content_type,
+            self._entity_id,
+        )
+
+        await self._hass.services.async_call(
+            "media_player",
+            "play_media",
+            {
+                "entity_id": self._entity_id,
+                "media_content_id": search_text,
+                "media_content_type": content_type,
+            },
+            blocking=True,
+        )
+        return True
+
+    def _get_alexa_search_text(self, song: dict[str, Any]) -> str:
+        """Generate Alexa-compatible search text from song metadata."""
+        artist = song.get("artist", "")
+        title = song.get("title", "")
+
+        if artist and title:
+            return f"{title} by {artist}"
+        elif title:
+            return title
+        else:
+            _LOGGER.warning("Song missing artist/title for Alexa search")
+            return "unknown song"
 
     async def get_metadata(self) -> dict[str, Any]:
         """
@@ -376,8 +436,18 @@ class MediaPlayerService:
             return False, msg
 
 
-async def async_get_media_players(hass: HomeAssistant) -> list[dict]:
-    """Get all available media player entities with Music Assistant detection."""
+async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
+    """
+    Get all available media player entities with platform and capability info.
+
+    Filters out unsupported platforms (raw Cast devices without Music Assistant).
+
+    Returns:
+        List of media player dicts with entity_id, friendly_name, state,
+        platform, supports_spotify, supports_apple_music, playback_method,
+        warning, caveat fields.
+
+    """
     from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
 
     # Get entity registry to check which platform created each entity
@@ -385,18 +455,35 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict]:
 
     media_players = []
     for state in hass.states.async_all("media_player"):
-        # Check if this entity is from Music Assistant integration
         entity_entry = ent_reg.async_get(state.entity_id)
-        is_mass = entity_entry is not None and entity_entry.platform == "music_assistant"
+        platform = entity_entry.platform if entity_entry else "unknown"
+
+        # Determine capabilities based on platform
+        capabilities = get_platform_capabilities(platform)
+
+        # Skip unsupported platforms (Cast without MA)
+        if not capabilities.get("supported"):
+            _LOGGER.debug(
+                "Skipping unsupported player: %s (platform=%s, reason=%s)",
+                state.entity_id,
+                platform,
+                capabilities.get("reason", "unknown"),
+            )
+            continue
 
         media_players.append(
             {
                 "entity_id": state.entity_id,
                 "friendly_name": state.attributes.get("friendly_name", state.entity_id),
                 "state": state.state,
-                "is_mass": is_mass,
+                "platform": platform,
+                "supports_spotify": capabilities.get("spotify", False),
+                "supports_apple_music": capabilities.get("apple_music", False),
+                "playback_method": capabilities.get("method", "uri"),
+                "warning": capabilities.get("warning"),
+                "caveat": capabilities.get("caveat"),
             }
         )
 
-    _LOGGER.debug("Found %d media players", len(media_players))
+    _LOGGER.debug("Found %d compatible media players", len(media_players))
     return media_players

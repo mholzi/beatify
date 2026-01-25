@@ -1024,31 +1024,100 @@ body.theme-dark .toggle-switch {
     border: 1px solid var(--color-error);
 }
 
-/* Music Assistant Badge - subtle grey styling with red indicator line */
-.mass-badge {
+/* Player Group Styling - groups speakers by platform */
+.player-group {
+    margin-bottom: var(--space-md);
+}
+
+.player-group-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+    padding-left: var(--space-xs);
+}
+
+body.theme-dark .player-group-header {
+    color: var(--color-text-neon-muted);
+}
+
+.badge-recommended {
     display: inline-block;
     padding: 0.125rem 0.375rem;
     border-radius: var(--radius-sm);
     font-size: 0.625rem;
     font-weight: 600;
-    margin-left: var(--space-xs);
-    background: rgba(128, 128, 128, 0.2);
-    color: var(--color-text-muted);
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
     text-transform: uppercase;
     letter-spacing: 0.025em;
-    vertical-align: middle;
-    border: 1px solid rgba(128, 128, 128, 0.3);
 }
 
-body.theme-dark .mass-badge {
-    background: rgba(255, 255, 255, 0.08);
+/* Player caveat text (e.g., Alexa search disclaimer) */
+.player-caveat {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    padding: var(--space-xs) 0 0 calc(var(--space-md) + 16px);
+}
+
+body.theme-dark .player-caveat {
     color: var(--color-text-neon-muted);
-    border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Red indicator line for Music Assistant players */
-.is-mass-player {
-    border-left: 3px solid #fc3c44 !important;
+/* No compatible players message */
+.no-players-message {
+    text-align: center;
+    padding: var(--space-lg);
+}
+
+.no-players-message h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+}
+
+.no-players-message p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.no-players-message .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+/* Provider warning styling */
+#provider-warning {
+    background: var(--color-warning-bg);
+    border: 1px solid var(--color-warning);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    margin-top: var(--space-sm);
+    font-size: 0.875rem;
+}
+
+#provider-warning p {
+    margin: 0;
+    color: inherit;
+}
+
+/* Provider hint text */
+#provider-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+}
+
+/* Disabled provider button */
+.provider-btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Modal content in dark mode needs dark text on light backgrounds */

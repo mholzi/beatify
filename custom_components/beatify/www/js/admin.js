@@ -42,6 +42,14 @@ const STORAGE_GAME_SETTINGS = 'beatify_game_settings';
 // Setup sections to hide/show as a group
 const setupSections = ['media-players', 'playlists', 'game-settings', 'admin-actions'];
 
+// Platform display labels for speaker grouping
+const PLATFORM_LABELS = {
+    music_assistant: { icon: '🎵', label: 'Music Assistant', recommended: true },
+    sonos: { icon: '🔊', label: 'Sonos' },
+    alexa_media: { icon: '📢', label: 'Alexa' },
+    alexa: { icon: '📢', label: 'Alexa' },
+};
+
 // Alias BeatifyUtils for convenience
 const utils = window.BeatifyUtils || {};
 
@@ -308,7 +316,24 @@ function updateMediaPlayerSummary(playerName) {
 }
 
 /**
- * Render media players list with radio buttons for selection
+ * Group players by platform for organized display
+ * @param {Array} players
+ * @returns {Object} Grouped players by platform
+ */
+function groupPlayersByPlatform(players) {
+    const groups = {};
+    players.forEach(player => {
+        const platform = player.platform || 'unknown';
+        if (!groups[platform]) {
+            groups[platform] = [];
+        }
+        groups[platform].push(player);
+    });
+    return groups;
+}
+
+/**
+ * Render media players list grouped by platform with capability info
  * Filters out unavailable players
  * @param {Array} players
  */
@@ -321,8 +346,6 @@ function renderMediaPlayers(players) {
     // Reset selection state
     selectedMediaPlayer = null;
 
-    // Note: hasMusicAssistant is now set from backend status API (not based on entity names)
-
     // Filter out unavailable players
     const availablePlayers = (players || []).filter(p => p.state !== 'unavailable');
 
@@ -330,24 +353,34 @@ function renderMediaPlayers(players) {
     const validationMsg = document.getElementById('media-player-validation-msg');
 
     if (totalPlayers === 0) {
-        // AC2: No players configured at all
-        const docsLink = mediaPlayerDocsUrl
-            ? `<a href="${utils.escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Setup Guide</a>`
-            : '';
+        // No compatible players found - show setup message with MA link
         container.innerHTML = `
-            <div class="empty-state">
-                <p class="status-error">No media players found. Configure a media player in Home Assistant.</p>
-                ${docsLink ? `<p style="margin-top: 12px;">${docsLink}</p>` : ''}
+            <div class="no-players-message">
+                <h3>🎵 No Compatible Players Found</h3>
+                <p>Beatify works with Music Assistant, Sonos, and Alexa players.</p>
+                <p><strong>Recommended:</strong> Install Music Assistant for the best experience with any speaker.</p>
+                <div class="button-group">
+                    <a href="https://music-assistant.io/getting-started/"
+                       target="_blank" class="btn btn-secondary">
+                        📖 Music Assistant Setup Guide
+                    </a>
+                    <button onclick="loadStatus()" class="btn btn-primary">
+                        🔄 Refresh
+                    </button>
+                </div>
             </div>
         `;
         if (validationMsg) {
             validationMsg.classList.add('hidden');
         }
+        // Disable start button when no players
+        const startBtn = document.getElementById('start-game');
+        if (startBtn) startBtn.disabled = true;
         return;
     }
 
     if (availablePlayers.length === 0) {
-        // AC3: Players exist but all unavailable
+        // Players exist but all unavailable
         const docsLink = mediaPlayerDocsUrl
             ? `<a href="${utils.escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
             : '';
@@ -363,51 +396,25 @@ function renderMediaPlayers(players) {
         return;
     }
 
-    // AC1: Render only available players with radio buttons
-    container.innerHTML = availablePlayers.map(player => {
-        // Show Music Assistant badge for MA players (enables Apple Music)
-        const massBadge = player.is_mass
-            ? '<span class="mass-badge" title="Music Assistant - Apple Music enabled">Music Assistant</span>'
-            : '';
-        return `
-        <div class="media-player-item list-item is-selectable${player.is_mass ? ' is-mass-player' : ''}">
-            <label class="radio-label">
-                <input type="radio"
-                       class="media-player-radio"
-                       name="media-player"
-                       data-entity-id="${utils.escapeHtml(player.entity_id)}"
-                       data-state="${utils.escapeHtml(player.state)}"
-                       data-is-mass="${player.is_mass ? 'true' : 'false'}">
-                <span class="player-name">${utils.escapeHtml(player.friendly_name)}${massBadge}</span>
-            </label>
-            <span class="meta">
-                <span class="state-dot state-${utils.escapeHtml(player.state)}"></span>
-                ${utils.escapeHtml(player.state)}
-            </span>
-        </div>
-    `;
-    }).join('');
+    // Group players by platform
+    const grouped = groupPlayersByPlatform(availablePlayers);
 
-    // Attach event listeners to radio buttons
-    container.querySelectorAll('.media-player-radio').forEach(radio => {
-        radio.addEventListener('change', function() {
-            handleMediaPlayerSelect(this);
-        });
-    });
+    // Render grouped players
+    let html = '';
+    for (const [platform, platformPlayers] of Object.entries(grouped)) {
+        const info = PLATFORM_LABELS[platform] || { icon: '🔈', label: platform };
+        const recommended = info.recommended ? ' <span class="badge-recommended">Recommended</span>' : '';
 
-    // Make entire row clickable (for hidden input UX)
-    container.querySelectorAll('.media-player-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Don't double-trigger if clicking on the radio or within the label
-            // (label clicks already toggle the radio via native browser behavior)
-            if (e.target.classList.contains('media-player-radio') || e.target.closest('.radio-label')) return;
-            const radio = item.querySelector('.media-player-radio');
-            if (radio && !radio.checked) {
-                radio.checked = true;
-                handleMediaPlayerSelect(radio);
-            }
-        });
-    });
+        html += `
+            <div class="player-group">
+                <h4 class="player-group-header">${info.icon} ${info.label}${recommended}</h4>
+                ${platformPlayers.map(player => renderPlayerItem(player)).join('')}
+            </div>
+        `;
+    }
+
+    container.innerHTML = html;
+    attachPlayerSelectionHandlers();
 
     // Try to auto-select last used player from localStorage
     const lastPlayerId = localStorage.getItem(STORAGE_LAST_PLAYER);
@@ -428,16 +435,88 @@ function renderMediaPlayers(players) {
 }
 
 /**
+ * Render a single player item with capability data attributes
+ * @param {Object} player - Player object from backend
+ * @returns {string} HTML string
+ */
+function renderPlayerItem(player) {
+    const caveat = player.caveat ? `<div class="player-caveat">${utils.escapeHtml(player.caveat)}</div>` : '';
+
+    return `
+        <div class="media-player-item list-item is-selectable"
+             data-entity-id="${utils.escapeHtml(player.entity_id)}"
+             data-platform="${utils.escapeHtml(player.platform)}"
+             data-supports-spotify="${player.supports_spotify}"
+             data-supports-apple-music="${player.supports_apple_music}">
+            <label class="radio-label">
+                <input type="radio"
+                       class="media-player-radio"
+                       name="media-player"
+                       data-entity-id="${utils.escapeHtml(player.entity_id)}"
+                       data-state="${utils.escapeHtml(player.state)}"
+                       data-platform="${utils.escapeHtml(player.platform)}"
+                       data-supports-spotify="${player.supports_spotify}"
+                       data-supports-apple-music="${player.supports_apple_music}">
+                <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
+            </label>
+            <span class="meta">
+                <span class="state-dot state-${utils.escapeHtml(player.state)}"></span>
+                ${utils.escapeHtml(player.state)}
+            </span>
+            ${caveat}
+        </div>
+    `;
+}
+
+/**
+ * Attach event handlers to player selection elements
+ */
+function attachPlayerSelectionHandlers() {
+    const container = document.getElementById('media-players-list');
+    if (!container) return;
+
+    // Attach event listeners to radio buttons
+    container.querySelectorAll('.media-player-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+            handleMediaPlayerSelect(this);
+        });
+    });
+
+    // Make entire row clickable (for hidden input UX)
+    container.querySelectorAll('.media-player-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Don't double-trigger if clicking on the radio or within the label
+            if (e.target.classList.contains('media-player-radio') || e.target.closest('.radio-label')) return;
+            const radio = item.querySelector('.media-player-radio');
+            if (radio && !radio.checked) {
+                radio.checked = true;
+                handleMediaPlayerSelect(radio);
+            }
+        });
+    });
+}
+
+/**
  * Handle media player radio button selection (AC4)
+ * Updates provider options based on platform capabilities.
  * @param {HTMLInputElement} radio
  * @param {boolean} skipSave - If true, don't save to localStorage (used for auto-select)
  */
 function handleMediaPlayerSelect(radio, skipSave = false) {
     const entityId = radio.dataset.entityId;
     const state = radio.dataset.state;
+    const platform = radio.dataset.platform;
+    const supportsSpotify = radio.dataset.supportsSpotify === 'true';
+    const supportsAppleMusic = radio.dataset.supportsAppleMusic === 'true';
 
-    // Update module state
-    selectedMediaPlayer = { entityId, state };
+    // Update module state with platform capabilities
+    selectedMediaPlayer = {
+        entityId,
+        state,
+        platform,
+        supportsSpotify,
+        supportsAppleMusic,
+    };
 
     // Update visual selection
     document.querySelectorAll('.media-player-item').forEach(item => {
@@ -447,8 +526,14 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     playerItem.classList.add('is-selected');
 
     // Get player name for summary
-    const playerName = playerItem.querySelector('.player-name')?.textContent?.replace('Music Assistant', '').trim() || entityId;
+    const playerName = playerItem.querySelector('.player-name')?.textContent?.trim() || entityId;
     updateMediaPlayerSummary(playerName);
+
+    // Update provider options based on platform capabilities
+    updateProviderOptions(selectedMediaPlayer);
+
+    // Update warning message
+    updateProviderWarning(selectedMediaPlayer);
 
     // Save to localStorage
     if (!skipSave) {
@@ -460,6 +545,65 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     }
 
     updateStartButtonState();
+}
+
+/**
+ * Update provider button states based on selected player capabilities
+ * @param {Object} player - Selected player with capability flags
+ */
+function updateProviderOptions(player) {
+    const spotifyBtn = document.querySelector('[data-provider="spotify"]');
+    const appleBtn = document.querySelector('[data-provider="apple_music"]');
+
+    if (spotifyBtn) {
+        spotifyBtn.disabled = !player.supportsSpotify;
+        spotifyBtn.classList.toggle('provider-btn--disabled', !player.supportsSpotify);
+    }
+
+    if (appleBtn) {
+        appleBtn.disabled = !player.supportsAppleMusic;
+        appleBtn.classList.toggle('provider-btn--disabled', !player.supportsAppleMusic);
+    }
+
+    // If current selection is now disabled, switch to Spotify
+    if (selectedProvider === 'apple_music' && !player.supportsAppleMusic) {
+        setProvider('spotify');
+    }
+
+    // Show hint for disabled Apple Music
+    const hint = document.getElementById('provider-hint');
+    if (hint) {
+        if (!player.supportsAppleMusic) {
+            hint.textContent = 'Apple Music requires Music Assistant speaker';
+            hint.classList.remove('hidden');
+        } else {
+            hint.classList.add('hidden');
+        }
+    }
+}
+
+/**
+ * Update provider warning based on selected speaker platform
+ * @param {Object} player - Selected player with platform info
+ */
+function updateProviderWarning(player) {
+    const warningEl = document.getElementById('provider-warning');
+    if (!warningEl) return;
+
+    const platformWarnings = {
+        music_assistant: 'Premium account must be configured in Music Assistant',
+        sonos: 'Spotify must be linked in Sonos app',
+        alexa_media: 'Service must be linked in Alexa app',
+        alexa: 'Service must be linked in Alexa app',
+    };
+
+    const warning = platformWarnings[player.platform];
+    if (warning) {
+        warningEl.innerHTML = `<p>⚠️ ${utils.escapeHtml(warning)}</p>`;
+        warningEl.classList.remove('hidden');
+    } else {
+        warningEl.classList.add('hidden');
+    }
 }
 
 /**
