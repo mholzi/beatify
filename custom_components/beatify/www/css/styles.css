@@ -643,11 +643,7 @@ body.theme-dark .btn-secondary span {
     color: inherit;
 }
 
-/* Preserve badge colors in dark mode - don't override with white */
-body.theme-dark .card-section .song-badge,
-body.theme-dark .card-section .song-badge span {
-    color: inherit;
-}
+/* Badge colors are explicitly set per badge type - no dark mode override needed */
 
 /* Inactive selector buttons need dark text on light backgrounds (Story 19.13) */
 body.theme-dark .lang-btn:not(.lang-btn--active),
@@ -4288,6 +4284,7 @@ body.theme-dark .artist-reveal-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xs);
+    width: 100%;
 }
 
 /* Personal Result Card Section */
