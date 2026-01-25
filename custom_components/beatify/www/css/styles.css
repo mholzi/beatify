@@ -7407,30 +7407,36 @@ body.device-tier-low .reveal-skip-hint {
 .request-item {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-surface);
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-surface-raised);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
 }
 
 .request-item-thumbnail {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: var(--radius-sm);
     object-fit: cover;
     flex-shrink: 0;
 }
 
 .request-item-thumbnail-placeholder {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: var(--radius-sm);
-    background: var(--color-surface-raised);
+    background: var(--color-surface);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     flex-shrink: 0;
 }
 
