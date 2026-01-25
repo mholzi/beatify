@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupGameSettings();
 
     // Load saved game settings from localStorage
-    loadSavedSettings();
+    await loadSavedSettings();
 
     await loadStatus();
 });
@@ -178,13 +178,14 @@ function setupCollapsibleSections() {
 function setupGameSettings() {
     // Language chips
     document.querySelectorAll('.chip[data-lang]').forEach(chip => {
-        chip.addEventListener('click', function() {
+        chip.addEventListener('click', async function() {
             const lang = this.dataset.lang;
             document.querySelectorAll('.chip[data-lang]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
             selectedLanguage = lang;
             if (window.BeatifyI18n) {
-                BeatifyI18n.setLanguage(lang);
+                await BeatifyI18n.setLanguage(lang);
+                BeatifyI18n.initPageTranslations();
             }
             updateGameSettingsSummary();
             saveGameSettings();
@@ -242,7 +243,7 @@ function setupGameSettings() {
 /**
  * Load saved settings from localStorage
  */
-function loadSavedSettings() {
+async function loadSavedSettings() {
     try {
         const saved = localStorage.getItem(STORAGE_GAME_SETTINGS);
         if (saved) {
@@ -255,7 +256,8 @@ function loadSavedSettings() {
                     c.classList.toggle('chip--active', c.dataset.lang === settings.language);
                 });
                 if (window.BeatifyI18n) {
-                    BeatifyI18n.setLanguage(settings.language);
+                    await BeatifyI18n.setLanguage(settings.language);
+                    // Note: initPageTranslations called by DOMContentLoaded after loadSavedSettings
                 }
             }
 
