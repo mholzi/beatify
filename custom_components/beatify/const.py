@@ -119,8 +119,10 @@ SUPPORTED_PLATFORMS = ("music_assistant", "sonos", "alexa_media")
 # Multi-provider URI patterns (Story 17.1)
 URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"
 URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"  # Preserved for playlist validation
+URI_PATTERN_YOUTUBE_MUSIC = r"^https://music\.youtube\.com/watch\?v=[a-zA-Z0-9_-]{11}$"
 
 # Provider identifiers (Story 17.1)
 PROVIDER_SPOTIFY = "spotify"
 PROVIDER_APPLE_MUSIC = "apple_music"  # Preserved for future use
+PROVIDER_YOUTUBE_MUSIC = "youtube_music"
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY

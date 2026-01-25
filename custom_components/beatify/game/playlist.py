@@ -15,8 +15,10 @@ from custom_components.beatify.const import (
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
     PROVIDER_SPOTIFY,
+    PROVIDER_YOUTUBE_MUSIC,
     URI_PATTERN_APPLE_MUSIC,
     URI_PATTERN_SPOTIFY,
+    URI_PATTERN_YOUTUBE_MUSIC,
 )
 
 if TYPE_CHECKING:
@@ -302,6 +304,16 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                     f"Song {i + 1}: 'uri_apple_music' invalid (expected applemusic://track/id)"
                 )
 
+        # Check 'uri_youtube_music' field
+        uri_youtube_music = song.get("uri_youtube_music")
+        if isinstance(uri_youtube_music, str) and uri_youtube_music.strip():
+            if re.match(URI_PATTERN_YOUTUBE_MUSIC, uri_youtube_music):
+                has_valid_uri = True
+            else:
+                errors.append(
+                    f"Song {i + 1}: 'uri_youtube_music' invalid (expected https://music.youtube.com/watch?v=...)"
+                )
+
         # Error if no valid URI found
         if not has_valid_uri:
             errors.append(f"Song {i + 1}: no valid URI")
@@ -333,7 +345,7 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
 
     Args:
         song: Song dictionary with uri fields
-        provider: Provider identifier (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+        provider: Provider identifier (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC, or PROVIDER_YOUTUBE_MUSIC)
 
     Returns:
         URI string for the provider, or None if not available
@@ -345,6 +357,9 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
     if provider == PROVIDER_APPLE_MUSIC:
         # For Apple Music, only use uri_apple_music
         return song.get("uri_apple_music") or None
+    if provider == PROVIDER_YOUTUBE_MUSIC:
+        # For YouTube Music, only use uri_youtube_music
+        return song.get("uri_youtube_music") or None
     return None
 
 
@@ -402,6 +417,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             songs = data.get("songs", [])
             spotify_count = sum(1 for s in songs if s.get("uri") or s.get("uri_spotify"))
             apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
+            youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
 
             playlists.append(
                 {
@@ -411,6 +427,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "song_count": len(songs),
                     "spotify_count": spotify_count,
                     "apple_music_count": apple_music_count,
+                    "youtube_music_count": youtube_music_count,
                     "is_valid": is_valid,
                     "errors": errors,
                 }
@@ -424,6 +441,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "song_count": 0,
                     "spotify_count": 0,
                     "apple_music_count": 0,
+                    "youtube_music_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                 }
