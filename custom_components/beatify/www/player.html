@@ -346,14 +346,15 @@
                     </div>
                 </section>
 
-                <!-- All Guesses Card Section (Story 9.10) -->
-                <section class="card-section guesses-section">
+                <!-- Artist Challenge Reveal - Card Section (Story 20.6) -->
+                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
                     <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">👥</span>
-                        <span data-i18n="reveal.allGuesses">All Guesses</span>
+                        <span class="section-icon" aria-hidden="true">🎤</span>
+                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
                     </h2>
-                    <div id="reveal-results-cards" class="reveal-results-grid section-content-padded">
-                        <!-- Populated by JavaScript: shows all player guesses -->
+                    <div class="section-content-padded">
+                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
+                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
                     </div>
                 </section>
 
@@ -368,15 +369,14 @@
                     </div>
                 </section>
 
-                <!-- Artist Challenge Reveal - Card Section (Story 20.6) -->
-                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
+                <!-- All Guesses Card Section (Story 9.10) -->
+                <section class="card-section guesses-section">
                     <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">🎤</span>
-                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
+                        <span class="section-icon" aria-hidden="true">👥</span>
+                        <span data-i18n="reveal.allGuesses">All Guesses</span>
                     </h2>
-                    <div class="section-content-padded">
-                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
-                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
+                    <div id="reveal-results-cards" class="reveal-results-grid section-content-padded">
+                        <!-- Populated by JavaScript: shows all player guesses -->
                     </div>
                 </section>
 
