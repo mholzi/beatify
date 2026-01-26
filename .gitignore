@@ -56,3 +56,4 @@ Thumbs.db
 config/*
 !config/configuration.yaml
 community-post.md
+*.bak
