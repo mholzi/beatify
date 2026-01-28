@@ -1,0 +1,2462 @@
+{
+  "name": "Yacht Rock ⛵ Top 100 Songs",
+  "version": "1.0",
+  "songs": [
+    {
+      "year": 1978,
+      "uri": "spotify:track:4aVuWgvD0X63hcOCnZtNFA",
+      "artist": "The Doobie Brothers",
+      "alt_artists": [
+        "Steely Dan",
+        "Boz Scaggs",
+        "Michael McDonald"
+      ],
+      "title": "What a Fool Believes",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 31,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won two Grammys including Song of the Year. Michael McDonald co-wrote it with Kenny Loggins during a casual jam session.",
+      "fun_fact_de": "Gewann zwei Grammys, darunter Song des Jahres. Michael McDonald schrieb ihn mit Kenny Loggins während einer spontanen Session.",
+      "fun_fact_es": "Ganó dos Grammys incluyendo Canción del Año. Michael McDonald lo coescribió con Kenny Loggins durante una sesión improvisada.",
+      "uri_apple_music": "applemusic://track/198227598",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=htgr3pvBr-I"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:3kETGXBpOCSESrSOEf6P84",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "Rich Girl",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": null,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Hall & Oates' first #1 hit. Despite the title, the song was actually written about a rich ex-boyfriend of Sara Allen.",
+      "fun_fact_de": "Hall & Oates' erster #1 Hit. Trotz des Titels handelt der Song von einem reichen Ex-Freund von Sara Allen.",
+      "fun_fact_es": "El primer #1 de Hall & Oates. A pesar del título, la canción fue escrita sobre un ex novio rico de Sara Allen.",
+      "uri_apple_music": "applemusic://track/198226389",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3CA6X0Zx3lg"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4IT6vDuKprKl6jyVndlY8V",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Jim Messina"
+      ],
+      "title": "This Is It",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Co-written with Michael McDonald. Kenny Loggins wrote it after his father was hospitalized and facing death.",
+      "fun_fact_de": "Mit Michael McDonald geschrieben. Kenny Loggins schrieb es, als sein Vater im Krankenhaus lag und dem Tod gegenüberstand.",
+      "fun_fact_es": "Coescrita con Michael McDonald. Kenny Loggins la escribió cuando su padre estaba hospitalizado enfrentando la muerte.",
+      "uri_apple_music": "applemusic://track/310505616",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8GB9BULxZ8c"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:7yjdTUOY0b8Ywp6GrMtbD1",
+      "artist": "Looking Glass",
+      "alt_artists": [
+        "Player",
+        "Pablo Cruise",
+        "Ambrosia"
+      ],
+      "title": "Brandy (You're a Fine Girl)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 12,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Featured prominently in Guardians of the Galaxy Vol. 2 where it's described as 'the greatest song in the world.'",
+      "fun_fact_de": "Prominent in Guardians of the Galaxy Vol. 2, wo er als 'der größte Song der Welt' beschrieben wird.",
+      "fun_fact_es": "Destacada en Guardianes de la Galaxia Vol. 2 donde se describe como 'la mejor canción del mundo.'",
+      "uri_apple_music": "applemusic://track/197882289",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H7YfhXQ6lrw"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:7cDzJyC95jtGO9zAeZsWOg",
+      "artist": "Earth, Wind & Fire",
+      "alt_artists": [],
+      "title": "September",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 3,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The '21st night of September' has no special meaning - writer Allee Willis just liked how it sounded. Every September 21st is now a social media celebration.",
+      "fun_fact_de": "Die '21. Nacht im September' hat keine besondere Bedeutung - Autorin Allee Willis mochte einfach den Klang. Jeder 21. September ist jetzt ein Social-Media-Fest.",
+      "fun_fact_es": "La 'noche del 21 de septiembre' no tiene significado especial - la escritora Allee Willis solo le gustó cómo sonaba. Cada 21 de septiembre es ahora una celebración en redes sociales.",
+      "uri_apple_music": "applemusic://track/217764626",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YOuhYuZLNYw"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:3qrEG6rQ9Qm72MNWeUKKiU",
+      "artist": "Christopher Cross",
+      "alt_artists": [
+        "Kenny Loggins",
+        "Michael McDonald",
+        "Boz Scaggs"
+      ],
+      "title": "Ride Like the Wind",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 69,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Michael McDonald provides the backing vocals. The song's narrative about an outlaw fleeing to Mexico was unusual for soft rock.",
+      "fun_fact_de": "Michael McDonald singt die Background-Vocals. Die Geschichte über einen Gesetzlosen, der nach Mexiko flieht, war ungewöhnlich für Soft Rock.",
+      "fun_fact_es": "Michael McDonald hace los coros. La narrativa sobre un forajido huyendo a México era inusual para el soft rock.",
+      "uri_apple_music": "applemusic://track/1088536638",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g4GmVuzKWV0"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:37BTh5g05cxBIRYMbw8g2T",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "Rosanna",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 12,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Won the Grammy for Record of the Year. The famous 'Rosanna shuffle' drum pattern by Jeff Porcaro combines half-time shuffle with a Bo Diddley beat.",
+      "fun_fact_de": "Gewann den Grammy für Aufnahme des Jahres. Das berühmte 'Rosanna-Shuffle'-Schlagzeugmuster kombiniert Half-Time-Shuffle mit einem Bo-Diddley-Beat.",
+      "fun_fact_es": "Ganó el Grammy a la Grabación del Año. El famoso patrón de batería 'Rosanna shuffle' combina un shuffle a media velocidad con un ritmo de Bo Diddley.",
+      "uri_apple_music": "applemusic://track/185716601",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qmOLtTGvsbM"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0bRXwKfigvpKZUurwqAlEh",
+      "artist": "Bill Withers",
+      "alt_artists": [
+        "Al Jarreau",
+        "George Benson",
+        "Grover Washington Jr."
+      ],
+      "title": "Lovely Day",
+      "chart_info": {
+        "billboard_peak": 30,
+        "uk_peak": 7,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Features a note held by Bill Withers for 18 seconds - one of the longest notes in pop music history. The song has been sampled over 100 times.",
+      "fun_fact_de": "Bill Withers hält eine Note 18 Sekunden lang - eine der längsten Noten in der Popmusik-Geschichte. Der Song wurde über 100 Mal gesampelt.",
+      "fun_fact_es": "Bill Withers sostiene una nota durante 18 segundos - una de las notas más largas en la historia del pop. La canción ha sido sampleada más de 100 veces.",
+      "uri_apple_music": "applemusic://track/391725492",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bEeaS6fuUoA"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0qRR9d89hIS0MHRkQ0ejxX",
+      "artist": "Player",
+      "alt_artists": [
+        "Looking Glass",
+        "Pablo Cruise",
+        "Ambrosia"
+      ],
+      "title": "Baby Come Back",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 32,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The band Player only had this one major hit, making them the quintessential yacht rock one-hit wonder.",
+      "fun_fact_de": "Die Band Player hatte nur diesen einen großen Hit, was sie zum typischen Yacht-Rock-One-Hit-Wonder macht.",
+      "fun_fact_es": "La banda Player solo tuvo este gran éxito, convirtiéndolos en el típico one-hit wonder del yacht rock.",
+      "uri_apple_music": "applemusic://track/262058983",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AmHE65RAkSY"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:0cO7JEo8deKuQMWpDyjenY",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "Sara Smile",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written about Sara Allen, who was Daryl Hall's longtime girlfriend and also co-wrote many Hall & Oates songs.",
+      "fun_fact_de": "Geschrieben über Sara Allen, die langjährige Freundin von Daryl Hall war und auch viele Hall & Oates Songs mitschrieb.",
+      "fun_fact_es": "Escrita sobre Sara Allen, quien fue la novia de Daryl Hall por mucho tiempo y también coescribió muchas canciones de Hall & Oates.",
+      "uri_apple_music": "applemusic://track/203770231",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rMMXoCuwcOM"
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:7GVUmCP00eSsqc4tzj1sDD",
+      "artist": "Redbone",
+      "alt_artists": [
+        "Three Dog Night",
+        "The Guess Who",
+        "America"
+      ],
+      "title": "Come and Get Your Love",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Experienced a massive revival after being featured in the opening scene of Guardians of the Galaxy (2014).",
+      "fun_fact_de": "Erlebte ein großes Revival, nachdem er in der Eröffnungsszene von Guardians of the Galaxy (2014) verwendet wurde.",
+      "fun_fact_es": "Experimentó un gran resurgimiento después de aparecer en la escena inicial de Guardianes de la Galaxia (2014).",
+      "uri_apple_music": "applemusic://track/1268712504",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BA4rSO-h9Io"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4o6BgsqLIBViaGVbx5rbRk",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "You Make My Dreams (Come True)",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Became a viral sensation decades after release through its use in (500) Days of Summer and countless TikTok videos.",
+      "fun_fact_de": "Wurde Jahrzehnte nach Veröffentlichung durch Verwendung in (500) Days of Summer und unzähligen TikTok-Videos viral.",
+      "fun_fact_es": "Se volvió viral décadas después de su lanzamiento por su uso en (500) Days of Summer y innumerables videos de TikTok.",
+      "uri_apple_music": "applemusic://track/217764773",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EErSKhC0CZs"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:5IMtdHjJ1OtkxbGe4zfUxQ",
+      "artist": "Christopher Cross",
+      "alt_artists": [
+        "Kenny Loggins",
+        "Michael McDonald",
+        "Boz Scaggs"
+      ],
+      "title": "Sailing",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 48,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won three Grammys including Song of the Year. Christopher Cross's soft vocals and nautical theme epitomize the yacht rock sound.",
+      "fun_fact_de": "Gewann drei Grammys, darunter Song des Jahres. Christopher Cross' sanfte Stimme und nautisches Thema verkörpern den Yacht-Rock-Sound.",
+      "fun_fact_es": "Ganó tres Grammys incluyendo Canción del Año. La voz suave de Christopher Cross y el tema náutico epitomizan el sonido yacht rock.",
+      "uri_apple_music": "applemusic://track/1443846163",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fsj2wdFDmLk"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:2r008pcfVYc0zgQvSRqUJE",
+      "artist": "Seals and Crofts",
+      "alt_artists": [
+        "America",
+        "Bread",
+        "Loggins & Messina"
+      ],
+      "title": "Summer Breeze",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Later covered by The Isley Brothers and Type O Negative. Its peaceful imagery made it a summer radio staple for decades.",
+      "fun_fact_de": "Später von The Isley Brothers und Type O Negative gecovert. Die friedliche Bildsprache machte es jahrzehntelang zum Sommer-Radio-Klassiker.",
+      "fun_fact_es": "Posteriormente versionada por The Isley Brothers y Type O Negative. Su imaginería pacífica la convirtió en un clásico de radio veraniega por décadas.",
+      "uri_apple_music": "applemusic://track/265605311",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YdIGp2H3SYU"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:6R9NqD0WX9sJYs6PbA5onu",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "Hold the Line",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 14,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "TOTO's debut single and first hit. The driving keyboard riff was played by Steve Porcaro on a Yamaha CS-80 synthesizer.",
+      "fun_fact_de": "TOTOs Debütsingle und erster Hit. Das treibende Keyboard-Riff wurde von Steve Porcaro auf einem Yamaha CS-80 Synthesizer gespielt.",
+      "fun_fact_es": "El sencillo debut de TOTO y su primer éxito. El riff de teclado fue tocado por Steve Porcaro en un sintetizador Yamaha CS-80.",
+      "uri_apple_music": "applemusic://track/366927101",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a2yY4zXLEnU"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:6JHXiRD1QjMK1N6AQEnL04",
+      "artist": "The Doobie Brothers",
+      "alt_artists": [
+        "Steely Dan",
+        "Boz Scaggs",
+        "Michael McDonald"
+      ],
+      "title": "Minute by Minute",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 47,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The title track from The Doobie Brothers' Grammy-winning album. It marked Michael McDonald's full takeover of the band's sound.",
+      "fun_fact_de": "Der Titeltrack von The Doobie Brothers' Grammy-prämiertem Album. Er markierte Michael McDonalds vollständige Übernahme des Band-Sounds.",
+      "fun_fact_es": "La canción principal del álbum ganador del Grammy de The Doobie Brothers. Marcó la toma completa del sonido de la banda por Michael McDonald.",
+      "uri_apple_music": "applemusic://track/342382936",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k-0IbrKRfmU"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:7qpuECko60EoztznowMWj1",
+      "artist": "Rupert Holmes",
+      "alt_artists": [
+        "Barry Manilow",
+        "Neil Diamond",
+        "Billy Joel"
+      ],
+      "title": "Escape (The Pina Colada Song)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 23,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Based on an actual personal ad Rupert Holmes saw. The twist ending where both partners are cheating on each other was controversial.",
+      "fun_fact_de": "Basiert auf einer echten Kontaktanzeige, die Rupert Holmes sah. Die Wendung, dass beide Partner sich gegenseitig betrügen, war kontrovers.",
+      "fun_fact_es": "Basada en un anuncio personal real que Rupert Holmes vio. El giro final donde ambos se están engañando mutuamente fue controvertido.",
+      "uri_apple_music": "applemusic://track/888837456",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h16DmdQvxB0"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:2374M0fQpWi3dLnB54qaLX",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "Africa",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Became a viral meme in the 2010s and was named 'the best song ever' in multiple internet polls. Weezer's cover went platinum in 2018.",
+      "fun_fact_de": "Wurde in den 2010ern viral und wurde in mehreren Internet-Umfragen zum 'besten Song aller Zeiten' gewählt. Weezers Cover wurde 2018 Platin.",
+      "fun_fact_es": "Se volvió viral en los 2010s y fue nombrada 'la mejor canción de todos los tiempos' en múltiples encuestas de internet. La versión de Weezer fue platino en 2018.",
+      "uri_apple_music": "applemusic://track/185717604",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FTQbiNvZqaY"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:0JNijCVL3ST5DjAQH9gWui",
+      "artist": "Journey",
+      "alt_artists": [
+        "Boston",
+        "Foreigner",
+        "REO Speedwagon"
+      ],
+      "title": "Lights",
+      "chart_info": {
+        "billboard_peak": 68,
+        "uk_peak": null,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Became the unofficial anthem of San Francisco. The Bay Area baseball teams have played it at games since the 1980s.",
+      "fun_fact_de": "Wurde zur inoffiziellen Hymne von San Francisco. Die Bay Area Baseball-Teams spielen es seit den 1980ern bei Spielen.",
+      "fun_fact_es": "Se convirtió en el himno no oficial de San Francisco. Los equipos de béisbol del Bay Area lo tocan en los juegos desde los 1980s.",
+      "uri_apple_music": "applemusic://track/177410519",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ghzEMnexYUg"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:7fu3Tv5rcoGD1PZV7s57WW",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Jim Messina"
+      ],
+      "title": "Heart to Heart",
+      "chart_info": {
+        "billboard_peak": 15,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Kenny Loggins' smooth ballad showcased his ability to shift from uptempo hits to tender love songs within the same album.",
+      "fun_fact_de": "Kenny Loggins' sanfte Ballade zeigte seine Fähigkeit, auf demselben Album von Uptempo-Hits zu zarten Liebesliedern zu wechseln.",
+      "fun_fact_es": "La suave balada de Kenny Loggins mostró su habilidad para cambiar de éxitos uptempo a tiernas canciones de amor en el mismo álbum.",
+      "uri_apple_music": "applemusic://track/1131446775",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gSP_Jqn5eUM"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:6hJhVBOnkchxBsDHbLOBJP",
+      "artist": "Bobby Caldwell",
+      "alt_artists": [
+        "Michael McDonald",
+        "Al Jarreau",
+        "George Benson"
+      ],
+      "title": "What You Won't Do for Love",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Bobby Caldwell was marketed without his photo initially because the label feared white audiences wouldn't accept a black-sounding white singer.",
+      "fun_fact_de": "Bobby Caldwell wurde anfangs ohne Foto vermarktet, da das Label befürchtete, weiße Hörer würden einen weiß aussehenden Sänger mit schwarzem Sound nicht akzeptieren.",
+      "fun_fact_es": "Bobby Caldwell fue promocionado sin su foto inicialmente porque el sello temía que las audiencias blancas no aceptarían a un cantante blanco con sonido negro.",
+      "uri_apple_music": "applemusic://track/1446862138",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OnDu1HHOo78"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:01MXkFA8sL7at6txavDErt",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Jim Messina"
+      ],
+      "title": "Whenever I Call You Friend",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "A duet with Stevie Nicks that became one of the definitive yacht rock collaborations of the late 1970s.",
+      "fun_fact_de": "Ein Duett mit Stevie Nicks, das zu einer der definitiven Yacht-Rock-Kollaborationen der späten 1970er wurde.",
+      "fun_fact_es": "Un dueto con Stevie Nicks que se convirtió en una de las colaboraciones definitivas del yacht rock de finales de los 70.",
+      "uri_apple_music": "applemusic://track/303178223",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ogoIxkPjRts"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:20MxJN12WEqU5eWsuCrwM5",
+      "artist": "Steely Dan",
+      "alt_artists": [
+        "The Doobie Brothers",
+        "TOTO",
+        "Boz Scaggs"
+      ],
+      "title": "Hey Nineteen",
+      "chart_info": {
+        "billboard_peak": 10,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "About an older man dating a woman too young to know Aretha Franklin's music. Features a prominent Fender Rhodes piano part.",
+      "fun_fact_de": "Über einen älteren Mann, der eine Frau datet, die zu jung ist, um Aretha Franklins Musik zu kennen. Mit prominentem Fender Rhodes Piano.",
+      "fun_fact_es": "Sobre un hombre mayor saliendo con una mujer demasiado joven para conocer la música de Aretha Franklin. Presenta un prominente piano Fender Rhodes.",
+      "uri_apple_music": "applemusic://track/177423774",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I-hKBmTAADo"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0N3qcAXZM06zaTKm7JCtIh",
+      "artist": "James Taylor",
+      "alt_artists": [
+        "Carole King",
+        "Cat Stevens",
+        "Jackson Browne"
+      ],
+      "title": "Your Smiling Face",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "James Taylor's upbeat love song stood out from his typically introspective catalog. It was written for his wife at the time.",
+      "fun_fact_de": "James Taylors fröhlicher Liebessong hob sich von seinem typisch introspektiven Katalog ab. Er wurde für seine damalige Frau geschrieben.",
+      "fun_fact_es": "La alegre canción de amor de James Taylor destacó de su catálogo típicamente introspectivo. Fue escrita para su esposa en ese momento.",
+      "uri_apple_music": "applemusic://track/304781315",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xQUnN-fZsHM"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:5gOd6zDC8vhlYjqbQdJVWP",
+      "artist": "Fleetwood Mac",
+      "alt_artists": [
+        "Heart",
+        "Stevie Nicks",
+        "Eagles"
+      ],
+      "title": "Everywhere",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 4,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "One of Fleetwood Mac's most romantic songs from their late-80s comeback. Written by Christine McVie about her ex-husband.",
+      "fun_fact_de": "Einer der romantischsten Songs von Fleetwood Macs spätem 80er-Comeback. Von Christine McVie über ihren Ex-Mann geschrieben.",
+      "fun_fact_es": "Una de las canciones más románticas del regreso de Fleetwood Mac en los 80 tardíos. Escrita por Christine McVie sobre su ex esposo.",
+      "uri_apple_music": "applemusic://track/693606496",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fo6aKnRnBxM"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:5gys5nzVQIYhgHIfiOJYva",
+      "artist": "Steve Perry",
+      "alt_artists": [
+        "Journey",
+        "REO Speedwagon",
+        "Foreigner"
+      ],
+      "title": "Foolish Heart",
+      "chart_info": {
+        "billboard_peak": 18,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Steve Perry's solo career proved he could replicate Journey's success on his own with his powerful tenor voice.",
+      "fun_fact_de": "Steve Perrys Solokarriere bewies, dass er Journeys Erfolg mit seiner kraftvollen Tenorstimme allein replizieren konnte.",
+      "fun_fact_es": "La carrera solista de Steve Perry demostró que podía replicar el éxito de Journey por su cuenta con su poderosa voz de tenor.",
+      "uri_apple_music": "applemusic://track/447759255",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t7Csc6l4QLs"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:2BY7ALEWdloFHgQZG6VMLA",
+      "artist": "REO Speedwagon",
+      "alt_artists": [
+        "Journey",
+        "Styx",
+        "Foreigner"
+      ],
+      "title": "Can't Fight This Feeling",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 16,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "REO Speedwagon's biggest hit was written by Kevin Cronin in his basement over the course of four years before the band recorded it.",
+      "fun_fact_de": "REO Speedwagons größter Hit wurde von Kevin Cronin in seinem Keller über vier Jahre hinweg geschrieben, bevor die Band ihn aufnahm.",
+      "fun_fact_es": "El mayor éxito de REO Speedwagon fue escrito por Kevin Cronin en su sótano durante cuatro años antes de que la banda lo grabara.",
+      "uri_apple_music": "applemusic://track/388158216",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ciW_0h34cxE"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:4hqMOeGFInc2GQpwPJVBFI",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "Georgy Porgy",
+      "chart_info": {
+        "billboard_peak": 48,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Features Cheryl Lynn on vocals. The song's complex jazz-fusion arrangement shows TOTO's exceptional musicianship.",
+      "fun_fact_de": "Mit Cheryl Lynn als Sängerin. Das komplexe Jazz-Fusion-Arrangement zeigt TOTOs außergewöhnliche Musikalität.",
+      "fun_fact_es": "Presenta a Cheryl Lynn en las voces. El complejo arreglo de jazz-fusión muestra la excepcional musicalidad de TOTO.",
+      "uri_apple_music": "applemusic://track/405600235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NmRh69YyKnA"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:6gAhuDvn8Ef6P710UMze9W",
+      "artist": "Silver",
+      "alt_artists": [],
+      "title": "Wham Bam Shang-A-Lang",
+      "chart_info": {
+        "billboard_peak": 16,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Silver's only hit perfectly captures the playful, carefree spirit of mid-70s soft rock before disco took over.",
+      "fun_fact_de": "Silvers einziger Hit fängt perfekt den verspielten, sorglosen Geist des Soft Rock der mittleren 70er ein, bevor Disco übernahm.",
+      "fun_fact_es": "El único éxito de Silver captura perfectamente el espíritu juguetón y despreocupado del soft rock de mediados de los 70 antes de que la disco tomara el control.",
+      "uri_apple_music": "applemusic://track/252949591",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hnBDT14DuNg"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:01UYpHuzHi4eB9PAbDoPY2",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Jim Messina"
+      ],
+      "title": "I Believe In Love",
+      "chart_info": {
+        "billboard_peak": 36,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "An early Kenny Loggins track from his duo days with Jim Messina that hinted at his future yacht rock success.",
+      "fun_fact_de": "Ein früher Kenny Loggins Track aus seiner Duo-Zeit mit Jim Messina, der auf seinen zukünftigen Yacht-Rock-Erfolg hindeutete.",
+      "fun_fact_es": "Una canción temprana de Kenny Loggins de sus días de dúo con Jim Messina que insinuaba su futuro éxito en el yacht rock.",
+      "uri_apple_music": "applemusic://track/303230013",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GQQbjpomexo"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:36nWEcjwsB7u3yKvLJpYhJ",
+      "artist": "Gerry Rafferty",
+      "alt_artists": [
+        "Steely Dan",
+        "Boz Scaggs",
+        "Al Stewart"
+      ],
+      "title": "Right Down the Line",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Gerry Rafferty's follow-up to 'Baker Street' proved he wasn't a one-hit wonder with its equally smooth production.",
+      "fun_fact_de": "Gerry Raffertys Nachfolger zu 'Baker Street' bewies mit seiner ebenso glatten Produktion, dass er kein One-Hit-Wonder war.",
+      "fun_fact_es": "El seguimiento de Gerry Rafferty a 'Baker Street' demostró que no era un one-hit wonder con su producción igualmente suave.",
+      "uri_apple_music": "applemusic://track/762187045",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LJmg3KlmHAY"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:1qjrYozGqc7upUgfN776lZ",
+      "artist": "Billy Joel",
+      "alt_artists": [
+        "Elton John",
+        "Bruce Hornsby",
+        "Bruce Springsteen"
+      ],
+      "title": "My Life",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 12,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Billy Joel's declaration of independence was featured in the TV show Bosom Buddies starring a young Tom Hanks.",
+      "fun_fact_de": "Billy Joels Unabhängigkeitserklärung war in der TV-Show Bosom Buddies mit einem jungen Tom Hanks zu sehen.",
+      "fun_fact_es": "La declaración de independencia de Billy Joel apareció en la serie de TV Bosom Buddies protagonizada por un joven Tom Hanks.",
+      "uri_apple_music": "applemusic://track/273750237",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dYEpFJhuu1E"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:5dFoWIiJ2814hRwMYDcFiU",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "All Out of Love",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 11,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Air Supply's breakthrough hit in America launched a string of soft rock ballads that dominated early 80s radio.",
+      "fun_fact_de": "Air Supplys Durchbruchshit in Amerika startete eine Reihe von Soft-Rock-Balladen, die das Radio der frühen 80er dominierten.",
+      "fun_fact_es": "El éxito de Air Supply en América lanzó una serie de baladas de soft rock que dominaron la radio de principios de los 80.",
+      "uri_apple_music": "applemusic://track/254180909",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=87Q042KlxI4"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:37oLDb3119IdKSIFQmSGRj",
+      "artist": "Grover Washington Jr.",
+      "alt_artists": [
+        "George Benson",
+        "Earl Klugh",
+        "Bob James"
+      ],
+      "title": "Just the Two of Us",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 34,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won a Grammy. Bill Withers' smooth vocals over Grover Washington Jr.'s saxophone created the ultimate sophisticated soul-jazz crossover.",
+      "fun_fact_de": "Gewann einen Grammy. Bill Withers' sanfter Gesang über Grover Washington Jr.s Saxophon schuf den ultimativen Soul-Jazz-Crossover.",
+      "fun_fact_es": "Ganó un Grammy. Las suaves voces de Bill Withers sobre el saxofón de Grover Washington Jr. crearon el máximo crossover de soul-jazz sofisticado.",
+      "uri_apple_music": "applemusic://track/1110557401",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rq-7NgH-hcs"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5HQ639Z3ms3hnZx0KfWnkp",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "Private Eyes",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 32,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The iconic handclap pattern during the chorus was achieved by having the entire studio audience clap together.",
+      "fun_fact_de": "Das ikonische Klatschmuster im Refrain wurde erreicht, indem das gesamte Studiopublikum zusammen klatschte.",
+      "fun_fact_es": "El icónico patrón de aplausos en el coro se logró haciendo que toda la audiencia del estudio aplaudiera junta.",
+      "uri_apple_music": "applemusic://track/217749712",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JsntlJZ9h1U"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:7i3xpu7SFWvzhGa9AZyySR",
+      "artist": "Commodores",
+      "alt_artists": [
+        "Earth, Wind & Fire",
+        "Kool & the Gang",
+        "Lionel Richie"
+      ],
+      "title": "Easy",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 9,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written and sung by Lionel Richie while still with the Commodores. One of his first hints at a successful solo career to come.",
+      "fun_fact_de": "Geschrieben und gesungen von Lionel Richie während seiner Zeit bei den Commodores. Einer seiner ersten Hinweise auf eine erfolgreiche Solokarriere.",
+      "fun_fact_es": "Escrita y cantada por Lionel Richie mientras aún estaba con los Commodores. Una de sus primeras señales de una exitosa carrera solista por venir.",
+      "uri_apple_music": "applemusic://track/1648433263",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9QYk1E8zdxU"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:1hQFF33xi8ruavZNyovtUN",
+      "artist": "Billy Joel",
+      "alt_artists": [
+        "Elton John",
+        "Bruce Hornsby",
+        "Bruce Springsteen"
+      ],
+      "title": "Just the Way You Are",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 19,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won Grammy for Record of the Year and Song of the Year. Billy Joel has said he hates performing it because of overexposure.",
+      "fun_fact_de": "Gewann den Grammy für Aufnahme und Song des Jahres. Billy Joel sagt, er hasst es, den Song aufzuführen wegen Überexposition.",
+      "fun_fact_es": "Ganó el Grammy a la Grabación del Año y Canción del Año. Billy Joel ha dicho que odia interpretarla debido a la sobreexposición."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:6Rd36fAvK6klQPYgx3534I",
+      "artist": "Boz Scaggs",
+      "alt_artists": [
+        "Steely Dan",
+        "Michael McDonald",
+        "The Doobie Brothers"
+      ],
+      "title": "Lido Shuffle",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The 'Lido' in the song is a fictional character. Boz Scaggs' silky smooth delivery made it a yacht rock classic.",
+      "fun_fact_de": "Der 'Lido' im Song ist eine fiktive Figur. Boz Scaggs' seidig glatter Vortrag machte ihn zum Yacht-Rock-Klassiker.",
+      "fun_fact_es": "El 'Lido' en la canción es un personaje ficticio. La entrega suave como la seda de Boz Scaggs lo convirtió en un clásico del yacht rock.",
+      "uri_apple_music": "applemusic://track/1656697233",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kA9uaBqvRtA"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:2Xb6wJYGi0QXwURw5WWvI5",
+      "artist": "Little River Band",
+      "alt_artists": [
+        "Air Supply",
+        "Ambrosia",
+        "America"
+      ],
+      "title": "Reminiscing",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Little River Band's biggest hit. The Australian band was surprisingly successful in America during the yacht rock era.",
+      "fun_fact_de": "Little River Bands größter Hit. Die australische Band war überraschend erfolgreich in Amerika während der Yacht-Rock-Ära.",
+      "fun_fact_es": "El mayor éxito de Little River Band. La banda australiana fue sorprendentemente exitosa en América durante la era del yacht rock.",
+      "uri_apple_music": "applemusic://track/693606499",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YzSXSo3dTHU"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:41dDygR3r7e926oGUXfrLt",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "Prince",
+        "Lionel Richie",
+        "Earth, Wind & Fire"
+      ],
+      "title": "The Girl Is Mine",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 8,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Michael Jackson and Paul McCartney's first duet led to them becoming friends before their famous business fallout over the Beatles catalog.",
+      "fun_fact_de": "Das erste Duett von Michael Jackson und Paul McCartney führte zu ihrer Freundschaft, bevor es zum berühmten Streit um den Beatles-Katalog kam.",
+      "fun_fact_es": "El primer dueto de Michael Jackson y Paul McCartney los llevó a ser amigos antes de su famosa disputa comercial sobre el catálogo de los Beatles.",
+      "uri_apple_music": "applemusic://track/273750247",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y380bkHlye8"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:3GGLM9N7B18Hww26bScGDq",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "I Can't Go for That (No Can Do)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Topped both the pop and R&B charts. Michael Jackson later said this song inspired the bass line for 'Billie Jean.'",
+      "fun_fact_de": "Erreichte Platz 1 sowohl in den Pop- als auch R&B-Charts. Michael Jackson sagte später, dieser Song inspirierte die Basslinie für 'Billie Jean.'",
+      "fun_fact_es": "Encabezó tanto las listas de pop como de R&B. Michael Jackson dijo más tarde que esta canción inspiró la línea de bajo de 'Billie Jean.'",
+      "uri_apple_music": "applemusic://track/177423710",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mv7tMnwdT8c"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:5WwqdeavrQrbeAMDxGawse",
+      "artist": "Billy Joel",
+      "alt_artists": [
+        "Elton John",
+        "Bruce Hornsby",
+        "Bruce Springsteen"
+      ],
+      "title": "She's Always a Woman",
+      "chart_info": {
+        "billboard_peak": 17,
+        "uk_peak": 53,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written about Billy Joel's then-wife and manager Elizabeth Weber. The song experienced a UK revival in 2010 after a John Lewis commercial.",
+      "fun_fact_de": "Geschrieben über Billy Joels damalige Frau und Managerin Elizabeth Weber. Der Song erlebte 2010 in UK ein Revival nach einer John Lewis Werbung.",
+      "fun_fact_es": "Escrita sobre la entonces esposa y manager de Billy Joel, Elizabeth Weber. La canción experimentó un resurgimiento en UK en 2010 después de un comercial de John Lewis.",
+      "uri_apple_music": "applemusic://track/200299602",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zpOULjyy-n8"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:4hLk7Bjz1XJWNDiqovvgBW",
+      "artist": "Steve Perry",
+      "alt_artists": [
+        "Journey",
+        "REO Speedwagon",
+        "Foreigner"
+      ],
+      "title": "Oh Sherrie",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 52,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written about Steve Perry's then-girlfriend Sherrie Swafford, who also appeared in the music video. The song was more personal than his Journey work.",
+      "fun_fact_de": "Geschrieben über Steve Perrys damalige Freundin Sherrie Swafford, die auch im Musikvideo erschien. Der Song war persönlicher als seine Journey-Arbeit.",
+      "fun_fact_es": "Escrita sobre la entonces novia de Steve Perry, Sherrie Swafford, quien también apareció en el video musical. La canción fue más personal que su trabajo con Journey.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z9vRBPtXK5w"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:3XJC8vRhbtm3NzHXE1XAta",
+      "artist": "Barbra Streisand",
+      "alt_artists": [
+        "Celine Dion",
+        "Donna Summer",
+        "Barry Gibb"
+      ],
+      "title": "Guilty",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 34,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Barry Gibb wrote and produced this for Barbra Streisand. The album of the same name became the best-selling album by a female artist at the time.",
+      "fun_fact_de": "Barry Gibb schrieb und produzierte dies für Barbra Streisand. Das gleichnamige Album wurde zum meistverkauften Album einer Künstlerin zu dieser Zeit.",
+      "fun_fact_es": "Barry Gibb escribió y produjo esto para Barbra Streisand. El álbum del mismo nombre se convirtió en el álbum más vendido de una artista femenina en ese momento.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y0gyol1Cpc8"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:7LMMvfOjBXsIpvrGjULZKC",
+      "artist": "Earth, Wind & Fire",
+      "alt_artists": [],
+      "title": "After the Love Has Gone",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 4,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won the Grammy for Best R&B Song. Written by David Foster, Jay Graydon, and Bill Champlin, it showcased Earth, Wind & Fire's softer side.",
+      "fun_fact_de": "Gewann den Grammy für den besten R&B-Song. Von David Foster, Jay Graydon und Bill Champlin geschrieben, zeigte es die sanftere Seite von Earth, Wind & Fire.",
+      "fun_fact_es": "Ganó el Grammy a la Mejor Canción R&B. Escrita por David Foster, Jay Graydon y Bill Champlin, mostró el lado más suave de Earth, Wind & Fire.",
+      "uri_apple_music": "applemusic://track/169004832",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tR6cJxEfrSA"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:3mYh6egfMyl0Dek8r9ciK6",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "I'll Be Over You",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "TOTO's smooth ballad featured Michael McDonald on backing vocals, cementing the cross-pollination of yacht rock's top artists.",
+      "fun_fact_de": "TOTOs sanfte Ballade mit Michael McDonald als Background-Sänger festigte die Vernetzung der Top-Künstler des Yacht Rock.",
+      "fun_fact_es": "La suave balada de TOTO presentó a Michael McDonald en coros, cementando la polinización cruzada de los mejores artistas del yacht rock.",
+      "uri_apple_music": "applemusic://track/497752519",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b8kA3zWJcWw"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:6IAh4MjV3GRkvIHrCbUFWY",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "Making Love Out of Nothing at All",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 3,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Jim Steinman, who also wrote 'Total Eclipse of the Heart.' The epic production matches his signature bombastic style.",
+      "fun_fact_de": "Geschrieben von Jim Steinman, der auch 'Total Eclipse of the Heart' schrieb. Die epische Produktion passt zu seinem typischen bombastischen Stil.",
+      "fun_fact_es": "Escrita por Jim Steinman, quien también escribió 'Total Eclipse of the Heart.' La producción épica coincide con su característico estilo bombástico.",
+      "uri_apple_music": "applemusic://track/939730110",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=O9hhpZKlTaU"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:2yBVeksU2EtrPJbTu4ZslK",
+      "artist": "Steely Dan",
+      "alt_artists": [
+        "The Doobie Brothers",
+        "TOTO",
+        "Boz Scaggs"
+      ],
+      "title": "Reelin' In The Years",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Features a famous guitar solo by Elliott Randall that Jimmy Page called his favorite guitar solo of all time.",
+      "fun_fact_de": "Mit einem berühmten Gitarrensolo von Elliott Randall, das Jimmy Page sein Lieblings-Gitarrensolo aller Zeiten nannte.",
+      "fun_fact_es": "Presenta un famoso solo de guitarra de Elliott Randall que Jimmy Page llamó su solo de guitarra favorito de todos los tiempos.",
+      "uri_apple_music": "applemusic://track/1110557400",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZK4_G4ZhvbA"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:6C2nRgaujO84uuHZkaXcZQ",
+      "artist": "Dave Mason",
+      "alt_artists": [
+        "Jackson Browne",
+        "Don Henley",
+        "J.D. Souther"
+      ],
+      "title": "We Just Disagree",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Dave Mason's biggest solo hit. Written by Jim Krueger, it became an FM radio staple about accepting differences in relationships.",
+      "fun_fact_de": "Dave Masons größter Solo-Hit. Von Jim Krueger geschrieben, wurde es ein FM-Radio-Klassiker über das Akzeptieren von Unterschieden in Beziehungen.",
+      "fun_fact_es": "El mayor éxito solista de Dave Mason. Escrita por Jim Krueger, se convirtió en un clásico de radio FM sobre aceptar diferencias en las relaciones.",
+      "uri_apple_music": "applemusic://track/1434887050",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YKp7g0mxHVc"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:60mGckXEG1EzR4VmjYLfEW",
+      "artist": "Boston",
+      "alt_artists": [
+        "Journey",
+        "Foreigner",
+        "Kansas"
+      ],
+      "title": "Let Me Take You Home Tonight",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From Boston's Third Stage album which came after an 8-year hiatus. The band's perfectionism caused significant delays.",
+      "fun_fact_de": "Von Bostons Third Stage Album, das nach einer 8-jährigen Pause kam. Der Perfektionismus der Band verursachte erhebliche Verzögerungen.",
+      "fun_fact_es": "Del álbum Third Stage de Boston que llegó después de una pausa de 8 años. El perfeccionismo de la banda causó retrasos significativos.",
+      "uri_apple_music": "applemusic://track/185861143",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Phh9B1-4EYs"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:5RgFlk1fcClZd0Y4SGYhqH",
+      "artist": "The Pointer Sisters",
+      "alt_artists": [
+        "Donna Summer",
+        "Chaka Khan",
+        "Patti LaBelle"
+      ],
+      "title": "He's so Shy",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Pointer Sisters' crossover hit showed they could succeed in pop as well as R&B, opening doors for their 80s success.",
+      "fun_fact_de": "Der Crossover-Hit der Pointer Sisters zeigte, dass sie in Pop wie auch in R&B erfolgreich sein konnten, was den Weg für ihren 80er-Erfolg ebnete.",
+      "fun_fact_es": "El éxito crossover de The Pointer Sisters demostró que podían tener éxito en pop así como en R&B, abriendo puertas para su éxito en los 80.",
+      "uri_apple_music": "applemusic://track/671200657",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cx3QmqV2pHg"
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:20WC5ZN72x0552U3EwCalR",
+      "artist": "Hues Corporation",
+      "alt_artists": [
+        "KC and The Sunshine Band",
+        "Tavares",
+        "The Trammps"
+      ],
+      "title": "Rock the Boat",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 6,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Hues Corporation's one-hit wonder became a disco classic but its smooth, pre-disco sound fits perfectly with yacht rock too.",
+      "fun_fact_de": "Hues Corporations One-Hit-Wonder wurde ein Disco-Klassiker, aber sein glatter, Pre-Disco-Sound passt auch perfekt zu Yacht Rock.",
+      "fun_fact_es": "El one-hit wonder de Hues Corporation se convirtió en un clásico disco pero su sonido suave pre-disco encaja perfectamente con el yacht rock también.",
+      "uri_apple_music": "applemusic://track/253210381",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=goc5wF50-Xo"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:3BxUMAbmnPHm1zcTcAepSp",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "Prince",
+        "Lionel Richie",
+        "Earth, Wind & Fire"
+      ],
+      "title": "Human Nature",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by TOTO's Steve Porcaro about his daughter asking about human behavior. It's one of Thriller's most sophisticated tracks.",
+      "fun_fact_de": "Geschrieben von TOTOs Steve Porcaro über seine Tochter, die nach menschlichem Verhalten fragte. Einer der anspruchsvollsten Tracks von Thriller.",
+      "fun_fact_es": "Escrita por Steve Porcaro de TOTO sobre su hija preguntando sobre el comportamiento humano. Es una de las canciones más sofisticadas de Thriller.",
+      "uri_apple_music": "applemusic://track/1054525007",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NNjrBUzXDJk"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:7tpaWAbF0FuEqJPUqqu7GH",
+      "artist": "Dobie Gray",
+      "alt_artists": [
+        "Bill Withers",
+        "Al Green",
+        "Marvin Gaye"
+      ],
+      "title": "Drift Away",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Later covered by Uncle Kracker featuring Dobie Gray in 2003, which became an even bigger hit. The original remains a yacht rock essential.",
+      "fun_fact_de": "Später 2003 von Uncle Kracker mit Dobie Gray gecovert, was ein noch größerer Hit wurde. Das Original bleibt ein Yacht-Rock-Essential.",
+      "fun_fact_es": "Posteriormente versionada por Uncle Kracker con Dobie Gray en 2003, que se convirtió en un éxito aún mayor. El original sigue siendo esencial del yacht rock.",
+      "uri_apple_music": "applemusic://track/185798016",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_MLxCgyo0uA"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:15taea6JZLAfG5OX0pzfG6",
+      "artist": "England Dan & John Ford Coley",
+      "alt_artists": [
+        "Seals and Crofts",
+        "America",
+        "Bread"
+      ],
+      "title": "I'd Really Love to See You Tonight",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 26,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "England Dan & John Ford Coley's biggest hit. The lyrics 'I'm not talking 'bout moving in' made it clear this was about casual romance.",
+      "fun_fact_de": "Der größte Hit von England Dan & John Ford Coley. Die Textzeile 'I'm not talking 'bout moving in' stellte klar, dass es um lockere Romantik ging.",
+      "fun_fact_es": "El mayor éxito de England Dan & John Ford Coley. La letra 'I'm not talking 'bout moving in' dejó claro que era sobre romance casual.",
+      "uri_apple_music": "applemusic://track/185716729",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3WlRcAGbkpw"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2NtqZmfRIDkXJ2YvY2Kv1F",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "Lost In Love",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Air Supply's first American hit established their signature sound of soaring harmonies and romantic lyrics.",
+      "fun_fact_de": "Air Supplys erster amerikanischer Hit etablierte ihren typischen Sound mit schwebenden Harmonien und romantischen Texten.",
+      "fun_fact_es": "El primer éxito americano de Air Supply estableció su sonido característico de armonías elevadas y letras románticas.",
+      "uri_apple_music": "applemusic://track/728526020",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HQZBaJAngH8"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:6Dk5fHTvH897XrVzCO64Mx",
+      "artist": "Eric Carmen",
+      "alt_artists": [
+        "Barry Manilow",
+        "Neil Diamond",
+        "Richard Marx"
+      ],
+      "title": "Make Me Lose Control",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Eric Carmen's late comeback hit paid tribute to the sound of the early 60s with its oldies-style production and nostalgic lyrics.",
+      "fun_fact_de": "Eric Carmens spätes Comeback würdigte den Sound der frühen 60er mit seiner Oldies-Produktion und nostalgischen Texten.",
+      "fun_fact_es": "El tardío regreso de Eric Carmen rindió homenaje al sonido de los primeros 60 con su producción estilo oldies y letras nostálgicas.",
+      "uri_apple_music": "applemusic://track/1606064876",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n9DmdAwUbxc"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0z1MCtPlHy0x1g0XojaduR",
+      "artist": "Billy Ocean",
+      "alt_artists": [
+        "Lionel Richie",
+        "Peabo Bryson",
+        "Atlantic Starr"
+      ],
+      "title": "Caribbean Queen",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 6,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Billy Ocean's biggest hit was also released as 'European Queen' and 'African Queen' with slightly different lyrics for different markets.",
+      "fun_fact_de": "Billy Oceans größter Hit wurde auch als 'European Queen' und 'African Queen' mit leicht unterschiedlichen Texten für verschiedene Märkte veröffentlicht.",
+      "fun_fact_es": "El mayor éxito de Billy Ocean también fue lanzado como 'European Queen' y 'African Queen' con letras ligeramente diferentes para diferentes mercados.",
+      "uri_apple_music": "applemusic://track/190448243",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZSsfNlS42Cc"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:1ZhDatT59MAoXRLtQiMMfg",
+      "artist": "REO Speedwagon",
+      "alt_artists": [
+        "Journey",
+        "Styx",
+        "Foreigner"
+      ],
+      "title": "Take It On the Run",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 19,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "REO Speedwagon's Hi Infidelity album spent 15 weeks at #1. This song about suspected infidelity was a radio staple.",
+      "fun_fact_de": "REO Speedwagons Hi Infidelity Album war 15 Wochen auf Platz 1. Dieser Song über vermutete Untreue war ein Radio-Klassiker.",
+      "fun_fact_es": "El álbum Hi Infidelity de REO Speedwagon estuvo 15 semanas en el #1. Esta canción sobre sospecha de infidelidad fue un clásico de radio.",
+      "uri_apple_music": "applemusic://track/323712827",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EqT3xksPjI0"
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:5dXED6MP1v1qghkaniirb1",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "She's Gone",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "An early Hall & Oates song that showed their blue-eyed soul potential before they dominated the 80s charts.",
+      "fun_fact_de": "Ein früher Hall & Oates Song, der ihr Blue-Eyed-Soul-Potenzial zeigte, bevor sie die 80er-Charts dominierten.",
+      "fun_fact_es": "Una canción temprana de Hall & Oates que mostró su potencial de blue-eyed soul antes de dominar las listas de los 80.",
+      "uri_apple_music": "applemusic://track/716036654",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tt4cR9szMS8"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:4cgjA7B4fJBHyB9Ya2bu0t",
+      "artist": "The Pointer Sisters",
+      "alt_artists": [
+        "Donna Summer",
+        "Chaka Khan",
+        "Patti LaBelle"
+      ],
+      "title": "Slow Hand",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 10,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Pointer Sisters' sultry hit was considered quite provocative for 1981 with its suggestive lyrics about taking time in romance.",
+      "fun_fact_de": "Der sinnliche Hit der Pointer Sisters galt 1981 als ziemlich provokant mit seinen anzüglichen Texten über das Sich-Zeit-Nehmen in der Romantik.",
+      "fun_fact_es": "El sensual éxito de The Pointer Sisters fue considerado bastante provocativo para 1981 con sus letras sugestivas sobre tomarse tiempo en el romance.",
+      "uri_apple_music": "applemusic://track/273048790",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ElN_4vUvTPs"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:7dQC53NiYOY9gKg3Qsu2Bs",
+      "artist": "Gerry Rafferty",
+      "alt_artists": [
+        "Steely Dan",
+        "Boz Scaggs",
+        "Al Stewart"
+      ],
+      "title": "Baker Street",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 3,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The iconic saxophone solo was played by Raphael Ravenscroft, though he was reportedly unhappy with his payment for creating such a memorable hook.",
+      "fun_fact_de": "Das ikonische Saxophonsolo wurde von Raphael Ravenscroft gespielt, obwohl er angeblich mit seiner Bezahlung für diesen denkwürdigen Hook unzufrieden war.",
+      "fun_fact_es": "El icónico solo de saxofón fue tocado por Raphael Ravenscroft, aunque supuestamente estaba descontento con su pago por crear un gancho tan memorable.",
+      "uri_apple_music": "applemusic://track/913765102",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JWdZEumNRmI"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:3fvDLsiTHPQNgzuMd3Mpb5",
+      "artist": "Chris Norman & Suzi Quatro",
+      "alt_artists": [
+        "Meat Loaf",
+        "Air Supply",
+        "Bonnie Tyler"
+      ],
+      "title": "Stumblin' In",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 41,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "A duet between Chris Norman of Smokie and Suzi Quatro, it was bigger in America than in either artist's home country.",
+      "fun_fact_de": "Ein Duett zwischen Chris Norman von Smokie und Suzi Quatro, es war in Amerika größer als in den Heimatländern der beiden Künstler.",
+      "fun_fact_es": "Un dueto entre Chris Norman de Smokie y Suzi Quatro, fue más grande en América que en el país de origen de ninguno de los artistas.",
+      "uri_apple_music": "applemusic://track/452398017",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dbk29JZdl5A"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2cJ32oKOM4socjP9DE6jhU",
+      "artist": "George Benson",
+      "alt_artists": [
+        "Grover Washington Jr.",
+        "Al Jarreau",
+        "Earl Klugh"
+      ],
+      "title": "Give Me the Night",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 7,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Produced by Quincy Jones, it helped establish George Benson as a smooth jazz-pop crossover artist rather than just a jazz guitarist.",
+      "fun_fact_de": "Von Quincy Jones produziert, half es George Benson als Smooth-Jazz-Pop-Crossover-Künstler zu etablieren, nicht nur als Jazz-Gitarrist.",
+      "fun_fact_es": "Producida por Quincy Jones, ayudó a establecer a George Benson como artista crossover de smooth jazz-pop en lugar de solo un guitarrista de jazz.",
+      "uri_apple_music": "applemusic://track/815691921",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fQlKa1IeZF8"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:3gHFKiDanj4d2rqgHlRFFc",
+      "artist": "Michael McDonald",
+      "alt_artists": [
+        "Kenny Loggins",
+        "Christopher Cross",
+        "Boz Scaggs"
+      ],
+      "title": "I Keep Forgettin'",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Michael McDonald's solo hit was later famously sampled by Warren G for 'Regulate,' introducing it to a new generation.",
+      "fun_fact_de": "Michael McDonalds Solo-Hit wurde später berühmt von Warren G für 'Regulate' gesampelt, was ihn einer neuen Generation vorstellte.",
+      "fun_fact_es": "El éxito solista de Michael McDonald fue posteriormente sampleado por Warren G para 'Regulate,' introduciéndolo a una nueva generación.",
+      "uri_apple_music": "applemusic://track/107635516",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CU6ap2njSTY"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:2Pzhx26KqgTTKnko0uC7F7",
+      "artist": "Boz Scaggs",
+      "alt_artists": [
+        "Steely Dan",
+        "Michael McDonald",
+        "The Doobie Brothers"
+      ],
+      "title": "Lowdown",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 28,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won Grammy for Best R&B Song. Boz Scaggs' sophisticated blend of rock, R&B, and jazz defined the yacht rock sound.",
+      "fun_fact_de": "Gewann den Grammy für den besten R&B-Song. Boz Scaggs' anspruchsvolle Mischung aus Rock, R&B und Jazz definierte den Yacht-Rock-Sound.",
+      "fun_fact_es": "Ganó el Grammy a la Mejor Canción R&B. La sofisticada mezcla de rock, R&B y jazz de Boz Scaggs definió el sonido del yacht rock.",
+      "uri_apple_music": "applemusic://track/276654081",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0AbvnTgGH8s"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:09bRmFRViBORKQ2miwp04P",
+      "artist": "Dr. Hook",
+      "alt_artists": [
+        "Looking Glass",
+        "Rupert Holmes",
+        "Jim Croce"
+      ],
+      "title": "Sylvia's Mother",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 2,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Dr. Hook's narrative song about being blocked from speaking to an ex-girlfriend was based on a true story by writer Shel Silverstein.",
+      "fun_fact_de": "Dr. Hooks erzählender Song über das Blockiert-Werden beim Versuch, mit einer Ex-Freundin zu sprechen, basierte auf einer wahren Geschichte von Autor Shel Silverstein.",
+      "fun_fact_es": "La canción narrativa de Dr. Hook sobre ser bloqueado de hablar con una ex novia se basó en una historia real del escritor Shel Silverstein.",
+      "uri_apple_music": "applemusic://track/303178217",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BRx58DgOxeg"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:62GYoGszQfROZswLee6W3O",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "Lonely Is the Night",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Air Supply's run of soft rock hits in the early 80s made them one of the most reliable hitmakers of the era.",
+      "fun_fact_de": "Air Supplys Serie von Soft-Rock-Hits in den frühen 80ern machte sie zu einem der zuverlässigsten Hitlieferanten der Ära.",
+      "fun_fact_es": "La racha de éxitos de soft rock de Air Supply a principios de los 80 los convirtió en uno de los hitmakers más confiables de la era.",
+      "uri_apple_music": "applemusic://track/321976389",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FIF7wKJb2iU"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4JEylZNW8SbO4zUyfVrpb7",
+      "artist": "Daryl Hall & John Oates",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Kenny Loggins"
+      ],
+      "title": "Kiss on My List",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 33,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Hall & Oates' first #1 hit of the 80s kicked off their incredible run of chart dominance throughout the decade.",
+      "fun_fact_de": "Hall & Oates' erster #1-Hit der 80er startete ihre unglaubliche Serie von Chart-Dominanz während des Jahrzehnts.",
+      "fun_fact_es": "El primer #1 de Hall & Oates en los 80 inició su increíble racha de dominancia en las listas durante la década.",
+      "uri_apple_music": "applemusic://track/366965787",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9f16Fw_K45s"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4kRMsLX7bJqjIfK44qJ9h6",
+      "artist": "Pages",
+      "alt_artists": [
+        "Airplay",
+        "Ambrosia",
+        "Pablo Cruise"
+      ],
+      "title": "If I Saw You Again",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Pages was a short-lived but influential yacht rock band featuring future Mr. Mister members Steve George and Richard Page.",
+      "fun_fact_de": "Pages war eine kurzlebige aber einflussreiche Yacht-Rock-Band mit den späteren Mr. Mister Mitgliedern Steve George und Richard Page.",
+      "fun_fact_es": "Pages fue una banda de yacht rock de corta duración pero influyente con los futuros miembros de Mr. Mister, Steve George y Richard Page.",
+      "uri_apple_music": "applemusic://track/1111749679",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E0sha1XfHxw"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0FmObOnwkUfCrfrmearQnl",
+      "artist": "Electric Light Orchestra",
+      "alt_artists": [
+        "Boston",
+        "Kansas",
+        "Supertramp"
+      ],
+      "title": "Sweet Talkin' Woman",
+      "chart_info": {
+        "billboard_peak": 17,
+        "uk_peak": 6,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "ELO's Jeff Lynne created lush, orchestral pop that bridged The Beatles and yacht rock with sophisticated production techniques.",
+      "fun_fact_de": "ELOs Jeff Lynne schuf üppigen, orchestralen Pop, der die Beatles und Yacht Rock mit anspruchsvollen Produktionstechniken verband.",
+      "fun_fact_es": "Jeff Lynne de ELO creó pop orquestal exuberante que unió a los Beatles y el yacht rock con técnicas de producción sofisticadas.",
+      "uri_apple_music": "applemusic://track/298553996",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4kxpsvW2gAE"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:2LqzuRukwnpeWYLXBtiwmq",
+      "artist": "REO Speedwagon",
+      "alt_artists": [
+        "Journey",
+        "Styx",
+        "Foreigner"
+      ],
+      "title": "Time for Me to Fly",
+      "chart_info": {
+        "billboard_peak": 56,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Though not a big hit initially, it became an FM rock staple and is now one of REO Speedwagon's most beloved songs.",
+      "fun_fact_de": "Obwohl anfangs kein großer Hit, wurde es ein FM-Rock-Klassiker und ist jetzt einer von REO Speedwagons beliebtesten Songs.",
+      "fun_fact_es": "Aunque no fue un gran éxito inicialmente, se convirtió en un clásico del rock FM y ahora es una de las canciones más queridas de REO Speedwagon.",
+      "uri_apple_music": "applemusic://track/1443417575",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kj4-_-iq1A8"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:0YO8KsprTrEUEvJevpI7Na",
+      "artist": "Fleetwood Mac",
+      "alt_artists": [
+        "Heart",
+        "Stevie Nicks",
+        "Eagles"
+      ],
+      "title": "Hold Me",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "A Fleetwood Mac duet between Christine McVie and Lindsey Buckingham from Mirage, their most commercially successful 80s album.",
+      "fun_fact_de": "Ein Fleetwood Mac Duett zwischen Christine McVie und Lindsey Buckingham von Mirage, ihrem kommerziell erfolgreichsten 80er-Album.",
+      "fun_fact_es": "Un dueto de Fleetwood Mac entre Christine McVie y Lindsey Buckingham de Mirage, su álbum más exitoso comercialmente de los 80.",
+      "uri_apple_music": "applemusic://track/192662025",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VS52sEUqxMo"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:6DsR8Dm1isKcBPWOK4nK1L",
+      "artist": "Gino Vannelli",
+      "alt_artists": [
+        "Michael McDonald",
+        "Peter Cetera",
+        "Richard Marx"
+      ],
+      "title": "Living Inside Myself",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Gino Vannelli's smooth falsetto and sophisticated production made him a yacht rock cult favorite despite limited chart success.",
+      "fun_fact_de": "Gino Vannellis sanftes Falsett und anspruchsvolle Produktion machten ihn trotz begrenztem Chart-Erfolg zum Yacht-Rock-Kultfavoriten.",
+      "fun_fact_es": "El suave falsete de Gino Vannelli y su producción sofisticada lo convirtieron en un favorito de culto del yacht rock a pesar del limitado éxito en las listas.",
+      "uri_apple_music": "applemusic://track/913902467",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m6inZCMnpVo"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:1UveyJanND5TdsO87bI32l",
+      "artist": "Melissa Manchester",
+      "alt_artists": [
+        "Carole King",
+        "Carly Simon",
+        "Barbra Streisand"
+      ],
+      "title": "Midnight Blue",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Melissa Manchester's breakthrough hit showcased her powerful voice and Barry Manilow's influence as her early producer.",
+      "fun_fact_de": "Melissa Manchesters Durchbruchshit zeigte ihre kraftvolle Stimme und Barry Manilows Einfluss als ihr früher Produzent.",
+      "fun_fact_es": "El éxito revelación de Melissa Manchester mostró su poderosa voz y la influencia de Barry Manilow como su productor temprano.",
+      "uri_apple_music": "applemusic://track/356893398",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1rmPckNvD3E"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:3cfnGXJ9bmiWvFqEO6ff8B",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Michael McDonald",
+        "Christopher Cross",
+        "Jim Messina"
+      ],
+      "title": "I'm Alright",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From the Caddyshack soundtrack. Kenny Loggins became Hollywood's go-to guy for movie soundtracks after this and 'Footloose.'",
+      "fun_fact_de": "Vom Caddyshack Soundtrack. Kenny Loggins wurde nach diesem und 'Footloose' Hollywoods erste Wahl für Filmsoundtracks.",
+      "fun_fact_es": "Del soundtrack de Caddyshack. Kenny Loggins se convirtió en el elegido de Hollywood para bandas sonoras después de esta y 'Footloose.'",
+      "uri_apple_music": "applemusic://track/523223723",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CUCLNPOjPZw"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:49MHCPzvMLXhRjDantBMVH",
+      "artist": "Todd Rundgren",
+      "alt_artists": [
+        "Hall & Oates",
+        "Peter Gabriel",
+        "Steely Dan"
+      ],
+      "title": "Hello It's Me",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Todd Rundgren's only major hit. He's better known as a producer (Meat Loaf's Bat Out of Hell) than for his own music.",
+      "fun_fact_de": "Todd Rundgrens einziger großer Hit. Er ist besser als Produzent (Meat Loafs Bat Out of Hell) bekannt denn als Musiker.",
+      "fun_fact_es": "El único gran éxito de Todd Rundgren. Es más conocido como productor (Bat Out of Hell de Meat Loaf) que por su propia música.",
+      "uri_apple_music": "applemusic://track/158816077",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HaA3YZ6QdJU"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:5VSAonaAPhhGn0G7hMYwWK",
+      "artist": "Dan Fogelberg",
+      "alt_artists": [
+        "Jackson Browne",
+        "James Taylor",
+        "Don Henley"
+      ],
+      "title": "Missing You",
+      "chart_info": {
+        "billboard_peak": 23,
+        "uk_peak": null,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Dan Fogelberg's soft rock ballad perfectly captured the sensitive singer-songwriter aesthetic of the early 80s.",
+      "fun_fact_de": "Dan Fogelbergs Soft-Rock-Ballade fing perfekt die sensible Singer-Songwriter-Ästhetik der frühen 80er ein.",
+      "fun_fact_es": "La balada de soft rock de Dan Fogelberg capturó perfectamente la estética sensible del cantautor de principios de los 80.",
+      "uri_apple_music": "applemusic://track/150058668",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rMdkw7Jh1o8"
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:1WeoeHh0TSzsApyJ6Q8OOK",
+      "artist": "Carole King",
+      "alt_artists": [
+        "Carly Simon",
+        "Joni Mitchell",
+        "James Taylor"
+      ],
+      "title": "So Far Away",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From Carole King's Tapestry, one of the best-selling albums ever. She wrote it about missing her family while touring.",
+      "fun_fact_de": "Von Carole Kings Tapestry, einem der meistverkauften Alben aller Zeiten. Sie schrieb es darüber, ihre Familie während der Tour zu vermissen.",
+      "fun_fact_es": "De Tapestry de Carole King, uno de los álbumes más vendidos de la historia. La escribió sobre extrañar a su familia mientras estaba de gira.",
+      "uri_apple_music": "applemusic://track/200598090",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r7XhWUDj-Ts"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:1x1XQqhBViz4opcpwc7FVs",
+      "artist": "Atlanta Rhythm Section",
+      "alt_artists": [
+        "38 Special",
+        "Lynyrd Skynyrd",
+        "The Doobie Brothers"
+      ],
+      "title": "Alien",
+      "chart_info": {
+        "billboard_peak": 29,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Atlanta Rhythm Section's smooth Southern rock crossed over into yacht rock territory with its polished production.",
+      "fun_fact_de": "Atlanta Rhythm Sections glatter Southern Rock ging mit seiner polierten Produktion in Yacht-Rock-Territorium über.",
+      "fun_fact_es": "El suave Southern rock de Atlanta Rhythm Section cruzó al territorio del yacht rock con su producción pulida.",
+      "uri_apple_music": "applemusic://track/1650885304",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=91XTZ92zs2w"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:4ZoBC5MhSEzuknIgAkBaoT",
+      "artist": "The Four Seasons",
+      "alt_artists": [
+        "The Beach Boys",
+        "The Temptations",
+        "The Bee Gees"
+      ],
+      "title": "December, 1963 (Oh What a Night!)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 27
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally written about Prohibition's end, Frankie Valli changed it to be about losing virginity. It hit #1 again in a 1994 remix.",
+      "fun_fact_de": "Ursprünglich über das Ende der Prohibition geschrieben, änderte Frankie Valli es zu einem Song über das erste Mal. Es erreichte 1994 als Remix erneut #1.",
+      "fun_fact_es": "Originalmente escrita sobre el fin de la Prohibición, Frankie Valli la cambió para ser sobre perder la virginidad. Llegó al #1 de nuevo en un remix de 1994.",
+      "uri_apple_music": "applemusic://track/158816084",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h3JFEfdK_Ls"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:3AFGpmbpdctoSsLYiu07vl",
+      "artist": "Pablo Cruise",
+      "alt_artists": [
+        "Ambrosia",
+        "Player",
+        "Air Supply"
+      ],
+      "title": "Love Will Find A Way",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Pablo Cruise's biggest hit exemplified the laid-back California yacht rock sound with its optimistic message and smooth harmonies.",
+      "fun_fact_de": "Pablo Cruises größter Hit verkörperte den entspannten kalifornischen Yacht-Rock-Sound mit seiner optimistischen Botschaft und glatten Harmonien.",
+      "fun_fact_es": "El mayor éxito de Pablo Cruise ejemplificó el sonido relajado del yacht rock californiano con su mensaje optimista y armonías suaves.",
+      "uri_apple_music": "applemusic://track/399222355",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H-W3wC0zRWs"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6MfVSA5iKBPHzo6RGARjL0",
+      "artist": "REO Speedwagon",
+      "alt_artists": [
+        "Journey",
+        "Styx",
+        "Foreigner"
+      ],
+      "title": "Live Every Moment",
+      "chart_info": {
+        "billboard_peak": 34,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "REO Speedwagon continued their power ballad formula into the mid-80s with this inspirational track.",
+      "fun_fact_de": "REO Speedwagon setzte ihre Power-Balladen-Formel mit diesem inspirierenden Track bis in die Mitte der 80er fort.",
+      "fun_fact_es": "REO Speedwagon continuó su fórmula de power ballad hasta mediados de los 80 con esta canción inspiradora.",
+      "uri_apple_music": "applemusic://track/913765101",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fKTQVBnXrZs"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:7xyLWH5wZj76nbELj5pZjp",
+      "artist": "America",
+      "alt_artists": [
+        "Seals and Crofts",
+        "Bread",
+        "Loggins & Messina"
+      ],
+      "title": "Sister Golden Hair",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "America's second #1 hit (after 'A Horse with No Name') featured their signature acoustic harmonies and gentle rock sound.",
+      "fun_fact_de": "Americas zweiter #1-Hit (nach 'A Horse with No Name') zeigte ihre typischen akustischen Harmonien und sanften Rock-Sound.",
+      "fun_fact_es": "El segundo #1 de America (después de 'A Horse with No Name') presentó sus características armonías acústicas y sonido de rock suave.",
+      "uri_apple_music": "applemusic://track/747087664",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rJGPXP7i-RM"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:65e06mBpNFN6HAetXnsRYh",
+      "artist": "Paul Simon",
+      "alt_artists": [
+        "Art Garfunkel",
+        "James Taylor",
+        "Billy Joel"
+      ],
+      "title": "Slip Slidin' Away",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 36,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Paul Simon's meditation on life's struggles featured the Oak Ridge Boys on backing vocals, an unusual but effective combination.",
+      "fun_fact_de": "Paul Simons Meditation über Lebenskämpfe hatte die Oak Ridge Boys als Background-Sänger, eine ungewöhnliche aber effektive Kombination.",
+      "fun_fact_es": "La meditación de Paul Simon sobre las luchas de la vida presentó a los Oak Ridge Boys en coros, una combinación inusual pero efectiva.",
+      "uri_apple_music": "applemusic://track/1442972225",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aCsZ3_db_Fk"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4mxkQkZSX1BWgIYh5Q2Jt9",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "I'll Supply the Love",
+      "chart_info": {
+        "billboard_peak": 45,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "TOTO's sophisticated musicianship was always on display. The band members were top LA session musicians before forming the group.",
+      "fun_fact_de": "TOTOs anspruchsvolle Musikalität war immer präsent. Die Bandmitglieder waren Top-LA-Studiomusiker bevor sie die Gruppe gründeten.",
+      "fun_fact_es": "La sofisticada musicalidad de TOTO siempre estuvo en exhibición. Los miembros de la banda eran músicos de sesión de primera en LA antes de formar el grupo.",
+      "uri_apple_music": "applemusic://track/195198574",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S9iTAYYAybI"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:1ko2lVN0vKGUl9zrU0qSlT",
+      "artist": "Herbie Hancock",
+      "alt_artists": [
+        "George Benson",
+        "Quincy Jones",
+        "Grover Washington Jr."
+      ],
+      "title": "Paradise",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Herbie Hancock's smooth jazz crossover helped bridge the gap between jazz fusion and pop, appealing to yacht rock fans.",
+      "fun_fact_de": "Herbie Hancocks Smooth-Jazz-Crossover half, die Lücke zwischen Jazz-Fusion und Pop zu überbrücken und sprach Yacht-Rock-Fans an.",
+      "fun_fact_es": "El crossover de smooth jazz de Herbie Hancock ayudó a cerrar la brecha entre el jazz fusión y el pop, atrayendo a los fans del yacht rock.",
+      "uri_apple_music": "applemusic://track/281139574",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6IO74QV6wHY"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:5jQcJ2st6yHWhUBjoDoZPH",
+      "artist": "Melissa Manchester",
+      "alt_artists": [
+        "Carole King",
+        "Carly Simon",
+        "Barbra Streisand"
+      ],
+      "title": "You Should Hear How She Talks About You",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Won Melissa Manchester the Grammy for Best Female Pop Vocal Performance. A late-career hit that revitalized her popularity.",
+      "fun_fact_de": "Gewann Melissa Manchester den Grammy für die beste weibliche Pop-Gesangsdarbietung. Ein später Karriere-Hit, der ihre Popularität wiederbelebte.",
+      "fun_fact_es": "Le ganó a Melissa Manchester el Grammy a la Mejor Interpretación Vocal Pop Femenina. Un éxito tardío que revitalizó su popularidad.",
+      "uri_apple_music": "applemusic://track/198226436",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EWIgEtkE3GA"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:41sGGCCoHI2GLV9qadX80A",
+      "artist": "Ray Parker Jr.",
+      "alt_artists": [
+        "Michael McDonald",
+        "George Benson",
+        "Jeffrey Osborne"
+      ],
+      "title": "You Can't Change That",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Ray Parker Jr. before his Ghostbusters fame. His smooth R&B style fit perfectly alongside yacht rock on late 70s radio.",
+      "fun_fact_de": "Ray Parker Jr. vor seinem Ghostbusters-Ruhm. Sein glatter R&B-Stil passte perfekt zu Yacht Rock im Radio der späten 70er.",
+      "fun_fact_es": "Ray Parker Jr. antes de su fama de Ghostbusters. Su estilo suave de R&B encajó perfectamente con el yacht rock en la radio de finales de los 70.",
+      "uri_apple_music": "applemusic://track/1458825378",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NmEyGiaqm7k"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:0zb2kpEQMnqJPiLACKMiFM",
+      "artist": "America",
+      "alt_artists": [
+        "Seals and Crofts",
+        "Bread",
+        "Loggins & Messina"
+      ],
+      "title": "You Can Do Magic",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "America's 80s comeback hit was written by Russ Ballard and showed they could adapt to the decade's polished production style.",
+      "fun_fact_de": "Americas 80er-Comeback-Hit wurde von Russ Ballard geschrieben und zeigte, dass sie sich an den polierten Produktionsstil des Jahrzehnts anpassen konnten.",
+      "fun_fact_es": "El éxito de regreso de America en los 80 fue escrito por Russ Ballard y mostró que podían adaptarse al estilo de producción pulido de la década.",
+      "uri_apple_music": "applemusic://track/380625700",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iUODdPpnxcA"
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:5GvWrvLIqoHroq7YvO260M",
+      "artist": "Barry Manilow",
+      "alt_artists": [
+        "Neil Diamond",
+        "Billy Joel",
+        "Elton John"
+      ],
+      "title": "It's a Miracle",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Barry Manilow's inspirational hit showcased his theatrical, Broadway-influenced pop style that made him a soft rock staple.",
+      "fun_fact_de": "Barry Manilows inspirierender Hit zeigte seinen theatralischen, Broadway-beeinflussten Pop-Stil, der ihn zum Soft-Rock-Klassiker machte.",
+      "fun_fact_es": "El éxito inspirador de Barry Manilow mostró su estilo pop teatral influenciado por Broadway que lo convirtió en un clásico del soft rock.",
+      "uri_apple_music": "applemusic://track/358568310",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1Z1z7oipqPc"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:2grjqo0Frpf2okIBiifQKs",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "Just as I Am",
+      "chart_info": {
+        "billboard_peak": 19,
+        "uk_peak": null,
+        "weeks_on_chart": 13
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Air Supply continued their hit streak into the mid-80s, proving the demand for romantic soft rock ballads remained strong.",
+      "fun_fact_de": "Air Supply setzte ihre Hitserie bis Mitte der 80er fort und bewies, dass die Nachfrage nach romantischen Soft-Rock-Balladen stark blieb.",
+      "fun_fact_es": "Air Supply continuó su racha de éxitos hasta mediados de los 80, demostrando que la demanda de baladas románticas de soft rock seguía siendo fuerte.",
+      "uri_apple_music": "applemusic://track/1456623340",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gs069dndIYk"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:7uDvuLWCGRw58zfFH1sRDO",
+      "artist": "Gary Wright",
+      "alt_artists": [
+        "Peter Frampton",
+        "Foreigner",
+        "Boston"
+      ],
+      "title": "Dream Weaver",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Gary Wright's synthesizer-driven hit was ahead of its time. It was used in Wayne's World and introduced the song to a new generation.",
+      "fun_fact_de": "Gary Wrights Synthesizer-getriebener Hit war seiner Zeit voraus. Er wurde in Wayne's World verwendet und stellte den Song einer neuen Generation vor.",
+      "fun_fact_es": "El éxito impulsado por sintetizador de Gary Wright estaba adelantado a su tiempo. Se usó en Wayne's World e introdujo la canción a una nueva generación.",
+      "uri_apple_music": "applemusic://track/1227004981",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IHsR2jDvUhs"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4ogaI0XfmAunA0LyjveMSF",
+      "artist": "Ambrosia",
+      "alt_artists": [
+        "Pablo Cruise",
+        "Player",
+        "Air Supply"
+      ],
+      "title": "Biggest Part of Me",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Ambrosia's smooth sound and intricate harmonies made them yacht rock favorites. David Pack's vocals soar on this track.",
+      "fun_fact_de": "Ambrosias glatter Sound und komplexe Harmonien machten sie zu Yacht-Rock-Favoriten. David Packs Gesang schwebt auf diesem Track.",
+      "fun_fact_es": "El sonido suave de Ambrosia y sus intrincadas armonías los convirtieron en favoritos del yacht rock. Las voces de David Pack se elevan en esta canción.",
+      "uri_apple_music": "applemusic://track/1656697235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9PnXcP8ZI7M"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:1IMz8NXt3d1ApV6WJUFmg2",
+      "artist": "Airplay",
+      "alt_artists": [
+        "Pages",
+        "TOTO",
+        "Chicago"
+      ],
+      "title": "Nothin' You Can Do About It",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Airplay was a short-lived supergroup featuring Jay Graydon and David Foster - two of yacht rock's most important producers.",
+      "fun_fact_de": "Airplay war ein kurzlebiges Supergruppe mit Jay Graydon und David Foster - zwei der wichtigsten Yacht-Rock-Produzenten.",
+      "fun_fact_es": "Airplay fue un supergrupo de corta duración con Jay Graydon y David Foster - dos de los productores más importantes del yacht rock.",
+      "uri_apple_music": "applemusic://track/169641833",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FZHYVYI-9Nk"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:6wP0zUocK5kGLaBYhLbzt5",
+      "artist": "Chuck Mangione",
+      "alt_artists": [
+        "Grover Washington Jr.",
+        "George Benson",
+        "Earl Klugh"
+      ],
+      "title": "Feels So Good",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Chuck Mangione's flugelhorn instrumental crossed over to pop radio, proving that jazz could be commercially successful.",
+      "fun_fact_de": "Chuck Mangiones Flügelhorn-Instrumental schaffte es ins Pop-Radio und bewies, dass Jazz kommerziell erfolgreich sein kann.",
+      "fun_fact_es": "El instrumental de fliscorno de Chuck Mangione cruzó a la radio pop, demostrando que el jazz podía ser comercialmente exitoso.",
+      "uri_apple_music": "applemusic://track/1715946512",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oJ11Vq6N7rk"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:74DrA5fFoGSy4xgkZarZtP",
+      "artist": "Air Supply",
+      "alt_artists": [
+        "Ambrosia",
+        "Pablo Cruise",
+        "Little River Band"
+      ],
+      "title": "Even the Nights Are Better",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 44,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Air Supply's run of seven consecutive top-five hits in America was unmatched by any other soft rock act of the era.",
+      "fun_fact_de": "Air Supplys Serie von sieben aufeinanderfolgenden Top-5-Hits in Amerika wurde von keinem anderen Soft-Rock-Act der Ära erreicht.",
+      "fun_fact_es": "La racha de Air Supply de siete éxitos consecutivos en el top cinco en América no fue igualada por ningún otro acto de soft rock de la era.",
+      "uri_apple_music": "applemusic://track/321974997",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=McZYYe0kAtg"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:DZQd335o3GLCJhkqUox4I",
+      "artist": "Boz Scaggs",
+      "alt_artists": [
+        "Steely Dan",
+        "Michael McDonald",
+        "The Doobie Brothers"
+      ],
+      "title": "Heart of Mine",
+      "chart_info": {
+        "billboard_peak": 35,
+        "uk_peak": null,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Boz Scaggs returned to the charts after a long hiatus, proving the yacht rock sound still had appeal in the late 80s.",
+      "fun_fact_de": "Boz Scaggs kehrte nach einer langen Pause in die Charts zurück und bewies, dass der Yacht-Rock-Sound auch Ende der 80er noch attraktiv war.",
+      "fun_fact_es": "Boz Scaggs regresó a las listas después de una larga pausa, demostrando que el sonido yacht rock aún tenía atractivo a finales de los 80."
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:i8ecOsx4J2Px1maiqzqoG",
+      "artist": "TOTO",
+      "alt_artists": [
+        "Steely Dan",
+        "Chicago",
+        "Journey"
+      ],
+      "title": "Make Believe",
+      "chart_info": {
+        "billboard_peak": 30,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From TOTO's massively successful TOTO IV album which won six Grammys including Album of the Year.",
+      "fun_fact_de": "Von TOTOs enorm erfolgreichem TOTO IV Album, das sechs Grammys gewann, darunter Album des Jahres.",
+      "fun_fact_es": "Del masivamente exitoso álbum TOTO IV de TOTO que ganó seis Grammys incluyendo Álbum del Año."
+    },
+    {
+      "year": 1982,
+      "uri": "",
+      "artist": "Paul Davis",
+      "alt_artists": [
+        "Dan Fogelberg",
+        "James Taylor",
+        "Michael McDonald"
+      ],
+      "title": "Do You Believe In Love",
+      "chart_info": {
+        "billboard_peak": 39,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Paul Davis' smooth voice and production style fit perfectly into the yacht rock mold of the early 80s.",
+      "fun_fact_de": "Paul Davis' sanfte Stimme und Produktionsstil passten perfekt in die Yacht-Rock-Form der frühen 80er.",
+      "fun_fact_es": "La suave voz y estilo de producción de Paul Davis encajaron perfectamente en el molde del yacht rock de principios de los 80."
+    }
+  ]
+}
