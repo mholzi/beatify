@@ -71,6 +71,10 @@
         <!-- Playlists Section - Always expanded -->
         <section id="playlists" class="card-section">
             <h2 class="section-header"><span class="section-icon" aria-hidden="true">🎵</span><span data-i18n="admin.playlists">Playlists</span></h2>
+            <!-- Tag Filter Bar (Issue #70) -->
+            <div id="playlist-filter-bar" class="playlist-filter-bar hidden">
+                <button type="button" class="filter-tag active" data-tag="all" data-i18n="admin.filterAll">All</button>
+            </div>
             <div id="playlists-list" data-i18n="common.loading">Loading...</div>
             <div id="playlist-summary" class="selection-summary hidden">
                 <span data-i18n="admin.selected">Selected:</span> <span id="selected-count">0</span> <span data-i18n="admin.playlistsLabel">playlists,</span>

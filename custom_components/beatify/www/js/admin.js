@@ -7,6 +7,7 @@
 let selectedPlaylists = [];
 let playlistData = [];
 let playlistDocsUrl = '';
+let activeFilterTags = ['all'];  // Tag filter state (Issue #70)
 let selectedMediaPlayer = null;  // { entityId: string, state: string } or null
 let mediaPlayerDocsUrl = '';
 
@@ -703,10 +704,22 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
     selectedPlaylists = [];
     playlistData = playlists || [];
 
+    // Render filter bar (Issue #70)
+    renderPlaylistFilterBar(playlistData);
+
+    // Filter playlists based on active tags (Issue #70)
+    let filteredPlaylists = playlistData;
+    if (!activeFilterTags.includes('all') && activeFilterTags.length > 0) {
+        filteredPlaylists = playlistData.filter(p => {
+            const playlistTags = p.tags || [];
+            return activeFilterTags.some(tag => playlistTags.includes(tag));
+        });
+    }
+
     // Check if we have any valid playlists
     const hasValidPlaylists = playlistData.some(p => p.is_valid);
 
-    if (!playlists || playlists.length === 0) {
+    if (!playlistData || playlistData.length === 0) {
         // AC2: No playlists error with documentation link
         const docsLink = playlistDocsUrl
             ? `<a href="${utils.escapeHtml(playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
@@ -723,7 +736,18 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
         return;
     }
 
-    container.innerHTML = playlists.map(playlist => {
+    // Show message if filter results in no playlists (Issue #70)
+    if (filteredPlaylists.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <p>No playlists match the selected filter.</p>
+                <button type="button" class="btn btn-secondary" onclick="clearPlaylistFilters()">Clear Filters</button>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = filteredPlaylists.map(playlist => {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
@@ -755,9 +779,17 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 coverageHtml = `<span class="${coverageClass}">${providerCount}/${songCount}</span>`;
             }
 
+            // Build tags HTML (Issue #70)
+            const tagsHtml = (playlist.tags && playlist.tags.length > 0)
+                ? `<div class="playlist-tags">${playlist.tags.slice(0, 4).map(tag => 
+                    `<span class="playlist-tag">${utils.escapeHtml(tag)}</span>`
+                  ).join('')}</div>`
+                : '';
+
             return `
                 <div class="playlist-item list-item ${isDisabled ? '' : 'is-selectable'} ${disabledClass}"
-                     data-provider-count="${providerCount}">
+                     data-provider-count="${providerCount}"
+                     data-tags="${utils.escapeHtml((playlist.tags || []).join(','))}">
                     <label class="checkbox-label">
                         <input type="checkbox"
                                class="playlist-checkbox"
@@ -766,6 +798,7 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                                data-provider-count="${providerCount}"
                                ${disabledAttr}>
                         <span class="playlist-name">${utils.escapeHtml(playlist.name)}</span>
+                        ${tagsHtml}
                     </label>
                     <span class="meta">${coverageHtml || utils.escapeHtml(String(songCount))} songs</span>
                 </div>
@@ -855,6 +888,115 @@ function handlePlaylistToggle(checkbox) {
     updateSelectionSummary();
     updateStartButtonState();
 }
+
+/**
+ * Render the playlist filter bar with tag buttons (Issue #70)
+ * @param {Array} playlists
+ */
+function renderPlaylistFilterBar(playlists) {
+    const filterBar = document.getElementById('playlist-filter-bar');
+    if (!filterBar) return;
+
+    // Extract unique tags from all playlists
+    const tagCounts = {};
+    playlists.forEach(p => {
+        (p.tags || []).forEach(tag => {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        });
+    });
+
+    // If no tags found, hide filter bar
+    if (Object.keys(tagCounts).length === 0) {
+        filterBar.classList.add('hidden');
+        return;
+    }
+
+    // Sort tags by count (descending), then alphabetically
+    const sortedTags = Object.entries(tagCounts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([tag]) => tag);
+
+    // Tag display icons
+    const tagIcons = {
+        'german': '🇩🇪',
+        'dutch': '🇳🇱',
+        'international': '🌍',
+        '1970s': '🕰️',
+        '1980s': '🕰️',
+        '1990s': '🕰️',
+        '2000s': '🕰️',
+        'rock': '🎸',
+        'pop': '🎵',
+        'party': '🎉',
+        'movies': '🎬',
+        'soundtrack': '🎬',
+        'ballads': '💔',
+        'classics': '⭐',
+        'eurovision': '🏆',
+        'carnival': '🎭',
+        'schlager': '🎤',
+    };
+
+    // Build filter buttons HTML
+    const allActive = activeFilterTags.includes('all') ? 'active' : '';
+    let html = `<button type="button" class="filter-tag ${allActive}" data-tag="all">All (${playlists.length})</button>`;
+    
+    sortedTags.forEach(tag => {
+        const isActive = activeFilterTags.includes(tag) ? 'active' : '';
+        const icon = tagIcons[tag] || '';
+        const displayTag = icon ? `${icon} ${tag}` : tag;
+        html += `<button type="button" class="filter-tag ${isActive}" data-tag="${utils.escapeHtml(tag)}">${displayTag}</button>`;
+    });
+
+    filterBar.innerHTML = html;
+    filterBar.classList.remove('hidden');
+
+    // Attach event listeners
+    filterBar.querySelectorAll('.filter-tag').forEach(btn => {
+        btn.addEventListener('click', function() {
+            handleFilterTagClick(this.dataset.tag);
+        });
+    });
+}
+
+/**
+ * Handle filter tag button click (Issue #70)
+ * @param {string} tag
+ */
+function handleFilterTagClick(tag) {
+    if (tag === 'all') {
+        activeFilterTags = ['all'];
+    } else {
+        // Remove 'all' if selecting specific tag
+        activeFilterTags = activeFilterTags.filter(t => t !== 'all');
+        
+        // Toggle the clicked tag
+        if (activeFilterTags.includes(tag)) {
+            activeFilterTags = activeFilterTags.filter(t => t !== tag);
+        } else {
+            activeFilterTags.push(tag);
+        }
+        
+        // If no tags selected, default to 'all'
+        if (activeFilterTags.length === 0) {
+            activeFilterTags = ['all'];
+        }
+    }
+
+    // Re-render playlists with new filter
+    renderPlaylists(playlistData, '', true);
+}
+
+/**
+ * Clear all playlist filters (Issue #70)
+ */
+function clearPlaylistFilters() {
+    activeFilterTags = ['all'];
+    renderPlaylists(playlistData, '', true);
+}
+
+// Expose clearPlaylistFilters globally for onclick handler
+window.clearPlaylistFilters = clearPlaylistFilters;
 
 /**
  * Calculate total songs from selected playlists

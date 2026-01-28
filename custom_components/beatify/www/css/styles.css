@@ -1010,6 +1010,69 @@ body.theme-dark .toggle-switch {
     color: var(--color-error);
 }
 
+/* Playlist Filter Bar (Issue #70) */
+.playlist-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.filter-tag:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+}
+
+.filter-tag.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+.filter-tag .filter-count {
+    font-size: 0.6875rem;
+    opacity: 0.8;
+}
+
+/* Playlist Tags Display */
+.playlist-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.playlist-tag {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    color: var(--color-text-tertiary);
+}
+
+body.theme-dark .playlist-tag {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 /* Difficulty Badge (Story 14.1) */
 .difficulty-badge {
     display: inline-block;

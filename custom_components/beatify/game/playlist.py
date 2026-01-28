@@ -424,6 +424,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "path": str(json_file),
                     "filename": json_file.name,
                     "name": data.get("name", json_file.stem),
+                    "tags": data.get("tags", []),  # Issue #70: Tag-based filtering
                     "song_count": len(songs),
                     "spotify_count": spotify_count,
                     "apple_music_count": apple_music_count,
@@ -438,6 +439,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "path": str(json_file),
                     "filename": json_file.name,
                     "name": json_file.stem,
+                    "tags": [],  # Issue #70
                     "song_count": 0,
                     "spotify_count": 0,
                     "apple_music_count": 0,
