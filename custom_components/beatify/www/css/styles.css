@@ -1089,12 +1089,28 @@ body.theme-dark .filter-tag.active {
     font-size: 0.6875rem;
     font-weight: 500;
     color: var(--color-primary-dark, #5b4cad);
+    max-width: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.playlist-tag--more {
+    background: transparent;
+    border-color: var(--color-primary-border, #c9bff2);
+    color: var(--color-text-secondary, #666);
+    font-style: italic;
 }
 
 body.theme-dark .playlist-tag {
     background: rgba(108, 92, 231, 0.2);
     border-color: rgba(108, 92, 231, 0.4);
     color: #b8acf6;
+}
+
+body.theme-dark .playlist-tag--more {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Difficulty Badge (Story 14.1) */

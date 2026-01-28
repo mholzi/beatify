@@ -779,11 +779,11 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 coverageHtml = `<span class="${coverageClass}">${providerCount}/${songCount}</span>`;
             }
 
-            // Build tags HTML (Issue #70)
+            // Build tags HTML (Issue #70) - limit to 3 tags for readability
             const tagsHtml = (playlist.tags && playlist.tags.length > 0)
-                ? `<div class="playlist-tags">${playlist.tags.slice(0, 4).map(tag => 
+                ? `<div class="playlist-tags">${playlist.tags.slice(0, 3).map(tag => 
                     `<span class="playlist-tag">${utils.escapeHtml(tag)}</span>`
-                  ).join('')}</div>`
+                  ).join('')}${playlist.tags.length > 3 ? `<span class="playlist-tag playlist-tag--more">+${playlist.tags.length - 3}</span>` : ''}</div>`
                 : '';
 
             return `
