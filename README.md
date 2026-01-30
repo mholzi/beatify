@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.2.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.4.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -260,10 +260,18 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 780+ songs across several curated playlists:
+Beatify comes with 1,565 songs across 15 curated playlists:
 
-- 🎸 **Greatest Hits of All Time** — 100 chart-toppers across four decades
-- 🎹 **80er Hits** — 100 classic hits from the decade of synths and MTV
+- 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
+- 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
+- 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🎹 **80er Hits** — 125 classic hits from the decade of synths and MTV
+- 🎵 **90er Hits** — 32 essential tracks from the decade
+- 💥 **Eurodance 90s** — 100 party songs from the eurodance era
+- 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
+- ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
+- 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
+- 🎯 **Greatest Hits of All Time** — 100 chart-toppers across four decades
 - 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 🎭 **Kölner Karneval** — 291 German carnival favorites
@@ -433,6 +441,19 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v2.4.0 — Soul, Disco & Latin Expansion 🎵🕺💃
+- **3 new playlists** — Motown & Soul Classics (100 songs), Disco & Funk Classics (76 songs), Fiesta Latina 90s (50 songs)
+- **Data quality pass** — Added artist/title to Movies & Schlager (222 tracks), normalized Karneval chart data
+- **Streaming URI enrichment** — 82 new Apple Music and YouTube Music URIs across Movies and Power Ballads
+- **Enrichment tooling** — New `enrich_playlists.py` script for automated cross-platform URI lookup
+
+### v2.3.0 — Playlist Tags & Filter UI 🏷️
+- **Tag-based filtering** — Filter playlists by decade, genre, region, and mood in the Admin UI
+- **Pure Pop Punk playlist** — 100 essential pop-punk tracks from the 2000s
+- **Yacht Rock playlist** — 100 smooth West Coast classics
+- **Expanded 80er Hits** — Grew from 100 to 125 tracks
+- **New 90er Hits** — 32 essential tracks from the decade
 
 ### v2.2.0 — YouTube Music & Playlist Requests 🎵
 - **YouTube Music support** — Use YouTube Music as your music provider alongside Spotify and Apple Music
