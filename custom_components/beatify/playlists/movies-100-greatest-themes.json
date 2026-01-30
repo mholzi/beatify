@@ -10,6 +10,8 @@
   "songs": [
     {
       "year": 2001,
+      "artist": "Howard Shore",
+      "title": "Prologue: One Ring to Rule Them All",
       "uri": "spotify:track:51THoWfQJgdyj248y8tJPa",
       "alt_artists": [
         "Hans Zimmer",
@@ -37,6 +39,8 @@
     },
     {
       "year": 1962,
+      "artist": "John Barry Orchestra",
+      "title": "James Bond Theme (From \"Dr. No.\")",
       "uri": "spotify:track:7ogsG1i9iqaJoflN3oC9pU",
       "alt_artists": [
         "Hans Zimmer",
@@ -54,6 +58,8 @@
     },
     {
       "year": 1997,
+      "artist": "James Horner",
+      "title": "Rose (From \"Titanic\" Soundtrack)",
       "uri": "spotify:track:2yEt5pA29CwKNXSplwnhgn",
       "alt_artists": [
         "Hans Zimmer",
@@ -81,6 +87,8 @@
     },
     {
       "year": 1977,
+      "artist": "John Williams, London Symphony Orchestra",
+      "title": "Main Title",
       "uri": "spotify:track:3ZSf1TJZyRb0rnWYuUtdX4",
       "alt_artists": [
         "Hans Zimmer",
@@ -113,6 +121,8 @@
     },
     {
       "year": 1977,
+      "artist": "Bee Gees",
+      "title": "Stayin' Alive - From \"Saturday Night Fever\" Soundtrack",
       "uri": "spotify:track:2xSXw1EqGSAKc1e4TPaQvV",
       "alt_artists": [
         "Hans Zimmer",
@@ -143,6 +153,8 @@
     },
     {
       "year": 1966,
+      "artist": "Ennio Morricone",
+      "title": "The Good, The Bad And The Ugly - 2004 Remaster",
       "uri": "spotify:track:1JSIWsJfxOji0FrxFcxdCK",
       "alt_artists": [
         "Hans Zimmer",
@@ -164,6 +176,8 @@
     },
     {
       "year": 1999,
+      "artist": "Thomas Newman",
+      "title": "Dead Already",
       "uri": "spotify:track:5uuZI0l5SMRMAIVzPl1xgU",
       "alt_artists": [
         "Hans Zimmer",
@@ -188,6 +202,8 @@
     },
     {
       "year": 1994,
+      "artist": "Alan Silvestri",
+      "title": "I'm Forrest... Forrest Gump",
       "uri": "spotify:track:1ijrMIqQvZNsnoqGukPzFD",
       "alt_artists": [
         "Hans Zimmer",
@@ -204,6 +220,8 @@
     },
     {
       "year": 1978,
+      "artist": "Frankie Valli",
+      "title": "Grease - From “Grease”",
       "uri": "spotify:track:6X1D6qbVmK48uoOD9nIvVV",
       "alt_artists": [
         "Hans Zimmer",
@@ -224,6 +242,8 @@
     },
     {
       "year": 1971,
+      "artist": "Isaac Hayes",
+      "title": "Theme From \"Shaft\" - Remastered 1991 Album Version",
       "uri": "spotify:track:4aCn63qT3z7BmXHvDcOxSw",
       "alt_artists": [
         "Hans Zimmer",
@@ -254,6 +274,8 @@
     },
     {
       "year": 1963,
+      "artist": "Henry Mancini, Plas Johnson",
+      "title": "The Pink Panther Theme - From \"The Pink Panther\"",
       "uri": "spotify:track:0juPSJLFnLFim7BK6VzTes",
       "alt_artists": [
         "Hans Zimmer",
@@ -280,6 +302,8 @@
     },
     {
       "year": 2002,
+      "artist": "John Powell",
+      "title": "Bourne On Land",
       "uri": "spotify:track:1k9EjYBsOV2G62X0UkNNDh",
       "alt_artists": [
         "Hans Zimmer",
@@ -296,6 +320,8 @@
     },
     {
       "year": 1972,
+      "artist": "Nino Rota, Carlo Savina",
+      "title": "Love Theme From \"The Godfather\"",
       "uri": "spotify:track:39zu6JGd6tvRNsqyK78RLk",
       "alt_artists": [
         "Hans Zimmer",
@@ -314,6 +340,8 @@
     },
     {
       "year": 1966,
+      "artist": "John Barry",
+      "title": "Born Free",
       "uri": "spotify:track:4qPsmhfyr7HvX34TFdV8v2",
       "alt_artists": [
         "Hans Zimmer",
@@ -346,6 +374,8 @@
     },
     {
       "year": 1994,
+      "artist": "Carmen Twillie, Lebo M.",
+      "title": "Circle of Life",
       "uri": "spotify:track:0HU5JnVaKNTWf6GykV9Zn8",
       "alt_artists": [
         "Hans Zimmer",
@@ -375,6 +405,8 @@
     },
     {
       "year": 1976,
+      "artist": "Bill Conti",
+      "title": "Gonna Fly Now - Theme From \"Rocky\"",
       "uri": "spotify:track:7iXYRR70wewzVYzWScm99j",
       "alt_artists": [
         "Hans Zimmer",
@@ -404,6 +436,8 @@
     },
     {
       "year": 1965,
+      "artist": "Maurice Jarre",
+      "title": "Doctor Zhivago (Main Title)",
       "uri": "spotify:track:2ElBzrLXOnTEHbfn9tpzly",
       "alt_artists": [
         "Hans Zimmer",
@@ -436,6 +470,8 @@
     },
     {
       "year": 1960,
+      "artist": "Elmer Bernstein",
+      "title": "Theme (From \"The Magnificent Seven\") - From \"The Magnificent Seven\"",
       "uri": "spotify:track:3ZqZyTQBLCahOaZtq7CSa7",
       "alt_artists": [
         "Hans Zimmer",
@@ -453,6 +489,8 @@
     },
     {
       "year": 1968,
+      "artist": "Neal Hefti",
+      "title": "The Odd Couple Theme - Instrumental Demo",
       "uri": "spotify:track:4uFABlW8ueTNcFGPFjHX0l",
       "alt_artists": [
         "Hans Zimmer",
@@ -472,6 +510,8 @@
     },
     {
       "year": 1983,
+      "artist": "Tangerine Dream",
+      "title": "Love On A Real Train - From 'Risky Business' Original Motion Picture Soundtrack",
       "uri": "spotify:track:0DYCw5AZIX3S11QQUiPiqN",
       "alt_artists": [
         "Hans Zimmer",
@@ -487,6 +527,8 @@
     },
     {
       "year": 1999,
+      "artist": "Thomas Newman",
+      "title": "Coffey on the Mile",
       "uri": "spotify:track:3Qh99Ihcvxw5dfmlDqWkG4",
       "alt_artists": [
         "Hans Zimmer",
@@ -503,6 +545,8 @@
     },
     {
       "year": 2014,
+      "artist": "Hans Zimmer",
+      "title": "Cornfield Chase",
       "uri": "spotify:track:6a8oa7GncjrVYZuUsNVEMu",
       "alt_artists": [
         "Hans Zimmer",
@@ -527,6 +571,8 @@
     },
     {
       "year": 1967,
+      "artist": "Simon & Garfunkel",
+      "title": "The Sound of Silence - Electric Version",
       "uri": "spotify:track:01CunmrRdM33szwPd3PYtm",
       "alt_artists": [
         "Hans Zimmer",
@@ -547,6 +593,8 @@
     },
     {
       "year": 2015,
+      "artist": "Ryuichi Sakamoto",
+      "title": "The Revenant Main Theme",
       "uri": "spotify:track:4QrLwgJt0OGkUFBbQKk0fL",
       "alt_artists": [
         "Hans Zimmer",
@@ -574,6 +622,8 @@
     },
     {
       "year": 2007,
+      "artist": "Alan Silvestri",
+      "title": "The Seduction",
       "uri": "spotify:track:371Dq92OvtqhJ4rs7ZL3Ms",
       "alt_artists": [
         "Hans Zimmer",
@@ -590,6 +640,8 @@
     },
     {
       "year": 1969,
+      "artist": "John Barry",
+      "title": "On Her Majesty's Secret Service - From “On Her Majesty’s Secret Service” Soundtrack / Remastered 2003",
       "uri": "spotify:track:3M0zi8iD2KRzY71XcGFUpE",
       "alt_artists": [
         "Hans Zimmer",
@@ -605,6 +657,8 @@
     },
     {
       "year": 1966,
+      "artist": "Francis Lai",
+      "title": "Un homme et une femme - Instrumental",
       "uri": "spotify:track:062Cv5UXgBHWkMoRScGkt0",
       "alt_artists": [
         "Hans Zimmer",
@@ -631,6 +685,8 @@
     },
     {
       "year": 2010,
+      "artist": "John Powell",
+      "title": "At The Airport",
       "uri": "spotify:track:05GFGFPRmn3hes7IK0YMXr",
       "alt_artists": [
         "Hans Zimmer",
@@ -647,6 +703,8 @@
     },
     {
       "year": 1995,
+      "artist": "Vanessa Williams",
+      "title": "Colors Of The Wind - End Title",
       "uri": "spotify:track:4qjrCkcVbsYlitCqbBkeKe",
       "alt_artists": [
         "Hans Zimmer",
@@ -679,6 +737,8 @@
     },
     {
       "year": 1969,
+      "artist": "B.J. Thomas",
+      "title": "Raindrops Keep Fallin' on My Head - Rerecorded",
       "uri": "spotify:track:1oOnOS4xNZOMpCT0lKTNo2",
       "alt_artists": [
         "Hans Zimmer",
@@ -708,6 +768,8 @@
     },
     {
       "year": 1969,
+      "artist": "Steppenwolf",
+      "title": "The Pusher",
       "uri": "spotify:track:1Qc7zCw6k2KTvSEl4IKSdP",
       "alt_artists": [
         "Hans Zimmer",
@@ -724,6 +786,8 @@
     },
     {
       "year": 1969,
+      "artist": "John Barry",
+      "title": "Midnight Cowboy",
       "uri": "spotify:track:1s7bFZQnyj588iokpvRt0q",
       "alt_artists": [
         "Hans Zimmer",
@@ -740,6 +804,8 @@
     },
     {
       "year": 1975,
+      "artist": "John Williams",
+      "title": "Main Title (Theme From Jaws) - From \"Jaws\"",
       "uri": "spotify:track:55xly70WJY1cx5qsoogaqs",
       "alt_artists": [
         "Hans Zimmer",
@@ -769,6 +835,8 @@
     },
     {
       "year": 1978,
+      "artist": "Giorgio Moroder",
+      "title": "Chase",
       "uri": "spotify:track:3CgonfeyRh23O9F4aKiIbW",
       "alt_artists": [
         "Hans Zimmer",
@@ -796,6 +864,8 @@
     },
     {
       "year": 1987,
+      "artist": "Bill Medley, Jennifer Warnes",
+      "title": "(I've Had) The Time Of My Life - From \"Dirty Dancing\" Soundtrack",
       "uri": "spotify:track:6W7ztLBiRzBN46ZaPAcQ0F",
       "alt_artists": [
         "Hans Zimmer",
@@ -827,6 +897,8 @@
     },
     {
       "year": 1995,
+      "artist": "Randy Newman",
+      "title": "You've Got a Friend in Me",
       "uri": "spotify:track:2stkLJ0JNcXkIRDNF3ld6c",
       "alt_artists": [
         "Hans Zimmer",
@@ -853,6 +925,8 @@
     },
     {
       "year": 1999,
+      "artist": "Don Davis",
+      "title": "Main Title / Trinity Infinity - From \"The Matrix\"",
       "uri": "spotify:track:26Df4BnnrJkCADpEZnbJWI",
       "alt_artists": [
         "Hans Zimmer",
@@ -869,6 +943,8 @@
     },
     {
       "year": 1962,
+      "artist": "The Music Man Motion-Picture Ensemble",
+      "title": "Seventy Six Trombones",
       "uri": "spotify:track:5jF8DA6lAX5xuI3Cz5umsV",
       "alt_artists": [
         "Hans Zimmer",
@@ -885,6 +961,8 @@
     },
     {
       "year": 2012,
+      "artist": "Alan Silvestri",
+      "title": "The Avengers - From \"The Avengers\"/Score",
       "uri": "spotify:track:2exOqFZpfHpQE8E870qz1A",
       "alt_artists": [
         "Hans Zimmer",
@@ -901,6 +979,8 @@
     },
     {
       "year": 1996,
+      "artist": "Lalo Schifrin",
+      "title": "Mission: Impossible",
       "uri": "spotify:track:4Hz1ohf02BI8TWKqh6NnjA",
       "alt_artists": [
         "Hans Zimmer",
@@ -922,6 +1002,8 @@
     },
     {
       "year": 1980,
+      "artist": "Roger Daltrey",
+      "title": "Free Me - From ‘McVicar’ Original Motion Picture Soundtrack",
       "uri": "spotify:track:3oXN6vHFJ61e1kpumu2R8p",
       "alt_artists": [
         "Hans Zimmer",
@@ -939,6 +1021,8 @@
     },
     {
       "year": 1963,
+      "artist": "Elmer Bernstein",
+      "title": "Main Title",
       "uri": "spotify:track:0ikqH1UtlJ1BbMO7lZ6LRN",
       "alt_artists": [
         "Hans Zimmer",
@@ -955,6 +1039,8 @@
     },
     {
       "year": 1990,
+      "artist": "John Williams",
+      "title": "Main Title \"Somewhere in My Memory\" (From \"Home Alone\" Soundtrack)",
       "uri": "spotify:track:1FlxqJmoZWS2q1uRlyZVur",
       "alt_artists": [
         "Hans Zimmer",
@@ -979,6 +1065,8 @@
     },
     {
       "year": 1968,
+      "artist": "Noel Harrison",
+      "title": "Windmills of Your Mind - Remastered Version",
       "uri": "spotify:track:3GpqJYxHJICPUyYOFuPIYG",
       "alt_artists": [
         "Hans Zimmer",
@@ -1005,6 +1093,8 @@
     },
     {
       "year": 1984,
+      "artist": "John Williams",
+      "title": "End Credits",
       "uri": "spotify:track:1ZHgggkMFCD1nWH47C4ZMX",
       "alt_artists": [
         "Hans Zimmer",
@@ -1029,6 +1119,8 @@
     },
     {
       "year": 1994,
+      "artist": "Apache Indian",
+      "title": "Boom Shack-A-Lak",
       "uri": "spotify:track:5rYJbmPYDaC4yJ8toRSrof",
       "alt_artists": [
         "Hans Zimmer",
@@ -1048,6 +1140,8 @@
     },
     {
       "year": 1964,
+      "artist": "Ron Goodwin, Central Band Of The Royal Air Force, Wing Commander Duncan Stubbs",
+      "title": "633 Squadron",
       "uri": "spotify:track:6r47UyVICmDCZxcPp7QYKc",
       "alt_artists": [
         "Hans Zimmer",
@@ -1063,6 +1157,8 @@
     },
     {
       "year": 1965,
+      "artist": "Irwin Kostal, Julie Andrews",
+      "title": "Prelude / The Sound Of Music - Medley",
       "uri": "spotify:track:7ehev4SnmCKwN2Qy5LFX5J",
       "alt_artists": [
         "Hans Zimmer",
@@ -1092,6 +1188,8 @@
     },
     {
       "year": 1966,
+      "artist": "Ennio Morricone",
+      "title": "The Ecstasy Of Gold - 2004 Remaster",
       "uri": "spotify:track:6PrKZUXJPmBiobMN44yR8Y",
       "alt_artists": [
         "Hans Zimmer",
@@ -1108,6 +1206,8 @@
     },
     {
       "year": 1970,
+      "artist": "Johnny Mandel",
+      "title": "Suicide Is Painless - From the 20th Century-Fox film \"\"M*A*S*H\"",
       "uri": "spotify:track:1OEQ25mOQtIAFIIA3WRL4x",
       "alt_artists": [
         "Hans Zimmer",
@@ -1126,6 +1226,8 @@
     },
     {
       "year": 1955,
+      "artist": "Alex North",
+      "title": "Unchained Melody - From \"Unchained\"",
       "uri": "spotify:track:5DwyST8Ekh2C5ayzxRj7eK",
       "alt_artists": [
         "Hans Zimmer",
@@ -1146,6 +1248,8 @@
     },
     {
       "year": 1970,
+      "artist": "Francis Lai",
+      "title": "Theme From Love Story",
       "uri": "spotify:track:5qjVtEglMJOGe3xCCbjN25",
       "alt_artists": [
         "Hans Zimmer",
@@ -1171,10 +1275,13 @@
         "Premio Oscar a la Mejor Banda Sonora Original (1970)",
         "Globo de Oro a la Mejor Banda Sonora Original (1971)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZwPaC67Y0Hk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZwPaC67Y0Hk",
+      "uri_apple_music": "applemusic://track/1467933712"
     },
     {
       "year": 1961,
+      "artist": "Henry Mancini",
+      "title": "Moon River(Original Main Title)",
       "uri": "spotify:track:2HUAjeHWA7FQNbnWhlboOL",
       "alt_artists": [
         "Hans Zimmer",
@@ -1207,6 +1314,8 @@
     },
     {
       "year": 1994,
+      "artist": "Thomas Newman",
+      "title": "Shawshank Redemption",
       "uri": "spotify:track:2ZpEtblzDgwUCuUUs6Ig1D",
       "alt_artists": [
         "Hans Zimmer",
@@ -1231,6 +1340,8 @@
     },
     {
       "year": 2002,
+      "artist": "Emilíana Torrini",
+      "title": "Gollum's Song",
       "uri": "spotify:track:0mQ1btcyqFDvTpaCFs04cR",
       "alt_artists": [
         "Hans Zimmer",
@@ -1247,6 +1358,8 @@
     },
     {
       "year": 2004,
+      "artist": "Danny Elfman",
+      "title": "Spider-Man 2 Main Title",
       "uri": "spotify:track:2v3Ezj7MnwBe3s1VRaUcDt",
       "alt_artists": [
         "Hans Zimmer",
@@ -1263,6 +1376,8 @@
     },
     {
       "year": 1959,
+      "artist": "The Warner Bros Studio Orchestra, Max Steiner (conductor)",
+      "title": "Reunion",
       "uri": "spotify:track:0MZjA80GYK1cCG7b4c5Z9e",
       "alt_artists": [
         "Hans Zimmer",
@@ -1286,10 +1401,13 @@
       ],
       "awards_es": [
         "Premio Grammy a la Grabacion del Ano (1960)"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GTKyFtH0kTE"
     },
     {
       "year": 1973,
+      "artist": "James Brown, The J.B.'s",
+      "title": "The Boss - From \"Black Caesar\" Soundtrack",
       "uri": "spotify:track:0lt7DG1CbXm0LykzRGe61f",
       "alt_artists": [
         "Hans Zimmer",
@@ -1307,6 +1425,8 @@
     },
     {
       "year": 1964,
+      "artist": "Henry Mancini",
+      "title": "A Shot In the Dark",
       "uri": "spotify:track:3xBXEBp9Ci7plPaf5BHurb",
       "alt_artists": [
         "Hans Zimmer",
@@ -1323,6 +1443,8 @@
     },
     {
       "year": 1958,
+      "artist": "Jerome Moross, The City of Prague Philharmonic Orchestra, Nicholas Charles Raine",
+      "title": "Main Title - From \"The Big Country\"",
       "uri": "spotify:track:4h4MhgHNJoMKoLQD1HPfoW",
       "alt_artists": [
         "Hans Zimmer",
@@ -1340,6 +1462,8 @@
     },
     {
       "year": 1949,
+      "artist": "Anton Karas",
+      "title": "The Third Man Theme (The Harry Lime Theme) - Original Version",
       "uri": "spotify:track:7kixCGSpKVDPF7nOqfWQcx",
       "alt_artists": [
         "Hans Zimmer",
@@ -1357,6 +1481,8 @@
     },
     {
       "year": 1976,
+      "artist": "Barbra Streisand",
+      "title": "Evergreen (Love Theme from \"A Star Is Born\")",
       "uri": "spotify:track:2IcqY68BxP1ONPi3ME6aje",
       "alt_artists": [
         "Hans Zimmer",
@@ -1389,6 +1515,8 @@
     },
     {
       "year": 1980,
+      "artist": "Queen",
+      "title": "Flash's Theme - Remastered 2011",
       "uri": "spotify:track:0wX6ASLXuoPOiiZ1IB2PrU",
       "alt_artists": [
         "Hans Zimmer",
@@ -1408,6 +1536,8 @@
     },
     {
       "year": 1985,
+      "artist": "Marvin Hamlisch, A Chorus Line Ensemble, A Chorus Line (Original Broadway Cast), Original Broadway Cast of A Chorus Line, Don Pippin",
+      "title": "One",
       "uri": "spotify:track:32pZPGG7hGs8B04LETw5Nj",
       "alt_artists": [
         "Hans Zimmer",
@@ -1423,6 +1553,8 @@
     },
     {
       "year": 1971,
+      "artist": "Perry Como",
+      "title": "Sunrise, Sunset - From the Broadway Musical, \"Fiddler on the Roof\"",
       "uri": "spotify:track:6pPVElkpDdQvFK6yVbBWoQ",
       "alt_artists": [
         "Hans Zimmer",
@@ -1439,6 +1571,8 @@
     },
     {
       "year": 1969,
+      "artist": "Lee Marvin, Yale Glee Club",
+      "title": "Wand'rin' Star - Live On The Ed Sullivan Show, October 12, 1969",
       "uri": "spotify:track:6GcskNS1XFHz9STyAgoKke",
       "alt_artists": [
         "Hans Zimmer",
@@ -1460,6 +1594,8 @@
     },
     {
       "year": 1980,
+      "artist": "Giorgio Moroder",
+      "title": "Fly Too High - Instrumental",
       "uri": "spotify:track:7hPjSv8XXec6EE2iK3EW19",
       "alt_artists": [
         "Hans Zimmer",
@@ -1476,6 +1612,8 @@
     },
     {
       "year": 1968,
+      "artist": "Lalo Schifrin",
+      "title": "Bullitt (Main Title) [Movie Version]",
       "uri": "spotify:track:5atT644HYnqU5umDSgNNjW",
       "alt_artists": [
         "Hans Zimmer",
@@ -1492,6 +1630,8 @@
     },
     {
       "year": 2019,
+      "artist": "Roy Head, The Traits",
+      "title": "Treat Her Right",
       "uri": "spotify:track:2FvHgHrcwQyqBaq4jg7q78",
       "alt_artists": [
         "Hans Zimmer",
@@ -1508,6 +1648,8 @@
     },
     {
       "year": 1983,
+      "artist": "Ryuichi Sakamoto, David Sylvian",
+      "title": "Forbidden Colors",
       "uri": "spotify:track:5mvOFm7fHLFLyEQtusCmUf",
       "alt_artists": [
         "Hans Zimmer",
@@ -1534,6 +1676,8 @@
     },
     {
       "year": 1978,
+      "artist": "John Williams",
+      "title": "Prelude and Main Title March",
       "uri": "spotify:track:6OhvyTlsBnubNpHZz7wXuT",
       "alt_artists": [
         "Hans Zimmer",
@@ -1559,6 +1703,8 @@
     },
     {
       "year": 1997,
+      "artist": "Danny Elfman",
+      "title": "M.I.B. Main Theme",
       "uri": "spotify:track:13U7h9mUA6R4mdqOrGay3K",
       "alt_artists": [
         "Hans Zimmer",
@@ -1575,6 +1721,8 @@
     },
     {
       "year": 2022,
+      "artist": "Elvis Presley",
+      "title": "Suspicious Minds (Vocal Intro)",
       "uri": "spotify:track:03Kt98EHP1O9YWd7gzCcFU",
       "alt_artists": [
         "Hans Zimmer",
@@ -1591,6 +1739,8 @@
     },
     {
       "year": 1960,
+      "artist": "Alex North",
+      "title": "Spartacus Love Theme - Original Soundtrack Theme",
       "uri": "spotify:track:71Cm3GaS3RswsoGoSCvMIB",
       "alt_artists": [
         "Hans Zimmer",
@@ -1613,6 +1763,8 @@
     },
     {
       "year": 1985,
+      "artist": "Tina Turner",
+      "title": "We Don't Need Another Hero (Thunderdome) - Extended Version",
       "uri": "spotify:track:3WcUmxc4Z1ZcNhkr4VQ2EU",
       "alt_artists": [
         "Hans Zimmer",
@@ -1635,6 +1787,8 @@
     },
     {
       "year": 1964,
+      "artist": "Shirley Bassey",
+      "title": "Goldfinger",
       "uri": "spotify:track:3tQCpnCvozv9iCZiyzIiDJ",
       "alt_artists": [
         "Hans Zimmer",
@@ -1657,6 +1811,8 @@
     },
     {
       "year": 1978,
+      "artist": "John Carpenter",
+      "title": "Halloween Theme - Main Title",
       "uri": "spotify:track:7swocJUCUWTCiRUAU9oerC",
       "alt_artists": [
         "Hans Zimmer",
@@ -1673,6 +1829,8 @@
     },
     {
       "year": 1942,
+      "artist": "Dooley Wilson",
+      "title": "As Time Goes By",
       "uri": "spotify:track:5X0M16GjlZYN1WjPNzerb5",
       "alt_artists": [
         "Hans Zimmer",
@@ -1692,6 +1850,8 @@
     },
     {
       "year": 2012,
+      "artist": "Luis Bacalov, Rocky Roberts",
+      "title": "Django",
       "uri": "spotify:track:008wXvCVu8W8vCbq5VQDlC",
       "alt_artists": [
         "Hans Zimmer",
@@ -1708,6 +1868,8 @@
     },
     {
       "year": 1996,
+      "artist": "Lalo Schifrin",
+      "title": "Danube Incident",
       "uri": "spotify:track:2QqouLGFYMynquwDMYUGk1",
       "alt_artists": [
         "Hans Zimmer",
@@ -1724,6 +1886,8 @@
     },
     {
       "year": 1968,
+      "artist": "Richard Strauss, Berliner Philharmoniker, Karl Böhm",
+      "title": "Also sprach Zarathustra, Op. 30, TrV 176: I. Prelude (Sonnenaufgang)",
       "uri": "spotify:track:6IA8E2Q5ttcpbuahIejO74",
       "alt_artists": [
         "Hans Zimmer",
@@ -1737,10 +1901,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=h5vGJSeJv2Q"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h5vGJSeJv2Q",
+      "uri_apple_music": "applemusic://track/1699692811"
     },
     {
       "year": 1960,
+      "artist": "Ernest Gold",
+      "title": "Theme of Exodus",
       "uri": "spotify:track:53loy20fvPszAfPY8G7ctO",
       "alt_artists": [
         "Hans Zimmer",
@@ -1773,6 +1940,8 @@
     },
     {
       "year": 1999,
+      "artist": "John Williams, London Symphony Orchestra",
+      "title": "Duel of the Fates",
       "uri": "spotify:track:1ghlpxVfPbFH2jenrv9vVw",
       "alt_artists": [
         "Hans Zimmer",
@@ -1791,6 +1960,8 @@
     },
     {
       "year": 1939,
+      "artist": "Max Steiner",
+      "title": "Main Title - Gone With the Wind",
       "uri": "spotify:track:6kucJsz2GR6oN8glzqGdTh",
       "alt_artists": [
         "Hans Zimmer",
@@ -1815,6 +1986,8 @@
     },
     {
       "year": 1986,
+      "artist": "Kenny Loggins",
+      "title": "Danger Zone - From \"Top Gun\" Original Soundtrack",
       "uri": "spotify:track:3hMHG6lx9QHVcfYSUr5PoM",
       "alt_artists": [
         "Hans Zimmer",
@@ -1835,6 +2008,8 @@
     },
     {
       "year": 1965,
+      "artist": "Ennio Morricone",
+      "title": "La resa dei conti (from \"Per qualche dollaro in più\")",
       "uri": "spotify:track:1xMEq3krP8ZUOYtgqVjhUc",
       "alt_artists": [
         "Hans Zimmer",
@@ -1851,6 +2026,8 @@
     },
     {
       "year": 1981,
+      "artist": "Vangelis",
+      "title": "Titles",
       "uri": "spotify:track:36qn2bFfZzUwM6eIv2XOc9",
       "alt_artists": [
         "Hans Zimmer",
@@ -1880,6 +2057,8 @@
     },
     {
       "year": 1984,
+      "artist": "Ray Parker Jr.",
+      "title": "Ghostbusters",
       "uri": "spotify:track:3m0y8qLoznUYi73SUBP8GI",
       "alt_artists": [
         "Hans Zimmer",
@@ -1909,6 +2088,8 @@
     },
     {
       "year": 1973,
+      "artist": "Marvin Hamlisch",
+      "title": "The Entertainer - The Sting/Soundtrack Version/Orchestra Version",
       "uri": "spotify:track:3qq7parQQaohn9N7qKrKtE",
       "alt_artists": [
         "Hans Zimmer",
@@ -1937,6 +2118,8 @@
     },
     {
       "year": 1987,
+      "artist": "a-ha",
+      "title": "The Living Daylights",
       "uri": "spotify:track:4tWe3Fr8HrQPq2iFOpEGZs",
       "alt_artists": [
         "Hans Zimmer",
@@ -1957,6 +2140,8 @@
     },
     {
       "year": 1958,
+      "artist": "Bernard Herrmann",
+      "title": "Prelude And Rooftop",
       "uri": "spotify:track:3XYttnnoOBg9ZnEu98T2Ew",
       "alt_artists": [
         "Hans Zimmer",
@@ -1973,6 +2158,8 @@
     },
     {
       "year": 1967,
+      "artist": "Herb Alpert & The Tijuana Brass",
+      "title": "Casino Royale",
       "uri": "spotify:track:77HqCmyz6AVDF8sP6TE1dk",
       "alt_artists": [
         "Hans Zimmer",
@@ -1992,6 +2179,8 @@
     },
     {
       "year": 1982,
+      "artist": "John Williams, London Symphony Orchestra",
+      "title": "Flying Theme (From \"E.T. the Extra-Terrestrial\")",
       "uri": "spotify:track:64qrAu1kvvu1uLuI8TP5XU",
       "alt_artists": [
         "Hans Zimmer",
@@ -2019,6 +2208,8 @@
     },
     {
       "year": 1991,
+      "artist": "Brad Fiedel",
+      "title": "Main Title Terminator 2 Theme - Remastered 2017",
       "uri": "spotify:track:2Q84nSfFAHtFNwZhAKH0Sa",
       "alt_artists": [
         "Hans Zimmer",
@@ -2035,6 +2226,8 @@
     },
     {
       "year": 1972,
+      "artist": "Eric Weissberg, Steve Mandell",
+      "title": "Dueling Banjos",
       "uri": "spotify:track:4xxn8GDqs7RUwgZTNznXNp",
       "alt_artists": [
         "Hans Zimmer",
@@ -2056,6 +2249,8 @@
     },
     {
       "year": 1976,
+      "artist": "Rose Royce",
+      "title": "Car Wash - Long Version",
       "uri": "spotify:track:2pbWkjtGtjkzBdZ95GFINm",
       "alt_artists": [
         "Hans Zimmer",
@@ -2076,6 +2271,8 @@
     },
     {
       "year": 1952,
+      "artist": "Gene Kelly",
+      "title": "Singin' In The Rain",
       "uri": "spotify:track:5U3MkUWTpzj37A33GboDtv",
       "alt_artists": [
         "Hans Zimmer",
@@ -2092,6 +2289,8 @@
     },
     {
       "year": 2011,
+      "artist": "Movie Soundtrack All Stars",
+      "title": "Immigrant Song [from \"The Girl with the Dragon Tattoo\"]",
       "uri": "spotify:track:6ZdXJxhh72J6WXHCUXqm9R",
       "alt_artists": [
         "Hans Zimmer",
@@ -2114,6 +2313,8 @@
     },
     {
       "year": 1982,
+      "artist": "Ennio Morricone, Gareth Williams",
+      "title": "The Thing - From \"The Thing\"",
       "uri": "spotify:track:3prpCQntkUBMO4AYhHlGZr",
       "alt_artists": [
         "Hans Zimmer",
@@ -2129,6 +2330,8 @@
     },
     {
       "year": 1982,
+      "artist": "Carly Simon",
+      "title": "Why - 12\" Version",
       "uri": "spotify:track:3hI05NM8JnJvQLZMUnRvMa",
       "alt_artists": [
         "Hans Zimmer",
@@ -2146,6 +2349,8 @@
     },
     {
       "year": 1959,
+      "artist": "Bernard Herrmann",
+      "title": "Overture (Main Title)",
       "uri": "spotify:track:56VdcKs9w2fbffoVTr75Pl",
       "alt_artists": [
         "Hans Zimmer",
@@ -2162,6 +2367,8 @@
     },
     {
       "year": 1939,
+      "artist": "Judy Garland",
+      "title": "Over The Rainbow",
       "uri": "spotify:track:568SEFtDjKr7N2PytpA6D5",
       "alt_artists": [
         "Hans Zimmer",
@@ -2191,6 +2398,8 @@
     },
     {
       "year": 1982,
+      "artist": "Giorgio Moroder, David Bowie",
+      "title": "Cat People (Putting Out Fire)",
       "uri": "spotify:track:72OWnDDKTtw3x7tevXHlno",
       "alt_artists": [
         "Hans Zimmer",
@@ -2210,6 +2419,8 @@
     },
     {
       "year": 1968,
+      "artist": "Ennio Morricone",
+      "title": "Once Upon a Time in The West (Main Theme)",
       "uri": "spotify:track:7sEpQIyx0ot2t6PhT7ycTZ",
       "alt_artists": [
         "Hans Zimmer",
@@ -2225,6 +2436,8 @@
     },
     {
       "year": 1979,
+      "artist": "Barry Vorzon",
+      "title": "Theme From \"The Warriors\" - From \"The Warriors\" Soundtrack",
       "uri": "spotify:track:3DRcy1faUJgUNk0eNs7GKU",
       "alt_artists": [
         "Hans Zimmer",
@@ -2240,6 +2453,8 @@
     },
     {
       "year": 1960,
+      "artist": "Bernard Herrmann",
+      "title": "Prelude",
       "uri": "spotify:track:3kOLSO0EZvDZvJh1uX3J5X",
       "alt_artists": [
         "Hans Zimmer",
@@ -2256,6 +2471,8 @@
     },
     {
       "year": 1955,
+      "artist": "Alfred Newman",
+      "title": "Main Title",
       "uri": "spotify:track:57t1OMurdFjc0KvGGZTdNP",
       "alt_artists": [
         "Hans Zimmer",
@@ -2281,6 +2498,8 @@
     },
     {
       "year": 2002,
+      "artist": "John Williams",
+      "title": "Catch Me If You Can - From \"Catch Me If You Can\" Soundtrack",
       "uri": "spotify:track:4x3RvT7x6HpUlhyjeEEJyt",
       "alt_artists": [
         "Hans Zimmer",
@@ -2304,6 +2523,8 @@
     },
     {
       "year": 1973,
+      "artist": "Mike Oldfield",
+      "title": "Tubular Bells - Opening Theme / From \"The Exorcist\"",
       "uri": "spotify:track:2p6cXkUjKUJDHAEgUd9ebz",
       "alt_artists": [
         "Hans Zimmer",
@@ -2335,6 +2556,8 @@
     },
     {
       "year": 1959,
+      "artist": "Miklós Rózsa",
+      "title": "Overture",
       "uri": "spotify:track:7773GyU7RjGy1a76VdycBG",
       "alt_artists": [
         "Hans Zimmer",
@@ -2359,6 +2582,8 @@
     },
     {
       "year": 1992,
+      "artist": "Jerry Goldsmith",
+      "title": "Basic Instinct - Main Theme",
       "uri": "spotify:track:16h5gvgwqJCq0yiI1L7a4A",
       "alt_artists": [
         "Hans Zimmer",
@@ -2374,6 +2599,8 @@
     },
     {
       "year": 1962,
+      "artist": "Maurice Jarre",
+      "title": "Main Title",
       "uri": "spotify:track:59eyertw4NiVpyFsrJHvv0",
       "alt_artists": [
         "Hans Zimmer",
@@ -2401,6 +2628,8 @@
     },
     {
       "year": 1976,
+      "artist": "Bernard Herrmann",
+      "title": "Main Title (from \"Taxi Driver\")",
       "uri": "spotify:track:7xPefqZB6BBosOdfKJh9nJ",
       "alt_artists": [
         "Hans Zimmer",
@@ -2417,6 +2646,8 @@
     },
     {
       "year": 1964,
+      "artist": "Ennio Morricone",
+      "title": "A Fistful of Dollars - Titles",
       "uri": "spotify:track:1PYfwHh6gmZWh4Prf8q5IC",
       "alt_artists": [
         "Hans Zimmer",
@@ -2433,6 +2664,8 @@
     },
     {
       "year": 1971,
+      "artist": "Shirley Bassey",
+      "title": "Diamonds Are Forever",
       "uri": "spotify:track:5d3dX6Nbl0W1jQqY6OzedK",
       "alt_artists": [
         "Hans Zimmer",
@@ -2447,10 +2680,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1443116804"
+      "uri_apple_music": "applemusic://track/1443116804",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jboEolwHIIA"
     },
     {
       "year": 1979,
+      "artist": "Royal Philharmonic Orchestra",
+      "title": "Ride of the Valkries (From Apocalypse Now)",
       "uri": "spotify:track:6cLmq6mfpoIjfnFg4qSxSV",
       "alt_artists": [
         "Hans Zimmer",
@@ -2462,10 +2698,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/927346120"
+      "uri_apple_music": "applemusic://track/927346120",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AEQIe2ejP_s"
     },
     {
       "year": 1962,
+      "artist": "Elmer Bernstein",
+      "title": "Main Title",
       "uri": "spotify:track:0yeKXtz1Ar9Hn5fUzMrmWm",
       "alt_artists": [
         "Hans Zimmer",
@@ -2485,10 +2724,13 @@
       "awards_es": [
         "Nominación al Óscar a la mejor banda sonora original (1962)"
       ],
-      "uri_apple_music": "applemusic://track/1444004606"
+      "uri_apple_music": "applemusic://track/1444004606",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c72keUWlbJ0"
     },
     {
       "year": 1980,
+      "artist": "Olivia Newton-John",
+      "title": "Xanadu",
       "uri": "spotify:track:0cXFXgFns7sIMmTpqyGRmD",
       "alt_artists": [
         "Hans Zimmer",
@@ -2507,10 +2749,13 @@
         "Gold (UK)"
       ],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1440743615"
+      "uri_apple_music": "applemusic://track/1440743615",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aUkR8YhJNn8"
     },
     {
       "year": 1961,
+      "artist": "Leonard Bernstein, West Side Story Orchestra, Johnny Green",
+      "title": "West Side Story: Overture",
       "uri": "spotify:track:513mEnijhLWoGVhrFiU0Se",
       "alt_artists": [
         "Hans Zimmer",
@@ -2534,10 +2779,14 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor película (1961)"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/933459488",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V3h7rRyMZO8"
     },
     {
       "year": 1967,
+      "artist": "Phil Harris, Bruce Reitherman",
+      "title": "The Bare Necessities",
       "uri": "spotify:track:7h5crXBSY5SSpXRIlklv74",
       "alt_artists": [
         "Hans Zimmer",
@@ -2563,6 +2812,8 @@
     },
     {
       "year": 1973,
+      "artist": "Robin Lamont, Godspell Ensemble",
+      "title": "Day by Day",
       "uri": "spotify:track:3aCzV8NsuqgNGjwRK1CLNB",
       "alt_artists": [
         "Hans Zimmer",
@@ -2581,6 +2832,8 @@
     },
     {
       "year": 1942,
+      "artist": "The Warner Bros. Studio Orchestra",
+      "title": "Medley: Main Title / Prologue",
       "uri": "spotify:track:62FAC1qc5s4SXn4mRgkRKt",
       "alt_artists": [
         "Hans Zimmer",
@@ -2596,6 +2849,8 @@
     },
     {
       "year": 1979,
+      "artist": "Jerry Goldsmith",
+      "title": "Main Title",
       "uri": "spotify:track:4Rhue1CTPr3n1P3Zs0jPwU",
       "alt_artists": [
         "Hans Zimmer",
@@ -2619,6 +2874,8 @@
     },
     {
       "year": 1971,
+      "artist": "Gioachino Rossini, Zagreb Festival Orchestra, Michael Halasz",
+      "title": "La gazza ladra (The Thieving Magpie): Overture",
       "uri": "spotify:track:5o4pgCR3JIeIbzwqBfjmtn",
       "alt_artists": [
         "Hans Zimmer",
@@ -2634,6 +2891,8 @@
     },
     {
       "year": 1981,
+      "artist": "Christopher Cross",
+      "title": "Arthur's Theme (Best That You Can Do)",
       "uri": "spotify:track:5fnOrhQ4KgT5irGCjIccGH",
       "alt_artists": [
         "Hans Zimmer",
@@ -2665,6 +2924,8 @@
     },
     {
       "year": 2000,
+      "artist": "Hans Zimmer, Klaus Badelt, Lisa Gerrard, Gavin Greenaway",
+      "title": "Now We Are Free - Maximus Mix",
       "uri": "spotify:track:2rBUT42i2t1wsfCmkn1TYA",
       "alt_artists": [
         "Hans Zimmer",
@@ -2691,6 +2952,8 @@
     },
     {
       "year": 1995,
+      "artist": "James Horner",
+      "title": "Main Title",
       "uri": "spotify:track:4P1sbofnneFeEEASTFMEGl",
       "alt_artists": [
         "Hans Zimmer",
@@ -2714,6 +2977,8 @@
     },
     {
       "year": 1954,
+      "artist": "Adolph Deutsch, MGM Studio Orchestra",
+      "title": "Main Title (Seven Brides For Seven Brothers)",
       "uri": "spotify:track:2fJjMOAL1ypxbbQfzk3w2w",
       "alt_artists": [
         "Hans Zimmer",
@@ -2737,6 +3002,8 @@
     },
     {
       "year": 1968,
+      "artist": "Jerry Goldsmith",
+      "title": "Main Title",
       "uri": "spotify:track:57ZFW90qBiXxuhsPQqzDhR",
       "alt_artists": [
         "Hans Zimmer",
@@ -2752,6 +3019,8 @@
     },
     {
       "year": 1965,
+      "artist": "Tom Jones",
+      "title": "What's New Pussycat?",
       "uri": "spotify:track:4HjwGX3pJKJTeOSDpT6GCo",
       "alt_artists": [
         "Hans Zimmer",
@@ -2781,6 +3050,8 @@
     },
     {
       "year": 1957,
+      "artist": "K. Alford, M.Arnold, K. Arnold, Mitch Miller & His Orchestra, Malcolm Arnold",
+      "title": "Medley: The River Kwai March / Colonel Bogey March",
       "uri": "spotify:track:0TlTytQKA6LrVcBijrE0AT",
       "alt_artists": [
         "Hans Zimmer",
@@ -2802,6 +3073,8 @@
     },
     {
       "year": 1980,
+      "artist": "Wendy Carlos, Rachel Elkind",
+      "title": "Main Title (The Shining)",
       "uri": "spotify:track:4WnuHIJTLrFkAQdpryLDe7",
       "alt_artists": [
         "Hans Zimmer",
@@ -2817,6 +3090,8 @@
     },
     {
       "year": 1969,
+      "artist": "Quincy Jones, Matt Monro",
+      "title": "On Days Like These - From \"The Italian Job\" Soundtrack",
       "uri": "spotify:track:3Tz5fLDzaPYxvd5MY6gtS1",
       "alt_artists": [
         "Hans Zimmer",
@@ -2832,6 +3107,8 @@
     },
     {
       "year": 1964,
+      "artist": "Richard M. Sherman, Robert B. Sherman",
+      "title": "Overture - Mary Poppins",
       "uri": "spotify:track:6BlfVJ5iMVVTzOsX6fa0gc",
       "alt_artists": [
         "Hans Zimmer",
@@ -2863,6 +3140,8 @@
     },
     {
       "year": 1965,
+      "artist": "The Beatles",
+      "title": "Help! - Remastered 2009",
       "uri": "spotify:track:7DD7eSuYSC5xk2ArU62esN",
       "alt_artists": [
         "Hans Zimmer",
@@ -2885,6 +3164,8 @@
     },
     {
       "year": 1985,
+      "artist": "Simple Minds",
+      "title": "Don't You (Forget About Me) - 12\" Version",
       "uri": "spotify:track:7lrVEKB5tZdDciy1PZaf4z",
       "alt_artists": [
         "Hans Zimmer",
@@ -2906,6 +3187,8 @@
     },
     {
       "year": 1954,
+      "artist": "Leonard Bernstein",
+      "title": "On the Waterfront Main Title - Bonus Track",
       "uri": "spotify:track:7bLQRI3Bvo4axK1Yxmbwb8",
       "alt_artists": [
         "Hans Zimmer",
@@ -2929,6 +3212,8 @@
     },
     {
       "year": 1963,
+      "artist": "Ernest Gold",
+      "title": "Main Title",
       "uri": "spotify:track:0i3Waigf55ppX4EhpkMVwG",
       "alt_artists": [
         "Hans Zimmer",
@@ -2943,6 +3228,8 @@
     },
     {
       "year": 1962,
+      "artist": "Henry Mancini",
+      "title": "Baby Elephant Walk",
       "uri": "spotify:track:0eaDPjRdYhDoRWQfsoc1em",
       "alt_artists": [
         "Hans Zimmer",
@@ -2969,6 +3256,8 @@
     },
     {
       "year": 1991,
+      "artist": "Howard Shore, Münchner Symphoniker",
+      "title": "Main Title",
       "uri": "spotify:track:5fGk9UjkHggNZDwT0Yowl6",
       "alt_artists": [
         "Hans Zimmer",
@@ -2983,6 +3272,8 @@
     },
     {
       "year": 1955,
+      "artist": "Gordon MacRae",
+      "title": "Oh What a Beautiful Morning",
       "uri": "spotify:track:3oQzphWYPJ4ITcgQQZNsib",
       "alt_artists": [
         "Hans Zimmer",
@@ -3008,6 +3299,8 @@
     },
     {
       "year": 1971,
+      "artist": "Lalo Schifrin",
+      "title": "Main Title",
       "uri": "spotify:track:7CRqIHXV590Mv6vlaBydsX",
       "alt_artists": [
         "Hans Zimmer",
@@ -3023,6 +3316,8 @@
     },
     {
       "year": 1955,
+      "artist": "Leonard Rosenman",
+      "title": "Rebel Without a Cause - Main Title",
       "uri": "spotify:track:0kFK8E9wWvZW1sVPhycL6y",
       "alt_artists": [
         "Hans Zimmer",
@@ -3037,6 +3332,8 @@
     },
     {
       "year": 1977,
+      "artist": "John Williams",
+      "title": "Wild Signals",
       "uri": "spotify:track:6tvzakkt80JJBQDwv7gOJ2",
       "alt_artists": [
         "Hans Zimmer",
@@ -3063,6 +3360,8 @@
     },
     {
       "year": 1959,
+      "artist": "Matty Malnec (conductor), Matty Malnec's Orchestra",
+      "title": "Some Like It Hot",
       "uri": "spotify:track:6ltrM45X6NgoPsT3p2L3CT",
       "alt_artists": [
         "Hans Zimmer",
@@ -3077,6 +3376,8 @@
     },
     {
       "year": 1978,
+      "artist": "John C. Williams",
+      "title": "Cavatina (Theme from \"The Deer Hunter\") - 2010 Remastered Version",
       "uri": "spotify:track:6vJ6Qp9naVnjGLpZrAFdOL",
       "alt_artists": [
         "Hans Zimmer",
@@ -3096,6 +3397,8 @@
     },
     {
       "year": 2001,
+      "artist": "Howard Shore",
+      "title": "Concerning Hobbits",
       "uri": "spotify:track:644es5aYPJghtZLjM1rmSP",
       "alt_artists": [
         "Hans Zimmer",
@@ -3111,6 +3414,8 @@
     },
     {
       "year": 1971,
+      "artist": "Michel Legrand, Peter Nero",
+      "title": "Theme From \"Summer Of '42\" - Single Version",
       "uri": "spotify:track:2mDq4OdEcTANjXcEYMYDIU",
       "alt_artists": [
         "Hans Zimmer",
@@ -3136,6 +3441,8 @@
     },
     {
       "year": 1961,
+      "artist": "Frankie Avalon",
+      "title": "Voyage to the Bottom of the Sea (Main Title)",
       "uri": "spotify:track:1EX02RzEOEk7TxRfAPhhPn",
       "alt_artists": [
         "Hans Zimmer",
@@ -3153,6 +3460,8 @@
     },
     {
       "year": 2007,
+      "artist": "Moby",
+      "title": "Extreme Ways (Bourne's Ultimatum)",
       "uri": "spotify:track:4J0NVKTHIeD657gxCdDkEp",
       "alt_artists": [
         "Hans Zimmer",
@@ -3170,6 +3479,8 @@
     },
     {
       "year": 1973,
+      "artist": "Wings",
+      "title": "Live and Let Die",
       "uri": "spotify:track:4RNOUxyYIgXYwZb6sYDWmS",
       "alt_artists": [
         "Hans Zimmer",
@@ -3199,6 +3510,8 @@
     },
     {
       "year": 1968,
+      "artist": "Ennio Morricone",
+      "title": "The Man With The Harmonica",
       "uri": "spotify:track:1gws0EOtgRIZAgOfRCJ09r",
       "alt_artists": [
         "Hans Zimmer",
@@ -3214,6 +3527,8 @@
     },
     {
       "year": 1999,
+      "artist": "Thomas Newman",
+      "title": "American Beauty",
       "uri": "spotify:track:6XJGpirOP4Bgurcvkdanxb",
       "alt_artists": [
         "Hans Zimmer",
@@ -3229,6 +3544,8 @@
     },
     {
       "year": 1959,
+      "artist": "Max Steiner, Percy Faith & His Orchestra",
+      "title": "Theme from \"A Summer Place\"",
       "uri": "spotify:track:0P38KYx9yS4TBNzIQelWem",
       "alt_artists": [
         "Hans Zimmer",
@@ -3256,6 +3573,8 @@
     },
     {
       "year": 1997,
+      "artist": "Céline Dion, James Horner",
+      "title": "My Heart Will Go On - Love Theme from \"Titanic\"",
       "uri": "spotify:track:42lyCSXzWizBfGmqE1Silk",
       "alt_artists": [
         "Hans Zimmer",
@@ -3292,6 +3611,8 @@
     },
     {
       "year": 1969,
+      "artist": "Louis Armstrong",
+      "title": "We Have All The Time In The World - From “On Her Majesty’s Secret Service” Soundtrack / Remastered 2003",
       "uri": "spotify:track:0OAnoLrIVxpdne3mkVLrwr",
       "alt_artists": [
         "Hans Zimmer",
@@ -3309,6 +3630,8 @@
     },
     {
       "year": 1969,
+      "artist": "Harry Nilsson",
+      "title": "Everybody's Talkin'",
       "uri": "spotify:track:3c8JemHol1XwFFruXQxjCO",
       "alt_artists": [
         "Hans Zimmer",
@@ -3337,6 +3660,8 @@
     },
     {
       "year": 1980,
+      "artist": "Janis Ian",
+      "title": "Fly Too High",
       "uri": "spotify:track:29Ltf9Wewg3k308NVojWw1",
       "alt_artists": [
         "Hans Zimmer",
@@ -3352,6 +3677,8 @@
     },
     {
       "year": 1963,
+      "artist": "John Barry",
+      "title": "Opening Titles",
       "uri": "spotify:track:6IeKpjrk6xwzkbdvy3c5gB",
       "alt_artists": [
         "Hans Zimmer",
@@ -3368,6 +3695,8 @@
     },
     {
       "year": 1946,
+      "artist": "Dimitri Tiomkin",
+      "title": "Main Title (Film Version)",
       "uri": "spotify:track:03zZ9FfAVJyfZHklEa6ld6",
       "alt_artists": [
         "Hans Zimmer",
@@ -3383,6 +3712,8 @@
     },
     {
       "year": 1942,
+      "artist": "Bing Crosby, Ken Darby Singers, John Scott Trotter & His Orchestra",
+      "title": "White Christmas - 1947 Version",
       "uri": "spotify:track:4so0Wek9Ig1p6CRCHuINwW",
       "alt_artists": [
         "Hans Zimmer",
@@ -3410,6 +3741,8 @@
     },
     {
       "year": 1958,
+      "artist": "Pearl & Dean",
+      "title": "Asteroid (Pearl & Dean Theme) - Original",
       "uri": "spotify:track:3zpKsvHRRHapUjhWL1TEDW",
       "alt_artists": [
         "Hans Zimmer",
