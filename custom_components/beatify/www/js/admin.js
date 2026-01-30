@@ -41,7 +41,7 @@ const STORAGE_LAST_PLAYER = 'beatify_last_player';
 const STORAGE_GAME_SETTINGS = 'beatify_game_settings';
 
 // Setup sections to hide/show as a group
-const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions'];
+const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests'];
 
 // Platform display labels for speaker grouping
 const PLATFORM_LABELS = {
