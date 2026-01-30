@@ -1,0 +1,1276 @@
+{
+  "name": "Fiesta Latina 90s",
+  "version": "1.0",
+  "tags": [
+    "1990s",
+    "latin",
+    "pop",
+    "merengue",
+    "salsa",
+    "spanish"
+  ],
+  "songs": [
+    {
+      "year": 1996,
+      "uri": "spotify:track:1Je1IMUlBXcx1Fz0WE7oPT",
+      "artist": "Spice Girls",
+      "alt_artists": [
+        "Backstreet Boys",
+        "*NSYNC",
+        "TLC",
+        "Destiny's Child"
+      ],
+      "title": "Wannabe",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Recorded in under 30 minutes during the group's first studio session, Wannabe debuted at #1 in 37 countries and became the best-selling single by a female group of all time with over 7 million copies sold.",
+      "fun_fact_de": "In weniger als 30 Minuten während der ersten Studioaufnahme aufgenommen, debütierte Wannabe auf Platz 1 in 37 Ländern und wurde mit über 7 Millionen verkauften Exemplaren die meistverkaufte Single einer Girlgroup aller Zeiten.",
+      "fun_fact_es": "Grabada en menos de 30 minutos durante la primera sesión de estudio del grupo, Wannabe debutó en el #1 en 37 países y se convirtió en el sencillo más vendido de un grupo femenino con más de 7 millones de copias.",
+      "uri_apple_music": "applemusic://track/1582664367",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gJLIiF15wjQ"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:78DVpEWwmJFC25KGz8fJuE",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Café Tacvba",
+        "Soda Stereo",
+        "Juanes"
+      ],
+      "title": "Clavado en Un Bar",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "From the album 'Sueños Líquidos' which became the best-selling Spanish-language rock album at the time with over 10 million copies. The song spent weeks atop the Hot Latin Songs chart.",
+      "fun_fact_de": "Vom Album 'Sueños Líquidos', das mit über 10 Millionen verkauften Exemplaren zum meistverkauften spanischsprachigen Rockalbum wurde. Der Song hielt sich wochenlang an der Spitze der Hot Latin Songs.",
+      "fun_fact_es": "Del álbum 'Sueños Líquidos', que se convirtió en el álbum de rock en español más vendido con más de 10 millones de copias. La canción permaneció semanas en lo más alto de Hot Latin Songs.",
+      "uri_apple_music": "applemusic://track/1870775145",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4uA3S_QI9HM"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:2q9udNV9NK0BL3q9p6TLxf",
+      "artist": "ChiChi Peralta",
+      "alt_artists": [
+        "Juan Luis Guerra",
+        "Proyecto Uno",
+        "Wilfrido Vargas",
+        "Elvis Crespo"
+      ],
+      "title": "Procura",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 0,
+        "weeks_on_chart": 18
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dominican percussionist and singer ChiChi Peralta originally composed this merengue hit for another artist before recording it himself. It became a pan-Latin American anthem and remains a staple at Latin parties worldwide.",
+      "fun_fact_de": "Der dominikanische Perkussionist und Sänger ChiChi Peralta komponierte diesen Merengue-Hit ursprünglich für einen anderen Künstler, bevor er ihn selbst aufnahm. Er wurde zu einer gesamtlateinamerikanischen Hymne.",
+      "fun_fact_es": "El percusionista y cantante dominicano ChiChi Peralta compuso originalmente este hit de merengue para otro artista antes de grabarlo él mismo. Se convirtió en un himno panlatino y sigue siendo infaltable en las fiestas.",
+      "uri_apple_music": "applemusic://track/1389774337",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_JLxVJkr-Ow"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:4Yq7WIbdjwx4H7JR6Bf3nZ",
+      "artist": "Ricky Martin",
+      "alt_artists": [
+        "Enrique Iglesias",
+        "Marc Anthony",
+        "Luis Miguel",
+        "Chayanne"
+      ],
+      "title": "Livin' la Vida Loca",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy nomination for Record of the Year"
+      ],
+      "fun_fact": "Credited with launching the 'Latin Pop Explosion' of the late 1990s. Recorded simultaneously in English and Spanish, it became the first song by a Latin artist to debut at #1 on the Billboard Hot 100 and went to #1 in over 20 countries.",
+      "fun_fact_de": "Gilt als Auslöser der 'Latin-Pop-Explosion' der späten 1990er. Gleichzeitig auf Englisch und Spanisch aufgenommen, war es der erste Song eines lateinamerikanischen Künstlers, der auf Platz 1 der Billboard Hot 100 debütierte.",
+      "fun_fact_es": "Considerada como la canción que inició la 'Explosión del Pop Latino' de los años 90. Grabada simultáneamente en inglés y español, fue la primera canción de un artista latino en debutar en el #1 del Billboard Hot 100.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q8D9oiOs-DI"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:2GcjfckZexh9wRRjg9KtQG",
+      "artist": "Proyecto Uno",
+      "alt_artists": [
+        "Sandy & Papo",
+        "ChiChi Peralta",
+        "Ilegales",
+        "Fulanito"
+      ],
+      "title": "Tiburon",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Proyecto Uno were pioneers of 'merenhouse', a fusion of Dominican merengue with hip-hop and house music. This breakthrough single from their debut album made them icons of the Dominican diaspora music scene in New York.",
+      "fun_fact_de": "Proyecto Uno waren Pioniere des 'Merenhouse', einer Fusion aus dominikanischem Merengue mit Hip-Hop und House-Musik. Diese Debüt-Single machte sie zu Ikonen der dominikanischen Diaspora-Musikszene in New York.",
+      "fun_fact_es": "Proyecto Uno fueron pioneros del 'merenhouse', fusión de merengue dominicano con hip-hop y house. Este sencillo debut los convirtió en íconos de la escena musical de la diáspora dominicana en Nueva York.",
+      "uri_apple_music": "applemusic://track/525133063",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jUnCNaufqBE"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:4M1lEbqPzlEw1JYWB6aE7K",
+      "artist": "Shakira",
+      "alt_artists": [
+        "Thalía",
+        "Paulina Rubio",
+        "Fey",
+        "Gloria Estefan"
+      ],
+      "title": "Estoy Aquí",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 0,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "Shakira's first international hit from her breakthrough album 'Pies Descalzos'. She wrote the song at just 17 years old. The album sold over 5 million copies and launched her from a Colombian star to a Latin American superstar.",
+      "fun_fact_de": "Shakiras erster internationaler Hit vom Durchbruchsalbum 'Pies Descalzos'. Sie schrieb den Song mit nur 17 Jahren. Das Album verkaufte sich über 5 Millionen Mal und machte sie zum lateinamerikanischen Superstar.",
+      "fun_fact_es": "El primer éxito internacional de Shakira de su álbum 'Pies Descalzos'. Escribió la canción con solo 17 años. El álbum vendió más de 5 millones de copias y la catapultó de estrella colombiana a superestrella latinoamericana.",
+      "uri_apple_music": "applemusic://track/193662167",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NmJHH026X0c"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:1qCFAg2xNJWZF0D5JpDkRu",
+      "artist": "Los Del Rio",
+      "alt_artists": [
+        "Gipsy Kings",
+        "Azul Azul",
+        "Lou Bega",
+        "Chayanne"
+      ],
+      "title": "Macarena",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 60
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally a slower rumba-style song released in 1993, the Bayside Boys remix turned it into a global phenomenon in 1996. It held the #1 spot on the Billboard Hot 100 for a record 14 consecutive weeks and became one of the best-selling singles of all time.",
+      "fun_fact_de": "Ursprünglich ein langsamerer Rumba-Song von 1993, wurde der Bayside Boys Remix 1996 zum globalen Phänomen. Er hielt sich rekordverdächtige 14 Wochen auf Platz 1 der Billboard Hot 100 und wurde eine der meistverkauften Singles aller Zeiten.",
+      "fun_fact_es": "Originalmente una rumba más lenta de 1993, el remix de los Bayside Boys la convirtió en fenómeno global en 1996. Se mantuvo 14 semanas consecutivas en el #1 del Billboard Hot 100 y se convirtió en uno de los sencillos más vendidos de la historia.",
+      "uri_apple_music": "applemusic://track/258647542",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cV0FxPZ3YR0"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:4lmOvO7Nc0Ppdz2hk8jpHj",
+      "artist": "Marc Anthony",
+      "alt_artists": [
+        "Ricky Martin",
+        "Luis Miguel",
+        "Gilberto Santa Rosa",
+        "Victor Manuelle"
+      ],
+      "title": "Y Hubo Alguien",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 15
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From Marc Anthony's first Spanish-language salsa album 'Otra Nota'. Before reinventing himself as a salsa singer, he was known as a freestyle and pop vocalist in the New York Latin music scene. This album launched his career as a salsa icon.",
+      "fun_fact_de": "Von Marc Anthonys erstem spanischsprachigen Salsa-Album 'Otra Nota'. Bevor er sich als Salsa-Sänger neu erfand, war er als Freestyle- und Pop-Sänger in der New Yorker Latin-Musikszene bekannt.",
+      "fun_fact_es": "Del primer álbum de salsa en español de Marc Anthony, 'Otra Nota'. Antes de reinventarse como salsero, era conocido como vocalista de freestyle y pop en la escena de música latina de Nueva York.",
+      "uri_apple_music": "applemusic://track/1638223768",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g4S3jUtqcyM"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:6M8horg7h52MPTxY0I3dQJ",
+      "artist": "Juan Luis Guerra 4.40",
+      "alt_artists": [
+        "ChiChi Peralta",
+        "Oscar D'León",
+        "Rubén Blades",
+        "Celia Cruz"
+      ],
+      "title": "La Bilirrubina",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [
+        "Grammy Award for Best Tropical Latin Album (Bachata Rosa)"
+      ],
+      "fun_fact": "The title refers to bilirubin, a medical compound in blood, used as a metaphor for being 'sick with love'. From the Grammy-winning album 'Bachata Rosa' which revolutionized Dominican bachata and merengue, making it internationally respected.",
+      "fun_fact_de": "Der Titel bezieht sich auf Bilirubin, eine medizinische Blutverbindung, als Metapher für 'Liebeskrankheit'. Vom Grammy-prämierten Album 'Bachata Rosa', das dominikanische Bachata und Merengue revolutionierte.",
+      "fun_fact_es": "El título se refiere a la bilirrubina, un compuesto médico en la sangre, usado como metáfora de estar 'enfermo de amor'. Del álbum ganador del Grammy 'Bachata Rosa' que revolucionó la bachata y el merengue dominicano.",
+      "uri_apple_music": "applemusic://track/19468966",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BF3yLhIgkXU"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:7jQBORjiir0pNSKGaHevq9",
+      "artist": "Lou Bega",
+      "alt_artists": [
+        "Ricky Martin",
+        "Azul Azul",
+        "Corona",
+        "Los Del Rio"
+      ],
+      "title": "Mambo No. 5",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 1,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "3x Platinum (UK)",
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Based on Cuban musician Pérez Prado's 1949 instrumental 'Mambo No. 5'. German-Ugandan singer Lou Bega added lyrics naming women he knew. It sold over 16 million copies worldwide and reached #1 in virtually every European country.",
+      "fun_fact_de": "Basierend auf dem kubanischen Musiker Pérez Prados Instrumental 'Mambo No. 5' von 1949. Der deutsch-ugandische Sänger Lou Bega fügte Texte mit Frauennamen hinzu. Über 16 Millionen Exemplare wurden weltweit verkauft.",
+      "fun_fact_es": "Basada en el instrumental 'Mambo No. 5' del músico cubano Pérez Prado de 1949. El cantante germano-ugandés Lou Bega agregó letras nombrando mujeres que conocía. Vendió más de 16 millones de copias mundialmente.",
+      "uri_apple_music": "applemusic://track/1322068804",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EK_LN3XEcnw"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:0ofMkI3jzmGCElAOgOLeo3",
+      "artist": "Corona",
+      "alt_artists": [
+        "Playahitty",
+        "Snap!",
+        "La Bouche",
+        "Haddaway"
+      ],
+      "title": "The Rhythm of the Night",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": 2,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The lead singer credited as Corona, Olga De Souza, did not actually perform the original studio vocals — they were sung by session vocalist Sandy Chambers. The Italian eurodance hit became one of the defining songs of the 1990s dance era.",
+      "fun_fact_de": "Die als Corona aufgeführte Sängerin Olga De Souza sang nicht die Original-Studioaufnahme — die Vocals stammten von Session-Sängerin Sandy Chambers. Der italienische Eurodance-Hit wurde zu einem der prägenden Songs der 90er-Tanzära.",
+      "fun_fact_es": "La cantante acreditada como Corona, Olga De Souza, no cantó las voces originales de estudio — fueron interpretadas por la vocalista de sesión Sandy Chambers. El hit de eurodance italiano se convirtió en uno de los temas definitorios de los 90.",
+      "uri_apple_music": "applemusic://track/1821144998",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OnT58cIJSpw"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:4p7XH4NhQ25iGYrrbg93gt",
+      "artist": "Luis Miguel",
+      "alt_artists": [
+        "Alejandro Sanz",
+        "Ricky Martin",
+        "Emmanuel",
+        "Cristian Castro"
+      ],
+      "title": "Suave",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 0,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "Part of Luis Miguel's legendary 'Romance' series of bolero albums that single-handedly revived the bolero genre. The album 'Segundo Romance' sold over 4.5 million copies and cemented his status as 'El Sol de México'.",
+      "fun_fact_de": "Teil von Luis Miguels legendärer 'Romance'-Bolero-Albumreihe, die das Bolero-Genre im Alleingang wiederbelebte. Das Album 'Segundo Romance' verkaufte über 4,5 Millionen Exemplare.",
+      "fun_fact_es": "Parte de la legendaria serie de álbumes de boleros 'Romance' de Luis Miguel que revivió el género por sí sola. El álbum 'Segundo Romance' vendió más de 4.5 millones de copias y cementó su estatus como 'El Sol de México'.",
+      "uri_apple_music": "applemusic://track/100986783",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3IRBm9DjBdQ"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:4EDfdYJ7mqXRoWAqzF1PVO",
+      "artist": "Shakira",
+      "alt_artists": [
+        "Carlos Vives",
+        "Juanes",
+        "Fey",
+        "Thalía"
+      ],
+      "title": "Ojos Así",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 0,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "Features Arabic-influenced vocals inspired by Shakira's Lebanese heritage — her father is of Lebanese descent. From the album 'Dónde Están los Ladrones?' which sold over 10 million copies. She famously performed it at the first Latin Grammy Awards in 2000.",
+      "fun_fact_de": "Enthält arabisch beeinflusste Vocals, inspiriert von Shakiras libanesischem Erbe — ihr Vater ist libanesischer Abstammung. Vom Album 'Dónde Están los Ladrones?' mit über 10 Millionen verkauften Exemplaren.",
+      "fun_fact_es": "Presenta voces con influencia árabe inspiradas en la herencia libanesa de Shakira — su padre es de ascendencia libanesa. Del álbum 'Dónde Están los Ladrones?' que vendió más de 10 millones de copias.",
+      "uri_apple_music": "applemusic://track/192683270",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5BzkbSq7pww"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:7cpFmkNmh3MM0WqXPSbs9f",
+      "artist": "Elvis Crespo",
+      "alt_artists": [
+        "Olga Tañón",
+        "ChiChi Peralta",
+        "Juan Luis Guerra",
+        "Proyecto Uno"
+      ],
+      "title": "Suavemente",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award for Best Tropical Latin Performance"
+      ],
+      "fun_fact": "Became the most-played merengue song on US radio and won the Grammy for Best Tropical Latin Performance. Puerto Rican singer Elvis Crespo was formerly a member of Grupo Mania before launching his solo career with this massive debut hit.",
+      "fun_fact_de": "Wurde zum meistgespielten Merengue-Song im US-Radio und gewann den Grammy für Best Tropical Latin Performance. Elvis Crespo war zuvor Mitglied von Grupo Mania, bevor er seine Solokarriere mit diesem Debüt-Hit startete.",
+      "fun_fact_es": "Se convirtió en la canción de merengue más tocada en la radio de EE.UU. y ganó el Grammy a Mejor Interpretación Tropical Latina. Elvis Crespo fue miembro de Grupo Manía antes de lanzar su carrera solista con este exitazo.",
+      "uri_apple_music": "applemusic://track/292608724",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QH0zo6AcP6g"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:0Tl84qfow6Dv0PM60zoBhb",
+      "artist": "Azul Azul",
+      "alt_artists": [
+        "Los Del Rio",
+        "Lou Bega",
+        "Corona",
+        "Ricky Martin"
+      ],
+      "title": "La Bomba",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 18,
+        "weeks_on_chart": 15
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Chilean group that became an international one-hit wonder. 'La Bomba' topped charts across Latin America and became a club staple in Europe. The song's infectious blend of Latin pop and eurodance defined the late 90s party sound.",
+      "fun_fact_de": "Chilenische Gruppe, die international zum One-Hit-Wonder wurde. 'La Bomba' eroberte die Charts in Lateinamerika und wurde in Europa zum Club-Klassiker. Der Mix aus Latin-Pop und Eurodance prägte den Party-Sound der späten 90er.",
+      "fun_fact_es": "Grupo chileno que se convirtió en un éxito internacional. 'La Bomba' lideró las listas en Latinoamérica y se volvió un clásico de clubs en Europa. Su mezcla de pop latino y eurodance definió el sonido fiestera de los 90.",
+      "uri_apple_music": "applemusic://track/457516731",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iNHGEQxLwEQ"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:7wNrk2vc0GUUNBFggJzEsI",
+      "artist": "Ricardo Arjona",
+      "alt_artists": [
+        "Alejandro Sanz",
+        "Franco De Vita",
+        "Carlos Vives",
+        "Emmanuel"
+      ],
+      "title": "Mujeres",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 0,
+        "weeks_on_chart": 18
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Guatemalan singer-songwriter Ricardo Arjona wrote this tribute to women that became an anthem across Latin America. From the album 'Animal Nocturno', it established him as one of the most important Latin American songwriters of his generation.",
+      "fun_fact_de": "Der guatemaltekische Singer-Songwriter Ricardo Arjona schrieb diese Hommage an Frauen, die zur Hymne in ganz Lateinamerika wurde. Vom Album 'Animal Nocturno', das ihn als einen der wichtigsten lateinamerikanischen Songwriter seiner Generation etablierte.",
+      "fun_fact_es": "El cantautor guatemalteco Ricardo Arjona escribió este tributo a las mujeres que se convirtió en himno en toda Latinoamérica. Del álbum 'Animal Nocturno', lo estableció como uno de los compositores latinos más importantes de su generación.",
+      "uri_apple_music": "applemusic://track/322079872",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2IUZ2wBJO0I"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:1lcaG7worZLgdGuniOfGje",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Shakira",
+        "Juanes",
+        "Juan Luis Guerra",
+        "Oscar D'León"
+      ],
+      "title": "Fruta Fresca",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 0,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "Helped popularize Colombian vallenato music internationally. From the album 'El Amor de Mi Tierra', Vives was a former telenovela actor who revolutionized traditional vallenato by fusing it with rock and pop elements.",
+      "fun_fact_de": "Half dabei, kolumbianische Vallenato-Musik international bekannt zu machen. Vom Album 'El Amor de Mi Tierra' — Vives war ein ehemaliger Telenovela-Schauspieler, der traditionellen Vallenato mit Rock und Pop revolutionierte.",
+      "fun_fact_es": "Ayudó a popularizar la música vallenata colombiana internacionalmente. Del álbum 'El Amor de Mi Tierra', Vives fue actor de telenovelas que revolucionó el vallenato tradicional fusionándolo con rock y pop.",
+      "uri_apple_music": "applemusic://track/724352963",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=in8rFQZsagQ"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:6nz1ojKuYx5HO7Vh0wmuWp",
+      "artist": "Magneto",
+      "alt_artists": [
+        "Mercurio",
+        "Sentidos Opuestos",
+        "Fey",
+        "OV7"
+      ],
+      "title": "Vuela, Vuela",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spanish-language cover of the French hit 'Voyage, Voyage' by Desireless (1986). The Mexican boy band's version became far more famous than the original in Latin America and is still a karaoke and party classic across the Spanish-speaking world.",
+      "fun_fact_de": "Spanischsprachiges Cover des französischen Hits 'Voyage, Voyage' von Desireless (1986). Die Version der mexikanischen Boyband wurde in Lateinamerika viel berühmter als das Original und ist bis heute ein Karaoke- und Party-Klassiker.",
+      "fun_fact_es": "Versión en español del éxito francés 'Voyage, Voyage' de Desireless (1986). La versión de la boy band mexicana se hizo mucho más famosa que la original en Latinoamérica y sigue siendo un clásico de karaoke y fiestas.",
+      "uri_apple_music": "applemusic://track/257283073",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JGVnWuQW-ow"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:1THrLq1IPWwpisMdF9Ivya",
+      "artist": "Frankie Ruiz",
+      "alt_artists": [
+        "Gilberto Santa Rosa",
+        "Marc Anthony",
+        "Eddie Santiago",
+        "Victor Manuelle"
+      ],
+      "title": "Deseándote",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 0,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Known as 'El Papá de la Salsa' (The Father of Salsa), Puerto Rican singer Frankie Ruiz was one of salsa romántica's most important voices. He tragically passed away in 1998 at age 40, leaving behind a legacy of timeless salsa classics.",
+      "fun_fact_de": "Als 'El Papá de la Salsa' bekannt, war der puertoricanische Sänger Frankie Ruiz eine der wichtigsten Stimmen der Salsa Romántica. Er verstarb tragischerweise 1998 mit nur 40 Jahren und hinterließ zeitlose Salsa-Klassiker.",
+      "fun_fact_es": "Conocido como 'El Papá de la Salsa', el cantante puertorriqueño Frankie Ruiz fue una de las voces más importantes de la salsa romántica. Falleció trágicamente en 1998 a los 40 años, dejando un legado de clásicos atemporales.",
+      "uri_apple_music": "applemusic://track/1482212680",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eiHxWBIhAl8"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:0ULXIAoxSZBcOwygC3PA0i",
+      "artist": "Luis Miguel",
+      "alt_artists": [
+        "Emmanuel",
+        "Alejandro Sanz",
+        "Cristian Castro",
+        "José José"
+      ],
+      "title": "Será Que No Me Amas",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 0,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A Spanish-language cover of The Jacksons' 1978 disco hit 'Blame It on the Boogie'. Luis Miguel transformed the funk classic into a Latin pop anthem, showcasing his ability to reinterpret international hits for the Spanish-speaking market.",
+      "fun_fact_de": "Ein spanischsprachiges Cover von The Jacksons' Disco-Hit 'Blame It on the Boogie' von 1978. Luis Miguel verwandelte den Funk-Klassiker in eine Latin-Pop-Hymne und zeigte seine Fähigkeit, internationale Hits für den spanischsprachigen Markt neu zu interpretieren.",
+      "fun_fact_es": "Una versión en español del hit disco de The Jacksons 'Blame It on the Boogie' de 1978. Luis Miguel transformó el clásico funk en un himno de pop latino, demostrando su capacidad para reinterpretar éxitos internacionales.",
+      "uri_apple_music": "applemusic://track/1422838920",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pOnxY24Y5vA"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:5fq4jxlqyjAVFLOB0lZIdT",
+      "artist": "Proyecto Uno",
+      "alt_artists": [
+        "Sandy & Papo",
+        "ChiChi Peralta",
+        "Fulanito",
+        "Ilegales"
+      ],
+      "title": "25 Horas",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Proyecto Uno blended Dominican merengue with hip-hop and house music, creating the 'merenhouse' genre. Based in New York, they represented the sound of Dominican-American youth culture and were hugely influential in 90s Latin urban music.",
+      "fun_fact_de": "Proyecto Uno verschmolzen dominikanischen Merengue mit Hip-Hop und House und schufen das 'Merenhouse'-Genre. In New York ansässig, repräsentierten sie den Sound der dominikanisch-amerikanischen Jugendkultur.",
+      "fun_fact_es": "Proyecto Uno fusionó el merengue dominicano con hip-hop y house, creando el género 'merenhouse'. Con base en Nueva York, representaron el sonido de la juventud dominicano-americana y fueron muy influyentes en la música urbana latina de los 90.",
+      "uri_apple_music": "applemusic://track/885035099",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BsLFipYMh-o"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:4Gf68vwxa69hCiXmJ1jvgj",
+      "artist": "Fey",
+      "alt_artists": [
+        "Paulina Rubio",
+        "Thalía",
+        "Shakira",
+        "Monica Naranjo"
+      ],
+      "title": "Azúcar Amargo",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican pop princess Fey combined Latin pop with eurodance influences, creating a unique sound that defined 90s Mexican teen pop. This was one of her biggest hits and helped establish her as one of the leading female pop artists in Mexico.",
+      "fun_fact_de": "Die mexikanische Pop-Prinzessin Fey kombinierte Latin-Pop mit Eurodance-Einflüssen und schuf einen einzigartigen Sound, der den mexikanischen Teen-Pop der 90er prägte. Einer ihrer größten Hits, der sie als führende Pop-Künstlerin in Mexiko etablierte.",
+      "fun_fact_es": "La princesa del pop mexicano Fey combinó pop latino con influencias de eurodance, creando un sonido único que definió el teen pop mexicano de los 90. Fue uno de sus mayores éxitos y la estableció como una de las principales artistas pop de México.",
+      "uri_apple_music": "applemusic://track/383581041",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AyxpXVUy81o"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:3IS5IWZuDJJdqBJ9XVqpbh",
+      "artist": "Elvis Crespo",
+      "alt_artists": [
+        "ChiChi Peralta",
+        "Olga Tañón",
+        "Juan Luis Guerra",
+        "Wilfrido Vargas"
+      ],
+      "title": "Tu Sonrisa",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 0,
+        "weeks_on_chart": 16
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The follow-up to his mega-hit 'Suavemente', this track helped cement Elvis Crespo's place as the leading merengue artist of the late 1990s. His success helped bring merengue music to mainstream international audiences.",
+      "fun_fact_de": "Der Nachfolger seines Mega-Hits 'Suavemente' festigte Elvis Crespos Position als führender Merengue-Künstler der späten 1990er. Sein Erfolg half, Merengue-Musik einem internationalen Mainstream-Publikum näherzubringen.",
+      "fun_fact_es": "El sucesor de su mega-éxito 'Suavemente', esta canción cementó el lugar de Elvis Crespo como el artista de merengue líder de los años 90. Su éxito ayudó a llevar el merengue al público internacional.",
+      "uri_apple_music": "applemusic://track/299704164",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3CqNeJLqvL0"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:2Lv1EpgTXrZ2gzJfoNGVnw",
+      "artist": "Thalía",
+      "alt_artists": [
+        "Paulina Rubio",
+        "Shakira",
+        "Gloria Trevi",
+        "Fey"
+      ],
+      "title": "Piel Morena",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 0,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "From the album 'En Éxtasis', Thalía was simultaneously one of Latin America's biggest telenovela stars and pop singers. She starred in the famous 'María' trilogy of telenovelas while topping the music charts, becoming a true multimedia superstar.",
+      "fun_fact_de": "Vom Album 'En Éxtasis' — Thalía war gleichzeitig einer der größten Telenovela-Stars und Pop-Sängerinnen Lateinamerikas. Sie spielte in der berühmten 'María'-Trilogie und eroberte gleichzeitig die Musikcharts.",
+      "fun_fact_es": "Del álbum 'En Éxtasis', Thalía era simultáneamente una de las más grandes estrellas de telenovelas y cantantes pop de Latinoamérica. Protagonizó la famosa trilogía de telenovelas 'María' mientras lideraba las listas musicales.",
+      "uri_apple_music": "applemusic://track/724555920",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PeLskwbfWCo"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:2e7mL0M7mvjYVANfWPUjCH",
+      "artist": "Monica Naranjo",
+      "alt_artists": [
+        "Mecano",
+        "Alaska",
+        "Paulina Rubio",
+        "Thalía"
+      ],
+      "title": "Solo Se Vive una Vez",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spanish pop diva Monica Naranjo is known for her extraordinary four-octave vocal range. Born in Figueres, Spain, she became one of the country's biggest pop exports and has sold over 10 million records throughout her career.",
+      "fun_fact_de": "Die spanische Pop-Diva Monica Naranjo ist bekannt für ihren außergewöhnlichen Vier-Oktaven-Stimmumfang. In Figueres, Spanien geboren, wurde sie zu einem der größten Pop-Exporte des Landes mit über 10 Millionen verkauften Tonträgern.",
+      "fun_fact_es": "La diva del pop español Mónica Naranjo es conocida por su extraordinario rango vocal de cuatro octavas. Nacida en Figueres, España, se convirtió en una de las mayores exportaciones pop del país con más de 10 millones de discos vendidos.",
+      "uri_apple_music": "applemusic://track/283535727",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5ctokLIZuOk"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:2es7AohVgF03LwjmQyaVMl",
+      "artist": "Chayanne",
+      "alt_artists": [
+        "Ricky Martin",
+        "Luis Miguel",
+        "Enrique Iglesias",
+        "Emmanuel"
+      ],
+      "title": "Torero",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "Puerto Rican singer Chayanne, born Elmer Figueroa Arce, started as a child member of the boy band Los Chicos. 'Torero' became one of his biggest hits and showcased his talent as both a singer and dancer — he's often called the 'Latin heartthrob'.",
+      "fun_fact_de": "Der puertoricanische Sänger Chayanne, geboren als Elmer Figueroa Arce, begann als Kindermitglied der Boyband Los Chicos. 'Torero' wurde einer seiner größten Hits und zeigte sein Talent als Sänger und Tänzer — der 'Latin Heartthrob'.",
+      "fun_fact_es": "El cantante puertorriqueño Chayanne, nacido Elmer Figueroa Arce, comenzó como miembro infantil del grupo Los Chicos. 'Torero' se convirtió en uno de sus mayores éxitos, mostrando su talento como cantante y bailarín — el 'galán latino'.",
+      "uri_apple_music": "applemusic://track/162308851",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GuZzuQvv7uc"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:7vyfkPROxVBZQOJtufdIIJ",
+      "artist": "Emmanuel",
+      "alt_artists": [
+        "José José",
+        "Luis Miguel",
+        "Cristian Castro",
+        "Ricardo Montaner"
+      ],
+      "title": "Bella Señora",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 0,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican singer Emmanuel, whose real name is Jesús Emmanuel Acha Martínez, has been a star since the late 1970s. 'Bella Señora' marked his successful 90s comeback and remains one of his most requested songs at concerts across Latin America.",
+      "fun_fact_de": "Der mexikanische Sänger Emmanuel, bürgerlich Jesús Emmanuel Acha Martínez, ist seit Ende der 1970er ein Star. 'Bella Señora' markierte sein erfolgreiches 90er-Comeback und bleibt einer seiner meistgewünschten Konzert-Songs.",
+      "fun_fact_es": "El cantante mexicano Emmanuel, cuyo nombre real es Jesús Emmanuel Acha Martínez, ha sido estrella desde finales de los 70. 'Bella Señora' marcó su exitoso regreso en los 90 y sigue siendo una de sus canciones más pedidas en conciertos.",
+      "uri_apple_music": "applemusic://track/275077263",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XNEk-nFQBUE"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:5Lhea4g9nPsbmwo2HIBpni",
+      "artist": "Los Fantasmas del Caribe",
+      "alt_artists": [
+        "Oscar D'León",
+        "Joe Arroyo",
+        "Carlos Vives",
+        "Diomedes Díaz"
+      ],
+      "title": "Muchacha Triste",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Colombian tropical group from Barranquilla known for their energetic live performances and Caribbean sound. They were part of the vibrant Colombian tropical music scene that produced artists like Carlos Vives and Joe Arroyo.",
+      "fun_fact_de": "Kolumbianische Tropical-Gruppe aus Barranquilla, bekannt für ihre energiegeladenen Live-Auftritte und karibischen Sound. Teil der lebhaften kolumbianischen Tropicalmusik-Szene, die auch Künstler wie Carlos Vives und Joe Arroyo hervorbrachte.",
+      "fun_fact_es": "Grupo tropical colombiano de Barranquilla conocido por sus energéticas presentaciones en vivo y sonido caribeño. Fueron parte de la vibrante escena de música tropical colombiana que produjo artistas como Carlos Vives y Joe Arroyo.",
+      "uri_apple_music": "applemusic://track/420794872",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sJPQnlr_mJw"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:2AR6gN4QVBdJ8iw2KSG7fQ",
+      "artist": "Olga Tañón",
+      "alt_artists": [
+        "Elvis Crespo",
+        "ChiChi Peralta",
+        "Shakira",
+        "Gloria Estefan"
+      ],
+      "title": "Es Mentiroso",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 0,
+        "weeks_on_chart": 17
+      },
+      "certifications": [],
+      "awards": [
+        "Grammy nomination for Best Merengue Album"
+      ],
+      "fun_fact": "Puerto Rican 'Mujer de Fuego' (Woman of Fire) Olga Tañón is one of the most successful female merengue artists in history. This empowering anthem about a lying partner became a feminist anthem across Latin America.",
+      "fun_fact_de": "Die puertoricanische 'Mujer de Fuego' (Feuerfrau) Olga Tañón ist eine der erfolgreichsten Merengue-Künstlerinnen der Geschichte. Diese ermächtigende Hymne über einen lügenden Partner wurde zur feministischen Hymne in Lateinamerika.",
+      "fun_fact_es": "La puertorriqueña 'Mujer de Fuego' Olga Tañón es una de las artistas de merengue más exitosas de la historia. Este himno empoderador sobre un mentiroso se convirtió en un himno feminista en toda Latinoamérica.",
+      "uri_apple_music": "applemusic://track/42016776",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ASnkzgvBf0o"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:5WTxbyWTpoqhdxEN2szOnl",
+      "artist": "Backstreet Boys",
+      "alt_artists": [
+        "*NSYNC",
+        "Spice Girls",
+        "Boyzone",
+        "Westlife"
+      ],
+      "title": "Everybody (Backstreet's Back)",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 3,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The horror-themed music video was inspired by Michael Jackson's 'Thriller'. Originally released only internationally as the US label didn't want to include it, fan demand eventually forced its US release. The choreography became one of the most iconic of the 90s.",
+      "fun_fact_de": "Das Horror-Musikvideo war von Michael Jacksons 'Thriller' inspiriert. Ursprünglich nur international veröffentlicht, erzwang die Fan-Nachfrage die US-Veröffentlichung. Die Choreografie wurde zu einer der ikonischsten der 90er.",
+      "fun_fact_es": "El video musical con temática de terror fue inspirado por 'Thriller' de Michael Jackson. Originalmente lanzado solo internacionalmente, la demanda de los fans forzó su lanzamiento en EE.UU. La coreografía se convirtió en una de las más icónicas de los 90.",
+      "uri_apple_music": "applemusic://track/456229762",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9B4yi51ju1g"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:4dtlsMh8wam865qaU4WEnM",
+      "artist": "Chayanne",
+      "alt_artists": [
+        "Ricky Martin",
+        "Luis Miguel",
+        "Enrique Iglesias",
+        "Cristian Castro"
+      ],
+      "title": "Salomé",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "From the album 'Atado a Tu Amor' which sold over 5 million copies worldwide. The sensual dance track showcased Chayanne's exceptional dance abilities — he was trained in ballet and modern dance from childhood.",
+      "fun_fact_de": "Vom Album 'Atado a Tu Amor', das weltweit über 5 Millionen Mal verkauft wurde. Der sinnliche Dance-Track zeigte Chayannes außergewöhnliche Tanzfähigkeiten — er wurde von Kindheit an in Ballett und modernem Tanz ausgebildet.",
+      "fun_fact_es": "Del álbum 'Atado a Tu Amor' que vendió más de 5 millones de copias mundialmente. El sensual tema bailable mostró las excepcionales habilidades de baile de Chayanne, entrenado en ballet y danza moderna desde niño.",
+      "uri_apple_music": "applemusic://track/158401743",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z2BMBrCKMcY"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:1H8aAoRO817bygKpgvAcpf",
+      "artist": "Gloria Trevi",
+      "alt_artists": [
+        "Alejandra Guzmán",
+        "Thalía",
+        "Paulina Rubio",
+        "Fey"
+      ],
+      "title": "Pelo Suelto",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Gold (Mexico)"
+      ],
+      "awards": [],
+      "fun_fact": "Known as the 'Mexican Madonna' for her provocative style, Gloria Trevi's debut single became a rebellious anthem for young women across Latin America. The title track of her debut album symbolized freedom and broke taboos in conservative Mexican society.",
+      "fun_fact_de": "Als 'mexikanische Madonna' für ihren provokativen Stil bekannt, wurde Gloria Trevis Debüt-Single zur rebellischen Hymne junger Frauen in Lateinamerika. Der Titeltrack ihres Debütalbums symbolisierte Freiheit und brach Tabus in der konservativen mexikanischen Gesellschaft.",
+      "fun_fact_es": "Conocida como la 'Madonna mexicana' por su estilo provocador, el sencillo debut de Gloria Trevi se convirtió en un himno rebelde para las jóvenes de Latinoamérica. El tema titular de su álbum debut simbolizó la libertad y rompió tabúes en la sociedad mexicana.",
+      "uri_apple_music": "applemusic://track/933079251",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XCMFQ3cvbm4"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:0QQHPRbgLJJ5XNzJV1l9BW",
+      "artist": "Ricky Martin",
+      "alt_artists": [
+        "Chayanne",
+        "Luis Miguel",
+        "Enrique Iglesias",
+        "Marc Anthony"
+      ],
+      "title": "María",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 6,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (France)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Ricky Martin's biggest hit before 'Livin' la Vida Loca', it was a massive success in Europe and Latin America, reaching #1 in over 20 countries. The song's infectious chorus 'Un, dos, tres, un pasito pa'lante María' became a worldwide party anthem.",
+      "fun_fact_de": "Ricky Martins größter Hit vor 'Livin' la Vida Loca' war ein riesiger Erfolg in Europa und Lateinamerika und erreichte Platz 1 in über 20 Ländern. Der Refrain 'Un, dos, tres, un pasito pa'lante María' wurde zur weltweiten Party-Hymne.",
+      "fun_fact_es": "El mayor éxito de Ricky Martin antes de 'Livin' la Vida Loca', fue un éxito masivo en Europa y Latinoamérica, alcanzando el #1 en más de 20 países. El estribillo 'Un, dos, tres, un pasito pa'lante María' se convirtió en himno de fiesta mundial.",
+      "uri_apple_music": "applemusic://track/187288293",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vCEvCXuglqo"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:6RTlokHIiobtIsthCLm3as",
+      "artist": "Sentidos Opuestos",
+      "alt_artists": [
+        "Magneto",
+        "Mercurio",
+        "OV7",
+        "Fey"
+      ],
+      "title": "Amor De Papel",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican pop duo Alessandra Rosaldo and Chacho Gaytán created catchy, radio-friendly pop that defined the 90s Mexican pop scene. Alessandra later married Eugenio Derbez, becoming one of Mexico's most famous couples.",
+      "fun_fact_de": "Das mexikanische Pop-Duo Alessandra Rosaldo und Chacho Gaytán schufen eingängigen Radio-Pop, der die mexikanische Popszene der 90er prägte. Alessandra heiratete später Eugenio Derbez und wurde Teil eines der berühmtesten mexikanischen Paare.",
+      "fun_fact_es": "El dúo mexicano Alessandra Rosaldo y Chacho Gaytán crearon pop pegajoso que definió la escena pop mexicana de los 90. Alessandra después se casó con Eugenio Derbez, convirtiéndose en una de las parejas más famosas de México.",
+      "uri_apple_music": "applemusic://track/723450264",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CWgMrnQiYF4"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:0bIye27QbOvSrTAmCViX5O",
+      "artist": "Vilma Palma e Vampiros",
+      "alt_artists": [
+        "Soda Stereo",
+        "Enanitos Verdes",
+        "Los Fabulosos Cadillacs",
+        "Caifanes"
+      ],
+      "title": "La Pachanga",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Gold (Argentina)"
+      ],
+      "awards": [],
+      "fun_fact": "Argentine rock band from Córdoba whose name translates to 'Vilma Palma and Vampires'. This became one of the biggest Latin rock party songs of the 90s, played at virtually every celebration across Latin America. Their pop-rock sound was unique in the Argentine rock scene.",
+      "fun_fact_de": "Argentinische Rockband aus Córdoba, deren Name 'Vilma Palma und Vampire' bedeutet. Dies wurde zu einem der größten lateinamerikanischen Rock-Party-Songs der 90er, gespielt auf praktisch jeder Feier in Lateinamerika.",
+      "fun_fact_es": "Banda de rock argentina de Córdoba. Esta se convirtió en una de las canciones de fiesta de rock latino más grandes de los 90, tocada en prácticamente cada celebración en Latinoamérica. Su sonido pop-rock fue único en la escena del rock argentino.",
+      "uri_apple_music": "applemusic://track/960472718",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z_Usb9oJCGA"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:1R8upiSmv7U1rRv0qqvIbS",
+      "artist": "Oscar D'León",
+      "alt_artists": [
+        "Celia Cruz",
+        "Juan Luis Guerra",
+        "Rubén Blades",
+        "Gilberto Santa Rosa"
+      ],
+      "title": "Que Bueno Baila Usted",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Venezuelan 'León de la Salsa' (Lion of Salsa) Oscar D'León is one of the most important salsa musicians in history. This infectious dance track became his signature song and remains an essential track at any salsa party worldwide.",
+      "fun_fact_de": "Der venezolanische 'León de la Salsa' (Löwe der Salsa) Oscar D'León ist einer der wichtigsten Salsa-Musiker der Geschichte. Dieser mitreißende Dance-Track wurde sein Erkennungssong und ist unverzichtbar auf jeder Salsa-Party weltweit.",
+      "fun_fact_es": "El venezolano 'León de la Salsa' Oscar D'León es uno de los músicos de salsa más importantes de la historia. Esta contagiosa pista bailable se convirtió en su canción insignia e infaltable en cualquier fiesta salsera del mundo.",
+      "uri_apple_music": "applemusic://track/1495515843",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HmAmAPl76I4"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:0tZARbD3Ir3eY7nbFULwfS",
+      "artist": "OV7",
+      "alt_artists": [
+        "Mercurio",
+        "Sentidos Opuestos",
+        "Magneto",
+        "Fey"
+      ],
+      "title": "Enloquéceme",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally performed when the group was still called 'Onda Vaselina', they later rebranded as OV7 in 2000. The group started as the cast of a Mexican children's TV show in the 1980s and evolved into one of Mexico's most beloved pop groups.",
+      "fun_fact_de": "Ursprünglich aufgeführt als die Gruppe noch 'Onda Vaselina' hieß — sie wurden 2000 in OV7 umbenannt. Die Gruppe begann als Cast einer mexikanischen Kinder-TV-Show in den 1980ern und entwickelte sich zu einer der beliebtesten Pop-Gruppen Mexikos.",
+      "fun_fact_es": "Originalmente interpretada cuando el grupo aún se llamaba 'Onda Vaselina', luego se rebautizaron como OV7 en 2000. El grupo comenzó como elenco de un programa infantil mexicano en los 80 y evolucionó en uno de los grupos pop más queridos de México.",
+      "uri_apple_music": "applemusic://track/1774586280",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pmYtefifbx0"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:3riZWJaCsJLpTH9s2gGtGc",
+      "artist": "Playahitty",
+      "alt_artists": [
+        "Corona",
+        "Snap!",
+        "La Bouche",
+        "Haddaway"
+      ],
+      "title": "The Summer Is Magic",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 11,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Italian eurodance project featuring vocalist Silvana Aliotta. This was their only international hit, becoming a summer anthem across Europe and Latin America. The song's carefree vibe perfectly captured the 90s eurodance era.",
+      "fun_fact_de": "Italienisches Eurodance-Projekt mit Sängerin Silvana Aliotta. Dies war ihr einziger internationaler Hit, der zur Sommer-Hymne in Europa und Lateinamerika wurde. Die unbeschwerte Stimmung fing die 90er-Eurodance-Ära perfekt ein.",
+      "fun_fact_es": "Proyecto italiano de eurodance con la vocalista Silvana Aliotta. Este fue su único éxito internacional, convirtiéndose en himno veraniego en Europa y Latinoamérica. Su ambiente despreocupado capturó perfectamente la era del eurodance de los 90.",
+      "uri_apple_music": "applemusic://track/1400440973",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fq_0_e0hUfE"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:56vD8HM5H08hknJtMcNHOP",
+      "artist": "El General",
+      "alt_artists": [
+        "Proyecto Uno",
+        "Sandy & Papo",
+        "Vico C",
+        "Nando Boom"
+      ],
+      "title": "Te Ves Buena",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Panamanian artist El General (Edgardo Armando Franco) is considered one of the pioneers of reggaeton and reggae en español. His early 90s hits laid the groundwork for the Latin urban music explosion of the 2000s, influencing artists like Daddy Yankee.",
+      "fun_fact_de": "Der panamaische Künstler El General (Edgardo Armando Franco) gilt als einer der Pioniere des Reggaeton und Reggae en Español. Seine Hits der frühen 90er legten den Grundstein für die Latin-Urban-Music-Explosion der 2000er.",
+      "fun_fact_es": "El artista panameño El General (Edgardo Armando Franco) es considerado uno de los pioneros del reggaetón y el reggae en español. Sus éxitos de los 90 sentaron las bases para la explosión de la música urbana latina de los 2000.",
+      "uri_apple_music": "applemusic://track/320340067",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DQ_2Jpsbvio"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:2xhRroGUvJTSqHqPeLjdwC",
+      "artist": "Fey",
+      "alt_artists": [
+        "Paulina Rubio",
+        "Thalía",
+        "Shakira",
+        "OV7"
+      ],
+      "title": "Media Naranja",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From the album 'El Color de los Sueños'. The title 'Media Naranja' (half an orange) is a Spanish idiom meaning 'soulmate'. Fey was one of Mexico's biggest teen pop stars in the 90s, known for her high-energy dance pop and distinctive voice.",
+      "fun_fact_de": "Vom Album 'El Color de los Sueños'. Der Titel 'Media Naranja' (halbe Orange) ist eine spanische Redewendung für 'Seelenverwandter'. Fey war in den 90ern einer der größten Teen-Pop-Stars Mexikos.",
+      "fun_fact_es": "Del álbum 'El Color de los Sueños'. El título 'Media Naranja' es una expresión que significa 'alma gemela'. Fey fue una de las mayores estrellas del teen pop mexicano en los 90, conocida por su dance pop y voz distintiva.",
+      "uri_apple_music": "applemusic://track/474401741",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mduVi6XnZbA"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:5dg7OfEwTVvUZfqt24ObwI",
+      "artist": "Azucar Moreno",
+      "alt_artists": [
+        "Gipsy Kings",
+        "Las Ketchup",
+        "Olga Tañón",
+        "Monica Naranjo"
+      ],
+      "title": "Sólo Se Vive una Vez",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spanish Roma-pop duo consisting of sisters Toñi and Encarna Salazar. They represented Spain at the Eurovision Song Contest in 1990 with 'Bandido'. Their fusion of flamenco and pop made them one of Spain's most distinctive musical acts.",
+      "fun_fact_de": "Spanisches Roma-Pop-Duo der Schwestern Toñi und Encarna Salazar. Sie vertraten Spanien beim Eurovision Song Contest 1990 mit 'Bandido'. Ihre Fusion aus Flamenco und Pop machte sie zu einem der markantesten Musikacts Spaniens.",
+      "fun_fact_es": "Dúo español de pop gitano formado por las hermanas Toñi y Encarna Salazar. Representaron a España en Eurovisión 1990 con 'Bandido'. Su fusión de flamenco y pop las convirtió en uno de los actos musicales más distintivos de España.",
+      "uri_apple_music": "applemusic://track/290883412",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m7WdittwOnA"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:0q3P0vjpqqswJSukITnfZA",
+      "artist": "Onda Vaselina",
+      "alt_artists": [
+        "Mercurio",
+        "Sentidos Opuestos",
+        "Timbiriche",
+        "Magneto"
+      ],
+      "title": "Mírame a los Ojos",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Onda Vaselina (later known as OV7) started as the cast of a Mexican children's TV show. Members included Ari Borovoy, who later became a major Latin music promoter, and Lidia Ávila. The group bridged the gap between children's entertainment and mainstream pop.",
+      "fun_fact_de": "Onda Vaselina (später OV7) begann als Cast einer mexikanischen Kinder-TV-Show. Zu den Mitgliedern gehörte Ari Borovoy, der später ein wichtiger Latin-Musik-Promoter wurde. Die Gruppe überbrückte die Kluft zwischen Kinderunterhaltung und Mainstream-Pop.",
+      "fun_fact_es": "Onda Vaselina (luego OV7) comenzó como elenco de un programa infantil mexicano. Sus miembros incluían a Ari Borovoy, quien después se convirtió en un importante promotor de música latina. El grupo fue puente entre entretenimiento infantil y pop mainstream.",
+      "uri_apple_music": "applemusic://track/322076612",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RuWQzWAIe4Y"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:2UAz1uQZR4OKfa55uBPmwl",
+      "artist": "Ragazzi",
+      "alt_artists": [
+        "Magneto",
+        "Mercurio",
+        "OV7",
+        "Sentidos Opuestos"
+      ],
+      "title": "TBC",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican dance-pop group that was part of the vibrant 90s Mexican pop explosion. They were popular on the club and dance scene, contributing to the wave of teen-oriented pop groups that dominated Mexican music in the mid-1990s.",
+      "fun_fact_de": "Mexikanische Dance-Pop-Gruppe, die Teil der lebhaften mexikanischen Pop-Explosion der 90er war. Sie waren auf der Club- und Tanzszene beliebt und trugen zur Welle teenager-orientierter Popgruppen bei, die die mexikanische Musik Mitte der 1990er dominierten.",
+      "fun_fact_es": "Grupo mexicano de dance-pop que fue parte de la vibrante explosión del pop mexicano de los 90. Fueron populares en la escena de clubs y baile, contribuyendo a la ola de grupos pop juveniles que dominaron la música mexicana a mediados de los 90.",
+      "uri_apple_music": "applemusic://track/1444066543",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1xLs4nc0CZM"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:2TdaIMnopPFjYqckoyEUAJ",
+      "artist": "El General",
+      "alt_artists": [
+        "Proyecto Uno",
+        "ChiChi Peralta",
+        "Vico C",
+        "Sandy & Papo"
+      ],
+      "title": "Rica y Apretadita",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "One of the earliest Spanish-language dancehall/reggae hits to achieve crossover success. El General's blend of Panamanian reggae en español with dancehall rhythms predated reggaeton by nearly a decade and influenced the entire Latin urban genre.",
+      "fun_fact_de": "Einer der frühesten spanischsprachigen Dancehall/Reggae-Hits mit Crossover-Erfolg. El Generals Mischung aus panamaischem Reggae en Español mit Dancehall-Rhythmen ging dem Reggaeton fast ein Jahrzehnt voraus.",
+      "fun_fact_es": "Uno de los primeros éxitos de dancehall/reggae en español en lograr crossover. La mezcla de El General de reggae en español panameño con ritmos de dancehall precedió al reggaetón por casi una década e influyó en todo el género urbano latino.",
+      "uri_apple_music": "applemusic://track/254577810",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b0JSHuhmg_s"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:2VDBHPv9uXrBS50WnwrERY",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Soda Stereo",
+        "Café Tacvba",
+        "Enanitos Verdes"
+      ],
+      "title": "Oye Mi Amor",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US Latin)"
+      ],
+      "awards": [],
+      "fun_fact": "From '¿Dónde Jugarán los Niños?', one of the best-selling Latin rock albums of all time with over 10 million copies sold. The Mexican rock band Maná became the most commercially successful Latin American rock group in history.",
+      "fun_fact_de": "Von '¿Dónde Jugarán los Niños?', eines der meistverkauften Latin-Rock-Alben aller Zeiten mit über 10 Millionen verkauften Exemplaren. Die mexikanische Rockband Maná wurde zur kommerziell erfolgreichsten lateinamerikanischen Rockgruppe der Geschichte.",
+      "fun_fact_es": "De '¿Dónde Jugarán los Niños?', uno de los álbumes de rock latino más vendidos de la historia con más de 10 millones de copias. Maná se convirtió en el grupo de rock latinoamericano más exitoso comercialmente de la historia.",
+      "uri_apple_music": "applemusic://track/358349018",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OhXeBoTlCr4"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:3m8qGT5waagsTxTeSYs2Tc",
+      "artist": "Thalía",
+      "alt_artists": [
+        "Paulina Rubio",
+        "Gloria Trevi",
+        "Shakira",
+        "Fey"
+      ],
+      "title": "Gracias A Dios",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 0,
+        "weeks_on_chart": 15
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From the album 'Amor a la Mexicana'. Thalía was simultaneously starring in her famous telenovela trilogy ('María Mercedes', 'Marimar', 'María la del Barrio') while recording albums, making her one of Latin America's biggest multimedia stars.",
+      "fun_fact_de": "Vom Album 'Amor a la Mexicana'. Thalía spielte gleichzeitig in ihrer berühmten Telenovela-Trilogie ('María Mercedes', 'Marimar', 'María la del Barrio') und nahm Alben auf — einer der größten Multimedia-Stars Lateinamerikas.",
+      "fun_fact_es": "Del álbum 'Amor a la Mexicana'. Thalía protagonizaba simultáneamente su famosa trilogía de telenovelas ('María Mercedes', 'Marimar', 'María la del Barrio') mientras grababa álbumes, convirtiéndose en una de las mayores estrellas multimedia de Latinoamérica.",
+      "uri_apple_music": "applemusic://track/724556387",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D49kl43KYr8"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:6p7KLIvLhnACzXHuUi00zs",
+      "artist": "Alejandro Sanz",
+      "alt_artists": [
+        "Luis Miguel",
+        "Ricardo Arjona",
+        "Franco De Vita",
+        "Emmanuel"
+      ],
+      "title": "No Es Lo Mismo",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 0,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Platinum (Spain)",
+        "Gold (US Latin)"
+      ],
+      "awards": [
+        "Latin Grammy for Record of the Year",
+        "Latin Grammy for Album of the Year"
+      ],
+      "fun_fact": "Spanish singer-songwriter Alejandro Sanz won four Latin Grammy Awards with this album of the same name. He is one of Spain's most successful musical exports, having sold over 25 million records worldwide. Though released in 2003, he was a defining artist of the 90s Latin pop era.",
+      "fun_fact_de": "Der spanische Singer-Songwriter Alejandro Sanz gewann vier Latin Grammy Awards mit dem gleichnamigen Album. Er ist einer der erfolgreichsten musikalischen Exporte Spaniens mit über 25 Millionen verkauften Tonträgern weltweit.",
+      "fun_fact_es": "El cantautor español Alejandro Sanz ganó cuatro premios Latin Grammy con el álbum del mismo nombre. Es uno de los artistas españoles más exitosos, con más de 25 millones de discos vendidos. Aunque lanzada en 2003, fue un artista definitorio de la era del pop latino de los 90.",
+      "uri_apple_music": "applemusic://track/27074488",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xNgTMDRoa60"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:3LIOqIGge9NmgXuzbkOmIf",
+      "artist": "Sentidos Opuestos",
+      "alt_artists": [
+        "Magneto",
+        "OV7",
+        "Mercurio",
+        "Fey"
+      ],
+      "title": "¿Donde Están?",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "One of the Mexican pop duo's biggest hits. Sentidos Opuestos were part of the massive 90s Mexican pop wave that saw groups and duos dominate the airwaves. Their accessible, danceable pop sound resonated with audiences across the Spanish-speaking world.",
+      "fun_fact_de": "Einer der größten Hits des mexikanischen Pop-Duos. Sentidos Opuestos waren Teil der massiven mexikanischen Pop-Welle der 90er, die die Radiowellen dominierte. Ihr zugänglicher, tanzbarer Pop-Sound fand Anklang in der gesamten spanischsprachigen Welt.",
+      "fun_fact_es": "Uno de los mayores éxitos del dúo pop mexicano. Sentidos Opuestos fueron parte de la masiva ola de pop mexicano de los 90 que dominó las ondas radiales. Su sonido pop accesible y bailable resonó con audiencias en todo el mundo hispanohablante.",
+      "uri_apple_music": "applemusic://track/723880576",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Nq0_kLN9YSs"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:2fRynroc69YxU3c4w9RCPI",
+      "artist": "Mercurio",
+      "alt_artists": [
+        "OV7",
+        "Sentidos Opuestos",
+        "Magneto",
+        "Fey"
+      ],
+      "title": "Explota Corazón",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican pop group that competed with OV7 and Magneto for the hearts of teen fans in Mexico. They were known for their choreographed dance moves and catchy pop songs, embodying the colorful energy of 90s Mexican pop culture.",
+      "fun_fact_de": "Mexikanische Popgruppe, die mit OV7 und Magneto um die Herzen der Teen-Fans in Mexiko konkurrierte. Bekannt für ihre choreografierten Tanzbewegungen und eingängigen Pop-Songs, verkörperten sie die bunte Energie der mexikanischen Popkultur der 90er.",
+      "fun_fact_es": "Grupo pop mexicano que competía con OV7 y Magneto por los corazones de los fans adolescentes en México. Conocidos por sus movimientos de baile coreografiados y canciones pop pegajosas, encarnaron la energía colorida de la cultura pop mexicana de los 90.",
+      "uri_apple_music": "applemusic://track/470304028",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aHa3SQNMnko"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:7xSvBMiquYNDfg1Vt2W9Rv",
+      "artist": "Alejandra Guzmán",
+      "alt_artists": [
+        "Gloria Trevi",
+        "Thalía",
+        "Paulina Rubio",
+        "Fey"
+      ],
+      "title": "Mirala Miralo",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Gold (Mexico)"
+      ],
+      "awards": [],
+      "fun_fact": "Daughter of legendary Mexican cinema actress Silvia Pinal and singer Enrique Guzmán, Alejandra became a rock and pop icon in her own right. Known as 'La Reina de Corazones' (Queen of Hearts), her rebellious image inspired a generation of Mexican women.",
+      "fun_fact_de": "Tochter der legendären mexikanischen Filmschauspielerin Silvia Pinal und des Sängers Enrique Guzmán, wurde Alejandra selbst zur Rock- und Pop-Ikone. Als 'La Reina de Corazones' bekannt, inspirierte ihr rebellisches Image eine Generation mexikanischer Frauen.",
+      "fun_fact_es": "Hija de la legendaria actriz mexicana Silvia Pinal y el cantante Enrique Guzmán, Alejandra se convirtió en ícono del rock y pop por derecho propio. Conocida como 'La Reina de Corazones', su imagen rebelde inspiró a una generación de mujeres mexicanas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ucjXW_F__nk"
+    }
+  ]
+}
