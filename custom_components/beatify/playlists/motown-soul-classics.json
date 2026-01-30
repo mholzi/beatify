@@ -473,24 +473,26 @@
     {
       "year": 1965,
       "uri": "spotify:track:7a6KPKx1bRkvTKyAHJn0E7",
-      "artist": "The Isley Brothers",
+      "artist": "The Supremes",
       "alt_artists": [
-        "The Supremes",
+        "Diana Ross & The Supremes",
         "The Four Tops",
         "The Temptations",
-        "Smokey Robinson"
+        "The Isley Brothers"
       ],
       "title": "I Hear A Symphony",
       "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
+        "billboard_peak": 1,
+        "uk_peak": 39,
+        "weeks_on_chart": 12
       },
-      "certifications": [],
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "While The Supremes' version of this song reached #1 on the Billboard Hot 100, The Isley Brothers recorded their own soulful rendition for Motown's Tamla label, adding their signature vocal harmonies.",
-      "fun_fact_de": "Während die Version der Supremes #1 in den Billboard Hot 100 erreichte, nahmen die Isley Brothers ihre eigene gefühlvolle Version für Motowns Tamla-Label auf mit ihren charakteristischen Harmonien.",
-      "fun_fact_es": "Mientras que la versión de The Supremes llegó al #1 en Billboard Hot 100, los Isley Brothers grabaron su propia versión para el sello Tamla de Motown, añadiendo sus características armonías vocales.",
+      "fun_fact": "The Supremes' fifth consecutive #1 hit, extending their incredible Holland-Dozier-Holland winning streak. The lush orchestral arrangement was a departure from their earlier pop sound, hinting at the sophistication to come.",
+      "fun_fact_de": "Der fünfte aufeinanderfolgende #1-Hit der Supremes, der ihre unglaubliche Holland-Dozier-Holland-Erfolgsserie fortsetzte. Das üppige Orchesterarrangement war eine Abkehr von ihrem früheren Pop-Sound.",
+      "fun_fact_es": "El quinto #1 consecutivo de The Supremes, extendiendo su increíble racha con Holland-Dozier-Holland. El lujoso arreglo orquestal fue un cambio respecto a su sonido pop anterior.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
@@ -703,48 +705,50 @@
     {
       "year": 1964,
       "uri": "spotify:track:6vycUjcN22WKnzxDUDiec0",
-      "artist": "Eddie Holland",
+      "artist": "Kim Weston",
       "alt_artists": [
-        "Kim Weston",
+        "Eddie Holland",
         "The Doobie Brothers",
         "The Isley Brothers",
         "Marvin Gaye"
       ],
       "title": "Take Me In Your Arms (Rock Me A Little While)",
       "chart_info": {
-        "billboard_peak": null,
+        "billboard_peak": 50,
         "uk_peak": null,
-        "weeks_on_chart": null
+        "weeks_on_chart": 7
       },
       "certifications": [],
       "awards": [],
-      "fun_fact": "Eddie Holland was better known as one-third of the legendary songwriting team Holland-Dozier-Holland. Kim Weston later had a bigger hit with this song, and The Doobie Brothers covered it in 1975.",
-      "fun_fact_de": "Eddie Holland war besser bekannt als ein Drittel des legendären Songwriting-Teams Holland-Dozier-Holland. Kim Weston hatte später einen größeren Hit damit, und die Doobie Brothers coverten es 1975.",
-      "fun_fact_es": "Eddie Holland era más conocido como un tercio del legendario equipo de composición Holland-Dozier-Holland. Kim Weston tuvo un éxito mayor con esta canción, y los Doobie Brothers la versionaron en 1975.",
+      "fun_fact": "Kim Weston was one of Motown's most versatile vocalists, best known for her duet 'It Takes Two' with Marvin Gaye. The Doobie Brothers later covered this song in 1975, reaching #11 on the Billboard Hot 100.",
+      "fun_fact_de": "Kim Weston war eine der vielseitigsten Sängerinnen bei Motown, am bekanntesten für ihr Duett 'It Takes Two' mit Marvin Gaye. Die Doobie Brothers coverten diesen Song 1975 und erreichten #11 der Billboard Hot 100.",
+      "fun_fact_es": "Kim Weston fue una de las vocalistas más versátiles de Motown, más conocida por su dueto 'It Takes Two' con Marvin Gaye. Los Doobie Brothers versionaron esta canción en 1975, alcanzando el #11 en Billboard Hot 100.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
     {
       "year": 1969,
       "uri": "spotify:track:3j3lAkJ1rVPj6rhyQo1bVw",
-      "artist": "Jimmy Ruffin",
+      "artist": "Marvin Gaye",
       "alt_artists": [
-        "Marvin Gaye",
+        "Jimmy Ruffin",
         "David Ruffin",
         "The Temptations",
         "Edwin Starr"
       ],
       "title": "Too Busy Thinking About My Baby",
       "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
+        "billboard_peak": 4,
+        "uk_peak": 5,
+        "weeks_on_chart": 12
       },
-      "certifications": [],
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "While Marvin Gaye's version of this song reached #4 on the Billboard Hot 100, Jimmy Ruffin recorded his own soulful take for Motown's Soul label, showcasing the label's tradition of multiple artists recording the same material.",
-      "fun_fact_de": "Während Marvin Gayes Version dieses Songs #4 der Billboard Hot 100 erreichte, nahm Jimmy Ruffin seine eigene gefühlvolle Version für Motowns Soul-Label auf – typisch für die Tradition des Labels, denselben Song mit verschiedenen Künstlern aufzunehmen.",
-      "fun_fact_es": "Mientras la versión de Marvin Gaye alcanzó el #4 en Billboard Hot 100, Jimmy Ruffin grabó su propia versión para el sello Soul de Motown, mostrando la tradición del sello de grabar el mismo material con diferentes artistas.",
+      "fun_fact": "Written by Norman Whitfield and Barrett Strong, this was one of Marvin Gaye's most joyful recordings. It reached #4 on the Billboard Hot 100 and became a Northern Soul dance floor favorite in the UK.",
+      "fun_fact_de": "Geschrieben von Norman Whitfield und Barrett Strong, war dies eine von Marvin Gayes fröhlichsten Aufnahmen. Der Song erreichte #4 der Billboard Hot 100 und wurde ein Northern-Soul-Tanzflächen-Favorit in Großbritannien.",
+      "fun_fact_es": "Escrita por Norman Whitfield y Barrett Strong, fue una de las grabaciones más alegres de Marvin Gaye. Alcanzó el #4 en Billboard Hot 100 y se convirtió en un favorito de las pistas de baile del Northern Soul en el Reino Unido.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
@@ -931,48 +935,54 @@
     {
       "year": 1968,
       "uri": "spotify:track:6IkUFqF2HOoTfjIML5H3Wh",
-      "artist": "The Supremes & The Temptations",
+      "artist": "Dionne Warwick",
       "alt_artists": [
-        "Diana Ross",
-        "The Four Tops",
-        "Marvin Gaye",
-        "Stevie Wonder"
+        "The Supremes & The Temptations",
+        "Burt Bacharach",
+        "Dusty Springfield",
+        "Diana Ross"
       ],
       "title": "Do You Know The Way To San Jose",
       "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
+        "billboard_peak": 10,
+        "uk_peak": 8,
+        "weeks_on_chart": 11
       },
-      "certifications": [],
-      "awards": [],
-      "fun_fact": "A rare collaboration between Motown's two biggest groups. This Burt Bacharach classic was featured on their joint TV special 'TCB' (Taking Care of Business) in 1968, showcasing the Motown family dynamic.",
-      "fun_fact_de": "Eine seltene Zusammenarbeit zwischen Motowns zwei größten Gruppen. Dieser Burt-Bacharach-Klassiker war Teil ihres gemeinsamen TV-Specials 'TCB' (Taking Care of Business) von 1968.",
-      "fun_fact_es": "Una rara colaboración entre los dos grupos más grandes de Motown. Este clásico de Burt Bacharach apareció en su especial de TV conjunto 'TCB' (Taking Care of Business) de 1968.",
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award for Best Contemporary Pop Vocal Performance"
+      ],
+      "fun_fact": "Written by Burt Bacharach and Hal David, this became one of Dionne Warwick's signature songs and won the Grammy for Best Contemporary Pop Vocal Performance. Though not a Motown recording, it appears in this Spotify playlist alongside the Motown classics.",
+      "fun_fact_de": "Geschrieben von Burt Bacharach und Hal David, wurde dies einer von Dionne Warwicks Erkennungssongs und gewann den Grammy für die beste zeitgenössische Pop-Gesangsleistung. Obwohl keine Motown-Aufnahme, erscheint er in dieser Spotify-Playlist neben den Motown-Klassikern.",
+      "fun_fact_es": "Escrita por Burt Bacharach y Hal David, se convirtió en una de las canciones insignia de Dionne Warwick y ganó el Grammy a Mejor Interpretación Vocal Pop Contemporánea. Aunque no es una grabación de Motown, aparece en esta playlist de Spotify junto a los clásicos de Motown.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
     {
       "year": 1991,
       "uri": "spotify:track:4KIxdZbSiCeYEN9rJZqDDD",
-      "artist": "Shanice",
+      "artist": "Minnie Riperton",
       "alt_artists": [
-        "Brandy",
-        "Monica",
-        "Aaliyah",
+        "Shanice",
+        "Diana Ross",
+        "Stevie Wonder",
         "Teena Marie"
       ],
       "title": "Lovin' You",
       "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 14
       },
-      "certifications": [],
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "Not to be confused with Minnie Riperton's classic. Shanice was signed to Motown as a teenager and was known for her impressive vocal range spanning over five octaves.",
-      "fun_fact_de": "Nicht zu verwechseln mit Minnie Ripertons Klassiker. Shanice wurde als Teenager bei Motown unter Vertrag genommen und war für ihren beeindruckenden Stimmumfang von über fünf Oktaven bekannt.",
-      "fun_fact_es": "No confundir con el clásico de Minnie Riperton. Shanice firmó con Motown siendo adolescente y era conocida por su impresionante rango vocal de más de cinco octavas.",
+      "fun_fact": "Minnie Riperton's iconic whistle-register vocal made this one of the most recognizable songs of the 1970s. Stevie Wonder co-produced the album and played keyboards. The birdsong heard in the recording was real, captured outside the studio.",
+      "fun_fact_de": "Minnie Ripertons ikonischer Pfeifregister-Gesang machte dies zu einem der bekanntesten Songs der 1970er. Stevie Wonder co-produzierte das Album und spielte Keyboards. Der Vogelgesang in der Aufnahme war echt und wurde vor dem Studio eingefangen.",
+      "fun_fact_es": "La icónica voz en registro de silbido de Minnie Riperton hizo de esta una de las canciones más reconocibles de los 70. Stevie Wonder co-produjo el álbum y tocó los teclados. El canto de pájaros en la grabación era real, capturado fuera del estudio.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
@@ -1987,24 +1997,24 @@
     {
       "year": 1964,
       "uri": "spotify:track:4UJEO6YWo9c8b6SZ79wIAK",
-      "artist": "The Underdogs",
+      "artist": "The Temptations",
       "alt_artists": [
-        "The Temptations",
+        "The Underdogs",
         "The Four Tops",
-        "The Contours",
-        "The Spinners"
+        "Hall & Oates",
+        "Smokey Robinson"
       ],
       "title": "The Way You Do The Things You Do",
       "chart_info": {
-        "billboard_peak": null,
+        "billboard_peak": 11,
         "uk_peak": null,
-        "weeks_on_chart": null
+        "weeks_on_chart": 11
       },
       "certifications": [],
       "awards": [],
-      "fun_fact": "Originally a #11 hit for The Temptations in 1964, with Smokey Robinson co-writing. Various Motown artists recorded their own versions. The Temptations re-recorded it with Hall & Oates in 1985, reaching #20.",
-      "fun_fact_de": "Ursprünglich ein #11-Hit der Temptations 1964, mitgeschrieben von Smokey Robinson. Verschiedene Motown-Künstler nahmen eigene Versionen auf. Die Temptations nahmen ihn 1985 mit Hall & Oates neu auf und erreichten #20.",
-      "fun_fact_es": "Originalmente un éxito #11 de The Temptations en 1964, co-escrita por Smokey Robinson. Varios artistas de Motown grabaron sus propias versiones. Los Temptations la regrabaron con Hall & Oates en 1985, alcanzando el #20.",
+      "fun_fact": "Co-written by Smokey Robinson and Bobby Rogers, this was The Temptations' first major hit with its clever string of similes. The Temptations re-recorded it with Hall & Oates in 1985, reaching #20 on the Billboard Hot 100.",
+      "fun_fact_de": "Co-geschrieben von Smokey Robinson und Bobby Rogers, war dies der erste große Hit der Temptations mit seiner cleveren Reihe von Vergleichen. Die Temptations nahmen ihn 1985 mit Hall & Oates neu auf und erreichten #20.",
+      "fun_fact_es": "Co-escrita por Smokey Robinson y Bobby Rogers, fue el primer gran éxito de los Temptations con su ingeniosa cadena de símiles. Los Temptations la regrabaron con Hall & Oates en 1985, alcanzando el #20.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
@@ -2109,24 +2119,26 @@
     {
       "year": 1965,
       "uri": "spotify:track:1enywAXZCARdaq3P4Bpwzv",
-      "artist": "Smokey Robinson & The Miracles",
+      "artist": "Dionne Warwick",
       "alt_artists": [
-        "Dionne Warwick",
+        "Smokey Robinson & The Miracles",
         "Isaac Hayes",
-        "The Temptations",
-        "Marvin Gaye"
+        "Burt Bacharach",
+        "Dusty Springfield"
       ],
       "title": "Walk On By",
       "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
+        "billboard_peak": 6,
+        "uk_peak": 9,
+        "weeks_on_chart": 12
       },
-      "certifications": [],
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
-      "fun_fact": "A Motown interpretation of the Burt Bacharach-Hal David classic originally recorded by Dionne Warwick. Smokey Robinson's version brings his signature smooth vocal style to this pop standard.",
-      "fun_fact_de": "Eine Motown-Interpretation des Burt-Bacharach-Hal-David-Klassikers, der ursprünglich von Dionne Warwick aufgenommen wurde. Smokey Robinsons Version bringt seinen charakteristischen sanften Gesangsstil in diesen Pop-Standard ein.",
-      "fun_fact_es": "Una interpretación de Motown del clásico de Burt Bacharach-Hal David originalmente grabado por Dionne Warwick. La versión de Smokey Robinson aporta su estilo vocal suave característico a este estándar pop.",
+      "fun_fact": "One of the greatest Burt Bacharach-Hal David compositions, Dionne Warwick's original 1964 version is considered definitive. Isaac Hayes later recorded a 12-minute epic version. Though not a Motown recording, it appears in this Spotify playlist.",
+      "fun_fact_de": "Eine der größten Kompositionen von Burt Bacharach und Hal David. Dionne Warwicks Originalversion von 1964 gilt als die definitive Fassung. Isaac Hayes nahm später eine 12-minütige epische Version auf. Obwohl keine Motown-Aufnahme, erscheint sie in dieser Spotify-Playlist.",
+      "fun_fact_es": "Una de las mejores composiciones de Burt Bacharach-Hal David, la versión original de Dionne Warwick de 1964 se considera definitiva. Isaac Hayes grabó más tarde una versión épica de 12 minutos. Aunque no es de Motown, aparece en esta playlist de Spotify.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
@@ -2257,24 +2269,24 @@
     {
       "year": 1968,
       "uri": "spotify:track:7kFs87cJlyvSJFt5UeRG6w",
-      "artist": "Barbara Randolph",
+      "artist": "Marvin Gaye",
       "alt_artists": [
-        "Marvin Gaye",
-        "Martha Reeves",
-        "Diana Ross",
-        "Kim Weston"
+        "Barbara Randolph",
+        "The Rolling Stones",
+        "Lee Michaels",
+        "Martha Reeves"
       ],
       "title": "Can I Get A Witness",
       "chart_info": {
-        "billboard_peak": null,
+        "billboard_peak": 22,
         "uk_peak": null,
-        "weeks_on_chart": null
+        "weeks_on_chart": 9
       },
       "certifications": [],
       "awards": [],
-      "fun_fact": "Originally a 1963 hit for Marvin Gaye. Barbara Randolph was also an actress who appeared in 'Star Trek' as the character Charlene. Her Motown recordings are prized by Northern Soul collectors.",
-      "fun_fact_de": "Ursprünglich ein Hit von Marvin Gaye aus 1963. Barbara Randolph war auch Schauspielerin und trat in 'Star Trek' als Charlene auf. Ihre Motown-Aufnahmen sind bei Northern-Soul-Sammlern begehrt.",
-      "fun_fact_es": "Originalmente un éxito de Marvin Gaye de 1963. Barbara Randolph también fue actriz y apareció en 'Star Trek' como Charlene. Sus grabaciones de Motown son muy codiciadas por coleccionistas de Northern Soul.",
+      "fun_fact": "One of Marvin Gaye's earliest hits, written by Holland-Dozier-Holland. The Rolling Stones covered it during their early career, helping spread the Motown sound to British rock audiences. The gospel-influenced call-and-response style defined early Motown.",
+      "fun_fact_de": "Einer von Marvin Gayes frühesten Hits, geschrieben von Holland-Dozier-Holland. Die Rolling Stones coverten ihn in ihrer frühen Karriere und verbreiteten den Motown-Sound beim britischen Rock-Publikum. Der Gospel-beeinflusste Call-and-Response-Stil prägte das frühe Motown.",
+      "fun_fact_es": "Uno de los primeros éxitos de Marvin Gaye, escrita por Holland-Dozier-Holland. Los Rolling Stones la versionaron al inicio de su carrera, ayudando a difundir el sonido Motown entre el público del rock británico. El estilo gospel de llamada y respuesta definió el Motown temprano.",
       "uri_apple_music": "",
       "uri_youtube_music": ""
     },
