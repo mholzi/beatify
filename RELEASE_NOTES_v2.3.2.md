@@ -22,18 +22,6 @@ Beatify adds three new genre playlists spanning soul, disco, and Latin music —
 
 ---
 
-## 🔧 Data Quality Improvements
-
-Major quality pass across all 15 playlists:
-
-- **Movies & Schlager playlists** — Added missing `artist` and `title` fields to 222 tracks
-- **Kölner Karneval** — Normalized `chart_info` structure across all 291 tracks
-- **Streaming URIs enriched** — 82 new Apple Music and YouTube Music URIs added to Movies and Power Ballads playlists
-- **Enrichment script** — New `enrich_playlists.py` tool automates cross-platform URI lookup via Odesli API
-- **Removed unused `de_peak` field** — Cleaned up 260 tracks across 80er Hits and Karneval
-
----
-
 ## 📊 By The Numbers
 
 **15 Playlists** | **1,565 Songs** | **3 Music Platforms** | **3 Languages**
@@ -46,13 +34,13 @@ Major quality pass across all 15 playlists:
 - 💥 Eurodance 90s (100 songs)
 - 🎸 Pure Pop Punk (100 songs)
 - ⛵ Yacht Rock (100 songs)
-- 💔 Power Ballads (99 songs) 📈 *enriched*
+- 💔 Power Ballads (99 songs)
 - 🎯 Greatest Hits of All Time (100 songs)
 - 🏆 Eurovision Winners (72 songs)
 - 🎤 One-Hit Wonders (98 songs)
-- 🎭 Kölner Karneval (291 songs) 📈 *normalized*
-- 🎶 Schlager Klassiker (60 songs) 📈 *enriched*
-- 🎬 Movies: 100 Greatest Themes (162 songs) 📈 *enriched*
+- 🎭 Kölner Karneval (291 songs)
+- 🎶 Schlager Klassiker (60 songs)
+- 🎬 Movies: 100 Greatest Themes (162 songs)
 
 ---
 
