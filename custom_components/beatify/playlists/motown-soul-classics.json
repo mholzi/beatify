@@ -1,0 +1,2540 @@
+{
+  "name": "Motown & Soul Classics",
+  "version": "1.0",
+  "tags": [
+    "1960s",
+    "1970s",
+    "soul",
+    "motown",
+    "r&b",
+    "international"
+  ],
+  "songs": [
+    {
+      "year": 1967,
+      "uri": "spotify:track:4QNviFJLZ8SrjhkTkDbvyU",
+      "artist": "Diana Ross & The Supremes",
+      "alt_artists": [
+        "The Supremes",
+        "Martha Reeves & The Vandellas",
+        "The Marvelettes",
+        "Gladys Knight & The Pips"
+      ],
+      "title": "Reflections",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 5,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "One of the first Motown songs to address social issues, inspired by the 1967 Detroit riots. The distinctive opening was created using a primitive electronic oscillator.",
+      "fun_fact_de": "Einer der ersten Motown-Songs mit sozialkritischem Inhalt, inspiriert von den Unruhen in Detroit 1967. Das markante Intro wurde mit einem primitiven elektronischen Oszillator erzeugt.",
+      "fun_fact_es": "Una de las primeras canciones de Motown en abordar temas sociales, inspirada en los disturbios de Detroit de 1967. La distintiva introducción fue creada con un oscilador electrónico primitivo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:37j56IWzpplKE5zrlQRmxc",
+      "artist": "Marvin Gaye",
+      "alt_artists": [
+        "Smokey Robinson",
+        "Stevie Wonder",
+        "Al Green",
+        "Curtis Mayfield"
+      ],
+      "title": "I Heard It Through The Grapevine",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Motown head Berry Gordy initially rejected Marvin's version, releasing Gladys Knight's version first. Marvin's version spent 7 weeks at #1 and became Motown's biggest-selling single at the time.",
+      "fun_fact_de": "Motown-Chef Berry Gordy lehnte Marvins Version zunächst ab und veröffentlichte zuerst die Version von Gladys Knight. Marvins Version stand 7 Wochen auf Platz 1 und wurde Motowns meistverkaufte Single.",
+      "fun_fact_es": "El jefe de Motown, Berry Gordy, rechazó inicialmente la versión de Marvin, publicando primero la de Gladys Knight. La versión de Marvin estuvo 7 semanas en el #1 y se convirtió en el sencillo más vendido de Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:7MiLmLbwNoyf47xQ4TCVYp",
+      "artist": "The Temptations",
+      "alt_artists": [
+        "The Four Tops",
+        "The O'Jays",
+        "Earth, Wind & Fire",
+        "The Isley Brothers"
+      ],
+      "title": "Papa Was A Rollin' Stone",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 14,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award for Best R&B Instrumental Performance"
+      ],
+      "fun_fact": "The full album version runs over 12 minutes with its iconic bass line. The Temptations initially hated the song because it referenced an absent father, which hit too close to home for some members.",
+      "fun_fact_de": "Die vollständige Albumversion dauert über 12 Minuten mit ihrer ikonischen Basslinie. Die Temptations hassten den Song anfangs, weil er einen abwesenden Vater thematisierte – für einige Mitglieder ein zu persönliches Thema.",
+      "fun_fact_es": "La versión completa del álbum dura más de 12 minutos con su icónica línea de bajo. Los Temptations odiaban la canción porque hacía referencia a un padre ausente, algo demasiado personal para algunos miembros.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:5tBeci1jUffNY0TetHRoIp",
+      "artist": "Commodores",
+      "alt_artists": [
+        "Lionel Richie",
+        "Earth, Wind & Fire",
+        "The Isley Brothers",
+        "Kool & The Gang"
+      ],
+      "title": "Three Times A Lady",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Lionel Richie wrote it after watching his father dance with his mother at his parents' anniversary party. It was Motown's best-selling single in the UK at the time.",
+      "fun_fact_de": "Lionel Richie schrieb den Song, nachdem er seinen Vater bei der Jubiläumsfeier seiner Eltern mit seiner Mutter tanzen sah. Es war Motowns meistverkaufte Single in Großbritannien.",
+      "fun_fact_es": "Lionel Richie la escribió después de ver a su padre bailar con su madre en la fiesta de aniversario de sus padres. Fue el sencillo más vendido de Motown en el Reino Unido.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:6QyQmdvQ1ywNccYa0pwLNQ",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "Marvin Gaye",
+        "The Temptations",
+        "Sam Cooke",
+        "Otis Redding"
+      ],
+      "title": "The Tracks Of My Tears",
+      "chart_info": {
+        "billboard_peak": 16,
+        "uk_peak": 9,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Widely regarded as one of the greatest songs ever written. John Lennon called Smokey Robinson 'America's greatest living poet.' The song was inducted into the Grammy Hall of Fame in 1998.",
+      "fun_fact_de": "Weithin als einer der größten Songs aller Zeiten angesehen. John Lennon nannte Smokey Robinson 'Amerikas größten lebenden Dichter.' Der Song wurde 1998 in die Grammy Hall of Fame aufgenommen.",
+      "fun_fact_es": "Ampliamente considerada una de las mejores canciones jamás escritas. John Lennon llamó a Smokey Robinson 'el mejor poeta vivo de América'. La canción fue incluida en el Grammy Hall of Fame en 1998.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:6jX5mso4x00c1EiNMrTU9U",
+      "artist": "The Marvelettes",
+      "alt_artists": [
+        "The Supremes",
+        "Martha Reeves & The Vandellas",
+        "The Crystals",
+        "The Ronettes"
+      ],
+      "title": "Please Mr. Postman",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Motown's first #1 pop hit. The Beatles covered it in 1963, and the Carpenters took their version to #1 in 1975, making it one of the few songs to reach #1 twice.",
+      "fun_fact_de": "Motowns erster #1-Pop-Hit. Die Beatles coverten ihn 1963, und die Carpenters brachten ihre Version 1975 auf Platz 1 – einer der wenigen Songs, die zweimal die Spitze erreichten.",
+      "fun_fact_es": "El primer #1 pop de Motown. Los Beatles la versionaron en 1963 y los Carpenters llevaron su versión al #1 en 1975, convirtiéndola en una de las pocas canciones en alcanzar el #1 dos veces.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:6b6IMqP565TbtFFZg9iFf3",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The Dells",
+        "The O'Jays",
+        "The Spinners"
+      ],
+      "title": "I Can't Help Myself (Sugar Pie, Honey Bunch)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 23,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by the legendary Holland-Dozier-Holland team. It knocked the Rolling Stones' 'Satisfaction' out of the #1 spot. The song's title came from the writers' habit of calling people 'sugar pie' and 'honey bunch.'",
+      "fun_fact_de": "Geschrieben vom legendären Holland-Dozier-Holland-Team. Es verdrängte 'Satisfaction' der Rolling Stones von Platz 1. Der Songtitel entstand aus der Gewohnheit der Autoren, Leute 'Sugar Pie' und 'Honey Bunch' zu nennen.",
+      "fun_fact_es": "Escrita por el legendario equipo Holland-Dozier-Holland. Sacó a 'Satisfaction' de los Rolling Stones del #1. El título surgió de la costumbre de los compositores de llamar a la gente 'sugar pie' y 'honey bunch'.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:09Nlhtnn087cbbhMzuInxy",
+      "artist": "Jimmy Ruffin",
+      "alt_artists": [
+        "David Ruffin",
+        "The Temptations",
+        "Marvin Gaye",
+        "Edwin Starr"
+      ],
+      "title": "What Becomes Of The Brokenhearted",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 8,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jimmy was David Ruffin's older brother. This was originally written for The Spinners but given to Jimmy. It became a bigger UK hit on reissue in 1974, reaching #4.",
+      "fun_fact_de": "Jimmy war der ältere Bruder von David Ruffin. Der Song war ursprünglich für The Spinners geschrieben, wurde aber Jimmy gegeben. In Großbritannien wurde er bei der Wiederveröffentlichung 1974 ein noch größerer Hit (#4).",
+      "fun_fact_es": "Jimmy era el hermano mayor de David Ruffin. La canción fue escrita originalmente para The Spinners pero se la dieron a Jimmy. Fue un éxito aún mayor en el Reino Unido al reeditarse en 1974, alcanzando el #4.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:6rLqjzGV5VMLDWEnuUqi8q",
+      "artist": "Martha Reeves & The Vandellas",
+      "alt_artists": [
+        "The Supremes",
+        "The Marvelettes",
+        "Gladys Knight & The Pips",
+        "The Crystals"
+      ],
+      "title": "Dancing In The Street",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 4,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Marvin Gaye and William 'Mickey' Stevenson. Later became an anthem for civil rights and social change. David Bowie and Mick Jagger famously covered it for Live Aid in 1985.",
+      "fun_fact_de": "Geschrieben von Marvin Gaye und William 'Mickey' Stevenson. Wurde später zur Hymne der Bürgerrechtsbewegung. David Bowie und Mick Jagger coverten ihn 1985 für Live Aid.",
+      "fun_fact_es": "Escrita por Marvin Gaye y William 'Mickey' Stevenson. Se convirtió en un himno por los derechos civiles. David Bowie y Mick Jagger la versionaron para Live Aid en 1985.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:01gc96njmCGB8VFS3wPKyC",
+      "artist": "Gladys Knight & The Pips",
+      "alt_artists": [
+        "Aretha Franklin",
+        "Roberta Flack",
+        "Diana Ross",
+        "Dionne Warwick"
+      ],
+      "title": "Help Me Make It Through The Night",
+      "chart_info": {
+        "billboard_peak": 33,
+        "uk_peak": null,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally a country hit by Kris Kristofferson. Gladys Knight's soulful Motown rendition gave the song an entirely new dimension, showing how Motown could cross genre boundaries.",
+      "fun_fact_de": "Ursprünglich ein Country-Hit von Kris Kristofferson. Gladys Knights gefühlvolle Motown-Version gab dem Song eine völlig neue Dimension und zeigte, wie Motown Genregrenzen überschreiten konnte.",
+      "fun_fact_es": "Originalmente un éxito country de Kris Kristofferson. La versión soul de Gladys Knight le dio una dimensión completamente nueva, demostrando que Motown podía cruzar fronteras de género.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6HMvJcdw6qLsyV1b5x29sa",
+      "artist": "Lionel Richie",
+      "alt_artists": [
+        "Commodores",
+        "Luther Vandross",
+        "Stevie Wonder",
+        "Michael Jackson"
+      ],
+      "title": "Hello",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The iconic music video featured a blind student sculpting Lionel's face. The video won multiple MTV VMAs and became one of the most recognizable clips of the 1980s.",
+      "fun_fact_de": "Im ikonischen Musikvideo modellierte eine blinde Studentin Lionels Gesicht. Das Video gewann mehrere MTV VMAs und wurde zu einem der bekanntesten Clips der 1980er.",
+      "fun_fact_es": "El icónico video musical mostraba a una estudiante ciega esculpiendo el rostro de Lionel. El video ganó múltiples MTV VMAs y se convirtió en uno de los clips más reconocibles de los 80.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:7tqhbajSfrz2F7E1Z75ASX",
+      "artist": "Marvin Gaye & Tammi Terrell",
+      "alt_artists": [
+        "Ashford & Simpson",
+        "Diana Ross & Marvin Gaye",
+        "Smokey Robinson",
+        "Stevie Wonder"
+      ],
+      "title": "Ain't No Mountain High Enough",
+      "chart_info": {
+        "billboard_peak": 19,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by husband-and-wife team Ashford & Simpson. Diana Ross later took a solo version to #1 in 1970. Tragically, Tammi Terrell collapsed into Marvin's arms during a concert in 1967 due to a brain tumor.",
+      "fun_fact_de": "Geschrieben vom Ehepaar Ashford & Simpson. Diana Ross brachte 1970 eine Soloversion auf Platz 1. Tragischerweise brach Tammi Terrell 1967 bei einem Konzert aufgrund eines Hirntumors in Marvins Armen zusammen.",
+      "fun_fact_es": "Escrita por el matrimonio Ashford & Simpson. Diana Ross llevó una versión en solitario al #1 en 1970. Trágicamente, Tammi Terrell se desplomó en los brazos de Marvin durante un concierto en 1967 debido a un tumor cerebral.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:5Rb211KhnOhLLXPpt8awxU",
+      "artist": "Jr. Walker & The All Stars",
+      "alt_artists": [
+        "Marvin Gaye",
+        "James Brown",
+        "King Curtis",
+        "The Bar-Kays"
+      ],
+      "title": "How Sweet It Is (To Be Loved By You)",
+      "chart_info": {
+        "billboard_peak": 18,
+        "uk_peak": null,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally recorded by Marvin Gaye in 1964. Jr. Walker's saxophone-driven version added a grittier, funkier feel. James Taylor later had a hit with it in 1975.",
+      "fun_fact_de": "Ursprünglich 1964 von Marvin Gaye aufgenommen. Jr. Walkers Saxophon-Version gab dem Song ein raueres, funkigeres Gefühl. James Taylor hatte 1975 ebenfalls einen Hit damit.",
+      "fun_fact_es": "Originalmente grabada por Marvin Gaye en 1964. La versión de Jr. Walker con saxofón le dio un sonido más crudo y funky. James Taylor también tuvo un éxito con ella en 1975.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:3sHGi1Ldr0JfoeZMoV9sNO",
+      "artist": "Brenda Holloway",
+      "alt_artists": [
+        "Mary Wells",
+        "Kim Weston",
+        "Tammi Terrell",
+        "Barbara Lewis"
+      ],
+      "title": "Every Little Bit Hurts",
+      "chart_info": {
+        "billboard_peak": 13,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Brenda Holloway was one of the first West Coast artists signed to Motown. She was discovered at a DJ convention in Los Angeles and was one of the opening acts on The Beatles' 1965 US tour.",
+      "fun_fact_de": "Brenda Holloway war eine der ersten Westküsten-Künstlerinnen bei Motown. Sie wurde auf einer DJ-Messe in Los Angeles entdeckt und war Vorgruppe bei der US-Tour der Beatles 1965.",
+      "fun_fact_es": "Brenda Holloway fue una de las primeras artistas de la costa oeste firmadas por Motown. Fue descubierta en una convención de DJs en Los Ángeles y teloneó a The Beatles en su gira por EE.UU. en 1965.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:77fMGCDb1e3KEd060YEpyS",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "The Jackson 5",
+        "Jermaine Jackson",
+        "Stevie Wonder",
+        "Prince"
+      ],
+      "title": "One Day In Your Life",
+      "chart_info": {
+        "billboard_peak": 55,
+        "uk_peak": 1,
+        "weeks_on_chart": 7
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally recorded in 1975 but released as a single in 1981 to capitalize on Michael's solo success. It reached #1 in the UK despite only peaking at #55 in the US.",
+      "fun_fact_de": "Ursprünglich 1975 aufgenommen, aber erst 1981 als Single veröffentlicht, um von Michaels Soloerfolg zu profitieren. In Großbritannien erreichte er Platz 1, obwohl er in den USA nur auf Platz 55 kam.",
+      "fun_fact_es": "Grabada originalmente en 1975 pero lanzada como sencillo en 1981 para aprovechar el éxito en solitario de Michael. Llegó al #1 en el Reino Unido aunque solo alcanzó el #55 en EE.UU.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:03EtvNylNJnOfUbWudVRpg",
+      "artist": "Diana Ross",
+      "alt_artists": [
+        "Donna Summer",
+        "Gladys Knight",
+        "Dionne Warwick",
+        "Patti LaBelle"
+      ],
+      "title": "Do You Know Where You're Going To",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Academy Award Nomination for Best Original Song"
+      ],
+      "fun_fact": "Written for the film 'Mahogany' which also starred Diana Ross. It was nominated for an Academy Award for Best Original Song. The movie's tagline was 'Success is nothing without someone you love to share it with.'",
+      "fun_fact_de": "Geschrieben für den Film 'Mahagoni', in dem Diana Ross auch die Hauptrolle spielte. Der Song war für den Oscar als bester Originalsong nominiert.",
+      "fun_fact_es": "Escrita para la película 'Mahogany', protagonizada también por Diana Ross. Fue nominada al Oscar a Mejor Canción Original.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:4591VqUIXysNlmI5NcAIUd",
+      "artist": "Mary Wells",
+      "alt_artists": [
+        "The Supremes",
+        "Brenda Holloway",
+        "The Marvelettes",
+        "Kim Weston"
+      ],
+      "title": "My Guy",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written and produced by Smokey Robinson. Mary Wells became the first Motown artist to have a #1 pop hit. She left Motown shortly after at age 21, a decision she later regretted.",
+      "fun_fact_de": "Geschrieben und produziert von Smokey Robinson. Mary Wells war die erste Motown-Künstlerin mit einem #1-Pop-Hit. Sie verließ Motown kurz darauf mit 21 Jahren – eine Entscheidung, die sie später bereute.",
+      "fun_fact_es": "Escrita y producida por Smokey Robinson. Mary Wells fue la primera artista de Motown en tener un #1 pop. Dejó Motown poco después a los 21 años, una decisión que lamentó más tarde.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:5Vdg4tP25ffeGEC5GGmCwm",
+      "artist": "The Undisputed Truth",
+      "alt_artists": [
+        "The Temptations",
+        "Norman Whitfield",
+        "Edwin Starr",
+        "Rare Earth"
+      ],
+      "title": "Smiling Faces Sometimes",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Produced by Norman Whitfield, who originally recorded it with The Temptations as an 11-minute album track. The Undisputed Truth's shorter version became a bigger hit and a cultural touchstone about deception.",
+      "fun_fact_de": "Produziert von Norman Whitfield, der den Song ursprünglich mit den Temptations als 11-minütigen Albumtrack aufnahm. Die kürzere Version der Undisputed Truth wurde ein größerer Hit und ein kultureller Maßstab über Täuschung.",
+      "fun_fact_es": "Producida por Norman Whitfield, quien originalmente la grabó con The Temptations como un tema de 11 minutos. La versión más corta de The Undisputed Truth fue un éxito mayor y un referente cultural sobre el engaño.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:7a6KPKx1bRkvTKyAHJn0E7",
+      "artist": "The Isley Brothers",
+      "alt_artists": [
+        "The Supremes",
+        "The Four Tops",
+        "The Temptations",
+        "Smokey Robinson"
+      ],
+      "title": "I Hear A Symphony",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "While The Supremes' version of this song reached #1 on the Billboard Hot 100, The Isley Brothers recorded their own soulful rendition for Motown's Tamla label, adding their signature vocal harmonies.",
+      "fun_fact_de": "Während die Version der Supremes #1 in den Billboard Hot 100 erreichte, nahmen die Isley Brothers ihre eigene gefühlvolle Version für Motowns Tamla-Label auf mit ihren charakteristischen Harmonien.",
+      "fun_fact_es": "Mientras que la versión de The Supremes llegó al #1 en Billboard Hot 100, los Isley Brothers grabaron su propia versión para el sello Tamla de Motown, añadiendo sus características armonías vocales.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1959,
+      "uri": "spotify:track:6OsefWNJtsWqO7myze1HEX",
+      "artist": "Barrett Strong",
+      "alt_artists": [
+        "The Beatles",
+        "The Kingsmen",
+        "Smokey Robinson",
+        "Marvin Gaye"
+      ],
+      "title": "Money (That's What I Want)",
+      "chart_info": {
+        "billboard_peak": 23,
+        "uk_peak": null,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "One of the very first Motown recordings and the label's first national hit. Co-written by Berry Gordy himself. The Beatles famously covered it, helping spread Motown's influence to the UK.",
+      "fun_fact_de": "Eine der allerersten Motown-Aufnahmen und der erste nationale Hit des Labels. Co-geschrieben von Berry Gordy selbst. Die Beatles coverten den Song und trugen so Motowns Einfluss nach Großbritannien.",
+      "fun_fact_es": "Una de las primeras grabaciones de Motown y el primer éxito nacional del sello. Co-escrita por el propio Berry Gordy. Los Beatles la versionaron, ayudando a difundir la influencia de Motown en el Reino Unido.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:745H5CctFr12Mo7cqa1BMH",
+      "artist": "The Temptations",
+      "alt_artists": [
+        "The Four Tops",
+        "Smokey Robinson & The Miracles",
+        "The Drifters",
+        "The O'Jays"
+      ],
+      "title": "My Girl",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 33,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Smokey Robinson and Ronald White of The Miracles. David Ruffin's lead vocal made it The Temptations' signature song. The iconic opening guitar riff was played by Robert White, one of Motown's Funk Brothers.",
+      "fun_fact_de": "Geschrieben von Smokey Robinson und Ronald White von den Miracles. David Ruffins Leadgesang machte es zum Erkennungssong der Temptations. Das ikonische Gitarren-Riff spielte Robert White, einer der Funk Brothers.",
+      "fun_fact_es": "Escrita por Smokey Robinson y Ronald White de The Miracles. La voz principal de David Ruffin la convirtió en la canción insignia de los Temptations. El icónico riff de guitarra fue tocado por Robert White, uno de los Funk Brothers.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:5uES1C2NgkdrNHiCwf9jRr",
+      "artist": "The Supremes",
+      "alt_artists": [
+        "Diana Ross",
+        "Martha Reeves & The Vandellas",
+        "The Marvelettes",
+        "The Ronettes"
+      ],
+      "title": "Baby Love",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The second of five consecutive #1 hits for The Supremes, tying The Beatles' record at the time. It was also #1 in the UK, making The Supremes the first Motown act to top the British charts.",
+      "fun_fact_de": "Der zweite von fünf aufeinanderfolgenden #1-Hits der Supremes, womit sie den Rekord der Beatles einstellten. Auch in Großbritannien #1 – die Supremes waren der erste Motown-Act an der Spitze der britischen Charts.",
+      "fun_fact_es": "El segundo de cinco #1 consecutivos de The Supremes, igualando el récord de The Beatles. También fue #1 en el Reino Unido, convirtiendo a The Supremes en el primer acto de Motown en liderar las listas británicas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:6tYIQpc9rX2wTBtb9Rh37K",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The O'Jays",
+        "The Dells",
+        "The Spinners"
+      ],
+      "title": "Reach Out I'll Be There",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Considered Holland-Dozier-Holland's masterpiece. Levi Stubbs' passionate vocal was influenced by Bob Dylan's raw delivery. Phil Collins later covered it, reaching #19 in the US.",
+      "fun_fact_de": "Gilt als Meisterwerk von Holland-Dozier-Holland. Levi Stubbs' leidenschaftlicher Gesang war von Bob Dylans rohem Vortragsstil beeinflusst. Phil Collins coverte den Song später und erreichte #19 in den USA.",
+      "fun_fact_es": "Considerada la obra maestra de Holland-Dozier-Holland. La apasionada voz de Levi Stubbs fue influenciada por el estilo crudo de Bob Dylan. Phil Collins la versionó más tarde, alcanzando el #19 en EE.UU.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:34b3a3Pz9Jlz0092LMyNAB",
+      "artist": "Marvin Gaye",
+      "alt_artists": [
+        "Stevie Wonder",
+        "Curtis Mayfield",
+        "Al Green",
+        "Donny Hathaway"
+      ],
+      "title": "What's Going On",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame"
+      ],
+      "fun_fact": "Berry Gordy called it 'the worst thing I ever heard' and refused to release it. Marvin threatened to never record again. The album of the same name is consistently ranked among the greatest albums of all time.",
+      "fun_fact_de": "Berry Gordy nannte es 'das Schlimmste, was ich je gehört habe' und weigerte sich, es zu veröffentlichen. Marvin drohte, nie wieder aufzunehmen. Das gleichnamige Album zählt konstant zu den besten Alben aller Zeiten.",
+      "fun_fact_es": "Berry Gordy lo llamó 'lo peor que he escuchado' y se negó a publicarlo. Marvin amenazó con no volver a grabar. El álbum homónimo es constantemente clasificado entre los mejores álbumes de todos los tiempos.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:7N3UAu6FkwdBg9J7OONBBP",
+      "artist": "Martha Reeves & The Vandellas",
+      "alt_artists": [
+        "The Supremes",
+        "The Marvelettes",
+        "Gladys Knight & The Pips",
+        "The Crystals"
+      ],
+      "title": "Jimmy Mack",
+      "chart_info": {
+        "billboard_peak": 10,
+        "uk_peak": 21,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Recorded in 1964 but not released until 1967. The song was written by Holland-Dozier-Holland and is about a woman pining for her boyfriend who is away. It became one of the Vandellas' signature songs.",
+      "fun_fact_de": "1964 aufgenommen, aber erst 1967 veröffentlicht. Der Song wurde von Holland-Dozier-Holland geschrieben und handelt von einer Frau, die sich nach ihrem abwesenden Freund sehnt.",
+      "fun_fact_es": "Grabada en 1964 pero no publicada hasta 1967. Escrita por Holland-Dozier-Holland, trata de una mujer que extraña a su novio ausente. Se convirtió en una de las canciones insignia de las Vandellas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:6D8kc7RO0rqBLSo2YPflJ5",
+      "artist": "The Jackson 5",
+      "alt_artists": [
+        "Michael Jackson",
+        "The Osmonds",
+        "The Sylvers",
+        "New Edition"
+      ],
+      "title": "ABC",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Knocked The Beatles' 'Let It Be' from the #1 position, symbolically marking a generational shift in pop music. Michael Jackson was just 11 years old when this topped the charts.",
+      "fun_fact_de": "Verdrängte 'Let It Be' der Beatles von Platz 1 und markierte symbolisch einen Generationswechsel in der Popmusik. Michael Jackson war erst 11 Jahre alt, als der Song die Charts anführte.",
+      "fun_fact_es": "Sacó a 'Let It Be' de The Beatles del #1, marcando simbólicamente un cambio generacional en la música pop. Michael Jackson tenía solo 11 años cuando lideró las listas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4Fo0h4xBntg9L4YNAMXQEH",
+      "artist": "Gladys Knight & The Pips",
+      "alt_artists": [
+        "Aretha Franklin",
+        "Diana Ross",
+        "Dionne Warwick",
+        "Patti LaBelle"
+      ],
+      "title": "If I Were Your Woman",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "One of Gladys Knight's signature songs at Motown. She and The Pips were one of the label's most consistent hit-makers but often felt overshadowed by The Supremes and The Temptations.",
+      "fun_fact_de": "Einer von Gladys Knights Erkennungssongs bei Motown. Sie und die Pips waren eine der konstantesten Hitmaschinen des Labels, fühlten sich aber oft von den Supremes und Temptations in den Schatten gestellt.",
+      "fun_fact_es": "Una de las canciones insignia de Gladys Knight en Motown. Ella y los Pips fueron uno de los actos más consistentes del sello, pero a menudo se sentían eclipsados por The Supremes y The Temptations.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:6vycUjcN22WKnzxDUDiec0",
+      "artist": "Eddie Holland",
+      "alt_artists": [
+        "Kim Weston",
+        "The Doobie Brothers",
+        "The Isley Brothers",
+        "Marvin Gaye"
+      ],
+      "title": "Take Me In Your Arms (Rock Me A Little While)",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Eddie Holland was better known as one-third of the legendary songwriting team Holland-Dozier-Holland. Kim Weston later had a bigger hit with this song, and The Doobie Brothers covered it in 1975.",
+      "fun_fact_de": "Eddie Holland war besser bekannt als ein Drittel des legendären Songwriting-Teams Holland-Dozier-Holland. Kim Weston hatte später einen größeren Hit damit, und die Doobie Brothers coverten es 1975.",
+      "fun_fact_es": "Eddie Holland era más conocido como un tercio del legendario equipo de composición Holland-Dozier-Holland. Kim Weston tuvo un éxito mayor con esta canción, y los Doobie Brothers la versionaron en 1975.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:3j3lAkJ1rVPj6rhyQo1bVw",
+      "artist": "Jimmy Ruffin",
+      "alt_artists": [
+        "Marvin Gaye",
+        "David Ruffin",
+        "The Temptations",
+        "Edwin Starr"
+      ],
+      "title": "Too Busy Thinking About My Baby",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "While Marvin Gaye's version of this song reached #4 on the Billboard Hot 100, Jimmy Ruffin recorded his own soulful take for Motown's Soul label, showcasing the label's tradition of multiple artists recording the same material.",
+      "fun_fact_de": "Während Marvin Gayes Version dieses Songs #4 der Billboard Hot 100 erreichte, nahm Jimmy Ruffin seine eigene gefühlvolle Version für Motowns Soul-Label auf – typisch für die Tradition des Labels, denselben Song mit verschiedenen Künstlern aufzunehmen.",
+      "fun_fact_es": "Mientras la versión de Marvin Gaye alcanzó el #4 en Billboard Hot 100, Jimmy Ruffin grabó su propia versión para el sello Soul de Motown, mostrando la tradición del sello de grabar el mismo material con diferentes artistas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:23IK8TF2MSiLnuEjaYPfVV",
+      "artist": "Commodores",
+      "alt_artists": [
+        "Lionel Richie",
+        "The Temptations",
+        "Earth, Wind & Fire",
+        "Kool & The Gang"
+      ],
+      "title": "Nightshift",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 3,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award for Best R&B Song"
+      ],
+      "fun_fact": "A tribute to Marvin Gaye and Jackie Wilson, both of whom died in 1984. It was the Commodores' biggest hit after Lionel Richie left the group and won the Grammy for Best R&B Performance.",
+      "fun_fact_de": "Eine Hommage an Marvin Gaye und Jackie Wilson, die beide 1984 starben. Es war der größte Hit der Commodores nach Lionel Richies Abgang und gewann den Grammy für die beste R&B-Performance.",
+      "fun_fact_es": "Un tributo a Marvin Gaye y Jackie Wilson, ambos fallecidos en 1984. Fue el mayor éxito de los Commodores después de que Lionel Richie dejara el grupo y ganó el Grammy a Mejor Interpretación R&B.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4Dq749x2QP6OXTURJ9GGY8",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "The Temptations",
+        "Marvin Gaye",
+        "The Four Tops",
+        "Stevie Wonder"
+      ],
+      "title": "The Tears Of A Clown",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally an album track from 1967, it was released as a single in the UK first where it hit #1, then in the US where it also reached #1. Smokey wrote the lyrics to match a melody Stevie Wonder had composed.",
+      "fun_fact_de": "Ursprünglich ein Albumtrack von 1967, wurde er zuerst in Großbritannien als Single veröffentlicht, wo er #1 erreichte, dann in den USA, wo er ebenfalls #1 wurde. Smokey schrieb den Text zu einer Melodie von Stevie Wonder.",
+      "fun_fact_es": "Originalmente un tema de álbum de 1967, se lanzó primero como sencillo en el Reino Unido donde llegó al #1, y luego en EE.UU. donde también alcanzó el #1. Smokey escribió la letra para una melodía compuesta por Stevie Wonder.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:1l1YTy9nJ0trwhsCGcimly",
+      "artist": "The Spinners",
+      "alt_artists": [
+        "The Temptations",
+        "The Four Tops",
+        "The Stylistics",
+        "The Chi-Lites"
+      ],
+      "title": "It's A Shame",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 20,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Co-written by Stevie Wonder and produced by him as well. This was The Spinners' biggest hit during their Motown years before they moved to Atlantic Records and had even greater success.",
+      "fun_fact_de": "Co-geschrieben und produziert von Stevie Wonder. Dies war der größte Hit der Spinners während ihrer Motown-Jahre, bevor sie zu Atlantic Records wechselten und noch größere Erfolge hatten.",
+      "fun_fact_es": "Co-escrita y producida por Stevie Wonder. Fue el mayor éxito de The Spinners en sus años en Motown, antes de mudarse a Atlantic Records y tener éxitos aún mayores.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:5llZqDjRHnn5pAUswFqQCf",
+      "artist": "Jr. Walker & The All Stars",
+      "alt_artists": [
+        "King Curtis",
+        "James Brown",
+        "The Bar-Kays",
+        "Booker T. & the M.G.'s"
+      ],
+      "title": "(I'm A) Road Runner",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": null,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Holland-Dozier-Holland, this driving R&B track showcased Jr. Walker's raw saxophone style. The song was one of the grittier, more rock-influenced tracks in the Motown catalog.",
+      "fun_fact_de": "Geschrieben von Holland-Dozier-Holland, zeigte dieser treibende R&B-Track Jr. Walkers rauen Saxophon-Stil. Der Song war einer der härteren, rockigeren Tracks im Motown-Katalog.",
+      "fun_fact_es": "Escrita por Holland-Dozier-Holland, esta enérgica pista de R&B mostró el estilo crudo de saxofón de Jr. Walker. Fue una de las canciones más crudas e influenciadas por el rock del catálogo de Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:4Af8yzidDPc520TFd4TmkE",
+      "artist": "Thelma Houston",
+      "alt_artists": [
+        "Donna Summer",
+        "Gloria Gaynor",
+        "Diana Ross",
+        "Chaka Khan"
+      ],
+      "title": "Don't Leave Me This Way",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 13,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award for Best R&B Vocal Performance"
+      ],
+      "fun_fact": "Originally recorded by Harold Melvin & the Blue Notes. Thelma Houston's disco-infused version became her only #1 hit. She won the Grammy for Best R&B Female Vocal Performance for this recording.",
+      "fun_fact_de": "Ursprünglich aufgenommen von Harold Melvin & the Blue Notes. Thelma Houstons Disco-Version wurde ihr einziger #1-Hit. Sie gewann den Grammy für die beste weibliche R&B-Gesangsleistung.",
+      "fun_fact_es": "Originalmente grabada por Harold Melvin & the Blue Notes. La versión disco de Thelma Houston fue su único #1. Ganó el Grammy a Mejor Interpretación Vocal Femenina de R&B.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:26fSgIa539TCK3KV76chHU",
+      "artist": "The Velvelettes",
+      "alt_artists": [
+        "The Marvelettes",
+        "The Supremes",
+        "Martha Reeves & The Vandellas",
+        "The Crystals"
+      ],
+      "title": "Needle In A Haystack",
+      "chart_info": {
+        "billboard_peak": 45,
+        "uk_peak": null,
+        "weeks_on_chart": 6
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Velvelettes were one of Motown's underrated girl groups from Kalamazoo, Michigan. They were discovered by Motown A&R man Mickey Stevenson and recorded several Northern Soul favorites.",
+      "fun_fact_de": "Die Velvelettes waren eine der unterschätzten Girlgroups von Motown aus Kalamazoo, Michigan. Sie wurden von Motown-A&R-Mann Mickey Stevenson entdeckt und nahmen mehrere Northern-Soul-Favoriten auf.",
+      "fun_fact_es": "The Velvelettes fueron uno de los grupos femeninos infravalorados de Motown, de Kalamazoo, Michigan. Fueron descubiertas por el A&R de Motown Mickey Stevenson y grabaron varios favoritos del Northern Soul.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:1b833AsiKCEhLLxmdQu9Hw",
+      "artist": "The Miracles",
+      "alt_artists": [
+        "Smokey Robinson",
+        "The Temptations",
+        "Kool & The Gang",
+        "Earth, Wind & Fire"
+      ],
+      "title": "Love Machine",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Miracles' biggest hit, but it came after Smokey Robinson had left the group. Billy Griffin took over as lead singer and brought a more modern funk-disco sound to the group.",
+      "fun_fact_de": "Der größte Hit der Miracles, aber er kam erst nach Smokey Robinsons Abgang. Billy Griffin übernahm als Leadsänger und brachte einen moderneren Funk-Disco-Sound in die Gruppe.",
+      "fun_fact_es": "El mayor éxito de The Miracles, pero llegó después de que Smokey Robinson dejara el grupo. Billy Griffin asumió como vocalista y trajo un sonido funk-disco más moderno al grupo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:6IkUFqF2HOoTfjIML5H3Wh",
+      "artist": "The Supremes & The Temptations",
+      "alt_artists": [
+        "Diana Ross",
+        "The Four Tops",
+        "Marvin Gaye",
+        "Stevie Wonder"
+      ],
+      "title": "Do You Know The Way To San Jose",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A rare collaboration between Motown's two biggest groups. This Burt Bacharach classic was featured on their joint TV special 'TCB' (Taking Care of Business) in 1968, showcasing the Motown family dynamic.",
+      "fun_fact_de": "Eine seltene Zusammenarbeit zwischen Motowns zwei größten Gruppen. Dieser Burt-Bacharach-Klassiker war Teil ihres gemeinsamen TV-Specials 'TCB' (Taking Care of Business) von 1968.",
+      "fun_fact_es": "Una rara colaboración entre los dos grupos más grandes de Motown. Este clásico de Burt Bacharach apareció en su especial de TV conjunto 'TCB' (Taking Care of Business) de 1968.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:4KIxdZbSiCeYEN9rJZqDDD",
+      "artist": "Shanice",
+      "alt_artists": [
+        "Brandy",
+        "Monica",
+        "Aaliyah",
+        "Teena Marie"
+      ],
+      "title": "Lovin' You",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Not to be confused with Minnie Riperton's classic. Shanice was signed to Motown as a teenager and was known for her impressive vocal range spanning over five octaves.",
+      "fun_fact_de": "Nicht zu verwechseln mit Minnie Ripertons Klassiker. Shanice wurde als Teenager bei Motown unter Vertrag genommen und war für ihren beeindruckenden Stimmumfang von über fünf Oktaven bekannt.",
+      "fun_fact_es": "No confundir con el clásico de Minnie Riperton. Shanice firmó con Motown siendo adolescente y era conocida por su impresionante rango vocal de más de cinco octavas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:6vw25zdudtnenbUhvy5nXj",
+      "artist": "Billy Preston & Syreeta",
+      "alt_artists": [
+        "Stevie Wonder",
+        "Marvin Gaye",
+        "Ashford & Simpson",
+        "Peabo Bryson"
+      ],
+      "title": "With You I'm Born Again",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 2,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From the movie 'Fast Break.' Syreeta Wright was Stevie Wonder's ex-wife and a talented songwriter in her own right. Billy Preston was known as the 'Fifth Beatle' for his work with The Beatles.",
+      "fun_fact_de": "Aus dem Film 'Fast Break'. Syreeta Wright war Stevie Wonders Ex-Frau und eine talentierte Songwriterin. Billy Preston war als 'Fünfter Beatle' für seine Arbeit mit den Beatles bekannt.",
+      "fun_fact_es": "De la película 'Fast Break'. Syreeta Wright era la ex esposa de Stevie Wonder y una talentosa compositora. Billy Preston era conocido como el 'Quinto Beatle' por su trabajo con The Beatles.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:74kxBssUzh94itBRiETIRN",
+      "artist": "Jermaine Jackson",
+      "alt_artists": [
+        "Michael Jackson",
+        "The Jackson 5",
+        "The Stylistics",
+        "DeBarge"
+      ],
+      "title": "Daddy's Home",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "A cover of Shep and the Limelites' 1961 doo-wop classic. It was Jermaine's first major solo hit while still a member of The Jackson 5. He stayed at Motown when his brothers left for Epic Records.",
+      "fun_fact_de": "Ein Cover des Doo-Wop-Klassikers von Shep and the Limelites von 1961. Es war Jermaines erster großer Solo-Hit als Mitglied der Jackson 5. Er blieb bei Motown, als seine Brüder zu Epic Records wechselten.",
+      "fun_fact_es": "Una versión del clásico doo-wop de Shep and the Limelites de 1961. Fue el primer gran éxito en solitario de Jermaine siendo aún miembro de los Jackson 5. Se quedó en Motown cuando sus hermanos se fueron a Epic Records.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4czNORk5MjW5WOn98bki32",
+      "artist": "Lionel Richie",
+      "alt_artists": [
+        "Michael Jackson",
+        "Stevie Wonder",
+        "Luther Vandross",
+        "Billy Ocean"
+      ],
+      "title": "All Night Long (All Night)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The 'African' chant in the song ('Tom bo li de say de moi ya') is actually made-up language. Lionel consulted with African students at his alma mater Tuskegee University for authentic-sounding syllables.",
+      "fun_fact_de": "Der 'afrikanische' Gesang im Song ('Tom bo li de say de moi ya') ist tatsächlich eine erfundene Sprache. Lionel beriet sich mit afrikanischen Studenten seiner Alma Mater Tuskegee University für authentisch klingende Silben.",
+      "fun_fact_es": "El canto 'africano' de la canción ('Tom bo li de say de moi ya') es en realidad un idioma inventado. Lionel consultó con estudiantes africanos de su alma mater, la Universidad Tuskegee, para lograr sílabas que sonaran auténticas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:5LxvwujISqiB8vpRYv887S",
+      "artist": "The Jackson 5",
+      "alt_artists": [
+        "Michael Jackson",
+        "The Osmonds",
+        "New Edition",
+        "The Sylvers"
+      ],
+      "title": "I Want You Back",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Jackson 5's debut single and their first of four consecutive #1 hits. Michael was only 11 years old. The bass line, played by Wilton Felder, is considered one of the greatest in pop music history.",
+      "fun_fact_de": "Die Debütsingle der Jackson 5 und ihr erster von vier aufeinanderfolgenden #1-Hits. Michael war erst 11 Jahre alt. Die Basslinie von Wilton Felder gilt als eine der größten in der Pop-Geschichte.",
+      "fun_fact_es": "El sencillo debut de los Jackson 5 y el primero de cuatro #1 consecutivos. Michael tenía solo 11 años. La línea de bajo de Wilton Felder se considera una de las mejores de la historia del pop.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:1OppEieGNdItZbE14gLBEv",
+      "artist": "The Supremes",
+      "alt_artists": [
+        "Diana Ross",
+        "Martha Reeves & The Vandellas",
+        "The Marvelettes",
+        "Phil Collins"
+      ],
+      "title": "You Can't Hurry Love",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Phil Collins covered it in 1982 and also took it to #1. The song features the classic Holland-Dozier-Holland production with its driving beat and call-and-response vocals.",
+      "fun_fact_de": "Phil Collins coverte den Song 1982 und brachte ihn ebenfalls auf Platz 1. Der Song zeigt die klassische Holland-Dozier-Holland-Produktion mit treibendem Beat und Call-and-Response-Gesang.",
+      "fun_fact_es": "Phil Collins la versionó en 1982 y también la llevó al #1. La canción presenta la producción clásica de Holland-Dozier-Holland con su ritmo enérgico y voces de llamada y respuesta.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:5c33j1xFVOL4G24zxYhssB",
+      "artist": "The Isley Brothers",
+      "alt_artists": [
+        "The Temptations",
+        "The Four Tops",
+        "Marvin Gaye",
+        "Smokey Robinson"
+      ],
+      "title": "This Old Heart Of Mine (Is Weak For You)",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 4,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Holland-Dozier-Holland. It became a bigger hit in the UK on reissue in 1968 and again when Rod Stewart recorded a duet version with Ronald Isley in 1990.",
+      "fun_fact_de": "Geschrieben von Holland-Dozier-Holland. In Großbritannien wurde er bei Wiederveröffentlichung 1968 ein größerer Hit und erneut, als Rod Stewart 1990 eine Duettversion mit Ronald Isley aufnahm.",
+      "fun_fact_es": "Escrita por Holland-Dozier-Holland. Fue un éxito mayor en el Reino Unido al reeditarse en 1968 y de nuevo cuando Rod Stewart grabó un dueto con Ronald Isley en 1990.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:75tHHyxJw2u6EeMPaTNXHD",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The Dells",
+        "Bobby Darin",
+        "Tim Hardin"
+      ],
+      "title": "If I Were A Carpenter",
+      "chart_info": {
+        "billboard_peak": 17,
+        "uk_peak": 7,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A cover of Tim Hardin's folk classic, transformed into a soul masterpiece by Levi Stubbs' powerful vocal delivery. Bobby Darin's version had been a hit two years earlier.",
+      "fun_fact_de": "Ein Cover von Tim Hardins Folk-Klassiker, verwandelt in ein Soul-Meisterwerk durch Levi Stubbs' kraftvollen Gesang. Bobby Darins Version war zwei Jahre zuvor ein Hit gewesen.",
+      "fun_fact_es": "Una versión del clásico folk de Tim Hardin, transformada en una obra maestra del soul por la poderosa interpretación vocal de Levi Stubbs. La versión de Bobby Darin había sido un éxito dos años antes.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:6rpljHv0NRZ5pH8gV2zG4U",
+      "artist": "The Contours",
+      "alt_artists": [
+        "The Temptations",
+        "The Isley Brothers",
+        "Wilson Pickett",
+        "James Brown"
+      ],
+      "title": "Do You Love Me",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally written for The Temptations but they couldn't be found when it was time to record. It re-entered the charts in 1988 after being featured in the film 'Dirty Dancing.'",
+      "fun_fact_de": "Ursprünglich für die Temptations geschrieben, die aber zum Aufnahmetermin nicht auffindbar waren. Der Song schaffte es 1988 erneut in die Charts, nachdem er im Film 'Dirty Dancing' verwendet wurde.",
+      "fun_fact_es": "Originalmente escrita para los Temptations, pero no pudieron encontrarlos para la grabación. Volvió a las listas en 1988 tras aparecer en la película 'Dirty Dancing'.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:7f1ycUzmE2DCxYLIPbzHha",
+      "artist": "Marvin Gaye",
+      "alt_artists": [
+        "Al Green",
+        "Barry White",
+        "Isaac Hayes",
+        "Curtis Mayfield"
+      ],
+      "title": "Let's Get It On",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 31,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "One of the most iconic love songs ever recorded. Marvin was inspired by meeting Janis Hunter, who would become his second wife. The opening notes are among the most recognizable in music history.",
+      "fun_fact_de": "Einer der ikonischsten Liebessongs aller Zeiten. Marvin wurde inspiriert durch die Begegnung mit Janis Hunter, die seine zweite Frau wurde. Die Anfangstöne gehören zu den bekanntesten in der Musikgeschichte.",
+      "fun_fact_es": "Una de las canciones de amor más icónicas jamás grabadas. Marvin se inspiró al conocer a Janis Hunter, quien se convertiría en su segunda esposa. Las notas iniciales son de las más reconocibles de la historia.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5iwyLsQ5yjnCaRrJGyAPZM",
+      "artist": "Lionel Richie & Diana Ross",
+      "alt_artists": [
+        "Commodores",
+        "Ashford & Simpson",
+        "Peabo Bryson",
+        "Luther Vandross"
+      ],
+      "title": "Endless Love",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 7,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Academy Award Nomination for Best Original Song"
+      ],
+      "fun_fact": "Spent 9 weeks at #1, making it the most successful Motown single ever at the time. Written for Franco Zeffirelli's film of the same name. It was also nominated for an Academy Award.",
+      "fun_fact_de": "Stand 9 Wochen auf Platz 1 und war damit die erfolgreichste Motown-Single aller Zeiten. Geschrieben für Franco Zeffirellis gleichnamigen Film. Wurde auch für den Oscar nominiert.",
+      "fun_fact_es": "Estuvo 9 semanas en el #1, convirtiéndose en el sencillo más exitoso de Motown en su momento. Escrita para la película homónima de Franco Zeffirelli. También fue nominada al Oscar.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:3vZMkLS1jP7NdNhzqGfUSW",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "The Jackson 5",
+        "Stevie Wonder",
+        "Donny Osmond",
+        "Jermaine Jackson"
+      ],
+      "title": "Ben",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 7,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Academy Award Nomination for Best Original Song"
+      ],
+      "fun_fact": "A love song about a pet rat, from the horror film 'Ben.' Michael was only 14 when it became his first solo #1 hit. It was nominated for an Academy Award for Best Original Song.",
+      "fun_fact_de": "Ein Liebeslied über eine Ratte aus dem Horrorfilm 'Ben'. Michael war erst 14, als es sein erster Solo-#1-Hit wurde. Es war für den Oscar als bester Originalsong nominiert.",
+      "fun_fact_es": "Una canción de amor sobre una rata mascota, de la película de terror 'Ben'. Michael tenía solo 14 años cuando se convirtió en su primer #1 en solitario. Fue nominada al Oscar a Mejor Canción Original.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:5s3zYvzEpBk0WbG6AgFUBK",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "The Temptations",
+        "Marvin Gaye",
+        "The Four Tops",
+        "Jr. Walker"
+      ],
+      "title": "Going To A Go-Go",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": 44,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Rolling Stones covered it on their 1982 live album 'Still Life.' The song perfectly captures the excitement of 1960s nightlife and became a Northern Soul dance floor favorite.",
+      "fun_fact_de": "Die Rolling Stones coverten den Song auf ihrem 1982er Live-Album 'Still Life'. Der Song fängt die Aufregung des Nachtlebens der 1960er perfekt ein und wurde ein Favorit der Northern-Soul-Tanzflächen.",
+      "fun_fact_es": "Los Rolling Stones la versionaron en su álbum en vivo de 1982 'Still Life'. La canción captura perfectamente la emoción de la vida nocturna de los 60 y se convirtió en un favorito de las pistas de baile del Northern Soul.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4a01ClusxuZiloOK5UgLUn",
+      "artist": "The Supremes",
+      "alt_artists": [
+        "Diana Ross",
+        "Vanilla Fudge",
+        "Kim Wilde",
+        "Martha Reeves & The Vandellas"
+      ],
+      "title": "You Keep Me Hangin' On",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Vanilla Fudge turned it into a psychedelic rock epic, and Kim Wilde took it back to #1 in 1987. The song's urgent telephone-ring guitar riff was played by Funk Brothers guitarist Eddie Willis.",
+      "fun_fact_de": "Vanilla Fudge verwandelten es in ein psychedelisches Rock-Epos, und Kim Wilde brachte es 1987 zurück auf Platz 1. Das drängende Telefon-Gitarrenriff spielte Funk-Brothers-Gitarrist Eddie Willis.",
+      "fun_fact_es": "Vanilla Fudge la convirtió en una épica de rock psicodélico, y Kim Wilde la devolvió al #1 en 1987. El urgente riff de guitarra tipo timbre telefónico fue tocado por el guitarrista de Funk Brothers Eddie Willis.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:1WPqawIF9HCKfSOt7mN6X0",
+      "artist": "Martha Reeves & The Vandellas",
+      "alt_artists": [
+        "The Supremes",
+        "The Marvelettes",
+        "Gladys Knight & The Pips",
+        "Laura Nyro"
+      ],
+      "title": "Nowhere To Run",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 26,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Holland-Dozier-Holland. The song was recorded partly on a Ford car assembly line at the River Rouge plant in Dearborn, Michigan, with the factory sounds providing a unique percussive backdrop.",
+      "fun_fact_de": "Geschrieben von Holland-Dozier-Holland. Der Song wurde teilweise am Ford-Fließband im River-Rouge-Werk in Dearborn, Michigan, aufgenommen, wobei die Fabrikgeräusche eine einzigartige perkussive Kulisse boten.",
+      "fun_fact_es": "Escrita por Holland-Dozier-Holland. La canción fue grabada parcialmente en una línea de ensamblaje de Ford en la planta River Rouge en Dearborn, Michigan, con los sonidos de la fábrica como fondo percusivo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:7xeTutX5iU2V769vZHPZ0Y",
+      "artist": "Eddie Kendricks",
+      "alt_artists": [
+        "The Temptations",
+        "David Ruffin",
+        "Marvin Gaye",
+        "Barry White"
+      ],
+      "title": "Keep On Truckin'",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 18,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Eddie's biggest solo hit after leaving The Temptations. Its smooth falsetto and funky groove helped define the proto-disco sound. The single version fades out but the album version extends to over 8 minutes.",
+      "fun_fact_de": "Eddies größter Solo-Hit nach dem Verlassen der Temptations. Sein sanftes Falsett und der funkige Groove halfen, den Proto-Disco-Sound zu definieren. Die Single blendet aus, die Albumversion dauert über 8 Minuten.",
+      "fun_fact_es": "El mayor éxito en solitario de Eddie tras dejar los Temptations. Su suave falsete y groove funky ayudaron a definir el sonido proto-disco. La versión del sencillo se desvanece, pero la del álbum dura más de 8 minutos.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:1vFNrZld2sLrmxwLIO1r1L",
+      "artist": "The Marvelettes",
+      "alt_artists": [
+        "The Supremes",
+        "The Crystals",
+        "The Ronettes",
+        "The Shirelles"
+      ],
+      "title": "Beechwood 4-5789",
+      "chart_info": {
+        "billboard_peak": 17,
+        "uk_peak": null,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Marvin Gaye, who was then a session drummer at Motown. The phone number in the title was completely fictitious, but fans still tried calling it for years.",
+      "fun_fact_de": "Geschrieben von Marvin Gaye, der damals Session-Drummer bei Motown war. Die Telefonnummer im Titel war komplett erfunden, aber Fans versuchten jahrelang, sie anzurufen.",
+      "fun_fact_es": "Escrita por Marvin Gaye, quien entonces era baterista de sesión en Motown. El número de teléfono del título era completamente ficticio, pero los fans intentaron llamarlo durante años.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:09VbZ87CD4kGyQ9QBrnziC",
+      "artist": "David Ruffin",
+      "alt_artists": [
+        "The Temptations",
+        "Eddie Kendricks",
+        "Jimmy Ruffin",
+        "Marvin Gaye"
+      ],
+      "title": "My Whole World Ended (The Moment You Left Me)",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 11
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "David's first solo single after being fired from The Temptations for his diva behavior. The emotional title seemed to mirror his real-life situation of losing his place in the group.",
+      "fun_fact_de": "Davids erste Solo-Single nach seinem Rauswurf bei den Temptations wegen seines Diva-Verhaltens. Der emotionale Titel schien seine reale Situation widerzuspiegeln.",
+      "fun_fact_es": "El primer sencillo en solitario de David después de ser despedido de los Temptations por su comportamiento de diva. El emotivo título parecía reflejar su situación real de perder su lugar en el grupo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5khAYmr8HHFwI3sp0Lw9wp",
+      "artist": "Smokey Robinson",
+      "alt_artists": [
+        "Marvin Gaye",
+        "Lionel Richie",
+        "Luther Vandross",
+        "Stevie Wonder"
+      ],
+      "title": "Being With You",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Smokey's biggest solo hit and a massive #1 in the UK, kept from the US top spot only by 'Bette Davis Eyes.' It showed Smokey could thrive as a solo artist decades after co-founding Motown.",
+      "fun_fact_de": "Smokeys größter Solo-Hit und eine massive #1 in Großbritannien, in den USA nur von 'Bette Davis Eyes' von Platz 1 ferngehalten. Es zeigte, dass Smokey Jahrzehnte nach der Motown-Gründung als Solokünstler bestehen konnte.",
+      "fun_fact_es": "El mayor éxito en solitario de Smokey y un enorme #1 en el Reino Unido, solo impedido de alcanzar la cima en EE.UU. por 'Bette Davis Eyes'. Demostró que Smokey podía triunfar en solitario décadas después de cofundar Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:5yGTQzYbEdY6B9RFZJypgt",
+      "artist": "DeBarge",
+      "alt_artists": [
+        "The Jackson 5",
+        "New Edition",
+        "Switch",
+        "El DeBarge"
+      ],
+      "title": "Rhythm Of The Night",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 4,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Featured in the film 'The Last Dragon,' a martial arts-meets-Motown movie. DeBarge was a family group often compared to The Jacksons. El DeBarge's falsetto drew comparisons to a young Michael Jackson.",
+      "fun_fact_de": "Im Film 'The Last Dragon' zu hören, einer Kampfkunst-trifft-Motown-Produktion. DeBarge war eine Familienband, oft mit den Jacksons verglichen. El DeBarges Falsett erinnerte an den jungen Michael Jackson.",
+      "fun_fact_es": "Apareció en la película 'The Last Dragon', una producción de artes marciales y Motown. DeBarge era un grupo familiar frecuentemente comparado con los Jacksons. El falsete de El DeBarge recordaba al joven Michael Jackson.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:2dCmGcEOQrMQhMMS8Vj7Ca",
+      "artist": "Rick James",
+      "alt_artists": [
+        "Prince",
+        "Cameo",
+        "Parliament-Funkadelic",
+        "Teena Marie"
+      ],
+      "title": "Super Freak",
+      "chart_info": {
+        "billboard_peak": 16,
+        "uk_peak": null,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "MC Hammer sampled the bass line for 'U Can't Touch This,' which became a massive hit. Rick James initially sued but they settled and he received songwriting credit and royalties. The Temptations sang backup.",
+      "fun_fact_de": "MC Hammer sampelte die Basslinie für 'U Can't Touch This'. Rick James klagte zunächst, aber sie einigten sich und er erhielt Songwriting-Credit und Tantiemen. Die Temptations sangen die Backing Vocals.",
+      "fun_fact_es": "MC Hammer sampleó la línea de bajo para 'U Can't Touch This'. Rick James demandó inicialmente pero llegaron a un acuerdo y recibió crédito como compositor y regalías. Los Temptations cantaron los coros.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:2XZRe31lC2YDj9xhPSSIly",
+      "artist": "Dennis Edwards & Siedah Garrett",
+      "alt_artists": [
+        "The Temptations",
+        "Marvin Gaye",
+        "Michael Jackson",
+        "DeBarge"
+      ],
+      "title": "Don't Look Any Further",
+      "chart_info": {
+        "billboard_peak": 72,
+        "uk_peak": 45,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dennis Edwards was the lead singer of The Temptations. The song became a massive hip-hop sample source, used by 2Pac, Eric B. & Rakim, and many others. Siedah Garrett later co-wrote Michael Jackson's 'Man in the Mirror.'",
+      "fun_fact_de": "Dennis Edwards war Leadsänger der Temptations. Der Song wurde eine bedeutende Hip-Hop-Sample-Quelle, verwendet von 2Pac, Eric B. & Rakim und vielen anderen. Siedah Garrett schrieb später Michael Jacksons 'Man in the Mirror' mit.",
+      "fun_fact_es": "Dennis Edwards fue el vocalista de The Temptations. La canción se convirtió en una fuente de samples masiva para el hip-hop, utilizada por 2Pac, Eric B. & Rakim y muchos otros. Siedah Garrett co-escribió 'Man in the Mirror' de Michael Jackson.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4KBLF8z7Hv7RIHjetaTCfD",
+      "artist": "Bonnie Pointer",
+      "alt_artists": [
+        "The Pointer Sisters",
+        "Diana Ross",
+        "Donna Summer",
+        "Gloria Gaynor"
+      ],
+      "title": "Heaven Must Have Sent You",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": 11,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally a 1966 hit by The Elgins on Motown. Bonnie Pointer, who left The Pointer Sisters for a solo career on Motown, gave it a disco treatment that became her biggest solo hit.",
+      "fun_fact_de": "Ursprünglich ein Hit von The Elgins aus dem Jahr 1966. Bonnie Pointer, die die Pointer Sisters für eine Solokarriere bei Motown verließ, gab dem Song ein Disco-Treatment und landete damit ihren größten Solo-Hit.",
+      "fun_fact_es": "Originalmente un éxito de The Elgins de 1966. Bonnie Pointer, quien dejó las Pointer Sisters para una carrera en solitario en Motown, le dio un tratamiento disco que se convirtió en su mayor éxito.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:0UERoCKd24PKovd4BwRzBQ",
+      "artist": "Marvin Gaye & Kim Weston",
+      "alt_artists": [
+        "Ashford & Simpson",
+        "Marvin Gaye & Tammi Terrell",
+        "Diana Ross & Marvin Gaye",
+        "Ike & Tina Turner"
+      ],
+      "title": "It Takes Two",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 16,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Marvin's first major duet hit. Kim Weston left Motown shortly after, and Tammi Terrell became his most famous duet partner. The song was later covered by Rod Stewart and Tina Turner in 1990.",
+      "fun_fact_de": "Marvins erster großer Duett-Hit. Kim Weston verließ Motown kurz darauf und Tammi Terrell wurde seine berühmteste Duett-Partnerin. Rod Stewart und Tina Turner coverten den Song 1990.",
+      "fun_fact_es": "El primer gran éxito a dúo de Marvin. Kim Weston dejó Motown poco después y Tammi Terrell se convirtió en su compañera de dueto más famosa. Rod Stewart y Tina Turner la versionaron en 1990.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:2O8TCol1NH6WolLH8119cY",
+      "artist": "The Isley Brothers",
+      "alt_artists": [
+        "The Four Tops",
+        "The Temptations",
+        "The Dells",
+        "Smokey Robinson"
+      ],
+      "title": "Behind A Painted Smile",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A massive hit in the UK's Northern Soul scene, reaching #5 on the UK charts. The Isley Brothers had a complicated relationship with Motown and eventually left for greater creative freedom at T-Neck Records.",
+      "fun_fact_de": "Ein riesiger Hit in der britischen Northern-Soul-Szene, der Platz 5 der UK-Charts erreichte. Die Isley Brothers hatten ein kompliziertes Verhältnis zu Motown und gingen schließlich für mehr kreative Freiheit zu T-Neck Records.",
+      "fun_fact_es": "Un gran éxito en la escena del Northern Soul británico, alcanzando el #5 en las listas del Reino Unido. Los Isley Brothers tuvieron una relación complicada con Motown y finalmente se fueron a T-Neck Records por mayor libertad creativa.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:2ncPsW15RKJ7AVpmkTx9Y6",
+      "artist": "Diana Ross",
+      "alt_artists": [
+        "The Supremes",
+        "Gladys Knight",
+        "Aretha Franklin",
+        "Dionne Warwick"
+      ],
+      "title": "Reach Out And Touch (Somebody's Hand)",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": 33,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Diana's first solo single after leaving The Supremes. Written by Ashford & Simpson, it became her concert signature, with Diana walking into the audience to literally touch hands.",
+      "fun_fact_de": "Dianas erste Solo-Single nach dem Verlassen der Supremes. Geschrieben von Ashford & Simpson, wurde es ihr Konzertsignatur-Song, bei dem Diana ins Publikum ging, um buchstäblich Hände zu berühren.",
+      "fun_fact_es": "El primer sencillo en solitario de Diana tras dejar las Supremes. Escrita por Ashford & Simpson, se convirtió en su firma en conciertos, donde Diana caminaba entre el público para tocar las manos.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2SQkCUj5rYrFCRKnaTbYYr",
+      "artist": "Lionel Richie",
+      "alt_artists": [
+        "Commodores",
+        "Luther Vandross",
+        "Stevie Wonder",
+        "Michael Jackson"
+      ],
+      "title": "You Are",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 43,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From his self-titled debut album. Lionel wrote it as a love ballad to his first wife Brenda. The album produced three top-five hits and launched one of the most successful solo careers in pop history.",
+      "fun_fact_de": "Von seinem selbstbetitelten Debütalbum. Lionel schrieb es als Liebesballade für seine erste Frau Brenda. Das Album produzierte drei Top-5-Hits und startete eine der erfolgreichsten Solokarrieren der Pop-Geschichte.",
+      "fun_fact_es": "De su álbum debut homónimo. Lionel la escribió como balada de amor para su primera esposa Brenda. El álbum produjo tres éxitos en el top 5 y lanzó una de las carreras en solitario más exitosas de la historia del pop.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:74JrSRW1FdHJ05lzufQ7qS",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "The Jackson 5",
+        "Stevie Wonder",
+        "Jermaine Jackson",
+        "Donny Osmond"
+      ],
+      "title": "Got To Be There",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Michael's debut solo single while still a member of The Jackson 5. He was just 13 years old. The song showcased the emotional maturity that would define his legendary career.",
+      "fun_fact_de": "Michaels Debüt-Solo-Single, während er noch Mitglied der Jackson 5 war. Er war erst 13 Jahre alt. Der Song zeigte die emotionale Reife, die seine legendäre Karriere definieren sollte.",
+      "fun_fact_es": "El primer sencillo en solitario de Michael siendo aún miembro de los Jackson 5. Tenía solo 13 años. La canción mostró la madurez emocional que definiría su legendaria carrera.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:6Hd8mrDwBQ8rLo70FwFG5C",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "Marvin Gaye",
+        "The Temptations",
+        "Sam Cooke",
+        "The Four Tops"
+      ],
+      "title": "I Second That Emotion",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 27,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Co-written by Smokey Robinson and Miracles guitarist Al Cleveland. The phrase came from a malapropism Cleveland used in conversation, saying 'I second that emotion' instead of 'motion.' Japan's version reached #1 in their charts.",
+      "fun_fact_de": "Co-geschrieben von Smokey Robinson und Miracles-Gitarrist Al Cleveland. Der Ausdruck entstand aus einem Versprecher Clevelands, der 'I second that emotion' statt 'motion' sagte.",
+      "fun_fact_es": "Co-escrita por Smokey Robinson y el guitarrista de los Miracles Al Cleveland. La frase surgió de un error de Cleveland, quien dijo 'I second that emotion' en vez de 'motion'.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4ZEEcEMGjkWOfZNBcIB9yE",
+      "artist": "Edwin Starr",
+      "alt_artists": [
+        "Marvin Gaye",
+        "The Temptations",
+        "Curtis Mayfield",
+        "Sly & The Family Stone"
+      ],
+      "title": "War",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally recorded by The Temptations but Motown feared the anti-war message would alienate their fans. Edwin Starr's intense version became a Vietnam-era protest anthem. 'War! What is it good for? Absolutely nothing!' became one of rock's most quoted lines.",
+      "fun_fact_de": "Ursprünglich von den Temptations aufgenommen, aber Motown befürchtete, die Anti-Kriegs-Botschaft könnte Fans vergraulen. Edwin Starrs intensive Version wurde zur Protestsymne der Vietnam-Ära.",
+      "fun_fact_es": "Originalmente grabada por The Temptations, pero Motown temía que el mensaje antibélico alienara a sus fans. La intensa versión de Edwin Starr se convirtió en un himno de protesta de la era de Vietnam.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:2sD2XkPogLt7keXttj7F9o",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The Dells",
+        "The O'Jays",
+        "Harold Melvin & the Blue Notes"
+      ],
+      "title": "Standing In The Shadows Of Love",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 6,
+        "weeks_on_chart": 11
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Another Holland-Dozier-Holland masterpiece. The song's dramatic arrangement influenced the development of Northern Soul and was covered by artists from Rod Stewart to The Jackson 5.",
+      "fun_fact_de": "Ein weiteres Meisterwerk von Holland-Dozier-Holland. Das dramatische Arrangement beeinflusste die Entwicklung des Northern Soul und wurde von Rod Stewart bis zu den Jackson 5 gecovert.",
+      "fun_fact_es": "Otra obra maestra de Holland-Dozier-Holland. El dramático arreglo influyó en el desarrollo del Northern Soul y fue versionada por artistas desde Rod Stewart hasta los Jackson 5.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:6l1QMMTfcIx1zAAZiFCsvI",
+      "artist": "The Spinners",
+      "alt_artists": [
+        "The Temptations",
+        "The Four Tops",
+        "The Dells",
+        "The Chi-Lites"
+      ],
+      "title": "The Girl's Alright With Me",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Spinners (also known as The Detroit Spinners in the UK) had limited success at Motown but later became one of the top soul groups of the 1970s after moving to Atlantic Records.",
+      "fun_fact_de": "Die Spinners (in Großbritannien als Detroit Spinners bekannt) hatten bei Motown begrenzten Erfolg, wurden aber nach dem Wechsel zu Atlantic Records in den 1970ern eine der Top-Soul-Gruppen.",
+      "fun_fact_es": "The Spinners (conocidos como Detroit Spinners en el Reino Unido) tuvieron éxito limitado en Motown pero se convirtieron en uno de los principales grupos soul de los 70 tras mudarse a Atlantic Records.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:307kcWJQNMdiYYKj1LgClU",
+      "artist": "The Supremes",
+      "alt_artists": [
+        "Diana Ross",
+        "Martha Reeves & The Vandellas",
+        "The Marvelettes",
+        "The Crystals"
+      ],
+      "title": "Come See About Me",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 27,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Supremes' third consecutive #1 hit, all written by Holland-Dozier-Holland. It was originally given to The Marvelettes before Berry Gordy decided The Supremes should record it.",
+      "fun_fact_de": "Der dritte aufeinanderfolgende #1-Hit der Supremes, alle geschrieben von Holland-Dozier-Holland. Ursprünglich für die Marvelettes vorgesehen, bevor Berry Gordy entschied, dass die Supremes ihn aufnehmen sollten.",
+      "fun_fact_es": "El tercer #1 consecutivo de las Supremes, todos escritos por Holland-Dozier-Holland. Originalmente fue asignada a las Marvelettes antes de que Berry Gordy decidiera que las Supremes debían grabarla.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:6JaachYGVIogDpe0ZnBDJ9",
+      "artist": "Valerie Simpson",
+      "alt_artists": [
+        "Ashford & Simpson",
+        "Diana Ross",
+        "Syreeta",
+        "Tammi Terrell"
+      ],
+      "title": "Silly Wasn't I",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Valerie Simpson was half of the legendary songwriting duo Ashford & Simpson, who wrote 'Ain't No Mountain High Enough' and many other Motown classics. Her solo work showcased her stunning vocal ability.",
+      "fun_fact_de": "Valerie Simpson war die Hälfte des legendären Songwriting-Duos Ashford & Simpson, die 'Ain't No Mountain High Enough' und viele andere Motown-Klassiker schrieben. Ihr Solowerk zeigte ihre atemberaubende Gesangsfähigkeit.",
+      "fun_fact_es": "Valerie Simpson era la mitad del legendario dúo de compositores Ashford & Simpson, quienes escribieron 'Ain't No Mountain High Enough' y muchos otros clásicos de Motown. Su trabajo en solitario mostró su impresionante habilidad vocal.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:1TyNecZDYU3BP3EitfpgnT",
+      "artist": "Boyz II Men",
+      "alt_artists": [
+        "Jodeci",
+        "New Edition",
+        "Dru Hill",
+        "112"
+      ],
+      "title": "4 Seasons Of Loneliness",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 10,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Boyz II Men signed to Motown in 1991, reviving the label's relevance in contemporary R&B. This song gave them their fourth #1 hit, produced by Jimmy Jam and Terry Lewis.",
+      "fun_fact_de": "Boyz II Men unterschrieben 1991 bei Motown und belebten die Relevanz des Labels im zeitgenössischen R&B. Dieser Song bescherte ihnen ihren vierten #1-Hit, produziert von Jimmy Jam und Terry Lewis.",
+      "fun_fact_es": "Boyz II Men firmaron con Motown en 1991, reviviendo la relevancia del sello en el R&B contemporáneo. Esta canción les dio su cuarto #1, producida por Jimmy Jam y Terry Lewis.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:7xJmwOmzx8l21FBeRwL4Yn",
+      "artist": "Brian McKnight",
+      "alt_artists": [
+        "Babyface",
+        "R. Kelly",
+        "Keith Sweat",
+        "Joe"
+      ],
+      "title": "Back At One",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Brian McKnight's biggest hit, released on Motown Records. He is a multi-instrumentalist who plays nine instruments. The song was one of the last major hits released on the Motown label in the 20th century.",
+      "fun_fact_de": "Brian McKnights größter Hit, veröffentlicht bei Motown Records. Er ist Multiinstrumentalist und spielt neun Instrumente. Der Song war einer der letzten großen Hits auf dem Motown-Label im 20. Jahrhundert.",
+      "fun_fact_es": "El mayor éxito de Brian McKnight, publicado en Motown Records. Es multiinstrumentista y toca nueve instrumentos. La canción fue uno de los últimos grandes éxitos del sello Motown en el siglo XX.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:5e4Mk7l4FoJlHoTck7fKhL",
+      "artist": "Rick James",
+      "alt_artists": [
+        "Prince",
+        "Cameo",
+        "Teena Marie",
+        "Parliament-Funkadelic"
+      ],
+      "title": "Glow",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From the album 'Glow,' which showed Rick James' versatility as he balanced funk with softer R&B ballads. Rick was also known for discovering and mentoring Teena Marie at Motown.",
+      "fun_fact_de": "Vom Album 'Glow', das Rick James' Vielseitigkeit zeigte, als er Funk mit weicheren R&B-Balladen kombinierte. Rick war auch dafür bekannt, Teena Marie bei Motown entdeckt und gefördert zu haben.",
+      "fun_fact_es": "Del álbum 'Glow', que mostró la versatilidad de Rick James al equilibrar funk con baladas R&B más suaves. Rick también era conocido por descubrir y ser mentor de Teena Marie en Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:1J44WlYut5RPGMCYcLcRoO",
+      "artist": "Gerald Alston",
+      "alt_artists": [
+        "The Manhattans",
+        "Luther Vandross",
+        "Freddie Jackson",
+        "Jeffrey Osborne"
+      ],
+      "title": "Slow Motion",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Gerald Alston was the lead singer of The Manhattans before launching his solo career on Motown. His smooth tenor voice was perfectly suited for romantic ballads in the quiet storm tradition.",
+      "fun_fact_de": "Gerald Alston war Leadsänger der Manhattans, bevor er seine Solokarriere bei Motown startete. Seine sanfte Tenorstimme war perfekt geeignet für romantische Balladen in der Quiet-Storm-Tradition.",
+      "fun_fact_es": "Gerald Alston fue el vocalista de The Manhattans antes de lanzar su carrera en solitario en Motown. Su suave voz de tenor era perfecta para baladas románticas en la tradición del quiet storm.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:024BfR0Euyhn2ZfLyPwFtx",
+      "artist": "The Originals",
+      "alt_artists": [
+        "Marvin Gaye",
+        "The Temptations",
+        "The Four Tops",
+        "The Spinners"
+      ],
+      "title": "Baby, I'm For Real",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written and produced by Marvin Gaye, who also sang background vocals. The Originals were one of Motown's underappreciated groups who also served as backing vocalists for other Motown artists.",
+      "fun_fact_de": "Geschrieben und produziert von Marvin Gaye, der auch die Hintergrundstimme sang. Die Originals waren eine der unterschätzten Gruppen von Motown, die auch als Backgroundsänger für andere Motown-Künstler dienten.",
+      "fun_fact_es": "Escrita y producida por Marvin Gaye, quien también cantó los coros. The Originals fueron uno de los grupos infravalorados de Motown que también sirvieron como vocalistas de respaldo para otros artistas del sello.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4ZntRLy883TGeACsg4bOOI",
+      "artist": "The Marvelettes",
+      "alt_artists": [
+        "The Supremes",
+        "Martha Reeves & The Vandellas",
+        "The Crystals",
+        "The Ronettes"
+      ],
+      "title": "Don't Mess With Bill",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": null,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Smokey Robinson, this was The Marvelettes' last major hit. The group struggled as Motown focused more attention on The Supremes, but their early recordings helped establish the Motown sound.",
+      "fun_fact_de": "Geschrieben von Smokey Robinson, war dies der letzte große Hit der Marvelettes. Die Gruppe hatte es schwer, da Motown mehr Aufmerksamkeit auf die Supremes richtete.",
+      "fun_fact_es": "Escrita por Smokey Robinson, fue el último gran éxito de las Marvelettes. El grupo tuvo dificultades cuando Motown centró más atención en las Supremes.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:1vG906bxMqUVufJoLSF4rV",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "The Beatles",
+        "Marvin Gaye",
+        "Sam Cooke",
+        "The Temptations"
+      ],
+      "title": "You've Really Got A Hold On Me",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Beatles covered this on their 'With The Beatles' album, cementing the transatlantic connection between Motown and the British Invasion. John Lennon was a huge Smokey Robinson fan.",
+      "fun_fact_de": "Die Beatles coverten diesen Song auf ihrem Album 'With The Beatles' und festigten die transatlantische Verbindung zwischen Motown und der British Invasion. John Lennon war ein großer Smokey-Robinson-Fan.",
+      "fun_fact_es": "Los Beatles la versionaron en su álbum 'With The Beatles', cimentando la conexión transatlántica entre Motown y la invasión británica. John Lennon era un gran fan de Smokey Robinson.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:4UJEO6YWo9c8b6SZ79wIAK",
+      "artist": "The Underdogs",
+      "alt_artists": [
+        "The Temptations",
+        "The Four Tops",
+        "The Contours",
+        "The Spinners"
+      ],
+      "title": "The Way You Do The Things You Do",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally a #11 hit for The Temptations in 1964, with Smokey Robinson co-writing. Various Motown artists recorded their own versions. The Temptations re-recorded it with Hall & Oates in 1985, reaching #20.",
+      "fun_fact_de": "Ursprünglich ein #11-Hit der Temptations 1964, mitgeschrieben von Smokey Robinson. Verschiedene Motown-Künstler nahmen eigene Versionen auf. Die Temptations nahmen ihn 1985 mit Hall & Oates neu auf und erreichten #20.",
+      "fun_fact_es": "Originalmente un éxito #11 de The Temptations en 1964, co-escrita por Smokey Robinson. Varios artistas de Motown grabaron sus propias versiones. Los Temptations la regrabaron con Hall & Oates en 1985, alcanzando el #20.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:7y2wLxCiZZEwi9nliO7k37",
+      "artist": "Teena Marie",
+      "alt_artists": [
+        "Rick James",
+        "Chaka Khan",
+        "Patrice Rushen",
+        "Donna Summer"
+      ],
+      "title": "I Need Your Lovin'",
+      "chart_info": {
+        "billboard_peak": 37,
+        "uk_peak": 28,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Teena Marie was one of Motown's few white artists. Rick James discovered her and she was initially marketed without showing her photo so listeners wouldn't know her race. She became known as the 'Ivory Queen of Soul.'",
+      "fun_fact_de": "Teena Marie war eine der wenigen weißen Künstlerinnen bei Motown. Rick James entdeckte sie und sie wurde anfangs ohne Foto vermarktet, damit Hörer ihre Hautfarbe nicht kannten. Sie wurde als 'Ivory Queen of Soul' bekannt.",
+      "fun_fact_es": "Teena Marie fue una de las pocas artistas blancas de Motown. Rick James la descubrió y fue comercializada inicialmente sin mostrar su foto para que los oyentes no supieran su raza. Fue conocida como la 'Reina de Marfil del Soul'.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:1Jf5jiyRBltWcOY5POZPHe",
+      "artist": "Diana Ross",
+      "alt_artists": [
+        "Donna Summer",
+        "Chaka Khan",
+        "Patti LaBelle",
+        "Gladys Knight"
+      ],
+      "title": "My Old Piano",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From the 'diana' album produced by Nile Rodgers and Bernard Edwards of Chic. The album was initially remixed by Motown without Diana's consent, causing a major controversy. 'My Old Piano' was a UK hit reaching #5.",
+      "fun_fact_de": "Vom Album 'diana', produziert von Nile Rodgers und Bernard Edwards von Chic. Das Album wurde zunächst ohne Dianas Zustimmung von Motown remixt, was eine große Kontroverse auslöste. 'My Old Piano' erreichte #5 in Großbritannien.",
+      "fun_fact_es": "Del álbum 'diana', producido por Nile Rodgers y Bernard Edwards de Chic. El álbum fue remezclado inicialmente por Motown sin el consentimiento de Diana, causando una gran controversia. 'My Old Piano' alcanzó el #5 en el Reino Unido.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:37soQoNhEEIrhhYgHWK1xU",
+      "artist": "Marvin Gaye & Tammi Terrell",
+      "alt_artists": [
+        "Ashford & Simpson",
+        "Diana Ross & Marvin Gaye",
+        "Smokey Robinson",
+        "Stevie Wonder"
+      ],
+      "title": "Ain't Nothing Like The Real Thing",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 34,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Ashford & Simpson. It was one of the last songs Tammi Terrell recorded before her health declined from a brain tumor. Marvin was so devastated by her death in 1970 that he retreated from performing for years.",
+      "fun_fact_de": "Geschrieben von Ashford & Simpson. Es war einer der letzten Songs, die Tammi Terrell vor ihrem gesundheitlichen Verfall durch einen Hirntumor aufnahm. Marvin war so erschüttert von ihrem Tod 1970, dass er sich jahrelang vom Auftreten zurückzog.",
+      "fun_fact_es": "Escrita por Ashford & Simpson. Fue una de las últimas canciones que Tammi Terrell grabó antes de que su salud declinara por un tumor cerebral. Marvin quedó tan devastado por su muerte en 1970 que se retiró de actuar durante años.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:39Bd345OWEhRNyfayhp9gv",
+      "artist": "The Temptations",
+      "alt_artists": [
+        "Smokey Robinson",
+        "Marvin Gaye",
+        "The Four Tops",
+        "The Stylistics"
+      ],
+      "title": "Just My Imagination (Running Away With Me)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Eddie Kendricks' last #1 hit with The Temptations before going solo. The dreamy, floating arrangement by Norman Whitfield was a dramatic contrast to the group's recent psychedelic funk direction.",
+      "fun_fact_de": "Eddie Kendricks' letzter #1-Hit mit den Temptations vor seiner Solokarriere. Das verträumte, schwebende Arrangement von Norman Whitfield war ein dramatischer Kontrast zur jüngsten psychedelischen Funk-Richtung der Gruppe.",
+      "fun_fact_es": "El último #1 de Eddie Kendricks con The Temptations antes de su carrera en solitario. El arreglo soñador y flotante de Norman Whitfield fue un contraste dramático con la reciente dirección de funk psicodélico del grupo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:1enywAXZCARdaq3P4Bpwzv",
+      "artist": "Smokey Robinson & The Miracles",
+      "alt_artists": [
+        "Dionne Warwick",
+        "Isaac Hayes",
+        "The Temptations",
+        "Marvin Gaye"
+      ],
+      "title": "Walk On By",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A Motown interpretation of the Burt Bacharach-Hal David classic originally recorded by Dionne Warwick. Smokey Robinson's version brings his signature smooth vocal style to this pop standard.",
+      "fun_fact_de": "Eine Motown-Interpretation des Burt-Bacharach-Hal-David-Klassikers, der ursprünglich von Dionne Warwick aufgenommen wurde. Smokey Robinsons Version bringt seinen charakteristischen sanften Gesangsstil in diesen Pop-Standard ein.",
+      "fun_fact_es": "Una interpretación de Motown del clásico de Burt Bacharach-Hal David originalmente grabado por Dionne Warwick. La versión de Smokey Robinson aporta su estilo vocal suave característico a este estándar pop.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4spErQWs900r6GUJaX6kvk",
+      "artist": "Commodores",
+      "alt_artists": [
+        "Lionel Richie",
+        "Earth, Wind & Fire",
+        "The Isley Brothers",
+        "Luther Vandross"
+      ],
+      "title": "Still",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Lionel Richie in just five minutes on the back of a paper bag. It was the Commodores' second #1 pop hit after 'Three Times a Lady' and helped establish Lionel as a premier ballad writer.",
+      "fun_fact_de": "Von Lionel Richie in nur fünf Minuten auf der Rückseite einer Papiertüte geschrieben. Es war der zweite #1-Pop-Hit der Commodores nach 'Three Times a Lady' und etablierte Lionel als erstklassigen Balladen-Autor.",
+      "fun_fact_es": "Escrita por Lionel Richie en solo cinco minutos en el reverso de una bolsa de papel. Fue el segundo #1 pop de los Commodores después de 'Three Times a Lady' y estableció a Lionel como un escritor de baladas de primera.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:1SjqD5q2WvpjOFIklP7sxD",
+      "artist": "Diana Ross & Marvin Gaye",
+      "alt_artists": [
+        "Ashford & Simpson",
+        "Marvin Gaye & Tammi Terrell",
+        "Lionel Richie & Diana Ross",
+        "Peabo Bryson"
+      ],
+      "title": "You Are Everything",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally a 1971 hit by The Stylistics. The Diana Ross and Marvin Gaye duet version was a bigger hit in the UK, reaching #5. Their duet album was actually assembled from separate recording sessions.",
+      "fun_fact_de": "Ursprünglich ein Hit der Stylistics von 1971. Die Duettversion von Diana Ross und Marvin Gaye war in Großbritannien ein größerer Hit und erreichte #5. Ihr Duett-Album wurde tatsächlich aus separaten Aufnahme-Sessions zusammengestellt.",
+      "fun_fact_es": "Originalmente un éxito de The Stylistics de 1971. La versión a dúo de Diana Ross y Marvin Gaye fue un éxito mayor en el Reino Unido, alcanzando el #5. Su álbum de duetos fue ensamblado a partir de sesiones de grabación separadas.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:5RdhBLmB4DyFHLglRrfx63",
+      "artist": "The Jackson 5",
+      "alt_artists": [
+        "Michael Jackson",
+        "The Osmonds",
+        "New Edition",
+        "The Sylvers"
+      ],
+      "title": "I'll Be There",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Jackson 5's fourth consecutive #1 hit and the best-selling single in Motown history at the time. Michael's mature vocal performance at age 12 astonished listeners. Mariah Carey later covered it, also reaching #1.",
+      "fun_fact_de": "Der vierte aufeinanderfolgende #1-Hit der Jackson 5 und die meistverkaufte Single in der Geschichte von Motown. Michaels reifer Gesang mit 12 Jahren verblüffte die Zuhörer. Mariah Carey coverte den Song später und erreichte ebenfalls #1.",
+      "fun_fact_es": "El cuarto #1 consecutivo de los Jackson 5 y el sencillo más vendido de la historia de Motown. La madura interpretación vocal de Michael a los 12 años asombró a los oyentes. Mariah Carey la versionó más tarde, también alcanzando el #1.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:7zw0jBh5Khn08DkDP93yyh",
+      "artist": "The Velvelettes",
+      "alt_artists": [
+        "The Marvelettes",
+        "The Supremes",
+        "Martha Reeves & The Vandellas",
+        "The Crystals"
+      ],
+      "title": "He Was Really Sayin' Somethin'",
+      "chart_info": {
+        "billboard_peak": 64,
+        "uk_peak": null,
+        "weeks_on_chart": 5
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Later covered by Bananarama in 1982, who turned it into a UK Top 5 hit. The Velvelettes were from Kalamazoo, Michigan and were one of Motown's most beloved but commercially underperforming girl groups.",
+      "fun_fact_de": "Später 1982 von Bananarama gecovert, die daraus einen UK-Top-5-Hit machten. Die Velvelettes stammten aus Kalamazoo, Michigan und waren eine der beliebtesten, aber kommerziell weniger erfolgreichen Girlgroups von Motown.",
+      "fun_fact_es": "Versionada por Bananarama en 1982, quienes la convirtieron en un éxito Top 5 en el Reino Unido. Las Velvelettes eran de Kalamazoo, Michigan y fueron uno de los grupos femeninos más queridos pero comercialmente menos exitosos de Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:4M732X5J2BE6M8VIHHfxMx",
+      "artist": "Mary Wells",
+      "alt_artists": [
+        "The Supremes",
+        "Brenda Holloway",
+        "The Marvelettes",
+        "Kim Weston"
+      ],
+      "title": "The One Who Really Loves You",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written and produced by Smokey Robinson, who crafted many of Mary Wells' biggest hits. Mary was Motown's first female star and helped establish the label's presence on the pop charts.",
+      "fun_fact_de": "Geschrieben und produziert von Smokey Robinson, der viele von Mary Wells' größten Hits schuf. Mary war Motowns erster weiblicher Star und half, die Präsenz des Labels in den Pop-Charts zu etablieren.",
+      "fun_fact_es": "Escrita y producida por Smokey Robinson, quien creó muchos de los mayores éxitos de Mary Wells. Mary fue la primera estrella femenina de Motown y ayudó a establecer la presencia del sello en las listas pop.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:7kFs87cJlyvSJFt5UeRG6w",
+      "artist": "Barbara Randolph",
+      "alt_artists": [
+        "Marvin Gaye",
+        "Martha Reeves",
+        "Diana Ross",
+        "Kim Weston"
+      ],
+      "title": "Can I Get A Witness",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Originally a 1963 hit for Marvin Gaye. Barbara Randolph was also an actress who appeared in 'Star Trek' as the character Charlene. Her Motown recordings are prized by Northern Soul collectors.",
+      "fun_fact_de": "Ursprünglich ein Hit von Marvin Gaye aus 1963. Barbara Randolph war auch Schauspielerin und trat in 'Star Trek' als Charlene auf. Ihre Motown-Aufnahmen sind bei Northern-Soul-Sammlern begehrt.",
+      "fun_fact_es": "Originalmente un éxito de Marvin Gaye de 1963. Barbara Randolph también fue actriz y apareció en 'Star Trek' como Charlene. Sus grabaciones de Motown son muy codiciadas por coleccionistas de Northern Soul.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:6VzM9C7CXyn1BQdgTJVqDx",
+      "artist": "Jr. Walker & The All Stars",
+      "alt_artists": [
+        "James Brown",
+        "King Curtis",
+        "The Bar-Kays",
+        "Booker T. & the M.G.'s"
+      ],
+      "title": "Shotgun",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Jr. Walker's first and biggest hit, named after a popular dance. He was one of Motown's few instrumentalists to achieve major success as a frontman. The raw, honking saxophone defined the song's irresistible groove.",
+      "fun_fact_de": "Jr. Walkers erster und größter Hit, benannt nach einem beliebten Tanz. Er war einer der wenigen Instrumentalisten bei Motown, die als Frontman großen Erfolg hatten. Das raue, schnarrende Saxophon definierte den unwiderstehlichen Groove des Songs.",
+      "fun_fact_es": "El primer y mayor éxito de Jr. Walker, nombrado por un baile popular. Fue uno de los pocos instrumentistas de Motown en lograr gran éxito como líder. El saxofón crudo y estridente definió el irresistible groove de la canción.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:3VgrSJEKBRT3xmwzpaxxEF",
+      "artist": "Martha Reeves & The Vandellas",
+      "alt_artists": [
+        "The Supremes",
+        "The Marvelettes",
+        "Linda Ronstadt",
+        "The Crystals"
+      ],
+      "title": "(Love Is Like A) Heat Wave",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Holland-Dozier-Holland, it was the first Motown song to earn a Grammy nomination. Linda Ronstadt covered it in 1975 and also had a Top 5 hit. The song helped establish the Motown Sound.",
+      "fun_fact_de": "Geschrieben von Holland-Dozier-Holland, war es der erste Motown-Song, der eine Grammy-Nominierung erhielt. Linda Ronstadt coverte ihn 1975 und landete ebenfalls einen Top-5-Hit.",
+      "fun_fact_es": "Escrita por Holland-Dozier-Holland, fue la primera canción de Motown en obtener una nominación al Grammy. Linda Ronstadt la versionó en 1975 y también tuvo un éxito Top 5.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4Te3jA0Z8xMrA4Oyr3sctn",
+      "artist": "Jermaine Jackson",
+      "alt_artists": [
+        "Michael Jackson",
+        "The Jackson 5",
+        "DeBarge",
+        "Stevie Wonder"
+      ],
+      "title": "Let's Get Serious",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Written and produced by Stevie Wonder. Jermaine stayed at Motown when his brothers left for Epic Records because he had married Berry Gordy's daughter Hazel. This became his biggest solo hit at Motown.",
+      "fun_fact_de": "Geschrieben und produziert von Stevie Wonder. Jermaine blieb bei Motown, als seine Brüder zu Epic Records wechselten, weil er Berry Gordys Tochter Hazel geheiratet hatte. Dies wurde sein größter Solo-Hit bei Motown.",
+      "fun_fact_es": "Escrita y producida por Stevie Wonder. Jermaine se quedó en Motown cuando sus hermanos se fueron a Epic Records porque se había casado con Hazel, la hija de Berry Gordy. Este fue su mayor éxito en solitario en Motown.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:6a4mvE1CdiRMPyAvG8ByLN",
+      "artist": "Bruce Willis",
+      "alt_artists": [
+        "The Drifters",
+        "Don Henley",
+        "Phil Collins",
+        "Billy Ocean"
+      ],
+      "title": "Under The Boardwalk",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 2,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Yes, that Bruce Willis! The 'Die Hard' star released this cover of The Drifters' classic on Motown Records. His album 'The Return of Bruno' was a surprising commercial success, especially in Europe.",
+      "fun_fact_de": "Ja, genau der Bruce Willis! Der 'Stirb langsam'-Star veröffentlichte dieses Cover des Drifters-Klassikers bei Motown Records. Sein Album 'The Return of Bruno' war ein überraschender kommerzieller Erfolg, besonders in Europa.",
+      "fun_fact_es": "¡Sí, ese Bruce Willis! La estrella de 'Duro de Matar' lanzó esta versión del clásico de los Drifters en Motown Records. Su álbum 'The Return of Bruno' fue un sorprendente éxito comercial, especialmente en Europa.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:13v3siPyvy5TTEZYmGPPse",
+      "artist": "Rick James",
+      "alt_artists": [
+        "Prince",
+        "Cameo",
+        "Parliament-Funkadelic",
+        "The Gap Band"
+      ],
+      "title": "Give It To Me Baby",
+      "chart_info": {
+        "billboard_peak": 40,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From the same album as 'Super Freak' (Street Songs). Rick James revitalized Motown's relevance in the early 1980s with his funk-punk style. The album sold over 3 million copies.",
+      "fun_fact_de": "Vom gleichen Album wie 'Super Freak' (Street Songs). Rick James belebte Motowns Relevanz in den frühen 1980ern mit seinem Funk-Punk-Stil neu. Das Album verkaufte sich über 3 Millionen Mal.",
+      "fun_fact_es": "Del mismo álbum que 'Super Freak' (Street Songs). Rick James revitalizó la relevancia de Motown a principios de los 80 con su estilo funk-punk. El álbum vendió más de 3 millones de copias.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0yelVo6DA76GpFfBRPnK0j",
+      "artist": "Rockwell",
+      "alt_artists": [
+        "Michael Jackson",
+        "Stevie Wonder",
+        "Prince",
+        "DeBarge"
+      ],
+      "title": "Somebody's Watching Me",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 6,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Rockwell was actually Berry Gordy's son, Kennedy Gordy, recording under a pseudonym. Michael Jackson sang the memorable chorus as a favor. The song became a Halloween staple and gained new popularity through internet memes.",
+      "fun_fact_de": "Rockwell war tatsächlich Berry Gordys Sohn, Kennedy Gordy, der unter Pseudonym aufnahm. Michael Jackson sang den einprägsamen Refrain als Gefallen. Der Song wurde ein Halloween-Klassiker und gewann durch Internet-Memes neue Popularität.",
+      "fun_fact_es": "Rockwell era en realidad el hijo de Berry Gordy, Kennedy Gordy, grabando bajo seudónimo. Michael Jackson cantó el memorable coro como un favor. La canción se convirtió en un clásico de Halloween y ganó nueva popularidad a través de memes de internet.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:69mFxANpGyq9s69LqH3d9G",
+      "artist": "Shanice",
+      "alt_artists": [
+        "Brandy",
+        "Monica",
+        "Aaliyah",
+        "Teena Marie"
+      ],
+      "title": "I Love Your Smile",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 2,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Shanice was just 18 when this became a worldwide smash. It features a distinctive jazz flute solo. The song helped keep Motown relevant in the early 1990s new jack swing era.",
+      "fun_fact_de": "Shanice war erst 18, als dies ein weltweiter Hit wurde. Es enthält ein markantes Jazz-Flöten-Solo. Der Song half, Motown in der frühen New-Jack-Swing-Ära der 1990er relevant zu halten.",
+      "fun_fact_es": "Shanice tenía solo 18 años cuando este se convirtió en un éxito mundial. Presenta un distintivo solo de flauta jazz. La canción ayudó a mantener a Motown relevante en la era del new jack swing de los 90.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:4LxIGAVfcQIw0zAQRyFhU8",
+      "artist": "Boyz II Men",
+      "alt_artists": [
+        "New Edition",
+        "Jodeci",
+        "Bell Biv DeVoe",
+        "ABC"
+      ],
+      "title": "Motownphilly",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The group's debut single, produced by Dallas Austin. The title blends 'Motown' (their label) with 'Philly' (their hometown of Philadelphia). Michael Bivins of New Edition discovered and mentored the group.",
+      "fun_fact_de": "Die Debütsingle der Gruppe, produziert von Dallas Austin. Der Titel verbindet 'Motown' (ihr Label) mit 'Philly' (ihre Heimatstadt Philadelphia). Michael Bivins von New Edition entdeckte und förderte die Gruppe.",
+      "fun_fact_es": "El sencillo debut del grupo, producido por Dallas Austin. El título mezcla 'Motown' (su sello) con 'Philly' (su ciudad natal Philadelphia). Michael Bivins de New Edition descubrió y fue mentor del grupo.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:02RbmzVSbkxJVIqMNx47uY",
+      "artist": "El DeBarge",
+      "alt_artists": [
+        "DeBarge",
+        "The Jackson 5",
+        "Prince",
+        "New Edition"
+      ],
+      "title": "Who's Johnny",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "From the soundtrack of the movie 'Short Circuit.' El DeBarge's falsetto was often compared to a young Michael Jackson. The song was his biggest solo hit and one of Motown's last major pop crossover successes of the decade.",
+      "fun_fact_de": "Vom Soundtrack des Films 'Nummer 5 lebt!'. El DeBarges Falsett wurde oft mit dem jungen Michael Jackson verglichen. Der Song war sein größter Solo-Hit und einer der letzten großen Pop-Crossover-Erfolge von Motown in diesem Jahrzehnt.",
+      "fun_fact_es": "De la banda sonora de la película 'Cortocircuito'. El falsete de El DeBarge fue frecuentemente comparado con el del joven Michael Jackson. Fue su mayor éxito en solitario y uno de los últimos grandes éxitos pop crossover de Motown en la década.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:1zRhXw3y1qo1692z3LH8lI",
+      "artist": "Billy Preston & Syreeta",
+      "alt_artists": [
+        "Stevie Wonder",
+        "Ashford & Simpson",
+        "Marvin Gaye",
+        "Peabo Bryson"
+      ],
+      "title": "It Will Come In Time",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 47,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The second single from their duet album 'Billy Preston & Syreeta.' It showcased the musical chemistry between the 'Fifth Beatle' and Stevie Wonder's ex-wife. Syreeta also co-wrote Stevie's 'Signed, Sealed, Delivered.'",
+      "fun_fact_de": "Die zweite Single von ihrem Duett-Album. Es zeigte die musikalische Chemie zwischen dem 'Fünften Beatle' und Stevie Wonders Ex-Frau. Syreeta schrieb auch Stevies 'Signed, Sealed, Delivered' mit.",
+      "fun_fact_es": "El segundo sencillo de su álbum de duetos. Mostró la química musical entre el 'Quinto Beatle' y la ex esposa de Stevie Wonder. Syreeta también co-escribió 'Signed, Sealed, Delivered' de Stevie.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    }
+  ]
+}
