@@ -17,9 +17,7 @@
         "Mary Roos"
       ],
       "title": "Er gehört zu mir",
-      "chart_info": {
-        "de_peak": 3
-      },
+      "chart_info": {},
       "certifications": [
         "Gold (DE)"
       ],
@@ -284,7 +282,6 @@
       ],
       "title": "Felicità",
       "chart_info": {
-        "de_peak": 1,
         "it_peak": 1
       },
       "certifications": [
@@ -335,7 +332,6 @@
       "chart_info": {
         "billboard_peak": 72,
         "uk_peak": 92,
-        "de_peak": 1,
         "at_peak": 1
       },
       "certifications": [
@@ -358,9 +354,7 @@
         "Modern Talking"
       ],
       "title": "Sternenhimmel",
-      "chart_info": {
-        "de_peak": 2
-      },
+      "chart_info": {},
       "certifications": [
         "Gold (DE)"
       ],
@@ -462,8 +456,7 @@
       "title": "Major Tom (Völlig losgelöst)",
       "chart_info": {
         "billboard_peak": 14,
-        "uk_peak": 94,
-        "de_peak": 1
+        "uk_peak": 94
       },
       "certifications": [
         "Gold (US)",
@@ -966,8 +959,7 @@
       "title": "Sunshine Reggae",
       "chart_info": {
         "billboard_peak": 64,
-        "uk_peak": 44,
-        "de_peak": 1
+        "uk_peak": 44
       },
       "certifications": [
         "Gold (DE)"
@@ -1187,8 +1179,7 @@
       "title": "Forever Young",
       "chart_info": {
         "billboard_peak": 65,
-        "uk_peak": 48,
-        "de_peak": 1
+        "uk_peak": 48
       },
       "certifications": [
         "Gold (DE)"
@@ -1379,8 +1370,7 @@
       "title": "When the Rain Begins to Fall",
       "chart_info": {
         "billboard_peak": 54,
-        "uk_peak": 68,
-        "de_peak": 1
+        "uk_peak": 68
       },
       "certifications": [
         "Gold (DE)"
@@ -1773,9 +1763,7 @@
         "Udo Lindenberg"
       ],
       "title": "Dein ist mein ganzes Herz",
-      "chart_info": {
-        "de_peak": 1
-      },
+      "chart_info": {},
       "certifications": [
         "Gold (DE)"
       ],
@@ -1820,7 +1808,6 @@
       ],
       "title": "Ohne Dich (schlaf' ich heut Nacht nicht ein)",
       "chart_info": {
-        "de_peak": 1,
         "at_peak": 2
       },
       "certifications": [
@@ -2013,8 +2000,7 @@
       "title": "Voyage voyage",
       "chart_info": {
         "billboard_peak": 48,
-        "uk_peak": 5,
-        "de_peak": 2
+        "uk_peak": 5
       },
       "certifications": [
         "Gold (FR)",
@@ -2037,8 +2023,7 @@
       ],
       "title": "Bello e impossibile",
       "chart_info": {
-        "it_peak": 1,
-        "de_peak": 5
+        "it_peak": 1
       },
       "certifications": [
         "Platinum (IT)"
@@ -2300,8 +2285,7 @@
       ],
       "title": "Ella, elle l'a",
       "chart_info": {
-        "fr_peak": 1,
-        "de_peak": 2
+        "fr_peak": 1
       },
       "certifications": [
         "Diamond (FR)",
