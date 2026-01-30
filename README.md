@@ -541,6 +541,18 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 <br>
 
+## Help & FAQ
+
+Have a question? Check our [Discussions Q&A](https://github.com/mholzi/beatify/discussions/categories/q-a) for answers to common questions about installation, music services, gameplay, and troubleshooting.
+
+💡 **Got an idea?** Share it in [Ideas](https://github.com/mholzi/beatify/discussions/categories/ideas)
+🐛 **Found a bug?** Open an [Issue](https://github.com/mholzi/beatify/issues)
+🎵 **Want a playlist?** Submit a request through the Admin UI
+
+---
+
+<br>
+
 ## Contributing
 
 Contributions welcome!
