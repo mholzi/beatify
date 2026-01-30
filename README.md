@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.4.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.3.2-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -442,7 +442,7 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
-### v2.4.0 — Soul, Disco & Latin Expansion 🎵🕺💃
+### v2.3.2 — Soul, Disco & Latin Expansion 🎵
 - **3 new playlists** — Motown & Soul Classics (100 songs), Disco & Funk Classics (76 songs), Fiesta Latina 90s (50 songs)
 - **Data quality pass** — Added artist/title to Movies & Schlager (222 tracks), normalized Karneval chart data
 - **Streaming URI enrichment** — 82 new Apple Music and YouTube Music URIs across Movies and Power Ballads
