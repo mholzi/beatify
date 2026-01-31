@@ -35,7 +35,13 @@
         "Premio Grammy a la mejor banda sonora (2002)"
       ],
       "uri_apple_music": "applemusic://track/1369922084",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UJNeiBaEMIE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UJNeiBaEMIE",
+      "movie": "The Lord of the Rings: The Fellowship of the Ring",
+      "movie_choices": [
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "Harry Potter and the Sorcerer's Stone",
+        "The Hobbit: An Unexpected Journey"
+      ]
     },
     {
       "year": 1962,
@@ -54,7 +60,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vGhCrNUiN4o"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vGhCrNUiN4o",
+      "movie": "Dr. No",
+      "movie_choices": [
+        "Goldfinger",
+        "Thunderball",
+        "Dr. No"
+      ]
     },
     {
       "year": 1997,
@@ -83,7 +95,13 @@
         "Globo de Oro a la mejor banda sonora original (1998)"
       ],
       "uri_apple_music": "applemusic://track/582727836",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iUH0dEe1jvA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iUH0dEe1jvA",
+      "movie": "Titanic",
+      "movie_choices": [
+        "Pearl Harbor",
+        "The English Patient",
+        "Titanic"
+      ]
     },
     {
       "year": 1977,
@@ -117,7 +135,13 @@
         "Premio Grammy a la mejor banda sonora (1978)"
       ],
       "uri_apple_music": "applemusic://track/1375814284",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=e9lapdvLSGw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e9lapdvLSGw",
+      "movie": "Star Wars: A New Hope",
+      "movie_choices": [
+        "Superman",
+        "Close Encounters of the Third Kind",
+        "Star Wars: A New Hope"
+      ]
     },
     {
       "year": 1977,
@@ -149,7 +173,13 @@
         "Premio Grammy al album del ano (1979)"
       ],
       "uri_apple_music": "applemusic://track/1445668462",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GbsFCYEJGZ0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GbsFCYEJGZ0",
+      "movie": "Saturday Night Fever",
+      "movie_choices": [
+        "Xanadu",
+        "Grease",
+        "Saturday Night Fever"
+      ]
     },
     {
       "year": 1966,
@@ -172,7 +202,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/715628797",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bBixD-rTB_c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bBixD-rTB_c",
+      "movie": "The Good, the Bad and the Ugly",
+      "movie_choices": [
+        "The Good, the Bad and the Ugly",
+        "A Fistful of Dollars",
+        "Once Upon a Time in the West"
+      ]
     },
     {
       "year": 1999,
@@ -198,7 +234,13 @@
         "Premio Grammy a la mejor banda sonora (2000)"
       ],
       "uri_apple_music": "applemusic://track/1437293431",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Dqc50xhPFgw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Dqc50xhPFgw",
+      "movie": "American Beauty",
+      "movie_choices": [
+        "The Shawshank Redemption",
+        "American Beauty",
+        "Road to Perdition"
+      ]
     },
     {
       "year": 1994,
@@ -216,7 +258,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/203797501",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=L4tetTHHPEQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L4tetTHHPEQ",
+      "movie": "Forrest Gump",
+      "movie_choices": [
+        "The Polar Express",
+        "Forrest Gump",
+        "Cast Away"
+      ]
     },
     {
       "year": 1978,
@@ -238,7 +286,13 @@
         "Platinum (US)"
       ],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1687217340"
+      "uri_apple_music": "applemusic://track/1687217340",
+      "movie": "Grease",
+      "movie_choices": [
+        "Footloose",
+        "Saturday Night Fever",
+        "Grease"
+      ]
     },
     {
       "year": 1971,
@@ -270,6 +324,12 @@
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1971)",
         "Premio Grammy a la mejor pieza instrumental (1972)"
+      ],
+      "movie": "Shaft",
+      "movie_choices": [
+        "Shaft",
+        "Foxy Brown",
+        "Superfly"
       ]
     },
     {
@@ -298,7 +358,13 @@
       "awards_es": [
         "Premio Grammy a la mejor pieza instrumental (1964)"
       ],
-      "uri_apple_music": "applemusic://track/1732608881"
+      "uri_apple_music": "applemusic://track/1732608881",
+      "movie": "The Pink Panther",
+      "movie_choices": [
+        "A Shot in the Dark",
+        "The Pink Panther",
+        "Charade"
+      ]
     },
     {
       "year": 2002,
@@ -316,7 +382,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1636991684",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yj4vlzioB64"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yj4vlzioB64",
+      "movie": "The Bourne Identity",
+      "movie_choices": [
+        "The Bourne Identity",
+        "Mission: Impossible",
+        "The Bourne Supremacy"
+      ]
     },
     {
       "year": 1972,
@@ -336,7 +408,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440844677",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Flb01Ni3p3M"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Flb01Ni3p3M",
+      "movie": "The Godfather",
+      "movie_choices": [
+        "The Godfather",
+        "Goodfellas",
+        "The Godfather Part II"
+      ]
     },
     {
       "year": 1966,
@@ -370,7 +448,13 @@
         "Premio Oscar a la mejor banda sonora original (1966)"
       ],
       "uri_apple_music": "applemusic://track/209447357",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8_RzGtUgNnM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8_RzGtUgNnM",
+      "movie": "Born Free",
+      "movie_choices": [
+        "Born Free",
+        "The Lion",
+        "Out of Africa"
+      ]
     },
     {
       "year": 1994,
@@ -401,7 +485,13 @@
         "Globo de Oro a la mejor cancion original (1995)"
       ],
       "uri_apple_music": "applemusic://track/1445732924",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GibiNy4d4gc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GibiNy4d4gc",
+      "movie": "The Lion King",
+      "movie_choices": [
+        "Tarzan",
+        "The Jungle Book",
+        "The Lion King"
+      ]
     },
     {
       "year": 1976,
@@ -432,7 +522,13 @@
         "Nominación al Óscar a la mejor canción original (1976)"
       ],
       "uri_apple_music": "applemusic://track/1440832696",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AxWejrVYcCg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AxWejrVYcCg",
+      "movie": "Rocky",
+      "movie_choices": [
+        "Raging Bull",
+        "Rocky II",
+        "Rocky"
+      ]
     },
     {
       "year": 1965,
@@ -466,7 +562,13 @@
         "Globo de Oro a la mejor banda sonora original (1966)"
       ],
       "uri_apple_music": "applemusic://track/1455256248",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OIZ1yhPHlUo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OIZ1yhPHlUo",
+      "movie": "Doctor Zhivago",
+      "movie_choices": [
+        "Doctor Zhivago",
+        "Anna Karenina",
+        "Lawrence of Arabia"
+      ]
     },
     {
       "year": 1960,
@@ -485,7 +587,13 @@
         "weeks_on_chart": 13
       },
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "The Magnificent Seven",
+      "movie_choices": [
+        "The Magnificent Seven",
+        "The Great Escape",
+        "The Dirty Dozen"
+      ]
     },
     {
       "year": 1968,
@@ -506,7 +614,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443666197",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7OJ5M7wR7iY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7OJ5M7wR7iY",
+      "movie": "The Odd Couple",
+      "movie_choices": [
+        "Barefoot in the Park",
+        "The Apartment",
+        "The Odd Couple"
+      ]
     },
     {
       "year": 1983,
@@ -523,7 +637,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=80byHo-aHoc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=80byHo-aHoc",
+      "movie": "Risky Business",
+      "movie_choices": [
+        "Thief",
+        "Risky Business",
+        "Sorcerer"
+      ]
     },
     {
       "year": 1999,
@@ -541,7 +661,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/373216432",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WdcOqc4RMnY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WdcOqc4RMnY",
+      "movie": "The Green Mile",
+      "movie_choices": [
+        "The Shawshank Redemption",
+        "The Green Mile",
+        "Dead Man Walking"
+      ]
     },
     {
       "year": 2014,
@@ -567,7 +693,13 @@
         "Nominacion al Grammy a la mejor banda sonora (2015)"
       ],
       "uri_apple_music": "applemusic://track/1533984393",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SNQRiiocNx8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SNQRiiocNx8",
+      "movie": "Interstellar",
+      "movie_choices": [
+        "The Dark Knight",
+        "Inception",
+        "Interstellar"
+      ]
     },
     {
       "year": 1967,
@@ -589,7 +721,13 @@
         "Gold (US)"
       ],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=N4aaE3utHag"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N4aaE3utHag",
+      "movie": "The Graduate",
+      "movie_choices": [
+        "Butch Cassidy and the Sundance Kid",
+        "Easy Rider",
+        "The Graduate"
+      ]
     },
     {
       "year": 2015,
@@ -618,7 +756,13 @@
         "BAFTA a la mejor musica de cine (2016)"
       ],
       "uri_apple_music": "applemusic://track/1516405842",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Z7tj8Xg_0dE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z7tj8Xg_0dE",
+      "movie": "The Revenant",
+      "movie_choices": [
+        "Birdman",
+        "The Revenant",
+        "Babel"
+      ]
     },
     {
       "year": 2007,
@@ -636,7 +780,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/268374723",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=B0QFWCVbsKU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B0QFWCVbsKU",
+      "movie": "Beowulf",
+      "movie_choices": [
+        "Beowulf",
+        "The Polar Express",
+        "Back to the Future"
+      ]
     },
     {
       "year": 1969,
@@ -653,7 +803,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AFaJWqVcv8k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AFaJWqVcv8k",
+      "movie": "On Her Majesty's Secret Service",
+      "movie_choices": [
+        "The Spy Who Loved Me",
+        "On Her Majesty's Secret Service",
+        "Goldfinger"
+      ]
     },
     {
       "year": 1966,
@@ -681,7 +837,13 @@
         "Palma de Oro en Cannes (1966)"
       ],
       "uri_apple_music": "applemusic://track/546983101",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6E5mKpdLQlw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6E5mKpdLQlw",
+      "movie": "A Man and a Woman",
+      "movie_choices": [
+        "Love Story",
+        "A Man and a Woman",
+        "The Umbrellas of Cherbourg"
+      ]
     },
     {
       "year": 2010,
@@ -699,7 +861,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443410090",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tAORMgyptL8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tAORMgyptL8",
+      "movie": "Knight and Day",
+      "movie_choices": [
+        "Knight and Day",
+        "The Bourne Identity",
+        "Mr. & Mrs. Smith"
+      ]
     },
     {
       "year": 1995,
@@ -733,7 +901,13 @@
         "Globo de Oro a la mejor cancion original (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440720182",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YRSmToaXySU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YRSmToaXySU",
+      "movie": "Pocahontas",
+      "movie_choices": [
+        "The Lion King",
+        "Mulan",
+        "Pocahontas"
+      ]
     },
     {
       "year": 1969,
@@ -764,7 +938,13 @@
         "Premio Oscar a la mejor cancion original (1969)"
       ],
       "uri_apple_music": "applemusic://track/1571097826",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ss8_X2VvHZs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ss8_X2VvHZs",
+      "movie": "Butch Cassidy and the Sundance Kid",
+      "movie_choices": [
+        "The Sting",
+        "Butch Cassidy and the Sundance Kid",
+        "The Graduate"
+      ]
     },
     {
       "year": 1969,
@@ -782,7 +962,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440860186",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Zv6PY1BQLBE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zv6PY1BQLBE",
+      "movie": "Easy Rider",
+      "movie_choices": [
+        "Easy Rider",
+        "Bonnie and Clyde",
+        "The Wild Bunch"
+      ]
     },
     {
       "year": 1969,
@@ -800,7 +986,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/697397846",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=L_c5r-bR2ys"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L_c5r-bR2ys",
+      "movie": "Midnight Cowboy",
+      "movie_choices": [
+        "The French Connection",
+        "Taxi Driver",
+        "Midnight Cowboy"
+      ]
     },
     {
       "year": 1975,
@@ -831,7 +1023,13 @@
         "Premio Oscar a la mejor banda sonora original (1975)",
         "Premio Grammy a la mejor banda sonora (1976)"
       ],
-      "uri_apple_music": "applemusic://track/1842229145"
+      "uri_apple_music": "applemusic://track/1842229145",
+      "movie": "Jaws",
+      "movie_choices": [
+        "Close Encounters of the Third Kind",
+        "E.T. the Extra-Terrestrial",
+        "Jaws"
+      ]
     },
     {
       "year": 1978,
@@ -860,7 +1058,13 @@
         "Globo de Oro a la mejor banda sonora original (1979)"
       ],
       "uri_apple_music": "applemusic://track/1443529354",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=mpW3C_k0WMY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mpW3C_k0WMY",
+      "movie": "Midnight Express",
+      "movie_choices": [
+        "Scarface",
+        "Midnight Express",
+        "Flashdance"
+      ]
     },
     {
       "year": 1987,
@@ -893,7 +1097,13 @@
         "Premio Oscar a la mejor cancion original (1987)",
         "Globo de Oro a la mejor cancion original (1988)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=o3NndBTqC3Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o3NndBTqC3Y",
+      "movie": "Dirty Dancing",
+      "movie_choices": [
+        "Dirty Dancing",
+        "Footloose",
+        "Flashdance"
+      ]
     },
     {
       "year": 1995,
@@ -921,7 +1131,13 @@
         "Nominacion al Oscar a la mejor cancion original (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440669784",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=A5uVEN5z1f0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A5uVEN5z1f0",
+      "movie": "Toy Story",
+      "movie_choices": [
+        "Toy Story",
+        "Monsters, Inc.",
+        "A Bug's Life"
+      ]
     },
     {
       "year": 1999,
@@ -939,7 +1155,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1776050077",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SLBACEP6LsI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SLBACEP6LsI",
+      "movie": "The Matrix",
+      "movie_choices": [
+        "Blade Runner",
+        "The Matrix",
+        "Dark City"
+      ]
     },
     {
       "year": 1962,
@@ -957,7 +1179,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1514004194",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Y5eaJIPSeHE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y5eaJIPSeHE",
+      "movie": "The Music Man",
+      "movie_choices": [
+        "The Sound of Music",
+        "The Music Man",
+        "Hello, Dolly!"
+      ]
     },
     {
       "year": 2012,
@@ -975,7 +1203,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1697155587",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=uTOVKHbOsSw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uTOVKHbOsSw",
+      "movie": "The Avengers",
+      "movie_choices": [
+        "The Avengers",
+        "Captain America: The First Avenger",
+        "Iron Man"
+      ]
     },
     {
       "year": 1996,
@@ -998,7 +1232,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1444100762",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cSpGbYTZbpk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cSpGbYTZbpk",
+      "movie": "Mission: Impossible",
+      "movie_choices": [
+        "The Fugitive",
+        "James Bond: GoldenEye",
+        "Mission: Impossible"
+      ]
     },
     {
       "year": 1980,
@@ -1017,7 +1257,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DSE5IlMirVY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DSE5IlMirVY",
+      "movie": "McVicar",
+      "movie_choices": [
+        "Tommy",
+        "McVicar",
+        "Quadrophenia"
+      ]
     },
     {
       "year": 1963,
@@ -1035,7 +1281,13 @@
         "billboard_peak": 27
       },
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "The Great Escape",
+      "movie_choices": [
+        "The Great Escape",
+        "The Dirty Dozen",
+        "The Magnificent Seven"
+      ]
     },
     {
       "year": 1990,
@@ -1061,7 +1313,13 @@
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1990)"
       ],
       "uri_apple_music": "applemusic://track/1049528540",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=U89pW3kgOJ0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U89pW3kgOJ0",
+      "movie": "Home Alone",
+      "movie_choices": [
+        "Home Alone 2: Lost in New York",
+        "Home Alone",
+        "Jingle All the Way"
+      ]
     },
     {
       "year": 1968,
@@ -1089,7 +1347,13 @@
       "awards_es": [
         "Óscar a la mejor canción original (1968)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HPNx5ydr8VI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HPNx5ydr8VI",
+      "movie": "The Thomas Crown Affair",
+      "movie_choices": [
+        "Bonnie and Clyde",
+        "Bullitt",
+        "The Thomas Crown Affair"
+      ]
     },
     {
       "year": 1984,
@@ -1115,7 +1379,13 @@
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1981)"
       ],
       "uri_apple_music": "applemusic://track/1400945114",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KfCrLxucNKQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KfCrLxucNKQ",
+      "movie": "Raiders of the Lost Ark",
+      "movie_choices": [
+        "Star Wars: A New Hope",
+        "Raiders of the Lost Ark",
+        "Indiana Jones and the Temple of Doom"
+      ]
     },
     {
       "year": 1994,
@@ -1136,7 +1406,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1462308555",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kZzBd41NuZw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kZzBd41NuZw",
+      "movie": "Dumb and Dumber",
+      "movie_choices": [
+        "Dumb and Dumber",
+        "The Mask",
+        "Ace Ventura: Pet Detective"
+      ]
     },
     {
       "year": 1964,
@@ -1153,7 +1429,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=S-SMBAW8YS0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S-SMBAW8YS0",
+      "movie": "633 Squadron",
+      "movie_choices": [
+        "The Battle of Britain",
+        "The Dam Busters",
+        "633 Squadron"
+      ]
     },
     {
       "year": 1965,
@@ -1184,7 +1466,13 @@
         "Premio Oscar a la Mejor Pelicula (1965)"
       ],
       "uri_apple_music": "applemusic://track/1550187917",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=j4oHYnQxyEw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j4oHYnQxyEw",
+      "movie": "The Sound of Music",
+      "movie_choices": [
+        "My Fair Lady",
+        "The Sound of Music",
+        "Mary Poppins"
+      ]
     },
     {
       "year": 1966,
@@ -1202,7 +1490,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/715630264",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cCEwUFtjAr4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cCEwUFtjAr4",
+      "movie": "The Good, the Bad and the Ugly",
+      "movie_choices": [
+        "The Good, the Bad and the Ugly",
+        "Once Upon a Time in the West",
+        "A Fistful of Dollars"
+      ]
     },
     {
       "year": 1970,
@@ -1222,7 +1516,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1743285349",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QOS6kfR9u4s"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QOS6kfR9u4s",
+      "movie": "M*A*S*H",
+      "movie_choices": [
+        "Apocalypse Now",
+        "Catch-22",
+        "M*A*S*H"
+      ]
     },
     {
       "year": 1955,
@@ -1244,7 +1544,13 @@
         "Platinum (US)"
       ],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6Ql0ZOkBpJg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6Ql0ZOkBpJg",
+      "movie": "Ghost",
+      "movie_choices": [
+        "Ghost",
+        "Dirty Dancing",
+        "An Officer and a Gentleman"
+      ]
     },
     {
       "year": 1970,
@@ -1276,7 +1582,13 @@
         "Globo de Oro a la Mejor Banda Sonora Original (1971)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZwPaC67Y0Hk",
-      "uri_apple_music": "applemusic://track/1467933712"
+      "uri_apple_music": "applemusic://track/1467933712",
+      "movie": "Love Story",
+      "movie_choices": [
+        "A Man and a Woman",
+        "Romeo and Juliet",
+        "Love Story"
+      ]
     },
     {
       "year": 1961,
@@ -1310,7 +1622,13 @@
         "Premio Grammy a la Grabacion del Ano (1962)"
       ],
       "uri_apple_music": "applemusic://track/298421438",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CYcSiHRPYKA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CYcSiHRPYKA",
+      "movie": "Breakfast at Tiffany's",
+      "movie_choices": [
+        "Roman Holiday",
+        "Breakfast at Tiffany's",
+        "Charade"
+      ]
     },
     {
       "year": 1994,
@@ -1336,7 +1654,13 @@
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1994)"
       ],
       "uri_apple_music": "applemusic://track/331545686",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=arsOwUMw7x4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=arsOwUMw7x4",
+      "movie": "The Shawshank Redemption",
+      "movie_choices": [
+        "The Green Mile",
+        "The Shawshank Redemption",
+        "American Beauty"
+      ]
     },
     {
       "year": 2002,
@@ -1354,7 +1678,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/297981337",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yPwZQiYsL4w"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yPwZQiYsL4w",
+      "movie": "The Lord of the Rings: The Two Towers",
+      "movie_choices": [
+        "Harry Potter and the Chamber of Secrets",
+        "The Lord of the Rings: The Return of the King",
+        "The Lord of the Rings: The Two Towers"
+      ]
     },
     {
       "year": 2004,
@@ -1372,7 +1702,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/186379179",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DNti8jHPOG0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DNti8jHPOG0",
+      "movie": "Spider-Man 2",
+      "movie_choices": [
+        "Spider-Man",
+        "Batman Returns",
+        "Spider-Man 2"
+      ]
     },
     {
       "year": 1959,
@@ -1402,7 +1738,13 @@
       "awards_es": [
         "Premio Grammy a la Grabacion del Ano (1960)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GTKyFtH0kTE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GTKyFtH0kTE",
+      "movie": "A Summer Place",
+      "movie_choices": [
+        "Splendor in the Grass",
+        "A Summer Place",
+        "Peyton Place"
+      ]
     },
     {
       "year": 1973,
@@ -1421,7 +1763,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1521738030"
+      "uri_apple_music": "applemusic://track/1521738030",
+      "movie": "Black Caesar",
+      "movie_choices": [
+        "Superfly",
+        "Shaft",
+        "Black Caesar"
+      ]
     },
     {
       "year": 1964,
@@ -1439,7 +1787,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/298379578",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6RC_ZWU18Jg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6RC_ZWU18Jg",
+      "movie": "A Shot in the Dark",
+      "movie_choices": [
+        "The Pink Panther",
+        "A Shot in the Dark",
+        "Charade"
+      ]
     },
     {
       "year": 1958,
@@ -1458,7 +1812,13 @@
         "weeks_on_chart": 10
       },
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "The Big Country",
+      "movie_choices": [
+        "How the West Was Won",
+        "The Magnificent Seven",
+        "The Big Country"
+      ]
     },
     {
       "year": 1949,
@@ -1477,7 +1837,13 @@
         "weeks_on_chart": 11
       },
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "The Third Man",
+      "movie_choices": [
+        "The Third Man",
+        "The Maltese Falcon",
+        "Casablanca"
+      ]
     },
     {
       "year": 1976,
@@ -1511,7 +1877,13 @@
         "Globo de Oro a la Mejor Cancion Original (1977)"
       ],
       "uri_apple_music": "applemusic://track/192884975",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lzHJlncKXTM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lzHJlncKXTM",
+      "movie": "A Star Is Born",
+      "movie_choices": [
+        "The Way We Were",
+        "A Star Is Born",
+        "Funny Girl"
+      ]
     },
     {
       "year": 1980,
@@ -1532,7 +1904,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440807379",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SsPCrYeiPhY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SsPCrYeiPhY",
+      "movie": "Flash Gordon",
+      "movie_choices": [
+        "Star Wars: A New Hope",
+        "Flash Gordon",
+        "Superman"
+      ]
     },
     {
       "year": 1985,
@@ -1549,7 +1927,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PJR4E-p_QqI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PJR4E-p_QqI",
+      "movie": "A Chorus Line",
+      "movie_choices": [
+        "A Chorus Line",
+        "Cabaret",
+        "All That Jazz"
+      ]
     },
     {
       "year": 1971,
@@ -1567,7 +1951,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1240963025",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lECAtQaF5zg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lECAtQaF5zg",
+      "movie": "Fiddler on the Roof",
+      "movie_choices": [
+        "The Sound of Music",
+        "Fiddler on the Roof",
+        "Oliver!"
+      ]
     },
     {
       "year": 1969,
@@ -1590,7 +1980,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1657796080",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XS9UjqaTrIw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XS9UjqaTrIw",
+      "movie": "Paint Your Wagon",
+      "movie_choices": [
+        "Paint Your Wagon",
+        "Oklahoma!",
+        "Camelot"
+      ]
     },
     {
       "year": 1980,
@@ -1608,7 +2004,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1567146201",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-1QOLfNNhlY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-1QOLfNNhlY",
+      "movie": "Foxes",
+      "movie_choices": [
+        "Flashdance",
+        "Fame",
+        "Foxes"
+      ]
     },
     {
       "year": 1968,
@@ -1626,7 +2028,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/265721078",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LZhXHykJ2LI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LZhXHykJ2LI",
+      "movie": "Bullitt",
+      "movie_choices": [
+        "The French Connection",
+        "Dirty Harry",
+        "Bullitt"
+      ]
     },
     {
       "year": 2019,
@@ -1644,7 +2052,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1444009605",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ixQFjy6crAU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ixQFjy6crAU",
+      "movie": "Once Upon a Time in Hollywood",
+      "movie_choices": [
+        "Once Upon a Time in Hollywood",
+        "Pulp Fiction",
+        "Inglourious Basterds"
+      ]
     },
     {
       "year": 1983,
@@ -1672,7 +2086,13 @@
         "BAFTA a la Mejor Musica de Pelicula (1983)"
       ],
       "uri_apple_music": "applemusic://track/1500818278",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=RRutSMI9ulA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RRutSMI9ulA",
+      "movie": "Merry Christmas, Mr. Lawrence",
+      "movie_choices": [
+        "The Last Emperor",
+        "Merry Christmas, Mr. Lawrence",
+        "Empire of the Sun"
+      ]
     },
     {
       "year": 1978,
@@ -1699,7 +2119,13 @@
       "awards_es": [
         "Premio Grammy a la Mejor Banda Sonora (1979)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QmHhIDUrdVA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QmHhIDUrdVA",
+      "movie": "Superman",
+      "movie_choices": [
+        "E.T. the Extra-Terrestrial",
+        "Star Wars: A New Hope",
+        "Superman"
+      ]
     },
     {
       "year": 1997,
@@ -1717,7 +2143,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/157495883",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jyb33RgAxis"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jyb33RgAxis",
+      "movie": "Men in Black",
+      "movie_choices": [
+        "Mars Attacks!",
+        "Men in Black",
+        "Beetlejuice"
+      ]
     },
     {
       "year": 2022,
@@ -1735,7 +2167,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1628655051",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zb02-s7l_30"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zb02-s7l_30",
+      "movie": "Elvis",
+      "movie_choices": [
+        "Bohemian Rhapsody",
+        "Walk the Line",
+        "Elvis"
+      ]
     },
     {
       "year": 1960,
@@ -1759,6 +2197,12 @@
       ],
       "awards_es": [
         "Globo de Oro a la Mejor Banda Sonora Original (1961)"
+      ],
+      "movie": "Spartacus",
+      "movie_choices": [
+        "Cleopatra",
+        "Spartacus",
+        "Ben-Hur"
       ]
     },
     {
@@ -1783,7 +2227,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1681196890",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8reyk0XqA6Q"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8reyk0XqA6Q",
+      "movie": "Mad Max Beyond Thunderdome",
+      "movie_choices": [
+        "Mad Max 2: The Road Warrior",
+        "Mad Max Beyond Thunderdome",
+        "Aliens"
+      ]
     },
     {
       "year": 1964,
@@ -1807,7 +2257,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/696888851",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zL0K_Zt3mf8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zL0K_Zt3mf8",
+      "movie": "Goldfinger",
+      "movie_choices": [
+        "Goldfinger",
+        "Thunderball",
+        "Dr. No"
+      ]
     },
     {
       "year": 1978,
@@ -1825,7 +2281,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/393996227",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=41MZC5OApFw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=41MZC5OApFw",
+      "movie": "Halloween",
+      "movie_choices": [
+        "Halloween",
+        "Friday the 13th",
+        "A Nightmare on Elm Street"
+      ]
     },
     {
       "year": 1942,
@@ -1846,7 +2308,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455698341",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AlDuNqWKDak"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AlDuNqWKDak",
+      "movie": "Casablanca",
+      "movie_choices": [
+        "Casablanca",
+        "The Third Man",
+        "The Maltese Falcon"
+      ]
     },
     {
       "year": 2012,
@@ -1864,7 +2332,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440874258",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qtEZoAwtyyA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qtEZoAwtyyA",
+      "movie": "Django Unchained",
+      "movie_choices": [
+        "The Hateful Eight",
+        "Inglourious Basterds",
+        "Django Unchained"
+      ]
     },
     {
       "year": 1996,
@@ -1882,7 +2356,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1441032262",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=a3KX-G50R5k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a3KX-G50R5k",
+      "movie": "Mission: Impossible",
+      "movie_choices": [
+        "James Bond: GoldenEye",
+        "The Fugitive",
+        "Mission: Impossible"
+      ]
     },
     {
       "year": 1968,
@@ -1902,7 +2382,13 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=h5vGJSeJv2Q",
-      "uri_apple_music": "applemusic://track/1699692811"
+      "uri_apple_music": "applemusic://track/1699692811",
+      "movie": "2001: A Space Odyssey",
+      "movie_choices": [
+        "2001: A Space Odyssey",
+        "Close Encounters of the Third Kind",
+        "Interstellar"
+      ]
     },
     {
       "year": 1960,
@@ -1936,7 +2422,13 @@
         "Globo de Oro a la mejor banda sonora original (1961)"
       ],
       "uri_apple_music": "applemusic://track/1719334913",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=z_TfM0SwdJE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z_TfM0SwdJE",
+      "movie": "Exodus",
+      "movie_choices": [
+        "Exodus",
+        "Ben-Hur",
+        "The Ten Commandments"
+      ]
     },
     {
       "year": 1999,
@@ -1956,7 +2448,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1375814326",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=D_2bluVPsb0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D_2bluVPsb0",
+      "movie": "Star Wars: Episode I – The Phantom Menace",
+      "movie_choices": [
+        "Star Wars: Revenge of the Sith",
+        "Star Wars: A New Hope",
+        "Star Wars: Episode I – The Phantom Menace"
+      ]
     },
     {
       "year": 1939,
@@ -1982,7 +2480,13 @@
         "Premio Óscar a la mejor banda sonora original (1939)"
       ],
       "uri_apple_music": "applemusic://track/1454324974",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XZt3y2MOhEM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XZt3y2MOhEM",
+      "movie": "Gone with the Wind",
+      "movie_choices": [
+        "Gone with the Wind",
+        "Rebecca",
+        "Casablanca"
+      ]
     },
     {
       "year": 1986,
@@ -2004,7 +2508,13 @@
         "Platinum (US)"
       ],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9ID4RAqCqnQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9ID4RAqCqnQ",
+      "movie": "Top Gun",
+      "movie_choices": [
+        "Top Gun",
+        "An Officer and a Gentleman",
+        "Top Gun: Maverick"
+      ]
     },
     {
       "year": 1965,
@@ -2022,7 +2532,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1718039376",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OVszz6Xlt5g"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OVszz6Xlt5g",
+      "movie": "For a Few Dollars More",
+      "movie_choices": [
+        "A Fistful of Dollars",
+        "The Good, the Bad and the Ugly",
+        "For a Few Dollars More"
+      ]
     },
     {
       "year": 1981,
@@ -2053,7 +2569,13 @@
         "Premio Óscar a la mejor banda sonora original (1981)"
       ],
       "uri_apple_music": "applemusic://track/1453156892",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PEyK-3yDDcY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PEyK-3yDDcY",
+      "movie": "Chariots of Fire",
+      "movie_choices": [
+        "Blade Runner",
+        "Gallipoli",
+        "Chariots of Fire"
+      ]
     },
     {
       "year": 1984,
@@ -2084,7 +2606,13 @@
         "Nominación al Óscar a la mejor canción original (1984)"
       ],
       "uri_apple_music": "applemusic://track/1484413134",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Fe93CLbHjxQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fe93CLbHjxQ",
+      "movie": "Ghostbusters",
+      "movie_choices": [
+        "Gremlins",
+        "Back to the Future",
+        "Ghostbusters"
+      ]
     },
     {
       "year": 1973,
@@ -2114,7 +2642,13 @@
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1973)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vsFGcPujqKE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vsFGcPujqKE",
+      "movie": "The Sting",
+      "movie_choices": [
+        "The Great Gatsby",
+        "The Sting",
+        "Butch Cassidy and the Sundance Kid"
+      ]
     },
     {
       "year": 1987,
@@ -2136,7 +2670,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/368555829",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=z61NEfYK0fc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z61NEfYK0fc",
+      "movie": "The Living Daylights",
+      "movie_choices": [
+        "The Spy Who Loved Me",
+        "A View to a Kill",
+        "The Living Daylights"
+      ]
     },
     {
       "year": 1958,
@@ -2154,7 +2694,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/600474544",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Fg8wtmrABig"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fg8wtmrABig",
+      "movie": "Vertigo",
+      "movie_choices": [
+        "Psycho",
+        "North by Northwest",
+        "Vertigo"
+      ]
     },
     {
       "year": 1967,
@@ -2175,7 +2721,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1530113036",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BJjlCJLhBF4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BJjlCJLhBF4",
+      "movie": "Casino Royale",
+      "movie_choices": [
+        "Dr. No",
+        "The Pink Panther",
+        "Casino Royale"
+      ]
     },
     {
       "year": 1982,
@@ -2204,7 +2756,13 @@
         "Premio Grammy a la mejor banda sonora (1983)"
       ],
       "uri_apple_music": "applemusic://track/347385520",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BDlvts7qQsI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BDlvts7qQsI",
+      "movie": "E.T. the Extra-Terrestrial",
+      "movie_choices": [
+        "E.T. the Extra-Terrestrial",
+        "Jaws",
+        "Close Encounters of the Third Kind"
+      ]
     },
     {
       "year": 1991,
@@ -2222,7 +2780,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440895540",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CnQm2_cAZvo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CnQm2_cAZvo",
+      "movie": "Terminator 2: Judgment Day",
+      "movie_choices": [
+        "Terminator 2: Judgment Day",
+        "RoboCop",
+        "The Terminator"
+      ]
     },
     {
       "year": 1972,
@@ -2245,7 +2809,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/40454154",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=J6UG1Jlwiow"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J6UG1Jlwiow",
+      "movie": "Deliverance",
+      "movie_choices": [
+        "Southern Comfort",
+        "Deliverance",
+        "Cool Hand Luke"
+      ]
     },
     {
       "year": 1976,
@@ -2267,7 +2837,13 @@
         "Platinum (US)"
       ],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-M5Pt8m9sgw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-M5Pt8m9sgw",
+      "movie": "Car Wash",
+      "movie_choices": [
+        "Saturday Night Fever",
+        "Car Wash",
+        "Sparkle"
+      ]
     },
     {
       "year": 1952,
@@ -2285,7 +2861,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455420758",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=StB2WR4Hwdo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=StB2WR4Hwdo",
+      "movie": "Singin' in the Rain",
+      "movie_choices": [
+        "Singin' in the Rain",
+        "Top Hat",
+        "An American in Paris"
+      ]
     },
     {
       "year": 2011,
@@ -2309,6 +2891,12 @@
       ],
       "awards_es": [
         "Premio Grammy a la mejor banda sonora (2012)"
+      ],
+      "movie": "The Girl with the Dragon Tattoo",
+      "movie_choices": [
+        "Gone Girl",
+        "The Social Network",
+        "The Girl with the Dragon Tattoo"
       ]
     },
     {
@@ -2326,7 +2914,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1657233147"
+      "uri_apple_music": "applemusic://track/1657233147",
+      "movie": "The Thing",
+      "movie_choices": [
+        "The Fly",
+        "The Thing",
+        "Alien"
+      ]
     },
     {
       "year": 1982,
@@ -2345,7 +2939,13 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BmTj8zkDBbM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BmTj8zkDBbM",
+      "movie": "Soup for One",
+      "movie_choices": [
+        "Soup for One",
+        "Annie Hall",
+        "Working Girl"
+      ]
     },
     {
       "year": 1959,
@@ -2363,7 +2963,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455885358",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8vXtLDPotiw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8vXtLDPotiw",
+      "movie": "North by Northwest",
+      "movie_choices": [
+        "Rear Window",
+        "Vertigo",
+        "North by Northwest"
+      ]
     },
     {
       "year": 1939,
@@ -2394,7 +3000,13 @@
         "Premio Óscar a la mejor canción original (1939)"
       ],
       "uri_apple_music": "applemusic://track/1455918432",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=C14m0mX717E"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C14m0mX717E",
+      "movie": "The Wizard of Oz",
+      "movie_choices": [
+        "Alice in Wonderland",
+        "The Wizard of Oz",
+        "Peter Pan"
+      ]
     },
     {
       "year": 1982,
@@ -2415,7 +3027,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443427544",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PF5-llgf04A"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PF5-llgf04A",
+      "movie": "Cat People",
+      "movie_choices": [
+        "Scarface",
+        "American Gigolo",
+        "Cat People"
+      ]
     },
     {
       "year": 1968,
@@ -2432,7 +3050,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=FhfU6MHDSYg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FhfU6MHDSYg",
+      "movie": "Once Upon a Time in the West",
+      "movie_choices": [
+        "Once Upon a Time in the West",
+        "The Good, the Bad and the Ugly",
+        "A Fistful of Dollars"
+      ]
     },
     {
       "year": 1979,
@@ -2449,7 +3073,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rGFXiaaxIYc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rGFXiaaxIYc",
+      "movie": "The Warriors",
+      "movie_choices": [
+        "Escape from New York",
+        "The Wanderers",
+        "The Warriors"
+      ]
     },
     {
       "year": 1960,
@@ -2467,7 +3097,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440795713",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=w5Sqv_45A5c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w5Sqv_45A5c",
+      "movie": "Psycho",
+      "movie_choices": [
+        "Psycho",
+        "Vertigo",
+        "The Birds"
+      ]
     },
     {
       "year": 1955,
@@ -2494,6 +3130,12 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor canción original (1955)"
+      ],
+      "movie": "Love Is a Many-Splendored Thing",
+      "movie_choices": [
+        "Love Is a Many-Splendored Thing",
+        "An Affair to Remember",
+        "From Here to Eternity"
       ]
     },
     {
@@ -2519,7 +3161,13 @@
       "awards_es": [
         "Nominación al Grammy a la mejor banda sonora (2003)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SJKEvEdPtqw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SJKEvEdPtqw",
+      "movie": "Catch Me If You Can",
+      "movie_choices": [
+        "Saving Private Ryan",
+        "The Terminal",
+        "Catch Me If You Can"
+      ]
     },
     {
       "year": 1973,
@@ -2552,7 +3200,13 @@
         "Premio Grammy a la mejor grabación instrumental (1975)"
       ],
       "uri_apple_music": "applemusic://track/1443259735",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8c-hUWNiG8A"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8c-hUWNiG8A",
+      "movie": "The Exorcist",
+      "movie_choices": [
+        "The Omen",
+        "Rosemary's Baby",
+        "The Exorcist"
+      ]
     },
     {
       "year": 1959,
@@ -2578,7 +3232,13 @@
         "Premio Óscar a la mejor banda sonora original (1959)"
       ],
       "uri_apple_music": "applemusic://track/1455700172",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=B3GgE351DmA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B3GgE351DmA",
+      "movie": "Ben-Hur",
+      "movie_choices": [
+        "Cleopatra",
+        "Ben-Hur",
+        "Spartacus"
+      ]
     },
     {
       "year": 1992,
@@ -2595,7 +3255,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YMjiwEtwggM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YMjiwEtwggM",
+      "movie": "Basic Instinct",
+      "movie_choices": [
+        "Fatal Attraction",
+        "Basic Instinct",
+        "Total Recall"
+      ]
     },
     {
       "year": 1962,
@@ -2624,7 +3290,13 @@
         "Premio Óscar a la mejor banda sonora original (1962)"
       ],
       "uri_apple_music": "applemusic://track/1663023916",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qB_Hvinljbg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qB_Hvinljbg",
+      "movie": "Lawrence of Arabia",
+      "movie_choices": [
+        "The Bridge on the River Kwai",
+        "Doctor Zhivago",
+        "Lawrence of Arabia"
+      ]
     },
     {
       "year": 1976,
@@ -2642,7 +3314,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/174892425",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_4zfJwW8ye4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_4zfJwW8ye4",
+      "movie": "Taxi Driver",
+      "movie_choices": [
+        "Taxi Driver",
+        "Vertigo",
+        "Psycho"
+      ]
     },
     {
       "year": 1964,
@@ -2660,7 +3338,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440831930",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=h5sP4JW0yDA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h5sP4JW0yDA",
+      "movie": "A Fistful of Dollars",
+      "movie_choices": [
+        "The Good, the Bad and the Ugly",
+        "For a Few Dollars More",
+        "A Fistful of Dollars"
+      ]
     },
     {
       "year": 1971,
@@ -2681,7 +3365,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443116804",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jboEolwHIIA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jboEolwHIIA",
+      "movie": "Diamonds Are Forever",
+      "movie_choices": [
+        "Goldfinger",
+        "Thunderball",
+        "Diamonds Are Forever"
+      ]
     },
     {
       "year": 1979,
@@ -2699,7 +3389,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/927346120",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AEQIe2ejP_s"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AEQIe2ejP_s",
+      "movie": "Apocalypse Now",
+      "movie_choices": [
+        "The Deer Hunter",
+        "Apocalypse Now",
+        "Platoon"
+      ]
     },
     {
       "year": 1962,
@@ -2725,7 +3421,13 @@
         "Nominación al Óscar a la mejor banda sonora original (1962)"
       ],
       "uri_apple_music": "applemusic://track/1444004606",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=c72keUWlbJ0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c72keUWlbJ0",
+      "movie": "To Kill a Mockingbird",
+      "movie_choices": [
+        "To Kill a Mockingbird",
+        "The Great Escape",
+        "The Magnificent Seven"
+      ]
     },
     {
       "year": 1980,
@@ -2750,7 +3452,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440743615",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=aUkR8YhJNn8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aUkR8YhJNn8",
+      "movie": "Xanadu",
+      "movie_choices": [
+        "Grease",
+        "Saturday Night Fever",
+        "Xanadu"
+      ]
     },
     {
       "year": 1961,
@@ -2781,7 +3489,13 @@
         "Premio Óscar a la mejor película (1961)"
       ],
       "uri_apple_music": "applemusic://track/933459488",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=V3h7rRyMZO8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V3h7rRyMZO8",
+      "movie": "West Side Story",
+      "movie_choices": [
+        "Grease",
+        "West Side Story",
+        "Chicago"
+      ]
     },
     {
       "year": 1967,
@@ -2809,7 +3523,13 @@
         "Nominación al Óscar a la mejor canción original (1967)"
       ],
       "uri_apple_music": "applemusic://track/1442849462",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6BH-Rxd-NBo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6BH-Rxd-NBo",
+      "movie": "The Jungle Book",
+      "movie_choices": [
+        "The Lion King",
+        "The Jungle Book",
+        "Bambi"
+      ]
     },
     {
       "year": 1973,
@@ -2830,7 +3550,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/459757919",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cSs3mr3C4pA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cSs3mr3C4pA",
+      "movie": "Godspell",
+      "movie_choices": [
+        "Jesus Christ Superstar",
+        "Godspell",
+        "Hair"
+      ]
     },
     {
       "year": 1942,
@@ -2848,7 +3574,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455697817",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=FruwdlwW-k8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FruwdlwW-k8",
+      "movie": "Casablanca",
+      "movie_choices": [
+        "The Maltese Falcon",
+        "Gone with the Wind",
+        "Casablanca"
+      ]
     },
     {
       "year": 1979,
@@ -2874,7 +3606,13 @@
         "Nominación al Óscar a la Mejor Banda Sonora Original (1979)"
       ],
       "uri_apple_music": "applemusic://track/1440854590",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yc94TrMnwaw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yc94TrMnwaw",
+      "movie": "Alien",
+      "movie_choices": [
+        "Aliens",
+        "Alien",
+        "Blade Runner"
+      ]
     },
     {
       "year": 1971,
@@ -2891,7 +3629,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/904757640"
+      "uri_apple_music": "applemusic://track/904757640",
+      "movie": "A Clockwork Orange",
+      "movie_choices": [
+        "The Shining",
+        "2001: A Space Odyssey",
+        "A Clockwork Orange"
+      ]
     },
     {
       "year": 1981,
@@ -2925,7 +3669,13 @@
         "Globo de Oro a la Mejor Canción Original (1982)"
       ],
       "uri_apple_music": "applemusic://track/273426183",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=wJ6zs2WSCjk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wJ6zs2WSCjk",
+      "movie": "Arthur",
+      "movie_choices": [
+        "10",
+        "Arthur",
+        "Micki & Maude"
+      ]
     },
     {
       "year": 2000,
@@ -2953,7 +3703,13 @@
         "Óscar a la Mejor Banda Sonora Original (2000)",
         "Globo de Oro a la Mejor Banda Sonora Original (2001)"
       ],
-      "uri_apple_music": "applemusic://track/1452552843"
+      "uri_apple_music": "applemusic://track/1452552843",
+      "movie": "Gladiator",
+      "movie_choices": [
+        "Troy",
+        "Kingdom of Heaven",
+        "Gladiator"
+      ]
     },
     {
       "year": 1995,
@@ -2979,7 +3735,13 @@
         "Óscar a la Mejor Banda Sonora Original (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440773543",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gfHjh8KLURI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gfHjh8KLURI",
+      "movie": "Braveheart",
+      "movie_choices": [
+        "Rob Roy",
+        "Braveheart",
+        "Gladiator"
+      ]
     },
     {
       "year": 1954,
@@ -3004,7 +3766,13 @@
       "awards_es": [
         "Óscar a la Mejor Banda Sonora (1954)"
       ],
-      "uri_apple_music": "applemusic://track/1658406090"
+      "uri_apple_music": "applemusic://track/1658406090",
+      "movie": "Seven Brides for Seven Brothers",
+      "movie_choices": [
+        "Oklahoma!",
+        "Calamity Jane",
+        "Seven Brides for Seven Brothers"
+      ]
     },
     {
       "year": 1968,
@@ -3022,7 +3790,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443095011",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1ve6wEmeQDk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1ve6wEmeQDk",
+      "movie": "Planet of the Apes",
+      "movie_choices": [
+        "Alien",
+        "Logan's Run",
+        "Planet of the Apes"
+      ]
     },
     {
       "year": 1965,
@@ -3054,7 +3828,13 @@
         "Nominación al Óscar a la Mejor Canción Original (1965)"
       ],
       "uri_apple_music": "applemusic://track/1444091737",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qQvIAs-nPSo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qQvIAs-nPSo",
+      "movie": "What's New Pussycat?",
+      "movie_choices": [
+        "What's New Pussycat?",
+        "Casino Royale",
+        "The Pink Panther"
+      ]
     },
     {
       "year": 1957,
@@ -3078,7 +3858,13 @@
         "Gold (UK)"
       ],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lbnClCGpTzs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lbnClCGpTzs",
+      "movie": "The Bridge on the River Kwai",
+      "movie_choices": [
+        "The Bridge on the River Kwai",
+        "Lawrence of Arabia",
+        "The Great Escape"
+      ]
     },
     {
       "year": 1980,
@@ -3096,7 +3882,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1535496635",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UTGdnvpGHxU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UTGdnvpGHxU",
+      "movie": "The Shining",
+      "movie_choices": [
+        "The Shining",
+        "2001: A Space Odyssey",
+        "A Clockwork Orange"
+      ]
     },
     {
       "year": 1969,
@@ -3113,7 +3905,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1802763015"
+      "uri_apple_music": "applemusic://track/1802763015",
+      "movie": "The Italian Job",
+      "movie_choices": [
+        "Bullitt",
+        "The Italian Job",
+        "The Thomas Crown Affair"
+      ]
     },
     {
       "year": 1964,
@@ -3146,7 +3944,13 @@
         "Óscar a la Mejor Banda Sonora Original (1964)",
         "Óscar a la Mejor Canción Original (1964)"
       ],
-      "uri_apple_music": "applemusic://track/1440796520"
+      "uri_apple_music": "applemusic://track/1440796520",
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Chitty Chitty Bang Bang",
+        "The Sound of Music"
+      ]
     },
     {
       "year": 1965,
@@ -3171,7 +3975,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1441164536",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MKUex3fci5c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MKUex3fci5c",
+      "movie": "Help!",
+      "movie_choices": [
+        "Yellow Submarine",
+        "Help!",
+        "A Hard Day's Night"
+      ]
     },
     {
       "year": 1985,
@@ -3195,7 +4005,13 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443234133",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CdqoNKCCt7A"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CdqoNKCCt7A",
+      "movie": "The Breakfast Club",
+      "movie_choices": [
+        "The Breakfast Club",
+        "Sixteen Candles",
+        "Pretty in Pink"
+      ]
     },
     {
       "year": 1954,
@@ -3221,7 +4037,13 @@
         "Óscar a la Mejor Banda Sonora Original (1954)"
       ],
       "uri_apple_music": "applemusic://track/1816013634",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Q7sabA_J4SA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q7sabA_J4SA",
+      "movie": "On the Waterfront",
+      "movie_choices": [
+        "On the Waterfront",
+        "A Streetcar Named Desire",
+        "West Side Story"
+      ]
     },
     {
       "year": 1963,
@@ -3239,7 +4061,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/285167010",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Gz4b7Ty5JjI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gz4b7Ty5JjI",
+      "movie": "It's a Mad, Mad, Mad, Mad World",
+      "movie_choices": [
+        "The Great Race",
+        "Those Magnificent Men in Their Flying Machines",
+        "It's a Mad, Mad, Mad, Mad World"
+      ]
     },
     {
       "year": 1962,
@@ -3268,7 +4096,13 @@
         "Premio Grammy a la Mejor Interpretación Instrumental (1963)"
       ],
       "uri_apple_music": "applemusic://track/306820503",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=EbI2nl3Duf8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EbI2nl3Duf8",
+      "movie": "Hatari!",
+      "movie_choices": [
+        "Breakfast at Tiffany's",
+        "The Pink Panther",
+        "Hatari!"
+      ]
     },
     {
       "year": 1991,
@@ -3286,7 +4120,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443219466",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=oyyIcbb7lOE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oyyIcbb7lOE",
+      "movie": "The Silence of the Lambs",
+      "movie_choices": [
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "Se7en",
+        "The Silence of the Lambs"
+      ]
     },
     {
       "year": 1955,
@@ -3315,7 +4155,13 @@
         "Óscar a la Mejor Banda Sonora (1955)"
       ],
       "uri_apple_music": "applemusic://track/325855734",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VpPKHI9N3Q0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VpPKHI9N3Q0",
+      "movie": "Oklahoma!",
+      "movie_choices": [
+        "The Sound of Music",
+        "Carousel",
+        "Oklahoma!"
+      ]
     },
     {
       "year": 1971,
@@ -3333,7 +4179,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/205808260",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YU6yAluDAkY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YU6yAluDAkY",
+      "movie": "Dirty Harry",
+      "movie_choices": [
+        "Bullitt",
+        "Dirty Harry",
+        "The French Connection"
+      ]
     },
     {
       "year": 1955,
@@ -3350,7 +4202,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4V2WxyTtfII"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4V2WxyTtfII",
+      "movie": "Rebel Without a Cause",
+      "movie_choices": [
+        "Rebel Without a Cause",
+        "East of Eden",
+        "Giant"
+      ]
     },
     {
       "year": 1977,
@@ -3379,7 +4237,13 @@
         "Nominación al Óscar a la Mejor Banda Sonora Original (1977)"
       ],
       "uri_apple_music": "applemusic://track/306664733",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=W9pFv20Bhck"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W9pFv20Bhck",
+      "movie": "Close Encounters of the Third Kind",
+      "movie_choices": [
+        "Star Wars: A New Hope",
+        "E.T. the Extra-Terrestrial",
+        "Close Encounters of the Third Kind"
+      ]
     },
     {
       "year": 1959,
@@ -3396,7 +4260,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vMZfYZCVfqE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vMZfYZCVfqE",
+      "movie": "Some Like It Hot",
+      "movie_choices": [
+        "Gentlemen Prefer Blondes",
+        "Some Like It Hot",
+        "The Apartment"
+      ]
     },
     {
       "year": 1978,
@@ -3417,7 +4287,13 @@
       "certifications": [
         "Gold (UK)"
       ],
-      "awards": []
+      "awards": [],
+      "movie": "The Deer Hunter",
+      "movie_choices": [
+        "Platoon",
+        "The Deer Hunter",
+        "Apocalypse Now"
+      ]
     },
     {
       "year": 2001,
@@ -3435,7 +4311,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/323714096",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CL_3mlOPnGI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CL_3mlOPnGI",
+      "movie": "The Lord of the Rings: The Fellowship of the Ring",
+      "movie_choices": [
+        "The Hobbit: An Unexpected Journey",
+        "The Lord of the Rings: The Two Towers",
+        "The Lord of the Rings: The Fellowship of the Ring"
+      ]
     },
     {
       "year": 1971,
@@ -3463,7 +4345,13 @@
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (1971)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hxWpSmNDIZA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hxWpSmNDIZA",
+      "movie": "Summer of '42",
+      "movie_choices": [
+        "The Way We Were",
+        "Summer of '42",
+        "American Graffiti"
+      ]
     },
     {
       "year": 1961,
@@ -3483,7 +4371,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/826934339",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=esNgKybTSZQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=esNgKybTSZQ",
+      "movie": "Voyage to the Bottom of the Sea",
+      "movie_choices": [
+        "The Poseidon Adventure",
+        "Voyage to the Bottom of the Sea",
+        "20,000 Leagues Under the Sea"
+      ]
     },
     {
       "year": 2007,
@@ -3503,7 +4397,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1442889719",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Wu_xMNZWyak"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Wu_xMNZWyak",
+      "movie": "The Bourne Ultimatum",
+      "movie_choices": [
+        "The Bourne Identity",
+        "Mission: Impossible III",
+        "The Bourne Ultimatum"
+      ]
     },
     {
       "year": 1973,
@@ -3535,7 +4435,13 @@
         "Nominación al Óscar a la Mejor Canción Original (1973)"
       ],
       "uri_apple_music": "applemusic://track/1440939414",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NR0UmZcf89E"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NR0UmZcf89E",
+      "movie": "Live and Let Die",
+      "movie_choices": [
+        "Live and Let Die",
+        "Goldfinger",
+        "The Spy Who Loved Me"
+      ]
     },
     {
       "year": 1968,
@@ -3553,7 +4459,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1452655336",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qE5S9pUTGno"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qE5S9pUTGno",
+      "movie": "Once Upon a Time in the West",
+      "movie_choices": [
+        "Once Upon a Time in the West",
+        "A Fistful of Dollars",
+        "The Good, the Bad and the Ugly"
+      ]
     },
     {
       "year": 1999,
@@ -3571,7 +4483,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1437293471",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ucdz7A3s4Wc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ucdz7A3s4Wc",
+      "movie": "American Beauty",
+      "movie_choices": [
+        "Revolutionary Road",
+        "American Beauty",
+        "The Shawshank Redemption"
+      ]
     },
     {
       "year": 1959,
@@ -3601,7 +4519,13 @@
       "awards_es": [
         "Premio Grammy a la Grabación del Año (1961)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3ofmPuHBCCc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3ofmPuHBCCc",
+      "movie": "A Summer Place",
+      "movie_choices": [
+        "Peyton Place",
+        "A Summer Place",
+        "Splendor in the Grass"
+      ]
     },
     {
       "year": 1997,
@@ -3640,7 +4564,13 @@
         "Premio Grammy a la Grabación del Año (1999)"
       ],
       "uri_apple_music": "applemusic://track/507536740",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MxtrIvQKNEQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MxtrIvQKNEQ",
+      "movie": "Titanic",
+      "movie_choices": [
+        "The Notebook",
+        "Pearl Harbor",
+        "Titanic"
+      ]
     },
     {
       "year": 1969,
@@ -3660,7 +4590,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1584918493",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SgVWFdDnSXQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SgVWFdDnSXQ",
+      "movie": "On Her Majesty's Secret Service",
+      "movie_choices": [
+        "On Her Majesty's Secret Service",
+        "You Only Live Twice",
+        "The Spy Who Loved Me"
+      ]
     },
     {
       "year": 1969,
@@ -3691,7 +4627,13 @@
         "Premio Grammy a la Mejor Canción Contemporánea (1970)"
       ],
       "uri_apple_music": "applemusic://track/714938680",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BFKDyVPkonc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BFKDyVPkonc",
+      "movie": "Midnight Cowboy",
+      "movie_choices": [
+        "Midnight Cowboy",
+        "Taxi Driver",
+        "Easy Rider"
+      ]
     },
     {
       "year": 1980,
@@ -3709,7 +4651,13 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1550210611",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=H88biGPCMqg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H88biGPCMqg",
+      "movie": "Foxes",
+      "movie_choices": [
+        "Foxes",
+        "Fame",
+        "Valley Girl"
+      ]
     },
     {
       "year": 1963,
@@ -3727,7 +4675,13 @@
         "uk_peak": 39
       },
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "From Russia with Love",
+      "movie_choices": [
+        "Dr. No",
+        "From Russia with Love",
+        "Goldfinger"
+      ]
     },
     {
       "year": 1946,
@@ -3744,7 +4698,13 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1597777326"
+      "uri_apple_music": "applemusic://track/1597777326",
+      "movie": "It's a Wonderful Life",
+      "movie_choices": [
+        "A Christmas Carol",
+        "It's a Wonderful Life",
+        "Miracle on 34th Street"
+      ]
     },
     {
       "year": 1942,
@@ -3775,7 +4735,13 @@
         "Óscar a la Mejor Canción Original (1942)"
       ],
       "uri_apple_music": "applemusic://track/1772921827",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DQdiNPe5ja0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DQdiNPe5ja0",
+      "movie": "Holiday Inn",
+      "movie_choices": [
+        "Easter Parade",
+        "White Christmas",
+        "Holiday Inn"
+      ]
     },
     {
       "year": 1958,
@@ -3791,7 +4757,14 @@
       "fun_fact_es": "El tema de Pearl & Dean se ha reproducido antes de los anuncios de cine británico desde 1958. La fanfarria es conocida por generaciones de cinéfilos.",
       "chart_info": {},
       "certifications": [],
-      "awards": []
+      "awards": [],
+      "movie": "Pearl & Dean Cinema Advertising",
+      "movie_choices": [
+        "Pathé News",
+        "Pearl & Dean Cinema Advertising",
+        "Odeon Idents"
+      ]
     }
-  ]
+  ],
+  "movie_quiz_enabled": true
 }
