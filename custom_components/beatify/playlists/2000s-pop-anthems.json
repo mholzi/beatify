@@ -1,9 +1,12 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "2000s",
     "pop",
+    "rock",
+    "hip-hop",
+    "r&b",
     "international"
   ],
   "songs": [
@@ -2755,6 +2758,1365 @@
       "fun_fact_es": "La muestra vocal de Jamie Foxx proviene de 'I Got a Woman' de Ray Charles y fue grabada justo después de que Foxx ganara el Óscar por interpretar a Ray Charles. Kanye escribió la canción en una hora.",
       "uri_apple_music": "applemusic://track/1440669054",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6vwNcNOTVzY"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:3GpbwCm3YxiYKBSI5brbG",
+      "artist": "Flo Rida, Kesha",
+      "alt_artists": [
+        "Pitbull",
+        "Sean Kingston",
+        "Taio Cruz",
+        "LMFAO"
+      ],
+      "title": "Right Round",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Right Round samples Dead or Alive's 1985 hit 'You Spin Me Round (Like a Record)' and debuted at #1 on the Hot 100, becoming the first song to top the chart based on digital sales alone.",
+      "fun_fact_de": "Right Round hielt den Rekord für die meisten digitalen Downloads in einer Woche mit 636.000 Verkäufen – ein Rekord, der erst zwei Monate später von The Black Eyed Peas gebrochen wurde.",
+      "fun_fact_es": "La canción fue originalmente grabada sin Kesha, pero después de que Flo Rida escuchó su demo de 'Tik Tok', la invitó a grabar los coros, aunque su nombre no apareció en los créditos oficiales del sencillo en EE.UU.",
+      "uri_apple_music": "",
+      "uri_youtube_music": ""
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:4TsmezEQVSZNNPv5RJ65Ov",
+      "artist": "Rihanna",
+      "alt_artists": [
+        "Sean Paul",
+        "Beyoncé",
+        "Ciara",
+        "Ashanti"
+      ],
+      "title": "Pon de Replay",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 2,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Pon de Replay was Rihanna's debut single, recorded when she was just 16 years old after being discovered by Evan Rogers during a vacation in Barbados, who then arranged an audition with Jay-Z at Def Jam.",
+      "fun_fact_de": "Rihanna war erst 16 Jahre alt, als sie 'Pon de Replay' aufnahm. Jay-Z war so beeindruckt von ihrem Vorsingen, dass er sie noch am selben Tag unter Vertrag nahm und sie das Büro nicht verlassen ließ, bis der Deal unterschrieben war.",
+      "fun_fact_es": "El título mezcla inglés con patois jamaicano: 'Pon' significa 'poner' y 'de replay' significa 'la repetición', pidiendo al DJ que vuelva a poner la canción — un tema perfecto para la primera canción de la futura superestrella de Barbados.",
+      "uri_apple_music": "applemusic://track/1440867324",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oEauWw9ZGrA"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:3Zwu2K0Qa5sT6teCCHPShP",
+      "artist": "Fall Out Boy",
+      "alt_artists": [
+        "Panic! At The Disco",
+        "My Chemical Romance",
+        "Paramore",
+        "All Time Low"
+      ],
+      "title": "Thnks fr th Mmrs",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 12,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The vowel-less title was inspired by the band's fascination with the text-speak culture of the mid-2000s. The music video, directed by Alan Ferguson, features a chimpanzee party and cameos from Kim Kardashian.",
+      "fun_fact_de": "Der Titel ohne Vokale war eine bewusste Anspielung auf die SMS-Kultur der 2000er Jahre. Im Musikvideo spielt ein Schimpanse die Hauptrolle bei einer wilden Party – ein surrealer Clip, der auf MTV zum Hit wurde.",
+      "fun_fact_es": "El título sin vocales ('Gracias por los recuerdos') refleja la cultura de mensajes de texto de los 2000. El video musical presenta una fiesta de chimpancés y un cameo de Kim Kardashian antes de que se convirtiera en una megaestrella.",
+      "uri_apple_music": "applemusic://track/1440787031",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=onzL0EM1pKY"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:0KQx6HOpJueiSkztcS0r7D",
+      "artist": "Alicia Keys",
+      "alt_artists": [
+        "Lauryn Hill",
+        "Erykah Badu",
+        "John Legend",
+        "Mary J. Blige"
+      ],
+      "title": "Fallin'",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Fallin' spent six weeks at #1 on the Billboard Hot 100 and won three Grammy Awards, launching the career of a 20-year-old Alicia Keys who wrote and produced the song herself with minimal outside help.",
+      "fun_fact_de": "Alicia Keys schrieb 'Fallin'' als sie gerade 14 Jahre alt war, aber es wurde erst veröffentlicht, als sie 20 war. Das Lied gewann drei Grammy Awards und machte sie über Nacht zum Superstar der R&B-Szene.",
+      "fun_fact_es": "Keys escribió 'Fallin'' a los 14 años, inspirada por una relación tormentosa. La canción ganó tres premios Grammy en 2002, incluyendo Canción del Año, estableciendo a Keys como una de las grandes voces de su generación.",
+      "uri_apple_music": "applemusic://track/256937038",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Urdlvw0SSEc"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:3E7ZwUMJFqpsDOJzEkBrQ7",
+      "artist": "Kylie Minogue",
+      "alt_artists": [
+        "Madonna",
+        "Sophie Ellis-Bextor",
+        "Dannii Minogue",
+        "Robbie Williams"
+      ],
+      "title": "Can't Get You out of My Head",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 1,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The song was rejected by Sophie Ellis-Bextor and S Club 7 before Kylie recorded it. Its hypnotic 'la la la' hook and minimal production made it the best-selling single of 2001 worldwide with over 5 million copies sold.",
+      "fun_fact_de": "Der Song wurde zunächst von Sophie Ellis-Bextor und S Club 7 abgelehnt, bevor Kylie ihn aufnahm. Mit über 5 Millionen verkauften Exemplaren war es die meistverkaufte Single des Jahres 2001 weltweit.",
+      "fun_fact_es": "La canción fue rechazada por Sophie Ellis-Bextor y S Club 7 antes de llegar a Kylie. Su icónico gancho 'la la la' la convirtió en la single más vendida de 2001, con más de 5 millones de copias en todo el mundo.",
+      "uri_apple_music": "applemusic://track/726320692",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c18441Eh_WE"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:7H6ev70Weq6DdpZyyTmUXk",
+      "artist": "Destiny's Child",
+      "alt_artists": [
+        "TLC",
+        "En Vogue",
+        "Spice Girls",
+        "SWV"
+      ],
+      "title": "Say My Name",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Say My Name won two Grammy Awards in 2001 and is considered one of the greatest songs of the R&B genre. Its innovative production by Rodney Jerkins featured interlocking vocal parts that were groundbreaking for girl groups.",
+      "fun_fact_de": "Der Song gewann 2001 zwei Grammys, darunter Bester R&B-Song. Die innovative Produktion von Rodney Jerkins mit ineinander verschränkten Gesangsstimmen setzte neue Maßstäbe für Girlgroups und beeinflusste die Pop-Produktion der 2000er Jahre.",
+      "fun_fact_es": "La letra trata sobre confrontar a una pareja infiel — si no puede decir tu nombre, algo está mal. Ganó dos premios Grammy y su producción innovadora de Rodney Jerkins cambió el sonido del R&B a principios de los 2000.",
+      "uri_apple_music": "applemusic://track/266809802",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sQgd6MccwZc"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3pD0f7hSJg2XdQ6udw5Tey",
+      "artist": "Justin Timberlake",
+      "alt_artists": [
+        "Usher",
+        "Ne-Yo",
+        "Robin Thicke",
+        "Craig David"
+      ],
+      "title": "What Goes Around.../...Comes Around",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The 9-minute music video cost over $1 million to produce and starred Scarlett Johansson. The song was widely interpreted as Timberlake's response to his breakup with Britney Spears, though he never confirmed it.",
+      "fun_fact_de": "Das 9-minütige Musikvideo mit Scarlett Johansson kostete über eine Million Dollar. Der Song wurde allgemein als Timberlakes Antwort auf die Trennung von Britney Spears interpretiert, obwohl er dies nie bestätigte.",
+      "fun_fact_es": "El video musical de 9 minutos con Scarlett Johansson costó más de un millón de dólares. La canción fue ampliamente interpretada como la respuesta de Timberlake a su ruptura con Britney Spears, convirtiéndose en uno de los dramas pop más comentados de la década.",
+      "uri_apple_music": "applemusic://track/400946486",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TOrnUquxtwA"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:2TfSHkHiFO4gRztVIkggkE",
+      "artist": "Fall Out Boy",
+      "alt_artists": [
+        "Panic! At The Disco",
+        "My Chemical Romance",
+        "Paramore",
+        "The Academy Is..."
+      ],
+      "title": "Sugar, We're Goin Down",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 8,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The song spent 26 weeks on the Hot 100 and became the anthem of emo-pop's mainstream breakthrough. Its music video featuring a boy with deer antlers was one of the most played on MTV's TRL in 2005.",
+      "fun_fact_de": "Der Song verbrachte 26 Wochen in den Hot 100 und wurde zur Hymne des Emo-Pop-Durchbruchs im Mainstream. Das surreale Musikvideo mit einem Jungen mit Hirschgeweih wurde zu einem der meistgespielten Clips auf MTV.",
+      "fun_fact_es": "La canción pasó 26 semanas en el Hot 100 y se convirtió en el himno del emo-pop en el mainstream. Pete Wentz escribió la letra durante un período difícil de su vida, canalizando su dolor en lo que se convertiría en un clásico generacional.",
+      "uri_apple_music": "applemusic://track/1440799364",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uhG-vLZrb-g"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:7iXF2W9vKmDoGAhlHdpyIa",
+      "artist": "Dr. Dre, Eminem",
+      "alt_artists": [
+        "Snoop Dogg",
+        "50 Cent",
+        "Ice Cube",
+        "Xzibit"
+      ],
+      "title": "Forgot About Dre",
+      "chart_info": {
+        "billboard_peak": 25,
+        "uk_peak": 7,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Forgot About Dre won the Grammy for Best Rap Performance by a Duo in 2001. Eminem's verse was recorded in a single take and is considered one of the most iconic guest verses in hip-hop history.",
+      "fun_fact_de": "Der Song gewann 2001 den Grammy für die beste Rap-Performance eines Duos. Eminems Vers wurde in einem einzigen Take aufgenommen und gilt als einer der ikonischsten Gaststrophen der Hip-Hop-Geschichte.",
+      "fun_fact_es": "La canción ganó el Grammy a la Mejor Interpretación Rap de un Dúo en 2001. El verso de Eminem fue grabado en una sola toma y es considerado uno de los versos invitados más icónicos en la historia del hip-hop.",
+      "uri_apple_music": "applemusic://track/1440783376",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QFcv5Ma8u8k"
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:3iVcZ5G6tvkXZkZKlMpIUs",
+      "artist": "Kendrick Lamar",
+      "alt_artists": [
+        "J. Cole",
+        "Chance The Rapper",
+        "Childish Gambino",
+        "Tyler, The Creator"
+      ],
+      "title": "Alright",
+      "chart_info": {
+        "billboard_peak": 57,
+        "uk_peak": 81,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Though from 2015 (outside the 2000s decade), Alright became an anthem of the Black Lives Matter movement. Produced by Pharrell Williams, its chant 'We gon' be alright' was adopted at protests across America.",
+      "fun_fact_de": "Obwohl der Song aus dem Jahr 2015 stammt, wurde 'Alright' zur Hymne der Black-Lives-Matter-Bewegung. Von Pharrell Williams produziert, wurde der Refrain 'We gon' be alright' bei Protesten in ganz Amerika gesungen.",
+      "fun_fact_es": "Aunque es de 2015 (fuera de la década de los 2000), 'Alright' se convirtió en el himno del movimiento Black Lives Matter. Producida por Pharrell Williams, su coro fue adoptado en protestas por toda América.",
+      "uri_apple_music": "applemusic://track/1440829463",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z-48u_uWMHY"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:6CFPFnS9EcLs2I0nWqtWci",
+      "artist": "Ne-Yo",
+      "alt_artists": [
+        "Mario",
+        "Usher",
+        "Chris Brown",
+        "Akon"
+      ],
+      "title": "Because Of You",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 4,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Ne-Yo wrote 'Because of You' in just 15 minutes during a studio session. The song was inspired by a real relationship and became his highest-charting single at the time, peaking at #2 on the Hot 100.",
+      "fun_fact_de": "Ne-Yo schrieb 'Because of You' in nur 15 Minuten während einer Studiosession. Der Song wurde von einer echten Beziehung inspiriert und erreichte Platz 2 der Hot 100 – seine höchste Chart-Platzierung zu diesem Zeitpunkt.",
+      "fun_fact_es": "Ne-Yo escribió esta canción en solo 15 minutos durante una sesión de estudio. Inspirada en una relación real, alcanzó el #2 en el Hot 100, consolidando a Ne-Yo como uno de los mejores compositores de R&B de los 2000.",
+      "uri_apple_music": "applemusic://track/1440757476",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=atz_aZA3rf0"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:3FtYbEfBqAlGO46NUDQSAt",
+      "artist": "MGMT",
+      "alt_artists": [
+        "Empire Of The Sun",
+        "Tame Impala",
+        "Foster The People",
+        "Passion Pit"
+      ],
+      "title": "Electric Feel",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 29,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Electric Feel won the Grammy for Best Pop Performance by a Duo or Group in 2010. The song was written in a burst of creativity during the band's time at Wesleyan University and samples African rhythms.",
+      "fun_fact_de": "Electric Feel gewann 2010 den Grammy für die beste Pop-Darbietung eines Duos. Der Song wurde während der Studienzeit der Band an der Wesleyan University geschrieben und verbindet Indie-Rock mit afrikanischen Rhythmen.",
+      "fun_fact_es": "Electric Feel ganó el Grammy a la Mejor Interpretación Pop de Dúo o Grupo en 2010. Escrita durante los años universitarios de la banda, la canción mezcla indie rock con ritmos africanos y sintetizadores psicodélicos.",
+      "uri_apple_music": "applemusic://track/1687386390",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MmZexg8sxyk"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:3DamFFqW32WihKkTVlwTYQ",
+      "artist": "Owl City",
+      "alt_artists": [
+        "The Postal Service",
+        "Death Cab For Cutie",
+        "Hellogoodbye",
+        "Passion Pit"
+      ],
+      "title": "Fireflies",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "6x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Adam Young recorded Fireflies entirely in his parents' basement in Owatonna, Minnesota. It topped charts in 13 countries and became the most-downloaded song on iTunes in 2009 with over 10 million downloads.",
+      "fun_fact_de": "Adam Young nahm Fireflies komplett im Keller seiner Eltern in Owatonna, Minnesota auf. Der Song erreichte Platz 1 in 13 Ländern und wurde mit über 10 Millionen Downloads der meistverkaufte iTunes-Song des Jahres 2009.",
+      "fun_fact_es": "Adam Young grabó Fireflies en el sótano de la casa de sus padres en Minnesota. La canción llegó al #1 en 13 países y se convirtió en la canción más descargada de iTunes en 2009, con más de 10 millones de descargas.",
+      "uri_apple_music": "applemusic://track/1440783289",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=psuRGfAaju4"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:60jzFy6Nn4M0iD1d94oteF",
+      "artist": "Rihanna",
+      "alt_artists": [
+        "Beyoncé",
+        "Katy Perry",
+        "Lady Gaga",
+        "Ciara"
+      ],
+      "title": "Rude Boy",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Rude Boy was Rihanna's fifth #1 hit on the Billboard Hot 100, where it stayed for five consecutive weeks. The colorful, pop-art inspired music video was shot on a tight budget using green screens and bold graphics.",
+      "fun_fact_de": "Rude Boy war Rihannas fünfter Nummer-1-Hit in den Billboard Hot 100 und blieb dort fünf Wochen lang. Das bunte Pop-Art-Musikvideo wurde mit einem knappen Budget und Greenscreens gedreht.",
+      "fun_fact_es": "Rude Boy fue el quinto #1 de Rihanna en el Billboard Hot 100, donde permaneció cinco semanas consecutivas. Su colorido video musical inspirado en el pop art se filmó con un presupuesto ajustado usando pantallas verdes.",
+      "uri_apple_music": "applemusic://track/1440885739",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e82VE8UtW8A"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:1MTQHCpraD4S8g5PAFKzoj",
+      "artist": "Limp Bizkit",
+      "alt_artists": [
+        "Linkin Park",
+        "Staind",
+        "Nickelback",
+        "3 Doors Down"
+      ],
+      "title": "Behind Blue Eyes",
+      "chart_info": {
+        "billboard_peak": 56,
+        "uk_peak": 1,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "This cover of The Who's 1971 classic reached #1 in the UK and Germany. Fred Durst's softer vocal approach surprised fans and critics who associated him with aggressive nu-metal.",
+      "fun_fact_de": "Dieses Cover des Who-Klassikers von 1971 erreichte Platz 1 in Großbritannien und Deutschland. Fred Dursts sanfterer Gesangsstil überraschte Fans, die ihn nur als aggressiven Nu-Metal-Sänger kannten.",
+      "fun_fact_es": "Esta versión del clásico de The Who de 1971 llegó al #1 en Reino Unido y Alemania. El enfoque vocal más suave de Fred Durst sorprendió a fans y críticos que lo asociaban con el nu-metal agresivo.",
+      "uri_apple_music": "applemusic://track/1440874577",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-0RQU0LyJqg"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:3Gf5nttwcX9aaSQXRWidEZ",
+      "artist": "Nelly, City Spud",
+      "alt_artists": [
+        "Ja Rule",
+        "Ludacris",
+        "Chingy",
+        "Murphy Lee"
+      ],
+      "title": "Ride Wit Me",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 3,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The song features City Spud (Lavell Webb), who was incarcerated shortly after recording. Its hook 'Hey, must be the money' became one of the most recognizable catchphrases of early 2000s hip-hop.",
+      "fun_fact_de": "City Spud (Lavell Webb) wurde kurz nach der Aufnahme inhaftiert und konnte den Erfolg des Songs kaum miterleben. Der Hook 'Hey, must be the money' wurde zu einem der bekanntesten Sprüche des frühen 2000er Hip-Hop.",
+      "fun_fact_es": "City Spud fue encarcelado poco después de la grabación y apenas pudo disfrutar del éxito. El gancho 'Hey, must be the money' se convirtió en una de las frases más reconocibles del hip-hop de principios de los 2000.",
+      "uri_apple_music": "applemusic://track/1434909214",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RtSDWq6HsJE"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:4BggEwLhGfrbrl7JBhC8EC",
+      "artist": "Crazy Town",
+      "alt_artists": [
+        "Limp Bizkit",
+        "Papa Roach",
+        "Alien Ant Farm",
+        "Sugar Ray"
+      ],
+      "title": "Butterfly",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Butterfly samples the Red Hot Chili Peppers' 'Pretty Little Ditty' and spent two weeks at #1 on the Hot 100. It remains one of the biggest one-hit wonders of the 2000s.",
+      "fun_fact_de": "Butterfly sampelt 'Pretty Little Ditty' von den Red Hot Chili Peppers und stand zwei Wochen auf Platz 1 der Hot 100. Es bleibt einer der größten One-Hit-Wonder der 2000er Jahre.",
+      "fun_fact_es": "Butterfly samplea 'Pretty Little Ditty' de Red Hot Chili Peppers y pasó dos semanas en el #1 del Hot 100. Es considerado uno de los mayores éxitos de un solo hit de la década de los 2000.",
+      "uri_apple_music": "applemusic://track/203304621",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6FEDrU85FLE"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:5IVuqXILoxVWvWEPm82Jxr",
+      "artist": "Beyoncé, JAY-Z",
+      "alt_artists": [
+        "Rihanna",
+        "Destiny's Child",
+        "Ciara",
+        "Aaliyah"
+      ],
+      "title": "Crazy In Love",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The iconic horn intro samples the Chi-Lites' 1970 track 'Are You My Woman'. Crazy In Love won two Grammy Awards and is considered one of the greatest songs of the 21st century, marking Beyoncé's solo debut.",
+      "fun_fact_de": "Das ikonische Horn-Intro sampelt die Chi-Lites von 1970. Als Beyoncés Solo-Debüt gewann der Song zwei Grammys und gilt als einer der besten Songs des 21. Jahrhunderts — er definierte eine Ära des Pop und R&B.",
+      "fun_fact_es": "El icónico intro de trompetas samplea a los Chi-Lites de 1970. Como debut solista de Beyoncé, ganó dos Grammys y es considerada una de las mejores canciones del siglo XXI, marcando el inicio de una era.",
+      "uri_apple_music": "applemusic://track/201274644",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ViwtNLUqkMY"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:0yac0FPhLRH9i9lOng3f81",
+      "artist": "Keane",
+      "alt_artists": [
+        "Coldplay",
+        "Travis",
+        "Snow Patrol",
+        "The Fray"
+      ],
+      "title": "Everybody's Changing",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 4,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Keane are notable for being one of the few major rock bands to never use a guitar. The song's lush piano-driven sound was inspired by Tom Chaplin's feelings of isolation while his friends moved on with their lives.",
+      "fun_fact_de": "Keane sind eine der wenigen großen Rockbands, die nie eine Gitarre verwenden. Der üppige Piano-Sound wurde von Tom Chaplins Gefühl der Isolation inspiriert, als seine Freunde mit ihrem Leben weiterzogen.",
+      "fun_fact_es": "Keane es una de las pocas bandas de rock importantes que nunca usa guitarra. El sonido rico del piano fue inspirado por los sentimientos de aislamiento de Tom Chaplin al ver cómo sus amigos seguían adelante con sus vidas.",
+      "uri_apple_music": "applemusic://track/1473425007",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zx4Hjq6KwO0"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:70wYA8oYHoMzhRRkARoMhU",
+      "artist": "The Killers",
+      "alt_artists": [
+        "Franz Ferdinand",
+        "Arctic Monkeys",
+        "Bloc Party",
+        "Interpol"
+      ],
+      "title": "When You Were Young",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 2,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Bruce Springsteen himself praised the song's opening riff as one of the best he'd heard. It was recorded with legendary producers Alan Moulder and Flood at a studio overlooking the English countryside.",
+      "fun_fact_de": "Bruce Springsteen selbst lobte das Eröffnungsriff als eines der besten, die er je gehört hat. Der Song wurde mit den legendären Produzenten Alan Moulder und Flood in einem Studio mit Blick auf die englische Landschaft aufgenommen.",
+      "fun_fact_es": "Bruce Springsteen elogió el riff inicial como uno de los mejores que había escuchado. La canción fue grabada con los legendarios productores Alan Moulder y Flood, y se convirtió en el mayor éxito de The Killers en el Reino Unido.",
+      "uri_apple_music": "applemusic://track/1440891558",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ff0oWESdmH0"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:7x8dCjCr0x6x2lXKujYD34",
+      "artist": "Foo Fighters",
+      "alt_artists": [
+        "Queens Of The Stone Age",
+        "Muse",
+        "Green Day",
+        "Audioslave"
+      ],
+      "title": "The Pretender",
+      "chart_info": {
+        "billboard_peak": 37,
+        "uk_peak": 4,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The Pretender won the Grammy for Best Hard Rock Performance in 2008. Dave Grohl described the song as being about standing up against those who try to control you — a theme that resonated across generations.",
+      "fun_fact_de": "The Pretender gewann 2008 den Grammy für die beste Hard-Rock-Darbietung. Dave Grohl beschrieb den Song als Aufstand gegen diejenigen, die versuchen, einen zu kontrollieren — ein Thema, das generationsübergreifend ankommt.",
+      "fun_fact_es": "The Pretender ganó el Grammy a la Mejor Interpretación de Hard Rock en 2008. Dave Grohl describió la canción como un acto de resistencia contra quienes intentan controlarte, un mensaje que resonó en todo el mundo.",
+      "uri_apple_music": "applemusic://track/262743414",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SBjQ9tuuTJQ"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:7wZUrN8oemZfsEd1CGkbXE",
+      "artist": "Leona Lewis",
+      "alt_artists": [
+        "Adele",
+        "Whitney Houston",
+        "Mariah Carey",
+        "Christina Aguilera"
+      ],
+      "title": "Bleeding Love",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "2x Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Written by Ryan Tedder and Jesse McCartney, Bleeding Love was originally offered to Jesse himself but his label rejected it. It became the best-selling single of 2008 worldwide with over 9 million copies.",
+      "fun_fact_de": "Ryan Tedder und Jesse McCartney schrieben den Song, der ursprünglich für McCartney selbst gedacht war, aber von seinem Label abgelehnt wurde. Er wurde mit über 9 Millionen Exemplaren zur meistverkauften Single des Jahres 2008.",
+      "fun_fact_es": "Escrita por Ryan Tedder y Jesse McCartney, la canción fue originalmente ofrecida a Jesse, pero su sello la rechazó. Se convirtió en el sencillo más vendido de 2008 con más de 9 millones de copias en todo el mundo.",
+      "uri_apple_music": "applemusic://track/303682849",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Vzo-EL_62fQ"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:4IoYz8XqqdowINzfRrFnhi",
+      "artist": "The Fray",
+      "alt_artists": [
+        "OneRepublic",
+        "Lifehouse",
+        "Switchfoot",
+        "Snow Patrol"
+      ],
+      "title": "You Found Me",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 36,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Isaac Slade wrote the song after a friend overdosed, questioning where God was during the crisis. It was featured in the Season 5 premiere of Grey's Anatomy, which introduced the song to millions of new listeners.",
+      "fun_fact_de": "Isaac Slade schrieb den Song, nachdem ein Freund eine Überdosis genommen hatte — eine Auseinandersetzung mit der Frage, wo Gott in der Krise war. Die Verwendung in Grey's Anatomy machte den Song weltweit bekannt.",
+      "fun_fact_es": "Isaac Slade escribió la canción tras la sobredosis de un amigo, cuestionando dónde estaba Dios. Su aparición en el estreno de la temporada 5 de Grey's Anatomy la presentó a millones de nuevos oyentes.",
+      "uri_apple_music": "applemusic://track/301537185",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jFg_8u87zT0"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:4VqPOruhp5EdPBeR92t6lQ",
+      "artist": "Muse",
+      "alt_artists": [
+        "Radiohead",
+        "Placebo",
+        "Bloc Party",
+        "Arctic Monkeys"
+      ],
+      "title": "Uprising",
+      "chart_info": {
+        "billboard_peak": 37,
+        "uk_peak": 9,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Uprising's glam-rock stomp was inspired by Marc Bolan and T. Rex. Matt Bellamy described it as a protest song for the financial crisis era, and it became one of the most-used songs in sports stadiums worldwide.",
+      "fun_fact_de": "Der Glam-Rock-Stampfer wurde von Marc Bolan und T. Rex inspiriert. Matt Bellamy beschrieb ihn als Protestsong der Finanzkrise — heute ist er einer der meistgespielten Songs in Sportstadien weltweit.",
+      "fun_fact_es": "Inspirada en Marc Bolan y T. Rex, Matt Bellamy la describió como una canción de protesta de la era de la crisis financiera. Se convirtió en una de las canciones más utilizadas en estadios deportivos de todo el mundo.",
+      "uri_apple_music": "applemusic://track/992627891",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w8KQmps-Sog"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:0a7BloCiNzLDD9qSQHh5m7",
+      "artist": "Fall Out Boy",
+      "alt_artists": [
+        "Panic! At The Disco",
+        "My Chemical Romance",
+        "Paramore",
+        "The Academy Is..."
+      ],
+      "title": "Dance, Dance",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": 8,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The music video was filmed in a high school gym inspired by the prom scene in the movie Carrie. Pete Wentz wrote the lyrics about the awkwardness of teenage romance and not knowing what to say to the person you like.",
+      "fun_fact_de": "Das Musikvideo wurde in einer Schulaula gedreht, inspiriert von der Ballszene aus dem Film 'Carrie'. Pete Wentz schrieb über die Unbeholfenheit erster Romanzen und das Gefühl, nicht die richtigen Worte zu finden.",
+      "fun_fact_es": "El video fue filmado en un gimnasio escolar inspirado en la escena del baile de la película Carrie. Pete Wentz escribió sobre la torpeza del romance adolescente y no saber qué decirle a la persona que te gusta.",
+      "uri_apple_music": "applemusic://track/1440799368",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C6MOKXm8x50"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:0wbDgMuAoy7O7pL3a69uZx",
+      "artist": "Timbaland, Justin Timberlake, Nelly Furtado",
+      "alt_artists": [
+        "will.i.am",
+        "Pharrell Williams",
+        "Akon",
+        "Sean Paul"
+      ],
+      "title": "Give It To Me",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Give It To Me reunited Timbaland's most successful collaborators. It includes subliminal disses aimed at Scott Storch and other producers — Timbaland was asserting his dominance in the late-2000s production scene.",
+      "fun_fact_de": "Der Song vereinte Timbalands erfolgreichste Kollaborateure. Er enthält versteckte Seitenhiebe gegen Scott Storch und andere Produzenten — Timbaland setzte damit ein Statement seiner Dominanz in der Musikproduktion.",
+      "fun_fact_es": "La canción reunió a los colaboradores más exitosos de Timbaland e incluye pullas veladas contra Scott Storch y otros productores, con Timbaland afirmando su dominio en la producción musical de finales de los 2000.",
+      "uri_apple_music": "applemusic://track/1440748877",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RgoiSJ23cSc"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:7BHPGtpuuWWsvE7cCaMuEU",
+      "artist": "The Kooks",
+      "alt_artists": [
+        "Arctic Monkeys",
+        "The Fratellis",
+        "Razorlight",
+        "Kaiser Chiefs"
+      ],
+      "title": "Naive",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Naive was written by Luke Pritchard about his ex-girlfriend Katie Melua. Its jangly guitar riff became the soundtrack to every UK student union party in 2006 and is one of the defining songs of the mid-2000s British indie scene.",
+      "fun_fact_de": "Luke Pritchard schrieb Naive über seine Ex-Freundin Katie Melua. Der janglende Gitarrenriff wurde zum Soundtrack jeder britischen Studentenparty im Jahr 2006 und ist einer der prägenden Songs der Britpop-Indie-Szene der Mitte der 2000er.",
+      "fun_fact_es": "Luke Pritchard escribió Naive sobre su ex novia Katie Melua. Su riff de guitarra se convirtió en la banda sonora de las fiestas estudiantiles británicas en 2006 y es una de las canciones definitorias de la escena indie británica de mediados de los 2000.",
+      "uri_apple_music": "applemusic://track/714597985",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jkaMiaRLgvY"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:3Fzlg5r1IjhLk2qRw667od",
+      "artist": "Toploader",
+      "alt_artists": [
+        "Supergrass",
+        "Gomez",
+        "Travis",
+        "Feeder"
+      ],
+      "title": "Dancing in the Moonlight",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 7,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "This is a cover of King Harvest's 1972 original. Toploader's version became a massive European hit and is one of the most-played songs in UK pubs and bars, selling over 400,000 copies in the UK alone.",
+      "fun_fact_de": "Dieses Cover des King-Harvest-Originals von 1972 wurde zum Riesenhit in Europa und ist einer der meistgespielten Songs in britischen Pubs. In Großbritannien allein verkaufte es über 400.000 Exemplare.",
+      "fun_fact_es": "Esta versión del original de King Harvest de 1972 se convirtió en un gran éxito europeo y es una de las canciones más reproducidas en pubs y bares del Reino Unido, vendiendo más de 400.000 copias solo en Gran Bretaña.",
+      "uri_apple_music": "applemusic://track/273400021",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0yBnIUX0QAE"
+    },
+    {
+      "year": 2010,
+      "uri": "spotify:track:2V4bv1fNWfTcyRJKmej6Sj",
+      "artist": "Mike Posner",
+      "alt_artists": [
+        "B.o.B",
+        "Jason Derulo",
+        "Travie McCoy",
+        "Gym Class Heroes"
+      ],
+      "title": "Cooler Than Me",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 5,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Though from 2010 (just outside the 2000s), Mike Posner wrote and produced this song in his dorm room at Duke University. The remix by Gigamesh turned it from a blog hit into a worldwide smash.",
+      "fun_fact_de": "Obwohl von 2010 (knapp außerhalb der 2000er), schrieb und produzierte Mike Posner den Song in seinem Studentenwohnheim an der Duke University. Der Gigamesh-Remix verwandelte ihn von einem Blog-Hit in einen weltweiten Erfolg.",
+      "fun_fact_es": "Aunque es de 2010, Mike Posner escribió y produjo esta canción en su dormitorio de la Universidad Duke. El remix de Gigamesh la transformó de un éxito de blogs a un hit mundial.",
+      "uri_apple_music": "applemusic://track/383458635",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Bsr8hb3TPBI"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:2Ms33RTRCT6gArrpcrPxmo",
+      "artist": "Robbie Williams",
+      "alt_artists": [
+        "George Michael",
+        "Oasis",
+        "Craig David",
+        "Ronan Keating"
+      ],
+      "title": "Feel",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 4,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Feel was co-written with Guy Chambers and nearly wasn't released as a single. It became one of Robbie Williams' signature songs worldwide, especially popular in Europe, though it never charted in the US.",
+      "fun_fact_de": "Feel wurde mit Guy Chambers geschrieben und wäre fast nicht als Single veröffentlicht worden. Es wurde zu einem von Robbies Signature-Songs, besonders beliebt in Europa, obwohl es in den USA nie chartete.",
+      "fun_fact_es": "Coescrita con Guy Chambers, casi no se lanzó como sencillo. Se convirtió en una de las canciones emblemáticas de Robbie Williams, especialmente popular en Europa, aunque nunca entró en las listas de EE.UU.",
+      "uri_apple_music": "applemusic://track/727506071",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B8IuVzHy19o"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:2lnzGkdtDj5mtlcOW2yRtG",
+      "artist": "Shakira",
+      "alt_artists": [
+        "Jennifer Lopez",
+        "Christina Aguilera",
+        "Enrique Iglesias",
+        "Ricky Martin"
+      ],
+      "title": "Whenever, Wherever",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 2,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The song was Shakira's English-language crossover hit (the Spanish version is called 'Suerte'). Its Andean-influenced charango riff and belly-dancing choreography made it a global phenomenon, selling 7 million copies.",
+      "fun_fact_de": "Der Song war Shakiras englischer Crossover-Hit (die spanische Version heißt 'Suerte'). Das Andean-beeinflusste Charango-Riff und die Bauchtanz-Choreografie machten ihn mit 7 Millionen verkauften Exemplaren zum globalen Phänomen.",
+      "fun_fact_es": "Conocida en español como 'Suerte', esta fue la canción que presentó a Shakira al mundo anglosajón. Su riff de charango andino y coreografía de danza del vientre la convirtieron en un fenómeno global con 7 millones de copias vendidas.",
+      "uri_apple_music": "applemusic://track/188261029",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=weRHyjj34ZE"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:0iGckQFyv6svOfAbAY9aWJ",
+      "artist": "Katy Perry",
+      "alt_artists": [
+        "P!nk",
+        "Kelly Clarkson",
+        "Lady Gaga",
+        "Kesha"
+      ],
+      "title": "Hot N Cold",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 4,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "7x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Hot N Cold has been certified Diamond (10x Platinum) in multiple countries. Katy Perry co-wrote it with Max Martin and Dr. Luke, and the music video features a runaway bride scenario filmed in a real church.",
+      "fun_fact_de": "Hot N Cold wurde in mehreren Ländern mit Diamant-Status (10x Platin) ausgezeichnet. Das Musikvideo zeigt eine davonlaufende Braut, gedreht in einer echten Kirche — geschrieben mit Hit-Produzenten Max Martin und Dr. Luke.",
+      "fun_fact_es": "Hot N Cold ha sido certificada Diamante en varios países. Coescrita con Max Martin y Dr. Luke, su video musical muestra a una novia fugitiva filmada en una iglesia real.",
+      "uri_apple_music": "applemusic://track/715891658",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kTHNpusq654"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:1xNcBAoUw8Hz6LqK2jt4Ff",
+      "artist": "Eric Prydz",
+      "alt_artists": [
+        "Daft Punk",
+        "Deadmau5",
+        "Axwell",
+        "David Guetta"
+      ],
+      "title": "Call on Me",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The aerobics-themed music video, inspired by 1980s workout tapes, became one of the most-viewed videos on the early internet and helped push the song to #1 in the UK. It samples Steve Winwood's 'Valerie'.",
+      "fun_fact_de": "Das Aerobic-Musikvideo im Stil der 80er-Jahre-Fitnessvideos wurde zu einem der meistgesehenen Clips im frühen Internet und trieb den Song auf Platz 1 in Großbritannien. Es sampelt Steve Winwoods 'Valerie'.",
+      "fun_fact_es": "El video musical de aeróbic, inspirado en cintas de ejercicio de los 80, se convirtió en uno de los videos más vistos del internet temprano y ayudó a llevar la canción al #1 en el Reino Unido. Samplea 'Valerie' de Steve Winwood.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lw3iCVeTe30"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3skn2lauGk7Dx6bVIt5DVj",
+      "artist": "Muse",
+      "alt_artists": [
+        "Radiohead",
+        "Coldplay",
+        "Placebo",
+        "Snow Patrol"
+      ],
+      "title": "Starlight",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 13,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Matt Bellamy wrote Starlight about being separated from his partner while on tour. The driving bassline and romantic lyrics made it Muse's most accessible single, introducing them to a broader pop audience.",
+      "fun_fact_de": "Matt Bellamy schrieb Starlight über die Trennung von seiner Partnerin während Tourneen. Die eingängige Basslinie und romantische Texte machten es zu Muses zugänglichster Single und öffneten die Band einem breiteren Pop-Publikum.",
+      "fun_fact_es": "Matt Bellamy escribió Starlight sobre estar separado de su pareja durante las giras. Su línea de bajo y letras románticas la convirtieron en el sencillo más accesible de Muse, presentándolos a un público pop más amplio.",
+      "uri_apple_music": "applemusic://track/992221996",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Pgum6OT_VH8"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:45hOioMDJktr86iKDHC8gr",
+      "artist": "Avril Lavigne",
+      "alt_artists": [
+        "Ashlee Simpson",
+        "Pink",
+        "Kelly Clarkson",
+        "Gwen Stefani"
+      ],
+      "title": "Girlfriend",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Girlfriend was the first song to reach #1 on the Billboard Hot 100 based primarily on digital sales. It was recorded in eight languages including Mandarin, Japanese, French, and Spanish.",
+      "fun_fact_de": "Girlfriend war der erste Song, der hauptsächlich durch digitale Verkäufe Platz 1 der Billboard Hot 100 erreichte. Er wurde in acht Sprachen aufgenommen, darunter Mandarin, Japanisch, Französisch und Spanisch.",
+      "fun_fact_es": "Girlfriend fue la primera canción en llegar al #1 del Billboard Hot 100 principalmente por ventas digitales. Se grabó en ocho idiomas, incluyendo mandarín, japonés, francés y español.",
+      "uri_apple_music": "applemusic://track/356980431",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Bg59q4puhmg"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:04KTF78FFg8sOHC1BADqbY",
+      "artist": "Nelly",
+      "alt_artists": [
+        "Ludacris",
+        "Ja Rule",
+        "Chingy",
+        "Lil Jon"
+      ],
+      "title": "Hot In Herre",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Produced by the Neptunes, Hot In Herre stayed at #1 for seven weeks and won the Grammy for Best Male Rap Solo Performance. It became the unofficial summer anthem of 2002 and a permanent party playlist staple.",
+      "fun_fact_de": "Von den Neptunes produziert, stand Hot In Herre sieben Wochen auf Platz 1 und gewann den Grammy für die beste männliche Rap-Solo-Performance. Er wurde zur inoffiziellen Sommerhymne 2002.",
+      "fun_fact_es": "Producida por The Neptunes, Hot In Herre estuvo siete semanas en el #1 y ganó el Grammy a la Mejor Interpretación Rap Masculina. Se convirtió en el himno no oficial del verano de 2002.",
+      "uri_apple_music": "applemusic://track/1440770037",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GeZZr_p6vB8"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:1vcxF91pWs9uNwDROuiCPB",
+      "artist": "Rise Against",
+      "alt_artists": [
+        "Bad Religion",
+        "Anti-Flag",
+        "Pennywise",
+        "The Offspring"
+      ],
+      "title": "Savior",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Savior spent 65 weeks on the Billboard Hot Rock Songs chart and became Rise Against's most commercially successful song. Despite being a punk band, the song crossed over to mainstream radio.",
+      "fun_fact_de": "Savior verbrachte 65 Wochen in den Billboard Hot Rock Songs Charts und wurde zu Rise Againsts kommerziell erfolgreichstem Song, der trotz Punk-Wurzeln den Sprung ins Mainstream-Radio schaffte.",
+      "fun_fact_es": "Savior pasó 65 semanas en la lista Billboard Hot Rock Songs y se convirtió en la canción más exitosa comercialmente de Rise Against, cruzando del punk al radio mainstream.",
+      "uri_apple_music": "applemusic://track/1440852127",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e8X3ACToii0"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:4UzVcXufOhGUwF56HT7b8M",
+      "artist": "Evanescence",
+      "alt_artists": [
+        "Within Temptation",
+        "Nightwish",
+        "Linkin Park",
+        "Flyleaf"
+      ],
+      "title": "My Immortal",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 7,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Amy Lee wrote My Immortal when she was just 15. The haunting piano ballad was originally a B-side before fan demand pushed it to single release, becoming one of the defining power ballads of the 2000s.",
+      "fun_fact_de": "Amy Lee schrieb My Immortal mit nur 15 Jahren. Die eindringliche Klavierballade war ursprünglich eine B-Seite, bevor Fan-Nachfrage sie zur Single machte — heute eine der prägenden Power-Balladen der 2000er.",
+      "fun_fact_es": "Amy Lee escribió My Immortal a los 15 años. La cautivadora balada de piano fue originalmente una cara B antes de que la demanda de los fans la impulsara como sencillo, convirtiéndose en una de las baladas definitivas de los 2000.",
+      "uri_apple_music": "applemusic://track/1440666126",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5anLPw0Efmo"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:3jlbL2OTD5YmIunYzgQTAN",
+      "artist": "T.I., Rihanna",
+      "alt_artists": [
+        "Lil Wayne",
+        "Jay-Z",
+        "Kanye West",
+        "Ludacris"
+      ],
+      "title": "Live Your Life",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "6x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Live Your Life samples the 1985 Romanian pop hit 'Dragostea Din Tei' by O-Zone. T.I. recorded his verses while out on bail awaiting sentencing for federal weapons charges.",
+      "fun_fact_de": "Der Song sampelt den rumänischen Pop-Hit 'Dragostea Din Tei' (2004: 'Numa Numa') von O-Zone. T.I. nahm seine Strophen auf, während er auf Kaution auf seine Verurteilung wegen Waffenbesitz wartete.",
+      "fun_fact_es": "La canción samplea el éxito pop rumano 'Dragostea Din Tei' de O-Zone. T.I. grabó sus versos mientras estaba en libertad bajo fianza esperando sentencia por cargos federales de armas.",
+      "uri_apple_music": "applemusic://track/1260881180",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6q1ZROE12FA"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:1jlG3KJ3gdYmhfuySFfpO1",
+      "artist": "Avril Lavigne",
+      "alt_artists": [
+        "Michelle Branch",
+        "Vanessa Carlton",
+        "Ashlee Simpson",
+        "Kelly Clarkson"
+      ],
+      "title": "I'm with You",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 7,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "I'm with You showcased a softer, more vulnerable side of Avril Lavigne compared to her punk-pop image. Co-written with the Matrix production team, it remains one of her most emotionally resonant songs.",
+      "fun_fact_de": "I'm with You zeigte eine sanftere, verletzlichere Seite von Avril Lavigne im Vergleich zu ihrem Punk-Pop-Image. Mit dem Matrix-Produktionsteam geschrieben, ist es einer ihrer emotional berührendsten Songs.",
+      "fun_fact_es": "I'm with You mostró un lado más suave y vulnerable de Avril Lavigne. Coescrita con el equipo de producción The Matrix, sigue siendo una de sus canciones más emotivas.",
+      "uri_apple_music": "applemusic://track/315025828",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dGR65RWwzg8"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:2mKouqwAIdQnMP43zxR89r",
+      "artist": "Fat Joe, Ja Rule, Ashanti",
+      "alt_artists": [
+        "Ja Rule",
+        "Nelly",
+        "Ludacris",
+        "Ashanti"
+      ],
+      "title": "What's Luv?",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 4,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "What's Luv? was kept from #1 by Foolish by Ashanti — who also featured on this track. It was part of the 'Murder Inc.' era when Ja Rule and Ashanti dominated charts simultaneously.",
+      "fun_fact_de": "What's Luv? wurde von 'Foolish' von Ashanti von Platz 1 ferngehalten — die auch auf diesem Track mitwirkte. Es war Teil der 'Murder Inc.'-Ära, als Ja Rule und Ashanti gleichzeitig die Charts dominierten.",
+      "fun_fact_es": "What's Luv? fue impedida del #1 por 'Foolish' de Ashanti, quien también aparece en esta canción. Fue parte de la era 'Murder Inc.' cuando Ja Rule y Ashanti dominaban las listas simultáneamente.",
+      "uri_apple_music": "applemusic://track/268497629",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VpvyG2NrS1Y"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:3RmKpob8xzv1pzHEQrMJah",
+      "artist": "Eve, Gwen Stefani",
+      "alt_artists": [
+        "Missy Elliott",
+        "Lil' Kim",
+        "Gwen Stefani",
+        "No Doubt"
+      ],
+      "title": "Let Me Blow Ya Mind",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 4,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Let Me Blow Ya Mind won the first-ever Grammy for Best Rap/Sung Collaboration in 2002. The pairing of rapper Eve with No Doubt's Gwen Stefani was considered groundbreaking for genre-crossing collaborations.",
+      "fun_fact_de": "Let Me Blow Ya Mind gewann 2002 den allerersten Grammy für die beste Rap/Gesangs-Kollaboration. Die Kombination aus Rapperin Eve und No-Doubt-Sängerin Gwen Stefani galt als bahnbrechend für genreübergreifende Zusammenarbeit.",
+      "fun_fact_es": "Ganó el primer Grammy a la Mejor Colaboración Rap/Cantada en 2002. La combinación de la rapera Eve con Gwen Stefani de No Doubt fue considerada revolucionaria para las colaboraciones entre géneros.",
+      "uri_apple_music": "applemusic://track/1440898236",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Wt88GMJmVk0"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:64yrDBpcdwEdNY9loyEGbX",
+      "artist": "Green Day",
+      "alt_artists": [
+        "Blink-182",
+        "The Offspring",
+        "Sum 41",
+        "My Chemical Romance"
+      ],
+      "title": "21 Guns",
+      "chart_info": {
+        "billboard_peak": 21,
+        "uk_peak": 32,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "21 Guns is from the rock opera '21st Century Breakdown'. The song borrows chord progressions from 'All the Young Dudes' by Mott the Hoople. It was later adapted into a stage musical on Broadway.",
+      "fun_fact_de": "21 Guns stammt aus der Rock-Oper '21st Century Breakdown'. Die Akkordfolge ist von 'All the Young Dudes' von Mott the Hoople entlehnt. Das Album wurde später als Broadway-Musical adaptiert.",
+      "fun_fact_es": "De la ópera rock '21st Century Breakdown', la canción toma progresiones de acordes de 'All the Young Dudes' de Mott the Hoople. El álbum fue adaptado posteriormente como musical de Broadway.",
+      "uri_apple_music": "applemusic://track/315611467",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r00ikilDxW4"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:7xYnUQigPoIDAMPVK79NEq",
+      "artist": "Chris Brown, Juelz Santana",
+      "alt_artists": [
+        "Usher",
+        "Ne-Yo",
+        "Mario",
+        "Omarion"
+      ],
+      "title": "Run It!",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Run It! debuted at #92 and climbed to #1, making Chris Brown the first male artist to have his debut single reach #1 since Diddy's 'Can't Nobody Hold Me Down' in 1997. Brown was just 16 years old.",
+      "fun_fact_de": "Run It! machte Chris Brown mit 16 Jahren zum ersten männlichen Künstler seit Diddy 1997, dessen Debütsingle auf Platz 1 der Billboard Hot 100 stieg.",
+      "fun_fact_es": "Run It! hizo de Chris Brown, con 16 años, el primer artista masculino desde Diddy en 1997 cuyo sencillo debut llegó al #1 del Billboard Hot 100.",
+      "uri_apple_music": "applemusic://track/323098606",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w6QGe-pXgdI"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:244AvzGQ4Ksa5637JQu5Gy",
+      "artist": "Florence + The Machine",
+      "alt_artists": [
+        "Adele",
+        "Bat For Lashes",
+        "Marina and the Diamonds",
+        "La Roux"
+      ],
+      "title": "You've Got The Love",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "This is a rework of The Source featuring Candi Staton's 1986/1991 track. Florence Welch recorded her vocals in a single take. It re-entered the UK charts multiple times and has spent over 200 weeks total on the chart.",
+      "fun_fact_de": "Diese Neubearbeitung des Songs von The Source feat. Candi Staton (1986) wurde von Florence Welch in einem einzigen Take eingesungen. Der Song war insgesamt über 200 Wochen in den britischen Charts.",
+      "fun_fact_es": "Una nueva versión del tema de The Source feat. Candi Staton de 1986. Florence Welch grabó sus voces en una sola toma. La canción reentró múltiples veces en las listas del Reino Unido, acumulando más de 200 semanas en total.",
+      "uri_apple_music": "applemusic://track/1440729760",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PQZhN65vq9E"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:1oHClQEgDmmbcEx12Kc5nZ",
+      "artist": "Madonna, Justin Timberlake, Timbaland",
+      "alt_artists": [
+        "Rihanna",
+        "Beyoncé",
+        "Nelly Furtado",
+        "Gwen Stefani"
+      ],
+      "title": "4 Minutes",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "4 Minutes topped the charts in 21 countries, making it Madonna's 13th #1 in the UK. The song's 'save the world' concept was reflected in a music video featuring a scrolling black bar destroying everything in its path.",
+      "fun_fact_de": "4 Minutes erreichte in 21 Ländern Platz 1 und wurde Madonnas 13. Nummer-1-Hit in Großbritannien. Das Musikvideo zeigt einen schwarzen Balken, der alles auf seinem Weg zerstört — ein Countdown zur Rettung der Welt.",
+      "fun_fact_es": "4 Minutes llegó al #1 en 21 países, convirtiéndose en el 13° #1 de Madonna en el Reino Unido. Su video muestra una barra negra destruyendo todo a su paso — una cuenta regresiva para salvar el mundo.",
+      "uri_apple_music": "applemusic://track/328955314",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aAQZPBwz2CI"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:7Lf7oSEVdzZqTA0kEDSlS5",
+      "artist": "Justin Timberlake",
+      "alt_artists": [
+        "Usher",
+        "Craig David",
+        "Ne-Yo",
+        "Robin Thicke"
+      ],
+      "title": "Cry Me a River",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 2,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Written with Timbaland and Scott Storch, the song was inspired by Timberlake's breakup with Britney Spears. The music video features a Britney lookalike, and the song won a Grammy for Best Male Pop Vocal Performance.",
+      "fun_fact_de": "Der Song wurde durch Timberlakes Trennung von Britney Spears inspiriert und mit Timbaland und Scott Storch geschrieben. Das Musikvideo zeigt eine Britney-Doppelgängerin. Er gewann den Grammy für die beste männliche Pop-Gesangsdarbietung.",
+      "fun_fact_es": "Inspirada en la ruptura de Timberlake con Britney Spears y escrita con Timbaland y Scott Storch, el video muestra a una doble de Britney. Ganó el Grammy a la Mejor Interpretación Vocal Pop Masculina.",
+      "uri_apple_music": "applemusic://track/252606592",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DksSPZTZES0"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:1sTsuZTdANkiFd7T34H3nb",
+      "artist": "The Killers",
+      "alt_artists": [
+        "Keane",
+        "Coldplay",
+        "Snow Patrol",
+        "Muse"
+      ],
+      "title": "Human",
+      "chart_info": {
+        "billboard_peak": 32,
+        "uk_peak": 3,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The lyric 'Are we human or are we dancer?' sparked a global debate — Brandon Flowers confirmed it was inspired by a Hunter S. Thompson quote about America 'raising a generation of dancers.'",
+      "fun_fact_de": "Die Textzeile 'Are we human or are we dancer?' löste eine weltweite Debatte aus — Brandon Flowers bestätigte, dass sie von einem Zitat Hunter S. Thompsons über eine 'Generation von Tänzern' inspiriert war.",
+      "fun_fact_es": "La letra 'Are we human or are we dancer?' provocó un debate global. Brandon Flowers confirmó que se inspiró en una cita de Hunter S. Thompson sobre criar 'una generación de bailarines'.",
+      "uri_apple_music": "applemusic://track/1440864350",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RIZdjT1472Y"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:1IAzD1muglOxOcPbUHs70R",
+      "artist": "T.I.",
+      "alt_artists": [
+        "Lil Wayne",
+        "Rick Ross",
+        "Young Jeezy",
+        "Ludacris"
+      ],
+      "title": "Whatever You Like",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 27,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "5x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Whatever You Like debuted at #1 on the Hot 100, making T.I. the fourth artist in history to achieve a first-week debut at the top. The beat was created by Jim Jonsin using an eerie synth melody.",
+      "fun_fact_de": "Whatever You Like debütierte direkt auf Platz 1 der Hot 100, was T.I. zum vierten Künstler der Geschichte machte, dem ein Debüt in der ersten Woche an der Spitze gelang.",
+      "fun_fact_es": "Whatever You Like debutó en el #1 del Hot 100, convirtiendo a T.I. en el cuarto artista en la historia en lograr un debut directo en la cima. El beat fue creado por Jim Jonsin con una melodía de sintetizador inquietante.",
+      "uri_apple_music": "applemusic://track/1258961897",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nQJACVmankY"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:0vg4WnUWvze6pBOJDTq99k",
+      "artist": "James Blunt",
+      "alt_artists": [
+        "Damien Rice",
+        "David Gray",
+        "Daniel Powter",
+        "Jack Johnson"
+      ],
+      "title": "You're Beautiful",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "2x Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Blunt wrote the song about seeing his ex-girlfriend on the London Underground with her new boyfriend. Despite its massive success, Blunt later admitted he was 'annoyed' by how overplayed it became.",
+      "fun_fact_de": "Blunt schrieb den Song, nachdem er seine Ex-Freundin mit ihrem neuen Freund in der Londoner U-Bahn sah. Trotz des riesigen Erfolgs gab er später zu, dass er 'genervt' davon war, wie überspielt der Song wurde.",
+      "fun_fact_es": "Blunt escribió la canción tras ver a su ex novia con su nuevo novio en el metro de Londres. A pesar de su éxito masivo, Blunt admitió más tarde estar 'molesto' por lo mucho que sonaba en todas partes.",
+      "uri_apple_music": "applemusic://track/1734439167",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oofSnsGkops"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:3ibKnFDaa3GhpPGlOUj7ff",
+      "artist": "Mario",
+      "alt_artists": [
+        "Usher",
+        "Ne-Yo",
+        "Omarion",
+        "Ginuwine"
+      ],
+      "title": "Let Me Love You",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 30
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Let Me Love You spent nine consecutive weeks at #1 on the Billboard Hot 100, the longest run at the top in 2004-2005. Produced by Scott Storch, its distinctive piano intro is instantly recognizable.",
+      "fun_fact_de": "Let Me Love You stand neun aufeinanderfolgende Wochen auf Platz 1 der Billboard Hot 100 — die längste Spitzenposition 2004-2005. Von Scott Storch produziert, ist das markante Piano-Intro sofort erkennbar.",
+      "fun_fact_es": "Let Me Love You pasó nueve semanas consecutivas en el #1 del Billboard Hot 100, la racha más larga de 2004-2005. Producida por Scott Storch, su distintivo intro de piano es instantáneamente reconocible.",
+      "uri_apple_music": "applemusic://track/253341227",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H64QG4UsrGI"
     }
   ]
 }
