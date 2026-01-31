@@ -4202,6 +4202,211 @@ body.theme-dark .artist-reveal-section {
     margin-left: var(--space-xs);
 }
 
+/* ============================================
+   Movie Challenge (Issue #28) - Uses card-section base
+   ============================================ */
+.movie-challenge {
+    width: 100%;
+}
+
+.movie-challenge .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+/* Movie options grid - 1 column default (titles are longer) */
+.movie-options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 480px) {
+    .movie-options-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.movie-option-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    text-align: center;
+}
+
+.movie-option-btn:active {
+    transform: scale(0.98);
+}
+
+.movie-option-btn.is-loading {
+    animation: moviePulse 1s infinite;
+}
+
+@keyframes moviePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.movie-option-btn.is-correct,
+.movie-option-btn.is-winner {
+    background: var(--color-success);
+    border-color: var(--color-success);
+    color: white;
+}
+
+.movie-option-btn.is-winner {
+    box-shadow: var(--glow-primary);
+}
+
+.movie-option-btn.is-wrong {
+    animation: movieWrongFlash 0.5s ease;
+}
+
+.movie-option-btn.is-wrong.is-selected {
+    background: var(--color-error);
+    border-color: var(--color-error);
+    color: white;
+    animation: none;
+    opacity: 0.8;
+}
+
+@keyframes movieWrongFlash {
+    0%, 100% { background: var(--color-surface); }
+    50% { background: rgba(239, 68, 68, 0.3); }
+}
+
+.movie-option-btn.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.movie-rank-badge {
+    position: absolute;
+    right: var(--space-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+}
+
+.movie-result {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 500;
+}
+
+.movie-result.is-winner {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--color-success);
+}
+
+.movie-result.is-late {
+    background: var(--color-surface-alt, rgba(255, 255, 255, 0.05));
+    color: var(--color-text-muted);
+}
+
+/* Dark mode - movie-challenge inherits from card-section */
+body.theme-dark .movie-option-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-border-neon);
+    color: var(--color-text-white);
+}
+
+body.theme-dark .movie-option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .movie-option-btn.is-loading {
+        animation: none;
+        opacity: 0.7;
+    }
+
+    .movie-option-btn.is-wrong {
+        animation: none;
+        opacity: 0.5;
+    }
+}
+
+/* Movie Reveal Section (Issue #28) */
+.movie-reveal-section {
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    background: var(--color-surface-alt, rgba(255, 255, 255, 0.05));
+    border-radius: var(--radius-lg);
+}
+
+.movie-reveal-section .section-content-padded {
+    text-align: center;
+}
+
+.movie-reveal-name {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+}
+
+.movie-reveal-winners {
+    margin-top: var(--space-sm);
+}
+
+.movie-reveal-winners-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-xs);
+}
+
+.movie-reveal-winner-entry {
+    font-size: var(--font-size-md);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    display: inline-block;
+    margin: 2px 4px;
+}
+
+.movie-reveal-winner-entry.is-you {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--color-success);
+    font-weight: 600;
+}
+
+.movie-reveal-winner-entry.is-other {
+    color: var(--color-text-muted);
+}
+
+.movie-reveal-no-winner {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--font-size-md);
+    padding: var(--space-xs) var(--space-md);
+}
+
+/* Dark mode */
+body.theme-dark .movie-reveal-section {
+    background: var(--color-dark-surface-alt, #16213e);
+}
+
 /* Year Selector (Story 4.3) - Uses card-section base */
 .year-selector-section {
     width: 100%;

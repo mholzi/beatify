@@ -404,6 +404,16 @@
     "winnerWas": "{winner} got it first!",
     "loading": "Checking..."
   },
+  "movieChallenge": {
+    "whichMovie": "Which movie features this song?",
+    "youGotIt": "Correct! #{rank} — +{bonus} points",
+    "alreadyGuessed": "Already guessed!",
+    "someoneFaster": "Correct, but others were faster",
+    "wrongGuess": "Not quite...",
+    "theMovieWas": "The movie was",
+    "noWinner": "No one guessed the movie",
+    "winnersTitle": "Movie Quiz Winners"
+  },
   "earlyReveal": {
     "message": "All guesses in!"
   },

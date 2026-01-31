@@ -404,6 +404,16 @@
     "winnerWas": "{winner} war schneller!",
     "loading": "Prüfe..."
   },
+  "movieChallenge": {
+    "whichMovie": "In welchem Film kommt dieser Song vor?",
+    "youGotIt": "Richtig! #{rank} — +{bonus} Punkte",
+    "alreadyGuessed": "Bereits geraten!",
+    "someoneFaster": "Richtig, aber andere waren schneller",
+    "wrongGuess": "Leider falsch...",
+    "theMovieWas": "Der Film war",
+    "noWinner": "Niemand hat den Film erraten",
+    "winnersTitle": "Film-Quiz Gewinner"
+  },
   "earlyReveal": {
     "message": "Alle haben geraten!"
   },
