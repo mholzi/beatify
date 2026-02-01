@@ -27,6 +27,10 @@ STREAK_MILESTONES: dict[int, int] = {3: 20, 5: 50, 10: 100}
 # Artist challenge bonus (Story 20.1)
 ARTIST_BONUS_POINTS = 5
 
+# Movie quiz bonus tiers by speed rank (Issue #28)
+# Index 0 = fastest correct, index 1 = 2nd fastest, etc.
+MOVIE_BONUS_TIERS: list[int] = [5, 3, 1]
+
 # Steal power-up constants (Story 15.3)
 STEAL_UNLOCK_STREAK = 3  # Consecutive correct answers to unlock steal
 MAX_STEALS_PER_GAME = 1  # Maximum number of steals allowed per game
@@ -84,6 +88,7 @@ ERR_NO_STEAL_AVAILABLE = "NO_STEAL_AVAILABLE"  # Story 15.3 - player has no stea
 ERR_TARGET_NOT_SUBMITTED = "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
 ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
 ERR_NO_ARTIST_CHALLENGE = "NO_ARTIST_CHALLENGE"  # Story 20.3 - no artist challenge
+ERR_NO_MOVIE_CHALLENGE = "NO_MOVIE_CHALLENGE"  # Issue #28 - no movie quiz this round
 
 # Song difficulty rating constants (Story 15.1)
 MIN_PLAYS_FOR_DIFFICULTY = 3  # Minimum plays before showing difficulty rating
@@ -103,6 +108,7 @@ MIN_STREAK_FOR_AWARD = 3  # Minimum streak to qualify for Lucky Streak
 MIN_BETS_FOR_AWARD = 3  # Minimum bets placed to qualify for Risk Taker
 MIN_ROUNDS_FOR_CLUTCH = 3  # Minimum rounds played for Clutch Player
 MIN_CLOSE_CALLS = 2  # Minimum close guesses to qualify for Close Calls
+MIN_MOVIE_WINS_FOR_AWARD = 1  # Minimum movie quiz bonus points for Film Buff (Issue #28)
 MAX_SUPERLATIVES = 5  # Maximum number of superlatives to display
 
 # External URLs

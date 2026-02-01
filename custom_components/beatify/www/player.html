@@ -225,6 +225,19 @@
                     <div id="artist-result" class="artist-result hidden"></div>
                 </section>
 
+                <!-- Movie Challenge (Issue #28) - Aligned with card-section pattern -->
+                <section id="movie-challenge-container" class="card-section movie-challenge hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="movieChallenge.whichMovie">Which movie features this song?</span>
+                        <span class="stat-badge stat-badge--bonus">+5/3/1</span>
+                    </h2>
+                    <div id="movie-options" class="movie-options-grid">
+                        <!-- Dynamically populated -->
+                    </div>
+                    <div id="movie-result" class="movie-result hidden"></div>
+                </section>
+
                 <!-- Year Selector (Story 4.3) - Aligned with card-section pattern -->
                 <section id="year-selector-container" class="card-section year-selector-section">
                     <h2 class="section-header">
@@ -355,6 +368,18 @@
                     <div class="section-content-padded">
                         <div id="artist-reveal-name" class="artist-reveal-name"></div>
                         <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
+                    </div>
+                </section>
+
+                <!-- Movie Challenge Reveal (Issue #28) -->
+                <section id="movie-reveal-section" class="card-section movie-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="movieChallenge.theMovieWas">The movie was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="movie-reveal-name" class="movie-reveal-name"></div>
+                        <div id="movie-reveal-winners" class="movie-reveal-winners hidden"></div>
                     </div>
                 </section>
 

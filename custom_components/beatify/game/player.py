@@ -45,6 +45,11 @@ class PlayerSession:
     # Artist guess tracking (Story 20.9)
     has_artist_guess: bool = False
 
+    # Movie quiz bonus tracking (Issue #28)
+    movie_bonus: int = 0
+    has_movie_guess: bool = False
+    movie_bonus_total: int = 0  # Cumulative across rounds for superlative
+
     # Betting tracking (Story 5.3)
     bet: bool = False
     bet_outcome: str | None = None  # "won", "lost", or None
@@ -99,6 +104,9 @@ class PlayerSession:
         self.artist_bonus = 0
         # Reset artist guess tracking (Story 20.9)
         self.has_artist_guess = False
+        # Reset movie quiz fields (Issue #28)
+        self.movie_bonus = 0
+        self.has_movie_guess = False
         # Reset bet fields (Story 5.3)
         self.bet = False
         self.bet_outcome = None

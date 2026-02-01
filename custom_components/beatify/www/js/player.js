@@ -1950,6 +1950,11 @@
         if (data.artist_challenge !== undefined) {
             renderArtistChallenge(data.artist_challenge, 'PLAYING');
         }
+
+        // Render movie challenge (Issue #28)
+        if (data.movie_challenge !== undefined) {
+            renderMovieChallenge(data.movie_challenge, 'PLAYING');
+        }
     }
 
     /**
@@ -2336,6 +2341,12 @@
     var ARTIST_DEBOUNCE_MS = 300;
     var lastArtistGuessTime = 0;
 
+    // Movie Challenge state (Issue #28)
+    var movieChallengeComplete = false;
+    var pendingMovieGuess = null;
+    var MOVIE_DEBOUNCE_MS = 500;
+    var lastMovieGuessTime = 0;
+
     /**
      * Initialize year selector interaction
      */
@@ -2535,6 +2546,9 @@
 
         // Reset artist challenge state (Story 20.5)
         resetArtistChallengeState();
+
+        // Reset movie challenge state (Issue #28)
+        resetMovieChallengeState();
     }
 
     // ============================================
@@ -2794,6 +2808,249 @@
                 winnerEl.textContent = utils.t('artistChallenge.noWinner') || 'No one guessed the artist';
                 winnerEl.className = 'artist-reveal-winner artist-reveal-no-winner';
                 winnerEl.classList.remove('hidden');
+            }
+        }
+    }
+
+    // ============================================
+    // Movie Challenge (Issue #28)
+    // ============================================
+
+    /**
+     * Render movie challenge UI
+     * @param {Object} movieChallenge - Movie challenge data from server
+     * @param {string} phase - Current game phase (PLAYING, REVEAL)
+     */
+    function renderMovieChallenge(movieChallenge, phase) {
+        var container = document.getElementById('movie-challenge-container');
+        if (!container) return;
+
+        // Hide if no challenge active
+        if (!movieChallenge || !movieChallenge.options) {
+            container.classList.add('hidden');
+            return;
+        }
+
+        container.classList.remove('hidden');
+
+        var optionsEl = document.getElementById('movie-options');
+        var resultEl = document.getElementById('movie-result');
+
+        // Only rebuild buttons if options changed
+        var currentOptions = Array.from(optionsEl.querySelectorAll('.movie-option-btn'))
+            .map(function(btn) { return btn.dataset.movie; });
+        var newOptions = movieChallenge.options;
+
+        if (JSON.stringify(currentOptions) !== JSON.stringify(newOptions)) {
+            optionsEl.innerHTML = '';
+            newOptions.forEach(function(movie, index) {
+                var btn = document.createElement('button');
+                btn.className = 'movie-option-btn';
+                btn.dataset.movie = movie;
+                btn.dataset.index = index;
+                btn.textContent = movie;
+                btn.addEventListener('click', function() {
+                    handleMovieGuess(movie);
+                });
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        // Handle completed state from server (reconnect scenario)
+        if (movieChallengeComplete) {
+            var buttons = optionsEl.querySelectorAll('.movie-option-btn');
+            buttons.forEach(function(btn) {
+                btn.classList.add('is-disabled');
+            });
+        }
+    }
+
+    /**
+     * Handle movie guess button click
+     * @param {string} movie - The movie name that was clicked
+     */
+    function handleMovieGuess(movie) {
+        var now = Date.now();
+        if (now - lastMovieGuessTime < MOVIE_DEBOUNCE_MS) return;
+        lastMovieGuessTime = now;
+
+        if (movieChallengeComplete) return;
+
+        // Visual feedback
+        var btn = document.querySelector('.movie-option-btn[data-movie="' + CSS.escape(movie) + '"]');
+        if (btn) {
+            btn.classList.add('is-loading');
+        }
+
+        pendingMovieGuess = movie;
+
+        try {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'movie_guess',
+                    movie: movie
+                }));
+            }
+        } catch (e) {
+            console.error('Movie guess send failed:', e);
+            if (btn) {
+                btn.classList.remove('is-loading');
+            }
+            pendingMovieGuess = null;
+        }
+    }
+
+    /**
+     * Handle movie_guess_ack from server (Issue #28)
+     * @param {Object} data - Ack response from server
+     */
+    function handleMovieGuessAck(data) {
+        var btn = pendingMovieGuess
+            ? document.querySelector('.movie-option-btn[data-movie="' + CSS.escape(pendingMovieGuess) + '"]')
+            : null;
+
+        if (data.already_guessed) {
+            // Duplicate guess
+            if (btn) {
+                btn.classList.remove('is-loading');
+            }
+            showMovieResult(utils.t('movieChallenge.alreadyGuessed') || 'Already guessed!', false);
+            movieChallengeComplete = true;
+            disableAllMovieButtons();
+
+        } else if (data.correct) {
+            // Correct guess with rank and bonus
+            if (btn) {
+                btn.classList.remove('is-loading');
+                btn.classList.add('is-correct');
+                if (data.bonus > 0) {
+                    var badge = document.createElement('span');
+                    badge.className = 'movie-rank-badge';
+                    badge.textContent = '+' + data.bonus;
+                    btn.appendChild(badge);
+                }
+            }
+            disableAllMovieButtons();
+            var bonusText = (utils.t('movieChallenge.youGotIt') || 'Correct! #{rank} — +{bonus} points')
+                .replace('{rank}', data.rank || 1)
+                .replace('{bonus}', data.bonus || 0);
+            showMovieResult(bonusText, true);
+            movieChallengeComplete = true;
+
+        } else {
+            // Wrong guess - lock selection (one guess only)
+            if (btn) {
+                btn.classList.remove('is-loading');
+                btn.classList.add('is-wrong', 'is-selected');
+            }
+            disableAllMovieButtons();
+            showMovieResult(utils.t('movieChallenge.wrongGuess') || 'Not quite...', false);
+            movieChallengeComplete = true;
+        }
+
+        pendingMovieGuess = null;
+    }
+
+    /**
+     * Disable all movie option buttons
+     */
+    function disableAllMovieButtons() {
+        document.querySelectorAll('.movie-option-btn').forEach(function(btn) {
+            btn.classList.add('is-disabled');
+            btn.classList.remove('is-loading');
+        });
+    }
+
+    /**
+     * Show movie challenge result message
+     * @param {string} message - Result message to display
+     * @param {boolean} isWinner - Whether current player guessed correctly
+     */
+    function showMovieResult(message, isWinner) {
+        var resultEl = document.getElementById('movie-result');
+        if (resultEl) {
+            resultEl.textContent = message;
+            resultEl.className = 'movie-result ' + (isWinner ? 'is-winner' : 'is-late');
+            resultEl.classList.remove('hidden');
+        }
+    }
+
+    /**
+     * Reset movie challenge state for new round
+     */
+    function resetMovieChallengeState() {
+        movieChallengeComplete = false;
+        pendingMovieGuess = null;
+
+        var container = document.getElementById('movie-challenge-container');
+        if (container) container.classList.add('hidden');
+
+        var optionsEl = document.getElementById('movie-options');
+        if (optionsEl) optionsEl.innerHTML = '';
+
+        var resultEl = document.getElementById('movie-result');
+        if (resultEl) {
+            resultEl.classList.add('hidden');
+            resultEl.className = 'movie-result hidden';
+        }
+    }
+
+    /**
+     * Render movie challenge reveal section (Issue #28)
+     * @param {Object} movieChallenge - Movie challenge data with correct_movie and results
+     * @param {string} currentPlayerName - Current player's name for comparison
+     */
+    function renderMovieReveal(movieChallenge, currentPlayerName) {
+        var section = document.getElementById('movie-reveal-section');
+        if (!section) return;
+
+        // Hide if no movie challenge data
+        if (!movieChallenge || !movieChallenge.correct_movie) {
+            section.classList.add('hidden');
+            return;
+        }
+
+        // Show section
+        section.classList.remove('hidden');
+
+        // Display correct movie
+        var nameEl = document.getElementById('movie-reveal-name');
+        if (nameEl) {
+            nameEl.textContent = movieChallenge.correct_movie;
+        }
+
+        // Display winners
+        var winnersEl = document.getElementById('movie-reveal-winners');
+        if (winnersEl && movieChallenge.results) {
+            var winners = movieChallenge.results.winners || [];
+            if (winners.length > 0) {
+                winnersEl.innerHTML = '';
+                winnersEl.classList.remove('hidden');
+
+                var title = document.createElement('div');
+                title.className = 'movie-reveal-winners-title';
+                title.textContent = utils.t('movieChallenge.winnersTitle') || 'Movie Quiz Winners';
+                winnersEl.appendChild(title);
+
+                winners.forEach(function(winner) {
+                    var entry = document.createElement('div');
+                    entry.className = 'movie-reveal-winner-entry';
+                    if (winner.name === currentPlayerName) {
+                        entry.classList.add('is-you');
+                    } else {
+                        entry.classList.add('is-other');
+                    }
+                    entry.textContent = winner.name + ' — +' + winner.bonus + ' (' + winner.time + 's)';
+                    winnersEl.appendChild(entry);
+                });
+            } else {
+                // No winners
+                winnersEl.innerHTML = '';
+                winnersEl.classList.remove('hidden');
+                var noWinner = document.createElement('div');
+                noWinner.className = 'movie-reveal-no-winner';
+                noWinner.textContent = utils.t('movieChallenge.noWinner') || 'No one guessed the movie';
+                winnersEl.appendChild(noWinner);
             }
         }
     }
@@ -3077,6 +3334,11 @@
         // Story 20.6: Render artist challenge reveal
         if (data.artist_challenge) {
             renderArtistReveal(data.artist_challenge, playerName);
+        }
+
+        // Issue #28: Render movie challenge reveal
+        if (data.movie_challenge) {
+            renderMovieReveal(data.movie_challenge, playerName);
         }
 
         // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
@@ -5050,6 +5312,9 @@
         } else if (data.type === 'artist_guess_ack') {
             // Story 20.5 - handle artist guess acknowledgment
             handleArtistGuessAck(data);
+        } else if (data.type === 'movie_guess_ack') {
+            // Issue #28 - handle movie guess acknowledgment
+            handleMovieGuessAck(data);
         } else if (data.type === 'player_reaction') {
             // Story 18.9 - show floating reaction from other players
             showFloatingReaction(data.player_name, data.emoji);

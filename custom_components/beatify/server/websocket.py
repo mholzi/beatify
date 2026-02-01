@@ -23,6 +23,7 @@ from custom_components.beatify.const import (
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
     ERR_NO_ARTIST_CHALLENGE,
+    ERR_NO_MOVIE_CHALLENGE,
     ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
@@ -540,6 +541,10 @@ class BeatifyWebSocketHandler:
             # Artist challenge guess submission (Story 20.3)
             await self._handle_artist_guess(ws, data, game_state)
 
+        elif msg_type == "movie_guess":
+            # Movie quiz guess submission (Issue #28)
+            await self._handle_movie_guess(ws, data, game_state)
+
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
 
@@ -1015,6 +1020,97 @@ class BeatifyWebSocketHandler:
             artist,
             result["correct"],
             result.get("first", False),
+        )
+
+    async def _handle_movie_guess(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle movie quiz guess submission (Issue #28).
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing movie guess
+            game_state: Current game state
+
+        """
+        # Validate phase
+        if game_state.phase != GamePhase.PLAYING:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Can only guess during PLAYING phase",
+                }
+            )
+            return
+
+        # Get player from connection
+        player = game_state.get_player_by_ws(ws)
+        if not player:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_NOT_IN_GAME,
+                    "message": "Not in game",
+                }
+            )
+            return
+
+        # Validate movie challenge exists
+        if not game_state.movie_challenge:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_NO_MOVIE_CHALLENGE,
+                    "message": "No movie quiz this round",
+                }
+            )
+            return
+
+        # Get and validate movie guess
+        movie = data.get("movie", "").strip()
+        if not movie:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Movie cannot be empty",
+                }
+            )
+            return
+
+        # Submit guess with server-side timing
+        guess_time = time.time()
+        result = game_state.submit_movie_guess(player.name, movie, guess_time)
+
+        # Issue #28: Track that player has made a movie guess
+        player.has_movie_guess = True
+
+        # Send acknowledgment
+        response: dict = {
+            "type": "movie_guess_ack",
+            "correct": result["correct"],
+            "already_guessed": result["already_guessed"],
+        }
+
+        if result["correct"] and not result["already_guessed"]:
+            response["rank"] = result["rank"]
+            response["bonus"] = result["bonus"]
+
+        await ws.send_json(response)
+
+        # Issue #28: Check for early reveal when all guesses are complete
+        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
+        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+            await game_state._trigger_early_reveal()
+
+        _LOGGER.debug(
+            "Movie guess from %s: '%s' -> correct=%s, rank=%s",
+            player.name,
+            movie,
+            result["correct"],
+            result.get("rank"),
         )
 
     async def broadcast(self, message: dict) -> None:

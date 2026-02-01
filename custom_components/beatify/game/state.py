@@ -32,9 +32,11 @@ from custom_components.beatify.const import (
     MAX_SUPERLATIVES,
     MIN_BETS_FOR_AWARD,
     MIN_CLOSE_CALLS,
+    MIN_MOVIE_WINS_FOR_AWARD,
     MIN_NAME_LENGTH,
     MIN_ROUNDS_FOR_CLUTCH,
     MIN_STREAK_FOR_AWARD,
+    MOVIE_BONUS_TIERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
@@ -143,6 +145,111 @@ class ArtistChallenge:
         if include_answer:
             result["correct_artist"] = self.correct_artist
         return result
+
+
+@dataclass
+class MovieChallenge:
+    """Movie quiz challenge state for bonus points feature (Issue #28)."""
+
+    correct_movie: str
+    options: list[str]  # Shuffled: 3 movie choices (correct + 2 decoys)
+    correct_guesses: list[dict[str, Any]] = field(default_factory=list)  # [{name, time}]
+    wrong_guesses: list[dict[str, Any]] = field(default_factory=list)  # [{name, guess}]
+
+    def to_dict(self, include_answer: bool = False) -> dict[str, Any]:
+        """
+        Convert to JSON-serializable dictionary.
+
+        Args:
+            include_answer: If True, include correct_movie and results (for REVEAL).
+                           If False, only show options (for PLAYING).
+
+        """
+        result: dict[str, Any] = {
+            "options": self.options,
+        }
+        if include_answer:
+            result["correct_movie"] = self.correct_movie
+            result["results"] = self._build_results()
+        return result
+
+    def _build_results(self) -> dict[str, Any]:
+        """Build movie quiz results for reveal display."""
+        winners = []
+        for i, guess in enumerate(self.correct_guesses):
+            bonus = MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
+            winners.append(
+                {
+                    "name": guess["name"],
+                    "time": round(guess["time"], 2),
+                    "bonus": bonus,
+                }
+            )
+        return {
+            "winners": winners,
+            "wrong_guesses": [
+                {"name": g["name"], "guess": g["guess"]} for g in self.wrong_guesses
+            ],
+        }
+
+    def get_player_bonus(self, player_name: str) -> int:
+        """
+        Get the bonus points for a specific player.
+
+        Args:
+            player_name: Name of the player
+
+        Returns:
+            Bonus points (5/3/1/0 based on speed rank)
+
+        """
+        for i, guess in enumerate(self.correct_guesses):
+            if guess["name"] == player_name:
+                return MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
+        return 0
+
+
+def build_movie_options(song: dict[str, Any]) -> list[str] | None:
+    """
+    Build shuffled movie options from song data (Issue #28).
+
+    Args:
+        song: Song dictionary with 'movie' and 'movie_choices'
+
+    Returns:
+        Shuffled list of movie options, or None if insufficient data
+
+    """
+    movie = song.get("movie", "")
+    if isinstance(movie, str):
+        movie = movie.strip()
+    else:
+        movie = ""
+
+    movie_choices = song.get("movie_choices", [])
+
+    # Validate required data
+    if not movie:
+        return None
+
+    if not movie_choices or not isinstance(movie_choices, list):
+        return None
+
+    # Filter valid choices
+    valid_choices = [c.strip() for c in movie_choices if isinstance(c, str) and c.strip()]
+
+    if len(valid_choices) < 2:
+        return None
+
+    # Ensure correct movie is in the list
+    if movie not in valid_choices:
+        valid_choices = [movie] + valid_choices[:2]
+
+    # Shuffle and return
+    options = list(valid_choices)
+    random.shuffle(options)
+
+    return options
 
 
 def build_artist_options(song: dict[str, Any]) -> list[str] | None:
@@ -278,6 +385,10 @@ class GameState:
         self.artist_challenge: ArtistChallenge | None = None
         self.artist_challenge_enabled: bool = False
 
+        # Issue #28: Movie quiz challenge state
+        self.movie_challenge: MovieChallenge | None = None
+        self.movie_quiz_enabled: bool = False
+
         # Issue #42: Async metadata for fast transitions
         self.metadata_pending: bool = False
         self._metadata_task: asyncio.Task | None = None
@@ -297,6 +408,7 @@ class GameState:
         provider: str = PROVIDER_DEFAULT,
         platform: str = "unknown",
         artist_challenge_enabled: bool = True,
+        movie_quiz_enabled: bool = True,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -311,6 +423,7 @@ class GameState:
             provider: Music provider (spotify/apple_music, default spotify)
             platform: Platform identifier for playback routing (music_assistant, sonos, alexa_media)
             artist_challenge_enabled: Whether to enable artist guessing (default True)
+            movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -381,6 +494,10 @@ class GameState:
         self.artist_challenge_enabled = artist_challenge_enabled
         self.artist_challenge = None
 
+        # Issue #28: Set movie quiz configuration
+        self.movie_quiz_enabled = movie_quiz_enabled
+        self.movie_challenge = None
+
         # Reset timer task for new game
         self.cancel_timer()
 
@@ -445,6 +562,9 @@ class GameState:
             # Story 20.1: Artist challenge (hide answer during PLAYING)
             if self.artist_challenge_enabled and self.artist_challenge:
                 state["artist_challenge"] = self.artist_challenge.to_dict(include_answer=False)
+            # Issue #28: Movie quiz challenge (hide answer during PLAYING)
+            if self.movie_quiz_enabled and self.movie_challenge:
+                state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=False)
 
         elif self.phase == GamePhase.REVEAL:
             state["join_url"] = self.join_url
@@ -475,6 +595,9 @@ class GameState:
             # Story 20.1: Artist challenge (reveal answer during REVEAL)
             if self.artist_challenge_enabled and self.artist_challenge:
                 state["artist_challenge"] = self.artist_challenge.to_dict(include_answer=True)
+            # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
+            if self.movie_quiz_enabled and self.movie_challenge:
+                state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=True)
             # Story 20.9: Early reveal flag for client-side toast
             if self._early_reveal:
                 state["early_reveal"] = True
@@ -619,6 +742,10 @@ class GameState:
         # Story 20.1: Reset artist challenge
         self.artist_challenge = None
         self.artist_challenge_enabled = True  # Reset to default (Story 20.7)
+
+        # Issue #28: Reset movie quiz challenge
+        self.movie_challenge = None
+        self.movie_quiz_enabled = True  # Reset to default
 
     async def pause_game(self, reason: str) -> bool:
         """
@@ -1019,6 +1146,12 @@ class GameState:
                 if player.connected and not player.has_artist_guess:
                     return False
 
+        # Issue #28: If movie quiz enabled and active, also check movie guesses
+        if self.movie_quiz_enabled and self.movie_challenge:
+            for player in self.players.values():
+                if player.connected and not player.has_movie_guess:
+                    return False
+
         return True
 
     async def _trigger_early_reveal(self) -> None:
@@ -1304,6 +1437,9 @@ class GameState:
         # Story 20.1: Initialize artist challenge for this round
         self.artist_challenge = self._init_artist_challenge(song)
 
+        # Issue #28: Initialize movie quiz challenge for this round
+        self.movie_challenge = self._init_movie_challenge(song)
+
         # Update round tracking
         self.round += 1
         self.total_rounds = self._playlist_manager.get_total_count()
@@ -1507,9 +1643,16 @@ class GameState:
                 else:
                     player.artist_bonus = 0
 
-                # Add to total score (round_score + streak_bonus + artist_bonus are separate)
-                # Streak bonus and artist bonus NOT doubled by bet
-                player.score += player.round_score + player.streak_bonus + player.artist_bonus
+                # Issue #28: Award movie quiz bonus based on speed rank
+                if self.movie_challenge:
+                    player.movie_bonus = self.movie_challenge.get_player_bonus(player.name)
+                    player.movie_bonus_total += player.movie_bonus
+                else:
+                    player.movie_bonus = 0
+
+                # Add to total score (round_score + streak_bonus + artist_bonus + movie_bonus are separate)
+                # Streak bonus, artist bonus, and movie bonus NOT doubled by bet
+                player.score += player.round_score + player.streak_bonus + player.artist_bonus + player.movie_bonus
 
                 # Track cumulative stats (Story 5.6) - AFTER all scoring
                 player.rounds_played += 1
@@ -1555,6 +1698,15 @@ class GameState:
                     player.score += player.artist_bonus
                 else:
                     player.artist_bonus = 0
+                # Issue #28: Non-submitters can still earn movie bonus
+                # (they may have guessed movie correctly during PLAYING)
+                if self.movie_challenge:
+                    player.movie_bonus = self.movie_challenge.get_player_bonus(player.name)
+                    if player.movie_bonus > 0:
+                        player.movie_bonus_total += player.movie_bonus
+                        player.score += player.movie_bonus
+                else:
+                    player.movie_bonus = 0
 
         # Calculate round analytics after scoring (Story 13.3)
         try:
@@ -1680,6 +1832,9 @@ class GameState:
             # Story 20.4: Add artist bonus if challenge is enabled
             if self.artist_challenge_enabled:
                 player_data["artist_bonus"] = p.artist_bonus
+            # Issue #28: Add movie bonus if quiz is enabled
+            if self.movie_quiz_enabled:
+                player_data["movie_bonus"] = p.movie_bonus
             players.append(player_data)
         # Sort by score descending for leaderboard preview
         players.sort(key=lambda p: p["score"], reverse=True)
@@ -2025,6 +2180,26 @@ class GameState:
                 }
             )
 
+        # Film Buff - most movie quiz bonus points (Issue #28)
+        if self.movie_quiz_enabled:
+            movie_candidates = [
+                (p, p.movie_bonus_total)
+                for p in players
+                if p.movie_bonus_total >= MIN_MOVIE_WINS_FOR_AWARD
+            ]
+            if movie_candidates:
+                film_buff = max(movie_candidates, key=lambda x: x[1])
+                awards.append(
+                    {
+                        "id": "film_buff",
+                        "emoji": "🎬",
+                        "title": "film_buff",
+                        "player_name": film_buff[0].name,
+                        "value": film_buff[1],
+                        "value_label": "movie_bonus",
+                    }
+                )
+
         # Limit to MAX_SUPERLATIVES awards (AC1)
         return awards[:MAX_SUPERLATIVES]
 
@@ -2099,5 +2274,125 @@ class GameState:
             result["first"] = True
             result["winner"] = player_name
             _LOGGER.info("Artist challenge won by %s", player_name)
+
+        return result
+
+    def _init_movie_challenge(self, song: dict[str, Any]) -> MovieChallenge | None:
+        """
+        Initialize movie quiz challenge for a round (Issue #28).
+
+        Args:
+            song: Song dict with movie info from playlist
+
+        Returns:
+            MovieChallenge instance or None if movie quiz disabled
+            or song lacks movie_choices data.
+
+        """
+        if not self.movie_quiz_enabled:
+            return None
+
+        options = build_movie_options(song)
+
+        if not options or len(options) < 2:
+            _LOGGER.debug("Skipping movie quiz: insufficient options")
+            return None
+
+        movie = song.get("movie", "")
+        if isinstance(movie, str):
+            movie = movie.strip()
+        else:
+            movie = ""
+
+        if not movie:
+            return None
+
+        return MovieChallenge(
+            correct_movie=movie,
+            options=options,
+            correct_guesses=[],
+            wrong_guesses=[],
+        )
+
+    def submit_movie_guess(
+        self, player_name: str, movie: str, guess_time: float
+    ) -> dict[str, Any]:
+        """
+        Submit movie guess for bonus points (Issue #28).
+
+        Uses server-side timing. Correct guesses are ranked by speed
+        for tiered bonus scoring (5/3/1 points).
+
+        Args:
+            player_name: Name of player guessing
+            movie: Movie title guessed
+            guess_time: Server timestamp of guess (time.time())
+
+        Returns:
+            Dict with keys: correct (bool), rank (int|None),
+            bonus (int), already_guessed (bool)
+
+        Raises:
+            ValueError: If no movie challenge active
+
+        """
+        if not self.movie_challenge:
+            raise ValueError("No movie challenge active")
+
+        # Check if player already guessed
+        for g in self.movie_challenge.correct_guesses:
+            if g["name"] == player_name:
+                return {"correct": True, "already_guessed": True, "rank": None, "bonus": 0}
+        for g in self.movie_challenge.wrong_guesses:
+            if g["name"] == player_name:
+                return {"correct": False, "already_guessed": True, "rank": None, "bonus": 0}
+
+        # Calculate elapsed time from round start (server-side timing)
+        elapsed = 0.0
+        if self.round_start_time is not None:
+            elapsed = guess_time - self.round_start_time
+
+        # Case-insensitive comparison
+        correct = movie.strip().lower() == self.movie_challenge.correct_movie.lower()
+
+        result: dict[str, Any] = {
+            "correct": correct,
+            "already_guessed": False,
+            "rank": None,
+            "bonus": 0,
+        }
+
+        if correct:
+            self.movie_challenge.correct_guesses.append(
+                {"name": player_name, "time": elapsed}
+            )
+            # Sort by time (fastest first) - ensures ranking is consistent
+            self.movie_challenge.correct_guesses.sort(key=lambda g: g["time"])
+            # Determine rank (0-indexed position)
+            rank = next(
+                i
+                for i, g in enumerate(self.movie_challenge.correct_guesses)
+                if g["name"] == player_name
+            )
+            bonus = MOVIE_BONUS_TIERS[rank] if rank < len(MOVIE_BONUS_TIERS) else 0
+            result["rank"] = rank + 1  # 1-indexed for display
+            result["bonus"] = bonus
+            _LOGGER.info(
+                "Movie quiz correct by %s (rank #%d, +%d bonus, %.2fs)",
+                player_name,
+                rank + 1,
+                bonus,
+                elapsed,
+            )
+        else:
+            self.movie_challenge.wrong_guesses.append(
+                {"name": player_name, "guess": movie.strip()}
+            )
+            _LOGGER.debug(
+                "Movie quiz wrong by %s: '%s' (correct: '%s')",
+                player_name,
+                movie.strip(),
+                self.movie_challenge.correct_movie,
+            )
 
         return result
