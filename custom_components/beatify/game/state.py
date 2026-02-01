@@ -1260,15 +1260,15 @@ class GameState:
                 # Try next song with incremented retry count
                 return await self.start_round(hass, _retry_count + 1)
 
-            # Issue #42: Start round immediately with placeholder metadata
-            # Fetch real metadata in background for fast transitions
+            # Issue #42: Start round immediately, fetch album art in background
+            # Fix #124: Use playlist artist/title as source of truth (never async)
             self.metadata_pending = True
             metadata = {
-                "artist": None,  # Pending - will update async
-                "title": None,   # Pending - will update async
-                "album_art": "/beatify/static/img/no-artwork.svg",
+                "artist": song.get("artist", "Unknown"),   # From playlist (reliable)
+                "title": song.get("title", "Unknown"),     # From playlist (reliable)
+                "album_art": "/beatify/static/img/no-artwork.svg",  # Async fill
             }
-            # Start background task to fetch metadata
+            # Start background task to fetch album art only
             self._metadata_task = asyncio.create_task(
                 self._fetch_metadata_async(resolved_uri)
             )
@@ -1276,8 +1276,8 @@ class GameState:
             # No media player (testing mode)
             self.metadata_pending = False
             metadata = {
-                "artist": "Test Artist",
-                "title": "Test Song",
+                "artist": song.get("artist", "Test Artist"),
+                "title": song.get("title", "Test Song"),
                 "album_art": "/beatify/static/img/no-artwork.svg",
             }
 
@@ -1377,10 +1377,12 @@ class GameState:
 
     async def _fetch_metadata_async(self, uri: str) -> None:
         """
-        Fetch song metadata in background and update current_song (Issue #42).
+        Fetch album art in background and update current_song (Issue #42).
 
-        This runs after round has started, allowing fast transitions.
-        When metadata arrives, updates current_song and invokes callback.
+        Fix #124: Only updates album_art — artist/title come from playlist
+        data (set in start_round) and are never overwritten by media player
+        state, which can be stale or from a different track (especially on
+        Sonos/Spotify where queue management introduces race conditions).
 
         Args:
             uri: The song URI to fetch metadata for
@@ -1394,22 +1396,22 @@ class GameState:
             # Wait for metadata (this is the slow part we moved to background)
             metadata = await self._media_player_service.wait_for_metadata_update(uri)
 
-            # Update current_song with real metadata
+            # Fix #124: Only update album_art from media player.
+            # Artist/title are authoritative from playlist data — media player
+            # state can report stale/wrong track info (especially Sonos + Spotify).
             if self.current_song and self.current_song.get("uri") == uri:
-                self.current_song["artist"] = metadata.get("artist", "Unknown")
-                self.current_song["title"] = metadata.get("title", "Unknown")
                 self.current_song["album_art"] = metadata.get(
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 )
                 self.metadata_pending = False
 
                 _LOGGER.info(
-                    "Metadata updated: %s - %s",
+                    "Album art updated for: %s - %s",
                     self.current_song.get("artist"),
                     self.current_song.get("title"),
                 )
 
-                # Invoke callback to broadcast update
+                # Invoke callback to broadcast update (album art only)
                 if self._on_metadata_update:
                     await self._on_metadata_update(
                         {
