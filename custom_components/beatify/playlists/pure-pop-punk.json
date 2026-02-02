@@ -2436,7 +2436,7 @@
     },
     {
       "year": 2007,
-      "uri": "",
+      "uri": "spotify:track:5johpJIVjqU2Ki03DOA7Jr",
       "artist": "The Academy Is...",
       "alt_artists": [
         "Cobra Starship",
@@ -2455,7 +2455,9 @@
       "awards": [],
       "fun_fact": "The Academy Is...'s breakthrough hit, not to be confused with Nirvana's song of the same name. It was a staple of MTV's TRL.",
       "fun_fact_de": "Der Durchbruchshit von The Academy Is..., nicht zu verwechseln mit Nirvanas gleichnamigem Song. Er war ein Stammgast bei MTVs TRL.",
-      "fun_fact_es": "El éxito de The Academy Is..., no confundir con la canción de Nirvana del mismo nombre. Fue un clásico de TRL de MTV."
+      "fun_fact_es": "El éxito de The Academy Is..., no confundir con la canción de Nirvana del mismo nombre. Fue un clásico de TRL de MTV.",
+      "uri_apple_music": "applemusic://track/291313080",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3M6ZvNmwGxs"
     }
   ]
 }

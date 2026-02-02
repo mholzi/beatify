@@ -1,0 +1,85 @@
+# Automatically bump version in manifest.json when a GitHub release is published.
+# HACS uses manifest.json "version" to detect updates. Without this workflow,
+# the manifest version drifts behind the release tag and HA won't see updates.
+#
+# Flow:
+# 1. Release published (tag v1.2.3) -> workflow triggers
+# 2. Extract version "1.2.3" from tag
+# 3. Update manifest.json with new version
+# 4. Commit and push to main
+# 5. Move the release tag to include the version-bump commit
+
+name: Version Bump
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  bump-manifest-version:
+    name: Bump manifest.json version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Extracted version: $VERSION from tag: $TAG"
+
+      - name: Check if bump is needed
+        id: check
+        run: |
+          CURRENT=$(jq -r '.version' custom_components/beatify/manifest.json)
+          echo "current=$CURRENT" >> "$GITHUB_OUTPUT"
+          if [ "$CURRENT" = "${{ steps.version.outputs.version }}" ]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "Manifest already at version $CURRENT -- no bump needed"
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+            echo "Bumping manifest from $CURRENT to ${{ steps.version.outputs.version }}"
+          fi
+
+      - name: Update manifest.json
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          jq --arg v "${{ steps.version.outputs.version }}" \
+            '.version = $v' \
+            custom_components/beatify/manifest.json > manifest.tmp \
+            && mv manifest.tmp custom_components/beatify/manifest.json
+
+      - name: Verify manifest.json
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          echo "Updated manifest.json:"
+          cat custom_components/beatify/manifest.json
+          jq empty custom_components/beatify/manifest.json
+
+      - name: Commit and push
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add custom_components/beatify/manifest.json
+          git commit -m "chore: bump version to ${{ steps.version.outputs.version }}"
+          git push origin main
+
+      - name: Update release tag to include version bump
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          git tag -f "$TAG"
+          git push origin "$TAG" --force
+          echo "Moved tag $TAG to $(git rev-parse HEAD)"

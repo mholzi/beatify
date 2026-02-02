@@ -1,11 +1,13 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "1.3",
+  "version": "2.0",
   "tags": [
     "classics",
     "top-hits",
     "international",
-    "mixed"
+    "mixed",
+    "classic-rock",
+    "rock"
   ],
   "songs": [
     {
@@ -74,7 +76,8 @@
       "title": "Angels",
       "chart_info": {
         "billboard_peak": 53,
-        "uk_peak": 4
+        "uk_peak": 4,
+        "weeks_on_chart": 19
       },
       "certifications": [
         "2x Platinum (UK)"
@@ -151,7 +154,8 @@
       ],
       "title": "Hallelujah",
       "chart_info": {
-        "billboard_peak": 59
+        "billboard_peak": 59,
+        "weeks_on_chart": 1
       },
       "certifications": [
         "5x Platinum (US)"
@@ -174,7 +178,8 @@
       "title": "Father and Son",
       "chart_info": {
         "billboard_peak": 11,
-        "uk_peak": 2
+        "uk_peak": 2,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -286,7 +291,8 @@
       "title": "Highway to Hell",
       "chart_info": {
         "billboard_peak": 47,
-        "uk_peak": 56
+        "uk_peak": 56,
+        "weeks_on_chart": 10
       },
       "certifications": [
         "6x Platinum (US)"
@@ -648,7 +654,8 @@
       "title": "T.N.T.",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 0
+        "uk_peak": 0,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Platinum (US)"
@@ -883,7 +890,8 @@
       "title": "Forever Young",
       "chart_info": {
         "billboard_peak": 65,
-        "uk_peak": 0
+        "uk_peak": 0,
+        "weeks_on_chart": 18
       },
       "certifications": [
         "Gold (US)"
@@ -968,7 +976,8 @@
       "title": "What a Wonderful World",
       "chart_info": {
         "billboard_peak": 116,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (US)"
@@ -1087,7 +1096,8 @@
       "title": "Mamma Mia",
       "chart_info": {
         "billboard_peak": 32,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 9
       },
       "certifications": [
         "Gold (US)"
@@ -1110,7 +1120,8 @@
       "title": "Sunny",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 3
+        "uk_peak": 3,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -1133,7 +1144,8 @@
       "title": "Lemon Tree",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 26
+        "uk_peak": 26,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (Germany)"
@@ -1190,7 +1202,8 @@
       "title": "Waterloo",
       "chart_info": {
         "billboard_peak": 6,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 17
       },
       "certifications": [
         "Gold (US)"
@@ -1313,7 +1326,8 @@
       "title": "Daddy Cool",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 6
+        "uk_peak": 6,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -1405,7 +1419,8 @@
       "title": "It's Raining Men",
       "chart_info": {
         "billboard_peak": 46,
-        "uk_peak": 2
+        "uk_peak": 2,
+        "weeks_on_chart": 11
       },
       "certifications": [
         "Gold (US)"
@@ -1428,7 +1443,8 @@
       "title": "Should I Stay or Should I Go",
       "chart_info": {
         "billboard_peak": 45,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 23
       },
       "certifications": [
         "Gold (US)"
@@ -1451,7 +1467,8 @@
       "title": "Super Trouper",
       "chart_info": {
         "billboard_peak": 45,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 11
       },
       "certifications": [
         "Gold (UK)"
@@ -1620,7 +1637,8 @@
       "title": "Don't Stop Me Now",
       "chart_info": {
         "billboard_peak": 86,
-        "uk_peak": 9
+        "uk_peak": 9,
+        "weeks_on_chart": 4
       },
       "certifications": [
         "Platinum (UK)"
@@ -1808,7 +1826,8 @@
       "title": "Music",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 3
+        "uk_peak": 3,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Silver (UK)"
@@ -1817,7 +1836,8 @@
       "fun_fact": "Music by John Miles builds from a gentle ballad to a symphonic rock epic with full orchestra. Miles wrote it as a tribute to the power of music itself. The song remains a concert favorite and is considered one of the greatest progressive rock compositions of the 1970s.",
       "fun_fact_de": "Music von John Miles baut sich von einer sanften Ballade zu einem symphonischen Rock-Epos mit vollem Orchester auf. Miles schrieb es als Hommage an die Kraft der Musik selbst. Der Song bleibt ein Konzertfavorit und gilt als eine der größten Progressive-Rock-Kompositionen der 1970er.",
       "fun_fact_es": "Music de John Miles se construye desde una balada suave hasta una épica de rock sinfónico con orquesta completa. Miles la escribió como tributo al poder de la música misma. La canción sigue siendo una favorita en conciertos y se considera una de las mejores composiciones de rock progresivo de los años 70.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lAsvjVx-Mg4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lAsvjVx-Mg4",
+      "uri_apple_music": "applemusic://track/1442706953"
     },
     {
       "year": 1981,
@@ -1861,7 +1881,8 @@
       "title": "Zombie",
       "chart_info": {
         "billboard_peak": 22,
-        "uk_peak": 14
+        "uk_peak": 14,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "2x Platinum (US)"
@@ -1938,7 +1959,8 @@
       "title": "Gimme! Gimme! Gimme!",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 3
+        "uk_peak": 3,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -2110,7 +2132,8 @@
       "title": "Narcotic",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 0
+        "uk_peak": 0,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (Germany)"
@@ -2133,7 +2156,8 @@
       "title": "Bitter Sweet Symphony",
       "chart_info": {
         "billboard_peak": 12,
-        "uk_peak": 2
+        "uk_peak": 2,
+        "weeks_on_chart": 20
       },
       "certifications": [
         "Platinum (US)"
@@ -2156,7 +2180,8 @@
       "title": "Jerk It Out",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 8
+        "uk_peak": 8,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -2179,7 +2204,8 @@
       "title": "Let Me Entertain You",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 3
+        "uk_peak": 3,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Platinum (UK)"
@@ -2202,7 +2228,8 @@
       "title": "The Show Must Go On",
       "chart_info": {
         "billboard_peak": 0,
-        "uk_peak": 16
+        "uk_peak": 16,
+        "weeks_on_chart": 0
       },
       "certifications": [
         "Gold (UK)"
@@ -2256,7 +2283,8 @@
       "title": "Under Pressure",
       "chart_info": {
         "billboard_peak": 29,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "weeks_on_chart": 15
       },
       "certifications": [
         "Platinum (US)"
@@ -2646,6 +2674,2232 @@
       "fun_fact_es": "In the End se convirtió en la canción insignia de Linkin Park y definió la era del nu-metal. El rap de Mike Shinoda combinado con el canto de Chester Bennington creó su sonido distintivo. Los temas de la canción sobre esforzarse mucho pero finalmente fallar resonaron con millones de fans en todo el mundo, convirtiéndose en un himno generacional.",
       "uri_apple_music": "applemusic://track/590431785",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eVTXPUF4Oz4"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0ofHAoxe9vBkTCp2UQIavz",
+      "artist": "Fleetwood Mac",
+      "alt_artists": [
+        "Heart",
+        "The Pretenders",
+        "Blondie"
+      ],
+      "title": "Dreams",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Dreams became Fleetwood Mac's only US #1 hit. Stevie Nicks wrote the song in about ten minutes on a Fender Rhodes in the Record Plant studio while Lindsey Buckingham was in another room recording his breakup song 'Go Your Own Way.' The song went viral again on TikTok in 2020 after a skateboarding cranberry juice video, pushing it back onto the Billboard Hot 100.",
+      "fun_fact_de": "Dreams wurde Fleetwood Macs einziger US-Nummer-1-Hit. Stevie Nicks schrieb den Song in etwa zehn Minuten auf einem Fender Rhodes im Record Plant Studio, während Lindsey Buckingham nebenan seinen Trennungssong 'Go Your Own Way' aufnahm. Der Song ging 2020 auf TikTok erneut viral, nachdem ein Skateboard-Cranberrysaft-Video ihn zurück in die Billboard Hot 100 brachte.",
+      "fun_fact_es": "Dreams se convirtió en el único #1 de Fleetwood Mac en EE.UU. Stevie Nicks escribió la canción en unos diez minutos en un Fender Rhodes en el estudio Record Plant, mientras Lindsey Buckingham grababa su canción de ruptura 'Go Your Own Way' en otra sala. La canción se volvió viral nuevamente en TikTok en 2020 tras un video de skateboard con jugo de arándano.",
+      "uri_apple_music": "applemusic://track/594061856",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=swJOIjjW69U"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:63T7DJ1AFDD6Bn8VzG6JE8",
+      "artist": "The Rolling Stones",
+      "alt_artists": [
+        "The Kinks",
+        "The Animals",
+        "The Yardbirds"
+      ],
+      "title": "Paint It, Black",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Paint It, Black was one of the first rock songs to feature a sitar, played by Brian Jones who taught himself the instrument after being inspired by George Harrison. The comma in the title was a printing error on the original single that stuck. The song became iconic as the theme for the TV series 'Tour of Duty' and is frequently used in Vietnam War film soundtracks.",
+      "fun_fact_de": "Paint It, Black war einer der ersten Rocksongs mit einer Sitar, gespielt von Brian Jones, der sich das Instrument selbst beibrachte, inspiriert von George Harrison. Das Komma im Titel war ein Druckfehler auf der Original-Single, der beibehalten wurde. Der Song wurde als Titelmelodie der TV-Serie 'Tour of Duty' ikonisch.",
+      "fun_fact_es": "Paint It, Black fue una de las primeras canciones de rock en incluir un sitar, tocado por Brian Jones, quien aprendió el instrumento por su cuenta inspirado por George Harrison. La coma en el título fue un error de imprenta en el single original que se mantuvo. La canción se volvió icónica como tema de la serie de TV 'Tour of Duty'.",
+      "uri_apple_music": "applemusic://track/1440765582",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=170sceOWWXc"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:3l9u6a1jn2naA3xYyT0WGe",
+      "artist": "Pink Floyd",
+      "alt_artists": [
+        "Genesis",
+        "Yes",
+        "King Crimson"
+      ],
+      "title": "Wish You Were Here",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Written as a tribute to former Pink Floyd frontman Syd Barrett, the song became eerily poignant when Barrett unexpectedly showed up at the Abbey Road recording sessions — so overweight and with a shaved head that his bandmates didn't recognize him at first. Roger Waters was reportedly brought to tears when he realized who the stranger was.",
+      "fun_fact_de": "Als Hommage an den ehemaligen Pink-Floyd-Frontmann Syd Barrett geschrieben, wurde der Song auf ergreifende Weise bedeutsam, als Barrett unerwartet bei den Aufnahmen in den Abbey Road Studios erschien — so übergewichtig und mit rasiertem Kopf, dass seine Bandkollegen ihn zunächst nicht erkannten. Roger Waters soll in Tränen ausgebrochen sein, als er erkannte, wer der Fremde war.",
+      "fun_fact_es": "Escrita como tributo al ex-líder de Pink Floyd, Syd Barrett, la canción se volvió conmovedora cuando Barrett apareció inesperadamente en las sesiones de grabación en Abbey Road, tan pasado de peso y con la cabeza rapada que sus compañeros no lo reconocieron al principio. Roger Waters supuestamente lloró al darse cuenta de quién era el extraño.",
+      "uri_apple_music": "applemusic://track/1065973980",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K6qj09OHvjw"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:1Lm6B6aXsBhcsxrimyhkJb",
+      "artist": "Ozzy Osbourne",
+      "alt_artists": [
+        "Judas Priest",
+        "Iron Maiden",
+        "Dio"
+      ],
+      "title": "Crazy Train",
+      "chart_info": {
+        "billboard_peak": 9,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "5x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The iconic guitar riff was written by Randy Rhoads, a classically trained guitarist who fused neoclassical technique with heavy metal. Ozzy Osbourne wrote the lyrics about the Cold War and the state of the world. The song's opening 'All Aboard!' was inspired by Ozzy's desire to make the song sound like a train departure.",
+      "fun_fact_de": "Das ikonische Gitarrenriff wurde von Randy Rhoads geschrieben, einem klassisch ausgebildeten Gitarristen, der neoklassische Technik mit Heavy Metal verschmolz. Ozzy Osbourne schrieb den Text über den Kalten Krieg und den Zustand der Welt. Das einleitende 'All Aboard!' war von Ozzys Wunsch inspiriert, den Song wie eine Zugabfahrt klingen zu lassen.",
+      "fun_fact_es": "El icónico riff de guitarra fue escrito por Randy Rhoads, un guitarrista de formación clásica que fusionó la técnica neoclásica con el heavy metal. Ozzy Osbourne escribió la letra sobre la Guerra Fría y el estado del mundo. El '¡All Aboard!' del inicio fue inspirado por el deseo de Ozzy de que la canción sonara como la salida de un tren.",
+      "uri_apple_music": "applemusic://track/911557399",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tMDFv5m18Pw"
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:0RO9W1xJoUEpq5MEelddFb",
+      "artist": "Led Zeppelin",
+      "alt_artists": [
+        "Deep Purple",
+        "Black Sabbath",
+        "The Who"
+      ],
+      "title": "Stairway to Heaven",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2003)"
+      ],
+      "fun_fact": "Stairway to Heaven was never released as a single, yet it became the most requested song on FM radio throughout the 1970s. Jimmy Page composed the music at Headley Grange using a Harmony Sovereign acoustic guitar. The song's structure is revolutionary — it starts as a gentle acoustic ballad and builds into a thundering rock climax over 8 minutes.",
+      "fun_fact_de": "Stairway to Heaven wurde nie als Single veröffentlicht und war dennoch der meistgewünschte Song im FM-Radio der 1970er Jahre. Jimmy Page komponierte die Musik in Headley Grange auf einer Harmony Sovereign Akustikgitarre. Die Songstruktur ist revolutionär — er beginnt als sanfte akustische Ballade und baut sich über 8 Minuten zu einem donnernden Rock-Höhepunkt auf.",
+      "fun_fact_es": "Stairway to Heaven nunca se lanzó como single, pero se convirtió en la canción más solicitada en la radio FM durante los años 70. Jimmy Page compuso la música en Headley Grange usando una guitarra acústica Harmony Sovereign. La estructura de la canción es revolucionaria: comienza como una suave balada acústica y se convierte en un clímax de rock atronador en 8 minutos.",
+      "uri_apple_music": "applemusic://track/902620521",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QkF3oxziUI4"
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:6Qg7cgN1oZ5mG5nZe9UG0X",
+      "artist": "The Who",
+      "alt_artists": [
+        "The Kinks",
+        "The Hollies",
+        "Cream"
+      ],
+      "title": "Behind Blue Eyes",
+      "chart_info": {
+        "billboard_peak": 34,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Pete Townshend originally wrote Behind Blue Eyes for his unfinished rock opera 'Lifehouse.' The song was meant to be sung from the perspective of the villain Jumbo. Roger Daltrey's vocal performance is widely considered one of his finest, perfectly capturing vulnerability in the soft verses before erupting into the heavy bridge.",
+      "fun_fact_de": "Pete Townshend schrieb Behind Blue Eyes ursprünglich für seine unvollendete Rockoper 'Lifehouse.' Der Song sollte aus der Perspektive des Bösewichts Jumbo gesungen werden. Roger Daltreys Gesangsleistung gilt als eine seiner besten, die in den sanften Strophen perfekt Verletzlichkeit einfängt, bevor sie in die schwere Bridge ausbricht.",
+      "fun_fact_es": "Pete Townshend escribió originalmente Behind Blue Eyes para su ópera rock inacabada 'Lifehouse.' La canción debía ser cantada desde la perspectiva del villano Jumbo. La interpretación vocal de Roger Daltrey es considerada una de sus mejores, capturando perfectamente la vulnerabilidad en los versos suaves antes de estallar en el puente pesado.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E1S-6LCCfxo"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:54X78diSLoUDI3joC2bjMz",
+      "artist": "Prince",
+      "alt_artists": [
+        "Michael Jackson",
+        "George Michael",
+        "Rick James"
+      ],
+      "title": "Purple Rain",
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [
+        "Grammy - Best Rock Vocal Performance (1985)",
+        "Academy Award - Best Original Song Score (1985)"
+      ],
+      "awards_de": [
+        "Grammy – Beste Rock-Gesangsdarbietung (1985)",
+        "Oscar – Bester Original-Song-Score (1985)"
+      ],
+      "awards_es": [
+        "Grammy – Mejor Interpretación Vocal de Rock (1985)",
+        "Oscar – Mejor Banda Sonora Original (1985)"
+      ],
+      "fun_fact": "Prince first performed Purple Rain live at a benefit concert in August 1983, over a year before its studio release. The live version was so powerful that it was nearly used as the album track instead. The song's guitar solo was largely improvised, and Prince reportedly cried real tears during its filming in the movie.",
+      "fun_fact_de": "Prince spielte Purple Rain erstmals live bei einem Benefizkonzert im August 1983, über ein Jahr vor der Studioversion. Die Live-Version war so kraftvoll, dass sie fast als Album-Track verwendet wurde. Das Gitarrensolo war größtenteils improvisiert, und Prince soll beim Filmdreh echte Tränen geweint haben.",
+      "fun_fact_es": "Prince interpretó Purple Rain en vivo por primera vez en un concierto benéfico en agosto de 1983, más de un año antes de su lanzamiento en estudio. La versión en vivo fue tan poderosa que casi se usó como pista del álbum. El solo de guitarra fue en gran parte improvisado, y Prince supuestamente lloró lágrimas reales durante su filmación en la película.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=347vCib_lMs"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:4P5KoWXOxwuobLmHXLMobV",
+      "artist": "Nirvana",
+      "alt_artists": [
+        "Pearl Jam",
+        "Alice in Chains",
+        "Stone Temple Pilots"
+      ],
+      "title": "Come As You Are",
+      "chart_info": {
+        "billboard_peak": 32,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The guitar riff of Come As You Are closely resembles Killing Joke's 'Eighties,' which itself was similar to The Damned's 'Life Goes On.' Killing Joke reportedly considered legal action but never followed through. Kurt Cobain used an Electro-Harmonix Small Clone chorus pedal to create the song's distinctive watery guitar tone.",
+      "fun_fact_de": "Das Gitarrenriff von Come As You Are ähnelt stark Killing Jokes 'Eighties', das wiederum The Damneds 'Life Goes On' ähnelte. Killing Joke erwog angeblich rechtliche Schritte, verfolgte diese aber nie. Kurt Cobain nutzte ein Electro-Harmonix Small Clone Chorus-Pedal für den charakteristischen wässrigen Gitarrenklang.",
+      "fun_fact_es": "El riff de guitarra de Come As You Are se parece mucho a 'Eighties' de Killing Joke, que a su vez era similar a 'Life Goes On' de The Damned. Killing Joke supuestamente consideró acciones legales pero nunca las llevó a cabo. Kurt Cobain usó un pedal de chorus Electro-Harmonix Small Clone para crear el distintivo tono acuoso de la guitarra.",
+      "uri_apple_music": "applemusic://track/1440783636",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vabnZ9-ex7o"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:1Y373MqadDRtclJNdnUXVc",
+      "artist": "Black Sabbath",
+      "alt_artists": [
+        "Led Zeppelin",
+        "Deep Purple",
+        "Uriah Heep"
+      ],
+      "title": "Paranoid",
+      "chart_info": {
+        "billboard_peak": 61,
+        "weeks_on_chart": 6
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2021)"
+      ],
+      "fun_fact": "Paranoid was written in just 20 minutes as a last-minute filler track when the album was running short. Tony Iommi came up with the riff on the spot, and Geezer Butler quickly scribbled lyrics about depression. Despite being an afterthought, it became Black Sabbath's biggest hit single and the song that defined heavy metal.",
+      "fun_fact_de": "Paranoid wurde in nur 20 Minuten als Last-Minute-Fülltrack geschrieben, als das Album zu kurz war. Tony Iommi erfand das Riff spontan, und Geezer Butler schrieb schnell einen Text über Depressionen. Obwohl es als Lückenfüller gedacht war, wurde es Black Sabbaths größter Hit und der Song, der Heavy Metal definierte.",
+      "fun_fact_es": "Paranoid fue escrita en solo 20 minutos como pista de relleno de último momento cuando el álbum era demasiado corto. Tony Iommi creó el riff en el momento, y Geezer Butler garabateó rápidamente letras sobre la depresión. A pesar de ser una ocurrencia tardía, se convirtió en el mayor éxito de Black Sabbath y la canción que definió el heavy metal.",
+      "uri_apple_music": "applemusic://track/1533659669",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q9-2NCZLUv0"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:70LcF31zb1H0PyJoS1Sx1r",
+      "artist": "Radiohead",
+      "alt_artists": [
+        "Muse",
+        "Blur",
+        "Suede"
+      ],
+      "title": "Creep",
+      "chart_info": {
+        "billboard_peak": 34,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Creep initially flopped when released in the UK in 1992, but became a surprise hit in Israel and then the US. Thom Yorke wrote it while studying at the University of Exeter about a woman he was following around at a party. The band grew to hate the song so much they stopped playing it live for years, only reintroducing it occasionally at special shows.",
+      "fun_fact_de": "Creep floppte zunächst bei der Veröffentlichung in Großbritannien 1992, wurde aber überraschend ein Hit in Israel und dann in den USA. Thom Yorke schrieb ihn während seines Studiums in Exeter über eine Frau, der er auf einer Party folgte. Die Band hasste den Song so sehr, dass sie ihn jahrelang nicht mehr live spielte.",
+      "fun_fact_es": "Creep fracasó inicialmente cuando se lanzó en el Reino Unido en 1992, pero se convirtió en un éxito sorpresa en Israel y luego en EE.UU. Thom Yorke lo escribió mientras estudiaba en la Universidad de Exeter sobre una mujer que seguía en una fiesta. La banda llegó a odiar tanto la canción que dejaron de tocarla en vivo durante años.",
+      "uri_apple_music": "applemusic://track/1097862231",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XFkzRNyygfk"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:1wzbCuuomhYNtk1ACVo9RA",
+      "artist": "Metallica",
+      "alt_artists": [
+        "Megadeth",
+        "Slayer",
+        "Pantera"
+      ],
+      "title": "Until It Sleeps",
+      "chart_info": {
+        "billboard_peak": 10,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Until It Sleeps was Metallica's highest-charting single on the Billboard Hot 100 at the time. James Hetfield wrote the deeply personal lyrics about his mother's battle with cancer and her Christian Science beliefs that prevented her from seeking medical treatment. The music video, directed by Samuel Bayer, was inspired by the paintings of Hieronymus Bosch.",
+      "fun_fact_de": "Until It Sleeps war Metallicas bestplatzierte Single in den Billboard Hot 100 zu dieser Zeit. James Hetfield schrieb den zutiefst persönlichen Text über den Krebskampf seiner Mutter und deren Überzeugung als Christliche Wissenschaftlerin, die sie davon abhielt, medizinische Behandlung zu suchen. Das Musikvideo war von den Gemälden von Hieronymus Bosch inspiriert.",
+      "fun_fact_es": "Until It Sleeps fue el single de Metallica con mejor posición en el Billboard Hot 100 en ese momento. James Hetfield escribió la letra profundamente personal sobre la batalla de su madre contra el cáncer y sus creencias de la Ciencia Cristiana que le impedían buscar tratamiento médico. El video musical fue inspirado por las pinturas de Hieronymus Bosch.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8Al-8t8ZlF0"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:3dPQuX8Gs42Y7b454ybpMR",
+      "artist": "The White Stripes",
+      "alt_artists": [
+        "The Black Keys",
+        "The Strokes",
+        "Queens of the Stone Age"
+      ],
+      "title": "Seven Nation Army",
+      "chart_info": {
+        "billboard_peak": 76,
+        "weeks_on_chart": 4
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [
+        "Grammy - Best Rock Song (2004)"
+      ],
+      "awards_de": [
+        "Grammy – Bester Rocksong (2004)"
+      ],
+      "awards_es": [
+        "Grammy – Mejor Canción de Rock (2004)"
+      ],
+      "fun_fact": "The iconic bassline is actually a guitar played through an octave pedal — the White Stripes famously never used a bass. Jack White wrote the riff in a Melbourne hotel room during a tour. The song became one of the most chanted melodies in sports stadiums worldwide, particularly at football (soccer) matches, rivaling 'We Will Rock You' in ubiquity.",
+      "fun_fact_de": "Die ikonische Basslinie ist tatsächlich eine Gitarre, gespielt durch ein Oktav-Pedal — die White Stripes verwendeten bekanntlich nie einen Bass. Jack White schrieb das Riff in einem Hotelzimmer in Melbourne während einer Tour. Der Song wurde zu einer der meistgesungenen Melodien in Sportstadien weltweit, besonders bei Fußballspielen.",
+      "fun_fact_es": "La icónica línea de bajo es en realidad una guitarra tocada a través de un pedal de octava — los White Stripes nunca usaron un bajo. Jack White escribió el riff en una habitación de hotel en Melbourne durante una gira. La canción se convirtió en una de las melodías más coreadas en estadios deportivos de todo el mundo, especialmente en partidos de fútbol.",
+      "uri_apple_music": "applemusic://track/1543262843",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0J2QdDbelmY"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:4JRem7xHp2l0kmUvt9zCKu",
+      "artist": "David Bowie",
+      "alt_artists": [
+        "T. Rex",
+        "Roxy Music",
+        "Iggy Pop"
+      ],
+      "title": "Golden Years",
+      "chart_info": {
+        "billboard_peak": 10,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "David Bowie originally offered Golden Years to Elvis Presley, who declined. The song marked Bowie's transition into his 'Thin White Duke' persona and the funk-influenced 'Station to Station' era. Bowie recorded it in Los Angeles during a period of extreme cocaine use, barely sleeping, and subsisting mainly on red peppers and milk.",
+      "fun_fact_de": "David Bowie bot Golden Years ursprünglich Elvis Presley an, der ablehnte. Der Song markierte Bowies Übergang zu seiner 'Thin White Duke'-Persona und der funk-beeinflussten 'Station to Station'-Ära. Bowie nahm ihn in Los Angeles während einer Phase extremen Kokainkonsums auf, in der er kaum schlief und sich hauptsächlich von Paprika und Milch ernährte.",
+      "fun_fact_es": "David Bowie ofreció originalmente Golden Years a Elvis Presley, quien lo rechazó. La canción marcó la transición de Bowie a su personaje 'Thin White Duke' y la era influenciada por el funk de 'Station to Station'. Bowie la grabó en Los Ángeles durante un período de consumo extremo de cocaína, apenas durmiendo y sobreviviendo principalmente con pimientos y leche.",
+      "uri_apple_music": "applemusic://track/1195105202",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ApHM1ct4tdM"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:0hCB0YR03f6AmQaHbwWDe8",
+      "artist": "Led Zeppelin",
+      "alt_artists": [
+        "The Who",
+        "Cream",
+        "Jimi Hendrix"
+      ],
+      "title": "Whole Lotta Love",
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2014)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2014)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2014)"
+      ],
+      "fun_fact": "The middle section of Whole Lotta Love features a psychedelic breakdown created by Jimmy Page using a theremin and backwards echo effects. The song's lyrics were partially derived from Willie Dixon's 'You Need Love,' leading to a lawsuit and songwriting credit being added to Dixon. The riff was voted the greatest guitar riff of all time by Total Guitar magazine.",
+      "fun_fact_de": "Der Mittelteil von Whole Lotta Love enthält einen psychedelischen Breakdown, den Jimmy Page mit einem Theremin und Rückwärts-Echo-Effekten erzeugte. Die Liedtexte stammten teilweise von Willie Dixons 'You Need Love', was zu einer Klage und nachträglicher Songwriter-Nennung führte. Das Riff wurde vom Total Guitar Magazin zum größten Gitarrenriff aller Zeiten gewählt.",
+      "fun_fact_es": "La sección central de Whole Lotta Love presenta un breakdown psicodélico creado por Jimmy Page usando un theremin y efectos de eco invertido. Las letras derivaban parcialmente de 'You Need Love' de Willie Dixon, lo que llevó a una demanda y al crédito de composición para Dixon. El riff fue votado como el mejor riff de guitarra de todos los tiempos por la revista Total Guitar.",
+      "uri_apple_music": "applemusic://track/580708471",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HQmmM_qwG4k"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:3b7wNR330iKhql9dEdbNci",
+      "artist": "Black Sabbath",
+      "alt_artists": [
+        "Deep Purple",
+        "Uriah Heep",
+        "Nazareth"
+      ],
+      "title": "Changes",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Gold (UK, 2003 duet version)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Changes is one of Black Sabbath's most atypical songs — a piano-driven ballad on an otherwise heavy metal album. Ozzy Osbourne played piano on the track, one of the few times he contributed instrumentally. The song was later re-recorded as a duet between Ozzy and his daughter Kelly in 2003, reaching #1 in the UK.",
+      "fun_fact_de": "Changes ist einer der untypischsten Songs von Black Sabbath — eine Piano-Ballade auf einem ansonsten Heavy-Metal-Album. Ozzy Osbourne spielte Klavier, eines der wenigen Male, dass er instrumental beitrug. Der Song wurde 2003 als Duett von Ozzy und seiner Tochter Kelly neu aufgenommen und erreichte Platz 1 in Großbritannien.",
+      "fun_fact_es": "Changes es una de las canciones más atípicas de Black Sabbath, una balada de piano en un álbum de heavy metal. Ozzy Osbourne tocó el piano, una de las pocas veces que contribuyó instrumentalmente. La canción fue regrabada como dueto entre Ozzy y su hija Kelly en 2003, alcanzando el #1 en el Reino Unido.",
+      "uri_apple_music": "applemusic://track/787641279",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dOz_dLmpT9A"
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:61Q9oJNd9hJQFhSDh6Qlap",
+      "artist": "The Animals",
+      "alt_artists": [
+        "The Yardbirds",
+        "The Zombies",
+        "Manfred Mann"
+      ],
+      "title": "House of the Rising Sun",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1999)"
+      ],
+      "fun_fact": "The Animals recorded House of the Rising Sun in a single take during a 15-minute session, as their record label only gave them limited studio time. The song is actually a traditional American folk song of unknown origin, possibly dating back to the 18th century. Bob Dylan had recorded a version in 1962, and was reportedly so impressed by The Animals' arrangement that he switched from acoustic to electric guitar.",
+      "fun_fact_de": "The Animals nahmen House of the Rising Sun in einem einzigen Take während einer 15-minütigen Session auf, da ihr Label nur begrenzte Studiozeit gewährte. Der Song ist eigentlich ein traditionelles amerikanisches Volkslied unbekannten Ursprungs, möglicherweise aus dem 18. Jahrhundert. Bob Dylan nahm 1962 eine Version auf und war angeblich so beeindruckt, dass er von akustischer auf elektrische Gitarre wechselte.",
+      "fun_fact_es": "The Animals grabaron House of the Rising Sun en una sola toma durante una sesión de 15 minutos. La canción es en realidad una canción folclórica estadounidense tradicional de origen desconocido, posiblemente del siglo XVIII. Bob Dylan grabó una versión en 1962 y supuestamente quedó tan impresionado por el arreglo de The Animals que cambió de guitarra acústica a eléctrica.",
+      "uri_apple_music": "applemusic://track/697238871",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MJkr0DWbhTk"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:5UWwZ5lm5PKu6eKsHAGxOk",
+      "artist": "Foo Fighters",
+      "alt_artists": [
+        "Weezer",
+        "Soundgarden",
+        "Bush"
+      ],
+      "title": "Everlong",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Dave Grohl wrote and recorded most of Everlong alone in his Virginia home studio, playing every instrument except the final guitar part. He described the song as being about 'falling in love' — specifically his then-new relationship with Louise Post of Veruca Salt. The music video, directed by Michel Gondry, features Dave and Taylor Hawkins in a surreal dream sequence.",
+      "fun_fact_de": "Dave Grohl schrieb und nahm den Großteil von Everlong allein in seinem Heimstudio in Virginia auf und spielte jedes Instrument außer dem letzten Gitarrenpart. Er beschrieb den Song als 'sich verlieben' — speziell seine damals neue Beziehung mit Louise Post von Veruca Salt. Das Musikvideo zeigt Dave und Taylor Hawkins in einer surrealen Traumsequenz.",
+      "fun_fact_es": "Dave Grohl escribió y grabó la mayor parte de Everlong solo en su estudio casero en Virginia, tocando todos los instrumentos excepto la parte final de guitarra. Describió la canción como 'enamorarse', específicamente de su entonces nueva relación con Louise Post de Veruca Salt. El video musical presenta a Dave y Taylor Hawkins en una secuencia de sueño surrealista.",
+      "uri_apple_music": "applemusic://track/334812013",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eBG7P-K-r1Y"
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:7GonnnalI2s19OCQO1J7Tf",
+      "artist": "Mötley Crüe",
+      "alt_artists": [
+        "Def Leppard",
+        "Poison",
+        "Ratt"
+      ],
+      "title": "Kickstart My Heart",
+      "chart_info": {
+        "billboard_peak": 27,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Nomination - Best Hard Rock Performance (1990)"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung – Beste Hard-Rock-Darbietung (1990)"
+      ],
+      "awards_es": [
+        "Nominación al Grammy – Mejor Interpretación de Hard Rock (1990)"
+      ],
+      "fun_fact": "Nikki Sixx wrote Kickstart My Heart after a near-fatal heroin overdose in 1987. He was clinically dead for two minutes before paramedics revived him with two shots of adrenaline straight to the heart. The rush of the adrenaline bringing him back to life inspired the song's driving energy. The bass intro was recorded at 200+ BPM.",
+      "fun_fact_de": "Nikki Sixx schrieb Kickstart My Heart nach einer beinahe tödlichen Heroinüberdosis 1987. Er war zwei Minuten klinisch tot, bevor Sanitäter ihn mit zwei Adrenalinspritzen direkt ins Herz wiederbelebten. Der Adrenalinstoß, der ihn ins Leben zurückbrachte, inspirierte die treibende Energie des Songs.",
+      "fun_fact_es": "Nikki Sixx escribió Kickstart My Heart después de una sobredosis de heroína casi fatal en 1987. Estuvo clínicamente muerto durante dos minutos antes de que los paramédicos lo revivieran con dos inyecciones de adrenalina directamente al corazón. La descarga de adrenalina que lo devolvió a la vida inspiró la energía del tema.",
+      "uri_apple_music": "applemusic://track/1764396024",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CmXWkMlKFkI"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:5MxNLUsfh7uzROypsoO5qe",
+      "artist": "Aerosmith",
+      "alt_artists": [
+        "KISS",
+        "Alice Cooper",
+        "Cheap Trick"
+      ],
+      "title": "Dream On",
+      "chart_info": {
+        "billboard_peak": 6,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Steven Tyler began writing Dream On when he was just 17 years old, making it one of rock's most famous songs with a teenage origin. The song didn't become a major hit until it was re-released in 1976, three years after its initial release. Tyler's soaring vocal performance, reaching extreme high notes at the climax, has made it one of the most challenging songs to sing live.",
+      "fun_fact_de": "Steven Tyler begann Dream On zu schreiben, als er erst 17 Jahre alt war. Der Song wurde erst bei seiner Wiederveröffentlichung 1976 zum großen Hit, drei Jahre nach der Erstveröffentlichung. Tylers Gesangsleistung mit den extremen Höhen im Finale macht es zu einem der schwierigsten Songs zum Live-Singen.",
+      "fun_fact_es": "Steven Tyler comenzó a escribir Dream On cuando tenía solo 17 años. La canción no se convirtió en un gran éxito hasta que fue relanzada en 1976, tres años después de su lanzamiento inicial. La interpretación vocal de Tyler, alcanzando notas extremadamente altas en el clímax, la ha convertido en una de las canciones más difíciles de cantar en vivo.",
+      "uri_apple_music": "applemusic://track/457003287",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=89dGC8de0CA"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:0pQskrTITgmCMyr85tb9qq",
+      "artist": "David Bowie",
+      "alt_artists": [
+        "Marc Bolan",
+        "Lou Reed",
+        "Brian Eno"
+      ],
+      "title": "Starman",
+      "chart_info": {
+        "billboard_peak": 65,
+        "weeks_on_chart": 5
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Starman was added to the Ziggy Stardust album at the last minute, replacing a cover of Chuck Berry's 'Around and Around,' after RCA Records demanded a single. Bowie's iconic performance of Starman on BBC's Top of the Pops in July 1972 — where he casually draped his arm around Mick Ronson — is credited as a life-changing moment for countless future musicians.",
+      "fun_fact_de": "Starman wurde dem Ziggy Stardust-Album in letzter Minute hinzugefügt und ersetzte ein Chuck-Berry-Cover, nachdem RCA Records eine Single forderte. Bowies ikonischer Auftritt bei BBCs Top of the Pops im Juli 1972 — als er lässig seinen Arm um Mick Ronson legte — gilt als lebensverändernder Moment für unzählige zukünftige Musiker.",
+      "fun_fact_es": "Starman fue añadida al álbum Ziggy Stardust a último momento, reemplazando una versión de Chuck Berry, después de que RCA Records exigiera un single. La icónica actuación de Bowie en Top of the Pops de la BBC en julio de 1972, donde casualmente puso su brazo alrededor de Mick Ronson, se considera un momento que cambió la vida de innumerables futuros músicos.",
+      "uri_apple_music": "applemusic://track/1350497718",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t365MuktYQs"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:48UPSzbZjgc449aqz8bxox",
+      "artist": "Red Hot Chili Peppers",
+      "alt_artists": [
+        "Incubus",
+        "311",
+        "Sublime"
+      ],
+      "title": "Californication",
+      "chart_info": {
+        "billboard_peak": 69,
+        "weeks_on_chart": 6
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Californication was the first album recorded with guitarist John Frusciante after his return from a devastating heroin addiction that had left him nearly dead. Anthony Kiedis wrote the lyrics as a critique of Hollywood's corrupting influence on global culture. The music video was groundbreaking for its time, using video game-style 3D graphics of the band members.",
+      "fun_fact_de": "Californication war das erste Album mit Gitarrist John Frusciante nach seiner Rückkehr von einer verheerenden Heroinsucht, die ihn fast umgebracht hatte. Anthony Kiedis schrieb den Text als Kritik an Hollywoods korrumpierendem Einfluss auf die Weltkultur. Das Musikvideo war bahnbrechend mit videospiel-artigen 3D-Grafiken der Bandmitglieder.",
+      "fun_fact_es": "Californication fue el primer álbum grabado con el guitarrista John Frusciante tras su regreso de una devastadora adicción a la heroína que casi lo mata. Anthony Kiedis escribió la letra como crítica de la influencia corruptora de Hollywood en la cultura global. El video musical fue revolucionario, usando gráficos 3D estilo videojuego de los miembros de la banda.",
+      "uri_apple_music": "applemusic://track/947701035",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A__cH65WRvE"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:5BIMPccDwShpXq784RJlJp",
+      "artist": "Metallica",
+      "alt_artists": [
+        "Megadeth",
+        "Slayer",
+        "Anthrax"
+      ],
+      "title": "Enter Sandman",
+      "chart_info": {
+        "billboard_peak": 16,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy Nomination - Best Metal Performance (1992)"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung – Beste Metal-Darbietung (1992)"
+      ],
+      "awards_es": [
+        "Nominación al Grammy – Mejor Interpretación de Metal (1992)"
+      ],
+      "fun_fact": "Kirk Hammett came up with Enter Sandman's iconic riff at 3 AM, playing it into a tape recorder half-asleep. Producer Bob Rock pushed the band to create a more accessible sound, causing tension but ultimately making their best-selling album. The song uses the melody of 'Hush, Little Baby' in its bridge, twisted into a nightmarish context about childhood fears.",
+      "fun_fact_de": "Kirk Hammett erfand das ikonische Riff von Enter Sandman um 3 Uhr morgens, halb schlafend auf einen Kassettenrekorder spielend. Produzent Bob Rock drängte die Band zu einem zugänglicheren Sound, was Spannungen verursachte, aber letztlich ihr meistverkauftes Album hervorbrachte. Der Song verwendet die Melodie von 'Hush, Little Baby' in der Bridge, verdreht in einen alptraumhaften Kontext.",
+      "fun_fact_es": "Kirk Hammett creó el icónico riff de Enter Sandman a las 3 AM, grabándolo medio dormido en una grabadora. El productor Bob Rock empujó a la banda a crear un sonido más accesible, causando tensión pero creando finalmente su álbum más vendido. La canción usa la melodía de 'Hush, Little Baby' en el puente, retorcida en un contexto de pesadilla sobre miedos infantiles.",
+      "uri_apple_music": "applemusic://track/1571983951",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CD-E-LDc384"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:5e6x5YRnMJIKvYpZxLqdpH",
+      "artist": "Creedence Clearwater Revival",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "The Allman Brothers Band",
+        "The Band"
+      ],
+      "title": "Fortunate Son",
+      "chart_info": {
+        "billboard_peak": 14,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "John Fogerty wrote Fortunate Son in just 20 minutes as a protest against the Vietnam War draft system that allowed wealthy families to buy their sons' way out of service. Despite being an anti-war anthem, it's been ironically used in countless war movies and even at political rallies. It's one of the most frequently licensed songs in film history.",
+      "fun_fact_de": "John Fogerty schrieb Fortunate Son in nur 20 Minuten als Protest gegen das Vietnam-Einberufungssystem, das wohlhabenden Familien erlaubte, ihre Söhne freizukaufen. Trotz seiner Anti-Kriegs-Botschaft wurde er ironischerweise in unzähligen Kriegsfilmen und sogar bei politischen Kundgebungen verwendet. Er ist einer der meistlizenzierten Songs der Filmgeschichte.",
+      "fun_fact_es": "John Fogerty escribió Fortunate Son en solo 20 minutos como protesta contra el sistema de reclutamiento de la Guerra de Vietnam que permitía a las familias ricas comprar la exención de sus hijos. A pesar de ser un himno antibélico, se ha usado irónicamente en innumerables películas bélicas e incluso en mítines políticos.",
+      "uri_apple_music": "applemusic://track/1440950725",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZWijx_AgPiA"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:1lqMLr9Wj7SM2F9AikGcxN",
+      "artist": "Bob Dylan",
+      "alt_artists": [
+        "Neil Young",
+        "Leonard Cohen",
+        "Bruce Springsteen"
+      ],
+      "title": "Hurricane",
+      "chart_info": {
+        "billboard_peak": 33,
+        "weeks_on_chart": 9
+      },
+      "certifications": [
+        "Gold (US, album track)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Hurricane tells the story of boxer Rubin 'Hurricane' Carter, who was wrongfully convicted of triple murder. Dylan co-wrote the 8-minute protest epic with Jacques Levy after visiting Carter in prison. The song helped bring national attention to Carter's case and contributed to a retrial. Carter was eventually freed in 1985 after 19 years of imprisonment.",
+      "fun_fact_de": "Hurricane erzählt die Geschichte des Boxers Rubin 'Hurricane' Carter, der fälschlicherweise wegen Dreifachmordes verurteilt wurde. Dylan schrieb das 8-minütige Protest-Epos mit Jacques Levy nach einem Besuch bei Carter im Gefängnis. Der Song trug dazu bei, nationale Aufmerksamkeit auf Carters Fall zu lenken. Carter wurde schließlich 1985 nach 19 Jahren Haft freigelassen.",
+      "fun_fact_es": "Hurricane cuenta la historia del boxeador Rubin 'Hurricane' Carter, quien fue condenado injustamente por triple homicidio. Dylan coescribió la épica de protesta de 8 minutos con Jacques Levy después de visitar a Carter en prisión. La canción ayudó a llamar la atención nacional sobre el caso de Carter. Carter fue finalmente liberado en 1985 tras 19 años de encarcelamiento.",
+      "uri_apple_music": "applemusic://track/263689038",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bpZvg_FjL3Q"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:4gMgiXfqyzZLMhsksGmbQV",
+      "artist": "Pink Floyd",
+      "alt_artists": [
+        "Genesis",
+        "Supertramp",
+        "Emerson, Lake & Palmer"
+      ],
+      "title": "Another Brick in the Wall, Pt. 2",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The children's choir on Another Brick in the Wall was performed by pupils from Islington Green School near the studio. The kids were paid a one-time fee but received no royalties until a 2004 settlement. Roger Waters wrote the anti-education lyrics based on his own traumatic school experiences. The song was banned in South Africa during apartheid as it became a protest anthem.",
+      "fun_fact_de": "Der Kinderchor auf Another Brick in the Wall wurde von Schülern der Islington Green School in der Nähe des Studios gesungen. Die Kinder erhielten ein einmaliges Honorar, aber keine Tantiemen bis zu einer Einigung 2004. Roger Waters schrieb den Text gegen das Bildungssystem basierend auf eigenen traumatischen Schulerfahrungen. Der Song wurde in Südafrika während der Apartheid verboten.",
+      "fun_fact_es": "El coro infantil en Another Brick in the Wall fue interpretado por alumnos de la Islington Green School cerca del estudio. Los niños recibieron un pago único pero no regalías hasta un acuerdo en 2004. Roger Waters escribió la letra anti-educativa basada en sus propias experiencias escolares traumáticas. La canción fue prohibida en Sudáfrica durante el apartheid al convertirse en himno de protesta.",
+      "uri_apple_music": "applemusic://track/1065975638",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HrxX9TBj2zY"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:6cr6UDpkjEaMQ80OjWqEBQ",
+      "artist": "Dire Straits",
+      "alt_artists": [
+        "Eric Clapton",
+        "Gerry Rafferty",
+        "J.J. Cale"
+      ],
+      "title": "Sultans of Swing",
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Mark Knopfler was inspired to write Sultans of Swing after seeing a mediocre jazz band playing to a nearly empty pub in London. The band's leader announced them as 'the Sultans of Swing' to their tiny audience. Knopfler's distinctive fingerpicking guitar style was unusual for rock at the time, and radio DJs initially assumed the clean sound was a production trick.",
+      "fun_fact_de": "Mark Knopfler wurde zu Sultans of Swing inspiriert, nachdem er eine mittelmäßige Jazzband in einem fast leeren Londoner Pub gesehen hatte. Der Bandleader stellte sie als 'die Sultans of Swing' vor. Knopflers charakteristischer Fingerpicking-Stil war für Rock ungewöhnlich, und Radio-DJs hielten den klaren Sound zunächst für einen Produktionstrick.",
+      "fun_fact_es": "Mark Knopfler se inspiró para escribir Sultans of Swing después de ver una banda de jazz mediocre tocando en un pub casi vacío en Londres. El líder de la banda los presentó como 'los Sultans of Swing'. El distintivo estilo de fingerpicking de Knopfler era inusual para el rock, y los DJs de radio inicialmente pensaron que el sonido limpio era un truco de producción.",
+      "uri_apple_music": "applemusic://track/1440801919",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h0ffIJ7ZO4U"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:5UwbnHhjnbinJH8TefuQfN",
+      "artist": "The Hollies",
+      "alt_artists": [
+        "The Searchers",
+        "The Turtles",
+        "The Troggs"
+      ],
+      "title": "Long Cool Woman (In a Black Dress)",
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Long Cool Woman was written by Allan Clarke and Roger Cook as an homage to Creedence Clearwater Revival's swamp rock style. It was so different from The Hollies' typical harmony-driven pop that Graham Nash (who had already left for CSN) didn't believe it was them when he first heard it on the radio. The song's narrative about an FBI agent was inspired by American crime fiction.",
+      "fun_fact_de": "Long Cool Woman wurde von Allan Clarke und Roger Cook als Hommage an Creedence Clearwater Revivals Swamp-Rock-Stil geschrieben. Es war so anders als The Hollies' typischer Harmonie-Pop, dass Graham Nash nicht glaubte, dass sie es waren, als er es im Radio hörte. Die Geschichte über einen FBI-Agenten war von amerikanischer Kriminalliteratur inspiriert.",
+      "fun_fact_es": "Long Cool Woman fue escrita por Allan Clarke y Roger Cook como homenaje al estilo swamp rock de Creedence Clearwater Revival. Era tan diferente del pop armónico típico de The Hollies que Graham Nash no creyó que fueran ellos cuando la escuchó en la radio. La narrativa sobre un agente del FBI fue inspirada por ficción criminal estadounidense.",
+      "uri_apple_music": "applemusic://track/1750160810",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YbJ6vY1v084"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0X1sqQ652p1sceKM2nJlIJ",
+      "artist": "Bon Jovi",
+      "alt_artists": [
+        "Def Leppard",
+        "Whitesnake",
+        "Warrant"
+      ],
+      "title": "Runaway",
+      "chart_info": {
+        "billboard_peak": 39,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Runaway was recorded before Bon Jovi had an official band. Jon Bon Jovi submitted a demo to a local radio station's compilation album, and the song became so popular that it landed him a record deal. The studio musicians on the demo, known as 'The All Star Review,' were not the eventual Bon Jovi lineup. The synth intro was played by Roy Bittan of Bruce Springsteen's E Street Band.",
+      "fun_fact_de": "Runaway wurde aufgenommen, bevor Bon Jovi eine offizielle Band hatte. Jon Bon Jovi reichte ein Demo bei einer lokalen Radiostation ein, und der Song wurde so populär, dass er einen Plattenvertrag bekam. Die Studiomusiker des Demos waren nicht die spätere Bon-Jovi-Besetzung. Das Synthesizer-Intro spielte Roy Bittan von Bruce Springsteens E Street Band.",
+      "fun_fact_es": "Runaway fue grabada antes de que Bon Jovi tuviera una banda oficial. Jon Bon Jovi envió un demo a la compilación de una emisora de radio local, y la canción se hizo tan popular que le consiguió un contrato discográfico. Los músicos de estudio del demo no eran la formación eventual de Bon Jovi. El intro de sintetizador fue tocado por Roy Bittan de la E Street Band de Bruce Springsteen.",
+      "uri_apple_music": "applemusic://track/1440814439",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s86K-p089R8"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:6zeE5tKyr8Nu882DQhhSQI",
+      "artist": "Kansas",
+      "alt_artists": [
+        "Styx",
+        "Boston",
+        "REO Speedwagon"
+      ],
+      "title": "Dust in the Wind",
+      "chart_info": {
+        "billboard_peak": 6,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Kerry Livgren wrote Dust in the Wind as a finger-picking exercise. His wife overheard him playing it at home and told him it was the best thing he'd ever written. The other band members initially resisted recording it because it was so different from their progressive rock style. The philosophical lyrics about the fleeting nature of human existence were inspired by a book of Native American poetry.",
+      "fun_fact_de": "Kerry Livgren schrieb Dust in the Wind als Fingerpicking-Übung. Seine Frau hörte ihn spielen und sagte, es sei das Beste, was er je geschrieben habe. Die anderen Bandmitglieder wehrten sich zunächst gegen die Aufnahme, weil es so anders war als ihr Progressive-Rock-Stil. Die philosophischen Texte über die Vergänglichkeit menschlicher Existenz waren von einem Buch mit Indianer-Poesie inspiriert.",
+      "fun_fact_es": "Kerry Livgren escribió Dust in the Wind como ejercicio de fingerpicking. Su esposa lo escuchó y le dijo que era lo mejor que había escrito. Los demás miembros de la banda inicialmente se resistieron a grabarla porque era muy diferente de su estilo de rock progresivo. Las letras filosóficas sobre la fugacidad de la existencia humana fueron inspiradas por un libro de poesía nativa americana.",
+      "uri_apple_music": "applemusic://track/158580601",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tH2w6Oxx0kQ"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:70YvYr2hGlS01bKRIho1HM",
+      "artist": "ZZ Top",
+      "alt_artists": [
+        "Stevie Ray Vaughan",
+        "Ted Nugent",
+        "Foghat"
+      ],
+      "title": "La Grange",
+      "chart_info": {
+        "billboard_peak": 41,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "La Grange is about the Chicken Ranch, a legendary brothel near La Grange, Texas, that had operated since the 1840s. The establishment was shut down in 1973 — the same year the song was released — after an investigative TV report. The boogie riff was inspired by John Lee Hooker's guitar style. Billy Gibbons' guitar tone on the track has been endlessly studied and replicated by guitarists.",
+      "fun_fact_de": "La Grange handelt von der Chicken Ranch, einem legendären Bordell nahe La Grange, Texas, das seit den 1840ern betrieben wurde. Das Etablissement wurde 1973 geschlossen — im selben Jahr wie die Veröffentlichung des Songs — nach einem investigativen TV-Bericht. Das Boogie-Riff war von John Lee Hookers Gitarrenstil inspiriert.",
+      "fun_fact_es": "La Grange trata sobre el Chicken Ranch, un legendario burdel cerca de La Grange, Texas, que había operado desde la década de 1840. El establecimiento fue cerrado en 1973 — el mismo año en que se lanzó la canción — tras un reportaje de televisión. El riff de boogie fue inspirado por el estilo de guitarra de John Lee Hooker.",
+      "uri_apple_music": "applemusic://track/1728071989",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bSt4myecN_c"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2sXp9Qmvc7mRaDBjBgcGGi",
+      "artist": "The Police",
+      "alt_artists": [
+        "U2",
+        "Simple Minds",
+        "INXS"
+      ],
+      "title": "Every Breath You Take",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy - Song of the Year (1984)",
+        "Grammy - Best Pop Performance by Duo or Group (1984)"
+      ],
+      "awards_de": [
+        "Grammy – Song des Jahres (1984)",
+        "Grammy – Beste Popdarbietung einer Gruppe (1984)"
+      ],
+      "awards_es": [
+        "Grammy – Canción del Año (1984)",
+        "Grammy – Mejor Interpretación Pop de Dúo o Grupo (1984)"
+      ],
+      "fun_fact": "Despite being widely played at weddings as a love song, Sting has confirmed that Every Breath You Take is actually about obsessive surveillance and jealousy, written during his painful divorce. He's called it 'very sinister and ugly.' The song spent 8 weeks at #1 on the Billboard Hot 100 and has earned more royalties than any other song in Sting's catalog.",
+      "fun_fact_de": "Obwohl er oft auf Hochzeiten als Liebeslied gespielt wird, hat Sting bestätigt, dass Every Breath You Take tatsächlich von obsessiver Überwachung und Eifersucht handelt, geschrieben während seiner schmerzhaften Scheidung. Er nannte ihn 'sehr unheimlich und hässlich.' Der Song blieb 8 Wochen auf Platz 1 der Billboard Hot 100.",
+      "fun_fact_es": "A pesar de ser tocada ampliamente en bodas como canción de amor, Sting ha confirmado que Every Breath You Take trata realmente sobre vigilancia obsesiva y celos, escrita durante su doloroso divorcio. La ha llamado 'muy siniestra y fea.' La canción pasó 8 semanas en el #1 del Billboard Hot 100.",
+      "uri_apple_music": "applemusic://track/1440805336",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OMOGaugKpzs"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:3d9DChrdc6BOeFsbrZ3Is0",
+      "artist": "Red Hot Chili Peppers",
+      "alt_artists": [
+        "Jane's Addiction",
+        "Primus",
+        "Faith No More"
+      ],
+      "title": "Under the Bridge",
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Anthony Kiedis wrote Under the Bridge as a poem about his loneliness and drug addiction in Los Angeles. He never intended to show it to the band, but producer Rick Rubin spotted the poem in his notebook. John Frusciante and the band initially struggled to find the right arrangement. The song became the Chili Peppers' highest-charting single and a defining moment of 90s rock.",
+      "fun_fact_de": "Anthony Kiedis schrieb Under the Bridge als Gedicht über seine Einsamkeit und Drogensucht in Los Angeles. Er wollte es der Band nie zeigen, aber Produzent Rick Rubin entdeckte das Gedicht in seinem Notizbuch. John Frusciante und die Band kämpften zunächst mit dem richtigen Arrangement. Der Song wurde die bestplatzierte Single der Chili Peppers.",
+      "fun_fact_es": "Anthony Kiedis escribió Under the Bridge como un poema sobre su soledad y adicción a las drogas en Los Ángeles. Nunca tuvo la intención de mostrárselo a la banda, pero el productor Rick Rubin vio el poema en su cuaderno. John Frusciante y la banda inicialmente lucharon por encontrar el arreglo correcto. La canción se convirtió en el single mejor posicionado de los Chili Peppers.",
+      "uri_apple_music": "applemusic://track/945581840",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GLvohMXgcBo"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:4d9RTWdrFLVAGhdzvqxkwn",
+      "artist": "R.E.M.",
+      "alt_artists": [
+        "The Smiths",
+        "10,000 Maniacs",
+        "The Cure"
+      ],
+      "title": "Losing My Religion",
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Short Form Music Video (1992)",
+        "Grammy - Best Pop Performance by Duo or Group (1992)"
+      ],
+      "awards_de": [
+        "Grammy – Bestes Kurzform-Musikvideo (1992)",
+        "Grammy – Beste Pop-Darbietung einer Gruppe (1992)"
+      ],
+      "awards_es": [
+        "Grammy – Mejor Video Musical de Formato Corto (1992)",
+        "Grammy – Mejor Interpretación Pop de Dúo o Grupo (1992)"
+      ],
+      "fun_fact": "The mandolin riff that defines Losing My Religion was written by Peter Buck while watching TV. The song's title is a Southern US expression meaning 'losing one's temper' or 'being at the end of one's rope,' not a literal statement about faith. Despite the mandolin being unusual for rock radio, the song became R.E.M.'s biggest hit and brought alternative rock to the mainstream.",
+      "fun_fact_de": "Das Mandolinen-Riff wurde von Peter Buck beim Fernsehen geschrieben. Der Songtitel ist ein Ausdruck aus den US-Südstaaten für 'die Geduld verlieren', keine wörtliche Aussage über Glauben. Trotz der für Rockradio ungewöhnlichen Mandoline wurde der Song R.E.M.s größter Hit und brachte Alternative Rock in den Mainstream.",
+      "fun_fact_es": "El riff de mandolina fue escrito por Peter Buck mientras veía televisión. El título de la canción es una expresión del sur de EE.UU. que significa 'perder la paciencia', no una declaración literal sobre la fe. A pesar de que la mandolina era inusual para la radio rock, la canción se convirtió en el mayor éxito de R.E.M. y llevó el rock alternativo al mainstream.",
+      "uri_apple_music": "applemusic://track/1422693816",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xwtdhWltSIg"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2X6gdRlGOQgfaXU9ALUQFQ",
+      "artist": "Fleetwood Mac",
+      "alt_artists": [
+        "Heart",
+        "Jefferson Starship",
+        "The Eagles"
+      ],
+      "title": "The Chain",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The Chain is the only song on Rumours credited to all five band members. It was assembled from fragments of different recordings — Mick Fleetwood's bass drum pattern, John McVie's bass riff, and various guitar and vocal parts were stitched together in the studio. The song's iconic bass line became the long-running theme music for BBC's Formula 1 coverage, used from 1978 to 2015.",
+      "fun_fact_de": "The Chain ist der einzige Song auf Rumours, der allen fünf Bandmitgliedern zugeschrieben wird. Er wurde aus Fragmenten verschiedener Aufnahmen zusammengesetzt. Die ikonische Basslinie wurde zur langjährigen Titelmusik der BBC-Formel-1-Übertragung, verwendet von 1978 bis 2015.",
+      "fun_fact_es": "The Chain es la única canción de Rumours acreditada a los cinco miembros de la banda. Fue ensamblada a partir de fragmentos de diferentes grabaciones. La icónica línea de bajo se convirtió en la música del tema de la cobertura de Fórmula 1 de la BBC, utilizada de 1978 a 2015.",
+      "uri_apple_music": "applemusic://track/594061861",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xwTPvcPYaOo"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5LNiqEqpDc8TuqPy79kDBu",
+      "artist": "Stevie Nicks",
+      "alt_artists": [
+        "Pat Benatar",
+        "Joan Jett",
+        "Debbie Harry"
+      ],
+      "title": "Edge of Seventeen",
+      "chart_info": {
+        "billboard_peak": 11,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The title came from a misunderstanding — when Tom Petty's wife Jane told Stevie Nicks she met Tom 'at the age of seventeen,' Nicks misheard it as 'edge of seventeen.' The song's driving guitar riff has been sampled extensively, most notably by Destiny's Child in 'Bootylicious.' Nicks wrote the lyrics partly about John Lennon's assassination and partly about the death of her uncle Jonathan.",
+      "fun_fact_de": "Der Titel entstand durch ein Missverständnis — als Tom Pettys Frau Jane erzählte, sie habe Tom 'at the age of seventeen' kennengelernt, verstand Nicks 'edge of seventeen.' Das treibende Gitarrenriff wurde vielfach gesampelt, besonders von Destiny's Child in 'Bootylicious.' Nicks schrieb die Texte teilweise über John Lennons Ermordung und den Tod ihres Onkels Jonathan.",
+      "fun_fact_es": "El título surgió de un malentendido — cuando la esposa de Tom Petty le dijo a Nicks que conoció a Tom 'at the age of seventeen,' Nicks entendió 'edge of seventeen.' El riff de guitarra ha sido sampleado extensamente, especialmente por Destiny's Child en 'Bootylicious.' Nicks escribió las letras parcialmente sobre el asesinato de John Lennon y la muerte de su tío Jonathan.",
+      "uri_apple_music": "applemusic://track/219393906",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3oZunnY-Cbs"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:4JNi40t7xR5bO3PWxRkiPN",
+      "artist": "Lynyrd Skynyrd",
+      "alt_artists": [
+        "The Allman Brothers Band",
+        "Molly Hatchet",
+        "38 Special"
+      ],
+      "title": "Free Bird",
+      "chart_info": {
+        "billboard_peak": 19,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Free Bird's epic guitar solo, lasting over 4 minutes, was performed by Allen Collins and Gary Rossington and is regularly cited among the greatest guitar solos ever. The song became a concert staple so iconic that shouting 'Free Bird!' at concerts became a universal audience joke. Tragically, the song took on deeper meaning after multiple band members died in a 1977 plane crash.",
+      "fun_fact_de": "Free Birds episches Gitarrensolo von über 4 Minuten wurde von Allen Collins und Gary Rossington gespielt und gilt als eines der größten Gitarrensolos aller Zeiten. 'Free Bird!' bei Konzerten zu rufen wurde zum universellen Publikumswitz. Tragischerweise bekam der Song nach dem Tod mehrerer Bandmitglieder bei einem Flugzeugabsturz 1977 eine tiefere Bedeutung.",
+      "fun_fact_es": "El épico solo de guitarra de Free Bird, de más de 4 minutos, fue interpretado por Allen Collins y Gary Rossington y es regularmente citado entre los mejores solos de guitarra. Gritar '¡Free Bird!' en conciertos se convirtió en una broma universal. Trágicamente, la canción adquirió un significado más profundo después de que varios miembros de la banda murieran en un accidente aéreo en 1977.",
+      "uri_apple_music": "applemusic://track/1445734235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MQNRKX8GwPo"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:6QewNVIDKdSl8Y3ycuHIei",
+      "artist": "Pearl Jam",
+      "alt_artists": [
+        "Soundgarden",
+        "Alice in Chains",
+        "Stone Temple Pilots"
+      ],
+      "title": "Even Flow",
+      "chart_info": {
+        "billboard_peak": 3,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Eddie Vedder wrote Even Flow's lyrics about a homeless man he observed living on the streets of San Diego. The song's guitar intro, played by Mike McCready, was inspired by Stevie Ray Vaughan. Despite being one of Pearl Jam's most famous songs, the band has reportedly recorded over 50 different versions, as McCready frequently changes his guitar solo live.",
+      "fun_fact_de": "Eddie Vedder schrieb die Texte von Even Flow über einen Obdachlosen, den er auf den Straßen von San Diego beobachtete. Das Gitarren-Intro von Mike McCready war von Stevie Ray Vaughan inspiriert. Trotz der Berühmtheit des Songs hat die Band angeblich über 50 verschiedene Versionen aufgenommen, da McCready sein Gitarrensolo live häufig ändert.",
+      "fun_fact_es": "Eddie Vedder escribió la letra de Even Flow sobre un hombre sin hogar que observó en las calles de San Diego. La intro de guitarra de Mike McCready fue inspirada por Stevie Ray Vaughan. A pesar de ser una de las canciones más famosas de Pearl Jam, la banda ha grabado más de 50 versiones diferentes, ya que McCready frecuentemente cambia su solo en vivo.",
+      "uri_apple_music": "applemusic://track/425465318",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CxKWTzr-k6s"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:3QZ7uX97s82HFYSmQUAN1D",
+      "artist": "Rush",
+      "alt_artists": [
+        "Yes",
+        "Kansas",
+        "Styx"
+      ],
+      "title": "Tom Sawyer",
+      "chart_info": {
+        "billboard_peak": 44,
+        "weeks_on_chart": 7
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Tom Sawyer was co-written by Rush and lyricist Pye Dubois of the band Max Webster. Neil Peart's drum part is considered one of the most technically difficult in rock history, and the song has become a staple in drumming schools. Geddy Lee's synthesizer work on the track helped pioneer the integration of keyboards into progressive hard rock. The song gained new fame through the video game Rock Band.",
+      "fun_fact_de": "Tom Sawyer wurde gemeinsam von Rush und dem Texter Pye Dubois geschrieben. Neil Pearts Schlagzeugpart gilt als einer der technisch schwierigsten in der Rockgeschichte und ist ein Standardstück in Schlagzeugschulen. Geddy Lees Synthesizer-Arbeit half, die Integration von Keyboards in progressiven Hard Rock zu etablieren.",
+      "fun_fact_es": "Tom Sawyer fue coescrita por Rush y el letrista Pye Dubois. La parte de batería de Neil Peart es considerada una de las más técnicamente difíciles en la historia del rock, y la canción se ha convertido en un básico en las escuelas de batería. El trabajo de sintetizador de Geddy Lee ayudó a pionerizar la integración de teclados en el hard rock progresivo.",
+      "uri_apple_music": "applemusic://track/1440798881",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=auLBLk4ibAk"
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:14XWXWv5FoCbFzLksawpEe",
+      "artist": "The Doors",
+      "alt_artists": [
+        "Jefferson Airplane",
+        "The Velvet Underground",
+        "Love"
+      ],
+      "title": "Riders on the Storm",
+      "chart_info": {
+        "billboard_peak": 14,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2009)"
+      ],
+      "fun_fact": "Riders on the Storm was the last song The Doors recorded with Jim Morrison before his death in Paris in July 1971. The rain and thunder sound effects were added to create an atmospheric setting. The song's bass line was inspired by jazz and the lyrics reference a hitchhiker serial killer. Morrison whispered the vocal track over his regular singing, creating the ghostly double-tracked effect.",
+      "fun_fact_de": "Riders on the Storm war der letzte Song, den The Doors mit Jim Morrison vor seinem Tod in Paris im Juli 1971 aufnahmen. Die Regen- und Donnereffekte wurden für atmosphärische Wirkung hinzugefügt. Morrison flüsterte die Gesangsspur über seinen regulären Gesang, was den geisterhaften Doppeleffekt erzeugte.",
+      "fun_fact_es": "Riders on the Storm fue la última canción que The Doors grabaron con Jim Morrison antes de su muerte en París en julio de 1971. Los efectos de lluvia y truenos fueron añadidos para crear un ambiente atmosférico. Morrison susurró la pista vocal sobre su canto regular, creando el efecto fantasmal de doble pista.",
+      "uri_apple_music": "applemusic://track/640047752",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W1hn1pF-ilQ"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:5Th6EdNVhxp0TPX41ZLZk6",
+      "artist": "Blondie",
+      "alt_artists": [
+        "The Pretenders",
+        "The Go-Go's",
+        "Siouxsie and the Banshees"
+      ],
+      "title": "One Way or Another",
+      "chart_info": {
+        "billboard_peak": 24,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Debbie Harry wrote One Way or Another about a real stalker ex-boyfriend who terrorized her before Blondie became famous. Despite the dark subject matter, the song's bouncy energy made it a new wave anthem. The song gained a massive second life in 2013 when One Direction covered it as a mashup for Comic Relief, reaching #1 in the UK.",
+      "fun_fact_de": "Debbie Harry schrieb One Way or Another über einen echten Stalker-Ex-Freund, der sie terrorisierte, bevor Blondie berühmt wurde. Trotz des dunklen Themas machte die spritzige Energie den Song zu einer New-Wave-Hymne. Der Song erlebte 2013 ein großes Comeback, als One Direction ihn für Comic Relief coverten und Platz 1 in Großbritannien erreichten.",
+      "fun_fact_es": "Debbie Harry escribió One Way or Another sobre un ex novio acosador real que la aterrorizó antes de que Blondie se hiciera famosa. A pesar del tema oscuro, la energía alegre de la canción la convirtió en un himno del new wave. La canción tuvo una segunda vida masiva en 2013 cuando One Direction la versionó para Comic Relief, alcanzando el #1 en el Reino Unido.",
+      "uri_apple_music": "applemusic://track/724578931",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4kg9LasvLFE"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:0S3gpZzlT9Hb7CCSV2owX7",
+      "artist": "Ozzy Osbourne",
+      "alt_artists": [
+        "Whitesnake",
+        "Mötley Crüe",
+        "Dokken"
+      ],
+      "title": "Mama, I'm Coming Home",
+      "chart_info": {
+        "billboard_peak": 28,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Mama, I'm Coming Home was co-written with Lemmy Kilmister of Motörhead, an unusual pairing that produced one of Ozzy's most tender songs. The song was written for Ozzy's wife Sharon as an apology for his years of substance abuse and erratic behavior. Zakk Wylde's acoustic guitar intro became one of the most recognizable in 90s rock ballads.",
+      "fun_fact_de": "Mama, I'm Coming Home wurde gemeinsam mit Lemmy Kilmister von Motörhead geschrieben — eine ungewöhnliche Zusammenarbeit, die einen von Ozzys zärtlichsten Songs hervorbrachte. Der Song war als Entschuldigung an seine Frau Sharon für Jahre des Substanzmissbrauchs gedacht. Zakk Wyldes akustisches Gitarrenintro wurde eines der bekanntesten in 90er-Rock-Balladen.",
+      "fun_fact_es": "Mama, I'm Coming Home fue coescrita con Lemmy Kilmister de Motörhead, una combinación inusual que produjo una de las canciones más tiernas de Ozzy. Fue escrita para su esposa Sharon como disculpa por sus años de abuso de sustancias. La intro de guitarra acústica de Zakk Wylde se convirtió en una de las más reconocibles de las baladas de rock de los 90.",
+      "uri_apple_music": "applemusic://track/209695192",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K0siYUjV9UM"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2SiXAy7TuUkycRVbbWDEpo",
+      "artist": "AC/DC",
+      "alt_artists": [
+        "Def Leppard",
+        "Scorpions",
+        "Whitesnake"
+      ],
+      "title": "You Shook Me All Night Long",
+      "chart_info": {
+        "billboard_peak": 35,
+        "weeks_on_chart": 9
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "You Shook Me All Night Long was the first AC/DC single to feature Brian Johnson after the death of Bon Scott. Angus Young wrote the riff and Malcolm Young refined it. Producer Mutt Lange's meticulous production process drove the band crazy — he reportedly made them record the guitar parts hundreds of times. It became AC/DC's first US Top 40 hit.",
+      "fun_fact_de": "You Shook Me All Night Long war die erste AC/DC-Single mit Brian Johnson nach dem Tod von Bon Scott. Angus Young schrieb das Riff und Malcolm Young verfeinerte es. Produzent Mutt Langes akribischer Produktionsprozess trieb die Band in den Wahnsinn — er ließ sie angeblich die Gitarrenparts hundertfach aufnehmen. Es wurde AC/DCs erster US-Top-40-Hit.",
+      "fun_fact_es": "You Shook Me All Night Long fue el primer single de AC/DC con Brian Johnson tras la muerte de Bon Scott. Angus Young escribió el riff y Malcolm Young lo refinó. El meticuloso proceso de producción de Mutt Lange volvió loca a la banda, haciéndoles grabar las partes de guitarra cientos de veces. Se convirtió en el primer Top 40 de AC/DC en EE.UU.",
+      "uri_apple_music": "applemusic://track/574050607",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lo2qQmj0_h4"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:0eFvoRSTTaR2q8bSWVjwfp",
+      "artist": "Guns N' Roses",
+      "alt_artists": [
+        "Mötley Crüe",
+        "Poison",
+        "Skid Row"
+      ],
+      "title": "Welcome to the Jungle",
+      "chart_info": {
+        "billboard_peak": 7,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Slash wrote the main riff while messing around on guitar during a jam session. Axl Rose wrote the lyrics inspired by an encounter with a homeless man in New York City who told him 'You know where you are? You're in the jungle, baby!' The song was initially a commercial failure but gained massive exposure when MTV played the video, launching both the band and the Appetite for Destruction album.",
+      "fun_fact_de": "Slash schrieb das Hauptriff beim Herumspielen während einer Jamsession. Axl Rose schrieb die Texte inspiriert von einer Begegnung mit einem Obdachlosen in New York, der ihm sagte: 'Weißt du, wo du bist? Du bist im Dschungel, Baby!' Der Song war zunächst ein kommerzieller Misserfolg, gewann aber durch MTV massive Bekanntheit.",
+      "fun_fact_es": "Slash escribió el riff principal mientras tocaba durante una sesión. Axl Rose escribió la letra inspirado por un encuentro con un indigente en Nueva York que le dijo: '¿Sabes dónde estás? ¡Estás en la jungla, nena!' La canción fue inicialmente un fracaso comercial pero ganó exposición masiva cuando MTV reprodujo el video.",
+      "uri_apple_music": "applemusic://track/1377826728",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o1tj2zJ2Wvg"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:2fICdpdRotwfmGYzvs8Ngf",
+      "artist": "Scorpions",
+      "alt_artists": [
+        "Accept",
+        "UFO",
+        "Judas Priest"
+      ],
+      "title": "Rock You Like a Hurricane",
+      "chart_info": {
+        "billboard_peak": 25,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The iconic opening riff was written by guitarist Rudolf Schenker using a Gibson Flying V. The lyrics were actually written by an external songwriter, Herman Rarebell, the band's drummer, which was unusual for the Scorpions. The song almost didn't make the album 'Love at First Sting' but producer Dieter Dierks insisted on including it. It became the Scorpions' signature song internationally.",
+      "fun_fact_de": "Das ikonische Eröffnungsriff wurde von Gitarrist Rudolf Schenker auf einer Gibson Flying V geschrieben. Die Texte stammten von Schlagzeuger Herman Rarebell, was für die Scorpions ungewöhnlich war. Der Song wäre fast nicht auf das Album 'Love at First Sting' gekommen, aber Produzent Dieter Dierks bestand darauf. Er wurde international zum Erkennungssong der Scorpions.",
+      "fun_fact_es": "El icónico riff inicial fue escrito por el guitarrista Rudolf Schenker usando una Gibson Flying V. Las letras fueron escritas por el baterista Herman Rarebell, algo inusual para los Scorpions. La canción casi no entra en el álbum 'Love at First Sting,' pero el productor Dieter Dierks insistió en incluirla. Se convirtió en la canción emblemática de los Scorpions internacionalmente.",
+      "uri_apple_music": "applemusic://track/1494043216",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6yP1tcy9a10"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:2PzU4IB8Dr6mxV3lHuaG34",
+      "artist": "The Rolling Stones",
+      "alt_artists": [
+        "The Beatles",
+        "The Who",
+        "The Kinks"
+      ],
+      "title": "(I Can't Get No) Satisfaction",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (1998)",
+        "Rolling Stone - #2 Greatest Song of All Time"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (1998)",
+        "Rolling Stone – Nr. 2 der größten Songs aller Zeiten"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (1998)",
+        "Rolling Stone – #2 Mejor Canción de Todos los Tiempos"
+      ],
+      "fun_fact": "Keith Richards dreamed the guitar riff in his sleep and recorded it on a bedside tape recorder, falling back asleep immediately. The next morning he found 40 minutes of snoring preceded by a brilliant 2-minute riff sketch. Mick Jagger wrote the lyrics in 10 minutes by a motel pool. Richards actually wanted the fuzz-tone riff replaced by a horn section, but was outvoted by the rest of the band.",
+      "fun_fact_de": "Keith Richards träumte das Gitarrenriff im Schlaf und nahm es auf einem Kassettenrekorder am Bett auf. Am nächsten Morgen fand er 40 Minuten Schnarchen, davor eine brillante 2-minütige Riff-Skizze. Mick Jagger schrieb den Text in 10 Minuten am Motel-Pool. Richards wollte das Fuzz-Riff durch Bläser ersetzen, wurde aber überstimmt.",
+      "fun_fact_es": "Keith Richards soñó el riff de guitarra mientras dormía y lo grabó en una grabadora junto a la cama. A la mañana siguiente encontró 40 minutos de ronquidos precedidos por un brillante boceto de riff de 2 minutos. Mick Jagger escribió la letra en 10 minutos junto a la piscina de un motel. Richards quería reemplazar el riff con una sección de vientos, pero fue vetado por el resto de la banda.",
+      "uri_apple_music": "applemusic://track/1440743544",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MSSxnv1_J2g"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:5eYwDBLucWfWI5KsV7oYX2",
+      "artist": "Tom Petty and the Heartbreakers",
+      "alt_artists": [
+        "John Mellencamp",
+        "Bob Seger",
+        "Steve Miller Band"
+      ],
+      "title": "Mary Jane's Last Dance",
+      "chart_info": {
+        "billboard_peak": 14,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Mary Jane's Last Dance was one of the last songs recorded with the original Heartbreakers lineup. The music video, featuring Kim Basinger as a beautiful corpse, was controversial but won the MTV VMA for Best Male Video. Tom Petty has stated the song is not actually about marijuana despite the 'Mary Jane' reference — it's about a girl leaving Indiana for a better life in California.",
+      "fun_fact_de": "Mary Jane's Last Dance war einer der letzten Songs mit der Original-Heartbreakers-Besetzung. Das Musikvideo mit Kim Basinger als schöne Leiche war kontrovers, gewann aber den MTV VMA für das beste männliche Video. Tom Petty betonte, der Song handle trotz des 'Mary Jane'-Bezugs nicht von Marihuana, sondern von einem Mädchen, das Indiana für ein besseres Leben in Kalifornien verlässt.",
+      "fun_fact_es": "Mary Jane's Last Dance fue una de las últimas canciones grabadas con la formación original de los Heartbreakers. El video musical, con Kim Basinger como un hermoso cadáver, fue controvertido pero ganó el MTV VMA al Mejor Video Masculino. Tom Petty declaró que la canción no trata de marihuana a pesar de la referencia a 'Mary Jane', sino de una chica que deja Indiana por una mejor vida en California.",
+      "uri_apple_music": "applemusic://track/1469579721",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aowSGxim_O8"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:5O4Gs450ApGmBTGypjWDeQ",
+      "artist": "Guns N' Roses",
+      "alt_artists": [
+        "Def Leppard",
+        "Bon Jovi",
+        "Whitesnake"
+      ],
+      "title": "November Rain",
+      "chart_info": {
+        "billboard_peak": 3,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [
+        "MTV VMA - Best Cinematography (1992)"
+      ],
+      "awards_de": [
+        "MTV VMA – Beste Kameraführung (1992)"
+      ],
+      "awards_es": [
+        "MTV VMA – Mejor Cinematografía (1992)"
+      ],
+      "fun_fact": "November Rain's music video cost an estimated $1.5 million, making it one of the most expensive ever made at the time. Axl Rose worked on the song for nearly a decade before recording it. The orchestral arrangement features a 60-piece orchestra. The video became the first from the 1990s to surpass 1 billion views on YouTube, achieving this milestone in 2018.",
+      "fun_fact_de": "Das Musikvideo zu November Rain kostete geschätzte 1,5 Millionen Dollar und war damit eines der teuersten seiner Zeit. Axl Rose arbeitete fast ein Jahrzehnt an dem Song. Das Orchesterarrangement umfasst ein 60-köpfiges Orchester. Das Video wurde 2018 das erste aus den 1990ern, das auf YouTube 1 Milliarde Aufrufe überschritt.",
+      "fun_fact_es": "El video musical de November Rain costó aproximadamente 1.5 millones de dólares, convirtiéndolo en uno de los más caros de su época. Axl Rose trabajó en la canción durante casi una década. El arreglo orquestal presenta una orquesta de 60 músicos. El video se convirtió en 2018 en el primero de los años 90 en superar los mil millones de visitas en YouTube.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4_fvXrgAm1A"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:1gzIbdFnGJ226LTl0Cn2SX",
+      "artist": "Billy Idol",
+      "alt_artists": [
+        "Adam Ant",
+        "Duran Duran",
+        "Siouxsie and the Banshees"
+      ],
+      "title": "White Wedding",
+      "chart_info": {
+        "billboard_peak": 36,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Billy Idol wrote White Wedding about his sister's shotgun wedding — she was pregnant at the time, hence the sarcastic 'nice day for a white wedding.' The iconic 'Hey little sister!' hook and Steve Stevens' piercing guitar made it a defining early MTV hit. The video's dark, gothic imagery helped establish the visual language of 1980s music videos.",
+      "fun_fact_de": "Billy Idol schrieb White Wedding über die Muss-Ehe seiner Schwester — sie war schwanger, daher das sarkastische 'nice day for a white wedding.' Der ikonische 'Hey little sister!'-Hook und Steve Stevens' durchdringende Gitarre machten es zu einem frühen MTV-Hit. Die dunkle, gotische Bildsprache des Videos half, die visuelle Sprache der 80er-Musikvideos zu definieren.",
+      "fun_fact_es": "Billy Idol escribió White Wedding sobre la boda apresurada de su hermana — estaba embarazada, de ahí el sarcástico 'nice day for a white wedding.' El icónico gancho '¡Hey little sister!' y la guitarra penetrante de Steve Stevens lo convirtieron en un éxito definitorio del MTV temprano. Las imágenes oscuras y góticas del video ayudaron a establecer el lenguaje visual de los videos musicales de los 80.",
+      "uri_apple_music": "applemusic://track/1443205010",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AAZQaYKZMTI"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:2LawezPeJhN4AWuSB0GtAU",
+      "artist": "Creedence Clearwater Revival",
+      "alt_artists": [
+        "The Band",
+        "Neil Young",
+        "Lynyrd Skynyrd"
+      ],
+      "title": "Have You Ever Seen the Rain",
+      "chart_info": {
+        "billboard_peak": 8,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "John Fogerty has stated that Have You Ever Seen the Rain is about the internal tensions tearing Creedence Clearwater Revival apart at the peak of their success. The 'rain' metaphor represents the unhappiness during a seemingly sunny period. Despite the band's dissolution shortly after, the song became one of the most covered songs in rock history, with versions recorded in dozens of languages.",
+      "fun_fact_de": "John Fogerty hat erklärt, dass Have You Ever Seen the Rain von den internen Spannungen handelt, die Creedence Clearwater Revival auf dem Höhepunkt ihres Erfolgs zerrissen. Die 'Regen'-Metapher steht für Unglück in einer scheinbar sonnigen Zeit. Der Song wurde einer der meistgecoverten in der Rockgeschichte, mit Versionen in Dutzenden von Sprachen.",
+      "fun_fact_es": "John Fogerty ha declarado que Have You Ever Seen the Rain trata sobre las tensiones internas que destrozaban a Creedence Clearwater Revival en la cima de su éxito. La metáfora de la 'lluvia' representa la infelicidad durante un período aparentemente soleado. La canción se convirtió en una de las más versionadas en la historia del rock, con versiones grabadas en docenas de idiomas.",
+      "uri_apple_music": "applemusic://track/1440948088",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u1V8YRJnr4Q"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:18AXbzPzBS8Y3AkgSxzJPb",
+      "artist": "Phil Collins",
+      "alt_artists": [
+        "Peter Gabriel",
+        "Mike + The Mechanics",
+        "Genesis"
+      ],
+      "title": "In the Air Tonight",
+      "chart_info": {
+        "billboard_peak": 19,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The legendary drum fill at 3:40 is one of the most recognizable moments in pop music. Collins wrote the song during his painful divorce, pouring raw emotion into the lyrics. Urban legends falsely claimed it was about witnessing a drowning, but Collins has called this 'a wonderful story which isn't true.' The song gained viral fame in 2007 when a video of a toddler reacting to the drum fill went viral.",
+      "fun_fact_de": "Der legendäre Drum-Fill bei 3:40 ist einer der bekanntesten Momente in der Popmusik. Collins schrieb den Song während seiner schmerzhaften Scheidung. Urbane Legenden behaupteten fälschlicherweise, er handle von einem Ertrinkungsunfall, aber Collins nannte dies 'eine wunderbare Geschichte, die nicht wahr ist.' Der Song erlangte 2007 virale Berühmtheit durch ein Video eines Kleinkinds, das auf den Drum-Fill reagiert.",
+      "fun_fact_es": "El legendario fill de batería en 3:40 es uno de los momentos más reconocibles de la música pop. Collins escribió la canción durante su doloroso divorcio. Las leyendas urbanas afirmaban falsamente que trataba sobre presenciar un ahogamiento, pero Collins lo llamó 'una historia maravillosa que no es cierta.' La canción ganó fama viral en 2007 con un video de un niño reaccionando al fill de batería.",
+      "uri_apple_music": "applemusic://track/1605606761",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cuHvKksNriE"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:4YPhn26bIFm2KUkL1VLzQG",
+      "artist": "Weezer",
+      "alt_artists": [
+        "Jimmy Eat World",
+        "Third Eye Blind",
+        "The Offspring"
+      ],
+      "title": "Say It Ain't So",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Rivers Cuomo wrote Say It Ain't So after finding a beer bottle in his refrigerator and fearing his stepfather had become an alcoholic like his biological father. The intensely personal lyrics about the cycle of alcoholism in his family were set against a deceptively catchy power-pop arrangement. Despite never charting on the Hot 100 as a single, it became one of the most enduring alternative rock songs of the 1990s.",
+      "fun_fact_de": "Rivers Cuomo schrieb Say It Ain't So, nachdem er eine Bierflasche in seinem Kühlschrank fand und befürchtete, sein Stiefvater sei wie sein leiblicher Vater Alkoholiker geworden. Die intensiv persönlichen Texte über den Kreislauf des Alkoholismus wurden in ein eingängiges Power-Pop-Arrangement eingebettet. Obwohl der Song nie als Single in den Hot 100 chartete, wurde er einer der beständigsten Alternative-Rock-Songs der 90er.",
+      "fun_fact_es": "Rivers Cuomo escribió Say It Ain't So después de encontrar una botella de cerveza en su refrigerador y temer que su padrastro se hubiera vuelto alcohólico como su padre biológico. Las letras intensamente personales sobre el ciclo del alcoholismo fueron envueltas en un arreglo de power-pop engañosamente pegadizo. Aunque nunca entró al Hot 100, se convirtió en una de las canciones de rock alternativo más perdurables de los 90.",
+      "uri_apple_music": "applemusic://track/1440879551",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ENXvZ9YRjbo"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:1UBQ5GK8JaQjm5VbkBZY66",
+      "artist": "ZZ Top",
+      "alt_artists": [
+        "Stevie Ray Vaughan",
+        "George Thorogood",
+        "Ted Nugent"
+      ],
+      "title": "Sharp Dressed Man",
+      "chart_info": {
+        "billboard_peak": 56,
+        "weeks_on_chart": 7
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Sharp Dressed Man was part of ZZ Top's massive Eliminator album that transformed them from a blues-rock band into MTV superstars. The music video featuring the iconic red 1933 Ford Coupe (the 'Eliminator' car) and mysterious women became an MTV staple. Despite Billy Gibbons and Dusty Hill's legendary long beards, drummer Frank Beard is ironically the only member without a beard.",
+      "fun_fact_de": "Sharp Dressed Man war Teil von ZZ Tops Eliminator-Album, das sie von einer Blues-Rock-Band zu MTV-Superstars machte. Das Musikvideo mit dem ikonischen roten 1933er Ford Coupé und mysteriösen Frauen wurde zum MTV-Dauerbrenner. Trotz der legendären langen Bärte von Billy Gibbons und Dusty Hill ist Schlagzeuger Frank Beard ironischerweise das einzige Mitglied ohne Bart.",
+      "fun_fact_es": "Sharp Dressed Man fue parte del exitoso álbum Eliminator de ZZ Top que los transformó de banda de blues-rock a superestrellas de MTV. El video musical con el icónico Ford Coupé rojo de 1933 se convirtió en un clásico de MTV. A pesar de las legendarias barbas largas de Billy Gibbons y Dusty Hill, el baterista Frank Beard es irónicamente el único miembro sin barba.",
+      "uri_apple_music": "applemusic://track/1728071582",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7wRHBLwpASw"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:1i6N76fftMZhijOzFQ5ZtL",
+      "artist": "Talking Heads",
+      "alt_artists": [
+        "Devo",
+        "Television",
+        "Wire"
+      ],
+      "title": "Psycho Killer",
+      "chart_info": {
+        "billboard_peak": 92,
+        "weeks_on_chart": 3
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "David Byrne wrote Psycho Killer when he was a student at the Rhode Island School of Design, inspired by Norman Bates from 'Psycho' and Alice Cooper's theatrical shock rock. The song includes French lyrics — 'Qu'est-ce que c'est' and 'Fa-fa-fa-fa-fa' — that Byrne added to make the killer character seem more cultured and unsettling. Tina Weymouth's bass line is considered one of the greatest in rock history.",
+      "fun_fact_de": "David Byrne schrieb Psycho Killer als Student an der Rhode Island School of Design, inspiriert von Norman Bates aus 'Psycho' und Alice Coopers theatralischem Schockrock. Der Song enthält französische Texte, die Byrne hinzufügte, um den Killer kultivierter und verstörender wirken zu lassen. Tina Weymouths Basslinie gilt als eine der größten in der Rockgeschichte.",
+      "fun_fact_es": "David Byrne escribió Psycho Killer cuando era estudiante en la Escuela de Diseño de Rhode Island, inspirado por Norman Bates de 'Psycho' y el rock de shock teatral de Alice Cooper. La canción incluye letras en francés que Byrne añadió para hacer que el personaje del asesino pareciera más culto e inquietante. La línea de bajo de Tina Weymouth es considerada una de las mejores en la historia del rock.",
+      "uri_apple_music": "applemusic://track/20833655",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CJ54eImz88w"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:2N2yrmodOnVF10mKvItC9P",
+      "artist": "Guns N' Roses",
+      "alt_artists": [
+        "Skid Row",
+        "Tesla",
+        "Warrant"
+      ],
+      "title": "Don't Cry",
+      "chart_info": {
+        "billboard_peak": 10,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Don't Cry was one of the first songs Axl Rose and Izzy Stradlin wrote together in 1985, years before it was officially recorded. Two versions were released simultaneously on Use Your Illusion I and II, with identical music but different lyrics. Shannon Hoon of Blind Melon provided backing vocals — the song is one of his most notable guest appearances before his death in 1995.",
+      "fun_fact_de": "Don't Cry war einer der ersten Songs, die Axl Rose und Izzy Stradlin 1985 zusammen schrieben, Jahre vor der offiziellen Aufnahme. Zwei Versionen wurden gleichzeitig auf Use Your Illusion I und II veröffentlicht, mit identischer Musik aber unterschiedlichen Texten. Shannon Hoon von Blind Melon sang Backing Vocals — einer seiner bekanntesten Gastauftritte vor seinem Tod 1995.",
+      "fun_fact_es": "Don't Cry fue una de las primeras canciones que Axl Rose e Izzy Stradlin escribieron juntos en 1985, años antes de su grabación oficial. Dos versiones fueron lanzadas simultáneamente en Use Your Illusion I y II, con música idéntica pero letras diferentes. Shannon Hoon de Blind Melon proporcionó coros, una de sus apariciones más notables antes de su muerte en 1995.",
+      "uri_apple_music": "applemusic://track/1440896173",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zRIbf6JqkNc"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7wCmS9TTVUcIhRalDYFgPy",
+      "artist": "Pixies",
+      "alt_artists": [
+        "Sonic Youth",
+        "Dinosaur Jr.",
+        "The Breeders"
+      ],
+      "title": "Where Is My Mind?",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Black Francis wrote Where Is My Mind? while scuba diving in the Caribbean and a small fish kept following him around. The song was relatively obscure until it was used in the final scene of the 1999 film 'Fight Club,' where buildings collapse to its haunting melody. Kurt Cobain cited the Pixies as a major influence, calling 'Smells Like Teen Spirit' his attempt to write a Pixies song.",
+      "fun_fact_de": "Black Francis schrieb Where Is My Mind? beim Tauchen in der Karibik, als ein kleiner Fisch ihm immer wieder folgte. Der Song war relativ unbekannt, bis er in der Schlussszene des Films 'Fight Club' (1999) verwendet wurde, wo Gebäude zu seiner eindringlichen Melodie einstürzen. Kurt Cobain nannte die Pixies einen großen Einfluss und bezeichnete 'Smells Like Teen Spirit' als seinen Versuch, einen Pixies-Song zu schreiben.",
+      "fun_fact_es": "Black Francis escribió Where Is My Mind? mientras buceaba en el Caribe y un pequeño pez lo seguía. La canción era relativamente desconocida hasta que fue usada en la escena final de la película 'Fight Club' (1999), donde edificios se derrumban con su melodía evocadora. Kurt Cobain citó a los Pixies como una gran influencia, llamando a 'Smells Like Teen Spirit' su intento de escribir una canción de los Pixies.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OJ62RzJkYUo"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:54bm2e3tk8cliUz3VSdCPZ",
+      "artist": "Metallica",
+      "alt_artists": [
+        "Megadeth",
+        "Slayer",
+        "Anthrax"
+      ],
+      "title": "Master of Puppets",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2016)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2016)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2016)"
+      ],
+      "fun_fact": "Master of Puppets is about drug addiction — the 'master' is drugs controlling the user like a puppet. At over 8 minutes long, it was never released as a single but became Metallica's most beloved song. It gained a massive resurgence in 2022 when it was prominently featured in Season 4 of 'Stranger Things,' with Eddie Munson's guitar scene introducing the song to a new generation.",
+      "fun_fact_de": "Master of Puppets handelt von Drogensucht — der 'Master' sind Drogen, die den Nutzer wie eine Marionette kontrollieren. Mit über 8 Minuten wurde er nie als Single veröffentlicht, wurde aber Metallicas beliebtester Song. Er erlebte 2022 ein massives Revival, als er in Staffel 4 von 'Stranger Things' prominent auftauchte und den Song einer neuen Generation vorstellte.",
+      "fun_fact_es": "Master of Puppets trata sobre la adicción a las drogas — el 'maestro' son las drogas controlando al usuario como una marioneta. Con más de 8 minutos, nunca fue lanzada como single pero se convirtió en la canción más querida de Metallica. Tuvo un resurgimiento masivo en 2022 cuando fue destacada en la Temporada 4 de 'Stranger Things', presentando la canción a una nueva generación.",
+      "uri_apple_music": "applemusic://track/1440901431",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E0ozmU9cJDg"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:2EqlS6tkEnglzr7tkKAAYD",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Who",
+        "The Kinks"
+      ],
+      "title": "Come Together",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "John Lennon originally wrote Come Together as a campaign song for Timothy Leary's gubernatorial run in California. The lyrics are deliberately surreal and nonsensical, with Lennon later admitting he was trying to write a song with no real meaning. The bass line by Paul McCartney is considered one of his best. Publisher Morris Levy sued Lennon for borrowing from Chuck Berry's 'You Can't Catch Me.'",
+      "fun_fact_de": "John Lennon schrieb Come Together ursprünglich als Wahlkampfsong für Timothy Learys Gouverneurskandidatur in Kalifornien. Die Texte sind absichtlich surreal und sinnlos. Die Basslinie von Paul McCartney gilt als eine seiner besten. Verleger Morris Levy verklagte Lennon wegen Ähnlichkeiten mit Chuck Berrys 'You Can't Catch Me.'",
+      "fun_fact_es": "John Lennon escribió originalmente Come Together como canción de campaña para la candidatura a gobernador de Timothy Leary en California. Las letras son deliberadamente surrealistas y sin sentido. La línea de bajo de Paul McCartney es considerada una de sus mejores. El editor Morris Levy demandó a Lennon por tomar prestado de 'You Can't Catch Me' de Chuck Berry.",
+      "uri_apple_music": "applemusic://track/1474815799",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=45cYwDMibGo"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:0emHuukZSuaOzOlsAWHj2W",
+      "artist": "The Guess Who",
+      "alt_artists": [
+        "Steppenwolf",
+        "Grand Funk Railroad",
+        "Three Dog Night"
+      ],
+      "title": "American Woman",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "American Woman was improvised live on stage in Kitchener, Ontario when guitarist Randy Bachman broke a string and started jamming a new riff while his guitar was being restrung. The crowd went wild, so the band decided to develop it into a full song. Despite being Canadian, the song's anti-American sentiment (critiquing the Vietnam War era) got it banned from the White House during the Nixon administration.",
+      "fun_fact_de": "American Woman wurde live auf der Bühne in Kitchener, Ontario improvisiert, als Gitarrist Randy Bachman eine Saite riss und während der Neubespannung ein neues Riff jammte. Das Publikum rastete aus, und die Band entwickelte es zu einem vollständigen Song. Trotz kanadischer Herkunft wurde der Song wegen seiner anti-amerikanischen Stimmung im Weißen Haus unter Nixon verboten.",
+      "fun_fact_es": "American Woman fue improvisada en vivo en Kitchener, Ontario, cuando el guitarrista Randy Bachman rompió una cuerda y empezó a improvisar un nuevo riff mientras le cambiaban la cuerda. El público enloqueció, así que la banda decidió desarrollarla. A pesar de ser canadienses, el sentimiento anti-estadounidense de la canción hizo que fuera prohibida en la Casa Blanca durante la administración Nixon.",
+      "uri_apple_music": "applemusic://track/1514642238",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3r_qd2yxIsM"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:3k9i7UzeSUYWIfUZFeFDUd",
+      "artist": "Derek and the Dominos",
+      "alt_artists": [
+        "The Allman Brothers Band",
+        "Cream",
+        "Blind Faith"
+      ],
+      "title": "Layla",
+      "chart_info": {
+        "billboard_peak": 10,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2000)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2000)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2000)"
+      ],
+      "fun_fact": "Eric Clapton wrote Layla about his unrequited love for Pattie Boyd, who was married to his best friend George Harrison at the time. The title was inspired by the Persian love story 'Layla and Majnun.' Duane Allman's guest guitar work created one of rock's most famous dual-lead guitar performances. The song's extended piano coda was written by drummer Jim Gordon and almost became a separate track.",
+      "fun_fact_de": "Eric Clapton schrieb Layla über seine unerwiderte Liebe zu Pattie Boyd, die damals mit seinem besten Freund George Harrison verheiratet war. Der Titel wurde von der persischen Liebesgeschichte 'Layla und Madschnun' inspiriert. Duane Allmans Gastgitarrenarbeit schuf eine der berühmtesten Dual-Lead-Gitarren-Darbietungen. Das Piano-Coda wurde von Schlagzeuger Jim Gordon geschrieben.",
+      "fun_fact_es": "Eric Clapton escribió Layla sobre su amor no correspondido por Pattie Boyd, quien estaba casada con su mejor amigo George Harrison. El título fue inspirado por la historia de amor persa 'Layla y Majnún.' El trabajo de guitarra invitada de Duane Allman creó una de las interpretaciones más famosas de guitarra dual. La coda de piano fue escrita por el baterista Jim Gordon.",
+      "uri_apple_music": "",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_gVCDP78hb0"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:1OxcIUqVmVYxT6427tbhDW",
+      "artist": "Lenny Kravitz",
+      "alt_artists": [
+        "Ben Harper",
+        "Gary Clark Jr.",
+        "Seal"
+      ],
+      "title": "Fly Away",
+      "chart_info": {
+        "billboard_peak": 12,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [
+        "Grammy - Best Male Rock Vocal Performance (2000)"
+      ],
+      "awards_de": [
+        "Grammy – Beste männliche Rock-Gesangsdarbietung (2000)"
+      ],
+      "awards_es": [
+        "Grammy – Mejor Interpretación Vocal de Rock Masculina (2000)"
+      ],
+      "fun_fact": "Fly Away was written and recorded in just one afternoon. Lenny Kravitz came up with the riff while jamming in his home studio and laid down all the instruments himself. The song became his biggest commercial hit and was heavily used in TV commercials, video games, and movie soundtracks. It helped solidify Kravitz's reputation as a modern classic rock revivalist.",
+      "fun_fact_de": "Fly Away wurde an nur einem Nachmittag geschrieben und aufgenommen. Lenny Kravitz erfand das Riff beim Jammen in seinem Heimstudio und spielte alle Instrumente selbst ein. Der Song wurde sein größter kommerzieller Hit und wurde häufig in TV-Werbung, Videospielen und Filmsoundtracks verwendet.",
+      "fun_fact_es": "Fly Away fue escrita y grabada en una sola tarde. Lenny Kravitz creó el riff mientras improvisaba en su estudio casero y grabó todos los instrumentos él mismo. La canción se convirtió en su mayor éxito comercial y fue ampliamente utilizada en comerciales de televisión, videojuegos y bandas sonoras.",
+      "uri_apple_music": "applemusic://track/723338326",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EvuL5jyCHOw"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4YMQXzscifAREG0a7KNGhB",
+      "artist": "Santana",
+      "alt_artists": [
+        "Peter Green's Fleetwood Mac",
+        "Gary Moore",
+        "Los Lobos"
+      ],
+      "title": "Black Magic Woman",
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Black Magic Woman was originally written and recorded by Peter Green of Fleetwood Mac in 1968, but it was Santana's Latin-rock arrangement that turned it into a worldwide hit. Carlos Santana fused the blues song with Afro-Cuban rhythms and his signature sustain-heavy guitar tone. Most people don't realize it's a Fleetwood Mac cover, which speaks to how definitively Santana reinvented it.",
+      "fun_fact_de": "Black Magic Woman wurde ursprünglich 1968 von Peter Green von Fleetwood Mac geschrieben und aufgenommen, aber Santanas Latin-Rock-Arrangement machte es zum Welthit. Carlos Santana verschmolz den Blues-Song mit afro-kubanischen Rhythmen und seinem typischen Gitarrensound. Die meisten wissen nicht, dass es ein Fleetwood-Mac-Cover ist.",
+      "fun_fact_es": "Black Magic Woman fue originalmente escrita y grabada por Peter Green de Fleetwood Mac en 1968, pero fue el arreglo de rock latino de Santana lo que la convirtió en un éxito mundial. Carlos Santana fusionó la canción de blues con ritmos afrocubanos y su distintivo tono de guitarra. La mayoría no sabe que es una versión de Fleetwood Mac.",
+      "uri_apple_music": "applemusic://track/897791068",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9wT1s96JIb0"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:0upLyFR8Rr52ZpMp5esQoq",
+      "artist": "Van Halen",
+      "alt_artists": [
+        "Def Leppard",
+        "Quiet Riot",
+        "Dokken"
+      ],
+      "title": "You Really Got Me",
+      "chart_info": {
+        "billboard_peak": 36,
+        "weeks_on_chart": 9
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Van Halen's version of You Really Got Me (originally by The Kinks in 1964) was their debut single and introduced Eddie Van Halen's revolutionary guitar technique to the world. Persistent rumors claimed Gene Simmons of KISS paid for the original demo recordings. Producer Ted Templeman wanted to keep the raw live energy, so the guitar track was recorded in just one or two takes.",
+      "fun_fact_de": "Van Halens Version von You Really Got Me (ursprünglich von The Kinks 1964) war ihre Debütsingle und stellte Eddie Van Halens revolutionäre Gitarrentechnik der Welt vor. Hartnäckige Gerüchte besagten, Gene Simmons von KISS habe die Originalaufnahmen finanziert. Produzent Ted Templeman wollte die rohe Live-Energie beibehalten, weshalb die Gitarrenspur in nur ein bis zwei Takes aufgenommen wurde.",
+      "fun_fact_es": "La versión de Van Halen de You Really Got Me (originalmente de The Kinks en 1964) fue su single debut e introdujo la revolucionaria técnica de guitarra de Eddie Van Halen al mundo. Persistentes rumores afirmaban que Gene Simmons de KISS pagó las grabaciones de demo originales. El productor Ted Templeman quiso mantener la energía cruda en vivo, así que la pista de guitarra fue grabada en una o dos tomas.",
+      "uri_apple_music": "applemusic://track/976820537",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9X6e7uctAww"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:4DMKwE2E2iYDKY01C335Uw",
+      "artist": "Kansas",
+      "alt_artists": [
+        "Styx",
+        "REO Speedwagon",
+        "Journey"
+      ],
+      "title": "Carry on Wayward Son",
+      "chart_info": {
+        "billboard_peak": 11,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Kerry Livgren wrote Carry on Wayward Son during a spiritual crisis, exploring themes of searching for life's meaning. The song's complex arrangement, with its shifting time signatures and multi-part harmonies, showcases Kansas's progressive rock roots. It became the band's highest-charting single and has been used as the unofficial theme song of the TV series 'Supernatural,' playing in every season finale.",
+      "fun_fact_de": "Kerry Livgren schrieb Carry on Wayward Son während einer spirituellen Krise über die Suche nach dem Sinn des Lebens. Das komplexe Arrangement mit wechselnden Taktarten und mehrstimmigen Harmonien zeigt Kansas' Progressive-Rock-Wurzeln. Der Song wurde zum inoffiziellen Titelsong der TV-Serie 'Supernatural' und wurde in jedem Staffelfinale gespielt.",
+      "fun_fact_es": "Kerry Livgren escribió Carry on Wayward Son durante una crisis espiritual, explorando temas de búsqueda del sentido de la vida. El complejo arreglo con cambios de compás y armonías multipartitas muestra las raíces de rock progresivo de Kansas. Se convirtió en la canción tema no oficial de la serie 'Supernatural', sonando en cada final de temporada.",
+      "uri_apple_music": "applemusic://track/158580367",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P5ZJui3aPoQ"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:45Ia1U4KtIjAPPU7Wv1Sea",
+      "artist": "Lenny Kravitz",
+      "alt_artists": [
+        "Terence Trent D'Arby",
+        "Living Colour",
+        "Seal"
+      ],
+      "title": "Are You Gonna Go My Way",
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Gold (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Are You Gonna Go My Way was written in just 20 minutes by Lenny Kravitz and Craig Ross. Kravitz played most instruments on the recording and produced it himself at his home studio. The song's Hendrix-influenced riff and explosive energy made Kravitz a global rock star. The music video's distinctive look was inspired by 1970s rock concert footage and helped define the retro-rock aesthetic of the early 90s.",
+      "fun_fact_de": "Are You Gonna Go My Way wurde in nur 20 Minuten von Lenny Kravitz und Craig Ross geschrieben. Kravitz spielte die meisten Instrumente und produzierte den Song selbst in seinem Heimstudio. Das Hendrix-inspirierte Riff und die explosive Energie machten Kravitz zum globalen Rockstar. Die Ästhetik des Musikvideos war von 70er-Jahre-Konzertaufnahmen inspiriert.",
+      "fun_fact_es": "Are You Gonna Go My Way fue escrita en solo 20 minutos por Lenny Kravitz y Craig Ross. Kravitz tocó la mayoría de los instrumentos y la produjo él mismo en su estudio casero. El riff influenciado por Hendrix y la energía explosiva convirtieron a Kravitz en una estrella de rock global. La estética del video musical fue inspirada por imágenes de conciertos de los años 70.",
+      "uri_apple_music": "applemusic://track/712353794",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BnqUK7XF54k"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:7IhkWF9zpiYKlU7CxHxYT9",
+      "artist": "Free",
+      "alt_artists": [
+        "Bad Company",
+        "Humble Pie",
+        "Foghat"
+      ],
+      "title": "All Right Now",
+      "chart_info": {
+        "billboard_peak": 4,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Paul Rodgers wrote All Right Now in the back of a van after a disappointing gig in Durham where the audience barely responded. The band needed an upbeat, simple rock song to get crowds moving. Andy Fraser's bass riff became one of the most recognized in rock. The song has been played over 3 million times on UK radio alone, making it one of the most-aired tracks in British broadcasting history.",
+      "fun_fact_de": "Paul Rodgers schrieb All Right Now hinten in einem Van nach einem enttäuschenden Auftritt in Durham, bei dem das Publikum kaum reagierte. Die Band brauchte einen eingängigen Rocksong. Andy Frasers Bassriff wurde eines der bekanntesten im Rock. Der Song wurde allein im britischen Radio über 3 Millionen Mal gespielt — einer der meistgespielten Tracks der britischen Radiogeschichte.",
+      "fun_fact_es": "Paul Rodgers escribió All Right Now en la parte trasera de una furgoneta después de un concierto decepcionante en Durham donde el público apenas respondió. La banda necesitaba una canción de rock sencilla y animada. El riff de bajo de Andy Fraser se convirtió en uno de los más reconocidos del rock. La canción se ha reproducido más de 3 millones de veces solo en la radio del Reino Unido.",
+      "uri_apple_music": "applemusic://track/1440833833",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YExuLkIaQ7U"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:2EoOZnxNgtmZaD8uUmz2nD",
+      "artist": "Soundgarden",
+      "alt_artists": [
+        "Alice in Chains",
+        "Pearl Jam",
+        "Stone Temple Pilots"
+      ],
+      "title": "Black Hole Sun",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 12,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Best Hard Rock Performance (1995)",
+        "Grammy - Best Metal Performance (1995)"
+      ],
+      "awards_de": [
+        "Grammy – Beste Hard-Rock-Darbietung (1995)",
+        "Grammy – Beste Metal-Darbietung (1995)"
+      ],
+      "awards_es": [
+        "Grammy – Mejor Interpretación de Hard Rock (1995)",
+        "Grammy – Mejor Interpretación de Metal (1995)"
+      ],
+      "fun_fact": "Chris Cornell wrote Black Hole Sun after waking from a dream. The surreal music video, directed by Howard Greenhalgh, became one of the most iconic of the 90s. Despite being associated with grunge, the song has a Beatles-esque melodic quality that Cornell intentionally crafted.",
+      "fun_fact_de": "Chris Cornell schrieb Black Hole Sun nach dem Aufwachen aus einem Traum. Das surreale Musikvideo wurde zu einem der ikonischsten der 90er. Trotz der Grunge-Assoziation hat der Song eine Beatles-artige melodische Qualität, die Cornell bewusst gestaltete.",
+      "fun_fact_es": "Chris Cornell escribió Black Hole Sun después de despertar de un sueño. El surrealista video musical se convirtió en uno de los más icónicos de los 90. A pesar de asociarse con el grunge, la canción tiene una calidad melódica similar a los Beatles que Cornell creó intencionalmente.",
+      "uri_apple_music": "applemusic://track/1423646241",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3mbBbFH9fAg"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:7Jh1bpe76CNTCgdgAdBw4Z",
+      "artist": "David Bowie",
+      "alt_artists": [
+        "Iggy Pop",
+        "Lou Reed",
+        "Roxy Music"
+      ],
+      "title": "Heroes",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 24,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Bowie was inspired by seeing producer Tony Visconti kissing backup singer Antonia Maass by the Berlin Wall. The couple knew guards might shoot, making their kiss an act of defiance. Robert Fripp's guitar was recorded with three microphones at different distances, creating the song's massive, layered sound. It was a commercial flop on release but became Bowie's most beloved song.",
+      "fun_fact_de": "Bowie wurde inspiriert, als er sah, wie Produzent Tony Visconti die Backgroundsängerin Antonia Maass an der Berliner Mauer küsste. Robert Fripps Gitarre wurde mit drei Mikrofonen in verschiedenen Entfernungen aufgenommen, was den massiven Sound erzeugte. Es war zunächst ein kommerzieller Flop, wurde aber Bowies beliebtester Song.",
+      "fun_fact_es": "Bowie se inspiró al ver al productor Tony Visconti besando a la cantante Antonia Maass junto al Muro de Berlín. La guitarra de Robert Fripp se grabó con tres micrófonos a diferentes distancias, creando el sonido masivo. Fue un fracaso comercial pero se convirtió en la canción más querida de Bowie.",
+      "uri_apple_music": "applemusic://track/929304293",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lXgkuM2NhYI"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:3uz0O62HqYoyRiWZjS61KK",
+      "artist": "KISS",
+      "alt_artists": [
+        "Alice Cooper",
+        "Aerosmith",
+        "Ted Nugent"
+      ],
+      "title": "Detroit Rock City",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 0,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The song was inspired by the death of a KISS fan who was killed in a car accident on his way to a KISS concert. The intro features sound effects of a car crash and a radio DJ. Paul Stanley and Bob Ezrin wrote it as the opening track for Destroyer, making it one of KISS's most ambitious recordings.",
+      "fun_fact_de": "Der Song wurde vom Tod eines KISS-Fans inspiriert, der bei einem Autounfall auf dem Weg zu einem KISS-Konzert starb. Das Intro enthält Soundeffekte eines Autounfalls und eines Radio-DJs. Paul Stanley und Bob Ezrin schrieben ihn als Eröffnungstrack für Destroyer.",
+      "fun_fact_es": "La canción se inspiró en la muerte de un fan de KISS que murió en un accidente de auto camino a un concierto. La intro incluye efectos de sonido de un choque y un DJ de radio. Paul Stanley y Bob Ezrin la escribieron como tema de apertura de Destroyer.",
+      "uri_apple_music": "applemusic://track/1442779949",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4okh7Y25dmQ"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:3IOQZRcEkplCXg6LofKqE9",
+      "artist": "Black Sabbath",
+      "alt_artists": [
+        "Deep Purple",
+        "Led Zeppelin",
+        "Uriah Heep"
+      ],
+      "title": "Iron Man",
+      "chart_info": {
+        "billboard_peak": 52,
+        "uk_peak": 0,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The song has nothing to do with the Marvel character. Tony Iommi came up with the main riff and Ozzy Osbourne thought it sounded like 'a big iron bloke walking about.' Bill Ward's heavy guitar slide creates the voice-like intro. It was Black Sabbath's only US Billboard Hot 100 hit and later gained new fame through the Marvel Iron Man films.",
+      "fun_fact_de": "Der Song hat nichts mit der Marvel-Figur zu tun. Tony Iommi erfand das Hauptriff und Ozzy Osbourne fand, es klinge wie 'ein großer Eisenkerl, der herumläuft.' Es war Black Sabbaths einziger US-Billboard-Hot-100-Hit und gewann später durch die Marvel-Iron-Man-Filme neue Berühmtheit.",
+      "fun_fact_es": "La canción no tiene nada que ver con el personaje de Marvel. Tony Iommi creó el riff principal y Ozzy Osbourne pensó que sonaba como 'un gran tipo de hierro caminando.' Fue el único éxito de Black Sabbath en el Billboard Hot 100 y ganó nueva fama con las películas de Iron Man de Marvel.",
+      "uri_apple_music": "applemusic://track/1533659672",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hILTjSgv-2k"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:1oYYd2gnWZYrt89EBXdFiO",
+      "artist": "The Police",
+      "alt_artists": [
+        "The Clash",
+        "Blondie",
+        "Talking Heads"
+      ],
+      "title": "Message In A Bottle",
+      "chart_info": {
+        "billboard_peak": 74,
+        "uk_peak": 1,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Andy Summers' guitar part uses a distinctive arpeggiated pattern played on all six strings. Sting wrote the lyrics about isolation and the hope of connection — the metaphor of sending a message in a bottle and being amazed to find 'a hundred billion bottles washed up on the shore.' It was The Police's first UK #1.",
+      "fun_fact_de": "Andy Summers' Gitarrenpart verwendet ein markantes arpeggiertes Muster über alle sechs Saiten. Sting schrieb die Texte über Isolation und die Hoffnung auf Verbindung. Es war der erste UK-Nummer-1-Hit von The Police.",
+      "fun_fact_es": "La parte de guitarra de Andy Summers usa un patrón arpegiado distintivo en las seis cuerdas. Sting escribió las letras sobre el aislamiento y la esperanza de conexión. Fue el primer #1 de The Police en el Reino Unido.",
+      "uri_apple_music": "applemusic://track/1440744163",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MbXWrmQW-OE"
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:2aoo2jlRnM3A0NyLQqMN2f",
+      "artist": "Jimi Hendrix",
+      "alt_artists": [
+        "Eric Clapton",
+        "Jeff Beck",
+        "Cream"
+      ],
+      "title": "All Along the Watchtower",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": 5,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "This is a cover of Bob Dylan's original, but Hendrix's version became so definitive that Dylan himself adopted Hendrix's arrangement for his own live performances. Dylan said 'It overwhelmed me, really. He had such talent, he could find things inside a song and vigorously develop them.' It was the last single released during Hendrix's lifetime.",
+      "fun_fact_de": "Dies ist ein Cover von Bob Dylans Original, aber Hendrix' Version wurde so prägend, dass Dylan selbst Hendrix' Arrangement für seine eigenen Live-Auftritte übernahm. Dylan sagte: 'Es hat mich wirklich überwältigt.' Es war die letzte zu Hendrix' Lebzeiten veröffentlichte Single.",
+      "fun_fact_es": "Es una versión del original de Bob Dylan, pero la versión de Hendrix se volvió tan definitiva que el propio Dylan adoptó el arreglo de Hendrix para sus actuaciones en vivo. Dylan dijo: 'Me abrumó, realmente.' Fue el último single publicado en vida de Hendrix.",
+      "uri_apple_music": "applemusic://track/344803162",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TLV4_xaYynY"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0dOg1ySSI7NkpAe89Zo0b9",
+      "artist": "Bruce Springsteen",
+      "alt_artists": [
+        "John Mellencamp",
+        "Tom Petty",
+        "Bob Seger"
+      ],
+      "title": "Born in the U.S.A.",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": 5,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Despite its anthemic chorus, the song is a bitter protest about the treatment of Vietnam veterans. Ronald Reagan's campaign tried to use it as a patriotic anthem in 1984, completely misunderstanding the lyrics. Springsteen refused. The album of the same name spent 84 weeks in the Billboard top 10.",
+      "fun_fact_de": "Trotz des hymnischen Refrains ist der Song ein bitterer Protest über die Behandlung von Vietnam-Veteranen. Ronald Reagans Wahlkampf versuchte ihn 1984 als patriotische Hymne zu nutzen und missverstand die Texte völlig. Springsteen lehnte ab.",
+      "fun_fact_es": "A pesar de su estribillo himno, la canción es una amarga protesta sobre el trato a los veteranos de Vietnam. La campaña de Ronald Reagan intentó usarla como himno patriótico en 1984, malinterpretando completamente las letras. Springsteen se negó.",
+      "uri_apple_music": "applemusic://track/203708455",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tRx212PUa4g"
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:5y4761pjcksXs1hNsCmc4n",
+      "artist": "Cream",
+      "alt_artists": [
+        "Jimi Hendrix",
+        "The Yardbirds",
+        "Jeff Beck Group"
+      ],
+      "title": "Sunshine Of Your Love",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 25,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Jack Bruce and Pete Brown wrote the riff after staying up all night at a Jimi Hendrix concert. Eric Clapton added the guitar figure the next day. The iconic descending riff was inspired by the blue note pattern. It became Cream's biggest hit and helped define the power trio format in rock music.",
+      "fun_fact_de": "Jack Bruce und Pete Brown schrieben das Riff, nachdem sie bei einem Jimi-Hendrix-Konzert die ganze Nacht aufgeblieben waren. Eric Clapton fügte am nächsten Tag die Gitarrenfigur hinzu. Es wurde Creams größter Hit und half, das Power-Trio-Format im Rock zu definieren.",
+      "fun_fact_es": "Jack Bruce y Pete Brown escribieron el riff después de pasar toda la noche en un concierto de Jimi Hendrix. Eric Clapton añadió la figura de guitarra al día siguiente. Se convirtió en el mayor éxito de Cream y ayudó a definir el formato de power trio en el rock.",
+      "uri_apple_music": "applemusic://track/1489665757",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f3y8jf01UY8"
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:3okPiJwW5nCLpug12sCL4p",
+      "artist": "The Kinks",
+      "alt_artists": [
+        "The Who",
+        "The Animals",
+        "The Yardbirds"
+      ],
+      "title": "All Day and All of the Night",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 2,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US, compilation)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Often compared to their earlier hit 'You Really Got Me,' the song's aggressive power chord riff is considered a precursor to punk rock and heavy metal. Ray Davies wrote it as a sequel. The Doors' 'Hello, I Love You' was later accused of being too similar, though no lawsuit was filed.",
+      "fun_fact_de": "Oft mit ihrem früheren Hit 'You Really Got Me' verglichen, gilt das aggressive Powerchord-Riff als Vorläufer von Punk Rock und Heavy Metal. Ray Davies schrieb es als Fortsetzung. Den Doors' 'Hello, I Love You' wurde später vorgeworfen, zu ähnlich zu sein.",
+      "fun_fact_es": "A menudo comparada con su éxito anterior 'You Really Got Me,' el agresivo riff de power chords se considera precursor del punk rock y el heavy metal. Ray Davies la escribió como secuela. 'Hello, I Love You' de The Doors fue acusada de ser demasiado similar.",
+      "uri_apple_music": "applemusic://track/1436281765",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fOGMRnKl5co"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:4VqPOruhp5EdPBeR92t6lQ",
+      "artist": "Muse",
+      "alt_artists": [
+        "Radiohead",
+        "Arctic Monkeys",
+        "Foo Fighters"
+      ],
+      "title": "Uprising",
+      "chart_info": {
+        "billboard_peak": 37,
+        "uk_peak": 9,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Matt Bellamy wrote the song as a call to rebellion against political apathy and corrupt authority. The glam rock-influenced riff was inspired by Doctor Who and T. Rex. The song became a stadium anthem and was used extensively in sports broadcasts. The music video features teddy bears leading a revolution.",
+      "fun_fact_de": "Matt Bellamy schrieb den Song als Aufruf zur Rebellion gegen politische Apathie. Das Glam-Rock-beeinflusste Riff war von Doctor Who und T. Rex inspiriert. Das Musikvideo zeigt Teddybären, die eine Revolution anführen.",
+      "fun_fact_es": "Matt Bellamy escribió la canción como un llamado a la rebelión contra la apatía política. El riff influenciado por el glam rock fue inspirado por Doctor Who y T. Rex. El video musical muestra osos de peluche liderando una revolución.",
+      "uri_apple_music": "applemusic://track/991509754",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w8KQmps-Sog"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:59WN2psjkt1tyaxjspN8fp",
+      "artist": "Rage Against The Machine",
+      "alt_artists": [
+        "System of a Down",
+        "Audioslave",
+        "Primus"
+      ],
+      "title": "Killing In The Name",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 25,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The song became the UK Christmas #1 in 2009 — 17 years after release — thanks to a Facebook campaign to prevent the X Factor winner from getting the top spot. It sold 502,000 copies that week alone. Tom Morello created the guitar sounds using a toggle switch technique and an Allen wrench on the strings.",
+      "fun_fact_de": "Der Song wurde 2009 — 17 Jahre nach Veröffentlichung — dank einer Facebook-Kampagne zur Weihnachts-Nummer-1 in UK, um den X-Factor-Gewinner zu verhindern. Er verkaufte allein in dieser Woche 502.000 Exemplare.",
+      "fun_fact_es": "La canción se convirtió en el #1 de Navidad en el Reino Unido en 2009 — 17 años después de su lanzamiento — gracias a una campaña de Facebook para evitar que el ganador de X Factor llegara al primer lugar. Vendió 502.000 copias solo esa semana.",
+      "uri_apple_music": "applemusic://track/191450927",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bWXazVhlyxQ"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:32kgOw8wejH7zUhtXCM8DH",
+      "artist": "Boston",
+      "alt_artists": [
+        "Kansas",
+        "Styx",
+        "Journey"
+      ],
+      "title": "More Than a Feeling",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 22,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Tom Scholz recorded the entire debut album in his basement studio while working as an engineer at Polaroid. The label thought the demos were the final recordings because the sound quality was so high. Kurt Cobain admitted that 'Smells Like Teen Spirit' was essentially 'More Than a Feeling' with the guitar riff slowed down.",
+      "fun_fact_de": "Tom Scholz nahm das gesamte Debütalbum in seinem Kellerstudio auf, während er als Ingenieur bei Polaroid arbeitete. Das Label hielt die Demos für die fertigen Aufnahmen, weil die Klangqualität so hoch war. Kurt Cobain gab zu, dass 'Smells Like Teen Spirit' im Grunde 'More Than a Feeling' mit verlangsamtem Gitarrenriff war.",
+      "fun_fact_es": "Tom Scholz grabó todo el álbum debut en su estudio del sótano mientras trabajaba como ingeniero en Polaroid. El sello pensó que las demos eran las grabaciones finales por la alta calidad del sonido. Kurt Cobain admitió que 'Smells Like Teen Spirit' era esencialmente 'More Than a Feeling' con el riff ralentizado.",
+      "uri_apple_music": "applemusic://track/913902137",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t4QK8RxCAwo"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2RlgNHKcydI9sayD2Df2xp",
+      "artist": "Electric Light Orchestra",
+      "alt_artists": [
+        "Supertramp",
+        "10cc",
+        "The Alan Parsons Project"
+      ],
+      "title": "Mr. Blue Sky",
+      "chart_info": {
+        "billboard_peak": 35,
+        "uk_peak": 6,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Jeff Lynne wrote Mr. Blue Sky after two weeks of gloomy Swiss weather suddenly broke into sunshine. He called it 'the song that wrote itself.' The vocoder voice saying 'Mr. Blue Sky' at the end was created by feeding the vocal through a synthesizer. The song has experienced a massive revival through films like Guardians of the Galaxy.",
+      "fun_fact_de": "Jeff Lynne schrieb Mr. Blue Sky, nachdem zwei Wochen trübes Schweizer Wetter plötzlich in Sonnenschein umschlug. Er nannte es 'den Song, der sich selbst schrieb.' Die Vocoder-Stimme am Ende wurde durch einen Synthesizer erzeugt. Der Song erlebte ein massives Revival durch Filme wie Guardians of the Galaxy.",
+      "fun_fact_es": "Jeff Lynne escribió Mr. Blue Sky después de que dos semanas de clima sombrío suizo se convirtieran repentinamente en sol. Lo llamó 'la canción que se escribió sola.' La voz del vocoder fue creada alimentando la voz a través de un sintetizador. La canción experimentó un gran resurgimiento gracias a películas como Guardianes de la Galaxia.",
+      "uri_apple_music": "applemusic://track/196426738",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wuJIqmha2Hk"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:2HXixVqzzm9rEUIMAWzshl",
+      "artist": "Joan Jett & The Blackhearts",
+      "alt_artists": [
+        "Pat Benatar",
+        "Heart",
+        "The Pretenders"
+      ],
+      "title": "I Hate Myself for Loving You",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 0,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "Co-written with Desmond Child, the song was deliberately crafted to be a hit. The riff borrows from ZZ Top's style. It later gained massive new exposure when it was reworked as the Sunday Night Football theme song 'Waiting All Day for Sunday Night' on NBC, introducing Jett's sound to a whole new generation.",
+      "fun_fact_de": "Mit Desmond Child geschrieben, wurde der Song bewusst als Hit konzipiert. Das Riff entlehnt sich ZZ Tops Stil. Er gewann massive neue Bekanntheit, als er als Sunday Night Football-Titelsong 'Waiting All Day for Sunday Night' auf NBC umgearbeitet wurde.",
+      "fun_fact_es": "Co-escrita con Desmond Child, la canción fue deliberadamente creada para ser un éxito. El riff toma prestado del estilo de ZZ Top. Ganó nueva exposición masiva cuando fue adaptada como tema del Sunday Night Football de NBC.",
+      "uri_apple_music": "applemusic://track/190178976",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bpNw7jYkbVc"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:4MYb7NWLwXNDB7bYs3HeX8",
+      "artist": "Foghat",
+      "alt_artists": [
+        "ZZ Top",
+        "Bad Company",
+        "Bachman-Turner Overdrive"
+      ],
+      "title": "Slow Ride",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": 0,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "fun_fact": "The album version is over 8 minutes long, making it one of the longest songs to receive significant radio airplay. The single was edited down to 3:54. It experienced a huge revival as a playable track in Guitar Hero III, introducing the song to millions of younger fans. The slide guitar work by Rod Price is considered some of the finest in blues rock.",
+      "fun_fact_de": "Die Albumversion ist über 8 Minuten lang, was ihn zu einem der längsten Songs mit signifikantem Radioeinsatz macht. Er erlebte ein riesiges Revival als spielbarer Track in Guitar Hero III, was den Song Millionen jüngerer Fans vorstellte.",
+      "fun_fact_es": "La versión del álbum dura más de 8 minutos, haciéndola una de las canciones más largas en recibir significativa difusión radial. Experimentó un enorme resurgimiento como pista jugable en Guitar Hero III, presentando la canción a millones de fans más jóvenes.",
+      "uri_apple_music": "applemusic://track/326486185",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RvE0PS9-T0w"
     }
   ]
 }

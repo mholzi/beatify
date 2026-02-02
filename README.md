@@ -4,7 +4,7 @@
 
 <img src="images/beatify-logo.png" alt="Beatify Logo" width="400">
 
-### **The Party Game Your Smart Home Was Made For**
+### **The Music Quiz Party Game Your Smart Home Was Made For**
 
 Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
@@ -23,9 +23,9 @@ Guests scan, songs play, everyone competes. It's that simple.
 
 ## What Is Beatify?
 
-**Beatify is a multiplayer music year-guessing game that runs entirely on your Home Assistant.**
+**Beatify is an open-source music quiz game for Home Assistant** — a multiplayer music trivia party game that turns your smart speakers into a game show.
 
-A song plays through your speakers. Everyone races to guess the release year. Points fly. Streaks build. Champions emerge.
+A song plays through your Sonos, Alexa, or Music Assistant speakers. Everyone races to guess the release year. Points fly. Streaks build. Champions emerge.
 
 No apps to download. No accounts to create. Just scan a QR code and play.
 
@@ -37,7 +37,7 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 **Zero Friction Entry** — Guests scan a QR code. That's it. No apps. No accounts. No WiFi password drama. 10 seconds from scan to playing.
 
-**Uses Your Existing Setup** — Works with Music Assistant, Sonos, and Alexa speakers you already have. See [Supported Speakers](#supported-speakers) for details.
+**Uses Your Existing Smart Speakers** — Works with Music Assistant, Sonos, and Alexa speakers you already have. See [Supported Speakers](#supported-speakers) for details.
 
 **Your Music, Your Vibe** — Spotify, Apple Music, or YouTube Music playlists. Curated song packs included. Create your own.
 
@@ -95,7 +95,7 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 ### Step 1: Install
 
-**Via HACS (Recommended)**
+**Via HACS (Recommended)** — Install this HACS integration in seconds:
 ```
 HACS → ⋮ Menu → Custom Repositories
 → URL: https://github.com/mholzi/beatify
@@ -597,13 +597,9 @@ Have a question? Check our [Discussions Q&A](https://github.com/mholzi/beatify/d
 
 ## Contributing
 
-Contributions welcome!
+Contributions welcome! Whether it's a new playlist, a bug fix, or a translation — check our [**CONTRIBUTING.md**](CONTRIBUTING.md) for the full guide.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-thing`)
-3. Commit your changes (`git commit -m 'Add amazing thing'`)
-4. Push to the branch (`git push origin feature/amazing-thing`)
-5. Open a Pull Request
+Quick start: Fork → Branch → PR. See [good first issues](https://github.com/mholzi/beatify/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) for easy starting points.
 
 ---
 
@@ -627,7 +623,7 @@ The next great party moment is one QR scan away.
 
 ---
 
-**Built for Home Assistant. Built for fun.**
+**The open-source music quiz for Home Assistant. Built for fun.**
 
 [Report Bug](https://github.com/mholzi/beatify/issues) · [Request Feature](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions)
 
