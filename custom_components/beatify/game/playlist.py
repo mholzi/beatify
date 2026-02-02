@@ -15,9 +15,11 @@ from custom_components.beatify.const import (
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
     PROVIDER_SPOTIFY,
+    PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
     URI_PATTERN_APPLE_MUSIC,
     URI_PATTERN_SPOTIFY,
+    URI_PATTERN_TIDAL,
     URI_PATTERN_YOUTUBE_MUSIC,
 )
 
@@ -314,6 +316,14 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                     f"Song {i + 1}: 'uri_youtube_music' invalid (expected https://music.youtube.com/watch?v=...)"
                 )
 
+        # Check 'uri_tidal' field
+        uri_tidal = song.get("uri_tidal")
+        if isinstance(uri_tidal, str) and uri_tidal.strip():
+            if re.match(URI_PATTERN_TIDAL, uri_tidal):
+                has_valid_uri = True
+            else:
+                errors.append(f"Song {i + 1}: 'uri_tidal' invalid (expected tidal://track/{{id}})")
+
         # Error if no valid URI found
         if not has_valid_uri:
             errors.append(f"Song {i + 1}: no valid URI")
@@ -360,6 +370,9 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
     if provider == PROVIDER_YOUTUBE_MUSIC:
         # For YouTube Music, only use uri_youtube_music
         return song.get("uri_youtube_music") or None
+    if provider == PROVIDER_TIDAL:
+        # For Tidal, only use uri_tidal
+        return song.get("uri_tidal") or None
     return None
 
 
@@ -418,6 +431,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             spotify_count = sum(1 for s in songs if s.get("uri") or s.get("uri_spotify"))
             apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
             youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
+            tidal_count = sum(1 for s in songs if s.get("uri_tidal"))
 
             playlists.append(
                 {
@@ -429,6 +443,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "spotify_count": spotify_count,
                     "apple_music_count": apple_music_count,
                     "youtube_music_count": youtube_music_count,
+                    "tidal_count": tidal_count,
                     "is_valid": is_valid,
                     "errors": errors,
                 }
