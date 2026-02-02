@@ -21,7 +21,7 @@ window.BeatifyI18n = (function() {
 
     /**
      * Load translations for a specific language
-     * @param {string} langCode - Language code ('en' or 'de')
+     * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
      * @returns {Promise<Object>} - Loaded translations
      */
     async function fetchTranslations(langCode) {
@@ -126,11 +126,11 @@ window.BeatifyI18n = (function() {
     /**
      * Supported languages (Story 16.3 - added Spanish)
      */
-    var SUPPORTED_LANGUAGES = ['en', 'de', 'es'];
+    var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr'];
 
     /**
      * Set the current language
-     * @param {string} langCode - Language code ('en', 'de', or 'es')
+     * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
      * @returns {Promise<void>}
      */
     async function setLanguage(langCode) {
@@ -213,6 +213,10 @@ window.BeatifyI18n = (function() {
         // Check for Spanish (es, es-ES, es-MX, es-AR, es-CO, etc.)
         if (langLower.startsWith('es')) {
             return 'es';
+        }
+        // Check for French (fr, fr-FR, fr-CA, fr-BE, fr-CH, etc.)
+        if (langLower.startsWith('fr')) {
+            return 'fr';
         }
         // Default to English
         return 'en';

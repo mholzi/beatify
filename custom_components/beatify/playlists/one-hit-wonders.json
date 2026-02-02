@@ -24,6 +24,7 @@
       "fun_fact": "Written in one hour, this protest song was banned by many radio stations but still hit #1. Barry McGuire never charted again in the US.",
       "fun_fact_de": "In nur einer Stunde geschrieben, wurde dieser Protestsong von vielen Radiosendern verboten, erreichte aber trotzdem Platz 1. Barry McGuire hatte in den USA nie wieder einen Charterfolg.",
       "fun_fact_es": "Escrita en una hora, esta canción de protesta fue prohibida por muchas estaciones de radio pero aún así llegó al #1. Barry McGuire nunca volvió a entrar en las listas de EE.UU.",
+      "fun_fact_fr": "Écrite en une heure seulement, cette chanson contestataire a été interdite par de nombreuses stations de radio mais a tout de même atteint la première place. Barry McGuire n'a plus jamais figuré dans les classements américains.",
       "certifications": [
         "Gold (US)"
       ],
@@ -48,6 +49,7 @@
       "fun_fact": "The lead singer legally changed his name to '?' and still performs under that name. The song was recorded in a living room for $500.",
       "fun_fact_de": "Der Leadsänger änderte seinen Namen legal zu '?' und tritt noch heute unter diesem Namen auf. Der Song wurde in einem Wohnzimmer für 500 Dollar aufgenommen.",
       "fun_fact_es": "El cantante principal cambió legalmente su nombre a '?' y todavía actúa bajo ese nombre. La canción fue grabada en una sala de estar por $500.",
+      "fun_fact_fr": "Le chanteur a légalement changé son nom en '?' et continue de se produire sous ce nom. La chanson a été enregistrée dans un salon pour seulement 500 dollars.",
       "certifications": [
         "Gold (US)"
       ],
@@ -72,6 +74,7 @@
       "fun_fact": "Written by John Phillips of The Mamas & the Papas to promote the Monterey Pop Festival. McKenzie was reportedly reluctant to record it.",
       "fun_fact_de": "Von John Phillips von The Mamas & the Papas geschrieben, um das Monterey Pop Festival zu bewerben. McKenzie war angeblich zunächst zögerlich, den Song aufzunehmen.",
       "fun_fact_es": "Escrita por John Phillips de The Mamas & the Papas para promocionar el Festival Monterey Pop. McKenzie supuestamente era reacio a grabarla.",
+      "fun_fact_fr": "Écrite par John Phillips des Mamas & the Papas pour promouvoir le Festival Pop de Monterey. McKenzie était apparemment réticent à l'enregistrer.",
       "certifications": [
         "Gold (US)",
         "Silver (UK)"
@@ -97,6 +100,7 @@
       "fun_fact": "The title was a slurred 'In the Garden of Eden' - the singer was too drunk to pronounce it clearly during recording.",
       "fun_fact_de": "Der Titel war ein verwaschenes 'In the Garden of Eden' - der Sänger war bei der Aufnahme zu betrunken, um es deutlich auszusprechen.",
       "fun_fact_es": "El título era un 'In the Garden of Eden' mal pronunciado - el cantante estaba demasiado borracho para pronunciarlo claramente durante la grabación.",
+      "fun_fact_fr": "Le titre était en fait 'In the Garden of Eden' mal articulé — le chanteur était trop ivre pour le prononcer clairement pendant l'enregistrement.",
       "certifications": [
         "4x Platinum (US)"
       ],
@@ -121,6 +125,7 @@
       "fun_fact": "Arthur Brown performed wearing a flaming helmet. He accidentally set his head on fire multiple times during live shows.",
       "fun_fact_de": "Arthur Brown trat mit einem brennenden Helm auf. Er setzte sich während Live-Shows mehrfach versehentlich den Kopf in Brand.",
       "fun_fact_es": "Arthur Brown actuaba con un casco en llamas. Accidentalmente se prendió fuego en la cabeza múltiples veces durante shows en vivo.",
+      "fun_fact_fr": "Arthur Brown se produisait coiffé d'un casque enflammé. Il s'est accidentellement mis le feu à la tête à plusieurs reprises lors de concerts.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -144,6 +149,7 @@
       "fun_fact": "Written while snowed in at a tiny Seattle apartment. Despite modest chart success, it became an FM radio staple of the psychedelic era.",
       "fun_fact_de": "Geschrieben während sie in einer kleinen Wohnung in Seattle eingeschneit waren. Trotz bescheidenem Charterfolg wurde es zu einem FM-Radio-Klassiker der psychedelischen Ära.",
       "fun_fact_es": "Escrita mientras estaban atrapados por la nieve en un pequeño apartamento de Seattle. A pesar de su modesto éxito en las listas, se convirtió en un clásico de la radio FM de la era psicodélica.",
+      "fun_fact_fr": "Écrite alors qu'ils étaient bloqués par la neige dans un minuscule appartement de Seattle. Malgré un succès modeste dans les classements, elle est devenue un incontournable de la radio FM de l'ère psychédélique.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455297694",
@@ -166,11 +172,15 @@
       "fun_fact": "Won the Ivor Novello Award for Best Song. His brothers Eden Kane and Clive Sarstedt were also singers, but Peter only had this one hit.",
       "fun_fact_de": "Gewann den Ivor Novello Award für den besten Song. Seine Brüder Eden Kane und Clive Sarstedt waren ebenfalls Sänger, aber Peter hatte nur diesen einen Hit.",
       "fun_fact_es": "Ganó el premio Ivor Novello a la Mejor Canción. Sus hermanos Eden Kane y Clive Sarstedt también eran cantantes, pero Peter solo tuvo este éxito.",
+      "fun_fact_fr": "Récompensée par l'Ivor Novello Award de la meilleure chanson. Ses frères Eden Kane et Clive Sarstedt étaient aussi chanteurs, mais Peter n'a connu qu'un seul succès.",
       "certifications": [
         "Silver (UK)"
       ],
       "awards": [
         "Ivor Novello Award (1969)"
+      ],
+      "awards_fr": [
+        "Prix Ivor Novello (1969)"
       ],
       "uri_apple_music": "applemusic://track/1454381911",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EA6gIyLT3c0",
@@ -192,6 +202,7 @@
       "fun_fact": "This Dutch band's #1 hit was later covered by Bananarama in 1986, also reaching #1. The original riff was inspired by 'The Sorcerer's Apprentice'.",
       "fun_fact_de": "Der #1-Hit dieser niederländischen Band wurde 1986 von Bananarama gecovert und erreichte ebenfalls Platz 1. Das Original-Riff wurde von 'Der Zauberlehrling' inspiriert.",
       "fun_fact_es": "El éxito #1 de esta banda holandesa fue versionado por Bananarama en 1986, también llegando al #1. El riff original fue inspirado por 'El Aprendiz de Brujo'.",
+      "fun_fact_fr": "Le tube numéro un de ce groupe néerlandais a été repris par Bananarama en 1986, atteignant également la première place. Le riff original s'inspirait de 'L'Apprenti sorcier'.",
       "certifications": [
         "Gold (US)"
       ],
@@ -216,6 +227,7 @@
       "fun_fact": "The best-selling single of 1969 was performed by a fictional cartoon band. Real musicians recorded it but the 'band members' didn't exist.",
       "fun_fact_de": "Die meistverkaufte Single von 1969 wurde von einer fiktiven Cartoon-Band performed. Echte Musiker nahmen sie auf, aber die 'Bandmitglieder' existierten nicht.",
       "fun_fact_es": "El sencillo más vendido de 1969 fue interpretado por una banda ficticia de dibujos animados. Músicos reales lo grabaron pero los 'miembros de la banda' no existían.",
+      "fun_fact_fr": "Le single le plus vendu de 1969 était interprété par un groupe de dessin animé fictif. De vrais musiciens l'ont enregistré, mais les « membres du groupe » n'existaient pas.",
       "certifications": [
         "2x Platinum (US)",
         "Gold (UK)"
@@ -241,6 +253,7 @@
       "fun_fact": "Pete Townshend of The Who produced and played bass on this track. The band split up shortly after their only hit.",
       "fun_fact_de": "Pete Townshend von The Who produzierte und spielte Bass auf diesem Track. Die Band löste sich kurz nach ihrem einzigen Hit auf.",
       "fun_fact_es": "Pete Townshend de The Who produjo y tocó el bajo en esta pista. La banda se separó poco después de su único éxito.",
+      "fun_fact_fr": "Pete Townshend des Who a produit ce titre et y joue de la basse. Le groupe s'est séparé peu après leur unique succès.",
       "certifications": [
         "Silver (UK)"
       ],
@@ -265,6 +278,7 @@
       "fun_fact": "Spent 6 weeks at #1 but the duo never charted again. It's one of the most dramatic falls from #1 to obscurity in music history.",
       "fun_fact_de": "Verbrachte 6 Wochen auf Platz 1, aber das Duo chartete nie wieder. Es ist einer der dramatischsten Abstürze von #1 in die Bedeutungslosigkeit der Musikgeschichte.",
       "fun_fact_es": "Pasó 6 semanas en el #1 pero el dúo nunca volvió a entrar en las listas. Es una de las caídas más dramáticas del #1 a la oscuridad en la historia de la música.",
+      "fun_fact_fr": "Six semaines en tête du classement, mais le duo n'est jamais revenu dans les charts. C'est l'une des chutes les plus spectaculaires du numéro un à l'oubli dans l'histoire de la musique.",
       "certifications": [
         "Gold (US)",
         "Gold (UK)"
@@ -290,6 +304,7 @@
       "fun_fact": "Greenbaum, who is Jewish, wrote this gospel-rock song in 15 minutes. He's earned over $2 million from it but never had another hit.",
       "fun_fact_de": "Greenbaum, der jüdisch ist, schrieb diesen Gospel-Rock-Song in 15 Minuten. Er hat damit über 2 Millionen Dollar verdient, hatte aber nie wieder einen Hit.",
       "fun_fact_es": "Greenbaum, que es judío, escribió esta canción de gospel-rock en 15 minutos. Ha ganado más de $2 millones con ella pero nunca tuvo otro éxito.",
+      "fun_fact_fr": "Greenbaum, qui est juif, a écrit cette chanson de gospel-rock en 15 minutes. Il en a tiré plus de 2 millions de dollars, mais n'a jamais eu d'autre tube.",
       "certifications": [
         "Platinum (US)",
         "Silver (UK)"
@@ -314,6 +329,7 @@
       "fun_fact": "This prog rock band was known for not having a guitarist. The song became a bigger hit in Europe than in their native UK.",
       "fun_fact_de": "Diese Prog-Rock-Band war dafür bekannt, keinen Gitarristen zu haben. Der Song wurde in Europa ein größerer Hit als in ihrer Heimat Großbritannien.",
       "fun_fact_es": "Esta banda de rock progresivo era conocida por no tener guitarrista. La canción fue un éxito mayor en Europa que en su Reino Unido natal.",
+      "fun_fact_fr": "Ce groupe de rock progressif était connu pour ne pas avoir de guitariste. La chanson a eu plus de succès en Europe que dans leur Royaume-Uni natal.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/724210230",
@@ -336,11 +352,15 @@
       "fun_fact": "This tale of an extramarital affair won a Grammy. Paul later said he wished he'd had another signature song to be remembered by.",
       "fun_fact_de": "Diese Geschichte einer außerehelichen Affäre gewann einen Grammy. Paul sagte später, er wünschte sich einen weiteren Signature-Song, um in Erinnerung zu bleiben.",
       "fun_fact_es": "Esta historia de una aventura extramarital ganó un Grammy. Paul dijo después que deseaba tener otra canción emblemática para ser recordado.",
+      "fun_fact_fr": "Cette histoire d'aventure extraconjugale a remporté un Grammy. Paul a confié plus tard qu'il aurait aimé avoir un autre titre emblématique pour marquer les mémoires.",
       "certifications": [
         "Gold (US)"
       ],
       "awards": [
         "Grammy Award for Best Male R&B Vocal (1973)"
+      ],
+      "awards_fr": [
+        "Grammy Award de la meilleure prestation vocale R&B masculine (1973)"
       ],
       "uri_apple_music": "applemusic://track/1475125103",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NYOQDnWFXYI",
@@ -362,6 +382,7 @@
       "fun_fact": "Recorded with just Thomas on organ and a drum machine. Drake sampled it for 'Hotline Bling' over 40 years later.",
       "fun_fact_de": "Aufgenommen nur mit Thomas an der Orgel und einer Drummaschine. Drake sampelte es über 40 Jahre später für 'Hotline Bling'.",
       "fun_fact_es": "Grabada solo con Thomas al órgano y una caja de ritmos. Drake la sampleó más de 40 años después para 'Hotline Bling'.",
+      "fun_fact_fr": "Enregistrée avec Thomas seul à l'orgue et une boîte à rythmes. Drake l'a samplée plus de 40 ans plus tard pour 'Hotline Bling'.",
       "certifications": [
         "Gold (US)"
       ],
@@ -386,6 +407,7 @@
       "fun_fact": "Recorded in just 10 minutes as a B-side. It became a #1 hit in multiple countries during the martial arts film craze of the 1970s.",
       "fun_fact_de": "In nur 10 Minuten als B-Seite aufgenommen. Während des Martial-Arts-Film-Wahns der 1970er wurde es in mehreren Ländern ein #1-Hit.",
       "fun_fact_es": "Grabada en solo 10 minutos como lado B. Se convirtió en un éxito #1 en múltiples países durante la locura de las películas de artes marciales de los años 70.",
+      "fun_fact_fr": "Enregistrée en seulement 10 minutes comme face B. Elle est devenue numéro un dans plusieurs pays pendant la folie des films d'arts martiaux des années 1970.",
       "certifications": [
         "Platinum (US)",
         "Gold (UK)"
@@ -411,6 +433,7 @@
       "fun_fact": "One of the first disco songs to hit #1. It was originally written for his wife Gwen McCrae but she couldn't make the recording session.",
       "fun_fact_de": "Einer der ersten Disco-Songs, die Platz 1 erreichten. Ursprünglich für seine Frau Gwen McCrae geschrieben, aber sie konnte nicht zur Aufnahme kommen.",
       "fun_fact_es": "Una de las primeras canciones disco en llegar al #1. Originalmente escrita para su esposa Gwen McCrae pero ella no pudo asistir a la sesión de grabación.",
+      "fun_fact_fr": "L'une des premières chansons disco à atteindre la première place. Elle avait été écrite à l'origine pour sa femme Gwen McCrae, qui n'a pas pu se rendre à la session d'enregistrement.",
       "certifications": [
         "Platinum (US)",
         "Gold (UK)"
@@ -436,6 +459,7 @@
       "fun_fact": "Originally a Belgian song about a dying man. The Beach Boys almost recorded it first but Jacks beat them to it and sold millions.",
       "fun_fact_de": "Ursprünglich ein belgisches Lied über einen sterbenden Mann. Die Beach Boys hätten es fast zuerst aufgenommen, aber Jacks kam ihnen zuvor und verkaufte Millionen.",
       "fun_fact_es": "Originalmente una canción belga sobre un hombre moribundo. Los Beach Boys casi la grabaron primero pero Jacks se les adelantó y vendió millones.",
+      "fun_fact_fr": "À l'origine une chanson belge sur un homme mourant. Les Beach Boys ont failli l'enregistrer les premiers, mais Jacks les a devancés et en a vendu des millions.",
       "certifications": [
         "Gold (US)",
         "Gold (UK)"
@@ -460,6 +484,7 @@
       "fun_fact": "A rare example of a cult one-hit wonder. The band featured progressive rock elements but failed to capitalize on their brief chart appearance.",
       "fun_fact_de": "Ein seltenes Beispiel für einen Kult-One-Hit-Wonder. Die Band hatte Progressive-Rock-Elemente, konnte aber ihren kurzen Charterfolg nicht ausbauen.",
       "fun_fact_es": "Un raro ejemplo de un one-hit wonder de culto. La banda tenía elementos de rock progresivo pero no logró capitalizar su breve aparición en las listas.",
+      "fun_fact_fr": "Un rare exemple de one-hit wonder culte. Le groupe incorporait des éléments de rock progressif mais n'a pas su exploiter sa brève apparition dans les classements.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1691588293",
@@ -482,6 +507,7 @@
       "fun_fact": "A rock version of a traditional African American work song. The NAACP protested the lyrics. Ram Jam disbanded shortly after this sole hit.",
       "fun_fact_de": "Eine Rock-Version eines traditionellen afroamerikanischen Arbeitssongs. Die NAACP protestierte gegen die Texte. Ram Jam löste sich kurz nach diesem einzigen Hit auf.",
       "fun_fact_es": "Una versión rock de una canción de trabajo tradicional afroamericana. La NAACP protestó contra la letra. Ram Jam se disolvió poco después de este único éxito.",
+      "fun_fact_fr": "Une version rock d'un chant de travail traditionnel afro-américain. La NAACP a protesté contre les paroles. Ram Jam s'est séparé peu après cet unique succès.",
       "certifications": [
         "Gold (US)"
       ],
@@ -506,6 +532,7 @@
       "fun_fact": "These Jamaican teenagers recorded the song when they were just 17 and 18. It was the first reggae song by female artists to hit #1 in the UK.",
       "fun_fact_de": "Diese jamaikanischen Teenager nahmen den Song auf, als sie erst 17 und 18 waren. Es war der erste Reggae-Song weiblicher Künstlerinnen, der in Großbritannien Platz 1 erreichte.",
       "fun_fact_es": "Estas adolescentes jamaicanas grabaron la canción cuando solo tenían 17 y 18 años. Fue la primera canción de reggae de artistas femeninas en llegar al #1 en el Reino Unido.",
+      "fun_fact_fr": "Ces adolescentes jamaïcaines ont enregistré la chanson alors qu'elles n'avaient que 17 et 18 ans. C'est le premier titre reggae d'artistes féminines à atteindre le numéro un au Royaume-Uni.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -530,6 +557,7 @@
       "fun_fact": "Originally written for a teen singer, it was rewritten as a suggestive disco hit. Ward became a one-hit wonder despite the song's massive success.",
       "fun_fact_de": "Ursprünglich für eine Teen-Sängerin geschrieben, wurde es als anzüglicher Disco-Hit umgeschrieben. Ward wurde trotz des massiven Erfolgs des Songs ein One-Hit-Wonder.",
       "fun_fact_es": "Originalmente escrita para una cantante adolescente, fue reescrita como un éxito de disco sugerente. Ward se convirtió en un one-hit wonder a pesar del éxito masivo de la canción.",
+      "fun_fact_fr": "Écrite à l'origine pour une chanteuse adolescente, elle a été retravaillée en tube disco suggestif. Ward est restée un one-hit wonder malgré le succès colossal du morceau.",
       "certifications": [
         "Gold (US)",
         "Gold (UK)"
@@ -555,6 +583,7 @@
       "fun_fact": "Robin Scott recorded this under just the letter 'M'. The song predicted music's electronic future but Scott preferred to remain a mysterious one-hit wonder.",
       "fun_fact_de": "Robin Scott nahm dies unter nur dem Buchstaben 'M' auf. Der Song sagte die elektronische Zukunft der Musik voraus, aber Scott blieb lieber ein mysteriöser One-Hit-Wonder.",
       "fun_fact_es": "Robin Scott grabó esto bajo solo la letra 'M'. La canción predijo el futuro electrónico de la música pero Scott prefirió seguir siendo un misterioso one-hit wonder.",
+      "fun_fact_fr": "Robin Scott a enregistré ce titre sous la simple lettre 'M'. La chanson a préfiguré l'avenir électronique de la musique, mais Scott a préféré rester un mystérieux one-hit wonder.",
       "certifications": [
         "Gold (US)",
         "Silver (UK)"
@@ -578,6 +607,7 @@
       "fun_fact": "The first music video ever played on MTV on August 1, 1981. Band members Trevor Horn and Geoff Downes later joined the prog rock band Yes.",
       "fun_fact_de": "Das erste Musikvideo, das am 1. August 1981 auf MTV gezeigt wurde. Bandmitglieder Trevor Horn und Geoff Downes schlossen sich später der Prog-Rock-Band Yes an.",
       "fun_fact_es": "El primer video musical reproducido en MTV el 1 de agosto de 1981. Los miembros Trevor Horn y Geoff Downes se unieron más tarde a la banda de rock progresivo Yes.",
+      "fun_fact_fr": "Le tout premier clip diffusé sur MTV le 1er août 1981. Les membres du groupe, Trevor Horn et Geoff Downes, ont ensuite rejoint le groupe de rock progressif Yes.",
       "certifications": [
         "Silver (UK)"
       ],
@@ -602,6 +632,7 @@
       "fun_fact": "The real Sharona was the lead singer's girlfriend - she was 17. The song spent 6 weeks at #1 and was the best-selling single of 1979.",
       "fun_fact_de": "Die echte Sharona war die Freundin des Leadsängers - sie war 17. Der Song verbrachte 6 Wochen auf Platz 1 und war die meistverkaufte Single von 1979.",
       "fun_fact_es": "La verdadera Sharona era la novia del cantante principal - tenía 17 años. La canción pasó 6 semanas en el #1 y fue el sencillo más vendido de 1979.",
+      "fun_fact_fr": "La véritable Sharona était la petite amie du chanteur — elle avait 17 ans. La chanson est restée 6 semaines numéro un et a été le single le plus vendu de 1979.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -626,6 +657,7 @@
       "fun_fact": "Considered the first commercially successful hip-hop single. The members were assembled by a record label owner who saw hip-hop's potential.",
       "fun_fact_de": "Gilt als die erste kommerziell erfolgreiche Hip-Hop-Single. Die Mitglieder wurden von einer Plattenfirmeninhaberin zusammengestellt, die das Potenzial von Hip-Hop erkannte.",
       "fun_fact_es": "Considerado el primer sencillo de hip-hop comercialmente exitoso. Los miembros fueron reunidos por una dueña de discográfica que vio el potencial del hip-hop.",
+      "fun_fact_fr": "Considéré comme le premier single de hip-hop à connaître un succès commercial. Les membres ont été réunis par une patronne de label qui avait flairé le potentiel du hip-hop.",
       "certifications": [
         "2x Platinum (US)",
         "Silver (UK)"
@@ -651,6 +683,7 @@
       "fun_fact": "Written about wanting to leave Minneapolis for a bigger city. The song has been covered and sampled hundreds of times across multiple genres.",
       "fun_fact_de": "Geschrieben über den Wunsch, Minneapolis zu verlassen und in eine größere Stadt zu ziehen. Der Song wurde hundertfach gecovert und gesampelt.",
       "fun_fact_es": "Escrita sobre querer dejar Minneapolis por una ciudad más grande. La canción ha sido versionada y sampleada cientos de veces en múltiples géneros.",
+      "fun_fact_fr": "Écrite sur l'envie de quitter Minneapolis pour une plus grande ville. La chanson a été reprise et samplée des centaines de fois dans de multiples genres.",
       "certifications": [
         "Platinum (US)",
         "Gold (UK)"
@@ -674,6 +707,7 @@
       "fun_fact": "Featured in the French film 'La Boum' (The Party). It became a massive hit across Europe but Sanderson remained largely unknown elsewhere.",
       "fun_fact_de": "Im französischen Film 'La Boum' (Die Fete) zu hören. Es wurde ein Riesenhit in ganz Europa, aber Sanderson blieb anderswo weitgehend unbekannt.",
       "fun_fact_es": "Apareció en la película francesa 'La Boum' (La Fiesta). Se convirtió en un gran éxito en toda Europa pero Sanderson permaneció desconocido en otros lugares.",
+      "fun_fact_fr": "Présente dans le film français 'La Boum'. Elle est devenue un immense succès à travers l'Europe, mais Sanderson est resté largement méconnu ailleurs.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/957549647",
@@ -696,6 +730,7 @@
       "fun_fact": "The meaning remains debated - the band claims it's about obsession. Often misinterpreted, it became a new wave classic despite being their only hit.",
       "fun_fact_de": "Die Bedeutung bleibt umstritten - die Band behauptet, es gehe um Besessenheit. Oft falsch interpretiert, wurde es trotzdem ein New-Wave-Klassiker, obwohl es ihr einziger Hit war.",
       "fun_fact_es": "El significado sigue siendo debatido - la banda afirma que es sobre la obsesión. A menudo malinterpretada, se convirtió en un clásico del new wave a pesar de ser su único éxito.",
+      "fun_fact_fr": "La signification reste débattue — le groupe affirme qu'il s'agit d'obsession. Souvent mal interprétée, elle est devenue un classique new wave bien qu'elle soit leur seul tube.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/696955216",
@@ -718,6 +753,7 @@
       "fun_fact": "Fronted by Steve Strange, a pioneer of the New Romantic movement. The song became an anthem for the early 80s synth-pop scene.",
       "fun_fact_de": "Fronted von Steve Strange, einem Pionier der New-Romantic-Bewegung. Der Song wurde zu einer Hymne der frühen 80er Synth-Pop-Szene.",
       "fun_fact_es": "Liderado por Steve Strange, un pionero del movimiento New Romantic. La canción se convirtió en un himno de la escena synth-pop de principios de los 80.",
+      "fun_fact_fr": "Mené par Steve Strange, pionnier du mouvement New Romantic. La chanson est devenue un hymne de la scène synth-pop du début des années 80.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443923518",
@@ -740,6 +776,7 @@
       "fun_fact": "The lead singer's distinctive haircut became as famous as the song. Despite critical acclaim, they never replicated this success in America.",
       "fun_fact_de": "Die markante Frisur des Leadsängers wurde genauso berühmt wie der Song. Trotz kritischer Anerkennung konnten sie diesen Erfolg in Amerika nie wiederholen.",
       "fun_fact_es": "El distintivo corte de pelo del cantante principal se hizo tan famoso como la canción. A pesar del reconocimiento crítico, nunca replicaron este éxito en América.",
+      "fun_fact_fr": "La coupe de cheveux distinctive du chanteur est devenue aussi célèbre que la chanson. Malgré les éloges de la critique, ils n'ont jamais reproduit ce succès en Amérique.",
       "certifications": [
         "Gold (US)"
       ],
@@ -764,6 +801,7 @@
       "fun_fact": "Written as a protest against bouncers who banned pogoing in clubs. The medieval-themed video became an MTV staple of the 1980s.",
       "fun_fact_de": "Geschrieben als Protest gegen Türsteher, die Pogo in Clubs verboten. Das mittelalterlich angehauchte Video wurde zu einem MTV-Klassiker der 1980er.",
       "fun_fact_es": "Escrita como protesta contra los porteros que prohibían el pogo en los clubes. El video con temática medieval se convirtió en un clásico de MTV en los años 80.",
+      "fun_fact_fr": "Écrite en protestation contre les videurs qui interdisaient le pogo dans les clubs. Le clip à thème médiéval est devenu un classique de MTV dans les années 1980.",
       "certifications": [
         "Gold (US)"
       ],
@@ -787,6 +825,7 @@
       "fun_fact": "Originally about nuclear apocalypse, it became a love song anthem. The band was surprised when it found new life in 80s movie soundtracks.",
       "fun_fact_de": "Ursprünglich über die nukleare Apokalypse, wurde es zu einer Liebeslied-Hymne. Die Band war überrascht, als es durch 80er-Film-Soundtracks neues Leben fand.",
       "fun_fact_es": "Originalmente sobre el apocalipsis nuclear, se convirtió en un himno de canciones de amor. La banda se sorprendió cuando encontró nueva vida en bandas sonoras de películas de los 80.",
+      "fun_fact_fr": "À l'origine sur l'apocalypse nucléaire, elle est devenue un hymne romantique. Le groupe a été surpris quand elle a trouvé une seconde vie dans les bandes originales de films des années 80.",
       "certifications": [
         "Gold (US)"
       ],
@@ -811,6 +850,7 @@
       "fun_fact": "Became a gay anthem and disco classic. Geri Halliwell's 2001 cover reached #1, but the original duo never had another major hit.",
       "fun_fact_de": "Wurde zu einer Gay-Hymne und Disco-Klassiker. Geri Halliwells Cover von 2001 erreichte Platz 1, aber das Original-Duo hatte nie wieder einen großen Hit.",
       "fun_fact_es": "Se convirtió en un himno gay y clásico del disco. La versión de Geri Halliwell de 2001 llegó al #1, pero el dúo original nunca tuvo otro gran éxito.",
+      "fun_fact_fr": "Devenue un hymne gay et un classique du disco. La reprise de Geri Halliwell en 2001 a atteint le numéro un, mais le duo original n'a jamais eu d'autre grand succès.",
       "certifications": [
         "Gold (US)",
         "Gold (UK)"
@@ -836,6 +876,7 @@
       "fun_fact": "The band fired lead singer Limahl shortly after this hit. He went solo with 'NeverEnding Story' theme while the band faded into obscurity.",
       "fun_fact_de": "Die Band feuerte Leadsänger Limahl kurz nach diesem Hit. Er ging mit dem 'NeverEnding Story'-Titelsong solo, während die Band in der Versenkung verschwand.",
       "fun_fact_es": "La banda despidió al cantante principal Limahl poco después de este éxito. Él se volvió solista con el tema de 'La Historia Interminable' mientras la banda caía en el olvido.",
+      "fun_fact_fr": "Le groupe a viré le chanteur Limahl peu après ce tube. Il s'est lancé en solo avec le thème de 'L'Histoire sans fin' tandis que le groupe sombrait dans l'oubli.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -860,6 +901,7 @@
       "fun_fact": "Originally written about a serial killer before being rewritten for Flashdance. Sembello was a session guitarist for Stevie Wonder.",
       "fun_fact_de": "Ursprünglich über einen Serienmörder geschrieben, bevor es für Flashdance umgeschrieben wurde. Sembello war Session-Gitarrist für Stevie Wonder.",
       "fun_fact_es": "Originalmente escrita sobre un asesino en serie antes de ser reescrita para Flashdance. Sembello era guitarrista de sesión para Stevie Wonder.",
+      "fun_fact_fr": "Écrite à l'origine sur un tueur en série avant d'être réécrite pour Flashdance. Sembello était guitariste de studio pour Stevie Wonder.",
       "certifications": [
         "Gold (US)"
       ],
@@ -884,6 +926,7 @@
       "fun_fact": "A sequel to David Bowie's 'Space Oddity'. The German version 'Völlig Losgelöst' was even bigger in Europe but Schilling never charted in the US again.",
       "fun_fact_de": "Eine Fortsetzung von David Bowies 'Space Oddity'. Die deutsche Version 'Völlig Losgelöst' war in Europa noch größer, aber Schilling chartete in den USA nie wieder.",
       "fun_fact_es": "Una secuela de 'Space Oddity' de David Bowie. La versión alemana 'Völlig Losgelöst' fue aún más grande en Europa pero Schilling nunca volvió a entrar en las listas de EE.UU.",
+      "fun_fact_fr": "Une suite du 'Space Oddity' de David Bowie. La version allemande 'Völlig Losgelöst' a eu encore plus de succès en Europe, mais Schilling n'est jamais revenu dans les classements américains.",
       "certifications": [
         "Gold (US)",
         "Gold (DE)"
@@ -907,6 +950,7 @@
       "fun_fact": "This German synth-pop band had a minor hit across Europe. The song's nostalgic lyrics resonated with the New Wave audience of the early 80s.",
       "fun_fact_de": "Diese deutsche Synth-Pop-Band hatte einen kleinen Hit in ganz Europa. Die nostalgischen Texte des Songs fanden Anklang beim New-Wave-Publikum der frühen 80er.",
       "fun_fact_es": "Esta banda alemana de synth-pop tuvo un pequeño éxito en toda Europa. La letra nostálgica de la canción resonó con la audiencia del New Wave de principios de los 80.",
+      "fun_fact_fr": "Ce groupe allemand de synth-pop a connu un petit succès à travers l'Europe. Les paroles nostalgiques de la chanson ont parlé au public new wave du début des années 80.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/844775625",
@@ -929,6 +973,7 @@
       "fun_fact": "Hart actually wears glasses in real life. The song's distinctive synth riff made it an 80s classic, but he never matched this US success.",
       "fun_fact_de": "Hart trägt im echten Leben tatsächlich eine Brille. Das markante Synth-Riff machte es zu einem 80er-Klassiker, aber er konnte diesen US-Erfolg nie wiederholen.",
       "fun_fact_es": "Hart en realidad usa gafas en la vida real. El distintivo riff de sintetizador lo convirtió en un clásico de los 80, pero nunca igualó este éxito en EE.UU.",
+      "fun_fact_fr": "Hart porte effectivement des lunettes dans la vraie vie. Le riff de synthétiseur distinctif en a fait un classique des années 80, mais il n'a jamais égalé ce succès aux États-Unis.",
       "certifications": [
         "Gold (US)"
       ],
@@ -953,6 +998,7 @@
       "fun_fact": "Rockwell is actually Berry Gordy Jr.'s son. Michael Jackson sang the chorus as a favor, which helped propel this paranoid anthem to success.",
       "fun_fact_de": "Rockwell ist tatsächlich Berry Gordy Jr.s Sohn. Michael Jackson sang den Refrain als Gefallen, was half, diese paranoide Hymne zum Erfolg zu führen.",
       "fun_fact_es": "Rockwell es en realidad el hijo de Berry Gordy Jr. Michael Jackson cantó el coro como un favor, lo que ayudó a impulsar este himno paranoico al éxito.",
+      "fun_fact_fr": "Rockwell est en fait le fils de Berry Gordy Jr. Michael Jackson a chanté le refrain en guise de faveur, ce qui a propulsé cet hymne paranoïaque vers le succès.",
       "certifications": [
         "Gold (US)"
       ],
@@ -977,6 +1023,7 @@
       "fun_fact": "Took 3 tries over 18 months to produce. Lead singer Pete Burns spent years in legal battles and TV appearances but never had another major hit.",
       "fun_fact_de": "Brauchte 3 Versuche über 18 Monate zur Produktion. Leadsänger Pete Burns verbrachte Jahre mit Rechtsstreitigkeiten und TV-Auftritten, hatte aber nie wieder einen großen Hit.",
       "fun_fact_es": "Tomó 3 intentos durante 18 meses para producir. El cantante Pete Burns pasó años en batallas legales y apariciones en TV pero nunca tuvo otro gran éxito.",
+      "fun_fact_fr": "Il a fallu 3 tentatives sur 18 mois pour la produire. Le chanteur Pete Burns a passé des années en batailles juridiques et apparitions télévisées sans jamais retrouver un tel succès.",
       "certifications": [
         "Gold (US)",
         "Silver (UK)"
@@ -1002,6 +1049,7 @@
       "fun_fact": "Named after the average age of US soldiers in Vietnam. The stuttered vocal samples were groundbreaking at the time and influenced electronic music.",
       "fun_fact_de": "Benannt nach dem Durchschnittsalter amerikanischer Soldaten in Vietnam. Die stotternden Vocal-Samples waren bahnbrechend und beeinflussten die elektronische Musik.",
       "fun_fact_es": "Nombrada por la edad promedio de los soldados estadounidenses en Vietnam. Las muestras vocales tartamudeadas fueron innovadoras e influyeron en la música electrónica.",
+      "fun_fact_fr": "Le titre fait référence à l'âge moyen des soldats américains au Vietnam. Les échantillons vocaux saccadés étaient révolutionnaires à l'époque et ont influencé la musique électronique.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -1026,6 +1074,7 @@
       "fun_fact": "The synth riff was written when keyboardist Joey Tempest was just 14. Despite worldwide success, they never replicated this hit internationally.",
       "fun_fact_de": "Das Synth-Riff wurde geschrieben, als Keyboarder Joey Tempest erst 14 war. Trotz weltweitem Erfolg konnten sie diesen Hit international nie wiederholen.",
       "fun_fact_es": "El riff de sintetizador fue escrito cuando el tecladista Joey Tempest tenía solo 14 años. A pesar del éxito mundial, nunca replicaron este éxito internacionalmente.",
+      "fun_fact_fr": "Le riff de synthétiseur a été composé quand le claviériste Joey Tempest n'avait que 14 ans. Malgré un succès planétaire, ils n'ont jamais renouvelé cet exploit à l'international.",
       "certifications": [
         "Platinum (US)",
         "Platinum (UK)"
@@ -1051,6 +1100,7 @@
       "fun_fact": "Colin Vearncombe chose 'Black' as his stage name. This bittersweet ballad was a European hit but he remained a cult figure in the US.",
       "fun_fact_de": "Colin Vearncombe wählte 'Black' als Künstlernamen. Diese bittersüße Ballade war ein Europa-Hit, aber er blieb in den USA eine Kultfigur.",
       "fun_fact_es": "Colin Vearncombe eligió 'Black' como nombre artístico. Esta balada agridulce fue un éxito europeo pero siguió siendo una figura de culto en EE.UU.",
+      "fun_fact_fr": "Colin Vearncombe a choisi 'Black' comme nom de scène. Cette ballade douce-amère a été un succès européen, mais il est resté une figure culte aux États-Unis.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -1075,6 +1125,7 @@
       "fun_fact": "A pioneering sample-based track that helped define house music. It was a one-off collaboration that was never repeated.",
       "fun_fact_de": "Ein wegweisender Sample-basierter Track, der half, House-Musik zu definieren. Es war eine einmalige Zusammenarbeit, die nie wiederholt wurde.",
       "fun_fact_es": "Una pista pionera basada en samples que ayudó a definir la música house. Fue una colaboración única que nunca se repitió.",
+      "fun_fact_fr": "Un titre pionnier basé sur les samples qui a contribué à définir la house music. C'était une collaboration unique en son genre, jamais renouvelée.",
       "certifications": [
         "Gold (UK)"
       ],
@@ -1098,12 +1149,17 @@
       "fun_fact": "The first a cappella song to hit #1 on Billboard. McFerrin created all sounds with just his voice, but he considers himself a jazz artist, not a pop star.",
       "fun_fact_de": "Der erste A-cappella-Song, der Platz 1 der Billboard-Charts erreichte. McFerrin erzeugte alle Sounds nur mit seiner Stimme, sieht sich aber als Jazz-Künstler, nicht als Popstar.",
       "fun_fact_es": "La primera canción a cappella en llegar al #1 en Billboard. McFerrin creó todos los sonidos solo con su voz, pero se considera un artista de jazz, no una estrella del pop.",
+      "fun_fact_fr": "La première chanson a cappella à atteindre le numéro un au Billboard. McFerrin a créé tous les sons avec sa seule voix, mais il se considère comme un artiste de jazz, pas une star de la pop.",
       "certifications": [
         "Platinum (US)"
       ],
       "awards": [
         "Grammy Award for Song of the Year (1989)",
         "Grammy Award for Record of the Year (1989)"
+      ],
+      "awards_fr": [
+        "Grammy Award de la chanson de l'année (1989)",
+        "Grammy Award du disque de l'année (1989)"
       ],
       "uri_apple_music": "applemusic://track/724862378",
       "uri_youtube_music": "https://music.youtube.com/watch?v=d-diB65scQU",
@@ -1125,6 +1181,7 @@
       "fun_fact": "Brickell later married Paul Simon after he saw her perform this song on SNL. The band broke up but she continued as a folk artist.",
       "fun_fact_de": "Brickell heiratete später Paul Simon, nachdem er sie bei SNL diesen Song performen sah. Die Band löste sich auf, aber sie machte als Folk-Künstlerin weiter.",
       "fun_fact_es": "Brickell se casó más tarde con Paul Simon después de que él la viera interpretar esta canción en SNL. La banda se separó pero ella continuó como artista folk.",
+      "fun_fact_fr": "Brickell a ensuite épousé Paul Simon après qu'il l'a vue interpréter cette chanson dans l'émission SNL. Le groupe s'est séparé mais elle a poursuivi une carrière d'artiste folk.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440916816",
@@ -1147,6 +1204,7 @@
       "fun_fact": "One of the first female rap groups to achieve mainstream success. They were discovered by Eazy-E and were nominated for a Grammy.",
       "fun_fact_de": "Eine der ersten weiblichen Rap-Gruppen, die Mainstream-Erfolg erreichte. Sie wurden von Eazy-E entdeckt und waren für einen Grammy nominiert.",
       "fun_fact_es": "Uno de los primeros grupos de rap femeninos en lograr éxito mainstream. Fueron descubiertas por Eazy-E y fueron nominadas a un Grammy.",
+      "fun_fact_fr": "L'un des premiers groupes de rap féminin à connaître le succès grand public. Elles ont été découvertes par Eazy-E et ont été nommées aux Grammy Awards.",
       "certifications": [
         "Silver (UK)"
       ],
@@ -1170,6 +1228,7 @@
       "fun_fact": "Became iconic through its use in 'The Silence of the Lambs'. The mysterious Q Lazzarus disappeared from music and her identity remained unknown for years.",
       "fun_fact_de": "Wurde durch die Verwendung in 'Das Schweigen der Lämmer' ikonisch. Die mysteriöse Q Lazzarus verschwand aus der Musik und ihre Identität blieb jahrelang unbekannt.",
       "fun_fact_es": "Se volvió icónica a través de su uso en 'El Silencio de los Corderos'. La misteriosa Q Lazzarus desapareció de la música y su identidad permaneció desconocida durante años.",
+      "fun_fact_fr": "Devenue iconique grâce à son utilisation dans 'Le Silence des agneaux'. La mystérieuse Q Lazzarus a disparu de la scène musicale et son identité est restée inconnue pendant des années.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1247752093",
@@ -1191,6 +1250,7 @@
       "fun_fact": "Released when she was just 19 years old. Her deep, distinctive voice was often compared to Suzanne Vega, but mainstream success eluded her.",
       "fun_fact_de": "Veröffentlicht, als sie erst 19 Jahre alt war. Ihre tiefe, markante Stimme wurde oft mit Suzanne Vega verglichen, aber Mainstream-Erfolg blieb ihr verwehrt.",
       "fun_fact_es": "Lanzada cuando solo tenía 19 años. Su voz profunda y distintiva fue comparada a menudo con Suzanne Vega, pero el éxito mainstream la eludió.",
+      "fun_fact_fr": "Sortie alors qu'elle n'avait que 19 ans. Sa voix grave et distinctive était souvent comparée à celle de Suzanne Vega, mais le succès grand public lui a échappé.",
       "certifications": [
         "Gold (DE)"
       ],
@@ -1215,6 +1275,7 @@
       "fun_fact": "This Australian band's dreamy hit was inspired by a friend's comment about feeling lost. They remained cult favorites but never charted this high again.",
       "fun_fact_de": "Der verträumte Hit dieser australischen Band wurde vom Kommentar eines Freundes über das Gefühl, verloren zu sein, inspiriert. Sie blieben Kultfavoriten, charteten aber nie wieder so hoch.",
       "fun_fact_es": "El éxito soñador de esta banda australiana fue inspirado por el comentario de un amigo sobre sentirse perdido. Siguieron siendo favoritos de culto pero nunca volvieron a entrar tan alto en las listas.",
+      "fun_fact_fr": "Le tube rêveur de ce groupe australien a été inspiré par la remarque d'un ami sur le sentiment d'être perdu. Ils sont restés des favoris cultes sans jamais retrouver un tel classement.",
       "certifications": [
         "Gold (AU)"
       ],
@@ -1239,6 +1300,7 @@
       "fun_fact": "This Danish duo's reggae-influenced track became a cult European hit. They had earlier success with 'White Horse' but neither song broke America.",
       "fun_fact_de": "Der Reggae-beeinflusste Track dieses dänischen Duos wurde ein Kult-Europa-Hit. Sie hatten früher Erfolg mit 'White Horse', aber keiner der Songs schaffte es in Amerika.",
       "fun_fact_es": "La pista influenciada por el reggae de este dúo danés se convirtió en un éxito de culto europeo. Tuvieron éxito anterior con 'White Horse' pero ninguna canción triunfó en América.",
+      "fun_fact_fr": "Le titre à influence reggae de ce duo danois est devenu un tube culte en Europe. Ils avaient déjà eu du succès avec 'White Horse', mais aucun des deux morceaux n'a percé en Amérique.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/269896198",
@@ -1261,6 +1323,7 @@
       "fun_fact": "Daughter of rock guitarist Joe Brown. This powerful ballad was a European smash but she struggled to follow up in the pop world.",
       "fun_fact_de": "Tochter des Rock-Gitarristen Joe Brown. Diese kraftvolle Ballade war ein Europa-Hit, aber sie hatte Schwierigkeiten, in der Pop-Welt nachzulegen.",
       "fun_fact_es": "Hija del guitarrista de rock Joe Brown. Esta poderosa balada fue un éxito europeo pero tuvo dificultades para seguir adelante en el mundo del pop.",
+      "fun_fact_fr": "Fille du guitariste rock Joe Brown. Cette ballade puissante a été un carton en Europe, mais elle a eu du mal à enchaîner dans le monde de la pop.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1443916361",
@@ -1283,11 +1346,15 @@
       "fun_fact": "Won the Grammy for Best Rap Performance. Young MC also wrote Tone Loc's hits but never recaptured his own chart success.",
       "fun_fact_de": "Gewann den Grammy für Best Rap Performance. Young MC schrieb auch Tone Locs Hits, konnte aber seinen eigenen Charterfolg nie wieder erreichen.",
       "fun_fact_es": "Ganó el Grammy a la Mejor Interpretación de Rap. Young MC también escribió los éxitos de Tone Loc pero nunca recapturó su propio éxito en las listas.",
+      "fun_fact_fr": "A remporté le Grammy de la meilleure performance rap. Young MC a aussi écrit les tubes de Tone Loc, mais n'a jamais retrouvé son propre succès dans les classements.",
       "certifications": [
         "Gold (US)"
       ],
       "awards": [
         "Grammy Award for Best Rap Performance (1990)"
+      ],
+      "awards_fr": [
+        "Grammy Award de la meilleure performance rap (1990)"
       ],
       "uri_apple_music": "applemusic://track/1440915125",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6rM8ksGHnFc",
@@ -1309,6 +1376,7 @@
       "fun_fact": "Featured Bootsy Collins and Q-Tip as guest artists. Lady Miss Kier's colorful style defined early 90s dance culture, but follow-ups flopped.",
       "fun_fact_de": "Mit Bootsy Collins und Q-Tip als Gastmusikern. Lady Miss Kiers farbenfroher Stil prägte die frühen 90er Tanzkultur, aber die Nachfolger floppten.",
       "fun_fact_es": "Contó con Bootsy Collins y Q-Tip como artistas invitados. El colorido estilo de Lady Miss Kier definió la cultura de baile de principios de los 90, pero los seguimientos fracasaron.",
+      "fun_fact_fr": "Avec Bootsy Collins et Q-Tip en artistes invités. Le style haut en couleur de Lady Miss Kier a défini la culture dance du début des années 90, mais les singles suivants ont fait un flop.",
       "certifications": [
         "Gold (US)",
         "Silver (UK)"
@@ -1333,6 +1401,7 @@
       "fun_fact": "Spain's biggest rock band of the 90s. They were huge in Latin America but this remains their only internationally recognized song.",
       "fun_fact_de": "Spaniens größte Rockband der 90er. Sie waren riesig in Lateinamerika, aber dies bleibt ihr einziger international anerkannter Song.",
       "fun_fact_es": "La banda de rock más grande de España en los 90. Fueron enormes en Latinoamérica pero esta sigue siendo su única canción reconocida internacionalmente.",
+      "fun_fact_fr": "Le plus grand groupe de rock espagnol des années 90. Ils étaient énormes en Amérique latine, mais cela reste leur seule chanson reconnue à l'international.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/697634977",
@@ -1355,12 +1424,17 @@
       "fun_fact": "Sampled Rick James' 'Super Freak' so heavily that James got co-writing credit. Hammer went bankrupt by 1996 after massive overspending.",
       "fun_fact_de": "Sampelte Rick James' 'Super Freak' so stark, dass James Co-Autor-Credits bekam. Hammer ging 1996 durch massives Überspendiertum bankrott.",
       "fun_fact_es": "Sampleó tanto 'Super Freak' de Rick James que James obtuvo crédito de coautor. Hammer quebró en 1996 después de gastar en exceso masivamente.",
+      "fun_fact_fr": "Avec un sample si prononcé de 'Super Freak' de Rick James que celui-ci a obtenu un crédit de co-auteur. Hammer a fait faillite en 1996 après des dépenses excessives.",
       "certifications": [
         "2x Platinum (US)"
       ],
       "awards": [
         "Grammy Award for Best Rap Solo Performance (1991)",
         "Grammy Award for Best R&B Song (1991)"
+      ],
+      "awards_fr": [
+        "Grammy Award de la meilleure performance rap solo (1991)",
+        "Grammy Award de la meilleure chanson R&B (1991)"
       ],
       "uri_apple_music": "applemusic://track/724647729",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_NNYI8VbFyY",
@@ -1382,6 +1456,7 @@
       "fun_fact": "Band leader Lee Mavers was so perfectionist he disowned their only album. The song found new audiences through multiple film and TV placements.",
       "fun_fact_de": "Bandleader Lee Mavers war so perfektionistisch, dass er ihr einziges Album verleugnete. Der Song fand durch Film- und TV-Platzierungen neue Zuhörer.",
       "fun_fact_es": "El líder de la banda Lee Mavers era tan perfeccionista que repudió su único álbum. La canción encontró nuevas audiencias a través de múltiples apariciones en cine y TV.",
+      "fun_fact_fr": "Le leader Lee Mavers était si perfectionniste qu'il a renié leur unique album. La chanson a trouvé de nouveaux publics grâce à de nombreuses apparitions au cinéma et à la télévision.",
       "certifications": [
         "Gold (US)"
       ],
@@ -1406,6 +1481,7 @@
       "fun_fact": "First hip-hop single to top the Billboard Hot 100. He initially denied sampling Queen's 'Under Pressure' but later settled out of court.",
       "fun_fact_de": "Die erste Hip-Hop-Single, die die Billboard Hot 100 anführte. Er bestritt zunächst, Queens 'Under Pressure' gesampelt zu haben, einigte sich aber später außergerichtlich.",
       "fun_fact_es": "El primer sencillo de hip-hop en encabezar el Billboard Hot 100. Inicialmente negó haber sampleado 'Under Pressure' de Queen pero luego llegó a un acuerdo extrajudicial.",
+      "fun_fact_fr": "Premier single hip-hop à atteindre la première place du Billboard Hot 100. Il a d'abord nié avoir samplé 'Under Pressure' de Queen avant de régler l'affaire à l'amiable.",
       "certifications": [
         "2x Platinum (US)",
         "Platinum (UK)"
@@ -1431,6 +1507,7 @@
       "fun_fact": "The controversial lyrics got it banned in some countries. Lead singer Chrissy Amphlett said it was really about self-empowerment.",
       "fun_fact_de": "Die kontroversen Texte führten in einigen Ländern zu einem Verbot. Leadsängerin Chrissy Amphlett sagte, es gehe eigentlich um Selbstermächtigung.",
       "fun_fact_es": "La letra controvertida hizo que fuera prohibida en algunos países. La cantante Chrissy Amphlett dijo que realmente trataba sobre el empoderamiento personal.",
+      "fun_fact_fr": "Les paroles controversées l'ont fait interdire dans certains pays. La chanteuse Chrissy Amphlett affirmait que la chanson parlait en réalité d'affirmation de soi.",
       "certifications": [
         "Gold (US)",
         "Gold (AU)"
@@ -1456,6 +1533,7 @@
       "fun_fact": "The band name allegedly stood for 'Ecstasy Mother****ers'. They were teens when this hit topped the US charts, but quickly faded from view.",
       "fun_fact_de": "Der Bandname stand angeblich für 'Ecstasy Mother****ers'. Sie waren Teenager, als dieser Hit die US-Charts anführte, verschwanden aber schnell aus dem Blickfeld.",
       "fun_fact_es": "El nombre de la banda supuestamente significaba 'Ecstasy Mother****ers'. Eran adolescentes cuando este éxito encabezó las listas de EE.UU., pero rápidamente desaparecieron de la vista.",
+      "fun_fact_fr": "Le nom du groupe signifierait 'Ecstasy Mother****ers'. Ils étaient adolescents quand ce tube a dominé les classements américains, mais ils ont rapidement sombré dans l'oubli.",
       "certifications": [
         "Gold (US)"
       ],
@@ -1480,6 +1558,7 @@
       "fun_fact": "Took 2 years of touring before this song finally caught on. Despite its massive success, the band became a punchline for 90s nostalgia.",
       "fun_fact_de": "Brauchte 2 Jahre Touren, bevor der Song endlich Anklang fand. Trotz des massiven Erfolgs wurde die Band zum Synonym für 90er-Nostalgie.",
       "fun_fact_es": "Tomó 2 años de giras antes de que esta canción finalmente despegara. A pesar de su éxito masivo, la banda se convirtió en sinónimo de nostalgia de los 90.",
+      "fun_fact_fr": "Il a fallu 2 ans de tournées avant que cette chanson ne décolle enfin. Malgré son énorme succès, le groupe est devenu synonyme de nostalgie des années 90.",
       "certifications": [
         "Gold (US)"
       ],
@@ -1504,6 +1583,7 @@
       "fun_fact": "The 'Bee Girl' from the video became famous overnight. Lead singer Shannon Hoon died of an overdose in 1995, ending the band's potential.",
       "fun_fact_de": "Das 'Bienenmädchen' aus dem Video wurde über Nacht berühmt. Leadsänger Shannon Hoon starb 1995 an einer Überdosis und beendete das Potenzial der Band.",
       "fun_fact_es": "La 'Chica Abeja' del video se hizo famosa de la noche a la mañana. El cantante Shannon Hoon murió de sobredosis en 1995, terminando con el potencial de la banda.",
+      "fun_fact_fr": "La « Fille Abeille » du clip est devenue célèbre du jour au lendemain. Le chanteur Shannon Hoon est mort d'une overdose en 1995, mettant fin au potentiel du groupe.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -1528,6 +1608,7 @@
       "fun_fact": "A staple at sporting events worldwide. DJ Lethal later joined Limp Bizkit, while Everlast had modest solo success but never matched this hit.",
       "fun_fact_de": "Ein fester Bestandteil bei Sportveranstaltungen weltweit. DJ Lethal schloss sich später Limp Bizkit an, während Everlast mäßigen Solo-Erfolg hatte, aber nie an diesen Hit heranreichte.",
       "fun_fact_es": "Un elemento básico en eventos deportivos en todo el mundo. DJ Lethal se unió más tarde a Limp Bizkit, mientras que Everlast tuvo éxito en solitario modesto pero nunca igualó este éxito.",
+      "fun_fact_fr": "Un incontournable des événements sportifs dans le monde entier. DJ Lethal a ensuite rejoint Limp Bizkit, tandis qu'Everlast a connu un succès solo modeste sans jamais égaler ce tube.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -1552,6 +1633,7 @@
       "fun_fact": "Linda Perry went on to write hits for Pink, Christina Aguilera, and Gwen Stefani. The song became a viral meme decades later.",
       "fun_fact_de": "Linda Perry schrieb später Hits für Pink, Christina Aguilera und Gwen Stefani. Der Song wurde Jahrzehnte später zu einem viralen Meme.",
       "fun_fact_es": "Linda Perry luego escribió éxitos para Pink, Christina Aguilera y Gwen Stefani. La canción se convirtió en un meme viral décadas después.",
+      "fun_fact_fr": "Linda Perry a ensuite écrit des tubes pour Pink, Christina Aguilera et Gwen Stefani. La chanson est devenue un mème viral des décennies plus tard.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -1576,6 +1658,7 @@
       "fun_fact": "Brad Roberts' unusually deep voice became the song's trademark. Weird Al parodied it as 'Headline News' at the height of its popularity.",
       "fun_fact_de": "Brad Roberts' ungewöhnlich tiefe Stimme wurde zum Markenzeichen des Songs. Weird Al parodierte ihn als 'Headline News' auf dem Höhepunkt seiner Popularität.",
       "fun_fact_es": "La voz inusualmente profunda de Brad Roberts se convirtió en la marca registrada de la canción. Weird Al la parodió como 'Headline News' en el apogeo de su popularidad.",
+      "fun_fact_fr": "La voix inhabituellement grave de Brad Roberts est devenue la marque de fabrique de la chanson. Weird Al l'a parodiée sous le titre 'Headline News' au sommet de sa popularité.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/309226521",
@@ -1597,6 +1680,7 @@
       "fun_fact": "This British electronic duo's biggest hit sampled a choir. It became a rave anthem but they remained largely unknown outside Europe.",
       "fun_fact_de": "Der größte Hit dieses britischen Elektronik-Duos sampelte einen Chor. Er wurde zu einer Rave-Hymne, aber sie blieben außerhalb Europas weitgehend unbekannt.",
       "fun_fact_es": "El mayor éxito de este dúo electrónico británico sampleó un coro. Se convirtió en un himno rave pero permanecieron desconocidos fuera de Europa.",
+      "fun_fact_fr": "Le plus grand succès de ce duo électronique britannique samplait un chœur. Il est devenu un hymne de la rave mais ils sont restés largement méconnus en dehors de l'Europe.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1819250552",
@@ -1619,6 +1703,7 @@
       "fun_fact": "Formed by Pixies bassist Kim Deal. This alternative rock gem was their breakthrough but the band's erratic career prevented lasting mainstream success.",
       "fun_fact_de": "Gegründet von Pixies-Bassistin Kim Deal. Diese Alternative-Rock-Perle war ihr Durchbruch, aber die erratische Karriere der Band verhinderte dauerhaften Mainstream-Erfolg.",
       "fun_fact_es": "Formada por la bajista de Pixies Kim Deal. Esta joya del rock alternativo fue su avance pero la carrera errática de la banda impidió el éxito mainstream duradero.",
+      "fun_fact_fr": "Fondé par la bassiste des Pixies, Kim Deal. Cette perle du rock alternatif a été leur percée, mais la carrière chaotique du groupe a empêché un succès durable dans le grand public.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1251496094",
@@ -1640,6 +1725,7 @@
       "fun_fact": "This German one-hit wonder captured the zeitgeist of 90s youth culture. Luci van Org remained active in music but never matched this success.",
       "fun_fact_de": "Dieser deutsche One-Hit-Wonder fing den Zeitgeist der 90er-Jugendkultur ein. Luci van Org blieb in der Musik aktiv, erreichte aber nie wieder diesen Erfolg.",
       "fun_fact_es": "Este one-hit wonder alemán capturó el espíritu de la cultura juvenil de los 90. Luci van Org permaneció activa en la música pero nunca igualó este éxito.",
+      "fun_fact_fr": "Ce one-hit wonder allemand a capturé l'esprit de la culture jeune des années 90. Luci van Org est restée active dans la musique mais n'a jamais retrouvé un tel succès.",
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=3seOou4qFyU",
@@ -1661,6 +1747,7 @@
       "fun_fact": "The first debut single to enter the UK chart at #1 since 1984. The accompanying dance routine became a craze in clubs across Europe.",
       "fun_fact_de": "Die erste Debüt-Single seit 1984, die auf Platz 1 in die UK-Charts einstieg. Die begleitende Tanzroutine wurde in Clubs in ganz Europa zum Trend.",
       "fun_fact_es": "El primer sencillo debut en entrar al #1 en la lista del Reino Unido desde 1984. La rutina de baile que la acompañaba se convirtió en una moda en clubes de toda Europa.",
+      "fun_fact_fr": "Le premier single de début à entrer directement au numéro un des classements britanniques depuis 1984. La chorégraphie qui l'accompagnait est devenue un phénomène dans les clubs à travers l'Europe.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/125867612",
@@ -1683,6 +1770,7 @@
       "fun_fact": "Written about a couple who realize they have nothing in common except liking the Audrey Hepburn film. The band couldn't replicate this quirky hit.",
       "fun_fact_de": "Geschrieben über ein Paar, das merkt, dass sie nichts gemeinsam haben außer dem Audrey-Hepburn-Film. Die Band konnte diesen skurrilen Hit nicht wiederholen.",
       "fun_fact_es": "Escrita sobre una pareja que se da cuenta de que no tienen nada en común excepto que les gusta la película de Audrey Hepburn. La banda no pudo replicar este peculiar éxito.",
+      "fun_fact_fr": "Écrite sur un couple qui réalise qu'il n'a rien en commun à part le film d'Audrey Hepburn. Le groupe n'a jamais réussi à reproduire ce tube décalé.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1444029754",
@@ -1705,6 +1793,7 @@
       "fun_fact": "Collins was formerly in Orange Juice. He suffered two brain hemorrhages in 2005 but recovered and continues making music to this day.",
       "fun_fact_de": "Collins war früher bei Orange Juice. Er erlitt 2005 zwei Hirnblutungen, erholte sich aber und macht bis heute Musik.",
       "fun_fact_es": "Collins fue anteriormente parte de Orange Juice. Sufrió dos hemorragias cerebrales en 2005 pero se recuperó y continúa haciendo música hasta el día de hoy.",
+      "fun_fact_fr": "Collins était auparavant membre d'Orange Juice. Il a subi deux hémorragies cérébrales en 2005 mais s'en est remis et continue de faire de la musique aujourd'hui.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/474270145",
@@ -1727,6 +1816,7 @@
       "fun_fact": "This German band's cheerful song was about boredom and depression. It topped charts across Europe but they remained unknown in America.",
       "fun_fact_de": "Der fröhliche Song dieser deutschen Band handelte eigentlich von Langeweile und Depression. Er führte die Charts in ganz Europa an, aber in Amerika blieben sie unbekannt.",
       "fun_fact_es": "La canción alegre de esta banda alemana era en realidad sobre el aburrimiento y la depresión. Encabezó las listas en toda Europa pero permanecieron desconocidos en América.",
+      "fun_fact_fr": "La chanson joyeuse de ce groupe allemand parlait en réalité d'ennui et de dépression. Elle a dominé les classements à travers l'Europe, mais ils sont restés inconnus en Amérique.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1642728104",
@@ -1749,6 +1839,7 @@
       "fun_fact": "This philosophical song about God earned 3 Grammy nominations. Some religious groups protested, which only boosted its popularity.",
       "fun_fact_de": "Dieser philosophische Song über Gott erhielt 3 Grammy-Nominierungen. Einige religiöse Gruppen protestierten, was seine Popularität nur steigerte.",
       "fun_fact_es": "Esta canción filosófica sobre Dios recibió 3 nominaciones al Grammy. Algunos grupos religiosos protestaron, lo que solo aumentó su popularidad.",
+      "fun_fact_fr": "Cette chanson philosophique sur Dieu a obtenu 3 nominations aux Grammy. Certains groupes religieux ont protesté, ce qui n'a fait qu'augmenter sa popularité.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440918935",
@@ -1771,6 +1862,7 @@
       "fun_fact": "A self-deprecating rap about wanting to be taller and cooler. Skee-Lo was actually 5'8\" - not that short - but the song resonated with underdogs everywhere.",
       "fun_fact_de": "Ein selbstironischer Rap über den Wunsch, größer und cooler zu sein. Skee-Lo war eigentlich 1,73m - nicht so klein - aber der Song kam bei Außenseitern überall an.",
       "fun_fact_es": "Un rap autoirónico sobre querer ser más alto y más cool. Skee-Lo en realidad medía 1,73m - no tan bajo - pero la canción resonó con los marginados en todas partes.",
+      "fun_fact_fr": "Un rap autodérisoire sur le désir d'être plus grand et plus cool. Skee-Lo mesurait en fait 1m73 — pas si petit que ça — mais la chanson a parlé à tous les outsiders.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/925659212",
@@ -1793,6 +1885,7 @@
       "fun_fact": "This Swedish band's provocative industrial rock track got MTV airplay despite its odd title. They never achieved mainstream success again.",
       "fun_fact_de": "Der provokante Industrial-Rock-Track dieser schwedischen Band bekam MTV-Airplay trotz des seltsamen Titels. Sie erreichten nie wieder Mainstream-Erfolg.",
       "fun_fact_es": "Esta provocativa pista de rock industrial de esta banda sueca obtuvo difusión en MTV a pesar de su extraño título. Nunca volvieron a lograr éxito mainstream.",
+      "fun_fact_fr": "Le titre provocateur de rock industriel de ce groupe suédois a été diffusé sur MTV malgré son titre étrange. Ils n'ont plus jamais connu de succès grand public.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/724612537",
@@ -1815,6 +1908,7 @@
       "fun_fact": "Used in a Levi's commercial, it became the fastest-selling debut single in UK history at the time. The hype faded as quickly as it arrived.",
       "fun_fact_de": "In einem Levi's-Werbespot verwendet, wurde es zur schnellstverkauften Debüt-Single der UK-Geschichte zu dieser Zeit. Der Hype verblasste so schnell, wie er kam.",
       "fun_fact_es": "Usada en un comercial de Levi's, se convirtió en el sencillo debut más vendido en la historia del Reino Unido en ese momento. El bombo se desvaneció tan rápido como llegó.",
+      "fun_fact_fr": "Utilisée dans une publicité Levi's, elle est devenue à l'époque le single de début le plus rapidement vendu de l'histoire britannique. L'engouement s'est dissipé aussi vite qu'il était arrivé.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1223063408",
@@ -1837,6 +1931,7 @@
       "fun_fact": "New Zealand's biggest international hit. Pauly Fuemana sold millions but saw little profit due to a bad record deal. He died in 2010.",
       "fun_fact_de": "Neuseelands größter internationaler Hit. Pauly Fuemana verkaufte Millionen, sah aber wegen eines schlechten Plattenvertrags wenig Profit. Er starb 2010.",
       "fun_fact_es": "El mayor éxito internacional de Nueva Zelanda. Pauly Fuemana vendió millones pero vio poca ganancia debido a un mal contrato discográfico. Murió en 2010.",
+      "fun_fact_fr": "Le plus grand succès international de Nouvelle-Zélande. Pauly Fuemana a vendu des millions d'exemplaires mais n'en a tiré que peu de bénéfices à cause d'un mauvais contrat. Il est décédé en 2010.",
       "certifications": [
         "Gold (US)"
       ],
@@ -1860,6 +1955,7 @@
       "fun_fact": "Rocketed to #1 after being featured in a Levi's jeans ad. The band was formed specifically for the commercial and quickly disbanded after.",
       "fun_fact_de": "Schoss nach Verwendung in einer Levi's-Jeans-Werbung auf Platz 1. Die Band wurde speziell für den Werbespot gegründet und löste sich danach schnell auf.",
       "fun_fact_es": "Se disparó al #1 después de aparecer en un anuncio de jeans Levi's. La banda fue formada específicamente para el comercial y se disolvió rápidamente después.",
+      "fun_fact_fr": "Propulsée au numéro un après son apparition dans une publicité Levi's. Le groupe a été créé spécifiquement pour le spot publicitaire et s'est rapidement séparé ensuite.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/464578812",
@@ -1882,6 +1978,7 @@
       "fun_fact": "This Montreal collective's laid-back hit perfectly captured late-90s slacker culture. Despite critical acclaim, they remained a one-hit wonder internationally.",
       "fun_fact_de": "Der entspannte Hit dieses Montrealer Kollektivs fing perfekt die Slacker-Kultur der späten 90er ein. Trotz kritischer Anerkennung blieben sie international ein One-Hit-Wonder.",
       "fun_fact_es": "El éxito relajado de este colectivo de Montreal capturó perfectamente la cultura slacker de finales de los 90. A pesar del reconocimiento crítico, siguieron siendo un one-hit wonder internacional.",
+      "fun_fact_fr": "Le tube décontracté de ce collectif montréalais a parfaitement capturé la culture slacker de la fin des années 90. Malgré les éloges de la critique, ils sont restés un one-hit wonder à l'international.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1551595436",
@@ -1904,6 +2001,7 @@
       "fun_fact": "This anarchist band had been making music for 15 years before this hit. They donated earnings to causes and famously threw water on a politician.",
       "fun_fact_de": "Diese anarchistische Band hatte 15 Jahre lang Musik gemacht, bevor dieser Hit kam. Sie spendeten Einnahmen an gute Zwecke und warfen einem Politiker berühmt Wasser ins Gesicht.",
       "fun_fact_es": "Esta banda anarquista había estado haciendo música durante 15 años antes de este éxito. Donaron ganancias a causas y famosamente arrojaron agua a un político.",
+      "fun_fact_fr": "Ce groupe anarchiste faisait de la musique depuis 15 ans avant ce tube. Ils ont reversé leurs gains à des causes sociales et ont un jour célèbrement jeté de l'eau sur un politicien.",
       "certifications": [
         "2x Platinum (US)",
         "Platinum (UK)"
@@ -1929,6 +2027,7 @@
       "fun_fact": "The mysterious lyrics were inspired by a disorienting party experience. The lo-fi recording quality was intentional and became part of its charm.",
       "fun_fact_de": "Die mysteriösen Texte wurden von einer desorientierenden Party-Erfahrung inspiriert. Die Lo-Fi-Aufnahmequalität war beabsichtigt und wurde Teil des Charmes.",
       "fun_fact_es": "La misteriosa letra fue inspirada por una experiencia desorientadora en una fiesta. La calidad de grabación lo-fi fue intencional y se convirtió en parte de su encanto.",
+      "fun_fact_fr": "Les paroles mystérieuses ont été inspirées par une expérience désorientante lors d'une fête. La qualité d'enregistrement lo-fi était intentionnelle et faisait partie de son charme.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1518392883",
@@ -1951,6 +2050,7 @@
       "fun_fact": "Often confused with Alanis Morissette's style. Brooks embraced her one-hit wonder status, saying she'd rather have one big song than none.",
       "fun_fact_de": "Oft mit Alanis Morissettes Stil verwechselt. Brooks akzeptierte ihren One-Hit-Wonder-Status und sagte, sie hätte lieber einen großen Song als keinen.",
       "fun_fact_es": "A menudo confundida con el estilo de Alanis Morissette. Brooks aceptó su estatus de one-hit wonder, diciendo que prefería tener una gran canción que ninguna.",
+      "fun_fact_fr": "Souvent confondue avec le style d'Alanis Morissette. Brooks a assumé son statut de one-hit wonder, déclarant qu'elle préférait avoir un grand titre que pas de titre du tout.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/724259949",
@@ -1973,6 +2073,7 @@
       "fun_fact": "Actually a cover of an obscure 1995 song. The former Australian soap actress became a worldwide star but struggled to match this debut hit.",
       "fun_fact_de": "Eigentlich ein Cover eines obskuren Songs von 1995. Die ehemalige australische Soap-Schauspielerin wurde ein Weltstar, hatte aber Schwierigkeiten, diesen Debüt-Hit zu übertreffen.",
       "fun_fact_es": "En realidad un cover de una canción oscura de 1995. La ex actriz de telenovelas australiana se convirtió en una estrella mundial pero tuvo dificultades para igualar este éxito debut.",
+      "fun_fact_fr": "En réalité la reprise d'une chanson obscure de 1995. L'ancienne actrice de soap opera australienne est devenue une star mondiale, mais a eu du mal à égaler ce premier succès.",
       "certifications": [
         "Platinum (US)",
         "Platinum (UK)",
@@ -1999,6 +2100,7 @@
       "fun_fact": "A bedroom recording that samples a 1930s Al Bowlly song. Jyoti Mishra recorded everything himself and was shocked when it hit #1 in the UK.",
       "fun_fact_de": "Eine Schlafzimmer-Aufnahme, die einen Al-Bowlly-Song aus den 1930ern sampelt. Jyoti Mishra nahm alles selbst auf und war schockiert, als es in Großbritannien Platz 1 erreichte.",
       "fun_fact_es": "Una grabación casera que samplea una canción de Al Bowlly de los años 30. Jyoti Mishra grabó todo él mismo y quedó sorprendido cuando llegó al #1 en el Reino Unido.",
+      "fun_fact_fr": "Un enregistrement fait en chambre qui sample un morceau d'Al Bowlly des années 1930. Jyoti Mishra a tout enregistré seul et a été stupéfait quand le titre a atteint le numéro un au Royaume-Uni.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1675516478",
@@ -2021,6 +2123,7 @@
       "fun_fact": "Originally a flop until Fatboy Slim's remix hit #1. It's about Bollywood singer Asha Bhosle, who has recorded more songs than anyone in history.",
       "fun_fact_de": "Ursprünglich ein Flop, bis Fatboy Slims Remix Platz 1 erreichte. Es geht um die Bollywood-Sängerin Asha Bhosle, die mehr Songs aufgenommen hat als jeder andere in der Geschichte.",
       "fun_fact_es": "Originalmente un fracaso hasta que el remix de Fatboy Slim llegó al #1. Es sobre la cantante de Bollywood Asha Bhosle, quien ha grabado más canciones que nadie en la historia.",
+      "fun_fact_fr": "Un échec à sa sortie, jusqu'à ce que le remix de Fatboy Slim atteigne le numéro un. La chanson rend hommage à la chanteuse de Bollywood Asha Bhosle, qui a enregistré plus de titres que quiconque dans l'histoire.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/358135470",
@@ -2043,6 +2146,7 @@
       "fun_fact": "Son of jazz legend Don Cherry and half-brother to Neneh Cherry. Despite family connections, he couldn't maintain his own chart success.",
       "fun_fact_de": "Sohn der Jazz-Legende Don Cherry und Halbbruder von Neneh Cherry. Trotz Familienverbindungen konnte er seinen eigenen Charterfolg nicht aufrechterhalten.",
       "fun_fact_es": "Hijo de la leyenda del jazz Don Cherry y medio hermano de Neneh Cherry. A pesar de las conexiones familiares, no pudo mantener su propio éxito en las listas.",
+      "fun_fact_fr": "Fils de la légende du jazz Don Cherry et demi-frère de Neneh Cherry. Malgré ses liens familiaux, il n'a pas réussi à maintenir son propre succès dans les classements.",
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=Nntd2fgMUYw",
@@ -2065,6 +2169,7 @@
       "fun_fact": "Gregg Alexander disbanded after one album because he hated fame. The song's shoutouts to celebrities sparked controversy but boosted its profile.",
       "fun_fact_de": "Gregg Alexander löste die Band nach einem Album auf, weil er Ruhm hasste. Die Erwähnungen von Prominenten im Song lösten Kontroversen aus, steigerten aber das Profil.",
       "fun_fact_es": "Gregg Alexander disolvió la banda después de un álbum porque odiaba la fama. Las menciones de celebridades en la canción generaron controversia pero aumentaron su perfil.",
+      "fun_fact_fr": "Gregg Alexander a dissous le groupe après un seul album parce qu'il détestait la célébrité. Les références aux célébrités dans la chanson ont suscité la controverse mais ont renforcé sa visibilité.",
       "certifications": [
         "Gold (US)",
         "Gold (UK)"
@@ -2090,6 +2195,7 @@
       "fun_fact": "Actually written about the birth of lead singer's child, not a bar closing. It became the ultimate last-call song despite its hidden meaning.",
       "fun_fact_de": "Eigentlich über die Geburt des Kindes des Leadsängers geschrieben, nicht über eine Bar, die schließt. Es wurde trotz seiner versteckten Bedeutung zum ultimativen Last-Call-Song.",
       "fun_fact_es": "En realidad escrita sobre el nacimiento del hijo del cantante principal, no sobre un bar cerrando. Se convirtió en la canción definitiva de última ronda a pesar de su significado oculto.",
+      "fun_fact_fr": "En réalité écrite sur la naissance de l'enfant du chanteur, et non sur la fermeture d'un bar. Elle est devenue la chanson de dernière tournée par excellence malgré son sens caché.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -2114,6 +2220,7 @@
       "fun_fact": "Featured the puppet Flat Eric in Levi's ads. French producer Quentin Dupieux later became a cult film director.",
       "fun_fact_de": "Mit der Puppe Flat Eric in Levi's-Werbung. Der französische Produzent Quentin Dupieux wurde später ein Kult-Filmregisseur.",
       "fun_fact_es": "Presentó a la marioneta Flat Eric en anuncios de Levi's. El productor francés Quentin Dupieux luego se convirtió en un director de cine de culto.",
+      "fun_fact_fr": "Avec la marionnette Flat Eric dans les publicités Levi's. Le producteur français Quentin Dupieux est ensuite devenu un réalisateur de films culte.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/822105384",
@@ -2136,6 +2243,7 @@
       "fun_fact": "Sampled Red Hot Chili Peppers' 'Pretty Little Ditty'. The rap-rock track hit #1 but the band became synonymous with early 2000s one-hit wonders.",
       "fun_fact_de": "Sampelte Red Hot Chili Peppers' 'Pretty Little Ditty'. Der Rap-Rock-Track erreichte Platz 1, aber die Band wurde zum Synonym für One-Hit-Wonder der frühen 2000er.",
       "fun_fact_es": "Sampleó 'Pretty Little Ditty' de Red Hot Chili Peppers. La pista de rap-rock llegó al #1 pero la banda se convirtió en sinónimo de one-hit wonders de principios de los 2000.",
+      "fun_fact_fr": "Sample 'Pretty Little Ditty' des Red Hot Chili Peppers. Ce titre rap-rock a atteint le numéro un, mais le groupe est devenu synonyme de one-hit wonder du début des années 2000.",
       "certifications": [
         "Platinum (US)"
       ],
@@ -2160,6 +2268,7 @@
       "fun_fact": "Featured in the movie 'Loser' starring Jason Biggs. The nerdy anthem found new life through social media over 20 years after its release.",
       "fun_fact_de": "Im Film 'Loser' mit Jason Biggs zu sehen. Die Nerd-Hymne fand durch Social Media über 20 Jahre nach ihrer Veröffentlichung neues Leben.",
       "fun_fact_es": "Apareció en la película 'Loser' protagonizada por Jason Biggs. El himno nerd encontró nueva vida a través de las redes sociales más de 20 años después de su lanzamiento.",
+      "fun_fact_fr": "Présent dans le film 'Loser' avec Jason Biggs. Cet hymne des marginaux a connu une seconde vie grâce aux réseaux sociaux, plus de 20 ans après sa sortie.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/298160976",
@@ -2182,6 +2291,7 @@
       "fun_fact": "An explicit club anthem that became a cult favorite. Khia recorded it for just $350 and it became a staple of 2000s parties.",
       "fun_fact_de": "Eine explizite Club-Hymne, die zum Kultfavoriten wurde. Khia nahm sie für nur 350 Dollar auf und sie wurde zu einem Klassiker der 2000er-Partys.",
       "fun_fact_es": "Un himno de club explícito que se convirtió en favorito de culto. Khia lo grabó por solo $350 y se convirtió en un elemento básico de las fiestas de los 2000.",
+      "fun_fact_fr": "Un hymne de club explicite devenu un favori culte. Khia l'a enregistré pour seulement 350 dollars et il est devenu un incontournable des soirées des années 2000.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/5622208",
@@ -2204,6 +2314,7 @@
       "fun_fact": "Three Spanish sisters created a global dance craze. The nonsense lyrics are supposedly a garbled version of 'Rapper's Delight'.",
       "fun_fact_de": "Drei spanische Schwestern lösten einen weltweiten Tanztrend aus. Die sinnlosen Texte sind angeblich eine verstümmelte Version von 'Rapper's Delight'.",
       "fun_fact_es": "Tres hermanas españolas crearon una locura de baile global. La letra sin sentido supuestamente es una versión distorsionada de 'Rapper's Delight'.",
+      "fun_fact_fr": "Trois sœurs espagnoles ont déclenché un phénomène de danse mondial. Les paroles absurdes seraient une version déformée de 'Rapper's Delight'.",
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=arZZw8NyPq8",
@@ -2224,6 +2335,7 @@
       "fun_fact": "Became famous as the theme song for 'The O.C.' TV series. Actor Jason Schwartzman was their original drummer before his film career took off.",
       "fun_fact_de": "Wurde als Titelsong der TV-Serie 'O.C., California' berühmt. Schauspieler Jason Schwartzman war ihr ursprünglicher Schlagzeuger, bevor seine Filmkarriere begann.",
       "fun_fact_es": "Se hizo famosa como tema de la serie de TV 'The O.C.' El actor Jason Schwartzman fue su baterista original antes de que despegara su carrera cinematográfica.",
+      "fun_fact_fr": "Devenue célèbre comme générique de la série télévisée 'The O.C.' L'acteur Jason Schwartzman était leur batteur d'origine avant que sa carrière cinématographique ne décolle.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/169731532",
@@ -2245,6 +2357,7 @@
       "fun_fact": "The drum sample from The Meters made it instantly recognizable. Despite critical acclaim, Amerie couldn't sustain her chart presence.",
       "fun_fact_de": "Das Drum-Sample von The Meters machte ihn sofort erkennbar. Trotz kritischer Anerkennung konnte Amerie ihre Chart-Präsenz nicht aufrechterhalten.",
       "fun_fact_es": "La muestra de batería de The Meters lo hizo instantáneamente reconocible. A pesar del reconocimiento crítico, Amerie no pudo mantener su presencia en las listas.",
+      "fun_fact_fr": "Le sample de batterie des Meters l'a rendue instantanément reconnaissable. Malgré les éloges de la critique, Amerie n'a pas réussi à maintenir sa présence dans les classements.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/153437689",
@@ -2267,12 +2380,16 @@
       "fun_fact": "First song to reach #1 on UK charts through downloads alone. The duo of CeeLo Green and Danger Mouse wore elaborate costumes at every appearance.",
       "fun_fact_de": "Der erste Song, der allein durch Downloads Platz 1 der UK-Charts erreichte. Das Duo aus CeeLo Green und Danger Mouse trug bei jedem Auftritt aufwändige Kostüme.",
       "fun_fact_es": "La primera canción en llegar al #1 en las listas del Reino Unido solo a través de descargas. El dúo de CeeLo Green y Danger Mouse usaba disfraces elaborados en cada aparición.",
+      "fun_fact_fr": "Première chanson à atteindre le numéro un des classements britanniques uniquement grâce aux téléchargements. Le duo composé de CeeLo Green et Danger Mouse portait des costumes élaborés à chacune de leurs apparitions.",
       "certifications": [
         "2x Platinum (US)",
         "2x Platinum (UK)"
       ],
       "awards": [
         "Grammy Award for Record of the Year (2007)"
+      ],
+      "awards_fr": [
+        "Grammy Award du disque de l'année (2007)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=-N4jf6rtyuw",
       "uri_apple_music": "applemusic://track/135149687",
@@ -2294,6 +2411,7 @@
       "fun_fact": "The most-sold song of 2012 worldwide. Belgian-Australian Gotye made the video for under $1000 and won 3 Grammys but retreated from pop music.",
       "fun_fact_de": "Der meistverkaufte Song weltweit 2012. Der belgisch-australische Gotye machte das Video für unter 1000 Dollar und gewann 3 Grammys, zog sich aber aus der Popmusik zurück.",
       "fun_fact_es": "La canción más vendida de 2012 en todo el mundo. El belga-australiano Gotye hizo el video por menos de $1000 y ganó 3 Grammys pero se retiró de la música pop.",
+      "fun_fact_fr": "Le titre le plus vendu au monde en 2012. Le belgo-australien Gotye a réalisé le clip pour moins de 1000 dollars et a remporté 3 Grammy Awards avant de se retirer de la musique pop.",
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1440754487",

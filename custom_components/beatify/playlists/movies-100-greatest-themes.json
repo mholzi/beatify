@@ -20,6 +20,7 @@
       "fun_fact": "Howard Shore composed all three Lord of the Rings scores in New Zealand over four years. The music required over 100 musicians and won three Academy Awards.",
       "fun_fact_de": "Howard Shore komponierte alle drei Herr-der-Ringe-Soundtracks in Neuseeland uber vier Jahre hinweg. Die Musik erforderte uber 100 Musiker und gewann drei Academy Awards.",
       "fun_fact_es": "Howard Shore compuso las tres bandas sonoras de El Senor de los Anillos en Nueva Zelanda durante cuatro anos. La musica requirio mas de 100 musicos y gano tres premios de la Academia.",
+      "fun_fact_fr": "Howard Shore a compose les trois partitions du Seigneur des Anneaux en Nouvelle-Zelande sur une periode de quatre ans. La musique a necessite plus de 100 musiciens et a remporte trois Academy Awards.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -33,6 +34,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (2001)",
         "Premio Grammy a la mejor banda sonora (2002)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (2001)",
+        "Grammy de la meilleure bande originale (2002)"
       ],
       "uri_apple_music": "applemusic://track/1369922084",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UJNeiBaEMIE",
@@ -56,6 +61,7 @@
       "fun_fact": "The James Bond Theme was composed by Monty Norman but arranged by John Barry, leading to decades of legal disputes over who deserved primary credit.",
       "fun_fact_de": "Das James-Bond-Thema wurde von Monty Norman komponiert, aber von John Barry arrangiert, was zu jahrzehntelangen Rechtsstreitigkeiten daruber fuhrte, wem die Hauptanerkennung gebuhrte.",
       "fun_fact_es": "El tema de James Bond fue compuesto por Monty Norman pero arreglado por John Barry, lo que llevo a decadas de disputas legales sobre quien merecia el credito principal.",
+      "fun_fact_fr": "Le theme de James Bond a ete compose par Monty Norman mais arrange par John Barry, ce qui a provoque des decennies de batailles juridiques pour determiner qui meritait le credit principal.",
       "chart_info": {
         "uk_peak": 13
       },
@@ -82,6 +88,7 @@
       "fun_fact": "James Horner composed Titanic's score in just three weeks. He incorporated an Irish tin whistle to evoke the period and Celtic heritage.",
       "fun_fact_de": "James Horner komponierte die Titanic-Filmmusik in nur drei Wochen. Er verwendete eine irische Blechflote, um die Epoche und das keltische Erbe hervorzurufen.",
       "fun_fact_es": "James Horner compuso la banda sonora de Titanic en solo tres semanas. Incorporo un silbato irlandes de estano para evocar la epoca y la herencia celta.",
+      "fun_fact_fr": "James Horner a compose la musique de Titanic en seulement trois semaines. Il a integre un tin whistle irlandais pour evoquer l'epoque et l'heritage celtique.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -95,6 +102,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (1997)",
         "Globo de Oro a la mejor banda sonora original (1998)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1997)",
+        "Golden Globe de la meilleure musique de film (1998)"
       ],
       "uri_apple_music": "applemusic://track/582727836",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iUH0dEe1jvA",
@@ -118,6 +129,7 @@
       "fun_fact": "John Williams' Star Wars theme was recorded by the London Symphony Orchestra in just 12 days. It became one of the most recognized film scores in history.",
       "fun_fact_de": "John Williams' Star-Wars-Thema wurde vom London Symphony Orchestra in nur 12 Tagen aufgenommen. Es wurde zu einer der bekanntesten Filmmusiken der Geschichte.",
       "fun_fact_es": "El tema de Star Wars de John Williams fue grabado por la Orquesta Sinfonica de Londres en solo 12 dias. Se convirtio en una de las bandas sonoras mas reconocidas de la historia.",
+      "fun_fact_fr": "Le theme de Star Wars de John Williams a ete enregistre par le London Symphony Orchestra en seulement 12 jours. Il est devenu l'une des musiques de film les plus reconnues de l'histoire.",
       "chart_info": {
         "billboard_peak": 10,
         "weeks_on_chart": 16
@@ -136,6 +148,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (1977)",
         "Premio Grammy a la mejor banda sonora (1978)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1977)",
+        "Grammy de la meilleure bande originale (1978)"
       ],
       "uri_apple_music": "applemusic://track/1375814284",
       "uri_youtube_music": "https://music.youtube.com/watch?v=e9lapdvLSGw",
@@ -159,6 +175,7 @@
       "fun_fact": "Saturday Night Fever's soundtrack spent 24 weeks at number one and sold over 40 million copies, making it one of the best-selling soundtracks ever.",
       "fun_fact_de": "Der Soundtrack von Saturday Night Fever stand 24 Wochen auf Platz eins und verkaufte sich uber 40 Millionen Mal, was ihn zu einem der meistverkauften Soundtracks aller Zeiten macht.",
       "fun_fact_es": "La banda sonora de Fiebre del sabado noche estuvo 24 semanas en el numero uno y vendio mas de 40 millones de copias, convirtiendola en una de las bandas sonoras mas vendidas de la historia.",
+      "fun_fact_fr": "La bande originale de La Fievre du samedi soir est restee 24 semaines en tete des classements et s'est vendue a plus de 40 millions d'exemplaires, ce qui en fait l'une des bandes originales les plus vendues de tous les temps.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 33
@@ -175,6 +192,9 @@
       ],
       "awards_es": [
         "Premio Grammy al album del ano (1979)"
+      ],
+      "awards_fr": [
+        "Grammy de l'album de l'annee (1979)"
       ],
       "uri_apple_music": "applemusic://track/1445668462",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GbsFCYEJGZ0",
@@ -198,6 +218,7 @@
       "fun_fact": "Ennio Morricone composed The Good, the Bad and the Ugly theme before filming began. Director Sergio Leone played it on set to inspire the actors.",
       "fun_fact_de": "Ennio Morricone komponierte das Thema von Zwei glorreiche Halunken vor Drehbeginn. Regisseur Sergio Leone spielte es am Set, um die Schauspieler zu inspirieren.",
       "fun_fact_es": "Ennio Morricone compuso el tema de El bueno, el feo y el malo antes de que comenzara el rodaje. El director Sergio Leone lo reproducia en el set para inspirar a los actores.",
+      "fun_fact_fr": "Ennio Morricone a compose le theme du Bon, la Brute et le Truand avant le debut du tournage. Le realisateur Sergio Leone le diffusait sur le plateau pour inspirer les acteurs.",
       "chart_info": {
         "billboard_peak": 4,
         "weeks_on_chart": 12
@@ -228,6 +249,7 @@
       "fun_fact": "Thomas Newman's American Beauty score uses marimba and gamelan instruments to create an ethereal, suburban soundscape that won a Grammy.",
       "fun_fact_de": "Thomas Newmans American-Beauty-Soundtrack verwendet Marimba und Gamelan-Instrumente, um eine atherische, vorstadtische Klanglandschaft zu schaffen, die einen Grammy gewann.",
       "fun_fact_es": "La banda sonora de American Beauty de Thomas Newman utiliza marimba e instrumentos de gamalan para crear un paisaje sonoro etereo y suburbano que gano un Grammy.",
+      "fun_fact_fr": "La musique d'American Beauty de Thomas Newman utilise le marimba et des instruments de gamelan pour creer un paysage sonore etheree et suburbain qui a remporte un Grammy.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -238,6 +260,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la mejor banda sonora (2000)"
+      ],
+      "awards_fr": [
+        "Grammy de la meilleure bande originale (2000)"
       ],
       "uri_apple_music": "applemusic://track/1437293431",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Dqc50xhPFgw",
@@ -261,6 +286,7 @@
       "fun_fact": "Alan Silvestri composed Forrest Gump's gentle piano theme to reflect the character's innocent view of the world through decades of American history.",
       "fun_fact_de": "Alan Silvestri komponierte das sanfte Klavierthema von Forrest Gump, um die unschuldige Weltsicht der Figur durch Jahrzehnte amerikanischer Geschichte widerzuspiegeln.",
       "fun_fact_es": "Alan Silvestri compuso el suave tema de piano de Forrest Gump para reflejar la vision inocente del personaje del mundo a traves de decadas de historia estadounidense.",
+      "fun_fact_fr": "Alan Silvestri a compose le delicat theme au piano de Forrest Gump pour refleter le regard innocent du personnage sur le monde a travers des decennies d'histoire americaine.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -286,6 +312,7 @@
       "fun_fact": "Frankie Valli recorded the Grease title song specifically for the film. It became his biggest solo hit and helped define the movie's nostalgic tone.",
       "fun_fact_de": "Frankie Valli nahm das Grease-Titellied speziell fur den Film auf. Es wurde sein grosster Solohit und pragte den nostalgischen Ton des Films.",
       "fun_fact_es": "Frankie Valli grabo la cancion principal de Grease especificamente para la pelicula. Se convirtio en su mayor exito en solitario y ayudo a definir el tono nostalgico de la pelicula.",
+      "fun_fact_fr": "Frankie Valli a enregistre la chanson-titre de Grease specialement pour le film. Elle est devenue son plus grand succes solo et a contribue a definir le ton nostalgique du film.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 22
@@ -315,6 +342,7 @@
       "fun_fact": "Isaac Hayes won an Oscar for Theme from Shaft, making it the first African American-composed song to win Best Original Song.",
       "fun_fact_de": "Isaac Hayes gewann einen Oscar fur das Theme from Shaft und machte es damit zum ersten von einem Afroamerikaner komponierten Lied, das den Oscar fur den besten Originalsong gewann.",
       "fun_fact_es": "Isaac Hayes gano un Oscar por el tema de Shaft, convirtiendolo en la primera cancion compuesta por un afroamericano en ganar el premio a la mejor cancion original.",
+      "fun_fact_fr": "Isaac Hayes a remporte un Oscar pour le Theme de Shaft, ce qui en fait la premiere chanson composee par un Afro-Americain a remporter le prix de la meilleure chanson originale.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 14
@@ -333,6 +361,10 @@
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1971)",
         "Premio Grammy a la mejor pieza instrumental (1972)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1971)",
+        "Grammy du meilleur morceau instrumental (1972)"
       ],
       "movie": "Shaft",
       "movie_choices": [
@@ -354,6 +386,7 @@
       "fun_fact": "Henry Mancini's Pink Panther Theme was written for the opening credits but became so popular it spawned an entire animated series.",
       "fun_fact_de": "Henry Mancinis Pink-Panther-Thema wurde fur den Vorspann geschrieben, wurde aber so popular, dass eine ganze Zeichentrickserie daraus entstand.",
       "fun_fact_es": "El tema de La Pantera Rosa de Henry Mancini fue escrito para los creditos iniciales, pero se volvio tan popular que genero toda una serie animada.",
+      "fun_fact_fr": "Le theme de La Panthere rose d'Henry Mancini a ete ecrit pour le generique d'ouverture, mais il est devenu si populaire qu'il a donne naissance a toute une serie animee.",
       "chart_info": {
         "billboard_peak": 10,
         "weeks_on_chart": 9
@@ -367,6 +400,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la mejor pieza instrumental (1964)"
+      ],
+      "awards_fr": [
+        "Grammy du meilleur morceau instrumental (1964)"
       ],
       "uri_apple_music": "applemusic://track/1732608881",
       "movie": "The Pink Panther",
@@ -389,6 +425,7 @@
       "fun_fact": "John Powell's Bourne Identity score pioneered the modern action movie sound with driving rhythms and electronic elements mixed with orchestra.",
       "fun_fact_de": "John Powells Bourne-Identity-Soundtrack war Pionier des modernen Actionfilm-Sounds mit treibenden Rhythmen und elektronischen Elementen, gemischt mit Orchester.",
       "fun_fact_es": "La banda sonora de El caso Bourne de John Powell fue pionera en el sonido moderno de peliculas de accion con ritmos impulsantes y elementos electronicos mezclados con orquesta.",
+      "fun_fact_fr": "La musique de La Memoire dans la peau de John Powell a ete pionniere du son moderne des films d'action avec des rythmes entrainants et des elements electroniques meles a l'orchestre.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -414,6 +451,7 @@
       "fun_fact": "Nino Rota's Godfather theme was initially rejected by the studio as too ethnic. Director Coppola fought to keep it, and it became iconic.",
       "fun_fact_de": "Nino Rotas Pate-Thema wurde vom Studio zunachst als zu ethnisch abgelehnt. Regisseur Coppola kampfte dafur, es zu behalten, und es wurde ikonisch.",
       "fun_fact_es": "El tema de El Padrino de Nino Rota fue rechazado inicialmente por el estudio por ser demasiado etnico. El director Coppola lucho por mantenerlo y se volvio iconico.",
+      "fun_fact_fr": "Le theme du Parrain de Nino Rota a d'abord ete rejete par le studio comme etant trop ethnique. Le realisateur Coppola s'est battu pour le conserver, et il est devenu legendaire.",
       "chart_info": {
         "billboard_peak": 43
       },
@@ -441,6 +479,7 @@
       "fun_fact": "Born Free won the Oscar for Best Original Song. Composer John Barry also won for Best Score, sweeping both music categories that year.",
       "fun_fact_de": "Born Free gewann den Oscar fur den besten Originalsong. Komponist John Barry gewann auch fur die beste Filmmusik und raumte in jenem Jahr beide Musikkategorien ab.",
       "fun_fact_es": "Nacida libre gano el Oscar a la mejor cancion original. El compositor John Barry tambien gano por la mejor banda sonora, arrasando en ambas categorias musicales ese ano.",
+      "fun_fact_fr": "Born Free a remporte l'Oscar de la meilleure chanson originale. Le compositeur John Barry a egalement gagne celui de la meilleure musique, raflant les deux categories musicales cette annee-la.",
       "chart_info": {
         "billboard_peak": 7,
         "weeks_on_chart": 11
@@ -459,6 +498,10 @@
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1966)",
         "Premio Oscar a la mejor banda sonora original (1966)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1966)",
+        "Oscar de la meilleure musique de film (1966)"
       ],
       "uri_apple_music": "applemusic://track/209447357",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8_RzGtUgNnM",
@@ -482,6 +525,7 @@
       "fun_fact": "Circle of Life opens The Lion King with a sunrise over Africa. The Zulu lyrics were translated by South African composer Lebo M.",
       "fun_fact_de": "Der ewige Kreis eroffnet Der Konig der Lowen mit einem Sonnenaufgang uber Afrika. Die Zulu-Texte wurden vom sudafrikanischen Komponisten Lebo M. ubersetzt.",
       "fun_fact_es": "El ciclo de la vida abre El Rey Leon con un amanecer sobre Africa. Las letras en zulu fueron traducidas por el compositor sudafricano Lebo M.",
+      "fun_fact_fr": "L'Histoire de la vie ouvre Le Roi Lion avec un lever de soleil sur l'Afrique. Les paroles en zoulou ont ete traduites par le compositeur sud-africain Lebo M.",
       "chart_info": {
         "billboard_peak": 18,
         "weeks_on_chart": 20
@@ -497,6 +541,9 @@
       ],
       "awards_es": [
         "Globo de Oro a la mejor cancion original (1995)"
+      ],
+      "awards_fr": [
+        "Golden Globe de la meilleure chanson originale (1995)"
       ],
       "uri_apple_music": "applemusic://track/1445732924",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GibiNy4d4gc",
@@ -520,6 +567,7 @@
       "fun_fact": "Gonna Fly Now from Rocky was written in one afternoon. The triumphant brass fanfare became synonymous with overcoming impossible odds.",
       "fun_fact_de": "Gonna Fly Now aus Rocky wurde an einem Nachmittag geschrieben. Die triumphale Blechbläser-Fanfare wurde zum Synonym für das Überwinden unmöglich scheinender Hindernisse.",
       "fun_fact_es": "Gonna Fly Now de Rocky fue escrita en una tarde. La triunfante fanfarria de metales se convirtió en sinónimo de superar probabilidades imposibles.",
+      "fun_fact_fr": "Gonna Fly Now de Rocky a ete ecrit en un apres-midi. La fanfare triomphante de cuivres est devenue synonyme de depassement de soi face a l'impossible.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 17
@@ -535,6 +583,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la mejor canción original (1976)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1976)"
       ],
       "uri_apple_music": "applemusic://track/1440832696",
       "uri_youtube_music": "https://music.youtube.com/watch?v=AxWejrVYcCg",
@@ -558,6 +609,7 @@
       "fun_fact": "Maurice Jarre's Doctor Zhivago theme uses a balalaika to evoke Russia. The score won an Oscar and became a bestselling soundtrack album.",
       "fun_fact_de": "Maurice Jarres Doktor-Schiwago-Thema verwendet eine Balalaika, um Russland zu evozieren. Die Filmmusik gewann einen Oscar und wurde ein Bestseller-Soundtrack-Album.",
       "fun_fact_es": "El tema de Doctor Zhivago de Maurice Jarre utiliza una balalaica para evocar Rusia. La banda sonora gano un Oscar y se convirtio en un album superventas.",
+      "fun_fact_fr": "Le theme du Docteur Jivago de Maurice Jarre utilise une balalaika pour evoquer la Russie. La partition a remporte un Oscar et est devenue un album a succes.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 29
@@ -576,6 +628,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (1965)",
         "Globo de Oro a la mejor banda sonora original (1966)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1965)",
+        "Golden Globe de la meilleure musique de film (1966)"
       ],
       "uri_apple_music": "applemusic://track/1455256248",
       "uri_youtube_music": "https://music.youtube.com/watch?v=OIZ1yhPHlUo",
@@ -599,6 +655,7 @@
       "fun_fact": "Elmer Bernstein's Magnificent Seven theme has been used in countless commercials and became more famous than the film itself.",
       "fun_fact_de": "Elmer Bernsteins Die-glorreichen-Sieben-Thema wurde in unzahligen Werbespots verwendet und wurde beruhmter als der Film selbst.",
       "fun_fact_es": "El tema de Los siete magnificos de Elmer Bernstein se ha utilizado en innumerables anuncios y se volvio mas famoso que la propia pelicula.",
+      "fun_fact_fr": "Le theme des Sept Mercenaires d'Elmer Bernstein a ete utilise dans d'innombrables publicites et est devenu plus celebre que le film lui-meme.",
       "chart_info": {
         "billboard_peak": 8,
         "weeks_on_chart": 13
@@ -625,6 +682,7 @@
       "fun_fact": "Neal Hefti's Odd Couple Theme perfectly captures the comedic clash between neat Felix and sloppy Oscar with its playful harpsichord.",
       "fun_fact_de": "Neal Heftis Ein-seltsames-Paar-Thema fange perfekt den komischen Gegensatz zwischen dem ordentlichen Felix und dem schlampigen Oscar mit seinem verspielten Cembalo ein.",
       "fun_fact_es": "El tema de La extrana pareja de Neal Hefti captura perfectamente el choque comico entre el ordenado Felix y el descuidado Oscar con su jugueton clavicembalo.",
+      "fun_fact_fr": "Le theme de Drole de couple de Neal Hefti saisit parfaitement le choc comique entre Felix le maniaque et Oscar le desordonne avec son clavecin espiegle.",
       "chart_info": {
         "billboard_peak": 17,
         "weeks_on_chart": 8
@@ -653,6 +711,7 @@
       "fun_fact": "Tangerine Dream's Risky Business score helped popularize electronic film music. The synthesizer-heavy sound influenced 80s cinema.",
       "fun_fact_de": "Tangerine Dreams Risky-Business-Soundtrack half, elektronische Filmmusik zu popularisieren. Der synthesizerlastige Sound beeinflusste das Kino der 80er Jahre.",
       "fun_fact_es": "La banda sonora de Risky Business de Tangerine Dream ayudo a popularizar la musica electronica en el cine. El sonido cargado de sintetizadores influyo en el cine de los anos 80.",
+      "fun_fact_fr": "La musique de Risky Business par Tangerine Dream a contribue a populariser la musique electronique au cinema. Le son domine par les synthetiseurs a influence le cinema des annees 80.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -677,6 +736,7 @@
       "fun_fact": "Thomas Newman's Green Mile score uses soft piano and strings to underscore the film's themes of compassion and supernatural redemption.",
       "fun_fact_de": "Thomas Newmans Green-Mile-Soundtrack verwendet sanftes Klavier und Streicher, um die Themen des Films von Mitgefuhl und ubernatürlicher Erlosung zu unterstreichen.",
       "fun_fact_es": "La banda sonora de La milla verde de Thomas Newman utiliza piano suave y cuerdas para subrayar los temas de compasion y redencion sobrenatural de la pelicula.",
+      "fun_fact_fr": "La musique de La Ligne verte de Thomas Newman utilise un piano delicat et des cordes pour souligner les themes de compassion et de redemption surnaturelle du film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -702,6 +762,7 @@
       "fun_fact": "Hans Zimmer's Interstellar score features a church organ to convey the vastness of space. Director Nolan kept the film's plot secret from Zimmer initially.",
       "fun_fact_de": "Hans Zimmers Interstellar-Soundtrack verwendet eine Kirchenorgel, um die Weite des Weltraums zu vermitteln. Regisseur Nolan hielt die Handlung des Films zunachst vor Zimmer geheim.",
       "fun_fact_es": "La banda sonora de Interstellar de Hans Zimmer presenta un organo de iglesia para transmitir la inmensidad del espacio. El director Nolan mantuvo la trama de la pelicula en secreto de Zimmer inicialmente.",
+      "fun_fact_fr": "La musique d'Interstellar de Hans Zimmer met en vedette un orgue d'eglise pour transmettre l'immensite de l'espace. Le realisateur Nolan a d'abord garde le scenario secret pour Zimmer.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -712,6 +773,9 @@
       ],
       "awards_es": [
         "Nominacion al Grammy a la mejor banda sonora (2015)"
+      ],
+      "awards_fr": [
+        "Nomination au Grammy de la meilleure bande originale (2015)"
       ],
       "uri_apple_music": "applemusic://track/1533984393",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SNQRiiocNx8",
@@ -735,6 +799,7 @@
       "fun_fact": "Simon & Garfunkel's Sound of Silence was added to The Graduate against the duo's wishes. It became inseparable from the film's themes of alienation.",
       "fun_fact_de": "Simon & Garfunkels Sound of Silence wurde gegen den Willen des Duos zu Die Reifeprufung hinzugefugt. Es wurde untrennbar mit den Entfremdungsthemen des Films verbunden.",
       "fun_fact_es": "Sound of Silence de Simon & Garfunkel fue anadida a El graduado en contra de los deseos del duo. Se volvio inseparable de los temas de alienacion de la pelicula.",
+      "fun_fact_fr": "The Sound of Silence de Simon & Garfunkel a ete ajoute au Laureat contre la volonte du duo. Le morceau est devenu indissociable des themes d'alienation du film.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 14
@@ -764,6 +829,7 @@
       "fun_fact": "Ryuichi Sakamoto composed The Revenant score while recovering from cancer. He used organic sounds and sparse arrangements to evoke the wilderness.",
       "fun_fact_de": "Ryuichi Sakamoto komponierte den Revenant-Soundtrack wahrend seiner Genesung von Krebs. Er verwendete organische Klange und sparsame Arrangements, um die Wildnis zu evozieren.",
       "fun_fact_es": "Ryuichi Sakamoto compuso la banda sonora de El renacido mientras se recuperaba del cancer. Utilizo sonidos organicos y arreglos escasos para evocar la naturaleza salvaje.",
+      "fun_fact_fr": "Ryuichi Sakamoto a compose la musique de The Revenant alors qu'il se remettait d'un cancer. Il a utilise des sons organiques et des arrangements epures pour evoquer la nature sauvage.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -777,6 +843,10 @@
       "awards_es": [
         "Globo de Oro a la mejor banda sonora original (2016)",
         "BAFTA a la mejor musica de cine (2016)"
+      ],
+      "awards_fr": [
+        "Golden Globe de la meilleure musique de film (2016)",
+        "BAFTA de la meilleure musique de film (2016)"
       ],
       "uri_apple_music": "applemusic://track/1516405842",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Z7tj8Xg_0dE",
@@ -800,6 +870,7 @@
       "fun_fact": "Alan Silvestri's Beowulf score combines orchestra with electronic elements and choir to bring the ancient epic poem to life.",
       "fun_fact_de": "Alan Silvestris Beowulf-Soundtrack kombiniert Orchester mit elektronischen Elementen und Chor, um das antike Epos zum Leben zu erwecken.",
       "fun_fact_es": "La banda sonora de Beowulf de Alan Silvestri combina orquesta con elementos electronicos y coro para dar vida al antiguo poema epico.",
+      "fun_fact_fr": "La musique de Beowulf d'Alan Silvestri combine orchestre, elements electroniques et choeur pour donner vie a l'ancien poeme epique.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -825,6 +896,7 @@
       "fun_fact": "John Barry's On Her Majesty's Secret Service theme is considered by many Bond fans to be his finest work, blending action with romance.",
       "fun_fact_de": "John Barrys Im-Geheimdienst-Ihrer-Majestat-Thema wird von vielen Bond-Fans als sein bestes Werk angesehen, das Action mit Romantik verbindet.",
       "fun_fact_es": "El tema de Al servicio secreto de Su Majestad de John Barry es considerado por muchos fanaticos de Bond como su mejor trabajo, mezclando accion con romance.",
+      "fun_fact_fr": "Le theme d'Au service secret de Sa Majeste de John Barry est considere par de nombreux fans de Bond comme son chef-d'oeuvre, melant action et romance.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -849,6 +921,7 @@
       "fun_fact": "Francis Lai's A Man and a Woman theme became a worldwide hit. The simple melody using scat vocals won the Palme d'Or at Cannes.",
       "fun_fact_de": "Francis Lais Ein-Mann-und-eine-Frau-Thema wurde ein weltweiter Hit. Die einfache Melodie mit Scat-Gesang gewann die Goldene Palme in Cannes.",
       "fun_fact_es": "El tema de Un hombre y una mujer de Francis Lai se convirtio en un exito mundial. La simple melodia con vocales scat gano la Palma de Oro en Cannes.",
+      "fun_fact_fr": "Le theme d'Un homme et une femme de Francis Lai est devenu un succes mondial. Sa melodie simple utilisant le scat vocal a remporte la Palme d'Or a Cannes.",
       "chart_info": {
         "billboard_peak": 98
       },
@@ -861,6 +934,9 @@
       ],
       "awards_es": [
         "Palma de Oro en Cannes (1966)"
+      ],
+      "awards_fr": [
+        "Palme d'Or a Cannes (1966)"
       ],
       "uri_apple_music": "applemusic://track/546983101",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6E5mKpdLQlw",
@@ -883,6 +959,7 @@
       "fun_fact": "John Powell's Knight and Day score blends action cues with romantic comedy elements, matching the film's genre-bending tone.",
       "fun_fact_de": "John Powells Knight-and-Day-Soundtrack verbindet Action-Elemente mit romantischen Komodienelementen und passt zum genreubergreifenden Ton des Films.",
       "fun_fact_es": "La banda sonora de Noche y dia de John Powell mezcla elementos de accion con comedia romantica, igualando el tono que mezcla generos de la pelicula.",
+      "fun_fact_fr": "La musique de Night and Day de John Powell allie sequences d'action et elements de comedie romantique, en accord avec le ton hybride du film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -908,6 +985,7 @@
       "fun_fact": "Colors of the Wind from Pocahontas won the Oscar for Best Original Song. Vanessa Williams' version became a top ten hit.",
       "fun_fact_de": "Farbenspiel des Winds aus Pocahontas gewann den Oscar fur den besten Originalsong. Vanessa Williams' Version wurde ein Top-Ten-Hit.",
       "fun_fact_es": "Colores en el viento de Pocahontas gano el Oscar a la mejor cancion original. La version de Vanessa Williams se convirtio en un exito entre los diez primeros.",
+      "fun_fact_fr": "L'Air du vent de Pocahontas a remporte l'Oscar de la meilleure chanson originale. La version de Vanessa Williams s'est classee dans le top 10.",
       "chart_info": {
         "billboard_peak": 4,
         "weeks_on_chart": 22
@@ -926,6 +1004,10 @@
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1995)",
         "Globo de Oro a la mejor cancion original (1995)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1995)",
+        "Golden Globe de la meilleure chanson originale (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440720182",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YRSmToaXySU",
@@ -949,6 +1031,7 @@
       "fun_fact": "Raindrops Keep Fallin' on My Head won the Oscar despite seeming out of place in a Western. It became B.J. Thomas's signature song.",
       "fun_fact_de": "Raindrops Keep Fallin' on My Head gewann den Oscar, obwohl es in einem Western fehl am Platz schien. Es wurde B.J. Thomas' Erkennungslied.",
       "fun_fact_es": "Raindrops Keep Fallin' on My Head gano el Oscar a pesar de parecer fuera de lugar en un western. Se convirtio en la cancion insignia de B.J. Thomas.",
+      "fun_fact_fr": "Raindrops Keep Fallin' on My Head a remporte l'Oscar bien qu'elle semble deplacee dans un western. Elle est devenue la chanson emblematique de B.J. Thomas.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 22
@@ -964,6 +1047,9 @@
       ],
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1969)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1969)"
       ],
       "uri_apple_music": "applemusic://track/1571097826",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ss8_X2VvHZs",
@@ -987,6 +1073,7 @@
       "fun_fact": "Steppenwolf's The Pusher opens Easy Rider, setting the countercultural tone. The song's dark lyrics contrasted with the freedom of the open road.",
       "fun_fact_de": "Steppenwolfs The Pusher eroffnet Easy Rider und setzt den gegenkulturellen Ton. Die dunklen Texte des Liedes kontrastierten mit der Freiheit der offenen Strasse.",
       "fun_fact_es": "The Pusher de Steppenwolf abre Easy Rider, estableciendo el tono contracultural. Las letras oscuras de la cancion contrastaban con la libertad de la carretera abierta.",
+      "fun_fact_fr": "The Pusher de Steppenwolf ouvre Easy Rider en posant le ton contestataire. Les paroles sombres contrastaient avec la liberte de la route.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1012,6 +1099,7 @@
       "fun_fact": "John Barry's Midnight Cowboy theme uses harmonica to evoke urban loneliness. The film was the only X-rated movie to win Best Picture.",
       "fun_fact_de": "John Barrys Asphalt-Cowboy-Thema verwendet Mundharmonika, um stadtische Einsamkeit zu evozieren. Der Film war der einzige Film mit X-Rating, der den Oscar fur den besten Film gewann.",
       "fun_fact_es": "El tema de Cowboy de medianoche de John Barry usa armonica para evocar la soledad urbana. La pelicula fue la unica con clasificacion X en ganar el Oscar a la mejor pelicula.",
+      "fun_fact_fr": "Le theme de Macadam Cowboy de John Barry utilise l'harmonica pour evoquer la solitude urbaine. Le film reste le seul film classe X a avoir remporte l'Oscar du meilleur film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1037,6 +1125,7 @@
       "fun_fact": "John Williams' Jaws theme uses just two notes to create terror. Steven Spielberg initially thought Williams was joking when he first heard it.",
       "fun_fact_de": "John Williams' Der-weisse-Hai-Thema verwendet nur zwei Noten, um Terror zu erzeugen. Steven Spielberg dachte zunachst, Williams wurde scherzen, als er es zum ersten Mal horte.",
       "fun_fact_es": "El tema de Tiburon de John Williams usa solo dos notas para crear terror. Steven Spielberg penso inicialmente que Williams estaba bromeando cuando lo escucho por primera vez.",
+      "fun_fact_fr": "Le theme des Dents de la mer de John Williams n'utilise que deux notes pour creer la terreur. Steven Spielberg a d'abord cru que Williams plaisantait en l'entendant.",
       "chart_info": {
         "billboard_peak": 32,
         "weeks_on_chart": 7
@@ -1053,6 +1142,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (1975)",
         "Premio Grammy a la mejor banda sonora (1976)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1975)",
+        "Grammy de la meilleure bande originale (1976)"
       ],
       "uri_apple_music": "applemusic://track/1842229145",
       "movie": "Jaws",
@@ -1075,6 +1168,7 @@
       "fun_fact": "Giorgio Moroder's Midnight Express score won an Oscar and helped establish electronic music as legitimate film scoring.",
       "fun_fact_de": "Giorgio Moroders Midnight-Express-Soundtrack gewann einen Oscar und half, elektronische Musik als legitime Filmmusik zu etablieren.",
       "fun_fact_es": "La banda sonora de El expreso de medianoche de Giorgio Moroder gano un Oscar y ayudo a establecer la musica electronica como una forma legitima de composicion cinematografica.",
+      "fun_fact_fr": "La musique de Midnight Express par Giorgio Moroder a remporte un Oscar et a contribue a etablir la musique electronique comme un genre legitime pour les bandes originales.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -1088,6 +1182,10 @@
       "awards_es": [
         "Premio Oscar a la mejor banda sonora original (1978)",
         "Globo de Oro a la mejor banda sonora original (1979)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1978)",
+        "Golden Globe de la meilleure musique de film (1979)"
       ],
       "uri_apple_music": "applemusic://track/1443529354",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mpW3C_k0WMY",
@@ -1111,6 +1209,7 @@
       "fun_fact": "Time of My Life from Dirty Dancing won an Oscar. Bill Medley and Jennifer Warnes recorded it in just two takes.",
       "fun_fact_de": "Time of My Life aus Dirty Dancing gewann einen Oscar. Bill Medley und Jennifer Warnes nahmen es in nur zwei Aufnahmen auf.",
       "fun_fact_es": "Time of My Life de Dirty Dancing gano un Oscar. Bill Medley y Jennifer Warnes la grabaron en solo dos tomas.",
+      "fun_fact_fr": "The Time of My Life de Dirty Dancing a remporte un Oscar. Bill Medley et Jennifer Warnes l'ont enregistree en seulement deux prises.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 21
@@ -1129,6 +1228,10 @@
       "awards_es": [
         "Premio Oscar a la mejor cancion original (1987)",
         "Globo de Oro a la mejor cancion original (1988)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1987)",
+        "Golden Globe de la meilleure chanson originale (1988)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=o3NndBTqC3Y",
       "movie": "Dirty Dancing",
@@ -1151,6 +1254,7 @@
       "fun_fact": "Randy Newman wrote You've Got a Friend in Me in just one day. It became the heart of the entire Toy Story franchise.",
       "fun_fact_de": "Randy Newman schrieb Freund wie ich an nur einem Tag. Es wurde zum Herzen des gesamten Toy-Story-Franchises.",
       "fun_fact_es": "Randy Newman escribio Hay un amigo en mi en solo un dia. Se convirtio en el corazon de toda la franquicia de Toy Story.",
+      "fun_fact_fr": "Randy Newman a ecrit Je suis ton ami en une seule journee. Cette chanson est devenue le coeur de toute la franchise Toy Story.",
       "chart_info": {
         "billboard_peak": 74
       },
@@ -1163,6 +1267,9 @@
       ],
       "awards_es": [
         "Nominacion al Oscar a la mejor cancion original (1995)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440669784",
       "uri_youtube_music": "https://music.youtube.com/watch?v=A5uVEN5z1f0",
@@ -1186,6 +1293,7 @@
       "fun_fact": "Don Davis's Matrix score blends orchestra with electronic music to create the film's distinctive digital reality soundscape.",
       "fun_fact_de": "Don Davis' Matrix-Soundtrack verbindet Orchester mit elektronischer Musik, um die charakteristische digitale Realitatsklanglandschaft des Films zu schaffen.",
       "fun_fact_es": "La banda sonora de Matrix de Don Davis mezcla orquesta con musica electronica para crear el distintivo paisaje sonoro de realidad digital de la pelicula.",
+      "fun_fact_fr": "La musique de Matrix de Don Davis mele orchestre et musique electronique pour creer le paysage sonore distinctif de la realite numerique du film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1211,6 +1319,7 @@
       "fun_fact": "Seventy Six Trombones from The Music Man features elaborate marching band choreography. Robert Preston performed his Broadway role in the film.",
       "fun_fact_de": "Seventy Six Trombones aus The Music Man zeigt aufwandige Marschkapellen-Choreografie. Robert Preston spielte seine Broadway-Rolle auch im Film.",
       "fun_fact_es": "Seventy Six Trombones de El hombre de la musica presenta una elaborada coreografia de banda de marcha. Robert Preston interpreto su papel de Broadway en la pelicula.",
+      "fun_fact_fr": "Seventy Six Trombones de La Joyeuse Parade presente une choregraphie elaboree de fanfare. Robert Preston a repris son role de Broadway dans le film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1236,6 +1345,7 @@
       "fun_fact": "Alan Silvestri's Avengers theme has become the musical identity of the Marvel Cinematic Universe, appearing throughout the franchise.",
       "fun_fact_de": "Alan Silvestris Avengers-Thema ist zur musikalischen Identitat des Marvel Cinematic Universe geworden und erscheint in der gesamten Filmreihe.",
       "fun_fact_es": "El tema de Los Vengadores de Alan Silvestri se ha convertido en la identidad musical del Universo Cinematografico de Marvel, apareciendo a lo largo de toda la franquicia.",
+      "fun_fact_fr": "Le theme des Avengers d'Alan Silvestri est devenu l'identite musicale de l'Univers cinematographique Marvel, present tout au long de la franchise.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1261,6 +1371,7 @@
       "fun_fact": "Lalo Schifrin's Mission: Impossible theme uses a distinctive 5/4 time signature. It originated from the 1966 TV series.",
       "fun_fact_de": "Lalo Schifrins Mission: Impossible-Thema verwendet einen charakteristischen 5/4-Takt. Es stammt aus der Fernsehserie von 1966.",
       "fun_fact_es": "El tema de Mision: Imposible de Lalo Schifrin utiliza un distintivo compas de 5/4. Se origino en la serie de television de 1966.",
+      "fun_fact_fr": "Le theme de Mission : Impossible de Lalo Schifrin utilise une signature rythmique distinctive en 5/4. Il provient de la serie televisee de 1966.",
       "chart_info": {
         "billboard_peak": 7,
         "weeks_on_chart": 16
@@ -1291,6 +1402,7 @@
       "fun_fact": "Roger Daltrey starred in and sang the theme for McVicar, a British crime film based on the true story of a prison escapee.",
       "fun_fact_de": "Roger Daltrey spielte die Hauptrolle und sang das Titellied fur McVicar, einen britischen Kriminalfilm, der auf der wahren Geschichte eines Gefangnisausbrechers basiert.",
       "fun_fact_es": "Roger Daltrey protagonizo y canto el tema de McVicar, una pelicula britanica de crimen basada en la historia real de un fugitivo de prision.",
+      "fun_fact_fr": "Roger Daltrey a joue et chante le theme de McVicar, un film policier britannique inspire de l'histoire vraie d'un evade de prison.",
       "chart_info": {
         "uk_peak": 39
       },
@@ -1317,6 +1429,7 @@
       "fun_fact": "Elmer Bernstein's Great Escape theme captures both adventure and defiance. Prisoners actually used the tune to coordinate escape attempts.",
       "fun_fact_de": "Elmer Bernsteins Thema zu Gesprengte Ketten fangt sowohl Abenteuer als auch Trotz ein. Gefangene benutzten die Melodie tatsachlich, um Fluchtversuche zu koordinieren.",
       "fun_fact_es": "El tema de El Gran Escape de Elmer Bernstein captura tanto la aventura como el desafio. Los prisioneros realmente usaron la melodia para coordinar intentos de fuga.",
+      "fun_fact_fr": "Le theme de La Grande Evasion d'Elmer Bernstein incarne a la fois l'aventure et la defiance. Les prisonniers utilisaient reellement la melodie pour coordonner leurs tentatives d'evasion.",
       "chart_info": {
         "billboard_peak": 27
       },
@@ -1342,6 +1455,7 @@
       "fun_fact": "John Williams' Home Alone score became a Christmas classic. The choir version of Somewhere in My Memory evokes childhood wonder.",
       "fun_fact_de": "John Williams' Filmmusik zu Kevin - Allein zu Haus wurde ein Weihnachtsklassiker. Die Chorversion von Somewhere in My Memory weckt kindliches Staunen.",
       "fun_fact_es": "La banda sonora de Mi Pobre Angelito de John Williams se convirtio en un clasico navideno. La version coral de Somewhere in My Memory evoca el asombro infantil.",
+      "fun_fact_fr": "La musique de Maman, j'ai rate l'avion de John Williams est devenue un classique de Noel. La version chorale de Somewhere in My Memory evoque l'emerveillement de l'enfance.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -1352,6 +1466,9 @@
       ],
       "awards_es": [
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1990)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1990)"
       ],
       "uri_apple_music": "applemusic://track/1049528540",
       "uri_youtube_music": "https://music.youtube.com/watch?v=U89pW3kgOJ0",
@@ -1375,6 +1492,7 @@
       "fun_fact": "Windmills of Your Mind won the Oscar for The Thomas Crown Affair. Its circular melody mirrors the song's introspective lyrics.",
       "fun_fact_de": "Windmills of Your Mind gewann den Oscar für Thomas Crown ist nicht zu fassen. Die kreisförmige Melodie spiegelt die introspektiven Liedtexte wider.",
       "fun_fact_es": "Windmills of Your Mind ganó el Óscar por El caso Thomas Crown. Su melodía circular refleja la letra introspectiva de la canción.",
+      "fun_fact_fr": "Les Moulins de mon coeur a remporte l'Oscar pour L'Affaire Thomas Crown. Sa melodie circulaire reflete les paroles introspectives de la chanson.",
       "chart_info": {
         "billboard_peak": 31,
         "weeks_on_chart": 9
@@ -1388,6 +1506,9 @@
       ],
       "awards_es": [
         "Óscar a la mejor canción original (1968)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1968)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=HPNx5ydr8VI",
       "movie": "The Thomas Crown Affair",
@@ -1410,6 +1531,7 @@
       "fun_fact": "John Williams' Indiana Jones theme is known as the Raiders March. It was written before filming and inspired the character's swagger.",
       "fun_fact_de": "John Williams' Indiana-Jones-Thema ist als Raiders March bekannt. Es wurde vor den Dreharbeiten geschrieben und inspirierte den selbstbewussten Gang der Figur.",
       "fun_fact_es": "El tema de Indiana Jones de John Williams se conoce como la Marcha de los Cazadores. Fue escrito antes del rodaje e inspiro el porte arrogante del personaje.",
+      "fun_fact_fr": "Le theme d'Indiana Jones de John Williams est connu sous le nom de Raiders March. Il a ete ecrit avant le tournage et a inspire la demarche assuree du personnage.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -1420,6 +1542,9 @@
       ],
       "awards_es": [
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1981)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1981)"
       ],
       "uri_apple_music": "applemusic://track/1400945114",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KfCrLxucNKQ",
@@ -1443,6 +1568,7 @@
       "fun_fact": "Boom Shack-A-Lak by Apache Indian appeared in Dumb and Dumber and became synonymous with 90s comedy soundtracks.",
       "fun_fact_de": "Boom Shack-A-Lak von Apache Indian erschien in Dumm und Dummer und wurde zum Synonym fur Comedy-Soundtracks der 90er Jahre.",
       "fun_fact_es": "Boom Shack-A-Lak de Apache Indian aparecio en Dos Tontos Muy Tontos y se convirtio en sinonimo de las bandas sonoras de comedias de los 90.",
+      "fun_fact_fr": "Boom Shack-A-Lak d'Apache Indian est apparu dans Dumb et Dumber et est devenu un incontournable des bandes originales de comedies des annees 90.",
       "chart_info": {
         "uk_peak": 5,
         "weeks_on_chart": 13
@@ -1471,6 +1597,7 @@
       "fun_fact": "633 Squadron's theme by Ron Goodwin is a stirring march that captures the heroism of WWII bomber crews.",
       "fun_fact_de": "Das Thema von 633 Squadron von Ron Goodwin ist ein mitreissender Marsch, der den Heldenmut der Bomberbesatzungen des Zweiten Weltkriegs einfangt.",
       "fun_fact_es": "El tema del Escuadron 633 de Ron Goodwin es una emocionante marcha que captura el heroismo de las tripulaciones de bombarderos de la Segunda Guerra Mundial.",
+      "fun_fact_fr": "Le theme de 633 Squadron de Ron Goodwin est une marche entrainante qui saisit l'heroisme des equipages de bombardiers de la Seconde Guerre mondiale.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1494,6 +1621,7 @@
       "fun_fact": "The Sound of Music became the highest-grossing film of 1965. Julie Andrews performed all her own singing.",
       "fun_fact_de": "Meine Lieder - Meine Traume wurde der erfolgreichste Film von 1965. Julie Andrews sang alle ihre Lieder selbst.",
       "fun_fact_es": "La Novicia Rebelde se convirtio en la pelicula mas taquillera de 1965. Julie Andrews interpreto todas sus canciones ella misma.",
+      "fun_fact_fr": "La Melodie du bonheur est devenu le film le plus rentable de 1965. Julie Andrews a realise toutes ses propres performances vocales.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 71
@@ -1509,6 +1637,9 @@
       ],
       "awards_es": [
         "Premio Oscar a la Mejor Pelicula (1965)"
+      ],
+      "awards_fr": [
+        "Oscar du meilleur film (1965)"
       ],
       "uri_apple_music": "applemusic://track/1550187917",
       "uri_youtube_music": "https://music.youtube.com/watch?v=j4oHYnQxyEw",
@@ -1532,6 +1663,7 @@
       "fun_fact": "The Ecstasy of Gold plays during the cemetery scene in The Good, the Bad and the Ugly. Metallica uses it to open their concerts.",
       "fun_fact_de": "The Ecstasy of Gold erklingt wahrend der Friedhofsszene in Zwei glorreiche Halunken. Metallica verwendet es, um ihre Konzerte zu eroffnen.",
       "fun_fact_es": "The Ecstasy of Gold suena durante la escena del cementerio en El Bueno, el Malo y el Feo. Metallica lo usa para abrir sus conciertos.",
+      "fun_fact_fr": "L'Extase de l'or est jouee pendant la scene du cimetiere dans Le Bon, la Brute et le Truand. Metallica l'utilise pour ouvrir ses concerts.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1557,6 +1689,7 @@
       "fun_fact": "Suicide Is Painless was written for M*A*S*H by Johnny Mandel. The songwriter's teenage son wrote the deliberately silly lyrics.",
       "fun_fact_de": "Suicide Is Painless wurde von Johnny Mandel fur M*A*S*H geschrieben. Der Teenager-Sohn des Komponisten schrieb die absichtlich albernen Texte.",
       "fun_fact_es": "Suicide Is Painless fue escrita para M*A*S*H por Johnny Mandel. El hijo adolescente del compositor escribio la letra deliberadamente tonta.",
+      "fun_fact_fr": "Suicide Is Painless a ete ecrit pour M*A*S*H par Johnny Mandel. Le fils adolescent du compositeur a ecrit les paroles volontairement absurdes.",
       "chart_info": {
         "billboard_peak": 74
       },
@@ -1584,6 +1717,7 @@
       "fun_fact": "Unchained Melody was written for a prison film but became famous through Ghost (1990). The Righteous Brothers' version is most iconic.",
       "fun_fact_de": "Unchained Melody wurde fur einen Gefangnisfilm geschrieben, wurde aber durch Ghost - Nachricht von Sam (1990) beruhmt. Die Version der Righteous Brothers ist die beruhmteste.",
       "fun_fact_es": "Unchained Melody fue escrita para una pelicula de prisiones pero se hizo famosa a traves de Ghost (1990). La version de los Righteous Brothers es la mas iconica.",
+      "fun_fact_fr": "Unchained Melody a ete ecrite pour un film de prison mais est devenue celebre grace a Ghost (1990). La version des Righteous Brothers reste la plus emblematique.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 21
@@ -1613,6 +1747,7 @@
       "fun_fact": "Francis Lai's Love Story theme helped make the film a massive hit. The tearjerker became one of the highest-grossing films of 1970.",
       "fun_fact_de": "Francis Lais Love Story-Thema trug dazu bei, den Film zu einem grossen Erfolg zu machen. Der Tranendrücker wurde einer der erfolgreichsten Filme von 1970.",
       "fun_fact_es": "El tema de Love Story de Francis Lai ayudo a que la pelicula fuera un gran exito. El melodrama se convirtio en una de las peliculas mas taquilleras de 1970.",
+      "fun_fact_fr": "Le theme de Love Story de Francis Lai a contribue au succes massif du film. Ce melodrame est devenu l'un des films les plus rentables de 1970.",
       "chart_info": {
         "billboard_peak": 31,
         "weeks_on_chart": 12
@@ -1629,6 +1764,10 @@
       "awards_es": [
         "Premio Oscar a la Mejor Banda Sonora Original (1970)",
         "Globo de Oro a la Mejor Banda Sonora Original (1971)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1970)",
+        "Golden Globe de la meilleure musique de film (1971)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZwPaC67Y0Hk",
       "uri_apple_music": "applemusic://track/1467933712",
@@ -1652,6 +1791,7 @@
       "fun_fact": "Moon River won the Oscar for Breakfast at Tiffany's. Henry Mancini wrote it specifically for Audrey Hepburn's limited vocal range.",
       "fun_fact_de": "Moon River gewann den Oscar fur Fruhstuck bei Tiffany. Henry Mancini schrieb es speziell fur Audrey Hepburns begrenzten Stimmumfang.",
       "fun_fact_es": "Moon River gano el Oscar por Desayuno con Diamantes. Henry Mancini la escribio especificamente para el rango vocal limitado de Audrey Hepburn.",
+      "fun_fact_fr": "Moon River a remporte l'Oscar pour Diamants sur canape. Henry Mancini l'a composee specialement pour le registre vocal limite d'Audrey Hepburn.",
       "chart_info": {
         "billboard_peak": 11,
         "weeks_on_chart": 15
@@ -1670,6 +1810,10 @@
       "awards_es": [
         "Premio Oscar a la Mejor Cancion Original (1961)",
         "Premio Grammy a la Grabacion del Ano (1962)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1961)",
+        "Grammy du disque de l'annee (1962)"
       ],
       "uri_apple_music": "applemusic://track/298421438",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CYcSiHRPYKA",
@@ -1693,6 +1837,7 @@
       "fun_fact": "Thomas Newman's Shawshank Redemption score uses harmonica and soft strings to convey hope within prison walls.",
       "fun_fact_de": "Thomas Newmans Filmmusik zu Die Verurteilten verwendet Mundharmonika und sanfte Streicher, um Hoffnung innerhalb der Gefangnismauern zu vermitteln.",
       "fun_fact_es": "La banda sonora de Cadena Perpetua de Thomas Newman usa armonica y cuerdas suaves para transmitir esperanza dentro de los muros de la prision.",
+      "fun_fact_fr": "La musique des Evades de Thomas Newman utilise l'harmonica et des cordes delicates pour transmettre l'espoir entre les murs d'une prison.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -1703,6 +1848,9 @@
       ],
       "awards_es": [
         "Nominacion al Oscar a la Mejor Banda Sonora Original (1994)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1994)"
       ],
       "uri_apple_music": "applemusic://track/331545686",
       "uri_youtube_music": "https://music.youtube.com/watch?v=arsOwUMw7x4",
@@ -1726,6 +1874,7 @@
       "fun_fact": "Gollum's Song closes The Two Towers. Emiliana Torrini's haunting vocals capture the tragedy of the corrupted Smeagol.",
       "fun_fact_de": "Gollum's Song beschliesst Die zwei Turme. Emiliana Torrinis eindringlicher Gesang fangt die Tragodie des verdorbenen Smeagol ein.",
       "fun_fact_es": "La Cancion de Gollum cierra Las Dos Torres. Las inquietantes voces de Emiliana Torrini capturan la tragedia del corrompido Smeagol.",
+      "fun_fact_fr": "La Chanson de Gollum cloture Les Deux Tours. La voix envoutante d'Emiliana Torrini saisit la tragedie du corrompu Smeagol.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1751,6 +1900,7 @@
       "fun_fact": "Danny Elfman's Spider-Man theme combines heroic brass with his signature quirky style, defining the Sam Raimi trilogy's sound.",
       "fun_fact_de": "Danny Elfmans Spider-Man-Thema kombiniert heroische Blaser mit seinem charakteristischen schrulligen Stil und definiert den Sound der Sam-Raimi-Trilogie.",
       "fun_fact_es": "El tema de Spider-Man de Danny Elfman combina metales heroicos con su estilo peculiar caracteristico, definiendo el sonido de la trilogia de Sam Raimi.",
+      "fun_fact_fr": "Le theme de Spider-Man de Danny Elfman allie cuivres heroiques et son style decale caracteristique, definissant l'identite sonore de la trilogie de Sam Raimi.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1776,6 +1926,7 @@
       "fun_fact": "Max Steiner's A Summer Place theme spent nine weeks at number one. The lush orchestration became a symbol of romantic cinema.",
       "fun_fact_de": "Max Steiners Thema von Ein Sommernachtstraum verbrachte neun Wochen auf Platz eins. Die uppige Orchestrierung wurde zum Symbol des romantischen Kinos.",
       "fun_fact_es": "El tema de Un Lugar en el Sol de Max Steiner paso nueve semanas en el numero uno. La exuberante orquestacion se convirtio en un simbolo del cine romantico.",
+      "fun_fact_fr": "Le theme de A Summer Place de Max Steiner est reste neuf semaines en tete des classements. L'orchestration luxuriante est devenue un symbole du cinema romantique.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 36
@@ -1791,6 +1942,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la Grabacion del Ano (1960)"
+      ],
+      "awards_fr": [
+        "Grammy du disque de l'annee (1960)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=GTKyFtH0kTE",
       "movie": "A Summer Place",
@@ -1812,6 +1966,7 @@
       "fun_fact": "James Brown's Black Caesar soundtrack brought funk to blaxploitation cinema. He composed and performed the entire score.",
       "fun_fact_de": "James Browns Black Caesar-Soundtrack brachte Funk ins Blaxploitation-Kino. Er komponierte und spielte die gesamte Filmmusik.",
       "fun_fact_es": "La banda sonora de Black Caesar de James Brown trajo el funk al cine blaxploitation. El compuso e interpreto toda la partitura.",
+      "fun_fact_fr": "La bande originale de Black Caesar par James Brown a apporte le funk au cinema blaxploitation. Il a compose et interprete l'integralite de la musique.",
       "chart_info": {
         "billboard_peak": 31
       },
@@ -1838,6 +1993,7 @@
       "fun_fact": "A Shot in the Dark was the second Pink Panther film. Henry Mancini's jazzy score enhanced Peter Sellers' physical comedy.",
       "fun_fact_de": "Ein Schuss im Dunkeln war der zweite Rosa-Panther-Film. Henry Mancinis jazzige Filmmusik unterstrich Peter Sellers' Slapstick-Komodie.",
       "fun_fact_es": "Un Disparo en la Oscuridad fue la segunda pelicula de la Pantera Rosa. La partitura jazzistica de Henry Mancini realzo la comedia fisica de Peter Sellers.",
+      "fun_fact_fr": "Quand l'inspecteur s'emmele etait le deuxieme film de La Panthere rose. La partition jazz d'Henry Mancini sublimait le comique physique de Peter Sellers.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -1863,6 +2019,7 @@
       "fun_fact": "Jerome Moross's Big Country theme uses sweeping strings to capture the vastness of the American West.",
       "fun_fact_de": "Jerome Moross' Thema zu Weites Land verwendet ausladende Streicher, um die Weite des amerikanischen Westens einzufangen.",
       "fun_fact_es": "El tema de Horizontes de Grandeza de Jerome Moross utiliza cuerdas majestuosas para capturar la inmensidad del Oeste americano.",
+      "fun_fact_fr": "Le theme des Grands Espaces de Jerome Moross utilise des cordes amples pour capturer l'immensite de l'Ouest americain.",
       "chart_info": {
         "billboard_peak": 16,
         "weeks_on_chart": 10
@@ -1888,6 +2045,7 @@
       "fun_fact": "The Third Man theme is played entirely on zither by Anton Karas. Director Carol Reed discovered him in a Vienna wine garden.",
       "fun_fact_de": "Das Thema von Der dritte Mann wird vollstandig auf der Zither von Anton Karas gespielt. Regisseur Carol Reed entdeckte ihn in einem Wiener Heurigen.",
       "fun_fact_es": "El tema de El Tercer Hombre se toca completamente en citara por Anton Karas. El director Carol Reed lo descubrio en un jardin de vinos de Viena.",
+      "fun_fact_fr": "Le theme du Troisieme Homme est joue entierement a la cithare par Anton Karas. Le realisateur Carol Reed l'a decouvert dans un jardin vinicole viennois.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 11
@@ -1914,6 +2072,7 @@
       "fun_fact": "Barbra Streisand co-wrote Evergreen for A Star Is Born. It won the Oscar and became one of her signature songs.",
       "fun_fact_de": "Barbra Streisand schrieb Evergreen fur A Star Is Born mit. Es gewann den Oscar und wurde zu einem ihrer bekanntesten Lieder.",
       "fun_fact_es": "Barbra Streisand coescribio Evergreen para Nace una Estrella. Gano el Oscar y se convirtio en una de sus canciones emblematicas.",
+      "fun_fact_fr": "Barbra Streisand a co-ecrit Evergreen pour Une etoile est nee. La chanson a remporte l'Oscar et est devenue l'un de ses titres emblematiques.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 20
@@ -1932,6 +2091,10 @@
       "awards_es": [
         "Premio Oscar a la Mejor Cancion Original (1976)",
         "Globo de Oro a la Mejor Cancion Original (1977)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1976)",
+        "Golden Globe de la meilleure chanson originale (1977)"
       ],
       "uri_apple_music": "applemusic://track/192884975",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lzHJlncKXTM",
@@ -1955,6 +2118,7 @@
       "fun_fact": "Queen wrote Flash's Theme for Flash Gordon. Freddie Mercury's operatic vocals matched the film's campy tone perfectly.",
       "fun_fact_de": "Queen schrieb Flash's Theme fur Flash Gordon. Freddie Mercurys opernhafte Stimme passte perfekt zum campy Ton des Films.",
       "fun_fact_es": "Queen escribio el tema de Flash para Flash Gordon. Las voces operisticas de Freddie Mercury combinaban perfectamente con el tono exagerado de la pelicula.",
+      "fun_fact_fr": "Queen a ecrit Flash's Theme pour Flash Gordon. Les voix operatiques de Freddie Mercury s'accordaient parfaitement avec le ton kitsch du film.",
       "chart_info": {
         "billboard_peak": 42,
         "uk_peak": 10
@@ -1983,6 +2147,7 @@
       "fun_fact": "A Chorus Line's One is a showstopping finale about the anonymity of chorus dancers. The film preserved the Broadway sensation.",
       "fun_fact_de": "One aus A Chorus Line ist ein spektakulares Finale uber die Anonymitat der Chortanzer. Der Film bewahrte die Broadway-Sensation.",
       "fun_fact_es": "One de A Chorus Line es un final espectacular sobre el anonimato de los bailarines del coro. La pelicula preservo la sensacion de Broadway.",
+      "fun_fact_fr": "One de A Chorus Line est un finale epoustouflant sur l'anonymat des danseurs de choeur. Le film a preserve le phenomene de Broadway.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2006,6 +2171,7 @@
       "fun_fact": "Sunrise, Sunset from Fiddler on the Roof captures bittersweet joy. The song has become a staple at Jewish weddings worldwide.",
       "fun_fact_de": "Sunrise, Sunset aus Anatevka fangt bittersüsse Freude ein. Das Lied ist weltweit zu einem festen Bestandteil judischer Hochzeiten geworden.",
       "fun_fact_es": "Sunrise, Sunset de El Violinista en el Tejado captura la alegria agridulce. La cancion se ha convertido en un clasico de las bodas judias en todo el mundo.",
+      "fun_fact_fr": "Sunrise, Sunset d'Un violon sur le toit saisit une joie douce-amere. La chanson est devenue un incontournable des mariages juifs a travers le monde.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2031,6 +2197,7 @@
       "fun_fact": "Lee Marvin's gravelly Wand'rin' Star from Paint Your Wagon surprisingly hit number one in the UK, beating The Beatles.",
       "fun_fact_de": "Lee Marvins raues Wand'rin' Star aus Westward the Women erreichte uberraschend Platz eins in Grossbritannien und schlug die Beatles.",
       "fun_fact_es": "El aspero Wand'rin' Star de Lee Marvin de La Leyenda de la Ciudad sin Nombre sorprendentemente alcanzo el numero uno en el Reino Unido, superando a los Beatles.",
+      "fun_fact_fr": "La voix rocailleuse de Lee Marvin sur Wand'rin' Star de La Kermesse de l'Ouest a etonnamment atteint la premiere place au Royaume-Uni, devancant les Beatles.",
       "chart_info": {
         "uk_peak": 1,
         "weeks_on_chart": 23
@@ -2061,6 +2228,7 @@
       "fun_fact": "Giorgio Moroder's Foxes soundtrack features Donna Summer and other disco artists, capturing LA's late 70s club scene.",
       "fun_fact_de": "Giorgio Moroders Foxes-Soundtrack enthalt Donna Summer und andere Disco-Kunstler und fangt die spate 70er-Jahre-Clubszene von LA ein.",
       "fun_fact_es": "La banda sonora de Foxes de Giorgio Moroder presenta a Donna Summer y otros artistas de disco, capturando la escena de clubes de Los Angeles de finales de los 70.",
+      "fun_fact_fr": "La bande originale de Foxes par Giorgio Moroder reunit Donna Summer et d'autres artistes disco, capturant l'ambiance des clubs de Los Angeles a la fin des annees 70.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2086,6 +2254,7 @@
       "fun_fact": "Lalo Schifrin's Bullitt score pioneered the cool jazz approach to action films. The car chase needed no music at all.",
       "fun_fact_de": "Lalo Schifrins Bullitt-Filmmusik war Vorreiter des Cool-Jazz-Ansatzes fur Actionfilme. Die Autoverfolgungsjagd brauchte uberhaupt keine Musik.",
       "fun_fact_es": "La banda sonora de Bullitt de Lalo Schifrin fue pionera en el enfoque de jazz cool para peliculas de accion. La persecucion de autos no necesitaba musica en absoluto.",
+      "fun_fact_fr": "La musique de Bullitt de Lalo Schifrin a ete pionniere de l'approche cool jazz dans les films d'action. La scene de poursuite en voiture n'avait besoin d'aucune musique.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2111,6 +2280,7 @@
       "fun_fact": "Once Upon a Time in Hollywood's soundtrack features deep cuts from the 60s. Tarantino personally curated every track.",
       "fun_fact_de": "Der Soundtrack von Once Upon a Time in Hollywood enthalt weniger bekannte Stucke aus den 60ern. Tarantino wahlte personlich jeden Track aus.",
       "fun_fact_es": "La banda sonora de Erase una Vez en Hollywood presenta rarezas de los anos 60. Tarantino personalmente selecciono cada cancion.",
+      "fun_fact_fr": "La bande originale d'Once Upon a Time in Hollywood propose des rarites des annees 60. Tarantino a personnellement selectionne chaque morceau.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2136,6 +2306,7 @@
       "fun_fact": "Ryuichi Sakamoto composed and starred in Merry Christmas Mr. Lawrence. David Sylvian added vocals to create Forbidden Colours.",
       "fun_fact_de": "Ryuichi Sakamoto komponierte und spielte in Furyo - Merry Christmas, Mr. Lawrence. David Sylvian fugte Gesang hinzu, um Forbidden Colours zu schaffen.",
       "fun_fact_es": "Ryuichi Sakamoto compuso y actuo en Feliz Navidad, Sr. Lawrence. David Sylvian anadio voces para crear Forbidden Colours.",
+      "fun_fact_fr": "Ryuichi Sakamoto a compose et joue dans Furyo (Merry Christmas Mr. Lawrence). David Sylvian a ajoute les voix pour creer Forbidden Colours.",
       "chart_info": {
         "uk_peak": 16
       },
@@ -2148,6 +2319,9 @@
       ],
       "awards_es": [
         "BAFTA a la Mejor Musica de Pelicula (1983)"
+      ],
+      "awards_fr": [
+        "BAFTA de la meilleure musique de film (1983)"
       ],
       "uri_apple_music": "applemusic://track/1500818278",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RRutSMI9ulA",
@@ -2171,6 +2345,7 @@
       "fun_fact": "John Williams' Superman theme embodies heroism and hope. Christopher Reeve said the music helped him believe he could fly.",
       "fun_fact_de": "John Williams' Superman-Thema verkorpert Heldentum und Hoffnung. Christopher Reeve sagte, die Musik half ihm zu glauben, dass er fliegen konnte.",
       "fun_fact_es": "El tema de Superman de John Williams encarna el heroismo y la esperanza. Christopher Reeve dijo que la musica le ayudo a creer que podia volar.",
+      "fun_fact_fr": "Le theme de Superman de John Williams incarne l'heroisme et l'espoir. Christopher Reeve a declare que la musique l'aidait a croire qu'il pouvait voler.",
       "chart_info": {
         "billboard_peak": 75
       },
@@ -2183,6 +2358,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la Mejor Banda Sonora (1979)"
+      ],
+      "awards_fr": [
+        "Grammy de la meilleure bande originale (1979)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=QmHhIDUrdVA",
       "movie": "Superman",
@@ -2205,6 +2383,7 @@
       "fun_fact": "Danny Elfman's Men in Black theme combines spy movie tension with sci-fi comedy, matching the film's irreverent tone.",
       "fun_fact_de": "Danny Elfmans Men in Black-Thema kombiniert Spionagefilm-Spannung mit Science-Fiction-Komodie und passt zum respektlosen Ton des Films.",
       "fun_fact_es": "El tema de Hombres de Negro de Danny Elfman combina la tension de peliculas de espias con comedia de ciencia ficcion, igualando el tono irreverente de la pelicula.",
+      "fun_fact_fr": "Le theme de Men in Black de Danny Elfman combine la tension des films d'espionnage avec la comedie de science-fiction, en accord avec le ton irreverencieux du film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2230,6 +2409,7 @@
       "fun_fact": "Elvis (2022) features Austin Butler performing many songs himself. The film uses Elvis's original recordings for certain scenes.",
       "fun_fact_de": "Elvis (2022) zeigt Austin Butler, der viele Lieder selbst singt. Der Film verwendet Elvis' Originalaufnahmen fur bestimmte Szenen.",
       "fun_fact_es": "Elvis (2022) presenta a Austin Butler interpretando muchas canciones el mismo. La pelicula utiliza las grabaciones originales de Elvis para ciertas escenas.",
+      "fun_fact_fr": "Elvis (2022) met en vedette Austin Butler interpretant lui-meme de nombreuses chansons. Le film utilise les enregistrements originaux d'Elvis pour certaines scenes.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2255,6 +2435,7 @@
       "fun_fact": "Alex North's Spartacus score was groundbreaking for its time. Stanley Kubrick later disowned the music, preferring classical pieces.",
       "fun_fact_de": "Alex Norths Spartacus-Filmmusik war fur ihre Zeit bahnbrechend. Stanley Kubrick distanzierte sich spater von der Musik und bevorzugte klassische Stucke.",
       "fun_fact_es": "La banda sonora de Espartaco de Alex North fue revolucionaria para su epoca. Stanley Kubrick luego renegaria de la musica, prefiriendo piezas clasicas.",
+      "fun_fact_fr": "La musique de Spartacus d'Alex North etait revolutionnaire pour son epoque. Stanley Kubrick a par la suite renie la musique, preferant des pieces classiques.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -2265,6 +2446,9 @@
       ],
       "awards_es": [
         "Globo de Oro a la Mejor Banda Sonora Original (1961)"
+      ],
+      "awards_fr": [
+        "Golden Globe de la meilleure musique de film (1961)"
       ],
       "movie": "Spartacus",
       "movie_choices": [
@@ -2286,6 +2470,7 @@
       "fun_fact": "Tina Turner's We Don't Need Another Hero became an anthem of the 80s. Mad Max Beyond Thunderdome launched her film career.",
       "fun_fact_de": "Tina Turners We Don't Need Another Hero wurde zu einer Hymne der 80er. Mad Max - Jenseits der Donnerkuppel startete ihre Filmkarriere.",
       "fun_fact_es": "We Don't Need Another Hero de Tina Turner se convirtio en un himno de los 80. Mad Max Mas Alla de la Cupula del Trueno lanzo su carrera cinematografica.",
+      "fun_fact_fr": "We Don't Need Another Hero de Tina Turner est devenu un hymne des annees 80. Mad Max au-dela du dome du tonnerre a lance sa carriere cinematographique.",
       "chart_info": {
         "billboard_peak": 2,
         "uk_peak": 3,
@@ -2317,6 +2502,7 @@
       "fun_fact": "Shirley Bassey's Goldfinger was the first Bond theme to become a hit. Her powerful vocals set the standard for all future Bond songs.",
       "fun_fact_de": "Shirley Basseys Goldfinger war das erste Bond-Thema, das ein Hit wurde. Ihre kraftvolle Stimme setzte den Standard fur alle zukunftigen Bond-Songs.",
       "fun_fact_es": "Goldfinger de Shirley Bassey fue el primer tema de Bond en convertirse en un exito. Su poderosa voz establecio el estandar para todas las futuras canciones de Bond.",
+      "fun_fact_fr": "Goldfinger de Shirley Bassey a ete le premier theme de Bond a devenir un succes commercial. Sa voix puissante a pose le standard pour tous les futurs themes de Bond.",
       "chart_info": {
         "billboard_peak": 8,
         "uk_peak": 21,
@@ -2348,6 +2534,7 @@
       "fun_fact": "John Carpenter composed Halloween's theme himself on synthesizer. The simple 5/4 piano motif cost almost nothing to create.",
       "fun_fact_de": "John Carpenter komponierte das Halloween-Thema selbst auf dem Synthesizer. Das einfache 5/4-Klaviermotiv kostete fast nichts in der Herstellung.",
       "fun_fact_es": "John Carpenter compuso el tema de Halloween el mismo en sintetizador. El simple motivo de piano en 5/4 costo casi nada de crear.",
+      "fun_fact_fr": "John Carpenter a compose lui-meme le theme d'Halloween au synthetiseur. Le simple motif au piano en 5/4 n'a pratiquement rien coute a produire.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2372,6 +2559,7 @@
       "fun_fact": "As Time Goes By was written in 1931, not for Casablanca. The studio wanted it removed but preview audiences loved it.",
       "fun_fact_de": "As Time Goes By wurde 1931 geschrieben, nicht fur Casablanca. Das Studio wollte es entfernen, aber das Testpublikum liebte es.",
       "fun_fact_es": "As Time Goes By fue escrita en 1931, no para Casablanca. El estudio queria eliminarla pero el publico de prueba la amo.",
+      "fun_fact_fr": "As Time Goes By a ete ecrite en 1931, pas pour Casablanca. Le studio voulait la retirer mais le public des avant-premieres l'a adoree.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 21
@@ -2400,6 +2588,7 @@
       "fun_fact": "Django Unchained opens with the original 1966 Django theme by Luis Bacalov, connecting Tarantino's film to Spaghetti Westerns.",
       "fun_fact_de": "Django Unchained eroffnet mit dem Original-Django-Thema von 1966 von Luis Bacalov und verbindet Tarantinos Film mit den Italowestern.",
       "fun_fact_es": "Django Sin Cadenas abre con el tema original de Django de 1966 de Luis Bacalov, conectando la pelicula de Tarantino con los Spaghetti Westerns.",
+      "fun_fact_fr": "Django Unchained s'ouvre avec le theme original de Django de 1966 par Luis Bacalov, reliant le film de Tarantino a la tradition du western spaghetti.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2425,6 +2614,7 @@
       "fun_fact": "The Mission: Impossible film series continued using Lalo Schifrin's TV theme. It remains one of the most recognizable spy motifs.",
       "fun_fact_de": "Die Mission: Impossible-Filmreihe verwendete weiterhin Lalo Schifrins TV-Thema. Es bleibt eines der bekanntesten Spionagemotive.",
       "fun_fact_es": "La serie de peliculas Mision: Imposible continuo usando el tema de TV de Lalo Schifrin. Sigue siendo uno de los motivos de espias mas reconocibles.",
+      "fun_fact_fr": "La serie de films Mission : Impossible a continue d'utiliser le theme televisuel de Lalo Schifrin. Il reste l'un des motifs d'espionnage les plus reconnaissables.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2450,6 +2640,7 @@
       "fun_fact": "Also sprach Zarathustra opens 2001: A Space Odyssey. Kubrick's use of Strauss's tone poem redefined how classical music works in film.",
       "fun_fact_de": "Also sprach Zarathustra eröffnet 2001: Odyssee im Weltraum. Kubricks Verwendung von Strauss' Tondichtung definierte neu, wie klassische Musik im Film funktioniert.",
       "fun_fact_es": "Así habló Zaratustra abre 2001: Una odisea del espacio. El uso de Kubrick del poema sinfónico de Strauss redefinió cómo funciona la música clásica en el cine.",
+      "fun_fact_fr": "Ainsi parlait Zarathoustra ouvre 2001 : l'Odyssee de l'espace. L'utilisation par Kubrick du poeme symphonique de Strauss a redefini la place de la musique classique au cinema.",
       "chart_info": {
         "billboard_peak": 31
       },
@@ -2477,6 +2668,7 @@
       "fun_fact": "Ernest Gold's Exodus theme became an unofficial anthem for Israel. The sweeping orchestration evokes the founding of a nation.",
       "fun_fact_de": "Ernest Golds Exodus-Thema wurde zu einer inoffiziellen Hymne für Israel. Die schwungvolle Orchestrierung evoziert die Gründung einer Nation.",
       "fun_fact_es": "El tema de Éxodo de Ernest Gold se convirtió en un himno no oficial de Israel. La amplia orquestación evoca la fundación de una nación.",
+      "fun_fact_fr": "Le theme d'Exodus d'Ernest Gold est devenu un hymne officieux pour Israel. L'orchestration ample evoque la fondation d'une nation.",
       "chart_info": {
         "billboard_peak": 2,
         "weeks_on_chart": 29
@@ -2495,6 +2687,10 @@
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1960)",
         "Globo de Oro a la mejor banda sonora original (1961)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1960)",
+        "Golden Globe de la meilleure musique de film (1961)"
       ],
       "uri_apple_music": "applemusic://track/1719334913",
       "uri_youtube_music": "https://music.youtube.com/watch?v=z_TfM0SwdJE",
@@ -2518,6 +2714,7 @@
       "fun_fact": "John Williams' Duel of the Fates introduced choral elements to Star Wars. The Sanskrit-inspired text was written for the score.",
       "fun_fact_de": "John Williams' Duel of the Fates führte Chorelemente in Star Wars ein. Der vom Sanskrit inspirierte Text wurde speziell für die Filmmusik geschrieben.",
       "fun_fact_es": "Duel of the Fates de John Williams introdujo elementos corales en Star Wars. El texto inspirado en el sánscrito fue escrito para la banda sonora.",
+      "fun_fact_fr": "Duel of the Fates de John Williams a introduit des elements choraux dans Star Wars. Le texte d'inspiration sanskrite a ete ecrit specialement pour la partition.",
       "chart_info": {
         "billboard_peak": 63
       },
@@ -2545,6 +2742,7 @@
       "fun_fact": "Max Steiner's Gone with the Wind score was the longest ever written at the time. He composed three hours of music in just three months.",
       "fun_fact_de": "Max Steiners Filmmusik zu Vom Winde verweht war damals die längste jemals geschriebene. Er komponierte drei Stunden Musik in nur drei Monaten.",
       "fun_fact_es": "La banda sonora de Lo que el viento se llevó de Max Steiner fue la más larga escrita hasta entonces. Compuso tres horas de música en solo tres meses.",
+      "fun_fact_fr": "La musique d'Autant en emporte le vent de Max Steiner etait la plus longue jamais composee a l'epoque. Il a ecrit trois heures de musique en seulement trois mois.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -2555,6 +2753,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1939)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1939)"
       ],
       "uri_apple_music": "applemusic://track/1454324974",
       "uri_youtube_music": "https://music.youtube.com/watch?v=XZt3y2MOhEM",
@@ -2578,6 +2779,7 @@
       "fun_fact": "Kenny Loggins' Danger Zone became synonymous with Top Gun. The song was rejected by several other artists before Loggins recorded it.",
       "fun_fact_de": "Kenny Loggins' Danger Zone wurde zum Synonym für Top Gun. Das Lied wurde von mehreren anderen Künstlern abgelehnt, bevor Loggins es aufnahm.",
       "fun_fact_es": "Danger Zone de Kenny Loggins se convirtió en sinónimo de Top Gun. La canción fue rechazada por varios artistas antes de que Loggins la grabara.",
+      "fun_fact_fr": "Danger Zone de Kenny Loggins est devenu indissociable de Top Gun. La chanson avait ete refusee par plusieurs autres artistes avant que Loggins ne l'enregistre.",
       "chart_info": {
         "billboard_peak": 2,
         "weeks_on_chart": 17
@@ -2607,6 +2809,7 @@
       "fun_fact": "Ennio Morricone's For a Few Dollars More features a musical pocket watch. The chiming melody becomes a plot device in the film.",
       "fun_fact_de": "Ennio Morricones Für ein paar Dollar mehr zeigt eine musikalische Taschenuhr. Die klingende Melodie wird zu einem Handlungselement im Film.",
       "fun_fact_es": "La muerte tenía un precio de Ennio Morricone presenta un reloj de bolsillo musical. La melodía tintineante se convierte en un elemento argumental de la película.",
+      "fun_fact_fr": "La musique d'Et pour quelques dollars de plus d'Ennio Morricone met en scene une montre a gousset musicale. La melodie carillonnante devient un element cle de l'intrigue.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2632,6 +2835,7 @@
       "fun_fact": "Vangelis's Chariots of Fire theme uses synthesizers to evoke slow-motion running. It won the Oscar for Best Original Score.",
       "fun_fact_de": "Vangelis' Thema aus Die Stunde des Siegers verwendet Synthesizer, um Zeitlupen-Laufen zu evozieren. Es gewann den Oscar für die beste Originalmusik.",
       "fun_fact_es": "El tema de Carros de fuego de Vangelis utiliza sintetizadores para evocar carreras en cámara lenta. Ganó el Óscar a la mejor banda sonora original.",
+      "fun_fact_fr": "Le theme des Chariots de feu de Vangelis utilise des synthetiseurs pour evoquer la course au ralenti. La musique a remporte l'Oscar de la meilleure partition originale.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 18
@@ -2647,6 +2851,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1981)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1981)"
       ],
       "uri_apple_music": "applemusic://track/1453156892",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PEyK-3yDDcY",
@@ -2670,6 +2877,7 @@
       "fun_fact": "Ray Parker Jr. wrote Ghostbusters after watching the film. He was sued by Huey Lewis for similarity to I Want a New Drug.",
       "fun_fact_de": "Ray Parker Jr. schrieb Ghostbusters nachdem er den Film gesehen hatte. Er wurde von Huey Lewis wegen Ähnlichkeit zu I Want a New Drug verklagt.",
       "fun_fact_es": "Ray Parker Jr. escribió Ghostbusters después de ver la película. Fue demandado por Huey Lewis por similitud con I Want a New Drug.",
+      "fun_fact_fr": "Ray Parker Jr. a ecrit Ghostbusters apres avoir visionne le film. Il a ete poursuivi par Huey Lewis pour sa ressemblance avec I Want a New Drug.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 21
@@ -2685,6 +2893,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la mejor canción original (1984)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1984)"
       ],
       "uri_apple_music": "applemusic://track/1484413134",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Fe93CLbHjxQ",
@@ -2708,6 +2919,7 @@
       "fun_fact": "The Entertainer by Scott Joplin was revived for The Sting. The ragtime classic won Marvin Hamlisch an Oscar for Best Score.",
       "fun_fact_de": "The Entertainer von Scott Joplin wurde für Der Clou wiederbelebt. Der Ragtime-Klassiker gewann Marvin Hamlisch einen Oscar für die beste Filmmusik.",
       "fun_fact_es": "The Entertainer de Scott Joplin fue revivido para El golpe. El clásico de ragtime le valió a Marvin Hamlisch un Óscar a la mejor banda sonora.",
+      "fun_fact_fr": "The Entertainer de Scott Joplin a ete remis au gout du jour pour L'Arnaque. Ce classique du ragtime a valu a Marvin Hamlisch un Oscar pour la meilleure musique.",
       "chart_info": {
         "billboard_peak": 3,
         "weeks_on_chart": 18
@@ -2723,6 +2935,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1973)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1973)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=vsFGcPujqKE",
       "movie": "The Sting",
@@ -2745,6 +2960,7 @@
       "fun_fact": "A-ha's Living Daylights was the first rock band Bond theme. The Norwegian group brought synthesizers to the 007 franchise.",
       "fun_fact_de": "A-has Living Daylights war das erste Bond-Thema einer Rockband. Die norwegische Gruppe brachte Synthesizer in die 007-Reihe.",
       "fun_fact_es": "Living Daylights de A-ha fue el primer tema de Bond de una banda de rock. El grupo noruego trajo los sintetizadores a la franquicia 007.",
+      "fun_fact_fr": "The Living Daylights de a-ha a ete le premier theme de Bond interprete par un groupe rock. Le groupe norvegien a apporte les synthetiseurs a la franchise 007.",
       "chart_info": {
         "billboard_peak": 41,
         "uk_peak": 5,
@@ -2774,6 +2990,7 @@
       "fun_fact": "Bernard Herrmann's Vertigo score uses swirling strings to mirror obsession. Hitchcock considered it essential to the film's effect.",
       "fun_fact_de": "Bernard Herrmanns Vertigo-Filmmusik verwendet wirbelnde Streicher, um Obsession widerzuspiegeln. Hitchcock hielt sie für wesentlich für die Wirkung des Films.",
       "fun_fact_es": "La banda sonora de Vértigo de Bernard Herrmann usa cuerdas arremolinadas para reflejar la obsesión. Hitchcock la consideraba esencial para el efecto de la película.",
+      "fun_fact_fr": "La musique de Sueurs froides de Bernard Herrmann utilise des cordes tourbillonnantes pour refleter l'obsession. Hitchcock la considerait comme essentielle a l'effet du film.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2799,6 +3016,7 @@
       "fun_fact": "The 1967 Casino Royale was a parody with multiple directors. Herb Alpert's theme captures the film's chaotic comedic tone.",
       "fun_fact_de": "Das Casino Royale von 1967 war eine Parodie mit mehreren Regisseuren. Herb Alperts Thema fängt den chaotisch-komödiantischen Ton des Films ein.",
       "fun_fact_es": "El Casino Royale de 1967 fue una parodia con múltiples directores. El tema de Herb Alpert captura el tono cómico caótico de la película.",
+      "fun_fact_fr": "Le Casino Royale de 1967 etait une parodie avec de multiples realisateurs. Le theme d'Herb Alpert capture le ton comique chaotique du film.",
       "chart_info": {
         "billboard_peak": 27,
         "weeks_on_chart": 8
@@ -2827,6 +3045,7 @@
       "fun_fact": "John Williams' E.T. Flying Theme synchronizes perfectly with the bicycle flight scene. Spielberg edited the film to match the music.",
       "fun_fact_de": "John Williams' E.T.-Flugthema synchronisiert sich perfekt mit der Fahrrad-Flugszene. Spielberg schnitt den Film passend zur Musik.",
       "fun_fact_es": "El tema de vuelo de E.T. de John Williams se sincroniza perfectamente con la escena del vuelo en bicicleta. Spielberg editó la película para que coincidiera con la música.",
+      "fun_fact_fr": "Le theme du vol d'E.T. de John Williams se synchronise parfaitement avec la scene de vol a velo. Spielberg a monte le film pour correspondre a la musique.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -2840,6 +3059,10 @@
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1982)",
         "Premio Grammy a la mejor banda sonora (1983)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1982)",
+        "Grammy de la meilleure bande originale (1983)"
       ],
       "uri_apple_music": "applemusic://track/347385520",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BDlvts7qQsI",
@@ -2863,6 +3086,7 @@
       "fun_fact": "Brad Fiedel's Terminator 2 theme uses metallic sounds and synthesizers to evoke both machines and heartbeats.",
       "fun_fact_de": "Brad Fiedels Terminator 2-Thema verwendet metallische Klänge und Synthesizer, um sowohl Maschinen als auch Herzschläge zu evozieren.",
       "fun_fact_es": "El tema de Terminator 2 de Brad Fiedel usa sonidos metálicos y sintetizadores para evocar tanto máquinas como latidos del corazón.",
+      "fun_fact_fr": "Le theme de Terminator 2 de Brad Fiedel utilise des sons metalliques et des synthetiseurs pour evoquer a la fois les machines et les battements de coeur.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2888,6 +3112,7 @@
       "fun_fact": "Dueling Banjos was recorded for Deliverance in one take. The scene where a city boy jams with a local became iconic.",
       "fun_fact_de": "Dueling Banjos wurde für Beim Sterben ist jeder der Erste in einer Aufnahme eingespielt. Die Szene, in der ein Stadtjunge mit einem Einheimischen jammt, wurde ikonisch.",
       "fun_fact_es": "Dueling Banjos se grabó para Defensa en una sola toma. La escena donde un chico de ciudad improvisa con un local se volvió icónica.",
+      "fun_fact_fr": "Dueling Banjos a ete enregistre pour Delivrance en une seule prise. La scene ou un citadin improvise avec un local est devenue culte.",
       "chart_info": {
         "billboard_peak": 2,
         "weeks_on_chart": 17
@@ -2918,6 +3143,7 @@
       "fun_fact": "Rose Royce's Car Wash was written by Norman Whitfield. The funky anthem perfectly captures the 70s workplace comedy.",
       "fun_fact_de": "Rose Royces Car Wash wurde von Norman Whitfield geschrieben. Die funkige Hymne fängt die Arbeitsplatz-Komödie der 70er perfekt ein.",
       "fun_fact_es": "Car Wash de Rose Royce fue escrita por Norman Whitfield. El himno funky captura perfectamente la comedia laboral de los años 70.",
+      "fun_fact_fr": "Car Wash de Rose Royce a ete ecrit par Norman Whitfield. Cet hymne funky incarne parfaitement l'esprit de la comedie de bureau des annees 70.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 20
@@ -2947,6 +3173,7 @@
       "fun_fact": "Gene Kelly performed Singin' in the Rain while sick with a 103-degree fever. The puddles were mixed with milk for visibility.",
       "fun_fact_de": "Gene Kelly führte Singin' in the Rain mit 39,4 Grad Fieber auf. Die Pfützen wurden mit Milch gemischt, um sie sichtbarer zu machen.",
       "fun_fact_es": "Gene Kelly interpretó Cantando bajo la lluvia estando enfermo con fiebre de 39,4 grados. Los charcos se mezclaron con leche para mayor visibilidad.",
+      "fun_fact_fr": "Gene Kelly a interprete Chantons sous la pluie alors qu'il etait malade avec 39 degres de fievre. Les flaques etaient melangees avec du lait pour etre plus visibles a l'ecran.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -2972,6 +3199,7 @@
       "fun_fact": "Trent Reznor and Atticus Ross' cover of Immigrant Song opens The Girl with the Dragon Tattoo with aggressive intensity.",
       "fun_fact_de": "Trent Reznors und Atticus Ross' Cover von Immigrant Song eröffnet Verblendung mit aggressiver Intensität.",
       "fun_fact_es": "La versión de Immigrant Song de Trent Reznor y Atticus Ross abre Los hombres que no amaban a las mujeres con intensidad agresiva.",
+      "fun_fact_fr": "La reprise d'Immigrant Song par Trent Reznor et Atticus Ross ouvre Millenium avec une intensite agressive.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -2982,6 +3210,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la mejor banda sonora (2012)"
+      ],
+      "awards_fr": [
+        "Grammy de la meilleure bande originale (2012)"
       ],
       "movie": "The Girl with the Dragon Tattoo",
       "movie_choices": [
@@ -3003,6 +3234,7 @@
       "fun_fact": "Ennio Morricone's The Thing score was rejected by John Carpenter who found it too strange. It's now considered a classic.",
       "fun_fact_de": "Ennio Morricones Filmmusik zu Das Ding aus einer anderen Welt wurde von John Carpenter abgelehnt, der sie zu seltsam fand. Heute gilt sie als Klassiker.",
       "fun_fact_es": "La banda sonora de La cosa de Ennio Morricone fue rechazada por John Carpenter, quien la encontró demasiado extraña. Ahora se considera un clásico.",
+      "fun_fact_fr": "La musique de The Thing d'Ennio Morricone a ete rejetee par John Carpenter qui la trouvait trop etrange. Elle est aujourd'hui consideree comme un classique.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3027,6 +3259,7 @@
       "fun_fact": "Carly Simon's Why was written for Soup for One. The extended version showcases the Chic-influenced production of the era.",
       "fun_fact_de": "Carly Simons Why wurde für Soup for One geschrieben. Die erweiterte Version zeigt die von Chic beeinflusste Produktion der Ära.",
       "fun_fact_es": "Why de Carly Simon fue escrita para Soup for One. La versión extendida muestra la producción influenciada por Chic de la época.",
+      "fun_fact_fr": "Why de Carly Simon a ete ecrite pour Soup for One. La version longue met en valeur la production influencee par Chic de cette epoque.",
       "chart_info": {
         "billboard_peak": 74
       },
@@ -3053,6 +3286,7 @@
       "fun_fact": "Bernard Herrmann's North by Northwest theme is a fandango that drives the film's suspense. Hitchcock called Herrmann essential.",
       "fun_fact_de": "Bernard Herrmanns Thema zu Der unsichtbare Dritte ist ein Fandango, der die Spannung des Films antreibt. Hitchcock nannte Herrmann unverzichtbar.",
       "fun_fact_es": "El tema de Con la muerte en los talones de Bernard Herrmann es un fandango que impulsa el suspenso de la película. Hitchcock consideraba a Herrmann esencial.",
+      "fun_fact_fr": "Le theme de La Mort aux trousses de Bernard Herrmann est un fandango qui porte le suspense du film. Hitchcock qualifiait Herrmann d'indispensable.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3078,6 +3312,7 @@
       "fun_fact": "Over the Rainbow was almost cut from The Wizard of Oz. It won the Oscar and became Judy Garland's signature song.",
       "fun_fact_de": "Over the Rainbow wurde fast aus Der Zauberer von Oz geschnitten. Es gewann den Oscar und wurde zu Judy Garlands Erkennungslied.",
       "fun_fact_es": "Over the Rainbow casi fue eliminada de El mago de Oz. Ganó el Óscar y se convirtió en la canción insignia de Judy Garland.",
+      "fun_fact_fr": "Over the Rainbow a failli etre coupee du Magicien d'Oz. Elle a remporte l'Oscar et est devenue la chanson emblematique de Judy Garland.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 15
@@ -3093,6 +3328,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor canción original (1939)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1939)"
       ],
       "uri_apple_music": "applemusic://track/1455918432",
       "uri_youtube_music": "https://music.youtube.com/watch?v=C14m0mX717E",
@@ -3116,6 +3354,7 @@
       "fun_fact": "David Bowie's Cat People theme was written with Giorgio Moroder. The haunting song outlasted the film it was written for.",
       "fun_fact_de": "David Bowies Cat People-Thema wurde mit Giorgio Moroder geschrieben. Das eindringliche Lied überlebte den Film, für den es geschrieben wurde.",
       "fun_fact_es": "El tema Cat People de David Bowie fue escrito con Giorgio Moroder. La inquietante canción perduró más que la película para la que fue escrita.",
+      "fun_fact_fr": "Le theme de La Feline par David Bowie a ete compose avec Giorgio Moroder. Cette chanson envoutante a survecu bien au-dela du film pour lequel elle a ete ecrite.",
       "chart_info": {
         "billboard_peak": 67,
         "uk_peak": 26
@@ -3144,6 +3383,7 @@
       "fun_fact": "Ennio Morricone's Once Upon a Time in the West uses harmonica as a character motif. The haunting melody drives the revenge plot.",
       "fun_fact_de": "Ennio Morricones Spiel mir das Lied vom Tod verwendet Mundharmonika als Charaktermotiv. Die eindringliche Melodie treibt die Rachehandlung voran.",
       "fun_fact_es": "Hasta que llegó su hora de Ennio Morricone usa la armónica como motivo del personaje. La inquietante melodía impulsa la trama de venganza.",
+      "fun_fact_fr": "La musique d'Il etait une fois dans l'Ouest d'Ennio Morricone utilise l'harmonica comme motif de personnage. La melodie envoutante porte l'intrigue de vengeance.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3168,6 +3408,7 @@
       "fun_fact": "The Warriors' synth-heavy theme captures late 70s New York. The cult film spawned a devoted following and a video game.",
       "fun_fact_de": "Das synthesizerlastige Thema von Die Warriors fängt das New York der späten 70er ein. Der Kultfilm schuf eine treue Anhängerschaft und ein Videospiel.",
       "fun_fact_es": "El tema con muchos sintetizadores de Los amos de la noche captura el Nueva York de finales de los 70. La película de culto generó seguidores devotos y un videojuego.",
+      "fun_fact_fr": "Le theme synthetique de The Warriors capture le New York de la fin des annees 70. Ce film culte a engendre une communaute de fans devouee et un jeu video.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3192,6 +3433,7 @@
       "fun_fact": "Bernard Herrmann's Psycho score uses only strings. The shower scene's shrieking violins changed horror movie music forever.",
       "fun_fact_de": "Bernard Herrmanns Psycho-Filmmusik verwendet nur Streicher. Die kreischenden Violinen der Duschszene veränderten die Horrorfilmmusik für immer.",
       "fun_fact_es": "La banda sonora de Psicosis de Bernard Herrmann usa solo cuerdas. Los violines estridentes de la escena de la ducha cambiaron la música de terror para siempre.",
+      "fun_fact_fr": "La musique de Psychose de Bernard Herrmann n'utilise que des cordes. Les violons stridents de la scene de la douche ont change a jamais la musique des films d'horreur.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3217,6 +3459,7 @@
       "fun_fact": "Love Is a Many-Splendored Thing won the Oscar for Best Song. The sweeping romantic theme defined 1950s Hollywood romance.",
       "fun_fact_de": "Love Is a Many-Splendored Thing gewann den Oscar für den besten Song. Das schwungvolle romantische Thema definierte die Hollywood-Romantik der 1950er.",
       "fun_fact_es": "Love Is a Many-Splendored Thing ganó el Óscar a la mejor canción. El tema romántico amplio definió el romance de Hollywood de los años 50.",
+      "fun_fact_fr": "Love Is a Many-Splendored Thing a remporte l'Oscar de la meilleure chanson. Ce theme romantique ample a defini le romantisme hollywoodien des annees 1950.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 24
@@ -3230,6 +3473,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor canción original (1955)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1955)"
       ],
       "movie": "Love Is a Many-Splendored Thing",
       "movie_choices": [
@@ -3251,6 +3497,7 @@
       "fun_fact": "John Williams' Catch Me If You Can score uses jazz to evoke the 1960s. The playful theme matches the film's cat-and-mouse plot.",
       "fun_fact_de": "John Williams' Filmmusik zu Catch Me If You Can verwendet Jazz, um die 1960er zu evozieren. Das verspielte Thema passt zur Katz-und-Maus-Handlung des Films.",
       "fun_fact_es": "La banda sonora de Atrápame si puedes de John Williams usa jazz para evocar los años 60. El tema juguetón coincide con la trama del gato y el ratón.",
+      "fun_fact_fr": "La musique d'Attrape-moi si tu peux de John Williams utilise le jazz pour evoquer les annees 1960. Le theme espiegle correspond au scenario de jeu du chat et de la souris.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3261,6 +3508,9 @@
       ],
       "awards_es": [
         "Nominación al Grammy a la mejor banda sonora (2003)"
+      ],
+      "awards_fr": [
+        "Nomination au Grammy de la meilleure bande originale (2003)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=SJKEvEdPtqw",
       "movie": "Catch Me If You Can",
@@ -3283,6 +3533,7 @@
       "fun_fact": "Mike Oldfield's Tubular Bells became famous through The Exorcist. The album sold millions after its use in the horror classic.",
       "fun_fact_de": "Mike Oldfields Tubular Bells wurde durch Der Exorzist berühmt. Das Album verkaufte sich millionenfach nach seiner Verwendung im Horrorklassiker.",
       "fun_fact_es": "Tubular Bells de Mike Oldfield se hizo famoso a través de El exorcista. El álbum vendió millones después de su uso en el clásico de terror.",
+      "fun_fact_fr": "Tubular Bells de Mike Oldfield est devenu celebre grace a L'Exorciste. L'album s'est vendu a des millions d'exemplaires apres son utilisation dans ce classique de l'horreur.",
       "chart_info": {
         "billboard_peak": 7,
         "uk_peak": 1,
@@ -3300,6 +3551,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la mejor grabación instrumental (1975)"
+      ],
+      "awards_fr": [
+        "Grammy du meilleur morceau instrumental (1975)"
       ],
       "uri_apple_music": "applemusic://track/1443259735",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8c-hUWNiG8A",
@@ -3323,6 +3577,7 @@
       "fun_fact": "Miklos Rozsa's Ben-Hur score required the largest orchestra ever assembled for a film. It won the Oscar for Best Score.",
       "fun_fact_de": "Miklos Rozsas Ben-Hur-Filmmusik erforderte das größte jemals für einen Film zusammengestellte Orchester. Sie gewann den Oscar für die beste Filmmusik.",
       "fun_fact_es": "La banda sonora de Ben-Hur de Miklos Rozsa requirió la orquesta más grande jamás reunida para una película. Ganó el Óscar a la mejor banda sonora.",
+      "fun_fact_fr": "La musique de Ben-Hur de Miklos Rozsa a necessite le plus grand orchestre jamais rassemble pour un film. Elle a remporte l'Oscar de la meilleure musique.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3333,6 +3588,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1959)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1959)"
       ],
       "uri_apple_music": "applemusic://track/1455700172",
       "uri_youtube_music": "https://music.youtube.com/watch?v=B3GgE351DmA",
@@ -3356,6 +3614,7 @@
       "fun_fact": "Jerry Goldsmith's Basic Instinct score blends sensuality with menace. The controversial film became a cultural phenomenon.",
       "fun_fact_de": "Jerry Goldsmiths Basic Instinct-Filmmusik verbindet Sinnlichkeit mit Bedrohung. Der kontroverse Film wurde zu einem kulturellen Phänomen.",
       "fun_fact_es": "La banda sonora de Instinto básico de Jerry Goldsmith mezcla sensualidad con amenaza. La controvertida película se convirtió en un fenómeno cultural.",
+      "fun_fact_fr": "La musique de Basic Instinct de Jerry Goldsmith mele sensualite et menace. Ce film controverse est devenu un phenomene culturel.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3380,6 +3639,7 @@
       "fun_fact": "Maurice Jarre's Lawrence of Arabia theme evokes the desert's vastness. The score won an Oscar and defined epic cinema.",
       "fun_fact_de": "Maurice Jarres Thema zu Lawrence von Arabien evoziert die Weite der Wüste. Die Filmmusik gewann einen Oscar und definierte das epische Kino.",
       "fun_fact_es": "El tema de Lawrence de Arabia de Maurice Jarre evoca la inmensidad del desierto. La banda sonora ganó un Óscar y definió el cine épico.",
+      "fun_fact_fr": "Le theme de Lawrence d'Arabie de Maurice Jarre evoque l'immensite du desert. La partition a remporte un Oscar et a defini le cinema epique.",
       "chart_info": {
         "billboard_peak": 15,
         "weeks_on_chart": 14
@@ -3393,6 +3653,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor banda sonora original (1962)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1962)"
       ],
       "uri_apple_music": "applemusic://track/1663023916",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qB_Hvinljbg",
@@ -3416,6 +3679,7 @@
       "fun_fact": "Bernard Herrmann's Taxi Driver score was his last. He died the night after completing the recording sessions.",
       "fun_fact_de": "Bernard Herrmanns Taxi Driver-Filmmusik war seine letzte. Er starb in der Nacht nach Abschluss der Aufnahmesitzungen.",
       "fun_fact_es": "La banda sonora de Taxi Driver de Bernard Herrmann fue su última obra. Murió la noche después de completar las sesiones de grabación.",
+      "fun_fact_fr": "La musique de Taxi Driver de Bernard Herrmann a ete sa derniere oeuvre. Il est decede la nuit suivant la fin des sessions d'enregistrement.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3441,6 +3705,7 @@
       "fun_fact": "Ennio Morricone's A Fistful of Dollars theme created the Spaghetti Western sound. The whistling and whip cracks became iconic.",
       "fun_fact_de": "Ennio Morricones Thema zu Für eine Handvoll Dollar schuf den Italowestern-Sound. Das Pfeifen und die Peitschenschläge wurden ikonisch.",
       "fun_fact_es": "El tema de Por un puñado de dólares de Ennio Morricone creó el sonido del spaghetti western. Los silbidos y chasquidos de látigo se volvieron icónicos.",
+      "fun_fact_fr": "Le theme de Pour une poignee de dollars d'Ennio Morricone a cree le son du western spaghetti. Les sifflements et les claquements de fouet sont devenus emblematiques.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3466,6 +3731,7 @@
       "fun_fact": "Shirley Bassey's Diamonds Are Forever was her second Bond theme. She remains the only artist to sing three 007 songs.",
       "fun_fact_de": "Shirley Basseys Diamonds Are Forever war ihr zweites Bond-Thema. Sie bleibt die einzige Künstlerin, die drei 007-Lieder gesungen hat.",
       "fun_fact_es": "Diamonds Are Forever de Shirley Bassey fue su segundo tema de Bond. Sigue siendo la única artista que ha cantado tres canciones de 007.",
+      "fun_fact_fr": "Diamonds Are Forever de Shirley Bassey etait son deuxieme theme de Bond. Elle reste la seule artiste a avoir chante trois chansons de la saga 007.",
       "chart_info": {
         "billboard_peak": 57,
         "uk_peak": 38
@@ -3494,6 +3760,7 @@
       "fun_fact": "Wagner's Ride of the Valkyries in Apocalypse Now accompanies a helicopter attack. Coppola made classical music terrifying.",
       "fun_fact_de": "Wagners Ritt der Walküren in Apocalypse Now begleitet einen Hubschrauberangriff. Coppola machte klassische Musik erschreckend.",
       "fun_fact_es": "La Cabalgata de las valquirias de Wagner en Apocalypse Now acompaña un ataque de helicópteros. Coppola hizo que la música clásica fuera aterradora.",
+      "fun_fact_fr": "La Chevauchee des Walkyries de Wagner accompagne une attaque en helicoptere dans Apocalypse Now. Coppola a rendu la musique classique terrifiante.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3519,6 +3786,7 @@
       "fun_fact": "Elmer Bernstein's To Kill a Mockingbird score uses a simple piano theme to evoke childhood innocence and Southern settings.",
       "fun_fact_de": "Elmer Bernsteins Filmmusik zu Wer die Nachtigall stört verwendet ein einfaches Klavierthema, um kindliche Unschuld und südstaatliche Kulissen zu evozieren.",
       "fun_fact_es": "La banda sonora de Matar a un ruiseñor de Elmer Bernstein usa un simple tema de piano para evocar la inocencia infantil y los escenarios sureños.",
+      "fun_fact_fr": "La musique de Du silence et des ombres d'Elmer Bernstein utilise un simple theme au piano pour evoquer l'innocence de l'enfance et l'atmosphere du Sud americain.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3529,6 +3797,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la mejor banda sonora original (1962)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1962)"
       ],
       "uri_apple_music": "applemusic://track/1444004606",
       "uri_youtube_music": "https://music.youtube.com/watch?v=c72keUWlbJ0",
@@ -3552,6 +3823,7 @@
       "fun_fact": "Olivia Newton-John's Xanadu combined disco with ELO rock. The film flopped but the soundtrack was a commercial success.",
       "fun_fact_de": "Olivia Newton-Johns Xanadu kombinierte Disco mit ELO-Rock. Der Film floppte, aber der Soundtrack war ein kommerzieller Erfolg.",
       "fun_fact_es": "Xanadu de Olivia Newton-John combinó disco con rock de ELO. La película fracasó, pero la banda sonora fue un éxito comercial.",
+      "fun_fact_fr": "Xanadu d'Olivia Newton-John melait disco et rock d'ELO. Le film a ete un echec mais la bande originale a connu un succes commercial.",
       "chart_info": {
         "billboard_peak": 8,
         "uk_peak": 1,
@@ -3584,6 +3856,7 @@
       "fun_fact": "Leonard Bernstein's West Side Story adapts Romeo and Juliet to 1950s New York. The film won 10 Academy Awards.",
       "fun_fact_de": "Leonard Bernsteins West Side Story adaptiert Romeo und Julia ins New York der 1950er. Der Film gewann 10 Academy Awards.",
       "fun_fact_es": "West Side Story de Leonard Bernstein adapta Romeo y Julieta al Nueva York de los años 50. La película ganó 10 premios de la Academia.",
+      "fun_fact_fr": "West Side Story de Leonard Bernstein adapte Romeo et Juliette dans le New York des annees 1950. Le film a remporte 10 Academy Awards.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 54
@@ -3599,6 +3872,9 @@
       ],
       "awards_es": [
         "Premio Óscar a la mejor película (1961)"
+      ],
+      "awards_fr": [
+        "Oscar du meilleur film (1961)"
       ],
       "uri_apple_music": "applemusic://track/933459488",
       "uri_youtube_music": "https://music.youtube.com/watch?v=V3h7rRyMZO8",
@@ -3622,6 +3898,7 @@
       "fun_fact": "The Bare Necessities from The Jungle Book was the last song approved by Walt Disney before his death in 1966.",
       "fun_fact_de": "The Bare Necessities aus Das Dschungelbuch war das letzte von Walt Disney vor seinem Tod 1966 genehmigte Lied.",
       "fun_fact_es": "The Bare Necessities de El libro de la selva fue la última canción aprobada por Walt Disney antes de su muerte en 1966.",
+      "fun_fact_fr": "Il en faut peu pour etre heureux du Livre de la jungle a ete la derniere chanson approuvee par Walt Disney avant sa mort en 1966.",
       "chart_info": {
         "billboard_peak": 78
       },
@@ -3634,6 +3911,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la mejor canción original (1967)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1967)"
       ],
       "uri_apple_music": "applemusic://track/1442849462",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6BH-Rxd-NBo",
@@ -3657,6 +3937,7 @@
       "fun_fact": "Day by Day from Godspell became a pop hit. The gentle folk-rock song spread the musical's gospel message worldwide.",
       "fun_fact_de": "Day by Day aus Godspell wurde ein Pop-Hit. Das sanfte Folk-Rock-Lied verbreitete die Gospel-Botschaft des Musicals weltweit.",
       "fun_fact_es": "Day by Day de Godspell se convirtió en un éxito pop. La suave canción folk-rock difundió el mensaje evangélico del musical en todo el mundo.",
+      "fun_fact_fr": "Day by Day de Godspell est devenu un succes pop. Cette douce chanson folk-rock a diffuse le message evangelique de la comedie musicale a travers le monde.",
       "chart_info": {
         "billboard_peak": 13,
         "weeks_on_chart": 14
@@ -3685,6 +3966,7 @@
       "fun_fact": "Casablanca's score weaves together classical, jazz, and the French anthem La Marseillaise in a powerful bar scene.",
       "fun_fact_de": "Die Filmmusik von Casablanca verwebt Klassik, Jazz und die französische Hymne La Marseillaise in einer kraftvollen Bar-Szene.",
       "fun_fact_es": "La banda sonora de Casablanca entrelaza música clásica, jazz y el himno francés La Marsellesa en una poderosa escena de bar.",
+      "fun_fact_fr": "La musique de Casablanca tisse ensemble classique, jazz et l'hymne francais La Marseillaise dans une scene de bar memorable.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3710,6 +3992,7 @@
       "fun_fact": "Jerry Goldsmith's Alien score creates dread through atonal strings and strange sounds. The silence is as effective as the music.",
       "fun_fact_de": "Jerry Goldsmiths Alien-Filmmusik erzeugt Angst durch atonale Streicher und seltsame Klänge. Die Stille ist ebenso wirkungsvoll wie die Musik.",
       "fun_fact_es": "La banda sonora de Alien de Jerry Goldsmith crea temor a través de cuerdas atonales y sonidos extraños. El silencio es tan efectivo como la música.",
+      "fun_fact_fr": "La musique d'Alien de Jerry Goldsmith cree l'effroi a travers des cordes atonales et des sons etranges. Le silence est aussi efficace que la musique.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3720,6 +4003,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la Mejor Banda Sonora Original (1979)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1979)"
       ],
       "uri_apple_music": "applemusic://track/1440854590",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yc94TrMnwaw",
@@ -3743,6 +4029,7 @@
       "fun_fact": "Rossini's Thieving Magpie overture accompanies ultraviolence in A Clockwork Orange. Kubrick's classical choices became his trademark.",
       "fun_fact_de": "Rossinis Ouvertüre zur Diebischen Elster begleitet die Ultragewalt in Uhrwerk Orange. Kubricks klassische Musikauswahl wurde zu seinem Markenzeichen.",
       "fun_fact_es": "La obertura de La urraca ladrona de Rossini acompaña la ultraviolencia en La naranja mecánica. Las elecciones de música clásica de Kubrick se convirtieron en su sello distintivo.",
+      "fun_fact_fr": "L'ouverture de La Pie voleuse de Rossini accompagne l'ultraviolence dans Orange mecanique. Les choix de musique classique de Kubrick sont devenus sa marque de fabrique.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3767,6 +4054,7 @@
       "fun_fact": "Christopher Cross's Arthur's Theme won the Oscar. The song about being caught between the moon and New York City became a classic.",
       "fun_fact_de": "Christopher Cross' Arthur's Theme gewann den Oscar. Das Lied über das Gefangensein zwischen dem Mond und New York City wurde zu einem Klassiker.",
       "fun_fact_es": "Arthur's Theme de Christopher Cross ganó el Óscar. La canción sobre estar atrapado entre la luna y Nueva York se convirtió en un clásico.",
+      "fun_fact_fr": "Arthur's Theme de Christopher Cross a remporte l'Oscar. Cette chanson sur le fait d'etre pris entre la lune et New York est devenue un classique.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 19
@@ -3785,6 +4073,10 @@
       "awards_es": [
         "Óscar a la Mejor Canción Original (1981)",
         "Globo de Oro a la Mejor Canción Original (1982)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1981)",
+        "Golden Globe de la meilleure chanson originale (1982)"
       ],
       "uri_apple_music": "applemusic://track/273426183",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wJ6zs2WSCjk",
@@ -3808,6 +4100,7 @@
       "fun_fact": "Hans Zimmer and Lisa Gerrard's Gladiator theme Now We Are Free uses wordless vocals to evoke ancient Rome and the afterlife.",
       "fun_fact_de": "Hans Zimmers und Lisa Gerrards Gladiator-Thema Now We Are Free verwendet wortlosen Gesang, um das antike Rom und das Jenseits zu beschwören.",
       "fun_fact_es": "El tema de Gladiator de Hans Zimmer y Lisa Gerrard, Now We Are Free, utiliza voces sin palabras para evocar la antigua Roma y el más allá.",
+      "fun_fact_fr": "Le theme de Gladiator Now We Are Free, de Hans Zimmer et Lisa Gerrard, utilise des voix sans paroles pour evoquer la Rome antique et l'au-dela.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3821,6 +4114,10 @@
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (2000)",
         "Globo de Oro a la Mejor Banda Sonora Original (2001)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (2000)",
+        "Golden Globe de la meilleure musique de film (2001)"
       ],
       "uri_apple_music": "applemusic://track/1452552843",
       "movie": "Gladiator",
@@ -3843,6 +4140,7 @@
       "fun_fact": "James Horner's Braveheart score uses Scottish instruments including bagpipes and Uilleann pipes. It won the Oscar.",
       "fun_fact_de": "James Horners Braveheart-Filmmusik verwendet schottische Instrumente wie Dudelsäcke und Uilleann Pipes. Sie gewann den Oscar.",
       "fun_fact_es": "La banda sonora de Braveheart de James Horner utiliza instrumentos escoceses como gaitas y Uilleann pipes. Ganó el Óscar.",
+      "fun_fact_fr": "La musique de Braveheart de James Horner utilise des instruments ecossais dont la cornemuse et les uilleann pipes. Elle a remporte l'Oscar.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3853,6 +4151,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (1995)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1995)"
       ],
       "uri_apple_music": "applemusic://track/1440773543",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gfHjh8KLURI",
@@ -3876,6 +4177,7 @@
       "fun_fact": "Seven Brides for Seven Brothers features elaborate barn-raising choreography. The musical was filmed in 30 days.",
       "fun_fact_de": "Eine Braut für sieben Brüder zeigt eine aufwendige Scheunenbau-Choreografie. Das Musical wurde in 30 Tagen gedreht.",
       "fun_fact_es": "Siete novias para siete hermanos presenta una elaborada coreografía de construcción de granero. El musical se filmó en 30 días.",
+      "fun_fact_fr": "Sept fiances pour sept freres presente une choregraphie de construction de grange spectaculaire. La comedie musicale a ete tournee en 30 jours.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -3886,6 +4188,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Banda Sonora (1954)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1954)"
       ],
       "uri_apple_music": "applemusic://track/1658406090",
       "movie": "Seven Brides for Seven Brothers",
@@ -3908,6 +4213,7 @@
       "fun_fact": "Jerry Goldsmith's Planet of the Apes score uses unconventional instruments including ram's horns and mixing bowls.",
       "fun_fact_de": "Jerry Goldsmiths Planet der Affen-Filmmusik verwendet unkonventionelle Instrumente wie Widderhörner und Rührschüsseln.",
       "fun_fact_es": "La banda sonora de El planeta de los simios de Jerry Goldsmith utiliza instrumentos no convencionales como cuernos de carnero y cuencos de mezcla.",
+      "fun_fact_fr": "La musique de La Planete des singes de Jerry Goldsmith utilise des instruments non conventionnels dont des cornes de belier et des bols a melanger.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -3933,6 +4239,7 @@
       "fun_fact": "Burt Bacharach's What's New Pussycat was nominated for an Oscar. Tom Jones' energetic delivery made it a novelty hit.",
       "fun_fact_de": "Burt Bacharachs What's New Pussycat wurde für einen Oscar nominiert. Tom Jones' energiegeladene Darbietung machte es zu einem Noveltyhit.",
       "fun_fact_es": "What's New Pussycat de Burt Bacharach fue nominada al Óscar. La interpretación enérgica de Tom Jones la convirtió en un éxito novedoso.",
+      "fun_fact_fr": "Quoi de neuf, Pussycat ? de Burt Bacharach a ete nomme pour un Oscar. L'interpretation energique de Tom Jones en a fait un tube comique.",
       "chart_info": {
         "billboard_peak": 3,
         "uk_peak": 11,
@@ -3949,6 +4256,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la Mejor Canción Original (1965)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1965)"
       ],
       "uri_apple_music": "applemusic://track/1444091737",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qQvIAs-nPSo",
@@ -3972,6 +4282,7 @@
       "fun_fact": "The Colonel Bogey March in Bridge on the River Kwai is whistled by prisoners. The tune dates from 1914.",
       "fun_fact_de": "Der Colonel-Bogey-Marsch in Die Brücke am Kwai wird von Gefangenen gepfiffen. Die Melodie stammt aus dem Jahr 1914.",
       "fun_fact_es": "La Marcha del Coronel Bogey en El puente sobre el río Kwai es silbada por los prisioneros. La melodía data de 1914.",
+      "fun_fact_fr": "La Colonel Bogey March dans Le Pont de la riviere Kwai est sifflee par les prisonniers. La melodie date de 1914.",
       "chart_info": {
         "billboard_peak": 1,
         "uk_peak": 1,
@@ -4003,6 +4314,7 @@
       "fun_fact": "Wendy Carlos's The Shining score includes electronic versions of Berlioz and Bartok, creating unsettling atmosphere.",
       "fun_fact_de": "Wendy Carlos' Filmmusik zu Shining enthält elektronische Versionen von Berlioz und Bartók und schafft eine beunruhigende Atmosphäre.",
       "fun_fact_es": "La banda sonora de El resplandor de Wendy Carlos incluye versiones electrónicas de Berlioz y Bartók, creando una atmósfera inquietante.",
+      "fun_fact_fr": "La musique de Shining par Wendy Carlos inclut des versions electroniques de Berlioz et Bartok, creant une atmosphere inquietante.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4028,6 +4340,7 @@
       "fun_fact": "Quincy Jones' Italian Job score features Matt Monro's On Days Like These. The film's Mini Cooper chase became legendary.",
       "fun_fact_de": "Quincy Jones' Filmmusik zu Charlie staubt Millionen ab enthält Matt Monros On Days Like These. Die Mini-Cooper-Verfolgungsjagd des Films wurde legendär.",
       "fun_fact_es": "La banda sonora de The Italian Job de Quincy Jones presenta On Days Like These de Matt Monro. La persecución en Mini Cooper de la película se volvió legendaria.",
+      "fun_fact_fr": "La musique de L'Or se barre de Quincy Jones presente On Days Like These par Matt Monro. La poursuite en Mini Cooper du film est devenue legendaire.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4052,6 +4365,7 @@
       "fun_fact": "The Sherman Brothers wrote all of Mary Poppins' songs. The score earned them two Academy Awards in one night.",
       "fun_fact_de": "Die Sherman-Brüder schrieben alle Lieder von Mary Poppins. Die Filmmusik brachte ihnen an einem Abend zwei Oscars ein.",
       "fun_fact_es": "Los hermanos Sherman escribieron todas las canciones de Mary Poppins. La banda sonora les valió dos Premios Óscar en una noche.",
+      "fun_fact_fr": "Les freres Sherman ont ecrit toutes les chansons de Mary Poppins. La partition leur a valu deux Academy Awards en une seule soiree.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 14
@@ -4070,6 +4384,10 @@
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (1964)",
         "Óscar a la Mejor Canción Original (1964)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1964)",
+        "Oscar de la meilleure chanson originale (1964)"
       ],
       "uri_apple_music": "applemusic://track/1440796520",
       "movie": "Mary Poppins",
@@ -4092,6 +4410,7 @@
       "fun_fact": "The Beatles wrote Help! for their second film. The title song became one of John Lennon's most personal compositions.",
       "fun_fact_de": "Die Beatles schrieben Help! für ihren zweiten Film. Das Titellied wurde zu einer der persönlichsten Kompositionen von John Lennon.",
       "fun_fact_es": "Los Beatles escribieron Help! para su segunda película. La canción principal se convirtió en una de las composiciones más personales de John Lennon.",
+      "fun_fact_fr": "Les Beatles ont ecrit Help! pour leur deuxieme film. La chanson-titre est devenue l'une des compositions les plus personnelles de John Lennon.",
       "chart_info": {
         "billboard_peak": 1,
         "uk_peak": 1,
@@ -4124,6 +4443,7 @@
       "fun_fact": "Simple Minds' Don't You Forget About Me defined The Breakfast Club. The band initially rejected the song before recording it.",
       "fun_fact_de": "Simple Minds' Don't You (Forget About Me) prägte The Breakfast Club. Die Band lehnte den Song zunächst ab, bevor sie ihn aufnahm.",
       "fun_fact_es": "Don't You (Forget About Me) de Simple Minds definió El club de los cinco. La banda inicialmente rechazó la canción antes de grabarla.",
+      "fun_fact_fr": "Don't You (Forget About Me) de Simple Minds a defini Breakfast Club. Le groupe avait d'abord refuse la chanson avant de l'enregistrer.",
       "chart_info": {
         "billboard_peak": 1,
         "uk_peak": 7,
@@ -4155,6 +4475,7 @@
       "fun_fact": "Leonard Bernstein's On the Waterfront score brought jazz influences to dramatic film. The score won an Oscar.",
       "fun_fact_de": "Leonard Bernsteins Filmmusik zu Die Faust im Nacken brachte Jazz-Einflüsse in den dramatischen Film. Die Musik gewann einen Oscar.",
       "fun_fact_es": "La banda sonora de Nido de ratas de Leonard Bernstein trajo influencias de jazz al cine dramático. La música ganó un Óscar.",
+      "fun_fact_fr": "La musique de Sur les quais de Leonard Bernstein a apporte des influences jazz au cinema dramatique. La partition a remporte un Oscar.",
       "chart_info": {},
       "certifications": [],
       "awards": [
@@ -4165,6 +4486,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (1954)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1954)"
       ],
       "uri_apple_music": "applemusic://track/1816013634",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Q7sabA_J4SA",
@@ -4188,6 +4512,7 @@
       "fun_fact": "Ernest Gold's It's a Mad, Mad, Mad, Mad World score matches the film's manic comedy. The epic featured every major comedian.",
       "fun_fact_de": "Ernest Golds Filmmusik zu Eine total, total verrückte Welt entspricht der manischen Komödie des Films. Das Epos zeigte jeden großen Komiker.",
       "fun_fact_es": "La banda sonora de El mundo está loco, loco, loco de Ernest Gold coincide con la comedia maníaca de la película. La épica contó con todos los grandes comediantes.",
+      "fun_fact_fr": "La musique d'Un monde fou, fou, fou, fou d'Ernest Gold est a la hauteur de la comedie frenetique du film. Cette epopee reunissait tous les grands comiques de l'epoque.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4213,6 +4538,7 @@
       "fun_fact": "Henry Mancini's Baby Elephant Walk from Hatari! became a novelty hit. The playful tune matched the film's safari setting.",
       "fun_fact_de": "Henry Mancinis Baby Elephant Walk aus Hatari! wurde ein Noveltyhit. Die verspielte Melodie passte zur Safari-Kulisse des Films.",
       "fun_fact_es": "Baby Elephant Walk de Henry Mancini de Hatari! se convirtió en un éxito novedoso. La melodía juguetona coincidía con el escenario de safari de la película.",
+      "fun_fact_fr": "Baby Elephant Walk d'Henry Mancini pour Hatari! est devenu un tube novelty. Cette melodie espiegle correspondait parfaitement au cadre safari du film.",
       "chart_info": {
         "billboard_peak": 8,
         "weeks_on_chart": 10
@@ -4226,6 +4552,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la Mejor Interpretación Instrumental (1963)"
+      ],
+      "awards_fr": [
+        "Grammy du meilleur morceau instrumental (1963)"
       ],
       "uri_apple_music": "applemusic://track/306820503",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EbI2nl3Duf8",
@@ -4249,6 +4578,7 @@
       "fun_fact": "Howard Shore's Silence of the Lambs score creates psychological dread. The subtle music never overwhelms the suspense.",
       "fun_fact_de": "Howard Shores Filmmusik zu Das Schweigen der Lämmer erzeugt psychologische Angst. Die subtile Musik überwältigt nie die Spannung.",
       "fun_fact_es": "La banda sonora de El silencio de los corderos de Howard Shore crea temor psicológico. La música sutil nunca abruma el suspenso.",
+      "fun_fact_fr": "La musique du Silence des agneaux d'Howard Shore cree une angoisse psychologique. La musique subtile ne prend jamais le pas sur le suspense.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4274,6 +4604,7 @@
       "fun_fact": "Oklahoma! was the first Rodgers and Hammerstein musical adapted to film. Oh, What a Beautiful Morning opens with pure optimism.",
       "fun_fact_de": "Oklahoma! war das erste Rodgers-und-Hammerstein-Musical, das verfilmt wurde. Oh, What a Beautiful Morning eröffnet mit reinem Optimismus.",
       "fun_fact_es": "Oklahoma! fue el primer musical de Rodgers y Hammerstein adaptado al cine. Oh, What a Beautiful Morning abre con puro optimismo.",
+      "fun_fact_fr": "Oklahoma! a ete la premiere comedie musicale de Rodgers et Hammerstein adaptee au cinema. Oh, What a Beautiful Morning ouvre le film avec un optimisme pur.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 4
@@ -4287,6 +4618,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Banda Sonora (1955)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1955)"
       ],
       "uri_apple_music": "applemusic://track/325855734",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VpPKHI9N3Q0",
@@ -4310,6 +4644,7 @@
       "fun_fact": "Lalo Schifrin's Dirty Harry score uses jazz to capture San Francisco's gritty streets. Clint Eastwood became an icon.",
       "fun_fact_de": "Lalo Schifrins Dirty Harry-Filmmusik nutzt Jazz, um die rauen Straßen San Franciscos einzufangen. Clint Eastwood wurde zur Ikone.",
       "fun_fact_es": "La banda sonora de Harry el sucio de Lalo Schifrin usa jazz para capturar las calles ásperas de San Francisco. Clint Eastwood se convirtió en un ícono.",
+      "fun_fact_fr": "La musique de L'Inspecteur Harry de Lalo Schifrin utilise le jazz pour capturer les rues sombres de San Francisco. Clint Eastwood est devenu une icone.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4335,6 +4670,7 @@
       "fun_fact": "Leonard Rosenman's Rebel Without a Cause score was groundbreaking for using dissonance to express teenage angst.",
       "fun_fact_de": "Leonard Rosenmans Filmmusik zu ...denn sie wissen nicht, was sie tun war bahnbrechend in der Verwendung von Dissonanz, um jugendliche Angst auszudrücken.",
       "fun_fact_es": "La banda sonora de Rebelde sin causa de Leonard Rosenman fue revolucionaria por usar la disonancia para expresar la angustia adolescente.",
+      "fun_fact_fr": "La musique de La Fureur de vivre de Leonard Rosenman etait revolutionnaire dans son utilisation de la dissonance pour exprimer l'angoisse adolescente.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4359,6 +4695,7 @@
       "fun_fact": "John Williams' Close Encounters uses a five-note motif for alien communication. The sequence became pop culture shorthand.",
       "fun_fact_de": "John Williams' Unheimliche Begegnung der dritten Art verwendet ein fünftöniges Motiv für die außerirdische Kommunikation. Die Sequenz wurde zum popkulturellen Kürzel.",
       "fun_fact_es": "Encuentros cercanos del tercer tipo de John Williams usa un motivo de cinco notas para la comunicación alienígena. La secuencia se convirtió en un símbolo de la cultura pop.",
+      "fun_fact_fr": "La musique de Rencontres du troisieme type de John Williams utilise un motif de cinq notes pour la communication extraterrestre. Cette sequence est devenue un raccourci culturel.",
       "chart_info": {
         "billboard_peak": 13,
         "weeks_on_chart": 10
@@ -4372,6 +4709,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la Mejor Banda Sonora Original (1977)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure musique de film (1977)"
       ],
       "uri_apple_music": "applemusic://track/306664733",
       "uri_youtube_music": "https://music.youtube.com/watch?v=W9pFv20Bhck",
@@ -4395,6 +4735,7 @@
       "fun_fact": "Some Like It Hot's score captures 1920s jazz. Marilyn Monroe's Sugar performs with an all-girl band on screen.",
       "fun_fact_de": "Die Filmmusik von Manche mögen's heiß fängt den Jazz der 1920er Jahre ein. Marilyn Monroes Sugar tritt mit einer reinen Mädchenband auf der Leinwand auf.",
       "fun_fact_es": "La banda sonora de Con faldas y a lo loco captura el jazz de los años 1920. Sugar de Marilyn Monroe actúa con una banda femenina en pantalla.",
+      "fun_fact_fr": "La musique de Certains l'aiment chaud capture le jazz des annees 1920. Marilyn Monroe en Sugar se produit avec un orchestre entierement feminin a l'ecran.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4419,6 +4760,7 @@
       "fun_fact": "The Deer Hunter uses Cavatina by Stanley Myers. The gentle guitar piece contrasts devastatingly with the film's violence.",
       "fun_fact_de": "Die durch die Hölle gehen verwendet Cavatina von Stanley Myers. Das sanfte Gitarrenstück kontrastiert verheerend mit der Gewalt des Films.",
       "fun_fact_es": "El cazador usa Cavatina de Stanley Myers. La suave pieza de guitarra contrasta devastadoramente con la violencia de la película.",
+      "fun_fact_fr": "Voyage au bout de l'enfer utilise Cavatina de Stanley Myers. Cette delicate piece de guitare contraste de facon devastante avec la violence du film.",
       "chart_info": {
         "uk_peak": 9,
         "weeks_on_chart": 16
@@ -4447,6 +4789,7 @@
       "fun_fact": "Howard Shore's Concerning Hobbits captures the Shire's peaceful domesticity. The gentle theme uses tin whistle and fiddle.",
       "fun_fact_de": "Howard Shores Concerning Hobbits fängt die friedliche Häuslichkeit des Auenlandes ein. Das sanfte Thema verwendet Tin Whistle und Geige.",
       "fun_fact_es": "Concerning Hobbits de Howard Shore captura la pacífica domesticidad de la Comarca. El tema suave usa silbato de hojalata y violín.",
+      "fun_fact_fr": "Concerning Hobbits d'Howard Shore saisit la domesticite paisible de la Comte. Ce theme delicat utilise le tin whistle et le violon folk.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4472,6 +4815,7 @@
       "fun_fact": "Michel Legrand's Summer of '42 theme won the Oscar. The nostalgic score captures first love during wartime.",
       "fun_fact_de": "Michel Legrands Thema aus Sommer '42 gewann den Oscar. Die nostalgische Musik fängt die erste Liebe während des Krieges ein.",
       "fun_fact_es": "El tema de Verano del 42 de Michel Legrand ganó el Óscar. La nostálgica banda sonora captura el primer amor durante la guerra.",
+      "fun_fact_fr": "Le theme d'Un ete 42 de Michel Legrand a remporte l'Oscar. Cette partition nostalgique capture le premier amour en temps de guerre.",
       "chart_info": {
         "billboard_peak": 21,
         "weeks_on_chart": 13
@@ -4485,6 +4829,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Banda Sonora Original (1971)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure musique de film (1971)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=hxWpSmNDIZA",
       "movie": "Summer of '42",
@@ -4507,6 +4854,7 @@
       "fun_fact": "Voyage to the Bottom of the Sea launched Irwin Allen's disaster movie career. Frankie Avalon sings the title song.",
       "fun_fact_de": "Unternehmen Feuergürtel startete Irwin Allens Katastrophenfilm-Karriere. Frankie Avalon singt das Titellied.",
       "fun_fact_es": "Viaje al fondo del mar lanzó la carrera de películas de desastres de Irwin Allen. Frankie Avalon canta la canción principal.",
+      "fun_fact_fr": "Voyage au fond des mers a lance la carriere de films catastrophe d'Irwin Allen. Frankie Avalon chante la chanson-titre.",
       "chart_info": {
         "billboard_peak": 91
       },
@@ -4534,6 +4882,7 @@
       "fun_fact": "Moby's Extreme Ways closes each Bourne film. The electronic track became as essential to the franchise as the action.",
       "fun_fact_de": "Mobys Extreme Ways beendet jeden Bourne-Film. Der elektronische Track wurde für die Filmreihe so wichtig wie die Action.",
       "fun_fact_es": "Extreme Ways de Moby cierra cada película de Bourne. La pista electrónica se volvió tan esencial para la franquicia como la acción.",
+      "fun_fact_fr": "Extreme Ways de Moby conclut chaque film de la saga Bourne. Ce morceau electronique est devenu aussi essentiel a la franchise que les scenes d'action.",
       "chart_info": {
         "uk_peak": 39
       },
@@ -4561,6 +4910,7 @@
       "fun_fact": "Wings' Live and Let Die was Paul McCartney's explosive Bond theme. It was the first rock song in the franchise.",
       "fun_fact_de": "Live and Let Die von Wings war Paul McCartneys explosives Bond-Thema. Es war der erste Rocksong in der Filmreihe.",
       "fun_fact_es": "Live and Let Die de Wings fue el explosivo tema de Bond de Paul McCartney. Fue la primera canción de rock en la franquicia.",
+      "fun_fact_fr": "Live and Let Die de Wings etait le theme explosif de Bond par Paul McCartney. Ce fut la premiere chanson rock de la franchise.",
       "chart_info": {
         "billboard_peak": 2,
         "uk_peak": 9,
@@ -4577,6 +4927,9 @@
       ],
       "awards_es": [
         "Nominación al Óscar a la Mejor Canción Original (1973)"
+      ],
+      "awards_fr": [
+        "Nomination a l'Oscar de la meilleure chanson originale (1973)"
       ],
       "uri_apple_music": "applemusic://track/1440939414",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NR0UmZcf89E",
@@ -4600,6 +4953,7 @@
       "fun_fact": "The Man With the Harmonica from Once Upon a Time in the West tells a story through music alone. The melody reveals character history.",
       "fun_fact_de": "Der Mann mit der Mundharmonika aus Spiel mir das Lied vom Tod erzählt eine Geschichte allein durch Musik. Die Melodie enthüllt die Charaktergeschichte.",
       "fun_fact_es": "El hombre de la armónica de Hasta que llegó su hora cuenta una historia solo a través de la música. La melodía revela la historia del personaje.",
+      "fun_fact_fr": "L'Homme a l'harmonica dans Il etait une fois dans l'Ouest raconte une histoire par la musique seule. La melodie revele le passe du personnage.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4625,6 +4979,7 @@
       "fun_fact": "Thomas Newman's second American Beauty track captures suburban ennui. The score uses percussion and ambient sounds.",
       "fun_fact_de": "Thomas Newmans zweiter American Beauty-Track fängt die Langeweile der Vorstadt ein. Die Musik verwendet Percussion und Umgebungsklänge.",
       "fun_fact_es": "La segunda pista de American Beauty de Thomas Newman captura el tedio suburbano. La banda sonora usa percusión y sonidos ambientales.",
+      "fun_fact_fr": "Le second morceau d'American Beauty de Thomas Newman capture l'ennui de la banlieue. La partition utilise des percussions et des sons ambiants.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4650,6 +5005,7 @@
       "fun_fact": "Percy Faith's Theme from A Summer Place spent nine weeks at number one. The lush arrangement defined romantic cinema.",
       "fun_fact_de": "Percy Faiths Thema aus Heimweh nach jenem Frühling stand neun Wochen auf Platz eins. Das üppige Arrangement prägte das romantische Kino.",
       "fun_fact_es": "El tema de Un lugar en el sol de Percy Faith pasó nueve semanas en el número uno. El exuberante arreglo definió el cine romántico.",
+      "fun_fact_fr": "Theme from A Summer Place de Percy Faith est reste neuf semaines en tete des classements. L'arrangement luxuriant a defini le cinema romantique.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 31
@@ -4665,6 +5021,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la Grabación del Año (1961)"
+      ],
+      "awards_fr": [
+        "Grammy du disque de l'annee (1961)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=3ofmPuHBCCc",
       "movie": "A Summer Place",
@@ -4687,6 +5046,7 @@
       "fun_fact": "Celine Dion's My Heart Will Go On became inseparable from Titanic. She initially didn't want to record it.",
       "fun_fact_de": "Celine Dions My Heart Will Go On wurde untrennbar mit Titanic verbunden. Sie wollte es anfangs nicht aufnehmen.",
       "fun_fact_es": "My Heart Will Go On de Celine Dion se volvió inseparable de Titanic. Inicialmente ella no quería grabarla.",
+      "fun_fact_fr": "My Heart Will Go On de Celine Dion est devenu indissociable de Titanic. La chanteuse ne voulait pas l'enregistrer au depart.",
       "chart_info": {
         "billboard_peak": 1,
         "uk_peak": 1,
@@ -4711,6 +5071,11 @@
         "Globo de Oro a la Mejor Canción Original (1998)",
         "Premio Grammy a la Grabación del Año (1999)"
       ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1997)",
+        "Golden Globe de la meilleure chanson originale (1998)",
+        "Grammy du disque de l'annee (1999)"
+      ],
       "uri_apple_music": "applemusic://track/507536740",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MxtrIvQKNEQ",
       "movie": "Titanic",
@@ -4733,6 +5098,7 @@
       "fun_fact": "Louis Armstrong's We Have All the Time in the World closed On Her Majesty's Secret Service. It was his final recorded song.",
       "fun_fact_de": "Louis Armstrongs We Have All the Time in the World beendete Im Geheimdienst Ihrer Majestät. Es war sein letzter aufgenommener Song.",
       "fun_fact_es": "We Have All the Time in the World de Louis Armstrong cerró Al servicio secreto de Su Majestad. Fue su última canción grabada.",
+      "fun_fact_fr": "We Have All the Time in the World de Louis Armstrong cloture Au service secret de Sa Majeste. Ce fut sa derniere chanson enregistree.",
       "chart_info": {
         "uk_peak": 3
       },
@@ -4760,6 +5126,7 @@
       "fun_fact": "Harry Nilsson's Everybody's Talkin' won a Grammy for Midnight Cowboy. The wistful song captures dreams of escape.",
       "fun_fact_de": "Harry Nilssons Everybody's Talkin' gewann einen Grammy für Asphalt-Cowboy. Das wehmütige Lied fängt Träume von der Flucht ein.",
       "fun_fact_es": "Everybody's Talkin' de Harry Nilsson ganó un Grammy por Cowboy de medianoche. La canción nostálgica captura sueños de escape.",
+      "fun_fact_fr": "Everybody's Talkin' de Harry Nilsson a remporte un Grammy pour Macadam Cowboy. Cette chanson melancolique capture les reves d'evasion.",
       "chart_info": {
         "billboard_peak": 6,
         "weeks_on_chart": 17
@@ -4775,6 +5142,9 @@
       ],
       "awards_es": [
         "Premio Grammy a la Mejor Canción Contemporánea (1970)"
+      ],
+      "awards_fr": [
+        "Grammy de la meilleure chanson contemporaine (1970)"
       ],
       "uri_apple_music": "applemusic://track/714938680",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BFKDyVPkonc",
@@ -4798,6 +5168,7 @@
       "fun_fact": "Janis Ian's Fly Too High appeared in Foxes. The coming-of-age film captured LA's punk and disco scenes.",
       "fun_fact_de": "Janis Ians Fly Too High erschien in Foxes. Der Coming-of-Age-Film fing LAs Punk- und Disco-Szenen ein.",
       "fun_fact_es": "Fly Too High de Janis Ian apareció en Foxes. La película de maduración capturó las escenas punk y disco de Los Ángeles.",
+      "fun_fact_fr": "Fly Too High de Janis Ian est apparue dans Foxes. Ce film initiatique capturait les scenes punk et disco de Los Angeles.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4823,6 +5194,7 @@
       "fun_fact": "John Barry's From Russia with Love established the Bond musical style. It was the first Bond film with a title song.",
       "fun_fact_de": "John Barrys Liebesgrüße aus Moskau etablierte den musikalischen Bond-Stil. Es war der erste Bond-Film mit einem Titellied.",
       "fun_fact_es": "Desde Rusia con amor de John Barry estableció el estilo musical de Bond. Fue la primera película de Bond con una canción principal.",
+      "fun_fact_fr": "La musique de Bons baisers de Russie par John Barry a etabli le style musical de Bond. Ce fut le premier film de Bond avec une chanson-titre.",
       "chart_info": {
         "uk_peak": 39
       },
@@ -4848,6 +5220,7 @@
       "fun_fact": "It's a Wonderful Life flopped initially but became a Christmas classic through TV broadcasts when its copyright lapsed.",
       "fun_fact_de": "Ist das Leben nicht schön? floppte anfangs, wurde aber durch Fernsehausstrahlungen zum Weihnachtsklassiker, als das Urheberrecht auslief.",
       "fun_fact_es": "Qué bello es vivir fracasó inicialmente pero se convirtió en un clásico navideño a través de emisiones de televisión cuando sus derechos de autor expiraron.",
+      "fun_fact_fr": "La vie est belle a d'abord ete un echec commercial mais est devenu un classique de Noel grace aux diffusions televisees lorsque son copyright a expire.",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -4872,6 +5245,7 @@
       "fun_fact": "Bing Crosby's White Christmas from Holiday Inn became the best-selling single ever. It won the Oscar for Best Song.",
       "fun_fact_de": "Bing Crosbys White Christmas aus dem Film Holiday Inn wurde zur meistverkauften Single aller Zeiten. Es gewann den Oscar für den Besten Song.",
       "fun_fact_es": "White Christmas de Bing Crosby de Holiday Inn se convirtió en el sencillo más vendido de la historia. Ganó el Óscar a la Mejor Canción.",
+      "fun_fact_fr": "White Christmas de Bing Crosby tire de L'Amour chante et danse est devenu le single le plus vendu de tous les temps. Il a remporte l'Oscar de la meilleure chanson.",
       "chart_info": {
         "billboard_peak": 1,
         "weeks_on_chart": 11
@@ -4887,6 +5261,9 @@
       ],
       "awards_es": [
         "Óscar a la Mejor Canción Original (1942)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1942)"
       ],
       "uri_apple_music": "applemusic://track/1772921827",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DQdiNPe5ja0",
@@ -4910,6 +5287,7 @@
       "fun_fact": "The Pearl & Dean theme has played before British cinema ads since 1958. The fanfare is known to generations of moviegoers.",
       "fun_fact_de": "Die Pearl & Dean-Fanfare läuft seit 1958 vor britischen Kinowerbespots. Die Fanfare ist Generationen von Kinogängern bekannt.",
       "fun_fact_es": "El tema de Pearl & Dean se ha reproducido antes de los anuncios de cine británico desde 1958. La fanfarria es conocida por generaciones de cinéfilos.",
+      "fun_fact_fr": "Le jingle de Pearl & Dean accompagne les publicites des cinemas britanniques depuis 1958. Cette fanfare est connue de generations de cinephiles.",
       "chart_info": {},
       "certifications": [],
       "awards": [],

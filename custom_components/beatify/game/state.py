@@ -1423,12 +1423,14 @@ class GameState:
             "fun_fact": song.get("fun_fact", ""),
             "fun_fact_de": song.get("fun_fact_de", ""),
             "fun_fact_es": song.get("fun_fact_es", ""),
+            "fun_fact_fr": song.get("fun_fact_fr", ""),
             "uri": song.get("_resolved_uri") or song.get("uri"),  # Story 17.3
             "chart_info": song.get("chart_info", {}),
             "certifications": song.get("certifications", []),
             "awards": song.get("awards", []),
             "awards_de": song.get("awards_de", []),
             "awards_es": song.get("awards_es", []),
+            "awards_fr": song.get("awards_fr", []),
             **metadata,
         }
 

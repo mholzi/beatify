@@ -33,6 +33,7 @@
       "fun_fact": "One of the first Motown songs to address social issues, inspired by the 1967 Detroit riots. The distinctive opening was created using a primitive electronic oscillator.",
       "fun_fact_de": "Einer der ersten Motown-Songs mit sozialkritischem Inhalt, inspiriert von den Unruhen in Detroit 1967. Das markante Intro wurde mit einem primitiven elektronischen Oszillator erzeugt.",
       "fun_fact_es": "Una de las primeras canciones de Motown en abordar temas sociales, inspirada en los disturbios de Detroit de 1967. La distintiva introducción fue creada con un oscilador electrónico primitivo.",
+      "fun_fact_fr": "L'une des premières chansons de Motown à aborder des problèmes de société, inspirée par les émeutes de Detroit en 1967. L'introduction si reconnaissable a été créée à l'aide d'un oscillateur électronique rudimentaire.",
       "uri_apple_music": "applemusic://track/1442909932",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8Nlbj1t99m8",
       "uri_tidal": "tidal://track/109123225"
@@ -60,6 +61,7 @@
       "fun_fact": "Motown head Berry Gordy initially rejected Marvin's version, releasing Gladys Knight's version first. Marvin's version spent 7 weeks at #1 and became Motown's biggest-selling single at the time.",
       "fun_fact_de": "Motown-Chef Berry Gordy lehnte Marvins Version zunächst ab und veröffentlichte zuerst die Version von Gladys Knight. Marvins Version stand 7 Wochen auf Platz 1 und wurde Motowns meistverkaufte Single.",
       "fun_fact_es": "El jefe de Motown, Berry Gordy, rechazó inicialmente la versión de Marvin, publicando primero la de Gladys Knight. La versión de Marvin estuvo 7 semanas en el #1 y se convirtió en el sencillo más vendido de Motown.",
+      "fun_fact_fr": "Le patron de Motown, Berry Gordy, avait d'abord refusé la version de Marvin, en publiant celle de Gladys Knight en premier. La version de Marvin est restée 7 semaines en tête du classement et est devenue le single le plus vendu de Motown à l'époque.",
       "uri_apple_music": "applemusic://track/1444106658",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cXWHpbpNdHE",
       "uri_tidal": "tidal://track/77645153"
@@ -86,9 +88,13 @@
       "awards": [
         "Grammy Award for Best R&B Instrumental Performance"
       ],
+      "awards_fr": [
+        "Grammy Award de la meilleure prestation instrumentale R&B"
+      ],
       "fun_fact": "The full album version runs over 12 minutes with its iconic bass line. The Temptations initially hated the song because it referenced an absent father, which hit too close to home for some members.",
       "fun_fact_de": "Die vollständige Albumversion dauert über 12 Minuten mit ihrer ikonischen Basslinie. Die Temptations hassten den Song anfangs, weil er einen abwesenden Vater thematisierte – für einige Mitglieder ein zu persönliches Thema.",
       "fun_fact_es": "La versión completa del álbum dura más de 12 minutos con su icónica línea de bajo. Los Temptations odiaban la canción porque hacía referencia a un padre ausente, algo demasiado personal para algunos miembros.",
+      "fun_fact_fr": "La version complète de l'album dure plus de 12 minutes avec sa ligne de basse mythique. Les Temptations détestaient cette chanson à l'origine car elle évoquait un père absent, un sujet trop personnel pour certains membres du groupe.",
       "uri_apple_music": "applemusic://track/1442730461",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IN1Y8kO-QKw",
       "uri_tidal": "tidal://track/115151329"
@@ -116,6 +122,7 @@
       "fun_fact": "Lionel Richie wrote it after watching his father dance with his mother at his parents' anniversary party. It was Motown's best-selling single in the UK at the time.",
       "fun_fact_de": "Lionel Richie schrieb den Song, nachdem er seinen Vater bei der Jubiläumsfeier seiner Eltern mit seiner Mutter tanzen sah. Es war Motowns meistverkaufte Single in Großbritannien.",
       "fun_fact_es": "Lionel Richie la escribió después de ver a su padre bailar con su madre en la fiesta de aniversario de sus padres. Fue el sencillo más vendido de Motown en el Reino Unido.",
+      "fun_fact_fr": "Lionel Richie l'a écrite après avoir vu son père danser avec sa mère lors de la fête d'anniversaire de mariage de ses parents. C'était le single Motown le plus vendu au Royaume-Uni à l'époque.",
       "uri_apple_music": "applemusic://track/1440842549",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QFjvyeazAZs",
       "uri_tidal": "tidal://track/592286"
@@ -141,6 +148,7 @@
       "fun_fact": "Widely regarded as one of the greatest songs ever written. John Lennon called Smokey Robinson 'America's greatest living poet.' The song was inducted into the Grammy Hall of Fame in 1998.",
       "fun_fact_de": "Weithin als einer der größten Songs aller Zeiten angesehen. John Lennon nannte Smokey Robinson 'Amerikas größten lebenden Dichter.' Der Song wurde 1998 in die Grammy Hall of Fame aufgenommen.",
       "fun_fact_es": "Ampliamente considerada una de las mejores canciones jamás escritas. John Lennon llamó a Smokey Robinson 'el mejor poeta vivo de América'. La canción fue incluida en el Grammy Hall of Fame en 1998.",
+      "fun_fact_fr": "Largement considérée comme l'une des plus grandes chansons jamais écrites. John Lennon qualifiait Smokey Robinson de « plus grand poète vivant d'Amérique ». La chanson a été intégrée au Grammy Hall of Fame en 1998.",
       "uri_apple_music": "applemusic://track/1475817730",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Yf2CB32jDYc",
       "uri_tidal": "tidal://track/84236373"
@@ -168,6 +176,7 @@
       "fun_fact": "Motown's first #1 pop hit. The Beatles covered it in 1963, and the Carpenters took their version to #1 in 1975, making it one of the few songs to reach #1 twice.",
       "fun_fact_de": "Motowns erster #1-Pop-Hit. Die Beatles coverten ihn 1963, und die Carpenters brachten ihre Version 1975 auf Platz 1 – einer der wenigen Songs, die zweimal die Spitze erreichten.",
       "fun_fact_es": "El primer #1 pop de Motown. Los Beatles la versionaron en 1963 y los Carpenters llevaron su versión al #1 en 1975, convirtiéndola en una de las pocas canciones en alcanzar el #1 dos veces.",
+      "fun_fact_fr": "Le tout premier numéro un pop de Motown. Les Beatles l'ont reprise en 1963, et les Carpenters ont mené leur version au sommet en 1975, faisant d'elle l'une des rares chansons à atteindre deux fois la première place.",
       "uri_apple_music": "applemusic://track/1444133527",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UDZ6Zp_zGzg",
       "uri_tidal": "tidal://track/2175933"
@@ -195,6 +204,7 @@
       "fun_fact": "Written by the legendary Holland-Dozier-Holland team. It knocked the Rolling Stones' 'Satisfaction' out of the #1 spot. The song's title came from the writers' habit of calling people 'sugar pie' and 'honey bunch.'",
       "fun_fact_de": "Geschrieben vom legendären Holland-Dozier-Holland-Team. Es verdrängte 'Satisfaction' der Rolling Stones von Platz 1. Der Songtitel entstand aus der Gewohnheit der Autoren, Leute 'Sugar Pie' und 'Honey Bunch' zu nennen.",
       "fun_fact_es": "Escrita por el legendario equipo Holland-Dozier-Holland. Sacó a 'Satisfaction' de los Rolling Stones del #1. El título surgió de la costumbre de los compositores de llamar a la gente 'sugar pie' y 'honey bunch'.",
+      "fun_fact_fr": "Écrite par le légendaire trio Holland-Dozier-Holland. Elle a délogé « Satisfaction » des Rolling Stones de la première place. Le titre est né de l'habitude qu'avaient les auteurs d'appeler les gens « sugar pie » et « honey bunch ».",
       "uri_apple_music": "applemusic://track/1443096422",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EBA6z9sEzAo",
       "uri_tidal": "tidal://track/77641490"
@@ -220,6 +230,7 @@
       "fun_fact": "Jimmy was David Ruffin's older brother. This was originally written for The Spinners but given to Jimmy. It became a bigger UK hit on reissue in 1974, reaching #4.",
       "fun_fact_de": "Jimmy war der ältere Bruder von David Ruffin. Der Song war ursprünglich für The Spinners geschrieben, wurde aber Jimmy gegeben. In Großbritannien wurde er bei der Wiederveröffentlichung 1974 ein noch größerer Hit (#4).",
       "fun_fact_es": "Jimmy era el hermano mayor de David Ruffin. La canción fue escrita originalmente para The Spinners pero se la dieron a Jimmy. Fue un éxito aún mayor en el Reino Unido al reeditarse en 1974, alcanzando el #4.",
+      "fun_fact_fr": "Jimmy était le frère aîné de David Ruffin. Cette chanson avait été écrite à l'origine pour les Spinners, mais a finalement été confiée à Jimmy. Elle a connu un succès encore plus grand au Royaume-Uni lors de sa réédition en 1974, atteignant la 4e place.",
       "uri_apple_music": "applemusic://track/1443825634",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cQywZYoGB1g",
       "uri_tidal": "tidal://track/30343490"
@@ -247,6 +258,7 @@
       "fun_fact": "Written by Marvin Gaye and William 'Mickey' Stevenson. Later became an anthem for civil rights and social change. David Bowie and Mick Jagger famously covered it for Live Aid in 1985.",
       "fun_fact_de": "Geschrieben von Marvin Gaye und William 'Mickey' Stevenson. Wurde später zur Hymne der Bürgerrechtsbewegung. David Bowie und Mick Jagger coverten ihn 1985 für Live Aid.",
       "fun_fact_es": "Escrita por Marvin Gaye y William 'Mickey' Stevenson. Se convirtió en un himno por los derechos civiles. David Bowie y Mick Jagger la versionaron para Live Aid en 1985.",
+      "fun_fact_fr": "Écrite par Marvin Gaye et William « Mickey » Stevenson. Elle est devenue un véritable hymne pour les droits civiques et le changement social. David Bowie et Mick Jagger l'ont reprise pour le concert Live Aid en 1985.",
       "uri_apple_music": "applemusic://track/1444115709",
       "uri_youtube_music": "https://music.youtube.com/watch?v=M4p9qXIWN2Q",
       "uri_tidal": "tidal://track/2176323"
@@ -272,6 +284,7 @@
       "fun_fact": "Originally a country hit by Kris Kristofferson. Gladys Knight's soulful Motown rendition gave the song an entirely new dimension, showing how Motown could cross genre boundaries.",
       "fun_fact_de": "Ursprünglich ein Country-Hit von Kris Kristofferson. Gladys Knights gefühlvolle Motown-Version gab dem Song eine völlig neue Dimension und zeigte, wie Motown Genregrenzen überschreiten konnte.",
       "fun_fact_es": "Originalmente un éxito country de Kris Kristofferson. La versión soul de Gladys Knight le dio una dimensión completamente nueva, demostrando que Motown podía cruzar fronteras de género.",
+      "fun_fact_fr": "À l'origine un succès country de Kris Kristofferson. L'interprétation soul de Gladys Knight chez Motown a donné à la chanson une dimension totalement nouvelle, prouvant que Motown pouvait transcender les frontières entre les genres musicaux.",
       "uri_apple_music": "applemusic://track/1445361909",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YFWsXTP5uao",
       "uri_tidal": "tidal://track/2530592"
@@ -299,6 +312,7 @@
       "fun_fact": "The iconic music video featured a blind student sculpting Lionel's face. The video won multiple MTV VMAs and became one of the most recognizable clips of the 1980s.",
       "fun_fact_de": "Im ikonischen Musikvideo modellierte eine blinde Studentin Lionels Gesicht. Das Video gewann mehrere MTV VMAs und wurde zu einem der bekanntesten Clips der 1980er.",
       "fun_fact_es": "El icónico video musical mostraba a una estudiante ciega esculpiendo el rostro de Lionel. El video ganó múltiples MTV VMAs y se convirtió en uno de los clips más reconocibles de los 80.",
+      "fun_fact_fr": "Le clip mythique mettait en scène une étudiante aveugle sculptant le visage de Lionel. La vidéo a remporté plusieurs MTV Video Music Awards et est devenue l'un des clips les plus emblématiques des années 1980.",
       "uri_apple_music": "applemusic://track/1440783181",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mHONNcZbwDY",
       "uri_tidal": "tidal://track/1606827"
@@ -324,6 +338,7 @@
       "fun_fact": "Written by husband-and-wife team Ashford & Simpson. Diana Ross later took a solo version to #1 in 1970. Tragically, Tammi Terrell collapsed into Marvin's arms during a concert in 1967 due to a brain tumor.",
       "fun_fact_de": "Geschrieben vom Ehepaar Ashford & Simpson. Diana Ross brachte 1970 eine Soloversion auf Platz 1. Tragischerweise brach Tammi Terrell 1967 bei einem Konzert aufgrund eines Hirntumors in Marvins Armen zusammen.",
       "fun_fact_es": "Escrita por el matrimonio Ashford & Simpson. Diana Ross llevó una versión en solitario al #1 en 1970. Trágicamente, Tammi Terrell se desplomó en los brazos de Marvin durante un concierto en 1967 debido a un tumor cerebral.",
+      "fun_fact_fr": "Écrite par le couple Ashford & Simpson. Diana Ross a ensuite porté une version solo au sommet des charts en 1970. Tragiquement, Tammi Terrell s'est effondrée dans les bras de Marvin lors d'un concert en 1967 à cause d'une tumeur au cerveau.",
       "uri_apple_music": "applemusic://track/1536018838",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eu2gAqn4I2A",
       "uri_tidal": "tidal://track/105505610"
@@ -349,6 +364,7 @@
       "fun_fact": "Originally recorded by Marvin Gaye in 1964. Jr. Walker's saxophone-driven version added a grittier, funkier feel. James Taylor later had a hit with it in 1975.",
       "fun_fact_de": "Ursprünglich 1964 von Marvin Gaye aufgenommen. Jr. Walkers Saxophon-Version gab dem Song ein raueres, funkigeres Gefühl. James Taylor hatte 1975 ebenfalls einen Hit damit.",
       "fun_fact_es": "Originalmente grabada por Marvin Gaye en 1964. La versión de Jr. Walker con saxofón le dio un sonido más crudo y funky. James Taylor también tuvo un éxito con ella en 1975.",
+      "fun_fact_fr": "Enregistrée à l'origine par Marvin Gaye en 1964. La version de Jr. Walker, portée par le saxophone, a apporté une touche plus brute et funky. James Taylor en a fait un succès à son tour en 1975.",
       "uri_apple_music": "applemusic://track/1444098839",
       "uri_youtube_music": "https://music.youtube.com/watch?v=w7QEAykef7E",
       "uri_tidal": "tidal://track/35617425"
@@ -374,6 +390,7 @@
       "fun_fact": "Brenda Holloway was one of the first West Coast artists signed to Motown. She was discovered at a DJ convention in Los Angeles and was one of the opening acts on The Beatles' 1965 US tour.",
       "fun_fact_de": "Brenda Holloway war eine der ersten Westküsten-Künstlerinnen bei Motown. Sie wurde auf einer DJ-Messe in Los Angeles entdeckt und war Vorgruppe bei der US-Tour der Beatles 1965.",
       "fun_fact_es": "Brenda Holloway fue una de las primeras artistas de la costa oeste firmadas por Motown. Fue descubierta en una convención de DJs en Los Ángeles y teloneó a The Beatles en su gira por EE.UU. en 1965.",
+      "fun_fact_fr": "Brenda Holloway a été l'une des premières artistes de la côte Ouest signées chez Motown. Découverte lors d'une convention de DJs à Los Angeles, elle a assuré la première partie de la tournée américaine des Beatles en 1965.",
       "uri_apple_music": "applemusic://track/1444216402",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WW046NLTcUk",
       "uri_tidal": "tidal://track/3713681"
@@ -401,6 +418,7 @@
       "fun_fact": "Originally recorded in 1975 but released as a single in 1981 to capitalize on Michael's solo success. It reached #1 in the UK despite only peaking at #55 in the US.",
       "fun_fact_de": "Ursprünglich 1975 aufgenommen, aber erst 1981 als Single veröffentlicht, um von Michaels Soloerfolg zu profitieren. In Großbritannien erreichte er Platz 1, obwohl er in den USA nur auf Platz 55 kam.",
       "fun_fact_es": "Grabada originalmente en 1975 pero lanzada como sencillo en 1981 para aprovechar el éxito en solitario de Michael. Llegó al #1 en el Reino Unido aunque solo alcanzó el #55 en EE.UU.",
+      "fun_fact_fr": "Enregistrée en 1975 mais sortie en single en 1981 pour surfer sur le succès solo de Michael. Elle a atteint la première place au Royaume-Uni alors qu'elle ne dépassait que la 55e place aux États-Unis.",
       "uri_apple_music": "applemusic://track/1471567182",
       "uri_youtube_music": "https://music.youtube.com/watch?v=TO_2iSKkzoQ",
       "uri_tidal": "tidal://track/637890"
@@ -427,9 +445,13 @@
       "awards": [
         "Academy Award Nomination for Best Original Song"
       ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale"
+      ],
       "fun_fact": "Written for the film 'Mahogany' which also starred Diana Ross. It was nominated for an Academy Award for Best Original Song. The movie's tagline was 'Success is nothing without someone you love to share it with.'",
       "fun_fact_de": "Geschrieben für den Film 'Mahagoni', in dem Diana Ross auch die Hauptrolle spielte. Der Song war für den Oscar als bester Originalsong nominiert.",
       "fun_fact_es": "Escrita para la película 'Mahogany', protagonizada también por Diana Ross. Fue nominada al Oscar a Mejor Canción Original.",
+      "fun_fact_fr": "Écrite pour le film « Mahogany » dans lequel Diana Ross tenait également le rôle principal. Elle a été nommée à l'Oscar de la meilleure chanson originale. Le slogan du film était : « Le succès n'est rien sans quelqu'un que l'on aime pour le partager ».",
       "uri_apple_music": "applemusic://track/1442975844",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WhFqqVnwruI",
       "uri_tidal": "tidal://track/65782900"
@@ -457,6 +479,7 @@
       "fun_fact": "Written and produced by Smokey Robinson. Mary Wells became the first Motown artist to have a #1 pop hit. She left Motown shortly after at age 21, a decision she later regretted.",
       "fun_fact_de": "Geschrieben und produziert von Smokey Robinson. Mary Wells war die erste Motown-Künstlerin mit einem #1-Pop-Hit. Sie verließ Motown kurz darauf mit 21 Jahren – eine Entscheidung, die sie später bereute.",
       "fun_fact_es": "Escrita y producida por Smokey Robinson. Mary Wells fue la primera artista de Motown en tener un #1 pop. Dejó Motown poco después a los 21 años, una decisión que lamentó más tarde.",
+      "fun_fact_fr": "Écrite et produite par Smokey Robinson. Mary Wells est devenue la première artiste Motown à décrocher un numéro un pop. Elle a quitté Motown peu après, à seulement 21 ans, une décision qu'elle a regrettée par la suite.",
       "uri_apple_music": "applemusic://track/1442912087",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pqMFjBoFIFY",
       "uri_tidal": "tidal://track/30263941"
@@ -484,6 +507,7 @@
       "fun_fact": "Produced by Norman Whitfield, who originally recorded it with The Temptations as an 11-minute album track. The Undisputed Truth's shorter version became a bigger hit and a cultural touchstone about deception.",
       "fun_fact_de": "Produziert von Norman Whitfield, der den Song ursprünglich mit den Temptations als 11-minütigen Albumtrack aufnahm. Die kürzere Version der Undisputed Truth wurde ein größerer Hit und ein kultureller Maßstab über Täuschung.",
       "fun_fact_es": "Producida por Norman Whitfield, quien originalmente la grabó con The Temptations como un tema de 11 minutos. La versión más corta de The Undisputed Truth fue un éxito mayor y un referente cultural sobre el engaño.",
+      "fun_fact_fr": "Produite par Norman Whitfield, qui l'avait d'abord enregistrée avec les Temptations en version album de 11 minutes. La version plus courte des Undisputed Truth est devenue un plus grand succès et une référence culturelle sur le thème de la tromperie.",
       "uri_apple_music": "applemusic://track/1442628301",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zo1DxtI73SE",
       "uri_tidal": "tidal://track/4020311"
@@ -511,6 +535,7 @@
       "fun_fact": "The Supremes' fifth consecutive #1 hit, extending their incredible Holland-Dozier-Holland winning streak. The lush orchestral arrangement was a departure from their earlier pop sound, hinting at the sophistication to come.",
       "fun_fact_de": "Der fünfte aufeinanderfolgende #1-Hit der Supremes, der ihre unglaubliche Holland-Dozier-Holland-Erfolgsserie fortsetzte. Das üppige Orchesterarrangement war eine Abkehr von ihrem früheren Pop-Sound.",
       "fun_fact_es": "El quinto #1 consecutivo de The Supremes, extendiendo su increíble racha con Holland-Dozier-Holland. El lujoso arreglo orquestal fue un cambio respecto a su sonido pop anterior.",
+      "fun_fact_fr": "Le cinquième numéro un consécutif des Supremes, prolongeant leur incroyable série victorieuse avec Holland-Dozier-Holland. L'arrangement orchestral somptueux marquait une rupture avec leur son pop d'origine, annonçant une sophistication musicale à venir.",
       "uri_apple_music": "applemusic://track/1444118654",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lNNdMLzJms0",
       "uri_tidal": "tidal://track/35712402"
@@ -536,6 +561,7 @@
       "fun_fact": "One of the very first Motown recordings and the label's first national hit. Co-written by Berry Gordy himself. The Beatles famously covered it, helping spread Motown's influence to the UK.",
       "fun_fact_de": "Eine der allerersten Motown-Aufnahmen und der erste nationale Hit des Labels. Co-geschrieben von Berry Gordy selbst. Die Beatles coverten den Song und trugen so Motowns Einfluss nach Großbritannien.",
       "fun_fact_es": "Una de las primeras grabaciones de Motown y el primer éxito nacional del sello. Co-escrita por el propio Berry Gordy. Los Beatles la versionaron, ayudando a difundir la influencia de Motown en el Reino Unido.",
+      "fun_fact_fr": "L'un des tout premiers enregistrements Motown et le premier succès national du label. Co-écrite par Berry Gordy lui-même. Les Beatles l'ont reprise, contribuant à répandre l'influence de Motown au Royaume-Uni.",
       "uri_apple_music": "applemusic://track/1475817481",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yeVx1C73o8k",
       "uri_tidal": "tidal://track/2410459"
@@ -563,6 +589,7 @@
       "fun_fact": "Written by Smokey Robinson and Ronald White of The Miracles. David Ruffin's lead vocal made it The Temptations' signature song. The iconic opening guitar riff was played by Robert White, one of Motown's Funk Brothers.",
       "fun_fact_de": "Geschrieben von Smokey Robinson und Ronald White von den Miracles. David Ruffins Leadgesang machte es zum Erkennungssong der Temptations. Das ikonische Gitarren-Riff spielte Robert White, einer der Funk Brothers.",
       "fun_fact_es": "Escrita por Smokey Robinson y Ronald White de The Miracles. La voz principal de David Ruffin la convirtió en la canción insignia de los Temptations. El icónico riff de guitarra fue tocado por Robert White, uno de los Funk Brothers.",
+      "fun_fact_fr": "Écrite par Smokey Robinson et Ronald White des Miracles. La voix principale de David Ruffin en a fait le titre emblématique des Temptations. Le célèbre riff de guitare d'ouverture a été joué par Robert White, l'un des Funk Brothers de Motown.",
       "uri_apple_music": "applemusic://track/1423301921",
       "uri_youtube_music": "https://music.youtube.com/watch?v=y3KJ7d2qBoA",
       "uri_tidal": "tidal://track/93228739"
@@ -590,6 +617,7 @@
       "fun_fact": "The second of five consecutive #1 hits for The Supremes, tying The Beatles' record at the time. It was also #1 in the UK, making The Supremes the first Motown act to top the British charts.",
       "fun_fact_de": "Der zweite von fünf aufeinanderfolgenden #1-Hits der Supremes, womit sie den Rekord der Beatles einstellten. Auch in Großbritannien #1 – die Supremes waren der erste Motown-Act an der Spitze der britischen Charts.",
       "fun_fact_es": "El segundo de cinco #1 consecutivos de The Supremes, igualando el récord de The Beatles. También fue #1 en el Reino Unido, convirtiendo a The Supremes en el primer acto de Motown en liderar las listas británicas.",
+      "fun_fact_fr": "Le deuxième de cinq numéros un consécutifs pour les Supremes, égalant le record des Beatles à l'époque. Également numéro un au Royaume-Uni, faisant des Supremes le premier groupe Motown à atteindre le sommet des charts britanniques.",
       "uri_apple_music": "applemusic://track/1443150938",
       "uri_youtube_music": "https://music.youtube.com/watch?v=D6QF4sB40gU",
       "uri_tidal": "tidal://track/77642589"
@@ -617,6 +645,7 @@
       "fun_fact": "Considered Holland-Dozier-Holland's masterpiece. Levi Stubbs' passionate vocal was influenced by Bob Dylan's raw delivery. Phil Collins later covered it, reaching #19 in the US.",
       "fun_fact_de": "Gilt als Meisterwerk von Holland-Dozier-Holland. Levi Stubbs' leidenschaftlicher Gesang war von Bob Dylans rohem Vortragsstil beeinflusst. Phil Collins coverte den Song später und erreichte #19 in den USA.",
       "fun_fact_es": "Considerada la obra maestra de Holland-Dozier-Holland. La apasionada voz de Levi Stubbs fue influenciada por el estilo crudo de Bob Dylan. Phil Collins la versionó más tarde, alcanzando el #19 en EE.UU.",
+      "fun_fact_fr": "Considéré comme le chef-d'œuvre de Holland-Dozier-Holland. La voix passionnée de Levi Stubbs s'est inspirée de l'interprétation brute de Bob Dylan. Phil Collins l'a reprise plus tard, atteignant la 19e place aux États-Unis.",
       "uri_apple_music": "applemusic://track/1475818105",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1v4twH9KbnU",
       "uri_tidal": "tidal://track/3558047"
@@ -643,9 +672,13 @@
       "awards": [
         "Grammy Hall of Fame"
       ],
+      "awards_fr": [
+        "Grammy Hall of Fame"
+      ],
       "fun_fact": "Berry Gordy called it 'the worst thing I ever heard' and refused to release it. Marvin threatened to never record again. The album of the same name is consistently ranked among the greatest albums of all time.",
       "fun_fact_de": "Berry Gordy nannte es 'das Schlimmste, was ich je gehört habe' und weigerte sich, es zu veröffentlichen. Marvin drohte, nie wieder aufzunehmen. Das gleichnamige Album zählt konstant zu den besten Alben aller Zeiten.",
       "fun_fact_es": "Berry Gordy lo llamó 'lo peor que he escuchado' y se negó a publicarlo. Marvin amenazó con no volver a grabar. El álbum homónimo es constantemente clasificado entre los mejores álbumes de todos los tiempos.",
+      "fun_fact_fr": "Berry Gordy l'a qualifiée de « la pire chose que j'aie jamais entendue » et a refusé de la publier. Marvin a menacé de ne plus jamais enregistrer. L'album du même nom figure invariablement parmi les plus grands albums de tous les temps.",
       "uri_apple_music": "applemusic://track/1442022122",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ApthDWoPMFQ",
       "uri_tidal": "tidal://track/77632886"
@@ -671,6 +704,7 @@
       "fun_fact": "Recorded in 1964 but not released until 1967. The song was written by Holland-Dozier-Holland and is about a woman pining for her boyfriend who is away. It became one of the Vandellas' signature songs.",
       "fun_fact_de": "1964 aufgenommen, aber erst 1967 veröffentlicht. Der Song wurde von Holland-Dozier-Holland geschrieben und handelt von einer Frau, die sich nach ihrem abwesenden Freund sehnt.",
       "fun_fact_es": "Grabada en 1964 pero no publicada hasta 1967. Escrita por Holland-Dozier-Holland, trata de una mujer que extraña a su novio ausente. Se convirtió en una de las canciones insignia de las Vandellas.",
+      "fun_fact_fr": "Enregistrée en 1964 mais sortie seulement en 1967. Écrite par Holland-Dozier-Holland, elle raconte l'histoire d'une femme qui languit en l'absence de son petit ami. Elle est devenue l'une des chansons emblématiques des Vandellas.",
       "uri_apple_music": "applemusic://track/1443753742",
       "uri_youtube_music": "https://music.youtube.com/watch?v=F1dRr6VypB8",
       "uri_tidal": "tidal://track/28802911"
@@ -698,6 +732,7 @@
       "fun_fact": "Knocked The Beatles' 'Let It Be' from the #1 position, symbolically marking a generational shift in pop music. Michael Jackson was just 11 years old when this topped the charts.",
       "fun_fact_de": "Verdrängte 'Let It Be' der Beatles von Platz 1 und markierte symbolisch einen Generationswechsel in der Popmusik. Michael Jackson war erst 11 Jahre alt, als der Song die Charts anführte.",
       "fun_fact_es": "Sacó a 'Let It Be' de The Beatles del #1, marcando simbólicamente un cambio generacional en la música pop. Michael Jackson tenía solo 11 años cuando lideró las listas.",
+      "fun_fact_fr": "Elle a délogé « Let It Be » des Beatles de la première place, symbolisant un changement de génération dans la musique pop. Michael Jackson n'avait que 11 ans lorsque ce titre a dominé les charts.",
       "uri_apple_music": "applemusic://track/1440918277",
       "uri_youtube_music": "https://music.youtube.com/watch?v=niXNQ5dEcEA",
       "uri_tidal": "tidal://track/3043932"
@@ -725,6 +760,7 @@
       "fun_fact": "One of Gladys Knight's signature songs at Motown. She and The Pips were one of the label's most consistent hit-makers but often felt overshadowed by The Supremes and The Temptations.",
       "fun_fact_de": "Einer von Gladys Knights Erkennungssongs bei Motown. Sie und die Pips waren eine der konstantesten Hitmaschinen des Labels, fühlten sich aber oft von den Supremes und Temptations in den Schatten gestellt.",
       "fun_fact_es": "Una de las canciones insignia de Gladys Knight en Motown. Ella y los Pips fueron uno de los actos más consistentes del sello, pero a menudo se sentían eclipsados por The Supremes y The Temptations.",
+      "fun_fact_fr": "L'une des chansons signatures de Gladys Knight chez Motown. Elle et les Pips comptaient parmi les artistes les plus réguliers du label, mais se sentaient souvent éclipsés par les Supremes et les Temptations.",
       "uri_apple_music": "applemusic://track/1440919440",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VeZfsXcMrBI",
       "uri_tidal": "tidal://track/80432163"
@@ -750,6 +786,7 @@
       "fun_fact": "Kim Weston was one of Motown's most versatile vocalists, best known for her duet 'It Takes Two' with Marvin Gaye. The Doobie Brothers later covered this song in 1975, reaching #11 on the Billboard Hot 100.",
       "fun_fact_de": "Kim Weston war eine der vielseitigsten Sängerinnen bei Motown, am bekanntesten für ihr Duett 'It Takes Two' mit Marvin Gaye. Die Doobie Brothers coverten diesen Song 1975 und erreichten #11 der Billboard Hot 100.",
       "fun_fact_es": "Kim Weston fue una de las vocalistas más versátiles de Motown, más conocida por su dueto 'It Takes Two' con Marvin Gaye. Los Doobie Brothers versionaron esta canción en 1975, alcanzando el #11 en Billboard Hot 100.",
+      "fun_fact_fr": "Kim Weston était l'une des vocalistes les plus polyvalentes de Motown, surtout connue pour son duo « It Takes Two » avec Marvin Gaye. Les Doobie Brothers ont repris cette chanson en 1975, atteignant la 11e place du Billboard Hot 100.",
       "uri_apple_music": "applemusic://track/1443843981",
       "uri_youtube_music": "",
       "uri_tidal": "tidal://track/70547017"
@@ -777,6 +814,7 @@
       "fun_fact": "Written by Norman Whitfield and Barrett Strong, this was one of Marvin Gaye's most joyful recordings. It reached #4 on the Billboard Hot 100 and became a Northern Soul dance floor favorite in the UK.",
       "fun_fact_de": "Geschrieben von Norman Whitfield und Barrett Strong, war dies eine von Marvin Gayes fröhlichsten Aufnahmen. Der Song erreichte #4 der Billboard Hot 100 und wurde ein Northern-Soul-Tanzflächen-Favorit in Großbritannien.",
       "fun_fact_es": "Escrita por Norman Whitfield y Barrett Strong, fue una de las grabaciones más alegres de Marvin Gaye. Alcanzó el #4 en Billboard Hot 100 y se convirtió en un favorito de las pistas de baile del Northern Soul en el Reino Unido.",
+      "fun_fact_fr": "Écrite par Norman Whitfield et Barrett Strong, c'est l'un des enregistrements les plus joyeux de Marvin Gaye. Elle a atteint la 4e place du Billboard Hot 100 et est devenue un incontournable des pistes de danse Northern Soul au Royaume-Uni.",
       "uri_apple_music": "applemusic://track/1452829547",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fhSDOkettKo",
       "uri_tidal": "tidal://track/3678129"
@@ -803,9 +841,13 @@
       "awards": [
         "Grammy Award for Best R&B Song"
       ],
+      "awards_fr": [
+        "Grammy Award de la meilleure chanson R&B"
+      ],
       "fun_fact": "A tribute to Marvin Gaye and Jackie Wilson, both of whom died in 1984. It was the Commodores' biggest hit after Lionel Richie left the group and won the Grammy for Best R&B Performance.",
       "fun_fact_de": "Eine Hommage an Marvin Gaye und Jackie Wilson, die beide 1984 starben. Es war der größte Hit der Commodores nach Lionel Richies Abgang und gewann den Grammy für die beste R&B-Performance.",
       "fun_fact_es": "Un tributo a Marvin Gaye y Jackie Wilson, ambos fallecidos en 1984. Fue el mayor éxito de los Commodores después de que Lionel Richie dejara el grupo y ganó el Grammy a Mejor Interpretación R&B.",
+      "fun_fact_fr": "Un hommage à Marvin Gaye et Jackie Wilson, tous deux décédés en 1984. C'était le plus grand succès des Commodores après le départ de Lionel Richie, et il a remporté le Grammy de la meilleure prestation R&B.",
       "uri_apple_music": "applemusic://track/1442252401",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FrkEDe6Ljqs",
       "uri_tidal": "tidal://track/29367563"
@@ -833,6 +875,7 @@
       "fun_fact": "Originally an album track from 1967, it was released as a single in the UK first where it hit #1, then in the US where it also reached #1. Smokey wrote the lyrics to match a melody Stevie Wonder had composed.",
       "fun_fact_de": "Ursprünglich ein Albumtrack von 1967, wurde er zuerst in Großbritannien als Single veröffentlicht, wo er #1 erreichte, dann in den USA, wo er ebenfalls #1 wurde. Smokey schrieb den Text zu einer Melodie von Stevie Wonder.",
       "fun_fact_es": "Originalmente un tema de álbum de 1967, se lanzó primero como sencillo en el Reino Unido donde llegó al #1, y luego en EE.UU. donde también alcanzó el #1. Smokey escribió la letra para una melodía compuesta por Stevie Wonder.",
+      "fun_fact_fr": "À l'origine un titre d'album de 1967, il est d'abord sorti en single au Royaume-Uni où il a atteint la première place, puis aux États-Unis où il a également culminé au sommet. Smokey a écrit les paroles sur une mélodie composée par Stevie Wonder.",
       "uri_apple_music": "applemusic://track/1447414676",
       "uri_youtube_music": "https://music.youtube.com/watch?v=51B55OQysj8"
     },
@@ -857,6 +900,7 @@
       "fun_fact": "Co-written by Stevie Wonder and produced by him as well. This was The Spinners' biggest hit during their Motown years before they moved to Atlantic Records and had even greater success.",
       "fun_fact_de": "Co-geschrieben und produziert von Stevie Wonder. Dies war der größte Hit der Spinners während ihrer Motown-Jahre, bevor sie zu Atlantic Records wechselten und noch größere Erfolge hatten.",
       "fun_fact_es": "Co-escrita y producida por Stevie Wonder. Fue el mayor éxito de The Spinners en sus años en Motown, antes de mudarse a Atlantic Records y tener éxitos aún mayores.",
+      "fun_fact_fr": "Co-écrite et produite par Stevie Wonder. C'était le plus grand succès des Spinners durant leurs années Motown, avant qu'ils ne partent chez Atlantic Records où ils ont connu un succès encore plus grand.",
       "uri_apple_music": "applemusic://track/1411666388",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kDFFHLrzTDM"
     },
@@ -881,6 +925,7 @@
       "fun_fact": "Written by Holland-Dozier-Holland, this driving R&B track showcased Jr. Walker's raw saxophone style. The song was one of the grittier, more rock-influenced tracks in the Motown catalog.",
       "fun_fact_de": "Geschrieben von Holland-Dozier-Holland, zeigte dieser treibende R&B-Track Jr. Walkers rauen Saxophon-Stil. Der Song war einer der härteren, rockigeren Tracks im Motown-Katalog.",
       "fun_fact_es": "Escrita por Holland-Dozier-Holland, esta enérgica pista de R&B mostró el estilo crudo de saxofón de Jr. Walker. Fue una de las canciones más crudas e influenciadas por el rock del catálogo de Motown.",
+      "fun_fact_fr": "Écrite par Holland-Dozier-Holland, cette piste R&B entraînante mettait en valeur le style de saxophone brut de Jr. Walker. C'était l'un des morceaux les plus rugueux et les plus influencés par le rock du catalogue Motown.",
       "uri_apple_music": "applemusic://track/1444098834",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bjAdfZp8mWw"
     },
@@ -906,9 +951,13 @@
       "awards": [
         "Grammy Award for Best R&B Vocal Performance"
       ],
+      "awards_fr": [
+        "Grammy Award de la meilleure prestation vocale R&B"
+      ],
       "fun_fact": "Originally recorded by Harold Melvin & the Blue Notes. Thelma Houston's disco-infused version became her only #1 hit. She won the Grammy for Best R&B Female Vocal Performance for this recording.",
       "fun_fact_de": "Ursprünglich aufgenommen von Harold Melvin & the Blue Notes. Thelma Houstons Disco-Version wurde ihr einziger #1-Hit. Sie gewann den Grammy für die beste weibliche R&B-Gesangsleistung.",
       "fun_fact_es": "Originalmente grabada por Harold Melvin & the Blue Notes. La versión disco de Thelma Houston fue su único #1. Ganó el Grammy a Mejor Interpretación Vocal Femenina de R&B.",
+      "fun_fact_fr": "Enregistrée à l'origine par Harold Melvin & the Blue Notes. La version disco de Thelma Houston est devenue son seul et unique numéro un. Elle a remporté le Grammy de la meilleure prestation vocale féminine R&B pour cet enregistrement.",
       "uri_apple_music": "applemusic://track/259133290",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8sAbzZjXLy8"
     },
@@ -933,6 +982,7 @@
       "fun_fact": "The Velvelettes were one of Motown's underrated girl groups from Kalamazoo, Michigan. They were discovered by Motown A&R man Mickey Stevenson and recorded several Northern Soul favorites.",
       "fun_fact_de": "Die Velvelettes waren eine der unterschätzten Girlgroups von Motown aus Kalamazoo, Michigan. Sie wurden von Motown-A&R-Mann Mickey Stevenson entdeckt und nahmen mehrere Northern-Soul-Favoriten auf.",
       "fun_fact_es": "The Velvelettes fueron uno de los grupos femeninos infravalorados de Motown, de Kalamazoo, Michigan. Fueron descubiertas por el A&R de Motown Mickey Stevenson y grabaron varios favoritos del Northern Soul.",
+      "fun_fact_fr": "Les Velvelettes étaient l'un des groupes féminins sous-estimés de Motown, originaires de Kalamazoo, dans le Michigan. Elles ont été découvertes par le directeur artistique de Motown, Mickey Stevenson, et ont enregistré plusieurs titres devenus des classiques du Northern Soul.",
       "uri_apple_music": "applemusic://track/1447557853",
       "uri_youtube_music": "https://music.youtube.com/watch?v=w0OFTebIuUY"
     },
@@ -959,6 +1009,7 @@
       "fun_fact": "The Miracles' biggest hit, but it came after Smokey Robinson had left the group. Billy Griffin took over as lead singer and brought a more modern funk-disco sound to the group.",
       "fun_fact_de": "Der größte Hit der Miracles, aber er kam erst nach Smokey Robinsons Abgang. Billy Griffin übernahm als Leadsänger und brachte einen moderneren Funk-Disco-Sound in die Gruppe.",
       "fun_fact_es": "El mayor éxito de The Miracles, pero llegó después de que Smokey Robinson dejara el grupo. Billy Griffin asumió como vocalista y trajo un sonido funk-disco más moderno al grupo.",
+      "fun_fact_fr": "Le plus grand succès des Miracles, mais il est arrivé après le départ de Smokey Robinson. Billy Griffin a pris la relève en tant que chanteur principal et a apporté un son funk-disco plus moderne au groupe.",
       "uri_apple_music": "applemusic://track/1471566080",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hNAZxdyQFEY"
     },
@@ -984,9 +1035,13 @@
       "awards": [
         "Grammy Award for Best Contemporary Pop Vocal Performance"
       ],
+      "awards_fr": [
+        "Grammy Award de la meilleure prestation vocale pop contemporaine"
+      ],
       "fun_fact": "Written by Burt Bacharach and Hal David, this became one of Dionne Warwick's signature songs and won the Grammy for Best Contemporary Pop Vocal Performance. Though not a Motown recording, it appears in this Spotify playlist alongside the Motown classics.",
       "fun_fact_de": "Geschrieben von Burt Bacharach und Hal David, wurde dies einer von Dionne Warwicks Erkennungssongs und gewann den Grammy für die beste zeitgenössische Pop-Gesangsleistung. Obwohl keine Motown-Aufnahme, erscheint er in dieser Spotify-Playlist neben den Motown-Klassikern.",
       "fun_fact_es": "Escrita por Burt Bacharach y Hal David, se convirtió en una de las canciones insignia de Dionne Warwick y ganó el Grammy a Mejor Interpretación Vocal Pop Contemporánea. Aunque no es una grabación de Motown, aparece en esta playlist de Spotify junto a los clásicos de Motown.",
+      "fun_fact_fr": "Écrite par Burt Bacharach et Hal David, elle est devenue l'une des chansons signatures de Dionne Warwick et a remporté le Grammy de la meilleure prestation vocale pop contemporaine. Bien que ne figurant pas sur Motown, elle apparaît dans cette playlist Spotify aux côtés des classiques du label.",
       "uri_apple_music": "applemusic://track/1442238891",
       "uri_youtube_music": ""
     },
@@ -1013,6 +1068,7 @@
       "fun_fact": "Minnie Riperton's iconic whistle-register vocal made this one of the most recognizable songs of the 1970s. Stevie Wonder co-produced the album and played keyboards. The birdsong heard in the recording was real, captured outside the studio.",
       "fun_fact_de": "Minnie Ripertons ikonischer Pfeifregister-Gesang machte dies zu einem der bekanntesten Songs der 1970er. Stevie Wonder co-produzierte das Album und spielte Keyboards. Der Vogelgesang in der Aufnahme war echt und wurde vor dem Studio eingefangen.",
       "fun_fact_es": "La icónica voz en registro de silbido de Minnie Riperton hizo de esta una de las canciones más reconocibles de los 70. Stevie Wonder co-produjo el álbum y tocó los teclados. El canto de pájaros en la grabación era real, capturado fuera del estudio.",
+      "fun_fact_fr": "La voix mythique en registre de sifflet de Minnie Riperton a fait de ce titre l'un des plus reconnaissables des années 1970. Stevie Wonder a coproduit l'album et jouait des claviers. Le chant d'oiseaux que l'on entend dans l'enregistrement était réel, capturé à l'extérieur du studio.",
       "uri_apple_music": "applemusic://track/1444166661",
       "uri_youtube_music": "https://music.youtube.com/watch?v=OFCF0u-xc1Q"
     },
@@ -1039,6 +1095,7 @@
       "fun_fact": "From the movie 'Fast Break.' Syreeta Wright was Stevie Wonder's ex-wife and a talented songwriter in her own right. Billy Preston was known as the 'Fifth Beatle' for his work with The Beatles.",
       "fun_fact_de": "Aus dem Film 'Fast Break'. Syreeta Wright war Stevie Wonders Ex-Frau und eine talentierte Songwriterin. Billy Preston war als 'Fünfter Beatle' für seine Arbeit mit den Beatles bekannt.",
       "fun_fact_es": "De la película 'Fast Break'. Syreeta Wright era la ex esposa de Stevie Wonder y una talentosa compositora. Billy Preston era conocido como el 'Quinto Beatle' por su trabajo con The Beatles.",
+      "fun_fact_fr": "Tirée du film « Fast Break ». Syreeta Wright était l'ex-femme de Stevie Wonder et une auteure-compositrice talentueuse. Billy Preston était surnommé le « Cinquième Beatle » pour sa collaboration avec les Beatles.",
       "uri_apple_music": "applemusic://track/1592733500",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RlERDQepZqE"
     },
@@ -1065,6 +1122,7 @@
       "fun_fact": "A cover of Shep and the Limelites' 1961 doo-wop classic. It was Jermaine's first major solo hit while still a member of The Jackson 5. He stayed at Motown when his brothers left for Epic Records.",
       "fun_fact_de": "Ein Cover des Doo-Wop-Klassikers von Shep and the Limelites von 1961. Es war Jermaines erster großer Solo-Hit als Mitglied der Jackson 5. Er blieb bei Motown, als seine Brüder zu Epic Records wechselten.",
       "fun_fact_es": "Una versión del clásico doo-wop de Shep and the Limelites de 1961. Fue el primer gran éxito en solitario de Jermaine siendo aún miembro de los Jackson 5. Se quedó en Motown cuando sus hermanos se fueron a Epic Records.",
+      "fun_fact_fr": "Une reprise du classique doo-wop de Shep and the Limelites datant de 1961. C'était le premier grand succès solo de Jermaine alors qu'il faisait encore partie des Jackson 5. Il est resté chez Motown quand ses frères sont partis chez Epic Records.",
       "uri_apple_music": "applemusic://track/1440912319",
       "uri_youtube_music": "https://music.youtube.com/watch?v=uhNnlD3uNS0"
     },
@@ -1091,6 +1149,7 @@
       "fun_fact": "The 'African' chant in the song ('Tom bo li de say de moi ya') is actually made-up language. Lionel consulted with African students at his alma mater Tuskegee University for authentic-sounding syllables.",
       "fun_fact_de": "Der 'afrikanische' Gesang im Song ('Tom bo li de say de moi ya') ist tatsächlich eine erfundene Sprache. Lionel beriet sich mit afrikanischen Studenten seiner Alma Mater Tuskegee University für authentisch klingende Silben.",
       "fun_fact_es": "El canto 'africano' de la canción ('Tom bo li de say de moi ya') es en realidad un idioma inventado. Lionel consultó con estudiantes africanos de su alma mater, la Universidad Tuskegee, para lograr sílabas que sonaran auténticas.",
+      "fun_fact_fr": "Le chant « africain » de la chanson (« Tom bo li de say de moi ya ») est en réalité une langue inventée. Lionel a consulté des étudiants africains de son alma mater, l'université de Tuskegee, pour obtenir des syllabes au son authentique.",
       "uri_apple_music": "applemusic://track/1440781676",
       "uri_youtube_music": "https://music.youtube.com/watch?v=nqAvFx3NxUM"
     },
@@ -1117,6 +1176,7 @@
       "fun_fact": "The Jackson 5's debut single and their first of four consecutive #1 hits. Michael was only 11 years old. The bass line, played by Wilton Felder, is considered one of the greatest in pop music history.",
       "fun_fact_de": "Die Debütsingle der Jackson 5 und ihr erster von vier aufeinanderfolgenden #1-Hits. Michael war erst 11 Jahre alt. Die Basslinie von Wilton Felder gilt als eine der größten in der Pop-Geschichte.",
       "fun_fact_es": "El sencillo debut de los Jackson 5 y el primero de cuatro #1 consecutivos. Michael tenía solo 11 años. La línea de bajo de Wilton Felder se considera una de las mejores de la historia del pop.",
+      "fun_fact_fr": "Le premier single des Jackson 5 et le premier de leurs quatre numéros un consécutifs. Michael n'avait que 11 ans. La ligne de basse, jouée par Wilton Felder, est considérée comme l'une des plus grandes de l'histoire de la musique pop.",
       "uri_apple_music": "applemusic://track/1440912105",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6NWhFo3B8Q0"
     },
@@ -1143,6 +1203,7 @@
       "fun_fact": "Phil Collins covered it in 1982 and also took it to #1. The song features the classic Holland-Dozier-Holland production with its driving beat and call-and-response vocals.",
       "fun_fact_de": "Phil Collins coverte den Song 1982 und brachte ihn ebenfalls auf Platz 1. Der Song zeigt die klassische Holland-Dozier-Holland-Produktion mit treibendem Beat und Call-and-Response-Gesang.",
       "fun_fact_es": "Phil Collins la versionó en 1982 y también la llevó al #1. La canción presenta la producción clásica de Holland-Dozier-Holland con su ritmo enérgico y voces de llamada y respuesta.",
+      "fun_fact_fr": "Phil Collins l'a reprise en 1982 et l'a également menée au sommet des charts. La chanson illustre la production classique de Holland-Dozier-Holland avec son rythme entraînant et ses voix en appel et réponse.",
       "uri_apple_music": "applemusic://track/1443094110",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ovoBi3pXD_A"
     },
@@ -1167,6 +1228,7 @@
       "fun_fact": "Written by Holland-Dozier-Holland. It became a bigger hit in the UK on reissue in 1968 and again when Rod Stewart recorded a duet version with Ronald Isley in 1990.",
       "fun_fact_de": "Geschrieben von Holland-Dozier-Holland. In Großbritannien wurde er bei Wiederveröffentlichung 1968 ein größerer Hit und erneut, als Rod Stewart 1990 eine Duettversion mit Ronald Isley aufnahm.",
       "fun_fact_es": "Escrita por Holland-Dozier-Holland. Fue un éxito mayor en el Reino Unido al reeditarse en 1968 y de nuevo cuando Rod Stewart grabó un dueto con Ronald Isley en 1990.",
+      "fun_fact_fr": "Écrite par Holland-Dozier-Holland. Elle a connu un plus grand succès au Royaume-Uni lors de sa réédition en 1968, puis de nouveau lorsque Rod Stewart a enregistré une version en duo avec Ronald Isley en 1990.",
       "uri_apple_music": "applemusic://track/1444118296",
       "uri_youtube_music": "https://music.youtube.com/watch?v=M1xIQmTious"
     },
@@ -1191,6 +1253,7 @@
       "fun_fact": "A cover of Tim Hardin's folk classic, transformed into a soul masterpiece by Levi Stubbs' powerful vocal delivery. Bobby Darin's version had been a hit two years earlier.",
       "fun_fact_de": "Ein Cover von Tim Hardins Folk-Klassiker, verwandelt in ein Soul-Meisterwerk durch Levi Stubbs' kraftvollen Gesang. Bobby Darins Version war zwei Jahre zuvor ein Hit gewesen.",
       "fun_fact_es": "Una versión del clásico folk de Tim Hardin, transformada en una obra maestra del soul por la poderosa interpretación vocal de Levi Stubbs. La versión de Bobby Darin había sido un éxito dos años antes.",
+      "fun_fact_fr": "Une reprise du classique folk de Tim Hardin, transformée en chef-d'œuvre de la soul par la voix puissante de Levi Stubbs. La version de Bobby Darin avait été un succès deux ans plus tôt.",
       "uri_apple_music": "applemusic://track/1442427097",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9gHztMbTGe0"
     },
@@ -1217,6 +1280,7 @@
       "fun_fact": "Originally written for The Temptations but they couldn't be found when it was time to record. It re-entered the charts in 1988 after being featured in the film 'Dirty Dancing.'",
       "fun_fact_de": "Ursprünglich für die Temptations geschrieben, die aber zum Aufnahmetermin nicht auffindbar waren. Der Song schaffte es 1988 erneut in die Charts, nachdem er im Film 'Dirty Dancing' verwendet wurde.",
       "fun_fact_es": "Originalmente escrita para los Temptations, pero no pudieron encontrarlos para la grabación. Volvió a las listas en 1988 tras aparecer en la película 'Dirty Dancing'.",
+      "fun_fact_fr": "Écrite à l'origine pour les Temptations, mais on ne les trouvait nulle part au moment de l'enregistrement. La chanson est revenue dans les charts en 1988 après avoir été utilisée dans le film « Dirty Dancing ».",
       "uri_apple_music": "applemusic://track/1572562126",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZiftWZnyzB4"
     },
@@ -1243,6 +1307,7 @@
       "fun_fact": "One of the most iconic love songs ever recorded. Marvin was inspired by meeting Janis Hunter, who would become his second wife. The opening notes are among the most recognizable in music history.",
       "fun_fact_de": "Einer der ikonischsten Liebessongs aller Zeiten. Marvin wurde inspiriert durch die Begegnung mit Janis Hunter, die seine zweite Frau wurde. Die Anfangstöne gehören zu den bekanntesten in der Musikgeschichte.",
       "fun_fact_es": "Una de las canciones de amor más icónicas jamás grabadas. Marvin se inspiró al conocer a Janis Hunter, quien se convertiría en su segunda esposa. Las notas iniciales son de las más reconocibles de la historia.",
+      "fun_fact_fr": "L'une des chansons d'amour les plus mythiques jamais enregistrées. Marvin a été inspiré par sa rencontre avec Janis Hunter, qui allait devenir sa seconde épouse. Les premières notes comptent parmi les plus reconnaissables de l'histoire de la musique.",
       "uri_apple_music": "applemusic://track/1442361627",
       "uri_youtube_music": "https://music.youtube.com/watch?v=AqPBfbLoF_M"
     },
@@ -1268,9 +1333,13 @@
       "awards": [
         "Academy Award Nomination for Best Original Song"
       ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale"
+      ],
       "fun_fact": "Spent 9 weeks at #1, making it the most successful Motown single ever at the time. Written for Franco Zeffirelli's film of the same name. It was also nominated for an Academy Award.",
       "fun_fact_de": "Stand 9 Wochen auf Platz 1 und war damit die erfolgreichste Motown-Single aller Zeiten. Geschrieben für Franco Zeffirellis gleichnamigen Film. Wurde auch für den Oscar nominiert.",
       "fun_fact_es": "Estuvo 9 semanas en el #1, convirtiéndose en el sencillo más exitoso de Motown en su momento. Escrita para la película homónima de Franco Zeffirelli. También fue nominada al Oscar.",
+      "fun_fact_fr": "Elle est restée 9 semaines à la première place, devenant le single Motown le plus vendu de tous les temps à l'époque. Écrite pour le film éponyme de Franco Zeffirelli, elle a également été nommée à l'Oscar.",
       "uri_apple_music": "applemusic://track/1440783169",
       "uri_youtube_music": "https://music.youtube.com/watch?v=u4Vwe1i-b1M"
     },
@@ -1296,9 +1365,13 @@
       "awards": [
         "Academy Award Nomination for Best Original Song"
       ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale"
+      ],
       "fun_fact": "A love song about a pet rat, from the horror film 'Ben.' Michael was only 14 when it became his first solo #1 hit. It was nominated for an Academy Award for Best Original Song.",
       "fun_fact_de": "Ein Liebeslied über eine Ratte aus dem Horrorfilm 'Ben'. Michael war erst 14, als es sein erster Solo-#1-Hit wurde. Es war für den Oscar als bester Originalsong nominiert.",
       "fun_fact_es": "Una canción de amor sobre una rata mascota, de la película de terror 'Ben'. Michael tenía solo 14 años cuando se convirtió en su primer #1 en solitario. Fue nominada al Oscar a Mejor Canción Original.",
+      "fun_fact_fr": "Une chanson d'amour dédiée à un rat, tirée du film d'horreur « Ben ». Michael n'avait que 14 ans quand elle est devenue son premier numéro un en solo. Elle a été nommée à l'Oscar de la meilleure chanson originale.",
       "uri_apple_music": "applemusic://track/1443228831",
       "uri_youtube_music": "https://music.youtube.com/watch?v=i7TTSzfs2kw"
     },
@@ -1323,6 +1396,7 @@
       "fun_fact": "The Rolling Stones covered it on their 1982 live album 'Still Life.' The song perfectly captures the excitement of 1960s nightlife and became a Northern Soul dance floor favorite.",
       "fun_fact_de": "Die Rolling Stones coverten den Song auf ihrem 1982er Live-Album 'Still Life'. Der Song fängt die Aufregung des Nachtlebens der 1960er perfekt ein und wurde ein Favorit der Northern-Soul-Tanzflächen.",
       "fun_fact_es": "Los Rolling Stones la versionaron en su álbum en vivo de 1982 'Still Life'. La canción captura perfectamente la emoción de la vida nocturna de los 60 y se convirtió en un favorito de las pistas de baile del Northern Soul.",
+      "fun_fact_fr": "Les Rolling Stones l'ont reprise sur leur album live de 1982 « Still Life ». La chanson capture parfaitement l'effervescence de la vie nocturne des années 1960 et est devenue un incontournable des pistes de danse Northern Soul.",
       "uri_apple_music": "applemusic://track/1469577681",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QBXoH53ObYo"
     },
@@ -1349,6 +1423,7 @@
       "fun_fact": "Vanilla Fudge turned it into a psychedelic rock epic, and Kim Wilde took it back to #1 in 1987. The song's urgent telephone-ring guitar riff was played by Funk Brothers guitarist Eddie Willis.",
       "fun_fact_de": "Vanilla Fudge verwandelten es in ein psychedelisches Rock-Epos, und Kim Wilde brachte es 1987 zurück auf Platz 1. Das drängende Telefon-Gitarrenriff spielte Funk-Brothers-Gitarrist Eddie Willis.",
       "fun_fact_es": "Vanilla Fudge la convirtió en una épica de rock psicodélico, y Kim Wilde la devolvió al #1 en 1987. El urgente riff de guitarra tipo timbre telefónico fue tocado por el guitarrista de Funk Brothers Eddie Willis.",
+      "fun_fact_fr": "Vanilla Fudge en a fait une épopée de rock psychédélique, et Kim Wilde l'a ramenée au numéro un en 1987. Le riff de guitare urgent, évoquant une sonnerie de téléphone, a été joué par le guitariste des Funk Brothers, Eddie Willis.",
       "uri_apple_music": "applemusic://track/1443222812",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pi00f6oiMu4"
     },
@@ -1373,6 +1448,7 @@
       "fun_fact": "Written by Holland-Dozier-Holland. The song was recorded partly on a Ford car assembly line at the River Rouge plant in Dearborn, Michigan, with the factory sounds providing a unique percussive backdrop.",
       "fun_fact_de": "Geschrieben von Holland-Dozier-Holland. Der Song wurde teilweise am Ford-Fließband im River-Rouge-Werk in Dearborn, Michigan, aufgenommen, wobei die Fabrikgeräusche eine einzigartige perkussive Kulisse boten.",
       "fun_fact_es": "Escrita por Holland-Dozier-Holland. La canción fue grabada parcialmente en una línea de ensamblaje de Ford en la planta River Rouge en Dearborn, Michigan, con los sonidos de la fábrica como fondo percusivo.",
+      "fun_fact_fr": "Écrite par Holland-Dozier-Holland. La chanson a été en partie enregistrée sur la chaîne de montage Ford de l'usine River Rouge à Dearborn, dans le Michigan, les bruits de l'usine offrant un fond percussif unique.",
       "uri_apple_music": "applemusic://track/1444115999",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EexqF4tz-8U"
     },
@@ -1399,6 +1475,7 @@
       "fun_fact": "Eddie's biggest solo hit after leaving The Temptations. Its smooth falsetto and funky groove helped define the proto-disco sound. The single version fades out but the album version extends to over 8 minutes.",
       "fun_fact_de": "Eddies größter Solo-Hit nach dem Verlassen der Temptations. Sein sanftes Falsett und der funkige Groove halfen, den Proto-Disco-Sound zu definieren. Die Single blendet aus, die Albumversion dauert über 8 Minuten.",
       "fun_fact_es": "El mayor éxito en solitario de Eddie tras dejar los Temptations. Su suave falsete y groove funky ayudaron a definir el sonido proto-disco. La versión del sencillo se desvanece, pero la del álbum dura más de 8 minutos.",
+      "fun_fact_fr": "Le plus grand succès solo d'Eddie après avoir quitté les Temptations. Son falsetto soyeux et son groove funky ont contribué à définir le son proto-disco. La version single se termine en fondu, tandis que la version album dépasse les 8 minutes.",
       "uri_apple_music": "applemusic://track/1471566069",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UjKwmlH0EJE"
     },
@@ -1423,6 +1500,7 @@
       "fun_fact": "Written by Marvin Gaye, who was then a session drummer at Motown. The phone number in the title was completely fictitious, but fans still tried calling it for years.",
       "fun_fact_de": "Geschrieben von Marvin Gaye, der damals Session-Drummer bei Motown war. Die Telefonnummer im Titel war komplett erfunden, aber Fans versuchten jahrelang, sie anzurufen.",
       "fun_fact_es": "Escrita por Marvin Gaye, quien entonces era baterista de sesión en Motown. El número de teléfono del título era completamente ficticio, pero los fans intentaron llamarlo durante años.",
+      "fun_fact_fr": "Écrite par Marvin Gaye, qui était alors batteur de studio chez Motown. Le numéro de téléphone du titre était totalement fictif, mais les fans ont quand même tenté de l'appeler pendant des années.",
       "uri_apple_music": "applemusic://track/1443811830",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Us18AUBM2RI"
     },
@@ -1447,6 +1525,7 @@
       "fun_fact": "David's first solo single after being fired from The Temptations for his diva behavior. The emotional title seemed to mirror his real-life situation of losing his place in the group.",
       "fun_fact_de": "Davids erste Solo-Single nach seinem Rauswurf bei den Temptations wegen seines Diva-Verhaltens. Der emotionale Titel schien seine reale Situation widerzuspiegeln.",
       "fun_fact_es": "El primer sencillo en solitario de David después de ser despedido de los Temptations por su comportamiento de diva. El emotivo título parecía reflejar su situación real de perder su lugar en el grupo.",
+      "fun_fact_fr": "Le premier single solo de David après avoir été renvoyé des Temptations pour son comportement de diva. Le titre chargé d'émotion semblait refléter sa situation réelle, celle d'un homme ayant perdu sa place au sein du groupe.",
       "uri_apple_music": "applemusic://track/1444105844",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yLJ7jk6YBw8"
     },
@@ -1473,6 +1552,7 @@
       "fun_fact": "Smokey's biggest solo hit and a massive #1 in the UK, kept from the US top spot only by 'Bette Davis Eyes.' It showed Smokey could thrive as a solo artist decades after co-founding Motown.",
       "fun_fact_de": "Smokeys größter Solo-Hit und eine massive #1 in Großbritannien, in den USA nur von 'Bette Davis Eyes' von Platz 1 ferngehalten. Es zeigte, dass Smokey Jahrzehnte nach der Motown-Gründung als Solokünstler bestehen konnte.",
       "fun_fact_es": "El mayor éxito en solitario de Smokey y un enorme #1 en el Reino Unido, solo impedido de alcanzar la cima en EE.UU. por 'Bette Davis Eyes'. Demostró que Smokey podía triunfar en solitario décadas después de cofundar Motown.",
+      "fun_fact_fr": "Le plus grand succès solo de Smokey et un immense numéro un au Royaume-Uni, empêché d'atteindre la première place aux États-Unis uniquement par « Bette Davis Eyes ». Il prouvait que Smokey pouvait briller en solo des décennies après avoir cofondé Motown.",
       "uri_apple_music": "applemusic://track/1443067999",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0P2a6aLDkkM"
     },
@@ -1499,6 +1579,7 @@
       "fun_fact": "Featured in the film 'The Last Dragon,' a martial arts-meets-Motown movie. DeBarge was a family group often compared to The Jacksons. El DeBarge's falsetto drew comparisons to a young Michael Jackson.",
       "fun_fact_de": "Im Film 'The Last Dragon' zu hören, einer Kampfkunst-trifft-Motown-Produktion. DeBarge war eine Familienband, oft mit den Jacksons verglichen. El DeBarges Falsett erinnerte an den jungen Michael Jackson.",
       "fun_fact_es": "Apareció en la película 'The Last Dragon', una producción de artes marciales y Motown. DeBarge era un grupo familiar frecuentemente comparado con los Jacksons. El falsete de El DeBarge recordaba al joven Michael Jackson.",
+      "fun_fact_fr": "Présent dans le film « The Last Dragon », une production mêlant arts martiaux et univers Motown. DeBarge était un groupe familial souvent comparé aux Jacksons. Le falsetto d'El DeBarge évoquait celui du jeune Michael Jackson.",
       "uri_apple_music": "applemusic://track/1443092508",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cAQSZhazYk8"
     },
@@ -1525,6 +1606,7 @@
       "fun_fact": "MC Hammer sampled the bass line for 'U Can't Touch This,' which became a massive hit. Rick James initially sued but they settled and he received songwriting credit and royalties. The Temptations sang backup.",
       "fun_fact_de": "MC Hammer sampelte die Basslinie für 'U Can't Touch This'. Rick James klagte zunächst, aber sie einigten sich und er erhielt Songwriting-Credit und Tantiemen. Die Temptations sangen die Backing Vocals.",
       "fun_fact_es": "MC Hammer sampleó la línea de bajo para 'U Can't Touch This'. Rick James demandó inicialmente pero llegaron a un acuerdo y recibió crédito como compositor y regalías. Los Temptations cantaron los coros.",
+      "fun_fact_fr": "MC Hammer a samplé la ligne de basse pour « U Can't Touch This », qui est devenu un tube planétaire. Rick James a d'abord intenté un procès, mais ils ont trouvé un accord et il a reçu des crédits d'auteur et des royalties. Les Temptations chantaient les chœurs.",
       "uri_apple_music": "applemusic://track/1440805227",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QYHxGBH6o4M"
     },
@@ -1549,6 +1631,7 @@
       "fun_fact": "Dennis Edwards was the lead singer of The Temptations. The song became a massive hip-hop sample source, used by 2Pac, Eric B. & Rakim, and many others. Siedah Garrett later co-wrote Michael Jackson's 'Man in the Mirror.'",
       "fun_fact_de": "Dennis Edwards war Leadsänger der Temptations. Der Song wurde eine bedeutende Hip-Hop-Sample-Quelle, verwendet von 2Pac, Eric B. & Rakim und vielen anderen. Siedah Garrett schrieb später Michael Jacksons 'Man in the Mirror' mit.",
       "fun_fact_es": "Dennis Edwards fue el vocalista de The Temptations. La canción se convirtió en una fuente de samples masiva para el hip-hop, utilizada por 2Pac, Eric B. & Rakim y muchos otros. Siedah Garrett co-escribió 'Man in the Mirror' de Michael Jackson.",
+      "fun_fact_fr": "Dennis Edwards était le chanteur principal des Temptations. La chanson est devenue une source majeure de samples pour le hip-hop, utilisée par 2Pac, Eric B. & Rakim et bien d'autres. Siedah Garrett a ensuite co-écrit « Man in the Mirror » de Michael Jackson.",
       "uri_apple_music": "applemusic://track/1490296342",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CH3rx8LhrQo"
     },
@@ -1573,6 +1656,7 @@
       "fun_fact": "Originally a 1966 hit by The Elgins on Motown. Bonnie Pointer, who left The Pointer Sisters for a solo career on Motown, gave it a disco treatment that became her biggest solo hit.",
       "fun_fact_de": "Ursprünglich ein Hit von The Elgins aus dem Jahr 1966. Bonnie Pointer, die die Pointer Sisters für eine Solokarriere bei Motown verließ, gab dem Song ein Disco-Treatment und landete damit ihren größten Solo-Hit.",
       "fun_fact_es": "Originalmente un éxito de The Elgins de 1966. Bonnie Pointer, quien dejó las Pointer Sisters para una carrera en solitario en Motown, le dio un tratamiento disco que se convirtió en su mayor éxito.",
+      "fun_fact_fr": "À l'origine un succès de The Elgins chez Motown en 1966. Bonnie Pointer, qui avait quitté les Pointer Sisters pour une carrière solo chez Motown, lui a donné un traitement disco qui est devenu son plus grand succès en solo.",
       "uri_apple_music": "applemusic://track/1430158363",
       "uri_youtube_music": "https://music.youtube.com/watch?v=owiYwYdjgM8"
     },
@@ -1597,6 +1681,7 @@
       "fun_fact": "Marvin's first major duet hit. Kim Weston left Motown shortly after, and Tammi Terrell became his most famous duet partner. The song was later covered by Rod Stewart and Tina Turner in 1990.",
       "fun_fact_de": "Marvins erster großer Duett-Hit. Kim Weston verließ Motown kurz darauf und Tammi Terrell wurde seine berühmteste Duett-Partnerin. Rod Stewart und Tina Turner coverten den Song 1990.",
       "fun_fact_es": "El primer gran éxito a dúo de Marvin. Kim Weston dejó Motown poco después y Tammi Terrell se convirtió en su compañera de dueto más famosa. Rod Stewart y Tina Turner la versionaron en 1990.",
+      "fun_fact_fr": "Le premier grand succès en duo de Marvin. Kim Weston a quitté Motown peu après, et Tammi Terrell est devenue sa partenaire de duo la plus célèbre. Rod Stewart et Tina Turner en ont fait une reprise en 1990.",
       "uri_apple_music": "applemusic://track/1469581640",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DVWH9InLMiA"
     },
@@ -1621,6 +1706,7 @@
       "fun_fact": "A massive hit in the UK's Northern Soul scene, reaching #5 on the UK charts. The Isley Brothers had a complicated relationship with Motown and eventually left for greater creative freedom at T-Neck Records.",
       "fun_fact_de": "Ein riesiger Hit in der britischen Northern-Soul-Szene, der Platz 5 der UK-Charts erreichte. Die Isley Brothers hatten ein kompliziertes Verhältnis zu Motown und gingen schließlich für mehr kreative Freiheit zu T-Neck Records.",
       "fun_fact_es": "Un gran éxito en la escena del Northern Soul británico, alcanzando el #5 en las listas del Reino Unido. Los Isley Brothers tuvieron una relación complicada con Motown y finalmente se fueron a T-Neck Records por mayor libertad creativa.",
+      "fun_fact_fr": "Un immense succès dans la scène Northern Soul britannique, atteignant la 5e place des charts au Royaume-Uni. Les Isley Brothers ont eu une relation compliquée avec Motown et ont fini par partir chez T-Neck Records pour plus de liberté créative.",
       "uri_apple_music": "applemusic://track/1444126112",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qTkt1j_y9JQ"
     },
@@ -1645,6 +1731,7 @@
       "fun_fact": "Diana's first solo single after leaving The Supremes. Written by Ashford & Simpson, it became her concert signature, with Diana walking into the audience to literally touch hands.",
       "fun_fact_de": "Dianas erste Solo-Single nach dem Verlassen der Supremes. Geschrieben von Ashford & Simpson, wurde es ihr Konzertsignatur-Song, bei dem Diana ins Publikum ging, um buchstäblich Hände zu berühren.",
       "fun_fact_es": "El primer sencillo en solitario de Diana tras dejar las Supremes. Escrita por Ashford & Simpson, se convirtió en su firma en conciertos, donde Diana caminaba entre el público para tocar las manos.",
+      "fun_fact_fr": "Le premier single solo de Diana après avoir quitté les Supremes. Écrite par Ashford & Simpson, elle est devenue son titre phare en concert, Diana se promenant dans le public pour toucher les mains des spectateurs.",
       "uri_apple_music": "applemusic://track/1442551842",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tCsSP33g75s"
     },
@@ -1671,6 +1758,7 @@
       "fun_fact": "From his self-titled debut album. Lionel wrote it as a love ballad to his first wife Brenda. The album produced three top-five hits and launched one of the most successful solo careers in pop history.",
       "fun_fact_de": "Von seinem selbstbetitelten Debütalbum. Lionel schrieb es als Liebesballade für seine erste Frau Brenda. Das Album produzierte drei Top-5-Hits und startete eine der erfolgreichsten Solokarrieren der Pop-Geschichte.",
       "fun_fact_es": "De su álbum debut homónimo. Lionel la escribió como balada de amor para su primera esposa Brenda. El álbum produjo tres éxitos en el top 5 y lanzó una de las carreras en solitario más exitosas de la historia del pop.",
+      "fun_fact_fr": "Tiré de son premier album solo éponyme. Lionel l'a écrite comme une ballade d'amour pour sa première épouse Brenda. L'album a produit trois singles dans le top 5 et a lancé l'une des carrières solo les plus réussies de l'histoire de la pop.",
       "uri_apple_music": "applemusic://track/1443202192",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0353jrboqOc"
     },
@@ -1697,6 +1785,7 @@
       "fun_fact": "Michael's debut solo single while still a member of The Jackson 5. He was just 13 years old. The song showcased the emotional maturity that would define his legendary career.",
       "fun_fact_de": "Michaels Debüt-Solo-Single, während er noch Mitglied der Jackson 5 war. Er war erst 13 Jahre alt. Der Song zeigte die emotionale Reife, die seine legendäre Karriere definieren sollte.",
       "fun_fact_es": "El primer sencillo en solitario de Michael siendo aún miembro de los Jackson 5. Tenía solo 13 años. La canción mostró la madurez emocional que definiría su legendaria carrera.",
+      "fun_fact_fr": "Le premier single solo de Michael alors qu'il était encore membre des Jackson 5. Il n'avait que 13 ans. La chanson révélait la maturité émotionnelle qui allait définir sa carrière légendaire.",
       "uri_apple_music": "applemusic://track/1471565643",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y9cixo-iXAE"
     },
@@ -1721,6 +1810,7 @@
       "fun_fact": "Co-written by Smokey Robinson and Miracles guitarist Al Cleveland. The phrase came from a malapropism Cleveland used in conversation, saying 'I second that emotion' instead of 'motion.' Japan's version reached #1 in their charts.",
       "fun_fact_de": "Co-geschrieben von Smokey Robinson und Miracles-Gitarrist Al Cleveland. Der Ausdruck entstand aus einem Versprecher Clevelands, der 'I second that emotion' statt 'motion' sagte.",
       "fun_fact_es": "Co-escrita por Smokey Robinson y el guitarrista de los Miracles Al Cleveland. La frase surgió de un error de Cleveland, quien dijo 'I second that emotion' en vez de 'motion'.",
+      "fun_fact_fr": "Co-écrite par Smokey Robinson et le guitariste des Miracles, Al Cleveland. L'expression est née d'un lapsus de Cleveland qui avait dit « I second that emotion » au lieu de « motion » lors d'une conversation.",
       "uri_apple_music": "applemusic://track/1447558979",
       "uri_youtube_music": "https://music.youtube.com/watch?v=u_4ghyswYAU"
     },
@@ -1747,6 +1837,7 @@
       "fun_fact": "Originally recorded by The Temptations but Motown feared the anti-war message would alienate their fans. Edwin Starr's intense version became a Vietnam-era protest anthem. 'War! What is it good for? Absolutely nothing!' became one of rock's most quoted lines.",
       "fun_fact_de": "Ursprünglich von den Temptations aufgenommen, aber Motown befürchtete, die Anti-Kriegs-Botschaft könnte Fans vergraulen. Edwin Starrs intensive Version wurde zur Protestsymne der Vietnam-Ära.",
       "fun_fact_es": "Originalmente grabada por The Temptations, pero Motown temía que el mensaje antibélico alienara a sus fans. La intensa versión de Edwin Starr se convirtió en un himno de protesta de la era de Vietnam.",
+      "fun_fact_fr": "Enregistrée à l'origine par les Temptations, mais Motown craignait que le message anti-guerre n'éloigne les fans. La version intense d'Edwin Starr est devenue un hymne de contestation de l'époque du Vietnam. « War! What is it good for? Absolutely nothing! » est devenu l'une des phrases les plus citées du rock.",
       "uri_apple_music": "applemusic://track/1454735131",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yM71RwDtEE0"
     },
@@ -1771,6 +1862,7 @@
       "fun_fact": "Another Holland-Dozier-Holland masterpiece. The song's dramatic arrangement influenced the development of Northern Soul and was covered by artists from Rod Stewart to The Jackson 5.",
       "fun_fact_de": "Ein weiteres Meisterwerk von Holland-Dozier-Holland. Das dramatische Arrangement beeinflusste die Entwicklung des Northern Soul und wurde von Rod Stewart bis zu den Jackson 5 gecovert.",
       "fun_fact_es": "Otra obra maestra de Holland-Dozier-Holland. El dramático arreglo influyó en el desarrollo del Northern Soul y fue versionada por artistas desde Rod Stewart hasta los Jackson 5.",
+      "fun_fact_fr": "Un autre chef-d'œuvre de Holland-Dozier-Holland. L'arrangement dramatique a influencé le développement du Northern Soul et a été repris par des artistes allant de Rod Stewart aux Jackson 5.",
       "uri_apple_music": "applemusic://track/1440912159",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NhEuFW7l5c4"
     },
@@ -1795,6 +1887,7 @@
       "fun_fact": "The Spinners (also known as The Detroit Spinners in the UK) had limited success at Motown but later became one of the top soul groups of the 1970s after moving to Atlantic Records.",
       "fun_fact_de": "Die Spinners (in Großbritannien als Detroit Spinners bekannt) hatten bei Motown begrenzten Erfolg, wurden aber nach dem Wechsel zu Atlantic Records in den 1970ern eine der Top-Soul-Gruppen.",
       "fun_fact_es": "The Spinners (conocidos como Detroit Spinners en el Reino Unido) tuvieron éxito limitado en Motown pero se convirtieron en uno de los principales grupos soul de los 70 tras mudarse a Atlantic Records.",
+      "fun_fact_fr": "Les Spinners (également connus sous le nom de Detroit Spinners au Royaume-Uni) ont eu un succès limité chez Motown, mais sont devenus l'un des meilleurs groupes soul des années 1970 après leur passage chez Atlantic Records.",
       "uri_apple_music": "applemusic://track/1452829703",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LYxjAXNNzQE"
     },
@@ -1821,6 +1914,7 @@
       "fun_fact": "The Supremes' third consecutive #1 hit, all written by Holland-Dozier-Holland. It was originally given to The Marvelettes before Berry Gordy decided The Supremes should record it.",
       "fun_fact_de": "Der dritte aufeinanderfolgende #1-Hit der Supremes, alle geschrieben von Holland-Dozier-Holland. Ursprünglich für die Marvelettes vorgesehen, bevor Berry Gordy entschied, dass die Supremes ihn aufnehmen sollten.",
       "fun_fact_es": "El tercer #1 consecutivo de las Supremes, todos escritos por Holland-Dozier-Holland. Originalmente fue asignada a las Marvelettes antes de que Berry Gordy decidiera que las Supremes debían grabarla.",
+      "fun_fact_fr": "Le troisième numéro un consécutif des Supremes, tous écrits par Holland-Dozier-Holland. La chanson avait d'abord été confiée aux Marvelettes avant que Berry Gordy ne décide que les Supremes devaient l'enregistrer.",
       "uri_apple_music": "applemusic://track/1475817718",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NkH_dm9NkxQ"
     },
@@ -1845,6 +1939,7 @@
       "fun_fact": "Valerie Simpson was half of the legendary songwriting duo Ashford & Simpson, who wrote 'Ain't No Mountain High Enough' and many other Motown classics. Her solo work showcased her stunning vocal ability.",
       "fun_fact_de": "Valerie Simpson war die Hälfte des legendären Songwriting-Duos Ashford & Simpson, die 'Ain't No Mountain High Enough' und viele andere Motown-Klassiker schrieben. Ihr Solowerk zeigte ihre atemberaubende Gesangsfähigkeit.",
       "fun_fact_es": "Valerie Simpson era la mitad del legendario dúo de compositores Ashford & Simpson, quienes escribieron 'Ain't No Mountain High Enough' y muchos otros clásicos de Motown. Su trabajo en solitario mostró su impresionante habilidad vocal.",
+      "fun_fact_fr": "Valerie Simpson formait la moitié du légendaire duo de compositeurs Ashford & Simpson, auteurs de « Ain't No Mountain High Enough » et de nombreux autres classiques Motown. Son travail solo a mis en valeur sa voix exceptionnelle.",
       "uri_apple_music": "applemusic://track/1430157352",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7T7utl7-ssk"
     },
@@ -1871,6 +1966,7 @@
       "fun_fact": "Boyz II Men signed to Motown in 1991, reviving the label's relevance in contemporary R&B. This song gave them their fourth #1 hit, produced by Jimmy Jam and Terry Lewis.",
       "fun_fact_de": "Boyz II Men unterschrieben 1991 bei Motown und belebten die Relevanz des Labels im zeitgenössischen R&B. Dieser Song bescherte ihnen ihren vierten #1-Hit, produziert von Jimmy Jam und Terry Lewis.",
       "fun_fact_es": "Boyz II Men firmaron con Motown en 1991, reviviendo la relevancia del sello en el R&B contemporáneo. Esta canción les dio su cuarto #1, producida por Jimmy Jam y Terry Lewis.",
+      "fun_fact_fr": "Boyz II Men ont signé chez Motown en 1991, redonnant au label une place dans le R&B contemporain. Cette chanson leur a offert leur quatrième numéro un, produite par Jimmy Jam et Terry Lewis.",
       "uri_apple_music": "applemusic://track/1444047057",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fUSOZAgl95A"
     },
@@ -1897,6 +1993,7 @@
       "fun_fact": "Brian McKnight's biggest hit, released on Motown Records. He is a multi-instrumentalist who plays nine instruments. The song was one of the last major hits released on the Motown label in the 20th century.",
       "fun_fact_de": "Brian McKnights größter Hit, veröffentlicht bei Motown Records. Er ist Multiinstrumentalist und spielt neun Instrumente. Der Song war einer der letzten großen Hits auf dem Motown-Label im 20. Jahrhundert.",
       "fun_fact_es": "El mayor éxito de Brian McKnight, publicado en Motown Records. Es multiinstrumentista y toca nueve instrumentos. La canción fue uno de los últimos grandes éxitos del sello Motown en el siglo XX.",
+      "fun_fact_fr": "Le plus grand succès de Brian McKnight, sorti chez Motown Records. Multi-instrumentiste, il joue de neuf instruments. Cette chanson est l'un des derniers grands succès publiés sur le label Motown au XXe siècle.",
       "uri_apple_music": "",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SN3m8sKyjYk"
     },
@@ -1923,6 +2020,7 @@
       "fun_fact": "From the album 'Glow,' which showed Rick James' versatility as he balanced funk with softer R&B ballads. Rick was also known for discovering and mentoring Teena Marie at Motown.",
       "fun_fact_de": "Vom Album 'Glow', das Rick James' Vielseitigkeit zeigte, als er Funk mit weicheren R&B-Balladen kombinierte. Rick war auch dafür bekannt, Teena Marie bei Motown entdeckt und gefördert zu haben.",
       "fun_fact_es": "Del álbum 'Glow', que mostró la versatilidad de Rick James al equilibrar funk con baladas R&B más suaves. Rick también era conocido por descubrir y ser mentor de Teena Marie en Motown.",
+      "fun_fact_fr": "Tirée de l'album « Glow », qui démontrait la polyvalence de Rick James, naviguant entre funk énergique et ballades R&B plus douces. Rick était également connu pour avoir découvert et guidé Teena Marie chez Motown.",
       "uri_apple_music": "",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BFe4BMgcSd0"
     },
@@ -1947,6 +2045,7 @@
       "fun_fact": "Gerald Alston was the lead singer of The Manhattans before launching his solo career on Motown. His smooth tenor voice was perfectly suited for romantic ballads in the quiet storm tradition.",
       "fun_fact_de": "Gerald Alston war Leadsänger der Manhattans, bevor er seine Solokarriere bei Motown startete. Seine sanfte Tenorstimme war perfekt geeignet für romantische Balladen in der Quiet-Storm-Tradition.",
       "fun_fact_es": "Gerald Alston fue el vocalista de The Manhattans antes de lanzar su carrera en solitario en Motown. Su suave voz de tenor era perfecta para baladas románticas en la tradición del quiet storm.",
+      "fun_fact_fr": "Gerald Alston était le chanteur principal des Manhattans avant de lancer sa carrière solo chez Motown. Sa voix de ténor douce et veloutée était parfaitement adaptée aux ballades romantiques dans la tradition du quiet storm.",
       "uri_apple_music": "applemusic://track/1430161432",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ULBACmcRES0"
     },
@@ -1973,6 +2072,7 @@
       "fun_fact": "Written and produced by Marvin Gaye, who also sang background vocals. The Originals were one of Motown's underappreciated groups who also served as backing vocalists for other Motown artists.",
       "fun_fact_de": "Geschrieben und produziert von Marvin Gaye, der auch die Hintergrundstimme sang. Die Originals waren eine der unterschätzten Gruppen von Motown, die auch als Backgroundsänger für andere Motown-Künstler dienten.",
       "fun_fact_es": "Escrita y producida por Marvin Gaye, quien también cantó los coros. The Originals fueron uno de los grupos infravalorados de Motown que también sirvieron como vocalistas de respaldo para otros artistas del sello.",
+      "fun_fact_fr": "Écrite et produite par Marvin Gaye, qui chantait aussi les chœurs. Les Originals étaient l'un des groupes sous-estimés de Motown, qui servaient également de choristes pour d'autres artistes du label.",
       "uri_apple_music": "applemusic://track/581217805",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Eucp9qqKG0o"
     },
@@ -1997,6 +2097,7 @@
       "fun_fact": "Written by Smokey Robinson, this was The Marvelettes' last major hit. The group struggled as Motown focused more attention on The Supremes, but their early recordings helped establish the Motown sound.",
       "fun_fact_de": "Geschrieben von Smokey Robinson, war dies der letzte große Hit der Marvelettes. Die Gruppe hatte es schwer, da Motown mehr Aufmerksamkeit auf die Supremes richtete.",
       "fun_fact_es": "Escrita por Smokey Robinson, fue el último gran éxito de las Marvelettes. El grupo tuvo dificultades cuando Motown centró más atención en las Supremes.",
+      "fun_fact_fr": "Écrite par Smokey Robinson, c'était le dernier grand succès des Marvelettes. Le groupe a eu du mal car Motown concentrait de plus en plus son attention sur les Supremes, mais leurs premiers enregistrements ont contribué à forger le son Motown.",
       "uri_apple_music": "applemusic://track/1443813168",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dABWW58dR6U"
     },
@@ -2021,6 +2122,7 @@
       "fun_fact": "The Beatles covered this on their 'With The Beatles' album, cementing the transatlantic connection between Motown and the British Invasion. John Lennon was a huge Smokey Robinson fan.",
       "fun_fact_de": "Die Beatles coverten diesen Song auf ihrem Album 'With The Beatles' und festigten die transatlantische Verbindung zwischen Motown und der British Invasion. John Lennon war ein großer Smokey-Robinson-Fan.",
       "fun_fact_es": "Los Beatles la versionaron en su álbum 'With The Beatles', cimentando la conexión transatlántica entre Motown y la invasión británica. John Lennon era un gran fan de Smokey Robinson.",
+      "fun_fact_fr": "Les Beatles l'ont reprise sur leur album « With The Beatles », scellant le lien transatlantique entre Motown et la British Invasion. John Lennon était un immense fan de Smokey Robinson.",
       "uri_apple_music": "applemusic://track/1442732378",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xyC7QIKQLWU"
     },
@@ -2045,6 +2147,7 @@
       "fun_fact": "Co-written by Smokey Robinson and Bobby Rogers, this was The Temptations' first major hit with its clever string of similes. The Temptations re-recorded it with Hall & Oates in 1985, reaching #20 on the Billboard Hot 100.",
       "fun_fact_de": "Co-geschrieben von Smokey Robinson und Bobby Rogers, war dies der erste große Hit der Temptations mit seiner cleveren Reihe von Vergleichen. Die Temptations nahmen ihn 1985 mit Hall & Oates neu auf und erreichten #20.",
       "fun_fact_es": "Co-escrita por Smokey Robinson y Bobby Rogers, fue el primer gran éxito de los Temptations con su ingeniosa cadena de símiles. Los Temptations la regrabaron con Hall & Oates en 1985, alcanzando el #20.",
+      "fun_fact_fr": "Co-écrite par Smokey Robinson et Bobby Rogers, c'était le premier grand succès des Temptations avec son enchaînement astucieux de comparaisons. Les Temptations l'ont réenregistrée avec Hall & Oates en 1985, atteignant la 20e place du Billboard Hot 100.",
       "uri_apple_music": "applemusic://track/1452829685",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GdIDUsMrmuY"
     },
@@ -2069,6 +2172,7 @@
       "fun_fact": "Teena Marie was one of Motown's few white artists. Rick James discovered her and she was initially marketed without showing her photo so listeners wouldn't know her race. She became known as the 'Ivory Queen of Soul.'",
       "fun_fact_de": "Teena Marie war eine der wenigen weißen Künstlerinnen bei Motown. Rick James entdeckte sie und sie wurde anfangs ohne Foto vermarktet, damit Hörer ihre Hautfarbe nicht kannten. Sie wurde als 'Ivory Queen of Soul' bekannt.",
       "fun_fact_es": "Teena Marie fue una de las pocas artistas blancas de Motown. Rick James la descubrió y fue comercializada inicialmente sin mostrar su foto para que los oyentes no supieran su raza. Fue conocida como la 'Reina de Marfil del Soul'.",
+      "fun_fact_fr": "Teena Marie était l'une des rares artistes blanches de Motown. Rick James l'a découverte et elle a d'abord été commercialisée sans montrer sa photo, pour que les auditeurs ne connaissent pas sa couleur de peau. Elle est devenue la « Reine d'Ivoire de la Soul ».",
       "uri_apple_music": "applemusic://track/1430158374",
       "uri_youtube_music": "https://music.youtube.com/watch?v=m6DK8KFPDN8"
     },
@@ -2093,6 +2197,7 @@
       "fun_fact": "From the 'diana' album produced by Nile Rodgers and Bernard Edwards of Chic. The album was initially remixed by Motown without Diana's consent, causing a major controversy. 'My Old Piano' was a UK hit reaching #5.",
       "fun_fact_de": "Vom Album 'diana', produziert von Nile Rodgers und Bernard Edwards von Chic. Das Album wurde zunächst ohne Dianas Zustimmung von Motown remixt, was eine große Kontroverse auslöste. 'My Old Piano' erreichte #5 in Großbritannien.",
       "fun_fact_es": "Del álbum 'diana', producido por Nile Rodgers y Bernard Edwards de Chic. El álbum fue remezclado inicialmente por Motown sin el consentimiento de Diana, causando una gran controversia. 'My Old Piano' alcanzó el #5 en el Reino Unido.",
+      "fun_fact_fr": "Tirée de l'album « diana » produit par Nile Rodgers et Bernard Edwards de Chic. L'album a d'abord été remixé par Motown sans le consentement de Diana, provoquant une vive controverse. « My Old Piano » a atteint la 5e place au Royaume-Uni.",
       "uri_apple_music": "applemusic://track/1452791802",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dxFmU3_VlQM"
     },
@@ -2117,6 +2222,7 @@
       "fun_fact": "Written by Ashford & Simpson. It was one of the last songs Tammi Terrell recorded before her health declined from a brain tumor. Marvin was so devastated by her death in 1970 that he retreated from performing for years.",
       "fun_fact_de": "Geschrieben von Ashford & Simpson. Es war einer der letzten Songs, die Tammi Terrell vor ihrem gesundheitlichen Verfall durch einen Hirntumor aufnahm. Marvin war so erschüttert von ihrem Tod 1970, dass er sich jahrelang vom Auftreten zurückzog.",
       "fun_fact_es": "Escrita por Ashford & Simpson. Fue una de las últimas canciones que Tammi Terrell grabó antes de que su salud declinara por un tumor cerebral. Marvin quedó tan devastado por su muerte en 1970 que se retiró de actuar durante años.",
+      "fun_fact_fr": "Écrite par Ashford & Simpson. C'est l'une des dernières chansons que Tammi Terrell a enregistrées avant que sa santé ne se dégrade à cause d'une tumeur cérébrale. Marvin fut si bouleversé par sa mort en 1970 qu'il se retira de la scène pendant des années.",
       "uri_apple_music": "applemusic://track/1426017466",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Jz_D-greh8Q"
     },
@@ -2143,6 +2249,7 @@
       "fun_fact": "Eddie Kendricks' last #1 hit with The Temptations before going solo. The dreamy, floating arrangement by Norman Whitfield was a dramatic contrast to the group's recent psychedelic funk direction.",
       "fun_fact_de": "Eddie Kendricks' letzter #1-Hit mit den Temptations vor seiner Solokarriere. Das verträumte, schwebende Arrangement von Norman Whitfield war ein dramatischer Kontrast zur jüngsten psychedelischen Funk-Richtung der Gruppe.",
       "fun_fact_es": "El último #1 de Eddie Kendricks con The Temptations antes de su carrera en solitario. El arreglo soñador y flotante de Norman Whitfield fue un contraste dramático con la reciente dirección de funk psicodélico del grupo.",
+      "fun_fact_fr": "Le dernier numéro un d'Eddie Kendricks avec les Temptations avant de se lancer en solo. L'arrangement rêveur et aérien de Norman Whitfield contrastait radicalement avec l'orientation funk psychédélique récente du groupe.",
       "uri_apple_music": "applemusic://track/1443183041",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WNnb1NfLrK4"
     },
@@ -2169,6 +2276,7 @@
       "fun_fact": "One of the greatest Burt Bacharach-Hal David compositions, Dionne Warwick's original 1964 version is considered definitive. Isaac Hayes later recorded a 12-minute epic version. Though not a Motown recording, it appears in this Spotify playlist.",
       "fun_fact_de": "Eine der größten Kompositionen von Burt Bacharach und Hal David. Dionne Warwicks Originalversion von 1964 gilt als die definitive Fassung. Isaac Hayes nahm später eine 12-minütige epische Version auf. Obwohl keine Motown-Aufnahme, erscheint sie in dieser Spotify-Playlist.",
       "fun_fact_es": "Una de las mejores composiciones de Burt Bacharach-Hal David, la versión original de Dionne Warwick de 1964 se considera definitiva. Isaac Hayes grabó más tarde una versión épica de 12 minutos. Aunque no es de Motown, aparece en esta playlist de Spotify.",
+      "fun_fact_fr": "L'une des plus grandes compositions de Burt Bacharach et Hal David, la version originale de Dionne Warwick de 1964 est considérée comme la référence. Isaac Hayes en a enregistré plus tard une version épique de 12 minutes. Bien que n'étant pas un titre Motown, elle figure dans cette playlist Spotify.",
       "uri_apple_music": "applemusic://track/1446927022",
       "uri_youtube_music": "https://music.youtube.com/watch?v=boGPChaPo5Y",
       "uri_tidal": "tidal://track/101149336"
@@ -2196,6 +2304,7 @@
       "fun_fact": "Written by Lionel Richie in just five minutes on the back of a paper bag. It was the Commodores' second #1 pop hit after 'Three Times a Lady' and helped establish Lionel as a premier ballad writer.",
       "fun_fact_de": "Von Lionel Richie in nur fünf Minuten auf der Rückseite einer Papiertüte geschrieben. Es war der zweite #1-Pop-Hit der Commodores nach 'Three Times a Lady' und etablierte Lionel als erstklassigen Balladen-Autor.",
       "fun_fact_es": "Escrita por Lionel Richie en solo cinco minutos en el reverso de una bolsa de papel. Fue el segundo #1 pop de los Commodores después de 'Three Times a Lady' y estableció a Lionel como un escritor de baladas de primera.",
+      "fun_fact_fr": "Écrite par Lionel Richie en seulement cinq minutes au dos d'un sac en papier. C'était le deuxième numéro un pop des Commodores après « Three Times a Lady », et elle a contribué à établir Lionel comme un maître de la ballade.",
       "uri_apple_music": "applemusic://track/1440783371",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gCjXXvb0AKk",
       "uri_tidal": "tidal://track/1606843"
@@ -2221,6 +2330,7 @@
       "fun_fact": "Originally a 1971 hit by The Stylistics. The Diana Ross and Marvin Gaye duet version was a bigger hit in the UK, reaching #5. Their duet album was actually assembled from separate recording sessions.",
       "fun_fact_de": "Ursprünglich ein Hit der Stylistics von 1971. Die Duettversion von Diana Ross und Marvin Gaye war in Großbritannien ein größerer Hit und erreichte #5. Ihr Duett-Album wurde tatsächlich aus separaten Aufnahme-Sessions zusammengestellt.",
       "fun_fact_es": "Originalmente un éxito de The Stylistics de 1971. La versión a dúo de Diana Ross y Marvin Gaye fue un éxito mayor en el Reino Unido, alcanzando el #5. Su álbum de duetos fue ensamblado a partir de sesiones de grabación separadas.",
+      "fun_fact_fr": "À l'origine un succès des Stylistics en 1971. La version en duo de Diana Ross et Marvin Gaye a eu plus de succès au Royaume-Uni, atteignant la 5e place. Leur album de duos a en réalité été assemblé à partir de sessions d'enregistrement séparées.",
       "uri_apple_music": "applemusic://track/1469579507",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Qr4IDzrXS-c",
       "uri_tidal": "tidal://track/93228540"
@@ -2248,6 +2358,7 @@
       "fun_fact": "The Jackson 5's fourth consecutive #1 hit and the best-selling single in Motown history at the time. Michael's mature vocal performance at age 12 astonished listeners. Mariah Carey later covered it, also reaching #1.",
       "fun_fact_de": "Der vierte aufeinanderfolgende #1-Hit der Jackson 5 und die meistverkaufte Single in der Geschichte von Motown. Michaels reifer Gesang mit 12 Jahren verblüffte die Zuhörer. Mariah Carey coverte den Song später und erreichte ebenfalls #1.",
       "fun_fact_es": "El cuarto #1 consecutivo de los Jackson 5 y el sencillo más vendido de la historia de Motown. La madura interpretación vocal de Michael a los 12 años asombró a los oyentes. Mariah Carey la versionó más tarde, también alcanzando el #1.",
+      "fun_fact_fr": "Le quatrième numéro un consécutif des Jackson 5 et le single le plus vendu de l'histoire de Motown à l'époque. La performance vocale si mature de Michael à 12 ans a stupéfié les auditeurs. Mariah Carey l'a reprise plus tard, atteignant elle aussi la première place.",
       "uri_apple_music": "applemusic://track/1443186637",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VRdG9vEJOKY",
       "uri_tidal": "tidal://track/33490093"
@@ -2273,6 +2384,7 @@
       "fun_fact": "Later covered by Bananarama in 1982, who turned it into a UK Top 5 hit. The Velvelettes were from Kalamazoo, Michigan and were one of Motown's most beloved but commercially underperforming girl groups.",
       "fun_fact_de": "Später 1982 von Bananarama gecovert, die daraus einen UK-Top-5-Hit machten. Die Velvelettes stammten aus Kalamazoo, Michigan und waren eine der beliebtesten, aber kommerziell weniger erfolgreichen Girlgroups von Motown.",
       "fun_fact_es": "Versionada por Bananarama en 1982, quienes la convirtieron en un éxito Top 5 en el Reino Unido. Las Velvelettes eran de Kalamazoo, Michigan y fueron uno de los grupos femeninos más queridos pero comercialmente menos exitosos de Motown.",
+      "fun_fact_fr": "Reprise par Bananarama en 1982, qui en a fait un succès top 5 au Royaume-Uni. Les Velvelettes venaient de Kalamazoo, dans le Michigan, et étaient l'un des groupes féminins les plus appréciés mais commercialement les moins performants de Motown.",
       "uri_apple_music": "applemusic://track/1452187494",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PJxZ9C3EZaA",
       "uri_tidal": "tidal://track/80432158"
@@ -2298,6 +2410,7 @@
       "fun_fact": "Written and produced by Smokey Robinson, who crafted many of Mary Wells' biggest hits. Mary was Motown's first female star and helped establish the label's presence on the pop charts.",
       "fun_fact_de": "Geschrieben und produziert von Smokey Robinson, der viele von Mary Wells' größten Hits schuf. Mary war Motowns erster weiblicher Star und half, die Präsenz des Labels in den Pop-Charts zu etablieren.",
       "fun_fact_es": "Escrita y producida por Smokey Robinson, quien creó muchos de los mayores éxitos de Mary Wells. Mary fue la primera estrella femenina de Motown y ayudó a establecer la presencia del sello en las listas pop.",
+      "fun_fact_fr": "Écrite et produite par Smokey Robinson, qui a façonné nombre des plus grands succès de Mary Wells. Mary a été la première star féminine de Motown et a contribué à établir la présence du label dans les charts pop.",
       "uri_apple_music": "applemusic://track/1443906582",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rzt9_c7cw5s",
       "uri_tidal": "tidal://track/2176253"
@@ -2323,6 +2436,7 @@
       "fun_fact": "One of Marvin Gaye's earliest hits, written by Holland-Dozier-Holland. The Rolling Stones covered it during their early career, helping spread the Motown sound to British rock audiences. The gospel-influenced call-and-response style defined early Motown.",
       "fun_fact_de": "Einer von Marvin Gayes frühesten Hits, geschrieben von Holland-Dozier-Holland. Die Rolling Stones coverten ihn in ihrer frühen Karriere und verbreiteten den Motown-Sound beim britischen Rock-Publikum. Der Gospel-beeinflusste Call-and-Response-Stil prägte das frühe Motown.",
       "fun_fact_es": "Uno de los primeros éxitos de Marvin Gaye, escrita por Holland-Dozier-Holland. Los Rolling Stones la versionaron al inicio de su carrera, ayudando a difundir el sonido Motown entre el público del rock británico. El estilo gospel de llamada y respuesta definió el Motown temprano.",
+      "fun_fact_fr": "L'un des tout premiers succès de Marvin Gaye, écrit par Holland-Dozier-Holland. Les Rolling Stones l'ont reprise à leurs débuts, contribuant à diffuser le son Motown auprès du public rock britannique. Le style gospel d'appel et réponse a défini les premiers pas de Motown.",
       "uri_apple_music": "applemusic://track/1455384527",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-YdTLDQCVH4",
       "uri_tidal": "tidal://track/105506248"
@@ -2350,6 +2464,7 @@
       "fun_fact": "Jr. Walker's first and biggest hit, named after a popular dance. He was one of Motown's few instrumentalists to achieve major success as a frontman. The raw, honking saxophone defined the song's irresistible groove.",
       "fun_fact_de": "Jr. Walkers erster und größter Hit, benannt nach einem beliebten Tanz. Er war einer der wenigen Instrumentalisten bei Motown, die als Frontman großen Erfolg hatten. Das raue, schnarrende Saxophon definierte den unwiderstehlichen Groove des Songs.",
       "fun_fact_es": "El primer y mayor éxito de Jr. Walker, nombrado por un baile popular. Fue uno de los pocos instrumentistas de Motown en lograr gran éxito como líder. El saxofón crudo y estridente definió el irresistible groove de la canción.",
+      "fun_fact_fr": "Le premier et plus grand succès de Jr. Walker, nommé d'après une danse populaire. Il était l'un des rares instrumentistes de Motown à avoir réussi en tant que leader de groupe. Le son cru et perçant du saxophone a défini le groove irrésistible de la chanson.",
       "uri_apple_music": "applemusic://track/1611669451",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6FgO2Hs4t_4",
       "uri_tidal": "tidal://track/219345494"
@@ -2377,6 +2492,7 @@
       "fun_fact": "Written by Holland-Dozier-Holland, it was the first Motown song to earn a Grammy nomination. Linda Ronstadt covered it in 1975 and also had a Top 5 hit. The song helped establish the Motown Sound.",
       "fun_fact_de": "Geschrieben von Holland-Dozier-Holland, war es der erste Motown-Song, der eine Grammy-Nominierung erhielt. Linda Ronstadt coverte ihn 1975 und landete ebenfalls einen Top-5-Hit.",
       "fun_fact_es": "Escrita por Holland-Dozier-Holland, fue la primera canción de Motown en obtener una nominación al Grammy. Linda Ronstadt la versionó en 1975 y también tuvo un éxito Top 5.",
+      "fun_fact_fr": "Écrite par Holland-Dozier-Holland, c'est la première chanson Motown à avoir obtenu une nomination aux Grammy. Linda Ronstadt l'a reprise en 1975 et en a également fait un succès top 5. Le titre a contribué à forger le « Motown Sound ».",
       "uri_apple_music": "applemusic://track/1444017336",
       "uri_youtube_music": "https://music.youtube.com/watch?v=64w0UqTHGFg",
       "uri_tidal": "tidal://track/28802934"
@@ -2404,6 +2520,7 @@
       "fun_fact": "Written and produced by Stevie Wonder. Jermaine stayed at Motown when his brothers left for Epic Records because he had married Berry Gordy's daughter Hazel. This became his biggest solo hit at Motown.",
       "fun_fact_de": "Geschrieben und produziert von Stevie Wonder. Jermaine blieb bei Motown, als seine Brüder zu Epic Records wechselten, weil er Berry Gordys Tochter Hazel geheiratet hatte. Dies wurde sein größter Solo-Hit bei Motown.",
       "fun_fact_es": "Escrita y producida por Stevie Wonder. Jermaine se quedó en Motown cuando sus hermanos se fueron a Epic Records porque se había casado con Hazel, la hija de Berry Gordy. Este fue su mayor éxito en solitario en Motown.",
+      "fun_fact_fr": "Écrite et produite par Stevie Wonder. Jermaine est resté chez Motown quand ses frères sont partis chez Epic Records, car il avait épousé Hazel, la fille de Berry Gordy. C'est devenu son plus grand succès solo chez Motown.",
       "uri_apple_music": "applemusic://track/1471567104",
       "uri_youtube_music": "https://music.youtube.com/watch?v=uJjRWyqL7nA",
       "uri_tidal": "tidal://track/93758629"
@@ -2431,6 +2548,7 @@
       "fun_fact": "Yes, that Bruce Willis! The 'Die Hard' star released this cover of The Drifters' classic on Motown Records. His album 'The Return of Bruno' was a surprising commercial success, especially in Europe.",
       "fun_fact_de": "Ja, genau der Bruce Willis! Der 'Stirb langsam'-Star veröffentlichte dieses Cover des Drifters-Klassikers bei Motown Records. Sein Album 'The Return of Bruno' war ein überraschender kommerzieller Erfolg, besonders in Europa.",
       "fun_fact_es": "¡Sí, ese Bruce Willis! La estrella de 'Duro de Matar' lanzó esta versión del clásico de los Drifters en Motown Records. Su álbum 'The Return of Bruno' fue un sorprendente éxito comercial, especialmente en Europa.",
+      "fun_fact_fr": "Eh oui, ce Bruce Willis ! La star de « Piège de Cristal » a sorti cette reprise du classique des Drifters chez Motown Records. Son album « The Return of Bruno » a été un succès commercial surprenant, surtout en Europe.",
       "uri_apple_music": "applemusic://track/1442210829",
       "uri_youtube_music": "https://music.youtube.com/watch?v=en9ZWmt5UxI",
       "uri_tidal": "tidal://track/2527946"
@@ -2458,6 +2576,7 @@
       "fun_fact": "From the same album as 'Super Freak' (Street Songs). Rick James revitalized Motown's relevance in the early 1980s with his funk-punk style. The album sold over 3 million copies.",
       "fun_fact_de": "Vom gleichen Album wie 'Super Freak' (Street Songs). Rick James belebte Motowns Relevanz in den frühen 1980ern mit seinem Funk-Punk-Stil neu. Das Album verkaufte sich über 3 Millionen Mal.",
       "fun_fact_es": "Del mismo álbum que 'Super Freak' (Street Songs). Rick James revitalizó la relevancia de Motown a principios de los 80 con su estilo funk-punk. El álbum vendió más de 3 millones de copias.",
+      "fun_fact_fr": "Tiré du même album que « Super Freak » (Street Songs). Rick James a redonné à Motown sa pertinence au début des années 1980 avec son style funk-punk. L'album s'est vendu à plus de 3 millions d'exemplaires.",
       "uri_apple_music": "applemusic://track/1440805217",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1dNIQVYGXbM",
       "uri_tidal": "tidal://track/77815398"
@@ -2485,6 +2604,7 @@
       "fun_fact": "Rockwell was actually Berry Gordy's son, Kennedy Gordy, recording under a pseudonym. Michael Jackson sang the memorable chorus as a favor. The song became a Halloween staple and gained new popularity through internet memes.",
       "fun_fact_de": "Rockwell war tatsächlich Berry Gordys Sohn, Kennedy Gordy, der unter Pseudonym aufnahm. Michael Jackson sang den einprägsamen Refrain als Gefallen. Der Song wurde ein Halloween-Klassiker und gewann durch Internet-Memes neue Popularität.",
       "fun_fact_es": "Rockwell era en realidad el hijo de Berry Gordy, Kennedy Gordy, grabando bajo seudónimo. Michael Jackson cantó el memorable coro como un favor. La canción se convirtió en un clásico de Halloween y ganó nueva popularidad a través de memes de internet.",
+      "fun_fact_fr": "Rockwell était en réalité le fils de Berry Gordy, Kennedy Gordy, enregistrant sous pseudonyme. Michael Jackson a chanté le refrain mémorable en guise de service amical. La chanson est devenue un classique d'Halloween et a connu un regain de popularité grâce aux mèmes sur Internet.",
       "uri_apple_music": "applemusic://track/1278579752",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7YvAYIJSSZY",
       "uri_tidal": "tidal://track/5254510"
@@ -2512,6 +2632,7 @@
       "fun_fact": "Shanice was just 18 when this became a worldwide smash. It features a distinctive jazz flute solo. The song helped keep Motown relevant in the early 1990s new jack swing era.",
       "fun_fact_de": "Shanice war erst 18, als dies ein weltweiter Hit wurde. Es enthält ein markantes Jazz-Flöten-Solo. Der Song half, Motown in der frühen New-Jack-Swing-Ära der 1990er relevant zu halten.",
       "fun_fact_es": "Shanice tenía solo 18 años cuando este se convirtió en un éxito mundial. Presenta un distintivo solo de flauta jazz. La canción ayudó a mantener a Motown relevante en la era del new jack swing de los 90.",
+      "fun_fact_fr": "Shanice n'avait que 18 ans lorsque ce titre est devenu un succès mondial. Il se distingue par un solo de flûte jazz très reconnaissable. La chanson a aidé Motown à rester pertinent au début des années 1990, en pleine ère du new jack swing.",
       "uri_apple_music": "applemusic://track/1444166434",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ysYyCElzB0A",
       "uri_tidal": "tidal://track/3874996"
@@ -2539,6 +2660,7 @@
       "fun_fact": "The group's debut single, produced by Dallas Austin. The title blends 'Motown' (their label) with 'Philly' (their hometown of Philadelphia). Michael Bivins of New Edition discovered and mentored the group.",
       "fun_fact_de": "Die Debütsingle der Gruppe, produziert von Dallas Austin. Der Titel verbindet 'Motown' (ihr Label) mit 'Philly' (ihre Heimatstadt Philadelphia). Michael Bivins von New Edition entdeckte und förderte die Gruppe.",
       "fun_fact_es": "El sencillo debut del grupo, producido por Dallas Austin. El título mezcla 'Motown' (su sello) con 'Philly' (su ciudad natal Philadelphia). Michael Bivins de New Edition descubrió y fue mentor del grupo.",
+      "fun_fact_fr": "Le premier single du groupe, produit par Dallas Austin. Le titre fusionne « Motown » (leur label) et « Philly » (leur ville natale de Philadelphie). Michael Bivins de New Edition a découvert et guidé le groupe.",
       "uri_apple_music": "applemusic://track/1444183110",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Rciee-oQLoI",
       "uri_tidal": "tidal://track/3961405"
@@ -2566,6 +2688,7 @@
       "fun_fact": "From the soundtrack of the movie 'Short Circuit.' El DeBarge's falsetto was often compared to a young Michael Jackson. The song was his biggest solo hit and one of Motown's last major pop crossover successes of the decade.",
       "fun_fact_de": "Vom Soundtrack des Films 'Nummer 5 lebt!'. El DeBarges Falsett wurde oft mit dem jungen Michael Jackson verglichen. Der Song war sein größter Solo-Hit und einer der letzten großen Pop-Crossover-Erfolge von Motown in diesem Jahrzehnt.",
       "fun_fact_es": "De la banda sonora de la película 'Cortocircuito'. El falsete de El DeBarge fue frecuentemente comparado con el del joven Michael Jackson. Fue su mayor éxito en solitario y uno de los últimos grandes éxitos pop crossover de Motown en la década.",
+      "fun_fact_fr": "Tirée de la bande originale du film « Short Circuit ». Le falsetto d'El DeBarge était souvent comparé à celui du jeune Michael Jackson. C'était son plus grand succès solo et l'un des derniers grands succès pop crossover de Motown dans cette décennie.",
       "uri_apple_music": "applemusic://track/1443821020",
       "uri_youtube_music": "https://music.youtube.com/watch?v=F5V1nSUgYA4",
       "uri_tidal": "tidal://track/3874732"
@@ -2591,6 +2714,7 @@
       "fun_fact": "The second single from their duet album 'Billy Preston & Syreeta.' It showcased the musical chemistry between the 'Fifth Beatle' and Stevie Wonder's ex-wife. Syreeta also co-wrote Stevie's 'Signed, Sealed, Delivered.'",
       "fun_fact_de": "Die zweite Single von ihrem Duett-Album. Es zeigte die musikalische Chemie zwischen dem 'Fünften Beatle' und Stevie Wonders Ex-Frau. Syreeta schrieb auch Stevies 'Signed, Sealed, Delivered' mit.",
       "fun_fact_es": "El segundo sencillo de su álbum de duetos. Mostró la química musical entre el 'Quinto Beatle' y la ex esposa de Stevie Wonder. Syreeta también co-escribió 'Signed, Sealed, Delivered' de Stevie.",
+      "fun_fact_fr": "Le deuxième single de leur album en duo. Il mettait en lumière l'alchimie musicale entre le « Cinquième Beatle » et l'ex-femme de Stevie Wonder. Syreeta a également co-écrit « Signed, Sealed, Delivered » de Stevie.",
       "uri_apple_music": "applemusic://track/1592733515",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YXQzPRhjh_g",
       "uri_tidal": "tidal://track/202977725"
