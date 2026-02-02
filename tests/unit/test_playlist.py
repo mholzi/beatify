@@ -5,6 +5,7 @@ from __future__ import annotations
 from custom_components.beatify.const import (
     PROVIDER_APPLE_MUSIC,
     PROVIDER_SPOTIFY,
+    PROVIDER_TIDAL,
 )
 from custom_components.beatify.game.playlist import (
     PlaylistManager,
@@ -130,6 +131,50 @@ class TestValidatePlaylist:
         assert is_valid is False
         assert "Song 1: no valid URI" in errors
 
+    def test_tidal_uri_validates(self):
+        """Tidal URIs with tidal://track/{id} pattern validate correctly."""
+        data = {
+            "name": "Tidal Playlist",
+            "songs": [
+                {"year": 1985, "uri_tidal": "tidal://track/12345678"},
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is True
+        assert errors == []
+
+    def test_invalid_tidal_pattern_rejected(self):
+        """Tidal URIs must match pattern tidal://track/{numeric-id}."""
+        data = {
+            "name": "Invalid Tidal",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_tidal": "tidal://album/12345678",  # Invalid: album not track
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is False
+        assert len(errors) == 2  # Invalid pattern + no valid URI
+        assert "uri_tidal" in errors[0]
+
+    def test_tidal_with_other_providers_validates(self):
+        """Songs with Tidal alongside other provider URIs validate."""
+        data = {
+            "name": "Multi-Provider",
+            "songs": [
+                {
+                    "year": 1985,
+                    "uri_spotify": "spotify:track:2WfaOiMkCvy7F5fcp2zZ8L",
+                    "uri_tidal": "tidal://track/12345678",
+                },
+            ],
+        }
+        is_valid, errors = validate_playlist(data)
+        assert is_valid is True
+        assert errors == []
+
 
 # =============================================================================
 # GET_SONG_URI TESTS
@@ -187,6 +232,25 @@ class TestGetSongUri:
         result = get_song_uri(song, PROVIDER_APPLE_MUSIC)
         assert result is None
 
+    def test_tidal_provider_returns_uri_tidal(self):
+        """For Tidal, return uri_tidal field."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+            "uri_tidal": "tidal://track/12345678",
+        }
+        result = get_song_uri(song, PROVIDER_TIDAL)
+        assert result == "tidal://track/12345678"
+
+    def test_tidal_provider_returns_none_without_field(self):
+        """For Tidal, return None if uri_tidal not present."""
+        song = {
+            "year": 1985,
+            "uri": "spotify:track:SPOTIFY123456789012",
+        }
+        result = get_song_uri(song, PROVIDER_TIDAL)
+        assert result is None
+
     def test_unknown_provider_returns_none(self):
         """Unknown provider returns None."""
         song = {
@@ -227,6 +291,18 @@ class TestFilterSongsForProvider:
             {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
         ]
         filtered, skipped = filter_songs_for_provider(songs, PROVIDER_APPLE_MUSIC)
+        assert len(filtered) == 1
+        assert skipped == 2
+        assert filtered[0]["year"] == 1985
+
+    def test_filters_tidal_songs(self):
+        """Filter returns songs with Tidal URIs."""
+        songs = [
+            {"year": 1984, "uri": "spotify:track:SONG1234567890123456"},
+            {"year": 1985, "uri_tidal": "tidal://track/123"},
+            {"year": 1986, "uri_spotify": "spotify:track:SONG2345678901234567"},
+        ]
+        filtered, skipped = filter_songs_for_provider(songs, PROVIDER_TIDAL)
         assert len(filtered) == 1
         assert skipped == 2
         assert filtered[0]["year"] == 1985

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enrich Beatify playlist JSON files with Apple Music and YouTube Music URIs.
+"""Enrich Beatify playlist JSON files with Apple Music, YouTube Music, and Tidal URIs.
 
 Uses the Odesli (song.link) API to look up cross-platform links from Spotify URIs.
 No API key required for basic usage.
@@ -73,8 +73,26 @@ def extract_youtube_music_url(data: dict) -> str:
     return yt.get("url", "")
 
 
-def process_playlist(filepath: str) -> Tuple[int, int, int, int]:
-    """Enrich a single playlist file. Returns (am_found, am_total, yt_found, yt_total)."""
+def extract_tidal_uri(data: dict) -> str:
+    """Extract Tidal track ID → 'tidal://track/<id>'."""
+    tidal = data.get("linksByPlatform", {}).get("tidal")
+    if not tidal:
+        return ""
+    # Primary: entityUniqueId "TIDAL_SONG::<id>"
+    entity_id = tidal.get("entityUniqueId", "")
+    match = re.search(r"TIDAL_SONG::(\d+)", entity_id)
+    if match:
+        return f"tidal://track/{match.group(1)}"
+    # Fallback: parse track/<id> from the URL
+    url = tidal.get("url", "")
+    match = re.search(r"/track/(\d+)", url)
+    if match:
+        return f"tidal://track/{match.group(1)}"
+    return ""
+
+
+def process_playlist(filepath: str) -> Tuple[int, int, int, int, int, int]:
+    """Enrich a single playlist file. Returns (am_found, am_total, yt_found, yt_total, td_found, td_total)."""
     print(f"\n📂 Processing: {os.path.basename(filepath)}")
 
     with open(filepath, "r", encoding="utf-8") as f:
@@ -84,20 +102,25 @@ def process_playlist(filepath: str) -> Tuple[int, int, int, int]:
     total = len(songs)
     am_needed = 0
     yt_needed = 0
+    td_needed = 0
     am_found = 0
     yt_found = 0
+    td_found = 0
     api_calls = 0
 
     for i, song in enumerate(songs, 1):
         need_am = not song.get("uri_apple_music")
         need_yt = not song.get("uri_youtube_music")
+        need_td = not song.get("uri_tidal")
 
         if need_am:
             am_needed += 1
         if need_yt:
             yt_needed += 1
+        if need_td:
+            td_needed += 1
 
-        if not need_am and not need_yt:
+        if not need_am and not need_yt and not need_td:
             continue
 
         artist = song.get("artist", "?")
@@ -140,6 +163,15 @@ def process_playlist(filepath: str) -> Tuple[int, int, int, int]:
             else:
                 parts.append("🎵 ✗")
 
+        if need_td:
+            td_uri = extract_tidal_uri(result)
+            if td_uri:
+                song["uri_tidal"] = td_uri
+                td_found += 1
+                parts.append("🌊 ✓")
+            else:
+                parts.append("🌊 ✗")
+
         print(f" → {' '.join(parts)}")
 
         # Save periodically every 10 API calls
@@ -153,8 +185,8 @@ def process_playlist(filepath: str) -> Tuple[int, int, int, int]:
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
-    print(f"\n  ✅ Saved. Apple Music: {am_found}/{am_needed} enriched | YouTube Music: {yt_found}/{yt_needed} enriched")
-    return am_found, am_needed, yt_found, yt_needed
+    print(f"\n  ✅ Saved. Apple Music: {am_found}/{am_needed} | YouTube Music: {yt_found}/{yt_needed} | Tidal: {td_found}/{td_needed}")
+    return am_found, am_needed, yt_found, yt_needed, td_found, td_needed
 
 
 def main():
@@ -176,19 +208,22 @@ def main():
         sys.exit(1)
 
     total_am_found = total_am_needed = total_yt_found = total_yt_needed = 0
+    total_td_found = total_td_needed = 0
 
     for filepath in files:
         if not os.path.isfile(filepath):
             print(f"⚠  File not found: {filepath}")
             continue
-        am_f, am_n, yt_f, yt_n = process_playlist(filepath)
+        am_f, am_n, yt_f, yt_n, td_f, td_n = process_playlist(filepath)
         total_am_found += am_f
         total_am_needed += am_n
         total_yt_found += yt_f
         total_yt_needed += yt_n
+        total_td_found += td_f
+        total_td_needed += td_n
 
     print(f"\n{'='*60}")
-    print(f"🏁 Done! Apple Music: {total_am_found}/{total_am_needed} | YouTube Music: {total_yt_found}/{total_yt_needed}")
+    print(f"🏁 Done! Apple Music: {total_am_found}/{total_am_needed} | YouTube Music: {total_yt_found}/{total_yt_needed} | Tidal: {total_td_found}/{total_td_needed}")
     print(f"{'='*60}")
 
 

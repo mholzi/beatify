@@ -20,6 +20,7 @@ from custom_components.beatify.const import (
     PLAYLIST_DOCS_URL,
     PROVIDER_DEFAULT,
     PROVIDER_SPOTIFY,
+    PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
@@ -192,8 +193,8 @@ class StartGameView(HomeAssistantView):
         if difficulty not in valid_difficulties:
             difficulty = DIFFICULTY_DEFAULT
 
-        # Validate provider (Story 17.6: Spotify and YouTube Music supported)
-        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_YOUTUBE_MUSIC)
+        # Validate provider (Story 17.6: Spotify, YouTube Music, Tidal supported)
+        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_YOUTUBE_MUSIC, PROVIDER_TIDAL)
         if provider not in valid_providers:
             provider = PROVIDER_DEFAULT
 
@@ -332,6 +333,15 @@ class StartGameView(HomeAssistantView):
                 {
                     "error": "PROVIDER_NOT_SUPPORTED",
                     "message": "YouTube Music is not supported on this speaker. Use Music Assistant.",
+                },
+                status=400,
+            )
+
+        if provider == PROVIDER_TIDAL and not capabilities.get("tidal"):
+            return web.json_response(
+                {
+                    "error": "PROVIDER_NOT_SUPPORTED",
+                    "message": "Tidal is not supported on this speaker. Use Music Assistant.",
                 },
                 status=400,
             )

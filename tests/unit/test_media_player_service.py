@@ -72,9 +72,7 @@ class TestMediaPlayerServicePlayback:
     @pytest.mark.asyncio
     async def test_play_song_via_sonos(self, mock_hass):
         """Sonos players use media_player.play_media with URI."""
-        service = MediaPlayerService(
-            mock_hass, "media_player.sonos_speaker", platform="sonos"
-        )
+        service = MediaPlayerService(mock_hass, "media_player.sonos_speaker", platform="sonos")
         song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
 
         result = await service.play_song(song)
@@ -119,7 +117,11 @@ class TestMediaPlayerServicePlayback:
         service = MediaPlayerService(
             mock_hass, "media_player.echo", platform="alexa_media", provider="apple_music"
         )
-        song = {"_resolved_uri": "applemusic://track/123", "artist": "Test Artist", "title": "Test Song"}
+        song = {
+            "_resolved_uri": "applemusic://track/123",
+            "artist": "Test Artist",
+            "title": "Test Song",
+        }
 
         result = await service.play_song(song)
 
@@ -142,9 +144,7 @@ class TestMediaPlayerServicePlayback:
     @pytest.mark.asyncio
     async def test_play_song_unsupported_platform_returns_false(self, mock_hass):
         """play_song returns False for unsupported platforms."""
-        service = MediaPlayerService(
-            mock_hass, "media_player.unknown", platform="unknown_platform"
-        )
+        service = MediaPlayerService(mock_hass, "media_player.unknown", platform="unknown_platform")
         song = {"_resolved_uri": "spotify:track:abc123", "artist": "Test", "title": "Song"}
 
         result = await service.play_song(song)
@@ -314,11 +314,12 @@ class TestPlatformCapabilities:
     """
 
     def test_music_assistant_capabilities(self):
-        """Music Assistant supports Spotify and Apple Music via URI."""
+        """Music Assistant supports Spotify, Apple Music, and Tidal via URI."""
         caps = get_platform_capabilities("music_assistant")
         assert caps["supported"] is True
         assert caps["spotify"] is True
         assert caps["apple_music"] is True
+        assert caps["tidal"] is True
         assert caps["method"] == "uri"
 
     def test_sonos_capabilities(self):
@@ -327,6 +328,7 @@ class TestPlatformCapabilities:
         assert caps["supported"] is True
         assert caps["spotify"] is True
         assert caps["apple_music"] is False
+        assert caps["tidal"] is False
         assert caps["method"] == "uri"
 
     def test_alexa_media_capabilities(self):
@@ -335,6 +337,7 @@ class TestPlatformCapabilities:
         assert caps["supported"] is True
         assert caps["spotify"] is True
         assert caps["apple_music"] is True
+        assert caps["tidal"] is False
         assert caps["method"] == "text_search"
         assert "caveat" in caps  # Alexa has search caveat
 
