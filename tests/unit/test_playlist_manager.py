@@ -200,11 +200,12 @@ class TestPlaylistManagerImmutability:
 class TestLocalizedContent:
     """Tests for localized content retrieval (Story 16.1, 16.3)."""
 
-    def test_supported_languages_includes_de_es(self):
-        """SUPPORTED_LANGUAGES includes German and Spanish."""
+    def test_supported_languages_includes_de_es_fr(self):
+        """SUPPORTED_LANGUAGES includes German, Spanish, and French."""
         assert "en" in SUPPORTED_LANGUAGES
         assert "de" in SUPPORTED_LANGUAGES
         assert "es" in SUPPORTED_LANGUAGES
+        assert "fr" in SUPPORTED_LANGUAGES
 
     def test_get_localized_field_english_returns_base_field(self):
         """get_localized_field returns base field for English."""
@@ -234,6 +235,15 @@ class TestLocalizedContent:
         result = get_localized_field(song, "fun_fact", "es")
         assert result == "Spanish fun fact"
 
+    def test_get_localized_field_french_returns_french_field(self):
+        """get_localized_field returns French field when available."""
+        song = {
+            "fun_fact": "English fun fact",
+            "fun_fact_fr": "French fun fact",
+        }
+        result = get_localized_field(song, "fun_fact", "fr")
+        assert result == "French fun fact"
+
     def test_get_localized_field_falls_back_to_english(self):
         """get_localized_field falls back to English when localized not available."""
         song = {
@@ -245,6 +255,10 @@ class TestLocalizedContent:
 
         # Spanish not available, should fall back to English
         result = get_localized_field(song, "fun_fact", "es")
+        assert result == "English fun fact"
+
+        # French not available, should fall back to English
+        result = get_localized_field(song, "fun_fact", "fr")
         assert result == "English fun fact"
 
     def test_get_localized_field_returns_none_when_missing(self):
@@ -259,6 +273,7 @@ class TestLocalizedContent:
             "awards": ["Grammy Award", "MTV Award"],
             "awards_de": ["Grammy Auszeichnung", "MTV Preis"],
             "awards_es": ["Premio Grammy", "Premio MTV"],
+            "awards_fr": ["Prix Grammy", "Prix MTV"],
         }
         # English
         result = get_localized_field(song, "awards", "en")
@@ -271,6 +286,10 @@ class TestLocalizedContent:
         # Spanish
         result = get_localized_field(song, "awards", "es")
         assert result == ["Premio Grammy", "Premio MTV"]
+
+        # French
+        result = get_localized_field(song, "awards", "fr")
+        assert result == ["Prix Grammy", "Prix MTV"]
 
     def test_get_localized_field_empty_localized_falls_back(self):
         """get_localized_field falls back when localized field is empty."""

@@ -125,7 +125,7 @@ MIN_YEAR = 1900
 MAX_YEAR = 2030
 
 # Supported languages for localized content
-SUPPORTED_LANGUAGES = ("en", "de", "es")
+SUPPORTED_LANGUAGES = ("en", "de", "es", "fr")
 
 
 def get_localized_field(song: dict[str, Any], field: str, language: str) -> str | list[str] | None:
@@ -135,7 +135,7 @@ def get_localized_field(song: dict[str, Any], field: str, language: str) -> str 
     Args:
         song: Song dictionary
         field: Base field name (e.g., 'fun_fact', 'awards')
-        language: Language code ('en', 'de', 'es')
+        language: Language code ('en', 'de', 'es', 'fr')
 
     Returns:
         Localized value or English fallback, or None if neither exists
