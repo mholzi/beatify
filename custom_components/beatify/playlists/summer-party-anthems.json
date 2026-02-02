@@ -1,0 +1,2902 @@
+{
+  "name": "100 Summer Anthems ☀️",
+  "version": "1.0",
+  "tags": [
+    "summer",
+    "party",
+    "classics",
+    "feel-good",
+    "multi-decade"
+  ],
+  "songs": [
+    {
+      "year": 1969,
+      "uri": "spotify:track:6dGnYIeXmHdcikdzNNDMm2",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Kinks",
+        "The Who"
+      ],
+      "title": "Here Comes The Sun - Remastered 2009",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 4,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "George Harrison wrote this song in Eric Clapton's garden after escaping a tense Apple Corps business meeting, calling it 'a song of pure relief.'",
+      "fun_fact_de": "George Harrison schrieb diesen Song in Eric Claptons Garten, nachdem er einem angespannten Apple-Corps-Geschaeftstreffen entkommen war, und nannte ihn 'ein Lied der puren Erleichterung.'",
+      "fun_fact_es": "George Harrison escribio esta cancion en el jardin de Eric Clapton tras escapar de una tensa reunion de negocios de Apple Corps, llamandola 'una cancion de puro alivio.'",
+      "uri_apple_music": "applemusic://track/1474833934",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KQetemT1sWc",
+      "uri_tidal": "tidal://track/55130637"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2RlgNHKcydI9sayD2Df2xp",
+      "artist": "Electric Light Orchestra",
+      "alt_artists": [
+        "Supertramp",
+        "10cc",
+        "Fleetwood Mac"
+      ],
+      "title": "Mr. Blue Sky",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 6,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Jeff Lynne wrote 'Mr. Blue Sky' after two weeks of gloomy weather in Switzerland suddenly gave way to brilliant sunshine. The song took three months to record.",
+      "fun_fact_de": "Jeff Lynne schrieb 'Mr. Blue Sky' nachdem zwei Wochen trueben Wetters in der Schweiz ploetzlich strahlendem Sonnenschein wichen. Die Aufnahme dauerte drei Monate.",
+      "fun_fact_es": "Jeff Lynne escribio 'Mr. Blue Sky' despues de que dos semanas de clima sombrio en Suiza dieron paso repentinamente a un sol radiante. La cancion tardo tres meses en grabarse.",
+      "uri_apple_music": "applemusic://track/196426738",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wuJIqmha2Hk",
+      "uri_tidal": "tidal://track/53230853"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:6aU6a9tdn2vHhnPGlboFZX",
+      "artist": "The Beach Boys",
+      "alt_artists": [
+        "Jan & Dean",
+        "The Ventures",
+        "The Surfaris"
+      ],
+      "title": "Good Vibrations",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Good Vibrations' cost over $50,000 to produce in 1966 (about $470,000 today), making it the most expensive single ever recorded at the time. It was pieced together from sessions at four different studios.",
+      "fun_fact_de": "'Good Vibrations' kostete 1966 ueber 50.000 Dollar in der Produktion (heute etwa 470.000 Dollar) und war damit die teuerste jemals aufgenommene Single. Sie wurde aus Sessions in vier verschiedenen Studios zusammengesetzt.",
+      "fun_fact_es": "'Good Vibrations' costo mas de $50,000 en producirse en 1966 (unos $470,000 actuales), convirtiendose en el sencillo mas caro jamas grabado en ese momento. Fue ensamblada a partir de sesiones en cuatro estudios diferentes.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=apBWI6xrbLY",
+      "uri_tidal": "tidal://track/8234589"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:05wIrZSwuaVWhcv5FfqeH0",
+      "artist": "Katrina & The Waves",
+      "alt_artists": [
+        "Cyndi Lauper",
+        "Kim Wilde",
+        "Bananarama"
+      ],
+      "title": "Walking On Sunshine",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": 8,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Katrina & The Waves' lead songwriter Kimberley Rew wrote 'Walking on Sunshine' in about ten minutes. The song has become one of the most licensed feel-good tracks in advertising history.",
+      "fun_fact_de": "Kimberley Rew, der Hauptsongwriter von Katrina & The Waves, schrieb 'Walking on Sunshine' in etwa zehn Minuten. Der Song wurde zu einem der meistlizenzierten Gute-Laune-Tracks in der Werbegeschichte.",
+      "fun_fact_es": "Kimberley Rew, el compositor principal de Katrina & The Waves, escribio 'Walking on Sunshine' en unos diez minutos. La cancion se ha convertido en una de las mas licenciadas en la historia de la publicidad.",
+      "uri_apple_music": "applemusic://track/724739482",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iPUmE-tne5U",
+      "uri_tidal": "tidal://track/1346602"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:7M13FwBAKWNa2jqcZeUhL6",
+      "artist": "Bob Sinclar, Gary Pine",
+      "alt_artists": [
+        "David Guetta",
+        "Benny Benassi",
+        "Roger Sanchez"
+      ],
+      "title": "Love Generation - Radio Edit",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 3,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (UK)",
+        "Gold (DE)",
+        "Diamond (FR)"
+      ],
+      "awards": [],
+      "fun_fact": "'Love Generation' became the unofficial anthem of the 2006 FIFA World Cup in Germany, even though it was not the official song. It topped the charts in ten European countries.",
+      "fun_fact_de": "'Love Generation' wurde zur inoffiziellen Hymne der FIFA-WM 2006 in Deutschland, obwohl es nicht der offizielle Song war. Er erreichte in zehn europaeischen Laendern Platz 1.",
+      "fun_fact_es": "'Love Generation' se convirtio en el himno no oficial de la Copa Mundial de la FIFA 2006 en Alemania, aunque no era la cancion oficial. Llego al numero uno en diez paises europeos.",
+      "uri_apple_music": "applemusic://track/1727362040",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z-UunT19PP4",
+      "uri_tidal": "tidal://track/341759088"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0bRXwKfigvpKZUurwqAlEh",
+      "artist": "Bill Withers",
+      "alt_artists": [
+        "Al Green",
+        "Marvin Gaye",
+        "Curtis Mayfield"
+      ],
+      "title": "Lovely Day",
+      "chart_info": {
+        "billboard_peak": 30,
+        "uk_peak": 7,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Bill Withers holds a single note for 18 seconds during the word 'day' in 'Lovely Day,' one of the longest sustained notes in a hit pop single.",
+      "fun_fact_de": "Bill Withers haelt beim Wort 'day' in 'Lovely Day' einen einzelnen Ton 18 Sekunden lang, einer der laengsten gehaltenen Toene in einer erfolgreichen Pop-Single.",
+      "fun_fact_es": "Bill Withers sostiene una sola nota durante 18 segundos en la palabra 'day' en 'Lovely Day,' una de las notas sostenidas mas largas en un sencillo pop exitoso.",
+      "uri_apple_music": "applemusic://track/989376634",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bEeaS6fuUoA",
+      "uri_tidal": "tidal://track/45105672"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:30SCXVFyQGOFMdKnbgJS18",
+      "artist": "Johnny Nash",
+      "alt_artists": [
+        "Bob Marley",
+        "Jimmy Cliff",
+        "Desmond Dekker"
+      ],
+      "title": "I Can See Clearly Now",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Johnny Nash recorded 'I Can See Clearly Now' in Jamaica with reggae musicians, making it one of the earliest reggae-influenced pop hits. Bob Marley played guitar on some of Nash's Jamaican sessions.",
+      "fun_fact_de": "Johnny Nash nahm 'I Can See Clearly Now' in Jamaika mit Reggae-Musikern auf und machte es zu einem der fruehesten reggae-beeinflussten Pop-Hits. Bob Marley spielte bei einigen von Nashs jamaikanischen Sessions Gitarre.",
+      "fun_fact_es": "Johnny Nash grabo 'I Can See Clearly Now' en Jamaica con musicos de reggae, convirtiendola en uno de los primeros exitos pop con influencia reggae. Bob Marley toco la guitarra en algunas sesiones jamaicanas de Nash.",
+      "uri_apple_music": "applemusic://track/217273922",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Qr2WF8dvjnY",
+      "uri_tidal": "tidal://track/2583042"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2k3o4jvpcpNw0mVmAh3tSC",
+      "artist": "Wham!",
+      "alt_artists": [
+        "Duran Duran",
+        "Culture Club",
+        "Spandau Ballet"
+      ],
+      "title": "Club Tropicana",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 4,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The music video for 'Club Tropicana' was filmed at a real resort in Ibiza. George Michael and Andrew Ridgeley were still in their teens when they formed Wham!, and this became their summer breakthrough hit.",
+      "fun_fact_de": "Das Musikvideo zu 'Club Tropicana' wurde in einem echten Resort auf Ibiza gedreht. George Michael und Andrew Ridgeley waren noch Teenager, als sie Wham! gruendeten, und dies wurde ihr Sommer-Durchbruchshit.",
+      "fun_fact_es": "El video musical de 'Club Tropicana' se filmo en un resort real en Ibiza. George Michael y Andrew Ridgeley aun eran adolescentes cuando formaron Wham!, y esta se convirtio en su cancion revelacion del verano.",
+      "uri_apple_music": "applemusic://track/206897937",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WYX0sjP6Za8",
+      "uri_tidal": "tidal://track/38762"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7gfAYm7X5HMSuKcO4dy8Wi",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The Supremes",
+        "The Four Seasons"
+      ],
+      "title": "Loco in Acapulco",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 7,
+        "weeks_on_chart": 11
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Loco in Acapulco' was co-written by Phil Collins and Lamont Dozier. It gave the Four Tops their biggest UK hit in over 20 years, proving their enduring appeal across generations.",
+      "fun_fact_de": "'Loco in Acapulco' wurde von Phil Collins und Lamont Dozier mitgeschrieben. Es bescherte den Four Tops ihren groessten UK-Hit seit ueber 20 Jahren und bewies ihre generationenuebergreifende Anziehungskraft.",
+      "fun_fact_es": "'Loco in Acapulco' fue coescrita por Phil Collins y Lamont Dozier. Le dio a los Four Tops su mayor exito en el Reino Unido en mas de 20 anos, demostrando su atractivo duradero entre generaciones.",
+      "uri_apple_music": "applemusic://track/501183161",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yMmBOhM0y2g",
+      "uri_tidal": "tidal://track/13930958"
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:2EPr9Wx7e1cpGEbNAtuN7x",
+      "artist": "The Beach Boys",
+      "alt_artists": [
+        "Jan & Dean",
+        "Dick Dale",
+        "The Ventures"
+      ],
+      "title": "Surfin' U.S.A.",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 34,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Surfin' U.S.A.' borrowed its melody so heavily from Chuck Berry's 'Sweet Little Sixteen' that Berry was eventually given a songwriting credit. It became the anthem of California surf culture.",
+      "fun_fact_de": "'Surfin' U.S.A.' uebernahm die Melodie so stark von Chuck Berrys 'Sweet Little Sixteen', dass Berry schliesslich als Songwriter aufgefuehrt wurde. Es wurde zur Hymne der kalifornischen Surfkultur.",
+      "fun_fact_es": "'Surfin' U.S.A.' tomo prestada la melodia de 'Sweet Little Sixteen' de Chuck Berry de forma tan evidente que Berry finalmente recibio credito como compositor. Se convirtio en el himno de la cultura del surf californiana.",
+      "uri_apple_music": "applemusic://track/725823658",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H0bhSGfKTs4",
+      "uri_tidal": "tidal://track/1392940"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7kJXjcl5lk7g7fNQAVVpkl",
+      "artist": "Aztec Camera",
+      "alt_artists": [
+        "The Smiths",
+        "Prefab Sprout",
+        "Orange Juice"
+      ],
+      "title": "Somewhere in My Heart",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 3,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Somewhere in My Heart' was Aztec Camera's only Top 5 hit. Frontman Roddy Frame was just 23 when it became the quintessential British summer pop song of 1988.",
+      "fun_fact_de": "'Somewhere in My Heart' war der einzige Top-5-Hit von Aztec Camera. Frontmann Roddy Frame war erst 23, als es zum quintessentiellen britischen Sommer-Popsong von 1988 wurde.",
+      "fun_fact_es": "'Somewhere in My Heart' fue el unico exito Top 5 de Aztec Camera. El lider Roddy Frame tenia solo 23 anos cuando se convirtio en la cancion pop veraniega britanica por excelencia de 1988.",
+      "uri_apple_music": "applemusic://track/1496801184",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2w1Q8ZkXZ1Q",
+      "uri_tidal": "tidal://track/10931931"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:1LOZMYF5s8qhW7Rv4w2gun",
+      "artist": "10cc",
+      "alt_artists": [
+        "Supertramp",
+        "Electric Light Orchestra",
+        "Steely Dan"
+      ],
+      "title": "Dreadlock Holiday",
+      "chart_info": {
+        "billboard_peak": 44,
+        "uk_peak": 1,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Dreadlock Holiday' was inspired by an incident when 10cc members were threatened by locals while on holiday in Barbados. The lyrics 'I don't like cricket, I love it' became a catchphrase in the UK.",
+      "fun_fact_de": "'Dreadlock Holiday' wurde durch einen Vorfall inspiriert, als 10cc-Mitglieder im Urlaub auf Barbados von Einheimischen bedroht wurden. Der Text 'I don't like cricket, I love it' wurde zum gefluegelten Wort in Grossbritannien.",
+      "fun_fact_es": "'Dreadlock Holiday' se inspiro en un incidente cuando miembros de 10cc fueron amenazados por lugareños durante unas vacaciones en Barbados. La frase 'I don't like cricket, I love it' se convirtio en un dicho popular en el Reino Unido.",
+      "uri_apple_music": "applemusic://track/1444101171",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fUNTk5xsxk4",
+      "uri_tidal": "tidal://track/3522451"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4I1WBw0xqdenkemd6gwIyp",
+      "artist": "The Kinks",
+      "alt_artists": [
+        "The Beatles",
+        "The Who",
+        "Small Faces"
+      ],
+      "title": "Sunny Afternoon - Stereo Version",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 1,
+        "weeks_on_chart": 13
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ray Davies wrote 'Sunny Afternoon' while recovering from a nervous breakdown. The song knocked The Beatles' 'Paperback Writer' off the UK number one spot in 1966.",
+      "fun_fact_de": "Ray Davies schrieb 'Sunny Afternoon' waehrend er sich von einem Nervenzusammenbruch erholte. Der Song verdraengte 'Paperback Writer' der Beatles 1966 von Platz 1 der UK-Charts.",
+      "fun_fact_es": "Ray Davies escribio 'Sunny Afternoon' mientras se recuperaba de un colapso nervioso. La cancion desplazo a 'Paperback Writer' de The Beatles del numero uno en el Reino Unido en 1966.",
+      "uri_apple_music": "applemusic://track/1439527967",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TBzzWFXpVZg",
+      "uri_tidal": "tidal://track/219653298"
+    },
+    {
+      "year": 1957,
+      "uri": "spotify:track:2gNjmvuQiEd2z9SqyYi8HH",
+      "artist": "Ella Fitzgerald, Louis Armstrong",
+      "alt_artists": [
+        "Billie Holiday",
+        "Nat King Cole",
+        "Sarah Vaughan"
+      ],
+      "title": "Summertime",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Ella Fitzgerald and Louis Armstrong version of 'Summertime' from their Porgy and Bess album is one of over 33,000 recorded versions of this Gershwin classic, making it the most covered song in history.",
+      "fun_fact_de": "Die Version von Ella Fitzgerald und Louis Armstrong von 'Summertime' aus ihrem Porgy-and-Bess-Album ist eine von ueber 33.000 aufgenommenen Versionen dieses Gershwin-Klassikers und macht ihn zum meistgecoverten Song der Geschichte.",
+      "fun_fact_es": "La version de Ella Fitzgerald y Louis Armstrong de 'Summertime' de su album Porgy and Bess es una de las mas de 33,000 versiones grabadas de este clasico de Gershwin, convirtiendola en la cancion mas versionada de la historia.",
+      "uri_apple_music": "applemusic://track/1425245232",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2HJCN3upMHE",
+      "uri_tidal": "tidal://track/94445659"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:7AzFID6u1b3zIWbd9pb8Dk",
+      "artist": "The Lovin' Spoonful",
+      "alt_artists": [
+        "The Turtles",
+        "The Monkees",
+        "The Mamas & The Papas"
+      ],
+      "title": "Summer in the City - Remastered",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Lovin' Spoonful recorded the traffic and jackhammer sounds heard in 'Summer in the City' on the streets of New York. It was the band's only number one hit on the Billboard Hot 100.",
+      "fun_fact_de": "The Lovin' Spoonful nahmen die Verkehrs- und Presslufthammer-Geraeusche in 'Summer in the City' auf den Strassen New Yorks auf. Es war der einzige Nummer-eins-Hit der Band in den Billboard Hot 100.",
+      "fun_fact_es": "The Lovin' Spoonful grabo los sonidos de trafico y martillos neumaticos de 'Summer in the City' en las calles de Nueva York. Fue el unico numero uno de la banda en el Billboard Hot 100.",
+      "uri_apple_music": "applemusic://track/253681783",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5YgevxRGXIU",
+      "uri_tidal": "tidal://track/49795"
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:5le4sn0iMcnKU56bdmNzso",
+      "artist": "Roy Ayers Ubiquity",
+      "alt_artists": [
+        "Herbie Hancock",
+        "George Benson",
+        "Donald Byrd"
+      ],
+      "title": "Everybody Loves The Sunshine",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Everybody Loves the Sunshine' has become one of the most sampled songs in hip-hop history, used by artists including Mary J. Blige, Big Daddy Kane, and many others. Roy Ayers is often called the godfather of neo-soul.",
+      "fun_fact_de": "'Everybody Loves the Sunshine' ist einer der meistgesampleten Songs in der Hip-Hop-Geschichte, verwendet von Kuenstlern wie Mary J. Blige, Big Daddy Kane und vielen anderen. Roy Ayers wird oft als Godfather des Neo-Soul bezeichnet.",
+      "fun_fact_es": "'Everybody Loves the Sunshine' se ha convertido en una de las canciones mas sampleadas en la historia del hip-hop, utilizada por artistas como Mary J. Blige, Big Daddy Kane y muchos otros. Roy Ayers es considerado el padrino del neo-soul.",
+      "uri_apple_music": "applemusic://track/1469585198",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Blg_vkaXSWI",
+      "uri_tidal": "tidal://track/94440084"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:2AVkArcfALVk2X8sfPRzya",
+      "artist": "John Travolta, Olivia Newton-John",
+      "alt_artists": [
+        "Bee Gees",
+        "ABBA",
+        "Andy Gibb"
+      ],
+      "title": "Summer Nights - From \"Grease\"",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 1,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Summer Nights' from the Grease soundtrack reached number one in the UK and became one of the best-selling singles of 1978. The song was re-recorded for the film with different lyrics than the original stage version.",
+      "fun_fact_de": "'Summer Nights' aus dem Grease-Soundtrack erreichte Platz eins in Grossbritannien und wurde zu einer der meistverkauften Singles von 1978. Der Song wurde fuer den Film mit anderen Texten als in der Buehnenversion neu aufgenommen.",
+      "fun_fact_es": "'Summer Nights' de la banda sonora de Grease llego al numero uno en el Reino Unido y se convirtio en uno de los sencillos mas vendidos de 1978. La cancion fue regrabada para la pelicula con letras diferentes a la version teatral.",
+      "uri_apple_music": "applemusic://track/1440844694",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N8Q-KnMkWS8",
+      "uri_tidal": "tidal://track/77625023"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:0GONea6G2XdnHWjNZd6zt3",
+      "artist": "Bryan Adams",
+      "alt_artists": [
+        "John Mellencamp",
+        "Bruce Springsteen",
+        "Tom Petty"
+      ],
+      "title": "Summer Of '69",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 42,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Bryan Adams has confirmed that 'Summer of '69' is not actually about the year 1969. The title is a double entendre, and Adams was only nine years old that summer. He bought his first real guitar at age 14.",
+      "fun_fact_de": "Bryan Adams hat bestaetigt, dass 'Summer of '69' nicht wirklich vom Jahr 1969 handelt. Der Titel ist eine Doppeldeutigkeit, und Adams war in jenem Sommer erst neun Jahre alt. Seine erste richtige Gitarre kaufte er mit 14.",
+      "fun_fact_es": "Bryan Adams ha confirmado que 'Summer of '69' no trata realmente del ano 1969. El titulo es un doble sentido, y Adams tenia solo nueve anos ese verano. Compro su primera guitarra real a los 14 anos.",
+      "uri_apple_music": "applemusic://track/1440823965",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y7CSA2BvJUE",
+      "uri_tidal": "tidal://track/37149247"
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:0ItlbY5mHDSYQd3SOgAlZu",
+      "artist": "Nat King Cole",
+      "alt_artists": [
+        "Frank Sinatra",
+        "Dean Martin",
+        "Bobby Darin"
+      ],
+      "title": "Those Lazy, Hazy, Crazy Days Of Summer",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Nat King Cole's 'Those Lazy, Hazy, Crazy Days of Summer' was a surprise hit in 1963, reaching the Top 10 on the Billboard Hot 100. It became a summer standard despite Cole being primarily known for romantic ballads.",
+      "fun_fact_de": "Nat King Coles 'Those Lazy, Hazy, Crazy Days of Summer' war 1963 ein ueberraschender Hit, der die Top 10 der Billboard Hot 100 erreichte. Es wurde ein Sommerstandard, obwohl Cole hauptsaechlich fuer romantische Balladen bekannt war.",
+      "fun_fact_es": "La cancion 'Those Lazy, Hazy, Crazy Days of Summer' de Nat King Cole fue un exito sorpresa en 1963, alcanzando el Top 10 del Billboard Hot 100. Se convirtio en un clasico del verano a pesar de que Cole era conocido principalmente por sus baladas romanticas.",
+      "uri_apple_music": "applemusic://track/716278761",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MRmEZMAfD3Y",
+      "uri_tidal": "tidal://track/2504573"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:7xah0pIPDTqiv5QMxMroTq",
+      "artist": "Cliff Richard & The Shadows",
+      "alt_artists": [
+        "Billy Fury",
+        "Adam Faith",
+        "Marty Wilde"
+      ],
+      "title": "In the Country",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 6,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'In the Country' was one of Cliff Richard's many UK hits that never crossed over to America. The song perfectly captures the idyllic English countryside imagery that was popular in mid-1960s British pop.",
+      "fun_fact_de": "'In the Country' war einer von Cliff Richards vielen UK-Hits, die nie in Amerika erfolgreich waren. Der Song faengt perfekt die idyllische englische Landschaftsromantik ein, die Mitte der 1960er im britischen Pop beliebt war.",
+      "fun_fact_es": "'In the Country' fue uno de los muchos exitos de Cliff Richard en el Reino Unido que nunca tuvieron exito en Estados Unidos. La cancion captura perfectamente la imagen idilica de la campiña inglesa que era popular en el pop britanico de mediados de los 60.",
+      "uri_apple_music": "applemusic://track/696777000",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z_DCofSL8iY",
+      "uri_tidal": "tidal://track/1500602"
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:3zBhihYUHBmGd2bcQIobrF",
+      "artist": "Otis Redding",
+      "alt_artists": [
+        "Sam Cooke",
+        "Marvin Gaye",
+        "Wilson Pickett"
+      ],
+      "title": "(Sittin' On) the Dock of the Bay",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 3,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Otis Redding recorded '(Sittin' On) The Dock of the Bay' just three days before his death in a plane crash in December 1967. The whistling at the end was a placeholder he planned to replace with final lyrics.",
+      "fun_fact_de": "Otis Redding nahm '(Sittin' On) The Dock of the Bay' nur drei Tage vor seinem Tod bei einem Flugzeugabsturz im Dezember 1967 auf. Das Pfeifen am Ende war ein Platzhalter, den er durch endgueltige Texte ersetzen wollte.",
+      "fun_fact_es": "Otis Redding grabo '(Sittin' On) The Dock of the Bay' solo tres dias antes de su muerte en un accidente aereo en diciembre de 1967. El silbido al final era un marcador que planeaba reemplazar con la letra definitiva.",
+      "uri_apple_music": "applemusic://track/995809798",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rTVjnBo96Ug",
+      "uri_tidal": "tidal://track/473433892"
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:65jrjEhWfAvysKfnojk1i0",
+      "artist": "The Drifters",
+      "alt_artists": [
+        "The Coasters",
+        "The Platters",
+        "The Temptations"
+      ],
+      "title": "Under the Boardwalk",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 45,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Under the Boardwalk' was recorded in 1964 just one day after original lead singer Rudy Lewis was found dead. New lead singer Johnny Moore stepped in and recorded the iconic vocal in a single take.",
+      "fun_fact_de": "'Under the Boardwalk' wurde 1964 nur einen Tag nachdem der urspruengliche Leadsaenger Rudy Lewis tot aufgefunden wurde aufgenommen. Der neue Leadsaenger Johnny Moore uebernahm und nahm den ikonischen Gesang in einer einzigen Aufnahme auf.",
+      "fun_fact_es": "'Under the Boardwalk' se grabo en 1964 solo un dia despues de que el cantante principal original Rudy Lewis fuera encontrado muerto. El nuevo cantante Johnny Moore intervino y grabo la iconica voz en una sola toma.",
+      "uri_apple_music": "applemusic://track/59403251",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PSddD6w5SKc",
+      "uri_tidal": "tidal://track/378607"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4U1EyDvrf1gTJ6fJPL3Xde",
+      "artist": "Dire Straits",
+      "alt_artists": [
+        "Supertramp",
+        "Fleetwood Mac",
+        "Steely Dan"
+      ],
+      "title": "Twisting By The Pool",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Twisting by the Pool' was a tongue-in-cheek departure for Dire Straits, released as a standalone EP. Mark Knopfler has said it was meant to be a fun throwaway track, but it became a surprise hit in several countries.",
+      "fun_fact_de": "'Twisting by the Pool' war eine augenzwinkernde Abweichung fuer Dire Straits, veroeffentlicht als eigenstaendige EP. Mark Knopfler sagte, es sollte ein lustiger Wegwerfsong sein, wurde aber in mehreren Laendern ein ueberraschender Hit.",
+      "fun_fact_es": "'Twisting by the Pool' fue una divertida desviacion para Dire Straits, lanzada como EP independiente. Mark Knopfler dijo que pretendia ser una cancion intrascendente, pero se convirtio en un exito sorpresa en varios paises.",
+      "uri_apple_music": "applemusic://track/1501778502",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DsJ5aYK-S6Y",
+      "uri_tidal": "tidal://track/27514127"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:7uEcCGtM1FBBGIhPozhJjv",
+      "artist": "The Monkees",
+      "alt_artists": [
+        "The Turtles",
+        "The Lovin' Spoonful",
+        "Herman's Hermits"
+      ],
+      "title": "Daydream Believer",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Daydream Believer' was written by John Stewart of the Kingston Trio. The opening studio chatter where producer Chip Douglas counts '7A' before the song begins was left in intentionally and became one of rock's most famous intros.",
+      "fun_fact_de": "'Daydream Believer' wurde von John Stewart von den Kingston Trio geschrieben. Das Studio-Geplauder am Anfang, bei dem Produzent Chip Douglas '7A' zaehlt, wurde absichtlich beibehalten und wurde zu einem der beruehmtesten Intros der Rockmusik.",
+      "fun_fact_es": "'Daydream Believer' fue escrita por John Stewart de los Kingston Trio. La charla de estudio al inicio donde el productor Chip Douglas cuenta '7A' se dejo intencionalmente y se convirtio en una de las intros mas famosas del rock.",
+      "uri_apple_music": "applemusic://track/23419779",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K3syk2VOmRw",
+      "uri_tidal": "tidal://track/3268157"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:3ogbNolvuLnFZRbfykTfIs",
+      "artist": "Small Faces",
+      "alt_artists": [
+        "The Who",
+        "The Kinks",
+        "The Pretty Things"
+      ],
+      "title": "Itchycoo Park - 2012 Remaster",
+      "chart_info": {
+        "billboard_peak": 16,
+        "uk_peak": 3,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Itchycoo Park' by Small Faces was one of the first pop singles to use flanging, a studio effect created by pressing a finger against a tape reel. The park in the title refers to a real park in London's East End.",
+      "fun_fact_de": "'Itchycoo Park' von Small Faces war eine der ersten Pop-Singles, die Flanging verwendeten, einen Studioeffekt, der durch Druecken eines Fingers auf eine Tonbandspule erzeugt wird. Der Park im Titel bezieht sich auf einen echten Park in Londons East End.",
+      "fun_fact_es": "'Itchycoo Park' de Small Faces fue uno de los primeros sencillos pop en usar flanging, un efecto de estudio creado presionando un dedo contra un carrete de cinta. El parque del titulo se refiere a un parque real en el East End de Londres.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fayL1WTR1Go",
+      "uri_tidal": "tidal://track/27084619"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:3c4OULLWwgRqBfA2dJtRuY",
+      "artist": "John Paul Young",
+      "alt_artists": [
+        "Andy Gibb",
+        "Leo Sayer",
+        "Peter Allen"
+      ],
+      "title": "Love Is In The Air",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 5,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (AU)"
+      ],
+      "awards": [],
+      "fun_fact": "'Love Is in the Air' experienced a massive revival in 1992 when it was featured in the film 'Strictly Ballroom.' The Australian singer John Paul Young was actually born in Glasgow, Scotland.",
+      "fun_fact_de": "'Love Is in the Air' erlebte 1992 ein grosses Revival, als es im Film 'Strictly Ballroom' verwendet wurde. Der australische Saenger John Paul Young wurde tatsaechlich in Glasgow, Schottland, geboren.",
+      "fun_fact_es": "'Love Is in the Air' experimento un enorme resurgimiento en 1992 cuando aparecio en la pelicula 'Strictly Ballroom.' El cantante australiano John Paul Young nacio en realidad en Glasgow, Escocia.",
+      "uri_apple_music": "applemusic://track/1451090219",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZWzWL-S05fg",
+      "uri_tidal": "tidal://track/71574241"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:4gvea7UlDkAvsJBPZAd4oB",
+      "artist": "Don Henley",
+      "alt_artists": [
+        "Glenn Frey",
+        "Joe Walsh",
+        "Tom Petty"
+      ],
+      "title": "The Boys Of Summer",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 12,
+        "weeks_on_chart": 21
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Don Henley's 'The Boys of Summer' won the Grammy for Best Male Rock Vocal Performance in 1986. The iconic black-and-white music video, directed by Jean-Baptiste Mondino, is considered one of the greatest of all time.",
+      "fun_fact_de": "Don Henleys 'The Boys of Summer' gewann 1986 den Grammy fuer die beste maennliche Rock-Gesangsdarbietung. Das ikonische Schwarzweiss-Musikvideo von Jean-Baptiste Mondino gilt als eines der besten aller Zeiten.",
+      "fun_fact_es": "'The Boys of Summer' de Don Henley gano el Grammy a la Mejor Interpretacion Vocal de Rock Masculina en 1986. El iconico video musical en blanco y negro, dirigido por Jean-Baptiste Mondino, es considerado uno de los mejores de todos los tiempos.",
+      "uri_apple_music": "applemusic://track/1761230752",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6RUIeX6UCT8",
+      "uri_tidal": "tidal://track/2937526"
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:1K9yTBoGrKUEt8j5LCI37T",
+      "artist": "Cliff Richard & The Shadows",
+      "alt_artists": [
+        "Billy Fury",
+        "Adam Faith",
+        "Bobby Vee"
+      ],
+      "title": "Summer Holiday",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Summer Holiday' was the title track from Cliff Richard's 1963 film of the same name. It spent two weeks at number one in the UK and became one of the defining British pop songs of the early 1960s.",
+      "fun_fact_de": "'Summer Holiday' war der Titelsong von Cliff Richards gleichnamigem Film von 1963. Er stand zwei Wochen auf Platz eins in Grossbritannien und wurde zu einem der praegenden britischen Popsongs der fruehen 1960er.",
+      "fun_fact_es": "'Summer Holiday' fue la cancion principal de la pelicula homonima de Cliff Richard de 1963. Paso dos semanas en el numero uno en el Reino Unido y se convirtio en una de las canciones pop britanicas mas representativas de principios de los 60.",
+      "uri_apple_music": "applemusic://track/696776235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JNFvApgNpO0",
+      "uri_tidal": "tidal://track/1440511"
+    },
+    {
+      "year": 1958,
+      "uri": "spotify:track:3oAWTk92mZBxKBOKf8mR5v",
+      "artist": "Eddie Cochran",
+      "alt_artists": [
+        "Gene Vincent",
+        "Buddy Holly",
+        "Chuck Berry"
+      ],
+      "title": "Summertime Blues",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 18,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Eddie Cochran wrote 'Summertime Blues' when he was just 19 years old. The song has been covered by The Who, Blue Cheer, and Alan Jackson, and was inducted into the Grammy Hall of Fame in 1999.",
+      "fun_fact_de": "Eddie Cochran schrieb 'Summertime Blues' als er erst 19 Jahre alt war. Der Song wurde von The Who, Blue Cheer und Alan Jackson gecovert und 1999 in die Grammy Hall of Fame aufgenommen.",
+      "fun_fact_es": "Eddie Cochran escribio 'Summertime Blues' cuando tenia solo 19 anos. La cancion ha sido versionada por The Who, Blue Cheer y Alan Jackson, y fue incluida en el Grammy Hall of Fame en 1999.",
+      "uri_apple_music": "applemusic://track/1650453958",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NUlm4hgwcPE",
+      "uri_tidal": "tidal://track/1482409"
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:3VgrSJEKBRT3xmwzpaxxEF",
+      "artist": "Martha Reeves & The Vandellas",
+      "alt_artists": [
+        "The Supremes",
+        "The Shirelles",
+        "The Ronettes"
+      ],
+      "title": "(Love Is Like A) Heat Wave",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Heat Wave' by Martha and the Vandellas was one of the first Motown songs to feature the 'wall of sound' production style. The songwriting team of Holland-Dozier-Holland wrote it in a single afternoon session.",
+      "fun_fact_de": "'Heat Wave' von Martha and the Vandellas war einer der ersten Motown-Songs mit dem 'Wall of Sound'-Produktionsstil. Das Songwriting-Team Holland-Dozier-Holland schrieb ihn in einer einzigen Nachmittagssession.",
+      "fun_fact_es": "'Heat Wave' de Martha and the Vandellas fue una de las primeras canciones de Motown en presentar el estilo de produccion 'muro de sonido.' El equipo de compositores Holland-Dozier-Holland la escribio en una sola tarde.",
+      "uri_apple_music": "applemusic://track/1444017336",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=64w0UqTHGFg",
+      "uri_tidal": "tidal://track/28802934"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:01UYpHuzHi4eB9PAbDoPY2",
+      "artist": "Seals and Crofts",
+      "alt_artists": [
+        "America",
+        "Bread",
+        "England Dan & John Ford Coley"
+      ],
+      "title": "Summer Breeze",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Summer Breeze' was written by Jim Seals and Dash Crofts about the simple pleasures of coming home. The Isley Brothers later covered it in a funk version that became equally iconic in a different genre.",
+      "fun_fact_de": "'Summer Breeze' wurde von Jim Seals und Dash Crofts ueber die einfachen Freuden des Heimkommens geschrieben. Die Isley Brothers coverten es spaeter in einer Funk-Version, die in einem anderen Genre ebenso ikonisch wurde.",
+      "fun_fact_es": "'Summer Breeze' fue escrita por Jim Seals y Dash Crofts sobre los placeres simples de llegar a casa. Los Isley Brothers la versionaron luego en una version funk que se convirtio en igualmente iconica en otro genero.",
+      "uri_apple_music": "applemusic://track/303230013",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GQQbjpomexo",
+      "uri_tidal": "tidal://track/3400972"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4RGxUjaCmVtD30pIhtEi7w",
+      "artist": "Donovan",
+      "alt_artists": [
+        "Cat Stevens",
+        "Bob Dylan",
+        "Simon & Garfunkel"
+      ],
+      "title": "Sunshine Superman",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Sunshine Superman' was the first song to fuse folk music with psychedelia and electronic production techniques. A legal dispute delayed its UK release by six months, costing Donovan a potential number one there.",
+      "fun_fact_de": "'Sunshine Superman' war der erste Song, der Folkmusik mit Psychedelia und elektronischen Produktionstechniken verschmolz. Ein Rechtsstreit verzoegerte die UK-Veroeffentlichung um sechs Monate und kostete Donovan eine moegliche Nummer eins dort.",
+      "fun_fact_es": "'Sunshine Superman' fue la primera cancion en fusionar musica folk con psicodelia y tecnicas de produccion electronica. Una disputa legal retraso su lanzamiento en el Reino Unido seis meses, costando a Donovan un posible numero uno alli.",
+      "uri_apple_music": "applemusic://track/197973129",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YsX2FhBf9nY",
+      "uri_tidal": "tidal://track/1273541"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:0mwr3py9MZIOdvOrI31h6r",
+      "artist": "The Beach Boys",
+      "alt_artists": [
+        "Jan & Dean",
+        "The Mamas & The Papas",
+        "The Ventures"
+      ],
+      "title": "California Girls",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 26,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Brian Wilson wrote 'California Girls' after his first experience with LSD. The song's opening fanfare was inspired by Bach and took longer to compose than the rest of the song combined.",
+      "fun_fact_de": "Brian Wilson schrieb 'California Girls' nach seiner ersten LSD-Erfahrung. Die eroeffnende Fanfare wurde von Bach inspiriert und brauchte laenger zum Komponieren als der Rest des Songs zusammen.",
+      "fun_fact_es": "Brian Wilson escribio 'California Girls' tras su primera experiencia con LSD. La fanfarria de apertura fue inspirada por Bach y tardo mas en componerse que el resto de la cancion en conjunto.",
+      "uri_apple_music": "applemusic://track/1443106831",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DR2lvcdKSdU",
+      "uri_tidal": "tidal://track/1392937"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:3Fzlg5r1IjhLk2qRw667od",
+      "artist": "Toploader",
+      "alt_artists": [
+        "Travis",
+        "Stereophonics",
+        "Reef"
+      ],
+      "title": "Dancing in the Moonlight",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 3,
+        "weeks_on_chart": 34
+      },
+      "certifications": [
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Toploader's version of 'Dancing in the Moonlight' is actually a cover of the 1972 original by King Harvest. It spent an incredible 34 weeks on the UK chart and became one of the longest-charting singles of the 2000s.",
+      "fun_fact_de": "Toploaders Version von 'Dancing in the Moonlight' ist eigentlich ein Cover des Originals von King Harvest aus dem Jahr 1972. Sie verbrachte unglaubliche 34 Wochen in den UK-Charts und wurde eine der am laengsten platzierten Singles der 2000er.",
+      "fun_fact_es": "La version de Toploader de 'Dancing in the Moonlight' es en realidad un cover del original de 1972 de King Harvest. Paso increibles 34 semanas en las listas del Reino Unido y se convirtio en uno de los sencillos con mas semanas en las listas de los 2000.",
+      "uri_apple_music": "applemusic://track/273400021",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0yBnIUX0QAE",
+      "uri_tidal": "tidal://track/491747"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:2Foc5Q5nqNiosCNqttzHof",
+      "artist": "Daft Punk, Pharrell Williams, Nile Rodgers",
+      "alt_artists": [
+        "Justice",
+        "Avicii",
+        "Calvin Harris"
+      ],
+      "title": "Get Lucky (Radio Edit) [feat. Pharrell Williams and Nile Rodgers]",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 1,
+        "weeks_on_chart": 32
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Platinum (UK)",
+        "Diamond (FR)"
+      ],
+      "awards": [],
+      "fun_fact": "'Get Lucky' took Daft Punk over 18 months to produce. Nile Rodgers recorded roughly six hours of guitar parts, from which the duo selected the final groove. The song was streamed over 270 million times in its first year.",
+      "fun_fact_de": "'Get Lucky' brauchte bei Daft Punk ueber 18 Monate Produktion. Nile Rodgers nahm etwa sechs Stunden Gitarrenparts auf, aus denen das Duo den finalen Groove auswaehlte. Der Song wurde im ersten Jahr ueber 270 Millionen Mal gestreamt.",
+      "fun_fact_es": "'Get Lucky' le tomo a Daft Punk mas de 18 meses de produccion. Nile Rodgers grabo aproximadamente seis horas de partes de guitarra, de las cuales el duo selecciono el groove final. La cancion fue reproducida mas de 270 millones de veces en su primer ano.",
+      "uri_apple_music": "applemusic://track/1090310647",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rgrt_8mXrK8",
+      "uri_tidal": "tidal://track/19823990"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:0dzbfio3qTYG9uk40SJNcr",
+      "artist": "Simon & Garfunkel",
+      "alt_artists": [
+        "The Byrds",
+        "The Mamas & The Papas",
+        "Crosby Stills & Nash"
+      ],
+      "title": "The 59th Street Bridge Song (Feelin' Groovy)",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Also known as 'Feelin' Groovy,' this Simon & Garfunkel song was written by Paul Simon about the 59th Street Bridge (Queensboro Bridge) in New York City. Simon has said he wrote it as a celebration of slowing down in a fast-paced world.",
+      "fun_fact_de": "Auch bekannt als 'Feelin' Groovy,' wurde dieser Simon & Garfunkel-Song von Paul Simon ueber die 59th Street Bridge (Queensboro Bridge) in New York geschrieben. Simon sagte, er schrieb ihn als Feier des Langsamwerdens in einer hektischen Welt.",
+      "fun_fact_es": "Tambien conocida como 'Feelin' Groovy,' esta cancion de Simon & Garfunkel fue escrita por Paul Simon sobre el puente de la calle 59 (Queensboro Bridge) en Nueva York. Simon dijo que la escribio como una celebracion de desacelerar en un mundo acelerado.",
+      "uri_apple_music": "applemusic://track/1467438682",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-xhJcQEfD5s",
+      "uri_tidal": "tidal://track/110811722"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:2HCaIYjkvWSZzaSKUoOh3d",
+      "artist": "The Byrds",
+      "alt_artists": [
+        "Simon & Garfunkel",
+        "The Mamas & The Papas",
+        "Buffalo Springfield"
+      ],
+      "title": "Mr. Tambourine Man",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Byrds' version of 'Mr. Tambourine Man' was the first folk-rock number one hit. Only Roger McGuinn played an instrument on the recording; the rest of the band was replaced by session musicians from the legendary Wrecking Crew.",
+      "fun_fact_de": "Die Version von 'Mr. Tambourine Man' der Byrds war der erste Folk-Rock-Nummer-eins-Hit. Nur Roger McGuinn spielte ein Instrument bei der Aufnahme; der Rest der Band wurde durch Studiomusiker der legendaeren Wrecking Crew ersetzt.",
+      "fun_fact_es": "La version de 'Mr. Tambourine Man' de The Byrds fue el primer exito numero uno del folk-rock. Solo Roger McGuinn toco un instrumento en la grabacion; el resto de la banda fue reemplazado por musicos de sesion de la legendaria Wrecking Crew.",
+      "uri_apple_music": "applemusic://track/251989394",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ncSl9ljLsYs",
+      "uri_tidal": "tidal://track/12578001"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:1mFrjW8e8fuAOowlU3Q3Dr",
+      "artist": "The Mamas & The Papas",
+      "alt_artists": [
+        "The Byrds",
+        "Simon & Garfunkel",
+        "Peter Paul & Mary"
+      ],
+      "title": "Dedicated To The One I Love",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Mamas & The Papas' version of 'Dedicated to the One I Love' was originally a Shirelles hit from 1959. Cass Elliot's vocal harmonies on the track helped define the California sunshine pop sound of the late 1960s.",
+      "fun_fact_de": "Die Version von 'Dedicated to the One I Love' der Mamas & The Papas war urspruenglich ein Shirelles-Hit von 1959. Cass Elliots Gesangsharmonien auf dem Track halfen, den California-Sunshine-Pop-Sound der spaeten 1960er zu definieren.",
+      "fun_fact_es": "La version de The Mamas & The Papas de 'Dedicated to the One I Love' fue originalmente un exito de The Shirelles de 1959. Las armonias vocales de Cass Elliot ayudaron a definir el sonido sunshine pop californiano de finales de los 60.",
+      "uri_apple_music": "applemusic://track/1425261330",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YSNsG6glf_U",
+      "uri_tidal": "tidal://track/57630961"
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:27hhIs2fp6w06N5zx4Eaa5",
+      "artist": "The Mamas & The Papas",
+      "alt_artists": [
+        "Ella Fitzgerald",
+        "Cass Elliot",
+        "Joni Mitchell"
+      ],
+      "title": "Dream A Little Dream Of Me",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Although often associated with The Mamas & The Papas (featuring Mama Cass), 'Dream a Little Dream of Me' was originally written in 1931. Their version became a staple of 1960s flower power culture.",
+      "fun_fact_de": "Obwohl oft mit The Mamas & The Papas (mit Mama Cass) assoziiert, wurde 'Dream a Little Dream of Me' urspruenglich 1931 geschrieben. Ihre Version wurde zu einem festen Bestandteil der Flower-Power-Kultur der 1960er.",
+      "fun_fact_es": "Aunque a menudo se asocia con The Mamas & The Papas (con Mama Cass), 'Dream a Little Dream of Me' fue escrita originalmente en 1931. Su version se convirtio en un pilar de la cultura flower power de los anos 60.",
+      "uri_apple_music": "applemusic://track/1423329233",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fJwjLYRPxJY",
+      "uri_tidal": "tidal://track/93240303"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:4yugZvBYaoREkJKtbG08Qr",
+      "artist": "Eagles",
+      "alt_artists": [
+        "Fleetwood Mac",
+        "The Doobie Brothers",
+        "Crosby Stills & Nash"
+      ],
+      "title": "Take It Easy - 2013 Remaster",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Take It Easy' was the Eagles' debut single and was co-written by Glenn Frey and Jackson Browne, who was Frey's neighbor. The famous line about 'a girl in a flatbed Ford' was Browne's contribution.",
+      "fun_fact_de": "'Take It Easy' war die Debuetsingle der Eagles und wurde von Glenn Frey und seinem Nachbarn Jackson Browne mitgeschrieben. Die beruehmte Zeile ueber 'a girl in a flatbed Ford' stammte von Browne.",
+      "fun_fact_es": "'Take It Easy' fue el sencillo debut de los Eagles y fue coescrita por Glenn Frey y Jackson Browne, quien era vecino de Frey. La famosa frase sobre 'a girl in a flatbed Ford' fue la contribucion de Browne.",
+      "uri_apple_music": "applemusic://track/635791802",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5igDtWadYms",
+      "uri_tidal": "tidal://track/20750059"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:7Ar4G7Ci11gpt6sfH9Cgz5",
+      "artist": "The Doobie Brothers",
+      "alt_artists": [
+        "Eagles",
+        "Creedence Clearwater Revival",
+        "Lynyrd Skynyrd"
+      ],
+      "title": "Listen to the Music",
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Tom Johnston wrote 'Listen to the Music' in just 30 minutes as a simple, positive song. It became The Doobie Brothers' breakthrough hit and their signature song, though it initially peaked outside the Top 10.",
+      "fun_fact_de": "Tom Johnston schrieb 'Listen to the Music' in nur 30 Minuten als einfachen, positiven Song. Es wurde der Durchbruchshit und die Erkennungsmelodie der Doobie Brothers, obwohl er anfangs ausserhalb der Top 10 seinen Hoechststand erreichte.",
+      "fun_fact_es": "Tom Johnston escribio 'Listen to the Music' en solo 30 minutos como una cancion sencilla y positiva. Se convirtio en el exito revelacion de The Doobie Brothers y su cancion emblematica, aunque inicialmente solo alcanzo fuera del Top 10.",
+      "uri_apple_music": "applemusic://track/1099112498",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nbVE-1rHyVY",
+      "uri_tidal": "tidal://track/4077471"
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:2HVE1zWqkWiES5XZs1uuOq",
+      "artist": "Small Faces",
+      "alt_artists": [
+        "The Who",
+        "The Kinks",
+        "The Yardbirds"
+      ],
+      "title": "Lazy Sunday - 2012 Remaster",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 2,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Lazy Sunday' by Small Faces was a satirical Cockney music hall-style track that became one of the first songs to use tape effects for comedic purposes. It was the B-side's success that propelled it, much to the band's surprise.",
+      "fun_fact_de": "'Lazy Sunday' von Small Faces war ein satirischer Cockney-Music-Hall-Track und einer der ersten Songs, der Bandeffekte fuer komische Zwecke einsetzte. Es war der ueberraschende Erfolg, der die Band selbst erstaunte.",
+      "fun_fact_es": "'Lazy Sunday' de Small Faces fue un tema satirico estilo music hall cockney que se convirtio en una de las primeras canciones en usar efectos de cinta con fines comicos. Su exito sorprendio a la propia banda.",
+      "uri_apple_music": "applemusic://track/524098412",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nhfHMLBjrY0",
+      "uri_tidal": "tidal://track/27084623"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4cix9zymmhisLuM56RDcB7",
+      "artist": "Donovan",
+      "alt_artists": [
+        "The Turtles",
+        "The Lovin' Spoonful",
+        "Procol Harum"
+      ],
+      "title": "Mellow Yellow",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 8,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Donovan's 'Mellow Yellow' sparked a widespread urban legend that smoking dried banana peels could get you high. The rumor was entirely false, but it became one of the most famous hoaxes of the 1960s counterculture.",
+      "fun_fact_de": "Donovans 'Mellow Yellow' loeste das weit verbreitete Geruecht aus, dass das Rauchen getrockneter Bananenschalen high machen koenne. Das Geruecht war voellig falsch, wurde aber zu einem der beruehmtesten Schwindel der 1960er-Gegenkultur.",
+      "fun_fact_es": "'Mellow Yellow' de Donovan provoco la leyenda urbana de que fumar cascaras de platano secas podia colocarte. El rumor era completamente falso, pero se convirtio en uno de los enganos mas famosos de la contracultura de los anos 60.",
+      "uri_apple_music": "applemusic://track/1308624086",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IQNBQI3UDag",
+      "uri_tidal": "tidal://track/4964564"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:1jDJFeK9x3OZboIAHsY9k2",
+      "artist": "Elton John",
+      "alt_artists": [
+        "Billy Joel",
+        "Freddie Mercury",
+        "Rod Stewart"
+      ],
+      "title": "I'm Still Standing",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 4,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Elton John wrote 'I'm Still Standing' during a period of personal recovery in the south of France. The famous music video was filmed on the beach in Cannes and is noted for its vibrant body-painted dancers.",
+      "fun_fact_de": "Elton John schrieb 'I'm Still Standing' waehrend einer Phase persoenlicher Erholung in Suedfrankreich. Das beruehmte Musikvideo wurde am Strand von Cannes gedreht und ist bekannt fuer seine lebhaft koerperbemalten Taenzer.",
+      "fun_fact_es": "Elton John escribio 'I'm Still Standing' durante un periodo de recuperacion personal en el sur de Francia. El famoso video musical fue filmado en la playa de Cannes y es conocido por sus vibrantes bailarines con cuerpos pintados.",
+      "uri_apple_music": "applemusic://track/1440912993",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZHwVBirqD2s",
+      "uri_tidal": "tidal://track/330964"
+    },
+    {
+      "year": 2016,
+      "uri": "spotify:track:6JV2JOEocMgcZxYSZelKcc",
+      "artist": "Justin Timberlake",
+      "alt_artists": [
+        "Bruno Mars",
+        "Pharrell Williams",
+        "Adam Levine"
+      ],
+      "title": "CAN'T STOP THE FEELING! (from DreamWorks Animation's \"TROLLS\")",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 32
+      },
+      "certifications": [
+        "Diamond (US)",
+        "2x Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'CAN'T STOP THE FEELING!' was written for the animated film Trolls and became the first song from an animated film soundtrack to reach number one since 'Colors of the Wind' in 1995. It was nominated for an Academy Award.",
+      "fun_fact_de": "'CAN'T STOP THE FEELING!' wurde fuer den Animationsfilm Trolls geschrieben und war der erste Song eines Animationsfilm-Soundtracks, der seit 'Colors of the Wind' 1995 Platz eins erreichte. Er war fuer einen Oscar nominiert.",
+      "fun_fact_es": "'CAN'T STOP THE FEELING!' fue escrita para la pelicula animada Trolls y se convirtio en la primera cancion de una banda sonora de pelicula animada en alcanzar el numero uno desde 'Colors of the Wind' en 1995. Fue nominada al Oscar.",
+      "uri_apple_music": "applemusic://track/1653395371",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ru0K8uYEZWw",
+      "uri_tidal": "tidal://track/60137937"
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:1zW2csx1vVJrKfvDrFQNVt",
+      "artist": "Harry Belafonte",
+      "alt_artists": [
+        "Nat King Cole",
+        "Louis Prima",
+        "Bobby Darin"
+      ],
+      "title": "Jump in the Line",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Harry Belafonte's 'Jump in the Line (Shake, Senora)' gained massive renewed popularity after being featured in the 1988 film 'Beetlejuice.' Belafonte, known as the 'King of Calypso,' helped popularize Caribbean music in America.",
+      "fun_fact_de": "Harry Belafontes 'Jump in the Line (Shake, Senora)' erlangte grosse erneute Popularitaet durch den Film 'Beetlejuice' von 1988. Belafonte, bekannt als 'King of Calypso,' half, karibische Musik in Amerika zu popularisieren.",
+      "fun_fact_es": "'Jump in the Line (Shake, Senora)' de Harry Belafonte gano enorme popularidad renovada tras aparecer en la pelicula 'Beetlejuice' de 1988. Belafonte, conocido como el 'Rey del Calipso,' ayudo a popularizar la musica caribena en America.",
+      "uri_apple_music": "applemusic://track/1087857365",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=reNWJMZtvU0",
+      "uri_tidal": "tidal://track/57724211"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:0uMMLry3hzWGn3q3loqMkm",
+      "artist": "Los Lobos",
+      "alt_artists": [
+        "Santana",
+        "Ritchie Valens",
+        "Carlos Vives"
+      ],
+      "title": "La Bamba",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Los Lobos' 'La Bamba' was recorded for the Ritchie Valens biopic of the same name. It became the first predominantly Spanish-language song to reach number one on the Billboard Hot 100, a record that stood for 30 years until 'Despacito.'",
+      "fun_fact_de": "Los Lobos' 'La Bamba' wurde fuer den gleichnamigen Ritchie-Valens-Biopic aufgenommen. Es wurde der erste ueberwiegend spanischsprachige Song auf Platz eins der Billboard Hot 100 – ein Rekord, der 30 Jahre bis 'Despacito' Bestand hatte.",
+      "fun_fact_es": "'La Bamba' de Los Lobos fue grabada para la pelicula biografica de Ritchie Valens. Se convirtio en la primera cancion predominantemente en espanol en llegar al numero uno del Billboard Hot 100, un record que se mantuvo 30 anos hasta 'Despacito.'",
+      "uri_apple_music": "applemusic://track/1388350880",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P8PYQvl5HP4",
+      "uri_tidal": "tidal://track/3248011"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:4EveU9Zb50mjgi5avDNqlK",
+      "artist": "Gipsy Kings",
+      "alt_artists": [
+        "Santana",
+        "Manu Chao",
+        "Ottmar Liebert"
+      ],
+      "title": "Bamboleo",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "Gold (US)",
+        "Diamond (FR)"
+      ],
+      "awards": [],
+      "fun_fact": "'Bamboleo' introduced the Gipsy Kings to the world, blending traditional Romani flamenco with Western pop. The song helped sell over 20 million copies of their debut album, making them the best-selling French act of all time at that point.",
+      "fun_fact_de": "'Bamboleo' machte die Gipsy Kings weltweit bekannt und verband traditionellen Roma-Flamenco mit westlichem Pop. Der Song half, ueber 20 Millionen Exemplare ihres Debuetalbums zu verkaufen und machte sie zum meistverkauften franzoesischen Act aller Zeiten.",
+      "fun_fact_es": "'Bamboleo' presento a los Gipsy Kings al mundo, fusionando flamenco romani tradicional con pop occidental. La cancion ayudo a vender mas de 20 millones de copias de su album debut, convirtiendolos en el acto frances mas vendido de todos los tiempos.",
+      "uri_apple_music": "applemusic://track/1512944637",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w-isTDv6hq0",
+      "uri_tidal": "tidal://track/6739224"
+    },
+    {
+      "year": 2017,
+      "uri": "spotify:track:6rPO02ozF3bM7NnOV4h6s2",
+      "artist": "Luis Fonsi, Daddy Yankee, Justin Bieber",
+      "alt_artists": [
+        "Maluma",
+        "Enrique Iglesias",
+        "J Balvin"
+      ],
+      "title": "Despacito - Remix",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 52
+      },
+      "certifications": [
+        "Diamond (US)",
+        "3x Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The 'Despacito' remix with Justin Bieber became the first YouTube video to reach 5 billion views. It broke the record for most weeks at number one on the Billboard Hot 100 (16 weeks), tying with Mariah Carey's 'One Sweet Day.'",
+      "fun_fact_de": "Der 'Despacito'-Remix mit Justin Bieber wurde das erste YouTube-Video mit 5 Milliarden Aufrufen. Er brach den Rekord fuer die meisten Wochen auf Platz eins der Billboard Hot 100 (16 Wochen) und gleichzog mit Mariah Careys 'One Sweet Day.'",
+      "fun_fact_es": "El remix de 'Despacito' con Justin Bieber se convirtio en el primer video de YouTube en alcanzar 5 mil millones de vistas. Rompio el record de mas semanas en el numero uno del Billboard Hot 100 (16 semanas), igualando a 'One Sweet Day' de Mariah Carey.",
+      "uri_apple_music": "applemusic://track/1447401626",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fjBGho8mWPQ",
+      "uri_tidal": "tidal://track/81904566"
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:2g2GkH3vZHk4lWzBjqQdJVWP",
+      "artist": "Sam Cooke",
+      "alt_artists": [
+        "Otis Redding",
+        "Ben E. King",
+        "Jackie Wilson"
+      ],
+      "title": "(What A) Wonderful World",
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": 27,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Sam Cooke's 'Wonderful World' barely cracked the Top 12 when first released in 1960 but became a massive hit when re-released in 1986 after being featured in a Levi's commercial, reaching number 2 in the UK.",
+      "fun_fact_de": "Sam Cookes 'Wonderful World' schaffte es 1960 kaum in die Top 12, wurde aber 1986 nach der Verwendung in einem Levi's-Werbespot ein Riesenhit und erreichte Platz 2 in Grossbritannien.",
+      "fun_fact_es": "'Wonderful World' de Sam Cooke apenas entro en el Top 12 cuando se lanzo en 1960, pero se convirtio en un gran exito cuando se relanzo en 1986 tras aparecer en un comercial de Levi's, alcanzando el numero 2 en el Reino Unido."
+    },
+    {
+      "year": 1958,
+      "uri": "spotify:track:5gJKsGij5oGt5H5RSFYXPa",
+      "artist": "The Champs",
+      "alt_artists": [
+        "Herb Alpert",
+        "The Ventures",
+        "Perez Prado"
+      ],
+      "title": "Tequila",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Champs' 'Tequila' features only one word in its entire lyrics: 'Tequila!' shouted three times. It won the Grammy for Best R&B Performance in 1959 and has appeared in countless films, most memorably in 'Pee-wee's Big Adventure.'",
+      "fun_fact_de": "'Tequila' von The Champs hat nur ein einziges Wort im gesamten Text: 'Tequila!' das dreimal gerufen wird. Es gewann 1959 den Grammy fuer die beste R&B-Darbietung und erschien in zahlreichen Filmen, am denkwuerdigsten in 'Pee-wees grosses Abenteuer.'",
+      "fun_fact_es": "'Tequila' de The Champs contiene solo una palabra en toda su letra: 'Tequila!' gritada tres veces. Gano el Grammy a la Mejor Interpretacion de R&B en 1959 y ha aparecido en innumerables peliculas, mas memorablemente en 'La gran aventura de Pee-wee.'",
+      "uri_apple_music": "applemusic://track/110409299",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U_JFLb1IItM",
+      "uri_tidal": "tidal://track/45155728"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:683b4ikwa62JevCjwrmfg6",
+      "artist": "Van Morrison",
+      "alt_artists": [
+        "Rod Stewart",
+        "Eric Clapton",
+        "Joe Cocker"
+      ],
+      "title": "Moondance - 2013 Remaster",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Moondance' was never released as a single from the 1970 album, yet it became Van Morrison's most recognizable song. The album track has been certified Platinum based on digital sales and streaming alone decades after its release.",
+      "fun_fact_de": "'Moondance' wurde 1970 nie als Single ausgekoppelt, wurde aber zu Van Morrisons bekanntestem Song. Der Albumtrack wurde Jahrzehnte nach seiner Veroeffentlichung allein aufgrund von digitalen Verkaeufen und Streaming mit Platin zertifiziert.",
+      "fun_fact_es": "'Moondance' nunca fue lanzada como sencillo del album de 1970, pero se convirtio en la cancion mas reconocible de Van Morrison. La pista del album fue certificada Platino basada unicamente en ventas digitales y streaming decadas despues de su lanzamiento.",
+      "uri_apple_music": "applemusic://track/712727462",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7kfYOGndVfU",
+      "uri_tidal": "tidal://track/22968235"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:20XdEFyaUR9C7aDIdq2OAd",
+      "artist": "DJ Jazzy Jeff & The Fresh Prince",
+      "alt_artists": [
+        "Kool Moe Dee",
+        "Heavy D",
+        "Young MC"
+      ],
+      "title": "Summertime",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 8,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "DJ Jazzy Jeff & The Fresh Prince's 'Summertime' sampled Kool & The Gang's 'Summer Madness.' Will Smith has called it his favorite song he ever recorded, and it won the Grammy for Best Rap Performance in 1992.",
+      "fun_fact_de": "'Summertime' von DJ Jazzy Jeff & The Fresh Prince samplete Kool & The Gangs 'Summer Madness.' Will Smith bezeichnete es als seinen Lieblingssong, den er je aufgenommen hat, und er gewann 1992 den Grammy fuer die beste Rap-Darbietung.",
+      "fun_fact_es": "'Summertime' de DJ Jazzy Jeff & The Fresh Prince sampleo 'Summer Madness' de Kool & The Gang. Will Smith la ha llamado su cancion favorita que jamas grabo, y gano el Grammy a la Mejor Interpretacion de Rap en 1992.",
+      "uri_apple_music": "applemusic://track/303162581",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kr0tTbTbmVA",
+      "uri_tidal": "tidal://track/2990890"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4OT4AvPAq1o0rscVNdC20X",
+      "artist": "Mungo Jerry",
+      "alt_artists": [
+        "Slade",
+        "T. Rex",
+        "Creedence Clearwater Revival"
+      ],
+      "title": "In the Summertime",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 1,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'In the Summertime' by Mungo Jerry sold over 30 million copies worldwide, making it one of the best-selling singles ever. Ray Dorset wrote it in just 10 minutes on a second-hand guitar, and it was recorded in one take.",
+      "fun_fact_de": "'In the Summertime' von Mungo Jerry verkaufte sich weltweit ueber 30 Millionen Mal und ist damit eine der meistverkauften Singles aller Zeiten. Ray Dorset schrieb es in nur 10 Minuten auf einer gebrauchten Gitarre und es wurde in einem Take aufgenommen.",
+      "fun_fact_es": "'In the Summertime' de Mungo Jerry vendio mas de 30 millones de copias en todo el mundo, convirtiendose en uno de los sencillos mas vendidos de la historia. Ray Dorset la escribio en solo 10 minutos con una guitarra de segunda mano y se grabo en una sola toma.",
+      "uri_apple_music": "applemusic://track/1440741632",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yNSZfEiwvcI",
+      "uri_tidal": "tidal://track/224189663"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:52Rp3xBJFYYdmpgzDy0Quf",
+      "artist": "Blondie",
+      "alt_artists": [
+        "The Pretenders",
+        "Pat Benatar",
+        "The Go-Go's"
+      ],
+      "title": "The Tide Is High",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Blondie's 'The Tide Is High' is a cover of a 1967 rocksteady original by The Paragons from Jamaica. Debbie Harry discovered the song while listening to Jamaican music, and it gave Blondie their third US number one.",
+      "fun_fact_de": "Blondies 'The Tide Is High' ist ein Cover eines Rocksteady-Originals von 1967 von The Paragons aus Jamaika. Debbie Harry entdeckte den Song beim Hoeren jamaikanischer Musik, und er bescherte Blondie die dritte US-Nummer-eins.",
+      "fun_fact_es": "'The Tide Is High' de Blondie es un cover de un original de rocksteady de 1967 de The Paragons de Jamaica. Debbie Harry descubrio la cancion escuchando musica jamaicana, y le dio a Blondie su tercer numero uno en Estados Unidos.",
+      "uri_apple_music": "applemusic://track/716261258",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fAb8Q9X2xAc",
+      "uri_tidal": "tidal://track/1335170"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:215JYyyUnrJ98NK3KEwu6d",
+      "artist": "Sheryl Crow",
+      "alt_artists": [
+        "Alanis Morissette",
+        "Natalie Imbruglia",
+        "Tracy Chapman"
+      ],
+      "title": "Soak Up The Sun",
+      "chart_info": {
+        "billboard_peak": 17,
+        "uk_peak": 16,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Sheryl Crow's 'Soak Up the Sun' was written as an intentionally upbeat antidote to the somber mood in America after September 11, 2001. The song features a guest appearance by Liz Phair on backing vocals.",
+      "fun_fact_de": "Sheryl Crows 'Soak Up the Sun' wurde als bewusst froehliges Gegenmittel zur somberen Stimmung in Amerika nach dem 11. September 2001 geschrieben. Der Song enthaelt einen Gastauftritt von Liz Phair als Hintergrundsaengerin.",
+      "fun_fact_es": "'Soak Up the Sun' de Sheryl Crow fue escrita como un antidoto intencionalmente alegre al sombrio estado de animo en America despues del 11 de septiembre de 2001. La cancion cuenta con la participacion de Liz Phair en los coros.",
+      "uri_apple_music": "applemusic://track/1613465114",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KIYiGA_rIls",
+      "uri_tidal": "tidal://track/49469869"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:5rX6C5QVvvZB7XckETNych",
+      "artist": "Kid Rock",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "ZZ Top",
+        "Creedence Clearwater Revival"
+      ],
+      "title": "All Summer Long",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 11,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Kid Rock's 'All Summer Long' samples both Lynyrd Skynyrd's 'Sweet Home Alabama' and Warren Zevon's 'Werewolves of London,' combining two iconic riffs into one massive summer hit.",
+      "fun_fact_de": "Kid Rocks 'All Summer Long' sampelt sowohl Lynyrd Skynyrds 'Sweet Home Alabama' als auch Warren Zevons 'Werewolves of London' und vereint zwei ikonische Riffs zu einem riesigen Sommerhit.",
+      "fun_fact_es": "'All Summer Long' de Kid Rock samplea tanto 'Sweet Home Alabama' de Lynyrd Skynyrd como 'Werewolves of London' de Warren Zevon, combinando dos riffs icónicos en un enorme éxito veraniego.",
+      "uri_apple_music": "applemusic://track/281700847",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aSkFygPCTwE",
+      "uri_tidal": "tidal://track/4468234"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:2ARTskci0SwksWtNvOgirP",
+      "artist": "Texas",
+      "alt_artists": [
+        "The Cranberries",
+        "Natalie Imbruglia",
+        "Morcheeba"
+      ],
+      "title": "Summer Son",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Texas recorded 'Summer Son' in Peter Gabriel's Real World Studios. The song's shimmering guitar loop was inspired by the band's holiday in the South of France and became their biggest European hit.",
+      "fun_fact_de": "Texas nahmen 'Summer Son' in Peter Gabriels Real World Studios auf. Die schimmernde Gitarrenschleife des Songs wurde von einem Urlaub der Band in Südfrankreich inspiriert und wurde ihr größter europäischer Hit.",
+      "fun_fact_es": "Texas grabó 'Summer Son' en los estudios Real World de Peter Gabriel. El brillante bucle de guitarra se inspiró en las vacaciones de la banda en el sur de Francia y se convirtió en su mayor éxito europeo.",
+      "uri_apple_music": "applemusic://track/1663562761",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7uIFISklvXY",
+      "uri_tidal": "tidal://track/270344123"
+    },
+    {
+      "year": 2019,
+      "uri": "spotify:track:6UelLqGlWMcVH1E5c4H7lY",
+      "artist": "Harry Styles",
+      "alt_artists": [
+        "Ed Sheeran",
+        "Niall Horan",
+        "Shawn Mendes"
+      ],
+      "title": "Watermelon Sugar",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 52
+      },
+      "certifications": [
+        "6x Platinum (US)",
+        "Platinum (UK)",
+        "Diamond (Canada)"
+      ],
+      "awards": [],
+      "fun_fact": "'Watermelon Sugar' took an unusually long 18 months to climb to #1 on the Billboard Hot 100. Harry Styles has said the song is about 'the initial euphoria of a relationship,' though the suggestive music video led to much fan speculation.",
+      "fun_fact_de": "'Watermelon Sugar' brauchte ungewöhnlich lange 18 Monate, um die Spitze der Billboard Hot 100 zu erreichen. Harry Styles sagte, der Song handele von der 'anfänglichen Euphorie einer Beziehung', obwohl das suggestive Musikvideo zu viel Fan-Spekulation führte.",
+      "fun_fact_es": "'Watermelon Sugar' tardó 18 meses inusualmente largos en llegar al #1 del Billboard Hot 100. Harry Styles ha dicho que la canción trata sobre 'la euforia inicial de una relación', aunque el sugestivo videoclip generó mucha especulación entre los fans.",
+      "uri_apple_music": "applemusic://track/1485802967",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E07s5ZYygMg",
+      "uri_tidal": "tidal://track/125310819"
+    },
+    {
+      "year": 2020,
+      "uri": "spotify:track:02MWAaffLxlfxAUY7c5dvx",
+      "artist": "Glass Animals",
+      "alt_artists": [
+        "Tame Impala",
+        "Alt-J",
+        "MGMT"
+      ],
+      "title": "Heat Waves",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 91
+      },
+      "certifications": [
+        "5x Platinum (US)",
+        "Platinum (UK)",
+        "Diamond (Australia)"
+      ],
+      "awards": [],
+      "fun_fact": "'Heat Waves' holds the record for the longest climb to #1 on the Billboard Hot 100, taking 59 weeks to reach the top. Its viral success was fueled by a Minecraft YouTube video tribute that amassed over 70 million views.",
+      "fun_fact_de": "'Heat Waves' hält den Rekord für den längsten Aufstieg zur #1 der Billboard Hot 100 mit 59 Wochen bis an die Spitze. Der virale Erfolg wurde durch ein Minecraft-YouTube-Tribute-Video angetrieben, das über 70 Millionen Aufrufe erreichte.",
+      "fun_fact_es": "'Heat Waves' ostenta el récord del ascenso más largo al #1 del Billboard Hot 100, tardando 59 semanas en llegar a la cima. Su éxito viral fue impulsado por un video tributo de Minecraft en YouTube que acumuló más de 70 millones de vistas.",
+      "uri_apple_music": "applemusic://track/1508562516",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mRD0-GxqHVo",
+      "uri_tidal": "tidal://track/150502627"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:0n2pjCIMKwHSXoYfEbYMfX",
+      "artist": "Stevie Wonder",
+      "alt_artists": [
+        "Marvin Gaye",
+        "Ray Charles",
+        "Lionel Richie"
+      ],
+      "title": "You Are The Sunshine Of My Life",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 7,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Stevie Wonder recorded 'You Are the Sunshine of My Life' when he was just 22 years old. The first two lines are actually sung by backing vocalists Jim Gilstrap and Lani Groves before Stevie takes over, a detail many listeners miss.",
+      "fun_fact_de": "Stevie Wonder nahm 'You Are the Sunshine of My Life' auf, als er gerade 22 Jahre alt war. Die ersten beiden Zeilen werden tatsächlich von den Backgroundsängern Jim Gilstrap und Lani Groves gesungen, bevor Stevie übernimmt - ein Detail, das viele Hörer überhören.",
+      "fun_fact_es": "Stevie Wonder grabó 'You Are the Sunshine of My Life' cuando solo tenía 22 años. Las dos primeras líneas las cantan en realidad los coristas Jim Gilstrap y Lani Groves antes de que Stevie tome el relevo, un detalle que muchos oyentes pasan por alto.",
+      "uri_apple_music": "applemusic://track/1440808975",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sp6hzycBsTI",
+      "uri_tidal": "tidal://track/2527290"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:5QrNXvTQEuBb5iLoIAAuvk",
+      "artist": "Chris Rea",
+      "alt_artists": [
+        "Mark Knopfler",
+        "Eric Clapton",
+        "Phil Collins"
+      ],
+      "title": "On the Beach",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 12,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Chris Rea wrote 'On the Beach' while recovering from a serious illness, dreaming of escaping to a warm seaside destination. The song has since become one of the most played summer tracks on UK radio and a staple of holiday compilation albums.",
+      "fun_fact_de": "Chris Rea schrieb 'On the Beach' während der Genesung von einer schweren Krankheit und träumte davon, an einen warmen Küstenort zu fliehen. Der Song ist seitdem einer der meistgespielten Sommersongs im britischen Radio und ein fester Bestandteil von Urlaubs-Compilations.",
+      "fun_fact_es": "Chris Rea escribió 'On the Beach' mientras se recuperaba de una grave enfermedad, soñando con escapar a un destino costero cálido. Desde entonces, la canción se ha convertido en una de las más reproducidas en la radio británica durante el verano.",
+      "uri_apple_music": "applemusic://track/1305160121",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-yXVufG5oV0",
+      "uri_tidal": "tidal://track/80700067"
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:12oseQ6xiOQbc7jRSyLB2p",
+      "artist": "Cliff Richard & The Shadows",
+      "alt_artists": [
+        "Billy Fury",
+        "Bobby Vee",
+        "Frankie Avalon"
+      ],
+      "title": "On the Beach",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 7,
+        "weeks_on_chart": 13
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "This was one of the songs from Cliff Richard's 1964 film 'Wonderful Life,' shot on location in the Canary Islands. The Shadows provided the distinctive guitar arrangement that perfectly captured the carefree beach atmosphere of the era.",
+      "fun_fact_de": "Dies war einer der Songs aus Cliff Richards Film 'Wonderful Life' von 1964, der auf den Kanarischen Inseln gedreht wurde. The Shadows lieferten das markante Gitarrenarrangement, das die unbeschwerte Strandatmosphäre der Ära perfekt einfing.",
+      "fun_fact_es": "Esta fue una de las canciones de la película 'Wonderful Life' de Cliff Richard de 1964, rodada en las Islas Canarias. The Shadows proporcionaron el distintivo arreglo de guitarra que capturaba perfectamente la atmósfera despreocupada de playa de la época.",
+      "uri_apple_music": "applemusic://track/696776654",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iYFqH4kJ6Oo",
+      "uri_tidal": "tidal://track/1500590"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2EGaDf0cPX789H3LNeB03D",
+      "artist": "Bananarama",
+      "alt_artists": [
+        "The Go-Go's",
+        "Kim Wilde",
+        "Cyndi Lauper"
+      ],
+      "title": "Cruel Summer",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 8,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Bananarama's 'Cruel Summer' gained renewed fame when it appeared in the 1984 film 'The Karate Kid.' The song was later covered by Taylor Swift in 2019, whose version became a massive #1 hit, introducing the title to a new generation.",
+      "fun_fact_de": "Bananaramas 'Cruel Summer' erlangte erneute Berühmtheit durch den Film 'Karate Kid' von 1984. Taylor Swift coverte den Song 2019, und ihre Version wurde ein massiver #1-Hit, der den Titel einer neuen Generation vorstellte.",
+      "fun_fact_es": "'Cruel Summer' de Bananarama ganó renovada fama al aparecer en la película 'Karate Kid' de 1984. Taylor Swift la versionó en 2019 y su versión se convirtió en un enorme éxito #1, presentando el título a una nueva generación.",
+      "uri_apple_music": "applemusic://track/1299774701",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l9ml3nyww80",
+      "uri_tidal": "tidal://track/80381856"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:4t6NQkpUmvpvLDCkl3XuwA",
+      "artist": "Sly & The Family Stone",
+      "alt_artists": [
+        "Earth Wind & Fire",
+        "Parliament",
+        "The Temptations"
+      ],
+      "title": "Hot Fun in the Summertime - Mono Single Master",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Sly Stone wrote 'Hot Fun in the Summertime' in the immediate aftermath of performing at Woodstock in August 1969. Despite being about summer, it actually peaked on the charts in the fall, becoming a bittersweet end-of-summer anthem.",
+      "fun_fact_de": "Sly Stone schrieb 'Hot Fun in the Summertime' unmittelbar nach seinem Auftritt beim Woodstock-Festival im August 1969. Obwohl es ein Sommersong ist, erreichte er seinen Höhepunkt in den Charts erst im Herbst und wurde so zu einer bittersüßen Sommerabschiedshymne.",
+      "fun_fact_es": "Sly Stone escribió 'Hot Fun in the Summertime' inmediatamente después de actuar en Woodstock en agosto de 1969. A pesar de ser sobre el verano, alcanzó su pico en las listas en otoño, convirtiéndose en un agridulce himno de fin de verano.",
+      "uri_apple_music": "applemusic://track/212579724",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Bg0tFRea0wA",
+      "uri_tidal": "tidal://track/1276640"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:5oOC6EBnSQ3PfRAQyfjAla",
+      "artist": "Jonathan Richman",
+      "alt_artists": [
+        "Violent Femmes",
+        "R.E.M.",
+        "They Might Be Giants"
+      ],
+      "title": "That Summer Feeling",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jonathan Richman recorded 'That Summer Feeling' in a sparse, intimate style with barely any production. The song is a nostalgic meditation on how summer memories can never truly be recaptured, and has become a cult favorite among indie rock fans.",
+      "fun_fact_de": "Jonathan Richman nahm 'That Summer Feeling' in einem sparsamen, intimen Stil mit kaum Produktion auf. Der Song ist eine nostalgische Meditation darüber, wie Sommererinnerungen nie wirklich zurückgeholt werden können, und ist zu einem Kultfavoriten unter Indie-Rock-Fans geworden.",
+      "fun_fact_es": "Jonathan Richman grabó 'That Summer Feeling' en un estilo austero e íntimo con apenas producción. La canción es una meditación nostálgica sobre cómo los recuerdos del verano nunca pueden recuperarse verdaderamente, y se ha convertido en favorita de culto entre los fans del indie rock.",
+      "uri_apple_music": "applemusic://track/2543105",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3edg69iBr2Q",
+      "uri_tidal": "tidal://track/36062665"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4k6ktr10Hczmh55NY3LfJy",
+      "artist": "Madonna",
+      "alt_artists": [
+        "Cyndi Lauper",
+        "Whitney Houston",
+        "Janet Jackson"
+      ],
+      "title": "Holiday",
+      "chart_info": {
+        "billboard_peak": 16,
+        "uk_peak": 6,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Holiday' was Madonna's first single to chart in both the US and UK and launched her career as the Queen of Pop. It was written and produced by Curtis Hudson and Lisa Stevens of the group Pure Energy, not by Madonna herself.",
+      "fun_fact_de": "'Holiday' war Madonnas erste Single, die sowohl in den USA als auch in Großbritannien in die Charts kam, und startete ihre Karriere als Queen of Pop. Der Song wurde von Curtis Hudson und Lisa Stevens der Gruppe Pure Energy geschrieben und produziert, nicht von Madonna selbst.",
+      "fun_fact_es": "'Holiday' fue el primer sencillo de Madonna en aparecer en las listas tanto en EE.UU. como en el Reino Unido, lanzando su carrera como la Reina del Pop. Fue escrita y producida por Curtis Hudson y Lisa Stevens del grupo Pure Energy, no por la propia Madonna.",
+      "uri_apple_music": "applemusic://track/80815632",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w8NCcjvXQKI",
+      "uri_tidal": "tidal://track/1669876"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:62bUqzJCBwQekVyC3k6z2J",
+      "artist": "The Style Council",
+      "alt_artists": [
+        "Depeche Mode",
+        "The Smiths",
+        "Everything but the Girl"
+      ],
+      "title": "Long Hot Summer - 7\" Single",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 3,
+        "weeks_on_chart": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Paul Weller wrote 'Long Hot Summer' for The Style Council as a deliberate departure from The Jam's punk sound, embracing continental European influences. The song was inspired by the French New Wave and captured the spirit of 1983's unusually warm British summer.",
+      "fun_fact_de": "Paul Weller schrieb 'Long Hot Summer' für The Style Council als bewusste Abkehr vom Punk-Sound von The Jam und umarmte kontinentaleuropäische Einflüsse. Der Song war von der französischen Nouvelle Vague inspiriert und fing den Geist des ungewöhnlich warmen britischen Sommers 1983 ein.",
+      "fun_fact_es": "Paul Weller escribió 'Long Hot Summer' para The Style Council como un alejamiento deliberado del sonido punk de The Jam, abrazando influencias europeas continentales. La canción se inspiró en la Nouvelle Vague francesa y capturó el espíritu del verano inusualmente cálido de 1983 en Gran Bretaña.",
+      "uri_apple_music": "applemusic://track/1440918821",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1CAzwewVjZ0",
+      "uri_tidal": "tidal://track/616340"
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:2pZJhvpin385eqAFRp3ASJ",
+      "artist": "Bob Marley & The Wailers",
+      "alt_artists": [
+        "Peter Tosh",
+        "Jimmy Cliff",
+        "Toots & The Maytals"
+      ],
+      "title": "Sun Is Shining",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Sun Is Shining' was originally recorded for the 1971 album 'Soul Revolution Part II' but gained worldwide fame decades later when Robin Schulz remixed it in 2015. The original version showcases the deep roots reggae style of early Bob Marley & The Wailers.",
+      "fun_fact_de": "'Sun Is Shining' wurde ursprünglich für das Album 'Soul Revolution Part II' von 1971 aufgenommen, erlangte aber weltweite Berühmtheit erst Jahrzehnte später durch Robin Schulz' Remix 2015. Die Originalversion zeigt den tiefen Roots-Reggae-Stil des frühen Bob Marley & The Wailers.",
+      "fun_fact_es": "'Sun Is Shining' se grabó originalmente para el álbum 'Soul Revolution Part II' de 1971, pero ganó fama mundial décadas después cuando Robin Schulz la remezció en 2015. La versión original muestra el estilo roots reggae profundo de los primeros Bob Marley & The Wailers.",
+      "uri_apple_music": "applemusic://track/1440818227",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5T3UmvutR8k",
+      "uri_tidal": "tidal://track/574546"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:6FnuMo55jNECTDdS1nD5H0",
+      "artist": "David Bowie, Mick Jagger",
+      "alt_artists": [
+        "Freddie Mercury",
+        "Elton John",
+        "Rod Stewart"
+      ],
+      "title": "Dancing in the Street - 2002 Remaster",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 1,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "David Bowie and Mick Jagger recorded 'Dancing in the Street' in just one afternoon for the Live Aid charity event in 1985. The infamously campy music video, filmed in the streets of London with no rehearsal, has become a cult classic in its own right.",
+      "fun_fact_de": "David Bowie und Mick Jagger nahmen 'Dancing in the Street' an nur einem Nachmittag für die Live-Aid-Wohltätigkeitsveranstaltung 1985 auf. Das berüchtigt schrille Musikvideo, ohne Probe in den Straßen Londons gedreht, ist selbst zum Kultklassiker geworden.",
+      "fun_fact_es": "David Bowie y Mick Jagger grabaron 'Dancing in the Street' en solo una tarde para el evento benéfico Live Aid en 1985. El infamemente extravagante videoclip, filmado sin ensayo en las calles de Londres, se ha convertido en un clásico de culto por derecho propio.",
+      "uri_apple_music": "applemusic://track/726125362",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HasaQvHCv4w",
+      "uri_tidal": "tidal://track/620621"
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:1INWPr855fwWdAOeecbu0W",
+      "artist": "Chubby Checker",
+      "alt_artists": [
+        "Little Richard",
+        "Fats Domino",
+        "Bill Haley"
+      ],
+      "title": "Let's Twist Again",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 2,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Let's Twist Again' won the Grammy Award for Best Rock and Roll Recording in 1962, making it one of the earliest rock songs to receive Grammy recognition. Chubby Checker released it as a sequel to 'The Twist,' and it became an even bigger hit in Europe than in the US.",
+      "fun_fact_de": "'Let's Twist Again' gewann 1962 den Grammy Award für die beste Rock-and-Roll-Aufnahme und war damit einer der frühesten Rocksongs, die Grammy-Anerkennung erhielten. Chubby Checker veröffentlichte ihn als Nachfolger von 'The Twist,' und er wurde in Europa ein noch größerer Hit als in den USA.",
+      "fun_fact_es": "'Let's Twist Again' ganó el premio Grammy a la Mejor Grabación de Rock and Roll en 1962, siendo una de las primeras canciones de rock en recibir reconocimiento Grammy. Chubby Checker lo lanzó como secuela de 'The Twist' y se convirtió en un éxito aún mayor en Europa que en EE.UU.",
+      "uri_apple_music": "applemusic://track/1440563003",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=md-k3_D08cg",
+      "uri_tidal": "tidal://track/2285453"
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:1Oewmmr12xuhgzvUJ9Q0cf",
+      "artist": "Jan & Dean",
+      "alt_artists": [
+        "The Beach Boys",
+        "The Ventures",
+        "Dick Dale"
+      ],
+      "title": "Surf City",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 26,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Surf City' was the first surf rock song to reach #1 on the Billboard Hot 100. It was co-written by Brian Wilson of the Beach Boys, who later regretted giving the song to Jan & Dean because it outperformed his own group's singles at the time.",
+      "fun_fact_de": "'Surf City' war der erste Surf-Rock-Song, der Platz 1 der Billboard Hot 100 erreichte. Er wurde von Brian Wilson von den Beach Boys mitgeschrieben, der es später bereute, den Song an Jan & Dean gegeben zu haben, da er die Singles seiner eigenen Gruppe zu der Zeit übertraf.",
+      "fun_fact_es": "'Surf City' fue la primera canción de surf rock en alcanzar el #1 del Billboard Hot 100. Fue coescrita por Brian Wilson de los Beach Boys, quien después se arrepintió de haberla dado a Jan & Dean porque superó a los sencillos de su propio grupo en ese momento.",
+      "uri_apple_music": "applemusic://track/721209970",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=i0YkeQbn1ao",
+      "uri_tidal": "tidal://track/5045948"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:2zMJN9JvDlvGP4jB03l1Bz",
+      "artist": "Donna Summer",
+      "alt_artists": [
+        "Gloria Gaynor",
+        "Diana Ross",
+        "Sister Sledge"
+      ],
+      "title": "Hot Stuff",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 11,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Hot Stuff' by Donna Summer was one of the first disco songs to feature prominent rock guitar, played by Jeff 'Skunk' Baxter of the Doobie Brothers and Steely Dan. It won the Grammy for Best Female R&B Vocal Performance in 1980.",
+      "fun_fact_de": "'Hot Stuff' von Donna Summer war einer der ersten Disco-Songs mit prominenter Rockgitarre, gespielt von Jeff 'Skunk' Baxter von den Doobie Brothers und Steely Dan. Er gewann 1980 den Grammy für die beste weibliche R&B-Gesangsdarbietung.",
+      "fun_fact_es": "'Hot Stuff' de Donna Summer fue una de las primeras canciones disco en presentar una guitarra rock prominente, tocada por Jeff 'Skunk' Baxter de los Doobie Brothers y Steely Dan. Ganó el Grammy a la Mejor Interpretación Vocal Femenina de R&B en 1980.",
+      "uri_apple_music": "applemusic://track/1425179373",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nYMeJSehCe4",
+      "uri_tidal": "tidal://track/93427542"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7B22szTT8omMRmpQw6DMqV",
+      "artist": "The Beach Boys",
+      "alt_artists": [
+        "Jan & Dean",
+        "The Ventures",
+        "The Mamas & The Papas"
+      ],
+      "title": "Kokomo",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 25,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Kokomo' gave the Beach Boys their first #1 hit in 22 years when it topped the Billboard chart in 1988. Written for the film 'Cocktail,' it was recorded without Brian Wilson and namedrops real Caribbean locations including Aruba, Jamaica, and Key Largo.",
+      "fun_fact_de": "'Kokomo' bescherte den Beach Boys 1988 ihren ersten Nummer-1-Hit seit 22 Jahren an der Spitze der Billboard-Charts. Für den Film 'Cocktail' geschrieben, wurde er ohne Brian Wilson aufgenommen und nennt reale karibische Orte wie Aruba, Jamaika und Key Largo.",
+      "fun_fact_es": "'Kokomo' le dio a los Beach Boys su primer éxito #1 en 22 años cuando encabezó las listas de Billboard en 1988. Escrita para la película 'Cocktail', se grabó sin Brian Wilson y menciona lugares caribeños reales como Aruba, Jamaica y Key Largo.",
+      "uri_apple_music": "applemusic://track/728255310",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xmr8bEuyQjA",
+      "uri_tidal": "tidal://track/35380423"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:0G3fbPbE1vGeABDEZF0jeG",
+      "artist": "CHIC",
+      "alt_artists": [
+        "Kool & The Gang",
+        "Earth Wind & Fire",
+        "Bee Gees"
+      ],
+      "title": "Good Times",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 5,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "CHIC's 'Good Times' bass line, played by Bernard Edwards, is one of the most sampled in music history. It directly inspired the Sugarhill Gang's 'Rapper's Delight' and Queen's 'Another One Bites the Dust,' making it a foundational riff for both hip-hop and rock.",
+      "fun_fact_de": "Die Basslinie von CHICs 'Good Times', gespielt von Bernard Edwards, ist eine der meistgesampelten der Musikgeschichte. Sie inspirierte direkt die Sugarhill Gang's 'Rapper's Delight' und Queens 'Another One Bites the Dust' und wurde so zum Grundstein-Riff für Hip-Hop und Rock gleichermaßen.",
+      "fun_fact_es": "La línea de bajo de 'Good Times' de CHIC, tocada por Bernard Edwards, es una de las más sampleadas en la historia de la música. Inspiró directamente 'Rapper's Delight' de Sugarhill Gang y 'Another One Bites the Dust' de Queen, convirtiéndola en un riff fundacional tanto para el hip-hop como para el rock.",
+      "uri_apple_music": "applemusic://track/300994538",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PP_JBPGkd-Y",
+      "uri_tidal": "tidal://track/311636"
+    },
+    {
+      "year": 2012,
+      "uri": "spotify:track:1kPpge9JDLpcj15qgrPbYX",
+      "artist": "Owl City, Carly Rae Jepsen",
+      "alt_artists": [
+        "LMFAO",
+        "Maroon 5",
+        "One Direction"
+      ],
+      "title": "Good Time",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 7,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "3x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Good Time' was the result of an unlikely collaboration between Owl City's Adam Young and Carly Rae Jepsen, who connected after both having surprise viral hits. The song was written and recorded remotely, with the two artists never in the same studio during production.",
+      "fun_fact_de": "'Good Time' war das Ergebnis einer ungewöhnlichen Zusammenarbeit zwischen Owl Citys Adam Young und Carly Rae Jepsen, die sich verbanden, nachdem beide überraschende virale Hits hatten. Der Song wurde aus der Ferne geschrieben und aufgenommen, ohne dass die beiden Künstler je im selben Studio waren.",
+      "fun_fact_es": "'Good Time' fue el resultado de una colaboración improbable entre Adam Young de Owl City y Carly Rae Jepsen, quienes conectaron después de que ambos tuvieran éxitos virales sorpresa. La canción se escribió y grabó a distancia, sin que los dos artistas estuvieran nunca en el mismo estudio.",
+      "uri_apple_music": "applemusic://track/1442234593",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H7HmzwI67ec",
+      "uri_tidal": "tidal://track/16604853"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:5I9zIwGB6f0edpjO5oX2b9",
+      "artist": "Rupert Holmes",
+      "alt_artists": [
+        "Barry Manilow",
+        "Christopher Cross",
+        "Michael McDonald"
+      ],
+      "title": "Escape (The Pina Colada Song)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 23,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Rupert Holmes originally disliked the title 'The Pina Colada Song' and preferred to call it 'Escape.' It was the last #1 hit of the 1970s on the Billboard Hot 100, reaching the top spot in the final week of December 1979. The song's plot involves a couple who both answer personal ads, only to discover they're each other.",
+      "fun_fact_de": "Rupert Holmes mochte den Titel 'The Pina Colada Song' ursprünglich nicht und nannte ihn lieber 'Escape.' Es war der letzte Nummer-1-Hit der 1970er in den Billboard Hot 100, der in der letzten Dezemberwoche 1979 die Spitze erreichte. Die Handlung des Songs dreht sich um ein Paar, das gegenseitig auf Kontaktanzeigen antwortet, nur um festzustellen, dass sie einander sind.",
+      "fun_fact_es": "Rupert Holmes originalmente no le gustaba el título 'The Pina Colada Song' y prefería llamarla 'Escape.' Fue el último éxito #1 de los años 70 en el Billboard Hot 100, alcanzando la cima en la última semana de diciembre de 1979. La trama de la canción involucra a una pareja que responde a anuncios personales solo para descubrir que se buscan mutuamente.",
+      "uri_apple_music": "applemusic://track/1452677848",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fsj2wdFDmLk",
+      "uri_tidal": "tidal://track/36056987"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:5qBqBdfTEIWJwAS0Jm2F5R",
+      "artist": "The Byrds",
+      "alt_artists": [
+        "The Mamas & The Papas",
+        "Peter Paul & Mary",
+        "Simon & Garfunkel"
+      ],
+      "title": "Turn! Turn! Turn! (To Everything There Is a Season)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 26,
+        "weeks_on_chart": 13
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The lyrics of 'Turn! Turn! Turn!' are taken almost verbatim from the Book of Ecclesiastes in the Bible, with Pete Seeger adding only the title line and the phrase 'a time for peace, I swear it's not too late.' It holds the distinction of being one of the oldest lyrics ever to top the charts.",
+      "fun_fact_de": "Der Text von 'Turn! Turn! Turn!' stammt fast wörtlich aus dem Buch Prediger der Bibel. Pete Seeger fügte nur die Titelzeile und den Satz 'a time for peace, I swear it's not too late' hinzu. Der Song hat die Besonderheit, einen der ältesten Liedtexte zu haben, der je die Charts anführte.",
+      "fun_fact_es": "La letra de 'Turn! Turn! Turn!' está tomada casi textualmente del libro del Eclesiastés de la Biblia, con Pete Seeger añadiendo solo la línea del título y la frase 'a time for peace, I swear it's not too late.' Tiene la distinción de ser una de las letras más antiguas en encabezar las listas.",
+      "uri_apple_music": "applemusic://track/155655971",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vkQlQ6YvGYM",
+      "uri_tidal": "tidal://track/1830874"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:4nXkbcTj3nyww1cHkw5RAP",
+      "artist": "The Doobie Brothers",
+      "alt_artists": [
+        "Creedence Clearwater Revival",
+        "Eagles",
+        "The Allman Brothers Band"
+      ],
+      "title": "Long Train Runnin'",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": null,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Doobie Brothers' 'Long Train Runnin'' was originally an untitled jam the band played as a warm-up before concerts. Producer Ted Templeman heard them playing it backstage and insisted they record it, turning a casual riff into one of classic rock's most recognizable songs.",
+      "fun_fact_de": "The Doobie Brothers' 'Long Train Runnin'' war ursprünglich ein titelloser Jam, den die Band als Aufwärmübung vor Konzerten spielte. Produzent Ted Templeman hörte sie backstage spielen und bestand darauf, es aufzunehmen, und verwandelte so ein beiläufiges Riff in einen der bekanntesten Songs des Classic Rock.",
+      "fun_fact_es": "'Long Train Runnin'' de los Doobie Brothers era originalmente un jam sin título que la banda tocaba como calentamiento antes de los conciertos. El productor Ted Templeman los escuchó tocándolo entre bastidores e insistió en que lo grabaran, convirtiendo un riff casual en una de las canciones más reconocibles del rock clásico.",
+      "uri_apple_music": "applemusic://track/1110988134",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m4tJSn0QtME",
+      "uri_tidal": "tidal://track/273900"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:3c06k9x6MHHdPQi3ix68yF",
+      "artist": "The Lovin' Spoonful",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles",
+        "The Mamas & The Papas"
+      ],
+      "title": "Daydream",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": null,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Daydream' by The Lovin' Spoonful features the sound of a real cat purring in the background, recorded by frontman John Sebastian to enhance the lazy, contented mood of the song. The track was one of the first to blend folk, pop, and jug band music into what became known as 'good time music.'",
+      "fun_fact_de": "'Daydream' von The Lovin' Spoonful enthält im Hintergrund das echte Schnurren einer Katze, aufgenommen von Frontmann John Sebastian, um die faule, zufriedene Stimmung des Songs zu verstärken. Der Track war einer der ersten, der Folk, Pop und Jug-Band-Musik zu dem verschmolz, was als 'Good Time Music' bekannt wurde.",
+      "fun_fact_es": "'Daydream' de The Lovin' Spoonful presenta el sonido de un gato real ronroneando de fondo, grabado por el líder John Sebastian para realzar el ambiente perezoso y satisfecho de la canción. El tema fue uno de los primeros en mezclar folk, pop y música de jug band en lo que se conoció como 'good time music'.",
+      "uri_apple_music": "applemusic://track/253838638",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lt5Jy983uTE",
+      "uri_tidal": "tidal://track/49823"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:4vju55Ag7apDL2CfotuE7Q",
+      "artist": "Bobby Hebb",
+      "alt_artists": [
+        "Stevie Wonder",
+        "Sam Cooke",
+        "Ben E. King"
+      ],
+      "title": "Sunny",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 12,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bobby Hebb wrote 'Sunny' in 1963 on the day after President Kennedy's assassination and just one day after his own brother Harold was stabbed to death outside a Nashville nightclub. The upbeat, hopeful song was his way of processing grief and searching for optimism in the darkest of times.",
+      "fun_fact_de": "Bobby Hebb schrieb 'Sunny' 1963 am Tag nach der Ermordung von Präsident Kennedy und nur einen Tag nachdem sein Bruder Harold vor einem Nachtclub in Nashville erstochen worden war. Der fröhliche, hoffnungsvolle Song war seine Art, Trauer zu verarbeiten und in dunkelsten Zeiten Optimismus zu suchen.",
+      "fun_fact_es": "Bobby Hebb escribió 'Sunny' en 1963 al día siguiente del asesinato del presidente Kennedy y solo un día después de que su hermano Harold fuera apuñalado mortalmente frente a un club nocturno de Nashville. La canción alegre y esperanzadora fue su forma de procesar el duelo y buscar optimismo en los momentos más oscuros.",
+      "uri_apple_music": "applemusic://track/1440918584",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mVhy7JPqM7A",
+      "uri_tidal": "tidal://track/330387"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:0nF9V486xzwBALms4G9n7a",
+      "artist": "Georgie Fame",
+      "alt_artists": [
+        "Van Morrison",
+        "Spencer Davis Group",
+        "The Animals"
+      ],
+      "title": "Sitting In The Park",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 12,
+        "weeks_on_chart": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Georgie Fame's 'Sitting In The Park' was a cover of a Billy Stewart soul classic. Fame, born Clive Powell, was one of the few white British artists to gain credibility in the mod jazz and R&B scene, performing regularly at London's legendary Flamingo Club alongside genuine American soul artists.",
+      "fun_fact_de": "Georgie Fames 'Sitting In The Park' war ein Cover eines Soul-Klassikers von Billy Stewart. Fame, geboren als Clive Powell, war einer der wenigen weißen britischen Künstler, die in der Mod-Jazz- und R&B-Szene Anerkennung fanden, und trat regelmäßig im legendären Flamingo Club in London neben echten amerikanischen Soul-Künstlern auf.",
+      "fun_fact_es": "'Sitting In The Park' de Georgie Fame era una versión del clásico soul de Billy Stewart. Fame, nacido Clive Powell, fue uno de los pocos artistas blancos británicos en ganar credibilidad en la escena mod jazz y R&B, actuando regularmente en el legendario Flamingo Club de Londres junto a auténticos artistas de soul americanos.",
+      "uri_apple_music": "applemusic://track/1442991088",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Yjy2Fs3p_8I",
+      "uri_tidal": "tidal://track/573608"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:6vcNJUWtUPB0hKC6VbZriY",
+      "artist": "Scott McKenzie",
+      "alt_artists": [
+        "The Mamas & The Papas",
+        "Jefferson Airplane",
+        "The Byrds"
+      ],
+      "title": "San Francisco (Be Sure to Wear Flowers in Your Hair) - Single Version",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 1,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'San Francisco (Be Sure to Wear Flowers in Your Hair)' was written by John Phillips of The Mamas & The Papas to promote the 1967 Monterey Pop Festival. Scott McKenzie recorded it in a single take, and it became the unofficial anthem of the Summer of Love, selling over 7 million copies worldwide.",
+      "fun_fact_de": "'San Francisco (Be Sure to Wear Flowers in Your Hair)' wurde von John Phillips von The Mamas & The Papas geschrieben, um das Monterey Pop Festival 1967 zu bewerben. Scott McKenzie nahm es in einem einzigen Take auf, und es wurde zur inoffiziellen Hymne des Summer of Love mit über 7 Millionen verkauften Exemplaren weltweit.",
+      "fun_fact_es": "'San Francisco (Be Sure to Wear Flowers in Your Hair)' fue escrita por John Phillips de The Mamas & The Papas para promocionar el Festival Pop de Monterey de 1967. Scott McKenzie la grabó en una sola toma y se convirtió en el himno no oficial del Verano del Amor, vendiendo más de 7 millones de copias en todo el mundo.",
+      "uri_apple_music": "applemusic://track/352008332",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wuEqAVa3n9k",
+      "uri_tidal": "tidal://track/14558019"
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:7IwFA0HPOBCoQT5qzP0jDN",
+      "artist": "Matthews' Southern Comfort",
+      "alt_artists": [
+        "Crosby Stills & Nash",
+        "Joni Mitchell",
+        "The Byrds"
+      ],
+      "title": "Woodstock",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 1,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Matthews' Southern Comfort's cover of 'Woodstock' reached #1 in the UK, outselling both Crosby, Stills, Nash & Young's version and the original by Joni Mitchell, who wrote the song despite never actually attending the Woodstock festival.",
+      "fun_fact_de": "Das Cover von 'Woodstock' von Matthews' Southern Comfort erreichte Platz 1 in Großbritannien und verkaufte sich besser als die Version von Crosby, Stills, Nash & Young und das Original von Joni Mitchell, die den Song schrieb, obwohl sie nie beim Woodstock-Festival war.",
+      "fun_fact_es": "La versión de 'Woodstock' de Matthews' Southern Comfort llegó al #1 en el Reino Unido, superando en ventas tanto la versión de Crosby, Stills, Nash & Young como la original de Joni Mitchell, quien escribió la canción sin haber asistido nunca al festival de Woodstock.",
+      "uri_apple_music": "applemusic://track/1103750213",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4S1BEH2crEs",
+      "uri_tidal": "tidal://track/59430431"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:2KV3KWhOvBM8QTZtD4P30w",
+      "artist": "Traffic",
+      "alt_artists": [
+        "Procol Harum",
+        "Cream",
+        "The Spencer Davis Group"
+      ],
+      "title": "Paper Sun",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 5,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Paper Sun' was Traffic's debut single and featured Steve Winwood, who was just 19 years old. The song's Indian-influenced sitar-like guitar and psychedelic production made it one of the quintessential sounds of the 1967 Summer of Love in Britain.",
+      "fun_fact_de": "'Paper Sun' war Traffic's Debütsingle mit dem erst 19-jährigen Steve Winwood. Die indisch beeinflusste Sitar-ähnliche Gitarre und die psychedelische Produktion machten ihn zu einem der quintessentiellen Sounds des Summer of Love 1967 in Großbritannien.",
+      "fun_fact_es": "'Paper Sun' fue el primer sencillo de Traffic y presentaba a Steve Winwood, que solo tenía 19 años. La guitarra con influencia india similar al sitar y la producción psicodélica la convirtieron en uno de los sonidos por excelencia del Verano del Amor de 1967 en Gran Bretaña.",
+      "uri_apple_music": "applemusic://track/1453732882",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=80_UAuBEDlQ",
+      "uri_tidal": "tidal://track/104702378"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:35cFi6A8GDKDAs46mR71ll",
+      "artist": "Simon Dupree & The Big Sound",
+      "alt_artists": [
+        "The Moody Blues",
+        "Procol Harum",
+        "The Zombies"
+      ],
+      "title": "Kites",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 9,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Simon Dupree & The Big Sound's 'Kites' was an orchestral psychedelic pop masterpiece that the band themselves reportedly disliked, considering it too commercial. Group member Derek Shulman later became a major music industry executive, signing bands like Bon Jovi and Nickelback.",
+      "fun_fact_de": "Simon Dupree & The Big Sounds 'Kites' war ein orchestrales psychedelisches Pop-Meisterwerk, das die Band selbst angeblich nicht mochte und als zu kommerziell empfand. Bandmitglied Derek Shulman wurde später ein bedeutender Musikindustrie-Manager, der Bands wie Bon Jovi und Nickelback unter Vertrag nahm.",
+      "fun_fact_es": "'Kites' de Simon Dupree & The Big Sound fue una obra maestra de pop psicodélico orquestal que según se dice la propia banda no le gustaba, considerándola demasiado comercial. El miembro del grupo Derek Shulman se convirtió después en un importante ejecutivo de la industria musical, fichando bandas como Bon Jovi y Nickelback.",
+      "uri_apple_music": "applemusic://track/696264951",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dVXDFxP4b10",
+      "uri_tidal": "tidal://track/70379198"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:602FffJEffSJnWC8eHDIwv",
+      "artist": "Keith",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles",
+        "The Association"
+      ],
+      "title": "98.6",
+      "chart_info": {
+        "billboard_peak": 7,
+        "uk_peak": 24,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The singer known simply as 'Keith' was actually James Barry Keefer from Philadelphia. '98.6' refers to the normal human body temperature in Fahrenheit and was used as a metaphor for everything being perfectly fine. Despite being a one-hit wonder, the song sold over a million copies.",
+      "fun_fact_de": "Der nur als 'Keith' bekannte Sänger war eigentlich James Barry Keefer aus Philadelphia. '98.6' bezieht sich auf die normale menschliche Körpertemperatur in Fahrenheit und wurde als Metapher dafür verwendet, dass alles perfekt in Ordnung ist. Trotz seines One-Hit-Wonder-Status verkaufte sich der Song über eine Million Mal.",
+      "fun_fact_es": "El cantante conocido simplemente como 'Keith' era en realidad James Barry Keefer de Filadelfia. '98.6' se refiere a la temperatura corporal humana normal en Fahrenheit y se usó como metáfora de que todo está perfectamente bien. A pesar de ser un one-hit wonder, la canción vendió más de un millón de copias.",
+      "uri_apple_music": "applemusic://track/1443850324",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Qn8w9kyuy9Q",
+      "uri_tidal": "tidal://track/72560607"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:3XvACX6sYu4bml5JdxGIaN",
+      "artist": "The Association",
+      "alt_artists": [
+        "The Monkees",
+        "The Turtles",
+        "The 5th Dimension"
+      ],
+      "title": "Windy",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Association's 'Windy' spent four weeks at #1 on the Billboard Hot 100 in the summer of 1967. Songwriter Ruthann Friedman originally wrote it about a man, but the band changed the pronouns to make the subject female, creating the breezy, mysterious character that made the song iconic.",
+      "fun_fact_de": "The Associations 'Windy' stand im Sommer 1967 vier Wochen auf Platz 1 der Billboard Hot 100. Songwriterin Ruthann Friedman schrieb es ursprünglich über einen Mann, aber die Band änderte die Pronomen, um das Subjekt weiblich zu machen, und schuf so die luftige, mysteriöse Figur, die den Song ikonisch machte.",
+      "fun_fact_es": "'Windy' de The Association pasó cuatro semanas en el #1 del Billboard Hot 100 en el verano de 1967. La compositora Ruthann Friedman la escribió originalmente sobre un hombre, pero la banda cambió los pronombres para hacer al sujeto femenino, creando el personaje alegre y misterioso que hizo icónica la canción.",
+      "uri_apple_music": "applemusic://track/40458813",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Qa9mGMdwv0g",
+      "uri_tidal": "tidal://track/214835"
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:6xepovPqjvrkEw9Y5AMmTm",
+      "artist": "Kaoma",
+      "alt_artists": [
+        "Gipsy Kings",
+        "Manu Chao",
+        "Santana"
+      ],
+      "title": "Lambada - Original Version 1989",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Lambada' was the subject of multiple lawsuits because the melody was taken without permission from 'Llorando Se Fue' by the Bolivian group Los Kjarkas. Despite the legal controversies, it became a worldwide phenomenon, reaching #1 in over 15 countries and selling more than 5 million copies.",
+      "fun_fact_de": "'Lambada' war Gegenstand mehrerer Klagen, da die Melodie ohne Erlaubnis von 'Llorando Se Fue' der bolivianischen Gruppe Los Kjarkas übernommen wurde. Trotz der rechtlichen Kontroversen wurde es ein weltweites Phänomen, erreichte in über 15 Ländern Platz 1 und verkaufte sich über 5 Millionen Mal.",
+      "fun_fact_es": "'Lambada' fue objeto de múltiples demandas porque la melodía fue tomada sin permiso de 'Llorando Se Fue' del grupo boliviano Los Kjarkas. A pesar de las controversias legales, se convirtió en un fenómeno mundial, alcanzando el #1 en más de 15 países y vendiendo más de 5 millones de copias.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WMT5XzXFhUs",
+      "uri_tidal": "tidal://track/24854500"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:4oaj36KzXRgDg4McgcTsZK",
+      "artist": "Los Del Rio",
+      "alt_artists": [
+        "Ricky Martin",
+        "Enrique Iglesias",
+        "Gipsy Kings"
+      ],
+      "title": "Macarena",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 60
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Macarena' spent a record-setting 14 weeks at #1 on the Billboard Hot 100 in 1996 in its Bayside Boys remix version. The original Spanish version was released in 1993, but it was the English remix with its accompanying dance that turned it into one of the biggest one-hit wonders of all time.",
+      "fun_fact_de": "'Macarena' stand 1996 in der Bayside-Boys-Remix-Version rekordverdächtige 14 Wochen auf Platz 1 der Billboard Hot 100. Die ursprüngliche spanische Version erschien 1993, aber erst der englische Remix mit dem dazugehörigen Tanz machte ihn zu einem der größten One-Hit-Wonder aller Zeiten.",
+      "fun_fact_es": "'Macarena' pasó 14 semanas récord en el #1 del Billboard Hot 100 en 1996 en su versión del remix Bayside Boys. La versión original en español se lanzó en 1993, pero fue el remix en inglés con su baile acompañante el que la convirtió en uno de los mayores one-hit wonders de todos los tiempos.",
+      "uri_apple_music": "applemusic://track/258647542",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uOnAKM0ymGY",
+      "uri_tidal": "tidal://track/661956"
+    },
+    {
+      "year": 2010,
+      "uri": "spotify:track:2Cd9iWfcOpGDHLz6tVA3G4",
+      "artist": "Shakira, Freshlyground",
+      "alt_artists": [
+        "Rihanna",
+        "Jennifer Lopez",
+        "Beyoncé"
+      ],
+      "title": "Waka Waka (This Time for Africa) [The Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)",
+      "chart_info": {
+        "billboard_peak": 38,
+        "uk_peak": 21,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Waka Waka' was the official song of the 2010 FIFA World Cup in South Africa. The melody is based on 'Zangalewa,' a 1986 song by the Cameroonian group Golden Sounds. Its music video is the most viewed World Cup song on YouTube with over 3.5 billion views.",
+      "fun_fact_de": "'Waka Waka' war das offizielle Lied der FIFA-Weltmeisterschaft 2010 in Südafrika. Die Melodie basiert auf 'Zangalewa', einem Song der kamerunischen Gruppe Golden Sounds von 1986. Das Musikvideo ist mit über 3,5 Milliarden Aufrufen das meistgesehene WM-Lied auf YouTube.",
+      "fun_fact_es": "'Waka Waka' fue la canción oficial de la Copa Mundial de la FIFA 2010 en Sudáfrica. La melodía está basada en 'Zangalewa', una canción de 1986 del grupo camerunés Golden Sounds. Su video musical es la canción de la Copa del Mundo más vista en YouTube con más de 3.500 millones de visualizaciones.",
+      "uri_apple_music": "applemusic://track/1637465979",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8klXBhBMOp4",
+      "uri_tidal": "tidal://track/3910950"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4czNORk5MjW5WOn98bki32",
+      "artist": "Lionel Richie",
+      "alt_artists": [
+        "Michael Jackson",
+        "Stevie Wonder",
+        "Luther Vandross"
+      ],
+      "title": "All Night Long (All Night) - Single Version",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 25
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Lionel Richie performed 'All Night Long' at the 1984 Los Angeles Olympics closing ceremony in front of a global television audience of over 2.6 billion people. The song's celebratory lyrics include words from Caribbean and African dialects, though Richie has admitted some of the phrases are entirely made up.",
+      "fun_fact_de": "Lionel Richie performte 'All Night Long' bei der Abschlussfeier der Olympischen Spiele 1984 in Los Angeles vor einem weltweiten Fernsehpublikum von über 2,6 Milliarden Menschen. Die feierlichen Lyrics enthalten Wörter aus karibischen und afrikanischen Dialekten, obwohl Richie zugegeben hat, dass einige der Phrasen völlig erfunden sind.",
+      "fun_fact_es": "Lionel Richie interpretó 'All Night Long' en la ceremonia de clausura de los Juegos Olímpicos de Los Ángeles 1984 ante una audiencia televisiva mundial de más de 2.600 millones de personas. La letra celebratoria incluye palabras de dialectos caribeños y africanos, aunque Richie ha admitido que algunas frases son completamente inventadas.",
+      "uri_apple_music": "applemusic://track/1440781676",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nqAvFx3NxUM",
+      "uri_tidal": "tidal://track/592285"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:25U7raB3ZSszayTYClh4hF",
+      "artist": "Israel Kamakawiwo'ole",
+      "alt_artists": [
+        "Jack Johnson",
+        "Bob Marley",
+        "Jason Mraz"
+      ],
+      "title": "Somewhere Over The Rainbow/What A Wonderful World",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Israel Kamakawiwo'ole recorded his medley of 'Somewhere Over the Rainbow/What a Wonderful World' in a single take at 3 AM in a Honolulu studio in 1988. The recording was largely unknown until it was used in TV shows and films years later, eventually becoming one of the most-streamed songs of all time with over 1 billion YouTube views.",
+      "fun_fact_de": "Israel Kamakawiwo'ole nahm sein Medley aus 'Somewhere Over the Rainbow/What a Wonderful World' 1988 um 3 Uhr morgens in einem Studio in Honolulu in einem einzigen Take auf. Die Aufnahme war weitgehend unbekannt, bis sie Jahre später in TV-Sendungen und Filmen verwendet wurde und schließlich mit über 1 Milliarde YouTube-Aufrufen zu einem der meistgestreamten Songs aller Zeiten wurde.",
+      "fun_fact_es": "Israel Kamakawiwo'ole grabó su popurrí de 'Somewhere Over the Rainbow/What a Wonderful World' en una sola toma a las 3 de la madrugada en un estudio de Honolulu en 1988. La grabación fue en gran parte desconocida hasta que se utilizó en programas de TV y películas años después, convirtiéndose en una de las canciones más reproducidas de todos los tiempos con más de 1.000 millones de vistas en YouTube.",
+      "uri_apple_music": "applemusic://track/6920352",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U-Ooxpz0Eqk",
+      "uri_tidal": "tidal://track/59854225"
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:4aTCNddtjztjuK2EOgz7ZZ",
+      "artist": "Brian Hyland",
+      "alt_artists": [
+        "Bobby Vee",
+        "Frankie Avalon",
+        "Neil Sedaka"
+      ],
+      "title": "Itsy Bitsy Teenie Weenie Yellow Polka Dot Bikini",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Brian Hyland was only 16 years old when 'Itsy Bitsy Teenie Weenie Yellow Polka Dot Bikini' hit #1 in 1960. The song was inspired by a real incident involving songwriter Paul Vance's two-year-old daughter, who was too shy to come out of the water in her new bikini.",
+      "fun_fact_de": "Brian Hyland war erst 16 Jahre alt, als 'Itsy Bitsy Teenie Weenie Yellow Polka Dot Bikini' 1960 die Nummer 1 erreichte. Der Song wurde von einem echten Vorfall inspiriert: Die zweijährige Tochter des Songwriters Paul Vance war zu schüchtern, um in ihrem neuen Bikini aus dem Wasser zu kommen.",
+      "fun_fact_es": "Brian Hyland tenía solo 16 años cuando 'Itsy Bitsy Teenie Weenie Yellow Polka Dot Bikini' llegó al #1 en 1960. La canción se inspiró en un incidente real que involucraba a la hija de dos años del compositor Paul Vance, que tenía demasiada vergüenza para salir del agua con su nuevo bikini.",
+      "uri_apple_music": "applemusic://track/1450974117",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n56E3kScoN8",
+      "uri_tidal": "tidal://track/103382831"
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2TjXzbUt5zQ4PpHG0dEaT1",
+      "artist": "Squeeze",
+      "alt_artists": [
+        "Madness",
+        "XTC",
+        "Elvis Costello"
+      ],
+      "title": "Pulling Mussels (From The Shell)",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 44,
+        "weeks_on_chart": 5
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "'Pulling Mussels (From the Shell)' is widely regarded as Squeeze's finest song and a masterpiece of British new wave storytelling. Written by Chris Difford and Glenn Tilbrook, it paints a vivid picture of a British seaside holiday, complete with package tours and sandy sandwiches, and was championed by Elvis Costello.",
+      "fun_fact_de": "'Pulling Mussels (From the Shell)' gilt weithin als Squeeze's bester Song und ein Meisterwerk britischen New-Wave-Erzählens. Von Chris Difford und Glenn Tilbrook geschrieben, zeichnet er ein lebhaftes Bild eines britischen Strandurlaubs mit Pauschalreisen und sandigen Sandwiches und wurde von Elvis Costello gefördert.",
+      "fun_fact_es": "'Pulling Mussels (From the Shell)' es ampliamente considerada como la mejor canción de Squeeze y una obra maestra de la narrativa del new wave británico. Escrita por Chris Difford y Glenn Tilbrook, pinta una imagen vívida de unas vacaciones en la costa británica, con viajes organizados y sándwiches con arena.",
+      "uri_apple_music": "applemusic://track/1444083937",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Hn0Rzi1s5iU",
+      "uri_tidal": "tidal://track/1648835"
+    },
+    {
+      "year": 1959,
+      "uri": "spotify:track:6xcJRINmg6leDcUxdOtDbz",
+      "artist": "Jerry Keller",
+      "alt_artists": [
+        "Bobby Darin",
+        "Neil Sedaka",
+        "Frankie Avalon"
+      ],
+      "title": "Here Comes Summer",
+      "chart_info": {
+        "billboard_peak": 14,
+        "uk_peak": 1,
+        "weeks_on_chart": 14
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jerry Keller's 'Here Comes Summer' was a transatlantic hit in 1959, reaching #1 in the UK. Keller later became a successful songwriter in Europe, particularly in France and Germany, writing for artists like Sacha Distel, and the song remains a perennial favorite on summer radio playlists.",
+      "fun_fact_de": "Jerry Kellers 'Here Comes Summer' war 1959 ein transatlantischer Hit, der im Vereinigten Königreich Platz 1 erreichte. Keller wurde später ein erfolgreicher Songwriter in Europa, besonders in Frankreich und Deutschland, und schrieb für Künstler wie Sacha Distel. Der Song bleibt ein Dauerfavorit auf sommerlichen Radio-Playlists.",
+      "fun_fact_es": "'Here Comes Summer' de Jerry Keller fue un éxito transatlántico en 1959, alcanzando el #1 en el Reino Unido. Keller se convirtió más tarde en un exitoso compositor en Europa, particularmente en Francia y Alemania, escribiendo para artistas como Sacha Distel, y la canción sigue siendo un favorito perenne en las playlists de radio de verano.",
+      "uri_apple_music": "applemusic://track/1597258332",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZDaJpYji07I",
+      "uri_tidal": "tidal://track/6362741"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:3c2kMiSB86tVq1J4oULmvL",
+      "artist": "The Young Rascals",
+      "alt_artists": [
+        "The Lovin' Spoonful",
+        "The Turtles",
+        "The Monkees"
+      ],
+      "title": "Groovin'",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 8,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "The Young Rascals' 'Groovin'' was inspired by lazy Sunday afternoons Felix Cavaliere spent with his girlfriend in New York. The outdoor sounds in the recording, including birds chirping, were recorded live in a park. The song topped the Billboard Hot 100 for four weeks in the spring of 1967.",
+      "fun_fact_de": "The Young Rascals' 'Groovin'' wurde von faulen Sonntagnachmittagen inspiriert, die Felix Cavaliere mit seiner Freundin in New York verbrachte. Die Außengeräusche in der Aufnahme, einschließlich Vogelgezwitscher, wurden live in einem Park aufgenommen. Der Song stand im Frühjahr 1967 vier Wochen auf Platz 1 der Billboard Hot 100.",
+      "fun_fact_es": "'Groovin'' de The Young Rascals se inspiró en las perezosas tardes de domingo que Felix Cavaliere pasaba con su novia en Nueva York. Los sonidos del exterior en la grabación, incluidos pájaros cantando, se grabaron en vivo en un parque. La canción encabezó el Billboard Hot 100 durante cuatro semanas en la primavera de 1967.",
+      "uri_apple_music": "applemusic://track/900766610",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dHmIVKmQtKg",
+      "uri_tidal": "tidal://track/32564264"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:6OuRbvP4PgbuzBIapVzmFJ",
+      "artist": "Rod Stewart",
+      "alt_artists": [
+        "Elton John",
+        "Eric Clapton",
+        "Joe Cocker"
+      ],
+      "title": "Sailing",
+      "chart_info": {
+        "billboard_peak": 58,
+        "uk_peak": 1,
+        "weeks_on_chart": 11
+      },
+      "certifications": [
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Rod Stewart's version of 'Sailing' was written by Gavin Sutherland of the Sutherland Brothers. It became the theme song for the BBC documentary series 'Sailor' about the aircraft carrier HMS Ark Royal, which propelled it to #1 in the UK twice - once in 1975 and again in 1976.",
+      "fun_fact_de": "Rod Stewarts Version von 'Sailing' wurde von Gavin Sutherland von den Sutherland Brothers geschrieben. Sie wurde die Titelmelodie der BBC-Dokumentarserie 'Sailor' über den Flugzeugträger HMS Ark Royal, was sie zweimal an die Spitze der UK-Charts brachte - 1975 und erneut 1976.",
+      "fun_fact_es": "La versión de 'Sailing' de Rod Stewart fue escrita por Gavin Sutherland de los Sutherland Brothers. Se convirtió en la canción principal de la serie documental de la BBC 'Sailor' sobre el portaaviones HMS Ark Royal, lo que la impulsó al #1 en el Reino Unido dos veces: en 1975 y de nuevo en 1976.",
+      "uri_apple_music": "applemusic://track/295534403",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FOt3oQ_k008",
+      "uri_tidal": "tidal://track/52972127"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:3VObTAziCKm64udBqry9Ax",
+      "artist": "Enya",
+      "alt_artists": [
+        "Clannad",
+        "Enigma",
+        "Deep Forest"
+      ],
+      "title": "Orinoco Flow (Sail Away) - Single Version",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Orinoco Flow' was named after the Orinoco Studios in London where it was recorded. Enya's label Warner Bros was skeptical about releasing it as a single, but producer Nicky Ryan insisted, and it became a surprise worldwide #1 hit, launching Enya from obscure New Age artist to global star.",
+      "fun_fact_de": "'Orinoco Flow' wurde nach den Orinoco Studios in London benannt, wo es aufgenommen wurde. Enyas Label Warner Bros war skeptisch bezüglich einer Singleveröffentlichung, aber Produzent Nicky Ryan bestand darauf, und es wurde ein überraschender weltweiter Nummer-1-Hit, der Enya von einer obskuren New-Age-Künstlerin zum Weltstar machte.",
+      "fun_fact_es": "'Orinoco Flow' recibió su nombre de los Orinoco Studios de Londres donde se grabó. El sello Warner Bros de Enya era escéptico sobre lanzarla como sencillo, pero el productor Nicky Ryan insistió, y se convirtió en un sorpresivo éxito #1 mundial, catapultando a Enya de artista de New Age desconocida a estrella global.",
+      "uri_apple_music": "applemusic://track/1503341802",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8LLKcyz8yIE",
+      "uri_tidal": "tidal://track/134468695"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:6G0NzOx2jEPFsSmhr9N8Ys",
+      "artist": "R.E.M.",
+      "alt_artists": [
+        "The Smiths",
+        "U2",
+        "Radiohead"
+      ],
+      "title": "Nightswimming",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 27,
+        "weeks_on_chart": 4
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "R.E.M.'s 'Nightswimming' features Mike Mills on piano as the primary instrument, recorded in a single performance. The song is about nostalgic memories of skinny-dipping in Athens, Georgia, and Michael Stipe has called it one of the most personal songs he ever wrote.",
+      "fun_fact_de": "R.E.M.s 'Nightswimming' hat Mike Mills am Klavier als Hauptinstrument, aufgenommen in einer einzigen Aufführung. Der Song handelt von nostalgischen Erinnerungen ans Nacktbaden in Athens, Georgia, und Michael Stipe hat ihn als einen der persönlichsten Songs bezeichnet, die er je geschrieben hat.",
+      "fun_fact_es": "'Nightswimming' de R.E.M. presenta a Mike Mills al piano como instrumento principal, grabado en una sola interpretación. La canción trata sobre recuerdos nostálgicos de nadar desnudo en Athens, Georgia, y Michael Stipe la ha llamado una de las canciones más personales que jamás escribió.",
+      "uri_apple_music": "applemusic://track/1440947554",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ahJ6Kh8klM4",
+      "uri_tidal": "tidal://track/77556068"
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2TeYqtSnWGOeo6hbhybmng",
+      "artist": "George Benson",
+      "alt_artists": [
+        "Al Jarreau",
+        "Grover Washington Jr.",
+        "Earl Klugh"
+      ],
+      "title": "Nature Boy",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "George Benson's smooth jazz version of 'Nature Boy' gave new life to a song originally written by eden ahbez, an eccentric Brooklyn-born mystic who lived beneath the Hollywood sign and spelled his name in lowercase. The song was first made famous by Nat King Cole in 1948.",
+      "fun_fact_de": "George Bensons Smooth-Jazz-Version von 'Nature Boy' hauchte einem Song neues Leben ein, der ursprünglich von eden ahbez geschrieben wurde, einem exzentrischen, in Brooklyn geborenen Mystiker, der unter dem Hollywood-Schriftzug lebte und seinen Namen klein schrieb. Das Lied wurde erstmals 1948 durch Nat King Cole berühmt.",
+      "fun_fact_es": "La versión de jazz suave de 'Nature Boy' de George Benson dio nueva vida a una canción originalmente escrita por eden ahbez, un excéntrico místico nacido en Brooklyn que vivía bajo el letrero de Hollywood y escribía su nombre en minúsculas. La canción fue popularizada por primera vez por Nat King Cole en 1948.",
+      "uri_apple_music": "applemusic://track/971412379",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TB68gc7i4YE",
+      "uri_tidal": "tidal://track/10919715"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:6CTM0aon2TESJvdeacsqh9",
+      "artist": "George Michael",
+      "alt_artists": [
+        "Elton John",
+        "Prince",
+        "Lionel Richie"
+      ],
+      "title": "Outside",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 2,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "George Michael's 'Outside' was written as a defiant response to his arrest for 'engaging in a lewd act' in a public restroom in Beverly Hills in 1998. The tongue-in-cheek music video even recreated the incident, with the restroom transformed into a disco. Rather than hiding from the scandal, Michael turned it into a hit.",
+      "fun_fact_de": "George Michaels 'Outside' wurde als trotzige Antwort auf seine Verhaftung wegen 'anstößigen Verhaltens' in einer öffentlichen Toilette in Beverly Hills 1998 geschrieben. Das augenzwinkernde Musikvideo stellte den Vorfall sogar nach, wobei die Toilette in eine Disco verwandelt wurde. Statt den Skandal zu verstecken, machte Michael einen Hit daraus.",
+      "fun_fact_es": "'Outside' de George Michael fue escrita como una respuesta desafiante a su arresto por 'cometer un acto obsceno' en un baño público de Beverly Hills en 1998. El irónico videoclip incluso recreó el incidente, con el baño transformado en una discoteca. En lugar de esconderse del escándalo, Michael lo convirtió en un éxito.",
+      "uri_apple_music": "applemusic://track/429945685",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gwZAYdHcDtU",
+      "uri_tidal": "tidal://track/6405906"
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:47dUjt8obvsZQf8QfX9NGP",
+      "artist": "Bay City Rollers",
+      "alt_artists": [
+        "Sweet",
+        "Slade",
+        "Mud"
+      ],
+      "title": "Summer Love Sensation - U.S. Version",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 3,
+        "weeks_on_chart": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bay City Rollers' 'Summer Love Sensation' was part of their tartan-clad teen idol era that sparked 'Rollermania' in the UK. The band's manager Tam Paton was known for controlling every aspect of their image, and the song capitalized on their wholesome summer appeal to screaming teenage fans.",
+      "fun_fact_de": "Bay City Rollers' 'Summer Love Sensation' gehörte zu ihrer Tartan-gekleideten Teenie-Idol-Ära, die 'Rollermania' in Großbritannien auslöste. Der Manager der Band, Tam Paton, war dafür bekannt, jeden Aspekt ihres Images zu kontrollieren, und der Song nutzte ihren sommerlich-unschuldigen Charme bei kreischenden Teenagerfans.",
+      "fun_fact_es": "'Summer Love Sensation' de los Bay City Rollers fue parte de su era de ídolos adolescentes vestidos de tartán que desató la 'Rollermania' en el Reino Unido. El manager de la banda, Tam Paton, era conocido por controlar cada aspecto de su imagen, y la canción capitalizó su atractivo veraniego entre las fans adolescentes.",
+      "uri_apple_music": "applemusic://track/1378303433",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uMdCQrUMeUg",
+      "uri_tidal": "tidal://track/562750"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:714hERk9U1W8FMYkoC83CO",
+      "artist": "Hot Chocolate",
+      "alt_artists": [
+        "KC and the Sunshine Band",
+        "Kool & The Gang",
+        "Earth Wind & Fire"
+      ],
+      "title": "You Sexy Thing",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 2,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Hot Chocolate's 'You Sexy Thing' has had three separate chart runs in the UK: in 1975, 1987, and 1997, each time boosted by a film appearance. Its most famous use was in 'The Full Monty' (1997), where it soundtracked the iconic striptease scene.",
+      "fun_fact_de": "Hot Chocolates 'You Sexy Thing' hatte drei separate Chart-Erfolge in Großbritannien: 1975, 1987 und 1997, jedes Mal durch einen Filmauftritt angekurbelt. Die berühmteste Verwendung war in 'Ganz oder gar nicht' (1997), wo es die ikonische Striptease-Szene untermalte.",
+      "fun_fact_es": "'You Sexy Thing' de Hot Chocolate tuvo tres apariciones separadas en las listas del Reino Unido: en 1975, 1987 y 1997, cada vez impulsada por una aparición en película. Su uso más famoso fue en 'The Full Monty' (1997), donde musicalizó la icónica escena de striptease.",
+      "uri_apple_music": "applemusic://track/693504632",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fx841-D0wSM",
+      "uri_tidal": "tidal://track/3025463"
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:3Vby4nGmtbDo7HDJamOWkT",
+      "artist": "Stealers Wheel",
+      "alt_artists": [
+        "10cc",
+        "Dire Straits",
+        "Supertramp"
+      ],
+      "title": "Stuck In The Middle With You",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 8,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Stuck in the Middle with You' was written by Gerry Rafferty and Joe Egan as a parody of Bob Dylan's nasal singing style. The song gained a second life of fame when Quentin Tarantino used it in the infamous ear-cutting torture scene in 'Reservoir Dogs' (1992), forever linking the cheerful song with shocking violence.",
+      "fun_fact_de": "'Stuck in the Middle with You' wurde von Gerry Rafferty und Joe Egan als Parodie auf Bob Dylans nasalen Gesangsstil geschrieben. Der Song erlangte neuen Ruhm, als Quentin Tarantino ihn in der berüchtigten Ohrabschneideszene in 'Reservoir Dogs' (1992) verwendete und den fröhlichen Song für immer mit schockierender Gewalt verband.",
+      "fun_fact_es": "'Stuck in the Middle with You' fue escrita por Gerry Rafferty y Joe Egan como parodia del estilo de canto nasal de Bob Dylan. La canción ganó una segunda vida de fama cuando Quentin Tarantino la usó en la infame escena de tortura de 'Reservoir Dogs' (1992), vinculando para siempre la alegre canción con violencia impactante.",
+      "uri_apple_music": "applemusic://track/1444004401",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ln7Vn_WKkWU",
+      "uri_tidal": "tidal://track/89377441"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:3TlIt0ReIxPsVZcOEivT5U",
+      "artist": "Tom Jones",
+      "alt_artists": [
+        "Engelbert Humperdinck",
+        "Dean Martin",
+        "Bobby Darin"
+      ],
+      "title": "It's Not Unusual",
+      "chart_info": {
+        "billboard_peak": 10,
+        "uk_peak": 1,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'It's Not Unusual' was originally written by Les Reed and Gordon Mills for Sandie Shaw, but when Tom Jones recorded the demo, his powerhouse vocal performance was so extraordinary that the songwriters gave him the song instead. It launched Jones to international stardom at age 24.",
+      "fun_fact_de": "'It's Not Unusual' wurde ursprünglich von Les Reed und Gordon Mills für Sandie Shaw geschrieben, aber als Tom Jones die Demo aufnahm, war seine kraftvolle Gesangsdarbietung so außergewöhnlich, dass die Songwriter ihm den Song überließen. Er katapultierte Jones mit 24 Jahren zu internationalem Ruhm.",
+      "fun_fact_es": "'It's Not Unusual' fue escrita originalmente por Les Reed y Gordon Mills para Sandie Shaw, pero cuando Tom Jones grabó la demo, su extraordinaria interpretación vocal fue tan poderosa que los compositores le dieron la canción a él. Lanzó a Jones al estrellato internacional a los 24 años.",
+      "uri_apple_music": "applemusic://track/1443811916",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k-HdGnzYdFQ",
+      "uri_tidal": "tidal://track/3963353"
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:1hQFF33xi8ruavZNyovtUN",
+      "artist": "The Four Seasons",
+      "alt_artists": [
+        "The Drifters",
+        "The Beach Boys",
+        "The Temptations"
+      ],
+      "title": "December, 1963 (Oh What a Night!)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 27
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Despite its title referencing December, 'Oh What a Night' was originally written about the repeal of Prohibition in 1933. Producer Bob Gaudio changed the lyrics to be about a romantic encounter, and the song became the Four Seasons' biggest hit ever, spending three weeks at #1 in 1976.",
+      "fun_fact_de": "Trotz des Titels, der den Dezember erwähnt, wurde 'Oh What a Night' ursprünglich über das Ende der Prohibition 1933 geschrieben. Produzent Bob Gaudio änderte den Text zu einer romantischen Begegnung, und der Song wurde zum größten Hit der Four Seasons und stand 1976 drei Wochen auf Platz 1.",
+      "fun_fact_es": "A pesar de que su título hace referencia a diciembre, 'Oh What a Night' fue escrita originalmente sobre la derogación de la Prohibición en 1933. El productor Bob Gaudio cambió la letra a un encuentro romántico, y la canción se convirtió en el mayor éxito de los Four Seasons, pasando tres semanas en el #1 en 1976.",
+      "uri_apple_music": "applemusic://track/1585691084",
+      "uri_tidal": "tidal://track/29593015"
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:3G7tRC24Uh09Hmp1KZ7LQ2",
+      "artist": "The Monkees",
+      "alt_artists": [
+        "The Turtles",
+        "Herman's Hermits",
+        "The Lovin' Spoonful"
+      ],
+      "title": "I'm a Believer - 2006 Remaster",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 17
+      },
+      "certifications": [
+        "2x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'I'm a Believer' was written by Neil Diamond and produced by Jeff Barry. It was recorded by The Monkees for the TV series, spending seven weeks at #1 and becoming the best-selling single of 1967. It later reached a new generation through the 2001 film 'Shrek,' performed by Smash Mouth.",
+      "fun_fact_de": "'I'm a Believer' wurde von Neil Diamond geschrieben und von Jeff Barry produziert. Die Monkees nahmen ihn für die TV-Serie auf, er stand sieben Wochen auf Platz 1 und wurde die meistverkaufte Single des Jahres 1967. Durch den Film 'Shrek' (2001) in der Version von Smash Mouth erreichte er eine neue Generation.",
+      "fun_fact_es": "'I'm a Believer' fue escrita por Neil Diamond y producida por Jeff Barry. Fue grabada por The Monkees para la serie de TV, pasando siete semanas en el #1 y convirtiéndose en el sencillo más vendido de 1967. Llegó a una nueva generación a través de la película 'Shrek' (2001), interpretada por Smash Mouth.",
+      "uri_apple_music": "applemusic://track/4512481",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5tpxXDILZHs",
+      "uri_tidal": "tidal://track/22509466"
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:4CNL4GBNTdVIU5Nk6hB4LC",
+      "artist": "Van Morrison",
+      "alt_artists": [
+        "Bob Dylan",
+        "Eric Clapton",
+        "Rod Stewart"
+      ],
+      "title": "Brown Eyed Girl",
+      "chart_info": {
+        "billboard_peak": 10,
+        "uk_peak": null,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'Brown Eyed Girl' is one of the most played songs on American radio, with an estimated 10 million airplays. Van Morrison has said he dislikes the song and finds it embarrassing compared to his later, more artistic work. It was originally titled 'Brown Skinned Girl' but was changed during recording.",
+      "fun_fact_de": "'Brown Eyed Girl' ist einer der meistgespielten Songs im amerikanischen Radio mit geschätzten 10 Millionen Airplays. Van Morrison hat gesagt, er möge den Song nicht und finde ihn peinlich im Vergleich zu seinem späteren, künstlerischeren Werk. Er hieß ursprünglich 'Brown Skinned Girl', wurde aber während der Aufnahme geändert.",
+      "fun_fact_es": "'Brown Eyed Girl' es una de las canciones más reproducidas en la radio estadounidense, con aproximadamente 10 millones de emisiones. Van Morrison ha dicho que no le gusta la canción y la encuentra vergonzosa comparada con su trabajo posterior más artístico. Originalmente se titulaba 'Brown Skinned Girl' pero se cambió durante la grabación.",
+      "uri_apple_music": "applemusic://track/1838782096",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UfmkgQRmmeE",
+      "uri_tidal": "tidal://track/450090877"
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:6b6IMqP565TbtFFZg9iFf3",
+      "artist": "Four Tops",
+      "alt_artists": [
+        "The Temptations",
+        "The Drifters",
+        "Smokey Robinson"
+      ],
+      "title": "I Can't Help Myself (Sugar Pie, Honey Bunch)",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 23,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "'I Can't Help Myself (Sugar Pie, Honey Bunch)' was the Four Tops' biggest hit and spent two weeks at #1 in 1965. The group's lead singer Levi Stubbs never pursued a solo career despite his extraordinary voice, remaining loyal to the Four Tops for over 50 years until his death in 2008.",
+      "fun_fact_de": "'I Can't Help Myself (Sugar Pie, Honey Bunch)' war der größte Hit der Four Tops und stand 1965 zwei Wochen auf Platz 1. Leadsänger Levi Stubbs verfolgte trotz seiner außergewöhnlichen Stimme nie eine Solokarriere und blieb den Four Tops über 50 Jahre lang treu bis zu seinem Tod 2008.",
+      "fun_fact_es": "'I Can't Help Myself (Sugar Pie, Honey Bunch)' fue el mayor éxito de los Four Tops y pasó dos semanas en el #1 en 1965. El vocalista principal Levi Stubbs nunca siguió una carrera en solitario a pesar de su extraordinaria voz, permaneciendo leal a los Four Tops durante más de 50 años hasta su muerte en 2008.",
+      "uri_apple_music": "applemusic://track/1443096422",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EBA6z9sEzAo",
+      "uri_tidal": "tidal://track/77641490"
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:5gOd6zDC8vhlYjqbQdJVWP",
+      "artist": "Gerry Rafferty",
+      "alt_artists": [
+        "Mark Knopfler",
+        "Chris Rea",
+        "Eric Clapton"
+      ],
+      "title": "Baker Street",
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 3,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "The iconic saxophone riff on 'Baker Street' was played by Raphael Ravenscroft, who was paid a session fee of just 27.50 pounds. The royalty cheque he later received bounced, and he never received proper compensation for creating one of the most recognizable instrumental hooks in rock history.",
+      "fun_fact_de": "Das ikonische Saxophon-Riff auf 'Baker Street' wurde von Raphael Ravenscroft gespielt, der ein Studiohonorar von nur 27,50 Pfund erhielt. Der Tantiemenscheck, den er später bekam, platzte, und er erhielt nie eine angemessene Vergütung für eines der bekanntesten Instrumentalriffs der Rockgeschichte.",
+      "fun_fact_es": "El icónico riff de saxofón de 'Baker Street' fue tocado por Raphael Ravenscroft, a quien se le pagó una tarifa de sesión de solo 27,50 libras. El cheque de regalías que recibió después fue devuelto sin fondos, y nunca recibió una compensación adecuada por crear uno de los hooks instrumentales más reconocibles de la historia del rock.",
+      "uri_apple_music": "applemusic://track/693606496",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fo6aKnRnBxM",
+      "uri_tidal": "tidal://track/2871014"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:3M3SBRzq5mWfYPXZdOYPG4",
+      "artist": "The Archies",
+      "alt_artists": [
+        "The Monkees",
+        "The Partridge Family",
+        "1910 Fruitgum Company"
+      ],
+      "title": "Sugar Sugar",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Gold (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "'Sugar, Sugar' by The Archies was the #1 single of 1969 in the US, outselling the Beatles, Rolling Stones, and every other real band that year. It was performed by a fictional cartoon band created for the TV show 'The Archie Show,' with session singer Ron Dante providing the lead vocals.",
+      "fun_fact_de": "'Sugar, Sugar' von The Archies war die meistverkaufte Single des Jahres 1969 in den USA und übertraf die Beatles, Rolling Stones und jede andere echte Band in jenem Jahr. Es wurde von einer fiktiven Cartoon-Band aus der TV-Show 'The Archie Show' performt, wobei Sessionmusiker Ron Dante den Leadgesang übernahm.",
+      "fun_fact_es": "'Sugar, Sugar' de The Archies fue el sencillo #1 de 1969 en EE.UU., superando en ventas a los Beatles, los Rolling Stones y cualquier otra banda real de ese año. Fue interpretada por una banda ficticia de dibujos animados creada para el programa de TV 'The Archie Show', con el cantante de sesión Ron Dante proporcionando la voz principal.",
+      "uri_apple_music": "applemusic://track/1412839444",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j3plj_Xplus",
+      "uri_tidal": "tidal://track/17593678"
+    }
+  ]
+}
