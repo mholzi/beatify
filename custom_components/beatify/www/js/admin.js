@@ -912,19 +912,19 @@ function handlePlaylistToggle(checkbox) {
 const TAG_CATEGORIES = {
     decade: {
         label: 'Decade',
-        tags: ['1970s', '1980s', '1990s', '2000s']
+        tags: ['1960s', '1970s', '1980s', '1990s', '2000s']
     },
     style: {
         label: 'Style',
-        tags: ['rock', 'pop', 'ballads', 'electronic', 'eurodance', 'yacht-rock', 'soft-rock', 'pop-punk', 'schlager', 'party']
+        tags: ['rock', 'pop', 'ballads', 'electronic', 'eurodance', 'yacht-rock', 'soft-rock', 'pop-punk', 'schlager', 'party', 'britpop', 'british-invasion', 'classic-rock', 'dance', 'disco', 'funk', 'hip-hop', 'latin', 'merengue', 'motown', 'r&b', 'salsa', 'soul']
     },
     region: {
         label: 'Region',
-        tags: ['international', 'german', 'dutch']
+        tags: ['international', 'german', 'dutch', 'spanish']
     },
     special: {
         label: 'Special',
-        tags: ['movies', 'soundtrack', 'eurovision', 'carnival', 'classics']
+        tags: ['movies', 'soundtrack', 'eurovision', 'carnival', 'classics', 'contest', 'mixed', 'one-hit', 'top-hits']
     }
 };
 
