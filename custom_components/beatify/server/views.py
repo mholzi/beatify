@@ -25,6 +25,7 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.game.state import GameState
 from custom_components.beatify.services.media_player import (
     async_get_media_players,
@@ -128,6 +129,10 @@ class StatusView(HomeAssistantView):
         # Fetch media players fresh (not cached) - Story 8-2
         media_players = await async_get_media_players(self.hass)
 
+        # Fetch playlists fresh (not cached) - Issue #135
+        playlists = await async_discover_playlists(self.hass)
+        data["playlists"] = playlists
+
         # Detect Music Assistant integration (not based on entity names)
         # Check if music_assistant integration is loaded via config entries
         has_music_assistant = any(
@@ -137,7 +142,7 @@ class StatusView(HomeAssistantView):
         status = {
             "version": _get_version(),
             "media_players": media_players,
-            "playlists": data.get("playlists", []),
+            "playlists": playlists,
             "playlist_dir": data.get("playlist_dir", ""),
             "playlist_docs_url": PLAYLIST_DOCS_URL,
             "media_player_docs_url": MEDIA_PLAYER_DOCS_URL,

@@ -459,6 +459,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "spotify_count": 0,
                     "apple_music_count": 0,
                     "youtube_music_count": 0,
+                    "tidal_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                 }
