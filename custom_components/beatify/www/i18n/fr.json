@@ -440,12 +440,14 @@
     "clutch_player": "Roi du finish",
     "close_calls": "Tout juste",
     "intro_master": "Maître de l'Intro",
+    "comeback_king": "Roi du Comeback",
     "avgTime": "moyenne",
     "streak": "d'affilée",
     "bets": "paris",
     "points": "pts sur les 3 dernières",
     "closeGuesses": "réponses proches",
-    "intro_bonuses": "bonus d'intro"
+    "intro_bonuses": "bonus d'intro",
+    "improvement": "amélioration moy."
   },
   "stats": {
     "firstGame": "Première partie ! On établit la référence",

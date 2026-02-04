@@ -1457,6 +1457,87 @@ class TestCalculateSuperlatives:
         clutch_award = next((a for a in result if a["id"] == "clutch_player"), None)
         assert clutch_award is None
 
+    def test_superlatives_comeback_king(self):
+        """calculate_superlatives() identifies player with biggest improvement."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 8  # Enough rounds for comeback
+
+        mock_ws = MagicMock()
+        state.add_player("ComebackPlayer", mock_ws)
+        state.add_player("SteadyPlayer", mock_ws)
+
+        # ComebackPlayer: poor first half (avg 2), strong second half (avg 8) = +6 improvement
+        state.players["ComebackPlayer"].round_scores = [1, 2, 3, 2, 7, 8, 9, 8]
+        # SteadyPlayer: consistent (avg ~5 both halves) = ~0 improvement
+        state.players["SteadyPlayer"].round_scores = [5, 5, 5, 5, 5, 5, 5, 5]
+
+        result = state.calculate_superlatives()
+
+        comeback_award = next((a for a in result if a["id"] == "comeback_king"), None)
+        assert comeback_award is not None
+        assert comeback_award["player_name"] == "ComebackPlayer"
+        assert comeback_award["emoji"] == "👑"
+        assert comeback_award["value"] > 0
+
+    def test_superlatives_comeback_king_requires_six_rounds(self):
+        """calculate_superlatives() only awards comeback king if game has 6+ rounds."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 4  # Not enough rounds
+
+        mock_ws = MagicMock()
+        state.add_player("Player", mock_ws)
+        state.players["Player"].round_scores = [1, 1, 10, 10]
+
+        result = state.calculate_superlatives()
+
+        comeback_award = next((a for a in result if a["id"] == "comeback_king"), None)
+        assert comeback_award is None
+
+    def test_superlatives_comeback_king_no_improvement(self):
+        """calculate_superlatives() skips comeback king when no significant improvement."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 8
+
+        mock_ws = MagicMock()
+        state.add_player("Player", mock_ws)
+        # Slight improvement below threshold
+        state.players["Player"].round_scores = [5, 5, 5, 5, 6, 6, 6, 6]
+
+        result = state.calculate_superlatives()
+
+        comeback_award = next((a for a in result if a["id"] == "comeback_king"), None)
+        assert comeback_award is None
+
     def test_superlatives_included_in_end_state(self):
         """calculate_superlatives() is included in END phase state."""
         from unittest.mock import MagicMock

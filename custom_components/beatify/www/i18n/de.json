@@ -440,12 +440,14 @@
     "clutch_player": "Endspurt-König",
     "close_calls": "Knapp Daneben",
     "intro_master": "Intro-Meister",
+    "comeback_king": "Comeback-König",
     "avgTime": "durchschn.",
     "streak": "in Folge",
     "bets": "Wetten",
     "points": "Pkt in letzten 3",
     "closeGuesses": "knappe Tipps",
-    "intro_bonuses": "Intro-Boni"
+    "intro_bonuses": "Intro-Boni",
+    "improvement": "Verbesserung"
   },
   "stats": {
     "firstGame": "Erstes Spiel! Maßstab gesetzt",

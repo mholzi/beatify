@@ -440,12 +440,14 @@
     "clutch_player": "Clutch Player",
     "close_calls": "Close Calls",
     "intro_master": "Intro Master",
+    "comeback_king": "Comeback King",
     "avgTime": "avg",
     "streak": "in a row",
     "bets": "bets",
     "points": "pts in final 3",
     "closeGuesses": "close guesses",
-    "intro_bonuses": "intro bonuses"
+    "intro_bonuses": "intro bonuses",
+    "improvement": "avg improvement"
   },
   "stats": {
     "firstGame": "First game! Setting the benchmark",

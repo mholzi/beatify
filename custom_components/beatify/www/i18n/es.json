@@ -440,12 +440,14 @@
     "clutch_player": "Rey del final",
     "close_calls": "Por poco",
     "intro_master": "Maestro del Intro",
+    "comeback_king": "Rey de la Remontada",
     "avgTime": "promedio",
     "streak": "consecutivos",
     "bets": "apuestas",
     "points": "pts en ultimas 3",
     "closeGuesses": "respuestas cercanas",
-    "intro_bonuses": "bonos de intro"
+    "intro_bonuses": "bonos de intro",
+    "improvement": "mejora promedio"
   },
   "stats": {
     "firstGame": "Primer juego! Estableciendo el punto de referencia",
