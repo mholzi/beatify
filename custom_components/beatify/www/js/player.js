@@ -5343,6 +5343,11 @@
         } else if (data.type === 'game_ended') {
             // Story 7-5 - game has fully ended
             handleGameEnded();
+        } else if (data.type === 'rematch_started') {
+            // Issue #108 - handle rematch transition
+            console.log('[Player] Rematch started - transitioning to lobby');
+            // The subsequent state broadcast will show LOBBY phase
+            // Just ensure we're ready to receive it
         } else if (data.type === 'left') {
             // Story 11.5 - player left game successfully
             handleLeftGame();

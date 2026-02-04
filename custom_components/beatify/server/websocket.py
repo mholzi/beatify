@@ -427,6 +427,7 @@ class BeatifyWebSocketHandler:
                 )
 
             elif action == "end_game":
+                # Issue #108: Modified to stay in END phase without wiping players
                 if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
                     await ws.send_json(
                         {
@@ -451,22 +452,61 @@ class BeatifyWebSocketHandler:
                     await stats_service.record_game(game_summary, difficulty=game_state.difficulty)
                     _LOGGER.debug("Game stats recorded for early end")
 
-                # Transition to END
+                # Transition to END - players stay connected for rematch option
                 game_state.phase = GamePhase.END
-                _LOGGER.info("Admin ended game early at round %d", game_state.round)
+                _LOGGER.info(
+                    "Admin ended game early at round %d - players preserved for rematch",
+                    game_state.round,
+                )
 
-                # Broadcast final state to all players FIRST (Story 7-5)
+                # Broadcast final state to all players
                 await self.broadcast_state()
 
-                # Send game_ended notification (Story 7-5)
+                # Send game_ended notification
                 await self.broadcast({"type": "game_ended"})
+                # NOTE: game_state.end_game() NOT called - admin can now Rematch or Dismiss
 
-                # Fully reset game state AFTER broadcast (Story 7-5)
-                # Players have already received END state, now clear everything
+            elif action == "dismiss_game":
+                # Issue #108: Full teardown - only allowed from END phase
+                if game_state.phase != GamePhase.END:
+                    await ws.send_json(
+                        {
+                            "type": "error",
+                            "code": ERR_INVALID_ACTION,
+                            "message": "Can only dismiss from END phase",
+                        }
+                    )
+                    return
+
+                # Fully reset game state - wipes all players
                 game_state.end_game()
+                _LOGGER.info("Game dismissed - all players cleared")
 
-                # Cleanup pending tasks (Story 7-5)
+                # Broadcast cleared state
+                await self.broadcast_state()
+
+                # Cleanup pending tasks
                 await self.cleanup_game_tasks()
+
+            elif action == "rematch_game":
+                # Issue #108: Soft reset for rematch - preserves players
+                if game_state.phase != GamePhase.END:
+                    await ws.send_json(
+                        {
+                            "type": "error",
+                            "code": ERR_INVALID_ACTION,
+                            "message": "Can only rematch from END phase",
+                        }
+                    )
+                    return
+
+                player_count = len(game_state.players)
+                game_state.rematch_game()
+                _LOGGER.info("Rematch started with %d players", player_count)
+
+                # Broadcast rematch event so clients transition to lobby
+                await self.broadcast({"type": "rematch_started"})
+                await self.broadcast_state()
 
             elif action == "set_language":
                 # Language selection (Story 12.4) - only in LOBBY phase

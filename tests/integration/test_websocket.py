@@ -205,3 +205,76 @@ class TestErrorHandling:
 
             assert msg["type"] == "error"
             assert msg["code"] == "PARSE_ERROR"
+
+
+# =============================================================================
+# REMATCH FLOW TESTS (Issue #108)
+# =============================================================================
+
+
+@pytest.mark.integration
+class TestRematchFlow:
+    """Tests for rematch game flow (Issue #108)."""
+
+    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    async def test_rematch_only_allowed_from_end_phase(self, ws_client):
+        """Rematch action should only work from END phase."""
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            # Try rematch from PLAYING phase
+            await ws.send_json({"type": "admin", "action": "rematch_game"})
+            msg = await ws.receive_json()
+
+            assert msg["type"] == "error"
+            assert msg["code"] == "INVALID_ACTION"
+            assert "END phase" in msg["message"]
+
+    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    async def test_rematch_from_playing_returns_error(self, ws_client):
+        """Rematch from PLAYING phase should return error."""
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            # Admin tries rematch during active game
+            await ws.send_json({"type": "admin", "action": "rematch_game"})
+            msg = await ws.receive_json()
+
+            assert msg["type"] == "error"
+            assert msg["code"] == "INVALID_ACTION"
+
+    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    async def test_dismiss_only_allowed_from_end_phase(self, ws_client):
+        """Dismiss action should only work from END phase."""
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            # Try dismiss from PLAYING phase
+            await ws.send_json({"type": "admin", "action": "dismiss_game"})
+            msg = await ws.receive_json()
+
+            assert msg["type"] == "error"
+            assert msg["code"] == "INVALID_ACTION"
+            assert "END phase" in msg["message"]
+
+    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    async def test_rematch_preserves_player_count(self, ws_client, game_in_end_phase):
+        """Rematch should preserve all connected players."""
+        # game_in_end_phase fixture provides game with players in END phase
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            initial_player_count = len(game_in_end_phase.players)
+
+            await ws.send_json({"type": "admin", "action": "rematch_game"})
+            msg = await ws.receive_json()
+
+            # Should receive rematch_started event
+            assert msg["type"] == "rematch_started"
+
+            # Next message should be state with LOBBY phase
+            state_msg = await ws.receive_json()
+            assert state_msg["type"] == "state"
+            assert state_msg["phase"] == "LOBBY"
+            assert len(state_msg["players"]) == initial_player_count
+
+    @pytest.mark.skip(reason="WebSocket server not yet implemented")
+    async def test_rematch_broadcasts_rematch_started_event(self, ws_client, game_in_end_phase):
+        """Rematch should broadcast rematch_started event to all clients."""
+        async with ws_client.ws_connect("/beatify/ws") as ws:
+            await ws.send_json({"type": "admin", "action": "rematch_game"})
+            msg = await ws.receive_json()
+
+            assert msg["type"] == "rematch_started"

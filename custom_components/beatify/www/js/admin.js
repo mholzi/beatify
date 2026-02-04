@@ -83,11 +83,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
     document.getElementById('end-game-existing')?.addEventListener('click', endGame);
 
+    // Issue #108: Rematch and dismiss handlers
+    document.getElementById('rematch-game')?.addEventListener('click', showRematchModal);
+    document.getElementById('dismiss-game')?.addEventListener('click', endGame);
+
     // Admin join setup
     setupAdminJoin();
 
     // End game modal setup (Story 9.10)
     setupEndGameModal();
+
+    // Issue #108: Rematch modal setup
+    setupRematchModal();
 
     // Collapsible sections setup
     setupCollapsibleSections();
@@ -1342,6 +1349,20 @@ function showExistingGameView(gameData) {
     if (idEl) idEl.textContent = gameData.game_id || 'Unknown';
     if (phaseEl) phaseEl.textContent = gameData.phase || 'Unknown';
     if (playersEl) playersEl.textContent = gameData.player_count ?? 0;
+
+    // Issue #108: Show END phase actions only when in END phase
+    var endPhaseActions = document.getElementById('end-phase-actions');
+    var regularActions = document.getElementById('existing-game-actions');
+
+    if (endPhaseActions && regularActions) {
+        if (gameData.phase === 'END') {
+            endPhaseActions.classList.remove('hidden');
+            regularActions.classList.add('hidden');
+        } else {
+            endPhaseActions.classList.add('hidden');
+            regularActions.classList.remove('hidden');
+        }
+    }
 }
 
 // ==========================================
@@ -1459,6 +1480,81 @@ function setupEndGameModal() {
     backdrop?.addEventListener('click', closeEndGameModal);
 
     // ESC key handling added to global handler below
+}
+
+// ==========================================
+// Rematch Functions (Issue #108)
+// ==========================================
+
+var rematchInProgress = false;  // Debounce flag
+
+/**
+ * Show rematch confirmation modal
+ */
+function showRematchModal() {
+    var modal = document.getElementById('rematch-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+    }
+}
+
+/**
+ * Close rematch confirmation modal
+ */
+function closeRematchModal() {
+    var modal = document.getElementById('rematch-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+
+/**
+ * Confirm rematch - calls API and transitions to setup
+ */
+async function confirmRematch() {
+    if (rematchInProgress) return;  // Debounce
+    rematchInProgress = true;
+
+    closeRematchModal();
+
+    try {
+        var response = await fetch('/beatify/api/rematch-game', { method: 'POST' });
+        if (response.ok) {
+            // Transition to setup view for playlist selection
+            showSetupView();
+        } else {
+            var data = await response.json();
+            alert(data.message || 'Failed to start rematch');
+        }
+    } catch (error) {
+        console.error('Rematch failed:', error);
+        alert('Failed to start rematch');
+    } finally {
+        rematchInProgress = false;
+    }
+}
+
+/**
+ * Setup rematch modal event listeners (Issue #108)
+ */
+function setupRematchModal() {
+    var confirmBtn = document.getElementById('rematch-confirm-btn');
+    var cancelBtn = document.getElementById('rematch-cancel-btn');
+    var backdrop = document.querySelector('#rematch-modal .modal-backdrop');
+
+    confirmBtn?.addEventListener('click', confirmRematch);
+    cancelBtn?.addEventListener('click', closeRematchModal);
+    backdrop?.addEventListener('click', closeRematchModal);
+
+    // Also handle Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            var rematchModal = document.getElementById('rematch-modal');
+            if (rematchModal && !rematchModal.classList.contains('hidden')) {
+                closeRematchModal();
+            }
+        }
+    });
 }
 
 /**

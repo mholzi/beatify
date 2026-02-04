@@ -691,20 +691,17 @@ class GameState:
             "bets_won": self.bet_tracking.get("bets_won", 0),
         }
 
-    def end_game(self) -> None:
-        """End the current game and reset state."""
-        _LOGGER.info("Game ended: %s", self.game_id)
-        # Cancel any running timer
-        self.cancel_timer()
-        self.game_id = None
-        self.phase = GamePhase.LOBBY
+    def _reset_game_internals(self) -> None:
+        """Reset internal game state (Issue #108).
+
+        Shared by end_game() and rematch_game() to prevent field drift.
+        Does NOT reset: players, sessions, phase, or game_id (caller's responsibility).
+        """
+        # Reset playlists and media
         self.playlists = []
         self.songs = []
         self.media_player = None
         self.join_url = None
-        self.players = {}
-        # Clear all session mappings (Story 11.6)
-        self.clear_all_sessions()
 
         # Reset round tracking (Epic 4)
         self.round = 0
@@ -755,6 +752,33 @@ class GameState:
         # Issue #28: Reset movie quiz challenge
         self.movie_challenge = None
         self.movie_quiz_enabled = True  # Reset to default
+
+    def end_game(self) -> None:
+        """End the current game and reset state."""
+        _LOGGER.info("Game ended: %s", self.game_id)
+        self.cancel_timer()
+        self._reset_game_internals()
+        self.game_id = None
+        self.phase = GamePhase.LOBBY
+        self.players = {}
+        self.clear_all_sessions()
+
+    def rematch_game(self) -> None:
+        """Reset game for rematch, preserving connected players (Issue #108)."""
+        _LOGGER.info("Rematch initiated from game: %s", self.game_id)
+        self.cancel_timer()
+        self._reset_game_internals()
+        self.phase = GamePhase.LOBBY
+        # Reset each player's game stats but keep them connected
+        for player in self.players.values():
+            player.reset_for_new_game()
+        # Generate new game ID for the rematch
+        self.game_id = secrets.token_urlsafe(8)
+        _LOGGER.info(
+            "Rematch ready with %d players, new game_id: %s",
+            len(self.players),
+            self.game_id,
+        )
 
     async def pause_game(self, reason: str) -> bool:
         """

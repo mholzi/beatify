@@ -273,9 +273,15 @@
                 <p><strong data-i18n="admin.phase">Phase:</strong> <span id="existing-game-phase"></span></p>
                 <p><strong data-i18n="admin.players">Players:</strong> <span id="existing-game-players"></span></p>
             </div>
-            <div class="game-controls-bar">
+            <!-- Regular controls (non-END phase) -->
+            <div id="existing-game-actions" class="game-controls-bar">
                 <button id="rejoin-game" class="btn btn-primary" data-i18n="admin.rejoinGame">Rejoin Game</button>
                 <button id="end-game-existing" class="btn btn-danger" data-i18n="admin.endGame">End Game</button>
+            </div>
+            <!-- Issue #108: END phase actions -->
+            <div id="end-phase-actions" class="game-controls-bar hidden">
+                <button id="rematch-game" class="btn btn-primary" data-i18n="admin.rematch">Rematch</button>
+                <button id="dismiss-game" class="btn btn-secondary" data-i18n="admin.endGame">End Game</button>
             </div>
         </section>
     </main>
@@ -309,6 +315,19 @@
             <div class="modal-actions">
                 <button id="end-game-confirm-btn" class="btn btn-primary" data-i18n="admin.endGame">End Game</button>
                 <button id="end-game-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issue #108: Rematch confirmation modal -->
+    <div id="rematch-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rematch-modal-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="rematch-modal-title" data-i18n="admin.rematchConfirmTitle">Start Rematch?</h2>
+            <p data-i18n="admin.rematchConfirmMessage">All scores will reset. Players stay connected.</p>
+            <div class="modal-actions">
+                <button id="rematch-confirm-btn" class="btn btn-primary" data-i18n="admin.rematchConfirm">Start Rematch</button>
+                <button id="rematch-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
             </div>
         </div>
     </div>

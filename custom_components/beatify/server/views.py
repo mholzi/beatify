@@ -428,6 +428,52 @@ class EndGameView(HomeAssistantView):
         return web.json_response({"success": True})
 
 
+class RematchGameView(HomeAssistantView):
+    """Handle rematch game requests (Issue #108)."""
+
+    url = "/beatify/api/rematch-game"
+    name = "beatify:api:rematch-game"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Start a rematch with current players."""
+        from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
+
+        data = self.hass.data.get(DOMAIN, {})
+        game_state = data.get("game")
+
+        if not game_state or not game_state.game_id:
+            return web.json_response(
+                {"error": "GAME_NOT_FOUND", "message": "No active game"},
+                status=404,
+            )
+
+        if game_state.phase != GamePhase.END:
+            return web.json_response(
+                {"error": "INVALID_PHASE", "message": "Can only rematch from END phase"},
+                status=400,
+            )
+
+        player_count = len(game_state.players)
+        game_state.rematch_game()
+
+        # Broadcast to WebSocket clients
+        ws_handler = data.get("ws_handler")
+        if ws_handler:
+            await ws_handler.broadcast({"type": "rematch_started"})
+            await ws_handler.broadcast_state()
+
+        return web.json_response({
+            "success": True,
+            "player_count": player_count,
+            "new_game_id": game_state.game_id,
+        })
+
+
 class StartGameplayView(HomeAssistantView):
     """Handle start gameplay requests (transition LOBBY -> PLAYING)."""
 

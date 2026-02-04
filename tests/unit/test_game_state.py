@@ -2756,3 +2756,118 @@ class TestArtistBonusScoring:
         assert state.players["Alice"].missed_round is True
         assert state.players["Alice"].artist_bonus == 5
         assert state.players["Alice"].score == 5  # Only artist bonus (ARTIST_BONUS_POINTS=5)
+
+
+# =============================================================================
+# REMATCH TESTS (Issue #108)
+# =============================================================================
+
+
+@pytest.mark.unit
+class TestResetGameInternals:
+    """Tests for _reset_game_internals() helper method (Issue #108)."""
+
+    def test_reset_clears_game_fields(self, game_state):
+        """Reset should clear all game state fields."""
+        # Setup: simulate an in-progress game
+        game_state.round = 5
+        game_state.total_rounds = 10
+        game_state.current_song = {"title": "Test Song"}
+        game_state.deadline = 1234567890
+        game_state.song_stopped = True
+        game_state.round_start_time = 1000.0
+
+        game_state._reset_game_internals()
+
+        assert game_state.round == 0
+        assert game_state.total_rounds == 0
+        assert game_state.current_song is None
+        assert game_state.deadline is None
+        assert game_state.song_stopped is False
+        assert game_state.round_start_time is None
+
+    def test_reset_does_not_clear_players(self, game_state):
+        """Reset should NOT clear the players dict."""
+        game_state.add_player("Alice", "session-1")
+        game_state.add_player("Bob", "session-2")
+
+        game_state._reset_game_internals()
+
+        # Players should still exist
+        assert len(game_state.players) == 2
+
+    def test_reset_does_not_set_phase(self, game_state):
+        """Reset should NOT change the phase (caller's responsibility)."""
+        from custom_components.beatify.game.state import GamePhase
+
+        game_state.phase = GamePhase.END
+
+        game_state._reset_game_internals()
+
+        # Phase unchanged - caller sets it
+        assert game_state.phase == GamePhase.END
+
+
+@pytest.mark.unit
+class TestRematchGame:
+    """Tests for rematch_game() method (Issue #108)."""
+
+    def test_rematch_preserves_players(self, game_state):
+        """Rematch should keep all players connected."""
+        game_state.add_player("Alice", "session-1")
+        game_state.add_player("Bob", "session-2")
+        game_state.players["Alice"].score = 100
+        game_state.players["Bob"].score = 80
+
+        game_state.rematch_game()
+
+        # Players still exist
+        assert len(game_state.players) == 2
+        assert "Alice" in [p for p in game_state.players]
+        assert "Bob" in [p for p in game_state.players]
+
+    def test_rematch_resets_player_scores(self, game_state):
+        """Rematch should reset all player scores to 0."""
+        game_state.add_player("Alice", "session-1")
+        game_state.add_player("Bob", "session-2")
+        game_state.players["Alice"].score = 100
+        game_state.players["Bob"].score = 80
+
+        game_state.rematch_game()
+
+        # Scores reset
+        assert game_state.players["Alice"].score == 0
+        assert game_state.players["Bob"].score == 0
+
+    def test_rematch_generates_new_game_id(self, game_state):
+        """Rematch should generate a new game_id."""
+        game_state.game_id = "old-game-id"
+
+        game_state.rematch_game()
+
+        assert game_state.game_id is not None
+        assert game_state.game_id != "old-game-id"
+
+    def test_rematch_sets_lobby_phase(self, game_state):
+        """Rematch should set phase to LOBBY."""
+        from custom_components.beatify.game.state import GamePhase
+
+        game_state.phase = GamePhase.END
+
+        game_state.rematch_game()
+
+        assert game_state.phase == GamePhase.LOBBY
+
+    def test_rematch_calls_player_reset_for_new_game(self, game_state):
+        """Rematch should call reset_for_new_game() on each player."""
+        game_state.add_player("Alice", "session-1")
+        game_state.players["Alice"].streak = 5
+        game_state.players["Alice"].best_streak = 5
+        game_state.players["Alice"].rounds_played = 10
+
+        game_state.rematch_game()
+
+        # Player game stats reset
+        assert game_state.players["Alice"].streak == 0
+        assert game_state.players["Alice"].best_streak == 0
+        assert game_state.players["Alice"].rounds_played == 0
