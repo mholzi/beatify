@@ -461,10 +461,8 @@ class BeatifyWebSocketHandler:
 
                 # Broadcast final state to all players
                 await self.broadcast_state()
-
-                # Send game_ended notification
-                await self.broadcast({"type": "game_ended"})
                 # NOTE: game_state.end_game() NOT called - admin can now Rematch or Dismiss
+                # NOTE: game_ended NOT sent here - only sent on dismiss_game
 
             elif action == "dismiss_game":
                 # Issue #108: Full teardown - only allowed from END phase
@@ -481,6 +479,9 @@ class BeatifyWebSocketHandler:
                 # Fully reset game state - wipes all players
                 game_state.end_game()
                 _LOGGER.info("Game dismissed - all players cleared")
+
+                # Send game_ended notification to kick all players
+                await self.broadcast({"type": "game_ended"})
 
                 # Broadcast cleared state
                 await self.broadcast_state()
