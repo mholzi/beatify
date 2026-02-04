@@ -27,11 +27,15 @@ from custom_components.beatify.const import (
     ERR_NO_STEAL_AVAILABLE,
     ERR_NOT_IN_GAME,
     ERR_TARGET_NOT_SUBMITTED,
+    INTRO_BONUS_TIERS,
+    INTRO_DURATION_SECONDS,
+    INTRO_ROUND_CHANCE,
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MAX_SUPERLATIVES,
     MIN_BETS_FOR_AWARD,
     MIN_CLOSE_CALLS,
+    MIN_INTRO_BONUSES_FOR_AWARD,
     MIN_MOVIE_WINS_FOR_AWARD,
     MIN_NAME_LENGTH,
     MIN_ROUNDS_FOR_CLUTCH,
@@ -387,6 +391,13 @@ class GameState:
         self.movie_challenge: MovieChallenge | None = None
         self.movie_quiz_enabled: bool = False
 
+        # Issue #23: Intro mode state
+        self.intro_mode_enabled: bool = False
+        self.is_intro_round: bool = False  # Set per-round randomly
+        self.intro_stopped: bool = False  # Track if 10s cutoff hit
+        self._intro_stop_task: asyncio.Task | None = None
+        self._intro_round_start_time: float | None = None  # Track round start for bonus calc
+
         # Issue #42: Async metadata for fast transitions
         self.metadata_pending: bool = False
         self._metadata_task: asyncio.Task | None = None
@@ -407,6 +418,7 @@ class GameState:
         platform: str = "unknown",
         artist_challenge_enabled: bool = True,
         movie_quiz_enabled: bool = True,
+        intro_mode_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -422,6 +434,7 @@ class GameState:
             platform: Platform identifier for playback routing (music_assistant, sonos, alexa_media)
             artist_challenge_enabled: Whether to enable artist guessing (default True)
             movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
+            intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -496,6 +509,13 @@ class GameState:
         self.movie_quiz_enabled = movie_quiz_enabled
         self.movie_challenge = None
 
+        # Issue #23: Set intro mode configuration
+        self.intro_mode_enabled = intro_mode_enabled
+        self.is_intro_round = False
+        self.intro_stopped = False
+        self._intro_round_start_time = None
+        self._cancel_intro_timer()
+
         # Reset timer task for new game
         self.cancel_timer()
 
@@ -563,6 +583,10 @@ class GameState:
             # Issue #28: Movie quiz challenge (hide answer during PLAYING)
             if self.movie_quiz_enabled and self.movie_challenge:
                 state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=False)
+            # Issue #23: Intro mode state
+            state["intro_mode_enabled"] = self.intro_mode_enabled
+            state["is_intro_round"] = self.is_intro_round
+            state["intro_stopped"] = self.intro_stopped
 
         elif self.phase == GamePhase.REVEAL:
             state["join_url"] = self.join_url
@@ -599,6 +623,10 @@ class GameState:
             # Story 20.9: Early reveal flag for client-side toast
             if self._early_reveal:
                 state["early_reveal"] = True
+            # Issue #23: Intro mode state for reveal
+            state["intro_mode_enabled"] = self.intro_mode_enabled
+            state["is_intro_round"] = self.is_intro_round
+            state["intro_stopped"] = self.intro_stopped
 
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason
@@ -775,6 +803,8 @@ class GameState:
         # Stop timer if in PLAYING
         if self.phase == GamePhase.PLAYING:
             self.cancel_timer()
+            # Issue #23: Cancel intro timer if running
+            self._cancel_intro_timer()
             # Stop media playback
             if self._media_player_service:
                 await self._media_player_service.stop()
@@ -1440,6 +1470,30 @@ class GameState:
         # Issue #28: Initialize movie quiz challenge for this round
         self.movie_challenge = self._init_movie_challenge(song)
 
+        # Issue #23: Determine if this is an intro round
+        self.is_intro_round = False
+        self.intro_stopped = False
+        self._intro_round_start_time = None
+        self._cancel_intro_timer()
+
+        if self.intro_mode_enabled:
+            # ~20% chance of intro round
+            if random.random() < INTRO_ROUND_CHANCE:
+                # Skip intro mode for very short songs (<10s)
+                song_duration_ms = song.get("duration_ms", 999999)
+                if song_duration_ms >= INTRO_DURATION_SECONDS * 1000:
+                    self.is_intro_round = True
+                    self._intro_round_start_time = self._now()
+                    # Schedule auto-stop after intro duration
+                    self._intro_stop_task = asyncio.create_task(
+                        self._intro_auto_stop(INTRO_DURATION_SECONDS)
+                    )
+                    _LOGGER.info("Intro round activated for round %d", self.round + 1)
+                else:
+                    _LOGGER.info(
+                        "Skipping intro mode for short song (%dms)", song_duration_ms
+                    )
+
         # Update round tracking
         self.round += 1
         self.total_rounds = self._playlist_manager.get_total_count()
@@ -1576,6 +1630,9 @@ class GameState:
         # Cancel timer if still running
         self.cancel_timer()
 
+        # Issue #23: Cancel intro timer if running
+        self._cancel_intro_timer()
+
         # Store current ranks before scoring for rank change detection (5.5)
         self._store_previous_ranks()
 
@@ -1650,13 +1707,38 @@ class GameState:
                 else:
                     player.movie_bonus = 0
 
-                # Add to total score (round_score + streak_bonus + artist_bonus + movie_bonus are separate)
-                # Streak bonus, artist bonus, and movie bonus NOT doubled by bet
+                # Issue #23: Award intro speed bonus for pre-cutoff guesses
+                player.intro_bonus = 0
+                if self.is_intro_round and self._intro_round_start_time:
+                    intro_cutoff_time = self._intro_round_start_time + INTRO_DURATION_SECONDS
+                    if player.submission_time and player.submission_time < intro_cutoff_time:
+                        # Player submitted before intro cutoff - count bonuses earned
+                        player.intro_speed_bonuses += 1
+                        # Award tiered bonus based on submission order
+                        # Filter players with valid submission times before cutoff
+                        intro_rank = len([
+                            p for p in self.players.values()
+                            if p.submission_time is not None
+                            and p.submission_time < intro_cutoff_time
+                            and p.submission_time < player.submission_time
+                        ])
+                        if intro_rank < len(INTRO_BONUS_TIERS):
+                            player.intro_bonus = INTRO_BONUS_TIERS[intro_rank]
+                            _LOGGER.debug(
+                                "Intro speed bonus: %s +%d (rank %d)",
+                                player.name,
+                                player.intro_bonus,
+                                intro_rank,
+                            )
+
+                # Add to total score (round_score + streak_bonus + artist_bonus + movie_bonus + intro_bonus)
+                # Streak bonus, artist bonus, movie bonus, and intro bonus NOT doubled by bet
                 player.score += (
                     player.round_score
                     + player.streak_bonus
                     + player.artist_bonus
                     + player.movie_bonus
+                    + player.intro_bonus
                 )
 
                 # Track cumulative stats (Story 5.6) - AFTER all scoring
@@ -1712,6 +1794,21 @@ class GameState:
                         player.score += player.movie_bonus
                 else:
                     player.movie_bonus = 0
+                # Issue #23: Non-submitters don't get intro bonus
+                player.intro_bonus = 0
+
+        # Issue #23: Resume song for intro round reveal (continue from 0:10)
+        if self.is_intro_round and self._media_player_service:
+            try:
+                await self._media_player_service.play()  # Resume from paused position
+            except Exception as err:
+                _LOGGER.warning("Failed to resume song for intro reveal: %s", err)
+                # Fallback: try playing from start
+                if self.current_song:
+                    try:
+                        await self._media_player_service.play_song(self.current_song)
+                    except Exception as err2:
+                        _LOGGER.error("Failed to play song for reveal: %s", err2)
 
         # Calculate round analytics after scoring (Story 13.3)
         try:
@@ -1782,6 +1879,29 @@ class GameState:
                 self._timer_task.cancel()
         self._timer_task = None
 
+    def _cancel_intro_timer(self) -> None:
+        """Cancel the intro auto-stop timer if running (Issue #23)."""
+        if self._intro_stop_task and not self._intro_stop_task.done():
+            self._intro_stop_task.cancel()
+        self._intro_stop_task = None
+
+    async def _intro_auto_stop(self, delay_seconds: float) -> None:
+        """Auto-pause playback after intro duration in intro round (Issue #23)."""
+        try:
+            await asyncio.sleep(delay_seconds)
+            if self.phase == GamePhase.PLAYING and not self.intro_stopped:
+                if self._media_player_service:
+                    try:
+                        await self._media_player_service.pause()
+                    except Exception as err:
+                        _LOGGER.warning("Failed to pause for intro stop: %s", err)
+                self.intro_stopped = True
+                _LOGGER.info("Intro auto-stopped after %.1fs", delay_seconds)
+                await self._broadcast_state()
+        except asyncio.CancelledError:
+            _LOGGER.debug("Intro stop task cancelled")
+            raise
+
     def is_deadline_passed(self) -> bool:
         """
         Check if the round deadline has passed.
@@ -1840,6 +1960,9 @@ class GameState:
             # Issue #28: Add movie bonus if quiz is enabled
             if self.movie_quiz_enabled:
                 player_data["movie_bonus"] = p.movie_bonus
+            # Issue #23: Add intro bonus if mode is enabled
+            if self.intro_mode_enabled:
+                player_data["intro_bonus"] = p.intro_bonus
             players.append(player_data)
         # Sort by score descending for leaderboard preview
         players.sort(key=lambda p: p["score"], reverse=True)
@@ -2202,6 +2325,26 @@ class GameState:
                         "player_name": film_buff[0].name,
                         "value": film_buff[1],
                         "value_label": "movie_bonus",
+                    }
+                )
+
+        # Intro Master - most intro speed bonuses earned (Issue #23)
+        if self.intro_mode_enabled:
+            intro_candidates = [
+                (p, p.intro_speed_bonuses)
+                for p in players
+                if p.intro_speed_bonuses >= MIN_INTRO_BONUSES_FOR_AWARD
+            ]
+            if intro_candidates:
+                intro_master = max(intro_candidates, key=lambda x: x[1])
+                awards.append(
+                    {
+                        "id": "intro_master",
+                        "emoji": "🎧",
+                        "title": "intro_master",
+                        "player_name": intro_master[0].name,
+                        "value": intro_master[1],
+                        "value_label": "intro_bonuses",
                     }
                 )
 

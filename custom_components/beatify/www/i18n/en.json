@@ -84,7 +84,9 @@
     "pausedHint": "The game will resume when the host returns",
     "difficultyEasy": "Easy",
     "difficultyNormal": "Normal",
-    "difficultyHard": "Hard"
+    "difficultyHard": "Hard",
+    "introRound": "INTRO ROUND",
+    "introStopped": "Intro complete!"
   },
   "steal": {
     "available": "Steal Available!",
@@ -236,6 +238,8 @@
     "artistChallenge": "Artist Challenge",
     "enableArtistChallenge": "Enable Artist Challenge",
     "artistChallengeDesc": "First correct guess: +5 pts",
+    "introMode": "Intro Mode",
+    "introModeHint": "~20% of rounds play only 10 seconds",
     "gameSettings": "Game Settings",
     "language": "Language",
     "timer": "Timer",
@@ -431,11 +435,13 @@
     "risk_taker": "Risk Taker",
     "clutch_player": "Clutch Player",
     "close_calls": "Close Calls",
+    "intro_master": "Intro Master",
     "avgTime": "avg",
     "streak": "in a row",
     "bets": "bets",
     "points": "pts in final 3",
-    "closeGuesses": "close guesses"
+    "closeGuesses": "close guesses",
+    "intro_bonuses": "intro bonuses"
   },
   "stats": {
     "firstGame": "First game! Setting the benchmark",

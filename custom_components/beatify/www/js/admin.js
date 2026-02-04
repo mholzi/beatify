@@ -32,6 +32,9 @@ let hasMusicAssistant = false;
 // Artist Challenge state (Story 20.7)
 let artistChallengeEnabled = true;
 
+// Intro Mode state (Issue #23)
+let introModeEnabled = false;
+
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
@@ -240,6 +243,13 @@ function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Intro Mode toggle (Issue #23)
+    document.getElementById('intro-mode-toggle')?.addEventListener('change', function() {
+        introModeEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Provider chips (Music Service)
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -305,6 +315,13 @@ async function loadSavedSettings() {
                 if (toggle) toggle.checked = settings.artistChallenge;
             }
 
+            // Apply intro mode (Issue #23)
+            if (typeof settings.introMode === 'boolean') {
+                introModeEnabled = settings.introMode;
+                const introToggle = document.getElementById('intro-mode-toggle');
+                if (introToggle) introToggle.checked = settings.introMode;
+            }
+
             // Apply provider
             if (settings.provider) {
                 selectedProvider = settings.provider;
@@ -330,6 +347,7 @@ function saveGameSettings() {
             duration: selectedDuration,
             difficulty: selectedDifficulty,
             artistChallenge: artistChallengeEnabled,
+            introMode: introModeEnabled,  // Issue #23
             provider: selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -348,8 +366,9 @@ function updateGameSettingsSummary() {
     const difficultyLabels = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
     const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
     const artistIcon = artistChallengeEnabled ? ' • 🎤' : '';
+    const introIcon = introModeEnabled ? ' • ⚡' : '';  // Issue #23
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}`;
+    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${introIcon}`;
 }
 
 /**
@@ -1351,7 +1370,8 @@ async function startGame() {
                 round_duration: selectedDuration,  // Story 13.1
                 difficulty: selectedDifficulty,  // Story 14.1
                 provider: selectedProvider,  // Story 17.2
-                artist_challenge_enabled: artistChallengeEnabled  // Story 20.7
+                artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
+                intro_mode_enabled: introModeEnabled  // Issue #23
             })
         });
 

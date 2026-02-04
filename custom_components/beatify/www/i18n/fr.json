@@ -84,7 +84,9 @@
     "pausedHint": "La partie reprendra quand l'hôte reviendra",
     "difficultyEasy": "Facile",
     "difficultyNormal": "Normal",
-    "difficultyHard": "Difficile"
+    "difficultyHard": "Difficile",
+    "introRound": "MANCHE INTRO",
+    "introStopped": "Intro terminée !"
   },
   "steal": {
     "available": "Vol disponible !",
@@ -236,6 +238,8 @@
     "artistChallenge": "Défi Artiste",
     "enableArtistChallenge": "Activer le Défi Artiste",
     "artistChallengeDesc": "Première bonne réponse : +5 pts",
+    "introMode": "Mode Intro",
+    "introModeHint": "~20% des manches ne jouent que 10 secondes",
     "gameSettings": "Paramètres du jeu",
     "language": "Langue",
     "timer": "Temps",
@@ -431,11 +435,13 @@
     "risk_taker": "Parieur",
     "clutch_player": "Roi du finish",
     "close_calls": "Tout juste",
+    "intro_master": "Maître de l'Intro",
     "avgTime": "moyenne",
     "streak": "d'affilée",
     "bets": "paris",
     "points": "pts sur les 3 dernières",
-    "closeGuesses": "réponses proches"
+    "closeGuesses": "réponses proches",
+    "intro_bonuses": "bonus d'intro"
   },
   "stats": {
     "firstGame": "Première partie ! On établit la référence",

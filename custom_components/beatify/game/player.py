@@ -50,6 +50,10 @@ class PlayerSession:
     has_movie_guess: bool = False
     movie_bonus_total: int = 0  # Cumulative across rounds for superlative
 
+    # Intro mode bonus tracking (Issue #23)
+    intro_bonus: int = 0  # Per-round intro speed bonus
+    intro_speed_bonuses: int = 0  # Cumulative count for superlative
+
     # Betting tracking (Story 5.3)
     bet: bool = False
     bet_outcome: str | None = None  # "won", "lost", or None
@@ -107,6 +111,8 @@ class PlayerSession:
         # Reset movie quiz fields (Issue #28)
         self.movie_bonus = 0
         self.has_movie_guess = False
+        # Reset intro mode fields (Issue #23)
+        self.intro_bonus = 0
         # Reset bet fields (Story 5.3)
         self.bet = False
         self.bet_outcome = None
@@ -147,6 +153,12 @@ class PlayerSession:
         # Reset steal tracking
         self.steal_available = False
         self.steal_used = False
+
+        # Reset intro mode cumulative tracking (Issue #23)
+        self.intro_speed_bonuses = 0
+
+        # Reset movie bonus cumulative tracking (Issue #28)
+        self.movie_bonus_total = 0
 
         # Also reset round-level state
         self.reset_round()

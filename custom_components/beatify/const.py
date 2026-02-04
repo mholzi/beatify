@@ -31,6 +31,12 @@ ARTIST_BONUS_POINTS = 5
 # Index 0 = fastest correct, index 1 = 2nd fastest, etc.
 MOVIE_BONUS_TIERS: list[int] = [5, 3, 1]
 
+# Intro mode constants (Issue #23)
+INTRO_DURATION_SECONDS = 10
+INTRO_ROUND_CHANCE = 0.20  # 20% chance per round
+INTRO_BONUS_TIERS: list[int] = [5, 3, 1]  # Same as movie bonus
+MIN_INTRO_BONUSES_FOR_AWARD = 1  # Minimum to qualify for superlative
+
 # Steal power-up constants (Story 15.3)
 STEAL_UNLOCK_STREAK = 3  # Consecutive correct answers to unlock steal
 MAX_STEALS_PER_GAME = 1  # Maximum number of steals allowed per game

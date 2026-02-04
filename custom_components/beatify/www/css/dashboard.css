@@ -287,6 +287,9 @@
     background: var(--color-dark-surface);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
 }
 
 .dashboard-playing-content {

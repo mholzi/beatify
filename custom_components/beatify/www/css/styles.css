@@ -3757,6 +3757,54 @@ body.theme-dark .admin-controls {
     animation: pulse 2s infinite;
 }
 
+/* Intro Round Badge (Issue #23) */
+.intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    background: linear-gradient(135deg, #ffd700, #ff6b00);
+    color: #000;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: intro-pulse 1.5s ease-in-out infinite;
+    margin-bottom: var(--space-sm);
+}
+
+.intro-badge-icon {
+    font-size: var(--font-size-md);
+}
+
+.intro-badge--large {
+    font-size: var(--font-size-lg);
+    padding: var(--space-sm) var(--space-lg);
+    margin-left: var(--space-md);
+}
+
+.intro-badge--large .intro-badge-icon {
+    font-size: var(--font-size-xl);
+}
+
+.intro-badge--stopped {
+    background: linear-gradient(135deg, #666, #444);
+    color: var(--color-text-white);
+    animation: none;
+}
+
+@keyframes intro-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-badge {
+        animation: none;
+    }
+}
+
 /* Album Cover (compact, matches reveal size) */
 .album-cover-container {
     position: relative;

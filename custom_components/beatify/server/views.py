@@ -192,6 +192,7 @@ class StartGameView(HomeAssistantView):
         provider = body.get("provider", PROVIDER_DEFAULT)  # Story 17.2
         artist_challenge_enabled = body.get("artist_challenge_enabled", True)  # Story 20.7
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
+        intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)
@@ -362,6 +363,7 @@ class StartGameView(HomeAssistantView):
             "platform": platform,
             "artist_challenge_enabled": artist_challenge_enabled,  # Story 20.7
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
+            "intro_mode_enabled": intro_mode_enabled,  # Issue #23
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration

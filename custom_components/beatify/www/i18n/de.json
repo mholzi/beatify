@@ -84,7 +84,9 @@
     "pausedHint": "Das Spiel geht weiter wenn der Gastgeber zurückkehrt",
     "difficultyEasy": "Leicht",
     "difficultyNormal": "Normal",
-    "difficultyHard": "Schwer"
+    "difficultyHard": "Schwer",
+    "introRound": "INTRO-RUNDE",
+    "introStopped": "Intro vorbei!"
   },
   "steal": {
     "available": "Klauen verfügbar!",
@@ -236,6 +238,8 @@
     "artistChallenge": "Künstler-Challenge",
     "enableArtistChallenge": "Künstler-Challenge aktivieren",
     "artistChallengeDesc": "Erster richtiger Tipp: +5 Pkt",
+    "introMode": "Intro-Modus",
+    "introModeHint": "~20% der Runden spielen nur 10 Sekunden",
     "gameSettings": "Spieleinstellungen",
     "language": "Sprache",
     "timer": "Timer",
@@ -431,11 +435,13 @@
     "risk_taker": "Zocker",
     "clutch_player": "Endspurt-König",
     "close_calls": "Knapp Daneben",
+    "intro_master": "Intro-Meister",
     "avgTime": "durchschn.",
     "streak": "in Folge",
     "bets": "Wetten",
     "points": "Pkt in letzten 3",
-    "closeGuesses": "knappe Tipps"
+    "closeGuesses": "knappe Tipps",
+    "intro_bonuses": "Intro-Boni"
   },
   "stats": {
     "firstGame": "Erstes Spiel! Maßstab gesetzt",

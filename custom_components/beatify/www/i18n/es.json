@@ -84,7 +84,9 @@
     "pausedHint": "El juego continuara cuando el anfitrion regrese",
     "difficultyEasy": "Facil",
     "difficultyNormal": "Normal",
-    "difficultyHard": "Dificil"
+    "difficultyHard": "Dificil",
+    "introRound": "RONDA INTRO",
+    "introStopped": "Intro completa!"
   },
   "steal": {
     "available": "Robo disponible!",
@@ -236,6 +238,8 @@
     "artistChallenge": "Desafío de Artista",
     "enableArtistChallenge": "Activar Desafío de Artista",
     "artistChallengeDesc": "Primera respuesta correcta: +5 pts",
+    "introMode": "Modo Intro",
+    "introModeHint": "~20% de las rondas reproducen solo 10 segundos",
     "gameSettings": "Configuracion del Juego",
     "language": "Idioma",
     "timer": "Temporizador",
@@ -431,11 +435,13 @@
     "risk_taker": "Apostador",
     "clutch_player": "Rey del final",
     "close_calls": "Por poco",
+    "intro_master": "Maestro del Intro",
     "avgTime": "promedio",
     "streak": "consecutivos",
     "bets": "apuestas",
     "points": "pts en ultimas 3",
-    "closeGuesses": "respuestas cercanas"
+    "closeGuesses": "respuestas cercanas",
+    "intro_bonuses": "bonos de intro"
   },
   "stats": {
     "firstGame": "Primer juego! Estableciendo el punto de referencia",

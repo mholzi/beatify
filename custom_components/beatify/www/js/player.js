@@ -1911,6 +1911,32 @@
             }
         }
 
+        // Issue #23: Show/hide intro round badge
+        var introBadge = document.getElementById('intro-badge');
+        if (introBadge) {
+            if (data.is_intro_round) {
+                introBadge.classList.remove('hidden');
+                // Update badge text based on intro_stopped state
+                var badgeText = introBadge.querySelector('[data-i18n]');
+                if (data.intro_stopped) {
+                    introBadge.classList.add('intro-badge--stopped');
+                    if (badgeText) {
+                        badgeText.setAttribute('data-i18n', 'game.introStopped');
+                        badgeText.textContent = utils.t('game.introStopped') || 'Intro complete!';
+                    }
+                } else {
+                    introBadge.classList.remove('intro-badge--stopped');
+                    if (badgeText) {
+                        badgeText.setAttribute('data-i18n', 'game.introRound');
+                        badgeText.textContent = utils.t('game.introRound') || 'INTRO ROUND';
+                    }
+                }
+            } else {
+                introBadge.classList.add('hidden');
+                introBadge.classList.remove('intro-badge--stopped');
+            }
+        }
+
         // Update album cover
         var albumCover = document.getElementById('album-cover');
         var albumLoading = document.getElementById('album-loading');
@@ -3267,6 +3293,23 @@
         var totalEl = document.getElementById('reveal-total');
         if (roundEl) roundEl.textContent = data.round || 1;
         if (totalEl) totalEl.textContent = data.total_rounds || 10;
+
+        // Issue #23: Show/hide intro round badge during REVEAL
+        var introBadge = document.getElementById('intro-badge');
+        if (introBadge) {
+            if (data.is_intro_round) {
+                introBadge.classList.remove('hidden');
+                // During reveal, always show "stopped" state since intro is complete
+                introBadge.classList.add('intro-badge--stopped');
+                var badgeText = introBadge.querySelector('[data-i18n]');
+                if (badgeText) {
+                    badgeText.setAttribute('data-i18n', 'game.introStopped');
+                    badgeText.textContent = utils.t('game.introStopped') || 'Intro complete!';
+                }
+            } else {
+                introBadge.classList.add('hidden');
+            }
+        }
 
         // Update album cover
         var albumCover = document.getElementById('reveal-album-cover');
