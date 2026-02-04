@@ -1515,6 +1515,14 @@ async function confirmRematch() {
     if (rematchInProgress) return;  // Debounce
     rematchInProgress = true;
 
+    // F8 fix: Show loading state on rematch button
+    var rematchBtn = document.getElementById('rematch-game');
+    var originalText = rematchBtn ? rematchBtn.textContent : '';
+    if (rematchBtn) {
+        rematchBtn.disabled = true;
+        rematchBtn.textContent = 'Starting...';
+    }
+
     closeRematchModal();
 
     try {
@@ -1531,6 +1539,11 @@ async function confirmRematch() {
         alert('Failed to start rematch');
     } finally {
         rematchInProgress = false;
+        // Restore button state (in case of error)
+        if (rematchBtn) {
+            rematchBtn.disabled = false;
+            rematchBtn.textContent = originalText;
+        }
     }
 }
 

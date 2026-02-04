@@ -767,13 +767,32 @@ class GameState:
         """Reset game for rematch, preserving connected players (Issue #108)."""
         _LOGGER.info("Rematch initiated from game: %s", self.game_id)
         self.cancel_timer()
+
+        # F1 fix: Preserve playlist and media player for rematch
+        preserved_playlists = self.playlists
+        preserved_songs = self.songs
+        preserved_media_player = self.media_player
+        preserved_join_url = self.join_url
+
         self._reset_game_internals()
+
+        # Restore preserved settings for seamless rematch
+        self.playlists = preserved_playlists
+        self.songs = preserved_songs
+        self.media_player = preserved_media_player
+
         self.phase = GamePhase.LOBBY
         # Reset each player's game stats but keep them connected
         for player in self.players.values():
             player.reset_for_new_game()
         # Generate new game ID for the rematch
         self.game_id = secrets.token_urlsafe(8)
+
+        # F3 fix: Regenerate join_url with new game_id
+        if preserved_join_url:
+            base_url = preserved_join_url.split("/beatify/play")[0]
+            self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
+
         _LOGGER.info(
             "Rematch ready with %d players, new game_id: %s",
             len(self.players),
