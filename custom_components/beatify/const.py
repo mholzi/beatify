@@ -115,6 +115,8 @@ MIN_BETS_FOR_AWARD = 3  # Minimum bets placed to qualify for Risk Taker
 MIN_ROUNDS_FOR_CLUTCH = 3  # Minimum rounds played for Clutch Player
 MIN_CLOSE_CALLS = 2  # Minimum close guesses to qualify for Close Calls
 MIN_MOVIE_WINS_FOR_AWARD = 1  # Minimum movie quiz bonus points for Film Buff (Issue #28)
+MIN_ROUNDS_FOR_COMEBACK = 6  # Minimum rounds played for Comeback King (Issue #143)
+MIN_COMEBACK_IMPROVEMENT = 2.0  # Minimum avg score improvement for Comeback King (Issue #143)
 MAX_SUPERLATIVES = 5  # Maximum number of superlatives to display
 
 # External URLs
