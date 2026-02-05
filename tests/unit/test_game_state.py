@@ -1538,6 +1538,94 @@ class TestCalculateSuperlatives:
         comeback_award = next((a for a in result if a["id"] == "comeback_king"), None)
         assert comeback_award is None
 
+    def test_superlatives_comeback_king_exact_boundary(self):
+        """calculate_superlatives() awards comeback king at exactly 6 rounds (boundary)."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 6  # Exact minimum
+
+        mock_ws = MagicMock()
+        state.add_player("Player", mock_ws)
+        # First half avg=2, second half avg=8 → improvement=6.0
+        state.players["Player"].round_scores = [1, 2, 3, 7, 8, 9]
+
+        result = state.calculate_superlatives()
+
+        comeback_award = next((a for a in result if a["id"] == "comeback_king"), None)
+        assert comeback_award is not None
+        assert comeback_award["player_name"] == "Player"
+
+    def test_superlatives_comeback_king_tie(self):
+        """calculate_superlatives() picks player with highest improvement on tie-break."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 8
+
+        mock_ws = MagicMock()
+        state.add_player("PlayerA", mock_ws)
+        state.add_player("PlayerB", mock_ws)
+
+        # Both have identical improvement: first half avg=2, second half avg=8 → +6.0
+        state.players["PlayerA"].round_scores = [1, 2, 3, 2, 7, 8, 9, 8]
+        state.players["PlayerB"].round_scores = [1, 2, 3, 2, 7, 8, 9, 8]
+
+        result = state.calculate_superlatives()
+
+        comeback_awards = [a for a in result if a["id"] == "comeback_king"]
+        # Only one winner even with identical improvement
+        assert len(comeback_awards) == 1
+        # First player encountered wins (deterministic)
+        assert comeback_awards[0]["player_name"] == "PlayerA"
+
+    def test_superlatives_max_cap_with_comeback(self):
+        """calculate_superlatives() respects MAX_SUPERLATIVES cap including comeback_king."""
+        from unittest.mock import MagicMock
+
+        from custom_components.beatify.const import MAX_SUPERLATIVES
+        from custom_components.beatify.game.state import GameState
+
+        state = GameState(time_fn=lambda: 1000.0)
+        state.create_game(
+            playlists=["playlist1.json"],
+            songs=[{"year": 1985, "uri": "test"}],
+            media_player="media_player.test",
+            base_url="http://test.local:8123",
+        )
+        state.round = 8
+
+        mock_ws = MagicMock()
+        state.add_player("Player", mock_ws)
+
+        p = state.players["Player"]
+        p.round_scores = [1, 2, 1, 2, 8, 9, 8, 9]  # Big comeback
+        p.submission_times = [1.0, 1.5, 1.2, 1.3, 1.1, 1.4, 1.0, 1.2]  # Speed demon
+        p.best_streak = 5  # Lucky streak
+        p.bets_placed = 4  # Risk taker
+        p.final_three_score = 25  # Clutch player
+        p.close_calls = 3  # Close calls
+
+        result = state.calculate_superlatives()
+
+        assert len(result) <= MAX_SUPERLATIVES
+
     def test_superlatives_included_in_end_state(self):
         """calculate_superlatives() is included in END phase state."""
         from unittest.mock import MagicMock

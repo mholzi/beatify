@@ -390,6 +390,8 @@ class ScoringService:
                     }
                 )
 
+        # Note: round_scores only includes rounds where the player submitted (missed rounds excluded),
+        # so "halves" are based on submission index, not game round number.
         if rounds_played >= MIN_ROUNDS_FOR_COMEBACK:
             comeback_candidates = []
             for p in players:
