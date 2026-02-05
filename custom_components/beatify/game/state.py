@@ -768,11 +768,19 @@ class GameState:
         _LOGGER.info("Rematch initiated from game: %s", self.game_id)
         self.cancel_timer()
 
-        # F1 fix: Preserve playlist and media player for rematch
+        # Preserve game settings that the admin configured
         preserved_playlists = self.playlists
-        preserved_songs = self.songs
+        preserved_songs = list(self.songs)  # Copy so we get a fresh playlist
         preserved_media_player = self.media_player
         preserved_join_url = self.join_url
+        preserved_provider = self.provider
+        preserved_platform = self.platform
+        preserved_difficulty = self.difficulty
+        preserved_language = self.language
+        preserved_round_duration = self.round_duration
+        preserved_artist_challenge = self.artist_challenge_enabled
+        preserved_movie_quiz = self.movie_quiz_enabled
+        preserved_intro_mode = self.intro_mode_enabled
 
         self._reset_game_internals()
 
@@ -780,6 +788,18 @@ class GameState:
         self.playlists = preserved_playlists
         self.songs = preserved_songs
         self.media_player = preserved_media_player
+        self.provider = preserved_provider
+        self.platform = preserved_platform
+        self.difficulty = preserved_difficulty
+        self.language = preserved_language
+        self.round_duration = preserved_round_duration
+        self.artist_challenge_enabled = preserved_artist_challenge
+        self.movie_quiz_enabled = preserved_movie_quiz
+        self.intro_mode_enabled = preserved_intro_mode
+
+        # Re-create PlaylistManager with fresh song list
+        self._playlist_manager = PlaylistManager(preserved_songs, preserved_provider)
+        self.total_rounds = len(preserved_songs)
 
         self.phase = GamePhase.LOBBY
         # Reset each player's game stats but keep them connected
@@ -788,14 +808,15 @@ class GameState:
         # Generate new game ID for the rematch
         self.game_id = secrets.token_urlsafe(8)
 
-        # F3 fix: Regenerate join_url with new game_id
+        # Regenerate join_url with new game_id
         if preserved_join_url:
             base_url = preserved_join_url.split("/beatify/play")[0]
             self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
 
         _LOGGER.info(
-            "Rematch ready with %d players, new game_id: %s",
+            "Rematch ready with %d players, %d songs, new game_id: %s",
             len(self.players),
+            self.total_rounds,
             self.game_id,
         )
 

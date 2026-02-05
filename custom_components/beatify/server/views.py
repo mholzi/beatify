@@ -467,11 +467,13 @@ class RematchGameView(HomeAssistantView):
             await ws_handler.broadcast({"type": "rematch_started"})
             await ws_handler.broadcast_state()
 
-        return web.json_response({
-            "success": True,
-            "player_count": player_count,
-            "new_game_id": game_state.game_id,
-        })
+        return web.json_response(
+            {
+                "success": True,
+                "player_count": player_count,
+                "new_game_id": game_state.game_id,
+            }
+        )
 
 
 class StartGameplayView(HomeAssistantView):
