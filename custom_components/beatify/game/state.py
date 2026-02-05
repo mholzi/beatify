@@ -9,11 +9,9 @@ import secrets
 import time
 from dataclasses import dataclass, field
 from enum import Enum
-from statistics import mean, median
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
-    ARTIST_BONUS_POINTS,
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     ERR_CANNOT_STEAL_SELF,
@@ -32,27 +30,18 @@ from custom_components.beatify.const import (
     INTRO_ROUND_CHANCE,
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
-    MAX_SUPERLATIVES,
-    MIN_BETS_FOR_AWARD,
-    MIN_CLOSE_CALLS,
-    MIN_INTRO_BONUSES_FOR_AWARD,
-    MIN_MOVIE_WINS_FOR_AWARD,
     MIN_NAME_LENGTH,
     MIN_ROUNDS_FOR_CLUTCH,
-    MIN_STREAK_FOR_AWARD,
     MOVIE_BONUS_TIERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
-    STEAL_UNLOCK_STREAK,
 )
 
 from .player import PlayerSession
 from .playlist import PlaylistManager
 from .scoring import (
-    apply_bet_multiplier,
-    calculate_round_score,
-    calculate_streak_bonus,
+    ScoringService,
 )
 
 if TYPE_CHECKING:
@@ -1639,163 +1628,23 @@ class GameState:
         # Get correct year from current song
         correct_year = self.current_song.get("year") if self.current_song else None
 
-        # Calculate scores for all players
+        # Calculate scores for all players — delegates to ScoringService (#139)
+        all_players = list(self.players.values())
         for player in self.players.values():
-            if player.submitted and correct_year is not None:
-                # Calculate elapsed time for speed bonus (Story 5.1)
-                if player.submission_time is not None and self.round_start_time is not None:
-                    elapsed = player.submission_time - self.round_start_time
-                else:
-                    elapsed = self.round_duration  # No bonus if timing unavailable
-
-                # Calculate score with speed bonus
-                speed_score, player.base_score, player.speed_multiplier = calculate_round_score(
-                    player.current_guess,
-                    correct_year,
-                    elapsed,
-                    self.round_duration,
-                    self.difficulty,
-                )
-                player.years_off = abs(player.current_guess - correct_year)
-                player.missed_round = False
-
-                # Apply bet multiplier (Story 5.3)
-                player.round_score, player.bet_outcome = apply_bet_multiplier(
-                    speed_score, player.bet
-                )
-
-                # Update streak - any points continues streak (Story 5.2)
-                # Note: streak based on speed_score, not bet-adjusted score
-                if speed_score > 0:
-                    player.previous_streak = 0  # Not relevant when scoring
-                    player.streak += 1
-
-                    # Story 19.11: Record streak achievements at milestones
-                    # Only count each milestone once (when first reached at exact value)
-                    if player.streak == 3:
-                        self.streak_achievements["streak_3"] += 1
-                    elif player.streak == 5:
-                        self.streak_achievements["streak_5"] += 1
-                    elif player.streak == 7:
-                        self.streak_achievements["streak_7"] += 1
-
-                    # Check for streak milestone bonus (awarded at exact milestones)
-                    player.streak_bonus = calculate_streak_bonus(player.streak)
-                    # Check for steal unlock at 3-streak milestone (Story 15.3)
-                    if player.streak == STEAL_UNLOCK_STREAK:
-                        if player.unlock_steal():
-                            _LOGGER.info(
-                                "Player %s unlocked steal at %d streak",
-                                player.name,
-                                player.streak,
-                            )
-                else:
-                    player.previous_streak = player.streak  # Store for display (5.4)
-                    player.streak = 0
-                    player.streak_bonus = 0
-
-                # Story 20.4: Award artist bonus to challenge winner
-                if self.artist_challenge and self.artist_challenge.winner == player.name:
-                    player.artist_bonus = ARTIST_BONUS_POINTS
-                else:
-                    player.artist_bonus = 0
-
-                # Issue #28: Award movie quiz bonus based on speed rank
-                if self.movie_challenge:
-                    player.movie_bonus = self.movie_challenge.get_player_bonus(player.name)
-                    player.movie_bonus_total += player.movie_bonus
-                else:
-                    player.movie_bonus = 0
-
-                # Issue #23: Award intro speed bonus for pre-cutoff guesses
-                player.intro_bonus = 0
-                if self.is_intro_round and self._intro_round_start_time:
-                    intro_cutoff_time = self._intro_round_start_time + INTRO_DURATION_SECONDS
-                    if player.submission_time and player.submission_time < intro_cutoff_time:
-                        # Player submitted before intro cutoff - count bonuses earned
-                        player.intro_speed_bonuses += 1
-                        # Award tiered bonus based on submission order
-                        # Filter players with valid submission times before cutoff
-                        intro_rank = len([
-                            p for p in self.players.values()
-                            if p.submission_time is not None
-                            and p.submission_time < intro_cutoff_time
-                            and p.submission_time < player.submission_time
-                        ])
-                        if intro_rank < len(INTRO_BONUS_TIERS):
-                            player.intro_bonus = INTRO_BONUS_TIERS[intro_rank]
-                            _LOGGER.debug(
-                                "Intro speed bonus: %s +%d (rank %d)",
-                                player.name,
-                                player.intro_bonus,
-                                intro_rank,
-                            )
-
-                # Add to total score (round_score + streak_bonus + artist_bonus + movie_bonus + intro_bonus)
-                # Streak bonus, artist bonus, movie bonus, and intro bonus NOT doubled by bet
-                player.score += (
-                    player.round_score
-                    + player.streak_bonus
-                    + player.artist_bonus
-                    + player.movie_bonus
-                    + player.intro_bonus
-                )
-
-                # Track cumulative stats (Story 5.6) - AFTER all scoring
-                player.rounds_played += 1
-                player.best_streak = max(player.best_streak, player.streak)
-                if player.bet_outcome == "won":
-                    player.bets_won += 1
-
-                # Track superlative data (Story 15.2)
-                # Record submission time (elapsed from round start)
-                if player.submission_time is not None and self.round_start_time is not None:
-                    time_taken = player.submission_time - self.round_start_time
-                    player.submission_times.append(time_taken)
-
-                # Track bets placed (AC3: Risk Taker)
-                if player.bet:
-                    player.bets_placed += 1
-                    # Story 19.12: Track game-level bet stats for analytics
-                    self.bet_tracking["total_bets"] += 1
-                    if player.bet_outcome == "won":
-                        self.bet_tracking["bets_won"] += 1
-
-                # Track close calls - +/-1 year but not exact (AC3: Close Calls)
-                if player.years_off == 1:
-                    player.close_calls += 1
-
-                # Track round scores for Clutch Player calculation
-                player.round_scores.append(player.round_score)
-            else:
-                # Non-submitter - store streak for "lost X-streak" display (5.4)
-                player.previous_streak = player.streak
-                player.round_score = 0
-                player.base_score = 0
-                player.speed_multiplier = 1.0
-                player.years_off = None
-                player.missed_round = True
-                player.streak = 0  # Break streak
-                player.streak_bonus = 0
-                player.bet_outcome = None
-                # Story 20.4: Non-submitters don't get artist bonus
-                # (Note: They can still win if they guessed artist correctly during PLAYING)
-                if self.artist_challenge and self.artist_challenge.winner == player.name:
-                    player.artist_bonus = ARTIST_BONUS_POINTS
-                    player.score += player.artist_bonus
-                else:
-                    player.artist_bonus = 0
-                # Issue #28: Non-submitters can still earn movie bonus
-                # (they may have guessed movie correctly during PLAYING)
-                if self.movie_challenge:
-                    player.movie_bonus = self.movie_challenge.get_player_bonus(player.name)
-                    if player.movie_bonus > 0:
-                        player.movie_bonus_total += player.movie_bonus
-                        player.score += player.movie_bonus
-                else:
-                    player.movie_bonus = 0
-                # Issue #23: Non-submitters don't get intro bonus
-                player.intro_bonus = 0
+            ScoringService.score_player_round(
+                player,
+                correct_year=correct_year,
+                round_start_time=self.round_start_time,
+                round_duration=self.round_duration,
+                difficulty=self.difficulty,
+                artist_challenge=self.artist_challenge,
+                movie_challenge=self.movie_challenge,
+                is_intro_round=self.is_intro_round,
+                intro_round_start_time=self._intro_round_start_time,
+                all_players=all_players,
+                streak_achievements=self.streak_achievements,
+                bet_tracking=self.bet_tracking,
+            )
 
         # Issue #23: Resume song for intro round reveal (continue from 0:10)
         if self.is_intro_round and self._media_player_service:
@@ -2092,264 +1941,26 @@ class GameState:
         return self.volume_level
 
     def calculate_round_analytics(self) -> RoundAnalytics:
-        """
-        Calculate analytics for current round reveal (Story 13.3).
-
-        Returns:
-            RoundAnalytics with all calculated fields.
-
-        """
+        """Calculate round analytics (Story 13.3). Delegates to ScoringService (#139)."""
         correct_year = self.current_song.get("year") if self.current_song else None
-        if correct_year is None:
-            return RoundAnalytics()
-
-        # Collect submitted player data
-        submitted_players = [
-            p for p in self.players.values() if p.submitted and p.current_guess is not None
-        ]
-
-        # Handle empty submissions (AC11)
-        if not submitted_players:
-            return RoundAnalytics(correct_decade=self._get_decade_label(correct_year))
-
-        # Build all_guesses sorted by years_off (AC1)
-        all_guesses = sorted(
-            [
-                {
-                    "name": p.name,
-                    "guess": p.current_guess,
-                    "years_off": p.years_off or 0,
-                }
-                for p in submitted_players
-            ],
-            key=lambda x: x["years_off"],
+        return ScoringService.calculate_round_analytics(
+            list(self.players.values()), correct_year, self.round_start_time,
         )
 
-        guesses = [p.current_guess for p in submitted_players]
-
-        # Calculate average and median values
-        avg_guess = mean(guesses)
-        med_guess = int(median(guesses))
-
-        # Find closest players (min years_off) - handle ties (AC2, AC10)
-        min_off = min(p.years_off or 0 for p in submitted_players)
-        closest = [p.name for p in submitted_players if (p.years_off or 0) == min_off]
-
-        # Find furthest players (max years_off) - handle ties (AC2, AC10)
-        max_off = max(p.years_off or 0 for p in submitted_players)
-        furthest = [p.name for p in submitted_players if (p.years_off or 0) == max_off]
-
-        # Exact matches (AC2)
-        exact = [p.name for p in submitted_players if p.years_off == 0]
-
-        # Scored count and accuracy percentage (AC3, AC8)
-        scored = sum(1 for p in submitted_players if p.round_score > 0)
-        accuracy_pct = int((scored / len(submitted_players)) * 100)
-
-        # Speed champion - fastest submission (AC3, AC10)
-        speed_champion = None
-        players_with_time = [
-            p
-            for p in submitted_players
-            if p.submission_time is not None and self.round_start_time is not None
-        ]
-        if players_with_time:
-            fastest_time = min(p.submission_time - self.round_start_time for p in players_with_time)
-            speed_champs = [
-                p.name
-                for p in players_with_time
-                if (p.submission_time - self.round_start_time) == fastest_time
-            ]
-            speed_champion = {
-                "names": speed_champs,
-                "time": round(fastest_time, 1),
-            }
-
-        # Decade distribution for histogram (AC5)
-        decade_dist: dict[str, int] = {}
-        for guess in guesses:
-            decade = self._get_decade_label(guess)
-            decade_dist[decade] = decade_dist.get(decade, 0) + 1
-
-        return RoundAnalytics(
-            all_guesses=all_guesses,
-            average_guess=avg_guess,
-            median_guess=med_guess,
-            closest_players=closest,
-            furthest_players=furthest,
-            exact_match_players=exact,
-            exact_match_count=len(exact),
-            scored_count=scored,
-            total_submitted=len(submitted_players),
-            accuracy_percentage=accuracy_pct,
-            speed_champion=speed_champion,
-            decade_distribution=decade_dist,
-            correct_decade=self._get_decade_label(correct_year),
-        )
-
-    def _get_decade_label(self, year: int) -> str:
-        """
-        Get decade label for a year (e.g., 1985 -> '1980s').
-
-        Args:
-            year: Year to get decade for
-
-        Returns:
-            Decade label string (e.g., "1980s")
-
-        """
-        decade = (year // 10) * 10
-        return f"{decade}s"
+    @staticmethod
+    def _get_decade_label(year: int) -> str:
+        """Get decade label for a year (e.g., 1985 -> '1980s')."""
+        from .scoring import _get_decade_label as _gdl  # noqa: PLC0415
+        return _gdl(year)
 
     def calculate_superlatives(self) -> list[dict[str, Any]]:
-        """
-        Calculate fun awards based on game performance (Story 15.2).
-
-        Returns list of awards (max 5) for display during END phase.
-        Each award: {id, emoji, title, player_name, value, value_label}
-
-        """
-        awards: list[dict[str, Any]] = []
-        players = list(self.players.values())
-
-        if not players:
-            return awards
-
-        # Speed Demon - fastest average submission (AC3)
-        # Requires at least MIN_SUBMISSIONS_FOR_SPEED submissions
-        speed_candidates = [
-            (p, p.avg_submission_time) for p in players if p.avg_submission_time is not None
-        ]
-        if speed_candidates:
-            fastest = min(speed_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "speed_demon",
-                    "emoji": "⚡",
-                    "title": "speed_demon",  # i18n key
-                    "player_name": fastest[0].name,
-                    "value": round(fastest[1], 1),
-                    "value_label": "avg_time",  # i18n key
-                }
-            )
-
-        # Lucky Streak - longest streak achieved (AC3)
-        # Minimum streak of MIN_STREAK_FOR_AWARD
-        streak_candidates = [
-            (p, p.best_streak) for p in players if p.best_streak >= MIN_STREAK_FOR_AWARD
-        ]
-        if streak_candidates:
-            best = max(streak_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "lucky_streak",
-                    "emoji": "🔥",
-                    "title": "lucky_streak",
-                    "player_name": best[0].name,
-                    "value": best[1],
-                    "value_label": "streak",
-                }
-            )
-
-        # Risk Taker - most bets placed (AC3)
-        # Minimum MIN_BETS_FOR_AWARD bets
-        bet_candidates = [
-            (p, p.bets_placed) for p in players if p.bets_placed >= MIN_BETS_FOR_AWARD
-        ]
-        if bet_candidates:
-            most_bets = max(bet_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "risk_taker",
-                    "emoji": "🎲",
-                    "title": "risk_taker",
-                    "player_name": most_bets[0].name,
-                    "value": most_bets[1],
-                    "value_label": "bets",
-                }
-            )
-
-        # Clutch Player - best final 3 rounds (AC3)
-        # Only if game has MIN_ROUNDS_FOR_CLUTCH+ rounds
-        if self.round >= MIN_ROUNDS_FOR_CLUTCH:
-            clutch_candidates = [
-                (p, p.final_three_score)
-                for p in players
-                if len(p.round_scores) >= MIN_ROUNDS_FOR_CLUTCH
-            ]
-            if clutch_candidates:
-                clutch = max(clutch_candidates, key=lambda x: x[1])
-                # Only show if they scored something in final 3
-                if clutch[1] > 0:
-                    awards.append(
-                        {
-                            "id": "clutch_player",
-                            "emoji": "🌟",
-                            "title": "clutch_player",
-                            "player_name": clutch[0].name,
-                            "value": clutch[1],
-                            "value_label": "points",
-                        }
-                    )
-
-        # Close Calls - most +/-1 year guesses (AC3)
-        # Minimum MIN_CLOSE_CALLS close guesses
-        close_candidates = [(p, p.close_calls) for p in players if p.close_calls >= MIN_CLOSE_CALLS]
-        if close_candidates:
-            closest = max(close_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "close_calls",
-                    "emoji": "🎯",
-                    "title": "close_calls",
-                    "player_name": closest[0].name,
-                    "value": closest[1],
-                    "value_label": "close_guesses",
-                }
-            )
-
-        # Film Buff - most movie quiz bonus points (Issue #28)
-        if self.movie_quiz_enabled:
-            movie_candidates = [
-                (p, p.movie_bonus_total)
-                for p in players
-                if p.movie_bonus_total >= MIN_MOVIE_WINS_FOR_AWARD
-            ]
-            if movie_candidates:
-                film_buff = max(movie_candidates, key=lambda x: x[1])
-                awards.append(
-                    {
-                        "id": "film_buff",
-                        "emoji": "🎬",
-                        "title": "film_buff",
-                        "player_name": film_buff[0].name,
-                        "value": film_buff[1],
-                        "value_label": "movie_bonus",
-                    }
-                )
-
-        # Intro Master - most intro speed bonuses earned (Issue #23)
-        if self.intro_mode_enabled:
-            intro_candidates = [
-                (p, p.intro_speed_bonuses)
-                for p in players
-                if p.intro_speed_bonuses >= MIN_INTRO_BONUSES_FOR_AWARD
-            ]
-            if intro_candidates:
-                intro_master = max(intro_candidates, key=lambda x: x[1])
-                awards.append(
-                    {
-                        "id": "intro_master",
-                        "emoji": "🎧",
-                        "title": "intro_master",
-                        "player_name": intro_master[0].name,
-                        "value": intro_master[1],
-                        "value_label": "intro_bonuses",
-                    }
-                )
-
-        # Limit to MAX_SUPERLATIVES awards (AC1)
-        return awards[:MAX_SUPERLATIVES]
+        """Calculate fun awards (Story 15.2). Delegates to ScoringService (#139)."""
+        return ScoringService.calculate_superlatives(
+            list(self.players.values()),
+            rounds_played=self.round,
+            movie_quiz_enabled=self.movie_quiz_enabled,
+            intro_mode_enabled=self.intro_mode_enabled,
+        )
 
     def _init_artist_challenge(self, song: dict[str, Any]) -> ArtistChallenge | None:
         """
