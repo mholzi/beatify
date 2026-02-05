@@ -1477,9 +1477,7 @@ class GameState:
                     )
                     _LOGGER.info("Intro round activated for round %d", self.round + 1)
                 else:
-                    _LOGGER.info(
-                        "Skipping intro mode for short song (%dms)", song_duration_ms
-                    )
+                    _LOGGER.info("Skipping intro mode for short song (%dms)", song_duration_ms)
 
         # Update round tracking
         self.round += 1
@@ -1942,13 +1940,16 @@ class GameState:
         """Calculate round analytics (Story 13.3). Delegates to ScoringService (#139)."""
         correct_year = self.current_song.get("year") if self.current_song else None
         return ScoringService.calculate_round_analytics(
-            list(self.players.values()), correct_year, self.round_start_time,
+            list(self.players.values()),
+            correct_year,
+            self.round_start_time,
         )
 
     @staticmethod
     def _get_decade_label(year: int) -> str:
         """Get decade label for a year (e.g., 1985 -> '1980s')."""
         from .scoring import _get_decade_label as _gdl  # noqa: PLC0415
+
         return _gdl(year)
 
     def calculate_superlatives(self) -> list[dict[str, Any]]:
