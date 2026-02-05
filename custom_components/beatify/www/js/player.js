@@ -5346,8 +5346,10 @@
         } else if (data.type === 'rematch_started') {
             // Issue #108 - handle rematch transition
             console.log('[Player] Rematch started - transitioning to lobby');
+            // Clean up end-phase UI before state broadcast transitions to LOBBY
+            AnimationQueue.clear();
+            stopConfetti();
             // The subsequent state broadcast will show LOBBY phase
-            // Just ensure we're ready to receive it
         } else if (data.type === 'left') {
             // Story 11.5 - player left game successfully
             handleLeftGame();

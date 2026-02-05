@@ -420,10 +420,11 @@ class EndGameView(HomeAssistantView):
 
         game_state.end_game()
 
-        # Broadcast game ended to WebSocket clients
+        # Broadcast game_ended to WebSocket clients so players clean up properly
         ws_handler = data.get("ws_handler")
         if ws_handler:
-            await ws_handler.broadcast({"type": "state", "phase": "END", "game_id": None})
+            await ws_handler.broadcast({"type": "game_ended"})
+            await ws_handler.broadcast_state()
 
         return web.json_response({"success": True})
 

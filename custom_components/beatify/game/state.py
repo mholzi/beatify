@@ -695,8 +695,16 @@ class GameState:
         """Reset internal game state (Issue #108).
 
         Shared by end_game() and rematch_game() to prevent field drift.
-        Does NOT reset: players, sessions, phase, or game_id (caller's responsibility).
+        Does NOT reset: players, sessions, phase, game_id, callbacks,
+        service refs (_stats_service, _on_round_end, _on_metadata_update),
+        or volume_level (caller's responsibility).
         """
+        # Cancel async tasks before resetting references
+        self._cancel_intro_timer()
+        if self._metadata_task and not self._metadata_task.done():
+            self._metadata_task.cancel()
+        self._metadata_task = None
+
         # Reset playlists and media
         self.playlists = []
         self.songs = []
@@ -738,6 +746,20 @@ class GameState:
 
         # Reset provider (Story 17.2)
         self.provider = PROVIDER_DEFAULT
+
+        # Issue #23: Reset intro mode per-round state
+        self.is_intro_round = False
+        self.intro_stopped = False
+        self._intro_round_start_time = None
+
+        # Reset metadata state
+        self.metadata_pending = False
+
+        # Reset reaction rate-limiting (Story 18.9)
+        self._reactions_this_phase = set()
+
+        # Reset error detail
+        self.last_error_detail = ""
 
         # Story 19.11: Reset streak tracking
         self.streak_achievements = {"streak_3": 0, "streak_5": 0, "streak_7": 0}

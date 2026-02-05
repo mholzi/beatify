@@ -1520,7 +1520,7 @@ async function confirmRematch() {
     var originalText = rematchBtn ? rematchBtn.textContent : '';
     if (rematchBtn) {
         rematchBtn.disabled = true;
-        rematchBtn.textContent = 'Starting...';
+        rematchBtn.textContent = '⏳';
     }
 
     closeRematchModal();
