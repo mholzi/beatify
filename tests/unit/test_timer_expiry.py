@@ -25,7 +25,10 @@ sys.modules["homeassistant.core"] = MagicMock()
 sys.modules["homeassistant.components"] = MagicMock()
 sys.modules["homeassistant.components.http"] = MagicMock()
 
-from custom_components.beatify.game.state import GamePhase, GameState
+from unittest.mock import patch  # noqa: E402
+
+from custom_components.beatify.game.state import GamePhase, GameState  # noqa: E402
+from custom_components.beatify.services.media_player import MediaPlayerService
 
 
 @pytest.fixture
@@ -38,14 +41,44 @@ def mock_hass():
     return hass
 
 
+@pytest.fixture(autouse=True)
+def mock_media_player_service():
+    """Mock MediaPlayerService methods so start_round succeeds without real HA."""
+    with (
+        patch.object(MediaPlayerService, "play_song", new_callable=AsyncMock, return_value=True),
+        patch.object(
+            MediaPlayerService,
+            "verify_responsive",
+            new_callable=AsyncMock,
+            return_value=(True, None),
+        ),
+    ):
+        yield
+
+
 @pytest.fixture
 def game_with_songs():
     """Create a game state with songs loaded."""
     state = GameState(time_fn=lambda: 1000.0)
     songs = [
-        {"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"},
-        {"year": 1990, "uri": "spotify:track:2", "fun_fact": "Fact 2"},
-        {"year": 1995, "uri": "spotify:track:3", "fun_fact": "Fact 3"},
+        {
+            "year": 1985,
+            "uri": "spotify:track:1",
+            "_resolved_uri": "spotify:track:1",
+            "fun_fact": "Fact 1",
+        },
+        {
+            "year": 1990,
+            "uri": "spotify:track:2",
+            "_resolved_uri": "spotify:track:2",
+            "fun_fact": "Fact 2",
+        },
+        {
+            "year": 1995,
+            "uri": "spotify:track:3",
+            "_resolved_uri": "spotify:track:3",
+            "fun_fact": "Fact 3",
+        },
     ]
     state.create_game(
         playlists=["playlist1.json"],
@@ -265,7 +298,14 @@ class TestCreateGameResetsTimer:
         # Create a new game (simulating game reset)
         state.create_game(
             playlists=["new_playlist.json"],
-            songs=[{"year": 2000, "uri": "spotify:track:new", "fun_fact": "New fact"}],
+            songs=[
+                {
+                    "year": 2000,
+                    "uri": "spotify:track:new",
+                    "_resolved_uri": "spotify:track:new",
+                    "fun_fact": "New fact",
+                }
+            ],
             media_player="media_player.test",
             base_url="http://test.local:8123",
         )
@@ -379,9 +419,7 @@ class TestGetStateRevealPhase:
         assert "fun_fact" in result["song"]
 
     @pytest.mark.asyncio
-    async def test_get_state_reveal_uses_reveal_players_state(
-        self, game_with_songs, mock_hass
-    ):
+    async def test_get_state_reveal_uses_reveal_players_state(self, game_with_songs, mock_hass):
         """get_state uses get_reveal_players_state during REVEAL phase."""
         state = game_with_songs
 

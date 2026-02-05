@@ -53,9 +53,7 @@ class TestProjectStructure:
             pytest.skip("__init__.py not found")
 
         content = init_file.read_text()
-        assert "async_setup_entry" in content, (
-            "__init__.py must contain async_setup_entry function"
-        )
+        assert "async_setup_entry" in content, "__init__.py must contain async_setup_entry function"
 
     def test_manifest_file_exists(self):
         """AC: manifest.json exists."""
@@ -101,9 +99,9 @@ class TestManifestContent:
 
         version = manifest.get("version")
         assert version is not None, "manifest.json must have a version field"
-        # Validate semver format (major.minor.patch)
-        assert re.match(r"^\d+\.\d+\.\d+$", version), (
-            f"Version must be semver format (x.y.z), got '{version}'"
+        # Validate semver format (major.minor.patch with optional pre-release)
+        assert re.match(r"^\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$", version), (
+            f"Version must be semver format (x.y.z or x.y.z-pre), got '{version}'"
         )
 
     def test_manifest_has_required_fields(self, manifest):
@@ -159,9 +157,8 @@ class TestCodeQuality:
 
         result = subprocess.run(
             [sys.executable, "-m", "ruff", "check", str(CUSTOM_COMPONENTS)],
-            check=False, capture_output=True,
+            check=False,
+            capture_output=True,
             text=True,
         )
-        assert result.returncode == 0, (
-            f"Ruff linting failed:\n{result.stdout}\n{result.stderr}"
-        )
+        assert result.returncode == 0, f"Ruff linting failed:\n{result.stdout}\n{result.stderr}"

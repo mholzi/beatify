@@ -535,6 +535,10 @@ class GameState:
             "players": self.get_players_state(),
             "language": self.language,
             "difficulty": self.difficulty,
+            # Issue #23: Intro mode (available in all phases)
+            "intro_mode_enabled": self.intro_mode_enabled,
+            "is_intro_round": self.is_intro_round,
+            "intro_stopped": self.intro_stopped,
         }
 
         # Phase-specific data
@@ -570,10 +574,6 @@ class GameState:
             # Issue #28: Movie quiz challenge (hide answer during PLAYING)
             if self.movie_quiz_enabled and self.movie_challenge:
                 state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=False)
-            # Issue #23: Intro mode state
-            state["intro_mode_enabled"] = self.intro_mode_enabled
-            state["is_intro_round"] = self.is_intro_round
-            state["intro_stopped"] = self.intro_stopped
 
         elif self.phase == GamePhase.REVEAL:
             state["join_url"] = self.join_url
@@ -610,10 +610,6 @@ class GameState:
             # Story 20.9: Early reveal flag for client-side toast
             if self._early_reveal:
                 state["early_reveal"] = True
-            # Issue #23: Intro mode state for reveal
-            state["intro_mode_enabled"] = self.intro_mode_enabled
-            state["is_intro_round"] = self.is_intro_round
-            state["intro_stopped"] = self.intro_stopped
 
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason

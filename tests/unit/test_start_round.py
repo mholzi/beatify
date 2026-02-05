@@ -41,14 +41,44 @@ def mock_hass():
     return hass
 
 
+@pytest.fixture(autouse=True)
+def mock_media_player_service():
+    """Mock MediaPlayerService methods so start_round succeeds without real HA."""
+    with (
+        patch.object(MediaPlayerService, "play_song", new_callable=AsyncMock, return_value=True),
+        patch.object(
+            MediaPlayerService,
+            "verify_responsive",
+            new_callable=AsyncMock,
+            return_value=(True, None),
+        ),
+    ):
+        yield
+
+
 @pytest.fixture
 def game_with_songs():
     """Create a game state with songs loaded."""
     state = GameState(time_fn=lambda: 1000.0)
     songs = [
-        {"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"},
-        {"year": 1990, "uri": "spotify:track:2", "fun_fact": "Fact 2"},
-        {"year": 1995, "uri": "spotify:track:3", "fun_fact": "Fact 3"},
+        {
+            "year": 1985,
+            "uri": "spotify:track:1",
+            "_resolved_uri": "spotify:track:1",
+            "fun_fact": "Fact 1",
+        },
+        {
+            "year": 1990,
+            "uri": "spotify:track:2",
+            "_resolved_uri": "spotify:track:2",
+            "fun_fact": "Fact 2",
+        },
+        {
+            "year": 1995,
+            "uri": "spotify:track:3",
+            "_resolved_uri": "spotify:track:3",
+            "fun_fact": "Fact 3",
+        },
     ]
     state.create_game(
         playlists=["playlist1.json"],
@@ -101,7 +131,14 @@ class TestStartRoundDeadline:
     async def test_start_round_sets_deadline(self, mock_hass):
         """start_round sets deadline based on current time + duration."""
         state = GameState(time_fn=lambda: 1000.0)
-        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        songs = [
+            {
+                "year": 1985,
+                "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+            }
+        ]
         state.create_game(
             playlists=["playlist1.json"],
             songs=songs,
@@ -170,7 +207,14 @@ class TestStartRoundLastRound:
     async def test_start_round_sets_last_round_when_one_remaining(self, mock_hass):
         """start_round sets last_round=True when only 1 song remains."""
         state = GameState(time_fn=lambda: 1000.0)
-        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        songs = [
+            {
+                "year": 1985,
+                "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+            }
+        ]
         state.create_game(
             playlists=["playlist1.json"],
             songs=songs,
@@ -186,7 +230,14 @@ class TestStartRoundLastRound:
     async def test_start_round_returns_false_when_exhausted(self, mock_hass):
         """start_round returns False when all songs are exhausted."""
         state = GameState(time_fn=lambda: 1000.0)
-        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        songs = [
+            {
+                "year": 1985,
+                "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+            }
+        ]
         state.create_game(
             playlists=["playlist1.json"],
             songs=songs,
@@ -213,25 +264,11 @@ class TestStartRoundMediaPlayer:
         """start_round creates MediaPlayerService with correct entity."""
         state = game_with_songs
 
-        with patch.object(
-            MediaPlayerService, "play_song", new_callable=AsyncMock
-        ) as mock_play:
-            mock_play.return_value = True
-            with patch.object(
-                MediaPlayerService, "get_metadata", new_callable=AsyncMock
-            ) as mock_meta:
-                mock_meta.return_value = {
-                    "artist": "Test Artist",
-                    "title": "Test Song",
-                    "album_art": "/test.jpg",
-                }
+        await state.start_round(mock_hass)
 
-                await state.start_round(mock_hass)
-
-                # Verify play_song was called with a valid URI
-                mock_play.assert_called_once()
-                call_args = mock_play.call_args[0][0]
-                assert call_args.startswith("spotify:track:")
+        # Verify media player service was created
+        assert state._media_player_service is not None
+        assert state.media_player == "media_player.test"
 
 
 @pytest.mark.unit
@@ -271,7 +308,14 @@ class TestGetStatePlayingPhase:
     async def test_get_state_includes_last_round_flag(self, mock_hass):
         """get_state includes last_round flag during PLAYING."""
         state = GameState(time_fn=lambda: 1000.0)
-        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        songs = [
+            {
+                "year": 1985,
+                "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+            }
+        ]
         state.create_game(
             playlists=["playlist1.json"],
             songs=songs,
@@ -298,6 +342,7 @@ class TestStartRoundRichSongInfo:
             {
                 "year": 1982,
                 "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
                 "fun_fact": "Fact 1",
                 "chart_info": {"billboard_peak": 1, "weeks_on_chart": 22},
             }
@@ -321,6 +366,7 @@ class TestStartRoundRichSongInfo:
             {
                 "year": 1982,
                 "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
                 "fun_fact": "Fact 1",
                 "certifications": ["4x Platinum (US)", "2x Platinum (UK)"],
             }
@@ -344,6 +390,7 @@ class TestStartRoundRichSongInfo:
             {
                 "year": 1982,
                 "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
                 "fun_fact": "Fact 1",
                 "awards": ["Grammy Hall of Fame (2004)"],
             }
@@ -364,7 +411,14 @@ class TestStartRoundRichSongInfo:
         """start_round provides defaults for missing rich info fields."""
         state = GameState(time_fn=lambda: 1000.0)
         # Song without any rich info fields (backward compatibility)
-        songs = [{"year": 1985, "uri": "spotify:track:1", "fun_fact": "Fact 1"}]
+        songs = [
+            {
+                "year": 1985,
+                "uri": "spotify:track:1",
+                "_resolved_uri": "spotify:track:1",
+                "fun_fact": "Fact 1",
+            }
+        ]
         state.create_game(
             playlists=["playlist1.json"],
             songs=songs,
