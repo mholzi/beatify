@@ -10,7 +10,6 @@ from __future__ import annotations
 from statistics import mean, median
 from typing import TYPE_CHECKING, Any
 
-
 from custom_components.beatify.const import (
     ARTIST_BONUS_POINTS,
     DIFFICULTY_DEFAULT,
@@ -411,11 +410,15 @@ class ScoringService:
             if speed_score > 0:
                 player.previous_streak = 0
                 player.streak += 1
-                if player.streak == 3: streak_achievements["streak_3"] += 1
-                elif player.streak == 5: streak_achievements["streak_5"] += 1
-                elif player.streak == 7: streak_achievements["streak_7"] += 1
+                if player.streak == 3:
+                    streak_achievements["streak_3"] += 1
+                elif player.streak == 5:
+                    streak_achievements["streak_5"] += 1
+                elif player.streak == 7:
+                    streak_achievements["streak_7"] += 1
                 player.streak_bonus = calculate_streak_bonus(player.streak)
-                if player.streak == STEAL_UNLOCK_STREAK: player.unlock_steal()
+                if player.streak == STEAL_UNLOCK_STREAK:
+                    player.unlock_steal()
             else:
                 player.previous_streak = player.streak
                 player.streak = 0
@@ -445,14 +448,17 @@ class ScoringService:
                              + player.artist_bonus + player.movie_bonus + player.intro_bonus)
             player.rounds_played += 1
             player.best_streak = max(player.best_streak, player.streak)
-            if player.bet_outcome == "won": player.bets_won += 1
+            if player.bet_outcome == "won":
+                player.bets_won += 1
             if player.submission_time is not None and round_start_time is not None:
                 player.submission_times.append(player.submission_time - round_start_time)
             if player.bet:
                 player.bets_placed += 1
                 bet_tracking["total_bets"] += 1
-                if player.bet_outcome == "won": bet_tracking["bets_won"] += 1
-            if player.years_off == 1: player.close_calls += 1
+                if player.bet_outcome == "won":
+                    bet_tracking["bets_won"] += 1
+            if player.years_off == 1:
+                player.close_calls += 1
             player.round_scores.append(player.round_score)
         else:
             player.previous_streak = player.streak
@@ -466,7 +472,8 @@ class ScoringService:
             player.bet_outcome = None
             player.artist_bonus = (ARTIST_BONUS_POINTS
                                    if artist_challenge and artist_challenge.winner == player.name else 0)
-            if player.artist_bonus: player.score += player.artist_bonus
+            if player.artist_bonus:
+                player.score += player.artist_bonus
             if movie_challenge:
                 player.movie_bonus = movie_challenge.get_player_bonus(player.name)
                 if player.movie_bonus > 0:
