@@ -456,12 +456,11 @@ class ScoringService:
             p for p in submitted if p.submission_time is not None and round_start_time is not None
         ]
         if timed:
-            fastest = min(p.submission_time - round_start_time for p in timed)
+            elapsed = [(p, p.submission_time - round_start_time) for p in timed]
+            fastest_time = min(t for _, t in elapsed)
             speed_champion = {
-                "names": [
-                    p.name for p in timed if (p.submission_time - round_start_time) == fastest
-                ],
-                "time": round(fastest, 1),
+                "names": [p.name for p, t in elapsed if t == fastest_time],
+                "time": round(fastest_time, 1),
             }
 
         decade_dist: dict[str, int] = {}
