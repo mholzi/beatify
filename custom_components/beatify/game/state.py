@@ -580,9 +580,18 @@ class GameState:
             state["round"] = self.round
             state["total_rounds"] = self.total_rounds
             state["last_round"] = self.last_round
-            # Full song info INCLUDING year and fun_fact during REVEAL
+            # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
             if self.current_song:
-                state["song"] = self.current_song
+                state["song"] = {
+                    "artist": self.current_song.get("artist", "Unknown"),
+                    "title": self.current_song.get("title", "Unknown"),
+                    "year": self.current_song.get("year"),
+                    "album_art": self.current_song.get("album_art", "/beatify/static/img/no-artwork.svg"),
+                    "fun_fact": self.current_song.get("fun_fact", ""),
+                    "fun_fact_de": self.current_song.get("fun_fact_de", ""),
+                    "fun_fact_es": self.current_song.get("fun_fact_es", ""),
+                    "fun_fact_fr": self.current_song.get("fun_fact_fr", ""),
+                }
             # Include reveal-specific player data (guesses, round_score, missed)
             state["players"] = self.get_reveal_players_state()
             # Leaderboard (Story 5.5)
