@@ -924,8 +924,14 @@ class GameState:
                     await self._media_player_service.play(self.current_song)
                     _LOGGER.info("Media playback resumed")
             else:
-                # Timer would have expired during pause
-                _LOGGER.info("Timer expired during pause, will advance to reveal")
+                # Timer expired during pause — end the round immediately
+                _LOGGER.info("Timer expired during pause, ending round")
+                self.phase = previous
+                self.pause_reason = None
+                self.disconnected_admin_name = None
+                self._previous_phase = None
+                await self.end_round()
+                return True
 
         # Restore previous phase
         self.phase = previous

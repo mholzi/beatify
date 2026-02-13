@@ -1615,11 +1615,10 @@ class TestCalculateSuperlatives:
         state.add_player("Player", mock_ws)
 
         p = state.players["Player"]
-        p.round_scores = [1, 2, 1, 2, 8, 9, 8, 9]  # Big comeback
+        p.round_scores = [1, 2, 1, 2, 8, 9, 8, 9]  # Big comeback; last 3 sum to 26 (clutch)
         p.submission_times = [1.0, 1.5, 1.2, 1.3, 1.1, 1.4, 1.0, 1.2]  # Speed demon
         p.best_streak = 5  # Lucky streak
         p.bets_placed = 4  # Risk taker
-        p.final_three_score = 25  # Clutch player
         p.close_calls = 3  # Close calls
 
         result = state.calculate_superlatives()
