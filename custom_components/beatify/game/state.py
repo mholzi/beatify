@@ -393,6 +393,11 @@ class GameState:
         # Story 20.9: Early reveal flag
         self._early_reveal: bool = False
 
+        # Issue AF2-013: Lock to prevent concurrent score updates
+        # Guards end_round() and _trigger_early_reveal() against race conditions
+        # when multiple players submit simultaneously during early reveal check
+        self._score_lock: asyncio.Lock = asyncio.Lock()
+
     def create_game(
         self,
         playlists: list[str],
@@ -1271,17 +1276,29 @@ class GameState:
         Trigger early transition to reveal when all guesses are in (Story 20.9).
 
         Cancels timer, sets early_reveal flag, and calls end_round.
+        Uses _score_lock to prevent concurrent invocations from racing
+        when multiple players submit simultaneously (AF2-013).
 
         """
-        _LOGGER.info(
-            "All guesses complete - triggering early reveal (phase=%s, callback=%s)",
-            self.phase.value,
-            self._on_round_end is not None,
-        )
-        self.cancel_timer()
-        self._early_reveal = True
-        await self.end_round()
-        _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
+        async with self._score_lock:
+            # Re-check phase under lock — another coroutine may have already
+            # transitioned to REVEAL between our caller's check and acquiring
+            # the lock.
+            if self.phase != GamePhase.PLAYING:
+                _LOGGER.debug(
+                    "Early reveal skipped — phase already %s", self.phase.value
+                )
+                return
+
+            _LOGGER.info(
+                "All guesses complete - triggering early reveal (phase=%s, callback=%s)",
+                self.phase.value,
+                self._on_round_end is not None,
+            )
+            self.cancel_timer()
+            self._early_reveal = True
+            await self._end_round_unlocked()
+            _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
 
     def set_round_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
         """
@@ -1707,8 +1724,21 @@ class GameState:
         End the current round and transition to REVEAL.
 
         Calculates scores for all players and invokes round end callback.
+        Acquires _score_lock to prevent concurrent score mutations (AF2-013).
 
         """
+        async with self._score_lock:
+            await self._end_round_unlocked()
+
+    async def _end_round_unlocked(self) -> None:
+        """Inner end_round logic. Caller MUST hold _score_lock."""
+        # Guard: skip if already transitioned (e.g. timer + early reveal race)
+        if self.phase != GamePhase.PLAYING:
+            _LOGGER.debug(
+                "end_round skipped — phase already %s", self.phase.value
+            )
+            return
+
         # Cancel timer if still running
         self.cancel_timer()
 
