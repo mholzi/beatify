@@ -694,6 +694,7 @@ class AnalyticsView(HomeAssistantView):
         self._cache_time: float = 0
         self._cache_ttl: float = 60.0  # 60 second cache
         self._rate_limits: dict[str, list[float]] = {}  # IP -> list of request times
+        self._last_sweep: float = 0.0  # Last time we did a full sweep
 
     def _check_rate_limit(self, ip: str) -> bool:
         """
@@ -710,6 +711,15 @@ class AnalyticsView(HomeAssistantView):
 
         now = time.time()
         cutoff = now - self.RATE_LIMIT_WINDOW
+
+        # Periodic full sweep every 5 minutes to evict stale IP entries
+        if now - self._last_sweep > 300:
+            self._rate_limits = {
+                k: [t for t in v if t > cutoff]
+                for k, v in self._rate_limits.items()
+                if any(t > cutoff for t in v)
+            }
+            self._last_sweep = now
 
         # Get request times for this IP, filter old entries
         times = [t for t in self._rate_limits.get(ip, []) if t > cutoff]
