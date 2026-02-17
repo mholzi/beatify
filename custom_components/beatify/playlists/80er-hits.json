@@ -1,6 +1,6 @@
 {
   "name": "80er Hits",
-  "version": "2.0",
+  "version": "1.1",
   "tags": [
     "1980s",
     "pop",
@@ -29,47 +29,6 @@
       "uri_apple_music": "applemusic://track/703536400",
       "uri_youtube_music": "https://music.youtube.com/watch?v=s3EMTAr-UBY",
       "uri_tidal": "tidal://track/22371988"
-    },
-    {
-      "year": 1978,
-      "uri": "spotify:track:69G2bqmdxqFxOBj4mkvYQt",
-      "artist": "Kraftwerk",
-      "title": "Die Roboter",
-      "alt_artists": [
-        "Tangerine Dream",
-        "Jean-Michel Jarre"
-      ],
-      "certifications": [],
-      "fun_fact": "Kraftwerk built actual robot replicas of themselves that could perform on stage, bringing the song's concept to life in their concerts.",
-      "fun_fact_de": "Kraftwerk bauten echte Roboter-Nachbildungen von sich selbst, die auf der Bühne auftreten konnten, und erweckten so das Konzept des Songs in ihren Konzerten zum Leben.",
-      "fun_fact_es": "Kraftwerk construyó réplicas robot reales de sí mismos que podían actuar en el escenario, dando vida al concepto de la canción en sus conciertos.",
-      "fun_fact_fr": "Kraftwerk a construit de véritables répliques robotiques d'eux-mêmes capables de se produire sur scène, donnant vie au concept de la chanson lors de leurs concerts.",
-      "chart_info": {},
-      "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9plTe80SosA",
-      "uri_tidal": "tidal://track/11210159"
-    },
-    {
-      "year": 1978,
-      "uri": "spotify:track:5xf5uP70cZB1YPHS52IMex",
-      "artist": "Kraftwerk",
-      "title": "Das Model",
-      "alt_artists": [
-        "Tangerine Dream",
-        "Depeche Mode"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "Originally released in 1978, 'Das Modell' reached #1 in the UK in 1982 when it was re-released as a B-side that became more popular than the A-side 'Computer Love'.",
-      "fun_fact_de": "'Das Modell' wurde 1978 veröffentlicht und erreichte 1982 #1 in Großbritannien, als es als B-Seite wiederveröffentlicht wurde, die populärer als die A-Seite 'Computerlove' wurde.",
-      "fun_fact_es": "Originalmente lanzada en 1978, 'Das Modell' alcanzó el #1 en el Reino Unido en 1982 cuando se relanzó como cara B que se volvió más popular que la cara A 'Computer Love'.",
-      "fun_fact_fr": "Sorti à l'origine en 1978, 'Das Modell' a atteint le #1 au Royaume-Uni en 1982 lors de sa ressortie en face B, devenue plus populaire que la face A 'Computer Love'.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/726157363",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qCFIRjycV5Q",
-      "uri_tidal": "tidal://track/11210162"
     },
     {
       "year": 1979,
@@ -176,27 +135,6 @@
       "uri_tidal": "tidal://track/21844141"
     },
     {
-      "year": 1980,
-      "uri": "spotify:track:7AmdLtDBBMHWTvneMLm8Nj",
-      "artist": "Ultravox",
-      "title": "Vienna",
-      "alt_artists": [
-        "Gary Numan",
-        "Japan"
-      ],
-      "certifications": [
-        "Platinum (UK)"
-      ],
-      "fun_fact": "Famously kept off the UK #1 spot by Joe Dolce's 'Shaddap You Face', Vienna is often cited as the greatest song never to reach number one in the UK.",
-      "fun_fact_de": "'Vienna' wurde vom UK-#1-Platz durch Joe Dolces 'Shaddap You Face' verdrängt und gilt oft als der größte Song, der nie die Nummer eins in Großbritannien erreichte.",
-      "fun_fact_es": "Famosamente impedida de llegar al #1 del Reino Unido por 'Shaddap You Face' de Joe Dolce, 'Vienna' es citada como la mejor canción que nunca llegó al número uno.",
-      "fun_fact_fr": "Célèbrement empêchée d'atteindre le #1 au Royaume-Uni par 'Shaddap You Face' de Joe Dolce, 'Vienna' est souvent citée comme la plus grande chanson à n'avoir jamais atteint la première place.",
-      "chart_info": {},
-      "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=2biSdr0uuo0",
-      "uri_tidal": "tidal://track/234636699"
-    },
-    {
       "year": 1981,
       "uri": "spotify:track:0qi4b1l0eT3jpzeNHeFXDT",
       "artist": "Depeche Mode",
@@ -223,25 +161,6 @@
     },
     {
       "year": 1981,
-      "uri": "spotify:track:2RT4AjOSaDNCApCaphsJRo",
-      "artist": "Genesis",
-      "title": "Man On The Corner",
-      "alt_artists": [
-        "Phil Collins",
-        "Mike + The Mechanics"
-      ],
-      "certifications": [],
-      "fun_fact": "From the album 'Abacab', this was one of the first Genesis songs to reflect Phil Collins' pop sensibility rather than the band's progressive rock roots.",
-      "fun_fact_de": "Vom Album 'Abacab' war dies einer der ersten Genesis-Songs, die Phil Collins' Pop-Sensibilität statt der Progressive-Rock-Wurzeln der Band widerspiegelten.",
-      "fun_fact_es": "Del álbum 'Abacab', esta fue una de las primeras canciones de Genesis en reflejar la sensibilidad pop de Phil Collins en lugar de las raíces de rock progresivo.",
-      "fun_fact_fr": "De l'album 'Abacab', c'était l'une des premières chansons de Genesis à refléter la sensibilité pop de Phil Collins plutôt que les racines rock progressif du groupe.",
-      "chart_info": {},
-      "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=H5O9I7F83io",
-      "uri_tidal": "tidal://track/35096249"
-    },
-    {
-      "year": 1981,
       "uri": "spotify:track:1MpKZi1lLJwvVtKxj0ebqH",
       "artist": "Grover Washington Jr.",
       "alt_artists": [
@@ -264,28 +183,6 @@
       "fun_fact_fr": "Bill Withers assure le chant sur ce morceau, qui a remporté le Grammy de la meilleure chanson R&B. Will Smith l'a ensuite samplé pour son tube de 1998 dédié à la paternité.",
       "uri_apple_music": "applemusic://track/310527535",
       "uri_youtube_music": "https://music.youtube.com/watch?v=v8oqbWrP1QY"
-    },
-    {
-      "year": 1981,
-      "uri": "spotify:track:0q4xWbV08szzUpGPhVsrcD",
-      "artist": "Kim Wilde",
-      "title": "Kids In America",
-      "alt_artists": [
-        "Blondie",
-        "The Go-Go's"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "Written by Kim's father Marty Wilde and brother Ricky, the song was recorded when Kim was just 20 and she had never been to America when she sang it.",
-      "fun_fact_de": "Von Kims Vater Marty Wilde und Bruder Ricky geschrieben, wurde der Song aufgenommen, als Kim erst 20 war und noch nie in Amerika gewesen war.",
-      "fun_fact_es": "Escrita por el padre de Kim, Marty Wilde, y su hermano Ricky, la canción fue grabada cuando Kim tenía solo 20 años y nunca había estado en América.",
-      "fun_fact_fr": "Écrite par le père de Kim, Marty Wilde, et son frère Ricky, la chanson a été enregistrée quand Kim avait 20 ans et n'était jamais allée en Amérique.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1764365427",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8BYKpQ_6GbM",
-      "uri_tidal": "tidal://track/375266009"
     },
     {
       "year": 1981,
@@ -340,28 +237,6 @@
       "uri_apple_music": "applemusic://track/1584203337",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vWz9VN40nCA",
       "uri_tidal": "tidal://track/198430762"
-    },
-    {
-      "year": 1981,
-      "uri": "spotify:track:6tFkFnl0le5Vj9v6NtLQfo",
-      "artist": "Orchestral Manoeuvres In The Dark",
-      "title": "Joan Of Arc (Maid Of Orleans)",
-      "alt_artists": [
-        "Depeche Mode",
-        "Ultravox"
-      ],
-      "certifications": [
-        "Gold (DE)"
-      ],
-      "fun_fact": "This was OMD's biggest international hit, reaching #1 in Germany for several weeks. It was the best-selling single in Germany in 1982.",
-      "fun_fact_de": "Dies war OMDs größter internationaler Hit, der in Deutschland mehrere Wochen lang #1 war. Es war die meistverkaufte Single in Deutschland 1982.",
-      "fun_fact_es": "Este fue el mayor éxito internacional de OMD, alcanzando el #1 en Alemania durante varias semanas. Fue el sencillo más vendido en Alemania en 1982.",
-      "fun_fact_fr": "C'était le plus grand succès international d'OMD, atteignant le #1 en Allemagne pendant plusieurs semaines. C'était le single le plus vendu en Allemagne en 1982.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/714551834",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vmwMhjbThKg",
-      "uri_tidal": "tidal://track/1547144"
     },
     {
       "year": 1981,
@@ -443,26 +318,6 @@
     },
     {
       "year": 1982,
-      "uri": "spotify:track:0vJlZS5zLMhRQ6xo9vmAlB",
-      "artist": "Chris de Burgh",
-      "title": "Don't Pay The Ferryman",
-      "alt_artists": [
-        "Mike Oldfield",
-        "Alan Parsons Project"
-      ],
-      "certifications": [],
-      "fun_fact": "Inspired by Greek mythology about Charon the ferryman of the dead, the song became a worldwide hit and established Chris de Burgh as an international artist.",
-      "fun_fact_de": "Inspiriert von der griechischen Mythologie über Charon, den Fährmann der Toten, wurde der Song ein weltweiter Hit und etablierte Chris de Burgh als internationalen Künstler.",
-      "fun_fact_es": "Inspirada en la mitología griega sobre Caronte, el barquero de los muertos, la canción se convirtió en un éxito mundial y estableció a Chris de Burgh como artista internacional.",
-      "fun_fact_fr": "Inspirée par la mythologie grecque sur Charon, le passeur des morts, la chanson est devenue un succès mondial et a établi Chris de Burgh comme artiste international.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1435501318",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=pwEMfLjxq8M",
-      "uri_tidal": "tidal://track/616262"
-    },
-    {
-      "year": 1982,
       "uri": "spotify:track:1I6q6nwNjNgik1Qe8Oi0Y7",
       "artist": "Culture Club",
       "alt_artists": [
@@ -487,26 +342,6 @@
       "uri_apple_music": "applemusic://track/724474136",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2nXGPZaTKik",
       "uri_tidal": "tidal://track/1477152"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:2jItmTTkIL6SkvABXsTaYT",
-      "artist": "Eurythmics",
-      "title": "Love Is a Stranger",
-      "alt_artists": [
-        "Depeche Mode",
-        "Yazoo"
-      ],
-      "certifications": [],
-      "fun_fact": "Initially a flop, the song was re-released after 'Sweet Dreams' became a hit and then climbed to #6 in the UK. Annie Lennox's androgynous image in the video was groundbreaking.",
-      "fun_fact_de": "Zunächst ein Flop, wurde der Song nach dem Erfolg von 'Sweet Dreams' wiederveröffentlicht und kletterte auf #6 in Großbritannien. Annie Lennox' androgynes Image im Video war bahnbrechend.",
-      "fun_fact_es": "Inicialmente un fracaso, la canción fue relanzada después del éxito de 'Sweet Dreams' y subió al #6 en el Reino Unido. La imagen andrógina de Annie Lennox en el video fue revolucionaria.",
-      "fun_fact_fr": "D'abord un flop, la chanson a été rééditée après le succès de 'Sweet Dreams' et a grimpé à la 6e place au Royaume-Uni. L'image androgyne d'Annie Lennox dans le clip était révolutionnaire.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/207056862",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=o6f593X6rv8",
-      "uri_tidal": "tidal://track/1291974"
     },
     {
       "year": 1982,
@@ -556,50 +391,6 @@
       "uri_apple_music": "applemusic://track/1639199965",
       "uri_youtube_music": "https://music.youtube.com/watch?v=co5tV9VW9o8",
       "uri_tidal": "tidal://track/19374401"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:1EXrFPfVNVsyb32yapebbM",
-      "artist": "Madness",
-      "title": "Our House",
-      "alt_artists": [
-        "The Specials",
-        "The English Beat"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Written by Suggs about his childhood home in Camden Town, the song reached #7 in the US and became Madness' most internationally recognized track.",
-      "fun_fact_de": "Von Suggs über sein Elternhaus in Camden Town geschrieben, erreichte der Song #7 in den USA und wurde Madness' international bekanntester Track.",
-      "fun_fact_es": "Escrita por Suggs sobre su hogar de infancia en Camden Town, la canción alcanzó el #7 en EE.UU. y se convirtió en la canción más reconocida internacionalmente de Madness.",
-      "fun_fact_fr": "Écrite par Suggs sur sa maison d'enfance à Camden Town, la chanson a atteint la 7e place aux États-Unis et est devenue le titre le plus reconnu internationalement de Madness.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1780341816",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KwIe_sjKeAY",
-      "uri_tidal": "tidal://track/396593917"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:4UB3TaEGEY9WoOpxYNMgy4",
-      "artist": "Men Without Hats",
-      "title": "The Safety Dance",
-      "alt_artists": [
-        "Devo",
-        "Thomas Dolby"
-      ],
-      "certifications": [
-        "Platinum (US)"
-      ],
-      "fun_fact": "The song was written as a protest against bouncers who wouldn't let people pogo dance in clubs. The medieval-themed video has no connection to the song's actual meaning.",
-      "fun_fact_de": "Der Song war ein Protest gegen Türsteher, die Leute nicht Pogo tanzen ließen. Das mittelalterliche Video hat keinen Bezug zur eigentlichen Bedeutung des Songs.",
-      "fun_fact_es": "La canción fue escrita como protesta contra los porteros que no dejaban bailar pogo en los clubs. El video de temática medieval no tiene conexión con el significado real.",
-      "fun_fact_fr": "La chanson a été écrite pour protester contre les videurs qui interdisaient le pogo dans les clubs. Le clip à thème médiéval n'a aucun rapport avec le sens réel de la chanson.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/374486510",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=nM4okRvCg2g",
-      "uri_tidal": "tidal://track/4186366"
     },
     {
       "year": 1982,
@@ -765,32 +556,12 @@
       ],
       "awards": [],
       "fun_fact": "Written about nuclear apocalypse and partying like there's no tomorrow. The song re-entered charts in 1999 and again after Prince's death in 2016.",
-      "fun_fact_de": "Geschrieben über nukleare Apokalypse und Feiern, als gäbe es kein Morgen. Der Song kehrte 1999 in die Charts zurück und erneut nach Prince' Tod 2016.",
+      "fun_fact_de": "Geschrieben über nukleare Apokalypse und Feiern, als gäbe es kein Morgen. Der Song kehrte 1999 in die Charts zurück und erneut nach Prince’ Tod 2016.",
       "fun_fact_es": "Escrita sobre el apocalipsis nuclear y la fiesta como si no hubiera mañana. La canción volvió a las listas en 1999 y de nuevo tras la muerte de Prince en 2016.",
       "fun_fact_fr": "Composé sur le thème de l'apocalypse nucléaire et de la fête comme s'il n'y avait pas de lendemain. Le morceau est revenu dans les charts en 1999, puis à nouveau après la mort de Prince en 2016.",
       "uri_apple_music": "applemusic://track/1544173942",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rblt2EtFfC4",
       "uri_tidal": "tidal://track/696825"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:6SsP9PE7JT83QZA8kEYHVV",
-      "artist": "Roxy Music",
-      "title": "More Than This",
-      "alt_artists": [
-        "Japan",
-        "Bryan Ferry"
-      ],
-      "certifications": [],
-      "fun_fact": "The song gained renewed popularity after Bill Murray karaoke'd it in Sofia Coppola's 'Lost in Translation' (2003), introducing it to a new generation.",
-      "fun_fact_de": "Der Song wurde wieder populär, nachdem Bill Murray ihn in Sofia Coppolas 'Lost in Translation' (2003) als Karaoke gesungen hatte.",
-      "fun_fact_es": "La canción ganó popularidad renovada después de que Bill Murray la cantara en karaoke en 'Lost in Translation' de Sofia Coppola (2003).",
-      "fun_fact_fr": "La chanson a gagné en popularité après que Bill Murray l'a chantée en karaoké dans 'Lost in Translation' de Sofia Coppola (2003).",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/723876319",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kOnde5c7OG8",
-      "uri_tidal": "tidal://track/161868"
     },
     {
       "year": 1982,
@@ -853,80 +624,6 @@
     },
     {
       "year": 1982,
-      "uri": "spotify:track:1taGkdO3DQsNRIQrarhVvc",
-      "artist": "Taco",
-      "alt_artists": [
-        "Falco",
-        "Thomas Dolby"
-      ],
-      "title": "Puttin' on the Ritz",
-      "chart_info": {
-        "billboard_peak": 4,
-        "uk_peak": 4,
-        "weeks_on_chart": 18
-      },
-      "certifications": [
-        "Gold (US)",
-        "Gold (UK)"
-      ],
-      "awards": [],
-      "fun_fact": "Taco's synth-pop cover of this 1929 Irving Berlin song became an unexpected hit. The robotic dance moves in the video influenced the emerging breakdancing culture of the 1980s.",
-      "fun_fact_de": "Tacos Synth-Pop-Cover dieses Irving-Berlin-Songs von 1929 wurde ein unerwarteter Hit. Die robotischen Tanzbewegungen im Video beeinflussten die aufkommende Breakdance-Kultur.",
-      "fun_fact_es": "La versión synth-pop de Taco de esta canción de Irving Berlin de 1929 se convirtió en un éxito inesperado. Los movimientos de baile robóticos influyeron en la cultura del breakdance.",
-      "fun_fact_fr": "La reprise synth-pop de Taco de ce morceau d'Irving Berlin datant de 1929 est devenue un succès inattendu. Les mouvements de danse robotiques du clip ont influencé la culture naissante du breakdance dans les années 80.",
-      "uri_apple_music": "applemusic://track/383470968",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YsGjFh1ke44",
-      "uri_tidal": "tidal://track/81682783"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:0Qv7xi6uPSqH2k82tOkGSt",
-      "artist": "Tears For Fears",
-      "title": "Mad World",
-      "alt_artists": [
-        "Depeche Mode",
-        "OMD"
-      ],
-      "certifications": [],
-      "fun_fact": "Gary Jules' stripped-down cover became the UK Christmas #1 in 2003 after featuring in 'Donnie Darko', but the original synth-driven version captures the anxious spirit of the early 80s.",
-      "fun_fact_de": "Gary Jules' reduziertes Cover wurde 2003 nach 'Donnie Darko' die UK-Weihnachts-#1, aber die originale Synth-Version fängt den ängstlichen Geist der frühen 80er ein.",
-      "fun_fact_es": "La versión minimalista de Gary Jules se convirtió en el #1 navideño del Reino Unido en 2003 tras 'Donnie Darko', pero la versión original de sintetizador captura el espíritu ansioso de los 80.",
-      "fun_fact_fr": "La version dépouillée de Gary Jules est devenue le #1 de Noël au Royaume-Uni en 2003 après 'Donnie Darko', mais la version originale aux synthés capture l'esprit anxieux du début des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440912607",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=u1ZvPSpLxCg",
-      "uri_tidal": "tidal://track/2529786"
-    },
-    {
-      "year": 1982,
-      "uri": "spotify:track:5TgD3Wh5ZUZnUU4tmVvJbx",
-      "artist": "The Weather Girls",
-      "alt_artists": [
-        "Gloria Gaynor",
-        "Donna Summer"
-      ],
-      "title": "It's Raining Men",
-      "chart_info": {
-        "billboard_peak": 46,
-        "uk_peak": 2,
-        "weeks_on_chart": 12
-      },
-      "certifications": [
-        "Gold (US)",
-        "Platinum (UK)"
-      ],
-      "awards": [],
-      "fun_fact": "Originally offered to Diana Ross, Cher, and Donna Summer, who all turned it down. The Weather Girls' version became an LGBT anthem and has been covered by countless artists including Geri Halliwell.",
-      "fun_fact_de": "Ursprünglich Diana Ross, Cher und Donna Summer angeboten, die alle ablehnten. Die Version der Weather Girls wurde zu einer LGBT-Hymne und wurde von unzähligen Künstlern gecovert, darunter Geri Halliwell.",
-      "fun_fact_es": "Originalmente ofrecida a Diana Ross, Cher y Donna Summer, quienes todas la rechazaron. La versión de The Weather Girls se convirtió en un himno LGBT y ha sido versionada por innumerables artistas.",
-      "fun_fact_fr": "D'abord proposée à Diana Ross, Cher et Donna Summer, qui l'ont toutes refusée. La version des Weather Girls est devenue un hymne LGBT et a été reprise par d'innombrables artistes, dont Geri Halliwell.",
-      "uri_apple_music": "applemusic://track/355893660",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=l5aZJBLAu1E",
-      "uri_tidal": "tidal://track/3392942"
-    },
-    {
-      "year": 1982,
       "uri": "spotify:track:2374M0fQpWi3dLnB54qaLX",
       "artist": "TOTO",
       "alt_artists": [
@@ -984,26 +681,58 @@
       "uri_tidal": "tidal://track/542179"
     },
     {
-      "year": 1983,
-      "uri": "spotify:track:7pzVqCZdYKM7oEPwaiQchB",
-      "artist": "Billy Idol",
-      "title": "Eyes Without A Face",
+      "year": 1982,
+      "uri": "spotify:track:1taGkdO3DQsNRIQrarhVvc",
+      "artist": "Taco",
       "alt_artists": [
-        "Duran Duran",
-        "The Cult"
+        "Falco",
+        "Thomas Dolby"
       ],
+      "title": "Puttin' on the Ritz",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 4,
+        "weeks_on_chart": 18
+      },
       "certifications": [
-        "Gold (US)"
+        "Gold (US)",
+        "Gold (UK)"
       ],
-      "fun_fact": "The title was inspired by the 1960 French horror film 'Les Yeux sans Visage'. The French lyrics in the chorus were sung by backing vocalist Perri Lister, Idol's then-girlfriend.",
-      "fun_fact_de": "Der Titel wurde vom französischen Horrorfilm 'Les Yeux sans Visage' von 1960 inspiriert. Die französischen Texte im Refrain wurden von Perri Lister, Idols damaliger Freundin, gesungen.",
-      "fun_fact_es": "El título fue inspirado por la película de terror francesa de 1960 'Les Yeux sans Visage'. Las letras en francés del coro fueron cantadas por Perri Lister, novia de Idol.",
-      "fun_fact_fr": "Le titre est inspiré du film d'horreur français de 1960 'Les Yeux sans Visage'. Les paroles en français du refrain étaient chantées par Perri Lister, la petite amie d'Idol à l'époque.",
-      "chart_info": {},
       "awards": [],
-      "uri_apple_music": "applemusic://track/1440902027",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9OFpfTd0EIs",
-      "uri_tidal": "tidal://track/77662157"
+      "fun_fact": "Taco's synth-pop cover of this 1929 Irving Berlin song became an unexpected hit. The robotic dance moves in the video influenced the emerging breakdancing culture of the 1980s.",
+      "fun_fact_de": "Tacos Synth-Pop-Cover dieses Irving-Berlin-Songs von 1929 wurde ein unerwarteter Hit. Die robotischen Tanzbewegungen im Video beeinflussten die aufkommende Breakdance-Kultur.",
+      "fun_fact_es": "La versión synth-pop de Taco de esta canción de Irving Berlin de 1929 se convirtió en un éxito inesperado. Los movimientos de baile robóticos influyeron en la cultura del breakdance.",
+      "fun_fact_fr": "La reprise synth-pop de Taco de ce morceau d'Irving Berlin datant de 1929 est devenue un succès inattendu. Les mouvements de danse robotiques du clip ont influencé la culture naissante du breakdance dans les années 80.",
+      "uri_apple_music": "applemusic://track/383470968",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YsGjFh1ke44",
+      "uri_tidal": "tidal://track/81682783"
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:5TgD3Wh5ZUZnUU4tmVvJbx",
+      "artist": "The Weather Girls",
+      "alt_artists": [
+        "Gloria Gaynor",
+        "Donna Summer"
+      ],
+      "title": "It's Raining Men",
+      "chart_info": {
+        "billboard_peak": 46,
+        "uk_peak": 2,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Originally offered to Diana Ross, Cher, and Donna Summer, who all turned it down. The Weather Girls' version became an LGBT anthem and has been covered by countless artists including Geri Halliwell.",
+      "fun_fact_de": "Ursprünglich Diana Ross, Cher und Donna Summer angeboten, die alle ablehnten. Die Version der Weather Girls wurde zu einer LGBT-Hymne und wurde von unzähligen Künstlern gecovert, darunter Geri Halliwell.",
+      "fun_fact_es": "Originalmente ofrecida a Diana Ross, Cher y Donna Summer, quienes todas la rechazaron. La versión de The Weather Girls se convirtió en un himno LGBT y ha sido versionada por innumerables artistas.",
+      "fun_fact_fr": "D'abord proposée à Diana Ross, Cher et Donna Summer, qui l'ont toutes refusée. La version des Weather Girls est devenue un hymne LGBT et a été reprise par d'innombrables artistes, dont Geri Halliwell.",
+      "uri_apple_music": "applemusic://track/355893660",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l5aZJBLAu1E",
+      "uri_tidal": "tidal://track/3392942"
     },
     {
       "year": 1983,
@@ -1052,7 +781,7 @@
       ],
       "awards": [],
       "fun_fact": "Jim Steinman originally wrote this for a vampire musical, calling it 'Vampires in Love'. Bonnie Tyler's distinctive raspy voice came from a nodule surgery that went wrong.",
-      "fun_fact_de": "Jim Steinman schrieb den Song ursprünglich für ein Vampir-Musical unter dem Titel \"Vampires in Love\". Bonnie Tylers markante raue Stimme war die Folge einer missglückten Stimmbandoperation.",
+      "fun_fact_de": "Jim Steinman schrieb den Song ursprünglich für ein Vampir-Musical unter dem Titel „Vampires in Love“. Bonnie Tylers markante raue Stimme war die Folge einer missglückten Stimmbandoperation.",
       "fun_fact_es": "Jim Steinman escribió originalmente esta canción para un musical de vampiros, llamándola «Vampires in Love». La distintiva voz ronca de Bonnie Tyler fue consecuencia de una operación de nódulos que salió mal.",
       "fun_fact_fr": "Jim Steinman avait initialement composé ce morceau pour une comédie musicale de vampires, sous le titre 'Vampires in Love'. La voix rauque si reconnaissable de Bonnie Tyler est le résultat d'une opération des cordes vocales qui a mal tourné.",
       "uri_apple_music": "applemusic://track/1504111288",
@@ -1139,26 +868,6 @@
       "uri_apple_music": "applemusic://track/795192837",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VdQY7BusJNU",
       "uri_tidal": "tidal://track/27162164"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:1R1vbkHj40yexphG1i7x27",
-      "artist": "Depeche Mode",
-      "title": "Everything Counts",
-      "alt_artists": [
-        "New Order",
-        "Erasure"
-      ],
-      "certifications": [],
-      "fun_fact": "The song's anti-corporate lyrics about 'grabbing hands' were ironically written while the band was signed to a major label. It became a live fan favorite with audience participation.",
-      "fun_fact_de": "Die anti-korporativen Texte über 'greifende Hände' wurden ironischerweise geschrieben, als die Band bei einem Major-Label war. Live wurde er zum Fan-Favorit mit Publikumsbeteiligung.",
-      "fun_fact_es": "Las letras anti-corporativas sobre 'manos que agarran' fueron escritas irónicamente mientras la banda estaba en un sello discográfico grande. Se convirtió en favorita del público en vivo.",
-      "fun_fact_fr": "Les paroles anti-corporatives sur les 'mains avides' ont été ironiquement écrites alors que le groupe était signé sur un label majeur. C'est devenu un favori du public en concert.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1174248189",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1t-gK-9EIq4",
-      "uri_tidal": "tidal://track/66932056"
     },
     {
       "year": 1983,
@@ -1266,86 +975,6 @@
       "uri_apple_music": "applemusic://track/1348836695",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Dtrgwqei7ww",
       "uri_tidal": "tidal://track/12976089"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:4q6bSpQPptaC9uIqmu5GEw",
-      "artist": "Genesis",
-      "title": "Mama",
-      "alt_artists": [
-        "Phil Collins",
-        "Mike + The Mechanics"
-      ],
-      "certifications": [],
-      "fun_fact": "Phil Collins' sinister laugh in the song was created using a Roland CR-78 drum machine's gated reverb effect, which became one of the most recognizable intros of the 80s.",
-      "fun_fact_de": "Phil Collins' unheimliches Lachen im Song wurde mit dem Gated-Reverb-Effekt einer Roland CR-78 Drum Machine erzeugt und wurde zu einem der bekanntesten Intros der 80er.",
-      "fun_fact_es": "La risa siniestra de Phil Collins fue creada usando el efecto de reverberación del Roland CR-78, convirtiéndose en una de las intros más reconocibles de los 80.",
-      "fun_fact_fr": "Le rire sinistre de Phil Collins a été créé à l'aide de l'effet de réverbération d'une boîte à rythmes Roland CR-78, devenant l'une des intros les plus reconnaissables des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/267976217",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7lXH0nwirio",
-      "uri_tidal": "tidal://track/34454458"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:1u8wrxIC4Vo3OYI1Rbb5hN",
-      "artist": "Heaven 17",
-      "title": "Temptation",
-      "alt_artists": [
-        "ABC",
-        "Depeche Mode"
-      ],
-      "certifications": [],
-      "fun_fact": "The song features powerful vocals by Carol Kenyon. A remixed version reached #4 in the UK in 1992, almost a decade after the original release.",
-      "fun_fact_de": "Der Song zeigt die kraftvolle Stimme von Carol Kenyon. Eine Remix-Version erreichte 1992 #4 in Großbritannien, fast ein Jahrzehnt nach der Erstveröffentlichung.",
-      "fun_fact_es": "La canción presenta las poderosas voces de Carol Kenyon. Una versión remezclada alcanzó el #4 en el Reino Unido en 1992, casi una década después del lanzamiento original.",
-      "fun_fact_fr": "La chanson présente les puissantes voix de Carol Kenyon. Une version remixée a atteint la 4e place au Royaume-Uni en 1992, près d'une décennie après la sortie originale.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1808774690",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3sJXeLAGU38",
-      "uri_tidal": "tidal://track/181544332"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:5QimyOxJuqDk7K4E28luEq",
-      "artist": "Howard Jones",
-      "title": "What Is Love?",
-      "alt_artists": [
-        "Nik Kershaw",
-        "Thomas Dolby"
-      ],
-      "certifications": [],
-      "fun_fact": "Howard Jones performed his early gigs with a mime artist called Jed on stage. This synth-pop classic reached #2 in the UK and established him as a major 80s artist.",
-      "fun_fact_de": "Howard Jones trat bei seinen frühen Gigs mit einem Pantomimen namens Jed auf. Dieser Synth-Pop-Klassiker erreichte #2 in Großbritannien und etablierte ihn als großen 80er-Künstler.",
-      "fun_fact_es": "Howard Jones actuaba en sus primeros shows con un mimo llamado Jed. Este clásico del synth-pop alcanzó el #2 en el Reino Unido y lo estableció como un artista importante de los 80.",
-      "fun_fact_fr": "Howard Jones se produisait à ses débuts avec un mime appelé Jed. Ce classique de la synth-pop a atteint la 2e place au Royaume-Uni et l'a établi comme un artiste majeur des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1765603566",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Cm2s93UuIhk",
-      "uri_tidal": "tidal://track/384214827"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:425FNowmSYcL7Avj4Pf30J",
-      "artist": "ICEHOUSE",
-      "title": "Hey, Little Girl",
-      "alt_artists": [
-        "Split Enz",
-        "The Church"
-      ],
-      "certifications": [],
-      "fun_fact": "The Australian band ICEHOUSE (originally called Flowers) had their biggest European hit with this song, reaching #1 in several countries including France and Germany.",
-      "fun_fact_de": "Die australische Band ICEHOUSE (ursprünglich Flowers) hatte mit diesem Song ihren größten europäischen Hit und erreichte in mehreren Ländern #1, darunter Frankreich und Deutschland.",
-      "fun_fact_es": "La banda australiana ICEHOUSE (originalmente Flowers) tuvo su mayor éxito europeo con esta canción, alcanzando el #1 en varios países incluyendo Francia y Alemania.",
-      "fun_fact_fr": "Le groupe australien ICEHOUSE (à l'origine Flowers) a eu son plus grand succès européen avec cette chanson, atteignant le #1 dans plusieurs pays dont la France et l'Allemagne.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/537852245",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YZQWTnrJMS0",
-      "uri_tidal": "tidal://track/35397009"
     },
     {
       "year": 1983,
@@ -1484,8 +1113,7 @@
       "fun_fact_es": "Lionel Richie inventó el idioma de sonido caribeño en esta canción - es completamente inventado. Fue interpretada en la ceremonia de clausura de los Juegos Olímpicos de Los Ángeles 1984.",
       "fun_fact_fr": "Lionel Richie a inventé de toutes pièces la langue aux sonorités caribéennes de cette chanson - c'est du pur charabia ! Il voulait donner au morceau une dimension internationale. Le titre a été interprété lors de la cérémonie de clôture des Jeux olympiques de Los Angeles en 1984.",
       "uri_apple_music": "applemusic://track/1440809027",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=nqAvFx3NxUM",
-      "uri_tidal": "tidal://track/592285"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nqAvFx3NxUM"
     },
     {
       "year": 1983,
@@ -1506,7 +1134,7 @@
       ],
       "awards": [],
       "fun_fact": "Written by Toto's Steve Porcaro about his daughter. Quincy Jones heard the demo and insisted it go on Thriller. SWV sampled it for 'Right Here' in 1993.",
-      "fun_fact_de": "Geschrieben von Totos Steve Porcaro über seine Tochter. Quincy Jones hörte das Demo und bestand darauf, es auf Thriller aufzunehmen. SWV sampelten es 1993 für \"Right Here\".",
+      "fun_fact_de": "Geschrieben von Totos Steve Porcaro über seine Tochter. Quincy Jones hörte das Demo und bestand darauf, es auf Thriller aufzunehmen. SWV sampelten es 1993 für „Right Here“.",
       "fun_fact_es": "Escrita por Steve Porcaro de Toto sobre su hija. Quincy Jones escuchó la maqueta e insistió en incluirla en Thriller. SWV la sampleó para «Right Here» en 1993.",
       "fun_fact_fr": "Composée par Steve Porcaro de Toto pour sa fille. Quincy Jones a entendu la maquette et a insisté pour qu'elle figure sur l'album Thriller. SWV l'a samplée pour 'Right Here' en 1993.",
       "uri_apple_music": "applemusic://track/273048790",
@@ -1531,78 +1159,12 @@
       ],
       "awards": [],
       "fun_fact": "The 'Mama-se, mama-sa' chant was borrowed from Manu Dibango's 'Soul Makossa'. Michael later settled a lawsuit over the sample. It's one of Thriller's most energetic tracks.",
-      "fun_fact_de": "Der \"Mama-se, mama-sa\"-Gesang stammt von Manu Dibangos \"Soul Makossa\". Michael legte den Rechtsstreit über das Sample später bei. Es ist einer der energiegeladensten Tracks auf Thriller.",
+      "fun_fact_de": "Der „Mama-se, mama-sa“-Gesang stammt von Manu Dibangos „Soul Makossa“. Michael legte den Rechtsstreit über das Sample später bei. Es ist einer der energiegeladensten Tracks auf Thriller.",
       "fun_fact_es": "El canto «Mama-se, mama-sa» fue tomado de «Soul Makossa» de Manu Dibango. Michael resolvió después una demanda por el sample. Es uno de los temas más energéticos de Thriller.",
       "fun_fact_fr": "Le chant 'Mama-se, mama-sa' est emprunté à 'Soul Makossa' de Manu Dibango. Michael a ensuite réglé un procès à l'amiable pour ce sample. C'est l'un des morceaux les plus énergiques de Thriller.",
       "uri_apple_music": "applemusic://track/269572927",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1XMvPTFzgVU",
       "uri_tidal": "tidal://track/65484195"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:1xPSDf8z4dH46gkvlLtvDO",
-      "artist": "Michael Sembello",
-      "title": "Maniac",
-      "alt_artists": [
-        "Kenny Loggins",
-        "Irene Cara"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Originally written about a serial killer, the lyrics were hastily rewritten to fit the movie 'Flashdance'. It was nominated for an Academy Award for Best Original Song.",
-      "fun_fact_de": "Ursprünglich über einen Serienmörder geschrieben, wurden die Texte hastig umgeschrieben, um zum Film 'Flashdance' zu passen. Er wurde für den Oscar für den besten Originalsong nominiert.",
-      "fun_fact_es": "Originalmente escrita sobre un asesino en serie, la letra fue reescrita apresuradamente para la película 'Flashdance'. Fue nominada al Oscar a Mejor Canción Original.",
-      "fun_fact_fr": "Écrite à l'origine sur un tueur en série, les paroles ont été rapidement réécrites pour le film 'Flashdance'. Elle a été nominée pour l'Oscar de la meilleure chanson originale.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1425259944",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6GCNUeTFSbA",
-      "uri_tidal": "tidal://track/1105888"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:4sy45X8Jo15DxjDDpDkInF",
-      "artist": "New Order",
-      "title": "Blue Monday",
-      "alt_artists": [
-        "Depeche Mode",
-        "Pet Shop Boys"
-      ],
-      "certifications": [
-        "Platinum (UK)"
-      ],
-      "fun_fact": "The best-selling 12-inch single of all time, 'Blue Monday' famously lost money on every copy sold because Peter Saville's die-cut sleeve was so expensive to produce.",
-      "fun_fact_de": "Die meistverkaufte 12-Zoll-Single aller Zeiten verlor bei jedem verkauften Exemplar Geld, weil Peter Savilles gestanztes Cover so teuer in der Herstellung war.",
-      "fun_fact_es": "El sencillo de 12 pulgadas más vendido de todos los tiempos perdió dinero con cada copia vendida porque la funda troquelada de Peter Saville era muy cara de producir.",
-      "fun_fact_fr": "Le maxi 45 tours le plus vendu de tous les temps, 'Blue Monday' a perdu de l'argent sur chaque copie vendue car la pochette découpée de Peter Saville était très coûteuse à produire.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/264135997",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=c1GxjzHm5us",
-      "uri_tidal": "tidal://track/153983458"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:0viZ7D81W8pD65TkzaFkXT",
-      "artist": "Pat Benatar",
-      "title": "Love Is A Battlefield",
-      "alt_artists": [
-        "Joan Jett",
-        "Bonnie Tyler"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "The song pioneered the concept of the narrative music video. Its video, featuring Benatar leading a group of women against a sleazy club owner, was groundbreaking for MTV.",
-      "fun_fact_de": "Der Song war Pionier des narrativen Musikvideos. Das Video, in dem Benatar Frauen gegen einen schmierigen Clubbesitzer anführt, war bahnbrechend für MTV.",
-      "fun_fact_es": "La canción fue pionera del concepto del video musical narrativo. Su video, con Benatar liderando mujeres contra un dueño de club, fue revolucionario para MTV.",
-      "fun_fact_fr": "La chanson a été pionnière du concept de clip narratif. Son clip, où Benatar mène un groupe de femmes contre un patron de club louche, était révolutionnaire pour MTV.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1752560164",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=IGVZOLV9SPo",
-      "uri_tidal": "tidal://track/1395047"
     },
     {
       "year": 1983,
@@ -1630,64 +1192,6 @@
       "uri_apple_music": "applemusic://track/697480509",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ntG50eXbBtc",
       "uri_tidal": "tidal://track/1398638"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:2DTMgRwaHg6uB7ZzIXtqTA",
-      "artist": "Tears For Fears",
-      "title": "Pale Shelter",
-      "alt_artists": [
-        "OMD",
-        "The Cure"
-      ],
-      "certifications": [],
-      "fun_fact": "Originally released in 1982 and re-recorded for the 'The Hurting' album, the song deals with childhood emotional neglect inspired by Arthur Janov's primal therapy.",
-      "fun_fact_de": "Ursprünglich 1982 veröffentlicht und für 'The Hurting' neu aufgenommen, behandelt der Song emotionale Vernachlässigung in der Kindheit, inspiriert von Arthur Janovs Urschrei-Therapie.",
-      "fun_fact_es": "Lanzada originalmente en 1982 y regrabada para 'The Hurting', la canción trata sobre la negligencia emocional infantil inspirada en la terapia primal de Arthur Janov.",
-      "fun_fact_fr": "Sorti à l'origine en 1982 et réenregistré pour 'The Hurting', le titre aborde la négligence émotionnelle de l'enfance, inspiré par la thérapie primale d'Arthur Janov.",
-      "chart_info": {},
-      "awards": []
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:3xkoUGbf11dLvsfIdgfmIp",
-      "artist": "Thompson Twins",
-      "title": "Hold Me Now",
-      "alt_artists": [
-        "Tears For Fears",
-        "Duran Duran"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Despite their name, the Thompson Twins were actually a trio (and not twins). The name was taken from the detectives Thomson and Thompson in Tintin comics.",
-      "fun_fact_de": "Trotz ihres Namens waren die Thompson Twins eigentlich ein Trio (und keine Zwillinge). Der Name stammt von den Detektiven Schulze und Schultze aus den Tim-und-Struppi-Comics.",
-      "fun_fact_es": "A pesar de su nombre, los Thompson Twins eran en realidad un trío (y no gemelos). El nombre fue tomado de los detectives Hernández y Fernández de los cómics de Tintín.",
-      "fun_fact_fr": "Malgré leur nom, les Thompson Twins étaient en fait un trio (et non des jumeaux). Le nom vient des détectives Dupond et Dupont des bandes dessinées de Tintin.",
-      "chart_info": {},
-      "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TvzVTRK1nOY",
-      "uri_tidal": "tidal://track/282489999"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:4tLF4SPQ8rX2QbUb3y6Q1B",
-      "artist": "U2",
-      "title": "Sunday Bloody Sunday",
-      "alt_artists": [
-        "Simple Minds",
-        "The Alarm"
-      ],
-      "certifications": [],
-      "fun_fact": "Despite being about the 1972 Bloody Sunday massacre, Bono always introduced it live as 'not a rebel song' to emphasize its anti-violence message.",
-      "fun_fact_de": "Obwohl es vom Blutsonntag-Massaker 1972 handelt, stellte Bono es live immer als 'keinen Rebellensong' vor, um die Anti-Gewalt-Botschaft zu betonen.",
-      "fun_fact_es": "A pesar de tratar sobre la masacre del Domingo Sangriento de 1972, Bono siempre la presentó en vivo como 'no una canción rebelde' para enfatizar su mensaje anti-violencia.",
-      "fun_fact_fr": "Bien qu'elle parle du massacre du Bloody Sunday de 1972, Bono la présentait toujours en concert comme 'pas une chanson rebelle' pour souligner son message anti-violence.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440729870",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zhMD7nt1LIg",
-      "uri_tidal": "tidal://track/1851836"
     },
     {
       "year": 1983,
@@ -1762,31 +1266,11 @@
       ],
       "awards": [],
       "fun_fact": "George Michael and Andrew Ridgeley wrote this satire about package holidays. The video was filmed in Ibiza. The line 'drinks are free' became iconic.",
-      "fun_fact_de": "George Michael und Andrew Ridgeley schrieben diese Satire über Pauschalurlaube. Das Video wurde auf Ibiza gedreht. Die Zeile \"drinks are free\" wurde kultig.",
+      "fun_fact_de": "George Michael und Andrew Ridgeley schrieben diese Satire über Pauschalurlaube. Das Video wurde auf Ibiza gedreht. Die Zeile „drinks are free“ wurde kultig.",
       "fun_fact_es": "George Michael y Andrew Ridgeley escribieron esta sátira sobre los viajes organizados. El videoclip se rodó en Ibiza. La frase «drinks are free» se volvió icónica.",
       "fun_fact_fr": "George Michael et Andrew Ridgeley ont écrit cette satire des vacances organisées. Le clip a été tourné à Ibiza. La réplique 'drinks are free' est devenue culte.",
       "uri_apple_music": "applemusic://track/206897937",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WYX0sjP6Za8"
-    },
-    {
-      "year": 1983,
-      "uri": "spotify:track:12uZzPLGpbjC64huvqynp3",
-      "artist": "Yazoo",
-      "title": "Nobody's Diary",
-      "alt_artists": [
-        "Depeche Mode",
-        "Erasure"
-      ],
-      "certifications": [],
-      "fun_fact": "Yazoo (known as Yaz in the US) was the short-lived but influential duo of Vince Clarke and Alison Moyet. After splitting, Clarke went on to form Erasure.",
-      "fun_fact_de": "Yazoo (in den USA als Yaz bekannt) war das kurzlebige aber einflussreiche Duo aus Vince Clarke und Alison Moyet. Nach der Trennung gründete Clarke Erasure.",
-      "fun_fact_es": "Yazoo (conocido como Yaz en EE.UU.) fue el dúo breve pero influyente de Vince Clarke y Alison Moyet. Tras separarse, Clarke formó Erasure.",
-      "fun_fact_fr": "Yazoo (connu sous le nom de Yaz aux États-Unis) était le duo éphémère mais influent de Vince Clarke et Alison Moyet. Après la séparation, Clarke a formé Erasure.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1436832239",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1qq7jTPkjVg",
-      "uri_tidal": "tidal://track/69136168"
     },
     {
       "year": 1984,
@@ -1812,28 +1296,6 @@
       "uri_apple_music": "applemusic://track/1447700503",
       "uri_youtube_music": "https://music.youtube.com/watch?v=oNjQXmoxiQ8",
       "uri_tidal": "tidal://track/246156"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:7wnagOAqma4Sg6JOGjWr5R",
-      "artist": "Alphaville",
-      "title": "Big in Japan",
-      "alt_artists": [
-        "Modern Talking",
-        "a-ha"
-      ],
-      "certifications": [
-        "Gold (DE)"
-      ],
-      "fun_fact": "The German synth-pop trio's debut single became a massive European hit. Despite the title, it was never particularly big in Japan itself.",
-      "fun_fact_de": "Die Debütsingle des deutschen Synth-Pop-Trios wurde ein massiver europäischer Hit. Trotz des Titels war er in Japan selbst nie besonders erfolgreich.",
-      "fun_fact_es": "El sencillo debut del trío alemán de synth-pop se convirtió en un éxito masivo en Europa. A pesar del título, nunca fue particularmente grande en Japón.",
-      "fun_fact_fr": "Le premier single du trio allemand de synth-pop est devenu un énorme succès européen. Malgré le titre, il n'a jamais été particulièrement populaire au Japon.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/65122498",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tl6u2NASUzU",
-      "uri_tidal": "tidal://track/246153"
     },
     {
       "year": 1984,
@@ -1967,28 +1429,6 @@
     },
     {
       "year": 1984,
-      "uri": "spotify:track:1QbQL5m30YNvukitIqAnFG",
-      "artist": "Corey Hart",
-      "title": "Sunglasses At Night",
-      "alt_artists": [
-        "John Waite",
-        "Bryan Adams"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "The song was originally about nuclear paranoia but was rewritten at the last minute to be about wearing sunglasses at night, which became an iconic 80s image.",
-      "fun_fact_de": "Der Song handelte ursprünglich von nuklearer Paranoia, wurde aber in letzter Minute umgeschrieben und wurde zu einem ikonischen 80er-Jahre-Image.",
-      "fun_fact_es": "La canción originalmente trataba sobre paranoia nuclear pero fue reescrita a último momento, convirtiéndose en una imagen icónica de los 80.",
-      "fun_fact_fr": "La chanson parlait à l'origine de paranoïa nucléaire mais a été réécrite à la dernière minute, devenant une image iconique des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/724506959",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=X2LTL8KgKv8",
-      "uri_tidal": "tidal://track/2450874"
-    },
-    {
-      "year": 1984,
       "uri": "spotify:track:2CIDqYfIYfl9vx02wIyCG9",
       "artist": "Cyndi Lauper",
       "alt_artists": [
@@ -2012,90 +1452,6 @@
       "uri_apple_music": "applemusic://track/795192841",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZONKoKIQ9RY",
       "uri_tidal": "tidal://track/1317409"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:7uHO4AmKtyGa5v5fsElGoC",
-      "artist": "Dead Or Alive",
-      "title": "You Spin Me Round (Like a Record)",
-      "alt_artists": [
-        "Bronski Beat",
-        "Frankie Goes to Hollywood"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "The song took 3 weeks to climb from the lower chart to #1 in the UK, and its production by Stock Aitken Waterman cost a then-massive £70,000.",
-      "fun_fact_de": "Der Song brauchte 3 Wochen, um von den unteren Charts auf #1 in Großbritannien zu klettern, und die Produktion von Stock Aitken Waterman kostete damals enorme 70.000 Pfund.",
-      "fun_fact_es": "La canción tardó 3 semanas en subir al #1 en el Reino Unido, y su producción por Stock Aitken Waterman costó las entonces enormes 70.000 libras.",
-      "fun_fact_fr": "La chanson a mis 3 semaines pour grimper au #1 au Royaume-Uni, et sa production par Stock Aitken Waterman a coûté la somme alors énorme de 70 000 £.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/211418804",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PGNiXGX2nLU",
-      "uri_tidal": "tidal://track/3392978"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:4WoKuMjwJXuy9IqX6AH5JE",
-      "artist": "Depeche Mode",
-      "title": "People Are People",
-      "alt_artists": [
-        "New Order",
-        "Erasure"
-      ],
-      "certifications": [
-        "Gold (DE)"
-      ],
-      "fun_fact": "This was Depeche Mode's first major international hit, reaching #1 in Germany. Martin Gore later expressed embarrassment about the song's simplistic lyrics.",
-      "fun_fact_de": "Dies war Depeche Modes erster großer internationaler Hit und erreichte #1 in Deutschland. Martin Gore äußerte sich später peinlich berührt über die simplen Texte.",
-      "fun_fact_es": "Este fue el primer gran éxito internacional de Depeche Mode, alcanzando el #1 en Alemania. Martin Gore expresó luego vergüenza por las letras simplistas.",
-      "fun_fact_fr": "C'était le premier grand succès international de Depeche Mode, atteignant le #1 en Allemagne. Martin Gore a plus tard exprimé sa gêne concernant les paroles simplistes.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/665414308",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DTYsElEGswc",
-      "uri_tidal": "tidal://track/20906974"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:1HE0R9KnWbmrlGV1swbYza",
-      "artist": "Depeche Mode",
-      "title": "Blasphemous Rumours",
-      "alt_artists": [
-        "The Cure",
-        "New Order"
-      ],
-      "certifications": [],
-      "fun_fact": "The controversial song about God having a 'sick sense of humor' was banned by several radio stations. Martin Gore wrote it after a friend's mother attempted suicide.",
-      "fun_fact_de": "Der kontroverse Song über Gott mit einem 'kranken Sinn für Humor' wurde von mehreren Radiosendern verbannt. Martin Gore schrieb ihn, nachdem die Mutter einer Freundin einen Suizidversuch unternommen hatte.",
-      "fun_fact_es": "La controvertida canción sobre Dios teniendo un 'sentido del humor enfermo' fue prohibida por varias estaciones de radio. Martin Gore la escribió después de que la madre de una amiga intentara suicidarse.",
-      "fun_fact_fr": "La chanson controversée sur Dieu ayant un 'sens de l'humour malsain' a été interdite par plusieurs stations de radio. Martin Gore l'a écrite après la tentative de suicide de la mère d'une amie.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/665414812",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=o3EAzf5fDpY",
-      "uri_tidal": "tidal://track/20906980"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:6E6RViXGAhLXHv4Sbe8e96",
-      "artist": "Depeche Mode",
-      "title": "Master and Servant",
-      "alt_artists": [
-        "Soft Cell",
-        "Erasure"
-      ],
-      "certifications": [],
-      "fun_fact": "The song's S&M themes and whip-crack sounds caused controversy, with the BBC initially reluctant to play it. It still reached #9 in the UK.",
-      "fun_fact_de": "Die S&M-Themen und Peitschenknall-Sounds des Songs sorgten für Kontroversen, wobei die BBC zunächst zögerte, ihn zu spielen. Er erreichte dennoch #9 in Großbritannien.",
-      "fun_fact_es": "Los temas de S&M y sonidos de látigo causaron controversia, con la BBC inicialmente reacia a reproducirla. Aun así alcanzó el #9 en el Reino Unido.",
-      "fun_fact_fr": "Les thèmes S&M et les claquements de fouet ont causé une controverse, la BBC étant initialement réticente à la diffuser. Elle a tout de même atteint la 9e place au Royaume-Uni.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/665414560",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=IsvfofcIE1Q",
-      "uri_tidal": "tidal://track/20906978"
     },
     {
       "year": 1984,
@@ -2243,53 +1599,11 @@
       ],
       "awards": [],
       "fun_fact": "Originally released in 1983, it re-entered charts in 1984 after 'Wouldn't It Be Good' became a hit. The song is about nuclear war anxiety during the Cold War.",
-      "fun_fact_de": "Ursprünglich 1983 veröffentlicht, kehrte der Song 1984 in die Charts zurück, nachdem \"Wouldn't It Be Good\" ein Hit wurde. Er handelt von der Angst vor einem Atomkrieg im Kalten Krieg.",
-      "fun_fact_es": "Publicada originalmente en 1983, volvió a las listas en 1984 después de que «Wouldn't It Be Good» se convirtiera en éxito. La canción trata sobre la angustia ante una guerra nuclear durante la Guerra Fría.",
+      "fun_fact_de": "Ursprünglich 1983 veröffentlicht, kehrte der Song 1984 in die Charts zurück, nachdem „Wouldn’t It Be Good“ ein Hit wurde. Er handelt von der Angst vor einem Atomkrieg im Kalten Krieg.",
+      "fun_fact_es": "Publicada originalmente en 1983, volvió a las listas en 1984 después de que «Wouldn’t It Be Good» se convirtiera en éxito. La canción trata sobre la angustia ante una guerra nuclear durante la Guerra Fría.",
       "fun_fact_fr": "Sortie initialement en 1983, la chanson est revenue dans les charts en 1984 après le succès de 'Wouldn't It Be Good'. Le morceau traite de l'angoisse nucléaire pendant la Guerre froide.",
       "uri_apple_music": "applemusic://track/1635878795",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9c-P7BTvmQ0"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:00FDHurakzVEiPutdUxXXq",
-      "artist": "Nik Kershaw",
-      "title": "Wouldn't It Be Good",
-      "alt_artists": [
-        "Howard Jones",
-        "Thompson Twins"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "Nik Kershaw was just 26 when this song became a massive hit. He later revealed that the cryptic 'Riddle' was genuinely meaningless, despite fan theories.",
-      "fun_fact_de": "Nik Kershaw war erst 26, als dieser Song ein Riesenhit wurde. Er enthüllte später, dass 'The Riddle' tatsächlich bedeutungslos war, trotz Fan-Theorien.",
-      "fun_fact_es": "Nik Kershaw tenía solo 26 años cuando esta canción se convirtió en un éxito masivo. Más tarde reveló que 'The Riddle' no tenía significado real, a pesar de las teorías.",
-      "fun_fact_fr": "Nik Kershaw n'avait que 26 ans quand cette chanson est devenue un immense succès. Il a plus tard révélé que 'The Riddle' était vraiment sans signification, malgré les théories des fans.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1442322681",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cTLTG4FTNBQ",
-      "uri_tidal": "tidal://track/19193082"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:7dkA1ySPkhvghMczNmRolo",
-      "artist": "Orchestral Manoeuvres In The Dark",
-      "title": "Talking Loud And Clear",
-      "alt_artists": [
-        "Depeche Mode",
-        "Erasure"
-      ],
-      "certifications": [],
-      "fun_fact": "From the album 'Junk Culture', this elegant synth ballad showcased OMD's more accessible pop side and reached the UK Top 20.",
-      "fun_fact_de": "Vom Album 'Junk Culture' zeigte diese elegante Synth-Ballade OMDs zugänglichere Pop-Seite und erreichte die UK Top 20.",
-      "fun_fact_es": "Del álbum 'Junk Culture', esta elegante balada sintetizada mostró el lado pop más accesible de OMD y alcanzó el Top 20 del Reino Unido.",
-      "fun_fact_fr": "De l'album 'Junk Culture', cette élégante ballade synthétique a montré le côté pop plus accessible d'OMD et a atteint le Top 20 au Royaume-Uni.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/714551929",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ujg7xHZ-nrE",
-      "uri_tidal": "tidal://track/1533697"
     },
     {
       "year": 1984,
@@ -2351,45 +1665,6 @@
     },
     {
       "year": 1984,
-      "uri": "spotify:track:5h2bxDsTJpKwWQVVX82rqI",
-      "artist": "Propaganda",
-      "title": "Dr. Mabuse",
-      "alt_artists": [
-        "Art of Noise",
-        "ZTT Records"
-      ],
-      "certifications": [],
-      "fun_fact": "Named after Fritz Lang's fictional criminal mastermind, the song was Propaganda's debut single on ZTT Records and became a cult classic of the 80s synth scene.",
-      "fun_fact_de": "Benannt nach Fritz Langs fiktivem Verbrechergeist, war der Song Propagandas Debütsingle bei ZTT Records und wurde zum Kulthit der 80er-Synth-Szene.",
-      "fun_fact_es": "Nombrada por el criminal ficticio de Fritz Lang, la canción fue el primer sencillo de Propaganda en ZTT Records y se convirtió en un clásico de culto del synth de los 80.",
-      "fun_fact_fr": "Nommée d'après le criminel fictif de Fritz Lang, la chanson était le premier single de Propaganda chez ZTT Records et est devenue un classique culte de la scène synth des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1585274537",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=42l2F80uvLA",
-      "uri_tidal": "tidal://track/198425772"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:3U9EquqR0yjGJksMG8Oqjz",
-      "artist": "Purple Schulz",
-      "title": "Sehnsucht",
-      "alt_artists": [
-        "Herbert Grönemeyer",
-        "Marius Müller-Westernhagen"
-      ],
-      "certifications": [],
-      "fun_fact": "This German-language hit became one of the most iconic Neue Deutsche Welle songs. Purple Schulz (real name: Claus-Jürgen Schulz) was a key figure in the Cologne music scene.",
-      "fun_fact_de": "Dieser deutschsprachige Hit wurde zu einem der ikonischsten NDW-Songs. Purple Schulz (bürgerlich Claus-Jürgen Schulz) war eine Schlüsselfigur der Kölner Musikszene.",
-      "fun_fact_es": "Este éxito en alemán se convirtió en una de las canciones más icónicas de la Neue Deutsche Welle. Purple Schulz fue una figura clave de la escena musical de Colonia.",
-      "fun_fact_fr": "Ce tube en allemand est devenu l'une des chansons les plus iconiques de la Neue Deutsche Welle. Purple Schulz était une figure clé de la scène musicale de Cologne.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1442513720",
-      "uri_tidal": "tidal://track/63910876"
-    },
-    {
-      "year": 1984,
       "uri": "spotify:track:1MsBRSbt5dqJSw3RxXtvCM",
       "artist": "Queen",
       "alt_artists": [
@@ -2412,27 +1687,6 @@
       "uri_apple_music": "applemusic://track/1441463349",
       "uri_youtube_music": "https://music.youtube.com/watch?v=f4Mc-NYPHaQ",
       "uri_tidal": "tidal://track/7677489"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:7MnxdIXJd4N4mHCTPNKhkX",
-      "artist": "Ray Parker Jr.",
-      "title": "Ghostbusters",
-      "alt_artists": [
-        "Huey Lewis and the News",
-        "Bobby Brown"
-      ],
-      "certifications": [
-        "Platinum (US)"
-      ],
-      "fun_fact": "Huey Lewis sued Parker for plagiarizing 'I Want a New Drug'. The case was settled out of court. The song spent 3 weeks at #1 on the Billboard Hot 100.",
-      "fun_fact_de": "Huey Lewis verklagte Parker wegen Plagiats von 'I Want a New Drug'. Der Fall wurde außergerichtlich beigelegt. Der Song war 3 Wochen auf #1 der Billboard Hot 100.",
-      "fun_fact_es": "Huey Lewis demandó a Parker por plagiar 'I Want a New Drug'. El caso se resolvió fuera de los tribunales. La canción pasó 3 semanas en el #1 del Billboard Hot 100.",
-      "fun_fact_fr": "Huey Lewis a poursuivi Parker pour avoir plagié 'I Want a New Drug'. L'affaire a été réglée à l'amiable. La chanson a passé 3 semaines au #1 du Billboard Hot 100.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1188704158",
-      "uri_tidal": "tidal://track/3392902"
     },
     {
       "year": 1984,
@@ -2496,70 +1750,6 @@
     },
     {
       "year": 1984,
-      "uri": "spotify:track:4jhsuQCUCJKA5f0bXb6XdJ",
-      "artist": "Talk Talk",
-      "title": "It's My Life",
-      "alt_artists": [
-        "Duran Duran",
-        "Tears For Fears"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "No Doubt's 2003 cover introduced this song to a new generation, but the original's innovative use of synths was groundbreaking for its time.",
-      "fun_fact_de": "No Doubts Cover von 2003 machte den Song einer neuen Generation bekannt, aber der innovative Synthesizer-Einsatz des Originals war bahnbrechend.",
-      "fun_fact_es": "La versión de No Doubt en 2003 presentó esta canción a una nueva generación, pero el uso innovador de sintetizadores del original fue revolucionario.",
-      "fun_fact_fr": "La reprise de No Doubt en 2003 a fait découvrir cette chanson à une nouvelle génération, mais l'utilisation innovante des synthés dans l'original était révolutionnaire.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1763630047",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cFH5JgyZK1I",
-      "uri_tidal": "tidal://track/1551065"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:35JhxrwW2bBAiMcnrmuLEN",
-      "artist": "Talk Talk",
-      "title": "Such a Shame",
-      "alt_artists": [
-        "Duran Duran",
-        "Tears For Fears"
-      ],
-      "certifications": [],
-      "fun_fact": "This was Talk Talk's biggest hit in continental Europe, reaching #1 in Germany, Italy, and several other countries while barely charting in the UK.",
-      "fun_fact_de": "Dies war Talk Talks größter Hit in Kontinentaleuropa und erreichte #1 in Deutschland, Italien und mehreren anderen Ländern, während er in Großbritannien kaum chartete.",
-      "fun_fact_es": "Este fue el mayor éxito de Talk Talk en Europa continental, alcanzando el #1 en Alemania, Italia y varios otros países mientras apenas entraba en las listas del Reino Unido.",
-      "fun_fact_fr": "C'était le plus grand succès de Talk Talk en Europe continentale, atteignant le #1 en Allemagne, en Italie et dans plusieurs autres pays, tout en étant à peine classé au Royaume-Uni.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/695469002",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lLdvpFIPReA",
-      "uri_tidal": "tidal://track/1551063"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:1VVJkfldPqSHRxxV6ArLeA",
-      "artist": "Tears For Fears",
-      "title": "Shout",
-      "alt_artists": [
-        "Simple Minds",
-        "Depeche Mode"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "The recording of 'Shout' took several months to complete, with the band obsessively layering sounds to create the dense wall of music.",
-      "fun_fact_de": "Die Aufnahme von 'Shout' dauerte mehrere Monate, wobei die Band obsessiv Klangschichten aufbaute, um die dichte Klangwand zu erschaffen.",
-      "fun_fact_es": "La grabación de 'Shout' tardó varios meses en completarse, con la banda superponiendo obsesivamente sonidos para crear el denso muro de música.",
-      "fun_fact_fr": "L'enregistrement de 'Shout' a pris plusieurs mois, le groupe superposant obsessionnellement les sons pour créer un mur de musique dense.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440813509",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ye7FKc1JQe4",
-      "uri_tidal": "tidal://track/77614286"
-    },
-    {
-      "year": 1984,
       "uri": "spotify:track:2u8MGAiS2hBVE7GZzTZLQI",
       "artist": "The Pointer Sisters",
       "alt_artists": [
@@ -2583,46 +1773,6 @@
       "uri_apple_music": "applemusic://track/294037064",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8iwBM_YB1sE",
       "uri_tidal": "tidal://track/3392941"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:5gXlabehojXdqcfFN8ncey",
-      "artist": "The Smiths",
-      "title": "How Soon Is Now?",
-      "alt_artists": [
-        "The Cure",
-        "Echo & the Bunnymen"
-      ],
-      "certifications": [],
-      "fun_fact": "Johnny Marr's tremolo guitar effect was achieved by feeding the signal through four amplifiers simultaneously. The song later became the theme for TV series 'Charmed'.",
-      "fun_fact_de": "Johnny Marrs Tremolo-Gitarreneffekt wurde durch gleichzeitiges Einspeisen in vier Verstärker erzielt. Der Song wurde später das Titellied der TV-Serie 'Charmed'.",
-      "fun_fact_es": "El efecto de trémolo de guitarra de Johnny Marr se logró alimentando la señal a través de cuatro amplificadores simultáneamente. La canción se convirtió en el tema de la serie 'Charmed'.",
-      "fun_fact_fr": "L'effet de trémolo de guitare de Johnny Marr a été obtenu en envoyant le signal à travers quatre amplificateurs simultanément. La chanson est devenue le générique de la série 'Charmed'.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/799969782",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hnpILIIo9ek",
-      "uri_tidal": "tidal://track/3268378"
-    },
-    {
-      "year": 1984,
-      "uri": "spotify:track:0P412IP7uGemFJNx3ccPAB",
-      "artist": "Thompson Twins",
-      "title": "Doctor! Doctor!",
-      "alt_artists": [
-        "Tears For Fears",
-        "OMD"
-      ],
-      "certifications": [],
-      "fun_fact": "The song reached #3 in the UK and was one of the biggest hits from the album 'Into the Gap', which sold over 3 million copies worldwide.",
-      "fun_fact_de": "Der Song erreichte #3 in Großbritannien und war einer der größten Hits des Albums 'Into the Gap', das sich weltweit über 3 Millionen Mal verkaufte.",
-      "fun_fact_es": "La canción alcanzó el #3 en el Reino Unido y fue uno de los mayores éxitos del álbum 'Into the Gap', que vendió más de 3 millones de copias.",
-      "fun_fact_fr": "La chanson a atteint la 3e place au Royaume-Uni et était l'un des plus grands succès de l'album 'Into the Gap', vendu à plus de 3 millions d'exemplaires.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1700433698",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Pf0_Be5PPPU",
-      "uri_tidal": "tidal://track/101982430"
     },
     {
       "year": 1984,
@@ -2688,28 +1838,6 @@
     },
     {
       "year": 1984,
-      "uri": "spotify:track:65E62rOSbm7SZbAMYjNTJq",
-      "artist": "U2",
-      "title": "Pride (In The Name Of Love)",
-      "alt_artists": [
-        "Simple Minds",
-        "Big Country"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Written about Martin Luther King Jr., the song famously contains a factual error: King was shot in the 'early morning' of April 4th, not 'early evening' as Bono sings.",
-      "fun_fact_de": "Über Martin Luther King Jr. geschrieben, enthält der Song einen bekannten Fehler: King wurde am 'frühen Morgen' des 4. April erschossen, nicht am 'frühen Abend', wie Bono singt.",
-      "fun_fact_es": "Escrita sobre Martin Luther King Jr., la canción contiene un error famoso: King fue disparado en la 'mañana temprano' del 4 de abril, no en la 'tarde temprano' como canta Bono.",
-      "fun_fact_fr": "Écrite sur Martin Luther King Jr., la chanson contient une célèbre erreur factuelle : King a été abattu 'tôt le matin' du 4 avril, et non 'tôt le soir' comme Bono le chante.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1443184298",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=nIPJ0TPf3sQ",
-      "uri_tidal": "tidal://track/3142287"
-    },
-    {
-      "year": 1984,
       "uri": "spotify:track:0PhU6i6Kei6x0CH3jocvA3",
       "artist": "Wham!",
       "alt_artists": [
@@ -2734,55 +1862,6 @@
       "uri_apple_music": "applemusic://track/193085002",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BFwOs-jy53A",
       "uri_tidal": "tidal://track/33731053"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:2WfaOiMkCvy7F5fcp2zZ8L",
-      "artist": "a-ha",
-      "alt_artists": [
-        "Duran Duran",
-        "Tears for Fears"
-      ],
-      "title": "Take on Me",
-      "chart_info": {
-        "billboard_peak": 1,
-        "uk_peak": 2,
-        "weeks_on_chart": 21
-      },
-      "certifications": [
-        "3x Platinum (US)",
-        "Platinum (UK)"
-      ],
-      "awards": [],
-      "fun_fact": "The iconic pencil-sketch animation music video took 16 weeks to create, with 3,000 hand-drawn frames. The song initially flopped twice before the groundbreaking video made it a #1 hit worldwide.",
-      "fun_fact_de": "Das ikonische Bleistiftskizzen-Musikvideo brauchte 16 Wochen zur Erstellung, mit 3.000 handgezeichneten Bildern. Der Song floppte zunächst zweimal, bevor das bahnbrechende Video ihn zum weltweiten #1-Hit machte.",
-      "fun_fact_es": "El icónico video musical de animación a lápiz tomó 16 semanas en crearse, con 3,000 cuadros dibujados a mano. La canción fracasó dos veces antes de que el revolucionario video la convirtiera en un éxito #1 mundial.",
-      "fun_fact_fr": "L'emblématique clip en animation au crayon a nécessité 16 semaines de travail et 3 000 images dessinées à la main. La chanson avait d'abord fait un flop à deux reprises avant que ce clip révolutionnaire n'en fasse un numéro 1 mondial.",
-      "uri_apple_music": "applemusic://track/368555810",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=djV11Xbc914",
-      "uri_tidal": "tidal://track/391687"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:3IEmIZUpCtfQnPP7HKhRu7",
-      "artist": "a-ha",
-      "title": "The Sun Always Shines on T.V.",
-      "alt_artists": [
-        "Duran Duran",
-        "Depeche Mode"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "This was a-ha's second single and reached #1 in the UK, proving the band wasn't a one-hit wonder after 'Take On Me'.",
-      "fun_fact_de": "Dies war a-has zweite Single und erreichte #1 in Großbritannien, was bewies, dass die Band nach 'Take On Me' kein One-Hit-Wonder war.",
-      "fun_fact_es": "Este fue el segundo sencillo de a-ha y alcanzó el #1 en el Reino Unido, demostrando que la banda no era un éxito de un solo tema después de 'Take On Me'.",
-      "fun_fact_fr": "C'était le deuxième single d'a-ha et il a atteint la première place au Royaume-Uni, prouvant que le groupe n'était pas un one-hit wonder après 'Take On Me'.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1035047673",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=a3ir9HC9vYg",
-      "uri_tidal": "tidal://track/112543128"
     },
     {
       "year": 1985,
@@ -2859,49 +1938,6 @@
     },
     {
       "year": 1985,
-      "uri": "spotify:track:75FEaRjZTKLhTrFGsfMUXR",
-      "artist": "Kate Bush",
-      "title": "Running Up That Hill (A Deal With God)",
-      "alt_artists": [
-        "Tori Amos",
-        "Björk"
-      ],
-      "certifications": [
-        "Platinum (UK)",
-        "Platinum (US)"
-      ],
-      "fun_fact": "The song experienced a massive resurgence in 2022 after being featured in Netflix's 'Stranger Things', reaching #1 in the UK 37 years after its original release.",
-      "fun_fact_de": "Der Song erlebte 2022 ein massives Comeback, nachdem er in Netflix' 'Stranger Things' zu hören war, und erreichte 37 Jahre nach der Erstveröffentlichung #1 in Großbritannien.",
-      "fun_fact_es": "La canción experimentó un resurgimiento masivo en 2022 después de aparecer en 'Stranger Things' de Netflix, alcanzando el #1 en el Reino Unido 37 años después de su lanzamiento original.",
-      "fun_fact_fr": "La chanson a connu une résurgence massive en 2022 après avoir été présentée dans 'Stranger Things' de Netflix, atteignant le #1 au Royaume-Uni 37 ans après sa sortie originale.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1675560578",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=wp43OdtAAkM",
-      "uri_tidal": "tidal://track/279765006"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:5atQ2haKP5LT65WM0KUts3",
-      "artist": "Kate Bush",
-      "title": "Cloudbusting",
-      "alt_artists": [
-        "Tori Amos",
-        "Peter Gabriel"
-      ],
-      "certifications": [],
-      "fun_fact": "The song and its iconic video starring Donald Sutherland were inspired by Peter Reich's memoir about his father Wilhelm Reich's controversial orgone energy research.",
-      "fun_fact_de": "Der Song und sein ikonisches Video mit Donald Sutherland wurden von Peter Reichs Memoiren über die umstrittene Orgon-Energie-Forschung seines Vaters Wilhelm Reich inspiriert.",
-      "fun_fact_es": "La canción y su icónico video protagonizado por Donald Sutherland se inspiraron en las memorias de Peter Reich sobre la controvertida investigación de energía orgónica de su padre Wilhelm Reich.",
-      "fun_fact_fr": "La chanson et son clip iconique avec Donald Sutherland sont inspirés des mémoires de Peter Reich sur les recherches controversées de son père Wilhelm Reich sur l'énergie orgone.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1675375378",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=pllRW9wETzw",
-      "uri_tidal": "tidal://track/279765010"
-    },
-    {
-      "year": 1985,
       "uri": "spotify:track:05wIrZSwuaVWhcv5FfqeH0",
       "artist": "Katrina & The Waves",
       "alt_artists": [
@@ -2929,48 +1965,6 @@
     },
     {
       "year": 1985,
-      "uri": "spotify:track:14z3RzUHeZQgtpOlSYvmZD",
-      "artist": "Killing Joke",
-      "title": "Love Like Blood",
-      "alt_artists": [
-        "Bauhaus",
-        "The Cult"
-      ],
-      "certifications": [],
-      "fun_fact": "This was Killing Joke's most commercially successful single, reaching #16 in the UK. The band's aggressive post-punk style influenced Nirvana, Metallica, and Nine Inch Nails.",
-      "fun_fact_de": "Dies war Killing Jokes kommerziell erfolgreichste Single und erreichte #16 in Großbritannien. Der aggressive Post-Punk-Stil der Band beeinflusste Nirvana, Metallica und Nine Inch Nails.",
-      "fun_fact_es": "Este fue el sencillo más exitoso comercialmente de Killing Joke, alcanzando el #16 en el Reino Unido. Su estilo post-punk agresivo influyó en Nirvana, Metallica y Nine Inch Nails.",
-      "fun_fact_fr": "C'était le single le plus commercialement réussi de Killing Joke, atteignant la 16e place au Royaume-Uni. Le style post-punk agressif du groupe a influencé Nirvana, Metallica et Nine Inch Nails.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1698417340",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TnpwuRlXbhk",
-      "uri_tidal": "tidal://track/305757925"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:0r5Ju8WyodpXBHmg3f4zYf",
-      "artist": "Marillion",
-      "title": "Kayleigh",
-      "alt_artists": [
-        "Genesis",
-        "Rush"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "The song is credited with popularizing the girl's name Kayleigh in the UK. It was Marillion's biggest hit, reaching #2 in the UK.",
-      "fun_fact_de": "Dem Song wird zugeschrieben, den Mädchennamen Kayleigh in Großbritannien populär gemacht zu haben. Es war Marillions größter Hit und erreichte #2 in Großbritannien.",
-      "fun_fact_es": "Se atribuye a la canción la popularización del nombre de niña Kayleigh en el Reino Unido. Fue el mayor éxito de Marillion, alcanzando el #2.",
-      "fun_fact_fr": "On attribue à la chanson la popularisation du prénom féminin Kayleigh au Royaume-Uni. C'était le plus grand succès de Marillion, atteignant la 2e place.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1227898075",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zHUMw5UZnos",
-      "uri_tidal": "tidal://track/75786967"
-    },
-    {
-      "year": 1985,
       "uri": "spotify:track:7JM1dFLOa1kI5MqGnDufiY",
       "artist": "Münchener Freiheit",
       "alt_artists": [
@@ -2995,48 +1989,6 @@
     },
     {
       "year": 1985,
-      "uri": "spotify:track:4lJolYFEFus97VdVZUI79c",
-      "artist": "Orchestral Manoeuvres In The Dark",
-      "title": "Secret",
-      "alt_artists": [
-        "New Order",
-        "Erasure"
-      ],
-      "certifications": [],
-      "fun_fact": "From the album 'Crush', 'Secret' featured a more polished pop production that helped OMD find success in the American market.",
-      "fun_fact_de": "Vom Album 'Crush' hatte 'Secret' eine poliertere Pop-Produktion, die OMD half, auf dem amerikanischen Markt Erfolg zu haben.",
-      "fun_fact_es": "Del álbum 'Crush', 'Secret' presentó una producción pop más pulida que ayudó a OMD a encontrar éxito en el mercado americano.",
-      "fun_fact_fr": "De l'album 'Crush', 'Secret' présentait une production pop plus soignée qui a aidé OMD à trouver le succès sur le marché américain.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/724458035",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=EtYre1GABao",
-      "uri_tidal": "tidal://track/1533699"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:5fVFdkU5U6ULjXgwm5q89Q",
-      "artist": "Paul Hardcastle",
-      "title": "19",
-      "alt_artists": [
-        "Art of Noise",
-        "Frankie Goes to Hollywood"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "The title refers to the average age of US combat soldiers in Vietnam. The song's stuttered vocal samples were groundbreaking and it reached #1 in 13 countries.",
-      "fun_fact_de": "Der Titel bezieht sich auf das Durchschnittsalter der US-Kampfsoldaten in Vietnam. Die stotternden Vocal-Samples waren bahnbrechend und der Song erreichte in 13 Ländern #1.",
-      "fun_fact_es": "El título se refiere a la edad promedio de los soldados de combate estadounidenses en Vietnam. Las muestras vocales tartamudeantes fueron revolucionarias y alcanzó el #1 en 13 países.",
-      "fun_fact_fr": "Le titre fait référence à l'âge moyen des soldats de combat américains au Vietnam. Les échantillons vocaux bégayants étaient révolutionnaires et la chanson a atteint le #1 dans 13 pays.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1629177761",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=0sajngb0W6I",
-      "uri_tidal": "tidal://track/233178244"
-    },
-    {
-      "year": 1985,
       "uri": "spotify:track:0S6JBDwWaRzYCYeTh1Z5Rq",
       "artist": "Phil Collins",
       "alt_artists": [
@@ -3054,7 +2006,7 @@
       ],
       "awards": [],
       "fun_fact": "Phil Collins' second US #1. Written during his divorce, the emotional ballad showcased his softer side. He played all the instruments himself.",
-      "fun_fact_de": "Phil Collins' zweite US-Nummer-1. Während seiner Scheidung geschrieben, zeigte die emotionale Ballade seine sanftere Seite. Er spielte alle Instrumente selbst ein.",
+      "fun_fact_de": "Phil Collins’ zweite US-Nummer-1. Während seiner Scheidung geschrieben, zeigte die emotionale Ballade seine sanftere Seite. Er spielte alle Instrumente selbst ein.",
       "fun_fact_es": "El segundo n.º 1 de Phil Collins en EE. UU. Escrita durante su divorcio, esta emotiva balada mostró su lado más sensible. Tocó todos los instrumentos él mismo.",
       "fun_fact_fr": "Deuxième numéro 1 de Phil Collins aux États-Unis. Écrite pendant son divorce, cette ballade émouvante révélait son côté plus sensible. Il a joué tous les instruments lui-même.",
       "uri_apple_music": "applemusic://track/1098944438",
@@ -3079,75 +2031,11 @@
       ],
       "awards": [],
       "fun_fact": "The title is a nonsense word Phil used as a placeholder and never replaced. Some accused it of copying Prince's '1999', which Phil has acknowledged.",
-      "fun_fact_de": "Der Titel ist ein Fantasiewort, das Phil als Platzhalter benutzte und nie ersetzte. Manche warfen ihm vor, Prince' \"1999\" kopiert zu haben, was Phil eingeräumt hat.",
+      "fun_fact_de": "Der Titel ist ein Fantasiewort, das Phil als Platzhalter benutzte und nie ersetzte. Manche warfen ihm vor, Prince’ „1999“ kopiert zu haben, was Phil eingeräumt hat.",
       "fun_fact_es": "El título es una palabra sin sentido que Phil usó como provisional y nunca reemplazó. Algunos la acusaron de copiar «1999» de Prince, algo que Phil ha reconocido.",
       "fun_fact_fr": "Le titre est un mot inventé que Phil utilisait comme bouche-trou et qu'il n'a jamais remplacé. Certains l'ont accusé de copier '1999' de Prince, ce que Phil a d'ailleurs reconnu.",
       "uri_apple_music": "applemusic://track/1148642435",
       "uri_youtube_music": "https://music.youtube.com/watch?v=r0qBaBb1Y-U"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:6n2qp32vELgEmktr7KpRid",
-      "artist": "Propaganda",
-      "title": "P.Machinery",
-      "alt_artists": [
-        "Art of Noise",
-        "Yello"
-      ],
-      "certifications": [],
-      "fun_fact": "Produced by Trevor Horn's ZTT Records team, the song featured cutting-edge Fairlight CMI sampling technology that was revolutionary for its time.",
-      "fun_fact_de": "Von Trevor Horns ZTT-Records-Team produziert, verwendete der Song bahnbrechende Fairlight-CMI-Sampling-Technologie, die für ihre Zeit revolutionär war.",
-      "fun_fact_es": "Producida por el equipo de ZTT Records de Trevor Horn, la canción presentó tecnología de muestreo Fairlight CMI que era revolucionaria para su tiempo.",
-      "fun_fact_fr": "Produite par l'équipe de ZTT Records de Trevor Horn, la chanson utilisait la technologie de sampling Fairlight CMI, révolutionnaire pour l'époque.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1585274528",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=660ZCEhvbnw",
-      "uri_tidal": "tidal://track/143494212"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:5Njrdd3SA4fOsDMPVphxSb",
-      "artist": "Sandra",
-      "title": "Maria Magdalena",
-      "alt_artists": [
-        "C.C. Catch",
-        "Modern Talking"
-      ],
-      "certifications": [
-        "Gold (DE)"
-      ],
-      "fun_fact": "Produced by Michael Cretu (later known for Enigma), this was one of the best-selling singles of 1985 in Germany and reached #1 in 21 countries.",
-      "fun_fact_de": "Von Michael Cretu (später bekannt für Enigma) produziert, war dies eine der meistverkauften Singles 1985 in Deutschland und erreichte #1 in 21 Ländern.",
-      "fun_fact_es": "Producida por Michael Cretu (luego conocido por Enigma), fue uno de los sencillos más vendidos de 1985 en Alemania y alcanzó el #1 en 21 países.",
-      "fun_fact_fr": "Produit par Michael Cretu (plus tard connu pour Enigma), c'était l'un des singles les plus vendus de 1985 en Allemagne et a atteint le #1 dans 21 pays.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/723780769",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qwrrpBc7xWA",
-      "uri_tidal": "tidal://track/1497500"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:1yg7fwwYmx9DQ2TdXUmfpJ",
-      "artist": "Simply Red",
-      "title": "Holding Back the Years",
-      "alt_artists": [
-        "Sade",
-        "Everything but the Girl"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Mick Hucknall wrote this when he was just 17, inspired by his absent mother who left when he was three. It reached #1 in the US in 1986.",
-      "fun_fact_de": "Mick Hucknall schrieb dies mit nur 17, inspiriert von seiner abwesenden Mutter, die ging, als er drei war. Er erreichte 1986 #1 in den USA.",
-      "fun_fact_es": "Mick Hucknall escribió esto con solo 17 años, inspirado por su madre ausente que se fue cuando él tenía tres. Alcanzó el #1 en EE.UU. en 1986.",
-      "fun_fact_fr": "Mick Hucknall a écrit cette chanson à seulement 17 ans, inspiré par sa mère absente partie quand il avait trois ans. Elle a atteint le #1 aux États-Unis en 1986.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/294361564",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yG07WSu7Q9w",
-      "uri_tidal": "tidal://track/2060790"
     },
     {
       "year": 1985,
@@ -3173,89 +2061,6 @@
       "fun_fact_fr": "Souvent élue parmi les pires chansons de tous les temps, c'était pourtant un immense succès. Bernie Taupin a co-écrit les paroles sur la commercialisation de la musique rock.",
       "uri_apple_music": "applemusic://track/1446293107",
       "uri_youtube_music": "https://music.youtube.com/watch?v=K1b8AhIsSYQ"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:1CdLweA1brUOAoYEvzTt8M",
-      "artist": "Sting",
-      "title": "Russians",
-      "alt_artists": [
-        "Peter Gabriel",
-        "U2"
-      ],
-      "certifications": [],
-      "fun_fact": "Written during the Cold War, the song samples Prokofiev's 'Lieutenant Kijé' suite. Sting was inspired after watching Soviet television via a satellite dish.",
-      "fun_fact_de": "Während des Kalten Krieges geschrieben, sampelt der Song Prokofjews 'Leutnant Kijé'-Suite. Sting wurde inspiriert, nachdem er sowjetisches Fernsehen via Satellit gesehen hatte.",
-      "fun_fact_es": "Escrita durante la Guerra Fría, la canción samplea la suite 'Teniente Kijé' de Prokofiev. Sting se inspiró viendo televisión soviética vía satélite.",
-      "fun_fact_fr": "Écrite pendant la Guerre froide, la chanson échantillonne la suite 'Lieutenant Kijé' de Prokofiev. Sting a été inspiré en regardant la télévision soviétique via satellite.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440922956",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=wHylQRVN2Qs",
-      "uri_tidal": "tidal://track/35687909"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:2iWTHXaFtRSMhd5OLpYD7f",
-      "artist": "Talk Talk",
-      "title": "Life's What You Make It",
-      "alt_artists": [
-        "Depeche Mode",
-        "Simple Minds"
-      ],
-      "certifications": [],
-      "fun_fact": "Mark Hollis deliberately moved Talk Talk away from synth-pop towards more experimental sounds, making this one of the band's transitional tracks.",
-      "fun_fact_de": "Mark Hollis bewegte Talk Talk bewusst vom Synth-Pop weg zu experimentelleren Klängen, was diesen Track zu einem Übergangsstück machte.",
-      "fun_fact_es": "Mark Hollis alejó deliberadamente a Talk Talk del synth-pop hacia sonidos más experimentales, haciendo de esta una de las canciones de transición.",
-      "fun_fact_fr": "Mark Hollis a délibérément éloigné Talk Talk de la synth-pop vers des sons plus expérimentaux, faisant de ce titre une chanson de transition.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/696670535",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=l3VqAsMXE7o",
-      "uri_tidal": "tidal://track/1486042"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:45Q78NCztJ32246b5yFFrO",
-      "artist": "Tears For Fears",
-      "title": "Everybody Wants To Rule The World",
-      "alt_artists": [
-        "Simple Minds",
-        "Duran Duran"
-      ],
-      "certifications": [
-        "Platinum (US)",
-        "Gold (UK)"
-      ],
-      "fun_fact": "This song won the Brit Award for Best British Single in 1986 and was almost left off the album because the band didn't think it was strong enough.",
-      "fun_fact_de": "Dieser Song gewann 1986 den Brit Award für die beste britische Single und wäre fast nicht auf dem Album gelandet, weil die Band ihn für zu schwach hielt.",
-      "fun_fact_es": "Esta canción ganó el Brit Award a Mejor Sencillo Británico en 1986 y casi queda fuera del álbum porque la banda no la consideraba suficientemente buena.",
-      "fun_fact_fr": "Cette chanson a remporté le Brit Award du meilleur single britannique en 1986 et a failli ne pas figurer sur l'album car le groupe ne la trouvait pas assez forte.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440825289",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=aGCdLKXNF3w",
-      "uri_tidal": "tidal://track/37154397"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:4xiyq1iRdsxuU1BPUJ490Z",
-      "artist": "The Cure",
-      "title": "Close To Me",
-      "alt_artists": [
-        "The Smiths",
-        "Siouxsie and the Banshees"
-      ],
-      "certifications": [],
-      "fun_fact": "The iconic music video was filmed inside a wardrobe that falls off a cliff into the sea. Smith has said the song is about claustrophobia and anxiety.",
-      "fun_fact_de": "Das ikonische Musikvideo wurde in einem Kleiderschrank gedreht, der von einer Klippe ins Meer fällt. Smith sagte, der Song handle von Klaustrophobie und Angst.",
-      "fun_fact_es": "El icónico video musical fue filmado dentro de un armario que cae de un acantilado al mar. Smith dijo que la canción trata sobre claustrofobia y ansiedad.",
-      "fun_fact_fr": "Le clip iconique a été filmé dans une armoire qui tombe d'une falaise dans la mer. Smith a dit que la chanson parle de claustrophobie et d'anxiété.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440792298",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BjvfIJstWeg",
-      "uri_tidal": "tidal://track/2318097"
     },
     {
       "year": 1985,
@@ -3310,66 +2115,31 @@
       "uri_tidal": "tidal://track/687202"
     },
     {
-      "year": 1986,
-      "uri": "spotify:track:54kZBOoGWSx87lG88FKUUs",
+      "year": 1985,
+      "uri": "spotify:track:2WfaOiMkCvy7F5fcp2zZ8L",
       "artist": "a-ha",
-      "title": "We're Looking for the Whales",
       "alt_artists": [
         "Duran Duran",
-        "Talk Talk"
+        "Tears for Fears"
       ],
-      "certifications": [],
-      "fun_fact": "This environmentally-themed track from 'Scoundrel Days' showed a-ha's artistic growth beyond synth-pop into more complex arrangements.",
-      "fun_fact_de": "Dieser umweltbewusste Track von 'Scoundrel Days' zeigte a-has künstlerische Entwicklung über Synth-Pop hinaus zu komplexeren Arrangements.",
-      "fun_fact_es": "Esta canción con temática medioambiental de 'Scoundrel Days' mostró el crecimiento artístico de a-ha más allá del synth-pop.",
-      "fun_fact_fr": "Ce titre à thème environnemental de 'Scoundrel Days' a montré l'évolution artistique d'a-ha au-delà de la synth-pop.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/217613173",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=0RfNp2RptzY",
-      "uri_tidal": "tidal://track/391671"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:1F7VM6rFR6SoTQN0arpaFB",
-      "artist": "a-ha",
-      "title": "Manhattan Skyline",
-      "alt_artists": [
-        "Depeche Mode",
-        "Simple Minds"
-      ],
-      "certifications": [],
-      "fun_fact": "The atmospheric 'Manhattan Skyline' was the closing track on 'Scoundrel Days' and became a fan favorite for its cinematic quality.",
-      "fun_fact_de": "Das atmosphärische 'Manhattan Skyline' war der letzte Track auf 'Scoundrel Days' und wurde wegen seiner filmischen Qualität zum Fan-Favorit.",
-      "fun_fact_es": "'Manhattan Skyline' fue la pista final de 'Scoundrel Days' y se convirtió en favorita de los fans por su calidad cinematográfica.",
-      "fun_fact_fr": "'Manhattan Skyline' était le dernier titre de 'Scoundrel Days' et est devenu un favori des fans pour sa qualité cinématographique.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/380906541",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WY2r28M1TrY",
-      "uri_tidal": "tidal://track/4170131"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:4kxOMXF9aVjztdBVM12gbn",
-      "artist": "Bananarama",
-      "title": "Venus",
-      "alt_artists": [
-        "The Bangles",
-        "Samantha Fox"
-      ],
+      "title": "Take on Me",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 2,
+        "weeks_on_chart": 21
+      },
       "certifications": [
-        "Gold (US)"
+        "3x Platinum (US)",
+        "Platinum (UK)"
       ],
-      "fun_fact": "Originally by Shocking Blue in 1969, Bananarama's cover produced by Stock Aitken Waterman reached #1 in the US, making them the most successful female group on the US charts at the time.",
-      "fun_fact_de": "Ursprünglich von Shocking Blue (1969), erreichte Bananaranmas Cover, produziert von Stock Aitken Waterman, #1 in den USA und machte sie zur erfolgreichsten Frauengruppe in den US-Charts.",
-      "fun_fact_es": "Originalmente de Shocking Blue en 1969, la versión de Bananarama producida por Stock Aitken Waterman alcanzó el #1 en EE.UU., convirtiéndolas en el grupo femenino más exitoso.",
-      "fun_fact_fr": "À l'origine de Shocking Blue en 1969, la reprise de Bananarama produite par Stock Aitken Waterman a atteint le #1 aux États-Unis, faisant d'elles le groupe féminin le plus couronné de succès.",
-      "chart_info": {},
       "awards": [],
-      "uri_apple_music": "applemusic://track/1299157681",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=d4-1ASpdT1Y",
-      "uri_tidal": "tidal://track/80318650"
+      "fun_fact": "The iconic pencil-sketch animation music video took 16 weeks to create, with 3,000 hand-drawn frames. The song initially flopped twice before the groundbreaking video made it a #1 hit worldwide.",
+      "fun_fact_de": "Das ikonische Bleistiftskizzen-Musikvideo brauchte 16 Wochen zur Erstellung, mit 3.000 handgezeichneten Bildern. Der Song floppte zunächst zweimal, bevor das bahnbrechende Video ihn zum weltweiten #1-Hit machte.",
+      "fun_fact_es": "El icónico video musical de animación a lápiz tomó 16 semanas en crearse, con 3,000 cuadros dibujados a mano. La canción fracasó dos veces antes de que el revolucionario video la convirtiera en un éxito #1 mundial.",
+      "fun_fact_fr": "L'emblématique clip en animation au crayon a nécessité 16 semaines de travail et 3 000 images dessinées à la main. La chanson avait d'abord fait un flop à deux reprises avant que ce clip révolutionnaire n'en fasse un numéro 1 mondial.",
+      "uri_apple_music": "applemusic://track/368555810",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=djV11Xbc914",
+      "uri_tidal": "tidal://track/391687"
     },
     {
       "year": 1986,
@@ -3399,28 +2169,6 @@
     },
     {
       "year": 1986,
-      "uri": "spotify:track:2A6yzRGMgSQCUapR2ptm6A",
-      "artist": "Cyndi Lauper",
-      "title": "True Colors",
-      "alt_artists": [
-        "Madonna",
-        "Pat Benatar"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Lauper stripped back the original arrangement to a simple piano ballad, and it became a powerful anthem for the LGBTQ+ community.",
-      "fun_fact_de": "Lauper reduzierte das Arrangement auf eine einfache Klavierballade, und der Song wurde zu einer kraftvollen Hymne der LGBTQ+-Community.",
-      "fun_fact_es": "Lauper redujo el arreglo original a una simple balada de piano, y se convirtió en un poderoso himno para la comunidad LGBTQ+.",
-      "fun_fact_fr": "Lauper a réduit l'arrangement original à une simple ballade au piano, et c'est devenu un hymne puissant pour la communauté LGBTQ+.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/193521054",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LPn0KFlbqX8",
-      "uri_tidal": "tidal://track/1032"
-    },
-    {
-      "year": 1986,
       "uri": "spotify:track:2d8D7uk3tbAThjRkdfrx9c",
       "artist": "Desireless",
       "alt_artists": [
@@ -3444,68 +2192,6 @@
       "uri_apple_music": "applemusic://track/322417717",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dB_c7oZWo1g",
       "uri_tidal": "tidal://track/236278191"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:2RsIjB4ZFnxnUCfnDD1NuW",
-      "artist": "Erasure",
-      "title": "Oh l'amour",
-      "alt_artists": [
-        "Depeche Mode",
-        "Pet Shop Boys"
-      ],
-      "certifications": [],
-      "fun_fact": "Though it flopped on initial release in the UK, 'Oh L'Amour' became a massive hit across Europe, especially in Germany, helping establish Erasure's career.",
-      "fun_fact_de": "Obwohl der Song in Großbritannien zunächst floppte, wurde 'Oh L'Amour' ein Riesenhit in Europa, besonders in Deutschland, und half Erasure, ihre Karriere zu etablieren.",
-      "fun_fact_es": "Aunque fracasó en su lanzamiento inicial en el Reino Unido, 'Oh L'Amour' se convirtió en un gran éxito en Europa, especialmente en Alemania, ayudando a establecer la carrera de Erasure.",
-      "fun_fact_fr": "Bien qu'il ait fait un flop à sa sortie au Royaume-Uni, 'Oh L'Amour' est devenu un énorme succès en Europe, surtout en Allemagne, aidant à établir la carrière d'Erasure.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/311071028",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kFduy8qQIOg",
-      "uri_tidal": "tidal://track/69136573"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:2oiMNaVCul7qmMzpRStjCg",
-      "artist": "Genesis",
-      "title": "Land Of Confusion",
-      "alt_artists": [
-        "Phil Collins",
-        "Peter Gabriel"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "The music video featured Spitting Image puppets caricaturing world leaders and the band, and won the MTV VMA for Best Concept Video in 1987.",
-      "fun_fact_de": "Das Musikvideo zeigte Spitting-Image-Puppen, die Weltführer und die Band karikierten, und gewann 1987 den MTV VMA für das beste Konzeptvideo.",
-      "fun_fact_es": "El video musical presentó marionetas de Spitting Image caricaturizando a líderes mundiales y la banda, y ganó el MTV VMA al Mejor Video Conceptual en 1987.",
-      "fun_fact_fr": "Le clip présentait des marionnettes de Spitting Image caricaturant des dirigeants mondiaux et le groupe, et a remporté le MTV VMA du meilleur clip conceptuel en 1987.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/309747610",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Yq7FKO5DlV0",
-      "uri_tidal": "tidal://track/34452031"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:4MfgoC0s6TZDKj2tkmaAoE",
-      "artist": "Genesis",
-      "title": "Tonight, Tonight, Tonight",
-      "alt_artists": [
-        "Phil Collins",
-        "Peter Gabriel"
-      ],
-      "certifications": [],
-      "fun_fact": "The full album version is over 9 minutes long. A shortened version was used in a Michelob beer commercial, which helped it reach #3 on the Billboard Hot 100.",
-      "fun_fact_de": "Die volle Albumversion ist über 9 Minuten lang. Eine gekürzte Version wurde in einem Michelob-Bier-Werbespot verwendet, der dem Song half, #3 der Billboard Hot 100 zu erreichen.",
-      "fun_fact_es": "La versión completa del álbum dura más de 9 minutos. Una versión acortada se usó en un comercial de cerveza Michelob, lo que ayudó a alcanzar el #3 del Billboard Hot 100.",
-      "fun_fact_fr": "La version album complète dure plus de 9 minutes. Une version raccourcie a été utilisée dans une publicité de bière Michelob, ce qui l'a aidée à atteindre la 3e place du Billboard Hot 100.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1580766757",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=E3xbLcTj_bs",
-      "uri_tidal": "tidal://track/34452030"
     },
     {
       "year": 1986,
@@ -3533,28 +2219,6 @@
     },
     {
       "year": 1986,
-      "uri": "spotify:track:5NwkWwfRJaT55hEPtCmJHx",
-      "artist": "John Farnham",
-      "title": "You're the Voice",
-      "alt_artists": [
-        "Jimmy Barnes",
-        "INXS"
-      ],
-      "certifications": [
-        "Platinum (AU)"
-      ],
-      "fun_fact": "This anthemic song became Australia's unofficial national anthem and reached #1 in several countries, transforming Farnham from a teen idol to a rock legend.",
-      "fun_fact_de": "Dieser hymnische Song wurde Australiens inoffizielle Nationalhymne und erreichte #1 in mehreren Ländern, was Farnham vom Teenidol zur Rocklegende machte.",
-      "fun_fact_es": "Esta canción himno se convirtió en el himno no oficial de Australia y alcanzó el #1 en varios países, transformando a Farnham de ídolo adolescente a leyenda del rock.",
-      "fun_fact_fr": "Cette chanson hymne est devenue l'hymne national officieux de l'Australie et a atteint le #1 dans plusieurs pays, transformant Farnham d'idole adolescent en légende du rock.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/322416822",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tbkOZTSvrHs",
-      "uri_tidal": "tidal://track/1919983"
-    },
-    {
-      "year": 1986,
       "uri": "spotify:track:4k0IedXGYJNgCKHgHpLh0d",
       "artist": "Lionel Richie",
       "alt_artists": [
@@ -3572,7 +2236,7 @@
       ],
       "awards": [],
       "fun_fact": "The iconic video featured Lionel literally dancing on the ceiling using a rotating room set. It cost $500,000 to make - huge for 1986.",
-      "fun_fact_de": "Im kultigen Video tanzt Lionel buchstäblich an der Decke, dank einer drehbaren Kulisse. Die Produktion kostete 500.000 Dollar - für 1986 eine enorme Summe.",
+      "fun_fact_de": "Im kultigen Video tanzt Lionel buchstäblich an der Decke, dank einer drehbaren Kulisse. Die Produktion kostete 500.000 Dollar – für 1986 eine enorme Summe.",
       "fun_fact_es": "En el icónico videoclip, Lionel baila literalmente en el techo gracias a un decorado giratorio. Costó 500.000 dólares, una cifra enorme para 1986.",
       "fun_fact_fr": "Dans le clip devenu culte, Lionel danse littéralement au plafond grâce à un décor de pièce tournante. La production a coûté 500 000 dollars - une somme colossale pour 1986.",
       "uri_apple_music": "applemusic://track/1442843549",
@@ -3687,23 +2351,6 @@
     },
     {
       "year": 1986,
-      "uri": "spotify:track:3KIqQj8YbGGIoQMT3BTiQ7",
-      "artist": "Peter Gabriel",
-      "title": "Don't Give Up",
-      "alt_artists": [
-        "Sting",
-        "Phil Collins"
-      ],
-      "certifications": [],
-      "fun_fact": "Originally written with Dolly Parton in mind for the female vocal, Kate Bush ended up singing the duet. The song was inspired by Depression-era photographs by Dorothea Lange.",
-      "fun_fact_de": "Ursprünglich mit Dolly Parton für den weiblichen Gesang geplant, sang schließlich Kate Bush das Duett. Der Song wurde von Dorothea Langes Fotos der Großen Depression inspiriert.",
-      "fun_fact_es": "Originalmente pensada para Dolly Parton en la voz femenina, Kate Bush terminó cantando el dúo. La canción fue inspirada por fotografías de la Gran Depresión de Dorothea Lange.",
-      "fun_fact_fr": "À l'origine écrite pour Dolly Parton pour la voix féminine, Kate Bush a finalement chanté le duo. La chanson a été inspirée par les photographies de Dorothea Lange de la Grande Dépression.",
-      "chart_info": {},
-      "awards": []
-    },
-    {
-      "year": 1986,
       "uri": "spotify:track:62LJFaYihsdVrrkgUOJC05",
       "artist": "Prince",
       "alt_artists": [
@@ -3783,48 +2430,6 @@
       "uri_apple_music": "applemusic://track/1445835639",
       "uri_youtube_music": "https://music.youtube.com/watch?v=k9olaIio3l8",
       "uri_tidal": "tidal://track/79970622"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:0LjBejcg7t5Ha5CHTYrcnf",
-      "artist": "The Bangles",
-      "title": "Manic Monday",
-      "alt_artists": [
-        "The Go-Go's",
-        "Bananarama"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "The song was written by Prince under the pseudonym 'Christopher'. It reached #2 on the Billboard Hot 100, kept from #1 by Prince's own 'Kiss'.",
-      "fun_fact_de": "Der Song wurde von Prince unter dem Pseudonym 'Christopher' geschrieben. Er erreichte #2 der Billboard Hot 100, von #1 verdrängt durch Prince' eigenen Song 'Kiss'.",
-      "fun_fact_es": "La canción fue escrita por Prince bajo el seudónimo 'Christopher'. Alcanzó el #2 del Billboard Hot 100, impedida del #1 por el propio 'Kiss' de Prince.",
-      "fun_fact_fr": "La chanson a été écrite par Prince sous le pseudonyme 'Christopher'. Elle a atteint la 2e place du Billboard Hot 100, empêchée d'atteindre le #1 par 'Kiss' de Prince lui-même.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/323489062",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SsmVgoXDq2w",
-      "uri_tidal": "tidal://track/1273660"
-    },
-    {
-      "year": 1986,
-      "uri": "spotify:track:6eohzouNwFkttrTDL7O8Wf",
-      "artist": "The Mission",
-      "title": "Wasteland",
-      "alt_artists": [
-        "The Sisters of Mercy",
-        "Fields of the Nephilim"
-      ],
-      "certifications": [],
-      "fun_fact": "Wayne Hussey formed The Mission after leaving The Sisters of Mercy, and 'Wasteland' became their signature song, defining the gothic rock sound of the late 80s.",
-      "fun_fact_de": "Wayne Hussey gründete The Mission nach seinem Abgang von The Sisters of Mercy, und 'Wasteland' wurde ihr Erkennungslied, das den Gothic-Rock-Sound der späten 80er definierte.",
-      "fun_fact_es": "Wayne Hussey formó The Mission tras dejar The Sisters of Mercy, y 'Wasteland' se convirtió en su canción insignia, definiendo el sonido del rock gótico de los 80.",
-      "fun_fact_fr": "Wayne Hussey a formé The Mission après avoir quitté The Sisters of Mercy, et 'Wasteland' est devenu leur chanson signature, définissant le son du rock gothique des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1444094872",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yAo42BFos98",
-      "uri_tidal": "tidal://track/1110933"
     },
     {
       "year": 1987,
@@ -3969,34 +2574,11 @@
       "certifications": [],
       "awards": [],
       "fun_fact": "Originally from the album 'Bring the Family'. Became a standard covered by Joe Cocker, Jewel, and others. Often used in weddings and films.",
-      "fun_fact_de": "Ursprünglich vom Album \"Bring the Family\". Wurde zum Standard, gecovert von Joe Cocker, Jewel und anderen. Oft bei Hochzeiten und in Filmen verwendet.",
+      "fun_fact_de": "Ursprünglich vom Album „Bring the Family“. Wurde zum Standard, gecovert von Joe Cocker, Jewel und anderen. Oft bei Hochzeiten und in Filmen verwendet.",
       "fun_fact_es": "Originalmente del álbum «Bring the Family». Se convirtió en un clásico versionado por Joe Cocker, Jewel y otros. Muy utilizada en bodas y películas.",
       "fun_fact_fr": "Tiré de l'album 'Bring the Family', ce morceau est devenu un standard repris par Joe Cocker, Jewel et bien d'autres. Il est souvent joué lors de mariages et dans des films.",
       "uri_apple_music": "applemusic://track/1443202048",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7aYxMuLb3h8"
-    },
-    {
-      "year": 1987,
-      "uri": "spotify:track:33fp2NopvrTQ9vyB1zKxHA",
-      "artist": "Midnight Oil",
-      "title": "Beds Are Burning",
-      "alt_artists": [
-        "INXS",
-        "Crowded House"
-      ],
-      "certifications": [
-        "Gold (US)",
-        "Gold (UK)"
-      ],
-      "fun_fact": "The song is about returning land rights to the Pintupi people of the Australian Western Desert. It became a global hit and an anthem for indigenous rights.",
-      "fun_fact_de": "Der Song handelt von der Rückgabe der Landrechte an die Pintupi im australischen Western Desert und wurde zu einer Hymne für indigene Rechte.",
-      "fun_fact_es": "La canción trata sobre la devolución de derechos territoriales al pueblo Pintupi del desierto occidental australiano y se convirtió en un himno de los derechos indígenas.",
-      "fun_fact_fr": "La chanson parle de la restitution des droits fonciers au peuple Pintupi du désert occidental australien et est devenue un hymne pour les droits des peuples autochtones.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/557443471",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ejorQVy3m8E",
-      "uri_tidal": "tidal://track/11344011"
     },
     {
       "year": 1987,
@@ -4027,28 +2609,6 @@
     },
     {
       "year": 1987,
-      "uri": "spotify:track:3k5BXtsudQFynAlzYIzCgF",
-      "artist": "R.E.M.",
-      "title": "The One I Love",
-      "alt_artists": [
-        "The Smiths",
-        "10,000 Maniacs"
-      ],
-      "certifications": [
-        "Gold (US)"
-      ],
-      "fun_fact": "Often mistaken for a love song, Michael Stipe described it as 'a brutal song' about using another person. It was R.E.M.'s first US Top 10 hit.",
-      "fun_fact_de": "Oft als Liebeslied missverstanden, beschrieb Michael Stipe ihn als 'brutalen Song' über das Ausnutzen einer anderen Person. Es war R.E.M.s erster US-Top-10-Hit.",
-      "fun_fact_es": "A menudo confundida con una canción de amor, Michael Stipe la describió como 'una canción brutal' sobre usar a otra persona. Fue el primer Top 10 de R.E.M. en EE.UU.",
-      "fun_fact_fr": "Souvent prise pour une chanson d'amour, Michael Stipe l'a décrite comme 'une chanson brutale' sur l'utilisation d'une autre personne. C'était le premier Top 10 de R.E.M. aux États-Unis.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440850621",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=j7oQEPfe-O8",
-      "uri_tidal": "tidal://track/628462"
-    },
-    {
-      "year": 1987,
       "uri": "spotify:track:4cOdK2wGLETKBW3PvgPWqT",
       "artist": "Rick Astley",
       "alt_artists": [
@@ -4067,32 +2627,12 @@
       ],
       "awards": [],
       "fun_fact": "Stock Aitken Waterman's biggest hit. In 2007, it became the basis of 'Rickrolling' - the internet prank that gave Rick Astley a whole new generation of fans.",
-      "fun_fact_de": "Der größte Hit von Stock Aitken Waterman. 2007 wurde er zur Grundlage des \"Rickrolling\" - des Internet-Pranks, der Rick Astley eine ganz neue Fangeneration bescherte.",
+      "fun_fact_de": "Der größte Hit von Stock Aitken Waterman. 2007 wurde er zur Grundlage des „Rickrolling“ – des Internet-Pranks, der Rick Astley eine ganz neue Fangeneration bescherte.",
       "fun_fact_es": "El mayor éxito de Stock Aitken Waterman. En 2007 se convirtió en la base del «Rickrolling», la broma de internet que le dio a Rick Astley una nueva generación de fans.",
       "fun_fact_fr": "Le plus grand succès de Stock Aitken Waterman. En 2007, il est devenu le point de départ du 'Rickrolling', cette blague virale sur internet qui a offert à Rick Astley une toute nouvelle génération de fans.",
       "uri_apple_music": "applemusic://track/1559885421",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dQw4w9WgXcQ",
       "uri_tidal": "tidal://track/101982419"
-    },
-    {
-      "year": 1987,
-      "uri": "spotify:track:6EZDbjz2X5XzgIZCtbsrXh",
-      "artist": "Siouxsie and the Banshees",
-      "title": "The Passenger",
-      "alt_artists": [
-        "The Cure",
-        "Bauhaus"
-      ],
-      "certifications": [],
-      "fun_fact": "This is a cover of Iggy Pop's 1977 song. Siouxsie's version reached the UK Top 50 and introduced the song to a wider audience in the late 80s goth scene.",
-      "fun_fact_de": "Dies ist ein Cover von Iggy Pops Song von 1977. Siouxsies Version erreichte die UK Top 50 und machte den Song einem breiteren Publikum der Gothic-Szene der späten 80er bekannt.",
-      "fun_fact_es": "Esta es una versión del tema de Iggy Pop de 1977. La versión de Siouxsie alcanzó el Top 50 del Reino Unido y presentó la canción a un público más amplio de la escena gótica.",
-      "fun_fact_fr": "C'est une reprise de la chanson d'Iggy Pop de 1977. La version de Siouxsie a atteint le Top 50 au Royaume-Uni et a fait découvrir la chanson à un public plus large de la scène goth.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1443124526",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4nAON-MwUPY",
-      "uri_tidal": "tidal://track/36257187"
     },
     {
       "year": 1987,
@@ -4171,26 +2711,6 @@
       "fun_fact_fr": "Le premier single de Taylor Dayne, celui qui a lancé sa carrière. La chanson est devenue un incontournable des pistes de danse et a été remixée d'innombrables fois au fil des décennies.",
       "uri_apple_music": "applemusic://track/1329359020",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ud6sU3AclT4"
-    },
-    {
-      "year": 1987,
-      "uri": "spotify:track:4NnWuGQujzWUEg0uZokO5M",
-      "artist": "The Cure",
-      "title": "Just Like Heaven",
-      "alt_artists": [
-        "The Smiths",
-        "Echo & the Bunnymen"
-      ],
-      "certifications": [],
-      "fun_fact": "Robert Smith wrote this about a trip to Beachy Head with his future wife Mary. It's considered one of the greatest love songs of the 80s and was covered by Dinosaur Jr.",
-      "fun_fact_de": "Robert Smith schrieb dies über einen Ausflug nach Beachy Head mit seiner späteren Frau Mary. Er gilt als einer der größten Liebessongs der 80er und wurde von Dinosaur Jr. gecovert.",
-      "fun_fact_es": "Robert Smith escribió esta canción sobre un viaje a Beachy Head con su futura esposa Mary. Es considerada una de las mejores canciones de amor de los 80.",
-      "fun_fact_fr": "Robert Smith a écrit cette chanson lors d'un voyage à Beachy Head avec sa future femme Mary. Elle est considérée comme l'une des plus grandes chansons d'amour des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1452806384",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=n3nPiBai66M",
-      "uri_tidal": "tidal://track/529746"
     },
     {
       "year": 1987,
@@ -4384,26 +2904,6 @@
     },
     {
       "year": 1988,
-      "uri": "spotify:track:75L9Ar9orlVIDcMTbXuDKf",
-      "artist": "Prefab Sprout",
-      "title": "The King of Rock 'N' Roll",
-      "alt_artists": [
-        "Aztec Camera",
-        "The Blue Nile"
-      ],
-      "certifications": [],
-      "fun_fact": "The catchy 'hot dog, jumping frog, Albuquerque' hook was Paddy McAloon's parody of simplistic pop lyrics, yet it became their biggest hit.",
-      "fun_fact_de": "Der eingängige 'Hot Dog, Jumping Frog, Albuquerque'-Hook war Paddy McAloons Parodie auf simplistische Pop-Texte, wurde aber ihr größter Hit.",
-      "fun_fact_es": "El pegadizo 'hot dog, jumping frog, Albuquerque' era la parodia de Paddy McAloon de las letras pop simplistas, pero se convirtió en su mayor éxito.",
-      "fun_fact_fr": "Le refrain accrocheur 'hot dog, jumping frog, Albuquerque' était la parodie de Paddy McAloon des paroles pop simplistes, mais c'est devenu leur plus grand succès.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1476849933",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4T6e3GJCjow",
-      "uri_tidal": "tidal://track/3392964"
-    },
-    {
-      "year": 1988,
       "uri": "spotify:track:1rIYNrhkGLg7E7pNVK2vI9",
       "artist": "Soulsister",
       "alt_artists": [
@@ -4427,43 +2927,26 @@
     },
     {
       "year": 1988,
-      "uri": "spotify:track:57A5R3DFTvVpTiQfEhP5jY",
-      "artist": "The La's",
-      "title": "There She Goes",
+      "uri": "spotify:track:3f1vS3Tw6xk9bVSfXt0Q1g",
+      "artist": "TOTO",
       "alt_artists": [
-        "The Stone Roses",
-        "The Charlatans"
+        "Chicago",
+        "Foreigner"
       ],
+      "title": "Stop Loving You",
+      "chart_info": {
+        "billboard_peak": 0,
+        "uk_peak": 69,
+        "weeks_on_chart": 8
+      },
       "certifications": [],
-      "fun_fact": "Lee Mavers was so dissatisfied with every recorded version that the band re-recorded it three times. The song is debated as being either about a girl or about heroin.",
-      "fun_fact_de": "Lee Mavers war so unzufrieden mit jeder aufgenommenen Version, dass die Band sie dreimal neu aufnahm. Es wird debattiert, ob der Song von einem Mädchen oder von Heroin handelt.",
-      "fun_fact_es": "Lee Mavers estaba tan insatisfecho con cada versión grabada que la banda la regrabó tres veces. Se debate si la canción es sobre una chica o sobre heroína.",
-      "fun_fact_fr": "Lee Mavers était si insatisfait de chaque version enregistrée que le groupe l'a réenregistrée trois fois. On débat pour savoir si la chanson parle d'une fille ou d'héroïne.",
-      "chart_info": {},
       "awards": [],
-      "uri_apple_music": "applemusic://track/1443735637",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CZXLLMbJdZ4",
-      "uri_tidal": "tidal://track/1666608"
-    },
-    {
-      "year": 1988,
-      "uri": "spotify:track:448t63bYlXVmM04NzeWoxG",
-      "artist": "The Mission",
-      "title": "Tower Of Strength",
-      "alt_artists": [
-        "The Sisters of Mercy",
-        "Fields of the Nephilim"
-      ],
-      "certifications": [],
-      "fun_fact": "Released on the same day as The Sisters of Mercy's single, sparking a rivalry. The song reached #12 in the UK and became a goth rock anthem.",
-      "fun_fact_de": "Am selben Tag wie die Single der Sisters of Mercy veröffentlicht, was eine Rivalität auslöste. Der Song erreichte #12 in Großbritannien und wurde zur Gothic-Rock-Hymne.",
-      "fun_fact_es": "Lanzada el mismo día que el sencillo de The Sisters of Mercy, provocando una rivalidad. La canción alcanzó el #12 en el Reino Unido y se convirtió en un himno del rock gótico.",
-      "fun_fact_fr": "Sorti le même jour que le single des Sisters of Mercy, déclenchant une rivalité. La chanson a atteint la 12e place au Royaume-Uni et est devenue un hymne du rock gothique.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1443511074",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yTcwMDKTP2A",
-      "uri_tidal": "tidal://track/3946150"
+      "fun_fact": "From their album 'The Seventh One'. While not as big as 'Africa' or 'Rosanna', it showcased the band's continued ability to craft melodic rock ballads.",
+      "fun_fact_de": "Vom Album „The Seventh One“. Zwar nicht so groß wie „Africa“ oder „Rosanna“, aber er zeigte, dass die Band weiterhin melodische Rockballaden meisterhaft beherrschte.",
+      "fun_fact_es": "De su álbum «The Seventh One». Aunque no tan grande como «Africa» o «Rosanna», demostró la capacidad continua de la banda para crear baladas de rock melódico.",
+      "fun_fact_fr": "Tiré de leur album 'The Seventh One'. Bien que moins célèbre qu''Africa' ou 'Rosanna', ce morceau démontrait la capacité intacte du groupe à créer des ballades rock mélodiques.",
+      "uri_apple_music": "applemusic://track/186708957",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bYr3OJOXk60"
     },
     {
       "year": 1988,
@@ -4491,29 +2974,6 @@
       "uri_apple_music": "applemusic://track/693789044",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tbNlMtqrYS0",
       "uri_tidal": "tidal://track/137251"
-    },
-    {
-      "year": 1988,
-      "uri": "spotify:track:3f1vS3Tw6xk9bVSfXt0Q1g",
-      "artist": "TOTO",
-      "alt_artists": [
-        "Chicago",
-        "Foreigner"
-      ],
-      "title": "Stop Loving You",
-      "chart_info": {
-        "billboard_peak": 0,
-        "uk_peak": 69,
-        "weeks_on_chart": 8
-      },
-      "certifications": [],
-      "awards": [],
-      "fun_fact": "From their album 'The Seventh One'. While not as big as 'Africa' or 'Rosanna', it showcased the band's continued ability to craft melodic rock ballads.",
-      "fun_fact_de": "[DE] From their album 'The Seventh One'. While not as big as 'Africa' or 'Rosanna', i...",
-      "fun_fact_es": "[ES] From their album 'The Seventh One'. While not as big as 'Africa' or 'Rosanna', i...",
-      "fun_fact_fr": "Tiré de leur album 'The Seventh One'. Bien que moins célèbre qu''Africa' ou 'Rosanna', ce morceau démontrait la capacité intacte du groupe à créer des ballades rock mélodiques.",
-      "uri_apple_music": "applemusic://track/186708957",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bYr3OJOXk60"
     },
     {
       "year": 1988,
@@ -4564,26 +3024,6 @@
       "uri_apple_music": "applemusic://track/79565502",
       "uri_youtube_music": "https://music.youtube.com/watch?v=721JQZw6Spg",
       "uri_tidal": "tidal://track/342801"
-    },
-    {
-      "year": 1988,
-      "uri": "spotify:track:2DjWsDGgL1xNbhnr7f6t5F",
-      "artist": "Tracy Chapman",
-      "title": "Baby Can I Hold You",
-      "alt_artists": [
-        "Suzanne Vega",
-        "Joan Armatrading"
-      ],
-      "certifications": [],
-      "fun_fact": "From her self-titled debut album that sold over 20 million copies. Boyzone later had a #2 UK hit with their cover in 1997.",
-      "fun_fact_de": "Von ihrem selbstbetitelten Debütalbum, das sich über 20 Millionen Mal verkaufte. Boyzone hatten 1997 mit ihrem Cover einen #2-UK-Hit.",
-      "fun_fact_es": "De su álbum debut homónimo que vendió más de 20 millones de copias. Boyzone tuvo un éxito #2 en el Reino Unido con su versión en 1997.",
-      "fun_fact_fr": "De son premier album éponyme vendu à plus de 20 millions d'exemplaires. Boyzone a eu un succès #2 au Royaume-Uni avec leur reprise en 1997.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/79565526",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DqoLMGSBGYc",
-      "uri_tidal": "tidal://track/342805"
     },
     {
       "year": 1988,
@@ -4689,48 +3129,6 @@
     },
     {
       "year": 1989,
-      "uri": "spotify:track:3jXF03tYOTMWempa7nrqTA",
-      "artist": "Del Amitri",
-      "title": "Nothing Ever Happens",
-      "alt_artists": [
-        "Deacon Blue",
-        "Aztec Camera"
-      ],
-      "certifications": [],
-      "fun_fact": "This wry social commentary became Del Amitri's biggest UK hit, reaching #11. Its cynical lyrics about modern apathy resonated deeply with late-80s audiences.",
-      "fun_fact_de": "Dieser trockene Gesellschaftskommentar wurde Del Amitris größter UK-Hit und erreichte #11. Die zynischen Texte über moderne Apathie trafen den Nerv des Publikums der späten 80er.",
-      "fun_fact_es": "Este irónico comentario social se convirtió en el mayor éxito de Del Amitri en el Reino Unido, alcanzando el #11. Sus letras cínicas sobre la apatía moderna resonaron con el público de finales de los 80.",
-      "fun_fact_fr": "Ce commentaire social ironique est devenu le plus grand succès de Del Amitri au Royaume-Uni, atteignant la 11e place. Ses paroles cyniques sur l'apathie moderne ont profondément résonné avec le public de la fin des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440913575",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=c4rPYw6P8Ls",
-      "uri_tidal": "tidal://track/630180"
-    },
-    {
-      "year": 1989,
-      "uri": "spotify:track:0e3yhVeNaTfKIWQRw9U9sY",
-      "artist": "Elton John",
-      "title": "Sacrifice",
-      "alt_artists": [
-        "Billy Joel",
-        "Phil Collins"
-      ],
-      "certifications": [
-        "Platinum (UK)"
-      ],
-      "fun_fact": "This was Elton John's first solo #1 in the UK, despite having had hits since the early 1970s. It took him 20 years to achieve a solo chart-topper in his home country.",
-      "fun_fact_de": "Dies war Elton Johns erste Solo-#1 in Großbritannien, obwohl er seit den frühen 1970ern Hits hatte. Er brauchte 20 Jahre für eine Solo-Chartspitze in seiner Heimat.",
-      "fun_fact_es": "Este fue el primer #1 en solitario de Elton John en el Reino Unido, a pesar de tener éxitos desde los años 70. Le tomó 20 años lograr un #1 en solitario en su país.",
-      "fun_fact_fr": "C'était le premier #1 solo d'Elton John au Royaume-Uni, malgré des tubes depuis les années 70. Il lui a fallu 20 ans pour atteindre le sommet des charts en solo dans son pays.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1440918552",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NrLkTZrPZA4",
-      "uri_tidal": "tidal://track/334676"
-    },
-    {
-      "year": 1989,
       "uri": "spotify:track:1z3ugFmUKoCzGsI6jdY4Ci",
       "artist": "Madonna",
       "alt_artists": [
@@ -4755,26 +3153,6 @@
       "uri_apple_music": "applemusic://track/329519309",
       "uri_youtube_music": "https://music.youtube.com/watch?v=79fzeNUqQbQ",
       "uri_tidal": "tidal://track/1669822"
-    },
-    {
-      "year": 1989,
-      "uri": "spotify:track:41bdgBL7tjwQOl7RpwubKU",
-      "artist": "New Model Army",
-      "title": "Vagabonds",
-      "alt_artists": [
-        "The Levellers",
-        "The Pogues"
-      ],
-      "certifications": [],
-      "fun_fact": "This anthemic song about outsiders and drifters became New Model Army's biggest hit and a festival favorite, embodying the spirit of the late 80s alternative scene.",
-      "fun_fact_de": "Dieser hymnische Song über Außenseiter und Wanderer wurde New Model Armys größter Hit und ein Festival-Favorit, der den Geist der alternativen Szene der späten 80er verkörperte.",
-      "fun_fact_es": "Esta canción himno sobre forasteros y vagabundos se convirtió en el mayor éxito de New Model Army y un favorito de festivales, encarnando el espíritu de la escena alternativa de finales de los 80.",
-      "fun_fact_fr": "Cette chanson hymne sur les marginaux et les vagabonds est devenue le plus grand succès de New Model Army et un favori des festivals, incarnant l'esprit de la scène alternative de la fin des années 80.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/697137511",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OW-YjYESNOY",
-      "uri_tidal": "tidal://track/1500350"
     },
     {
       "year": 1989,
@@ -4810,28 +3188,6 @@
     },
     {
       "year": 1989,
-      "uri": "spotify:track:7gwYkN0HCB3EnLRE1Wk2Eg",
-      "artist": "Simple Minds",
-      "title": "Belfast Child",
-      "alt_artists": [
-        "U2",
-        "Big Country"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "At 6:39, this was one of the longest singles to reach #1 in the UK. It was inspired by the Troubles in Northern Ireland and based on the Irish folk tune 'She Moved Through the Fair'.",
-      "fun_fact_de": "Mit 6:39 war dies eine der längsten Singles, die #1 in Großbritannien erreichten. Inspiriert von den Unruhen in Nordirland, basiert sie auf der irischen Volksweise 'She Moved Through the Fair'.",
-      "fun_fact_es": "Con 6:39, fue uno de los sencillos más largos en alcanzar el #1 en el Reino Unido. Fue inspirada por los Troubles en Irlanda del Norte y basada en la melodía folclórica irlandesa 'She Moved Through the Fair'.",
-      "fun_fact_fr": "Avec 6:39, c'était l'un des plus longs singles à atteindre le #1 au Royaume-Uni. Inspiré par les Troubles en Irlande du Nord, il est basé sur l'air folklorique irlandais 'She Moved Through the Fair'.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1494164865",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7vhhTvcLoRw",
-      "uri_tidal": "tidal://track/1463626"
-    },
-    {
-      "year": 1989,
       "uri": "spotify:track:2WXt3VKk9tKF2BZfAPDNrN",
       "artist": "Simply Red",
       "alt_artists": [
@@ -4855,26 +3211,6 @@
       "fun_fact_fr": "Une reprise du tube de 1972 de Harold Melvin & the Blue Notes. La version pleine de soul de Mick Hucknall a atteint la première place aux États-Unis et est devenue la chanson signature de Simply Red.",
       "uri_apple_music": "applemusic://track/294361567",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zTcu7MCtuTs"
-    },
-    {
-      "year": 1989,
-      "uri": "spotify:track:0spzirsbovky7dDvHggwqU",
-      "artist": "Tears For Fears",
-      "title": "Woman In Chains",
-      "alt_artists": [
-        "Peter Gabriel",
-        "Phil Collins"
-      ],
-      "certifications": [],
-      "fun_fact": "Oleta Adams sang the duet part after Roland Orzabal discovered her performing in a Kansas City hotel bar during a tour.",
-      "fun_fact_de": "Oleta Adams sang den Duett-Part, nachdem Roland Orzabal sie während einer Tour in einer Hotelbar in Kansas City entdeckt hatte.",
-      "fun_fact_es": "Oleta Adams cantó la parte del dúo después de que Roland Orzabal la descubriera actuando en un bar de hotel en Kansas City durante una gira.",
-      "fun_fact_fr": "Oleta Adams a chanté la partie en duo après que Roland Orzabal l'a découverte se produisant dans un bar d'hôtel à Kansas City pendant une tournée.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1527554456",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QzkK3ZtI9SU",
-      "uri_tidal": "tidal://track/80812890"
     },
     {
       "year": 1989,
@@ -4902,26 +3238,6 @@
       "uri_apple_music": "applemusic://track/185603176",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PSoOFn3wQV4",
       "uri_tidal": "tidal://track/2811812"
-    },
-    {
-      "year": 1989,
-      "uri": "spotify:track:0ZYdUkAQmKHsaKRmq8tWSE",
-      "artist": "The Cure",
-      "title": "Lullaby",
-      "alt_artists": [
-        "Siouxsie and the Banshees",
-        "Bauhaus"
-      ],
-      "certifications": [],
-      "fun_fact": "The song describes being eaten by a 'spiderman' and was inspired by Robert Smith's childhood nightmares. The Tim Pope-directed video won multiple awards.",
-      "fun_fact_de": "Der Song beschreibt, von einem 'Spiderman' gefressen zu werden, und wurde von Robert Smiths Kindheits-Albträumen inspiriert. Das von Tim Pope gedrehte Video gewann mehrere Preise.",
-      "fun_fact_es": "La canción describe ser devorado por un 'hombre araña' y fue inspirada por las pesadillas infantiles de Robert Smith. El video dirigido por Tim Pope ganó múltiples premios.",
-      "fun_fact_fr": "La chanson décrit le fait d'être dévoré par un 'homme-araignée' et a été inspirée par les cauchemars d'enfance de Robert Smith. Le clip réalisé par Tim Pope a remporté plusieurs prix.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/372100077",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dnn49P7vSdc",
-      "uri_tidal": "tidal://track/3939796"
     },
     {
       "year": 1989,
@@ -4975,48 +3291,6 @@
       "uri_apple_music": "applemusic://track/1440825619",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1lWJXDG2i0A",
       "uri_tidal": "tidal://track/77555379"
-    },
-    {
-      "year": 1990,
-      "uri": "spotify:track:2QkFENeLttDT4GISXvVeFq",
-      "artist": "The Farm",
-      "title": "All Together Now",
-      "alt_artists": [
-        "The La's",
-        "The Stone Roses"
-      ],
-      "certifications": [
-        "Gold (UK)"
-      ],
-      "fun_fact": "Inspired by the 1914 Christmas Truce during WWI, the song became a football anthem and was later used for the 2004 European Championship.",
-      "fun_fact_de": "Inspiriert vom Weihnachtsfrieden 1914 im Ersten Weltkrieg wurde der Song zur Fußballhymne und wurde bei der Europameisterschaft 2004 verwendet.",
-      "fun_fact_es": "Inspirada en la Tregua de Navidad de 1914 durante la Primera Guerra Mundial, la canción se convirtió en un himno del fútbol y fue usada en la Eurocopa 2004.",
-      "fun_fact_fr": "Inspirée par la Trêve de Noël de 1914 pendant la Première Guerre mondiale, la chanson est devenue un hymne du football et a été utilisée pour le Championnat d'Europe 2004.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/1557201161",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iRgtzZ-mOQo",
-      "uri_tidal": "tidal://track/490869826"
-    },
-    {
-      "year": 1991,
-      "uri": "spotify:track:7bljdWZ5t9VqfBbGFjwZ98",
-      "artist": "Orchestral Manoeuvres In The Dark",
-      "title": "Sailing On The Seven Seas",
-      "alt_artists": [
-        "Depeche Mode",
-        "Pet Shop Boys"
-      ],
-      "certifications": [],
-      "fun_fact": "This comeback single marked OMD's return to the charts after a quiet period, reaching #3 in the UK and becoming their biggest hit since the mid-80s.",
-      "fun_fact_de": "Diese Comeback-Single markierte OMDs Rückkehr in die Charts nach einer ruhigen Phase und erreichte #3 in Großbritannien.",
-      "fun_fact_es": "Este sencillo de regreso marcó el retorno de OMD a las listas después de un período tranquilo, alcanzando el #3 en el Reino Unido.",
-      "fun_fact_fr": "Ce single de retour a marqué le retour d'OMD dans les charts après une période calme, atteignant la 3e place au Royaume-Uni.",
-      "chart_info": {},
-      "awards": [],
-      "uri_apple_music": "applemusic://track/714617957",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lMST3H69-Os",
-      "uri_tidal": "tidal://track/1577114"
     },
     {
       "year": 1991,
