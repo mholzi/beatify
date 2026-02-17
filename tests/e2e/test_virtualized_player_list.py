@@ -10,7 +10,7 @@ Tests that the player list:
 from __future__ import annotations
 
 import pytest
-from playwright.async_api import Page, expect
+from playwright.sync_api import Page, expect
 
 # =============================================================================
 # TEST CASES
@@ -18,16 +18,16 @@ from playwright.async_api import Page, expect
 
 
 @pytest.mark.asyncio
-async def test_player_list_renders_all_under_threshold(page: Page, base_url: str):
+def test_player_list_renders_all_under_threshold(page: Page, base_url: str):
     """
     AC #1: When player count is below threshold (15), render all players.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Inject 10 players (below threshold)
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 10; i++) {
@@ -39,14 +39,14 @@ async def test_player_list_renders_all_under_threshold(page: Page, base_url: str
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # All 10 players should be rendered
-    entry_count = await page.locator(".player-card").count()
+    entry_count = page.locator(".player-card").count()
     assert entry_count == 10, f"Expected all 10 players rendered, got {entry_count}"
 
     # Should NOT have virtual class
-    has_virtual_class = await page.evaluate("""
+    has_virtual_class = page.evaluate("""
         () => {
             const list = document.getElementById('player-list');
             return list && list.classList.contains('player-list--virtual');
@@ -56,16 +56,16 @@ async def test_player_list_renders_all_under_threshold(page: Page, base_url: str
 
 
 @pytest.mark.asyncio
-async def test_player_list_virtualizes_above_threshold(page: Page, base_url: str):
+def test_player_list_virtualizes_above_threshold(page: Page, base_url: str):
     """
     AC #1: When player count is 15+, use virtual scrolling.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Inject 20 players (above threshold)
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 20; i++) {
@@ -77,10 +77,10 @@ async def test_player_list_virtualizes_above_threshold(page: Page, base_url: str
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Should have virtual class
-    has_virtual_class = await page.evaluate("""
+    has_virtual_class = page.evaluate("""
         () => {
             const list = document.getElementById('player-list');
             return list && list.classList.contains('player-list--virtual');
@@ -90,17 +90,17 @@ async def test_player_list_virtualizes_above_threshold(page: Page, base_url: str
 
 
 @pytest.mark.asyncio
-async def test_virtual_list_renders_limited_dom_nodes(page: Page, base_url: str):
+def test_virtual_list_renders_limited_dom_nodes(page: Page, base_url: str):
     """
     AC #1: DOM nodes remain constant regardless of player count.
     With overscan of 3 and ~6 visible items, expect 8-12 rendered.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Inject 20 players
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 20; i++) {
@@ -112,26 +112,26 @@ async def test_virtual_list_renders_limited_dom_nodes(page: Page, base_url: str)
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Count rendered player cards
-    entry_count = await page.locator(".player-card").count()
+    entry_count = page.locator(".player-card").count()
 
     # With virtual scrolling, should have ~8-12 entries, not 20
     assert entry_count < 15, f"Expected virtualized DOM (<15 nodes), got {entry_count}"
 
 
 @pytest.mark.asyncio
-async def test_virtual_list_has_spacers(page: Page, base_url: str):
+def test_virtual_list_has_spacers(page: Page, base_url: str):
     """
     AC #1: Virtual list uses spacer elements to maintain scroll height.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Inject 20 players
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 20; i++) {
@@ -143,10 +143,10 @@ async def test_virtual_list_has_spacers(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Check for spacer elements
-    has_spacers = await page.evaluate("""
+    has_spacers = page.evaluate("""
         () => {
             const list = document.getElementById('player-list');
             if (!list) return false;
@@ -160,16 +160,16 @@ async def test_virtual_list_has_spacers(page: Page, base_url: str):
 
 
 @pytest.mark.asyncio
-async def test_player_badges_render_correctly(page: Page, base_url: str):
+def test_player_badges_render_correctly(page: Page, base_url: str):
     """
     AC #1: Admin badge, you badge, and disconnected state render correctly.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Set current player name and inject players with various states
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             window.playerName = 'Player5';
             const players = [];
@@ -185,38 +185,38 @@ async def test_player_badges_render_correctly(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Check "You" badge is visible
     you_badge = page.locator(".player-card--you .you-badge")
-    await expect(you_badge).to_be_visible()
+    expect(you_badge).to_be_visible()
 
     # Check disconnected player has away badge (need to scroll to see it)
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const list = document.getElementById('player-list');
             if (list) list.scrollTop = 0;
         }
     """)
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     disconnected_card = page.locator(".player-card--disconnected")
-    count = await disconnected_card.count()
+    count = disconnected_card.count()
     # Disconnected player may or may not be in current viewport
     assert count >= 0, "Disconnected styling should be applied"
 
 
 @pytest.mark.asyncio
-async def test_new_player_animation_works(page: Page, base_url: str):
+def test_new_player_animation_works(page: Page, base_url: str):
     """
     AC #2: New player entrance animations work with virtualization.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Initial render with 15 players
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             window.previousPlayers = [];
             const players = [];
@@ -229,10 +229,10 @@ async def test_new_player_animation_works(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Add a new player
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 16; i++) {
@@ -244,26 +244,26 @@ async def test_new_player_animation_works(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(50)
+    page.wait_for_timeout(50)
 
     # New player should have is-new class (if visible)
     new_card = page.locator(".player-card.is-new")
-    count = await new_card.count()
+    count = new_card.count()
     # New player may or may not be in viewport
     assert count >= 0, "New player animation class should be supported"
 
 
 @pytest.mark.asyncio
-async def test_scroll_updates_visible_items(page: Page, base_url: str):
+def test_scroll_updates_visible_items(page: Page, base_url: str):
     """
     AC #2: Scrolling down loads additional entries smoothly.
     """
-    await page.goto(f"{base_url}/beatify/play?game=testgame")
+    page.goto(f"{base_url}/beatify/play?game=testgame")
 
-    await page.wait_for_selector("#player-list", state="visible")
+    page.wait_for_selector("#player-list", state="visible")
 
     # Inject 20 players
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const players = [];
             for (let i = 0; i < 20; i++) {
@@ -275,10 +275,10 @@ async def test_scroll_updates_visible_items(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(100)
+    page.wait_for_timeout(100)
 
     # Scroll to bottom
-    await page.evaluate("""
+    page.evaluate("""
         () => {
             const list = document.getElementById('player-list');
             if (list) {
@@ -287,14 +287,14 @@ async def test_scroll_updates_visible_items(page: Page, base_url: str):
         }
     """)
 
-    await page.wait_for_timeout(200)
+    page.wait_for_timeout(200)
 
     # After scrolling, should still have player cards visible
-    final_count = await page.locator(".player-card").count()
+    final_count = page.locator(".player-card").count()
     assert final_count > 0, "Entries should remain visible after scrolling"
 
     # Last player should be rendered after scrolling to bottom
-    last_player = await page.evaluate("""
+    last_player = page.evaluate("""
         () => {
             const cards = document.querySelectorAll('.player-card');
             if (cards.length === 0) return null;

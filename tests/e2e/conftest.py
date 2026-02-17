@@ -1,23 +1,21 @@
 """
 E2E Test Fixtures for Playwright Browser Tests.
 
-Provides fixtures for:
-- Admin page URL configuration
-- Player page URL configuration
-- Mock API responses for game scenarios
+Uses Playwright SYNC API (provided by pytest-playwright).
+All fixtures and tests use synchronous page interactions.
 """
 
 from __future__ import annotations
 
 import pytest
-from playwright.async_api import Page, Route
+from playwright.sync_api import Page, Route
 
 # =============================================================================
 # URL FIXTURES
 # =============================================================================
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def base_url() -> str:
     """Base URL for the test server."""
     return "http://localhost:8123"
@@ -79,46 +77,46 @@ def create_base_status() -> dict:
 
 
 @pytest.fixture
-def mock_status_with_playlists(page: Page):
+def mock_status_with_playlists():
     """Mock status API with playlists available."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/status" in route.request.url:
             status = create_base_status()
             status["playlists"] = [
                 {"path": "80s-hits.json", "name": "80s Hits", "song_count": 20, "is_valid": True, "errors": []},
                 {"path": "90s-pop.json", "name": "90s Pop", "song_count": 15, "is_valid": True, "errors": []},
             ]
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
 
 @pytest.fixture
-def mock_status_with_media_players(page: Page):
+def mock_status_with_media_players():
     """Mock status API with media players available."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/status" in route.request.url:
             status = create_base_status()
             status["media_players"] = [
                 {"entity_id": "media_player.living_room", "friendly_name": "Living Room Speaker", "state": "idle"},
                 {"entity_id": "media_player.kitchen", "friendly_name": "Kitchen Speaker", "state": "playing"},
             ]
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
 
 @pytest.fixture
-def mock_status_full(page: Page):
+def mock_status_full():
     """Mock status API with both playlists and media players."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/status" in route.request.url:
             status = create_base_status()
             status["playlists"] = [
@@ -127,18 +125,18 @@ def mock_status_full(page: Page):
             status["media_players"] = [
                 {"entity_id": "media_player.living_room", "friendly_name": "Living Room Speaker", "state": "idle"},
             ]
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
 
 @pytest.fixture
-def mock_status_with_active_game(page: Page):
+def mock_status_with_active_game():
     """Mock status API with an active game."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/status" in route.request.url:
             status = create_base_status()
             status["playlists"] = [
@@ -153,9 +151,9 @@ def mock_status_with_active_game(page: Page):
                 "player_count": 0,
                 "join_url": "http://localhost:8123/beatify/play?game=test123abc",
             }
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
@@ -166,14 +164,14 @@ def mock_status_with_active_game(page: Page):
 
 
 @pytest.fixture
-def mock_start_game(page: Page):
+def mock_start_game():
     """Mock start game API and status API."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         url = route.request.url
 
         if "/beatify/api/start-game" in url:
-            await route.fulfill(
+            route.fulfill(
                 json={
                     "game_id": "newgame123",
                     "join_url": "http://localhost:8123/beatify/play?game=newgame123",
@@ -190,24 +188,24 @@ def mock_start_game(page: Page):
             status["media_players"] = [
                 {"entity_id": "media_player.living_room", "friendly_name": "Living Room Speaker", "state": "idle"},
             ]
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
 
 @pytest.fixture
-def mock_end_game(page: Page):
+def mock_end_game():
     """Mock end game API and related APIs."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         url = route.request.url
 
         if "/beatify/api/end-game" in url:
-            await route.fulfill(json={"success": True})
+            route.fulfill(json={"success": True})
         elif "/beatify/api/start-game" in url:
-            await route.fulfill(
+            route.fulfill(
                 json={
                     "game_id": "newgame123",
                     "join_url": "http://localhost:8123/beatify/play?game=newgame123",
@@ -224,9 +222,9 @@ def mock_end_game(page: Page):
             status["media_players"] = [
                 {"entity_id": "media_player.living_room", "friendly_name": "Living Room Speaker", "state": "idle"},
             ]
-            await route.fulfill(json=status)
+            route.fulfill(json=status)
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
@@ -237,12 +235,12 @@ def mock_end_game(page: Page):
 
 
 @pytest.fixture
-def mock_game_status_valid(page: Page):
+def mock_game_status_valid():
     """Mock game status API returning valid game."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/game-status" in route.request.url:
-            await route.fulfill(
+            route.fulfill(
                 json={
                     "exists": True,
                     "phase": "LOBBY",
@@ -250,18 +248,18 @@ def mock_game_status_valid(page: Page):
                 }
             )
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
 
 @pytest.fixture
-def mock_game_status_ended(page: Page):
+def mock_game_status_ended():
     """Mock game status API returning ended game."""
 
-    async def handle_route(route: Route) -> None:
+    def handle_route(route: Route) -> None:
         if "/beatify/api/game-status" in route.request.url:
-            await route.fulfill(
+            route.fulfill(
                 json={
                     "exists": True,
                     "phase": "END",
@@ -269,7 +267,7 @@ def mock_game_status_ended(page: Page):
                 }
             )
         else:
-            await route.continue_()
+            route.continue_()
 
     return handle_route
 
@@ -280,17 +278,15 @@ def mock_game_status_ended(page: Page):
 
 
 @pytest.fixture(autouse=True)
-async def setup_routes(page: Page, request):
+def setup_routes(page: Page, request):
     """
     Auto-setup routes based on test fixtures.
 
-    This fixture checks if the test uses any mock_* fixtures
-    and automatically sets up the route handlers.
+    Checks if the test uses any mock_* fixtures and automatically
+    sets up the Playwright route handlers.
     """
-    # Get all fixture names used by the test
     fixture_names = request.fixturenames
 
-    # Map of fixture names to their handlers
     mock_fixtures = [
         "mock_status_with_playlists",
         "mock_status_with_media_players",
@@ -302,14 +298,12 @@ async def setup_routes(page: Page, request):
         "mock_game_status_ended",
     ]
 
-    # Setup routes for each mock fixture used
     for fixture_name in fixture_names:
         if fixture_name in mock_fixtures:
             handler = request.getfixturevalue(fixture_name)
-            await page.route("**/*", handler)
-            break  # Only one handler per test
+            page.route("**/*", handler)
+            break
 
     yield
 
-    # Cleanup routes
-    await page.unroute("**/*")
+    page.unroute("**/*")

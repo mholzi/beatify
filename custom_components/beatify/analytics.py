@@ -12,7 +12,7 @@ import json
 import logging
 import os
 import time
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, TypedDict
 
@@ -249,7 +249,7 @@ class AnalyticsStorage:
         # Group old games by month and create summaries
         monthly_groups: dict[str, list[GameRecord]] = {}
         for game in old_games:
-            dt = datetime.fromtimestamp(game["ended_at"], tz=UTC)
+            dt = datetime.fromtimestamp(game["ended_at"], tz=timezone.utc)
             month_key = dt.strftime("%Y-%m")
             if month_key not in monthly_groups:
                 monthly_groups[month_key] = []
@@ -453,7 +453,7 @@ class AnalyticsStorage:
         """
         from datetime import timedelta  # noqa: PLC0415
 
-        now = datetime.now(UTC)
+        now = datetime.now(timezone.utc)
 
         if period == "7d":
             # Daily aggregation
@@ -462,7 +462,7 @@ class AnalyticsStorage:
             buckets = {(now - timedelta(days=i)).strftime("%Y-%m-%d"): 0 for i in range(days)}
 
             for game in games:
-                dt = datetime.fromtimestamp(game["ended_at"], tz=UTC)
+                dt = datetime.fromtimestamp(game["ended_at"], tz=timezone.utc)
                 key = dt.strftime("%Y-%m-%d")
                 if key in buckets:
                     buckets[key] += 1
@@ -484,7 +484,7 @@ class AnalyticsStorage:
                 week_buckets[week_start.strftime("%Y-%m-%d")] = 0
 
             for game in games:
-                dt = datetime.fromtimestamp(game["ended_at"], tz=UTC)
+                dt = datetime.fromtimestamp(game["ended_at"], tz=timezone.utc)
                 week_start = dt - timedelta(days=dt.weekday())
                 key = week_start.strftime("%Y-%m-%d")
                 if key in week_buckets:
@@ -500,7 +500,7 @@ class AnalyticsStorage:
             month_buckets: dict[str, int] = {}
 
             for game in games:
-                dt = datetime.fromtimestamp(game["ended_at"], tz=UTC)
+                dt = datetime.fromtimestamp(game["ended_at"], tz=timezone.utc)
                 key = dt.strftime("%Y-%m")
                 month_buckets[key] = month_buckets.get(key, 0) + 1
 

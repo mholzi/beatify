@@ -21,6 +21,7 @@ select = [
 ignore = [
     "E501",   # line too long (handled by formatter)
     "B008",   # do not perform function calls in argument defaults
+    "UP017",  # datetime.UTC alias — we use timezone.utc for Python 3.9 compat
 ]
 
 [lint.isort]

@@ -1886,7 +1886,9 @@ class GameState:
                         _LOGGER.warning("Failed to pause for intro stop: %s", err)
                 self.intro_stopped = True
                 _LOGGER.info("Intro auto-stopped after %.1fs", delay_seconds)
-                await self._broadcast_state()
+                # Broadcast updated state to all clients
+                if self._on_round_end:
+                    await self._on_round_end()
         except asyncio.CancelledError:
             _LOGGER.debug("Intro stop task cancelled")
             raise

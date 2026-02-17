@@ -16,6 +16,6 @@ faker>=22.0.0
 # Type checking (optional)
 mypy>=1.8.0
 
-# Playwright for E2E tests (optional)
-# playwright>=1.40.0
-# pytest-playwright>=0.4.0
+# Playwright for E2E tests
+playwright>=1.40.0
+pytest-playwright>=0.4.0

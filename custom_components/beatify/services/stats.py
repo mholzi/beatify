@@ -6,7 +6,7 @@ import json
 import logging
 import time
 import uuid
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -131,7 +131,7 @@ class StatsService:
         now = int(time.time())
         game_entry = {
             "id": game_id,
-            "date": datetime.now(UTC).isoformat(),
+            "date": datetime.now(timezone.utc).isoformat(),
             "playlist": game_summary.get("playlist", "unknown"),
             "rounds": rounds,
             "player_count": player_count,
