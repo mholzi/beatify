@@ -4734,7 +4734,7 @@ body.theme-dark .movie-reveal-section {
     flex-direction: column;
     align-items: center;
     padding: var(--space-lg);
-    max-width: 400px;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
 }
@@ -7259,10 +7259,6 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-container {
 }
 
 @media (min-width: 768px) {
-    .reveal-container {
-        max-width: 500px;
-    }
-
     .reveal-album-cover {
         width: 180px;
         height: 180px;
