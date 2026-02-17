@@ -1634,8 +1634,10 @@ class GameState:
 
         # Record round start time for speed bonus calculation (Story 5.1)
         # Note: self.round_duration is set in create_game() (Story 13.1)
+        # Intro rounds use INTRO_DURATION_SECONDS as the timer (#23)
         self.round_start_time = self._now()
-        self.deadline = int((self.round_start_time + self.round_duration) * 1000)
+        effective_duration = INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
+        self.deadline = int((self.round_start_time + effective_duration) * 1000)
 
         # Reset player submissions for new round
         for player in self.players.values():
