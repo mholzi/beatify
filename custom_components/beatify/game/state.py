@@ -1809,18 +1809,15 @@ class GameState:
                 bet_tracking=self.bet_tracking,
             )
 
-        # Issue #23: Resume song for intro round reveal (continue from 0:10)
-        if self.is_intro_round and self._media_player_service:
-            try:
-                await self._media_player_service.play()  # Resume from paused position
-            except Exception as err:
-                _LOGGER.warning("Failed to resume song for intro reveal: %s", err)
-                # Fallback: try playing from start
-                if self.current_song:
-                    try:
-                        await self._media_player_service.play_song(self.current_song)
-                    except Exception as err2:
-                        _LOGGER.error("Failed to play song for reveal: %s", err2)
+        # Issue #23: Resume song for intro round reveal
+        # Use play_song() directly — media_play (resume) often fails silently
+        # because Spotify/Sonos drops the playback context after pause.
+        if self.is_intro_round and self.intro_stopped and self._media_player_service:
+            if self.current_song:
+                try:
+                    await self._media_player_service.play_song(self.current_song)
+                except Exception as err:
+                    _LOGGER.warning("Failed to resume song for intro reveal: %s", err)
 
         # Calculate round analytics after scoring (Story 13.3)
         try:
