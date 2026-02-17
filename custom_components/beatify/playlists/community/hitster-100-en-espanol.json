@@ -1,6 +1,6 @@
 {
   "name": "HITSTER 100% en español",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "spanish",
     "spain",
@@ -2598,6 +2598,708 @@
       "uri_apple_music": "applemusic://track/255678856",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lTxGto9ADx0",
       "uri_tidal": "tidal://track/505028"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:5Hu3Y13dE9rEZire0tlAMW",
+      "artist": "Rosario",
+      "alt_artists": [
+        "Ketama",
+        "Antonio Flores",
+        "Lola Flores",
+        "Niña Pastori"
+      ],
+      "title": "Mi Gato",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Different side of Rosario Flores — this playful, funky track showed her versatility beyond the flamenco-pop she's known for, becoming a radio staple in early 90s Spain.",
+      "fun_fact_de": "Eine andere Seite von Rosario Flores — dieser verspielte, funkige Track zeigte ihre Vielseitigkeit jenseits des Flamenco-Pop.",
+      "fun_fact_es": "Otra cara de Rosario Flores — este tema juguetón y funky mostró su versatilidad más allá del flamenco-pop por el que es conocida.",
+      "fun_fact_fr": "Un autre visage de Rosario Flores — ce titre ludique et funky a montré sa polyvalence au-delà du flamenco-pop.",
+      "uri_apple_music": "applemusic://track/287519136",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2F3GlAiboVs",
+      "uri_tidal": "tidal://track/21162707"
+    },
+    {
+      "year": 2017,
+      "uri": "spotify:track:0Ttqiz6DNvPkThvbnr9vYJ",
+      "artist": "Bombai, Bebe",
+      "alt_artists": [
+        "Efecto Pasillo",
+        "Dvicio",
+        "Taburete",
+        "Maldita Nerea"
+      ],
+      "title": "Solo Si Es Contigo",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bombai is a Spanish indie-pop duo who teamed up with Bebe for this summer anthem that became one of Spain's most-played songs of 2017.",
+      "fun_fact_de": "Bombai ist ein spanisches Indie-Pop-Duo, das sich mit Bebe für diesen Sommerhit zusammentat — einer der meistgespielten Songs 2017.",
+      "fun_fact_es": "Bombai es un dúo indie-pop español que se unió a Bebe para este himno veraniego, uno de los temas más sonados de 2017 en España.",
+      "fun_fact_fr": "Bombai est un duo indie-pop espagnol qui s'est associé à Bebe pour cet hymne estival, l'un des titres les plus diffusés en 2017.",
+      "uri_apple_music": "applemusic://track/1209479331",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NMVBQ6C4iNA",
+      "uri_tidal": "tidal://track/421660438"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:100Tm6z29RfHTdUQ6NIs0s",
+      "artist": "Julieta Venegas",
+      "alt_artists": [
+        "Natalia Lafourcade",
+        "Ely Guerra",
+        "Paulina Rubio",
+        "Belinda"
+      ],
+      "title": "Me Voy",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mexican singer-songwriter who won the Latin Grammy for Record of the Year with this track in 2006. It became one of the most iconic Spanish-language pop songs of the 2000s.",
+      "fun_fact_de": "Mexikanische Singer-Songwriterin, die 2006 den Latin Grammy für die Aufnahme des Jahres gewann.",
+      "fun_fact_es": "Cantautora mexicana que ganó el Latin Grammy a la Grabación del Año con este tema en 2006.",
+      "fun_fact_fr": "Auteure-compositrice mexicaine qui a remporté le Latin Grammy de l'Enregistrement de l'Année avec ce titre en 2006.",
+      "uri_apple_music": "applemusic://track/604808080",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y8rBC6GCUjg",
+      "uri_tidal": "tidal://track/33914577"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:2kZJ5wrpq1gCdHmVEjahoH",
+      "artist": "Efecto Pasillo",
+      "alt_artists": [
+        "Taburete",
+        "Dvicio",
+        "Bombai",
+        "Maldita Nerea"
+      ],
+      "title": "Pan y mantequilla",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Second Efecto Pasillo hit in this playlist — the Canarian band became synonymous with Spanish summer pop, filling festivals across the country.",
+      "fun_fact_de": "Zweiter Efecto Pasillo Hit — die kanarische Band wurde zum Synonym für spanischen Sommerpop.",
+      "fun_fact_es": "Segundo éxito de Efecto Pasillo — la banda canaria se convirtió en sinónimo del pop veraniego español.",
+      "fun_fact_fr": "Deuxième tube d'Efecto Pasillo — le groupe canarien est devenu synonyme du pop estival espagnol.",
+      "uri_apple_music": "applemusic://track/1322695794",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a5Hp4K0PwRQ",
+      "uri_tidal": "tidal://track/82198948"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:0eVborSuxUeSg0meWYd9dZ",
+      "artist": "Fito y Fitipaldis",
+      "alt_artists": [
+        "Extremoduro",
+        "Platero y Tú",
+        "Rosendo",
+        "Barricada"
+      ],
+      "title": "Soldadito marinero",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Fito Cabrales from Bilbao is one of Spain's most beloved rock singer-songwriters. This tender ballad became a generational anthem and is sung at every Spanish gathering.",
+      "fun_fact_de": "Fito Cabrales aus Bilbao ist einer der beliebtesten Rock-Liedermacher Spaniens. Diese Ballade wurde zur Generationenhymne.",
+      "fun_fact_es": "Fito Cabrales de Bilbao es uno de los cantautores de rock más queridos de España. Esta balada se convirtió en himno generacional.",
+      "fun_fact_fr": "Fito Cabrales de Bilbao est l'un des auteurs-compositeurs rock les plus aimés d'Espagne. Cette ballade est devenue un hymne générationnel.",
+      "uri_apple_music": "applemusic://track/72167557",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GxQjx7FkmNA",
+      "uri_tidal": "tidal://track/172925"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:7GrAOZRMBhUPN5PdbJZVO9",
+      "artist": "Rosa López",
+      "alt_artists": [
+        "Bustamante",
+        "David Bisbal",
+        "Chenoa",
+        "Manuel Carrasco"
+      ],
+      "title": "Europe's Living A Celebration",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Rosa won Operación Triunfo 1 and represented Spain at Eurovision 2002. The OT phenomenon drew 12+ million viewers and launched an entire generation of Spanish pop stars.",
+      "fun_fact_de": "Rosa gewann Operación Triunfo 1 und vertrat Spanien beim Eurovision 2002. Das OT-Phänomen mit über 12 Millionen Zuschauern.",
+      "fun_fact_es": "Rosa ganó OT 1 y representó a España en Eurovisión 2002. El fenómeno OT reunió a más de 12 millones de espectadores.",
+      "fun_fact_fr": "Rosa a gagné OT 1 et a représenté l'Espagne à l'Eurovision 2002. Le phénomène OT a réuni plus de 12 millions de téléspectateurs.",
+      "uri_apple_music": "applemusic://track/1577412714",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xBHcyuK1c2I",
+      "uri_tidal": "tidal://track/132822856"
+    },
+    {
+      "year": 2022,
+      "uri": "spotify:track:5ildQOEKmJuWGl2vRkFdYc",
+      "artist": "ROSALÍA",
+      "alt_artists": [
+        "C. Tangana",
+        "Bad Gyal",
+        "Aitana",
+        "Lola Indigo"
+      ],
+      "title": "DESPECHÁ",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "ROSALÍA's most viral hit — leaked months before official release, it still topped charts everywhere. The dance became a TikTok phenomenon with over 2 billion views.",
+      "fun_fact_de": "ROSALÍAs viralster Hit — Monate vor der offiziellen Veröffentlichung geleakt, trotzdem überall #1. Der Tanz wurde zum TikTok-Phänomen.",
+      "fun_fact_es": "El hit más viral de ROSALÍA — filtrado meses antes de su lanzamiento oficial, aun así llegó al #1. El baile se convirtió en fenómeno TikTok.",
+      "fun_fact_fr": "Le plus grand tube viral de ROSALÍA — fuité des mois avant sa sortie officielle, il a quand même atteint le #1 partout.",
+      "uri_apple_music": "applemusic://track/1660334835",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y2ESxHKuSOk",
+      "uri_tidal": "tidal://track/240175608"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:5BSclXJTa9B0iURhUjZo50",
+      "artist": "Shakira, Alejandro Sanz",
+      "alt_artists": [
+        "Juanes",
+        "Alejandro Sanz",
+        "Enrique Iglesias",
+        "Ricky Martin"
+      ],
+      "title": "La Tortura",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The first Spanish-language song to crack the US Billboard Hot 100 top 25 in decades. The collaboration between Colombia's Shakira and Spain's Sanz bridged two continents.",
+      "fun_fact_de": "Erster spanischsprachiger Song seit Jahrzehnten in den US Billboard Top 25. Die Kollaboration verband Kolumbien und Spanien.",
+      "fun_fact_es": "Primera canción en español en décadas en entrar al top 25 del Billboard Hot 100. La colaboración unió Colombia y España.",
+      "fun_fact_fr": "Premier titre en espagnol depuis des décennies dans le top 25 du Billboard Hot 100. La collaboration a uni Colombie et Espagne.",
+      "uri_apple_music": "applemusic://track/1487072929",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Dsp_8Lm1eSk",
+      "uri_tidal": "tidal://track/438737307"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:7Eb5AYiiGWItBNddlmxvnh",
+      "artist": "Alaska Y Dinarama",
+      "alt_artists": [
+        "Fangoria",
+        "Mecano",
+        "Tino Casal",
+        "Gabinete Caligari"
+      ],
+      "title": "A quién le importa",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "THE anthem of 'La Movida Madrileña' and Spain's LGBTQ+ community. Alaska (Olvido Gara) is a Mexican-born Spanish icon who defined counterculture in post-Franco Spain.",
+      "fun_fact_de": "DIE Hymne der 'Movida Madrileña' und der spanischen LGBTQ+-Community. Alaska definierte die Gegenkultur im post-franquistischen Spanien.",
+      "fun_fact_es": "EL himno de La Movida Madrileña y de la comunidad LGBTQ+ española. Alaska definió la contracultura de la España post-franquista.",
+      "fun_fact_fr": "L'HYMNE de La Movida Madrileña et de la communauté LGBTQ+ espagnole. Alaska a défini la contre-culture de l'Espagne post-franquiste.",
+      "uri_apple_music": "applemusic://track/726347452",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ixI8vCtZUWQ",
+      "uri_tidal": "tidal://track/1517552"
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:0X1XgxtHG9hULAw296CCgz",
+      "artist": "Roberto Carlos",
+      "alt_artists": [
+        "Julio Iglesias",
+        "José Luis Perales",
+        "Camilo Sesto",
+        "Nino Bravo"
+      ],
+      "title": "El Gato Que Está Triste y Azul",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Brazilian legend Roberto Carlos is the best-selling Latin artist from Brazil with 120+ million records. This Spanish-language hit made him equally massive in the Hispanic world.",
+      "fun_fact_de": "Brasilianische Legende Roberto Carlos — meistverkaufter lateinamerikanischer Künstler aus Brasilien mit über 120 Millionen Platten.",
+      "fun_fact_es": "La leyenda brasileña Roberto Carlos es el artista latino más vendido de Brasil con más de 120 millones de discos.",
+      "fun_fact_fr": "La légende brésilienne Roberto Carlos est l'artiste latin le plus vendu du Brésil avec 120+ millions de disques.",
+      "uri_apple_music": "applemusic://track/903645968",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=92icifp-ZPk",
+      "uri_tidal": "tidal://track/18405360"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:7BCer0V0I1CZDI6S6kYD44",
+      "artist": "Andy & Lucas",
+      "alt_artists": [
+        "Estopa",
+        "El Barrio",
+        "Café Quijano",
+        "David DeMaría"
+      ],
+      "title": "Son de Amores",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "This Cádiz duo's debut single became one of Spain's biggest hits of 2003. Their flamenco-pop sound and romantic lyrics made them instant stars across the Spanish-speaking world.",
+      "fun_fact_de": "Das Debüt dieses Duos aus Cádiz wurde 2003 einer der größten Hits Spaniens.",
+      "fun_fact_es": "El debut de este dúo de Cádiz se convirtió en uno de los mayores éxitos de 2003 en España.",
+      "fun_fact_fr": "Le premier single de ce duo de Cadix est devenu l'un des plus grands succès de 2003 en Espagne.",
+      "uri_apple_music": "applemusic://track/187478561",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hBnlWuJixk0",
+      "uri_tidal": "tidal://track/53432"
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:4Egb5xP6cniUx0kgZd5zLB",
+      "artist": "Bomba Estéreo",
+      "alt_artists": [
+        "Aterciopelados",
+        "ChocQuibTown",
+        "Monsieur Periné",
+        "Carlos Vives"
+      ],
+      "title": "Soy Yo",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Colombian electro-tropical band whose music video featuring a confident little girl dancing became a viral symbol of self-empowerment and Latina pride.",
+      "fun_fact_de": "Kolumbianische Elektro-Tropical-Band, deren Musikvideo mit einem selbstbewussten tanzenden Mädchen zum viralen Symbol wurde.",
+      "fun_fact_es": "Banda colombiana de electro-tropical cuyo videoclip con una niña bailando con confianza se convirtió en símbolo viral de empoderamiento.",
+      "fun_fact_fr": "Groupe colombien d'électro-tropical dont le clip avec une petite fille dansant avec assurance est devenu un symbole viral d'émancipation.",
+      "uri_apple_music": "applemusic://track/993274903",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bxWxXncl53U",
+      "uri_tidal": "tidal://track/45219792"
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:3WJg6tafYPq7xVmLXVLI1b",
+      "artist": "Dolores Vargas",
+      "alt_artists": [
+        "Lola Flores",
+        "Las Grecas",
+        "Rumba Tres",
+        "Peret"
+      ],
+      "title": "Achilipú",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Romani singer Dolores Vargas 'La Terremoto' recorded this flamenco-pop gem that became a timeless party classic in Spain — still played at every verbena 55 years later.",
+      "fun_fact_de": "Die Roma-Sängerin Dolores Vargas nahm dieses Flamenco-Pop-Juwel auf, das seit 55 Jahren auf jeder Verbena läuft.",
+      "fun_fact_es": "La cantante gitana Dolores Vargas grabó esta joya del flamenco-pop que sigue sonando en cada verbena 55 años después.",
+      "fun_fact_fr": "La chanteuse gitane Dolores Vargas a enregistré ce bijou de flamenco-pop qui résonne encore dans chaque verbena 55 ans plus tard.",
+      "uri_apple_music": "applemusic://track/1838064187",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1xu2oTeWg-A",
+      "uri_tidal": "tidal://track/458631281"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:2bPH3Ph0RHQuugStXcpyRP",
+      "artist": "Chenoa",
+      "alt_artists": [
+        "Rosa López",
+        "Bustamante",
+        "David Bisbal",
+        "Natalia"
+      ],
+      "title": "Cuando Tú Vas",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Argentine-born Chenoa was the breakout star of Operación Triunfo 1 alongside Bisbal and Bustamante. This debut hit showed her powerful voice and became a pop anthem.",
+      "fun_fact_de": "Die in Argentinien geborene Chenoa war der Durchbruchsstar von Operación Triunfo 1.",
+      "fun_fact_es": "Chenoa, nacida en Argentina, fue la estrella revelación de OT 1 junto a Bisbal y Bustamante.",
+      "fun_fact_fr": "Née en Argentine, Chenoa fut la star révélation d'OT 1 aux côtés de Bisbal et Bustamante.",
+      "uri_apple_music": "applemusic://track/1577413066",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E2N6UahtzK4",
+      "uri_tidal": "tidal://track/36953844"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:0GzQB5WXavUEU8tfTCAd8m",
+      "artist": "Camela",
+      "alt_artists": [
+        "Los Calis",
+        "Ángeles de Charli",
+        "Andy & Lucas",
+        "El Arrebato"
+      ],
+      "title": "Cuando zarpa el amor",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Different Camela hit — this techno-flamenco ballad is considered their masterpiece and one of the most iconic Spanish guilty pleasure songs ever recorded.",
+      "fun_fact_de": "Anderer Camela-Hit — diese Techno-Flamenco-Ballade gilt als ihr Meisterwerk und größter Guilty-Pleasure-Song Spaniens.",
+      "fun_fact_es": "Otro éxito de Camela — esta balada de tecno-flamenco es considerada su obra maestra y uno de los mayores 'guilty pleasures' de la música española.",
+      "fun_fact_fr": "Autre tube de Camela — cette ballade techno-flamenco est considérée comme leur chef-d'œuvre et l'un des plus grands 'guilty pleasures' de la musique espagnole.",
+      "uri_apple_music": "applemusic://track/696601345",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eVSIjE8FIi8",
+      "uri_tidal": "tidal://track/39833430"
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:7EWKAYWmUc1cTfEimTKvou",
+      "artist": "Pecos",
+      "alt_artists": [
+        "Miguel Bosé",
+        "Lorenzo Santamaría",
+        "Camilo Sesto",
+        "Nino Bravo"
+      ],
+      "title": "Háblame de Ti",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Teen idol brothers from Madrid who caused 'Pecosmania' in late 70s Spain — the Spanish Beatlemania. Girls fainted at their concerts and they sold millions of records.",
+      "fun_fact_de": "Teenager-Idol-Brüder aus Madrid, die Ende der 70er 'Pecosmania' auslösten — die spanische Beatlemania.",
+      "fun_fact_es": "Hermanos ídolos adolescentes de Madrid que causaron la 'Pecosmanía' a finales de los 70 — la Beatlemanía española.",
+      "fun_fact_fr": "Frères idoles adolescentes de Madrid qui ont déclenché la 'Pecosmania' à la fin des années 70 — la Beatlemania espagnole.",
+      "uri_apple_music": "applemusic://track/507397831",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YrIkw6EjS0w",
+      "uri_tidal": "tidal://track/34132522"
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:1d5obgzCOtwq9qaxfe4Hpw",
+      "artist": "José de Rico, Henry Mendez",
+      "alt_artists": [
+        "Juan Magán",
+        "Dasoul",
+        "Danny Romero",
+        "Joey Montana"
+      ],
+      "title": "Rayos de Sol",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "This reggaeton-pop crossover became THE Spanish summer anthem of 2011, inescapable on every beach, club and radio station across Spain.",
+      "fun_fact_de": "Dieser Reggaeton-Pop-Crossover wurde DER spanische Sommerhit 2011 — an jedem Strand, in jedem Club, auf jedem Sender.",
+      "fun_fact_es": "Este crossover de reggaetón-pop se convirtió en EL himno del verano español de 2011, ineludible en playas, discotecas y emisoras.",
+      "fun_fact_fr": "Ce crossover reggaeton-pop est devenu L'hymne de l'été espagnol 2011, incontournable sur chaque plage, club et radio.",
+      "uri_apple_music": "applemusic://track/945394223",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SVjs5DYDWt0",
+      "uri_tidal": "tidal://track/19876230"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:4Kii4OhkRIezu0KjOiFq0G",
+      "artist": "Joaquín Sabina",
+      "alt_artists": [
+        "Luis Eduardo Aute",
+        "Joan Manuel Serrat",
+        "Andrés Calamaro",
+        "Alejandro Sanz"
+      ],
+      "title": "19 Dias y 500 Noches",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Considered Sabina's greatest song — a bittersweet breakup masterpiece. The album of the same name is one of the best-selling Spanish-language albums ever in Spain.",
+      "fun_fact_de": "Gilt als Sabinas größter Song — ein bittersüßes Trennungsmeisterwerk. Das gleichnamige Album ist eines der meistverkauften in Spanien.",
+      "fun_fact_es": "Considerada la mejor canción de Sabina — una obra maestra agridulce de desamor. El álbum homónimo es uno de los más vendidos en España.",
+      "fun_fact_fr": "Considérée comme la plus grande chanson de Sabina — un chef-d'œuvre amer de rupture. L'album éponyme est l'un des plus vendus en Espagne.",
+      "uri_apple_music": "applemusic://track/254639963",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cmmJ1uiRiUM",
+      "uri_tidal": "tidal://track/30216384"
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:3A58rEqzY7fwWSOnlB2AxB",
+      "artist": "COZ",
+      "alt_artists": [
+        "Leño",
+        "Burning",
+        "Tequila",
+        "Ramoncín"
+      ],
+      "title": "Las Chicas Son Guerreras",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Proto-punk anthem from the early Movida Madrileña. COZ were one of the first bands of the movement, and this feminist-tinged track became a generational rallying cry.",
+      "fun_fact_de": "Proto-Punk-Hymne der frühen Movida Madrileña. COZ waren eine der ersten Bands der Bewegung.",
+      "fun_fact_es": "Himno proto-punk de los inicios de La Movida. COZ fueron una de las primeras bandas del movimiento.",
+      "fun_fact_fr": "Hymne proto-punk des débuts de La Movida. COZ fut l'un des premiers groupes du mouvement.",
+      "uri_apple_music": "applemusic://track/1563444974",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rq6nOjw9TjU",
+      "uri_tidal": "tidal://track/19715861"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6ASzF6lnAamXQvWLPa3WDi",
+      "artist": "Hombres G",
+      "alt_artists": [
+        "Los Nikis",
+        "Loquillo",
+        "Radio Futura",
+        "Duncan Dhu"
+      ],
+      "title": "Suéltate el pelo",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Another Hombres G classic — David Summers and crew dominated Spanish pop in the 80s with their catchy, Beatlesque melodies and humorous lyrics about young love.",
+      "fun_fact_de": "Weiterer Hombres G Klassiker — David Summers dominierte den spanischen Pop der 80er.",
+      "fun_fact_es": "Otro clásico de Hombres G — David Summers dominó el pop español de los 80 con sus melodías pegadizas.",
+      "fun_fact_fr": "Autre classique d'Hombres G — David Summers a dominé la pop espagnole des années 80.",
+      "uri_apple_music": "applemusic://track/257173190",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u98N0XJtkjs",
+      "uri_tidal": "tidal://track/323692"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:483Mpgv3ri4eUD5mJvHnaI",
+      "artist": "No Me Pises Que Llevo Chanclas",
+      "alt_artists": [
+        "Los Toreros Muertos",
+        "Banzai",
+        "Rikki",
+        "Bongo Beat"
+      ],
+      "title": "El Canario",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "One of Spain's most absurdist comedy-rock bands from Sevilla. Their name means 'Don't Step on Me I'm Wearing Flip-Flops' — and the music is exactly as unhinged as you'd expect.",
+      "fun_fact_de": "Eine der absurdesten Comedy-Rock-Bands Spaniens aus Sevilla. Der Name bedeutet 'Tritt mir nicht drauf, ich trage Flip-Flops'.",
+      "fun_fact_es": "Una de las bandas de comedia-rock más absurdas de España, de Sevilla. Su nombre significa 'No me pises que llevo chanclas'.",
+      "fun_fact_fr": "L'un des groupes de comédie-rock les plus absurdes d'Espagne, de Séville. Leur nom signifie 'Ne me marche pas dessus, je porte des tongs'.",
+      "uri_apple_music": "applemusic://track/1405339817",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8OVesjOfsME",
+      "uri_tidal": "tidal://track/91126498"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6QBLmxP1tU6lw1dhKQulau",
+      "artist": "Ole Ole",
+      "alt_artists": [
+        "Mecano",
+        "Alaska y Dinarama",
+        "Hombres G",
+        "El Norte"
+      ],
+      "title": "Sola (Con un desconocido)",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ole Ole featuring a young Vicky Larraz (later Marta Sánchez) was one of the defining pop acts of 80s Spain. This synth-pop hit captured the carefree spirit of the era.",
+      "fun_fact_de": "Ole Ole mit der jungen Vicky Larraz war eine der prägenden Pop-Acts der 80er in Spanien.",
+      "fun_fact_es": "Ole Ole con la joven Vicky Larraz fue uno de los grupos pop definitorios de los 80 en España.",
+      "fun_fact_fr": "Ole Ole avec la jeune Vicky Larraz fut l'un des groupes pop phares des années 80 en Espagne.",
+      "uri_apple_music": "applemusic://track/792546172",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WhEwJCtMWbQ",
+      "uri_tidal": "tidal://track/5792715"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:4u7ZqpIkq2sDdQD22JOFLZ",
+      "artist": "Los Rebeldes",
+      "alt_artists": [
+        "Loquillo",
+        "Burning",
+        "Tequila",
+        "La Frontera"
+      ],
+      "title": "Mediterraneo",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Barcelona rockabilly band who brought the greaser aesthetic to Spain. Fronted by Carlos Segarra, they were the louder, wilder cousins of Loquillo in the Spanish rock scene.",
+      "fun_fact_de": "Barcelonas Rockabilly-Band, die die Greaser-Ästhetik nach Spanien brachte.",
+      "fun_fact_es": "Banda de rockabilly de Barcelona que trajo la estética greaser a España.",
+      "fun_fact_fr": "Groupe rockabilly de Barcelone qui a apporté l'esthétique greaser en Espagne.",
+      "uri_apple_music": "applemusic://track/942842288",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xG_z6AOkh8A",
+      "uri_tidal": "tidal://track/38026240"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:4HjzdN3HFW2p52Eey2MumB",
+      "artist": "Melody",
+      "alt_artists": [
+        "Las Ketchup",
+        "Bom Bom Chip",
+        "Bimba Bosé",
+        "Zapato Veloz"
+      ],
+      "title": "El Baile del Gorila",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Melody was just 11 years old when this novelty dance track became Spain's biggest hit of 2001. Every Spanish person born in the 90s knows this choreography by heart.",
+      "fun_fact_de": "Melody war erst 11 Jahre alt, als dieser Tanz-Hit 2001 zum größten Hit Spaniens wurde. Jeder in den 90ern geborene Spanier kennt die Choreografie.",
+      "fun_fact_es": "Melody tenía solo 11 años cuando este tema de baile se convirtió en el mayor éxito de 2001. Todo español nacido en los 90 conoce la coreografía.",
+      "fun_fact_fr": "Melody n'avait que 11 ans quand ce titre de danse est devenu le plus grand succès de 2001. Tout Espagnol né dans les années 90 connaît la chorégraphie.",
+      "uri_apple_music": "applemusic://track/604951692",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=90avMgG5NAM",
+      "uri_tidal": "tidal://track/34168280"
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:7iN1s7xHE4ifF5povM6A48",
+      "artist": "Isabel Pantoja",
+      "alt_artists": [
+        "Rocío Jurado",
+        "María del Monte",
+        "Pastora Soler",
+        "Lola Flores"
+      ],
+      "title": "Se Me Enamora el Alma",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Isabel Pantoja — the most famous copla singer alive and Spain's most tabloid-covered celebrity. Widow of bullfighter Paquirri, her dramatic life has been a national obsession for 40 years.",
+      "fun_fact_de": "Isabel Pantoja — berühmteste lebende Copla-Sängerin und Spaniens meist-diskutierte Berühmtheit. Seit 40 Jahren nationale Obsession.",
+      "fun_fact_es": "Isabel Pantoja — la cantante de copla más famosa viva y la celebridad más perseguida por la prensa en España. Obsesión nacional desde hace 40 años.",
+      "fun_fact_fr": "Isabel Pantoja — la plus célèbre chanteuse de copla vivante et la célébrité la plus médiatisée d'Espagne. Obsession nationale depuis 40 ans.",
+      "uri_apple_music": "applemusic://track/1314179266",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ew3EWyDBhy0",
+      "uri_tidal": "tidal://track/3133949"
+    },
+    {
+      "year": 2016,
+      "uri": "spotify:track:7k4t7uLgtOxPwTpFmtJNTY",
+      "artist": "Love of Lesbian",
+      "alt_artists": [
+        "Vetusta Morla",
+        "Izal",
+        "Sidonie",
+        "Dorian"
+      ],
+      "title": "Fantastic Shine",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Barcelona indie-rock band who became Spain's biggest independent act. Known for hosting a 5,000-person COVID-safe concert in 2021 that made international headlines.",
+      "fun_fact_de": "Barcelonas Indie-Rock-Band, die Spaniens größter Independent-Act wurde. Bekannt für ein COVID-sicheres Konzert mit 5.000 Besuchern 2021.",
+      "fun_fact_es": "Banda indie-rock de Barcelona que se convirtió en el mayor acto independiente de España. Famosos por su concierto COVID-seguro de 5.000 personas en 2021.",
+      "fun_fact_fr": "Groupe indie-rock de Barcelone devenu le plus grand acte indépendant d'Espagne. Célèbres pour leur concert COVID-safe de 5.000 personnes en 2021.",
+      "uri_apple_music": "applemusic://track/655700766",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WNbW2MOJxcY",
+      "uri_tidal": "tidal://track/20686792"
+    },
+    {
+      "year": 2018,
+      "uri": "spotify:track:3Q8avvsQE7mtTXT2TrDx3I",
+      "artist": "Leiva",
+      "alt_artists": [
+        "Vetusta Morla",
+        "Izal",
+        "Amaral",
+        "Love of Lesbian"
+      ],
+      "title": "Sincericidio",
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Leiva (ex-Pereza) is one of Spain's most respected rock songwriters. After his band broke up, his solo career became even bigger — filling stadiums across Spain.",
+      "fun_fact_de": "Leiva (ex-Pereza) ist einer der angesehensten Rock-Songwriter Spaniens. Solo noch erfolgreicher als mit Band.",
+      "fun_fact_es": "Leiva (ex Pereza) es uno de los compositores de rock más respetados de España. En solitario aún más exitoso que con su banda.",
+      "fun_fact_fr": "Leiva (ex-Pereza) est l'un des compositeurs rock les plus respectés d'Espagne. Plus grand succès en solo qu'avec son groupe.",
+      "uri_apple_music": "applemusic://track/1123044441",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q808C7Lawmo",
+      "uri_tidal": "tidal://track/63177405"
     }
   ]
 }
