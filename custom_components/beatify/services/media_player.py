@@ -74,7 +74,7 @@ def get_platform_capabilities(platform: str) -> dict[str, Any]:
 
 
 # Timeout for pre-flight connectivity check (seconds)
-PREFLIGHT_TIMEOUT = 5.0
+PREFLIGHT_TIMEOUT = 2.0
 
 # Timeout for waiting for metadata to update after playing (seconds)
 METADATA_WAIT_TIMEOUT = 5.0
@@ -106,6 +106,7 @@ class MediaPlayerService:
         self._platform = platform
         self._provider = provider
         self._analytics: AnalyticsStorage | None = None
+        self._preflight_verified: bool = False
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -170,7 +171,7 @@ class MediaPlayerService:
             "play_media",
             {"media_id": uri, "media_type": "track"},
             target={"entity_id": self._entity_id},
-            blocking=True,
+            blocking=False,
         )
         return True
 
@@ -187,7 +188,7 @@ class MediaPlayerService:
                 "media_content_id": uri,
                 "media_content_type": "music",
             },
-            blocking=True,
+            blocking=False,
         )
         return True
 
@@ -211,7 +212,7 @@ class MediaPlayerService:
                 "media_content_id": search_text,
                 "media_content_type": content_type,
             },
-            blocking=True,
+            blocking=False,
         )
         return True
 
@@ -394,11 +395,18 @@ class MediaPlayerService:
 
         Sends a lightweight command to wake up the speaker and verify
         it responds within PREFLIGHT_TIMEOUT seconds.
+        After first successful verification, subsequent calls are cached
+        to avoid repeated blocking waits during a game session (#179).
 
         Returns:
             Tuple of (success, error_detail) - error_detail is empty on success
 
         """
+        # Skip if already verified this session (#179)
+        if self._preflight_verified:
+            _LOGGER.debug("Media player %s already verified, skipping preflight", self._entity_id)
+            return True, ""
+
         # First check basic availability
         state = self._hass.states.get(self._entity_id)
         if not state:
@@ -427,6 +435,7 @@ class MediaPlayerService:
                     blocking=True,
                 )
             _LOGGER.debug("Media player %s is responsive", self._entity_id)
+            self._preflight_verified = True
             return True, ""
         except TimeoutError:
             msg = f"Timeout after {PREFLIGHT_TIMEOUT}s - speaker may be sleeping or offline"
