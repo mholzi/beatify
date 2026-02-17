@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.4.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.5.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -133,7 +133,8 @@ Beatify automatically adds itself to your Home Assistant sidebar.
 
 1. Open Home Assistant
 2. Look for **Beatify** in the left sidebar
-3. Click to open
+3. Click to open the launcher
+4. Hit **"Open Beatify"** — the game opens in a fullscreen new tab (no HA chrome)
 
 > **Tip:** If you don't see Beatify in the sidebar, restart Home Assistant.
 
@@ -305,26 +306,29 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 2,008 songs across 18 curated playlists:
+Beatify comes with 2,363 songs across 21 curated playlists:
 
-- 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
-- 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
-- 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
-- 🎹 **80er Hits** — 125 classic hits from the decade of synths and MTV
-- 🎵 **90er Hits** — 32 essential tracks from the decade
-- 💥 **Eurodance 90s** — 100 party songs from the eurodance era
-- 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
+- 🎸 **60s Classics** — 45 tracks from the golden age of rock & roll
+- 🎹 **80s Hits** — 208 classic hits from the decade of synths and MTV
+- 🎵 **90s Hits** — 32 essential tracks from the decade
 - 🎵 **2000s Pop Anthems** — 151 essential pop hits from the 2000s
-- ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
-- 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
-- 🎯 **Greatest Hits of All Time** — 100 chart-toppers across four decades
-- 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
-- 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
-- 🎭 **Kölner Karneval** — 291 German carnival favorites
-- 🎶 **Schlager Klassiker** — 60 German schlager classics
+- 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
+- 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
+- ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957-2020
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
-- ☀️ **Summer Party Anthems** — 112 feel-good tracks from 1957-2020
-- 🎬 **Movies: 100 Greatest Themes** — 162 iconic film soundtracks
+- 🎭 **Cologne Carnival** — 291 German carnival favorites
+- 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
+- 💥 **Eurodance 90s** — 100 party songs from the eurodance era
+- 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
+- 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🎯 **Greatest Hits of All Time** — 180 chart-toppers across four decades
+- 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
+- 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
+- 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
+- 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
+- 🇩🇪 **Schlager Classics** — 60 German schlager classics
+- 🇳🇱 **Top 100 Dutch Classics** — 100 Nederlandstalig tracks
+- ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
 
 ### Adding Custom Playlists
 
@@ -515,13 +519,26 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v2.5.0 — Intro Mode, Quick Rematch & Fullscreen Launcher
+- **Intro Mode** — Random rounds play only 10 seconds of the song, then silence. Fullscreen ⚡ splash overlay, guaranteed every 4 rounds
+- **Quick Rematch** — Hit Rematch on the scoreboard to restart with the same settings and players
+- **Fullscreen Launcher** — Sidebar opens a launcher that pops the game into a clean new tab (no HA chrome)
+- **Comeback King superlative** — Awarded to the player who improves the most during a game
+- **Film Buff superlative** — Awarded for the most movie quiz bonus points
+- **Faster round transitions** — Preflight caching + timeout-bounded playback cuts dead time between rounds
+- **Apple Music & Tidal fix** — URIs correctly converted for Music Assistant playback
+- **HA 2026.2 compatible** — Eliminated blocking I/O warnings
+- **3 new/expanded playlists** — 100% en Español (127 songs), 80s Hits expanded (208 songs), Top 100 Dutch Classics (100 songs)
+- **All playlist names standardized to English** — Consistent naming across all 21 playlists
+- 21 playlists, 2,363 songs, 4 music platforms, 4 languages
+
 ### v2.4.0 — Tidal & Movie Quiz
 - **Tidal support** — Fourth streaming provider (Spotify, Apple Music, YouTube Music, Tidal)
 - **Movie Quiz Bonus** — Guess the movie a soundtrack is from for tiered bonus points (5/3/1)
 - **French language** — Fourth UI language (EN, DE, ES, FR)
 - **Film Buff superlative** — New end-game award for movie quiz performance
 - **2 new playlists** — British Invasion & Britpop (100 songs), Summer Party Anthems (112 songs)
-- All 18 playlists enriched with Tidal URIs
+- All playlists enriched with Tidal URIs
 
 ### v2.3.2 — Soul, Disco & Latin Expansion 🎵
 - **3 new playlists** — Motown & Soul Classics (100 songs), Disco & Funk Classics (76 songs), Fiesta Latina 90s (50 songs)
