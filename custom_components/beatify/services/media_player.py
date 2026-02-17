@@ -149,6 +149,12 @@ class MediaPlayerService:
             True if playback started successfully, False otherwise
 
         """
+        uri = song.get("_resolved_uri") or song.get("uri")
+        if not uri:
+            _LOGGER.error("Song has no URI to play: %s - %s", song.get("artist"), song.get("title"))
+            self._record_error("PLAYBACK_FAILURE", "Song has no URI")
+            return False
+
         try:
             if self._platform == "music_assistant":
                 return await self._play_via_music_assistant(song)
@@ -375,6 +381,46 @@ class MediaPlayerService:
         except Exception as err:  # noqa: BLE001
             _LOGGER.error("Failed to stop playback: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to stop: {err}")
+            return False
+
+    async def play(self) -> bool:
+        """
+        Resume playback (e.g. after intro pause).
+
+        Returns:
+            True if successful, False otherwise
+
+        """
+        try:
+            await self._hass.services.async_call(
+                "media_player",
+                "media_play",
+                {"entity_id": self._entity_id},
+            )
+            return True  # noqa: TRY300
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to resume playback: %s", err)  # noqa: TRY400
+            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to resume: {err}")
+            return False
+
+    async def pause(self) -> bool:
+        """
+        Pause playback (e.g. for intro mode stop).
+
+        Returns:
+            True if successful, False otherwise
+
+        """
+        try:
+            await self._hass.services.async_call(
+                "media_player",
+                "media_pause",
+                {"entity_id": self._entity_id},
+            )
+            return True  # noqa: TRY300
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to pause playback: %s", err)  # noqa: TRY400
+            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to pause: {err}")
             return False
 
     def get_volume(self) -> float:
