@@ -41,7 +41,7 @@ _LOGGER = logging.getLogger(__name__)
 # We avoid reading manifest.json at runtime because HA imports custom components
 # inside the event loop, and any file I/O (even at module level) triggers
 # blocking call warnings in HA 2026.2+.
-_VERSION = "2.5.0-rc.14"
+_VERSION = "2.5.0-rc.15"
 
 
 def _get_version() -> str:
