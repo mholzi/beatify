@@ -1231,7 +1231,7 @@ class BeatifyWebSocketHandler:
             state_msg = {"type": "state", **state}
             await self.broadcast(state_msg)
         else:
-            _LOGGER.warning("broadcast_state: get_state() returned None")
+            _LOGGER.debug("broadcast_state: get_state() returned None (game not initialized yet)")
 
     async def broadcast_metadata_update(self, metadata: dict) -> None:
         """

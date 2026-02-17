@@ -37,17 +37,15 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-# Read version at module load time (not in event loop) to avoid blocking I/O
-try:
-    _VERSION = json.loads(
-        (Path(__file__).parent.parent / "manifest.json").read_text(encoding="utf-8")
-    ).get("version", "unknown")
-except Exception:  # noqa: BLE001
-    _VERSION = "unknown"
+# Version is set here and bumped alongside manifest.json in release commits.
+# We avoid reading manifest.json at runtime because HA imports custom components
+# inside the event loop, and any file I/O (even at module level) triggers
+# blocking call warnings in HA 2026.2+.
+_VERSION = "2.5.0-rc.11"
 
 
 def _get_version() -> str:
-    """Get the version from manifest.json (cached at import time)."""
+    """Get the integration version."""
     return _VERSION
 
 
