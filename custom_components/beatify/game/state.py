@@ -36,6 +36,7 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MIN,
 )
 
+from .highlights import HighlightsTracker
 from .player import PlayerSession
 from .playlist import PlaylistManager
 from .scoring import (
@@ -402,6 +403,9 @@ class GameState:
         # when multiple players submit simultaneously during early reveal check
         self._score_lock: asyncio.Lock = asyncio.Lock()
 
+        # Issue #75: Game highlights reel
+        self.highlights_tracker = HighlightsTracker()
+
     def create_game(
         self,
         playlists: list[str],
@@ -657,6 +661,8 @@ class GameState:
                 state["game_performance"] = game_performance
             # Superlatives - fun awards (Story 15.2)
             state["superlatives"] = self.calculate_superlatives()
+            # Issue #75: Game highlights reel
+            state["highlights"] = self.highlights_tracker.to_dict()
 
         return state
 
@@ -807,6 +813,9 @@ class GameState:
         # Issue #28: Reset movie quiz challenge
         self.movie_challenge = None
         self.movie_quiz_enabled = True  # Reset to default
+
+        # Issue #75: Reset highlights tracker
+        self.highlights_tracker.reset()
 
     def end_game(self) -> None:
         """End the current game and reset state."""
@@ -1809,6 +1818,12 @@ class GameState:
                 bet_tracking=self.bet_tracking,
             )
 
+        # Issue #75: Record highlights after scoring
+        try:
+            self._record_round_highlights(correct_year)
+        except Exception as err:
+            _LOGGER.error("Failed to record round highlights: %s", err)
+
         # Issue #23: Resume song for intro round reveal
         # Use play_song() directly — media_play (resume) often fails silently
         # because Spotify/Sonos drops the playback context after pause.
@@ -1877,6 +1892,86 @@ class GameState:
                 _LOGGER.error("Round_end callback failed: %s", err)
         else:
             _LOGGER.warning("No round_end callback set - REVEAL state will not be broadcast!")
+
+    def _record_round_highlights(self, correct_year: int | None) -> None:
+        """Detect and record highlights for the current round (Issue #75)."""
+        if correct_year is None:
+            return
+
+        song_title = ""
+        if self.current_song:
+            song_title = self.current_song.get("title", "Unknown")
+
+        submitted_players = [p for p in self.players.values() if p.submitted and p.current_guess is not None]
+
+        for player in submitted_players:
+            # Exact match
+            if player.years_off == 0:
+                self.highlights_tracker.record_exact_match(
+                    player.name, song_title, correct_year, self.round
+                )
+
+            # Heartbreaker (off by 1)
+            if player.years_off == 1:
+                self.highlights_tracker.record_heartbreaker(
+                    player.name, song_title, 1, self.round
+                )
+
+            # Streak milestones (3, 5, 7+)
+            if player.streak in (3, 5, 7):
+                self.highlights_tracker.record_streak(
+                    player.name, player.streak, self.round
+                )
+
+            # Bet win
+            if player.bet_outcome == "won" and player.round_score >= 10:
+                self.highlights_tracker.record_bet_win(
+                    player.name, player.round_score, self.round
+                )
+
+            # Comeback (gained 2+ positions)
+            if player.previous_rank is not None:
+                # Calculate current rank
+                sorted_players = sorted(
+                    self.players.values(), key=lambda p: p.score, reverse=True
+                )
+                current_rank = next(
+                    (i + 1 for i, p in enumerate(sorted_players) if p.name == player.name),
+                    None,
+                )
+                if current_rank is not None:
+                    positions_gained = player.previous_rank - current_rank
+                    if positions_gained >= 2:
+                        self.highlights_tracker.record_comeback(
+                            player.name, positions_gained, self.round
+                        )
+
+        # Speed record (fastest submission this round)
+        timed = [
+            (p, p.submission_time - self.round_start_time)
+            for p in submitted_players
+            if p.submission_time is not None and self.round_start_time is not None
+        ]
+        if timed:
+            fastest_player, fastest_time = min(timed, key=lambda x: x[1])
+            if fastest_time < 5.0:  # Only highlight very fast answers
+                self.highlights_tracker.record_speed_record(
+                    fastest_player.name, fastest_time, self.round
+                )
+
+        # Photo finish (tied scores among top players)
+        scores = [p.score for p in self.players.values()]
+        if len(scores) >= 2:
+            from collections import Counter
+            score_counts = Counter(scores)
+            for score, count in score_counts.items():
+                if count >= 2 and score > 0:
+                    tied_names = [p.name for p in self.players.values() if p.score == score]
+                    # Only record if it's among the top scores
+                    top_score = max(scores)
+                    if score >= top_score * 0.8:
+                        self.highlights_tracker.record_photo_finish(tied_names, self.round)
+                        break  # Only one photo finish per round
 
     def cancel_timer(self) -> None:
         """Cancel the round timer (synchronous, for cleanup)."""

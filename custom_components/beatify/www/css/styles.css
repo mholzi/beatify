@@ -5400,6 +5400,94 @@ body.theme-dark .movie-reveal-section {
 }
 
 /* ============================================
+   Game Highlights Reel (Issue #75)
+   ============================================ */
+
+.highlights-container {
+    width: 100%;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.highlights-header {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-white);
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.highlight-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-dark-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    animation: highlightFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes highlightFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.highlight-emoji {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+}
+
+.highlight-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.highlight-text {
+    font-size: var(--font-size-base);
+    color: var(--color-dark-text-primary);
+    line-height: 1.4;
+}
+
+.highlight-round {
+    font-size: var(--font-size-xs);
+    color: var(--color-dark-text-secondary);
+    margin-top: var(--space-xs);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .highlight-card {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+    }
+
+    .highlight-emoji {
+        font-size: 1.4rem;
+        width: 36px;
+    }
+
+    .highlight-text {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* ============================================
    Round Analytics (Story 13.3)
    ============================================ */
 
