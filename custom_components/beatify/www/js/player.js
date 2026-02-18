@@ -3711,6 +3711,150 @@
     }
 
     /**
+     * Render shareable result card (Issue #120)
+     * @param {Object|null} shareData - Share data from state with emoji_grids, playlist_name, total_rounds
+     */
+    function renderShareTab(shareData) {
+        var container = document.getElementById('share-container');
+        if (!container) return;
+
+        if (!shareData || !shareData.emoji_grids) {
+            container.classList.add('hidden');
+            return;
+        }
+
+        var myGrid = shareData.emoji_grids[playerName];
+        if (!myGrid) {
+            container.classList.add('hidden');
+            return;
+        }
+
+        var gridEl = document.getElementById('share-emoji-grid');
+        if (gridEl) {
+            gridEl.textContent = myGrid;
+        }
+
+        // Wire up copy button
+        var copyBtn = document.getElementById('share-copy-btn');
+        if (copyBtn) {
+            copyBtn.onclick = function() {
+                navigator.clipboard.writeText(myGrid).then(function() {
+                    var toast = document.getElementById('share-toast');
+                    if (toast) {
+                        toast.classList.remove('hidden');
+                        setTimeout(function() { toast.classList.add('hidden'); }, 2000);
+                    }
+                });
+            };
+        }
+
+        // Wire up save card button
+        var saveBtn = document.getElementById('share-save-btn');
+        if (saveBtn) {
+            saveBtn.onclick = function() {
+                generateVisualCard(myGrid, shareData.playlist_name);
+            };
+        }
+
+        container.classList.remove('hidden');
+    }
+
+    /**
+     * Generate visual card via Canvas API and download as PNG (Issue #120)
+     * @param {string} emojiGrid - The emoji grid text
+     * @param {string} playlistName - Name of the playlist
+     */
+    function generateVisualCard(emojiGrid, playlistName) {
+        var canvas = document.createElement('canvas');
+        canvas.width = 600;
+        canvas.height = 400;
+        var ctx = canvas.getContext('2d');
+
+        // Dark background matching Beatify theme
+        ctx.fillStyle = '#1a1a2e';
+        ctx.fillRect(0, 0, 600, 400);
+
+        // Gradient accent bar at top
+        var grad = ctx.createLinearGradient(0, 0, 600, 0);
+        grad.addColorStop(0, '#e94560');
+        grad.addColorStop(1, '#0f3460');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 600, 4);
+
+        // Title
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🎵 Beatify — ' + (playlistName || ''), 300, 45);
+
+        // Player name & score (extract from grid)
+        var lines = emojiGrid.split('\n');
+        if (lines.length > 1) {
+            ctx.font = '18px sans-serif';
+            ctx.fillStyle = '#e94560';
+            ctx.fillText(lines[1], 300, 80); // 👑 Name: Xpts
+        }
+
+        // Emoji row
+        var emojiLine = '';
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].match(/[🟣🟢🟡🔴⬜]/)) {
+                emojiLine = lines[i];
+                break;
+            }
+        }
+        ctx.font = '28px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(emojiLine, 300, 150);
+
+        // Stats lines
+        ctx.font = '14px sans-serif';
+        ctx.fillStyle = '#aaaacc';
+        var statsY = 200;
+        for (var j = 0; j < lines.length; j++) {
+            var line = lines[j].trim();
+            if (line && !line.match(/[🟣🟢🟡🔴⬜]/) && j > 2) {
+                ctx.fillText(line, 300, statsY);
+                statsY += 25;
+            }
+        }
+
+        // Footer
+        ctx.font = '12px sans-serif';
+        ctx.fillStyle = '#666688';
+        ctx.fillText('Powered by Beatify', 300, 380);
+
+        // Download or share
+        canvas.toBlob(function(blob) {
+            if (navigator.share && navigator.canShare) {
+                var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
+                var shareData = { files: [file], title: 'My Beatify Results' };
+                if (navigator.canShare(shareData)) {
+                    navigator.share(shareData).catch(function() {
+                        downloadBlob(blob);
+                    });
+                    return;
+                }
+            }
+            downloadBlob(blob);
+        }, 'image/png');
+    }
+
+    /**
+     * Helper to download a blob as a file
+     */
+    function downloadBlob(blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'beatify-results.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    /**
      * Render song difficulty rating (Story 15.1)
      * @param {Object|null} difficulty - Difficulty data with stars, label, accuracy, times_played
      */
@@ -4332,6 +4476,9 @@
 
         // Render highlights reel (Issue #75)
         renderHighlights(data.highlights);
+
+        // Render share tab (Issue #120)
+        renderShareTab(data.share_data);
 
         // Show admin or player controls
         var adminControls = document.getElementById('end-admin-controls');

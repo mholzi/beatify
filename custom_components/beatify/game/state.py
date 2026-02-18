@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
+    DIFFICULTY_SCORING,
     ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
@@ -42,6 +43,7 @@ from .playlist import PlaylistManager
 from .scoring import (
     ScoringService,
 )
+from .share import build_share_data
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
@@ -663,6 +665,8 @@ class GameState:
             state["superlatives"] = self.calculate_superlatives()
             # Issue #75: Game highlights reel
             state["highlights"] = self.highlights_tracker.to_dict()
+            # Issue #120: Shareable result cards
+            state["share_data"] = build_share_data(self)
 
         return state
 
@@ -1817,6 +1821,24 @@ class GameState:
                 streak_achievements=self.streak_achievements,
                 bet_tracking=self.bet_tracking,
             )
+
+        # Issue #120: Track round results for shareable result cards
+        if correct_year is not None:
+            scoring_cfg = DIFFICULTY_SCORING.get(self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT])
+            close_range = scoring_cfg["close_range"]
+            near_range = scoring_cfg["near_range"]
+            for player in self.players.values():
+                if player.submitted and player.years_off is not None:
+                    if player.years_off == 0:
+                        player.round_results.append("exact")
+                    elif close_range > 0 and player.years_off <= close_range:
+                        player.round_results.append("scored")
+                    elif near_range > 0 and player.years_off <= near_range:
+                        player.round_results.append("close")
+                    else:
+                        player.round_results.append("missed")
+                else:
+                    player.round_results.append("missed")
 
         # Issue #75: Record highlights after scoring
         try:

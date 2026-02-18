@@ -54,6 +54,9 @@ class PlayerSession:
     intro_bonus: int = 0  # Per-round intro speed bonus
     intro_speed_bonuses: int = 0  # Cumulative count for superlative
 
+    # Round results tracking (Issue #120 — Shareable Result Cards)
+    round_results: list[str] = field(default_factory=list)
+
     # Betting tracking (Story 5.3)
     bet: bool = False
     bet_outcome: str | None = None  # "won", "lost", or None
@@ -143,6 +146,9 @@ class PlayerSession:
         self.best_streak = 0
         self.rounds_played = 0
         self.bets_won = 0
+
+        # Reset round results (Issue #120)
+        self.round_results = []
 
         # Reset superlative tracking
         self.submission_times = []
