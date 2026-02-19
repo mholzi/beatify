@@ -33,6 +33,7 @@ from tests.conftest import make_game_state, make_songs
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _create_fresh_game(state: GameState, songs=None, **kwargs) -> dict:
     """Helper: create a game with default or custom songs."""
     songs = songs or make_songs(5)
@@ -48,6 +49,7 @@ def _create_fresh_game(state: GameState, songs=None, **kwargs) -> dict:
 # ---------------------------------------------------------------------------
 # GameState.create_game
 # ---------------------------------------------------------------------------
+
 
 class TestCreateGame:
     def test_returns_expected_keys(self):
@@ -106,6 +108,7 @@ class TestCreateGame:
 # ---------------------------------------------------------------------------
 # GameState.add_player
 # ---------------------------------------------------------------------------
+
 
 class TestAddPlayer:
     def setup_method(self):
@@ -186,6 +189,7 @@ class TestAddPlayer:
 # GameState.start_game
 # ---------------------------------------------------------------------------
 
+
 class TestStartGame:
     def setup_method(self):
         self.state = make_game_state()
@@ -214,6 +218,7 @@ class TestStartGame:
 # ---------------------------------------------------------------------------
 # GameState.all_submitted
 # ---------------------------------------------------------------------------
+
 
 class TestAllSubmitted:
     def setup_method(self):
@@ -247,6 +252,7 @@ class TestAllSubmitted:
 # ---------------------------------------------------------------------------
 # GameState.get_leaderboard
 # ---------------------------------------------------------------------------
+
 
 class TestLeaderboard:
     def setup_method(self):
@@ -292,6 +298,7 @@ class TestLeaderboard:
 # GameState.get_average_score
 # ---------------------------------------------------------------------------
 
+
 class TestGetAverageScore:
     def setup_method(self):
         self.state = make_game_state()
@@ -316,6 +323,7 @@ class TestGetAverageScore:
 # ---------------------------------------------------------------------------
 # GameState.use_steal
 # ---------------------------------------------------------------------------
+
 
 class TestUseSteal:
     def setup_method(self):
@@ -373,6 +381,7 @@ class TestUseSteal:
 # GameState.record_reaction
 # ---------------------------------------------------------------------------
 
+
 class TestRecordReaction:
     def setup_method(self):
         self.state = make_game_state()
@@ -401,6 +410,7 @@ class TestRecordReaction:
 # ---------------------------------------------------------------------------
 # build_movie_options
 # ---------------------------------------------------------------------------
+
 
 class TestBuildMovieOptions:
     def test_valid_song(self):
@@ -449,6 +459,7 @@ class TestBuildMovieOptions:
 # build_artist_options
 # ---------------------------------------------------------------------------
 
+
 class TestBuildArtistOptions:
     def test_valid_song(self):
         song = {
@@ -484,6 +495,7 @@ class TestBuildArtistOptions:
 # ---------------------------------------------------------------------------
 # GameState.finalize_game
 # ---------------------------------------------------------------------------
+
 
 class TestFinalizeGame:
     def setup_method(self):
@@ -528,6 +540,7 @@ class TestFinalizeGame:
 # GameState.is_deadline_passed
 # ---------------------------------------------------------------------------
 
+
 class TestDeadlinePassed:
     def test_no_deadline_returns_false(self):
         state = make_game_state()
@@ -550,6 +563,7 @@ class TestDeadlinePassed:
 # ---------------------------------------------------------------------------
 # GameState.get_state (smoke test for each phase)
 # ---------------------------------------------------------------------------
+
 
 class TestGetState:
     def setup_method(self):

@@ -19,6 +19,7 @@ from custom_components.beatify.game.scoring import (
 # calculate_accuracy_score
 # ---------------------------------------------------------------------------
 
+
 class TestAccuracyScoreNormal:
     """Normal difficulty (default)."""
 
@@ -98,6 +99,7 @@ class TestAccuracyScoreFallback:
 # calculate_speed_multiplier
 # ---------------------------------------------------------------------------
 
+
 class TestSpeedMultiplier:
     def test_instant_submission(self):
         assert calculate_speed_multiplier(0.0, 30.0) == pytest.approx(2.0)
@@ -129,6 +131,7 @@ class TestSpeedMultiplier:
 # ---------------------------------------------------------------------------
 # calculate_round_score
 # ---------------------------------------------------------------------------
+
 
 class TestRoundScore:
     def test_exact_instant_submission(self):
@@ -164,6 +167,7 @@ class TestRoundScore:
 # apply_bet_multiplier
 # ---------------------------------------------------------------------------
 
+
 class TestBetMultiplier:
     def test_no_bet_unchanged(self):
         score, outcome = apply_bet_multiplier(10, False)
@@ -195,20 +199,24 @@ class TestBetMultiplier:
 # calculate_streak_bonus
 # ---------------------------------------------------------------------------
 
+
 class TestStreakBonus:
-    @pytest.mark.parametrize("streak,expected", [
-        (1, 0),
-        (2, 0),
-        (3, 20),
-        (4, 0),
-        (5, 50),
-        (6, 0),
-        (10, 100),
-        (15, 150),
-        (20, 250),
-        (25, 400),
-        (30, 0),  # Not a milestone
-    ])
+    @pytest.mark.parametrize(
+        "streak,expected",
+        [
+            (1, 0),
+            (2, 0),
+            (3, 20),
+            (4, 0),
+            (5, 50),
+            (6, 0),
+            (10, 100),
+            (15, 150),
+            (20, 250),
+            (25, 400),
+            (30, 0),  # Not a milestone
+        ],
+    )
     def test_milestones(self, streak, expected):
         assert calculate_streak_bonus(streak) == expected
 
@@ -216,6 +224,7 @@ class TestStreakBonus:
 # ---------------------------------------------------------------------------
 # calculate_years_off_text
 # ---------------------------------------------------------------------------
+
 
 class TestYearsOffText:
     def test_exact(self):
@@ -232,6 +241,7 @@ class TestYearsOffText:
 # ---------------------------------------------------------------------------
 # calculate_artist_score
 # ---------------------------------------------------------------------------
+
 
 class TestArtistScore:
     def test_exact_match(self):

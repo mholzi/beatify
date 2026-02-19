@@ -16,7 +16,7 @@ from unittest.mock import MagicMock
 def _make_pkg(name: str) -> ModuleType:
     """Register a real (empty) package so sub-imports work."""
     mod = ModuleType(name)
-    mod.__path__ = []          # type: ignore[attr-defined]
+    mod.__path__ = []  # type: ignore[attr-defined]
     mod.__package__ = name
     sys.modules[name] = mod
     return mod
@@ -68,6 +68,6 @@ for _leaf in _LEAVES:
 
 # Wire child attributes onto parent packages so `from homeassistant.X import Y` works
 _ha = sys.modules["homeassistant"]
-_ha.components = sys.modules["homeassistant.components"]   # type: ignore[attr-defined]
-_ha.helpers = sys.modules["homeassistant.helpers"]         # type: ignore[attr-defined]
-_ha.util = sys.modules["homeassistant.util"]               # type: ignore[attr-defined]
+_ha.components = sys.modules["homeassistant.components"]  # type: ignore[attr-defined]
+_ha.helpers = sys.modules["homeassistant.helpers"]  # type: ignore[attr-defined]
+_ha.util = sys.modules["homeassistant.util"]  # type: ignore[attr-defined]
