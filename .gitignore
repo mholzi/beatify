@@ -21,11 +21,11 @@ pyproject.toml
 package.json
 package-lock.json
 requirements.txt
-requirements_test.txt
+# requirements_test.txt intentionally NOT ignored
 .ruff.toml
 
 # ---- Tests ----
-tests/
+# tests/ intentionally NOT ignored — test suite is part of the repo
 .pytest_cache/
 .coverage
 coverage.xml
