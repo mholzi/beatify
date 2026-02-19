@@ -2,4 +2,5 @@
 # Install with: pip install -r requirements_test.txt
 pytest>=9.0
 pytest-asyncio>=1.0
+pytest-cov>=4.0
 aiohttp>=3.9
