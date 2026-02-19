@@ -3670,6 +3670,47 @@
     }
 
     /**
+     * Render game highlights reel (Issue #75)
+     * @param {Array|null} highlights - Array of highlight objects from state
+     */
+    function renderHighlights(highlights) {
+        var container = document.getElementById('highlights-container');
+        if (!container) return;
+
+        if (!highlights || highlights.length === 0) {
+            container.classList.add('hidden');
+            return;
+        }
+
+        var listEl = document.getElementById('highlights-list');
+        if (!listEl) return;
+
+        var html = '';
+        highlights.forEach(function(h, index) {
+            // Build narrative text using i18n with parameter interpolation
+            var text = utils.t('highlights.' + h.description, h.description_params) || h.description;
+            // Fallback: manual interpolation if utils.t doesn't handle params
+            if (text === h.description && h.description_params) {
+                text = utils.t('highlights.' + h.description) || h.description;
+                Object.keys(h.description_params).forEach(function(key) {
+                    text = text.replace('{' + key + '}', escapeHtml(h.description_params[key]));
+                });
+            }
+
+            html += '<div class="highlight-card" style="animation-delay: ' + (index * 0.5) + 's">' +
+                '<div class="highlight-emoji">' + (h.emoji || '✨') + '</div>' +
+                '<div class="highlight-content">' +
+                    '<div class="highlight-text">' + text + '</div>' +
+                    '<div class="highlight-round">' + utils.t('highlights.roundLabel', {round: h.round}) + '</div>' +
+                '</div>' +
+            '</div>';
+        });
+
+        listEl.innerHTML = html;
+        container.classList.remove('hidden');
+    }
+
+    /**
      * Render song difficulty rating (Story 15.1)
      * @param {Object|null} difficulty - Difficulty data with stars, label, accuracy, times_played
      */
@@ -4288,6 +4329,9 @@
 
         // Render superlatives / fun awards (Story 15.2)
         renderSuperlatives(data.superlatives);
+
+        // Render highlights reel (Issue #75)
+        renderHighlights(data.highlights);
 
         // Show admin or player controls
         var adminControls = document.getElementById('end-admin-controls');
