@@ -6844,7 +6844,7 @@ body.theme-dark .result-value.is-bet-lost {
     overflow-y: hidden;
     padding-bottom: var(--space-sm);
     -webkit-overflow-scrolling: touch;
-    max-width: 100%;
+    width: 100%; /* was max-width: cards now fill full container width (#202) */
 }
 
 .results-cards-scroll::-webkit-scrollbar {
