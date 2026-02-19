@@ -166,10 +166,17 @@ class StartGameView(HomeAssistantView):
 
         # Check for existing game
         if game_state and game_state.game_id:
-            return web.json_response(
-                {"error": "GAME_ALREADY_STARTED", "message": "End current game first"},
-                status=409,
-            )
+            from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
+
+            if game_state.phase == GamePhase.END:
+                # Game is already finished — auto-clean state so a new game can start
+                # without requiring the user to explicitly dismiss the end screen (#206)
+                game_state.end_game()
+            else:
+                return web.json_response(
+                    {"error": "GAME_ALREADY_STARTED", "message": "End current game first"},
+                    status=409,
+                )
 
         try:
             body = await request.json()
