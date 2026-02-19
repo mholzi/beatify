@@ -6864,7 +6864,7 @@ body.theme-dark .result-value.is-bet-lost {
     border: 2px solid var(--color-border-light);
     transition: all var(--transition-fast);
     min-width: 90px;
-    flex: 1 0 90px;
+    flex: 0 0 auto; /* cards stay compact, container (width:100%) stays full-width (#203) */
 }
 
 .result-card.is-current {
