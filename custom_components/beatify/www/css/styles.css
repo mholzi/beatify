@@ -6836,15 +6836,12 @@ body.theme-dark .result-value.is-bet-lost {
     text-align: center;
 }
 
-/* Horizontal scroll container per AC #13 (Code Review fix) */
+/* Vertical stack — each card full-width (#211) */
 .results-cards-scroll {
     display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: var(--space-sm);
-    -webkit-overflow-scrolling: touch;
-    width: 100%; /* was max-width: cards now fill full container width (#202) */
+    width: 100%;
 }
 
 .results-cards-scroll::-webkit-scrollbar {
@@ -6863,8 +6860,8 @@ body.theme-dark .result-value.is-bet-lost {
     text-align: center;
     border: 2px solid var(--color-border-light);
     transition: all var(--transition-fast);
-    min-width: 90px;
-    flex: 0 0 auto; /* cards stay compact, container (width:100%) stays full-width (#203) */
+    width: 100%;
+    box-sizing: border-box; /* full-width vertical cards (#211) */
 }
 
 .result-card.is-current {
