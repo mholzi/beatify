@@ -1632,6 +1632,51 @@ function showError(message) {
 var _adminShareData = null;
 
 /**
+ * Copy text to clipboard with execCommand fallback for HTTP/older-browser contexts.
+ * @param {string} text - Text to copy
+ * @param {string} toastId - ID of the toast element to show on success
+ */
+function _adminCopyToClipboard(text, toastId) {
+    function showToast() {
+        var toast = document.getElementById(toastId);
+        if (toast) {
+            toast.classList.remove('hidden');
+            setTimeout(function() { toast.classList.add('hidden'); }, 2000);
+        }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showToast).catch(function() {
+            _adminCopyFallback(text, showToast);
+        });
+    } else {
+        _adminCopyFallback(text, showToast);
+    }
+}
+
+/**
+ * execCommand-based clipboard fallback.
+ * @param {string} text - Text to copy
+ * @param {Function} onSuccess - Callback on success
+ */
+function _adminCopyFallback(text, onSuccess) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.left = '0';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+        if (document.execCommand('copy')) { onSuccess(); }
+    } catch (e) {
+        console.warn('[Beatify] Clipboard copy failed:', e);
+    }
+    document.body.removeChild(ta);
+}
+
+/**
  * Render shareable result cards in the admin end screen.
  * Shows a player-tab selector so the admin can copy/save any player's card.
  * @param {Object} gameData - Active game state including share_data
@@ -1675,13 +1720,7 @@ function renderAdminShare(gameData) {
         copyBtn.onclick = function() {
             var gridEl = document.getElementById('admin-share-emoji-grid');
             if (gridEl) {
-                navigator.clipboard.writeText(gridEl.textContent).then(function() {
-                    var toast = document.getElementById('admin-share-toast');
-                    if (toast) {
-                        toast.classList.remove('hidden');
-                        setTimeout(function() { toast.classList.add('hidden'); }, 2000);
-                    }
-                });
+                _adminCopyToClipboard(gridEl.textContent, 'admin-share-toast');
             }
         };
     }
