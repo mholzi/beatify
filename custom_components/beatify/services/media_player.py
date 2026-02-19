@@ -206,6 +206,10 @@ class MediaPlayerService:
             track_id = uri.removeprefix("tidal://track/")
             return f"https://tidal.com/browse/track/{track_id}"
 
+        if uri.startswith("https://music.youtube.com/watch?v="):
+            track_id = uri.removeprefix("https://music.youtube.com/watch?v=")
+            return f"ytmusic://track/{track_id}"
+
         # spotify:track:<id> and https:// URLs are passed through unchanged
         return uri
 
