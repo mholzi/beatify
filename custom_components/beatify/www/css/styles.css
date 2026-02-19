@@ -6839,8 +6839,8 @@ body.theme-dark .result-value.is-bet-lost {
 /* Vertical stack — each card full-width (#211) */
 .results-cards-scroll {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    flex-direction: row;
+    overflow-x: auto;
     width: 100%;
 }
 
@@ -6860,8 +6860,9 @@ body.theme-dark .result-value.is-bet-lost {
     text-align: center;
     border: 2px solid var(--color-border-light);
     transition: all var(--transition-fast);
+    flex: 0 0 100%;
     width: 100%;
-    box-sizing: border-box; /* full-width vertical cards (#211) */
+    box-sizing: border-box;
 }
 
 .result-card.is-current {
