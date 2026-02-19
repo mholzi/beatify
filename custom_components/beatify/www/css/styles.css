@@ -6825,7 +6825,7 @@ body.theme-dark .result-value.is-bet-lost {
 .reveal-results-cards {
     margin-top: var(--space-lg);
     width: 100%;
-    overflow: hidden;
+    /* overflow handled by .results-cards-scroll child; hidden here would clip scrollbar */
 }
 
 .results-cards-header {
