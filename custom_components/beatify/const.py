@@ -5,7 +5,6 @@ DOMAIN = "beatify"
 # Game configuration
 MAX_PLAYERS = 20
 MIN_PLAYERS = 2
-RECONNECT_TIMEOUT = 60  # seconds
 DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)

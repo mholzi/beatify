@@ -358,7 +358,7 @@ class GameState:
         self.streak_achievements: dict[str, int] = {
             "streak_3": 0,  # Count of 3+ streaks
             "streak_5": 0,  # Count of 5+ streaks
-            "streak_7": 0,  # Count of 7+ streaks
+            "streak_10": 0,  # Count of 10+ streaks
             "streak_15": 0,  # Count of 15+ streaks
             "streak_20": 0,  # Count of 20+ streaks
             "streak_25": 0,  # Count of 25+ streaks
@@ -495,7 +495,7 @@ class GameState:
         self.streak_achievements = {
             "streak_3": 0,
             "streak_5": 0,
-            "streak_7": 0,
+            "streak_10": 0,
             "streak_15": 0,
             "streak_20": 0,
             "streak_25": 0,
@@ -711,7 +711,7 @@ class GameState:
             # Story 19.11: Include streak achievements
             "streak_3_count": self.streak_achievements.get("streak_3", 0),
             "streak_5_count": self.streak_achievements.get("streak_5", 0),
-            "streak_7_count": self.streak_achievements.get("streak_7", 0),
+            "streak_10_count": self.streak_achievements.get("streak_10", 0),
             # Story 19.12: Include bet tracking
             "total_bets": self.bet_tracking.get("total_bets", 0),
             "bets_won": self.bet_tracking.get("bets_won", 0),
@@ -791,7 +791,7 @@ class GameState:
         self.streak_achievements = {
             "streak_3": 0,
             "streak_5": 0,
-            "streak_7": 0,
+            "streak_10": 0,
             "streak_15": 0,
             "streak_20": 0,
             "streak_25": 0,

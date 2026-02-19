@@ -525,8 +525,8 @@ class ScoringService:
                     streak_achievements["streak_3"] += 1
                 elif player.streak == 5:
                     streak_achievements["streak_5"] += 1
-                elif player.streak == 7:
-                    streak_achievements["streak_7"] += 1
+                elif player.streak == 10:
+                    streak_achievements["streak_10"] += 1
                 elif player.streak == 15:
                     streak_achievements["streak_15"] += 1
                 elif player.streak == 20:
