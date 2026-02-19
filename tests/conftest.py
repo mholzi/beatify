@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock
 
-import pytest
-
 from custom_components.beatify.game.player import PlayerSession
 from custom_components.beatify.game.state import GameState
 

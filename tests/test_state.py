@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-import asyncio
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -27,7 +26,7 @@ from custom_components.beatify.game.state import (
     build_artist_options,
     build_movie_options,
 )
-from tests.conftest import make_game_state, make_player, make_songs
+from tests.conftest import make_game_state, make_songs
 
 
 # ---------------------------------------------------------------------------
