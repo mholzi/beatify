@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.5.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.6.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -519,6 +519,10 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v2.6.0 — Game Highlights Reel 🎬
+- **Game Highlights Reel** — After every game, Beatify auto-generates a highlight reel of the Top 8 moments: exact year matches, best streaks, speed records, comebacks, bet wins, heartbreakers, and photo finishes
+- 21 playlists, 2,363 songs, 4 music platforms, 4 languages
+
 ### v2.5.0 — Intro Mode, Quick Rematch & Fullscreen Launcher
 - **Intro Mode** — Random rounds play only 10 seconds of the song, then silence. Fullscreen ⚡ splash overlay, guaranteed every 4 rounds
 - **Quick Rematch** — Hit Rematch on the scoreboard to restart with the same settings and players
@@ -678,7 +682,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 The next great party moment is one QR scan away.
 
-[**Install Beatify Now**](#5-minute-setup)
+[**Install Beatify Now**](#setup-in-home-assistant)
 
 ---
 
