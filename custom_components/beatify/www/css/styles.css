@@ -5843,9 +5843,10 @@ body > canvas[style*="position: fixed"] {
 
 .streak-bonus-row {
     background: linear-gradient(90deg, var(--color-warning-light), #fde68a);
-    padding: var(--space-sm) var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-md);
     margin: var(--space-sm) 0;
+    color: #1a1a1a;
 }
 
 .result-total {
