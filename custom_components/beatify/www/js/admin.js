@@ -1720,7 +1720,9 @@ function renderAdminShare(gameData) {
         copyBtn.onclick = function() {
             var gridEl = document.getElementById('admin-share-emoji-grid');
             if (gridEl) {
-                _adminCopyToClipboard(gridEl.textContent, 'admin-share-toast');
+                // Use raw text stored in dataset for clean copy
+                var textToCopy = gridEl.dataset.rawText || gridEl.textContent;
+                _adminCopyToClipboard(textToCopy, 'admin-share-toast');
             }
         };
     }
@@ -1731,7 +1733,9 @@ function renderAdminShare(gameData) {
         saveBtn.onclick = function() {
             var gridEl = document.getElementById('admin-share-emoji-grid');
             if (gridEl) {
-                generateAdminVisualCard(gridEl.textContent, shareData.playlist_name || 'Beatify');
+                // Use raw text stored in dataset
+                var rawText = gridEl.dataset.rawText || gridEl.textContent;
+                generateAdminVisualCard(rawText, shareData.playlist_name || 'Beatify', shareData);
             }
         };
     }
@@ -1741,67 +1745,114 @@ function renderAdminShare(gameData) {
 
 /**
  * Update the emoji grid preview for the selected player.
+ * Uses innerHTML with line breaks for proper div rendering.
  * @param {string} grid - Emoji grid text
  */
 function updateAdminShareGrid(grid) {
     var gridEl = document.getElementById('admin-share-emoji-grid');
-    if (gridEl && grid) gridEl.textContent = grid;
+    if (gridEl && grid) {
+        // Convert newlines to div elements for proper styling
+        var lines = grid.split('\n').map(function(line) {
+            return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
+        }).join('');
+        gridEl.innerHTML = lines;
+        // Store raw text for copy functionality
+        gridEl.dataset.rawText = grid;
+    }
 }
 
 /**
- * Generate a visual result card via Canvas API and trigger download.
+ * Generate a visual result card via Canvas API and trigger download (Issue #216).
+ * Redesigned with: dark gradient, header, emoji grid, stats, branding.
  * @param {string} emojiGrid - Formatted emoji grid text
  * @param {string} playlistName - Playlist display name
+ * @param {Object} shareData - Optional share data with additional info
  */
-function generateAdminVisualCard(emojiGrid, playlistName) {
+function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     var canvas = document.createElement('canvas');
-    canvas.width = 600;
-    canvas.height = 400;
+    canvas.width = 800;
+    canvas.height = 600;
     var ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = '#1a1a2e';
-    ctx.fillRect(0, 0, 600, 400);
+    // Dark gradient background (#0f0c29 → #302b63 → #24243e)
+    var bgGrad = ctx.createLinearGradient(0, 0, 0, 600);
+    bgGrad.addColorStop(0, '#0f0c29');
+    bgGrad.addColorStop(0.5, '#302b63');
+    bgGrad.addColorStop(1, '#24243e');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, 800, 600);
 
-    var grad = ctx.createLinearGradient(0, 0, 600, 0);
-    grad.addColorStop(0, '#e94560');
-    grad.addColorStop(1, '#0f3460');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 600, 4);
+    // Accent bar at top (gradient red→blue)
+    var accentGrad = ctx.createLinearGradient(0, 0, 800, 0);
+    accentGrad.addColorStop(0, '#e94560');
+    accentGrad.addColorStop(1, '#0f3460');
+    ctx.fillStyle = accentGrad;
+    ctx.fillRect(0, 0, 800, 4);
 
+    // Header: Beatify logo text
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 24px sans-serif';
+    ctx.font = 'bold 28px system-ui, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('🎵 Beatify — ' + (playlistName || ''), 300, 45);
+    ctx.fillText('🎵 Beatify', 400, 45);
 
-    var lines = emojiGrid.split('\n');
-    if (lines.length > 1) {
-        ctx.font = '18px sans-serif';
-        ctx.fillStyle = '#e94560';
-        ctx.fillText(lines[1], 300, 80);
-    }
+    // Playlist name
+    ctx.fillStyle = '#e94560';
+    ctx.font = '18px system-ui, sans-serif';
+    ctx.fillText(playlistName || '', 400, 75);
 
-    var emojiLine = '';
-    for (var i = 0; i < lines.length; i++) {
-        if (lines[i].match(/[🟣🟢🟡🔴⬜]/)) { emojiLine = lines[i]; break; }
-    }
-    ctx.font = '28px sans-serif';
+    // "Game Results" title
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(emojiLine, 300, 150);
+    ctx.font = '22px system-ui, sans-serif';
+    ctx.fillText('Game Results', 400, 115);
 
-    ctx.font = '14px sans-serif';
-    ctx.fillStyle = '#aaaacc';
-    var statsY = 200;
-    for (var j = 0; j < lines.length; j++) {
-        var line = lines[j].trim();
-        if (line && !line.match(/[🟣🟢🟡🔴⬜]/) && j > 2) {
-            ctx.fillText(line, 300, statsY);
-            statsY += 25;
+    // Parse the emoji grid to extract info
+    var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
+
+    // Find player name and score (usually line with 👑 or points)
+    var playerLine = '';
+    var emojiRows = [];
+    var statsLines = [];
+
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
+            emojiRows.push(line);
+        } else if (line.match(/👑|#\d|pts|points/i)) {
+            playerLine = line;
+        } else if (line.match(/🔥|✅|streak|round/i)) {
+            statsLines.push(line);
         }
     }
 
-    ctx.font = '12px sans-serif';
+    // Draw player/rank line
+    if (playerLine) {
+        ctx.fillStyle = '#ffd700';
+        ctx.font = '24px system-ui, sans-serif';
+        ctx.fillText(playerLine, 400, 160);
+    }
+
+    // Draw emoji grid rows (centered, 32px font, proper spacing)
+    ctx.font = '32px system-ui, sans-serif';
+    ctx.fillStyle = '#ffffff';
+    var emojiStartY = 210;
+    var emojiLineHeight = 44;
+    emojiRows.forEach(function(row, idx) {
+        ctx.fillText(row, 400, emojiStartY + (idx * emojiLineHeight));
+    });
+
+    // Stats row (14px, muted)
+    ctx.font = '14px system-ui, sans-serif';
+    ctx.fillStyle = '#8888aa';
+    var statsY = emojiStartY + (emojiRows.length * emojiLineHeight) + 30;
+    statsLines.forEach(function(stat, idx) {
+        ctx.fillText(stat, 400, statsY + (idx * 22));
+    });
+
+    // Footer: beatify.fun (12px, muted, bottom-right)
+    ctx.font = '12px system-ui, sans-serif';
     ctx.fillStyle = '#666688';
-    ctx.fillText('Powered by Beatify', 300, 380);
+    ctx.textAlign = 'right';
+    ctx.fillText('beatify.fun', 780, 580);
 
     canvas.toBlob(function(blob) {
         downloadAdminBlob(blob);

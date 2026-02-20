@@ -3711,7 +3711,8 @@
     }
 
     /**
-     * Render shareable result card (Issue #120)
+     * Render shareable result card (Issue #120, #216)
+     * Uses innerHTML with line breaks for proper div rendering.
      * @param {Object|null} shareData - Share data from state with emoji_grids, playlist_name, total_rounds
      */
     function renderShareTab(shareData) {
@@ -3731,7 +3732,13 @@
 
         var gridEl = document.getElementById('share-emoji-grid');
         if (gridEl) {
-            gridEl.textContent = myGrid;
+            // Convert newlines to div elements for proper styling
+            var lines = myGrid.split('\n').map(function(line) {
+                return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
+            }).join('');
+            gridEl.innerHTML = lines;
+            // Store raw text for copy functionality
+            gridEl.dataset.rawText = myGrid;
         }
 
         // Wire up copy button
@@ -3752,7 +3759,7 @@
         var saveBtn = document.getElementById('share-save-btn');
         if (saveBtn) {
             saveBtn.onclick = function() {
-                generateVisualCard(myGrid, shareData.playlist_name);
+                generateVisualCard(myGrid, shareData.playlist_name, shareData);
             };
         }
 
@@ -3760,77 +3767,110 @@
     }
 
     /**
-     * Generate visual card via Canvas API and download as PNG (Issue #120)
+     * Generate visual card via Canvas API and download as PNG (Issue #120, #216)
+     * Redesigned with: dark gradient, header, player name, emoji grid, stats, branding.
      * @param {string} emojiGrid - The emoji grid text
      * @param {string} playlistName - Name of the playlist
+     * @param {Object} shareData - Optional share data with additional info
      */
-    function generateVisualCard(emojiGrid, playlistName) {
+    function generateVisualCard(emojiGrid, playlistName, shareData) {
         var canvas = document.createElement('canvas');
-        canvas.width = 600;
-        canvas.height = 400;
+        canvas.width = 800;
+        canvas.height = 600;
         var ctx = canvas.getContext('2d');
 
-        // Dark background matching Beatify theme
-        ctx.fillStyle = '#1a1a2e';
-        ctx.fillRect(0, 0, 600, 400);
+        // Dark gradient background (#0f0c29 → #302b63 → #24243e)
+        var bgGrad = ctx.createLinearGradient(0, 0, 0, 600);
+        bgGrad.addColorStop(0, '#0f0c29');
+        bgGrad.addColorStop(0.5, '#302b63');
+        bgGrad.addColorStop(1, '#24243e');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 800, 600);
 
-        // Gradient accent bar at top
-        var grad = ctx.createLinearGradient(0, 0, 600, 0);
-        grad.addColorStop(0, '#e94560');
-        grad.addColorStop(1, '#0f3460');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 600, 4);
+        // Accent bar at top (gradient red→blue)
+        var accentGrad = ctx.createLinearGradient(0, 0, 800, 0);
+        accentGrad.addColorStop(0, '#e94560');
+        accentGrad.addColorStop(1, '#0f3460');
+        ctx.fillStyle = accentGrad;
+        ctx.fillRect(0, 0, 800, 4);
 
-        // Title
+        // Header: Beatify logo text
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 24px sans-serif';
+        ctx.font = 'bold 28px system-ui, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText('🎵 Beatify — ' + (playlistName || ''), 300, 45);
+        ctx.fillText('🎵 Beatify', 400, 45);
 
-        // Player name & score (extract from grid)
-        var lines = emojiGrid.split('\n');
-        if (lines.length > 1) {
-            ctx.font = '18px sans-serif';
-            ctx.fillStyle = '#e94560';
-            ctx.fillText(lines[1], 300, 80); // 👑 Name: Xpts
-        }
+        // Playlist name
+        ctx.fillStyle = '#e94560';
+        ctx.font = '18px system-ui, sans-serif';
+        ctx.fillText(playlistName || '', 400, 75);
 
-        // Emoji row
-        var emojiLine = '';
+        // Parse the emoji grid to extract info
+        var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
+
+        // Find player name, rank/score, emoji rows, and stats
+        var playerLine = '';
+        var rankLine = '';
+        var emojiRows = [];
+        var statsLines = [];
+
         for (var i = 0; i < lines.length; i++) {
-            if (lines[i].match(/[🟣🟢🟡🔴⬜]/)) {
-                emojiLine = lines[i];
-                break;
+            var line = lines[i].trim();
+            if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
+                emojiRows.push(line);
+            } else if (line.match(/👑|🥇|🥈|🥉/)) {
+                playerLine = line;
+            } else if (line.match(/#\d|pts|points/i)) {
+                rankLine = line;
+            } else if (line.match(/🔥|✅|streak|round/i)) {
+                statsLines.push(line);
             }
         }
-        ctx.font = '28px sans-serif';
+
+        // Player name (22px, white)
+        if (playerLine) {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '22px system-ui, sans-serif';
+            ctx.fillText(playerLine, 400, 115);
+        }
+
+        // Rank/score line (24px, gold/accent)
+        if (rankLine) {
+            ctx.fillStyle = '#ffd700';
+            ctx.font = '24px system-ui, sans-serif';
+            ctx.fillText(rankLine, 400, 155);
+        }
+
+        // Draw emoji grid rows (centered, 32px font, proper line spacing)
+        ctx.font = '32px system-ui, sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(emojiLine, 300, 150);
+        var emojiStartY = 205;
+        var emojiLineHeight = 44;
+        emojiRows.forEach(function(row, idx) {
+            ctx.fillText(row, 400, emojiStartY + (idx * emojiLineHeight));
+        });
 
-        // Stats lines
-        ctx.font = '14px sans-serif';
-        ctx.fillStyle = '#aaaacc';
-        var statsY = 200;
-        for (var j = 0; j < lines.length; j++) {
-            var line = lines[j].trim();
-            if (line && !line.match(/[🟣🟢🟡🔴⬜]/) && j > 2) {
-                ctx.fillText(line, 300, statsY);
-                statsY += 25;
-            }
-        }
+        // Stats row (14px, muted color)
+        ctx.font = '14px system-ui, sans-serif';
+        ctx.fillStyle = '#8888aa';
+        var statsY = emojiStartY + (emojiRows.length * emojiLineHeight) + 30;
+        statsLines.forEach(function(stat, idx) {
+            ctx.fillText(stat, 400, statsY + (idx * 22));
+        });
 
-        // Footer
-        ctx.font = '12px sans-serif';
+        // Footer: beatify.fun (12px, muted, bottom-right)
+        ctx.font = '12px system-ui, sans-serif';
         ctx.fillStyle = '#666688';
-        ctx.fillText('Powered by Beatify', 300, 380);
+        ctx.textAlign = 'right';
+        ctx.fillText('beatify.fun', 780, 580);
 
         // Download or share
         canvas.toBlob(function(blob) {
             if (navigator.share && navigator.canShare) {
                 var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
-                var shareData = { files: [file], title: 'My Beatify Results' };
-                if (navigator.canShare(shareData)) {
-                    navigator.share(shareData).catch(function() {
+                var nativeShareData = { files: [file], title: 'My Beatify Results' };
+                if (navigator.canShare(nativeShareData)) {
+                    navigator.share(nativeShareData).catch(function() {
                         downloadBlob(blob);
                     });
                     return;

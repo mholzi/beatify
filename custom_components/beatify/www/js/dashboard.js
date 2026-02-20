@@ -863,6 +863,59 @@
 
             container.innerHTML = html;
         }
+
+        // Render shareable result cards (Issue #216)
+        renderDashboardShare(data.share_data, leaderboard);
+    }
+
+    /**
+     * Render shareable result cards on dashboard end screen (Issue #216)
+     * Shows all players' emoji grids prominently on the TV screen
+     * @param {Object|null} shareData - Share data with emoji_grids, playlist_name
+     * @param {Array} leaderboard - Leaderboard for ordering players
+     */
+    function renderDashboardShare(shareData, leaderboard) {
+        var container = document.getElementById('dashboard-share-container');
+        var gridsEl = document.getElementById('dashboard-share-grids');
+        if (!container || !gridsEl) return;
+
+        if (!shareData || !shareData.emoji_grids || Object.keys(shareData.emoji_grids).length === 0) {
+            container.classList.add('hidden');
+            return;
+        }
+
+        var emojiGrids = shareData.emoji_grids;
+
+        // Order by leaderboard rank, then show remaining
+        var orderedPlayers = [];
+        leaderboard.forEach(function(entry) {
+            if (emojiGrids[entry.name]) {
+                orderedPlayers.push(entry.name);
+            }
+        });
+        // Add any players not in leaderboard
+        Object.keys(emojiGrids).forEach(function(name) {
+            if (orderedPlayers.indexOf(name) === -1) {
+                orderedPlayers.push(name);
+            }
+        });
+
+        // Render each player's grid
+        var html = '';
+        orderedPlayers.forEach(function(playerName, index) {
+            var grid = emojiGrids[playerName];
+            var gridLines = grid.split('\n').map(function(line) {
+                return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
+            }).join('');
+
+            html += '<div class="dashboard-share-card" style="animation-delay: ' + (index * 0.1) + 's">' +
+                '<div class="dashboard-share-player-name">' + utils.escapeHtml(playerName) + '</div>' +
+                '<div class="emoji-grid-preview">' + gridLines + '</div>' +
+            '</div>';
+        });
+
+        gridsEl.innerHTML = html;
+        container.classList.remove('hidden');
     }
 
     /**
