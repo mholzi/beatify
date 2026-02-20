@@ -3794,11 +3794,27 @@
         ctx.fillStyle = accentGrad;
         ctx.fillRect(0, 0, 800, 4);
 
-        // Header: Beatify logo text
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 28px system-ui, sans-serif';
+        // Header: Beatify logo image (Fix #227)
+        var logoImg = new Image();
+        logoImg.src = '/beatify/static/img/icon-256.png';
+        logoImg.onerror = function() { drawCardContent(null); };
+        logoImg.onload = function() { drawCardContent(logoImg); };
+
+        function drawCardContent(logo) {
+        // Logo image (top-left) + "Beatify" text next to it
+        if (logo) {
+            ctx.drawImage(logo, 16, 8, 48, 48);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 26px system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Beatify', 72, 42);
+        } else {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🎵 Beatify', 400, 45);
+        }
         ctx.textAlign = 'center';
-        ctx.fillText('🎵 Beatify', 400, 45);
 
         // Playlist name
         ctx.fillStyle = '#e94560';
@@ -3878,6 +3894,7 @@
             }
             downloadBlob(blob);
         }, 'image/png');
+        } // end drawCardContent
     }
 
     /**
