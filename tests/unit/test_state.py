@@ -600,6 +600,7 @@ class TestRematchGame:
 
     def setup_method(self):
         from tests.conftest import make_game_state
+
         self.state = make_game_state()
 
     def test_rematch_transitions_to_lobby(self):
@@ -642,7 +643,9 @@ class TestRematchGame:
 
     def test_rematch_preserves_songs(self):
         """Songs must be restored so gameplay can start immediately."""
-        songs = [{"year": 2000, "uri": "spotify:track:abc", "title": "T", "artist": "A"}]
+        songs = [
+            {"year": 2000, "uri": "spotify:track:abc", "title": "T", "artist": "A"}
+        ]
         _create_fresh_game(self.state, songs=songs)
         self.state.phase = GamePhase.END
         self.state.rematch_game()
