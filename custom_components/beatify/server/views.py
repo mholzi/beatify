@@ -214,7 +214,10 @@ class StartGameView(HomeAssistantView):
                     return web.json_response(
                         {
                             "error": "INVALID_REQUEST",
-                            "message": f"Round duration must be between {ROUND_DURATION_MIN} and {ROUND_DURATION_MAX} seconds",
+                            "message": (
+                                f"Round duration must be between "
+                                f"{ROUND_DURATION_MIN} and {ROUND_DURATION_MAX} seconds"
+                            ),
                         },
                         status=400,
                     )
@@ -354,7 +357,9 @@ class StartGameView(HomeAssistantView):
                 status=400,
             )
 
-        # Build create_game kwargs with optional round_duration (Story 13.1), difficulty (Story 14.1), provider (Story 17.2), platform, and artist_challenge_enabled (Story 20.7)
+        # Build create_game kwargs with optional round_duration (Story 13.1),
+        # difficulty (Story 14.1), provider (Story 17.2), platform,
+        # and artist_challenge_enabled (Story 20.7)
         create_kwargs: dict[str, Any] = {
             "playlists": playlist_paths,
             "songs": songs,
