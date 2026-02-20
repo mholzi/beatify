@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
+    document.getElementById('start-gameplay-btn')?.addEventListener('click', startGameplay);
     document.getElementById('print-qr')?.addEventListener('click', printQRCode);
     document.getElementById('rejoin-game')?.addEventListener('click', rejoinGame);
 
@@ -1431,6 +1432,42 @@ async function startGame() {
         btn.disabled = false;
         btn.textContent = originalText;
         updateStartButtonState();
+    }
+}
+
+/**
+ * Start gameplay from lobby — transitions LOBBY → PLAYING (Issue #228).
+ * Called from the "Spiel starten" button in the lobby view.
+ * Preserves admin session: admin can start the game without having to
+ * re-join as a player after a rematch.
+ */
+async function startGameplay() {
+    const btn = document.getElementById('start-gameplay-btn');
+    if (!btn || btn.disabled) return;
+
+    btn.disabled = true;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> Starting...';
+
+    try {
+        const response = await fetch('/beatify/api/start-gameplay', { method: 'POST' });
+        const data = await response.json();
+
+        if (!response.ok) {
+            showError(data.message || 'Failed to start gameplay');
+            return;
+        }
+
+        // Gameplay started — reload status to transition to existing-game view
+        await loadStatus();
+
+    } catch (err) {
+        showError('Network error. Please try again.');
+        console.error('Start gameplay error:', err);
+    } finally {
+        // Restore button in case of error; if success loadStatus() hides the lobby
+        btn.disabled = false;
+        btn.innerHTML = originalText;
     }
 }
 
