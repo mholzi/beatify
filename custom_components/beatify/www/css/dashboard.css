@@ -1216,3 +1216,90 @@
         bottom: 150px;
     }
 }
+
+/* ==========================================
+   Shareable Result Cards (Issue #216)
+   ========================================== */
+
+.dashboard-share-container {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+}
+
+.dashboard-share-container .leaderboard-title {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.dashboard-share-grids {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    justify-content: center;
+}
+
+.dashboard-share-card {
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(233, 69, 96, 0.3);
+    border-radius: 16px;
+    padding: var(--space-md) var(--space-lg);
+    min-width: 280px;
+    max-width: 400px;
+    animation: share-card-appear 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes share-card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-share-player-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent, #e94560);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+
+.emoji-grid-preview {
+    background: #1a1a2e;
+    border: 1px solid rgba(233, 69, 96, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #ffffff;
+    white-space: pre-line;
+    margin: 12px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.emoji-grid-line {
+    margin: 4px 0;
+}
+
+/* TV Breakpoint for share cards */
+@media (min-width: 1400px) {
+    .dashboard-share-card {
+        min-width: 320px;
+        max-width: 450px;
+    }
+
+    .emoji-grid-preview {
+        font-size: 18px;
+    }
+
+    .dashboard-share-player-name {
+        font-size: 1.5rem;
+    }
+}

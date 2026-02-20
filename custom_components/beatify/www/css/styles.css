@@ -8198,19 +8198,21 @@ body.device-tier-low .reveal-skip-hint {
 }
 
 .emoji-grid-preview {
-    background: var(--card-bg, #1a1a2e);
-    border: 1px solid var(--border-color, #333);
+    background: #1a1a2e;
+    border: 1px solid rgba(233, 69, 96, 0.3);
     border-radius: 12px;
-    padding: 1rem 1.5rem;
-    margin: 0 auto 1rem;
+    padding: 16px 20px;
+    margin: 12px auto;
     max-width: 400px;
-    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+    white-space: pre-line;
     word-break: break-word;
-    text-align: left;
-    color: var(--text-primary, #eee);
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .share-buttons {
