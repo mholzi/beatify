@@ -6,7 +6,7 @@
  */
 'use strict';
 
-var CACHE_VERSION = 'beatify-v2.0.0';
+var CACHE_VERSION = 'beatify-v2.7.0';
 var MAX_CACHE_ITEMS = 50;
 
 // Critical assets to precache on install (minified versions only - fallback handled by HTML)
@@ -18,7 +18,10 @@ var PRECACHE_ASSETS = [
     '/beatify/static/js/dashboard.min.js',
     '/beatify/static/js/i18n.min.js',
     '/beatify/static/js/vendor/qrcode.min.js',
-    '/beatify/static/img/no-artwork.svg'
+    '/beatify/static/img/no-artwork.svg',
+    '/beatify/static/site.webmanifest',
+    '/beatify/static/img/icon-256.png',
+    '/beatify/static/img/icon-512.png'
 ];
 
 /**

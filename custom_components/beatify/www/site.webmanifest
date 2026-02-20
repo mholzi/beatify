@@ -1,0 +1,31 @@
+{
+  "name": "Beatify",
+  "short_name": "Beatify",
+  "description": "Music Trivia Quiz for Home Assistant — guess the year, beat your friends",
+  "start_url": "/beatify/play",
+  "scope": "/beatify/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1a1a2e",
+  "background_color": "#1a1a2e",
+  "lang": "en",
+  "categories": ["entertainment", "games"],
+  "icons": [
+    {
+      "src": "/beatify/static/img/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/beatify/static/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/beatify/static/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
