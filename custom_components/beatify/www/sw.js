@@ -19,7 +19,7 @@ var PRECACHE_ASSETS = [
     '/beatify/static/js/i18n.min.js',
     '/beatify/static/js/vendor/qrcode.min.js',
     '/beatify/static/img/no-artwork.svg',
-    '/beatify/static/manifest.json',
+    '/beatify/static/site.webmanifest',
     '/beatify/static/img/icon-256.png',
     '/beatify/static/img/icon-512.png'
 ];
