@@ -6,8 +6,6 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
-from homeassistant.helpers import entity_registry as er
-
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -561,6 +559,11 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
         warning, caveat fields.
 
     """
+    # Late import: homeassistant.helpers.entity_registry is not available in
+    # the test environment without a full HA setup, so we import it here to
+    # avoid ImportError during unit tests.  (noqa: PLC0415)
+    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
     # Get entity registry to check which platform created each entity
     ent_reg = er.async_get(hass)
 
