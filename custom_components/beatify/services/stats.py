@@ -163,7 +163,7 @@ class StatsService:
                 # Story 19.11: Streak achievements
                 "streak_3_count": game_summary.get("streak_3_count", 0),
                 "streak_5_count": game_summary.get("streak_5_count", 0),
-                "streak_7_count": game_summary.get("streak_7_count", 0),
+                "streak_10_count": game_summary.get("streak_10_count", 0),
                 # Story 19.12: Bet tracking
                 "total_bets": game_summary.get("total_bets", 0),
                 "bets_won": game_summary.get("bets_won", 0),

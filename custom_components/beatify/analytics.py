@@ -43,7 +43,7 @@ class GameRecord(TypedDict):
     # Story 19.11: Streak achievements
     streak_3_count: int  # Number of 3+ streaks achieved
     streak_5_count: int  # Number of 5+ streaks achieved
-    streak_7_count: int  # Number of 7+ streaks achieved
+    streak_10_count: int  # Number of 10+ streaks achieved
     # Story 19.12: Bet tracking
     total_bets: int  # Total bets placed in game
     bets_won: int  # Bets that won (doubled points)
@@ -684,14 +684,14 @@ class AnalyticsStorage:
         # Sum streak achievements across all games
         streak_3_total = sum(g.get("streak_3_count", 0) for g in games)
         streak_5_total = sum(g.get("streak_5_count", 0) for g in games)
-        streak_7_total = sum(g.get("streak_7_count", 0) for g in games)
+        streak_10_total = sum(g.get("streak_10_count", 0) for g in games)
 
-        total_streaks = streak_3_total + streak_5_total + streak_7_total
+        total_streaks = streak_3_total + streak_5_total + streak_10_total
 
         return {
             "streak_3_count": streak_3_total,
             "streak_5_count": streak_5_total,
-            "streak_7_count": streak_7_total,
+            "streak_10_count": streak_10_total,
             "total_streaks": total_streaks,
             "has_data": total_streaks > 0,
         }
