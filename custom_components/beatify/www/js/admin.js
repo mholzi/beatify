@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
+    document.getElementById('start-gameplay-btn')?.addEventListener('click', startGameplay);
     document.getElementById('print-qr')?.addEventListener('click', printQRCode);
     document.getElementById('rejoin-game')?.addEventListener('click', rejoinGame);
 
@@ -1238,6 +1239,19 @@ function showLobbyView(gameData) {
     // Update difficulty badge (use gameData.difficulty if available, else selectedDifficulty)
     updateLobbyDifficultyBadge(gameData.difficulty || selectedDifficulty);
 
+    // Fix #228: Update participate button label if admin is already registered as a player.
+    // The actual redirect logic is handled in openAdminJoinModal().
+    var participateBtn = document.getElementById('participate-btn');
+    if (participateBtn) {
+        var adminNameStored = null;
+        try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
+        var btnLabel = participateBtn.querySelector('[data-i18n]');
+        if (adminNameStored && btnLabel) {
+            btnLabel.textContent = '▶️ Spiel starten';
+            btnLabel.removeAttribute('data-i18n');
+        }
+    }
+
     // Setup QR tap-to-enlarge
     setupQRModal();
 }
@@ -1435,6 +1449,42 @@ async function startGame() {
 }
 
 /**
+ * Start gameplay from lobby — transitions LOBBY → PLAYING (Issue #228).
+ * Called from the "Spiel starten" button in the lobby view.
+ * Preserves admin session: admin can start the game without having to
+ * re-join as a player after a rematch.
+ */
+async function startGameplay() {
+    const btn = document.getElementById('start-gameplay-btn');
+    if (!btn || btn.disabled) return;
+
+    btn.disabled = true;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> Starting...';
+
+    try {
+        const response = await fetch('/beatify/api/start-gameplay', { method: 'POST' });
+        const data = await response.json();
+
+        if (!response.ok) {
+            showError(data.message || 'Failed to start gameplay');
+            return;
+        }
+
+        // Gameplay started — reload status to transition to existing-game view
+        await loadStatus();
+
+    } catch (err) {
+        showError('Network error. Please try again.');
+        console.error('Start gameplay error:', err);
+    } finally {
+        // Restore button in case of error; if success loadStatus() hides the lobby
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
+}
+
+/**
  * Show end game confirmation modal (Story 9.10)
  */
 function showEndGameModal() {
@@ -1543,12 +1593,21 @@ async function confirmRematch() {
     try {
         var response = await fetch('/beatify/api/rematch-game', { method: 'POST' });
         if (response.ok) {
-            // Rematch puts game back in LOBBY with players still connected
-            // Reload status to get the new game data and show lobby
+            var data = await response.json();
+            // Fix #228: If admin was already a player in the previous game,
+            // redirect directly to the player page with the new game ID.
+            // This avoids landing in lobby view with no "Start Game" button.
+            var adminName = null;
+            try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
+            if (adminName && data.new_game_id) {
+                window.location.href = '/beatify/play?game=' + encodeURIComponent(data.new_game_id);
+                return;
+            }
+            // Admin not yet a player — show lobby so they can join first
             await loadStatus();
         } else {
-            var data = await response.json();
-            alert(data.message || 'Failed to start rematch');
+            var errData = await response.json();
+            alert(errData.message || 'Failed to start rematch');
         }
     } catch (error) {
         console.error('Rematch failed:', error);
@@ -1899,6 +1958,15 @@ function downloadAdminBlob(blob) {
  * Open admin join modal
  */
 function openAdminJoinModal() {
+    // Fix #228: If admin was already a player (sessionStorage has their name),
+    // skip the modal and redirect directly to the player page with the current game ID.
+    var adminName = null;
+    try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
+    if (adminName && currentGame && currentGame.game_id) {
+        window.location.href = '/beatify/play?game=' + encodeURIComponent(currentGame.game_id);
+        return;
+    }
+
     const modal = document.getElementById('admin-join-modal');
     if (modal) {
         modal.classList.remove('hidden');

@@ -265,7 +265,12 @@
 
                 <!-- Sticky Lobby Actions -->
                 <div class="lobby-actions lobby-actions--sticky">
-                    <button id="participate-btn" class="btn btn-primary btn-large btn-full-width">
+                    <!-- Start Gameplay: transitions LOBBY → PLAYING without requiring admin to join as player (Issue #228) -->
+                    <button id="start-gameplay-btn" class="btn btn-primary btn-large btn-full-width">
+                        <span class="btn-icon" aria-hidden="true">▶️</span>
+                        <span data-i18n="admin.startGameplay">Spiel starten</span>
+                    </button>
+                    <button id="participate-btn" class="btn btn-secondary btn-large btn-full-width">
                         <span class="btn-icon" aria-hidden="true">🎮</span>
                         <span data-i18n="admin.joinAsPlayer">Join as Player</span>
                     </button>

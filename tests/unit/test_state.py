@@ -587,3 +587,67 @@ class TestGetState:
         state = self.state.get_state()
         assert "winner" in state
         assert state["winner"]["name"] == "Alice"
+
+
+# ---------------------------------------------------------------------------
+# Issue #228: rematch_game → LOBBY phase with join_url (Start Gameplay fix)
+# ---------------------------------------------------------------------------
+
+
+class TestRematchGame:
+    """Ensure rematch_game() puts game in LOBBY with a valid join_url so
+    the admin 'Spiel starten' button can transition LOBBY → PLAYING."""
+
+    def setup_method(self):
+        from tests.conftest import make_game_state
+
+        self.state = make_game_state()
+
+    def test_rematch_transitions_to_lobby(self):
+        """After rematch, phase must be LOBBY (not END or any other phase)."""
+        _create_fresh_game(self.state)
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        assert self.state.phase == GamePhase.LOBBY
+
+    def test_rematch_generates_new_game_id(self):
+        """New game_id should differ from the old one."""
+        result = _create_fresh_game(self.state)
+        old_id = result["game_id"]
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        assert self.state.game_id is not None
+        assert self.state.game_id != old_id
+
+    def test_rematch_lobby_state_has_join_url(self):
+        """get_state() after rematch must include join_url (required for QR code
+        and the new 'Spiel starten' button in the admin lobby view, Issue #228)."""
+        _create_fresh_game(self.state)
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        state = self.state.get_state()
+        assert state is not None
+        assert state["phase"] == "LOBBY"
+        assert "join_url" in state
+        assert self.state.game_id in state["join_url"]
+
+    def test_rematch_preserves_players(self):
+        """Players must be preserved across rematch (scores reset)."""
+        _create_fresh_game(self.state)
+        self.state.add_player("Alice", MagicMock())
+        self.state.players["Alice"].score = 200
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        assert "Alice" in self.state.players
+        assert self.state.players["Alice"].score == 0  # reset for new game
+
+    def test_rematch_preserves_songs(self):
+        """Songs must be restored so gameplay can start immediately."""
+        songs = [
+            {"year": 2000, "uri": "spotify:track:abc", "title": "T", "artist": "A"}
+        ]
+        _create_fresh_game(self.state, songs=songs)
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        assert len(self.state.songs) > 0
+        assert self.state.total_rounds > 0
