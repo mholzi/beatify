@@ -6,6 +6,8 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
+from homeassistant.helpers import entity_registry as er
+
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -158,13 +160,12 @@ class MediaPlayerService:
         try:
             if self._platform == "music_assistant":
                 return await self._play_via_music_assistant(song)
-            elif self._platform == "sonos":
+            if self._platform == "sonos":
                 return await self._play_via_sonos(song)
-            elif self._platform in ("alexa_media", "alexa"):
+            if self._platform in ("alexa_media", "alexa"):
                 return await self._play_via_alexa(song)
-            else:
-                _LOGGER.error("Unsupported platform: %s", self._platform)
-                return False
+            _LOGGER.error("Unsupported platform: %s", self._platform)
+            return False
         except TimeoutError:
             _LOGGER.error(
                 "Playback timed out after %ss for %s: %s",
@@ -281,11 +282,10 @@ class MediaPlayerService:
 
         if artist and title:
             return f"{title} by {artist}"
-        elif title:
+        if title:
             return title
-        else:
-            _LOGGER.warning("Song missing artist/title for Alexa search")
-            return "unknown song"
+        _LOGGER.warning("Song missing artist/title for Alexa search")
+        return "unknown song"
 
     async def get_metadata(self) -> dict[str, Any]:
         """
@@ -561,8 +561,6 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
         warning, caveat fields.
 
     """
-    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
-
     # Get entity registry to check which platform created each entity
     ent_reg = er.async_get(hass)
 
