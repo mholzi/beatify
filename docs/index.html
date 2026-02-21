@@ -3,31 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beatify - Multiplayer Music Trivia for Home Assistant</title>
-  <meta name="description" content="Beatify is an open-source multiplayer music trivia quiz for Home Assistant. Play with friends on Sonos, Alexa, or Music Assistant. HACS compatible.">
-  <meta name="keywords" content="Home Assistant, music trivia, quiz, multiplayer, Sonos, Alexa, Music Assistant, HACS, open source">
-  <meta name="author" content="mholzi">
+  <title>Beatify — Multiplayer Music Trivia for Home Assistant</title>
+  <meta name="description" content="Turn your smart speakers into a party game. Guests scan a QR code, a song plays, everyone guesses the year. No app, no account. Free and open source.">
+  <meta name="keywords" content="Home Assistant, music quiz, party game, HACS, smart home, music trivia, Sonos, Alexa, Music Assistant, self-hosted">
+  <meta name="author" content="Markus Holzhäuser">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://mholzi.github.io/beatify/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Beatify - Multiplayer Music Trivia for Home Assistant">
-  <meta property="og:description" content="Open-source multiplayer music trivia quiz for Home Assistant. Play with friends on Sonos, Alexa, or Music Assistant.">
-  <meta property="og:image" content="https://mholzi.github.io/beatify/images/og-image.png">
-  <meta property="og:url" content="https://mholzi.github.io/beatify/">
   <meta property="og:type" content="website">
+  <meta property="og:title" content="Beatify — Music Trivia for Home Assistant">
+  <meta property="og:description" content="Multiplayer music quiz game for Home Assistant. Guests scan a QR code and compete — no app, no account. Runs 100% locally.">
+  <meta property="og:url" content="https://mholzi.github.io/beatify/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Beatify - Multiplayer Music Trivia for Home Assistant">
-  <meta name="twitter:description" content="Open-source multiplayer music trivia quiz for Home Assistant. Play with friends on Sonos, Alexa, or Music Assistant.">
-  <meta name="twitter:image" content="https://mholzi.github.io/beatify/images/og-image.png">
+  <meta name="twitter:title" content="Beatify — Music Trivia for Home Assistant">
+  <meta name="twitter:description" content="Multiplayer music quiz game for Home Assistant. No app, no account. 100% local.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon.png">
 
   <!-- Preconnect hints -->
   <link rel="preconnect" href="https://img.shields.io">
-  <link rel="preconnect" href="https://github.com">
   <link rel="preconnect" href="https://my.home-assistant.io">
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -38,10 +44,12 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Beatify",
-    "description": "Open-source multiplayer music trivia quiz for Home Assistant",
-    "url": "https://mholzi.github.io/beatify/",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Home Assistant",
+    "description": "Multiplayer music trivia party game for Home Assistant. Guests scan a QR code to join — no app, no account. Works with Sonos, Alexa, and Music Assistant speakers.",
+    "url": "https://mholzi.github.io/beatify/",
+    "downloadUrl": "https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration",
+    "softwareVersion": "2.6.0",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -49,7 +57,7 @@
     },
     "author": {
       "@type": "Person",
-      "name": "mholzi",
+      "name": "Markus Holzhäuser",
       "url": "https://github.com/mholzi"
     },
     "license": "https://opensource.org/licenses/MIT",
@@ -61,10 +69,15 @@
   <header class="header">
     <div class="container">
       <nav class="nav" aria-label="Main navigation">
-        <a href="#" class="logo" aria-label="Beatify Home">🎵 Beatify</a>
+        <a href="#" class="logo" aria-label="Beatify Home">
+          <img src="images/beatify-logo.png" alt="Beatify Logo" width="28" height="28" class="logo-img">
+          Beatify
+        </a>
         <ul class="nav-links">
+          <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#install">Install</a></li>
+          <li><a href="#changelog">Changelog</a></li>
           <li><a href="#community">Community</a></li>
         </ul>
       </nav>
@@ -73,183 +86,286 @@
 
   <main>
     <article>
+
+      <!-- ===== HERO ===== -->
       <section class="hero" id="hero">
         <div class="container">
-          <h1>Multiplayer Music Trivia für Home Assistant</h1>
-          <p class="tagline">Verwandelt euer Zuhause in eine Quizshow. Spielt zusammen mit Freunden und Familie auf Sonos, Alexa oder Music Assistant.</p>
+          <h1>The Music Quiz Party Game Your Smart Home Was Made For</h1>
+          <p class="tagline">Scan a QR code. Hear a song. Guess the year. Beats, laughs, rematches — all through your existing smart speakers.</p>
+
+          <div class="hero-stats">
+            <span>53 active installs</span>
+            <span>21 playlists</span>
+            <span>2,363 songs</span>
+            <span>4 music platforms</span>
+            <span>4 languages</span>
+          </div>
 
           <div class="hero-cta">
             <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration" class="hacs-button" target="_blank" rel="noopener noreferrer">
               <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open in HACS" width="197" height="48">
             </a>
-            <a href="https://github.com/mholzi/beatify" class="github-stars-link" target="_blank" rel="noopener noreferrer">
-              <img src="https://img.shields.io/github/stars/mholzi/beatify?style=for-the-badge&logo=github&color=58a6ff" alt="GitHub Stars" width="120" height="28">
+            <a href="https://github.com/mholzi/beatify" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              View on GitHub
             </a>
           </div>
 
-          <div class="hero-screenshot">
-            <!-- TODO: beatify-content will add hero screenshot -->
-            <div class="screenshot-placeholder" aria-label="Beatify screenshot placeholder">
-              <span>🎵</span>
-              <p>Screenshot coming soon</p>
+          <div class="hero-image">
+            <img src="images/qr-lobby.png" alt="Beatify QR code lobby — guests scan to join the music trivia game" width="600" height="400" loading="eager">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="how-it-works" id="how-it-works">
+        <div class="container">
+          <h2 class="section-title">How It Works</h2>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-number" aria-hidden="true">1</div>
+              <h3>Install</h3>
+              <p>Add Beatify to Home Assistant via HACS. Pick your speaker and music service.</p>
+            </div>
+            <div class="step">
+              <div class="step-number" aria-hidden="true">2</div>
+              <h3>Pick Music</h3>
+              <p>Choose from 21 curated playlists or connect Spotify, Apple Music, YouTube Music, or Tidal.</p>
+            </div>
+            <div class="step">
+              <div class="step-number" aria-hidden="true">3</div>
+              <h3>Party</h3>
+              <p>Guests scan a QR code to join — no app needed. Songs play, everyone guesses the year!</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- ===== FEATURES ===== -->
       <section class="features" id="features">
         <div class="container">
           <h2 class="section-title">Features</h2>
           <div class="features-grid">
             <div class="feature">
-              <div class="feature-icon" aria-hidden="true">👥</div>
-              <h3>Multiplayer</h3>
-              <p>Spielt zusammen im lokalen Netz</p>
+              <div class="feature-icon" aria-hidden="true">🚫📱</div>
+              <h3>Zero Friction</h3>
+              <p>Guests scan a QR code. No apps. No accounts. 10 seconds from scan to playing.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🔊</div>
+              <h3>Your Speakers</h3>
+              <p>Works with Music Assistant, Sonos &amp; Alexa — speakers you already own.</p>
             </div>
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">🎵</div>
-              <h3>Multi-Platform Audio</h3>
-              <p>Sonos, Alexa, Music Assistant Support</p>
+              <h3>Your Music</h3>
+              <p>Spotify, Apple Music, YouTube Music, Tidal. 21 curated playlists included.</p>
             </div>
             <div class="feature">
-              <div class="feature-icon" aria-hidden="true">📱</div>
-              <h3>QR Code Join</h3>
-              <p>Gäste joinen per QR-Code — keine App nötig</p>
-            </div>
-            <div class="feature">
-              <div class="feature-icon" aria-hidden="true">📅</div>
-              <h3>Jahres-Rätsel</h3>
-              <p>Erratet das Erscheinungsjahr für Bonuspunkte</p>
+              <div class="feature-icon" aria-hidden="true">🏠</div>
+              <h3>Runs Locally</h3>
+              <p>No cloud. No subscription. No data leaves your network.</p>
             </div>
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">🏆</div>
-              <h3>Live-Podium</h3>
-              <p>Echtzeit-Scoreboard auf dem TV-Bildschirm</p>
+              <h3>Real Competition</h3>
+              <p>Points, streaks, double-or-nothing bets, and a dramatic podium finale.</p>
             </div>
             <div class="feature">
-              <div class="feature-icon" aria-hidden="true">🔓</div>
-              <h3>Open Source</h3>
-              <p>MIT-Lizenz, HACS-kompatibel</p>
+              <div class="feature-icon" aria-hidden="true">⚡</div>
+              <h3>Easy Setup</h3>
+              <p>Install via HACS, pick a speaker, choose a playlist. 5 minutes to party.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- ===== BADGES ===== -->
       <section class="badges" id="badges">
         <div class="container">
           <div class="badges-row">
-            <img src="https://img.shields.io/github/stars/mholzi/beatify?style=flat-square&logo=github" alt="GitHub Stars" width="80" height="20">
-            <img src="https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=HACS%20Downloads&query=$.installation_count&url=https://analytics.home-assistant.io/custom_integrations.json&style=flat-square" alt="HACS Downloads" width="140" height="20">
-            <img src="https://img.shields.io/github/v/release/mholzi/beatify?style=flat-square" alt="Version" width="90" height="20">
-            <img src="https://img.shields.io/github/license/mholzi/beatify?style=flat-square" alt="License" width="80" height="20">
+            <img src="https://img.shields.io/github/stars/mholzi/beatify?style=flat-square&logo=github&color=58a6ff" alt="GitHub Stars" width="90" height="20">
+            <img src="https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=HACS%20Downloads&query=%24.beatify.total&url=https%3A%2F%2Fanalytics.home-assistant.io%2Fcustom_integrations.json&style=flat-square" alt="HACS Downloads" width="150" height="20">
+            <img src="https://img.shields.io/github/v/release/mholzi/beatify?style=flat-square&color=a371f7" alt="Latest Version" width="100" height="20">
+            <img src="https://img.shields.io/github/license/mholzi/beatify?style=flat-square" alt="MIT License" width="80" height="20">
           </div>
         </div>
       </section>
 
+      <!-- ===== SCREENSHOTS ===== -->
+      <section class="screenshots" id="screenshots">
+        <div class="container">
+          <h2 class="section-title">See It in Action</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-card">
+              <img src="images/player-gameplay.png" alt="Player view — slide to guess the release year" width="320" height="200" loading="lazy">
+              <p class="screenshot-caption">Slide to guess the release year — every second counts</p>
+            </div>
+            <div class="screenshot-card">
+              <img src="images/reveal-screen.png" alt="Reveal screen — the year drops and gold confetti flies" width="320" height="200" loading="lazy">
+              <p class="screenshot-caption">The year drops. The room erupts. Gold confetti for exact guesses.</p>
+            </div>
+            <div class="screenshot-card">
+              <img src="images/podium-screen.png" alt="Podium screen — fireworks, medals, personal stats" width="320" height="200" loading="lazy">
+              <p class="screenshot-caption">Fireworks, medals, personal stats — and inevitably, a rematch demand.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SPEAKERS ===== -->
+      <section class="speakers" id="speakers">
+        <div class="container">
+          <h2 class="section-title">Speaker Compatibility</h2>
+          <div class="speakers-grid">
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>Music Assistant</strong>
+                <p>Any speaker in Home Assistant via Music Assistant</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>Sonos</strong>
+                <p>All Sonos speakers, soundbars &amp; groups</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>Alexa</strong>
+                <p>Echo, Echo Dot, Echo Studio &amp; more</p>
+              </div>
+            </div>
+          </div>
+          <p class="speakers-note">Using Chromecast, Nest, or HomePod? Install Music Assistant — they'll appear in Beatify automatically.</p>
+        </div>
+      </section>
+
+      <!-- ===== INSTALL ===== -->
       <section class="install" id="install">
         <div class="container">
           <h2 class="section-title">Installation</h2>
+          <p class="install-requirements">Requires: <strong>Home Assistant 2024.1+</strong> · Music Assistant, Sonos, or Alexa</p>
           <div class="install-grid">
             <div class="install-card install-hacs">
-              <h3>📦 HACS (Empfohlen)</h3>
-              <p>Ein-Klick-Installation über den Home Assistant Community Store</p>
+              <h3>📦 HACS <span class="badge-recommended">Recommended</span></h3>
+              <p>One-click install via the Home Assistant Community Store.</p>
               <ol>
-                <li>Öffne HACS in Home Assistant</li>
-                <li>Klicke auf den Button unten</li>
-                <li>Folge den Anweisungen</li>
+                <li>Open HACS in Home Assistant</li>
+                <li>Click the button below</li>
+                <li>Follow the prompts &amp; restart</li>
               </ol>
               <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration" class="hacs-button" target="_blank" rel="noopener noreferrer">
                 <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open in HACS" width="197" height="48">
               </a>
             </div>
             <div class="install-card install-manual">
-              <h3>🔧 Manuelle Installation</h3>
-              <p>Für fortgeschrittene Nutzer</p>
+              <h3>🔧 Manual Install</h3>
+              <p>For advanced users.</p>
               <ol>
-                <li>Klone das Repository:
-                  <code>git clone https://github.com/mholzi/beatify.git</code>
-                </li>
-                <li>Kopiere den <code>custom_components/beatify</code> Ordner in deinen Home Assistant <code>custom_components</code> Ordner</li>
-                <li>Starte Home Assistant neu</li>
-                <li>Füge die Integration hinzu</li>
+                <li>Open HACS → Custom Repositories</li>
+                <li>Add <code>mholzi/beatify</code> as an Integration</li>
+                <li>Install Beatify → Restart Home Assistant</li>
+                <li>Go to Settings → Devices &amp; Services → Add Integration → Beatify</li>
               </ol>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="screenshots" id="screenshots">
+      <!-- ===== CHANGELOG ===== -->
+      <section class="changelog" id="changelog">
         <div class="container">
-          <h2 class="section-title">Screenshots</h2>
-          <div class="screenshots-grid">
-            <div class="screenshot-card">
-              <!-- TODO: beatify-content will add screenshots -->
-              <div class="screenshot-placeholder" aria-label="Player View screenshot placeholder">
-                <span>📱</span>
-                <p>Player View</p>
-              </div>
-              <h3>Player View</h3>
+          <h2 class="section-title">Changelog</h2>
+          <div class="changelog-list">
+            <div class="changelog-entry">
+              <span class="changelog-version">v2.6.0</span>
+              <span class="changelog-date">Feb 19, 2026</span>
+              <p>🎬 Game Highlights Reel, 📤 Shareable Result Cards</p>
             </div>
-            <div class="screenshot-card">
-              <!-- TODO: beatify-content will add screenshots -->
-              <div class="screenshot-placeholder" aria-label="Reveal Screen screenshot placeholder">
-                <span>🎵</span>
-                <p>Reveal Screen</p>
-              </div>
-              <h3>Reveal Screen</h3>
+            <div class="changelog-entry">
+              <span class="changelog-version">v2.5.0</span>
+              <span class="changelog-date">Feb 18, 2026</span>
+              <p>⚡ Intro Mode, 🔄 Quick Rematch, 🚀 Fullscreen Launcher</p>
             </div>
-            <div class="screenshot-card">
-              <!-- TODO: beatify-content will add screenshots -->
-              <div class="screenshot-placeholder" aria-label="Podium screenshot placeholder">
-                <span>🏆</span>
-                <p>Podium</p>
-              </div>
-              <h3>Podium</h3>
+            <div class="changelog-entry">
+              <span class="changelog-version">v2.4.0</span>
+              <span class="changelog-date">Feb 3, 2026</span>
+              <p>🌊 Tidal support, 🎬 Movie Quiz, 🇫🇷 French language</p>
+            </div>
+            <div class="changelog-entry">
+              <span class="changelog-version">v2.3.0</span>
+              <span class="changelog-date">Jan 28, 2026</span>
+              <p>🏷️ Playlist tag filtering, 7 new playlists</p>
+            </div>
+            <div class="changelog-entry">
+              <span class="changelog-version">v2.0.0</span>
+              <span class="changelog-date">Jan 24, 2026</span>
+              <p>🎭 Live emoji reactions, 🎤 Artist Challenge, full UI redesign</p>
             </div>
           </div>
+          <a href="https://github.com/mholzi/beatify/releases" class="btn-link" target="_blank" rel="noopener noreferrer">View full release history →</a>
         </div>
       </section>
 
+      <!-- ===== COMMUNITY ===== -->
       <section class="community" id="community">
         <div class="container">
           <h2 class="section-title">Community</h2>
-          <p class="community-intro">Werde Teil der Beatify Community! Stelle Fragen, teile Ideen und hilf mit, Beatify besser zu machen.</p>
+          <p class="community-intro">Join the Beatify community! Ask questions, share ideas, and help make Beatify better.</p>
           <div class="community-links">
             <a href="https://github.com/mholzi/beatify/discussions" class="community-link" target="_blank" rel="noopener noreferrer">
               <span class="community-icon" aria-hidden="true">💬</span>
               <span class="community-text">
                 <strong>GitHub Discussions</strong>
-                <span>Fragen & Ideen</span>
-              </span>
-            </a>
-            <a href="https://discord.com/invite/clawd" class="community-link" target="_blank" rel="noopener noreferrer">
-              <span class="community-icon" aria-hidden="true">🎮</span>
-              <span class="community-text">
-                <strong>Discord</strong>
-                <span>Chat mit der Community</span>
+                <span>Questions &amp; ideas</span>
               </span>
             </a>
             <a href="https://github.com/mholzi/beatify/issues" class="community-link" target="_blank" rel="noopener noreferrer">
               <span class="community-icon" aria-hidden="true">🐛</span>
               <span class="community-text">
                 <strong>GitHub Issues</strong>
-                <span>Bugs melden</span>
+                <span>Bug reports</span>
+              </span>
+            </a>
+            <a href="https://github.com/mholzi/beatify" class="community-link" target="_blank" rel="noopener noreferrer">
+              <span class="community-icon" aria-hidden="true">⭐</span>
+              <span class="community-text">
+                <strong>GitHub</strong>
+                <span>Star the project</span>
+              </span>
+            </a>
+            <a href="https://community.home-assistant.io/t/beatify-v1-0-0-multiplayer-music-guessing-game-for-home-assistant/974104" class="community-link" target="_blank" rel="noopener noreferrer">
+              <span class="community-icon" aria-hidden="true">📖</span>
+              <span class="community-text">
+                <strong>HA Forum</strong>
+                <span>Home Assistant community</span>
               </span>
             </a>
           </div>
         </div>
       </section>
+
     </article>
   </main>
 
   <footer class="footer">
     <div class="container">
+      <div class="footer-logo">
+        <img src="images/beatify-logo.png" alt="Beatify" width="24" height="24">
+        <span>Beatify</span>
+      </div>
       <p class="footer-heart">Made with ❤️ for the Home Assistant community</p>
       <p class="footer-license">
         <a href="https://github.com/mholzi/beatify/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
         ·
         <a href="https://github.com/mholzi/beatify" target="_blank" rel="noopener noreferrer">
-          <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" style="vertical-align:middle">
             <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
           </svg>
           GitHub

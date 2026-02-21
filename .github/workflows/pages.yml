@@ -2,7 +2,9 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['docs/**']
+    paths:
+      - 'docs/**'
+      - 'images/**'
   workflow_dispatch:
 
 permissions:
@@ -13,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Copy images into docs/
+        run: cp -r images docs/images
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
