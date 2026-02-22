@@ -2677,6 +2677,72 @@ function escapeHtml(text) {
 }
 
 // ============================================
+// PWA Install Button (#226)
+// ============================================
+
+/**
+ * Explicit PWA install prompt — shows 📲 button in admin header.
+ * Android: captures beforeinstallprompt → native install dialog.
+ * iOS Safari: shows manual "Add to Home Screen" hint.
+ * Hidden when already installed (standalone mode).
+ */
+(function initPwaInstall() {
+    const btn = document.getElementById('pwa-install-btn');
+    const iosHint = document.getElementById('pwa-ios-hint');
+    const iosClose = document.getElementById('pwa-ios-hint-close');
+    if (!btn) return;
+
+    // Already installed — stay hidden
+    if (window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true) {
+        return;
+    }
+
+    let deferredPrompt = null;
+
+    // Android / Chrome: capture the install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        btn.classList.remove('hidden');
+    });
+
+    // Hide after successful install
+    window.addEventListener('appinstalled', () => {
+        btn.classList.add('hidden');
+        deferredPrompt = null;
+        if (iosHint) iosHint.classList.add('hidden');
+    });
+
+    // iOS Safari detection — show button for manual instructions
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isSafari = /safari/i.test(navigator.userAgent) && !/chrome|crios|fxios/i.test(navigator.userAgent);
+    if (isIos && isSafari) {
+        btn.classList.remove('hidden');
+    }
+
+    btn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('[PWA] Install outcome:', outcome);
+            deferredPrompt = null;
+            if (outcome === 'accepted') {
+                btn.classList.add('hidden');
+            }
+        } else if (isIos && iosHint) {
+            iosHint.classList.remove('hidden');
+        }
+    });
+
+    // Close iOS hint
+    if (iosClose && iosHint) {
+        iosClose.addEventListener('click', () => {
+            iosHint.classList.add('hidden');
+        });
+    }
+})();
+
 // Service Worker Registration (Story 18.5)
 // ============================================
 
