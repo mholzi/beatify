@@ -10,6 +10,8 @@ from __future__ import annotations
 from statistics import mean, median
 from typing import TYPE_CHECKING, Any
 
+from .types import RoundAnalytics, _get_decade_label
+
 from custom_components.beatify.const import (
     ARTIST_BONUS_POINTS,
     DIFFICULTY_DEFAULT,
@@ -247,12 +249,6 @@ if TYPE_CHECKING:
 # ---------------------------------------------------------------------------
 
 
-def _get_decade_label(year: int) -> str:
-    """Get decade label for a year (e.g., 1985 -> '1980s')."""
-    decade = (year // 10) * 10
-    return f"{decade}s"
-
-
 class ScoringService:
     """Centralised scoring, analytics, and superlative calculations.
 
@@ -427,8 +423,6 @@ class ScoringService:
         round_start_time: float | None,
     ) -> Any:
         """Calculate analytics for current round reveal (Story 13.3)."""
-        from .state import RoundAnalytics  # noqa: PLC0415
-
         if correct_year is None:
             return RoundAnalytics()
 
