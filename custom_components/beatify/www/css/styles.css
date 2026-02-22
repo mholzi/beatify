@@ -272,6 +272,89 @@ body.theme-dark .analytics-icon-link:focus {
     outline: none;
 }
 
+/* Admin Header Actions wrapper (#226) */
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs, 8px);
+}
+
+/* PWA Install Button (#226) */
+.pwa-install-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 245, 255, 0.1);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    padding: 0;
+}
+
+.pwa-install-btn:hover,
+.pwa-install-btn:focus {
+    background: rgba(0, 245, 255, 0.2);
+    transform: scale(1.1);
+    outline: none;
+}
+
+/* PWA iOS Hint Modal (#226) */
+.pwa-ios-hint {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md, 16px);
+    animation: slideUp 0.3s ease;
+}
+
+.pwa-ios-hint.hidden {
+    display: none;
+}
+
+.pwa-ios-hint-content {
+    position: relative;
+    background: var(--color-bg-elevated, #2a2a3e);
+    border-radius: var(--radius-lg, 12px);
+    padding: var(--space-md, 16px) var(--space-lg, 24px);
+    color: var(--color-text, #fff);
+    text-align: center;
+    max-width: 340px;
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pwa-ios-hint-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--color-text, #fff);
+    font-size: 1.4rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.pwa-ios-hint-close:hover {
+    opacity: 1;
+}
+
+.pwa-ios-share-icon {
+    font-size: 1.2rem;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 /* Sections */
 .status-section,
 .card-section {
