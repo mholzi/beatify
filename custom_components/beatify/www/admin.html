@@ -22,11 +22,26 @@
 <body class="theme-dark">
     <header class="admin-header">
         <h1 class="wordmark"><span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span></h1>
-        <!-- Analytics Link (Story 19.2, updated 19.13) -->
-        <a href="/beatify/analytics" class="analytics-icon-link" id="analytics-link" aria-label="Analytics Dashboard">
-            <span aria-hidden="true">📊</span>
-        </a>
+        <div class="admin-header-actions">
+            <!-- PWA Install Button (#226) — hidden by default, shown via JS -->
+            <button type="button" class="pwa-install-btn hidden" id="pwa-install-btn" aria-label="Install Beatify App">
+                <span aria-hidden="true">📲</span>
+            </button>
+            <!-- Analytics Link (Story 19.2, updated 19.13) -->
+            <a href="/beatify/analytics" class="analytics-icon-link" id="analytics-link" aria-label="Analytics Dashboard">
+                <span aria-hidden="true">📊</span>
+            </a>
+        </div>
     </header>
+
+    <!-- PWA iOS Install Hint (#226) -->
+    <div class="pwa-ios-hint hidden" id="pwa-ios-hint">
+        <div class="pwa-ios-hint-content">
+            <button type="button" class="pwa-ios-hint-close" id="pwa-ios-hint-close" aria-label="Close">&times;</button>
+            <p><strong>Install Beatify</strong></p>
+            <p>Tap <span class="pwa-ios-share-icon">⬆️</span> Share, then <strong>"Add to Home Screen"</strong></p>
+        </div>
+    </div>
 
     <main class="admin-content">
         <!-- Media Player Section - Collapsible with last-used memory -->
