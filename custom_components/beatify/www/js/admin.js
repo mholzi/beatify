@@ -1857,16 +1857,16 @@ function updateAdminShareGrid(grid) {
 function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     var canvas = document.createElement('canvas');
     canvas.width = 800;
-    canvas.height = 600;
+    canvas.height = 800;
     var ctx = canvas.getContext('2d');
 
     // Dark gradient background (#0f0c29 → #302b63 → #24243e)
-    var bgGrad = ctx.createLinearGradient(0, 0, 0, 600);
+    var bgGrad = ctx.createLinearGradient(0, 0, 0, 800);
     bgGrad.addColorStop(0, '#0f0c29');
     bgGrad.addColorStop(0.5, '#302b63');
     bgGrad.addColorStop(1, '#24243e');
     ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, 800, 600);
+    ctx.fillRect(0, 0, 800, 800);
 
     // Accent bar at top (gradient red→blue)
     var accentGrad = ctx.createLinearGradient(0, 0, 800, 0);
@@ -1884,11 +1884,11 @@ function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     function drawAdminCardContent(logo) {
     // Logo image (top-left) + "Beatify" text next to it
     if (logo) {
-        ctx.drawImage(logo, 16, 8, 48, 48);
+        ctx.drawImage(logo, 20, 16, 72, 72);
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 26px system-ui, sans-serif';
         ctx.textAlign = 'left';
-        ctx.fillText('Beatify', 72, 42);
+        ctx.fillText('Beatify', 100, 64);
     } else {
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 28px system-ui, sans-serif';
@@ -1900,12 +1900,12 @@ function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     // Playlist name
     ctx.fillStyle = '#e94560';
     ctx.font = '18px system-ui, sans-serif';
-    ctx.fillText(playlistName || '', 400, 75);
+    ctx.fillText(playlistName || '', 400, 110);
 
     // "Game Results" title
     ctx.fillStyle = '#ffffff';
     ctx.font = '22px system-ui, sans-serif';
-    ctx.fillText('Game Results', 400, 115);
+    ctx.fillText('Game Results', 400, 155);
 
     // Parse the emoji grid to extract info
     var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
@@ -1930,13 +1930,13 @@ function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     if (playerLine) {
         ctx.fillStyle = '#ffd700';
         ctx.font = '24px system-ui, sans-serif';
-        ctx.fillText(playerLine, 400, 160);
+        ctx.fillText(playerLine, 400, 205);
     }
 
     // Draw emoji grid rows (centered, 32px font, proper spacing)
     ctx.font = '32px system-ui, sans-serif';
     ctx.fillStyle = '#ffffff';
-    var emojiStartY = 210;
+    var emojiStartY = 260;
     var emojiLineHeight = 44;
     emojiRows.forEach(function(row, idx) {
         ctx.fillText(row, 400, emojiStartY + (idx * emojiLineHeight));
@@ -1954,7 +1954,7 @@ function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     ctx.font = '12px system-ui, sans-serif';
     ctx.fillStyle = '#666688';
     ctx.textAlign = 'right';
-    ctx.fillText('beatify.fun', 780, 580);
+    ctx.fillText('beatify.fun', 780, 760);
 
     canvas.toBlob(function(blob) {
         downloadAdminBlob(blob);
