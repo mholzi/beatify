@@ -150,8 +150,8 @@ async function loadStatus() {
             // Show existing game stub for PLAYING/REVEAL/PAUSED phases
             showExistingGameView(status.active_game);
         } else if (status.active_game && status.active_game.phase === 'END') {
-            // Issue #208: Show end screen with share data instead of setup view
-            showExistingGameView(status.active_game);
+            // Issue #245: Show dedicated end screen with podium and share
+            showAdminEndView(status.active_game);
         } else {
             showSetupView();
         }
@@ -1170,6 +1170,7 @@ function showSetupView() {
     // Hide other views
     document.getElementById('lobby-section')?.classList.add('hidden');
     document.getElementById('existing-game-section')?.classList.add('hidden');
+    document.getElementById('admin-end-section')?.classList.add('hidden');
 }
 
 /**
@@ -1190,8 +1191,9 @@ function showLobbyView(gameData) {
     document.getElementById('start-game')?.classList.add('hidden');
     document.getElementById('playlist-validation-msg')?.classList.add('hidden');
 
-    // Hide existing game view
+    // Hide existing game and end views
     document.getElementById('existing-game-section')?.classList.add('hidden');
+    document.getElementById('admin-end-section')?.classList.add('hidden');
 
     // Show lobby
     document.getElementById('lobby-section')?.classList.remove('hidden');
@@ -1356,8 +1358,9 @@ function showExistingGameView(gameData) {
     document.getElementById('start-game')?.classList.add('hidden');
     document.getElementById('playlist-validation-msg')?.classList.add('hidden');
 
-    // Hide lobby
+    // Hide lobby and end views
     document.getElementById('lobby-section')?.classList.add('hidden');
+    document.getElementById('admin-end-section')?.classList.add('hidden');
 
     // Show existing game section
     document.getElementById('existing-game-section')?.classList.remove('hidden');
@@ -1371,27 +1374,51 @@ function showExistingGameView(gameData) {
     if (phaseEl) phaseEl.textContent = gameData.phase || 'Unknown';
     if (playersEl) playersEl.textContent = gameData.player_count ?? 0;
 
-    // Issue #108: Show END phase actions only when in END phase
-    var endPhaseActions = document.getElementById('end-phase-actions');
-    var regularActions = document.getElementById('existing-game-actions');
+}
 
-    if (endPhaseActions && regularActions) {
-        if (gameData.phase === 'END') {
-            endPhaseActions.classList.remove('hidden');
-            regularActions.classList.add('hidden');
+/**
+ * Show dedicated admin end screen with podium and share results (Issue #245)
+ * @param {Object} gameData - Game data from status API
+ */
+function showAdminEndView(gameData) {
+    currentView = 'admin-end';
+    currentGame = gameData;
+
+    // Hide setup sections
+    setupSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+    });
+
+    // Hide start button and validation
+    document.getElementById('start-game')?.classList.add('hidden');
+    document.getElementById('playlist-validation-msg')?.classList.add('hidden');
+
+    // Hide lobby and existing game sections
+    document.getElementById('lobby-section')?.classList.add('hidden');
+    document.getElementById('existing-game-section')?.classList.add('hidden');
+
+    // Show admin end section
+    document.getElementById('admin-end-section')?.classList.remove('hidden');
+
+    // Populate podium from players sorted by score descending
+    var players = gameData.players || [];
+    var sorted = players.slice().sort(function(a, b) { return (b.score || 0) - (a.score || 0); });
+
+    for (var i = 1; i <= 3; i++) {
+        var nameEl = document.getElementById('admin-end-podium-' + i + '-name');
+        var scoreEl = document.getElementById('admin-end-podium-' + i + '-score');
+        if (sorted[i - 1]) {
+            if (nameEl) nameEl.textContent = sorted[i - 1].name || '—';
+            if (scoreEl) scoreEl.textContent = sorted[i - 1].score || 0;
         } else {
-            endPhaseActions.classList.add('hidden');
-            regularActions.classList.remove('hidden');
+            if (nameEl) nameEl.textContent = '—';
+            if (scoreEl) scoreEl.textContent = '';
         }
     }
 
-    // Issue #208: Render share section when game has ended
-    if (gameData.phase === 'END') {
-        renderAdminShare(gameData);
-    } else {
-        var shareContainer = document.getElementById('admin-share-container');
-        if (shareContainer) shareContainer.classList.add('hidden');
-    }
+    // Render share section
+    renderAdminShare(gameData);
 }
 
 // ==========================================
