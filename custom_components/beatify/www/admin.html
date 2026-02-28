@@ -306,10 +306,30 @@
                 <button id="rejoin-game" class="btn btn-primary" data-i18n="admin.rejoinGame">Rejoin Game</button>
                 <button id="end-game-existing" class="btn btn-danger" data-i18n="admin.endGame">End Game</button>
             </div>
-            <!-- Issue #108: END phase actions -->
-            <div id="end-phase-actions" class="game-controls-bar hidden">
-                <button id="rematch-game" class="btn btn-primary" data-i18n="admin.rematch">Rematch</button>
-                <button id="dismiss-game" class="btn btn-secondary" data-i18n="admin.endGame">End Game</button>
+        </section>
+
+        <!-- Issue #245: Dedicated admin end screen with podium -->
+        <section id="admin-end-section" class="card-section hidden">
+            <h2 class="section-header"><span class="section-icon" aria-hidden="true">🏆</span><span data-i18n="admin.gameOver">Game Over</span></h2>
+            <div class="podium">
+                <div class="podium-place podium-2">
+                    <div class="podium-medal">🥈</div>
+                    <div class="podium-name" id="admin-end-podium-2-name">—</div>
+                    <div class="podium-score" id="admin-end-podium-2-score"></div>
+                    <div class="podium-stand">2</div>
+                </div>
+                <div class="podium-place podium-1">
+                    <div class="podium-medal">🥇</div>
+                    <div class="podium-name" id="admin-end-podium-1-name">—</div>
+                    <div class="podium-score" id="admin-end-podium-1-score"></div>
+                    <div class="podium-stand">1</div>
+                </div>
+                <div class="podium-place podium-3">
+                    <div class="podium-medal">🥉</div>
+                    <div class="podium-name" id="admin-end-podium-3-name">—</div>
+                    <div class="podium-score" id="admin-end-podium-3-score"></div>
+                    <div class="podium-stand">3</div>
+                </div>
             </div>
 
             <!-- Issue #208: Shareable result cards in admin END screen -->
@@ -322,6 +342,12 @@
                     <button id="admin-share-save-btn" class="share-btn">📸 Save Card</button>
                 </div>
                 <div id="admin-share-toast" class="share-toast hidden">Copied!</div>
+            </div>
+
+            <!-- Issue #108: END phase actions -->
+            <div id="end-phase-actions" class="game-controls-bar">
+                <button id="rematch-game" class="btn btn-primary" data-i18n="admin.rematch">Rematch</button>
+                <button id="dismiss-game" class="btn btn-secondary" data-i18n="admin.endGame">End Game</button>
             </div>
         </section>
     </main>
