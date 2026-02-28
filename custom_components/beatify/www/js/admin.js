@@ -1957,6 +1957,16 @@ function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
     ctx.fillText('beatify.fun', 780, 760);
 
     canvas.toBlob(function(blob) {
+        if (navigator.share && navigator.canShare) {
+            var file = new File([blob], "beatify-results.png", { type: "image/png" });
+            var nativeShareData = { files: [file], title: "My Beatify Results" };
+            if (navigator.canShare(nativeShareData)) {
+                navigator.share(nativeShareData).catch(function() {
+                    downloadAdminBlob(blob);
+                });
+                return;
+            }
+        }
         downloadAdminBlob(blob);
     }, 'image/png');
     } // end drawAdminCardContent
