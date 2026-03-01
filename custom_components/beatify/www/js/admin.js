@@ -84,10 +84,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
     document.getElementById('end-game-existing')?.addEventListener('click', endGame);
 
-    // Issue #108: Rematch and dismiss handlers
-    document.getElementById('rematch-game')?.addEventListener('click', showRematchModal);
-    document.getElementById('dismiss-game')?.addEventListener('click', endGame);
-
     // Admin join setup
     setupAdminJoin();
 
@@ -149,9 +145,6 @@ async function loadStatus() {
         } else if (status.active_game && status.active_game.phase !== 'END') {
             // Show existing game stub for PLAYING/REVEAL/PAUSED phases
             showExistingGameView(status.active_game);
-        } else if (status.active_game && status.active_game.phase === 'END') {
-            // Issue #245: Show dedicated end screen with podium and share
-            showAdminEndView(status.active_game);
         } else {
             showSetupView();
         }
@@ -1170,7 +1163,6 @@ function showSetupView() {
     // Hide other views
     document.getElementById('lobby-section')?.classList.add('hidden');
     document.getElementById('existing-game-section')?.classList.add('hidden');
-    document.getElementById('admin-end-section')?.classList.add('hidden');
 }
 
 /**
@@ -1193,7 +1185,6 @@ function showLobbyView(gameData) {
 
     // Hide existing game and end views
     document.getElementById('existing-game-section')?.classList.add('hidden');
-    document.getElementById('admin-end-section')?.classList.add('hidden');
 
     // Show lobby
     document.getElementById('lobby-section')?.classList.remove('hidden');
@@ -1360,7 +1351,6 @@ function showExistingGameView(gameData) {
 
     // Hide lobby and end views
     document.getElementById('lobby-section')?.classList.add('hidden');
-    document.getElementById('admin-end-section')?.classList.add('hidden');
 
     // Show existing game section
     document.getElementById('existing-game-section')?.classList.remove('hidden');
@@ -1373,33 +1363,6 @@ function showExistingGameView(gameData) {
     if (idEl) idEl.textContent = gameData.game_id || 'Unknown';
     if (phaseEl) phaseEl.textContent = gameData.phase || 'Unknown';
     if (playersEl) playersEl.textContent = gameData.player_count ?? 0;
-
-}
-
-/**
- * Show dedicated admin end screen with podium and share results (Issue #245)
- * @param {Object} gameData - Game data from status API
- */
-function showAdminEndView(gameData) {
-    currentView = 'admin-end';
-    currentGame = gameData;
-
-    // Hide setup sections
-    setupSections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('hidden');
-    });
-
-    // Hide start button and validation
-    document.getElementById('start-game')?.classList.add('hidden');
-    document.getElementById('playlist-validation-msg')?.classList.add('hidden');
-
-    // Hide lobby and existing game sections
-    document.getElementById('lobby-section')?.classList.add('hidden');
-    document.getElementById('existing-game-section')?.classList.add('hidden');
-
-    // Show admin end section
-    document.getElementById('admin-end-section')?.classList.remove('hidden');
 
 }
 
@@ -1693,281 +1656,6 @@ function showError(message) {
     alert(message);
 }
 
-// ==========================================
-// Admin Share Functions (Issue #208)
-// ==========================================
-
-var _adminShareData = null;
-
-/**
- * Copy text to clipboard with execCommand fallback for HTTP/older-browser contexts.
- * @param {string} text - Text to copy
- * @param {string} toastId - ID of the toast element to show on success
- */
-function _adminCopyToClipboard(text, toastId) {
-    function showToast() {
-        var toast = document.getElementById(toastId);
-        if (toast) {
-            toast.classList.remove('hidden');
-            setTimeout(function() { toast.classList.add('hidden'); }, 2000);
-        }
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(showToast).catch(function() {
-            _adminCopyFallback(text, showToast);
-        });
-    } else {
-        _adminCopyFallback(text, showToast);
-    }
-}
-
-/**
- * execCommand-based clipboard fallback.
- * @param {string} text - Text to copy
- * @param {Function} onSuccess - Callback on success
- */
-function _adminCopyFallback(text, onSuccess) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.top = '0';
-    ta.style.left = '0';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.focus();
-    ta.select();
-    try {
-        if (document.execCommand('copy')) { onSuccess(); }
-    } catch (e) {
-        console.warn('[Beatify] Clipboard copy failed:', e);
-    }
-    document.body.removeChild(ta);
-}
-
-/**
- * Render shareable result cards in the admin end screen.
- * Shows a player-tab selector so the admin can copy/save any player's card.
- * @param {Object} gameData - Active game state including share_data
- */
-function renderAdminShare(gameData) {
-    var container = document.getElementById('admin-share-container');
-    if (!container) return;
-
-    var shareData = gameData.share_data;
-    if (!shareData || !shareData.emoji_grids || Object.keys(shareData.emoji_grids).length === 0) {
-        container.classList.add('hidden');
-        return;
-    }
-
-    _adminShareData = shareData;
-    var players = Object.keys(shareData.emoji_grids);
-
-    // Build player tabs
-    var tabsEl = document.getElementById('admin-share-player-tabs');
-    if (tabsEl) {
-        tabsEl.innerHTML = players.map(function(name, i) {
-            return '<button class="admin-share-tab' + (i === 0 ? ' active' : '') + '" data-player="' + utils.escapeHtml(name) + '">'
-                + utils.escapeHtml(name) + '</button>';
-        }).join('');
-
-        tabsEl.querySelectorAll('.admin-share-tab').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                tabsEl.querySelectorAll('.admin-share-tab').forEach(function(b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-                updateAdminShareGrid(shareData.emoji_grids[btn.dataset.player]);
-            });
-        });
-    }
-
-    // Show first player's grid
-    updateAdminShareGrid(shareData.emoji_grids[players[0]]);
-
-    // Copy button
-    var copyBtn = document.getElementById('admin-share-copy-btn');
-    if (copyBtn) {
-        copyBtn.onclick = function() {
-            var gridEl = document.getElementById('admin-share-emoji-grid');
-            if (gridEl) {
-                // Use raw text stored in dataset for clean copy
-                var textToCopy = gridEl.dataset.rawText || gridEl.textContent;
-                _adminCopyToClipboard(textToCopy, 'admin-share-toast');
-            }
-        };
-    }
-
-    // Save card button
-    var saveBtn = document.getElementById('admin-share-save-btn');
-    if (saveBtn) {
-        saveBtn.onclick = function() {
-            var gridEl = document.getElementById('admin-share-emoji-grid');
-            if (gridEl) {
-                // Use raw text stored in dataset
-                var rawText = gridEl.dataset.rawText || gridEl.textContent;
-                generateAdminVisualCard(rawText, shareData.playlist_name || 'Beatify', shareData);
-            }
-        };
-    }
-
-    container.classList.remove('hidden');
-}
-
-/**
- * Update the emoji grid preview for the selected player.
- * Uses innerHTML with line breaks for proper div rendering.
- * @param {string} grid - Emoji grid text
- */
-function updateAdminShareGrid(grid) {
-    var gridEl = document.getElementById('admin-share-emoji-grid');
-    if (gridEl && grid) {
-        // Convert newlines to div elements for proper styling
-        var lines = grid.split('\n').map(function(line) {
-            return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
-        }).join('');
-        gridEl.innerHTML = lines;
-        // Store raw text for copy functionality
-        gridEl.dataset.rawText = grid;
-    }
-}
-
-/**
- * Generate a visual result card via Canvas API and trigger download (Issue #216).
- * Redesigned with: dark gradient, header, emoji grid, stats, branding.
- * @param {string} emojiGrid - Formatted emoji grid text
- * @param {string} playlistName - Playlist display name
- * @param {Object} shareData - Optional share data with additional info
- */
-function generateAdminVisualCard(emojiGrid, playlistName, shareData) {
-    var canvas = document.createElement('canvas');
-    canvas.width = 800;
-    canvas.height = 800;
-    var ctx = canvas.getContext('2d');
-
-    // Dark gradient background (#0f0c29 → #302b63 → #24243e)
-    var bgGrad = ctx.createLinearGradient(0, 0, 0, 800);
-    bgGrad.addColorStop(0, '#0f0c29');
-    bgGrad.addColorStop(0.5, '#302b63');
-    bgGrad.addColorStop(1, '#24243e');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, 800, 800);
-
-    // Accent bar at top (gradient red→blue)
-    var accentGrad = ctx.createLinearGradient(0, 0, 800, 0);
-    accentGrad.addColorStop(0, '#e94560');
-    accentGrad.addColorStop(1, '#0f3460');
-    ctx.fillStyle = accentGrad;
-    ctx.fillRect(0, 0, 800, 4);
-
-    // Header: Beatify logo image (Fix #227)
-    var logoImg = new Image();
-    logoImg.src = '/beatify/static/img/icon-256.png';
-    logoImg.onerror = function() { drawAdminCardContent(null); };
-    logoImg.onload = function() { drawAdminCardContent(logoImg); };
-
-    function drawAdminCardContent(logo) {
-    // Logo image (top-left) + "Beatify" text next to it
-    if (logo) {
-        ctx.drawImage(logo, 20, 16, 72, 72);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 26px system-ui, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText('Beatify', 100, 64);
-    } else {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 28px system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('🎵 Beatify', 400, 45);
-    }
-    ctx.textAlign = 'center';
-
-    // Playlist name
-    ctx.fillStyle = '#e94560';
-    ctx.font = '18px system-ui, sans-serif';
-    ctx.fillText(playlistName || '', 400, 110);
-
-    // "Game Results" title
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '22px system-ui, sans-serif';
-    ctx.fillText('Game Results', 400, 155);
-
-    // Parse the emoji grid to extract info
-    var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
-
-    // Find player name and score (usually line with 👑 or points)
-    var playerLine = '';
-    var emojiRows = [];
-    var statsLines = [];
-
-    for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
-            emojiRows.push(line);
-        } else if (line.match(/👑|#\d|pts|points/i)) {
-            playerLine = line;
-        } else if (line.match(/🔥|✅|streak|round/i)) {
-            statsLines.push(line);
-        }
-    }
-
-    // Draw player/rank line
-    if (playerLine) {
-        ctx.fillStyle = '#ffd700';
-        ctx.font = '24px system-ui, sans-serif';
-        ctx.fillText(playerLine, 400, 205);
-    }
-
-    // Draw emoji grid rows (centered, 32px font, proper spacing)
-    ctx.font = '32px system-ui, sans-serif';
-    ctx.fillStyle = '#ffffff';
-    var emojiStartY = 260;
-    var emojiLineHeight = 44;
-    emojiRows.forEach(function(row, idx) {
-        ctx.fillText(row, 400, emojiStartY + (idx * emojiLineHeight));
-    });
-
-    // Stats row (14px, muted)
-    ctx.font = '14px system-ui, sans-serif';
-    ctx.fillStyle = '#8888aa';
-    var statsY = emojiStartY + (emojiRows.length * emojiLineHeight) + 30;
-    statsLines.forEach(function(stat, idx) {
-        ctx.fillText(stat, 400, statsY + (idx * 22));
-    });
-
-    // Footer: beatify.fun (12px, muted, bottom-right)
-    ctx.font = '12px system-ui, sans-serif';
-    ctx.fillStyle = '#666688';
-    ctx.textAlign = 'right';
-    ctx.fillText('beatify.fun', 780, 760);
-
-    canvas.toBlob(function(blob) {
-        if (navigator.share && navigator.canShare) {
-            var file = new File([blob], "beatify-results.png", { type: "image/png" });
-            var nativeShareData = { files: [file], title: "My Beatify Results" };
-            if (navigator.canShare(nativeShareData)) {
-                navigator.share(nativeShareData).catch(function() {
-                    downloadAdminBlob(blob);
-                });
-                return;
-            }
-        }
-        downloadAdminBlob(blob);
-    }, 'image/png');
-    } // end drawAdminCardContent
-}
-
-/**
- * Trigger a file download for a Blob.
- * @param {Blob} blob
- */
-function downloadAdminBlob(blob) {
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'beatify-results.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
 
 // ==========================================
 // Admin Join Functions (Story 3.5)
