@@ -4572,6 +4572,14 @@
                     })
                         .then(function(resp) {
                             if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
+                            // Rematch queued — show lobby immediately and reconnect WS
+                            // (ws may be null/closed after game_ended; re-establish so we get LOBBY state)
+                            AnimationQueue.clear();
+                            stopConfetti();
+                            showView('lobby-view');
+                            // Re-establish WebSocket connection so we receive LOBBY state broadcast
+                            reconnectAttempts = 0;
+                            connectWithSession();
                         })
                         .catch(function(err) {
                             console.error('[Player] Rematch failed:', err);
