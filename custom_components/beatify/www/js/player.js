@@ -3724,7 +3724,16 @@
             return;
         }
 
+        // Try current playerName first, then fall back to is_current entry from last leaderboard
         var myGrid = shareData.emoji_grids[playerName];
+        if (!myGrid) {
+            // Fallback: find is_current player from the leaderboard rendered this cycle
+            var keys = Object.keys(shareData.emoji_grids);
+            if (keys.length === 1) {
+                // Single-player game — just show the only entry
+                myGrid = shareData.emoji_grids[keys[0]];
+            }
+        }
         if (!myGrid) {
             container.classList.add('hidden');
             return;
