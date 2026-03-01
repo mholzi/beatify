@@ -5462,6 +5462,12 @@
                 hideReactionBar();  // Story 18.9
                 currentRoundNumber = 0;  // Reset for new game
                 setEnergyLevel('warmup');  // Story 9.9
+                // Reset start button in case it was left in "Starting..." state from previous game
+                var startBtn = document.getElementById('start-game-btn');
+                if (startBtn) {
+                    startBtn.disabled = false;
+                    startBtn.innerHTML = '<span class="btn-icon" aria-hidden="true">🎉</span><span data-i18n="lobby.startGame">' + utils.t('lobby.startGame') + '</span>';
+                }
                 showView('lobby-view');
                 renderPlayerList(players);
                 // Render difficulty badge (Story 14.1)
