@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.6.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.7.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -518,6 +518,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v2.7.0 — UX Polish & Playlist Expansion 🎵
+- **PWA: Add to Homescreen** — Beatify installs as a Progressive Web App via an install prompt on the admin screen or the explicit install button in the header
+- **Share Your Results** — End screen includes a Wordle-style emoji grid of your round results. Native share sheet on mobile, card download on desktop
+- **Revanche (Rematch)** — Players can challenge for a rematch directly from the end screen — no QR re-scan needed
+- **Greatest Metal Songs playlist** — 52 legendary tracks across all major metal subgenres (1970–2020), fully enriched with certifications, awards and streaming links
+- **Dutch Top 100 enriched** — *Top 100 Allertijden Nederlandstalig* now has fun facts in 4 languages and alternative artist suggestions for every track
+- 22 playlists, 2,415 songs, 4 music platforms, 4 languages
 
 ### v2.6.0 — Game Highlights Reel 🎬
 - **Game Highlights Reel** — After every game, Beatify auto-generates a highlight reel of the Top 8 moments: exact year matches, best streaks, speed records, comebacks, bet wins, heartbreakers, and photo finishes
