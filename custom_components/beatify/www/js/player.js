@@ -4549,6 +4549,21 @@
             if (newGameBtn) {
                 newGameBtn.onclick = handleNewGame;
             }
+            // Wire up rematch button (Issue #254)
+            var rematchBtn = document.getElementById('player-rematch-btn');
+            if (rematchBtn) {
+                rematchBtn.onclick = function() {
+                    rematchBtn.disabled = true;
+                    fetch('/beatify/api/rematch-game', { method: 'POST' })
+                        .then(function(resp) {
+                            if (!resp.ok) throw new Error('Rematch failed');
+                        })
+                        .catch(function(err) {
+                            alert(err.message || 'Failed to start rematch');
+                            rematchBtn.disabled = false;
+                        });
+                };
+            }
         } else {
             if (adminControls) adminControls.classList.add('hidden');
             if (playerMessage) playerMessage.classList.remove('hidden');
