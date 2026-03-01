@@ -2,6 +2,28 @@
 
 All notable changes to Beatify are documented here. For detailed release notes, see the individual files in `docs/` or the [Releases page](https://github.com/mholzi/beatify/releases).
 
+## [2.7.0] - 2026-03-01
+
+### Added
+- **PWA support** — Add to Homescreen install prompt on admin screen + explicit install button in header
+- **Shareable result cards** — Wordle-style emoji grid on end screen; native share sheet on mobile, card download on desktop
+- **Revanche (Rematch)** — Players rematch directly from the end screen without re-scanning QR codes
+- **Greatest Metal Songs playlist** — 52 tracks across all major metal subgenres (1970–2020), fully enriched (certifications, awards, streaming URIs)
+- **Dutch Top 100 enriched** — fun_facts in 4 languages + alt_artists for *Top 100 Allertijden Nederlandstalig*
+- Community playlist subdirectory now scanned and copied to HA playlist dir on startup
+
+### Fixed
+- Session cookie preserved on game end (was cleared, breaking Revanche reconnect)
+- Admin redirect to /beatify/admin removed from game-end handler (was navigating away before Revanche)
+- Start button reset from "Starting..." state when returning to lobby after rematch
+- End screen scrolls to top automatically when shown
+- Game content hidden behind emoji reaction bar + admin bar on mobile (padding-bottom 80px → 140px)
+- Share component hidden when playerName lookup failed in single-player games
+- All minified assets regenerated (fixes were invisible in earlier builds due to stale .min files)
+
+### Changed
+- 22 playlists · 2,415 songs · 4 music platforms · 4 languages
+
 ## [2.4.0] - Unreleased
 
 ### Added
