@@ -7163,16 +7163,17 @@ body.theme-dark .card-score {
 }
 
 /* Ensure game-view content doesn't get covered by control bar (M3 fix: conditional) */
+/* 80px admin bar + 60px reaction bar = 140px total clearance */
 .has-control-bar .game-container {
-    padding-bottom: 80px;
+    padding-bottom: 140px;
 }
 
 .has-control-bar .reveal-container {
-    padding-bottom: 80px;
+    padding-bottom: 140px;
 }
 
 .has-control-bar .end-container {
-    padding-bottom: 80px;
+    padding-bottom: 140px;
 }
 
 /* ============================================
