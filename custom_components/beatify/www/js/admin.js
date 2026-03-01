@@ -2078,6 +2078,8 @@ function renderLobbyPlayers(players) {
     if (players.length === 0) {
         listEl.innerHTML = '';
         if (emptyEl) emptyEl.classList.remove('hidden');
+        var startBtn = document.getElementById("start-gameplay-btn");
+        if (startBtn) startBtn.classList.add("hidden");
         previousLobbyPlayers = [];
         return;
     }
@@ -2131,6 +2133,17 @@ function renderLobbyPlayers(players) {
             newCards[i].classList.remove('is-new');
         }
     }, 2000);
+
+    // Issue #253: Only show Start button once admin has joined as a player
+    var startBtn = document.getElementById("start-gameplay-btn");
+    if (startBtn) {
+        var adminJoined = players.some(function(p) { return p.is_admin === true; });
+        if (adminJoined) {
+            startBtn.classList.remove("hidden");
+        } else {
+            startBtn.classList.add("hidden");
+        }
+    }
 
     previousLobbyPlayers = players.slice();
 }
