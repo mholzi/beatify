@@ -1401,24 +1401,6 @@ function showAdminEndView(gameData) {
     // Show admin end section
     document.getElementById('admin-end-section')?.classList.remove('hidden');
 
-    // Populate podium from players sorted by score descending
-    var players = gameData.players || [];
-    var sorted = players.slice().sort(function(a, b) { return (b.score || 0) - (a.score || 0); });
-
-    for (var i = 1; i <= 3; i++) {
-        var nameEl = document.getElementById('admin-end-podium-' + i + '-name');
-        var scoreEl = document.getElementById('admin-end-podium-' + i + '-score');
-        if (sorted[i - 1]) {
-            if (nameEl) nameEl.textContent = sorted[i - 1].name || '—';
-            if (scoreEl) scoreEl.textContent = sorted[i - 1].score || 0;
-        } else {
-            if (nameEl) nameEl.textContent = '—';
-            if (scoreEl) scoreEl.textContent = '';
-        }
-    }
-
-    // Render share section
-    renderAdminShare(gameData);
 }
 
 // ==========================================
