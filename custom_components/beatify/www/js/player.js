@@ -4574,12 +4574,11 @@
                     })
                         .then(function(resp) {
                             if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
-                            // Rematch queued — show lobby immediately and reconnect WS
-                            // (ws may be null/closed after game_ended; re-establish so we get LOBBY state)
+                            // Rematch queued — reconnect WS to receive LOBBY state broadcast
+                            // session cookie is preserved (not cleared on game end), so reconnect works
                             AnimationQueue.clear();
                             stopConfetti();
                             showView('lobby-view');
-                            // Re-establish WebSocket connection so we receive LOBBY state broadcast
                             reconnectAttempts = 0;
                             connectWithSession();
                         })
@@ -5737,9 +5736,8 @@
         // Save admin state before clearing (for redirect decision)
         var wasAdmin = isAdmin;
 
-        // Clear all stored session data
+        // Clear stored player name (keep session cookie — needed for potential rematch)
         clearStoredPlayerName();
-        clearSessionCookie();  // Story 11.1 - clear session cookie on game end
         try {
             sessionStorage.removeItem('beatify_admin_name');
             sessionStorage.removeItem('beatify_is_admin');
@@ -5767,14 +5765,8 @@
         }
         ws = null;
 
-        // If admin ended the game, delay redirect so they can see final results
-        if (wasAdmin) {
-            // Show end view for 5 seconds before redirecting to admin setup
-            setTimeout(function() {
-                window.location.href = '/beatify/admin';
-            }, 5000);
-            return;
-        }
+        // Admin stays on player.html so they can use Revanche / Neues Spiel buttons
+        // (no redirect to /beatify/admin — that was causing "Verbindung verloren")
 
         // If already showing end view, just update the message
         if (!endView || !endView.classList.contains('hidden')) {
