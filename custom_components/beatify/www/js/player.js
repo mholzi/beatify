@@ -4488,6 +4488,8 @@
      * @param {Object} data - State data with leaderboard and game_stats
      */
     function updateEndView(data) {
+        // Scroll to top so "Spielende!" heading is visible immediately
+        window.scrollTo(0, 0);
         var leaderboard = data.leaderboard || [];
 
         // Mark is_current client-side
