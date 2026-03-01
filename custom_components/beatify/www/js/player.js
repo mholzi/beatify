@@ -5626,6 +5626,12 @@
             // Clean up end-phase UI before state broadcast transitions to LOBBY
             AnimationQueue.clear();
             stopConfetti();
+            // Re-confirm presence in new game session (Issue #256)
+            // player.connected may be False from end-phase disconnect; send reconnect to fix it
+            var sessionId = getSessionCookie();
+            if (sessionId && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'reconnect', session_id: sessionId }));
+            }
             // The subsequent state broadcast will show LOBBY phase
         } else if (data.type === 'left') {
             // Story 11.5 - player left game successfully
