@@ -4554,13 +4554,21 @@
             if (rematchBtn) {
                 rematchBtn.onclick = function() {
                     rematchBtn.disabled = true;
-                    fetch('/beatify/api/rematch-game', { method: 'POST' })
+                    var origText = rematchBtn.textContent;
+                    rematchBtn.textContent = '⏳';
+                    fetch('/beatify/api/rematch-game', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' }
+                    })
                         .then(function(resp) {
-                            if (!resp.ok) throw new Error('Rematch failed');
+                            if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
                         })
                         .catch(function(err) {
+                            console.error('[Player] Rematch failed:', err);
                             alert(err.message || 'Failed to start rematch');
                             rematchBtn.disabled = false;
+                            rematchBtn.textContent = origText;
                         });
                 };
             }
@@ -5621,18 +5629,19 @@
             // Story 7-5 - game has fully ended
             handleGameEnded();
         } else if (data.type === 'rematch_started') {
-            // Issue #108 - handle rematch transition
+            // Issue #108, #265 - handle rematch transition
             console.log('[Player] Rematch started - transitioning to lobby');
-            // Clean up end-phase UI before state broadcast transitions to LOBBY
+            // Clean up end-phase UI
             AnimationQueue.clear();
             stopConfetti();
+            // Immediately show lobby so player doesn't see a dead end screen
+            showView('lobby-view');
             // Re-confirm presence in new game session (Issue #256)
-            // player.connected may be False from end-phase disconnect; send reconnect to fix it
             var sessionId = getSessionCookie();
             if (sessionId && ws && ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({ type: 'reconnect', session_id: sessionId }));
             }
-            // The subsequent state broadcast will show LOBBY phase
+            // The subsequent state broadcast will populate lobby with player list
         } else if (data.type === 'left') {
             // Story 11.5 - player left game successfully
             handleLeftGame();
