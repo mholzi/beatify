@@ -1332,6 +1332,7 @@
             reconnectAttempts = 0;
             isReconnecting = false;
             hideReconnectingOverlay();
+            hideConnectionIndicator();
 
             // Send reconnect message with session ID
             ws.send(JSON.stringify({
@@ -5300,7 +5301,35 @@
     /**
      * Show reconnecting overlay (Story 7-3)
      */
+
+    /**
+     * Show connection lost indicator (#238)
+     */
+    function showConnectionIndicator() {
+        var el = document.getElementById('connection-indicator');
+        if (el) {
+            el.classList.remove('connection-indicator--connected');
+            el.classList.add('connection-indicator--disconnected');
+            el.setAttribute('aria-label', 'Disconnected');
+            el.title = 'Disconnected';
+        }
+    }
+
+    /**
+     * Hide connection indicator when connected (#238)
+     */
+    function hideConnectionIndicator() {
+        var el = document.getElementById('connection-indicator');
+        if (el) {
+            el.classList.remove('connection-indicator--disconnected');
+            el.classList.add('connection-indicator--connected');
+            el.setAttribute('aria-label', 'Connected');
+            el.title = 'Connected';
+        }
+    }
+
     function showReconnectingOverlay() {
+        showConnectionIndicator();
         var overlay = document.getElementById('reconnecting-overlay');
         if (overlay) {
             overlay.classList.remove('hidden');
@@ -5372,6 +5401,7 @@
             reconnectAttempts = 0;
             isReconnecting = false;
             hideReconnectingOverlay();
+            hideConnectionIndicator();
 
             var joinMsg = { type: 'join', name: name };
             if (isAdmin) {
