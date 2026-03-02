@@ -8427,3 +8427,40 @@ body.device-tier-low .reveal-skip-hint {
     height: 64px;
     width: 100%;
 }
+
+/* ============================================
+   Connection Status Indicator (#238)
+   ============================================ */
+.player-header {
+    position: relative;
+}
+
+.connection-indicator {
+    position: absolute;
+    top: 50%;
+    right: var(--space-md);
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Only visible when disconnected/reconnecting */
+.connection-indicator--disconnected {
+    opacity: 1;
+}
+
+.connection-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-error, #e94560);
+    animation: pulse-dot 1.2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+}
