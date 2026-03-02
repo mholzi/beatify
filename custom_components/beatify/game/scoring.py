@@ -245,6 +245,204 @@ if TYPE_CHECKING:
 
 
 # ---------------------------------------------------------------------------
+# Private helpers for score_player_round (#191)
+# ---------------------------------------------------------------------------
+
+
+def _apply_streak(
+    player: PlayerSession,
+    speed_score: int,
+    streak_achievements: dict[str, int],
+) -> None:
+    """Update streak, streak bonus, and streak achievements. Mutates player."""
+    if speed_score > 0:
+        player.previous_streak = 0
+        player.streak += 1
+        # Track streak achievements (Issue #147)
+        milestone_key = f"streak_{player.streak}"
+        if milestone_key in streak_achievements:
+            streak_achievements[milestone_key] += 1
+        player.streak_bonus = calculate_streak_bonus(player.streak)
+        if player.streak == STEAL_UNLOCK_STREAK:
+            player.unlock_steal()
+    else:
+        player.previous_streak = player.streak
+        player.streak = 0
+        player.streak_bonus = 0
+
+
+def _score_artist_challenge(
+    player: PlayerSession,
+    artist_challenge: Any | None,
+) -> int:
+    """Return artist bonus points and set player.artist_bonus. Mutates player."""
+    player.artist_bonus = (
+        ARTIST_BONUS_POINTS
+        if artist_challenge and artist_challenge.winner == player.name
+        else 0
+    )
+    return player.artist_bonus
+
+
+def _score_movie_challenge(
+    player: PlayerSession,
+    movie_challenge: Any | None,
+    *,
+    add_to_score: bool = False,
+) -> int:
+    """Return movie bonus points and update player totals. Mutates player."""
+    if not movie_challenge:
+        player.movie_bonus = 0
+        return 0
+    player.movie_bonus = movie_challenge.get_player_bonus(player.name)
+    if player.movie_bonus > 0:
+        player.movie_bonus_total += player.movie_bonus
+        if add_to_score:
+            player.score += player.movie_bonus
+    return player.movie_bonus
+
+
+def _score_intro_round(
+    player: PlayerSession,
+    *,
+    is_intro_round: bool,
+    intro_round_start_time: float | None,
+    all_players: list[PlayerSession],
+) -> int:
+    """Return intro bonus points. Mutates player.intro_bonus and player.intro_speed_bonuses."""
+    player.intro_bonus = 0
+    if not (is_intro_round and intro_round_start_time and player.submission_time):
+        return 0
+    cutoff = intro_round_start_time + INTRO_DURATION_SECONDS
+    if player.submission_time >= cutoff:
+        return 0
+    player.intro_speed_bonuses += 1
+    rank = sum(
+        1
+        for p in all_players
+        if p.submission_time is not None
+        and p.submission_time < cutoff
+        and p.submission_time < player.submission_time
+    )
+    if rank < len(INTRO_BONUS_TIERS):
+        player.intro_bonus = INTRO_BONUS_TIERS[rank]
+    return player.intro_bonus
+
+
+def _update_bet_tracking(
+    player: PlayerSession,
+    bet_tracking: dict[str, int],
+) -> None:
+    """Update bet counters on player and shared bet_tracking dict. Mutates both."""
+    if not player.bet:
+        return
+    player.bets_placed += 1
+    bet_tracking["total_bets"] += 1
+    if player.bet_outcome == "won":
+        bet_tracking["bets_won"] += 1
+
+
+# ---------------------------------------------------------------------------
+# Private helpers for calculate_superlatives (#191)
+# ---------------------------------------------------------------------------
+
+
+def _award(id_: str, emoji: str, player_name: str, value: Any, value_label: str) -> dict[str, Any]:
+    """Build a superlative award dict."""
+    return {"id": id_, "emoji": emoji, "title": id_, "player_name": player_name, "value": value, "value_label": value_label}
+
+
+def _superlative_speed_demon(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [(p, p.avg_submission_time) for p in players if p.avg_submission_time is not None]
+    if not candidates:
+        return None
+    fastest = min(candidates, key=lambda x: x[1])
+    return _award("speed_demon", "⚡", fastest[0].name, round(fastest[1], 1), "avg_time")
+
+
+def _superlative_lucky_streak(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [(p, p.best_streak) for p in players if p.best_streak >= MIN_STREAK_FOR_AWARD]
+    if not candidates:
+        return None
+    best = max(candidates, key=lambda x: x[1])
+    return _award("lucky_streak", "🔥", best[0].name, best[1], "streak")
+
+
+def _superlative_risk_taker(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [(p, p.bets_placed) for p in players if p.bets_placed >= MIN_BETS_FOR_AWARD]
+    if not candidates:
+        return None
+    most = max(candidates, key=lambda x: x[1])
+    return _award("risk_taker", "🎲", most[0].name, most[1], "bets")
+
+
+def _superlative_clutch_player(players: list[PlayerSession], rounds_played: int) -> dict[str, Any] | None:
+    if rounds_played < MIN_ROUNDS_FOR_CLUTCH:
+        return None
+    candidates = [
+        (p, p.final_three_score)
+        for p in players
+        if len(p.round_scores) >= MIN_ROUNDS_FOR_CLUTCH
+    ]
+    if not candidates:
+        return None
+    clutch = max(candidates, key=lambda x: x[1])
+    if clutch[1] <= 0:
+        return None
+    return _award("clutch_player", "🌟", clutch[0].name, clutch[1], "points")
+
+
+def _superlative_close_calls(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [(p, p.close_calls) for p in players if p.close_calls >= MIN_CLOSE_CALLS]
+    if not candidates:
+        return None
+    closest = max(candidates, key=lambda x: x[1])
+    return _award("close_calls", "🎯", closest[0].name, closest[1], "close_guesses")
+
+
+def _superlative_film_buff(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.movie_bonus_total)
+        for p in players
+        if p.movie_bonus_total >= MIN_MOVIE_WINS_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    film_buff = max(candidates, key=lambda x: x[1])
+    return _award("film_buff", "🎬", film_buff[0].name, film_buff[1], "movie_bonus")
+
+
+def _superlative_intro_master(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.intro_speed_bonuses)
+        for p in players
+        if p.intro_speed_bonuses >= MIN_INTRO_BONUSES_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    intro_master = max(candidates, key=lambda x: x[1])
+    return _award("intro_master", "🎧", intro_master[0].name, intro_master[1], "intro_bonuses")
+
+
+def _superlative_comeback_king(players: list[PlayerSession], rounds_played: int) -> dict[str, Any] | None:
+    if rounds_played < MIN_ROUNDS_FOR_COMEBACK:
+        return None
+    candidates = []
+    for p in players:
+        if len(p.round_scores) >= MIN_ROUNDS_FOR_COMEBACK:
+            mid = len(p.round_scores) // 2
+            first_half = sum(p.round_scores[:mid]) / mid
+            second_half = sum(p.round_scores[mid:]) / (len(p.round_scores) - mid)
+            improvement = second_half - first_half
+            if improvement > MIN_COMEBACK_IMPROVEMENT:
+                candidates.append((p, round(improvement, 1)))
+    if not candidates:
+        return None
+    comeback = max(candidates, key=lambda x: x[1])
+    return _award("comeback_king", "👑", comeback[0].name, comeback[1], "improvement")
+
+
+# ---------------------------------------------------------------------------
 # ScoringService — extracted from GameState (Issue #139)
 # ---------------------------------------------------------------------------
 
@@ -265,156 +463,21 @@ class ScoringService:
         intro_mode_enabled: bool = False,
     ) -> list[dict[str, Any]]:
         """Calculate fun awards based on game performance (Story 15.2)."""
-        awards: list[dict[str, Any]] = []
         if not players:
-            return awards
+            return []
 
-        speed_candidates = [
-            (p, p.avg_submission_time) for p in players if p.avg_submission_time is not None
+        builders = [
+            _superlative_speed_demon(players),
+            _superlative_lucky_streak(players),
+            _superlative_risk_taker(players),
+            _superlative_clutch_player(players, rounds_played),
+            _superlative_close_calls(players),
+            _superlative_film_buff(players) if movie_quiz_enabled else None,
+            _superlative_intro_master(players) if intro_mode_enabled else None,
+            _superlative_comeback_king(players, rounds_played),
         ]
-        if speed_candidates:
-            fastest = min(speed_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "speed_demon",
-                    "emoji": "\u26a1",
-                    "title": "speed_demon",
-                    "player_name": fastest[0].name,
-                    "value": round(fastest[1], 1),
-                    "value_label": "avg_time",
-                }
-            )
 
-        streak_candidates = [
-            (p, p.best_streak) for p in players if p.best_streak >= MIN_STREAK_FOR_AWARD
-        ]
-        if streak_candidates:
-            best = max(streak_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "lucky_streak",
-                    "emoji": "\U0001f525",
-                    "title": "lucky_streak",
-                    "player_name": best[0].name,
-                    "value": best[1],
-                    "value_label": "streak",
-                }
-            )
-
-        bet_candidates = [
-            (p, p.bets_placed) for p in players if p.bets_placed >= MIN_BETS_FOR_AWARD
-        ]
-        if bet_candidates:
-            most_bets = max(bet_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "risk_taker",
-                    "emoji": "\U0001f3b2",
-                    "title": "risk_taker",
-                    "player_name": most_bets[0].name,
-                    "value": most_bets[1],
-                    "value_label": "bets",
-                }
-            )
-
-        if rounds_played >= MIN_ROUNDS_FOR_CLUTCH:
-            clutch_candidates = [
-                (p, p.final_three_score)
-                for p in players
-                if len(p.round_scores) >= MIN_ROUNDS_FOR_CLUTCH
-            ]
-            if clutch_candidates:
-                clutch = max(clutch_candidates, key=lambda x: x[1])
-                if clutch[1] > 0:
-                    awards.append(
-                        {
-                            "id": "clutch_player",
-                            "emoji": "\U0001f31f",
-                            "title": "clutch_player",
-                            "player_name": clutch[0].name,
-                            "value": clutch[1],
-                            "value_label": "points",
-                        }
-                    )
-
-        close_candidates = [(p, p.close_calls) for p in players if p.close_calls >= MIN_CLOSE_CALLS]
-        if close_candidates:
-            closest = max(close_candidates, key=lambda x: x[1])
-            awards.append(
-                {
-                    "id": "close_calls",
-                    "emoji": "\U0001f3af",
-                    "title": "close_calls",
-                    "player_name": closest[0].name,
-                    "value": closest[1],
-                    "value_label": "close_guesses",
-                }
-            )
-
-        if movie_quiz_enabled:
-            movie_candidates = [
-                (p, p.movie_bonus_total)
-                for p in players
-                if p.movie_bonus_total >= MIN_MOVIE_WINS_FOR_AWARD
-            ]
-            if movie_candidates:
-                film_buff = max(movie_candidates, key=lambda x: x[1])
-                awards.append(
-                    {
-                        "id": "film_buff",
-                        "emoji": "\U0001f3ac",
-                        "title": "film_buff",
-                        "player_name": film_buff[0].name,
-                        "value": film_buff[1],
-                        "value_label": "movie_bonus",
-                    }
-                )
-
-        if intro_mode_enabled:
-            intro_candidates = [
-                (p, p.intro_speed_bonuses)
-                for p in players
-                if p.intro_speed_bonuses >= MIN_INTRO_BONUSES_FOR_AWARD
-            ]
-            if intro_candidates:
-                intro_master = max(intro_candidates, key=lambda x: x[1])
-                awards.append(
-                    {
-                        "id": "intro_master",
-                        "emoji": "\U0001f3a7",
-                        "title": "intro_master",
-                        "player_name": intro_master[0].name,
-                        "value": intro_master[1],
-                        "value_label": "intro_bonuses",
-                    }
-                )
-
-        # Note: round_scores only includes rounds where the player submitted (missed rounds excluded),
-        # so "halves" are based on submission index, not game round number.
-        if rounds_played >= MIN_ROUNDS_FOR_COMEBACK:
-            comeback_candidates = []
-            for p in players:
-                if len(p.round_scores) >= MIN_ROUNDS_FOR_COMEBACK:
-                    mid = len(p.round_scores) // 2
-                    first_half = sum(p.round_scores[:mid]) / mid
-                    second_half = sum(p.round_scores[mid:]) / (len(p.round_scores) - mid)
-                    improvement = second_half - first_half
-                    if improvement > MIN_COMEBACK_IMPROVEMENT:
-                        comeback_candidates.append((p, round(improvement, 1)))
-            if comeback_candidates:
-                comeback = max(comeback_candidates, key=lambda x: x[1])
-                awards.append(
-                    {
-                        "id": "comeback_king",
-                        "emoji": "\U0001f451",
-                        "title": "comeback_king",
-                        "player_name": comeback[0].name,
-                        "value": comeback[1],
-                        "value_label": "improvement",
-                    }
-                )
-
-        return awards[:MAX_SUPERLATIVES]
+        return [a for a in builders if a is not None][:MAX_SUPERLATIVES]
 
     @staticmethod
     def calculate_round_analytics(
@@ -511,58 +574,15 @@ class ScoringService:
             player.missed_round = False
             player.round_score, player.bet_outcome = apply_bet_multiplier(speed_score, player.bet)
 
-            if speed_score > 0:
-                player.previous_streak = 0
-                player.streak += 1
-                # Track streak achievements (Issue #147)
-                if player.streak == 3:
-                    streak_achievements["streak_3"] += 1
-                elif player.streak == 5:
-                    streak_achievements["streak_5"] += 1
-                elif player.streak == 10:
-                    streak_achievements["streak_10"] += 1
-                elif player.streak == 15:
-                    streak_achievements["streak_15"] += 1
-                elif player.streak == 20:
-                    streak_achievements["streak_20"] += 1
-                elif player.streak == 25:
-                    streak_achievements["streak_25"] += 1
-                player.streak_bonus = calculate_streak_bonus(player.streak)
-                if player.streak == STEAL_UNLOCK_STREAK:
-                    player.unlock_steal()
-            else:
-                player.previous_streak = player.streak
-                player.streak = 0
-                player.streak_bonus = 0
-
-            player.artist_bonus = (
-                ARTIST_BONUS_POINTS
-                if artist_challenge and artist_challenge.winner == player.name
-                else 0
+            _apply_streak(player, speed_score, streak_achievements)
+            _score_artist_challenge(player, artist_challenge)
+            _score_movie_challenge(player, movie_challenge)
+            _score_intro_round(
+                player,
+                is_intro_round=is_intro_round,
+                intro_round_start_time=intro_round_start_time,
+                all_players=all_players,
             )
-
-            if movie_challenge:
-                player.movie_bonus = movie_challenge.get_player_bonus(player.name)
-                player.movie_bonus_total += player.movie_bonus
-            else:
-                player.movie_bonus = 0
-
-            player.intro_bonus = 0
-            if is_intro_round and intro_round_start_time:
-                cutoff = intro_round_start_time + INTRO_DURATION_SECONDS
-                if player.submission_time and player.submission_time < cutoff:
-                    player.intro_speed_bonuses += 1
-                    rank = len(
-                        [
-                            p
-                            for p in all_players
-                            if p.submission_time is not None
-                            and p.submission_time < cutoff
-                            and p.submission_time < player.submission_time
-                        ]
-                    )
-                    if rank < len(INTRO_BONUS_TIERS):
-                        player.intro_bonus = INTRO_BONUS_TIERS[rank]
 
             player.score += (
                 player.round_score
@@ -577,11 +597,7 @@ class ScoringService:
                 player.bets_won += 1
             if player.submission_time is not None and round_start_time is not None:
                 player.submission_times.append(player.submission_time - round_start_time)
-            if player.bet:
-                player.bets_placed += 1
-                bet_tracking["total_bets"] += 1
-                if player.bet_outcome == "won":
-                    bet_tracking["bets_won"] += 1
+            _update_bet_tracking(player, bet_tracking)
             if player.years_off == 1:
                 player.close_calls += 1
             player.round_scores.append(player.round_score)
@@ -595,18 +611,8 @@ class ScoringService:
             player.streak = 0
             player.streak_bonus = 0
             player.bet_outcome = None
-            player.artist_bonus = (
-                ARTIST_BONUS_POINTS
-                if artist_challenge and artist_challenge.winner == player.name
-                else 0
-            )
+            _score_artist_challenge(player, artist_challenge)
             if player.artist_bonus:
                 player.score += player.artist_bonus
-            if movie_challenge:
-                player.movie_bonus = movie_challenge.get_player_bonus(player.name)
-                if player.movie_bonus > 0:
-                    player.movie_bonus_total += player.movie_bonus
-                    player.score += player.movie_bonus
-            else:
-                player.movie_bonus = 0
+            _score_movie_challenge(player, movie_challenge, add_to_score=True)
             player.intro_bonus = 0
