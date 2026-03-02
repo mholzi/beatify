@@ -97,11 +97,12 @@ export function updateEndView(data) {
                 })
                     .then(function(resp) {
                         if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
-                        AnimationQueue.clear();
-                        stopConfetti();
-                        showView('lobby-view');
-                        state.reconnectAttempts = 0;
-                        state.connectWithSession();
+                        // Server will broadcast rematch_started to all clients (including admin).
+                        // The rematch_started handler in player-core.js reconnects everyone via
+                        // the existing WS — calling connectWithSession() here would race and
+                        // cause a SESSION_TAKEOVER that corrupts state (admin loses isAdmin flag,
+                        // connection-lost view flashes, End Game button becomes unresponsive).
+                        rematchBtn.textContent = '⏳'; // keep spinner until rematch_started arrives
                     })
                     .catch(function(err) {
                         console.error('[Player] Rematch failed:', err);

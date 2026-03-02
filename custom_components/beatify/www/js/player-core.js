@@ -607,9 +607,20 @@ function handleServerMessage(data) {
         AnimationQueue.clear();
         stopConfetti();
         showView('lobby-view');
+        // Reset any rematch button spinner (in case admin triggered this)
+        var rematchBtn = document.getElementById('player-rematch-btn');
+        if (rematchBtn) { rematchBtn.disabled = false; rematchBtn.textContent = '🔁'; }
         var sessionId = getSessionCookie();
-        if (sessionId && state.ws && state.ws.readyState === WebSocket.OPEN) {
-            state.ws.send(JSON.stringify({ type: 'reconnect', session_id: sessionId }));
+        if (sessionId) {
+            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                // Existing WS still alive — reuse it (avoid creating a second connection)
+                state.reconnectAttempts = 0;
+                state.ws.send(JSON.stringify({ type: 'reconnect', session_id: sessionId }));
+            } else {
+                // WS was closed — open a fresh one
+                state.reconnectAttempts = 0;
+                connectWithSession();
+            }
         }
     } else if (data.type === 'left') {
         handleLeftGame();
