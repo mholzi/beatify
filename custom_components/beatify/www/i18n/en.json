@@ -19,12 +19,19 @@
     "joinButton": "Join Game",
     "joiningButton": "Joining...",
     "scanQr": "Scan QR code to join",
-    "shareQr": "Share this QR code"
+    "shareQr": "Share this QR code",
+    "reconnecting": "Reconnecting... (Attempt {attempt}/{max})"
   },
   "player": {
     "leaveGameTitle": "Leave Game?",
     "leaveGameWarning": "Your score will be lost.",
-    "leaveGame": "Leave"
+    "leaveGame": "Leave",
+    "welcomeBack": "Welcome back, {name}!",
+    "waitingForHostReconnect": "Waiting for host to reconnect...",
+    "speakerUnavailable": "Speaker unavailable. Please check your media player and try again.",
+    "gamePaused": "Game paused. Please wait...",
+    "redirecting": "Redirecting...",
+    "hostCannotLeave": "Host cannot leave. End the game instead."
   },
   "lobby": {
     "gameLobby": "Game Lobby",
@@ -87,7 +94,17 @@
     "difficultyHard": "Hard",
     "introRound": "INTRO ROUND",
     "introStopped": "Intro complete!",
-    "introHint": "Only 10 seconds!"
+    "introHint": "Only 10 seconds!",
+    "loading": "Loading...",
+    "wait": "Wait...",
+    "skip": "Skip",
+    "next": "Next",
+    "stopping": "Stopping...",
+    "stopped": "Stopped",
+    "stop": "Stop",
+    "ending": "Ending...",
+    "starting": "Starting...",
+    "joining": "Joining..."
   },
   "steal": {
     "available": "Steal Available!",
@@ -553,7 +570,10 @@
     "gameInProgress": "Game In Progress",
     "gameInProgressHint": "The game is currently in a round. Try again in a moment.",
     "connectionLostHint": "We couldn't reconnect to the game server.",
-    "checkNetwork": "Make sure you're connected to the network"
+    "checkNetwork": "Make sure you're connected to the network",
+    "connectionLost": "Connection lost. Please refresh.",
+    "timesUp": "Time's up!",
+    "submissionFailed": "Submission failed"
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",

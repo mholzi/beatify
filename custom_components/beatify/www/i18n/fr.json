@@ -19,12 +19,19 @@
     "joinButton": "Rejoindre",
     "joiningButton": "Connexion...",
     "scanQr": "Scanne le code QR pour rejoindre",
-    "shareQr": "Partage ce code QR"
+    "shareQr": "Partage ce code QR",
+    "reconnecting": "Reconnexion... (Tentative {attempt}/{max})"
   },
   "player": {
     "leaveGameTitle": "Quitter la partie ?",
     "leaveGameWarning": "Tu perdras ton score.",
-    "leaveGame": "Quitter"
+    "leaveGame": "Quitter",
+    "welcomeBack": "Bon retour, {name} !",
+    "waitingForHostReconnect": "En attente de l'hôte...",
+    "speakerUnavailable": "Enceinte indisponible. Vérifiez votre lecteur multimédia.",
+    "gamePaused": "Jeu en pause. Veuillez patienter...",
+    "redirecting": "Redirection...",
+    "hostCannotLeave": "L'hôte ne peut pas quitter. Terminez le jeu d'abord."
   },
   "lobby": {
     "gameLobby": "Salon de jeu",
@@ -87,7 +94,17 @@
     "difficultyHard": "Difficile",
     "introRound": "MANCHE INTRO",
     "introStopped": "Intro terminée !",
-    "introHint": "Seulement 10 secondes !"
+    "introHint": "Seulement 10 secondes !",
+    "loading": "Chargement...",
+    "wait": "Attendre...",
+    "skip": "Passer",
+    "next": "Suivant",
+    "stopping": "Arrêt...",
+    "stopped": "Arrêté",
+    "stop": "Stop",
+    "ending": "Fin...",
+    "starting": "Démarrage...",
+    "joining": "Rejoindre..."
   },
   "steal": {
     "available": "Vol disponible !",
@@ -553,7 +570,10 @@
     "gameInProgress": "Partie en cours",
     "gameInProgressHint": "La partie est en cours de manche. Réessaie dans un instant.",
     "connectionLostHint": "Impossible de te reconnecter au serveur de jeu.",
-    "checkNetwork": "Vérifie que tu es connecté au réseau"
+    "checkNetwork": "Vérifie que tu es connecté au réseau",
+    "connectionLost": "Connexion perdue. Veuillez recharger.",
+    "timesUp": "Temps écoulé !",
+    "submissionFailed": "Échec de l'envoi"
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",

@@ -1382,7 +1382,7 @@
     function showWelcomeBackToast(name) {
         var indicator = document.getElementById('volume-indicator');
         if (indicator) {
-            indicator.textContent = 'Welcome back, ' + name + '!';
+            indicator.textContent = utils.t('player.welcomeBack', {name: name});
             indicator.classList.remove('hidden');
             indicator.classList.add('is-visible');
             setTimeout(function() {
@@ -2465,7 +2465,7 @@
             }));
         } else {
             // WebSocket not connected
-            showSubmitError('Connection lost. Please refresh.');
+            showSubmitError(utils.t('errors.connectionLost'));
             submitBtn.disabled = false;
             submitBtn.classList.remove('is-loading');
         }
@@ -2513,7 +2513,7 @@
         }
 
         if (data.code === 'ROUND_EXPIRED') {
-            showSubmitError("Time's up!");
+            showSubmitError(utils.t('errors.timesUp'));
             // Disable further attempts
             hasSubmitted = true;
             if (submitBtn) submitBtn.disabled = true;
@@ -4625,11 +4625,11 @@
         var messageEl = document.getElementById('pause-message');
         if (messageEl) {
             if (data.pause_reason === 'admin_disconnected') {
-                messageEl.textContent = 'Waiting for host to reconnect...';
+                messageEl.textContent = utils.t('player.waitingForHostReconnect');
             } else if (data.pause_reason === 'media_player_error') {
-                messageEl.textContent = 'Speaker unavailable. Please check your media player and try again.';
+                messageEl.textContent = utils.t('player.speakerUnavailable');
             } else {
-                messageEl.textContent = 'Game paused. Please wait...';
+                messageEl.textContent = utils.t('player.gamePaused');
             }
         }
     }
@@ -4651,7 +4651,7 @@
         var btn = document.getElementById('new-game-btn');
         if (btn) {
             btn.disabled = true;
-            btn.textContent = 'Redirecting...';
+            btn.textContent = utils.t('player.redirecting');
         }
 
         // Clear admin session storage
@@ -4688,12 +4688,12 @@
 
             if (revealBtn) {
                 revealBtn.disabled = true;
-                revealBtn.textContent = 'Loading...';
+                revealBtn.textContent = utils.t('game.loading');
             }
             if (barBtn) {
                 barBtn.disabled = true;
                 var labelEl = barBtn.querySelector('.control-label');
-                if (labelEl) labelEl.textContent = 'Wait...';
+                if (labelEl) labelEl.textContent = utils.t('game.wait');
             }
 
             ws.send(JSON.stringify({
@@ -4870,7 +4870,7 @@
                 nextBtn.classList.remove('is-disabled');
                 nextBtn.disabled = false;
                 var labelEl = nextBtn.querySelector('.control-label');
-                if (labelEl) labelEl.textContent = 'Skip';
+                if (labelEl) labelEl.textContent = utils.t('game.skip');
             }
         } else if (phase === 'REVEAL') {
             // Stop Song still enabled (song may continue during reveal), Next Round enabled
@@ -4882,7 +4882,7 @@
                 nextBtn.classList.remove('is-disabled');
                 nextBtn.disabled = false;
                 var labelEl = nextBtn.querySelector('.control-label');
-                if (labelEl) labelEl.textContent = 'Next';
+                if (labelEl) labelEl.textContent = utils.t('game.next');
             }
         } else {
             // LOBBY or END: disable Next Round (Story 6.3)
@@ -4890,7 +4890,7 @@
                 nextBtn.classList.add('is-disabled');
                 nextBtn.disabled = true;
                 var labelEl = nextBtn.querySelector('.control-label');
-                if (labelEl) labelEl.textContent = 'Next';
+                if (labelEl) labelEl.textContent = utils.t('game.next');
             }
         }
         // Volume and End Game always enabled (no changes needed)
@@ -4916,7 +4916,7 @@
             stopBtn.classList.add('is-disabled');
             stopBtn.disabled = true;
             var labelEl = stopBtn.querySelector('.control-label');
-            if (labelEl) labelEl.textContent = 'Stopping...';
+            if (labelEl) labelEl.textContent = utils.t('game.stopping');
         }
 
         ws.send(JSON.stringify({
@@ -5006,7 +5006,7 @@
         if (endBtn) {
             endBtn.disabled = true;
             var labelEl = endBtn.querySelector('.control-label');
-            if (labelEl) labelEl.textContent = 'Ending...';
+            if (labelEl) labelEl.textContent = utils.t('game.ending');
         }
 
         ws.send(JSON.stringify({
@@ -5052,7 +5052,7 @@
             var iconEl = stopBtn.querySelector('.control-icon');
             var labelEl = stopBtn.querySelector('.control-label');
             if (iconEl) iconEl.textContent = '✓';
-            if (labelEl) labelEl.textContent = 'Stopped';
+            if (labelEl) labelEl.textContent = utils.t('game.stopped');
         }
     }
 
@@ -5069,7 +5069,7 @@
             var iconEl = stopBtn.querySelector('.control-icon');
             var labelEl = stopBtn.querySelector('.control-label');
             if (iconEl) iconEl.textContent = '⏹️';
-            if (labelEl) labelEl.textContent = 'Stop';
+            if (labelEl) labelEl.textContent = utils.t('game.stop');
         }
     }
 
@@ -5180,7 +5180,7 @@
             if (!ws || ws.readyState !== WebSocket.OPEN) return;
 
             startBtn.disabled = true;
-            startBtn.textContent = 'Starting...';
+            startBtn.textContent = utils.t('game.starting');
 
             ws.send(JSON.stringify({
                 type: 'admin',
@@ -5324,7 +5324,7 @@
     function updateReconnectStatus(attempt) {
         var statusEl = document.getElementById('reconnect-status');
         if (statusEl) {
-            statusEl.textContent = 'Reconnecting... (Attempt ' + attempt + '/' + MAX_RECONNECT_ATTEMPTS + ')';
+            statusEl.textContent = utils.t('join.reconnecting', {attempt: attempt, max: MAX_RECONNECT_ATTEMPTS});
         }
     }
 
@@ -5713,7 +5713,7 @@
 
         // Safety check - admin shouldn't see button, but double-check
         if (isAdmin) {
-            alert('Host cannot leave. End the game instead.');
+            alert(utils.t('player.hostCannotLeave'));
             return;
         }
 
@@ -5832,7 +5832,7 @@
         if (!result.valid) return;
 
         joinBtn.disabled = true;
-        joinBtn.textContent = 'Joining...';
+        joinBtn.textContent = utils.t('game.joining');
 
         // Clear any previous error
         if (validationMsg) {
