@@ -592,5 +592,9 @@
     "share_save": "📤 Bild teilen",
     "share_copied": "Kopiert!",
     "share_title": "Meine Beatify Ergebnisse"
-  }
+  },
+  "introSplashTitle": "Intro-Runde!",
+  "introSplashDesc": "Der Song spielt — stoppe ihn, sobald du ihn erkennst! Je schneller du stoppst, desto mehr Punkte.",
+  "introSplashWaiting": "Warten auf Host...",
+  "introSplashStart": "▶ Intro-Runde starten"
 }

@@ -592,5 +592,9 @@
     "share_save": "📤 Share Card",
     "share_copied": "Copied!",
     "share_title": "My Beatify Results"
-  }
+  },
+  "introSplashTitle": "Intro Round!",
+  "introSplashDesc": "The song plays — stop it the moment you recognise it! The faster you stop, the more points you earn.",
+  "introSplashWaiting": "Waiting for host...",
+  "introSplashStart": "▶ Start Intro Round"
 }

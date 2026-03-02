@@ -33,7 +33,8 @@ import {
     updateControlBarState, handleSongStopped, handleVolumeChanged,
     handleNextRound, setupAdminControlBar, setupRevealControls,
     setupRevealLeaderboardToggle, setupRoundAnalyticsToggle,
-    resetSongStoppedState
+    resetSongStoppedState,
+    showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
 import { updateRevealView } from './player-reveal.js';
@@ -476,6 +477,11 @@ function handleServerMessage(data) {
             showView('game-view');
             closeInviteModal();
             updateGameView(data);
+            if (data.intro_splash_pending) {
+                showIntroSplashModal(state.isAdmin);
+            } else {
+                hideIntroSplashModal();
+            }
             if (data.difficulty) {
                 renderDifficultyBadge(data.difficulty);
             }

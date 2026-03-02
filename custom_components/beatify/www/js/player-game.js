@@ -1825,3 +1825,43 @@ export function setupRevealControls() {
         });
     }
 }
+
+// ============================================
+// Intro Splash Modal (Issue #292)
+// ============================================
+
+/**
+ * Show the intro splash modal
+ * @param {boolean} isAdmin - Whether the current player is admin
+ */
+export function showIntroSplashModal(isAdmin) {
+    var modal = document.getElementById('intro-splash-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+
+    var confirmBtn = document.getElementById('intro-splash-confirm-btn');
+    var waitingMsg = modal.querySelector('.intro-splash-modal-waiting');
+    if (confirmBtn) {
+        if (isAdmin) {
+            confirmBtn.classList.remove('hidden');
+            if (waitingMsg) waitingMsg.classList.add('hidden');
+            confirmBtn.onclick = function() {
+                if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                    state.ws.send(JSON.stringify({ type: 'admin', action: 'confirm_intro_splash' }));
+                }
+            };
+        } else {
+            confirmBtn.classList.add('hidden');
+            if (waitingMsg) waitingMsg.classList.remove('hidden');
+        }
+    }
+}
+
+/**
+ * Hide the intro splash modal
+ */
+export function hideIntroSplashModal() {
+    var modal = document.getElementById('intro-splash-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+}

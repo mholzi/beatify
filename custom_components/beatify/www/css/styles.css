@@ -7794,6 +7794,67 @@ body.theme-dark .steal-target-btn:hover {
 }
 
 /* ============================================
+   Intro Splash Modal (Issue #292)
+   ============================================ */
+
+.intro-splash-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+}
+
+.intro-splash-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.intro-splash-modal-content {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-accent-primary, #1db954);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(29, 185, 84, 0.3);
+}
+
+.intro-splash-modal-emoji {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+}
+
+.intro-splash-modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.intro-splash-modal-desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.intro-splash-modal-waiting {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.intro-splash-confirm-btn {
+    width: 100%;
+    margin-top: var(--space-sm);
+}
+
+/* ============================================
    Score Animations (Story 13.2)
    ============================================ */
 
