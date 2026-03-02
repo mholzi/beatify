@@ -74,3 +74,8 @@ CONTRIBUTING.md
 
 # ---- GitHub workflows (not needed in HACS release) ----
 # .github/ is kept — needed for CI and HACS validation
+
+# ---- Minified build artefacts (auto-generated, not tracked) ----
+# Run `make build` locally or see .github/workflows/build-assets.yml
+custom_components/beatify/www/**/*.min.js
+custom_components/beatify/www/**/*.min.css
