@@ -8393,3 +8393,37 @@ body.device-tier-low .reveal-skip-hint {
         padding: 0.75rem 1rem;
     }
 }
+
+/* ============================================
+   Skeleton Loading States (#240)
+   ============================================ */
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--color-bg-card) 25%, #3a3a4e 50%, var(--color-bg-card) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-md);
+}
+
+.skeleton-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+}
+
+/* Media player rows — match the height of a radio option */
+.skeleton-row {
+    height: 48px;
+    width: 100%;
+}
+
+/* Playlist cards — taller to match playlist card height */
+.skeleton-card {
+    height: 64px;
+    width: 100%;
+}

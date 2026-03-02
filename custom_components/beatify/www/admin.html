@@ -53,7 +53,11 @@
                 <span class="section-toggle" aria-hidden="true">▼</span>
             </button>
             <div class="section-content" id="media-players-content">
-                <div id="media-players-list" data-i18n="common.loading">Loading...</div>
+                <div id="media-players-list" class="skeleton-list" aria-busy="true">
+                    <div class="skeleton skeleton-row"></div>
+                    <div class="skeleton skeleton-row"></div>
+                    <div class="skeleton skeleton-row"></div>
+                </div>
                 <p class="supported-players-hint">
                     Supported: Music Assistant, Sonos, and Alexa players.
                     <a href="https://music-assistant.io/" target="_blank" rel="noopener">Use Music Assistant</a> for Chromecast/Nest devices.
@@ -104,7 +108,12 @@
             <div id="playlist-filter-bar" class="playlist-filter-bar hidden">
                 <button type="button" class="filter-tag active" data-tag="all" data-i18n="admin.filterAll">All</button>
             </div>
-            <div id="playlists-list" data-i18n="common.loading">Loading...</div>
+            <div id="playlists-list" class="skeleton-list" aria-busy="true">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                </div>
             <div id="playlist-summary" class="selection-summary hidden">
                 <span data-i18n="admin.selected">Selected:</span> <span id="selected-count">0</span> <span data-i18n="admin.playlistsLabel">playlists,</span>
                 <span id="total-songs">0</span> <span data-i18n="admin.songsLabel">songs</span>
