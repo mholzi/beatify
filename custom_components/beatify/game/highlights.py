@@ -203,14 +203,37 @@ class HighlightsTracker:
             )
         )
 
-    def get_top_highlights(self, limit: int = 8) -> list[GameHighlight]:
-        """Return the most interesting highlights, ranked by priority."""
-        # Sort by priority (descending), then by round (ascending) for chronological tiebreak
-        sorted_highlights = sorted(
-            self._highlights,
-            key=lambda h: (-_PRIORITY.get(h.type, 1), h.round),
-        )
-        return sorted_highlights[:limit]
+    def get_top_highlights(self, limit: int = 3) -> list[GameHighlight]:
+        """Return the most interesting highlights (max 3 to keep the reel tight).
+
+        Repetitive low-priority types (speed_record, heartbreaker) are
+        deduplicated: only the single best instance per type is kept so that
+        one fast player in a 7-round game does not fill every slot.
+        """
+        _DEDUPE_TYPES = {"speed_record", "heartbreaker"}
+        seen_dedupe: set[str] = set()
+        deduped: list[GameHighlight] = []
+
+        def sort_key(h: GameHighlight) -> tuple:
+            priority = -_PRIORITY.get(h.type, 1)
+            if h.type == "speed_record":
+                try:
+                    time_val = float(h.description_params.get("time", 999))
+                except (ValueError, TypeError):
+                    time_val = 999.0
+                return (priority, time_val, h.round)
+            return (priority, 0.0, h.round)
+
+        sorted_highlights = sorted(self._highlights, key=sort_key)
+
+        for h in sorted_highlights:
+            if h.type in _DEDUPE_TYPES:
+                if h.type in seen_dedupe:
+                    continue
+                seen_dedupe.add(h.type)
+            deduped.append(h)
+
+        return deduped[:limit]
 
     def to_dict(self) -> list[dict]:
         """Convert top highlights to JSON-serializable list for get_state()."""
