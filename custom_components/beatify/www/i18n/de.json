@@ -19,12 +19,19 @@
     "joinButton": "Beitreten",
     "joiningButton": "Beitritt...",
     "scanQr": "QR-Code scannen",
-    "shareQr": "Teile diesen QR-Code"
+    "shareQr": "Teile diesen QR-Code",
+    "reconnecting": "Verbinde... (Versuch {attempt}/{max})"
   },
   "player": {
     "leaveGameTitle": "Spiel verlassen?",
     "leaveGameWarning": "Deine Punkte gehen verloren.",
-    "leaveGame": "Verlassen"
+    "leaveGame": "Verlassen",
+    "welcomeBack": "Willkommen zurück, {name}!",
+    "waitingForHostReconnect": "Warte auf den Host...",
+    "speakerUnavailable": "Lautsprecher nicht verfügbar. Bitte überprüfe deinen Mediaplayer.",
+    "gamePaused": "Spiel pausiert. Bitte warten...",
+    "redirecting": "Weiterleiten...",
+    "hostCannotLeave": "Der Host kann das Spiel nicht verlassen. Beende das Spiel stattdessen."
   },
   "lobby": {
     "gameLobby": "Spiellobby",
@@ -87,7 +94,17 @@
     "difficultyHard": "Schwer",
     "introRound": "INTRO-RUNDE",
     "introStopped": "Intro vorbei!",
-    "introHint": "Nur 10 Sekunden!"
+    "introHint": "Nur 10 Sekunden!",
+    "loading": "Laden...",
+    "wait": "Warten...",
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "stopping": "Stoppen...",
+    "stopped": "Gestoppt",
+    "stop": "Stop",
+    "ending": "Beenden...",
+    "starting": "Starten...",
+    "joining": "Beitreten..."
   },
   "steal": {
     "available": "Klauen verfügbar!",
@@ -553,7 +570,10 @@
     "gameInProgress": "Spiel läuft",
     "gameInProgressHint": "Das Spiel ist gerade in einer Runde. Versuche es gleich nochmal.",
     "connectionLostHint": "Verbindung zum Server konnte nicht hergestellt werden.",
-    "checkNetwork": "Stelle sicher, dass du mit dem Netzwerk verbunden bist"
+    "checkNetwork": "Stelle sicher, dass du mit dem Netzwerk verbunden bist",
+    "connectionLost": "Verbindung verloren. Bitte neu laden.",
+    "timesUp": "Zeit abgelaufen!",
+    "submissionFailed": "Übertragung fehlgeschlagen"
   },
   "highlights": {
     "highlight_exact_match": "{player} hat '{song}' genagelt — {year}!",

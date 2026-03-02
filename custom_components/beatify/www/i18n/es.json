@@ -19,12 +19,19 @@
     "joinButton": "Unirse",
     "joiningButton": "Uniendose...",
     "scanQr": "Escanea el codigo QR para unirte",
-    "shareQr": "Comparte este codigo QR"
+    "shareQr": "Comparte este codigo QR",
+    "reconnecting": "Reconectando... (Intento {attempt}/{max})"
   },
   "player": {
     "leaveGameTitle": "¿Salir del juego?",
     "leaveGameWarning": "Perderás tu puntuación.",
-    "leaveGame": "Salir"
+    "leaveGame": "Salir",
+    "welcomeBack": "¡Bienvenido de nuevo, {name}!",
+    "waitingForHostReconnect": "Esperando al anfitrión...",
+    "speakerUnavailable": "Altavoz no disponible. Comprueba tu reproductor.",
+    "gamePaused": "Juego pausado. Por favor, espera...",
+    "redirecting": "Redirigiendo...",
+    "hostCannotLeave": "El anfitrión no puede salir. Termina el juego primero."
   },
   "lobby": {
     "gameLobby": "Sala de espera",
@@ -87,7 +94,17 @@
     "difficultyHard": "Dificil",
     "introRound": "RONDA INTRO",
     "introStopped": "Intro completa!",
-    "introHint": "¡Solo 10 segundos!"
+    "introHint": "¡Solo 10 segundos!",
+    "loading": "Cargando...",
+    "wait": "Esperar...",
+    "skip": "Saltar",
+    "next": "Siguiente",
+    "stopping": "Deteniendo...",
+    "stopped": "Detenido",
+    "stop": "Stop",
+    "ending": "Terminando...",
+    "starting": "Iniciando...",
+    "joining": "Uniéndose..."
   },
   "steal": {
     "available": "Robo disponible!",
@@ -553,7 +570,10 @@
     "gameInProgress": "Juego en progreso",
     "gameInProgressHint": "El juego esta actualmente en una ronda. Intenta de nuevo en un momento.",
     "connectionLostHint": "No pudimos reconectarte al servidor del juego.",
-    "checkNetwork": "Asegurate de estar conectado a la red"
+    "checkNetwork": "Asegurate de estar conectado a la red",
+    "connectionLost": "Conexión perdida. Por favor, recarga.",
+    "timesUp": "¡Tiempo agotado!",
+    "submissionFailed": "Error al enviar"
   },
   "highlights": {
     "highlight_exact_match": "¡{player} clavó '{song}' — {year}!",
