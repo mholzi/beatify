@@ -889,3 +889,22 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+
+// ============================================
+// iOS Safari Reconnect on App Foreground
+// ============================================
+// iOS aggressively closes WebSocket connections when the app is backgrounded.
+// When the user returns from another app (e.g. WhatsApp, Safari), we immediately
+// reconnect if the socket is dead — without waiting for the onclose backoff timer.
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+        var ws = state.ws;
+        if (!ws || ws.readyState === WebSocket.CLOSING || ws.readyState === WebSocket.CLOSED) {
+            if (state.playerName) {
+                console.log('[Beatify] Page visible, WebSocket dead — reconnecting immediately.');
+                state.reconnectAttempts = 0; // reset backoff so it reconnects instantly
+                connectWithSession();
+            }
+        }
+    }
+});
