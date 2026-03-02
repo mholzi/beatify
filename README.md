@@ -49,48 +49,6 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 <br>
 
-## Screenshots
-
-<details>
-<summary><strong>🖥️ Admin Dashboard</strong> — Set up your game in seconds</summary>
-<br>
-<img src="docs/screenshots/admin-desktop.png" alt="Beatify Admin Dashboard" width="600">
-</details>
-
-<details>
-<summary><strong>🎵 Playlist Selection</strong> — Filter by decade, style, and region</summary>
-<br>
-<img src="docs/screenshots/playlists.png" alt="Playlist Selection with Filters" width="600">
-</details>
-
-<details>
-<summary><strong>🎮 Game Setup</strong> — Pick your speaker and playlist, hit start</summary>
-<br>
-<img src="docs/screenshots/game-setup.png" alt="Game Setup Ready to Start" width="600">
-</details>
-
-<details>
-<summary><strong>📱 Lobby</strong> — Guests scan the QR code to join</summary>
-<br>
-<img src="docs/screenshots/lobby.png" alt="Game Lobby with QR Code" width="600">
-</details>
-
-<details>
-<summary><strong>👋 Player Join</strong> — Enter a name and you're in</summary>
-<br>
-<img src="docs/screenshots/player-lobby.png" alt="Player Join Screen" width="300">
-</details>
-
-<details>
-<summary><strong>📱 Mobile View</strong> — Fully responsive on any device</summary>
-<br>
-<img src="docs/screenshots/admin-mobile.png" alt="Beatify Mobile View" width="300">
-</details>
-
----
-
-<br>
-
 ## Setup In Home Assistant
 
 ### Step 1: Install
