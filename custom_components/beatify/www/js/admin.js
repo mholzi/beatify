@@ -414,8 +414,10 @@ function groupPlayersByPlatform(players) {
  */
 function renderMediaPlayers(players) {
     const container = document.getElementById('media-players-list');
-    // Remove data-i18n to prevent initPageTranslations from overwriting rendered content
+    // Remove data-i18n and skeleton state when real content renders
     container?.removeAttribute('data-i18n');
+    container?.removeAttribute('aria-busy');
+    container?.classList.remove('skeleton-list');
     const totalPlayers = players ? players.length : 0;
 
     // Reset selection state
@@ -739,8 +741,10 @@ function updateProviderWarning(player) {
  */
 function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
     const container = document.getElementById('playlists-list');
-    // Remove data-i18n to prevent initPageTranslations from overwriting rendered content
+    // Remove data-i18n and skeleton state when real content renders
     container?.removeAttribute('data-i18n');
+    container?.removeAttribute('aria-busy');
+    container?.classList.remove('skeleton-list');
 
     // Store previous selections before reset (for preserveSelection mode)
     const previousSelections = preserveSelection ? [...selectedPlaylists] : [];
