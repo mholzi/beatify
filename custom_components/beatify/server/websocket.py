@@ -743,7 +743,8 @@ class BeatifyWebSocketHandler:
             return
 
         # Handle dual-tab scenario: close old connection if still active
-        if player.connected and player.ws and not player.ws.closed:
+        # Skip takeover if the reconnect comes from the SAME WebSocket (e.g. rematch reconnect)
+        if player.connected and player.ws and not player.ws.closed and player.ws is not ws:
             try:
                 await player.ws.send_json(
                     {
