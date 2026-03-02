@@ -317,75 +317,124 @@ function generateVisualCard(emojiGrid, playlistName, shareData) {
     logoImg.onload = function() { drawCardContent(logoImg); };
 
     function drawCardContent(logo) {
-    if (logo) {
-        ctx.drawImage(logo, 20, 16, 72, 72);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 26px system-ui, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText('Beatify', 100, 64);
-    } else {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 28px system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('🎵 Beatify', 400, 45);
-    }
-    ctx.textAlign = 'center';
-
-    ctx.fillStyle = '#e94560';
-    ctx.font = '18px system-ui, sans-serif';
-    ctx.fillText(playlistName || '', 400, 110);
-
-    var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
-
-    var playerLine = '';
-    var rankLine = '';
-    var emojiRows = [];
-    var statsLines = [];
-
-    for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
-            emojiRows.push(line);
-        } else if (line.match(/👑|🥇|🥈|🥉/)) {
-            playerLine = line;
-        } else if (line.match(/#\d|pts|points/i)) {
-            rankLine = line;
-        } else if (line.match(/🔥|✅|streak|round/i)) {
-            statsLines.push(line);
+        // ── Header ──────────────────────────────────────────────
+        if (logo) {
+            ctx.drawImage(logo, 28, 20, 64, 64);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Beatify', 104, 60);
+        } else {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🎵 Beatify', 400, 55);
         }
-    }
 
-    if (playerLine) {
+        // Playlist chip
+        ctx.textAlign = 'center';
+        var playlist = (playlistName || '').toUpperCase();
+        ctx.font = 'bold 13px system-ui, sans-serif';
+        var chipW = ctx.measureText(playlist).width + 32;
+        var chipX = 400 - chipW / 2;
+        ctx.fillStyle = 'rgba(233,69,96,0.18)';
+        ctx.beginPath();
+        ctx.roundRect(chipX, 96, chipW, 30, 15);
+        ctx.fill();
+        ctx.strokeStyle = '#e94560';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.fillStyle = '#e94560';
+        ctx.fillText(playlist, 400, 116);
+
+        // ── Parse emojiGrid ──────────────────────────────────────
+        var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
+        var playerLine = '', emojiRows = [], statsLines = [];
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
+                emojiRows.push(line);
+            } else if (line.match(/👑/)) {
+                playerLine = line;
+            } else if (line.match(/correct|streak|exact|bet/i)) {
+                statsLines.push(line);
+            }
+        }
+
+        // ── Player name ──────────────────────────────────────────
+        if (playerLine) {
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 26px system-ui, sans-serif';
+            ctx.fillText(playerLine, 400, 180);
+        }
+
+        // ── Emoji grid with bordered box ─────────────────────────
+        var emojiBoxY = 210;
+        var emojiBoxH = Math.max(80, emojiRows.length * 48 + 32);
+        ctx.fillStyle = 'rgba(255,255,255,0.05)';
+        ctx.beginPath();
+        ctx.roundRect(80, emojiBoxY, 640, emojiBoxH, 16);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.font = '38px system-ui, sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.font = '22px system-ui, sans-serif';
-        ctx.fillText(playerLine, 400, 155);
-    }
+        var emojiStartY = emojiBoxY + 24 + (emojiRows.length === 1 ? 10 : 0);
+        emojiRows.forEach(function(row, idx) {
+            ctx.fillText(row, 400, emojiStartY + idx * 48);
+        });
 
-    if (rankLine) {
-        ctx.fillStyle = '#ffd700';
-        ctx.font = '24px system-ui, sans-serif';
-        ctx.fillText(rankLine, 400, 200);
-    }
+        // ── Stats 3-column grid ──────────────────────────────────
+        var statsY = emojiBoxY + emojiBoxH + 32;
+        if (statsLines.length > 0) {
+            var statParsed = [];
+            statsLines.forEach(function(s) {
+                var m = s.match(/(\d+)\s*[\/\|]\s*(\d+)/);
+                if (m) {
+                    statParsed.push({ val: m[1] + '/' + m[2], label: s.replace(/[\d\/\|🔥✅🎯💰]/g, '').trim().slice(0, 12) });
+                } else {
+                    var num = s.match(/\d+/);
+                    statParsed.push({ val: num ? num[0] : '—', label: s.replace(/[\d🔥✅🎯💰]/g, '').trim().slice(0, 12) });
+                }
+            });
+            var cols = Math.min(statParsed.length, 3);
+            var colW = 200;
+            var startX = 400 - ((cols - 1) * colW) / 2;
+            statParsed.slice(0, cols).forEach(function(stat, idx) {
+                var cx = startX + idx * colW;
+                // Value
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 32px system-ui, sans-serif';
+                ctx.fillText(stat.val, cx, statsY + 36);
+                // Label
+                ctx.fillStyle = '#8888aa';
+                ctx.font = '13px system-ui, sans-serif';
+                ctx.fillText(stat.label, cx, statsY + 58);
+            });
+        }
 
-    ctx.font = '32px system-ui, sans-serif';
-    ctx.fillStyle = '#ffffff';
-    var emojiStartY = 255;
-    var emojiLineHeight = 44;
-    emojiRows.forEach(function(row, idx) {
-        ctx.fillText(row, 400, emojiStartY + (idx * emojiLineHeight));
-    });
+        // ── Divider ──────────────────────────────────────────────
+        var divY = 720;
+        var divGrad = ctx.createLinearGradient(80, 0, 720, 0);
+        divGrad.addColorStop(0, 'rgba(233,69,96,0)');
+        divGrad.addColorStop(0.5, 'rgba(233,69,96,0.5)');
+        divGrad.addColorStop(1, 'rgba(233,69,96,0)');
+        ctx.strokeStyle = divGrad;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(80, divY);
+        ctx.lineTo(720, divY);
+        ctx.stroke();
 
-    ctx.font = '14px system-ui, sans-serif';
-    ctx.fillStyle = '#8888aa';
-    var statsY = emojiStartY + (emojiRows.length * emojiLineHeight) + 30;
-    statsLines.forEach(function(stat, idx) {
-        ctx.fillText(stat, 400, statsY + (idx * 22));
-    });
-
-    ctx.font = '12px system-ui, sans-serif';
-    ctx.fillStyle = '#666688';
-    ctx.textAlign = 'right';
-    ctx.fillText('beatify.fun', 780, 760);
+        // ── Footer: URL + Tagline ────────────────────────────────
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 15px system-ui, sans-serif';
+        ctx.fillText('beatify.fun', 400, 748);
+        ctx.fillStyle = '#8888aa';
+        ctx.font = '13px system-ui, sans-serif';
+        ctx.fillText('The music quiz for your living room.', 400, 768);
 
     canvas.toBlob(function(blob) {
         if (navigator.share && navigator.canShare) {
