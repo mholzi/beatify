@@ -364,6 +364,10 @@ class GameState:
         # Issue #75: Game highlights reel
         self.highlights_tracker = HighlightsTracker()
 
+        # Issue #292: Intro splash state
+        self._intro_splash_shown: bool = False
+        self._intro_splash_pending: bool = False
+
     def create_game(
         self,
         playlists: list[str],
@@ -518,6 +522,7 @@ class GameState:
             "intro_mode_enabled": self.intro_mode_enabled,
             "is_intro_round": self.is_intro_round,
             "intro_stopped": self.intro_stopped,
+            "intro_splash_pending": self._intro_splash_pending,
         }
 
         # Phase-specific data
@@ -776,6 +781,10 @@ class GameState:
 
         # Issue #75: Reset highlights tracker
         self.highlights_tracker.reset()
+
+        # Issue #292: Reset intro splash state
+        self._intro_splash_shown = False
+        self._intro_splash_pending = False
 
     def end_game(self) -> None:
         """End the current game and reset state."""
@@ -1574,7 +1583,9 @@ class GameState:
         self._intro_round_start_time = None
         self._cancel_intro_timer()
 
-        if self.intro_mode_enabled:
+        if self.intro_mode_enabled and self.round >= 3:
+            # Issue #292: Skip intro rounds for the first 3 display rounds
+            # (self.round is 0-indexed here, incremented later, so round < 3 = display rounds 1-3)
             # Guarantee at least one intro round every 4 rounds
             # Use random chance normally, but force it if too many rounds without one
             force_intro = self._rounds_since_intro >= 3
@@ -1585,15 +1596,24 @@ class GameState:
                     self.is_intro_round = True
                     self._rounds_since_intro = 0
                     self._intro_round_start_time = self._now()
-                    # Schedule auto-stop after intro duration
-                    self._intro_stop_task = asyncio.create_task(
-                        self._intro_auto_stop(INTRO_DURATION_SECONDS)
-                    )
-                    _LOGGER.info(
-                        "Intro round activated for round %d%s",
-                        self.round + 1,
-                        " (forced)" if force_intro else "",
-                    )
+                    # Issue #292: First intro round needs admin confirmation via splash
+                    if not self._intro_splash_shown:
+                        self._intro_splash_pending = True
+                        _LOGGER.info(
+                            "Intro round activated for round %d%s (splash pending)",
+                            self.round + 1,
+                            " (forced)" if force_intro else "",
+                        )
+                    else:
+                        # Schedule auto-stop after intro duration
+                        self._intro_stop_task = asyncio.create_task(
+                            self._intro_auto_stop(INTRO_DURATION_SECONDS)
+                        )
+                        _LOGGER.info(
+                            "Intro round activated for round %d%s",
+                            self.round + 1,
+                            " (forced)" if force_intro else "",
+                        )
                 else:
                     self._rounds_since_intro += 1
                     _LOGGER.info("Skipping intro mode for short song (%dms)", song_duration_ms)

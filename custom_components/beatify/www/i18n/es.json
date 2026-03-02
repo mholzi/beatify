@@ -592,5 +592,9 @@
     "share_save": "📤 Compartir imagen",
     "share_copied": "¡Copiado!",
     "share_title": "Mis resultados de Beatify"
-  }
+  },
+  "introSplashTitle": "¡Ronda Intro!",
+  "introSplashDesc": "La canción suena — detente en cuanto la reconozcas. ¡Cuanto más rápido pares, más puntos!",
+  "introSplashWaiting": "Esperando al anfitrión...",
+  "introSplashStart": "▶ Iniciar Ronda Intro"
 }

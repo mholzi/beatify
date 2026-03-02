@@ -531,6 +531,19 @@ class BeatifyWebSocketHandler:
                 # Broadcast state with updated language
                 await self.broadcast_state()
 
+            elif action == "confirm_intro_splash":
+                # Issue #292: Admin confirms the first-intro splash screen
+                if not game_state._intro_splash_pending:
+                    return
+                game_state._intro_splash_pending = False
+                game_state._intro_splash_shown = True
+                from custom_components.beatify.game.state import INTRO_DURATION_SECONDS
+
+                game_state._intro_stop_task = asyncio.create_task(
+                    game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
+                )
+                await self.broadcast_state()
+
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
 

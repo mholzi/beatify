@@ -592,5 +592,9 @@
     "share_save": "📤 Partager l'image",
     "share_copied": "Copié !",
     "share_title": "Mes résultats Beatify"
-  }
+  },
+  "introSplashTitle": "Round Intro !",
+  "introSplashDesc": "La chanson joue — arrêtez-la dès que vous la reconnaissez ! Plus vite vous arrêtez, plus vous marquez.",
+  "introSplashWaiting": "En attente de l'hôte...",
+  "introSplashStart": "▶ Démarrer le Round Intro"
 }
