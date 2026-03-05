@@ -19,6 +19,7 @@ from custom_components.beatify.const import (
     MEDIA_PLAYER_DOCS_URL,
     PLAYLIST_DOCS_URL,
     PROVIDER_DEFAULT,
+    PROVIDER_DEEZER,
     PROVIDER_SPOTIFY,
     PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
@@ -202,7 +203,7 @@ class StartGameView(HomeAssistantView):
             difficulty = DIFFICULTY_DEFAULT
 
         # Validate provider (Story 17.6: Spotify, YouTube Music, Tidal supported)
-        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_YOUTUBE_MUSIC, PROVIDER_TIDAL)
+        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_YOUTUBE_MUSIC, PROVIDER_TIDAL, PROVIDER_DEEZER)
         if provider not in valid_providers:
             provider = PROVIDER_DEFAULT
 
@@ -353,6 +354,15 @@ class StartGameView(HomeAssistantView):
                 {
                     "error": "PROVIDER_NOT_SUPPORTED",
                     "message": "Tidal is not supported on this speaker. Use Music Assistant.",
+                },
+                status=400,
+            )
+
+        if provider == PROVIDER_DEEZER and not capabilities.get("deezer"):
+            return web.json_response(
+                {
+                    "error": "PROVIDER_NOT_SUPPORTED",
+                    "message": "Deezer is not supported on this speaker. Use Music Assistant.",
                 },
                 status=400,
             )

@@ -14,10 +14,12 @@ from custom_components.beatify.const import (
     PLAYLIST_DIR,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
+    PROVIDER_DEEZER,
     PROVIDER_SPOTIFY,
     PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
     URI_PATTERN_APPLE_MUSIC,
+    URI_PATTERN_DEEZER,
     URI_PATTERN_SPOTIFY,
     URI_PATTERN_TIDAL,
     URI_PATTERN_YOUTUBE_MUSIC,
@@ -327,6 +329,14 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
             else:
                 errors.append(f"Song {i + 1}: 'uri_tidal' invalid (expected tidal://track/{{id}})")
 
+        # Check 'uri_deezer' field
+        uri_deezer = song.get("uri_deezer")
+        if isinstance(uri_deezer, str) and uri_deezer.strip():
+            if re.match(URI_PATTERN_DEEZER, uri_deezer):
+                has_valid_uri = True
+            else:
+                errors.append(f"Song {i + 1}: 'uri_deezer' invalid (expected deezer://track/{{id}})")
+
         # Error if no valid URI found
         if not has_valid_uri:
             errors.append(f"Song {i + 1}: no valid URI")
@@ -376,6 +386,9 @@ def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
     if provider == PROVIDER_TIDAL:
         # For Tidal, only use uri_tidal
         return song.get("uri_tidal") or None
+    if provider == PROVIDER_DEEZER:
+        # For Deezer, only use uri_deezer
+        return song.get("uri_deezer") or None
     return None
 
 
@@ -435,6 +448,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
             youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
             tidal_count = sum(1 for s in songs if s.get("uri_tidal"))
+            deezer_count = sum(1 for s in songs if s.get("uri_deezer"))
 
             playlists.append(
                 {
@@ -447,6 +461,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "apple_music_count": apple_music_count,
                     "youtube_music_count": youtube_music_count,
                     "tidal_count": tidal_count,
+                    "deezer_count": deezer_count,
                     "is_valid": is_valid,
                     "errors": errors,
                 }
@@ -463,6 +478,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "apple_music_count": 0,
                     "youtube_music_count": 0,
                     "tidal_count": 0,
+                    "deezer_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                 }
