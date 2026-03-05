@@ -23,6 +23,7 @@ PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
         "apple_music": True,
         "youtube_music": True,
         "tidal": True,
+        "deezer": True,
         "method": "uri",
         "warning": "Premium account must be configured in Music Assistant",
     },
@@ -196,6 +197,10 @@ class MediaPlayerService:
         """
         if not uri:
             return uri
+
+        if uri.startswith("deezer://track/"):
+            track_id = uri.removeprefix("deezer://track/")
+            return f"https://www.deezer.com/track/{track_id}"
 
         if uri.startswith("applemusic://track/"):
             track_id = uri.removeprefix("applemusic://track/")
@@ -595,6 +600,7 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
                 "supports_apple_music": capabilities.get("apple_music", False),
                 "supports_youtube_music": capabilities.get("youtube_music", False),
                 "supports_tidal": capabilities.get("tidal", False),
+                "supports_deezer": capabilities.get("deezer", False),
                 "playback_method": capabilities.get("method", "uri"),
                 "warning": capabilities.get("warning"),
                 "caveat": capabilities.get("caveat"),

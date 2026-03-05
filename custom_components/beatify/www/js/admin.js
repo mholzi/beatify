@@ -511,7 +511,8 @@ function renderPlayerItem(player) {
              data-supports-spotify="${player.supports_spotify}"
              data-supports-apple-music="${player.supports_apple_music}"
              data-supports-youtube-music="${player.supports_youtube_music}"
-             data-supports-tidal="${player.supports_tidal}">
+             data-supports-tidal="${player.supports_tidal}"
+             data-supports-deezer="${player.supports_deezer}">
             <label class="radio-label">
                 <input type="radio"
                        class="media-player-radio"
@@ -522,7 +523,8 @@ function renderPlayerItem(player) {
                        data-supports-spotify="${player.supports_spotify}"
                        data-supports-apple-music="${player.supports_apple_music}"
                        data-supports-youtube-music="${player.supports_youtube_music}"
-                       data-supports-tidal="${player.supports_tidal}">
+                       data-supports-tidal="${player.supports_tidal}"
+                       data-supports-deezer="${player.supports_deezer}">
                 <span class="player-info">
                     <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
                     ${platformBadge}
@@ -578,6 +580,7 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     const supportsAppleMusic = radio.dataset.supportsAppleMusic === 'true';
     const supportsYoutubeMusic = radio.dataset.supportsYoutubeMusic === 'true';
     const supportsTidal = radio.dataset.supportsTidal === 'true';
+    const supportsDeezer = radio.dataset.supportsDeezer === 'true';
 
     // Update module state with platform capabilities
     selectedMediaPlayer = {
@@ -588,6 +591,7 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
         supportsAppleMusic,
         supportsYoutubeMusic,
         supportsTidal,
+        supportsDeezer,
     };
 
     // Update visual selection
@@ -634,6 +638,7 @@ function updateProviderOptions(player) {
     const appleBtn = document.querySelector('.chip[data-provider="apple_music"]');
     const youtubeBtn = document.querySelector('.chip[data-provider="youtube_music"]');
     const tidalBtn = document.querySelector('.chip[data-provider="tidal"]');
+    const deezerBtn = document.querySelector('.chip[data-provider="deezer"]');
 
     if (spotifyBtn) {
         spotifyBtn.disabled = !player.supportsSpotify;
@@ -653,6 +658,11 @@ function updateProviderOptions(player) {
     if (tidalBtn) {
         tidalBtn.disabled = !player.supportsTidal;
         tidalBtn.classList.toggle('chip--disabled', !player.supportsTidal);
+    }
+
+    if (deezerBtn) {
+        deezerBtn.disabled = !player.supportsDeezer;
+        deezerBtn.classList.toggle('chip--disabled', !player.supportsDeezer);
     }
 
     // If current selection is now disabled, switch to Spotify
@@ -677,6 +687,13 @@ function updateProviderOptions(player) {
         selectedProvider = 'spotify';
     }
 
+    if (selectedProvider === 'deezer' && !player.supportsDeezer) {
+        // Update UI
+        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
+        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
+        selectedProvider = 'spotify';
+    }
+
     // Show hint for disabled providers
     const hint = document.getElementById('provider-hint');
     if (hint) {
@@ -684,6 +701,7 @@ function updateProviderOptions(player) {
         if (!player.supportsAppleMusic) disabledProviders.push('Apple Music');
         if (!player.supportsYoutubeMusic) disabledProviders.push('YouTube Music');
         if (!player.supportsTidal) disabledProviders.push('Tidal');
+        if (!player.supportsDeezer) disabledProviders.push('Deezer');
 
         if (disabledProviders.length > 0) {
             hint.textContent = `${disabledProviders.join(' and ')} require${disabledProviders.length === 1 ? 's' : ''} Music Assistant speaker`;
@@ -806,6 +824,7 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
             const appleMusicCount = playlist.apple_music_count || 0;
             const youtubeMusicCount = playlist.youtube_music_count || 0;
             const tidalCount = playlist.tidal_count || 0;
+            const deezerCount = playlist.deezer_count || 0;
 
             // Get provider count based on selected provider
             let providerCount = songCount;
@@ -817,6 +836,8 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 providerCount = youtubeMusicCount;
             } else if (selectedProvider === 'tidal') {
                 providerCount = tidalCount;
+            } else if (selectedProvider === 'deezer') {
+                providerCount = deezerCount;
             }
 
             // Disable playlist if no songs for selected provider
