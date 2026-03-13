@@ -443,6 +443,11 @@ function handleServerMessage(data) {
                     if (data.phase === 'REVEAL') {
                         updateRevealView(data);
                     }
+                    // Re-apply control bar labels after language load (#300)
+                    // updateControlBarState() uses utils.t() which needs i18n ready
+                    if (data.phase === 'PLAYING' || data.phase === 'REVEAL') {
+                        updateControlBarState(data.phase);
+                    }
                 });
             }
         }
