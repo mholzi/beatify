@@ -1822,15 +1822,8 @@ class GameState:
         except Exception as err:
             _LOGGER.error("Failed to record round highlights: %s", err)
 
-        # Issue #23: Resume song for intro round reveal
-        # Use play_song() directly — media_play (resume) often fails silently
-        # because Spotify/Sonos drops the playback context after pause.
-        if self.is_intro_round and self.intro_stopped and self._media_player_service:
-            if self.current_song:
-                try:
-                    await self._media_player_service.play_song(self.current_song)
-                except Exception as err:
-                    _LOGGER.warning("Failed to resume song for intro reveal: %s", err)
+        # Issue #23: Music continues playing through reveal for intro rounds.
+        # No resume needed — _intro_auto_stop no longer pauses playback.
 
         # Calculate round analytics after scoring (Story 13.3)
         try:
@@ -1988,18 +1981,18 @@ class GameState:
         self._intro_stop_task = None
 
     async def _intro_auto_stop(self, delay_seconds: float) -> None:
-        """Auto-pause playback after intro duration in intro round (Issue #23)."""
+        """Signal end of intro challenge window after delay (Issue #23).
+
+        Music intentionally continues playing — players hear the rest of the
+        song after the intro window closes.  Only the UI state changes
+        (intro_stopped = True) so clients show the "Intro complete!" badge.
+        """
         try:
             await asyncio.sleep(delay_seconds)
             if self.phase == GamePhase.PLAYING and not self.intro_stopped:
-                if self._media_player_service:
-                    try:
-                        await self._media_player_service.pause()
-                    except Exception as err:
-                        _LOGGER.warning("Failed to pause for intro stop: %s", err)
                 self.intro_stopped = True
-                _LOGGER.info("Intro auto-stopped after %.1fs", delay_seconds)
-                # Broadcast updated state to all clients
+                _LOGGER.info("Intro challenge window closed after %.1fs (music continues)", delay_seconds)
+                # Broadcast updated state so clients update the intro badge
                 if self._on_round_end:
                     await self._on_round_end()
         except asyncio.CancelledError:
