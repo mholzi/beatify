@@ -924,7 +924,7 @@ class GameState:
 
                 # Resume media playback if it was stopped
                 if self._media_player_service and self.current_song:
-                    await self._media_player_service.play(self.current_song)
+                    await self._media_player_service.play()
                     _LOGGER.info("Media playback resumed")
             else:
                 # Timer expired during pause — end the round immediately
