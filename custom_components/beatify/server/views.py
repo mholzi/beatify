@@ -394,7 +394,7 @@ class StartGameView(HomeAssistantView):
             stats_service.record_game_start()
 
         # Set game language (Story 12.4, 16.3)
-        if language in ("en", "de", "es"):
+        if language in ("en", "de", "es", "fr"):
             game_state.language = language
 
         # Broadcast to WebSocket clients
