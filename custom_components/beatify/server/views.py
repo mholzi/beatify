@@ -892,6 +892,7 @@ class PlaylistRequestsView(HomeAssistantView):
         self.hass = hass
         self._storage_path = Path(hass.config.path("beatify/playlist_requests.json"))
         self._rate_limits: dict[str, list[float]] = {}
+        self._last_sweep: float = 0.0
 
     def _check_rate_limit(self, ip: str) -> bool:
         """Check if IP is within rate limit."""
@@ -899,6 +900,16 @@ class PlaylistRequestsView(HomeAssistantView):
 
         now = time.time()
         cutoff = now - self.RATE_LIMIT_WINDOW
+
+        # Periodic full sweep every 5 minutes to evict stale IP entries
+        if now - self._last_sweep > 300:
+            self._rate_limits = {
+                k: [t for t in v if t > cutoff]
+                for k, v in self._rate_limits.items()
+                if any(t > cutoff for t in v)
+            }
+            self._last_sweep = now
+
         times = [t for t in self._rate_limits.get(ip, []) if t > cutoff]
         self._rate_limits[ip] = times
         if len(times) >= self.RATE_LIMIT_REQUESTS:
