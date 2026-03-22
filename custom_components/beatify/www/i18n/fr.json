@@ -228,7 +228,8 @@
     "chartUK": "Charts du Royaume-Uni",
     "weeksOnChart": "semaines au classement",
     "weeksShort": "sem",
-    "moreAwards": "plus"
+    "moreAwards": "plus",
+    "playerNotFound": "Joueur introuvable"
   },
   "leaderboard": {
     "title": "Classement",
@@ -349,7 +350,8 @@
     "noRequests": "Pas encore de demandes",
     "alreadyRequested": "Cette playlist a déjà été demandée",
     "requestFailed": "Erreur lors de l'envoi de la demande. Réessaie.",
-    "musicService": "Service de musique"
+    "musicService": "Service de musique",
+    "join": "Rejoindre"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
@@ -434,7 +436,9 @@
     "achievements": "Succès",
     "streaks": "Séries",
     "betting": "Paris",
-    "chart": "Graphique"
+    "chart": "Graphique",
+    "none": "Aucun",
+    "pagination": "Page {current} sur {total}"
   },
   "dashboard": {
     "title": "Beatify - Tableau de bord",

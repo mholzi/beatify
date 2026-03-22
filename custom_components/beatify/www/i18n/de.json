@@ -228,7 +228,8 @@
     "chartUK": "UK Charts",
     "weeksOnChart": "Wochen in den Charts",
     "weeksShort": "Wo.",
-    "moreAwards": "weitere"
+    "moreAwards": "weitere",
+    "playerNotFound": "Spieler nicht gefunden"
   },
   "leaderboard": {
     "title": "Rangliste",
@@ -349,7 +350,8 @@
     "noRequests": "Noch keine Playlist-Anfragen",
     "alreadyRequested": "Diese Playlist wurde bereits angefragt",
     "requestFailed": "Anfrage fehlgeschlagen. Bitte erneut versuchen.",
-    "musicService": "Musikdienst"
+    "musicService": "Musikdienst",
+    "join": "Beitreten"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -434,7 +436,9 @@
     "achievements": "Erfolge",
     "streaks": "Serien",
     "betting": "Wetten",
-    "chart": "Diagramm"
+    "chart": "Diagramm",
+    "none": "Keine",
+    "pagination": "Seite {current} von {total}"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

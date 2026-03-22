@@ -228,7 +228,8 @@
     "chartUK": "UK Charts",
     "weeksOnChart": "weeks on chart",
     "weeksShort": "wks",
-    "moreAwards": "more"
+    "moreAwards": "more",
+    "playerNotFound": "Player not found"
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -349,7 +350,8 @@
     "noRequests": "No playlist requests yet",
     "alreadyRequested": "This playlist was already requested",
     "requestFailed": "Failed to submit request. Please try again.",
-    "musicService": "Music Service"
+    "musicService": "Music Service",
+    "join": "Join"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -434,7 +436,9 @@
     "achievements": "Achievements",
     "streaks": "Streaks",
     "betting": "Betting",
-    "chart": "Chart"
+    "chart": "Chart",
+    "none": "None",
+    "pagination": "Page {current} of {total}"
   },
   "dashboard": {
     "title": "Beatify - Dashboard",

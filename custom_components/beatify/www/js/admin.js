@@ -1265,8 +1265,8 @@ function showLobbyView(gameData) {
         try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
         var btnLabel = participateBtn.querySelector('[data-i18n]');
         if (adminNameStored && btnLabel) {
-            btnLabel.textContent = '▶️ Spiel starten';
-            btnLabel.removeAttribute('data-i18n');
+            btnLabel.setAttribute('data-i18n', 'admin.startGameplay');
+            btnLabel.textContent = BeatifyI18n.t('admin.startGameplay');
         }
     }
 
@@ -1404,7 +1404,7 @@ async function startGame() {
 
     btn.disabled = true;
     const originalText = btn.textContent;
-    btn.textContent = 'Starting...';
+    btn.textContent = BeatifyI18n.t('game.starting');
 
     try {
         const response = await fetch('/beatify/api/start-game', {
@@ -1457,7 +1457,7 @@ async function startGameplay() {
 
     btn.disabled = true;
     const originalText = btn.innerHTML;
-    btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> Starting...';
+    btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
 
     try {
         const response = await fetch('/beatify/api/start-gameplay', { method: 'POST' });
@@ -1721,7 +1721,7 @@ function closeAdminJoinModal() {
     if (nameInput) nameInput.value = '';
     if (joinBtn) {
         joinBtn.disabled = true;
-        joinBtn.textContent = 'Join';
+        joinBtn.textContent = BeatifyI18n.t('admin.join');
     }
     if (errorMsg) errorMsg.classList.add('hidden');
 }
@@ -1780,7 +1780,7 @@ function handleAdminJoin() {
     if (!name) return;
 
     joinBtn.disabled = true;
-    joinBtn.textContent = 'Joining...';
+    joinBtn.textContent = BeatifyI18n.t('game.joining');
 
     try {
         // Store admin name for player page
@@ -1794,12 +1794,12 @@ function handleAdminJoin() {
         } else {
             showError('No active game found');
             joinBtn.disabled = false;
-            joinBtn.textContent = 'Join';
+            joinBtn.textContent = BeatifyI18n.t('admin.join');
         }
     } catch (err) {
         console.error('Admin join failed:', err);
         joinBtn.disabled = false;
-        joinBtn.textContent = 'Join';
+        joinBtn.textContent = BeatifyI18n.t('admin.join');
     }
 }
 

@@ -612,7 +612,7 @@ function renderPersonalResult(player, correctYear) {
     if (!resultContent) return;
 
     if (!player) {
-        resultContent.innerHTML = '<div class="result-missed">Player not found</div>';
+        resultContent.innerHTML = '<div class="result-missed">' + utils.t('reveal.playerNotFound') + '</div>';
         return;
     }
 

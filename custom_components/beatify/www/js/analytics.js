@@ -240,7 +240,7 @@
         if (!playlists || playlists.length === 0) {
             listEl.innerHTML = '';
             emptyEl.classList.remove('hidden');
-            if (headerSummary) headerSummary.textContent = 'None';
+            if (headerSummary) headerSummary.textContent = BeatifyI18n.t('analyticsDashboard.none');
             return;
         }
 
@@ -694,7 +694,7 @@
         var nextBtn = document.getElementById('pagination-next');
 
         if (infoEl) {
-            infoEl.textContent = 'Page ' + modalCurrentPage + ' of ' + totalPages;
+            infoEl.textContent = BeatifyI18n.t('analyticsDashboard.pagination', { current: modalCurrentPage, total: totalPages });
         }
 
         if (prevBtn) {
