@@ -187,12 +187,12 @@ function renderRoundAnalytics(analytics, correctYear) {
         achievementsHtml += '<div class="achievement-item">' +
             '<span class="achievement-emoji">&#127919;</span>' +
             '<span class="achievement-label">' + utils.t('analytics.exactMatches') + ':</span>' +
-            '<span class="achievement-names">' + analytics.exact_match_players.join(', ') + '</span>' +
+            '<span class="achievement-names">' + analytics.exact_match_players.map(escapeHtml).join(', ') + '</span>' +
             '</div>';
     }
 
     if (analytics.speed_champion && analytics.speed_champion.names) {
-        var names = analytics.speed_champion.names.join(', ');
+        var names = analytics.speed_champion.names.map(escapeHtml).join(', ');
         achievementsHtml += '<div class="achievement-item">' +
             '<span class="achievement-emoji">&#9889;</span>' +
             '<span class="achievement-label">' + utils.t('analytics.speedChampion') + ':</span>' +
@@ -207,7 +207,7 @@ function renderRoundAnalytics(analytics, correctYear) {
             achievementsHtml += '<div class="achievement-item">' +
                 '<span class="achievement-emoji">&#128517;</span>' +
                 '<span class="achievement-label">' + utils.t('analytics.furthestGuess') + ':</span>' +
-                '<span class="achievement-names">' + analytics.furthest_players.join(', ') + '</span>' +
+                '<span class="achievement-names">' + analytics.furthest_players.map(escapeHtml).join(', ') + '</span>' +
                 '<span class="achievement-value">(' + furthestOff + ' years)</span>' +
                 '</div>';
         }
