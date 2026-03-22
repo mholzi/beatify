@@ -350,15 +350,27 @@ function generateVisualCard(emojiGrid, playlistName, shareData) {
 
         // ── Parse emojiGrid ──────────────────────────────────────
         var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
-        var playerLine = '', emojiRows = [], statsLines = [];
+        var playerLine = '', emojiRows = [];
+        // Structured stats extracted directly from the grid format
+        var statsCorrect = '', statsStreak = '', statsExact = '', statsBets = '';
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i].trim();
             if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
                 emojiRows.push(line);
             } else if (line.match(/👑/)) {
                 playerLine = line;
-            } else if (line.match(/correct|streak|exact|bet/i)) {
-                statsLines.push(line);
+            } else if (line.match(/correct/i)) {
+                // "  3/5 correct | 🔥 Best Streak: 2"
+                var correctMatch = line.match(/(\d+\/\d+)\s*correct/i);
+                var streakMatch = line.match(/Streak:\s*(\d+)/i);
+                if (correctMatch) statsCorrect = correctMatch[1];
+                if (streakMatch) statsStreak = streakMatch[1];
+            } else if (line.match(/exact/i)) {
+                // "🎯 1 Exact | 💰 2/3 Bets"
+                var exactMatch = line.match(/(\d+)\s*Exact/i);
+                var betsMatch = line.match(/(\d+\/\d+)\s*Bets/i);
+                if (exactMatch) statsExact = exactMatch[1];
+                if (betsMatch) statsBets = betsMatch[1];
             }
         }
 
@@ -387,34 +399,31 @@ function generateVisualCard(emojiGrid, playlistName, shareData) {
             ctx.fillText(row, 400, emojiStartY + idx * 48);
         });
 
-        // ── Stats 3-column grid ──────────────────────────────────
-        var statsY = emojiBoxY + emojiBoxH + 32;
-        if (statsLines.length > 0) {
-            var statParsed = [];
-            statsLines.forEach(function(s) {
-                var m = s.match(/(\d+)\s*[\/\|]\s*(\d+)/);
-                if (m) {
-                    statParsed.push({ val: m[1] + '/' + m[2], label: s.replace(/[\d\/\|🔥✅🎯💰]/g, '').trim().slice(0, 12) });
-                } else {
-                    var num = s.match(/\d+/);
-                    statParsed.push({ val: num ? num[0] : '—', label: s.replace(/[\d🔥✅🎯💰]/g, '').trim().slice(0, 12) });
-                }
-            });
-            var cols = Math.min(statParsed.length, 3);
-            var colW = 200;
-            var startX = 400 - ((cols - 1) * colW) / 2;
-            statParsed.slice(0, cols).forEach(function(stat, idx) {
-                var cx = startX + idx * colW;
-                // Value
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 32px system-ui, sans-serif';
-                ctx.fillText(stat.val, cx, statsY + 36);
-                // Label
-                ctx.fillStyle = '#8888aa';
-                ctx.font = '13px system-ui, sans-serif';
-                ctx.fillText(stat.label, cx, statsY + 58);
-            });
-        }
+        // ── Stats 4-column grid ──────────────────────────────────
+        var statsY = emojiBoxY + emojiBoxH + 40;
+        var statItems = [
+            { val: statsCorrect || '—', label: 'Correct', emoji: '✅' },
+            { val: statsStreak || '—', label: 'Best Streak', emoji: '🔥' },
+            { val: statsExact || '—', label: 'Exact', emoji: '🎯' },
+            { val: statsBets || '—', label: 'Bets', emoji: '💰' }
+        ];
+        var colW = 160;
+        var startX = 400 - ((statItems.length - 1) * colW) / 2;
+        statItems.forEach(function(stat, idx) {
+            var cx = startX + idx * colW;
+            // Emoji
+            ctx.font = '20px system-ui, sans-serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(stat.emoji, cx, statsY);
+            // Value
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 28px system-ui, sans-serif';
+            ctx.fillText(stat.val, cx, statsY + 36);
+            // Label
+            ctx.fillStyle = '#8888aa';
+            ctx.font = '12px system-ui, sans-serif';
+            ctx.fillText(stat.label, cx, statsY + 54);
+        });
 
         // ── Divider ──────────────────────────────────────────────
         var divY = 720;
