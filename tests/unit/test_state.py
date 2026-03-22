@@ -198,10 +198,17 @@ class TestStartGame:
 
     def test_start_with_players(self):
         self.state.add_player("Alice", MagicMock())
+        self.state.add_player("Bob", MagicMock())
         ok, err = self.state.start_game()
         assert ok is True
         assert err is None
         assert self.state.phase == GamePhase.PLAYING
+
+    def test_start_with_one_player_rejected(self):
+        self.state.add_player("Alice", MagicMock())
+        ok, err = self.state.start_game()
+        assert ok is False
+        assert err == ERR_GAME_NOT_STARTED
 
     def test_start_with_no_players(self):
         ok, err = self.state.start_game()
@@ -210,6 +217,7 @@ class TestStartGame:
 
     def test_double_start_rejected(self):
         self.state.add_player("Alice", MagicMock())
+        self.state.add_player("Bob", MagicMock())
         self.state.start_game()
         ok, err = self.state.start_game()
         assert ok is False
