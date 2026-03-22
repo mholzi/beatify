@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
+import asyncio
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -651,3 +652,146 @@ class TestRematchGame:
         self.state.rematch_game()
         assert len(self.state.songs) > 0
         assert self.state.total_rounds > 0
+
+
+# ---------------------------------------------------------------------------
+# GameState.pause_game / resume_game
+# ---------------------------------------------------------------------------
+
+
+def _setup_playing_game(state: GameState) -> None:
+    """Helper: set up a game in PLAYING phase with an admin player."""
+    _create_fresh_game(state)
+    ws = MagicMock()
+    state.add_player("Admin", ws)
+    state.set_admin("Admin")
+    state.start_game()
+    state.phase = GamePhase.PLAYING
+    state.deadline = int(state._now() * 1000) + 30_000  # 30s remaining
+
+
+class TestPauseGame:
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.state = make_game_state()
+        _setup_playing_game(self.state)
+
+    @pytest.mark.asyncio
+    async def test_pause_playing_game(self):
+        result = await self.state.pause_game("admin_disconnected")
+        assert result is True
+        assert self.state.phase == GamePhase.PAUSED
+        assert self.state._previous_phase == GamePhase.PLAYING
+
+    @pytest.mark.asyncio
+    async def test_pause_reveal_game(self):
+        self.state.phase = GamePhase.REVEAL
+        result = await self.state.pause_game("admin_disconnected")
+        assert result is True
+        assert self.state.phase == GamePhase.PAUSED
+        assert self.state._previous_phase == GamePhase.REVEAL
+
+    @pytest.mark.asyncio
+    async def test_pause_already_paused(self):
+        self.state.phase = GamePhase.PAUSED
+        result = await self.state.pause_game("admin_disconnected")
+        assert result is False
+
+    @pytest.mark.asyncio
+    async def test_pause_ended_game(self):
+        self.state.phase = GamePhase.END
+        result = await self.state.pause_game("admin_disconnected")
+        assert result is False
+
+    @pytest.mark.asyncio
+    async def test_pause_stores_admin_name(self):
+        await self.state.pause_game("admin_disconnected")
+        assert self.state.disconnected_admin_name == "Admin"
+
+    @pytest.mark.asyncio
+    async def test_pause_sets_reason(self):
+        await self.state.pause_game("admin_disconnected")
+        assert self.state.pause_reason == "admin_disconnected"
+
+    @pytest.mark.asyncio
+    async def test_pause_cancels_timer(self):
+        self.state._timer_task = asyncio.create_task(asyncio.sleep(100))
+        await self.state.pause_game("admin_disconnected")
+        assert self.state._timer_task is None or self.state._timer_task.cancelled()
+
+    @pytest.mark.asyncio
+    async def test_pause_stops_media(self):
+        mock_media = AsyncMock()
+        self.state._media_player_service = mock_media
+        await self.state.pause_game("admin_disconnected")
+        mock_media.stop.assert_awaited_once()
+
+
+class TestResumeGame:
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.state = make_game_state()
+        _setup_playing_game(self.state)
+
+    @pytest.mark.asyncio
+    async def test_resume_to_playing(self):
+        await self.state.pause_game("admin_disconnected")
+        result = await self.state.resume_game()
+        assert result is True
+        assert self.state.phase == GamePhase.PLAYING
+
+    @pytest.mark.asyncio
+    async def test_resume_to_reveal(self):
+        self.state.phase = GamePhase.REVEAL
+        await self.state.pause_game("admin_disconnected")
+        result = await self.state.resume_game()
+        assert result is True
+        assert self.state.phase == GamePhase.REVEAL
+
+    @pytest.mark.asyncio
+    async def test_resume_not_paused(self):
+        result = await self.state.resume_game()
+        assert result is False
+
+    @pytest.mark.asyncio
+    async def test_resume_no_previous_phase(self):
+        self.state.phase = GamePhase.PAUSED
+        self.state._previous_phase = None
+        result = await self.state.resume_game()
+        assert result is False
+
+    @pytest.mark.asyncio
+    async def test_resume_clears_pause_state(self):
+        await self.state.pause_game("admin_disconnected")
+        await self.state.resume_game()
+        assert self.state.pause_reason is None
+        assert self.state.disconnected_admin_name is None
+        assert self.state._previous_phase is None
+
+    @pytest.mark.asyncio
+    async def test_resume_calls_play_without_args(self):
+        """Regression test for #313: play() must be called with no args."""
+        mock_media = AsyncMock()
+        self.state._media_player_service = mock_media
+        self.state.current_song = {"title": "Test", "uri": "spotify:track:test"}
+        await self.state.pause_game("admin_disconnected")
+        await self.state.resume_game()
+        mock_media.play.assert_awaited_once_with()
+
+    @pytest.mark.asyncio
+    async def test_resume_expired_timer_ends_round(self):
+        """When timer expired during pause, round should end immediately."""
+        self.state.deadline = int(self.state._now() * 1000) - 1000  # expired
+        await self.state.pause_game("admin_disconnected")
+        self.state.end_round = AsyncMock()
+        result = await self.state.resume_game()
+        assert result is True
+        self.state.end_round.assert_awaited_once()
+
+    @pytest.mark.asyncio
+    async def test_pause_resume_roundtrip(self):
+        original_phase = self.state.phase
+        await self.state.pause_game("admin_disconnected")
+        assert self.state.phase == GamePhase.PAUSED
+        await self.state.resume_game()
+        assert self.state.phase == original_phase
