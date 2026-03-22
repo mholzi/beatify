@@ -882,10 +882,43 @@ class PlaylistRequestsView(HomeAssistantView):
     name = "beatify:api:playlist-requests"
     requires_auth = False
 
+    MAX_REQUESTS = 100
+    MAX_FIELD_LENGTH = 500
+    RATE_LIMIT_REQUESTS = 10
+    RATE_LIMIT_WINDOW = 60  # seconds
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
         self._storage_path = Path(hass.config.path("beatify/playlist_requests.json"))
+        self._rate_limits: dict[str, list[float]] = {}
+
+    def _check_rate_limit(self, ip: str) -> bool:
+        """Check if IP is within rate limit."""
+        import time  # noqa: PLC0415
+
+        now = time.time()
+        cutoff = now - self.RATE_LIMIT_WINDOW
+        times = [t for t in self._rate_limits.get(ip, []) if t > cutoff]
+        self._rate_limits[ip] = times
+        if len(times) >= self.RATE_LIMIT_REQUESTS:
+            return False
+        times.append(now)
+        return True
+
+    def _sanitize_item(self, item: object) -> dict | None:
+        """Validate and sanitize a single playlist request item."""
+        if not isinstance(item, dict):
+            return None
+        sanitized = {}
+        for key, value in item.items():
+            if not isinstance(key, str) or len(key) > 50:
+                continue
+            if isinstance(value, str):
+                sanitized[key] = value[: self.MAX_FIELD_LENGTH]
+            elif isinstance(value, (int, float, bool)):
+                sanitized[key] = value
+        return sanitized if sanitized else None
 
     def _load_requests(self) -> dict:
         """Load requests from storage file."""
@@ -915,8 +948,16 @@ class PlaylistRequestsView(HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Save playlist requests (replaces all data)."""
+        # Rate limiting
+        client_ip = request.remote or "unknown"
+        if not self._check_rate_limit(client_ip):
+            return web.json_response(
+                {"error": "RATE_LIMITED", "message": "Too many requests"},
+                status=429,
+            )
+
         try:
-            body = await request.json()
+            body = await request.json(content_type=None)
         except Exception:  # noqa: BLE001
             return web.json_response(
                 {"error": "INVALID_REQUEST", "message": "Invalid JSON"},
@@ -930,9 +971,18 @@ class PlaylistRequestsView(HomeAssistantView):
                 status=400,
             )
 
+        raw_requests = body["requests"][: self.MAX_REQUESTS]
+
+        # Sanitize each item
+        sanitized = []
+        for item in raw_requests:
+            clean = self._sanitize_item(item)
+            if clean is not None:
+                sanitized.append(clean)
+
         # Build storage object
         data = {
-            "requests": body.get("requests", []),
+            "requests": sanitized,
             "last_poll": body.get("last_poll"),
         }
 
