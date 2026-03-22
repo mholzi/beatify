@@ -79,3 +79,4 @@ CONTRIBUTING.md
 # Run `make build` locally or see .github/workflows/build-assets.yml
 custom_components/beatify/www/**/*.min.js
 custom_components/beatify/www/**/*.min.css
+scripts/.env
