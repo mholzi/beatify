@@ -27,6 +27,7 @@ from custom_components.beatify.const import (
     MIN_ROUNDS_FOR_CLUTCH,
     MIN_ROUNDS_FOR_COMEBACK,
     MIN_STREAK_FOR_AWARD,
+    MIN_SUBMISSIONS_FOR_SPEED,
     STEAL_UNLOCK_STREAK,
     STREAK_MILESTONES,
 )
@@ -353,7 +354,7 @@ def _award(id_: str, emoji: str, player_name: str, value: Any, value_label: str)
 
 
 def _superlative_speed_demon(players: list[PlayerSession]) -> dict[str, Any] | None:
-    candidates = [(p, p.avg_submission_time) for p in players if p.avg_submission_time is not None]
+    candidates = [(p, p.avg_submission_time) for p in players if p.avg_submission_time is not None and len(p.submission_times) >= MIN_SUBMISSIONS_FOR_SPEED]
     if not candidates:
         return None
     fastest = min(candidates, key=lambda x: x[1])
