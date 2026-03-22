@@ -31,6 +31,7 @@ from custom_components.beatify.const import (
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
+    MIN_PLAYERS,
     MOVIE_BONUS_TIERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
@@ -1413,8 +1414,8 @@ class GameState:
         if self.phase != GamePhase.LOBBY:
             return False, ERR_GAME_ALREADY_STARTED
 
-        if len(self.players) == 0:
-            return False, ERR_GAME_NOT_STARTED  # No players to play with
+        if len(self.players) < MIN_PLAYERS:
+            return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
 
         self.phase = GamePhase.PLAYING
         # Round and song selection will be implemented in Epic 4
