@@ -3152,36 +3152,6 @@
       "uri_deezer": "deezer://track/1184309"
     },
     {
-      "year": 2009,
-      "uri": "spotify:track:3GpbwCm3YxiWDvy29Uo3vP",
-      "artist": "Flo Rida, Kesha",
-      "alt_artists": [
-        "Pitbull",
-        "Sean Kingston",
-        "Taio Cruz",
-        "LMFAO"
-      ],
-      "title": "Right Round",
-      "chart_info": {
-        "billboard_peak": 1,
-        "uk_peak": 1,
-        "weeks_on_chart": 25
-      },
-      "certifications": [
-        "5x Platinum (US)",
-        "Platinum (UK)"
-      ],
-      "awards": [],
-      "fun_fact": "Right Round samples Dead or Alive's 1985 hit 'You Spin Me Round (Like a Record)' and debuted at #1 on the Hot 100, becoming the first song to top the chart based on digital sales alone.",
-      "fun_fact_de": "Right Round hielt den Rekord für die meisten digitalen Downloads in einer Woche mit 636.000 Verkäufen – ein Rekord, der erst zwei Monate später von The Black Eyed Peas gebrochen wurde.",
-      "fun_fact_es": "La canción fue originalmente grabada sin Kesha, pero después de que Flo Rida escuchó su demo de 'Tik Tok', la invitó a grabar los coros, aunque su nombre no apareció en los créditos oficiales del sencillo en EE.UU.",
-      "fun_fact_fr": "Right Round sample le tube de Dead or Alive de 1985 'You Spin Me Round (Like a Record)' et a débuté directement au numéro 1 du Hot 100, devenant la première chanson à atteindre le sommet uniquement grâce aux ventes numériques.",
-      "uri_apple_music": "applemusic://track/304572809",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CcCw1ggftuQ",
-      "uri_tidal": "tidal://track/3086041",
-      "uri_deezer": "deezer://track/4162078"
-    },
-    {
       "year": 2005,
       "uri": "spotify:track:4TsmezEQVSZNNPv5RJ65Ov",
       "artist": "Rihanna",
