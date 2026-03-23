@@ -11,6 +11,8 @@ _bmad-output/
 .agentforce/
 .claude/
 scripts/
+docs/
+.playwright-mcp/
 
 # ---- Duplicate deployed copy ----
 beatify/
