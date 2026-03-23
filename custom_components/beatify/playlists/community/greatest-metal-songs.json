@@ -1,6 +1,6 @@
 {
   "name": "Greatest Metal Songs of All Time 🤘",
-  "version": "1.2",
+  "version": "1.3",
   "tags": [
     "metal",
     "rock",
@@ -12,7 +12,7 @@
   "songs": [
     {
       "year": 1971,
-      "uri": "spotify:track:0E5FmCkzGHbJCMX9CCuxEi",
+      "uri": "spotify:track:0TI8TP4FitVPoEHPTySx48",
       "artist": "Black Sabbath",
       "title": "Iron Man",
       "alt_artists": [
@@ -35,13 +35,13 @@
       "fun_fact_de": "Iron Man hat eines der ikonischsten Gitarrenriffs der Rockgeschichte, das Tony Iommi erschuf, nachdem er bei einem Fabrikunfall die Fingerkuppen zweier Finger verloren hatte und Prothesen aus Plastikflaschen bastelte. Das Riff ahmt den schleppenden Gang des zeitreisenden Eisenmanns aus dem Liedtext nach.",
       "fun_fact_es": "Iron Man presenta uno de los riffs de guitarra más icónicos de la historia del rock, creado por Tony Iommi tras perder las yemas de dos dedos en un accidente de fábrica y fabricarse prótesis con botellas de plástico derretidas. El riff imita el paso torpe del hombre de hierro viajero en el tiempo descrito en la letra.",
       "fun_fact_fr": "Iron Man présente l'un des riffs de guitare les plus emblématiques de l'histoire du rock, créé par Tony Iommi après avoir perdu le bout de deux doigts dans un accident d'usine et s'être fabriqué des prothèses en plastique. Le riff imite la démarche lourde du voyageur temporel décrit dans les paroles.",
-      "uri_apple_music": "applemusic://track/1474815798",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=pBFmXZMRDp0",
+      "uri_apple_music": "applemusic://track/785232524",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5s7_WtCFf70",
       "uri_tidal": "tidal://track/4085428"
     },
     {
       "year": 1970,
-      "uri": "spotify:track:3zBhihYUHBmGd2bcQIobrF",
+      "uri": "spotify:track:3L8WgDYS5TtwbyxOPSAiFf",
       "artist": "Black Sabbath",
       "title": "Paranoid",
       "alt_artists": [
@@ -64,13 +64,13 @@
       "fun_fact_de": "Paranoid wurde in nur 20 Minuten als Füllstück für das gleichnamige Album geschrieben — und wurde dennoch Black Sabbaths einzige britische Top-5-Single. Die Band wollte es ursprünglich 'The Paranoid' nennen, aber Produzent Rodger Bain kürzte den Titel.",
       "fun_fact_es": "Paranoid fue escrita en solo 20 minutos como relleno para el álbum del mismo nombre — y sin embargo se convirtió en el único single top cinco del Reino Unido de Black Sabbath. La banda originalmente quería llamarla 'The Paranoid' pero el productor Rodger Bain lo acortó.",
       "fun_fact_fr": "Paranoid a été écrit en seulement 20 minutes comme morceau de remplissage pour l'album du même nom — et est pourtant devenu le seul single top cinq britannique de Black Sabbath. Le groupe voulait initialement l'appeler 'The Paranoid' mais le producteur Rodger Bain l'a raccourci.",
-      "uri_apple_music": "applemusic://track/1474815791",
+      "uri_apple_music": "applemusic://track/785232521",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0qanF-91aJo",
       "uri_tidal": "tidal://track/4085422"
     },
     {
       "year": 1975,
-      "uri": "spotify:track:2ctvdKmETyOzPb2GiJeT9N",
+      "uri": "spotify:track:5xmmAlr7JqT53WqacPRhLA",
       "artist": "Judas Priest",
       "title": "Screaming for Vengeance",
       "alt_artists": [
@@ -93,13 +93,13 @@
       "fun_fact_de": "Judas Priest etablierten den Leder-und-Nieten-Look, der zum Synonym für Heavy Metal wurde, wobei Sänger Rob Halford seine Inspiration aus der schwulen Leder-Subkultur bezog. Halford outete sich 1998 als einer der ersten großen Rockstars.",
       "fun_fact_es": "Judas Priest fue pionero del look de cuero y tachas que se convirtió en sinónimo del heavy metal, con el vocalista Rob Halford tomando inspiración de la subcultura gay del cuero. Halford salió del armario en 1998 como uno de los primeros grandes rockeros en hacerlo.",
       "fun_fact_fr": "Judas Priest a été le pionnier du look cuir et clous synonyme du heavy metal, le chanteur Rob Halford s'inspirant de la sous-culture gay du cuir. Halford a fait son coming out en 1998, devenant l'un des premiers grands rockeurs à le faire.",
-      "uri_apple_music": "applemusic://track/1440833867",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=EMu-8vlGKqQ",
+      "uri_apple_music": "applemusic://track/207178357",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jbLWEGr-CCA",
       "uri_tidal": "tidal://track/3459601"
     },
     {
       "year": 1980,
-      "uri": "spotify:track:5ygDXis42ncn6kYG14lEVG",
+      "uri": "spotify:track:1W1Fchq0voTFhKGWmn57uW",
       "artist": "Iron Maiden",
       "title": "The Trooper",
       "alt_artists": [
@@ -122,13 +122,13 @@
       "fun_fact_de": "Iron Maidens Maskottchen Eddie ist seit dem Debüt auf jedem Albumcover zu sehen und ist zu einer der bekanntesten Figuren der Rockmusik geworden. Die Band verwendet eine lebensgroße Eddie-Puppe bei Live-Auftritten.",
       "fun_fact_es": "La mascota Eddie de Iron Maiden ha aparecido en cada portada de álbum desde su debut y se ha convertido en uno de los personajes más reconocibles de la música rock. La banda utiliza una marioneta de Eddie a tamaño real en sus espectáculos en directo.",
       "fun_fact_fr": "La mascotte Eddie d'Iron Maiden apparaît sur chaque pochette d'album depuis leur débuts et est devenue l'un des personnages les plus reconnaissables de la musique rock. Le groupe utilise une marionnette Eddie grandeur nature dans ses spectacles live.",
-      "uri_apple_music": "applemusic://track/1452988508",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=P7xzlzRF5aI",
+      "uri_apple_music": "applemusic://track/1713861908",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X4bgXH3sJ2Q",
       "uri_tidal": "tidal://track/63918447"
     },
     {
       "year": 1982,
-      "uri": "spotify:track:2HHtWyy5CgaQbC7XSoOb0e",
+      "uri": "spotify:track:47FmjOhMMPiCsqLD6nbIgZ",
       "artist": "Iron Maiden",
       "title": "The Number of the Beast",
       "alt_artists": [
@@ -151,13 +151,13 @@
       "fun_fact_de": "The Number of the Beast löste bei seiner Veröffentlichung 1982 in den USA Massenproteste und Schallplattenverbrennungen durch religiöse Gruppen aus, was seine Bekanntheit und die Verkäufe nur steigerte. Sänger Bruce Dickinson trat kurz vor diesem Album der Band bei.",
       "fun_fact_es": "The Number of the Beast provocó protestas masivas y quemas de discos por parte de grupos religiosos en Estados Unidos al salir en 1982, lo que solo impulsó su notoriedad y ventas. El vocalista Bruce Dickinson se unió a la banda justo antes de este álbum.",
       "fun_fact_fr": "The Number of the Beast a provoqué des manifestations massives et des brûlages de disques par des groupes religieux aux États-Unis en 1982, ce qui n'a fait qu'accroître sa notoriété et ses ventes. Le chanteur Bruce Dickinson a rejoint le groupe juste avant cet album.",
-      "uri_apple_music": "applemusic://track/1452988468",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rTBgwBXTlnI",
+      "uri_apple_music": "applemusic://track/1713862907",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WxnN05vOuSM",
       "uri_tidal": "tidal://track/63918429"
     },
     {
       "year": 1986,
-      "uri": "spotify:track:2TjdnqlpwOjBHB6Wv5BVDO",
+      "uri": "spotify:track:54bm2e3tk8cliUz3VSdCPZ",
       "artist": "Metallica",
       "title": "Master of Puppets",
       "alt_artists": [
@@ -180,13 +180,13 @@
       "fun_fact_de": "Master of Puppets gilt allgemein als das beste Heavy-Metal-Album aller Zeiten. Der Titelsong erreichte neue Generationen, nachdem er 2022 in der vierten Staffel von Stranger Things vorkam und weltweit auf Platz 1 auf Spotify stieg. Bassist Cliff Burton starb kurz nach der Veröffentlichung bei einem Busunglück.",
       "fun_fact_es": "Master of Puppets es considerado ampliamente el mejor álbum de heavy metal jamás grabado. La canción llegó a nuevas generaciones tras aparecer en la cuarta temporada de Stranger Things en 2022, llevándola al número uno en Spotify global. El bajista Cliff Burton murió en un accidente de autobús meses después del lanzamiento.",
       "fun_fact_fr": "Master of Puppets est largement considéré comme le meilleur album de heavy metal jamais enregistré. Le titre a atteint de nouvelles générations après avoir été présenté dans la quatrième saison de Stranger Things en 2022, le propulsant numéro un sur Spotify mondial. Le bassiste Cliff Burton est décédé dans un accident de bus peu après la sortie.",
-      "uri_apple_music": "applemusic://track/1571490811",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=xopTnivQZbs",
+      "uri_apple_music": "applemusic://track/1275819878",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E0ozmU9cJDg",
       "uri_tidal": "tidal://track/179213196"
     },
     {
       "year": 1991,
-      "uri": "spotify:track:0o8b0NZTx5LVQD8vMCjOev",
+      "uri": "spotify:track:5sICkBXVmaCQk5aISGR3x1",
       "artist": "Metallica",
       "title": "Enter Sandman",
       "alt_artists": [
@@ -209,13 +209,13 @@
       "fun_fact_de": "Enter Sandman eröffnete das Black Album — Metallicas gleichnamiges Album von 1991, das mit über 16 Millionen verkauften US-Exemplaren zum meistverkauften Album in der SoundScan-Geschichte wurde. Der Song brachte Metal in den Mainstream.",
       "fun_fact_es": "Enter Sandman abrió el Black Album — el disco homónimo de Metallica de 1991 que se convirtió en el álbum más vendido en la historia de SoundScan con más de 16 millones de copias vendidas en EE.UU. La canción llevó el metal al mainstream.",
       "fun_fact_fr": "Enter Sandman a ouvert le Black Album — le disque éponyme de Metallica de 1991 qui est devenu l'album le plus vendu de l'histoire de SoundScan avec plus de 16 millions d'exemplaires vendus aux États-Unis. La chanson a amené le metal dans le grand public.",
-      "uri_apple_music": "applemusic://track/1440832036",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iYYRH4apXDo",
+      "uri_apple_music": "applemusic://track/1572051818",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CD-E-LDc384",
       "uri_tidal": "tidal://track/179213193"
     },
     {
       "year": 1988,
-      "uri": "spotify:track:3HuHMGPkDl0Q14MLMVRGOG",
+      "uri": "spotify:track:5IX4TbIR5mMHGE4wiWwKW0",
       "artist": "Metallica",
       "title": "One",
       "alt_artists": [
@@ -238,13 +238,13 @@
       "fun_fact_de": "One war Metallicas erstes Musikvideo, inspiriert vom Antikriegsfilm Johnny Got His Gun von 1971. Der Song beginnt als eindringliche Ballade, bevor er in einen wütenden Thrash-Angriff übergeht. Er gewann Metallica ihren ersten Grammy Award.",
       "fun_fact_es": "One fue el primer videoclip de Metallica, inspirado en la película antibélica de 1971 Johnny Got His Gun. La canción comienza como una perturbadora balada antes de explotar en un feroz asalto de thrash. Le valió a Metallica su primer Grammy.",
       "fun_fact_fr": "One a été le premier clip de Metallica, inspiré du film antimilitariste de 1971 Johnny Got His Gun. La chanson commence comme une ballade envoûtante avant d'exploser en un assaut thrash féroce. Elle a valu à Metallica leur premier Grammy.",
-      "uri_apple_music": "applemusic://track/1571490792",
+      "uri_apple_music": "applemusic://track/1433828082",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WM8bTdBs-cw",
       "uri_tidal": "tidal://track/179213189"
     },
     {
       "year": 1986,
-      "uri": "spotify:track:6QgjcU0zLnzq5OrUoSZ3OK",
+      "uri": "spotify:track:01Mpj13vURSO3cCLprPt5T",
       "artist": "Slayer",
       "title": "Raining Blood",
       "alt_artists": [
@@ -267,13 +267,13 @@
       "fun_fact_de": "Raining Blood schließt Slayers Meilenstein-Album Reign in Blood ab, das mit 28 Minuten und 58 Sekunden eines der kürzesten Metal-Alben aller Zeiten ist. Produzent Rick Rubin schuf das intensivste Thrash-Metal-Album aller Zeiten.",
       "fun_fact_es": "Raining Blood cierra el emblemático álbum de Slayer Reign in Blood, que con 28 minutos y 58 segundos es uno de los álbumes de metal más cortos jamás grabados. El productor Rick Rubin creó el disco de thrash metal más intenso jamás grabado.",
       "fun_fact_fr": "Raining Blood clôt le légendaire album Reign in Blood de Slayer, qui avec 28 minutes 58 secondes est l'un des albums de métal les plus courts jamais enregistrés. Le producteur Rick Rubin a créé le disque de thrash metal le plus intense jamais enregistré.",
-      "uri_apple_music": "applemusic://track/1440908180",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=x2T-vgVnBf0",
+      "uri_apple_music": "applemusic://track/1733769810",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z8ZqFlw6hYg",
       "uri_tidal": "tidal://track/4297780"
     },
     {
       "year": 1992,
-      "uri": "spotify:track:22cHGBsS6XkLNWMjFyFbOO",
+      "uri": "spotify:track:7fcfNW0XxTWlwVlftzfDOR",
       "artist": "Pantera",
       "title": "Walk",
       "alt_artists": [
@@ -296,13 +296,13 @@
       "fun_fact_de": "Walk wurde zu Panteras Signature-Song und einem der prägenden Tracks des Groove Metal. Dimebag Darrells vernichtendes Riff und Phil Anselmos konfrontativer Gesang machten es zur Aggressionshymne. Dimebag Darrell wurde 2004 tragisch auf der Bühne erschossen.",
       "fun_fact_es": "Walk se convirtió en la canción insignia de Pantera y uno de los temas definitorios del groove metal. El aplastante riff de Dimebag Darrell y los confrontacionales vocals de Phil Anselmo lo convirtieron en un himno de agresión. Dimebag Darrell fue trágicamente asesinado en el escenario en 2004.",
       "fun_fact_fr": "Walk est devenu la chanson signature de Pantera et l'un des titres définisseurs du groove metal. Le riff dévastateur de Dimebag Darrell et les vocaux confrontationnels de Phil Anselmo en ont fait un hymne d'agressivité. Dimebag Darrell a été tragiquement assassiné sur scène en 2004.",
-      "uri_apple_music": "applemusic://track/1440832095",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=pBFmXZMRDp1",
+      "uri_apple_music": "applemusic://track/518549369",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AkFqg5wAuFk",
       "uri_tidal": "tidal://track/3490601"
     },
     {
       "year": 1994,
-      "uri": "spotify:track:5NxSBoKBi9e8OeylXnPYzE",
+      "uri": "spotify:track:2SgbR6ttzoNlCRGQOKjrop",
       "artist": "Pantera",
       "title": "Cowboys from Hell",
       "alt_artists": [
@@ -325,13 +325,13 @@
       "fun_fact_de": "Cowboys from Hell markierte 1990 Panteras Mainstream-Durchbruch und stellte die Welt Dimebag Darrells vernichtender Gitarrentechnik vor. Der Titelsong definierte eine neue Ära des amerikanischen Heavy Metal.",
       "fun_fact_es": "Cowboys from Hell marcó el gran avance de Pantera en el mainstream en 1990 y presentó al mundo la devastadora técnica de guitarra de Dimebag Darrell. El tema definió una nueva era del heavy metal americano.",
       "fun_fact_fr": "Cowboys from Hell a marqué la percée de Pantera dans le grand public en 1990 et a présenté au monde la technique de guitare dévastatrice de Dimebag Darrell. Le titre a défini une nouvelle ère du heavy metal américain.",
-      "uri_apple_music": "applemusic://track/1440832086",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=m0BF81C8f2I",
+      "uri_apple_music": "applemusic://track/389079825",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2DfYLar2QGI",
       "uri_tidal": "tidal://track/3490591"
     },
     {
       "year": 1983,
-      "uri": "spotify:track:6IU3Tq7qVMRi44h0q1b0VU",
+      "uri": "spotify:track:5DrNFzZZZVfXaEZCaceKnp",
       "artist": "Metallica",
       "title": "Seek and Destroy",
       "alt_artists": [
@@ -354,13 +354,13 @@
       "fun_fact_de": "Seek and Destroy von Metallicas Debüt Kill 'Em All ist einer der ältesten und beliebtesten Live-Dauerbrenner der Band. Das Album wurde von großen Labels abgelehnt und von Megaforce Records selbst finanziert, was die amerikanische Thrash-Metal-Szene quasi im Alleingang startete.",
       "fun_fact_es": "Seek and Destroy del debut de Metallica Kill 'Em All es uno de los temas en directo más antiguos y queridos de la banda. El álbum fue rechazado por los grandes sellos y autofinanciado por Megaforce Records, lanzando casi en solitario la escena del thrash metal americano.",
       "fun_fact_fr": "Seek and Destroy du premier album de Metallica Kill 'Em All est l'un des classiques live les plus anciens et les plus appréciés du groupe. L'album a été rejeté par les grands labels et autofinancé par Megaforce Records, lançant presque à lui seul la scène thrash metal américaine.",
-      "uri_apple_music": "applemusic://track/1571490777",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lVkXGMc6KnA",
+      "uri_apple_music": "applemusic://track/579146168",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J-ViMDqDBPE",
       "uri_tidal": "tidal://track/179213181"
     },
     {
       "year": 1990,
-      "uri": "spotify:track:3fbdH4oMpNMpThVXa8F2Hx",
+      "uri": "spotify:track:0bM9c5A7CterSOEssmWqAa",
       "artist": "Megadeth",
       "title": "Holy Wars... The Punishment Due",
       "alt_artists": [
@@ -383,13 +383,13 @@
       "fun_fact_de": "Holy Wars eröffnet Rust in Peace, das allgemein als Megadeths Meisterwerk gilt. Dave Mustaine gründete Megadeth, nachdem er 1983 aus Metallica entlassen wurde, und die Rivalität zwischen den beiden Bands trieb sie zu immer größeren kreativen Höhen.",
       "fun_fact_es": "Holy Wars abre Rust in Peace, considerado ampliamente como la obra maestra de Megadeth. Dave Mustaine fundó Megadeth tras ser expulsado de Metallica en 1983, y la rivalidad entre ambas bandas los impulsó a mayores alturas creativas.",
       "fun_fact_fr": "Holy Wars ouvre Rust in Peace, largement considéré comme le chef-d'œuvre de Megadeth. Dave Mustaine a fondé Megadeth après avoir été renvoyé de Metallica en 1983, et la rivalité entre les deux groupes les a poussés à de plus grandes hauteurs créatives.",
-      "uri_apple_music": "applemusic://track/1440832113",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ebAoYOFQ5bk",
+      "uri_apple_music": "applemusic://track/724649275",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9d4ui9q7eDM",
       "uri_tidal": "tidal://track/4085478"
     },
     {
       "year": 1990,
-      "uri": "spotify:track:3AFr6OXMhfHNXkmVTYcOf4",
+      "uri": "spotify:track:5sBRs1iXECigWfBQqrY322",
       "artist": "Megadeth",
       "title": "Symphony of Destruction",
       "alt_artists": [
@@ -412,13 +412,13 @@
       "fun_fact_de": "Symphony of Destruction ist Megadeths kommerziell erfolgreichster Song und balanciert Zugänglichkeit mit Dave Mustaines Markenzeichen-Aggression. Das eingängige Haupt-Riff entstand durch einen einfachen Akkord, den Mustaine beim Soundcheck entdeckte.",
       "fun_fact_es": "Symphony of Destruction es el tema comercialmente más exitoso de Megadeth, equilibrando accesibilidad con la característica agresividad de Dave Mustaine. El memorable riff principal nació de un simple acorde que Mustaine descubrió en el soundcheck.",
       "fun_fact_fr": "Symphony of Destruction est le titre commercialement le plus réussi de Megadeth, équilibrant accessibilité et l'agressivité caractéristique de Dave Mustaine. Le riff principal mémorable est né d'un accord simple que Mustaine a découvert lors d'un soundcheck.",
-      "uri_apple_music": "applemusic://track/1440832127",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JkBmTMlchPY",
+      "uri_apple_music": "applemusic://track/725812418",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vfpgpf6QVnI",
       "uri_tidal": "tidal://track/4085488"
     },
     {
       "year": 1984,
-      "uri": "spotify:track:2UJwcIaKJf5akU08R4QFHE",
+      "uri": "spotify:track:5qFxuUIAwJlzO60vqOiL7y",
       "artist": "Dio",
       "title": "Rainbow in the Dark",
       "alt_artists": [
@@ -441,13 +441,13 @@
       "fun_fact_de": "Ronnie James Dio prägte das 'Teufelshörner'-Handzeichen, das universal in der Metal-Kultur wurde, und entlieh es von seiner italienischen Großmutter, die es zum Abwenden von Bösem nutzte. Er gilt als einer der größten Heavy-Metal-Sänger aller Zeiten.",
       "fun_fact_es": "Ronnie James Dio acuñó el gesto de los 'cuernos del diablo' que se convirtió en universal en la cultura metal, tomándolo de su abuela italiana que lo usaba para ahuyentar el mal. Es considerado por muchos el mejor vocalista de heavy metal de todos los tiempos.",
       "fun_fact_fr": "Ronnie James Dio a inventé le geste des 'cornes du diable' devenu universel dans la culture metal, en l'empruntant à sa grand-mère italienne qui l'utilisait pour conjurer le mauvais sort. Il est considéré par beaucoup comme le plus grand vocaliste de heavy metal de tous les temps.",
-      "uri_apple_music": "applemusic://track/1440832145",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=oEoGNrGSALM",
+      "uri_apple_music": "applemusic://track/1048476460",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qcWKZTI9OC4",
       "uri_tidal": "tidal://track/4085503"
     },
     {
       "year": 1980,
-      "uri": "spotify:track:6w61zAMQ4pSVYTsCoBoerj",
+      "uri": "spotify:track:2b9lp5A6CqSzwOrBfAFhof",
       "artist": "Ozzy Osbourne",
       "title": "Crazy Train",
       "alt_artists": [
@@ -470,13 +470,13 @@
       "fun_fact_de": "Crazy Train enthält eines der bekanntesten Gitarrenriffs der Rockgeschichte, gespielt von dem verstorbenen Randy Rhoads — allgemein als einer der größten Gitarristen aller Zeiten angesehen. Rhoads starb 1982 bei einem Flugzeugabsturz mit nur 25 Jahren.",
       "fun_fact_es": "Crazy Train cuenta con uno de los riffs de guitarra más reconocibles de la historia del rock, tocado por el fallecido Randy Rhoads, ampliamente considerado uno de los mejores guitarristas que jamás haya existido. Rhoads murió en un accidente de avión en 1982 con solo 25 años.",
       "fun_fact_fr": "Crazy Train présente l'un des riffs de guitare les plus reconnaissables de l'histoire du rock, joué par le regretté Randy Rhoads — largement considéré comme l'un des plus grands guitaristes de tous les temps. Rhoads est décédé dans un accident d'avion en 1982 à seulement 25 ans.",
-      "uri_apple_music": "applemusic://track/1571490842",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SkKDMKpCC14",
+      "uri_apple_music": "applemusic://track/1531535287",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RMR5zf1J1Hs",
       "uri_tidal": "tidal://track/4085511"
     },
     {
       "year": 2001,
-      "uri": "spotify:track:3jmHvQpOJBVQRlIzPdnZaP",
+      "uri": "spotify:track:2DlHlPMa4M17kufBvI2lEN",
       "artist": "System of a Down",
       "title": "Chop Suey!",
       "alt_artists": [
@@ -499,13 +499,13 @@
       "fun_fact_de": "Chop Suey! hieß ursprünglich Suicide, wurde aber nach den Anschlägen vom 11. September umbenannt. Die unvorhersehbaren Tempowechsel und Sänger Serj Tankians operatischer Stimmumfang machten es zu einem der markantesten Metalsongs der 2000er Jahre.",
       "fun_fact_es": "Chop Suey! se llamaba originalmente Suicide, pero el título fue cambiado por el sello tras los atentados del 11-S. Los impredecibles cambios de tempo y el rango operístico del vocalista Serj Tankian lo convirtieron en uno de los temas de metal más distintivos de los años 2000.",
       "fun_fact_fr": "Chop Suey! s'appelait à l'origine Suicide, mais le titre a été changé par le label après les attentats du 11 septembre. Les changements de tempo imprévisibles et la portée opératique du chanteur Serj Tankian en ont fait l'un des titres metal les plus distinctifs des années 2000.",
-      "uri_apple_music": "applemusic://track/1440832158",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-CSo2ks7QI0",
+      "uri_apple_music": "applemusic://track/273714640",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CSvFpBOe8eY",
       "uri_tidal": "tidal://track/4085523"
     },
     {
       "year": 2001,
-      "uri": "spotify:track:3NvYHGOKMhfHNXkmVTYcOf",
+      "uri": "spotify:track:0snQkGI5qnAmohLE7jTsTn",
       "artist": "System of a Down",
       "title": "Toxicity",
       "alt_artists": [
@@ -528,13 +528,13 @@
       "fun_fact_de": "Toxicity ist System of a Downs kommerziell erfolgreichster Song. Das gleichnamige Album debütierte gleichzeitig auf Platz 1 in den USA und Großbritannien. Die einzigartige Mischung aus armenischen Volkseinflüssen, Thrash Metal und Alternative Rock hob sie von allen anderen Bands ihrer Zeit ab.",
       "fun_fact_es": "Toxicity es el tema comercialmente más exitoso de System of a Down. El álbum homónimo debutó en el número uno en EE.UU. y Reino Unido simultáneamente. La mezcla única de influencias folk armenias, thrash metal y rock alternativo los distinguió de todas las demás bandas de su época.",
       "fun_fact_fr": "Toxicity est le titre commercialement le plus réussi de System of a Down. L'album éponyme a débuté simultanément à la première place aux États-Unis et au Royaume-Uni. Le mélange unique d'influences folk arméniennes, de thrash metal et de rock alternatif les a distingués de tous les autres groupes de leur époque.",
-      "uri_apple_music": "applemusic://track/1440832162",
+      "uri_apple_music": "applemusic://track/273714713",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1yw1Tgj9-VU",
       "uri_tidal": "tidal://track/4085527"
     },
     {
       "year": 1997,
-      "uri": "spotify:track:7dvMHJSqSHmPBV9TUCoQhB",
+      "uri": "spotify:track:55mJleti2WfWEFNFcBduhc",
       "artist": "Tool",
       "title": "Schism",
       "alt_artists": [
@@ -557,13 +557,13 @@
       "fun_fact_de": "Schism gewann Tool 2002 einen Grammy für die beste Metal-Performance und ist für seine außerordentlich komplexen Taktarten bekannt — der Song wechselt zwischen 5/4, 6/8 und anderen Signaturen. Tool ist für ihren mathematischen Ansatz bei der Komposition bekannt.",
       "fun_fact_es": "Schism le valió a Tool un Grammy a la Mejor Actuación Metal en 2002 y es celebrado por su extraordinariamente complejo compás — la canción cambia entre 5/4, 6/8 y otros compases. Tool es reconocido por su enfoque matemático de la composición.",
       "fun_fact_fr": "Schism a valu à Tool un Grammy de la Meilleure Performance Metal en 2002 et est célébré pour ses signatures rythmiques extraordinairement complexes — la chanson alterne entre 5/4, 6/8 et d'autres signatures. Tool est reconnu pour son approche mathématique de la composition.",
-      "uri_apple_music": "applemusic://track/1571490867",
+      "uri_apple_music": "applemusic://track/1474185654",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MM62wjLrgmA",
       "uri_tidal": "tidal://track/4085543"
     },
     {
       "year": 2000,
-      "uri": "spotify:track:2gNfxysfwVd5bMeNWlxWB1",
+      "uri": "spotify:track:5pzXNLlb03naxkNjFDUZVr",
       "artist": "Deftones",
       "title": "Change (In the House of Flies)",
       "alt_artists": [
@@ -586,13 +586,13 @@
       "fun_fact_de": "Change ist einer der hypnotischsten Songs der Deftones, aufgebaut auf einer geflüsterten Gitarrenschleife. White Pony gilt als Meisterwerk der Deftones und eines der innovativsten Rockalben der 2000er Jahre.",
       "fun_fact_es": "Change es una de las canciones más hipnóticas de los Deftones, construida alrededor de un loop de guitarra susurrado. White Pony es considerado ampliamente como la obra maestra de los Deftones y uno de los álbumes de rock más innovadores de los años 2000.",
       "fun_fact_fr": "Change est l'une des chansons les plus hypnotiques des Deftones, construite autour d'une boucle de guitare murmurée. White Pony est largement considéré comme le chef-d'œuvre des Deftones et l'un des albums de rock les plus innovants des années 2000.",
-      "uri_apple_music": "applemusic://track/1440832180",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rQHAFTBaVGI",
+      "uri_apple_music": "applemusic://track/1537631475",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WPpDyIJdasg",
       "uri_tidal": "tidal://track/4085561"
     },
     {
       "year": 1994,
-      "uri": "spotify:track:0eFHYz8NmK75zSplL5qlfM",
+      "uri": "spotify:track:2EoOZnxNgtmZaD8uUmz2nD",
       "artist": "Soundgarden",
       "title": "Black Hole Sun",
       "alt_artists": [
@@ -615,13 +615,13 @@
       "fun_fact_de": "Black Hole Sun ist Soundgardens ikonischster Song, von Chris Cornell in nur 15 Minuten geschrieben. Cornell sagte, die Melodie kam ihm vollständig in den Sinn. Das surreale Musikvideo bleibt eines der einprägsamsten der Rockgeschichte. Cornell starb tragisch 2017.",
       "fun_fact_es": "Black Hole Sun es la canción más icónica de Soundgarden, escrita por Chris Cornell en solo 15 minutos. Cornell dijo que la melodía le vino completamente formada. El surrealista videoclip sigue siendo uno de los más memorables de la historia del rock. Cornell falleció trágicamente en 2017.",
       "fun_fact_fr": "Black Hole Sun est la chanson la plus emblématique de Soundgarden, écrite par Chris Cornell en seulement 15 minutes. Cornell a dit que la mélodie lui est venue pleinement formée. Le clip surréaliste reste l'un des plus mémorables de l'histoire du rock. Cornell est tragiquement décédé en 2017.",
-      "uri_apple_music": "applemusic://track/1440832195",
+      "uri_apple_music": "applemusic://track/1440811686",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3mbBbFH9fAg",
       "uri_tidal": "tidal://track/4085577"
     },
     {
       "year": 1992,
-      "uri": "spotify:track:3B3tB8ynrb9L0q2VNmfPUo",
+      "uri": "spotify:track:0xNivYlPsSOwUmmMHlyJSu",
       "artist": "Alice in Chains",
       "title": "Rooster",
       "alt_artists": [
@@ -644,13 +644,13 @@
       "fun_fact_de": "Rooster wurde von Gitarrist Jerry Cantrell als Hommage an seinen Vater geschrieben, der im Vietnamkrieg diente — sein Spitzname war Rooster. Die eindringliche Kombination aus Drop-D-Riffs und den Dual-Vokalist-Harmonien ist einer der kraftvollsten Momente von Alice in Chains. Layne Staley starb 2002 an einer Überdosis.",
       "fun_fact_es": "Rooster fue escrita por el guitarrista Jerry Cantrell como tributo a su padre, veterano de Vietnam — su apodo era Rooster. La inquietante combinación de riffs en drop-D y las armonías entre Cantrell y Layne Staley es uno de los momentos más poderosos de Alice in Chains. Layne Staley murió de sobredosis en 2002.",
       "fun_fact_fr": "Rooster a été écrit par le guitariste Jerry Cantrell en hommage à son père, vétéran du Vietnam — son surnom était Rooster. La combinaison envoûtante de riffs en drop-D et les harmonies entre Cantrell et Layne Staley est l'un des moments les plus puissants d'Alice in Chains. Layne Staley est décédé d'une overdose en 2002.",
-      "uri_apple_music": "applemusic://track/1440832208",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MY0bcBRxEt4",
+      "uri_apple_music": "applemusic://track/157317003",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uAE6Il6OTcs",
       "uri_tidal": "tidal://track/4085589"
     },
     {
       "year": 1987,
-      "uri": "spotify:track:4ygDXis42ncn6kYG14lEVG",
+      "uri": "spotify:track:525Z4r8N93IfDHY77J66QS",
       "artist": "Guns N' Roses",
       "title": "Welcome to the Jungle",
       "alt_artists": [
@@ -673,13 +673,13 @@
       "fun_fact_de": "Welcome to the Jungle eröffnet Appetite for Destruction, das meistverkaufte Debütalbum der US-Geschichte mit über 30 Millionen verkauften Exemplaren weltweit. Axl Rose schrieb den Song, als er als Teenager aus dem kleinen Indiana in LA ankam.",
       "fun_fact_es": "Welcome to the Jungle abre Appetite for Destruction, el álbum de debut más vendido de la historia de EE.UU. con más de 30 millones de copias vendidas en todo el mundo. Axl Rose escribió la canción al llegar a LA como adolescente procedente de la pequeña Indiana.",
       "fun_fact_fr": "Welcome to the Jungle ouvre Appetite for Destruction, l'album de débuts le plus vendu de l'histoire américaine avec plus de 30 millions d'exemplaires vendus dans le monde. Axl Rose a écrit la chanson en arrivant à LA comme adolescent venant de la petite ville d'Indiana.",
-      "uri_apple_music": "applemusic://track/1440832218",
+      "uri_apple_music": "applemusic://track/1377813288",
       "uri_youtube_music": "https://music.youtube.com/watch?v=o1tj2zJ2Wvg",
       "uri_tidal": "tidal://track/4085601"
     },
     {
       "year": 1987,
-      "uri": "spotify:track:0o8b1q1ZTnQ4eHjBJCPMEi",
+      "uri": "spotify:track:7o2CTH4ctstm8TNelqjb51",
       "artist": "Guns N' Roses",
       "title": "Sweet Child O' Mine",
       "alt_artists": [
@@ -702,13 +702,13 @@
       "fun_fact_de": "Sweet Child O' Mine erreichte Platz 1 in den USA und enthält eines der beliebtesten Gitarrensolos der Rockgeschichte von Slash. Axl Rose schrieb die Texte über seine damalige Freundin Erin Everly, Tochter von Don Everly. Slash erschuf das Intro-Riff ursprünglich als Spaß-Aufwärmübung.",
       "fun_fact_es": "Sweet Child O' Mine alcanzó el número uno en EE.UU. y cuenta con uno de los solos de guitarra más queridos de la historia del rock, tocado por Slash. Axl Rose escribió la letra sobre su entonces novia Erin Everly, hija de Don Everly. Slash creó originalmente el riff inicial como ejercicio de calentamiento.",
       "fun_fact_fr": "Sweet Child O' Mine a atteint la première place aux États-Unis et présente l'un des solos de guitare les plus appréciés de l'histoire du rock, joué par Slash. Axl Rose a écrit les paroles sur sa petite amie de l'époque Erin Everly, fille de Don Everly. Slash avait initialement créé le riff d'ouverture comme exercice d'échauffement.",
-      "uri_apple_music": "applemusic://track/1440832225",
+      "uri_apple_music": "applemusic://track/1377813701",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1w7OgIMMRc4",
       "uri_tidal": "tidal://track/4085608"
     },
     {
       "year": 1979,
-      "uri": "spotify:track:5bIuMZPaALgBBLpSbOvfrZ",
+      "uri": "spotify:track:2zYzyRzz6pRmhPzyfMEC8s",
       "artist": "AC/DC",
       "title": "Highway to Hell",
       "alt_artists": [
@@ -731,13 +731,13 @@
       "fun_fact_de": "Highway to Hell war das letzte Album mit Sänger Bon Scott vor seinem tragischen Tod 1980. Das Titelstück wurde zum Durchbruch von AC/DC in Amerika und ist eine der ikonischsten Rockhymnen aller Zeiten.",
       "fun_fact_es": "Highway to Hell fue el último álbum grabado con el vocalista Bon Scott antes de su trágica muerte en 1980. El tema se convirtió en el gran avance de AC/DC en América y es uno de los himnos de rock más icónicos jamás grabados.",
       "fun_fact_fr": "Highway to Hell était le dernier album enregistré avec le chanteur Bon Scott avant sa mort tragique en 1980. Le titre est devenu la chanson qui a fait percer AC/DC en Amérique et est l'un des hymnes rock les plus emblématiques jamais enregistrés.",
-      "uri_apple_music": "applemusic://track/1571490901",
+      "uri_apple_music": "applemusic://track/574044008",
       "uri_youtube_music": "https://music.youtube.com/watch?v=l482T0yNkeo",
       "uri_tidal": "tidal://track/4085621"
     },
     {
       "year": 1980,
-      "uri": "spotify:track:2rBIbhERQ0XLiT2I3GiT5I",
+      "uri": "spotify:track:0FAW42EiDHgi14Ji6q5NBb",
       "artist": "AC/DC",
       "title": "Back in Black",
       "alt_artists": [
@@ -760,13 +760,13 @@
       "fun_fact_de": "Back in Black eröffnet das zweitmeistverkaufte Album der Geschichte mit über 50 Millionen verkauften Exemplaren. Das Album war als Hommage an Bon Scott gedacht. Neuer Sänger Brian Johnson wurde entdeckt, nachdem Angus Young ihn über einem Track schreien hörte.",
       "fun_fact_es": "Back in Black es la pista de apertura del segundo álbum más vendido de la historia con más de 50 millones de copias. El álbum fue grabado como tributo a Bon Scott. El nuevo cantante Brian Johnson fue descubierto cuando Angus Young lo oyó gritando sobre una pista.",
       "fun_fact_fr": "Back in Black ouvre le deuxième album le plus vendu de l'histoire avec plus de 50 millions d'exemplaires. L'album a été enregistré en hommage à Bon Scott. Le nouveau chanteur Brian Johnson a été découvert quand Angus Young l'a entendu crier sur une piste.",
-      "uri_apple_music": "applemusic://track/1571490912",
+      "uri_apple_music": "applemusic://track/574050602",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pAgnJDJN4VA",
       "uri_tidal": "tidal://track/4085631"
     },
     {
       "year": 1972,
-      "uri": "spotify:track:2nkTo7BuPpoapDhHynpLBi",
+      "uri": "spotify:track:5SAUIWdZ04OxYfJFDchC7S",
       "artist": "Deep Purple",
       "title": "Smoke on the Water",
       "alt_artists": [
@@ -789,13 +789,13 @@
       "fun_fact_de": "Smoke on the Water enthält wohl das bekannteste Gitarrenriff aller Zeiten. Der Song beschreibt den realen Brand im Casino Montreux im Dezember 1971, den Deep Purple vom anderen Ufer des Genfersees aus beobachteten. Das Album wurde anschließend in einem mobilen Studio aufgenommen.",
       "fun_fact_es": "Smoke on the Water cuenta con el que es posiblemente el riff de guitarra más famoso jamás escrito. La canción describe el incendio real en el Casino de Montreux en diciembre de 1971, que Deep Purple presenció desde la orilla opuesta del lago Ginebra.",
       "fun_fact_fr": "Smoke on the Water présente sans doute le riff de guitare le plus célèbre jamais écrit. La chanson décrit l'incendie réel du Casino de Montreux en décembre 1971, que Deep Purple a observé depuis l'autre rive du lac Léman.",
-      "uri_apple_music": "applemusic://track/1440832243",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zUwW3T57zr8",
+      "uri_apple_music": "applemusic://track/1099335223",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zUwEIt9ez7M",
       "uri_tidal": "tidal://track/4085643"
     },
     {
       "year": 1987,
-      "uri": "spotify:track:0BjC1NfoEOOusryehmTSsA",
+      "uri": "spotify:track:0PdM2a6oIjqepoEfcJo0RO",
       "artist": "Def Leppard",
       "title": "Pour Some Sugar on Me",
       "alt_artists": [
@@ -818,13 +818,13 @@
       "fun_fact_de": "Pour Some Sugar on Me wurde von Joe Elliott in nur wenigen Minuten in einem Hotelzimmer geschrieben und wurde zu einem der prägenden Songs des Glam Metal der 1980er. Schlagzeuger Rick Allen spielte auf der Aufnahme und Tour mit nur einem Arm nach einem Autounfall 1984.",
       "fun_fact_es": "Pour Some Sugar on Me fue escrita en solo unos minutos por Joe Elliott en una habitación de hotel y se convirtió en una de las canciones definitorias del glam metal de los ochenta. El batería Rick Allen tocó en la grabación y la gira con un solo brazo tras un accidente de coche en 1984.",
       "fun_fact_fr": "Pour Some Sugar on Me a été écrit en quelques minutes par Joe Elliott dans une chambre d'hôtel et est devenu l'un des titres définisseurs du glam metal des années 1980. Le batteur Rick Allen a joué sur l'enregistrement et la tournée avec un seul bras après un accident de voiture en 1984.",
-      "uri_apple_music": "applemusic://track/1440832258",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UjCqmbFBFUY",
+      "uri_apple_music": "applemusic://track/1440907869",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0UIB9Y4OFPs",
       "uri_tidal": "tidal://track/4085658"
     },
     {
       "year": 1984,
-      "uri": "spotify:track:6Oc8XHSnlzBJHVLLGJFlAV",
+      "uri": "spotify:track:7N3PAbqfTjSEU1edb2tY8j",
       "artist": "Van Halen",
       "title": "Jump",
       "alt_artists": [
@@ -847,13 +847,13 @@
       "fun_fact_de": "Jump war Van Halens einzige US-Nummer-1-Single und enthielt kontrovers einen Synthesizer-Lead, den Eddie Van Halen jahrelang vor der Band versteckt hatte. David Lee Roth soll den keyboard-geprägten Ansatz gehasst haben.",
       "fun_fact_es": "Jump fue el único single número uno en EE.UU. de Van Halen y controvertidamente presentaba un sintetizador en primer plano, que Eddie Van Halen había estado ocultando a la banda durante años. David Lee Roth supuestamente odiaba el enfoque impulsado por teclado.",
       "fun_fact_fr": "Jump a été le seul single numéro un américain de Van Halen et présentait controversement un synthétiseur en tête, qu'Eddie Van Halen avait caché au groupe pendant des années. David Lee Roth aurait détesté l'approche axée sur les claviers.",
-      "uri_apple_music": "applemusic://track/1440832271",
+      "uri_apple_music": "applemusic://track/976832495",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SwYN7mTi6HM",
       "uri_tidal": "tidal://track/4085671"
     },
     {
       "year": 1990,
-      "uri": "spotify:track:3JOVTQ5h8HyvkqOAoMvE7I",
+      "uri": "spotify:track:59WN2psjkt1tyaxjspN8fp",
       "artist": "Rage Against the Machine",
       "title": "Killing in the Name",
       "alt_artists": [
@@ -876,13 +876,13 @@
       "fun_fact_de": "Killing in the Name erreichte 2009 durch eine Facebook-Kampagne die britischen Weihnachtscharts auf Platz 1 und schlug dabei die Single des X Factor-Gewinners — eine der bemerkenswertesten Chart-Schlachten der Musikgeschichte.",
       "fun_fact_es": "Killing in the Name llegó al número uno de las listas navideñas del Reino Unido en 2009 gracias a una campaña popular de Facebook, superando al single del ganador de The X Factor en una de las batallas de listas más notables de la historia musical.",
       "fun_fact_fr": "Killing in the Name a atteint le numéro un des charts de Noël britanniques en 2009 grâce à une campagne Facebook populaire, dépassant le single du gagnant de The X Factor — l'une des batailles de charts les plus remarquables de l'histoire musicale.",
-      "uri_apple_music": "applemusic://track/1440832284",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bWXazVeUID4",
+      "uri_apple_music": "applemusic://track/191450927",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bWXazVhDGkc",
       "uri_tidal": "tidal://track/4085683"
     },
     {
       "year": 1998,
-      "uri": "spotify:track:7tCs9U73iGQCFSlhqwi5l6",
+      "uri": "spotify:track:2aIB1CdRRG7YLBu9hNw9nR",
       "artist": "Marilyn Manson",
       "title": "The Beautiful People",
       "alt_artists": [
@@ -905,13 +905,13 @@
       "fun_fact_de": "The Beautiful People ist Marilyn Mansons ikonischster Song und einer der prägenden Industrial Metal-Tracks der 1990er. Der mechanisierte Groove wurde mit Produzent Trent Reznor von Nine Inch Nails co-geschrieben.",
       "fun_fact_es": "The Beautiful People es la canción más icónica de Marilyn Manson y uno de los temas de metal industrial definitorios de los noventa. El ritmo mecanizado fue co-escrito con el productor Trent Reznor de Nine Inch Nails.",
       "fun_fact_fr": "The Beautiful People est la chanson la plus emblématique de Marilyn Manson et l'un des titres de metal industriel définisseurs des années 1990. Le groove mécanisé a été co-écrit avec le producteur Trent Reznor de Nine Inch Nails.",
-      "uri_apple_music": "applemusic://track/1440832298",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PrsMO6Ej1gg",
+      "uri_apple_music": "applemusic://track/24164245",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ypkv0HeUvTc",
       "uri_tidal": "tidal://track/4085697"
     },
     {
       "year": 1994,
-      "uri": "spotify:track:3RauEVgRgj1IuWdJ9fDs58",
+      "uri": "spotify:track:5f47hFFEpH5NyiPYvy9aMK",
       "artist": "Korn",
       "title": "Freak on a Leash",
       "alt_artists": [
@@ -934,13 +934,13 @@
       "fun_fact_de": "Freak on a Leash ist die definierende Nu-Metal-Hymne mit Jonathan Davis' markanten tief gestimmten Siebensaiter-Gitarrenriffs. Das Grammy-gewinnende animierte Musikvideo wurde eines der gefeiertsten in der MTV-Geschichte. Korn schuf effektiv das Nu-Metal-Genre.",
       "fun_fact_es": "Freak on a Leash es el himno definitorio del nu-metal, con los característicos riffs de guitarra de siete cuerdas y vocales angustiados de Jonathan Davis. El premiado con Grammy videoclip animado se convirtió en uno de los más celebrados de la historia de MTV.",
       "fun_fact_fr": "Freak on a Leash est l'hymne définisseur du nu-metal, avec les riffs de guitare à sept cordes caractéristiques et les vocaux tourmentés de Jonathan Davis. Le clip animé primé aux Grammy est devenu l'un des plus célébrés de l'histoire de MTV.",
-      "uri_apple_music": "applemusic://track/1440832311",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZEsA3ZAB3SA",
+      "uri_apple_music": "applemusic://track/1831584743",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jRGrNDV2mKc",
       "uri_tidal": "tidal://track/4085710"
     },
     {
       "year": 1999,
-      "uri": "spotify:track:2TjdnqlpwOjBHB6Wv5BVDE",
+      "uri": "spotify:track:2gscB6kDOmrv1P6qs2KXE3",
       "artist": "Slipknot",
       "title": "Wait and Bleed",
       "alt_artists": [
@@ -963,13 +963,13 @@
       "fun_fact_de": "Slipknot erschien 1999 mit passenden Overalls und nummerierten Masken auf der Metal-Szene und schuf eine der visuell eindrucksvollsten Ästhetiken der Rockgeschichte. Die Band hat neun Mitglieder — eine der größten Metal-Bands der Geschichte.",
       "fun_fact_es": "Slipknot irrumpió en la escena metal en 1999 con monos y máscaras numeradas, creando una de las estéticas más impactantes de la historia del rock. La banda tiene nueve miembros, convirtiéndola en una de las mayores de la historia del metal.",
       "fun_fact_fr": "Slipknot a fait irruption sur la scène metal en 1999 avec des combinaisons assorties et des masques numérotés, créant l'une des esthétiques les plus frappantes de l'histoire du rock. Le groupe compte neuf membres, ce qui en fait l'un des plus grands de l'histoire du metal.",
-      "uri_apple_music": "applemusic://track/1440832325",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5fG64bEzPTA",
+      "uri_apple_music": "applemusic://track/927731733",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B1zCN0YhW1s",
       "uri_tidal": "tidal://track/4085721"
     },
     {
       "year": 2001,
-      "uri": "spotify:track:4U45aEWtQhrm8A5mxPaFZ7",
+      "uri": "spotify:track:61mWefnWQOLf90gepjOCb3",
       "artist": "Slipknot",
       "title": "Duality",
       "alt_artists": [
@@ -992,13 +992,13 @@
       "fun_fact_de": "Duality wurde Slipknots größter Mainstream-Hit und eine der bekanntesten Metal-Hymnen der 2000er. Das Musikvideo zeigt berühmt Fans bei einer inoffiziellen Hausparty, die den Filmort stürmten.",
       "fun_fact_es": "Duality se convirtió en el mayor éxito mainstream de Slipknot y uno de los himnos metal más reconocibles de los años 2000. El videoclip muestra famosamente a fans en una fiesta improvisada que irrumpieron en el lugar de rodaje.",
       "fun_fact_fr": "Duality est devenu le plus grand hit grand public de Slipknot et l'un des hymnes metal les plus reconnaissables des années 2000. Le clip présente célèbrement des fans lors d'une fête improvisée qui ont envahi le lieu de tournage.",
-      "uri_apple_music": "applemusic://track/1440832338",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=M1rOthWbl-Q",
+      "uri_apple_music": "applemusic://track/926187884",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6fVE8kSM43I",
       "uri_tidal": "tidal://track/4085734"
     },
     {
       "year": 2000,
-      "uri": "spotify:track:5CQ30WqJwcep0pYcV4AMNc",
+      "uri": "spotify:track:4ImIJRZNJhNQLLdUFSYJoS",
       "artist": "Disturbed",
       "title": "Down with the Sickness",
       "alt_artists": [
@@ -1021,13 +1021,13 @@
       "fun_fact_de": "Down with the Sickness wurde zu einem der prägenden Songs des Hard Rock der frühen 2000er, verankert durch David Draimans einzigartigen Kehlkopf-Intro-Gesang und das unerbittliche Riff.",
       "fun_fact_es": "Down with the Sickness se convirtió en una de las canciones definitorias del hard rock de principios de los 2000, anclada por el único vocal gutural de introducción de David Draiman y el implacable riff.",
       "fun_fact_fr": "Down with the Sickness est devenu l'un des titres définisseurs du hard rock du début des années 2000, ancré par la voix gutturale d'introduction unique de David Draiman et le riff implacable.",
-      "uri_apple_music": "applemusic://track/1440832351",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=06KohKNFkMI",
+      "uri_apple_music": "applemusic://track/1030601027",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=09LTT0xwdfw",
       "uri_tidal": "tidal://track/4085748"
     },
     {
       "year": 2003,
-      "uri": "spotify:track:2uLhbJFK1sIopCRBiCcoaP",
+      "uri": "spotify:track:3WeWaUyTww9gLKmimlwm5w",
       "artist": "Lamb of God",
       "title": "Ruin",
       "alt_artists": [
@@ -1050,13 +1050,13 @@
       "fun_fact_de": "Lamb of God sind eine der wichtigsten Metal-Bands der 2000er. Sänger Randy Blythe wurde 2012 in der Tschechischen Republik wegen Totschlagvorwürfen verhaftet — er wurde letztendlich freigesprochen.",
       "fun_fact_es": "Lamb of God es una de las bandas de metal más importantes de los años 2000. El vocalista Randy Blythe fue arrestado en la República Checa en 2012 por cargos de homicidio involuntario relacionados con un incidente en un concierto de 2010 — finalmente fue absuelto.",
       "fun_fact_fr": "Lamb of God est l'un des groupes de metal les plus importants des années 2000. Le chanteur Randy Blythe a été arrêté en République tchèque en 2012 sous des accusations d'homicide involontaire liées à un incident lors d'un concert de 2010 — il a finalement été acquitté.",
-      "uri_apple_music": "applemusic://track/1440832364",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SBrFOhRg_6Y",
+      "uri_apple_music": "applemusic://track/1440904907",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iFm9v0OvYua",
       "uri_tidal": "tidal://track/4085761"
     },
     {
       "year": 2004,
-      "uri": "spotify:track:0p8HNKVrlgJfJkHPZBOWtN",
+      "uri": "spotify:track:3jagGO7eHHuaD53ibehkux",
       "artist": "Mastodon",
       "title": "Blood and Thunder",
       "alt_artists": [
@@ -1079,13 +1079,13 @@
       "fun_fact_de": "Blood and Thunder eröffnet Mastodons Durchbruch-Album Leviathan, eine konzeptionelle Neuerzählung von Moby Dick durch Progressive Sludge Metal. Das Album gilt als eines der kreativsten und ehrgeizigstem Metal-Werke der 2000er Jahre.",
       "fun_fact_es": "Blood and Thunder abre el álbum de breakthrough de Mastodon, Leviathan, una reinterpretación conceptual de Moby Dick a través del sludge metal progresivo. El álbum es considerado uno de los discos de metal más creativos y ambiciosos de los años 2000.",
       "fun_fact_fr": "Blood and Thunder ouvre l'album révélateur de Mastodon, Leviathan, une réinterprétation conceptuelle de Moby Dick à travers le sludge metal progressif. L'album est considéré comme l'un des disques de metal les plus créatifs et ambitieux des années 2000.",
-      "uri_apple_music": "applemusic://track/1440832377",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=41FOXh9p0Gk",
+      "uri_apple_music": "applemusic://track/65922935",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TsdIO2EUtcE",
       "uri_tidal": "tidal://track/4085774"
     },
     {
       "year": 2001,
-      "uri": "spotify:track:5pKCl1JvPRwCqTgbOLtWHj",
+      "uri": "spotify:track:7vxtxgtlAecGklW2gomanZ",
       "artist": "Gojira",
       "title": "Flying Whales",
       "alt_artists": [
@@ -1108,13 +1108,13 @@
       "fun_fact_de": "Flying Whales ist Gojiras gefeiertster Song, ein technisches Meisterwerk und eines der umweltbewusstesten Lieder des Metal. Die französische Band gilt als eine der innovativsten Metal-Bands des 21. Jahrhunderts. Sie wurden als Opener der Eröffnungsfeier der Olympischen Spiele 2024 in Paris ausgewählt.",
       "fun_fact_es": "Flying Whales es la canción más celebrada de Gojira, un deslumbrante tour de force técnico y una de las canciones más conscientes del medio ambiente en el metal. La banda francesa es considerada una de las más innovadoras del siglo XXI en metal. Fueron elegidos para abrir la ceremonia de los Juegos Olímpicos de París 2024.",
       "fun_fact_fr": "Flying Whales est la chanson la plus célébrée de Gojira, un tour de force technique époustouflant et l'une des chansons les plus conscientes de l'environnement dans le metal. Le groupe français est largement considéré comme l'un des plus innovants du 21e siècle. Ils ont été choisis pour ouvrir la cérémonie des JO de Paris 2024.",
-      "uri_apple_music": "applemusic://track/1440832390",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YpjKvz4JKWY",
+      "uri_apple_music": "applemusic://track/213374170",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_-XaaTqOICU",
       "uri_tidal": "tidal://track/4085787"
     },
     {
       "year": 2016,
-      "uri": "spotify:track:5GCqpf78PRBNi0O0x5QnNV",
+      "uri": "spotify:track:5uunXHE4kIW6uS4HWAXaOQ",
       "artist": "Gojira",
       "title": "Silvera",
       "alt_artists": [
@@ -1137,13 +1137,13 @@
       "fun_fact_de": "Silvera wurde Gojiras zugänglichster und kommerziell erfolgreichster Song, eine groove-getriebene Metalhymne, die ihnen Grammy-Nominierungen einbrachte. Magma, das Album, wurde von Tod der Mutter von Joe und Mario Duplantier inspiriert.",
       "fun_fact_es": "Silvera se convirtió en el tema más accesible y comercialmente exitoso de Gojira, un himno metal impulsado por el groove que les valió nominaciones al Grammy. Magma fue inspirado por la muerte de la madre de Joe y Mario Duplantier.",
       "fun_fact_fr": "Silvera est devenu le titre le plus accessible et commercialement réussi de Gojira, un hymne metal axé sur le groove qui leur a valu des nominations aux Grammy. Magma a été inspiré par la mort de la mère de Joe et Mario Duplantier.",
-      "uri_apple_music": "applemusic://track/1440832403",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3JNXi5RVGXQ",
+      "uri_apple_music": "applemusic://track/1104432802",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iVvXB-Vwnco",
       "uri_tidal": "tidal://track/4085800"
     },
     {
       "year": 1995,
-      "uri": "spotify:track:2gNfxysfwVd5bMeNWlxWB2",
+      "uri": "spotify:track:6ursmCnbc9oDRGa2yHKkoZ",
       "artist": "Sepultura",
       "title": "Roots Bloody Roots",
       "alt_artists": [
@@ -1166,13 +1166,13 @@
       "fun_fact_de": "Roots Bloody Roots eröffnet Sepulturas Meilenstein-Album Roots, das brasilianische Stammesmusik mit Groove Metal verband. Teile des Albums wurden mit dem indigenen Stamm der Xavante in Brasilien aufgenommen. Es war das letzte Album mit Sänger Max Cavalera.",
       "fun_fact_es": "Roots Bloody Roots abre el emblemático álbum Roots de Sepultura, que fusionó música tribal brasileña con groove metal. Partes del álbum fueron grabadas con la tribu indígena Xavante en Brasil. Fue el último álbum grabado con el vocalista Max Cavalera.",
       "fun_fact_fr": "Roots Bloody Roots ouvre le légendaire album Roots de Sepultura, qui a fusionné la musique tribale brésilienne avec le groove metal. Des parties de l'album ont été enregistrées avec la tribu indigène Xavante au Brésil. C'était le dernier album avec le chanteur Max Cavalera.",
-      "uri_apple_music": "applemusic://track/1440832416",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=h5mWj4UBvss",
+      "uri_apple_music": "applemusic://track/576936082",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F_6IjeVfBk0",
       "uri_tidal": "tidal://track/4085813"
     },
     {
       "year": 2011,
-      "uri": "spotify:track:6FyeOiA6KqzaHp7w7DUblq",
+      "uri": "spotify:track:2XgTw2co6xv95TmKpMcL70",
       "artist": "Ghost",
       "title": "Square Hammer",
       "alt_artists": [
@@ -1195,13 +1195,13 @@
       "fun_fact_de": "Square Hammer gewann Ghost 2017 einen Grammy für die beste Metal-Performance. Ghosts Kombination aus Arena-Rock-Hooks, satanischen Bildern und theatralischen Live-Shows machte sie zu einem der spektakulärsten Acts im modernen Rock.",
       "fun_fact_es": "Square Hammer le valió a Ghost un Grammy a la Mejor Actuación Metal en 2017. La combinación de ganchos de rock de arena, imágenes satánicas y espectaculares shows en vivo convirtió a Ghost en uno de los actos más llamativos del rock moderno.",
       "fun_fact_fr": "Square Hammer a valu à Ghost un Grammy de la Meilleure Performance Metal en 2017. La combinaison de hooks rock d'arène, d'imagerie satanique et de shows live théâtraux a fait de Ghost l'un des actes les plus spectaculaires du rock moderne.",
-      "uri_apple_music": "applemusic://track/1440832429",
+      "uri_apple_music": "applemusic://track/1440943163",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VqoyKzgkqR4",
       "uri_tidal": "tidal://track/4085826"
     },
     {
       "year": 2019,
-      "uri": "spotify:track:0G3fPSZMBJbmWqFR7EJbzo",
+      "uri": "spotify:track:39zWYYZStDgWi32sOU9AX4",
       "artist": "Tool",
       "title": "Fear Inoculum",
       "alt_artists": [
@@ -1224,13 +1224,13 @@
       "fun_fact_de": "Fear Inoculum ist ein über 10-minütiges progressives Metal-Epos, das 2019 zum längsten Song wurde, der je in den Billboard Hot 100 chartte. Tool beendete damit eine 13-jährige Albumpause. Die Band hatte ihren Katalog jahrelang von Streaming-Plattformen ferngehalten.",
       "fun_fact_es": "Fear Inoculum es una épica de metal progresivo de más de 10 minutos que se convirtió en la canción más larga jamás colocada en el Billboard Hot 100 cuando Tool terminó su pausa discográfica de 13 años en 2019. La banda había mantenido su catálogo fuera de las plataformas de streaming durante años.",
       "fun_fact_fr": "Fear Inoculum est une épopée de metal progressif de plus de 10 minutes qui est devenue la chanson la plus longue à avoir jamais figuré dans le Billboard Hot 100 quand Tool a mis fin à sa pause discographique de 13 ans en 2019. Le groupe avait tenu son catalogue hors des plateformes de streaming pendant des années.",
-      "uri_apple_music": "applemusic://track/1571490934",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_yl8-l6lOPQ",
+      "uri_apple_music": "applemusic://track/1475686698",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q7DfQMPmJRI",
       "uri_tidal": "tidal://track/4085839"
     },
     {
       "year": 1985,
-      "uri": "spotify:track:5bIuMZPaALgBBLpSbOvfrA",
+      "uri": "spotify:track:6EPRKhUOdiFSQwGBRBbvsZ",
       "artist": "Motörhead",
       "title": "Ace of Spades",
       "alt_artists": [
@@ -1253,13 +1253,13 @@
       "fun_fact_de": "Ace of Spades ist Motörheads definitive Hymne und einer der schnellsten und wildesten Songs der Rockgeschichte. Lemmy Kilmister führte einen legendär hedonistischen Lebensstil, tourte und nahm aber bis wenige Wochen vor seinem Tod mit 70 Jahren im Dezember 2015 auf.",
       "fun_fact_es": "Ace of Spades es el himno definitivo de Motörhead y una de las canciones más rápidas y furiosas de la historia del rock. Lemmy Kilmister llevaba un estilo de vida legendariamente hedonista pero siguió girando y grabando hasta semanas antes de su muerte a los 70 años en diciembre de 2015.",
       "fun_fact_fr": "Ace of Spades est l'hymne définitif de Motörhead et l'une des chansons les plus rapides et féroces de l'histoire du rock. Lemmy Kilmister menait un style de vie légendairement hédoniste mais a continué à tourner et enregistrer jusqu'à quelques semaines avant sa mort à 70 ans en décembre 2015.",
-      "uri_apple_music": "applemusic://track/1440832442",
+      "uri_apple_music": "applemusic://track/1439443121",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pWB5JZRGl0U",
       "uri_tidal": "tidal://track/4085852"
     },
     {
       "year": 1997,
-      "uri": "spotify:track:7bMNq53bBZHRqlOqJBGrJi",
+      "uri": "spotify:track:7J4yQt7P7XExNeljWEvt2D",
       "artist": "Meshuggah",
       "title": "Bleed",
       "alt_artists": [
@@ -1282,13 +1282,13 @@
       "fun_fact_de": "Bleed enthält einen der wahnwitzigsten Drum-Parts aller Zeiten — ein kontinuierliches polyrhythmisches Muster, das Schlagzeuger Tomas Haake fast acht Minuten lang in erschöpfendem Tempo spielt. Meshuggah erfanden das Djent-Subgenre.",
       "fun_fact_es": "Bleed cuenta con uno de los partes de batería más difíciles jamás grabados — un patrón polirítmico continuo que el batería Tomas Haake toca a un agotador ritmo durante casi ocho minutos. Meshuggah inventaron el subgénero djent.",
       "fun_fact_fr": "Bleed présente l'une des parties de batterie les plus follement difficiles jamais enregistrées — un motif polyrythmique continu que le batteur Tomas Haake joue à un rythme épuisant pendant près de huit minutes. Meshuggah a inventé le sous-genre djent.",
-      "uri_apple_music": "applemusic://track/1440832455",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5ZCi7KaS7WU",
+      "uri_apple_music": "applemusic://track/1882049242",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qc98u-eGzlc",
       "uri_tidal": "tidal://track/4085865"
     },
     {
       "year": 1992,
-      "uri": "spotify:track:7vFEiHJBwxwEJqklSHVHsf",
+      "uri": "spotify:track:6rkeaQRCWZxwkjhyqgxjXi",
       "artist": "Pantera",
       "title": "Vulgar Display of Power",
       "alt_artists": [
@@ -1311,13 +1311,13 @@
       "fun_fact_de": "Vulgar Display of Power ist eines der einflussreichsten Metal-Alben aller Zeiten. Das Albumcover zeigt einen Mann, der ins Gesicht geschlagen wird — die Band schlug buchstäblich Freiwillige und fotografierte die Ergebnisse.",
       "fun_fact_es": "Vulgar Display of Power es uno de los álbumes de metal más influyentes de todos los tiempos. La portada del álbum, que muestra a un hombre recibiendo un puñetazo en la cara, fue elegida después de que la banda golpeara literalmente a voluntarios y fotografiara los resultados.",
       "fun_fact_fr": "Vulgar Display of Power est l'un des albums de metal les plus influents de tous les temps. La pochette de l'album — montrant un homme frappé au visage — a été choisie après que le groupe a littéralement frappé des volontaires et photographié les résultats.",
-      "uri_apple_music": "applemusic://track/1440832468",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=y3-dJPRY2Oo",
+      "uri_apple_music": "applemusic://track/518549047",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a3JSbOt7CLo",
       "uri_tidal": "tidal://track/4085878"
     },
     {
       "year": 2001,
-      "uri": "spotify:track:3QG3Mzh0HyM14Oi0W4JTPF",
+      "uri": "spotify:track:2xeUMQwfX5ya5xQQ0iLkSm",
       "artist": "Linkin Park",
       "title": "In the End",
       "alt_artists": [
@@ -1340,13 +1340,13 @@
       "fun_fact_de": "In the End ist eine der meistverkauften Singles der 2000er und half dabei, Hybrid Theory zu einem der meistverkauften Debütalben der US-Geschichte zu machen. Chester Bennington wollte den Song fast vom Album streichen. Bennington starb 2017 durch Suizid.",
       "fun_fact_es": "In the End es uno de los singles más vendidos de los años 2000 y ayudó a impulsar Hybrid Theory a ser uno de los álbumes debut más vendidos de la historia de EE.UU. Chester Bennington estuvo a punto de eliminar la canción del álbum. Bennington murió por suicidio en 2017.",
       "fun_fact_fr": "In the End est l'un des singles les plus vendus des années 2000 et a contribué à propulser Hybrid Theory parmi les albums de débuts les plus vendus de l'histoire américaine. Chester Bennington voulait presque retirer la chanson de l'album. Bennington est décédé par suicide en 2017.",
-      "uri_apple_music": "applemusic://track/1440832481",
+      "uri_apple_music": "applemusic://track/528437613",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eVTXPUF4Oz4",
       "uri_tidal": "tidal://track/4085891"
     },
     {
       "year": 2003,
-      "uri": "spotify:track:6I3mvuQ9IHqLFB9xHUhxrr",
+      "uri": "spotify:track:3XlJkoEMv9CzEojGEPRsIj",
       "artist": "Killswitch Engage",
       "title": "The End of Heartache",
       "alt_artists": [
@@ -1369,13 +1369,13 @@
       "fun_fact_de": "The End of Heartache ist der definierende Song des Metalcore, eines Genres, das Killswitch Engage mitbegründeten. Das duale Dynamik-Prinzip — brutale Breakdowns und aufsteigende melodische Refrains — wurde zur Vorlage für Hunderte von Bands.",
       "fun_fact_es": "The End of Heartache es la canción definitoria del metalcore, un género que Killswitch Engage ayudó a crear. La dualidad dinámica de la canción — violentos breakdowns y soaring chorus melódicos — se convirtió en la plantilla para cientos de bandas.",
       "fun_fact_fr": "The End of Heartache est le titre définisseur du metalcore, un genre que Killswitch Engage a contribué à créer. La dynamique duale de la chanson — breakdowns brutaux et refrains mélodiques soaring — est devenue le modèle pour des centaines de groupes.",
-      "uri_apple_music": "applemusic://track/1440832494",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Dp-kU0RVb3w",
+      "uri_apple_music": "applemusic://track/214629024",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JiDnB-CrrNs",
       "uri_tidal": "tidal://track/4085904"
     },
     {
       "year": 2006,
-      "uri": "spotify:track:3SasZWJVdwBMFaLQlmNLOE",
+      "uri": "spotify:track:0UXaslpoA81no74N7U56U9",
       "artist": "Trivium",
       "title": "Pull Harder on the Strings of Your Martyr",
       "alt_artists": [
@@ -1398,13 +1398,13 @@
       "fun_fact_de": "Trivium wurde von Metallicas Lars Ulrich als Zukunft des Metal gelobt. Sänger Matt Heafy begann mit 12 Jahren Gitarre zu spielen und unterschrieb im Alter von 15 Jahren einen Major-Label-Vertrag für Trivium.",
       "fun_fact_es": "Trivium fue elogiado por Lars Ulrich de Metallica como el futuro del metal. El vocalista Matt Heafy comenzó a tocar guitarra a los 12 años y firmó un contrato con un sello major para Trivium con solo 15 años.",
       "fun_fact_fr": "Trivium a été salué par Lars Ulrich de Metallica comme l'avenir du metal. Le chanteur Matt Heafy a commencé à jouer de la guitare à 12 ans et a signé Trivium avec un grand label à seulement 15 ans.",
-      "uri_apple_music": "applemusic://track/1440832507",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GdBTnkwl9jk",
+      "uri_apple_music": "applemusic://track/697728142",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sRAaFn2hEP4",
       "uri_tidal": "tidal://track/4085917"
     },
     {
       "year": 2014,
-      "uri": "spotify:track:1RQPwpORSFnPi0Nqa3xVR1",
+      "uri": "spotify:track:6o39Ln9118FKTMbM4BvcEy",
       "artist": "Bring Me the Horizon",
       "title": "Drown",
       "alt_artists": [
@@ -1427,13 +1427,13 @@
       "fun_fact_de": "Drown markierte eine massive Entwicklung im Sound von Bring Me the Horizon hin zu atmosphärischem Rock. Der Song wurde ihr größter Hit. BMTH ist eine der erfolgreichsten britischen Heavy-Acts ihrer Generation, die sich dramatisch von ihren brutalen Deathcore-Anfängen entwickelt hat.",
       "fun_fact_es": "Drown marcó una enorme evolución en el sonido de Bring Me the Horizon, alejándose del metalcore hacia el rock atmosférico. La canción se convirtió en su mayor éxito. BMTH es uno de los actos pesados británicos más exitosos de su generación.",
       "fun_fact_fr": "Drown a marqué une évolution massive dans le son de Bring Me the Horizon, s'éloignant du metalcore vers le rock atmosphérique. La chanson est devenue leur plus grand succès. BMTH est l'un des actes heavy britanniques les plus réussis de leur génération.",
-      "uri_apple_music": "applemusic://track/1440832520",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7Or5USmZyI8",
+      "uri_apple_music": "applemusic://track/1485060616",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TkV5709EG5M",
       "uri_tidal": "tidal://track/4085930"
     },
     {
       "year": 2010,
-      "uri": "spotify:track:4I3e8p06DTBPn7LPZmhqSP",
+      "uri": "spotify:track:5D41vW02LmpZs1DH82k7aR",
       "artist": "Parkway Drive",
       "title": "Karma",
       "alt_artists": [
@@ -1456,13 +1456,13 @@
       "fun_fact_de": "Parkway Drive stammten aus dem Surferstädtchen Byron Bay, Australien, und wurden zu einer der erfolgreichsten Metalcore-Bands der Welt. Ihr Headliner-Auftritt im Wembley Stadium 2023 war ein Meilenstein für die australische Heavy-Music-Szene.",
       "fun_fact_es": "Parkway Drive surgió del pueblo surfero de Byron Bay, Australia, para convertirse en una de las bandas de metalcore más exitosas del mundo. Su espectáculo como cabeza de cartel en el Wembley Stadium en 2023 fue un hito para la música pesada australiana.",
       "fun_fact_fr": "Parkway Drive vient de la ville de surf de Byron Bay, Australie, et est devenu l'un des groupes de metalcore les plus réussis au monde. Leur tête d'affiche au Wembley Stadium en 2023 a été un moment marquant pour la musique heavy australienne.",
-      "uri_apple_music": "applemusic://track/1440832533",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8DvCIy_KDXI",
+      "uri_apple_music": "applemusic://track/1485045876",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CeetS4vERoo",
       "uri_tidal": "tidal://track/4085943"
     },
     {
       "year": 2012,
-      "uri": "spotify:track:0t6pEcHxPaQKRUq8u3MnKp",
+      "uri": "spotify:track:3r1aUbw1yQUcgcJh6w3xzl",
       "artist": "Architects",
       "title": "Gone with the Wind",
       "alt_artists": [
@@ -1485,13 +1485,13 @@
       "fun_fact_de": "Architects wurde unter der kreativen Führung von Gitarrist Tom Searle zur wichtigsten britischen Metalcore-Band der 2010er. Searle starb 2016 im Alter von 28 Jahren an Hautkrebs. Das Album Holy Hell war ein verheerender Tribut seines Zwillingsbruders Dan.",
       "fun_fact_es": "Architects se convirtió en la banda de metalcore británica más importante de los años 2010 bajo el liderazgo creativo del guitarrista Tom Searle, quien murió de cáncer de piel en 2016 a los 28 años. El álbum Holy Hell fue un devastador tributo de su hermano gemelo Dan.",
       "fun_fact_fr": "Architects est devenu le groupe de metalcore britannique le plus important des années 2010 sous la direction créative du guitariste Tom Searle, décédé d'un cancer de la peau en 2016 à 28 ans. L'album Holy Hell était un hommage déchirant de son frère jumeau Dan.",
-      "uri_apple_music": "applemusic://track/1440832546",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=n7HxH5PUKMY",
+      "uri_apple_music": "applemusic://track/1485075528",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q3tsHlxXejQ",
       "uri_tidal": "tidal://track/4085956"
     },
     {
       "year": 2020,
-      "uri": "spotify:track:2vbYNIBm44P0PuE1pJtWiX",
+      "uri": "spotify:track:4itwiUlT6Ttgf8x9VvFbsW",
       "artist": "Code Orange",
       "title": "Underneath",
       "alt_artists": [
@@ -1514,8 +1514,8 @@
       "fun_fact_de": "Underneath gewann Code Orange 2021 einen Grammy für die beste Metal-Performance und machte sie zu einer der jüngsten Bands, die diese Auszeichnung je gewannen. Die Band aus Pittsburgh startete Proben in der Mittelschule.",
       "fun_fact_es": "Underneath le valió a Code Orange un Grammy a la Mejor Actuación Metal en 2021, convirtiéndolos en una de las bandas más jóvenes en ganar este premio. La banda de Pittsburgh comenzó a ensayar en la escuela secundaria.",
       "fun_fact_fr": "Underneath a valu à Code Orange un Grammy de la Meilleure Performance Metal en 2021, faisant d'eux l'un des groupes les plus jeunes à remporter ce prix. Le groupe de Pittsburgh a commencé à répéter au collège.",
-      "uri_apple_music": "applemusic://track/1440832559",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=mHkq0bsJnvU",
+      "uri_apple_music": "applemusic://track/1493581631",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xIpoEC4kSW0",
       "uri_tidal": "tidal://track/4085969"
     }
   ]
