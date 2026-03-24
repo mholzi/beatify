@@ -3905,6 +3905,22 @@ body.theme-dark .admin-controls {
     letter-spacing: 1px;
 }
 
+.intro-splash-explainer {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.5;
+    margin: 8px 0 0;
+}
+
+.intro-splash-tap-hint {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+}
+
 @keyframes intro-splash-in {
     from { opacity: 0; }
     to { opacity: 1; }

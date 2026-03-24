@@ -95,6 +95,8 @@
     "introRound": "MANCHE INTRO",
     "introStopped": "Intro terminée !",
     "introHint": "Seulement 15 secondes !",
+    "introExplainer": "Vous n'entendrez que les premières secondes de la chanson, puis le silence. Pouvez-vous deviner l'année rien qu'avec l'intro ?",
+    "tapToDismiss": "Appuyez pour continuer",
     "loading": "Chargement...",
     "wait": "Attendre...",
     "skip": "Passer",

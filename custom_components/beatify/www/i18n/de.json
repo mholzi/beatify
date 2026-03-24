@@ -95,6 +95,8 @@
     "introRound": "INTRO-RUNDE",
     "introStopped": "Intro vorbei!",
     "introHint": "Nur 15 Sekunden!",
+    "introExplainer": "Du hörst nur die ersten Sekunden des Songs, dann Stille. Kannst du das Jahr nur anhand des Intros erraten?",
+    "tapToDismiss": "Tippen zum Fortfahren",
     "loading": "Laden...",
     "wait": "Warten...",
     "skip": "Überspringen",

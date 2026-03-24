@@ -95,6 +95,8 @@
     "introRound": "RONDA INTRO",
     "introStopped": "Intro completa!",
     "introHint": "¡Solo 15 segundos!",
+    "introExplainer": "Escucharás solo los primeros segundos de la canción y luego silencio. ¿Puedes adivinar el año solo con la intro?",
+    "tapToDismiss": "Toca para continuar",
     "loading": "Cargando...",
     "wait": "Esperar...",
     "skip": "Saltar",

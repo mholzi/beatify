@@ -127,9 +127,30 @@ export function updateGameView(data) {
                 if (introSplash && !introSplash._shown) {
                     introSplash._shown = true;
                     introSplash.classList.remove('hidden');
-                    setTimeout(function() {
-                        introSplash.classList.add('hidden');
-                    }, 2000);
+                    var explainer = document.getElementById('intro-splash-explainer');
+                    var tapHint = document.getElementById('intro-splash-tap-hint');
+                    if (!window._introExplainerShown && explainer && tapHint) {
+                        window._introExplainerShown = true;
+                        explainer.classList.remove('hidden');
+                        tapHint.classList.remove('hidden');
+                        introSplash.style.pointerEvents = 'auto';
+                        introSplash.style.cursor = 'pointer';
+                        introSplash.style.animation = 'intro-splash-in 0.3s ease-out';
+                        var dismissHandler = function() {
+                            introSplash.classList.add('hidden');
+                            introSplash.style.pointerEvents = '';
+                            introSplash.style.cursor = '';
+                            introSplash.style.animation = '';
+                            explainer.classList.add('hidden');
+                            tapHint.classList.add('hidden');
+                            introSplash.removeEventListener('click', dismissHandler);
+                        };
+                        introSplash.addEventListener('click', dismissHandler);
+                    } else {
+                        setTimeout(function() {
+                            introSplash.classList.add('hidden');
+                        }, 2000);
+                    }
                 }
             }
         } else {
