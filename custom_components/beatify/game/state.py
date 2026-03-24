@@ -104,7 +104,9 @@ class MovieChallenge:
 
     correct_movie: str
     options: list[str]  # Shuffled: 3 movie choices (correct + 2 decoys)
-    correct_guesses: list[dict[str, Any]] = field(default_factory=list)  # [{name, time}]
+    correct_guesses: list[dict[str, Any]] = field(
+        default_factory=list
+    )  # [{name, time}]
     wrong_guesses: list[dict[str, Any]] = field(default_factory=list)  # [{name, guess}]
 
     def to_dict(self, include_answer: bool = False) -> dict[str, Any]:
@@ -138,7 +140,9 @@ class MovieChallenge:
             )
         return {
             "winners": winners,
-            "wrong_guesses": [{"name": g["name"], "guess": g["guess"]} for g in self.wrong_guesses],
+            "wrong_guesses": [
+                {"name": g["name"], "guess": g["guess"]} for g in self.wrong_guesses
+            ],
         }
 
     def get_player_bonus(self, player_name: str) -> int:
@@ -185,7 +189,9 @@ def build_movie_options(song: dict[str, Any]) -> list[str] | None:
         return None
 
     # Filter valid choices
-    valid_choices = [c.strip() for c in movie_choices if isinstance(c, str) and c.strip()]
+    valid_choices = [
+        c.strip() for c in movie_choices if isinstance(c, str) and c.strip()
+    ]
 
     if len(valid_choices) < 2:
         return None
@@ -346,13 +352,19 @@ class GameState:
         self.is_intro_round: bool = False  # Set per-round randomly
         self.intro_stopped: bool = False  # Track if 10s cutoff hit
         self._intro_stop_task: asyncio.Task | None = None
-        self._rounds_since_intro: int = 0  # Track rounds without intro for guaranteed minimum
-        self._intro_round_start_time: float | None = None  # Track round start for bonus calc
+        self._rounds_since_intro: int = (
+            0  # Track rounds without intro for guaranteed minimum
+        )
+        self._intro_round_start_time: float | None = (
+            None  # Track round start for bonus calc
+        )
 
         # Issue #42: Async metadata for fast transitions
         self.metadata_pending: bool = False
         self._metadata_task: asyncio.Task | None = None
-        self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = None
+        self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = (
+            None
+        )
 
         # Story 20.9: Early reveal flag
         self._early_reveal: bool = False
@@ -368,6 +380,8 @@ class GameState:
         # Issue #292: Intro splash state
         self._intro_splash_shown: bool = False
         self._intro_splash_pending: bool = False
+        self._intro_splash_deferred_song: dict | None = None
+        self._intro_splash_hass: HomeAssistant | None = None
 
     def create_game(
         self,
@@ -537,10 +551,14 @@ class GameState:
             state["deadline"] = self.deadline
             state["last_round"] = self.last_round
             state["songs_remaining"] = (
-                self._playlist_manager.get_remaining_count() if self._playlist_manager else 0
+                self._playlist_manager.get_remaining_count()
+                if self._playlist_manager
+                else 0
             )
             # Submission tracking (Story 4.4)
-            state["submitted_count"] = sum(1 for p in self.players.values() if p.submitted)
+            state["submitted_count"] = sum(
+                1 for p in self.players.values() if p.submitted
+            )
             state["all_submitted"] = self.all_submitted()
             # Song info WITHOUT year during PLAYING (hidden until reveal)
             if self.current_song:
@@ -555,10 +573,14 @@ class GameState:
             state["leaderboard"] = self.get_leaderboard()
             # Story 20.1: Artist challenge (hide answer during PLAYING)
             if self.artist_challenge_enabled and self.artist_challenge:
-                state["artist_challenge"] = self.artist_challenge.to_dict(include_answer=False)
+                state["artist_challenge"] = self.artist_challenge.to_dict(
+                    include_answer=False
+                )
             # Issue #28: Movie quiz challenge (hide answer during PLAYING)
             if self.movie_quiz_enabled and self.movie_challenge:
-                state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=False)
+                state["movie_challenge"] = self.movie_challenge.to_dict(
+                    include_answer=False
+                )
 
         elif self.phase == GamePhase.REVEAL:
             state["join_url"] = self.join_url
@@ -571,7 +593,9 @@ class GameState:
                     "artist": self.current_song.get("artist", "Unknown"),
                     "title": self.current_song.get("title", "Unknown"),
                     "year": self.current_song.get("year"),
-                    "album_art": self.current_song.get("album_art", "/beatify/static/img/no-artwork.svg"),
+                    "album_art": self.current_song.get(
+                        "album_art", "/beatify/static/img/no-artwork.svg"
+                    ),
                     "fun_fact": self.current_song.get("fun_fact", ""),
                     "fun_fact_de": self.current_song.get("fun_fact_de", ""),
                     "fun_fact_es": self.current_song.get("fun_fact_es", ""),
@@ -597,10 +621,14 @@ class GameState:
                         state["song_difficulty"] = difficulty
             # Story 20.1: Artist challenge (reveal answer during REVEAL)
             if self.artist_challenge_enabled and self.artist_challenge:
-                state["artist_challenge"] = self.artist_challenge.to_dict(include_answer=True)
+                state["artist_challenge"] = self.artist_challenge.to_dict(
+                    include_answer=True
+                )
             # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
             if self.movie_quiz_enabled and self.movie_challenge:
-                state["movie_challenge"] = self.movie_challenge.to_dict(include_answer=True)
+                state["movie_challenge"] = self.movie_challenge.to_dict(
+                    include_answer=True
+                )
             # Story 20.9: Early reveal flag for client-side toast
             if self._early_reveal:
                 state["early_reveal"] = True
@@ -786,6 +814,8 @@ class GameState:
         # Issue #292: Reset intro splash state
         self._intro_splash_shown = False
         self._intro_splash_pending = False
+        self._intro_splash_deferred_song = None
+        self._intro_splash_hass = None
 
     def end_game(self) -> None:
         """End the current game and reset state."""
@@ -919,7 +949,9 @@ class GameState:
 
             if remaining_ms > 0:
                 remaining_seconds = remaining_ms / 1000.0
-                self._timer_task = asyncio.create_task(self._timer_countdown(remaining_seconds))
+                self._timer_task = asyncio.create_task(
+                    self._timer_countdown(remaining_seconds)
+                )
                 _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
 
                 # Resume media playback if it was stopped
@@ -961,7 +993,9 @@ class GameState:
         total = sum(p.score for p in self.players.values())
         return round(total / len(self.players))
 
-    def add_player(self, name: str, ws: web.WebSocketResponse) -> tuple[bool, str | None]:
+    def add_player(
+        self, name: str, ws: web.WebSocketResponse
+    ) -> tuple[bool, str | None]:
         """
         Add a player to the game.
 
@@ -1260,7 +1294,9 @@ class GameState:
         # or if no one has guessed yet (don't block early reveal for ignored challenges)
         if self.artist_challenge_enabled and self.artist_challenge:
             has_winner = getattr(self.artist_challenge, "winner", None) is not None
-            anyone_guessed = any(p.has_artist_guess for p in self.players.values() if p.connected)
+            anyone_guessed = any(
+                p.has_artist_guess for p in self.players.values() if p.connected
+            )
             if not has_winner and anyone_guessed:
                 for player in self.players.values():
                     if player.connected and not player.has_artist_guess:
@@ -1270,7 +1306,9 @@ class GameState:
         # Skip check if challenge already has correct guesses or no one interacted
         if self.movie_quiz_enabled and self.movie_challenge:
             has_correct = len(self.movie_challenge.correct_guesses) > 0
-            anyone_guessed = any(p.has_movie_guess for p in self.players.values() if p.connected)
+            anyone_guessed = any(
+                p.has_movie_guess for p in self.players.values() if p.connected
+            )
             if not has_correct and anyone_guessed:
                 for player in self.players.values():
                     if player.connected and not player.has_movie_guess:
@@ -1489,11 +1527,54 @@ class GameState:
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
                 self._media_player_service.set_analytics(self._stats_service._analytics)
 
-        # Play song via media player
-        if self._media_player_service:
+        # Issue #23: Determine if this is an intro round BEFORE playback
+        # so we can defer playback when the first-intro splash needs admin confirmation
+        self.is_intro_round = False
+        self.intro_stopped = False
+        self._intro_round_start_time = None
+        self._cancel_intro_timer()
+        will_defer_for_splash = False
+
+        if self.intro_mode_enabled and self.round >= 3:
+            force_intro = self._rounds_since_intro >= 3
+            if force_intro or random.random() < INTRO_ROUND_CHANCE:
+                song_duration_ms = song.get("duration_ms", 999999)
+                if song_duration_ms >= INTRO_DURATION_SECONDS * 1000:
+                    self.is_intro_round = True
+                    self._rounds_since_intro = 0
+                    self._intro_round_start_time = self._now()
+                    if not self._intro_splash_shown:
+                        # First intro round: defer playback until admin confirms
+                        will_defer_for_splash = True
+                        self._intro_splash_pending = True
+                        self._intro_splash_deferred_song = song
+                        self._intro_splash_hass = hass
+                        _LOGGER.info(
+                            "Intro round activated for round %d%s (splash pending, playback deferred)",
+                            self.round + 1,
+                            " (forced)" if force_intro else "",
+                        )
+                    else:
+                        _LOGGER.info(
+                            "Intro round activated for round %d%s",
+                            self.round + 1,
+                            " (forced)" if force_intro else "",
+                        )
+                else:
+                    self._rounds_since_intro += 1
+                    _LOGGER.info(
+                        "Skipping intro mode for short song (%dms)", song_duration_ms
+                    )
+            else:
+                self._rounds_since_intro += 1
+
+        # Play song via media player (skip if deferred for intro splash)
+        if self._media_player_service and not will_defer_for_splash:
             # Pre-flight check: verify speaker is available before playing
             if not self._media_player_service.is_available():
-                self.last_error_detail = f"Media player {self.media_player} is unavailable"
+                self.last_error_detail = (
+                    f"Media player {self.media_player} is unavailable"
+                )
                 _LOGGER.error(
                     "Media player %s is not available, pausing game",
                     self.media_player,
@@ -1523,7 +1604,9 @@ class GameState:
                 _LOGGER.warning(
                     "Failed to play song: %s", song.get("uri")
                 )  # Log original for debug
-                self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
+                self._playlist_manager.mark_played(
+                    song.get("_resolved_uri") or song.get("uri")
+                )
 
                 # Check retry limit to prevent runaway loop
                 if _retry_count >= MAX_SONG_RETRIES:
@@ -1549,7 +1632,21 @@ class GameState:
                 "album_art": "/beatify/static/img/no-artwork.svg",  # Async fill
             }
             # Start background task to fetch album art only
-            self._metadata_task = asyncio.create_task(self._fetch_metadata_async(resolved_uri))
+            self._metadata_task = asyncio.create_task(
+                self._fetch_metadata_async(resolved_uri)
+            )
+        elif will_defer_for_splash:
+            # Deferred intro splash: song not played yet, but set up metadata
+            self.metadata_pending = True
+            metadata = {
+                "artist": song.get("artist", "Unknown"),
+                "title": song.get("title", "Unknown"),
+                "album_art": "/beatify/static/img/no-artwork.svg",
+            }
+            # Start background task to fetch album art while waiting for admin
+            self._metadata_task = asyncio.create_task(
+                self._fetch_metadata_async(resolved_uri)
+            )
         else:
             # No media player (testing mode)
             self.metadata_pending = False
@@ -1587,48 +1684,11 @@ class GameState:
         # Issue #28: Initialize movie quiz challenge for this round
         self.movie_challenge = self._init_movie_challenge(song)
 
-        # Issue #23: Determine if this is an intro round
-        self.is_intro_round = False
-        self.intro_stopped = False
-        self._intro_round_start_time = None
-        self._cancel_intro_timer()
-
-        if self.intro_mode_enabled and self.round >= 3:
-            # Issue #292: Skip intro rounds for the first 3 display rounds
-            # (self.round is 0-indexed here, incremented later, so round < 3 = display rounds 1-3)
-            # Guarantee at least one intro round every 4 rounds
-            # Use random chance normally, but force it if too many rounds without one
-            force_intro = self._rounds_since_intro >= 3
-            if force_intro or random.random() < INTRO_ROUND_CHANCE:
-                # Skip intro mode for very short songs (<10s)
-                song_duration_ms = song.get("duration_ms", 999999)
-                if song_duration_ms >= INTRO_DURATION_SECONDS * 1000:
-                    self.is_intro_round = True
-                    self._rounds_since_intro = 0
-                    self._intro_round_start_time = self._now()
-                    # Issue #292: First intro round needs admin confirmation via splash
-                    if not self._intro_splash_shown:
-                        self._intro_splash_pending = True
-                        _LOGGER.info(
-                            "Intro round activated for round %d%s (splash pending)",
-                            self.round + 1,
-                            " (forced)" if force_intro else "",
-                        )
-                    else:
-                        # Schedule auto-stop after intro duration
-                        self._intro_stop_task = asyncio.create_task(
-                            self._intro_auto_stop(INTRO_DURATION_SECONDS)
-                        )
-                        _LOGGER.info(
-                            "Intro round activated for round %d%s",
-                            self.round + 1,
-                            " (forced)" if force_intro else "",
-                        )
-                else:
-                    self._rounds_since_intro += 1
-                    _LOGGER.info("Skipping intro mode for short song (%dms)", song_duration_ms)
-            else:
-                self._rounds_since_intro += 1
+        # Schedule intro auto-stop timer for non-deferred intro rounds
+        if self.is_intro_round and not will_defer_for_splash:
+            self._intro_stop_task = asyncio.create_task(
+                self._intro_auto_stop(INTRO_DURATION_SECONDS)
+            )
 
         # Update round tracking
         self.round += 1
@@ -1638,7 +1698,9 @@ class GameState:
         # Note: self.round_duration is set in create_game() (Story 13.1)
         # Intro rounds use INTRO_DURATION_SECONDS as the timer (#23)
         self.round_start_time = self._now()
-        effective_duration = INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
+        effective_duration = (
+            INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
+        )
         self.deadline = int((self.round_start_time + effective_duration) * 1000)
 
         # Reset player submissions for new round
@@ -1697,7 +1759,9 @@ class GameState:
                 _LOGGER.info("Round timer expired, transitioning to REVEAL")
                 await self.end_round()
             else:
-                _LOGGER.debug("Timer expired but phase already changed to %s", self.phase)
+                _LOGGER.debug(
+                    "Timer expired but phase already changed to %s", self.phase
+                )
         except asyncio.CancelledError:
             _LOGGER.debug("Timer task cancelled")
             # Re-raise to properly complete cancellation
@@ -1773,9 +1837,7 @@ class GameState:
         """Inner end_round logic. Caller MUST hold _score_lock."""
         # Guard: skip if already transitioned (e.g. timer + early reveal race)
         if self.phase != GamePhase.PLAYING:
-            _LOGGER.debug(
-                "end_round skipped — phase already %s", self.phase.value
-            )
+            _LOGGER.debug("end_round skipped — phase already %s", self.phase.value)
             return
 
         # Cancel timer if still running
@@ -1810,7 +1872,9 @@ class GameState:
 
         # Issue #120: Track round results for shareable result cards
         if correct_year is not None:
-            scoring_cfg = DIFFICULTY_SCORING.get(self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT])
+            scoring_cfg = DIFFICULTY_SCORING.get(
+                self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT]
+            )
             close_range = scoring_cfg["close_range"]
             near_range = scoring_cfg["near_range"]
             for player in self.players.values():
@@ -1867,7 +1931,9 @@ class GameState:
                     playlist_name = None
                     if self.playlists:
                         playlist_path = self.playlists[0]
-                        playlist_name = playlist_path.replace(".json", "").replace("-", " ").title()
+                        playlist_name = (
+                            playlist_path.replace(".json", "").replace("-", " ").title()
+                        )
                     await self._stats_service.record_song_result(
                         song_uri,
                         player_results,
@@ -1892,7 +1958,9 @@ class GameState:
             except Exception as err:
                 _LOGGER.error("Round_end callback failed: %s", err)
         else:
-            _LOGGER.warning("No round_end callback set - REVEAL state will not be broadcast!")
+            _LOGGER.warning(
+                "No round_end callback set - REVEAL state will not be broadcast!"
+            )
 
     def _record_round_highlights(self, correct_year: int | None) -> None:
         """Detect and record highlights for the current round (Issue #75)."""
@@ -1903,7 +1971,11 @@ class GameState:
         if self.current_song:
             song_title = self.current_song.get("title", "Unknown")
 
-        submitted_players = [p for p in self.players.values() if p.submitted and p.current_guess is not None]
+        submitted_players = [
+            p
+            for p in self.players.values()
+            if p.submitted and p.current_guess is not None
+        ]
 
         for player in submitted_players:
             # Exact match
@@ -1937,7 +2009,11 @@ class GameState:
                     self.players.values(), key=lambda p: p.score, reverse=True
                 )
                 current_rank = next(
-                    (i + 1 for i, p in enumerate(sorted_players) if p.name == player.name),
+                    (
+                        i + 1
+                        for i, p in enumerate(sorted_players)
+                        if p.name == player.name
+                    ),
                     None,
                 )
                 if current_rank is not None:
@@ -1964,14 +2040,19 @@ class GameState:
         scores = [p.score for p in self.players.values()]
         if len(scores) >= 2:
             from collections import Counter
+
             score_counts = Counter(scores)
             for score, count in score_counts.items():
                 if count >= 2 and score > 0:
-                    tied_names = [p.name for p in self.players.values() if p.score == score]
+                    tied_names = [
+                        p.name for p in self.players.values() if p.score == score
+                    ]
                     # Only record if it's among the top scores
                     top_score = max(scores)
                     if score >= top_score * 0.8:
-                        self.highlights_tracker.record_photo_finish(tied_names, self.round)
+                        self.highlights_tracker.record_photo_finish(
+                            tied_names, self.round
+                        )
                         break  # Only one photo finish per round
 
     def cancel_timer(self) -> None:
@@ -2001,7 +2082,10 @@ class GameState:
             await asyncio.sleep(delay_seconds)
             if self.phase == GamePhase.PLAYING and not self.intro_stopped:
                 self.intro_stopped = True
-                _LOGGER.info("Intro challenge window closed after %.1fs (music continues)", delay_seconds)
+                _LOGGER.info(
+                    "Intro challenge window closed after %.1fs (music continues)",
+                    delay_seconds,
+                )
                 # Broadcast updated state so clients update the intro badge
                 if self._on_round_end:
                     await self._on_round_end()
@@ -2332,7 +2416,9 @@ class GameState:
             wrong_guesses=[],
         )
 
-    def submit_movie_guess(self, player_name: str, movie: str, guess_time: float) -> dict[str, Any]:
+    def submit_movie_guess(
+        self, player_name: str, movie: str, guess_time: float
+    ) -> dict[str, Any]:
         """
         Submit movie guess for bonus points (Issue #28).
 
@@ -2358,10 +2444,20 @@ class GameState:
         # Check if player already guessed
         for g in self.movie_challenge.correct_guesses:
             if g["name"] == player_name:
-                return {"correct": True, "already_guessed": True, "rank": None, "bonus": 0}
+                return {
+                    "correct": True,
+                    "already_guessed": True,
+                    "rank": None,
+                    "bonus": 0,
+                }
         for g in self.movie_challenge.wrong_guesses:
             if g["name"] == player_name:
-                return {"correct": False, "already_guessed": True, "rank": None, "bonus": 0}
+                return {
+                    "correct": False,
+                    "already_guessed": True,
+                    "rank": None,
+                    "bonus": 0,
+                }
 
         # Calculate elapsed time from round start (server-side timing)
         elapsed = 0.0
@@ -2379,7 +2475,9 @@ class GameState:
         }
 
         if correct:
-            self.movie_challenge.correct_guesses.append({"name": player_name, "time": elapsed})
+            self.movie_challenge.correct_guesses.append(
+                {"name": player_name, "time": elapsed}
+            )
             # Sort by time (fastest first) - ensures ranking is consistent
             self.movie_challenge.correct_guesses.sort(key=lambda g: g["time"])
             # Determine rank (0-indexed position)
@@ -2399,7 +2497,9 @@ class GameState:
                 elapsed,
             )
         else:
-            self.movie_challenge.wrong_guesses.append({"name": player_name, "guess": movie.strip()})
+            self.movie_challenge.wrong_guesses.append(
+                {"name": player_name, "guess": movie.strip()}
+            )
             _LOGGER.debug(
                 "Movie quiz wrong by %s: '%s' (correct: '%s')",
                 player_name,

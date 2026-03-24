@@ -175,7 +175,9 @@ class BeatifyWebSocketHandler:
                             if self._admin_disconnect_task:
                                 self._admin_disconnect_task.cancel()
                                 self._admin_disconnect_task = None
-                                _LOGGER.info("Admin reconnected, cancelled pause task: %s", name)
+                                _LOGGER.info(
+                                    "Admin reconnected, cancelled pause task: %s", name
+                                )
 
                             # Cancel pending removal if any
                             self.cancel_pending_removal(name)
@@ -198,7 +200,9 @@ class BeatifyWebSocketHandler:
                     else:
                         # No disconnected admin - check for existing admin
                         existing_admin = any(
-                            p.is_admin for p in game_state.players.values() if p.name != name
+                            p.is_admin
+                            for p in game_state.players.values()
+                            if p.name != name
                         )
                         if existing_admin:
                             # Remove the just-added player and return error
@@ -304,9 +308,7 @@ class BeatifyWebSocketHandler:
                             if error_detail:
                                 error_message = f"Media player error: {error_detail}"
                             else:
-                                error_message = (
-                                    "Media player not responding - check speaker connection"
-                                )
+                                error_message = "Media player not responding - check speaker connection"
                         elif pause_reason == "no_songs_available":
                             error_message = "No playable songs for selected provider"
                         else:
@@ -356,7 +358,9 @@ class BeatifyWebSocketHandler:
                                 await stats_service.record_game(
                                     game_summary, difficulty=game_state.difficulty
                                 )
-                                _LOGGER.debug("Game stats recorded (no songs remaining)")
+                                _LOGGER.debug(
+                                    "Game stats recorded (no songs remaining)"
+                                )
 
                             # No more songs
                             game_state.phase = GamePhase.END
@@ -412,9 +416,13 @@ class BeatifyWebSocketHandler:
 
                 # Apply to media player
                 if game_state._media_player_service:
-                    success = await game_state._media_player_service.set_volume(new_level)
+                    success = await game_state._media_player_service.set_volume(
+                        new_level
+                    )
                     if not success:
-                        _LOGGER.warning("Failed to set volume to %.0f%%", new_level * 100)
+                        _LOGGER.warning(
+                            "Failed to set volume to %.0f%%", new_level * 100
+                        )
 
                 _LOGGER.info("Volume adjusted %s to %.0f%%", direction, new_level * 100)
 
@@ -449,7 +457,9 @@ class BeatifyWebSocketHandler:
                 stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
                 if stats_service:
                     game_summary = game_state.finalize_game()
-                    await stats_service.record_game(game_summary, difficulty=game_state.difficulty)
+                    await stats_service.record_game(
+                        game_summary, difficulty=game_state.difficulty
+                    )
                     _LOGGER.debug("Game stats recorded for early end")
 
                 # Transition to END - players stay connected for rematch option
@@ -533,11 +543,35 @@ class BeatifyWebSocketHandler:
 
             elif action == "confirm_intro_splash":
                 # Issue #292: Admin confirms the first-intro splash screen
+                # Triggers deferred playback — song was NOT played until now
                 if not game_state._intro_splash_pending:
                     return
                 game_state._intro_splash_pending = False
                 game_state._intro_splash_shown = True
+
+                # Play the deferred song now that admin has confirmed
+                deferred_song = game_state._intro_splash_deferred_song
+                if deferred_song and game_state._media_player_service:
+                    success = await game_state._media_player_service.play_song(
+                        deferred_song
+                    )
+                    if not success:
+                        _LOGGER.warning(
+                            "Failed to play deferred intro song: %s",
+                            deferred_song.get("uri"),
+                        )
+                    game_state._intro_splash_deferred_song = None
+                    game_state._intro_splash_hass = None
+
+                # Reset round timing to start from NOW (after admin confirmation)
+                game_state.round_start_time = game_state._now()
+                game_state._intro_round_start_time = game_state._now()
                 from custom_components.beatify.game.state import INTRO_DURATION_SECONDS
+
+                effective_duration = INTRO_DURATION_SECONDS
+                game_state.deadline = int(
+                    (game_state.round_start_time + effective_duration) * 1000
+                )
 
                 game_state._intro_stop_task = asyncio.create_task(
                     game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
@@ -707,7 +741,9 @@ class BeatifyWebSocketHandler:
         if game_state.phase == GamePhase.PLAYING and all_complete:
             await game_state._trigger_early_reveal()
 
-        _LOGGER.info("Player %s submitted guess: %d at %.2f", player.name, year, submission_time)
+        _LOGGER.info(
+            "Player %s submitted guess: %d at %.2f", player.name, year, submission_time
+        )
 
     async def _handle_reconnect(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
@@ -757,7 +793,12 @@ class BeatifyWebSocketHandler:
 
         # Handle dual-tab scenario: close old connection if still active
         # Skip takeover if the reconnect comes from the SAME WebSocket (e.g. rematch reconnect)
-        if player.connected and player.ws and not player.ws.closed and player.ws is not ws:
+        if (
+            player.connected
+            and player.ws
+            and not player.ws.closed
+            and player.ws is not ws
+        ):
             try:
                 await player.ws.send_json(
                     {
@@ -806,9 +847,13 @@ class BeatifyWebSocketHandler:
         # Broadcast updated state to all players (connected status changed)
         await self.broadcast_state()
 
-        _LOGGER.info("Player reconnected via session: %s (score: %d)", player.name, player.score)
+        _LOGGER.info(
+            "Player reconnected via session: %s (score: %d)", player.name, player.score
+        )
 
-    async def _handle_leave(self, ws: web.WebSocketResponse, game_state: GameState) -> None:
+    async def _handle_leave(
+        self, ws: web.WebSocketResponse, game_state: GameState
+    ) -> None:
         """
         Handle intentional leave game (Story 11.5).
 
@@ -1066,7 +1111,10 @@ class BeatifyWebSocketHandler:
 
         # Story 20.9: Check for early reveal when all guesses are complete
         # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+        if (
+            game_state.phase == GamePhase.PLAYING
+            and game_state.check_all_guesses_complete()
+        ):
             await game_state._trigger_early_reveal()
 
         _LOGGER.debug(
@@ -1157,7 +1205,10 @@ class BeatifyWebSocketHandler:
 
         # Issue #28: Check for early reveal when all guesses are complete
         # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        if game_state.phase == GamePhase.PLAYING and game_state.check_all_guesses_complete():
+        if (
+            game_state.phase == GamePhase.PLAYING
+            and game_state.check_all_guesses_complete()
+        ):
             await game_state._trigger_early_reveal()
 
         _LOGGER.debug(
@@ -1245,7 +1296,9 @@ class BeatifyWebSocketHandler:
             state_msg = {"type": "state", **state}
             await self.broadcast(state_msg)
         else:
-            _LOGGER.debug("broadcast_state: get_state() returned None (game not initialized yet)")
+            _LOGGER.debug(
+                "broadcast_state: get_state() returned None (game not initialized yet)"
+            )
 
     async def broadcast_metadata_update(self, metadata: dict) -> None:
         """
@@ -1290,7 +1343,9 @@ class BeatifyWebSocketHandler:
         if not player_name or not player:
             return
 
-        _LOGGER.info("Player disconnected: %s (is_admin: %s)", player_name, player.is_admin)
+        _LOGGER.info(
+            "Player disconnected: %s (is_admin: %s)", player_name, player.is_admin
+        )
 
         # Broadcast disconnect state immediately
         await self.broadcast_state()
