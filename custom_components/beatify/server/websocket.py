@@ -201,7 +201,7 @@ class BeatifyWebSocketHandler:
                         # No disconnected admin - check for existing admin
                         existing_admin = any(
                             p.is_admin
-                            for p in game_state.players.values()
+                            for p in list(game_state.players.values())
                             if p.name != name
                         )
                         if existing_admin:
@@ -264,7 +264,7 @@ class BeatifyWebSocketHandler:
 
             # Find sender's player session
             sender = None
-            for player in game_state.players.values():
+            for player in list(game_state.players.values()):
                 if player.ws == ws:
                     sender = player
                     break
@@ -650,7 +650,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in game_state.players.values():
+        for p in list(game_state.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -865,7 +865,7 @@ class BeatifyWebSocketHandler:
         # Find player by WebSocket
         player = None
         player_name = None
-        for name, p in game_state.players.items():
+        for name, p in list(game_state.players.items()):
             if p.ws == ws:
                 player = p
                 player_name = name
@@ -912,7 +912,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in game_state.players.values():
+        for p in list(game_state.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -962,7 +962,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in game_state.players.values():
+        for p in list(game_state.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -1333,7 +1333,7 @@ class BeatifyWebSocketHandler:
         # Find player by WebSocket
         player_name = None
         player = None
-        for name, p in game_state.players.items():
+        for name, p in list(game_state.players.items()):
             if p.ws == ws:
                 player_name = name
                 player = p
