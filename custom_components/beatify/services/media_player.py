@@ -152,7 +152,11 @@ class MediaPlayerService:
         """
         uri = song.get("_resolved_uri") or song.get("uri")
         if not uri:
-            _LOGGER.error("Song has no URI to play: %s - %s", song.get("artist"), song.get("title"))
+            _LOGGER.error(
+                "Song has no URI to play: %s - %s",
+                song.get("artist"),
+                song.get("title"),
+            )
             self._record_error("PLAYBACK_FAILURE", "Song has no URI")
             return False
 
@@ -168,7 +172,9 @@ class MediaPlayerService:
         except TimeoutError:
             _LOGGER.error(
                 "Playback timed out after %ss for %s: %s",
-                PLAYBACK_TIMEOUT, uri, song.get("title", "?"),
+                PLAYBACK_TIMEOUT,
+                uri,
+                song.get("title", "?"),
             )
             self._record_error("PLAYBACK_TIMEOUT", f"Timed out playing: {uri}")
             return False
@@ -227,10 +233,13 @@ class MediaPlayerService:
 
         # Capture state before to detect actual song change on speaker
         state_before = self._hass.states.get(self._entity_id)
-        title_before = state_before.attributes.get("media_title") if state_before else None
+        title_before = (
+            state_before.attributes.get("media_title") if state_before else None
+        )
         position_updated_before = (
             state_before.attributes.get("media_position_updated_at")
-            if state_before else None
+            if state_before
+            else None
         )
 
         # Fire-and-forget the service call — blocking=True hangs on MA+YTMusic
@@ -248,7 +257,13 @@ class MediaPlayerService:
         # - media_position_updated_at changed (speaker is actively reporting)
         elapsed = 0.0
         while elapsed < PLAYBACK_TIMEOUT:
-            state = self._hass.states.get(self._entity_id)
+            try:
+                state = self._hass.states.get(self._entity_id)
+            except Exception:
+                _LOGGER.debug("MA poll: state read failed, retrying")
+                await asyncio.sleep(0.5)
+                elapsed += 0.5
+                continue
             if state and state.state == "playing":
                 current_title = state.attributes.get("media_title", "")
                 position = state.attributes.get("media_position", 0)
@@ -263,7 +278,9 @@ class MediaPlayerService:
                 if title_changed and position_fresh and actually_playing:
                     _LOGGER.debug(
                         "MA playback confirmed after %.1fs: %s (pos=%.1f)",
-                        elapsed, current_title, position,
+                        elapsed,
+                        current_title,
+                        position,
                     )
                     return True
             await asyncio.sleep(0.5)
@@ -377,7 +394,9 @@ class MediaPlayerService:
 
         # Get initial state for comparison
         initial_state = self._hass.states.get(self._entity_id)
-        initial_title = initial_state.attributes.get("media_title") if initial_state else None
+        initial_title = (
+            initial_state.attributes.get("media_title") if initial_state else None
+        )
 
         elapsed = 0.0
         while elapsed < METADATA_WAIT_TIMEOUT:
@@ -549,7 +568,9 @@ class MediaPlayerService:
         """
         # Skip if already verified this session (#179)
         if self._preflight_verified:
-            _LOGGER.debug("Media player %s already verified, skipping preflight", self._entity_id)
+            _LOGGER.debug(
+                "Media player %s already verified, skipping preflight", self._entity_id
+            )
             return True, ""
 
         # First check basic availability
