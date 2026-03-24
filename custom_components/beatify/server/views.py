@@ -16,8 +16,6 @@ from custom_components.beatify.const import (
     DIFFICULTY_HARD,
     DIFFICULTY_NORMAL,
     DOMAIN,
-    MEDIA_PLAYER_DOCS_URL,
-    PLAYLIST_DOCS_URL,
     PROVIDER_DEFAULT,
     PROVIDER_DEEZER,
     PROVIDER_SPOTIFY,
@@ -28,6 +26,12 @@ from custom_components.beatify.const import (
 )
 from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.game.state import GameState
+from custom_components.beatify.server.serializers import (
+    build_game_status_response,
+    build_state_message,
+    build_status_response,
+    get_game_state,
+)
 from custom_components.beatify.services.media_player import (
     async_get_media_players,
     get_platform_capabilities,
@@ -114,37 +118,19 @@ class StatusView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Return current status as JSON."""
-        data = self.hass.data.get(DOMAIN, {})
-
-        # Check for active game
-        game_state = data.get("game")
-        active_game = None
-        if game_state and game_state.game_id:
-            active_game = game_state.get_state()
-
         # Fetch media players fresh (not cached) - Story 8-2
         media_players = await async_get_media_players(self.hass)
 
         # Fetch playlists fresh (not cached) - Issue #135
         playlists = await async_discover_playlists(self.hass)
-        data["playlists"] = playlists
+        self.hass.data.get(DOMAIN, {})["playlists"] = playlists
 
-        # Detect Music Assistant integration (not based on entity names)
-        # Check if music_assistant integration is loaded via config entries
-        has_music_assistant = any(
-            entry.domain == "music_assistant" for entry in self.hass.config_entries.async_entries()
+        status = build_status_response(
+            self.hass,
+            version=_get_version(),
+            media_players=media_players,
+            playlists=playlists,
         )
-
-        status = {
-            "version": _get_version(),
-            "media_players": media_players,
-            "playlists": playlists,
-            "playlist_dir": data.get("playlist_dir", ""),
-            "playlist_docs_url": PLAYLIST_DOCS_URL,
-            "media_player_docs_url": MEDIA_PLAYER_DOCS_URL,
-            "active_game": active_game,
-            "has_music_assistant": has_music_assistant,
-        }
 
         return web.json_response(status)
 
@@ -400,9 +386,9 @@ class StartGameView(HomeAssistantView):
         # Broadcast to WebSocket clients
         ws_handler = data.get("ws_handler")
         if ws_handler:
-            state = game_state.get_state()
-            if state:
-                await ws_handler.broadcast({"type": "state", **state})
+            state_msg = build_state_message(game_state)
+            if state_msg:
+                await ws_handler.broadcast(state_msg)
 
         return web.json_response(result)
 
@@ -583,50 +569,10 @@ class GameStatusView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:
         """Get game status."""
         game_id = request.query.get("game")
-
-        # No game ID provided
-        if not game_id:
-            return web.json_response(
-                {
-                    "exists": False,
-                    "phase": None,
-                    "can_join": False,
-                }
-            )
-
-        # Get game state with safe access
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
-
-        # No game state or different game ID
-        if not game_state:
-            return web.json_response(
-                {
-                    "exists": False,
-                    "phase": None,
-                    "can_join": False,
-                }
-            )
-
-        if game_state.game_id != game_id:
-            return web.json_response(
-                {
-                    "exists": False,
-                    "phase": None,
-                    "can_join": False,
-                }
-            )
-
-        # Game exists - return status
-        phase = game_state.phase.value
-        # Late join supported during LOBBY, PLAYING, and REVEAL (Story 16.5)
-        can_join = phase in ("LOBBY", "PLAYING", "REVEAL")
+        game_state = get_game_state(self.hass)
 
         return web.json_response(
-            {
-                "exists": True,
-                "phase": phase,
-                "can_join": can_join,
-            }
+            build_game_status_response(game_state, game_id)
         )
 
 
