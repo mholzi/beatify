@@ -7,6 +7,8 @@ import uuid
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from custom_components.beatify.const import MIN_SUBMISSIONS_FOR_SPEED
+
 if TYPE_CHECKING:
     from aiohttp import web
 
@@ -175,7 +177,7 @@ class PlayerSession:
     @property
     def avg_submission_time(self) -> float | None:
         """Average submission time in seconds (Story 15.2)."""
-        if len(self.submission_times) < 3:
+        if len(self.submission_times) < MIN_SUBMISSIONS_FOR_SPEED:
             return None
         return sum(self.submission_times) / len(self.submission_times)
 
