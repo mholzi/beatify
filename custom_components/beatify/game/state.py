@@ -1602,6 +1602,12 @@ class GameState:
 
         """
         try:
+            if delay_seconds < 0:
+                _LOGGER.warning(
+                    "Round timer delay already negative (%.1fs), ending immediately",
+                    delay_seconds,
+                )
+                delay_seconds = 0
             await asyncio.sleep(delay_seconds)
             # Check we're still in PLAYING phase (could have changed)
             if self.phase == GamePhase.PLAYING:
