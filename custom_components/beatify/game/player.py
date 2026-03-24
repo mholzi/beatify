@@ -140,6 +140,9 @@ class PlayerSession:
 
     def reset_for_new_game(self) -> None:
         """Reset all game-level stats for a new game (Story 15.2)."""
+        # Reset join state
+        self.joined_late = False
+
         # Reset score and streaks
         self.score = 0
         self.streak = 0
