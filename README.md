@@ -393,6 +393,8 @@ That's it. No mDNS, no broadcast, no additional ports.
 - If using a reverse proxy (nginx/Caddy), ensure WebSocket upgrades are allowed for `/beatify/ws` (standard HA proxy configs already handle this)
 - If using HTTPS with a self-signed cert, guests may need to accept it once
 
+> **⚠️ Fritzbox users:** The Fritzbox guest WiFi fully isolates clients from your home network — this cannot be overridden with firewall rules. Players must join the main WiFi, or use a separate VLAN-capable router/access point to create a guest network with selective LAN access.
+
 ---
 
 <br>
