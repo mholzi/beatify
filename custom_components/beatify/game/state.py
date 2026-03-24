@@ -7,7 +7,6 @@ import logging
 import random
 import secrets
 import time
-from dataclasses import dataclass, field
 from enum import Enum
 from typing import TYPE_CHECKING, Any
 
@@ -32,12 +31,18 @@ from custom_components.beatify.const import (
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
     MIN_PLAYERS,
-    MOVIE_BONUS_TIERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
 
+from .challenges import (
+    ArtistChallenge,
+    ChallengeManager,
+    MovieChallenge,
+    build_artist_options,  # noqa: F401 (re-exported for backward compatibility)
+    build_movie_options,  # noqa: F401 (re-exported for backward compatibility)
+)
 from .highlights import HighlightsTracker
 from .player import PlayerSession
 from .playlist import PlaylistManager
@@ -67,183 +72,6 @@ class GamePhase(Enum):
     REVEAL = "REVEAL"
     END = "END"
     PAUSED = "PAUSED"
-
-
-@dataclass
-class ArtistChallenge:
-    """Artist challenge state for bonus points feature (Epic 20)."""
-
-    correct_artist: str
-    options: list[str]  # Shuffled: correct + decoys
-    winner: str | None = None
-    winner_time: float | None = None
-
-    def to_dict(self, include_answer: bool = False) -> dict[str, Any]:
-        """
-        Convert to JSON-serializable dictionary.
-
-        Args:
-            include_answer: If True, include correct_artist (for REVEAL phase).
-                           If False, hide answer (for PLAYING phase).
-
-        """
-        result: dict[str, Any] = {
-            "options": self.options,
-            "winner": self.winner,
-        }
-        if self.winner_time is not None:
-            result["winner_time"] = self.winner_time
-        if include_answer:
-            result["correct_artist"] = self.correct_artist
-        return result
-
-
-@dataclass
-class MovieChallenge:
-    """Movie quiz challenge state for bonus points feature (Issue #28)."""
-
-    correct_movie: str
-    options: list[str]  # Shuffled: 3 movie choices (correct + 2 decoys)
-    correct_guesses: list[dict[str, Any]] = field(
-        default_factory=list
-    )  # [{name, time}]
-    wrong_guesses: list[dict[str, Any]] = field(default_factory=list)  # [{name, guess}]
-
-    def to_dict(self, include_answer: bool = False) -> dict[str, Any]:
-        """
-        Convert to JSON-serializable dictionary.
-
-        Args:
-            include_answer: If True, include correct_movie and results (for REVEAL).
-                           If False, only show options (for PLAYING).
-
-        """
-        result: dict[str, Any] = {
-            "options": self.options,
-        }
-        if include_answer:
-            result["correct_movie"] = self.correct_movie
-            result["results"] = self._build_results()
-        return result
-
-    def _build_results(self) -> dict[str, Any]:
-        """Build movie quiz results for reveal display."""
-        winners = []
-        for i, guess in enumerate(self.correct_guesses):
-            bonus = MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
-            winners.append(
-                {
-                    "name": guess["name"],
-                    "time": round(guess["time"], 2),
-                    "bonus": bonus,
-                }
-            )
-        return {
-            "winners": winners,
-            "wrong_guesses": [
-                {"name": g["name"], "guess": g["guess"]} for g in self.wrong_guesses
-            ],
-        }
-
-    def get_player_bonus(self, player_name: str) -> int:
-        """
-        Get the bonus points for a specific player.
-
-        Args:
-            player_name: Name of the player
-
-        Returns:
-            Bonus points (5/3/1/0 based on speed rank)
-
-        """
-        for i, guess in enumerate(self.correct_guesses):
-            if guess["name"] == player_name:
-                return MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
-        return 0
-
-
-def build_movie_options(song: dict[str, Any]) -> list[str] | None:
-    """
-    Build shuffled movie options from song data (Issue #28).
-
-    Args:
-        song: Song dictionary with 'movie' and 'movie_choices'
-
-    Returns:
-        Shuffled list of movie options, or None if insufficient data
-
-    """
-    movie = song.get("movie", "")
-    if isinstance(movie, str):
-        movie = movie.strip()
-    else:
-        movie = ""
-
-    movie_choices = song.get("movie_choices", [])
-
-    # Validate required data
-    if not movie:
-        return None
-
-    if not movie_choices or not isinstance(movie_choices, list):
-        return None
-
-    # Filter valid choices
-    valid_choices = [
-        c.strip() for c in movie_choices if isinstance(c, str) and c.strip()
-    ]
-
-    if len(valid_choices) < 2:
-        return None
-
-    # Ensure correct movie is in the list
-    if movie not in valid_choices:
-        valid_choices = [movie] + valid_choices[:2]
-
-    # Shuffle and return
-    options = list(valid_choices)
-    random.shuffle(options)
-
-    return options
-
-
-def build_artist_options(song: dict[str, Any]) -> list[str] | None:
-    """
-    Build shuffled artist options from song data (Story 20.2).
-
-    Args:
-        song: Song dictionary with 'artist' and optional 'alt_artists'
-
-    Returns:
-        Shuffled list of artist options, or None if insufficient data
-
-    """
-    artist = song.get("artist", "")
-    if isinstance(artist, str):
-        artist = artist.strip()
-    else:
-        artist = ""
-
-    alt_artists = song.get("alt_artists", [])
-
-    # Validate required data
-    if not artist:
-        return None
-
-    if not alt_artists or not isinstance(alt_artists, list):
-        return None
-
-    # Filter valid alternatives
-    valid_alts = [a.strip() for a in alt_artists if isinstance(a, str) and a.strip()]
-
-    if not valid_alts:
-        return None
-
-    # Build and shuffle options
-    options = [artist] + valid_alts
-    random.shuffle(options)
-
-    return options
 
 
 class GameState:
@@ -339,13 +167,8 @@ class GameState:
         # Story 18.9: Reaction rate limiting per reveal phase
         self._reactions_this_phase: set[str] = set()
 
-        # Story 20.1: Artist challenge state
-        self.artist_challenge: ArtistChallenge | None = None
-        self.artist_challenge_enabled: bool = False
-
-        # Issue #28: Movie quiz challenge state
-        self.movie_challenge: MovieChallenge | None = None
-        self.movie_quiz_enabled: bool = False
+        # Story 20.1 / Issue #28: Challenge state (artist + movie quiz)
+        self._challenge_manager = ChallengeManager()
 
         # Issue #23: Intro mode state
         self.intro_mode_enabled: bool = False
@@ -382,6 +205,46 @@ class GameState:
         self._intro_splash_pending: bool = False
         self._intro_splash_deferred_song: dict | None = None
         self._intro_splash_hass: HomeAssistant | None = None
+
+    # ------------------------------------------------------------------
+    # Challenge delegation properties (keep public interface identical)
+    # ------------------------------------------------------------------
+
+    @property
+    def artist_challenge(self) -> ArtistChallenge | None:
+        """Current artist challenge state."""
+        return self._challenge_manager.artist_challenge
+
+    @artist_challenge.setter
+    def artist_challenge(self, value: ArtistChallenge | None) -> None:
+        self._challenge_manager.artist_challenge = value
+
+    @property
+    def artist_challenge_enabled(self) -> bool:
+        """Whether artist challenge is enabled."""
+        return self._challenge_manager.artist_challenge_enabled
+
+    @artist_challenge_enabled.setter
+    def artist_challenge_enabled(self, value: bool) -> None:
+        self._challenge_manager.artist_challenge_enabled = value
+
+    @property
+    def movie_challenge(self) -> MovieChallenge | None:
+        """Current movie quiz challenge state."""
+        return self._challenge_manager.movie_challenge
+
+    @movie_challenge.setter
+    def movie_challenge(self, value: MovieChallenge | None) -> None:
+        self._challenge_manager.movie_challenge = value
+
+    @property
+    def movie_quiz_enabled(self) -> bool:
+        """Whether movie quiz is enabled."""
+        return self._challenge_manager.movie_quiz_enabled
+
+    @movie_quiz_enabled.setter
+    def movie_quiz_enabled(self, value: bool) -> None:
+        self._challenge_manager.movie_quiz_enabled = value
 
     def create_game(
         self,
@@ -485,13 +348,11 @@ class GameState:
         # Story 19.12: Reset bet tracking for new game
         self.bet_tracking = {"total_bets": 0, "bets_won": 0}
 
-        # Story 20.1: Set artist challenge configuration
-        self.artist_challenge_enabled = artist_challenge_enabled
-        self.artist_challenge = None
-
-        # Issue #28: Set movie quiz configuration
-        self.movie_quiz_enabled = movie_quiz_enabled
-        self.movie_challenge = None
+        # Story 20.1 / Issue #28: Set challenge configuration
+        self._challenge_manager.configure(
+            artist_challenge_enabled=artist_challenge_enabled,
+            movie_quiz_enabled=movie_quiz_enabled,
+        )
 
         # Issue #23: Set intro mode configuration
         self.intro_mode_enabled = intro_mode_enabled
@@ -572,15 +433,13 @@ class GameState:
             # Leaderboard (Story 5.5)
             state["leaderboard"] = self.get_leaderboard()
             # Story 20.1: Artist challenge (hide answer during PLAYING)
-            if self.artist_challenge_enabled and self.artist_challenge:
-                state["artist_challenge"] = self.artist_challenge.to_dict(
-                    include_answer=False
-                )
+            ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
+            if ac is not None:
+                state["artist_challenge"] = ac
             # Issue #28: Movie quiz challenge (hide answer during PLAYING)
-            if self.movie_quiz_enabled and self.movie_challenge:
-                state["movie_challenge"] = self.movie_challenge.to_dict(
-                    include_answer=False
-                )
+            mc = self._challenge_manager.get_movie_challenge_dict(include_answer=False)
+            if mc is not None:
+                state["movie_challenge"] = mc
 
         elif self.phase == GamePhase.REVEAL:
             state["join_url"] = self.join_url
@@ -620,15 +479,13 @@ class GameState:
                     if difficulty:
                         state["song_difficulty"] = difficulty
             # Story 20.1: Artist challenge (reveal answer during REVEAL)
-            if self.artist_challenge_enabled and self.artist_challenge:
-                state["artist_challenge"] = self.artist_challenge.to_dict(
-                    include_answer=True
-                )
+            ac = self._challenge_manager.get_artist_challenge_dict(include_answer=True)
+            if ac is not None:
+                state["artist_challenge"] = ac
             # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
-            if self.movie_quiz_enabled and self.movie_challenge:
-                state["movie_challenge"] = self.movie_challenge.to_dict(
-                    include_answer=True
-                )
+            mc = self._challenge_manager.get_movie_challenge_dict(include_answer=True)
+            if mc is not None:
+                state["movie_challenge"] = mc
             # Story 20.9: Early reveal flag for client-side toast
             if self._early_reveal:
                 state["early_reveal"] = True
@@ -800,13 +657,8 @@ class GameState:
         # Story 19.12: Reset bet tracking
         self.bet_tracking = {"total_bets": 0, "bets_won": 0}
 
-        # Story 20.1: Reset artist challenge
-        self.artist_challenge = None
-        self.artist_challenge_enabled = True  # Reset to default (Story 20.7)
-
-        # Issue #28: Reset movie quiz challenge
-        self.movie_challenge = None
-        self.movie_quiz_enabled = True  # Reset to default
+        # Story 20.1 / Issue #28: Reset challenges
+        self._challenge_manager.reset()
 
         # Issue #75: Reset highlights tracker
         self.highlights_tracker.reset()
@@ -1678,11 +1530,8 @@ class GameState:
             **metadata,
         }
 
-        # Story 20.1: Initialize artist challenge for this round
-        self.artist_challenge = self._init_artist_challenge(song)
-
-        # Issue #28: Initialize movie quiz challenge for this round
-        self.movie_challenge = self._init_movie_challenge(song)
+        # Story 20.1 / Issue #28: Initialize challenges for this round
+        self._challenge_manager.init_round(song)
 
         # Schedule intro auto-stop timer for non-deferred intro rounds
         if self.is_intro_round and not will_defer_for_splash:
@@ -1753,6 +1602,12 @@ class GameState:
 
         """
         try:
+            if delay_seconds < 0:
+                _LOGGER.warning(
+                    "Round timer delay already negative (%.1fs), ending immediately",
+                    delay_seconds,
+                )
+                delay_seconds = 0
             await asyncio.sleep(delay_seconds)
             # Check we're still in PLAYING phase (could have changed)
             if self.phase == GamePhase.PLAYING:
@@ -2305,206 +2160,18 @@ class GameState:
             intro_mode_enabled=self.intro_mode_enabled,
         )
 
-    def _init_artist_challenge(self, song: dict[str, Any]) -> ArtistChallenge | None:
-        """
-        Initialize artist challenge for a round (Story 20.2).
-
-        Args:
-            song: Song dict with artist info from playlist
-
-        Returns:
-            ArtistChallenge instance or None if artist challenge disabled
-            or song lacks alt_artists data.
-
-        """
-        if not self.artist_challenge_enabled:
-            return None
-
-        options = build_artist_options(song)
-
-        if not options or len(options) < 2:
-            _LOGGER.debug("Skipping artist challenge: insufficient options")
-            return None
-
-        artist = song.get("artist", "")
-        if isinstance(artist, str):
-            artist = artist.strip()
-        else:
-            artist = ""
-
-        return ArtistChallenge(
-            correct_artist=artist,
-            options=options,
-            winner=None,
-            winner_time=None,
-        )
-
     def submit_artist_guess(
         self, player_name: str, artist: str, guess_time: float
     ) -> dict[str, Any]:
-        """
-        Submit artist guess for bonus points (Story 20.3).
-
-        Args:
-            player_name: Name of player guessing
-            artist: Artist name guessed
-            guess_time: Timestamp of guess
-
-        Returns:
-            Dict with keys: correct (bool), first (bool), winner (str|None)
-
-        Raises:
-            ValueError: If no artist challenge active
-
-        """
-        if not self.artist_challenge:
-            raise ValueError("No artist challenge active")
-
-        # Case-insensitive comparison
-        correct = artist.strip().lower() == self.artist_challenge.correct_artist.lower()
-
-        result: dict[str, Any] = {
-            "correct": correct,
-            "first": False,
-            "winner": self.artist_challenge.winner,
-        }
-
-        if correct and not self.artist_challenge.winner:
-            # First correct guess!
-            self.artist_challenge.winner = player_name
-            self.artist_challenge.winner_time = guess_time
-            result["first"] = True
-            result["winner"] = player_name
-            _LOGGER.info("Artist challenge won by %s", player_name)
-
-        return result
-
-    def _init_movie_challenge(self, song: dict[str, Any]) -> MovieChallenge | None:
-        """
-        Initialize movie quiz challenge for a round (Issue #28).
-
-        Args:
-            song: Song dict with movie info from playlist
-
-        Returns:
-            MovieChallenge instance or None if movie quiz disabled
-            or song lacks movie_choices data.
-
-        """
-        if not self.movie_quiz_enabled:
-            return None
-
-        options = build_movie_options(song)
-
-        if not options or len(options) < 2:
-            _LOGGER.debug("Skipping movie quiz: insufficient options")
-            return None
-
-        movie = song.get("movie", "")
-        if isinstance(movie, str):
-            movie = movie.strip()
-        else:
-            movie = ""
-
-        if not movie:
-            return None
-
-        return MovieChallenge(
-            correct_movie=movie,
-            options=options,
-            correct_guesses=[],
-            wrong_guesses=[],
+        """Submit artist guess for bonus points (Story 20.3). Delegates to ChallengeManager."""
+        return self._challenge_manager.submit_artist_guess(
+            player_name, artist, guess_time
         )
 
     def submit_movie_guess(
         self, player_name: str, movie: str, guess_time: float
     ) -> dict[str, Any]:
-        """
-        Submit movie guess for bonus points (Issue #28).
-
-        Uses server-side timing. Correct guesses are ranked by speed
-        for tiered bonus scoring (5/3/1 points).
-
-        Args:
-            player_name: Name of player guessing
-            movie: Movie title guessed
-            guess_time: Server timestamp of guess (time.time())
-
-        Returns:
-            Dict with keys: correct (bool), rank (int|None),
-            bonus (int), already_guessed (bool)
-
-        Raises:
-            ValueError: If no movie challenge active
-
-        """
-        if not self.movie_challenge:
-            raise ValueError("No movie challenge active")
-
-        # Check if player already guessed
-        for g in self.movie_challenge.correct_guesses:
-            if g["name"] == player_name:
-                return {
-                    "correct": True,
-                    "already_guessed": True,
-                    "rank": None,
-                    "bonus": 0,
-                }
-        for g in self.movie_challenge.wrong_guesses:
-            if g["name"] == player_name:
-                return {
-                    "correct": False,
-                    "already_guessed": True,
-                    "rank": None,
-                    "bonus": 0,
-                }
-
-        # Calculate elapsed time from round start (server-side timing)
-        elapsed = 0.0
-        if self.round_start_time is not None:
-            elapsed = guess_time - self.round_start_time
-
-        # Case-insensitive comparison
-        correct = movie.strip().lower() == self.movie_challenge.correct_movie.lower()
-
-        result: dict[str, Any] = {
-            "correct": correct,
-            "already_guessed": False,
-            "rank": None,
-            "bonus": 0,
-        }
-
-        if correct:
-            self.movie_challenge.correct_guesses.append(
-                {"name": player_name, "time": elapsed}
-            )
-            # Sort by time (fastest first) - ensures ranking is consistent
-            self.movie_challenge.correct_guesses.sort(key=lambda g: g["time"])
-            # Determine rank (0-indexed position)
-            rank = next(
-                i
-                for i, g in enumerate(self.movie_challenge.correct_guesses)
-                if g["name"] == player_name
-            )
-            bonus = MOVIE_BONUS_TIERS[rank] if rank < len(MOVIE_BONUS_TIERS) else 0
-            result["rank"] = rank + 1  # 1-indexed for display
-            result["bonus"] = bonus
-            _LOGGER.info(
-                "Movie quiz correct by %s (rank #%d, +%d bonus, %.2fs)",
-                player_name,
-                rank + 1,
-                bonus,
-                elapsed,
-            )
-        else:
-            self.movie_challenge.wrong_guesses.append(
-                {"name": player_name, "guess": movie.strip()}
-            )
-            _LOGGER.debug(
-                "Movie quiz wrong by %s: '%s' (correct: '%s')",
-                player_name,
-                movie.strip(),
-                self.movie_challenge.correct_movie,
-            )
-
-        return result
+        """Submit movie guess for bonus points (Issue #28). Delegates to ChallengeManager."""
+        return self._challenge_manager.submit_movie_guess(
+            player_name, movie, guess_time, self.round_start_time
+        )
