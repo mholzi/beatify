@@ -251,7 +251,7 @@ class MediaPlayerService:
             state = self._hass.states.get(self._entity_id)
             if state and state.state == "playing":
                 current_title = state.attributes.get("media_title", "")
-                position = state.attributes.get("media_position", 999)
+                position = state.attributes.get("media_position", 0)
                 position_updated = state.attributes.get("media_position_updated_at")
 
                 title_changed = current_title and current_title != title_before
@@ -269,11 +269,12 @@ class MediaPlayerService:
             await asyncio.sleep(0.5)
             elapsed += 0.5
 
+        current_state = self._hass.states.get(self._entity_id)
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s)",
             PLAYBACK_TIMEOUT,
             uri,
-            self._hass.states.get(self._entity_id).state if self._hass.states.get(self._entity_id) else "unknown",
+            current_state.state if current_state else "unknown",
         )
         # Return True anyway — MA might still be buffering, don't skip the song
         return True

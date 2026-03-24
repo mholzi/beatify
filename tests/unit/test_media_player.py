@@ -16,7 +16,7 @@ def _make_state(
     state: str = "idle",
     media_title: str = "Old Song",
     media_position: float = 0,
-    media_position_updated_at: str = "2026-01-01T00:00:00+00:00",
+    media_position_updated_at: str = "2020-01-01T00:00:00+00:00",
 ) -> MagicMock:
     """Create a mock HA state object."""
     mock = MagicMock()
@@ -64,9 +64,9 @@ class TestMANonBlockingPlayback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
         old_state = _make_state("playing", media_title="Old Song", media_position=120,
-                                media_position_updated_at="2026-01-01T00:00:00+00:00")
+                                media_position_updated_at="2020-01-01T00:00:00+00:00")
         new_state = _make_state("playing", media_title="New Song", media_position=1,
-                                media_position_updated_at="2026-01-01T00:00:10+00:00")
+                                media_position_updated_at="2020-01-01T00:00:10+00:00")
         hass.states.get = MagicMock(side_effect=[old_state, new_state])
 
         with patch("custom_components.beatify.services.media_player.asyncio.sleep", new_callable=AsyncMock):
@@ -85,13 +85,13 @@ class TestMANonBlockingPlayback:
 
         call_count = 0
         old_state = _make_state("playing", media_title="Old Song", media_position=120,
-                                media_position_updated_at="2026-01-01T00:00:00+00:00")
+                                media_position_updated_at="2020-01-01T00:00:00+00:00")
         # Title changed, position=0, updated_at fresh — but NOT actually playing yet
         queued_state = _make_state("playing", media_title="New Song", media_position=0,
-                                   media_position_updated_at="2026-01-01T00:00:05+00:00")
+                                   media_position_updated_at="2020-01-01T00:00:05+00:00")
         # Actually playing: position >= 1
         playing_state = _make_state("playing", media_title="New Song", media_position=1,
-                                    media_position_updated_at="2026-01-01T00:00:10+00:00")
+                                    media_position_updated_at="2020-01-01T00:00:10+00:00")
 
         def state_progression(*args):
             nonlocal call_count
@@ -118,9 +118,9 @@ class TestMANonBlockingPlayback:
 
         poll_count = 0
         old_state = _make_state("playing", media_title="Old Song", media_position=100,
-                                media_position_updated_at="2026-01-01T00:00:00+00:00")
+                                media_position_updated_at="2020-01-01T00:00:00+00:00")
         queued_only = _make_state("playing", media_title="New Song", media_position=0,
-                                  media_position_updated_at="2026-01-01T00:00:05+00:00")
+                                  media_position_updated_at="2020-01-01T00:00:05+00:00")
 
         def always_queued(*args):
             nonlocal poll_count
@@ -146,15 +146,15 @@ class TestMANonBlockingPlayback:
 
         poll_count = 0
         old_state = _make_state("playing", media_title="Old Song", media_position=44,
-                                media_position_updated_at="2026-01-01T00:00:00+00:00")
+                                media_position_updated_at="2020-01-01T00:00:00+00:00")
         queued = _make_state("playing", media_title="New Song", media_position=0,
-                             media_position_updated_at="2026-01-01T00:00:05+00:00")
+                             media_position_updated_at="2020-01-01T00:00:05+00:00")
         idle = _make_state("idle", media_title="New Song", media_position=0,
-                           media_position_updated_at="2026-01-01T00:00:05+00:00")
+                           media_position_updated_at="2020-01-01T00:00:05+00:00")
         playing_zero = _make_state("playing", media_title="New Song", media_position=0,
-                                   media_position_updated_at="2026-01-01T00:00:08+00:00")
+                                   media_position_updated_at="2020-01-01T00:00:08+00:00")
         playing_real = _make_state("playing", media_title="New Song", media_position=1,
-                                   media_position_updated_at="2026-01-01T00:00:10+00:00")
+                                   media_position_updated_at="2020-01-01T00:00:10+00:00")
 
         def realistic_flow(*args):
             nonlocal poll_count
@@ -201,7 +201,7 @@ class TestMANonBlockingPlayback:
         no_media.attributes["media_title"] = None
         no_media.attributes["media_position_updated_at"] = None
         playing_new = _make_state("playing", media_title="First Song", media_position=1,
-                                  media_position_updated_at="2026-01-01T00:00:05+00:00")
+                                  media_position_updated_at="2020-01-01T00:00:05+00:00")
 
         def first_song(*args):
             nonlocal call_count

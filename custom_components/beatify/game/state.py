@@ -1493,11 +1493,10 @@ class GameState:
         if self._media_player_service:
             # Pre-flight check: verify speaker is available before playing
             if not self._media_player_service.is_available():
-                error_detail = f"Media player {self.media_player} is unavailable"
-                self.last_error_detail = error_detail
+                self.last_error_detail = f"Media player {self.media_player} is unavailable"
                 _LOGGER.error(
-                    "Media player not available: %s, pausing game",
-                    error_detail,
+                    "Media player %s is not available, pausing game",
+                    self.media_player,
                 )
                 await self.pause_game("media_player_error")
                 return False
