@@ -479,6 +479,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v2.8.0 — Deezer, Smarter Intro Mode & Architecture Overhaul 🎵
+- **Deezer Support** — Fifth streaming service joins Spotify, YouTube Music, Apple Music and Tidal. 2,000+ Deezer URIs across 19 playlists
+- **Smarter Intro Mode** — Intro rounds delayed until round 4, admin-confirmed splash screen explains rules before music plays, duration increased to 15 seconds
+- **Music Assistant + YouTube Music Fix** — Non-blocking playback with state polling for reliable MA+YTMusic support. By @Scribblerman
+- **90s & 2000s Hip Hop Bangers** — 40 tracks (1990–2008) from 2Pac, Eminem, JAY-Z, Nas, Missy Elliott, Dr. Dre and more
+- Refactored player.js into ES modules, split scoring god functions, added unit tests, rate limiting, XSS protection, 276 broken URIs fixed
+- 23 playlists, 2,453 songs, 5 music platforms, 4 languages
+
 ### v2.7.0 — UX Polish & Playlist Expansion 🎵
 - **PWA: Add to Homescreen** — Beatify installs as a Progressive Web App via an install prompt on the admin screen or the explicit install button in the header
 - **Share Your Results** — End screen includes a Wordle-style emoji grid of your round results. Native share sheet on mobile, card download on desktop
