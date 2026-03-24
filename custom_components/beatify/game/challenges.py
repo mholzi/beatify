@@ -151,7 +151,7 @@ def build_movie_options(song: dict[str, Any]) -> list[str] | None:
 
     # Ensure correct movie is in the list
     if movie not in valid_choices:
-        valid_choices = [movie] + valid_choices[:2]
+        valid_choices = [movie] + [c for c in valid_choices[:2] if c != movie]
 
     # Shuffle and return
     options = list(valid_choices)
