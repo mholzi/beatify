@@ -34,7 +34,9 @@ _LOGGER = logging.getLogger(__name__)
 class PlaylistManager:
     """Manages song selection and played tracking."""
 
-    def __init__(self, songs: list[dict[str, Any]], provider: str = PROVIDER_DEFAULT) -> None:
+    def __init__(
+        self, songs: list[dict[str, Any]], provider: str = PROVIDER_DEFAULT
+    ) -> None:
         """
         Initialize with list of songs from loaded playlists.
 
@@ -67,7 +69,9 @@ class PlaylistManager:
 
         """
         available = [
-            s for s in self._songs if get_song_uri(s, self._provider) not in self._played_uris
+            s
+            for s in self._songs
+            if get_song_uri(s, self._provider) not in self._played_uris
         ]
         if not available:
             return None
@@ -90,16 +94,6 @@ class PlaylistManager:
     def reset(self) -> None:
         """Reset played tracking for new game."""
         self._played_uris.clear()
-
-    def is_exhausted(self) -> bool:
-        """
-        Check if all songs have been played.
-
-        Returns:
-            True if all songs have been played
-
-        """
-        return len(self._played_uris) >= len(self._songs)
 
     def get_remaining_count(self) -> int:
         """
@@ -125,32 +119,6 @@ class PlaylistManager:
 # Validation constants
 MIN_YEAR = 1900
 MAX_YEAR = 2030
-
-# Supported languages for localized content
-SUPPORTED_LANGUAGES = ("en", "de", "es", "fr")
-
-
-def get_localized_field(song: dict[str, Any], field: str, language: str) -> str | list[str] | None:
-    """
-    Get localized field value with English fallback.
-
-    Args:
-        song: Song dictionary
-        field: Base field name (e.g., 'fun_fact', 'awards')
-        language: Language code ('en', 'de', 'es', 'fr')
-
-    Returns:
-        Localized value or English fallback, or None if neither exists
-
-    """
-    # Try localized field first (for non-English)
-    if language != "en":
-        localized_key = f"{field}_{language}"
-        if song.get(localized_key):
-            return song[localized_key]
-
-    # Fallback to base field (English)
-    return song.get(field)
 
 
 def get_playlist_directory(hass: HomeAssistant) -> Path:
@@ -233,7 +201,9 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
             if not dest_file.exists():
                 # New playlist - copy it
                 await loop.run_in_executor(None, _copy_file, playlist_file, dest_file)
-                _LOGGER.info("Copied bundled playlist %s (v%s)", playlist_file.name, bundled_ver)
+                _LOGGER.info(
+                    "Copied bundled playlist %s (v%s)", playlist_file.name, bundled_ver
+                )
             elif _compare_versions(bundled_ver, existing_ver) > 0:
                 # Bundled version is newer - update
                 await loop.run_in_executor(None, _copy_file, playlist_file, dest_file)
@@ -244,9 +214,13 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
                     bundled_ver,
                 )
             else:
-                _LOGGER.debug("Playlist %s is up to date (v%s)", playlist_file.name, existing_ver)
+                _LOGGER.debug(
+                    "Playlist %s is up to date (v%s)", playlist_file.name, existing_ver
+                )
         except Exception as err:  # noqa: BLE001
-            _LOGGER.warning("Failed to process playlist %s: %s", playlist_file.name, err)
+            _LOGGER.warning(
+                "Failed to process playlist %s: %s", playlist_file.name, err
+            )
 
 
 def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
@@ -327,7 +301,9 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
             if re.match(URI_PATTERN_TIDAL, uri_tidal):
                 has_valid_uri = True
             else:
-                errors.append(f"Song {i + 1}: 'uri_tidal' invalid (expected tidal://track/{{id}})")
+                errors.append(
+                    f"Song {i + 1}: 'uri_tidal' invalid (expected tidal://track/{{id}})"
+                )
 
         # Check 'uri_deezer' field
         uri_deezer = song.get("uri_deezer")
@@ -335,7 +311,9 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
             if re.match(URI_PATTERN_DEEZER, uri_deezer):
                 has_valid_uri = True
             else:
-                errors.append(f"Song {i + 1}: 'uri_deezer' invalid (expected deezer://track/{{id}})")
+                errors.append(
+                    f"Song {i + 1}: 'uri_deezer' invalid (expected deezer://track/{{id}})"
+                )
 
         # Error if no valid URI found
         if not has_valid_uri:
@@ -349,9 +327,13 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
             else:
                 for j, alt in enumerate(alt_artists):
                     if not isinstance(alt, str) or not alt.strip():
-                        errors.append(f"Song {i + 1}: 'alt_artists[{j}]' must be non-empty string")
+                        errors.append(
+                            f"Song {i + 1}: 'alt_artists[{j}]' must be non-empty string"
+                        )
                 # Log warning if fewer than 2 alternatives (weak challenge)
-                valid_alts = [a for a in alt_artists if isinstance(a, str) and a.strip()]
+                valid_alts = [
+                    a for a in alt_artists if isinstance(a, str) and a.strip()
+                ]
                 if len(valid_alts) < 2:
                     _LOGGER.debug(
                         "Song %d has only %d alt_artists (2 recommended)",
@@ -415,7 +397,9 @@ def filter_songs_for_provider(
             filtered.append(song)
         else:
             year = song.get("year", "unknown")
-            _LOGGER.warning("Skipping song (year %s) - no URI for provider '%s'", year, provider)
+            _LOGGER.warning(
+                "Skipping song (year %s) - no URI for provider '%s'", year, provider
+            )
             skipped += 1
 
     return (filtered, skipped)
@@ -444,7 +428,9 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
 
             # Count songs per provider (Story 17.1)
             songs = data.get("songs", [])
-            spotify_count = sum(1 for s in songs if s.get("uri") or s.get("uri_spotify"))
+            spotify_count = sum(
+                1 for s in songs if s.get("uri") or s.get("uri_spotify")
+            )
             apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
             youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
             tidal_count = sum(1 for s in songs if s.get("uri_tidal"))

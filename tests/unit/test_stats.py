@@ -18,7 +18,9 @@ def _make_mock_hass() -> MagicMock:
     """Create a mock HomeAssistant instance for StatsService."""
     mock_hass = MagicMock()
     mock_hass.config.path.return_value = "/tmp/test_beatify/stats.json"
-    mock_hass.async_add_executor_job = AsyncMock(side_effect=lambda fn, *args: fn(*args))
+    mock_hass.async_add_executor_job = AsyncMock(
+        side_effect=lambda fn, *args: fn(*args)
+    )
     return mock_hass
 
 
@@ -85,7 +87,7 @@ class TestRecordGame:
     @pytest.mark.asyncio
     async def test_records_game_entry(self):
         with patch.object(self.service, "save", new_callable=AsyncMock):
-            result = await self.service.record_game(_make_game_summary())
+            await self.service.record_game(_make_game_summary())
         assert len(self.service._stats["games"]) == 1
         game = self.service._stats["games"][0]
         assert game["playlist"] == "80s Hits"
@@ -147,7 +149,9 @@ class TestRecordGame:
         """First game sets a record, second higher game should flag is_new_record."""
         with patch.object(self.service, "save", new_callable=AsyncMock):
             await self.service.record_game(_make_game_summary(total_points=100))
-            result = await self.service.record_game(_make_game_summary(total_points=500))
+            result = await self.service.record_game(
+                _make_game_summary(total_points=500)
+            )
         assert result["is_new_record"] is True
 
     @pytest.mark.asyncio
@@ -242,13 +246,21 @@ class TestGetMotivationalMessage:
         assert msg["type"] == "above"
 
     def test_close_below_average(self):
-        comparison = {"is_first_game": False, "is_new_record": False, "difference": -2.0}
+        comparison = {
+            "is_first_game": False,
+            "is_new_record": False,
+            "difference": -2.0,
+        }
         msg = self.service.get_motivational_message(comparison)
         assert msg is not None
         assert msg["type"] == "close"
 
     def test_far_below_average_returns_none(self):
-        comparison = {"is_first_game": False, "is_new_record": False, "difference": -10.0}
+        comparison = {
+            "is_first_game": False,
+            "is_new_record": False,
+            "difference": -10.0,
+        }
         msg = self.service.get_motivational_message(comparison)
         assert msg is None
 
@@ -409,8 +421,19 @@ class TestComputeSongStats:
     def setup_method(self):
         self.service = _make_service()
 
-    def _add_song(self, key, title, artist, year, times_played, exact, close,
-                  total_guesses, total_years_off=0, playlists=None):
+    def _add_song(
+        self,
+        key,
+        title,
+        artist,
+        year,
+        times_played,
+        exact,
+        close,
+        total_guesses,
+        total_years_off=0,
+        playlists=None,
+    ):
         self.service._stats["songs"][key] = {
             "times_played": times_played,
             "correct_guesses": exact + close,
@@ -433,20 +456,24 @@ class TestComputeSongStats:
         assert result["by_playlist"] == []
 
     def test_most_played_identified(self):
-        self._add_song("s1", "Song A", "Artist A", 1980, 10, 5, 2, 10,
-                       playlists={"Rock": 10})
-        self._add_song("s2", "Song B", "Artist B", 1990, 3, 2, 1, 5,
-                       playlists={"Rock": 3})
+        self._add_song(
+            "s1", "Song A", "Artist A", 1980, 10, 5, 2, 10, playlists={"Rock": 10}
+        )
+        self._add_song(
+            "s2", "Song B", "Artist B", 1990, 3, 2, 1, 5, playlists={"Rock": 3}
+        )
         result = self.service.compute_song_stats()
         assert result["most_played"]["title"] == "Song A"
 
     def test_hardest_and_easiest(self):
         # Easy song: high accuracy
-        self._add_song("s1", "Easy Song", "Artist", 2000, 5, 8, 1, 10,
-                       playlists={"Pop": 5})
+        self._add_song(
+            "s1", "Easy Song", "Artist", 2000, 5, 8, 1, 10, playlists={"Pop": 5}
+        )
         # Hard song: low accuracy
-        self._add_song("s2", "Hard Song", "Artist", 2010, 5, 0, 1, 10,
-                       playlists={"Pop": 5})
+        self._add_song(
+            "s2", "Hard Song", "Artist", 2010, 5, 0, 1, 10, playlists={"Pop": 5}
+        )
         result = self.service.compute_song_stats()
         assert result["easiest"]["title"] == "Easy Song"
         assert result["hardest"]["title"] == "Hard Song"
@@ -470,16 +497,34 @@ class TestComputeSongStats:
         assert result["most_played"] is None
 
     def test_by_playlist_data(self):
-        self._add_song("s1", "Song A", "Artist A", 1980, 5, 3, 1, 5,
-                       playlists={"Rock": 3, "Pop": 2})
+        self._add_song(
+            "s1",
+            "Song A",
+            "Artist A",
+            1980,
+            5,
+            3,
+            1,
+            5,
+            playlists={"Rock": 3, "Pop": 2},
+        )
         result = self.service.compute_song_stats()
         names = [p["playlist_name"] for p in result["by_playlist"]]
         assert "Rock" in names
         assert "Pop" in names
 
     def test_playlist_filter(self):
-        self._add_song("s1", "Song A", "Artist A", 1980, 5, 3, 1, 5,
-                       playlists={"Rock": 3, "Pop": 2})
+        self._add_song(
+            "s1",
+            "Song A",
+            "Artist A",
+            1980,
+            5,
+            3,
+            1,
+            5,
+            playlists={"Rock": 3, "Pop": 2},
+        )
         result = self.service.compute_song_stats(playlist_filter="rock")
         assert len(result["by_playlist"]) == 1
         assert result["by_playlist"][0]["playlist_name"] == "Rock"

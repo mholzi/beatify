@@ -123,24 +123,34 @@ class TestAddGame:
 
     @pytest.mark.asyncio
     async def test_triggers_prune_at_interval(self):
-        with patch.object(self.storage, "schedule_save"), \
-             patch.object(self.storage, "_prune_old_records", new_callable=AsyncMock) as mock_prune:
+        with (
+            patch.object(self.storage, "schedule_save"),
+            patch.object(
+                self.storage, "_prune_old_records", new_callable=AsyncMock
+            ) as mock_prune,
+        ):
             for i in range(PRUNE_INTERVAL):
                 await self.storage.add_game(_make_game_record(game_id=f"game-{i}"))
         mock_prune.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_resets_prune_counter_after_prune(self):
-        with patch.object(self.storage, "schedule_save"), \
-             patch.object(self.storage, "_prune_old_records", new_callable=AsyncMock):
+        with (
+            patch.object(self.storage, "schedule_save"),
+            patch.object(self.storage, "_prune_old_records", new_callable=AsyncMock),
+        ):
             for i in range(PRUNE_INTERVAL):
                 await self.storage.add_game(_make_game_record(game_id=f"game-{i}"))
         assert self.storage._games_since_prune == 0
 
     @pytest.mark.asyncio
     async def test_no_prune_before_interval(self):
-        with patch.object(self.storage, "schedule_save"), \
-             patch.object(self.storage, "_prune_old_records", new_callable=AsyncMock) as mock_prune:
+        with (
+            patch.object(self.storage, "schedule_save"),
+            patch.object(
+                self.storage, "_prune_old_records", new_callable=AsyncMock
+            ) as mock_prune,
+        ):
             for i in range(PRUNE_INTERVAL - 1):
                 await self.storage.add_game(_make_game_record(game_id=f"game-{i}"))
         mock_prune.assert_not_called()
@@ -299,20 +309,24 @@ class TestPruneOldData:
         games = []
         # 100 old games
         for i in range(100):
-            games.append(_make_game_record(
-                game_id=f"old-{i}",
-                ended_at=old_ts + i,
-                player_count=3,
-                rounds_played=5,
-                error_count=1,
-            ))
+            games.append(
+                _make_game_record(
+                    game_id=f"old-{i}",
+                    ended_at=old_ts + i,
+                    player_count=3,
+                    rounds_played=5,
+                    error_count=1,
+                )
+            )
         # Fill up to exceed limit with recent games
         recent_ts = now - 3600
         for i in range(MAX_DETAILED_RECORDS + 1):
-            games.append(_make_game_record(
-                game_id=f"recent-{i}",
-                ended_at=recent_ts,
-            ))
+            games.append(
+                _make_game_record(
+                    game_id=f"recent-{i}",
+                    ended_at=recent_ts,
+                )
+            )
         self.storage._data["games"] = games
 
         await self.storage._prune_old_records()
@@ -337,10 +351,12 @@ class TestPruneOldData:
         # Need games to exceed limit to trigger pruning logic
         games = []
         for i in range(MAX_DETAILED_RECORDS + 10):
-            games.append(_make_game_record(
-                game_id=f"g-{i}",
-                ended_at=old_ts if i < 10 else now - 100,
-            ))
+            games.append(
+                _make_game_record(
+                    game_id=f"g-{i}",
+                    ended_at=old_ts if i < 10 else now - 100,
+                )
+            )
         self.storage._data["games"] = games
 
         await self.storage._prune_old_records()
@@ -358,7 +374,9 @@ class TestPruneOldData:
 class TestComputeMetrics:
     def setup_method(self):
         self.hass = _mock_hass()
-        self.hass.config.path.side_effect = lambda *parts: "/tmp/test_beatify/" + "/".join(parts)
+        self.hass.config.path.side_effect = lambda *parts: (
+            "/tmp/test_beatify/" + "/".join(parts)
+        )
         self.storage = AnalyticsStorage(self.hass)
         self.now = int(time.time())
 
@@ -394,7 +412,7 @@ class TestComputeMetrics:
         assert metrics["avg_score"] == 80.0
 
     def test_period_7d_filters_correctly(self):
-        self._add_recent_games(count=3, days_ago=2)   # within 7d
+        self._add_recent_games(count=3, days_ago=2)  # within 7d
         self._add_recent_games(count=2, days_ago=10)  # outside 7d
         metrics = self.storage.compute_metrics("7d")
         assert metrics["total_games"] == 3
@@ -424,10 +442,20 @@ class TestComputeMetrics:
         self._add_recent_games(count=1)
         metrics = self.storage.compute_metrics("30d")
         expected_keys = {
-            "period", "total_games", "avg_players_per_game", "avg_score",
-            "error_rate", "peak_players", "avg_rounds", "streak_stats",
-            "bet_stats", "trends", "playlists", "chart_data",
-            "error_stats", "generated_at",
+            "period",
+            "total_games",
+            "avg_players_per_game",
+            "avg_score",
+            "error_rate",
+            "peak_players",
+            "avg_rounds",
+            "streak_stats",
+            "bet_stats",
+            "trends",
+            "playlists",
+            "chart_data",
+            "error_stats",
+            "generated_at",
         }
         assert expected_keys.issubset(set(metrics.keys()))
 
@@ -460,8 +488,12 @@ class TestComputeStreakStats:
     def test_aggregates_streak_counts(self):
         ts = self.now - 3600
         self.storage._data["games"] = [
-            _make_game_record(ended_at=ts, streak_3_count=2, streak_5_count=1, streak_10_count=0),
-            _make_game_record(ended_at=ts + 1, streak_3_count=3, streak_5_count=0, streak_10_count=1),
+            _make_game_record(
+                ended_at=ts, streak_3_count=2, streak_5_count=1, streak_10_count=0
+            ),
+            _make_game_record(
+                ended_at=ts + 1, streak_3_count=3, streak_5_count=0, streak_10_count=1
+            ),
         ]
         stats = self.storage.compute_streak_stats("30d")
         assert stats["streak_3_count"] == 5
@@ -526,12 +558,6 @@ class TestTotalProperties:
         ]
         assert self.storage.total_games == 21
 
-    def test_total_errors(self):
-        with patch.object(self.storage, "schedule_save"):
-            self.storage.record_error("ERR", "a")
-            self.storage.record_error("ERR", "b")
-        assert self.storage.total_errors == 2
-
 
 # ---------------------------------------------------------------------------
 # TestPlaylistStats
@@ -541,7 +567,9 @@ class TestTotalProperties:
 class TestPlaylistStats:
     def setup_method(self):
         self.hass = _mock_hass()
-        self.hass.config.path.side_effect = lambda *parts: "/tmp/test_beatify/" + "/".join(parts)
+        self.hass.config.path.side_effect = lambda *parts: (
+            "/tmp/test_beatify/" + "/".join(parts)
+        )
         self.storage = AnalyticsStorage(self.hass)
 
     def test_empty_games(self):
@@ -561,8 +589,6 @@ class TestPlaylistStats:
         assert pop["play_count"] == 2
 
     def test_top_5_limit(self):
-        games = [
-            _make_game_record(playlist_names=[f"playlist-{i}"]) for i in range(10)
-        ]
+        games = [_make_game_record(playlist_names=[f"playlist-{i}"]) for i in range(10)]
         result = self.storage.compute_playlist_stats(games)
         assert len(result) <= 5

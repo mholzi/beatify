@@ -7,11 +7,9 @@ import pytest
 from custom_components.beatify.game.scoring import (
     apply_bet_multiplier,
     calculate_accuracy_score,
-    calculate_artist_score,
     calculate_round_score,
     calculate_speed_multiplier,
     calculate_streak_bonus,
-    calculate_years_off_text,
 )
 
 
@@ -219,73 +217,3 @@ class TestStreakBonus:
     )
     def test_milestones(self, streak, expected):
         assert calculate_streak_bonus(streak) == expected
-
-
-# ---------------------------------------------------------------------------
-# calculate_years_off_text
-# ---------------------------------------------------------------------------
-
-
-class TestYearsOffText:
-    def test_exact(self):
-        assert calculate_years_off_text(0) == "Exact!"
-
-    def test_one_year(self):
-        assert calculate_years_off_text(1) == "1 year off"
-
-    def test_multiple_years(self):
-        assert calculate_years_off_text(5) == "5 years off"
-        assert calculate_years_off_text(30) == "30 years off"
-
-
-# ---------------------------------------------------------------------------
-# calculate_artist_score
-# ---------------------------------------------------------------------------
-
-
-class TestArtistScore:
-    def test_exact_match(self):
-        points, match_type = calculate_artist_score("The Beatles", "The Beatles")
-        assert points == 10
-        assert match_type == "exact"
-
-    def test_exact_match_case_insensitive(self):
-        points, match_type = calculate_artist_score("the beatles", "The Beatles")
-        assert points == 10
-        assert match_type == "exact"
-
-    def test_exact_match_with_whitespace(self):
-        points, match_type = calculate_artist_score("  The Beatles  ", "The Beatles")
-        assert points == 10
-        assert match_type == "exact"
-
-    def test_partial_match_substring(self):
-        points, match_type = calculate_artist_score("Beatles", "The Beatles")
-        assert points == 5
-        assert match_type == "partial"
-
-    def test_partial_match_reverse(self):
-        # actual in guess
-        points, match_type = calculate_artist_score("The Beatles Rock", "The Beatles")
-        assert points == 5
-        assert match_type == "partial"
-
-    def test_no_match(self):
-        points, match_type = calculate_artist_score("Rolling Stones", "The Beatles")
-        assert points == 0
-        assert match_type is None
-
-    def test_empty_guess(self):
-        points, match_type = calculate_artist_score("", "The Beatles")
-        assert points == 0
-        assert match_type is None
-
-    def test_none_guess(self):
-        points, match_type = calculate_artist_score(None, "The Beatles")
-        assert points == 0
-        assert match_type is None
-
-    def test_whitespace_only_guess(self):
-        points, match_type = calculate_artist_score("   ", "The Beatles")
-        assert points == 0
-        assert match_type is None

@@ -36,10 +36,6 @@ from custom_components.beatify.const import (
 POINTS_EXACT = 10
 POINTS_WRONG = 0
 
-# Artist scoring constants (Story 10.1)
-POINTS_ARTIST_EXACT = 10
-POINTS_ARTIST_PARTIAL = 5
-
 
 def calculate_accuracy_score(
     guess: int,
@@ -188,59 +184,6 @@ def calculate_streak_bonus(streak: int) -> int:
     return STREAK_MILESTONES.get(streak, 0)
 
 
-def calculate_years_off_text(diff: int) -> str:
-    """
-    Get human-readable text for years difference.
-
-    Args:
-        diff: Absolute difference between guess and actual
-
-    Returns:
-        Text like "Exact!", "2 years off", etc.
-
-    """
-    if diff == 0:
-        return "Exact!"
-    if diff == 1:
-        return "1 year off"
-    return f"{diff} years off"
-
-
-def calculate_artist_score(guess: str | None, actual: str) -> tuple[int, str | None]:
-    """
-    Calculate artist guess score (Story 10.1).
-
-    Matching rules (case-insensitive, whitespace-trimmed):
-    - Exact match: 10 points
-    - Partial match (substring): 5 points
-    - No match: 0 points
-
-    Args:
-        guess: Player's guessed artist name (can be None or empty)
-        actual: Correct artist name from song metadata
-
-    Returns:
-        Tuple of (points, match_type)
-        match_type is "exact", "partial", or None
-
-    """
-    if not guess or not guess.strip():
-        return 0, None
-
-    guess_clean = guess.strip().lower()
-    actual_clean = actual.strip().lower()
-
-    # Exact match (case-insensitive)
-    if guess_clean == actual_clean:
-        return POINTS_ARTIST_EXACT, "exact"
-
-    # Partial match (substring in either direction)
-    if guess_clean in actual_clean or actual_clean in guess_clean:
-        return POINTS_ARTIST_PARTIAL, "partial"
-
-    return 0, None
-
-
 if TYPE_CHECKING:
     from .player import PlayerSession
 
@@ -348,21 +291,39 @@ def _update_bet_tracking(
 # ---------------------------------------------------------------------------
 
 
-def _award(id_: str, emoji: str, player_name: str, value: Any, value_label: str) -> dict[str, Any]:
+def _award(
+    id_: str, emoji: str, player_name: str, value: Any, value_label: str
+) -> dict[str, Any]:
     """Build a superlative award dict."""
-    return {"id": id_, "emoji": emoji, "title": id_, "player_name": player_name, "value": value, "value_label": value_label}
+    return {
+        "id": id_,
+        "emoji": emoji,
+        "title": id_,
+        "player_name": player_name,
+        "value": value,
+        "value_label": value_label,
+    }
 
 
 def _superlative_speed_demon(players: list[PlayerSession]) -> dict[str, Any] | None:
-    candidates = [(p, p.avg_submission_time) for p in players if p.avg_submission_time is not None and len(p.submission_times) >= MIN_SUBMISSIONS_FOR_SPEED]
+    candidates = [
+        (p, p.avg_submission_time)
+        for p in players
+        if p.avg_submission_time is not None
+        and len(p.submission_times) >= MIN_SUBMISSIONS_FOR_SPEED
+    ]
     if not candidates:
         return None
     fastest = min(candidates, key=lambda x: x[1])
-    return _award("speed_demon", "⚡", fastest[0].name, round(fastest[1], 1), "avg_time")
+    return _award(
+        "speed_demon", "⚡", fastest[0].name, round(fastest[1], 1), "avg_time"
+    )
 
 
 def _superlative_lucky_streak(players: list[PlayerSession]) -> dict[str, Any] | None:
-    candidates = [(p, p.best_streak) for p in players if p.best_streak >= MIN_STREAK_FOR_AWARD]
+    candidates = [
+        (p, p.best_streak) for p in players if p.best_streak >= MIN_STREAK_FOR_AWARD
+    ]
     if not candidates:
         return None
     best = max(candidates, key=lambda x: x[1])
@@ -370,14 +331,18 @@ def _superlative_lucky_streak(players: list[PlayerSession]) -> dict[str, Any] | 
 
 
 def _superlative_risk_taker(players: list[PlayerSession]) -> dict[str, Any] | None:
-    candidates = [(p, p.bets_placed) for p in players if p.bets_placed >= MIN_BETS_FOR_AWARD]
+    candidates = [
+        (p, p.bets_placed) for p in players if p.bets_placed >= MIN_BETS_FOR_AWARD
+    ]
     if not candidates:
         return None
     most = max(candidates, key=lambda x: x[1])
     return _award("risk_taker", "🎲", most[0].name, most[1], "bets")
 
 
-def _superlative_clutch_player(players: list[PlayerSession], rounds_played: int) -> dict[str, Any] | None:
+def _superlative_clutch_player(
+    players: list[PlayerSession], rounds_played: int
+) -> dict[str, Any] | None:
     if rounds_played < MIN_ROUNDS_FOR_CLUTCH:
         return None
     candidates = [
@@ -394,7 +359,9 @@ def _superlative_clutch_player(players: list[PlayerSession], rounds_played: int)
 
 
 def _superlative_close_calls(players: list[PlayerSession]) -> dict[str, Any] | None:
-    candidates = [(p, p.close_calls) for p in players if p.close_calls >= MIN_CLOSE_CALLS]
+    candidates = [
+        (p, p.close_calls) for p in players if p.close_calls >= MIN_CLOSE_CALLS
+    ]
     if not candidates:
         return None
     closest = max(candidates, key=lambda x: x[1])
@@ -422,10 +389,14 @@ def _superlative_intro_master(players: list[PlayerSession]) -> dict[str, Any] | 
     if not candidates:
         return None
     intro_master = max(candidates, key=lambda x: x[1])
-    return _award("intro_master", "🎧", intro_master[0].name, intro_master[1], "intro_bonuses")
+    return _award(
+        "intro_master", "🎧", intro_master[0].name, intro_master[1], "intro_bonuses"
+    )
 
 
-def _superlative_comeback_king(players: list[PlayerSession], rounds_played: int) -> dict[str, Any] | None:
+def _superlative_comeback_king(
+    players: list[PlayerSession], rounds_played: int
+) -> dict[str, Any] | None:
     if rounds_played < MIN_ROUNDS_FOR_COMEBACK:
         return None
     candidates = []
@@ -496,7 +467,11 @@ class ScoringService:
 
         all_guesses = sorted(
             [
-                {"name": p.name, "guess": p.current_guess, "years_off": p.years_off or 0}
+                {
+                    "name": p.name,
+                    "guess": p.current_guess,
+                    "years_off": p.years_off or 0,
+                }
                 for p in submitted
             ],
             key=lambda x: x["years_off"],
@@ -514,7 +489,9 @@ class ScoringService:
 
         speed_champion = None
         timed = [
-            p for p in submitted if p.submission_time is not None and round_start_time is not None
+            p
+            for p in submitted
+            if p.submission_time is not None and round_start_time is not None
         ]
         if timed:
             elapsed = [(p, p.submission_time - round_start_time) for p in timed]
@@ -568,12 +545,20 @@ class ScoringService:
                 if player.submission_time is not None and round_start_time is not None
                 else round_duration
             )
-            speed_score, player.base_score, player.speed_multiplier = calculate_round_score(
-                player.current_guess, correct_year, elapsed, round_duration, difficulty
+            speed_score, player.base_score, player.speed_multiplier = (
+                calculate_round_score(
+                    player.current_guess,
+                    correct_year,
+                    elapsed,
+                    round_duration,
+                    difficulty,
+                )
             )
             player.years_off = abs(player.current_guess - correct_year)
             player.missed_round = False
-            player.round_score, player.bet_outcome = apply_bet_multiplier(speed_score, player.bet)
+            player.round_score, player.bet_outcome = apply_bet_multiplier(
+                speed_score, player.bet
+            )
 
             _apply_streak(player, speed_score, streak_achievements)
             _score_artist_challenge(player, artist_challenge)
@@ -597,7 +582,9 @@ class ScoringService:
             if player.bet_outcome == "won":
                 player.bets_won += 1
             if player.submission_time is not None and round_start_time is not None:
-                player.submission_times.append(player.submission_time - round_start_time)
+                player.submission_times.append(
+                    player.submission_time - round_start_time
+                )
             _update_bet_tracking(player, bet_tracking)
             if player.years_off == 1:
                 player.close_calls += 1
