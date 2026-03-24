@@ -35,6 +35,7 @@ from custom_components.beatify.const import (
     YEAR_MIN,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.server.serializers import build_state_message, get_game_state
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -144,7 +145,7 @@ class BeatifyWebSocketHandler:
 
         """
         msg_type = data.get("type")
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
+        game_state = get_game_state(self.hass)
 
         if not game_state or not game_state.game_id:
             await ws.send_json(
@@ -232,7 +233,9 @@ class BeatifyWebSocketHandler:
                     )
 
                 # Send full state to newly joined player
-                state_msg = {"type": "state", **game_state.get_state()}
+                state_msg = build_state_message(game_state)
+                if not state_msg:
+                    return
                 try:
                     await ws.send_json(state_msg)
                 except Exception as err:  # noqa: BLE001
@@ -591,9 +594,9 @@ class BeatifyWebSocketHandler:
 
         elif msg_type == "get_state":
             # Dashboard/observer requesting current state (Story 10.4)
-            state = game_state.get_state()
-            if state:
-                await ws.send_json({"type": "state", **state})
+            state_msg = build_state_message(game_state)
+            if state_msg:
+                await ws.send_json(state_msg)
 
         elif msg_type == "get_steal_targets":
             # Request available steal targets (Story 15.3 AC2, AC5)
@@ -841,8 +844,9 @@ class BeatifyWebSocketHandler:
         )
 
         # Send current state to reconnected player
-        state_msg = {"type": "state", **game_state.get_state()}
-        await ws.send_json(state_msg)
+        state_msg = build_state_message(game_state)
+        if state_msg:
+            await ws.send_json(state_msg)
 
         # Broadcast updated state to all players (connected status changed)
         await self.broadcast_state()
@@ -1281,19 +1285,18 @@ class BeatifyWebSocketHandler:
 
     async def broadcast_state(self) -> None:
         """Broadcast current game state to all connected players."""
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
+        game_state = get_game_state(self.hass)
         if not game_state:
             _LOGGER.warning("broadcast_state: No game state found in hass.data")
             return
 
-        state = game_state.get_state()
-        if state:
+        state_msg = build_state_message(game_state)
+        if state_msg:
             _LOGGER.debug(
                 "broadcast_state: phase=%s, connections=%d",
-                state.get("phase"),
+                state_msg.get("phase"),
                 len(self.connections),
             )
-            state_msg = {"type": "state", **state}
             await self.broadcast(state_msg)
         else:
             _LOGGER.debug(
@@ -1326,7 +1329,7 @@ class BeatifyWebSocketHandler:
             ws: Disconnected WebSocket
 
         """
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
+        game_state = get_game_state(self.hass)
         if not game_state:
             return
 
