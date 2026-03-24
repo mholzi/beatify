@@ -1491,9 +1491,18 @@ class GameState:
 
         # Play song via media player
         if self._media_player_service:
-            # Pre-flight check: verify speaker is responsive before playing
-            # Skip for MA players since they use music_assistant.play_media service
-            # which handles speaker state differently
+            # Pre-flight check: verify speaker is available before playing
+            if not self._media_player_service.is_available():
+                self.last_error_detail = f"Media player {self.media_player} is unavailable"
+                _LOGGER.error(
+                    "Media player %s is not available, pausing game",
+                    self.media_player,
+                )
+                await self.pause_game("media_player_error")
+                return False
+
+            # Additional responsiveness check for non-MA players
+            # (MA handles speaker state via its own service)
             if self.platform != "music_assistant":
                 (
                     responsive,

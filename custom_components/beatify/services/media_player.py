@@ -218,21 +218,65 @@ class MediaPlayerService:
         return uri
 
     async def _play_via_music_assistant(self, song: dict[str, Any]) -> bool:
-        """Play via Music Assistant (URI-based)."""
+        """Play via Music Assistant (non-blocking + wait for actual playback)."""
         raw_uri = song.get("_resolved_uri")
         uri = self._convert_uri_for_ma(raw_uri)
         if uri != raw_uri:
             _LOGGER.debug("MA URI converted: %s → %s", raw_uri, uri)
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
-        async with asyncio.timeout(PLAYBACK_TIMEOUT):
-            await self._hass.services.async_call(
-                "music_assistant",
-                "play_media",
-                {"media_id": uri, "media_type": "track"},
-                target={"entity_id": self._entity_id},
-                blocking=True,
-            )
+        # Capture state before to detect actual song change on speaker
+        state_before = self._hass.states.get(self._entity_id)
+        title_before = state_before.attributes.get("media_title") if state_before else None
+        position_updated_before = (
+            state_before.attributes.get("media_position_updated_at")
+            if state_before else None
+        )
+
+        # Fire-and-forget the service call — blocking=True hangs on MA+YTMusic
+        await self._hass.services.async_call(
+            "music_assistant",
+            "play_media",
+            {"media_id": uri, "media_type": "track"},
+            target={"entity_id": self._entity_id},
+            blocking=False,
+        )
+
+        # Wait for the song to actually play on the speaker:
+        # - media_title changed (new song queued)
+        # - media_position is low (< 5s = song just started, not leftover from old song)
+        # - media_position_updated_at changed (speaker is actively reporting)
+        elapsed = 0.0
+        while elapsed < PLAYBACK_TIMEOUT:
+            state = self._hass.states.get(self._entity_id)
+            if state and state.state == "playing":
+                current_title = state.attributes.get("media_title", "")
+                position = state.attributes.get("media_position", 0)
+                position_updated = state.attributes.get("media_position_updated_at")
+
+                title_changed = current_title and current_title != title_before
+                position_fresh = position_updated != position_updated_before
+                # position >= 1 means speaker is actually outputting audio
+                # position == 0 only means "queued" in MA, not yet playing
+                actually_playing = isinstance(position, (int, float)) and position >= 1
+
+                if title_changed and position_fresh and actually_playing:
+                    _LOGGER.debug(
+                        "MA playback confirmed after %.1fs: %s (pos=%.1f)",
+                        elapsed, current_title, position,
+                    )
+                    return True
+            await asyncio.sleep(0.5)
+            elapsed += 0.5
+
+        current_state = self._hass.states.get(self._entity_id)
+        _LOGGER.warning(
+            "MA playback not confirmed after %.1fs for %s (state: %s)",
+            PLAYBACK_TIMEOUT,
+            uri,
+            current_state.state if current_state else "unknown",
+        )
+        # Return True anyway — MA might still be buffering, don't skip the song
         return True
 
     async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
