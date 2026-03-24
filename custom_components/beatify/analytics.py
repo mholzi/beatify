@@ -166,7 +166,13 @@ class AnalyticsStorage:
 
         Uses fire-and-forget pattern to avoid blocking game operations.
         """
-        asyncio.create_task(self._save())
+        task = asyncio.create_task(self._save())
+        task.add_done_callback(self._handle_save_error)
+
+    def _handle_save_error(self, task: asyncio.Task) -> None:
+        """Log exceptions from fire-and-forget save tasks."""
+        if (exc := task.exception()) is not None:
+            _LOGGER.error("Unhandled error in analytics save task: %s", exc)
 
     async def add_game(self, record: GameRecord) -> None:
         """
