@@ -1861,7 +1861,7 @@ class GameState:
             if player.previous_rank is not None:
                 # Calculate current rank
                 sorted_players = sorted(
-                    self.players.values(), key=lambda p: p.score, reverse=True
+                    self.players.values(), key=lambda p: (-p.score, p.name)
                 )
                 current_rank = next(
                     (
