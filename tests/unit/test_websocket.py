@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
-
-import pytest
+from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import (
     DOMAIN,
@@ -25,7 +23,12 @@ from custom_components.beatify.const import (
     YEAR_MAX,
     YEAR_MIN,
 )
-from custom_components.beatify.game.state import ArtistChallenge, GamePhase, GameState, MovieChallenge
+from custom_components.beatify.game.state import (
+    ArtistChallenge,
+    GamePhase,
+    GameState,
+    MovieChallenge,
+)
 from custom_components.beatify.server.websocket import BeatifyWebSocketHandler
 from tests.conftest import make_game_state, make_songs
 
@@ -35,7 +38,9 @@ from tests.conftest import make_game_state, make_songs
 # ---------------------------------------------------------------------------
 
 
-def _make_handler_and_game(**game_kwargs) -> tuple[BeatifyWebSocketHandler, GameState, AsyncMock]:
+def _make_handler_and_game(
+    **game_kwargs,
+) -> tuple[BeatifyWebSocketHandler, GameState, AsyncMock]:
     """Create a handler with a real GameState and a mock WebSocket."""
     mock_hass = MagicMock()
     game_state = make_game_state()
@@ -125,7 +130,9 @@ class TestJoin:
         await handler._handle_message(ws, {"type": "join", "name": "Alice"})
 
         join_ack = next(
-            c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "join_ack"
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "join_ack"
         )
         assert "session_id" in join_ack
         assert "game_id" in join_ack
@@ -176,7 +183,9 @@ class TestJoin:
     async def test_admin_join_sets_admin(self):
         handler, game_state, ws = _make_handler_and_game()
 
-        await handler._handle_message(ws, {"type": "join", "name": "Host", "is_admin": True})
+        await handler._handle_message(
+            ws, {"type": "join", "name": "Host", "is_admin": True}
+        )
 
         assert "Host" in game_state.players
         assert game_state.players["Host"].is_admin is True
@@ -188,7 +197,9 @@ class TestJoin:
         game_state.set_admin("Host")
 
         ws2 = _make_ws()
-        await handler._handle_message(ws2, {"type": "join", "name": "Intruder", "is_admin": True})
+        await handler._handle_message(
+            ws2, {"type": "join", "name": "Intruder", "is_admin": True}
+        )
 
         msg = ws2.send_json.call_args[0][0]
         assert msg["type"] == "error"
@@ -211,7 +222,9 @@ class TestJoin:
         game_state.deadline = int(game_state._now() * 1000) + 60_000
 
         new_ws = _make_ws()
-        await handler._handle_message(new_ws, {"type": "join", "name": "Host", "is_admin": True})
+        await handler._handle_message(
+            new_ws, {"type": "join", "name": "Host", "is_admin": True}
+        )
 
         # Game should be resumed
         assert game_state.phase == GamePhase.PLAYING
@@ -239,7 +252,9 @@ class TestSubmit:
         assert game_state.players["Alice"].current_guess == 1985
         # Should receive submit_ack
         ack = next(
-            c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "submit_ack"
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "submit_ack"
         )
         assert ack["year"] == 1985
 
@@ -353,7 +368,9 @@ class TestReconnect:
         game_state.players["Alice"].connected = False
 
         new_ws = _make_ws()
-        await handler._handle_message(new_ws, {"type": "reconnect", "session_id": session_id})
+        await handler._handle_message(
+            new_ws, {"type": "reconnect", "session_id": session_id}
+        )
 
         # Should receive reconnect_ack and state
         types = [c[0][0]["type"] for c in new_ws.send_json.call_args_list]
@@ -387,7 +404,9 @@ class TestReconnect:
         game_state.phase = GamePhase.END
 
         new_ws = _make_ws()
-        await handler._handle_message(new_ws, {"type": "reconnect", "session_id": session_id})
+        await handler._handle_message(
+            new_ws, {"type": "reconnect", "session_id": session_id}
+        )
 
         msg = new_ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
@@ -478,7 +497,9 @@ class TestSteal:
         await handler._handle_message(ws, {"type": "steal", "target": "Bob"})
 
         ack = next(
-            c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "steal_ack"
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "steal_ack"
         )
         assert ack["success"] is True
         assert ack["year"] == 1990
@@ -494,7 +515,9 @@ class TestArtistGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.phase = GamePhase.REVEAL
 
-        await handler._handle_message(ws, {"type": "artist_guess", "artist": "The Beatles"})
+        await handler._handle_message(
+            ws, {"type": "artist_guess", "artist": "The Beatles"}
+        )
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
@@ -504,7 +527,9 @@ class TestArtistGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.phase = GamePhase.PLAYING
 
-        await handler._handle_message(ws, {"type": "artist_guess", "artist": "The Beatles"})
+        await handler._handle_message(
+            ws, {"type": "artist_guess", "artist": "The Beatles"}
+        )
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
@@ -516,7 +541,9 @@ class TestArtistGuess:
         game_state.phase = GamePhase.PLAYING
         game_state.artist_challenge = None
 
-        await handler._handle_message(ws, {"type": "artist_guess", "artist": "The Beatles"})
+        await handler._handle_message(
+            ws, {"type": "artist_guess", "artist": "The Beatles"}
+        )
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
@@ -551,10 +578,14 @@ class TestArtistGuess:
             return_value={"correct": True, "first": True, "winner": "Alice"}
         )
 
-        await handler._handle_message(ws, {"type": "artist_guess", "artist": "Artist 0"})
+        await handler._handle_message(
+            ws, {"type": "artist_guess", "artist": "Artist 0"}
+        )
 
         ack = next(
-            c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "artist_guess_ack"
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "artist_guess_ack"
         )
         assert ack["correct"] is True
         assert ack["first"] is True
@@ -633,7 +664,9 @@ class TestMovieGuess:
         await handler._handle_message(ws, {"type": "movie_guess", "movie": "Grease"})
 
         ack = next(
-            c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "movie_guess_ack"
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "movie_guess_ack"
         )
         assert ack["correct"] is True
         assert ack["rank"] == 1

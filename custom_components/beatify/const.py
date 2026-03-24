@@ -38,8 +38,6 @@ MIN_INTRO_BONUSES_FOR_AWARD = 1  # Minimum to qualify for superlative
 
 # Steal power-up constants (Story 15.3)
 STEAL_UNLOCK_STREAK = 3  # Consecutive correct answers to unlock steal
-MAX_STEALS_PER_GAME = 1  # Maximum number of steals allowed per game
-
 # Difficulty presets (Story 14.1)
 DIFFICULTY_EASY = "easy"
 DIFFICULTY_NORMAL = "normal"
@@ -90,7 +88,9 @@ ERR_SESSION_NOT_FOUND = "SESSION_NOT_FOUND"  # Story 11.2
 ERR_SESSION_TAKEOVER = "SESSION_TAKEOVER"  # Story 11.2 - dual-tab scenario
 ERR_ADMIN_CANNOT_LEAVE = "ADMIN_CANNOT_LEAVE"  # Story 11.5
 ERR_NO_STEAL_AVAILABLE = "NO_STEAL_AVAILABLE"  # Story 15.3 - player has no steal
-ERR_TARGET_NOT_SUBMITTED = "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
+ERR_TARGET_NOT_SUBMITTED = (
+    "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
+)
 ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
 ERR_NO_ARTIST_CHALLENGE = "NO_ARTIST_CHALLENGE"  # Story 20.3 - no artist challenge
 ERR_NO_MOVIE_CHALLENGE = "NO_MOVIE_CHALLENGE"  # Issue #28 - no movie quiz this round
@@ -113,9 +113,13 @@ MIN_STREAK_FOR_AWARD = 3  # Minimum streak to qualify for Lucky Streak
 MIN_BETS_FOR_AWARD = 3  # Minimum bets placed to qualify for Risk Taker
 MIN_ROUNDS_FOR_CLUTCH = 3  # Minimum rounds played for Clutch Player
 MIN_CLOSE_CALLS = 2  # Minimum close guesses to qualify for Close Calls
-MIN_MOVIE_WINS_FOR_AWARD = 1  # Minimum movie quiz bonus points for Film Buff (Issue #28)
+MIN_MOVIE_WINS_FOR_AWARD = (
+    1  # Minimum movie quiz bonus points for Film Buff (Issue #28)
+)
 MIN_ROUNDS_FOR_COMEBACK = 6  # Minimum rounds played for Comeback King (Issue #143)
-MIN_COMEBACK_IMPROVEMENT = 2.0  # Minimum avg score improvement for Comeback King (Issue #143)
+MIN_COMEBACK_IMPROVEMENT = (
+    2.0  # Minimum avg score improvement for Comeback King (Issue #143)
+)
 MAX_SUPERLATIVES = 6  # Maximum number of superlatives to display
 
 # External URLs
@@ -125,13 +129,11 @@ MEDIA_PLAYER_DOCS_URL = "https://www.home-assistant.io/integrations/#media-playe
 # Playlist configuration
 PLAYLIST_DIR = "beatify/playlists"
 
-# Supported platforms for media playback routing
-# See services/media_player.py PLATFORM_CAPABILITIES for full capability matrix
-SUPPORTED_PLATFORMS = ("music_assistant", "sonos", "alexa_media")
-
 # Multi-provider URI patterns (Story 17.1)
 URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"
-URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"  # Preserved for playlist validation
+URI_PATTERN_APPLE_MUSIC = (
+    r"^applemusic://track/\d+$"  # Preserved for playlist validation
+)
 URI_PATTERN_YOUTUBE_MUSIC = r"^https://music\.youtube\.com/watch\?v=[a-zA-Z0-9_-]{11}$"
 URI_PATTERN_TIDAL = r"^tidal://track/\d+$"
 URI_PATTERN_DEEZER = r"^deezer://track/\d+$"
