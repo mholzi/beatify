@@ -374,8 +374,8 @@ class TestPruneOldData:
 class TestComputeMetrics:
     def setup_method(self):
         self.hass = _mock_hass()
-        self.hass.config.path.side_effect = (
-            lambda *parts: "/tmp/test_beatify/" + "/".join(parts)
+        self.hass.config.path.side_effect = lambda *parts: (
+            "/tmp/test_beatify/" + "/".join(parts)
         )
         self.storage = AnalyticsStorage(self.hass)
         self.now = int(time.time())
@@ -567,8 +567,8 @@ class TestTotalProperties:
 class TestPlaylistStats:
     def setup_method(self):
         self.hass = _mock_hass()
-        self.hass.config.path.side_effect = (
-            lambda *parts: "/tmp/test_beatify/" + "/".join(parts)
+        self.hass.config.path.side_effect = lambda *parts: (
+            "/tmp/test_beatify/" + "/".join(parts)
         )
         self.storage = AnalyticsStorage(self.hass)
 
