@@ -141,23 +141,27 @@ def build_movie_options(song: dict[str, Any]) -> list[str] | None:
     if not movie_choices or not isinstance(movie_choices, list):
         return None
 
-    # Filter valid choices
-    valid_choices = [
+    # Filter valid choices and deduplicate while preserving order
+    valid_choices = list(dict.fromkeys(
         c.strip() for c in movie_choices if isinstance(c, str) and c.strip()
-    ]
+    ))
+
+    # Ensure correct movie is included
+    if movie not in valid_choices:
+        valid_choices.insert(0, movie)
 
     if len(valid_choices) < 2:
         return None
 
-    # Ensure correct movie is in the list
-    if movie not in valid_choices:
-        valid_choices = [movie] + valid_choices[:2]
+    # Trim to exactly 3 options (correct + 2 decoys), keeping correct movie
+    if len(valid_choices) > 3:
+        others = [c for c in valid_choices if c != movie]
+        valid_choices = [movie] + others[:2]
 
     # Shuffle and return
-    options = list(valid_choices)
-    random.shuffle(options)
+    random.shuffle(valid_choices)
 
-    return options
+    return valid_choices
 
 
 def build_artist_options(song: dict[str, Any]) -> list[str] | None:
