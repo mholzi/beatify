@@ -82,6 +82,9 @@ class GameState:
         self.songs: list[dict[str, Any]] = []
         self.media_player: str | None = None
         self.join_url: str | None = None
+        # Issue #331: Party Lights service
+        self._party_lights: Any = None  # PartyLightsService (lazy import)
+
         # Issue #347: Player management delegated to PlayerRegistry
         self._player_registry = PlayerRegistry()
 
@@ -682,10 +685,12 @@ class GameState:
         self._intro_splash_deferred_song = None
         self._intro_splash_hass = None
 
-    def end_game(self) -> None:
+    async def end_game(self) -> None:
         """End the current game and reset state."""
         _LOGGER.info("Game ended: %s", self.game_id)
         self.cancel_timer()
+        # Issue #331: Restore lights before resetting
+        await self.disable_party_lights()
         self._reset_game_internals()
         self.game_id = None
         self.phase = GamePhase.LOBBY
@@ -1336,6 +1341,10 @@ class GameState:
 
         # Transition to PLAYING
         self.phase = GamePhase.PLAYING
+
+        # Issue #331: Update Party Lights for playing phase
+        await self._lights_set_phase(GamePhase.PLAYING)
+
         _LOGGER.info(
             "Round %d started: %s - %s (%.1fs timer)",
             self.round,
@@ -1561,6 +1570,15 @@ class GameState:
         # Transition to REVEAL
         self._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
+
+        # Issue #331: Update Party Lights for reveal phase + flash on exact matches
+        await self._lights_set_phase(GamePhase.REVEAL)
+        if correct_year is not None:
+            for p in self.players.values():
+                if p.submitted and p.years_off == 0:
+                    await self._lights_flash("gold")
+                    break  # One flash per round is enough
+
         _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
 
         # Invoke callback to broadcast state
@@ -1872,7 +1890,7 @@ class GameState:
 
         return leaderboard
 
-    def advance_to_end(self) -> None:
+    async def advance_to_end(self) -> None:
         """Transition to END phase with proper cleanup (#321).
 
         Use this instead of setting ``phase = GamePhase.END`` directly.
@@ -1882,6 +1900,10 @@ class GameState:
         self.cancel_timer()
         self._cancel_intro_timer()
         self.phase = GamePhase.END
+
+        # Issue #331: Celebrate with Party Lights
+        await self._lights_celebrate()
+
         _LOGGER.info("Game advanced to END phase")
 
     async def stop_media(self) -> None:
@@ -1908,6 +1930,49 @@ class GameState:
         if self._media_player_service:
             return await self._media_player_service.play_song(song)
         return False
+
+    # ------------------------------------------------------------------
+    # Party Lights (#331)
+    # ------------------------------------------------------------------
+
+    async def configure_party_lights(
+        self, hass: Any, entity_ids: list[str], intensity: str = "medium"
+    ) -> None:
+        """Configure and start Party Lights for the game."""
+        from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
+
+        self._party_lights = PartyLightsService(hass)
+        await self._party_lights.start(entity_ids, intensity)
+
+    async def disable_party_lights(self) -> None:
+        """Stop Party Lights and restore original light states."""
+        if self._party_lights:
+            await self._party_lights.stop()
+            self._party_lights = None
+
+    async def _lights_set_phase(self, phase: GamePhase) -> None:
+        """Set Party Lights phase color (fire-and-forget)."""
+        if self._party_lights:
+            try:
+                await self._party_lights.set_phase(phase)
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Party Lights phase change failed")
+
+    async def _lights_flash(self, color: str) -> None:
+        """Flash Party Lights (fire-and-forget)."""
+        if self._party_lights:
+            try:
+                asyncio.create_task(self._party_lights.flash(color))
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Party Lights flash failed")
+
+    async def _lights_celebrate(self) -> None:
+        """Run Party Lights celebration (fire-and-forget)."""
+        if self._party_lights:
+            try:
+                asyncio.create_task(self._party_lights.celebrate())
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Party Lights celebration failed")
 
     def adjust_volume(self, direction: str) -> float:
         """

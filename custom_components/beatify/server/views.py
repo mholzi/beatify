@@ -135,6 +135,46 @@ class StatusView(HomeAssistantView):
         return web.json_response(status)
 
 
+class LightsView(HomeAssistantView):
+    """API endpoint for available light entities (#331)."""
+
+    url = "/beatify/api/lights"
+    name = "beatify:api:lights"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the lights view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Return available light entities with capabilities."""
+        lights = []
+        for state in self.hass.states.async_all("light"):
+            color_modes = state.attributes.get("supported_color_modes", [])
+            if any(m in color_modes for m in ("rgb", "rgbw", "rgbww", "hs", "xy")):
+                capability = "rgb"
+            elif "color_temp" in color_modes:
+                capability = "ct"
+            elif "brightness" in color_modes:
+                capability = "dim"
+            else:
+                capability = "onoff"
+
+            lights.append(
+                {
+                    "entity_id": state.entity_id,
+                    "friendly_name": state.attributes.get(
+                        "friendly_name", state.entity_id
+                    ),
+                    "state": state.state,
+                    "capability": capability,
+                    "supported_color_modes": color_modes,
+                }
+            )
+
+        return web.json_response({"lights": lights})
+
+
 class StartGameView(HomeAssistantView):
     """Handle start game requests."""
 
