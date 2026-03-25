@@ -346,7 +346,7 @@ class BeatifyWebSocketHandler:
                             _LOGGER.debug("Game stats recorded for natural end")
 
                         # No more rounds, end game
-                        game_state.advance_to_end()
+                        await game_state.advance_to_end()
                         await self.broadcast_state()
                     else:
                         # Start next round
@@ -366,7 +366,7 @@ class BeatifyWebSocketHandler:
                                 )
 
                             # No more songs
-                            game_state.advance_to_end()
+                            await game_state.advance_to_end()
                             await self.broadcast_state()
                 else:
                     await ws.send_json(
@@ -458,7 +458,7 @@ class BeatifyWebSocketHandler:
                     _LOGGER.debug("Game stats recorded for early end")
 
                 # Transition to END - players stay connected for rematch option
-                game_state.advance_to_end()
+                await game_state.advance_to_end()
                 _LOGGER.info(
                     "Admin ended game early at round %d - players preserved for rematch",
                     game_state.round,
@@ -466,7 +466,7 @@ class BeatifyWebSocketHandler:
 
                 # Broadcast final state to all players
                 await self.broadcast_state()
-                # NOTE: game_state.end_game() NOT called - admin can now Rematch or Dismiss
+                # NOTE: await game_state.end_game() NOT called - admin can now Rematch or Dismiss
                 # NOTE: game_ended NOT sent here - only sent on dismiss_game
 
             elif action == "dismiss_game":
@@ -482,7 +482,7 @@ class BeatifyWebSocketHandler:
                     return
 
                 # Fully reset game state - wipes all players
-                game_state.end_game()
+                await game_state.end_game()
                 _LOGGER.info("Game dismissed - all players cleared")
 
                 # Send game_ended notification to kick all players
@@ -570,6 +570,56 @@ class BeatifyWebSocketHandler:
                     game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
                 )
                 await self.broadcast_state()
+
+            elif action == "set_party_lights":
+                # Issue #331: Configure Party Lights
+                entity_ids = data.get("entity_ids", [])
+                intensity = data.get("intensity", "medium")
+                enabled = data.get("enabled", True)
+
+                if enabled and entity_ids:
+                    await game_state.configure_party_lights(
+                        self.hass, entity_ids, intensity
+                    )
+                    _LOGGER.info(
+                        "Party Lights configured: %d lights, intensity=%s",
+                        len(entity_ids),
+                        intensity,
+                    )
+                else:
+                    await game_state.disable_party_lights()
+                    _LOGGER.info("Party Lights disabled")
+
+                await ws.send_json({"type": "party_lights_updated", "enabled": enabled})
+
+            elif action == "toggle_party_lights":
+                # Issue #331: Toggle Party Lights mid-game
+                if game_state._party_lights and game_state._party_lights._active:
+                    await game_state.disable_party_lights()
+                    await ws.send_json(
+                        {"type": "party_lights_updated", "enabled": False}
+                    )
+                else:
+                    await ws.send_json(
+                        {
+                            "type": "error",
+                            "code": ERR_INVALID_ACTION,
+                            "message": "Party Lights not configured — set up in game settings first",
+                        }
+                    )
+
+            elif action == "preview_lights":
+                # Issue #331: Preview lights with 5s demo
+                entity_ids = data.get("entity_ids", [])
+                if entity_ids:
+                    from custom_components.beatify.services.lights import (  # noqa: PLC0415
+                        PartyLightsService,
+                    )
+
+                    preview = PartyLightsService(self.hass)
+                    await preview.start(entity_ids, "party")
+                    await preview.celebrate()
+                    await preview.stop()
 
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
