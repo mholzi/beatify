@@ -14,17 +14,12 @@ from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     DIFFICULTY_SCORING,
-    ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
-    ERR_INVALID_ACTION,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
-    ERR_NO_STEAL_AVAILABLE,
-    ERR_NOT_IN_GAME,
-    ERR_TARGET_NOT_SUBMITTED,
     INTRO_DURATION_SECONDS,
     INTRO_ROUND_CHANCE,
     MAX_NAME_LENGTH,
@@ -46,6 +41,7 @@ from .challenges import (
 from .highlights import HighlightsTracker
 from .player import PlayerSession
 from .playlist import PlaylistManager
+from .powerups import PowerUpManager
 from .scoring import (
     ScoringService,
 )
@@ -148,21 +144,8 @@ class GameState:
         # Stats service reference (Story 14.4)
         self._stats_service: StatsService | None = None
 
-        # Story 19.11: Streak achievement tracking for analytics (Issue #147)
-        self.streak_achievements: dict[str, int] = {
-            "streak_3": 0,  # Count of 3+ streaks
-            "streak_5": 0,  # Count of 5+ streaks
-            "streak_10": 0,  # Count of 10+ streaks
-            "streak_15": 0,  # Count of 15+ streaks
-            "streak_20": 0,  # Count of 20+ streaks
-            "streak_25": 0,  # Count of 25+ streaks
-        }
-
-        # Story 19.12: Bet outcome tracking for analytics
-        self.bet_tracking: dict[str, int] = {
-            "total_bets": 0,  # Total bets placed in game
-            "bets_won": 0,  # Bets that won
-        }
+        # Issue #351: Power-up system (steals, bets, streak tracking)
+        self._powerup_manager = PowerUpManager()
 
         # Story 18.9: Reaction rate limiting per reveal phase
         self._reactions_this_phase: set[str] = set()
@@ -205,6 +188,28 @@ class GameState:
         self._intro_splash_pending: bool = False
         self._intro_splash_deferred_song: dict | None = None
         self._intro_splash_hass: HomeAssistant | None = None
+
+    # ------------------------------------------------------------------
+    # Power-up delegation properties (keep public interface identical)
+    # ------------------------------------------------------------------
+
+    @property
+    def streak_achievements(self) -> dict[str, int]:
+        """Streak achievement counters."""
+        return self._powerup_manager.streak_achievements
+
+    @streak_achievements.setter
+    def streak_achievements(self, value: dict[str, int]) -> None:
+        self._powerup_manager.streak_achievements = value
+
+    @property
+    def bet_tracking(self) -> dict[str, int]:
+        """Bet outcome counters."""
+        return self._powerup_manager.bet_tracking
+
+    @bet_tracking.setter
+    def bet_tracking(self, value: dict[str, int]) -> None:
+        self._powerup_manager.bet_tracking = value
 
     # ------------------------------------------------------------------
     # Challenge delegation properties (keep public interface identical)
@@ -335,18 +340,8 @@ class GameState:
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
 
-        # Story 19.11: Reset streak tracking for new game (Issue #147)
-        self.streak_achievements = {
-            "streak_3": 0,
-            "streak_5": 0,
-            "streak_10": 0,
-            "streak_15": 0,
-            "streak_20": 0,
-            "streak_25": 0,
-        }
-
-        # Story 19.12: Reset bet tracking for new game
-        self.bet_tracking = {"total_bets": 0, "bets_won": 0}
+        # Issue #351: Reset power-up state for new game
+        self._powerup_manager.reset()
 
         # Story 20.1 / Issue #28: Set challenge configuration
         self._challenge_manager.configure(
@@ -644,18 +639,8 @@ class GameState:
         # Reset error detail
         self.last_error_detail = ""
 
-        # Story 19.11: Reset streak tracking (Issue #147)
-        self.streak_achievements = {
-            "streak_3": 0,
-            "streak_5": 0,
-            "streak_10": 0,
-            "streak_15": 0,
-            "streak_20": 0,
-            "streak_25": 0,
-        }
-
-        # Story 19.12: Reset bet tracking
-        self.bet_tracking = {"total_bets": 0, "bets_won": 0}
+        # Issue #351: Reset power-up state
+        self._powerup_manager.reset()
 
         # Story 20.1 / Issue #28: Reset challenges
         self._challenge_manager.reset()
@@ -984,80 +969,14 @@ class GameState:
         return True
 
     def get_steal_targets(self, stealer_name: str) -> list[str]:
-        """
-        Get list of players who have submitted and can be stolen from (Story 15.3).
-
-        Args:
-            stealer_name: Name of the player attempting to steal
-
-        Returns:
-            List of player names who have submitted this round, excluding self
-
-        """
-        targets = []
-        for name, player in self.players.items():
-            if name != stealer_name and player.submitted:
-                targets.append(name)
-        return targets
+        """Get list of players who can be stolen from (Story 15.3). Delegates to PowerUpManager."""
+        return self._powerup_manager.get_steal_targets(stealer_name, self.players)
 
     def use_steal(self, stealer_name: str, target_name: str) -> dict[str, Any]:
-        """
-        Execute steal: copy target's guess to stealer (Story 15.3).
-
-        Args:
-            stealer_name: Name of the player using steal
-            target_name: Name of the player to copy from
-
-        Returns:
-            dict with success status, or error code on failure
-
-        """
-        stealer = self.players.get(stealer_name)
-        target = self.players.get(target_name)
-
-        # Validations
-        if not stealer:
-            return {"success": False, "error": ERR_NOT_IN_GAME}
-
-        if not stealer.steal_available:
-            return {"success": False, "error": ERR_NO_STEAL_AVAILABLE}
-
-        if self.phase != GamePhase.PLAYING:
-            return {"success": False, "error": ERR_INVALID_ACTION}
-
-        if stealer_name == target_name:
-            return {"success": False, "error": ERR_CANNOT_STEAL_SELF}
-
-        if not target:
-            return {"success": False, "error": ERR_NOT_IN_GAME}
-
-        if not target.submitted or target.current_guess is None:
-            return {"success": False, "error": ERR_TARGET_NOT_SUBMITTED}
-
-        # Execute steal
-        stolen_year = target.current_guess
-
-        # Copy guess to stealer (keeping stealer's bet status)
-        stealer.current_guess = stolen_year
-        stealer.submitted = True
-        stealer.submission_time = self._now()
-
-        # Track steal relationship
-        stealer.consume_steal(target_name)
-        target.was_stolen_by.append(stealer_name)
-
-        _LOGGER.info(
-            "Player %s stole answer from %s (year: %d)",
-            stealer_name,
-            target_name,
-            stolen_year,
+        """Execute steal power-up (Story 15.3). Delegates to PowerUpManager."""
+        return self._powerup_manager.use_steal(
+            stealer_name, target_name, self.players, self.phase, self._now()
         )
-
-        return {
-            "success": True,
-            "target": target_name,
-            "year": stolen_year,
-        }
 
     def remove_player(self, name: str) -> None:
         """
