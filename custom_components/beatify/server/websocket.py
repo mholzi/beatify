@@ -346,7 +346,7 @@ class BeatifyWebSocketHandler:
                             _LOGGER.debug("Game stats recorded for natural end")
 
                         # No more rounds, end game
-                        game_state.phase = GamePhase.END
+                        game_state.advance_to_end()
                         await self.broadcast_state()
                     else:
                         # Start next round
@@ -366,7 +366,7 @@ class BeatifyWebSocketHandler:
                                 )
 
                             # No more songs
-                            game_state.phase = GamePhase.END
+                            game_state.advance_to_end()
                             await self.broadcast_state()
                 else:
                     await ws.send_json(
@@ -393,8 +393,7 @@ class BeatifyWebSocketHandler:
                     return
 
                 # Stop playback
-                if game_state._media_player_service:
-                    await game_state._media_player_service.stop()
+                await game_state.stop_media()
 
                 game_state.song_stopped = True
                 _LOGGER.info("Admin stopped song in round %d", game_state.round)
@@ -418,14 +417,11 @@ class BeatifyWebSocketHandler:
                 new_level = game_state.adjust_volume(direction)
 
                 # Apply to media player
-                if game_state._media_player_service:
-                    success = await game_state._media_player_service.set_volume(
-                        new_level
+                success = await game_state.set_volume_on_player(new_level)
+                if not success:
+                    _LOGGER.warning(
+                        "Failed to set volume to %.0f%%", new_level * 100
                     )
-                    if not success:
-                        _LOGGER.warning(
-                            "Failed to set volume to %.0f%%", new_level * 100
-                        )
 
                 _LOGGER.info("Volume adjusted %s to %.0f%%", direction, new_level * 100)
 
@@ -449,12 +445,8 @@ class BeatifyWebSocketHandler:
                     )
                     return
 
-                # Cancel timer if running
-                game_state.cancel_timer()
-
                 # Stop media playback
-                if game_state._media_player_service:
-                    await game_state._media_player_service.stop()
+                await game_state.stop_media()
 
                 # Record game stats BEFORE transitioning to END (Story 14.4, 19.1)
                 stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
@@ -466,7 +458,7 @@ class BeatifyWebSocketHandler:
                     _LOGGER.debug("Game stats recorded for early end")
 
                 # Transition to END - players stay connected for rematch option
-                game_state.phase = GamePhase.END
+                game_state.advance_to_end()
                 _LOGGER.info(
                     "Admin ended game early at round %d - players preserved for rematch",
                     game_state.round,
@@ -554,10 +546,8 @@ class BeatifyWebSocketHandler:
 
                 # Play the deferred song now that admin has confirmed
                 deferred_song = game_state._intro_splash_deferred_song
-                if deferred_song and game_state._media_player_service:
-                    success = await game_state._media_player_service.play_song(
-                        deferred_song
-                    )
+                if deferred_song:
+                    success = await game_state.play_deferred_song(deferred_song)
                     if not success:
                         _LOGGER.warning(
                             "Failed to play deferred intro song: %s",
