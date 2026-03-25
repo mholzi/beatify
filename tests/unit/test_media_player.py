@@ -6,10 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.beatify.services.media_player import (
-    PLAYBACK_TIMEOUT,
-    MediaPlayerService,
-)
+from custom_components.beatify.services.media_player import MediaPlayerService
 
 
 def _make_state(
