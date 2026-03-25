@@ -1872,6 +1872,43 @@ class GameState:
 
         return leaderboard
 
+    def advance_to_end(self) -> None:
+        """Transition to END phase with proper cleanup (#321).
+
+        Use this instead of setting ``phase = GamePhase.END`` directly.
+        Cancels timers so no stale callbacks fire after the game ends.
+        Does NOT clear players (they stay for rematch/end screen).
+        """
+        self.cancel_timer()
+        self._cancel_intro_timer()
+        self.phase = GamePhase.END
+        _LOGGER.info("Game advanced to END phase")
+
+    async def stop_media(self) -> None:
+        """Stop media playback if a media player service is available (#321)."""
+        if self._media_player_service:
+            await self._media_player_service.stop()
+
+    async def set_volume_on_player(self, level: float) -> bool:
+        """Apply volume level to the media player (#321).
+
+        Returns:
+            True if successful, False if failed or no media player.
+        """
+        if self._media_player_service:
+            return await self._media_player_service.set_volume(level)
+        return False
+
+    async def play_deferred_song(self, song: dict) -> bool:
+        """Play a song that was deferred for intro splash (#321).
+
+        Returns:
+            True if playback started, False otherwise.
+        """
+        if self._media_player_service:
+            return await self._media_player_service.play_song(song)
+        return False
+
     def adjust_volume(self, direction: str) -> float:
         """
         Adjust volume level by step (Story 6.4).
