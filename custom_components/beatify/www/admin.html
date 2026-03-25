@@ -224,6 +224,58 @@
             </div>
         </section>
 
+        <!-- Party Lights Section (#331) -->
+        <section id="party-lights" class="section-collapsible collapsed" aria-labelledby="party-lights-heading">
+            <button type="button" class="section-header-collapsible" id="party-lights-toggle" aria-expanded="false" aria-controls="party-lights-content">
+                <span class="section-icon" aria-hidden="true">🎆</span>
+                <span>Party Lights</span>
+                <span class="section-summary" id="party-lights-summary">Off</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="party-lights-content">
+                <!-- Enable toggle -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">💡</span>
+                        <span>Enable Party Lights</span>
+                    </span>
+                    <label class="toggle-compact">
+                        <input type="checkbox" id="party-lights-enable">
+                        <span class="toggle-switch-compact"></span>
+                    </label>
+                </div>
+
+                <!-- Intensity -->
+                <div class="setting-row" id="party-lights-intensity-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🎨</span>
+                        <span>Intensity</span>
+                    </span>
+                    <div class="chip-group" role="group" aria-label="Light intensity">
+                        <button type="button" class="chip" data-intensity="subtle">Subtle</button>
+                        <button type="button" class="chip chip--active" data-intensity="medium">Medium</button>
+                        <button type="button" class="chip" data-intensity="party">Party</button>
+                    </div>
+                </div>
+
+                <!-- Light picker -->
+                <div id="party-lights-picker" class="party-lights-picker">
+                    <div class="party-lights-picker-header">
+                        <span class="party-lights-count"><span id="lights-selected-count">0</span> lights selected</span>
+                        <button type="button" id="lights-select-all" class="btn-link">Select All</button>
+                    </div>
+                    <div id="party-lights-list" class="party-lights-list">
+                        <span class="loading-text">Loading lights...</span>
+                    </div>
+                </div>
+
+                <!-- Preview button -->
+                <button type="button" id="party-lights-preview" class="btn btn-secondary btn-full-width" disabled>
+                    ✨ Preview
+                </button>
+            </div>
+        </section>
+
         <!-- Validation messages and Start button -->
         <div class="admin-actions">
             <p id="media-player-validation-msg" class="status-error hidden" data-i18n="admin.selectMediaPlayerHint">Select a media player</p>
@@ -441,5 +493,6 @@
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.js?v=2.2.1"></script>
     <script src="/beatify/static/js/admin.js?v=2.2.1"></script>
+    <script src="/beatify/static/js/party-lights.js?v=1.0.0"></script>
 </body>
 </html>

@@ -222,6 +222,7 @@ class StartGameView(HomeAssistantView):
         artist_challenge_enabled = body.get("artist_challenge_enabled", True)  # Story 20.7
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
+        party_lights_config = body.get("party_lights")  # Issue #331
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)
@@ -422,6 +423,15 @@ class StartGameView(HomeAssistantView):
         # Set game language (Story 12.4, 16.3)
         if language in ("en", "de", "es", "fr"):
             game_state.language = language
+
+        # Issue #331: Configure Party Lights if enabled
+        if party_lights_config and party_lights_config.get("enabled"):
+            pl_entities = party_lights_config.get("entity_ids", [])
+            pl_intensity = party_lights_config.get("intensity", "medium")
+            if pl_entities:
+                await game_state.configure_party_lights(
+                    self.hass, pl_entities, pl_intensity
+                )
 
         # Broadcast to WebSocket clients
         ws_handler = data.get("ws_handler")

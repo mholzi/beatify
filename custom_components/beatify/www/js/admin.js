@@ -1418,7 +1418,8 @@ async function startGame() {
                 difficulty: selectedDifficulty,  // Story 14.1
                 provider: selectedProvider,  // Story 17.2
                 artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
-                intro_mode_enabled: introModeEnabled  // Issue #23
+                intro_mode_enabled: introModeEnabled,  // Issue #23
+                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null  // Issue #331
             })
         });
 
