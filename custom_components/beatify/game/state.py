@@ -15,16 +15,9 @@ from custom_components.beatify.const import (
     DIFFICULTY_DEFAULT,
     DIFFICULTY_SCORING,
     ERR_GAME_ALREADY_STARTED,
-    ERR_GAME_ENDED,
-    ERR_GAME_FULL,
     ERR_GAME_NOT_STARTED,
-    ERR_NAME_INVALID,
-    ERR_NAME_TAKEN,
     INTRO_DURATION_SECONDS,
     INTRO_ROUND_CHANCE,
-    MAX_NAME_LENGTH,
-    MAX_PLAYERS,
-    MIN_NAME_LENGTH,
     MIN_PLAYERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
@@ -41,6 +34,7 @@ from .challenges import (
 from .highlights import HighlightsTracker
 from .player import PlayerSession
 from .playlist import PlaylistManager
+from .player_registry import PlayerRegistry
 from .powerups import PowerUpManager
 from .scoring import (
     ScoringService,
@@ -88,8 +82,11 @@ class GameState:
         self.songs: list[dict[str, Any]] = []
         self.media_player: str | None = None
         self.join_url: str | None = None
-        self.players: dict[str, PlayerSession] = {}
-        self._sessions: dict[str, str] = {}  # session_id → player_name
+        # Issue #347: Player management delegated to PlayerRegistry
+        self._player_registry = PlayerRegistry()
+
+        # Backward-compatible access — other code still uses self.players directly
+        # This will be tightened in future refactors
 
         # Round tracking (Epic 4)
         self.round: int = 0
@@ -188,6 +185,37 @@ class GameState:
         self._intro_splash_pending: bool = False
         self._intro_splash_deferred_song: dict | None = None
         self._intro_splash_hass: HomeAssistant | None = None
+
+    # ------------------------------------------------------------------
+    # Player registry delegation (keep public interface identical)
+    # ------------------------------------------------------------------
+
+    @property
+    def players(self) -> dict[str, PlayerSession]:
+        """Player dict — delegated to PlayerRegistry."""
+        return self._player_registry.players
+
+    @players.setter
+    def players(self, value: dict[str, PlayerSession]) -> None:
+        self._player_registry.players = value
+
+    @property
+    def _sessions(self) -> dict[str, str]:
+        """Session mapping — delegated to PlayerRegistry."""
+        return self._player_registry._sessions
+
+    @_sessions.setter
+    def _sessions(self, value: dict[str, str]) -> None:
+        self._player_registry._sessions = value
+
+    @property
+    def _reactions_this_phase(self) -> set[str]:
+        """Reaction tracking — delegated to PlayerRegistry."""
+        return self._player_registry._reactions_this_phase
+
+    @_reactions_this_phase.setter
+    def _reactions_this_phase(self, value: set[str]) -> None:
+        self._player_registry._reactions_this_phase = value
 
     # ------------------------------------------------------------------
     # Power-up delegation properties (keep public interface identical)
@@ -816,157 +844,32 @@ class GameState:
         return True
 
     def get_average_score(self) -> int:
-        """
-        Calculate average score of all current players.
-
-        Used for late joiners (Story 10.2) to start with a fair score.
-
-        Returns:
-            Average score rounded to nearest integer, or 0 if no players
-
-        """
-        if not self.players:
-            return 0
-        total = sum(p.score for p in self.players.values())
-        return round(total / len(self.players))
+        """Calculate average score of all current players. Delegates to PlayerRegistry."""
+        return self._player_registry.get_average_score()
 
     def add_player(
         self, name: str, ws: web.WebSocketResponse
     ) -> tuple[bool, str | None]:
-        """
-        Add a player to the game.
-
-        Allows joining during LOBBY, PLAYING, or REVEAL phases.
-        Rejects during END phase.
-
-        Args:
-            name: Player display name (trimmed, max 20 chars)
-            ws: WebSocket connection
-
-        Returns:
-            (success, error_code) - error_code is None on success
-
-        """
-        # Validate name
-        name = name.strip()
-        if not name or len(name) < MIN_NAME_LENGTH:
-            return False, ERR_NAME_INVALID
-        if len(name) > MAX_NAME_LENGTH:
-            return False, ERR_NAME_INVALID
-
-        # Check phase - reject END state (PAUSED is OK for reconnection)
-        if self.phase == GamePhase.END:
-            return False, ERR_GAME_ENDED
-
-        # Check for reconnection (Story 7-2, 7-3) - case-insensitive match
-        # Allowed during PAUSED phase for reconnection
-        for existing_name, existing_player in self.players.items():
-            if existing_name.lower() == name.lower():
-                # Name exists - check if it's a reconnection (player disconnected)
-                if not existing_player.connected:
-                    # Reconnection: update WebSocket and mark connected
-                    existing_player.ws = ws
-                    existing_player.connected = True
-                    _LOGGER.info("Player reconnected: %s", existing_name)
-                    return True, None
-                # Player still connected, reject duplicate
-                return False, ERR_NAME_TAKEN
-
-        # Check player limit
-        if len(self.players) >= MAX_PLAYERS:
-            return False, ERR_GAME_FULL
-
-        # Determine if late joiner
-        joined_late = self.phase != GamePhase.LOBBY
-
-        # Calculate initial score (Story 10.2: late joiners get average)
-        initial_score = self.get_average_score() if joined_late else 0
-
-        # Add new player
-        player = PlayerSession(
-            name=name, ws=ws, score=initial_score, streak=0, joined_late=joined_late
+        """Add a player to the game. Delegates to PlayerRegistry."""
+        return self._player_registry.add_player(
+            name, ws, self.phase, self.get_average_score
         )
-        self.players[name] = player
-        self._sessions[player.session_id] = name
-
-        # Log join with score info
-        if joined_late and initial_score > 0:
-            _LOGGER.info(
-                "Late joiner %s inherits average score: %d (from %d players)",
-                name,
-                initial_score,
-                len(self.players) - 1,
-            )
-        else:
-            _LOGGER.info(
-                "Player joined: %s (total: %d, late: %s)",
-                name,
-                len(self.players),
-                joined_late,
-            )
-        return True, None
 
     def get_player(self, name: str) -> PlayerSession | None:
-        """
-        Get player by name.
-
-        Args:
-            name: Player name
-
-        Returns:
-            PlayerSession or None if not found
-
-        """
-        return self.players.get(name)
+        """Get player by name. Delegates to PlayerRegistry."""
+        return self._player_registry.get_player(name)
 
     def get_player_by_session_id(self, session_id: str) -> PlayerSession | None:
-        """
-        Get player by session ID (Story 11.1).
-
-        Args:
-            session_id: Session ID from cookie
-
-        Returns:
-            PlayerSession or None if not found
-
-        """
-        name = self._sessions.get(session_id)
-        return self.players.get(name) if name else None
+        """Get player by session ID. Delegates to PlayerRegistry."""
+        return self._player_registry.get_player_by_session_id(session_id)
 
     def get_player_by_ws(self, ws: web.WebSocketResponse) -> PlayerSession | None:
-        """
-        Get player by WebSocket connection (Story 18.9).
-
-        Args:
-            ws: WebSocket connection
-
-        Returns:
-            PlayerSession or None if not found
-
-        """
-        for player in self.players.values():
-            if player.ws == ws:
-                return player
-        return None
+        """Get player by WebSocket connection. Delegates to PlayerRegistry."""
+        return self._player_registry.get_player_by_ws(ws)
 
     def record_reaction(self, player_name: str, emoji: str) -> bool:
-        """
-        Record a player reaction (Story 18.9).
-
-        Rate limited to 1 reaction per player per reveal phase.
-
-        Args:
-            player_name: Name of the player
-            emoji: The emoji reaction
-
-        Returns:
-            True if reaction was recorded, False if rate limited
-
-        """
-        if player_name in self._reactions_this_phase:
-            return False
-        self._reactions_this_phase.add(player_name)
-        return True
+        """Record a player reaction. Delegates to PlayerRegistry."""
+        return self._player_registry.record_reaction(player_name, emoji)
 
     def get_steal_targets(self, stealer_name: str) -> list[str]:
         """Get list of players who can be stolen from (Story 15.3). Delegates to PowerUpManager."""
@@ -979,70 +882,20 @@ class GameState:
         )
 
     def remove_player(self, name: str) -> None:
-        """
-        Remove player from game.
-
-        Args:
-            name: Player name to remove
-
-        """
-        if name in self.players:
-            player = self.players[name]
-            # Clean up session mapping (Story 11.1)
-            self._sessions.pop(player.session_id, None)
-            del self.players[name]
-            _LOGGER.info("Player removed: %s", name)
+        """Remove player from game. Delegates to PlayerRegistry."""
+        self._player_registry.remove_player(name)
 
     def clear_all_sessions(self) -> None:
-        """
-        Clear all session mappings for game reset (Story 11.6).
-
-        Called after broadcasting final state to ensure players receive
-        END state before sessions are invalidated.
-
-        """
-        session_count = len(self._sessions)
-        self._sessions.clear()
-        _LOGGER.info("Cleared %d player sessions", session_count)
+        """Clear all session mappings for game reset. Delegates to PlayerRegistry."""
+        self._player_registry.clear_all_sessions()
 
     def get_players_state(self) -> list[dict[str, Any]]:
-        """
-        Get player list for state broadcast.
-
-        Returns:
-            List of player dicts with name, score, connected, streak, is_admin,
-            submitted
-
-        """
-        return [
-            {
-                "name": p.name,
-                "score": p.score,
-                "connected": p.connected,
-                "streak": p.streak,
-                "is_admin": p.is_admin,
-                "submitted": p.submitted,
-                # Steal availability (Story 15.3 AC1)
-                "steal_available": p.steal_available,
-                # Bet and steal status for submission tracker badges
-                "bet": p.bet,
-                "steal_used": p.steal_used,
-            }
-            for p in self.players.values()
-        ]
+        """Get player list for state broadcast. Delegates to PlayerRegistry."""
+        return self._player_registry.get_players_state()
 
     def all_submitted(self) -> bool:
-        """
-        Check if all connected players have submitted their guess.
-
-        Returns:
-            True if all connected players have submitted, False otherwise
-
-        """
-        connected_players = [p for p in self.players.values() if p.connected]
-        if not connected_players:
-            return False
-        return all(p.submitted for p in connected_players)
+        """Check if all connected players have submitted. Delegates to PlayerRegistry."""
+        return self._player_registry.all_submitted()
 
     def check_all_guesses_complete(self) -> bool:
         """
@@ -1196,21 +1049,8 @@ class GameState:
         }
 
     def set_admin(self, name: str) -> bool:
-        """
-        Mark a player as the admin.
-
-        Args:
-            name: Player name to mark as admin
-
-        Returns:
-            True if successful, False if player not found
-
-        """
-        if name not in self.players:
-            return False
-        self.players[name].is_admin = True
-        _LOGGER.info("Player set as admin: %s", name)
-        return True
+        """Mark a player as admin. Delegates to PlayerRegistry."""
+        return self._player_registry.set_admin(name)
 
     def start_game(self) -> tuple[bool, str | None]:
         """
