@@ -111,7 +111,7 @@ class PartyLightsService:
 
         await self._apply(self._entity_ids, service_data, transition=1.0)
 
-    async def flash(self, color_name: str, duration: float = 0.5) -> None:
+    async def flash(self, color_name: str) -> None:
         """Quick flash effect — turn on with color, sleep, restore phase color."""
         if not self._active or not self._entity_ids:
             return
@@ -255,10 +255,8 @@ class PartyLightsService:
                 pass
 
             try:
-                asyncio.create_task(
-                    self._hass.services.async_call(
-                        "light", "turn_on", call_data, blocking=False
-                    )
+                await self._hass.services.async_call(
+                    "light", "turn_on", call_data, blocking=False
                 )
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Failed to control light: %s", entity_id)
