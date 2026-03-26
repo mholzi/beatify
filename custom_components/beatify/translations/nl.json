@@ -1,0 +1,16 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Beatify instellen",
+        "description": "Beatify is een partygame-integratie voor Home Assistant die muziek afspeelt via je mediaspelers.\n\n{warning}"
+      }
+    },
+    "error": {
+      "unknown": "Er is een onbekende fout opgetreden."
+    },
+    "abort": {
+      "already_configured": "Beatify is al geconfigureerd."
+    }
+  }
+}
