@@ -123,7 +123,7 @@ class StatusView(HomeAssistantView):
 
         # Fetch playlists fresh (not cached) - Issue #135
         playlists = await async_discover_playlists(self.hass)
-        self.hass.data.get(DOMAIN, {})["playlists"] = playlists
+        self.hass.data.setdefault(DOMAIN, {})["playlists"] = playlists
 
         status = build_status_response(
             self.hass,
