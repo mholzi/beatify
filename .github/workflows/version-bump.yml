@@ -60,12 +60,28 @@ jobs:
             custom_components/beatify/manifest.json > manifest.tmp \
             && mv manifest.tmp custom_components/beatify/manifest.json
 
+      - name: Update views.py _VERSION
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          sed -i "s/^_VERSION = \".*\"/_VERSION = \"${{ steps.version.outputs.version }}\"/" \
+            custom_components/beatify/server/views.py
+
+      - name: Update service worker cache version
+        if: steps.check.outputs.needed == 'true'
+        run: |
+          sed -i "s/var CACHE_VERSION = 'beatify-v.*'/var CACHE_VERSION = 'beatify-v${{ steps.version.outputs.version }}'/" \
+            custom_components/beatify/www/sw.js
+
       - name: Verify manifest.json
         if: steps.check.outputs.needed == 'true'
         run: |
           echo "Updated manifest.json:"
           cat custom_components/beatify/manifest.json
           jq empty custom_components/beatify/manifest.json
+          echo "Updated _VERSION:"
+          grep "_VERSION" custom_components/beatify/server/views.py
+          echo "Updated CACHE_VERSION:"
+          grep "CACHE_VERSION" custom_components/beatify/www/sw.js
 
       - name: Commit and push
         if: steps.check.outputs.needed == 'true'
@@ -73,6 +89,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add custom_components/beatify/manifest.json
+          git add custom_components/beatify/server/views.py
+          git add custom_components/beatify/www/sw.js
           git commit -m "chore: bump version to ${{ steps.version.outputs.version }}"
           git push origin main
 
