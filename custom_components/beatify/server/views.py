@@ -440,7 +440,7 @@ class StartGameView(HomeAssistantView):
             stats_service.record_game_start()
 
         # Set game language (Story 12.4, 16.3)
-        if language in ("en", "de", "es", "fr"):
+        if language in ("en", "de", "es", "fr", "nl"):
             game_state.language = language
 
         # Issue #331: Configure Party Lights if enabled
