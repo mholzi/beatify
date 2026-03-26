@@ -1,7 +1,13 @@
 {
   "name": "90s & 2000s Hip Hop Bangers",
   "version": "1.0",
-  "tags": ["90s", "2000s", "hip-hop", "rap", "old-school"],
+  "tags": [
+    "90s",
+    "2000s",
+    "hip-hop",
+    "rap",
+    "old-school"
+  ],
   "songs": [
     {
       "year": 1990,
@@ -30,7 +36,8 @@
       "uri_apple_music": "applemusic://track/266768597",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7D_JwgIM-y4",
       "uri_tidal": "tidal://track/75013968",
-      "uri_deezer": "deezer://track/13142607"
+      "uri_deezer": "deezer://track/13142607",
+      "fun_fact_nl": "Het nummer bevat een prominente sample van Lou Reeds 'Walk on the Wild Side', en Reed ontvangt naar verluidt een groot deel van de royalty's van het nummer."
     },
     {
       "year": 1992,
@@ -59,7 +66,8 @@
       "uri_apple_music": "applemusic://track/1668461604",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0F0CAEoF4XM",
       "uri_tidal": "tidal://track/64738938",
-      "uri_deezer": "deezer://track/2132919007"
+      "uri_deezer": "deezer://track/2132919007",
+      "fun_fact_nl": "Het nummer was de introductie van Snoop Dogg bij het grote publiek en hielp het G-funk subgenre van hiphop te definiëren met zijn soepele synthesizers en relaxte beats."
     },
     {
       "year": 1993,
@@ -88,7 +96,8 @@
       "uri_apple_music": "applemusic://track/269843734",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PBwAxmrE194",
       "uri_tidal": "tidal://track/63827621",
-      "uri_deezer": "deezer://track/541322"
+      "uri_deezer": "deezer://track/541322",
+      "fun_fact_nl": "De titel staat voor 'Cash Rules Everything Around Me' en het nummer is opgebouwd rond een sample van de soultrack 'As Long As I've Got You' van The Charmels uit 1967."
     },
     {
       "year": 1993,
@@ -117,7 +126,8 @@
       "uri_apple_music": "applemusic://track/1676306185",
       "uri_youtube_music": "https://music.youtube.com/watch?v=OKGJOtRaqMg",
       "uri_tidal": "tidal://track/64739070",
-      "uri_deezer": "deezer://track/2182691847"
+      "uri_deezer": "deezer://track/2182691847",
+      "fun_fact_nl": "De videoclip werd geregisseerd door Dr. Dre en toont een enorm huisfeest, waarmee het een van de meest iconische hiphopvideo's van de jaren 90 werd en naar verluidt $500.000 kostte om te maken."
     },
     {
       "year": 1994,
@@ -146,7 +156,8 @@
       "uri_apple_music": "applemusic://track/301228947",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_JZom_gVfuw",
       "uri_tidal": "tidal://track/390061",
-      "uri_deezer": "deezer://track/2793753"
+      "uri_deezer": "deezer://track/2793753",
+      "fun_fact_nl": "Het nummer bevat een sample van 'Juicy Fruit' van Mtume en was een van de eerste voorbeelden van Diddy die herkenbare hits uit het verleden omzette in commercieel hiphop-goud, een formule die hij nog vele malen zou herhalen."
     },
     {
       "year": 1994,
@@ -175,7 +186,8 @@
       "uri_apple_music": "applemusic://track/662324539",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UKjj4hk0pV4",
       "uri_tidal": "tidal://track/63801375",
-      "uri_deezer": "deezer://track/77183271"
+      "uri_deezer": "deezer://track/77183271",
+      "fun_fact_nl": "Producent DJ Premier nam de beat in één take op tijdens de sessie, en Nas schreef zijn coupletten naar verluidt in slechts één keer. Het nummer werd nooit als single uitgebracht, maar wordt beschouwd als een van de beste hiphoptracks ooit."
     },
     {
       "year": 1994,
@@ -209,7 +221,8 @@
       "uri_apple_music": "applemusic://track/1772055719",
       "uri_youtube_music": "https://music.youtube.com/watch?v=phaJXp_zMYM",
       "uri_tidal": "tidal://track/390065",
-      "uri_deezer": "deezer://track/82522968"
+      "uri_deezer": "deezer://track/82522968",
+      "fun_fact_nl": "Het nummer bevat een sample van 'Between the Sheets' van The Isley Brothers en was de track die Biggie echt vestigde als een crossover-ster, waarmee hij zowel een hiphop- als R&B-publiek bereikte."
     },
     {
       "year": 1995,
@@ -244,7 +257,8 @@
       "uri_apple_music": "applemusic://track/1604646670",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fPO76Jlnz6c",
       "uri_tidal": "tidal://track/216428",
-      "uri_deezer": "deezer://track/763300"
+      "uri_deezer": "deezer://track/763300",
+      "fun_fact_nl": "Het nummer werd geschreven voor de soundtrack van de film 'Dangerous Minds' met Michelle Pfeiffer, die ook in de videoclip verschijnt. Het was wereldwijd de bestverkochte single van 1995."
     },
     {
       "year": 1996,
@@ -274,7 +288,8 @@
       "uri_apple_music": "applemusic://track/1440784906",
       "uri_youtube_music": "https://music.youtube.com/watch?v=5wBTdfAkqGU",
       "uri_tidal": "tidal://track/35752287",
-      "uri_deezer": "deezer://track/65163036"
+      "uri_deezer": "deezer://track/65163036",
+      "fun_fact_nl": "De videoclip was geïnspireerd op Mad Max Beyond Thunderdome en werd geregisseerd door Hype Williams. Het werd gefilmd in de woestijn van Californië en toont een post-apocalyptische setting in het jaar 2095."
     },
     {
       "year": 1996,
@@ -303,7 +318,8 @@
       "uri_apple_music": "applemusic://track/1588480731",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ea2JCIsv3iU",
       "uri_tidal": "tidal://track/35752270",
-      "uri_deezer": "deezer://track/1510293612"
+      "uri_deezer": "deezer://track/1510293612",
+      "fun_fact_nl": "Dit was het openingsnummer van 2Pacs dubbelalbum 'All Eyez on Me' en werd kort na zijn vrijlating uit de gevangenis opgenomen, waarbij rauwe energie en uitdagendheid werden gekanaliseerd in wat velen beschouwen als zijn krachtigste track."
     },
     {
       "year": 1996,
@@ -332,7 +348,8 @@
       "uri_apple_music": "applemusic://track/391724141",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mlp-IIG9ApU",
       "uri_tidal": "tidal://track/63801537",
-      "uri_deezer": "deezer://track/1015332"
+      "uri_deezer": "deezer://track/1015332",
+      "fun_fact_nl": "Het nummer bevat Lauryn Hill op de hook en samples van Kurtis Blow's track 'If I Ruled the World' uit 1985, waarmee een brug werd geslagen tussen old-school en midden-jaren '90 hiphop."
     },
     {
       "year": 1997,
@@ -362,7 +379,8 @@
       "uri_apple_music": "applemusic://track/216666706",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wk4ftn4PArg",
       "uri_tidal": "tidal://track/34449417",
-      "uri_deezer": "deezer://track/3616651"
+      "uri_deezer": "deezer://track/3616651",
+      "fun_fact_nl": "Dit was de eerste single van 'Life After Death' en bereikte de eerste plaats slechts twee weken na de tragische moord op Biggie, waarmee het een postume nummer 1-hit werd."
     },
     {
       "year": 1998,
@@ -397,7 +415,8 @@
       "uri_apple_music": "applemusic://track/1276760748",
       "uri_youtube_music": "https://music.youtube.com/watch?v=T6QKqFPRZSA",
       "uri_tidal": "tidal://track/3714851",
-      "uri_deezer": "deezer://track/15586242"
+      "uri_deezer": "deezer://track/15586242",
+      "fun_fact_nl": "De videoclip toont een split-screen met twee tijdperken: 1967 en 1998, waarin Lauryn Hill optreedt in outfits die passen bij de betreffende periode. Het was het eerste nummer van een vrouwelijke artiest dat debuteerde op nummer één in de Billboard Hot 100."
     },
     {
       "year": 1998,
@@ -426,7 +445,8 @@
       "uri_apple_music": "applemusic://track/1440764593",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eXvBjCO19QY",
       "uri_tidal": "tidal://track/35752348",
-      "uri_deezer": "deezer://track/910693"
+      "uri_deezer": "deezer://track/910693",
+      "fun_fact_nl": "Het nummer werd postuum uitgebracht in 1998, bevat een sample van 'The Way It Is' van Bruce Hornsby en behandelt racisme en sociaal onrecht. Het werd oorspronkelijk opgenomen in 1992, maar werd na de dood van Tupac bewerkt met extra productie."
     },
     {
       "year": 1998,
@@ -461,7 +481,8 @@
       "uri_apple_music": "applemusic://track/1440913399",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lpZgKI97K1M",
       "uri_tidal": "tidal://track/577703",
-      "uri_deezer": "deezer://track/1075309402"
+      "uri_deezer": "deezer://track/1075309402",
+      "fun_fact_nl": "Het nummer bevat op beroemde wijze een sample van het koor van 'It's the Hard Knock Life' uit de musical Annie. Jay-Z vreesde aanvankelijk dat de sample hem 'zacht' zou doen lijken, maar het werd een van zijn grootste hits."
     },
     {
       "year": 1999,
@@ -491,7 +512,8 @@
       "uri_apple_music": "applemusic://track/1440782870",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_CL6n0FJZpk",
       "uri_tidal": "tidal://track/2530346",
-      "uri_deezer": "deezer://track/128743581"
+      "uri_deezer": "deezer://track/128743581",
+      "fun_fact_nl": "Hoewel het op naam van Dr. Dre staat, werd de tekst feitelijk geschreven door Jay-Z. De iconische pianoriff werd gecomponeerd door Scott Storch, die het live op een keyboard speelde tijdens de opnamesessie."
     },
     {
       "year": 1999,
@@ -526,7 +548,8 @@
       "uri_apple_music": "applemusic://track/1127014217",
       "uri_youtube_music": "https://music.youtube.com/watch?v=thIVtEOtlWM",
       "uri_tidal": "tidal://track/614570",
-      "uri_deezer": "deezer://track/553801682"
+      "uri_deezer": "deezer://track/553801682",
+      "fun_fact_nl": "Hoewel het nooit de top 20 van de Billboard Hot 100 bereikte, werd het nummer een van de meest herkenbare party-anthems van de late jaren '90 en was het te horen in talloze films en tv-shows."
     },
     {
       "year": 2000,
@@ -565,7 +588,8 @@
       "uri_apple_music": "applemusic://track/1440866926",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eJO5HU_7_1w",
       "uri_tidal": "tidal://track/77547046",
-      "uri_deezer": "deezer://track/1109737"
+      "uri_deezer": "deezer://track/1109737",
+      "fun_fact_nl": "Het nummer werd geschreven in slechts één uur, de avond voordat het album bij de platenmaatschappij moest worden ingeleverd. Eminem zette het bijna niet op het album, maar Dr. Dre overtuigde hem om het te behouden."
     },
     {
       "year": 2000,
@@ -600,7 +624,8 @@
       "uri_apple_music": "applemusic://track/255836745",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MYxAiK6VnXw",
       "uri_tidal": "tidal://track/514422",
-      "uri_deezer": "deezer://track/963042"
+      "uri_deezer": "deezer://track/963042",
+      "fun_fact_nl": "Andre 3000 schreef het nummer als verontschuldiging aan de moeder van Erykah Badu na zijn breuk met Badu. 'Ms. Jackson' in het nummer verwijst naar de moeder van Badu, en Erykah zou hebben gereageerd met haar eigen track."
     },
     {
       "year": 2001,
@@ -635,7 +660,8 @@
       "uri_apple_music": "applemusic://track/1764016911",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FPoKiGQzbSQ",
       "uri_tidal": "tidal://track/3714809",
-      "uri_deezer": "deezer://track/671140"
+      "uri_deezer": "deezer://track/671140",
+      "fun_fact_nl": "Timbaland produceerde de track met een tumbi, een Indiaas instrument, waarmee hij een van de meest kenmerkende beats in de geschiedenis van de hiphop creëerde. Het nummer werd in één sessie opgenomen en Missy improviseerde een groot deel van de tekst."
     },
     {
       "year": 2001,
@@ -665,7 +691,8 @@
       "uri_apple_music": "applemusic://track/1440782622",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RtSDWq6HsJE",
       "uri_tidal": "tidal://track/614493",
-      "uri_deezer": "deezer://track/7292333"
+      "uri_deezer": "deezer://track/7292333",
+      "fun_fact_nl": "In het nummer is City Spud te horen, een lid van Nelly's groep de St. Lunatics, die zijn couplet opnam terwijl hij in de gevangenis zat. Het bevat een sample van 'Heart of Rock & Roll' van Huey Lewis and the News."
     },
     {
       "year": 2001,
@@ -694,7 +721,8 @@
       "uri_apple_music": "applemusic://track/1511197967",
       "uri_youtube_music": "https://music.youtube.com/watch?v=W7FfCJb8JZQ",
       "uri_tidal": "tidal://track/3733177",
-      "uri_deezer": "deezer://track/925151552"
+      "uri_deezer": "deezer://track/925151552",
+      "fun_fact_nl": "Busta Rhymes staat bekend om zijn ongelooflijk snelle rapstijl, en deze track toont zijn razendsnelle flow. Het nummer was een van de eerste grote hiphoptracks die intensief werd gedraaid op MTV2."
     },
     {
       "year": 2002,
@@ -729,7 +757,8 @@
       "uri_apple_music": "applemusic://track/1440903693",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YVkUvmDQ3HY",
       "uri_tidal": "tidal://track/77547078",
-      "uri_deezer": "deezer://track/916424"
+      "uri_deezer": "deezer://track/916424",
+      "fun_fact_nl": "Het nummer bevat talloze verwijzingen naar de popcultuur en parodieën, waaronder steken onder water naar Limp Bizkit, Moby, Dick Cheney en Lynne Cheney. De videoclip toont Eminem als een superheld genaamd 'Rap Boy'."
     },
     {
       "year": 2002,
@@ -768,7 +797,8 @@
       "uri_apple_music": "applemusic://track/1444221569",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xFYQQPAOz7Y",
       "uri_tidal": "tidal://track/622469",
-      "uri_deezer": "deezer://track/1109731"
+      "uri_deezer": "deezer://track/1109731",
+      "fun_fact_nl": "Dit was het eerste hiphopnummer dat de Academy Award voor Beste Originele Nummer won. Eminem woonde de ceremonie niet bij omdat hij niet dacht dat hij zou winnen, en zou thuis hebben geslapen terwijl hij naar tekenfilms keek met zijn dochter."
     },
     {
       "year": 2002,
@@ -803,7 +833,8 @@
       "uri_apple_music": "applemusic://track/1440735156",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GeZZr_p6vB8",
       "uri_tidal": "tidal://track/614458",
-      "uri_deezer": "deezer://track/2447436"
+      "uri_deezer": "deezer://track/2447436",
+      "fun_fact_nl": "Geproduceerd door The Neptunes (Pharrell Williams en Chad Hugo), bevat het nummer een sample van Chuck Browns 'Bustin' Loose'. Het stond in de zomer van 2002 zeven weken op nummer één in de Billboard Hot 100."
     },
     {
       "year": 2002,
@@ -838,7 +869,8 @@
       "uri_apple_music": "applemusic://track/1440831782",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cjIvu7e6Wq8",
       "uri_tidal": "tidal://track/3714883",
-      "uri_deezer": "deezer://track/663571"
+      "uri_deezer": "deezer://track/663571",
+      "fun_fact_nl": "Het nummer bevat de beroemde achterstevoren gedraaide tekst 'I put my thing down, flip it and reverse it', die Missy feitelijk eerst vooruit opnam, waarna de audio in de productie werd omgedraaid om de iconische hook te creëren."
     },
     {
       "year": 2003,
@@ -875,7 +907,8 @@
       "uri_apple_music": "applemusic://track/1440841857",
       "uri_youtube_music": "https://music.youtube.com/watch?v=5qm8PH4xAss",
       "uri_tidal": "tidal://track/614438",
-      "uri_deezer": "deezer://track/1141668"
+      "uri_deezer": "deezer://track/1141668",
+      "fun_fact_nl": "Dr. Dre creëerde de beat oorspronkelijk voor eigen gebruik, maar nadat 50 Cent er in de studio overheen had gefreestyled, gaf Dre hem de track. Het nummer vestigde een record door in de eerste week meer dan een miljoen keer op de radio te worden gedraaid."
     },
     {
       "year": 2003,
@@ -905,7 +938,8 @@
       "uri_apple_music": "applemusic://track/1440842046",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UDApZhXTpH8",
       "uri_tidal": "tidal://track/614448",
-      "uri_deezer": "deezer://track/1141674"
+      "uri_deezer": "deezer://track/1141674",
+      "fun_fact_nl": "De Snoop Dogg-remixversie met Snoop en G-Unit werd populairder dan het origineel. De beat van het nummer werd geproduceerd door Hi-Tek en bevat een kenmerkend strijkersarrangement."
     },
     {
       "year": 2003,
@@ -940,7 +974,8 @@
       "uri_apple_music": "applemusic://track/1032178989",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PWgvGjAhvIw",
       "uri_tidal": "tidal://track/1772295",
-      "uri_deezer": "deezer://track/13130838"
+      "uri_deezer": "deezer://track/13130838",
+      "fun_fact_nl": "Andre 3000 speelde zelf alle instrumenten op de track, waaronder gitaar, bas en keyboards. Hij zong ook alle zangpartijen in. De regel 'shake it like a Polaroid picture' leidde ertoe dat Polaroid een verklaring afgaf waarin mensen werd geadviseerd hun foto's niet te schudden."
     },
     {
       "year": 2003,
@@ -975,7 +1010,8 @@
       "uri_apple_music": "applemusic://track/1440785690",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6uikJTnmtgw",
       "uri_tidal": "tidal://track/577791",
-      "uri_deezer": "deezer://track/2950441"
+      "uri_deezer": "deezer://track/2950441",
+      "fun_fact_nl": "Het nummer gebruikt drie verschillende beats over de drie coupletten, elk geproduceerd door een andere producent. Rick Rubin produceerde de door rock beïnvloede hoofdbeat, die was geïnspireerd op 'The Big Beat' van Billy Squier."
     },
     {
       "year": 2003,
@@ -1005,7 +1041,8 @@
       "uri_apple_music": "applemusic://track/1440761957",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WpYeekQkAdc",
       "uri_tidal": "tidal://track/577917",
-      "uri_deezer": "deezer://track/7609573"
+      "uri_deezer": "deezer://track/7609573",
+      "fun_fact_nl": "Het nummer bevat een niet-vermelde vocale bijdrage van Justin Timberlake, die het nummer mede schreef. Het werd geschreven in reactie op de aanslagen van 11 september en werd de internationale doorbraakhit van de groep."
     },
     {
       "year": 2003,
@@ -1039,7 +1076,8 @@
       "uri_apple_music": "applemusic://track/1440761103",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pZG7IK99OvI",
       "uri_tidal": "tidal://track/614610",
-      "uri_deezer": "deezer://track/2231861"
+      "uri_deezer": "deezer://track/2231861",
+      "fun_fact_nl": "Het nummer werd geproduceerd door Kanye West voordat hij een grote soloartiest werd. De samenwerking hielp Kanye op de kaart te zetten als een topproducent in de hiphop."
     },
     {
       "year": 2003,
@@ -1069,7 +1107,8 @@
       "uri_apple_music": "applemusic://track/819130527",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LOtkH5amC7s",
       "uri_tidal": "tidal://track/21012101",
-      "uri_deezer": "deezer://track/75063691"
+      "uri_deezer": "deezer://track/75063691",
+      "fun_fact_nl": "In het nummer is Jay-Z te horen in een couplet en het was de eerste single van 'The Neptunes Present... Clones'. Pharrell schreef het nummer over het ophouden van een schijnvertoning om romantische gevoelens te verbergen, wat destijds ongebruikelijk was in de hiphop."
     },
     {
       "year": 2004,
@@ -1099,7 +1138,8 @@
       "uri_apple_music": "applemusic://track/1440795310",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GtUVQei3nX4",
       "uri_tidal": "tidal://track/3715217",
-      "uri_deezer": "deezer://track/429125352"
+      "uri_deezer": "deezer://track/429125352",
+      "fun_fact_nl": "Geproduceerd door The Neptunes, is de beat bijna volledig opgebouwd uit tongklikken, vingergeknip en stemgeluiden, met vrijwel geen traditionele instrumenten. Het was de eerste nummer 1-hit van Snoop Dogg in de Billboard Hot 100."
     },
     {
       "year": 2005,
@@ -1134,7 +1174,8 @@
       "uri_apple_music": "applemusic://track/1440669054",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6vwNcNOTVzY",
       "uri_tidal": "tidal://track/593851",
-      "uri_deezer": "deezer://track/2288219"
+      "uri_deezer": "deezer://track/2288219",
+      "fun_fact_nl": "Met Jamie Foxx in de hoofdrol bevat het nummer een sample van Ray Charles' 'I Got a Woman'. Bij de release hield het het record voor de meeste digitale downloads verkocht in één week (80.000)."
     },
     {
       "year": 2007,
@@ -1169,7 +1210,8 @@
       "uri_apple_music": "applemusic://track/1451902446",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PsO6ZnUZI0g",
       "uri_tidal": "tidal://track/593906",
-      "uri_deezer": "deezer://track/1178682"
+      "uri_deezer": "deezer://track/1178682",
+      "fun_fact_nl": "Het nummer bevat een prominente sample van Daft Punk's 'Harder, Better, Faster, Stronger'. Kanye vloog naar Parijs om toestemming te krijgen van het Franse duo, die aanvankelijk aarzelden maar het resultaat uiteindelijk geweldig vonden."
     },
     {
       "year": 2008,
@@ -1203,7 +1245,8 @@
       "uri_apple_music": "applemusic://track/1440737322",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Vf4mMCpNY0",
       "uri_tidal": "tidal://track/589905",
-      "uri_deezer": "deezer://track/2124739"
+      "uri_deezer": "deezer://track/2124739",
+      "fun_fact_nl": "Geproduceerd door Bangladesh, maakten de minimalistische beat van het nummer en de 'stream-of-consciousness' rapstijl van Lil Wayne het tot een van de meest geremixte tracks in de geschiedenis van de hiphop, met honderden onofficiële versies die online verschenen."
     },
     {
       "year": 2008,
@@ -1237,7 +1280,8 @@
       "uri_apple_music": "applemusic://track/1445298109",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2IH8tNQAzSs",
       "uri_tidal": "tidal://track/589940",
-      "uri_deezer": "deezer://track/884266"
+      "uri_deezer": "deezer://track/884266",
+      "fun_fact_nl": "Met de overleden Static Major, die tragisch stierf slechts enkele maanden na het opnemen van de hook, werd het nummer Lil Waynes eerste nummer 1-single in de Billboard Hot 100 en hielp het Tha Carter III om in de eerste week meer dan een miljoen exemplaren te verkopen."
     },
     {
       "year": 2008,
@@ -1266,7 +1310,8 @@
       "uri_apple_music": "applemusic://track/1260881181",
       "uri_youtube_music": "https://music.youtube.com/watch?v=nQJACVmankY",
       "uri_tidal": "tidal://track/2015627",
-      "uri_deezer": "deezer://track/383742081"
+      "uri_deezer": "deezer://track/383742081",
+      "fun_fact_nl": "Het nummer debuteerde op nummer één in de Billboard Hot 100, waarmee T.I. de eerste artiest was die dit in 2008 bereikte. Het was geïnspireerd op de levensstijl die hij wilde bieden aan iemand om wie hij gaf."
     },
     {
       "year": 2008,
@@ -1296,7 +1341,8 @@
       "uri_apple_music": "applemusic://track/1258981727",
       "uri_youtube_music": "https://music.youtube.com/watch?v=koVHN6eO4Xg",
       "uri_tidal": "tidal://track/2015641",
-      "uri_deezer": "deezer://track/383741911"
+      "uri_deezer": "deezer://track/383741911",
+      "fun_fact_nl": "In het nummer is Rihanna te horen en het bevat een sample van het Roemeense nummer 'Dragostea Din Tei' van O-Zone, beter bekend als de 'Numa Numa' virale internethit. Het stond zes weken op nummer één in de Billboard Hot 100."
     }
   ]
 }
