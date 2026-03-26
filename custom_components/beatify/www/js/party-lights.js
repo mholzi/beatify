@@ -4,6 +4,12 @@
 (function() {
     'use strict';
 
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
     var STORAGE_KEY = 'beatify_party_lights';
     var selectedLights = [];
     var selectedIntensity = 'medium';
@@ -61,9 +67,9 @@
             var cap = capLabels[light.capability] || 'On/Off';
             var icon = stateIcons[light.state] || '⚪';
             return '<label class="party-light-item">' +
-                '<input type="checkbox" value="' + light.entity_id + '" ' + checked + '>' +
+                '<input type="checkbox" value="' + escapeHtml(light.entity_id) + '" ' + checked + '>' +
                 '<span class="light-status">' + icon + '</span>' +
-                '<span class="light-name">' + (light.friendly_name || light.entity_id) + '</span>' +
+                '<span class="light-name">' + escapeHtml(light.friendly_name || light.entity_id) + '</span>' +
                 '<span class="light-cap-badge">' + cap + '</span>' +
                 '</label>';
         }).join('');
