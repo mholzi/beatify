@@ -84,6 +84,7 @@ class GameState:
         self.join_url: str | None = None
         # Issue #331: Party Lights service
         self._party_lights: Any = None  # PartyLightsService (lazy import)
+        self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
         self._player_registry = PlayerRegistry()
@@ -1962,7 +1963,9 @@ class GameState:
         """Flash Party Lights (fire-and-forget)."""
         if self._party_lights:
             try:
-                asyncio.create_task(self._party_lights.flash(color))
+                task = asyncio.create_task(self._party_lights.flash(color))
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights flash failed")
 
@@ -1970,7 +1973,9 @@ class GameState:
         """Run Party Lights celebration (fire-and-forget)."""
         if self._party_lights:
             try:
-                asyncio.create_task(self._party_lights.celebrate())
+                task = asyncio.create_task(self._party_lights.celebrate())
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights celebration failed")
 
