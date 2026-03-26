@@ -126,7 +126,7 @@ window.BeatifyI18n = (function() {
     /**
      * Supported languages (Story 16.3 - added Spanish)
      */
-    var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr'];
+    var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'nl'];
 
     /**
      * Set the current language
