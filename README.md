@@ -53,7 +53,11 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 ### Step 1: Install
 
-**Via HACS (Recommended)** — Install this HACS integration in seconds:
+**Via HACS (Recommended)** — One click to add the repository, then install:
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration)
+
+Or manually:
 ```
 HACS → ⋮ Menu → Custom Repositories
 → URL: https://github.com/mholzi/beatify
@@ -71,6 +75,9 @@ git clone https://github.com/mholzi/beatify.git beatify
 
 ### Step 2: Configure
 
+[![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=beatify)
+
+Or manually:
 ```
 Settings → Devices & Services → Add Integration → "Beatify"
 ```
