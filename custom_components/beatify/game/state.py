@@ -77,6 +77,7 @@ class GameState:
         """
         self._now = time_fn or time.time
         self.game_id: str | None = None
+        self.admin_token: str | None = None  # Issue #386: REST admin auth
         self.phase: GamePhase = GamePhase.LOBBY
         self.playlists: list[str] = []
         self.songs: list[dict[str, Any]] = []
@@ -331,6 +332,7 @@ class GameState:
         self.clear_all_sessions()
 
         self.game_id = secrets.token_urlsafe(8)
+        self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self.phase = GamePhase.LOBBY
         self.playlists = playlists
         self.songs = songs
@@ -740,8 +742,9 @@ class GameState:
         # Reset each player's game stats but keep them connected
         for player in self.players.values():
             player.reset_for_new_game()
-        # Generate new game ID for the rematch
+        # Generate new game ID and admin token for the rematch
         self.game_id = secrets.token_urlsafe(8)
+        self.admin_token = secrets.token_urlsafe(16)  # Issue #386
 
         # Regenerate join_url with new game_id
         if preserved_join_url:
