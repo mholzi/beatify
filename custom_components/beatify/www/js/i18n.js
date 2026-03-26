@@ -218,6 +218,10 @@ window.BeatifyI18n = (function() {
         if (langLower.startsWith('fr')) {
             return 'fr';
         }
+        // Check for Dutch (nl, nl-NL, nl-BE, etc.)
+        if (langLower.startsWith('nl')) {
+            return 'nl';
+        }
         // Default to English
         return 'en';
     }
