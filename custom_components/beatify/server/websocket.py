@@ -282,345 +282,23 @@ class BeatifyWebSocketHandler:
                 )
                 return
 
-            if action == "start_game":
-                if game_state.phase != GamePhase.LOBBY:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Game already started",
-                        }
-                    )
-                    return
-
-                # Start the first round (plays song, sets timer)
-                success = await game_state.start_round(self.hass)
-                if success:
-                    await self.broadcast_state()
-                else:
-                    # Determine specific error based on game state
-                    error_code = ERR_GAME_NOT_STARTED
-                    error_message = "Failed to start game"
-
-                    if game_state.phase == GamePhase.PAUSED:
-                        # Game paused due to specific error
-                        pause_reason = game_state.pause_reason
-                        error_detail = game_state.last_error_detail
-                        if pause_reason == "media_player_error":
-                            error_code = ERR_MEDIA_PLAYER_UNAVAILABLE
-                            if error_detail:
-                                error_message = f"Media player error: {error_detail}"
-                            else:
-                                error_message = "Media player not responding - check speaker connection"
-                        elif pause_reason == "no_songs_available":
-                            error_message = "No playable songs for selected provider"
-                        else:
-                            error_message = f"Game paused: {pause_reason}"
-                    elif game_state.phase == GamePhase.END:
-                        error_code = ERR_NO_SONGS_REMAINING
-                        error_message = "No songs available in playlist"
-
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": error_code,
-                            "message": error_message,
-                        }
-                    )
-
-            elif action == "next_round":
-                if game_state.phase == GamePhase.PLAYING:
-                    # Early advance - end current round first
-                    await game_state.end_round()
-                    # Broadcast handled by round_end_callback
-                elif game_state.phase == GamePhase.REVEAL:
-                    # Start next round or end game
-                    if game_state.last_round:
-                        # Record game stats before ending (Story 14.4, 19.1)
-                        stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-                        if stats_service:
-                            game_summary = game_state.finalize_game()
-                            await stats_service.record_game(
-                                game_summary, difficulty=game_state.difficulty
-                            )
-                            _LOGGER.debug("Game stats recorded for natural end")
-
-                        # No more rounds, end game
-                        await game_state.advance_to_end()
-                        await self.broadcast_state()
-                    else:
-                        # Start next round
-                        success = await game_state.start_round(self.hass)
-                        if success:
-                            await self.broadcast_state()
-                        else:
-                            # Record stats before ending due to no songs (Story 14.4, 19.1)
-                            stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-                            if stats_service:
-                                game_summary = game_state.finalize_game()
-                                await stats_service.record_game(
-                                    game_summary, difficulty=game_state.difficulty
-                                )
-                                _LOGGER.debug(
-                                    "Game stats recorded (no songs remaining)"
-                                )
-
-                            # No more songs
-                            await game_state.advance_to_end()
-                            await self.broadcast_state()
-                else:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Cannot advance round in current phase",
-                        }
-                    )
-
-            elif action == "stop_song":
-                if game_state.phase != GamePhase.PLAYING:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "No song playing",
-                        }
-                    )
-                    return
-
-                if game_state.song_stopped:
-                    # Already stopped, no-op
-                    return
-
-                # Stop playback
-                await game_state.stop_media()
-
-                game_state.song_stopped = True
-                _LOGGER.info("Admin stopped song in round %d", game_state.round)
-
-                # Notify all clients
-                await self.broadcast({"type": "song_stopped"})
-
-            elif action == "set_volume":
-                direction = data.get("direction")  # "up" or "down"
-                if direction not in ("up", "down"):
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Invalid volume direction",
-                        }
-                    )
-                    return
-
-                # Calculate new volume
-                new_level = game_state.adjust_volume(direction)
-
-                # Apply to media player
-                success = await game_state.set_volume_on_player(new_level)
-                if not success:
-                    _LOGGER.warning(
-                        "Failed to set volume to %.0f%%", new_level * 100
-                    )
-
-                _LOGGER.info("Volume adjusted %s to %.0f%%", direction, new_level * 100)
-
-                # Send feedback to requester only (not broadcast)
-                await ws.send_json(
-                    {
-                        "type": "volume_changed",
-                        "level": new_level,
-                    }
-                )
-
-            elif action == "end_game":
-                # Issue #108: Modified to stay in END phase without wiping players
-                if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Cannot end game in current phase",
-                        }
-                    )
-                    return
-
-                # Stop media playback
-                await game_state.stop_media()
-
-                # Record game stats BEFORE transitioning to END (Story 14.4, 19.1)
-                stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-                if stats_service:
-                    game_summary = game_state.finalize_game()
-                    await stats_service.record_game(
-                        game_summary, difficulty=game_state.difficulty
-                    )
-                    _LOGGER.debug("Game stats recorded for early end")
-
-                # Transition to END - players stay connected for rematch option
-                await game_state.advance_to_end()
-                _LOGGER.info(
-                    "Admin ended game early at round %d - players preserved for rematch",
-                    game_state.round,
-                )
-
-                # Broadcast final state to all players
-                await self.broadcast_state()
-                # NOTE: await game_state.end_game() NOT called - admin can now Rematch or Dismiss
-                # NOTE: game_ended NOT sent here - only sent on dismiss_game
-
-            elif action == "dismiss_game":
-                # Issue #108: Full teardown - only allowed from END phase
-                if game_state.phase != GamePhase.END:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Can only dismiss from END phase",
-                        }
-                    )
-                    return
-
-                # Fully reset game state - wipes all players
-                await game_state.end_game()
-                _LOGGER.info("Game dismissed - all players cleared")
-
-                # Send game_ended notification to kick all players
-                await self.broadcast({"type": "game_ended"})
-
-                # Broadcast cleared state
-                await self.broadcast_state()
-
-                # Cleanup pending tasks
-                await self.cleanup_game_tasks()
-
-            elif action == "rematch_game":
-                # Issue #108: Soft reset for rematch - preserves players
-                if game_state.phase != GamePhase.END:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Can only rematch from END phase",
-                        }
-                    )
-                    return
-
-                player_count = len(game_state.players)
-                game_state.rematch_game()
-                _LOGGER.info("Rematch started with %d players", player_count)
-
-                # Broadcast rematch event so clients transition to lobby
-                await self.broadcast({"type": "rematch_started"})
-                await self.broadcast_state()
-
-            elif action == "set_language":
-                # Language selection (Story 12.4) - only in LOBBY phase
-                if game_state.phase != GamePhase.LOBBY:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Can only change language in lobby",
-                        }
-                    )
-                    return
-
-                language = data.get("language", "en")
-                if language not in ("en", "de", "es", "fr"):
-                    language = "en"  # Default to English for invalid codes
-
-                game_state.language = language
-                _LOGGER.info("Game language set to: %s", language)
-
-                # Broadcast state with updated language
-                await self.broadcast_state()
-
-            elif action == "confirm_intro_splash":
-                # Issue #292: Admin confirms the first-intro splash screen
-                # Triggers deferred playback — song was NOT played until now
-                if not game_state._intro_splash_pending:
-                    return
-                game_state._intro_splash_pending = False
-                game_state._intro_splash_shown = True
-
-                # Play the deferred song now that admin has confirmed
-                deferred_song = game_state._intro_splash_deferred_song
-                if deferred_song:
-                    success = await game_state.play_deferred_song(deferred_song)
-                    if not success:
-                        _LOGGER.warning(
-                            "Failed to play deferred intro song: %s",
-                            deferred_song.get("uri"),
-                        )
-                    game_state._intro_splash_deferred_song = None
-                    game_state._intro_splash_hass = None
-
-                # Reset round timing to start from NOW (after admin confirmation)
-                game_state.round_start_time = game_state._now()
-                game_state._intro_round_start_time = game_state._now()
-                from custom_components.beatify.game.state import INTRO_DURATION_SECONDS
-
-                effective_duration = INTRO_DURATION_SECONDS
-                game_state.deadline = int(
-                    (game_state.round_start_time + effective_duration) * 1000
-                )
-
-                game_state._intro_stop_task = asyncio.create_task(
-                    game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
-                )
-                await self.broadcast_state()
-
-            elif action == "set_party_lights":
-                # Issue #331: Configure Party Lights
-                entity_ids = data.get("entity_ids", [])
-                intensity = data.get("intensity", "medium")
-                enabled = data.get("enabled", True)
-
-                if enabled and entity_ids:
-                    await game_state.configure_party_lights(
-                        self.hass, entity_ids, intensity
-                    )
-                    _LOGGER.info(
-                        "Party Lights configured: %d lights, intensity=%s",
-                        len(entity_ids),
-                        intensity,
-                    )
-                else:
-                    await game_state.disable_party_lights()
-                    _LOGGER.info("Party Lights disabled")
-
-                await ws.send_json({"type": "party_lights_updated", "enabled": enabled})
-
-            elif action == "toggle_party_lights":
-                # Issue #331: Toggle Party Lights mid-game
-                if game_state._party_lights and game_state._party_lights._active:
-                    await game_state.disable_party_lights()
-                    await ws.send_json(
-                        {"type": "party_lights_updated", "enabled": False}
-                    )
-                else:
-                    await ws.send_json(
-                        {
-                            "type": "error",
-                            "code": ERR_INVALID_ACTION,
-                            "message": "Party Lights not configured — set up in game settings first",
-                        }
-                    )
-
-            elif action == "preview_lights":
-                # Issue #331: Preview lights with 5s demo
-                entity_ids = data.get("entity_ids", [])
-                if entity_ids:
-                    from custom_components.beatify.services.lights import (  # noqa: PLC0415
-                        PartyLightsService,
-                    )
-
-                    preview = PartyLightsService(self.hass)
-                    await preview.start(entity_ids, "party")
-                    await preview.celebrate()
-                    await preview.stop()
-
+            admin_handlers = {
+                "start_game": self._admin_start_game,
+                "next_round": self._admin_next_round,
+                "stop_song": self._admin_stop_song,
+                "set_volume": self._admin_set_volume,
+                "end_game": self._admin_end_game,
+                "dismiss_game": self._admin_dismiss_game,
+                "rematch_game": self._admin_rematch_game,
+                "set_language": self._admin_set_language,
+                "confirm_intro_splash": self._admin_confirm_intro_splash,
+                "set_party_lights": self._admin_set_party_lights,
+                "toggle_party_lights": self._admin_toggle_party_lights,
+                "preview_lights": self._admin_preview_lights,
+            }
+            handler = admin_handlers.get(action)
+            if handler:
+                await handler(ws, data, game_state)
             else:
                 _LOGGER.warning("Unknown admin action: %s", action)
 
@@ -678,6 +356,381 @@ class BeatifyWebSocketHandler:
 
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
+
+    async def _admin_start_game(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin start_game action."""
+        if game_state.phase != GamePhase.LOBBY:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Game already started",
+                }
+            )
+            return
+
+        # Start the first round (plays song, sets timer)
+        success = await game_state.start_round(self.hass)
+        if success:
+            await self.broadcast_state()
+        else:
+            # Determine specific error based on game state
+            error_code = ERR_GAME_NOT_STARTED
+            error_message = "Failed to start game"
+
+            if game_state.phase == GamePhase.PAUSED:
+                # Game paused due to specific error
+                pause_reason = game_state.pause_reason
+                error_detail = game_state.last_error_detail
+                if pause_reason == "media_player_error":
+                    error_code = ERR_MEDIA_PLAYER_UNAVAILABLE
+                    if error_detail:
+                        error_message = f"Media player error: {error_detail}"
+                    else:
+                        error_message = "Media player not responding - check speaker connection"
+                elif pause_reason == "no_songs_available":
+                    error_message = "No playable songs for selected provider"
+                else:
+                    error_message = f"Game paused: {pause_reason}"
+            elif game_state.phase == GamePhase.END:
+                error_code = ERR_NO_SONGS_REMAINING
+                error_message = "No songs available in playlist"
+
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": error_code,
+                    "message": error_message,
+                }
+            )
+
+    async def _admin_next_round(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin next_round action."""
+        if game_state.phase == GamePhase.PLAYING:
+            # Early advance - end current round first
+            await game_state.end_round()
+            # Broadcast handled by round_end_callback
+        elif game_state.phase == GamePhase.REVEAL:
+            # Start next round or end game
+            if game_state.last_round:
+                # Record game stats before ending (Story 14.4, 19.1)
+                stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
+                if stats_service:
+                    game_summary = game_state.finalize_game()
+                    await stats_service.record_game(
+                        game_summary, difficulty=game_state.difficulty
+                    )
+                    _LOGGER.debug("Game stats recorded for natural end")
+
+                # No more rounds, end game
+                await game_state.advance_to_end()
+                await self.broadcast_state()
+            else:
+                # Start next round
+                success = await game_state.start_round(self.hass)
+                if success:
+                    await self.broadcast_state()
+                else:
+                    # Record stats before ending due to no songs (Story 14.4, 19.1)
+                    stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
+                    if stats_service:
+                        game_summary = game_state.finalize_game()
+                        await stats_service.record_game(
+                            game_summary, difficulty=game_state.difficulty
+                        )
+                        _LOGGER.debug(
+                            "Game stats recorded (no songs remaining)"
+                        )
+
+                    # No more songs
+                    await game_state.advance_to_end()
+                    await self.broadcast_state()
+        else:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Cannot advance round in current phase",
+                }
+            )
+
+    async def _admin_stop_song(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin stop_song action."""
+        if game_state.phase != GamePhase.PLAYING:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "No song playing",
+                }
+            )
+            return
+
+        if game_state.song_stopped:
+            # Already stopped, no-op
+            return
+
+        # Stop playback
+        await game_state.stop_media()
+
+        game_state.song_stopped = True
+        _LOGGER.info("Admin stopped song in round %d", game_state.round)
+
+        # Notify all clients
+        await self.broadcast({"type": "song_stopped"})
+
+    async def _admin_set_volume(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin set_volume action."""
+        direction = data.get("direction")  # "up" or "down"
+        if direction not in ("up", "down"):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Invalid volume direction",
+                }
+            )
+            return
+
+        # Calculate new volume
+        new_level = game_state.adjust_volume(direction)
+
+        # Apply to media player
+        success = await game_state.set_volume_on_player(new_level)
+        if not success:
+            _LOGGER.warning(
+                "Failed to set volume to %.0f%%", new_level * 100
+            )
+
+        _LOGGER.info("Volume adjusted %s to %.0f%%", direction, new_level * 100)
+
+        # Send feedback to requester only (not broadcast)
+        await ws.send_json(
+            {
+                "type": "volume_changed",
+                "level": new_level,
+            }
+        )
+
+    async def _admin_end_game(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin end_game action."""
+        # Issue #108: Modified to stay in END phase without wiping players
+        if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Cannot end game in current phase",
+                }
+            )
+            return
+
+        # Stop media playback
+        await game_state.stop_media()
+
+        # Record game stats BEFORE transitioning to END (Story 14.4, 19.1)
+        stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
+        if stats_service:
+            game_summary = game_state.finalize_game()
+            await stats_service.record_game(
+                game_summary, difficulty=game_state.difficulty
+            )
+            _LOGGER.debug("Game stats recorded for early end")
+
+        # Transition to END - players stay connected for rematch option
+        await game_state.advance_to_end()
+        _LOGGER.info(
+            "Admin ended game early at round %d - players preserved for rematch",
+            game_state.round,
+        )
+
+        # Broadcast final state to all players
+        await self.broadcast_state()
+        # NOTE: await game_state.end_game() NOT called - admin can now Rematch or Dismiss
+        # NOTE: game_ended NOT sent here - only sent on dismiss_game
+
+    async def _admin_dismiss_game(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin dismiss_game action."""
+        # Issue #108: Full teardown - only allowed from END phase
+        if game_state.phase != GamePhase.END:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Can only dismiss from END phase",
+                }
+            )
+            return
+
+        # Fully reset game state - wipes all players
+        await game_state.end_game()
+        _LOGGER.info("Game dismissed - all players cleared")
+
+        # Send game_ended notification to kick all players
+        await self.broadcast({"type": "game_ended"})
+
+        # Broadcast cleared state
+        await self.broadcast_state()
+
+        # Cleanup pending tasks
+        await self.cleanup_game_tasks()
+
+    async def _admin_rematch_game(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin rematch_game action."""
+        # Issue #108: Soft reset for rematch - preserves players
+        if game_state.phase != GamePhase.END:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Can only rematch from END phase",
+                }
+            )
+            return
+
+        player_count = len(game_state.players)
+        game_state.rematch_game()
+        _LOGGER.info("Rematch started with %d players", player_count)
+
+        # Broadcast rematch event so clients transition to lobby
+        await self.broadcast({"type": "rematch_started"})
+        await self.broadcast_state()
+
+    async def _admin_set_language(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin set_language action."""
+        # Language selection (Story 12.4) - only in LOBBY phase
+        if game_state.phase != GamePhase.LOBBY:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Can only change language in lobby",
+                }
+            )
+            return
+
+        language = data.get("language", "en")
+        if language not in ("en", "de", "es", "fr"):
+            language = "en"  # Default to English for invalid codes
+
+        game_state.language = language
+        _LOGGER.info("Game language set to: %s", language)
+
+        # Broadcast state with updated language
+        await self.broadcast_state()
+
+    async def _admin_confirm_intro_splash(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin confirm_intro_splash action."""
+        # Issue #292: Admin confirms the first-intro splash screen
+        # Triggers deferred playback — song was NOT played until now
+        if not game_state._intro_splash_pending:
+            return
+        game_state._intro_splash_pending = False
+        game_state._intro_splash_shown = True
+
+        # Play the deferred song now that admin has confirmed
+        deferred_song = game_state._intro_splash_deferred_song
+        if deferred_song:
+            success = await game_state.play_deferred_song(deferred_song)
+            if not success:
+                _LOGGER.warning(
+                    "Failed to play deferred intro song: %s",
+                    deferred_song.get("uri"),
+                )
+            game_state._intro_splash_deferred_song = None
+            game_state._intro_splash_hass = None
+
+        # Reset round timing to start from NOW (after admin confirmation)
+        game_state.round_start_time = game_state._now()
+        game_state._intro_round_start_time = game_state._now()
+        from custom_components.beatify.game.state import INTRO_DURATION_SECONDS
+
+        effective_duration = INTRO_DURATION_SECONDS
+        game_state.deadline = int(
+            (game_state.round_start_time + effective_duration) * 1000
+        )
+
+        game_state._intro_stop_task = asyncio.create_task(
+            game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
+        )
+        await self.broadcast_state()
+
+    async def _admin_set_party_lights(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin set_party_lights action."""
+        # Issue #331: Configure Party Lights
+        entity_ids = data.get("entity_ids", [])
+        intensity = data.get("intensity", "medium")
+        enabled = data.get("enabled", True)
+
+        if enabled and entity_ids:
+            await game_state.configure_party_lights(
+                self.hass, entity_ids, intensity
+            )
+            _LOGGER.info(
+                "Party Lights configured: %d lights, intensity=%s",
+                len(entity_ids),
+                intensity,
+            )
+        else:
+            await game_state.disable_party_lights()
+            _LOGGER.info("Party Lights disabled")
+
+        await ws.send_json({"type": "party_lights_updated", "enabled": enabled})
+
+    async def _admin_toggle_party_lights(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin toggle_party_lights action."""
+        # Issue #331: Toggle Party Lights mid-game
+        if game_state._party_lights and game_state._party_lights._active:
+            await game_state.disable_party_lights()
+            await ws.send_json(
+                {"type": "party_lights_updated", "enabled": False}
+            )
+        else:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Party Lights not configured — set up in game settings first",
+                }
+            )
+
+    async def _admin_preview_lights(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin preview_lights action."""
+        # Issue #331: Preview lights with 5s demo
+        entity_ids = data.get("entity_ids", [])
+        if entity_ids:
+            from custom_components.beatify.services.lights import (  # noqa: PLC0415
+                PartyLightsService,
+            )
+
+            preview = PartyLightsService(self.hass)
+            await preview.start(entity_ids, "party")
+            await preview.celebrate()
+            await preview.stop()
 
     async def _handle_submit(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
