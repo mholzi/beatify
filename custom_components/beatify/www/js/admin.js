@@ -3,6 +3,14 @@
  * Vanilla JS - no frameworks
  */
 
+// Issue #386: Admin token auth for REST endpoints
+function _adminHeaders() {
+    var token = sessionStorage.getItem('beatify_admin_token');
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    return headers;
+}
+
 // Module-level state
 let selectedPlaylists = [];
 let playlistData = [];
@@ -1434,6 +1442,11 @@ async function startGame() {
             console.warn('Game started with warnings:', data.warnings);
         }
 
+        // Issue #386: Store admin token for REST auth
+        if (data.admin_token) {
+            sessionStorage.setItem('beatify_admin_token', data.admin_token);
+        }
+
         showLobbyView(data);
 
     } catch (err) {
@@ -1461,7 +1474,7 @@ async function startGameplay() {
     btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
 
     try {
-        const response = await fetch('/beatify/api/start-gameplay', { method: 'POST' });
+        const response = await fetch('/beatify/api/start-gameplay', { method: 'POST', headers: _adminHeaders() });
         const data = await response.json();
 
         if (!response.ok) {
@@ -1516,7 +1529,7 @@ async function confirmEndGame() {
     closeEndGameModal();
 
     try {
-        const response = await fetch('/beatify/api/end-game', { method: 'POST' });
+        const response = await fetch('/beatify/api/end-game', { method: 'POST', headers: _adminHeaders() });
         if (response.ok) {
             cachedQRUrl = null;  // Clear QR cache
             showSetupView();
@@ -1589,7 +1602,7 @@ async function confirmRematch() {
     closeRematchModal();
 
     try {
-        var response = await fetch('/beatify/api/rematch-game', { method: 'POST' });
+        var response = await fetch('/beatify/api/rematch-game', { method: 'POST', headers: _adminHeaders() });
         if (response.ok) {
             var data = await response.json();
             // Fix #228: If admin was already a player in the previous game,

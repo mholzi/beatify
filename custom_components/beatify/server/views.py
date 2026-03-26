@@ -59,6 +59,24 @@ def _read_file(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def _verify_admin_token(request: web.Request, game_state: Any) -> bool:
+    """Verify admin token from Authorization header or query param (#386).
+
+    Accepts:
+    - Header: Authorization: Bearer <token>
+    - Query: ?admin_token=<token>
+    """
+    if not game_state or not game_state.admin_token:
+        return False
+    token = None
+    auth = request.headers.get("Authorization", "")
+    if auth.startswith("Bearer "):
+        token = auth[7:]
+    if not token:
+        token = request.query.get("admin_token")
+    return token == game_state.admin_token
+
+
 class AdminView(HomeAssistantView):
     """Serve the admin page."""
 
@@ -414,6 +432,7 @@ class StartGameView(HomeAssistantView):
 
         result = game_state.create_game(**create_kwargs)
         result["warnings"] = warnings
+        result["admin_token"] = game_state.admin_token  # Issue #386: for REST admin auth
 
         # Record game start time for analytics (Story 19.1)
         stats_service = data.get("stats")
@@ -460,7 +479,7 @@ class EndGameView(HomeAssistantView):
         """Initialize view."""
         self.hass = hass
 
-    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def post(self, request: web.Request) -> web.Response:
         """End the current game."""
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
@@ -469,6 +488,12 @@ class EndGameView(HomeAssistantView):
             return web.json_response(
                 {"error": "GAME_NOT_STARTED", "message": "No active game"},
                 status=404,
+            )
+
+        if not _verify_admin_token(request, game_state):
+            return web.json_response(
+                {"error": "UNAUTHORIZED", "message": "Admin token required"},
+                status=403,
             )
 
         game_state.end_game()
@@ -493,7 +518,7 @@ class RematchGameView(HomeAssistantView):
         """Initialize view."""
         self.hass = hass
 
-    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def post(self, request: web.Request) -> web.Response:
         """Start a rematch with current players."""
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
@@ -504,6 +529,12 @@ class RematchGameView(HomeAssistantView):
             return web.json_response(
                 {"error": "GAME_NOT_FOUND", "message": "No active game"},
                 status=404,
+            )
+
+        if not _verify_admin_token(request, game_state):
+            return web.json_response(
+                {"error": "UNAUTHORIZED", "message": "Admin token required"},
+                status=403,
             )
 
         if game_state.phase != GamePhase.END:
@@ -541,7 +572,7 @@ class StartGameplayView(HomeAssistantView):
         """Initialize view."""
         self.hass = hass
 
-    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def post(self, request: web.Request) -> web.Response:
         """Start gameplay from lobby."""
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
@@ -552,6 +583,12 @@ class StartGameplayView(HomeAssistantView):
             return web.json_response(
                 {"error": "GAME_NOT_STARTED", "message": "No active game"},
                 status=404,
+            )
+
+        if not _verify_admin_token(request, game_state):
+            return web.json_response(
+                {"error": "UNAUTHORIZED", "message": "Admin token required"},
+                status=403,
             )
 
         if game_state.phase != GamePhase.LOBBY:
@@ -660,8 +697,16 @@ class StatsView(HomeAssistantView):
         """Initialize view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def get(self, request: web.Request) -> web.Response:
         """Get game statistics summary and history."""
+        # Issue #386: Admin token required when game is active
+        game_state = self.hass.data.get(DOMAIN, {}).get("game")
+        if game_state and game_state.game_id and not _verify_admin_token(request, game_state):
+            return web.json_response(
+                {"error": "UNAUTHORIZED", "message": "Admin token required"},
+                status=403,
+            )
+
         stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
 
         if not stats_service:
