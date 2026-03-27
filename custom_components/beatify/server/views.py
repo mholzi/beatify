@@ -193,6 +193,37 @@ class LightsView(HomeAssistantView):
         return web.json_response({"lights": lights})
 
 
+class PreviewLightsView(HomeAssistantView):
+    """Trigger a party lights preview for selected entities (#408)."""
+
+    url = "/beatify/api/preview-lights"
+    name = "beatify:api:preview-lights"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Run a ~5s party lights preview on the given entity_ids."""
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        entity_ids = body.get("entity_ids", [])
+        if not entity_ids:
+            return web.json_response({"error": "No entity_ids provided"}, status=400)
+
+        from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
+
+        preview = PartyLightsService(self.hass)
+        await preview.start(entity_ids, "party")
+        await preview.celebrate()
+        await preview.stop()
+        return web.json_response({"ok": True})
+
+
 class StartGameView(HomeAssistantView):
     """Handle start game requests."""
 
