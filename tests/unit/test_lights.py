@@ -498,49 +498,84 @@ class TestGetCapability:
 
     def test_rgb_light(self):
         hass = _make_hass(
-            {"light.rgb": {"state": "on", "attributes": {"supported_color_modes": ["rgb"]}}}
+            {
+                "light.rgb": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["rgb"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.rgb") == "rgb"
 
     def test_rgbw_light(self):
         hass = _make_hass(
-            {"light.rgbw": {"state": "on", "attributes": {"supported_color_modes": ["rgbw"]}}}
+            {
+                "light.rgbw": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["rgbw"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.rgbw") == "rgb"
 
     def test_hs_light(self):
         hass = _make_hass(
-            {"light.hs": {"state": "on", "attributes": {"supported_color_modes": ["hs"]}}}
+            {
+                "light.hs": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["hs"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.hs") == "rgb"
 
     def test_xy_light(self):
         hass = _make_hass(
-            {"light.xy": {"state": "on", "attributes": {"supported_color_modes": ["xy"]}}}
+            {
+                "light.xy": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["xy"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.xy") == "rgb"
 
     def test_color_temp_light(self):
         hass = _make_hass(
-            {"light.ct": {"state": "on", "attributes": {"supported_color_modes": ["color_temp"]}}}
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["color_temp"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.ct") == "ct"
 
     def test_brightness_light(self):
         hass = _make_hass(
-            {"light.dim": {"state": "on", "attributes": {"supported_color_modes": ["brightness"]}}}
+            {
+                "light.dim": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["brightness"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.dim") == "dim"
 
     def test_onoff_light(self):
         hass = _make_hass(
-            {"light.switch": {"state": "on", "attributes": {"supported_color_modes": ["onoff"]}}}
+            {
+                "light.switch": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["onoff"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         assert svc._get_capability("light.switch") == "onoff"
@@ -580,7 +615,12 @@ class TestApplyCapability:
     async def test_ct_light_maps_blue_to_cool(self):
         """CT light receiving rgb_color should map blue to 6500K."""
         hass = _make_hass(
-            {"light.ct": {"state": "on", "attributes": {"supported_color_modes": ["color_temp"]}}}
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["color_temp"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         await svc.start(["light.ct"])
@@ -601,7 +641,12 @@ class TestApplyCapability:
     async def test_ct_light_maps_red_to_warm(self):
         """CT light receiving rgb_color should map red to 2700K."""
         hass = _make_hass(
-            {"light.ct": {"state": "on", "attributes": {"supported_color_modes": ["color_temp"]}}}
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["color_temp"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         await svc.start(["light.ct"])
@@ -620,7 +665,12 @@ class TestApplyCapability:
     async def test_ct_light_passes_through_color_temp_kelvin(self):
         """CT light receiving color_temp_kelvin directly should use it as-is."""
         hass = _make_hass(
-            {"light.ct": {"state": "on", "attributes": {"supported_color_modes": ["color_temp"]}}}
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["color_temp"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         await svc.start(["light.ct"])
@@ -639,7 +689,12 @@ class TestApplyCapability:
     @pytest.mark.asyncio
     async def test_dim_light_only_gets_brightness(self):
         hass = _make_hass(
-            {"light.dim": {"state": "on", "attributes": {"supported_color_modes": ["brightness"]}}}
+            {
+                "light.dim": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["brightness"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         await svc.start(["light.dim"])
@@ -659,7 +714,12 @@ class TestApplyCapability:
     @pytest.mark.asyncio
     async def test_onoff_light_gets_no_color_or_brightness(self):
         hass = _make_hass(
-            {"light.sw": {"state": "on", "attributes": {"supported_color_modes": ["onoff"]}}}
+            {
+                "light.sw": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["onoff"]},
+                }
+            }
         )
         svc = PartyLightsService(hass)
         await svc.start(["light.sw"])
