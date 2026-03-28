@@ -488,6 +488,7 @@ class GameState:
                     "fun_fact_de": self.current_song.get("fun_fact_de", ""),
                     "fun_fact_es": self.current_song.get("fun_fact_es", ""),
                     "fun_fact_fr": self.current_song.get("fun_fact_fr", ""),
+                    "fun_fact_nl": self.current_song.get("fun_fact_nl", ""),
                 }
             # Include reveal-specific player data (guesses, round_score, missed)
             state["players"] = self.get_reveal_players_state()
@@ -1305,6 +1306,7 @@ class GameState:
             "fun_fact_de": song.get("fun_fact_de", ""),
             "fun_fact_es": song.get("fun_fact_es", ""),
             "fun_fact_fr": song.get("fun_fact_fr", ""),
+            "fun_fact_nl": song.get("fun_fact_nl", ""),
             "uri": song.get("_resolved_uri") or song.get("uri"),  # Story 17.3
             "chart_info": song.get("chart_info", {}),
             "certifications": song.get("certifications", []),
@@ -1312,6 +1314,7 @@ class GameState:
             "awards_de": song.get("awards_de", []),
             "awards_es": song.get("awards_es", []),
             "awards_fr": song.get("awards_fr", []),
+            "awards_nl": song.get("awards_nl", []),
             **metadata,
         }
 
@@ -1732,6 +1735,42 @@ class GameState:
             if current_task != self._timer_task:
                 self._timer_task.cancel()
         self._timer_task = None
+
+    async def confirm_intro_splash(self) -> None:
+        """Handle admin confirmation of intro splash (Issue #292, #403).
+
+        Encapsulates all intro-splash state mutations so the websocket
+        handler does not need to touch private attributes directly.
+        """
+        if not self._intro_splash_pending:
+            return
+        self._intro_splash_pending = False
+        self._intro_splash_shown = True
+
+        # Play the deferred song now that admin has confirmed
+        deferred_song = self._intro_splash_deferred_song
+        if deferred_song:
+            success = await self.play_deferred_song(deferred_song)
+            if not success:
+                _LOGGER.warning(
+                    "Failed to play deferred intro song: %s",
+                    deferred_song.get("uri"),
+                )
+            self._intro_splash_deferred_song = None
+            self._intro_splash_hass = None
+
+        # Reset round timing to start from NOW (after admin confirmation)
+        self.round_start_time = self._now()
+        self._intro_round_start_time = self._now()
+
+        effective_duration = INTRO_DURATION_SECONDS
+        self.deadline = int(
+            (self.round_start_time + effective_duration) * 1000
+        )
+
+        self._intro_stop_task = asyncio.create_task(
+            self._intro_auto_stop(INTRO_DURATION_SECONDS)
+        )
 
     def _cancel_intro_timer(self) -> None:
         """Cancel the intro auto-stop timer if running (Issue #23)."""
