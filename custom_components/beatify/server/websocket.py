@@ -294,7 +294,7 @@ class BeatifyWebSocketHandler:
                 "confirm_intro_splash": self._admin_confirm_intro_splash,
                 "set_party_lights": self._admin_set_party_lights,
                 "toggle_party_lights": self._admin_toggle_party_lights,
-                "preview_lights": self._admin_preview_lights,
+
             }
             handler = admin_handlers.get(action)
             if handler:
@@ -715,22 +715,6 @@ class BeatifyWebSocketHandler:
                     "message": "Party Lights not configured — set up in game settings first",
                 }
             )
-
-    async def _admin_preview_lights(
-        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
-    ) -> None:
-        """Handle admin preview_lights action."""
-        # Issue #331: Preview lights with 5s demo
-        entity_ids = data.get("entity_ids", [])
-        if entity_ids:
-            from custom_components.beatify.services.lights import (  # noqa: PLC0415
-                PartyLightsService,
-            )
-
-            preview = PartyLightsService(self.hass)
-            await preview.start(entity_ids, "party")
-            await preview.celebrate()
-            await preview.stop()
 
     async def _handle_submit(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState

@@ -215,12 +215,25 @@ class PreviewLightsView(HomeAssistantView):
         if not entity_ids:
             return web.json_response({"error": "No entity_ids provided"}, status=400)
 
-        from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
+        game_state = self.hass.data.get(DOMAIN, {}).get("game")
+        if game_state and game_state.game_id:
+            return web.json_response(
+                {"error": "Cannot preview during active game"}, status=409
+            )
 
-        preview = PartyLightsService(self.hass)
-        await preview.start(entity_ids, "party")
-        await preview.celebrate()
-        await preview.stop()
+        intensity = body.get("intensity", "party")
+
+        try:
+            from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
+
+            preview = PartyLightsService(self.hass)
+            await preview.start(entity_ids, intensity)
+            await preview.celebrate()
+            await preview.stop()
+        except Exception:  # noqa: BLE001
+            _LOGGER.exception("Party lights preview failed")
+            return web.json_response({"error": "Preview failed"}, status=500)
+
         return web.json_response({"ok": True})
 
 
