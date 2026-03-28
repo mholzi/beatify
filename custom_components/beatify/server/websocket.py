@@ -223,6 +223,15 @@ class BeatifyWebSocketHandler:
                                 name,
                                 game_state.phase.value,
                             )
+                            game_state.remove_player(name)
+                            await ws.send_json(
+                                {
+                                    "type": "error",
+                                    "code": ERR_INVALID_ACTION,
+                                    "message": "Admin claim only allowed during lobby phase",
+                                }
+                            )
+                            return
                         else:
                             game_state.set_admin(name)
                 else:

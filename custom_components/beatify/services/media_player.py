@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import sys
 from typing import TYPE_CHECKING, Any
+
+if sys.version_info >= (3, 11):
+    from asyncio import timeout as async_timeout
+else:
+    from async_timeout import timeout as async_timeout
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -301,7 +307,7 @@ class MediaPlayerService:
         uri = song.get("_resolved_uri")
         _LOGGER.debug("Sonos playback: %s on %s", uri, self._entity_id)
 
-        async with asyncio.timeout(PLAYBACK_TIMEOUT):
+        async with async_timeout(PLAYBACK_TIMEOUT):
             await self._hass.services.async_call(
                 "media_player",
                 "play_media",
@@ -326,7 +332,7 @@ class MediaPlayerService:
             self._entity_id,
         )
 
-        async with asyncio.timeout(PLAYBACK_TIMEOUT):
+        async with async_timeout(PLAYBACK_TIMEOUT):
             await self._hass.services.async_call(
                 "media_player",
                 "play_media",
@@ -593,7 +599,7 @@ class MediaPlayerService:
             # This wakes up sleeping speakers without changing anything
             current_volume = self.get_volume()
 
-            async with asyncio.timeout(PREFLIGHT_TIMEOUT):
+            async with async_timeout(PREFLIGHT_TIMEOUT):
                 await self._hass.services.async_call(
                     "media_player",
                     "volume_set",
