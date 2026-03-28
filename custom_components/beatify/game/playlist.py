@@ -41,7 +41,7 @@ class PlaylistManager:
         Initialize with list of songs from loaded playlists.
 
         Each song dict must have: year, and at least one valid URI field
-        Optional fields: fun_fact, fun_fact_de, fun_fact_es, awards, awards_de, awards_es
+        Optional fields: fun_fact, fun_fact_de, fun_fact_es, fun_fact_fr, fun_fact_nl, awards, awards_de, awards_es, awards_fr, awards_nl
 
         Args:
             songs: List of song dictionaries
