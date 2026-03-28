@@ -125,8 +125,16 @@ class PlayerRegistry:
         return True, None
 
     def get_player(self, name: str) -> PlayerSession | None:
-        """Get player by name."""
-        return self.players.get(name)
+        """Get player by name (case-insensitive to match add_player reconnection)."""
+        player = self.players.get(name)
+        if player is not None:
+            return player
+        # Fallback: case-insensitive lookup (#413)
+        name_lower = name.lower()
+        for existing_name, existing_player in self.players.items():
+            if existing_name.lower() == name_lower:
+                return existing_player
+        return None
 
     def get_player_by_session_id(self, session_id: str) -> PlayerSession | None:
         """Get player by session ID."""

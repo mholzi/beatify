@@ -216,7 +216,15 @@ class BeatifyWebSocketHandler:
                                 }
                             )
                             return
-                        game_state.set_admin(name)
+                        # Issue #417: Only allow new admin claim during LOBBY
+                        if game_state.phase != GamePhase.LOBBY:
+                            _LOGGER.warning(
+                                "Rejected admin claim from %s during %s phase",
+                                name,
+                                game_state.phase.value,
+                            )
+                        else:
+                            game_state.set_admin(name)
                 else:
                     # Regular player - cancel pending removal on reconnect
                     self.cancel_pending_removal(name)
