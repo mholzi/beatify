@@ -40,9 +40,18 @@ RAINBOW_COLORS: list[list[int]] = [
 
 # Intensity presets: (brightness_scale, flash_duration)
 INTENSITY_PRESETS: dict[str, dict[str, float]] = {
-    "subtle": {"brightness_scale": 0.6, "flash_duration": 0.8},
+    "subtle": {"brightness_scale": 1.0, "flash_duration": 0.8},
     "medium": {"brightness_scale": 1.0, "flash_duration": 0.5},
     "party": {"brightness_scale": 1.0, "flash_duration": 0.3},
+}
+
+# Subtle mode: brightness offsets added to the saved (pre-game) brightness.
+# Values are fractions of 255 (0.2 = +51 out of 255).
+SUBTLE_BRIGHTNESS_OFFSETS: dict[str, float] = {
+    "LOBBY": 0.0,
+    "PLAYING": 0.2,
+    "REVEAL": 0.4,
+    "END": 0.4,
 }
 
 
@@ -55,6 +64,7 @@ class PartyLightsService:
         self._entity_ids: list[str] = []
         self._intensity: str = "medium"
         self._saved_states: dict[str, dict[str, Any]] = {}
+        self._base_brightness: int = 128
         self._current_phase: str | None = None
         self._active: bool = False
 
@@ -78,11 +88,20 @@ class PartyLightsService:
                     "color_temp_kelvin": state.attributes.get("color_temp_kelvin"),
                 }
 
+        # Compute base brightness for subtle mode from saved states
+        brightnesses = [
+            s["brightness"]
+            for s in self._saved_states.values()
+            if s.get("state") != "off" and s.get("brightness") is not None
+        ]
+        self._base_brightness = int(sum(brightnesses) / len(brightnesses)) if brightnesses else 128
+
         self._active = True
         _LOGGER.info(
-            "Party Lights started: %d lights, intensity=%s",
+            "Party Lights started: %d lights, intensity=%s, base_brightness=%d",
             len(self._entity_ids),
             self._intensity,
+            self._base_brightness,
         )
 
     async def set_phase(self, phase: Any) -> None:
@@ -102,12 +121,15 @@ class PartyLightsService:
             return
 
         service_data = dict(phase_data)
-        # Scale brightness by intensity
-        preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
-        if "brightness" in service_data:
-            service_data["brightness"] = int(
-                service_data["brightness"] * preset["brightness_scale"]
-            )
+        if self._intensity == "subtle":
+            offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
+            service_data["brightness"] = min(self._base_brightness + offset, 255)
+        else:
+            preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
+            if "brightness" in service_data:
+                service_data["brightness"] = int(
+                    service_data["brightness"] * preset["brightness_scale"]
+                )
 
         await self._apply(self._entity_ids, service_data, transition=1.0)
 
@@ -147,12 +169,17 @@ class PartyLightsService:
             return
 
         _LOGGER.info("Party Lights celebration sequence started")
+        if self._intensity == "subtle":
+            offset = int(SUBTLE_BRIGHTNESS_OFFSETS["END"] * 255)
+            brightness = min(self._base_brightness + offset, 255)
+        else:
+            brightness = 255
         for color in RAINBOW_COLORS:
             if not self._active:
                 break
             await self._apply(
                 self._entity_ids,
-                {"rgb_color": color, "brightness": 255},
+                {"rgb_color": color, "brightness": brightness},
                 transition=0.3,
             )
             await asyncio.sleep(0.7)
