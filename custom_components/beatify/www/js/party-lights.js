@@ -163,20 +163,25 @@
                 previewBtn.disabled = true;
                 previewBtn.textContent = '✨ Running...';
 
-                // Send preview via WebSocket
-                if (window._beatifyAdminWs && window._beatifyAdminWs.readyState === WebSocket.OPEN) {
-                    window._beatifyAdminWs.send(JSON.stringify({
-                        type: 'admin',
-                        action: 'preview_lights',
-                        entity_ids: selectedLights
-                    }));
-                }
-
-                // Re-enable after 6s (preview runs ~5s)
-                setTimeout(function() {
-                    previewBtn.disabled = false;
+                fetch('/beatify/api/preview-lights', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ entity_ids: selectedLights, intensity: selectedIntensity })
+                }).then(function(resp) {
+                    if (!resp.ok) {
+                        console.warn('[PartyLights] Preview failed:', resp.status);
+                        previewBtn.textContent = '✨ Failed';
+                        setTimeout(function() { previewBtn.textContent = '✨ Preview'; }, 3000);
+                        return;
+                    }
                     previewBtn.textContent = '✨ Preview';
-                }, 6000);
+                }).catch(function(err) {
+                    console.warn('[PartyLights] Preview error:', err);
+                    previewBtn.textContent = '✨ Error';
+                    setTimeout(function() { previewBtn.textContent = '✨ Preview'; }, 3000);
+                }).finally(function() {
+                    previewBtn.disabled = false;
+                });
             });
         }
 
