@@ -828,6 +828,23 @@ class GameState:
                 )
                 _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
 
+                # Issue #416: Restart intro stop timer if this was an intro round
+                if (
+                    self.is_intro_round
+                    and not self.intro_stopped
+                    and self._intro_round_start_time is not None
+                ):
+                    elapsed_intro = self._now() - self._intro_round_start_time
+                    remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
+                    if remaining_intro > 0:
+                        self._intro_stop_task = asyncio.create_task(
+                            self._intro_auto_stop(remaining_intro)
+                        )
+                        _LOGGER.info(
+                            "Intro stop timer restarted with %.1fs remaining",
+                            remaining_intro,
+                        )
+
                 # Resume media playback if it was stopped
                 if self._media_player_service and self.current_song:
                     await self._media_player_service.play()
@@ -1478,6 +1495,18 @@ class GameState:
 
         # Get correct year from current song
         correct_year = self.current_song.get("year") if self.current_song else None
+
+        # Issue #415: Warn if scoring without a correct year when players submitted
+        if correct_year is None:
+            submitted_count = sum(1 for p in self.players.values() if p.submitted)
+            if submitted_count > 0:
+                _LOGGER.warning(
+                    "Scoring round %d with no correct_year — %d submitted player(s) "
+                    "will receive 0 points (current_song=%s)",
+                    self.round,
+                    submitted_count,
+                    "missing" if self.current_song is None else "no year field",
+                )
 
         # Calculate scores for all players — delegates to ScoringService (#139)
         all_players = list(self.players.values())

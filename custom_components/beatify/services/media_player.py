@@ -288,13 +288,13 @@ class MediaPlayerService:
 
         current_state = self._hass.states.get(self._entity_id)
         _LOGGER.warning(
-            "MA playback not confirmed after %.1fs for %s (state: %s)",
+            "MA playback not confirmed after %.1fs for %s (state: %s). "
+            "Returning failure so the round can retry or skip. (#418)",
             PLAYBACK_TIMEOUT,
             uri,
             current_state.state if current_state else "unknown",
         )
-        # Return True anyway — MA might still be buffering, don't skip the song
-        return True
+        return False
 
     async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
         """Play via Sonos (URI-based)."""

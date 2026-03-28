@@ -174,7 +174,7 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is True  # returns True anyway (don't skip)
+        assert result is False  # #418: returns False on timeout so round can retry
         assert poll_count >= 4  # but waited until timeout
 
     @pytest.mark.asyncio
@@ -240,8 +240,8 @@ class TestMANonBlockingPlayback:
         assert poll_count >= 8  # waited for the full realistic flow
 
     @pytest.mark.asyncio
-    async def test_ma_returns_true_even_on_timeout(self):
-        """Should return True even if playback never confirmed (don't skip song)."""
+    async def test_ma_returns_false_on_timeout(self):
+        """Should return False if playback never confirmed (#418: allow retry/skip)."""
         hass = _make_hass("buffering", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
@@ -254,7 +254,7 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is True
+        assert result is False
 
     @pytest.mark.asyncio
     async def test_ma_first_song_no_previous_title(self):
