@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-2.7.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-2.9.1-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -271,21 +271,23 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 2,363 songs across 21 curated playlists:
+Beatify comes with 2,453 songs across 23 curated playlists:
 
 - 🎸 **60s Classics** — 45 tracks from the golden age of rock & roll
 - 🎹 **80s Hits** — 208 classic hits from the decade of synths and MTV
 - 🎵 **90s Hits** — 32 essential tracks from the decade
-- 🎵 **2000s Pop Anthems** — 151 essential pop hits from the 2000s
+- 🎵 **2000s Pop Anthems** — 150 essential pop hits from the 2000s
+- 🎤 **90s & 2000s Hip-Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957-2020
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
-- 🎭 **Cologne Carnival** — 291 German carnival favorites
+- 🎭 **Cologne Carnival** — 290 German carnival favorites
 - 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
 - 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🤘 **Greatest Metal Songs** — 52 legendary tracks across all major metal subgenres
 - 🎯 **Greatest Hits of All Time** — 180 chart-toppers across four decades
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
@@ -485,6 +487,15 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v2.9.1 — Party Lights, Dutch & Stability 🎉
+- **Party Lights** — Automated light control during games with intensity presets (Subtle/Medium/Party), admin light picker, and preview button. Subtle mode scales relative to your pre-game brightness: +0% lobby, +20% playing, +40% reveal and end
+- **Dutch language support** — Fifth language joins EN, DE, FR, ES. Full UI translations and Dutch fun facts and awards across all playlists
+- **12 bugs fixed** — 5 high-severity and 7 medium-severity findings from systematic code review, including admin claim guard, null song scoring, intro timer restart, MA playback timeout, and Dutch game state serialization
+- **38% smaller assets** — All CSS/JS minified and bundled via esbuild, 590KB → 364KB
+- **5 architecture refactors** — ChallengeManager, PowerUpManager, PlayerRegistry, shared state serializer, WebSocket public API
+- 39 dead streaming URIs replaced across greatest-hits-of-all-time and motown-soul-classics
+- 23 playlists, 2,453 songs, 5 music platforms, 5 languages
 
 ### v2.8.0 — Deezer, Smarter Intro Mode & Architecture Overhaul 🎵
 - **Deezer Support** — Fifth streaming service joins Spotify, YouTube Music, Apple Music and Tidal. 2,000+ Deezer URIs across 19 playlists
