@@ -1318,6 +1318,10 @@ class GameState:
         # Story 20.1 / Issue #28: Initialize challenges for this round
         self._challenge_manager.init_round(song)
 
+        # Issue #424: Cancel old timers before creating new ones
+        self.cancel_timer()
+        self._cancel_intro_timer()
+
         # Schedule intro auto-stop timer for non-deferred intro rounds
         if self.is_intro_round and not will_defer_for_splash:
             self._intro_stop_task = asyncio.create_task(
@@ -1349,9 +1353,6 @@ class GameState:
 
         # Reset round analytics for new round (Story 13.3)
         self.round_analytics = None
-
-        # Cancel any existing timer
-        self.cancel_timer()
 
         # Calculate delay until deadline
         now_ms = int(self._now() * 1000)
@@ -1701,8 +1702,8 @@ class GameState:
                     fastest_player.name, fastest_time, self.round
                 )
 
-        # Photo finish (tied scores among top players)
-        scores = [p.score for p in self.players.values()]
+        # Photo finish (tied round scores among top players) — Issue #414
+        scores = [p.round_score for p in self.players.values()]
         if len(scores) >= 2:
             from collections import Counter
 
@@ -1710,7 +1711,9 @@ class GameState:
             for score, count in score_counts.items():
                 if count >= 2 and score > 0:
                     tied_names = [
-                        p.name for p in self.players.values() if p.score == score
+                        p.name
+                        for p in self.players.values()
+                        if p.round_score == score
                     ]
                     # Only record if it's among the top scores
                     top_score = max(scores)

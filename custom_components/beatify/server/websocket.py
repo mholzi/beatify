@@ -229,6 +229,19 @@ class BeatifyWebSocketHandler:
                     # Regular player - cancel pending removal on reconnect
                     self.cancel_pending_removal(name)
 
+                    # Issue #420: If this player matches disconnected admin by name,
+                    # cancel the admin disconnect task even without is_admin flag
+                    if game_state.disconnected_admin_name:
+                        if name.lower() == game_state.disconnected_admin_name.lower():
+                            if self._admin_disconnect_task:
+                                self._admin_disconnect_task.cancel()
+                                self._admin_disconnect_task = None
+                                _LOGGER.info(
+                                    "Admin reconnected without admin flag, "
+                                    "cancelled pause task: %s",
+                                    name,
+                                )
+
                 # Send join acknowledgment with session_id (Story 11.1)
                 # Only the joining player receives their session_id (security)
                 if player:
@@ -802,8 +815,8 @@ class BeatifyWebSocketHandler:
         bet = data.get("bet", False)
         player.bet = bool(bet)
 
-        # Record submission
-        submission_time = time.time()
+        # Record submission — Issue #419: use game_state._now() for clock consistency
+        submission_time = game_state._now()
         player.submit_guess(year, submission_time)
 
         # Send acknowledgment
@@ -1172,8 +1185,8 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        # Submit guess
-        guess_time = time.time()
+        # Submit guess — Issue #419: use game_state._now() for clock consistency
+        guess_time = game_state._now()
         result = game_state.submit_artist_guess(player.name, artist, guess_time)
 
         # Story 20.9: Track that player has made an artist guess
@@ -1272,8 +1285,8 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        # Submit guess with server-side timing
-        guess_time = time.time()
+        # Submit guess with server-side timing — Issue #419: use game_state._now()
+        guess_time = game_state._now()
         result = game_state.submit_movie_guess(player.name, movie, guess_time)
 
         # Issue #28: Track that player has made a movie guess
@@ -1354,13 +1367,9 @@ class BeatifyWebSocketHandler:
         N broadcasts when N players join within the debounce window.
 
         """
-        # Cancel any pending broadcast
+        # Cancel any pending broadcast — Issue #421: don't await cancelled task
         if self._broadcast_debounce_task and not self._broadcast_debounce_task.done():
             self._broadcast_debounce_task.cancel()
-            try:
-                await self._broadcast_debounce_task
-            except asyncio.CancelledError:
-                pass
 
         async def delayed_broadcast() -> None:
             await asyncio.sleep(self._broadcast_debounce_delay)

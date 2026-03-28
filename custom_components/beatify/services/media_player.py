@@ -389,8 +389,11 @@ class MediaPlayerService:
             Dict with artist, title, album_art keys
 
         """
-        # Extract track ID from URI (spotify:track:xxx -> xxx)
-        track_id = uri.split(":")[-1] if ":" in uri else uri
+        # Extract track ID from URI — Issue #422: platform-aware parsing
+        if uri.startswith("spotify:"):
+            track_id = uri.split(":")[-1]
+        else:
+            track_id = uri
 
         # Get initial state for comparison
         initial_state = self._hass.states.get(self._entity_id)
