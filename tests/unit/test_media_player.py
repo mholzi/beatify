@@ -380,8 +380,6 @@ class TestStartRoundAvailabilityCheck:
     @pytest.mark.asyncio
     async def test_start_round_pauses_when_unavailable(self):
         """start_round() should pause the game if is_available() returns False."""
-        from unittest.mock import PropertyMock
-
         # Create a minimal GameState mock with the relevant attributes
         mock_media_service = MagicMock()
         mock_media_service.is_available.return_value = False
