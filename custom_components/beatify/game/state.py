@@ -1099,8 +1099,7 @@ class GameState:
         return True, None
 
     async def start_round(self, hass: HomeAssistant, _retry_count: int = 0) -> bool:
-        """
-        Start a new round with song playback.
+        """Start a new round with song playback (#390).
 
         Args:
             hass: Home Assistant instance for media player control
@@ -1110,196 +1109,160 @@ class GameState:
             True if round started successfully, False otherwise
 
         """
-        # Import here to avoid circular imports
-        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
-            MediaPlayerService,
-        )
-
-        # Maximum retries to prevent runaway loop when media player is down
         MAX_SONG_RETRIES = 3
 
         if not self._playlist_manager:
             _LOGGER.error("No playlist manager configured")
             return False
 
-        # Get next song
+        # Get next playable song (skip songs without URI for selected provider)
         song = self._playlist_manager.get_next_song()
         if not song:
             _LOGGER.info("All songs exhausted, ending game")
             self.phase = GamePhase.END
             return False
 
-        # Story 17.3: Check for resolved URI, skip songs without URI for selected provider
         resolved_uri = song.get("_resolved_uri")
         if not resolved_uri:
-            _LOGGER.warning(
-                "Skipping song (year %s) - no URI for provider",
-                song.get("year", "?"),
-            )
+            _LOGGER.warning("Skipping song (year %s) - no URI for provider", song.get("year", "?"))
             self._playlist_manager.mark_played(song.get("uri"))
-
-            # Check retry limit to prevent infinite loop when no songs have URIs
             if _retry_count >= MAX_SONG_RETRIES:
-                _LOGGER.error(
-                    "No playable songs found after %d attempts, pausing game",
-                    MAX_SONG_RETRIES,
-                )
+                _LOGGER.error("No playable songs found after %d attempts, pausing game", MAX_SONG_RETRIES)
                 await self.pause_game("no_songs_available")
                 return False
-
-            # Try next song with incremented retry count
             return await self.start_round(hass, _retry_count + 1)
 
-        # Check if this is the last round (1 song remaining after this one)
         self.last_round = self._playlist_manager.get_remaining_count() <= 1
+        self._ensure_media_player_service(hass)
+        will_defer_for_splash = self._prepare_intro_round(song, hass)
 
-        # Create media player service if needed
+        # Play song via media player (skip if deferred for intro splash)
+        if self._media_player_service and not will_defer_for_splash:
+            if not self._media_player_service.is_available():
+                self.last_error_detail = f"Media player {self.media_player} is unavailable"
+                _LOGGER.error("Media player %s is not available, pausing game", self.media_player)
+                await self.pause_game("media_player_error")
+                return False
+
+            # Additional responsiveness check for non-MA players
+            if self.platform != "music_assistant":
+                responsive, error_detail = await self._media_player_service.verify_responsive()
+                if not responsive:
+                    self.last_error_detail = error_detail
+                    _LOGGER.error("Media player not responsive: %s, pausing game", error_detail)
+                    await self.pause_game("media_player_error")
+                    return False
+
+            success = await self._media_player_service.play_song(song)
+            if not success:
+                _LOGGER.warning("Failed to play song: %s", song.get("uri"))
+                self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
+                if _retry_count >= MAX_SONG_RETRIES:
+                    _LOGGER.error("Media player unreachable after %d attempts, pausing game", MAX_SONG_RETRIES)
+                    await self.pause_game("media_player_error")
+                    return False
+                await asyncio.sleep(1.0)
+                return await self.start_round(hass, _retry_count + 1)
+
+        metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
+        self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash)
+
+        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
+        await self._lights_set_phase(GamePhase.PLAYING)
+        _LOGGER.info(
+            "Round %d started: %s - %s (%.1fs timer)",
+            self.round,
+            self.current_song.get("artist"),
+            self.current_song.get("title"),
+            delay_seconds,
+        )
+        return True
+
+    def _ensure_media_player_service(self, hass: HomeAssistant) -> None:
+        """Create MediaPlayerService lazily on first round."""
+        # Import here to avoid circular imports at module load time
+        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
+            MediaPlayerService,
+        )
         if self.media_player and not self._media_player_service:
             self._media_player_service = MediaPlayerService(
-                hass,
-                self.media_player,
-                platform=self.platform,
-                provider=self.provider,
+                hass, self.media_player, platform=self.platform, provider=self.provider
             )
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
                 self._media_player_service.set_analytics(self._stats_service._analytics)
 
-        # Issue #23: Determine if this is an intro round BEFORE playback
-        # so we can defer playback when the first-intro splash needs admin confirmation
+    def _prepare_intro_round(self, song: dict, hass: HomeAssistant) -> bool:
+        """Determine if this is an intro round and set intro state flags.
+
+        Returns True if playback should be deferred until admin confirms splash.
+        """
         self.is_intro_round = False
         self.intro_stopped = False
         self._intro_round_start_time = None
         self._cancel_intro_timer()
-        will_defer_for_splash = False
 
-        if self.intro_mode_enabled and self.round >= 3:
-            force_intro = self._rounds_since_intro >= 3
-            if force_intro or random.random() < INTRO_ROUND_CHANCE:
-                song_duration_ms = song.get("duration_ms", 999999)
-                if song_duration_ms >= INTRO_DURATION_SECONDS * 1000:
-                    self.is_intro_round = True
-                    self._rounds_since_intro = 0
-                    self._intro_round_start_time = self._now()
-                    if not self._intro_splash_shown:
-                        # First intro round: defer playback until admin confirms
-                        will_defer_for_splash = True
-                        self._intro_splash_pending = True
-                        self._intro_splash_deferred_song = song
-                        self._intro_splash_hass = hass
-                        _LOGGER.info(
-                            "Intro round activated for round %d%s (splash pending, playback deferred)",
-                            self.round + 1,
-                            " (forced)" if force_intro else "",
-                        )
-                    else:
-                        _LOGGER.info(
-                            "Intro round activated for round %d%s",
-                            self.round + 1,
-                            " (forced)" if force_intro else "",
-                        )
-                else:
-                    self._rounds_since_intro += 1
-                    _LOGGER.info(
-                        "Skipping intro mode for short song (%dms)", song_duration_ms
-                    )
-            else:
-                self._rounds_since_intro += 1
+        if not (self.intro_mode_enabled and self.round >= 3):
+            return False
 
-        # Play song via media player (skip if deferred for intro splash)
-        if self._media_player_service and not will_defer_for_splash:
-            # Pre-flight check: verify speaker is available before playing
-            if not self._media_player_service.is_available():
-                self.last_error_detail = (
-                    f"Media player {self.media_player} is unavailable"
-                )
-                _LOGGER.error(
-                    "Media player %s is not available, pausing game",
-                    self.media_player,
-                )
-                await self.pause_game("media_player_error")
-                return False
+        force_intro = self._rounds_since_intro >= 3
+        if not (force_intro or random.random() < INTRO_ROUND_CHANCE):
+            self._rounds_since_intro += 1
+            return False
 
-            # Additional responsiveness check for non-MA players
-            # (MA handles speaker state via its own service)
-            if self.platform != "music_assistant":
-                (
-                    responsive,
-                    error_detail,
-                ) = await self._media_player_service.verify_responsive()
-                if not responsive:
-                    self.last_error_detail = error_detail
-                    _LOGGER.error(
-                        "Media player not responsive: %s, pausing game",
-                        error_detail,
-                    )
-                    await self.pause_game("media_player_error")
-                    return False
+        song_duration_ms = song.get("duration_ms", 999999)
+        if song_duration_ms < INTRO_DURATION_SECONDS * 1000:
+            self._rounds_since_intro += 1
+            _LOGGER.info("Skipping intro mode for short song (%dms)", song_duration_ms)
+            return False
 
-            # Pass entire song dict for platform-specific playback routing
-            success = await self._media_player_service.play_song(song)
-            if not success:
-                _LOGGER.warning(
-                    "Failed to play song: %s", song.get("uri")
-                )  # Log original for debug
-                self._playlist_manager.mark_played(
-                    song.get("_resolved_uri") or song.get("uri")
-                )
+        self.is_intro_round = True
+        self._rounds_since_intro = 0
+        self._intro_round_start_time = self._now()
 
-                # Check retry limit to prevent runaway loop
-                if _retry_count >= MAX_SONG_RETRIES:
-                    _LOGGER.error(
-                        "Media player unreachable after %d attempts, pausing game",
-                        MAX_SONG_RETRIES,
-                    )
-                    await self.pause_game("media_player_error")
-                    return False
-
-                # Brief delay before retry to allow media player recovery
-                await asyncio.sleep(1.0)
-
-                # Try next song with incremented retry count
-                return await self.start_round(hass, _retry_count + 1)
-
-            # Issue #42: Start round immediately, fetch album art in background
-            # Fix #124: Use playlist artist/title as source of truth (never async)
-            self.metadata_pending = True
-            metadata = {
-                "artist": song.get("artist", "Unknown"),  # From playlist (reliable)
-                "title": song.get("title", "Unknown"),  # From playlist (reliable)
-                "album_art": "/beatify/static/img/no-artwork.svg",  # Async fill
-            }
-            # Start background task to fetch album art only
-            self._metadata_task = asyncio.create_task(
-                self._fetch_metadata_async(resolved_uri)
+        if not self._intro_splash_shown:
+            # First intro round: defer playback until admin confirms splash
+            self._intro_splash_pending = True
+            self._intro_splash_deferred_song = song
+            self._intro_splash_hass = hass
+            _LOGGER.info(
+                "Intro round activated for round %d%s (splash pending, playback deferred)",
+                self.round + 1, " (forced)" if force_intro else "",
             )
-        elif will_defer_for_splash:
-            # Deferred intro splash: song not played yet, but set up metadata
+            return True
+
+        _LOGGER.info("Intro round activated for round %d%s", self.round + 1, " (forced)" if force_intro else "")
+        return False
+
+    def _build_round_metadata(self, song: dict, resolved_uri: str, will_defer_for_splash: bool) -> dict:
+        """Build initial metadata dict and kick off background album art fetch."""
+        if self._media_player_service or will_defer_for_splash:
+            # Issue #42: Start round immediately, fetch album art in background
             self.metadata_pending = True
-            metadata = {
+            self._metadata_task = asyncio.create_task(self._fetch_metadata_async(resolved_uri))
+            return {
                 "artist": song.get("artist", "Unknown"),
                 "title": song.get("title", "Unknown"),
                 "album_art": "/beatify/static/img/no-artwork.svg",
             }
-            # Start background task to fetch album art while waiting for admin
-            self._metadata_task = asyncio.create_task(
-                self._fetch_metadata_async(resolved_uri)
-            )
-        else:
-            # No media player (testing mode)
-            self.metadata_pending = False
-            metadata = {
-                "artist": song.get("artist", "Test Artist"),
-                "title": song.get("title", "Test Song"),
-                "album_art": "/beatify/static/img/no-artwork.svg",
-            }
+        # No media player — testing mode
+        self.metadata_pending = False
+        return {
+            "artist": song.get("artist", "Test Artist"),
+            "title": song.get("title", "Test Song"),
+            "album_art": "/beatify/static/img/no-artwork.svg",
+        }
 
-        # Mark song as played (Story 17.3: use resolved URI)
+    def _initialize_round(
+        self,
+        song: dict,
+        metadata: dict,
+        resolved_uri: str,
+        will_defer_for_splash: bool,
+    ) -> None:
+        """Commit all round state: current song, timers, player resets, phase transition."""
         self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
 
-        # Set current song (year and fun_fact from playlist, rest from metadata)
-        # Story 14.3: Include rich song info fields from enriched playlists
-        # Story 16.3: Include localized fun_fact and awards for i18n
         self.current_song = {
             "year": song["year"],
             "fun_fact": song.get("fun_fact", ""),
@@ -1307,7 +1270,7 @@ class GameState:
             "fun_fact_es": song.get("fun_fact_es", ""),
             "fun_fact_fr": song.get("fun_fact_fr", ""),
             "fun_fact_nl": song.get("fun_fact_nl", ""),
-            "uri": song.get("_resolved_uri") or song.get("uri"),  # Story 17.3
+            "uri": resolved_uri,
             "chart_info": song.get("chart_info", {}),
             "certifications": song.get("certifications", []),
             "awards": song.get("awards", []),
@@ -1318,66 +1281,32 @@ class GameState:
             **metadata,
         }
 
-        # Story 20.1 / Issue #28: Initialize challenges for this round
         self._challenge_manager.init_round(song)
 
         # Issue #424: Cancel old timers before creating new ones
         self.cancel_timer()
         self._cancel_intro_timer()
 
-        # Schedule intro auto-stop timer for non-deferred intro rounds
         if self.is_intro_round and not will_defer_for_splash:
-            self._intro_stop_task = asyncio.create_task(
-                self._intro_auto_stop(INTRO_DURATION_SECONDS)
-            )
+            self._intro_stop_task = asyncio.create_task(self._intro_auto_stop(INTRO_DURATION_SECONDS))
 
-        # Update round tracking
         self.round += 1
         self.total_rounds = self._playlist_manager.get_total_count()
 
-        # Record round start time for speed bonus calculation (Story 5.1)
-        # Note: self.round_duration is set in create_game() (Story 13.1)
-        # Intro rounds use INTRO_DURATION_SECONDS as the timer (#23)
         self.round_start_time = self._now()
-        effective_duration = (
-            INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
-        )
+        effective_duration = INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
         self.deadline = int((self.round_start_time + effective_duration) * 1000)
 
-        # Reset player submissions for new round
         for player in self.players.values():
             player.reset_round()
 
-        # Reset song stopped flag for new round (Story 6.2)
         self.song_stopped = False
-
-        # Reset early reveal flag for new round (Story 20.9)
         self._early_reveal = False
-
-        # Reset round analytics for new round (Story 13.3)
         self.round_analytics = None
 
-        # Calculate delay until deadline
-        now_ms = int(self._now() * 1000)
-        delay_seconds = (self.deadline - now_ms) / 1000.0
-
-        # Start timer task for round expiry
+        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
         self._timer_task = asyncio.create_task(self._timer_countdown(delay_seconds))
-
-        # Transition to PLAYING
         self.phase = GamePhase.PLAYING
-
-        # Issue #331: Update Party Lights for playing phase
-        await self._lights_set_phase(GamePhase.PLAYING)
-
-        _LOGGER.info(
-            "Round %d started: %s - %s (%.1fs timer)",
-            self.round,
-            self.current_song.get("artist"),
-            self.current_song.get("title"),
-            delay_seconds,
-        )
-        return True
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
         """
