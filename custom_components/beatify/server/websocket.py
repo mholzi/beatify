@@ -668,39 +668,8 @@ class BeatifyWebSocketHandler:
     async def _admin_confirm_intro_splash(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
-        """Handle admin confirm_intro_splash action."""
-        # Issue #292: Admin confirms the first-intro splash screen
-        # Triggers deferred playback — song was NOT played until now
-        if not game_state._intro_splash_pending:
-            return
-        game_state._intro_splash_pending = False
-        game_state._intro_splash_shown = True
-
-        # Play the deferred song now that admin has confirmed
-        deferred_song = game_state._intro_splash_deferred_song
-        if deferred_song:
-            success = await game_state.play_deferred_song(deferred_song)
-            if not success:
-                _LOGGER.warning(
-                    "Failed to play deferred intro song: %s",
-                    deferred_song.get("uri"),
-                )
-            game_state._intro_splash_deferred_song = None
-            game_state._intro_splash_hass = None
-
-        # Reset round timing to start from NOW (after admin confirmation)
-        game_state.round_start_time = game_state._now()
-        game_state._intro_round_start_time = game_state._now()
-        from custom_components.beatify.game.state import INTRO_DURATION_SECONDS
-
-        effective_duration = INTRO_DURATION_SECONDS
-        game_state.deadline = int(
-            (game_state.round_start_time + effective_duration) * 1000
-        )
-
-        game_state._intro_stop_task = asyncio.create_task(
-            game_state._intro_auto_stop(INTRO_DURATION_SECONDS)
-        )
+        """Handle admin confirm_intro_splash action (#403)."""
+        await game_state.confirm_intro_splash()
         await self.broadcast_state()
 
     async def _admin_set_party_lights(
