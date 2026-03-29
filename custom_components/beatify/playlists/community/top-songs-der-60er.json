@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.2",
+  "version": "1.3",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -1117,38 +1117,6 @@
       "uri_tidal": "tidal://track/37667960",
       "fun_fact_nl": "Dit korte, prachtige nummer van het album 'Sounds of Silence' gebruikt de veranderende maanden als metafoor voor de voortgang van een relatie van lenteliefde tot het einde van de herfst.",
       "awards_nl": []
-    },
-    {
-      "year": 1968,
-      "uri": "spotify:track:0iOZM63lendWRTTeKhZBSC",
-      "artist": "Simon & Garfunkel",
-      "alt_artists": [
-        "The Byrds",
-        "The Mamas & The Papas",
-        "Crosby, Stills & Nash"
-      ],
-      "title": "Mrs. Robinson",
-      "chart_info": {
-        "billboard_peak": 1,
-        "uk_peak": 4,
-        "weeks_on_chart": 12
-      },
-      "certifications": [
-        "Gold (US)"
-      ],
-      "awards": [
-        "Grammy Award for Record of the Year (1969)"
-      ],
-      "fun_fact": "This is an alternate/live version of the track. The studio version was actually compiled from various takes recorded during The Graduate sessions.",
-      "fun_fact_de": "Dies ist eine alternative/Live-Version des Tracks. Die Studioversion wurde tatsächlich aus verschiedenen Takes zusammengestellt, die während der Reifeprüfung-Sessions aufgenommen wurden.",
-      "fun_fact_es": "Esta es una versión alternativa/en vivo de la canción. La versión de estudio fue compilada de varias tomas grabadas durante las sesiones de El Graduado.",
-      "fun_fact_fr": "Il s'agit d'une version alternative/live du morceau. La version studio a en fait été compilée à partir de différentes prises enregistrées pendant les sessions du Lauréat.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_C2vqI9FVwg",
-      "uri_tidal": "tidal://track/37667986",
-      "fun_fact_nl": "Dit is een alternatieve/live versie van het nummer. De studioversie is eigenlijk samengesteld uit verschillende takes die zijn opgenomen tijdens de The Graduate sessies.",
-      "awards_nl": [
-        "Grammy Award voor Opname van het Jaar (1969)"
-      ]
     },
     {
       "year": 1965,

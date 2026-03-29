@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "movies",
     "soundtrack",
@@ -2277,7 +2277,9 @@
         "The Big Country"
       ],
       "fun_fact_nl": "Het Big Country-thema van Jerome Moross maakt gebruik van meeslepende strijkers om de uitgestrektheid van het Amerikaanse Westen vast te leggen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1657222496",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RA-m5Ci2Oxg"
     },
     {
       "year": 1949,
