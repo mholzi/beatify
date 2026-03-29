@@ -328,9 +328,9 @@ class TestSetPhase:
         phase = _make_phase("PLAYING")
         await svc.set_phase(phase)
 
-        # PLAYING brightness is 153, subtle scales by 0.6 → 91
+        # Subtle PLAYING: base brightness (200) + 20% of 255 (51) = 251
         call_args = hass.services.async_call.call_args[0][2]
-        assert call_args["brightness"] == int(153 * 0.6)
+        assert call_args["brightness"] == min(200 + int(0.2 * 255), 255)
 
 
 # ---------------------------------------------------------------------------
