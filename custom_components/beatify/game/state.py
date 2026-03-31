@@ -407,6 +407,30 @@ class GameState:
             "song_count": len(songs),
         }
 
+    def _build_song_dict(self, include_reveal: bool = False) -> dict:
+        """Build the song info dict from current_song.
+
+        Args:
+            include_reveal: If True, include year and fun_fact fields
+                            shown only during REVEAL phase.
+        """
+        song = self.current_song
+        result = {
+            "artist": song.get("artist", "Unknown"),
+            "title": song.get("title", "Unknown"),
+            "album_art": song.get(
+                "album_art", "/beatify/static/img/no-artwork.svg"
+            ),
+        }
+        if include_reveal:
+            result["year"] = song.get("year")
+            result["fun_fact"] = song.get("fun_fact", "")
+            result["fun_fact_de"] = song.get("fun_fact_de", "")
+            result["fun_fact_es"] = song.get("fun_fact_es", "")
+            result["fun_fact_fr"] = song.get("fun_fact_fr", "")
+            result["fun_fact_nl"] = song.get("fun_fact_nl", "")
+        return result
+
     def _state_playing(self) -> dict[str, Any]:
         """Return PLAYING phase-specific state fragment."""
         fragment: dict[str, Any] = {
@@ -430,13 +454,7 @@ class GameState:
         }
         # Song info WITHOUT year during PLAYING (hidden until reveal)
         if self.current_song:
-            fragment["song"] = {
-                "artist": self.current_song.get("artist", "Unknown"),
-                "title": self.current_song.get("title", "Unknown"),
-                "album_art": self.current_song.get(
-                    "album_art", "/beatify/static/img/no-artwork.svg"
-                ),
-            }
+            fragment["song"] = self._build_song_dict()
         # Story 20.1: Artist challenge (hide answer during PLAYING)
         ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
         if ac is not None:
@@ -461,19 +479,7 @@ class GameState:
         }
         # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
         if self.current_song:
-            fragment["song"] = {
-                "artist": self.current_song.get("artist", "Unknown"),
-                "title": self.current_song.get("title", "Unknown"),
-                "year": self.current_song.get("year"),
-                "album_art": self.current_song.get(
-                    "album_art", "/beatify/static/img/no-artwork.svg"
-                ),
-                "fun_fact": self.current_song.get("fun_fact", ""),
-                "fun_fact_de": self.current_song.get("fun_fact_de", ""),
-                "fun_fact_es": self.current_song.get("fun_fact_es", ""),
-                "fun_fact_fr": self.current_song.get("fun_fact_fr", ""),
-                "fun_fact_nl": self.current_song.get("fun_fact_nl", ""),
-            }
+            fragment["song"] = self._build_song_dict(include_reveal=True)
         # Round analytics (Story 13.3 AC4)
         if self.round_analytics:
             fragment["round_analytics"] = self.round_analytics.to_dict()
