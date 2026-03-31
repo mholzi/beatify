@@ -191,6 +191,10 @@ class GameState:
         self._intro_splash_deferred_song: dict | None = None
         self._intro_splash_hass: HomeAssistant | None = None
 
+    def current_time(self) -> float:
+        """Return the current timestamp from the injected clock."""
+        return self._now()
+
     # ------------------------------------------------------------------
     # Player registry delegation (keep public interface identical)
     # ------------------------------------------------------------------
@@ -995,6 +999,11 @@ class GameState:
             self._early_reveal = True
             await self._end_round_unlocked()
             _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
+
+    async def trigger_early_reveal_if_complete(self) -> None:
+        """Trigger early reveal if the round is playing and all guesses are in."""
+        if self.phase == GamePhase.PLAYING and self.check_all_guesses_complete():
+            await self._trigger_early_reveal()
 
     def set_round_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
         """

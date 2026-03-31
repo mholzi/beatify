@@ -824,8 +824,8 @@ class BeatifyWebSocketHandler:
         bet = data.get("bet", False)
         player.bet = bool(bet)
 
-        # Record submission — Issue #419: use game_state._now() for clock consistency
-        submission_time = game_state._now()
+        # Record submission — Issue #419: use game_state.current_time() for clock consistency
+        submission_time = game_state.current_time()
         player.submit_guess(year, submission_time)
 
         # Send acknowledgment
@@ -840,16 +840,13 @@ class BeatifyWebSocketHandler:
         await self.broadcast_state()
 
         # Story 20.9: Check for early reveal when all guesses are complete
-        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        all_complete = game_state.check_all_guesses_complete()
+        # Note: trigger_early_reveal_if_complete() calls end_round() which broadcasts via callback
         _LOGGER.debug(
-            "Early reveal check: phase=%s, all_complete=%s, artist_challenge=%s",
+            "Early reveal check: phase=%s, artist_challenge=%s",
             game_state.phase.value,
-            all_complete,
             game_state.artist_challenge_enabled,
         )
-        if game_state.phase == GamePhase.PLAYING and all_complete:
-            await game_state._trigger_early_reveal()
+        await game_state.trigger_early_reveal_if_complete()
 
         _LOGGER.info(
             "Player %s submitted guess: %d at %.2f", player.name, year, submission_time
@@ -1196,8 +1193,8 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        # Submit guess — Issue #419: use game_state._now() for clock consistency
-        guess_time = game_state._now()
+        # Submit guess — Issue #419: use game_state.current_time() for clock consistency
+        guess_time = game_state.current_time()
         result = game_state.submit_artist_guess(player.name, artist, guess_time)
 
         # Story 20.9: Track that player has made an artist guess
@@ -1223,12 +1220,8 @@ class BeatifyWebSocketHandler:
             await self.broadcast_state()
 
         # Story 20.9: Check for early reveal when all guesses are complete
-        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        if (
-            game_state.phase == GamePhase.PLAYING
-            and game_state.check_all_guesses_complete()
-        ):
-            await game_state._trigger_early_reveal()
+        # Note: trigger_early_reveal_if_complete() calls end_round() which broadcasts via callback
+        await game_state.trigger_early_reveal_if_complete()
 
         _LOGGER.debug(
             "Artist guess from %s: '%s' -> correct=%s, first=%s",
@@ -1296,8 +1289,8 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        # Submit guess with server-side timing — Issue #419: use game_state._now()
-        guess_time = game_state._now()
+        # Submit guess with server-side timing — Issue #419: use game_state.current_time()
+        guess_time = game_state.current_time()
         result = game_state.submit_movie_guess(player.name, movie, guess_time)
 
         # Issue #28: Track that player has made a movie guess
@@ -1317,12 +1310,8 @@ class BeatifyWebSocketHandler:
         await ws.send_json(response)
 
         # Issue #28: Check for early reveal when all guesses are complete
-        # Note: _trigger_early_reveal() calls end_round() which broadcasts via callback
-        if (
-            game_state.phase == GamePhase.PLAYING
-            and game_state.check_all_guesses_complete()
-        ):
-            await game_state._trigger_early_reveal()
+        # Note: trigger_early_reveal_if_complete() calls end_round() which broadcasts via callback
+        await game_state.trigger_early_reveal_if_complete()
 
         _LOGGER.debug(
             "Movie guess from %s: '%s' -> correct=%s, rank=%s",
