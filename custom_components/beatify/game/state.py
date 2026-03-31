@@ -407,6 +407,126 @@ class GameState:
             "song_count": len(songs),
         }
 
+    def _state_playing(self) -> dict[str, Any]:
+        """Return PLAYING phase-specific state fragment."""
+        fragment: dict[str, Any] = {
+            "join_url": self.join_url,
+            "round": self.round,
+            "total_rounds": self.total_rounds,
+            "deadline": self.deadline,
+            "last_round": self.last_round,
+            "songs_remaining": (
+                self._playlist_manager.get_remaining_count()
+                if self._playlist_manager
+                else 0
+            ),
+            # Submission tracking (Story 4.4)
+            "submitted_count": sum(
+                1 for p in self.players.values() if p.submitted
+            ),
+            "all_submitted": self.all_submitted(),
+            # Leaderboard (Story 5.5)
+            "leaderboard": self.get_leaderboard(),
+        }
+        # Song info WITHOUT year during PLAYING (hidden until reveal)
+        if self.current_song:
+            fragment["song"] = {
+                "artist": self.current_song.get("artist", "Unknown"),
+                "title": self.current_song.get("title", "Unknown"),
+                "album_art": self.current_song.get(
+                    "album_art", "/beatify/static/img/no-artwork.svg"
+                ),
+            }
+        # Story 20.1: Artist challenge (hide answer during PLAYING)
+        ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
+        if ac is not None:
+            fragment["artist_challenge"] = ac
+        # Issue #28: Movie quiz challenge (hide answer during PLAYING)
+        mc = self._challenge_manager.get_movie_challenge_dict(include_answer=False)
+        if mc is not None:
+            fragment["movie_challenge"] = mc
+        return fragment
+
+    def _state_reveal(self) -> dict[str, Any]:
+        """Return REVEAL phase-specific state fragment."""
+        fragment: dict[str, Any] = {
+            "join_url": self.join_url,
+            "round": self.round,
+            "total_rounds": self.total_rounds,
+            "last_round": self.last_round,
+            # Include reveal-specific player data (guesses, round_score, missed)
+            "players": self.get_reveal_players_state(),
+            # Leaderboard (Story 5.5)
+            "leaderboard": self.get_leaderboard(),
+        }
+        # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
+        if self.current_song:
+            fragment["song"] = {
+                "artist": self.current_song.get("artist", "Unknown"),
+                "title": self.current_song.get("title", "Unknown"),
+                "year": self.current_song.get("year"),
+                "album_art": self.current_song.get(
+                    "album_art", "/beatify/static/img/no-artwork.svg"
+                ),
+                "fun_fact": self.current_song.get("fun_fact", ""),
+                "fun_fact_de": self.current_song.get("fun_fact_de", ""),
+                "fun_fact_es": self.current_song.get("fun_fact_es", ""),
+                "fun_fact_fr": self.current_song.get("fun_fact_fr", ""),
+                "fun_fact_nl": self.current_song.get("fun_fact_nl", ""),
+            }
+        # Round analytics (Story 13.3 AC4)
+        if self.round_analytics:
+            fragment["round_analytics"] = self.round_analytics.to_dict()
+        # Game performance comparison (Story 14.4 AC2, AC3, AC4, AC6)
+        game_performance = self.get_game_performance()
+        if game_performance:
+            fragment["game_performance"] = game_performance
+        # Song difficulty rating (Story 15.1 AC1, AC4)
+        if self._stats_service and self.current_song:
+            song_uri = self.current_song.get("uri")
+            if song_uri:
+                difficulty = self._stats_service.get_song_difficulty(song_uri)
+                if difficulty:
+                    fragment["song_difficulty"] = difficulty
+        # Story 20.1: Artist challenge (reveal answer during REVEAL)
+        ac = self._challenge_manager.get_artist_challenge_dict(include_answer=True)
+        if ac is not None:
+            fragment["artist_challenge"] = ac
+        # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
+        mc = self._challenge_manager.get_movie_challenge_dict(include_answer=True)
+        if mc is not None:
+            fragment["movie_challenge"] = mc
+        # Story 20.9: Early reveal flag for client-side toast
+        if self._early_reveal:
+            fragment["early_reveal"] = True
+        return fragment
+
+    def _state_end(self) -> dict[str, Any]:
+        """Return END phase-specific state fragment."""
+        fragment: dict[str, Any] = {
+            # Final leaderboard with all player stats (Story 5.6)
+            "leaderboard": self.get_final_leaderboard(),
+            "game_stats": {
+                "total_rounds": self.round,
+                "total_players": len(self.players),
+            },
+            # Superlatives - fun awards (Story 15.2)
+            "superlatives": self.calculate_superlatives(),
+            # Issue #75: Game highlights reel
+            "highlights": self.highlights_tracker.to_dict(),
+            # Issue #120: Shareable result cards
+            "share_data": build_share_data(self),
+        }
+        # Include winner info
+        if self.players:
+            winner = max(self.players.values(), key=lambda p: p.score)
+            fragment["winner"] = {"name": winner.name, "score": winner.score}
+        # Game performance comparison for end screen (Story 14.4 AC5, AC6)
+        game_performance = self.get_game_performance()
+        if game_performance:
+            fragment["game_performance"] = game_performance
+        return fragment
+
     def get_state(self) -> dict[str, Any] | None:
         """
         Get current game state for broadcast.
@@ -437,117 +557,14 @@ class GameState:
         # Phase-specific data
         if self.phase == GamePhase.LOBBY:
             state["join_url"] = self.join_url
-
         elif self.phase == GamePhase.PLAYING:
-            state["join_url"] = self.join_url
-            state["round"] = self.round
-            state["total_rounds"] = self.total_rounds
-            state["deadline"] = self.deadline
-            state["last_round"] = self.last_round
-            state["songs_remaining"] = (
-                self._playlist_manager.get_remaining_count()
-                if self._playlist_manager
-                else 0
-            )
-            # Submission tracking (Story 4.4)
-            state["submitted_count"] = sum(
-                1 for p in self.players.values() if p.submitted
-            )
-            state["all_submitted"] = self.all_submitted()
-            # Song info WITHOUT year during PLAYING (hidden until reveal)
-            if self.current_song:
-                state["song"] = {
-                    "artist": self.current_song.get("artist", "Unknown"),
-                    "title": self.current_song.get("title", "Unknown"),
-                    "album_art": self.current_song.get(
-                        "album_art", "/beatify/static/img/no-artwork.svg"
-                    ),
-                }
-            # Leaderboard (Story 5.5)
-            state["leaderboard"] = self.get_leaderboard()
-            # Story 20.1: Artist challenge (hide answer during PLAYING)
-            ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
-            if ac is not None:
-                state["artist_challenge"] = ac
-            # Issue #28: Movie quiz challenge (hide answer during PLAYING)
-            mc = self._challenge_manager.get_movie_challenge_dict(include_answer=False)
-            if mc is not None:
-                state["movie_challenge"] = mc
-
+            state.update(self._state_playing())
         elif self.phase == GamePhase.REVEAL:
-            state["join_url"] = self.join_url
-            state["round"] = self.round
-            state["total_rounds"] = self.total_rounds
-            state["last_round"] = self.last_round
-            # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
-            if self.current_song:
-                state["song"] = {
-                    "artist": self.current_song.get("artist", "Unknown"),
-                    "title": self.current_song.get("title", "Unknown"),
-                    "year": self.current_song.get("year"),
-                    "album_art": self.current_song.get(
-                        "album_art", "/beatify/static/img/no-artwork.svg"
-                    ),
-                    "fun_fact": self.current_song.get("fun_fact", ""),
-                    "fun_fact_de": self.current_song.get("fun_fact_de", ""),
-                    "fun_fact_es": self.current_song.get("fun_fact_es", ""),
-                    "fun_fact_fr": self.current_song.get("fun_fact_fr", ""),
-                    "fun_fact_nl": self.current_song.get("fun_fact_nl", ""),
-                }
-            # Include reveal-specific player data (guesses, round_score, missed)
-            state["players"] = self.get_reveal_players_state()
-            # Leaderboard (Story 5.5)
-            state["leaderboard"] = self.get_leaderboard()
-            # Round analytics (Story 13.3 AC4)
-            if self.round_analytics:
-                state["round_analytics"] = self.round_analytics.to_dict()
-            # Game performance comparison (Story 14.4 AC2, AC3, AC4, AC6)
-            game_performance = self.get_game_performance()
-            if game_performance:
-                state["game_performance"] = game_performance
-            # Song difficulty rating (Story 15.1 AC1, AC4)
-            if self._stats_service and self.current_song:
-                song_uri = self.current_song.get("uri")
-                if song_uri:
-                    difficulty = self._stats_service.get_song_difficulty(song_uri)
-                    if difficulty:
-                        state["song_difficulty"] = difficulty
-            # Story 20.1: Artist challenge (reveal answer during REVEAL)
-            ac = self._challenge_manager.get_artist_challenge_dict(include_answer=True)
-            if ac is not None:
-                state["artist_challenge"] = ac
-            # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
-            mc = self._challenge_manager.get_movie_challenge_dict(include_answer=True)
-            if mc is not None:
-                state["movie_challenge"] = mc
-            # Story 20.9: Early reveal flag for client-side toast
-            if self._early_reveal:
-                state["early_reveal"] = True
-
+            state.update(self._state_reveal())
         elif self.phase == GamePhase.PAUSED:
             state["pause_reason"] = self.pause_reason
-
         elif self.phase == GamePhase.END:
-            # Final leaderboard with all player stats (Story 5.6)
-            state["leaderboard"] = self.get_final_leaderboard()
-            state["game_stats"] = {
-                "total_rounds": self.round,
-                "total_players": len(self.players),
-            }
-            # Include winner info
-            if self.players:
-                winner = max(self.players.values(), key=lambda p: p.score)
-                state["winner"] = {"name": winner.name, "score": winner.score}
-            # Game performance comparison for end screen (Story 14.4 AC5, AC6)
-            game_performance = self.get_game_performance()
-            if game_performance:
-                state["game_performance"] = game_performance
-            # Superlatives - fun awards (Story 15.2)
-            state["superlatives"] = self.calculate_superlatives()
-            # Issue #75: Game highlights reel
-            state["highlights"] = self.highlights_tracker.to_dict()
-            # Issue #120: Shareable result cards
-            state["share_data"] = build_share_data(self)
+            state.update(self._state_end())
 
         return state
 
