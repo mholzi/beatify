@@ -133,7 +133,7 @@ class BeatifyWebSocketHandler:
 
         return ws
 
-    async def _handle_message(  # noqa: PLR0912, PLR0915
+    async def _handle_message(
         self, ws: web.WebSocketResponse, data: dict
     ) -> None:
         """
@@ -157,235 +157,266 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        if msg_type == "join":
-            name = data.get("name", "").strip()
-            is_admin = data.get("is_admin", False)
+        _message_handlers = {
+            "join": self._handle_join,
+            "submit": self._handle_submit,
+            "admin": self._handle_admin,
+            "reconnect": self._handle_reconnect,
+            "leave": self._handle_leave,
+            "get_state": self._handle_get_state,
+            "get_steal_targets": self._handle_get_steal_targets,
+            "steal": self._handle_steal,
+            "reaction": self._handle_reaction,
+            "artist_guess": self._handle_artist_guess,
+            "movie_guess": self._handle_movie_guess,
+        }
 
-            success, error_code = game_state.add_player(name, ws)
-
-            if success:
-                # Get the player session for session_id (Story 11.1)
-                player = game_state.get_player(name)
-
-                # Handle admin join/reconnection (Story 7-2)
-                if is_admin:
-                    # Check if reconnecting as the disconnected admin
-                    if game_state.disconnected_admin_name:
-                        if name.lower() == game_state.disconnected_admin_name.lower():
-                            # Same admin reconnecting - cancel disconnect task
-                            if self._admin_disconnect_task:
-                                self._admin_disconnect_task.cancel()
-                                self._admin_disconnect_task = None
-                                _LOGGER.info(
-                                    "Admin reconnected, cancelled pause task: %s", name
-                                )
-
-                            # Cancel pending removal if any
-                            self.cancel_pending_removal(name)
-
-                            # Resume game if paused
-                            if game_state.phase == GamePhase.PAUSED:
-                                if await game_state.resume_game():
-                                    _LOGGER.info("Game resumed by admin reconnection")
-                        else:
-                            # Different person trying to claim admin
-                            game_state.remove_player(name)
-                            await ws.send_json(
-                                {
-                                    "type": "error",
-                                    "code": ERR_ADMIN_EXISTS,
-                                    "message": "Only the original host can reconnect",
-                                }
-                            )
-                            return
-                    else:
-                        # No disconnected admin - check for existing admin
-                        existing_admin = any(
-                            p.is_admin
-                            for p in list(game_state.players.values())
-                            if p.name != name
-                        )
-                        if existing_admin:
-                            # Remove the just-added player and return error
-                            game_state.remove_player(name)
-                            await ws.send_json(
-                                {
-                                    "type": "error",
-                                    "code": ERR_ADMIN_EXISTS,
-                                    "message": "Game already has an admin",
-                                }
-                            )
-                            return
-                        # Issue #417: Only allow new admin claim during LOBBY
-                        if game_state.phase != GamePhase.LOBBY:
-                            _LOGGER.warning(
-                                "Rejected admin claim from %s during %s phase",
-                                name,
-                                game_state.phase.value,
-                            )
-                            game_state.remove_player(name)
-                            await ws.send_json(
-                                {
-                                    "type": "error",
-                                    "code": ERR_INVALID_ACTION,
-                                    "message": "Admin claim only allowed during lobby phase",
-                                }
-                            )
-                            return
-                        else:
-                            game_state.set_admin(name)
-                else:
-                    # Regular player - cancel pending removal on reconnect
-                    self.cancel_pending_removal(name)
-
-                    # Issue #420: If this player matches disconnected admin by name,
-                    # cancel the admin disconnect task even without is_admin flag
-                    if game_state.disconnected_admin_name:
-                        if name.lower() == game_state.disconnected_admin_name.lower():
-                            if self._admin_disconnect_task:
-                                self._admin_disconnect_task.cancel()
-                                self._admin_disconnect_task = None
-                                _LOGGER.info(
-                                    "Admin reconnected without admin flag, "
-                                    "cancelled pause task: %s",
-                                    name,
-                                )
-
-                # Send join acknowledgment with session_id (Story 11.1)
-                # Only the joining player receives their session_id (security)
-                if player:
-                    await ws.send_json(
-                        {
-                            "type": "join_ack",
-                            "session_id": player.session_id,
-                            "game_id": game_state.game_id,
-                        }
-                    )
-
-                # Send full state to newly joined player
-                state_msg = build_state_message(game_state)
-                if not state_msg:
-                    return
-                try:
-                    await ws.send_json(state_msg)
-                except Exception as err:  # noqa: BLE001
-                    _LOGGER.warning("Failed to send state to new player: %s", err)
-                    return
-                # Debounced broadcast to others (Issue #41 - batches concurrent joins)
-                # Joiner already got state above; this notifies other players
-                await self.debounced_broadcast_state()
-            else:
-                error_messages = {
-                    ERR_NAME_TAKEN: "Name taken, choose another",
-                    ERR_NAME_INVALID: "Please enter a name",
-                    ERR_GAME_FULL: "Game is full",
-                    ERR_GAME_ENDED: "This game has ended",
-                }
-                await ws.send_json(
-                    {
-                        "type": "error",
-                        "code": error_code,
-                        "message": error_messages.get(error_code, "Join failed"),
-                    }
-                )
-
-        elif msg_type == "submit":
-            await self._handle_submit(ws, data, game_state)
-
-        elif msg_type == "admin":
-            action = data.get("action")
-
-            # Find sender's player session
-            sender = None
-            for player in list(game_state.players.values()):
-                if player.ws == ws:
-                    sender = player
-                    break
-
-            if not sender or not sender.is_admin:
-                await ws.send_json(
-                    {
-                        "type": "error",
-                        "code": ERR_NOT_ADMIN,
-                        "message": "Only admin can perform this action",
-                    }
-                )
-                return
-
-            admin_handlers = {
-                "start_game": self._admin_start_game,
-                "next_round": self._admin_next_round,
-                "stop_song": self._admin_stop_song,
-                "set_volume": self._admin_set_volume,
-                "end_game": self._admin_end_game,
-                "dismiss_game": self._admin_dismiss_game,
-                "rematch_game": self._admin_rematch_game,
-                "set_language": self._admin_set_language,
-                "confirm_intro_splash": self._admin_confirm_intro_splash,
-                "set_party_lights": self._admin_set_party_lights,
-                "toggle_party_lights": self._admin_toggle_party_lights,
-
-            }
-            handler = admin_handlers.get(action)
-            if handler:
-                await handler(ws, data, game_state)
-            else:
-                _LOGGER.warning("Unknown admin action: %s", action)
-
-        elif msg_type == "reconnect":
-            # Session-based reconnection (Story 11.2)
-            await self._handle_reconnect(ws, data, game_state)
-
-        elif msg_type == "leave":
-            # Intentional leave game (Story 11.5)
-            await self._handle_leave(ws, game_state)
-
-        elif msg_type == "get_state":
-            # Dashboard/observer requesting current state (Story 10.4)
-            state_msg = build_state_message(game_state)
-            if state_msg:
-                await ws.send_json(state_msg)
-
-        elif msg_type == "get_steal_targets":
-            # Request available steal targets (Story 15.3 AC2, AC5)
-            await self._handle_get_steal_targets(ws, game_state)
-
-        elif msg_type == "steal":
-            # Execute steal power-up (Story 15.3 AC2, AC3)
-            await self._handle_steal(ws, data, game_state)
-
-        elif msg_type == "reaction":
-            # Live reactions during reveal (Story 18.9)
-            player = game_state.get_player_by_ws(ws)
-            if not player:
-                return
-
-            if game_state.phase != GamePhase.REVEAL:
-                return  # Silent ignore - only during REVEAL
-
-            emoji = data.get("emoji", "")
-            if emoji not in ["🔥", "😂", "😱", "👏", "🤔"]:
-                return  # Invalid emoji
-
-            if game_state.record_reaction(player.name, emoji):
-                await self.broadcast(
-                    {
-                        "type": "player_reaction",
-                        "player_name": player.name,
-                        "emoji": emoji,
-                    }
-                )
-
-        elif msg_type == "artist_guess":
-            # Artist challenge guess submission (Story 20.3)
-            await self._handle_artist_guess(ws, data, game_state)
-
-        elif msg_type == "movie_guess":
-            # Movie quiz guess submission (Issue #28)
-            await self._handle_movie_guess(ws, data, game_state)
-
+        handler = _message_handlers.get(msg_type)
+        if handler:
+            await handler(ws, data, game_state)
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
+
+    async def _handle_join(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle player join request.
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing name and admin flag
+            game_state: Current game state
+
+        """
+        name = data.get("name", "").strip()
+        is_admin = data.get("is_admin", False)
+
+        success, error_code = game_state.add_player(name, ws)
+
+        if success:
+            # Get the player session for session_id (Story 11.1)
+            player = game_state.get_player(name)
+
+            # Handle admin join/reconnection (Story 7-2)
+            if is_admin:
+                # Check if reconnecting as the disconnected admin
+                if game_state.disconnected_admin_name:
+                    if name.lower() == game_state.disconnected_admin_name.lower():
+                        # Same admin reconnecting - cancel disconnect task
+                        if self._admin_disconnect_task:
+                            self._admin_disconnect_task.cancel()
+                            self._admin_disconnect_task = None
+                            _LOGGER.info(
+                                "Admin reconnected, cancelled pause task: %s", name
+                            )
+
+                        # Cancel pending removal if any
+                        self.cancel_pending_removal(name)
+
+                        # Resume game if paused
+                        if game_state.phase == GamePhase.PAUSED:
+                            if await game_state.resume_game():
+                                _LOGGER.info("Game resumed by admin reconnection")
+                    else:
+                        # Different person trying to claim admin
+                        game_state.remove_player(name)
+                        await ws.send_json(
+                            {
+                                "type": "error",
+                                "code": ERR_ADMIN_EXISTS,
+                                "message": "Only the original host can reconnect",
+                            }
+                        )
+                        return
+                else:
+                    # No disconnected admin - check for existing admin
+                    existing_admin = any(
+                        p.is_admin
+                        for p in list(game_state.players.values())
+                        if p.name != name
+                    )
+                    if existing_admin:
+                        # Remove the just-added player and return error
+                        game_state.remove_player(name)
+                        await ws.send_json(
+                            {
+                                "type": "error",
+                                "code": ERR_ADMIN_EXISTS,
+                                "message": "Game already has an admin",
+                            }
+                        )
+                        return
+                    # Issue #417: Only allow new admin claim during LOBBY
+                    if game_state.phase != GamePhase.LOBBY:
+                        _LOGGER.warning(
+                            "Rejected admin claim from %s during %s phase",
+                            name,
+                            game_state.phase.value,
+                        )
+                        game_state.remove_player(name)
+                        await ws.send_json(
+                            {
+                                "type": "error",
+                                "code": ERR_INVALID_ACTION,
+                                "message": "Admin claim only allowed during lobby phase",
+                            }
+                        )
+                        return
+                    else:
+                        game_state.set_admin(name)
+            else:
+                # Regular player - cancel pending removal on reconnect
+                self.cancel_pending_removal(name)
+
+                # Issue #420: If this player matches disconnected admin by name,
+                # cancel the admin disconnect task even without is_admin flag
+                if game_state.disconnected_admin_name:
+                    if name.lower() == game_state.disconnected_admin_name.lower():
+                        if self._admin_disconnect_task:
+                            self._admin_disconnect_task.cancel()
+                            self._admin_disconnect_task = None
+                            _LOGGER.info(
+                                "Admin reconnected without admin flag, "
+                                "cancelled pause task: %s",
+                                name,
+                            )
+
+            # Send join acknowledgment with session_id (Story 11.1)
+            # Only the joining player receives their session_id (security)
+            if player:
+                await ws.send_json(
+                    {
+                        "type": "join_ack",
+                        "session_id": player.session_id,
+                        "game_id": game_state.game_id,
+                    }
+                )
+
+            # Send full state to newly joined player
+            state_msg = build_state_message(game_state)
+            if not state_msg:
+                return
+            try:
+                await ws.send_json(state_msg)
+            except Exception as err:  # noqa: BLE001
+                _LOGGER.warning("Failed to send state to new player: %s", err)
+                return
+            # Debounced broadcast to others (Issue #41 - batches concurrent joins)
+            # Joiner already got state above; this notifies other players
+            await self.debounced_broadcast_state()
+        else:
+            error_messages = {
+                ERR_NAME_TAKEN: "Name taken, choose another",
+                ERR_NAME_INVALID: "Please enter a name",
+                ERR_GAME_FULL: "Game is full",
+                ERR_GAME_ENDED: "This game has ended",
+            }
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": error_code,
+                    "message": error_messages.get(error_code, "Join failed"),
+                }
+            )
+
+    async def _handle_admin(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle admin action messages.
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing action
+            game_state: Current game state
+
+        """
+        action = data.get("action")
+
+        # Find sender's player session
+        sender = None
+        for player in list(game_state.players.values()):
+            if player.ws == ws:
+                sender = player
+                break
+
+        if not sender or not sender.is_admin:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_NOT_ADMIN,
+                    "message": "Only admin can perform this action",
+                }
+            )
+            return
+
+        admin_handlers = {
+            "start_game": self._admin_start_game,
+            "next_round": self._admin_next_round,
+            "stop_song": self._admin_stop_song,
+            "set_volume": self._admin_set_volume,
+            "end_game": self._admin_end_game,
+            "dismiss_game": self._admin_dismiss_game,
+            "rematch_game": self._admin_rematch_game,
+            "set_language": self._admin_set_language,
+            "confirm_intro_splash": self._admin_confirm_intro_splash,
+            "set_party_lights": self._admin_set_party_lights,
+            "toggle_party_lights": self._admin_toggle_party_lights,
+        }
+        handler = admin_handlers.get(action)
+        if handler:
+            await handler(ws, data, game_state)
+        else:
+            _LOGGER.warning("Unknown admin action: %s", action)
+
+    async def _handle_get_state(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle dashboard/observer state request (Story 10.4).
+
+        Args:
+            ws: WebSocket connection
+            data: Message data (unused)
+            game_state: Current game state
+
+        """
+        state_msg = build_state_message(game_state)
+        if state_msg:
+            await ws.send_json(state_msg)
+
+    async def _handle_reaction(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """
+        Handle live reaction during reveal (Story 18.9).
+
+        Args:
+            ws: WebSocket connection
+            data: Message data containing emoji
+            game_state: Current game state
+
+        """
+        player = game_state.get_player_by_ws(ws)
+        if not player:
+            return
+
+        if game_state.phase != GamePhase.REVEAL:
+            return  # Silent ignore - only during REVEAL
+
+        emoji = data.get("emoji", "")
+        if emoji not in ["🔥", "😂", "😱", "👏", "🤔"]:
+            return  # Invalid emoji
+
+        if game_state.record_reaction(player.name, emoji):
+            await self.broadcast(
+                {
+                    "type": "player_reaction",
+                    "player_name": player.name,
+                    "emoji": emoji,
+                }
+            )
 
     async def _admin_start_game(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
@@ -932,13 +963,14 @@ class BeatifyWebSocketHandler:
         )
 
     async def _handle_leave(
-        self, ws: web.WebSocketResponse, game_state: GameState
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
         """
         Handle intentional leave game (Story 11.5).
 
         Args:
             ws: WebSocket connection
+            data: Message data (unused)
             game_state: Current game state
 
         """
@@ -980,13 +1012,14 @@ class BeatifyWebSocketHandler:
         _LOGGER.info("Player left game intentionally: %s", player_name)
 
     async def _handle_get_steal_targets(
-        self, ws: web.WebSocketResponse, game_state: GameState
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
         """
         Handle request for available steal targets (Story 15.3 AC2, AC5).
 
         Args:
             ws: WebSocket connection
+            data: Message data (unused)
             game_state: Current game state
 
         """
