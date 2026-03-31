@@ -3951,6 +3951,23 @@ body.theme-dark .admin-controls {
     }
 }
 
+/* Issue #442: Closest Wins badge */
+.closest-wins-badge {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.5), 0 0 40px rgba(0, 114, 255, 0.3);
+}
+
+/* Issue #442: Highlight closest winner in result cards */
+.result-card.is-closest-winner {
+    border: 2px solid #00c6ff;
+    box-shadow: 0 0 12px rgba(0, 198, 255, 0.4);
+}
+
+.closest-winner-badge {
+    margin-left: var(--space-sm);
+    font-size: var(--font-size-sm);
+}
+
 /* Album Cover (compact, matches reveal size) */
 .album-cover-container {
     position: relative;

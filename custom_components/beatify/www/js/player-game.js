@@ -105,6 +105,16 @@ export function updateGameView(data) {
         }
     }
 
+    // Issue #442: Show/hide Closest Wins badge
+    var closestBadge = document.getElementById('closest-wins-badge');
+    if (closestBadge) {
+        if (data.closest_wins_mode) {
+            closestBadge.classList.remove('hidden');
+        } else {
+            closestBadge.classList.add('hidden');
+        }
+    }
+
     // Issue #23: Show/hide intro round badge + splash overlay
     var introBadge = document.getElementById('intro-badge');
     var introSplash = document.getElementById('intro-splash');

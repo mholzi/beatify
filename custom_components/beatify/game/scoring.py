@@ -427,6 +427,32 @@ class ScoringService:
     """
 
     @staticmethod
+    def apply_closest_wins(
+        players: list[PlayerSession],
+        correct_year: int,
+    ) -> None:
+        """Zero out round_score for players who are not closest to the correct year.
+
+        Ties (equal distance) all keep their points. Players who didn't submit
+        are already scored 0 by score_player_round and are excluded from the
+        closest-distance calculation.
+
+        Must be called *after* score_player_round has run for every player, and
+        *before* the round scores are appended to cumulative totals (they are
+        already added in score_player_round, so we need to undo the difference).
+        """
+        submitted = [p for p in players if p.submitted]
+        if not submitted:
+            return
+
+        best_diff = min(abs(p.current_guess - correct_year) for p in submitted)
+        for p in submitted:
+            if abs(p.current_guess - correct_year) != best_diff:
+                lost = p.round_score
+                p.round_score = 0
+                p.score -= lost
+
+    @staticmethod
     def calculate_superlatives(
         players: list[PlayerSession],
         *,
