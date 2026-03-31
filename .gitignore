@@ -19,7 +19,6 @@ beatify/
 
 # ---- Config & tooling ----
 pyproject.toml
-package.json
 package-lock.json
 requirements.txt
 # requirements_test.txt intentionally NOT ignored

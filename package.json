@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "beatify",
+  "description": "Build tools for Beatify Home Assistant integration",
+  "devDependencies": {
+    "esbuild": "~0.27.4"
+  }
+}
