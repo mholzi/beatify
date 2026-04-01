@@ -157,6 +157,9 @@ class GameState:
 
         # Issue #23: Intro mode state
         self.intro_mode_enabled: bool = False
+
+        # Issue #442: Closest Wins mode
+        self.closest_wins_mode: bool = False
         self.is_intro_round: bool = False  # Set per-round randomly
         self.intro_stopped: bool = False  # Track if 10s cutoff hit
         self._intro_stop_task: asyncio.Task | None = None
@@ -301,6 +304,7 @@ class GameState:
         artist_challenge_enabled: bool = True,
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
+        closest_wins_mode: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -317,6 +321,7 @@ class GameState:
             artist_challenge_enabled: Whether to enable artist guessing (default True)
             movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
             intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
+            closest_wins_mode: Whether only the closest guess(es) earn points
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -389,6 +394,9 @@ class GameState:
 
         # Issue #23: Set intro mode configuration
         self.intro_mode_enabled = intro_mode_enabled
+
+        # Issue #442: Set closest wins mode
+        self.closest_wins_mode = closest_wins_mode
         self.is_intro_round = False
         self.intro_stopped = False
         self._intro_round_start_time = None
@@ -555,6 +563,8 @@ class GameState:
             "difficulty": self.difficulty,
             # Issue #23: Intro mode (available in all phases)
             "intro_mode_enabled": self.intro_mode_enabled,
+            # Issue #442: Closest Wins mode
+            "closest_wins_mode": self.closest_wins_mode,
             "is_intro_round": self.is_intro_round,
             "intro_stopped": self.intro_stopped,
             "intro_splash_pending": self._intro_splash_pending,
@@ -746,6 +756,7 @@ class GameState:
         preserved_artist_challenge = self.artist_challenge_enabled
         preserved_movie_quiz = self.movie_quiz_enabled
         preserved_intro_mode = self.intro_mode_enabled
+        preserved_closest_wins = self.closest_wins_mode
 
         self._reset_game_internals()
 
@@ -761,6 +772,7 @@ class GameState:
         self.artist_challenge_enabled = preserved_artist_challenge
         self.movie_quiz_enabled = preserved_movie_quiz
         self.intro_mode_enabled = preserved_intro_mode
+        self.closest_wins_mode = preserved_closest_wins
 
         # Re-create PlaylistManager with fresh song list
         self._playlist_manager = PlaylistManager(preserved_songs, preserved_provider)
@@ -1490,6 +1502,10 @@ class GameState:
                 streak_achievements=self.streak_achievements,
                 bet_tracking=self.bet_tracking,
             )
+
+        # Issue #442: Closest Wins — zero out non-closest players' scores
+        if self.closest_wins_mode and correct_year is not None:
+            ScoringService.apply_closest_wins(all_players, correct_year)
 
         # Issue #120: Track round results for shareable result cards
         if correct_year is not None:

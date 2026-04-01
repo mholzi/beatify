@@ -43,6 +43,9 @@ let artistChallengeEnabled = true;
 // Intro Mode state (Issue #23)
 let introModeEnabled = false;
 
+// Closest Wins mode state (Issue #442)
+let closestWinsModeEnabled = false;
+
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
@@ -266,6 +269,13 @@ function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Closest Wins toggle (Issue #442)
+    document.getElementById('closest-wins-toggle')?.addEventListener('change', function() {
+        closestWinsModeEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Provider chips (Music Service)
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -338,6 +348,13 @@ async function loadSavedSettings() {
                 if (introToggle) introToggle.checked = settings.introMode;
             }
 
+            // Apply closest wins mode (Issue #442)
+            if (typeof settings.closestWinsMode === 'boolean') {
+                closestWinsModeEnabled = settings.closestWinsMode;
+                const closestToggle = document.getElementById('closest-wins-toggle');
+                if (closestToggle) closestToggle.checked = settings.closestWinsMode;
+            }
+
             // Apply provider
             if (settings.provider) {
                 selectedProvider = settings.provider;
@@ -364,6 +381,7 @@ function saveGameSettings() {
             difficulty: selectedDifficulty,
             artistChallenge: artistChallengeEnabled,
             introMode: introModeEnabled,  // Issue #23
+            closestWinsMode: closestWinsModeEnabled,  // Issue #442
             provider: selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -383,8 +401,9 @@ function updateGameSettingsSummary() {
     const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
     const artistIcon = artistChallengeEnabled ? ' • 🎤' : '';
     const introIcon = introModeEnabled ? ' • ⚡' : '';  // Issue #23
+    const closestIcon = closestWinsModeEnabled ? ' • 🎯' : '';  // Issue #442
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${introIcon}`;
+    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${introIcon}${closestIcon}`;
 }
 
 /**
@@ -1427,6 +1446,7 @@ async function startGame() {
                 provider: selectedProvider,  // Story 17.2
                 artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
                 intro_mode_enabled: introModeEnabled,  // Issue #23
+                closest_wins_mode: closestWinsModeEnabled,  // Issue #442
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null  // Issue #331
             })
         });

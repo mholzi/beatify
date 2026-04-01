@@ -374,6 +374,16 @@
             }
         }
 
+        // Issue #442: Show/hide Closest Wins badge
+        var closestBadge = document.getElementById('dashboard-closest-wins-badge');
+        if (closestBadge) {
+            if (data.closest_wins_mode) {
+                closestBadge.classList.remove('hidden');
+            } else {
+                closestBadge.classList.add('hidden');
+            }
+        }
+
         // Update album art (blurred - AC 10.4.3)
         var albumArt = document.getElementById('dashboard-album-art');
         if (albumArt) {

@@ -32,6 +32,16 @@ export function updateRevealView(data) {
     if (roundEl) roundEl.textContent = data.round || 1;
     if (totalEl) totalEl.textContent = data.total_rounds || 10;
 
+    // Issue #442: Show/hide Closest Wins badge during REVEAL
+    var closestBadge = document.getElementById('closest-wins-badge');
+    if (closestBadge) {
+        if (data.closest_wins_mode) {
+            closestBadge.classList.remove('hidden');
+        } else {
+            closestBadge.classList.add('hidden');
+        }
+    }
+
     // Issue #23: Show/hide intro round badge during REVEAL
     var introBadge = document.getElementById('intro-badge');
     if (introBadge) {
@@ -113,7 +123,7 @@ export function updateRevealView(data) {
         triggerConfetti('record');
     }
 
-    renderPlayerResultCards(players);
+    renderPlayerResultCards(players, data.closest_wins_mode);
 
     if (data.round_analytics) {
         renderRoundAnalytics(data.round_analytics, song.year);
@@ -776,13 +786,25 @@ function renderPersonalResult(player, correctYear) {
  * Render player result cards on reveal (Story 9.10)
  * @param {Array} players - All players from state
  */
-function renderPlayerResultCards(players) {
+function renderPlayerResultCards(players, closestWinsMode) {
     var container = document.getElementById('reveal-results-cards');
     if (!container) return;
 
     if (!players || players.length === 0) {
         container.innerHTML = '';
         return;
+    }
+
+    // Issue #442: Determine closest player(s) for highlight
+    var bestDiff = null;
+    if (closestWinsMode) {
+        players.forEach(function(p) {
+            if (!p.missed_round && p.years_off != null) {
+                if (bestDiff === null || p.years_off < bestDiff) {
+                    bestDiff = p.years_off;
+                }
+            }
+        });
     }
 
     var sorted = players.slice().sort(function(a, b) {
@@ -801,12 +823,18 @@ function renderPlayerResultCards(players) {
                          roundScore >= 10 ? 'is-score-high' :
                          roundScore >= 1 ? 'is-score-medium' : 'is-score-zero';
 
+        // Issue #442: Mark closest player(s) in Closest Wins mode
+        var isClosest = closestWinsMode && !isMissed && bestDiff !== null && (player.years_off || 0) === bestDiff;
+        var closestClass = isClosest ? ' is-closest-winner' : '';
+
         var guessDisplay = isMissed ? '—' : (player.guess || 'n/a');
         var yearsOffDisplay = isMissed ? utils.t('reveal.noGuessShort') :
                               yearsOff === 0 ? utils.t('reveal.exact') :
                               utils.t('reveal.shortOff', { years: yearsOff });
 
         var betIndicator = player.bet ? '<span class="card-bet">🎲</span>' : '';
+
+        var closestBadge = isClosest ? '<span class="closest-winner-badge">🎯</span>' : '';
 
         var artistBadge = '';
         if (player.artist_bonus && player.artist_bonus > 0) {
@@ -823,8 +851,8 @@ function renderPlayerResultCards(players) {
                 utils.t('steal.stolenBy', { name: stealerNames }) + '</div>';
         }
 
-        html += '<div class="result-card ' + scoreClass + (isCurrentPlayer ? ' is-current' : '') + '">' +
-            '<div class="card-name">' + escapeHtml(player.name) + betIndicator + '</div>' +
+        html += '<div class="result-card ' + scoreClass + closestClass + (isCurrentPlayer ? ' is-current' : '') + '">' +
+            '<div class="card-name">' + escapeHtml(player.name) + betIndicator + closestBadge + '</div>' +
             '<div class="card-guess">' + guessDisplay + '</div>' +
             '<div class="card-accuracy">' + yearsOffDisplay + '</div>' +
             stealIndicator +

@@ -284,6 +284,7 @@ class StartGameView(HomeAssistantView):
         artist_challenge_enabled = body.get("artist_challenge_enabled", True)  # Story 20.7
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
+        closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
         party_lights_config = body.get("party_lights")  # Issue #331
 
         # Validate difficulty (Story 14.1)
@@ -470,6 +471,7 @@ class StartGameView(HomeAssistantView):
             "artist_challenge_enabled": artist_challenge_enabled,  # Story 20.7
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
             "intro_mode_enabled": intro_mode_enabled,  # Issue #23
+            "closest_wins_mode": closest_wins_mode,  # Issue #442
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration
