@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import time
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -24,14 +25,17 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from homeassistant.helpers import entity_registry as er
+
 from custom_components.beatify.game.playlist import async_discover_playlists
-from custom_components.beatify.game.state import GameState
+from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.serializers import (
     build_game_status_response,
     build_state_message,
     build_status_response,
     get_game_state,
 )
+from custom_components.beatify.services.lights import PartyLightsService
 from custom_components.beatify.services.media_player import (
     async_get_media_players,
     get_platform_capabilities,
@@ -224,8 +228,6 @@ class PreviewLightsView(HomeAssistantView):
         intensity = body.get("intensity", "party")
 
         try:
-            from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
-
             preview = PartyLightsService(self.hass)
             await preview.start(entity_ids, intensity)
             await preview.celebrate()
@@ -255,7 +257,6 @@ class StartGameView(HomeAssistantView):
 
         # Check for existing game
         if game_state and game_state.game_id:
-            from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
             if game_state.phase == GamePhase.END:
                 # Game is already finished — auto-clean state so a new game can start
@@ -403,7 +404,6 @@ class StartGameView(HomeAssistantView):
                 game_state.set_stats_service(stats_service)
 
         # Detect platform and validate compatibility (resolves #38, #39)
-        from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
 
         ent_reg = er.async_get(self.hass)
         entity_entry = ent_reg.async_get(media_player)
@@ -811,7 +811,6 @@ class AnalyticsView(HomeAssistantView):
             True if allowed, False if rate limited
 
         """
-        import time  # noqa: PLC0415
 
         now = time.time()
         cutoff = now - self.RATE_LIMIT_WINDOW
@@ -837,7 +836,6 @@ class AnalyticsView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:
         """Get analytics metrics with caching and rate limiting."""
-        import time  # noqa: PLC0415
 
         # Rate limiting check
         client_ip = request.remote or "unknown"
@@ -923,7 +921,6 @@ class SongStatsView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:
         """Get song statistics with optional playlist filter (Story 19.7 AC3)."""
-        import time  # noqa: PLC0415
 
         # Get optional playlist filter
         playlist_filter = request.query.get("playlist")
@@ -983,7 +980,6 @@ class PlaylistRequestsView(HomeAssistantView):
 
     def _check_rate_limit(self, ip: str) -> bool:
         """Check if IP is within rate limit."""
-        import time  # noqa: PLC0415
 
         now = time.time()
         cutoff = now - self.RATE_LIMIT_WINDOW
