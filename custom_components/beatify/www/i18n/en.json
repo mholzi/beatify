@@ -364,7 +364,13 @@
     "ttsAnnouncements": "TTS Announcements",
     "ttsEnabled": "Enable TTS",
     "ttsEntityId": "TTS Entity",
-    "ttsEntityIdHint": "e.g. tts.google_en_com"
+    "ttsEntityIdHint": "e.g. tts.google_en_com",
+    "ttsAnnounceGameStart": "Announce Game Start",
+    "ttsAnnounceGameStartHint": "Announce when the game begins",
+    "ttsAnnounceWinner": "Announce Winner",
+    "ttsAnnounceWinnerHint": "Announce the winner at game end",
+    "ttsTested": "Sent",
+    "ttsTestFailed": "Failed"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

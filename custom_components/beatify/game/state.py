@@ -110,6 +110,8 @@ class GameState:
         self._party_lights: PartyLightsProtocol | None = None
         # Issue #447: TTS announcement service
         self._tts_service: Any = None  # TTSService (lazy import)
+        self._tts_announce_game_start: bool = True
+        self._tts_announce_winner: bool = True
         self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
@@ -1870,11 +1872,20 @@ class GameState:
     # TTS Announcements (#447)
     # ------------------------------------------------------------------
 
-    async def configure_tts(self, hass: Any, entity_id: str) -> None:
+    async def configure_tts(
+        self,
+        hass: Any,
+        entity_id: str,
+        *,
+        announce_game_start: bool = True,
+        announce_winner: bool = True,
+    ) -> None:
         """Configure TTS announcement service for the game."""
         from custom_components.beatify.services.tts import TTSService  # noqa: PLC0415
 
         self._tts_service = TTSService(hass, entity_id)
+        self._tts_announce_game_start = announce_game_start
+        self._tts_announce_winner = announce_winner
 
     async def disable_tts(self) -> None:
         """Disable TTS announcements."""
@@ -1892,7 +1903,7 @@ class GameState:
 
     async def announce_game_start(self) -> None:
         """Announce game start (use case 16)."""
-        if not self._tts_service:
+        if not self._tts_service or not self._tts_announce_game_start:
             return
         message = (
             f"Let's play Beatify! {self.total_rounds} rounds, "
@@ -1902,7 +1913,7 @@ class GameState:
 
     async def announce_winner(self) -> None:
         """Announce the winner (use case 18)."""
-        if not self._tts_service or not self.players:
+        if not self._tts_service or not self._tts_announce_winner or not self.players:
             return
         winner = max(self.players.values(), key=lambda p: p.score)
         message = (
