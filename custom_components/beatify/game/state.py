@@ -177,6 +177,13 @@ class GameState:
         """Register a callback invoked on every state change (Issue #441)."""
         self._state_callbacks.append(cb)
 
+    def unregister_state_callback(self, cb: Callable[[], None]) -> None:
+        """Remove a previously registered state callback (Issue #441)."""
+        try:
+            self._state_callbacks.remove(cb)
+        except ValueError:
+            pass
+
     def _notify_state_callbacks(self) -> None:
         """Notify all registered state observers (Issue #441)."""
         for cb in self._state_callbacks:
@@ -967,6 +974,7 @@ class GameState:
                 # Timer expired during pause — end the round immediately
                 _LOGGER.info("Timer expired during pause, ending round")
                 self.phase = previous
+                self._notify_state_callbacks()
                 self.pause_reason = None
                 self.disconnected_admin_name = None
                 self._previous_phase = None
@@ -975,6 +983,7 @@ class GameState:
 
         # Restore previous phase
         self.phase = previous
+        self._notify_state_callbacks()
         self.pause_reason = None
         self.disconnected_admin_name = None
         self._previous_phase = None

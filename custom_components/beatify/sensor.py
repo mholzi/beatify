@@ -60,6 +60,10 @@ class BeatifySensorBase(SensorEntity):
         """Register state callback when entity is added."""
         self._game_state.register_state_callback(self._on_state_changed)
 
+    async def async_will_remove_from_hass(self) -> None:
+        """Unregister state callback when entity is removed."""
+        self._game_state.unregister_state_callback(self._on_state_changed)
+
     @callback
     def _on_state_changed(self) -> None:
         """Handle game state change."""
