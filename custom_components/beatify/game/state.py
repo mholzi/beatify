@@ -1,10 +1,34 @@
-"""Game state management for Beatify."""
+"""Game state management for Beatify.
+
+Subsystem ownership
+-------------------
+GameState is the central coordinator.  It **owns** (creates and holds
+a reference to) the following subsystems:
+
+* ``PlayerRegistry`` — player lifecycle, lookups, sessions, reactions
+* ``PowerUpManager`` — steals, bet tracking, streak achievements
+* ``ChallengeManager`` — artist challenge & movie quiz state and logic
+* ``RoundManager`` — round number, timer/deadline, intro mode, metadata
+* ``HighlightsTracker`` — game highlights reel (exact matches, streaks, …)
+
+It **references** (does not own, receives via setter):
+
+* ``StatsService`` — historical game statistics and song difficulty
+* ``MediaPlayerService`` — lazy-created on first round via Home Assistant
+* ``PartyLightsService`` — optional party-lights integration
+
+Serialization is handled by ``GameStateSerializer`` (game/serializers.py)
+which builds broadcast-ready dicts from GameState without GameState
+needing to know its own wire format.
+
+Reset logic uses ``GameStateConfig`` (game/config.py), a dataclass
+whose fields define every resettable attribute and its default value.
+"""
 
 from __future__ import annotations
 
 import asyncio
 import logging
-import random
 import secrets
 import time
 from enum import Enum
@@ -17,7 +41,6 @@ from custom_components.beatify.const import (
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_NOT_STARTED,
     INTRO_DURATION_SECONDS,
-    INTRO_ROUND_CHANCE,
     MIN_PLAYERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
@@ -32,15 +55,18 @@ from .challenges import (
     build_artist_options,  # noqa: F401 (re-exported for backward compatibility)
     build_movie_options,  # noqa: F401 (re-exported for backward compatibility)
 )
+from .config import GameStateConfig
 from .highlights import HighlightsTracker
 from .player import PlayerSession
 from .playlist import PlaylistManager
 from .player_registry import PlayerRegistry
 from .powerups import PowerUpManager
+from .round_manager import RoundManager
 from .scoring import (
     ScoringService,
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
+from .serializers import GameStateSerializer
 from .share import build_share_data
 from .types import RoundAnalytics, _get_decade_label
 
@@ -80,10 +106,6 @@ class GameState:
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
         self.phase: GamePhase = GamePhase.LOBBY
-        self.playlists: list[str] = []
-        self.songs: list[dict[str, Any]] = []
-        self.media_player: str | None = None
-        self.join_url: str | None = None
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
         self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
@@ -91,19 +113,14 @@ class GameState:
         # Issue #347: Player management delegated to PlayerRegistry
         self._player_registry = PlayerRegistry()
 
-        # Backward-compatible access — other code still uses self.players directly
-        # This will be tightened in future refactors
+        # Issue #464: Round lifecycle delegated to RoundManager
+        self._round_manager = RoundManager(self._now)
 
-        # Round tracking (Epic 4)
-        self.round: int = 0
-        self.total_rounds: int = 0
-        self.deadline: int | None = None
-        self.current_song: dict[str, Any] | None = None
-        self.last_round: bool = False
+        # Issue #464: Default config for config-driven reset
+        self._default_config = GameStateConfig()
 
-        # Pause tracking (Epic 4)
-        self.pause_reason: str | None = None
-        self._previous_phase: GamePhase | None = None
+        # Apply config defaults to self
+        self._apply_config(self._default_config)
 
         # Services (Epic 4)
         self._playlist_manager: PlaylistManager | None = None
@@ -111,38 +128,15 @@ class GameState:
 
         # Timer task for round expiry (Story 4.5)
         self._timer_task: asyncio.Task | None = None
+
+        # Callback for round end (Story 4.5)
         self._on_round_end: Callable[[], Awaitable[None]] | None = None
-
-        # Round timing for speed bonus (Story 5.1)
-        self.round_start_time: float | None = None
-        self.round_duration: float = DEFAULT_ROUND_DURATION
-
-        # Song stopped flag (Story 6.2)
-        self.song_stopped: bool = False
 
         # Volume control (Story 6.4)
         self.volume_level: float = 0.5  # Default 50%
 
-        # Admin disconnect tracking (Epic 7)
-        self.disconnected_admin_name: str | None = None
-
-        # Language setting (Epic 12)
-        self.language: str = "en"
-
-        # Difficulty setting (Story 14.1)
-        self.difficulty: str = DIFFICULTY_DEFAULT
-
-        # Provider setting (Story 17.2)
-        self.provider: str = PROVIDER_DEFAULT
-
         # Platform identifier for playback routing (replaces is_mass)
         self.platform: str = "unknown"
-
-        # Last error detail for diagnostics
-        self.last_error_detail: str = ""
-
-        # Round analytics (Story 13.3)
-        self.round_analytics: RoundAnalytics | None = None
 
         # Stats service reference (Story 14.4)
         self._stats_service: StatsService | None = None
@@ -150,50 +144,27 @@ class GameState:
         # Issue #351: Power-up system (steals, bets, streak tracking)
         self._powerup_manager = PowerUpManager()
 
-        # Story 18.9: Reaction rate limiting per reveal phase
-        self._reactions_this_phase: set[str] = set()
-
         # Story 20.1 / Issue #28: Challenge state (artist + movie quiz)
         self._challenge_manager = ChallengeManager()
 
-        # Issue #23: Intro mode state
-        self.intro_mode_enabled: bool = False
-
         # Issue #442: Closest Wins mode
         self.closest_wins_mode: bool = False
-        self.is_intro_round: bool = False  # Set per-round randomly
-        self.intro_stopped: bool = False  # Track if 10s cutoff hit
-        self._intro_stop_task: asyncio.Task | None = None
-        self._rounds_since_intro: int = (
-            0  # Track rounds without intro for guaranteed minimum
-        )
-        self._intro_round_start_time: float | None = (
-            None  # Track round start for bonus calc
-        )
 
-        # Issue #42: Async metadata for fast transitions
-        self.metadata_pending: bool = False
-        self._metadata_task: asyncio.Task | None = None
+        # Issue #42: Metadata update callback
         self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = (
             None
         )
 
-        # Story 20.9: Early reveal flag
-        self._early_reveal: bool = False
-
         # Issue AF2-013: Lock to prevent concurrent score updates
-        # Guards end_round() and _trigger_early_reveal() against race conditions
-        # when multiple players submit simultaneously during early reveal check
         self._score_lock: asyncio.Lock = asyncio.Lock()
 
         # Issue #75: Game highlights reel
         self.highlights_tracker = HighlightsTracker()
 
-        # Issue #292: Intro splash state
-        self._intro_splash_shown: bool = False
-        self._intro_splash_pending: bool = False
-        self._intro_splash_deferred_song: dict | None = None
-        self._intro_splash_hass: HomeAssistant | None = None
+    def _apply_config(self, config: GameStateConfig) -> None:
+        """Apply a GameStateConfig to self, setting all config-managed fields."""
+        for field_name in GameStateConfig.field_names():
+            setattr(self, field_name, getattr(config, field_name))
 
     def current_time(self) -> float:
         """Return the current timestamp from the injected clock."""
@@ -229,6 +200,163 @@ class GameState:
     @_reactions_this_phase.setter
     def _reactions_this_phase(self, value: set[str]) -> None:
         self._player_registry._reactions_this_phase = value
+
+    # ------------------------------------------------------------------
+    # RoundManager delegation (keep public interface identical)
+    # ------------------------------------------------------------------
+
+    @property
+    def round(self) -> int:
+        """Current round number — delegated to RoundManager."""
+        return self._round_manager.round
+
+    @round.setter
+    def round(self, value: int) -> None:
+        self._round_manager.round = value
+
+    @property
+    def total_rounds(self) -> int:
+        """Total rounds — delegated to RoundManager."""
+        return self._round_manager.total_rounds
+
+    @total_rounds.setter
+    def total_rounds(self, value: int) -> None:
+        self._round_manager.total_rounds = value
+
+    @property
+    def deadline(self) -> int | None:
+        """Round deadline (ms) — delegated to RoundManager."""
+        return self._round_manager.deadline
+
+    @deadline.setter
+    def deadline(self, value: int | None) -> None:
+        self._round_manager.deadline = value
+
+    @property
+    def current_song(self) -> dict[str, Any] | None:
+        """Current song dict — delegated to RoundManager."""
+        return self._round_manager.current_song
+
+    @current_song.setter
+    def current_song(self, value: dict[str, Any] | None) -> None:
+        self._round_manager.current_song = value
+
+    @property
+    def last_round(self) -> bool:
+        """Whether this is the last round — delegated to RoundManager."""
+        return self._round_manager.last_round
+
+    @last_round.setter
+    def last_round(self, value: bool) -> None:
+        self._round_manager.last_round = value
+
+    @property
+    def round_start_time(self) -> float | None:
+        """Round start timestamp — delegated to RoundManager."""
+        return self._round_manager.round_start_time
+
+    @round_start_time.setter
+    def round_start_time(self, value: float | None) -> None:
+        self._round_manager.round_start_time = value
+
+    @property
+    def round_duration(self) -> float:
+        """Round timer duration — delegated to RoundManager."""
+        return self._round_manager.round_duration
+
+    @round_duration.setter
+    def round_duration(self, value: float) -> None:
+        self._round_manager.round_duration = value
+
+    @property
+    def song_stopped(self) -> bool:
+        """Song stopped flag — delegated to RoundManager."""
+        return self._round_manager.song_stopped
+
+    @song_stopped.setter
+    def song_stopped(self, value: bool) -> None:
+        self._round_manager.song_stopped = value
+
+    @property
+    def round_analytics(self) -> RoundAnalytics | None:
+        """Round analytics — stored on RoundManager for lifecycle coherence."""
+        return self._round_manager.round_analytics
+
+    @round_analytics.setter
+    def round_analytics(self, value: RoundAnalytics | None) -> None:
+        self._round_manager.round_analytics = value
+
+    @property
+    def intro_mode_enabled(self) -> bool:
+        """Intro mode enabled — delegated to RoundManager."""
+        return self._round_manager.intro_mode_enabled
+
+    @intro_mode_enabled.setter
+    def intro_mode_enabled(self, value: bool) -> None:
+        self._round_manager.intro_mode_enabled = value
+
+    @property
+    def is_intro_round(self) -> bool:
+        """Whether current round is intro mode — delegated to RoundManager."""
+        return self._round_manager.is_intro_round
+
+    @is_intro_round.setter
+    def is_intro_round(self, value: bool) -> None:
+        self._round_manager.is_intro_round = value
+
+    @property
+    def intro_stopped(self) -> bool:
+        """Intro stopped flag — delegated to RoundManager."""
+        return self._round_manager.intro_stopped
+
+    @intro_stopped.setter
+    def intro_stopped(self, value: bool) -> None:
+        self._round_manager.intro_stopped = value
+
+    @property
+    def _intro_round_start_time(self) -> float | None:
+        """Intro round start time — delegated to RoundManager."""
+        return self._round_manager._intro_round_start_time
+
+    @_intro_round_start_time.setter
+    def _intro_round_start_time(self, value: float | None) -> None:
+        self._round_manager._intro_round_start_time = value
+
+    @property
+    def metadata_pending(self) -> bool:
+        """Metadata pending flag — delegated to RoundManager."""
+        return self._round_manager.metadata_pending
+
+    @metadata_pending.setter
+    def metadata_pending(self, value: bool) -> None:
+        self._round_manager.metadata_pending = value
+
+    @property
+    def _early_reveal(self) -> bool:
+        """Early reveal flag — delegated to RoundManager."""
+        return self._round_manager._early_reveal
+
+    @_early_reveal.setter
+    def _early_reveal(self, value: bool) -> None:
+        self._round_manager._early_reveal = value
+
+    @property
+    def _intro_splash_pending(self) -> bool:
+        """Intro splash pending — delegated to RoundManager."""
+        return self._round_manager._intro_splash_pending
+
+    @_intro_splash_pending.setter
+    def _intro_splash_pending(self, value: bool) -> None:
+        self._round_manager._intro_splash_pending = value
+
+    @property
+    def _timer_task(self) -> asyncio.Task | None:
+        """Timer task — delegated to RoundManager."""
+        return self._round_manager._timer_task
+
+    @_timer_task.setter
+    def _timer_task(self, value: asyncio.Task | None) -> None:
+        self._round_manager._timer_task = value
 
     # ------------------------------------------------------------------
     # Power-up delegation properties (keep public interface identical)
@@ -401,8 +529,8 @@ class GameState:
         self.is_intro_round = False
         self.intro_stopped = False
         self._intro_round_start_time = None
-        self._rounds_since_intro = 0
-        self._cancel_intro_timer()
+        self._round_manager._rounds_since_intro = 0
+        self._round_manager._cancel_intro_timer()
 
         # Reset timer task for new game
         self.cancel_timer()
@@ -543,47 +671,28 @@ class GameState:
         return fragment
 
     def get_state(self) -> dict[str, Any] | None:
-        """
-        Get current game state for broadcast.
+        """Get current game state for broadcast.
 
-        Returns phase-specific data for each game phase.
+        Delegates to GameStateSerializer (Issue #464).
 
         Returns:
             Game state dict or None if no active game
 
         """
-        if not self.game_id:
-            return None
+        return GameStateSerializer.serialize(self)
 
-        state: dict[str, Any] = {
-            "game_id": self.game_id,
-            "phase": self.phase.value,
-            "player_count": len(self.players),
-            "players": self.get_players_state(),
-            "language": self.language,
-            "difficulty": self.difficulty,
-            # Issue #23: Intro mode (available in all phases)
-            "intro_mode_enabled": self.intro_mode_enabled,
-            # Issue #442: Closest Wins mode
-            "closest_wins_mode": self.closest_wins_mode,
-            "is_intro_round": self.is_intro_round,
-            "intro_stopped": self.intro_stopped,
-            "intro_splash_pending": self._intro_splash_pending,
-        }
+    def get_reveal_players_state(self) -> list[dict[str, Any]]:
+        """Get player state with reveal info for REVEAL phase.
 
-        # Phase-specific data
-        if self.phase == GamePhase.LOBBY:
-            state["join_url"] = self.join_url
-        elif self.phase == GamePhase.PLAYING:
-            state.update(self._state_playing())
-        elif self.phase == GamePhase.REVEAL:
-            state.update(self._state_reveal())
-        elif self.phase == GamePhase.PAUSED:
-            state["pause_reason"] = self.pause_reason
-        elif self.phase == GamePhase.END:
-            state.update(self._state_end())
+        Delegates to GameStateSerializer (Issue #464).
 
-        return state
+        Returns:
+            List of player dicts including guess, round_score, years_off,
+            speed bonus data (Story 5.1), streak bonus (Story 5.2),
+            and artist bonus (Story 20.4), sorted by total score descending.
+
+        """
+        return GameStateSerializer.get_reveal_players_state(self)
 
     def finalize_game(self) -> dict[str, Any]:
         """
@@ -643,74 +752,22 @@ class GameState:
         }
 
     def _reset_game_internals(self) -> None:
-        """Reset internal game state (Issue #108).
+        """Reset internal game state (Issue #108, #464).
 
         Shared by end_game() and rematch_game() to prevent field drift.
+        Uses GameStateConfig to rebuild config-managed fields from defaults,
+        and delegates round state reset to RoundManager.reset().
+
         Does NOT reset: players, sessions, phase, game_id, callbacks,
         service refs (_stats_service, _on_round_end, _on_metadata_update),
         or volume_level (caller's responsibility).
         """
-        # Cancel async tasks before resetting references
-        self._cancel_intro_timer()
-        if self._metadata_task and not self._metadata_task.done():
-            self._metadata_task.cancel()
-        self._metadata_task = None
+        # Issue #464: Reset round lifecycle (timers, metadata, intro state)
+        self._round_manager.reset()
+        self.cancel_timer()
 
-        # Reset playlists and media
-        self.playlists = []
-        self.songs = []
-        self.media_player = None
-        self.join_url = None
-
-        # Reset round tracking (Epic 4)
-        self.round = 0
-        self.total_rounds = 0
-        self.deadline = None
-        self.current_song = None
-        self.last_round = False
-        self.pause_reason = None
-        self._previous_phase = None
-        self._playlist_manager = None
-        self._media_player_service = None
-
-        # Reset timing (Story 5.1)
-        self.round_start_time = None
-        self.round_duration = DEFAULT_ROUND_DURATION
-
-        # Reset song stopped flag (Story 6.2)
-        self.song_stopped = False
-
-        # Reset early reveal flag (Story 20.9)
-        self._early_reveal = False
-
-        # Reset round analytics (Story 13.3)
-        self.round_analytics = None
-
-        # Reset admin disconnect tracking (Epic 7)
-        self.disconnected_admin_name = None
-
-        # Reset language (Epic 12)
-        self.language = "en"
-
-        # Reset difficulty (Story 14.1)
-        self.difficulty = DIFFICULTY_DEFAULT
-
-        # Reset provider (Story 17.2)
-        self.provider = PROVIDER_DEFAULT
-
-        # Issue #23: Reset intro mode per-round state
-        self.is_intro_round = False
-        self.intro_stopped = False
-        self._intro_round_start_time = None
-
-        # Reset metadata state
-        self.metadata_pending = False
-
-        # Reset reaction rate-limiting (Story 18.9)
-        self._reactions_this_phase = set()
-
-        # Reset error detail
-        self.last_error_detail = ""
+        # Issue #464: Rebuild config-managed fields from defaults
+        self._apply_config(self._default_config)
 
         # Issue #351: Reset power-up state
         self._powerup_manager.reset()
@@ -720,12 +777,6 @@ class GameState:
 
         # Issue #75: Reset highlights tracker
         self.highlights_tracker.reset()
-
-        # Issue #292: Reset intro splash state
-        self._intro_splash_shown = False
-        self._intro_splash_pending = False
-        self._intro_splash_deferred_song = None
-        self._intro_splash_hass = None
 
     async def end_game(self) -> None:
         """End the current game and reset state."""
@@ -830,7 +881,7 @@ class GameState:
         if self.phase == GamePhase.PLAYING:
             self.cancel_timer()
             # Issue #23: Cancel intro timer if running
-            self._cancel_intro_timer()
+            self._round_manager._cancel_intro_timer()
             # Stop media playback
             if self._media_player_service:
                 await self._media_player_service.stop()
@@ -864,7 +915,7 @@ class GameState:
 
             if remaining_ms > 0:
                 remaining_seconds = remaining_ms / 1000.0
-                self._timer_task = asyncio.create_task(
+                self._round_manager._timer_task = asyncio.create_task(
                     self._timer_countdown(remaining_seconds)
                 )
                 _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
@@ -878,8 +929,8 @@ class GameState:
                     elapsed_intro = self._now() - self._intro_round_start_time
                     remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
                     if remaining_intro > 0:
-                        self._intro_stop_task = asyncio.create_task(
-                            self._intro_auto_stop(remaining_intro)
+                        self._round_manager._intro_stop_task = asyncio.create_task(
+                            self._round_manager._intro_auto_stop(remaining_intro, self._on_round_end)
                         )
                         _LOGGER.info(
                             "Intro stop timer restarted with %.1fs remaining",
@@ -1239,65 +1290,16 @@ class GameState:
                 self._media_player_service.set_analytics(self._stats_service._analytics)
 
     def _prepare_intro_round(self, song: dict, hass: HomeAssistant) -> bool:
-        """Determine if this is an intro round and set intro state flags.
-
-        Returns True if playback should be deferred until admin confirms splash.
-        """
-        self.is_intro_round = False
-        self.intro_stopped = False
-        self._intro_round_start_time = None
-        self._cancel_intro_timer()
-
-        if not (self.intro_mode_enabled and self.round >= 3):
-            return False
-
-        force_intro = self._rounds_since_intro >= 3
-        if not (force_intro or random.random() < INTRO_ROUND_CHANCE):
-            self._rounds_since_intro += 1
-            return False
-
-        song_duration_ms = song.get("duration_ms", 999999)
-        if song_duration_ms < INTRO_DURATION_SECONDS * 1000:
-            self._rounds_since_intro += 1
-            _LOGGER.info("Skipping intro mode for short song (%dms)", song_duration_ms)
-            return False
-
-        self.is_intro_round = True
-        self._rounds_since_intro = 0
-        self._intro_round_start_time = self._now()
-
-        if not self._intro_splash_shown:
-            # First intro round: defer playback until admin confirms splash
-            self._intro_splash_pending = True
-            self._intro_splash_deferred_song = song
-            self._intro_splash_hass = hass
-            _LOGGER.info(
-                "Intro round activated for round %d%s (splash pending, playback deferred)",
-                self.round + 1, " (forced)" if force_intro else "",
-            )
-            return True
-
-        _LOGGER.info("Intro round activated for round %d%s", self.round + 1, " (forced)" if force_intro else "")
-        return False
+        """Determine if this is an intro round. Delegates to RoundManager."""
+        return self._round_manager.prepare_intro_round(song, hass)
 
     def _build_round_metadata(self, song: dict, resolved_uri: str, will_defer_for_splash: bool) -> dict:
-        """Build initial metadata dict and kick off background album art fetch."""
-        if self._media_player_service or will_defer_for_splash:
-            # Issue #42: Start round immediately, fetch album art in background
-            self.metadata_pending = True
-            self._metadata_task = asyncio.create_task(self._fetch_metadata_async(resolved_uri))
-            return {
-                "artist": song.get("artist", "Unknown"),
-                "title": song.get("title", "Unknown"),
-                "album_art": "/beatify/static/img/no-artwork.svg",
-            }
-        # No media player — testing mode
-        self.metadata_pending = False
-        return {
-            "artist": song.get("artist", "Test Artist"),
-            "title": song.get("title", "Test Song"),
-            "album_art": "/beatify/static/img/no-artwork.svg",
-        }
+        """Build initial metadata dict. Delegates to RoundManager."""
+        return self._round_manager.build_round_metadata(
+            song, resolved_uri, will_defer_for_splash,
+            self._media_player_service,
+            self._fetch_metadata_async(resolved_uri),
+        )
 
     def _initialize_round(
         self,
@@ -1306,80 +1308,27 @@ class GameState:
         resolved_uri: str,
         will_defer_for_splash: bool,
     ) -> None:
-        """Commit all round state: current song, timers, player resets, phase transition."""
-        self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
-
-        self.current_song = {
-            "year": song["year"],
-            "fun_fact": song.get("fun_fact", ""),
-            "fun_fact_de": song.get("fun_fact_de", ""),
-            "fun_fact_es": song.get("fun_fact_es", ""),
-            "fun_fact_fr": song.get("fun_fact_fr", ""),
-            "fun_fact_nl": song.get("fun_fact_nl", ""),
-            "uri": resolved_uri,
-            "chart_info": song.get("chart_info", {}),
-            "certifications": song.get("certifications", []),
-            "awards": song.get("awards", []),
-            "awards_de": song.get("awards_de", []),
-            "awards_es": song.get("awards_es", []),
-            "awards_fr": song.get("awards_fr", []),
-            "awards_nl": song.get("awards_nl", []),
-            **metadata,
-        }
-
-        self._challenge_manager.init_round(song)
-
-        # Issue #424: Cancel old timers before creating new ones
-        self.cancel_timer()
-        self._cancel_intro_timer()
-
-        if self.is_intro_round and not will_defer_for_splash:
-            self._intro_stop_task = asyncio.create_task(self._intro_auto_stop(INTRO_DURATION_SECONDS))
-
-        self.round += 1
-        self.total_rounds = self._playlist_manager.get_total_count()
-
-        self.round_start_time = self._now()
-        effective_duration = INTRO_DURATION_SECONDS if self.is_intro_round else self.round_duration
-        self.deadline = int((self.round_start_time + effective_duration) * 1000)
-
-        for player in self.players.values():
-            player.reset_round()
-
-        self.song_stopped = False
-        self._early_reveal = False
+        """Commit all round state. Delegates to RoundManager."""
+        self._round_manager.initialize_round(
+            song, metadata, resolved_uri, will_defer_for_splash,
+            self._playlist_manager,
+            self._challenge_manager,
+            self.players,
+            self._timer_countdown,
+            self._on_round_end,
+        )
         self.round_analytics = None
-
-        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
-        self._timer_task = asyncio.create_task(self._timer_countdown(delay_seconds))
         self.phase = GamePhase.PLAYING
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
-        """
-        Wait for round to end, then trigger reveal.
+        """Wait for round to end, then trigger reveal.
 
-        This task may be cancelled by:
-        - Admin advancing to next round early
-        - All players submitting (if auto_advance enabled)
-        - Game pause/end
-
-        Always handle CancelledError gracefully.
-
-        Args:
-            delay_seconds: Seconds to wait before triggering reveal
-
+        Wraps RoundManager._timer_countdown with phase-aware end_round call.
         """
         try:
-            if delay_seconds < 0:
-                _LOGGER.warning(
-                    "Round timer delay already negative (%.1fs), ending immediately",
-                    delay_seconds,
-                )
-                delay_seconds = 0
-            await asyncio.sleep(delay_seconds)
-            # Check we're still in PLAYING phase (could have changed)
+            await self._round_manager._timer_countdown(delay_seconds)
+            # Timer completed normally — check phase and end round
             if self.phase == GamePhase.PLAYING:
-                _LOGGER.info("Round timer expired, transitioning to REVEAL")
                 await self.end_round()
             else:
                 _LOGGER.debug(
@@ -1387,7 +1336,6 @@ class GameState:
                 )
         except asyncio.CancelledError:
             _LOGGER.debug("Timer task cancelled")
-            # Re-raise to properly complete cancellation
             raise
 
     async def _fetch_metadata_async(self, uri: str) -> None:
@@ -1467,7 +1415,7 @@ class GameState:
         self.cancel_timer()
 
         # Issue #23: Cancel intro timer if running
-        self._cancel_intro_timer()
+        self._round_manager._cancel_intro_timer()
 
         # Store current ranks before scoring for rank change detection (5.5)
         self._store_previous_ranks()
@@ -1706,144 +1654,21 @@ class GameState:
                         break  # Only one photo finish per round
 
     def cancel_timer(self) -> None:
-        """Cancel the round timer (synchronous, for cleanup)."""
-        if self._timer_task and not self._timer_task.done():
-            # Don't cancel if we're being called from within the timer task itself
-            # (happens when timer naturally expires and calls end_round)
-            current_task = asyncio.current_task()
-            if current_task != self._timer_task:
-                self._timer_task.cancel()
-        self._timer_task = None
+        """Cancel the round timer. Delegates to RoundManager."""
+        self._round_manager.cancel_timer()
 
     async def confirm_intro_splash(self) -> None:
         """Handle admin confirmation of intro splash (Issue #292, #403).
 
-        Encapsulates all intro-splash state mutations so the websocket
-        handler does not need to touch private attributes directly.
+        Delegates to RoundManager.
         """
-        if not self._intro_splash_pending:
-            return
-        self._intro_splash_pending = False
-        self._intro_splash_shown = True
-
-        # Play the deferred song now that admin has confirmed
-        deferred_song = self._intro_splash_deferred_song
-        if deferred_song:
-            success = await self.play_deferred_song(deferred_song)
-            if not success:
-                _LOGGER.warning(
-                    "Failed to play deferred intro song: %s",
-                    deferred_song.get("uri"),
-                )
-            self._intro_splash_deferred_song = None
-            self._intro_splash_hass = None
-
-        # Reset round timing to start from NOW (after admin confirmation)
-        self.round_start_time = self._now()
-        self._intro_round_start_time = self._now()
-
-        effective_duration = INTRO_DURATION_SECONDS
-        self.deadline = int(
-            (self.round_start_time + effective_duration) * 1000
+        await self._round_manager.confirm_intro_splash(
+            self.play_deferred_song, self._on_round_end
         )
-
-        self._intro_stop_task = asyncio.create_task(
-            self._intro_auto_stop(INTRO_DURATION_SECONDS)
-        )
-
-    def _cancel_intro_timer(self) -> None:
-        """Cancel the intro auto-stop timer if running (Issue #23)."""
-        if self._intro_stop_task and not self._intro_stop_task.done():
-            self._intro_stop_task.cancel()
-        self._intro_stop_task = None
-
-    async def _intro_auto_stop(self, delay_seconds: float) -> None:
-        """Signal end of intro challenge window after delay (Issue #23).
-
-        Music intentionally continues playing — players hear the rest of the
-        song after the intro window closes.  Only the UI state changes
-        (intro_stopped = True) so clients show the "Intro complete!" badge.
-        """
-        try:
-            await asyncio.sleep(delay_seconds)
-            if self.phase == GamePhase.PLAYING and not self.intro_stopped:
-                self.intro_stopped = True
-                _LOGGER.info(
-                    "Intro challenge window closed after %.1fs (music continues)",
-                    delay_seconds,
-                )
-                # Broadcast updated state so clients update the intro badge
-                if self._on_round_end:
-                    await self._on_round_end()
-        except asyncio.CancelledError:
-            _LOGGER.debug("Intro stop task cancelled")
-            raise
 
     def is_deadline_passed(self) -> bool:
-        """
-        Check if the round deadline has passed.
-
-        Uses the injected time function for testability.
-
-        Returns:
-            True if deadline has passed, False otherwise.
-
-        """
-        if self.deadline is None:
-            return False
-        now_ms = int(self._now() * 1000)
-        return now_ms > self.deadline
-
-    def get_reveal_players_state(self) -> list[dict[str, Any]]:
-        """
-        Get player state with reveal info for REVEAL phase.
-
-        Returns:
-            List of player dicts including guess, round_score, years_off,
-            speed bonus data (Story 5.1), streak bonus (Story 5.2),
-            and artist bonus (Story 20.4), sorted by total score descending.
-
-        """
-        players = []
-        for p in self.players.values():
-            player_data = {
-                "name": p.name,
-                "score": p.score,
-                "streak": p.streak,
-                "is_admin": p.is_admin,
-                "connected": p.connected,
-                "guess": p.current_guess,
-                "round_score": p.round_score,
-                "years_off": p.years_off,
-                "missed_round": p.missed_round,
-                # Speed bonus data (Story 5.1)
-                "base_score": p.base_score,
-                "speed_multiplier": round(p.speed_multiplier, 2),
-                # Streak bonus data (Story 5.2)
-                "streak_bonus": p.streak_bonus,
-                # Bet data (Story 5.3)
-                "bet": p.bet,
-                "bet_outcome": p.bet_outcome,
-                # Missed round data (Story 5.4)
-                "previous_streak": p.previous_streak,
-                # Steal data (Story 15.3 AC4)
-                "stole_from": p.stole_from,
-                "was_stolen_by": p.was_stolen_by.copy() if p.was_stolen_by else [],
-                "steal_available": p.steal_available,
-            }
-            # Story 20.4: Add artist bonus if challenge is enabled
-            if self.artist_challenge_enabled:
-                player_data["artist_bonus"] = p.artist_bonus
-            # Issue #28: Add movie bonus if quiz is enabled
-            if self.movie_quiz_enabled:
-                player_data["movie_bonus"] = p.movie_bonus
-            # Issue #23: Add intro bonus if mode is enabled
-            if self.intro_mode_enabled:
-                player_data["intro_bonus"] = p.intro_bonus
-            players.append(player_data)
-        # Sort by score descending for leaderboard preview
-        players.sort(key=lambda p: p["score"], reverse=True)
-        return players
+        """Check if the round deadline has passed. Delegates to RoundManager."""
+        return self._round_manager.is_deadline_passed()
 
     def get_leaderboard(self) -> list[dict[str, Any]]:
         """
@@ -1952,7 +1777,7 @@ class GameState:
         Does NOT clear players (they stay for rematch/end screen).
         """
         self.cancel_timer()
-        self._cancel_intro_timer()
+        self._round_manager._cancel_intro_timer()
         self.phase = GamePhase.END
 
         # Issue #331: Celebrate with Party Lights
