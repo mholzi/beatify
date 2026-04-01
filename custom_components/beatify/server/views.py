@@ -287,6 +287,7 @@ class StartGameView(HomeAssistantView):
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
         party_lights_config = body.get("party_lights")  # Issue #331
+        tts_config = body.get("tts")  # Issue #447
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)
@@ -497,6 +498,13 @@ class StartGameView(HomeAssistantView):
                 await game_state.configure_party_lights(
                     self.hass, pl_entities, pl_intensity
                 )
+
+        # Issue #447: Configure TTS if enabled
+        if tts_config and tts_config.get("enabled"):
+            tts_entity_id = tts_config.get("entity_id", "")
+            if tts_entity_id:
+                await game_state.configure_tts(self.hass, tts_entity_id)
+                await game_state.announce_game_start()
 
         # Broadcast to WebSocket clients
         ws_handler = data.get("ws_handler")

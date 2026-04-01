@@ -360,7 +360,11 @@
     "alreadyRequested": "Diese Playlist wurde bereits angefragt",
     "requestFailed": "Anfrage fehlgeschlagen. Bitte erneut versuchen.",
     "musicService": "Musikdienst",
-    "join": "Beitreten"
+    "join": "Beitreten",
+    "ttsAnnouncements": "TTS-Ansagen",
+    "ttsEnabled": "TTS aktivieren",
+    "ttsEntityId": "TTS-Entität",
+    "ttsEntityIdHint": "z.B. tts.google_de_com"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -606,6 +610,8 @@
     "share_copied": "Kopiert!",
     "share_title": "Meine Beatify Ergebnisse"
   },
+  "ttsGameStart": "Los geht's mit Beatify! {rounds} Runden, Schwierigkeit {difficulty}.",
+  "ttsWinner": "Und der Gewinner ist... {name} mit {score} Punkten!",
   "introSplashTitle": "Intro-Runde!",
   "introSplashDesc": "Der Song spielt — stoppe ihn, sobald du ihn erkennst! Je schneller du stoppst, desto mehr Punkte.",
   "introSplashWaiting": "Warten auf Host...",

@@ -108,6 +108,8 @@ class GameState:
         self.phase: GamePhase = GamePhase.LOBBY
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
+        # Issue #447: TTS announcement service
+        self._tts_service: Any = None  # TTSService (lazy import)
         self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
@@ -784,6 +786,8 @@ class GameState:
         self.cancel_timer()
         # Issue #331: Restore lights before resetting
         await self.disable_party_lights()
+        # Issue #447: Disable TTS
+        await self.disable_tts()
         self._reset_game_internals()
         self.game_id = None
         self.phase = GamePhase.LOBBY
@@ -1783,6 +1787,9 @@ class GameState:
         # Issue #331: Celebrate with Party Lights
         await self._lights_celebrate()
 
+        # Issue #447: Announce winner via TTS
+        await self.announce_winner()
+
         _LOGGER.info("Game advanced to END phase")
 
     async def stop_media(self) -> None:
@@ -1858,6 +1865,50 @@ class GameState:
                 task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights celebration failed")
+
+    # ------------------------------------------------------------------
+    # TTS Announcements (#447)
+    # ------------------------------------------------------------------
+
+    async def configure_tts(self, hass: Any, entity_id: str) -> None:
+        """Configure TTS announcement service for the game."""
+        from custom_components.beatify.services.tts import TTSService  # noqa: PLC0415
+
+        self._tts_service = TTSService(hass, entity_id)
+
+    async def disable_tts(self) -> None:
+        """Disable TTS announcements."""
+        self._tts_service = None
+
+    async def _tts_announce(self, message: str) -> None:
+        """Speak a TTS announcement (fire-and-forget)."""
+        if self._tts_service:
+            try:
+                task = asyncio.create_task(self._tts_service.speak(message))
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("TTS announcement failed")
+
+    async def announce_game_start(self) -> None:
+        """Announce game start (use case 16)."""
+        if not self._tts_service:
+            return
+        message = (
+            f"Let's play Beatify! {self.total_rounds} rounds, "
+            f"{self.difficulty} difficulty."
+        )
+        await self._tts_announce(message)
+
+    async def announce_winner(self) -> None:
+        """Announce the winner (use case 18)."""
+        if not self._tts_service or not self.players:
+            return
+        winner = max(self.players.values(), key=lambda p: p.score)
+        message = (
+            f"And the winner is... {winner.name} with {winner.score} points!"
+        )
+        await self._tts_announce(message)
 
     def adjust_volume(self, direction: str) -> float:
         """

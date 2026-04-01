@@ -1447,7 +1447,8 @@ async function startGame() {
                 artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
                 intro_mode_enabled: introModeEnabled,  // Issue #23
                 closest_wins_mode: closestWinsModeEnabled,  // Issue #442
-                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null  // Issue #331
+                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
+                tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })
         });
 
