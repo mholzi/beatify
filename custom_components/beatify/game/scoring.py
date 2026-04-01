@@ -451,6 +451,20 @@ class ScoringService:
                 lost = p.round_score
                 p.round_score = 0
                 p.score -= lost
+                # Keep round_scores list in sync so superlatives
+                # (clutch/comeback) and hot-streak display use the
+                # actual zeroed score, not the pre-zeroed value.
+                if p.round_scores:
+                    p.round_scores[-1] = 0
+                # Design decision: artist_bonus and movie_bonus are
+                # skill-based and independent of year proximity, so they
+                # are kept.  Streak bonus, however, tracks *consecutive
+                # scoring rounds*; a zeroed round must break the streak
+                # and undo the milestone bonus that was already added.
+                p.score -= p.streak_bonus
+                p.streak_bonus = 0
+                p.previous_streak = p.streak
+                p.streak = 0
 
     @staticmethod
     def calculate_superlatives(
