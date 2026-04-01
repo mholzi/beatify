@@ -3581,6 +3581,24 @@ body.theme-dark .setting-hint {
     color: var(--color-text-neon-muted);
 }
 
+.ha-entity-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-xs) 0 0 calc(var(--space-xs) + 24px);
+    font-size: 0.8rem;
+}
+
+.ha-entity-list li {
+    padding: 2px 0;
+    color: var(--color-text-muted);
+}
+
+.ha-entity-list code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    opacity: 0.85;
+}
+
 .setting-label {
     display: flex;
     align-items: center;

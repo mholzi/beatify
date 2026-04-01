@@ -370,7 +370,10 @@
     "ttsAnnounceWinner": "Announce Winner",
     "ttsAnnounceWinnerHint": "Announce the winner at game end",
     "ttsTested": "Sent",
-    "ttsTestFailed": "Failed"
+    "ttsTestFailed": "Failed",
+    "haEntities": "HA Entities",
+    "haEntitiesSummary": "6 entities",
+    "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools \u2192 States or search for beatify in your entity registry."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -117,6 +117,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "analytics": analytics,
     }
 
+    # Issue #441: Forward sensor and binary_sensor platforms
+    await hass.config_entries.async_forward_entry_setups(
+        entry, ["sensor", "binary_sensor"]
+    )
+
     # Register HTTP views
     hass.http.register_view(AdminView(hass))
     hass.http.register_view(LauncherView(hass))
@@ -160,9 +165,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return True
 
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:  # noqa: ARG001
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     _LOGGER.debug("Unloading Beatify integration")
+
+    # Issue #441: Unload sensor and binary_sensor platforms
+    await hass.config_entries.async_unload_platforms(
+        entry, ["sensor", "binary_sensor"]
+    )
 
     # Remove sidebar panel (Story 10.3)
     try:
