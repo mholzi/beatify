@@ -123,6 +123,7 @@
             <div id="playlist-summary" class="selection-summary hidden">
                 <span data-i18n="admin.selected">Selected:</span> <span id="selected-count">0</span> <span data-i18n="admin.playlistsLabel">playlists,</span>
                 <span id="total-songs">0</span> <span data-i18n="admin.songsLabel">songs</span>
+                <p class="setting-hint" data-i18n="admin.roundsHint">Total number of rounds in the game, based on the selected playlists.</p>
             </div>
         </section>
 
@@ -159,80 +160,98 @@
             </button>
             <div class="section-content" id="game-settings-content">
                 <!-- Language - Compact chips -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🌐</span>
-                        <span data-i18n="admin.language">Language</span>
-                    </span>
-                    <div class="chip-group" role="group" aria-label="Game language">
-                        <button type="button" id="lang-en" class="chip chip--active" data-lang="en">EN</button>
-                        <button type="button" id="lang-de" class="chip" data-lang="de">DE</button>
-                        <button type="button" id="lang-es" class="chip" data-lang="es">ES</button>
-                        <button type="button" id="lang-fr" class="chip" data-lang="fr">FR</button>
-                        <button type="button" id="lang-nl" class="chip" data-lang="nl">NL</button>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🌐</span>
+                            <span data-i18n="admin.language">Language</span>
+                        </span>
+                        <div class="chip-group" role="group" aria-label="Game language">
+                            <button type="button" id="lang-en" class="chip chip--active" data-lang="en">EN</button>
+                            <button type="button" id="lang-de" class="chip" data-lang="de">DE</button>
+                            <button type="button" id="lang-es" class="chip" data-lang="es">ES</button>
+                            <button type="button" id="lang-fr" class="chip" data-lang="fr">FR</button>
+                            <button type="button" id="lang-nl" class="chip" data-lang="nl">NL</button>
+                        </div>
                     </div>
+                    <p class="setting-hint" data-i18n="admin.languageHint">Sets the language for all players during the game.</p>
                 </div>
 
                 <!-- Timer - Compact chips -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">⏱️</span>
-                        <span data-i18n="admin.timer">Timer</span>
-                    </span>
-                    <div class="chip-group" role="group" aria-label="Round timer">
-                        <button type="button" id="timer-quick" class="chip" data-duration="30">30s</button>
-                        <button type="button" id="timer-normal" class="chip chip--active" data-duration="45">45s</button>
-                        <button type="button" id="timer-relaxed" class="chip" data-duration="60">60s</button>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⏱️</span>
+                            <span data-i18n="admin.timer">Timer</span>
+                        </span>
+                        <div class="chip-group" role="group" aria-label="Round timer">
+                            <button type="button" id="timer-quick" class="chip" data-duration="30">30s</button>
+                            <button type="button" id="timer-normal" class="chip chip--active" data-duration="45">45s</button>
+                            <button type="button" id="timer-relaxed" class="chip" data-duration="60">60s</button>
+                        </div>
                     </div>
+                    <p class="setting-hint" data-i18n="admin.timerHint">How many seconds players have to submit their guess each round.</p>
                 </div>
 
                 <!-- Difficulty - Compact chips -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🎯</span>
-                        <span data-i18n="admin.difficulty">Difficulty</span>
-                    </span>
-                    <div class="chip-group" role="group" aria-label="Difficulty">
-                        <button type="button" class="chip" data-difficulty="easy" data-i18n="admin.easy">Easy</button>
-                        <button type="button" class="chip chip--active" data-difficulty="normal" data-i18n="admin.normal">Normal</button>
-                        <button type="button" class="chip" data-difficulty="hard" data-i18n="admin.hard">Hard</button>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎯</span>
+                            <span data-i18n="admin.difficulty">Difficulty</span>
+                        </span>
+                        <div class="chip-group" role="group" aria-label="Difficulty">
+                            <button type="button" class="chip" data-difficulty="easy" data-i18n="admin.easy">Easy</button>
+                            <button type="button" class="chip chip--active" data-difficulty="normal" data-i18n="admin.normal">Normal</button>
+                            <button type="button" class="chip" data-difficulty="hard" data-i18n="admin.hard">Hard</button>
+                        </div>
                     </div>
+                    <p class="setting-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
                 </div>
 
                 <!-- Artist Challenge - Inline toggle -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🎤</span>
-                        <span data-i18n="admin.artistChallenge">Artist Challenge</span>
-                    </span>
-                    <label class="toggle-compact">
-                        <input type="checkbox" id="artist-challenge-toggle" checked>
-                        <span class="toggle-switch-compact"></span>
-                    </label>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎤</span>
+                            <span data-i18n="admin.artistChallenge">Artist Challenge</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="artist-challenge-toggle" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.artistChallengeHint">After each round, players can guess the artist for bonus points. First correct guess earns +5 points.</p>
                 </div>
 
                 <!-- Intro Mode - Inline toggle (Issue #23) -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">⚡</span>
-                        <span data-i18n="admin.introMode">Intro Mode</span>
-                    </span>
-                    <label class="toggle-compact">
-                        <input type="checkbox" id="intro-mode-toggle">
-                        <span class="toggle-switch-compact"></span>
-                    </label>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⚡</span>
+                            <span data-i18n="admin.introMode">Intro Mode</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="intro-mode-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.introModeHint">~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.</p>
                 </div>
 
                 <!-- Closest Wins Mode - Inline toggle (Issue #442) -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🎯</span>
-                        <span data-i18n="admin.closestWinsMode">Closest Wins</span>
-                    </span>
-                    <label class="toggle-compact">
-                        <input type="checkbox" id="closest-wins-toggle">
-                        <span class="toggle-switch-compact"></span>
-                    </label>
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎯</span>
+                            <span data-i18n="admin.closestWinsMode">Closest Wins</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="closest-wins-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.closestWinsHint">Only the player with the closest guess scores points each round. All-or-nothing showdown.</p>
                 </div>
             </div>
         </section>
