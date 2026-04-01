@@ -165,10 +165,22 @@ class GameState:
         # Issue #75: Game highlights reel
         self.highlights_tracker = HighlightsTracker()
 
+        # Issue #441: Observer callbacks for HA entity updates
+        self._state_callbacks: list[Callable[[], None]] = []
+
     def _apply_config(self, config: GameStateConfig) -> None:
         """Apply a GameStateConfig to self, setting all config-managed fields."""
         for field_name in GameStateConfig.field_names():
             setattr(self, field_name, getattr(config, field_name))
+
+    def register_state_callback(self, cb: Callable[[], None]) -> None:
+        """Register a callback invoked on every state change (Issue #441)."""
+        self._state_callbacks.append(cb)
+
+    def _notify_state_callbacks(self) -> None:
+        """Notify all registered state observers (Issue #441)."""
+        for cb in self._state_callbacks:
+            cb()
 
     def current_time(self) -> float:
         """Return the current timestamp from the injected clock."""
@@ -476,6 +488,7 @@ class GameState:
         self.game_id = secrets.token_urlsafe(8)
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self.phase = GamePhase.LOBBY
+        self._notify_state_callbacks()
         self.playlists = playlists
         self.songs = songs
         self.media_player = media_player
@@ -795,6 +808,7 @@ class GameState:
         self.phase = GamePhase.LOBBY
         self.players = {}
         self.clear_all_sessions()
+        self._notify_state_callbacks()
 
     def rematch_game(self) -> None:
         """Reset game for rematch, preserving connected players (Issue #108)."""
@@ -837,6 +851,7 @@ class GameState:
         self.total_rounds = len(preserved_songs)
 
         self.phase = GamePhase.LOBBY
+        self._notify_state_callbacks()
         # Reset each player's game stats but keep them connected
         for player in self.players.values():
             player.reset_for_new_game()
@@ -894,6 +909,7 @@ class GameState:
 
         # Transition to PAUSED
         self.phase = GamePhase.PAUSED
+        self._notify_state_callbacks()
         _LOGGER.info("Game paused: %s", reason)
 
         return True
@@ -1196,6 +1212,7 @@ class GameState:
             return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
 
         self.phase = GamePhase.PLAYING
+        self._notify_state_callbacks()
         # Round and song selection will be implemented in Epic 4
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
@@ -1222,6 +1239,7 @@ class GameState:
         if not song:
             _LOGGER.info("All songs exhausted, ending game")
             self.phase = GamePhase.END
+            self._notify_state_callbacks()
             return False
 
         resolved_uri = song.get("_resolved_uri")
@@ -1325,6 +1343,7 @@ class GameState:
         )
         self.round_analytics = None
         self.phase = GamePhase.PLAYING
+        self._notify_state_callbacks()
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
         """Wait for round to end, then trigger reveal.
@@ -1540,6 +1559,7 @@ class GameState:
         # Transition to REVEAL
         self._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
+        self._notify_state_callbacks()
 
         # Issue #331: Update Party Lights for reveal phase + flash on exact matches
         await self._lights_set_phase(GamePhase.REVEAL)
@@ -1785,6 +1805,7 @@ class GameState:
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
         self.phase = GamePhase.END
+        self._notify_state_callbacks()
 
         # Issue #331: Celebrate with Party Lights
         await self._lights_celebrate()

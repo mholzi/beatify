@@ -371,6 +371,27 @@
             </div>
         </section>
 
+        <!-- HA Entities Info Section (#441) -->
+        <section id="ha-entities" class="section-collapsible collapsed" aria-labelledby="ha-entities-heading">
+            <button type="button" class="section-header-collapsible" id="ha-entities-toggle" aria-expanded="false" aria-controls="ha-entities-content">
+                <span class="section-icon" aria-hidden="true">🏠</span>
+                <span data-i18n="admin.haEntities">HA Entities</span>
+                <span class="section-summary" id="ha-entities-summary" data-i18n="admin.haEntitiesSummary">6 entities</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="ha-entities-content">
+                <p class="setting-hint" data-i18n="admin.haEntitiesDesc">Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools → States or search for beatify in your entity registry.</p>
+                <ul class="ha-entity-list">
+                    <li><code>sensor.beatify_current_round</code></li>
+                    <li><code>sensor.beatify_leader</code></li>
+                    <li><code>sensor.beatify_top_score</code></li>
+                    <li><code>sensor.beatify_player_count</code></li>
+                    <li><code>sensor.beatify_current_song</code></li>
+                    <li><code>binary_sensor.beatify_game_active</code></li>
+                </ul>
+            </div>
+        </section>
+
         <!-- Validation messages and Start button -->
         <div class="admin-actions">
             <p id="media-player-validation-msg" class="status-error hidden" data-i18n="admin.selectMediaPlayerHint">Select a media player</p>
