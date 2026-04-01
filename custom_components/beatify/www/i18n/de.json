@@ -364,7 +364,13 @@
     "ttsAnnouncements": "TTS-Ansagen",
     "ttsEnabled": "TTS aktivieren",
     "ttsEntityId": "TTS-Entität",
-    "ttsEntityIdHint": "z.B. tts.google_de_com"
+    "ttsEntityIdHint": "z.B. tts.google_de_com",
+    "ttsAnnounceGameStart": "Spielstart ansagen",
+    "ttsAnnounceGameStartHint": "Ansage bei Spielbeginn",
+    "ttsAnnounceWinner": "Gewinner ansagen",
+    "ttsAnnounceWinnerHint": "Ansage des Gewinners am Spielende",
+    "ttsTested": "Gesendet",
+    "ttsTestFailed": "Fehlgeschlagen"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

@@ -239,6 +239,45 @@ class PreviewLightsView(HomeAssistantView):
         return web.json_response({"ok": True})
 
 
+class TtsTestView(HomeAssistantView):
+    """Send a test TTS announcement to verify setup."""
+
+    url = "/beatify/api/tts-test"
+    name = "beatify:api:tts-test"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Speak a test message via TTS."""
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        entity_id = body.get("entity_id", "")
+        message = body.get("message", "")
+        if not entity_id or not message:
+            return web.json_response(
+                {"error": "entity_id and message required"}, status=400
+            )
+
+        try:
+            await self.hass.services.async_call(
+                "tts",
+                "speak",
+                {"entity_id": entity_id, "message": message},
+                blocking=False,
+            )
+        except Exception:  # noqa: BLE001
+            _LOGGER.exception("TTS test failed for entity: %s", entity_id)
+            return web.json_response({"error": "TTS call failed"}, status=500)
+
+        return web.json_response({"ok": True})
+
+
 class StartGameView(HomeAssistantView):
     """Handle start game requests."""
 
@@ -503,7 +542,16 @@ class StartGameView(HomeAssistantView):
         if tts_config and tts_config.get("enabled"):
             tts_entity_id = tts_config.get("entity_id", "")
             if tts_entity_id:
-                await game_state.configure_tts(self.hass, tts_entity_id)
+                tts_announce_game_start = tts_config.get(
+                    "announce_game_start", True
+                )
+                tts_announce_winner = tts_config.get("announce_winner", True)
+                await game_state.configure_tts(
+                    self.hass,
+                    tts_entity_id,
+                    announce_game_start=tts_announce_game_start,
+                    announce_winner=tts_announce_winner,
+                )
                 await game_state.announce_game_start()
 
         # Broadcast to WebSocket clients

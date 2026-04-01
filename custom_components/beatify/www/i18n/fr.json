@@ -364,7 +364,13 @@
     "ttsAnnouncements": "Annonces TTS",
     "ttsEnabled": "Activer TTS",
     "ttsEntityId": "Entité TTS",
-    "ttsEntityIdHint": "ex. tts.google_fr_com"
+    "ttsEntityIdHint": "ex. tts.google_fr_com",
+    "ttsAnnounceGameStart": "Annoncer le début",
+    "ttsAnnounceGameStartHint": "Annoncer quand la partie commence",
+    "ttsAnnounceWinner": "Annoncer le gagnant",
+    "ttsAnnounceWinnerHint": "Annoncer le gagnant en fin de partie",
+    "ttsTested": "Envoyé",
+    "ttsTestFailed": "Échec"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

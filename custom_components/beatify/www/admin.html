@@ -337,6 +337,37 @@
                     </span>
                     <input type="text" id="tts-entity-id" class="input-compact" placeholder="tts.google_en_com" data-i18n-placeholder="admin.ttsEntityIdHint">
                 </div>
+
+                <!-- Announce game start toggle -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="admin.ttsAnnounceGameStart">Announce Game Start</span>
+                        <span class="setting-hint" data-i18n="admin.ttsAnnounceGameStartHint">Announce when the game begins</span>
+                    </span>
+                    <label class="toggle-compact">
+                        <input type="checkbox" id="tts-announce-game-start" checked>
+                        <span class="toggle-switch-compact"></span>
+                    </label>
+                </div>
+
+                <!-- Announce winner toggle -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🏆</span>
+                        <span data-i18n="admin.ttsAnnounceWinner">Announce Winner</span>
+                        <span class="setting-hint" data-i18n="admin.ttsAnnounceWinnerHint">Announce the winner at game end</span>
+                    </span>
+                    <label class="toggle-compact">
+                        <input type="checkbox" id="tts-announce-winner" checked>
+                        <span class="toggle-switch-compact"></span>
+                    </label>
+                </div>
+
+                <!-- Test TTS button -->
+                <button type="button" id="tts-test" class="btn btn-secondary btn-full-width" disabled>
+                    🔊 Test TTS
+                </button>
             </div>
         </section>
 

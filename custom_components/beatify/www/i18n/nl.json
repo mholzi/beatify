@@ -364,7 +364,13 @@
     "ttsAnnouncements": "TTS-aankondigingen",
     "ttsEnabled": "TTS inschakelen",
     "ttsEntityId": "TTS-entiteit",
-    "ttsEntityIdHint": "bijv. tts.google_nl_com"
+    "ttsEntityIdHint": "bijv. tts.google_nl_com",
+    "ttsAnnounceGameStart": "Spelstart aankondigen",
+    "ttsAnnounceGameStartHint": "Aankondigen wanneer het spel begint",
+    "ttsAnnounceWinner": "Winnaar aankondigen",
+    "ttsAnnounceWinnerHint": "Aankondigen van de winnaar aan het einde",
+    "ttsTested": "Verzonden",
+    "ttsTestFailed": "Mislukt"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
