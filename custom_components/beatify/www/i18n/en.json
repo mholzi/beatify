@@ -360,7 +360,11 @@
     "alreadyRequested": "This playlist was already requested",
     "requestFailed": "Failed to submit request. Please try again.",
     "musicService": "Music Service",
-    "join": "Join"
+    "join": "Join",
+    "ttsAnnouncements": "TTS Announcements",
+    "ttsEnabled": "Enable TTS",
+    "ttsEntityId": "TTS Entity",
+    "ttsEntityIdHint": "e.g. tts.google_en_com"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -606,6 +610,8 @@
     "share_copied": "Copied!",
     "share_title": "My Beatify Results"
   },
+  "ttsGameStart": "Let's play Beatify! {rounds} rounds, {difficulty} difficulty.",
+  "ttsWinner": "And the winner is... {name} with {score} points!",
   "introSplashTitle": "Intro Round!",
   "introSplashDesc": "The song plays — stop it the moment you recognise it! The faster you stop, the more points you earn.",
   "introSplashWaiting": "Waiting for host...",

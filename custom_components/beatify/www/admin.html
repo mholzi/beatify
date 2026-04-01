@@ -308,6 +308,38 @@
             </div>
         </section>
 
+        <!-- TTS Announcements Section (#447) -->
+        <section id="tts-settings" class="section-collapsible collapsed" aria-labelledby="tts-settings-heading">
+            <button type="button" class="section-header-collapsible" id="tts-settings-toggle" aria-expanded="false" aria-controls="tts-settings-content">
+                <span class="section-icon" aria-hidden="true">🔊</span>
+                <span data-i18n="admin.ttsAnnouncements">TTS Announcements</span>
+                <span class="section-summary" id="tts-settings-summary">Off</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="tts-settings-content">
+                <!-- Enable toggle -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🗣️</span>
+                        <span data-i18n="admin.ttsEnabled">Enable TTS</span>
+                    </span>
+                    <label class="toggle-compact">
+                        <input type="checkbox" id="tts-enable">
+                        <span class="toggle-switch-compact"></span>
+                    </label>
+                </div>
+
+                <!-- Entity ID input -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🏷️</span>
+                        <span data-i18n="admin.ttsEntityId">TTS Entity</span>
+                    </span>
+                    <input type="text" id="tts-entity-id" class="input-compact" placeholder="tts.google_en_com" data-i18n-placeholder="admin.ttsEntityIdHint">
+                </div>
+            </div>
+        </section>
+
         <!-- Validation messages and Start button -->
         <div class="admin-actions">
             <p id="media-player-validation-msg" class="status-error hidden" data-i18n="admin.selectMediaPlayerHint">Select a media player</p>
@@ -526,5 +558,6 @@
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
     <script src="/beatify/static/js/admin.min.js"></script>
     <script src="/beatify/static/js/party-lights.min.js"></script>
+    <script src="/beatify/static/js/tts-settings.js"></script>
 </body>
 </html>

@@ -360,7 +360,11 @@
     "alreadyRequested": "Deze afspeellijst is al aangevraagd",
     "requestFailed": "Aanvraag versturen mislukt. Probeer het opnieuw.",
     "musicService": "Muziekdienst",
-    "join": "Deelnemen"
+    "join": "Deelnemen",
+    "ttsAnnouncements": "TTS-aankondigingen",
+    "ttsEnabled": "TTS inschakelen",
+    "ttsEntityId": "TTS-entiteit",
+    "ttsEntityIdHint": "bijv. tts.google_nl_com"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -606,6 +610,8 @@
     "share_copied": "Gekopieerd!",
     "share_title": "Mijn Beatify-resultaten"
   },
+  "ttsGameStart": "Laten we Beatify spelen! {rounds} rondes, moeilijkheid {difficulty}.",
+  "ttsWinner": "En de winnaar is... {name} met {score} punten!",
   "introSplashTitle": "Intro-ronde!",
   "introSplashDesc": "Het nummer speelt — stop het zodra je het herkent! Hoe sneller je stopt, hoe meer punten je verdient.",
   "introSplashWaiting": "Wachten op host...",

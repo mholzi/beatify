@@ -360,7 +360,11 @@
     "alreadyRequested": "Cette playlist a déjà été demandée",
     "requestFailed": "Erreur lors de l'envoi de la demande. Réessaie.",
     "musicService": "Service de musique",
-    "join": "Rejoindre"
+    "join": "Rejoindre",
+    "ttsAnnouncements": "Annonces TTS",
+    "ttsEnabled": "Activer TTS",
+    "ttsEntityId": "Entité TTS",
+    "ttsEntityIdHint": "ex. tts.google_fr_com"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
@@ -606,6 +610,8 @@
     "share_copied": "Copié !",
     "share_title": "Mes résultats Beatify"
   },
+  "ttsGameStart": "C'est parti pour Beatify ! {rounds} manches, difficulté {difficulty}.",
+  "ttsWinner": "Et le gagnant est... {name} avec {score} points !",
   "introSplashTitle": "Round Intro !",
   "introSplashDesc": "La chanson joue — arrêtez-la dès que vous la reconnaissez ! Plus vite vous arrêtez, plus vous marquez.",
   "introSplashWaiting": "En attente de l'hôte...",
