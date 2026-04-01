@@ -22,6 +22,7 @@ from custom_components.beatify.const import (
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    VOLUME_STEP,
 )
 
 from .challenges import (
@@ -39,6 +40,7 @@ from .powerups import PowerUpManager
 from .scoring import (
     ScoringService,
 )
+from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .share import build_share_data
 from .types import RoundAnalytics, _get_decade_label
 
@@ -48,7 +50,6 @@ if TYPE_CHECKING:
     from aiohttp import web
     from homeassistant.core import HomeAssistant
 
-    from custom_components.beatify.services.media_player import MediaPlayerService
     from custom_components.beatify.services.stats import StatsService
 
 _LOGGER = logging.getLogger(__name__)
@@ -84,7 +85,7 @@ class GameState:
         self.media_player: str | None = None
         self.join_url: str | None = None
         # Issue #331: Party Lights service
-        self._party_lights: Any = None  # PartyLightsService (lazy import)
+        self._party_lights: PartyLightsProtocol | None = None
         self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
@@ -106,7 +107,7 @@ class GameState:
 
         # Services (Epic 4)
         self._playlist_manager: PlaylistManager | None = None
-        self._media_player_service: MediaPlayerService | None = None
+        self._media_player_service: MediaPlayerProtocol | None = None
 
         # Timer task for round expiry (Story 4.5)
         self._timer_task: asyncio.Task | None = None
@@ -1180,7 +1181,8 @@ class GameState:
 
     def _ensure_media_player_service(self, hass: HomeAssistant) -> None:
         """Create MediaPlayerService lazily on first round."""
-        # Import here to avoid circular imports at module load time
+        # Lazy import: only the concrete class for instantiation; type hints
+        # use MediaPlayerProtocol (module-level) to keep the import graph acyclic.
         from custom_components.beatify.services.media_player import (  # noqa: PLC0415
             MediaPlayerService,
         )
@@ -1943,6 +1945,8 @@ class GameState:
         self, hass: Any, entity_ids: list[str], intensity: str = "medium"
     ) -> None:
         """Configure and start Party Lights for the game."""
+        # Lazy import: only the concrete class for instantiation; type hints
+        # use PartyLightsProtocol (module-level) to keep the import graph acyclic.
         from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
 
         self._party_lights = PartyLightsService(hass)
@@ -1993,8 +1997,6 @@ class GameState:
             New volume level (clamped 0.0 to 1.0)
 
         """
-        from custom_components.beatify.const import VOLUME_STEP  # noqa: PLC0415
-
         # Sync with actual media player volume before adjusting
         if self._media_player_service:
             self.volume_level = self._media_player_service.get_volume()
