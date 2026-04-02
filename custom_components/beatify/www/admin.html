@@ -491,6 +491,93 @@
             </div>
         </section>
 
+        <!-- Issue #477: PLAYING phase view -->
+        <section id="admin-playing-section" class="card-section admin-game-wrapper hidden">
+            <div class="admin-phase-header">
+                <span id="admin-round-info" class="round-badge">Round ?/?</span>
+                <span id="admin-timer" class="timer-badge">--</span>
+            </div>
+
+            <!-- Song info -->
+            <div class="admin-song-card">
+                <img id="admin-album-art" class="admin-album-art" src="/beatify/static/img/no-artwork.svg" alt="">
+                <div class="admin-song-meta">
+                    <div id="admin-song-title" class="admin-song-title"></div>
+                    <div id="admin-song-artist" class="admin-song-artist"></div>
+                </div>
+            </div>
+
+            <div id="admin-last-round" class="last-round-banner hidden">Last Round!</div>
+
+            <!-- Admin controls -->
+            <div class="admin-control-bar">
+                <button id="admin-stop-song" class="btn btn-secondary btn-compact">
+                    <span aria-hidden="true">⏹</span> Stop
+                </button>
+                <button id="admin-vol-down" class="btn btn-secondary btn-compact">🔉</button>
+                <button id="admin-vol-up" class="btn btn-secondary btn-compact">🔊</button>
+                <button id="admin-end-game-playing" class="btn btn-danger btn-compact">End Game</button>
+            </div>
+
+            <!-- Player game UI (only shown if admin joined as player) -->
+            <div id="admin-player-ui" class="admin-player-panel hidden">
+                <div class="admin-year-selector">
+                    <span id="admin-year-display" class="year-display">1990</span>
+                    <input type="range" id="admin-year-slider" class="year-slider"
+                           min="1950" max="2025" value="1990" step="1">
+                    <div class="year-range-labels">
+                        <span>1950</span><span>2025</span>
+                    </div>
+                </div>
+                <button id="admin-submit-guess" class="btn btn-primary btn-large btn-full-width"
+                        data-i18n="game.submit">Submit</button>
+            </div>
+
+            <!-- Submission tracker -->
+            <div id="admin-submission-status" class="submission-status"></div>
+        </section>
+
+        <!-- Issue #477: REVEAL phase view -->
+        <section id="admin-reveal-section" class="card-section admin-game-wrapper hidden">
+            <div class="admin-phase-header">
+                <span id="admin-reveal-round-info" class="round-badge">Round ?/?</span>
+            </div>
+
+            <!-- Song reveal -->
+            <div class="admin-song-card">
+                <img id="admin-reveal-album-art" class="admin-album-art" src="/beatify/static/img/no-artwork.svg" alt="">
+                <div class="admin-song-meta">
+                    <div id="admin-reveal-song-title" class="admin-song-title"></div>
+                    <div id="admin-reveal-song-artist" class="admin-song-artist"></div>
+                </div>
+            </div>
+            <div id="admin-reveal-correct-year" class="reveal-year-display"></div>
+
+            <!-- Personal result (if playing) -->
+            <div id="admin-reveal-personal" class="admin-personal-result hidden">
+                <span id="admin-reveal-my-guess"></span>
+                <span id="admin-reveal-my-score" class="score-badge"></span>
+            </div>
+
+            <!-- Leaderboard -->
+            <div id="admin-reveal-leaderboard" class="admin-leaderboard-container"></div>
+
+            <!-- Next round / end -->
+            <button id="admin-next-round" class="btn btn-primary btn-large btn-full-width"
+                    data-i18n="admin.nextRound">Next Round</button>
+        </section>
+
+        <!-- Issue #477: END phase view -->
+        <section id="admin-end-section" class="card-section admin-game-wrapper hidden">
+            <h2>Game Over</h2>
+            <div id="admin-end-winner" class="admin-winner-display"></div>
+            <div id="admin-end-leaderboard" class="admin-leaderboard-container"></div>
+            <div class="admin-end-actions">
+                <button id="admin-rematch" class="btn btn-primary">Rematch</button>
+                <button id="admin-new-game" class="btn btn-secondary">New Game</button>
+            </div>
+        </section>
+
     </main>
 
     <!-- Admin join modal -->

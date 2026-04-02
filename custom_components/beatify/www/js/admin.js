@@ -4,8 +4,29 @@
  */
 
 // Issue #386: Admin token auth for REST endpoints
+// Issue #477: Persist token in localStorage (survives tab close)
+function _getAdminToken() {
+    try {
+        var gameId = currentGame?.game_id;
+        if (gameId) {
+            var token = localStorage.getItem('beatify_admin_token_' + gameId);
+            if (token) return token;
+        }
+        return localStorage.getItem('beatify_admin_token');
+    } catch(e) { return null; }
+}
+
+function _setAdminToken(token, gameId) {
+    try {
+        if (gameId) localStorage.setItem('beatify_admin_token_' + gameId, token);
+        localStorage.setItem('beatify_admin_token', token);
+        // Migrate: also clear old sessionStorage key
+        sessionStorage.removeItem('beatify_admin_token');
+    } catch(e) {}
+}
+
 function _adminHeaders() {
-    var token = sessionStorage.getItem('beatify_admin_token');
+    var token = _getAdminToken();
     var headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = 'Bearer ' + token;
     return headers;
@@ -49,6 +70,14 @@ let closestWinsModeEnabled = false;
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
+
+// Issue #477: Admin WebSocket state
+let adminWs = null;
+let adminPlayerName = null;   // Set when admin joins as player
+let isPlaying = false;        // Whether admin is participating as a player
+let adminReconnectAttempts = 0;
+const MAX_ADMIN_RECONNECT = 10;
+let countdownInterval = null;
 
 // LocalStorage keys
 const STORAGE_LAST_PLAYER = 'beatify_last_player';
@@ -97,6 +126,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Admin join setup
     setupAdminJoin();
+
+    // Issue #477: Wire game phase control buttons
+    document.getElementById('admin-stop-song')?.addEventListener('click', adminStopSong);
+    document.getElementById('admin-vol-down')?.addEventListener('click', adminVolumeDown);
+    document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
+    document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
+    document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
+    document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);
+    document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
+    document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
+
+    // Year slider display sync
+    var yearSlider = document.getElementById('admin-year-slider');
+    var yearDisplay = document.getElementById('admin-year-display');
+    if (yearSlider && yearDisplay) {
+        yearSlider.addEventListener('input', function() {
+            yearDisplay.textContent = yearSlider.value;
+        });
+    }
 
     // End game modal setup (Story 9.10)
     setupEndGameModal();
@@ -151,11 +199,20 @@ async function loadStatus() {
 
         // Check for active game and show appropriate view
         if (status.active_game && status.active_game.phase === 'LOBBY') {
-            // Show lobby view (e.g. after rematch) with QR code and start button
+            currentGame = status.active_game;
             showLobbyView(status.active_game);
+            // Issue #477: Reconnect admin WS if we have a token
+            if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+                connectAdminWebSocket();
+            }
         } else if (status.active_game && status.active_game.phase !== 'END') {
-            // Show existing game stub for PLAYING/REVEAL/PAUSED phases
-            showExistingGameView(status.active_game);
+            currentGame = status.active_game;
+            // Issue #477: Connect WS and render phase directly instead of stub
+            if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+                connectAdminWebSocket();
+            }
+            // Show correct phase view — WS state update will refine it
+            handleAdminStateUpdate(status.active_game);
         } else {
             showSetupView();
         }
@@ -1215,6 +1272,18 @@ function showSetupView() {
     // Hide other views
     document.getElementById('lobby-section')?.classList.add('hidden');
     document.getElementById('existing-game-section')?.classList.add('hidden');
+    // Issue #477: Hide game phase views
+    document.getElementById('admin-playing-section')?.classList.add('hidden');
+    document.getElementById('admin-reveal-section')?.classList.add('hidden');
+    document.getElementById('admin-end-section')?.classList.add('hidden');
+
+    // Issue #477: Close admin WS if switching to setup
+    if (adminWs) {
+        adminWs.close();
+        adminWs = null;
+    }
+    isPlaying = false;
+    adminPlayerName = null;
 }
 
 /**
@@ -1277,9 +1346,12 @@ function showLobbyView(gameData) {
         dashboardLink.href = dashboardUrl;
     }
 
-    // Render initial player list and start polling (Story 16.8)
+    // Render initial player list (Story 16.8)
     renderLobbyPlayers(gameData.players || []);
-    startLobbyPolling();
+    // Issue #477: Use WS push when connected, REST polling as fallback
+    if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+        startLobbyPolling();
+    }
 
     // Update difficulty badge (use gameData.difficulty if available, else selectedDifficulty)
     updateLobbyDifficultyBadge(gameData.difficulty || selectedDifficulty);
@@ -1463,12 +1535,15 @@ async function startGame() {
             console.warn('Game started with warnings:', data.warnings);
         }
 
-        // Issue #386: Store admin token for REST auth
+        // Issue #386 + #477: Store admin token in localStorage for persistence
         if (data.admin_token) {
-            sessionStorage.setItem('beatify_admin_token', data.admin_token);
+            _setAdminToken(data.admin_token, data.game_id);
         }
 
         showLobbyView(data);
+
+        // Issue #477: Connect admin WebSocket for real-time updates
+        connectAdminWebSocket();
 
     } catch (err) {
         showError('Network error. Please try again.');
@@ -1494,6 +1569,14 @@ async function startGameplay() {
     const originalText = btn.innerHTML;
     btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
 
+    // Issue #477: Prefer WS for game commands
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'start_game' }));
+        // State update will arrive via WS broadcast — no need for loadStatus()
+        return;
+    }
+
+    // Fallback to REST
     try {
         const response = await fetch('/beatify/api/start-gameplay', { method: 'POST', headers: _adminHeaders() });
         const data = await response.json();
@@ -1503,14 +1586,12 @@ async function startGameplay() {
             return;
         }
 
-        // Gameplay started — reload status to transition to existing-game view
         await loadStatus();
 
     } catch (err) {
         showError('Network error. Please try again.');
         console.error('Start gameplay error:', err);
     } finally {
-        // Restore button in case of error; if success loadStatus() hides the lobby
         btn.disabled = false;
         btn.innerHTML = originalText;
     }
@@ -1549,10 +1630,16 @@ function endGame() {
 async function confirmEndGame() {
     closeEndGameModal();
 
+    // Issue #477: Prefer WS for admin commands
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'end_game' }));
+        return;
+    }
+
     try {
         const response = await fetch('/beatify/api/end-game', { method: 'POST', headers: _adminHeaders() });
         if (response.ok) {
-            cachedQRUrl = null;  // Clear QR cache
+            cachedQRUrl = null;
             showSetupView();
         } else {
             const data = await response.json();
@@ -1622,20 +1709,18 @@ async function confirmRematch() {
 
     closeRematchModal();
 
+    // Issue #477: Prefer WS for rematch
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'rematch_game' }));
+        // WS broadcast will trigger lobby view transition
+        rematchInProgress = false;
+        return;
+    }
+
     try {
         var response = await fetch('/beatify/api/rematch-game', { method: 'POST', headers: _adminHeaders() });
         if (response.ok) {
             var data = await response.json();
-            // Fix #228: If admin was already a player in the previous game,
-            // redirect directly to the player page with the new game ID.
-            // This avoids landing in lobby view with no "Start Game" button.
-            var adminName = null;
-            try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
-            if (adminName && data.new_game_id) {
-                window.location.href = '/beatify/play?game=' + encodeURIComponent(data.new_game_id);
-                return;
-            }
-            // Admin not yet a player — show lobby so they can join first
             await loadStatus();
         } else {
             var errData = await response.json();
@@ -1725,13 +1810,21 @@ function showError(message) {
  * Open admin join modal
  */
 function openAdminJoinModal() {
-    // Fix #228: If admin was already a player (sessionStorage has their name),
-    // skip the modal and redirect directly to the player page with the current game ID.
-    var adminName = null;
-    try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
-    if (adminName && currentGame && currentGame.game_id) {
-        window.location.href = '/beatify/play?game=' + encodeURIComponent(currentGame.game_id);
+    // Issue #477: If already joined inline, just show a toast
+    if (isPlaying && adminPlayerName) {
+        showError(BeatifyI18n.t('admin.alreadyJoined') || 'Already joined as ' + adminPlayerName);
         return;
+    }
+
+    // Fix #228: If admin was already a player (sessionStorage has their name)
+    // and no WS available, redirect to player page as fallback.
+    if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+        var adminName = null;
+        try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
+        if (adminName && currentGame && currentGame.game_id) {
+            window.location.href = '/beatify/play?game=' + encodeURIComponent(currentGame.game_id);
+            return;
+        }
     }
 
     const modal = document.getElementById('admin-join-modal');
@@ -1817,12 +1910,25 @@ function handleAdminJoin() {
     joinBtn.disabled = true;
     joinBtn.textContent = BeatifyI18n.t('game.joining');
 
+    // Issue #477: Join inline via WS instead of redirecting to player page
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminPlayerName = name;
+        adminWs.send(JSON.stringify({
+            type: 'join',
+            name: name,
+            is_admin: true
+        }));
+        // Close modal — join_ack will enable the game UI
+        const modal = document.getElementById('admin-join-modal');
+        if (modal) modal.classList.add('hidden');
+        return;
+    }
+
+    // Fallback: redirect to player page (pre-#477 behavior)
     try {
-        // Store admin name for player page
         sessionStorage.setItem('beatify_admin_name', name);
         sessionStorage.setItem('beatify_is_admin', 'true');
 
-        // Redirect to player page with game ID
         const gameId = currentGame?.game_id;
         if (gameId) {
             window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
@@ -2194,11 +2300,14 @@ function renderLobbyPlayers(players) {
         }
     }, 2000);
 
-    // Issue #253: Only show Start button once admin has joined as a player
+    // Issue #477: Always show Start button when admin WS is connected (admin
+    // can start the game as a spectator host). Falls back to original check
+    // (#253) when WS is not available.
     var startBtn = document.getElementById("start-gameplay-btn");
     if (startBtn) {
+        var hasAdminWs = adminWs && adminWs.readyState === WebSocket.OPEN;
         var adminJoined = players.some(function(p) { return p.is_admin === true; });
-        if (adminJoined) {
+        if (hasAdminWs || adminJoined) {
             startBtn.classList.remove("hidden");
         } else {
             startBtn.classList.add("hidden");
@@ -2522,6 +2631,432 @@ function escapeHtml(text) {
         });
     }
 })();
+
+// ============================================
+// Issue #477: Admin WebSocket + Game Phase Views
+// ============================================
+
+/**
+ * Connect admin WebSocket for real-time game state updates.
+ * Authenticates via admin_connect with the stored admin token.
+ */
+function connectAdminWebSocket() {
+    var token = _getAdminToken();
+    if (!token) return;
+
+    // Close existing connection if any
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        return; // Already connected
+    }
+
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var wsUrl = protocol + '//' + window.location.host + '/beatify/ws';
+
+    try {
+        adminWs = new WebSocket(wsUrl);
+    } catch (err) {
+        console.error('[Admin WS] Failed to create WebSocket:', err);
+        return;
+    }
+
+    adminWs.onopen = function() {
+        console.log('[Admin WS] Connected, sending admin_connect');
+        adminReconnectAttempts = 0;
+        adminWs.send(JSON.stringify({
+            type: 'admin_connect',
+            admin_token: token
+        }));
+    };
+
+    adminWs.onmessage = function(event) {
+        try {
+            var data = JSON.parse(event.data);
+            handleAdminWsMessage(data);
+        } catch (err) {
+            console.error('[Admin WS] Message parse error:', err);
+        }
+    };
+
+    adminWs.onclose = function() {
+        console.log('[Admin WS] Disconnected');
+        adminWs = null;
+        // Auto-reconnect with backoff
+        if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && currentGame) {
+            adminReconnectAttempts++;
+            var delay = Math.min(1000 * Math.pow(2, adminReconnectAttempts - 1), 30000);
+            setTimeout(connectAdminWebSocket, delay);
+        }
+    };
+
+    adminWs.onerror = function(err) {
+        console.error('[Admin WS] Error:', err);
+    };
+}
+
+/**
+ * Route incoming WebSocket messages.
+ */
+function handleAdminWsMessage(data) {
+    switch (data.type) {
+        case 'admin_connect_ack':
+            console.log('[Admin WS] Authenticated, game_id:', data.game_id);
+            // Stop REST polling — WS pushes are active
+            stopLobbyPolling();
+            break;
+
+        case 'state':
+            handleAdminStateUpdate(data);
+            break;
+
+        case 'join_ack':
+            // Admin successfully joined as player
+            isPlaying = true;
+            if (data.session_id) {
+                document.cookie = 'beatify_session=' + data.session_id +
+                    ';path=/;max-age=86400;SameSite=Strict';
+            }
+            console.log('[Admin WS] Joined as player:', adminPlayerName);
+            break;
+
+        case 'submit_ack':
+            handleSubmitAck();
+            break;
+
+        case 'metadata_update':
+            if (data.song) updatePlayingSongInfo(data.song);
+            break;
+
+        case 'error':
+            console.error('[Admin WS] Error:', data.code, data.message);
+            if (data.code === 'UNAUTHORIZED') {
+                adminWs?.close();
+            } else if (data.code === 'NAME_TAKEN' || data.code === 'NAME_INVALID') {
+                showError(data.message);
+                isPlaying = false;
+                adminPlayerName = null;
+                var joinBtn = document.getElementById('admin-join-btn');
+                if (joinBtn) {
+                    joinBtn.disabled = false;
+                    joinBtn.textContent = BeatifyI18n.t('admin.join');
+                }
+            }
+            break;
+
+        default:
+            // Ignore other message types (player_reaction, song_stopped, etc.)
+            break;
+    }
+}
+
+/**
+ * Handle game state update from WebSocket — route to correct phase view.
+ */
+function handleAdminStateUpdate(data) {
+    currentGame = data;
+
+    // Hide all phase sections first
+    var sections = ['setup-container', 'lobby-section', 'existing-game-section',
+                    'admin-playing-section', 'admin-reveal-section', 'admin-end-section'];
+    sections.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+    });
+
+    // Also hide setup sections
+    setupSections.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+    });
+
+    switch (data.phase) {
+        case 'LOBBY':
+            showLobbyView(data);
+            break;
+        case 'PLAYING':
+            showAdminPlayingView(data);
+            break;
+        case 'REVEAL':
+            showAdminRevealView(data);
+            break;
+        case 'END':
+            showAdminEndView(data);
+            break;
+        case 'PAUSED':
+            showAdminPausedView(data);
+            break;
+        default:
+            showSetupView();
+    }
+}
+
+// ---- PLAYING phase view ----
+
+function showAdminPlayingView(data) {
+    var section = document.getElementById('admin-playing-section');
+    if (!section) return;
+    section.classList.remove('hidden');
+
+    // Round info
+    var roundInfo = document.getElementById('admin-round-info');
+    if (roundInfo) {
+        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
+            (data.round || '?') + '/' + (data.total_rounds || '?');
+    }
+
+    // Song info
+    if (data.song) updatePlayingSongInfo(data.song);
+
+    // Countdown timer
+    startAdminCountdown(data.deadline);
+
+    // Submission tracker
+    var subStatus = document.getElementById('admin-submission-status');
+    if (subStatus) {
+        subStatus.textContent = (data.submitted_count || 0) + '/' +
+            (data.player_count || '?') + ' ' + BeatifyI18n.t('game.submitted');
+    }
+
+    // Show/hide player UI based on whether admin is playing
+    var playerUI = document.getElementById('admin-player-ui');
+    if (playerUI) {
+        playerUI.classList.toggle('hidden', !isPlaying);
+    }
+
+    // Reset submit button if new round
+    var submitBtn = document.getElementById('admin-submit-guess');
+    if (submitBtn && isPlaying) {
+        // Check if admin already submitted this round
+        var adminPlayer = findAdminInPlayers(data.players);
+        if (adminPlayer && adminPlayer.submitted) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = '✓ ' + BeatifyI18n.t('game.submitted');
+        } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = BeatifyI18n.t('game.submit');
+        }
+    }
+
+    // Last round banner
+    var lastBanner = document.getElementById('admin-last-round');
+    if (lastBanner) lastBanner.classList.toggle('hidden', !data.last_round);
+}
+
+function updatePlayingSongInfo(song) {
+    var artistEl = document.getElementById('admin-song-artist');
+    var titleEl = document.getElementById('admin-song-title');
+    var artEl = document.getElementById('admin-album-art');
+    if (artistEl) artistEl.textContent = song.artist || '';
+    if (titleEl) titleEl.textContent = song.title || '';
+    if (artEl && song.album_art) artEl.src = song.album_art;
+}
+
+function startAdminCountdown(deadline) {
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    var timerEl = document.getElementById('admin-timer');
+    if (!timerEl || !deadline) return;
+
+    function tick() {
+        var now = Date.now();
+        var remaining = Math.max(0, Math.ceil((deadline - now) / 1000));
+        timerEl.textContent = remaining + 's';
+        timerEl.classList.toggle('timer-warning', remaining <= 10);
+        timerEl.classList.toggle('timer-critical', remaining <= 5);
+        if (remaining <= 0) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+    }
+
+    tick();
+    countdownInterval = setInterval(tick, 1000);
+}
+
+function findAdminInPlayers(players) {
+    if (!players || !adminPlayerName) return null;
+    for (var i = 0; i < players.length; i++) {
+        if (players[i].name === adminPlayerName) return players[i];
+    }
+    return null;
+}
+
+function handleSubmitAck() {
+    var submitBtn = document.getElementById('admin-submit-guess');
+    var slider = document.getElementById('admin-year-slider');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '✓ ' + BeatifyI18n.t('game.submitted');
+    }
+    if (slider) slider.disabled = true;
+}
+
+// ---- REVEAL phase view ----
+
+function showAdminRevealView(data) {
+    var section = document.getElementById('admin-reveal-section');
+    if (!section) return;
+    section.classList.remove('hidden');
+
+    // Song info
+    if (data.song) {
+        var titleEl = document.getElementById('admin-reveal-song-title');
+        var artistEl = document.getElementById('admin-reveal-song-artist');
+        var yearEl = document.getElementById('admin-reveal-correct-year');
+        var artEl = document.getElementById('admin-reveal-album-art');
+        if (titleEl) titleEl.textContent = data.song.title || '';
+        if (artistEl) artistEl.textContent = data.song.artist || '';
+        if (yearEl) yearEl.textContent = data.song.year || '';
+        if (artEl && data.song.album_art) artEl.src = data.song.album_art;
+    }
+
+    // Personal result (if playing)
+    var personalSection = document.getElementById('admin-reveal-personal');
+    if (personalSection) {
+        var adminPlayer = findAdminInPlayers(data.players);
+        if (adminPlayer && isPlaying) {
+            personalSection.classList.remove('hidden');
+            var guessEl = document.getElementById('admin-reveal-my-guess');
+            var scoreEl = document.getElementById('admin-reveal-my-score');
+            if (guessEl) guessEl.textContent = BeatifyI18n.t('game.yourGuess') + ': ' +
+                (adminPlayer.guess || '—');
+            if (scoreEl) scoreEl.textContent = '+' + (adminPlayer.round_score || 0) +
+                ' (' + (adminPlayer.score || 0) + ' total)';
+        } else {
+            personalSection.classList.add('hidden');
+        }
+    }
+
+    // Compact leaderboard
+    renderAdminLeaderboard(data.leaderboard);
+
+    // Round info
+    var roundInfo = document.getElementById('admin-reveal-round-info');
+    if (roundInfo) {
+        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
+            (data.round || '?') + '/' + (data.total_rounds || '?');
+    }
+
+    // Re-enable year slider for next round
+    var slider = document.getElementById('admin-year-slider');
+    if (slider) slider.disabled = false;
+    var submitBtn = document.getElementById('admin-submit-guess');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = BeatifyI18n.t('game.submit');
+    }
+}
+
+function renderAdminLeaderboard(leaderboard) {
+    var container = document.getElementById('admin-reveal-leaderboard');
+    if (!container || !leaderboard) return;
+
+    var html = '<table class="admin-leaderboard"><thead><tr>' +
+        '<th>#</th><th>' + BeatifyI18n.t('game.player') + '</th>' +
+        '<th>' + BeatifyI18n.t('game.score') + '</th></tr></thead><tbody>';
+    var limit = Math.min(leaderboard.length, 8);
+    for (var i = 0; i < limit; i++) {
+        var p = leaderboard[i];
+        var highlight = (p.name === adminPlayerName) ? ' class="admin-highlight"' : '';
+        html += '<tr' + highlight + '><td>' + p.rank + '</td><td>' +
+            utils.escapeHtml(p.name) + '</td><td>' + p.score + '</td></tr>';
+    }
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+// ---- END phase view ----
+
+function showAdminEndView(data) {
+    var section = document.getElementById('admin-end-section');
+    if (!section) return;
+    section.classList.remove('hidden');
+
+    // Winner
+    var winnerEl = document.getElementById('admin-end-winner');
+    if (winnerEl && data.winner) {
+        winnerEl.innerHTML = '<span class="winner-trophy">🏆</span> ' +
+            utils.escapeHtml(data.winner.name) + ' — ' + data.winner.score + ' pts';
+    }
+
+    // Final leaderboard
+    var lbContainer = document.getElementById('admin-end-leaderboard');
+    if (lbContainer && data.leaderboard) {
+        renderAdminLeaderboard(data.leaderboard);
+        // Re-point to end container
+        lbContainer.innerHTML = document.getElementById('admin-reveal-leaderboard')?.innerHTML || '';
+    }
+
+    // Clean up game state for admin
+    isPlaying = false;
+    adminPlayerName = null;
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+}
+
+// ---- PAUSED phase view ----
+
+function showAdminPausedView(data) {
+    // Reuse the playing section but show pause overlay
+    var section = document.getElementById('admin-playing-section');
+    if (!section) return;
+    section.classList.remove('hidden');
+
+    var timerEl = document.getElementById('admin-timer');
+    if (timerEl) timerEl.textContent = '⏸ ' + (BeatifyI18n.t('game.paused') || 'Paused');
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+}
+
+// ---- Admin game controls (sent via WS) ----
+
+function adminNextRound() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'next_round' }));
+    }
+}
+
+function adminStopSong() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'stop_song' }));
+    }
+}
+
+function adminVolumeUp() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'set_volume', direction: 'up' }));
+    }
+}
+
+function adminVolumeDown() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'set_volume', direction: 'down' }));
+    }
+}
+
+function adminSubmitGuess() {
+    if (!adminWs || adminWs.readyState !== WebSocket.OPEN || !isPlaying) return;
+
+    var slider = document.getElementById('admin-year-slider');
+    var year = slider ? parseInt(slider.value, 10) : null;
+    if (!year) return;
+
+    adminWs.send(JSON.stringify({ type: 'submit', year: year }));
+}
+
+function adminDismissGame() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'dismiss_game' }));
+    }
+    cachedQRUrl = null;
+    isPlaying = false;
+    adminPlayerName = null;
+    showSetupView();
+}
+
 
 // Service Worker Registration (Story 18.5)
 // ============================================

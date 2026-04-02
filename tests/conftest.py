@@ -2,10 +2,18 @@
 
 from __future__ import annotations
 
+import sys
+from types import ModuleType
 from unittest.mock import MagicMock
 
-from custom_components.beatify.game.player import PlayerSession
-from custom_components.beatify.game.state import GameState
+# Stub homeassistant.helpers.entity_registry before any beatify imports
+# so that tests can run without the full Home Assistant package.
+_er_stub = ModuleType("homeassistant.helpers.entity_registry")
+_er_stub.async_get = MagicMock()  # type: ignore[attr-defined]
+sys.modules.setdefault("homeassistant.helpers.entity_registry", _er_stub)
+
+from custom_components.beatify.game.player import PlayerSession  # noqa: E402
+from custom_components.beatify.game.state import GameState  # noqa: E402
 
 
 def make_player(name: str = "Alice", score: int = 0, **kwargs) -> PlayerSession:
