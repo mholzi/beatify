@@ -534,9 +534,7 @@ class StartGameView(HomeAssistantView):
             pl_entities = party_lights_config.get("entity_ids", [])
             pl_intensity = party_lights_config.get("intensity", "medium")
             if pl_entities:
-                await game_state.configure_party_lights(
-                    self.hass, pl_entities, pl_intensity
-                )
+                await game_state.configure_party_lights(pl_entities, pl_intensity)
 
         # Issue #447: Configure TTS if enabled
         if tts_config and tts_config.get("enabled"):
@@ -547,7 +545,6 @@ class StartGameView(HomeAssistantView):
                 )
                 tts_announce_winner = tts_config.get("announce_winner", True)
                 await game_state.configure_tts(
-                    self.hass,
                     tts_entity_id,
                     announce_game_start=tts_announce_game_start,
                     announce_winner=tts_announce_winner,
@@ -707,7 +704,7 @@ class StartGameplayView(HomeAssistantView):
             game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)
 
         # Start the first round
-        success = await game_state.start_round(self.hass)
+        success = await game_state.start_round()
         if not success:
             return web.json_response(
                 {"error": "START_FAILED", "message": "Failed to start - no songs"},

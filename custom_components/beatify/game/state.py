@@ -103,6 +103,7 @@ class GameState:
 
         """
         self._now = time_fn or time.time
+        self._hass: HomeAssistant | None = None
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
         self.phase: GamePhase = GamePhase.LOBBY
@@ -172,6 +173,10 @@ class GameState:
         """Apply a GameStateConfig to self, setting all config-managed fields."""
         for field_name in GameStateConfig.field_names():
             setattr(self, field_name, getattr(config, field_name))
+
+    def set_hass(self, hass: HomeAssistant) -> None:
+        """Store the Home Assistant instance for service creation."""
+        self._hass = hass
 
     def register_state_callback(self, cb: Callable[[], None]) -> None:
         """Register a callback invoked on every state change (Issue #441)."""
@@ -1226,11 +1231,10 @@ class GameState:
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
 
-    async def start_round(self, hass: HomeAssistant, _retry_count: int = 0) -> bool:
+    async def start_round(self, _retry_count: int = 0) -> bool:
         """Start a new round with song playback (#390).
 
         Args:
-            hass: Home Assistant instance for media player control
             _retry_count: Internal counter for failed song attempts (max 3)
 
         Returns:
@@ -1259,11 +1263,11 @@ class GameState:
                 _LOGGER.error("No playable songs found after %d attempts, pausing game", MAX_SONG_RETRIES)
                 await self.pause_game("no_songs_available")
                 return False
-            return await self.start_round(hass, _retry_count + 1)
+            return await self.start_round(_retry_count + 1)
 
         self.last_round = self._playlist_manager.get_remaining_count() <= 1
-        self._ensure_media_player_service(hass)
-        will_defer_for_splash = self._prepare_intro_round(song, hass)
+        self._ensure_media_player_service()
+        will_defer_for_splash = self._prepare_intro_round(song)
 
         # Play song via media player (skip if deferred for intro splash)
         if self._media_player_service and not will_defer_for_splash:
@@ -1291,7 +1295,7 @@ class GameState:
                     await self.pause_game("media_player_error")
                     return False
                 await asyncio.sleep(1.0)
-                return await self.start_round(hass, _retry_count + 1)
+                return await self.start_round(_retry_count + 1)
 
         metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
         self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash)
@@ -1307,7 +1311,7 @@ class GameState:
         )
         return True
 
-    def _ensure_media_player_service(self, hass: HomeAssistant) -> None:
+    def _ensure_media_player_service(self) -> None:
         """Create MediaPlayerService lazily on first round."""
         # Lazy import: only the concrete class for instantiation; type hints
         # use MediaPlayerProtocol (module-level) to keep the import graph acyclic.
@@ -1316,15 +1320,15 @@ class GameState:
         )
         if self.media_player and not self._media_player_service:
             self._media_player_service = MediaPlayerService(
-                hass, self.media_player, platform=self.platform, provider=self.provider
+                self._hass, self.media_player, platform=self.platform, provider=self.provider
             )
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
                 self._media_player_service.set_analytics(self._stats_service._analytics)
 
-    def _prepare_intro_round(self, song: dict, hass: HomeAssistant) -> bool:
+    def _prepare_intro_round(self, song: dict) -> bool:
         """Determine if this is an intro round. Delegates to RoundManager."""
-        return self._round_manager.prepare_intro_round(song, hass)
+        return self._round_manager.prepare_intro_round(song, self._hass)
 
     def _build_round_metadata(self, song: dict, resolved_uri: str, will_defer_for_splash: bool) -> dict:
         """Build initial metadata dict. Delegates to RoundManager."""
@@ -1854,14 +1858,14 @@ class GameState:
     # ------------------------------------------------------------------
 
     async def configure_party_lights(
-        self, hass: Any, entity_ids: list[str], intensity: str = "medium"
+        self, entity_ids: list[str], intensity: str = "medium"
     ) -> None:
         """Configure and start Party Lights for the game."""
         # Lazy import: only the concrete class for instantiation; type hints
         # use PartyLightsProtocol (module-level) to keep the import graph acyclic.
         from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
 
-        self._party_lights = PartyLightsService(hass)
+        self._party_lights = PartyLightsService(self._hass)
         await self._party_lights.start(entity_ids, intensity)
 
     async def disable_party_lights(self) -> None:
@@ -1904,7 +1908,6 @@ class GameState:
 
     async def configure_tts(
         self,
-        hass: Any,
         entity_id: str,
         *,
         announce_game_start: bool = True,
@@ -1913,7 +1916,7 @@ class GameState:
         """Configure TTS announcement service for the game."""
         from custom_components.beatify.services.tts import TTSService  # noqa: PLC0415
 
-        self._tts_service = TTSService(hass, entity_id)
+        self._tts_service = TTSService(self._hass, entity_id)
         self._tts_announce_game_start = announce_game_start
         self._tts_announce_winner = announce_winner
 
