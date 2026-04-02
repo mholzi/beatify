@@ -261,7 +261,7 @@ class StartGameView(HomeAssistantView):
             if game_state.phase == GamePhase.END:
                 # Game is already finished — auto-clean state so a new game can start
                 # without requiring the user to explicitly dismiss the end screen (#206)
-                game_state.end_game()
+                await game_state.end_game()
             else:
                 return web.json_response(
                     {"error": "GAME_ALREADY_STARTED", "message": "End current game first"},
@@ -550,7 +550,7 @@ class EndGameView(HomeAssistantView):
                 status=403,
             )
 
-        game_state.end_game()
+        await game_state.end_game()
 
         # Broadcast game_ended to WebSocket clients so players clean up properly
         ws_handler = data.get("ws_handler")
