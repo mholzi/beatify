@@ -40,7 +40,7 @@ class GameStateSerializer:
         state: dict[str, Any] = {
             "game_id": gs.game_id,
             "phase": gs.phase.value,
-            "player_count": len(gs.players),
+            "player_count": len(gs._player_registry.players),
             "players": gs.get_players_state(),
             "language": gs.language,
             "difficulty": gs.difficulty,
@@ -89,7 +89,7 @@ class GameStateSerializer:
         )
         # Submission tracking (Story 4.4)
         state["submitted_count"] = sum(
-            1 for p in gs.players.values() if p.submitted
+            1 for p in gs._player_registry.players.values() if p.submitted
         )
         state["all_submitted"] = gs.all_submitted()
         # Song info WITHOUT year during PLAYING (hidden until reveal)
@@ -173,11 +173,11 @@ class GameStateSerializer:
         state["leaderboard"] = gs.get_final_leaderboard()
         state["game_stats"] = {
             "total_rounds": rm.round,
-            "total_players": len(gs.players),
+            "total_players": len(gs._player_registry.players),
         }
         # Include winner info
-        if gs.players:
-            winner = max(gs.players.values(), key=lambda p: p.score)
+        if gs._player_registry.players:
+            winner = max(gs._player_registry.players.values(), key=lambda p: p.score)
             state["winner"] = {"name": winner.name, "score": winner.score}
         # Game performance comparison for end screen (Story 14.4 AC5, AC6)
         game_performance = gs.get_game_performance()
@@ -204,7 +204,7 @@ class GameStateSerializer:
         """
         rm = gs._round_manager
         players = []
-        for p in gs.players.values():
+        for p in gs._player_registry.players.values():
             player_data = {
                 "name": p.name,
                 "score": p.score,
@@ -231,10 +231,10 @@ class GameStateSerializer:
                 "steal_available": p.steal_available,
             }
             # Story 20.4: Add artist bonus if challenge is enabled
-            if gs.artist_challenge_enabled:
+            if gs._challenge_manager.artist_challenge_enabled:
                 player_data["artist_bonus"] = p.artist_bonus
             # Issue #28: Add movie bonus if quiz is enabled
-            if gs.movie_quiz_enabled:
+            if gs._challenge_manager.movie_quiz_enabled:
                 player_data["movie_bonus"] = p.movie_bonus
             # Issue #23: Add intro bonus if mode is enabled
             if rm.intro_mode_enabled:

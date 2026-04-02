@@ -117,7 +117,7 @@ class TestJoin:
 
         await handler._handle_message(ws, {"type": "join", "name": "Alice"})
 
-        assert "Alice" in game_state.players
+        assert "Alice" in game_state.player_registry.players
         # Should receive join_ack, then state
         calls = ws.send_json.call_args_list
         types = [c[0][0]["type"] for c in calls]
@@ -187,8 +187,8 @@ class TestJoin:
             ws, {"type": "join", "name": "Host", "is_admin": True}
         )
 
-        assert "Host" in game_state.players
-        assert game_state.players["Host"].is_admin is True
+        assert "Host" in game_state.player_registry.players
+        assert game_state.player_registry.players["Host"].is_admin is True
 
     async def test_second_admin_join_rejected(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -205,7 +205,7 @@ class TestJoin:
         assert msg["type"] == "error"
         assert msg["code"] == ERR_ADMIN_EXISTS
         # Intruder should have been removed
-        assert "Intruder" not in game_state.players
+        assert "Intruder" not in game_state.player_registry.players
 
     async def test_admin_reconnect_during_pause(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -215,11 +215,11 @@ class TestJoin:
         game_state.add_player("Player2", _make_ws())
         game_state.start_game()
         # Simulate admin disconnect and game pause
-        game_state.players["Host"].connected = False
+        game_state.player_registry.players["Host"].connected = False
         game_state.phase = GamePhase.PAUSED
         game_state.disconnected_admin_name = "Host"
         game_state._previous_phase = GamePhase.PLAYING
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
 
         new_ws = _make_ws()
         await handler._handle_message(
@@ -241,15 +241,15 @@ class TestSubmit:
         game_state.add_player("Alice", ws)
         game_state.add_player("Bob", _make_ws())
         game_state.phase = GamePhase.PLAYING
-        game_state.current_song = make_songs(1)[0]
+        game_state.round_manager.current_song = make_songs(1)[0]
         # Set deadline far in the future
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
         handler.connections.add(ws)
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
-        assert game_state.players["Alice"].submitted is True
-        assert game_state.players["Alice"].current_guess == 1985
+        assert game_state.player_registry.players["Alice"].submitted is True
+        assert game_state.player_registry.players["Alice"].current_guess == 1985
         # Should receive submit_ack
         ack = next(
             c[0][0]
@@ -283,8 +283,8 @@ class TestSubmit:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
-        game_state.players["Alice"].submitted = True
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.player_registry.players["Alice"].submitted = True
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
@@ -297,7 +297,7 @@ class TestSubmit:
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
         # Set deadline in the past
-        game_state.deadline = int(game_state._now() * 1000) - 1000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) - 1000
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
@@ -309,7 +309,7 @@ class TestSubmit:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
 
         await handler._handle_message(ws, {"type": "submit", "year": YEAR_MIN - 1})
 
@@ -321,7 +321,7 @@ class TestSubmit:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
 
         await handler._handle_message(ws, {"type": "submit", "year": YEAR_MAX + 1})
 
@@ -333,7 +333,7 @@ class TestSubmit:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
 
         await handler._handle_message(ws, {"type": "submit", "year": "abc"})
 
@@ -346,13 +346,13 @@ class TestSubmit:
         game_state.add_player("Alice", ws)
         game_state.add_player("Bob", _make_ws())
         game_state.phase = GamePhase.PLAYING
-        game_state.current_song = make_songs(1)[0]
-        game_state.deadline = int(game_state._now() * 1000) + 60_000
+        game_state.round_manager.current_song = make_songs(1)[0]
+        game_state.round_manager.deadline = int(game_state._now() * 1000) + 60_000
         handler.connections.add(ws)
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985, "bet": True})
 
-        assert game_state.players["Alice"].bet is True
+        assert game_state.player_registry.players["Alice"].bet is True
 
 
 # ---------------------------------------------------------------------------
@@ -364,8 +364,8 @@ class TestReconnect:
     async def test_successful_reconnect(self):
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
-        session_id = game_state.players["Alice"].session_id
-        game_state.players["Alice"].connected = False
+        session_id = game_state.player_registry.players["Alice"].session_id
+        game_state.player_registry.players["Alice"].connected = False
 
         new_ws = _make_ws()
         await handler._handle_message(
@@ -376,8 +376,8 @@ class TestReconnect:
         types = [c[0][0]["type"] for c in new_ws.send_json.call_args_list]
         assert "reconnect_ack" in types
         assert "state" in types
-        assert game_state.players["Alice"].connected is True
-        assert game_state.players["Alice"].ws is new_ws
+        assert game_state.player_registry.players["Alice"].connected is True
+        assert game_state.player_registry.players["Alice"].ws is new_ws
 
     async def test_reconnect_no_session_id(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -400,7 +400,7 @@ class TestReconnect:
     async def test_reconnect_ended_game(self):
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
-        session_id = game_state.players["Alice"].session_id
+        session_id = game_state.player_registry.players["Alice"].session_id
         game_state.phase = GamePhase.END
 
         new_ws = _make_ws()
@@ -427,7 +427,7 @@ class TestLeave:
         await handler._handle_message(ws, {"type": "leave"})
 
         # Player should be removed
-        assert "Alice" not in game_state.players
+        assert "Alice" not in game_state.player_registry.players
         # Should receive "left" message
         left_msg = next(
             c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "left"
@@ -445,7 +445,7 @@ class TestLeave:
         assert msg["type"] == "error"
         assert msg["code"] == ERR_ADMIN_CANNOT_LEAVE
         # Admin should still be in game
-        assert "Host" in game_state.players
+        assert "Host" in game_state.player_registry.players
 
     async def test_leave_unknown_player_silent(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -489,9 +489,9 @@ class TestSteal:
         game_state.add_player("Alice", ws)
         game_state.add_player("Bob", _make_ws())
         game_state.phase = GamePhase.PLAYING
-        game_state.players["Alice"].steal_available = True
-        game_state.players["Bob"].submitted = True
-        game_state.players["Bob"].current_guess = 1990
+        game_state.player_registry.players["Alice"].steal_available = True
+        game_state.player_registry.players["Bob"].submitted = True
+        game_state.player_registry.players["Bob"].current_guess = 1990
         handler.connections.add(ws)
 
         await handler._handle_message(ws, {"type": "steal", "target": "Bob"})
@@ -539,7 +539,7 @@ class TestArtistGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.artist_challenge = None
+        game_state.challenges.artist_challenge = None
 
         await handler._handle_message(
             ws, {"type": "artist_guess", "artist": "The Beatles"}
@@ -553,7 +553,7 @@ class TestArtistGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.artist_challenge = ArtistChallenge(
+        game_state.challenges.artist_challenge = ArtistChallenge(
             correct_artist="A", options=["A", "B"]
         )
 
@@ -567,10 +567,10 @@ class TestArtistGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.artist_challenge = ArtistChallenge(
+        game_state.challenges.artist_challenge = ArtistChallenge(
             correct_artist="Artist 0", options=["Artist 0", "Other"]
         )
-        game_state.artist_challenge_enabled = True
+        game_state.challenges.artist_challenge_enabled = True
         handler.connections.add(ws)
 
         # Mock submit_artist_guess to return a controlled result
@@ -621,7 +621,7 @@ class TestMovieGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.movie_challenge = None
+        game_state.challenges.movie_challenge = None
 
         await handler._handle_message(ws, {"type": "movie_guess", "movie": "Grease"})
 
@@ -633,7 +633,7 @@ class TestMovieGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.movie_challenge = MovieChallenge(
+        game_state.challenges.movie_challenge = MovieChallenge(
             correct_movie="A", options=["A", "B"]
         )
 
@@ -647,7 +647,7 @@ class TestMovieGuess:
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
-        game_state.movie_challenge = MovieChallenge(
+        game_state.challenges.movie_challenge = MovieChallenge(
             correct_movie="Grease", options=["Grease", "Footloose"]
         )
         handler.connections.add(ws)

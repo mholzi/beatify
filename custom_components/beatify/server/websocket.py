@@ -233,7 +233,7 @@ class BeatifyWebSocketHandler:
                     # No disconnected admin - check for existing admin
                     existing_admin = any(
                         p.is_admin
-                        for p in list(game_state.players.values())
+                        for p in list(game_state.player_registry.players.values())
                         if p.name != name
                     )
                     if existing_admin:
@@ -336,7 +336,7 @@ class BeatifyWebSocketHandler:
 
         # Find sender's player session
         sender = None
-        for player in list(game_state.players.values()):
+        for player in list(game_state.player_registry.players.values()):
             if player.ws == ws:
                 sender = player
                 break
@@ -477,7 +477,7 @@ class BeatifyWebSocketHandler:
             # Broadcast handled by round_end_callback
         elif game_state.phase == GamePhase.REVEAL:
             # Start next round or end game
-            if game_state.last_round:
+            if game_state.round_manager.last_round:
                 # Record game stats before ending (Story 14.4, 19.1)
                 stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
                 if stats_service:
@@ -533,14 +533,14 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        if game_state.song_stopped:
+        if game_state.round_manager.song_stopped:
             # Already stopped, no-op
             return
 
         # Stop playback
         await game_state.stop_media()
 
-        game_state.song_stopped = True
+        game_state.round_manager.song_stopped = True
         _LOGGER.info("Admin stopped song in round %d", game_state.round)
 
         # Notify all clients
@@ -612,7 +612,7 @@ class BeatifyWebSocketHandler:
         await game_state.advance_to_end()
         _LOGGER.info(
             "Admin ended game early at round %d - players preserved for rematch",
-            game_state.round,
+            game_state.round_manager.round,
         )
 
         # Broadcast final state to all players
@@ -663,7 +663,7 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        player_count = len(game_state.players)
+        player_count = len(game_state.player_registry.players)
         game_state.rematch_game()
         _LOGGER.info("Rematch started with %d players", player_count)
 
@@ -758,7 +758,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in list(game_state.players.values()):
+        for p in list(game_state.player_registry.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -842,7 +842,7 @@ class BeatifyWebSocketHandler:
         _LOGGER.debug(
             "Early reveal check: phase=%s, artist_challenge=%s",
             game_state.phase.value,
-            game_state.artist_challenge_enabled,
+            game_state.challenges.artist_challenge_enabled,
         )
         await game_state.trigger_early_reveal_if_complete()
 
@@ -972,7 +972,7 @@ class BeatifyWebSocketHandler:
         # Find player by WebSocket
         player = None
         player_name = None
-        for name, p in list(game_state.players.items()):
+        for name, p in list(game_state.player_registry.players.items()):
             if p.ws == ws:
                 player = p
                 player_name = name
@@ -1020,7 +1020,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in list(game_state.players.values()):
+        for p in list(game_state.player_registry.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -1070,7 +1070,7 @@ class BeatifyWebSocketHandler:
         """
         # Find player by WebSocket
         player = None
-        for p in list(game_state.players.values()):
+        for p in list(game_state.player_registry.players.values()):
             if p.ws == ws:
                 player = p
                 break
@@ -1169,7 +1169,7 @@ class BeatifyWebSocketHandler:
             return
 
         # Validate artist challenge exists
-        if not game_state.artist_challenge:
+        if not game_state.challenges.artist_challenge:
             await ws.send_json(
                 {
                     "type": "error",
@@ -1265,7 +1265,7 @@ class BeatifyWebSocketHandler:
             return
 
         # Validate movie challenge exists
-        if not game_state.movie_challenge:
+        if not game_state.challenges.movie_challenge:
             await ws.send_json(
                 {
                     "type": "error",
@@ -1428,7 +1428,7 @@ class BeatifyWebSocketHandler:
         # Find player by WebSocket
         player_name = None
         player = None
-        for name, p in list(game_state.players.items()):
+        for name, p in list(game_state.player_registry.players.items()):
             if p.ws == ws:
                 player_name = name
                 player = p
@@ -1451,8 +1451,8 @@ class BeatifyWebSocketHandler:
             async def pause_after_timeout() -> None:
                 await asyncio.sleep(LOBBY_DISCONNECT_GRACE_PERIOD)
                 # Check if admin still disconnected
-                if player_name in game_state.players:
-                    admin = game_state.players[player_name]
+                if player_name in game_state.player_registry.players:
+                    admin = game_state.player_registry.players[player_name]
                     if not admin.connected:
                         # pause_game() is async and handles media stop internally
                         if await game_state.pause_game("admin_disconnected"):

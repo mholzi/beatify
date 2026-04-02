@@ -73,10 +73,10 @@ def build_share_data(game_state: Any) -> dict[str, Any]:
         else:
             playlist_name = playlist_path.replace(".json", "").replace("-", " ").title()
 
-    total_rounds = game_state.round
+    total_rounds = game_state.round_manager.round
 
     emoji_grids: dict[str, str] = {}
-    for name, player in game_state.players.items():
+    for name, player in game_state.player_registry.players.items():
         emoji_grids[name] = build_emoji_grid(player, playlist_name, total_rounds)
 
     return {

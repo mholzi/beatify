@@ -642,7 +642,7 @@ class RematchGameView(HomeAssistantView):
                 status=400,
             )
 
-        player_count = len(game_state.players)
+        player_count = len(game_state.player_registry.players)
         game_state.rematch_game()
 
         # Broadcast to WebSocket clients

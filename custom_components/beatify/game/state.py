@@ -131,9 +131,6 @@ class GameState:
         self._playlist_manager: PlaylistManager | None = None
         self._media_player_service: MediaPlayerProtocol | None = None
 
-        # Timer task for round expiry (Story 4.5)
-        self._timer_task: asyncio.Task | None = None
-
         # Callback for round end (Story 4.5)
         self._on_round_end: Callable[[], Awaitable[None]] | None = None
 
@@ -199,254 +196,28 @@ class GameState:
         return self._now()
 
     # ------------------------------------------------------------------
-    # Player registry delegation (keep public interface identical)
+    # Read-only subsystem accessors (Issue #480)
     # ------------------------------------------------------------------
 
     @property
-    def players(self) -> dict[str, PlayerSession]:
-        """Player dict — delegated to PlayerRegistry."""
-        return self._player_registry.players
-
-    @players.setter
-    def players(self, value: dict[str, PlayerSession]) -> None:
-        self._player_registry.players = value
+    def round_manager(self) -> RoundManager:
+        """Round lifecycle subsystem (read-only)."""
+        return self._round_manager
 
     @property
-    def _sessions(self) -> dict[str, str]:
-        """Session mapping — delegated to PlayerRegistry."""
-        return self._player_registry._sessions
-
-    @_sessions.setter
-    def _sessions(self, value: dict[str, str]) -> None:
-        self._player_registry._sessions = value
+    def player_registry(self) -> PlayerRegistry:
+        """Player management subsystem (read-only)."""
+        return self._player_registry
 
     @property
-    def _reactions_this_phase(self) -> set[str]:
-        """Reaction tracking — delegated to PlayerRegistry."""
-        return self._player_registry._reactions_this_phase
-
-    @_reactions_this_phase.setter
-    def _reactions_this_phase(self, value: set[str]) -> None:
-        self._player_registry._reactions_this_phase = value
-
-    # ------------------------------------------------------------------
-    # RoundManager delegation (keep public interface identical)
-    # ------------------------------------------------------------------
+    def power_ups(self) -> PowerUpManager:
+        """Power-up subsystem (read-only)."""
+        return self._powerup_manager
 
     @property
-    def round(self) -> int:
-        """Current round number — delegated to RoundManager."""
-        return self._round_manager.round
-
-    @round.setter
-    def round(self, value: int) -> None:
-        self._round_manager.round = value
-
-    @property
-    def total_rounds(self) -> int:
-        """Total rounds — delegated to RoundManager."""
-        return self._round_manager.total_rounds
-
-    @total_rounds.setter
-    def total_rounds(self, value: int) -> None:
-        self._round_manager.total_rounds = value
-
-    @property
-    def deadline(self) -> int | None:
-        """Round deadline (ms) — delegated to RoundManager."""
-        return self._round_manager.deadline
-
-    @deadline.setter
-    def deadline(self, value: int | None) -> None:
-        self._round_manager.deadline = value
-
-    @property
-    def current_song(self) -> dict[str, Any] | None:
-        """Current song dict — delegated to RoundManager."""
-        return self._round_manager.current_song
-
-    @current_song.setter
-    def current_song(self, value: dict[str, Any] | None) -> None:
-        self._round_manager.current_song = value
-
-    @property
-    def last_round(self) -> bool:
-        """Whether this is the last round — delegated to RoundManager."""
-        return self._round_manager.last_round
-
-    @last_round.setter
-    def last_round(self, value: bool) -> None:
-        self._round_manager.last_round = value
-
-    @property
-    def round_start_time(self) -> float | None:
-        """Round start timestamp — delegated to RoundManager."""
-        return self._round_manager.round_start_time
-
-    @round_start_time.setter
-    def round_start_time(self, value: float | None) -> None:
-        self._round_manager.round_start_time = value
-
-    @property
-    def round_duration(self) -> float:
-        """Round timer duration — delegated to RoundManager."""
-        return self._round_manager.round_duration
-
-    @round_duration.setter
-    def round_duration(self, value: float) -> None:
-        self._round_manager.round_duration = value
-
-    @property
-    def song_stopped(self) -> bool:
-        """Song stopped flag — delegated to RoundManager."""
-        return self._round_manager.song_stopped
-
-    @song_stopped.setter
-    def song_stopped(self, value: bool) -> None:
-        self._round_manager.song_stopped = value
-
-    @property
-    def round_analytics(self) -> RoundAnalytics | None:
-        """Round analytics — stored on RoundManager for lifecycle coherence."""
-        return self._round_manager.round_analytics
-
-    @round_analytics.setter
-    def round_analytics(self, value: RoundAnalytics | None) -> None:
-        self._round_manager.round_analytics = value
-
-    @property
-    def intro_mode_enabled(self) -> bool:
-        """Intro mode enabled — delegated to RoundManager."""
-        return self._round_manager.intro_mode_enabled
-
-    @intro_mode_enabled.setter
-    def intro_mode_enabled(self, value: bool) -> None:
-        self._round_manager.intro_mode_enabled = value
-
-    @property
-    def is_intro_round(self) -> bool:
-        """Whether current round is intro mode — delegated to RoundManager."""
-        return self._round_manager.is_intro_round
-
-    @is_intro_round.setter
-    def is_intro_round(self, value: bool) -> None:
-        self._round_manager.is_intro_round = value
-
-    @property
-    def intro_stopped(self) -> bool:
-        """Intro stopped flag — delegated to RoundManager."""
-        return self._round_manager.intro_stopped
-
-    @intro_stopped.setter
-    def intro_stopped(self, value: bool) -> None:
-        self._round_manager.intro_stopped = value
-
-    @property
-    def _intro_round_start_time(self) -> float | None:
-        """Intro round start time — delegated to RoundManager."""
-        return self._round_manager._intro_round_start_time
-
-    @_intro_round_start_time.setter
-    def _intro_round_start_time(self, value: float | None) -> None:
-        self._round_manager._intro_round_start_time = value
-
-    @property
-    def metadata_pending(self) -> bool:
-        """Metadata pending flag — delegated to RoundManager."""
-        return self._round_manager.metadata_pending
-
-    @metadata_pending.setter
-    def metadata_pending(self, value: bool) -> None:
-        self._round_manager.metadata_pending = value
-
-    @property
-    def _early_reveal(self) -> bool:
-        """Early reveal flag — delegated to RoundManager."""
-        return self._round_manager._early_reveal
-
-    @_early_reveal.setter
-    def _early_reveal(self, value: bool) -> None:
-        self._round_manager._early_reveal = value
-
-    @property
-    def _intro_splash_pending(self) -> bool:
-        """Intro splash pending — delegated to RoundManager."""
-        return self._round_manager._intro_splash_pending
-
-    @_intro_splash_pending.setter
-    def _intro_splash_pending(self, value: bool) -> None:
-        self._round_manager._intro_splash_pending = value
-
-    @property
-    def _timer_task(self) -> asyncio.Task | None:
-        """Timer task — delegated to RoundManager."""
-        return self._round_manager._timer_task
-
-    @_timer_task.setter
-    def _timer_task(self, value: asyncio.Task | None) -> None:
-        self._round_manager._timer_task = value
-
-    # ------------------------------------------------------------------
-    # Power-up delegation properties (keep public interface identical)
-    # ------------------------------------------------------------------
-
-    @property
-    def streak_achievements(self) -> dict[str, int]:
-        """Streak achievement counters."""
-        return self._powerup_manager.streak_achievements
-
-    @streak_achievements.setter
-    def streak_achievements(self, value: dict[str, int]) -> None:
-        self._powerup_manager.streak_achievements = value
-
-    @property
-    def bet_tracking(self) -> dict[str, int]:
-        """Bet outcome counters."""
-        return self._powerup_manager.bet_tracking
-
-    @bet_tracking.setter
-    def bet_tracking(self, value: dict[str, int]) -> None:
-        self._powerup_manager.bet_tracking = value
-
-    # ------------------------------------------------------------------
-    # Challenge delegation properties (keep public interface identical)
-    # ------------------------------------------------------------------
-
-    @property
-    def artist_challenge(self) -> ArtistChallenge | None:
-        """Current artist challenge state."""
-        return self._challenge_manager.artist_challenge
-
-    @artist_challenge.setter
-    def artist_challenge(self, value: ArtistChallenge | None) -> None:
-        self._challenge_manager.artist_challenge = value
-
-    @property
-    def artist_challenge_enabled(self) -> bool:
-        """Whether artist challenge is enabled."""
-        return self._challenge_manager.artist_challenge_enabled
-
-    @artist_challenge_enabled.setter
-    def artist_challenge_enabled(self, value: bool) -> None:
-        self._challenge_manager.artist_challenge_enabled = value
-
-    @property
-    def movie_challenge(self) -> MovieChallenge | None:
-        """Current movie quiz challenge state."""
-        return self._challenge_manager.movie_challenge
-
-    @movie_challenge.setter
-    def movie_challenge(self, value: MovieChallenge | None) -> None:
-        self._challenge_manager.movie_challenge = value
-
-    @property
-    def movie_quiz_enabled(self) -> bool:
-        """Whether movie quiz is enabled."""
-        return self._challenge_manager.movie_quiz_enabled
-
-    @movie_quiz_enabled.setter
-    def movie_quiz_enabled(self, value: bool) -> None:
-        self._challenge_manager.movie_quiz_enabled = value
+    def challenges(self) -> ChallengeManager:
+        """Challenge subsystem (read-only)."""
+        return self._challenge_manager
 
     def create_game(
         self,
@@ -505,7 +276,7 @@ class GameState:
         self.songs = songs
         self.media_player = media_player
         self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
-        self.players = {}
+        self._player_registry.players = {}
 
         # Store provider setting (Story 17.2)
         self.provider = provider
@@ -520,26 +291,27 @@ class GameState:
         self._playlist_manager = PlaylistManager(songs, provider)
 
         # Reset round tracking for new game
-        self.round = 0
-        self.total_rounds = len(songs)
-        self.deadline = None
-        self.current_song = None
-        self.last_round = False
+        rm = self._round_manager
+        rm.round = 0
+        rm.total_rounds = len(songs)
+        rm.deadline = None
+        rm.current_song = None
+        rm.last_round = False
         self.pause_reason = None
         self._previous_phase = None
 
         # Reset timing for speed bonus (Story 5.1) and configurable duration (Story 13.1)
-        self.round_start_time = None
-        self.round_duration = round_duration
+        rm.round_start_time = None
+        rm.round_duration = round_duration
 
         # Set difficulty (Story 14.1)
         self.difficulty = difficulty
 
         # Reset song stopped flag (Story 6.2)
-        self.song_stopped = False
+        rm.song_stopped = False
 
         # Reset round analytics (Story 13.3)
-        self.round_analytics = None
+        rm.round_analytics = None
 
         # Issue #351: Reset power-up state for new game
         self._powerup_manager.reset()
@@ -551,15 +323,15 @@ class GameState:
         )
 
         # Issue #23: Set intro mode configuration
-        self.intro_mode_enabled = intro_mode_enabled
+        rm.intro_mode_enabled = intro_mode_enabled
 
         # Issue #442: Set closest wins mode
         self.closest_wins_mode = closest_wins_mode
-        self.is_intro_round = False
-        self.intro_stopped = False
-        self._intro_round_start_time = None
-        self._round_manager._rounds_since_intro = 0
-        self._round_manager._cancel_intro_timer()
+        rm.is_intro_round = False
+        rm.intro_stopped = False
+        rm._intro_round_start_time = None
+        rm._rounds_since_intro = 0
+        rm._cancel_intro_timer()
 
         # Reset timer task for new game
         self.cancel_timer()
@@ -580,7 +352,7 @@ class GameState:
             include_reveal: If True, include year and fun_fact fields
                             shown only during REVEAL phase.
         """
-        song = self.current_song
+        song = self._round_manager.current_song
         result = {
             "artist": song.get("artist", "Unknown"),
             "title": song.get("title", "Unknown"),
@@ -599,12 +371,13 @@ class GameState:
 
     def _state_playing(self) -> dict[str, Any]:
         """Return PLAYING phase-specific state fragment."""
+        rm = self._round_manager
         fragment: dict[str, Any] = {
             "join_url": self.join_url,
-            "round": self.round,
-            "total_rounds": self.total_rounds,
-            "deadline": self.deadline,
-            "last_round": self.last_round,
+            "round": rm.round,
+            "total_rounds": rm.total_rounds,
+            "deadline": rm.deadline,
+            "last_round": rm.last_round,
             "songs_remaining": (
                 self._playlist_manager.get_remaining_count()
                 if self._playlist_manager
@@ -612,14 +385,14 @@ class GameState:
             ),
             # Submission tracking (Story 4.4)
             "submitted_count": sum(
-                1 for p in self.players.values() if p.submitted
+                1 for p in self._player_registry.players.values() if p.submitted
             ),
             "all_submitted": self.all_submitted(),
             # Leaderboard (Story 5.5)
             "leaderboard": self.get_leaderboard(),
         }
         # Song info WITHOUT year during PLAYING (hidden until reveal)
-        if self.current_song:
+        if rm.current_song:
             fragment["song"] = self._build_song_dict()
         # Story 20.1: Artist challenge (hide answer during PLAYING)
         ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
@@ -633,29 +406,30 @@ class GameState:
 
     def _state_reveal(self) -> dict[str, Any]:
         """Return REVEAL phase-specific state fragment."""
+        rm = self._round_manager
         fragment: dict[str, Any] = {
             "join_url": self.join_url,
-            "round": self.round,
-            "total_rounds": self.total_rounds,
-            "last_round": self.last_round,
+            "round": rm.round,
+            "total_rounds": rm.total_rounds,
+            "last_round": rm.last_round,
             # Include reveal-specific player data (guesses, round_score, missed)
             "players": self.get_reveal_players_state(),
             # Leaderboard (Story 5.5)
             "leaderboard": self.get_leaderboard(),
         }
         # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
-        if self.current_song:
+        if rm.current_song:
             fragment["song"] = self._build_song_dict(include_reveal=True)
         # Round analytics (Story 13.3 AC4)
-        if self.round_analytics:
-            fragment["round_analytics"] = self.round_analytics.to_dict()
+        if rm.round_analytics:
+            fragment["round_analytics"] = rm.round_analytics.to_dict()
         # Game performance comparison (Story 14.4 AC2, AC3, AC4, AC6)
         game_performance = self.get_game_performance()
         if game_performance:
             fragment["game_performance"] = game_performance
         # Song difficulty rating (Story 15.1 AC1, AC4)
-        if self._stats_service and self.current_song:
-            song_uri = self.current_song.get("uri")
+        if self._stats_service and rm.current_song:
+            song_uri = rm.current_song.get("uri")
             if song_uri:
                 difficulty = self._stats_service.get_song_difficulty(song_uri)
                 if difficulty:
@@ -669,18 +443,19 @@ class GameState:
         if mc is not None:
             fragment["movie_challenge"] = mc
         # Story 20.9: Early reveal flag for client-side toast
-        if self._early_reveal:
+        if rm._early_reveal:
             fragment["early_reveal"] = True
         return fragment
 
     def _state_end(self) -> dict[str, Any]:
         """Return END phase-specific state fragment."""
+        players = self._player_registry.players
         fragment: dict[str, Any] = {
             # Final leaderboard with all player stats (Story 5.6)
             "leaderboard": self.get_final_leaderboard(),
             "game_stats": {
-                "total_rounds": self.round,
-                "total_players": len(self.players),
+                "total_rounds": self._round_manager.round,
+                "total_players": len(players),
             },
             # Superlatives - fun awards (Story 15.2)
             "superlatives": self.calculate_superlatives(),
@@ -690,8 +465,8 @@ class GameState:
             "share_data": build_share_data(self),
         }
         # Include winner info
-        if self.players:
-            winner = max(self.players.values(), key=lambda p: p.score)
+        if players:
+            winner = max(players.values(), key=lambda p: p.score)
             fragment["winner"] = {"name": winner.name, "score": winner.score}
         # Game performance comparison for end screen (Story 14.4 AC5, AC6)
         game_performance = self.get_game_performance()
@@ -736,15 +511,16 @@ class GameState:
 
         """
         # Calculate totals
-        total_points = sum(p.score for p in self.players.values())
-        player_count = len(self.players)
-        rounds_played = self.round
+        players = self._player_registry.players
+        total_points = sum(p.score for p in players.values())
+        player_count = len(players)
+        rounds_played = self._round_manager.round
 
         # Determine winner
         winner_name = "Unknown"
         winner_score = 0
-        if self.players:
-            winner = max(self.players.values(), key=lambda p: p.score)
+        if players:
+            winner = max(players.values(), key=lambda p: p.score)
             winner_name = winner.name
             winner_score = winner.score
 
@@ -772,12 +548,12 @@ class GameState:
             "total_points": total_points,
             "avg_score_per_round": round(avg_score_per_round, 2),
             # Story 19.11: Include streak achievements
-            "streak_3_count": self.streak_achievements.get("streak_3", 0),
-            "streak_5_count": self.streak_achievements.get("streak_5", 0),
-            "streak_10_count": self.streak_achievements.get("streak_10", 0),
+            "streak_3_count": self._powerup_manager.streak_achievements.get("streak_3", 0),
+            "streak_5_count": self._powerup_manager.streak_achievements.get("streak_5", 0),
+            "streak_10_count": self._powerup_manager.streak_achievements.get("streak_10", 0),
             # Story 19.12: Include bet tracking
-            "total_bets": self.bet_tracking.get("total_bets", 0),
-            "bets_won": self.bet_tracking.get("bets_won", 0),
+            "total_bets": self._powerup_manager.bet_tracking.get("total_bets", 0),
+            "bets_won": self._powerup_manager.bet_tracking.get("bets_won", 0),
         }
 
     def _reset_game_internals(self) -> None:
@@ -818,7 +594,7 @@ class GameState:
         self._reset_game_internals()
         self.game_id = None
         self.phase = GamePhase.LOBBY
-        self.players = {}
+        self._player_registry.players = {}
         self.clear_all_sessions()
         self._notify_state_callbacks()
 
@@ -836,10 +612,10 @@ class GameState:
         preserved_platform = self.platform
         preserved_difficulty = self.difficulty
         preserved_language = self.language
-        preserved_round_duration = self.round_duration
-        preserved_artist_challenge = self.artist_challenge_enabled
-        preserved_movie_quiz = self.movie_quiz_enabled
-        preserved_intro_mode = self.intro_mode_enabled
+        preserved_round_duration = self._round_manager.round_duration
+        preserved_artist_challenge = self._challenge_manager.artist_challenge_enabled
+        preserved_movie_quiz = self._challenge_manager.movie_quiz_enabled
+        preserved_intro_mode = self._round_manager.intro_mode_enabled
         preserved_closest_wins = self.closest_wins_mode
 
         self._reset_game_internals()
@@ -852,20 +628,20 @@ class GameState:
         self.platform = preserved_platform
         self.difficulty = preserved_difficulty
         self.language = preserved_language
-        self.round_duration = preserved_round_duration
-        self.artist_challenge_enabled = preserved_artist_challenge
-        self.movie_quiz_enabled = preserved_movie_quiz
-        self.intro_mode_enabled = preserved_intro_mode
+        self._round_manager.round_duration = preserved_round_duration
+        self._challenge_manager.artist_challenge_enabled = preserved_artist_challenge
+        self._challenge_manager.movie_quiz_enabled = preserved_movie_quiz
+        self._round_manager.intro_mode_enabled = preserved_intro_mode
         self.closest_wins_mode = preserved_closest_wins
 
         # Re-create PlaylistManager with fresh song list
         self._playlist_manager = PlaylistManager(preserved_songs, preserved_provider)
-        self.total_rounds = len(preserved_songs)
+        self._round_manager.total_rounds = len(preserved_songs)
 
         self.phase = GamePhase.LOBBY
         self._notify_state_callbacks()
         # Reset each player's game stats but keep them connected
-        for player in self.players.values():
+        for player in self._player_registry.players.values():
             player.reset_for_new_game()
         # Generate new game ID and admin token for the rematch
         self.game_id = secrets.token_urlsafe(8)
@@ -878,8 +654,8 @@ class GameState:
 
         _LOGGER.info(
             "Rematch ready with %d players, %d songs, new game_id: %s",
-            len(self.players),
-            self.total_rounds,
+            len(self._player_registry.players),
+            self._round_manager.total_rounds,
             self.game_id,
         )
 
@@ -905,7 +681,7 @@ class GameState:
 
         # Store admin name for rejoin verification (Story 7-2)
         if reason == "admin_disconnected":
-            for player in self.players.values():
+            for player in self._player_registry.players.values():
                 if player.is_admin:
                     self.disconnected_admin_name = player.name
                     break
@@ -943,9 +719,9 @@ class GameState:
         previous = self._previous_phase
 
         # Restart timer if resuming to PLAYING and deadline still valid
-        if previous == GamePhase.PLAYING and self.deadline:
+        if previous == GamePhase.PLAYING and self._round_manager.deadline:
             now_ms = int(self._now() * 1000)
-            remaining_ms = self.deadline - now_ms
+            remaining_ms = self._round_manager.deadline - now_ms
 
             if remaining_ms > 0:
                 remaining_seconds = remaining_ms / 1000.0
@@ -956,11 +732,11 @@ class GameState:
 
                 # Issue #416: Restart intro stop timer if this was an intro round
                 if (
-                    self.is_intro_round
-                    and not self.intro_stopped
-                    and self._intro_round_start_time is not None
+                    self._round_manager.is_intro_round
+                    and not self._round_manager.intro_stopped
+                    and self._round_manager._intro_round_start_time is not None
                 ):
-                    elapsed_intro = self._now() - self._intro_round_start_time
+                    elapsed_intro = self._now() - self._round_manager._intro_round_start_time
                     remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
                     if remaining_intro > 0:
                         self._round_manager._intro_stop_task = asyncio.create_task(
@@ -972,7 +748,7 @@ class GameState:
                         )
 
                 # Resume media playback if it was stopped
-                if self._media_player_service and self.current_song:
+                if self._media_player_service and self._round_manager.current_song:
                     await self._media_player_service.play()
                     _LOGGER.info("Media playback resumed")
             else:
@@ -1027,12 +803,12 @@ class GameState:
 
     def get_steal_targets(self, stealer_name: str) -> list[str]:
         """Get list of players who can be stolen from (Story 15.3). Delegates to PowerUpManager."""
-        return self._powerup_manager.get_steal_targets(stealer_name, self.players)
+        return self._powerup_manager.get_steal_targets(stealer_name, self._player_registry.players)
 
     def use_steal(self, stealer_name: str, target_name: str) -> dict[str, Any]:
         """Execute steal power-up (Story 15.3). Delegates to PowerUpManager."""
         return self._powerup_manager.use_steal(
-            stealer_name, target_name, self.players, self.phase, self._now()
+            stealer_name, target_name, self._player_registry.players, self.phase, self._now()
         )
 
     def remove_player(self, name: str) -> None:
@@ -1070,25 +846,25 @@ class GameState:
         # If artist challenge enabled and active, check artist guesses
         # Skip check if challenge already has a winner (buttons disabled for others)
         # or if no one has guessed yet (don't block early reveal for ignored challenges)
-        if self.artist_challenge_enabled and self.artist_challenge:
-            has_winner = getattr(self.artist_challenge, "winner", None) is not None
+        if self._challenge_manager.artist_challenge_enabled and self._challenge_manager.artist_challenge:
+            has_winner = getattr(self._challenge_manager.artist_challenge, "winner", None) is not None
             anyone_guessed = any(
-                p.has_artist_guess for p in self.players.values() if p.connected
+                p.has_artist_guess for p in self._player_registry.players.values() if p.connected
             )
             if not has_winner and anyone_guessed:
-                for player in self.players.values():
+                for player in self._player_registry.players.values():
                     if player.connected and not player.has_artist_guess:
                         return False
 
         # Issue #28: If movie quiz enabled and active, check movie guesses
         # Skip check if challenge already has correct guesses or no one interacted
-        if self.movie_quiz_enabled and self.movie_challenge:
-            has_correct = len(self.movie_challenge.correct_guesses) > 0
+        if self._challenge_manager.movie_quiz_enabled and self._challenge_manager.movie_challenge:
+            has_correct = len(self._challenge_manager.movie_challenge.correct_guesses) > 0
             anyone_guessed = any(
-                p.has_movie_guess for p in self.players.values() if p.connected
+                p.has_movie_guess for p in self._player_registry.players.values() if p.connected
             )
             if not has_correct and anyone_guessed:
-                for player in self.players.values():
+                for player in self._player_registry.players.values():
                     if player.connected and not player.has_movie_guess:
                         return False
 
@@ -1119,7 +895,7 @@ class GameState:
                 self._on_round_end is not None,
             )
             self.cancel_timer()
-            self._early_reveal = True
+            self._round_manager._early_reveal = True
             await self._end_round_unlocked()
             _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
 
@@ -1171,13 +947,13 @@ class GameState:
             Current game average score per round, or 0.0 if no data
 
         """
-        if self.round == 0 or not self.players:
+        if self._round_manager.round == 0 or not self._player_registry.players:
             return 0.0
 
-        total_points = sum(p.score for p in self.players.values())
-        player_count = len(self.players)
+        total_points = sum(p.score for p in self._player_registry.players.values())
+        player_count = len(self._player_registry.players)
 
-        return total_points / (self.round * player_count)
+        return total_points / (self._round_manager.round * player_count)
 
     def get_game_performance(self) -> dict[str, Any] | None:
         """
@@ -1222,13 +998,13 @@ class GameState:
         if self.phase != GamePhase.LOBBY:
             return False, ERR_GAME_ALREADY_STARTED
 
-        if len(self.players) < MIN_PLAYERS:
+        if len(self._player_registry.players) < MIN_PLAYERS:
             return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
 
         self.phase = GamePhase.PLAYING
         self._notify_state_callbacks()
         # Round and song selection will be implemented in Epic 4
-        _LOGGER.info("Game started: %d players", len(self.players))
+        _LOGGER.info("Game started: %d players", len(self._player_registry.players))
         return True, None
 
     async def start_round(self, _retry_count: int = 0) -> bool:
@@ -1265,7 +1041,7 @@ class GameState:
                 return False
             return await self.start_round(_retry_count + 1)
 
-        self.last_round = self._playlist_manager.get_remaining_count() <= 1
+        self._round_manager.last_round = self._playlist_manager.get_remaining_count() <= 1
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 
@@ -1300,13 +1076,13 @@ class GameState:
         metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
         self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash)
 
-        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
+        delay_seconds = (self._round_manager.deadline - int(self._now() * 1000)) / 1000.0
         await self._lights_set_phase(GamePhase.PLAYING)
         _LOGGER.info(
             "Round %d started: %s - %s (%.1fs timer)",
-            self.round,
-            self.current_song.get("artist"),
-            self.current_song.get("title"),
+            self._round_manager.round,
+            self._round_manager.current_song.get("artist"),
+            self._round_manager.current_song.get("title"),
             delay_seconds,
         )
         return True
@@ -1350,11 +1126,11 @@ class GameState:
             song, metadata, resolved_uri, will_defer_for_splash,
             self._playlist_manager,
             self._challenge_manager,
-            self.players,
+            self._player_registry.players,
             self._timer_countdown,
             self._on_round_end,
         )
-        self.round_analytics = None
+        self._round_manager.round_analytics = None
         self.phase = GamePhase.PLAYING
         self._notify_state_callbacks()
 
@@ -1400,25 +1176,25 @@ class GameState:
             # Fix #124: Only update album_art from media player.
             # Artist/title are authoritative from playlist data — media player
             # state can report stale/wrong track info (especially Sonos + Spotify).
-            if self.current_song and self.current_song.get("uri") == uri:
-                self.current_song["album_art"] = metadata.get(
+            if self._round_manager.current_song and self._round_manager.current_song.get("uri") == uri:
+                self._round_manager.current_song["album_art"] = metadata.get(
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 )
-                self.metadata_pending = False
+                self._round_manager.metadata_pending = False
 
                 _LOGGER.info(
                     "Album art updated for: %s - %s",
-                    self.current_song.get("artist"),
-                    self.current_song.get("title"),
+                    self._round_manager.current_song.get("artist"),
+                    self._round_manager.current_song.get("title"),
                 )
 
                 # Invoke callback to broadcast update (album art only)
                 if self._on_metadata_update:
                     await self._on_metadata_update(
                         {
-                            "artist": self.current_song["artist"],
-                            "title": self.current_song["title"],
-                            "album_art": self.current_song["album_art"],
+                            "artist": self._round_manager.current_song["artist"],
+                            "title": self._round_manager.current_song["title"],
+                            "album_art": self._round_manager.current_song["album_art"],
                         }
                     )
             else:
@@ -1429,7 +1205,7 @@ class GameState:
             raise
         except Exception as err:  # noqa: BLE001
             _LOGGER.warning("Failed to fetch metadata: %s", err)
-            self.metadata_pending = False
+            self._round_manager.metadata_pending = False
 
     async def end_round(self) -> None:
         """
@@ -1459,36 +1235,36 @@ class GameState:
         self._store_previous_ranks()
 
         # Get correct year from current song
-        correct_year = self.current_song.get("year") if self.current_song else None
+        correct_year = self._round_manager.current_song.get("year") if self._round_manager.current_song else None
 
         # Issue #415: Warn if scoring without a correct year when players submitted
         if correct_year is None:
-            submitted_count = sum(1 for p in self.players.values() if p.submitted)
+            submitted_count = sum(1 for p in self._player_registry.players.values() if p.submitted)
             if submitted_count > 0:
                 _LOGGER.warning(
                     "Scoring round %d with no correct_year — %d submitted player(s) "
                     "will receive 0 points (current_song=%s)",
-                    self.round,
+                    self._round_manager.round,
                     submitted_count,
-                    "missing" if self.current_song is None else "no year field",
+                    "missing" if self._round_manager.current_song is None else "no year field",
                 )
 
         # Calculate scores for all players — delegates to ScoringService (#139)
-        all_players = list(self.players.values())
-        for player in self.players.values():
+        all_players = list(self._player_registry.players.values())
+        for player in self._player_registry.players.values():
             ScoringService.score_player_round(
                 player,
                 correct_year=correct_year,
-                round_start_time=self.round_start_time,
-                round_duration=self.round_duration,
+                round_start_time=self._round_manager.round_start_time,
+                round_duration=self._round_manager.round_duration,
                 difficulty=self.difficulty,
-                artist_challenge=self.artist_challenge,
-                movie_challenge=self.movie_challenge,
-                is_intro_round=self.is_intro_round,
-                intro_round_start_time=self._intro_round_start_time,
+                artist_challenge=self._challenge_manager.artist_challenge,
+                movie_challenge=self._challenge_manager.movie_challenge,
+                is_intro_round=self._round_manager.is_intro_round,
+                intro_round_start_time=self._round_manager._intro_round_start_time,
                 all_players=all_players,
-                streak_achievements=self.streak_achievements,
-                bet_tracking=self.bet_tracking,
+                streak_achievements=self._powerup_manager.streak_achievements,
+                bet_tracking=self._powerup_manager.bet_tracking,
             )
 
         # Issue #442: Closest Wins — zero out non-closest players' scores
@@ -1502,7 +1278,7 @@ class GameState:
             )
             close_range = scoring_cfg["close_range"]
             near_range = scoring_cfg["near_range"]
-            for player in self.players.values():
+            for player in self._player_registry.players.values():
                 if player.submitted and player.years_off is not None:
                     if player.years_off == 0:
                         player.round_results.append("exact")
@@ -1526,16 +1302,16 @@ class GameState:
 
         # Calculate round analytics after scoring (Story 13.3)
         try:
-            self.round_analytics = self.calculate_round_analytics()
+            self._round_manager.round_analytics = self.calculate_round_analytics()
         except Exception as err:
             _LOGGER.error("Failed to calculate round analytics: %s", err)
-            self.round_analytics = None
+            self._round_manager.round_analytics = None
 
         # Record song results for difficulty tracking (Story 15.1 AC3)
         # Extended for song statistics (Story 19.7)
         # Wrapped in try/catch to ensure round transition completes even if stats fail
-        if self._stats_service and self.current_song:
-            song_uri = self.current_song.get("uri")
+        if self._stats_service and self._round_manager.current_song:
+            song_uri = self._round_manager.current_song.get("uri")
             if song_uri:
                 try:
                     # Build player results list for song difficulty calculation
@@ -1544,13 +1320,13 @@ class GameState:
                             "submitted": p.submitted,
                             "years_off": p.years_off if p.years_off is not None else 0,
                         }
-                        for p in self.players.values()
+                        for p in self._player_registry.players.values()
                     ]
                     # Story 19.7: Pass song metadata and playlist info
                     song_metadata = {
-                        "title": self.current_song.get("title", "Unknown"),
-                        "artist": self.current_song.get("artist", "Unknown"),
-                        "year": self.current_song.get("year", 0),
+                        "title": self._round_manager.current_song.get("title", "Unknown"),
+                        "artist": self._round_manager.current_song.get("artist", "Unknown"),
+                        "year": self._round_manager.current_song.get("year", 0),
                     }
                     # Extract playlist name from path (e.g., "greatest-hits.json" -> "Greatest Hits")
                     playlist_name = None
@@ -1570,19 +1346,19 @@ class GameState:
                     _LOGGER.error("Failed to record song results: %s", err)
 
         # Transition to REVEAL
-        self._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
+        self._player_registry._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
         # Issue #331: Update Party Lights for reveal phase + flash on exact matches
         await self._lights_set_phase(GamePhase.REVEAL)
         if correct_year is not None:
-            for p in self.players.values():
+            for p in self._player_registry.players.values():
                 if p.submitted and p.years_off == 0:
                     await self._lights_flash("gold")
                     break  # One flash per round is enough
 
-        _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
+        _LOGGER.info("Round %d ended, phase: REVEAL", self._round_manager.round)
 
         # Invoke callback to broadcast state
         if self._on_round_end:
@@ -1603,12 +1379,12 @@ class GameState:
             return
 
         song_title = ""
-        if self.current_song:
-            song_title = self.current_song.get("title", "Unknown")
+        if self._round_manager.current_song:
+            song_title = self._round_manager.current_song.get("title", "Unknown")
 
         submitted_players = [
             p
-            for p in self.players.values()
+            for p in self._player_registry.players.values()
             if p.submitted and p.current_guess is not None
         ]
 
@@ -1616,32 +1392,32 @@ class GameState:
             # Exact match
             if player.years_off == 0:
                 self.highlights_tracker.record_exact_match(
-                    player.name, song_title, correct_year, self.round
+                    player.name, song_title, correct_year, self._round_manager.round
                 )
 
             # Heartbreaker (off by 1)
             if player.years_off == 1:
                 self.highlights_tracker.record_heartbreaker(
-                    player.name, song_title, 1, self.round
+                    player.name, song_title, 1, self._round_manager.round
                 )
 
             # Streak milestones (3, 5, 7+)
             if player.streak in (3, 5, 7):
                 self.highlights_tracker.record_streak(
-                    player.name, player.streak, self.round
+                    player.name, player.streak, self._round_manager.round
                 )
 
             # Bet win
             if player.bet_outcome == "won" and player.round_score >= 10:
                 self.highlights_tracker.record_bet_win(
-                    player.name, player.round_score, self.round
+                    player.name, player.round_score, self._round_manager.round
                 )
 
             # Comeback (gained 2+ positions)
             if player.previous_rank is not None:
                 # Calculate current rank
                 sorted_players = sorted(
-                    self.players.values(), key=lambda p: (-p.score, p.name)
+                    self._player_registry.players.values(), key=lambda p: (-p.score, p.name)
                 )
                 current_rank = next(
                     (
@@ -1655,24 +1431,24 @@ class GameState:
                     positions_gained = player.previous_rank - current_rank
                     if positions_gained >= 2:
                         self.highlights_tracker.record_comeback(
-                            player.name, positions_gained, self.round
+                            player.name, positions_gained, self._round_manager.round
                         )
 
         # Speed record (fastest submission this round)
         timed = [
-            (p, p.submission_time - self.round_start_time)
+            (p, p.submission_time - self._round_manager.round_start_time)
             for p in submitted_players
-            if p.submission_time is not None and self.round_start_time is not None
+            if p.submission_time is not None and self._round_manager.round_start_time is not None
         ]
         if timed:
             fastest_player, fastest_time = min(timed, key=lambda x: x[1])
             if fastest_time < 5.0:  # Only highlight very fast answers
                 self.highlights_tracker.record_speed_record(
-                    fastest_player.name, fastest_time, self.round
+                    fastest_player.name, fastest_time, self._round_manager.round
                 )
 
         # Photo finish (tied round scores among top players) — Issue #414
-        scores = [p.round_score for p in self.players.values()]
+        scores = [p.round_score for p in self._player_registry.players.values()]
         if len(scores) >= 2:
             from collections import Counter
 
@@ -1681,14 +1457,14 @@ class GameState:
                 if count >= 2 and score > 0:
                     tied_names = [
                         p.name
-                        for p in self.players.values()
+                        for p in self._player_registry.players.values()
                         if p.round_score == score
                     ]
                     # Only record if it's among the top scores
                     top_score = max(scores)
                     if score >= top_score * 0.8:
                         self.highlights_tracker.record_photo_finish(
-                            tied_names, self.round
+                            tied_names, self._round_manager.round
                         )
                         break  # Only one photo finish per round
 
@@ -1720,7 +1496,7 @@ class GameState:
         """
         # Sort by score descending, then by name for tie-breaking display order
         sorted_players = sorted(
-            self.players.values(),
+            self._player_registry.players.values(),
             key=lambda p: (-p.score, p.name),
         )
 
@@ -1756,7 +1532,7 @@ class GameState:
     def _store_previous_ranks(self) -> None:
         """Store current ranks before scoring for rank change detection."""
         sorted_players = sorted(
-            self.players.values(),
+            self._player_registry.players.values(),
             key=lambda p: (-p.score, p.name),
         )
 
@@ -1780,7 +1556,7 @@ class GameState:
         """
         # Sort by score descending, then by name for tie-breaking display order
         sorted_players = sorted(
-            self.players.values(),
+            self._player_registry.players.values(),
             key=lambda p: (-p.score, p.name),
         )
 
@@ -1939,16 +1715,16 @@ class GameState:
         if not self._tts_service or not self._tts_announce_game_start:
             return
         message = (
-            f"Let's play Beatify! {self.total_rounds} rounds, "
+            f"Let's play Beatify! {self._round_manager.total_rounds} rounds, "
             f"{self.difficulty} difficulty."
         )
         await self._tts_announce(message)
 
     async def announce_winner(self) -> None:
         """Announce the winner (use case 18)."""
-        if not self._tts_service or not self._tts_announce_winner or not self.players:
+        if not self._tts_service or not self._tts_announce_winner or not self._player_registry.players:
             return
-        winner = max(self.players.values(), key=lambda p: p.score)
+        winner = max(self._player_registry.players.values(), key=lambda p: p.score)
         message = (
             f"And the winner is... {winner.name} with {winner.score} points!"
         )
@@ -1978,11 +1754,11 @@ class GameState:
 
     def calculate_round_analytics(self) -> RoundAnalytics:
         """Calculate round analytics (Story 13.3). Delegates to ScoringService (#139)."""
-        correct_year = self.current_song.get("year") if self.current_song else None
+        correct_year = self._round_manager.current_song.get("year") if self._round_manager.current_song else None
         return ScoringService.calculate_round_analytics(
-            list(self.players.values()),
+            list(self._player_registry.players.values()),
             correct_year,
-            self.round_start_time,
+            self._round_manager.round_start_time,
         )
 
     @staticmethod
@@ -1993,10 +1769,10 @@ class GameState:
     def calculate_superlatives(self) -> list[dict[str, Any]]:
         """Calculate fun awards (Story 15.2). Delegates to ScoringService (#139)."""
         return ScoringService.calculate_superlatives(
-            list(self.players.values()),
-            rounds_played=self.round,
-            movie_quiz_enabled=self.movie_quiz_enabled,
-            intro_mode_enabled=self.intro_mode_enabled,
+            list(self._player_registry.players.values()),
+            rounds_played=self._round_manager.round,
+            movie_quiz_enabled=self._challenge_manager.movie_quiz_enabled,
+            intro_mode_enabled=self._round_manager.intro_mode_enabled,
         )
 
     def submit_artist_guess(
@@ -2012,5 +1788,5 @@ class GameState:
     ) -> dict[str, Any]:
         """Submit movie guess for bonus points (Issue #28). Delegates to ChallengeManager."""
         return self._challenge_manager.submit_movie_guess(
-            player_name, movie, guess_time, self.round_start_time
+            player_name, movie, guess_time, self._round_manager.round_start_time
         )
