@@ -433,7 +433,7 @@ class BeatifyWebSocketHandler:
             return
 
         # Start the first round (plays song, sets timer)
-        success = await game_state.start_round(self.hass)
+        success = await game_state.start_round()
         if success:
             await self.broadcast_state()
         else:
@@ -492,7 +492,7 @@ class BeatifyWebSocketHandler:
                 await self.broadcast_state()
             else:
                 # Start next round
-                success = await game_state.start_round(self.hass)
+                success = await game_state.start_round()
                 if success:
                     await self.broadcast_state()
                 else:
@@ -713,9 +713,7 @@ class BeatifyWebSocketHandler:
         enabled = data.get("enabled", True)
 
         if enabled and entity_ids:
-            await game_state.configure_party_lights(
-                self.hass, entity_ids, intensity
-            )
+            await game_state.configure_party_lights(entity_ids, intensity)
             _LOGGER.info(
                 "Party Lights configured: %d lights, intensity=%s",
                 len(entity_ids),

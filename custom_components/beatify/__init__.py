@@ -76,6 +76,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Initialize game state
     game_state = GameState()
+    game_state.set_hass(hass)
 
     # Initialize stats service (Story 14.4)
     stats_service = StatsService(hass)
