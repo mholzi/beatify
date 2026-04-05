@@ -596,8 +596,19 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        seconds = data.get("seconds", 10.0)
-        success = await game_state.seek_forward_on_player(float(seconds))
+        try:
+            seconds = float(data.get("seconds", 10.0))
+        except (ValueError, TypeError):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Invalid value for 'seconds'",
+                }
+            )
+            return
+
+        success = await game_state.seek_forward_on_player(seconds)
         if not success:
             _LOGGER.warning("Failed to seek forward")
 
