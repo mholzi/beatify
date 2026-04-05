@@ -1833,6 +1833,16 @@ class GameState:
         if self._media_player_service:
             await self._media_player_service.stop()
 
+    async def seek_forward_on_player(self, seconds: float = 10.0) -> bool:
+        """Seek forward on the media player.
+
+        Returns:
+            True if successful, False if failed or no media player.
+        """
+        if self._media_player_service:
+            return await self._media_player_service.seek_forward(seconds)
+        return False
+
     async def set_volume_on_player(self, level: float) -> bool:
         """Apply volume level to the media player (#321).
 

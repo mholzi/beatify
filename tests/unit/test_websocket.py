@@ -694,6 +694,90 @@ class TestGetState:
 # ---------------------------------------------------------------------------
 
 
+class TestAdminSeekForward:
+    """Tests for admin seek_forward action."""
+
+    async def test_seek_forward_in_playing_phase(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.add_player("Host", ws)
+        game_state.set_admin("Host")
+        game_state.add_player("Player2", _make_ws())
+        game_state.start_game()
+        game_state.phase = GamePhase.PLAYING
+        game_state.seek_forward_on_player = AsyncMock(return_value=True)
+
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "seek_forward", "seconds": 10}
+        )
+
+        game_state.seek_forward_on_player.assert_awaited_once_with(10.0)
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "seek_performed"
+        assert msg["seconds"] == 10
+
+    async def test_seek_forward_allowed_in_reveal_phase(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.add_player("Host", ws)
+        game_state.set_admin("Host")
+        game_state.add_player("Player2", _make_ws())
+        game_state.start_game()
+        game_state.phase = GamePhase.REVEAL
+        game_state.seek_forward_on_player = AsyncMock(return_value=True)
+
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "seek_forward"}
+        )
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "seek_performed"
+
+    async def test_seek_forward_rejected_in_lobby_phase(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.add_player("Host", ws)
+        game_state.set_admin("Host")
+
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "seek_forward"}
+        )
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION
+
+    async def test_seek_forward_default_seconds(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.add_player("Host", ws)
+        game_state.set_admin("Host")
+        game_state.add_player("Player2", _make_ws())
+        game_state.start_game()
+        game_state.phase = GamePhase.PLAYING
+        game_state.seek_forward_on_player = AsyncMock(return_value=True)
+
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "seek_forward"}
+        )
+
+        game_state.seek_forward_on_player.assert_awaited_once_with(10.0)
+
+    async def test_seek_forward_non_admin_rejected(self):
+        handler, game_state, ws = _make_handler_and_game()
+        admin_ws = _make_ws()
+        game_state.add_player("Host", admin_ws)
+        game_state.set_admin("Host")
+
+        player_ws = _make_ws()
+        game_state.add_player("Player2", player_ws)
+        game_state.start_game()
+        game_state.phase = GamePhase.PLAYING
+
+        await handler._handle_message(
+            player_ws, {"type": "admin", "action": "seek_forward"}
+        )
+
+        msg = player_ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+
+
 class TestUnknownMessage:
     async def test_unknown_type_does_not_crash(self):
         handler, game_state, ws = _make_handler_and_game()

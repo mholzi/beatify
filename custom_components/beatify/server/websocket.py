@@ -363,6 +363,7 @@ class BeatifyWebSocketHandler:
             "confirm_intro_splash": self._admin_confirm_intro_splash,
             "set_party_lights": self._admin_set_party_lights,
             "toggle_party_lights": self._admin_toggle_party_lights,
+            "seek_forward": self._admin_seek_forward,
         }
         handler = admin_handlers.get(action)
         if handler:
@@ -580,6 +581,29 @@ class BeatifyWebSocketHandler:
                 "level": new_level,
             }
         )
+
+    async def _admin_seek_forward(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin seek_forward action."""
+        if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Can only seek during playback",
+                }
+            )
+            return
+
+        seconds = data.get("seconds", 10.0)
+        success = await game_state.seek_forward_on_player(float(seconds))
+        if not success:
+            _LOGGER.warning("Failed to seek forward")
+
+        _LOGGER.info("Admin seeked forward %.0fs", seconds)
+
+        await ws.send_json({"type": "seek_performed", "seconds": seconds})
 
     async def _admin_end_game(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState

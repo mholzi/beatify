@@ -591,21 +591,27 @@
         <div id="admin-control-bar" class="admin-control-bar hidden">
             <!-- Volume feedback indicator (Story 6.4) -->
             <div id="volume-indicator" class="volume-indicator hidden">🔊 50%</div>
-            <button id="stop-song-btn" class="control-btn" type="button">
+            <button id="stop-song-btn" class="control-btn" type="button" data-i18n-title="admin.stopTooltip" title="Stop current song">
                 <span class="control-icon">⏹️</span>
                 <span class="control-label" data-i18n="admin.stop">Stop</span>
             </button>
-            <button id="volume-down-btn" class="control-btn" type="button">
+            <button id="volume-down-btn" class="control-btn" type="button" data-i18n-title="admin.volumeDownTooltip" title="Volume down">
                 <span class="control-icon">🔉</span>
+                <span class="control-label" data-i18n="admin.volumeDown">Quieter</span>
             </button>
-            <button id="volume-up-btn" class="control-btn" type="button">
+            <button id="volume-up-btn" class="control-btn" type="button" data-i18n-title="admin.volumeUpTooltip" title="Volume up">
                 <span class="control-icon">🔊</span>
+                <span class="control-label" data-i18n="admin.volumeUp">Louder</span>
             </button>
-            <button id="next-round-admin-btn" class="control-btn" type="button">
+            <button id="seek-forward-btn" class="control-btn" type="button" data-i18n-title="admin.seekForwardTooltip" title="Skip 10 seconds forward">
+                <span class="control-icon">⏩</span>
+                <span class="control-label" data-i18n="admin.seekForward">+10s</span>
+            </button>
+            <button id="next-round-admin-btn" class="control-btn" type="button" data-i18n-title="admin.nextTooltip" title="Next round / Skip">
                 <span class="control-icon">⏭️</span>
                 <span class="control-label" data-i18n="admin.next">Next</span>
             </button>
-            <button id="end-game-btn" class="control-btn control-btn--danger" type="button">
+            <button id="end-game-btn" class="control-btn control-btn--danger" type="button" data-i18n-title="admin.endTooltip" title="End game">
                 <span class="control-icon">🛑</span>
                 <span class="control-label" data-i18n="admin.end">End</span>
             </button>

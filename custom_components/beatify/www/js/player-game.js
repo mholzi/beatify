@@ -1518,6 +1518,7 @@ export function showFloatingReaction(senderName, emoji) {
  */
 export function updateControlBarState(phase) {
     var stopBtn = document.getElementById('stop-song-btn');
+    var seekBtn = document.getElementById('seek-forward-btn');
     var nextBtn = document.getElementById('next-round-admin-btn');
 
     if (phase === 'PLAYING') {
@@ -1525,6 +1526,10 @@ export function updateControlBarState(phase) {
         if (stopBtn && !songStopped) {
             stopBtn.classList.remove('is-disabled');
             stopBtn.disabled = false;
+        }
+        if (seekBtn) {
+            seekBtn.classList.remove('is-disabled', 'hidden');
+            seekBtn.disabled = false;
         }
         if (nextBtn) {
             nextBtn.classList.remove('is-disabled');
@@ -1537,6 +1542,10 @@ export function updateControlBarState(phase) {
             stopBtn.classList.remove('is-disabled');
             stopBtn.disabled = false;
         }
+        if (seekBtn) {
+            seekBtn.classList.remove('hidden', 'is-disabled');
+            seekBtn.disabled = false;
+        }
         if (nextBtn) {
             nextBtn.classList.remove('is-disabled');
             nextBtn.disabled = false;
@@ -1544,6 +1553,10 @@ export function updateControlBarState(phase) {
             if (labelEl) labelEl.textContent = utils.t('game.next');
         }
     } else {
+        if (seekBtn) {
+            seekBtn.classList.add('hidden');
+            seekBtn.disabled = true;
+        }
         if (nextBtn) {
             nextBtn.classList.add('is-disabled');
             nextBtn.disabled = true;
@@ -1595,6 +1608,20 @@ function handleVolumeUp() {
         type: 'admin',
         action: 'set_volume',
         direction: 'up'
+    }));
+}
+
+/**
+ * Handle Seek Forward button (+10s)
+ */
+function handleSeekForward() {
+    if (!debounceAdminAction()) return;
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+
+    state.ws.send(JSON.stringify({
+        type: 'admin',
+        action: 'seek_forward',
+        seconds: 10
     }));
 }
 
@@ -1721,12 +1748,14 @@ export function setupAdminControlBar() {
     var stopBtn = document.getElementById('stop-song-btn');
     var volUpBtn = document.getElementById('volume-up-btn');
     var volDownBtn = document.getElementById('volume-down-btn');
+    var seekBtn = document.getElementById('seek-forward-btn');
     var nextBtn = document.getElementById('next-round-admin-btn');
     var endBtn = document.getElementById('end-game-btn');
 
     if (stopBtn) stopBtn.addEventListener('click', handleStopSong);
     if (volUpBtn) volUpBtn.addEventListener('click', handleVolumeUp);
     if (volDownBtn) volDownBtn.addEventListener('click', handleVolumeDown);
+    if (seekBtn) seekBtn.addEventListener('click', handleSeekForward);
     if (nextBtn) nextBtn.addEventListener('click', handleNextRoundFromBar);
     if (endBtn) endBtn.addEventListener('click', handleEndGame);
 }

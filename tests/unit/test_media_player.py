@@ -402,3 +402,81 @@ class TestStartRoundAvailabilityCheck:
         mock_media_service.is_available.assert_called_once()
         mock_game_state.pause_game.assert_awaited_once_with("media_player_error")
         assert "unavailable" in mock_game_state.last_error_detail
+
+
+class TestSeekForward:
+    """Tests for seek_forward() method."""
+
+    @staticmethod
+    def _now_iso():
+        from datetime import datetime, timezone
+        return datetime.now(timezone.utc).isoformat()
+
+    @pytest.mark.asyncio
+    async def test_seek_forward_calls_media_seek(self):
+        """seek_forward should call media_player.media_seek with correct position."""
+        hass = _make_hass("playing")
+        hass.states.get.return_value.attributes["media_position"] = 5.0
+        hass.states.get.return_value.attributes["media_position_updated_at"] = self._now_iso()
+        svc = MediaPlayerService(hass, "media_player.sonos")
+
+        result = await svc.seek_forward(10.0)
+
+        assert result is True
+        call_args = hass.services.async_call.call_args[0]
+        assert call_args[0] == "media_player"
+        assert call_args[1] == "media_seek"
+        assert call_args[2]["entity_id"] == "media_player.sonos"
+        # Position should be ~15.0 (5.0 + ~0 elapsed + 10.0 seek)
+        assert 14.9 <= call_args[2]["seek_position"] <= 15.5
+
+    @pytest.mark.asyncio
+    async def test_seek_forward_default_10_seconds(self):
+        """Default seek should be 10 seconds."""
+        hass = _make_hass("playing")
+        hass.states.get.return_value.attributes["media_position"] = 3.0
+        hass.states.get.return_value.attributes["media_position_updated_at"] = self._now_iso()
+        svc = MediaPlayerService(hass, "media_player.sonos")
+
+        await svc.seek_forward()
+
+        call_args = hass.services.async_call.call_args[0]
+        # Position should be ~13.0 (3.0 + ~0 elapsed + 10.0 default)
+        assert 12.9 <= call_args[2]["seek_position"] <= 13.5
+
+    @pytest.mark.asyncio
+    async def test_seek_forward_no_position_returns_false(self):
+        """If media_position is None, seek should fail gracefully."""
+        hass = _make_hass("playing")
+        hass.states.get.return_value.attributes["media_position"] = None
+        svc = MediaPlayerService(hass, "media_player.sonos")
+
+        result = await svc.seek_forward(10.0)
+
+        assert result is False
+        hass.services.async_call.assert_not_awaited()
+
+    @pytest.mark.asyncio
+    async def test_seek_forward_no_entity_returns_false(self):
+        """If media player entity not found, seek should fail gracefully."""
+        hass = _make_hass("playing")
+        hass.states.get.return_value = None
+        svc = MediaPlayerService(hass, "media_player.sonos")
+
+        result = await svc.seek_forward(10.0)
+
+        assert result is False
+        hass.services.async_call.assert_not_awaited()
+
+    @pytest.mark.asyncio
+    async def test_seek_forward_service_error_returns_false(self):
+        """If HA service call fails, seek should return False."""
+        hass = _make_hass("playing")
+        hass.states.get.return_value.attributes["media_position"] = 5.0
+        hass.states.get.return_value.attributes["media_position_updated_at"] = self._now_iso()
+        hass.services.async_call = AsyncMock(side_effect=Exception("Service unavailable"))
+        svc = MediaPlayerService(hass, "media_player.sonos")
+
+        result = await svc.seek_forward(10.0)
+
+        assert result is False

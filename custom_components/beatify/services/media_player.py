@@ -551,6 +551,65 @@ class MediaPlayerService:
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to set volume: {err}")
             return False
 
+    async def seek_forward(self, seconds: float = 10.0) -> bool:
+        """
+        Seek forward by a number of seconds from the current position.
+
+        Args:
+            seconds: Number of seconds to skip forward (default 10)
+
+        Returns:
+            True if successful, False otherwise
+
+        """
+        try:
+            state = self._hass.states.get(self._entity_id)
+            if not state:
+                _LOGGER.warning("Cannot seek: media player not found")
+                return False
+
+            snapshot_position = state.attributes.get("media_position")
+            if snapshot_position is None:
+                _LOGGER.warning("Cannot seek: no media_position available")
+                return False
+
+            # HA's media_position is a snapshot from media_position_updated_at.
+            # The actual position = snapshot + elapsed time since that update.
+            elapsed = 0.0
+            if state.state == "playing":
+                updated_at = state.attributes.get("media_position_updated_at")
+                if updated_at:
+                    from datetime import datetime, timezone  # noqa: PLC0415
+
+                    try:
+                        if isinstance(updated_at, str):
+                            updated_dt = datetime.fromisoformat(updated_at)
+                        else:
+                            updated_dt = updated_at
+                        now = datetime.now(timezone.utc)
+                        elapsed = max(0.0, (now - updated_dt).total_seconds())
+                    except (ValueError, TypeError):
+                        elapsed = 0.0
+
+            current_position = float(snapshot_position) + elapsed
+            new_position = current_position + seconds
+            await self._hass.services.async_call(
+                "media_player",
+                "media_seek",
+                {
+                    "entity_id": self._entity_id,
+                    "seek_position": new_position,
+                },
+            )
+            _LOGGER.info(
+                "Seeked forward %.0fs to position %.1f", seconds, new_position
+            )
+            return True  # noqa: TRY300
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to seek forward: %s", err)  # noqa: TRY400
+            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to seek: {err}")
+            return False
+
     def is_available(self) -> bool:
         """
         Check if media player is available.
