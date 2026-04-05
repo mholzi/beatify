@@ -1699,12 +1699,18 @@ export function handleNextRound() {
             action: 'next_round'
         }));
 
-        setTimeout(function() {
-            nextRoundPending = false;
-            if (revealBtn) revealBtn.disabled = false;
-            if (barBtn) barBtn.disabled = false;
-        }, NEXT_ROUND_DEBOUNCE_MS);
+        // No setTimeout here — button stays disabled until the server
+        // sends a state update (phase change to PLAYING). This prevents
+        // the button from re-enabling before the new song is ready.
     }
+}
+
+/**
+ * Reset next-round pending state. Called when a new game state arrives
+ * (phase change), so the button can be used again in the next reveal.
+ */
+export function resetNextRoundPending() {
+    nextRoundPending = false;
 }
 
 /**

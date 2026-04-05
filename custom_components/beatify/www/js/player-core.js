@@ -31,7 +31,7 @@ import {
     showReactionBar, hideReactionBar, setupReactionBar,
     showFloatingReaction,
     updateControlBarState, handleSongStopped, handleVolumeChanged,
-    handleNextRound, setupAdminControlBar, setupRevealControls,
+    handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
     setupRevealLeaderboardToggle, setupRoundAnalyticsToggle,
     resetSongStoppedState,
     showIntroSplashModal, hideIntroSplashModal
@@ -294,6 +294,11 @@ function connectWithSession() {
     var sessionCookie = getSessionCookie();
     if (!sessionCookie) return;
 
+    // Guard: don't open a second WebSocket if one is already connecting/open
+    if (state.ws && (state.ws.readyState === WebSocket.CONNECTING || state.ws.readyState === WebSocket.OPEN)) {
+        return;
+    }
+
     var wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var wsUrl = wsProtocol + '//' + window.location.host + '/beatify/ws';
 
@@ -353,6 +358,11 @@ function connectWithSession() {
 function connectWebSocket(name) {
     state.playerName = name;
     storePlayerName(name);
+
+    // Guard: don't open a second WebSocket if one is already connecting/open
+    if (state.ws && (state.ws.readyState === WebSocket.CONNECTING || state.ws.readyState === WebSocket.OPEN)) {
+        return;
+    }
 
     var wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var wsUrl = wsProtocol + '//' + window.location.host + '/beatify/ws';
@@ -478,6 +488,7 @@ function handleServerMessage(data) {
                 state.currentRoundNumber = newRound;
                 resetSubmissionState();
             }
+            resetNextRoundPending();
             setEnergyLevel('party');
             showView('game-view');
             closeInviteModal();
