@@ -237,7 +237,7 @@ class MediaPlayerService:
             _LOGGER.debug("MA URI converted: %s → %s", raw_uri, uri)
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
-        expected_title = song.get("title", "")
+        expected_title = song.get("title") or ""
 
         # Capture state before to detect actual song change on speaker
         state_before = self._hass.states.get(self._entity_id)
