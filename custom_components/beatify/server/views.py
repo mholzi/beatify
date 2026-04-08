@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hmac
 import json
 import logging
 import time
@@ -78,7 +79,9 @@ def _verify_admin_token(request: web.Request, game_state: Any) -> bool:
         token = auth[7:]
     if not token:
         token = request.query.get("admin_token")
-    return token == game_state.admin_token
+    if not token:
+        return False
+    return hmac.compare_digest(token, game_state.admin_token)
 
 
 class AdminView(HomeAssistantView):
