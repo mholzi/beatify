@@ -1849,6 +1849,12 @@ class GameState:
             return await self._media_player_service.set_volume(level)
         return False
 
+    async def seek_forward(self, seconds: int) -> bool:
+        """Seek media player forward by given seconds (#498)."""
+        if self._media_player_service:
+            return await self._media_player_service.seek_forward(seconds)
+        return False
+
     async def play_deferred_song(self, song: dict) -> bool:
         """Play a song that was deferred for intro splash (#321).
 

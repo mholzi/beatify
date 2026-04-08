@@ -551,6 +551,31 @@ class MediaPlayerService:
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to set volume: {err}")
             return False
 
+    async def seek_forward(self, seconds: int) -> bool:
+        """Seek media forward by given seconds (#498).
+
+        Reads current position from HA state and seeks to position + seconds.
+        """
+        try:
+            state = self._hass.states.get(self._entity_id)
+            if not state:
+                return False
+            current_pos = state.attributes.get("media_position", 0) or 0
+            new_pos = current_pos + seconds
+            await self._hass.services.async_call(
+                "media_player",
+                "media_seek",
+                {
+                    "entity_id": self._entity_id,
+                    "seek_position": new_pos,
+                },
+            )
+            return True  # noqa: TRY300
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to seek media: %s", err)  # noqa: TRY400
+            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to seek: {err}")
+            return False
+
     def is_available(self) -> bool:
         """
         Check if media player is available.
