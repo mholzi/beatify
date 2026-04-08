@@ -644,3 +644,5 @@ class ScoringService:
                 player.score += player.artist_bonus
             _score_movie_challenge(player, movie_challenge, add_to_score=True)
             player.intro_bonus = 0
+            player.rounds_played += 1
+            player.round_scores.append(0)

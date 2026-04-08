@@ -71,7 +71,7 @@ class PlayerSession:
 
     # Final stats tracking (Story 5.6) - CUMULATIVE, NOT reset in reset_round()
     best_streak: int = 0  # Highest streak achieved during game
-    rounds_played: int = 0  # Rounds where player submitted
+    rounds_played: int = 0  # Rounds the player participated in
     bets_won: int = 0  # Successful bets
 
     # Superlative tracking (Story 15.2) - CUMULATIVE, NOT reset in reset_round()
