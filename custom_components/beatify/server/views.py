@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hmac
 import json
 import logging
 import time
@@ -78,7 +79,9 @@ def _verify_admin_token(request: web.Request, game_state: Any) -> bool:
         token = auth[7:]
     if not token:
         token = request.query.get("admin_token")
-    return token == game_state.admin_token
+    if not token:
+        return False
+    return hmac.compare_digest(token, game_state.admin_token)
 
 
 class AdminView(HomeAssistantView):
@@ -246,6 +249,8 @@ class TtsTestView(HomeAssistantView):
     name = "beatify:api:tts-test"
     requires_auth = False
 
+    MAX_TTS_MESSAGE_LENGTH = 500
+
     RATE_LIMIT_REQUESTS = 5
     RATE_LIMIT_WINDOW = 60  # seconds
 
@@ -287,10 +292,16 @@ class TtsTestView(HomeAssistantView):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")
-        message = body.get("message", "")
+        message = body.get("message", "")[:self.MAX_TTS_MESSAGE_LENGTH]
         if not entity_id or not message:
             return web.json_response(
                 {"error": "entity_id and message required"}, status=400
+            )
+
+        state = self.hass.states.get(entity_id)
+        if not state or state.domain not in ("media_player", "tts"):
+            return web.json_response(
+                {"error": "Invalid or unsupported entity_id"}, status=400
             )
 
         try:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import hmac
 import logging
 import time
 from typing import TYPE_CHECKING
@@ -358,7 +359,7 @@ class BeatifyWebSocketHandler:
         a player.
         """
         token = data.get("admin_token")
-        if not token or token != game_state.admin_token:
+        if not token or not hmac.compare_digest(token, game_state.admin_token):
             await ws.send_json(
                 {
                     "type": "error",
