@@ -330,6 +330,10 @@ class RoundManager:
         if song:
             await play_deferred_song(song)
 
+        # Cancel any existing timers to prevent leaks on double-tap (#493)
+        self.cancel_timer()
+        self._cancel_intro_timer()
+
         # Recalculate deadline from now
         now = self._now()
         self.round_start_time = now
