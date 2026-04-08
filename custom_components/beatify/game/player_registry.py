@@ -200,11 +200,18 @@ class PlayerRegistry:
         return all(p.submitted for p in connected_players)
 
     def get_average_score(self) -> int:
-        """Calculate average score of all current players."""
-        if not self.players:
+        """Calculate average score for late joiners.
+
+        Uses only players who have completed at least one round to avoid
+        inflating the average with other late joiners' initial scores (#494).
+        """
+        scored_players = [
+            p for p in self.players.values() if p.rounds_played > 0
+        ]
+        if not scored_players:
             return 0
-        total = sum(p.score for p in self.players.values())
-        return round(total / len(self.players))
+        total = sum(p.score for p in scored_players)
+        return round(total / len(scored_players))
 
     def set_admin(self, name: str) -> bool:
         """

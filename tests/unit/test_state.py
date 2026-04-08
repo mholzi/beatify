@@ -319,14 +319,27 @@ class TestGetAverageScore:
     def test_single_player(self):
         self.state.add_player("Alice", MagicMock())
         self.state.players["Alice"].score = 40
+        self.state.players["Alice"].rounds_played = 1
         assert self.state.get_average_score() == 40
 
     def test_multiple_players(self):
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
         self.state.players["Alice"].score = 40
+        self.state.players["Alice"].rounds_played = 1
         self.state.players["Bob"].score = 60
+        self.state.players["Bob"].rounds_played = 1
         assert self.state.get_average_score() == 50
+
+    def test_excludes_unscored_late_joiners(self):
+        self.state.add_player("Alice", MagicMock())
+        self.state.add_player("Bob", MagicMock())
+        self.state.players["Alice"].score = 40
+        self.state.players["Alice"].rounds_played = 1
+        # Bob is a late joiner with no rounds played
+        self.state.players["Bob"].score = 40
+        self.state.players["Bob"].rounds_played = 0
+        assert self.state.get_average_score() == 40
 
 
 # ---------------------------------------------------------------------------
