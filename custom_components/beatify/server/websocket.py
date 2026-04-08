@@ -114,7 +114,7 @@ class BeatifyWebSocketHandler:
         times.append(now)
         return True
 
-    async def handle(self, request: web.Request) -> web.WebSocketResponse:
+    async def handle(self, request: web.Request) -> web.StreamResponse:
         """
         Handle WebSocket connection.
 
