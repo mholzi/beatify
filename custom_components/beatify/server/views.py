@@ -246,6 +246,8 @@ class TtsTestView(HomeAssistantView):
     name = "beatify:api:tts-test"
     requires_auth = False
 
+    MAX_TTS_MESSAGE_LENGTH = 500
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
@@ -258,10 +260,16 @@ class TtsTestView(HomeAssistantView):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")
-        message = body.get("message", "")
+        message = body.get("message", "")[:self.MAX_TTS_MESSAGE_LENGTH]
         if not entity_id or not message:
             return web.json_response(
                 {"error": "entity_id and message required"}, status=400
+            )
+
+        state = self.hass.states.get(entity_id)
+        if not state or state.domain not in ("media_player", "tts"):
+            return web.json_response(
+                {"error": "Invalid or unsupported entity_id"}, status=400
             )
 
         try:
