@@ -52,6 +52,8 @@ class BeatifyWebSocketHandler:
     # Ping interval in seconds (must be less than proxy timeout, typically 60s)
     # aiohttp's heartbeat sends ping frames automatically
     HEARTBEAT_INTERVAL = 30
+    RATE_LIMIT_CONNECTIONS = 10
+    RATE_LIMIT_WINDOW = 60  # seconds
 
     def __init__(self, hass: HomeAssistant) -> None:
         """
@@ -69,6 +71,8 @@ class BeatifyWebSocketHandler:
         # Debouncing for concurrent player joins (Issue #41)
         self._broadcast_debounce_task: asyncio.Task | None = None
         self._broadcast_debounce_delay = 0.05  # 50ms
+        self._connection_rate_limits: dict[str, list[float]] = {}
+        self._last_rate_sweep: float = 0.0
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -92,6 +96,24 @@ class BeatifyWebSocketHandler:
         if self._analytics:
             self._analytics.record_error(error_type, message)
 
+    def _check_connection_rate_limit(self, ip: str) -> bool:
+        """Check if IP is within WebSocket connection rate limit."""
+        now = time.time()
+        cutoff = now - self.RATE_LIMIT_WINDOW
+        if now - self._last_rate_sweep > 300:
+            self._connection_rate_limits = {
+                k: [t for t in v if t > cutoff]
+                for k, v in self._connection_rate_limits.items()
+                if any(t > cutoff for t in v)
+            }
+            self._last_rate_sweep = now
+        times = [t for t in self._connection_rate_limits.get(ip, []) if t > cutoff]
+        self._connection_rate_limits[ip] = times
+        if len(times) >= self.RATE_LIMIT_CONNECTIONS:
+            return False
+        times.append(now)
+        return True
+
     async def handle(self, request: web.Request) -> web.WebSocketResponse:
         """
         Handle WebSocket connection.
@@ -103,6 +125,10 @@ class BeatifyWebSocketHandler:
             WebSocket response
 
         """
+        client_ip = request.remote or "unknown"
+        if not self._check_connection_rate_limit(client_ip):
+            return web.Response(status=429, text="Too many connections")
+
         # heartbeat parameter enables automatic ping/pong to prevent proxy timeouts
         ws = web.WebSocketResponse(heartbeat=self.HEARTBEAT_INTERVAL)
         await ws.prepare(request)
