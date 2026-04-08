@@ -961,12 +961,13 @@ class GameState:
                 _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
 
                 # Issue #416: Restart intro stop timer if this was an intro round
+                # Issue #496: Use actual playing time (excludes pause duration)
                 if (
                     self.is_intro_round
                     and not self.intro_stopped
                     and self._intro_round_start_time is not None
                 ):
-                    elapsed_intro = self._now() - self._intro_round_start_time
+                    elapsed_intro = self._round_manager.round_duration - remaining_seconds
                     remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
                     if remaining_intro > 0:
                         self._round_manager._intro_stop_task = asyncio.create_task(
