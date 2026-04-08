@@ -45,6 +45,7 @@ from custom_components.beatify.const import (
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    STREAK_MILESTONES,
     VOLUME_STEP,
 )
 
@@ -1632,7 +1633,7 @@ class GameState:
                 )
 
             # Streak milestones (3, 5, 7+)
-            if player.streak in (3, 5, 7):
+            if player.streak in STREAK_MILESTONES:
                 self.highlights_tracker.record_streak(
                     player.name, player.streak, self.round
                 )
