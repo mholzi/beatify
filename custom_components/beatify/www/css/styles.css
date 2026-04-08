@@ -8679,3 +8679,214 @@ body.device-tier-low .reveal-skip-hint {
     flex-shrink: 0;
     font-weight: 500;
 }
+
+/* ============================================
+   Issue #477: Admin Game Phase Views
+   ============================================ */
+
+.admin-game-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.admin-phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.round-badge {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.timer-badge {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    min-width: 3em;
+    text-align: center;
+}
+
+.timer-badge.timer-warning {
+    color: var(--color-warning, #f59e0b);
+}
+
+.timer-badge.timer-critical {
+    color: var(--color-danger, #ef4444);
+    animation: pulse-critical 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-critical {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+.admin-song-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.admin-album-art {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.admin-song-meta {
+    min-width: 0;
+}
+
+.admin-song-title {
+    font-weight: 600;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-song-artist {
+    color: var(--text-secondary, #aaa);
+    font-size: 0.9rem;
+}
+
+.admin-control-bar {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+}
+
+.btn-compact {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.admin-player-panel {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.admin-year-selector {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.admin-year-selector .year-display {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    font-variant-numeric: tabular-nums;
+}
+
+.admin-year-selector .year-slider {
+    width: 100%;
+    margin-bottom: var(--space-xs);
+}
+
+.year-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-secondary, #aaa);
+}
+
+.last-round-banner {
+    text-align: center;
+    padding: var(--space-sm);
+    background: var(--color-warning, #f59e0b);
+    color: #000;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+.submission-status {
+    text-align: center;
+    color: var(--text-secondary, #aaa);
+    font-size: 0.9rem;
+    margin-top: var(--space-sm);
+}
+
+/* Reveal */
+.reveal-year-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: var(--space-md) 0;
+    color: var(--color-primary, #1db954);
+}
+
+.admin-personal-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.score-badge {
+    font-weight: 700;
+    color: var(--color-primary, #1db954);
+}
+
+/* Leaderboard */
+.admin-leaderboard-container {
+    margin-bottom: var(--space-md);
+}
+
+.admin-leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-leaderboard th {
+    text-align: left;
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm);
+    border-bottom: 1px solid var(--color-border-light);
+    font-size: 0.85rem;
+    color: var(--text-secondary, #aaa);
+}
+
+.admin-leaderboard td {
+    padding: var(--space-xs) var(--space-sm);
+}
+
+.admin-leaderboard tr.admin-highlight td {
+    font-weight: 600;
+    color: var(--color-primary, #1db954);
+}
+
+/* End */
+.admin-winner-display {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: var(--space-lg) 0;
+}
+
+.winner-trophy {
+    font-size: 2rem;
+}
+
+.admin-end-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-top: var(--space-md);
+}

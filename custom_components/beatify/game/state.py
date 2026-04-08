@@ -155,6 +155,9 @@ class GameState:
         # Issue #442: Closest Wins mode
         self.closest_wins_mode: bool = False
 
+        # Issue #477: Admin spectator WebSocket (host without being a player)
+        self._admin_ws: web.WebSocketResponse | None = None
+
         # Issue #42: Metadata update callback
         self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = (
             None
@@ -791,6 +794,9 @@ class GameState:
         service refs (_stats_service, _on_round_end, _on_metadata_update),
         or volume_level (caller's responsibility).
         """
+        # Issue #477: Clear admin spectator WS (connection stays open, just de-ref)
+        self._admin_ws = None
+
         # Issue #464: Reset round lifecycle (timers, metadata, intro state)
         self._round_manager.reset()
         self.cancel_timer()

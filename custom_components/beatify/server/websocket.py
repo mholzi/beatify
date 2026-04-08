@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import hmac
 import logging
 import time
 from typing import TYPE_CHECKING
@@ -30,6 +31,7 @@ from custom_components.beatify.const import (
     ERR_ROUND_EXPIRED,
     ERR_SESSION_NOT_FOUND,
     ERR_SESSION_TAKEOVER,
+    ERR_UNAUTHORIZED,
     LOBBY_DISCONNECT_GRACE_PERIOD,
     YEAR_MAX,
     YEAR_MIN,
@@ -161,6 +163,7 @@ class BeatifyWebSocketHandler:
             "join": self._handle_join,
             "submit": self._handle_submit,
             "admin": self._handle_admin,
+            "admin_connect": self._handle_admin_connect,
             "reconnect": self._handle_reconnect,
             "leave": self._handle_leave,
             "get_state": self._handle_get_state,
@@ -320,6 +323,37 @@ class BeatifyWebSocketHandler:
                 }
             )
 
+    async def _handle_admin_connect(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin spectator connection (Issue #477).
+
+        Authenticates via admin_token and stores the WebSocket on GameState
+        so the admin can receive broadcasts and send commands without being
+        a player.
+        """
+        token = data.get("admin_token")
+        if not token or not hmac.compare_digest(token, game_state.admin_token):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_UNAUTHORIZED,
+                    "message": "Invalid admin token",
+                }
+            )
+            return
+
+        game_state._admin_ws = ws
+        _LOGGER.info("Admin spectator connected via WebSocket")
+
+        # Send ack + current game state
+        await ws.send_json(
+            {"type": "admin_connect_ack", "game_id": game_state.game_id}
+        )
+        state_msg = build_state_message(game_state)
+        if state_msg:
+            await ws.send_json(state_msg)
+
     async def _handle_admin(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
@@ -334,14 +368,19 @@ class BeatifyWebSocketHandler:
         """
         action = data.get("action")
 
-        # Find sender's player session
+        # Issue #477: Accept commands from admin spectator WS or is_admin player
+        is_admin_ws = (
+            game_state._admin_ws is not None and game_state._admin_ws is ws
+        )
+
+        # Find sender's player session (may be None for spectator-only admin)
         sender = None
         for player in list(game_state.players.values()):
             if player.ws == ws:
                 sender = player
                 break
 
-        if not sender or not sender.is_admin:
+        if not (is_admin_ws or (sender and sender.is_admin)):
             await ws.send_json(
                 {
                     "type": "error",
@@ -1434,6 +1473,11 @@ class BeatifyWebSocketHandler:
                 player = p
                 player.connected = False
                 break
+
+        # Issue #477: Clear admin spectator WS if it disconnected
+        if game_state._admin_ws is ws:
+            game_state._admin_ws = None
+            _LOGGER.info("Admin spectator WebSocket disconnected")
 
         if not player_name or not player:
             return

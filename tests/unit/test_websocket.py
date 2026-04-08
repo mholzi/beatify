@@ -17,9 +17,11 @@ from custom_components.beatify.const import (
     ERR_NAME_TAKEN,
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
+    ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
     ERR_SESSION_NOT_FOUND,
+    ERR_UNAUTHORIZED,
     YEAR_MAX,
     YEAR_MIN,
 )
@@ -703,3 +705,105 @@ class TestUnknownMessage:
 
         # No error sent to client for unknown types (just logged)
         ws.send_json.assert_not_awaited()
+
+
+# ---------------------------------------------------------------------------
+# Admin connect (Issue #477)
+# ---------------------------------------------------------------------------
+
+
+class TestAdminConnect:
+    """Tests for admin spectator WebSocket connection."""
+
+    async def test_valid_token_stores_ws_and_sends_ack(self):
+        handler, game_state, ws = _make_handler_and_game()
+        handler.connections.add(ws)
+
+        await handler._handle_message(
+            ws, {"type": "admin_connect", "admin_token": game_state.admin_token}
+        )
+
+        assert game_state._admin_ws is ws
+        # First call: ack, second call: state
+        calls = ws.send_json.call_args_list
+        assert calls[0][0][0]["type"] == "admin_connect_ack"
+        assert calls[0][0][0]["game_id"] == game_state.game_id
+        assert calls[1][0][0]["type"] == "state"
+
+    async def test_invalid_token_rejected(self):
+        handler, game_state, ws = _make_handler_and_game()
+
+        await handler._handle_message(
+            ws, {"type": "admin_connect", "admin_token": "wrong-token"}
+        )
+
+        assert game_state._admin_ws is None
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_UNAUTHORIZED
+
+    async def test_missing_token_rejected(self):
+        handler, game_state, ws = _make_handler_and_game()
+
+        await handler._handle_message(ws, {"type": "admin_connect"})
+
+        assert game_state._admin_ws is None
+        msg = ws.send_json.call_args[0][0]
+        assert msg["code"] == ERR_UNAUTHORIZED
+
+    async def test_admin_command_from_admin_ws(self):
+        """Admin spectator (not a player) can send admin commands.
+
+        We test with set_volume since start_game requires a media player.
+        The key assertion is that the command is NOT rejected with NOT_ADMIN.
+        """
+        handler, game_state, ws = _make_handler_and_game()
+        handler.connections.add(ws)
+
+        # Connect as admin spectator
+        await handler._handle_message(
+            ws, {"type": "admin_connect", "admin_token": game_state.admin_token}
+        )
+        ws.send_json.reset_mock()
+
+        # Transition to PLAYING so set_volume makes sense
+        game_state.phase = GamePhase.PLAYING
+
+        # Send admin command from spectator WS
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "set_volume", "direction": "up"}
+        )
+
+        # Should NOT get ERR_NOT_ADMIN
+        for call in ws.send_json.call_args_list:
+            msg = call[0][0]
+            if msg.get("type") == "error":
+                assert msg["code"] != ERR_NOT_ADMIN
+
+    async def test_non_admin_ws_rejected(self):
+        """Regular WS that didn't admin_connect cannot send admin commands."""
+        handler, game_state, ws = _make_handler_and_game()
+
+        await handler._handle_message(
+            ws, {"type": "admin", "action": "start_game"}
+        )
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_NOT_ADMIN
+
+    async def test_disconnect_clears_admin_ws(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state._admin_ws = ws
+
+        await handler._handle_disconnect(ws)
+
+        assert game_state._admin_ws is None
+
+    async def test_game_reset_clears_admin_ws(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state._admin_ws = ws
+
+        game_state._reset_game_internals()
+
+        assert game_state._admin_ws is None
