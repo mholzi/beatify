@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Issue #477: Wire game phase control buttons
     document.getElementById('admin-stop-song')?.addEventListener('click', adminStopSong);
+    document.getElementById('admin-seek-forward')?.addEventListener('click', adminSeekForward);
     document.getElementById('admin-vol-down')?.addEventListener('click', adminVolumeDown);
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
@@ -3022,6 +3023,12 @@ function adminNextRound() {
 function adminStopSong() {
     if (adminWs && adminWs.readyState === WebSocket.OPEN) {
         adminWs.send(JSON.stringify({ type: 'admin', action: 'stop_song' }));
+    }
+}
+
+function adminSeekForward() {
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'admin', action: 'seek_forward', seconds: 10 }));
     }
 }
 

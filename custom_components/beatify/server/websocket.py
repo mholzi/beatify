@@ -421,6 +421,7 @@ class BeatifyWebSocketHandler:
             "next_round": self._admin_next_round,
             "stop_song": self._admin_stop_song,
             "set_volume": self._admin_set_volume,
+            "seek_forward": self._admin_seek_forward,
             "end_game": self._admin_end_game,
             "dismiss_game": self._admin_dismiss_game,
             "rematch_game": self._admin_rematch_game,
@@ -645,6 +646,17 @@ class BeatifyWebSocketHandler:
                 "level": new_level,
             }
         )
+
+    async def _admin_seek_forward(
+        self, ws: web.WebSocketResponse, data: dict, game_state: GameState
+    ) -> None:
+        """Handle admin seek_forward action (#498)."""
+        if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
+            return
+        seconds = data.get("seconds", 10)
+        success = await game_state.seek_forward(seconds)
+        if success:
+            _LOGGER.info("Media seeked forward %ds", seconds)
 
     async def _admin_end_game(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
