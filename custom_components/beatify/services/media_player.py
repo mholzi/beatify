@@ -238,11 +238,10 @@ class MediaPlayerService:
             _LOGGER.debug("MA URI converted: %s → %s", raw_uri, uri)
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
+        expected_title = song.get("title") or ""
+
         # Capture state before to detect actual song change on speaker
         state_before = self._hass.states.get(self._entity_id)
-        title_before = (
-            state_before.attributes.get("media_title") if state_before else None
-        )
         position_updated_before = (
             state_before.attributes.get("media_position_updated_at")
             if state_before
@@ -258,10 +257,14 @@ class MediaPlayerService:
             blocking=False,
         )
 
-        # Wait for the song to actually play on the speaker:
-        # - media_title changed (new song queued)
-        # - media_position is low (< 5s = song just started, not leftover from old song)
+        # Wait for the EXPECTED song to actually play on the speaker:
+        # - media_title contains expected title (not just "any change" — prevents
+        #   race condition where a previous slow song arrives during retry)
+        # - media_position >= 1 (pos=0 means only queued in MA, not yet playing)
         # - media_position_updated_at changed (speaker is actively reporting)
+        expected_lower = expected_title.lower()
+        if not expected_lower:
+            _LOGGER.warning("MA playback: no expected title — skipping title verification")
         elapsed = 0.0
         while elapsed < PLAYBACK_TIMEOUT:
             try:
@@ -276,13 +279,16 @@ class MediaPlayerService:
                 position = state.attributes.get("media_position", 0)
                 position_updated = state.attributes.get("media_position_updated_at")
 
-                title_changed = current_title and current_title != title_before
                 position_fresh = position_updated != position_updated_before
-                # position >= 1 means speaker is actually outputting audio
-                # position == 0 only means "queued" in MA, not yet playing
                 actually_playing = isinstance(position, (int, float)) and position >= 1
+                # Match expected title (substring, case-insensitive) — MA may
+                # append suffixes like "(Official HD Video)" or "(7″ mix)"
+                title_matches = (
+                    (not expected_lower)  # no title to verify — accept any
+                    or (expected_lower in current_title.lower() if current_title else False)
+                )
 
-                if title_changed and position_fresh and actually_playing:
+                if title_matches and position_fresh and actually_playing:
                     _LOGGER.debug(
                         "MA playback confirmed after %.1fs: %s (pos=%.1f)",
                         elapsed,
@@ -294,14 +300,24 @@ class MediaPlayerService:
             elapsed += 0.5
 
         current_state = self._hass.states.get(self._entity_id)
+        speaker_state = current_state.state if current_state else "unknown"
+
+        # Hard failure: speaker is idle/unavailable/off — song won't play
+        if speaker_state in ("idle", "unavailable", "off", "unknown"):
+            _LOGGER.error(
+                "MA playback failed after %.1fs for %s (state: %s)",
+                PLAYBACK_TIMEOUT, uri, speaker_state,
+            )
+            return False
+
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s). "
-            "Returning failure so the round can retry or skip. (#418)",
-            PLAYBACK_TIMEOUT,
-            uri,
-            current_state.state if current_state else "unknown",
+            "Continuing anyway — MA may still be buffering. (#345)",
+            PLAYBACK_TIMEOUT, uri, speaker_state,
         )
-        return False
+        # Return True: don't skip the song — MA+YTMusic can take >8s to buffer.
+        # Returning False would trigger retries that cause race conditions (#345).
+        return True
 
     async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
         """Play via Sonos (URI-based)."""

@@ -174,7 +174,7 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is False  # #418: returns False on timeout so round can retry
+        assert result is True  # #345: return True on timeout — MA may still be buffering
         assert poll_count >= 4  # but waited until timeout
 
     @pytest.mark.asyncio
@@ -240,8 +240,8 @@ class TestMANonBlockingPlayback:
         assert poll_count >= 8  # waited for the full realistic flow
 
     @pytest.mark.asyncio
-    async def test_ma_returns_false_on_timeout(self):
-        """Should return False if playback never confirmed (#418: allow retry/skip)."""
+    async def test_ma_returns_true_even_on_timeout(self):
+        """Should return True even if playback never confirmed — MA may still be buffering (#345)."""
         hass = _make_hass("buffering", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
@@ -254,7 +254,7 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is False
+        assert result is True
 
     @pytest.mark.asyncio
     async def test_ma_first_song_no_previous_title(self):
@@ -305,6 +305,86 @@ class TestMANonBlockingPlayback:
             call_kwargs.kwargs.get("blocking") is True
             or call_kwargs[1].get("blocking") is True
         )
+
+
+    @pytest.mark.asyncio
+    async def test_ma_ignores_wrong_song_from_previous_request(self):
+        """If a previous slow song arrives, it must NOT be accepted as confirmation.
+
+        Regression test for race condition: retry fires Song 2 but Song 1
+        (from a previous timed-out request) starts playing first. The polling
+        must check that the EXPECTED title is playing, not just "any change".
+        """
+        hass = _make_hass("idle", media_title="")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        poll_count = 0
+        idle_state = _make_state(
+            "idle",
+            media_title="",
+            media_position=0,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        # Wrong song arrives (from a previous timed-out request)
+        wrong_song = _make_state(
+            "playing",
+            media_title="What Is Love",
+            media_position=1,
+            media_position_updated_at="2020-01-01T00:00:05+00:00",
+        )
+        # Correct song finally arrives
+        correct_song = _make_state(
+            "playing",
+            media_title="Ready or Not",
+            media_position=1,
+            media_position_updated_at="2020-01-01T00:00:12+00:00",
+        )
+
+        def race_condition_flow(*args):
+            nonlocal poll_count
+            poll_count += 1
+            if poll_count <= 1:
+                return idle_state  # before
+            if poll_count <= 5:
+                return wrong_song  # WRONG song playing — must NOT confirm
+            return correct_song  # correct song arrives
+
+        hass.states.get = MagicMock(side_effect=race_condition_flow)
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            result = await svc.play_song(_make_song(title="Ready or Not"))
+
+        assert result is True
+        assert poll_count >= 6  # Must have waited past the wrong song
+
+    @pytest.mark.asyncio
+    async def test_ma_matches_title_with_suffix(self):
+        """MA may append suffixes like '(Official HD Video)' — match by substring."""
+        hass = _make_hass("idle", media_title="")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        idle_state = _make_state(
+            "idle", media_title="", media_position=0,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        playing_with_suffix = _make_state(
+            "playing",
+            media_title="Ready Or Not (Official HD Video)",
+            media_position=1,
+            media_position_updated_at="2020-01-01T00:00:05+00:00",
+        )
+        hass.states.get = MagicMock(side_effect=[idle_state, playing_with_suffix])
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            result = await svc.play_song(_make_song(title="Ready or Not"))
+
+        assert result is True
 
 
 class TestAvailabilityCheck:

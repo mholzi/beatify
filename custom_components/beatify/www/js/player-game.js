@@ -1699,11 +1699,31 @@ export function handleNextRound() {
             action: 'next_round'
         }));
 
-        setTimeout(function() {
-            nextRoundPending = false;
-            if (revealBtn) revealBtn.disabled = false;
-            if (barBtn) barBtn.disabled = false;
-        }, NEXT_ROUND_DEBOUNCE_MS);
+        // No setTimeout here — button stays disabled until the server
+        // sends a state update (phase change to PLAYING). This prevents
+        // the button from re-enabling before the new song is ready.
+    }
+}
+
+/**
+ * Reset next-round pending state. Called when a new game state arrives
+ * (phase change), so the button can be used again in the next reveal.
+ * Note: updateRevealView() in player-reveal.js already re-enables the
+ * button and resets its text on each REVEAL phase — this is a defensive
+ * measure to ensure consistent state even if the call order changes.
+ */
+export function resetNextRoundPending() {
+    nextRoundPending = false;
+    var revealBtn = document.getElementById('next-round-btn');
+    var barBtn = document.getElementById('next-round-admin-btn');
+    if (revealBtn) {
+        revealBtn.disabled = false;
+        revealBtn.textContent = utils.t('admin.nextRound');
+    }
+    if (barBtn) {
+        barBtn.disabled = false;
+        var labelEl = barBtn.querySelector('.control-label');
+        if (labelEl) labelEl.textContent = utils.t('admin.nextRound');
     }
 }
 
