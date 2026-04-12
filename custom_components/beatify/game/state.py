@@ -1582,13 +1582,21 @@ class GameState:
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
-        # Issue #331: Update Party Lights for reveal phase + flash on exact matches
+        # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
         if correct_year is not None:
+            has_exact = False
+            has_correct = False
             for p in self.players.values():
-                if p.submitted and p.years_off == 0:
-                    await self._lights_flash("gold")
-                    break  # One flash per round is enough
+                if p.submitted and p.years_off is not None:
+                    if p.years_off == 0:
+                        has_exact = True
+                    elif p.years_off <= 1:
+                        has_correct = True
+            if has_exact:
+                await self._lights_flash("gold")
+            elif has_correct:
+                await self._lights_flash("green")
 
         _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
 
@@ -1633,11 +1641,15 @@ class GameState:
                     player.name, song_title, 1, self.round
                 )
 
-            # Streak milestones (3, 5, 7+)
+            # Streak milestones
             if player.streak in STREAK_MILESTONES:
                 self.highlights_tracker.record_streak(
                     player.name, player.streak, self.round
                 )
+                # Fire-and-forget flash (sync context — cannot await)
+                task = asyncio.create_task(self._lights_flash("orange"))
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
 
             # Bet win
             if player.bet_outcome == "won" and player.round_score >= 10:
@@ -1872,7 +1884,11 @@ class GameState:
     # ------------------------------------------------------------------
 
     async def configure_party_lights(
-        self, entity_ids: list[str], intensity: str = "medium"
+        self,
+        entity_ids: list[str],
+        intensity: str = "medium",
+        light_mode: str = "dynamic",
+        wled_presets: dict[str, int] | None = None,
     ) -> None:
         """Configure and start Party Lights for the game."""
         # Lazy import: only the concrete class for instantiation; type hints
@@ -1880,7 +1896,7 @@ class GameState:
         from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
 
         self._party_lights = PartyLightsService(self._hass)
-        await self._party_lights.start(entity_ids, intensity)
+        await self._party_lights.start(entity_ids, intensity, light_mode, wled_presets)
 
     async def disable_party_lights(self) -> None:
         """Stop Party Lights and restore original light states."""
@@ -1905,6 +1921,16 @@ class GameState:
                 task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights flash failed")
+
+    async def _lights_strobe(self, count: int = 5) -> None:
+        """Run Party Lights strobe effect (fire-and-forget)."""
+        if self._party_lights:
+            try:
+                task = asyncio.create_task(self._party_lights.strobe(count))
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Party Lights strobe failed")
 
     async def _lights_celebrate(self) -> None:
         """Run Party Lights celebration (fire-and-forget)."""
