@@ -32,58 +32,95 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class PlaylistManager:
-    """Manages song selection and played tracking."""
+    """Manages song selection and played tracking.
+
+    When multiple playlists are selected, uses balanced selection (#525):
+    picks a random playlist first (equal weight), then a random unplayed
+    song from that playlist. This ensures equal representation regardless
+    of playlist size. Cross-playlist duplicates are deduplicated by URI.
+    """
 
     def __init__(
         self, songs: list[dict[str, Any]], provider: str = PROVIDER_DEFAULT
     ) -> None:
-        """
-        Initialize with list of songs from loaded playlists.
-
-        Each song dict must have: year, and at least one valid URI field
-        Optional fields: fun_fact, fun_fact_de, fun_fact_es, fun_fact_fr, fun_fact_nl, awards, awards_de, awards_es, awards_fr, awards_nl
+        """Initialize with list of songs from loaded playlists.
 
         Args:
-            songs: List of song dictionaries
-            provider: Music provider to use (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+            songs: List of song dictionaries (may include _playlist_source tag)
+            provider: Music provider to use
 
         """
         self._provider = provider
         total_count = len(songs)
         filtered_songs, _ = filter_songs_for_provider(songs, provider)
-        self._songs = filtered_songs
         self._played_uris: set[str] = set()
+
+        # Group songs into per-playlist buckets, deduplicating by URI
+        seen_uris: set[str] = set()
+        buckets: dict[str, list[dict[str, Any]]] = {}
+        for song in filtered_songs:
+            uri = get_song_uri(song, provider)
+            if not uri or uri in seen_uris:
+                continue
+            seen_uris.add(uri)
+            source = song.get("_playlist_source", "__default__")
+            buckets.setdefault(source, []).append(song)
+
+        self._buckets = buckets
+        self._songs = [s for bucket in buckets.values() for s in bucket]
+        self._multi_playlist = len(buckets) > 1
+
+        deduped = sum(len(v) for v in buckets.values())
         _LOGGER.info(
-            "PlaylistManager: %d/%d songs available for %s",
-            len(self._songs),
-            total_count,
-            provider,
+            "PlaylistManager: %d/%d songs across %d playlist(s) for %s"
+            + (" (balanced mode)" if self._multi_playlist else ""),
+            deduped, total_count, len(buckets), provider,
         )
 
     def get_next_song(self) -> dict[str, Any] | None:
-        """
-        Get random unplayed song.
+        """Get random unplayed song with balanced playlist selection.
 
         Returns:
             Song dict with _resolved_uri added, or None if all songs played
 
         """
+        if not self._multi_playlist:
+            return self._pick_from_pool(self._songs)
+
+        # Balanced: pick a random non-exhausted playlist, then a song
+        active_buckets = {
+            k: [
+                s for s in v
+                if get_song_uri(s, self._provider) not in self._played_uris
+            ]
+            for k, v in self._buckets.items()
+        }
+        active_buckets = {k: v for k, v in active_buckets.items() if v}
+
+        if not active_buckets:
+            return None
+
+        chosen_key = random.choice(list(active_buckets.keys()))  # noqa: S311
+        song = random.choice(active_buckets[chosen_key])  # noqa: S311
+        song_copy = song.copy()
+        song_copy["_resolved_uri"] = get_song_uri(song, self._provider)
+        return song_copy
+
+    def _pick_from_pool(self, pool: list[dict[str, Any]]) -> dict[str, Any] | None:
+        """Pick a random unplayed song from a flat pool."""
         available = [
-            s
-            for s in self._songs
+            s for s in pool
             if get_song_uri(s, self._provider) not in self._played_uris
         ]
         if not available:
             return None
         song = random.choice(available)  # noqa: S311
-        # Add resolved URI to returned song dict
         song_copy = song.copy()
         song_copy["_resolved_uri"] = get_song_uri(song, self._provider)
         return song_copy
 
     def mark_played(self, uri: str) -> None:
-        """
-        Mark a song as played.
+        """Mark a song as played.
 
         Args:
             uri: Song URI to mark as played
@@ -96,8 +133,7 @@ class PlaylistManager:
         self._played_uris.clear()
 
     def get_remaining_count(self) -> int:
-        """
-        Get count of unplayed songs.
+        """Get count of unplayed songs.
 
         Returns:
             Number of songs not yet played
@@ -106,8 +142,7 @@ class PlaylistManager:
         return len(self._songs) - len(self._played_uris)
 
     def get_total_count(self) -> int:
-        """
-        Get total song count.
+        """Get total song count.
 
         Returns:
             Total number of songs in playlist

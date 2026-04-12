@@ -485,7 +485,9 @@ class StartGameView(HomeAssistantView):
 
                 for song in playlist_data.get("songs", []):
                     if "year" in song and "uri" in song:
-                        songs.append(song)
+                        tagged = dict(song)
+                        tagged["_playlist_source"] = playlist_path
+                        songs.append(tagged)
                     else:
                         warnings.append(f"Invalid song in {playlist_path}: missing year or uri")
 
