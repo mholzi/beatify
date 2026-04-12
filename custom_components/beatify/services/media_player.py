@@ -262,6 +262,8 @@ class MediaPlayerService:
         # - media_position >= 1 (pos=0 means only queued in MA, not yet playing)
         # - media_position_updated_at changed (speaker is actively reporting)
         expected_lower = expected_title.lower()
+        if not expected_lower:
+            _LOGGER.warning("MA playback: no expected title — skipping title verification")
         elapsed = 0.0
         while elapsed < PLAYBACK_TIMEOUT:
             try:
@@ -281,7 +283,8 @@ class MediaPlayerService:
                 # Match expected title (substring, case-insensitive) — MA may
                 # append suffixes like "(Official HD Video)" or "(7″ mix)"
                 title_matches = (
-                    expected_lower in current_title.lower() if current_title else False
+                    (not expected_lower)  # no title to verify — accept any
+                    or (expected_lower in current_title.lower() if current_title else False)
                 )
 
                 if title_matches and position_fresh and actually_playing:
@@ -296,12 +299,20 @@ class MediaPlayerService:
             elapsed += 0.5
 
         current_state = self._hass.states.get(self._entity_id)
+        speaker_state = current_state.state if current_state else "unknown"
+
+        # Hard failure: speaker is idle/unavailable/off — song won't play
+        if speaker_state in ("idle", "unavailable", "off", "unknown"):
+            _LOGGER.error(
+                "MA playback failed after %.1fs for %s (state: %s)",
+                PLAYBACK_TIMEOUT, uri, speaker_state,
+            )
+            return False
+
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s). "
             "Continuing anyway — MA may still be buffering. (#345)",
-            PLAYBACK_TIMEOUT,
-            uri,
-            current_state.state if current_state else "unknown",
+            PLAYBACK_TIMEOUT, uri, speaker_state,
         )
         # Return True: don't skip the song — MA+YTMusic can take >8s to buffer.
         # Returning False would trigger retries that cause race conditions (#345).
