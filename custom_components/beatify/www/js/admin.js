@@ -257,8 +257,8 @@ function setupCollapsibleSections() {
         }
     });
 
-    // Lobby section toggles (new compact layout)
-    document.querySelectorAll('.lobby-container--compact .section-header-collapsible').forEach(function(header) {
+    // Generic collapsible section toggles (lobby, HA entities, Party Lights, TTS, etc.)
+    document.querySelectorAll('.section-header-collapsible').forEach(function(header) {
         header.addEventListener('click', function() {
             const section = header.closest('.section-collapsible');
             if (section) {
