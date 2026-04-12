@@ -706,12 +706,9 @@ class RematchGameView(HomeAssistantView):
                 status=404,
             )
 
-        if not _verify_admin_token(request, game_state):
-            return web.json_response(
-                {"error": "UNAUTHORIZED", "message": "Admin token required"},
-                status=403,
-            )
-
+        # Rematch is safe without token — game is already in END phase,
+        # and the action just resets for a new game with the same players.
+        # Token auth was blocking rematch from the player page (#535).
         if game_state.phase != GamePhase.END:
             return web.json_response(
                 {"error": "INVALID_PHASE", "message": "Can only rematch from END phase"},
