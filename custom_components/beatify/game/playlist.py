@@ -187,7 +187,11 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
 
     loop = asyncio.get_event_loop()
 
-    for playlist_file in bundled_dir.glob("**/*.json"):
+    # Offload blocking glob to executor to avoid scandir in event loop (#516)
+    playlist_files = await loop.run_in_executor(
+        None, lambda: list(bundled_dir.glob("**/*.json"))
+    )
+    for playlist_file in playlist_files:
         # Preserve relative path (e.g. community/greatest-metal-songs.json)
         rel = playlist_file.relative_to(bundled_dir)
         dest_file = dest_dir / rel
@@ -420,7 +424,11 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
 
     loop = asyncio.get_event_loop()
 
-    for json_file in playlist_dir.glob("**/*.json"):
+    # Offload blocking glob to executor to avoid scandir in event loop (#516)
+    json_files = await loop.run_in_executor(
+        None, lambda: list(playlist_dir.glob("**/*.json"))
+    )
+    for json_file in json_files:
         try:
             content = await loop.run_in_executor(None, _read_file, json_file)
             data = json.loads(content)
