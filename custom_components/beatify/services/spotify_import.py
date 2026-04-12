@@ -220,7 +220,6 @@ async def async_import_playlist(
     client_id = credentials["client_id"]
     client_secret = credentials["client_secret"]
 
-    semaphore = asyncio.Semaphore(1)
 
     async with aiohttp.ClientSession() as session:
         # Fetch token and tracks
@@ -246,9 +245,8 @@ async def async_import_playlist(
         # Enrich each track via Odesli with rate limiting
         enriched_songs: list[dict[str, Any]] = []
         for track in tracks:
-            async with semaphore:
-                uris = await async_enrich_via_odesli(session, track["uri"])
-                await asyncio.sleep(0.2)
+            uris = await async_enrich_via_odesli(session, track["uri"])
+            await asyncio.sleep(0.2)
 
             song = {
                 "year": track["year"],

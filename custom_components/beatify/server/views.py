@@ -1344,7 +1344,7 @@ class EditPlaylistView(HomeAssistantView):
         try:
             file_path = file_path.resolve()
             playlist_dir_resolved = playlist_dir.resolve()
-            if not str(file_path).startswith(str(playlist_dir_resolved)):
+            if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
         except Exception:  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
@@ -1383,7 +1383,7 @@ class EditPlaylistView(HomeAssistantView):
         try:
             file_path = file_path.resolve()
             playlist_dir_resolved = playlist_dir.resolve()
-            if not str(file_path).startswith(str(playlist_dir_resolved)):
+            if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
         except Exception:  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
@@ -1435,7 +1435,7 @@ class EditPlaylistView(HomeAssistantView):
         try:
             file_path = file_path.resolve()
             playlist_dir_resolved = playlist_dir.resolve()
-            if not str(file_path).startswith(str(playlist_dir_resolved)):
+            if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
         except Exception:  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
@@ -1450,7 +1450,10 @@ class EditPlaylistView(HomeAssistantView):
             return web.json_response({"error": "Playlist not found"}, status=404)
 
         songs = data.get("songs", [])
-        idx = int(remove_index)
+        try:
+            idx = int(remove_index)
+        except (ValueError, TypeError):
+            return web.json_response({"error": "Invalid remove_index"}, status=400)
         if idx < 0 or idx >= len(songs):
             return web.json_response({"error": "Index out of range"}, status=400)
 
