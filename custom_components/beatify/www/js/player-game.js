@@ -1699,9 +1699,12 @@ export function handleNextRound() {
             action: 'next_round'
         }));
 
-        // No setTimeout here — button stays disabled until the server
-        // sends a state update (phase change to PLAYING). This prevents
-        // the button from re-enabling before the new song is ready.
+        // Safety timeout: re-enable after 10s if server never responds (#534)
+        setTimeout(function() {
+            if (nextRoundPending) {
+                resetNextRoundPending();
+            }
+        }, 10000);
     }
 }
 

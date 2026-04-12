@@ -744,6 +744,16 @@ class BeatifyWebSocketHandler:
         game_state.rematch_game()
         _LOGGER.info("Rematch started with %d players", player_count)
 
+        # Re-register admin WS for the new game session (#535)
+        game_state._admin_ws = ws
+
+        # Send new admin token to the admin so they can auth REST calls (#535)
+        await ws.send_json({
+            "type": "admin_token_update",
+            "admin_token": game_state.admin_token,
+            "game_id": game_state.game_id,
+        })
+
         # Broadcast rematch event so clients transition to lobby
         await self.broadcast({"type": "rematch_started"})
         await self.broadcast_state()

@@ -263,6 +263,8 @@
     "startGame": "Spel starten",
     "createGame": "Spel maken",
     "endGame": "Spel beëindigen",
+    "volDown": "Zachter",
+    "volUp": "Harder",
     "endGameConfirm": "Spel beëindigen?",
     "endGameConfirmFull": "Spel beëindigen en einduitslag tonen?",
     "endGameWarning": "Alle spelers worden losgekoppeld.",

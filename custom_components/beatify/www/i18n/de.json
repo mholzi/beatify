@@ -263,6 +263,8 @@
     "startGame": "Spiel starten",
     "createGame": "Spiel erstellen",
     "endGame": "Spiel beenden",
+    "volDown": "Leiser",
+    "volUp": "Lauter",
     "endGameConfirm": "Spiel beenden?",
     "endGameConfirmFull": "Spiel beenden und Endergebnisse anzeigen?",
     "endGameWarning": "Alle Spieler werden getrennt.",

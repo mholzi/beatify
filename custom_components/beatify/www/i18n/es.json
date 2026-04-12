@@ -263,6 +263,8 @@
     "startGame": "Iniciar juego",
     "createGame": "Crear juego",
     "endGame": "Terminar juego",
+    "volDown": "Bajar",
+    "volUp": "Subir",
     "endGameConfirm": "Terminar juego?",
     "endGameConfirmFull": "Terminar juego y mostrar resultados finales?",
     "endGameWarning": "Todos los jugadores seran desconectados.",

@@ -372,7 +372,7 @@ async function loadSavedSettings() {
                 });
                 if (window.BeatifyI18n) {
                     await BeatifyI18n.setLanguage(settings.language);
-                    // Note: initPageTranslations called by DOMContentLoaded after loadSavedSettings
+                    BeatifyI18n.initPageTranslations();
                 }
             }
 
@@ -2725,6 +2725,12 @@ function handleAdminWsMessage(data) {
 
         case 'metadata_update':
             if (data.song) updatePlayingSongInfo(data.song);
+            break;
+
+        case 'admin_token_update':
+            // Issue #535: Update admin token after rematch (new game_id + token)
+            _setAdminToken(data.admin_token, data.game_id);
+            console.log('[Admin WS] Admin token updated for game:', data.game_id);
             break;
 
         case 'error':
