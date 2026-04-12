@@ -90,6 +90,13 @@ export function updateEndView(data) {
                 rematchBtn.disabled = true;
                 var origText = rematchBtn.textContent;
                 rematchBtn.textContent = '⏳';
+
+                // Issue #535: Prefer WebSocket for rematch (avoids admin token issue)
+                if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                    state.ws.send(JSON.stringify({ type: 'admin', action: 'rematch_game' }));
+                    return;
+                }
+
                 fetch('/beatify/api/rematch-game', {
                     method: 'POST',
                     credentials: 'same-origin',
