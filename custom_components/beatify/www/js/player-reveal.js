@@ -110,13 +110,8 @@ export function updateRevealView(data) {
     showRevealEmotion(currentPlayer, song.year);
     renderPersonalResult(currentPlayer, song.year);
 
-    if (data.artist_challenge) {
-        renderArtistReveal(data.artist_challenge, state.playerName);
-    }
-
-    if (data.movie_challenge) {
-        renderMovieReveal(data.movie_challenge, state.playerName);
-    }
+    renderArtistReveal(data.artist_challenge || null, state.playerName);
+    renderMovieReveal(data.movie_challenge || null, state.playerName);
 
     // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
     if (data.game_performance && data.game_performance.is_new_record) {
