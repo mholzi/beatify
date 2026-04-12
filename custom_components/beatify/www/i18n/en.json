@@ -263,6 +263,8 @@
     "startGame": "Start Game",
     "createGame": "Create Game",
     "endGame": "End Game",
+    "volDown": "Down",
+    "volUp": "Up",
     "endGameConfirm": "End Game?",
     "endGameConfirmFull": "End game and show final results?",
     "endGameWarning": "All players will be disconnected.",

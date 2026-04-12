@@ -263,6 +263,8 @@
     "startGame": "Lancer la partie",
     "createGame": "Créer une partie",
     "endGame": "Terminer la partie",
+    "volDown": "Baisser",
+    "volUp": "Monter",
     "endGameConfirm": "Terminer la partie ?",
     "endGameConfirmFull": "Terminer la partie et afficher les résultats ?",
     "endGameWarning": "Tous les joueurs seront déconnectés.",
