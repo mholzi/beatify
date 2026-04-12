@@ -150,6 +150,58 @@
             </div>
         </section>
 
+        <!-- Spotify Playlist Import Section (#165) -->
+        <section id="import-playlist" class="section-collapsible collapsed" aria-labelledby="import-playlist-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="import-playlist-content">
+                <span class="section-icon" aria-hidden="true">📥</span>
+                <span data-i18n="admin.importPlaylist">Import Spotify Playlist</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="import-playlist-content">
+                <div id="spotify-creds-section">
+                    <p class="setting-hint" data-i18n="admin.importPlaylistHint">Paste a Spotify playlist URL to import it as a Beatify playlist. Requires Spotify API credentials (one-time setup).</p>
+                    <div id="spotify-creds-form" class="hidden">
+                        <p class="setting-hint" data-i18n="admin.spotifyCredsGuide">To get your credentials: Go to <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a>, create an app (any name), and copy the Client ID and Client Secret.</p>
+                        <input type="text" id="spotify-client-id" class="form-input" placeholder="Spotify Client ID">
+                        <input type="password" id="spotify-client-secret" class="form-input" placeholder="Spotify Client Secret">
+                        <button type="button" id="spotify-save-creds" class="btn btn-secondary btn-full-width" data-i18n="admin.saveCredentials">Save Credentials</button>
+                    </div>
+                    <button type="button" id="spotify-setup-btn" class="btn btn-secondary btn-full-width hidden">
+                        <span aria-hidden="true">🔑</span> <span data-i18n="admin.setupSpotify">Setup Spotify API</span>
+                    </button>
+                </div>
+                <div id="spotify-import-form" class="hidden">
+                    <p class="setting-hint" data-i18n="admin.importNote">Imports songs with year, artist, title and streaming URIs for all 5 providers. Fun facts and chart data can be added later.</p>
+                    <input type="text" id="spotify-playlist-url" class="form-input" placeholder="https://open.spotify.com/playlist/...">
+                    <button type="button" id="spotify-import-btn" class="btn btn-primary btn-full-width">
+                        <span aria-hidden="true">📥</span> <span data-i18n="admin.importButton">Import Playlist</span>
+                    </button>
+                    <button type="button" id="spotify-change-creds" class="btn btn-secondary btn-full-width" style="margin-top: var(--space-xs); font-size: 0.75rem;">
+                        <span aria-hidden="true">🔑</span> <span data-i18n="admin.changeCredentials">Change Spotify Credentials</span>
+                    </button>
+                </div>
+                <div id="spotify-import-status" class="hidden">
+                    <p id="spotify-import-message" class="setting-hint"></p>
+                    <button type="button" id="spotify-reload-btn" class="btn btn-secondary btn-full-width hidden" onclick="window.location.reload()">
+                        <span data-i18n="admin.reloadPage">Reload Page</span>
+                    </button>
+                </div>
+                <!-- Playlist Editor (PR #549) -->
+                <div id="playlist-editor" class="hidden" style="margin-top: var(--space-md, 16px);">
+                    <div class="setting-group">
+                        <input type="text" id="editor-playlist-name" class="form-input" placeholder="Playlist Name">
+                        <input type="text" id="editor-playlist-tags" class="form-input" placeholder="Tags (comma-separated)">
+                    </div>
+                    <div id="editor-song-list" style="margin: var(--space-sm, 8px) 0; max-height: 400px; overflow-y: auto;"></div>
+                    <div class="setting-group">
+                        <input type="text" id="editor-search" class="form-input" placeholder="Search song to add...">
+                        <div id="editor-search-results"></div>
+                    </div>
+                    <button type="button" id="editor-save-btn" class="btn btn-primary btn-full-width">Save Playlist</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Game Settings Section - Collapsible with all settings -->
         <section id="game-settings" class="section-collapsible collapsed" aria-labelledby="game-settings-heading">
             <button type="button" class="section-header-collapsible" id="game-settings-toggle" aria-expanded="false" aria-controls="game-settings-content">
