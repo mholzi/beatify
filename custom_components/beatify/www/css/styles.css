@@ -5064,9 +5064,6 @@ body.theme-dark .movie-reveal-section {
 }
 
 .reveal-results-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-xs);
     width: 100%;
 }
 
@@ -6972,7 +6969,7 @@ body.theme-dark .result-value.is-bet-lost {
 .reveal-results-cards {
     margin-top: var(--space-lg);
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .results-cards-header {
@@ -6987,6 +6984,7 @@ body.theme-dark .result-value.is-bet-lost {
 .results-cards-scroll {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: var(--space-sm);
     width: 100%;
     overflow-x: auto;
@@ -7011,8 +7009,9 @@ body.theme-dark .result-value.is-bet-lost {
     text-align: center;
     border: 2px solid var(--color-border-light);
     transition: all var(--transition-fast);
-    flex: 0 0 140px;
+    flex: 1 1 140px;
     min-width: 140px;
+    max-width: 220px;
     box-sizing: border-box;
 }
 
