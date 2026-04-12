@@ -1027,6 +1027,12 @@
                     section.classList.toggle('collapsed');
                     var expanded = !section.classList.contains('collapsed');
                     header.setAttribute('aria-expanded', expanded);
+
+                    // Re-render chart when chart section is expanded
+                    // (canvas has zero dimensions while collapsed)
+                    if (expanded && section.id === 'chart-section' && window.currentChartData) {
+                        setTimeout(function() { renderChart(window.currentChartData); }, 50);
+                    }
                 }
             });
         });
