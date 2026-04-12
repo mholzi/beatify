@@ -186,6 +186,19 @@
                         <span data-i18n="admin.reloadPage">Reload Page</span>
                     </button>
                 </div>
+                <!-- Playlist Editor (PR #549) -->
+                <div id="playlist-editor" class="hidden" style="margin-top: var(--space-md, 16px);">
+                    <div class="setting-group">
+                        <input type="text" id="editor-playlist-name" class="form-input" placeholder="Playlist Name">
+                        <input type="text" id="editor-playlist-tags" class="form-input" placeholder="Tags (comma-separated)">
+                    </div>
+                    <div id="editor-song-list" style="margin: var(--space-sm, 8px) 0; max-height: 400px; overflow-y: auto;"></div>
+                    <div class="setting-group">
+                        <input type="text" id="editor-search" class="form-input" placeholder="Search song to add...">
+                        <div id="editor-search-results"></div>
+                    </div>
+                    <button type="button" id="editor-save-btn" class="btn btn-primary btn-full-width">Save Playlist</button>
+                </div>
             </div>
         </section>
 

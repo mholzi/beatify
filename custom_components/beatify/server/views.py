@@ -1318,3 +1318,232 @@ class ImportPlaylistView(HomeAssistantView):
             return web.json_response(
                 {"error": f"Import failed: {err}"}, status=500
             )
+
+
+class EditPlaylistView(HomeAssistantView):
+    """Edit an imported playlist (PR #549)."""
+
+    url = "/beatify/api/edit-playlist"
+    name = "beatify:api:edit-playlist"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Return playlist JSON for the given filename."""
+        filename = request.query.get("file", "").strip()
+        if not filename:
+            return web.json_response({"error": "file parameter required"}, status=400)
+
+        playlist_dir = Path(self.hass.config.path("beatify/playlists"))
+        file_path = playlist_dir / filename
+
+        # Prevent path traversal
+        try:
+            file_path = file_path.resolve()
+            playlist_dir_resolved = playlist_dir.resolve()
+            if not str(file_path).startswith(str(playlist_dir_resolved)):
+                return web.json_response({"error": "Invalid file path"}, status=400)
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid file path"}, status=400)
+
+        def _read() -> dict | None:
+            if not file_path.exists():
+                return None
+            return json.loads(file_path.read_text(encoding="utf-8"))
+
+        data = await self.hass.async_add_executor_job(_read)
+        if data is None:
+            return web.json_response({"error": "Playlist not found"}, status=404)
+
+        return web.json_response({
+            "file": filename,
+            "name": data.get("name", ""),
+            "tags": data.get("tags", []),
+            "songs": data.get("songs", []),
+        })
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Save updated playlist data."""
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        filename = body.get("file", "").strip()
+        if not filename:
+            return web.json_response({"error": "file required"}, status=400)
+
+        playlist_dir = Path(self.hass.config.path("beatify/playlists"))
+        file_path = playlist_dir / filename
+
+        # Prevent path traversal
+        try:
+            file_path = file_path.resolve()
+            playlist_dir_resolved = playlist_dir.resolve()
+            if not str(file_path).startswith(str(playlist_dir_resolved)):
+                return web.json_response({"error": "Invalid file path"}, status=400)
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid file path"}, status=400)
+
+        # Read existing data to preserve version and other fields
+        def _read_existing() -> dict:
+            if file_path.exists():
+                return json.loads(file_path.read_text(encoding="utf-8"))
+            return {}
+
+        existing = await self.hass.async_add_executor_job(_read_existing)
+
+        # Update fields
+        existing["name"] = body.get("name", existing.get("name", ""))
+        existing["tags"] = body.get("tags", existing.get("tags", []))
+        existing["songs"] = body.get("songs", existing.get("songs", []))
+
+        def _save() -> None:
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            file_path.write_text(
+                json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+
+        await self.hass.async_add_executor_job(_save)
+
+        # Refresh playlist discovery so changes appear immediately
+        await async_discover_playlists(self.hass)
+
+        return web.json_response({"success": True})
+
+    async def delete(self, request: web.Request) -> web.Response:
+        """Remove a song by index from a playlist."""
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        filename = body.get("file", "").strip()
+        remove_index = body.get("remove_index")
+        if not filename or remove_index is None:
+            return web.json_response(
+                {"error": "file and remove_index required"}, status=400
+            )
+
+        playlist_dir = Path(self.hass.config.path("beatify/playlists"))
+        file_path = playlist_dir / filename
+
+        # Prevent path traversal
+        try:
+            file_path = file_path.resolve()
+            playlist_dir_resolved = playlist_dir.resolve()
+            if not str(file_path).startswith(str(playlist_dir_resolved)):
+                return web.json_response({"error": "Invalid file path"}, status=400)
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid file path"}, status=400)
+
+        def _read() -> dict | None:
+            if not file_path.exists():
+                return None
+            return json.loads(file_path.read_text(encoding="utf-8"))
+
+        data = await self.hass.async_add_executor_job(_read)
+        if data is None:
+            return web.json_response({"error": "Playlist not found"}, status=404)
+
+        songs = data.get("songs", [])
+        idx = int(remove_index)
+        if idx < 0 or idx >= len(songs):
+            return web.json_response({"error": "Index out of range"}, status=400)
+
+        songs.pop(idx)
+        data["songs"] = songs
+
+        def _save() -> None:
+            file_path.write_text(
+                json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+
+        await self.hass.async_add_executor_job(_save)
+
+        return web.json_response({
+            "success": True,
+            "song_count": len(songs),
+        })
+
+
+class SpotifySearchView(HomeAssistantView):
+    """Search Spotify for tracks (PR #549)."""
+
+    url = "/beatify/api/spotify-search"
+    name = "beatify:api:spotify-search"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Search Spotify for tracks matching query."""
+        from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            async_fetch_spotify_token,
+            async_load_credentials,
+        )
+
+        query = request.query.get("q", "").strip()
+        if not query:
+            return web.json_response({"error": "q parameter required"}, status=400)
+
+        credentials = await async_load_credentials(self.hass)
+        if not credentials:
+            return web.json_response(
+                {"error": "Spotify credentials not configured"}, status=400
+            )
+
+        import aiohttp  # noqa: PLC0415
+
+        try:
+            async with aiohttp.ClientSession() as session:
+                token = await async_fetch_spotify_token(
+                    session,
+                    credentials["client_id"],
+                    credentials["client_secret"],
+                )
+
+                from urllib.parse import quote  # noqa: PLC0415
+
+                encoded_q = quote(query)
+                url = (
+                    f"https://api.spotify.com/v1/search"
+                    f"?q={encoded_q}&type=track&limit=5"
+                )
+                headers = {"Authorization": f"Bearer {token}"}
+
+                async with session.get(url, headers=headers) as resp:
+                    if resp.status != 200:
+                        return web.json_response(
+                            {"error": "Spotify search failed"}, status=502
+                        )
+                    data = await resp.json()
+
+            results = []
+            for item in data.get("tracks", {}).get("items", []):
+                artists = ", ".join(a["name"] for a in item.get("artists", []))
+                album = item.get("album", {})
+                release_date = album.get("release_date", "")
+                year = (
+                    int(release_date[:4])
+                    if release_date and len(release_date) >= 4
+                    else 0
+                )
+                results.append({
+                    "title": item["name"],
+                    "artist": artists,
+                    "year": year,
+                    "uri": item.get("uri", ""),
+                })
+
+            return web.json_response({"results": results})
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.exception("Spotify search failed")
+            return web.json_response(
+                {"error": f"Search failed: {err}"}, status=500
+            )
