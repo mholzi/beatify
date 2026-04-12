@@ -6918,6 +6918,12 @@ body.theme-dark .result-value.is-bet-lost {
     text-overflow: ellipsis;
 }
 
+body.theme-dark .invite-modal-url {
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
 .invite-copy-btn {
     display: flex;
     align-items: center;
