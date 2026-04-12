@@ -150,6 +150,37 @@
             </div>
         </section>
 
+        <!-- Spotify Playlist Import Section (#165) -->
+        <section id="import-playlist" class="section-collapsible collapsed" aria-labelledby="import-playlist-heading">
+            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="import-playlist-content">
+                <span class="section-icon" aria-hidden="true">📥</span>
+                <span data-i18n="admin.importPlaylist">Import Spotify Playlist</span>
+                <span class="section-toggle" aria-hidden="true">▼</span>
+            </button>
+            <div class="section-content" id="import-playlist-content">
+                <div id="spotify-creds-section">
+                    <p class="setting-hint" data-i18n="admin.importPlaylistHint">Paste a Spotify playlist URL to import it as a Beatify playlist. Requires Spotify API credentials (one-time setup).</p>
+                    <div id="spotify-creds-form" class="hidden">
+                        <input type="text" id="spotify-client-id" class="form-input" placeholder="Spotify Client ID">
+                        <input type="password" id="spotify-client-secret" class="form-input" placeholder="Spotify Client Secret">
+                        <button type="button" id="spotify-save-creds" class="btn btn-secondary btn-full-width">Save Credentials</button>
+                    </div>
+                    <button type="button" id="spotify-setup-btn" class="btn btn-secondary btn-full-width hidden">
+                        <span aria-hidden="true">🔑</span> Setup Spotify API
+                    </button>
+                </div>
+                <div id="spotify-import-form" class="hidden">
+                    <input type="text" id="spotify-playlist-url" class="form-input" placeholder="https://open.spotify.com/playlist/...">
+                    <button type="button" id="spotify-import-btn" class="btn btn-primary btn-full-width">
+                        <span aria-hidden="true">📥</span> <span data-i18n="admin.importButton">Import Playlist</span>
+                    </button>
+                </div>
+                <div id="spotify-import-status" class="hidden">
+                    <p id="spotify-import-message" class="setting-hint"></p>
+                </div>
+            </div>
+        </section>
+
         <!-- Game Settings Section - Collapsible with all settings -->
         <section id="game-settings" class="section-collapsible collapsed" aria-labelledby="game-settings-heading">
             <button type="button" class="section-header-collapsible" id="game-settings-toggle" aria-expanded="false" aria-controls="game-settings-content">

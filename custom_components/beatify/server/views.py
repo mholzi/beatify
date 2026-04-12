@@ -1215,3 +1215,106 @@ class PlaylistRequestsView(HomeAssistantView):
             )
 
         return web.json_response({"success": True, "requests": data["requests"]})
+
+
+class SpotifyCredentialsView(HomeAssistantView):
+    """Save/validate Spotify API credentials (#165)."""
+
+    url = "/beatify/api/spotify-credentials"
+    name = "beatify:api:spotify-credentials"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Save and validate Spotify credentials."""
+        from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            async_fetch_spotify_token,
+            async_save_credentials,
+        )
+
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        client_id = body.get("client_id", "").strip()
+        client_secret = body.get("client_secret", "").strip()
+        if not client_id or not client_secret:
+            return web.json_response(
+                {"error": "client_id and client_secret required"}, status=400
+            )
+
+        # Validate by attempting to fetch a token
+        import aiohttp  # noqa: PLC0415
+
+        try:
+            async with aiohttp.ClientSession() as session:
+                token = await async_fetch_spotify_token(session, client_id, client_secret)
+                if not token:
+                    return web.json_response(
+                        {"error": "Invalid credentials — Spotify rejected the token request"},
+                        status=401,
+                    )
+        except Exception as err:  # noqa: BLE001
+            return web.json_response(
+                {"error": f"Failed to validate credentials: {err}"},
+                status=500,
+            )
+
+        await async_save_credentials(self.hass, client_id, client_secret)
+        return web.json_response({"success": True})
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Check if credentials are configured."""
+        from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            async_load_credentials,
+        )
+
+        creds = await async_load_credentials(self.hass)
+        return web.json_response({"configured": creds is not None})
+
+
+class ImportPlaylistView(HomeAssistantView):
+    """Import a Spotify playlist (#165)."""
+
+    url = "/beatify/api/import-playlist"
+    name = "beatify:api:import-playlist"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Import a Spotify playlist and save as Beatify JSON."""
+        from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            async_import_playlist,
+        )
+
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return web.json_response({"error": "Invalid JSON"}, status=400)
+
+        spotify_url = body.get("spotify_url", "").strip()
+        playlist_name = body.get("name", "").strip() or None
+        if not spotify_url:
+            return web.json_response(
+                {"error": "spotify_url required"}, status=400
+            )
+
+        try:
+            result = await async_import_playlist(
+                self.hass, spotify_url, name=playlist_name
+            )
+            return web.json_response(result)
+        except ValueError as err:
+            return web.json_response({"error": str(err)}, status=400)
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.exception("Playlist import failed")
+            return web.json_response(
+                {"error": f"Import failed: {err}"}, status=500
+            )

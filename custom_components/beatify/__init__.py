@@ -36,6 +36,8 @@ from .server.views import (
     TtsTestView,
     PlayerView,
     PlaylistRequestsView,
+    ImportPlaylistView,
+    SpotifyCredentialsView,
     RematchGameView,
     SongStatsView,
     StartGameplayView,
@@ -142,6 +144,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(AnalyticsPageView(hass))
     hass.http.register_view(SongStatsView(hass))  # Story 19.7
     hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
+    hass.http.register_view(SpotifyCredentialsView(hass))  # Issue #165
+    hass.http.register_view(ImportPlaylistView(hass))  # Issue #165
 
     # Register WebSocket endpoint
     hass.http.app.router.add_get("/beatify/ws", ws_handler.handle)

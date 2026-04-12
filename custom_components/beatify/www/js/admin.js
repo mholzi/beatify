@@ -156,6 +156,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Collapsible sections setup
     setupCollapsibleSections();
 
+    // Spotify playlist import setup (#165)
+    setupSpotifyImport();
+
     // Game settings setup (language, timer, difficulty, artist challenge)
     setupGameSettings();
 
@@ -266,6 +269,96 @@ function setupCollapsibleSections() {
                 header.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
             }
         });
+    });
+}
+
+/**
+ * Setup Spotify playlist import (#165)
+ */
+async function setupSpotifyImport() {
+    // Check if credentials are configured
+    try {
+        var resp = await fetch('/beatify/api/spotify-credentials');
+        var data = await resp.json();
+        if (data.configured) {
+            var importForm = document.getElementById('spotify-import-form');
+            if (importForm) importForm.classList.remove('hidden');
+        } else {
+            var setupBtn = document.getElementById('spotify-setup-btn');
+            if (setupBtn) setupBtn.classList.remove('hidden');
+        }
+    } catch (e) {
+        var setupBtn = document.getElementById('spotify-setup-btn');
+        if (setupBtn) setupBtn.classList.remove('hidden');
+    }
+
+    // Setup credentials button
+    document.getElementById('spotify-setup-btn')?.addEventListener('click', function() {
+        this.classList.add('hidden');
+        var credsForm = document.getElementById('spotify-creds-form');
+        if (credsForm) credsForm.classList.remove('hidden');
+    });
+
+    // Save credentials
+    document.getElementById('spotify-save-creds')?.addEventListener('click', async function() {
+        var clientId = document.getElementById('spotify-client-id')?.value?.trim();
+        var clientSecret = document.getElementById('spotify-client-secret')?.value?.trim();
+        if (!clientId || !clientSecret) { alert('Both fields required'); return; }
+
+        this.disabled = true;
+        this.textContent = '⏳';
+        try {
+            var resp = await fetch('/beatify/api/spotify-credentials', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ client_id: clientId, client_secret: clientSecret })
+            });
+            var data = await resp.json();
+            if (data.success) {
+                document.getElementById('spotify-creds-form')?.classList.add('hidden');
+                document.getElementById('spotify-import-form')?.classList.remove('hidden');
+            } else {
+                alert(data.error || 'Failed to save credentials');
+            }
+        } catch (e) {
+            alert('Network error');
+        }
+        this.disabled = false;
+        this.textContent = 'Save Credentials';
+    });
+
+    // Import playlist
+    document.getElementById('spotify-import-btn')?.addEventListener('click', async function() {
+        var url = document.getElementById('spotify-playlist-url')?.value?.trim();
+        if (!url) { alert('Paste a Spotify playlist URL'); return; }
+
+        var statusEl = document.getElementById('spotify-import-status');
+        var msgEl = document.getElementById('spotify-import-message');
+        if (statusEl) statusEl.classList.remove('hidden');
+        if (msgEl) msgEl.textContent = 'Importing playlist... This may take up to a minute.';
+
+        this.disabled = true;
+        this.textContent = '⏳ Importing...';
+
+        try {
+            var resp = await fetch('/beatify/api/import-playlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ spotify_url: url })
+            });
+            var data = await resp.json();
+            if (data.error) {
+                if (msgEl) msgEl.textContent = 'Error: ' + data.error;
+            } else {
+                if (msgEl) msgEl.textContent = '✓ Imported "' + data.name + '" — ' + data.song_count + ' songs. Reload the page to see it in the playlist list.';
+                document.getElementById('spotify-playlist-url').value = '';
+            }
+        } catch (e) {
+            if (msgEl) msgEl.textContent = 'Network error: ' + e.message;
+        }
+
+        this.disabled = false;
+        this.textContent = '📥 Import Playlist';
     });
 }
 
