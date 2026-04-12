@@ -601,12 +601,16 @@ class StartGameView(HomeAssistantView):
         if language in ("en", "de", "es", "fr", "nl"):
             game_state.language = language
 
-        # Issue #331: Configure Party Lights if enabled
+        # Issue #331/#517: Configure Party Lights if enabled
         if party_lights_config and party_lights_config.get("enabled"):
             pl_entities = party_lights_config.get("entity_ids", [])
             pl_intensity = party_lights_config.get("intensity", "medium")
+            pl_light_mode = party_lights_config.get("light_mode", "dynamic")
+            pl_wled_presets = party_lights_config.get("wled_presets")
             if pl_entities:
-                await game_state.configure_party_lights(pl_entities, pl_intensity)
+                await game_state.configure_party_lights(
+                    pl_entities, pl_intensity, pl_light_mode, pl_wled_presets
+                )
 
         # Issue #447: Configure TTS if enabled
         if tts_config and tts_config.get("enabled"):

@@ -45,6 +45,23 @@ INTENSITY_PRESETS: dict[str, dict[str, float]] = {
     "party": {"brightness_scale": 1.0, "flash_duration": 0.3},
 }
 
+# WLED preset defaults (user-configurable via admin UI)
+WLED_PRESET_DEFAULTS: dict[str, int] = {
+    "LOBBY": 1,
+    "PLAYING": 2,
+    "REVEAL": 3,
+    "STREAK": 4,
+    "COUNTDOWN": 5,
+    "END": 6,
+}
+
+# Beat loop colors for PLAYING phase
+BEAT_COLORS: list[list[int]] = [
+    [0, 100, 255],
+    [0, 180, 255],
+    [0, 60, 200],
+]
+
 # Subtle mode: brightness offsets added to the saved (pre-game) brightness.
 # Values are fractions of 255 (0.2 = +51 out of 255).
 SUBTLE_BRIGHTNESS_OFFSETS: dict[str, float] = {
@@ -67,15 +84,37 @@ class PartyLightsService:
         self._base_brightness: int = 128
         self._current_phase: str | None = None
         self._active: bool = False
+        self._beat_task: asyncio.Task | None = None
+        self._light_mode: str = "dynamic"  # "static", "dynamic", "wled"
+        self._wled_presets: dict[str, int] = dict(WLED_PRESET_DEFAULTS)
+        self._wled_entities: set[str] = set()
 
-    async def start(self, entity_ids: list[str], intensity: str = "medium") -> None:
+    async def start(
+        self,
+        entity_ids: list[str],
+        intensity: str = "medium",
+        light_mode: str = "dynamic",
+        wled_presets: dict[str, int] | None = None,
+    ) -> None:
         """Save current light states and take control."""
         if not entity_ids:
             return
 
         self._entity_ids = list(entity_ids)
         self._intensity = intensity if intensity in INTENSITY_PRESETS else "medium"
+        self._light_mode = light_mode if light_mode in ("static", "dynamic", "wled") else "dynamic"
+        if wled_presets:
+            self._wled_presets.update(wled_presets)
         self._saved_states = {}
+
+        # Detect WLED entities by checking entity_id prefix
+        self._wled_entities = set()
+        for entity_id in self._entity_ids:
+            state = self._hass.states.get(entity_id)
+            if state and state.attributes.get("effect_list") is not None:
+                # WLED entities expose effect_list; also check for wled in entity_id
+                if "wled" in entity_id.lower():
+                    self._wled_entities.add(entity_id)
 
         # Save current states for restoration
         for entity_id in self._entity_ids:
@@ -98,10 +137,11 @@ class PartyLightsService:
 
         self._active = True
         _LOGGER.info(
-            "Party Lights started: %d lights, intensity=%s, base_brightness=%d",
+            "Party Lights started: %d lights, intensity=%s, mode=%s, wled=%d",
             len(self._entity_ids),
             self._intensity,
-            self._base_brightness,
+            self._light_mode,
+            len(self._wled_entities),
         )
 
     async def set_phase(self, phase: Any) -> None:
@@ -112,26 +152,47 @@ class PartyLightsService:
         phase_name = phase.value if hasattr(phase, "value") else str(phase)
         self._current_phase = phase_name
 
+        # Stop beat loop when leaving PLAYING phase
+        if phase_name != "PLAYING":
+            await self.stop_beat_loop()
+
         if phase_name == "END":
             # END phase triggers celebration via separate call
             return
 
-        phase_data = PHASE_COLORS.get(phase_name)
-        if not phase_data:
-            return
-
-        service_data = dict(phase_data)
-        if self._intensity == "subtle":
-            offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
-            service_data["brightness"] = min(self._base_brightness + offset, 255)
+        # WLED mode: activate preset instead of setting colors
+        if self._light_mode == "wled" and self._wled_entities:
+            preset_id = self._wled_presets.get(phase_name)
+            if preset_id is not None:
+                for entity_id in self._wled_entities:
+                    await self._apply_wled(entity_id, preset_id)
+            # Apply normal colors to non-WLED entities
+            non_wled = [e for e in self._entity_ids if e not in self._wled_entities]
+            if non_wled:
+                phase_data = PHASE_COLORS.get(phase_name)
+                if phase_data:
+                    await self._apply(non_wled, dict(phase_data), transition=1.0)
         else:
-            preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
-            if "brightness" in service_data:
-                service_data["brightness"] = int(
-                    service_data["brightness"] * preset["brightness_scale"]
-                )
+            phase_data = PHASE_COLORS.get(phase_name)
+            if not phase_data:
+                return
 
-        await self._apply(self._entity_ids, service_data, transition=1.0)
+            service_data = dict(phase_data)
+            if self._intensity == "subtle":
+                offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
+                service_data["brightness"] = min(self._base_brightness + offset, 255)
+            else:
+                preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
+                if "brightness" in service_data:
+                    service_data["brightness"] = int(
+                        service_data["brightness"] * preset["brightness_scale"]
+                    )
+
+            await self._apply(self._entity_ids, service_data, transition=1.0)
+
+        # Start beat loop when entering PLAYING in dynamic mode
+        if phase_name == "PLAYING" and self._light_mode == "dynamic":
+            await self.start_beat_loop()
 
     async def flash(self, color_name: str) -> None:
         """Quick flash effect — turn on with color, sleep, restore phase color."""
@@ -163,6 +224,58 @@ class PartyLightsService:
                 )
             await self._apply(self._entity_ids, phase_data, transition=0.3)
 
+    async def start_beat_loop(self, bpm: int = 120) -> None:
+        """Start a background beat-flash loop during PLAYING phase (#517)."""
+        await self.stop_beat_loop()
+        self._beat_task = asyncio.create_task(self._beat_loop(bpm))
+
+    async def stop_beat_loop(self) -> None:
+        """Cancel the beat-flash loop."""
+        if self._beat_task is not None:
+            self._beat_task.cancel()
+            self._beat_task = None
+
+    async def _beat_loop(self, bpm: int) -> None:
+        """Pulse between blue shades at the given BPM."""
+        interval = 60.0 / bpm
+        i = 0
+        try:
+            while self._active:
+                # Only pulse non-WLED entities
+                entities = [e for e in self._entity_ids if e not in self._wled_entities]
+                if entities:
+                    await self._apply(
+                        entities,
+                        {"rgb_color": BEAT_COLORS[i % len(BEAT_COLORS)], "brightness": 200},
+                        transition=0.1,
+                    )
+                i += 1
+                await asyncio.sleep(interval)
+        except asyncio.CancelledError:
+            pass
+
+    async def strobe(self, count: int = 5, interval: float = 0.4) -> None:
+        """Rapid on/off strobe for countdown tension (#517)."""
+        for _ in range(count):
+            if not self._active:
+                break
+            await self._apply(
+                self._entity_ids,
+                {"rgb_color": [255, 0, 0], "brightness": 255},
+                transition=0.05,
+            )
+            await asyncio.sleep(interval / 2)
+            await self._apply(
+                self._entity_ids,
+                {"brightness": 10},
+                transition=0.05,
+            )
+            await asyncio.sleep(interval / 2)
+        # Restore phase color
+        if self._current_phase and self._current_phase in PHASE_COLORS:
+            phase_data = dict(PHASE_COLORS[self._current_phase])
+            await self._apply(self._entity_ids, phase_data, transition=0.3)
+
     async def celebrate(self) -> None:
         """Rainbow cycle celebration for ~5 seconds."""
         if not self._active or not self._entity_ids:
@@ -189,6 +302,7 @@ class PartyLightsService:
         if not self._active:
             return
 
+        await self.stop_beat_loop()
         self._active = False
         _LOGGER.info("Party Lights stopping, restoring %d lights", len(self._saved_states))
 
@@ -287,3 +401,24 @@ class PartyLightsService:
                 )
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Failed to control light: %s", entity_id)
+
+    async def _apply_wled(self, entity_id: str, preset_id: int) -> None:
+        """Activate a WLED preset by ID (#517)."""
+        try:
+            await self._hass.services.async_call(
+                "select",
+                "select_option",
+                {"entity_id": entity_id.replace("light.", "select.") + "_preset", "option": str(preset_id)},
+                blocking=False,
+            )
+        except Exception:  # noqa: BLE001
+            # Fallback: try the number entity approach
+            try:
+                await self._hass.services.async_call(
+                    "number",
+                    "set_value",
+                    {"entity_id": entity_id.replace("light.", "number.") + "_preset", "value": preset_id},
+                    blocking=False,
+                )
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Failed to set WLED preset %d on %s", preset_id, entity_id)

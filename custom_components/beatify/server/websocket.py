@@ -784,17 +784,20 @@ class BeatifyWebSocketHandler:
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
         """Handle admin set_party_lights action."""
-        # Issue #331: Configure Party Lights
+        # Issue #331/#517: Configure Party Lights
         entity_ids = data.get("entity_ids", [])
         intensity = data.get("intensity", "medium")
+        light_mode = data.get("light_mode", "dynamic")
+        wled_presets = data.get("wled_presets")
         enabled = data.get("enabled", True)
 
         if enabled and entity_ids:
-            await game_state.configure_party_lights(entity_ids, intensity)
+            await game_state.configure_party_lights(
+                entity_ids, intensity, light_mode, wled_presets
+            )
             _LOGGER.info(
-                "Party Lights configured: %d lights, intensity=%s",
-                len(entity_ids),
-                intensity,
+                "Party Lights configured: %d lights, intensity=%s, mode=%s",
+                len(entity_ids), intensity, light_mode,
             )
         else:
             await game_state.disable_party_lights()
