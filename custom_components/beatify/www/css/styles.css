@@ -607,6 +607,7 @@ button,
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
+    touch-action: manipulation;
 }
 
 .btn-primary {
