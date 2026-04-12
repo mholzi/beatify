@@ -12,5 +12,5 @@
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/mholzi/beatify/issues",
   "platforms": ["sensor", "binary_sensor"],
-  "version": "2.9.1"
+  "version": "3.0.0"
 }
