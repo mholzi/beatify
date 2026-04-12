@@ -2301,18 +2301,12 @@ function renderLobbyPlayers(players) {
         }
     }, 2000);
 
-    // Issue #477: Always show Start button when admin WS is connected (admin
-    // can start the game as a spectator host). Falls back to original check
-    // (#253) when WS is not available.
+    // Show Start button when there are players. The admin page IS the admin
+    // control surface — the host should always be able to start the game,
+    // whether they joined as a player or not.
     var startBtn = document.getElementById("start-gameplay-btn");
     if (startBtn) {
-        var hasAdminWs = adminWs && adminWs.readyState === WebSocket.OPEN;
-        var adminJoined = players.some(function(p) { return p.is_admin === true; });
-        if (hasAdminWs || adminJoined) {
-            startBtn.classList.remove("hidden");
-        } else {
-            startBtn.classList.add("hidden");
-        }
+        startBtn.classList.remove("hidden");
     }
 
     previousLobbyPlayers = players.slice();
