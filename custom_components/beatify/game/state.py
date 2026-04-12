@@ -1591,7 +1591,7 @@ class GameState:
                 if p.submitted and p.years_off is not None:
                     if p.years_off == 0:
                         has_exact = True
-                    elif p.years_off <= 3:
+                    elif p.years_off <= 1:
                         has_correct = True
             if has_exact:
                 await self._lights_flash("gold")
@@ -1646,7 +1646,10 @@ class GameState:
                 self.highlights_tracker.record_streak(
                     player.name, player.streak, self.round
                 )
-                await self._lights_flash("orange")
+                # Fire-and-forget flash (sync context — cannot await)
+                task = asyncio.create_task(self._lights_flash("orange"))
+                self._bg_tasks.add(task)
+                task.add_done_callback(self._bg_tasks.discard)
 
             # Bet win
             if player.bet_outcome == "won" and player.round_score >= 10:
