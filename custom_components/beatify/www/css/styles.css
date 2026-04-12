@@ -3560,6 +3560,8 @@ body.theme-dark .admin-controls {
 
 .setting-group {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-sm);
 }
 
 .setting-group:last-child {
