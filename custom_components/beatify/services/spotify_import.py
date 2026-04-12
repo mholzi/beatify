@@ -293,8 +293,14 @@ async def async_import_playlist(
         output_path,
     )
 
+    enriched_count = sum(
+        1 for s in enriched_songs
+        if s.get("uri_youtube_music") or s.get("uri_apple_music") or s.get("uri_deezer")
+    )
+
     return {
         "name": name,
         "song_count": len(enriched_songs),
+        "enriched_count": enriched_count,
         "file_path": str(output_path),
     }

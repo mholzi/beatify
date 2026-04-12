@@ -327,20 +327,36 @@ async function setupSpotifyImport() {
         this.textContent = 'Save Credentials';
     });
 
+    // Change credentials button
+    document.getElementById('spotify-change-creds')?.addEventListener('click', function() {
+        document.getElementById('spotify-import-form')?.classList.add('hidden');
+        var credsForm = document.getElementById('spotify-creds-form');
+        if (credsForm) credsForm.classList.remove('hidden');
+    });
+
     // Import playlist
     document.getElementById('spotify-import-btn')?.addEventListener('click', async function() {
         var url = document.getElementById('spotify-playlist-url')?.value?.trim();
         if (!url) { alert('Paste a Spotify playlist URL'); return; }
 
+        if (!url.includes('spotify.com/playlist/') && !url.startsWith('spotify:playlist:')) {
+            alert('Please paste a valid Spotify playlist URL');
+            return;
+        }
+
         var statusEl = document.getElementById('spotify-import-status');
         var msgEl = document.getElementById('spotify-import-message');
+        var reloadBtn = document.getElementById('spotify-reload-btn');
         if (statusEl) statusEl.classList.remove('hidden');
-        if (msgEl) msgEl.textContent = 'Importing playlist... This may take up to a minute.';
+        if (reloadBtn) reloadBtn.classList.add('hidden');
+        if (msgEl) msgEl.textContent = '⏳ Fetching songs from Spotify...';
 
         this.disabled = true;
         this.textContent = '⏳ Importing...';
 
         try {
+            if (msgEl) msgEl.textContent = '⏳ Fetching songs and enriching URIs for all providers. This may take up to a minute for large playlists...';
+
             var resp = await fetch('/beatify/api/import-playlist', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -348,13 +364,16 @@ async function setupSpotifyImport() {
             });
             var data = await resp.json();
             if (data.error) {
-                if (msgEl) msgEl.textContent = 'Error: ' + data.error;
+                if (msgEl) msgEl.textContent = '❌ ' + data.error;
             } else {
-                if (msgEl) msgEl.textContent = '✓ Imported "' + data.name + '" — ' + data.song_count + ' songs. Reload the page to see it in the playlist list.';
+                var enriched = data.enriched_count || 0;
+                var total = data.song_count || 0;
+                if (msgEl) msgEl.textContent = '✅ "' + data.name + '" imported — ' + total + ' songs, ' + enriched + ' with cross-platform URIs.';
                 document.getElementById('spotify-playlist-url').value = '';
+                if (reloadBtn) reloadBtn.classList.remove('hidden');
             }
         } catch (e) {
-            if (msgEl) msgEl.textContent = 'Network error: ' + e.message;
+            if (msgEl) msgEl.textContent = '❌ Network error: ' + e.message;
         }
 
         this.disabled = false;
