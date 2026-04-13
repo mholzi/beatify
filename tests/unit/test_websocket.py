@@ -784,9 +784,7 @@ class TestAdminConnect:
         """Regular WS that didn't admin_connect cannot send admin commands."""
         handler, game_state, ws = _make_handler_and_game()
 
-        await handler._handle_message(
-            ws, {"type": "admin", "action": "start_game"}
-        )
+        await handler._handle_message(ws, {"type": "admin", "action": "start_game"})
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
