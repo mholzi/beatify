@@ -247,9 +247,9 @@ class TestApplyClosestWins:
 
     def test_basic_three_players_only_closest_keeps(self):
         """Only the player closest to correct year keeps their points."""
-        p1 = _make_player("Alice", 2000, 10)   # 0 off
-        p2 = _make_player("Bob", 1998, 8)      # 2 off
-        p3 = _make_player("Carol", 1990, 5)    # 10 off
+        p1 = _make_player("Alice", 2000, 10)  # 0 off
+        p2 = _make_player("Bob", 1998, 8)  # 2 off
+        p3 = _make_player("Carol", 1990, 5)  # 10 off
 
         ScoringService.apply_closest_wins([p1, p2, p3], 2000)
 
@@ -262,9 +262,9 @@ class TestApplyClosestWins:
 
     def test_ties_both_keep(self):
         """Two players equally close both keep their points."""
-        p1 = _make_player("Alice", 2002, 8)    # 2 off
-        p2 = _make_player("Bob", 1998, 6)      # 2 off
-        p3 = _make_player("Carol", 1990, 5)    # 10 off
+        p1 = _make_player("Alice", 2002, 8)  # 2 off
+        p2 = _make_player("Bob", 1998, 6)  # 2 off
+        p3 = _make_player("Carol", 1990, 5)  # 10 off
 
         ScoringService.apply_closest_wins([p1, p2, p3], 2000)
 
@@ -295,8 +295,8 @@ class TestApplyClosestWins:
 
     def test_bet_multiplied_score_zeroed(self):
         """Player with bet-doubled score is correctly zeroed."""
-        p1 = _make_player("Alice", 2000, 20)   # 0 off, bet-doubled
-        p2 = _make_player("Bob", 1995, 14)     # 5 off, bet-doubled
+        p1 = _make_player("Alice", 2000, 20)  # 0 off, bet-doubled
+        p2 = _make_player("Bob", 1995, 14)  # 5 off, bet-doubled
 
         ScoringService.apply_closest_wins([p1, p2], 2000)
 

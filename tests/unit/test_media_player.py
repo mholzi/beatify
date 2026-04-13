@@ -174,7 +174,9 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is True  # #345: return True on timeout — MA may still be buffering
+        assert (
+            result is True
+        )  # #345: return True on timeout — MA may still be buffering
         assert poll_count >= 4  # but waited until timeout
 
     @pytest.mark.asyncio
@@ -306,7 +308,6 @@ class TestMANonBlockingPlayback:
             or call_kwargs[1].get("blocking") is True
         )
 
-
     @pytest.mark.asyncio
     async def test_ma_ignores_wrong_song_from_previous_request(self):
         """If a previous slow song arrives, it must NOT be accepted as confirmation.
@@ -367,7 +368,9 @@ class TestMANonBlockingPlayback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
         idle_state = _make_state(
-            "idle", media_title="", media_position=0,
+            "idle",
+            media_title="",
+            media_position=0,
             media_position_updated_at="2020-01-01T00:00:00+00:00",
         )
         playing_with_suffix = _make_state(
