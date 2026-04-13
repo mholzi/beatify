@@ -1414,17 +1414,27 @@ class BeatifyWebSocketHandler:
         Broadcast message to all connected clients in parallel (Issue #41).
 
         Uses asyncio.gather() for parallel sends instead of sequential awaits.
+        Issue #550: Also ensures admin spectator WS receives the broadcast
+        even if it somehow dropped out of self.connections.
 
         Args:
             message: Message to broadcast
 
         """
-        if not self.connections:
+        # Collect all target WebSockets
+        targets = set(self.connections)
+
+        # Issue #550: Ensure admin spectator WS is included
+        game_state = get_game_state(self.hass)
+        if game_state and game_state._admin_ws is not None:
+            targets.add(game_state._admin_ws)
+
+        if not targets:
             return
 
         # Build list of send tasks for all open connections
         tasks = []
-        for ws in list(self.connections):
+        for ws in list(targets):
             if not ws.closed:
                 tasks.append(self._safe_send(ws, message))
 

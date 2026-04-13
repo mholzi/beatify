@@ -107,14 +107,23 @@ class PartyLightsService:
             self._wled_presets.update(wled_presets)
         self._saved_states = {}
 
-        # Detect WLED entities by checking entity_id prefix
+        # Detect WLED entities via entity registry platform (reliable) or entity_id fallback
         self._wled_entities = set()
-        for entity_id in self._entity_ids:
-            state = self._hass.states.get(entity_id)
-            if state and state.attributes.get("effect_list") is not None:
-                # WLED entities expose effect_list; also check for wled in entity_id
-                if "wled" in entity_id.lower():
+        try:
+            from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+            registry = er.async_get(self._hass)
+            for entity_id in self._entity_ids:
+                entry = registry.async_get(entity_id)
+                if entry and entry.platform == "wled":
                     self._wled_entities.add(entity_id)
+        except Exception:  # noqa: BLE001
+            # Fallback: check attributes if entity registry is unavailable
+            for entity_id in self._entity_ids:
+                state = self._hass.states.get(entity_id)
+                if state and state.attributes.get("effect_list") is not None:
+                    if "wled" in entity_id.lower():
+                        self._wled_entities.add(entity_id)
 
         # Save current states for restoration
         for entity_id in self._entity_ids:
@@ -403,22 +412,43 @@ class PartyLightsService:
                 _LOGGER.warning("Failed to control light: %s", entity_id)
 
     async def _apply_wled(self, entity_id: str, preset_id: int) -> None:
-        """Activate a WLED preset by ID (#517)."""
+        """Activate a WLED preset by ID (#517).
+
+        Uses the entity registry to find the correct preset select entity
+        for the same device, falling back to name-based construction.
+        """
+        # Try to find the preset entity via entity/device registry
+        preset_entity = None
+        try:
+            from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+            registry = er.async_get(self._hass)
+            light_entry = registry.async_get(entity_id)
+            if light_entry and light_entry.device_id:
+                for entry in registry.entities.values():
+                    if (
+                        entry.device_id == light_entry.device_id
+                        and entry.domain == "select"
+                        and "preset" in (entry.entity_id or "")
+                    ):
+                        preset_entity = entry.entity_id
+                        break
+        except Exception:  # noqa: BLE001
+            pass
+
+        # Fallback: construct entity name from light entity_id
+        if not preset_entity:
+            preset_entity = entity_id.replace("light.", "select.") + "_preset"
+
         try:
             await self._hass.services.async_call(
                 "select",
                 "select_option",
-                {"entity_id": entity_id.replace("light.", "select.") + "_preset", "option": str(preset_id)},
+                {"entity_id": preset_entity, "option": str(preset_id)},
                 blocking=False,
             )
         except Exception:  # noqa: BLE001
-            # Fallback: try the number entity approach
-            try:
-                await self._hass.services.async_call(
-                    "number",
-                    "set_value",
-                    {"entity_id": entity_id.replace("light.", "number.") + "_preset", "value": preset_id},
-                    blocking=False,
-                )
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Failed to set WLED preset %d on %s", preset_id, entity_id)
+            _LOGGER.warning(
+                "Failed to set WLED preset %d on %s (tried %s)",
+                preset_id, entity_id, preset_entity,
+            )

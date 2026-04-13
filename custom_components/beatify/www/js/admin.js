@@ -233,34 +233,9 @@ async function loadStatus() {
  * Setup collapsible section toggles
  */
 function setupCollapsibleSections() {
-    // Media players toggle
-    document.getElementById('media-players-toggle')?.addEventListener('click', function() {
-        const section = document.getElementById('media-players');
-        if (section) {
-            section.classList.toggle('collapsed');
-            this.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
-        }
-    });
-
-    // Game settings toggle
-    document.getElementById('game-settings-toggle')?.addEventListener('click', function() {
-        const section = document.getElementById('game-settings');
-        if (section) {
-            section.classList.toggle('collapsed');
-            this.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
-        }
-    });
-
-    // My Requests toggle (Story 44.3)
-    document.getElementById('my-requests-toggle')?.addEventListener('click', function() {
-        const section = document.getElementById('my-requests');
-        if (section) {
-            section.classList.toggle('collapsed');
-            this.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
-        }
-    });
-
-    // Generic collapsible section toggles (lobby, HA entities, Party Lights, TTS, etc.)
+    // Generic collapsible section toggles — handles all .section-header-collapsible
+    // buttons including media-players, game-settings, my-requests, Party Lights, etc.
+    // Issue #550: Removed duplicate per-ID listeners that caused double-toggle (no-op).
     document.querySelectorAll('.section-header-collapsible').forEach(function(header) {
         header.addEventListener('click', function() {
             const section = header.closest('.section-collapsible');
@@ -2804,6 +2779,11 @@ function connectAdminWebSocket() {
     adminWs.onclose = function() {
         console.log('[Admin WS] Disconnected');
         adminWs = null;
+        // Issue #550: Re-enable lobby polling while WS is down so
+        // spectator admin still sees player join/leave updates
+        if (currentView === 'lobby') {
+            startLobbyPolling();
+        }
         // Auto-reconnect with backoff
         if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && currentGame) {
             adminReconnectAttempts++;

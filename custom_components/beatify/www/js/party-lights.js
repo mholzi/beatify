@@ -13,6 +13,8 @@
     var STORAGE_KEY = 'beatify_party_lights';
     var selectedLights = [];
     var selectedIntensity = 'medium';
+    var selectedLightMode = 'dynamic';
+    var wledPresets = {};
     var partyLightsEnabled = false;
     var lightsData = [];
 
@@ -22,6 +24,8 @@
             var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
             selectedLights = saved.lights || [];
             selectedIntensity = saved.intensity || 'medium';
+            selectedLightMode = saved.light_mode || 'dynamic';
+            wledPresets = saved.wled_presets || {};
             partyLightsEnabled = saved.enabled || false;
         } catch (e) { /* ignore */ }
     }
@@ -31,6 +35,8 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify({
                 lights: selectedLights,
                 intensity: selectedIntensity,
+                light_mode: selectedLightMode,
+                wled_presets: wledPresets,
                 enabled: partyLightsEnabled
             }));
         } catch (e) { /* ignore */ }
@@ -140,6 +146,49 @@
             });
         });
 
+        // Light mode chips
+        document.querySelectorAll('.chip[data-light-mode]').forEach(function(chip) {
+            if (chip.dataset.lightMode === selectedLightMode) {
+                chip.classList.add('chip--active');
+            } else {
+                chip.classList.remove('chip--active');
+            }
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.chip[data-light-mode]').forEach(function(c) {
+                    c.classList.remove('chip--active');
+                });
+                this.classList.add('chip--active');
+                selectedLightMode = this.dataset.lightMode;
+                // Show/hide WLED preset inputs
+                var wledRow = document.getElementById('party-lights-wled-presets');
+                if (wledRow) {
+                    wledRow.classList.toggle('hidden', selectedLightMode !== 'wled');
+                }
+                saveState();
+            });
+        });
+
+        // WLED preset inputs
+        var wledRow = document.getElementById('party-lights-wled-presets');
+        if (wledRow) {
+            wledRow.classList.toggle('hidden', selectedLightMode !== 'wled');
+            wledRow.querySelectorAll('input[data-wled-phase]').forEach(function(input) {
+                var phase = input.dataset.wledPhase;
+                if (wledPresets[phase] !== undefined) {
+                    input.value = wledPresets[phase];
+                }
+                input.addEventListener('change', function() {
+                    var val = parseInt(this.value, 10);
+                    if (!isNaN(val) && val >= 0) {
+                        wledPresets[this.dataset.wledPhase] = val;
+                    } else {
+                        delete wledPresets[this.dataset.wledPhase];
+                    }
+                    saveState();
+                });
+            });
+        }
+
         // Select all button
         var selectAllBtn = document.getElementById('lights-select-all');
         if (selectAllBtn) {
@@ -203,11 +252,16 @@
 
     // Expose for admin.js to read when starting game
     window._partyLightsConfig = function() {
-        return {
+        var config = {
             enabled: partyLightsEnabled,
             entity_ids: selectedLights,
-            intensity: selectedIntensity
+            intensity: selectedIntensity,
+            light_mode: selectedLightMode
         };
+        if (selectedLightMode === 'wled' && Object.keys(wledPresets).length > 0) {
+            config.wled_presets = wledPresets;
+        }
+        return config;
     };
 
     // Init when DOM ready

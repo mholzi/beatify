@@ -342,6 +342,35 @@
                     </div>
                 </div>
 
+                <!-- Light Mode (#550) -->
+                <div class="setting-row">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">⚡</span>
+                        <span>Light Mode</span>
+                    </span>
+                    <div class="chip-group" role="group" aria-label="Light mode">
+                        <button type="button" class="chip" data-light-mode="static">Static</button>
+                        <button type="button" class="chip chip--active" data-light-mode="dynamic">Dynamic</button>
+                        <button type="button" class="chip" data-light-mode="wled">WLED</button>
+                    </div>
+                </div>
+
+                <!-- WLED Presets (shown when WLED mode selected) -->
+                <div id="party-lights-wled-presets" class="setting-row setting-row--vertical hidden">
+                    <span class="setting-label">
+                        <span class="setting-icon" aria-hidden="true">🔢</span>
+                        <span>WLED Preset IDs</span>
+                    </span>
+                    <div class="wled-presets-grid">
+                        <label class="wled-preset-item"><span>Lobby</span><input type="number" data-wled-phase="LOBBY" min="0" value="1" class="input-sm"></label>
+                        <label class="wled-preset-item"><span>Playing</span><input type="number" data-wled-phase="PLAYING" min="0" value="2" class="input-sm"></label>
+                        <label class="wled-preset-item"><span>Reveal</span><input type="number" data-wled-phase="REVEAL" min="0" value="3" class="input-sm"></label>
+                        <label class="wled-preset-item"><span>Streak</span><input type="number" data-wled-phase="STREAK" min="0" value="4" class="input-sm"></label>
+                        <label class="wled-preset-item"><span>Countdown</span><input type="number" data-wled-phase="COUNTDOWN" min="0" value="5" class="input-sm"></label>
+                        <label class="wled-preset-item"><span>End</span><input type="number" data-wled-phase="END" min="0" value="6" class="input-sm"></label>
+                    </div>
+                </div>
+
                 <!-- Light picker -->
                 <div id="party-lights-picker" class="party-lights-picker">
                     <div class="party-lights-picker-header">

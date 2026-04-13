@@ -8707,6 +8707,43 @@ body.device-tier-low .reveal-skip-hint {
 }
 
 /* ============================================
+   Issue #550: WLED Presets & Light Mode UI
+   ============================================ */
+
+.setting-row--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm, 8px);
+}
+
+.wled-presets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-xs, 4px) var(--space-sm, 8px);
+    width: 100%;
+}
+
+.wled-preset-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs, 4px);
+    font-size: 0.8rem;
+    color: var(--text-secondary, #aaa);
+}
+
+.wled-preset-item .input-sm {
+    width: 48px;
+    padding: 2px 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-primary, #fff);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* ============================================
    Issue #477: Admin Game Phase Views
    ============================================ */
 
