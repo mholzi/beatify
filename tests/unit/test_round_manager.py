@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import time
 
-import pytest
-
 from custom_components.beatify.const import DEFAULT_ROUND_DURATION
 from custom_components.beatify.game.round_manager import RoundManager
 
