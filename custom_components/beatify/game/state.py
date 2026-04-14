@@ -1408,27 +1408,31 @@ class GameState:
             # Fix #124: Only update album_art from media player.
             # Artist/title are authoritative from playlist data — media player
             # state can report stale/wrong track info (especially Sonos + Spotify).
-            if self.current_song and self.current_song.get("uri") == uri:
-                self.current_song["album_art"] = metadata.get(
-                    "album_art", "/beatify/static/img/no-artwork.svg"
-                )
-                self.metadata_pending = False
-
-                _LOGGER.info(
-                    "Album art updated for: %s - %s",
-                    self.current_song.get("artist"),
-                    self.current_song.get("title"),
-                )
-
-                # Invoke callback to broadcast update (album art only)
-                if self._on_metadata_update:
-                    await self._on_metadata_update(
-                        {
-                            "artist": self.current_song["artist"],
-                            "title": self.current_song["title"],
-                            "album_art": self.current_song["album_art"],
-                        }
+            if self.current_song:
+                current_uri = self.current_song.get("_resolved_uri") or self.current_song.get("uri")
+                if current_uri == uri:
+                    self.current_song["album_art"] = metadata.get(
+                        "album_art", "/beatify/static/img/no-artwork.svg"
                     )
+                    self.metadata_pending = False
+
+                    _LOGGER.info(
+                        "Album art updated for: %s - %s",
+                        self.current_song.get("artist"),
+                        self.current_song.get("title"),
+                    )
+
+                    # Invoke callback to broadcast update (album art only)
+                    if self._on_metadata_update:
+                        await self._on_metadata_update(
+                            {
+                                "artist": self.current_song["artist"],
+                                "title": self.current_song["title"],
+                                "album_art": self.current_song["album_art"],
+                            }
+                        )
+                else:
+                    _LOGGER.debug("Metadata arrived for different song, ignoring")
             else:
                 _LOGGER.debug("Metadata arrived for different song, ignoring")
 
