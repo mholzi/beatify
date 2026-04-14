@@ -59,7 +59,7 @@ from .challenges import (
 from .config import GameStateConfig
 from .highlights import HighlightsTracker
 from .player import PlayerSession
-from .playlist import PlaylistManager
+from .playlist import PlaylistManager, get_song_uri
 from .player_registry import PlayerRegistry
 from .powerups import PowerUpManager
 from .round_manager import RoundManager
@@ -1266,7 +1266,7 @@ class GameState:
         resolved_uri = song.get("_resolved_uri")
         if not resolved_uri:
             _LOGGER.warning("Skipping song (year %s) - no URI for provider", song.get("year", "?"))
-            self._playlist_manager.mark_played(song.get("uri"))
+            self._playlist_manager.mark_played(get_song_uri(song, self.provider) or song.get("uri"))
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error("No playable songs found after %d attempts, pausing game", MAX_SONG_RETRIES)
                 await self.pause_game("no_songs_available")
