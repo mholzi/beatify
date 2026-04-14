@@ -119,18 +119,6 @@
             });
         }
 
-        // Collapsible section toggle
-        var toggle = document.getElementById('tts-settings-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', function() {
-                var section = document.getElementById('tts-settings');
-                if (section) {
-                    var isCollapsed = section.classList.toggle('collapsed');
-                    toggle.setAttribute('aria-expanded', !isCollapsed);
-                }
-            });
-        }
-
         updateSummary();
         updateTestButton();
     }
