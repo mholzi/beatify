@@ -484,7 +484,11 @@ class StartGameView(HomeAssistantView):
                 playlist_data = json.loads(file_content)
 
                 for song in playlist_data.get("songs", []):
-                    if "year" in song and "uri" in song:
+                    has_uri = any(
+                        song.get(k)
+                        for k in ("uri", "uri_spotify", "uri_youtube_music", "uri_tidal", "uri_deezer", "uri_apple_music")
+                    )
+                    if "year" in song and has_uri:
                         tagged = dict(song)
                         tagged["_playlist_source"] = playlist_path
                         songs.append(tagged)
