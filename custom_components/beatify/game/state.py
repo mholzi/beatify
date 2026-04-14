@@ -1840,8 +1840,13 @@ class GameState:
         self.phase = GamePhase.END
         self._notify_state_callbacks()
 
-        # Issue #331: Celebrate with Party Lights
-        await self._lights_celebrate()
+        # Issue #331: Celebrate with Party Lights, then stop (#553)
+        if self._party_lights:
+            try:
+                await self._party_lights.celebrate()
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning("Party Lights celebration failed")
+            await self.disable_party_lights()
 
         # Issue #447: Announce winner via TTS
         await self.announce_winner()
