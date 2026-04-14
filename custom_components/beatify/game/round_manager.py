@@ -313,6 +313,7 @@ class RoundManager:
         self,
         play_deferred_song: Callable[[dict[str, Any]], Awaitable[bool]],
         on_round_end: Callable[[], Awaitable[None]] | None,
+        timer_countdown: Callable[[float], Awaitable[None]] | None = None,
     ) -> None:
         """Handle admin confirmation of intro splash (Issue #292, #403).
 
@@ -341,8 +342,9 @@ class RoundManager:
         self._intro_round_start_time = now
 
         delay = (self.deadline - int(now * 1000)) / 1000.0
+        countdown = timer_countdown or self._timer_countdown
         self._timer_task = asyncio.create_task(
-            self._timer_countdown(delay)
+            countdown(delay)
         )
 
         # Start intro auto-stop

@@ -1722,7 +1722,7 @@ class GameState:
         Delegates to RoundManager.
         """
         await self._round_manager.confirm_intro_splash(
-            self.play_deferred_song, self._on_round_end
+            self.play_deferred_song, self._on_round_end, self._timer_countdown
         )
 
     def is_deadline_passed(self) -> bool:
