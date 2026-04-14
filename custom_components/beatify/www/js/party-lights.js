@@ -234,18 +234,6 @@
             });
         }
 
-        // Collapsible section toggle
-        var toggle = document.getElementById('party-lights-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', function() {
-                var section = document.getElementById('party-lights');
-                if (section) {
-                    var isCollapsed = section.classList.toggle('collapsed');
-                    toggle.setAttribute('aria-expanded', !isCollapsed);
-                }
-            });
-        }
-
         // Fetch lights
         fetchLights();
     }
