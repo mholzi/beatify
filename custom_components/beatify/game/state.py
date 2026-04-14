@@ -1408,7 +1408,8 @@ class GameState:
             # Fix #124: Only update album_art from media player.
             # Artist/title are authoritative from playlist data — media player
             # state can report stale/wrong track info (especially Sonos + Spotify).
-            if self.current_song and self.current_song.get("uri") == uri:
+            current_uri = self.current_song.get("_resolved_uri") or self.current_song.get("uri")
+            if self.current_song and current_uri == uri:
                 self.current_song["album_art"] = metadata.get(
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 )
