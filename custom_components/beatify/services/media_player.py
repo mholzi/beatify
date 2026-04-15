@@ -14,6 +14,7 @@ else:
     from async_timeout import timeout as async_timeout
 
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
+from homeassistant.helpers.event import async_track_state_change_event
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -91,7 +92,6 @@ PLAYBACK_TIMEOUT = 8.0
 
 # Timeout for waiting for metadata to update after playing (seconds)
 METADATA_WAIT_TIMEOUT = 5.0
-METADATA_POLL_INTERVAL = 0.3
 
 
 class MediaPlayerService:
@@ -267,39 +267,64 @@ class MediaPlayerService:
         expected_lower = expected_title.lower()
         if not expected_lower:
             _LOGGER.warning("MA playback: no expected title — skipping title verification")
-        elapsed = 0.0
-        while elapsed < PLAYBACK_TIMEOUT:
+
+        confirmed = asyncio.Event()
+        start_time = asyncio.get_event_loop().time()
+
+        def _check_state(state) -> bool:
+            """Return True if the state confirms expected playback."""
+            if not state or state.state != "playing":
+                return False
             try:
-                state = self._hass.states.get(self._entity_id)
-            except (AttributeError, KeyError):
-                _LOGGER.debug("MA poll: state read failed, retrying")
-                await asyncio.sleep(0.5)
-                elapsed += 0.5
-                continue
-            if state and state.state == "playing":
                 current_title = state.attributes.get("media_title", "")
                 position = state.attributes.get("media_position", 0)
                 position_updated = state.attributes.get("media_position_updated_at")
 
                 position_fresh = position_updated != position_updated_before
                 actually_playing = isinstance(position, (int, float)) and position >= 1
-                # Match expected title (substring, case-insensitive) — MA may
-                # append suffixes like "(Official HD Video)" or "(7″ mix)"
                 title_matches = (
-                    (not expected_lower)  # no title to verify — accept any
+                    (not expected_lower)
                     or (expected_lower in current_title.lower() if current_title else False)
                 )
+                return title_matches and position_fresh and actually_playing
+            except (AttributeError, KeyError):
+                return False
 
-                if title_matches and position_fresh and actually_playing:
-                    _LOGGER.debug(
-                        "MA playback confirmed after %.1fs: %s (pos=%.1f)",
-                        elapsed,
-                        current_title,
-                        position,
-                    )
-                    return True
-            await asyncio.sleep(0.5)
-            elapsed += 0.5
+        def _state_changed(ev):
+            new_state = ev.data.get("new_state")
+            if _check_state(new_state):
+                confirmed.set()
+
+        unsub = async_track_state_change_event(
+            self._hass, [self._entity_id], _state_changed
+        )
+        try:
+            # Check current state first — may already be playing
+            current = self._hass.states.get(self._entity_id)
+            if _check_state(current):
+                elapsed = asyncio.get_event_loop().time() - start_time
+                _LOGGER.debug(
+                    "MA playback confirmed after %.1fs: %s (pos=%.1f)",
+                    elapsed,
+                    current.attributes.get("media_title", ""),
+                    current.attributes.get("media_position", 0),
+                )
+                return True
+
+            await asyncio.wait_for(confirmed.wait(), timeout=PLAYBACK_TIMEOUT)
+            elapsed = asyncio.get_event_loop().time() - start_time
+            final = self._hass.states.get(self._entity_id)
+            _LOGGER.debug(
+                "MA playback confirmed after %.1fs: %s (pos=%.1f)",
+                elapsed,
+                final.attributes.get("media_title", "") if final else "?",
+                final.attributes.get("media_position", 0) if final else 0,
+            )
+            return True
+        except asyncio.TimeoutError:
+            pass
+        finally:
+            unsub()
 
         current_state = self._hass.states.get(self._entity_id)
         speaker_state = current_state.state if current_state else "unknown"
@@ -404,8 +429,8 @@ class MediaPlayerService:
         """
         Wait for media player to update metadata after playing a song.
 
-        Polls until media_content_id contains the track ID from the URI,
-        or timeout is reached.
+        Listens for state changes until media_content_id contains the track ID
+        from the URI, or timeout is reached.
 
         Args:
             uri: The Spotify URI that was just played (e.g., spotify:track:xxx)
@@ -426,37 +451,68 @@ class MediaPlayerService:
             initial_state.attributes.get("media_title") if initial_state else None
         )
 
-        elapsed = 0.0
-        while elapsed < METADATA_WAIT_TIMEOUT:
-            state = self._hass.states.get(self._entity_id)
-            if state:
-                # Check if media_content_id contains our track ID
-                content_id = state.attributes.get("media_content_id", "")
-                if track_id in content_id:
-                    _LOGGER.debug(
-                        "Metadata updated after %.1fs (matched track ID)",
-                        elapsed,
-                    )
-                    return self._extract_metadata(state)
+        matched = asyncio.Event()
+        matched_metadata: dict[str, Any] = {}
+        start_time = asyncio.get_event_loop().time()
 
-                # Also check if title changed (fallback)
-                current_title = state.attributes.get("media_title")
-                if current_title and current_title != initial_title:
-                    _LOGGER.debug(
-                        "Metadata updated after %.1fs (title changed)",
-                        elapsed,
-                    )
-                    return self._extract_metadata(state)
+        def _check_state(state) -> dict[str, Any] | None:
+            """Return extracted metadata if state matches, else None."""
+            if not state:
+                return None
+            # Check if media_content_id contains our track ID
+            content_id = state.attributes.get("media_content_id", "")
+            if track_id in content_id:
+                return self._extract_metadata(state)
+            # Also check if title changed (fallback)
+            current_title = state.attributes.get("media_title")
+            if current_title and current_title != initial_title:
+                return self._extract_metadata(state)
+            return None
 
-            await asyncio.sleep(METADATA_POLL_INTERVAL)
-            elapsed += METADATA_POLL_INTERVAL
+        def _state_changed(ev):
+            new_state = ev.data.get("new_state")
+            result = _check_state(new_state)
+            if result is not None:
+                matched_metadata.update(result)
+                matched.set()
 
-        # Timeout - return whatever we have
-        _LOGGER.warning(
-            "Metadata not updated within %.1fs, using current state",
-            METADATA_WAIT_TIMEOUT,
+        unsub = async_track_state_change_event(
+            self._hass, [self._entity_id], _state_changed
         )
-        return await self.get_metadata()
+        try:
+            # Check current state first — metadata may already be updated
+            current = self._hass.states.get(self._entity_id)
+            result = _check_state(current)
+            if result is not None:
+                elapsed = asyncio.get_event_loop().time() - start_time
+                _LOGGER.debug(
+                    "Metadata updated after %.1fs (immediate check)",
+                    elapsed,
+                )
+                return result
+
+            await asyncio.wait_for(matched.wait(), timeout=METADATA_WAIT_TIMEOUT)
+            elapsed = asyncio.get_event_loop().time() - start_time
+            current_state = self._hass.states.get(self._entity_id)
+            content_id = (
+                current_state.attributes.get("media_content_id", "")
+                if current_state else ""
+            )
+            reason = "matched track ID" if track_id in content_id else "title changed"
+            _LOGGER.debug(
+                "Metadata updated after %.1fs (%s)",
+                elapsed,
+                reason,
+            )
+            return matched_metadata
+        except asyncio.TimeoutError:
+            _LOGGER.warning(
+                "Metadata not updated within %.1fs, using current state",
+                METADATA_WAIT_TIMEOUT,
+            )
+            return await self.get_metadata()
+        finally:
+            unsub()
 
     def _extract_metadata(self, state: Any) -> dict[str, Any]:
         """Extract metadata dict from state object."""
