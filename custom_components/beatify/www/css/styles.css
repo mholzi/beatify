@@ -8844,19 +8844,6 @@ body.device-tier-low .reveal-skip-hint {
     line-height: 1.3;
 }
 
-.admin-content .admin-control-bar {
-    display: flex;
-    gap: var(--space-sm);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: var(--space-md);
-    position: static;
-    background: none;
-    border-top: none;
-    padding: 0;
-    z-index: auto;
-}
-
 /* Admin read-only challenge options */
 .artist-option--readonly {
     padding: 10px 14px;

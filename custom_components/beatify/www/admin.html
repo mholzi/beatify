@@ -574,7 +574,7 @@
 
         <!-- Issue #477: PLAYING phase view -->
         <!-- PLAYING phase view (#653: mirrors player.html game-view layout) -->
-        <section id="admin-playing-section" class="card-section hidden">
+        <div id="admin-playing-section" class="hidden">
             <div class="game-container">
                 <!-- Game Header (matches player game-header-compact) -->
                 <div class="game-header-compact">
@@ -657,19 +657,6 @@
                     <div id="admin-movie-options" class="movie-options-grid"></div>
                 </section>
 
-                <!-- Admin Controls (replaces year-selector for spectator admin) -->
-                <div class="admin-control-bar">
-                    <button id="admin-stop-song" class="btn btn-secondary btn-compact">
-                        <span aria-hidden="true">🔇</span> <span data-i18n="admin.stopSong">Stop Song</span>
-                    </button>
-                    <button id="admin-seek-forward" class="btn btn-secondary btn-compact" title="Seek forward 10 seconds">⏩ +10s</button>
-                    <button id="admin-vol-down" class="btn btn-secondary btn-compact" title="Volume down">🔉 <span data-i18n="admin.volDown">Down</span></button>
-                    <button id="admin-vol-up" class="btn btn-secondary btn-compact" title="Volume up">🔊 <span data-i18n="admin.volUp">Up</span></button>
-                    <button id="admin-skip-round" class="btn btn-primary btn-compact" title="Skip to next round">⏭ <span data-i18n="admin.skipRound">Skip</span></button>
-                    <button id="admin-stop-lights" class="btn btn-secondary btn-compact" title="Stop lights">🔦 <span data-i18n="admin.stopLights">Lights Off</span></button>
-                    <button id="admin-end-game-playing" class="btn btn-danger btn-compact" title="End game"><span data-i18n="admin.endGame">End Game</span></button>
-                </div>
-
                 <!-- Leaderboard (collapsible, matches player) -->
                 <section id="admin-playing-leaderboard" class="section-collapsible leaderboard-section">
                     <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="admin-playing-leaderboard-content">
@@ -683,10 +670,42 @@
                     </div>
                 </section>
             </div>
-        </section>
+        </div>
+
+        <!-- Admin control bar (fixed bottom, matches player.html admin-control-bar) -->
+        <div id="admin-control-bar" class="admin-control-bar hidden">
+            <button id="admin-stop-song" class="control-btn" type="button">
+                <span class="control-icon">⏹️</span>
+                <span class="control-label" data-i18n="admin.stopSong">Stop</span>
+            </button>
+            <button id="admin-vol-down" class="control-btn" type="button">
+                <span class="control-icon">🔉</span>
+                <span class="control-label" data-i18n="admin.volDown">Down</span>
+            </button>
+            <button id="admin-vol-up" class="control-btn" type="button">
+                <span class="control-icon">🔊</span>
+                <span class="control-label" data-i18n="admin.volUp">Up</span>
+            </button>
+            <button id="admin-skip-round" class="control-btn" type="button">
+                <span class="control-icon">⏭️</span>
+                <span class="control-label" data-i18n="admin.skipRound">Skip</span>
+            </button>
+            <button id="admin-seek-forward" class="control-btn" type="button">
+                <span class="control-icon">⏩</span>
+                <span class="control-label">+10s</span>
+            </button>
+            <button id="admin-stop-lights" class="control-btn" type="button">
+                <span class="control-icon">🔦</span>
+                <span class="control-label" data-i18n="admin.stopLights">Lights</span>
+            </button>
+            <button id="admin-end-game-playing" class="control-btn control-btn--danger" type="button">
+                <span class="control-icon">🛑</span>
+                <span class="control-label" data-i18n="admin.end">End</span>
+            </button>
+        </div>
 
         <!-- REVEAL phase view (#653: mirrors player.html reveal-view layout) -->
-        <section id="admin-reveal-section" class="card-section hidden">
+        <div id="admin-reveal-section" class="hidden">
             <div class="reveal-container reveal-container--compact">
                 <!-- Reveal Header (matches player reveal-header-compact) -->
                 <div class="reveal-header-compact">
@@ -713,8 +732,9 @@
                     </div>
                 </div>
 
-                <!-- Year Reveal (matches player reveal-year-section) -->
+                <!-- Year Reveal with Emotion (matches player reveal-year-section) -->
                 <div class="reveal-year-section">
+                    <div id="admin-reveal-emotion" class="reveal-emotion-inline hidden" aria-live="polite"></div>
                     <div class="correct-year-label" data-i18n="reveal.theYearWas">The year was</div>
                     <div id="admin-reveal-correct-year" class="correct-year text-glow"></div>
                 </div>
@@ -781,18 +801,52 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Issue #477: END phase view -->
-        <section id="admin-end-section" class="card-section admin-game-wrapper hidden">
-            <h2>Game Over</h2>
-            <div id="admin-end-winner" class="admin-winner-display"></div>
-            <div id="admin-end-leaderboard" class="leaderboard-list"></div>
-            <div class="admin-end-actions">
-                <button id="admin-rematch" class="btn btn-primary">Rematch</button>
-                <button id="admin-new-game" class="btn btn-secondary">New Game</button>
+        <!-- END phase view (#653: mirrors player.html end-view layout) -->
+        <div id="admin-end-section" class="hidden">
+            <div class="end-container">
+                <!-- Header -->
+                <div class="end-header">
+                    <h1 class="end-title" data-i18n="leaderboard.gameOver">Game Over!</h1>
+                    <p class="end-subtitle" data-i18n="leaderboard.thanksForPlaying">Thanks for playing Beatify</p>
+                </div>
+
+                <!-- Podium for top 3 -->
+                <div id="admin-podium" class="podium">
+                    <div class="podium-place podium-2">
+                        <div class="podium-medal">🥈</div>
+                        <div class="podium-name" id="admin-podium-2-name">---</div>
+                        <div class="podium-score" id="admin-podium-2-score">0</div>
+                        <div class="podium-stand">2</div>
+                    </div>
+                    <div class="podium-place podium-1">
+                        <div class="podium-medal">🥇</div>
+                        <div class="podium-name" id="admin-podium-1-name">---</div>
+                        <div class="podium-score" id="admin-podium-1-score">0</div>
+                        <div class="podium-stand">1</div>
+                    </div>
+                    <div class="podium-place podium-3">
+                        <div class="podium-medal">🥉</div>
+                        <div class="podium-name" id="admin-podium-3-name">---</div>
+                        <div class="podium-score" id="admin-podium-3-score">0</div>
+                        <div class="podium-stand">3</div>
+                    </div>
+                </div>
+
+                <!-- Full leaderboard -->
+                <div class="final-leaderboard">
+                    <div class="final-leaderboard-header" data-i18n="leaderboard.fullRankings">Full Rankings</div>
+                    <div id="admin-end-leaderboard" class="final-leaderboard-list"></div>
+                </div>
+
+                <!-- Admin controls -->
+                <div class="end-admin-controls">
+                    <button id="admin-rematch" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.rematch">Rematch</button>
+                    <button id="admin-new-game" class="new-game-btn" data-i18n="admin.startNewGame">Start New Game</button>
+                </div>
             </div>
-        </section>
+        </div>
 
     </main>
 

@@ -2917,7 +2917,8 @@ function handleAdminStateUpdate(data) {
 
     // Hide all phase sections first
     var sections = ['setup-container', 'lobby-section', 'existing-game-section',
-                    'admin-playing-section', 'admin-reveal-section', 'admin-end-section'];
+                    'admin-playing-section', 'admin-reveal-section', 'admin-end-section',
+                    'admin-control-bar'];
     sections.forEach(function(id) {
         var el = document.getElementById(id);
         if (el) el.classList.add('hidden');
@@ -2961,6 +2962,10 @@ function showAdminPlayingView(data) {
     var section = document.getElementById('admin-playing-section');
     if (!section) return;
     section.classList.remove('hidden');
+
+    // Show fixed control bar (matches player admin-control-bar)
+    var controlBar = document.getElementById('admin-control-bar');
+    if (controlBar) controlBar.classList.remove('hidden');
 
     // Round info (player-style separate spans)
     var roundEl = document.getElementById('admin-current-round');
@@ -3016,24 +3021,6 @@ function showAdminPlayingView(data) {
     // Intro splash overlay with confirm button
     var introSplash = document.getElementById('admin-intro-splash');
     if (introSplash) introSplash.classList.toggle('hidden', !data.intro_splash_pending);
-
-    // Artist challenge (read-only options)
-    var artistSection = document.getElementById('admin-artist-challenge');
-    if (artistSection) {
-        if (data.artist_challenge) {
-            artistSection.classList.remove('hidden');
-            renderAdminChallengeOptions('admin-artist-options', data.artist_challenge.options);
-        } else { artistSection.classList.add('hidden'); }
-    }
-
-    // Movie challenge (read-only options)
-    var movieSection = document.getElementById('admin-movie-challenge');
-    if (movieSection) {
-        if (data.movie_challenge) {
-            movieSection.classList.remove('hidden');
-            renderAdminChallengeOptions('admin-movie-options', data.movie_challenge.options);
-        } else { movieSection.classList.add('hidden'); }
-    }
 
     // Leaderboard (player-style entries)
     renderAdminLeaderboard(data.leaderboard);
@@ -3091,6 +3078,40 @@ function showAdminRevealView(data) {
     var section = document.getElementById('admin-reveal-section');
     if (!section) return;
     section.classList.remove('hidden');
+
+    // Show control bar during reveal too (admin can skip, end game)
+    var controlBar = document.getElementById('admin-control-bar');
+    if (controlBar) controlBar.classList.remove('hidden');
+
+    // Emotion display (summary for spectator admin)
+    var emotionEl = document.getElementById('admin-reveal-emotion');
+    if (emotionEl && data.players) {
+        var players = data.players || [];
+        var exactCount = players.filter(function(p) { return p.years_off === 0 && !p.missed_round; }).length;
+        var avgOff = 0;
+        var guessers = players.filter(function(p) { return !p.missed_round && p.years_off != null; });
+        if (guessers.length > 0) {
+            avgOff = Math.round(guessers.reduce(function(s, p) { return s + (p.years_off || 0); }, 0) / guessers.length);
+        }
+        var emotionText = '';
+        var emotionClass = 'reveal-emotion--wrong';
+        if (exactCount > 0) {
+            emotionText = '🎯 ' + exactCount + 'x ' + (BeatifyI18n.t('reveal.exact') || 'Exact!');
+            emotionClass = 'reveal-emotion--exact';
+        } else if (avgOff <= 3) {
+            emotionText = '🔥 ' + (BeatifyI18n.t('reveal.soClose') || 'So close!');
+            emotionClass = 'reveal-emotion--close';
+        } else if (avgOff <= 10) {
+            emotionText = '👀 Ø ' + avgOff + ' ' + (BeatifyI18n.t('reveal.yearsOff') || 'years off');
+            emotionClass = 'reveal-emotion--wrong';
+        } else {
+            emotionText = '😅 Ø ' + avgOff + ' ' + (BeatifyI18n.t('reveal.yearsOff') || 'years off');
+            emotionClass = 'reveal-emotion--wrong';
+        }
+        emotionEl.className = 'reveal-emotion-inline ' + emotionClass;
+        emotionEl.innerHTML = '<span class="reveal-emotion-text">' + emotionText + '</span>';
+        emotionEl.classList.remove('hidden');
+    }
 
     // Round info
     var roundEl = document.getElementById('admin-reveal-round');
@@ -3271,11 +3292,15 @@ function showAdminEndView(data) {
     if (!section) return;
     section.classList.remove('hidden');
 
-    // Winner
-    var winnerEl = document.getElementById('admin-end-winner');
-    if (winnerEl && data.winner) {
-        winnerEl.innerHTML = '<span class="winner-trophy">🏆</span> ' +
-            utils.escapeHtml(data.winner.name) + ' — ' + data.winner.score + ' pts';
+    // Podium (top 3 from leaderboard)
+    if (data.leaderboard) {
+        for (var i = 1; i <= 3; i++) {
+            var entry = data.leaderboard.find(function(e) { return e.rank === i; });
+            var nameEl = document.getElementById('admin-podium-' + i + '-name');
+            var scoreEl = document.getElementById('admin-podium-' + i + '-score');
+            if (nameEl) nameEl.textContent = entry ? entry.name : '---';
+            if (scoreEl) scoreEl.textContent = entry ? entry.score : '0';
+        }
     }
 
     // Final leaderboard (player-style entries)
@@ -3299,6 +3324,9 @@ function showAdminPausedView(data) {
     var section = document.getElementById('admin-playing-section');
     if (!section) return;
     section.classList.remove('hidden');
+    // Show control bar during pause
+    var controlBar = document.getElementById('admin-control-bar');
+    if (controlBar) controlBar.classList.remove('hidden');
 
     var timerEl = document.getElementById('admin-timer');
     if (timerEl) timerEl.textContent = '⏸ ' + (BeatifyI18n.t('game.paused') || 'Paused');
