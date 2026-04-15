@@ -104,6 +104,7 @@ class AnalyticsStorage:
         self._session_error_count = 0
         self._save_lock = asyncio.Lock()
         self._playlist_display_names: dict[str, str] | None = None
+        self._metrics_cache: dict[str, tuple[float, dict]] = {}  # period -> (timestamp, result)
 
     def _empty_data(self) -> AnalyticsData:
         """Return empty analytics data structure."""
@@ -191,6 +192,7 @@ class AnalyticsStorage:
 
         """
         self._data["games"].append(record)
+        self._metrics_cache.clear()
         self._games_since_prune += 1
 
         # Prune periodically
@@ -246,6 +248,12 @@ class AnalyticsStorage:
         cutoff = now - (RETENTION_DAYS * 24 * 60 * 60)
 
         games = self._data["games"]
+
+        # Age-based retention: remove records older than 90 days regardless of count
+        cutoff_ts = time.time() - (90 * 86400)  # 90 days
+        games = [g for g in games if g.get("ended_at", 0) > cutoff_ts]
+        self._data["games"] = games
+
         if len(games) <= MAX_DETAILED_RECORDS:
             return
 
@@ -598,6 +606,13 @@ class AnalyticsStorage:
             Dict with computed metrics and trend data
 
         """
+        # Check TTL-based cache (60s) before recomputing
+        cache_key = period
+        if cache_key in self._metrics_cache:
+            cached_ts, cached_result = self._metrics_cache[cache_key]
+            if time.time() - cached_ts < 60:
+                return cached_result
+
         now = int(time.time())
 
         # Calculate period boundaries
@@ -673,7 +688,7 @@ class AnalyticsStorage:
         # Story 19.8: Calculate peak concurrent players
         peak_players = max((g["player_count"] for g in current_games), default=0)
 
-        return {
+        result = {
             "period": period,
             "total_games": total_games,
             "avg_players_per_game": round(avg_players, 1),
@@ -699,6 +714,9 @@ class AnalyticsStorage:
             "error_stats": error_stats,
             "generated_at": now,
         }
+
+        self._metrics_cache[cache_key] = (time.time(), result)
+        return result
 
     def compute_streak_stats(
         self, period: str = "30d", games: list | None = None
