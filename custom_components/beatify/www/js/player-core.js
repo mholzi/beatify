@@ -9,7 +9,8 @@ import {
     cleanupLeaderboardObserver, setupLeaderboardResizeHandler,
     cleanupVirtualPlayerList,
     setEnergyLevel, triggerConfetti, stopConfetti,
-    initQrCollapsible, setupLobbyCollapsible
+    initQrCollapsible, setupLobbyCollapsible,
+    requestWakeLock, releaseWakeLock
 } from './player-utils.js';
 
 import {
@@ -484,6 +485,7 @@ function handleServerMessage(data) {
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
             stopConfetti();
+            requestWakeLock(); // #622: keep screen on during gameplay
             var newRound = data.round || 1;
             if (newRound !== state.currentRoundNumber) {
                 state.currentRoundNumber = newRound;
@@ -535,6 +537,7 @@ function handleServerMessage(data) {
             stopCountdown();
             hideAdminControlBar();
             hideReactionBar();
+            releaseWakeLock(); // #622: allow screen to sleep again
             state.currentRoundNumber = 0;
             setEnergyLevel('warmup');
             showView('end-view');
@@ -932,6 +935,10 @@ if ('serviceWorker' in navigator) {
 // reconnect if the socket is dead — without waiting for the onclose backoff timer.
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible') {
+        // #622: Re-acquire wake lock when tab becomes visible during an active game
+        if (state.currentRoundNumber > 0) {
+            requestWakeLock();
+        }
         var ws = state.ws;
         if (!ws || ws.readyState === WebSocket.CLOSING || ws.readyState === WebSocket.CLOSED) {
             if (state.playerName) {
