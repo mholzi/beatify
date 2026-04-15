@@ -30,6 +30,15 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+_URI_FIELDS = [
+    ("uri", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
+    ("uri_spotify", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
+    ("uri_apple_music", URI_PATTERN_APPLE_MUSIC, "applemusic://track/id"),
+    ("uri_youtube_music", URI_PATTERN_YOUTUBE_MUSIC, "https://music.youtube.com/watch?v=..."),
+    ("uri_tidal", URI_PATTERN_TIDAL, "tidal://track/{id}"),
+    ("uri_deezer", URI_PATTERN_DEEZER, "deezer://track/{id}"),
+]
+
 
 class PlaylistManager:
     """Manages song selection and played tracking.
@@ -293,66 +302,13 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
 
         # Check URIs - validate patterns and ensure at least one valid URI exists
         has_valid_uri = False
-
-        # Check legacy 'uri' field (Spotify pattern)
-        uri = song.get("uri")
-        if isinstance(uri, str) and uri.strip():
-            if re.match(URI_PATTERN_SPOTIFY, uri):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri' invalid (expected spotify:track:{{22-char-id}})"
-                )
-
-        # Check 'uri_spotify' field
-        uri_spotify = song.get("uri_spotify")
-        if isinstance(uri_spotify, str) and uri_spotify.strip():
-            if re.match(URI_PATTERN_SPOTIFY, uri_spotify):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri_spotify' invalid (expected spotify:track:{{22-char-id}})"
-                )
-
-        # Check 'uri_apple_music' field
-        uri_apple_music = song.get("uri_apple_music")
-        if isinstance(uri_apple_music, str) and uri_apple_music.strip():
-            if re.match(URI_PATTERN_APPLE_MUSIC, uri_apple_music):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri_apple_music' invalid (expected applemusic://track/id)"
-                )
-
-        # Check 'uri_youtube_music' field
-        uri_youtube_music = song.get("uri_youtube_music")
-        if isinstance(uri_youtube_music, str) and uri_youtube_music.strip():
-            if re.match(URI_PATTERN_YOUTUBE_MUSIC, uri_youtube_music):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri_youtube_music' invalid (expected https://music.youtube.com/watch?v=...)"
-                )
-
-        # Check 'uri_tidal' field
-        uri_tidal = song.get("uri_tidal")
-        if isinstance(uri_tidal, str) and uri_tidal.strip():
-            if re.match(URI_PATTERN_TIDAL, uri_tidal):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri_tidal' invalid (expected tidal://track/{{id}})"
-                )
-
-        # Check 'uri_deezer' field
-        uri_deezer = song.get("uri_deezer")
-        if isinstance(uri_deezer, str) and uri_deezer.strip():
-            if re.match(URI_PATTERN_DEEZER, uri_deezer):
-                has_valid_uri = True
-            else:
-                errors.append(
-                    f"Song {i + 1}: 'uri_deezer' invalid (expected deezer://track/{{id}})"
-                )
+        for field, pattern, expected in _URI_FIELDS:
+            value = song.get(field)
+            if isinstance(value, str) and value.strip():
+                if re.match(pattern, value):
+                    has_valid_uri = True
+                else:
+                    errors.append(f"Song {i + 1}: '{field}' invalid (expected {expected})")
 
         # Error if no valid URI found
         if not has_valid_uri:
