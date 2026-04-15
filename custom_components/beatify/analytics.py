@@ -440,7 +440,8 @@ class AnalyticsStorage:
         # Calculate percentage relative to total games with playlists
         total = sum(count for _, count in sorted_playlists)
 
-        # Get display names mapping
+        # Get display names mapping (cache-only hit: pre-loaded in load()
+        # via async_add_executor_job, see #578 / #590)
         display_names = self._get_playlist_display_names()
 
         return [
