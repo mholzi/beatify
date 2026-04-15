@@ -68,7 +68,7 @@ from .scoring import (
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .serializers import GameStateSerializer
-from .share import build_share_data
+
 from .types import RoundAnalytics, _get_decade_label
 
 if TYPE_CHECKING:
@@ -519,56 +519,6 @@ class GameState:
             "phase": self.phase.value,
             "song_count": len(songs),
         }
-
-    def _build_song_dict(self, include_reveal: bool = False) -> dict:
-        """Build the song info dict from current_song.
-
-        Args:
-            include_reveal: If True, include year and fun_fact fields
-                            shown only during REVEAL phase.
-        """
-        song = self.current_song
-        result = {
-            "artist": song.get("artist", "Unknown"),
-            "title": song.get("title", "Unknown"),
-            "album_art": song.get(
-                "album_art", "/beatify/static/img/no-artwork.svg"
-            ),
-        }
-        if include_reveal:
-            result["year"] = song.get("year")
-            result["fun_fact"] = song.get("fun_fact", "")
-            result["fun_fact_de"] = song.get("fun_fact_de", "")
-            result["fun_fact_es"] = song.get("fun_fact_es", "")
-            result["fun_fact_fr"] = song.get("fun_fact_fr", "")
-            result["fun_fact_nl"] = song.get("fun_fact_nl", "")
-        return result
-
-    def _state_end(self) -> dict[str, Any]:
-        """Return END phase-specific state fragment."""
-        fragment: dict[str, Any] = {
-            # Final leaderboard with all player stats (Story 5.6)
-            "leaderboard": self.get_final_leaderboard(),
-            "game_stats": {
-                "total_rounds": self.round,
-                "total_players": len(self.players),
-            },
-            # Superlatives - fun awards (Story 15.2)
-            "superlatives": self.calculate_superlatives(),
-            # Issue #75: Game highlights reel
-            "highlights": self.highlights_tracker.to_dict(),
-            # Issue #120: Shareable result cards
-            "share_data": build_share_data(self),
-        }
-        # Include winner info
-        if self.players:
-            winner = max(self.players.values(), key=lambda p: p.score)
-            fragment["winner"] = {"name": winner.name, "score": winner.score}
-        # Game performance comparison for end screen (Story 14.4 AC5, AC6)
-        game_performance = self.get_game_performance()
-        if game_performance:
-            fragment["game_performance"] = game_performance
-        return fragment
 
     def get_state(self) -> dict[str, Any] | None:
         """Get current game state for broadcast.

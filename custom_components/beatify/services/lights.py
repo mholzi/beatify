@@ -50,8 +50,7 @@ WLED_PRESET_DEFAULTS: dict[str, int] = {
     "LOBBY": 1,
     "PLAYING": 2,
     "REVEAL": 3,
-    "STREAK": 4,
-    "COUNTDOWN": 5,
+
     "END": 6,
 }
 
