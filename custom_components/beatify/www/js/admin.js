@@ -176,6 +176,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-skip-round')?.addEventListener('click', adminNextRound);
+    document.getElementById('admin-confirm-intro')?.addEventListener('click', function() {
+        sendAdminCommand({ type: 'admin', action: 'confirm_intro_splash' });
+    });
     document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
@@ -3000,6 +3003,12 @@ function showAdminPlayingView(data) {
 
     // #648: Per-player submission tracker
     renderAdminSubmissionTracker(data.players, data.submitted_count, data.player_count);
+
+    // Intro splash: show confirm button when intro round is pending
+    var introSplash = document.getElementById('admin-intro-splash');
+    if (introSplash) {
+        introSplash.classList.toggle('hidden', !data.intro_splash_pending);
+    }
 
     // Show/hide player UI based on whether admin is playing
     var playerUI = document.getElementById('admin-player-ui');
