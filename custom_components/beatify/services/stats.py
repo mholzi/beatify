@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import time
@@ -35,6 +36,7 @@ class StatsService:
         self._analytics: AnalyticsStorage | None = None
         self._game_start_time: int | None = None
         self._all_time_avg_cache: float | None = None
+        self._save_task: asyncio.Task | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -99,6 +101,24 @@ class StatsService:
             _LOGGER.debug("Stats saved to %s", self._stats_file)
         except OSError as err:
             _LOGGER.error("Failed to save stats: %s", err)
+
+    def schedule_save(self) -> None:
+        """
+        Schedule non-blocking save.
+
+        Uses fire-and-forget pattern to avoid blocking game operations.
+        Coalesces rapid calls: if a save is already in flight, the next
+        save() will pick up whatever mutations happened in between.
+        """
+        if self._save_task is not None and not self._save_task.done():
+            return
+        self._save_task = asyncio.create_task(self.save())
+        self._save_task.add_done_callback(self._handle_save_error)
+
+    def _handle_save_error(self, task: asyncio.Task) -> None:
+        """Log exceptions from fire-and-forget save tasks."""
+        if (exc := task.exception()) is not None:
+            _LOGGER.error("Unhandled error in stats save task: %s", exc)
 
     async def record_game(self, game_summary: dict, difficulty: str = "normal") -> dict:
         """
@@ -206,8 +226,8 @@ class StatsService:
             all_time["highest_avg_game_id"] = game_id
             comparison["is_new_record"] = True
 
-        # Save to file
-        await self.save()
+        # Schedule deferred save (non-blocking)
+        self.schedule_save()
 
         _LOGGER.info(
             "Recorded game %s: %.2f avg pts/round, %d players, %d rounds",
@@ -454,8 +474,8 @@ class StatsService:
                 elif years_off <= CORRECT_GUESS_THRESHOLD:
                     song["correct_guesses"] += 1
 
-        # Save to file
-        await self.save()
+        # Schedule deferred save (non-blocking)
+        self.schedule_save()
 
         _LOGGER.debug(
             "Recorded song result for %s: %d guesses, %d correct",
