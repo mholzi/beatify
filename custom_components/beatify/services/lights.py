@@ -6,6 +6,8 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING, Any
 
+from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
+
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -116,7 +118,7 @@ class PartyLightsService:
                 entry = registry.async_get(entity_id)
                 if entry and entry.platform == "wled":
                     self._wled_entities.add(entity_id)
-        except Exception:  # noqa: BLE001
+        except (ImportError, AttributeError, KeyError):  # noqa: BLE001
             # Fallback: check attributes if entity registry is unavailable
             for entity_id in self._entity_ids:
                 state = self._hass.states.get(entity_id)
@@ -337,7 +339,7 @@ class PartyLightsService:
                         restore_data,
                         blocking=False,
                     )
-            except Exception:  # noqa: BLE001
+            except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
                 _LOGGER.warning("Failed to restore light: %s", entity_id)
 
         self._saved_states = {}
@@ -407,7 +409,7 @@ class PartyLightsService:
                 await self._hass.services.async_call(
                     "light", "turn_on", call_data, blocking=False
                 )
-            except Exception:  # noqa: BLE001
+            except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
                 _LOGGER.warning("Failed to control light: %s", entity_id)
 
     async def _apply_wled(self, entity_id: str, preset_id: int) -> None:
@@ -432,7 +434,7 @@ class PartyLightsService:
                     ):
                         preset_entity = entry.entity_id
                         break
-        except Exception:  # noqa: BLE001
+        except (ImportError, AttributeError, KeyError):  # noqa: BLE001
             pass
 
         # Fallback: construct entity name from light entity_id
@@ -446,7 +448,7 @@ class PartyLightsService:
                 {"entity_id": preset_entity, "option": str(preset_id)},
                 blocking=False,
             )
-        except Exception:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
             _LOGGER.warning(
                 "Failed to set WLED preset %d on %s (tried %s)",
                 preset_id, entity_id, preset_entity,

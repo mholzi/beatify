@@ -9,8 +9,9 @@ import time
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
-from aiohttp import web
+from aiohttp import ClientError as AiohttpClientError, web
 from homeassistant.components.http import HomeAssistantView
+from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 
 from custom_components.beatify.const import (
     DIFFICULTY_DEFAULT,
@@ -215,7 +216,7 @@ class PreviewLightsView(HomeAssistantView):
         """Run a ~5s party lights preview on the given entity_ids."""
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_ids = body.get("entity_ids", [])
@@ -235,7 +236,7 @@ class PreviewLightsView(HomeAssistantView):
             await preview.start(entity_ids, intensity)
             await preview.celebrate()
             await preview.stop()
-        except Exception:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
             _LOGGER.exception("Party lights preview failed")
             return web.json_response({"error": "Preview failed"}, status=500)
 
@@ -288,7 +289,7 @@ class TtsTestView(HomeAssistantView):
             )
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")
@@ -311,7 +312,7 @@ class TtsTestView(HomeAssistantView):
                 {"entity_id": entity_id, "message": message},
                 blocking=False,
             )
-        except Exception:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
             _LOGGER.exception("TTS test failed for entity: %s", entity_id)
             return web.json_response({"error": "TTS call failed"}, status=500)
 
@@ -379,7 +380,7 @@ class StartGameView(HomeAssistantView):
 
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response(
                 {"error": "INVALID_REQUEST", "message": "Invalid JSON"},
                 status=400,
@@ -495,7 +496,7 @@ class StartGameView(HomeAssistantView):
                     else:
                         warnings.append(f"Invalid song in {playlist_path}: missing year or uri")
 
-            except Exception as err:  # noqa: BLE001
+            except (json.JSONDecodeError, OSError, ValueError) as err:  # noqa: BLE001
                 warnings.append(f"Failed to load {playlist_path}: {err}")
 
         if not songs:
@@ -1149,7 +1150,7 @@ class PlaylistRequestsView(HomeAssistantView):
         if self._storage_path.exists():
             try:
                 return json.loads(self._storage_path.read_text(encoding="utf-8"))
-            except Exception as e:  # noqa: BLE001
+            except (json.JSONDecodeError, OSError, ValueError) as e:  # noqa: BLE001
                 _LOGGER.error("Failed to load playlist requests: %s", e)
         return {"requests": [], "last_poll": None}
 
@@ -1161,7 +1162,7 @@ class PlaylistRequestsView(HomeAssistantView):
                 json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
             )
             return True
-        except Exception as e:  # noqa: BLE001
+        except OSError as e:  # noqa: BLE001
             _LOGGER.error("Failed to save playlist requests: %s", e)
             return False
 
@@ -1182,7 +1183,7 @@ class PlaylistRequestsView(HomeAssistantView):
 
         try:
             body = await request.json(content_type=None)
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response(
                 {"error": "INVALID_REQUEST", "message": "Invalid JSON"},
                 status=400,
@@ -1241,7 +1242,7 @@ class SpotifyCredentialsView(HomeAssistantView):
 
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         client_id = body.get("client_id", "").strip()
@@ -1262,7 +1263,7 @@ class SpotifyCredentialsView(HomeAssistantView):
                         {"error": "Invalid credentials — Spotify rejected the token request"},
                         status=401,
                     )
-        except Exception as err:  # noqa: BLE001
+        except (AiohttpClientError, OSError, TimeoutError) as err:  # noqa: BLE001
             return web.json_response(
                 {"error": f"Failed to validate credentials: {err}"},
                 status=500,
@@ -1300,7 +1301,7 @@ class ImportPlaylistView(HomeAssistantView):
 
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         spotify_url = body.get("spotify_url", "").strip()
@@ -1317,7 +1318,7 @@ class ImportPlaylistView(HomeAssistantView):
             return web.json_response(result)
         except ValueError as err:
             return web.json_response({"error": str(err)}, status=400)
-        except Exception as err:  # noqa: BLE001
+        except (AiohttpClientError, OSError, TimeoutError, KeyError) as err:  # noqa: BLE001
             _LOGGER.exception("Playlist import failed")
             return web.json_response(
                 {"error": f"Import failed: {err}"}, status=500
@@ -1350,7 +1351,7 @@ class EditPlaylistView(HomeAssistantView):
             playlist_dir_resolved = playlist_dir.resolve()
             if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
-        except Exception:  # noqa: BLE001
+        except (ValueError, OSError):  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
 
         def _read() -> dict | None:
@@ -1373,7 +1374,7 @@ class EditPlaylistView(HomeAssistantView):
         """Save updated playlist data."""
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         filename = body.get("file", "").strip()
@@ -1389,7 +1390,7 @@ class EditPlaylistView(HomeAssistantView):
             playlist_dir_resolved = playlist_dir.resolve()
             if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
-        except Exception:  # noqa: BLE001
+        except (ValueError, OSError):  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
 
         # Read existing data to preserve version and other fields
@@ -1422,7 +1423,7 @@ class EditPlaylistView(HomeAssistantView):
         """Remove a song by index from a playlist."""
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (json.JSONDecodeError, ValueError):  # noqa: BLE001
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         filename = body.get("file", "").strip()
@@ -1441,7 +1442,7 @@ class EditPlaylistView(HomeAssistantView):
             playlist_dir_resolved = playlist_dir.resolve()
             if not file_path.is_relative_to(playlist_dir_resolved):
                 return web.json_response({"error": "Invalid file path"}, status=400)
-        except Exception:  # noqa: BLE001
+        except (ValueError, OSError):  # noqa: BLE001
             return web.json_response({"error": "Invalid file path"}, status=400)
 
         def _read() -> dict | None:
@@ -1549,7 +1550,7 @@ class SpotifySearchView(HomeAssistantView):
                 })
 
             return web.json_response({"results": results})
-        except Exception as err:  # noqa: BLE001
+        except (AiohttpClientError, OSError, TimeoutError, KeyError, ValueError) as err:  # noqa: BLE001
             _LOGGER.exception("Spotify search failed")
             return web.json_response(
                 {"error": f"Search failed: {err}"}, status=500

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import hmac
+import json
 import logging
 import time
 from typing import TYPE_CHECKING
@@ -142,7 +143,7 @@ class BeatifyWebSocketHandler:
                 if msg.type == WSMsgType.TEXT:
                     try:
                         await self._handle_message(ws, msg.json())
-                    except Exception as err:  # noqa: BLE001
+                    except (json.JSONDecodeError, ValueError, KeyError, TypeError) as err:  # noqa: BLE001
                         _LOGGER.warning("Failed to parse WebSocket message: %s", err)
                 elif msg.type == WSMsgType.ERROR:
                     err_msg = str(ws.exception())
@@ -328,7 +329,7 @@ class BeatifyWebSocketHandler:
                 return
             try:
                 await ws.send_json(state_msg)
-            except Exception as err:  # noqa: BLE001
+            except (ConnectionError, ConnectionResetError, OSError, TypeError) as err:  # noqa: BLE001
                 _LOGGER.warning("Failed to send state to new player: %s", err)
                 return
             # Debounced broadcast to others (Issue #41 - batches concurrent joins)
@@ -1003,7 +1004,7 @@ class BeatifyWebSocketHandler:
                     }
                 )
                 await player.ws.close()
-            except Exception:  # noqa: BLE001
+            except (ConnectionError, ConnectionResetError, OSError, TypeError):  # noqa: BLE001
                 pass  # Old connection may already be dead
             _LOGGER.info("Session takeover: %s (old tab disconnected)", player.name)
 
@@ -1453,7 +1454,7 @@ class BeatifyWebSocketHandler:
         """
         try:
             await ws.send_json(message)
-        except Exception as err:  # noqa: BLE001
+        except (ConnectionError, ConnectionResetError, OSError, TypeError) as err:  # noqa: BLE001
             _LOGGER.warning("Failed to send to WebSocket: %s", err)
 
     async def debounced_broadcast_state(self) -> None:

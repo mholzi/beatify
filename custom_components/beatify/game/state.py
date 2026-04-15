@@ -1248,7 +1248,7 @@ class GameState:
         except asyncio.CancelledError:
             _LOGGER.debug("Metadata fetch cancelled")
             raise
-        except Exception as err:  # noqa: BLE001
+        except (KeyError, AttributeError, TypeError, OSError) as err:  # noqa: BLE001
             _LOGGER.warning("Failed to fetch metadata: %s", err)
             self.metadata_pending = False
 
@@ -1339,7 +1339,7 @@ class GameState:
         # Issue #75: Record highlights after scoring
         try:
             self._record_round_highlights(correct_year)
-        except Exception as err:
+        except (KeyError, AttributeError, TypeError, ValueError) as err:
             _LOGGER.error("Failed to record round highlights: %s", err)
 
         # Issue #23: Music continues playing through reveal for intro rounds.
@@ -1348,7 +1348,7 @@ class GameState:
         # Calculate round analytics after scoring (Story 13.3)
         try:
             self.round_analytics = self.calculate_round_analytics()
-        except Exception as err:
+        except (KeyError, AttributeError, TypeError, ValueError, ZeroDivisionError) as err:
             _LOGGER.error("Failed to calculate round analytics: %s", err)
             self.round_analytics = None
 
@@ -1387,7 +1387,7 @@ class GameState:
                         playlist_name=playlist_name,
                         difficulty=self.difficulty,
                     )
-                except Exception as err:
+                except (OSError, KeyError, TypeError, ValueError) as err:
                     _LOGGER.error("Failed to record song results: %s", err)
 
         # Transition to REVEAL
@@ -1419,7 +1419,7 @@ class GameState:
             try:
                 await self._on_round_end()
                 _LOGGER.debug("Round_end callback completed successfully")
-            except Exception as err:
+            except (ConnectionError, OSError, TypeError) as err:
                 _LOGGER.error("Round_end callback failed: %s", err)
         else:
             _LOGGER.warning(

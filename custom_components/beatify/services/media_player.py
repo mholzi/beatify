@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from async_timeout import timeout as async_timeout
 
+from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
+
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -185,7 +187,7 @@ class MediaPlayerService:
             )
             self._record_error("PLAYBACK_TIMEOUT", f"Timed out playing: {uri}")
             return False
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError) as err:  # noqa: BLE001
             _LOGGER.error("Playback failed for %s: %s", uri, err)  # noqa: TRY400
             self._record_error("PLAYBACK_FAILURE", f"Failed to play {uri}: {err}")
             return False
@@ -269,7 +271,7 @@ class MediaPlayerService:
         while elapsed < PLAYBACK_TIMEOUT:
             try:
                 state = self._hass.states.get(self._entity_id)
-            except Exception:
+            except (AttributeError, KeyError):
                 _LOGGER.debug("MA poll: state read failed, retrying")
                 await asyncio.sleep(0.5)
                 elapsed += 0.5
@@ -481,7 +483,7 @@ class MediaPlayerService:
                 {"entity_id": self._entity_id},
             )
             return True  # noqa: TRY300
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound) as err:  # noqa: BLE001
             _LOGGER.error("Failed to stop playback: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to stop: {err}")
             return False
@@ -501,7 +503,7 @@ class MediaPlayerService:
                 {"entity_id": self._entity_id},
             )
             return True  # noqa: TRY300
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound) as err:  # noqa: BLE001
             _LOGGER.error("Failed to resume playback: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to resume: {err}")
             return False
@@ -543,7 +545,7 @@ class MediaPlayerService:
                 },
             )
             return True  # noqa: TRY300
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound) as err:  # noqa: BLE001
             _LOGGER.error("Failed to set volume: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to set volume: {err}")
             return False
@@ -577,7 +579,7 @@ class MediaPlayerService:
                 },
             )
             return True  # noqa: TRY300
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound, ValueError, TypeError) as err:  # noqa: BLE001
             _LOGGER.error("Failed to seek media: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to seek: {err}")
             return False
@@ -651,7 +653,7 @@ class MediaPlayerService:
                 msg,
             )
             return False, msg
-        except Exception as err:  # noqa: BLE001
+        except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError) as err:  # noqa: BLE001
             msg = str(err)
             _LOGGER.warning("Media player %s not responsive: %s", self._entity_id, msg)
             return False, msg
