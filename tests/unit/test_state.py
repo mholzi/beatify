@@ -425,7 +425,7 @@ class TestRecordReaction:
     def test_reset_between_phases(self):
         self.state.record_reaction("Alice", "🎉")
         # Simulate phase reset (happens in end_round)
-        self.state._reactions_this_phase = set()
+        self.state._player_registry._reactions_this_phase = set()
         assert self.state.record_reaction("Alice", "🎉") is True
 
 
@@ -736,9 +736,9 @@ class TestPauseGame:
 
     @pytest.mark.asyncio
     async def test_pause_cancels_timer(self):
-        self.state._timer_task = asyncio.create_task(asyncio.sleep(100))
+        self.state._round_manager._timer_task = asyncio.create_task(asyncio.sleep(100))
         await self.state.pause_game("admin_disconnected")
-        assert self.state._timer_task is None or self.state._timer_task.cancelled()
+        assert self.state._round_manager._timer_task is None or self.state._round_manager._timer_task.cancelled()
 
     @pytest.mark.asyncio
     async def test_pause_stops_media(self):
