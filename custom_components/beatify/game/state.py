@@ -834,40 +834,32 @@ class GameState:
         _LOGGER.info("Rematch initiated from game: %s", self.game_id)
         self.cancel_timer()
 
-        # Preserve game settings that the admin configured
-        preserved_playlists = self.playlists
-        preserved_songs = list(self.songs)  # Copy so we get a fresh playlist
-        preserved_media_player = self.media_player
-        preserved_join_url = self.join_url
-        preserved_provider = self.provider
-        preserved_platform = self.platform
-        preserved_difficulty = self.difficulty
-        preserved_language = self.language
-        preserved_round_duration = self.round_duration
-        preserved_artist_challenge = self.artist_challenge_enabled
-        preserved_movie_quiz = self.movie_quiz_enabled
-        preserved_intro_mode = self.intro_mode_enabled
-        preserved_closest_wins = self.closest_wins_mode
+        # Preserve game settings that the admin configured (Issue #591)
+        preserved = {
+            "playlists": self.playlists,
+            "songs": list(self.songs),
+            "media_player": self.media_player,
+            "join_url": self.join_url,
+            "provider": self.provider,
+            "platform": self.platform,
+            "difficulty": self.difficulty,
+            "language": self.language,
+            "round_duration": self.round_duration,
+            "artist_challenge_enabled": self.artist_challenge_enabled,
+            "movie_quiz_enabled": self.movie_quiz_enabled,
+            "intro_mode_enabled": self.intro_mode_enabled,
+            "closest_wins_mode": self.closest_wins_mode,
+        }
 
         self._reset_game_internals()
 
         # Restore preserved settings for seamless rematch
-        self.playlists = preserved_playlists
-        self.songs = preserved_songs
-        self.media_player = preserved_media_player
-        self.provider = preserved_provider
-        self.platform = preserved_platform
-        self.difficulty = preserved_difficulty
-        self.language = preserved_language
-        self.round_duration = preserved_round_duration
-        self.artist_challenge_enabled = preserved_artist_challenge
-        self.movie_quiz_enabled = preserved_movie_quiz
-        self.intro_mode_enabled = preserved_intro_mode
-        self.closest_wins_mode = preserved_closest_wins
+        for attr, value in preserved.items():
+            setattr(self, attr, value)
 
         # Re-create PlaylistManager with fresh song list
-        self._playlist_manager = PlaylistManager(preserved_songs, preserved_provider)
-        self.total_rounds = len(preserved_songs)
+        self._playlist_manager = PlaylistManager(preserved["songs"], preserved["provider"])
+        self.total_rounds = len(preserved["songs"])
 
         self.phase = GamePhase.LOBBY
         self._notify_state_callbacks()
@@ -879,8 +871,8 @@ class GameState:
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386
 
         # Regenerate join_url with new game_id
-        if preserved_join_url:
-            base_url = preserved_join_url.split("/beatify/play")[0]
+        if preserved["join_url"]:
+            base_url = preserved["join_url"].split("/beatify/play")[0]
             self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
 
         _LOGGER.info(
