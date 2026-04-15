@@ -37,7 +37,7 @@ from custom_components.beatify.const import (
     YEAR_MIN,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
-from custom_components.beatify.server.serializers import build_state_message, get_game_state
+from custom_components.beatify.server.serializers import build_state_message, get_game_service, get_game_state
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -536,46 +536,25 @@ class BeatifyWebSocketHandler:
     async def _admin_next_round(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
-        """Handle admin next_round action."""
+        """Handle admin next_round action.
+
+        Uses GameService.next_round() to consolidate the repeated
+        finalize-stats + advance-to-end pattern (#603, #609).
+        """
         if game_state.phase == GamePhase.PLAYING:
             # Early advance - end current round first
             await game_state.end_round()
             # Broadcast handled by round_end_callback
         elif game_state.phase == GamePhase.REVEAL:
-            # Start next round or end game
-            if game_state.last_round:
-                # Record game stats before ending (Story 14.4, 19.1)
-                stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-                if stats_service:
-                    game_summary = game_state.finalize_game()
-                    await stats_service.record_game(
-                        game_summary, difficulty=game_state.difficulty
-                    )
-                    _LOGGER.debug("Game stats recorded for natural end")
-
-                # No more rounds, end game
-                await game_state.advance_to_end()
-                await self.broadcast_state()
+            game_service = get_game_service(self.hass)
+            if game_service:
+                await game_service.next_round()
             else:
-                # Start next round
+                # Fallback: direct GameState access (backward compat)
                 success = await game_state.start_round()
-                if success:
-                    await self.broadcast_state()
-                else:
-                    # Record stats before ending due to no songs (Story 14.4, 19.1)
-                    stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-                    if stats_service:
-                        game_summary = game_state.finalize_game()
-                        await stats_service.record_game(
-                            game_summary, difficulty=game_state.difficulty
-                        )
-                        _LOGGER.debug(
-                            "Game stats recorded (no songs remaining)"
-                        )
-
-                    # No more songs
+                if not success:
                     await game_state.advance_to_end()
-                    await self.broadcast_state()
+            await self.broadcast_state()
         else:
             await ws.send_json(
                 {
@@ -661,7 +640,10 @@ class BeatifyWebSocketHandler:
     async def _admin_end_game(
         self, ws: web.WebSocketResponse, data: dict, game_state: GameState
     ) -> None:
-        """Handle admin end_game action."""
+        """Handle admin end_game action.
+
+        Uses GameService to consolidate stats recording (#603, #609).
+        """
         # Issue #108: Modified to stay in END phase without wiping players
         if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
             await ws.send_json(
@@ -677,13 +659,17 @@ class BeatifyWebSocketHandler:
         await game_state.stop_media()
 
         # Record game stats BEFORE transitioning to END (Story 14.4, 19.1)
-        stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-        if stats_service:
-            game_summary = game_state.finalize_game()
-            await stats_service.record_game(
-                game_summary, difficulty=game_state.difficulty
-            )
-            _LOGGER.debug("Game stats recorded for early end")
+        game_service = get_game_service(self.hass)
+        if game_service:
+            await game_service.finalize_and_record_stats()
+        else:
+            # Fallback: direct access (backward compat)
+            stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
+            if stats_service:
+                game_summary = game_state.finalize_game()
+                await stats_service.record_game(
+                    game_summary, difficulty=game_state.difficulty
+                )
 
         # Transition to END - players stay connected for rematch option
         await game_state.advance_to_end()
