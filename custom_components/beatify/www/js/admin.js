@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
     document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
+    document.getElementById('admin-skip-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
@@ -2915,8 +2916,10 @@ function showAdminPlayingView(data) {
     // Round info
     var roundInfo = document.getElementById('admin-round-info');
     if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
-            (data.round || '?') + '/' + (data.total_rounds || '?');
+        roundInfo.textContent = BeatifyI18n.t('game.round', {
+            current: data.round || '?',
+            total: data.total_rounds || '?'
+        });
     }
 
     // Song info
@@ -3048,8 +3051,10 @@ function showAdminRevealView(data) {
     // Round info
     var roundInfo = document.getElementById('admin-reveal-round-info');
     if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
-            (data.round || '?') + '/' + (data.total_rounds || '?');
+        roundInfo.textContent = BeatifyI18n.t('game.round', {
+            current: data.round || '?',
+            total: data.total_rounds || '?'
+        });
     }
 
     // Re-enable year slider for next round
