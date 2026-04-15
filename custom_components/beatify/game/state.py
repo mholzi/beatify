@@ -132,9 +132,6 @@ class GameState:
         self._playlist_manager: PlaylistManager | None = None
         self._media_player_service: MediaPlayerProtocol | None = None
 
-        # Timer task for round expiry (Story 4.5)
-        self._timer_task: asyncio.Task | None = None
-
         # Callback for round end (Story 4.5)
         self._on_round_end: Callable[[], Awaitable[None]] | None = None
 
@@ -214,24 +211,6 @@ class GameState:
     @players.setter
     def players(self, value: dict[str, PlayerSession]) -> None:
         self._player_registry.players = value
-
-    @property
-    def _sessions(self) -> dict[str, str]:
-        """Session mapping — delegated to PlayerRegistry."""
-        return self._player_registry._sessions
-
-    @_sessions.setter
-    def _sessions(self, value: dict[str, str]) -> None:
-        self._player_registry._sessions = value
-
-    @property
-    def _reactions_this_phase(self) -> set[str]:
-        """Reaction tracking — delegated to PlayerRegistry."""
-        return self._player_registry._reactions_this_phase
-
-    @_reactions_this_phase.setter
-    def _reactions_this_phase(self, value: set[str]) -> None:
-        self._player_registry._reactions_this_phase = value
 
     # ------------------------------------------------------------------
     # RoundManager delegation (keep public interface identical)
@@ -346,15 +325,6 @@ class GameState:
         self._round_manager.intro_stopped = value
 
     @property
-    def _intro_round_start_time(self) -> float | None:
-        """Intro round start time — delegated to RoundManager."""
-        return self._round_manager._intro_round_start_time
-
-    @_intro_round_start_time.setter
-    def _intro_round_start_time(self, value: float | None) -> None:
-        self._round_manager._intro_round_start_time = value
-
-    @property
     def metadata_pending(self) -> bool:
         """Metadata pending flag — delegated to RoundManager."""
         return self._round_manager.metadata_pending
@@ -362,33 +332,6 @@ class GameState:
     @metadata_pending.setter
     def metadata_pending(self, value: bool) -> None:
         self._round_manager.metadata_pending = value
-
-    @property
-    def _early_reveal(self) -> bool:
-        """Early reveal flag — delegated to RoundManager."""
-        return self._round_manager._early_reveal
-
-    @_early_reveal.setter
-    def _early_reveal(self, value: bool) -> None:
-        self._round_manager._early_reveal = value
-
-    @property
-    def _intro_splash_pending(self) -> bool:
-        """Intro splash pending — delegated to RoundManager."""
-        return self._round_manager._intro_splash_pending
-
-    @_intro_splash_pending.setter
-    def _intro_splash_pending(self, value: bool) -> None:
-        self._round_manager._intro_splash_pending = value
-
-    @property
-    def _timer_task(self) -> asyncio.Task | None:
-        """Timer task — delegated to RoundManager."""
-        return self._round_manager._timer_task
-
-    @_timer_task.setter
-    def _timer_task(self, value: asyncio.Task | None) -> None:
-        self._round_manager._timer_task = value
 
     # ------------------------------------------------------------------
     # Power-up delegation properties (keep public interface identical)
@@ -561,7 +504,7 @@ class GameState:
         self.closest_wins_mode = closest_wins_mode
         self.is_intro_round = False
         self.intro_stopped = False
-        self._intro_round_start_time = None
+        self._round_manager._intro_round_start_time = None
         self._round_manager._rounds_since_intro = 0
         self._round_manager._cancel_intro_timer()
 
@@ -600,82 +543,6 @@ class GameState:
             result["fun_fact_fr"] = song.get("fun_fact_fr", "")
             result["fun_fact_nl"] = song.get("fun_fact_nl", "")
         return result
-
-    def _state_playing(self) -> dict[str, Any]:
-        """Return PLAYING phase-specific state fragment."""
-        fragment: dict[str, Any] = {
-            "join_url": self.join_url,
-            "round": self.round,
-            "total_rounds": self.total_rounds,
-            "deadline": self.deadline,
-            "last_round": self.last_round,
-            "songs_remaining": (
-                self._playlist_manager.get_remaining_count()
-                if self._playlist_manager
-                else 0
-            ),
-            # Submission tracking (Story 4.4)
-            "submitted_count": sum(
-                1 for p in self.players.values() if p.submitted
-            ),
-            "all_submitted": self.all_submitted(),
-            # Leaderboard (Story 5.5)
-            "leaderboard": self.get_leaderboard(),
-        }
-        # Song info WITHOUT year during PLAYING (hidden until reveal)
-        if self.current_song:
-            fragment["song"] = self._build_song_dict()
-        # Story 20.1: Artist challenge (hide answer during PLAYING)
-        ac = self._challenge_manager.get_artist_challenge_dict(include_answer=False)
-        if ac is not None:
-            fragment["artist_challenge"] = ac
-        # Issue #28: Movie quiz challenge (hide answer during PLAYING)
-        mc = self._challenge_manager.get_movie_challenge_dict(include_answer=False)
-        if mc is not None:
-            fragment["movie_challenge"] = mc
-        return fragment
-
-    def _state_reveal(self) -> dict[str, Any]:
-        """Return REVEAL phase-specific state fragment."""
-        fragment: dict[str, Any] = {
-            "join_url": self.join_url,
-            "round": self.round,
-            "total_rounds": self.total_rounds,
-            "last_round": self.last_round,
-            # Include reveal-specific player data (guesses, round_score, missed)
-            "players": self.get_reveal_players_state(),
-            # Leaderboard (Story 5.5)
-            "leaderboard": self.get_leaderboard(),
-        }
-        # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
-        if self.current_song:
-            fragment["song"] = self._build_song_dict(include_reveal=True)
-        # Round analytics (Story 13.3 AC4)
-        if self.round_analytics:
-            fragment["round_analytics"] = self.round_analytics.to_dict()
-        # Game performance comparison (Story 14.4 AC2, AC3, AC4, AC6)
-        game_performance = self.get_game_performance()
-        if game_performance:
-            fragment["game_performance"] = game_performance
-        # Song difficulty rating (Story 15.1 AC1, AC4)
-        if self._stats_service and self.current_song:
-            song_uri = self.current_song.get("_resolved_uri") or self.current_song.get("uri")
-            if song_uri:
-                difficulty = self._stats_service.get_song_difficulty(song_uri)
-                if difficulty:
-                    fragment["song_difficulty"] = difficulty
-        # Story 20.1: Artist challenge (reveal answer during REVEAL)
-        ac = self._challenge_manager.get_artist_challenge_dict(include_answer=True)
-        if ac is not None:
-            fragment["artist_challenge"] = ac
-        # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
-        mc = self._challenge_manager.get_movie_challenge_dict(include_answer=True)
-        if mc is not None:
-            fragment["movie_challenge"] = mc
-        # Story 20.9: Early reveal flag for client-side toast
-        if self._early_reveal:
-            fragment["early_reveal"] = True
-        return fragment
 
     def _state_end(self) -> dict[str, Any]:
         """Return END phase-specific state fragment."""
@@ -958,7 +825,7 @@ class GameState:
                 if (
                     self.is_intro_round
                     and not self.intro_stopped
-                    and self._intro_round_start_time is not None
+                    and self._round_manager._intro_round_start_time is not None
                 ):
                     elapsed_intro = self._round_manager.round_duration - remaining_seconds
                     remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
@@ -1119,7 +986,7 @@ class GameState:
                 self._on_round_end is not None,
             )
             self.cancel_timer()
-            self._early_reveal = True
+            self._round_manager._early_reveal = True
             await self._end_round_unlocked()
             _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
 
@@ -1489,7 +1356,7 @@ class GameState:
                 artist_challenge=self.artist_challenge,
                 movie_challenge=self.movie_challenge,
                 is_intro_round=self.is_intro_round,
-                intro_round_start_time=self._intro_round_start_time,
+                intro_round_start_time=self._round_manager._intro_round_start_time,
                 all_players=all_players,
                 streak_achievements=self.streak_achievements,
                 bet_tracking=self.bet_tracking,
@@ -1574,7 +1441,7 @@ class GameState:
                     _LOGGER.error("Failed to record song results: %s", err)
 
         # Transition to REVEAL
-        self._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
+        self._player_registry._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
