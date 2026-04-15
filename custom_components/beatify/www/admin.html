@@ -585,6 +585,9 @@
                 <div class="admin-song-meta">
                     <div id="admin-song-title" class="admin-song-title"></div>
                     <div id="admin-song-artist" class="admin-song-artist"></div>
+                    <!-- #648: Admin-only song details (year, fun fact) -->
+                    <div id="admin-song-year" class="admin-song-year hidden"></div>
+                    <div id="admin-song-funfact" class="admin-song-funfact hidden"></div>
                 </div>
             </div>
 
@@ -593,14 +596,14 @@
             <!-- Admin controls -->
             <div class="admin-control-bar">
                 <button id="admin-stop-song" class="btn btn-secondary btn-compact">
-                    <span aria-hidden="true">⏹</span> Stop
+                    <span aria-hidden="true">🔇</span> <span data-i18n="admin.stopSong">Stop Song</span>
                 </button>
                 <button id="admin-seek-forward" class="btn btn-secondary btn-compact" title="Seek forward 10 seconds">⏩ +10s</button>
                 <button id="admin-vol-down" class="btn btn-secondary btn-compact" title="Volume down">🔉 <span data-i18n="admin.volDown">Down</span></button>
                 <button id="admin-vol-up" class="btn btn-secondary btn-compact" title="Volume up">🔊 <span data-i18n="admin.volUp">Up</span></button>
                 <button id="admin-skip-round" class="btn btn-primary btn-compact" title="Skip to next round">⏭ <span data-i18n="admin.skipRound">Skip</span></button>
                 <button id="admin-stop-lights" class="btn btn-secondary btn-compact" title="Stop lights">🔦 <span data-i18n="admin.stopLights">Lights Off</span></button>
-                <button id="admin-end-game-playing" class="btn btn-danger btn-compact" title="End game">End Game</button>
+                <button id="admin-end-game-playing" class="btn btn-danger btn-compact" title="End game"><span data-i18n="admin.endGame">End Game</span></button>
             </div>
 
             <!-- Player game UI (only shown if admin joined as player) -->
@@ -617,8 +620,11 @@
                         data-i18n="game.submit">Submit</button>
             </div>
 
-            <!-- Submission tracker -->
-            <div id="admin-submission-status" class="submission-status"></div>
+            <!-- Submission tracker (#648: per-player status) -->
+            <div id="admin-submission-status" class="submission-status">
+                <div id="admin-submission-count" class="submission-count"></div>
+                <div id="admin-submission-players" class="submission-players"></div>
+            </div>
         </section>
 
         <!-- Issue #477: REVEAL phase view -->

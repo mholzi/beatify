@@ -8821,6 +8821,23 @@ body.device-tier-low .reveal-skip-hint {
     font-size: 0.9rem;
 }
 
+/* #648: Admin-only song details */
+.admin-song-year {
+    font-size: 0.85rem;
+    color: var(--color-primary, #1db954);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.admin-song-funfact {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #aaa);
+    font-style: italic;
+    margin-top: 2px;
+    white-space: normal;
+    line-height: 1.3;
+}
+
 .admin-content .admin-control-bar {
     display: flex;
     gap: var(--space-sm);
@@ -8886,6 +8903,35 @@ body.device-tier-low .reveal-skip-hint {
     color: var(--text-secondary, #aaa);
     font-size: 0.9rem;
     margin-top: var(--space-sm);
+}
+
+.submission-count {
+    margin-bottom: 6px;
+}
+
+.submission-players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+}
+
+.submission-player {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    background: var(--bg-card, rgba(255, 255, 255, 0.05));
+}
+
+.submission-player.is-submitted {
+    color: var(--color-primary, #1db954);
+}
+
+.submission-player.is-waiting {
+    opacity: 0.6;
 }
 
 /* Reveal */

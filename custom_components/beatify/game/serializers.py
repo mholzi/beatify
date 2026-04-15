@@ -96,6 +96,15 @@ class GameStateSerializer:
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 ),
             }
+            # #648: Admin-only song details (year, fun facts) — players ignore this
+            state["admin_song"] = {
+                "year": gs.current_song.get("year"),
+                "fun_fact": gs.current_song.get("fun_fact", ""),
+                "fun_fact_de": gs.current_song.get("fun_fact_de", ""),
+                "fun_fact_es": gs.current_song.get("fun_fact_es", ""),
+                "fun_fact_fr": gs.current_song.get("fun_fact_fr", ""),
+                "fun_fact_nl": gs.current_song.get("fun_fact_nl", ""),
+            }
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
         # Story 20.1: Artist challenge (hide answer during PLAYING)

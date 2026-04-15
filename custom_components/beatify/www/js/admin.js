@@ -56,9 +56,15 @@ function _releaseWakeLock() {
 }
 
 // #647: Re-acquire wake lock when admin tab becomes visible during an active game
+// #648: Reconnect admin WS on tab return (e.g. after screen sleep)
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible' && currentGame && currentGame.phase !== 'END') {
         _requestWakeLock();
+        // Reconnect WS if it died while tab was hidden
+        if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+            adminReconnectAttempts = 0; // reset backoff on user-initiated return
+            connectAdminWebSocket();
+        }
     }
 });
 
@@ -114,7 +120,7 @@ const STORAGE_LAST_PLAYER = 'beatify_last_player';
 const STORAGE_GAME_SETTINGS = 'beatify_game_settings';
 
 // Setup sections to hide/show as a group
-const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests', 'tts-settings', 'ha-entities'];
+const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests', 'import-playlist', 'party-lights', 'tts-settings', 'ha-entities'];
 
 // Platform display labels for speaker grouping
 const PLATFORM_LABELS = {
@@ -2911,6 +2917,16 @@ function handleAdminWsMessage(data) {
 function handleAdminStateUpdate(data) {
     currentGame = data;
 
+    // Restore isPlaying state from player list (survives page reload)
+    if (data.players && !isPlaying) {
+        var adminInList = data.players.find(function(p) { return p.is_admin; });
+        if (adminInList) {
+            isPlaying = true;
+            adminPlayerName = adminPlayerName || adminInList.name;
+            try { sessionStorage.setItem('beatify_admin_name', adminInList.name); } catch(e) {}
+        }
+    }
+
     // #647: Wake lock for all active game phases
     if (['LOBBY', 'PLAYING', 'REVEAL', 'PAUSED'].includes(data.phase)) {
         _requestWakeLock();
@@ -2931,6 +2947,11 @@ function handleAdminStateUpdate(data) {
         var el = document.getElementById(id);
         if (el) el.classList.add('hidden');
     });
+
+    // #651: Hide start button and validation messages (outside setupSections)
+    document.getElementById('start-game')?.classList.add('hidden');
+    document.getElementById('playlist-validation-msg')?.classList.add('hidden');
+    document.getElementById('media-player-validation-msg')?.classList.add('hidden');
 
     switch (data.phase) {
         case 'LOBBY':
@@ -2971,16 +2992,14 @@ function showAdminPlayingView(data) {
 
     // Song info
     if (data.song) updatePlayingSongInfo(data.song);
+    // #648: Admin-only song details (year, fun fact)
+    if (data.admin_song) updateAdminSongDetails(data.admin_song);
 
     // Countdown timer
     startAdminCountdown(data.deadline);
 
-    // Submission tracker
-    var subStatus = document.getElementById('admin-submission-status');
-    if (subStatus) {
-        subStatus.textContent = (data.submitted_count || 0) + '/' +
-            (data.player_count || '?') + ' ' + BeatifyI18n.t('game.submitted');
-    }
+    // #648: Per-player submission tracker
+    renderAdminSubmissionTracker(data.players, data.submitted_count, data.player_count);
 
     // Show/hide player UI based on whether admin is playing
     var playerUI = document.getElementById('admin-player-ui');
@@ -3016,6 +3035,60 @@ function updatePlayingSongInfo(song) {
     if (artEl && song.album_art) artEl.src = song.album_art;
 }
 
+/**
+ * #648: Show admin-only song details (year, fun fact) during PLAYING.
+ */
+function updateAdminSongDetails(adminSong) {
+    var yearEl = document.getElementById('admin-song-year');
+    var factEl = document.getElementById('admin-song-funfact');
+
+    if (yearEl) {
+        if (adminSong.year) {
+            yearEl.textContent = '📅 ' + adminSong.year;
+            yearEl.classList.remove('hidden');
+        } else {
+            yearEl.classList.add('hidden');
+        }
+    }
+
+    if (factEl) {
+        // Pick localized fun fact based on current language
+        var lang = BeatifyI18n.getLanguage();
+        var fact = (lang !== 'en' && adminSong['fun_fact_' + lang])
+            ? adminSong['fun_fact_' + lang]
+            : adminSong.fun_fact;
+        if (fact) {
+            factEl.textContent = '💡 ' + fact;
+            factEl.classList.remove('hidden');
+        } else {
+            factEl.classList.add('hidden');
+        }
+    }
+}
+
+/**
+ * #648: Render per-player submission tracker.
+ */
+function renderAdminSubmissionTracker(players, submittedCount, playerCount) {
+    var countEl = document.getElementById('admin-submission-count');
+    var playersEl = document.getElementById('admin-submission-players');
+
+    if (countEl) {
+        countEl.textContent = (submittedCount || 0) + '/' +
+            (playerCount || '?') + ' ' + BeatifyI18n.t('game.submitted');
+    }
+
+    if (playersEl && players) {
+        playersEl.innerHTML = players.map(function(p) {
+            var statusClass = p.submitted ? 'is-submitted' : 'is-waiting';
+            var statusIcon = p.submitted ? '✓' : '⏳';
+            return '<span class="submission-player ' + statusClass + '">' +
+                statusIcon + ' ' + utils.escapeHtml(p.name) +
+            '</span>';
+        }).join('');
+    }
+}
+
 function startAdminCountdown(deadline) {
     if (countdownInterval) clearInterval(countdownInterval);
 
@@ -3039,9 +3112,13 @@ function startAdminCountdown(deadline) {
 }
 
 function findAdminInPlayers(players) {
-    if (!players || !adminPlayerName) return null;
+    if (!players) return null;
+    // Match by name first, fall back to is_admin flag
     for (var i = 0; i < players.length; i++) {
-        if (players[i].name === adminPlayerName) return players[i];
+        if (adminPlayerName && players[i].name === adminPlayerName) return players[i];
+    }
+    for (var i = 0; i < players.length; i++) {
+        if (players[i].is_admin) return players[i];
     }
     return null;
 }
@@ -3181,34 +3258,39 @@ function showAdminPausedView(data) {
 
 // ---- Admin game controls (sent via WS) ----
 
-function adminNextRound() {
+/**
+ * #648: Send an admin WS command with feedback when disconnected.
+ * Shows error + triggers reconnect if WS is down.
+ */
+function sendAdminCommand(payload) {
     if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'next_round' }));
+        adminWs.send(JSON.stringify(payload));
+        return true;
     }
+    showError(BeatifyI18n.t('admin.connectionLost') || 'Connection lost — reconnecting...');
+    adminReconnectAttempts = 0;
+    connectAdminWebSocket();
+    return false;
+}
+
+function adminNextRound() {
+    sendAdminCommand({ type: 'admin', action: 'next_round' });
 }
 
 function adminStopSong() {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'stop_song' }));
-    }
+    sendAdminCommand({ type: 'admin', action: 'stop_song' });
 }
 
 function adminSeekForward() {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'seek_forward', seconds: 10 }));
-    }
+    sendAdminCommand({ type: 'admin', action: 'seek_forward', seconds: 10 });
 }
 
 function adminVolumeUp() {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'set_volume', direction: 'up' }));
-    }
+    sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'up' });
 }
 
 function adminVolumeDown() {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'set_volume', direction: 'down' }));
-    }
+    sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'down' });
 }
 
 function adminSubmitGuess() {
