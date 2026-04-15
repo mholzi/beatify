@@ -744,7 +744,12 @@ async def handle_submit(
         }
     )
 
-    await handler.broadcast_state()
+    # Issue #581: Only broadcast here when NOT all guesses are complete.
+    # If all guesses are in, trigger_early_reveal_if_complete() will
+    # transition to REVEAL and broadcast via the round_end callback,
+    # avoiding a redundant double broadcast.
+    if not game_state.check_all_guesses_complete():
+        await handler.broadcast_state()
 
     _LOGGER.debug(
         "Early reveal check: phase=%s, artist_challenge=%s",
