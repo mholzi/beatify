@@ -14,8 +14,8 @@ from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
     LOBBY_DISCONNECT_GRACE_PERIOD,
 )
-from custom_components.beatify.game.state import GamePhase
-from custom_components.beatify.server.serializers import build_state_message, get_game_state
+from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.server.serializers import build_state_message, get_game_service, get_game_state
 from custom_components.beatify.server.ws_handlers import (
     handle_admin,
     handle_admin_connect,
