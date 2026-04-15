@@ -325,6 +325,23 @@ class GameState:
         self._round_manager.intro_stopped = value
 
     @property
+    def intro_splash_pending(self) -> bool:
+        """Intro splash pending flag — delegated to RoundManager."""
+        return self._round_manager._intro_splash_pending
+
+    @property
+    def early_reveal(self) -> bool:
+        """Early reveal flag — delegated to RoundManager."""
+        return self._round_manager._early_reveal
+
+    @property
+    def songs_remaining(self) -> int:
+        """Count of unplayed songs remaining in the playlist."""
+        if self._playlist_manager:
+            return self._playlist_manager.get_remaining_count()
+        return 0
+
+    @property
     def metadata_pending(self) -> bool:
         """Metadata pending flag — delegated to RoundManager."""
         return self._round_manager.metadata_pending
@@ -394,6 +411,28 @@ class GameState:
     @movie_quiz_enabled.setter
     def movie_quiz_enabled(self, value: bool) -> None:
         self._challenge_manager.movie_quiz_enabled = value
+
+    def get_artist_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """Build artist challenge dict — delegated to ChallengeManager."""
+        return self._challenge_manager.get_artist_challenge_dict(
+            include_answer=include_answer
+        )
+
+    def get_movie_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """Build movie challenge dict — delegated to ChallengeManager."""
+        return self._challenge_manager.get_movie_challenge_dict(
+            include_answer=include_answer
+        )
+
+    def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
+        """Get song difficulty rating — delegated to StatsService."""
+        if self._stats_service:
+            return self._stats_service.get_song_difficulty(song_uri)
+        return None
 
     def create_game(
         self,
