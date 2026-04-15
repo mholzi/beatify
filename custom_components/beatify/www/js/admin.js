@@ -114,7 +114,7 @@ const STORAGE_LAST_PLAYER = 'beatify_last_player';
 const STORAGE_GAME_SETTINGS = 'beatify_game_settings';
 
 // Setup sections to hide/show as a group
-const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests'];
+const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests', 'tts-settings', 'ha-entities'];
 
 // Platform display labels for speaker grouping
 const PLATFORM_LABELS = {
@@ -1499,16 +1499,16 @@ function showLobbyView(gameData) {
     // Update difficulty badge (use gameData.difficulty if available, else selectedDifficulty)
     updateLobbyDifficultyBadge(gameData.difficulty || selectedDifficulty);
 
-    // Fix #228: Update participate button label if admin is already registered as a player.
-    // The actual redirect logic is handled in openAdminJoinModal().
+    // Fix #228: Hide participate button if admin is already registered as a player.
     var participateBtn = document.getElementById('participate-btn');
     if (participateBtn) {
+        var adminInPlayers = (gameData.players || []).some(function(p) { return p.is_admin; });
         var adminNameStored = null;
         try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
-        var btnLabel = participateBtn.querySelector('[data-i18n]');
-        if (adminNameStored && btnLabel) {
-            btnLabel.setAttribute('data-i18n', 'admin.startGameplay');
-            btnLabel.textContent = BeatifyI18n.t('admin.startGameplay');
+        if (adminInPlayers || adminNameStored || isPlaying) {
+            participateBtn.classList.add('hidden');
+        } else {
+            participateBtn.classList.remove('hidden');
         }
     }
 
@@ -2864,6 +2864,8 @@ function handleAdminWsMessage(data) {
                 document.cookie = 'beatify_session=' + data.session_id +
                     ';path=/;max-age=86400;SameSite=Strict';
             }
+            // Hide "Join as Player" button since admin is now a player
+            document.getElementById('participate-btn')?.classList.add('hidden');
             console.log('[Admin WS] Joined as player:', adminPlayerName);
             break;
 

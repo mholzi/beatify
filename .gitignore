@@ -72,6 +72,9 @@ config/*
 !config/configuration.yaml
 community-post.md
 *.bak
+INFLUENCER_OUTREACH.md
+beatify-stats.md
+beatify-stats-history.json
 
 # ---- Release notes (keep CHANGELOG.md) ----
 RELEASE_NOTES_*.md
