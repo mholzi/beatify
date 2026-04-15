@@ -74,6 +74,20 @@ class BeatifyWebSocketHandler:
         self._broadcast_debounce_delay = 0.05  # 50ms
         self._connection_rate_limits: dict[str, list[float]] = {}
         self._last_rate_sweep: float = 0.0
+        self._message_handlers = {
+            "join": self._handle_join,
+            "submit": self._handle_submit,
+            "admin": self._handle_admin,
+            "admin_connect": self._handle_admin_connect,
+            "reconnect": self._handle_reconnect,
+            "leave": self._handle_leave,
+            "get_state": self._handle_get_state,
+            "get_steal_targets": self._handle_get_steal_targets,
+            "steal": self._handle_steal,
+            "reaction": self._handle_reaction,
+            "artist_guess": self._handle_artist_guess,
+            "movie_guess": self._handle_movie_guess,
+        }
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -185,22 +199,7 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        _message_handlers = {
-            "join": self._handle_join,
-            "submit": self._handle_submit,
-            "admin": self._handle_admin,
-            "admin_connect": self._handle_admin_connect,
-            "reconnect": self._handle_reconnect,
-            "leave": self._handle_leave,
-            "get_state": self._handle_get_state,
-            "get_steal_targets": self._handle_get_steal_targets,
-            "steal": self._handle_steal,
-            "reaction": self._handle_reaction,
-            "artist_guess": self._handle_artist_guess,
-            "movie_guess": self._handle_movie_guess,
-        }
-
-        handler = _message_handlers.get(msg_type)
+        handler = self._message_handlers.get(msg_type)
         if handler:
             await handler(ws, data, game_state)
         else:
