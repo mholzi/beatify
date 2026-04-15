@@ -1741,6 +1741,12 @@ async function confirmEndGame() {
         return;
     }
 
+    // Issue #569: Check for valid admin token before REST fallback
+    if (!_getAdminToken()) {
+        showError('Admin session expired. Please reload the page.');
+        return;
+    }
+
     try {
         const response = await fetch('/beatify/api/end-game', { method: 'POST', headers: _adminHeaders() });
         if (response.ok) {
