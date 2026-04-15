@@ -573,140 +573,221 @@
         </section>
 
         <!-- Issue #477: PLAYING phase view -->
-        <section id="admin-playing-section" class="card-section admin-game-wrapper hidden">
-            <div class="admin-phase-header">
-                <span id="admin-round-info" class="round-badge">Round ?/?</span>
-                <span id="admin-timer" class="timer-badge">--</span>
-            </div>
+        <!-- PLAYING phase view (#653: mirrors player.html game-view layout) -->
+        <section id="admin-playing-section" class="card-section hidden">
+            <div class="game-container">
+                <!-- Game Header (matches player game-header-compact) -->
+                <div class="game-header-compact">
+                    <div class="game-header-left">
+                        <span class="section-icon" aria-hidden="true">🎮</span>
+                        <span class="round-indicator-text">
+                            <span data-i18n="game.roundLabel">Round</span>
+                            <span id="admin-current-round">1</span>
+                            <span data-i18n="game.ofLabel">of</span>
+                            <span id="admin-total-rounds">10</span>
+                        </span>
+                    </div>
+                    <div class="stat-badge-bar">
+                        <span id="admin-game-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
+                    </div>
+                </div>
 
-            <!-- Song info -->
-            <div class="admin-song-card">
-                <img id="admin-album-art" class="admin-album-art" src="/beatify/static/img/no-artwork.svg" alt="">
-                <div class="admin-song-meta">
-                    <div id="admin-song-title" class="admin-song-title"></div>
-                    <div id="admin-song-artist" class="admin-song-artist"></div>
-                    <!-- #648: Admin-only song details (year, fun fact) -->
+                <!-- Banners -->
+                <div id="admin-last-round" class="last-round-banner hidden" data-i18n="game.finalRound">Final Round!</div>
+                <div id="admin-intro-badge" class="intro-badge hidden">
+                    <span class="intro-badge-icon" aria-hidden="true">⚡</span>
+                    <span data-i18n="game.introRound">INTRO ROUND</span>
+                </div>
+                <div id="admin-closest-wins-badge" class="intro-badge closest-wins-badge hidden">
+                    <span class="intro-badge-icon" aria-hidden="true">🎯</span>
+                    <span data-i18n="game.closestWins">CLOSEST WINS</span>
+                </div>
+
+                <!-- Intro splash overlay with admin confirm -->
+                <div id="admin-intro-splash" class="intro-splash hidden" aria-hidden="true">
+                    <div class="intro-splash-content">
+                        <span class="intro-splash-icon">⚡</span>
+                        <span class="intro-splash-text" data-i18n="game.introRound">INTRO ROUND</span>
+                        <span class="intro-splash-hint" data-i18n="game.introHint">Only 15 seconds!</span>
+                        <button id="admin-confirm-intro" class="btn btn-primary btn-full-width" style="margin-top:12px">
+                            <span aria-hidden="true">▶️</span>
+                            <span data-i18n="admin.confirmIntro">Start Round</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Album Cover (large, centered — matches player) -->
+                <div class="album-cover-container">
+                    <img id="admin-album-art" src="/beatify/static/img/no-artwork.svg" alt="Album Cover" class="album-cover">
+                </div>
+
+                <!-- Admin-only: Song details below cover -->
+                <div id="admin-song-details" class="admin-song-details">
                     <div id="admin-song-year" class="admin-song-year hidden"></div>
                     <div id="admin-song-funfact" class="admin-song-funfact hidden"></div>
                 </div>
-            </div>
 
-            <div id="admin-last-round" class="last-round-banner hidden">Last Round!</div>
-
-            <!-- Intro splash confirm (shown when admin is not a player) -->
-            <div id="admin-intro-splash" class="admin-intro-splash hidden">
-                <div class="intro-splash-info">
-                    <span class="intro-splash-icon" aria-hidden="true">🎵</span>
-                    <span data-i18n="game.introRound">Intro Round!</span>
+                <!-- Timer (big, centered — matches player) -->
+                <div class="timer-container">
+                    <div id="admin-timer" class="timer" role="timer" aria-live="polite">--</div>
                 </div>
-                <button id="admin-confirm-intro" class="btn btn-primary btn-full-width">
-                    <span aria-hidden="true">▶️</span>
-                    <span data-i18n="admin.confirmIntro">Start Round</span>
-                </button>
-            </div>
 
-            <!-- Admin controls -->
-            <div class="admin-control-bar">
-                <button id="admin-stop-song" class="btn btn-secondary btn-compact">
-                    <span aria-hidden="true">🔇</span> <span data-i18n="admin.stopSong">Stop Song</span>
-                </button>
-                <button id="admin-seek-forward" class="btn btn-secondary btn-compact" title="Seek forward 10 seconds">⏩ +10s</button>
-                <button id="admin-vol-down" class="btn btn-secondary btn-compact" title="Volume down">🔉 <span data-i18n="admin.volDown">Down</span></button>
-                <button id="admin-vol-up" class="btn btn-secondary btn-compact" title="Volume up">🔊 <span data-i18n="admin.volUp">Up</span></button>
-                <button id="admin-skip-round" class="btn btn-primary btn-compact" title="Skip to next round">⏭ <span data-i18n="admin.skipRound">Skip</span></button>
-                <button id="admin-stop-lights" class="btn btn-secondary btn-compact" title="Stop lights">🔦 <span data-i18n="admin.stopLights">Lights Off</span></button>
-                <button id="admin-end-game-playing" class="btn btn-danger btn-compact" title="End game"><span data-i18n="admin.endGame">End Game</span></button>
-            </div>
+                <!-- Submission Tracker (player dot format) -->
+                <div class="submission-tracker">
+                    <div id="admin-submitted-players" class="submitted-players"></div>
+                </div>
 
-            <!-- Player game UI (only shown if admin joined as player) -->
-            <div id="admin-player-ui" class="admin-player-panel hidden">
-                <div class="admin-year-selector">
-                    <span id="admin-year-display" class="year-display">1990</span>
-                    <input type="range" id="admin-year-slider" class="year-slider"
-                           min="1950" max="2025" value="1990" step="1">
-                    <div class="year-range-labels">
-                        <span>1950</span><span>2025</span>
+                <!-- Artist Challenge (read-only) -->
+                <section id="admin-artist-challenge" class="card-section artist-challenge hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎤</span>
+                        <span data-i18n="artistChallenge.whoSings">Who sings this song?</span>
+                        <span class="stat-badge stat-badge--bonus">+5</span>
+                    </h2>
+                    <div id="admin-artist-options" class="artist-options-grid"></div>
+                </section>
+
+                <!-- Movie Challenge (read-only) -->
+                <section id="admin-movie-challenge" class="card-section movie-challenge hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="movieChallenge.whichMovie">Which movie features this song?</span>
+                        <span class="stat-badge stat-badge--bonus">+5/3/1</span>
+                    </h2>
+                    <div id="admin-movie-options" class="movie-options-grid"></div>
+                </section>
+
+                <!-- Admin Controls (replaces year-selector for spectator admin) -->
+                <div class="admin-control-bar">
+                    <button id="admin-stop-song" class="btn btn-secondary btn-compact">
+                        <span aria-hidden="true">🔇</span> <span data-i18n="admin.stopSong">Stop Song</span>
+                    </button>
+                    <button id="admin-seek-forward" class="btn btn-secondary btn-compact" title="Seek forward 10 seconds">⏩ +10s</button>
+                    <button id="admin-vol-down" class="btn btn-secondary btn-compact" title="Volume down">🔉 <span data-i18n="admin.volDown">Down</span></button>
+                    <button id="admin-vol-up" class="btn btn-secondary btn-compact" title="Volume up">🔊 <span data-i18n="admin.volUp">Up</span></button>
+                    <button id="admin-skip-round" class="btn btn-primary btn-compact" title="Skip to next round">⏭ <span data-i18n="admin.skipRound">Skip</span></button>
+                    <button id="admin-stop-lights" class="btn btn-secondary btn-compact" title="Stop lights">🔦 <span data-i18n="admin.stopLights">Lights Off</span></button>
+                    <button id="admin-end-game-playing" class="btn btn-danger btn-compact" title="End game"><span data-i18n="admin.endGame">End Game</span></button>
+                </div>
+
+                <!-- Leaderboard (collapsible, matches player) -->
+                <section id="admin-playing-leaderboard" class="section-collapsible leaderboard-section">
+                    <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="admin-playing-leaderboard-content">
+                        <span class="section-icon" aria-hidden="true">🏆</span>
+                        <span data-i18n="leaderboard.title">Leaderboard</span>
+                        <span class="section-summary" id="admin-playing-leaderboard-summary">--</span>
+                        <span class="section-toggle" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="section-content" id="admin-playing-leaderboard-content">
+                        <div id="admin-playing-leaderboard-list" class="leaderboard-list"></div>
                     </div>
-                </div>
-                <button id="admin-submit-guess" class="btn btn-primary btn-large btn-full-width"
-                        data-i18n="game.submit">Submit</button>
+                </section>
             </div>
-
-            <!-- Submission tracker (#648: per-player status) -->
-            <div id="admin-submission-status" class="submission-status">
-                <div id="admin-submission-count" class="submission-count"></div>
-                <div id="admin-submission-players" class="submission-players"></div>
-            </div>
-
-            <!-- Artist Challenge info (read-only, shown when active) -->
-            <section id="admin-artist-challenge" class="card-section artist-challenge hidden">
-                <h2 class="section-header">
-                    <span class="section-icon" aria-hidden="true">🎤</span>
-                    <span data-i18n="artistChallenge.whoSings">Who sings this song?</span>
-                    <span class="stat-badge stat-badge--bonus">+5</span>
-                </h2>
-                <div id="admin-artist-options" class="artist-options-grid"></div>
-            </section>
-
-            <!-- Movie Challenge info (read-only, shown when active) -->
-            <section id="admin-movie-challenge" class="card-section movie-challenge hidden">
-                <h2 class="section-header">
-                    <span class="section-icon" aria-hidden="true">🎬</span>
-                    <span data-i18n="movieChallenge.whichMovie">Which movie features this song?</span>
-                    <span class="stat-badge stat-badge--bonus">+5/3/1</span>
-                </h2>
-                <div id="admin-movie-options" class="movie-options-grid"></div>
-            </section>
-
-            <!-- Leaderboard (mirrors player leaderboard) -->
-            <section id="admin-playing-leaderboard" class="section-collapsible leaderboard-section">
-                <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="admin-playing-leaderboard-content">
-                    <span class="section-icon" aria-hidden="true">🏆</span>
-                    <span data-i18n="leaderboard.title">Leaderboard</span>
-                    <span class="section-summary" id="admin-playing-leaderboard-summary">--</span>
-                    <span class="section-toggle" aria-hidden="true">▼</span>
-                </button>
-                <div class="section-content" id="admin-playing-leaderboard-content">
-                    <div id="admin-playing-leaderboard-list" class="leaderboard-list"></div>
-                </div>
-            </section>
         </section>
 
-        <!-- Issue #477: REVEAL phase view -->
-        <section id="admin-reveal-section" class="card-section admin-game-wrapper hidden">
-            <div class="admin-phase-header">
-                <span id="admin-reveal-round-info" class="round-badge">Round ?/?</span>
-            </div>
+        <!-- REVEAL phase view (#653: mirrors player.html reveal-view layout) -->
+        <section id="admin-reveal-section" class="card-section hidden">
+            <div class="reveal-container reveal-container--compact">
+                <!-- Reveal Header (matches player reveal-header-compact) -->
+                <div class="reveal-header-compact">
+                    <div class="reveal-header-left">
+                        <span class="section-icon" aria-hidden="true">🎵</span>
+                        <span class="round-indicator-text">
+                            <span data-i18n="game.roundLabel">Round</span>
+                            <span id="admin-reveal-round">1</span>
+                            <span data-i18n="game.ofLabel">of</span>
+                            <span id="admin-reveal-total">10</span>
+                        </span>
+                    </div>
+                    <div class="stat-badge-bar">
+                        <span id="admin-reveal-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
+                    </div>
+                </div>
 
-            <!-- Song reveal -->
-            <div class="admin-song-card">
-                <img id="admin-reveal-album-art" class="admin-album-art" src="/beatify/static/img/no-artwork.svg" alt="">
-                <div class="admin-song-meta">
-                    <div id="admin-reveal-song-title" class="admin-song-title"></div>
-                    <div id="admin-reveal-song-artist" class="admin-song-artist"></div>
+                <!-- Song Hero (album + info side-by-side, matches player) -->
+                <div class="reveal-song-hero">
+                    <img id="admin-reveal-album-art" src="/beatify/static/img/no-artwork.svg" alt="Album Cover" class="reveal-album-cover-compact">
+                    <div class="reveal-song-info">
+                        <div id="admin-reveal-song-title" class="song-title"></div>
+                        <div id="admin-reveal-song-artist" class="song-artist"></div>
+                    </div>
+                </div>
+
+                <!-- Year Reveal (matches player reveal-year-section) -->
+                <div class="reveal-year-section">
+                    <div class="correct-year-label" data-i18n="reveal.theYearWas">The year was</div>
+                    <div id="admin-reveal-correct-year" class="correct-year text-glow"></div>
+                </div>
+
+                <!-- Fun Fact (matches player fun-fact-section) -->
+                <section id="admin-fun-fact-container" class="card-section fun-fact-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">💡</span>
+                        <span data-i18n="reveal.funFact">Fun Fact</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="admin-fun-fact-text" class="fun-fact-text"></div>
+                    </div>
+                </section>
+
+                <!-- Artist Challenge Reveal -->
+                <section id="admin-artist-reveal-section" class="card-section artist-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎤</span>
+                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="admin-artist-reveal-name" class="artist-reveal-name"></div>
+                    </div>
+                </section>
+
+                <!-- Movie Challenge Reveal -->
+                <section id="admin-movie-reveal-section" class="card-section movie-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="movieChallenge.theMovieWas">The movie was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="admin-movie-reveal-name" class="movie-reveal-name"></div>
+                    </div>
+                </section>
+
+                <!-- All Guesses (matches player guesses-section) -->
+                <section class="card-section guesses-section">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">👥</span>
+                        <span data-i18n="reveal.allGuesses">All Guesses</span>
+                    </h2>
+                    <div id="admin-reveal-guesses" class="reveal-results-grid section-content-padded"></div>
+                </section>
+
+                <!-- Leaderboard (expanded, matches player) -->
+                <section class="section-collapsible leaderboard-section">
+                    <button type="button" class="section-header-collapsible" aria-expanded="true">
+                        <span class="section-icon" aria-hidden="true">🏆</span>
+                        <span data-i18n="leaderboard.standings">Standings</span>
+                        <span class="section-summary" id="admin-reveal-leaderboard-summary">--</span>
+                        <span class="section-toggle" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="section-content">
+                        <div id="admin-reveal-leaderboard" class="leaderboard-list"></div>
+                    </div>
+                </section>
+
+                <!-- Admin controls: Next Round -->
+                <div class="reveal-admin-controls">
+                    <div class="reveal-admin-buttons">
+                        <button id="admin-next-round" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.nextRound">Next Round</button>
+                    </div>
                 </div>
             </div>
-            <div id="admin-reveal-correct-year" class="reveal-year-display"></div>
-
-            <!-- Personal result (if playing) -->
-            <div id="admin-reveal-personal" class="admin-personal-result hidden">
-                <span id="admin-reveal-my-guess"></span>
-                <span id="admin-reveal-my-score" class="score-badge"></span>
-            </div>
-
-            <!-- Leaderboard -->
-            <div id="admin-reveal-leaderboard" class="admin-leaderboard-container"></div>
-
-            <!-- Next round / end -->
-            <button id="admin-next-round" class="btn btn-primary btn-large btn-full-width"
-                    data-i18n="admin.nextRound">Next Round</button>
         </section>
 
         <!-- Issue #477: END phase view -->
         <section id="admin-end-section" class="card-section admin-game-wrapper hidden">
             <h2>Game Over</h2>
             <div id="admin-end-winner" class="admin-winner-display"></div>
-            <div id="admin-end-leaderboard" class="admin-leaderboard-container"></div>
+            <div id="admin-end-leaderboard" class="leaderboard-list"></div>
             <div class="admin-end-actions">
                 <button id="admin-rematch" class="btn btn-primary">Rematch</button>
                 <button id="admin-new-game" class="btn btn-secondary">New Game</button>

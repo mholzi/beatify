@@ -179,18 +179,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-confirm-intro')?.addEventListener('click', function() {
         sendAdminCommand({ type: 'admin', action: 'confirm_intro_splash' });
     });
-    document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
-
-    // Year slider display sync
-    var yearSlider = document.getElementById('admin-year-slider');
-    var yearDisplay = document.getElementById('admin-year-display');
-    if (yearSlider && yearDisplay) {
-        yearSlider.addEventListener('input', function() {
-            yearDisplay.textContent = yearSlider.value;
-        });
-    }
 
     // End game modal setup (Story 9.10)
     setupEndGameModal();
@@ -2866,12 +2856,12 @@ function handleAdminWsMessage(data) {
             console.log('[Admin WS] Joined as player:', adminPlayerName);
             break;
 
-        case 'submit_ack':
-            handleSubmitAck();
-            break;
-
         case 'metadata_update':
-            if (data.song) updatePlayingSongInfo(data.song);
+            // Update album art when metadata arrives after round start
+            if (data.song) {
+                var artEl = document.getElementById('admin-album-art');
+                if (artEl && data.song.album_art) artEl.src = data.song.album_art;
+            }
             break;
 
         case 'admin_token_update':
@@ -2965,150 +2955,111 @@ function handleAdminStateUpdate(data) {
     }
 }
 
-// ---- PLAYING phase view ----
+// ---- PLAYING phase view (#653: mirrors player layout) ----
 
 function showAdminPlayingView(data) {
     var section = document.getElementById('admin-playing-section');
     if (!section) return;
     section.classList.remove('hidden');
 
-    // Round info
-    var roundInfo = document.getElementById('admin-round-info');
-    if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round', {
-            current: data.round || '?',
-            total: data.total_rounds || '?'
-        });
+    // Round info (player-style separate spans)
+    var roundEl = document.getElementById('admin-current-round');
+    var totalEl = document.getElementById('admin-total-rounds');
+    if (roundEl) roundEl.textContent = data.round || '?';
+    if (totalEl) totalEl.textContent = data.total_rounds || '?';
+
+    // Difficulty badge
+    var diffBadge = document.getElementById('admin-game-difficulty-badge');
+    if (diffBadge && data.difficulty) {
+        diffBadge.textContent = data.difficulty.charAt(0).toUpperCase() + data.difficulty.slice(1);
     }
 
-    // Song info
-    if (data.song) updatePlayingSongInfo(data.song);
-    // #648: Admin-only song details (year, fun fact)
-    if (data.admin_song) updateAdminSongDetails(data.admin_song);
+    // Album cover (large centered)
+    var artEl = document.getElementById('admin-album-art');
+    if (artEl && data.song && data.song.album_art) artEl.src = data.song.album_art;
 
-    // Countdown timer
-    startAdminCountdown(data.deadline);
-
-    // #648: Per-player submission tracker
-    renderAdminSubmissionTracker(data.players, data.submitted_count, data.player_count);
-
-    // Intro splash: show confirm button when intro round is pending
-    var introSplash = document.getElementById('admin-intro-splash');
-    if (introSplash) {
-        introSplash.classList.toggle('hidden', !data.intro_splash_pending);
-    }
-
-    // Show/hide player UI based on whether admin is playing
-    var playerUI = document.getElementById('admin-player-ui');
-    if (playerUI) {
-        playerUI.classList.toggle('hidden', !isPlaying);
-    }
-
-    // Reset submit button if new round
-    var submitBtn = document.getElementById('admin-submit-guess');
-    if (submitBtn && isPlaying) {
-        // Check if admin already submitted this round
-        var adminPlayer = findAdminInPlayers(data.players);
-        if (adminPlayer && adminPlayer.submitted) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = '✓ ' + BeatifyI18n.t('game.submitted');
-        } else {
-            submitBtn.disabled = false;
-            submitBtn.textContent = BeatifyI18n.t('game.submit');
+    // Admin-only song details (year, fun fact)
+    if (data.admin_song) {
+        var yearEl = document.getElementById('admin-song-year');
+        var factEl = document.getElementById('admin-song-funfact');
+        if (yearEl) {
+            if (data.admin_song.year) {
+                yearEl.textContent = '📅 ' + data.admin_song.year;
+                yearEl.classList.remove('hidden');
+            } else { yearEl.classList.add('hidden'); }
+        }
+        if (factEl) {
+            var lang = BeatifyI18n.getLanguage();
+            var fact = (lang !== 'en' && data.admin_song['fun_fact_' + lang])
+                ? data.admin_song['fun_fact_' + lang] : data.admin_song.fun_fact;
+            if (fact) {
+                factEl.textContent = '💡 ' + fact;
+                factEl.classList.remove('hidden');
+            } else { factEl.classList.add('hidden'); }
         }
     }
 
-    // Last round banner
+    // Countdown timer (big centered, player style)
+    startAdminCountdown(data.deadline);
+
+    // Submission tracker (player dot format)
+    renderAdminSubmissionDots(data.players);
+
+    // Banners
     var lastBanner = document.getElementById('admin-last-round');
     if (lastBanner) lastBanner.classList.toggle('hidden', !data.last_round);
+    var introBadge = document.getElementById('admin-intro-badge');
+    if (introBadge) introBadge.classList.toggle('hidden', !data.is_intro_round);
+    var closestBadge = document.getElementById('admin-closest-wins-badge');
+    if (closestBadge) closestBadge.classList.toggle('hidden', !data.closest_wins_mode);
 
-    // #653: Leaderboard (mirrors player view)
-    renderAdminLeaderboard(data.leaderboard);
+    // Intro splash overlay with confirm button
+    var introSplash = document.getElementById('admin-intro-splash');
+    if (introSplash) introSplash.classList.toggle('hidden', !data.intro_splash_pending);
 
-    // #653: Artist challenge (read-only display of options)
+    // Artist challenge (read-only options)
     var artistSection = document.getElementById('admin-artist-challenge');
     if (artistSection) {
         if (data.artist_challenge) {
             artistSection.classList.remove('hidden');
             renderAdminChallengeOptions('admin-artist-options', data.artist_challenge.options);
-        } else {
-            artistSection.classList.add('hidden');
-        }
+        } else { artistSection.classList.add('hidden'); }
     }
 
-    // #653: Movie challenge (read-only display of options)
+    // Movie challenge (read-only options)
     var movieSection = document.getElementById('admin-movie-challenge');
     if (movieSection) {
         if (data.movie_challenge) {
             movieSection.classList.remove('hidden');
             renderAdminChallengeOptions('admin-movie-options', data.movie_challenge.options);
-        } else {
-            movieSection.classList.add('hidden');
-        }
+        } else { movieSection.classList.add('hidden'); }
     }
-}
 
-function updatePlayingSongInfo(song) {
-    var artistEl = document.getElementById('admin-song-artist');
-    var titleEl = document.getElementById('admin-song-title');
-    var artEl = document.getElementById('admin-album-art');
-    if (artistEl) artistEl.textContent = song.artist || '';
-    if (titleEl) titleEl.textContent = song.title || '';
-    if (artEl && song.album_art) artEl.src = song.album_art;
+    // Leaderboard (player-style entries)
+    renderAdminLeaderboard(data.leaderboard);
 }
 
 /**
- * #648: Show admin-only song details (year, fun fact) during PLAYING.
+ * Render player-style submission dots (matches player-game.js renderSubmissionTracker).
  */
-function updateAdminSongDetails(adminSong) {
-    var yearEl = document.getElementById('admin-song-year');
-    var factEl = document.getElementById('admin-song-funfact');
+function renderAdminSubmissionDots(players) {
+    var container = document.getElementById('admin-submitted-players');
+    if (!container || !players) return;
 
-    if (yearEl) {
-        if (adminSong.year) {
-            yearEl.textContent = '📅 ' + adminSong.year;
-            yearEl.classList.remove('hidden');
-        } else {
-            yearEl.classList.add('hidden');
-        }
-    }
-
-    if (factEl) {
-        // Pick localized fun fact based on current language
-        var lang = BeatifyI18n.getLanguage();
-        var fact = (lang !== 'en' && adminSong['fun_fact_' + lang])
-            ? adminSong['fun_fact_' + lang]
-            : adminSong.fun_fact;
-        if (fact) {
-            factEl.textContent = '💡 ' + fact;
-            factEl.classList.remove('hidden');
-        } else {
-            factEl.classList.add('hidden');
-        }
-    }
-}
-
-/**
- * #648: Render per-player submission tracker.
- */
-function renderAdminSubmissionTracker(players, submittedCount, playerCount) {
-    var countEl = document.getElementById('admin-submission-count');
-    var playersEl = document.getElementById('admin-submission-players');
-
-    if (countEl) {
-        countEl.textContent = (submittedCount || 0) + '/' +
-            (playerCount || '?') + ' ' + BeatifyI18n.t('game.submitted');
-    }
-
-    if (playersEl && players) {
-        playersEl.innerHTML = players.map(function(p) {
-            var statusClass = p.submitted ? 'is-submitted' : 'is-waiting';
-            var statusIcon = p.submitted ? '✓' : '⏳';
-            return '<span class="submission-player ' + statusClass + '">' +
-                statusIcon + ' ' + utils.escapeHtml(p.name) +
-            '</span>';
-        }).join('');
-    }
+    container.innerHTML = players.map(function(p) {
+        var initials = (p.name || '?').split(/\s+/).map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+        var classes = [
+            'player-indicator',
+            p.submitted ? 'is-submitted' : '',
+            p.connected === false ? 'player-indicator--disconnected' : ''
+        ].filter(Boolean).join(' ');
+        var badges = '';
+        if (p.steal_used) badges += '<span class="player-badge player-badge--steal">🥷</span>';
+        if (p.bet) badges += '<span class="player-badge player-badge--bet">🎲</span>';
+        return '<div class="' + classes + '">' + badges +
+            '<div class="player-avatar"><span class="player-initials">' + utils.escapeHtml(initials) + '</span></div>' +
+            '<span class="player-name">' + utils.escapeHtml(p.name) + '</span></div>';
+    }).join('');
 }
 
 function startAdminCountdown(deadline) {
@@ -3120,9 +3071,10 @@ function startAdminCountdown(deadline) {
     function tick() {
         var now = Date.now();
         var remaining = Math.max(0, Math.ceil((deadline - now) / 1000));
-        timerEl.textContent = remaining + 's';
-        timerEl.classList.toggle('timer-warning', remaining <= 10);
-        timerEl.classList.toggle('timer-critical', remaining <= 5);
+        timerEl.textContent = remaining;
+        // Use player CSS classes for timer states
+        timerEl.classList.toggle('timer--warning', remaining <= 10);
+        timerEl.classList.toggle('timer--critical', remaining <= 5);
         if (remaining <= 0) {
             clearInterval(countdownInterval);
             countdownInterval = null;
@@ -3133,36 +3085,20 @@ function startAdminCountdown(deadline) {
     countdownInterval = setInterval(tick, 1000);
 }
 
-function findAdminInPlayers(players) {
-    if (!players) return null;
-    // Match by name first, fall back to is_admin flag
-    for (var i = 0; i < players.length; i++) {
-        if (adminPlayerName && players[i].name === adminPlayerName) return players[i];
-    }
-    for (var i = 0; i < players.length; i++) {
-        if (players[i].is_admin) return players[i];
-    }
-    return null;
-}
-
-function handleSubmitAck() {
-    var submitBtn = document.getElementById('admin-submit-guess');
-    var slider = document.getElementById('admin-year-slider');
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = '✓ ' + BeatifyI18n.t('game.submitted');
-    }
-    if (slider) slider.disabled = true;
-}
-
-// ---- REVEAL phase view ----
+// ---- REVEAL phase view (#653: mirrors player layout) ----
 
 function showAdminRevealView(data) {
     var section = document.getElementById('admin-reveal-section');
     if (!section) return;
     section.classList.remove('hidden');
 
-    // Song info
+    // Round info
+    var roundEl = document.getElementById('admin-reveal-round');
+    var totalEl = document.getElementById('admin-reveal-total');
+    if (roundEl) roundEl.textContent = data.round || '?';
+    if (totalEl) totalEl.textContent = data.total_rounds || '?';
+
+    // Song hero
     if (data.song) {
         var titleEl = document.getElementById('admin-reveal-song-title');
         var artistEl = document.getElementById('admin-reveal-song-artist');
@@ -3174,75 +3110,148 @@ function showAdminRevealView(data) {
         if (artEl && data.song.album_art) artEl.src = data.song.album_art;
     }
 
-    // Personal result (if playing)
-    var personalSection = document.getElementById('admin-reveal-personal');
-    if (personalSection) {
-        var adminPlayer = findAdminInPlayers(data.players);
-        if (adminPlayer && isPlaying) {
-            personalSection.classList.remove('hidden');
-            var guessEl = document.getElementById('admin-reveal-my-guess');
-            var scoreEl = document.getElementById('admin-reveal-my-score');
-            if (guessEl) guessEl.textContent = BeatifyI18n.t('game.yourGuess') + ': ' +
-                (adminPlayer.guess || '—');
-            if (scoreEl) scoreEl.textContent = '+' + (adminPlayer.round_score || 0) +
-                ' (' + (adminPlayer.score || 0) + ' total)';
+    // Difficulty badge
+    var diffBadge = document.getElementById('admin-reveal-difficulty-badge');
+    if (diffBadge && data.difficulty) {
+        diffBadge.textContent = data.difficulty.charAt(0).toUpperCase() + data.difficulty.slice(1);
+    }
+
+    // Fun fact
+    var funFactContainer = document.getElementById('admin-fun-fact-container');
+    var funFactText = document.getElementById('admin-fun-fact-text');
+    if (funFactContainer && data.song) {
+        var lang = BeatifyI18n.getLanguage();
+        var fact = (lang !== 'en' && data.song['fun_fact_' + lang])
+            ? data.song['fun_fact_' + lang] : data.song.fun_fact;
+        if (fact) {
+            funFactText.textContent = fact;
+            funFactContainer.classList.remove('hidden');
         } else {
-            personalSection.classList.add('hidden');
+            funFactContainer.classList.add('hidden');
         }
     }
 
-    // Compact leaderboard
+    // Artist challenge reveal
+    var artistReveal = document.getElementById('admin-artist-reveal-section');
+    if (artistReveal) {
+        if (data.artist_challenge && data.artist_challenge.correct_answer) {
+            document.getElementById('admin-artist-reveal-name').textContent = data.artist_challenge.correct_answer;
+            artistReveal.classList.remove('hidden');
+        } else {
+            artistReveal.classList.add('hidden');
+        }
+    }
+
+    // Movie challenge reveal
+    var movieReveal = document.getElementById('admin-movie-reveal-section');
+    if (movieReveal) {
+        if (data.movie_challenge && data.movie_challenge.correct_answer) {
+            document.getElementById('admin-movie-reveal-name').textContent = data.movie_challenge.correct_answer;
+            movieReveal.classList.remove('hidden');
+        } else {
+            movieReveal.classList.add('hidden');
+        }
+    }
+
+    // All guesses grid (player-style result cards)
+    renderAdminResultCards(data.players, data.closest_wins_mode, data.song ? data.song.year : null);
+
+    // Leaderboard (player-style entries)
     renderAdminLeaderboard(data.leaderboard);
-
-    // Round info
-    var roundInfo = document.getElementById('admin-reveal-round-info');
-    if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round', {
-            current: data.round || '?',
-            total: data.total_rounds || '?'
-        });
-    }
-
-    // Re-enable year slider for next round
-    var slider = document.getElementById('admin-year-slider');
-    if (slider) slider.disabled = false;
-    var submitBtn = document.getElementById('admin-submit-guess');
-    if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = BeatifyI18n.t('game.submit');
-    }
 }
 
+/**
+ * Render player-style leaderboard entries (matches player-utils.js renderLeaderboardEntry).
+ */
 function renderAdminLeaderboard(leaderboard, containerId) {
-    // Render to specified container, or both playing + reveal containers
     var targets = containerId ? [containerId] : ['admin-playing-leaderboard-list', 'admin-reveal-leaderboard'];
     if (!leaderboard) return;
 
-    var html = '<table class="admin-leaderboard"><thead><tr>' +
-        '<th>#</th><th>' + BeatifyI18n.t('game.player') + '</th>' +
-        '<th>' + BeatifyI18n.t('game.score') + '</th></tr></thead><tbody>';
-    var limit = Math.min(leaderboard.length, 8);
-    for (var i = 0; i < limit; i++) {
-        var p = leaderboard[i];
-        var highlight = (p.name === adminPlayerName) ? ' class="admin-highlight"' : '';
-        html += '<tr' + highlight + '><td>' + p.rank + '</td><td>' +
-            utils.escapeHtml(p.name) + '</td><td>' + p.score + '</td></tr>';
-    }
-    html += '</tbody></table>';
+    var html = '';
+    leaderboard.forEach(function(entry) {
+        var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
+        var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+        var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+        var streakIndicator = '';
+        if (entry.streak >= 2) {
+            var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
+            streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
+        }
+        var changeIndicator = '';
+        if (entry.rank_change > 0) changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
+        else if (entry.rank_change < 0) changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
+
+        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
+            '<span class="entry-rank">#' + entry.rank + '</span>' +
+            '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
+            '<span class="entry-meta">' + streakIndicator + changeIndicator + '</span>' +
+            '<span class="entry-score">' + entry.score + '</span>' +
+        '</div>';
+    });
+
     targets.forEach(function(id) {
         var el = document.getElementById(id);
         if (el) el.innerHTML = html;
     });
 
-    // Update summary badge
-    var summaryEl = document.getElementById('admin-playing-leaderboard-summary');
-    if (summaryEl && leaderboard.length > 0) {
-        summaryEl.textContent = leaderboard[0].name + ' — ' + leaderboard[0].score;
+    // Update summary badges
+    if (leaderboard.length > 0) {
+        ['admin-playing-leaderboard-summary', 'admin-reveal-leaderboard-summary'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.textContent = leaderboard[0].name + ' — ' + leaderboard[0].score;
+        });
     }
 }
 
 /**
- * #653: Render read-only challenge options (artist/movie) for admin spectator view.
+ * Render player-style result cards for reveal (matches player-reveal.js renderPlayerResultCards).
+ */
+function renderAdminResultCards(players, closestWinsMode, correctYear) {
+    var container = document.getElementById('admin-reveal-guesses');
+    if (!container) return;
+    if (!players || players.length === 0) { container.innerHTML = ''; return; }
+
+    var bestDiff = null;
+    if (closestWinsMode) {
+        players.forEach(function(p) {
+            if (!p.missed_round && p.years_off != null) {
+                if (bestDiff === null || p.years_off < bestDiff) bestDiff = p.years_off;
+            }
+        });
+    }
+
+    var sorted = players.slice().sort(function(a, b) { return (b.round_score || 0) - (a.round_score || 0); });
+    var html = '<div class="results-cards-scroll">';
+
+    sorted.forEach(function(p) {
+        var isMissed = p.missed_round === true;
+        var yearsOff = p.years_off || 0;
+        var roundScore = p.round_score || 0;
+        var scoreClass = isMissed ? 'is-score-zero' : roundScore >= 10 ? 'is-score-high' : roundScore >= 1 ? 'is-score-medium' : 'is-score-zero';
+        var isClosest = closestWinsMode && !isMissed && bestDiff !== null && yearsOff === bestDiff;
+        var closestClass = isClosest ? ' is-closest-winner' : '';
+        var guessDisplay = isMissed ? '—' : (p.guess || 'n/a');
+        var yearsOffDisplay = isMissed ? BeatifyI18n.t('reveal.noGuessShort') || 'Missed' :
+            yearsOff === 0 ? BeatifyI18n.t('reveal.exact') || 'Exact!' :
+            (BeatifyI18n.t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
+        var betIndicator = p.bet ? '<span class="card-bet">🎲</span>' : '';
+        var closestBadge = isClosest ? '<span class="closest-winner-badge">🎯</span>' : '';
+        var artistBadge = p.artist_bonus > 0 ? '<span class="player-card-artist-badge">🎤 +' + p.artist_bonus + '</span>' : '';
+
+        html += '<div class="result-card ' + scoreClass + closestClass + '">' +
+            '<div class="card-name">' + utils.escapeHtml(p.name) + betIndicator + closestBadge + '</div>' +
+            '<div class="card-guess">' + guessDisplay + '</div>' +
+            '<div class="card-accuracy">' + yearsOffDisplay + '</div>' +
+            '<div class="card-score">+' + roundScore + artistBadge + '</div>' +
+        '</div>';
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+/**
+ * Render read-only challenge options (artist/movie) for admin spectator view.
  */
 function renderAdminChallengeOptions(containerId, options) {
     var container = document.getElementById(containerId);
@@ -3269,9 +3278,8 @@ function showAdminEndView(data) {
             utils.escapeHtml(data.winner.name) + ' — ' + data.winner.score + ' pts';
     }
 
-    // Final leaderboard
-    var lbContainer = document.getElementById('admin-end-leaderboard');
-    if (lbContainer && data.leaderboard) {
+    // Final leaderboard (player-style entries)
+    if (data.leaderboard) {
         renderAdminLeaderboard(data.leaderboard, 'admin-end-leaderboard');
     }
 
@@ -3335,16 +3343,6 @@ function adminVolumeUp() {
 
 function adminVolumeDown() {
     sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'down' });
-}
-
-function adminSubmitGuess() {
-    if (!adminWs || adminWs.readyState !== WebSocket.OPEN || !isPlaying) return;
-
-    var slider = document.getElementById('admin-year-slider');
-    var year = slider ? parseInt(slider.value, 10) : null;
-    if (!year) return;
-
-    adminWs.send(JSON.stringify({ type: 'submit', year: year }));
 }
 
 function adminDismissGame() {

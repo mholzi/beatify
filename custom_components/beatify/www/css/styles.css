@@ -8824,20 +8824,23 @@ body.device-tier-low .reveal-skip-hint {
     font-size: 0.9rem;
 }
 
-/* #648: Admin-only song details */
+/* #653: Admin-only song details (below large album cover) */
+.admin-song-details {
+    text-align: center;
+    margin-bottom: var(--space-sm, 8px);
+}
+
 .admin-song-year {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--color-primary, #1db954);
     font-weight: 600;
-    margin-top: 4px;
 }
 
 .admin-song-funfact {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-secondary, #aaa);
     font-style: italic;
-    margin-top: 2px;
-    white-space: normal;
+    margin-top: 4px;
     line-height: 1.3;
 }
 
