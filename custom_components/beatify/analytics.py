@@ -127,6 +127,11 @@ class AnalyticsStorage:
                 )
                 # Prune old records on startup
                 await self._prune_old_records()
+                # Pre-load playlist display names so later sync
+                # callers don't block the event loop with file I/O
+                await self._hass.async_add_executor_job(
+                    self._get_playlist_display_names
+                )
             else:
                 _LOGGER.debug("No analytics file found, starting fresh")
                 self._data = self._empty_data()
