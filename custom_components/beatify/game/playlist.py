@@ -220,7 +220,7 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
         existing_ver = _get_playlist_version(dst) if dst.exists() else "0.0"
         return bundled_ver, existing_ver
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
 
     # Offload blocking glob to executor to avoid scandir in event loop (#516)
     playlist_files = await loop.run_in_executor(
@@ -457,7 +457,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
         """Read file contents (runs in executor)."""
         return path.read_text(encoding="utf-8")
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
 
     # Offload blocking glob to executor to avoid scandir in event loop (#516)
     json_files = await loop.run_in_executor(
@@ -531,7 +531,7 @@ async def async_load_and_validate_playlist(
         return p.read_text(encoding="utf-8")
 
     try:
-        content = await asyncio.get_event_loop().run_in_executor(None, _read_file, path)
+        content = await asyncio.get_running_loop().run_in_executor(None, _read_file, path)
         data = json.loads(content)
     except json.JSONDecodeError as e:
         return (None, [f"Invalid JSON: {e}"])
