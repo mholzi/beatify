@@ -483,6 +483,7 @@ function handleServerMessage(data) {
             }
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
+            stopConfetti();
             var newRound = data.round || 1;
             if (newRound !== state.currentRoundNumber) {
                 state.currentRoundNumber = newRound;

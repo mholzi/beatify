@@ -2910,8 +2910,10 @@ function showAdminPlayingView(data) {
     // Round info
     var roundInfo = document.getElementById('admin-round-info');
     if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
-            (data.round || '?') + '/' + (data.total_rounds || '?');
+        roundInfo.textContent = BeatifyI18n.t('game.round', {
+            current: data.round || '?',
+            total: data.total_rounds || '?'
+        });
     }
 
     // Song info
@@ -3043,8 +3045,10 @@ function showAdminRevealView(data) {
     // Round info
     var roundInfo = document.getElementById('admin-reveal-round-info');
     if (roundInfo) {
-        roundInfo.textContent = BeatifyI18n.t('game.round') + ' ' +
-            (data.round || '?') + '/' + (data.total_rounds || '?');
+        roundInfo.textContent = BeatifyI18n.t('game.round', {
+            current: data.round || '?',
+            total: data.total_rounds || '?'
+        });
     }
 
     // Re-enable year slider for next round
