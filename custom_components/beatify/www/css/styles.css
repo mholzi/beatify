@@ -8854,6 +8854,17 @@ body.device-tier-low .reveal-skip-hint {
     z-index: auto;
 }
 
+/* Admin read-only challenge options */
+.artist-option--readonly {
+    padding: 10px 14px;
+    background: var(--bg-card, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.1));
+    border-radius: var(--radius-md, 12px);
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
 /* Admin intro splash confirm */
 .admin-intro-splash {
     text-align: center;

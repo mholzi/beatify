@@ -637,6 +637,39 @@
                 <div id="admin-submission-count" class="submission-count"></div>
                 <div id="admin-submission-players" class="submission-players"></div>
             </div>
+
+            <!-- Artist Challenge info (read-only, shown when active) -->
+            <section id="admin-artist-challenge" class="card-section artist-challenge hidden">
+                <h2 class="section-header">
+                    <span class="section-icon" aria-hidden="true">🎤</span>
+                    <span data-i18n="artistChallenge.whoSings">Who sings this song?</span>
+                    <span class="stat-badge stat-badge--bonus">+5</span>
+                </h2>
+                <div id="admin-artist-options" class="artist-options-grid"></div>
+            </section>
+
+            <!-- Movie Challenge info (read-only, shown when active) -->
+            <section id="admin-movie-challenge" class="card-section movie-challenge hidden">
+                <h2 class="section-header">
+                    <span class="section-icon" aria-hidden="true">🎬</span>
+                    <span data-i18n="movieChallenge.whichMovie">Which movie features this song?</span>
+                    <span class="stat-badge stat-badge--bonus">+5/3/1</span>
+                </h2>
+                <div id="admin-movie-options" class="movie-options-grid"></div>
+            </section>
+
+            <!-- Leaderboard (mirrors player leaderboard) -->
+            <section id="admin-playing-leaderboard" class="section-collapsible leaderboard-section">
+                <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="admin-playing-leaderboard-content">
+                    <span class="section-icon" aria-hidden="true">🏆</span>
+                    <span data-i18n="leaderboard.title">Leaderboard</span>
+                    <span class="section-summary" id="admin-playing-leaderboard-summary">--</span>
+                    <span class="section-toggle" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="admin-playing-leaderboard-content">
+                    <div id="admin-playing-leaderboard-list" class="leaderboard-list"></div>
+                </div>
+            </section>
         </section>
 
         <!-- Issue #477: REVEAL phase view -->

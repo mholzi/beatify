@@ -3021,6 +3021,31 @@ function showAdminPlayingView(data) {
     // Last round banner
     var lastBanner = document.getElementById('admin-last-round');
     if (lastBanner) lastBanner.classList.toggle('hidden', !data.last_round);
+
+    // #653: Leaderboard (mirrors player view)
+    renderAdminLeaderboard(data.leaderboard);
+
+    // #653: Artist challenge (read-only display of options)
+    var artistSection = document.getElementById('admin-artist-challenge');
+    if (artistSection) {
+        if (data.artist_challenge) {
+            artistSection.classList.remove('hidden');
+            renderAdminChallengeOptions('admin-artist-options', data.artist_challenge.options);
+        } else {
+            artistSection.classList.add('hidden');
+        }
+    }
+
+    // #653: Movie challenge (read-only display of options)
+    var movieSection = document.getElementById('admin-movie-challenge');
+    if (movieSection) {
+        if (data.movie_challenge) {
+            movieSection.classList.remove('hidden');
+            renderAdminChallengeOptions('admin-movie-options', data.movie_challenge.options);
+        } else {
+            movieSection.classList.add('hidden');
+        }
+    }
 }
 
 function updatePlayingSongInfo(song) {
@@ -3188,9 +3213,10 @@ function showAdminRevealView(data) {
     }
 }
 
-function renderAdminLeaderboard(leaderboard) {
-    var container = document.getElementById('admin-reveal-leaderboard');
-    if (!container || !leaderboard) return;
+function renderAdminLeaderboard(leaderboard, containerId) {
+    // Render to specified container, or both playing + reveal containers
+    var targets = containerId ? [containerId] : ['admin-playing-leaderboard-list', 'admin-reveal-leaderboard'];
+    if (!leaderboard) return;
 
     var html = '<table class="admin-leaderboard"><thead><tr>' +
         '<th>#</th><th>' + BeatifyI18n.t('game.player') + '</th>' +
@@ -3203,7 +3229,30 @@ function renderAdminLeaderboard(leaderboard) {
             utils.escapeHtml(p.name) + '</td><td>' + p.score + '</td></tr>';
     }
     html += '</tbody></table>';
-    container.innerHTML = html;
+    targets.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.innerHTML = html;
+    });
+
+    // Update summary badge
+    var summaryEl = document.getElementById('admin-playing-leaderboard-summary');
+    if (summaryEl && leaderboard.length > 0) {
+        summaryEl.textContent = leaderboard[0].name + ' — ' + leaderboard[0].score;
+    }
+}
+
+/**
+ * #653: Render read-only challenge options (artist/movie) for admin spectator view.
+ */
+function renderAdminChallengeOptions(containerId, options) {
+    var container = document.getElementById(containerId);
+    if (!container || !options) return;
+
+    container.innerHTML = options.map(function(opt) {
+        var label = typeof opt === 'string' ? opt : (opt.label || opt.name || opt);
+        return '<div class="artist-option artist-option--readonly">' +
+            utils.escapeHtml(label) + '</div>';
+    }).join('');
 }
 
 // ---- END phase view ----
@@ -3223,9 +3272,7 @@ function showAdminEndView(data) {
     // Final leaderboard
     var lbContainer = document.getElementById('admin-end-leaderboard');
     if (lbContainer && data.leaderboard) {
-        renderAdminLeaderboard(data.leaderboard);
-        // Re-point to end container
-        lbContainer.innerHTML = document.getElementById('admin-reveal-leaderboard')?.innerHTML || '';
+        renderAdminLeaderboard(data.leaderboard, 'admin-end-leaderboard');
     }
 
     // Clean up game state for admin
