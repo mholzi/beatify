@@ -1480,6 +1480,11 @@ class GameState:
             if p.submitted and p.current_guess is not None
         ]
 
+        sorted_players = sorted(
+            self.players.values(), key=lambda p: (-p.score, p.name)
+        )
+        rank_map = {p.name: i + 1 for i, p in enumerate(sorted_players)}
+
         for player in submitted_players:
             # Exact match
             if player.years_off == 0:
@@ -1511,18 +1516,7 @@ class GameState:
 
             # Comeback (gained 2+ positions)
             if player.previous_rank is not None:
-                # Calculate current rank
-                sorted_players = sorted(
-                    self.players.values(), key=lambda p: (-p.score, p.name)
-                )
-                current_rank = next(
-                    (
-                        i + 1
-                        for i, p in enumerate(sorted_players)
-                        if p.name == player.name
-                    ),
-                    None,
-                )
+                current_rank = rank_map.get(player.name)
                 if current_rank is not None:
                     positions_gained = player.previous_rank - current_rank
                     if positions_gained >= 2:
