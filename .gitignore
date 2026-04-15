@@ -17,6 +17,10 @@ docs/
 # ---- Duplicate deployed copy ----
 beatify/
 
+# ---- Secrets ----
+.env
+*.env.local
+
 # ---- Config & tooling ----
 pyproject.toml
 package-lock.json
