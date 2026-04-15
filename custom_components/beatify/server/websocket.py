@@ -66,6 +66,20 @@ class BeatifyWebSocketHandler:
         self._broadcast_debounce_delay = 0.05  # 50ms
         self._connection_rate_limits: dict[str, list[float]] = {}
         self._last_rate_sweep: float = 0.0
+        self._message_handlers = {
+            "join": handle_join,
+            "submit": handle_submit,
+            "admin": handle_admin,
+            "admin_connect": handle_admin_connect,
+            "reconnect": handle_reconnect,
+            "leave": handle_leave,
+            "get_state": handle_get_state,
+            "get_steal_targets": handle_get_steal_targets,
+            "steal": handle_steal,
+            "reaction": handle_reaction,
+            "artist_guess": handle_artist_guess,
+            "movie_guess": handle_movie_guess,
+        }
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -189,24 +203,7 @@ class BeatifyWebSocketHandler:
             )
             return
 
-        # Handler functions are imported from ws_handlers and receive
-        # (handler, ws, data, game_state) so they can broadcast / manage tasks.
-        _message_handlers = {
-            "join": handle_join,
-            "submit": handle_submit,
-            "admin": handle_admin,
-            "admin_connect": handle_admin_connect,
-            "reconnect": handle_reconnect,
-            "leave": handle_leave,
-            "get_state": handle_get_state,
-            "get_steal_targets": handle_get_steal_targets,
-            "steal": handle_steal,
-            "reaction": handle_reaction,
-            "artist_guess": handle_artist_guess,
-            "movie_guess": handle_movie_guess,
-        }
-
-        handler = _message_handlers.get(msg_type)
+        handler = self._message_handlers.get(msg_type)
         if handler:
             await handler(self, ws, data, game_state)
         else:
