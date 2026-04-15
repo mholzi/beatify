@@ -164,7 +164,9 @@ function getStoredLanguage() {
 // ============================================
 
 function getReconnectDelay() {
-    return Math.min(1000 * Math.pow(2, state.reconnectAttempts), MAX_RECONNECT_DELAY_MS);
+    // #646: First 3 attempts are fast (500ms), then linear ramp to cap
+    if (state.reconnectAttempts <= 3) return 500;
+    return Math.min(1000 * (state.reconnectAttempts - 2), MAX_RECONNECT_DELAY_MS);
 }
 
 function showConnectionIndicator() {
@@ -339,7 +341,12 @@ function connectWithSession() {
 
             var delay = getReconnectDelay();
             console.log('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + state.reconnectAttempts + ')');
-            setTimeout(function() { connectWebSocket(state.playerName); }, delay);
+            // #646: Keep using session reconnect while cookie exists
+            if (getSessionCookie()) {
+                setTimeout(connectWithSession, delay);
+            } else {
+                setTimeout(function() { connectWebSocket(state.playerName); }, delay);
+            }
         } else if (state.reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
             state.isReconnecting = false;
             hideReconnectingOverlay();
@@ -545,6 +552,8 @@ function handleServerMessage(data) {
             clearStoredPlayerName();
         }
     } else if (data.type === 'join_ack') {
+        // #646: Request wake lock early — not just during PLAYING
+        requestWakeLock();
         if (data.session_id) {
             setSessionCookie(data.session_id);
         }
@@ -593,6 +602,11 @@ function handleServerMessage(data) {
             return;
         }
         if (data.code === 'SESSION_NOT_FOUND') {
+            // #646: Don't clear session cookie during reconnect — may be transient
+            if (state.isReconnecting) {
+                console.warn('SESSION_NOT_FOUND during reconnect, will retry with session');
+                return;
+            }
             clearSessionCookie();
             state.intentionalLeave = true;
             if (state.ws) {
@@ -935,8 +949,8 @@ if ('serviceWorker' in navigator) {
 // reconnect if the socket is dead — without waiting for the onclose backoff timer.
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible') {
-        // #622: Re-acquire wake lock when tab becomes visible during an active game
-        if (state.currentRoundNumber > 0) {
+        // #646: Re-acquire wake lock when tab becomes visible during any active session
+        if (state.playerName) {
             requestWakeLock();
         }
         var ws = state.ws;

@@ -88,6 +88,16 @@ class PlayerRegistry:
                     existing_player.connected = True
                     _LOGGER.info("Player reconnected: %s", existing_name)
                     return True, None
+                # #646: Check if the old WS is actually dead (race condition
+                # where _handle_disconnect hasn't run yet after browser reload)
+                if existing_player.ws is None or existing_player.ws.closed:
+                    _LOGGER.info(
+                        "Player %s: stale connected flag, old WS closed — allowing rejoin",
+                        existing_name,
+                    )
+                    existing_player.ws = ws
+                    existing_player.connected = True
+                    return True, None
                 return False, ERR_NAME_TAKEN
 
         # Check player limit

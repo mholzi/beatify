@@ -55,6 +55,13 @@ function _releaseWakeLock() {
     }
 }
 
+// #647: Re-acquire wake lock when admin tab becomes visible during an active game
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible' && currentGame && currentGame.phase !== 'END') {
+        _requestWakeLock();
+    }
+});
+
 // Module-level state
 let selectedPlaylists = [];
 let playlistData = [];
@@ -233,6 +240,7 @@ async function loadStatus() {
         // Check for active game and show appropriate view
         if (status.active_game && status.active_game.phase === 'LOBBY') {
             currentGame = status.active_game;
+            _requestWakeLock(); // #647: keep screen on when reconnecting to active game
             showLobbyView(status.active_game);
             // Issue #477: Reconnect admin WS if we have a token
             if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
@@ -2900,6 +2908,13 @@ function handleAdminWsMessage(data) {
  */
 function handleAdminStateUpdate(data) {
     currentGame = data;
+
+    // #647: Wake lock for all active game phases
+    if (['LOBBY', 'PLAYING', 'REVEAL', 'PAUSED'].includes(data.phase)) {
+        _requestWakeLock();
+    } else {
+        _releaseWakeLock();
+    }
 
     // Hide all phase sections first
     var sections = ['setup-container', 'lobby-section', 'existing-game-section',
