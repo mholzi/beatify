@@ -682,9 +682,9 @@ class AnalyticsStorage:
             "peak_players": peak_players,
             "avg_rounds": round(avg_rounds, 1),  # Story 19.9
             # Story 19.11: Include streak stats
-            "streak_stats": self.compute_streak_stats(period),
+            "streak_stats": self.compute_streak_stats(period, games=current_games),
             # Story 19.12: Include bet stats
-            "bet_stats": self.compute_bet_stats(period),
+            "bet_stats": self.compute_bet_stats(period, games=current_games),
             "trends": {
                 "games": round(calc_trend(total_games, prev_total_games), 2),
                 "players": round(calc_trend(avg_players, prev_avg_players), 2),
@@ -700,25 +700,29 @@ class AnalyticsStorage:
             "generated_at": now,
         }
 
-    def compute_streak_stats(self, period: str = "30d") -> dict[str, Any]:
+    def compute_streak_stats(
+        self, period: str = "30d", games: list | None = None
+    ) -> dict[str, Any]:
         """
         Compute streak achievement statistics for a given period (Story 19.11).
 
         Args:
             period: Time period - "7d", "30d", "90d", or "all"
+            games: Optional pre-filtered game list to avoid redundant filtering
 
         Returns:
             Dict with streak counts and distribution
 
         """
-        now = int(time.time())
+        if games is None:
+            now = int(time.time())
 
-        # Calculate period boundaries
-        days = PERIOD_DAYS_MAP.get(period, 30)
-        start_ts = now - (days * 86400)
+            # Calculate period boundaries
+            days = PERIOD_DAYS_MAP.get(period, 30)
+            start_ts = now - (days * 86400)
 
-        # Get games for current period
-        games = self.get_games(start_date=start_ts, end_date=now)
+            # Get games for current period
+            games = self.get_games(start_date=start_ts, end_date=now)
 
         # Sum streak achievements across all games
         streak_3_total = sum(g.get("streak_3_count", 0) for g in games)
@@ -735,25 +739,29 @@ class AnalyticsStorage:
             "has_data": total_streaks > 0,
         }
 
-    def compute_bet_stats(self, period: str = "30d") -> dict[str, Any]:
+    def compute_bet_stats(
+        self, period: str = "30d", games: list | None = None
+    ) -> dict[str, Any]:
         """
         Compute betting statistics for a given period (Story 19.12).
 
         Args:
             period: Time period - "7d", "30d", "90d", or "all"
+            games: Optional pre-filtered game list to avoid redundant filtering
 
         Returns:
             Dict with bet counts and win rate
 
         """
-        now = int(time.time())
+        if games is None:
+            now = int(time.time())
 
-        # Calculate period boundaries
-        days = PERIOD_DAYS_MAP.get(period, 30)
-        start_ts = now - (days * 86400)
+            # Calculate period boundaries
+            days = PERIOD_DAYS_MAP.get(period, 30)
+            start_ts = now - (days * 86400)
 
-        # Get games for current period
-        games = self.get_games(start_date=start_ts, end_date=now)
+            # Get games for current period
+            games = self.get_games(start_date=start_ts, end_date=now)
 
         # Sum bet outcomes across all games
         total_bets = sum(g.get("total_bets", 0) for g in games)
