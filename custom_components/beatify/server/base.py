@@ -35,6 +35,21 @@ def _read_file(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+_html_cache: dict[str, str] = {}
+
+
+async def _get_html(hass: HomeAssistant, path: Path) -> str | None:
+    """Read HTML file with in-memory caching."""
+    key = str(path)
+    if key in _html_cache:
+        return _html_cache[key]
+    if not path.exists():
+        return None
+    content = await hass.async_add_executor_job(_read_file, path)
+    _html_cache[key] = content
+    return content
+
+
 def _json_error(message: str, status: int, *, code: str = "ERROR") -> web.Response:
     """Return a consistent JSON error response."""
     return web.json_response({"error": code, "message": message}, status=status)

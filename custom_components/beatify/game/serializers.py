@@ -45,12 +45,12 @@ class GameStateSerializer:
             "language": gs.language,
             "difficulty": gs.difficulty,
             # Issue #23: Intro mode (available in all phases)
-            "intro_mode_enabled": gs._round_manager.intro_mode_enabled,
+            "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
             "closest_wins_mode": gs.closest_wins_mode,
-            "is_intro_round": gs._round_manager.is_intro_round,
-            "intro_stopped": gs._round_manager.intro_stopped,
-            "intro_splash_pending": gs._round_manager._intro_splash_pending,
+            "is_intro_round": gs.is_intro_round,
+            "intro_stopped": gs.intro_stopped,
+            "intro_splash_pending": gs.intro_splash_pending,
         }
 
         from .state import GamePhase  # noqa: PLC0415
@@ -76,103 +76,96 @@ class GameStateSerializer:
     @staticmethod
     def _add_playing_state(gs: GameState, state: dict[str, Any]) -> None:
         """Populate PLAYING-phase fields."""
-        rm = gs._round_manager
         state["join_url"] = gs.join_url
-        state["round"] = rm.round
-        state["total_rounds"] = rm.total_rounds
-        state["deadline"] = rm.deadline
-        state["last_round"] = rm.last_round
-        state["songs_remaining"] = (
-            gs._playlist_manager.get_remaining_count()
-            if gs._playlist_manager
-            else 0
-        )
+        state["round"] = gs.round
+        state["total_rounds"] = gs.total_rounds
+        state["deadline"] = gs.deadline
+        state["last_round"] = gs.last_round
+        state["songs_remaining"] = gs.songs_remaining
         # Submission tracking (Story 4.4)
         state["submitted_count"] = sum(
             1 for p in gs.players.values() if p.submitted
         )
         state["all_submitted"] = gs.all_submitted()
         # Song info WITHOUT year during PLAYING (hidden until reveal)
-        if rm.current_song:
+        if gs.current_song:
             state["song"] = {
-                "artist": rm.current_song.get("artist", "Unknown"),
-                "title": rm.current_song.get("title", "Unknown"),
-                "album_art": rm.current_song.get(
+                "artist": gs.current_song.get("artist", "Unknown"),
+                "title": gs.current_song.get("title", "Unknown"),
+                "album_art": gs.current_song.get(
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 ),
             }
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
         # Story 20.1: Artist challenge (hide answer during PLAYING)
-        ac = gs._challenge_manager.get_artist_challenge_dict(include_answer=False)
+        ac = gs.get_artist_challenge_dict(include_answer=False)
         if ac is not None:
             state["artist_challenge"] = ac
         # Issue #28: Movie quiz challenge (hide answer during PLAYING)
-        mc = gs._challenge_manager.get_movie_challenge_dict(include_answer=False)
+        mc = gs.get_movie_challenge_dict(include_answer=False)
         if mc is not None:
             state["movie_challenge"] = mc
 
     @staticmethod
     def _add_reveal_state(gs: GameState, state: dict[str, Any]) -> None:
         """Populate REVEAL-phase fields."""
-        rm = gs._round_manager
         state["join_url"] = gs.join_url
-        state["round"] = rm.round
-        state["total_rounds"] = rm.total_rounds
-        state["last_round"] = rm.last_round
+        state["round"] = gs.round
+        state["total_rounds"] = gs.total_rounds
+        state["last_round"] = gs.last_round
         # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
-        if rm.current_song:
+        if gs.current_song:
             state["song"] = {
-                "artist": rm.current_song.get("artist", "Unknown"),
-                "title": rm.current_song.get("title", "Unknown"),
-                "year": rm.current_song.get("year"),
-                "album_art": rm.current_song.get(
+                "artist": gs.current_song.get("artist", "Unknown"),
+                "title": gs.current_song.get("title", "Unknown"),
+                "year": gs.current_song.get("year"),
+                "album_art": gs.current_song.get(
                     "album_art", "/beatify/static/img/no-artwork.svg"
                 ),
-                "fun_fact": rm.current_song.get("fun_fact", ""),
-                "fun_fact_de": rm.current_song.get("fun_fact_de", ""),
-                "fun_fact_es": rm.current_song.get("fun_fact_es", ""),
-                "fun_fact_fr": rm.current_song.get("fun_fact_fr", ""),
-                "fun_fact_nl": rm.current_song.get("fun_fact_nl", ""),
+                "fun_fact": gs.current_song.get("fun_fact", ""),
+                "fun_fact_de": gs.current_song.get("fun_fact_de", ""),
+                "fun_fact_es": gs.current_song.get("fun_fact_es", ""),
+                "fun_fact_fr": gs.current_song.get("fun_fact_fr", ""),
+                "fun_fact_nl": gs.current_song.get("fun_fact_nl", ""),
             }
         # Include reveal-specific player data (guesses, round_score, missed)
         state["players"] = GameStateSerializer.get_reveal_players_state(gs)
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
         # Round analytics (Story 13.3 AC4)
-        if rm.round_analytics:
-            state["round_analytics"] = rm.round_analytics.to_dict()
+        if gs.round_analytics:
+            state["round_analytics"] = gs.round_analytics.to_dict()
         # Game performance comparison (Story 14.4 AC2, AC3, AC4, AC6)
         game_performance = gs.get_game_performance()
         if game_performance:
             state["game_performance"] = game_performance
         # Song difficulty rating (Story 15.1 AC1, AC4)
-        if gs._stats_service and rm.current_song:
-            song_uri = rm.current_song.get("_resolved_uri") or rm.current_song.get("uri")
+        if gs.current_song:
+            song_uri = gs.current_song.get("_resolved_uri") or gs.current_song.get("uri")
             if song_uri:
-                difficulty = gs._stats_service.get_song_difficulty(song_uri)
+                difficulty = gs.get_song_difficulty(song_uri)
                 if difficulty:
                     state["song_difficulty"] = difficulty
         # Story 20.1: Artist challenge (reveal answer during REVEAL)
-        ac = gs._challenge_manager.get_artist_challenge_dict(include_answer=True)
+        ac = gs.get_artist_challenge_dict(include_answer=True)
         if ac is not None:
             state["artist_challenge"] = ac
         # Issue #28: Movie quiz challenge (reveal answer + results during REVEAL)
-        mc = gs._challenge_manager.get_movie_challenge_dict(include_answer=True)
+        mc = gs.get_movie_challenge_dict(include_answer=True)
         if mc is not None:
             state["movie_challenge"] = mc
         # Story 20.9: Early reveal flag for client-side toast
-        if rm._early_reveal:
+        if gs.early_reveal:
             state["early_reveal"] = True
 
     @staticmethod
     def _add_end_state(gs: GameState, state: dict[str, Any]) -> None:
         """Populate END-phase fields."""
-        rm = gs._round_manager
         # Final leaderboard with all player stats (Story 5.6)
         state["leaderboard"] = gs.get_final_leaderboard()
         state["game_stats"] = {
-            "total_rounds": rm.round,
+            "total_rounds": gs.round,
             "total_players": len(gs.players),
         }
         # Include winner info
@@ -202,7 +195,6 @@ class GameStateSerializer:
             sorted by total score descending.
 
         """
-        rm = gs._round_manager
         players = []
         for p in gs.players.values():
             player_data = {
@@ -237,7 +229,7 @@ class GameStateSerializer:
             if gs.movie_quiz_enabled:
                 player_data["movie_bonus"] = p.movie_bonus
             # Issue #23: Add intro bonus if mode is enabled
-            if rm.intro_mode_enabled:
+            if gs.intro_mode_enabled:
                 player_data["intro_bonus"] = p.intro_bonus
             players.append(player_data)
         # Sort by score descending for leaderboard preview

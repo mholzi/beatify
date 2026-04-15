@@ -13,6 +13,7 @@ from homeassistant.components.http import HomeAssistantView
 from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.server.base import (
     RateLimitMixin,
+    _get_html,
     _json_error,
     _read_file,
     _verify_admin_token,
@@ -38,12 +39,10 @@ class DashboardView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Serve the dashboard HTML page."""
         html_path = Path(__file__).parent.parent / "www" / "dashboard.html"
-
-        if not html_path.exists():
+        html_content = await _get_html(self.hass, html_path)
+        if html_content is None:
             _LOGGER.error("Dashboard page not found: %s", html_path)
             return web.Response(text="Dashboard page not found", status=500)
-
-        html_content = await self.hass.async_add_executor_job(_read_file, html_path)
         return web.Response(text=html_content, content_type="text/html")
 
 
@@ -170,10 +169,10 @@ class AnalyticsPageView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Serve analytics page."""
         www_path = Path(__file__).parent.parent / "www" / "analytics.html"
-        if www_path.exists():
-            content = await self.hass.async_add_executor_job(_read_file, www_path)
-            return web.Response(text=content, content_type="text/html")
-        return web.Response(text="Analytics page not found", status=404)
+        content = await _get_html(self.hass, www_path)
+        if content is None:
+            return web.Response(text="Analytics page not found", status=404)
+        return web.Response(text=content, content_type="text/html")
 
 
 class SongStatsView(HomeAssistantView):

@@ -19,6 +19,7 @@ from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
     RateLimitMixin,
+    _get_html,
     _get_version,
     _json_error,
     _read_file,
@@ -83,12 +84,10 @@ class AdminView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Serve the admin HTML page."""
         html_path = Path(__file__).parent.parent / "www" / "admin.html"
-
-        if not html_path.exists():
+        html_content = await _get_html(self.hass, html_path)
+        if html_content is None:
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
-
-        html_content = await self.hass.async_add_executor_job(_read_file, html_path)
         return web.Response(text=html_content, content_type="text/html")
 
 
@@ -106,12 +105,10 @@ class LauncherView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Serve the launcher HTML page."""
         html_path = Path(__file__).parent.parent / "www" / "launcher.html"
-
-        if not html_path.exists():
+        html_content = await _get_html(self.hass, html_path)
+        if html_content is None:
             _LOGGER.error("Launcher page not found: %s", html_path)
             return web.Response(text="Launcher page not found", status=500)
-
-        html_content = await self.hass.async_add_executor_job(_read_file, html_path)
         return web.Response(text=html_content, content_type="text/html")
 
 
@@ -129,12 +126,10 @@ class PlayerView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Serve the player HTML page."""
         html_path = Path(__file__).parent.parent / "www" / "player.html"
-
-        if not html_path.exists():
+        html_content = await _get_html(self.hass, html_path)
+        if html_content is None:
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
-
-        html_content = await self.hass.async_add_executor_job(_read_file, html_path)
         return web.Response(text=html_content, content_type="text/html")
 
 

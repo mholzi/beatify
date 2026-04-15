@@ -34,6 +34,7 @@ class StatsService:
         self._stats: dict[str, Any] = self._empty_stats()
         self._analytics: AnalyticsStorage | None = None
         self._game_start_time: int | None = None
+        self._all_time_avg_cache: float | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -71,6 +72,7 @@ class StatsService:
             if self._stats_file.exists():
                 content = await self._hass.async_add_executor_job(self._stats_file.read_text)
                 self._stats = json.loads(content)
+                self._all_time_avg_cache = None
                 _LOGGER.debug(
                     "Loaded stats: %d games played",
                     self._stats.get("all_time", {}).get("games_played", 0),
@@ -81,6 +83,7 @@ class StatsService:
         except (json.JSONDecodeError, KeyError, TypeError) as err:
             _LOGGER.warning("Stats file corrupted, recreating: %s", err)
             self._stats = self._empty_stats()
+            self._all_time_avg_cache = None
             await self.save()
 
     async def save(self) -> None:
@@ -173,6 +176,9 @@ class StatsService:
 
         # Store comparison before updating stats
         comparison = self.get_game_comparison(avg_score_per_round)
+
+        # Invalidate cached all-time average
+        self._all_time_avg_cache = None
 
         # Add to games list
         self._stats["games"].append(game_entry)
@@ -291,6 +297,9 @@ class StatsService:
             Weighted average across all games, or 0.0 if no games
 
         """
+        if self._all_time_avg_cache is not None:
+            return self._all_time_avg_cache
+
         games = self._stats.get("games", [])
         if not games:
             return 0.0
@@ -308,7 +317,9 @@ class StatsService:
         if total_weight == 0:
             return 0.0
 
-        return total_weighted / total_weight
+        result = total_weighted / total_weight
+        self._all_time_avg_cache = result
+        return result
 
     @property
     def games_played(self) -> int:
