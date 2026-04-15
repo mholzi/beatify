@@ -26,6 +26,9 @@ MAX_DETAILED_RECORDS = 1000
 RETENTION_DAYS = 90
 PRUNE_INTERVAL = 10  # Prune every N game records
 
+# Period-to-days mapping used by stats functions
+PERIOD_DAYS_MAP: dict[str, int] = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
+
 
 class GameRecord(TypedDict):
     """Game record schema (AC: #1)."""
@@ -546,8 +549,7 @@ class AnalyticsStorage:
         now = int(time.time())
 
         # Calculate period boundaries
-        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
-        days = days_map.get(period, 30)
+        days = PERIOD_DAYS_MAP.get(period, 30)
         start_ts = now - (days * 86400)
 
         # Filter errors by period
@@ -594,8 +596,7 @@ class AnalyticsStorage:
         now = int(time.time())
 
         # Calculate period boundaries
-        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
-        days = days_map.get(period, 30)
+        days = PERIOD_DAYS_MAP.get(period, 30)
 
         current_start = now - (days * 86400)
         previous_start = current_start - (days * 86400)
@@ -708,8 +709,7 @@ class AnalyticsStorage:
         now = int(time.time())
 
         # Calculate period boundaries
-        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
-        days = days_map.get(period, 30)
+        days = PERIOD_DAYS_MAP.get(period, 30)
         start_ts = now - (days * 86400)
 
         # Get games for current period
@@ -744,8 +744,7 @@ class AnalyticsStorage:
         now = int(time.time())
 
         # Calculate period boundaries
-        days_map = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
-        days = days_map.get(period, 30)
+        days = PERIOD_DAYS_MAP.get(period, 30)
         start_ts = now - (days * 86400)
 
         # Get games for current period
