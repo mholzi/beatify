@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
     document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
+    document.getElementById('admin-skip-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
