@@ -148,7 +148,7 @@ class GameStateSerializer:
             state["game_performance"] = game_performance
         # Song difficulty rating (Story 15.1 AC1, AC4)
         if gs._stats_service and rm.current_song:
-            song_uri = rm.current_song.get("uri")
+            song_uri = rm.current_song.get("_resolved_uri") or rm.current_song.get("uri")
             if song_uri:
                 difficulty = gs._stats_service.get_song_difficulty(song_uri)
                 if difficulty:
