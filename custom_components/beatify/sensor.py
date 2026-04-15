@@ -104,21 +104,19 @@ class BeatifyLeaderSensor(BeatifySensorBase):
 
     @property
     def native_value(self) -> str | None:
-        players = self._game_state.players
-        if not players:
+        leader = self._game_state.leader
+        if leader is None:
             return None
-        leader = max(players.values(), key=lambda p: p.score)
         return leader.name
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
-        players = self._game_state.players
-        if not players:
+        leader = self._game_state.leader
+        if leader is None:
             return {"score": 0, "player_count": 0}
-        leader = max(players.values(), key=lambda p: p.score)
         return {
             "score": leader.score,
-            "player_count": len(players),
+            "player_count": len(self._game_state.players),
         }
 
 
@@ -131,10 +129,10 @@ class BeatifyTopScoreSensor(BeatifySensorBase):
 
     @property
     def native_value(self) -> int:
-        players = self._game_state.players
-        if not players:
+        leader = self._game_state.leader
+        if leader is None:
             return 0
-        return max(p.score for p in players.values())
+        return leader.score
 
 
 class BeatifyPlayerCountSensor(BeatifySensorBase):
