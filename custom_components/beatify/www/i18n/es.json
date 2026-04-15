@@ -289,6 +289,7 @@
     "stop": "Detener",
     "stopSong": "Detener canción",
     "connectionLost": "Conexión perdida — reconectando...",
+    "confirmIntro": "Iniciar ronda",
     "next": "Siguiente",
     "nextRound": "Siguiente ronda",
     "end": "Fin",

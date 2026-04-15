@@ -2069,21 +2069,9 @@ function handleAdminJoin() {
     joinBtn.disabled = true;
     joinBtn.textContent = BeatifyI18n.t('game.joining');
 
-    // Issue #477: Join inline via WS instead of redirecting to player page
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminPlayerName = name;
-        adminWs.send(JSON.stringify({
-            type: 'join',
-            name: name,
-            is_admin: true
-        }));
-        // Close modal — join_ack will enable the game UI
-        const modal = document.getElementById('admin-join-modal');
-        if (modal) modal.classList.add('hidden');
-        return;
-    }
-
-    // Fallback: redirect to player page (pre-#477 behavior)
+    // #653: Always redirect to player page for full game experience.
+    // The player page has all 18 player features + admin control bar
+    // (shown automatically when isAdmin === true).
     try {
         sessionStorage.setItem('beatify_admin_name', name);
         sessionStorage.setItem('beatify_is_admin', 'true');
