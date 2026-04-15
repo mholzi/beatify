@@ -1218,6 +1218,33 @@ export function stopConfetti() {
 /**
  * Show static celebration for reduced motion users (AC5)
  */
+// ============================================
+// Screen Wake Lock (#622)
+// Prevents screen from dimming/locking during gameplay.
+// Supported on iOS Safari 16.4+, Chrome, Edge; fails silently elsewhere.
+// ============================================
+
+var _wakeLock = null;
+
+export async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try {
+        _wakeLock = await navigator.wakeLock.request('screen');
+        _wakeLock.addEventListener('release', function() {
+            _wakeLock = null;
+        });
+    } catch (err) {
+        // Silently fail — browser may deny if page is not visible
+    }
+}
+
+export function releaseWakeLock() {
+    if (_wakeLock) {
+        _wakeLock.release();
+        _wakeLock = null;
+    }
+}
+
 export function showStaticCelebration() {
     var emotionEl = document.getElementById('reveal-emotion');
     if (emotionEl) {

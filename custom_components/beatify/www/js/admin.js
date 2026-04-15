@@ -32,6 +32,29 @@ function _adminHeaders() {
     return headers;
 }
 
+// Screen Wake Lock (#622)
+// Prevents screen from dimming/locking while the admin is running a game.
+var _wakeLock = null;
+
+async function _requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try {
+        _wakeLock = await navigator.wakeLock.request('screen');
+        _wakeLock.addEventListener('release', function() {
+            _wakeLock = null;
+        });
+    } catch (err) {
+        // Silently fail — browser may deny if page is not visible
+    }
+}
+
+function _releaseWakeLock() {
+    if (_wakeLock) {
+        _wakeLock.release();
+        _wakeLock = null;
+    }
+}
+
 // Module-level state
 let selectedPlaylists = [];
 let playlistData = [];
@@ -1358,6 +1381,7 @@ function updateStartButtonState() {
 function showSetupView() {
     currentView = 'setup';
     currentGame = null;
+    _releaseWakeLock(); // #622: allow screen to sleep again
 
     // Stop lobby polling (Story 16.8)
     stopLobbyPolling();
@@ -1647,6 +1671,7 @@ async function startGame() {
         }
 
         showLobbyView(data);
+        _requestWakeLock(); // #622: keep screen on during game
 
         // Issue #477: Connect admin WebSocket for real-time updates
         connectAdminWebSocket();
