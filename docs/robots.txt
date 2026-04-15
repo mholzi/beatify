@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://mholzi.github.io/beatify/sitemap.xml

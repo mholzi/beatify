@@ -23,7 +23,11 @@ beatify/
 
 # ---- Config & tooling ----
 pyproject.toml
+package.json
 package-lock.json
+Makefile
+conftest.py
+pytest.ini
 requirements.txt
 # requirements_test.txt intentionally NOT ignored
 .ruff.toml
@@ -81,7 +85,7 @@ RELEASE_NOTES_*.md
 CONTRIBUTING.md
 
 # ---- GitHub workflows (not needed in HACS release) ----
-# .github/ is kept — needed for CI and HACS validation
+.github/
 
 # ---- Minified build artefacts (auto-generated, not tracked) ----
 # Run `make build` locally or see .github/workflows/build-assets.yml
