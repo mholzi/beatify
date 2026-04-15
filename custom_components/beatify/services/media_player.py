@@ -506,26 +506,6 @@ class MediaPlayerService:
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to resume: {err}")
             return False
 
-    async def pause(self) -> bool:
-        """
-        Pause playback (e.g. for intro mode stop).
-
-        Returns:
-            True if successful, False otherwise
-
-        """
-        try:
-            await self._hass.services.async_call(
-                "media_player",
-                "media_pause",
-                {"entity_id": self._entity_id},
-            )
-            return True  # noqa: TRY300
-        except Exception as err:  # noqa: BLE001
-            _LOGGER.error("Failed to pause playback: %s", err)  # noqa: TRY400
-            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to pause: {err}")
-            return False
-
     def get_volume(self) -> float:
         """
         Get current volume level from media player.
