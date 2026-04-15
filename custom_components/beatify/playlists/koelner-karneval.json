@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "german",
     "carnival",
@@ -102,7 +102,7 @@
       "chart_info": {
         "german_peak": 32
       },
-      "uri_apple_music": "applemusic://track/713042287",
+      "uri_apple_music": "applemusic://track/713842529",
       "uri_tidal": "tidal://track/11203285",
       "uri_deezer": "deezer://track/3155953",
       "fun_fact_nl": "Een van de vroegste hits van de Höhner uit 1971, opnieuw opgenomen in 1997 - de titel 'Ik ben een rover' speelt in op de speelse Keulse dialecthumor.",
@@ -282,7 +282,7 @@
       "chart_info": {
         "german_peak": 8
       },
-      "uri_apple_music": "applemusic://track/1597794427",
+      "uri_apple_music": "applemusic://track/724021418",
       "uri_tidal": "tidal://track/11203214",
       "uri_deezer": "deezer://track/3154486",
       "fun_fact_nl": "Echte Fründe (Echte vrienden) is een van de meest emotionele nummers van de Höhner over ware vriendschap en wordt tijdens carnaval vaak arm in arm gezongen.",
@@ -1255,7 +1255,7 @@
       "fun_fact_fr": "Une chanson nostalgique sur « Ma première petite amie » - les Bläck Fööss allient souvent la fête carnavalesque à des souvenirs personnels touchants.",
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tS7Id7YQ1eE",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1fLNKbiHUac",
       "uri_apple_music": "applemusic://track/713451419",
       "chart_info": {
         "weeks_on_chart": null
@@ -1629,7 +1629,7 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=pMB4xoIB3OI",
-      "uri_apple_music": "applemusic://track/1384483878",
+      "uri_apple_music": "applemusic://track/1766474419",
       "chart_info": {
         "weeks_on_chart": null
       },
@@ -4192,7 +4192,7 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=AOjcKFapP1U",
-      "uri_apple_music": "applemusic://track/1444428549",
+      "uri_apple_music": "applemusic://track/1593095661",
       "chart_info": {
         "weeks_on_chart": null
       },
@@ -7214,13 +7214,12 @@
         "weeks_on_chart": null
       },
       "uri_tidal": "tidal://track/482962193",
-      "uri_deezer": "deezer://track/3864013291",
       "fun_fact_nl": "Keulen aan de Rijn - deze uitgave uit 2025 viert de ligging van de stad aan de beroemde rivier die haar identiteit bepaalt.",
       "awards_nl": []
     },
     {
       "year": 2025,
-      "uri": "spotify:track:4wElx6LCIYwzXMNPNlKUpM",
+      "uri": "spotify:track:4G0RhLOkClQkMpYvGe9Pos",
       "artist": "Mätropolis",
       "alt_artists": [
         "Kasalla",
