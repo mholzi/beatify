@@ -133,6 +133,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-vol-down')?.addEventListener('click', adminVolumeDown);
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
+    document.getElementById('admin-stop-lights')?.addEventListener('click', function() {
+        if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+            adminWs.send(JSON.stringify({ type: 'admin', action: 'stop_lights' }));
+        }
+    });
     document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-skip-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-submit-guess')?.addEventListener('click', adminSubmitGuess);

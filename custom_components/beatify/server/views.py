@@ -15,6 +15,7 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 
 from custom_components.beatify.const import DOMAIN
+from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -231,7 +232,7 @@ class PreviewLightsView(HomeAssistantView):
             return web.json_response({"error": "No entity_ids provided"}, status=400)
 
         game_state = self.hass.data.get(DOMAIN, {}).get("game")
-        if game_state and game_state.game_id:
+        if game_state and game_state.phase in (GamePhase.PLAYING, GamePhase.REVEAL):
             return web.json_response(
                 {"error": "Cannot preview during active game"}, status=409
             )

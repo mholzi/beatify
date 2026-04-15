@@ -250,6 +250,7 @@ async def handle_admin(
         "confirm_intro_splash": admin_confirm_intro_splash,
         "set_party_lights": admin_set_party_lights,
         "toggle_party_lights": admin_toggle_party_lights,
+        "stop_lights": admin_stop_lights,
     }
     sub_handler = admin_handlers.get(action)
     if sub_handler:
@@ -647,6 +648,18 @@ async def admin_toggle_party_lights(
                 "message": "Party Lights not configured — set up in game settings first",
             }
         )
+
+
+async def admin_stop_lights(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin stop_lights action — emergency stop for party lights."""
+    await game_state.disable_party_lights()
+    _LOGGER.info("Party lights stopped by admin")
+    await handler.broadcast_state()
 
 
 # ---------------------------------------------------------------------------
