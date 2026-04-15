@@ -8821,12 +8821,17 @@ body.device-tier-low .reveal-skip-hint {
     font-size: 0.9rem;
 }
 
-.admin-control-bar {
+.admin-content .admin-control-bar {
     display: flex;
     gap: var(--space-sm);
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: var(--space-md);
+    position: static;
+    background: none;
+    border-top: none;
+    padding: 0;
+    z-index: auto;
 }
 
 .btn-compact {
