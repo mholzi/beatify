@@ -3851,6 +3851,42 @@ body.theme-dark .setting-hint {
     margin: 0 auto;
 }
 
+/* Sticky Bar: Round Info + Timer (Issue #654) */
+.game-sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-xs) var(--space-xs);
+    margin-bottom: var(--space-sm);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-light);
+    transition: box-shadow 0.2s ease;
+}
+
+body.theme-dark .game-sticky-bar {
+    background: rgba(10, 10, 18, 0.95);
+    border-bottom-color: var(--color-border-neon);
+}
+
+.game-sticky-bar .game-header-compact {
+    margin-bottom: 0;
+    width: auto;
+}
+
+.game-sticky-bar .timer-container {
+    margin-bottom: 0;
+}
+
+.game-sticky-bar .timer {
+    font-size: 1.5rem;
+}
+
 /* Game Header - Compact (matches lobby header pattern) */
 .game-header-compact {
     display: flex;
@@ -4857,6 +4893,10 @@ body.theme-dark .movie-reveal-section {
     .timer {
         font-size: var(--font-size-2xl);
     }
+
+    .game-sticky-bar .timer {
+        font-size: 1.25rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -4866,6 +4906,10 @@ body.theme-dark .movie-reveal-section {
 
     .timer {
         font-size: var(--font-size-hero);
+    }
+
+    .game-sticky-bar .timer {
+        font-size: 1.75rem;
     }
 }
 
