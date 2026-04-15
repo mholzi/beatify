@@ -212,6 +212,13 @@ class GameState:
     def players(self, value: dict[str, PlayerSession]) -> None:
         self._player_registry.players = value
 
+    @property
+    def leader(self) -> PlayerSession | None:
+        """Get current leader player (cached per state change)."""
+        if not self.players:
+            return None
+        return max(self.players.values(), key=lambda p: p.score)
+
     # ------------------------------------------------------------------
     # RoundManager delegation (keep public interface identical)
     # ------------------------------------------------------------------
