@@ -13,6 +13,7 @@ from urllib.parse import quote, urlparse
 import aiohttp
 
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.storage import Store
 from homeassistant.util import slugify
 
 _LOGGER = logging.getLogger(__name__)
@@ -178,31 +179,28 @@ async def async_enrich_via_odesli(
         }
 
 
+_CREDS_STORE_KEY = "beatify.spotify_credentials"
+_CREDS_STORE_VERSION = 1
+
+
+def _get_store(hass: HomeAssistant) -> Store:
+    """Get or create the HA Store for Spotify credentials."""
+    return Store(hass, _CREDS_STORE_VERSION, _CREDS_STORE_KEY)
+
+
 async def async_save_credentials(
     hass: HomeAssistant, client_id: str, client_secret: str
 ) -> None:
-    """Save Spotify credentials to disk."""
-    creds_path = Path(hass.config.path("beatify/spotify_credentials.json"))
-
-    def _write() -> None:
-        creds_path.parent.mkdir(parents=True, exist_ok=True)
-        creds_path.write_text(
-            json.dumps({"client_id": client_id, "client_secret": client_secret}, indent=2)
-        )
-
-    await hass.async_add_executor_job(_write)
+    """Save Spotify credentials via HA storage."""
+    store = _get_store(hass)
+    await store.async_save({"client_id": client_id, "client_secret": client_secret})
 
 
 async def async_load_credentials(hass: HomeAssistant) -> dict[str, str]:
-    """Load Spotify credentials from disk."""
-    creds_path = Path(hass.config.path("beatify/spotify_credentials.json"))
-
-    def _read() -> dict[str, str]:
-        if not creds_path.exists():
-            return {}
-        return json.loads(creds_path.read_text())
-
-    return await hass.async_add_executor_job(_read)
+    """Load Spotify credentials from HA storage."""
+    store = _get_store(hass)
+    data = await store.async_load()
+    return data if data else {}
 
 
 async def async_import_playlist(
