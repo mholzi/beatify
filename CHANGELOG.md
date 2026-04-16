@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc7] - 2026-04-16
+
+### Removed
+- **Spotify playlist import feature** removed entirely. Spotify's November 2024 Web API deprecation + 2026 account-level restrictions make the Client-Credentials flow unable to read playlists for new apps — even public user-created ones. Rather than ship a broken feature, the import UI, credentials storage, server endpoints (`/beatify/api/spotify-credentials`, `/import-playlist`, `/edit-playlist`, `/spotify-search`), Python service (`services/spotify_import.py`), and inline playlist editor are all removed. Playlists can still be added manually via JSON in `config/beatify/playlists/`.
+
 ## [3.2.0-rc6] - 2026-04-16
 
 ### Fixed
