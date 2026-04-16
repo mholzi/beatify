@@ -129,6 +129,16 @@ MEDIA_PLAYER_DOCS_URL = "https://www.home-assistant.io/integrations/#media-playe
 
 # Playlist configuration
 PLAYLIST_DIR = "beatify/playlists"
+
+# Multi-provider URI patterns (Story 17.1).
+# Restored in #688 — these ARE used by game/playlist.py for URI validation
+# during playlist discovery. Removed in #687 by mistake.
+URI_PATTERN_SPOTIFY = r"^spotify:track:[a-zA-Z0-9]{22}$"
+URI_PATTERN_APPLE_MUSIC = r"^applemusic://track/\d+$"
+URI_PATTERN_YOUTUBE_MUSIC = r"^https://music\.youtube\.com/watch\?v=[a-zA-Z0-9_-]{11}$"
+URI_PATTERN_TIDAL = r"^tidal://track/\d+$"
+URI_PATTERN_DEEZER = r"^deezer://track/\d+$"
+
 # Provider identifiers (Story 17.1)
 PROVIDER_SPOTIFY = "spotify"
 PROVIDER_APPLE_MUSIC = "apple_music"  # Preserved for future use
