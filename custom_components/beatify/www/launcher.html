@@ -129,9 +129,11 @@
         function openBeatify() {
             var adminUrl = window.location.origin + '/beatify/admin';
 
-            // HA Companion App and mobile WebViews block window.open()
-            var isWebView = /HomeAssistant|wv|WebView/i.test(navigator.userAgent)
-                || window.self !== window.top;  // inside iframe (HA sidebar)
+            // HA Companion App and mobile WebViews block window.open(). Desktop
+            // browsers inside the HA sidebar iframe CAN open popups, so don't
+            // force same-tab navigation just because we're iframed — try popup
+            // first and fall back if it's blocked.
+            var isWebView = /HomeAssistant|wv|WebView/i.test(navigator.userAgent);
 
             if (isWebView) {
                 window.location.href = adminUrl;

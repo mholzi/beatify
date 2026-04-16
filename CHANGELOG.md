@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc8] - 2026-04-16
+
+### Fixed
+- Launcher now re-opens admin in a popup from desktop browsers. PR #664 over-reached: its iframe detection treated the HA sidebar (which is always iframed on desktop) as a WebView and forced same-tab navigation. Popup-blocked fallback still covers genuinely blocked popups.
+
 ## [3.2.0-rc7] - 2026-04-16
 
 ### Removed
