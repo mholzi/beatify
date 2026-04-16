@@ -386,7 +386,15 @@
     "ttsTestFailed": "Failed",
     "haEntities": "HA Entities",
     "haEntitiesSummary": "6 entities",
-    "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools \u2192 States or search for beatify in your entity registry."
+    "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools \u2192 States or search for beatify in your entity registry.",
+    "youArePlayingAs": "Playing as",
+    "switchToPlayerView": "Player View \u2192",
+    "yourResult": "Your Result",
+    "yourGuess": "Your guess",
+    "accuracy": "Accuracy",
+    "points": "Points",
+    "kickPlayerTitle": "Remove player?",
+    "kickPlayerConfirm": "Remove {name} from the lobby?"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

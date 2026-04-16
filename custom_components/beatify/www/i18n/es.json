@@ -386,7 +386,15 @@
     "ttsTestFailed": "Error",
     "haEntities": "Entidades HA",
     "haEntitiesSummary": "6 entidades",
-    "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades."
+    "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades.",
+    "youArePlayingAs": "Jugando como",
+    "switchToPlayerView": "Vista de jugador \u2192",
+    "yourResult": "Tu resultado",
+    "yourGuess": "Tu respuesta",
+    "accuracy": "Precisión",
+    "points": "Puntos",
+    "kickPlayerTitle": "¿Eliminar jugador?",
+    "kickPlayerConfirm": "¿Eliminar a {name} de la sala?"
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",

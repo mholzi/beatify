@@ -3186,6 +3186,31 @@ body.theme-dark .admin-controls {
     width: 100%;
 }
 
+/* Kick player button for disconnected players (#659) */
+.kick-player-btn {
+    background: none;
+    border: 1px solid var(--color-border-dark);
+    color: var(--color-text-muted);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-xs);
+    padding: 0;
+    transition: all 0.15s ease;
+}
+
+.kick-player-btn:hover {
+    background: var(--color-error);
+    color: white;
+    border-color: var(--color-error);
+}
+
 /* Empty state for player list */
 #lobby-section .empty-state {
     text-align: center;
@@ -3849,6 +3874,30 @@ body.theme-dark .setting-hint {
     padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
     max-width: 400px;
     margin: 0 auto;
+}
+
+/* Sticky bar: Round info + Timer always visible (Issue #654) */
+.game-sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-bg-light);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+body.theme-dark .game-sticky-bar {
+    background: var(--color-bg-primary);
+    border-bottom-color: var(--color-border-dark);
+}
+
+.game-sticky-bar .timer-container {
+    margin-bottom: 0;
+}
+
+.game-sticky-bar .timer {
+    font-size: 2rem;
 }
 
 /* Game Header - Compact (matches lobby header pattern) */
@@ -8877,6 +8926,63 @@ body.device-tier-low .reveal-skip-hint {
     font-style: italic;
     margin-top: 4px;
     line-height: 1.3;
+}
+
+/* #660: Admin playing-mode banner */
+.admin-playing-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 8px);
+    padding: var(--space-sm, 8px) var(--space-md, 16px);
+    background: var(--bg-card, rgba(255, 255, 255, 0.05));
+    border-bottom: 2px solid var(--color-primary, #1db954);
+    font-size: 0.9rem;
+}
+
+.admin-playing-banner-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.admin-playing-banner-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-playing-banner-btn {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 8px);
+}
+
+/* #660: Admin personal result card (reveal phase) */
+.admin-personal-result-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 4px);
+}
+
+.admin-personal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-xs, 4px) 0;
+}
+
+.admin-personal-label {
+    color: var(--text-secondary, #aaa);
+    font-size: 0.9rem;
+}
+
+.admin-personal-value {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.admin-personal-score {
+    color: var(--color-primary, #1db954);
+    font-size: 1.1rem;
 }
 
 /* Admin read-only challenge options */

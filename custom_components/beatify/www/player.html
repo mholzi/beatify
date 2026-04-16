@@ -166,24 +166,30 @@
         <!-- Game view (Epic 4) -->
         <div id="game-view" class="view hidden">
             <div class="game-container">
-                <!-- Game Header with Round Info -->
-                <div class="game-header-compact">
-                    <div class="game-header-left">
-                        <span class="section-icon" aria-hidden="true">🎮</span>
-                        <span id="round-indicator" class="round-indicator-text">
-                            <span data-i18n="game.roundLabel">Round</span>
-                            <span id="current-round">1</span>
-                            <span data-i18n="game.ofLabel">of</span>
-                            <span id="total-rounds">10</span>
-                        </span>
+                <!-- Sticky bar: Round info + Timer (Issue #654) -->
+                <div class="game-sticky-bar">
+                    <div class="game-header-compact">
+                        <div class="game-header-left">
+                            <span class="section-icon" aria-hidden="true">🎮</span>
+                            <span id="round-indicator" class="round-indicator-text">
+                                <span data-i18n="game.roundLabel">Round</span>
+                                <span id="current-round">1</span>
+                                <span data-i18n="game.ofLabel">of</span>
+                                <span id="total-rounds">10</span>
+                            </span>
+                        </div>
+                        <div class="stat-badge-bar">
+                            <!-- Difficulty Badge -->
+                            <span id="game-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
+                            <!-- Steal Available Indicator (Story 15.3) -->
+                            <span id="steal-indicator" class="stat-badge stat-badge--steal hidden">
+                                <span class="stat-badge-icon" aria-hidden="true">🥷</span>
+                            </span>
+                        </div>
                     </div>
-                    <div class="stat-badge-bar">
-                        <!-- Difficulty Badge -->
-                        <span id="game-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
-                        <!-- Steal Available Indicator (Story 15.3) -->
-                        <span id="steal-indicator" class="stat-badge stat-badge--steal hidden">
-                            <span class="stat-badge-icon" aria-hidden="true">🥷</span>
-                        </span>
+                    <!-- Timer with ARIA support (Story 9.7) -->
+                    <div class="timer-container">
+                        <div id="timer" class="timer" role="timer" aria-live="polite" aria-label="Time remaining: 30 seconds">30</div>
                     </div>
                 </div>
                 <!-- Last Round Banner -->
@@ -218,11 +224,6 @@
                     <div id="album-loading" class="album-loading hidden">
                         <div class="loading-spinner"></div>
                     </div>
-                </div>
-
-                <!-- Timer with ARIA support (Story 9.7) -->
-                <div class="timer-container">
-                    <div id="timer" class="timer" role="timer" aria-live="polite" aria-label="Time remaining: 30 seconds">30</div>
                 </div>
 
                 <!-- Submission Tracker (Story 4.4) -->
