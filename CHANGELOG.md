@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc3] - 2026-04-16
+
+### Fixed
+- Re-enabled Spotify Playlist Import UI in the admin dashboard — the section was hidden by an unterminated HTML comment in `admin.html` (#723)
+
 ## [3.2.0-rc2] - 2026-04-16
 
 ### Security / hardening
