@@ -39,7 +39,7 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 **Uses Your Existing Smart Speakers** — Works with Music Assistant, Sonos, and Alexa speakers you already have. See [Supported Speakers](#supported-speakers) for details.
 
-**Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, or Tidal playlists. Curated song packs included. Create your own.
+**Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer playlists. Curated song packs included. Create your own.
 
 **Runs Locally** — No cloud. No subscription. No data leaves your network. Fast, private, reliable.
 
@@ -118,7 +118,7 @@ http://YOUR-HA-IP:8123/beatify/admin
 ### Starting a Game
 
 1. **Select a speaker** — Only [supported speakers](#supported-speakers) appear
-2. **Choose your music service** — Spotify or Apple Music (depends on speaker)
+2. **Choose your music service** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer (depends on speaker)
 3. **Pick playlists** — Select one or more
 4. **Adjust settings** — Language, timer, difficulty
 5. **Start Game** — Share the QR code with guests
@@ -271,7 +271,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 2,453 songs across 23 curated playlists:
+Beatify comes with 2,482 songs across 24 curated playlists:
 
 - 🎸 **60s Classics** — 45 tracks from the golden age of rock & roll
 - 🎹 **80s Hits** — 208 classic hits from the decade of synths and MTV
@@ -286,6 +286,7 @@ Beatify comes with 2,453 songs across 23 curated playlists:
 - 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
 - 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
+- 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
 - 🤘 **Greatest Metal Songs** — 52 legendary tracks across all major metal subgenres
 - 🎯 **Greatest Hits of All Time** — 180 chart-toppers across four decades
@@ -349,6 +350,7 @@ Beatify speaks your guests' language.
 - **Deutsch** — Vollständige Unterstützung
 - **Español** — Soporte completo
 - **Français** — Support complet
+- **Nederlands** — Volledige ondersteuning
 
 Select during game setup. All players see the chosen language. Fun facts and awards are also translated!
 
@@ -360,13 +362,13 @@ Select during game setup. All players see the chosen language. Fun facts and awa
 
 Beatify works with specific Home Assistant integrations that support music playback:
 
-| Integration | Supported | Spotify | Apple Music | YouTube Music | Tidal | How It Works |
-|-------------|-----------|---------|-------------|---------------|-------|--------------|
-| **[Music Assistant](https://music-assistant.io/)** | ✅ Yes | ✅ | ✅ | ✅ | ✅ | Direct URI playback to any connected speaker |
-| **Sonos** | ✅ Yes | ✅ | ❌ | ❌ | ❌ | Direct Spotify playback via Sonos integration |
-| **Alexa Media Player** | ✅ Yes | ✅ | ✅ | ❌ | ❌ | Voice search playback ("Play [song] on Spotify") |
-| **Cast (Chromecast/Nest/Google TV)** | ❌ No | — | — | — | — | Use Music Assistant instead |
-| **HomePod** | ❌ No | — | — | — | — | Use Music Assistant instead |
+| Integration | Supported | Spotify | Apple Music | YouTube Music | Tidal | Deezer | How It Works |
+|-------------|-----------|---------|-------------|---------------|-------|--------|--------------|
+| **[Music Assistant](https://music-assistant.io/)** | ✅ Yes | ✅ | ✅ | ✅ | ✅ | ✅ | Direct URI playback to any connected speaker |
+| **Sonos** | ✅ Yes | ✅ | ❌ | ❌ | ❌ | ❌ | Direct Spotify playback via Sonos integration |
+| **Alexa Media Player** | ✅ Yes | ✅ | ✅ | ❌ | ❌ | ❌ | Voice search playback ("Play [song] on Spotify") |
+| **Cast (Chromecast/Nest/Google TV)** | ❌ No | — | — | — | — | — | Use Music Assistant instead |
+| **HomePod** | ❌ No | — | — | — | — | — | Use Music Assistant instead |
 
 ### Why Some Speakers Don't Work Directly
 
@@ -461,7 +463,7 @@ Game pauses automatically. Reconnect and continue exactly where you left off.
 <details>
 <summary><strong>What music services work?</strong></summary>
 <br>
-Spotify, Apple Music, YouTube Music, and Tidal. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details.
+Spotify, Apple Music, YouTube Music, Tidal, and Deezer. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details.
 </details>
 
 <details>
@@ -487,6 +489,27 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v3.1.0 — Admin Makeover & Stability 🎛️
+- **Admin Dashboard Overhaul** — Rebuilt spectator view mirrors the player layout: large album cover, countdown timer, player-dot tracker with bet/steal badges, leaderboard with streaks and rank changes, and podium end screen
+- **Admin Joins as Player — Full Experience** — Host redirect to the player page with all 18 game features plus a fixed admin control bar. No more degraded mini-UI
+- **Wake Lock** — Screen stays awake during gameplay on mobile devices
+- **WebSocket Reconnect on Tab Return** — Auto-reconnects when switching apps or returning from lock screen, with clear error messaging on connection loss
+- **Intro Round for Non-Playing Admin** — Admins who don't join as player can now confirm intro rounds
+- 16 bug fixes, 6 security hardening fixes, 12 performance fixes, 15 broken streaming URIs replaced
+- 24 playlists, 2,482 songs, 5 music platforms, 5 languages
+
+### v3.0.0 — Dynamic Lights, Balanced Playlists & Security Hardening 💡
+- **Dynamic Light Effects & WLED Support** — Lights pulse during playback and react to game events (gold flash for exact matches, green for off-by-one, orange for streaks). Three modes: Static, Dynamic (new default), and WLED with configurable presets
+- **Balanced Playlist Selection** — Multiple playlists now get equal weight instead of larger playlists dominating. Cross-playlist duplicates auto-deduplicated
+- **+10s Seek Forward** — New admin button to skip past silent intros
+- **Admin Spectator Mode** — Watch and control the game without being a player
+- **Closest Wins Mode** — Only the player with the closest guess scores each round
+- **HA Sensor Entities** — Live game state exposed as Home Assistant entities for automations and dashboards
+- **TTS Announcements** — Voice feedback for game start and winner reveal via any HA TTS entity
+- **Gen Z Anthems playlist** — 30 songs from TikTok to Good Luck, Babe! (2009–2024)
+- Security hardening, 20+ bug fixes, 268 broken streaming URIs replaced
+- 24 playlists, 2,482 songs, 5 music platforms, 5 languages
 
 ### v2.9.1 — Party Lights, Dutch & Stability 🎉
 - **Party Lights** — Automated light control during games with intensity presets (Subtle/Medium/Party), admin light picker, and preview button. Subtle mode scales relative to your pre-game brightness: +0% lobby, +20% playing, +40% reveal and end
