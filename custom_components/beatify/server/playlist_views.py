@@ -34,12 +34,17 @@ def _sanitize_error(message: str) -> str:
     """Strip anything that looks like a credential from an error message (#690).
 
     Token-validation errors can echo back Authorization headers or
-    base64-encoded client_id:client_secret pairs.
+    base64-encoded client_id:client_secret pairs. Deliberately does NOT
+    redact URL paths (which include `/` and alphanumerics) — that just
+    obscures debugging.
     """
     import re as _re
-    cleaned = _re.sub(r"[A-Za-z0-9+/=]{40,}", "<redacted>", message)
-    cleaned = _re.sub(r"(?i)authorization[^\s]*", "<redacted>", cleaned)
+    # Authorization headers and Bearer tokens are the real credential leak vectors.
+    cleaned = _re.sub(r"(?i)authorization\s*[:=]\s*\S+", "<redacted>", message)
     cleaned = _re.sub(r"(?i)bearer\s+\S+", "Bearer <redacted>", cleaned)
+    # Base64-style client_id:client_secret blobs use [A-Za-z0-9+/=] — but so do
+    # URLs. To avoid redacting URL paths, require the run to NOT contain `/`.
+    cleaned = _re.sub(r"[A-Za-z0-9+=]{40,}", "<redacted>", cleaned)
     return cleaned
 
 

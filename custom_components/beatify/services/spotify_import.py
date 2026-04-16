@@ -123,6 +123,22 @@ async def async_fetch_playlist_tracks(
 
     while url and len(tracks) < MAX_SONGS:
         async with session.get(url, headers=headers) as resp:
+            # 403/404 on client-credentials flow = playlist is private, owned by
+            # another user, or one of Spotify's algorithmic/editorial playlists
+            # (e.g. Discover Weekly, Daily Mix). These can't be read without user
+            # OAuth. Give the admin a clear message instead of an aiohttp stacktrace.
+            if resp.status in (403, 404):
+                raise PlaylistImportError(
+                    "Can't read that playlist. Only public, user-created playlists "
+                    "can be imported. Spotify's algorithmic playlists (Discover "
+                    "Weekly, Daily Mix, etc.) and private playlists require "
+                    "personal login which Beatify doesn't support."
+                )
+            if resp.status == 401:
+                raise PlaylistImportError(
+                    "Spotify rejected the auth token. Double-check your Client ID "
+                    "and Client Secret under 'Setup Spotify API'."
+                )
             resp.raise_for_status()
             data = await resp.json()
 
