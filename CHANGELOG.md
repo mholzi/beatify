@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc4] - 2026-04-16
+
+### Fixed
+- Spotify Import section header now has toggle aligned right (added `section-summary` placeholder for layout parity)
+- Regenerated stale `admin.min.js` — production was missing PR #718 features (progress polling, duplicate handling)
+- Bumped cache-busters in `admin.html` from `v=3.0.4` to current version so browsers pull fresh assets (#725)
+
 ## [3.2.0-rc3] - 2026-04-16
 
 ### Fixed
