@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc5] - 2026-04-16
+
+### Fixed
+- Collapsible section headers now use event delegation on `document.body` — robust against duplicate listener attachment and late DOM insertion (#727)
+
 ## [3.2.0-rc4] - 2026-04-16
 
 ### Fixed
