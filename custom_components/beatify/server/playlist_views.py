@@ -21,6 +21,27 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+# #703: input length limits on credential / import endpoints.
+_MAX_CLIENT_ID_LEN = 128
+_MAX_CLIENT_SECRET_LEN = 256
+_MAX_URL_LEN = 2048
+_MAX_NAME_LEN = 200
+_MAX_FILE_LEN = 300
+_MAX_QUERY_LEN = 200
+
+
+def _sanitize_error(message: str) -> str:
+    """Strip anything that looks like a credential from an error message (#690).
+
+    Token-validation errors can echo back Authorization headers or
+    base64-encoded client_id:client_secret pairs.
+    """
+    import re as _re
+    cleaned = _re.sub(r"[A-Za-z0-9+/=]{40,}", "<redacted>", message)
+    cleaned = _re.sub(r"(?i)authorization[^\s]*", "<redacted>", cleaned)
+    cleaned = _re.sub(r"(?i)bearer\s+\S+", "Bearer <redacted>", cleaned)
+    return cleaned
+
 
 class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
     """API for managing playlist requests (Story 44).
@@ -123,19 +144,48 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
         return web.json_response({"success": True, "requests": data["requests"]})
 
 
-class SpotifyCredentialsView(HomeAssistantView):
-    """Save/validate Spotify API credentials (#165)."""
+# -- In-process import progress tracker (#714) ------------------------------
+# Stored on hass.data under DOMAIN. Not persisted — good enough for a single
+# HA session. Entries: {url: {"status": "...", "pct": int, "message": str}}
+_PROGRESS_KEY = "beatify.playlist_import_progress"
+
+
+def _set_progress(hass: HomeAssistant, key: str, **fields: object) -> None:
+    bucket = hass.data.setdefault(_PROGRESS_KEY, {})
+    entry = bucket.setdefault(key, {})
+    entry.update(fields)
+
+
+def _get_progress(hass: HomeAssistant, key: str) -> dict | None:
+    return hass.data.get(_PROGRESS_KEY, {}).get(key)
+
+
+class SpotifyCredentialsView(RateLimitMixin, HomeAssistantView):
+    """Save/validate Spotify API credentials (#165).
+
+    Rate-limited (#712), input-length-limited (#703), credential-scrubbed
+    error responses (#690). #689 (requires_auth) intentionally left False
+    per the "Frictionless access per PRD" policy.
+    """
 
     url = "/beatify/api/spotify-credentials"
     name = "beatify:api:spotify-credentials"
     requires_auth = False
 
+    RATE_LIMIT_REQUESTS = 5
+    RATE_LIMIT_WINDOW = 60
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
+        self._init_rate_limits()
 
     async def post(self, request: web.Request) -> web.Response:
         """Save and validate Spotify credentials."""
+        # #712: rate-limit credential submissions.
+        if not self._check_rate_limit(request.remote or "unknown"):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
         from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
             async_fetch_spotify_token,
             async_save_credentials,
@@ -152,6 +202,14 @@ class SpotifyCredentialsView(HomeAssistantView):
             return web.json_response(
                 {"error": "client_id and client_secret required"}, status=400
             )
+        # #703: reject oversize inputs.
+        if (
+            len(client_id) > _MAX_CLIENT_ID_LEN
+            or len(client_secret) > _MAX_CLIENT_SECRET_LEN
+        ):
+            return web.json_response(
+                {"error": "Credential fields too long"}, status=413
+            )
 
         # Validate by attempting to fetch a token
         import aiohttp  # noqa: PLC0415
@@ -164,9 +222,20 @@ class SpotifyCredentialsView(HomeAssistantView):
                         {"error": "Invalid credentials — Spotify rejected the token request"},
                         status=401,
                     )
-        except Exception as err:  # noqa: BLE001
+        except aiohttp.ClientResponseError as err:
+            # #690: log full detail server-side, return generic message.
+            _LOGGER.warning("Spotify token validation failed: %s", err)
+            if err.status in (400, 401):
+                return web.json_response(
+                    {"error": "Invalid Spotify credentials"}, status=401
+                )
             return web.json_response(
-                {"error": f"Failed to validate credentials: {err}"},
+                {"error": "Spotify token endpoint unreachable"}, status=502
+            )
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.exception("Credential validation failed")
+            return web.json_response(
+                {"error": _sanitize_error(f"Failed to validate credentials: {err}")},
                 status=500,
             )
 
@@ -183,20 +252,35 @@ class SpotifyCredentialsView(HomeAssistantView):
         return web.json_response({"configured": creds is not None})
 
 
-class ImportPlaylistView(HomeAssistantView):
-    """Import a Spotify playlist (#165)."""
+class ImportPlaylistView(RateLimitMixin, HomeAssistantView):
+    """Import a Spotify playlist (#165).
+
+    Rate-limited (#712), input-limited (#703), progress-reportable (#714),
+    duplicate-name handling (#695), friendly disk-error messages (#710).
+    #689 (requires_auth) intentionally False per PRD.
+    """
 
     url = "/beatify/api/import-playlist"
     name = "beatify:api:import-playlist"
     requires_auth = False
 
+    RATE_LIMIT_REQUESTS = 3
+    RATE_LIMIT_WINDOW = 60
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
+        self._init_rate_limits()
 
     async def post(self, request: web.Request) -> web.Response:
         """Import a Spotify playlist and save as Beatify JSON."""
+        # #712
+        if not self._check_rate_limit(request.remote or "unknown"):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
         from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            DuplicatePlaylistError,
+            PlaylistImportError,
             async_import_playlist,
         )
 
@@ -207,27 +291,80 @@ class ImportPlaylistView(HomeAssistantView):
 
         spotify_url = body.get("spotify_url", "").strip()
         playlist_name = body.get("name", "").strip() or None
+        overwrite = bool(body.get("overwrite", False))
         if not spotify_url:
             return web.json_response(
                 {"error": "spotify_url required"}, status=400
             )
+        # #703
+        if len(spotify_url) > _MAX_URL_LEN:
+            return web.json_response({"error": "spotify_url too long"}, status=413)
+        if playlist_name and len(playlist_name) > _MAX_NAME_LEN:
+            return web.json_response({"error": "name too long"}, status=413)
+
+        # #714: minimal progress tracking — client polls GET ?url=...
+        _set_progress(
+            self.hass, spotify_url,
+            status="in_progress", pct=0, message="Starting import…",
+        )
 
         try:
+            _set_progress(self.hass, spotify_url, pct=10, message="Fetching tracks…")
             result = await async_import_playlist(
-                self.hass, spotify_url, name=playlist_name
+                self.hass, spotify_url, name=playlist_name, overwrite=overwrite,
             )
-            return web.json_response(result)
+        except DuplicatePlaylistError as duperr:
+            _set_progress(
+                self.hass, spotify_url, status="error", message=str(duperr),
+            )
+            return web.json_response(
+                {"error": "DUPLICATE_PLAYLIST", "message": str(duperr)}, status=409,
+            )
         except ValueError as err:
+            _set_progress(
+                self.hass, spotify_url, status="error", message=str(err),
+            )
             return web.json_response({"error": str(err)}, status=400)
+        except PlaylistImportError as perr:
+            # #710: map disk/permission errors to friendly status codes.
+            _set_progress(
+                self.hass, spotify_url, status="error", message=str(perr),
+            )
+            msg = str(perr)
+            if "Disk full" in msg:
+                return web.json_response({"error": msg}, status=507)
+            return web.json_response({"error": msg}, status=500)
         except Exception as err:  # noqa: BLE001
             _LOGGER.exception("Playlist import failed")
-            return web.json_response(
-                {"error": f"Import failed: {err}"}, status=500
+            _set_progress(
+                self.hass, spotify_url, status="error", message="Import failed",
             )
+            return web.json_response(
+                {"error": _sanitize_error(f"Import failed: {err}")}, status=500,
+            )
+
+        _set_progress(
+            self.hass, spotify_url,
+            status="done", pct=100, message="Import complete",
+        )
+        return web.json_response(result)
+
+    async def get(self, request: web.Request) -> web.Response:
+        """#714: return progress for an in-flight import.
+
+        Query: ?url=<spotify_url>
+        """
+        key = request.query.get("url", "").strip()
+        if not key:
+            return web.json_response({"error": "url required"}, status=400)
+        progress = _get_progress(self.hass, key)
+        if not progress:
+            return web.json_response({"status": "idle"})
+        return web.json_response(progress)
 
 
 class EditPlaylistView(HomeAssistantView):
-    """Edit an imported playlist (PR #549)."""
+    """Edit an imported playlist (PR #549). Atomic writes (#696)."""
 
     url = "/beatify/api/edit-playlist"
     name = "beatify:api:edit-playlist"
@@ -242,6 +379,8 @@ class EditPlaylistView(HomeAssistantView):
         filename = request.query.get("file", "").strip()
         if not filename:
             return web.json_response({"error": "file parameter required"}, status=400)
+        if len(filename) > _MAX_FILE_LEN:  # #703
+            return web.json_response({"error": "file too long"}, status=413)
 
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
         file_path = playlist_dir / filename
@@ -281,6 +420,8 @@ class EditPlaylistView(HomeAssistantView):
         filename = body.get("file", "").strip()
         if not filename:
             return web.json_response({"error": "file required"}, status=400)
+        if len(filename) > _MAX_FILE_LEN:  # #703
+            return web.json_response({"error": "file too long"}, status=413)
 
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
         file_path = playlist_dir / filename
@@ -308,10 +449,24 @@ class EditPlaylistView(HomeAssistantView):
         existing["songs"] = body.get("songs", existing.get("songs", []))
 
         def _save() -> None:
+            import os  # noqa: PLC0415
+            import tempfile  # noqa: PLC0415
+
             file_path.parent.mkdir(parents=True, exist_ok=True)
-            file_path.write_text(
-                json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
+            # #696: atomic write.
+            tmp_fd, tmp_path = tempfile.mkstemp(
+                dir=file_path.parent, suffix=".json.tmp",
             )
+            try:
+                with os.fdopen(tmp_fd, "w", encoding="utf-8") as f:
+                    json.dump(existing, f, indent=2, ensure_ascii=False)
+                os.replace(tmp_path, file_path)
+            except BaseException:
+                try:
+                    os.unlink(tmp_path)
+                except OSError:
+                    pass
+                raise
 
         await self.hass.async_add_executor_job(_save)
 
@@ -333,6 +488,8 @@ class EditPlaylistView(HomeAssistantView):
             return web.json_response(
                 {"error": "file and remove_index required"}, status=400
             )
+        if len(filename) > _MAX_FILE_LEN:  # #703
+            return web.json_response({"error": "file too long"}, status=413)
 
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
         file_path = playlist_dir / filename
@@ -367,9 +524,23 @@ class EditPlaylistView(HomeAssistantView):
         data["songs"] = songs
 
         def _save() -> None:
-            file_path.write_text(
-                json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+            import os  # noqa: PLC0415
+            import tempfile  # noqa: PLC0415
+
+            # #696: atomic write.
+            tmp_fd, tmp_path = tempfile.mkstemp(
+                dir=file_path.parent, suffix=".json.tmp",
             )
+            try:
+                with os.fdopen(tmp_fd, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                os.replace(tmp_path, file_path)
+            except BaseException:
+                try:
+                    os.unlink(tmp_path)
+                except OSError:
+                    pass
+                raise
 
         await self.hass.async_add_executor_job(_save)
 
@@ -379,20 +550,29 @@ class EditPlaylistView(HomeAssistantView):
         })
 
 
-class SpotifySearchView(HomeAssistantView):
-    """Search Spotify for tracks (PR #549)."""
+class SpotifySearchView(RateLimitMixin, HomeAssistantView):
+    """Search Spotify for tracks (PR #549). Rate-limited (#712), input-limited (#703)."""
 
     url = "/beatify/api/spotify-search"
     name = "beatify:api:spotify-search"
     requires_auth = False
 
+    RATE_LIMIT_REQUESTS = 20
+    RATE_LIMIT_WINDOW = 60
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
+        self._init_rate_limits()
 
     async def get(self, request: web.Request) -> web.Response:
         """Search Spotify for tracks matching query."""
+        # #712
+        if not self._check_rate_limit(request.remote or "unknown"):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
         from custom_components.beatify.services.spotify_import import (  # noqa: PLC0415
+            _safe_parse_year,
             async_fetch_spotify_token,
             async_load_credentials,
         )
@@ -400,6 +580,8 @@ class SpotifySearchView(HomeAssistantView):
         query = request.query.get("q", "").strip()
         if not query:
             return web.json_response({"error": "q parameter required"}, status=400)
+        if len(query) > _MAX_QUERY_LEN:  # #703
+            return web.json_response({"error": "q too long"}, status=413)
 
         credentials = await async_load_credentials(self.hass)
         if not credentials:
@@ -437,22 +619,19 @@ class SpotifySearchView(HomeAssistantView):
             for item in data.get("tracks", {}).get("items", []):
                 artists = ", ".join(a["name"] for a in item.get("artists", []))
                 album = item.get("album", {})
-                release_date = album.get("release_date", "")
-                year = (
-                    int(release_date[:4])
-                    if release_date and len(release_date) >= 4
-                    else 0
-                )
+                year = _safe_parse_year(album.get("release_date", ""))
+                spot_uri = item.get("uri", "")
                 results.append({
                     "title": item["name"],
                     "artist": artists,
                     "year": year,
-                    "uri": item.get("uri", ""),
+                    "uri": spot_uri,
+                    "uri_spotify": spot_uri,  # #705
                 })
 
             return web.json_response({"results": results})
         except Exception as err:  # noqa: BLE001
             _LOGGER.exception("Spotify search failed")
             return web.json_response(
-                {"error": f"Search failed: {err}"}, status=500
+                {"error": _sanitize_error(f"Search failed: {err}")}, status=500
             )
