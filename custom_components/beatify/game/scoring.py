@@ -441,7 +441,7 @@ class ScoringService:
         *before* the round scores are appended to cumulative totals (they are
         already added in score_player_round, so we need to undo the difference).
         """
-        submitted = [p for p in players if p.submitted]
+        submitted = [p for p in players if p.submitted and p.current_guess is not None]
         if not submitted:
             return
 
@@ -463,6 +463,8 @@ class ScoringService:
                 # and undo the milestone bonus that was already added.
                 p.score -= p.streak_bonus
                 p.streak_bonus = 0
+                p.score -= p.intro_bonus
+                p.intro_bonus = 0
                 p.previous_streak = p.streak
                 p.streak = 0
 

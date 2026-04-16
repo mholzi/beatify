@@ -67,6 +67,7 @@ class RoundManager:
         # Timer tasks
         self._timer_task: asyncio.Task | None = None
         self._intro_stop_task: asyncio.Task | None = None
+        self._metadata_task: asyncio.Task | None = None
 
         # Intro mode
         self.intro_mode_enabled: bool = False
@@ -86,6 +87,7 @@ class RoundManager:
         """Reset all round state for a new game / end-game."""
         self.cancel_timer()
         self._cancel_intro_timer()
+        self._cancel_metadata_task()
 
         self.round = 0
         self.total_rounds = 0
@@ -123,6 +125,21 @@ class RoundManager:
             self._intro_stop_task.cancel()
             self._intro_stop_task = None
 
+    def _cancel_metadata_task(self) -> None:
+        """Cancel the background metadata task if running."""
+        if self._metadata_task is not None:
+            self._metadata_task.cancel()
+            self._metadata_task = None
+
+    @staticmethod
+    def _on_metadata_task_done(task: asyncio.Task) -> None:
+        """Log unhandled exceptions from background metadata fetch."""
+        if task.cancelled():
+            return
+        exc = task.exception()
+        if exc is not None:
+            _LOGGER.error("Background metadata fetch failed: %s", exc)
+
     def is_deadline_passed(self) -> bool:
         """Return True if the round deadline has passed."""
         if self.deadline is None:
@@ -153,6 +170,8 @@ class RoundManager:
             await asyncio.sleep(remaining_seconds)
             self.intro_stopped = True
             _LOGGER.info("Intro auto-stopped after %.1fs", remaining_seconds)
+            if on_round_end:
+                await on_round_end()
         except asyncio.CancelledError:
             _LOGGER.debug("Intro auto-stop cancelled")
             raise
@@ -301,9 +320,11 @@ class RoundManager:
                 )
 
         # Start background metadata fetch
+        self._cancel_metadata_task()
         metadata_coro = metadata.get("metadata_coro")
         if metadata_coro is not None:
-            asyncio.create_task(metadata_coro)
+            self._metadata_task = asyncio.create_task(metadata_coro)
+            self._metadata_task.add_done_callback(self._on_metadata_task_done)
 
     # ------------------------------------------------------------------
     # Intro splash confirmation

@@ -1035,7 +1035,9 @@ async def handle_steal(
                 "year": result["year"],
             }
         )
-        await handler.broadcast_state()
+        if not game_state.check_all_guesses_complete():
+            await handler.broadcast_state()
+        await game_state.trigger_early_reveal_if_complete()
     else:
         await ws.send_json(
             {

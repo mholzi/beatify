@@ -177,10 +177,15 @@ class GameStateSerializer:
             "total_rounds": gs.round,
             "total_players": len(gs.players),
         }
-        # Include winner info
+        # Include winner info — detect ties
         if gs.players:
-            winner = max(gs.players.values(), key=lambda p: p.score)
-            state["winner"] = {"name": winner.name, "score": winner.score}
+            top_score = max(p.score for p in gs.players.values())
+            winners = [p for p in gs.players.values() if p.score == top_score]
+            state["winner"] = {
+                "name": ", ".join(w.name for w in winners),
+                "score": top_score,
+                "is_tie": len(winners) > 1,
+            }
         # Game performance comparison for end screen (Story 14.4 AC5, AC6)
         game_performance = gs.get_game_performance()
         if game_performance:

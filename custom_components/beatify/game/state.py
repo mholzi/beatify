@@ -607,13 +607,17 @@ class GameState:
         player_count = len(self.players)
         rounds_played = self.round
 
-        # Determine winner
+        # Determine winner(s) — detect ties
         winner_name = "Unknown"
         winner_score = 0
         if self.players:
-            winner = max(self.players.values(), key=lambda p: p.score)
-            winner_name = winner.name
-            winner_score = winner.score
+            top_score = max(p.score for p in self.players.values())
+            winners = [p for p in self.players.values() if p.score == top_score]
+            winner_score = top_score
+            if len(winners) == 1:
+                winner_name = winners[0].name
+            else:
+                winner_name = ", ".join(w.name for w in winners)
 
         # Calculate average score per round
         avg_score_per_round = 0.0
@@ -1846,10 +1850,18 @@ class GameState:
         """Announce the winner (use case 18)."""
         if not self._tts_service or not self._tts_announce_winner or not self.players:
             return
-        winner = max(self.players.values(), key=lambda p: p.score)
-        message = (
-            f"And the winner is... {winner.name} with {winner.score} points!"
-        )
+        top_score = max(p.score for p in self.players.values())
+        winners = [p for p in self.players.values() if p.score == top_score]
+        if len(winners) == 1:
+            message = (
+                f"And the winner is... {winners[0].name} "
+                f"with {top_score} points!"
+            )
+        else:
+            names = " and ".join(w.name for w in winners)
+            message = (
+                f"It's a tie between {names} with {top_score} points!"
+            )
         await self._tts_announce(message)
 
     def adjust_volume(self, direction: str) -> float:
