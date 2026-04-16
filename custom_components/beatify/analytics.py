@@ -249,11 +249,6 @@ class AnalyticsStorage:
 
         games = self._data["games"]
 
-        # Age-based retention: remove records older than 90 days regardless of count
-        cutoff_ts = time.time() - (90 * 86400)  # 90 days
-        games = [g for g in games if g.get("ended_at", 0) > cutoff_ts]
-        self._data["games"] = games
-
         if len(games) <= MAX_DETAILED_RECORDS:
             return
 

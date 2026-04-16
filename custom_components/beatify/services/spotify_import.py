@@ -196,11 +196,11 @@ async def async_save_credentials(
     await store.async_save({"client_id": client_id, "client_secret": client_secret})
 
 
-async def async_load_credentials(hass: HomeAssistant) -> dict[str, str]:
+async def async_load_credentials(hass: HomeAssistant) -> dict[str, str] | None:
     """Load Spotify credentials from HA storage."""
     store = _get_store(hass)
     data = await store.async_load()
-    return data if data else {}
+    return data if data else None
 
 
 async def async_import_playlist(
