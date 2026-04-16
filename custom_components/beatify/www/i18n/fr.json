@@ -392,7 +392,9 @@
     "yourResult": "Ton résultat",
     "yourGuess": "Ton estimation",
     "accuracy": "Précision",
-    "points": "Points"
+    "points": "Points",
+    "kickPlayerTitle": "Retirer le joueur ?",
+    "kickPlayerConfirm": "Retirer {name} du lobby ?"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

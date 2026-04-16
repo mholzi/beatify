@@ -392,7 +392,9 @@
     "yourResult": "Tu resultado",
     "yourGuess": "Tu respuesta",
     "accuracy": "Precisión",
-    "points": "Puntos"
+    "points": "Puntos",
+    "kickPlayerTitle": "¿Eliminar jugador?",
+    "kickPlayerConfirm": "¿Eliminar a {name} de la sala?"
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",

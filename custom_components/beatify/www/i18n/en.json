@@ -392,7 +392,9 @@
     "yourResult": "Your Result",
     "yourGuess": "Your guess",
     "accuracy": "Accuracy",
-    "points": "Points"
+    "points": "Points",
+    "kickPlayerTitle": "Remove player?",
+    "kickPlayerConfirm": "Remove {name} from the lobby?"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

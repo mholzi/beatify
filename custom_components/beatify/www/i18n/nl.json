@@ -392,7 +392,9 @@
     "yourResult": "Jouw resultaat",
     "yourGuess": "Jouw gok",
     "accuracy": "Nauwkeurigheid",
-    "points": "Punten"
+    "points": "Punten",
+    "kickPlayerTitle": "Speler verwijderen?",
+    "kickPlayerConfirm": "{name} uit de lobby verwijderen?"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -2409,6 +2409,7 @@ function renderLobbyPlayers(players) {
         var isNew = newNames.indexOf(player.name) !== -1;
         var isDisconnected = player.connected === false;
         var isAdmin = player.is_admin === true;
+        var canKick = isDisconnected && !isAdmin;
         var classes = [
             'player-card',
             isNew ? 'is-new' : '',
@@ -2419,6 +2420,10 @@ function renderLobbyPlayers(players) {
         var adminBadge = isAdmin ? '<span class="admin-badge">👑</span>' : '';
         // Badge for disconnected players
         var awayBadge = isDisconnected ? '<span class="away-badge">' + utils.t('lobby.away', 'away') + '</span>' : '';
+        // Kick button for disconnected non-admin players (#659)
+        var kickBtn = canKick
+            ? '<button class="kick-player-btn" data-player="' + utils.escapeHtml(player.name) + '" title="' + (BeatifyI18n.t('admin.kickPlayerTitle') || 'Remove player') + '">×</button>'
+            : '';
 
         return '<div class="' + classes + '" data-player="' + utils.escapeHtml(player.name) + '">' +
             '<span class="player-name">' +
@@ -2426,8 +2431,17 @@ function renderLobbyPlayers(players) {
                 adminBadge +
             '</span>' +
             awayBadge +
+            kickBtn +
         '</div>';
     }).join('');
+
+    // Wire up kick buttons (#659)
+    listEl.querySelectorAll('.kick-player-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            handleKickPlayer(btn.dataset.player);
+        });
+    });
 
     // Remove .is-new class after animation
     setTimeout(function() {
@@ -2446,6 +2460,23 @@ function renderLobbyPlayers(players) {
     }
 
     previousLobbyPlayers = players.slice();
+}
+
+/**
+ * Handle kick player action — remove disconnected player from lobby (#659)
+ */
+function handleKickPlayer(playerName) {
+    var message = (BeatifyI18n.t('admin.kickPlayerConfirm') || 'Remove {name} from the lobby?')
+        .replace('{name}', playerName);
+    if (!confirm(message)) return;
+
+    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({
+            type: 'admin',
+            action: 'kick_player',
+            player_name: playerName
+        }));
+    }
 }
 
 /**

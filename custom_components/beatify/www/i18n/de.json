@@ -392,7 +392,9 @@
     "yourResult": "Dein Ergebnis",
     "yourGuess": "Dein Tipp",
     "accuracy": "Genauigkeit",
-    "points": "Punkte"
+    "points": "Punkte",
+    "kickPlayerTitle": "Spieler entfernen?",
+    "kickPlayerConfirm": "{name} aus der Lobby entfernen?"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
