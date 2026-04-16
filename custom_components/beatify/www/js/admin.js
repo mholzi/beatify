@@ -272,14 +272,17 @@ function setupCollapsibleSections() {
     // Generic collapsible section toggles — handles all .section-header-collapsible
     // buttons including media-players, game-settings, my-requests, Party Lights, etc.
     // Issue #550: Removed duplicate per-ID listeners that caused double-toggle (no-op).
-    document.querySelectorAll('.section-header-collapsible').forEach(function(header) {
-        header.addEventListener('click', function() {
-            const section = header.closest('.section-collapsible');
-            if (section) {
-                section.classList.toggle('collapsed');
-                header.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
-            }
-        });
+    //
+    // Uses event delegation on document.body instead of per-button listeners so
+    // sections added to the DOM after page load (or that somehow missed the
+    // initial forEach) still get click handling.
+    document.body.addEventListener('click', function(ev) {
+        const header = ev.target.closest('.section-header-collapsible');
+        if (!header) return;
+        const section = header.closest('.section-collapsible');
+        if (!section) return;
+        section.classList.toggle('collapsed');
+        header.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
     });
 }
 
