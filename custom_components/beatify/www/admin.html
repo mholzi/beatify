@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.0.4">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc3">
 </head>
 <body class="theme-dark">
     <header class="admin-header">
@@ -152,9 +152,10 @@
 
         <!-- Spotify Playlist Import Section (#165) -->
         <section id="import-playlist" class="section-collapsible collapsed" aria-labelledby="import-playlist-heading">
-            <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="import-playlist-content">
+            <button type="button" class="section-header-collapsible" id="import-playlist-toggle" aria-expanded="false" aria-controls="import-playlist-content">
                 <span class="section-icon" aria-hidden="true">📥</span>
                 <span data-i18n="admin.importPlaylist">Import Spotify Playlist</span>
+                <span class="section-summary" id="import-playlist-summary"></span>
                 <span class="section-toggle" aria-hidden="true">▼</span>
             </button>
             <div class="section-content" id="import-playlist-content">
@@ -1011,8 +1012,8 @@
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.0.4"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.0.4"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.0.4"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc3"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc3"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc3"></script>
 </body>
 </html>
