@@ -686,6 +686,13 @@ async def admin_kick_player(
 
     target = game_state.get_player(target_name)
     if not target:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Player not found: " + target_name,
+            }
+        )
         return
 
     if target.is_admin:
