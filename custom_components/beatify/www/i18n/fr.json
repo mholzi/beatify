@@ -386,7 +386,13 @@
     "ttsTestFailed": "Échec",
     "haEntities": "Entités HA",
     "haEntitiesSummary": "6 entités",
-    "haEntitiesDesc": "Beatify expose l'état du jeu sous forme d'entités Home Assistant. Retrouvez-les dans Outils de développement → États ou recherchez beatify dans le registre des entités."
+    "haEntitiesDesc": "Beatify expose l'état du jeu sous forme d'entités Home Assistant. Retrouvez-les dans Outils de développement → États ou recherchez beatify dans le registre des entités.",
+    "youArePlayingAs": "Tu joues en tant que",
+    "switchToPlayerView": "Vue joueur \u2192",
+    "yourResult": "Ton résultat",
+    "yourGuess": "Ton estimation",
+    "accuracy": "Précision",
+    "points": "Points"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

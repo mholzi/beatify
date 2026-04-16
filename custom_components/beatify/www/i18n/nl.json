@@ -386,7 +386,13 @@
     "ttsTestFailed": "Mislukt",
     "haEntities": "HA-entiteiten",
     "haEntitiesSummary": "6 entiteiten",
-    "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister."
+    "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister.",
+    "youArePlayingAs": "Je speelt als",
+    "switchToPlayerView": "Spelerweergave \u2192",
+    "yourResult": "Jouw resultaat",
+    "yourGuess": "Jouw gok",
+    "accuracy": "Nauwkeurigheid",
+    "points": "Punten"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
