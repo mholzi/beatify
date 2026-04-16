@@ -3186,6 +3186,31 @@ body.theme-dark .admin-controls {
     width: 100%;
 }
 
+/* Kick player button for disconnected players (#659) */
+.kick-player-btn {
+    background: none;
+    border: 1px solid var(--color-border-dark);
+    color: var(--color-text-muted);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-xs);
+    padding: 0;
+    transition: all 0.15s ease;
+}
+
+.kick-player-btn:hover {
+    background: var(--color-error);
+    color: white;
+    border-color: var(--color-error);
+}
+
 /* Empty state for player list */
 #lobby-section .empty-state {
     text-align: center;

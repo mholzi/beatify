@@ -386,7 +386,9 @@
     "ttsTestFailed": "Mislukt",
     "haEntities": "HA-entiteiten",
     "haEntitiesSummary": "6 entiteiten",
-    "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister."
+    "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister.",
+    "kickPlayerTitle": "Speler verwijderen?",
+    "kickPlayerConfirm": "{name} uit de lobby verwijderen?"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -386,7 +386,9 @@
     "ttsTestFailed": "Échec",
     "haEntities": "Entités HA",
     "haEntitiesSummary": "6 entités",
-    "haEntitiesDesc": "Beatify expose l'état du jeu sous forme d'entités Home Assistant. Retrouvez-les dans Outils de développement → États ou recherchez beatify dans le registre des entités."
+    "haEntitiesDesc": "Beatify expose l'état du jeu sous forme d'entités Home Assistant. Retrouvez-les dans Outils de développement → États ou recherchez beatify dans le registre des entités.",
+    "kickPlayerTitle": "Retirer le joueur ?",
+    "kickPlayerConfirm": "Retirer {name} du lobby ?"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

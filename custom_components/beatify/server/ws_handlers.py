@@ -251,6 +251,7 @@ async def handle_admin(
         "set_party_lights": admin_set_party_lights,
         "toggle_party_lights": admin_toggle_party_lights,
         "stop_lights": admin_stop_lights,
+        "kick_player": admin_kick_player,
     }
     sub_handler = admin_handlers.get(action)
     if sub_handler:
@@ -659,6 +660,56 @@ async def admin_stop_lights(
     """Handle admin stop_lights action — emergency stop for party lights."""
     await game_state.disable_party_lights()
     _LOGGER.info("Party lights stopped by admin")
+    await handler.broadcast_state()
+
+
+async def admin_kick_player(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin kick_player action — remove a disconnected player from lobby (#659)."""
+    if game_state.phase != GamePhase.LOBBY:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Players can only be removed during lobby phase",
+            }
+        )
+        return
+
+    target_name = data.get("player_name", "").strip()
+    if not target_name:
+        return
+
+    target = game_state.get_player(target_name)
+    if not target:
+        return
+
+    if target.is_admin:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Cannot remove admin",
+            }
+        )
+        return
+
+    if target.connected:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Cannot remove a connected player",
+            }
+        )
+        return
+
+    game_state.remove_player(target.name)
+    _LOGGER.info("Admin kicked disconnected player: %s", target.name)
     await handler.broadcast_state()
 
 

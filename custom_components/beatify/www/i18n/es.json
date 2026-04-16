@@ -386,7 +386,9 @@
     "ttsTestFailed": "Error",
     "haEntities": "Entidades HA",
     "haEntitiesSummary": "6 entidades",
-    "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades."
+    "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades.",
+    "kickPlayerTitle": "\u00bfEliminar jugador?",
+    "kickPlayerConfirm": "\u00bfEliminar a {name} de la sala?"
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",

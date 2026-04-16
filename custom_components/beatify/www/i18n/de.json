@@ -386,7 +386,9 @@
     "ttsTestFailed": "Fehlgeschlagen",
     "haEntities": "HA-Entit\u00e4ten",
     "haEntitiesSummary": "6 Entit\u00e4ten",
-    "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entit\u00e4ten bereit. Finde sie unter Entwicklerwerkzeuge \u2192 Zust\u00e4nde oder suche nach beatify in der Entit\u00e4tsregistrierung."
+    "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entit\u00e4ten bereit. Finde sie unter Entwicklerwerkzeuge \u2192 Zust\u00e4nde oder suche nach beatify in der Entit\u00e4tsregistrierung.",
+    "kickPlayerTitle": "Spieler entfernen?",
+    "kickPlayerConfirm": "{name} aus der Lobby entfernen?"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
