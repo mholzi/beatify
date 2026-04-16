@@ -145,10 +145,16 @@ class PlaylistManager:
         """Get count of unplayed songs.
 
         Returns:
-            Number of songs not yet played
+            Number of songs not yet played (clamped to 0 for robustness, #707)
 
         """
-        return len(self._songs) - len(self._played_uris)
+        # #707: mark_played() accepts any URI (incl. unknown ones), so naive
+        # subtraction can go negative. Clamp at 0.
+        return max(0, len(self._songs) - len(self._played_uris))
+
+    def has_playable_songs(self) -> bool:
+        """True if this manager has any songs for its provider (#709)."""
+        return len(self._songs) > 0
 
     def get_total_count(self) -> int:
         """Get total song count.
@@ -162,7 +168,16 @@ class PlaylistManager:
 
 # Validation constants
 MIN_YEAR = 1900
-MAX_YEAR = 2030
+
+
+def _max_year() -> int:
+    """Dynamic upper bound — current year + 1 (#706).
+
+    The previous hardcoded 2030 would silently reject newer songs.
+    """
+    from datetime import datetime, timezone
+
+    return datetime.now(timezone.utc).year + 1
 
 
 def get_playlist_directory(hass: HomeAssistant) -> Path:
@@ -171,11 +186,21 @@ def get_playlist_directory(hass: HomeAssistant) -> Path:
 
 
 async def async_ensure_playlist_directory(hass: HomeAssistant) -> Path:
-    """Ensure playlist directory exists, create if missing."""
+    """Ensure playlist directory exists, create if missing.
+
+    #717: `exists()` and `mkdir()` are blocking syscalls — run in executor.
+    """
     playlist_dir = get_playlist_directory(hass)
 
-    if not playlist_dir.exists():
+    def _ensure() -> bool:
+        """Return True if we created the directory."""
+        if playlist_dir.exists():
+            return False
         playlist_dir.mkdir(parents=True, exist_ok=True)
+        return True
+
+    created = await hass.async_add_executor_job(_ensure)
+    if created:
         _LOGGER.info("Created playlist directory: %s", playlist_dir)
 
     # Copy bundled playlists if they don't exist in destination
@@ -274,6 +299,7 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
 def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
     """Validate playlist structure. Returns (is_valid, list_of_errors)."""
     errors: list[str] = []
+    max_year = _max_year()
 
     # Check required top-level fields
     if not isinstance(data.get("name"), str) or not data["name"].strip():
@@ -293,11 +319,19 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
             errors.append(f"Song {i + 1}: not a valid object")
             continue
 
+        # #697: title and artist are required for gameplay (challenge + reveal).
+        title = song.get("title")
+        if not isinstance(title, str) or not title.strip():
+            errors.append(f"Song {i + 1}: missing or empty 'title'")
+        artist = song.get("artist")
+        if not isinstance(artist, str) or not artist.strip():
+            errors.append(f"Song {i + 1}: missing or empty 'artist'")
+
         # Check year
         year = song.get("year")
         if not isinstance(year, int):
             errors.append(f"Song {i + 1}: missing or invalid 'year' (must be integer)")
-        elif not (MIN_YEAR <= year <= MAX_YEAR):
+        elif not (MIN_YEAR <= year <= max_year):
             errors.append(f"Song {i + 1}: year {year} out of range")
 
         # Check URIs - validate patterns and ensure at least one valid URI exists
@@ -425,15 +459,38 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             data = json.loads(content)
             is_valid, errors = validate_playlist(data)
 
-            # Count songs per provider (Story 17.1)
+            # Count songs per provider (Story 17.1), validating URI patterns (#708).
             songs = data.get("songs", [])
+
+            def _count(field: str, pattern: str) -> int:
+                n = 0
+                for s in songs:
+                    v = s.get(field)
+                    if isinstance(v, str) and v and re.match(pattern, v):
+                        n += 1
+                return n
+
             spotify_count = sum(
-                1 for s in songs if s.get("uri") or s.get("uri_spotify")
+                1
+                for s in songs
+                if (
+                    (isinstance(s.get("uri_spotify"), str)
+                     and re.match(URI_PATTERN_SPOTIFY, s["uri_spotify"]))
+                    or (isinstance(s.get("uri"), str)
+                        and re.match(URI_PATTERN_SPOTIFY, s["uri"]))
+                )
             )
-            apple_music_count = sum(1 for s in songs if s.get("uri_apple_music"))
-            youtube_music_count = sum(1 for s in songs if s.get("uri_youtube_music"))
-            tidal_count = sum(1 for s in songs if s.get("uri_tidal"))
-            deezer_count = sum(1 for s in songs if s.get("uri_deezer"))
+            apple_music_count = _count("uri_apple_music", URI_PATTERN_APPLE_MUSIC)
+            youtube_music_count = _count("uri_youtube_music", URI_PATTERN_YOUTUBE_MUSIC)
+            tidal_count = _count("uri_tidal", URI_PATTERN_TIDAL)
+            deezer_count = _count("uri_deezer", URI_PATTERN_DEEZER)
+
+            # #716: skip playlists with no songs entirely — they only confuse the UI.
+            if not is_valid and len(songs) == 0:
+                _LOGGER.debug(
+                    "Skipping empty playlist from discovery: %s", json_file.name
+                )
+                continue
 
             playlists.append(
                 {

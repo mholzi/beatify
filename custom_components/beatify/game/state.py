@@ -512,9 +512,17 @@ class GameState:
         # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
         self._playlist_manager = PlaylistManager(songs, provider)
 
+        # #709: if the chosen provider has zero playable songs, fail fast with
+        # a clear error rather than silently starting a game that will stall.
+        if not self._playlist_manager.has_playable_songs():
+            raise ValueError(
+                f"No playable songs for provider '{provider}' in the selected "
+                f"playlist(s). Pick a different playlist or provider."
+            )
+
         # Reset round tracking for new game
         self.round = 0
-        self.total_rounds = len(songs)
+        self.total_rounds = self._playlist_manager.get_total_count()
         self.deadline = None
         self.current_song = None
         self.last_round = False

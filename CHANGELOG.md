@@ -2,6 +2,40 @@
 
 All notable changes to Beatify are documented here. For detailed release notes, see the individual files in `docs/` or the [Releases page](https://github.com/mholzi/beatify/releases).
 
+## [Unreleased]
+
+### Security / hardening
+- Rate limiting on Spotify credential, import, and search endpoints (#712)
+- Input length limits on credential, import, search, and edit endpoints (#703)
+- Credential-scrubbed error responses — no base64 `Authorization` echoes (#690)
+- Removed server-side filesystem path from import response (#704)
+
+### Fixed
+- Tightened Spotify URL parsing — hostname validation + exact 22-char ID match (#699, #711)
+- Tolerant year parsing — malformed `release_date` no longer crashes imports (#700)
+- `MAX_YEAR` is now dynamic (current year + 1); was hardcoded to 2030 (#706)
+- `validate_playlist()` now checks for missing title / artist fields (#697)
+- Playlist file writes are atomic (tempfile + rename) (#696, applies to import and editor)
+- Duplicate-name detection on import; admin is prompted to overwrite (#695)
+- Disk-full / permission errors return friendly messages instead of opaque 500 (#710)
+- `async_ensure_playlist_directory` no longer runs blocking I/O on the event loop (#717)
+- Discovery counts validate URI pattern — no more inflated provider counts (#708)
+- Empty playlists excluded from discovery (#716)
+- `get_remaining_count()` clamped at 0 (was returning negative values) (#707)
+- Zero-playable-song combinations now fail fast with a clear error (#709)
+- Odesli 429 rate-limits logged at WARNING instead of silently swallowed (#694)
+- Imported tracks now carry both `uri` (legacy) and `uri_spotify` (canonical) (#705)
+
+### Performance
+- Spotify client-credentials tokens are cached for their lifetime (#691)
+
+### UX
+- Playlist import now shows in-flight progress updates (#714)
+
+### Notes
+- #688 reported a critical ImportError from deleted `URI_PATTERN_*` constants; verified not reproducible — the constants still exist in `const.py` and the referenced PR #687 is not in `git log`. No code change needed.
+- #689 (`requires_auth = True` on admin endpoints) intentionally not applied — the "Frictionless access per PRD" policy stands. Rate limiting, input length limits, and credential scrubbing reduce the remaining attack surface.
+
 ## [2.7.0] - 2026-03-01
 
 ### Added

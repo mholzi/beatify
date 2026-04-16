@@ -368,24 +368,68 @@ async function setupSpotifyImport() {
         try {
             if (msgEl) msgEl.textContent = '⏳ Fetching songs and enriching URIs for all providers. This may take up to a minute for large playlists...';
 
-            var resp = await fetch('/beatify/api/import-playlist', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ spotify_url: url })
-            });
-            var data = await resp.json();
-            if (data.error) {
-                if (msgEl) msgEl.textContent = '❌ ' + data.error;
+            // #714: poll for progress while the import runs.
+            var pollInterval = setInterval(async function () {
+                try {
+                    var pr = await fetch(
+                        '/beatify/api/import-playlist?url=' + encodeURIComponent(url)
+                    );
+                    if (!pr.ok) return;
+                    var pd = await pr.json();
+                    if (msgEl && pd && pd.message && pd.status === 'in_progress') {
+                        var pct = typeof pd.pct === 'number' ? ' (' + pd.pct + '%)' : '';
+                        msgEl.textContent = '⏳ ' + pd.message + pct;
+                    }
+                } catch (_) { /* ignore polling errors */ }
+            }, 2000);
+
+            var resp;
+            var data;
+            try {
+                resp = await fetch('/beatify/api/import-playlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ spotify_url: url })
+                });
+                data = await resp.json();
+            } finally {
+                clearInterval(pollInterval);
+            }
+
+            // #695: duplicate → offer overwrite retry.
+            if (resp && resp.status === 409 && data && data.error === 'DUPLICATE_PLAYLIST') {
+                var doOverwrite = confirm(
+                    (data.message || 'A playlist with that name already exists.') +
+                    '\n\nReplace the existing playlist?'
+                );
+                if (doOverwrite) {
+                    if (msgEl) msgEl.textContent = '⏳ Overwriting existing playlist…';
+                    resp = await fetch('/beatify/api/import-playlist', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ spotify_url: url, overwrite: true })
+                    });
+                    data = await resp.json();
+                } else {
+                    if (msgEl) msgEl.textContent = '⚠️ Import cancelled.';
+                    this.disabled = false;
+                    this.textContent = '📥 Import Playlist';
+                    return;
+                }
+            }
+
+            if (data && (data.error || !resp.ok)) {
+                if (msgEl) msgEl.textContent = '❌ ' + (data.message || data.error || 'Import failed');
             } else {
                 var enriched = data.enriched_count || 0;
                 var total = data.song_count || 0;
                 if (msgEl) msgEl.textContent = '✅ "' + data.name + '" imported — ' + total + ' songs, ' + enriched + ' with cross-platform URIs.';
                 document.getElementById('spotify-playlist-url').value = '';
                 if (reloadBtn) reloadBtn.classList.remove('hidden');
-                // PR #549: Open editor for the newly imported playlist
-                if (data.file_path) {
-                    var fname = data.file_path.split('/').pop();
-                    openPlaylistEditor(fname);
+                // PR #549: Open editor for the newly imported playlist.
+                // #704: use slug from API (not server-side file_path).
+                if (data.slug) {
+                    openPlaylistEditor(data.slug + '.json');
                 }
             }
         } catch (e) {

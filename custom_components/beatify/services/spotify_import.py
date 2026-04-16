@@ -5,7 +5,10 @@ import asyncio
 import base64
 import json
 import logging
+import os
 import re
+import tempfile
+import time
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote, urlparse
@@ -23,20 +26,43 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SPOTIFY_API_BASE = "https://api.spotify.com/v1"
 MAX_SONGS = 200
 
+# Spotify playlist IDs are base-62 and exactly 22 chars (#711).
+_PLAYLIST_ID_RE = re.compile(r"^[A-Za-z0-9]{22}$")
+_PLAYLIST_PATH_RE = re.compile(r"^/playlist/([A-Za-z0-9]{22})/?$")
+_VALID_SPOTIFY_HOSTS = frozenset({"open.spotify.com", "play.spotify.com"})
+
 
 def parse_spotify_playlist_id(url: str) -> str:
-    """Parse playlist ID from various Spotify URL formats."""
+    """Parse playlist ID from various Spotify URL formats.
+
+    Accepts:
+        spotify:playlist:<22-char-id>
+        https://open.spotify.com/playlist/<22-char-id>[?si=...]
+    Rejects other hosts, paths, or malformed IDs (#699, #711).
+    """
     # spotify:playlist:37i9dQZF1DXcBWIGoYBM5M
     if url.startswith("spotify:playlist:"):
-        return url.split(":")[-1]
+        pid = url.split(":", 2)[-1]
+        if _PLAYLIST_ID_RE.match(pid):
+            return pid
+        raise ValueError(f"Invalid Spotify playlist ID: {pid}")
 
-    # https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=xxx
     parsed = urlparse(url)
-    match = re.match(r"/playlist/([a-zA-Z0-9]+)", parsed.path)
+    if parsed.scheme not in ("http", "https"):
+        raise ValueError(f"Unsupported URL scheme: {parsed.scheme}")
+    if parsed.hostname not in _VALID_SPOTIFY_HOSTS:
+        raise ValueError(f"Not a Spotify URL: {parsed.hostname}")
+
+    match = _PLAYLIST_PATH_RE.match(parsed.path)
     if match:
         return match.group(1)
 
     raise ValueError(f"Cannot parse Spotify playlist ID from: {url}")
+
+
+# Token cache keyed by client_id — avoids refetching on every request (#691).
+_token_cache: dict[str, dict[str, Any]] = {}
+_TOKEN_EXPIRY_BUFFER = 60  # refresh 1 min before expiry
 
 
 async def async_fetch_spotify_token(
@@ -44,7 +70,12 @@ async def async_fetch_spotify_token(
     client_id: str,
     client_secret: str,
 ) -> str:
-    """Fetch access token using Spotify Client Credentials flow."""
+    """Fetch access token using Spotify Client Credentials flow with caching (#691)."""
+    cached = _token_cache.get(client_id)
+    now = time.time()
+    if cached and now < cached["expires_at"] - _TOKEN_EXPIRY_BUFFER:
+        return cached["token"]
+
     credentials = base64.b64encode(
         f"{client_id}:{client_secret}".encode()
     ).decode()
@@ -58,7 +89,26 @@ async def async_fetch_spotify_token(
     async with session.post(SPOTIFY_TOKEN_URL, headers=headers, data=data) as resp:
         resp.raise_for_status()
         result = await resp.json()
-        return result["access_token"]
+
+    token = result["access_token"]
+    expires_in = int(result.get("expires_in", 3600))
+    _token_cache[client_id] = {
+        "token": token,
+        "expires_at": now + expires_in,
+    }
+    return token
+
+
+def _safe_parse_year(release_date: str) -> int:
+    """Parse year from Spotify release_date, tolerating malformed values (#700)."""
+    if not release_date:
+        return 0
+    try:
+        # Spotify returns YYYY, YYYY-MM, or YYYY-MM-DD. Take the first 4 chars.
+        return int(release_date[:4])
+    except (ValueError, TypeError):
+        _LOGGER.debug("Malformed Spotify release_date %r — defaulting to 0", release_date)
+        return 0
 
 
 async def async_fetch_playlist_tracks(
@@ -85,8 +135,7 @@ async def async_fetch_playlist_tracks(
 
             artists = ", ".join(a["name"] for a in track.get("artists", []))
             album = track.get("album", {})
-            release_date = album.get("release_date", "")
-            year = int(release_date[:4]) if release_date and len(release_date) >= 4 else 0
+            year = _safe_parse_year(album.get("release_date", ""))
 
             tracks.append({
                 "title": track["name"],
@@ -125,6 +174,14 @@ def _convert_deezer_url(url: str) -> str:
     return ""
 
 
+_EMPTY_ENRICHMENT = {
+    "uri_youtube_music": "",
+    "uri_apple_music": "",
+    "uri_tidal": "",
+    "uri_deezer": "",
+}
+
+
 async def async_enrich_via_odesli(
     session: aiohttp.ClientSession,
     spotify_uri: str,
@@ -135,14 +192,16 @@ async def async_enrich_via_odesli(
         url = f"{ODESLI_BASE}?url={encoded_uri}&userCountry=US"
 
         async with session.get(url) as resp:
+            if resp.status == 429:
+                # Log rate limits at WARNING so operators see enrichment loss (#694).
+                _LOGGER.warning(
+                    "Odesli rate-limited (429) for %s — track will have no cross-platform URIs",
+                    spotify_uri,
+                )
+                return dict(_EMPTY_ENRICHMENT)
             if resp.status != 200:
                 _LOGGER.debug("Odesli returned %s for %s", resp.status, spotify_uri)
-                return {
-                    "uri_youtube_music": "",
-                    "uri_apple_music": "",
-                    "uri_tidal": "",
-                    "uri_deezer": "",
-                }
+                return dict(_EMPTY_ENRICHMENT)
             data = await resp.json()
 
         links_by_platform = data.get("linksByPlatform", {})
@@ -171,12 +230,7 @@ async def async_enrich_via_odesli(
 
     except Exception as exc:  # noqa: BLE001
         _LOGGER.warning("Odesli enrichment failed for %s: %s", spotify_uri, exc)
-        return {
-            "uri_youtube_music": "",
-            "uri_apple_music": "",
-            "uri_tidal": "",
-            "uri_deezer": "",
-        }
+        return dict(_EMPTY_ENRICHMENT)
 
 
 _CREDS_STORE_KEY = "beatify.spotify_credentials"
@@ -203,10 +257,20 @@ async def async_load_credentials(hass: HomeAssistant) -> dict[str, str] | None:
     return data if data else None
 
 
+class PlaylistImportError(Exception):
+    """Base class for playlist-import failures with friendly messages (#710)."""
+
+
+class DuplicatePlaylistError(PlaylistImportError):
+    """A playlist file with the same slug already exists (#695)."""
+
+
 async def async_import_playlist(
     hass: HomeAssistant,
     spotify_url: str,
     name: str | None = None,
+    *,
+    overwrite: bool = False,
 ) -> dict[str, Any]:
     """Import a Spotify playlist and enrich with cross-platform URIs."""
     playlist_id = parse_spotify_playlist_id(spotify_url)
@@ -246,9 +310,12 @@ async def async_import_playlist(
             uris = await async_enrich_via_odesli(session, track["uri"])
             await asyncio.sleep(0.2)
 
+            spotify_uri = track["uri"]
             song = {
                 "year": track["year"],
-                "uri": track["uri"],
+                # #705: write both `uri` (legacy) and `uri_spotify` (canonical)
+                "uri": spotify_uri,
+                "uri_spotify": spotify_uri,
                 "artist": track["artist"],
                 "title": track["title"],
                 "uri_youtube_music": uris.get("uri_youtube_music", ""),
@@ -277,8 +344,51 @@ async def async_import_playlist(
     output_path = Path(hass.config.path(f"beatify/playlists/{slug}.json"))
 
     def _save() -> None:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(json.dumps(playlist_data, indent=2, ensure_ascii=False))
+        """Atomic write (#696) with duplicate-name detection (#695) and
+        OSError → friendly error (#710)."""
+        parent = output_path.parent
+        try:
+            parent.mkdir(parents=True, exist_ok=True)
+        except OSError as err:
+            raise PlaylistImportError(
+                f"Cannot create playlist directory: {err.strerror or err}"
+            ) from err
+
+        if output_path.exists() and not overwrite:
+            raise DuplicatePlaylistError(
+                f"A playlist named '{name}' already exists. "
+                f"Re-submit with overwrite=true to replace it."
+            )
+
+        # Write to a temp file in the same dir, then atomically rename (#696).
+        tmp_fd, tmp_path = tempfile.mkstemp(dir=parent, suffix=".json.tmp")
+        try:
+            with os.fdopen(tmp_fd, "w", encoding="utf-8") as f:
+                json.dump(playlist_data, f, indent=2, ensure_ascii=False)
+            os.replace(tmp_path, output_path)
+        except OSError as err:
+            # Clean up temp file on failure
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+            if err.errno == 28:  # ENOSPC
+                raise PlaylistImportError(
+                    "Disk full — could not save playlist. Free up space and retry."
+                ) from err
+            if err.errno == 13:  # EACCES
+                raise PlaylistImportError(
+                    "Permission denied writing playlist file."
+                ) from err
+            raise PlaylistImportError(
+                f"Failed to write playlist: {err.strerror or err}"
+            ) from err
+        except BaseException:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+            raise
 
     await hass.async_add_executor_job(_save)
 
@@ -294,9 +404,10 @@ async def async_import_playlist(
         if s.get("uri_youtube_music") or s.get("uri_apple_music") or s.get("uri_deezer")
     )
 
+    # #704: do NOT leak full server filesystem path to frontend.
     return {
         "name": name,
+        "slug": slug,
         "song_count": len(enriched_songs),
         "enriched_count": enriched_count,
-        "file_path": str(output_path),
     }
