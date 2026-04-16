@@ -4696,8 +4696,43 @@ body.theme-dark .movie-reveal-section {
 }
 
 .year-display {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
     margin-bottom: var(--space-md);
+}
+
+/* +/- buttons for precise year adjustment (Issue #662) */
+.year-adjust-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border-dark);
+    background: transparent;
+    color: var(--color-text-white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.year-adjust-btn:active {
+    background: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    transform: scale(0.95);
+}
+
+.year-adjust-btn:disabled {
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 #selected-year {

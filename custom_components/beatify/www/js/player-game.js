@@ -557,6 +557,55 @@ export function initYearSelector() {
         yearDisplay.textContent = this.value;
     });
 
+    // +/- buttons for precise year adjustment (Issue #662)
+    var decrBtn = document.getElementById('year-decrement');
+    var incrBtn = document.getElementById('year-increment');
+
+    function adjustYear(delta) {
+        var newVal = parseInt(slider.value, 10) + delta;
+        newVal = Math.max(parseInt(slider.min, 10), Math.min(parseInt(slider.max, 10), newVal));
+        slider.value = newVal;
+        yearDisplay.textContent = newVal;
+    }
+
+    function setupLongPress(btn, delta) {
+        var intervalId = null;
+        var timeoutId = null;
+
+        function startRepeat() {
+            adjustYear(delta);
+            // Start slow (200ms), accelerate after 1s
+            intervalId = setInterval(function() { adjustYear(delta); }, 200);
+            timeoutId = setTimeout(function() {
+                if (intervalId) clearInterval(intervalId);
+                intervalId = setInterval(function() { adjustYear(delta); }, 100);
+            }, 1000);
+        }
+
+        function stopRepeat() {
+            if (intervalId) { clearInterval(intervalId); intervalId = null; }
+            if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        }
+
+        btn.addEventListener('pointerdown', function(e) {
+            if (hasSubmitted) return;
+            e.preventDefault();
+            startRepeat();
+        });
+        btn.addEventListener('pointerup', stopRepeat);
+        btn.addEventListener('pointerleave', stopRepeat);
+        btn.addEventListener('pointercancel', stopRepeat);
+    }
+
+    if (decrBtn) {
+        decrBtn.addEventListener('click', function() { if (!hasSubmitted) adjustYear(-1); });
+        setupLongPress(decrBtn, -1);
+    }
+    if (incrBtn) {
+        incrBtn.addEventListener('click', function() { if (!hasSubmitted) adjustYear(1); });
+        setupLongPress(incrBtn, 1);
+    }
+
     var betToggle = document.getElementById('bet-toggle');
     if (betToggle) {
         betToggle.addEventListener('click', function() {
@@ -645,6 +694,12 @@ export function handleSubmitAck() {
     if (confirmation) {
         confirmation.classList.remove('hidden');
     }
+
+    // Disable +/- buttons (Issue #662)
+    var decrBtn = document.getElementById('year-decrement');
+    var incrBtn = document.getElementById('year-increment');
+    if (decrBtn) decrBtn.disabled = true;
+    if (incrBtn) incrBtn.disabled = true;
 }
 
 /**
@@ -722,6 +777,12 @@ export function resetSubmissionState() {
         var yearDisplay = document.getElementById('selected-year');
         if (yearDisplay) yearDisplay.textContent = '1990';
     }
+
+    // Re-enable +/- buttons (Issue #662)
+    var decrBtn = document.getElementById('year-decrement');
+    var incrBtn = document.getElementById('year-increment');
+    if (decrBtn) decrBtn.disabled = false;
+    if (incrBtn) incrBtn.disabled = false;
 
     hasStealAvailable = false;
     hideStealUI();
