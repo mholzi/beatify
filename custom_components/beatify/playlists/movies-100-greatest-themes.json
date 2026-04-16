@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "movies",
     "soundtrack",
@@ -748,7 +748,7 @@
         "The Dirty Dozen"
       ],
       "uri_tidal": "tidal://track/35121910",
-      "uri_deezer": "deezer://track/2044037617",
+      "uri_deezer": "deezer://track/35904871",
       "fun_fact_nl": "Het Magnificent Seven-thema van Elmer Bernstein is in ontelbare reclames gebruikt en werd bekender dan de film zelf.",
       "awards_nl": []
     },
@@ -1981,7 +1981,6 @@
         "Golden Globe de la meilleure musique de film (1971)"
       ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZwPaC67Y0Hk",
-      "uri_apple_music": "applemusic://track/1467933712",
       "movie": "Love Story",
       "movie_choices": [
         "A Man and a Woman",
@@ -2849,7 +2848,7 @@
         "Friday the 13th",
         "A Nightmare on Elm Street"
       ],
-      "uri_deezer": "deezer://track/108359926",
+      "uri_deezer": "deezer://track/102007907",
       "fun_fact_nl": "John Carpenter componeerde het thema van Halloween zelf op synthesizer. Het eenvoudige 5/4 pianomotiefje kostte bijna niets om te maken.",
       "awards_nl": []
     },
@@ -2962,7 +2961,6 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=h5vGJSeJv2Q",
-      "uri_apple_music": "applemusic://track/1699692811",
       "movie": "2001: A Space Odyssey",
       "movie_choices": [
         "2001: A Space Odyssey",
@@ -4333,7 +4331,6 @@
       "awards_fr": [
         "Oscar du meilleur film (1961)"
       ],
-      "uri_apple_music": "applemusic://track/933459488",
       "uri_youtube_music": "https://music.youtube.com/watch?v=V3h7rRyMZO8",
       "movie": "West Side Story",
       "movie_choices": [
@@ -4441,7 +4438,6 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/1455697817",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=FruwdlwW-k8",
       "movie": "Casablanca",
       "movie_choices": [
         "The Maltese Falcon",
@@ -5166,7 +5162,6 @@
       "awards_fr": [
         "Oscar de la meilleure musique de film (1955)"
       ],
-      "uri_apple_music": "applemusic://track/325855734",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VpPKHI9N3Q0",
       "movie": "Oklahoma!",
       "movie_choices": [
@@ -5882,8 +5877,6 @@
       "awards_fr": [
         "Oscar de la meilleure chanson originale (1942)"
       ],
-      "uri_apple_music": "applemusic://track/1772921827",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DQdiNPe5ja0",
       "movie": "Holiday Inn",
       "movie_choices": [
         "Easter Parade",
