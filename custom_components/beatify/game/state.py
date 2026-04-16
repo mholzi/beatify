@@ -1784,26 +1784,6 @@ class GameState:
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights flash failed")
 
-    async def _lights_strobe(self, count: int = 5) -> None:
-        """Run Party Lights strobe effect (fire-and-forget)."""
-        if self._party_lights:
-            try:
-                task = asyncio.create_task(self._party_lights.strobe(count))
-                self._bg_tasks.add(task)
-                task.add_done_callback(self._bg_tasks.discard)
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Party Lights strobe failed")
-
-    async def _lights_celebrate(self) -> None:
-        """Run Party Lights celebration (fire-and-forget)."""
-        if self._party_lights:
-            try:
-                task = asyncio.create_task(self._party_lights.celebrate())
-                self._bg_tasks.add(task)
-                task.add_done_callback(self._bg_tasks.discard)
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Party Lights celebration failed")
-
     # ------------------------------------------------------------------
     # TTS Announcements (#447)
     # ------------------------------------------------------------------
