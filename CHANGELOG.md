@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc2] - 2026-04-16
+
 ### Security / hardening
 - Rate limiting on Spotify credential, import, and search endpoints (#712)
 - Input length limits on credential, import, search, and edit endpoints (#703)
@@ -11,6 +13,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - Removed server-side filesystem path from import response (#704)
 
 ### Fixed
+- **Critical**: Restored `URI_PATTERN_*` constants in `const.py` — removed by mistake in #687, breaking integration load (#688, #719)
 - Tightened Spotify URL parsing — hostname validation + exact 22-char ID match (#699, #711)
 - Tolerant year parsing — malformed `release_date` no longer crashes imports (#700)
 - `MAX_YEAR` is now dynamic (current year + 1); was hardcoded to 2030 (#706)
@@ -25,6 +28,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - Zero-playable-song combinations now fail fast with a clear error (#709)
 - Odesli 429 rate-limits logged at WARNING instead of silently swallowed (#694)
 - Imported tracks now carry both `uri` (legacy) and `uri_spotify` (canonical) (#705)
+- `_VERSION` in `server/base.py` now tracks manifest (was stuck at `3.0.4`)
 
 ### Performance
 - Spotify client-credentials tokens are cached for their lifetime (#691)
@@ -33,7 +37,6 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - Playlist import now shows in-flight progress updates (#714)
 
 ### Notes
-- #688 reported a critical ImportError from deleted `URI_PATTERN_*` constants; verified not reproducible — the constants still exist in `const.py` and the referenced PR #687 is not in `git log`. No code change needed.
 - #689 (`requires_auth = True` on admin endpoints) intentionally not applied — the "Frictionless access per PRD" policy stands. Rate limiting, input length limits, and credential scrubbing reduce the remaining attack surface.
 
 ## [2.7.0] - 2026-03-01
