@@ -6,6 +6,7 @@ import logging
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
+    ERR_ALREADY_SUBMITTED,
     ERR_CANNOT_STEAL_SELF,
     ERR_INVALID_ACTION,
     ERR_NO_STEAL_AVAILABLE,
@@ -89,6 +90,9 @@ class PowerUpManager:
         # Validations
         if not stealer:
             return {"success": False, "error": ERR_NOT_IN_GAME}
+
+        if stealer.submitted:
+            return {"success": False, "error": ERR_ALREADY_SUBMITTED}
 
         if not stealer.steal_available:
             return {"success": False, "error": ERR_NO_STEAL_AVAILABLE}
