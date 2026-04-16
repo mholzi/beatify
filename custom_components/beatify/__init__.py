@@ -201,21 +201,3 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     _LOGGER.info("Beatify integration unloaded")
     return True
-
-
-async def async_refresh_discovery(hass: HomeAssistant) -> None:
-    """Refresh media player and playlist discovery."""
-    if DOMAIN not in hass.data:
-        return
-
-    media_players = await async_get_media_players(hass)
-    playlists = await async_discover_playlists(hass)
-
-    hass.data[DOMAIN]["media_players"] = media_players
-    hass.data[DOMAIN]["playlists"] = playlists
-
-    _LOGGER.debug(
-        "Refreshed discovery: %d media players, %d playlists",
-        len(media_players),
-        len(playlists),
-    )
