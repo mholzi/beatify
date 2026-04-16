@@ -2939,6 +2939,9 @@ function handleAdminStateUpdate(data) {
         }
     }
 
+    // #660: Update playing mode banner
+    updatePlayingModeBanner();
+
     // #647: Wake lock for all active game phases
     if (['LOBBY', 'PLAYING', 'REVEAL', 'PAUSED'].includes(data.phase)) {
         _requestWakeLock();
@@ -2987,6 +2990,46 @@ function handleAdminStateUpdate(data) {
     }
 }
 
+// ---- #660: Playing mode banner + switch button ----
+
+/**
+ * Show/hide the "You're playing as {name}" banner on admin page.
+ */
+function updatePlayingModeBanner() {
+    var bannerIds = ['admin-playing-banner', 'admin-reveal-playing-banner'];
+    var nameIds = ['admin-playing-name', 'admin-reveal-playing-name'];
+
+    bannerIds.forEach(function(id, i) {
+        var banner = document.getElementById(id);
+        if (!banner) return;
+        if (isPlaying && adminPlayerName) {
+            var nameEl = document.getElementById(nameIds[i]);
+            if (nameEl) nameEl.textContent = adminPlayerName;
+            banner.classList.remove('hidden');
+        } else {
+            banner.classList.add('hidden');
+        }
+    });
+}
+
+/**
+ * Handle switch-to-player-view button click (#660).
+ */
+function handleSwitchToPlayerView() {
+    var gameId = currentGame && currentGame.game_id;
+    if (gameId && adminPlayerName) {
+        try {
+            sessionStorage.setItem('beatify_admin_name', adminPlayerName);
+            sessionStorage.setItem('beatify_is_admin', 'true');
+        } catch(e) {}
+        window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
+    }
+}
+
+// Wire up switch buttons
+document.getElementById('switch-to-player-view')?.addEventListener('click', handleSwitchToPlayerView);
+document.getElementById('switch-to-player-view-reveal')?.addEventListener('click', handleSwitchToPlayerView);
+
 // ---- PLAYING phase view (#653: mirrors player layout) ----
 
 function showAdminPlayingView(data) {
@@ -3014,10 +3057,10 @@ function showAdminPlayingView(data) {
     var artEl = document.getElementById('admin-album-art');
     if (artEl && data.song && data.song.album_art) artEl.src = data.song.album_art;
 
-    // Admin-only song details (year, fun fact)
-    if (data.admin_song) {
-        var yearEl = document.getElementById('admin-song-year');
-        var factEl = document.getElementById('admin-song-funfact');
+    // Admin-only song details (year, fun fact) — only for spectator admin (#660)
+    var yearEl = document.getElementById('admin-song-year');
+    var factEl = document.getElementById('admin-song-funfact');
+    if (data.admin_song && !isPlaying) {
         if (yearEl) {
             if (data.admin_song.year) {
                 yearEl.textContent = '📅 ' + data.admin_song.year;
@@ -3033,6 +3076,10 @@ function showAdminPlayingView(data) {
                 factEl.classList.remove('hidden');
             } else { factEl.classList.add('hidden'); }
         }
+    } else {
+        // Hide spoilers when admin is playing (fair play) (#660)
+        if (yearEl) yearEl.classList.add('hidden');
+        if (factEl) factEl.classList.add('hidden');
     }
 
     // Countdown timer (big centered, player style)
@@ -3202,6 +3249,38 @@ function showAdminRevealView(data) {
             movieReveal.classList.remove('hidden');
         } else {
             movieReveal.classList.add('hidden');
+        }
+    }
+
+    // #660: Personal result when admin is playing
+    var personalEl = document.getElementById('admin-reveal-personal');
+    if (personalEl) {
+        if (isPlaying && adminPlayerName && data.players) {
+            var adminPlayer = data.players.find(function(p) { return p.is_admin; });
+            if (adminPlayer) {
+                var guessEl = document.getElementById('admin-reveal-my-guess');
+                var accuracyEl = document.getElementById('admin-reveal-my-accuracy');
+                var scoreEl = document.getElementById('admin-reveal-my-score');
+
+                if (adminPlayer.missed_round) {
+                    if (guessEl) guessEl.textContent = '—';
+                    if (accuracyEl) accuracyEl.textContent = BeatifyI18n.t('reveal.noGuessShort') || 'Missed';
+                } else {
+                    var yearsOff = adminPlayer.years_off || 0;
+                    if (guessEl) guessEl.textContent = adminPlayer.guess || '—';
+                    if (accuracyEl) {
+                        accuracyEl.textContent = yearsOff === 0
+                            ? (BeatifyI18n.t('reveal.exact') || 'Exact!')
+                            : (BeatifyI18n.t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
+                    }
+                }
+                if (scoreEl) scoreEl.textContent = '+' + (adminPlayer.round_score || 0);
+                personalEl.classList.remove('hidden');
+            } else {
+                personalEl.classList.add('hidden');
+            }
+        } else {
+            personalEl.classList.add('hidden');
         }
     }
 

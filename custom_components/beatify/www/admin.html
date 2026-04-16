@@ -575,6 +575,17 @@
         <!-- Issue #477: PLAYING phase view -->
         <!-- PLAYING phase view (#653: mirrors player.html game-view layout) -->
         <div id="admin-playing-section" class="hidden">
+            <!-- #660: Banner when admin is also playing -->
+            <div id="admin-playing-banner" class="admin-playing-banner hidden">
+                <span class="admin-playing-banner-icon" aria-hidden="true">🎮</span>
+                <span class="admin-playing-banner-text">
+                    <span data-i18n="admin.youArePlayingAs">Playing as</span>
+                    <strong id="admin-playing-name"></strong>
+                </span>
+                <button id="switch-to-player-view" class="btn btn-sm btn-outline admin-playing-banner-btn" type="button">
+                    <span data-i18n="admin.switchToPlayerView">Player View →</span>
+                </button>
+            </div>
             <div class="game-container">
                 <!-- Game Header (matches player game-header-compact) -->
                 <div class="game-header-compact">
@@ -706,6 +717,17 @@
 
         <!-- REVEAL phase view (#653: mirrors player.html reveal-view layout) -->
         <div id="admin-reveal-section" class="hidden">
+            <!-- #660: Banner when admin is also playing (reveal) -->
+            <div id="admin-reveal-playing-banner" class="admin-playing-banner hidden">
+                <span class="admin-playing-banner-icon" aria-hidden="true">🎮</span>
+                <span class="admin-playing-banner-text">
+                    <span data-i18n="admin.youArePlayingAs">Playing as</span>
+                    <strong id="admin-reveal-playing-name"></strong>
+                </span>
+                <button id="switch-to-player-view-reveal" class="btn btn-sm btn-outline admin-playing-banner-btn" type="button">
+                    <span data-i18n="admin.switchToPlayerView">Player View →</span>
+                </button>
+            </div>
             <div class="reveal-container reveal-container--compact">
                 <!-- Reveal Header (matches player reveal-header-compact) -->
                 <div class="reveal-header-compact">
@@ -769,6 +791,30 @@
                     </h2>
                     <div class="section-content-padded">
                         <div id="admin-movie-reveal-name" class="movie-reveal-name"></div>
+                    </div>
+                </section>
+
+                <!-- #660: Personal result when admin is playing -->
+                <section id="admin-reveal-personal" class="card-section admin-personal-result hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎯</span>
+                        <span data-i18n="admin.yourResult">Your Result</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div class="admin-personal-result-card">
+                            <div class="admin-personal-row">
+                                <span class="admin-personal-label" data-i18n="admin.yourGuess">Your guess</span>
+                                <span id="admin-reveal-my-guess" class="admin-personal-value"></span>
+                            </div>
+                            <div class="admin-personal-row">
+                                <span class="admin-personal-label" data-i18n="admin.accuracy">Accuracy</span>
+                                <span id="admin-reveal-my-accuracy" class="admin-personal-value"></span>
+                            </div>
+                            <div class="admin-personal-row">
+                                <span class="admin-personal-label" data-i18n="admin.points">Points</span>
+                                <span id="admin-reveal-my-score" class="admin-personal-value admin-personal-score"></span>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
