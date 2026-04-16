@@ -129,6 +129,15 @@
         function openBeatify() {
             var adminUrl = window.location.origin + '/beatify/admin';
 
+            // HA Companion App and mobile WebViews block window.open()
+            var isWebView = /HomeAssistant|wv|WebView/i.test(navigator.userAgent)
+                || window.self !== window.top;  // inside iframe (HA sidebar)
+
+            if (isWebView) {
+                window.location.href = adminUrl;
+                return;
+            }
+
             // If we already have an open window, focus it
             if (beatifyWindow && !beatifyWindow.closed) {
                 beatifyWindow.focus();
@@ -144,7 +153,8 @@
             if (beatifyWindow) {
                 updateUI('opened');
             } else {
-                updateUI('blocked');
+                // Fallback if popup still blocked
+                window.location.href = adminUrl;
             }
         }
 
