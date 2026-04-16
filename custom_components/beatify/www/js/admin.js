@@ -3225,7 +3225,7 @@ function showAdminRevealView(data) {
     var personalEl = document.getElementById('admin-reveal-personal');
     if (personalEl) {
         if (isPlaying && adminPlayerName && data.players) {
-            var adminPlayer = data.players.find(function(p) { return p.name === adminPlayerName; });
+            var adminPlayer = data.players.find(function(p) { return p.is_admin; });
             if (adminPlayer) {
                 var guessEl = document.getElementById('admin-reveal-my-guess');
                 var accuracyEl = document.getElementById('admin-reveal-my-accuracy');
