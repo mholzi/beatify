@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc6] - 2026-04-16
+
+### Fixed
+- Import now shows a clear error for inaccessible Spotify playlists (private, algorithmic, region-locked) instead of a raw aiohttp 403 stacktrace (#729)
+- `_sanitize_error` no longer redacts URL paths — the base64 pattern matched `/v1/playlists/...` because `/` was in the character class (#729)
+
 ## [3.2.0-rc5] - 2026-04-16
 
 ### Fixed
