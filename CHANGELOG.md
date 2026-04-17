@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc11] - 2026-04-17
+
+### Added
+- **Admin home view** — after finishing the wizard (or returning configured), the admin lands on a branded "Ready to host" screen instead of the raw setup page: cyan eyebrow, big **Beatify party** wordmark, glowing hero card with a QR glyph, meta line confirming playlist + game mode, and an "Edit setup / Start game" CTA bar. The real QR + player list appear after Start game creates the session. Design is Variant A "QR Hero" from the lobby mockup storyboard.
+- **Multi-select playlists** on wizard Step 3. Tap to toggle, count badge on Continue, checkmark on selected rows. Persists to `beatify_game_settings.selectedPlaylists` so admin's Playlists section shows all picks.
+- **Expandable Lights & Voice detail panels** on wizard Step 5. Toggle on to reveal:
+  - **Lights:** checkbox list of your HA lights + intensity chips (Subtle/Medium/Party) — persists to `beatify_party_lights`
+  - **Voice:** TTS entity-id input + announcement checkboxes (Game start / Round winner) — persists to `beatify_tts`
+- **Speaker + playlist row icons** on wizard Steps 1 and 3 — SVG glyphs render inside the avatar block.
+
+### Fixed
+- Double **Beatify** logo on the Done screen — the small top-bar wordmark now hides when the big hero wordmark is visible.
+
 ## [3.2.0-rc10] - 2026-04-17
 
 ### Changed

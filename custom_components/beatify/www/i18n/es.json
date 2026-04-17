@@ -394,7 +394,15 @@
     "accuracy": "Precisión",
     "points": "Puntos",
     "kickPlayerTitle": "¿Eliminar jugador?",
-    "kickPlayerConfirm": "¿Eliminar a {name} de la sala?"
+    "kickPlayerConfirm": "¿Eliminar a {name} de la sala?",
+    "home": {
+      "editSetup": "Editar configuración",
+      "startGame": "Comenzar partida",
+      "eyebrow": "Listo para hospedar",
+      "party": "fiesta",
+      "qrComingTitle": "Comparte tu QR al empezar",
+      "qrComingSub": "Pulsa Comenzar partida para crear la sala y compartir un código escaneable con los invitados."
+    }
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",
@@ -670,7 +678,7 @@
     "step3": {
       "eyebrow": "Paso 3 · Lista de reproducción",
       "title": "Tu primera lista.",
-      "sub": "Empieza con un pack curado de Beatify. Añade las tuyas más tarde.",
+      "sub": "Elige uno o más packs curados de Beatify. Mezcla géneros o décadas — puedes añadir los tuyos en el admin más tarde.",
       "empty": "Sin listas disponibles"
     },
     "step4": {
@@ -697,12 +705,23 @@
       "lights": {
         "title": "Luces de fiesta",
         "desc": "Sincroniza tus luces Hue al ritmo. Pulso al cambiar ronda, destello para el ganador.",
-        "unavailable": "No hay luces en Home Assistant."
+        "unavailable": "No hay luces en Home Assistant.",
+        "pickLabel": "Luces a sincronizar",
+        "intensity": "Intensidad",
+        "subtle": "Sutil",
+        "medium": "Media",
+        "party": "Fiesta",
+        "noneFound": "No hay luces disponibles"
       },
       "tts": {
         "title": "Anuncios por voz",
         "desc": "TTS anuncia número de ronda, ganadores y datos curiosos.",
-        "unavailable": "No hay servicio TTS registrado en Home Assistant."
+        "unavailable": "No hay servicio TTS registrado en Home Assistant.",
+        "entityLabel": "Servicio TTS (ID de entidad)",
+        "entityHint": "Copia desde Home Assistant → Herramientas para desarrolladores → Estados (filtro: tts.)",
+        "announce": "Anunciar",
+        "announceStart": "Inicio del juego",
+        "announceWinner": "Ganador de ronda"
       }
     }
   }

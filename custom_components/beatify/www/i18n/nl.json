@@ -394,7 +394,15 @@
     "accuracy": "Nauwkeurigheid",
     "points": "Punten",
     "kickPlayerTitle": "Speler verwijderen?",
-    "kickPlayerConfirm": "{name} uit de lobby verwijderen?"
+    "kickPlayerConfirm": "{name} uit de lobby verwijderen?",
+    "home": {
+      "editSetup": "Setup bewerken",
+      "startGame": "Spel starten",
+      "eyebrow": "Klaar om te hosten",
+      "party": "party",
+      "qrComingTitle": "Deel je QR na Start",
+      "qrComingSub": "Druk op Spel starten om de kamer te openen en een scanbare code met gasten te delen."
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -670,7 +678,7 @@
     "step3": {
       "eyebrow": "Stap 3 · Afspeellijst",
       "title": "Je eerste afspeellijst.",
-      "sub": "Begin met een samengestelde Beatify-pack. Eigen lijsten kun je later toevoegen.",
+      "sub": "Kies één of meer samengestelde Beatify-packs. Meng genres of decennia — eigen lijsten kun je later in admin toevoegen.",
       "empty": "Geen afspeellijsten"
     },
     "step4": {
@@ -697,12 +705,23 @@
       "lights": {
         "title": "Partylicht",
         "desc": "Synchroniseer je Hue-lampen op het ritme. Puls bij ronde-wissel, flits bij winnaar.",
-        "unavailable": "Geen lampen gevonden in Home Assistant."
+        "unavailable": "Geen lampen gevonden in Home Assistant.",
+        "pickLabel": "Lampen om te synchroniseren",
+        "intensity": "Intensiteit",
+        "subtle": "Subtiel",
+        "medium": "Gemiddeld",
+        "party": "Feest",
+        "noneFound": "Geen lampen beschikbaar"
       },
       "tts": {
         "title": "Gesproken aankondigingen",
         "desc": "TTS roept rondenummers, winnaars en weetjes uit.",
-        "unavailable": "Geen TTS-service geregistreerd in Home Assistant."
+        "unavailable": "Geen TTS-service geregistreerd in Home Assistant.",
+        "entityLabel": "TTS-service (entity ID)",
+        "entityHint": "Kopieer vanuit Home Assistant → Ontwikkelaarstools → Statussen (filter: tts.)",
+        "announce": "Aankondigen",
+        "announceStart": "Start van het spel",
+        "announceWinner": "Winnaar van ronde"
       }
     }
   }

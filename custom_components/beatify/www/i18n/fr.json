@@ -394,7 +394,15 @@
     "accuracy": "Précision",
     "points": "Points",
     "kickPlayerTitle": "Retirer le joueur ?",
-    "kickPlayerConfirm": "Retirer {name} du lobby ?"
+    "kickPlayerConfirm": "Retirer {name} du lobby ?",
+    "home": {
+      "editSetup": "Modifier la configuration",
+      "startGame": "Lancer la partie",
+      "eyebrow": "Prêt à accueillir",
+      "party": "soirée",
+      "qrComingTitle": "Partage ton QR après Start",
+      "qrComingSub": "Lance la partie pour créer le salon et partager un code scannable avec les invités."
+    }
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
@@ -670,7 +678,7 @@
     "step3": {
       "eyebrow": "Étape 3 · Playlist",
       "title": "Ta première playlist.",
-      "sub": "Commence avec un pack Beatify. Tu pourras en ajouter d'autres plus tard.",
+      "sub": "Choisis un ou plusieurs packs Beatify. Mélange genres ou décennies — tu pourras en ajouter d'autres depuis l'admin.",
       "empty": "Aucune playlist"
     },
     "step4": {
@@ -697,12 +705,23 @@
       "lights": {
         "title": "Lumières de fête",
         "desc": "Synchronise tes ampoules Hue sur le rythme. Pulsation entre manches, flash pour le gagnant.",
-        "unavailable": "Aucune lumière trouvée dans Home Assistant."
+        "unavailable": "Aucune lumière trouvée dans Home Assistant.",
+        "pickLabel": "Lumières à synchroniser",
+        "intensity": "Intensité",
+        "subtle": "Discret",
+        "medium": "Moyen",
+        "party": "Fête",
+        "noneFound": "Aucune lumière disponible"
       },
       "tts": {
         "title": "Annonces vocales",
         "desc": "Le TTS annonce le numéro de manche, les gagnants et les anecdotes.",
-        "unavailable": "Aucun service TTS enregistré dans Home Assistant."
+        "unavailable": "Aucun service TTS enregistré dans Home Assistant.",
+        "entityLabel": "Service TTS (ID d'entité)",
+        "entityHint": "Copie depuis Home Assistant → Outils développeur → États (filtre : tts.)",
+        "announce": "Annoncer",
+        "announceStart": "Début de partie",
+        "announceWinner": "Gagnant de manche"
       }
     }
   }

@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc10">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc11">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -145,6 +145,41 @@
     </div>
 
     <main class="admin-content">
+        <!-- Home view — Variant A "QR Hero" aesthetic applied to the pre-session lobby landing.
+             Shown when setup is complete (wizard just finished OR returning configured user).
+             Toggled via body.home-mode class. Real QR + players appear in #lobby-section after Start. -->
+        <section id="home-view" class="home-view hidden" aria-labelledby="home-view-heading">
+            <h2 id="home-view-heading" class="sr-only">Home</h2>
+            <div class="home-stage">
+                <div class="home-stage-bg"></div>
+                <div class="home-eyebrow" data-i18n="admin.home.eyebrow">Ready to host</div>
+                <h2 class="home-headline">
+                    <span>Beat</span><span class="wordmark-gradient">ify</span>
+                    <span class="home-headline-sub" data-i18n="admin.home.party">party</span>
+                </h2>
+
+                <!-- Hero card — stands in for the QR until the session is created. -->
+                <div class="home-hero-card">
+                    <div class="home-hero-glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 5h4v4H3zM3 15h4v4H3zM15 5h4v4h-4zM9 5v1M13 5v4h2M11 11v2M5 11h2M17 11h2M9 13v6h2v-2h2v4M15 13h2v4M21 13v4h-2"/>
+                        </svg>
+                    </div>
+                    <div class="home-hero-title" data-i18n="admin.home.qrComingTitle">Share your QR after Start</div>
+                    <div class="home-hero-sub" data-i18n="admin.home.qrComingSub">Hit Start game to create the room and share a scannable code with guests.</div>
+                </div>
+
+                <div class="home-meta" id="home-meta">—</div>
+            </div>
+            <div class="home-cta-bar">
+                <button type="button" id="home-edit-setup" class="btn btn-ghost home-cta-edit" data-i18n="admin.home.editSetup">Edit setup</button>
+                <button type="button" id="home-start-game" class="btn btn-primary home-cta-start">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    <span data-i18n="admin.home.startGame">Start game</span>
+                </button>
+            </div>
+        </section>
+
         <!-- Media Player Section - Collapsible with last-used memory -->
         <section id="media-players" class="section-collapsible" aria-labelledby="media-players-heading">
             <button type="button" class="section-header-collapsible" id="media-players-toggle" aria-expanded="true" aria-controls="media-players-content">
@@ -1060,9 +1095,9 @@
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc10"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc10"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc10"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc10"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc11"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc11"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc11"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc11"></script>
 </body>
 </html>

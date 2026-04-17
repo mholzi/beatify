@@ -394,7 +394,15 @@
     "accuracy": "Genauigkeit",
     "points": "Punkte",
     "kickPlayerTitle": "Spieler entfernen?",
-    "kickPlayerConfirm": "{name} aus der Lobby entfernen?"
+    "kickPlayerConfirm": "{name} aus der Lobby entfernen?",
+    "home": {
+      "editSetup": "Einstellungen bearbeiten",
+      "startGame": "Spiel starten",
+      "eyebrow": "Bereit zum Hosten",
+      "party": "Party",
+      "qrComingTitle": "QR-Code nach dem Start teilen",
+      "qrComingSub": "Tippe „Spiel starten“, um den Raum zu öffnen und den scannbaren Code mit den Gästen zu teilen."
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -670,7 +678,7 @@
     "step3": {
       "eyebrow": "Schritt 3 · Playlist",
       "title": "Deine erste Playlist.",
-      "sub": "Starte mit einem kuratierten Beatify-Pack. Eigene Playlists kannst du später hinzufügen.",
+      "sub": "Wähle eines oder mehrere kuratierte Beatify-Packs. Mische Genres oder Jahrzehnte — eigene Playlists kannst du später im Admin hinzufügen.",
       "empty": "Keine Playlists vorhanden"
     },
     "step4": {
@@ -697,12 +705,23 @@
       "lights": {
         "title": "Party-Licht",
         "desc": "Synchronisiere deine Hue-Lampen zum Beat. Puls bei Rundenwechsel, Blitz beim Sieger.",
-        "unavailable": "Keine Lampen in Home Assistant gefunden."
+        "unavailable": "Keine Lampen in Home Assistant gefunden.",
+        "pickLabel": "Lampen zum Synchronisieren",
+        "intensity": "Intensität",
+        "subtle": "Dezent",
+        "medium": "Mittel",
+        "party": "Party",
+        "noneFound": "Keine Lampen verfügbar"
       },
       "tts": {
         "title": "Sprachansagen",
         "desc": "TTS ruft Rundennummern, Sieger und Fun Facts aus.",
-        "unavailable": "Kein TTS-Dienst in Home Assistant registriert."
+        "unavailable": "Kein TTS-Dienst in Home Assistant registriert.",
+        "entityLabel": "TTS-Dienst (Entity-ID)",
+        "entityHint": "Aus Home Assistant → Entwicklertools → Zustände kopieren (Filter: tts.)",
+        "announce": "Ansagen",
+        "announceStart": "Spielstart",
+        "announceWinner": "Rundengewinner"
       }
     }
   }
