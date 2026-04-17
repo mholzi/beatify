@@ -4,6 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc10] - 2026-04-17
+
+### Changed
+- **First-run wizard is now a 5-step flow** (was 3 required + 1 optional). Playlist and game mode are separate steps so each gets proper attention:
+  1. Speakers
+  2. Music service
+  3. Playlist (pick a curated pack)
+  4. Game mode (difficulty / time per round / announcement language)
+  5. Lights + Voice (optional, capability-gated — 2 cards instead of 4)
+- Final screen CTA is now **"Go to lobby"** — lands you on the admin's Start Game button with every choice already populated (no re-selecting).
+- Step 1 now shows proper brand casing: **Sonos**, **Music Assistant**, **Alexa** (was the raw lowercase HA platform slug).
+
+### Removed
+- OAuth prompt on Step 2 (music service). Beatify never ran its own OAuth flow — authorization happens at the Home Assistant level via Music Assistant or HA's own integrations, so the prompt was misleading. Step 2 is now just a provider pick.
+- Dead `.wiz-oauth-status` CSS.
+
+### Fixed
+- Wizard choices now persist into `beatify_game_settings` using the exact keys `admin.js` already reads at load time. After finishing the wizard, the admin's speaker / provider / playlist / difficulty / timer / language chips are all pre-selected. The first thing you see is the Start Game button.
+
 ## [3.2.0-rc9] - 2026-04-17
 
 ### Added
