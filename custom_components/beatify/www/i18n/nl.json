@@ -388,7 +388,7 @@
     "haEntitiesSummary": "6 entiteiten",
     "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister.",
     "youArePlayingAs": "Je speelt als",
-    "switchToPlayerView": "Spelerweergave \u2192",
+    "switchToPlayerView": "Spelerweergave →",
     "yourResult": "Jouw resultaat",
     "yourGuess": "Jouw gok",
     "accuracy": "Nauwkeurigheid",
@@ -645,5 +645,59 @@
   "introSplashTitle": "Intro-ronde!",
   "introSplashDesc": "Het nummer speelt — stop het zodra je het herkent! Hoe sneller je stopt, hoe meer punten je verdient.",
   "introSplashWaiting": "Wachten op host...",
-  "introSplashStart": "▶ Start intro-ronde"
+  "introSplashStart": "▶ Start intro-ronde",
+  "wizard": {
+    "skip": "Setup overslaan",
+    "back": "Terug",
+    "continue": "Doorgaan",
+    "finish": "Voltooien",
+    "startGame": "Eerste game starten",
+    "finishPill": "Setup afronden",
+    "step1": {
+      "eyebrow": "Stap 1 · Luidsprekers",
+      "title": "Waar moet de muziek spelen?",
+      "sub": "Kies één of meer slimme luidsprekers. We spelen via de eerst gekozen.",
+      "hint": "Zie je jouw luidspreker niet?",
+      "hintLink": "Bekijk ondersteunde types",
+      "empty": "Nog geen luidsprekers",
+      "emptyHint": "Installeer Music Assistant en vernieuw"
+    },
+    "step2": {
+      "eyebrow": "Stap 2 · Muziekdienst",
+      "title": "Wie streamt?",
+      "sub": "Kies de dienst die jouw luidspreker voedt. Autoriseer Beatify in de volgende stap.",
+      "authPrompt": "Beatify autoriseren",
+      "authDetail": "Sluit de assistent, autoriseer in de sectie „Muziekdienst“ en open de assistent opnieuw."
+    },
+    "step3": {
+      "eyebrow": "Stap 3 · Afspeellijst",
+      "title": "Je eerste afspeellijst.",
+      "sub": "Begin met een samengestelde Beatify-pack. Eigen lijsten kun je later toevoegen.",
+      "empty": "Geen afspeellijsten"
+    },
+    "step4": {
+      "eyebrow": "Bonus · Extra's",
+      "title": "Til je feest naar een hoger niveau.",
+      "sub": "Optioneel. Beatify werkt ook zonder.",
+      "lights": {
+        "title": "Partylicht",
+        "desc": "Synchroniseer je Hue-lampen op het ritme. Puls bij ronde-wissel, flits bij winnaar.",
+        "unavailable": "Geen lampen gevonden in Home Assistant."
+      },
+      "tts": {
+        "title": "Gesproken aankondigingen",
+        "desc": "TTS roept rondenummers, winnaars en weetjes uit.",
+        "unavailable": "Geen TTS-service geregistreerd in Home Assistant."
+      },
+      "tuning": {
+        "title": "Speelinstellingen",
+        "desc": "Standaard: 10 rondes, 45 s, Engels. Tik om moeilijkheid en taal aan te passen."
+      }
+    },
+    "done": {
+      "badge": "KLAAR OM TE SPELEN",
+      "tag": "Je podium is klaar.",
+      "previewLabel": "Voorvertoning · wat gasten zien"
+    }
+  }
 }

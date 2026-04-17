@@ -388,7 +388,7 @@
     "haEntitiesSummary": "6 entités",
     "haEntitiesDesc": "Beatify expose l'état du jeu sous forme d'entités Home Assistant. Retrouvez-les dans Outils de développement → États ou recherchez beatify dans le registre des entités.",
     "youArePlayingAs": "Tu joues en tant que",
-    "switchToPlayerView": "Vue joueur \u2192",
+    "switchToPlayerView": "Vue joueur →",
     "yourResult": "Ton résultat",
     "yourGuess": "Ton estimation",
     "accuracy": "Précision",
@@ -645,5 +645,59 @@
   "introSplashTitle": "Round Intro !",
   "introSplashDesc": "La chanson joue — arrêtez-la dès que vous la reconnaissez ! Plus vite vous arrêtez, plus vous marquez.",
   "introSplashWaiting": "En attente de l'hôte...",
-  "introSplashStart": "▶ Démarrer le Round Intro"
+  "introSplashStart": "▶ Démarrer le Round Intro",
+  "wizard": {
+    "skip": "Passer la configuration",
+    "back": "Retour",
+    "continue": "Continuer",
+    "finish": "Terminer",
+    "startGame": "Lancer la première partie",
+    "finishPill": "Terminer la configuration",
+    "step1": {
+      "eyebrow": "Étape 1 · Enceintes",
+      "title": "Où doit jouer la musique ?",
+      "sub": "Choisis une ou plusieurs enceintes connectées. La musique joue sur celle choisie en premier.",
+      "hint": "Ton enceinte n'apparaît pas ?",
+      "hintLink": "Voir les types compatibles",
+      "empty": "Aucune enceinte détectée",
+      "emptyHint": "Installe Music Assistant et rafraîchis"
+    },
+    "step2": {
+      "eyebrow": "Étape 2 · Service musical",
+      "title": "Qui diffuse ?",
+      "sub": "Choisis le service qui alimente ton enceinte. L'autorisation suit.",
+      "authPrompt": "Autoriser Beatify",
+      "authDetail": "Ferme l'assistant, autorise dans la section « Service musical », puis rouvre l'assistant."
+    },
+    "step3": {
+      "eyebrow": "Étape 3 · Playlist",
+      "title": "Ta première playlist.",
+      "sub": "Commence avec un pack Beatify. Tu pourras en ajouter d'autres plus tard.",
+      "empty": "Aucune playlist"
+    },
+    "step4": {
+      "eyebrow": "Bonus · Extras",
+      "title": "Fais monter l'ambiance.",
+      "sub": "Facultatif. Beatify fonctionne sans.",
+      "lights": {
+        "title": "Lumières de fête",
+        "desc": "Synchronise tes ampoules Hue sur le rythme. Pulsation entre manches, flash pour le gagnant.",
+        "unavailable": "Aucune lumière trouvée dans Home Assistant."
+      },
+      "tts": {
+        "title": "Annonces vocales",
+        "desc": "Le TTS annonce le numéro de manche, les gagnants et les anecdotes.",
+        "unavailable": "Aucun service TTS enregistré dans Home Assistant."
+      },
+      "tuning": {
+        "title": "Réglages du jeu",
+        "desc": "Par défaut : 10 manches, 45 s, anglais. Touche pour ajuster difficulté et langue."
+      }
+    },
+    "done": {
+      "badge": "PRÊT À JOUER",
+      "tag": "Ta scène est prête.",
+      "previewLabel": "Aperçu · ce que verront tes invités"
+    }
+  }
 }

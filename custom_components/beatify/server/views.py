@@ -165,6 +165,31 @@ class StatusView(HomeAssistantView):
         return web.json_response(status)
 
 
+class CapabilitiesView(HomeAssistantView):
+    """Advertise which HA capabilities Beatify can light up in the wizard."""
+
+    url = "/beatify/api/capabilities"
+    name = "beatify:api:capabilities"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the capabilities view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Return flags the wizard's Step 4 uses to gate toggles."""
+        light_count = len(self.hass.states.async_all("light"))
+        tts_services = self.hass.services.async_services().get("tts", {})
+        return web.json_response(
+            {
+                "has_lights": light_count > 0,
+                "light_count": light_count,
+                "has_tts": bool(tts_services),
+                "tts_service_count": len(tts_services),
+            }
+        )
+
+
 class LightsView(HomeAssistantView):
     """API endpoint for available light entities (#331)."""
 

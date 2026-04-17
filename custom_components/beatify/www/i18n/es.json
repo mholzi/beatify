@@ -388,7 +388,7 @@
     "haEntitiesSummary": "6 entidades",
     "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades.",
     "youArePlayingAs": "Jugando como",
-    "switchToPlayerView": "Vista de jugador \u2192",
+    "switchToPlayerView": "Vista de jugador →",
     "yourResult": "Tu resultado",
     "yourGuess": "Tu respuesta",
     "accuracy": "Precisión",
@@ -645,5 +645,59 @@
   "introSplashTitle": "¡Ronda Intro!",
   "introSplashDesc": "La canción suena — detente en cuanto la reconozcas. ¡Cuanto más rápido pares, más puntos!",
   "introSplashWaiting": "Esperando al anfitrión...",
-  "introSplashStart": "▶ Iniciar Ronda Intro"
+  "introSplashStart": "▶ Iniciar Ronda Intro",
+  "wizard": {
+    "skip": "Saltar configuración",
+    "back": "Atrás",
+    "continue": "Continuar",
+    "finish": "Finalizar",
+    "startGame": "Comenzar primera partida",
+    "finishPill": "Completar configuración",
+    "step1": {
+      "eyebrow": "Paso 1 · Altavoces",
+      "title": "¿Dónde debe sonar la música?",
+      "sub": "Elige uno o más altavoces inteligentes. Sonará por el que elijas primero.",
+      "hint": "¿No ves tu altavoz?",
+      "hintLink": "Ver tipos compatibles",
+      "empty": "Aún no hay altavoces",
+      "emptyHint": "Instala Music Assistant y actualiza"
+    },
+    "step2": {
+      "eyebrow": "Paso 2 · Servicio de música",
+      "title": "¿Quién transmite?",
+      "sub": "Elige el servicio que alimenta tu altavoz. Autorizarás Beatify a continuación.",
+      "authPrompt": "Autorizar Beatify",
+      "authDetail": "Cierra el asistente, autoriza en la sección „Servicio de música“ y vuelve a abrir el asistente."
+    },
+    "step3": {
+      "eyebrow": "Paso 3 · Lista de reproducción",
+      "title": "Tu primera lista.",
+      "sub": "Empieza con un pack curado de Beatify. Añade las tuyas más tarde.",
+      "empty": "Sin listas disponibles"
+    },
+    "step4": {
+      "eyebrow": "Extra · Potenciadores",
+      "title": "Sube de nivel tu fiesta.",
+      "sub": "Opcional. Beatify funciona sin esto.",
+      "lights": {
+        "title": "Luces de fiesta",
+        "desc": "Sincroniza tus luces Hue al ritmo. Pulso al cambiar ronda, destello para el ganador.",
+        "unavailable": "No hay luces en Home Assistant."
+      },
+      "tts": {
+        "title": "Anuncios por voz",
+        "desc": "TTS anuncia número de ronda, ganadores y datos curiosos.",
+        "unavailable": "No hay servicio TTS registrado en Home Assistant."
+      },
+      "tuning": {
+        "title": "Ajustes del juego",
+        "desc": "Por defecto: 10 rondas, 45 s, inglés. Toca para ajustar dificultad e idioma."
+      }
+    },
+    "done": {
+      "badge": "LISTO PARA JUGAR",
+      "tag": "Tu escenario está listo.",
+      "previewLabel": "Vista previa · lo que verán tus invitados"
+    }
+  }
 }

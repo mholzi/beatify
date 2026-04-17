@@ -386,9 +386,9 @@
     "ttsTestFailed": "Failed",
     "haEntities": "HA Entities",
     "haEntitiesSummary": "6 entities",
-    "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools \u2192 States or search for beatify in your entity registry.",
+    "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools → States or search for beatify in your entity registry.",
     "youArePlayingAs": "Playing as",
-    "switchToPlayerView": "Player View \u2192",
+    "switchToPlayerView": "Player View →",
     "yourResult": "Your Result",
     "yourGuess": "Your guess",
     "accuracy": "Accuracy",
@@ -645,5 +645,59 @@
   "introSplashTitle": "Intro Round!",
   "introSplashDesc": "The song plays — stop it the moment you recognise it! The faster you stop, the more points you earn.",
   "introSplashWaiting": "Waiting for host...",
-  "introSplashStart": "▶ Start Intro Round"
+  "introSplashStart": "▶ Start Intro Round",
+  "wizard": {
+    "skip": "Skip setup",
+    "back": "Back",
+    "continue": "Continue",
+    "finish": "Finish",
+    "startGame": "Start first game",
+    "finishPill": "Finish setup",
+    "step1": {
+      "eyebrow": "Step 1 · Speakers",
+      "title": "Where should the music play?",
+      "sub": "Pick one or more smart speakers. We'll play through the one you pick first.",
+      "hint": "Don't see your speaker?",
+      "hintLink": "Check supported types",
+      "empty": "No speakers found yet",
+      "emptyHint": "Install Music Assistant and refresh"
+    },
+    "step2": {
+      "eyebrow": "Step 2 · Music service",
+      "title": "Who's streaming?",
+      "sub": "Pick the service that powers your speaker. You'll authorize Beatify next.",
+      "authPrompt": "Authorize Beatify",
+      "authDetail": "Close this wizard, authorize in the Music Service section, then re-open the wizard to continue."
+    },
+    "step3": {
+      "eyebrow": "Step 3 · Playlist",
+      "title": "Your first playlist.",
+      "sub": "Start with a curated Beatify pack. You can add your own later.",
+      "empty": "No playlists bundled"
+    },
+    "step4": {
+      "eyebrow": "Bonus · Power-ups",
+      "title": "Level up your party.",
+      "sub": "Optional. Skip all of this and Beatify still works.",
+      "lights": {
+        "title": "Party lights",
+        "desc": "Sync your Hue lights to the beat. Pulse on round changes, flash on winner.",
+        "unavailable": "No lights found in Home Assistant."
+      },
+      "tts": {
+        "title": "Voice announcements",
+        "desc": "TTS calls out round numbers, winners, and fun facts.",
+        "unavailable": "No TTS service registered in Home Assistant."
+      },
+      "tuning": {
+        "title": "Game tuning",
+        "desc": "Default: 10 rounds, 45s, English. Tap to customize difficulty and language in admin settings."
+      }
+    },
+    "done": {
+      "badge": "READY TO PLAY",
+      "tag": "Your stage is ready.",
+      "previewLabel": "Preview · what guests will see"
+    }
+  }
 }

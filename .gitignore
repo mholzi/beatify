@@ -15,7 +15,8 @@ docs/
 .playwright-mcp/
 
 # ---- Duplicate deployed copy ----
-beatify/
+# Match /beatify/ at the root only — NOT custom_components/beatify/
+/beatify/
 
 # ---- Secrets ----
 .env

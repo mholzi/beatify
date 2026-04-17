@@ -149,6 +149,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         c.classList.toggle('chip--active', c.dataset.lang === selectedLanguage);
     });
 
+    // First-run wizard — initializes after i18n is ready (DESIGN.md ## Patterns)
+    if (window.BeatifyWizard && typeof window.BeatifyWizard.init === 'function') {
+        try { await window.BeatifyWizard.init(); } catch (e) { console.warn('[Beatify] wizard init failed:', e); }
+    }
+
+    // Expose loadStatus so wizard.js can ask admin to refresh after completion
+    window.loadStatus = loadStatus;
+
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
     document.getElementById('start-gameplay-btn')?.addEventListener('click', startGameplay);
