@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc9] - 2026-04-17
+
+### Added
+- **First-run wizard** for the admin screen. New users land on a full-screen 3-step onboarding (Speakers → Music service → Playlist) with an optional 4th "level up" step (Party Lights, Voice/TTS, Game tuning) that gates toggles on the HA capabilities that are actually available. Completion shows a live demo preview and a "Start first game" CTA. Documented in `DESIGN.md` under `## Patterns`.
+- **`/beatify/api/capabilities`** endpoint — reports whether HA has `light.*` entities and a `tts.*` service registered. Powers the wizard's Step 4 gating.
+- **Vitest** for JS unit tests. 17 tests cover the wizard's state machine (resume-at-step, trigger, pill visibility) including private-mode and malformed-JSON edge cases.
+- **DESIGN.md** — authoritative design system reference (neon party-show aesthetic, typography, color, spacing, motion, patterns, anti-patterns) with a risk log for deliberate category departures.
+- **Wizard localization** — EN + DE + ES + FR + NL.
+
+### Fixed
+- `.gitignore` no longer shadows files in `custom_components/beatify/` — the `beatify/` ignore rule was anchored to `/beatify/` at the repo root.
+
 ## [3.2.0-rc8] - 2026-04-16
 
 ### Fixed
