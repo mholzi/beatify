@@ -17,12 +17,91 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc8">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc9">
 </head>
 <body class="theme-dark">
+    <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
+    <div id="wizard-root" class="wizard-takeover hidden" aria-hidden="true">
+        <div class="wiz-bg"></div>
+        <div class="wiz-top">
+            <span class="wordmark"><span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span></span>
+            <span class="wiz-step-count" id="wiz-step-count">Step 1 of 3</span>
+            <button type="button" class="wiz-skip" id="wiz-skip" data-i18n="wizard.skip">Skip setup</button>
+        </div>
+        <div class="wiz-progress" id="wiz-progress">
+            <div class="wiz-seg" data-step="1"><div class="wiz-seg-inner"></div></div>
+            <div class="wiz-seg" data-step="2"><div class="wiz-seg-inner"></div></div>
+            <div class="wiz-seg" data-step="3"><div class="wiz-seg-inner"></div></div>
+        </div>
+
+        <!-- Frame 1: speakers -->
+        <section class="wiz-frame" data-frame="1" hidden>
+            <div class="wiz-body">
+                <div class="wiz-eyebrow" data-i18n="wizard.step1.eyebrow">Step 1 · Speakers</div>
+                <h2 class="wiz-title" data-i18n="wizard.step1.title">Where should the music play?</h2>
+                <p class="wiz-sub" data-i18n="wizard.step1.sub">Pick one or more smart speakers. We'll play through the one you pick first.</p>
+                <div id="wiz-speaker-list" class="wiz-list"></div>
+                <p class="wiz-sub wiz-hint"><span data-i18n="wizard.step1.hint">Don't see your speaker?</span> <a href="https://music-assistant.io/" target="_blank" rel="noopener" data-i18n="wizard.step1.hintLink">Check supported types</a></p>
+            </div>
+        </section>
+
+        <!-- Frame 2: music service -->
+        <section class="wiz-frame" data-frame="2" hidden>
+            <div class="wiz-body">
+                <div class="wiz-eyebrow" data-i18n="wizard.step2.eyebrow">Step 2 · Music service</div>
+                <h2 class="wiz-title" data-i18n="wizard.step2.title">Who's streaming?</h2>
+                <p class="wiz-sub" data-i18n="wizard.step2.sub">Pick the service that powers your speaker. You'll authorize Beatify next.</p>
+                <div id="wiz-provider-list" class="wiz-provider-grid"></div>
+                <div id="wiz-oauth-status" class="wiz-oauth-status hidden"></div>
+            </div>
+        </section>
+
+        <!-- Frame 3: playlist -->
+        <section class="wiz-frame" data-frame="3" hidden>
+            <div class="wiz-body">
+                <div class="wiz-eyebrow" data-i18n="wizard.step3.eyebrow">Step 3 · Playlist</div>
+                <h2 class="wiz-title" data-i18n="wizard.step3.title">Your first playlist.</h2>
+                <p class="wiz-sub" data-i18n="wizard.step3.sub">Start with a curated Beatify pack. You can add your own later.</p>
+                <div id="wiz-playlist-list" class="wiz-list"></div>
+            </div>
+        </section>
+
+        <!-- Frame 4: level up (optional) -->
+        <section class="wiz-frame" data-frame="4" hidden>
+            <div class="wiz-body">
+                <div class="wiz-eyebrow" data-i18n="wizard.step4.eyebrow">Bonus · Power-ups</div>
+                <h2 class="wiz-title" data-i18n="wizard.step4.title">Level up your party.</h2>
+                <p class="wiz-sub" data-i18n="wizard.step4.sub">Optional. Skip all of this and Beatify still works.</p>
+                <div id="wiz-levelup-list" class="wiz-list"></div>
+            </div>
+        </section>
+
+        <!-- Frame 5: done -->
+        <section class="wiz-frame" data-frame="5" hidden>
+            <div class="wiz-done">
+                <div class="wiz-done-badge" data-i18n="wizard.done.badge">READY TO PLAY</div>
+                <div class="wiz-done-word wordmark"><span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span></div>
+                <div class="wiz-done-tag" data-i18n="wizard.done.tag">Your stage is ready.</div>
+                <p class="wiz-done-sub" id="wiz-done-summary"></p>
+                <div class="wiz-done-demo">
+                    <div class="wiz-done-demo-label" data-i18n="wizard.done.previewLabel">Preview · what guests will see</div>
+                    <div class="wiz-done-demo-year">1987</div>
+                    <div class="wiz-done-demo-song">Never Gonna Give You Up</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="wiz-cta">
+            <button type="button" class="btn btn-ghost wiz-back" id="wiz-back" data-i18n="wizard.back">Back</button>
+            <button type="button" class="btn btn-primary wiz-next" id="wiz-next" data-i18n="wizard.continue" disabled>Continue</button>
+        </div>
+    </div>
+
     <header class="admin-header">
         <h1 class="wordmark"><span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span></h1>
         <div class="admin-header-actions">
+            <!-- "Finish setup" pill — visible when user dismissed wizard with incomplete required steps -->
+            <button type="button" class="finish-setup-pill hidden" id="finish-setup-pill" data-i18n="wizard.finishPill">Finish setup</button>
             <!-- PWA Install Button (#226) — hidden by default, shown via JS -->
             <button type="button" class="pwa-install-btn hidden" id="pwa-install-btn" aria-label="Install Beatify App">
                 <span aria-hidden="true">📲</span>
@@ -959,8 +1038,9 @@
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc8"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc8"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc8"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc9"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc9"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc9"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc9"></script>
 </body>
 </html>
