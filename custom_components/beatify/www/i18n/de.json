@@ -384,11 +384,11 @@
     "ttsAnnounceWinnerHint": "Ansage des Gewinners am Spielende",
     "ttsTested": "Gesendet",
     "ttsTestFailed": "Fehlgeschlagen",
-    "haEntities": "HA-Entit\u00e4ten",
-    "haEntitiesSummary": "6 Entit\u00e4ten",
-    "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entit\u00e4ten bereit. Finde sie unter Entwicklerwerkzeuge \u2192 Zust\u00e4nde oder suche nach beatify in der Entit\u00e4tsregistrierung.",
+    "haEntities": "HA-Entitäten",
+    "haEntitiesSummary": "6 Entitäten",
+    "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entitäten bereit. Finde sie unter Entwicklerwerkzeuge → Zustände oder suche nach beatify in der Entitätsregistrierung.",
     "youArePlayingAs": "Du spielst als",
-    "switchToPlayerView": "Spieleransicht \u2192",
+    "switchToPlayerView": "Spieleransicht →",
     "yourResult": "Dein Ergebnis",
     "yourGuess": "Dein Tipp",
     "accuracy": "Genauigkeit",
@@ -645,5 +645,59 @@
   "introSplashTitle": "Intro-Runde!",
   "introSplashDesc": "Der Song spielt — stoppe ihn, sobald du ihn erkennst! Je schneller du stoppst, desto mehr Punkte.",
   "introSplashWaiting": "Warten auf Host...",
-  "introSplashStart": "▶ Intro-Runde starten"
+  "introSplashStart": "▶ Intro-Runde starten",
+  "wizard": {
+    "skip": "Einrichtung überspringen",
+    "back": "Zurück",
+    "continue": "Weiter",
+    "finish": "Fertig",
+    "startGame": "Erstes Spiel starten",
+    "finishPill": "Einrichtung abschließen",
+    "step1": {
+      "eyebrow": "Schritt 1 · Lautsprecher",
+      "title": "Wo soll die Musik spielen?",
+      "sub": "Wähle einen oder mehrere Smart-Lautsprecher. Wir spielen über den zuerst gewählten.",
+      "hint": "Dein Lautsprecher fehlt?",
+      "hintLink": "Unterstützte Typen ansehen",
+      "empty": "Noch keine Lautsprecher gefunden",
+      "emptyHint": "Music Assistant installieren und aktualisieren"
+    },
+    "step2": {
+      "eyebrow": "Schritt 2 · Musikdienst",
+      "title": "Wer streamt?",
+      "sub": "Wähle den Dienst, der deinen Lautsprecher versorgt. Autorisierung folgt im nächsten Schritt.",
+      "authPrompt": "Beatify autorisieren",
+      "authDetail": "Schließe den Assistenten, autorisiere im Bereich „Musikdienst“ und öffne den Assistenten dann wieder."
+    },
+    "step3": {
+      "eyebrow": "Schritt 3 · Playlist",
+      "title": "Deine erste Playlist.",
+      "sub": "Starte mit einem kuratierten Beatify-Pack. Eigene Playlists kannst du später hinzufügen.",
+      "empty": "Keine Playlists vorhanden"
+    },
+    "step4": {
+      "eyebrow": "Bonus · Extras",
+      "title": "Level dein Spiel auf.",
+      "sub": "Optional. Beatify funktioniert auch ohne.",
+      "lights": {
+        "title": "Party-Licht",
+        "desc": "Synchronisiere deine Hue-Lampen zum Beat. Puls bei Rundenwechsel, Blitz beim Sieger.",
+        "unavailable": "Keine Lampen in Home Assistant gefunden."
+      },
+      "tts": {
+        "title": "Sprachansagen",
+        "desc": "TTS ruft Rundennummern, Sieger und Fun Facts aus.",
+        "unavailable": "Kein TTS-Dienst in Home Assistant registriert."
+      },
+      "tuning": {
+        "title": "Spieleinstellungen",
+        "desc": "Standard: 10 Runden, 45 s, Englisch. Tippe zum Anpassen von Schwierigkeit und Sprache."
+      }
+    },
+    "done": {
+      "badge": "BEREIT ZUM SPIELEN",
+      "tag": "Deine Bühne ist bereit.",
+      "previewLabel": "Vorschau · was Gäste sehen"
+    }
+  }
 }
