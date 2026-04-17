@@ -665,9 +665,7 @@
     "step2": {
       "eyebrow": "Étape 2 · Service musical",
       "title": "Qui diffuse ?",
-      "sub": "Choisis le service qui alimente ton enceinte. L'autorisation suit.",
-      "authPrompt": "Autoriser Beatify",
-      "authDetail": "Ferme l'assistant, autorise dans la section « Service musical », puis rouvre l'assistant."
+      "sub": "Choisis le service qu'utilise ton enceinte. Beatify joue via ce que tu as déjà configuré dans Home Assistant."
     },
     "step3": {
       "eyebrow": "Étape 3 · Playlist",
@@ -676,7 +674,24 @@
       "empty": "Aucune playlist"
     },
     "step4": {
-      "eyebrow": "Bonus · Extras",
+      "eyebrow": "Étape 4 · Mode de jeu",
+      "title": "Comment veux-tu jouer ?",
+      "sub": "Les réglages par défaut conviennent pour la plupart. Ajuste si tu veux.",
+      "difficulty": "Difficulté",
+      "timer": "Temps par manche",
+      "language": "Langue des annonces",
+      "easy": "Facile",
+      "normal": "Normal",
+      "hard": "Difficile"
+    },
+    "done": {
+      "badge": "PRÊT À JOUER",
+      "tag": "Ta scène est prête.",
+      "previewLabel": "Aperçu · ce que verront tes invités"
+    },
+    "goToLobby": "Aller au salon",
+    "step5": {
+      "eyebrow": "Bonus · Ambiance",
       "title": "Fais monter l'ambiance.",
       "sub": "Facultatif. Beatify fonctionne sans.",
       "lights": {
@@ -688,16 +703,7 @@
         "title": "Annonces vocales",
         "desc": "Le TTS annonce le numéro de manche, les gagnants et les anecdotes.",
         "unavailable": "Aucun service TTS enregistré dans Home Assistant."
-      },
-      "tuning": {
-        "title": "Réglages du jeu",
-        "desc": "Par défaut : 10 manches, 45 s, anglais. Touche pour ajuster difficulté et langue."
       }
-    },
-    "done": {
-      "badge": "PRÊT À JOUER",
-      "tag": "Ta scène est prête.",
-      "previewLabel": "Aperçu · ce que verront tes invités"
     }
   }
 }
