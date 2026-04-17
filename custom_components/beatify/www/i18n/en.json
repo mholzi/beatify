@@ -394,7 +394,15 @@
     "accuracy": "Accuracy",
     "points": "Points",
     "kickPlayerTitle": "Remove player?",
-    "kickPlayerConfirm": "Remove {name} from the lobby?"
+    "kickPlayerConfirm": "Remove {name} from the lobby?",
+    "home": {
+      "editSetup": "Edit setup",
+      "startGame": "Start game",
+      "eyebrow": "Ready to host",
+      "party": "party",
+      "qrComingTitle": "Share your QR after Start",
+      "qrComingSub": "Hit Start game to create the room and share a scannable code with guests."
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -670,7 +678,7 @@
     "step3": {
       "eyebrow": "Step 3 · Playlist",
       "title": "Pick your first playlist.",
-      "sub": "Start with a curated Beatify pack. You can mix and add your own from the admin later.",
+      "sub": "Pick one or more curated Beatify packs. Mix genres or decades — you can add more in the admin later.",
       "empty": "No playlists bundled"
     },
     "step4": {
@@ -697,12 +705,23 @@
       "lights": {
         "title": "Party lights",
         "desc": "Sync your Hue lights to the beat. Pulse on round changes, flash on winner.",
-        "unavailable": "No lights found in Home Assistant."
+        "unavailable": "No lights found in Home Assistant.",
+        "pickLabel": "Lights to sync",
+        "intensity": "Intensity",
+        "subtle": "Subtle",
+        "medium": "Medium",
+        "party": "Party",
+        "noneFound": "No lights available"
       },
       "tts": {
         "title": "Voice announcements",
         "desc": "TTS calls out round numbers, winners, and fun facts.",
-        "unavailable": "No TTS service registered in Home Assistant."
+        "unavailable": "No TTS service registered in Home Assistant.",
+        "entityLabel": "TTS service (entity ID)",
+        "entityHint": "Copy from Home Assistant → Developer Tools → States (filter: tts.)",
+        "announce": "Announce",
+        "announceStart": "Game start",
+        "announceWinner": "Round winner"
       }
     }
   }

@@ -157,6 +157,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Expose loadStatus so wizard.js can ask admin to refresh after completion
     window.loadStatus = loadStatus;
 
+    // Home view — shown when setup is complete and no game is active (post-wizard landing)
+    window.BeatifyHome = {
+        enter() {
+            document.body.classList.add('home-mode');
+            const v = document.getElementById('home-view');
+            if (v) v.classList.remove('hidden');
+            this.refresh();
+        },
+        exit() {
+            document.body.classList.remove('home-mode');
+            const v = document.getElementById('home-view');
+            if (v) v.classList.add('hidden');
+        },
+        refresh() {
+            try {
+                const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+                const s = raw ? JSON.parse(raw) : {};
+                const pls = Array.isArray(s.selectedPlaylists) ? s.selectedPlaylists : [];
+                const playlistLabel = pls.length === 0 ? 'no playlist'
+                    : pls.length === 1 ? (pls[0].path || pls[0]).split('/').pop().replace('.json', '').replace(/-/g, ' ')
+                    : `${pls.length} playlists`;
+                const mode = `${s.difficulty || 'normal'} · ${s.duration || 45}s · ${(s.language || 'en').toUpperCase()}`;
+                const meta = `${playlistLabel} · ${mode}`;
+                const metaEl = document.getElementById('home-meta');
+                if (metaEl) metaEl.textContent = meta;
+            } catch (e) { /* ignore */ }
+        },
+        isConfigured() {
+            try {
+                const hasPlayer = !!localStorage.getItem(STORAGE_LAST_PLAYER);
+                const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+                const s = raw ? JSON.parse(raw) : {};
+                const hasPlaylist = Array.isArray(s.selectedPlaylists) && s.selectedPlaylists.length > 0;
+                return hasPlayer && hasPlaylist;
+            } catch (e) { return false; }
+        },
+    };
+    document.getElementById('home-edit-setup')?.addEventListener('click', () => window.BeatifyHome.exit());
+    document.getElementById('home-start-game')?.addEventListener('click', () => {
+        // Defer to the existing startGame flow; it already handles the lobby/QR reveal.
+        startGame();
+    });
+    // Auto-enter home mode if the user is configured and no active game is in progress.
+    // (If a game is active, the existing lobby/playing views take over.)
+    if (window.BeatifyHome.isConfigured() && !currentGame) {
+        window.BeatifyHome.enter();
+    }
+
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
     document.getElementById('start-gameplay-btn')?.addEventListener('click', startGameplay);
@@ -1316,6 +1364,9 @@ function showSetupView() {
 function showLobbyView(gameData) {
     currentView = 'lobby';
     currentGame = gameData;
+
+    // Exit home-mode — the lobby view with QR/players takes over
+    if (window.BeatifyHome) window.BeatifyHome.exit();
 
     // Hide setup sections
     setupSections.forEach(id => {

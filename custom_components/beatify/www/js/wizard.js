@@ -85,12 +85,19 @@ let cachedStatus = null;
 let cachedCapabilities = null;
 let chosenSpeaker = null;
 let chosenProvider = null;
-let chosenPlaylist = null; // single playlist path for v1; admin supports multi-select later
+const chosenPlaylists = new Set(); // paths — multi-select
 // Step 4 (game mode) — default to what admin.js uses when beatify_game_settings is empty
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
 let chosenLanguage = 'en';
 const chosenLevelUps = { lights: false, tts: false };
+// Details the user sets when a level-up is toggled on
+let cachedLights = null; // HA lights from /api/lights
+const chosenLightEntityIds = new Set();
+let chosenLightIntensity = 'medium'; // subtle | medium | party
+let chosenTtsEntityId = '';
+let chosenTtsAnnounceStart = true;
+let chosenTtsAnnounceWinner = true;
 
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
@@ -121,6 +128,37 @@ async function _fetchCapabilities() {
     }
 }
 
+async function _fetchLights() {
+    try {
+        const r = await fetch('/beatify/api/lights');
+        if (!r.ok) return [];
+        const data = await r.json();
+        return (data && data.lights) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+// Hydrate level-up details from the existing admin localStorage shapes
+function _hydrateLevelUpDetails() {
+    try {
+        const rawL = localStorage.getItem('beatify_party_lights');
+        if (rawL) {
+            const s = JSON.parse(rawL);
+            if (Array.isArray(s.lights)) s.lights.forEach((id) => chosenLightEntityIds.add(id));
+            if (s.intensity) chosenLightIntensity = s.intensity;
+        }
+        const rawT = localStorage.getItem('beatify_tts');
+        if (rawT) {
+            const s = JSON.parse(rawT);
+            if (s.entity_id) chosenTtsEntityId = s.entity_id;
+            if (typeof s.announce_game_start === 'boolean') chosenTtsAnnounceStart = s.announce_game_start;
+            if (typeof s.announce_winner === 'boolean') chosenTtsAnnounceWinner = s.announce_winner;
+            if (typeof s.enabled === 'boolean' && s.enabled) chosenLevelUps.tts = true;
+        }
+    } catch (e) { /* ignore */ }
+}
+
 function _setProgress(step) {
     const segs = document.querySelectorAll('#wiz-progress .wiz-seg');
     segs.forEach((seg, i) => {
@@ -144,6 +182,9 @@ function _showFrame(n) {
         else frame.setAttribute('hidden', '');
     });
     currentStep = n;
+    // Done frame has its own big hero wordmark — hide the top-bar one to avoid duplicate logos
+    const root = document.getElementById('wizard-root');
+    if (root) root.classList.toggle('wiz-on-done', n === 6);
     _setProgress(Math.min(n, TOTAL_STEPS));
     _updateCta();
     // Persist wizard state so refresh / revisit resumes at the right step.
@@ -168,8 +209,11 @@ function _updateCta() {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
         nextBtn.disabled = !chosenProvider;
     } else if (currentStep === 3) {
-        nextBtn.textContent = _t('wizard.continue', 'Continue');
-        nextBtn.disabled = !chosenPlaylist;
+        const n = chosenPlaylists.size;
+        nextBtn.textContent = n > 1
+            ? `${_t('wizard.continue', 'Continue')} (${n})`
+            : _t('wizard.continue', 'Continue');
+        nextBtn.disabled = n === 0;
     } else if (currentStep === 4) {
         // Game-mode step: always has valid defaults, Continue is always enabled
         nextBtn.textContent = _t('wizard.continue', 'Continue');
@@ -203,6 +247,11 @@ function _platformLabel(raw) {
     return PLATFORM_LABELS[raw] || raw;
 }
 
+// SVG icon for the speaker-row avatar. Single generic speaker silhouette —
+// the platform name already appears below, no need to disambiguate by icon.
+const SPEAKER_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="15" r="3"/><line x1="12" y1="7" x2="12.01" y2="7"/></svg>`;
+const PLAYLIST_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
+
 function _renderSpeakers() {
     const list = document.getElementById('wiz-speaker-list');
     if (!list) return;
@@ -221,7 +270,7 @@ function _renderSpeakers() {
         .map((p) => {
             const selected = chosenSpeaker === p.entity_id;
             return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${p.entity_id}">
-          <div class="wiz-row-avatar"></div>
+          <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
           <div class="wiz-row-text">
             <div class="wiz-row-name">${p.friendly_name || p.entity_id}</div>
             <div class="wiz-row-sub">${_platformLabel(p.platform) || p.state || ''}</div>
@@ -277,23 +326,26 @@ function _renderPlaylists() {
     list.innerHTML = playlists
         .map((p) => {
             const id = p.path || p.filename || p.name;
-            const selected = chosenPlaylist === id;
+            const selected = chosenPlaylists.has(id);
             const count = p.song_count || p.count || 0;
             const name = p.name || p.filename || id;
             const decade = p.decade || p.tags || '';
-            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-playlist-id="${id}">
-          <div class="wiz-row-avatar"></div>
+            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-playlist-id="${id}" aria-pressed="${selected}">
+          <div class="wiz-row-avatar">${PLAYLIST_ICON}</div>
           <div class="wiz-row-text">
             <div class="wiz-row-name">${name}</div>
             <div class="wiz-row-sub">${decade}</div>
           </div>
           <div class="wiz-row-count">${count}</div>
+          ${selected ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
         </button>`;
         })
         .join('');
     list.querySelectorAll('[data-playlist-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
-            chosenPlaylist = btn.dataset.playlistId;
+            const id = btn.dataset.playlistId;
+            if (chosenPlaylists.has(id)) chosenPlaylists.delete(id);
+            else chosenPlaylists.add(id);
             _renderPlaylists();
             _updateCta();
         });
@@ -351,6 +403,57 @@ function _renderGameMode() {
     });
 }
 
+function _lightsDetailHtml() {
+    const lights = cachedLights || [];
+    const rows = lights.length
+        ? lights.map((l) => {
+              const checked = chosenLightEntityIds.has(l.entity_id) ? 'checked' : '';
+              return `<label class="wiz-detail-check">
+            <input type="checkbox" data-light-id="${l.entity_id}" ${checked}>
+            <span class="wiz-detail-check-name">${l.friendly_name || l.entity_id}</span>
+          </label>`;
+          }).join('')
+        : `<div class="wiz-detail-empty">${_t('wizard.step5.lights.noneFound', 'No lights available')}</div>`;
+    const chip = (id, label) => `<button type="button" class="wiz-chip ${chosenLightIntensity === id ? 'active' : ''}" data-intensity="${id}">${label}</button>`;
+    return `
+        <div class="wiz-detail">
+          <div class="wiz-field">
+            <span class="wiz-field-label">${_t('wizard.step5.lights.pickLabel', 'Lights to sync')}</span>
+            <div class="wiz-detail-checks">${rows}</div>
+          </div>
+          <div class="wiz-field">
+            <span class="wiz-field-label">${_t('wizard.step5.lights.intensity', 'Intensity')}</span>
+            <div class="wiz-chip-group">
+              ${chip('subtle', _t('wizard.step5.lights.subtle', 'Subtle'))}
+              ${chip('medium', _t('wizard.step5.lights.medium', 'Medium'))}
+              ${chip('party', _t('wizard.step5.lights.party', 'Party'))}
+            </div>
+          </div>
+        </div>`;
+}
+
+function _ttsDetailHtml() {
+    const announce = (key, label, val) => `<label class="wiz-detail-check">
+        <input type="checkbox" data-tts-flag="${key}" ${val ? 'checked' : ''}>
+        <span class="wiz-detail-check-name">${label}</span>
+      </label>`;
+    return `
+        <div class="wiz-detail">
+          <div class="wiz-field">
+            <span class="wiz-field-label">${_t('wizard.step5.tts.entityLabel', 'TTS service (entity ID)')}</span>
+            <input type="text" id="wiz-tts-entity" class="wiz-detail-input" placeholder="tts.google_en_com" value="${chosenTtsEntityId}">
+            <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', 'Copy from Home Assistant → Developer Tools → States (filter: tts.)')}</span>
+          </div>
+          <div class="wiz-field">
+            <span class="wiz-field-label">${_t('wizard.step5.tts.announce', 'Announce')}</span>
+            <div class="wiz-detail-checks">
+              ${announce('start', _t('wizard.step5.tts.announceStart', 'Game start'), chosenTtsAnnounceStart)}
+              ${announce('winner', _t('wizard.step5.tts.announceWinner', 'Round winner'), chosenTtsAnnounceWinner)}
+            </div>
+          </div>
+        </div>`;
+}
+
 function _renderLevelUp() {
     const list = document.getElementById('wiz-levelup-list');
     if (!list || !cachedCapabilities) return;
@@ -358,57 +461,121 @@ function _renderLevelUp() {
     const cards = [
         {
             key: 'lights',
-            title: _t('wizard.step4.lights.title', 'Party lights'),
+            title: _t('wizard.step5.lights.title', 'Party lights'),
             desc: caps.has_lights
-                ? _t('wizard.step4.lights.desc', 'Sync your Hue lights to the beat. Pulse on round changes, flash on winner.')
-                : _t('wizard.step4.lights.unavailable', 'No lights found in Home Assistant.'),
+                ? _t('wizard.step5.lights.desc', 'Sync your Hue lights to the beat. Pulse on round changes, flash on winner.')
+                : _t('wizard.step5.lights.unavailable', 'No lights found in Home Assistant.'),
             available: caps.has_lights,
+            detail: _lightsDetailHtml,
         },
         {
             key: 'tts',
-            title: _t('wizard.step4.tts.title', 'Voice announcements'),
+            title: _t('wizard.step5.tts.title', 'Voice announcements'),
             desc: caps.has_tts
-                ? _t('wizard.step4.tts.desc', 'TTS calls out round numbers, winners, and fun facts.')
-                : _t('wizard.step4.tts.unavailable', 'No TTS service registered in Home Assistant.'),
+                ? _t('wizard.step5.tts.desc', 'TTS calls out round numbers, winners, and fun facts.')
+                : _t('wizard.step5.tts.unavailable', 'No TTS service registered in Home Assistant.'),
             available: caps.has_tts,
+            detail: _ttsDetailHtml,
         },
     ];
     list.innerHTML = cards
         .map((card) => {
             const on = chosenLevelUps[card.key] && card.available;
-            return `<button type="button" class="wiz-lvl-card ${on ? 'on' : ''} ${!card.available ? 'unavailable' : ''}" data-levelup="${card.key}" ${!card.available ? 'disabled' : ''}>
-          <div class="wiz-lvl-text">
-            <div class="wiz-lvl-title">${card.title}</div>
-            <div class="wiz-lvl-desc">${card.desc}</div>
+            const disabled = !card.available ? 'aria-disabled="true"' : '';
+            return `<div class="wiz-lvl-card ${on ? 'on' : ''} ${!card.available ? 'unavailable' : ''}" data-levelup="${card.key}" ${disabled}>
+          <div class="wiz-lvl-head" role="button" tabindex="0">
+            <div class="wiz-lvl-text">
+              <div class="wiz-lvl-title">${card.title}</div>
+              <div class="wiz-lvl-desc">${card.desc}</div>
+            </div>
+            <div class="wiz-lvl-toggle"></div>
           </div>
-          <div class="wiz-lvl-toggle"></div>
-        </button>`;
+          ${on ? card.detail() : ''}
+        </div>`;
         })
         .join('');
-    list.querySelectorAll('[data-levelup]').forEach((btn) => {
-        if (btn.disabled) return;
-        btn.addEventListener('click', () => {
-            const key = btn.dataset.levelup;
+
+    // Card toggle — head is the clickable area (not the whole card, so clicks inside the detail panel don't collapse it)
+    list.querySelectorAll('.wiz-lvl-card').forEach((card) => {
+        if (card.getAttribute('aria-disabled')) return;
+        const head = card.querySelector('.wiz-lvl-head');
+        if (!head) return;
+        head.addEventListener('click', () => {
+            const key = card.dataset.levelup;
             chosenLevelUps[key] = !chosenLevelUps[key];
             _renderLevelUp();
         });
     });
+
+    // Light checkboxes + intensity
+    list.querySelectorAll('[data-light-id]').forEach((cb) => {
+        cb.addEventListener('change', () => {
+            const id = cb.dataset.lightId;
+            if (cb.checked) chosenLightEntityIds.add(id);
+            else chosenLightEntityIds.delete(id);
+        });
+    });
+    list.querySelectorAll('[data-intensity]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            chosenLightIntensity = btn.dataset.intensity;
+            _renderLevelUp();
+        });
+    });
+
+    // TTS fields
+    const ttsInput = document.getElementById('wiz-tts-entity');
+    if (ttsInput) {
+        ttsInput.addEventListener('input', () => { chosenTtsEntityId = ttsInput.value.trim(); });
+    }
+    list.querySelectorAll('[data-tts-flag]').forEach((cb) => {
+        cb.addEventListener('change', () => {
+            if (cb.dataset.ttsFlag === 'start') chosenTtsAnnounceStart = cb.checked;
+            else if (cb.dataset.ttsFlag === 'winner') chosenTtsAnnounceWinner = cb.checked;
+        });
+    });
+}
+
+function _persistLevelUpDetails() {
+    try {
+        if (chosenLevelUps.lights) {
+            localStorage.setItem('beatify_party_lights', JSON.stringify({
+                lights: Array.from(chosenLightEntityIds),
+                intensity: chosenLightIntensity,
+            }));
+        }
+        localStorage.setItem('beatify_tts', JSON.stringify({
+            enabled: chosenLevelUps.tts,
+            entity_id: chosenTtsEntityId,
+            announce_game_start: chosenTtsAnnounceStart,
+            announce_winner: chosenTtsAnnounceWinner,
+        }));
+    } catch (e) { /* private mode */ }
 }
 
 function _renderDoneSummary() {
     const el = document.getElementById('wiz-done-summary');
     if (!el) return;
-    const playlistName = _playlistName(chosenPlaylist);
     const speaker = chosenSpeaker ? chosenSpeaker.replace('media_player.', '').replace(/_/g, ' ') : '—';
     const provider = chosenProvider ? (_platformLabel(chosenProvider) || chosenProvider.replace('_', ' ')) : '—';
     const extras = [];
     if (chosenLevelUps.lights) extras.push('lights');
     if (chosenLevelUps.tts) extras.push('voice');
     const atmosphere = extras.length ? extras.join(' + ') : 'none';
+
+    // Playlists: compact single name when one picked, count + preview when many
+    let playlistLabel = '—';
+    if (chosenPlaylists.size === 1) {
+        playlistLabel = _playlistName(Array.from(chosenPlaylists)[0]);
+    } else if (chosenPlaylists.size > 1) {
+        const first = _playlistName(Array.from(chosenPlaylists)[0]);
+        playlistLabel = `${chosenPlaylists.size} picked · ${first} + more`;
+    }
+
     el.innerHTML = `
         <div class="wiz-done-line"><span>Speaker</span><strong>${speaker}</strong></div>
         <div class="wiz-done-line"><span>Service</span><strong>${provider}</strong></div>
-        <div class="wiz-done-line"><span>Playlist</span><strong>${playlistName}</strong></div>
+        <div class="wiz-done-line"><span>Playlist</span><strong>${playlistLabel}</strong></div>
         <div class="wiz-done-line"><span>Mode</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
         <div class="wiz-done-line"><span>Atmosphere</span><strong>${atmosphere}</strong></div>
     `;
@@ -436,9 +603,9 @@ function _persistGameSettings() {
             duration: chosenDuration,
             language: chosenLanguage,
         };
-        if (chosenPlaylist) {
+        if (chosenPlaylists.size > 0) {
             // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
-            merged.selectedPlaylists = [{ path: chosenPlaylist }];
+            merged.selectedPlaylists = Array.from(chosenPlaylists).map((path) => ({ path }));
         }
         localStorage.setItem(LS_GAME_SETTINGS, JSON.stringify(merged));
     } catch (e) { /* private mode */ }
@@ -467,12 +634,15 @@ export async function show(stepOverride) {
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
             if (s.language) chosenLanguage = s.language;
-            if (Array.isArray(s.selectedPlaylists) && s.selectedPlaylists.length) {
-                const first = s.selectedPlaylists[0];
-                chosenPlaylist = typeof first === 'string' ? first : (first.path || null);
+            if (Array.isArray(s.selectedPlaylists)) {
+                s.selectedPlaylists.forEach((entry) => {
+                    const path = typeof entry === 'string' ? entry : entry && entry.path;
+                    if (path) chosenPlaylists.add(path);
+                });
             }
         }
     } catch (e) { /* private mode or malformed JSON */ }
+    _hydrateLevelUpDetails();
     _renderSpeakers();
     _renderProviders();
     _renderPlaylists();
@@ -507,29 +677,31 @@ async function _advance() {
         _persistGameSettings();
     }
     if (currentStep === 4) {
-        // Leaving game-mode → fetch capabilities so Step 5 can gate its toggles
+        // Leaving game-mode → fetch capabilities + lights so Step 5 can render details
         if (!cachedCapabilities) cachedCapabilities = await _fetchCapabilities();
+        if (cachedCapabilities && cachedCapabilities.has_lights && cachedLights === null) {
+            cachedLights = await _fetchLights();
+        }
         _renderLevelUp();
         _showFrame(5);
         return;
     }
     if (currentStep === 5) {
+        _persistLevelUpDetails();
         _renderDoneSummary();
         _showFrame(6);
         return;
     }
     if (currentStep === 6) {
-        // "Go to lobby" — mark done, close wizard, ask admin to reload status
-        // and scroll the user to the game-start area.
+        // "Go to lobby" — mark done, close wizard, flip admin into home-mode
+        // (the lobby landing card with Start Game + Edit setup), then refresh status.
         try { localStorage.setItem(LS_WIZARD_STATE, 'done'); } catch (e) { /* private mode */ }
         hide({ dismissed: false });
         if (typeof window !== 'undefined' && typeof window.loadStatus === 'function') {
             window.loadStatus();
         }
-        // Nudge the user to the Start Game button the admin already renders.
-        const target = document.getElementById('start-game') || document.querySelector('.admin-content');
-        if (target && typeof target.scrollIntoView === 'function') {
-            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (typeof window !== 'undefined' && window.BeatifyHome) {
+            window.BeatifyHome.enter();
         }
         return;
     }

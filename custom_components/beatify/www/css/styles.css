@@ -9211,6 +9211,8 @@ body.wizard-active > .pwa-ios-hint {
     position: relative;
     z-index: 1;
 }
+/* Done frame has a big hero wordmark — hide the small top-bar one to avoid double logo */
+.wiz-on-done .wiz-top .wordmark { visibility: hidden; }
 .wiz-step-count {
     font-family: var(--font-display);
     font-weight: 600;
@@ -9334,6 +9336,13 @@ body.wizard-active > .pwa-ios-hint {
     border-radius: var(--radius-md);
     background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-brand));
     flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    color: var(--color-bg-primary);
+}
+.wiz-row-avatar-icon {
+    width: 20px;
+    height: 20px;
 }
 .wiz-row-text { flex: 1; min-width: 0; }
 .wiz-row-name {
@@ -9606,4 +9615,242 @@ body.wizard-active > .pwa-ios-hint {
     border-color: var(--color-accent-primary);
     color: var(--color-bg-primary);
     box-shadow: var(--glow-primary);
+}
+
+/* Wizard Step 5 — expandable detail panels under level-up toggles */
+.wiz-lvl-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
+.wiz-lvl-head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+    user-select: none;
+}
+.wiz-lvl-card.unavailable .wiz-lvl-head { cursor: not-allowed; }
+.wiz-lvl-head:hover { background: rgba(255,255,255,0.02); }
+.wiz-lvl-card.on .wiz-lvl-head { border-bottom: 1px solid var(--color-border-neon); }
+
+.wiz-detail {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    background: rgba(0,0,0,0.15);
+}
+.wiz-detail-checks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+.wiz-detail-check {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 6px 8px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+.wiz-detail-check:hover { background: rgba(255,255,255,0.03); }
+.wiz-detail-check input[type="checkbox"] {
+    accent-color: var(--color-accent-primary);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+.wiz-detail-check-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-white);
+}
+.wiz-detail-empty {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    padding: var(--space-sm);
+    background: var(--color-dark-surface);
+    border: 1px dashed var(--color-border-neon);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+.wiz-detail-input {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    color: var(--color-text-white);
+    font-family: ui-monospace, monospace;
+    font-size: var(--font-size-sm);
+}
+.wiz-detail-input:focus {
+    outline: none;
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 0 3px rgba(0,245,255,0.15);
+}
+.wiz-field-hint {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-dim);
+    line-height: 1.4;
+}
+
+/* ==========================================
+   Home view (post-wizard lobby landing)
+   ========================================== */
+
+/* When body is in home-mode: show the home-view card, hide only the setup/config sections.
+   Runtime views (#lobby-section, #admin-playing-*, #admin-reveal-*, #admin-end-*) stay
+   untouched — home-mode is exited before any of those show anyway. */
+body.home-mode #media-players,
+body.home-mode #music-service,
+body.home-mode #playlists,
+body.home-mode #my-requests,
+body.home-mode #game-settings,
+body.home-mode #party-lights,
+body.home-mode #tts-settings,
+body.home-mode #ha-entities,
+body.home-mode .admin-content > .admin-actions {
+    display: none !important;
+}
+/* Variant A — QR Hero aesthetic for the home-view.
+   Centered stage, glowing hero card, dual CTA bar. QR itself appears in
+   the real #lobby-section after Start game creates the session. */
+.home-view { display: none; }
+.home-view.hidden { display: none !important; }
+body.home-mode #home-view,
+body.home-mode .home-view {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 120px);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+}
+
+.home-stage {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+}
+.home-stage-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at center, rgba(255, 45, 106, 0.15), transparent 55%),
+        radial-gradient(ellipse at bottom, rgba(0, 245, 255, 0.08), transparent 50%);
+}
+
+.home-eyebrow {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary);
+}
+
+.home-headline {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-4xl);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-shadow: 0 0 40px rgba(255, 45, 106, 0.35);
+}
+.home-headline-sub {
+    display: block;
+    font-weight: 600;
+    font-size: var(--font-size-xl);
+    letter-spacing: 0.02em;
+    text-shadow: none;
+    color: var(--color-text-white);
+    margin-top: 4px;
+}
+
+/* Hero card — visual placeholder for the QR that appears after Start */
+.home-hero-card {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-lg);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-accent-primary);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 0 32px rgba(255, 45, 106, 0.22);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    max-width: 280px;
+    width: 100%;
+}
+.home-hero-glyph {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 12px rgba(255, 45, 106, 0.6);
+}
+.home-hero-glyph svg { width: 100%; height: 100%; }
+.home-hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-white);
+    letter-spacing: -0.01em;
+}
+.home-hero-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    line-height: 1.5;
+    max-width: 260px;
+}
+
+.home-meta {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+/* Sticky CTA bar at the bottom of the home card */
+.home-cta-bar {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--color-border-neon);
+}
+.home-cta-edit {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+}
+.home-cta-start {
+    flex: 1;
+    padding: var(--space-md);
+    font-size: var(--font-size-base);
+    box-shadow: var(--glow-primary), 0 0 40px rgba(255, 45, 106, 0.25);
 }
