@@ -665,18 +665,33 @@
     "step2": {
       "eyebrow": "Step 2 · Music service",
       "title": "Who's streaming?",
-      "sub": "Pick the service that powers your speaker. You'll authorize Beatify next.",
-      "authPrompt": "Authorize Beatify",
-      "authDetail": "Close this wizard, authorize in the Music Service section, then re-open the wizard to continue."
+      "sub": "Pick the service your speaker uses. Beatify plays songs through whatever you already have configured in Home Assistant."
     },
     "step3": {
       "eyebrow": "Step 3 · Playlist",
-      "title": "Your first playlist.",
-      "sub": "Start with a curated Beatify pack. You can add your own later.",
+      "title": "Pick your first playlist.",
+      "sub": "Start with a curated Beatify pack. You can mix and add your own from the admin later.",
       "empty": "No playlists bundled"
     },
     "step4": {
-      "eyebrow": "Bonus · Power-ups",
+      "eyebrow": "Step 4 · Game mode",
+      "title": "How do you want to play?",
+      "sub": "Defaults work for most parties. Tweak if you want.",
+      "difficulty": "Difficulty",
+      "timer": "Time per round",
+      "language": "Announcement language",
+      "easy": "Easy",
+      "normal": "Normal",
+      "hard": "Hard"
+    },
+    "done": {
+      "badge": "READY TO PLAY",
+      "tag": "Your stage is ready.",
+      "previewLabel": "Preview · what guests will see"
+    },
+    "goToLobby": "Go to lobby",
+    "step5": {
+      "eyebrow": "Bonus · Atmosphere",
       "title": "Level up your party.",
       "sub": "Optional. Skip all of this and Beatify still works.",
       "lights": {
@@ -688,16 +703,7 @@
         "title": "Voice announcements",
         "desc": "TTS calls out round numbers, winners, and fun facts.",
         "unavailable": "No TTS service registered in Home Assistant."
-      },
-      "tuning": {
-        "title": "Game tuning",
-        "desc": "Default: 10 rounds, 45s, English. Tap to customize difficulty and language in admin settings."
       }
-    },
-    "done": {
-      "badge": "READY TO PLAY",
-      "tag": "Your stage is ready.",
-      "previewLabel": "Preview · what guests will see"
     }
   }
 }

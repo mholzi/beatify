@@ -32,6 +32,8 @@
             <div class="wiz-seg" data-step="1"><div class="wiz-seg-inner"></div></div>
             <div class="wiz-seg" data-step="2"><div class="wiz-seg-inner"></div></div>
             <div class="wiz-seg" data-step="3"><div class="wiz-seg-inner"></div></div>
+            <div class="wiz-seg" data-step="4"><div class="wiz-seg-inner"></div></div>
+            <div class="wiz-seg" data-step="5"><div class="wiz-seg-inner"></div></div>
         </div>
 
         <!-- Frame 1: speakers -->
@@ -50,9 +52,8 @@
             <div class="wiz-body">
                 <div class="wiz-eyebrow" data-i18n="wizard.step2.eyebrow">Step 2 · Music service</div>
                 <h2 class="wiz-title" data-i18n="wizard.step2.title">Who's streaming?</h2>
-                <p class="wiz-sub" data-i18n="wizard.step2.sub">Pick the service that powers your speaker. You'll authorize Beatify next.</p>
+                <p class="wiz-sub" data-i18n="wizard.step2.sub">Pick the service your speaker uses. Beatify plays songs through whatever you already have configured in Home Assistant.</p>
                 <div id="wiz-provider-list" class="wiz-provider-grid"></div>
-                <div id="wiz-oauth-status" class="wiz-oauth-status hidden"></div>
             </div>
         </section>
 
@@ -60,24 +61,45 @@
         <section class="wiz-frame" data-frame="3" hidden>
             <div class="wiz-body">
                 <div class="wiz-eyebrow" data-i18n="wizard.step3.eyebrow">Step 3 · Playlist</div>
-                <h2 class="wiz-title" data-i18n="wizard.step3.title">Your first playlist.</h2>
-                <p class="wiz-sub" data-i18n="wizard.step3.sub">Start with a curated Beatify pack. You can add your own later.</p>
+                <h2 class="wiz-title" data-i18n="wizard.step3.title">Pick your first playlist.</h2>
+                <p class="wiz-sub" data-i18n="wizard.step3.sub">Start with a curated Beatify pack. You can mix and add your own from the admin later.</p>
                 <div id="wiz-playlist-list" class="wiz-list"></div>
             </div>
         </section>
 
-        <!-- Frame 4: level up (optional) -->
+        <!-- Frame 4: game mode -->
         <section class="wiz-frame" data-frame="4" hidden>
             <div class="wiz-body">
-                <div class="wiz-eyebrow" data-i18n="wizard.step4.eyebrow">Bonus · Power-ups</div>
-                <h2 class="wiz-title" data-i18n="wizard.step4.title">Level up your party.</h2>
-                <p class="wiz-sub" data-i18n="wizard.step4.sub">Optional. Skip all of this and Beatify still works.</p>
+                <div class="wiz-eyebrow" data-i18n="wizard.step4.eyebrow">Step 4 · Game mode</div>
+                <h2 class="wiz-title" data-i18n="wizard.step4.title">How do you want to play?</h2>
+                <p class="wiz-sub" data-i18n="wizard.step4.sub">Defaults work for most parties. Tweak if you want.</p>
+                <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.difficulty">Difficulty</label>
+                    <div id="wiz-difficulty" class="wiz-chip-group"></div>
+                </div>
+                <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.timer">Time per round</label>
+                    <div id="wiz-timer" class="wiz-chip-group"></div>
+                </div>
+                <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.language">Announcement language</label>
+                    <div id="wiz-language" class="wiz-chip-group"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frame 5: level up (optional) -->
+        <section class="wiz-frame" data-frame="5" hidden>
+            <div class="wiz-body">
+                <div class="wiz-eyebrow" data-i18n="wizard.step5.eyebrow">Bonus · Atmosphere</div>
+                <h2 class="wiz-title" data-i18n="wizard.step5.title">Level up your party.</h2>
+                <p class="wiz-sub" data-i18n="wizard.step5.sub">Optional. Skip all of this and Beatify still works.</p>
                 <div id="wiz-levelup-list" class="wiz-list"></div>
             </div>
         </section>
 
-        <!-- Frame 5: done -->
-        <section class="wiz-frame" data-frame="5" hidden>
+        <!-- Frame 6: done -->
+        <section class="wiz-frame" data-frame="6" hidden>
             <div class="wiz-done">
                 <div class="wiz-done-badge" data-i18n="wizard.done.badge">READY TO PLAY</div>
                 <div class="wiz-done-word wordmark"><span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span></div>

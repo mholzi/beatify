@@ -34,6 +34,7 @@ export function resumeAtStep(localStorage) {
     if (state === 'step2') return 2;
     if (state === 'step3') return 3;
     if (state === 'step4') return 4;
+    if (state === 'step5') return 5;
 
     // Otherwise infer from the admin's own signals
     if (!_safeGet(localStorage, LS_SELECTED_PLAYER)) return 1;
@@ -84,8 +85,14 @@ let cachedStatus = null;
 let cachedCapabilities = null;
 let chosenSpeaker = null;
 let chosenProvider = null;
-let chosenPlaylist = null;
-const chosenLevelUps = { lights: false, tts: false, tuning: false };
+let chosenPlaylist = null; // single playlist path for v1; admin supports multi-select later
+// Step 4 (game mode) — default to what admin.js uses when beatify_game_settings is empty
+let chosenDifficulty = 'normal';
+let chosenDuration = 45;
+let chosenLanguage = 'en';
+const chosenLevelUps = { lights: false, tts: false };
+
+const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
 function _t(key, fallback) {
     if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.translate === 'function') {
@@ -124,8 +131,8 @@ function _setProgress(step) {
     });
     const label = document.getElementById('wiz-step-count');
     if (label) {
-        if (step <= 3) label.textContent = `Step ${step} of 3`;
-        else if (step === 4) label.textContent = 'Optional';
+        if (step <= 4) label.textContent = `Step ${step} of ${TOTAL_STEPS}`;
+        else if (step === 5) label.textContent = 'Optional';
         else label.textContent = 'All set';
     }
 }
@@ -137,11 +144,11 @@ function _showFrame(n) {
         else frame.setAttribute('hidden', '');
     });
     currentStep = n;
-    _setProgress(Math.min(n, 3));
+    _setProgress(Math.min(n, TOTAL_STEPS));
     _updateCta();
     // Persist wizard state so refresh / revisit resumes at the right step.
-    // Skip persisting step 5 (done) here — _advance() writes the final 'done' state.
-    if (n >= 1 && n <= 4) {
+    // Skip step 6 (done) here — _advance() writes the final 'done' state.
+    if (n >= 1 && n <= 5) {
         try { localStorage.setItem(LS_WIZARD_STATE, `step${n}`); } catch (e) { /* private mode */ }
     }
 }
@@ -152,7 +159,7 @@ function _updateCta() {
     const skipBtn = document.getElementById('wiz-skip');
     if (!nextBtn || !backBtn) return;
 
-    backBtn.style.display = currentStep > 1 && currentStep < 5 ? '' : 'none';
+    backBtn.style.display = currentStep > 1 && currentStep < 6 ? '' : 'none';
 
     if (currentStep === 1) {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
@@ -164,19 +171,37 @@ function _updateCta() {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
         nextBtn.disabled = !chosenPlaylist;
     } else if (currentStep === 4) {
-        nextBtn.textContent = _t('wizard.finish', 'Finish');
+        // Game-mode step: always has valid defaults, Continue is always enabled
+        nextBtn.textContent = _t('wizard.continue', 'Continue');
         nextBtn.disabled = false;
     } else if (currentStep === 5) {
-        nextBtn.textContent = _t('wizard.startGame', 'Start first game');
+        nextBtn.textContent = _t('wizard.finish', 'Finish');
+        nextBtn.disabled = false;
+    } else if (currentStep === 6) {
+        nextBtn.textContent = _t('wizard.goToLobby', 'Go to lobby');
         nextBtn.disabled = false;
     }
 
-    if (skipBtn) skipBtn.style.display = currentStep < 5 ? '' : 'none';
+    if (skipBtn) skipBtn.style.display = currentStep < 6 ? '' : 'none';
 }
 
 // ------------------------------------------------------------------
 // Step renderers
 // ------------------------------------------------------------------
+
+// Match admin.js:126 PLATFORM_LABELS so the wizard shows "Sonos" / "Music Assistant"
+// instead of the raw lowercase HA platform slug.
+const PLATFORM_LABELS = {
+    music_assistant: 'Music Assistant',
+    sonos: 'Sonos',
+    alexa_media: 'Alexa',
+    alexa: 'Alexa',
+};
+
+function _platformLabel(raw) {
+    if (!raw) return '';
+    return PLATFORM_LABELS[raw] || raw;
+}
 
 function _renderSpeakers() {
     const list = document.getElementById('wiz-speaker-list');
@@ -199,7 +224,7 @@ function _renderSpeakers() {
           <div class="wiz-row-avatar"></div>
           <div class="wiz-row-text">
             <div class="wiz-row-name">${p.friendly_name || p.entity_id}</div>
-            <div class="wiz-row-sub">${p.platform || p.state || ''}</div>
+            <div class="wiz-row-sub">${_platformLabel(p.platform) || p.state || ''}</div>
           </div>
           ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
         </button>`;
@@ -234,14 +259,6 @@ function _renderProviders() {
             chosenProvider = btn.dataset.provider;
             _renderProviders();
             _updateCta();
-            const status = document.getElementById('wiz-oauth-status');
-            if (status) {
-                status.classList.remove('hidden');
-                status.innerHTML = `<strong>${_t('wizard.step2.authPrompt', 'Authorize Beatify')}</strong><br>${_t(
-                    'wizard.step2.authDetail',
-                    'Close this wizard, authorize in the Music Service section, then re-open the wizard to continue.'
-                )}`;
-            }
         });
     });
 }
@@ -261,12 +278,16 @@ function _renderPlaylists() {
         .map((p) => {
             const id = p.path || p.filename || p.name;
             const selected = chosenPlaylist === id;
+            const count = p.song_count || p.count || 0;
+            const name = p.name || p.filename || id;
+            const decade = p.decade || p.tags || '';
             return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-playlist-id="${id}">
           <div class="wiz-row-avatar"></div>
           <div class="wiz-row-text">
-            <div class="wiz-row-name">${p.name || p.filename}</div>
-            <div class="wiz-row-sub">${(p.song_count || p.count || 0)} songs</div>
+            <div class="wiz-row-name">${name}</div>
+            <div class="wiz-row-sub">${decade}</div>
           </div>
+          <div class="wiz-row-count">${count}</div>
         </button>`;
         })
         .join('');
@@ -276,6 +297,57 @@ function _renderPlaylists() {
             _renderPlaylists();
             _updateCta();
         });
+    });
+}
+
+const DIFFICULTIES = [
+    { id: 'easy', labelKey: 'wizard.step3.easy', labelFallback: 'Easy' },
+    { id: 'normal', labelKey: 'wizard.step3.normal', labelFallback: 'Normal' },
+    { id: 'hard', labelKey: 'wizard.step3.hard', labelFallback: 'Hard' },
+];
+const DURATIONS = [15, 30, 45, 60]; // seconds per round
+const LANGUAGES = [
+    { id: 'en', label: 'English' },
+    { id: 'de', label: 'Deutsch' },
+    { id: 'es', label: 'Español' },
+    { id: 'fr', label: 'Français' },
+    { id: 'nl', label: 'Nederlands' },
+];
+
+function _renderChipGroup(elId, items, active, onPick) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.innerHTML = items
+        .map((item) => {
+            const id = typeof item === 'object' ? item.id : item;
+            const label = typeof item === 'object'
+                ? (item.labelKey ? _t(item.labelKey, item.labelFallback) : item.label)
+                : `${item}s`;
+            const isActive = id === active;
+            return `<button type="button" class="wiz-chip ${isActive ? 'active' : ''}" data-value="${id}">${label}</button>`;
+        })
+        .join('');
+    el.querySelectorAll('.wiz-chip').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const raw = btn.dataset.value;
+            // Duration is numeric
+            onPick(items[0] && typeof items[0] === 'number' ? parseInt(raw, 10) : raw);
+        });
+    });
+}
+
+function _renderGameMode() {
+    _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
+        chosenDifficulty = val;
+        _renderGameMode();
+    });
+    _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
+        chosenDuration = val;
+        _renderGameMode();
+    });
+    _renderChipGroup('wiz-language', LANGUAGES, chosenLanguage, (val) => {
+        chosenLanguage = val;
+        _renderGameMode();
     });
 }
 
@@ -299,12 +371,6 @@ function _renderLevelUp() {
                 ? _t('wizard.step4.tts.desc', 'TTS calls out round numbers, winners, and fun facts.')
                 : _t('wizard.step4.tts.unavailable', 'No TTS service registered in Home Assistant.'),
             available: caps.has_tts,
-        },
-        {
-            key: 'tuning',
-            title: _t('wizard.step4.tuning.title', 'Game tuning'),
-            desc: _t('wizard.step4.tuning.desc', 'Default: 10 rounds, 45s, English. Tap to customize difficulty and language in admin settings.'),
-            available: true,
         },
     ];
     list.innerHTML = cards
@@ -332,15 +398,50 @@ function _renderLevelUp() {
 function _renderDoneSummary() {
     const el = document.getElementById('wiz-done-summary');
     if (!el) return;
-    const parts = [];
-    if (chosenSpeaker) parts.push(chosenSpeaker.replace('media_player.', ''));
-    if (chosenProvider) parts.push(chosenProvider.replace('_', ' '));
-    if (chosenPlaylist) parts.push(chosenPlaylist.split('/').pop().replace('.json', ''));
+    const playlistName = _playlistName(chosenPlaylist);
+    const speaker = chosenSpeaker ? chosenSpeaker.replace('media_player.', '').replace(/_/g, ' ') : '—';
+    const provider = chosenProvider ? (_platformLabel(chosenProvider) || chosenProvider.replace('_', ' ')) : '—';
     const extras = [];
     if (chosenLevelUps.lights) extras.push('lights');
     if (chosenLevelUps.tts) extras.push('voice');
-    if (extras.length) parts.push(extras.join(' + ') + ' on');
-    el.textContent = parts.join(' · ') + '. Scan a QR code, start playing.';
+    const atmosphere = extras.length ? extras.join(' + ') : 'none';
+    el.innerHTML = `
+        <div class="wiz-done-line"><span>Speaker</span><strong>${speaker}</strong></div>
+        <div class="wiz-done-line"><span>Service</span><strong>${provider}</strong></div>
+        <div class="wiz-done-line"><span>Playlist</span><strong>${playlistName}</strong></div>
+        <div class="wiz-done-line"><span>Mode</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
+        <div class="wiz-done-line"><span>Atmosphere</span><strong>${atmosphere}</strong></div>
+    `;
+}
+
+function _playlistName(id) {
+    if (!id) return '—';
+    const playlists = (cachedStatus && cachedStatus.playlists) || [];
+    const match = playlists.find((p) => (p.path || p.filename || p.name) === id);
+    if (match) return match.name || match.filename || id;
+    // Fallback: strip path + .json
+    return id.split('/').pop().replace('.json', '').replace(/-/g, ' ');
+}
+
+// Merge wizard choices into beatify_game_settings so admin.js picks them up on load.
+// Preserves existing keys (artistChallenge, introMode, closestWinsMode) the wizard doesn't touch.
+function _persistGameSettings() {
+    try {
+        const raw = localStorage.getItem(LS_GAME_SETTINGS);
+        const existing = raw ? JSON.parse(raw) : {};
+        const merged = {
+            ...existing,
+            provider: chosenProvider || existing.provider,
+            difficulty: chosenDifficulty,
+            duration: chosenDuration,
+            language: chosenLanguage,
+        };
+        if (chosenPlaylist) {
+            // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
+            merged.selectedPlaylists = [{ path: chosenPlaylist }];
+        }
+        localStorage.setItem(LS_GAME_SETTINGS, JSON.stringify(merged));
+    } catch (e) { /* private mode */ }
 }
 
 // ------------------------------------------------------------------
@@ -363,11 +464,19 @@ export async function show(stepOverride) {
         if (rawSettings) {
             const s = JSON.parse(rawSettings);
             if (s.provider) chosenProvider = s.provider;
+            if (s.difficulty) chosenDifficulty = s.difficulty;
+            if (s.duration) chosenDuration = s.duration;
+            if (s.language) chosenLanguage = s.language;
+            if (Array.isArray(s.selectedPlaylists) && s.selectedPlaylists.length) {
+                const first = s.selectedPlaylists[0];
+                chosenPlaylist = typeof first === 'string' ? first : (first.path || null);
+            }
         }
     } catch (e) { /* private mode or malformed JSON */ }
     _renderSpeakers();
     _renderProviders();
     _renderPlaylists();
+    _renderGameMode();
     _showFrame(start);
 }
 
@@ -392,22 +501,35 @@ function _updatePill() {
 }
 
 async function _advance() {
-    if (currentStep === 3) {
-        if (!cachedCapabilities) cachedCapabilities = await _fetchCapabilities();
-        _renderLevelUp();
-        _showFrame(4);
-        return;
+    // Persist on every advance past the config steps so admin's next read of
+    // beatify_game_settings reflects every wizard choice.
+    if (currentStep === 2 || currentStep === 3 || currentStep === 4) {
+        _persistGameSettings();
     }
     if (currentStep === 4) {
-        _renderDoneSummary();
+        // Leaving game-mode → fetch capabilities so Step 5 can gate its toggles
+        if (!cachedCapabilities) cachedCapabilities = await _fetchCapabilities();
+        _renderLevelUp();
         _showFrame(5);
         return;
     }
     if (currentStep === 5) {
+        _renderDoneSummary();
+        _showFrame(6);
+        return;
+    }
+    if (currentStep === 6) {
+        // "Go to lobby" — mark done, close wizard, ask admin to reload status
+        // and scroll the user to the game-start area.
         try { localStorage.setItem(LS_WIZARD_STATE, 'done'); } catch (e) { /* private mode */ }
         hide({ dismissed: false });
         if (typeof window !== 'undefined' && typeof window.loadStatus === 'function') {
             window.loadStatus();
+        }
+        // Nudge the user to the Start Game button the admin already renders.
+        const target = document.getElementById('start-game') || document.querySelector('.admin-content');
+        if (target && typeof target.scrollIntoView === 'function') {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
         return;
     }

@@ -9384,15 +9384,6 @@ body.wizard-active > .pwa-ios-hint {
     border-color: var(--color-success-neon);
     background: rgba(57, 255, 20, 0.1);
 }
-.wiz-oauth-status {
-    padding: var(--space-md);
-    background: var(--color-dark-surface);
-    border: 1px solid var(--color-border-neon);
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-neon-muted);
-}
-.wiz-oauth-status.hidden { display: none; }
 
 /* Level-up cards (Step 4) */
 .wiz-lvl-card {
@@ -9576,4 +9567,43 @@ body.wizard-active > .pwa-ios-hint {
         animation: none !important;
         transition: none !important;
     }
+}
+
+/* Wizard Step 3 — game-mode form fields */
+.wiz-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+.wiz-field-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+.wiz-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+.wiz-chip {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-white);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.wiz-chip:hover { background: var(--color-dark-surface-hover); }
+.wiz-chip.active {
+    background: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    box-shadow: var(--glow-primary);
 }

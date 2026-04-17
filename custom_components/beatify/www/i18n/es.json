@@ -665,9 +665,7 @@
     "step2": {
       "eyebrow": "Paso 2 · Servicio de música",
       "title": "¿Quién transmite?",
-      "sub": "Elige el servicio que alimenta tu altavoz. Autorizarás Beatify a continuación.",
-      "authPrompt": "Autorizar Beatify",
-      "authDetail": "Cierra el asistente, autoriza en la sección „Servicio de música“ y vuelve a abrir el asistente."
+      "sub": "Elige el servicio que usa tu altavoz. Beatify reproduce a través de lo que ya tienes configurado en Home Assistant."
     },
     "step3": {
       "eyebrow": "Paso 3 · Lista de reproducción",
@@ -676,7 +674,24 @@
       "empty": "Sin listas disponibles"
     },
     "step4": {
-      "eyebrow": "Extra · Potenciadores",
+      "eyebrow": "Paso 4 · Modo de juego",
+      "title": "¿Cómo quieres jugar?",
+      "sub": "Los valores por defecto funcionan para la mayoría. Ajusta si quieres.",
+      "difficulty": "Dificultad",
+      "timer": "Tiempo por ronda",
+      "language": "Idioma de anuncios",
+      "easy": "Fácil",
+      "normal": "Normal",
+      "hard": "Difícil"
+    },
+    "done": {
+      "badge": "LISTO PARA JUGAR",
+      "tag": "Tu escenario está listo.",
+      "previewLabel": "Vista previa · lo que verán tus invitados"
+    },
+    "goToLobby": "Ir al vestíbulo",
+    "step5": {
+      "eyebrow": "Extra · Ambiente",
       "title": "Sube de nivel tu fiesta.",
       "sub": "Opcional. Beatify funciona sin esto.",
       "lights": {
@@ -688,16 +703,7 @@
         "title": "Anuncios por voz",
         "desc": "TTS anuncia número de ronda, ganadores y datos curiosos.",
         "unavailable": "No hay servicio TTS registrado en Home Assistant."
-      },
-      "tuning": {
-        "title": "Ajustes del juego",
-        "desc": "Por defecto: 10 rondas, 45 s, inglés. Toca para ajustar dificultad e idioma."
       }
-    },
-    "done": {
-      "badge": "LISTO PARA JUGAR",
-      "tag": "Tu escenario está listo.",
-      "previewLabel": "Vista previa · lo que verán tus invitados"
     }
   }
 }

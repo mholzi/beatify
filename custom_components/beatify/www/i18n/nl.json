@@ -665,9 +665,7 @@
     "step2": {
       "eyebrow": "Stap 2 · Muziekdienst",
       "title": "Wie streamt?",
-      "sub": "Kies de dienst die jouw luidspreker voedt. Autoriseer Beatify in de volgende stap.",
-      "authPrompt": "Beatify autoriseren",
-      "authDetail": "Sluit de assistent, autoriseer in de sectie „Muziekdienst“ en open de assistent opnieuw."
+      "sub": "Kies de dienst die je luidspreker gebruikt. Beatify speelt via wat je al in Home Assistant hebt ingesteld."
     },
     "step3": {
       "eyebrow": "Stap 3 · Afspeellijst",
@@ -676,7 +674,24 @@
       "empty": "Geen afspeellijsten"
     },
     "step4": {
-      "eyebrow": "Bonus · Extra's",
+      "eyebrow": "Stap 4 · Spelmodus",
+      "title": "Hoe wil je spelen?",
+      "sub": "Standaardinstellingen werken voor de meeste feesten. Pas aan indien gewenst.",
+      "difficulty": "Moeilijkheid",
+      "timer": "Tijd per ronde",
+      "language": "Aankondigingstaal",
+      "easy": "Makkelijk",
+      "normal": "Normaal",
+      "hard": "Moeilijk"
+    },
+    "done": {
+      "badge": "KLAAR OM TE SPELEN",
+      "tag": "Je podium is klaar.",
+      "previewLabel": "Voorvertoning · wat gasten zien"
+    },
+    "goToLobby": "Naar de lobby",
+    "step5": {
+      "eyebrow": "Bonus · Sfeer",
       "title": "Til je feest naar een hoger niveau.",
       "sub": "Optioneel. Beatify werkt ook zonder.",
       "lights": {
@@ -688,16 +703,7 @@
         "title": "Gesproken aankondigingen",
         "desc": "TTS roept rondenummers, winnaars en weetjes uit.",
         "unavailable": "Geen TTS-service geregistreerd in Home Assistant."
-      },
-      "tuning": {
-        "title": "Speelinstellingen",
-        "desc": "Standaard: 10 rondes, 45 s, Engels. Tik om moeilijkheid en taal aan te passen."
       }
-    },
-    "done": {
-      "badge": "KLAAR OM TE SPELEN",
-      "tag": "Je podium is klaar.",
-      "previewLabel": "Voorvertoning · wat gasten zien"
     }
   }
 }
