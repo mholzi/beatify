@@ -3335,6 +3335,14 @@ function handleAdminStateUpdate(data) {
     if (data.phase && data.phase !== 'LOBBY' && window.BeatifyHome) {
         window.BeatifyHome.exit();
     }
+    // Symmetric re-entry: rematch creates a new LOBBY after END. home-mode
+    // was exited on LOBBY → PLAYING, so if we're coming back to LOBBY (e.g.
+    // Revanche), restore it so the admin lands back on the home-view (QR +
+    // player chips) instead of the legacy #lobby-section.
+    if (data.phase === 'LOBBY' && window.BeatifyHome &&
+        !document.body.classList.contains('home-mode')) {
+        window.BeatifyHome.enter();
+    }
 
     switch (data.phase) {
         case 'LOBBY':

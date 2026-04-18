@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc24] - 2026-04-18
+
+### Fixed
+- **Revanche landed on the legacy admin lobby instead of the home-view.** The LOBBY → PLAYING transition calls `BeatifyHome.exit()` to drop `home-mode`, but there was no symmetric re-entry when a rematch created a new LOBBY. `showLobbyView`'s home-mode gate therefore failed and rendered `#lobby-section` (the pre-rc12 inline form) instead of the home-view. `handleAdminStateUpdate` now calls `BeatifyHome.enter()` whenever state comes back as LOBBY and `home-mode` isn't set — so Revanche drops the admin back on the QR + player chips, matching the original post-wizard landing. Restart still reopens the wizard (intentional: Restart = fresh incl. new playlist selection).
+- **Wizard Step 4 difficulty chips didn't translate.** `DIFFICULTIES` in `wizard.js` pointed its labels at `wizard.step3.easy/normal/hard` — but difficulty is a Step 4 feature and those keys only exist under `wizard.step4` in all 5 locales. Non-English users always saw the English fallbacks ("Easy / Normal / Hard"). One-line fix: `step3` → `step4`.
+
+### Changed
+- **"Join as player" CTA oversized.** Vertical padding `md` → `lg`, font-size `base` → `xl` + weight 700, radius `xl`, glow pushed 40 → 48 px at 30% alpha, icon 18 → 26 px with thicker stroke. The single most important action on the home-view now reads as such.
+
 ## [3.2.0-rc23] - 2026-04-18
 
 ### Changed

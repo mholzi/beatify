@@ -9963,17 +9963,26 @@ body.home-mode .home-view {
 .home-cta-start.btn-ghost { box-shadow: none; flex: 0 0 auto; }
 
 /* Prominent Join-as-player CTA — lives above the Back/Start row inside the
-   home-stage column. Full-width so the admin's next step is unmissable. */
+   home-stage column. Full-width + oversized so the admin's next step is
+   unmissable (it's the single most important action on the home-view). */
 .home-cta-join {
     width: 100%;
     margin-top: var(--space-md);
-    padding: var(--space-md);
-    font-size: var(--font-size-base);
-    box-shadow: var(--glow-primary), 0 0 40px rgba(255, 45, 106, 0.25);
+    padding: var(--space-lg) var(--space-md);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glow-primary), 0 0 48px rgba(255, 45, 106, 0.3);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
+}
+.home-cta-join svg {
+    width: 26px;
+    height: 26px;
+    stroke-width: 2.25;
 }
 .home-cta-join.hidden { display: none; }
 
