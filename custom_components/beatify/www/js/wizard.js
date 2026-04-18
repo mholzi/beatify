@@ -356,9 +356,9 @@ function _renderPlaylists() {
 }
 
 const DIFFICULTIES = [
-    { id: 'easy', labelKey: 'wizard.step3.easy', labelFallback: 'Easy' },
-    { id: 'normal', labelKey: 'wizard.step3.normal', labelFallback: 'Normal' },
-    { id: 'hard', labelKey: 'wizard.step3.hard', labelFallback: 'Hard' },
+    { id: 'easy', labelKey: 'wizard.step4.easy', labelFallback: 'Easy' },
+    { id: 'normal', labelKey: 'wizard.step4.normal', labelFallback: 'Normal' },
+    { id: 'hard', labelKey: 'wizard.step4.hard', labelFallback: 'Hard' },
 ];
 
 // Mirrors DIFFICULTY_SCORING in custom_components/beatify/const.py — keep in sync.
