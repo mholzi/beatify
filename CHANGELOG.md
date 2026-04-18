@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc26] - 2026-04-18
+
+### Fixed
+- **CRITICAL: browsers were still running rc21 JavaScript.** Every release since rc22 (the "Join as player → No active game found" fix, auto-switch to player view, admin chip, Revanche returning to home-view, legacy lobby removal) shipped source-only changes — but three layers conspired to freeze the browser on rc21:
+  1. `admin.min.js` hadn't been regenerated since Apr 18 12:56, so the bundle the browser actually loads was pre-rc22. Source-to-minified gap was 4 rc's wide.
+  2. `<script src="…admin.min.js?v=3.2.0-rc21">` — the cache-buster query string in `admin.html` hadn't been bumped either, so even after the file changed, browsers kept the cached version.
+  3. `sw.js` `CACHE_VERSION = 'beatify-v3.2.0-rc21'` — the service worker was also frozen, serving old assets from its own cache and never invalidating.
+  Regenerated `admin.min.js` and `styles.min.css` from current sources, bumped every `?v=` query in `admin.html` to rc26, and bumped `CACHE_VERSION` to `beatify-v3.2.0-rc26`. Users will now actually pick up the rc22-rc25 fixes on their next load.
+- **`<strong>` tag rendered literally in the "Request new playlist" note.** `admin.playlistCriteria` embedded raw HTML, but `initPageTranslations()` uses `textContent` so the markup showed as plain text ("&lt;strong&gt;Hinweis:&lt;/strong&gt; …"). Split into `playlistCriteriaLabel` + `playlistCriteriaBody` across de/en/es/fr/nl and wrapped in real `<strong>` + `<span>` elements in `admin.html`.
+
 ## [3.2.0-rc25] - 2026-04-18
 
 ### Removed
