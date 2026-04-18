@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc21] - 2026-04-18
+
+### Fixed
+- **Playing-phase year + fun-fact spoiler for admin-players.** The guard in `showAdminPlayingView` only checked the cached `isPlaying` flag, which is briefly `false` on WS reconnect or before `join_ack` races a `state` broadcast. During that window the admin-only year (`📅 1984`) and fun fact rendered for the current round while the countdown was still ticking. Now the guard also inspects the incoming player list — if anyone is flagged `is_admin`, the spoiler is hidden regardless of the cached flag.
+- **Missing `reveal.soClose` i18n key.** The reveal emotion summary ("avg guess within 3 years") rendered the literal key `reveal.soClose` instead of the localized string. Added to all 5 locales: So close! / So knapp! / ¡Muy cerca! / Si près ! / Heel dichtbij!.
+- **Version drift in admin footer.** `server/base.py` `_VERSION` was pinned at `3.2.0-rc8` while `manifest.json` advanced to rc20, so the admin footer and HA integration status showed the wrong version. Bumped `_VERSION` alongside the manifest. The `version-bump.yml` workflow still pointed at the old `views.py` path (from before `_VERSION` moved to `base.py`), so future releases drifted silently — workflow updated to target `base.py`.
+- **Game-Over podium rendered empty 2nd and 3rd slots** for single-player / two-player games, showing "---" placeholders with medals. Now `player-end.js` toggles `.hidden` on `.podium-place.podium-N` when no player occupies rank `N`.
+
 ## [3.2.0-rc20] - 2026-04-18
 
 ### Fixed

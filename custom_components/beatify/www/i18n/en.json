@@ -130,6 +130,7 @@
   "reveal": {
     "correct": "Correct!",
     "close": "Close!",
+    "soClose": "So close!",
     "wrong": "Wrong",
     "theYearWas": "The year was",
     "funFact": "Fun fact",

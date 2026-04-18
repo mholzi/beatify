@@ -3395,10 +3395,14 @@ function showAdminPlayingView(data) {
     var artEl = document.getElementById('admin-album-art');
     if (artEl && data.song && data.song.album_art) artEl.src = data.song.album_art;
 
-    // Admin-only song details (year, fun fact) — only for spectator admin (#660)
+    // Admin-only song details (year, fun fact) — only for spectator admin (#660).
+    // Fair-play guard: hide if the admin is a participant OR if the incoming
+    // player list tags anyone as is_admin (covers races where `isPlaying` hasn't
+    // been restored yet after a reconnect).
     var yearEl = document.getElementById('admin-song-year');
     var factEl = document.getElementById('admin-song-funfact');
-    if (data.admin_song && !isPlaying) {
+    var adminIsParticipant = isPlaying || (data.players || []).some(function(p) { return p.is_admin; });
+    if (data.admin_song && !adminIsParticipant) {
         if (yearEl) {
             if (data.admin_song.year) {
                 yearEl.textContent = '📅 ' + data.admin_song.year;

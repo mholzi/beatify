@@ -26,9 +26,12 @@ export function updateEndView(data) {
         entry.is_current = (entry.name === state.playerName);
     });
 
-    // Update podium (positions 1, 2, 3)
+    // Update podium (positions 1, 2, 3). Hide slots that have no player so
+    // single- and two-player games don't show empty "---" placeholders.
     [1, 2, 3].forEach(function(place) {
         var player = leaderboard.find(function(p) { return p.rank === place; });
+        var slotEl = document.querySelector('.podium-place.podium-' + place);
+        if (slotEl) slotEl.classList.toggle('hidden', !player);
         var nameEl = document.getElementById('podium-' + place + '-name');
         var scoreEl = document.getElementById('podium-' + place + '-score');
         if (nameEl) nameEl.textContent = player ? escapeHtml(player.name) : '---';
