@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc19] - 2026-04-18
+
+### Changed
+- **Join as player button moved above the Back / Start game row.** Now a full-width prominent CTA inside the home-stage column, sitting right above the lower CTA bar. Previously it was wedged into the CTA bar itself; the new placement makes the "join before starting" step unmissable without crowding the back/start chrome.
+
 ## [3.2.0-rc18] - 2026-04-18
 
 ### Changed

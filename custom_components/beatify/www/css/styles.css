@@ -9941,10 +9941,11 @@ body.home-mode .home-view {
    lands on the prominent "Join as player" CTA instead. */
 .home-cta-start.btn-ghost { box-shadow: none; flex: 0 0 auto; }
 
-/* Prominent Join-as-player CTA — same visual weight as Start game so admins
-   see the correct next step. */
+/* Prominent Join-as-player CTA — lives above the Back/Start row inside the
+   home-stage column. Full-width so the admin's next step is unmissable. */
 .home-cta-join {
-    flex: 1;
+    width: 100%;
+    margin-top: var(--space-md);
     padding: var(--space-md);
     font-size: var(--font-size-base);
     box-shadow: var(--glow-primary), 0 0 40px rgba(255, 45, 106, 0.25);
