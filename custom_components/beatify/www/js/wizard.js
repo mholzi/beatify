@@ -202,7 +202,7 @@ function _updateCta() {
     const skipBtn = document.getElementById('wiz-skip');
     if (!nextBtn || !backBtn) return;
 
-    backBtn.style.display = currentStep > 1 && currentStep < 6 ? '' : 'none';
+    backBtn.style.display = currentStep > 1 ? '' : 'none';
 
     if (currentStep === 1) {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
@@ -360,6 +360,23 @@ const DIFFICULTIES = [
     { id: 'normal', labelKey: 'wizard.step3.normal', labelFallback: 'Normal' },
     { id: 'hard', labelKey: 'wizard.step3.hard', labelFallback: 'Hard' },
 ];
+
+// Mirrors DIFFICULTY_SCORING in custom_components/beatify/const.py — keep in sync.
+// Scoring tiers: exact match, "close" band, "near" band.
+const DIFFICULTY_HINTS = {
+    easy: {
+        fallback: 'Forgiving: 10 pts for an exact year, 5 pts within ±7 years, 1 pt within ±10 years.',
+        key: 'wizard.step4.difficultyHintEasy',
+    },
+    normal: {
+        fallback: 'Balanced: 10 pts for an exact year, 5 pts within ±3 years, 1 pt within ±5 years.',
+        key: 'wizard.step4.difficultyHintNormal',
+    },
+    hard: {
+        fallback: 'Sharp: 10 pts for an exact year, 3 pts within ±2 years, otherwise 0.',
+        key: 'wizard.step4.difficultyHintHard',
+    },
+};
 const DURATIONS = [15, 30, 45, 60]; // seconds per round
 const LANGUAGES = [
     { id: 'en', label: 'English' },
@@ -448,11 +465,19 @@ function _renderGameModes() {
     });
 }
 
+function _renderDifficultyHint() {
+    const el = document.getElementById('wiz-difficulty-hint');
+    if (!el) return;
+    const hint = DIFFICULTY_HINTS[chosenDifficulty] || DIFFICULTY_HINTS.normal;
+    el.textContent = _t(hint.key, hint.fallback);
+}
+
 function _renderGameMode() {
     _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
         chosenDifficulty = val;
         _renderGameMode();
     });
+    _renderDifficultyHint();
     _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
         chosenDuration = val;
         _renderGameMode();
@@ -695,7 +720,8 @@ function _renderDoneSummary() {
     const el = document.getElementById('wiz-done-summary');
     if (!el) return;
     const speaker = chosenSpeaker ? chosenSpeaker.replace('media_player.', '').replace(/_/g, ' ') : '—';
-    const provider = chosenProvider ? (_platformLabel(chosenProvider) || chosenProvider.replace('_', ' ')) : '—';
+    const providerMatch = chosenProvider ? PROVIDERS.find((p) => p.id === chosenProvider) : null;
+    const provider = providerMatch ? providerMatch.label : (chosenProvider ? chosenProvider.replace(/_/g, ' ') : '—');
     const extras = [];
     if (chosenLevelUps.lights) extras.push('lights');
     if (chosenLevelUps.tts) extras.push('voice');
@@ -863,6 +889,14 @@ export async function init() {
         if (currentStep > 1) _showFrame(currentStep - 1);
     });
     if (skipBtn) skipBtn.addEventListener('click', () => hide({ dismissed: true }));
+    const reqBtn = document.getElementById('wiz-request-playlist');
+    if (reqBtn) reqBtn.addEventListener('click', () => {
+        const modal = document.getElementById('request-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            document.getElementById('spotify-url-input')?.focus();
+        }
+    });
     if (pill) pill.addEventListener('click', async () => {
         // Reopen: clear "dismissed" so the wizard can run again, then resume
         try { localStorage.removeItem(LS_WIZARD_STATE); } catch (e) { /* private mode */ }

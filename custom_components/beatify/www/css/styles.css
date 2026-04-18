@@ -9634,6 +9634,27 @@ body.wizard-active > .pwa-ios-hint {
     box-shadow: var(--glow-primary);
 }
 
+/* Step 3 — "Request new playlist" CTA below the playlist list */
+.wiz-request-playlist {
+    margin-top: var(--space-md);
+    align-self: flex-start;
+}
+
+/* When wizard is active, lift modals above the takeover overlay */
+body.wizard-active .modal { z-index: calc(var(--z-overlay) + 10); }
+
+.wiz-difficulty-hint {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(0, 245, 255, 0.06);
+    border-left: 2px solid var(--color-accent-secondary);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    min-height: 1.5em;
+}
+
 /* Wizard Step 5 — expandable detail panels under level-up toggles */
 .wiz-lvl-card {
     flex-direction: column;

@@ -169,6 +169,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             // user → show the setup prompt hero and wait for them to tap Start setup.
             if (this.isConfigured()) {
                 this.setMode('configured');
+                // The wizard writes selections to localStorage but never touches the
+                // legacy admin globals (selectedMediaPlayer / selectedPlaylists).
+                // Hydrate them so startGame() has the data it needs to POST.
+                this.hydrateFromStorage();
                 if (currentGame && currentGame.phase === 'LOBBY' && currentGame.join_url) {
                     this.renderSession(currentGame);
                 } else {
@@ -177,6 +181,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 this.setMode('setup');
             }
+        },
+        // Bridge: read wizard-saved settings from localStorage into admin's module
+        // globals. Safe to call repeatedly; only fills gaps left by the legacy
+        // click-driven setup flow.
+        hydrateFromStorage() {
+            try {
+                const lastPlayerId = localStorage.getItem(STORAGE_LAST_PLAYER);
+                if (lastPlayerId && (!selectedMediaPlayer || !selectedMediaPlayer.entityId)) {
+                    const radio = document.querySelector(
+                        `.media-player-radio[data-entity-id="${CSS.escape(lastPlayerId)}"]`
+                    );
+                    if (radio) {
+                        radio.checked = true;
+                        handleMediaPlayerSelect(radio, true);
+                    } else {
+                        // Players list not rendered yet — populate a minimal stub
+                        // so startGame() has an entityId. Capability flags default
+                        // to false; backend will validate.
+                        selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
+                    }
+                }
+                const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+                if (raw) {
+                    const s = JSON.parse(raw);
+                    if (s.language) selectedLanguage = s.language;
+                    if (s.duration) selectedDuration = s.duration;
+                    if (s.difficulty) selectedDifficulty = s.difficulty;
+                    if (s.provider) selectedProvider = s.provider;
+                    if (typeof s.artistChallenge === 'boolean') artistChallengeEnabled = s.artistChallenge;
+                    if (typeof s.introMode === 'boolean') introModeEnabled = s.introMode;
+                    if (typeof s.closestWinsMode === 'boolean') closestWinsModeEnabled = s.closestWinsMode;
+                    const wizPaths = Array.isArray(s.selectedPlaylists)
+                        ? s.selectedPlaylists.map((p) => (typeof p === 'string' ? p : p.path)).filter(Boolean)
+                        : [];
+                    if (wizPaths.length && selectedPlaylists.length === 0) {
+                        selectedPlaylists = wizPaths.map((path) => {
+                            const meta = (playlistData || []).find((d) => d.path === path);
+                            return { path, songCount: (meta && (meta.song_count || meta.songCount)) || 0 };
+                        });
+                    }
+                }
+            } catch (e) { console.warn('[Beatify] hydrateFromStorage failed:', e); }
         },
         // Swap the hero card + CTA bar contents based on whether the user has completed setup.
         setMode(mode) {
@@ -405,18 +451,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('#home-requests-modal .home-modal-backdrop')?.addEventListener('click', () => {
         window.BeatifyHome.closeRequestsModal();
     });
-    // "Request new playlist" — opens the existing #request-modal submit form directly
-    // (NOT via #request-playlist-btn) so it survives deletion of #my-requests.
-    // The submit handler's existing renderRequestsList() call keeps both views in sync.
-    document.getElementById('home-requests-modal-new')?.addEventListener('click', () => {
-        window.BeatifyHome.closeRequestsModal();
-        const requestModal = document.getElementById('request-modal');
-        if (requestModal) {
-            requestModal.classList.remove('hidden');
-            document.getElementById('spotify-url-input')?.focus();
-        }
-    });
-
     document.getElementById('home-edit-setup')?.addEventListener('click', () => {
         // "Edit setup" re-opens the wizard at Step 1 (not the legacy admin sections).
         // The wizard re-hydrates all picks from localStorage, so the user sees
@@ -1823,11 +1857,16 @@ function showExistingGameView(gameData) {
  */
 async function startGame() {
     const btn = document.getElementById('start-game');
-    if (!btn || btn.disabled) return;
+    // Bail only if a legacy button exists AND is already disabled (in-flight). When
+    // home-mode invokes us programmatically the button may be missing — that's fine.
+    if (btn && btn.disabled) return;
 
-    btn.disabled = true;
-    const originalText = btn.textContent;
-    btn.textContent = BeatifyI18n.t('game.starting');
+    let originalText;
+    if (btn) {
+        btn.disabled = true;
+        originalText = btn.textContent;
+        btn.textContent = BeatifyI18n.t('game.starting');
+    }
 
     try {
         const response = await fetch('/beatify/api/start-game', {
@@ -1874,8 +1913,10 @@ async function startGame() {
         showError('Network error. Please try again.');
         console.error('Start game error:', err);
     } finally {
-        btn.disabled = false;
-        btn.textContent = originalText;
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = originalText;
+        }
         updateStartButtonState();
     }
 }

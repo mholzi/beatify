@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc12">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc13">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -63,6 +63,7 @@
                 <h2 class="wiz-title" data-i18n="wizard.step3.title">Pick your first playlist.</h2>
                 <p class="wiz-sub" data-i18n="wizard.step3.sub">Start with a curated Beatify pack. You can mix and add your own from the admin later.</p>
                 <div id="wiz-playlist-list" class="wiz-list"></div>
+                <button type="button" id="wiz-request-playlist" class="btn btn-ghost wiz-request-playlist" data-i18n="admin.home.requestNew">+ Request new playlist</button>
             </div>
         </section>
 
@@ -75,6 +76,7 @@
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.difficulty">Difficulty</label>
                     <div id="wiz-difficulty" class="wiz-chip-group"></div>
+                    <div id="wiz-difficulty-hint" class="wiz-difficulty-hint"></div>
                 </div>
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.timer">Time per round</label>
@@ -158,9 +160,6 @@
                     </button>
                 </div>
                 <div id="home-requests-modal-list" class="home-modal-body"></div>
-                <div class="home-modal-foot">
-                    <button type="button" id="home-requests-modal-new" class="btn btn-primary" data-i18n="admin.home.requestNew">+ Request new playlist</button>
-                </div>
             </div>
         </div>
 
@@ -1158,9 +1157,9 @@
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc12"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc12"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc12"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc12"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc13"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc13"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc13"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc13"></script>
 </body>
 </html>

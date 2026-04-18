@@ -396,7 +396,7 @@
     "kickPlayerTitle": "¿Eliminar jugador?",
     "kickPlayerConfirm": "¿Eliminar a {name} de la sala?",
     "home": {
-      "editSetup": "Editar configuración",
+      "editSetup": "Atrás",
       "startGame": "Comenzar partida",
       "eyebrow": "Listo para hospedar",
       "party": "fiesta",
@@ -700,7 +700,10 @@
       "easy": "Fácil",
       "normal": "Normal",
       "hard": "Difícil",
-      "modes": "Modos de juego"
+      "modes": "Modos de juego",
+      "difficultyHintEasy": "Generoso: 10 pts por el año exacto, 5 pts dentro de ±7 años, 1 pt dentro de ±10 años.",
+      "difficultyHintNormal": "Equilibrado: 10 pts por el año exacto, 5 pts dentro de ±3 años, 1 pt dentro de ±5 años.",
+      "difficultyHintHard": "Estricto: 10 pts por el año exacto, 3 pts dentro de ±2 años, en otro caso 0."
     },
     "done": {
       "badge": "LISTO PARA JUGAR",

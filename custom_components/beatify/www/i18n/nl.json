@@ -396,7 +396,7 @@
     "kickPlayerTitle": "Speler verwijderen?",
     "kickPlayerConfirm": "{name} uit de lobby verwijderen?",
     "home": {
-      "editSetup": "Setup bewerken",
+      "editSetup": "Terug",
       "startGame": "Spel starten",
       "eyebrow": "Klaar om te hosten",
       "party": "party",
@@ -700,7 +700,10 @@
       "easy": "Makkelijk",
       "normal": "Normaal",
       "hard": "Moeilijk",
-      "modes": "Spelmodi"
+      "modes": "Spelmodi",
+      "difficultyHintEasy": "Soepel: 10 ptn voor exact jaar, 5 ptn binnen ±7 jaar, 1 pt binnen ±10 jaar.",
+      "difficultyHintNormal": "In balans: 10 ptn voor exact jaar, 5 ptn binnen ±3 jaar, 1 pt binnen ±5 jaar.",
+      "difficultyHintHard": "Streng: 10 ptn voor exact jaar, 3 ptn binnen ±2 jaar, anders 0."
     },
     "done": {
       "badge": "KLAAR OM TE SPELEN",
