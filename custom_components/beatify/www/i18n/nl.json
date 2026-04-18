@@ -410,7 +410,8 @@
       "setupTitle": "Nog niet ingesteld",
       "setupSub": "Duurt ongeveer 2 minuten. We leiden je door luidsprekers, muziekdienst, afspeellijsten en spelmodus.",
       "startSetup": "Setup starten",
-      "requestNew": "+ Nieuwe afspeellijst aanvragen"
+      "requestNew": "+ Nieuwe afspeellijst aanvragen",
+      "needPlayerToStart": "Doe mee als speler (of laat een gast de QR scannen) voordat je begint."
     }
   },
   "analyticsDashboard": {
