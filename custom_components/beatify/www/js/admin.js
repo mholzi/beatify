@@ -1360,6 +1360,30 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
         document.getElementById('start-game')?.classList.add('hidden');
     }
 
+    // Restore previously saved playlist selections from localStorage (mirrors the
+    // last-player auto-restore in renderMediaPlayers). Without this, the wizard's
+    // selections get wiped every time loadStatus() re-renders the playlist list.
+    if (selectedPlaylists.length === 0) {
+        try {
+            const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+            const saved = raw ? JSON.parse(raw) : null;
+            const savedPaths = Array.isArray(saved?.selectedPlaylists)
+                ? saved.selectedPlaylists.map((p) => (typeof p === 'string' ? p : p.path)).filter(Boolean)
+                : [];
+            savedPaths.forEach((path) => {
+                const checkbox = container.querySelector(`.playlist-checkbox[data-path="${CSS.escape(path)}"]`);
+                if (checkbox && !checkbox.disabled) {
+                    checkbox.checked = true;
+                    const providerCount = parseInt(checkbox.dataset.providerCount, 10) || 0;
+                    if (providerCount > 0 && !selectedPlaylists.some((p) => p.path === path)) {
+                        selectedPlaylists.push({ path, songCount: providerCount });
+                        checkbox.closest('.playlist-item')?.classList.add('is-selected');
+                    }
+                }
+            });
+        } catch (e) { console.warn('[Beatify] restore saved playlists failed:', e); }
+    }
+
     // Initialize summary as hidden
     updateSelectionSummary();
     updateStartButtonState();
@@ -1857,9 +1881,12 @@ function showExistingGameView(gameData) {
  */
 async function startGame() {
     const btn = document.getElementById('start-game');
-    // Bail only if a legacy button exists AND is already disabled (in-flight). When
-    // home-mode invokes us programmatically the button may be missing — that's fine.
-    if (btn && btn.disabled) return;
+    const inHomeMode = document.body.classList.contains('home-mode');
+    // Bail only if a legacy button exists AND is already disabled, AND we're NOT
+    // in home-mode. In home-mode the legacy button is disabled by default (no
+    // click-path populates it), so we bypass its state and trust the hydrated
+    // module globals (selectedMediaPlayer / selectedPlaylists) instead.
+    if (btn && btn.disabled && !inHomeMode) return;
 
     let originalText;
     if (btn) {
