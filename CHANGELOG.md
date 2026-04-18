@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc13] - 2026-04-18
+
+### Added
+- **Dynamic difficulty hint on wizard Step 4** — picking Easy / Normal / Hard now shows the exact point distribution under the pills (mirrors `DIFFICULTY_SCORING` in `const.py`). All 5 locales updated.
+- **Back button on wizard Done step** — was hidden on Step 6 only; now visible on all steps after Step 1.
+- **+ Request new playlist** CTA on wizard Step 3, opens the existing `#request-modal` form (lifted above the wizard overlay via z-index).
+
+### Changed
+- **Service line on Done summary** now reads "Apple Music" instead of `apple_music` (looked up from the PROVIDERS array, not a generic underscore-strip).
+- **Home-view "Edit setup" relabelled to "Back"** for consistency with the wizard's Back button (Zurück / Atrás / Retour / Terug).
+- Removed the duplicate "+ Request new playlist" button from the home-view requests modal footer (single entry-point now lives on wizard Step 3).
+
+### Fixed
+- **Home-view auto-start was broken** — `startGame()` bailed out because the legacy `#start-game` button was missing/disabled, and `selectedPlaylists` was never hydrated from the wizard's localStorage. Result: no QR, no join URL, no Cast-to-TV link, no Join-as-player button, and "Spiel starten" was a no-op. New `BeatifyHome.hydrateFromStorage()` bridges `beatify_last_player` + `beatify_game_settings` into the admin globals before auto-creating the LOBBY session.
+
 ## [3.2.0-rc12] - 2026-04-18
 
 ### Added

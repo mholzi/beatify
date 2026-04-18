@@ -396,7 +396,7 @@
     "kickPlayerTitle": "Spieler entfernen?",
     "kickPlayerConfirm": "{name} aus der Lobby entfernen?",
     "home": {
-      "editSetup": "Einstellungen bearbeiten",
+      "editSetup": "Zurück",
       "startGame": "Spiel starten",
       "eyebrow": "Bereit zum Hosten",
       "party": "Party",
@@ -700,7 +700,10 @@
       "easy": "Leicht",
       "normal": "Normal",
       "hard": "Schwer",
-      "modes": "Spielmodi"
+      "modes": "Spielmodi",
+      "difficultyHintEasy": "Großzügig: 10 Punkte für das exakte Jahr, 5 Punkte innerhalb ±7 Jahren, 1 Punkt innerhalb ±10 Jahren.",
+      "difficultyHintNormal": "Ausgewogen: 10 Punkte für das exakte Jahr, 5 Punkte innerhalb ±3 Jahren, 1 Punkt innerhalb ±5 Jahren.",
+      "difficultyHintHard": "Scharf: 10 Punkte für das exakte Jahr, 3 Punkte innerhalb ±2 Jahren, sonst 0."
     },
     "done": {
       "badge": "BEREIT ZUM SPIELEN",

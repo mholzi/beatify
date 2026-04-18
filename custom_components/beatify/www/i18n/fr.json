@@ -396,7 +396,7 @@
     "kickPlayerTitle": "Retirer le joueur ?",
     "kickPlayerConfirm": "Retirer {name} du lobby ?",
     "home": {
-      "editSetup": "Modifier la configuration",
+      "editSetup": "Retour",
       "startGame": "Lancer la partie",
       "eyebrow": "Prêt à accueillir",
       "party": "soirée",
@@ -700,7 +700,10 @@
       "easy": "Facile",
       "normal": "Normal",
       "hard": "Difficile",
-      "modes": "Modes de jeu"
+      "modes": "Modes de jeu",
+      "difficultyHintEasy": "Indulgent : 10 pts pour l'année exacte, 5 pts à ±7 ans, 1 pt à ±10 ans.",
+      "difficultyHintNormal": "Équilibré : 10 pts pour l'année exacte, 5 pts à ±3 ans, 1 pt à ±5 ans.",
+      "difficultyHintHard": "Strict : 10 pts pour l'année exacte, 3 pts à ±2 ans, sinon 0."
     },
     "done": {
       "badge": "PRÊT À JOUER",
