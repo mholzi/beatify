@@ -482,8 +482,19 @@ function _renderGameMode() {
         chosenDuration = val;
         _renderGameMode();
     });
-    _renderChipGroup('wiz-language', LANGUAGES, chosenLanguage, (val) => {
+    _renderChipGroup('wiz-language', LANGUAGES, chosenLanguage, async (val) => {
         chosenLanguage = val;
+        // Switch the UI language immediately so the user sees the wizard in the
+        // language they just picked. Without this, "Ansagesprache" only took
+        // effect after the wizard closed + the page reloaded.
+        if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.setLanguage === 'function') {
+            try {
+                await window.BeatifyI18n.setLanguage(val);
+                if (typeof window.BeatifyI18n.initPageTranslations === 'function') {
+                    window.BeatifyI18n.initPageTranslations();
+                }
+            } catch (e) { console.warn('[Beatify] language switch failed:', e); }
+        }
         _renderGameMode();
     });
     _renderGameModes();
