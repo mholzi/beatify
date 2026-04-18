@@ -412,7 +412,8 @@
       "setupSub": "Environ 2 minutes. On te guide à travers enceintes, service musical, playlists et mode de jeu.",
       "startSetup": "Commencer la configuration",
       "requestNew": "+ Demander une playlist",
-      "needPlayerToStart": "Rejoins la partie (ou demande à un invité de scanner le QR) avant de commencer."
+      "needPlayerToStart": "Rejoins la partie (ou demande à un invité de scanner le QR) avant de commencer.",
+      "wsReconnecting": "Reconnexion au serveur de jeu — réessaie."
     }
   },
   "analyticsDashboard": {

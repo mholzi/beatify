@@ -412,7 +412,8 @@
       "setupSub": "Dauert etwa 2 Minuten. Wir führen dich durch Lautsprecher, Musikdienst, Playlists und Spielmodus.",
       "startSetup": "Einrichtung starten",
       "requestNew": "+ Neue Playlist anfragen",
-      "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt."
+      "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt.",
+      "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen."
     }
   },
   "analyticsDashboard": {
