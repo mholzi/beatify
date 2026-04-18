@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc17] - 2026-04-18
+
+### Changed
+- **Home-view CTA bar reshuffled** around the actual admin flow:
+  - **End game is hidden while the LOBBY is live.** Ending a session nobody joined isn't a meaningful admin action; it now only surfaces for PLAYING (and other mid-game phases).
+  - **Print QR button removed.** The QR is already tap-to-enlarge; dedicated print felt like noise.
+  - **Join as player promoted to the CTA bar** as a primary-style button, shown until the admin has registered. While visible, Start game demotes to a ghost button so the eye lands on Join first. This enforces the correct flow: admins must join before starting.
+
 ## [3.2.0-rc16] - 2026-04-18
 
 ### Fixed

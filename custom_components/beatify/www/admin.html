@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc16">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.2.0-rc17">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -203,14 +203,6 @@
                         <span data-i18n="admin.home.castToTv">Cast to TV</span>
                         <span aria-hidden="true">→</span>
                     </a>
-                    <button type="button" id="home-print-qr" class="home-utility-btn hidden" aria-label="Print QR code" title="Print QR">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-                        <span data-i18n="admin.home.printQr">Print</span>
-                    </button>
-                    <button type="button" id="home-join-player" class="home-utility-btn hidden" aria-label="Join as player" title="Join as player">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <span data-i18n="admin.home.joinAsPlayer">Join as player</span>
-                    </button>
                 </div>
                 <!-- My Requests pill — visible only when requests.length > 0. Tap to review. -->
                 <button type="button" id="home-requests-pill" class="home-requests-pill hidden" aria-label="Review playlist requests">
@@ -230,6 +222,12 @@
             <div class="home-cta-bar">
                 <button type="button" id="home-edit-setup" class="btn btn-ghost home-cta-edit" data-i18n="admin.home.editSetup">Edit setup</button>
                 <button type="button" id="home-end-game" class="btn btn-ghost home-cta-end hidden" data-i18n="admin.home.endGame">End game</button>
+                <!-- Prominent Join-as-player CTA — visible in LOBBY until admin has joined.
+                     Styled as the primary next-step so admins don't forget to register before Start. -->
+                <button type="button" id="home-join-player" class="btn btn-primary home-cta-join hidden">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span data-i18n="admin.home.joinAsPlayer">Join as player</span>
+                </button>
                 <button type="button" id="home-start-game" class="btn btn-primary home-cta-start">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
                     <span data-i18n="admin.home.startGame">Start game</span>
@@ -1157,9 +1155,9 @@
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=2.2.1"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc16"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc16"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc16"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc16"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.2.0-rc17"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.2.0-rc17"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.2.0-rc17"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.2.0-rc17"></script>
 </body>
 </html>
