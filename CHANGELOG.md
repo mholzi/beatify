@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc23] - 2026-04-18
+
+### Changed
+- **Admin who joined as player auto-flips to the player UI on PLAYING.** Previously, after "Join as player" → Start game, the admin still saw the admin-playing view (blurred art, countdown, control bar) and had to click "Player View →" to actually play. Now `handleAdminStateUpdate` detects `adminPlayerName` at the LOBBY → PLAYING transition and calls `handleSwitchToPlayerView()` automatically. The admin still retains control via the slim admin-control-bar baked into `player.html`.
+- **Home-view player chips made prominent; admin gets pink "leader" treatment.** Chip padding bumped 4/10 → 8/14, font-size `xs` → `base`, border `1px/40%` → `1.5px/55%`, added soft cyan box-shadow. New `.home-player-chip--admin` modifier renders the host with pink primary accent + `--glow-primary` + 👑 (reuses the existing `.admin-badge` pattern). Row gap and max-width bumped to accommodate the bigger chips. Follows DESIGN.md: pink reserved for "leader highlights, primary CTAs".
+- **Removed `+10s` and `Lights` buttons from the admin control bar.** The bar now matches `player.html`'s slim variant (Stop / Down / Up / Skip / End). Orphan `adminSeekForward()` handler deleted along with the event wiring.
+
 ## [3.2.0-rc22] - 2026-04-18
 
 ### Fixed

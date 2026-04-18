@@ -9884,26 +9884,47 @@ body.home-mode .home-view {
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
     justify-content: center;
-    max-width: 320px;
+    max-width: 360px;
 }
 .home-players:empty { display: none; }
 .home-player-chip {
-    padding: 4px 10px;
-    background: rgba(0, 245, 255, 0.1);
-    border: 1px solid rgba(0, 245, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 8px 14px;
+    background: rgba(0, 245, 255, 0.12);
+    border: 1.5px solid rgba(0, 245, 255, 0.55);
     border-radius: var(--radius-full);
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-base);
     color: var(--color-accent-secondary);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+}
+/* Admin/host chip — pink primary + glow per DESIGN.md "leader highlights". */
+.home-player-chip--admin {
+    background: rgba(255, 45, 106, 0.14);
+    border-color: rgba(255, 45, 106, 0.7);
+    color: var(--color-accent-primary);
+    font-weight: 700;
+    box-shadow: var(--glow-primary);
+}
+.home-player-chip--admin .admin-badge {
+    margin-left: 0;
+    color: var(--color-accent-primary);
+    filter: drop-shadow(0 0 4px rgba(255, 45, 106, 0.6));
 }
 .home-player-chip.waiting {
     border-style: dashed;
+    border-width: 1px;
     border-color: var(--color-border-neon);
     background: transparent;
     color: var(--color-text-dim);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    box-shadow: none;
 }
 
 .home-meta {

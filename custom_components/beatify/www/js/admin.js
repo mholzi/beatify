@@ -327,9 +327,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 el.innerHTML = '<span class="home-player-chip waiting">Waiting for guests…</span>';
                 return;
             }
-            el.innerHTML = players.map((p) =>
-                `<span class="home-player-chip">${p.name || p.id}</span>`
-            ).join('');
+            // Admin chip gets the pink-primary treatment + 👑 (reuses the
+            // existing .admin-badge pattern from the legacy lobby/end views)
+            // to mark the host as the leader of the room. Regular guests stay
+            // on the cyan accent so the host reads as "the one in charge".
+            el.innerHTML = players.map((p) => {
+                const cls = p.is_admin
+                    ? 'home-player-chip home-player-chip--admin'
+                    : 'home-player-chip';
+                const crown = p.is_admin
+                    ? '<span class="admin-badge" aria-hidden="true">👑</span>'
+                    : '';
+                return `<span class="${cls}">${crown}${p.name || p.id}</span>`;
+            }).join('');
         },
         // Fetch playlist-build requests and show/hide the pill. Tap-to-open
         // renders into the inline modal (stays in home-mode). "Manage in admin"
@@ -518,15 +528,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Issue #477: Wire game phase control buttons
     document.getElementById('admin-stop-song')?.addEventListener('click', adminStopSong);
-    document.getElementById('admin-seek-forward')?.addEventListener('click', adminSeekForward);
     document.getElementById('admin-vol-down')?.addEventListener('click', adminVolumeDown);
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
-    document.getElementById('admin-stop-lights')?.addEventListener('click', function() {
-        if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-            adminWs.send(JSON.stringify({ type: 'admin', action: 'stop_lights' }));
-        }
-    });
     document.getElementById('admin-next-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-skip-round')?.addEventListener('click', adminNextRound);
     document.getElementById('admin-confirm-intro')?.addEventListener('click', function() {
@@ -3337,6 +3341,14 @@ function handleAdminStateUpdate(data) {
             showLobbyView(data);
             break;
         case 'PLAYING':
+            // If the admin has joined as a player, flip them to the player UI
+            // automatically instead of staying on the admin-playing view. The
+            // player page carries its own slim admin-control-bar, so control
+            // isn't lost — and the "Admin View" exit is available on /play.
+            if (adminPlayerName && currentGame && currentGame.game_id) {
+                handleSwitchToPlayerView();
+                return;
+            }
             showAdminPlayingView(data);
             break;
         case 'REVEAL':
@@ -3836,10 +3848,6 @@ function adminNextRound() {
 
 function adminStopSong() {
     sendAdminCommand({ type: 'admin', action: 'stop_song' });
-}
-
-function adminSeekForward() {
-    sendAdminCommand({ type: 'admin', action: 'seek_forward', seconds: 10 });
 }
 
 function adminVolumeUp() {
