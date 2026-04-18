@@ -163,9 +163,9 @@
             </div>
         </div>
 
-        <!-- Home view — Variant A "QR Hero" aesthetic applied to the pre-session lobby landing.
+        <!-- Home view — canonical pre-session LOBBY landing.
              Shown when setup is complete (wizard just finished OR returning configured user).
-             Toggled via body.home-mode class. Real QR + players appear in #lobby-section after Start. -->
+             Toggled via body.home-mode class. Handles initial LOBBY + Revanche. -->
         <section id="home-view" class="home-view hidden" aria-labelledby="home-view-heading">
             <h2 id="home-view-heading" class="sr-only">Home</h2>
             <div class="home-stage">
@@ -623,98 +623,6 @@
             <p id="playlist-validation-msg" class="status-error hidden" data-i18n="admin.selectPlaylistHint">Select at least one playlist</p>
             <button id="start-game" class="btn btn-primary btn-large btn-full-width hidden" disabled data-i18n="admin.startGame">Start Game</button>
         </div>
-
-        <!-- Lobby view (Story 2.3, mobile-optimized compact layout) -->
-        <div id="lobby-section" class="lobby-view-wrapper hidden">
-            <div class="lobby-container lobby-container--compact">
-                <!-- Header with inline stat badges -->
-                <div class="lobby-header-compact">
-                    <h2 class="section-header section-header--inline">
-                        <span class="section-icon" aria-hidden="true">🎮</span>
-                        <span data-i18n="lobby.gameLobby">Game Lobby</span>
-                    </h2>
-                    <div class="stat-badge-bar" aria-live="polite">
-                        <span class="stat-badge">
-                            <span class="stat-badge-icon" aria-hidden="true">👥</span>
-                            <span id="lobby-player-count" class="stat-badge-value">0</span>
-                        </span>
-                        <!-- Difficulty Badge -->
-                        <span id="lobby-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
-                    </div>
-                </div>
-
-                <!-- Invite Friends Section - Expanded by default for admin -->
-                <section class="section-collapsible" id="qr-section">
-                    <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="qr-content">
-                        <span class="section-icon" aria-hidden="true">📲</span>
-                        <span data-i18n="lobby.inviteFriends">Invite Friends</span>
-                        <span class="section-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="section-content" id="qr-content">
-                        <div class="qr-section qr-section--compact">
-                            <div class="qr-container" id="admin-qr-container" role="button" tabindex="0"
-                                 aria-label="Tap to enlarge QR code">
-                                <div id="qr-code"></div>
-                            </div>
-                            <p id="join-url" class="qr-url-display qr-url-display--compact"></p>
-                            <!-- Inline dashboard link -->
-                            <a href="#" id="admin-dashboard-url" class="dashboard-link" target="_blank">
-                                <span aria-hidden="true">📺</span>
-                                <span data-i18n="dashboard.castToTv">Cast to TV</span>
-                                <span class="dashboard-link-arrow" aria-hidden="true">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Players Section - Collapsible -->
-                <section class="section-collapsible" id="admin-players-section">
-                    <button type="button" class="section-header-collapsible" aria-expanded="true" aria-controls="admin-players-content">
-                        <span class="section-icon" aria-hidden="true">👥</span>
-                        <span data-i18n="lobby.playersInLobby">Players in Lobby</span>
-                        <span class="section-summary" id="admin-players-summary">0</span>
-                        <span class="section-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="section-content" id="admin-players-content">
-                        <div id="lobby-players" class="player-cards-grid" aria-live="polite" aria-label="Player list">
-                            <!-- Rendered dynamically by renderLobbyPlayers() -->
-                        </div>
-                        <p id="lobby-players-empty" class="empty-state-inline">
-                            <span aria-hidden="true">👥</span>
-                            <span data-i18n="lobby.waitingForPlayers">Waiting for players to join...</span>
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Sticky Lobby Actions -->
-                <div class="lobby-actions lobby-actions--sticky">
-                    <!-- Start Gameplay: transitions LOBBY → PLAYING without requiring admin to join as player (Issue #228) -->
-                    <button id="start-gameplay-btn" class="btn btn-primary btn-large btn-full-width hidden">
-                        <span class="btn-icon" aria-hidden="true">▶️</span>
-                        <span data-i18n="admin.startGameplay">Spiel starten</span>
-                    </button>
-                    <button id="participate-btn" class="btn btn-secondary btn-large btn-full-width">
-                        <span class="btn-icon" aria-hidden="true">🎮</span>
-                        <span data-i18n="admin.joinAsPlayer">Join as Player</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Existing game view (Story 2.3) -->
-        <section id="existing-game-section" class="card-section hidden">
-            <h2 class="section-header"><span class="section-icon" aria-hidden="true">▶️</span><span data-i18n="admin.gameInProgress">Game In Progress</span></h2>
-            <div class="game-info">
-                <p><strong data-i18n="admin.gameId">Game ID:</strong> <span id="existing-game-id"></span></p>
-                <p><strong data-i18n="admin.phase">Phase:</strong> <span id="existing-game-phase"></span></p>
-                <p><strong data-i18n="admin.players">Players:</strong> <span id="existing-game-players"></span></p>
-            </div>
-            <!-- Regular controls (non-END phase) -->
-            <div id="existing-game-actions" class="game-controls-bar">
-                <button id="rejoin-game" class="btn btn-primary" data-i18n="admin.rejoinGame">Rejoin Game</button>
-                <button id="end-game-existing" class="btn btn-danger" data-i18n="admin.endGame">End Game</button>
-            </div>
-        </section>
 
         <!-- Issue #477: PLAYING phase view -->
         <!-- PLAYING phase view (#653: mirrors player.html game-view layout) -->

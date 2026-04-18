@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc25] - 2026-04-18
+
+### Removed
+- **Legacy admin lobby dropped.** The pre-rc12 `#lobby-section` + `#existing-game-section` markup and all associated rendering logic have been deleted. After rc24 made the home-view the canonical LOBBY landing for every admin flow (initial creation + Revanche + reload), the legacy section had no reachable call path. Total: ~376 lines removed across `admin.html`, `admin.js`, `styles.css`.
+  - `showLobbyView` is now a thin delegate to `BeatifyHome.renderSession` (keeps the WS-disconnect REST-polling fallback so home-view chips stay fresh).
+  - Dead functions deleted: `showExistingGameView`, `rejoinGame`.
+  - Dead event wiring removed: `#rejoin-game`, `#end-game-existing`, `#start-gameplay-btn`, `#participate-btn`.
+  - `setupQRModal()` stopped binding `#admin-qr-container` (gone) and is now called once at init instead of on every LOBBY state push — fixes an incidental leak that attached a new document-level escape listener per WS update.
+
+### Kept
+- **Shared with `player.html`:** `.lobby-container`, `.lobby-container--compact`, `.lobby-header-compact`, `.lobby-actions`, `.lobby-actions--sticky`, `.stat-badge-bar`, `.qr-section`, `.qr-section--compact`. These CSS rules stay — they dress the player-page lobby.
+
 ## [3.2.0-rc24] - 2026-04-18
 
 ### Fixed

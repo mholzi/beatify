@@ -2913,68 +2913,6 @@ body.theme-dark .admin-controls {
     margin-top: var(--space-lg);
 }
 
-/* ==========================================
-   Admin Lobby Dark Theme (Story 16.7)
-   ========================================== */
-
-/* Dark background for admin lobby section - matches player lobby */
-#lobby-section {
-    background: var(--color-bg-primary);
-    color: var(--color-text-white);
-    border-radius: var(--radius-lg);
-}
-
-/* Lobby heading - light text for dark background */
-#lobby-section h2 {
-    color: var(--color-text-white);
-}
-
-/* QR instruction text */
-#lobby-section .qr-instruction {
-    color: var(--color-text-white);
-}
-
-/* Join URL - accent color for visibility */
-#lobby-section .join-url {
-    color: var(--color-accent-secondary);
-}
-
-/* Empty state text (Waiting for players) */
-#lobby-section .empty-state {
-    color: var(--color-text-neon-muted);
-}
-
-/* Player list border - use dark theme border */
-#lobby-section .player-list {
-    border-top-color: var(--color-border-neon);
-}
-
-/* Game controls bar border - use dark theme border */
-#lobby-section .game-controls-bar {
-    border-top-color: var(--color-border-neon);
-}
-
-/* QR container - maintain white background for QR visibility */
-#lobby-section .qr-container {
-    background: var(--color-bg-white);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Player cards in admin lobby - dark theme styling */
-#lobby-section .player-card {
-    background: var(--color-dark-surface);
-    border-color: var(--color-border-neon);
-}
-
-#lobby-section .player-card .player-name {
-    color: var(--color-text-white);
-}
-
-#lobby-section .player-card.is-new {
-    background: rgba(57, 255, 20, 0.1);
-    border-color: var(--color-success-neon);
-}
-
 /* Admin badge styling (Story 16.8) */
 .admin-badge {
     font-size: var(--font-size-sm);
@@ -2998,48 +2936,6 @@ body.theme-dark .admin-controls {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
-}
-
-/* Stat Card styling for lobby (inherits from analytics pattern) */
-#lobby-section .stat-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--color-neon-purple);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg) var(--space-md);
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#lobby-section .stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(157, 78, 221, 0.3);
-}
-
-#lobby-section .stat-icon {
-    font-size: 2rem;
-    margin-bottom: var(--space-sm);
-}
-
-#lobby-section .stat-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-accent-secondary);
-    font-family: 'Outfit', sans-serif;
-    line-height: 1.1;
-}
-
-#lobby-section .stat-value--small {
-    font-size: 0.875rem;
-    word-break: break-all;
-    line-height: 1.3;
-}
-
-#lobby-section .stat-label {
-    font-size: 0.875rem;
-    color: var(--color-text-neon-muted);
-    margin-top: var(--space-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 /* Clickable stat card (dashboard link) */
@@ -3209,25 +3105,6 @@ body.theme-dark .admin-controls {
     background: var(--color-error);
     color: white;
     border-color: var(--color-error);
-}
-
-/* Empty state for player list */
-#lobby-section .empty-state {
-    text-align: center;
-    padding: var(--space-xl) var(--space-lg);
-    color: var(--color-text-neon-muted);
-}
-
-#lobby-section .empty-icon {
-    font-size: 3rem;
-    margin-bottom: var(--space-md);
-    opacity: 0.5;
-}
-
-#lobby-section .empty-hint {
-    font-size: 0.875rem;
-    margin-top: var(--space-sm);
-    opacity: 0.7;
 }
 
 /* Lobby Actions */
@@ -3418,13 +3295,6 @@ body.theme-dark .admin-controls {
 
 .lobby-wordmark-header .wordmark {
     font-size: 2rem;
-}
-
-/* Lobby View Wrapper */
-.lobby-view-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Compact Lobby Container */
@@ -9740,8 +9610,8 @@ body.wizard-active .modal { z-index: calc(var(--z-overlay) + 10); }
    ========================================== */
 
 /* When body is in home-mode: show the home-view card, hide only the setup/config sections.
-   Runtime views (#lobby-section, #admin-playing-*, #admin-reveal-*, #admin-end-*) stay
-   untouched — home-mode is exited before any of those show anyway. */
+   Runtime views (#admin-playing-*, #admin-reveal-*, #admin-end-*) stay untouched —
+   home-mode is exited before any of those show anyway. */
 body.home-mode #media-players,
 body.home-mode #music-service,
 body.home-mode #playlists,
@@ -9754,8 +9624,8 @@ body.home-mode .admin-content > .admin-actions {
     display: none !important;
 }
 /* Variant A — QR Hero aesthetic for the home-view.
-   Centered stage, glowing hero card, dual CTA bar. QR itself appears in
-   the real #lobby-section after Start game creates the session. */
+   Centered stage, glowing hero card, dual CTA bar. QR + player chips render
+   inline via BeatifyHome.renderSession once Start game creates the session. */
 .home-view { display: none; }
 .home-view.hidden { display: none !important; }
 body.home-mode #home-view,

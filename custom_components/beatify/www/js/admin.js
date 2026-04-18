@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const loading = document.getElementById('home-qr-loading');
             if (loading) loading.classList.add('hidden');
 
-            // Render the actual QR using the same library + config as #lobby-section
+            // Render the actual QR using the shared QRCode library.
             const qrContainer = document.getElementById('home-qr-code');
             if (qrContainer && gameData.join_url && typeof QRCode !== 'undefined') {
                 if (qrContainer.dataset.url !== gameData.join_url) {
@@ -514,14 +514,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
-    document.getElementById('start-gameplay-btn')?.addEventListener('click', startGameplay);
     document.getElementById('print-qr')?.addEventListener('click', printQRCode);
-    document.getElementById('rejoin-game')?.addEventListener('click', rejoinGame);
 
-    // Dashboard URL is now set in showLobbyView() for analytics layout
     document.getElementById('end-game')?.addEventListener('click', endGame);
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
-    document.getElementById('end-game-existing')?.addEventListener('click', endGame);
+
+    // QR modal close/backdrop/escape — wired once at init so the home-view
+    // tap-to-enlarge and the admin-playing-view both share the same modal.
+    setupQRModal();
 
     // Admin join setup
     setupAdminJoin();
@@ -1666,8 +1666,6 @@ function showSetupView() {
     }
 
     // Hide other views
-    document.getElementById('lobby-section')?.classList.add('hidden');
-    document.getElementById('existing-game-section')?.classList.add('hidden');
     // Issue #477: Hide game phase views
     document.getElementById('admin-playing-section')?.classList.add('hidden');
     document.getElementById('admin-reveal-section')?.classList.add('hidden');
@@ -1683,97 +1681,21 @@ function showSetupView() {
 }
 
 /**
- * Show lobby view with QR code
- * @param {Object} gameData - Game data from API
+ * Show lobby view — pure delegate to BeatifyHome. The legacy #lobby-section
+ * render was removed in rc25; home-mode is now guaranteed to be on whenever
+ * a LOBBY state arrives (see handleAdminStateUpdate).
  */
 function showLobbyView(gameData) {
     currentView = 'lobby';
     currentGame = gameData;
-
-    // If the user is in home-mode (post-wizard landing), keep them there and
-    // render the real QR + players inline instead of switching to #lobby-section.
-    if (document.body.classList.contains('home-mode') && window.BeatifyHome) {
+    if (window.BeatifyHome) {
         window.BeatifyHome.renderSession(gameData);
-        return;
     }
-
-    // Hide setup sections
-    setupSections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('hidden');
-    });
-
-    // Hide start button and validation message (Story 9.10)
-    document.getElementById('start-game')?.classList.add('hidden');
-    document.getElementById('playlist-validation-msg')?.classList.add('hidden');
-
-    // Hide existing game and end views
-    document.getElementById('existing-game-section')?.classList.add('hidden');
-
-    // Show lobby
-    document.getElementById('lobby-section')?.classList.remove('hidden');
-
-    // Generate QR code (only if URL changed) - compact size, CSS scales for desktop
-    const qrContainer = document.getElementById('qr-code');
-    if (qrContainer && gameData.join_url) {
-        if (cachedQRUrl !== gameData.join_url) {
-            qrContainer.innerHTML = '';
-
-            if (typeof QRCode !== 'undefined') {
-                new QRCode(qrContainer, {
-                    text: gameData.join_url,
-                    width: 180,
-                    height: 180,
-                    colorDark: '#000000',
-                    colorLight: '#ffffff',
-                    correctLevel: QRCode.CorrectLevel.M
-                });
-            } else {
-                qrContainer.innerHTML = '<p class="status-error">QR code library not loaded</p>';
-            }
-
-            cachedQRUrl = gameData.join_url;
-        }
-    }
-
-    // Display join URL
-    const urlEl = document.getElementById('join-url');
-    if (urlEl && gameData.join_url) {
-        urlEl.textContent = gameData.join_url;
-    }
-
-    // Update dashboard URL (compact inline link)
-    var dashboardUrl = window.location.origin + '/beatify/dashboard';
-    var dashboardLink = document.getElementById('admin-dashboard-url');
-    if (dashboardLink) {
-        dashboardLink.href = dashboardUrl;
-    }
-
-    // Render initial player list (Story 16.8)
-    renderLobbyPlayers(gameData.players || []);
-    // Issue #477: Use WS push when connected, REST polling as fallback
+    // WS push is the primary source; fall back to REST polling if WS is down
+    // so the home-view chips still update via renderLobbyPlayers → BeatifyHome.renderPlayers.
     if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
         startLobbyPolling();
     }
-
-    // Update difficulty badge (use gameData.difficulty if available, else selectedDifficulty)
-    updateLobbyDifficultyBadge(gameData.difficulty || selectedDifficulty);
-
-    // Fix #228: Hide participate button if admin is already registered as a player.
-    var participateBtn = document.getElementById('participate-btn');
-    if (participateBtn) {
-        var adminInPlayers = (gameData.players || []).some(function(p) { return p.is_admin; });
-        var adminNameStored = null;
-        try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
-        if (adminInPlayers || adminNameStored || isPlaying) {
-            participateBtn.classList.add('hidden');
-        } else {
-            participateBtn.classList.remove('hidden');
-        }
-    }
-
-    // Setup QR tap-to-enlarge
-    setupQRModal();
 }
 
 // ==========================================
@@ -1824,73 +1746,24 @@ function closeQRModal() {
 }
 
 /**
- * Setup QR modal event handlers
+ * Wire the QR modal once at init. The modal itself is shared between the
+ * home-view tap-to-enlarge (BeatifyHome triggers openQRModal) and the
+ * admin-playing view's QR preview, so only backdrop/close/escape are wired
+ * here — the triggers live with each view.
  */
 function setupQRModal() {
-    var qrContainer = document.getElementById('admin-qr-container');
     var modal = document.getElementById('qr-modal');
     var backdrop = modal ? modal.querySelector('.qr-modal-backdrop') : null;
     var closeBtn = document.getElementById('qr-modal-close');
 
-    // QR container tap to enlarge
-    if (qrContainer) {
-        qrContainer.addEventListener('click', openQRModal);
-        qrContainer.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openQRModal();
-            }
-        });
-    }
+    if (backdrop) backdrop.addEventListener('click', closeQRModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeQRModal);
 
-    if (backdrop) {
-        backdrop.addEventListener('click', closeQRModal);
-    }
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeQRModal);
-    }
-
-    // Escape key to close
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
             closeQRModal();
         }
     });
-}
-
-/**
- * Show existing game view (for rejoin/end)
- * @param {Object} gameData - Game data from status API
- */
-function showExistingGameView(gameData) {
-    currentView = 'existing-game';
-    currentGame = gameData;
-
-    // Hide setup sections
-    setupSections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('hidden');
-    });
-
-    // Hide start button and validation message (Story 9.10)
-    document.getElementById('start-game')?.classList.add('hidden');
-    document.getElementById('playlist-validation-msg')?.classList.add('hidden');
-
-    // Hide lobby and end views
-    document.getElementById('lobby-section')?.classList.add('hidden');
-
-    // Show existing game section
-    document.getElementById('existing-game-section')?.classList.remove('hidden');
-
-    // Update game info
-    const idEl = document.getElementById('existing-game-id');
-    const phaseEl = document.getElementById('existing-game-phase');
-    const playersEl = document.getElementById('existing-game-players');
-
-    if (idEl) idEl.textContent = gameData.game_id || 'Unknown';
-    if (phaseEl) phaseEl.textContent = gameData.phase || 'Unknown';
-    if (playersEl) playersEl.textContent = gameData.player_count ?? 0;
-
 }
 
 // ==========================================
@@ -2183,29 +2056,6 @@ function setupRematchModal() {
 }
 
 /**
- * Rejoin the current game - fetches fresh status first
- */
-async function rejoinGame() {
-    if (!currentGame) return;
-
-    // Fetch fresh status to get latest player list
-    try {
-        var response = await fetch('/beatify/api/status');
-        if (response.ok) {
-            var status = await response.json();
-            if (status.active_game) {
-                currentGame = status.active_game;
-            }
-        }
-    } catch (err) {
-        console.error('Failed to refresh game status:', err);
-    }
-
-    // Show lobby view with current (possibly refreshed) game data
-    showLobbyView(currentGame);
-}
-
-/**
  * Print QR code
  */
 function printQRCode() {
@@ -2278,13 +2128,11 @@ function closeAdminJoinModal() {
  * Setup admin join modal and button handlers
  */
 function setupAdminJoin() {
-    const participateBtn = document.getElementById('participate-btn');
     const cancelBtn = document.getElementById('admin-cancel-btn');
     const joinBtn = document.getElementById('admin-join-btn');
     const nameInput = document.getElementById('admin-name-input');
     const backdrop = document.querySelector('#admin-join-modal .modal-backdrop');
 
-    participateBtn?.addEventListener('click', openAdminJoinModal);
     cancelBtn?.addEventListener('click', closeAdminJoinModal);
     backdrop?.addEventListener('click', closeAdminJoinModal);
 
@@ -3242,8 +3090,6 @@ function handleAdminWsMessage(data) {
                 document.cookie = 'beatify_session=' + data.session_id +
                     ';path=/;max-age=86400;SameSite=Strict';
             }
-            // Hide "Join as Player" button since admin is now a player
-            document.getElementById('participate-btn')?.classList.add('hidden');
             console.log('[Admin WS] Joined as player:', adminPlayerName);
             break;
 
@@ -3310,7 +3156,7 @@ function handleAdminStateUpdate(data) {
     }
 
     // Hide all phase sections first
-    var sections = ['setup-container', 'lobby-section', 'existing-game-section',
+    var sections = ['setup-container',
                     'admin-playing-section', 'admin-reveal-section', 'admin-end-section',
                     'admin-control-bar'];
     sections.forEach(function(id) {
