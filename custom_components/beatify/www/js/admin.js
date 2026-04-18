@@ -470,6 +470,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Home-mode auto-creates the LOBBY session on enter, so the user's Start
         // button triggers the actual "begin rounds" action (startGameplay).
         if (currentGame && currentGame.phase === 'LOBBY') {
+            // Require at least one player. Starting with 0 players renders a
+            // game nobody can answer — previously this was allowed and the
+            // server happily transitioned to PLAYING, leaving the admin
+            // staring at an empty round with no way to progress.
+            const playerCount = (currentGame.players || []).length;
+            if (playerCount === 0) {
+                const msg = (window.BeatifyI18n && BeatifyI18n.t('admin.home.needPlayerToStart')) ||
+                    'Join as player (or ask a guest to scan the QR) before starting.';
+                showError(msg);
+                return;
+            }
             startGameplay();
         } else {
             startGame();
@@ -3288,6 +3299,13 @@ function handleAdminStateUpdate(data) {
     document.getElementById('start-game')?.classList.add('hidden');
     document.getElementById('playlist-validation-msg')?.classList.add('hidden');
     document.getElementById('media-player-validation-msg')?.classList.add('hidden');
+
+    // Home-view is the LOBBY landing. Once the game advances to PLAYING /
+    // REVEAL / PAUSED / END, exit home-mode so the admin-playing-section
+    // and admin-control-bar render cleanly instead of overlapping the QR.
+    if (data.phase && data.phase !== 'LOBBY' && window.BeatifyHome) {
+        window.BeatifyHome.exit();
+    }
 
     switch (data.phase) {
         case 'LOBBY':

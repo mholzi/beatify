@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc20] - 2026-04-18
+
+### Fixed
+- **Home-view overlapped the admin-playing UI** after LOBBY → PLAYING transition. `body.home-mode` stayed on and `#home-view` never hid, so the QR + "Waiting for guests…" stacked on top of `#admin-playing-section` + `#admin-control-bar`. Now `handleAdminStateUpdate` calls `BeatifyHome.exit()` for any phase that isn't LOBBY.
+- **Start game with zero players was allowed.** Clicking Start game on home-view with an empty player list cheerfully transitioned the server to PLAYING with nobody to answer. Now the click is blocked with a clear prompt (all 5 locales) telling the admin to join or have a guest scan the QR first.
+
 ## [3.2.0-rc19] - 2026-04-18
 
 ### Changed
