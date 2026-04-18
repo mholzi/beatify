@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Utility row — hide everything when unconfigured (no session, no QR, no lobby)
             if (!configured) {
                 document.getElementById('home-dashboard-url')?.classList.add('hidden');
-                document.getElementById('home-print-qr')?.classList.add('hidden');
                 document.getElementById('home-join-player')?.classList.add('hidden');
                 document.getElementById('home-end-game')?.classList.add('hidden');
                 // Meta + players are hidden too — no game state to summarize
@@ -297,17 +296,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
 
-            // Print QR + End game + Join as player surface only when a LOBBY session exists
+            // End game is hidden while the game hasn't started (LOBBY) — ending a
+            // lobby that nobody has joined is not a meaningful admin action. We only
+            // want it for the rare case where admin lands on home-view while a
+            // PLAYING session is already in flight (e.g. after a reload).
             const hasLobby = gameData.phase === 'LOBBY' && !!gameData.join_url;
-            document.getElementById('home-print-qr')?.classList.toggle('hidden', !hasLobby);
-            document.getElementById('home-end-game')?.classList.toggle('hidden', !hasLobby);
+            const isPlayingPhase = gameData.phase && gameData.phase !== 'LOBBY' && gameData.phase !== 'END';
+            document.getElementById('home-end-game')?.classList.toggle('hidden', !isPlayingPhase);
 
-            // Join-as-player: only visible if lobby + admin hasn't already joined
+            // Join-as-player: prominent next step — shown until admin registers.
+            // When visible, we also demote Start game to a ghost button so the eye
+            // lands on "Join as player" first (the correct flow order).
             const adminInPlayers = (gameData.players || []).some((p) => p.is_admin);
             let adminNameStored = null;
             try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* ignore */ }
             const canJoin = hasLobby && !adminInPlayers && !adminNameStored && !isPlaying;
             document.getElementById('home-join-player')?.classList.toggle('hidden', !canJoin);
+            const startBtn = document.getElementById('home-start-game');
+            if (startBtn) {
+                startBtn.classList.toggle('btn-primary', !canJoin);
+                startBtn.classList.toggle('btn-ghost', canJoin);
+            }
 
             this.renderPlayers(gameData.players || []);
         },
@@ -418,10 +427,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (e) { return false; }
         },
     };
-    // Home-view: Print QR delegates to existing printQRCode(); End game to existing endGame()
-    document.getElementById('home-print-qr')?.addEventListener('click', () => {
-        if (typeof printQRCode === 'function') printQRCode();
-    });
+    // Home-view: End game delegates to existing endGame()
     document.getElementById('home-end-game')?.addEventListener('click', () => {
         if (typeof endGame === 'function') endGame();
     });

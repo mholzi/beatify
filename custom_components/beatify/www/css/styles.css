@@ -9937,6 +9937,23 @@ body.home-mode .home-view {
     font-size: var(--font-size-base);
     box-shadow: var(--glow-primary), 0 0 40px rgba(255, 45, 106, 0.25);
 }
+/* When Start game is demoted (admin hasn't joined yet), drop its glow so the eye
+   lands on the prominent "Join as player" CTA instead. */
+.home-cta-start.btn-ghost { box-shadow: none; flex: 0 0 auto; }
+
+/* Prominent Join-as-player CTA — same visual weight as Start game so admins
+   see the correct next step. */
+.home-cta-join {
+    flex: 1;
+    padding: var(--space-md);
+    font-size: var(--font-size-base);
+    box-shadow: var(--glow-primary), 0 0 40px rgba(255, 45, 106, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+.home-cta-join.hidden { display: none; }
 
 /* Wizard Step 4 — game mode cards (Artist Challenge / Intro Mode / Closest Wins) */
 .wiz-mode-cards {
