@@ -400,8 +400,17 @@
       "startGame": "Spel starten",
       "eyebrow": "Klaar om te hosten",
       "party": "party",
-      "qrComingTitle": "Deel je QR na Start",
-      "qrComingSub": "Druk op Spel starten om de kamer te openen en een scanbare code met gasten te delen."
+      "scanToJoin": "Scan om mee te doen",
+      "qrLoading": "Kamer aanmaken…",
+      "castToTv": "Cast naar TV",
+      "printQr": "Afdrukken",
+      "endGame": "Spel beëindigen",
+      "requestsTitle": "Afspeellijst-verzoeken",
+      "joinAsPlayer": "Meedoen als speler",
+      "setupTitle": "Nog niet ingesteld",
+      "setupSub": "Duurt ongeveer 2 minuten. We leiden je door luidsprekers, muziekdienst, afspeellijsten en spelmodus.",
+      "startSetup": "Setup starten",
+      "requestNew": "+ Nieuwe afspeellijst aanvragen"
     }
   },
   "analyticsDashboard": {
@@ -690,7 +699,8 @@
       "language": "Aankondigingstaal",
       "easy": "Makkelijk",
       "normal": "Normaal",
-      "hard": "Moeilijk"
+      "hard": "Moeilijk",
+      "modes": "Spelmodi"
     },
     "done": {
       "badge": "KLAAR OM TE SPELEN",
@@ -711,7 +721,12 @@
         "subtle": "Subtiel",
         "medium": "Gemiddeld",
         "party": "Feest",
-        "noneFound": "Geen lampen beschikbaar"
+        "noneFound": "Geen lampen beschikbaar",
+        "mode": "Modus",
+        "modeStatic": "Statisch",
+        "modeDynamic": "Dynamisch",
+        "wledPresets": "WLED-preset per fase",
+        "wledHint": "Voer het WLED-presetnummer (0–16) in voor elke spelfase."
       },
       "tts": {
         "title": "Gesproken aankondigingen",
@@ -721,7 +736,10 @@
         "entityHint": "Kopieer vanuit Home Assistant → Ontwikkelaarstools → Statussen (filter: tts.)",
         "announce": "Aankondigen",
         "announceStart": "Start van het spel",
-        "announceWinner": "Winnaar van ronde"
+        "announceWinner": "Winnaar van ronde",
+        "test": "Testaankondiging sturen",
+        "testOk": "Verzonden",
+        "testFail": "Mislukt"
       }
     }
   }

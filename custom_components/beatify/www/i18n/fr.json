@@ -400,8 +400,17 @@
       "startGame": "Lancer la partie",
       "eyebrow": "Prêt à accueillir",
       "party": "soirée",
-      "qrComingTitle": "Partage ton QR après Start",
-      "qrComingSub": "Lance la partie pour créer le salon et partager un code scannable avec les invités."
+      "scanToJoin": "Scanner pour rejoindre",
+      "qrLoading": "Création du salon…",
+      "castToTv": "Diffuser sur la TV",
+      "printQr": "Imprimer",
+      "endGame": "Terminer la partie",
+      "requestsTitle": "Demandes de playlist",
+      "joinAsPlayer": "Rejoindre en joueur",
+      "setupTitle": "Pas encore configuré",
+      "setupSub": "Environ 2 minutes. On te guide à travers enceintes, service musical, playlists et mode de jeu.",
+      "startSetup": "Commencer la configuration",
+      "requestNew": "+ Demander une playlist"
     }
   },
   "analyticsDashboard": {
@@ -690,7 +699,8 @@
       "language": "Langue des annonces",
       "easy": "Facile",
       "normal": "Normal",
-      "hard": "Difficile"
+      "hard": "Difficile",
+      "modes": "Modes de jeu"
     },
     "done": {
       "badge": "PRÊT À JOUER",
@@ -711,7 +721,12 @@
         "subtle": "Discret",
         "medium": "Moyen",
         "party": "Fête",
-        "noneFound": "Aucune lumière disponible"
+        "noneFound": "Aucune lumière disponible",
+        "mode": "Mode",
+        "modeStatic": "Statique",
+        "modeDynamic": "Dynamique",
+        "wledPresets": "Préréglage WLED par phase",
+        "wledHint": "Entre le numéro de préréglage WLED (0–16) pour chaque phase de la partie."
       },
       "tts": {
         "title": "Annonces vocales",
@@ -721,7 +736,10 @@
         "entityHint": "Copie depuis Home Assistant → Outils développeur → États (filtre : tts.)",
         "announce": "Annoncer",
         "announceStart": "Début de partie",
-        "announceWinner": "Gagnant de manche"
+        "announceWinner": "Gagnant de manche",
+        "test": "Envoyer une annonce test",
+        "testOk": "Envoyé",
+        "testFail": "Échec"
       }
     }
   }

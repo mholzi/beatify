@@ -400,8 +400,17 @@
       "startGame": "Start game",
       "eyebrow": "Ready to host",
       "party": "party",
-      "qrComingTitle": "Share your QR after Start",
-      "qrComingSub": "Hit Start game to create the room and share a scannable code with guests."
+      "scanToJoin": "Scan to join",
+      "qrLoading": "Creating room…",
+      "castToTv": "Cast to TV",
+      "printQr": "Print",
+      "endGame": "End game",
+      "requestsTitle": "Playlist requests",
+      "joinAsPlayer": "Join as player",
+      "setupTitle": "You haven't set up yet",
+      "setupSub": "Takes about 2 minutes. We'll walk you through speakers, music service, playlists, and game mode.",
+      "startSetup": "Start setup",
+      "requestNew": "+ Request new playlist"
     }
   },
   "analyticsDashboard": {
@@ -690,7 +699,8 @@
       "language": "Announcement language",
       "easy": "Easy",
       "normal": "Normal",
-      "hard": "Hard"
+      "hard": "Hard",
+      "modes": "Game modes"
     },
     "done": {
       "badge": "READY TO PLAY",
@@ -711,7 +721,12 @@
         "subtle": "Subtle",
         "medium": "Medium",
         "party": "Party",
-        "noneFound": "No lights available"
+        "noneFound": "No lights available",
+        "mode": "Mode",
+        "modeStatic": "Static",
+        "modeDynamic": "Dynamic",
+        "wledPresets": "WLED preset per phase",
+        "wledHint": "Enter the WLED preset slot number (0–16) to trigger for each game phase."
       },
       "tts": {
         "title": "Voice announcements",
@@ -721,7 +736,10 @@
         "entityHint": "Copy from Home Assistant → Developer Tools → States (filter: tts.)",
         "announce": "Announce",
         "announceStart": "Game start",
-        "announceWinner": "Round winner"
+        "announceWinner": "Round winner",
+        "test": "Send test announcement",
+        "testOk": "Sent",
+        "testFail": "Failed"
       }
     }
   }

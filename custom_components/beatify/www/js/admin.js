@@ -164,6 +164,184 @@ document.addEventListener('DOMContentLoaded', async () => {
             const v = document.getElementById('home-view');
             if (v) v.classList.remove('hidden');
             this.refresh();
+            this.refreshRequests();
+            // Two paths: configured user → auto-create LOBBY + show QR. Unconfigured
+            // user → show the setup prompt hero and wait for them to tap Start setup.
+            if (this.isConfigured()) {
+                this.setMode('configured');
+                if (currentGame && currentGame.phase === 'LOBBY' && currentGame.join_url) {
+                    this.renderSession(currentGame);
+                } else {
+                    this.startSession();
+                }
+            } else {
+                this.setMode('setup');
+            }
+        },
+        // Swap the hero card + CTA bar contents based on whether the user has completed setup.
+        setMode(mode) {
+            const configured = mode === 'configured';
+            document.getElementById('home-hero-configured')?.classList.toggle('hidden', !configured);
+            document.getElementById('home-hero-setup')?.classList.toggle('hidden', configured);
+            // Configured-mode CTAs
+            document.getElementById('home-edit-setup')?.classList.toggle('hidden', !configured);
+            document.getElementById('home-start-game')?.classList.toggle('hidden', !configured);
+            // Unconfigured-mode CTA
+            document.getElementById('home-start-setup')?.classList.toggle('hidden', configured);
+            // Utility row — hide everything when unconfigured (no session, no QR, no lobby)
+            if (!configured) {
+                document.getElementById('home-dashboard-url')?.classList.add('hidden');
+                document.getElementById('home-print-qr')?.classList.add('hidden');
+                document.getElementById('home-join-player')?.classList.add('hidden');
+                document.getElementById('home-end-game')?.classList.add('hidden');
+                // Meta + players are hidden too — no game state to summarize
+                const meta = document.getElementById('home-meta');
+                if (meta) meta.textContent = '';
+                const players = document.getElementById('home-players');
+                if (players) players.innerHTML = '';
+            }
+        },
+        async startSession() {
+            const loading = document.getElementById('home-qr-loading');
+            if (loading) loading.classList.remove('hidden');
+            try {
+                // Guard: startGame() reads selectedPlaylists/selectedMediaPlayer from module globals.
+                // Those globals are populated by loadStatus() on page load, which runs before enter().
+                await startGame();
+            } catch (err) {
+                console.warn('[Beatify] Home auto-start failed:', err);
+            }
+        },
+        renderSession(gameData) {
+            const loading = document.getElementById('home-qr-loading');
+            if (loading) loading.classList.add('hidden');
+
+            // Render the actual QR using the same library + config as #lobby-section
+            const qrContainer = document.getElementById('home-qr-code');
+            if (qrContainer && gameData.join_url && typeof QRCode !== 'undefined') {
+                if (qrContainer.dataset.url !== gameData.join_url) {
+                    qrContainer.innerHTML = '';
+                    new QRCode(qrContainer, {
+                        text: gameData.join_url,
+                        width: 180,
+                        height: 180,
+                        colorDark: '#0a0a12',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.M,
+                    });
+                    qrContainer.dataset.url = gameData.join_url;
+                    qrContainer.setAttribute('role', 'button');
+                    qrContainer.setAttribute('tabindex', '0');
+                    qrContainer.style.cursor = 'pointer';
+                }
+                // Share the cached URL with the existing openQRModal() so tap-to-enlarge works
+                cachedQRUrl = gameData.join_url;
+            }
+            const urlEl = document.getElementById('home-join-url');
+            if (urlEl && gameData.join_url) urlEl.textContent = gameData.join_url;
+
+            // Cast to TV link — point at the spectator dashboard when the server provides it
+            const castEl = document.getElementById('home-dashboard-url');
+            if (castEl) {
+                if (gameData.dashboard_url) {
+                    castEl.href = gameData.dashboard_url;
+                    castEl.classList.remove('hidden');
+                } else {
+                    castEl.classList.add('hidden');
+                }
+            }
+
+            // Print QR + End game + Join as player surface only when a LOBBY session exists
+            const hasLobby = gameData.phase === 'LOBBY' && !!gameData.join_url;
+            document.getElementById('home-print-qr')?.classList.toggle('hidden', !hasLobby);
+            document.getElementById('home-end-game')?.classList.toggle('hidden', !hasLobby);
+
+            // Join-as-player: only visible if lobby + admin hasn't already joined
+            const adminInPlayers = (gameData.players || []).some((p) => p.is_admin);
+            let adminNameStored = null;
+            try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* ignore */ }
+            const canJoin = hasLobby && !adminInPlayers && !adminNameStored && !isPlaying;
+            document.getElementById('home-join-player')?.classList.toggle('hidden', !canJoin);
+
+            this.renderPlayers(gameData.players || []);
+        },
+        renderPlayers(players) {
+            const el = document.getElementById('home-players');
+            if (!el) return;
+            if (!players.length) {
+                el.innerHTML = '<span class="home-player-chip waiting">Waiting for guests…</span>';
+                return;
+            }
+            el.innerHTML = players.map((p) =>
+                `<span class="home-player-chip">${p.name || p.id}</span>`
+            ).join('');
+        },
+        // Fetch playlist-build requests and show/hide the pill. Tap-to-open
+        // renders into the inline modal (stays in home-mode). "Manage in admin"
+        // still available as an escape hatch for delete / resubmit flows.
+        async openRequestsModal() {
+            const modal = document.getElementById('home-requests-modal');
+            const body = document.getElementById('home-requests-modal-list');
+            if (!modal || !body || !window.PlaylistRequests) return;
+
+            body.innerHTML = `<div class="home-modal-empty">Loading…</div>`;
+            modal.classList.remove('hidden');
+
+            let requests = [];
+            try {
+                requests = (await window.PlaylistRequests.getRequestsForDisplayAsync()) || [];
+            } catch (e) { /* show empty */ }
+
+            this.renderRequestsInto(requests);
+        },
+        // Re-render the modal body. Called by openRequestsModal AND by renderRequestsList()
+        // when underlying data changes — keeps the modal live without a manual refresh.
+        renderRequestsInto(requests) {
+            const body = document.getElementById('home-requests-modal-list');
+            if (!body) return;
+            requests = requests || [];
+            if (!requests.length) {
+                body.innerHTML = `<div class="home-modal-empty">No requests yet</div>`;
+                return;
+            }
+            body.innerHTML = requests.map((r) => buildRequestRowHtml(r, 'home-modal')).join('');
+        },
+        closeRequestsModal() {
+            document.getElementById('home-requests-modal')?.classList.add('hidden');
+        },
+        async refreshRequests() {
+            const pill = document.getElementById('home-requests-pill');
+            const titleEl = document.getElementById('home-requests-title');
+            const subEl = document.getElementById('home-requests-sub');
+            if (!pill || !window.PlaylistRequests) return;
+            let requests = [];
+            try {
+                requests = (await window.PlaylistRequests.getRequestsForDisplayAsync()) || [];
+            } catch (e) { /* network hiccup — leave pill hidden */ }
+
+            if (!requests.length) {
+                pill.classList.add('hidden');
+                return;
+            }
+
+            // Prioritize "ready" (actionable) count, fall back to total
+            const ready = requests.filter((r) => r.status === 'ready').length;
+            const pending = requests.filter((r) => r.status === 'pending').length;
+            const total = requests.length;
+
+            if (titleEl) {
+                titleEl.textContent = ready > 0
+                    ? `${ready} playlist${ready === 1 ? '' : 's'} ready`
+                    : `${total} playlist request${total === 1 ? '' : 's'}`;
+            }
+            if (subEl) {
+                subEl.textContent = ready > 0
+                    ? 'Tap to install'
+                    : pending > 0
+                        ? `${pending} pending · tap to review`
+                        : 'Tap to review';
+            }
+            pill.classList.remove('hidden');
         },
         exit() {
             document.body.classList.remove('home-mode');
@@ -194,16 +372,84 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (e) { return false; }
         },
     };
-    document.getElementById('home-edit-setup')?.addEventListener('click', () => window.BeatifyHome.exit());
-    document.getElementById('home-start-game')?.addEventListener('click', () => {
-        // Defer to the existing startGame flow; it already handles the lobby/QR reveal.
-        startGame();
+    // Home-view: Print QR delegates to existing printQRCode(); End game to existing endGame()
+    document.getElementById('home-print-qr')?.addEventListener('click', () => {
+        if (typeof printQRCode === 'function') printQRCode();
     });
-    // Auto-enter home mode if the user is configured and no active game is in progress.
-    // (If a game is active, the existing lobby/playing views take over.)
-    if (window.BeatifyHome.isConfigured() && !currentGame) {
+    document.getElementById('home-end-game')?.addEventListener('click', () => {
+        if (typeof endGame === 'function') endGame();
+    });
+    // Join as player — delegates to the existing admin-join modal flow
+    document.getElementById('home-join-player')?.addEventListener('click', () => {
+        if (typeof openAdminJoinModal === 'function') openAdminJoinModal();
+    });
+
+    // Home-view QR: tap to enlarge — reuses the existing #qr-modal infrastructure
+    document.getElementById('home-qr-code')?.addEventListener('click', () => {
+        if (typeof openQRModal === 'function') openQRModal();
+    });
+    document.getElementById('home-qr-code')?.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && typeof openQRModal === 'function') {
+            e.preventDefault();
+            openQRModal();
+        }
+    });
+
+    // Pill click: open inline modal (stays in home-mode)
+    document.getElementById('home-requests-pill')?.addEventListener('click', () => {
+        window.BeatifyHome.openRequestsModal();
+    });
+    document.getElementById('home-requests-modal-close')?.addEventListener('click', () => {
+        window.BeatifyHome.closeRequestsModal();
+    });
+    document.querySelector('#home-requests-modal .home-modal-backdrop')?.addEventListener('click', () => {
+        window.BeatifyHome.closeRequestsModal();
+    });
+    // "Request new playlist" — opens the existing #request-modal submit form directly
+    // (NOT via #request-playlist-btn) so it survives deletion of #my-requests.
+    // The submit handler's existing renderRequestsList() call keeps both views in sync.
+    document.getElementById('home-requests-modal-new')?.addEventListener('click', () => {
+        window.BeatifyHome.closeRequestsModal();
+        const requestModal = document.getElementById('request-modal');
+        if (requestModal) {
+            requestModal.classList.remove('hidden');
+            document.getElementById('spotify-url-input')?.focus();
+        }
+    });
+
+    document.getElementById('home-edit-setup')?.addEventListener('click', () => {
+        // "Edit setup" re-opens the wizard at Step 1 (not the legacy admin sections).
+        // The wizard re-hydrates all picks from localStorage, so the user sees
+        // their current choices pre-selected and can change anything.
+        window.BeatifyHome.exit();
+        if (window.BeatifyWizard && typeof window.BeatifyWizard.show === 'function') {
+            window.BeatifyWizard.show(1);
+        }
+    });
+    document.getElementById('home-start-game')?.addEventListener('click', () => {
+        // Home-mode auto-creates the LOBBY session on enter, so the user's Start
+        // button triggers the actual "begin rounds" action (startGameplay).
+        if (currentGame && currentGame.phase === 'LOBBY') {
+            startGameplay();
+        } else {
+            startGame();
+        }
+    });
+    // Always enter home-mode on admin load (unless an active game is running).
+    // Home-view shows a setup prompt for unconfigured users + the QR lobby for configured ones.
+    // The old 8 setup sections stay hidden behind the "Edit setup" affordance.
+    if (!currentGame) {
         window.BeatifyHome.enter();
     }
+
+    // Start setup: clear the dismiss flag and open the wizard at Step 1.
+    document.getElementById('home-start-setup')?.addEventListener('click', () => {
+        try { localStorage.removeItem('beatify_wizard_state'); } catch (e) { /* private mode */ }
+        window.BeatifyHome.exit();
+        if (window.BeatifyWizard && typeof window.BeatifyWizard.show === 'function') {
+            window.BeatifyWizard.show(1);
+        }
+    });
 
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
@@ -1365,8 +1611,12 @@ function showLobbyView(gameData) {
     currentView = 'lobby';
     currentGame = gameData;
 
-    // Exit home-mode — the lobby view with QR/players takes over
-    if (window.BeatifyHome) window.BeatifyHome.exit();
+    // If the user is in home-mode (post-wizard landing), keep them there and
+    // render the real QR + players inline instead of switching to #lobby-section.
+    if (document.body.classList.contains('home-mode') && window.BeatifyHome) {
+        window.BeatifyHome.renderSession(gameData);
+        return;
+    }
 
     // Hide setup sections
     setupSections.forEach(id => {
@@ -2295,9 +2545,16 @@ function renderLobbyPlayers(players) {
     var countEl = document.getElementById('lobby-player-count');
     var summaryEl = document.getElementById('admin-players-summary');
     var emptyEl = document.getElementById('lobby-players-empty');
-    if (!listEl) return;
 
     players = players || [];
+
+    // Mirror live player updates into the home-view pill row. If BeatifyHome
+    // is active, this keeps the Variant A landing in sync with the real lobby.
+    if (window.BeatifyHome && typeof window.BeatifyHome.renderPlayers === 'function') {
+        window.BeatifyHome.renderPlayers(players);
+    }
+
+    if (!listEl) return;
 
     // Update player count (stat card value - just the number)
     if (countEl) {
@@ -2585,68 +2842,97 @@ async function initPlaylistRequests() {
 /**
  * Render the list of playlist requests
  */
-async function renderRequestsList() {
-    const section = document.getElementById('my-requests');
-    const listContainer = document.getElementById('my-requests-list');
-    const emptyState = document.getElementById('my-requests-empty');
-    const summary = document.getElementById('my-requests-summary');
+// Shared status labels for both the legacy #my-requests section and the home-view modal
+const REQUEST_STATUS_LABELS = {
+    pending: '⏳ Pending',
+    ready: '✅ Ready',
+    installed: '✓ Installed',
+    declined: '❌ Declined',
+};
 
-    if (!window.PlaylistRequests) {
-        section?.classList.add('hidden');
-        return;
+/**
+ * Build the HTML for one request row. Variant:
+ *   'legacy'    → wide card for the old #my-requests-list
+ *   'home-modal' → compact row for the home-view modal
+ */
+function buildRequestRowHtml(request, variant) {
+    const statusLabel = REQUEST_STATUS_LABELS[request.status] || request.status;
+    const playlistName = escapeHtml(request.playlist_name || request.name || 'Untitled request');
+    const relativeTime = request.relative_time || '';
+    const updateBtn = (request.status === 'ready' && request.update_available)
+        ? `<a href="https://github.com/mholzi/beatify/releases" target="_blank" rel="noopener" class="btn btn-primary request-update-btn">Update to v${escapeHtml(request.release_version || '')}</a>`
+        : '';
+
+    if (variant === 'home-modal') {
+        const thumbHtml = request.thumbnail_url
+            ? `<img src="${request.thumbnail_url}" alt="">`
+            : '🎵';
+        const updateHomeBtn = (request.status === 'ready' && request.update_available)
+            ? `<a class="home-req-row-action" href="https://github.com/mholzi/beatify/releases" target="_blank" rel="noopener">Update</a>`
+            : '';
+        return `<div class="home-req-row">
+            <div class="home-req-row-thumb">${thumbHtml}</div>
+            <div class="home-req-row-text">
+                <div class="home-req-row-name">${playlistName}</div>
+                <div class="home-req-row-status ${request.status}">${statusLabel}${relativeTime ? ' · ' + escapeHtml(relativeTime) : ''}</div>
+            </div>
+            ${updateHomeBtn}
+        </div>`;
     }
 
-    // Only show section in setup view (not during active/existing game)
-    if (currentView === 'setup') {
-        section?.classList.remove('hidden');
+    // legacy variant
+    const thumbnail = request.thumbnail_url
+        ? `<img class="request-item-thumbnail" src="${request.thumbnail_url}" alt="">`
+        : `<div class="request-item-thumbnail-placeholder">🎵</div>`;
+    return `
+        <div class="request-item">
+            ${thumbnail}
+            <div class="request-item-info">
+                <div class="request-item-name">${playlistName}</div>
+                <div class="request-item-meta">${escapeHtml(relativeTime)}</div>
+            </div>
+            <span class="request-status request-status--${request.status}">${statusLabel}</span>
+            ${updateBtn}
+        </div>
+    `;
+}
+
+async function renderRequestsList() {
+    if (!window.PlaylistRequests) {
+        document.getElementById('my-requests')?.classList.add('hidden');
+        return;
     }
 
     // Load requests from backend (async)
     const requests = await window.PlaylistRequests.getRequestsForDisplayAsync();
 
-    // Update summary badge
-    if (summary) {
-        summary.textContent = requests.length.toString();
+    // Sync the home-view pill + open modal (if any)
+    if (window.BeatifyHome) {
+        window.BeatifyHome.refreshRequests();
+        // Re-render the modal in place if it's currently open — keeps live updates flowing
+        const modal = document.getElementById('home-requests-modal');
+        if (modal && !modal.classList.contains('hidden')) {
+            window.BeatifyHome.renderRequestsInto(requests);
+        }
     }
 
-    // Render list or empty state
+    // Legacy #my-requests section — null-safe so the section can be deleted later
+    const section = document.getElementById('my-requests');
+    const listContainer = document.getElementById('my-requests-list');
+    const emptyState = document.getElementById('my-requests-empty');
+    const summary = document.getElementById('my-requests-summary');
+
+    if (!section || !listContainer) return; // section deleted from DOM — home-view modal carries the load
+
+    if (currentView === 'setup') section.classList.remove('hidden');
+    if (summary) summary.textContent = requests.length.toString();
+
     if (requests.length === 0) {
         listContainer.innerHTML = '';
         emptyState?.classList.remove('hidden');
     } else {
         emptyState?.classList.add('hidden');
-        listContainer.innerHTML = requests.map(request => {
-            const statusClass = `request-status--${request.status}`;
-            const statusLabels = {
-                pending: '⏳ Pending',
-                ready: '✅ Ready',
-                installed: '✓ Installed',
-                declined: '❌ Declined'
-            };
-            const statusLabel = statusLabels[request.status] || request.status;
-
-            const thumbnail = request.thumbnail_url
-                ? `<img class="request-item-thumbnail" src="${request.thumbnail_url}" alt="">`
-                : `<div class="request-item-thumbnail-placeholder">🎵</div>`;
-
-            let actionButton = '';
-            if (request.status === 'ready' && request.update_available) {
-                actionButton = `<a href="https://github.com/mholzi/beatify/releases" target="_blank"
-                    class="btn btn-primary request-update-btn">Update to v${request.release_version}</a>`;
-            }
-
-            return `
-                <div class="request-item">
-                    ${thumbnail}
-                    <div class="request-item-info">
-                        <div class="request-item-name">${escapeHtml(request.playlist_name)}</div>
-                        <div class="request-item-meta">${request.relative_time}</div>
-                    </div>
-                    <span class="request-status ${statusClass}">${statusLabel}</span>
-                    ${actionButton}
-                </div>
-            `;
-        }).join('');
+        listContainer.innerHTML = requests.map((r) => buildRequestRowHtml(r, 'legacy')).join('');
     }
 }
 
@@ -3422,7 +3708,15 @@ function adminDismissGame() {
     cachedQRUrl = null;
     isPlaying = false;
     adminPlayerName = null;
-    showSetupView();
+    // "Start New Game" at end-of-game sends the host back through onboarding.
+    // Wizard re-hydrates from localStorage so previous picks stay pre-selected —
+    // user can change anything or click straight through to Done.
+    if (window.BeatifyHome) window.BeatifyHome.exit();
+    if (window.BeatifyWizard && typeof window.BeatifyWizard.show === 'function') {
+        window.BeatifyWizard.show(1);
+    } else {
+        showSetupView(); // fallback if wizard module failed to load
+    }
 }
 
 
