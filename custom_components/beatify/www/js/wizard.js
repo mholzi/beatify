@@ -90,11 +90,18 @@ const chosenPlaylists = new Set(); // paths — multi-select
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
 let chosenLanguage = 'en';
+// Game-mode toggles (defaults match admin.js: artistChallenge on, intro off, closestWins off)
+let chosenArtistChallenge = true;
+let chosenIntroMode = false;
+let chosenClosestWins = false;
 const chosenLevelUps = { lights: false, tts: false };
 // Details the user sets when a level-up is toggled on
 let cachedLights = null; // HA lights from /api/lights
 const chosenLightEntityIds = new Set();
 let chosenLightIntensity = 'medium'; // subtle | medium | party
+let chosenLightMode = 'dynamic'; // static | dynamic | wled
+const chosenWledPresets = {}; // { LOBBY: 1, PLAYING: 2, ... }
+const WLED_PHASES = ['LOBBY', 'PLAYING', 'REVEAL', 'STREAK', 'COUNTDOWN', 'END'];
 let chosenTtsEntityId = '';
 let chosenTtsAnnounceStart = true;
 let chosenTtsAnnounceWinner = true;
@@ -147,6 +154,10 @@ function _hydrateLevelUpDetails() {
             const s = JSON.parse(rawL);
             if (Array.isArray(s.lights)) s.lights.forEach((id) => chosenLightEntityIds.add(id));
             if (s.intensity) chosenLightIntensity = s.intensity;
+            if (s.light_mode) chosenLightMode = s.light_mode;
+            if (s.wled_presets && typeof s.wled_presets === 'object') {
+                Object.assign(chosenWledPresets, s.wled_presets);
+            }
         }
         const rawT = localStorage.getItem('beatify_tts');
         if (rawT) {
@@ -167,12 +178,6 @@ function _setProgress(step) {
         if (stepNum < step) seg.classList.add('filled');
         else if (stepNum === step) seg.classList.add('active');
     });
-    const label = document.getElementById('wiz-step-count');
-    if (label) {
-        if (step <= 4) label.textContent = `Step ${step} of ${TOTAL_STEPS}`;
-        else if (step === 5) label.textContent = 'Optional';
-        else label.textContent = 'All set';
-    }
 }
 
 function _showFrame(n) {
@@ -182,9 +187,6 @@ function _showFrame(n) {
         else frame.setAttribute('hidden', '');
     });
     currentStep = n;
-    // Done frame has its own big hero wordmark — hide the top-bar one to avoid duplicate logos
-    const root = document.getElementById('wizard-root');
-    if (root) root.classList.toggle('wiz-on-done', n === 6);
     _setProgress(Math.min(n, TOTAL_STEPS));
     _updateCta();
     // Persist wizard state so refresh / revisit resumes at the right step.
@@ -294,6 +296,7 @@ const PROVIDERS = [
     { id: 'apple_music', label: 'Apple Music' },
     { id: 'youtube_music', label: 'YouTube Music' },
     { id: 'tidal', label: 'Tidal' },
+    { id: 'deezer', label: 'Deezer' },
 ];
 
 function _renderProviders() {
@@ -388,6 +391,63 @@ function _renderChipGroup(elId, items, active, onPick) {
     });
 }
 
+const GAME_MODES = [
+    {
+        key: 'artist',
+        icon: '🎤',
+        titleKey: 'admin.artistChallenge',
+        titleFallback: 'Artist Challenge',
+        hintKey: 'admin.artistChallengeHint',
+        hintFallback: 'After each round, players can guess the artist for bonus points. First correct guess earns +5 points.',
+        get: () => chosenArtistChallenge,
+        set: (v) => { chosenArtistChallenge = v; },
+    },
+    {
+        key: 'intro',
+        icon: '⚡',
+        titleKey: 'admin.introMode',
+        titleFallback: 'Intro Mode',
+        hintKey: 'admin.introModeHint',
+        hintFallback: '~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.',
+        get: () => chosenIntroMode,
+        set: (v) => { chosenIntroMode = v; },
+    },
+    {
+        key: 'closest',
+        icon: '🎯',
+        titleKey: 'admin.closestWinsMode',
+        titleFallback: 'Closest Wins',
+        hintKey: 'admin.closestWinsHint',
+        hintFallback: 'Only the player with the closest guess scores points each round. All-or-nothing showdown.',
+        get: () => chosenClosestWins,
+        set: (v) => { chosenClosestWins = v; },
+    },
+];
+
+function _renderGameModes() {
+    const el = document.getElementById('wiz-modes');
+    if (!el) return;
+    el.innerHTML = GAME_MODES.map((m) => {
+        const on = m.get();
+        return `<div class="wiz-mode-card ${on ? 'on' : ''}" data-mode="${m.key}" role="button" tabindex="0">
+            <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
+            <div class="wiz-mode-body">
+                <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>
+                <div class="wiz-mode-hint">${_t(m.hintKey, m.hintFallback)}</div>
+            </div>
+            <div class="wiz-lvl-toggle"></div>
+        </div>`;
+    }).join('');
+    el.querySelectorAll('[data-mode]').forEach((card) => {
+        card.addEventListener('click', () => {
+            const mode = GAME_MODES.find((m) => m.key === card.dataset.mode);
+            if (!mode) return;
+            mode.set(!mode.get());
+            _renderGameModes();
+        });
+    });
+}
+
 function _renderGameMode() {
     _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
         chosenDifficulty = val;
@@ -401,6 +461,7 @@ function _renderGameMode() {
         chosenLanguage = val;
         _renderGameMode();
     });
+    _renderGameModes();
 }
 
 function _lightsDetailHtml() {
@@ -414,7 +475,24 @@ function _lightsDetailHtml() {
           </label>`;
           }).join('')
         : `<div class="wiz-detail-empty">${_t('wizard.step5.lights.noneFound', 'No lights available')}</div>`;
-    const chip = (id, label) => `<button type="button" class="wiz-chip ${chosenLightIntensity === id ? 'active' : ''}" data-intensity="${id}">${label}</button>`;
+    const chip = (id, label, group) => `<button type="button" class="wiz-chip ${(group === 'intensity' ? chosenLightIntensity : chosenLightMode) === id ? 'active' : ''}" data-${group}="${id}">${label}</button>`;
+
+    const wledBlock = chosenLightMode === 'wled'
+        ? `<div class="wiz-field">
+             <span class="wiz-field-label">${_t('wizard.step5.lights.wledPresets', 'WLED preset per phase')}</span>
+             <div class="wiz-wled-grid">
+               ${WLED_PHASES.map((phase) => {
+                   const val = chosenWledPresets[phase] !== undefined ? chosenWledPresets[phase] : '';
+                   return `<label class="wiz-wled-row">
+                     <span class="wiz-wled-phase">${phase}</span>
+                     <input type="number" min="0" class="wiz-detail-input wiz-wled-input" data-wled-phase="${phase}" value="${val}" placeholder="—">
+                   </label>`;
+               }).join('')}
+             </div>
+             <span class="wiz-field-hint">${_t('wizard.step5.lights.wledHint', 'Enter the WLED preset slot number (0–16) to trigger for each game phase.')}</span>
+           </div>`
+        : '';
+
     return `
         <div class="wiz-detail">
           <div class="wiz-field">
@@ -424,11 +502,20 @@ function _lightsDetailHtml() {
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.lights.intensity', 'Intensity')}</span>
             <div class="wiz-chip-group">
-              ${chip('subtle', _t('wizard.step5.lights.subtle', 'Subtle'))}
-              ${chip('medium', _t('wizard.step5.lights.medium', 'Medium'))}
-              ${chip('party', _t('wizard.step5.lights.party', 'Party'))}
+              ${chip('subtle', _t('wizard.step5.lights.subtle', 'Subtle'), 'intensity')}
+              ${chip('medium', _t('wizard.step5.lights.medium', 'Medium'), 'intensity')}
+              ${chip('party', _t('wizard.step5.lights.party', 'Party'), 'intensity')}
             </div>
           </div>
+          <div class="wiz-field">
+            <span class="wiz-field-label">${_t('wizard.step5.lights.mode', 'Mode')}</span>
+            <div class="wiz-chip-group">
+              ${chip('static', _t('wizard.step5.lights.modeStatic', 'Static'), 'lightMode')}
+              ${chip('dynamic', _t('wizard.step5.lights.modeDynamic', 'Dynamic'), 'lightMode')}
+              ${chip('wled', 'WLED', 'lightMode')}
+            </div>
+          </div>
+          ${wledBlock}
         </div>`;
 }
 
@@ -443,6 +530,9 @@ function _ttsDetailHtml() {
             <span class="wiz-field-label">${_t('wizard.step5.tts.entityLabel', 'TTS service (entity ID)')}</span>
             <input type="text" id="wiz-tts-entity" class="wiz-detail-input" placeholder="tts.google_en_com" value="${chosenTtsEntityId}">
             <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', 'Copy from Home Assistant → Developer Tools → States (filter: tts.)')}</span>
+            <button type="button" id="wiz-tts-test" class="btn btn-ghost wiz-detail-test" ${chosenTtsEntityId ? '' : 'disabled'}>
+              🔊 ${_t('wizard.step5.tts.test', 'Send test announcement')}
+            </button>
           </div>
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.tts.announce', 'Announce')}</span>
@@ -522,11 +612,54 @@ function _renderLevelUp() {
             _renderLevelUp();
         });
     });
+    list.querySelectorAll('[data-light-mode]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            chosenLightMode = btn.dataset.lightMode;
+            _renderLevelUp();
+        });
+    });
+    list.querySelectorAll('[data-wled-phase]').forEach((input) => {
+        input.addEventListener('input', () => {
+            const phase = input.dataset.wledPhase;
+            const v = parseInt(input.value, 10);
+            if (Number.isFinite(v) && v >= 0) chosenWledPresets[phase] = v;
+            else delete chosenWledPresets[phase];
+        });
+    });
 
     // TTS fields
     const ttsInput = document.getElementById('wiz-tts-entity');
+    const ttsTestBtn = document.getElementById('wiz-tts-test');
     if (ttsInput) {
-        ttsInput.addEventListener('input', () => { chosenTtsEntityId = ttsInput.value.trim(); });
+        ttsInput.addEventListener('input', () => {
+            chosenTtsEntityId = ttsInput.value.trim();
+            if (ttsTestBtn) ttsTestBtn.disabled = !chosenTtsEntityId;
+        });
+    }
+    if (ttsTestBtn) {
+        ttsTestBtn.addEventListener('click', async () => {
+            if (!chosenTtsEntityId) return;
+            const orig = ttsTestBtn.innerHTML;
+            ttsTestBtn.disabled = true;
+            ttsTestBtn.innerHTML = '🔊 …';
+            try {
+                const r = await fetch('/beatify/api/tts-test', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ entity_id: chosenTtsEntityId, message: 'Beatify TTS test — this is working!' }),
+                });
+                ttsTestBtn.innerHTML = r.ok
+                    ? '✓ ' + _t('wizard.step5.tts.testOk', 'Sent')
+                    : '✗ ' + _t('wizard.step5.tts.testFail', 'Failed');
+            } catch (e) {
+                ttsTestBtn.innerHTML = '✗ ' + _t('wizard.step5.tts.testFail', 'Failed');
+            }
+            setTimeout(() => {
+                ttsTestBtn.innerHTML = orig;
+                ttsTestBtn.disabled = !chosenTtsEntityId;
+            }, 2000);
+        });
     }
     list.querySelectorAll('[data-tts-flag]').forEach((cb) => {
         cb.addEventListener('change', () => {
@@ -539,10 +672,15 @@ function _renderLevelUp() {
 function _persistLevelUpDetails() {
     try {
         if (chosenLevelUps.lights) {
-            localStorage.setItem('beatify_party_lights', JSON.stringify({
+            const payload = {
                 lights: Array.from(chosenLightEntityIds),
                 intensity: chosenLightIntensity,
-            }));
+                light_mode: chosenLightMode,
+            };
+            if (chosenLightMode === 'wled' && Object.keys(chosenWledPresets).length > 0) {
+                payload.wled_presets = chosenWledPresets;
+            }
+            localStorage.setItem('beatify_party_lights', JSON.stringify(payload));
         }
         localStorage.setItem('beatify_tts', JSON.stringify({
             enabled: chosenLevelUps.tts,
@@ -602,6 +740,9 @@ function _persistGameSettings() {
             difficulty: chosenDifficulty,
             duration: chosenDuration,
             language: chosenLanguage,
+            artistChallenge: chosenArtistChallenge,
+            introMode: chosenIntroMode,
+            closestWinsMode: chosenClosestWins,
         };
         if (chosenPlaylists.size > 0) {
             // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
@@ -634,6 +775,9 @@ export async function show(stepOverride) {
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
             if (s.language) chosenLanguage = s.language;
+            if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
+            if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
+            if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
                     const path = typeof entry === 'string' ? entry : entry && entry.path;

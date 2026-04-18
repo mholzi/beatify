@@ -400,8 +400,17 @@
       "startGame": "Spiel starten",
       "eyebrow": "Bereit zum Hosten",
       "party": "Party",
-      "qrComingTitle": "QR-Code nach dem Start teilen",
-      "qrComingSub": "Tippe „Spiel starten“, um den Raum zu öffnen und den scannbaren Code mit den Gästen zu teilen."
+      "scanToJoin": "Scannen zum Beitreten",
+      "qrLoading": "Raum wird erstellt…",
+      "castToTv": "Auf TV streamen",
+      "printQr": "Drucken",
+      "endGame": "Spiel beenden",
+      "requestsTitle": "Playlist-Anfragen",
+      "joinAsPlayer": "Als Spieler beitreten",
+      "setupTitle": "Noch nicht eingerichtet",
+      "setupSub": "Dauert etwa 2 Minuten. Wir führen dich durch Lautsprecher, Musikdienst, Playlists und Spielmodus.",
+      "startSetup": "Einrichtung starten",
+      "requestNew": "+ Neue Playlist anfragen"
     }
   },
   "analyticsDashboard": {
@@ -690,7 +699,8 @@
       "language": "Ansagesprache",
       "easy": "Leicht",
       "normal": "Normal",
-      "hard": "Schwer"
+      "hard": "Schwer",
+      "modes": "Spielmodi"
     },
     "done": {
       "badge": "BEREIT ZUM SPIELEN",
@@ -711,7 +721,12 @@
         "subtle": "Dezent",
         "medium": "Mittel",
         "party": "Party",
-        "noneFound": "Keine Lampen verfügbar"
+        "noneFound": "Keine Lampen verfügbar",
+        "mode": "Modus",
+        "modeStatic": "Statisch",
+        "modeDynamic": "Dynamisch",
+        "wledPresets": "WLED-Preset pro Phase",
+        "wledHint": "Gib die WLED-Preset-Nummer (0–16) für jede Spielphase ein."
       },
       "tts": {
         "title": "Sprachansagen",
@@ -721,7 +736,10 @@
         "entityHint": "Aus Home Assistant → Entwicklertools → Zustände kopieren (Filter: tts.)",
         "announce": "Ansagen",
         "announceStart": "Spielstart",
-        "announceWinner": "Rundengewinner"
+        "announceWinner": "Rundengewinner",
+        "test": "Testansage senden",
+        "testOk": "Gesendet",
+        "testFail": "Fehlgeschlagen"
       }
     }
   }
