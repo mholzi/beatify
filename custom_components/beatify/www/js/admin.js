@@ -324,21 +324,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             const el = document.getElementById('home-players');
             if (!el) return;
             if (!players.length) {
-                el.innerHTML = '<span class="home-player-chip waiting">Waiting for guests…</span>';
+                el.innerHTML = '<div class="home-players-waiting">Waiting for guests…</div>';
                 return;
             }
-            // Admin chip gets the pink-primary treatment + 👑 (reuses the
-            // existing .admin-badge pattern from the legacy lobby/end views)
-            // to mark the host as the leader of the room. Regular guests stay
-            // on the cyan accent so the host reads as "the one in charge".
+            // Jackbox-style tile grid. Host always wears the pink-primary
+            // variant with a 👑 crown badge; guests cycle through the brand
+            // neon palette (cyan → green → orange → dim-cyan, then wrap)
+            // so each player reads distinctly in a mixed lobby.
+            const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+            }[c]));
+            const guestVariants = ['c1', 'c2', 'c3', 'c4'];
+            let guestIdx = 0;
             el.innerHTML = players.map((p) => {
-                const cls = p.is_admin
-                    ? 'home-player-chip home-player-chip--admin'
-                    : 'home-player-chip';
-                const crown = p.is_admin
-                    ? '<span class="admin-badge" aria-hidden="true">👑</span>'
+                const isHost = !!p.is_admin;
+                const variant = isHost ? 'host' : guestVariants[guestIdx++ % guestVariants.length];
+                const raw = (p.name || p.id || '?').trim();
+                const initial = (raw.charAt(0) || '?').toUpperCase();
+                const crown = isHost
+                    ? '<span class="home-player-tile-crown" aria-hidden="true">👑</span>'
                     : '';
-                return `<span class="${cls}">${crown}${p.name || p.id}</span>`;
+                return `<div class="home-player-tile home-player-tile--${variant}">`
+                    + `<span class="home-player-tile-initial">${esc(initial)}</span>`
+                    + `<span class="home-player-tile-name">${esc(raw || 'Guest')}</span>`
+                    + crown
+                    + `</div>`;
             }).join('');
         },
         // Fetch playlist-build requests and show/hide the pill. Tap-to-open

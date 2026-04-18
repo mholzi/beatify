@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc27] - 2026-04-18
+
+### Changed
+- **Home-view player chips → Jackbox-style tile grid.** Chose Option B from the design mockup: each joined player renders as a square color-block tile (initial + name), 84 px min-width in a `repeat(auto-fill, minmax(84px, 1fr))` grid. The host always wears the pink-primary variant with a 👑 crown badge (DESIGN.md "leader highlights"); guests cycle through the brand neon palette in join order — cyan → green (`--color-success-neon`) → orange (`--color-warning-alt`) → dim cyan, then wrap. Each tile gets a gradient background + colored border + matching glow so a mixed lobby reads as individual players at a glance, not an anonymous chip row. Empty state stays as a single dashed full-width pill. Ships with regenerated `admin.min.js` + `styles.min.css`, bumped `?v=` cache-busters in `admin.html`, and SW `CACHE_VERSION` → `beatify-v3.2.0-rc27`.
+
 ## [3.2.0-rc26] - 2026-04-18
 
 ### Fixed

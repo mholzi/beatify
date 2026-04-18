@@ -9748,53 +9748,110 @@ body.home-mode .home-view {
     max-width: 260px;
 }
 
-/* Live player chips row */
+/* Live player tiles — Jackbox-style grid. Host wears the pink-primary
+   "leader" treatment (DESIGN.md); guests cycle through the brand neon
+   palette (cyan → green → orange) so each player reads distinctly. */
 .home-players {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
     gap: var(--space-sm);
-    justify-content: center;
-    max-width: 360px;
+    justify-items: center;
+    width: 100%;
+    max-width: 380px;
 }
 .home-players:empty { display: none; }
-.home-player-chip {
-    display: inline-flex;
+
+.home-player-tile {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: var(--space-sm);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-xs);
-    padding: 8px 14px;
-    background: rgba(0, 245, 255, 0.12);
-    border: 1.5px solid rgba(0, 245, 255, 0.55);
-    border-radius: var(--radius-full);
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--tile-from), var(--tile-to));
+    border: 1.5px solid var(--tile-border);
+    box-shadow: 0 0 14px var(--tile-glow);
+    /* Guest default = cyan (c1). Variants override via custom props. */
+    --tile-from: rgba(0, 245, 255, 0.32);
+    --tile-to: rgba(0, 245, 255, 0.08);
+    --tile-border: rgba(0, 245, 255, 0.7);
+    --tile-glow: rgba(0, 245, 255, 0.35);
+}
+.home-player-tile-initial {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: var(--font-size-base);
-    color: var(--color-accent-secondary);
-    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--color-text-white);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
-/* Admin/host chip — pink primary + glow per DESIGN.md "leader highlights". */
-.home-player-chip--admin {
-    background: rgba(255, 45, 106, 0.14);
-    border-color: rgba(255, 45, 106, 0.7);
-    color: var(--color-accent-primary);
+.home-player-tile-name {
+    font-family: var(--font-display);
     font-weight: 700;
-    box-shadow: var(--glow-primary);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-white);
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
 }
-.home-player-chip--admin .admin-badge {
-    margin-left: 0;
-    color: var(--color-accent-primary);
-    filter: drop-shadow(0 0 4px rgba(255, 45, 106, 0.6));
+/* Guest color variants cycle through brand neon palette (no purple —
+   reserved for analytics/steal per DESIGN.md). */
+.home-player-tile--c2 {
+    --tile-from: rgba(57, 255, 20, 0.32);
+    --tile-to: rgba(57, 255, 20, 0.08);
+    --tile-border: rgba(57, 255, 20, 0.65);
+    --tile-glow: rgba(57, 255, 20, 0.32);
 }
-.home-player-chip.waiting {
-    border-style: dashed;
-    border-width: 1px;
-    border-color: var(--color-border-neon);
+.home-player-tile--c3 {
+    --tile-from: rgba(255, 102, 0, 0.32);
+    --tile-to: rgba(255, 102, 0, 0.08);
+    --tile-border: rgba(255, 102, 0, 0.65);
+    --tile-glow: rgba(255, 102, 0, 0.32);
+}
+.home-player-tile--c4 {
+    --tile-from: rgba(0, 245, 255, 0.22);
+    --tile-to: rgba(0, 245, 255, 0.04);
+    --tile-border: rgba(0, 245, 255, 0.5);
+    --tile-glow: rgba(0, 245, 255, 0.22);
+}
+/* Host tile — pink primary + glow-primary (DESIGN.md "leader highlights"). */
+.home-player-tile--host {
+    --tile-from: rgba(255, 45, 106, 0.35);
+    --tile-to: rgba(255, 45, 106, 0.08);
+    --tile-border: rgba(255, 45, 106, 0.85);
+    --tile-glow: rgba(255, 45, 106, 0.5);
+    box-shadow: var(--glow-primary), 0 0 22px rgba(255, 45, 106, 0.35);
+}
+.home-player-tile-crown {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 45, 106, 0.8));
+    pointer-events: none;
+}
+/* Empty-state: single full-width dashed pill (not a tile, to keep the
+   "no one here yet" vibe distinct from "someone is here"). */
+.home-players-waiting {
+    grid-column: 1 / -1;
+    padding: var(--space-md);
+    border-radius: var(--radius-full);
+    border: 1px dashed var(--color-border-neon);
     background: transparent;
     color: var(--color-text-dim);
-    font-size: var(--font-size-sm);
+    font-family: var(--font-display);
     font-weight: 500;
-    box-shadow: none;
+    font-size: var(--font-size-sm);
+    text-align: center;
 }
 
 .home-meta {
