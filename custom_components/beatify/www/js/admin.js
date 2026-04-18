@@ -110,6 +110,9 @@ let lobbyPollingInterval = null;
 // Issue #477: Admin WebSocket state
 let adminWs = null;
 let adminPlayerName = null;   // Set when admin joins as player
+let adminSessionId = null;    // Set on join_ack — passed to /play so it can
+                              // reconnect via {type:'reconnect'} instead of a
+                              // fresh {type:'join'} (which races ERR_NAME_TAKEN).
 let isPlaying = false;        // Whether admin is participating as a player
 let adminReconnectAttempts = 0;
 const MAX_ADMIN_RECONNECT = 10;
@@ -3107,8 +3110,14 @@ function handleAdminWsMessage(data) {
             // Admin successfully joined as player
             isPlaying = true;
             if (data.session_id) {
+                adminSessionId = data.session_id;
+                // Match player-core.js cookie convention: path=/beatify +
+                // Secure on HTTPS. The old path=/ without Secure was silently
+                // rejected by Nabu Casa's HTTPS tunnel, so /play never saw
+                // the identity and prompted for name again.
+                var secureFlag = location.protocol === 'https:' ? '; Secure' : '';
                 document.cookie = 'beatify_session=' + data.session_id +
-                    ';path=/;max-age=86400;SameSite=Strict';
+                    '; path=/beatify; max-age=86400; SameSite=Strict' + secureFlag;
             }
             console.log('[Admin WS] Joined as player:', adminPlayerName);
             break;
@@ -3219,7 +3228,9 @@ function handleAdminStateUpdate(data) {
             // automatically instead of staying on the admin-playing view. The
             // player page carries its own slim admin-control-bar, so control
             // isn't lost — and the "Admin View" exit is available on /play.
-            if (adminPlayerName && currentGame && currentGame.game_id) {
+            // Require adminSessionId so /play can reconnect via session_id
+            // rather than a racey fresh join (ERR_NAME_TAKEN otherwise).
+            if (adminPlayerName && adminSessionId && currentGame && currentGame.game_id) {
                 handleSwitchToPlayerView();
                 return;
             }
@@ -3270,8 +3281,19 @@ function handleSwitchToPlayerView() {
         try {
             sessionStorage.setItem('beatify_admin_name', adminPlayerName);
             sessionStorage.setItem('beatify_is_admin', 'true');
+            if (adminSessionId) {
+                sessionStorage.setItem('beatify_session', adminSessionId);
+            }
         } catch(e) {}
-        window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
+        // Pass session_id in the URL so /play can reconnect via
+        // {type:'reconnect'} — avoids the name-collision race where the
+        // old admin WS hasn't disconnected yet and the fresh join gets
+        // ERR_NAME_TAKEN from player_registry.add_player.
+        var url = '/beatify/play?game=' + encodeURIComponent(gameId);
+        if (adminSessionId) {
+            url += '&session=' + encodeURIComponent(adminSessionId);
+        }
+        window.location.href = url;
     }
 }
 
