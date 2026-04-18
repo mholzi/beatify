@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc14] - 2026-04-18
+
+### Fixed
+- **Static files served with 31-day `Cache-Control: max-age=2678400`** — combined with HACS updates that don't always touch every file, users ended up with `admin.html` pointing at `?v=3.2.0-rcN` while the browser held onto a month-old `admin.min.js` under that same URL. Flipped `cache_headers=False` on the `/beatify/static/` route so the browser revalidates via ETag / Last-Modified on every load and picks up fresh bytes the moment the file on disk changes.
+
 ## [3.2.0-rc13] - 2026-04-18
 
 ### Added
