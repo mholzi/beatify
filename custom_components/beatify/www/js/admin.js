@@ -1859,17 +1859,25 @@ async function startGame() {
  * re-join as a player after a rematch.
  */
 async function startGameplay() {
-    const btn = document.getElementById('start-gameplay-btn');
-    if (!btn || btn.disabled) return;
+    // The legacy #start-gameplay-btn was removed in rc25; the home-view's
+    // #home-start-game is now the only entry point. Before rc27 this
+    // function looked up the legacy id and returned early when it didn't
+    // exist — so Spiel starten did nothing on click.
+    const btn = document.getElementById('home-start-game');
+    if (btn && btn.disabled) return;
 
-    btn.disabled = true;
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
+    let originalHTML = null;
+    if (btn) {
+        btn.disabled = true;
+        originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
+    }
 
     // Issue #477: Prefer WS for game commands
     if (adminWs && adminWs.readyState === WebSocket.OPEN) {
         adminWs.send(JSON.stringify({ type: 'admin', action: 'start_game' }));
-        // State update will arrive via WS broadcast — no need for loadStatus()
+        // State update will arrive via WS broadcast. handleAdminStateUpdate
+        // exits home-mode on LOBBY → PLAYING, so the button is hidden.
         return;
     }
 
@@ -1889,8 +1897,10 @@ async function startGameplay() {
         showError('Network error. Please try again.');
         console.error('Start gameplay error:', err);
     } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
+        if (btn && originalHTML != null) {
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        }
     }
 }
 
