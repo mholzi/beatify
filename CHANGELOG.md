@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc16] - 2026-04-18
+
+### Fixed
+- **Wizard Step 4 "Ansagesprache" didn't switch the UI language.** Picking Deutsch / Español / Français / Nederlands only updated `chosenLanguage` in wizard state — no call to `BeatifyI18n.setLanguage()`. The UI stayed in English for the rest of the wizard and only actually switched on the next page load. Now the chip click fetches the locale file and re-renders translations immediately.
+
 ## [3.2.0-rc15] - 2026-04-18
 
 ### Fixed
