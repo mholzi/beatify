@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc18] - 2026-04-18
+
+### Changed
+- **Admin stays on home-view after "Join as player"** instead of redirecting to the legacy player lobby. The existing admin WebSocket (already authenticated via `admin_connect`) now sends `{type:'join', name, is_admin:true}` when the admin enters their name in home-mode. The server adds the same socket to `game_state.players`, the state broadcast loops back through `handleAdminStateUpdate` → `showLobbyView` → `BeatifyHome.renderSession`, and the admin's name appears in the home-view player chips without leaving the new UI. Legacy redirect path (#653) is preserved for non-home-view contexts (e.g. rematch).
+
 ## [3.2.0-rc17] - 2026-04-18
 
 ### Changed

@@ -2315,9 +2315,37 @@ function handleAdminJoin() {
     joinBtn.disabled = true;
     joinBtn.textContent = BeatifyI18n.t('game.joining');
 
-    // #653: Always redirect to player page for full game experience.
-    // The player page has all 18 player features + admin control bar
-    // (shown automatically when isAdmin === true).
+    const inHomeMode = document.body.classList.contains('home-mode');
+    const wsOpen = adminWs && adminWs.readyState === WebSocket.OPEN;
+
+    // Home-view path: keep admin on the new view. adminWs is already
+    // authenticated via admin_connect; sending a join on the same socket
+    // registers this ws as a player too (handle_join adds it to
+    // game_state.players + set_admin). State broadcast then feeds back
+    // through handleAdminStateUpdate → showLobbyView → BeatifyHome.renderSession
+    // so the admin shows up in the player list without navigating away.
+    if (inHomeMode && wsOpen) {
+        try {
+            sessionStorage.setItem('beatify_admin_name', name);
+            sessionStorage.setItem('beatify_is_admin', 'true');
+            adminPlayerName = name;
+            adminWs.send(JSON.stringify({
+                type: 'join',
+                name: name,
+                is_admin: true,
+            }));
+            closeAdminJoinModal();
+        } catch (err) {
+            console.error('Admin join (home-mode) failed:', err);
+            joinBtn.disabled = false;
+            joinBtn.textContent = BeatifyI18n.t('admin.join');
+        }
+        return;
+    }
+
+    // Legacy path (#653): redirect to the player page for the full game
+    // experience — used when home-mode is off (e.g. rematch flow that
+    // bypasses home-view) or the admin WS isn't ready.
     try {
         sessionStorage.setItem('beatify_admin_name', name);
         sessionStorage.setItem('beatify_is_admin', 'true');
