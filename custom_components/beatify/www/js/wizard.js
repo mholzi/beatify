@@ -716,10 +716,21 @@ function _persistLevelUpDetails() {
     } catch (e) { /* private mode */ }
 }
 
+function _speakerLabel(entityId) {
+    if (!entityId) return '—';
+    // Prefer the friendly_name from /api/status over deriving from the entity_id.
+    // Sonos speakers in particular often have entity_ids like "media_player.unnamed_room"
+    // while the friendly_name is the actual room name ("Esszimmer", "Küche", etc.).
+    const players = (cachedStatus && cachedStatus.media_players) || [];
+    const match = players.find((p) => p.entity_id === entityId);
+    if (match && match.friendly_name) return match.friendly_name;
+    return entityId.replace('media_player.', '').replace(/_/g, ' ');
+}
+
 function _renderDoneSummary() {
     const el = document.getElementById('wiz-done-summary');
     if (!el) return;
-    const speaker = chosenSpeaker ? chosenSpeaker.replace('media_player.', '').replace(/_/g, ' ') : '—';
+    const speaker = _speakerLabel(chosenSpeaker);
     const providerMatch = chosenProvider ? PROVIDERS.find((p) => p.id === chosenProvider) : null;
     const provider = providerMatch ? providerMatch.label : (chosenProvider ? chosenProvider.replace(/_/g, ' ') : '—');
     const extras = [];

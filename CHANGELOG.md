@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc15] - 2026-04-18
+
+### Fixed
+- **Home-view auto-start was STILL broken after rc13** — verified live against the deployed instance. Three root causes:
+  - `startGame()` bailed in home-mode because the legacy `#start-game` button stays `disabled` (nothing in home-mode clicks it to enable). Added a `body.home-mode` bypass so programmatic calls from the home-view don't trip the legacy in-flight guard.
+  - `renderPlaylists()` reset `selectedPlaylists = []` on every `loadStatus()` without restoring from `localStorage`. Added a localStorage-restore pass mirroring the existing `STORAGE_LAST_PLAYER` flow in `renderMediaPlayers()`.
+  - Wizard Done summary showed "unnamed room" for Sonos speakers whose `entity_id` is `media_player.unnamed_room` but whose `friendly_name` is the real room ("Esszimmer"). Now prefers `friendly_name` from `/api/status` and falls back to the entity-id strip.
+
 ## [3.2.0-rc14] - 2026-04-18
 
 ### Fixed
