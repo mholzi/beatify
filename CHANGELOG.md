@@ -4,6 +4,30 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc12] - 2026-04-18
+
+### Added
+- **Home-view is now universal** — every admin load drops you on the Ready-to-host screen. Unconfigured users see a "You haven't set up yet" empty-state with a single full-width **Start setup** CTA that opens the wizard. Configured users see the QR + players as before.
+- **End game, Print QR, Join as player** utility buttons on the home-view — all conditional on an active LOBBY session, all delegating to the existing flows.
+- **Live QR tap-to-enlarge** on the home-view — reuses the existing `#qr-modal`.
+- **My Requests pill + inline modal** on the home-view — visible only when pending requests exist. Tap opens a modal inside home-mode (no navigation away) showing full request info (thumbnail / name / status / relative time / Update button) with a "Request new playlist" CTA that opens the submit form directly.
+- **Game modes on wizard Step 4** — Artist Challenge, Intro Mode, Closest Wins toggles with the full explanation from admin. Persists into `beatify_game_settings` the same way admin.js reads it.
+- **Party lights mode + WLED presets** on wizard Step 5 — Static / Dynamic / WLED chips, and when WLED is selected, 6 phase-preset inputs (LOBBY / PLAYING / REVEAL / STREAK / COUNTDOWN / END).
+- **TTS test announcement** button on wizard Step 5 — sends a sample announcement via the existing `/beatify/api/tts-test` endpoint.
+- **Deezer provider** chip on wizard Step 2.
+
+### Changed
+- **Edit setup** on home-view now reopens the wizard at Step 1 (not the legacy admin sections). Wizard hydrates from localStorage so previous picks stay preselected.
+- **End-of-game "Start New Game"** now routes through the wizard at Step 1.
+- Step 3 copy updated to reflect multi-pick: "Pick one or more..."
+- `renderRequestsList()` refactored to share a row builder with the home-view modal. Both views render identical info. The legacy section is now null-safe — its eventual deletion is a no-op for the rendering code.
+
+### Fixed
+- Removed redundant "Step X of Y" label next to the wizard wordmark (the segmented progress bar already shows position).
+- Fixed double Beatify logo on the wizard Done step — big hero wordmark was colliding with the top-bar wordmark.
+- Done-screen summary card now renders with proper flex layout, uppercase labels, and correct spacing between label and value (was invalid `<div>` inside `<p>` with no styles).
+- Step 1 speaker + Step 3 playlist avatar blocks now contain proper SVG glyphs (were empty gradient squares).
+
 ## [3.2.0-rc11] - 2026-04-17
 
 ### Added
