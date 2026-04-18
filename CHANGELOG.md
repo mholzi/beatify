@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc28] - 2026-04-18
+
+### Fixed
+- **Spiel starten / Start game button did nothing on click.** `startGameplay()` looked up `#start-gameplay-btn` — a legacy lobby button deleted in rc25. The null-check on line 1863 instantly returned, so no WS `start_game` or REST fallback ever fired. Rewired the function to target `#home-start-game` (the actual home-view button) and made the button-state handling tolerant of the button not being present.
+
+### Changed
+- **More breathing room above the player tiles.** Added `margin-top: var(--space-lg)` to `.home-players` so the tile grid sits away from the "N playlist requests" pill / meta line above it.
+
 ## [3.2.0-rc27] - 2026-04-18
 
 ### Changed

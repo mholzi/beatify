@@ -9760,6 +9760,7 @@ body.home-mode .home-view {
     justify-items: center;
     width: 100%;
     max-width: 380px;
+    margin-top: var(--space-lg);
 }
 .home-players:empty { display: none; }
 
