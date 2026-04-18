@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc22] - 2026-04-18
+
+### Fixed
+- **Wizard descriptions didn't translate on language change.** The `_t()` helper in `wizard.js` called `window.BeatifyI18n.translate()` — a method that doesn't exist on the i18n module (it only exports `t()`). So every dynamically-rendered description (game-mode hints on Step 4, difficulty hint, Party Lights desc, TTS announcement desc on Step 5) silently fell through to the English fallback regardless of the selected language. The language-switch handler was already re-rendering; it just couldn't reach the new strings. One-character fix: `translate` → `t`.
+- **"Join as player" on home-view could error with "No active game found".** `handleAdminJoin`'s home-mode fast-path required `adminWs.readyState === OPEN`. When the socket was mid-reconnect (fresh load race, transient disconnect), the flow fell through to the legacy `/beatify/play` redirect branch — which errored with `alert("No active game found")` when `currentGame.game_id` was stale, and in the good case navigated away from the home-view (violating the rc18 promise). Now in home-mode we never fall through: if the WS isn't open, we kick `connectAdminWebSocket()`, poll for OPEN (≤5 s), then send the join. On timeout, a clearer `admin.home.wsReconnecting` message replaces the misleading "No active game found" alert. Added the new i18n key across de/en/es/fr/nl.
+
 ## [3.2.0-rc21] - 2026-04-18
 
 ### Fixed

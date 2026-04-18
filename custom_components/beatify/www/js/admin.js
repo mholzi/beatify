@@ -2335,21 +2335,46 @@ function handleAdminJoin() {
     // game_state.players + set_admin). State broadcast then feeds back
     // through handleAdminStateUpdate → showLobbyView → BeatifyHome.renderSession
     // so the admin shows up in the player list without navigating away.
-    if (inHomeMode && wsOpen) {
-        try {
-            sessionStorage.setItem('beatify_admin_name', name);
-            sessionStorage.setItem('beatify_is_admin', 'true');
-            adminPlayerName = name;
-            adminWs.send(JSON.stringify({
-                type: 'join',
-                name: name,
-                is_admin: true,
-            }));
-            closeAdminJoinModal();
-        } catch (err) {
-            console.error('Admin join (home-mode) failed:', err);
-            joinBtn.disabled = false;
-            joinBtn.textContent = BeatifyI18n.t('admin.join');
+    if (inHomeMode) {
+        const sendJoin = () => {
+            try {
+                sessionStorage.setItem('beatify_admin_name', name);
+                sessionStorage.setItem('beatify_is_admin', 'true');
+                adminPlayerName = name;
+                adminWs.send(JSON.stringify({
+                    type: 'join',
+                    name: name,
+                    is_admin: true,
+                }));
+                closeAdminJoinModal();
+            } catch (err) {
+                console.error('Admin join (home-mode) failed:', err);
+                joinBtn.disabled = false;
+                joinBtn.textContent = BeatifyI18n.t('admin.join');
+            }
+        };
+        if (wsOpen) {
+            sendJoin();
+        } else {
+            // WS not yet open — page just loaded, or auto-reconnect is in flight.
+            // Do NOT fall through to the legacy /play redirect: that breaks the
+            // "admin stays on home-view" promise and surfaces "No active game
+            // found" when currentGame.game_id is stale. Instead, nudge the WS
+            // open and send the join once it's ready.
+            connectAdminWebSocket();
+            const startedAt = Date.now();
+            const poll = setInterval(() => {
+                if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+                    clearInterval(poll);
+                    sendJoin();
+                } else if (Date.now() - startedAt > 5000) {
+                    clearInterval(poll);
+                    joinBtn.disabled = false;
+                    joinBtn.textContent = BeatifyI18n.t('admin.join');
+                    showError(BeatifyI18n.t('admin.home.wsReconnecting') ||
+                        'Reconnecting to game server — please try again.');
+                }
+            }, 100);
         }
         return;
     }

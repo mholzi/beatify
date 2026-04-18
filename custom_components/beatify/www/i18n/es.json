@@ -412,7 +412,8 @@
       "setupSub": "Unos 2 minutos. Te guiamos por altavoces, servicio de música, listas y modo de juego.",
       "startSetup": "Empezar configuración",
       "requestNew": "+ Solicitar nueva lista",
-      "needPlayerToStart": "Únete como jugador (o pide a un invitado que escanee el QR) antes de empezar."
+      "needPlayerToStart": "Únete como jugador (o pide a un invitado que escanee el QR) antes de empezar.",
+      "wsReconnecting": "Reconectando con el servidor del juego — inténtalo de nuevo."
     }
   },
   "analyticsDashboard": {

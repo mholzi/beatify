@@ -109,8 +109,8 @@ let chosenTtsAnnounceWinner = true;
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
 function _t(key, fallback) {
-    if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.translate === 'function') {
-        return window.BeatifyI18n.translate(key) || fallback;
+    if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
+        return window.BeatifyI18n.t(key) || fallback;
     }
     return fallback;
 }
