@@ -880,8 +880,28 @@ async function initAll() {
     setupLobbyCollapsible();
     setupReactionBar();
 
+    // Admin-handoff: if admin.js redirected us via handleSwitchToPlayerView,
+    // the URL carries ?session=<id> (and sessionStorage has the fallback).
+    // Prefer reconnect-by-session so the server's player-registry treats us
+    // as the same player instead of a fresh join that races ERR_NAME_TAKEN.
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlSession = urlParams.get('session');
+    var stashedSession = null;
+    try { stashedSession = sessionStorage.getItem('beatify_session'); } catch (e) { /* private mode */ }
+    var handoffSession = urlSession || stashedSession;
+    if (handoffSession) {
+        setSessionCookie(handoffSession);
+        try { sessionStorage.removeItem('beatify_session'); } catch (e) { /* ignore */ }
+    }
+
     if (checkAdminStatus() && state.playerName) {
-        connectWebSocket(state.playerName);
+        // Cookie set above (or already set by admin.js join_ack) — prefer
+        // connectWithSession so we reconnect as the same player.
+        if (getSessionCookie()) {
+            connectWithSession();
+        } else {
+            connectWebSocket(state.playerName);
+        }
         return;
     }
 

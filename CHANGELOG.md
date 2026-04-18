@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc29] - 2026-04-18
+
+### Fixed
+- **Admin redirect to `/play` after Start game asked for the name again.** The identity wasn't handed over — three compounding issues:
+  1. **Admin-side cookie couldn't survive HTTPS.** `admin.js` set `beatify_session` with `path=/` and **no `Secure` flag**. Over Nabu Casa's HTTPS tunnel the cookie was silently rejected, and the path differed from `player-core.js`'s `path=/beatify`. Now matches player-core exactly — `path=/beatify; SameSite=Strict; Secure` on HTTPS.
+  2. **Fresh name-based join raced with the server's disconnect event.** When `/play` loaded it called `connectWebSocket(name)` which sent a **new** `{type:'join', name, is_admin:true}`. If admin.js's WS disconnect event hadn't been processed server-side yet, [player_registry.add_player:101](custom_components/beatify/game/player_registry.py:101) returned `ERR_NAME_TAKEN` (the existing player was still flagged `connected=True`). Fixed by preferring `connectWithSession()` — which sends `{type:'reconnect', session_id}` and matches the player by session regardless of disconnect timing.
+  3. **Session wasn't reliably available on `/play`.** Even with the cookie, timing edges still bit us. `handleSwitchToPlayerView` now also stores the session in `sessionStorage` AND appends it as a `?session=<id>` URL param; `player-core.js initAll` restores the cookie from either source before deciding how to connect.
+  Also: gated the auto-redirect at LOBBY → PLAYING on `adminSessionId` being set (not just `adminPlayerName`) so we never redirect before `join_ack` has arrived with the session.
+
+Regenerated `admin.min.js` + `player.bundle.min.js` (was last bundled Apr 18 12:56 — 3 rc's behind). Bumped `?v=` in `admin.html` and `player.html` + SW `CACHE_VERSION` to `beatify-v3.2.0-rc29`.
+
 ## [3.2.0-rc28] - 2026-04-18
 
 ### Fixed
