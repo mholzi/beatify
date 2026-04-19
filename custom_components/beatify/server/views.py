@@ -54,6 +54,7 @@ from custom_components.beatify.server.stats_views import (  # noqa: F401
     DashboardView,
     SongStatsView,
     StatsView,
+    UsageView,
 )
 
 if TYPE_CHECKING:

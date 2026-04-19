@@ -44,6 +44,7 @@ from .server.views import (
     StartGameView,
     StatsView,
     StatusView,
+    UsageView,
 )
 from .server.websocket import BeatifyWebSocketHandler
 from .services.media_player import async_get_media_players
@@ -149,6 +150,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(AnalyticsPageView(hass))
     hass.http.register_view(SongStatsView(hass))  # Story 19.7
     hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
+    hass.http.register_view(UsageView(hass))  # v3.3 Playlist Hub local stats
 
     # Register WebSocket endpoint
     hass.http.app.router.add_get("/beatify/ws", ws_handler.handle)

@@ -455,6 +455,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     )
     for json_file in json_files:
         try:
+            rel = json_file.relative_to(playlist_dir)
+            source = "community" if rel.parts and rel.parts[0] == "community" else "bundled"
             content = await loop.run_in_executor(None, _read_file, json_file)
             data = json.loads(content)
             is_valid, errors = validate_playlist(data)
@@ -497,6 +499,12 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "path": str(json_file),
                     "filename": json_file.name,
                     "name": data.get("name", json_file.stem),
+                    "source": source,
+                    "author": data.get("author"),
+                    "description": data.get("description"),
+                    "language": data.get("language"),
+                    "added_date": data.get("added_date"),
+                    "version": data.get("version"),
                     "tags": data.get("tags", []),  # Issue #70: Tag-based filtering
                     "song_count": len(songs),
                     "spotify_count": spotify_count,
@@ -509,11 +517,22 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                 }
             )
         except json.JSONDecodeError as e:
+            try:
+                rel = json_file.relative_to(playlist_dir)
+                source = "community" if rel.parts and rel.parts[0] == "community" else "bundled"
+            except ValueError:
+                source = "bundled"
             playlists.append(
                 {
                     "path": str(json_file),
                     "filename": json_file.name,
                     "name": json_file.stem,
+                    "source": source,
+                    "author": None,
+                    "description": None,
+                    "language": None,
+                    "added_date": None,
+                    "version": None,
                     "tags": [],  # Issue #70
                     "song_count": 0,
                     "spotify_count": 0,

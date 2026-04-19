@@ -226,3 +226,52 @@ class SongStatsView(HomeAssistantView):
         self._cache_playlist = playlist_filter
 
         return web.json_response(data)
+
+
+class UsageView(HomeAssistantView):
+    """Local usage stats for the Playlist Hub (v3.3).
+
+    Powers the "Your most-played" and "Recently played" shelves. Data never
+    leaves this HA host — derived entirely from the existing GameRecord log.
+    """
+
+    url = "/beatify/api/usage"
+    name = "beatify:api:usage"
+    requires_auth = False
+
+    CACHE_TTL = 30.0  # seconds
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+        self._cache: dict[str, tuple[float, list]] = {}
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Return top-played or recently-played playlists for the current host."""
+        kind = request.query.get("kind", "top")
+        if kind not in ("top", "recent"):
+            return _json_error("kind must be 'top' or 'recent'", 400, code="BAD_REQUEST")
+
+        try:
+            limit = int(request.query.get("limit", "8" if kind == "top" else "12"))
+        except (TypeError, ValueError):
+            return _json_error("limit must be an integer", 400, code="BAD_REQUEST")
+        limit = max(1, min(limit, 50))
+
+        analytics = self.hass.data.get(DOMAIN, {}).get("analytics")
+        if not analytics:
+            return web.json_response({"kind": kind, "limit": limit, "items": []})
+
+        cache_key = f"{kind}:{limit}"
+        now = time.time()
+        cached = self._cache.get(cache_key)
+        if cached and (now - cached[0]) < self.CACHE_TTL:
+            return web.json_response({"kind": kind, "limit": limit, "items": cached[1]})
+
+        if kind == "top":
+            items = analytics.get_top_playlists(limit=limit)
+        else:
+            items = analytics.get_recent_playlists(limit=limit)
+
+        self._cache[cache_key] = (now, items)
+        return web.json_response({"kind": kind, "limit": limit, "items": items})

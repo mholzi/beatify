@@ -379,6 +379,72 @@ class AnalyticsStorage:
         summarized = sum(s["games_count"] for s in self._data["monthly_summaries"])
         return detailed + summarized
 
+    def get_top_playlists(self, limit: int = 8) -> list[dict]:
+        """Return this host's most-played playlists from local analytics.
+
+        Aggregates playlist_names occurrences across all detailed GameRecords.
+        Never sent anywhere, purely local. Community playlists and bundled
+        playlists get equal treatment — ordered by raw play count only.
+
+        Returns a list of dicts: {"name": str, "play_count": int, "last_played": int}.
+        """
+        games = self._data["games"]
+        counts: dict[str, int] = {}
+        last_seen: dict[str, int] = {}
+        for game in games:
+            ended = game.get("ended_at", 0)
+            for name in game.get("playlist_names", []):
+                counts[name] = counts.get(name, 0) + 1
+                if ended > last_seen.get(name, 0):
+                    last_seen[name] = ended
+        ranked = sorted(
+            counts.items(),
+            key=lambda kv: (kv[1], last_seen.get(kv[0], 0)),
+            reverse=True,
+        )
+        return [
+            {
+                "name": name,
+                "play_count": count,
+                "last_played": last_seen.get(name, 0),
+            }
+            for name, count in ranked[:limit]
+        ]
+
+    def get_recent_playlists(self, limit: int = 12) -> list[dict]:
+        """Return the most recently played playlists from local analytics.
+
+        Walks GameRecords newest-first and dedupes by playlist name, so each
+        playlist appears once at its most recent round. Surfaces round context
+        (started_at, player_count, duration) for the UI.
+        """
+        games = sorted(
+            self._data["games"],
+            key=lambda g: g.get("started_at", 0),
+            reverse=True,
+        )
+        seen: set[str] = set()
+        out: list[dict] = []
+        for game in games:
+            if len(out) >= limit:
+                break
+            for name in game.get("playlist_names", []):
+                if name in seen:
+                    continue
+                seen.add(name)
+                out.append(
+                    {
+                        "name": name,
+                        "started_at": game.get("started_at", 0),
+                        "ended_at": game.get("ended_at", 0),
+                        "player_count": game.get("player_count", 0),
+                        "duration_seconds": game.get("duration_seconds", 0),
+                    }
+                )
+                if len(out) >= limit:
+                    break
+        return out
+
     def _get_playlist_display_names(self) -> dict[str, str]:
         """
         Load playlist display names from JSON files.
