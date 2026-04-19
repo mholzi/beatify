@@ -176,9 +176,9 @@ Gold confetti bursts for exact guesses. Chart positions and fun facts appear. Yo
 ### For Hosts
 
 <!-- SCREENSHOT: Admin setup screen with media player and playlist selection -->
-<img src="images/admin-setup.png" alt="Admin setup screen" width="700">
+<img src="images/admin-setup.png" alt="First-run wizard — speaker selection" width="400">
 
-*Select speakers. Pick playlists. Start the party.*
+*First-run wizard walks you through setup. Every choice pre-selected when you land on Start Game.*
 
 </div>
 
@@ -203,7 +203,7 @@ Join as a player with admin controls. Compete and manage simultaneously.
 <div align="center">
 
 <!-- SCREENSHOT: Reveal screen showing correct year, fun fact, and scores -->
-<img src="images/reveal-screen.png" alt="Round reveal with scores" width="600">
+<img src="images/reveal-screen.png" alt="Round reveal — Guess Duel layout" width="400">
 
 *The moment of truth. Every single round.*
 
@@ -260,7 +260,7 @@ Build a **3-answer streak** to unlock Steal. Once unlocked, tap a rival mid-roun
 <div align="center">
 
 <!-- SCREENSHOT: End game podium showing top 3 players with medals -->
-<img src="images/podium-screen.png" alt="Winner podium" width="500">
+<img src="images/podium-screen.png" alt="Winner podium — hero-winner layout" width="400">
 
 *Glory. Bragging rights. Maybe a rematch.*
 
