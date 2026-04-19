@@ -4866,6 +4866,16 @@ body.theme-dark .movie-reveal-section {
     align-items: stretch;
 }
 
+/* Duel Reveal Container (round-reveal v2) — same stretch/padding behavior as
+   --compact so every card-section has the same width. Default .reveal-container
+   uses align-items:center which makes cards size to their content. */
+.reveal-container--duel {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    align-items: stretch;
+    text-align: left;
+}
+
 /* Compact Header Bar */
 .reveal-header-compact {
     display: flex;
@@ -11825,10 +11835,17 @@ body.is-learning-screen .player-header { display: none; }
 }
 .guess-lock-stamp.hidden { display: none; }
 
-/* Arcade tiles (artist + movie challenge) */
+/* Arcade tiles (artist + movie challenge).
+   Wrapped in a subtle card container so the challenge reads as a distinct
+   "quiz card" element. Outer wrapper has a thin border + soft bg; tiles
+   themselves keep their 3D shadow treatment so they still pop. */
 .arc-tiles {
-    padding: 0 var(--space-md);
-    margin-bottom: var(--space-md);
+    padding: 12px 14px;
+    margin: 0 var(--space-md) var(--space-md);
+    background: linear-gradient(180deg, rgba(0, 245, 255, 0.04), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(0, 245, 255, 0.18);
+    border-radius: var(--radius-lg);
+    box-shadow: inset 0 0 12px rgba(0, 245, 255, 0.04);
 }
 .arc-tiles.hidden { display: none; }
 .arc-tiles-header {
@@ -12038,8 +12055,7 @@ body.is-learning-screen .player-header { display: none; }
 /* Submission strip (dots + count) */
 .arc-submission-strip {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 10px var(--space-md);
-    margin-top: auto;
+    padding: 8px var(--space-md) 12px;
     font-family: var(--font-body);
     font-size: 11px;
     color: var(--color-text-dim);
@@ -12049,21 +12065,26 @@ body.is-learning-screen .player-header { display: none; }
     display: flex; align-items: center; gap: 6px;
 }
 .arc-submission-dots .player-indicator {
-    /* existing class from renderSubmissionTracker — override to a small dot */
-    width: 10px; height: 10px;
+    /* existing class from renderSubmissionTracker — override to a small dot.
+       The renderer emits a nested .player-avatar + .player-initials + .player-name
+       + badges; we collapse ALL children to make the parent itself the dot. */
+    width: 12px; height: 12px;
+    min-width: 12px;
     padding: 0;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     border: 0;
     border-radius: 50%;
     font-size: 0;
     color: transparent;
     transition: all var(--transition-normal);
+    flex: 0 0 auto;
+    overflow: hidden;
+    display: block;
 }
-.arc-submission-dots .player-indicator .player-name,
-.arc-submission-dots .player-indicator .player-badge,
-.arc-submission-dots .player-indicator .submission-check {
-    display: none;
-}
+/* Collapse every child element — avatars, initials, names, badges — so the
+   parent behaves as a solid dot. Without this the legacy .player-avatar
+   width/height (~40px) leaks through. */
+.arc-submission-dots .player-indicator > * { display: none !important; }
 .arc-submission-dots .player-indicator.is-submitted {
     background: var(--color-success-neon);
     box-shadow: 0 0 6px rgba(57, 255, 20, 0.5);

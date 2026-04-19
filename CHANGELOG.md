@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc39] - 2026-04-19
+
+### Fixed
+- **Reveal cards were rendering at different widths.** The `.reveal-container--duel` class I added in rc36 inherited `align-items: center` from the base `.reveal-container`, which in a column flex lets each card size to its content. So the artist-reveal card read narrower than the fun-fact card, and the standings card shorter than both. Added a `--duel` rule mirroring the `--compact` variant (`align-items: stretch`, matching padding/gap), so every card-section on the reveal screen now has the same width.
+- **Gameplay submission tracker was rendering 40px avatar circles instead of tiny dots.** `renderSubmissionTracker` emits a nested `.player-avatar` inside each `.player-indicator`, and my earlier arcade CSS hid `.player-name` + `.player-badge` but not `.player-avatar`. The legacy avatar sizing leaked through. Now `.arc-submission-dots .player-indicator > *` collapses every child so the parent is the sole 12px dot.
+- **Submission strip no longer crowds the in-game leaderboard.** Removed `margin-top: auto` that was trying to push the strip to the bottom — with the leaderboard + admin control bar sitting below, it was forcing a weird gap. Strip now flows naturally below the bet/submit actions.
+
+### Changed
+- **Artist / movie challenge now reads as a "quiz card".** The `.arc-tiles` section gained a subtle cyan-tinted gradient background + thin cyan border + inner glow, so the challenge feels like a distinct element rather than tiles floating on the page background. The 3D tile buttons still pop because they have their own drop-shadow on top.
+
+### For contributors
+- 4 CSS rule additions/edits in `styles.css`; no JS, no HTML, no i18n changes. Regenerated `styles.min.css`. Bumped manifest + sw.js CACHE_VERSION + `?v=` cache-busters to rc39.
+
 ## [3.2.0-rc38] - 2026-04-19
 
 ### Changed
