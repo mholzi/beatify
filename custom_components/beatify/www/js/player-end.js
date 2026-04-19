@@ -298,178 +298,286 @@ function renderShareTab(shareData) {
 }
 
 /**
- * Generate visual card via Canvas API and download as PNG (Issue #120, #216)
- * @param {string} emojiGrid - The emoji grid text
+ * Generate visual card via Canvas API and download as PNG.
+ * Vinyl-record design (DESIGN.md share-card Variant D): music-first identity
+ * with the score on a pink→cyan gradient label inside a black vinyl disc.
+ * Aligns with the brand palette — no more off-brand purple.
+ *
+ * @param {string} emojiGrid - The emoji grid text (source of truth for stats)
  * @param {string} playlistName - Name of the playlist
  * @param {Object} shareData - Optional share data with additional info
  */
 function generateVisualCard(emojiGrid, playlistName, shareData) {
+    var W = 800, H = 800;
     var canvas = document.createElement('canvas');
-    canvas.width = 800;
-    canvas.height = 800;
+    canvas.width = W;
+    canvas.height = H;
     var ctx = canvas.getContext('2d');
 
-    var bgGrad = ctx.createLinearGradient(0, 0, 0, 800);
-    bgGrad.addColorStop(0, '#0f0c29');
-    bgGrad.addColorStop(0.5, '#302b63');
-    bgGrad.addColorStop(1, '#24243e');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, 800, 800);
+    // ── Parse emojiGrid to extract stats, player name, and score ──
+    var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
+    var playerLine = '';
+    var statsCorrect = '', statsStreak = '', statsExact = '', statsBets = '';
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (line.match(/👑/)) {
+            playerLine = line;
+        } else if (line.match(/correct/i)) {
+            var correctMatch = line.match(/(\d+\/\d+)\s*correct/i);
+            var streakMatch = line.match(/Streak:\s*(\d+)/i);
+            if (correctMatch) statsCorrect = correctMatch[1];
+            if (streakMatch) statsStreak = streakMatch[1];
+        } else if (line.match(/exact/i)) {
+            var exactMatch = line.match(/(\d+)\s*Exact/i);
+            var betsMatch = line.match(/(\d+\/\d+)\s*Bets/i);
+            if (exactMatch) statsExact = exactMatch[1];
+            if (betsMatch) statsBets = betsMatch[1];
+        }
+    }
 
-    var accentGrad = ctx.createLinearGradient(0, 0, 800, 0);
-    accentGrad.addColorStop(0, '#e94560');
-    accentGrad.addColorStop(1, '#0f3460');
-    ctx.fillStyle = accentGrad;
-    ctx.fillRect(0, 0, 800, 4);
+    // playerLine is "👑 jkjk: 10pts" (or without crown for non-winners)
+    var playerName = '';
+    var score = '0';
+    var isWinner = false;
+    if (playerLine) {
+        isWinner = playerLine.indexOf('👑') !== -1;
+        var m = playerLine.match(/(?:👑\s*)?([^:]+?):\s*(\d+)\s*pts?/i);
+        if (m) {
+            playerName = m[1].trim();
+            score = m[2];
+        }
+    }
+    if (!playerName) playerName = 'Beatify Player';
 
-    var logoImg = new Image();
-    logoImg.src = '/beatify/static/img/icon-256.png';
-    logoImg.onerror = function() { drawCardContent(null); };
-    logoImg.onload = function() { drawCardContent(logoImg); };
+    // Wait for web fonts (Outfit + Inter) so the drawn text matches DESIGN.md
+    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(drawCard);
 
-    function drawCardContent(logo) {
-        // ── Header ──────────────────────────────────────────────
-        if (logo) {
-            ctx.drawImage(logo, 28, 20, 64, 64);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 28px system-ui, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('Beatify', 104, 60);
-        } else {
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 28px system-ui, sans-serif';
+    function drawCard() {
+        // ── Background: navy with pink (top-left) + cyan (bottom-right) radial glows ──
+        ctx.fillStyle = '#0a0a12';
+        ctx.fillRect(0, 0, W, H);
+
+        var pinkGlow = ctx.createRadialGradient(W * 0.3, H * 0.3, 0, W * 0.3, H * 0.3, W * 0.6);
+        pinkGlow.addColorStop(0, 'rgba(255, 45, 106, 0.22)');
+        pinkGlow.addColorStop(1, 'rgba(255, 45, 106, 0)');
+        ctx.fillStyle = pinkGlow;
+        ctx.fillRect(0, 0, W, H);
+
+        var cyanGlow = ctx.createRadialGradient(W * 0.75, H * 0.75, 0, W * 0.75, H * 0.75, W * 0.55);
+        cyanGlow.addColorStop(0, 'rgba(0, 245, 255, 0.14)');
+        cyanGlow.addColorStop(1, 'rgba(0, 245, 255, 0)');
+        ctx.fillStyle = cyanGlow;
+        ctx.fillRect(0, 0, W, H);
+
+        // ── Top row: Beatify wordmark (left) + optional Winner badge (right) ──
+        var padX = 48;
+        var topY = 68;
+
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'left';
+        ctx.font = '900 36px Outfit, system-ui, sans-serif';
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('Beat', padX, topY);
+        var beatWidth = ctx.measureText('Beat').width;
+
+        var ifyX = padX + beatWidth;
+        var ifyWidth = ctx.measureText('ify').width;
+        var ifyGrad = ctx.createLinearGradient(ifyX, 0, ifyX + ifyWidth, 0);
+        ifyGrad.addColorStop(0, '#ff2d6a');
+        ifyGrad.addColorStop(1, '#00f5ff');
+        ctx.fillStyle = ifyGrad;
+        ctx.fillText('ify', ifyX, topY);
+
+        if (isWinner) {
+            var badgeText = '🏆 WINNER';
+            ctx.font = '800 13px Inter, system-ui, sans-serif';
+            var bTextW = ctx.measureText(badgeText).width;
+            var bW = bTextW + 28;
+            var bH = 30;
+            var bX = W - padX - bW;
+            var bY = topY - bH / 2;
+
+            var badgeGrad = ctx.createLinearGradient(bX, bY, bX + bW, bY);
+            badgeGrad.addColorStop(0, '#ff2d6a');
+            badgeGrad.addColorStop(1, '#7a1438');
+            ctx.fillStyle = badgeGrad;
+            ctx.beginPath();
+            if (ctx.roundRect) {
+                ctx.roundRect(bX, bY, bW, bH, 8);
+            } else {
+                ctx.rect(bX, bY, bW, bH);
+            }
+            ctx.fill();
+
             ctx.textAlign = 'center';
-            ctx.fillText('🎵 Beatify', 400, 55);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(badgeText, bX + bW / 2, topY);
         }
 
-        // Playlist chip
+        // ── Vinyl record: centerpiece ──
+        var vinylCX = W / 2;
+        var vinylCY = 380;
+        var outerR = 180;
+        var labelR = 72;
+
+        // Drop shadow beneath vinyl
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+        ctx.shadowBlur = 36;
+        ctx.shadowOffsetY = 10;
+        ctx.fillStyle = '#0a0a12';
+        ctx.beginPath();
+        ctx.arc(vinylCX, vinylCY, outerR, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Vinyl base — subtle radial gradient from label-edge to outer edge
+        var vinylGrad = ctx.createRadialGradient(vinylCX, vinylCY, labelR, vinylCX, vinylCY, outerR);
+        vinylGrad.addColorStop(0, '#18181f');
+        vinylGrad.addColorStop(0.35, '#13131c');
+        vinylGrad.addColorStop(1, '#06060b');
+        ctx.fillStyle = vinylGrad;
+        ctx.beginPath();
+        ctx.arc(vinylCX, vinylCY, outerR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Grooves — faint concentric rings every 5px
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+        ctx.lineWidth = 1;
+        for (var r = labelR + 6; r < outerR - 2; r += 5) {
+            ctx.beginPath();
+            ctx.arc(vinylCX, vinylCY, r, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Specular highlight (top-left glint) for the sheen
+        var gloss = ctx.createRadialGradient(vinylCX - 50, vinylCY - 50, 0, vinylCX, vinylCY, outerR);
+        gloss.addColorStop(0, 'rgba(255, 255, 255, 0.055)');
+        gloss.addColorStop(0.45, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = gloss;
+        ctx.beginPath();
+        ctx.arc(vinylCX, vinylCY, outerR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Label — pink→cyan gradient with glow
+        var labelGrad = ctx.createLinearGradient(
+            vinylCX - labelR, vinylCY - labelR,
+            vinylCX + labelR, vinylCY + labelR
+        );
+        labelGrad.addColorStop(0, '#ff2d6a');
+        labelGrad.addColorStop(1, '#00f5ff');
+
+        ctx.save();
+        ctx.shadowColor = 'rgba(255, 45, 106, 0.5)';
+        ctx.shadowBlur = 24;
+        ctx.fillStyle = labelGrad;
+        ctx.beginPath();
+        ctx.arc(vinylCX, vinylCY, labelR, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Score on the label — big "10" + small "PTS"
+        ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
-        var playlist = (playlistName || '').toUpperCase();
-        ctx.font = 'bold 13px system-ui, sans-serif';
-        var chipW = ctx.measureText(playlist).width + 32;
-        var chipX = 400 - chipW / 2;
-        ctx.fillStyle = 'rgba(233,69,96,0.18)';
+        ctx.textBaseline = 'middle';
+        ctx.font = '900 48px Outfit, system-ui, sans-serif';
+        ctx.fillText(score, vinylCX, vinylCY - 10);
+        ctx.font = '800 14px Inter, system-ui, sans-serif';
+        ctx.fillText('PTS', vinylCX, vinylCY + 26);
+
+        // Spindle hole (tiny center dot)
+        ctx.fillStyle = '#0a0a12';
         ctx.beginPath();
-        ctx.roundRect(chipX, 96, chipW, 30, 15);
+        ctx.arc(vinylCX, vinylCY, 6, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = '#e94560';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        ctx.fillStyle = '#e94560';
-        ctx.fillText(playlist, 400, 116);
 
-        // ── Parse emojiGrid ──────────────────────────────────────
-        var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
-        var playerLine = '', emojiRows = [];
-        // Structured stats extracted directly from the grid format
-        var statsCorrect = '', statsStreak = '', statsExact = '', statsBets = '';
-        for (var i = 0; i < lines.length; i++) {
-            var line = lines[i].trim();
-            if (line.match(/[🟣🟢🟡🔴⬜🟠]/)) {
-                emojiRows.push(line);
-            } else if (line.match(/👑/)) {
-                playerLine = line;
-            } else if (line.match(/correct/i)) {
-                // "  3/5 correct | 🔥 Best Streak: 2"
-                var correctMatch = line.match(/(\d+\/\d+)\s*correct/i);
-                var streakMatch = line.match(/Streak:\s*(\d+)/i);
-                if (correctMatch) statsCorrect = correctMatch[1];
-                if (streakMatch) statsStreak = streakMatch[1];
-            } else if (line.match(/exact/i)) {
-                // "🎯 1 Exact | 💰 2/3 Bets"
-                var exactMatch = line.match(/(\d+)\s*Exact/i);
-                var betsMatch = line.match(/(\d+\/\d+)\s*Bets/i);
-                if (exactMatch) statsExact = exactMatch[1];
-                if (betsMatch) statsBets = betsMatch[1];
-            }
-        }
-
-        // ── Player name ──────────────────────────────────────────
-        if (playerLine) {
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 26px system-ui, sans-serif';
-            ctx.fillText(playerLine, 400, 180);
-        }
-
-        // ── Emoji grid with bordered box ─────────────────────────
-        var emojiBoxY = 210;
-        var emojiBoxH = Math.max(80, emojiRows.length * 48 + 32);
-        ctx.fillStyle = 'rgba(255,255,255,0.05)';
-        ctx.beginPath();
-        ctx.roundRect(80, emojiBoxY, 640, emojiBoxH, 16);
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        ctx.font = '38px system-ui, sans-serif';
+        // ── Player name + correct count ──
+        var nameLineY = 620;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillStyle = '#ffffff';
-        var emojiStartY = emojiBoxY + 24 + (emojiRows.length === 1 ? 10 : 0);
-        emojiRows.forEach(function(row, idx) {
-            ctx.fillText(row, 400, emojiStartY + idx * 48);
+        ctx.font = '800 32px Outfit, system-ui, sans-serif';
+        var nameText = playerName;
+        if (statsCorrect) nameText += '  ·  ' + statsCorrect;
+        ctx.fillText(nameText, vinylCX, nameLineY);
+
+        // ── Playlist in italic ──
+        ctx.font = 'italic 16px Inter, system-ui, sans-serif';
+        ctx.fillStyle = '#b3b3c2';
+        ctx.fillText('"' + (playlistName || 'Beatify') + '"', vinylCX, nameLineY + 32);
+
+        // ── Stats footer: "N exact · 🔥N streak · beatify.fun" with number highlights ──
+        var footerY = 720;
+        var parts = [];
+        if (statsExact && statsExact !== '0') {
+            parts.push({ type: 'stat', num: statsExact, label: ' exact' });
+        }
+        if (statsStreak && statsStreak !== '0') {
+            parts.push({ type: 'stat', num: '🔥' + statsStreak, label: ' streak' });
+        }
+        parts.push({ type: 'url', text: 'beatify.fun' });
+
+        // Measure entire row so we can center it as a unit
+        ctx.font = '600 15px Inter, system-ui, sans-serif';
+        var sepW = ctx.measureText(' · ').width;
+        var totalW = 0;
+        parts.forEach(function(p, idx) {
+            if (idx > 0) totalW += sepW;
+            if (p.type === 'url') {
+                ctx.font = '800 15px Outfit, system-ui, sans-serif';
+                totalW += ctx.measureText(p.text).width;
+            } else {
+                ctx.font = '900 18px Outfit, system-ui, sans-serif';
+                totalW += ctx.measureText(p.num).width;
+                ctx.font = '600 15px Inter, system-ui, sans-serif';
+                totalW += ctx.measureText(p.label).width;
+            }
         });
 
-        // ── Stats 4-column grid ──────────────────────────────────
-        var statsY = emojiBoxY + emojiBoxH + 40;
-        var statItems = [
-            { val: statsCorrect || '—', label: 'Correct', emoji: '✅' },
-            { val: statsStreak || '—', label: 'Best Streak', emoji: '🔥' },
-            { val: statsExact || '—', label: 'Exact', emoji: '🎯' },
-            { val: statsBets || '—', label: 'Bets', emoji: '💰' }
-        ];
-        var colW = 160;
-        var startX = 400 - ((statItems.length - 1) * colW) / 2;
-        statItems.forEach(function(stat, idx) {
-            var cx = startX + idx * colW;
-            // Emoji
-            ctx.font = '20px system-ui, sans-serif';
-            ctx.fillStyle = '#ffffff';
-            ctx.fillText(stat.emoji, cx, statsY);
-            // Value
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 28px system-ui, sans-serif';
-            ctx.fillText(stat.val, cx, statsY + 36);
-            // Label
-            ctx.fillStyle = '#8888aa';
-            ctx.font = '12px system-ui, sans-serif';
-            ctx.fillText(stat.label, cx, statsY + 54);
+        var curX = vinylCX - totalW / 2;
+        ctx.textAlign = 'left';
+        parts.forEach(function(p, idx) {
+            if (idx > 0) {
+                ctx.font = '600 15px Inter, system-ui, sans-serif';
+                ctx.fillStyle = '#6b6b7a';
+                ctx.fillText(' · ', curX, footerY);
+                curX += sepW;
+            }
+            if (p.type === 'url') {
+                ctx.font = '800 15px Outfit, system-ui, sans-serif';
+                ctx.fillStyle = '#00f5ff';
+                ctx.fillText(p.text, curX, footerY);
+                curX += ctx.measureText(p.text).width;
+            } else {
+                ctx.font = '900 18px Outfit, system-ui, sans-serif';
+                ctx.fillStyle = '#00f5ff';
+                ctx.fillText(p.num, curX, footerY);
+                curX += ctx.measureText(p.num).width;
+                ctx.font = '600 15px Inter, system-ui, sans-serif';
+                ctx.fillStyle = '#b3b3c2';
+                ctx.fillText(p.label, curX, footerY);
+                curX += ctx.measureText(p.label).width;
+            }
         });
 
-        // ── Divider ──────────────────────────────────────────────
-        var divY = 720;
-        var divGrad = ctx.createLinearGradient(80, 0, 720, 0);
-        divGrad.addColorStop(0, 'rgba(233,69,96,0)');
-        divGrad.addColorStop(0.5, 'rgba(233,69,96,0.5)');
-        divGrad.addColorStop(1, 'rgba(233,69,96,0)');
-        ctx.strokeStyle = divGrad;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(80, divY);
-        ctx.lineTo(720, divY);
-        ctx.stroke();
-
-        // ── Footer: URL + Tagline ────────────────────────────────
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 15px system-ui, sans-serif';
-        ctx.fillText('beatify.fun', 400, 748);
-        ctx.fillStyle = '#8888aa';
-        ctx.font = '13px system-ui, sans-serif';
-        ctx.fillText('The music quiz for your living room.', 400, 768);
-
-    canvas.toBlob(function(blob) {
-        if (navigator.share && navigator.canShare) {
-            var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
-            var nativeShareData = { files: [file], title: 'My Beatify Results' };
-            if (navigator.canShare(nativeShareData)) {
-                navigator.share(nativeShareData).catch(function() {
-                    downloadBlob(blob);
-                });
-                return;
+        // ── Export: native share → download fallback ──
+        canvas.toBlob(function(blob) {
+            if (!blob) return;
+            if (navigator.share && navigator.canShare) {
+                var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
+                var nativeShareData = { files: [file], title: 'My Beatify Results' };
+                if (navigator.canShare(nativeShareData)) {
+                    navigator.share(nativeShareData).catch(function() {
+                        downloadBlob(blob);
+                    });
+                    return;
+                }
             }
-        }
-        downloadBlob(blob);
-    }, 'image/png');
-    } // end drawCardContent
+            downloadBlob(blob);
+        }, 'image/png');
+    }
 }
 
 /**

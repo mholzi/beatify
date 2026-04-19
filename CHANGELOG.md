@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc40] - 2026-04-19
+
+### Changed
+- **Share card redesigned as a vinyl record** (DESIGN.md share-card Variant D). The old PNG used an off-brand purple gradient (`#0f0c29` → `#302b63`) that violated the DESIGN.md palette — purple is reserved for analytics + the steal power-up. Replaced with a navy base + pink/cyan radial glows, the Beatify wordmark in the top-left (`Beat` white, `ify` pink-to-cyan gradient), an optional gradient `🏆 WINNER` badge in the top-right for the rank-1 player, a **180px black vinyl disc** with concentric groove rings as the centerpiece, a pink→cyan gradient label at the center with the player's score in big 48px Outfit 900 + "PTS" below, the player's name + rounds-correct count on one line beneath the vinyl ("jkjk · 10/10"), the playlist in italic quotes ("Top 100 Power Ballads"), and a stats footer with cyan-highlighted numbers ("1 exact · 🔥1 streak · beatify.fun"). The whole render waits for `document.fonts.ready` before drawing so Outfit + Inter are used instead of falling back to system-ui.
+
+### For contributors
+- `generateVisualCard()` in `player-end.js` rewritten end-to-end — same 800×800 target, same emoji-grid parsing (stats extracted from "N/N correct · Streak: N" and "N Exact · N/N Bets" lines), same native share → download fallback. `emoji_grids` text output is unchanged; the Copy Text button still copies the old multiline format so text-only sharing keeps working.
+- New Canvas techniques: `createRadialGradient` for the vinyl glow + grooves, concentric `ctx.arc + ctx.stroke` for the groove rings, specular highlight via a top-left-weighted radial gradient, per-span color + font mixing for the stats footer ("1" in cyan Outfit, "exact" in muted Inter).
+- Winner badge is conditional on `playerLine.indexOf('👑') !== -1` — the server already marks the winner's grid with a crown emoji, so no new shareData fields needed.
+- Regenerated `player.bundle.min.js` (89.0 KB, up from 87.4 KB — ~1.6 KB net increase for the vinyl rendering logic). Bumped manifest, sw.js `CACHE_VERSION`, and `?v=` cache-busters → `beatify-v3.2.0-rc40`. All 24 Vitest tests pass.
+- Design artifacts: `~/.gstack/projects/mholzi-beatify/designs/share-card-20260419/preview.html` (4-variant mockup with annotations on the tradeoffs).
+
 ## [3.2.0-rc39] - 2026-04-19
 
 ### Fixed
