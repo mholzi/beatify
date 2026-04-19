@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc3] - 2026-04-19
+
+### Added
+- **Back button inside the Playlist Hub CTA bar.** Wizard step 3 now shows a single nav row at the bottom: `[+ request FAB] [Back] [count ✓] [Continue →]`. rc2 put the wizard's own `Zurück` / `Weiter` underneath the hub's CTA, so users saw two Backs / two Forwards stacked. rc3 hands both gestures to the hub — the wizard's `#wiz-next` and `#wiz-back` hide on step 3 and reappear on every other step.
+
+### Fixed
+- **Request-a-playlist FAB was invisible against the dark CTA bar.** rc2 used a near-transparent `rgba(255,255,255,0.05)` fill with a 1px cyan border, so the envelope glyph was essentially unreadable. rc3 gives it a solid cyan gradient with a dark envelope icon — a proper secondary CTA affordance instead of a decorative square.
+- **Card-select affordance was unclear.** The faint empty circle in the top-right corner didn't read as "add to round" — users didn't know what tapping it did, and it collided visually with the card-tap-for-detail gesture. rc3 replaces it with a labeled pill: **`+ Add`** (pink) when unselected, **`✓ Added`** (neon green) when selected, pinned to the top-LEFT so the top-right cover-badge (COMMUNITY / decade / date-added) stays intact. Picked from four design variants, full board at `~/.gstack/projects/mholzi-beatify/designs/card-select-20260419/variants.html`.
+
+### For contributors
+- `PlaylistHub.mount()` gains two new options: `showBack: true` + `onBack()`. Standalone mounts can leave `showBack: false` to hide the button.
+- New i18n keys: `playlistHub.pill.{add, added, ariaAdd, ariaRemove}` and `playlistHub.cta.back` in `en.json` + `de.json`. German pill uses `Hinzu` / `Drin` to fit the 10px caps type without awkward truncation; longer `Zur Runde hinzufügen` / `Aus Runde entfernen` go on the aria-label for screen readers.
+- `.plh-check` CSS kept as a `{ display: none }` guard so stale rc1/rc2 cached markup doesn't re-surface if the `CACHE_VERSION` bump misses anyone.
+- Bumped manifest + `sw.js` `CACHE_VERSION` + every `?v=` cache-buster → `3.3.0-rc3`. Headless-Chrome smoke test re-verified: pill toggles, Back callback fires, FAB contrast reads, no console errors. 17 `wizard.test.js` tests pass.
+
 ## [3.3.0-rc2] - 2026-04-19
 
 ### Fixed
