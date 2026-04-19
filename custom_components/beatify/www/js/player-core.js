@@ -369,13 +369,33 @@ function connectWithSession() {
  * @param {string} name - Player name
  */
 function connectWebSocket(name) {
-    state.playerName = name;
-    storePlayerName(name);
-
-    // Guard: don't open a second WebSocket if one is already connecting/open
-    if (state.ws && (state.ws.readyState === WebSocket.CONNECTING || state.ws.readyState === WebSocket.OPEN)) {
+    // Already connected under the same name? No-op, keep the existing socket.
+    var wsLive = state.ws && (state.ws.readyState === WebSocket.CONNECTING || state.ws.readyState === WebSocket.OPEN);
+    if (wsLive && state.playerName === name) {
         return;
     }
+
+    // Already connected under a DIFFERENT name? Close the old socket cleanly
+    // and rejoin. Without this, the guard below silently returns and the
+    // server keeps the player under the old identity while the client thinks
+    // it changed. Regression guard: this path is hit when the user leaves &
+    // rejoins in the same tab, or when an admin handoff reuses a live socket.
+    if (wsLive) {
+        if (!state.isAdmin) {
+            try {
+                state.ws.send(JSON.stringify({ type: 'leave' }));
+            } catch (e) { /* CONNECTING state — server-side disconnect will clean up */ }
+        }
+        state.intentionalLeave = true;
+        try { state.ws.close(); } catch (e) { /* ignore */ }
+        state.ws = null;
+        // Session cookie is tied to the old player; drop it so the new join
+        // starts a fresh server session under the new name.
+        clearSessionCookie();
+    }
+
+    state.playerName = name;
+    storePlayerName(name);
 
     var wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var wsUrl = wsProtocol + '//' + window.location.host + '/beatify/ws';

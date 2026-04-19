@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc33] - 2026-04-19
+
+### Fixed
+- **`connectWebSocket(newName)` silently no-ops when a WS is already open under a different name.** The guard in `player-core.js` was blanket — any call with a live WS returned early. That meant if a user's session was restored via cookie and they later tried to rejoin under a new name (happens in admin-handoff and leave-then-rejoin flows), the client flipped `state.playerName` locally but never sent a `join` to the server. The server kept the old identity forever, and the player was invisible to themselves in the lobby. Now the guard is smarter: same-name call still no-ops (correct), but a different-name call sends `leave` (for non-admin), closes the old WS, clears the session cookie, and opens a fresh connection with the new name. Admin identity is preserved on close (admin can't `leave`, so we skip that step). Caught during live browser simulation of rc32 onboarding.
+
 ## [3.2.0-rc32] - 2026-04-19
 
 ### Fixed
