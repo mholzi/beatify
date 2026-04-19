@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc34] - 2026-04-19
+
+### Fixed
+- **"End" button stuck showing "ENDING…" after a rematch.** The initial game ended fine, but after clicking Rematch and playing a second round, tapping End changed the label to "ENDING…" and froze — the button was actually disabled from the previous game's end action. Root cause: `handleEndGame()` disables the button and swaps its label on click, but `updateControlBarState()` (which runs on every phase transition) only reset the Stop and Next buttons, never the End button. So the stale `disabled=true` + "ENDING…" label persisted across `hideAdminControlBar()` → rematch → `showAdminControlBar()`, and the next click bounced off a dead button. Now `updateControlBarState` also resets `end-game-btn` on any PLAYING or REVEAL transition — every new round's admin bar starts with a clickable End button under its proper `admin.end` label.
+
 ## [3.2.0-rc33] - 2026-04-19
 
 ### Fixed

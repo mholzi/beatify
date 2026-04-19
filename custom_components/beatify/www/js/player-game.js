@@ -1580,6 +1580,17 @@ export function showFloatingReaction(senderName, emoji) {
 export function updateControlBarState(phase) {
     var stopBtn = document.getElementById('stop-song-btn');
     var nextBtn = document.getElementById('next-round-admin-btn');
+    var endBtn = document.getElementById('end-game-btn');
+
+    // Always reset End button for PLAYING/REVEAL (both valid times to end).
+    // Without this, the "ENDING..." label+disabled state from the previous
+    // game persists into a rematch and the button stays unclickable (#???).
+    if (endBtn && (phase === 'PLAYING' || phase === 'REVEAL')) {
+        endBtn.disabled = false;
+        endBtn.classList.remove('is-disabled');
+        var endLabelEl = endBtn.querySelector('.control-label');
+        if (endLabelEl) endLabelEl.textContent = utils.t('admin.end');
+    }
 
     if (phase === 'PLAYING') {
         resetSongStoppedState();
