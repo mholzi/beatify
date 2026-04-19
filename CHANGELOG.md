@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc2] - 2026-04-19
+
+### Fixed
+- **Duplicate "Weiter" button on wizard step 3.** The Playlist Hub renders its own Continue CTA in its bottom bar, but the wizard's legacy `#wiz-next` button was still showing below it — two Continue buttons stacked. rc2 hides `#wiz-next` on step 3 and wires the hub's Continue directly into the wizard's `_advance()` path so state persistence stays in one place.
+- **Cover-art titles were truncated on long playlist names.** The v3.3.0-rc1 picker just took the first 3 characters of the first word — "Greatest Metal Songs" read "Gre…", "Top 100 Dutch Classics" read "Top". rc2 rewrites the glyph picker: decade tag wins first (`80s`, `10s`), then emoji/flag in the name (🤘, 🇳🇱), then short first word, then word-initials (`GMS`), then a 2-char fallback. Sub-title now clamps to 2 lines instead of ellipsing at the first word, so "NASHVILLE COUNTRY GOLD" reads fully beneath a `10s` glyph.
+- **Duplicate count badge inside the Continue button.** The pink "Weiter 1 →" button showed the selection count a second time next to the green "1 ✓" pill on its left. Count now lives only in the pill; the button itself reads "Continue →" with a proper SVG arrow icon.
+- **Orphan "+ Neue Playlist anfragen" button bleeding through.** The legacy `#wiz-request-playlist` element had the HTML `hidden` attribute but the `.btn` class was overriding it with `display: flex`. Locked it with an inline `display: none !important`. The Hub still triggers the same underlying request modal via `click()`.
+- **Detail-sheet Add/Remove CTA.** Now renders with a plus or minus SVG icon next to the label so the action is scannable, not just a word.
+
+### For contributors
+- `_coverGlyph()` in `playlist-hub.js` rewritten. New `_extractEmoji()` helper uses `\p{Regional_Indicator}` + `\p{Extended_Pictographic}` with a try/catch for engines without Unicode property escapes.
+- `.plh-cover-glyph-long` class applied when the glyph exceeds 3 chars, scales the type 42px → 26px.
+- `.plh-cover-sub` now uses `-webkit-line-clamp: 2` + `word-break: break-word` instead of single-line-nowrap.
+- New hub option `onContinue(paths)` fires from the Continue CTA. Wizard passes a handler that syncs `chosenPlaylists` and calls `_advance()`.
+- Bumped manifest + `sw.js` `CACHE_VERSION` + every `?v=` cache-buster → `3.3.0-rc2`.
+- All 17 `wizard.test.js` tests still pass. Headless-Chrome smoke test re-run against the fixture data — 21 cards, all glyphs now anchor cleanly, no sub-title ellipsis on the 22-char test name.
+
 ## [3.3.0-rc1] - 2026-04-19
 
 ### Added

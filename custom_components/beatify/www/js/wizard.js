@@ -211,6 +211,15 @@ function _updateCta() {
     const skipBtn = document.getElementById('wiz-skip');
     if (!nextBtn || !backBtn) return;
 
+    // Step 3 hands the entire CTA to the Playlist Hub — hide the legacy
+    // wiz-next so we don't show two Continue buttons. Back + skip keep
+    // working the normal way.
+    if (currentStep === 3) {
+        nextBtn.style.display = 'none';
+    } else {
+        nextBtn.style.display = '';
+    }
+
     backBtn.style.display = currentStep > 1 ? '' : 'none';
 
     if (currentStep === 1) {
@@ -220,6 +229,8 @@ function _updateCta() {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
         nextBtn.disabled = !chosenProvider;
     } else if (currentStep === 3) {
+        // Not shown — hub's Continue takes over. Keep the disabled/text
+        // logic so if CSS ever un-hides it the behavior is correct.
         const n = chosenPlaylists.size;
         nextBtn.textContent = n > 1
             ? `${_t('wizard.continue', 'Continue')} (${n})`
@@ -344,6 +355,14 @@ function _renderPlaylists() {
             chosenPlaylists.clear();
             for (const p of paths) chosenPlaylists.add(p);
             _updateCta();
+        },
+        onContinue(paths) {
+            // Hub owns the Continue button on step 3. Sync selection, then
+            // reuse the wizard's normal advance path so persistence + step
+            // transitions stay in one place.
+            chosenPlaylists.clear();
+            for (const p of paths) chosenPlaylists.add(p);
+            _advance();
         },
         onRequestClick() {
             // Reuse the existing request modal — it's mounted on admin.html

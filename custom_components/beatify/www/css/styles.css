@@ -12661,17 +12661,34 @@ body.theme-dark .your-result-stats .stat-value {
     letter-spacing: -0.04em;
     color: #fff;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+/* When the glyph falls back to word-initials (e.g. "GMS") or a longer
+   abbreviation, scale it down so it doesn't crowd the sub-title. */
+.plh-cover-glyph-long { font-size: 26px; letter-spacing: -0.02em; }
 
 .plh-cover-sub {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.88);
-    margin-top: 2px;
-    line-height: 1.1;
+    color: rgba(255, 255, 255, 0.92);
+    margin-top: 4px;
+    line-height: 1.15;
+    /* Two-line clamp so "Top 100 Dutch Classics" fits cleanly instead of
+       showing "Top 100 Dutch Classi…". */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .plh-cover-badge {
@@ -13582,14 +13599,14 @@ body.theme-dark .your-result-stats .stat-value {
     gap: 8px;
 }
 
-.plh-cta-start-count {
-    font-family: var(--font-display);
-    font-weight: 900;
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    padding: 2px 8px;
-    font-size: 12px;
-}
+/* Legacy count pill — v3.3.0-rc1 rendered it next to the Continue label.
+   rc2 drops it (count already shown in the green pill on the left).
+   Kept as a no-op class guard in case any stale cached markup shows up. */
+.plh-cta-start-count { display: none; }
+
+.plh-cta-start-label { font-family: var(--font-display); font-weight: 700; }
+.plh-cta-start-arrow { opacity: 0.9; flex-shrink: 0; }
+.plh-cta-count-empty { opacity: 0.5; }
 
 .plh-cta-start-disabled {
     opacity: 0.5;

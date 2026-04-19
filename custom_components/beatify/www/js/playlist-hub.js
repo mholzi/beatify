@@ -108,13 +108,37 @@ function _coverTint(playlist) {
     return 'plh-tint-pop';
 }
 
+function _extractEmoji(name) {
+    // Prefer country flags (2 regional-indicator codepoints) over generic emoji
+    // so "Top 100 Dutch Classics 🇳🇱" → 🇳🇱, "Greatest Metal Songs 🤘" → 🤘.
+    try {
+        const flag = name.match(/\p{Regional_Indicator}\p{Regional_Indicator}/u);
+        if (flag) return flag[0];
+        const emoji = name.match(/\p{Extended_Pictographic}/u);
+        if (emoji) return emoji[0];
+    } catch (e) { /* Safari <14 / older engines — no Unicode property escapes */ }
+    return null;
+}
+
 function _coverGlyph(playlist) {
     const name = String(playlist.name || '');
-    const decade = (playlist.tags || []).find((t) => /^\d{2,4}s?$/.test(String(t)));
-    if (decade) return String(decade).replace(/^19/, '').replace(/^20/, '').replace('s', 's');
+    const tags = (playlist.tags || []).map(String);
+    // 1. Decade tag (most specific anchor for a year-guessing game)
+    const decadeTag = tags.find((t) => /^(19|20)?\d{2}s$/.test(t));
+    if (decadeTag) return decadeTag.replace(/^19|^20/, '');
+    // 2. Emoji / flag in the name — keeps brand voice intact
+    const emoji = _extractEmoji(name);
+    if (emoji) return emoji;
+    // 3. Short first word fits as-is
     const firstWord = name.split(/\s+/)[0] || '';
     if (firstWord.length <= 4) return firstWord;
-    return firstWord.slice(0, 3) + '…';
+    // 4. Initials of first 2–3 words (e.g. "Greatest Metal Songs" → "GMS")
+    const words = name.split(/\s+/).filter((w) => w && /[A-Za-zÀ-ÿ0-9]/.test(w[0]));
+    if (words.length >= 2) {
+        return words.slice(0, 3).map((w) => w[0].toUpperCase()).join('');
+    }
+    // 5. Fallback: short abbrev (no ellipsis — cleaner against the sub-title)
+    return firstWord.slice(0, 2);
 }
 
 function _shortName(name) {
@@ -211,6 +235,7 @@ export function mount(rootEl, options = {}) {
     state.root = rootEl;
     state.options = Object.assign({
         onSelectionChange: null,          // (paths: string[]) => void
+        onContinue: null,                 // (paths: string[]) => void — fires when Continue CTA clicked
         onRequestClick: null,             // () => void — opens existing request modal
         initialSelected: [],              // string[] (playlist paths)
         initialPlaylists: null,           // if provided, skip the /api/status fetch
@@ -398,7 +423,16 @@ function _onClick(e) {
     }
     const start = e.target.closest('[data-plh-action="start"]');
     if (start) {
-        _emitSelectionChange();
+        // Let the host (wizard) own the "advance" logic. Fall back to the
+        // selection-change callback so standalone mounts still work.
+        const opts = state.options || {};
+        const paths = Array.from(state.selectedPaths);
+        if (typeof opts.onContinue === 'function') {
+            try { opts.onContinue(paths); }
+            catch (err) { console.error('[PlaylistHub] onContinue threw:', err); }
+        } else {
+            _emitSelectionChange();
+        }
         return;
     }
 }
@@ -856,6 +890,7 @@ function _cardHtml(playlist, opts = {}) {
         : (opts.showAuthor && playlist.author
             ? `<div class="plh-card-sub">${_escape(_t('playlistHub.by', 'by'))} <b>${_escape(playlist.author)}</b> · ${count} ${_escape(_t('playlistHub.songs', 'songs'))}</div>`
             : `<div class="plh-card-sub"><b>${count}</b> ${_escape(_t('playlistHub.songs', 'songs'))}${playlist.language ? ` · ${_escape(playlist.language.toUpperCase())}` : ''}</div>`);
+    const glyphClass = glyph.length > 3 ? 'plh-cover-glyph plh-cover-glyph-long' : 'plh-cover-glyph';
     return `
         <div class="${cls.join(' ')}" data-plh-card="${_escape(path)}" role="button" tabindex="0" aria-label="${_escape(playlist.name)}">
             <button class="plh-check" data-plh-check="${_escape(path)}" aria-label="${selected ? 'Deselect' : 'Select'}" aria-pressed="${selected}">
@@ -864,8 +899,8 @@ function _cardHtml(playlist, opts = {}) {
             <div class="plh-cover ${tintClass}">
                 ${badge}
                 <div class="plh-cover-inner">
-                    <div class="plh-cover-glyph">${_escape(glyph)}</div>
-                    <div class="plh-cover-sub">${_escape(nameShort)}</div>
+                    <div class="${glyphClass}">${_escape(glyph)}</div>
+                    <div class="plh-cover-sub">${_escape(playlist.name)}</div>
                 </div>
             </div>
             <div class="plh-card-meta">
@@ -975,7 +1010,14 @@ function _renderDetailSheet() {
                 ` : ''}
             </div>
             <div class="plh-sheet-foot">
-                <button class="plh-btn ${selected ? 'plh-btn-neon' : 'plh-btn-primary'}" data-plh-action="detail-select" data-plh-path="${_escape(path)}">${_escape(ctaLabel)}</button>
+                <button class="plh-btn ${selected ? 'plh-btn-neon' : 'plh-btn-primary'}" data-plh-action="detail-select" data-plh-path="${_escape(path)}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        ${selected
+                            ? '<line x1="5" y1="12" x2="19" y2="12"/>'
+                            : '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>'}
+                    </svg>
+                    ${_escape(ctaLabel)}
+                </button>
             </div>
         </div>
     `;
@@ -988,25 +1030,26 @@ function _renderCtaBar() {
     const host = state.root && state.root.querySelector('[data-plh-cta]');
     if (!host) return;
     const count = state.selectedPaths.size;
+    const fab = `
+        <button class="plh-cta-fab" data-plh-action="request-new" aria-label="${_escape(_t('playlistHub.mine.newRequest.title', 'Request a playlist'))}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </button>
+    `;
     if (count === 0) {
         host.innerHTML = `
-            <button class="plh-cta-fab" data-plh-action="request-new" aria-label="${_escape(_t('playlistHub.mine.newRequest.title', 'Request a playlist'))}">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </button>
-            <div class="plh-cta-count">0 ✓</div>
+            ${fab}
+            <div class="plh-cta-count plh-cta-count-empty">0 ✓</div>
             <button class="plh-cta-start plh-cta-start-disabled" disabled>${_escape(_t('playlistHub.cta.pickSome', 'Pick some →'))}</button>
         `;
         return;
     }
+    // Count lives only in the green pill on the left — don't duplicate it inside the button.
     host.innerHTML = `
-        <button class="plh-cta-fab" data-plh-action="request-new" aria-label="${_escape(_t('playlistHub.mine.newRequest.title', 'Request a playlist'))}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </button>
+        ${fab}
         <div class="plh-cta-count">${count} ✓</div>
         <button class="plh-cta-start" data-plh-action="start">
-            ${_escape(_t('playlistHub.cta.start', 'Continue'))}
-            <span class="plh-cta-start-count">${count}</span>
-            →
+            <span class="plh-cta-start-label">${_escape(_t('playlistHub.cta.start', 'Continue'))}</span>
+            <svg class="plh-cta-start-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
     `;
 }
