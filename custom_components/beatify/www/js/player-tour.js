@@ -100,6 +100,11 @@ function renderProgress() {
     if (stepCountEl) {
         stepCountEl.textContent = String(tour.currentIdx + 1);
     }
+    // A11y: progress bar value must update so screen readers announce each step
+    var progressBar = document.querySelector('.tour-wiz-progress');
+    if (progressBar) {
+        progressBar.setAttribute('aria-valuenow', String(tour.currentIdx + 1));
+    }
 }
 
 /**
@@ -110,14 +115,17 @@ function renderCard(idx) {
     for (var i = 0; i < cards.length; i++) {
         cards[i].classList.toggle('hidden', i !== idx);
     }
-    // Last card's Next button reads "Let's play →" (key: onboarding.letsPlay)
+    // Last card's Next button reads "Let's play →" (key: onboarding.letsPlay).
+    // Keep data-i18n on the span so BeatifyI18n.initPageTranslations() can retranslate
+    // after a mid-tour language change.
     var nextBtn = document.getElementById('tour-next-btn');
     if (nextBtn) {
-        var label = idx === TOTAL_CARDS - 1
-            ? (utils.t ? utils.t('onboarding.letsPlay') : "Let's play")
-            : (utils.t ? utils.t('onboarding.nextBtn') : 'Next');
-        // Keep the chevron glyph alongside the label
-        nextBtn.innerHTML = '<span>' + label + '</span><span class="chev" aria-hidden="true">→</span>';
+        var i18nKey = idx === TOTAL_CARDS - 1 ? 'onboarding.letsPlay' : 'onboarding.nextBtn';
+        var fallback = idx === TOTAL_CARDS - 1 ? "Let's play" : 'Next';
+        var label = utils.t ? utils.t(i18nKey) : fallback;
+        if (label === i18nKey) label = fallback;
+        nextBtn.innerHTML = '<span data-i18n="' + i18nKey + '">' + label + '</span>'
+            + '<span class="chev" aria-hidden="true">→</span>';
     }
 }
 

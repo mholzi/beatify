@@ -33,6 +33,8 @@ var notFoundView = document.getElementById('not-found-view');
 var endedView = document.getElementById('ended-view');
 var inProgressView = document.getElementById('in-progress-view');
 var joinView = document.getElementById('join-view');
+var tourView = document.getElementById('tour-view');
+var readyView = document.getElementById('ready-view');
 var lobbyView = document.getElementById('lobby-view');
 var gameView = document.getElementById('game-view');
 var revealView = document.getElementById('reveal-view');
@@ -40,7 +42,7 @@ var pausedView = document.getElementById('paused-view');
 var endView = document.getElementById('end-view');
 var connectionLostView = document.getElementById('connection-lost-view');
 
-var allViews = [loadingView, notFoundView, endedView, inProgressView, joinView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
+var allViews = [loadingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
 
 /**
  * Show a specific view and hide all others

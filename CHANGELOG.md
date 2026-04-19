@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc32] - 2026-04-19
+
+### Fixed
+- **Player onboarding tour, ready screen, and lobby were rendering on top of each other.** Caught during live browser simulation: after a new player completed the 4-card tour, all three views stacked simultaneously instead of transitioning. Root cause: `tour-view` and `ready-view` weren't in `player-utils.js`'s `allViews` array, so `showView()` didn't add `hidden` to them when switching to another view. They stayed `display: flex` while the lobby also showed. Added both to the array. `showView('lobby-view')` now correctly hides the tour and ready overlays.
+- **Tour "Next" button lost its `data-i18n` binding after the first render.** `renderCard()` overwrote the button's `innerHTML` with a plain span. If the admin switched game language mid-tour, the button's label stayed stale because `BeatifyI18n.initPageTranslations()` had nothing to retranslate. The replacement span now carries `data-i18n="onboarding.nextBtn"` (or `onboarding.letsPlay` on the final card) so language changes propagate.
+- **`aria-valuenow` on the tour progress bar was static at `1` for the whole tour.** Screen readers announced "Step 1 of 4" through every card. Now updates in `renderProgress()` alongside the step-count text.
+
+### For contributors
+- Live browser simulation found one unrelated pre-existing bug worth flagging for a future fix: when a returning player tries to join under a new name after `connectWithSession` already restored their session, `connectWebSocket(newName)` silently returns early (WS guard) so the name change never reaches the server. Out of scope for this fix but tracked.
+- Regenerated `player.bundle.min.js` (85.8 KB). Bumped `?v=` cache-busters in `player.html` (JS) and `admin.html`, and SW `CACHE_VERSION` → `beatify-v3.2.0-rc32`. Manifest bumped to rc32 (rc31 shipped with manifest still on rc30 — corrected here).
+
 ## [3.2.0-rc31] - 2026-04-19
 
 ### Changed
