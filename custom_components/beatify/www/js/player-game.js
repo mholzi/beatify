@@ -33,7 +33,9 @@ export function startCountdown(deadline) {
     var timerElement = document.getElementById('timer');
     if (!timerElement) return;
 
+    var timerNeon = document.getElementById('timer-neon');
     timerElement.classList.remove('timer--warning', 'timer--critical');
+    if (timerNeon) timerNeon.classList.remove('timer-neon--warn');
 
     function updateCountdown() {
         var now = Date.now();
@@ -49,6 +51,11 @@ export function startCountdown(deadline) {
             timerElement.classList.add('timer--warning');
         } else {
             timerElement.classList.remove('timer--warning', 'timer--critical');
+        }
+
+        // Arcade timer neon ring: pink by default, red + pulse at ≤10s
+        if (timerNeon) {
+            timerNeon.classList.toggle('timer-neon--warn', remaining <= 10);
         }
 
         // ARIA announcements at key moments (Story 9.7)
@@ -173,6 +180,12 @@ export function updateGameView(data) {
         albumCover.src = newSrc;
     }
 
+    // Arcade chip row — hide the wrapper when every child chip is hidden
+    syncArcChipRow();
+
+    // Arcade no-bonus filler — shown when neither challenge is active
+    syncNoBonusFiller(data);
+
     renderSubmissionTracker(data.players);
 
     if (data.leaderboard) {
@@ -250,9 +263,47 @@ function getInitials(name) {
  * Render submission tracker showing who has submitted
  * @param {Array} players - Array of player objects
  */
+/**
+ * Toggle the arcade chip row visibility based on whether any chip has content.
+ * Chip ids live inside #arc-chip-row and toggle their own .hidden class from
+ * elsewhere (difficulty badge, steal indicator, closest-wins badge, intro,
+ * last-round). We just hide the wrapper when everyone is hidden to avoid an
+ * empty margin eating vertical space.
+ */
+function syncArcChipRow() {
+    var row = document.getElementById('arc-chip-row');
+    if (!row) return;
+    var childIds = [
+        'game-difficulty-badge',
+        'steal-indicator',
+        'closest-wins-badge',
+        'intro-badge',
+        'last-round-banner'
+    ];
+    var anyVisible = childIds.some(function(id) {
+        var el = document.getElementById(id);
+        return el && !el.classList.contains('hidden');
+    });
+    row.classList.toggle('hidden', !anyVisible);
+}
+
+/**
+ * Show the "No bonus this round — nail the year" filler when neither artist
+ * nor movie challenge is active. Keeps the submit button from jumping up and
+ * makes empty space feel intentional.
+ */
+function syncNoBonusFiller(data) {
+    var filler = document.getElementById('no-bonus-filler');
+    if (!filler) return;
+    var hasArtist = !!(data && data.artist_challenge && data.artist_challenge.options);
+    var hasMovie = !!(data && data.movie_challenge && data.movie_challenge.options);
+    filler.classList.toggle('hidden', hasArtist || hasMovie);
+}
+
 function renderSubmissionTracker(players) {
     var tracker = document.getElementById('submission-tracker');
     var container = document.getElementById('submitted-players');
+    var countEl = document.getElementById('arc-submission-count');
 
     if (!tracker || !container) return;
 
@@ -264,6 +315,31 @@ function renderSubmissionTracker(players) {
 
     var allSubmitted = submittedCount === totalCount && totalCount > 0;
     tracker.classList.toggle('all-submitted', allSubmitted);
+
+    // Arcade submission count text: "3 of 4 submitted" / "All in" when everyone's done.
+    if (countEl) {
+        if (totalCount === 0) {
+            countEl.textContent = '';
+        } else if (allSubmitted) {
+            countEl.textContent = utils.t('game.allSubmitted') || 'All in';
+        } else {
+            countEl.textContent = utils.t('game.submittedCount', { count: submittedCount, total: totalCount })
+                || (submittedCount + ' of ' + totalCount + ' submitted');
+        }
+    }
+
+    // Update the arcade submitted banner copy (count of remaining players).
+    var submittedBanner = document.getElementById('submitted-banner');
+    var bannerText = document.getElementById('submitted-banner-text');
+    if (submittedBanner && bannerText && !submittedBanner.classList.contains('hidden')) {
+        var remaining = Math.max(0, totalCount - submittedCount);
+        if (remaining === 0) {
+            bannerText.textContent = utils.t('game.lockedInAllSubmitted') || 'Locked in · everyone submitted';
+        } else {
+            bannerText.textContent = utils.t('game.lockedInWaitingCount', { count: remaining })
+                || ('Locked in · waiting for ' + remaining + ' more');
+        }
+    }
 
     container.innerHTML = playerList.map(function(player) {
         var initials = getInitials(player.name);
@@ -675,24 +751,34 @@ export function handleSubmitAck() {
     hasSubmitted = true;
 
     var yearSelector = document.getElementById('year-selector');
+    var yearXxl = document.getElementById('year-display-arc');
     var submitBtn = document.getElementById('submit-btn');
-    var confirmation = document.getElementById('submitted-confirmation');
     var betToggle = document.getElementById('bet-toggle');
+    var submittedBanner = document.getElementById('submitted-banner');
 
+    // Arcade locked state: slider + year turn green and freeze.
     if (yearSelector) {
-        yearSelector.classList.add('is-submitted');
+        yearSelector.classList.add('is-submitted', 'slider-arcade--locked');
+    }
+    if (yearXxl) {
+        yearXxl.classList.add('year-xxl--locked');
     }
 
+    // Submit button stays visible but becomes "Waiting for others" with a pulse dot.
     if (submitBtn) {
-        submitBtn.classList.add('hidden');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('submit-arc--waiting');
+        submitBtn.innerHTML = '<span>' + escapeHtml(utils.t('game.waitingForOthers') || 'Waiting for others') + '</span>'
+            + '<span class="waiting-dot" aria-hidden="true"></span>';
     }
 
+    // Bet toggle stays visible but disabled — can't change after submit.
     if (betToggle) {
-        betToggle.classList.add('hidden');
+        betToggle.disabled = true;
     }
 
-    if (confirmation) {
-        confirmation.classList.remove('hidden');
+    if (submittedBanner) {
+        submittedBanner.classList.remove('hidden');
     }
 
     // Disable +/- buttons (Issue #662)
@@ -749,27 +835,32 @@ export function resetSubmissionState() {
     betActive = false;
 
     var yearSelector = document.getElementById('year-selector');
+    var yearXxl = document.getElementById('year-display-arc');
     var submitBtn = document.getElementById('submit-btn');
-    var confirmation = document.getElementById('submitted-confirmation');
     var slider = document.getElementById('year-slider');
     var betToggle = document.getElementById('bet-toggle');
+    var submittedBanner = document.getElementById('submitted-banner');
 
     if (yearSelector) {
-        yearSelector.classList.remove('is-submitted');
+        yearSelector.classList.remove('is-submitted', 'slider-arcade--locked');
+    }
+    if (yearXxl) {
+        yearXxl.classList.remove('year-xxl--locked');
     }
 
     if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.classList.remove('hidden', 'is-loading', 'is-error');
+        submitBtn.classList.remove('hidden', 'is-loading', 'is-error', 'submit-arc--waiting');
         submitBtn.textContent = utils.t('game.submitGuess');
     }
 
     if (betToggle) {
+        betToggle.disabled = false;
         betToggle.classList.remove('hidden', 'is-active');
     }
 
-    if (confirmation) {
-        confirmation.classList.add('hidden');
+    if (submittedBanner) {
+        submittedBanner.classList.add('hidden');
     }
 
     if (slider) {
@@ -1296,6 +1387,7 @@ function updateStealUI(players) {
     } else {
         hideStealUI();
     }
+    syncArcChipRow();
 }
 
 /**
@@ -1307,6 +1399,7 @@ function hideStealUI() {
 
     if (stealIndicator) stealIndicator.classList.add('hidden');
     if (stealBtn) stealBtn.classList.add('hidden');
+    syncArcChipRow();
 }
 
 /**
