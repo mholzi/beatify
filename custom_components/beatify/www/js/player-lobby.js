@@ -67,25 +67,55 @@ export function renderPlayerList(players) {
         initVirtualPlayerList(listEl);
     }
 
+    // Jackbox-style tile grid — mirrors admin home-view.
+    // Host wears the pink "leader" variant + crown. Guests cycle through the
+    // neon palette (c1 cyan → c2 green → c3 orange → c4 dim-cyan) in join
+    // order so each player reads distinctly. Current player gets the cyan
+    // "YOU" chip in the same top-right slot as the crown — they never
+    // collide because is_admin resolves to crown first.
+    var guestVariants = ['c1', 'c2', 'c3', 'c4'];
+    var variantMap = {};
+    var guestIdx = 0;
+    sortedPlayers.forEach(function(p) {
+        if (p.is_admin) {
+            variantMap[p.name] = 'host';
+        } else {
+            variantMap[p.name] = guestVariants[guestIdx++ % guestVariants.length];
+        }
+    });
+
     var renderPlayerCard = function(player) {
         var isNew = newNames.indexOf(player.name) !== -1;
         var isYou = player.name === state.playerName;
+        var isHost = player.is_admin === true;
         var isDisconnected = player.connected === false;
-        var classes = [
-            'player-card',
-            isNew ? 'is-new' : '',
-            isYou ? 'player-card--you' : '',
-            isDisconnected ? 'player-card--disconnected' : ''
-        ].filter(Boolean).join(' ');
+        var variant = variantMap[player.name] || 'c1';
 
-        var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
+        var classes = ['player-tile', 'player-tile--' + variant];
+        if (isNew) classes.push('is-new');
+        if (isDisconnected) classes.push('player-tile--disconnected');
 
-        return '<div class="' + classes + '" data-player="' + escapeHtml(player.name) + '">' +
-            '<span class="player-name">' +
-                escapeHtml(player.name) +
-                (isYou ? '<span class="you-badge">' + utils.t('leaderboard.you') + '</span>' : '') +
-                awayBadge +
-            '</span>' +
+        var raw = (player.name || '?').trim();
+        var initial = (raw.charAt(0) || '?').toUpperCase();
+
+        // Top-right corner marker: crown for host, else YOU chip for self, else nothing.
+        var cornerMarker = '';
+        if (isHost) {
+            cornerMarker = '<span class="player-tile-crown" aria-hidden="true">👑</span>';
+        } else if (isYou) {
+            cornerMarker = '<span class="player-tile-you-chip" aria-label="' +
+                escapeHtml(utils.t('leaderboard.you')) + '">YOU</span>';
+        }
+
+        var awayBadge = isDisconnected
+            ? '<span class="player-tile-away" aria-hidden="true">' + utils.t('lobby.away') + '</span>'
+            : '';
+
+        return '<div class="' + classes.join(' ') + '" data-player="' + escapeHtml(raw) + '">' +
+            '<span class="player-tile-initial">' + escapeHtml(initial) + '</span>' +
+            '<span class="player-tile-name">' + escapeHtml(raw) + '</span>' +
+            cornerMarker +
+            awayBadge +
         '</div>';
     };
 

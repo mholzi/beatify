@@ -10886,6 +10886,152 @@ body.home-mode .home-view {
 }
 .home-learning-warning.hidden { display: none; }
 
+/* ==========================================================================
+   Player lobby — tile grid (mirrors admin .home-player-tile)
+   Jackbox-style tiles replace the legacy flat .player-card chips. Host wears
+   pink + crown; guests cycle cyan → green → orange → dim-cyan in join order;
+   current player gets a cyan "YOU" chip in the same top-right slot as the
+   crown (they never collide — is_admin resolves to crown first).
+   ========================================================================== */
+.player-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    gap: var(--space-sm);
+    justify-items: center;
+    width: 100%;
+}
+.player-tiles-grid:empty { display: none; }
+
+.player-tile {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: var(--space-sm);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--tile-from), var(--tile-to));
+    border: 1.5px solid var(--tile-border);
+    box-shadow: 0 0 14px var(--tile-glow);
+    /* Guest default (c1) = cyan. Variants override via custom props. */
+    --tile-from: rgba(0, 245, 255, 0.32);
+    --tile-to: rgba(0, 245, 255, 0.08);
+    --tile-border: rgba(0, 245, 255, 0.7);
+    --tile-glow: rgba(0, 245, 255, 0.35);
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.player-tile-initial {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-3xl);
+    line-height: 1;
+    color: var(--color-text-white);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.player-tile-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-white);
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
+}
+.player-tile--c2 {
+    --tile-from: rgba(57, 255, 20, 0.32);
+    --tile-to: rgba(57, 255, 20, 0.08);
+    --tile-border: rgba(57, 255, 20, 0.65);
+    --tile-glow: rgba(57, 255, 20, 0.32);
+}
+.player-tile--c3 {
+    --tile-from: rgba(255, 102, 0, 0.32);
+    --tile-to: rgba(255, 102, 0, 0.08);
+    --tile-border: rgba(255, 102, 0, 0.65);
+    --tile-glow: rgba(255, 102, 0, 0.32);
+}
+.player-tile--c4 {
+    --tile-from: rgba(0, 245, 255, 0.22);
+    --tile-to: rgba(0, 245, 255, 0.04);
+    --tile-border: rgba(0, 245, 255, 0.5);
+    --tile-glow: rgba(0, 245, 255, 0.22);
+}
+.player-tile--host {
+    --tile-from: rgba(255, 45, 106, 0.35);
+    --tile-to: rgba(255, 45, 106, 0.08);
+    --tile-border: rgba(255, 45, 106, 0.85);
+    --tile-glow: rgba(255, 45, 106, 0.5);
+    box-shadow: var(--glow-primary), 0 0 22px rgba(255, 45, 106, 0.35);
+}
+
+/* Host marker — crown, top-right */
+.player-tile-crown {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 45, 106, 0.8));
+    pointer-events: none;
+}
+
+/* Current-player marker — cyan YOU chip, top-right (only shows when NOT host) */
+.player-tile-you-chip {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--color-accent-secondary);
+    color: var(--color-bg-primary);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 3px 7px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.6);
+    pointer-events: none;
+}
+
+/* Away badge — for disconnected players */
+.player-tile-away {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-dim);
+    background: var(--color-bg-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+.player-tile--disconnected {
+    opacity: 0.5;
+    filter: grayscale(0.4);
+}
+
+/* New-join animation (carried over from .player-card.is-new) */
+.player-tile.is-new {
+    animation: player-tile-pop var(--transition-slow) ease-out;
+}
+@keyframes player-tile-pop {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .player-tile.is-new { animation: none; }
+}
+
 /* ============================================
    End-of-Game Podium v2 — Hero Winner (rc31)
    Scoped under body.theme-dark so player.html end-view

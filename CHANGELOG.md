@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc35] - 2026-04-19
+
+### Changed
+- **Player lobby now uses the Jackbox-style tile grid.** The "Players in Lobby" section switches from flat chip-style cards to the same tile grid admin's home-view uses (rc27). Each player renders as a square tile with a big initial letter in Outfit 900, name below, colored gradient + neon glow, and a corner marker identifying their role. Host wears the pink "leader" variant with a 👑 crown at top-right; guests cycle cyan → green → orange → dim-cyan in join order so a mixed lobby reads as individual players at a glance; the current player gets a cyan "YOU" chip in the same top-right slot as the crown (they never collide — `is_admin` resolves to crown first, non-host-me resolves to chip, admin-viewing-themselves shows crown only). The 🎮 icon next to "Game Lobby" is gone for a cleaner header. Disconnected players dim to 50% with a small "away" badge pinned at the bottom of the tile. New-join animation survives the pattern change.
+- CSS additions are namespaced under `.player-tile`, `.player-tile--c2/c3/c4/host`, `.player-tile-initial`, `.player-tile-name`, `.player-tile-crown`, `.player-tile-you-chip`, `.player-tile-away` — parallel to admin's `.home-player-tile*` so the two grids stay easy to diff.
+
+### For contributors
+- `renderPlayerList()` in `player-lobby.js` now pre-computes a `variantMap` (name → `host`/`c1`/`c2`/`c3`/`c4`) from the sorted player list in a single pass, then the per-tile renderer looks up the variant. This keeps the virtual-scrolling API unchanged (single-arg renderer) while preserving join-order color stability.
+- The legacy `.player-card` / `.player-cards-grid` / `.you-badge` / `.away-badge` CSS is still shipped because it's used by `#reveal-results-cards` (All Guesses reveal panel) and the `#reveal-leaderboard-list`. Only the lobby's container class changed (`player-cards-grid` → `player-tiles-grid`).
+- Regenerated `player.bundle.min.js` (86.5 KB) and `styles.min.css`. Bumped manifest, sw.js `CACHE_VERSION`, and `?v=` cache-busters → `beatify-v3.2.0-rc35`.
+- Mockup + 3-variant iteration preserved at `~/.gstack/projects/mholzi-beatify/designs/player-lobby-tiles-20260419/preview.html`.
+
 ## [3.2.0-rc34] - 2026-04-19
 
 ### Fixed

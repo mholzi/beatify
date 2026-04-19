@@ -195,7 +195,6 @@
                 <!-- Compact Header with Stat Badges -->
                 <div class="lobby-header-compact">
                     <h2 class="section-header section-header--inline">
-                        <span class="section-icon" aria-hidden="true">🎮</span>
                         <span data-i18n="lobby.gameLobby">Game Lobby</span>
                     </h2>
                     <div class="stat-badge-bar" aria-live="polite">
@@ -224,8 +223,8 @@
                         <span class="section-toggle" aria-hidden="true">▼</span>
                     </button>
                     <div class="section-content" id="players-content">
-                        <div id="player-list" class="player-cards-grid" aria-live="polite">
-                            <!-- Player cards rendered by JS -->
+                        <div id="player-list" class="player-tiles-grid" aria-live="polite">
+                            <!-- Player tiles rendered by JS (mirror admin home-view) -->
                         </div>
                         <p id="players-empty" class="empty-state-inline hidden">
                             <span aria-hidden="true">👥</span>
@@ -852,6 +851,6 @@
     <!-- Version query strings prevent browser caching issues -->
     <script src="/beatify/static/js/i18n.min.js"></script>
     <script src="/beatify/static/js/utils.min.js"></script>
-    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc34"></script>
+    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc35"></script>
 </body>
 </html>
