@@ -12534,6 +12534,47 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-text-neon-muted);
 }
 
+/* Section dividers — group related shelves under a prominent header.
+   Currently used by the "🌍 By Country" block in the Community tab so
+   the per-language shelves read as one organized section instead of
+   a scattered list. */
+.plh-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 18px 12px;
+    margin: 4px 0 8px;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+}
+
+.plh-section-head-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--color-text-white);
+    line-height: 1;
+}
+
+.plh-section-head-emoji {
+    font-size: 22px;
+    filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.3));
+}
+
+.plh-section-head-meta {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+    flex-shrink: 0;
+}
+
 /* Shelves */
 
 .plh-shelf {

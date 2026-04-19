@@ -708,7 +708,8 @@ function _renderCommunity(host) {
             cards: picks.map((p) => _cardHtml(p, { community: true, featured: true, showAuthor: true })),
         }));
 
-        // Popular in Deutsch (language == 'de')
+        // By Country — section divider + per-language shelves grouped
+        // underneath. Only renders when at least one language has 2+ playlists.
         const byLang = new Map();
         for (const p of all) {
             const lang = (p.language || '').toLowerCase();
@@ -716,15 +717,36 @@ function _renderCommunity(host) {
             if (!byLang.has(lang)) byLang.set(lang, []);
             byLang.get(lang).push(p);
         }
-        for (const [lang, items] of byLang) {
-            if (items.length < 2) continue;
-            const flag = LANGUAGE_FLAGS[lang] || '';
-            const langName = _languageName(lang);
-            html.push(_shelfHtml({
-                title: `${flag} ${_t('playlistHub.shelves.popularIn', 'Popular in')} ${langName}`,
-                see: `${items.length}`,
-                cards: items.slice(0, 8).map((p) => _cardHtml(p, { community: true, showAuthor: true })),
-            }));
+        // Order the countries deterministically: DE > EN > ES > FR > NL > IT > PT > JA > KO > rest
+        const COUNTRY_ORDER = ['de', 'en', 'es', 'fr', 'nl', 'it', 'pt', 'ja', 'ko'];
+        const orderedLangs = Array.from(byLang.keys()).sort((a, b) => {
+            const ia = COUNTRY_ORDER.indexOf(a);
+            const ib = COUNTRY_ORDER.indexOf(b);
+            return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+        });
+        const countryShelves = orderedLangs.filter((lang) => (byLang.get(lang) || []).length >= 2);
+        if (countryShelves.length >= 1) {
+            const totalCountries = countryShelves.length;
+            const totalPlaylists = countryShelves.reduce((n, lang) => n + byLang.get(lang).length, 0);
+            html.push(`
+                <div class="plh-section-head">
+                    <div class="plh-section-head-title">
+                        <span class="plh-section-head-emoji">🌍</span>
+                        <span>${_escape(_t('playlistHub.sections.byCountry', 'By Country'))}</span>
+                    </div>
+                    <div class="plh-section-head-meta">${totalCountries} ${_escape(_t('playlistHub.sections.countries', 'countries'))} · ${totalPlaylists} ${_escape(_t('playlistHub.songs', 'playlists'))}</div>
+                </div>
+            `);
+            for (const lang of countryShelves) {
+                const items = byLang.get(lang);
+                const flag = LANGUAGE_FLAGS[lang] || '';
+                const langName = _languageName(lang);
+                html.push(_shelfHtml({
+                    title: `${flag} ${langName}`,
+                    see: `${items.length}`,
+                    cards: items.slice(0, 8).map((p) => _cardHtml(p, { community: true, showAuthor: true })),
+                }));
+            }
         }
 
         // Recently added (sorted by added_date desc — items with added_date only)

@@ -961,6 +961,10 @@
       "added": "Drin",
       "ariaAdd": "Zur Runde hinzufügen",
       "ariaRemove": "Aus Runde entfernen"
+    },
+    "sections": {
+      "byCountry": "Nach Land",
+      "countries": "Länder"
     }
   }
 }

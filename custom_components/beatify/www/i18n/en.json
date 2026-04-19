@@ -961,6 +961,10 @@
       "added": "Added",
       "ariaAdd": "Add to round",
       "ariaRemove": "Remove from round"
+    },
+    "sections": {
+      "byCountry": "By Country",
+      "countries": "countries"
     }
   }
 }
