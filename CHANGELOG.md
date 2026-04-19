@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc4] - 2026-04-19
+
+### Added
+- **Curated bundled + By-Country community.** Bundled trimmed from 20 to 11 broad-appeal staples (dropped the 9 specialty playlists — Cologne Carnival, Schlager, Fiesta Latina, British Invasion, Yacht Rock, Pop Punk, Eurodance, 90s/00s Hip Hop, Gen Z). Those 9 moved to `community/` with full metadata (language, author, description, added_date, version). The 4 existing community playlists got language backfilled. Total: 24 playlists stays the same, but the split is now 11 bundled + 13 community.
+- **🌍 By Country section in the Community tab.** New section-head divider groups per-language shelves under one umbrella. Deterministic ordering (DE > EN > ES > FR > NL > IT > PT > JA > KO > other). Meta line reads "N countries · M playlists". Renders only when at least one language has 2+ playlists. New i18n keys: `playlistHub.sections.{byCountry, countries}`.
+
+### Changed
+- Release notes at `docs/release-3.3.0.md` — final-release draft in the exact v3.2.0 GitHub-release format. This rc carries it as the body.
+
+### For contributors
+- 9 files moved via `git mv` so blame stays intact. 13 playlist JSONs now have complete metadata.
+- New CSS rule `.plh-section-head` (~30 lines).
+- Bumped manifest + `sw.js CACHE_VERSION` + every `?v=` cache-buster → `3.3.0-rc4`.
+
 ## [3.3.0-rc3] - 2026-04-19
 
 ### Added
