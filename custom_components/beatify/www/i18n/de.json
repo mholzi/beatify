@@ -953,7 +953,14 @@
     },
     "cta": {
       "start": "Weiter",
-      "pickSome": "Welche auswählen →"
+      "pickSome": "Welche auswählen →",
+      "back": "Zurück"
+    },
+    "pill": {
+      "add": "Hinzu",
+      "added": "Drin",
+      "ariaAdd": "Zur Runde hinzufügen",
+      "ariaRemove": "Aus Runde entfernen"
     }
   }
 }

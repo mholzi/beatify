@@ -236,9 +236,12 @@ export function mount(rootEl, options = {}) {
     state.options = Object.assign({
         onSelectionChange: null,          // (paths: string[]) => void
         onContinue: null,                 // (paths: string[]) => void — fires when Continue CTA clicked
+        onBack: null,                     // () => void — fires when Back CTA clicked (if showBack=true)
         onRequestClick: null,             // () => void — opens existing request modal
         initialSelected: [],              // string[] (playlist paths)
         initialPlaylists: null,           // if provided, skip the /api/status fetch
+        showBack: false,                  // render a Back button in the CTA bar
+        backLabel: null,                  // override label (otherwise falls back to i18n)
         locale: null,
     }, options);
     state.mounted = true;
@@ -432,6 +435,15 @@ function _onClick(e) {
             catch (err) { console.error('[PlaylistHub] onContinue threw:', err); }
         } else {
             _emitSelectionChange();
+        }
+        return;
+    }
+    const back = e.target.closest('[data-plh-action="back"]');
+    if (back) {
+        const opts = state.options || {};
+        if (typeof opts.onBack === 'function') {
+            try { opts.onBack(); }
+            catch (err) { console.error('[PlaylistHub] onBack threw:', err); }
         }
         return;
     }
@@ -891,10 +903,23 @@ function _cardHtml(playlist, opts = {}) {
             ? `<div class="plh-card-sub">${_escape(_t('playlistHub.by', 'by'))} <b>${_escape(playlist.author)}</b> · ${count} ${_escape(_t('playlistHub.songs', 'songs'))}</div>`
             : `<div class="plh-card-sub"><b>${count}</b> ${_escape(_t('playlistHub.songs', 'songs'))}${playlist.language ? ` · ${_escape(playlist.language.toUpperCase())}` : ''}</div>`);
     const glyphClass = glyph.length > 3 ? 'plh-cover-glyph plh-cover-glyph-long' : 'plh-cover-glyph';
+    // rc3: replaces the faint corner circle with a labeled pill — "+ Add" in
+    // pink (default) / "✓ Added" in neon green (selected). The pill sits on
+    // the top-left so it doesn't collide with cover-badge (top-right).
+    const pillLabel = selected
+        ? _t('playlistHub.pill.added', 'Added')
+        : _t('playlistHub.pill.add', 'Add');
+    const pillAria = selected
+        ? _t('playlistHub.pill.ariaRemove', 'Remove from round')
+        : _t('playlistHub.pill.ariaAdd', 'Add to round');
+    const pillIcon = selected
+        ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>'
+        : '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';
     return `
         <div class="${cls.join(' ')}" data-plh-card="${_escape(path)}" role="button" tabindex="0" aria-label="${_escape(playlist.name)}">
-            <button class="plh-check" data-plh-check="${_escape(path)}" aria-label="${selected ? 'Deselect' : 'Select'}" aria-pressed="${selected}">
-                ${selected ? '✓' : ''}
+            <button class="plh-pill" data-plh-check="${_escape(path)}" aria-label="${_escape(pillAria)}" aria-pressed="${selected}">
+                ${pillIcon}
+                <span class="plh-pill-label">${_escape(pillLabel)}</span>
             </button>
             <div class="plh-cover ${tintClass}">
                 ${badge}
@@ -1030,26 +1055,37 @@ function _renderCtaBar() {
     const host = state.root && state.root.querySelector('[data-plh-cta]');
     if (!host) return;
     const count = state.selectedPaths.size;
+    const opts = state.options || {};
+    // Request FAB — solid cyan fill with a dark envelope glyph so it's
+    // legible against the dark sticky bar. rc2 had a near-transparent
+    // fill that made the icon disappear.
     const fab = `
         <button class="plh-cta-fab" data-plh-action="request-new" aria-label="${_escape(_t('playlistHub.mine.newRequest.title', 'Request a playlist'))}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"/><polyline points="22,7 12,14 2,7"/></svg>
         </button>
     `;
+    const backBtn = opts.showBack
+        ? `<button class="plh-cta-back" data-plh-action="back" aria-label="${_escape(opts.backLabel || _t('playlistHub.cta.back', 'Back'))}">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+               <span>${_escape(opts.backLabel || _t('playlistHub.cta.back', 'Back'))}</span>
+           </button>`
+        : '';
     if (count === 0) {
         host.innerHTML = `
             ${fab}
+            ${backBtn}
             <div class="plh-cta-count plh-cta-count-empty">0 ✓</div>
             <button class="plh-cta-start plh-cta-start-disabled" disabled>${_escape(_t('playlistHub.cta.pickSome', 'Pick some →'))}</button>
         `;
         return;
     }
-    // Count lives only in the green pill on the left — don't duplicate it inside the button.
     host.innerHTML = `
         ${fab}
+        ${backBtn}
         <div class="plh-cta-count">${count} ✓</div>
         <button class="plh-cta-start" data-plh-action="start">
             <span class="plh-cta-start-label">${_escape(_t('playlistHub.cta.start', 'Continue'))}</span>
-            <svg class="plh-cta-start-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg class="plh-cta-start-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
     `;
 }

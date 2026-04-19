@@ -953,7 +953,14 @@
     },
     "cta": {
       "start": "Continue",
-      "pickSome": "Pick some →"
+      "pickSome": "Pick some →",
+      "back": "Back"
+    },
+    "pill": {
+      "add": "Add",
+      "added": "Added",
+      "ariaAdd": "Add to round",
+      "ariaRemove": "Remove from round"
     }
   }
 }

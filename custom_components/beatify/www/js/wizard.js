@@ -212,15 +212,15 @@ function _updateCta() {
     if (!nextBtn || !backBtn) return;
 
     // Step 3 hands the entire CTA to the Playlist Hub — hide the legacy
-    // wiz-next so we don't show two Continue buttons. Back + skip keep
-    // working the normal way.
+    // wiz-next AND wiz-back so we don't stack chrome. Hub renders its
+    // own Back + Continue in a single row.
     if (currentStep === 3) {
         nextBtn.style.display = 'none';
+        backBtn.style.display = 'none';
     } else {
         nextBtn.style.display = '';
+        backBtn.style.display = currentStep > 1 ? '' : 'none';
     }
-
-    backBtn.style.display = currentStep > 1 ? '' : 'none';
 
     if (currentStep === 1) {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
@@ -351,6 +351,11 @@ function _renderPlaylists() {
         initialSelected: Array.from(chosenPlaylists),
         // Hand the hub the playlist list we already fetched — saves a round-trip.
         initialPlaylists: (cachedStatus && Array.isArray(cachedStatus.playlists)) ? cachedStatus.playlists : null,
+        // rc3: the hub owns both Continue AND Back on step 3 so the whole
+        // nav lives in one row at the bottom instead of stacking with the
+        // wizard's own chrome.
+        showBack: true,
+        backLabel: _t('wizard.back', 'Back'),
         onSelectionChange(paths) {
             chosenPlaylists.clear();
             for (const p of paths) chosenPlaylists.add(p);
@@ -363,6 +368,10 @@ function _renderPlaylists() {
             chosenPlaylists.clear();
             for (const p of paths) chosenPlaylists.add(p);
             _advance();
+        },
+        onBack() {
+            // Mirrors the handler on #wiz-back (line ~926).
+            if (currentStep > 1) _showFrame(currentStep - 1);
         },
         onRequestClick() {
             // Reuse the existing request modal — it's mounted on admin.html

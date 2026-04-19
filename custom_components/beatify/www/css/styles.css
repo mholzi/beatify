@@ -12751,37 +12751,53 @@ body.theme-dark .your-result-stats .stat-value {
 .plh-card-local-when { color: var(--color-text-neon-muted); }
 .plh-card-local-when b { color: var(--color-accent-secondary); }
 
-.plh-check {
+/* rc3: replaces the faint corner circle (.plh-check) with a labeled pill.
+   Unselected = pink "+ Add", selected = neon-green "✓ Added". Sits on the
+   top-LEFT so it doesn't collide with cover-badge (which lives top-right on
+   featured / community / recently-added cards). */
+.plh-pill {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--color-dark-surface-hover);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: transparent;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 13px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 8px;
+    left: 8px;
     z-index: 4;
-    transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    background: rgba(255, 45, 106, 0.92);
+    color: var(--color-text-white);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 14px rgba(255, 45, 106, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s, filter 0.15s;
 }
 
-.plh-card-selected .plh-check {
+.plh-pill:hover { filter: brightness(1.1); }
+
+.plh-pill-label { line-height: 1; }
+
+.plh-card-selected .plh-pill {
     background: var(--color-success-neon);
     color: var(--color-bg-primary);
     border-color: transparent;
-    box-shadow: 0 0 12px var(--color-success-neon);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 18px rgba(57, 255, 20, 0.55);
 }
 
 .plh-card-selected .plh-cover {
     box-shadow: 0 0 0 3px var(--color-success-neon), 0 10px 24px rgba(0, 0, 0, 0.5);
 }
+
+/* Legacy rc1/rc2 corner circle — kept as a no-op guard in case any stale
+   cached markup survives the CACHE_VERSION bump. New markup uses .plh-pill. */
+.plh-check { display: none; }
 
 /* Featured shelf — bigger cards + gradient frame */
 
@@ -13555,20 +13571,50 @@ body.theme-dark .your-result-stats .stat-value {
     z-index: 10;
 }
 
+/* Request-a-playlist FAB inside the CTA bar. rc1/rc2 used a
+   near-transparent fill which made the envelope icon invisible against
+   the dark sticky bar. rc3: solid cyan button with a dark icon so the
+   affordance reads at a glance. */
 .plh-cta-fab {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: var(--color-bg-surface);
-    border: 1px solid var(--color-accent-secondary);
-    color: var(--color-accent-secondary);
+    background: linear-gradient(135deg, var(--color-accent-secondary) 0%, #0ea5c4 100%);
+    border: none;
+    color: var(--color-bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 0 14px rgba(0, 245, 255, 0.3);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
     flex-shrink: 0;
+    transition: filter 0.15s;
 }
+
+.plh-cta-fab:hover { filter: brightness(1.1); }
+
+.plh-cta-back {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 12px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-neon);
+    color: var(--color-text-white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.plh-cta-back:hover { border-color: var(--color-accent-secondary); }
+.plh-cta-back svg { opacity: 0.85; }
 
 .plh-cta-count {
     font-family: var(--font-display);
