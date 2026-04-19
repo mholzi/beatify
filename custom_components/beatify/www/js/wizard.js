@@ -14,6 +14,7 @@ import {
     mount as plhMount,
     setSelection as plhSetSelection,
     refresh as plhRefresh,
+    getPlaylistByPath as plhGetPlaylistByPath,
 } from './playlist-hub.js';
 
 const LS_WIZARD_STATE = 'beatify_wizard_state';   // 'step1'|'step2'|'step3'|'step4'|'done'|'dismissed'
@@ -337,6 +338,8 @@ function _renderPlaylists() {
     }
     plhMount(root, {
         initialSelected: Array.from(chosenPlaylists),
+        // Hand the hub the playlist list we already fetched — saves a round-trip.
+        initialPlaylists: (cachedStatus && Array.isArray(cachedStatus.playlists)) ? cachedStatus.playlists : null,
         onSelectionChange(paths) {
             chosenPlaylists.clear();
             for (const p of paths) chosenPlaylists.add(p);
@@ -776,6 +779,11 @@ function _renderDoneSummary() {
 
 function _playlistName(id) {
     if (!id) return '—';
+    // Prefer the hub's lookup — it's the authoritative source after step 3.
+    // Falls back to cachedStatus for the case where the summary renders
+    // before the hub has ever been mounted (shouldn't happen, defensive).
+    const hubMatch = plhGetPlaylistByPath(id);
+    if (hubMatch) return hubMatch.name || hubMatch.filename || id;
     const playlists = (cachedStatus && cachedStatus.playlists) || [];
     const match = playlists.find((p) => (p.path || p.filename || p.name) === id);
     if (match) return match.name || match.filename || id;

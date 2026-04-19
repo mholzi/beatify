@@ -213,10 +213,14 @@ export function mount(rootEl, options = {}) {
         onSelectionChange: null,          // (paths: string[]) => void
         onRequestClick: null,             // () => void — opens existing request modal
         initialSelected: [],              // string[] (playlist paths)
+        initialPlaylists: null,           // if provided, skip the /api/status fetch
         locale: null,
     }, options);
     state.mounted = true;
     state.selectedPaths = new Set(state.options.initialSelected || []);
+    if (Array.isArray(state.options.initialPlaylists)) {
+        state.playlists = state.options.initialPlaylists;
+    }
     rootEl.classList.add('plh-root');
     rootEl.setAttribute('role', 'region');
     rootEl.setAttribute('aria-label', _t('playlistHub.title', 'Playlist Hub'));
@@ -249,21 +253,33 @@ export function refresh() {
     _loadData();
 }
 
+export function getPlaylistByPath(path) {
+    if (!path) return null;
+    return (state.playlists || []).find((p) => (p.path || p.filename || p.name) === path) || null;
+}
+
 // ------------------------------------------------------------------
 // Data loading
 // ------------------------------------------------------------------
 
 async function _loadData() {
-    state.loading = true;
+    state.loading = state.playlists.length === 0;
     state.error = null;
     _renderTabBody();
     try {
+        // Skip the /api/status fetch when the host (wizard) already has the
+        // playlist list in memory and passed it via initialPlaylists.
+        const skipStatus = Array.isArray(state.options && state.options.initialPlaylists);
         const [statusResp, topResp, recentResp] = await Promise.all([
-            _fetchJson(API_STATUS).catch((e) => { console.warn('[PlaylistHub] status fetch failed:', e); return null; }),
+            skipStatus
+                ? Promise.resolve(null)
+                : _fetchJson(API_STATUS).catch((e) => { console.warn('[PlaylistHub] status fetch failed:', e); return null; }),
             _fetchJson(`${API_USAGE}?kind=top&limit=8`).catch(() => ({ items: [] })),
             _fetchJson(`${API_USAGE}?kind=recent&limit=12`).catch(() => ({ items: [] })),
         ]);
-        state.playlists = (statusResp && Array.isArray(statusResp.playlists)) ? statusResp.playlists : [];
+        if (!skipStatus) {
+            state.playlists = (statusResp && Array.isArray(statusResp.playlists)) ? statusResp.playlists : [];
+        }
         state.topPlaylists = (topResp && Array.isArray(topResp.items)) ? topResp.items : [];
         state.recentPlaylists = (recentResp && Array.isArray(recentResp.items)) ? recentResp.items : [];
         // Mine tab: pull cached requests synchronously, then refresh async

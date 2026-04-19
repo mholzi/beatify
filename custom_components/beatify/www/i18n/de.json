@@ -822,5 +822,138 @@
     "learningWarningPlural": "⚠️ {count} Spieler lernen noch die Regeln",
     "startAnyway": "{count} Spieler lernt noch die Regeln. Trotzdem starten?",
     "startAnywayPlural": "{count} Spieler lernen noch die Regeln. Trotzdem starten?"
+  },
+  "playlistHub": {
+    "title": "Playlist-Hub",
+    "loading": "Lädt…",
+    "close": "Schließen",
+    "retry": "Erneut versuchen",
+    "seeAll": "Alle ansehen",
+    "by": "von",
+    "bundledBy": "Beatify Team",
+    "songs": "Songs",
+    "played": "gespielt",
+    "players": "Spieler",
+    "min": "Min.",
+    "local": "Lokal",
+    "search": {
+      "placeholder": "Playlists, Künstler, Jahre suchen…"
+    },
+    "tabs": {
+      "bundled": "Mitgeliefert",
+      "community": "Community",
+      "mine": "Meine"
+    },
+    "chips": {
+      "all": "Alle Genres",
+      "pop": "Pop",
+      "rock": "Rock",
+      "hiphop": "Hip-Hop",
+      "metal": "Metal",
+      "jazz": "Jazz",
+      "electronic": "Elektronisch",
+      "latin": "Latin",
+      "schlager": "Schlager",
+      "soul": "Soul / R&B",
+      "other": "Andere"
+    },
+    "shelves": {
+      "yourMostPlayed": "Am meisten gespielt",
+      "recentlyPlayed": "Zuletzt gespielt",
+      "editorsPicks": "Empfehlungen",
+      "fromCommunity": "Aus der Community",
+      "popularIn": "Beliebt auf",
+      "recentlyAdded": "Neu hinzugefügt",
+      "regional": "Regional & Spezial",
+      "searchResults": "Ergebnisse"
+    },
+    "community": {
+      "tag": "COMMUNITY",
+      "banner": {
+        "title": "Nichts dabei? Wünsch dir eine Playlist.",
+        "sub": "Genre, Epoche, Stimmung beschreiben. Maintainer liefert in 24–48h."
+      }
+    },
+    "mine": {
+      "requests": "WÜNSCHE",
+      "done": "FERTIG",
+      "inFlight": "IN BEARBEITUNG",
+      "untitled": "Unbenannter Wunsch",
+      "submitted": "Eingereicht",
+      "empty": {
+        "title": "Noch keine Wünsche",
+        "body": "Fehlt ein Genre, eine Epoche oder ein regionales Thema? Wünsch es dir. Maintainer ergänzt in 24–48h."
+      },
+      "request": {
+        "title": "Playlist wünschen",
+        "sub": "Spotify-Playlist-URL einfügen und absenden.",
+        "cta": "Wunsch starten"
+      },
+      "newRequest": {
+        "title": "Weitere Playlist wünschen",
+        "sub": "Spotify-URL einfügen, wir kümmern uns."
+      },
+      "meanwhile": {
+        "title": "Solange: Community-Playlists entdecken",
+        "sub": "Community-Beiträge, mit einem Tipp installiert."
+      },
+      "step": {
+        "submitted": "Eingereicht",
+        "reviewed": "Geprüft",
+        "building": "In Arbeit",
+        "inBundled": "Geliefert"
+      }
+    },
+    "status": {
+      "pending": "Offen",
+      "building": "In Arbeit",
+      "done": "Fertig",
+      "declined": "Abgelehnt"
+    },
+    "detail": {
+      "add": "Zur Runde hinzufügen",
+      "remove": "Aus Runde entfernen",
+      "added": "Hinzugefügt",
+      "language": "Sprache",
+      "tags": "Tags",
+      "streaming": "Streaming-Abdeckung"
+    },
+    "sources": {
+      "bundled": "Mitgeliefert",
+      "community": "Community"
+    },
+    "empty": {
+      "noSearch": {
+        "title": "Keine Treffer für",
+        "body": "Nichts passt hier. Anderen Suchbegriff versuchen oder den anderen Tab prüfen.",
+        "searchOther": "Durchsuchen:",
+        "request": "Diese Playlist wünschen",
+        "clear": "Suche löschen"
+      },
+      "noFilter": {
+        "title": "Keine Playlist passt zu",
+        "body": "Filter entfernen oder dieses Genre wünschen.",
+        "clear": "Genre-Filter löschen",
+        "request": "Dieses Genre wünschen"
+      },
+      "communityEmpty": {
+        "title": "Keine Community-Playlists installiert",
+        "body": "Community-Playlists kommen mit Beatify. Integration aktualisieren, um die neuesten zu erhalten."
+      }
+    },
+    "error": {
+      "title": "Playlists konnten nicht geladen werden"
+    },
+    "time": {
+      "justNow": "gerade eben",
+      "minutesAgo": "vor {n} Min.",
+      "hoursAgo": "vor {n} Std.",
+      "daysAgo": "vor {n} T.",
+      "weeksAgo": "vor {n} W."
+    },
+    "cta": {
+      "start": "Weiter",
+      "pickSome": "Welche auswählen →"
+    }
   }
 }

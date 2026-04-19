@@ -822,5 +822,138 @@
     "learningWarningPlural": "⚠️ {count} players still learning the rules",
     "startAnyway": "{count} player is still learning the rules. Start anyway?",
     "startAnywayPlural": "{count} players are still learning the rules. Start anyway?"
+  },
+  "playlistHub": {
+    "title": "Playlist Hub",
+    "loading": "Loading…",
+    "close": "Close",
+    "retry": "Retry",
+    "seeAll": "See all",
+    "by": "by",
+    "bundledBy": "Beatify Team",
+    "songs": "songs",
+    "played": "played",
+    "players": "players",
+    "min": "min",
+    "local": "Local",
+    "search": {
+      "placeholder": "Search playlists, artists, years…"
+    },
+    "tabs": {
+      "bundled": "Bundled",
+      "community": "Community",
+      "mine": "Mine"
+    },
+    "chips": {
+      "all": "All genres",
+      "pop": "Pop",
+      "rock": "Rock",
+      "hiphop": "Hip-Hop",
+      "metal": "Metal",
+      "jazz": "Jazz",
+      "electronic": "Electronic",
+      "latin": "Latin",
+      "schlager": "Schlager",
+      "soul": "Soul / R&B",
+      "other": "Other"
+    },
+    "shelves": {
+      "yourMostPlayed": "Your most-played",
+      "recentlyPlayed": "Recently played",
+      "editorsPicks": "Editor's Picks",
+      "fromCommunity": "From the Community",
+      "popularIn": "Popular in",
+      "recentlyAdded": "Recently added",
+      "regional": "Regional & Specialty",
+      "searchResults": "Results"
+    },
+    "community": {
+      "tag": "COMMUNITY",
+      "banner": {
+        "title": "Nothing here for you? Request a playlist.",
+        "sub": "Describe the genre, era, vibe. A maintainer ships it in 24–48h."
+      }
+    },
+    "mine": {
+      "requests": "REQUESTS",
+      "done": "DONE",
+      "inFlight": "IN FLIGHT",
+      "untitled": "Untitled request",
+      "submitted": "Submitted",
+      "empty": {
+        "title": "No requests yet",
+        "body": "Missing a genre, era or regional scene? Request it. A maintainer adds it in 24–48h."
+      },
+      "request": {
+        "title": "Request a playlist",
+        "sub": "Paste a Spotify playlist URL and submit.",
+        "cta": "Start a request"
+      },
+      "newRequest": {
+        "title": "Request another playlist",
+        "sub": "Paste a Spotify URL, we take it from there."
+      },
+      "meanwhile": {
+        "title": "Meanwhile, browse community playlists",
+        "sub": "User-contributed picks, installable in one tap."
+      },
+      "step": {
+        "submitted": "Submitted",
+        "reviewed": "Reviewed",
+        "building": "Building",
+        "inBundled": "In Bundled"
+      }
+    },
+    "status": {
+      "pending": "Pending",
+      "building": "Building",
+      "done": "Done",
+      "declined": "Declined"
+    },
+    "detail": {
+      "add": "Add to round",
+      "remove": "Remove from round",
+      "added": "Added",
+      "language": "Language",
+      "tags": "Tags",
+      "streaming": "Streaming coverage"
+    },
+    "sources": {
+      "bundled": "Bundled",
+      "community": "Community"
+    },
+    "empty": {
+      "noSearch": {
+        "title": "No matches for",
+        "body": "Nothing here matches. Try a different query, or check the other tab.",
+        "searchOther": "Search",
+        "request": "Request this playlist",
+        "clear": "Clear search"
+      },
+      "noFilter": {
+        "title": "No playlists match",
+        "body": "Try removing the filter or requesting this genre.",
+        "clear": "Clear genre filter",
+        "request": "Request this genre"
+      },
+      "communityEmpty": {
+        "title": "No community playlists installed",
+        "body": "Community playlists ship with Beatify. Update the integration to get the latest batch."
+      }
+    },
+    "error": {
+      "title": "Could not load playlists"
+    },
+    "time": {
+      "justNow": "just now",
+      "minutesAgo": "{n}m ago",
+      "hoursAgo": "{n}h ago",
+      "daysAgo": "{n}d ago",
+      "weeksAgo": "{n}w ago"
+    },
+    "cta": {
+      "start": "Continue",
+      "pickSome": "Pick some →"
+    }
   }
 }
