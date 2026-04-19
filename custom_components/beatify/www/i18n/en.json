@@ -158,6 +158,45 @@
     "total": "Total",
     "offByYears": "Off by {years} years!",
     "offByYear": "Off by 1 year!",
+    "unknownSong": "Unknown Song",
+    "unknownArtist": "Unknown Artist",
+    "duel": {
+      "youSaid": "You said",
+      "actually": "Actually",
+      "youEarned": "You earned",
+      "yearUnit": "year",
+      "yearsUnit": "years",
+      "noGuess": "—"
+    },
+    "chip": {
+      "betWon": "Bet won · ×2",
+      "betLost": "Bet lost",
+      "streakBonus": "{count}-streak · +{bonus}"
+    },
+    "breakdown": {
+      "title": "Points breakdown",
+      "baseScore": "Base score ({years} yr off)",
+      "speedBonus": "Speed bonus",
+      "streakBonus": "{count}-streak bonus",
+      "artistBonus": "Artist challenge",
+      "movieBonus": "Movie challenge",
+      "introBonus": "Intro speed bonus",
+      "betMultiplier": "Double or Nothing",
+      "betLost": "Bet lost",
+      "total": "Total this round",
+      "noSubmission": "No guess this round"
+    },
+    "stats": {
+      "title": "Round stats",
+      "avgGuess": "Avg guess",
+      "closest": "Closest",
+      "fastest": "Fastest",
+      "playedBefore": "Played before",
+      "playedBeforeSub": "across all Beatify games",
+      "furthestOff": "Furthest off this round",
+      "onlyPercent": "Only {percent}% of all players guess it right.",
+      "empty": "No stats for this round yet."
+    },
     "emotions": {
       "exact": [
         "NAILED IT!",

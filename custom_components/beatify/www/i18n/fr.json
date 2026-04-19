@@ -158,6 +158,45 @@
     "total": "Total",
     "offByYears": "{years} ans d'écart !",
     "offByYear": "1 an d'écart !",
+    "unknownSong": "Chanson inconnue",
+    "unknownArtist": "Artiste inconnu",
+    "duel": {
+      "youSaid": "Tu as dit",
+      "actually": "En fait",
+      "youEarned": "Tu gagnes",
+      "yearUnit": "an",
+      "yearsUnit": "ans",
+      "noGuess": "—"
+    },
+    "chip": {
+      "betWon": "Pari gagné · ×2",
+      "betLost": "Pari perdu",
+      "streakBonus": "Série de {count} · +{bonus}"
+    },
+    "breakdown": {
+      "title": "Détail des points",
+      "baseScore": "Score de base ({years} an d'écart)",
+      "speedBonus": "Bonus vitesse",
+      "streakBonus": "Bonus série de {count}",
+      "artistBonus": "Défi artiste",
+      "movieBonus": "Défi film",
+      "introBonus": "Bonus intro rapide",
+      "betMultiplier": "Quitte ou double",
+      "betLost": "Pari perdu",
+      "total": "Total du tour",
+      "noSubmission": "Aucune réponse"
+    },
+    "stats": {
+      "title": "Stats du tour",
+      "avgGuess": "Moyenne",
+      "closest": "Plus proche",
+      "fastest": "Plus rapide",
+      "playedBefore": "Déjà jouée",
+      "playedBeforeSub": "sur toutes les parties Beatify",
+      "furthestOff": "Plus éloigné ce tour",
+      "onlyPercent": "Seulement {percent}% des joueurs trouvent.",
+      "empty": "Pas encore de stats."
+    },
     "emotions": {
       "exact": [
         "PARFAIT !",

@@ -38,7 +38,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
-import { updateRevealView } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
 
@@ -926,6 +926,7 @@ async function initAll() {
     setupQRModal();
     setupInviteModal();
     setupAdminControls();
+    setupRevealSheets();
     setupRevealControls();
     setupAdminControlBar();
     setupRetryConnection();

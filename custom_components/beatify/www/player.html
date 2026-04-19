@@ -437,48 +437,100 @@
 
         <!-- Reveal View (Story 4.6) -->
         <div id="reveal-view" class="view hidden">
-            <div class="reveal-container reveal-container--compact">
-                <!-- Compact Header Bar -->
-                <div class="reveal-header-compact">
-                    <div class="reveal-header-left">
-                        <span class="section-icon" aria-hidden="true">🎵</span>
-                        <span class="round-indicator-text">
-                            <span data-i18n="game.roundLabel">Round</span>
-                            <span id="reveal-round">1</span>
-                            <span data-i18n="game.ofLabel">of</span>
-                            <span id="reveal-total">10</span>
-                        </span>
+            <div class="reveal-container reveal-container--duel">
+                <!-- Header: round count + difficulty badge + round-stats ⓘ -->
+                <div class="reveal-header-v2">
+                    <div class="round-count">
+                        <span data-i18n="game.roundLabel">Round</span>
+                        <span id="reveal-round">1</span>
+                        <span data-i18n="game.ofLabel">of</span>
+                        <span id="reveal-total">10</span>
                     </div>
-                    <div class="stat-badge-bar">
+                    <div class="header-right">
                         <span id="reveal-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
+                        <button type="button" id="round-stats-btn" class="info-btn"
+                                aria-label="Round stats"
+                                data-i18n-aria-label="reveal.stats.title">ⓘ</button>
                     </div>
                 </div>
 
-                <!-- Song Hero: Album + Info side by side -->
-                <div class="reveal-song-hero">
+                <!-- Song strip: cover + title + artist -->
+                <div class="song-strip">
                     <img id="reveal-album-cover"
                          src="/beatify/static/img/no-artwork.svg"
-                         alt="Album Cover"
-                         class="reveal-album-cover-compact">
-                    <div class="reveal-song-info">
-                        <div id="song-title" class="song-title">Unknown Song</div>
-                        <div id="song-artist" class="song-artist">Unknown Artist</div>
+                         alt=""
+                         class="song-strip-cover">
+                    <div class="song-strip-info">
+                        <div id="song-title" class="song-strip-title" data-i18n="reveal.unknownSong">Unknown Song</div>
+                        <div id="song-artist" class="song-strip-artist" data-i18n="reveal.unknownArtist">Unknown Artist</div>
                     </div>
                 </div>
 
-                <!-- Year Reveal with Emotion -->
-                <div class="reveal-year-section">
-                    <div id="reveal-emotion" class="reveal-emotion-inline hidden" aria-live="polite" aria-atomic="true">
-                        <!-- Populated by JS: NAILED IT!, SO CLOSE!, Oops!, etc. -->
+                <!-- Chip row: bet / streak / other mode indicators (conditional) -->
+                <div id="reveal-chip-row" class="chip-row hidden"></div>
+
+                <!-- Duel: your guess × gap × correct year with emotion above -->
+                <div class="duel">
+                    <div id="reveal-emotion" class="duel-emotion hidden" aria-live="polite" aria-atomic="true"></div>
+                    <div class="duel-row">
+                        <div class="duel-side">
+                            <div class="duel-label" data-i18n="reveal.duel.youSaid">You said</div>
+                            <div id="duel-your-year" class="duel-year mine">—</div>
+                        </div>
+                        <div class="duel-gap">
+                            <span class="duel-gap-x" aria-hidden="true">×</span>
+                            <span id="duel-gap-count" class="duel-gap-n">0</span>
+                            <span id="duel-gap-unit" class="duel-gap-unit" data-i18n="reveal.duel.yearsUnit">years</span>
+                        </div>
+                        <div class="duel-side">
+                            <div class="duel-label" data-i18n="reveal.duel.actually">Actually</div>
+                            <div id="correct-year" class="duel-year correct">1984</div>
+                        </div>
                     </div>
-                    <div class="correct-year-label" data-i18n="reveal.theYearWas">The year was</div>
-                    <div id="correct-year" class="correct-year text-glow">1984</div>
                 </div>
 
                 <!-- Confetti Canvas (Story 9.4) -->
                 <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 
-                <!-- Fun Fact Card Section (Story 14.3) -->
+                <!-- Score row: big final points + breakdown ⓘ -->
+                <div class="score-row">
+                    <div class="score-row-left">
+                        <span class="score-row-label" data-i18n="reveal.duel.youEarned">You earned</span>
+                        <strong id="score-row-subtitle" class="score-row-subtitle">—</strong>
+                    </div>
+                    <div class="score-row-right">
+                        <span id="reveal-total-pts" class="score-row-pts">+0</span>
+                        <button type="button" id="points-breakdown-btn" class="info-btn"
+                                aria-label="Points breakdown"
+                                data-i18n-aria-label="reveal.breakdown.title">ⓘ</button>
+                    </div>
+                </div>
+
+                <!-- Artist Challenge Reveal (conditional) -->
+                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎤</span>
+                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
+                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
+                    </div>
+                </section>
+
+                <!-- Movie Challenge Reveal (conditional, Issue #28) -->
+                <section id="movie-reveal-section" class="card-section movie-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎬</span>
+                        <span data-i18n="movieChallenge.theMovieWas">The movie was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="movie-reveal-name" class="movie-reveal-name"></div>
+                        <div id="movie-reveal-winners" class="movie-reveal-winners hidden"></div>
+                    </div>
+                </section>
+
+                <!-- Fun Fact (conditional) -->
                 <section id="fun-fact-container" class="card-section fun-fact-section hidden">
                     <h2 class="section-header">
                         <span class="section-icon" aria-hidden="true">💡</span>
@@ -492,83 +544,26 @@
                     </div>
                 </section>
 
-                <!-- Artist Challenge Reveal - Card Section (Story 20.6) -->
-                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
+                <!-- Standings (compact list, kept with existing leaderboard-list id for renderer) -->
+                <section id="reveal-leaderboard" class="card-section standings-section">
                     <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">🎤</span>
-                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
-                    </h2>
-                    <div class="section-content-padded">
-                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
-                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
-                    </div>
-                </section>
-
-                <!-- Movie Challenge Reveal (Issue #28) -->
-                <section id="movie-reveal-section" class="card-section movie-reveal-section hidden">
-                    <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">🎬</span>
-                        <span data-i18n="movieChallenge.theMovieWas">The movie was</span>
-                    </h2>
-                    <div class="section-content-padded">
-                        <div id="movie-reveal-name" class="movie-reveal-name"></div>
-                        <div id="movie-reveal-winners" class="movie-reveal-winners hidden"></div>
-                    </div>
-                </section>
-
-                <!-- Personal Result - Card Section -->
-                <section id="personal-result" class="card-section personal-result-section">
-                    <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">🎯</span>
-                        <span data-i18n="reveal.yourResult">Your Result</span>
-                    </h2>
-                    <div id="result-content" class="section-content-padded">
-                        <!-- Populated dynamically -->
-                    </div>
-                </section>
-
-                <!-- All Guesses Card Section (Story 9.10) -->
-                <section class="card-section guesses-section">
-                    <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">👥</span>
-                        <span data-i18n="reveal.allGuesses">All Guesses</span>
-                    </h2>
-                    <div id="reveal-results-cards" class="reveal-results-grid section-content-padded">
-                        <!-- Populated by JavaScript: shows all player guesses -->
-                    </div>
-                </section>
-
-                <!-- Leaderboard - Expanded by default -->
-                <section id="reveal-leaderboard" class="section-collapsible leaderboard-section">
-                    <button type="button" class="section-header-collapsible" id="reveal-leaderboard-toggle" aria-expanded="true" aria-controls="reveal-leaderboard-content">
                         <span class="section-icon" aria-hidden="true">🏆</span>
                         <span data-i18n="leaderboard.standings">Standings</span>
-                        <span class="section-summary" id="reveal-leaderboard-summary">--</span>
-                        <span class="section-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="section-content" id="reveal-leaderboard-content">
+                    </h2>
+                    <div class="section-content-padded">
                         <div id="reveal-leaderboard-list" class="leaderboard-list">
                             <!-- Populated by JavaScript -->
                         </div>
                     </div>
                 </section>
 
-                <!-- Round Analytics (Story 13.3) - Collapsible, collapsed by default -->
-                <section id="round-analytics" class="section-collapsible round-analytics-section collapsed hidden">
-                    <button type="button" class="section-header-collapsible" id="round-analytics-toggle" aria-expanded="false">
-                        <span class="section-icon" aria-hidden="true">📊</span>
-                        <span data-i18n="analytics.title">Round Stats</span>
-                        <span class="section-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="section-content">
-                        <div id="round-analytics-content" class="section-content-padded">
-                            <!-- Populated by JavaScript -->
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Song difficulty rating - hidden, used for badge (Story 15.1) -->
+                <!-- Song difficulty rating (hidden helper, consumed by round-stats sheet) -->
                 <div id="song-difficulty" class="hidden"></div>
+
+                <!-- Hidden placeholders kept for any residual references -->
+                <div id="round-analytics" class="hidden"></div>
+                <div id="round-analytics-content" class="hidden"></div>
+                <div id="reveal-leaderboard-summary" class="hidden"></div>
 
                 <!-- Admin Controls -->
                 <div id="reveal-admin-controls" class="reveal-admin-controls hidden">
@@ -833,6 +828,42 @@
         <span id="steal-confirmation-text" class="steal-confirmation-text"></span>
     </div>
 
+    <!-- Points Breakdown Bottom Sheet (Round reveal v2) -->
+    <div id="points-breakdown-sheet" class="sheet-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="points-breakdown-title">
+        <div class="sheet-dim"></div>
+        <aside class="sheet">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-header">
+                <h2 id="points-breakdown-title" class="sheet-title">
+                    <span aria-hidden="true">🧮</span>
+                    <span data-i18n="reveal.breakdown.title">Points breakdown</span>
+                </h2>
+                <button type="button" class="sheet-close" data-sheet-close="points-breakdown-sheet" aria-label="Close">✕</button>
+            </header>
+            <div id="points-breakdown-content">
+                <!-- Populated by renderPointsBreakdown() -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Round Stats Bottom Sheet (Round reveal v2) -->
+    <div id="round-stats-sheet" class="sheet-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="round-stats-title">
+        <div class="sheet-dim"></div>
+        <aside class="sheet">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-header">
+                <h2 id="round-stats-title" class="sheet-title">
+                    <span aria-hidden="true">📊</span>
+                    <span data-i18n="reveal.stats.title">Round stats</span>
+                </h2>
+                <button type="button" class="sheet-close" data-sheet-close="round-stats-sheet" aria-label="Close">✕</button>
+            </header>
+            <div id="round-stats-content">
+                <!-- Populated by renderRoundStatsSheet() -->
+            </div>
+        </aside>
+    </div>
+
     <!-- Generic Confirmation Modal -->
     <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
         <div class="modal-backdrop"></div>
@@ -851,6 +882,6 @@
     <!-- Version query strings prevent browser caching issues -->
     <script src="/beatify/static/js/i18n.min.js"></script>
     <script src="/beatify/static/js/utils.min.js"></script>
-    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc35"></script>
+    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc36"></script>
 </body>
 </html>

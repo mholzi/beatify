@@ -158,6 +158,45 @@
     "total": "Gesamt",
     "offByYears": "{years} Jahre daneben!",
     "offByYear": "1 Jahr daneben!",
+    "unknownSong": "Unbekannter Song",
+    "unknownArtist": "Unbekannter Künstler",
+    "duel": {
+      "youSaid": "Dein Tipp",
+      "actually": "Richtig war",
+      "youEarned": "Dein Score",
+      "yearUnit": "Jahr",
+      "yearsUnit": "Jahre",
+      "noGuess": "—"
+    },
+    "chip": {
+      "betWon": "Wette gewonnen · ×2",
+      "betLost": "Wette verloren",
+      "streakBonus": "{count}-Serie · +{bonus}"
+    },
+    "breakdown": {
+      "title": "Punkteaufschlüsselung",
+      "baseScore": "Grundpunkte ({years} J. daneben)",
+      "speedBonus": "Speed-Bonus",
+      "streakBonus": "{count}-Serie Bonus",
+      "artistBonus": "Künstler-Challenge",
+      "movieBonus": "Film-Challenge",
+      "introBonus": "Intro-Speed-Bonus",
+      "betMultiplier": "Alles oder nichts",
+      "betLost": "Wette verloren",
+      "total": "Gesamt diese Runde",
+      "noSubmission": "Keinen Tipp abgegeben"
+    },
+    "stats": {
+      "title": "Runden-Statistiken",
+      "avgGuess": "Schnitt-Tipp",
+      "closest": "Nächste",
+      "fastest": "Schnellste",
+      "playedBefore": "Schon gespielt",
+      "playedBeforeSub": "über alle Beatify-Partien",
+      "furthestOff": "Am weitesten daneben",
+      "onlyPercent": "Nur {percent}% aller Spieler raten richtig.",
+      "empty": "Noch keine Statistiken."
+    },
     "emotions": {
       "exact": [
         "VOLLTREFFER!",

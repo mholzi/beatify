@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc36] - 2026-04-19
+
+### Changed
+- **Round-reveal screen redesigned around the Guess Duel.** The old stack of card-sections (song hero, year-was, personal result, all guesses, leaderboard, round analytics) is replaced by a cleaner hierarchy: compact song strip at top, optional chip row (bet / streak / other mode indicators), the duel itself (your guess × gap-count × correct year, with the emotion label above), a single "You earned · +N pts" score row, then the conditional cards (artist challenge · movie challenge · fun fact) and a compact standings list. The emotional peak is the duel — your number next to the correct number, separated by the "× N years" delta. Same data as before, but told as a comparison instead of a report.
+- **Full points breakdown moved into a bottom-sheet popup.** The main screen shows only the final number (e.g. `+120`). Tap the ⓘ beside it and a sheet slides up with base score, speed bonus, streak bonus, artist/movie/intro bonuses, the bet multiplier, and the total. Keeps the main screen clean; preserves every data point for players who want the math.
+- **Round analytics moved into a second bottom-sheet popup.** Song difficulty (stars + "only N% guess it right"), avg guess, closest player, fastest submit time, play-count across all Beatify games, and furthest-off list. Opened by the ⓘ in the header next to the difficulty badge. The section no longer occupies vertical space on the main screen unless the player asks for it.
+- **Bottom sheets use a reusable component** — slide-up animation, swipe-handle, ✕ close button, tap-outside-to-dismiss, Escape-to-close. Animation honors `prefers-reduced-motion: reduce`. Standards-compliant `role="dialog" aria-modal="true"` + focus moves to the close button on open.
+
+### For contributors
+- `player-reveal.js`: added `renderDuel`, `renderChipRow`, `renderScoreRow`, `renderPointsBreakdown`, `renderRoundStatsSheet`, `computeTotalPoints`, plus `setupRevealSheets` (exported, wired once from `initAll` in `player-core.js`). `updateRevealView` now stashes context on `state.lastRevealContext` so the sheets can lazily render when opened. The old `renderPersonalResult` and `renderPlayerResultCards` are no longer called for the reveal view (left in the file for potential reuse; can be removed once confirmed no other code path hits them).
+- `showRevealEmotion` now detects the new `.duel-emotion` element and writes just the main phrase (no subtitle) — the duel's gap number already communicates "N years off" so the subtitle is redundant. Falls back to the legacy two-line rendering if the element keeps the old class.
+- `player.html`: reveal-view rewritten. New elements: `#duel-your-year`, `#duel-gap-count`, `#duel-gap-unit`, `#reveal-chip-row`, `#reveal-total-pts`, `#score-row-subtitle`, `#points-breakdown-btn`, `#round-stats-btn`. Two new bottom-sheet modals at the body tail: `#points-breakdown-sheet` and `#round-stats-sheet`. Legacy `#song-difficulty`, `#round-analytics`, `#round-analytics-content`, `#reveal-leaderboard-summary` kept as hidden placeholders so any residual DOM-query in `player-reveal.js` doesn't null-dereference.
+- `styles.css`: ~400 lines added under a clear "Round-reveal v2" section. All class names namespaced — `.reveal-header-v2`, `.song-strip*`, `.chip-row`, `.duel*`, `.score-row*`, `.sheet*`, `.breakdown*`, `.stats-grid`, `.stats-card`, `.difficulty-visual`, `.furthest-list`. The legacy `.result-card`, `.personal-result-section`, `.reveal-results-grid`, `.reveal-year-section` styles are still shipped because some are shared with end-view and dashboard views (kept for safety until future grep-and-clean pass).
+- i18n: new `reveal.duel.*`, `reveal.chip.*`, `reveal.breakdown.*`, `reveal.stats.*`, plus `reveal.unknownSong` / `reveal.unknownArtist`. 26 new keys × 5 locales. Existing `reveal.emotions.*`, `reveal.exact`, `reveal.yearOff`, `reveal.yearsOff`, `reveal.noSubmission` all reused.
+- Regenerated `player.bundle.min.js` (85.7 KB). Bumped manifest, sw.js `CACHE_VERSION`, and `?v=` cache-busters → `beatify-v3.2.0-rc36`.
+- Design mockups (4-variant exploration + final Variant B full spec with popups) at `~/.gstack/projects/mholzi-beatify/designs/round-reveal-20260419/`.
+
 ## [3.2.0-rc35] - 2026-04-19
 
 ### Changed

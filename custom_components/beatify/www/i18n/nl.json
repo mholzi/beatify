@@ -158,6 +158,45 @@
     "total": "Totaal",
     "offByYears": "{years} jaar ernaast!",
     "offByYear": "1 jaar ernaast!",
+    "unknownSong": "Onbekend nummer",
+    "unknownArtist": "Onbekende artiest",
+    "duel": {
+      "youSaid": "Jij zei",
+      "actually": "Eigenlijk",
+      "youEarned": "Je verdient",
+      "yearUnit": "jaar",
+      "yearsUnit": "jaren",
+      "noGuess": "—"
+    },
+    "chip": {
+      "betWon": "Weddenschap gewonnen · ×2",
+      "betLost": "Weddenschap verloren",
+      "streakBonus": "{count}-reeks · +{bonus}"
+    },
+    "breakdown": {
+      "title": "Puntenverdeling",
+      "baseScore": "Basisscore ({years} j. ernaast)",
+      "speedBonus": "Snelheidsbonus",
+      "streakBonus": "{count}-reeks bonus",
+      "artistBonus": "Artiest-uitdaging",
+      "movieBonus": "Film-uitdaging",
+      "introBonus": "Intro-snelheidsbonus",
+      "betMultiplier": "Dubbel of niks",
+      "betLost": "Weddenschap verloren",
+      "total": "Totaal deze ronde",
+      "noSubmission": "Geen gok ingediend"
+    },
+    "stats": {
+      "title": "Ronde-statistieken",
+      "avgGuess": "Gem. gok",
+      "closest": "Dichtstbij",
+      "fastest": "Snelste",
+      "playedBefore": "Eerder gespeeld",
+      "playedBeforeSub": "over alle Beatify-spellen",
+      "furthestOff": "Verste ernaast deze ronde",
+      "onlyPercent": "Slechts {percent}% van de spelers raadt het goed.",
+      "empty": "Nog geen statistieken."
+    },
     "emotions": {
       "exact": [
         "GERAAD!",

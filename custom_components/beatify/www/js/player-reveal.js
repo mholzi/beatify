@@ -73,6 +73,10 @@ export function updateRevealView(data) {
     if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
     if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
 
+    // New: render the Duel (your guess × gap × correct year) via its own helper
+    // below — needs currentPlayer, so we stash song.year and call after the
+    // currentPlayer is resolved.
+
     // Update fun fact and rich song info (Story 14.3, 16.1, 16.3)
     var funFactContainer = document.getElementById('fun-fact-container');
     var funFactText = document.getElementById('fun-fact');
@@ -108,7 +112,21 @@ export function updateRevealView(data) {
     }
 
     showRevealEmotion(currentPlayer, song.year);
-    renderPersonalResult(currentPlayer, song.year);
+
+    // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
+    renderDuel(currentPlayer, song.year);
+    renderChipRow(currentPlayer, data);
+    renderScoreRow(currentPlayer);
+
+    // Cache context for bottom-sheet renderers that run on demand.
+    state.lastRevealContext = {
+        player: currentPlayer,
+        players: players,
+        song: song,
+        analytics: data.round_analytics || null,
+        difficulty: data.song_difficulty || null,
+        closestWinsMode: !!data.closest_wins_mode,
+    };
 
     renderArtistReveal(data.artist_challenge || null, state.playerName);
     renderMovieReveal(data.movie_challenge || null, state.playerName);
@@ -116,12 +134,6 @@ export function updateRevealView(data) {
     // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
     if (data.game_performance && data.game_performance.is_new_record) {
         triggerConfetti('record');
-    }
-
-    renderPlayerResultCards(players, data.closest_wins_mode);
-
-    if (data.round_analytics) {
-        renderRoundAnalytics(data.round_analytics, song.year);
     }
 
     if (data.leaderboard) {
@@ -530,9 +542,11 @@ function showRevealEmotion(player, correctYear) {
     var personalResult = document.getElementById('personal-result');
     if (!emotionEl) return;
 
+    // Round-reveal v2: the emotion lives inside the duel (.duel-emotion).
+    var isDuel = emotionEl.classList.contains('duel-emotion');
     var isCompact = emotionEl.classList.contains('reveal-emotion-inline') ||
                     document.querySelector('.reveal-container--compact');
-    emotionEl.className = isCompact ? 'reveal-emotion-inline' : 'reveal-emotion';
+    emotionEl.className = isDuel ? 'duel-emotion' : (isCompact ? 'reveal-emotion-inline' : 'reveal-emotion');
     emotionEl.innerHTML = '';
     emotionEl.classList.add('hidden');
 
@@ -585,13 +599,20 @@ function showRevealEmotion(player, correctYear) {
         subtitle = randomFrom(emotions.missedSub);
     }
 
-    var emotionHtml = '<span class="reveal-emotion-text">' + emotionText + '</span>';
-    if (subtitle) {
-        emotionHtml += '<div class="reveal-emotion-subtitle">' + subtitle + '</div>';
+    // Duel design v2: just the main phrase (e.g. "SO CLOSE!", "WAY OFF!").
+    // The gap count in the duel already communicates the "N years off" fact
+    // that the old subtitle carried, so the subtitle is intentionally dropped.
+    if (isDuel) {
+        emotionEl.textContent = emotionText;
+        emotionEl.classList.add('duel-emotion--' + emotionType);
+    } else {
+        var emotionHtml = '<span class="reveal-emotion-text">' + emotionText + '</span>';
+        if (subtitle) {
+            emotionHtml += '<div class="reveal-emotion-subtitle">' + subtitle + '</div>';
+        }
+        emotionEl.innerHTML = emotionHtml;
+        emotionEl.classList.add('reveal-emotion--' + emotionType);
     }
-    emotionEl.innerHTML = emotionHtml;
-
-    emotionEl.classList.add('reveal-emotion--' + emotionType);
     emotionEl.classList.remove('hidden');
 
     if (emotionType === 'exact') {
@@ -857,4 +878,429 @@ function renderPlayerResultCards(players, closestWinsMode) {
 
     html += '</div>';
     container.innerHTML = html;
+}
+
+// ===========================================================================
+// Round-reveal v2: Duel / Chips / Score row / Sheets (DESIGN.md Variant B)
+// ===========================================================================
+
+/**
+ * Populate the duel — your guess × gap × correct year.
+ * @param {Object|null} player - Current player data
+ * @param {number|null} correctYear - Server-reported correct year
+ */
+function renderDuel(player, correctYear) {
+    var yourEl = document.getElementById('duel-your-year');
+    var gapCountEl = document.getElementById('duel-gap-count');
+    var gapUnitEl = document.getElementById('duel-gap-unit');
+    if (!yourEl || !gapCountEl || !gapUnitEl) return;
+
+    if (!player || player.missed_round) {
+        yourEl.textContent = utils.t('reveal.duel.noGuess') || '—';
+        gapCountEl.textContent = '—';
+        gapUnitEl.textContent = '';
+        return;
+    }
+
+    var guess = player.guess;
+    yourEl.textContent = (guess != null && guess !== '') ? guess : '—';
+
+    var yearsOff = player.years_off != null ? player.years_off : 0;
+    gapCountEl.textContent = String(yearsOff);
+    gapUnitEl.textContent = yearsOff === 1
+        ? (utils.t('reveal.duel.yearUnit') || 'year')
+        : (utils.t('reveal.duel.yearsUnit') || 'years');
+
+    // Color the gap by proximity. Matches the emotion color of the duel header.
+    var gapEl = gapCountEl.closest('.duel-gap');
+    if (gapEl) {
+        gapEl.classList.remove('duel-gap--exact', 'duel-gap--close', 'duel-gap--wrong');
+        if (yearsOff === 0) gapEl.classList.add('duel-gap--exact');
+        else if (yearsOff <= 5) gapEl.classList.add('duel-gap--close');
+        else gapEl.classList.add('duel-gap--wrong');
+    }
+}
+
+/**
+ * Render the conditional chip row (bet outcome, streak). Hidden when empty.
+ */
+function renderChipRow(player, data) {
+    var row = document.getElementById('reveal-chip-row');
+    if (!row) return;
+    if (!player) { row.classList.add('hidden'); row.innerHTML = ''; return; }
+
+    var chips = [];
+
+    if (player.bet_outcome === 'won') {
+        chips.push('<span class="chip chip--bet-won">🎲 ' + escapeHtml(utils.t('reveal.chip.betWon') || 'Bet won · ×2') + '</span>');
+    } else if (player.bet_outcome === 'lost') {
+        chips.push('<span class="chip chip--bet-lost">🎲 ' + escapeHtml(utils.t('reveal.chip.betLost') || 'Bet lost') + '</span>');
+    }
+
+    var streakBonus = player.streak_bonus || 0;
+    if (streakBonus > 0 && player.streak) {
+        var streakLabel = utils.t('reveal.chip.streakBonus', { count: player.streak, bonus: streakBonus })
+            || (player.streak + '-streak · +' + streakBonus);
+        chips.push('<span class="chip chip--streak">🔥 ' + escapeHtml(streakLabel) + '</span>');
+    }
+
+    if (chips.length === 0) {
+        row.classList.add('hidden');
+        row.innerHTML = '';
+    } else {
+        row.classList.remove('hidden');
+        row.innerHTML = chips.join('');
+    }
+}
+
+/**
+ * Total round points = round_score + streak_bonus + artist_bonus
+ * (bet multiplier is already folded into round_score on the server).
+ */
+function computeTotalPoints(player) {
+    if (!player) return 0;
+    var base = player.round_score || 0;
+    var streak = player.streak_bonus || 0;
+    var artist = player.artist_bonus || 0;
+    var movie = player.movie_bonus || 0;
+    var intro = player.intro_bonus || 0;
+    return base + streak + artist + movie + intro;
+}
+
+/**
+ * Populate the big score row: "You earned · 1 year off · +120".
+ */
+function renderScoreRow(player) {
+    var ptsEl = document.getElementById('reveal-total-pts');
+    var subEl = document.getElementById('score-row-subtitle');
+    if (!ptsEl) return;
+
+    var total = computeTotalPoints(player);
+    ptsEl.textContent = (total >= 0 ? '+' : '') + total;
+
+    if (subEl) {
+        if (!player || player.missed_round) {
+            subEl.textContent = utils.t('reveal.noSubmission') || 'No guess submitted';
+        } else {
+            var yo = player.years_off != null ? player.years_off : 0;
+            var key = yo === 0 ? 'reveal.exact'
+                    : yo === 1 ? 'reveal.yearOff'
+                    : 'reveal.yearsOff';
+            subEl.textContent = utils.t(key, { years: yo }) || (yo + ' years off');
+        }
+    }
+}
+
+// ---------- Points breakdown sheet ----------
+
+/**
+ * Populate the points-breakdown sheet based on the last-rendered player data.
+ */
+function renderPointsBreakdown() {
+    var el = document.getElementById('points-breakdown-content');
+    if (!el) return;
+    var ctx = state.lastRevealContext;
+    var player = ctx ? ctx.player : null;
+
+    if (!player || player.missed_round) {
+        el.innerHTML =
+            '<div class="breakdown-empty">' +
+                '<div class="breakdown-empty-icon" aria-hidden="true">⏰</div>' +
+                '<div class="breakdown-empty-text">' +
+                    escapeHtml(utils.t('reveal.breakdown.noSubmission') || utils.t('reveal.noSubmission') || 'No guess submitted') +
+                '</div>' +
+                '<div class="breakdown-total breakdown-total--zero">' +
+                    '<span class="label">' + escapeHtml(utils.t('reveal.breakdown.total') || 'Total this round') + '</span>' +
+                    '<span class="value">+0</span>' +
+                '</div>' +
+            '</div>';
+        return;
+    }
+
+    var rows = [];
+    var yearsOff = player.years_off != null ? player.years_off : 0;
+    var base = player.base_score || 0;
+    var roundScore = player.round_score || 0;
+    var speedMultiplier = player.speed_multiplier || 1.0;
+    var speedAddon = roundScore - base;
+
+    rows.push({
+        emoji: '🎯',
+        label: (utils.t('reveal.breakdown.baseScore', { years: yearsOff }) || 'Base score'),
+        value: String(base),
+        kind: 'neutral'
+    });
+
+    if (speedMultiplier > 1.0 && speedAddon > 0) {
+        rows.push({
+            emoji: '⚡',
+            label: (utils.t('reveal.breakdown.speedBonus') || 'Speed bonus') +
+                   ' (' + speedMultiplier.toFixed(2) + '×)',
+            value: '+' + speedAddon,
+            kind: 'positive'
+        });
+    }
+
+    if (player.streak_bonus && player.streak_bonus > 0) {
+        rows.push({
+            emoji: '🔥',
+            label: utils.t('reveal.breakdown.streakBonus', { count: player.streak }) ||
+                   (player.streak + '-streak bonus'),
+            value: '+' + player.streak_bonus,
+            kind: 'positive'
+        });
+    }
+
+    if (player.artist_bonus && player.artist_bonus > 0) {
+        rows.push({
+            emoji: '🎤',
+            label: utils.t('reveal.breakdown.artistBonus') || 'Artist challenge',
+            value: '+' + player.artist_bonus,
+            kind: 'positive'
+        });
+    }
+
+    if (player.movie_bonus && player.movie_bonus > 0) {
+        rows.push({
+            emoji: '🎬',
+            label: utils.t('reveal.breakdown.movieBonus') || 'Movie challenge',
+            value: '+' + player.movie_bonus,
+            kind: 'positive'
+        });
+    }
+
+    if (player.intro_bonus && player.intro_bonus > 0) {
+        rows.push({
+            emoji: '⚡',
+            label: utils.t('reveal.breakdown.introBonus') || 'Intro speed bonus',
+            value: '+' + player.intro_bonus,
+            kind: 'positive'
+        });
+    }
+
+    if (player.bet_outcome === 'won') {
+        rows.push({
+            emoji: '🎲',
+            label: utils.t('reveal.breakdown.betMultiplier') || 'Double or Nothing',
+            value: '×2',
+            kind: 'multiplier'
+        });
+    } else if (player.bet_outcome === 'lost') {
+        rows.push({
+            emoji: '🎲',
+            label: utils.t('reveal.breakdown.betLost') || 'Bet lost',
+            value: '×0',
+            kind: 'multiplier'
+        });
+    }
+
+    var total = computeTotalPoints(player);
+
+    var listHtml = '<div class="breakdown-list">';
+    rows.forEach(function(r) {
+        listHtml += '<div class="breakdown-row">' +
+            '<span class="label">' +
+                '<span class="emoji" aria-hidden="true">' + r.emoji + '</span>' +
+                '<span>' + escapeHtml(r.label) + '</span>' +
+            '</span>' +
+            '<span class="value value--' + r.kind + '">' + escapeHtml(r.value) + '</span>' +
+        '</div>';
+    });
+    listHtml += '</div>';
+
+    listHtml += '<div class="breakdown-total">' +
+        '<span class="label">' + escapeHtml(utils.t('reveal.breakdown.total') || 'Total this round') + '</span>' +
+        '<span class="value">' + (total >= 0 ? '+' : '') + total + '</span>' +
+    '</div>';
+
+    el.innerHTML = listHtml;
+}
+
+// ---------- Round stats sheet ----------
+
+function renderRoundStatsSheet() {
+    var el = document.getElementById('round-stats-content');
+    if (!el) return;
+    var ctx = state.lastRevealContext;
+    if (!ctx) { el.innerHTML = ''; return; }
+
+    var analytics = ctx.analytics;
+    var difficulty = ctx.difficulty;
+    var song = ctx.song || {};
+    var correctYear = song.year;
+    var parts = [];
+
+    // Difficulty banner (stars + "Only N% guess it right")
+    if (difficulty) {
+        var stars = '';
+        var total = 5;
+        for (var i = 0; i < total; i++) {
+            stars += '<span class="' + (i < difficulty.stars ? 'star-filled' : 'star-empty') + '">★</span>';
+        }
+        var lbl = utils.t('difficulty.' + difficulty.label) || difficulty.label || '';
+        var pct = difficulty.accuracy != null
+            ? (utils.t('reveal.stats.onlyPercent', { percent: difficulty.accuracy })
+                || 'Only ' + difficulty.accuracy + '% of all players guess it right.')
+            : '';
+        parts.push(
+            '<div class="difficulty-visual">' +
+                '<div class="left">' + escapeHtml(lbl) +
+                    (pct ? '<div class="sub">' + escapeHtml(pct) + '</div>' : '') +
+                '</div>' +
+                '<div class="stars">' + stars + '</div>' +
+            '</div>'
+        );
+    }
+
+    // 2x2 stats grid
+    if (analytics) {
+        var cards = [];
+        if (analytics.average_guess != null) {
+            var avgDiff = correctYear ? Math.round(analytics.average_guess - correctYear) : null;
+            var avgSub = avgDiff != null
+                ? (avgDiff === 0 ? (utils.t('analytics.onTarget') || 'On target')
+                    : (Math.abs(avgDiff) + ' ' + (utils.t('reveal.duel.yearsUnit') || 'years') + ' ' + (avgDiff > 0 ? 'late' : 'early')))
+                : '';
+            cards.push(
+                '<div class="stats-card">' +
+                    '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.avgGuess') || 'Avg guess') + '</div>' +
+                    '<div class="val cyan">' + Math.round(analytics.average_guess) + '</div>' +
+                    (avgSub ? '<div class="sub">' + escapeHtml(avgSub) + '</div>' : '') +
+                '</div>'
+            );
+        }
+
+        // Closest guess — pull the first entry of all_guesses (sorted by years_off)
+        if (analytics.all_guesses && analytics.all_guesses.length > 0) {
+            var closest = analytics.all_guesses[0];
+            var closestSub = closest.name + ' · ' +
+                (closest.years_off === 0 ? (utils.t('reveal.exact') || 'Exact!')
+                  : closest.years_off + ' ' + (closest.years_off === 1 ? (utils.t('reveal.duel.yearUnit') || 'year') : (utils.t('reveal.duel.yearsUnit') || 'years')) + ' off');
+            cards.push(
+                '<div class="stats-card">' +
+                    '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.closest') || 'Closest') + '</div>' +
+                    '<div class="val success">' + escapeHtml(String(closest.guess)) + '</div>' +
+                    '<div class="sub">' + escapeHtml(closestSub) + '</div>' +
+                '</div>'
+            );
+        }
+
+        // Fastest submit (from speed_champion)
+        if (analytics.speed_champion && analytics.speed_champion.time != null) {
+            cards.push(
+                '<div class="stats-card">' +
+                    '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.fastest') || 'Fastest') + '</div>' +
+                    '<div class="val">' + analytics.speed_champion.time + 's</div>' +
+                    '<div class="sub">' + escapeHtml((analytics.speed_champion.names || []).join(', ')) + '</div>' +
+                '</div>'
+            );
+        }
+
+        // Played before (from song_difficulty.times_played)
+        if (difficulty && difficulty.times_played != null) {
+            var playedSub = utils.t('reveal.stats.playedBeforeSub') || 'across all Beatify games';
+            cards.push(
+                '<div class="stats-card">' +
+                    '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.playedBefore') || 'Played before') + '</div>' +
+                    '<div class="val">' + difficulty.times_played + '×</div>' +
+                    '<div class="sub">' + escapeHtml(playedSub) + '</div>' +
+                '</div>'
+            );
+        }
+
+        if (cards.length > 0) {
+            parts.push('<div class="stats-grid">' + cards.join('') + '</div>');
+        }
+    }
+
+    // Furthest off this round
+    if (analytics && analytics.furthest_players && analytics.furthest_players.length > 0 && analytics.all_guesses && analytics.all_guesses.length > 0) {
+        var furthest = analytics.all_guesses[analytics.all_guesses.length - 1];
+        if (furthest && furthest.years_off > 0) {
+            var furthestRows = analytics.furthest_players.map(function(n) {
+                return '<div class="furthest-row">' +
+                    '<span class="name">' + escapeHtml(n) + '</span>' +
+                    '<span class="off">' + furthest.years_off + ' ' +
+                        (furthest.years_off === 1 ? (utils.t('reveal.duel.yearUnit') || 'yr')
+                            : (utils.t('reveal.duel.yearsUnit') || 'yrs')) +
+                    ' off</span>' +
+                '</div>';
+            }).join('');
+            parts.push(
+                '<div class="card-section" style="margin-bottom:0">' +
+                    '<div class="section-header">' +
+                        '<span class="icon" aria-hidden="true">🙈</span>' +
+                        '<span>' + escapeHtml(utils.t('reveal.stats.furthestOff') || 'Furthest off this round') + '</span>' +
+                    '</div>' +
+                    '<div class="furthest-list">' + furthestRows + '</div>' +
+                '</div>'
+            );
+        }
+    }
+
+    if (parts.length === 0) {
+        parts.push('<p class="stats-empty">' + escapeHtml(utils.t('reveal.stats.empty') || 'No stats for this round yet.') + '</p>');
+    }
+
+    el.innerHTML = parts.join('');
+}
+
+// ---------- Sheet open/close wiring ----------
+
+function openSheet(id, populate) {
+    var sheet = document.getElementById(id);
+    if (!sheet) return;
+    if (typeof populate === 'function') populate();
+    sheet.classList.remove('hidden');
+    // Trap focus lightly: move focus to the close button if present
+    var closeBtn = sheet.querySelector('.sheet-close');
+    if (closeBtn) closeBtn.focus();
+}
+
+function closeSheet(id) {
+    var sheet = document.getElementById(id);
+    if (!sheet) return;
+    sheet.classList.add('hidden');
+}
+
+/**
+ * Wire the two reveal-view bottom sheets (points breakdown + round stats).
+ * Called once from player-core's initAll via setupRevealControls.
+ */
+export function setupRevealSheets() {
+    var ptsBtn = document.getElementById('points-breakdown-btn');
+    if (ptsBtn) {
+        ptsBtn.addEventListener('click', function() {
+            openSheet('points-breakdown-sheet', renderPointsBreakdown);
+        });
+    }
+    var statsBtn = document.getElementById('round-stats-btn');
+    if (statsBtn) {
+        statsBtn.addEventListener('click', function() {
+            openSheet('round-stats-sheet', renderRoundStatsSheet);
+        });
+    }
+
+    // Close buttons + tap-outside (dim area)
+    document.querySelectorAll('[data-sheet-close]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            closeSheet(btn.getAttribute('data-sheet-close'));
+            e.stopPropagation();
+        });
+    });
+    document.querySelectorAll('.sheet-backdrop').forEach(function(backdrop) {
+        var dim = backdrop.querySelector('.sheet-dim');
+        if (dim) {
+            dim.addEventListener('click', function() { closeSheet(backdrop.id); });
+        }
+    });
+
+    // Escape-to-close
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape') return;
+        ['points-breakdown-sheet', 'round-stats-sheet'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el && !el.classList.contains('hidden')) closeSheet(id);
+        });
+    });
 }

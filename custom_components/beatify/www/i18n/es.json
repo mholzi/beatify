@@ -158,6 +158,45 @@
     "total": "Total",
     "offByYears": "{years} anos de diferencia!",
     "offByYear": "1 ano de diferencia!",
+    "unknownSong": "Canción desconocida",
+    "unknownArtist": "Artista desconocido",
+    "duel": {
+      "youSaid": "Dijiste",
+      "actually": "En realidad",
+      "youEarned": "Ganaste",
+      "yearUnit": "año",
+      "yearsUnit": "años",
+      "noGuess": "—"
+    },
+    "chip": {
+      "betWon": "Apuesta ganada · ×2",
+      "betLost": "Apuesta perdida",
+      "streakBonus": "Racha de {count} · +{bonus}"
+    },
+    "breakdown": {
+      "title": "Desglose de puntos",
+      "baseScore": "Puntos base ({years} años off)",
+      "speedBonus": "Bonus velocidad",
+      "streakBonus": "Bonus racha de {count}",
+      "artistBonus": "Desafío de artista",
+      "movieBonus": "Desafío de película",
+      "introBonus": "Bonus de intro rápida",
+      "betMultiplier": "Dobla o nada",
+      "betLost": "Apuesta perdida",
+      "total": "Total de esta ronda",
+      "noSubmission": "No enviaste respuesta"
+    },
+    "stats": {
+      "title": "Estadísticas de ronda",
+      "avgGuess": "Media",
+      "closest": "Más cercana",
+      "fastest": "Más rápida",
+      "playedBefore": "Reproducida",
+      "playedBeforeSub": "en todas las partidas de Beatify",
+      "furthestOff": "Más lejos esta ronda",
+      "onlyPercent": "Solo el {percent}% de los jugadores acierta.",
+      "empty": "Aún no hay estadísticas."
+    },
     "emotions": {
       "exact": [
         "PERFECTO!",
