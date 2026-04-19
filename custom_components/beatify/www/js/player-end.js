@@ -508,7 +508,7 @@ function renderVisualCard(emojiGrid, playlistName) {
         if (statsStreak && statsStreak !== '0') {
             parts.push({ type: 'stat', num: '🔥' + statsStreak, label: ' streak' });
         }
-        parts.push({ type: 'url', text: 'beatify.fun' });
+        parts.push({ type: 'url', text: 'beatify.life' });
 
         // Measure entire row so we can center it as a unit
         ctx.font = '600 15px Inter, system-ui, sans-serif';
