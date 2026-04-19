@@ -242,6 +242,7 @@ function renderHighlights(highlights) {
 
 /**
  * Render shareable result card (Issue #120, #216)
+ * Shows the vinyl card inline as a PNG preview and wires the Share button.
  * @param {Object|null} shareData - Share data from state with emoji_grids, playlist_name, total_rounds
  */
 function renderShareTab(shareData) {
@@ -265,49 +266,36 @@ function renderShareTab(shareData) {
         return;
     }
 
-    var gridEl = document.getElementById('share-emoji-grid');
-    if (gridEl) {
-        var lines = myGrid.split('\n').map(function(line) {
-            return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
-        }).join('');
-        gridEl.innerHTML = lines;
-        gridEl.dataset.rawText = myGrid;
-    }
-
-    var copyBtn = document.getElementById('share-copy-btn');
-    if (copyBtn) {
-        copyBtn.onclick = function() {
-            navigator.clipboard.writeText(myGrid).then(function() {
-                var toast = document.getElementById('share-toast');
-                if (toast) {
-                    toast.classList.remove('hidden');
-                    setTimeout(function() { toast.classList.add('hidden'); }, 2000);
-                }
-            });
-        };
-    }
-
-    var saveBtn = document.getElementById('share-save-btn');
-    if (saveBtn) {
-        saveBtn.onclick = function() {
-            generateVisualCard(myGrid, shareData.playlist_name, shareData);
-        };
-    }
-
     container.classList.remove('hidden');
+
+    // Render the vinyl card into the inline <img> preview.
+    renderVisualCard(myGrid, shareData.playlist_name).then(function(canvas) {
+        var img = document.getElementById('share-card-image');
+        if (img && canvas) {
+            img.src = canvas.toDataURL('image/png');
+        }
+
+        // Wire the Share button to reuse the same canvas (native share → download fallback).
+        var saveBtn = document.getElementById('share-save-btn');
+        if (saveBtn) {
+            saveBtn.onclick = function() {
+                exportCanvas(canvas);
+            };
+        }
+    });
 }
 
 /**
- * Generate visual card via Canvas API and download as PNG.
- * Vinyl-record design (DESIGN.md share-card Variant D): music-first identity
- * with the score on a pink→cyan gradient label inside a black vinyl disc.
- * Aligns with the brand palette — no more off-brand purple.
+ * Render the vinyl share card into a canvas (DESIGN.md share-card Variant D).
+ * Music-first identity: score on a pink→cyan gradient label inside a black vinyl disc.
+ * Returns a Promise<HTMLCanvasElement> so callers can either preview it inline
+ * (via toDataURL) or export it (via toBlob + exportCanvas).
  *
  * @param {string} emojiGrid - The emoji grid text (source of truth for stats)
  * @param {string} playlistName - Name of the playlist
- * @param {Object} shareData - Optional share data with additional info
+ * @returns {Promise<HTMLCanvasElement>}
  */
-function generateVisualCard(emojiGrid, playlistName, shareData) {
+function renderVisualCard(emojiGrid, playlistName) {
     var W = 800, H = 800;
     var canvas = document.createElement('canvas');
     canvas.width = W;
@@ -351,7 +339,10 @@ function generateVisualCard(emojiGrid, playlistName, shareData) {
 
     // Wait for web fonts (Outfit + Inter) so the drawn text matches DESIGN.md
     var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    ready.then(drawCard);
+    return ready.then(function() {
+        drawCard();
+        return canvas;
+    });
 
     function drawCard() {
         // ── Background: navy with pink (top-left) + cyan (bottom-right) radial glows ──
@@ -562,22 +553,29 @@ function generateVisualCard(emojiGrid, playlistName, shareData) {
             }
         });
 
-        // ── Export: native share → download fallback ──
-        canvas.toBlob(function(blob) {
-            if (!blob) return;
-            if (navigator.share && navigator.canShare) {
-                var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
-                var nativeShareData = { files: [file], title: 'My Beatify Results' };
-                if (navigator.canShare(nativeShareData)) {
-                    navigator.share(nativeShareData).catch(function() {
-                        downloadBlob(blob);
-                    });
-                    return;
-                }
-            }
-            downloadBlob(blob);
-        }, 'image/png');
     }
+}
+
+/**
+ * Export a rendered card canvas via native share → download fallback.
+ * @param {HTMLCanvasElement} canvas
+ */
+function exportCanvas(canvas) {
+    if (!canvas) return;
+    canvas.toBlob(function(blob) {
+        if (!blob) return;
+        if (navigator.share && navigator.canShare) {
+            var file = new File([blob], 'beatify-results.png', { type: 'image/png' });
+            var nativeShareData = { files: [file], title: 'My Beatify Results' };
+            if (navigator.canShare(nativeShareData)) {
+                navigator.share(nativeShareData).catch(function() {
+                    downloadBlob(blob);
+                });
+                return;
+            }
+        }
+        downloadBlob(blob);
+    }, 'image/png');
 }
 
 /**

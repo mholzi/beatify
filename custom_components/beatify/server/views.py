@@ -66,6 +66,22 @@ _LOGGER = logging.getLogger(__name__)
 # HTML-serving views (kept here -- they are tightly coupled to static assets)
 # ---------------------------------------------------------------------------
 
+# Entry-point HTML must never be cached by the browser. Otherwise the `?v=rcN`
+# cache-busters on the referenced JS/CSS never get read — the browser serves a
+# months-old admin.html from its own cache and the new RC is invisible until
+# the user opens a private window. no-cache + no-store + must-revalidate is
+# the belt-and-suspenders version; we want revalidation on every navigation.
+_NO_CACHE_HEADERS = {
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
+}
+
+
+def _html_response(text: str) -> web.Response:
+    """Return an HTML response that browsers will always revalidate."""
+    return web.Response(text=text, content_type="text/html", headers=_NO_CACHE_HEADERS)
+
 
 class AdminView(HomeAssistantView):
     """Serve the admin page."""
@@ -85,7 +101,7 @@ class AdminView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
-        return web.Response(text=html_content, content_type="text/html")
+        return _html_response(html_content)
 
 
 class LauncherView(HomeAssistantView):
@@ -106,7 +122,7 @@ class LauncherView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Launcher page not found: %s", html_path)
             return web.Response(text="Launcher page not found", status=500)
-        return web.Response(text=html_content, content_type="text/html")
+        return _html_response(html_content)
 
 
 class PlayerView(HomeAssistantView):
@@ -127,7 +143,7 @@ class PlayerView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
-        return web.Response(text=html_content, content_type="text/html")
+        return _html_response(html_content)
 
 
 # ---------------------------------------------------------------------------

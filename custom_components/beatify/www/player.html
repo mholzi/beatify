@@ -658,17 +658,6 @@
                     </div>
                 </div>
 
-                <!-- Shareable Result Cards (Issue #120, #227) — directly under podium -->
-                <div id="share-container" class="share-container hidden">
-                    <div class="share-header" data-i18n="share.share_tab">📤 Share</div>
-                    <div id="share-emoji-grid" class="emoji-grid-preview"></div>
-                    <div class="share-buttons">
-                        <button id="share-copy-btn" class="share-btn" data-i18n="share.share_copy">📋 Copy Text</button>
-                        <button id="share-save-btn" class="share-btn" data-i18n="share.share_save">📤 Share Card</button>
-                    </div>
-                    <div id="share-toast" class="share-toast hidden" data-i18n="share.share_copied">Copied!</div>
-                </div>
-
                 <!-- Superlatives / Fun Awards (Story 15.2) -->
                 <div id="superlatives-container" class="superlatives-container hidden">
                     <!-- Rendered by JS: award cards with emoji, title, player name, value -->
@@ -702,6 +691,17 @@
                 <div id="end-player-message" class="end-player-message hidden">
                     <p data-i18n="leaderboard.thanksEmoji">Thanks for playing! 🎉</p>
                     <p class="end-hint" data-i18n="leaderboard.waitForHost">Wait for the host to start a new game</p>
+                </div>
+
+                <!-- Shareable Result Card (Issue #120, #227) — bottom of end view -->
+                <div id="share-container" class="share-container hidden">
+                    <div class="share-header" data-i18n="share.share_tab">📤 Share</div>
+                    <div id="share-card-preview" class="share-card-preview">
+                        <img id="share-card-image" class="share-card-image" alt="">
+                    </div>
+                    <div class="share-buttons">
+                        <button id="share-save-btn" class="share-btn" data-i18n="share.share_save">📤 Share</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -894,6 +894,6 @@
     <!-- Version query strings prevent browser caching issues -->
     <script src="/beatify/static/js/i18n.min.js"></script>
     <script src="/beatify/static/js/utils.min.js"></script>
-    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc40"></script>
+    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc41"></script>
 </body>
 </html>

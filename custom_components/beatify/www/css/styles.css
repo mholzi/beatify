@@ -8402,22 +8402,21 @@ body.device-tier-low .reveal-skip-hint {
     color: var(--text-primary, #fff);
 }
 
-.emoji-grid-preview {
-    background: #1a1a2e;
-    border: 1px solid rgba(233, 69, 96, 0.3);
-    border-radius: 12px;
-    padding: 16px 20px;
+.share-card-preview {
     margin: 12px auto;
-    max-width: 400px;
-    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-    font-size: 15px;
-    line-height: 1.9;
-    white-space: pre-line;
-    word-break: break-word;
-    text-align: center;
-    color: #ffffff;
+    max-width: 360px;
     width: 100%;
-    box-sizing: border-box;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 45, 106, 0.25);
+    background: #0a0a12;
+}
+
+.share-card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
 }
 
 .share-buttons {
@@ -8505,9 +8504,8 @@ body.device-tier-low .reveal-skip-hint {
         width: 100%;
         max-width: 280px;
     }
-    .emoji-grid-preview {
-        font-size: 0.8rem;
-        padding: 0.75rem 1rem;
+    .share-card-preview {
+        max-width: 320px;
     }
 }
 
