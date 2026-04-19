@@ -10,7 +10,7 @@ Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
-[![Version](https://img.shields.io/badge/Version-3.1.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
+[![Version](https://img.shields.io/badge/Version-3.2.0-ff00ff?style=for-the-badge)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
@@ -117,11 +117,17 @@ http://YOUR-HA-IP:8123/beatify/admin
 
 ### Starting a Game
 
-1. **Select a speaker** — Only [supported speakers](#supported-speakers) appear
-2. **Choose your music service** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer (depends on speaker)
-3. **Pick playlists** — Select one or more
-4. **Adjust settings** — Language, timer, difficulty
-5. **Start Game** — Share the QR code with guests
+**First time?** Beatify drops you into a 5-step first-run wizard that walks you through the whole setup:
+
+1. **Speakers** — Only [supported speakers](#supported-speakers) appear
+2. **Music service** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer (filtered by speaker)
+3. **Playlist** — Pick one or more curated packs
+4. **Game mode** — Difficulty, round timer, announcement language, Artist Challenge / Intro Mode / Closest Wins toggles
+5. **Lights & Voice** (optional) — Party Lights mode + WLED presets, TTS announcements (only shown if Home Assistant has the entities)
+
+After finishing, you land on the **"Ready to host"** screen: big Beatify wordmark, glowing QR hero card, and a Start game CTA. Share the QR code with guests — they appear as colored tiles as they scan. Hit **Start game** when everyone's in.
+
+**Returning host?** You skip the wizard and land directly on "Ready to host" with your previous picks preselected. Tap **Edit setup** any time to change speaker, service, playlists, or game mode.
 
 <div align="center">
 
@@ -148,6 +154,9 @@ http://YOUR-HA-IP:8123/beatify/admin
 *Slide to guess. Tap to submit. Pray you're right.*
 
 </div>
+
+**Learn the Game in 20 Seconds**
+Players who scan the QR code drop into a swipeable 4-card tour that teaches the core mechanics in order: guess the year, double-or-nothing bet, steal an answer, guess the artist. Skip/Next always visible, auto-advances after 4 seconds per card. By the time the host hits Start, everyone knows what to do.
 
 **The Rush**
 A song starts playing. The clock is ticking. You *know* this song... but was it '85 or '87?
@@ -235,6 +244,13 @@ Know your artists? Enable this mode in game setup.
 Guess the artist after the song: **+5 bonus points.**
 Alternate names accepted—"Prince" or "The Artist" both count.
 
+### Movie Quiz Bonus (Optional)
+For soundtrack songs. Guess the movie a song is from for tiered bonus points: **5 / 3 / 1** by submission speed.
+Enable in game setup; only triggers on songs with movie metadata.
+
+### Steal Power-Up
+Build a **3-answer streak** to unlock Steal. Once unlocked, tap a rival mid-round to copy their answer when they submit. One steal per game — spend it wisely.
+
 ---
 
 <br>
@@ -271,9 +287,9 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 2,482 songs across 24 curated playlists:
+Beatify comes with 2,481 songs across 24 curated playlists:
 
-- 🎸 **60s Classics** — 45 tracks from the golden age of rock & roll
+- 🎸 **60s Classics** — 44 tracks from the golden age of rock & roll
 - 🎹 **80s Hits** — 208 classic hits from the decade of synths and MTV
 - 🎵 **90s Hits** — 32 essential tracks from the decade
 - 🎵 **2000s Pop Anthems** — 150 essential pop hits from the 2000s
@@ -289,7 +305,7 @@ Beatify comes with 2,482 songs across 24 curated playlists:
 - 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
 - 🤘 **Greatest Metal Songs** — 52 legendary tracks across all major metal subgenres
-- 🎯 **Greatest Hits of All Time** — 180 chart-toppers across four decades
+- 🎯 **Greatest Hits of All Time** — 179 chart-toppers across four decades
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
@@ -489,6 +505,17 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v3.2.0 — Onboarding, Redesigns & Design System 🎨
+- **First-Run Wizard** — Five-step guided setup for new admins: Speakers → Music service → Playlist → Game mode → Lights/Voice. After finishing, every chip on the admin dashboard is pre-selected — first thing you see is the Start Game button
+- **Admin Home View** — Branded "Ready to host" landing screen with Beatify wordmark, glowing QR hero card, and Jackbox-style player tiles that appear as guests join (host in pink with 👑, guests cycling cyan → green → orange in join order)
+- **Player Onboarding Tour** — Players who scan the QR drop into a swipeable 4-card tour that teaches year guess → bet → steal → artist challenge before the lobby. Host sees LEARNING players as dashed tiles with a cyan TOUR badge plus a confirm modal before starting
+- **Gameplay Redesigned Arcade-Style** — 128px year number as the hero, neon timer circle that flips red and pulses at ≤10s, 3D tile buttons for artist/movie challenges, Submit morphs into a "Waiting for others" ghost state after lock-in
+- **Round Reveal as a Duel** — Your guess × gap-count × correct year side-by-side. Full points breakdown and round analytics moved into tappable bottom-sheet popups
+- **Vinyl Share Card** — End-of-game share card rebuilt as a vinyl-record design (navy base, pink/cyan radial glows, pink→cyan gradient label with your score, optional 🏆 WINNER badge), previewed inline on the end screen
+- **DESIGN.md** — Authoritative design-system reference now checked into the repo (typography, color, spacing, motion, patterns, anti-patterns)
+- Browser cache overhaul (no-cache HTML + conditional GETs), 90+ broken streaming URIs fixed, 14 game-logic fixes, Spotify playlist import removed (Nov 2024 API deprecation), admin session handoff rewrite
+- 24 playlists, 2,481 songs, 5 music platforms, 5 languages
 
 ### v3.1.0 — Admin Makeover & Stability 🎛️
 - **Admin Dashboard Overhaul** — Rebuilt spectator view mirrors the player layout: large album cover, countdown timer, player-dot tracker with bet/steal badges, leaderboard with streaks and rank changes, and podium end screen
