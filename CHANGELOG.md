@@ -4,6 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc1] - 2026-04-19
+
+### Added
+- **Playlist Hub replaces the flat wizard-step-3 picker.** Three-way segmented control surfaces **Bundled (22)**, **Community (47)**, and **Mine** — the community subfolder is now a first-class browse surface instead of being hidden inside the flat list. Horizontal-scroll shelves inside each tab: *Your most-played* and *Recently played* ride the top of Bundled (neon-green **LOCAL** pill signals the data is yours, never sent anywhere), then *Editor's Picks*, genre shelves (Heavy Metal, 80s Pop, Jazz…), and a *From the Community* peek. Community tab adds a request banner, curated *Editor's Picks*, *Popular in <language>* rows, *Recently added* (manifest-date derived), and a *Regional & Specialty* shelf. Mine tab wraps the existing request flow with colored status badges (Pending → Reviewed → Building → In Bundled) and a 4-step progress strip per request. Tapping a card opens a bottom-sheet with song count, language, added date, tags, streaming-provider coverage, and a single "Add to round" CTA that syncs with the wizard's `chosenPlaylists` Set.
+- `/beatify/api/usage?kind=top|recent` — new HTTP endpoint powering the local-stats shelves. Aggregates the existing `GameRecord.playlist_names` history, 30s cache, no new schema.
+- Playlist JSON records gain a `source` field (`bundled` | `community`) on `async_discover_playlists` based on whether the file sits inside the community subfolder. Also surfaces `author`, `description`, `language`, `added_date`, and `version` so the UI can render detail sheets and freshness badges without a second round-trip.
+
+### Changed
+- Wizard step 3 DOM shrinks to a single `<div id="playlist-hub-root">`; the legacy `#wiz-request-playlist` button is retained hidden so the Hub can trigger the existing Spotify-URL request modal via `click()`. No changes to the request API or persistence path.
+- i18n: adds the full `playlistHub.*` key tree to `en.json` + `de.json` (135 new lines each). Remaining locales (es, fr, nl) fall back to English defaults until translated.
+
+### For contributors
+- New ES module: `custom_components/beatify/www/js/playlist-hub.js` (~1000 lines). Owns all state, event delegation, data fetching, and rendering for the 6 hub views. Exports `mount()`, `unmount()`, `getSelection()`, `setSelection()`, `refresh()`, `getPlaylistByPath()`. Wizard passes `initialPlaylists` so the hub reuses the already-fetched `/api/status` payload instead of hitting it twice.
+- ~1300 lines of CSS appended to `styles.css` under the `.plh-*` namespace. Every value reads from the existing DESIGN.md custom properties — no new tokens.
+- New `UsageView` at `server/stats_views.py:231`, registered in `__init__.py`. `AnalyticsManager` gains `get_top_playlists(limit)` and `get_recent_playlists(limit)`.
+- Bumped manifest, `sw.js` `CACHE_VERSION`, and every `?v=` cache-buster → `3.3.0-rc1`. `make build` regenerated `styles.min.css` (+40 KB from the hub styles).
+- All 17 existing `wizard.test.js` tests pass. Runtime-smoke-tested via a standalone headless-Chrome harness with fixture data: 5 shelves + 21 cards on Bundled, 3 request cards on Mine, zero console errors across tab switches.
+- **Known gap:** not yet exercised against a live HA install. The feature is shipping as a pre-release specifically so opt-in testers can poke at it. Report issues on the release page.
+
 ## [3.2.0-rc40] - 2026-04-19
 
 ### Changed
