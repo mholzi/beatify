@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc31] - 2026-04-19
+
+### Changed
+- **Player end-of-game podium redesigned as a hero-winner poster.** The player-screen end view (`player.html` → end-view) no longer uses the generic gold/silver/bronze three-column stands. The #1 player is now the layout: their name rendered at 40–64px (clamped for long names) in Outfit 900 with the pink→cyan wordmark gradient from DESIGN.md, their score in cyan with the brand glow treatment, framed by a pink-bordered hero card with a soft pink-cyan background wash and `0 0 40px rgba(255,45,106,0.18)` glow. #2 and #3 demote to compact chips in a two-column grid below (medal + name + score), so the winner moment actually feels like a moment instead of fighting the rest of the page for attention.
+- **"Your Result" card gets a matching pink-leaning gradient treatment** with a 28px pink glow, and the rank number bumps up to `--font-size-4xl` in Outfit 900 for a stronger personal-result read. Stat values (best streak, rounds, bets) switch to Outfit 800 to match the hero type system.
+- **DOM is unchanged.** Same `.podium` markup in `player.html:503-522`; the restyle is purely CSS under `body.theme-dark`, so existing JS bindings in `player-end.js` (`#podium-{N}-name`, `#podium-{N}-score`, `.hidden` slot toggling for 1/2-player games) keep working without touching `updateEndView()`. Dashboard.html uses a separate `.dashboard-podium` class and is unaffected.
+- **Graceful collapse for short games.** If a 1- or 2-player game hides `.podium-2`, `.podium-3` promotes to the `second` grid area so it doesn't look orphaned on the right.
+- Regenerated `styles.min.css` (180.4 KB). Bumped `?v=` cache-buster in `player.html` (1.8.0 → 1.9.0) and SW `CACHE_VERSION` → `beatify-v3.2.0-rc31`.
+- Design artifacts (as-is snapshot, 3 explored variants, comparison board, rendered QA) live at `~/.gstack/projects/mholzi-beatify/designs/end-game-podium-20260419/`.
+
 ## [3.2.0-rc30] - 2026-04-19
 
 ### Added

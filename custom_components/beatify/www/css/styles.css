@@ -10885,3 +10885,168 @@ body.home-mode .home-view {
     text-align: center;
 }
 .home-learning-warning.hidden { display: none; }
+
+/* ============================================
+   End-of-Game Podium v2 — Hero Winner (rc31)
+   Scoped under body.theme-dark so player.html end-view
+   is restyled from a 3-column stands layout into a
+   poster-style hero for #1 + compact chips for #2/#3.
+   DOM (player.html #494-522) is unchanged — existing
+   IDs (podium-{N}-name / -score) keep their JS bindings.
+   ============================================ */
+
+body.theme-dark .podium {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "hero hero"
+        "second third";
+    gap: var(--space-md);
+    align-items: stretch;
+    justify-content: stretch;
+    margin-bottom: var(--space-xl);
+    padding: 0 var(--space-xs);
+}
+
+/* Winner hero — full-width poster, gradient wordmark name */
+body.theme-dark .podium-place.podium-1 {
+    grid-area: hero;
+    width: 100%;
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+    background: linear-gradient(135deg, rgba(255, 45, 106, 0.14), rgba(0, 245, 255, 0.06));
+    border: 1px solid rgba(255, 45, 106, 0.35);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 0 40px rgba(255, 45, 106, 0.18);
+    text-align: center;
+    justify-content: center;
+}
+
+body.theme-dark .podium-place.podium-1 .podium-medal {
+    font-size: 38px;
+    margin-bottom: var(--space-xs);
+    filter: drop-shadow(0 0 16px rgba(255, 45, 106, 0.6));
+}
+
+body.theme-dark .podium-place.podium-1 .podium-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin: 0 0 var(--space-sm);
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    text-overflow: clip;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 24px rgba(255, 45, 106, 0.3));
+    font-size: clamp(40px, 14vw, 64px);
+}
+
+body.theme-dark .podium-place.podium-1 .podium-score {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--font-size-3xl);
+    color: var(--color-accent-secondary);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 14px rgba(0, 245, 255, 0.5);
+    margin-bottom: 0;
+}
+
+body.theme-dark .podium-place.podium-1 .podium-stand {
+    display: none;
+}
+
+/* Runners-up chips — 2nd + 3rd share the bottom row */
+body.theme-dark .podium-place.podium-2,
+body.theme-dark .podium-place.podium-3 {
+    width: 100%;
+    min-width: 0;
+    padding: var(--space-md) var(--space-sm);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-lg);
+    display: grid;
+    /* minmax(0, 1fr) lets the name column shrink below its intrinsic width
+       so short chip columns can ellipsis gracefully without forcing "No…". */
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: left;
+}
+
+body.theme-dark .podium-place.podium-2 {
+    grid-area: second;
+    border-color: rgba(0, 245, 255, 0.28);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.1);
+}
+
+body.theme-dark .podium-place.podium-3 {
+    grid-area: third;
+}
+
+body.theme-dark .podium-place.podium-2 .podium-medal,
+body.theme-dark .podium-place.podium-3 .podium-medal {
+    font-size: 22px;
+    margin: 0;
+    line-height: 1;
+}
+
+body.theme-dark .podium-place.podium-2 .podium-name,
+body.theme-dark .podium-place.podium-3 .podium-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-white);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.theme-dark .podium-place.podium-2 .podium-score,
+body.theme-dark .podium-place.podium-3 .podium-score {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: var(--font-size-lg);
+    color: var(--color-accent-secondary);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
+    margin: 0;
+    white-space: nowrap;
+}
+
+body.theme-dark .podium-place.podium-2 .podium-stand,
+body.theme-dark .podium-place.podium-3 .podium-stand {
+    display: none;
+}
+
+/* Graceful collapse for 1/2-player games (JS toggles .hidden on empty slots).
+   If #2 is hidden but #3 isn't, promote #3 to the 'second' slot so it
+   doesn't look orphaned on the right. */
+body.theme-dark .podium-place.podium-2.hidden ~ .podium-place.podium-3:not(.hidden) {
+    grid-area: second;
+}
+
+/* "Your Result" card — celebratory pink-leaning treatment, larger rank. */
+body.theme-dark .your-result {
+    background: linear-gradient(135deg, rgba(255, 45, 106, 0.10), rgba(0, 245, 255, 0.04));
+    border: 1px solid rgba(255, 45, 106, 0.28);
+    box-shadow: 0 0 28px rgba(255, 45, 106, 0.12);
+}
+
+body.theme-dark .your-result-rank {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: var(--font-size-4xl);
+    letter-spacing: -0.03em;
+}
+
+body.theme-dark .your-result-stats .stat-value {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+}
