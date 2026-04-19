@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc38] - 2026-04-19
+
+### Changed
+- **Hide the outer Beatify header on the learning-mode screens.** The post-QR onboarding tour and the transitional Ready screen have their own branding inside each view (step-progress header on the tour cards, massive wordmark hero on the Ready screen). The outer \`.player-header\` with its small wordmark was double-stacking on top, making the tour feel cramped and the Ready screen's hero wordmark fight the tiny one above it. `showView()` now toggles `body.is-learning-screen` when either `#tour-view` or `#ready-view` is active; a single CSS rule hides `.player-header` while that class is set. Lobby, game, reveal, and end screens are unaffected.
+
+### For contributors
+- 1-line behavior change in `player-utils.js`'s `showView()` plus a 1-rule CSS addition. No JS API changes.
+- Connection indicator (inside `.player-header`) is also hidden on the tour/ready screens — acceptable because the tour is client-side-only until the final `player_onboarded` WebSocket message, and if that fails the existing reconnect flow lifts `showConnectionLostView` regardless of the indicator.
+- Regenerated `player.bundle.min.js` (87.4 KB). Bumped manifest, sw.js `CACHE_VERSION`, and `?v=` cache-busters → `beatify-v3.2.0-rc38`.
+
 ## [3.2.0-rc37] - 2026-04-19
 
 ### Changed

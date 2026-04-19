@@ -52,6 +52,15 @@ var allViews = [loadingView, notFoundView, endedView, inProgressView, joinView, 
 export function showView(viewId) {
     utils.showView(allViews, viewId);
 
+    // Post-QR onboarding tour + transition ready screen have their own
+    // branding (wordmark hero inside ready-view, step progress in tour-view).
+    // Hide the outer .player-header when either is active so the logo doesn't
+    // double up with the ready wordmark + clutter the tour header.
+    var isLearningScreen = viewId === 'tour-view' || viewId === 'ready-view';
+    if (document.body) {
+        document.body.classList.toggle('is-learning-screen', isLearningScreen);
+    }
+
     // Set calm energy for entry screens (Story 9.9)
     if (viewId === 'join-view' || viewId === 'loading-view' ||
         viewId === 'not-found-view' || viewId === 'ended-view' ||

@@ -10310,6 +10310,11 @@ body.home-mode .home-view {
    Player Onboarding v2 (DESIGN.md § Player onboarding — post-QR education)
    ========================================================================== */
 
+/* Hide the outer .player-header (wordmark + connection indicator) on the
+   tour/ready screens so they run full-screen — the ready view has its own
+   wordmark hero and the tour has its own step-progress header. */
+body.is-learning-screen .player-header { display: none; }
+
 /* Tour view — full-screen takeover, dark stage + dual-radial glow */
 #tour-view.view:not(.hidden) {
     display: flex;
