@@ -272,6 +272,27 @@ async def handle_get_state(
         await ws.send_json(state_msg)
 
 
+async def handle_player_onboarded(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle player_onboarded message — flips PlayerSession.onboarded to True.
+
+    Fired when a player completes or skips the post-QR onboarding tour.
+    Idempotent: re-sending for an already-onboarded player is a no-op.
+    """
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        return
+    if player.onboarded:
+        return
+    player.onboarded = True
+    _LOGGER.info("Player completed onboarding: %s", player.name)
+    await handler.broadcast_state()
+
+
 async def handle_reaction(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,

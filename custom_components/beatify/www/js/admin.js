@@ -339,20 +339,51 @@ document.addEventListener('DOMContentLoaded', async () => {
             }[c]));
             const guestVariants = ['c1', 'c2', 'c3', 'c4'];
             let guestIdx = 0;
+            // Onboarding v2 gate: players render with a dashed outline + TOUR badge
+            // until they flip `onboarded: true` server-side (see DESIGN.md §
+            // "Player onboarding — post-QR education").
             el.innerHTML = players.map((p) => {
                 const isHost = !!p.is_admin;
+                const isLearning = !isHost && p.onboarded === false;
                 const variant = isHost ? 'host' : guestVariants[guestIdx++ % guestVariants.length];
                 const raw = (p.name || p.id || '?').trim();
                 const initial = (raw.charAt(0) || '?').toUpperCase();
                 const crown = isHost
                     ? '<span class="home-player-tile-crown" aria-hidden="true">👑</span>'
                     : '';
-                return `<div class="home-player-tile home-player-tile--${variant}">`
+                const tour = isLearning
+                    ? '<span class="home-player-tile-tour" aria-hidden="true">TOUR</span>'
+                    : '';
+                const cls = ['home-player-tile', `home-player-tile--${variant}`];
+                if (isLearning) cls.push('home-player-tile--learning');
+                return `<div class="${cls.join(' ')}">`
                     + `<span class="home-player-tile-initial">${esc(initial)}</span>`
                     + `<span class="home-player-tile-name">${esc(raw || 'Guest')}</span>`
-                    + crown
+                    + crown + tour
                     + `</div>`;
             }).join('');
+
+            // Warning banner above the Start button when any non-admin player is still LEARNING.
+            const learning = players.filter((p) => !p.is_admin && p.onboarded === false);
+            const warningEl = document.getElementById('home-learning-warning');
+            if (warningEl) {
+                if (learning.length > 0) {
+                    const count = learning.length;
+                    const key = count === 1
+                        ? 'onboarding.learningWarning'
+                        : 'onboarding.learningWarningPlural';
+                    const fallback = count === 1
+                        ? `⚠️ ${count} player still learning the rules`
+                        : `⚠️ ${count} players still learning the rules`;
+                    const msg = (window.BeatifyI18n && BeatifyI18n.t)
+                        ? BeatifyI18n.t(key, { count })
+                        : fallback;
+                    warningEl.textContent = (msg === key) ? fallback : msg;
+                    warningEl.classList.remove('hidden');
+                } else {
+                    warningEl.classList.add('hidden');
+                }
+            }
         },
         // Fetch playlist-build requests and show/hide the pill. Tap-to-open
         // renders into the inline modal (stays in home-mode). "Manage in admin"
@@ -497,12 +528,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             // game nobody can answer — previously this was allowed and the
             // server happily transitioned to PLAYING, leaving the admin
             // staring at an empty round with no way to progress.
-            const playerCount = (currentGame.players || []).length;
-            if (playerCount === 0) {
+            const players = currentGame.players || [];
+            if (players.length === 0) {
                 const msg = (window.BeatifyI18n && BeatifyI18n.t('admin.home.needPlayerToStart')) ||
                     'Join as player (or ask a guest to scan the QR) before starting.';
                 showError(msg);
                 return;
+            }
+            // Onboarding v2: confirm if any non-admin player is still on tour.
+            // Host can override, but the friction prevents accidental starts (DESIGN.md).
+            const learning = players.filter((p) => !p.is_admin && p.onboarded === false);
+            if (learning.length > 0) {
+                const count = learning.length;
+                const key = count === 1
+                    ? 'onboarding.startAnyway'
+                    : 'onboarding.startAnywayPlural';
+                const fallback = count === 1
+                    ? `${count} player is still learning the rules. Start anyway?`
+                    : `${count} players are still learning the rules. Start anyway?`;
+                const rawMsg = (window.BeatifyI18n && BeatifyI18n.t)
+                    ? BeatifyI18n.t(key, { count })
+                    : fallback;
+                const msg = (rawMsg === key) ? fallback : rawMsg;
+                if (!window.confirm(msg)) return;
             }
             startGameplay();
         } else {

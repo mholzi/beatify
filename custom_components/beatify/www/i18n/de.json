@@ -749,5 +749,32 @@
         "testFail": "Fehlgeschlagen"
       }
     }
+  },
+  "onboarding": {
+    "stepLabel": "Schritt",
+    "stepOf": "von 4",
+    "skip": "Tour überspringen",
+    "skipBtn": "Überspringen",
+    "nextBtn": "Weiter",
+    "letsPlay": "Los geht's",
+    "yearTitle": "Rate das Jahr",
+    "yearCaption": "Näher = mehr Punkte",
+    "betTitle": "Alles oder nichts",
+    "betCaption": "Wette, dass du nah dran bist. Verdopple die Punkte.",
+    "stealTitle": "Antwort klauen",
+    "stealCaption": "Kopiere einen anderen Spieler. Einmal pro Spiel.",
+    "stealHint": "Nutz es, wenn du keine Ahnung hast.",
+    "artistTitle": "Rate den Künstler",
+    "artistCaption": "Manche Runden belohnen auch den Künstler.",
+    "artistHint": "+5 Bonuspunkte.",
+    "ready": "Du bist dabei, {name}!",
+    "readySubtitle": "Mach dich bereit",
+    "waitingHost": "Warte auf den Host...",
+    "waitingCount": "{count} Spieler in der Lobby · {difficulty}",
+    "replayTour": "Tour wiederholen",
+    "learningWarning": "⚠️ {count} Spieler lernt noch die Regeln",
+    "learningWarningPlural": "⚠️ {count} Spieler lernen noch die Regeln",
+    "startAnyway": "{count} Spieler lernt noch die Regeln. Trotzdem starten?",
+    "startAnywayPlural": "{count} Spieler lernen noch die Regeln. Trotzdem starten?"
   }
 }

@@ -42,6 +42,11 @@ import { updateRevealView } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
 
+import {
+    shouldShowTour, startTour, replayTour, forceExit as exitTour,
+    setupTour, isActive as isTourActive, updateReadyCount
+} from './player-tour.js';
+
 var utils = window.BeatifyUtils || {};
 
 // ============================================
@@ -481,7 +486,31 @@ function handleServerMessage(data) {
                 startBtn.disabled = false;
                 startBtn.innerHTML = '<span class="btn-icon" aria-hidden="true">🎉</span><span data-i18n="lobby.startGame">' + utils.t('lobby.startGame') + '</span>';
             }
-            showView('lobby-view');
+
+            // Cache lobby meta for the ready screen's waiting-count line
+            state.lastPlayerCount = players.length;
+            state.lastDifficulty = data.difficulty
+                ? (utils.t ? utils.t('game.difficulty' + data.difficulty.charAt(0).toUpperCase() + data.difficulty.slice(1)) : data.difficulty)
+                : '';
+
+            // Onboarding v2 gate: first-time players land on the tour, not the lobby.
+            // Returning players (localStorage flag) and onboarded server-side players
+            // fall straight through to lobby-view. Admin always skips the tour.
+            if (!isTourActive() && shouldShowTour(currentPlayer)) {
+                startTour();
+            } else {
+                // Show lobby unless the ready screen is mid-hold (brief dwell after tour)
+                var readyView = document.getElementById('ready-view');
+                var readyVisible = readyView && !readyView.classList.contains('hidden');
+                if (!readyVisible && !isTourActive()) {
+                    showView('lobby-view');
+                }
+                // Keep the ready count line fresh while the ready screen is up
+                if (readyVisible) {
+                    updateReadyCount(players, state.lastDifficulty);
+                }
+            }
+
             renderPlayerList(players);
             if (data.difficulty) {
                 renderDifficultyBadge(data.difficulty);
@@ -491,6 +520,10 @@ function handleServerMessage(data) {
             }
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
+            // If game started while player was on tour, dump them into the game.
+            if (isTourActive()) {
+                exitTour();
+            }
             stopConfetti();
             requestWakeLock(); // #622: keep screen on during gameplay
             var newRound = data.round || 1;
@@ -869,6 +902,7 @@ async function initAll() {
     }
 
     setupJoinForm();
+    setupTour();
     setupQRModal();
     setupInviteModal();
     setupAdminControls();

@@ -25,6 +25,8 @@ class PlayerSession:
     connected: bool = True
     is_admin: bool = False
     joined_late: bool = False
+    # Player onboarding v2 — true once player has completed/skipped the tour
+    onboarded: bool = False
     joined_at: float = field(default_factory=time.time)
     submitted: bool = False
     current_guess: int | None = None

@@ -749,5 +749,32 @@
         "testFail": "Falló"
       }
     }
+  },
+  "onboarding": {
+    "stepLabel": "Paso",
+    "stepOf": "de 4",
+    "skip": "Saltar tour",
+    "skipBtn": "Saltar",
+    "nextBtn": "Siguiente",
+    "letsPlay": "¡A jugar!",
+    "yearTitle": "Adivina el año",
+    "yearCaption": "Más cerca = más puntos",
+    "betTitle": "Dobla o nada",
+    "betCaption": "Apuesta a que estás cerca. Gana el doble.",
+    "stealTitle": "Roba una respuesta",
+    "stealCaption": "Copia a otro jugador. Una vez por partida.",
+    "stealHint": "Úsalo cuando no tengas ni idea.",
+    "artistTitle": "Adivina el artista",
+    "artistCaption": "Algunas rondas también premian al artista.",
+    "artistHint": "+5 puntos extra.",
+    "ready": "¡Listo, {name}!",
+    "readySubtitle": "Prepárate para jugar",
+    "waitingHost": "Esperando al anfitrión...",
+    "waitingCount": "{count} jugadores en el vestíbulo · {difficulty}",
+    "replayTour": "Repetir el tour",
+    "learningWarning": "⚠️ {count} jugador aún aprende las reglas",
+    "learningWarningPlural": "⚠️ {count} jugadores aún aprenden las reglas",
+    "startAnyway": "{count} jugador aún aprende las reglas. ¿Empezar igualmente?",
+    "startAnywayPlural": "{count} jugadores aún aprenden las reglas. ¿Empezar igualmente?"
   }
 }

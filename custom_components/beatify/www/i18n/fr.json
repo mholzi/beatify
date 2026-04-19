@@ -749,5 +749,32 @@
         "testFail": "Échec"
       }
     }
+  },
+  "onboarding": {
+    "stepLabel": "Étape",
+    "stepOf": "sur 4",
+    "skip": "Ignorer le tour",
+    "skipBtn": "Passer",
+    "nextBtn": "Suivant",
+    "letsPlay": "C'est parti",
+    "yearTitle": "Devine l'année",
+    "yearCaption": "Plus près = plus de points",
+    "betTitle": "Quitte ou double",
+    "betCaption": "Parie que tu es proche. Gagne le double.",
+    "stealTitle": "Vole une réponse",
+    "stealCaption": "Copie un autre joueur. Une fois par partie.",
+    "stealHint": "Utilise-le quand tu n'as aucune idée.",
+    "artistTitle": "Devine l'artiste",
+    "artistCaption": "Certains tours récompensent aussi l'artiste.",
+    "artistHint": "+5 points bonus.",
+    "ready": "Tu es dans la partie, {name} !",
+    "readySubtitle": "Prépare-toi à jouer",
+    "waitingHost": "En attente de l'hôte...",
+    "waitingCount": "{count} joueurs dans le salon · {difficulty}",
+    "replayTour": "Revoir le tour",
+    "learningWarning": "⚠️ {count} joueur apprend encore les règles",
+    "learningWarningPlural": "⚠️ {count} joueurs apprennent encore les règles",
+    "startAnyway": "{count} joueur apprend encore les règles. Démarrer quand même ?",
+    "startAnywayPlural": "{count} joueurs apprennent encore les règles. Démarrer quand même ?"
   }
 }

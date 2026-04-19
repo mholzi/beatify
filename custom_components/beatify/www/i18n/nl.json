@@ -749,5 +749,32 @@
         "testFail": "Mislukt"
       }
     }
+  },
+  "onboarding": {
+    "stepLabel": "Stap",
+    "stepOf": "van 4",
+    "skip": "Tour overslaan",
+    "skipBtn": "Overslaan",
+    "nextBtn": "Volgende",
+    "letsPlay": "Laten we spelen",
+    "yearTitle": "Raad het jaar",
+    "yearCaption": "Dichterbij = meer punten",
+    "betTitle": "Dubbel of niks",
+    "betCaption": "Wed dat je dichtbij zit. Verdubbel je punten.",
+    "stealTitle": "Steel een antwoord",
+    "stealCaption": "Kopieer een andere speler. Eén keer per spel.",
+    "stealHint": "Gebruik het als je geen idee hebt.",
+    "artistTitle": "Raad de artiest",
+    "artistCaption": "Sommige rondes belonen ook de artiest.",
+    "artistHint": "+5 bonuspunten.",
+    "ready": "Je bent erbij, {name}!",
+    "readySubtitle": "Maak je klaar",
+    "waitingHost": "Wachten op de host...",
+    "waitingCount": "{count} spelers in de lobby · {difficulty}",
+    "replayTour": "Tour opnieuw bekijken",
+    "learningWarning": "⚠️ {count} speler leert nog de regels",
+    "learningWarningPlural": "⚠️ {count} spelers leren nog de regels",
+    "startAnyway": "{count} speler leert nog de regels. Toch beginnen?",
+    "startAnywayPlural": "{count} spelers leren nog de regels. Toch beginnen?"
   }
 }

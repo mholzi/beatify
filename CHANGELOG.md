@@ -4,6 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.2.0-rc30] - 2026-04-19
+
+### Added
+- **Player onboarding v2 — four-card tour teaches the game before the host starts.** New players who scan the QR code no longer land on a bare lobby with a collapsed "How to Play" accordion most of them ignore. Instead they drop into a swipeable 4-card tour that teaches the core mechanics in the order they'll encounter them: guess the year (slider preview with animated cyan year glow), double-or-nothing bet (shows `12 × 2 = 24` neon-green reward), steal an answer (cyan target picker), guess the artist (2×2 bonus grid matching the in-game component). Each card has explicit Skip + Next buttons, a 4-segment gradient progress header that reuses the admin first-run wizard pattern (`.wiz-progress`), and auto-advances after 4 seconds unless tapped. Final card reads "Let's play →" to mark the transition. See DESIGN.md § "Player onboarding — post-QR education" for the full spec.
+- **Ready screen with waiting pulse.** After the tour (or a skip), players see a branded Beatify wordmark + "You're in, {name}!" + animated cyan waiting pulse + live player count meta line ("4 players in lobby · Normal difficulty") for ~1.4s before the lobby takes over. This is the Showtime moment between tour and lobby.
+- **"Replay the tour" link in the lobby.** Pink dashed-border button replaces the old collapsed "How to Play" accordion. Re-enters the 4 cards as a no-pressure refresher — no server ping, no re-flag write.
+- **Host visibility gate — admins see players still on tour as dashed tiles with a cyan TOUR badge.** Host-side player grid (home-view) renders LEARNING players with a dashed outline, 72% opacity, and a cyan "TOUR" badge in the top-right corner. An amber warning banner above the Start button reads "⚠️ N player(s) still learning the rules". The Start button stays clickable (no hard-disable, per DESIGN.md) but fires a confirm modal — "N player is still learning the rules. Start anyway?" — to prevent accidental starts. Other players never see the TOUR badge on peers; peer pressure lives on the host alone.
+- **Server-side `onboarded` flag on `PlayerSession`.** New bool field (defaults to False) that flips True when the client sends `player_onboarded`. Included in the broadcast `players` payload so the host can render LEARNING state in real time. Persists across reconnects and rematches — if you already did the tour, you won't redo it. Client-side localStorage (`beatify_onboarded_v2`) is the authoritative "don't show again" flag for returning players; server is the authoritative host-view signal.
+- **New WebSocket message `player_onboarded`.** Idempotent: re-sending for an already-onboarded player is a no-op. Dispatched via the existing `_message_handlers` registry in `websocket.py`; handler in `ws_handlers.py` broadcasts state on flip.
+- **i18n keys across all 5 locales.** New `onboarding.*` namespace (26 keys) covers the full tour, ready screen, replay link, warning banner, and confirm modal. Translations hand-written for en / de / es / fr / nl; each caption is ≤8 words to match the DESIGN.md spec.
+
+### Changed
+- **The old collapsed "How to Play" accordion in the player lobby is gone.** Replaced by the new tour + "Replay the tour" link. The 4 i18n keys `lobby.howToPlayStep1-4` are kept in place (still shipped in each locale) in case anything else references them, but no UI surface reads them anymore.
+
+### For contributors
+- New module: `custom_components/beatify/www/js/player-tour.js` (ES module, imported by `player-core.js`). Exports `shouldShowTour`, `startTour`, `replayTour`, `forceExit`, `setupTour`, `updateReadyCount`, `isActive`. Tour state is module-local; `setupTour()` is wired once from `initAll()`. Returning-player short-circuit: if `localStorage.beatify_onboarded_v2 === '1'` but the server hasn't heard yet, the check function sends `player_onboarded` inline and skips the tour — keeps the two sides in sync.
+- Routing change in `player-core.js`: LOBBY phase handler now consults `shouldShowTour(currentPlayer)` before deciding between `tour-view` and `lobby-view`. PLAYING phase handler calls `forceExit()` if the tour was still active when the game started — avoids a dead tour screen when the host starts early.
+- `PlayerRegistry.get_players_state()` now includes `onboarded` in the per-player dict. Admin and player clients receive the same list; filtering (admin sees TOUR badges, players don't) is done client-side.
+- Styles added at the tail of `styles.css` (~400 lines) — all namespaced under `.tour-*`, `.ready-*`, `.replay-tour-link`, `.home-player-tile--learning`, `.home-player-tile-tour`, `.home-learning-warning`. All animations gated behind `prefers-reduced-motion: reduce`.
+- Regenerated `admin.min.js` (71.5 KB), `player.bundle.min.js` (85.6 KB, up from ~83 KB before the tour module), `styles.min.css` (177.1 KB). Bumped `?v=` cache-busters in `player.html` (1.7.0 → 1.8.0 CSS, rc29 → rc30 JS) and `admin.html`, and SW `CACHE_VERSION` → `beatify-v3.2.0-rc30`.
+- Design artifacts for the mockup + spec review round live at `~/.gstack/projects/mholzi-beatify/designs/player-onboarding-20260418/preview.html`.
+
 ## [3.2.0-rc29] - 2026-04-18
 
 ### Fixed

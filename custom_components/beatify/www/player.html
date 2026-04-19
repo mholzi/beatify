@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=1.7.0">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=1.8.0">
     <!-- Confetti library for celebrations (Story 14.5) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
@@ -69,6 +69,126 @@
             </div>
         </div>
 
+        <!-- Tour view — post-QR player onboarding v2 -->
+        <div id="tour-view" class="view hidden">
+            <div class="tour-container">
+                <header class="tour-header-wiz">
+                    <div class="tour-step-count">
+                        <span>
+                            <span data-i18n="onboarding.stepLabel">Step</span>
+                            <span id="tour-step-num">1</span>
+                            <span class="of" data-i18n="onboarding.stepOf">of 4</span>
+                        </span>
+                        <button type="button" id="tour-skip-link" class="tour-skip-link" data-i18n="onboarding.skip">Skip tour</button>
+                    </div>
+                    <div class="tour-wiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
+                        <div class="tour-wiz-seg active"><div class="tour-wiz-seg-inner"></div></div>
+                        <div class="tour-wiz-seg"></div>
+                        <div class="tour-wiz-seg"></div>
+                        <div class="tour-wiz-seg"></div>
+                    </div>
+                </header>
+
+                <!-- Card 1: Guess the year -->
+                <section class="tour-card" data-tour-card="0">
+                    <h2 class="tour-title" data-i18n="onboarding.yearTitle">Guess the year</h2>
+                    <p class="tour-caption" data-i18n="onboarding.yearCaption">Closer = more points</p>
+                    <div class="tour-preview">
+                        <div class="tour-preview-album" aria-hidden="true"></div>
+                        <div class="tour-year-display">
+                            <span class="tour-year-adjust" aria-hidden="true">−</span>
+                            <span class="tour-year-big">1984</span>
+                            <span class="tour-year-adjust" aria-hidden="true">+</span>
+                        </div>
+                        <div class="tour-preview-slider" aria-hidden="true">
+                            <span class="tour-slider-label">1950</span>
+                            <div class="tour-slider-track"><div class="tour-slider-thumb"></div></div>
+                            <span class="tour-slider-label">2025</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 2: Double or nothing -->
+                <section class="tour-card hidden" data-tour-card="1">
+                    <h2 class="tour-title" data-i18n="onboarding.betTitle">Double or nothing</h2>
+                    <p class="tour-caption" data-i18n="onboarding.betCaption">Bet you're close. Win double.</p>
+                    <div class="tour-preview">
+                        <div class="tour-bet-button" aria-hidden="true">
+                            <span class="tour-bet-dice">🎲</span>
+                            <span class="tour-bet-label" data-i18n="game.bet">Double or Nothing</span>
+                        </div>
+                        <div class="tour-bet-score" aria-hidden="true">
+                            <span class="tour-bet-score-base">12</span>
+                            <span class="tour-bet-score-op">×</span>
+                            <span class="tour-bet-score-multi">2</span>
+                            <span class="tour-bet-score-op">=</span>
+                            <span class="tour-bet-score-final">24</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Card 3: Steal an answer -->
+                <section class="tour-card hidden" data-tour-card="2">
+                    <h2 class="tour-title" data-i18n="onboarding.stealTitle">Steal an answer</h2>
+                    <p class="tour-caption" data-i18n="onboarding.stealCaption">Copy another player. Once per game.</p>
+                    <div class="tour-preview">
+                        <div class="tour-steal-button" aria-hidden="true">
+                            <span class="tour-steal-ninja">🥷</span>
+                            <span class="tour-steal-label" data-i18n="steal.button">Steal Answer</span>
+                        </div>
+                        <div class="tour-steal-targets" aria-hidden="true">
+                            <div class="tour-steal-target">Anna</div>
+                            <div class="tour-steal-target highlighted">Jan</div>
+                            <div class="tour-steal-target">Lea</div>
+                        </div>
+                        <p class="tour-hint" data-i18n="onboarding.stealHint">Use it when you have no idea.</p>
+                    </div>
+                </section>
+
+                <!-- Card 4: Guess the artist -->
+                <section class="tour-card hidden" data-tour-card="3">
+                    <h2 class="tour-title" data-i18n="onboarding.artistTitle">Guess the artist</h2>
+                    <p class="tour-caption" data-i18n="onboarding.artistCaption">Some rounds reward the artist too.</p>
+                    <div class="tour-preview">
+                        <div class="tour-artist-prompt" aria-hidden="true">
+                            <span class="tour-artist-mic">🎤</span>
+                            <span class="tour-artist-who" data-i18n="artistChallenge.whoSings">Who sings this song?</span>
+                            <span class="tour-artist-bonus">+5</span>
+                        </div>
+                        <div class="tour-artist-grid" aria-hidden="true">
+                            <div class="tour-artist-option">Madonna</div>
+                            <div class="tour-artist-option is-winner">Prince</div>
+                            <div class="tour-artist-option">Duran Duran</div>
+                            <div class="tour-artist-option">Billy Idol</div>
+                        </div>
+                        <p class="tour-hint" data-i18n="onboarding.artistHint">+5 bonus points.</p>
+                    </div>
+                </section>
+
+                <footer class="tour-footer">
+                    <button type="button" id="tour-skip-btn" class="btn-tour-skip" data-i18n="onboarding.skipBtn">Skip</button>
+                    <button type="button" id="tour-next-btn" class="btn-tour-next">
+                        <span data-i18n="onboarding.nextBtn">Next</span>
+                        <span class="chev" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Ready view — transition between tour and lobby -->
+        <div id="ready-view" class="view hidden">
+            <div class="ready-container">
+                <div class="ready-wordmark"><span class="beat">Beat</span><span class="ify">ify</span></div>
+                <div id="ready-name" class="ready-name">You're in!</div>
+                <div id="ready-subtitle" class="ready-subtitle" data-i18n="onboarding.readySubtitle">Get ready to play</div>
+                <div class="ready-waiting">
+                    <div class="ready-pulse" aria-hidden="true"></div>
+                    <div id="ready-label" class="ready-label" data-i18n="onboarding.waitingHost">Waiting for host to start</div>
+                    <div id="ready-count" class="ready-count"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Lobby view - Redesigned to match admin lobby -->
         <div id="lobby-view" class="view hidden">
             <div class="lobby-container lobby-container--compact">
@@ -88,22 +208,12 @@
                     </div>
                 </div>
 
-                <!-- How to Play Section - Collapsible -->
-                <section class="section-collapsible collapsed" id="how-to-play-section">
-                    <button type="button" class="section-header-collapsible" aria-expanded="false" aria-controls="how-to-play-content">
-                        <span class="section-icon" aria-hidden="true">🎵</span>
-                        <span data-i18n="lobby.howToPlay">How to Play</span>
-                        <span class="section-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="section-content" id="how-to-play-content">
-                        <ol class="how-to-play-steps-compact">
-                            <li data-i18n="lobby.howToPlayStep1">Listen to the song that plays</li>
-                            <li data-i18n="lobby.howToPlayStep2">Guess what year it was released</li>
-                            <li data-i18n="lobby.howToPlayStep3">Submit before the timer runs out</li>
-                            <li data-i18n="lobby.howToPlayStep4">Closer guesses earn more points!</li>
-                        </ol>
-                    </div>
-                </section>
+                <!-- Replay tour link (post-QR onboarding v2) — replaces the old How-to-Play accordion -->
+                <button type="button" id="replay-tour-link" class="replay-tour-link">
+                    <span aria-hidden="true">↺</span>
+                    <span data-i18n="onboarding.replayTour">Replay the tour</span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </button>
 
                 <!-- Players Section - Collapsible -->
                 <section class="section-collapsible" id="players-section">
@@ -742,6 +852,6 @@
     <!-- Version query strings prevent browser caching issues -->
     <script src="/beatify/static/js/i18n.min.js"></script>
     <script src="/beatify/static/js/utils.min.js"></script>
-    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc29"></script>
+    <script type="module" src="/beatify/static/js/player.bundle.min.js?v=3.2.0-rc30"></script>
 </body>
 </html>

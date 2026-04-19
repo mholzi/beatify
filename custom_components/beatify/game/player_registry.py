@@ -198,6 +198,7 @@ class PlayerRegistry:
                 "steal_available": p.steal_available,
                 "bet": p.bet,
                 "steal_used": p.steal_used,
+                "onboarded": p.onboarded,
             }
             for p in self.players.values()
         ]

@@ -805,3 +805,74 @@ class TestAdminConnect:
         game_state._reset_game_internals()
 
         assert game_state._admin_ws is None
+
+
+class TestPlayerOnboarded:
+    """Tests for player_onboarded WebSocket handler (v3.2.0-rc30)."""
+
+    async def test_onboarded_field_defaults_false(self):
+        """New players start with onboarded=False."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        alice = game_state.get_player("Alice")
+        assert alice is not None
+        assert alice.onboarded is False
+
+    async def test_players_state_includes_onboarded(self):
+        """get_players_state() includes the onboarded flag for the host view."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        rows = game_state.registry.get_players_state()
+        assert any("onboarded" in row for row in rows)
+        alice_row = next(r for r in rows if r["name"] == "Alice")
+        assert alice_row["onboarded"] is False
+
+    async def test_player_onboarded_flips_flag(self):
+        """Sending player_onboarded flips the player's flag to True."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        alice = game_state.get_player("Alice")
+        assert alice.onboarded is False
+
+        await handler._handle_message(ws, {"type": "player_onboarded"})
+        assert alice.onboarded is True
+
+    async def test_player_onboarded_idempotent(self):
+        """Re-sending player_onboarded for an already-onboarded player is a no-op."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+
+        await handler._handle_message(ws, {"type": "player_onboarded"})
+        alice = game_state.get_player("Alice")
+        assert alice.onboarded is True
+
+        # Second call should not error and should not change anything observable.
+        await handler._handle_message(ws, {"type": "player_onboarded"})
+        assert alice.onboarded is True
+
+    async def test_player_onboarded_unknown_ws_noop(self):
+        """Sending player_onboarded from a WS not bound to any player does not raise."""
+        handler, game_state, _ = _make_handler_and_game()
+        ghost_ws = _make_ws()
+        # Should not raise even though no player is associated with ghost_ws.
+        await handler._handle_message(ghost_ws, {"type": "player_onboarded"})
+
+    async def test_player_onboarded_broadcasts_state(self):
+        """State broadcast fires when the flag flips so the host sees LEARNING→READY."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        handler.broadcast = AsyncMock()
+
+        await handler._handle_message(ws, {"type": "player_onboarded"})
+        assert handler.broadcast.await_count >= 1
+
+    async def test_player_onboarded_persists_through_round_reset(self):
+        """onboarded must NOT reset on per-round state reset."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        await handler._handle_message(ws, {"type": "player_onboarded"})
+        alice = game_state.get_player("Alice")
+        assert alice.onboarded is True
+
+        alice.reset_round()
+        assert alice.onboarded is True, "onboarded must survive reset_round()"

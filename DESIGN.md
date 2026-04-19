@@ -196,6 +196,91 @@ These are choices we've made on purpose. If someone proposes undoing one, it sho
 
 ## Patterns
 
+### Player onboarding — post-QR education
+
+**Status:** Pattern documented, not yet implemented. Full storyboard at `~/.gstack/projects/mholzi-beatify/designs/player-onboarding-20260418/preview.html`.
+
+**When to use:** First-time player lands on `player.html` after scanning the host's QR code. Goal: turn "I just scanned a random QR code at a dinner party" into "I know what this game is about and I'm ready to play" before the host starts the first round. Parallels the admin first-run wizard (see below) but scoped hard for tipsy guests on a phone.
+
+**Structure:** Name entry + 4-card swipeable tour + Ready screen + Lobby. 7 player-facing screens total, plus a host-side visibility gate that changes how the admin sees the lobby.
+
+| Step | Purpose | Required | Skippable |
+|------|---------|----------|-----------|
+| 1. Welcome | Wordmark hero + name capture. Sets the brand moment. | Yes | No |
+| 2. Tour 1 — Guess the year | Core loop. Slider preview with year 1984 + album placeholder. | No (tour is optional) | Skip button sends to Ready |
+| 3. Tour 2 — Double or nothing | Bet mechanic. Shows `12 × 2 = 24` neon-green reward. | No | Skip |
+| 4. Tour 3 — Steal an answer | Power-up. Cyan steal button + target picker preview. | No | Skip |
+| 5. Tour 4 — Guess the artist | Bonus-round multiple-choice pattern. 2×2 option grid matching in-game UI. | No | Skip (button reads "Let's play →") |
+| 6. Ready | Wordmark hero + "You're in, {name}!" + waiting pulse + player count meta-line. | — | — |
+| 7. Lobby | Existing polished lobby with ↺ "Replay the tour" entry point. | — | — |
+
+**Tour header (wizard-style progress):** Reuses the `.wiz-progress` pattern from the admin first-run wizard. Four segments, 3px tall, 4px gaps. Completed segments fill with the `--color-accent-primary → --color-accent-secondary` gradient and a pink glow. The current segment renders at 60% inner-fill width. "Step N of 4" label sits above the bar.
+
+**Tour footer (explicit buttons):** Every tour card ends with a ghost `Skip` button (flex: 1) + primary `Next →` button (flex: 2) with the `--glow-primary` treatment. The final card's Next reads "Let's play →" to signal transition out of the tour. Tap-to-continue is still supported on the card body, but the explicit buttons are the primary affordance.
+
+**Content — locked copy (≤8 words per caption):**
+
+| Card | Title | Caption | Hint |
+|------|-------|---------|------|
+| 1 | Guess the year | Closer = more points | — |
+| 2 | Double or nothing | Bet you're close. Win double. | — |
+| 3 | Steal an answer | Copy another player. Once per game. | Use it when you have no idea. |
+| 4 | Guess the artist | Some rounds reward the artist too. | +5 bonus points. |
+
+**Auto-advance:** 4 seconds per card unless the user taps or swipes first. Respects `prefers-reduced-motion: reduce` → advances instantly on tap only.
+
+**Resume / skip behavior:**
+
+- Returning players (name in localStorage) skip the tour by default — straight to Ready.
+- First-time players always see the tour. Card-level Skip button advances to next; "Skip tour" in the step-count row (top-right of every card) sends to Ready.
+- Skip from any card = READY state immediately. No confirmation, no intermediate LEARNING state. Trust the user's choice.
+- Lobby's ↺ "Replay the tour" link re-enters the 4 cards as a read-only view (no Skip pressure, Next still advances).
+
+**Host visibility gate — protocol:**
+
+Players gain a server-side `onboarded: bool` flag that flips true when they exit the tour (Skip all, Next through final card, or already-stored localStorage skip). Until it flips, the host sees them as LEARNING.
+
+Player state machine: `JOINING → LEARNING → READY → PLAYING`. Skip from any tour card collapses `LEARNING → READY` immediately.
+
+**Host UI rules:**
+
+- Player count badge shows total (e.g. "👥 4") but the Players section summary reads "3 ready · 1 learning".
+- LEARNING players render as `.player-chip.pending` — dashed border, dim text, cyan "TOUR" badge (static, no pulse).
+- Amber warning banner above the Start button: "⚠️ N player still learning the rules" (uses `--color-warning-alt` on `rgba(255,102,0,0.06)` background).
+- Start button stays clickable. On click while any player is LEARNING, show a confirm modal: "1 player is still learning the rules. Start anyway?" → Yes / Wait. Host can override; the friction prevents accidental starts.
+
+**Player UI rules:**
+
+- Players always see themselves as ready in their own lobby view. No self-TOUR badge.
+- Other players on tour are **invisible** in the player lobby. Peer pressure lives on the host, not on other players. Don't shame the slow friend.
+
+**Visual language:**
+
+- Full-screen takeover per screen. Tour replaces the lobby fully (no modal overlay).
+- Background: `--color-bg-primary` (#0a0a12) + dual-radial glow (pink top, cyan bottom-right).
+- Hero titles: Outfit 900 at 44px (tour cards), 80-88px (wordmark moments).
+- Year number on Tour 1: 68px Outfit 900 in `--color-accent-secondary` with `0 0 24px rgba(0,245,255,0.6)` text-shadow — smaller than the in-game 56px `--font-size-year` token because the preview is demonstrative, not the hero moment.
+- The success-neon color (`#39ff14`) appears **only** on the Tour 2 final score "24" — this is the "win" reveal moment tokenized. Nowhere else in onboarding.
+- Artist options grid on Tour 4 uses the exact in-game `.artist-options-grid` component (2×2, min-height 48px, 2px border, is-winner state with `--color-success` + `--glow-primary`).
+
+**Animation spec:**
+
+- Welcome → Tour 1: fade + slight lift, 300ms (`--transition-normal`). Name-input cyan glow intensifies on focus.
+- Tour card transitions: horizontal swipe, 250ms ease-out.
+- Progress segment fill: gradient fills from 0 → 60% on enter, then to 100% on exit (300ms total).
+- Ready screen entry: wordmark fades up 500ms, waiting pulse starts at +200ms. No confetti — saved for game end.
+- Host visibility transition: when a LEARNING player completes the tour, their chip fades from dashed to solid over 400ms; the "ready count" section summary pulses with `--glow-success` once (single flash, not infinite).
+- All motion gated behind `prefers-reduced-motion: reduce`.
+
+**Anti-patterns for this flow:**
+
+- Never gate the tour behind a modal. It replaces the lobby full-screen.
+- Never show the tour to a returning player (localStorage name check).
+- Never add a 5th card. Movie-challenge, intro-round, reactions, superlatives — all handled by in-game splashes + badges at the moment they matter. Four is the ceiling.
+- Never hard-disable the host Start button. Warn + confirm; don't paternalize.
+- Never expose the TOUR badge to other players. Host-only metadata.
+- Never use the success-neon color outside the Tour 2 score reveal. That green is rare and earned.
+
 ### First-run wizard — new-user onboarding
 
 **Status:** Pattern documented, not yet implemented. Storyboard at `~/.gstack/projects/mholzi-beatify/designs/design-system-20260417/wizard-flow.html`.
@@ -265,3 +350,4 @@ Unavailable capabilities render disabled with ≤45% opacity and an explanation 
 |------|----------|-----------|
 | 2026-04-17 | Initial DESIGN.md created documenting the existing system (styles.css → prose) | Design-consultation pass. Existing neon/cyberpunk direction + oversized game-moment type scale + gradient wordmark were locked in as Beatify's intentional choices, not accidents. No visual changes shipped. |
 | 2026-04-17 | Added first-run wizard pattern (see `## Patterns`). Chosen over "polish pass" and "live demo hero" variants. | Admin first-impression review. New users land on a bare-bones admin with emoji icons and collapsed sections — no guidance. Full-screen onboarding with 3 required steps + optional level-up maximizes the chance that a fresh install becomes a played game. Storyboard + trigger spec saved at `~/.gstack/projects/mholzi-beatify/designs/design-system-20260417/wizard-flow.html`. Implementation pending. |
+| 2026-04-19 | Added player-onboarding-v2 pattern (see `## Patterns / Player onboarding — post-QR education`). Chosen over lobby-with-expanded-education and "no tour" variants. | Current lobby collapses "How to Play" behind an accordion that most players never open. Game has non-obvious mechanics (bet, steal, artist bonus) that surprise players mid-game and feel unfair on first encounter. 4-card tour (year + bet + steal + artist) reuses the admin wizard's `.wiz-progress` header pattern for visual consistency. Host visibility gate introduces a new player state (`LEARNING`) that changes only the host's lobby view — other players never see TOUR badges. Host Start button stays clickable with a confirm modal, never hard-disabled. Storyboard + protocol spec saved at `~/.gstack/projects/mholzi-beatify/designs/player-onboarding-20260418/preview.html`. Implementation pending. |

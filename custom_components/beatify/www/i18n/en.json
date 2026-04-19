@@ -749,5 +749,32 @@
         "testFail": "Failed"
       }
     }
+  },
+  "onboarding": {
+    "stepLabel": "Step",
+    "stepOf": "of 4",
+    "skip": "Skip tour",
+    "skipBtn": "Skip",
+    "nextBtn": "Next",
+    "letsPlay": "Let's play",
+    "yearTitle": "Guess the year",
+    "yearCaption": "Closer = more points",
+    "betTitle": "Double or nothing",
+    "betCaption": "Bet you're close. Win double.",
+    "stealTitle": "Steal an answer",
+    "stealCaption": "Copy another player. Once per game.",
+    "stealHint": "Use it when you have no idea.",
+    "artistTitle": "Guess the artist",
+    "artistCaption": "Some rounds reward the artist too.",
+    "artistHint": "+5 bonus points.",
+    "ready": "You're in, {name}!",
+    "readySubtitle": "Get ready to play",
+    "waitingHost": "Waiting for host to start",
+    "waitingCount": "{count} players in lobby · {difficulty}",
+    "replayTour": "Replay the tour",
+    "learningWarning": "⚠️ {count} player still learning the rules",
+    "learningWarningPlural": "⚠️ {count} players still learning the rules",
+    "startAnyway": "{count} player is still learning the rules. Start anyway?",
+    "startAnywayPlural": "{count} players are still learning the rules. Start anyway?"
   }
 }
