@@ -10,9 +10,17 @@
  * Pure helpers are also imported by custom_components/beatify/www/js/__tests__/wizard.test.js.
  */
 
+import {
+    mount as plhMount,
+    setSelection as plhSetSelection,
+    refresh as plhRefresh,
+} from './playlist-hub.js';
+
 const LS_WIZARD_STATE = 'beatify_wizard_state';   // 'step1'|'step2'|'step3'|'step4'|'done'|'dismissed'
 const LS_SELECTED_PLAYER = 'beatify_last_player'; // set by admin.js when a speaker is picked
 const LS_GAME_SETTINGS = 'beatify_game_settings'; // set by admin.js, contains {provider, ...}
+
+let _hubMounted = false;
 
 // ------------------------------------------------------------------
 // Pure helpers — exported for vitest
@@ -316,43 +324,42 @@ function _renderProviders() {
 }
 
 function _renderPlaylists() {
-    const list = document.getElementById('wiz-playlist-list');
-    if (!list) return;
-    const playlists = (cachedStatus && cachedStatus.playlists) || [];
-    if (playlists.length === 0) {
-        list.innerHTML = `<div class="wiz-row" style="cursor:default"><div class="wiz-row-text"><div class="wiz-row-name">${_t(
-            'wizard.step3.empty',
-            'No playlists bundled'
-        )}</div></div></div>`;
+    // v3.3: delegate to PlaylistHub module. The legacy flat wiz-row picker
+    // is gone; PlaylistHub handles search, filters, shelves, detail sheet,
+    // and the Mine / Community surfaces. We only sync selection state
+    // with chosenPlaylists (Set) so the rest of the wizard still reads
+    // it as a source of truth.
+    const root = document.getElementById('playlist-hub-root');
+    if (!root) return;
+    if (_hubMounted) {
+        plhSetSelection(Array.from(chosenPlaylists));
         return;
     }
-    list.innerHTML = playlists
-        .map((p) => {
-            const id = p.path || p.filename || p.name;
-            const selected = chosenPlaylists.has(id);
-            const count = p.song_count || p.count || 0;
-            const name = p.name || p.filename || id;
-            const decade = p.decade || p.tags || '';
-            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-playlist-id="${id}" aria-pressed="${selected}">
-          <div class="wiz-row-avatar">${PLAYLIST_ICON}</div>
-          <div class="wiz-row-text">
-            <div class="wiz-row-name">${name}</div>
-            <div class="wiz-row-sub">${decade}</div>
-          </div>
-          <div class="wiz-row-count">${count}</div>
-          ${selected ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
-        </button>`;
-        })
-        .join('');
-    list.querySelectorAll('[data-playlist-id]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const id = btn.dataset.playlistId;
-            if (chosenPlaylists.has(id)) chosenPlaylists.delete(id);
-            else chosenPlaylists.add(id);
-            _renderPlaylists();
+    plhMount(root, {
+        initialSelected: Array.from(chosenPlaylists),
+        onSelectionChange(paths) {
+            chosenPlaylists.clear();
+            for (const p of paths) chosenPlaylists.add(p);
             _updateCta();
-        });
+        },
+        onRequestClick() {
+            // Reuse the existing request modal — it's mounted on admin.html
+            // and already wired up via the legacy #wiz-request-playlist path.
+            const modal = document.getElementById('request-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                const input = document.getElementById('spotify-url-input');
+                if (input) input.focus();
+            }
+        },
     });
+    _hubMounted = true;
+}
+
+export function refreshPlaylistHub() {
+    // Called from admin.js after a new request lands so the Mine tab
+    // re-pulls data. Idempotent — safe to call when not mounted.
+    if (_hubMounted) plhRefresh();
 }
 
 const DIFFICULTIES = [
@@ -936,5 +943,5 @@ export async function init() {
 
 // Expose globally so admin.js (not an ES module) can call BeatifyWizard.init()
 if (typeof window !== 'undefined') {
-    window.BeatifyWizard = { init, show, hide };
+    window.BeatifyWizard = { init, show, hide, refreshPlaylistHub };
 }
