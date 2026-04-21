@@ -457,6 +457,187 @@ class TestMAPollingResilience:
         assert call_count >= 4  # survived the errors and found playback
 
 
+class TestMAProviderFallback:
+    """Tests for multi-provider URI fallback in MA playback (#768)."""
+
+    def test_candidates_primary_only(self):
+        """Song with only spotify URI → single candidate, field=None (primary)."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {"uri": "spotify:track:abc", "_resolved_uri": "spotify:track:abc"}
+        candidates = svc._get_ma_uri_candidates(song)
+        assert candidates == [(None, "spotify:track:abc")]
+
+    def test_candidates_primary_then_alternates(self):
+        """Primary comes first, alternates follow in _URI_FIELDS order."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "uri": "spotify:track:abc",
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+            "uri_tidal": "tidal://track/222",
+        }
+        fields = [field for field, _ in svc._get_ma_uri_candidates(song)]
+        # Primary first (None), then apple_music before tidal per _URI_FIELDS
+        assert fields[0] is None
+        assert fields.index("uri_apple_music") < fields.index("uri_tidal")
+
+    def test_candidates_dedupe_by_converted_uri(self):
+        """`uri` and `uri_spotify` with the same value collapse to one candidate."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "uri": "spotify:track:abc",
+            "uri_spotify": "spotify:track:abc",  # same as uri
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+        }
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        assert uris.count("spotify:track:abc") == 1
+        assert len(uris) == 2
+
+    def test_candidates_converts_apple_music(self):
+        """applemusic:// URIs are converted to https://music.apple.com URLs."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "_resolved_uri": "applemusic://track/999",
+            "uri_apple_music": "applemusic://track/999",
+        }
+        candidates = svc._get_ma_uri_candidates(song)
+        assert candidates[0][1] == "https://music.apple.com/song/999"
+
+    def test_candidates_learned_preference_goes_first(self):
+        """If a field was learned as preferred, its URI is tried before primary."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc._ma_preferred_uri_field = "uri_apple_music"
+        song = {
+            "uri": "spotify:track:abc",
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+        }
+        candidates = svc._get_ma_uri_candidates(song)
+        assert candidates[0] == ("uri_apple_music", "https://music.apple.com/song/111")
+        # Primary still present after
+        assert (None, "spotify:track:abc") in candidates
+
+    def test_candidates_no_uris_returns_empty(self):
+        """Song with no URI fields yields no candidates."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        assert svc._get_ma_uri_candidates({"title": "x", "artist": "y"}) == []
+
+    @pytest.mark.asyncio
+    async def test_fallback_tried_when_primary_fails(self):
+        """If primary URI returns False, the orchestrator tries the next candidate."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "title": "Song",
+            "artist": "Artist",
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+        }
+
+        calls: list[str] = []
+
+        async def fake_try(uri: str, expected_title: str) -> bool:
+            calls.append(uri)
+            return uri != "spotify:track:abc"  # primary fails, alternate succeeds
+
+        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
+            result = await svc._play_via_music_assistant(song)
+
+        assert result is True
+        assert calls == ["spotify:track:abc", "https://music.apple.com/song/111"]
+        assert svc._ma_preferred_uri_field == "uri_apple_music"
+
+    @pytest.mark.asyncio
+    async def test_primary_success_does_not_update_preference(self):
+        """When primary (`_resolved_uri`) succeeds, no field is cached."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "title": "Song",
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+        }
+
+        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=True)):
+            result = await svc._play_via_music_assistant(song)
+
+        assert result is True
+        assert svc._ma_preferred_uri_field is None
+
+    @pytest.mark.asyncio
+    async def test_all_candidates_fail_returns_false(self):
+        """Exhausted candidates → False, no cached preference."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "title": "Song",
+            "_resolved_uri": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+        }
+
+        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=False)):
+            result = await svc._play_via_music_assistant(song)
+
+        assert result is False
+        assert svc._ma_preferred_uri_field is None
+
+    @pytest.mark.asyncio
+    async def test_learned_preference_used_on_next_song(self):
+        """After a fallback succeeds, the next song tries that field first."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        song_a = {
+            "title": "A",
+            "_resolved_uri": "spotify:track:a",
+            "uri_apple_music": "applemusic://track/a",
+        }
+        song_b = {
+            "title": "B",
+            "_resolved_uri": "spotify:track:b",
+            "uri_apple_music": "applemusic://track/b",
+        }
+
+        calls: list[str] = []
+
+        async def fake_try(uri: str, expected_title: str) -> bool:
+            calls.append(uri)
+            # Spotify never works in this user's setup; apple_music always does.
+            return uri.startswith("https://music.apple.com")
+
+        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
+            assert await svc._play_via_music_assistant(song_a) is True
+            assert await svc._play_via_music_assistant(song_b) is True
+
+        # Song A: spotify fails, apple_music succeeds (2 calls)
+        # Song B: apple_music tried first (cached), succeeds (1 call)
+        assert calls == [
+            "spotify:track:a",
+            "https://music.apple.com/song/a",
+            "https://music.apple.com/song/b",
+        ]
+
+    @pytest.mark.asyncio
+    async def test_no_uris_returns_false_without_calling_try(self):
+        """Empty-candidate song short-circuits to False."""
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        mock_try = AsyncMock(return_value=True)
+        with patch.object(svc, "_try_ma_play", mock_try):
+            result = await svc._play_via_music_assistant({"title": "x"})
+
+        assert result is False
+        mock_try.assert_not_awaited()
+
+
 class TestStartRoundAvailabilityCheck:
     """Test that start_round() pauses game when media player is unavailable."""
 

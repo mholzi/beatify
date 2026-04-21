@@ -93,6 +93,18 @@ PLAYBACK_TIMEOUT = 8.0
 # Timeout for waiting for metadata to update after playing (seconds)
 METADATA_WAIT_TIMEOUT = 5.0
 
+# Candidate URI fields on a song, in default fallback order for MA (#768).
+# Primary always comes from `_resolved_uri`; these are the alternates we walk
+# when the user's selected provider isn't configured in Music Assistant.
+_URI_FIELDS: tuple[str, ...] = (
+    "uri_spotify",
+    "uri",
+    "uri_apple_music",
+    "uri_youtube_music",
+    "uri_tidal",
+    "uri_deezer",
+)
+
 
 class MediaPlayerService:
     """Service for controlling HA media player."""
@@ -120,6 +132,10 @@ class MediaPlayerService:
         self._provider = provider
         self._analytics: AnalyticsStorage | None = None
         self._preflight_verified: bool = False
+        # Which URI field last succeeded against MA — used to reorder the
+        # candidate list so subsequent songs don't pay the primary-attempt
+        # timeout on every round (#768).
+        self._ma_preferred_uri_field: str | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -232,15 +248,97 @@ class MediaPlayerService:
         # spotify:track:<id> and https:// URLs are passed through unchanged
         return uri
 
+    def _get_ma_uri_candidates(
+        self, song: dict[str, Any]
+    ) -> list[tuple[str | None, str]]:
+        """
+        Build the ordered list of MA-ready URIs to try for this song (#768).
+
+        Order: previously-successful field (if any) first, then the user's
+        selected URI (`_resolved_uri`), then every other `uri_*` on the song.
+        URIs are converted for MA and deduped by their converted form.
+
+        Returns:
+            List of `(field_name, converted_uri)`. `field_name` is `None` for
+            the `_resolved_uri` entry, a `uri_*` field name otherwise.
+
+        """
+        seen: set[str] = set()
+        candidates: list[tuple[str | None, str]] = []
+
+        def _add(field: str | None, raw: str | None) -> None:
+            if not raw:
+                return
+            converted = self._convert_uri_for_ma(raw)
+            if not converted or converted in seen:
+                return
+            seen.add(converted)
+            candidates.append((field, converted))
+
+        # Learned preference — if a specific field worked last time, try it
+        # first so Apple-Music-only setups stop paying the Spotify timeout.
+        if self._ma_preferred_uri_field:
+            _add(self._ma_preferred_uri_field, song.get(self._ma_preferred_uri_field))
+
+        # Primary: the URI Beatify picked based on the user's selected provider.
+        _add(None, song.get("_resolved_uri"))
+
+        # Remaining alternates.
+        for field in _URI_FIELDS:
+            if field != self._ma_preferred_uri_field:
+                _add(field, song.get(field))
+
+        return candidates
+
     async def _play_via_music_assistant(self, song: dict[str, Any]) -> bool:
-        """Play via Music Assistant (non-blocking + wait for actual playback)."""
-        raw_uri = song.get("_resolved_uri")
-        uri = self._convert_uri_for_ma(raw_uri)
-        if uri != raw_uri:
-            _LOGGER.debug("MA URI converted: %s → %s", raw_uri, uri)
-        _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
+        """
+        Play via Music Assistant, falling back through alternate-provider URIs (#768).
+
+        Without this fallback, users whose MA has e.g. only Apple Music see
+        `Could not resolve spotify:track:... to playable media item` on every
+        round. We try the user-selected URI first, then walk the other URIs
+        present on the track, and remember the first field that succeeds so
+        subsequent songs start with the right one.
+        """
+        candidates = self._get_ma_uri_candidates(song)
+        if not candidates:
+            _LOGGER.error(
+                "MA playback: no URIs for %s - %s",
+                song.get("artist"), song.get("title"),
+            )
+            return False
 
         expected_title = song.get("title") or ""
+        if not expected_title:
+            _LOGGER.warning("MA playback: no expected title — skipping title verification")
+
+        for idx, (field, uri) in enumerate(candidates):
+            if idx > 0:
+                _LOGGER.info(
+                    "MA fallback %d/%d: trying %s (prior URI did not resolve) (#768)",
+                    idx + 1, len(candidates), uri,
+                )
+            success = await self._try_ma_play(uri, expected_title)
+            if success:
+                if field and field != self._ma_preferred_uri_field:
+                    _LOGGER.debug("MA preferred URI field now: %s (#768)", field)
+                    self._ma_preferred_uri_field = field
+                return True
+
+        _LOGGER.error(
+            "MA playback: all %d URI candidate(s) failed for %s - %s (#768)",
+            len(candidates), song.get("artist"), song.get("title"),
+        )
+        return False
+
+    async def _try_ma_play(self, uri: str, expected_title: str) -> bool:
+        """
+        Attempt a single MA `play_media` call and wait for playback confirmation.
+
+        Returns False only on hard failure (speaker ends up idle/unavailable
+        /off/unknown after the timeout) so the caller can try the next URI.
+        """
+        _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
         # Capture state before to detect actual song change on speaker
         state_before = self._hass.states.get(self._entity_id)
@@ -265,8 +363,6 @@ class MediaPlayerService:
         # - media_position >= 1 (pos=0 means only queued in MA, not yet playing)
         # - media_position_updated_at changed (speaker is actively reporting)
         expected_lower = expected_title.lower()
-        if not expected_lower:
-            _LOGGER.warning("MA playback: no expected title — skipping title verification")
 
         confirmed = asyncio.Event()
         start_time = asyncio.get_event_loop().time()
