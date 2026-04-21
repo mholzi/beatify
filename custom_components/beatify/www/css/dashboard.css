@@ -1303,3 +1303,584 @@
         font-size: 1.5rem;
     }
 }
+
+/* ==========================================
+   ARCADE v3.2.1 — Spectator Dashboard redesign
+   PLAYING + REVEAL states brought in line with
+   player-side rc30-rc41 arcade/duel language.
+   ========================================== */
+
+/* -- SHARED: top chip strip -- */
+.dashboard-chip-strip {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 32px;
+    padding: 26px 56px;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.18);
+}
+
+.chip-badge {
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-family: 'Outfit', var(--font-display, system-ui), sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-white);
+}
+.chip-badge.chip-badge--intro {
+    background: rgba(255, 45, 106, 0.15);
+    border: 1px solid rgba(255, 45, 106, 0.5);
+    box-shadow: 0 0 20px rgba(255, 45, 106, 0.28);
+}
+.chip-badge.chip-badge--intro .chip-badge-icon {
+    color: var(--color-accent-primary);
+    font-size: 22px;
+    filter: drop-shadow(0 0 8px var(--color-accent-primary));
+}
+.chip-badge.chip-badge--closest {
+    background: rgba(0, 245, 255, 0.15);
+    border: 1px solid rgba(0, 245, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.28);
+}
+.chip-badge.chip-badge--reveal {
+    background: rgba(0, 245, 255, 0.15);
+    border: 1px solid rgba(0, 245, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.35);
+    letter-spacing: 0.18em;
+}
+.chip-badge.chip-badge--reveal .chip-badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 10px var(--color-accent-secondary);
+}
+.chip-badge.hidden { display: none; }
+
+.chip-round {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    background: var(--color-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-white);
+}
+.chip-round strong {
+    color: var(--color-accent-secondary);
+    font-weight: 900;
+}
+
+.chip-meter {
+    justify-self: end;
+    width: 340px;
+    position: relative;
+    height: 40px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.chip-meter .chip-meter-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent-secondary), rgba(0, 245, 255, 0.55));
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+    transition: width 300ms ease;
+}
+.chip-meter .chip-meter-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-text-white);
+}
+
+.chip-motivator {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(57, 255, 20, 0.12);
+    border: 1px solid rgba(57, 255, 20, 0.45);
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-white);
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.28);
+}
+.chip-motivator.hidden { display: none; }
+.chip-motivator .chip-motivator-icon {
+    font-size: 22px;
+    filter: drop-shadow(0 0 6px var(--color-success-neon));
+}
+
+/* Hide the legacy absolutely-positioned round indicator (replaced by chip strip) */
+.dashboard-round-indicator { display: none !important; }
+
+/* Hide the legacy round-stats block (submissions + time remaining).
+   Submissions lives in the chip strip now; time-remaining is redundant with
+   the big centered timer. Preserve IDs for JS by keeping the elements in DOM
+   but hiding them. */
+.dashboard-round-stats { display: none !important; }
+
+/* Views that use the chip-strip handle their own padding */
+#dashboard-playing.dashboard-view,
+#dashboard-reveal.dashboard-view {
+    padding: 0;
+}
+
+/* -- PLAYING: arcade layout -- */
+.dashboard-playing-content {
+    display: grid;
+    grid-template-columns: 640px 1fr;
+    gap: 64px;
+    padding: 44px 56px 36px;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+}
+
+.playing-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+/* Larger album with SVG timer ring wrapper */
+.dashboard-album-container {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    border-radius: 0;
+    overflow: visible;  /* ring glow spills out */
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-album-container .dashboard-album-art {
+    width: 420px;
+    height: 420px;
+    border-radius: 16px;
+    border: 2px solid var(--color-accent-primary);
+    box-shadow: 0 0 40px rgba(255, 45, 106, 0.4);
+    /* Clip the blur overflow inside the art's own bounds */
+    transform: none !important;
+    clip-path: inset(0 round 16px);
+}
+
+/* Inner blur stays within art bounds; defeat legacy scale(1.1) overflow */
+.dashboard-album-container .dashboard-album-art--playing {
+    filter: blur(20px);
+    transform: scale(1) !important;
+    clip-path: inset(6px round 16px);  /* hide the blur fringe at the border */
+}
+
+/* Ring SVG retained in DOM but hidden — kept for future round-art swap.
+   The square album doesn't frame well with a circular ring, so we render
+   the timer as a prominent number below the art instead. */
+.dashboard-album-ring-svg { display: none; }
+
+.playing-caption {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+
+/* Big glowing cyan timer below the album (the headline moment) */
+.playing-left-section > .dashboard-timer {
+    font-family: 'Outfit', sans-serif;
+    font-size: 160px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--color-accent-secondary);
+    text-shadow: 0 0 60px rgba(0, 245, 255, 0.55), 0 0 20px rgba(0, 245, 255, 0.35);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+}
+
+/* Leaderboard rows: grid layout with rank circle + score + delta */
+.playing-right-section .dashboard-leaderboard,
+.reveal-right-section .dashboard-leaderboard {
+    gap: 12px;
+    overflow: visible;  /* #1 lead row grows bigger — don't clip glow or crop top */
+    padding-right: 0;
+    max-height: none;
+}
+.playing-right-section,
+.reveal-right-section {
+    max-height: none;
+    padding-top: 8px;
+    justify-content: center;  /* center the scoreboard vertically in the cell */
+}
+
+.leaderboard-entry {
+    display: grid;
+    grid-template-columns: 64px 1fr auto auto;
+    gap: 18px;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--color-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    font-size: inherit;
+    transition: transform 0.5s ease, background 0.3s ease;
+}
+.leaderboard-entry.is-top-1 {
+    padding: 22px 26px;
+    border-color: rgba(255, 45, 106, 0.35);
+    box-shadow: 0 0 40px rgba(255, 45, 106, 0.28);
+}
+.leaderboard-entry .entry-rank {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--color-text-white);
+    font-variant-numeric: tabular-nums;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 0;
+}
+.leaderboard-entry.is-top-1 .entry-rank {
+    background: var(--color-accent-primary);
+    box-shadow: 0 0 18px rgba(255, 45, 106, 0.7);
+    border-color: transparent;
+    color: var(--color-text-white);
+}
+.leaderboard-entry.is-top-2 .entry-rank {
+    background: var(--color-accent-secondary);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 14px rgba(0, 245, 255, 0.55);
+    border-color: transparent;
+}
+.leaderboard-entry.is-top-3 .entry-rank {
+    background: rgba(255, 45, 106, 0.35);
+    border-color: rgba(255, 45, 106, 0.5);
+    color: var(--color-text-white);
+}
+.leaderboard-entry .entry-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--color-text-white);
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.leaderboard-entry.is-top-1 .entry-name { font-size: 38px; }
+.leaderboard-entry .entry-score {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 44px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-secondary);
+    letter-spacing: -0.02em;
+    min-width: 0;
+    text-align: right;
+}
+.leaderboard-entry.is-top-1 .entry-score {
+    font-size: 56px;
+    text-shadow: 0 0 14px rgba(0, 245, 255, 0.4);
+}
+.leaderboard-entry .entry-change {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--color-success-neon);
+    color: var(--color-bg-primary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 0 14px rgba(57, 255, 20, 0.55);
+    min-width: 60px;
+    text-align: center;
+    justify-content: center;
+}
+.leaderboard-entry .entry-change:empty,
+.leaderboard-entry .entry-change.is-empty {
+    background: transparent;
+    color: transparent;
+    box-shadow: none;
+}
+.leaderboard-entry .entry-change.is-negative {
+    background: rgba(239, 68, 68, 0.5);
+    color: var(--color-text-white);
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.4);
+}
+
+/* -- REVEAL: hero year + song + top guesses -- */
+.dashboard-reveal-content {
+    display: grid;
+    grid-template-columns: 720px 1fr;
+    gap: 56px;
+    padding: 36px 56px 32px;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+}
+
+.reveal-left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Shrink the reveal album to fit alongside the hero year */
+.dashboard-album-container.dashboard-album-container--reveal,
+.reveal-left-section .dashboard-album-container {
+    width: 200px;
+    height: 200px;
+}
+.reveal-left-section .dashboard-album-art {
+    width: 200px;
+    height: 200px;
+    border-radius: 14px;
+    border: 2px solid var(--color-accent-primary);
+    box-shadow: 0 0 40px rgba(255, 45, 106, 0.4);
+}
+
+/* Year row: label + giant number */
+.reveal-year-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+}
+.reveal-year-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+.reveal-year {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 240px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    background: linear-gradient(90deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(255, 45, 106, 0.35));
+    font-variant-numeric: tabular-nums;
+    color: transparent;
+}
+/* Nuke legacy .text-glow on year (gradient replaces the pink glow) */
+.reveal-year.text-glow { text-shadow: none; }
+
+.reveal-art-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.reveal-song-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    max-width: 440px;
+}
+.reveal-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-text-white);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.reveal-artist {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--color-text-neon-muted);
+    letter-spacing: -0.01em;
+    margin: 0;
+    order: 2;  /* Artist below title in the arcade design */
+}
+.reveal-song-info .reveal-title { order: 1; }
+
+/* Fun fact pill */
+.dashboard-fun-fact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 10px 16px;
+    background: var(--color-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    max-width: 600px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-text-neon-muted);
+    font-style: italic;
+}
+
+/* Right side on REVEAL */
+.reveal-right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: none;
+}
+.reveal-top-guesses .top-guesses-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    color: var(--color-text-white);
+}
+.top-guesses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+/* Reveal "top guess" rows use leaderboard-entry base + modifiers */
+.top-guesses-list .leaderboard-entry {
+    grid-template-columns: 44px 1fr auto auto;
+    gap: 14px;
+    padding: 12px 18px;
+    border-radius: 14px;
+}
+.top-guesses-list .leaderboard-entry .entry-rank {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+}
+.top-guesses-list .leaderboard-entry .entry-name { font-size: 24px; }
+.top-guesses-list .leaderboard-entry .entry-score {
+    font-size: 22px;
+    color: var(--color-text-neon-muted);
+}
+.top-guesses-list .leaderboard-entry.guess-exact {
+    border-color: rgba(57, 255, 20, 0.45);
+    box-shadow: 0 0 26px rgba(57, 255, 20, 0.25);
+    background: rgba(57, 255, 20, 0.06);
+}
+.top-guesses-list .leaderboard-entry.guess-exact .entry-rank {
+    background: var(--color-success-neon);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 14px rgba(57, 255, 20, 0.7);
+    border-color: transparent;
+}
+.top-guesses-list .leaderboard-entry.guess-exact .entry-score {
+    color: var(--color-success-neon);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+.top-guesses-list .leaderboard-entry.guess-near .entry-change {
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.55);
+    color: var(--color-bg-primary);
+}
+.top-guesses-list .leaderboard-entry.guess-far .entry-change {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-text-neon-muted);
+    box-shadow: none;
+}
+
+/* Compact standings rows on reveal */
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry {
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 {
+    background: rgba(255, 45, 106, 0.08);
+    border: 1px solid rgba(255, 45, 106, 0.35);
+    padding: 8px 16px;
+    box-shadow: none;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-rank {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    color: var(--color-text-neon-muted);
+    font-weight: 900;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-rank {
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 10px rgba(255, 45, 106, 0.55);
+    box-shadow: none;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-score {
+    font-size: 26px;
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-score {
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
+}
+.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-change {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chip-meter .chip-meter-fill,
+    .dashboard-album-ring-fill {
+        transition: none;
+    }
+}
+

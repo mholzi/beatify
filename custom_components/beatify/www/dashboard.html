@@ -78,89 +78,115 @@
             </div>
         </div>
 
-        <!-- Playing view (AC 10.4.3) -->
+        <!-- Playing view (AC 10.4.3) — v3.2.1 Arcade -->
         <div id="dashboard-playing" class="dashboard-view hidden">
-            <!-- Round counter (top-right) -->
-            <div class="dashboard-round-indicator">
-                <span data-i18n="game.roundLabel">Round</span> <span id="dashboard-current-round">1</span> <span data-i18n="game.ofLabel">of</span> <span id="dashboard-total-rounds">10</span>
-                <!-- Intro Round Badge (Issue #23) -->
-                <span id="dashboard-intro-badge" class="intro-badge intro-badge--large hidden">
-                    <span class="intro-badge-icon" aria-hidden="true">⚡</span>
+            <!-- Top chip strip: intro badge (or closest-wins) / round / submissions meter -->
+            <div class="dashboard-chip-strip">
+                <span id="dashboard-intro-badge" class="chip-badge chip-badge--intro hidden">
+                    <span class="chip-badge-icon" aria-hidden="true">⚡</span>
                     <span data-i18n="game.introRound">INTRO ROUND</span>
                 </span>
-                <!-- Closest Wins Badge (Issue #442) -->
-                <span id="dashboard-closest-wins-badge" class="intro-badge intro-badge--large closest-wins-badge hidden">
-                    <span class="intro-badge-icon" aria-hidden="true">🎯</span>
+                <span id="dashboard-closest-wins-badge" class="chip-badge chip-badge--closest hidden">
+                    <span class="chip-badge-icon" aria-hidden="true">🎯</span>
                     <span data-i18n="game.closestWins">CLOSEST WINS</span>
                 </span>
+                <div class="chip-round">
+                    <span data-i18n="game.roundLabel">Round</span>
+                    <strong id="dashboard-current-round">1</strong>
+                    <span data-i18n="game.ofLabel">of</span>
+                    <strong id="dashboard-total-rounds">10</strong>
+                </div>
+                <div id="dashboard-submissions-meter" class="chip-meter" data-submissions="0/0">
+                    <div class="chip-meter-fill" style="width:0%"></div>
+                    <div class="chip-meter-label">
+                        <span data-i18n="dashboard.submissions">Submissions</span>
+                        <span id="dashboard-submissions">0/0</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Legacy round-stats block — hidden via CSS but JS still writes to IDs -->
+            <div id="dashboard-round-stats" class="dashboard-round-stats" aria-hidden="true">
+                <span id="dashboard-time-remaining">--</span>
             </div>
 
             <div class="dashboard-playing-content">
-                <!-- Left side: Album art + Timer -->
+                <!-- Left side: Album art ringed by cyan timer progress -->
                 <div class="playing-left-section">
                     <div class="dashboard-album-container">
+                        <svg class="dashboard-album-ring-svg" viewBox="0 0 480 480" aria-hidden="true">
+                            <circle class="dashboard-album-ring-track" cx="240" cy="240" r="230"/>
+                            <circle id="dashboard-album-ring-fill" class="dashboard-album-ring-fill" cx="240" cy="240" r="230" stroke-dashoffset="0"/>
+                        </svg>
                         <img id="dashboard-album-art"
                              src="/beatify/static/img/no-artwork.svg"
                              alt="Album Cover"
                              class="dashboard-album-art dashboard-album-art--playing">
                     </div>
                     <div id="dashboard-timer" class="dashboard-timer" role="timer" aria-live="polite">30</div>
+                    <div class="playing-caption" data-i18n="dashboard.nowPlaying">Now Playing</div>
                 </div>
 
-                <!-- Right side: Leaderboard + Round Stats -->
+                <!-- Right side: Leaderboard (v3.2.1: grid rows with rank circle + delta badge) -->
                 <div class="playing-right-section">
                     <h2 class="leaderboard-title" data-i18n="leaderboard.title">Leaderboard</h2>
                     <div id="dashboard-leaderboard" class="dashboard-leaderboard">
                         <!-- Leaderboard entries rendered by JS -->
                     </div>
-                    <!-- Round Statistics (Story 16.4) -->
-                    <div id="dashboard-round-stats" class="dashboard-round-stats">
-                        <div class="round-stat">
-                            <span class="round-stat-label" data-i18n="dashboard.submissions">Submissions</span>
-                            <span id="dashboard-submissions" class="round-stat-value">0/0</span>
-                        </div>
-                        <div class="round-stat">
-                            <span class="round-stat-label" data-i18n="dashboard.timeRemaining">Time</span>
-                            <span id="dashboard-time-remaining" class="round-stat-value">--</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Reveal view (AC 10.4.4) -->
+        <!-- Reveal view (AC 10.4.4) — v3.2.1 Arcade -->
         <div id="dashboard-reveal" class="dashboard-view hidden">
+            <!-- Top chip strip: REVEAL badge / round / motivator -->
+            <div class="dashboard-chip-strip">
+                <span class="chip-badge chip-badge--reveal">
+                    <span class="chip-badge-dot" aria-hidden="true"></span>
+                    <span data-i18n="dashboard.reveal">Reveal</span>
+                </span>
+                <div class="chip-round">
+                    <span data-i18n="game.roundLabel">Round</span>
+                    <strong class="reveal-round-num">1</strong>
+                    <span data-i18n="game.ofLabel">of</span>
+                    <strong class="reveal-total-num">10</strong>
+                </div>
+                <div id="reveal-motivational" class="chip-motivator motivational-message hidden">
+                    <span class="chip-motivator-icon motivational-icon" aria-hidden="true">🔥</span>
+                    <span class="motivational-text"></span>
+                </div>
+            </div>
+
             <div class="dashboard-reveal-content">
-                <!-- Left side: Song info -->
+                <!-- Left side: Hero year + song info + fun fact -->
                 <div class="reveal-left-section">
-                    <div class="dashboard-album-container">
-                        <img id="reveal-album-art"
-                             src="/beatify/static/img/no-artwork.svg"
-                             alt="Album Cover"
-                             class="dashboard-album-art dashboard-album-art--reveal">
+                    <div class="reveal-year-row">
+                        <span class="reveal-year-label" data-i18n="game.yearLabel">Year</span>
+                        <div id="reveal-year" class="reveal-year">1984</div>
                     </div>
-                    <div class="reveal-song-info">
-                        <div id="reveal-artist" class="reveal-artist">Unknown Artist</div>
-                        <div id="reveal-title" class="reveal-title">Unknown Song</div>
-                        <div id="reveal-year" class="reveal-year text-glow">1984</div>
-                        <!-- Song difficulty rating (Story 15.1) -->
-                        <div id="song-difficulty" class="song-difficulty hidden"></div>
-                        <!-- Fun Fact (Story 16.4) -->
-                        <div id="dashboard-fun-fact" class="dashboard-fun-fact hidden">
-                            <span class="fun-fact-icon">&#128161;</span>
-                            <span id="dashboard-fun-fact-text" class="fun-fact-text"></span>
+
+                    <div class="reveal-art-row">
+                        <div class="dashboard-album-container dashboard-album-container--reveal">
+                            <img id="reveal-album-art"
+                                 src="/beatify/static/img/no-artwork.svg"
+                                 alt="Album Cover"
+                                 class="dashboard-album-art dashboard-album-art--reveal">
                         </div>
+                        <div class="reveal-song-info">
+                            <div id="reveal-title" class="reveal-title">Unknown Song</div>
+                            <div id="reveal-artist" class="reveal-artist">Unknown Artist</div>
+                            <div id="song-difficulty" class="song-difficulty hidden"></div>
+                        </div>
+                    </div>
+
+                    <!-- Fun Fact (Story 16.4) -->
+                    <div id="dashboard-fun-fact" class="dashboard-fun-fact hidden">
+                        <span class="fun-fact-icon">&#128161;</span>
+                        <span id="dashboard-fun-fact-text" class="fun-fact-text"></span>
                     </div>
                 </div>
 
-                <!-- Right side: Results + Leaderboard -->
+                <!-- Right side: Top guesses + standings -->
                 <div class="reveal-right-section">
-                    <!-- Motivational message (Story 14.4) -->
-                    <div id="reveal-motivational" class="motivational-message hidden">
-                        <span class="motivational-icon"></span>
-                        <span class="motivational-text"></span>
-                    </div>
-
                     <!-- Top 3 this round -->
                     <div class="reveal-top-guesses">
                         <h2 class="top-guesses-title" data-i18n="dashboard.topGuesses">Top Guesses This Round</h2>
@@ -258,5 +284,73 @@
     <script src="/beatify/static/js/i18n.js?v=1.7.0"></script>
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <script src="/beatify/static/js/dashboard.min.js?v=1.7.0"></script>
+    <!-- v3.2.1 Arcade shims: submission meter fill, album ring progress, reveal round mirror.
+         Pure view-layer helpers — no state, no API calls. Safe to remove if dashboard.js
+         ever takes these over directly. -->
+    <script>
+    (function(){
+        // Submission meter fill — watches #dashboard-submissions text ("N/M") and
+        // updates the .chip-meter-fill width on its parent #dashboard-submissions-meter.
+        var subs = document.getElementById('dashboard-submissions');
+        var meter = document.getElementById('dashboard-submissions-meter');
+        if (subs && meter) {
+            var fill = meter.querySelector('.chip-meter-fill');
+            var applySubs = function(){
+                var m = (subs.textContent || '').match(/(\d+)\s*\/\s*(\d+)/);
+                if (!m || !fill) return;
+                var n = parseInt(m[1], 10), d = parseInt(m[2], 10);
+                var pct = d > 0 ? Math.max(0, Math.min(100, (n / d) * 100)) : 0;
+                fill.style.width = pct + '%';
+                meter.dataset.submissions = m[1] + '/' + m[2];
+            };
+            new MutationObserver(applySubs).observe(subs, { childList: true, characterData: true, subtree: true });
+            applySubs();
+        }
+
+        // Album ring timer progress — watches #dashboard-timer + #dashboard-total-rounds
+        // to compute a stroke-dashoffset on the ring. We need a sense of "seconds total"
+        // to know the ring's denominator. Dashboard.js initializes #dashboard-timer with
+        // the round duration before counting down, so we snapshot the first non-zero value
+        // per round as the max, and drive the ring from current/max.
+        var timerEl = document.getElementById('dashboard-timer');
+        var ringFill = document.getElementById('dashboard-album-ring-fill');
+        if (timerEl && ringFill) {
+            var ringCircumference = 1445; // 2*pi*r with r=230, pre-computed (matches stroke-dasharray)
+            var roundMax = 0;
+            var lastVal = null;
+            var applyTimer = function(){
+                var txt = (timerEl.textContent || '').trim();
+                var val = parseInt(txt, 10);
+                if (isNaN(val)) return;
+                // Reset snapshot when value JUMPS up (new round starts).
+                if (lastVal !== null && val > lastVal + 2) roundMax = val;
+                if (val > roundMax) roundMax = val;
+                lastVal = val;
+                var pct = roundMax > 0 ? (val / roundMax) : 0;
+                ringFill.style.strokeDashoffset = (ringCircumference * (1 - pct)).toFixed(1);
+            };
+            new MutationObserver(applyTimer).observe(timerEl, { childList: true, characterData: true, subtree: true });
+            applyTimer();
+        }
+
+        // Reveal round number mirror — copy #dashboard-current-round / #dashboard-total-rounds
+        // into the reveal view's .reveal-round-num / .reveal-total-num so the round chip
+        // stays in sync without touching dashboard.js.
+        var mirror = function(srcId, cls){
+            var src = document.getElementById(srcId);
+            if (!src) return;
+            var targets = document.querySelectorAll('.' + cls);
+            if (!targets.length) return;
+            var apply = function(){
+                var t = src.textContent;
+                targets.forEach(function(el){ el.textContent = t; });
+            };
+            new MutationObserver(apply).observe(src, { childList: true, characterData: true, subtree: true });
+            apply();
+        };
+        mirror('dashboard-current-round', 'reveal-round-num');
+        mirror('dashboard-total-rounds', 'reveal-total-num');
+    })();
+    </script>
 </body>
 </html>
