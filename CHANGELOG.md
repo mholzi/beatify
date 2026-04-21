@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc6] - 2026-04-21
+
+### Added
+- **Dashboard v3.2.1 Arcade.** Playing view replaces the top-right round indicator with a single chip strip (intro/closest-wins badge · round · submissions meter) and rings the album art with an animated cyan timer. Reveal view adopts the same chip-strip pattern and moves the motivational message into it.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `dashboard.min.css?v=` cache-buster → `3.3.0-rc6`. Other HTML cache-busters left untouched (those assets didn't change in this rc).
+
 ## [3.3.0-rc5] - 2026-04-21
 
 ### Fixed
