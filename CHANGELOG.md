@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0-rc5] - 2026-04-21
+
+### Fixed
+- **Apple Music (and any non-Spotify) playback in Music Assistant (#768).** Users whose MA had only Apple Music configured saw every song fail with `Could not resolve spotify:track:... to playable media item` because Beatify always dispatched the URI matching the Start-UI provider pick, even when MA had no such provider. MA playback now falls back through every alternate `uri_*` field on a track when the primary URI doesn't resolve. The first field that succeeds is cached on the service instance, so subsequent songs skip the dead primary and play on first attempt. Sonos and Alexa paths are unchanged.
+
+### For contributors
+- 2 new methods on `MediaPlayerService`: `_get_ma_uri_candidates()` (ordered candidate builder, dedupes by converted URI, promotes learned field) and `_try_ma_play()` (extracted single-URI body). Orchestration lives in `_play_via_music_assistant()`.
+- 10 new tests in `TestMAProviderFallback` cover candidate ordering, learned-preference caching, and the all-fail path.
+- Bumped manifest + `sw.js CACHE_VERSION` + `?v=` cache-busters in admin.html and player.html → `3.3.0-rc5`.
+
 ## [3.3.0-rc4] - 2026-04-19
 
 ### Added
