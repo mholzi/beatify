@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "german",
     "carnival",
@@ -7213,7 +7213,6 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cx9RAamwjhY",
-      "uri_apple_music": "applemusic://track/1862452337",
       "chart_info": {
         "weeks_on_chart": null
       },
