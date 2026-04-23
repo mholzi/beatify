@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-04-23
+
+Stable promotion of the 3.3.0-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.0) for the user-facing summary.
+
+### Added
+- **Playlist Hub** (rc1–rc4) — new mobile-first playlist picker replaces wizard step 3. Browse bundled defaults, community playlists organized by country, and pass-through Music Assistant playlists in one place. Source tagging, local usage endpoints, labeled select pill, back button, select-and-start FAB, i18n across en/de/es/fr/nl.
+- **Admin Dashboard Arcade refresh** (rc6) — chip strip (intro/closest-wins · round · submissions meter), animated cyan album-art timer ring, restructured reveal with motivator in the chip strip.
+
+### Fixed
+- **Music Assistant provider fallback (#768)** (rc5) — MA playback now falls through every alternate `uri_*` on a track when the primary doesn't resolve. Learned-preference cache so subsequent rounds start instantly on the working provider. Reported and verified by @Levtos.
+- Share card footer domain corrected (beatify.fun → beatify.life).
+- 5 broken streaming URIs across eurodance-90s and koelner-karneval.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + all HTML `?v=` cache-busters → `3.3.0`.
+
 ## [3.3.0-rc6] - 2026-04-21
 
 ### Added
