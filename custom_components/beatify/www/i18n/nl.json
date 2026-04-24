@@ -300,6 +300,8 @@
   },
   "admin": {
     "title": "Beatify Beheer",
+    "filterAll": "Alle",
+    "skipRound": "Overslaan",
     "mediaPlayers": "Mediaspelers",
     "playlists": "Afspeellijsten",
     "selectPlaylist": "Kies afspeellijst",

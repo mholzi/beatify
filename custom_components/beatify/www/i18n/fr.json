@@ -300,6 +300,8 @@
   },
   "admin": {
     "title": "Beatify Admin",
+    "filterAll": "Tous",
+    "skipRound": "Passer",
     "mediaPlayers": "Lecteurs",
     "playlists": "Playlists",
     "selectPlaylist": "Choisir une playlist",

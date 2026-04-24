@@ -18,14 +18,11 @@ from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
-    BeatifyAdminView,
     RateLimitMixin,
     _get_html,
     _get_version,
     _json_error,
     _read_file,
-    _verify_admin_token,
-    _VERSION,
 )
 from custom_components.beatify.server.serializers import (
     build_status_response,
@@ -145,6 +142,41 @@ class PlayerView(HomeAssistantView):
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
         return _html_response(html_content)
+
+
+class SwJsView(HomeAssistantView):
+    """Serve sw.js from /beatify/sw.js so the SW can claim /beatify/ scope (#780).
+
+    The file on disk lives under www/ and is also reachable via /beatify/static/sw.js,
+    but browsers limit a service worker's max scope to its own path. Registering
+    /beatify/static/sw.js can only control /beatify/static/..., which defeats the
+    purpose. Serving the same bytes at /beatify/sw.js lets the wider /beatify/
+    scope register cleanly without needing a Service-Worker-Allowed header dance.
+    """
+
+    url = "/beatify/sw.js"
+    name = "beatify:sw"
+    requires_auth = False  # Must load unauthenticated on first admin/player visit
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the sw.js view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Serve the service worker script."""
+        sw_path = Path(__file__).parent.parent / "www" / "sw.js"
+        try:
+            content = await self.hass.async_add_executor_job(_read_file, sw_path)
+        except OSError:
+            _LOGGER.error("Service worker script not found: %s", sw_path)
+            return web.Response(text="Service worker not found", status=500)
+        # Must be served as JS. No-cache so CACHE_VERSION bumps propagate without
+        # waiting for HTTP cache to expire on the SW bootstrap itself.
+        return web.Response(
+            text=content,
+            content_type="application/javascript",
+            headers=_NO_CACHE_HEADERS,
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -317,7 +349,7 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")
-        message = body.get("message", "")[:self.MAX_TTS_MESSAGE_LENGTH]
+        message = body.get("message", "")[: self.MAX_TTS_MESSAGE_LENGTH]
         if not entity_id or not message:
             return web.json_response(
                 {"error": "entity_id and message required"}, status=400

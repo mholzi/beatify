@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc4] - 2026-04-24
+
+### Fixed
+- **Service worker now actually activates (#780)** — `sw.js` was registered from `/beatify/static/sw.js` with scope `/beatify/`, which browsers block (a SW can only claim its own path or deeper). The SW has been silently failing to register since Story 18.5 shipped, meaning offline/cache-first asset serving was dead and every `CACHE_VERSION` bump since was a no-op. Added a dedicated `SwJsView` that serves the script from `/beatify/sw.js` so the wider scope registers cleanly. All three registration call sites (`admin.js`, `dashboard.js`, `player-core.js`) updated.
+- **Missing i18n keys: `admin.filterAll` and `admin.skipRound` (#779)** — two keys were referenced in `admin.html` but absent from every locale JSON, logging `[i18n] Missing translation key:` warnings on every admin load. Non-English users silently got the HTML fallback ("All" / "Skip"). Added to all 5 locales.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.1-rc4`. Cache-busters bumped on `admin.min.js`, `dashboard.min.js`, `player.bundle.min.js` (all three regenerated because `serviceWorker.register` URL changed inside them). `wizard.js?v=` and `styles.min.css?v=` unchanged from rc3.
+
 ## [3.3.1-rc3] - 2026-04-24
 
 ### Fixed

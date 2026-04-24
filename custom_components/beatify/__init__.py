@@ -38,6 +38,7 @@ from .server.views import (
     TtsTestView,
     PlayerView,
     PlaylistRequestsView,
+    SwJsView,
     RematchGameView,
     SongStatsView,
     StartGameplayView,
@@ -84,7 +85,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Initialize stats service (Story 14.4)
     stats_service = StatsService(hass)
     await stats_service.load()
-    _LOGGER.debug("Stats service initialized: %d games played", stats_service.games_played)
+    _LOGGER.debug(
+        "Stats service initialized: %d games played", stats_service.games_played
+    )
 
     # Initialize analytics storage (Story 19.1)
     analytics = AnalyticsStorage(hass)
@@ -143,6 +146,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(EndGameView(hass))
     hass.http.register_view(RematchGameView(hass))  # Issue #108
     hass.http.register_view(PlayerView(hass))
+    hass.http.register_view(
+        SwJsView(hass)
+    )  # #780 — SW at /beatify/sw.js for /beatify/ scope
     hass.http.register_view(GameStatusView(hass))
     hass.http.register_view(DashboardView(hass))
     hass.http.register_view(StatsView(hass))
@@ -180,9 +186,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     _LOGGER.debug("Unloading Beatify integration")
 
     # Issue #441: Unload sensor and binary_sensor platforms
-    await hass.config_entries.async_unload_platforms(
-        entry, ["sensor", "binary_sensor"]
-    )
+    await hass.config_entries.async_unload_platforms(entry, ["sensor", "binary_sensor"])
 
     # Remove sidebar panel (Story 10.3)
     try:

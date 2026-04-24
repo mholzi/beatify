@@ -3829,7 +3829,7 @@ function adminDismissGame() {
  */
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/beatify/static/sw.js', {
+        navigator.serviceWorker.register('/beatify/sw.js', {
             scope: '/beatify/'
         }).then(function(registration) {
             console.log('[Admin] SW registered:', registration.scope);
