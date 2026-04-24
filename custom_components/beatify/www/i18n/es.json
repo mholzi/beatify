@@ -745,7 +745,7 @@
         "step3": "Vuelve — tu {platform} aparece como un altavoz de Music Assistant",
         "primary": "Configurar Music Assistant →",
         "ghost": "Elegir otro servicio",
-        "footer": "¿Prefieres Spotify? Funciona directamente en Sonos — sin complementos."
+        "footer": "¿Prefieres Spotify? Funciona directamente en {platform} — sin complementos."
       }
     },
     "step3": {

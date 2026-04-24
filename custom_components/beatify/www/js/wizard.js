@@ -335,13 +335,23 @@ function _renderSpeakers() {
         .join('');
     list.querySelectorAll('.wiz-row[data-entity-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
-            chosenSpeaker = btn.dataset.entityId;
+            const newSpeaker = btn.dataset.entityId;
+            const speakerChanged = chosenSpeaker !== newSpeaker;
+            chosenSpeaker = newSpeaker;
             try { localStorage.setItem(LS_SELECTED_PLAYER, chosenSpeaker); } catch (e) { /* private mode */ }
             // Switching speakers invalidates the provider step — stale explainer
             // would reference the previous platform, and a previously-picked
             // provider may no longer be supported.
             _hideProviderExplainer();
+            if (speakerChanged && chosenProvider && !_providerSupported(chosenProvider)) {
+                // Clear the now-unsupported provider so Step 2 doesn't trap the
+                // user with a selection they can't complete.
+                chosenProvider = null;
+            }
             _renderSpeakers();
+            // Capability set changed — Step 2's chip dimming must be recomputed
+            // or users see stale lock icons from the previous speaker.
+            _renderProviders();
             _updateCta();
         });
     });
@@ -440,7 +450,7 @@ function _showProviderExplainer(providerId) {
     const step3 = _t('wizard.step2.explainer.step3', 'Come back — your {platform} appears as a Music Assistant speaker', vars);
     const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
     const ghost = _t('wizard.step2.explainer.ghost', 'Pick a different service');
-    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on Sonos directly — no add-on needed.');
+    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on {platform} directly — no add-on needed.', vars);
     host.innerHTML = `
         <div class="wiz-explainer-title">
             <span class="icon" aria-hidden="true">⚠️</span>

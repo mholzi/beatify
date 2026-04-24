@@ -745,7 +745,7 @@
         "step3": "Zurückkommen — dein {platform} erscheint als Music Assistant-Lautsprecher",
         "primary": "Music Assistant einrichten →",
         "ghost": "Anderen Dienst wählen",
-        "footer": "Lieber Spotify? Läuft direkt auf Sonos — kein Add-on nötig."
+        "footer": "Lieber Spotify? Läuft direkt auf {platform} — kein Add-on nötig."
       }
     },
     "step3": {
