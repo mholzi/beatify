@@ -214,7 +214,7 @@ class MediaPlayerService:
         Convert Beatify-internal URIs to formats Music Assistant understands.
 
         Beatify playlists store URIs in internal formats:
-        - applemusic://track/<id>  → https://music.apple.com/song/<id>
+        - applemusic://track/<id>  → apple_music://track/<id>  (MA native, #772)
         - tidal://track/<id>       → https://tidal.com/browse/track/<id>
         - spotify:track:<id>       → unchanged (MA native format)
         - https://music.youtube.com/... → unchanged (already a URL)
@@ -234,8 +234,11 @@ class MediaPlayerService:
             return f"https://www.deezer.com/track/{track_id}"
 
         if uri.startswith("applemusic://track/"):
+            # MA's Apple Music provider has domain "apple_music". Use MA's native
+            # provider-URI form; the short "music.apple.com/song/<id>" URL fails
+            # MA's parser (needs storefront+slug, 6+ path parts). (#772)
             track_id = uri.removeprefix("applemusic://track/")
-            return f"https://music.apple.com/song/{track_id}"
+            return f"apple_music://track/{track_id}"
 
         if uri.startswith("tidal://track/"):
             track_id = uri.removeprefix("tidal://track/")
@@ -304,19 +307,24 @@ class MediaPlayerService:
         if not candidates:
             _LOGGER.error(
                 "MA playback: no URIs for %s - %s",
-                song.get("artist"), song.get("title"),
+                song.get("artist"),
+                song.get("title"),
             )
             return False
 
         expected_title = song.get("title") or ""
         if not expected_title:
-            _LOGGER.warning("MA playback: no expected title — skipping title verification")
+            _LOGGER.warning(
+                "MA playback: no expected title — skipping title verification"
+            )
 
         for idx, (field, uri) in enumerate(candidates):
             if idx > 0:
                 _LOGGER.info(
                     "MA fallback %d/%d: trying %s (prior URI did not resolve) (#768)",
-                    idx + 1, len(candidates), uri,
+                    idx + 1,
+                    len(candidates),
+                    uri,
                 )
             success = await self._try_ma_play(uri, expected_title)
             if success:
@@ -327,7 +335,9 @@ class MediaPlayerService:
 
         _LOGGER.error(
             "MA playback: all %d URI candidate(s) failed for %s - %s (#768)",
-            len(candidates), song.get("artist"), song.get("title"),
+            len(candidates),
+            song.get("artist"),
+            song.get("title"),
         )
         return False
 
@@ -378,9 +388,8 @@ class MediaPlayerService:
 
                 position_fresh = position_updated != position_updated_before
                 actually_playing = isinstance(position, (int, float)) and position >= 1
-                title_matches = (
-                    (not expected_lower)
-                    or (expected_lower in current_title.lower() if current_title else False)
+                title_matches = (not expected_lower) or (
+                    expected_lower in current_title.lower() if current_title else False
                 )
                 return title_matches and position_fresh and actually_playing
             except (AttributeError, KeyError):
@@ -429,14 +438,18 @@ class MediaPlayerService:
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
             _LOGGER.error(
                 "MA playback failed after %.1fs for %s (state: %s)",
-                PLAYBACK_TIMEOUT, uri, speaker_state,
+                PLAYBACK_TIMEOUT,
+                uri,
+                speaker_state,
             )
             return False
 
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s). "
             "Continuing anyway — MA may still be buffering. (#345)",
-            PLAYBACK_TIMEOUT, uri, speaker_state,
+            PLAYBACK_TIMEOUT,
+            uri,
+            speaker_state,
         )
         # Return True: don't skip the song — MA+YTMusic can take >8s to buffer.
         # Returning False would trigger retries that cause race conditions (#345).
@@ -592,7 +605,8 @@ class MediaPlayerService:
             current_state = self._hass.states.get(self._entity_id)
             content_id = (
                 current_state.attributes.get("media_content_id", "")
-                if current_state else ""
+                if current_state
+                else ""
             )
             reason = "matched track ID" if track_id in content_id else "title changed"
             _LOGGER.debug(
