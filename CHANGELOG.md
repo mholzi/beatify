@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc5] - 2026-04-24
+
+### Fixed
+- **Silent playback failures no longer advance the round (#777)** — when MA couldn't actually start the new track (AirPlay silently skipping, Apple Music lookup returning "No playable items found", etc.) the speaker would keep playing the previous song while reporting `state: playing`. Beatify's wait-for-playback loop timed out and then returned success anyway ("Continuing anyway — MA may still be buffering"), advancing the question + countdown into a silent round. Now, if neither `media_title` nor `media_position_updated_at` changed during the wait window, it's treated as a hard failure — the fallback cascade tries the next URI candidate instead of pretending playback started.
+- **MA playback timeout extended from 8s to 15s** (new `MA_PLAYBACK_TIMEOUT` constant). 8s was too aggressive for AirPlay setups (HomePod groups, Denon AirPlay) which legitimately take 10-12s to acknowledge a new track. Non-MA platforms (Sonos-direct, Alexa text-search) still use the original 8s.
+
+### Tests
+- 3 new tests covering the new stale-detection path and both #345 tolerance branches.
+- 4 stale pre-existing test assertions cleaned up (they checked polling implementation details that haven't matched the event-based code in some time).
+- 1 pre-existing resilience test xfail'd pending a separate fix for transient `states.get` exceptions.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.1-rc5`. No frontend asset changes, so no HTML cache-buster bumps.
+
 ## [3.3.1-rc4] - 2026-04-24
 
 ### Fixed
