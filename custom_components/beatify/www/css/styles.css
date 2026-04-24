@@ -9270,6 +9270,111 @@ body.wizard-active > .pwa-ios-hint {
     background: rgba(57, 255, 20, 0.1);
 }
 
+/* Dimmed chip: provider not supported on the selected speaker (#772).
+   Visible but obviously unavailable — clicking opens the explainer card. */
+.wiz-provider-chip {
+    justify-content: space-between;
+}
+.wiz-provider-chip.disabled {
+    opacity: 0.4;
+    cursor: help;
+    background: rgba(255, 255, 255, 0.02);
+}
+.wiz-provider-chip.disabled:hover {
+    opacity: 0.55;
+    background: rgba(255, 255, 255, 0.04);
+}
+.wiz-provider-chip .chip-lock {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+/* Capability badge under the speaker platform label (Step 1, #772). */
+.wiz-row-sub .cap-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-text-dim);
+    display: inline-block;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+.wiz-row-sub .cap-badge {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+    vertical-align: middle;
+}
+.wiz-row-sub .cap-badge.full {
+    color: var(--color-success-neon);
+    background: rgba(57, 255, 20, 0.08);
+    border-color: rgba(57, 255, 20, 0.4);
+}
+.wiz-row-sub .cap-badge.partial {
+    color: var(--color-warning-alt);
+    background: rgba(255, 102, 0, 0.08);
+    border-color: rgba(255, 102, 0, 0.4);
+}
+.wiz-row-sub .cap-badge.none {
+    color: var(--color-error-neon);
+    background: rgba(255, 0, 64, 0.08);
+    border-color: rgba(255, 0, 64, 0.4);
+}
+
+/* Explainer card shown when user clicks a dimmed provider chip (#772). */
+.wiz-explainer {
+    margin-top: var(--space-md);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 102, 0, 0.06), rgba(0, 245, 255, 0.04));
+    border: 1px solid rgba(255, 102, 0, 0.35);
+}
+.wiz-explainer[hidden] { display: none; }
+.wiz-explainer-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-md);
+    margin: 0 0 var(--space-sm);
+}
+.wiz-explainer-title .icon { font-size: 18px; }
+.wiz-explainer-body {
+    font-size: var(--font-size-base);
+    line-height: 1.55;
+    color: var(--color-text-neon-muted);
+    margin: 0 0 var(--space-md);
+}
+.wiz-explainer-steps {
+    margin: 0 0 var(--space-md);
+    padding-left: var(--space-lg);
+    font-size: var(--font-size-base);
+    line-height: 1.75;
+    color: var(--color-text-neon-muted);
+}
+.wiz-explainer-steps li strong { color: var(--color-text-white); }
+.wiz-explainer-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+.wiz-explainer-footer {
+    margin: var(--space-md) 0 0;
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-dim);
+    font-style: italic;
+}
+
 /* Level-up cards (Step 4) */
 .wiz-lvl-card {
     display: flex;

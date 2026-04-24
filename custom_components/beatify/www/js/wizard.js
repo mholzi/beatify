@@ -227,7 +227,9 @@ function _updateCta() {
         nextBtn.disabled = !chosenSpeaker;
     } else if (currentStep === 2) {
         nextBtn.textContent = _t('wizard.continue', 'Continue');
-        nextBtn.disabled = !chosenProvider;
+        // Block Continue unless the picked provider is supported on the picked
+        // speaker — prevents #772-style silent failures at playback time.
+        nextBtn.disabled = !chosenProvider || !_providerSupported(chosenProvider);
     } else if (currentStep === 3) {
         // Not shown — hub's Continue takes over. Keep the disabled/text
         // logic so if CSS ever un-hides it the behavior is correct.
@@ -274,6 +276,15 @@ function _platformLabel(raw) {
 const SPEAKER_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="15" r="3"/><line x1="12" y1="7" x2="12.01" y2="7"/></svg>`;
 const PLAYLIST_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
 
+// Summarize a speaker's service capabilities for the Step 1 badge.
+function _capabilityBadge(player) {
+    return capabilityBadgeForPlayer(player, PROVIDERS, {
+        none: _t('wizard.step1.capNone', 'No services'),
+        all: _t('wizard.step1.capAll', 'All services'),
+        only: _t('wizard.step1.capOnly', 'only'),
+    });
+}
+
 function _renderSpeakers() {
     const list = document.getElementById('wiz-speaker-list');
     if (!list) return;
@@ -291,11 +302,16 @@ function _renderSpeakers() {
     list.innerHTML = players
         .map((p) => {
             const selected = chosenSpeaker === p.entity_id;
+            const platform = _platformLabel(p.platform) || p.state || '';
+            const badge = _capabilityBadge(p);
+            const badgeHtml = badge
+                ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}">${badge.label}</span>`
+                : '';
             return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${p.entity_id}">
           <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
           <div class="wiz-row-text">
             <div class="wiz-row-name">${p.friendly_name || p.entity_id}</div>
-            <div class="wiz-row-sub">${_platformLabel(p.platform) || p.state || ''}</div>
+            <div class="wiz-row-sub">${platform}${badgeHtml}</div>
           </div>
           ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
         </button>`;
@@ -305,6 +321,10 @@ function _renderSpeakers() {
         btn.addEventListener('click', () => {
             chosenSpeaker = btn.dataset.entityId;
             try { localStorage.setItem(LS_SELECTED_PLAYER, chosenSpeaker); } catch (e) { /* private mode */ }
+            // Switching speakers invalidates the provider step — stale explainer
+            // would reference the previous platform, and a previously-picked
+            // provider may no longer be supported.
+            _hideProviderExplainer();
             _renderSpeakers();
             _updateCta();
         });
@@ -319,20 +339,123 @@ const PROVIDERS = [
     { id: 'deezer', label: 'Deezer' },
 ];
 
+// Lock icon SVG for dimmed provider chips (#772 UX).
+const CHIP_LOCK_ICON = `<svg class="chip-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+
+// Look up the currently selected speaker record (with supports_* flags).
+function _selectedPlayer() {
+    if (!chosenSpeaker) return null;
+    const players = (cachedStatus && cachedStatus.media_players) || [];
+    return players.find((p) => p.entity_id === chosenSpeaker) || null;
+}
+
+// Pure: does the player record say this provider plays on this speaker?
+// No player = treat as supported (user hasn't chosen a speaker yet, don't
+// hide real options). Exported for tests.
+export function providerSupportedForPlayer(player, providerId) {
+    if (!player) return true;
+    const key = `supports_${providerId}`;
+    return player[key] !== false;
+}
+
+function _providerSupported(providerId) {
+    return providerSupportedForPlayer(_selectedPlayer(), providerId);
+}
+
+// Pure: summarize a player's service capabilities into a badge descriptor.
+// Returns { cls, label } or null. Exported for tests.
+export function capabilityBadgeForPlayer(player, providers, labels = {}) {
+    if (!player) return null;
+    const supported = providers.filter((p) => player[`supports_${p.id}`]);
+    if (supported.length === 0) return { cls: 'none', label: labels.none || 'No services' };
+    if (supported.length === providers.length) {
+        return { cls: 'full', label: labels.all || 'All services' };
+    }
+    if (supported.length === 1) {
+        return { cls: 'partial', label: `${supported[0].label} ${labels.only || 'only'}` };
+    }
+    return { cls: 'partial', label: supported.map((p) => p.label).join(', ') };
+}
+
 function _renderProviders() {
     const list = document.getElementById('wiz-provider-list');
     if (!list) return;
     list.innerHTML = PROVIDERS.map((p) => {
         const active = chosenProvider === p.id;
-        return `<button type="button" class="wiz-provider-chip ${active ? 'active' : ''}" data-provider="${p.id}">${p.label}</button>`;
+        const supported = _providerSupported(p.id);
+        const classes = ['wiz-provider-chip'];
+        if (active && supported) classes.push('active');
+        if (!supported) classes.push('disabled');
+        const lock = supported ? '' : CHIP_LOCK_ICON;
+        const aria = supported ? '' : 'aria-disabled="true"';
+        return `<button type="button" class="${classes.join(' ')}" data-provider="${p.id}" ${aria}><span>${p.label}</span>${lock}</button>`;
     }).join('');
     list.querySelectorAll('[data-provider]').forEach((btn) => {
         btn.addEventListener('click', () => {
-            chosenProvider = btn.dataset.provider;
+            const id = btn.dataset.provider;
+            if (!_providerSupported(id)) {
+                // Dimmed chips open the explainer instead of being selected.
+                _showProviderExplainer(id);
+                return;
+            }
+            chosenProvider = id;
+            _hideProviderExplainer();
             _renderProviders();
             _updateCta();
         });
     });
+}
+
+function _showProviderExplainer(providerId) {
+    const host = document.getElementById('wiz-provider-explainer');
+    if (!host) return;
+    const player = _selectedPlayer();
+    const platform = player ? _platformLabel(player.platform) : 'your speaker';
+    const provider = (PROVIDERS.find((p) => p.id === providerId) || {}).label || providerId;
+    const title = _t('wizard.step2.explainer.title', `${provider} on ${platform} needs Music Assistant`);
+    const body = _t(
+        'wizard.step2.explainer.body',
+        `${platform} plays Spotify directly from Home Assistant. ${provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion ${platform} can't do on its own.`
+    );
+    const step1 = _t('wizard.step2.explainer.step1', 'Install <strong>Music Assistant</strong> from HACS');
+    const step2 = _t('wizard.step2.explainer.step2', `Add your ${provider} account in MA → Providers`);
+    const step3 = _t('wizard.step2.explainer.step3', `Come back — your ${platform} appears as a Music Assistant speaker`);
+    const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
+    const ghost = _t('wizard.step2.explainer.ghost', 'Pick a different service');
+    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on Sonos directly — no add-on needed.');
+    host.innerHTML = `
+        <div class="wiz-explainer-title">
+            <span class="icon" aria-hidden="true">⚠️</span>
+            <span>${title}</span>
+        </div>
+        <p class="wiz-explainer-body">${body}</p>
+        <ol class="wiz-explainer-steps">
+            <li>${step1}</li>
+            <li>${step2}</li>
+            <li>${step3}</li>
+        </ol>
+        <div class="wiz-explainer-actions">
+            <a class="btn btn-primary" href="https://www.home-assistant.io/integrations/music_assistant/" target="_blank" rel="noopener">${primary}</a>
+            <button type="button" class="btn btn-ghost" id="wiz-explainer-dismiss">${ghost}</button>
+        </div>
+        <div class="wiz-explainer-footer">${footer}</div>
+    `;
+    host.hidden = false;
+    const dismiss = document.getElementById('wiz-explainer-dismiss');
+    if (dismiss) {
+        dismiss.addEventListener('click', () => {
+            _hideProviderExplainer();
+            const firstEnabled = document.querySelector('#wiz-provider-list .wiz-provider-chip:not(.disabled)');
+            if (firstEnabled) firstEnabled.focus();
+        });
+    }
+}
+
+function _hideProviderExplainer() {
+    const host = document.getElementById('wiz-provider-explainer');
+    if (!host) return;
+    host.hidden = true;
+    host.innerHTML = '';
 }
 
 function _renderPlaylists() {
