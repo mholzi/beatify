@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc3] - 2026-04-24
+
+### Fixed
+- **Wizard provider chips now re-render when speaker changes (#772)** — going Back from Step 2, picking a different speaker, and returning to Step 2 used to show the *previous* speaker's chip dim-state. Caught via live test: after switching from a Sonos speaker to a Music Assistant speaker, Apple Music / YouTube Music / Tidal / Deezer all stayed locked even though MA supports them. Speaker-click handler now re-renders providers and clears `chosenProvider` if it became unsupported on the new speaker.
+- **Explainer footer now uses `{platform}` placeholder** — the footer had hardcoded "Sonos" in every translation, so an Alexa user saw *"Prefer Spotify? It works on Sonos directly"* which is confusing/wrong. Reads correctly in each locale now (en/de/es/fr/nl updated).
+- **Capability badge word order for non-English locales** — the *"Spotify only"* badge rendered as *"Spotify nur"* in German instead of *"nur Spotify"* (modifier goes first in German, Spanish, Dutch). The old `capOnly` key was a suffix word; replaced with `capOnlyTemplate` containing a `{provider}` placeholder so each locale controls its own word order.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `wizard.js?v=` → `3.3.1-rc3`. CSS unchanged.
+- i18n key rename: `wizard.step1.capOnly` → `wizard.step1.capOnlyTemplate` (a format string with `{provider}` instead of a standalone suffix word).
+
 ## [3.3.1-rc2] - 2026-04-24
 
 ### Fixed

@@ -297,7 +297,7 @@ function _capabilityBadge(player) {
     return capabilityBadgeForPlayer(player, PROVIDERS, {
         none: _t('wizard.step1.capNone', 'No services'),
         all: _t('wizard.step1.capAll', 'All services'),
-        only: _t('wizard.step1.capOnly', 'only'),
+        onlyTemplate: _t('wizard.step1.capOnlyTemplate', '{provider} only'),
     });
 }
 
@@ -335,13 +335,23 @@ function _renderSpeakers() {
         .join('');
     list.querySelectorAll('.wiz-row[data-entity-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
-            chosenSpeaker = btn.dataset.entityId;
+            const newSpeaker = btn.dataset.entityId;
+            const speakerChanged = chosenSpeaker !== newSpeaker;
+            chosenSpeaker = newSpeaker;
             try { localStorage.setItem(LS_SELECTED_PLAYER, chosenSpeaker); } catch (e) { /* private mode */ }
             // Switching speakers invalidates the provider step — stale explainer
             // would reference the previous platform, and a previously-picked
             // provider may no longer be supported.
             _hideProviderExplainer();
+            if (speakerChanged && chosenProvider && !_providerSupported(chosenProvider)) {
+                // Clear the now-unsupported provider so Step 2 doesn't trap the
+                // user with a selection they can't complete.
+                chosenProvider = null;
+            }
             _renderSpeakers();
+            // Capability set changed — Step 2's chip dimming must be recomputed
+            // or users see stale lock icons from the previous speaker.
+            _renderProviders();
             _updateCta();
         });
     });
@@ -380,6 +390,11 @@ function _providerSupported(providerId) {
 
 // Pure: summarize a player's service capabilities into a badge descriptor.
 // Returns { cls, label } or null. Exported for tests.
+//
+// labels.onlyTemplate is a format string containing `{provider}`. The word
+// order of "only" vs. the provider name differs per language — English
+// suffixes ("Spotify only") but German, Spanish, Dutch prefix ("nur Spotify",
+// "solo Spotify", "alleen Spotify"). Using a template lets each locale pick.
 export function capabilityBadgeForPlayer(player, providers, labels = {}) {
     if (!player) return null;
     const supported = providers.filter((p) => player[`supports_${p.id}`]);
@@ -388,7 +403,8 @@ export function capabilityBadgeForPlayer(player, providers, labels = {}) {
         return { cls: 'full', label: labels.all || 'All services' };
     }
     if (supported.length === 1) {
-        return { cls: 'partial', label: `${supported[0].label} ${labels.only || 'only'}` };
+        const template = labels.onlyTemplate || '{provider} only';
+        return { cls: 'partial', label: template.replace('{provider}', supported[0].label) };
     }
     return { cls: 'partial', label: supported.map((p) => p.label).join(', ') };
 }
@@ -440,7 +456,7 @@ function _showProviderExplainer(providerId) {
     const step3 = _t('wizard.step2.explainer.step3', 'Come back — your {platform} appears as a Music Assistant speaker', vars);
     const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
     const ghost = _t('wizard.step2.explainer.ghost', 'Pick a different service');
-    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on Sonos directly — no add-on needed.');
+    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on {platform} directly — no add-on needed.', vars);
     host.innerHTML = `
         <div class="wiz-explainer-title">
             <span class="icon" aria-hidden="true">⚠️</span>

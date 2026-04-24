@@ -729,7 +729,7 @@
       "empty": "Aún no hay altavoces",
       "emptyHint": "Instala Music Assistant y actualiza",
       "capAll": "Todos los servicios",
-      "capOnly": "solo",
+      "capOnlyTemplate": "solo {provider}",
       "capNone": "Sin servicios"
     },
     "step2": {
@@ -745,7 +745,7 @@
         "step3": "Vuelve — tu {platform} aparece como un altavoz de Music Assistant",
         "primary": "Configurar Music Assistant →",
         "ghost": "Elegir otro servicio",
-        "footer": "¿Prefieres Spotify? Funciona directamente en Sonos — sin complementos."
+        "footer": "¿Prefieres Spotify? Funciona directamente en {platform} — sin complementos."
       }
     },
     "step3": {

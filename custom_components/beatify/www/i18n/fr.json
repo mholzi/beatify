@@ -729,7 +729,7 @@
       "empty": "Aucune enceinte détectée",
       "emptyHint": "Installe Music Assistant et rafraîchis",
       "capAll": "Tous les services",
-      "capOnly": "uniquement",
+      "capOnlyTemplate": "{provider} uniquement",
       "capNone": "Aucun service"
     },
     "step2": {
@@ -745,7 +745,7 @@
         "step3": "Reviens — ton {platform} apparaît comme une enceinte Music Assistant",
         "primary": "Configurer Music Assistant →",
         "ghost": "Choisir un autre service",
-        "footer": "Tu préfères Spotify ? Ça marche directement sur Sonos — pas besoin d'add-on."
+        "footer": "Tu préfères Spotify ? Ça marche directement sur {platform} — pas besoin d'add-on."
       }
     },
     "step3": {

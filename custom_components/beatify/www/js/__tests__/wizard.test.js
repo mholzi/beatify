@@ -172,6 +172,12 @@ describe('capabilityBadgeForPlayer', () => {
         expect(capabilityBadgeForPlayer(player, providers)).toEqual({ cls: 'partial', label: 'Spotify only' });
     });
 
+    it('respects locale word order via onlyTemplate (German prefixes "nur")', () => {
+        const player = { supports_spotify: true, supports_apple_music: false, supports_youtube_music: false };
+        const badge = capabilityBadgeForPlayer(player, providers, { onlyTemplate: 'nur {provider}' });
+        expect(badge).toEqual({ cls: 'partial', label: 'nur Spotify' });
+    });
+
     it('returns a partial/orange comma-joined badge for a subset (Alexa case)', () => {
         const player = { supports_spotify: true, supports_apple_music: true, supports_youtube_music: false };
         expect(capabilityBadgeForPlayer(player, providers)).toEqual({ cls: 'partial', label: 'Spotify, Apple Music' });
