@@ -729,7 +729,7 @@
       "empty": "Noch keine Lautsprecher gefunden",
       "emptyHint": "Music Assistant installieren und aktualisieren",
       "capAll": "Alle Dienste",
-      "capOnly": "nur",
+      "capOnlyTemplate": "nur {provider}",
       "capNone": "Keine Dienste"
     },
     "step2": {

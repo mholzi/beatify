@@ -729,7 +729,7 @@
       "empty": "Aucune enceinte détectée",
       "emptyHint": "Installe Music Assistant et rafraîchis",
       "capAll": "Tous les services",
-      "capOnly": "uniquement",
+      "capOnlyTemplate": "{provider} uniquement",
       "capNone": "Aucun service"
     },
     "step2": {

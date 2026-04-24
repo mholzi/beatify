@@ -729,7 +729,7 @@
       "empty": "Aún no hay altavoces",
       "emptyHint": "Instala Music Assistant y actualiza",
       "capAll": "Todos los servicios",
-      "capOnly": "solo",
+      "capOnlyTemplate": "solo {provider}",
       "capNone": "Sin servicios"
     },
     "step2": {

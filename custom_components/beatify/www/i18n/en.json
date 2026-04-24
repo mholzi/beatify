@@ -729,7 +729,7 @@
       "empty": "No speakers found yet",
       "emptyHint": "Install Music Assistant and refresh",
       "capAll": "All services",
-      "capOnly": "only",
+      "capOnlyTemplate": "{provider} only",
       "capNone": "No services"
     },
     "step2": {

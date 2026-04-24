@@ -729,7 +729,7 @@
       "empty": "Nog geen luidsprekers",
       "emptyHint": "Installeer Music Assistant en vernieuw",
       "capAll": "Alle diensten",
-      "capOnly": "alleen",
+      "capOnlyTemplate": "alleen {provider}",
       "capNone": "Geen diensten"
     },
     "step2": {
