@@ -117,11 +117,27 @@ let chosenTtsAnnounceWinner = true;
 
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
-function _t(key, fallback) {
+// Lookup a translated string. The optional `params` object is forwarded to
+// BeatifyI18n.t for {placeholder} interpolation inside the translation. When
+// the i18n module isn't loaded (tests, early boot), we fall back to the
+// English default and interpolate `{placeholder}` locally so callers don't
+// care about load state.
+function _t(key, fallback, params) {
+    let translated;
     if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
-        return window.BeatifyI18n.t(key) || fallback;
+        translated = window.BeatifyI18n.t(key, params);
+        // BeatifyI18n returns the key itself when the translation is missing —
+        // that's our cue to use the fallback instead of showing "wizard.step1.capAll"
+        // in the UI.
+        if (translated && translated !== key) return translated;
     }
-    return fallback;
+    let out = fallback;
+    if (params && typeof out === 'string') {
+        Object.keys(params).forEach((p) => {
+            out = out.replace(new RegExp('\\{' + p + '\\}', 'g'), params[p]);
+        });
+    }
+    return out;
 }
 
 async function _fetchStatus() {
@@ -410,16 +426,18 @@ function _showProviderExplainer(providerId) {
     const host = document.getElementById('wiz-provider-explainer');
     if (!host) return;
     const player = _selectedPlayer();
-    const platform = player ? _platformLabel(player.platform) : 'your speaker';
+    const platform = player ? _platformLabel(player.platform) : _t('wizard.step2.explainer.yourSpeaker', 'your speaker');
     const provider = (PROVIDERS.find((p) => p.id === providerId) || {}).label || providerId;
-    const title = _t('wizard.step2.explainer.title', `${provider} on ${platform} needs Music Assistant`);
+    const vars = { provider, platform };
+    const title = _t('wizard.step2.explainer.title', '{provider} on {platform} needs Music Assistant', vars);
     const body = _t(
         'wizard.step2.explainer.body',
-        `${platform} plays Spotify directly from Home Assistant. ${provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion ${platform} can't do on its own.`
+        "{platform} plays Spotify directly from Home Assistant. {provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion {platform} can't do on its own.",
+        vars,
     );
     const step1 = _t('wizard.step2.explainer.step1', 'Install <strong>Music Assistant</strong> from HACS');
-    const step2 = _t('wizard.step2.explainer.step2', `Add your ${provider} account in MA → Providers`);
-    const step3 = _t('wizard.step2.explainer.step3', `Come back — your ${platform} appears as a Music Assistant speaker`);
+    const step2 = _t('wizard.step2.explainer.step2', 'Add your {provider} account in MA → Providers', vars);
+    const step3 = _t('wizard.step2.explainer.step3', 'Come back — your {platform} appears as a Music Assistant speaker', vars);
     const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
     const ghost = _t('wizard.step2.explainer.ghost', 'Pick a different service');
     const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on Sonos directly — no add-on needed.');

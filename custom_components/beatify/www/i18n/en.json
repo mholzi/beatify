@@ -727,12 +727,26 @@
       "hint": "Don't see your speaker?",
       "hintLink": "Check supported types",
       "empty": "No speakers found yet",
-      "emptyHint": "Install Music Assistant and refresh"
+      "emptyHint": "Install Music Assistant and refresh",
+      "capAll": "All services",
+      "capOnly": "only",
+      "capNone": "No services"
     },
     "step2": {
       "eyebrow": "Step 2 · Music service",
       "title": "Who's streaming?",
-      "sub": "Pick the service your speaker uses. Beatify plays songs through whatever you already have configured in Home Assistant."
+      "sub": "Pick the service your speaker uses. Beatify plays songs through whatever you already have configured in Home Assistant.",
+      "explainer": {
+        "yourSpeaker": "your speaker",
+        "title": "{provider} on {platform} needs Music Assistant",
+        "body": "{platform} plays Spotify directly from Home Assistant. {provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion {platform} can't do on its own.",
+        "step1": "Install <strong>Music Assistant</strong> from HACS",
+        "step2": "Add your {provider} account in MA → Providers",
+        "step3": "Come back — your {platform} appears as a Music Assistant speaker",
+        "primary": "Set up Music Assistant →",
+        "ghost": "Pick a different service",
+        "footer": "Prefer Spotify? It works on Sonos directly — no add-on needed."
+      }
     },
     "step3": {
       "eyebrow": "Step 3 · Playlist",

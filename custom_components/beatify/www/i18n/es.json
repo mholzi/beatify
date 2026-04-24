@@ -727,12 +727,26 @@
       "hint": "¿No ves tu altavoz?",
       "hintLink": "Ver tipos compatibles",
       "empty": "Aún no hay altavoces",
-      "emptyHint": "Instala Music Assistant y actualiza"
+      "emptyHint": "Instala Music Assistant y actualiza",
+      "capAll": "Todos los servicios",
+      "capOnly": "solo",
+      "capNone": "Sin servicios"
     },
     "step2": {
       "eyebrow": "Paso 2 · Servicio de música",
       "title": "¿Quién transmite?",
-      "sub": "Elige el servicio que usa tu altavoz. Beatify reproduce a través de lo que ya tienes configurado en Home Assistant."
+      "sub": "Elige el servicio que usa tu altavoz. Beatify reproduce a través de lo que ya tienes configurado en Home Assistant.",
+      "explainer": {
+        "yourSpeaker": "tu altavoz",
+        "title": "{provider} en {platform} necesita Music Assistant",
+        "body": "{platform} reproduce Spotify directamente desde Home Assistant. {provider} y otros servicios de streaming necesitan el complemento Music Assistant para enrutar la pista — se encarga del inicio de sesión y la conversión de formato que {platform} no puede hacer por sí solo.",
+        "step1": "Instala <strong>Music Assistant</strong> desde HACS",
+        "step2": "Añade tu cuenta de {provider} en MA → Proveedores",
+        "step3": "Vuelve — tu {platform} aparece como un altavoz de Music Assistant",
+        "primary": "Configurar Music Assistant →",
+        "ghost": "Elegir otro servicio",
+        "footer": "¿Prefieres Spotify? Funciona directamente en Sonos — sin complementos."
+      }
     },
     "step3": {
       "eyebrow": "Paso 3 · Lista de reproducción",

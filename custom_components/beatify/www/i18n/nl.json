@@ -727,12 +727,26 @@
       "hint": "Zie je jouw luidspreker niet?",
       "hintLink": "Bekijk ondersteunde types",
       "empty": "Nog geen luidsprekers",
-      "emptyHint": "Installeer Music Assistant en vernieuw"
+      "emptyHint": "Installeer Music Assistant en vernieuw",
+      "capAll": "Alle diensten",
+      "capOnly": "alleen",
+      "capNone": "Geen diensten"
     },
     "step2": {
       "eyebrow": "Stap 2 · Muziekdienst",
       "title": "Wie streamt?",
-      "sub": "Kies de dienst die je luidspreker gebruikt. Beatify speelt via wat je al in Home Assistant hebt ingesteld."
+      "sub": "Kies de dienst die je luidspreker gebruikt. Beatify speelt via wat je al in Home Assistant hebt ingesteld.",
+      "explainer": {
+        "yourSpeaker": "je luidspreker",
+        "title": "{provider} op {platform} heeft Music Assistant nodig",
+        "body": "{platform} speelt Spotify direct vanuit Home Assistant. {provider} en andere streamingdiensten hebben de Music Assistant add-on nodig om de track te routeren — die regelt het inloggen en de formaatconversie die {platform} zelf niet kan.",
+        "step1": "Installeer <strong>Music Assistant</strong> via HACS",
+        "step2": "Voeg je {provider}-account toe in MA → Providers",
+        "step3": "Kom terug — je {platform} verschijnt als Music Assistant-luidspreker",
+        "primary": "Music Assistant instellen →",
+        "ghost": "Andere dienst kiezen",
+        "footer": "Liever Spotify? Werkt direct op Sonos — geen add-on nodig."
+      }
     },
     "step3": {
       "eyebrow": "Stap 3 · Afspeellijst",
