@@ -90,6 +90,13 @@ PREFLIGHT_TIMEOUT = 3.0
 # Timeout for play_song service calls (seconds) - prevents long hangs (#179)
 PLAYBACK_TIMEOUT = 8.0
 
+# Music Assistant playback timeout. Higher than PLAYBACK_TIMEOUT because MA
+# routes through the speaker's own buffering layer and AirPlay (HomePods,
+# Denon AirPlay, some MA-wrapped Sonos setups) can take 10-12s to acknowledge
+# a new track on the first round. #777 showed 8s was too aggressive — rounds
+# advanced before the track had actually swapped on the speaker.
+MA_PLAYBACK_TIMEOUT = 15.0
+
 # Timeout for waiting for metadata to update after playing (seconds)
 METADATA_WAIT_TIMEOUT = 5.0
 
@@ -345,18 +352,27 @@ class MediaPlayerService:
         """
         Attempt a single MA `play_media` call and wait for playback confirmation.
 
-        Returns False only on hard failure (speaker ends up idle/unavailable
-        /off/unknown after the timeout) so the caller can try the next URI.
+        Returns False on hard failure (speaker idle/unavailable, or the track
+        clearly never swapped on the speaker) so the caller can try the next
+        URI. Returns True both when playback is confirmed AND when the speaker
+        is showing ambiguous-but-changing state (MA may still be buffering —
+        preserving the #345 tolerance so we don't chase flaky retries).
         """
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
-        # Capture state before to detect actual song change on speaker
+        # Snapshot speaker state before the call — we need both fields to
+        # distinguish #345 slow-buffer (one of them changed during the wait)
+        # from #777 silent failure (neither changed, speaker still on prior
+        # track).
         state_before = self._hass.states.get(self._entity_id)
-        position_updated_before = (
-            state_before.attributes.get("media_position_updated_at")
-            if state_before
-            else None
-        )
+        if state_before is not None:
+            title_before = state_before.attributes.get("media_title", "")
+            position_updated_before = state_before.attributes.get(
+                "media_position_updated_at"
+            )
+        else:
+            title_before = ""
+            position_updated_before = None
 
         # Fire-and-forget the service call — blocking=True hangs on MA+YTMusic
         await self._hass.services.async_call(
@@ -416,7 +432,7 @@ class MediaPlayerService:
                 )
                 return True
 
-            await asyncio.wait_for(confirmed.wait(), timeout=PLAYBACK_TIMEOUT)
+            await asyncio.wait_for(confirmed.wait(), timeout=MA_PLAYBACK_TIMEOUT)
             elapsed = asyncio.get_event_loop().time() - start_time
             final = self._hass.states.get(self._entity_id)
             _LOGGER.debug(
@@ -438,21 +454,53 @@ class MediaPlayerService:
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
             _LOGGER.error(
                 "MA playback failed after %.1fs for %s (state: %s)",
-                PLAYBACK_TIMEOUT,
+                MA_PLAYBACK_TIMEOUT,
                 uri,
                 speaker_state,
             )
             return False
 
+        # Hard failure #777: speaker still shows the *previous* track. If
+        # neither the title nor the position-updated timestamp moved during
+        # the entire wait window, the new track never started on the speaker
+        # (common with AirPlay when MA silently fails to enqueue). Fall
+        # through so the caller can try the next URI candidate.
+        title_after = (
+            current_state.attributes.get("media_title", "") if current_state else ""
+        )
+        position_updated_after = (
+            current_state.attributes.get("media_position_updated_at")
+            if current_state
+            else None
+        )
+        stale_title = title_after == title_before
+        stale_position = position_updated_after == position_updated_before
+        if stale_title and stale_position:
+            _LOGGER.error(
+                "MA playback failed after %.1fs for %s — speaker still on "
+                "prior track %r, position timestamp unchanged; skipping (#777)",
+                MA_PLAYBACK_TIMEOUT,
+                uri,
+                title_before,
+            )
+            return False
+
+        # #345 slow-buffer tolerance: something changed on the speaker during
+        # the wait (either title swapped or position clock advanced), so MA is
+        # making progress — just not matching the exact expected title yet.
+        # Returning False here would chase unnecessary retries and cause the
+        # race condition #345 was filed for.
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s). "
-            "Continuing anyway — MA may still be buffering. (#345)",
-            PLAYBACK_TIMEOUT,
+            "Speaker moved (title %r, pos ts %r → %r). Continuing anyway — "
+            "MA may still be buffering. (#345)",
+            MA_PLAYBACK_TIMEOUT,
             uri,
             speaker_state,
+            title_after,
+            position_updated_before,
+            position_updated_after,
         )
-        # Return True: don't skip the song — MA+YTMusic can take >8s to buffer.
-        # Returning False would trigger retries that cause race conditions (#345).
         return True
 
     async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
