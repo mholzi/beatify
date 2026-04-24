@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "german",
     "carnival",
@@ -2265,7 +2265,7 @@
     },
     {
       "year": 2010,
-      "uri": "spotify:track:5JRWIxntsSxUfyQs1iqS8i",
+      "uri": "spotify:track:7LEkHP9uDpzdbjcgoXoEZL",
       "artist": "Räuber",
       "alt_artists": [
         "Klüngelköpp",
@@ -2278,13 +2278,10 @@
       "fun_fact_fr": "Sur la vie « Sur la place du marché » - l'Alter Markt de Cologne est le cœur des festivités depuis le Moyen Âge.",
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=uc8WS_pXXtM",
-      "uri_apple_music": "applemusic://track/212430581",
+      "uri_apple_music": "applemusic://track/202229994",
       "chart_info": {
         "weeks_on_chart": null
       },
-      "uri_tidal": "tidal://track/2117520",
-      "uri_deezer": "deezer://track/2473722",
       "fun_fact_nl": "Over leven 'Op het marktplein' - de Alter Markt in Keulen is al sinds de middeleeuwen het hart van feestelijkheden.",
       "awards_nl": []
     },
