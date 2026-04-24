@@ -727,12 +727,26 @@
       "hint": "Dein Lautsprecher fehlt?",
       "hintLink": "Unterstützte Typen ansehen",
       "empty": "Noch keine Lautsprecher gefunden",
-      "emptyHint": "Music Assistant installieren und aktualisieren"
+      "emptyHint": "Music Assistant installieren und aktualisieren",
+      "capAll": "Alle Dienste",
+      "capOnly": "nur",
+      "capNone": "Keine Dienste"
     },
     "step2": {
       "eyebrow": "Schritt 2 · Musikdienst",
       "title": "Wer streamt?",
-      "sub": "Wähle den Dienst, den dein Lautsprecher nutzt. Beatify spielt Songs über das, was du in Home Assistant eingerichtet hast."
+      "sub": "Wähle den Dienst, den dein Lautsprecher nutzt. Beatify spielt Songs über das, was du in Home Assistant eingerichtet hast.",
+      "explainer": {
+        "yourSpeaker": "dein Lautsprecher",
+        "title": "{provider} auf {platform} benötigt Music Assistant",
+        "body": "{platform} kann Spotify direkt aus Home Assistant abspielen. {provider} und andere Streaming-Dienste brauchen das Music Assistant Add-on, das die Anmeldung und Formatkonvertierung übernimmt, die {platform} allein nicht beherrscht.",
+        "step1": "<strong>Music Assistant</strong> über HACS installieren",
+        "step2": "{provider}-Konto in MA → Provider hinzufügen",
+        "step3": "Zurückkommen — dein {platform} erscheint als Music Assistant-Lautsprecher",
+        "primary": "Music Assistant einrichten →",
+        "ghost": "Anderen Dienst wählen",
+        "footer": "Lieber Spotify? Läuft direkt auf Sonos — kein Add-on nötig."
+      }
     },
     "step3": {
       "eyebrow": "Schritt 3 · Playlist",

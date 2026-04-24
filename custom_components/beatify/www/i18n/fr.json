@@ -727,12 +727,26 @@
       "hint": "Ton enceinte n'apparaît pas ?",
       "hintLink": "Voir les types compatibles",
       "empty": "Aucune enceinte détectée",
-      "emptyHint": "Installe Music Assistant et rafraîchis"
+      "emptyHint": "Installe Music Assistant et rafraîchis",
+      "capAll": "Tous les services",
+      "capOnly": "uniquement",
+      "capNone": "Aucun service"
     },
     "step2": {
       "eyebrow": "Étape 2 · Service musical",
       "title": "Qui diffuse ?",
-      "sub": "Choisis le service qu'utilise ton enceinte. Beatify joue via ce que tu as déjà configuré dans Home Assistant."
+      "sub": "Choisis le service qu'utilise ton enceinte. Beatify joue via ce que tu as déjà configuré dans Home Assistant.",
+      "explainer": {
+        "yourSpeaker": "ton enceinte",
+        "title": "{provider} sur {platform} nécessite Music Assistant",
+        "body": "{platform} lit Spotify directement depuis Home Assistant. {provider} et les autres services de streaming ont besoin de l'add-on Music Assistant pour router la piste — il gère la connexion et la conversion de format que {platform} ne peut pas faire seul.",
+        "step1": "Installe <strong>Music Assistant</strong> depuis HACS",
+        "step2": "Ajoute ton compte {provider} dans MA → Fournisseurs",
+        "step3": "Reviens — ton {platform} apparaît comme une enceinte Music Assistant",
+        "primary": "Configurer Music Assistant →",
+        "ghost": "Choisir un autre service",
+        "footer": "Tu préfères Spotify ? Ça marche directement sur Sonos — pas besoin d'add-on."
+      }
     },
     "step3": {
       "eyebrow": "Étape 3 · Playlist",
