@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc3] - 2026-04-24
+
+### Fixed
+- **Wizard provider chips now re-render when speaker changes (#772)** — going Back from Step 2, picking a different speaker, and returning to Step 2 used to show the *previous* speaker's chip dim-state. Caught via live test: after switching from a Sonos speaker to a Music Assistant speaker, Apple Music / YouTube Music / Tidal / Deezer all stayed locked even though MA supports them. Speaker-click handler now re-renders providers and clears `chosenProvider` if it became unsupported on the new speaker.
+- **Explainer footer now uses `{platform}` placeholder** — the footer had hardcoded "Sonos" in every translation, so an Alexa user saw *"Prefer Spotify? It works on Sonos directly"* which is confusing/wrong. Reads correctly in each locale now (en/de/es/fr/nl updated).
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `wizard.js?v=` → `3.3.1-rc3`. CSS unchanged.
+
 ## [3.3.1-rc2] - 2026-04-24
 
 ### Fixed
