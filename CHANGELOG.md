@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc2] - 2026-04-24
+
+### Fixed
+- **Wizard translations for rc1 UX (#772)** — the capability badges ("All services", "only") and the Music Assistant explainer card in Step 2 were using hardcoded English fallbacks because the new keys weren't added to the i18n JSON files. Non-English locales (de/es/fr/nl) now get real translations instead of the English source string. The `_t()` helper also now forwards `{placeholder}` params through to `BeatifyI18n.t`, so the explainer interpolates the speaker's platform and the picked provider correctly in every language.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `wizard.js?v=` → `3.3.1-rc2`. CSS unchanged.
+
 ## [3.3.1-rc1] - 2026-04-24
 
 ### Fixed
