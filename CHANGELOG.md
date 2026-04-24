@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc1] - 2026-04-24
+
+### Fixed
+- **Apple Music via Music Assistant (#772)** — Beatify now emits Music Assistant's native `apple_music://track/<id>` URI instead of the short `https://music.apple.com/song/<id>` URL. The short URL fails MA's URI parser (needs `/{storefront}/{type}/{slug}/{id}`, 6+ path parts), so Apple-Music-only setups saw `No playable items found` on fallback. Also resolves the remaining Apple Music playback failure reported by @Levtos in the #768 follow-up.
+
+### Added
+- **Wizard service-compatibility UX (#772)** — picking a speaker that doesn't support every streaming service (e.g. Sonos) now surfaces that clearly in Step 1 with a capability badge (*"Spotify only"*, *"All services"*, *"Spotify, Apple Music"*). In Step 2, unsupported providers render dimmed with a lock icon; clicking one opens an explainer card with a one-click link to the Music Assistant integration docs. Continue is blocked until a supported provider is picked.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `styles.min.css?v=` + `wizard.js?v=` cache-busters → `3.3.1-rc1`.
+
 ## [3.3.0] - 2026-04-23
 
 Stable promotion of the 3.3.0-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.0) for the user-facing summary.

@@ -498,7 +498,7 @@ class TestMAProviderFallback:
         assert len(uris) == 2
 
     def test_candidates_converts_apple_music(self):
-        """applemusic:// URIs are converted to https://music.apple.com URLs."""
+        """applemusic:// URIs are converted to MA-native apple_music:// form (#772)."""
         hass = _make_hass()
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         song = {
@@ -506,7 +506,7 @@ class TestMAProviderFallback:
             "uri_apple_music": "applemusic://track/999",
         }
         candidates = svc._get_ma_uri_candidates(song)
-        assert candidates[0][1] == "https://music.apple.com/song/999"
+        assert candidates[0][1] == "apple_music://track/999"
 
     def test_candidates_learned_preference_goes_first(self):
         """If a field was learned as preferred, its URI is tried before primary."""
@@ -519,7 +519,7 @@ class TestMAProviderFallback:
             "uri_apple_music": "applemusic://track/111",
         }
         candidates = svc._get_ma_uri_candidates(song)
-        assert candidates[0] == ("uri_apple_music", "https://music.apple.com/song/111")
+        assert candidates[0] == ("uri_apple_music", "apple_music://track/111")
         # Primary still present after
         assert (None, "spotify:track:abc") in candidates
 
@@ -551,7 +551,7 @@ class TestMAProviderFallback:
             result = await svc._play_via_music_assistant(song)
 
         assert result is True
-        assert calls == ["spotify:track:abc", "https://music.apple.com/song/111"]
+        assert calls == ["spotify:track:abc", "apple_music://track/111"]
         assert svc._ma_preferred_uri_field == "uri_apple_music"
 
     @pytest.mark.asyncio
@@ -610,7 +610,7 @@ class TestMAProviderFallback:
         async def fake_try(uri: str, expected_title: str) -> bool:
             calls.append(uri)
             # Spotify never works in this user's setup; apple_music always does.
-            return uri.startswith("https://music.apple.com")
+            return uri.startswith("apple_music://")
 
         with patch.object(svc, "_try_ma_play", side_effect=fake_try):
             assert await svc._play_via_music_assistant(song_a) is True
@@ -620,8 +620,8 @@ class TestMAProviderFallback:
         # Song B: apple_music tried first (cached), succeeds (1 call)
         assert calls == [
             "spotify:track:a",
-            "https://music.apple.com/song/a",
-            "https://music.apple.com/song/b",
+            "apple_music://track/a",
+            "apple_music://track/b",
         ]
 
     @pytest.mark.asyncio

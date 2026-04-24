@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.0">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.1-rc1">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -53,6 +53,7 @@
                 <h2 class="wiz-title" data-i18n="wizard.step2.title">Who's streaming?</h2>
                 <p class="wiz-sub" data-i18n="wizard.step2.sub">Pick the service your speaker uses. Beatify plays songs through whatever you already have configured in Home Assistant.</p>
                 <div id="wiz-provider-list" class="wiz-provider-grid"></div>
+                <div id="wiz-provider-explainer" class="wiz-explainer" hidden></div>
             </div>
         </section>
 
@@ -1055,7 +1056,7 @@
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v=3.3.0"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.3.0"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v=3.3.0"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.3.1-rc1"></script>
     <script src="/beatify/static/js/admin.min.js?v=3.3.0"></script>
     <script src="/beatify/static/js/party-lights.min.js?v=3.3.0"></script>
     <script src="/beatify/static/js/tts-settings.js?v=3.3.0"></script>
