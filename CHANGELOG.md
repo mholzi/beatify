@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc7] - 2026-04-25
+
+### Fixed
+- **Admin footer version label is correct again (#784).** The footer had been showing *"Beatify v3.2.0-rc29"* since mid-April regardless of which version was installed. Root cause: a `_VERSION = "3.2.0-rc29"` constant in [`server/base.py`](custom_components/beatify/server/base.py) was supposed to be auto-bumped by a GitHub workflow that hadn't run since April 15 (the `.github/workflows/` directory got untracked in [`6d056b35`](https://github.com/mholzi/beatify/commit/6d056b35) and GitHub Actions has no copy to execute). Replaced the constant with a read of `manifest.json` at integration setup time — single source of truth, no workflow dependency, can never drift again. Reported by @mholzi in #784.
+
+### For contributors
+- New helper `_read_manifest_version()` in `__init__.py`, called via `async_add_executor_job` to stay off the event loop.
+- Version is cached in `hass.data[DOMAIN]['version']` and read by `_get_version(hass)` in `server/base.py` (signature changed from `_get_version()` — only one caller).
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.1-rc7`. No frontend asset changes — HTML cache-busters unchanged.
+- The auto-bump workflow `.github/workflows/version-bump.yml` is now obsolete and can be deleted from the local-only copy. The other untracked workflows (`test.yml`, `validate.yml`, `pages.yml`) are a separate question — re-track them or accept local-only checks as the contract.
+
 ## [3.3.1-rc6] - 2026-04-25
 
 ### Added
