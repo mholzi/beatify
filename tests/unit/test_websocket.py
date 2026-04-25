@@ -231,6 +231,66 @@ class TestJoin:
         # Game should be resumed
         assert game_state.phase == GamePhase.PLAYING
 
+    async def test_admin_can_reclaim_during_reveal_without_pause(self):
+        """#790: existing admin reclaiming during REVEAL must not be rejected.
+
+        Levtos's symptom: admin's WS dropped silently (no pause_game fired
+        because grace period hadn't expired or didn't trigger), browser
+        reconnects with same name + is_admin=True. Old code hit the
+        line 113 phase!=LOBBY rejection and removed the player. Now we
+        recognize a same-name admin reclaim and allow it regardless of phase.
+        """
+        handler, game_state, ws = _make_handler_and_game()
+        admin_ws = _make_ws()
+        game_state.add_player("Ben", admin_ws)
+        game_state.set_admin("Ben")
+        # Simulate the WS drop that triggers Levtos's flow: connected=False
+        # but no pause yet (grace period running or never fired).
+        game_state.players["Ben"].connected = False
+        game_state.phase = GamePhase.REVEAL
+        assert not game_state.disconnected_admin_name
+
+        new_ws = _make_ws()
+        await handler._handle_message(
+            new_ws, {"type": "join", "name": "Ben", "is_admin": True}
+        )
+
+        # Ben should still be admin, still in players, no error sent.
+        assert "Ben" in game_state.players
+        assert game_state.players["Ben"].is_admin is True
+        # Phase stays REVEAL — reclaim doesn't auto-resume from REVEAL
+        assert game_state.phase == GamePhase.REVEAL
+        # No error was sent on the new ws
+        for call in new_ws.send_json.call_args_list:
+            payload = call[0][0]
+            assert payload.get("type") != "error"
+
+    async def test_new_admin_still_rejected_during_reveal(self):
+        """#790: only the existing admin can reclaim during non-LOBBY phases.
+
+        Someone else trying to claim admin must still be rejected — the
+        reclaim allowance only applies when the joining name matches the
+        current admin record.
+        """
+        handler, game_state, ws = _make_handler_and_game()
+        admin_ws = _make_ws()
+        game_state.add_player("Ben", admin_ws)
+        game_state.set_admin("Ben")
+        game_state.phase = GamePhase.REVEAL
+
+        intruder_ws = _make_ws()
+        await handler._handle_message(
+            intruder_ws,
+            {"type": "join", "name": "Intruder", "is_admin": True},
+        )
+
+        msg = intruder_ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        # Either ERR_ADMIN_EXISTS (existing admin found) or ERR_INVALID_ACTION
+        # (phase check) is acceptable — both mean "no, you're not admin".
+        assert msg["code"] in (ERR_ADMIN_EXISTS, ERR_INVALID_ACTION)
+        assert "Intruder" not in game_state.players
+
 
 # ---------------------------------------------------------------------------
 # Submit

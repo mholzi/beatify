@@ -71,7 +71,32 @@ async def handle_join(
         player = game_state.get_player(name)
 
         if is_admin:
-            if game_state.disconnected_admin_name:
+            # #790: Existing admin reclaiming their own role should always be
+            # allowed, regardless of phase. Without this check, an admin whose
+            # WS dropped (network blip, AirPlay-induced HA hiccup) tries to
+            # reconnect with their original name, hits the "Only allow new
+            # admin claim during LOBBY" rejection, and gets remove_player'd
+            # — losing admin entirely. The existing player record matching
+            # by name with is_admin=True means this is the same human host.
+            is_own_admin_reclaim = (
+                player is not None
+                and player.is_admin
+                and not any(
+                    p.is_admin and p.name.lower() != name.lower()
+                    for p in list(game_state.players.values())
+                )
+            )
+            if is_own_admin_reclaim:
+                # Cancel any pending pause task — admin is back.
+                if handler._admin_disconnect_task:
+                    handler._admin_disconnect_task.cancel()
+                    handler._admin_disconnect_task = None
+                    _LOGGER.info("Admin reconnected (own reclaim): %s", name)
+                handler.cancel_pending_removal(name)
+                if game_state.phase == GamePhase.PAUSED:
+                    if await game_state.resume_game():
+                        _LOGGER.info("Game resumed by admin reclaim during PAUSED")
+            elif game_state.disconnected_admin_name:
                 if name.lower() == game_state.disconnected_admin_name.lower():
                     if handler._admin_disconnect_task:
                         handler._admin_disconnect_task.cancel()

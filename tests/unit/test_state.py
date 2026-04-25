@@ -758,6 +758,23 @@ class TestPauseGame:
         await self.state.pause_game("admin_disconnected")
         mock_media.stop.assert_awaited_once()
 
+    @pytest.mark.asyncio
+    async def test_pause_captures_admin_name_for_any_reason(self):
+        """#790: pause_game must capture admin name regardless of reason.
+
+        Without this, server-triggered pauses (media_player_error,
+        no_songs_available) leave disconnected_admin_name empty and the admin
+        can't reclaim via the existing reconnect path — creating an
+        unrecoverable stuck state.
+        """
+        await self.state.pause_game("media_player_error")
+        assert self.state.disconnected_admin_name == "Admin"
+
+    @pytest.mark.asyncio
+    async def test_pause_captures_admin_name_on_no_songs_available(self):
+        await self.state.pause_game("no_songs_available")
+        assert self.state.disconnected_admin_name == "Admin"
+
 
 class TestResumeGame:
     @pytest.fixture(autouse=True)
