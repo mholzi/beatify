@@ -85,8 +85,23 @@ beatify-stats-history.json
 RELEASE_NOTES_*.md
 CONTRIBUTING.md
 
-# ---- GitHub workflows (not needed in HACS release) ----
-.github/
+# ---- GitHub workflows ----
+# Track CI workflows (test + HACS validation) so GitHub Actions can run them.
+# Untracking the whole .github/ in April 2026 silently broke CI for 2+ months
+# and froze the version label drift in #784. Whitelist the workflows we
+# actually want CI to execute; ignore everything else under .github/.
+.github/*
+!.github/workflows/
+.github/workflows/*
+!.github/workflows/test.yml
+!.github/workflows/validate.yml
+
+# Test infra needed by CI to run pytest cleanly. Without these, the test
+# workflow imports beatify and hits a homeassistant metaclass conflict
+# at collection time (root conftest.py stubs HA modules). pytest.ini
+# enables asyncio_mode = auto which the async tests require.
+!conftest.py
+!pytest.ini
 
 # ---- Minified build artefacts (auto-generated, not tracked) ----
 # Run `make build` locally or see .github/workflows/build-assets.yml
