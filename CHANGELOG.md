@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc8] - 2026-04-25
+
+### Fixed
+- **Admin can reclaim their own role during any game phase (#790).** When the admin's WebSocket dropped silently during REVEAL or PLAYING (network blip, AirPlay-induced HA hiccup) and the browser tried to reconnect with the same name + `is_admin=true`, the join handler hit the *"Only allow new admin claim during LOBBY"* rejection at [`ws_handlers.py:113`](custom_components/beatify/server/ws_handlers.py#L113), removed the player from the game, and sent them to the name-entry screen — locking them out of their own game. Now the handler recognises a same-name admin reclaim by checking the existing player record's `is_admin=True` flag and allows the reconnect regardless of phase. New admins claiming during non-LOBBY phases are still rejected. Reported by @Levtos in #790.
+- **`pause_game` always captures the admin name (#790).** Previously only `pause_game("admin_disconnected")` set `disconnected_admin_name`. Server-triggered pauses (`media_player_error`, `no_songs_available`) left the field empty, so even via the existing reconnect path the admin couldn't recover from those pauses. Now any pause stores the current admin's name, giving them a guaranteed recovery route.
+
+### Tests
+- 3 new tests covering: same-name admin reclaim during REVEAL, intruder claim during REVEAL still rejected, `pause_game` capturing admin name on `media_player_error` and `no_songs_available`.
+- Total: 395 passed, 1 xfailed (the pre-existing #777 resilience test).
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.1-rc8`. No frontend asset changes — HTML cache-busters unchanged.
+
 ## [3.3.1-rc7] - 2026-04-25
 
 ### Fixed
