@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import AsyncMock, MagicMock
 
-import pytest
-
 from custom_components.beatify.const import (
     DOMAIN,
     ERR_ADMIN_CANNOT_LEAVE,
@@ -820,20 +818,13 @@ class TestPlayerOnboarded:
         assert alice is not None
         assert alice.onboarded is False
 
-    @pytest.mark.xfail(
-        reason=(
-            "GameState.registry attribute no longer exists — was refactored away "
-            "(probably consolidated into a different accessor). Test needs to be "
-            "updated to use the current API. Pre-existing bug — flagged for "
-            "follow-up."
-        ),
-        strict=False,
-    )
     async def test_players_state_includes_onboarded(self):
         """get_players_state() includes the onboarded flag for the host view."""
         handler, game_state, ws = _make_handler_and_game()
         await handler._handle_message(ws, {"type": "join", "name": "Alice"})
-        rows = game_state.registry.get_players_state()
+        # `.registry` attribute was renamed `_player_registry` (now private).
+        # Use the public accessor on GameState which delegates to it.
+        rows = game_state.get_players_state()
         assert any("onboarded" in row for row in rows)
         alice_row = next(r for r in rows if r["name"] == "Alice")
         assert alice_row["onboarded"] is False

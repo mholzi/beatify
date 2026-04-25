@@ -122,28 +122,22 @@ class TestAddPlayer:
         assert err is None
         assert "Alice" in self.state.players
 
-    @pytest.mark.xfail(
-        reason=(
-            "GameState.add_player no longer rejects duplicate names — production "
-            "code returns ok=True for both attempts. Either the test is stale "
-            "(rejection moved elsewhere, e.g. PlayerRegistry) or the rejection "
-            "was intentionally dropped. Needs investigation. Pre-existing bug — "
-            "flagged for follow-up."
-        ),
-        strict=False,
-    )
     def test_add_duplicate_name_rejected(self):
-        self.state.add_player("Alice", MagicMock())
+        # ws.closed must be explicitly False — bare MagicMock attributes are
+        # MagicMocks (truthy), which PlayerRegistry interprets as a dead
+        # connection and allows rejoin under "stale connected flag" handling
+        # (#646). For this test we want the original ws to look healthy.
+        first_ws = MagicMock()
+        first_ws.closed = False
+        self.state.add_player("Alice", first_ws)
         ok, err = self.state.add_player("Alice", MagicMock())
         assert ok is False
         assert err == ERR_NAME_TAKEN
 
-    @pytest.mark.xfail(
-        reason="Same root cause as test_add_duplicate_name_rejected. Pre-existing bug.",
-        strict=False,
-    )
     def test_duplicate_name_case_insensitive(self):
-        self.state.add_player("Alice", MagicMock())
+        first_ws = MagicMock()
+        first_ws.closed = False
+        self.state.add_player("Alice", first_ws)
         ok, err = self.state.add_player("alice", MagicMock())
         assert ok is False
         assert err == ERR_NAME_TAKEN
