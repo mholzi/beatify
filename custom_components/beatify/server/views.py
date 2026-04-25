@@ -207,7 +207,7 @@ class StatusView(HomeAssistantView):
 
         status = build_status_response(
             self.hass,
-            version=_get_version(),
+            version=_get_version(self.hass),
             media_players=media_players,
             playlists=playlists,
         )

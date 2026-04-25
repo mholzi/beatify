@@ -18,16 +18,34 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-# Version is set here and bumped alongside manifest.json in release commits.
-# We avoid reading manifest.json at runtime because HA imports custom components
-# inside the event loop, and any file I/O (even at module level) triggers
-# blocking call warnings in HA 2026.2+.
-_VERSION = "3.2.0-rc29"
+# Fallback version string used only if manifest.json could not be read at
+# integration setup (very rare — would mean a malformed install). The real
+# version is loaded from manifest.json once during async_setup_entry and
+# cached in hass.data[DOMAIN]['version'] (#784).
+#
+# We deliberately do NOT read manifest.json at module import time: HA 2026.2+
+# flags any blocking I/O at module level, including the reload path where the
+# event loop is already running.
+_VERSION_FALLBACK = "unknown"
 
 
-def _get_version() -> str:
-    """Get the integration version."""
-    return _VERSION
+def _get_version(hass: HomeAssistant | None = None) -> str:
+    """
+    Get the integration version.
+
+    Reads from ``hass.data[DOMAIN]['version']`` (populated at setup_entry from
+    manifest.json) when ``hass`` is provided. Falls back to the unknown sentinel
+    if hass isn't available or the key isn't populated yet.
+    """
+    if hass is not None:
+        try:
+            data = hass.data.get(DOMAIN, {})
+            version = data.get("version")
+            if version:
+                return version
+        except (AttributeError, KeyError):  # pragma: no cover — defensive
+            pass
+    return _VERSION_FALLBACK
 
 
 def _read_file(path: Path) -> str:

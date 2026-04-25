@@ -7,7 +7,9 @@ to play music guessing games.
 
 from __future__ import annotations
 
+import json
 import logging
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from homeassistant.components.frontend import (
@@ -59,12 +61,38 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
+def _read_manifest_version() -> str:
+    """Read the integration version from manifest.json (executor-safe).
+
+    Single source of truth for the version label shown in the admin footer
+    and reported via /beatify/api/status. Replaces the previously-hardcoded
+    `_VERSION` constant in server/base.py that drifted out of sync whenever
+    the version-bump.yml workflow failed to run (#784).
+    """
+    manifest_path = Path(__file__).parent / "manifest.json"
+    try:
+        return json.loads(manifest_path.read_text(encoding="utf-8")).get(
+            "version", "unknown"
+        )
+    except (OSError, ValueError):
+        # Defensive: a malformed install shouldn't crash setup. The fallback
+        # value is also what _get_version() returns when hass.data isn't yet
+        # populated, so this stays consistent.
+        return "unknown"
+
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Beatify from a config entry."""
     _LOGGER.debug("Setting up Beatify integration")
 
     # Initialize domain data storage
     hass.data.setdefault(DOMAIN, {})
+
+    # Read version from manifest.json once at setup (#784). Done in executor
+    # because HA 2026.2+ flags blocking I/O at module level — but doing it
+    # here at setup time, off the event loop, keeps things clean.
+    version = await hass.async_add_executor_job(_read_manifest_version)
+    _LOGGER.debug("Beatify version: %s", version)
 
     # Ensure playlist directory exists
     playlist_dir = await async_ensure_playlist_directory(hass)
@@ -119,6 +147,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Store discovery results and game infrastructure
     hass.data[DOMAIN] = {
         "entry_id": entry.entry_id,
+        "version": version,  # #784 — single source of truth from manifest.json
         "media_players": media_players,
         "playlists": playlists,
         "playlist_dir": str(playlist_dir),
