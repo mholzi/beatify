@@ -440,6 +440,7 @@
     "ttsAnnounceWinnerHint": "Ansage des Gewinners am Spielende",
     "ttsTested": "Gesendet",
     "ttsTestFailed": "Fehlgeschlagen",
+    "ttsTestNoSpeaker": "Erst einen Lautsprecher auswählen",
     "haEntities": "HA-Entitäten",
     "haEntitiesSummary": "6 Entitäten",
     "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entitäten bereit. Finde sie unter Entwicklerwerkzeuge → Zustände oder suche nach beatify in der Entitätsregistrierung.",

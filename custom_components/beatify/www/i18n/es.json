@@ -440,6 +440,7 @@
     "ttsAnnounceWinnerHint": "Anunciar al ganador al final del juego",
     "ttsTested": "Enviado",
     "ttsTestFailed": "Error",
+    "ttsTestNoSpeaker": "Elige primero un altavoz",
     "haEntities": "Entidades HA",
     "haEntitiesSummary": "6 entidades",
     "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades.",

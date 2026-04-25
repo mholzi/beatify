@@ -871,6 +871,17 @@ function _renderLevelUp() {
     if (ttsTestBtn) {
         ttsTestBtn.addEventListener('click', async () => {
             if (!chosenTtsEntityId) return;
+            // #793: tts.speak needs both a TTS entity AND a media player.
+            // Use the speaker the user picked in Step 1 — announcements
+            // come out of the same speaker as the music.
+            if (!chosenSpeaker) {
+                ttsTestBtn.innerHTML = '✗ ' + _t('wizard.step5.tts.testNoSpeaker', 'Pick a speaker first');
+                setTimeout(() => {
+                    ttsTestBtn.innerHTML = '🔊 ' + _t('wizard.step5.tts.test', 'Test');
+                    ttsTestBtn.disabled = !chosenTtsEntityId;
+                }, 3000);
+                return;
+            }
             const orig = ttsTestBtn.innerHTML;
             ttsTestBtn.disabled = true;
             ttsTestBtn.innerHTML = '🔊 …';
@@ -878,7 +889,11 @@ function _renderLevelUp() {
                 const r = await fetch('/beatify/api/tts-test', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ entity_id: chosenTtsEntityId, message: 'Beatify TTS test — this is working!' }),
+                    body: JSON.stringify({
+                        entity_id: chosenTtsEntityId,
+                        media_player_entity_id: chosenSpeaker,
+                        message: 'Beatify TTS test — this is working!',
+                    }),
                 });
                 ttsTestBtn.innerHTML = r.ok
                     ? '✓ ' + _t('wizard.step5.tts.testOk', 'Sent')

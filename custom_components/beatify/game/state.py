@@ -1855,10 +1855,19 @@ class GameState:
         announce_game_start: bool = True,
         announce_winner: bool = True,
     ) -> None:
-        """Configure TTS announcement service for the game."""
+        """Configure TTS announcement service for the game.
+
+        ``entity_id`` is the TTS provider entity (e.g. ``tts.google_gemini_tts``).
+        Beatify routes the audio through the game's existing speaker
+        (``self.media_player``) — see #793 for why we need both identifiers.
+        """
         from custom_components.beatify.services.tts import TTSService  # noqa: PLC0415
 
-        self._tts_service = TTSService(self._hass, entity_id)
+        self._tts_service = TTSService(
+            self._hass,
+            tts_entity_id=entity_id,
+            media_player_entity_id=self.media_player,
+        )
         self._tts_announce_game_start = announce_game_start
         self._tts_announce_winner = announce_winner
 
