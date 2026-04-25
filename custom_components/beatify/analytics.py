@@ -104,7 +104,9 @@ class AnalyticsStorage:
         self._session_error_count = 0
         self._save_lock = asyncio.Lock()
         self._playlist_display_names: dict[str, str] | None = None
-        self._metrics_cache: dict[str, tuple[float, dict]] = {}  # period -> (timestamp, result)
+        self._metrics_cache: dict[
+            str, tuple[float, dict]
+        ] = {}  # period -> (timestamp, result)
 
     def _empty_data(self) -> AnalyticsData:
         """Return empty analytics data structure."""

@@ -216,9 +216,7 @@ class PlayerRegistry:
         Uses only players who have completed at least one round to avoid
         inflating the average with other late joiners' initial scores (#494).
         """
-        scored_players = [
-            p for p in self.players.values() if p.rounds_played > 0
-        ]
+        scored_players = [p for p in self.players.values() if p.rounds_played > 0]
         if not scored_players:
             return 0
         total = sum(p.score for p in scored_players)

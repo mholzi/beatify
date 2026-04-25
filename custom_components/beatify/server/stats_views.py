@@ -15,7 +15,6 @@ from custom_components.beatify.server.base import (
     RateLimitMixin,
     _get_html,
     _json_error,
-    _read_file,
     _verify_admin_token,
 )
 
@@ -61,7 +60,11 @@ class StatsView(HomeAssistantView):
         """Get game statistics summary and history."""
         # Issue #386: Admin token required when game is active
         game_state = self.hass.data.get(DOMAIN, {}).get("game")
-        if game_state and game_state.game_id and not _verify_admin_token(request, game_state):
+        if (
+            game_state
+            and game_state.game_id
+            and not _verify_admin_token(request, game_state)
+        ):
             return _json_error("Admin token required", 403, code="UNAUTHORIZED")
 
         stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
@@ -250,7 +253,9 @@ class UsageView(HomeAssistantView):
         """Return top-played or recently-played playlists for the current host."""
         kind = request.query.get("kind", "top")
         if kind not in ("top", "recent"):
-            return _json_error("kind must be 'top' or 'recent'", 400, code="BAD_REQUEST")
+            return _json_error(
+                "kind must be 'top' or 'recent'", 400, code="BAD_REQUEST"
+            )
 
         try:
             limit = int(request.query.get("limit", "8" if kind == "top" else "12"))

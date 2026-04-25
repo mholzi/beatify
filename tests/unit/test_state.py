@@ -738,7 +738,10 @@ class TestPauseGame:
     async def test_pause_cancels_timer(self):
         self.state._round_manager._timer_task = asyncio.create_task(asyncio.sleep(100))
         await self.state.pause_game("admin_disconnected")
-        assert self.state._round_manager._timer_task is None or self.state._round_manager._timer_task.cancelled()
+        assert (
+            self.state._round_manager._timer_task is None
+            or self.state._round_manager._timer_task.cancelled()
+        )
 
     @pytest.mark.asyncio
     async def test_pause_stops_media(self):

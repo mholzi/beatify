@@ -72,7 +72,9 @@ class StatsService:
         """Load stats from file or create empty structure."""
         try:
             if self._stats_file.exists():
-                content = await self._hass.async_add_executor_job(self._stats_file.read_text)
+                content = await self._hass.async_add_executor_job(
+                    self._stats_file.read_text
+                )
                 self._stats = json.loads(content)
                 self._all_time_avg_cache = None
                 _LOGGER.debug(
@@ -97,7 +99,9 @@ class StatsService:
             )
             # Write stats
             content = json.dumps(self._stats, indent=2)
-            await self._hass.async_add_executor_job(self._stats_file.write_text, content)
+            await self._hass.async_add_executor_job(
+                self._stats_file.write_text, content
+            )
             _LOGGER.debug("Stats saved to %s", self._stats_file)
         except OSError as err:
             _LOGGER.error("Failed to save stats: %s", err)
@@ -506,7 +510,10 @@ class StatsService:
         song_stats = songs.get(song_key)
 
         # Not enough data (AC4)
-        if not song_stats or song_stats.get("times_played", 0) < MIN_PLAYS_FOR_DIFFICULTY:
+        if (
+            not song_stats
+            or song_stats.get("times_played", 0) < MIN_PLAYS_FOR_DIFFICULTY
+        ):
             return None
 
         # Guard against division by zero
@@ -609,7 +616,9 @@ class StatsService:
         min_plays_threshold = min(max_play_count, 3)
 
         # Find hardest song - lowest accuracy with dynamic threshold
-        songs_with_enough_plays = [s for s in song_list if s["play_count"] >= min_plays_threshold]
+        songs_with_enough_plays = [
+            s for s in song_list if s["play_count"] >= min_plays_threshold
+        ]
 
         hardest = None
         easiest = None
@@ -656,7 +665,9 @@ class StatsService:
         by_playlist = []
         for ps in playlist_stats.values():
             if ps["accuracy_count"] > 0:
-                ps["avg_accuracy"] = round(ps["total_accuracy"] / ps["accuracy_count"], 2)
+                ps["avg_accuracy"] = round(
+                    ps["total_accuracy"] / ps["accuracy_count"], 2
+                )
             else:
                 ps["avg_accuracy"] = 0.0
 
@@ -674,7 +685,9 @@ class StatsService:
 
         # Apply playlist filter if specified
         if playlist_filter:
-            by_playlist = [p for p in by_playlist if p["playlist_id"] == playlist_filter]
+            by_playlist = [
+                p for p in by_playlist if p["playlist_id"] == playlist_filter
+            ]
 
         def _format_song(s: dict) -> dict | None:
             """Format song for API response."""

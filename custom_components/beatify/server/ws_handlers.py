@@ -200,9 +200,7 @@ async def handle_admin_connect(
     game_state._admin_ws = ws
     _LOGGER.info("Admin spectator connected via WebSocket")
 
-    await ws.send_json(
-        {"type": "admin_connect_ack", "game_id": game_state.game_id}
-    )
+    await ws.send_json({"type": "admin_connect_ack", "game_id": game_state.game_id})
     state_msg = build_state_message(game_state)
     if state_msg:
         await ws.send_json(state_msg)
@@ -217,9 +215,7 @@ async def handle_admin(
     """Handle admin action messages — dispatches to admin sub-handlers."""
     action = data.get("action")
 
-    is_admin_ws = (
-        game_state._admin_ws is not None and game_state._admin_ws is ws
-    )
+    is_admin_ws = game_state._admin_ws is not None and game_state._admin_ws is ws
 
     sender = None
     for player in list(game_state.players.values()):
@@ -358,7 +354,9 @@ async def admin_start_game(
                 if error_detail:
                     error_message = f"Media player error: {error_detail}"
                 else:
-                    error_message = "Media player not responding - check speaker connection"
+                    error_message = (
+                        "Media player not responding - check speaker connection"
+                    )
             elif pause_reason == "no_songs_available":
                 error_message = "No playable songs for selected provider"
             else:
@@ -517,9 +515,7 @@ async def admin_end_game(
     stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
     if stats_service:
         game_summary = game_state.finalize_game()
-        await stats_service.record_game(
-            game_summary, difficulty=game_state.difficulty
-        )
+        await stats_service.record_game(game_summary, difficulty=game_state.difficulty)
         _LOGGER.debug("Game stats recorded for early end")
 
     await game_state.advance_to_end()
@@ -576,11 +572,13 @@ async def admin_rematch_game(
     _LOGGER.info("Rematch started with %d players", player_count)
 
     game_state._admin_ws = ws
-    await ws.send_json({
-        "type": "admin_token_update",
-        "admin_token": game_state.admin_token,
-        "game_id": game_state.game_id,
-    })
+    await ws.send_json(
+        {
+            "type": "admin_token_update",
+            "admin_token": game_state.admin_token,
+            "game_id": game_state.game_id,
+        }
+    )
     await handler.broadcast({"type": "rematch_started"})
     await handler.broadcast_state()
 
@@ -641,7 +639,9 @@ async def admin_set_party_lights(
         )
         _LOGGER.info(
             "Party Lights configured: %d lights, intensity=%s, mode=%s",
-            len(entity_ids), intensity, light_mode,
+            len(entity_ids),
+            intensity,
+            light_mode,
         )
     else:
         await game_state.disable_party_lights()
@@ -659,9 +659,7 @@ async def admin_toggle_party_lights(
     """Handle admin toggle_party_lights action."""
     if game_state._party_lights and game_state._party_lights._active:
         await game_state.disable_party_lights()
-        await ws.send_json(
-            {"type": "party_lights_updated", "enabled": False}
-        )
+        await ws.send_json({"type": "party_lights_updated", "enabled": False})
     else:
         await ws.send_json(
             {
@@ -882,12 +880,7 @@ async def handle_reconnect(
         return
 
     # Handle dual-tab scenario
-    if (
-        player.connected
-        and player.ws
-        and not player.ws.closed
-        and player.ws is not ws
-    ):
+    if player.connected and player.ws and not player.ws.closed and player.ws is not ws:
         try:
             await player.ws.send_json(
                 {

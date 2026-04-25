@@ -20,7 +20,9 @@ _RESULT_EMOJI: dict[str, str] = {
 }
 
 
-def build_emoji_grid(player: PlayerSession, playlist_name: str, total_rounds: int) -> str:
+def build_emoji_grid(
+    player: PlayerSession, playlist_name: str, total_rounds: int
+) -> str:
     """Build Wordle-style emoji grid for text sharing.
 
     Args:
@@ -36,7 +38,9 @@ def build_emoji_grid(player: PlayerSession, playlist_name: str, total_rounds: in
     emoji_row = "".join(_RESULT_EMOJI.get(r, "⬜") for r in player.round_results)
 
     # Count stats
-    scored_count = sum(1 for r in player.round_results if r in ("exact", "scored", "close"))
+    scored_count = sum(
+        1 for r in player.round_results if r in ("exact", "scored", "close")
+    )
     exact_count = sum(1 for r in player.round_results if r == "exact")
 
     lines = [
@@ -69,7 +73,12 @@ def build_share_data(game_state: Any) -> dict[str, Any]:
     if game_state.playlists:
         playlist_path = game_state.playlists[0]
         if "/" in playlist_path:
-            playlist_name = playlist_path.split("/")[-1].replace(".json", "").replace("-", " ").title()
+            playlist_name = (
+                playlist_path.split("/")[-1]
+                .replace(".json", "")
+                .replace("-", " ")
+                .title()
+            )
         else:
             playlist_name = playlist_path.replace(".json", "").replace("-", " ").title()
 

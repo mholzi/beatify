@@ -184,9 +184,7 @@ class HighlightsTracker:
             )
         )
 
-    def record_photo_finish(
-        self, player_names: list[str], round_num: int
-    ) -> None:
+    def record_photo_finish(self, player_names: list[str], round_num: int) -> None:
         """Record tied scores between players."""
         self.record_event(
             GameHighlight(

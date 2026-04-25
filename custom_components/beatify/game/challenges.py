@@ -142,9 +142,11 @@ def build_movie_options(song: dict[str, Any]) -> list[str] | None:
         return None
 
     # Filter valid choices and deduplicate while preserving order
-    valid_choices = list(dict.fromkeys(
-        c.strip() for c in movie_choices if isinstance(c, str) and c.strip()
-    ))
+    valid_choices = list(
+        dict.fromkeys(
+            c.strip() for c in movie_choices if isinstance(c, str) and c.strip()
+        )
+    )
 
     # Ensure correct movie is included
     if movie not in valid_choices:

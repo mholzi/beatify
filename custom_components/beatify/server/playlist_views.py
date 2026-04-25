@@ -97,7 +97,9 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
 
         # Validate data structure
         if not isinstance(body.get("requests"), list):
-            return _json_error("Missing or invalid requests array", 400, code="INVALID_REQUEST")
+            return _json_error(
+                "Missing or invalid requests array", 400, code="INVALID_REQUEST"
+            )
 
         raw_requests = body["requests"][: self.MAX_REQUESTS]
 

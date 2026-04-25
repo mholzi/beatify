@@ -364,9 +364,7 @@ class RoundManager:
 
         delay = (self.deadline - int(now * 1000)) / 1000.0
         countdown = timer_countdown or self._timer_countdown
-        self._timer_task = asyncio.create_task(
-            countdown(delay)
-        )
+        self._timer_task = asyncio.create_task(countdown(delay))
 
         # Start intro auto-stop
         self._intro_stop_task = asyncio.create_task(
