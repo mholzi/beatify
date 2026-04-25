@@ -53,7 +53,6 @@ _LEAVES = [
     "homeassistant.helpers.storage",
     "homeassistant.helpers.entity",
     "homeassistant.helpers.event",
-    "homeassistant.exceptions",
     "homeassistant.util.dt",
 ]
 
@@ -101,6 +100,37 @@ def _stub_http_module() -> None:
 
 
 _stub_http_module()
+
+
+# `homeassistant.exceptions` needs real Exception subclasses, not MagicMock
+# attributes — production code does `except (HomeAssistantError, ServiceNotFound)`
+# and Python rejects catch-clauses that aren't actual exception types.
+def _stub_exceptions_module() -> None:
+    if "homeassistant.exceptions" in sys.modules:
+        existing = sys.modules["homeassistant.exceptions"]
+        if hasattr(existing, "HomeAssistantError") and isinstance(
+            existing.HomeAssistantError, type
+        ):
+            return
+    exc_mod = ModuleType("homeassistant.exceptions")
+
+    class HomeAssistantError(Exception):
+        """Stand-in for HA's base error class."""
+
+    class ServiceNotFound(HomeAssistantError):
+        """Stand-in for HA's missing-service error."""
+
+    class ServiceValidationError(HomeAssistantError):
+        """Stand-in for HA's service argument validation error."""
+
+    exc_mod.HomeAssistantError = HomeAssistantError  # type: ignore[attr-defined]
+    exc_mod.ServiceNotFound = ServiceNotFound  # type: ignore[attr-defined]
+    exc_mod.ServiceValidationError = ServiceValidationError  # type: ignore[attr-defined]
+    sys.modules["homeassistant.exceptions"] = exc_mod
+
+
+_stub_exceptions_module()
+
 
 # Wire child attributes onto parent packages so `from homeassistant.X import Y` works
 _ha = sys.modules["homeassistant"]
