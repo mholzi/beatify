@@ -340,7 +340,12 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
         self._init_rate_limits()
 
     async def post(self, request: web.Request) -> web.Response:
-        """Speak a test message via TTS."""
+        """Speak a test message via TTS.
+
+        Modern HA ``tts.speak`` requires both a TTS provider entity and a
+        media player to route through (#793). Caller passes both:
+        ``entity_id`` (the TTS entity) and ``media_player_entity_id``.
+        """
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
@@ -350,27 +355,60 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")
+        media_player_entity_id = body.get("media_player_entity_id", "")
         message = body.get("message", "")[: self.MAX_TTS_MESSAGE_LENGTH]
         if not entity_id or not message:
             return web.json_response(
                 {"error": "entity_id and message required"}, status=400
             )
-
-        state = self.hass.states.get(entity_id)
-        if not state or state.domain not in ("media_player", "tts"):
+        if not media_player_entity_id:
             return web.json_response(
-                {"error": "Invalid or unsupported entity_id"}, status=400
+                {
+                    "error": (
+                        "media_player_entity_id required — TTS needs a speaker "
+                        "to route through. Pick a media player in the wizard "
+                        "first, then test TTS."
+                    )
+                },
+                status=400,
+            )
+
+        tts_state = self.hass.states.get(entity_id)
+        if not tts_state or tts_state.domain != "tts":
+            return web.json_response(
+                {
+                    "error": (
+                        f"{entity_id!r} is not a TTS entity. Expected "
+                        "something like 'tts.google_translate_say' or "
+                        "'tts.google_gemini_tts'."
+                    )
+                },
+                status=400,
+            )
+        mp_state = self.hass.states.get(media_player_entity_id)
+        if not mp_state or mp_state.domain != "media_player":
+            return web.json_response(
+                {"error": f"{media_player_entity_id!r} is not a media player"},
+                status=400,
             )
 
         try:
             await self.hass.services.async_call(
                 "tts",
                 "speak",
-                {"entity_id": entity_id, "message": message},
+                {
+                    "entity_id": entity_id,
+                    "media_player_entity_id": media_player_entity_id,
+                    "message": message,
+                },
                 blocking=False,
             )
         except Exception:  # noqa: BLE001
-            _LOGGER.exception("TTS test failed for entity: %s", entity_id)
+            _LOGGER.exception(
+                "TTS test failed (tts=%s, media_player=%s)",
+                entity_id,
+                media_player_entity_id,
+            )
             return web.json_response({"error": "TTS call failed"}, status=500)
 
         return web.json_response({"ok": True})

@@ -45,6 +45,18 @@
         }
     }
 
+    // #793: tts.speak needs both a TTS entity AND a media player to route
+    // through. Read the speaker from the same localStorage key the wizard
+    // and admin home view write — falls back to game settings.
+    function _selectedSpeaker() {
+        try {
+            var fromKey = localStorage.getItem('beatify_last_player');
+            if (fromKey) return fromKey;
+            var s = JSON.parse(localStorage.getItem('beatify_game_settings') || '{}');
+            return s.media_player || '';
+        } catch (e) { return ''; }
+    }
+
     function init() {
         loadState();
 
@@ -97,24 +109,34 @@
         if (testBtn) {
             testBtn.addEventListener('click', function() {
                 if (!ttsEntityId) return;
+                var speaker = _selectedSpeaker();
+                if (!speaker) {
+                    testBtn.textContent = '✗ ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTestNoSpeaker') : 'Pick a speaker first');
+                    setTimeout(function() { testBtn.textContent = '🔊 Test TTS'; testBtn.disabled = false; }, 3000);
+                    return;
+                }
                 testBtn.disabled = true;
                 testBtn.textContent = '🔊 ...';
 
                 fetch('/beatify/api/tts-test', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ entity_id: ttsEntityId, message: 'Beatify TTS test \u2014 this is working!' })
+                    body: JSON.stringify({
+                        entity_id: ttsEntityId,
+                        media_player_entity_id: speaker,
+                        message: 'Beatify TTS test — this is working!'
+                    })
                 }).then(function(resp) {
                     if (!resp.ok) {
-                        testBtn.textContent = '\u2717 ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTestFailed') : 'Failed');
-                        setTimeout(function() { testBtn.textContent = '\uD83D\uDD0A Test TTS'; testBtn.disabled = false; }, 2000);
+                        testBtn.textContent = '✗ ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTestFailed') : 'Failed');
+                        setTimeout(function() { testBtn.textContent = '🔊 Test TTS'; testBtn.disabled = false; }, 2000);
                         return;
                     }
-                    testBtn.textContent = '\u2713 ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTested') : 'Sent');
-                    setTimeout(function() { testBtn.textContent = '\uD83D\uDD0A Test TTS'; testBtn.disabled = false; }, 2000);
+                    testBtn.textContent = '✓ ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTested') : 'Sent');
+                    setTimeout(function() { testBtn.textContent = '🔊 Test TTS'; testBtn.disabled = false; }, 2000);
                 }).catch(function() {
-                    testBtn.textContent = '\u2717 ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTestFailed') : 'Failed');
-                    setTimeout(function() { testBtn.textContent = '\uD83D\uDD0A Test TTS'; testBtn.disabled = false; }, 2000);
+                    testBtn.textContent = '✗ ' + (window.BeatifyI18n ? window.BeatifyI18n.t('admin.ttsTestFailed') : 'Failed');
+                    setTimeout(function() { testBtn.textContent = '🔊 Test TTS'; testBtn.disabled = false; }, 2000);
                 });
             });
         }
