@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc1] - 2026-04-25
+
+### Fixed
+- **TTS announcements actually play now (#793)** — Beatify was calling HA's modern `tts.speak` service with only `entity_id` (the TTS provider). The service requires *both* `entity_id` AND `media_player_entity_id` — without the speaker target, audio generated but had nowhere to play, so announcements went silent on every modern TTS entity (Gemini, Cloud, etc.). Reported by @szszl0 on Gemini TTS.
+  - `TTSService` constructor now takes both identifiers. The runtime path reuses the game's existing speaker (announcements come out of the same speaker as the music — natural).
+  - `POST /beatify/api/tts-test` now requires `media_player_entity_id` in the request body and validates entity domains strictly (TTS entity must be `tts.*`, target must be `media_player.*`).
+  - Admin "Test TTS" button + wizard "Test" button both pull the chosen speaker from the existing game settings and forward it. If no speaker has been picked yet, both surface a *"Pick a speaker first"* hint instead of silently failing.
+
+### Added
+- 6 new unit tests in `tests/unit/test_tts.py` covering the dual-entity wiring, missing-id defensive paths, unavailable-entity skips, and exception swallowing.
+- 1 new i18n key per locale (en/de/es/fr/nl): `admin.ttsTestNoSpeaker`.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + `wizard.js?v=` + `admin.min.js?v=` + `tts-settings.js?v=` cache-busters → `3.3.2-rc1`. CSS unchanged.
+- 401 passed, 1 xfailed.
+
 ## [3.3.1] - 2026-04-25
 
 Stable promotion of the 3.3.1-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.1) for the user-facing summary.
