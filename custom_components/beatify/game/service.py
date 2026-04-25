@@ -155,33 +155,25 @@ class GameService:
         submission_time = self._game_state.current_time()
         player.submit_guess(year, submission_time)
 
-    def submit_artist_guess(
-        self, player_name: str, artist: str
-    ) -> dict[str, Any]:
+    def submit_artist_guess(self, player_name: str, artist: str) -> dict[str, Any]:
         """Submit an artist challenge guess.
 
         Returns the result dict from ChallengeManager.
         """
         guess_time = self._game_state.current_time()
-        result = self._game_state.submit_artist_guess(
-            player_name, artist, guess_time
-        )
+        result = self._game_state.submit_artist_guess(player_name, artist, guess_time)
         player = self._game_state.get_player(player_name)
         if player:
             player.has_artist_guess = True
         return result
 
-    def submit_movie_guess(
-        self, player_name: str, movie: str
-    ) -> dict[str, Any]:
+    def submit_movie_guess(self, player_name: str, movie: str) -> dict[str, Any]:
         """Submit a movie quiz guess.
 
         Returns the result dict from ChallengeManager.
         """
         guess_time = self._game_state.current_time()
-        result = self._game_state.submit_movie_guess(
-            player_name, movie, guess_time
-        )
+        result = self._game_state.submit_movie_guess(player_name, movie, guess_time)
         player = self._game_state.get_player(player_name)
         if player:
             player.has_movie_guess = True

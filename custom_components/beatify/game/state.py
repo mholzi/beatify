@@ -114,7 +114,9 @@ class GameState:
         self._tts_service: Any = None  # TTSService (lazy import)
         self._tts_announce_game_start: bool = True
         self._tts_announce_winner: bool = True
-        self._bg_tasks: set[asyncio.Task] = set()  # Issue #391: prevent GC of fire-and-forget tasks
+        self._bg_tasks: set[asyncio.Task] = (
+            set()
+        )  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
         self._player_registry = PlayerRegistry()
@@ -733,7 +735,9 @@ class GameState:
             setattr(self, attr, value)
 
         # Re-create PlaylistManager with fresh song list
-        self._playlist_manager = PlaylistManager(preserved["songs"], preserved["provider"])
+        self._playlist_manager = PlaylistManager(
+            preserved["songs"], preserved["provider"]
+        )
         self.total_rounds = len(preserved["songs"])
 
         self.phase = GamePhase.LOBBY
@@ -835,11 +839,15 @@ class GameState:
                     and not self.intro_stopped
                     and self._round_manager._intro_round_start_time is not None
                 ):
-                    elapsed_intro = self._round_manager.round_duration - remaining_seconds
+                    elapsed_intro = (
+                        self._round_manager.round_duration - remaining_seconds
+                    )
                     remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
                     if remaining_intro > 0:
                         self._round_manager._intro_stop_task = asyncio.create_task(
-                            self._round_manager._intro_auto_stop(remaining_intro, self._on_round_end)
+                            self._round_manager._intro_auto_stop(
+                                remaining_intro, self._on_round_end
+                            )
                         )
                         _LOGGER.info(
                             "Intro stop timer restarted with %.1fs remaining",
@@ -1132,10 +1140,17 @@ class GameState:
 
         resolved_uri = song.get("_resolved_uri")
         if not resolved_uri:
-            _LOGGER.warning("Skipping song (year %s) - no URI for provider", song.get("year", "?"))
-            self._playlist_manager.mark_played(get_song_uri(song, self.provider) or song.get("uri"))
+            _LOGGER.warning(
+                "Skipping song (year %s) - no URI for provider", song.get("year", "?")
+            )
+            self._playlist_manager.mark_played(
+                get_song_uri(song, self.provider) or song.get("uri")
+            )
             if _retry_count >= MAX_SONG_RETRIES:
-                _LOGGER.error("No playable songs found after %d attempts, pausing game", MAX_SONG_RETRIES)
+                _LOGGER.error(
+                    "No playable songs found after %d attempts, pausing game",
+                    MAX_SONG_RETRIES,
+                )
                 await self.pause_game("no_songs_available")
                 return False
             return await self.start_round(_retry_count + 1)
@@ -1147,26 +1162,40 @@ class GameState:
         # Play song via media player (skip if deferred for intro splash)
         if self._media_player_service and not will_defer_for_splash:
             if not self._media_player_service.is_available():
-                self.last_error_detail = f"Media player {self.media_player} is unavailable"
-                _LOGGER.error("Media player %s is not available, pausing game", self.media_player)
+                self.last_error_detail = (
+                    f"Media player {self.media_player} is unavailable"
+                )
+                _LOGGER.error(
+                    "Media player %s is not available, pausing game", self.media_player
+                )
                 await self.pause_game("media_player_error")
                 return False
 
             # Additional responsiveness check for non-MA players
             if self.platform != "music_assistant":
-                responsive, error_detail = await self._media_player_service.verify_responsive()
+                (
+                    responsive,
+                    error_detail,
+                ) = await self._media_player_service.verify_responsive()
                 if not responsive:
                     self.last_error_detail = error_detail
-                    _LOGGER.error("Media player not responsive: %s, pausing game", error_detail)
+                    _LOGGER.error(
+                        "Media player not responsive: %s, pausing game", error_detail
+                    )
                     await self.pause_game("media_player_error")
                     return False
 
             success = await self._media_player_service.play_song(song)
             if not success:
                 _LOGGER.warning("Failed to play song: %s", song.get("uri"))
-                self._playlist_manager.mark_played(song.get("_resolved_uri") or song.get("uri"))
+                self._playlist_manager.mark_played(
+                    song.get("_resolved_uri") or song.get("uri")
+                )
                 if _retry_count >= MAX_SONG_RETRIES:
-                    _LOGGER.error("Media player unreachable after %d attempts, pausing game", MAX_SONG_RETRIES)
+                    _LOGGER.error(
+                        "Media player unreachable after %d attempts, pausing game",
+                        MAX_SONG_RETRIES,
+                    )
                     await self.pause_game("media_player_error")
                     return False
                 await asyncio.sleep(1.0)
@@ -1193,9 +1222,13 @@ class GameState:
         from custom_components.beatify.services.media_player import (  # noqa: PLC0415
             MediaPlayerService,
         )
+
         if self.media_player and not self._media_player_service:
             self._media_player_service = MediaPlayerService(
-                self._hass, self.media_player, platform=self.platform, provider=self.provider
+                self._hass,
+                self.media_player,
+                platform=self.platform,
+                provider=self.provider,
             )
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
@@ -1205,10 +1238,14 @@ class GameState:
         """Determine if this is an intro round. Delegates to RoundManager."""
         return self._round_manager.prepare_intro_round(song, self._hass)
 
-    def _build_round_metadata(self, song: dict, resolved_uri: str, will_defer_for_splash: bool) -> dict:
+    def _build_round_metadata(
+        self, song: dict, resolved_uri: str, will_defer_for_splash: bool
+    ) -> dict:
         """Build initial metadata dict. Delegates to RoundManager."""
         return self._round_manager.build_round_metadata(
-            song, resolved_uri, will_defer_for_splash,
+            song,
+            resolved_uri,
+            will_defer_for_splash,
             self._media_player_service,
             self._fetch_metadata_async(resolved_uri),
         )
@@ -1222,7 +1259,10 @@ class GameState:
     ) -> None:
         """Commit all round state. Delegates to RoundManager."""
         self._round_manager.initialize_round(
-            song, metadata, resolved_uri, will_defer_for_splash,
+            song,
+            metadata,
+            resolved_uri,
+            will_defer_for_splash,
             self._playlist_manager,
             self._challenge_manager,
             self.players,
@@ -1276,7 +1316,9 @@ class GameState:
             # Artist/title are authoritative from playlist data — media player
             # state can report stale/wrong track info (especially Sonos + Spotify).
             if self.current_song:
-                current_uri = self.current_song.get("_resolved_uri") or self.current_song.get("uri")
+                current_uri = self.current_song.get(
+                    "_resolved_uri"
+                ) or self.current_song.get("uri")
                 if current_uri == uri:
                     self.current_song["album_art"] = metadata.get(
                         "album_art", "/beatify/static/img/no-artwork.svg"
@@ -1406,7 +1448,13 @@ class GameState:
         # Calculate round analytics after scoring (Story 13.3)
         try:
             self.round_analytics = self.calculate_round_analytics()
-        except (KeyError, AttributeError, TypeError, ValueError, ZeroDivisionError) as err:
+        except (
+            KeyError,
+            AttributeError,
+            TypeError,
+            ValueError,
+            ZeroDivisionError,
+        ) as err:
             _LOGGER.error("Failed to calculate round analytics: %s", err)
             self.round_analytics = None
 
@@ -1414,7 +1462,9 @@ class GameState:
         # Extended for song statistics (Story 19.7)
         # Wrapped in try/catch to ensure round transition completes even if stats fail
         if self._stats_service and self.current_song:
-            song_uri = self.current_song.get("_resolved_uri") or self.current_song.get("uri")
+            song_uri = self.current_song.get("_resolved_uri") or self.current_song.get(
+                "uri"
+            )
             if song_uri:
                 try:
                     # Build player results list for song difficulty calculation
@@ -1449,7 +1499,9 @@ class GameState:
                     _LOGGER.error("Failed to record song results: %s", err)
 
         # Transition to REVEAL
-        self._player_registry._reactions_this_phase = set()  # Story 18.9: Clear for new reveal phase
+        self._player_registry._reactions_this_phase = (
+            set()
+        )  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
@@ -1499,9 +1551,7 @@ class GameState:
             if p.submitted and p.current_guess is not None
         ]
 
-        sorted_players = sorted(
-            self.players.values(), key=lambda p: (-p.score, p.name)
-        )
+        sorted_players = sorted(self.players.values(), key=lambda p: (-p.score, p.name))
         rank_map = {p.name: i + 1 for i, p in enumerate(sorted_players)}
 
         for player in submitted_players:
@@ -1565,9 +1615,7 @@ class GameState:
             for score, count in score_counts.items():
                 if count >= 2 and score > 0:
                     tied_names = [
-                        p.name
-                        for p in self.players.values()
-                        if p.round_score == score
+                        p.name for p in self.players.values() if p.round_score == score
                     ]
                     # Only record if it's among the top scores
                     top_score = max(scores)
@@ -1841,15 +1889,10 @@ class GameState:
         top_score = max(p.score for p in self.players.values())
         winners = [p for p in self.players.values() if p.score == top_score]
         if len(winners) == 1:
-            message = (
-                f"And the winner is... {winners[0].name} "
-                f"with {top_score} points!"
-            )
+            message = f"And the winner is... {winners[0].name} with {top_score} points!"
         else:
             names = " and ".join(w.name for w in winners)
-            message = (
-                f"It's a tie between {names} with {top_score} points!"
-            )
+            message = f"It's a tie between {names} with {top_score} points!"
         await self._tts_announce(message)
 
     def adjust_volume(self, direction: str) -> float:

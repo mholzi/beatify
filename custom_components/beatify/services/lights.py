@@ -52,7 +52,6 @@ WLED_PRESET_DEFAULTS: dict[str, int] = {
     "LOBBY": 1,
     "PLAYING": 2,
     "REVEAL": 3,
-
     "END": 6,
 }
 
@@ -103,7 +102,9 @@ class PartyLightsService:
 
         self._entity_ids = list(entity_ids)
         self._intensity = intensity if intensity in INTENSITY_PRESETS else "medium"
-        self._light_mode = light_mode if light_mode in ("static", "dynamic", "wled") else "dynamic"
+        self._light_mode = (
+            light_mode if light_mode in ("static", "dynamic", "wled") else "dynamic"
+        )
         if wled_presets:
             self._wled_presets.update(wled_presets)
         self._saved_states = {}
@@ -143,7 +144,9 @@ class PartyLightsService:
             for s in self._saved_states.values()
             if s.get("state") != "off" and s.get("brightness") is not None
         ]
-        self._base_brightness = int(sum(brightnesses) / len(brightnesses)) if brightnesses else 128
+        self._base_brightness = (
+            int(sum(brightnesses) / len(brightnesses)) if brightnesses else 128
+        )
 
         self._active = True
         _LOGGER.info(
@@ -192,7 +195,9 @@ class PartyLightsService:
                 offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
                 service_data["brightness"] = min(self._base_brightness + offset, 255)
             else:
-                preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
+                preset = INTENSITY_PRESETS.get(
+                    self._intensity, INTENSITY_PRESETS["medium"]
+                )
                 if "brightness" in service_data:
                     service_data["brightness"] = int(
                         service_data["brightness"] * preset["brightness_scale"]
@@ -256,7 +261,10 @@ class PartyLightsService:
                 if entities:
                     await self._apply(
                         entities,
-                        {"rgb_color": BEAT_COLORS[i % len(BEAT_COLORS)], "brightness": 200},
+                        {
+                            "rgb_color": BEAT_COLORS[i % len(BEAT_COLORS)],
+                            "brightness": 200,
+                        },
                         transition=0.1,
                     )
                 i += 1
@@ -314,7 +322,9 @@ class PartyLightsService:
 
         await self.stop_beat_loop()
         self._active = False
-        _LOGGER.info("Party Lights stopping, restoring %d lights", len(self._saved_states))
+        _LOGGER.info(
+            "Party Lights stopping, restoring %d lights", len(self._saved_states)
+        )
 
         for entity_id, saved in self._saved_states.items():
             try:
@@ -451,5 +461,7 @@ class PartyLightsService:
         except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
             _LOGGER.warning(
                 "Failed to set WLED preset %d on %s (tried %s)",
-                preset_id, entity_id, preset_entity,
+                preset_id,
+                entity_id,
+                preset_entity,
             )

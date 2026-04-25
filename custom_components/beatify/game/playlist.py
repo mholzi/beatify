@@ -34,7 +34,11 @@ _URI_FIELDS = [
     ("uri", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
     ("uri_spotify", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
     ("uri_apple_music", URI_PATTERN_APPLE_MUSIC, "applemusic://track/id"),
-    ("uri_youtube_music", URI_PATTERN_YOUTUBE_MUSIC, "https://music.youtube.com/watch?v=..."),
+    (
+        "uri_youtube_music",
+        URI_PATTERN_YOUTUBE_MUSIC,
+        "https://music.youtube.com/watch?v=...",
+    ),
     ("uri_tidal", URI_PATTERN_TIDAL, "tidal://track/{id}"),
     ("uri_deezer", URI_PATTERN_DEEZER, "deezer://track/{id}"),
 ]
@@ -83,7 +87,10 @@ class PlaylistManager:
         _LOGGER.info(
             "PlaylistManager: %d/%d songs across %d playlist(s) for %s"
             + (" (balanced mode)" if self._multi_playlist else ""),
-            deduped, total_count, len(buckets), provider,
+            deduped,
+            total_count,
+            len(buckets),
+            provider,
         )
 
     def get_next_song(self) -> dict[str, Any] | None:
@@ -99,8 +106,7 @@ class PlaylistManager:
         # Balanced: pick a random non-exhausted playlist, then a song
         active_buckets = {
             k: [
-                s for s in v
-                if get_song_uri(s, self._provider) not in self._played_uris
+                s for s in v if get_song_uri(s, self._provider) not in self._played_uris
             ]
             for k, v in self._buckets.items()
         }
@@ -118,8 +124,7 @@ class PlaylistManager:
     def _pick_from_pool(self, pool: list[dict[str, Any]]) -> dict[str, Any] | None:
         """Pick a random unplayed song from a flat pool."""
         available = [
-            s for s in pool
-            if get_song_uri(s, self._provider) not in self._played_uris
+            s for s in pool if get_song_uri(s, self._provider) not in self._played_uris
         ]
         if not available:
             return None
@@ -342,7 +347,9 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                 if re.match(pattern, value):
                     has_valid_uri = True
                 else:
-                    errors.append(f"Song {i + 1}: '{field}' invalid (expected {expected})")
+                    errors.append(
+                        f"Song {i + 1}: '{field}' invalid (expected {expected})"
+                    )
 
         # Error if no valid URI found
         if not has_valid_uri:
@@ -456,7 +463,9 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     for json_file in json_files:
         try:
             rel = json_file.relative_to(playlist_dir)
-            source = "community" if rel.parts and rel.parts[0] == "community" else "bundled"
+            source = (
+                "community" if rel.parts and rel.parts[0] == "community" else "bundled"
+            )
             content = await loop.run_in_executor(None, _read_file, json_file)
             data = json.loads(content)
             is_valid, errors = validate_playlist(data)
@@ -476,10 +485,14 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                 1
                 for s in songs
                 if (
-                    (isinstance(s.get("uri_spotify"), str)
-                     and re.match(URI_PATTERN_SPOTIFY, s["uri_spotify"]))
-                    or (isinstance(s.get("uri"), str)
-                        and re.match(URI_PATTERN_SPOTIFY, s["uri"]))
+                    (
+                        isinstance(s.get("uri_spotify"), str)
+                        and re.match(URI_PATTERN_SPOTIFY, s["uri_spotify"])
+                    )
+                    or (
+                        isinstance(s.get("uri"), str)
+                        and re.match(URI_PATTERN_SPOTIFY, s["uri"])
+                    )
                 )
             )
             apple_music_count = _count("uri_apple_music", URI_PATTERN_APPLE_MUSIC)
@@ -519,7 +532,11 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
         except json.JSONDecodeError as e:
             try:
                 rel = json_file.relative_to(playlist_dir)
-                source = "community" if rel.parts and rel.parts[0] == "community" else "bundled"
+                source = (
+                    "community"
+                    if rel.parts and rel.parts[0] == "community"
+                    else "bundled"
+                )
             except ValueError:
                 source = "bundled"
             playlists.append(
@@ -563,7 +580,9 @@ async def async_load_and_validate_playlist(
         return p.read_text(encoding="utf-8")
 
     try:
-        content = await asyncio.get_running_loop().run_in_executor(None, _read_file, path)
+        content = await asyncio.get_running_loop().run_in_executor(
+            None, _read_file, path
+        )
         data = json.loads(content)
     except json.JSONDecodeError as e:
         return (None, [f"Invalid JSON: {e}"])

@@ -83,9 +83,7 @@ class GameStateSerializer:
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
         # Submission tracking (Story 4.4)
-        state["submitted_count"] = sum(
-            1 for p in gs.players.values() if p.submitted
-        )
+        state["submitted_count"] = sum(1 for p in gs.players.values() if p.submitted)
         state["all_submitted"] = gs.all_submitted()
         # Song info WITHOUT year during PLAYING (hidden until reveal)
         if gs.current_song:
@@ -151,7 +149,9 @@ class GameStateSerializer:
             state["game_performance"] = game_performance
         # Song difficulty rating (Story 15.1 AC1, AC4)
         if gs.current_song:
-            song_uri = gs.current_song.get("_resolved_uri") or gs.current_song.get("uri")
+            song_uri = gs.current_song.get("_resolved_uri") or gs.current_song.get(
+                "uri"
+            )
             if song_uri:
                 difficulty = gs.get_song_difficulty(song_uri)
                 if difficulty:

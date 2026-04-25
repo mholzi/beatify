@@ -82,7 +82,9 @@ class PlayerSession:
     )  # Time-to-submit per round (seconds)
     bets_placed: int = 0  # Total bets placed (distinct from bets_won)
     close_calls: int = 0  # Number of +/-1 year guesses (not exact)
-    round_scores: list[int] = field(default_factory=list)  # All round scores for final 3 calc
+    round_scores: list[int] = field(
+        default_factory=list
+    )  # All round scores for final 3 calc
 
     # Steal power-up tracking (Story 15.3)
     steal_available: bool = False  # True if steal unlocked and not yet used

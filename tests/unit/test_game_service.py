@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -63,7 +63,9 @@ class TestGameServiceProperties:
 class TestGameLifecycle:
     @pytest.mark.asyncio
     async def test_create_game(self, service, game_state):
-        result = await service.create_game(playlists=["p.json"], songs=[], media_player="mp", base_url="http://x")
+        result = await service.create_game(
+            playlists=["p.json"], songs=[], media_player="mp", base_url="http://x"
+        )
         game_state.create_game.assert_called_once()
         assert result["game_id"] == "abc"
 
@@ -95,7 +97,9 @@ class TestGameLifecycle:
 
 class TestFinalizeAndRecordStats:
     @pytest.mark.asyncio
-    async def test_records_stats_when_service_available(self, service, hass, game_state):
+    async def test_records_stats_when_service_available(
+        self, service, hass, game_state
+    ):
         mock_stats = MagicMock()
         mock_stats.record_game = AsyncMock()
         hass.data[DOMAIN]["stats"] = mock_stats
@@ -161,12 +165,16 @@ class TestPlayerOperations:
 
     def test_submit_artist_guess(self, service, game_state):
         result = service.submit_artist_guess("Alice", "Beatles")
-        game_state.submit_artist_guess.assert_called_once_with("Alice", "Beatles", 1000.0)
+        game_state.submit_artist_guess.assert_called_once_with(
+            "Alice", "Beatles", 1000.0
+        )
         assert result["correct"] is True
 
     def test_submit_movie_guess(self, service, game_state):
         result = service.submit_movie_guess("Alice", "Titanic")
-        game_state.submit_movie_guess.assert_called_once_with("Alice", "Titanic", 1000.0)
+        game_state.submit_movie_guess.assert_called_once_with(
+            "Alice", "Titanic", 1000.0
+        )
         assert result["correct"] is False
 
     @pytest.mark.asyncio
