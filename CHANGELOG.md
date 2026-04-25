@@ -4,6 +4,31 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1] - 2026-04-25
+
+Stable promotion of the 3.3.1-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.1) for the user-facing summary.
+
+### Fixed
+- **Apple Music via Music Assistant (#772)** — emit MA's native `apple_music://track/<id>` URI; the short `music.apple.com/song/<id>` URL was rejected by MA's parser. Closes the remaining failure from @Levtos's #768 follow-up.
+- **Silent rounds when MA can't start a track (#777)** — strict-detection compares speaker `media_title` and `media_position_updated_at` before/after the wait; "neither moved" is now a hard failure that falls through to the next URI candidate. MA timeout extended 8s → 15s for AirPlay.
+- **Admin can reclaim their own role during any phase (#790)** — same-name + `is_admin=true` reconnect during REVEAL/PLAYING is recognised as the existing admin returning. Bonus: `pause_game` now captures admin name on every reason, not just `admin_disconnected`.
+- **Service worker scope mismatch (#780)** — moved `sw.js` to `/beatify/sw.js` so its `/beatify/` scope claim is allowed. The SW finally activates; all `CACHE_VERSION` bumps now do what they say.
+- **Admin footer version label (#784)** — read from `manifest.json` at setup instead of a hardcoded constant that drifted to `v3.2.0-rc29` since April. Single source of truth, no GitHub Action dependency.
+- **Wizard provider chips re-render on speaker change** — switching speakers in Step 1 no longer leaves stale chip-dimming in Step 2.
+- **Admin i18n keys** (`admin.filterAll`, `admin.skipRound`) added across all 5 locales (#779).
+- **6 stale unit tests** un-xfailed by fixing the actual test bugs (closes #788).
+
+### Added
+- **Wizard service-compatibility UX (#772)** — capability badges per speaker in Step 1 (*"All services"* / *"Spotify only"* / *"Spotify, Apple Music"*) and dimmed-with-lock provider chips in Step 2 with an explainer card pointing to Music Assistant. Continue is blocked until a supported provider is picked. Locale word order respected across en/de/es/fr/nl.
+- **Emergency reset button** — small ⟲ icon in the admin header. One click ends any active game on the server, clears Beatify's localStorage, unregisters the service worker, and reloads. Backed by a new rate-limited `POST /beatify/api/force-reset` endpoint that doesn't require an admin token. Born from @Levtos's "großen roten Button" request.
+- **Backend force-reset endpoint** — `POST /beatify/api/force-reset` (3/hour per IP, no auth — by design, since the situation that needs it is one where the admin token may be unreachable).
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` + all HTML `?v=` cache-busters → `3.3.1`.
+- CI restored after two months untracked: `test.yml`, `validate.yml`, `conftest.py`, `pytest.ini` re-tracked. 53 files re-formatted to ruff baseline. `_VERSION` constant deleted; obsolete `version-bump.yml` workflow removed.
+- 17 new tests across MA stale-state detection, provider-capability gating, admin reclaim during REVEAL, pause-game admin-name capture. Total: 395 passed, 1 xfailed.
+- 12 new i18n keys across en/de/es/fr/nl: capability badges (`admin.step1.cap*`), MA explainer (`admin.step2.explainer.*`), reset modal (`admin.reset.*`).
+
 ## [3.3.1-rc8] - 2026-04-25
 
 ### Fixed
