@@ -5,6 +5,7 @@ from __future__ import annotations
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
+from homeassistant.exceptions import HomeAssistantError
 
 from custom_components.beatify.services.lights import (
     RAINBOW_COLORS,
@@ -220,18 +221,10 @@ class TestStartStop:
         assert svc._current_phase is None
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(
-        reason=(
-            "Same root cause as the _apply tests: mocks raise generic Exception, "
-            "production code only catches HomeAssistantError + ServiceNotFound. "
-            "Pre-existing bug — flagged for follow-up cleanup."
-        ),
-        strict=False,
-    )
     async def test_stop_handles_service_call_error(self):
         """Stop should not raise even if restore fails."""
         hass = _make_hass()
-        hass.services.async_call = AsyncMock(side_effect=Exception("HA error"))
+        hass.services.async_call = AsyncMock(side_effect=HomeAssistantError("HA error"))
         svc = PartyLightsService(hass)
         await svc.start(["light.living_room"])
         # Should not raise
@@ -745,20 +738,10 @@ class TestApplyCapability:
         assert call_args["entity_id"] == "light.sw"
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(
-        reason=(
-            "Test mocks side_effect=Exception('HA error'), but production code "
-            "only catches (HomeAssistantError, ServiceNotFound). Generic Exception "
-            "is intentionally NOT caught (#noqa: BLE001 in lights.py:422). The "
-            "test should use HomeAssistantError() instead. Pre-existing bug from "
-            "before CI was untracked — flagged for follow-up cleanup."
-        ),
-        strict=False,
-    )
     async def test_apply_handles_service_error(self):
         """_apply should not raise if a light fails."""
         hass = _make_hass()
-        hass.services.async_call = AsyncMock(side_effect=Exception("HA error"))
+        hass.services.async_call = AsyncMock(side_effect=HomeAssistantError("HA error"))
         svc = PartyLightsService(hass)
         await svc.start(["light.living_room"])
 
@@ -769,15 +752,6 @@ class TestApplyCapability:
         )
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(
-        reason=(
-            "Same root cause as test_apply_handles_service_error: mocks raise "
-            "generic Exception, production code only catches HomeAssistantError + "
-            "ServiceNotFound. Should use HomeAssistantError() in the side_effect. "
-            "Pre-existing bug — flagged for follow-up cleanup."
-        ),
-        strict=False,
-    )
     async def test_apply_continues_after_one_light_fails(self):
         """If one light errors, remaining lights should still be called."""
         call_count = 0
@@ -786,7 +760,7 @@ class TestApplyCapability:
             nonlocal call_count
             call_count += 1
             if call_count == 1:
-                raise Exception("HA error")  # noqa: TRY002
+                raise HomeAssistantError("HA error")
 
         hass = _make_hass(
             {
