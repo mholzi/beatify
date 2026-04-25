@@ -781,12 +781,16 @@ class GameState:
         self._previous_phase = self.phase
         self.pause_reason = reason
 
-        # Store admin name for rejoin verification (Story 7-2)
-        if reason == "admin_disconnected":
-            for player in self.players.values():
-                if player.is_admin:
-                    self.disconnected_admin_name = player.name
-                    break
+        # Store admin name for rejoin verification (Story 7-2). #790: capture
+        # this for ANY pause reason, not just "admin_disconnected" — when the
+        # pause is triggered server-side (media_player_error, no_songs_available)
+        # the admin's WS may still be open, but if it later drops they need a
+        # path back. Without this, ws_handlers.py:113 rejects all admin claims
+        # during non-LOBBY phases and the game becomes unrecoverable.
+        for player in self.players.values():
+            if player.is_admin:
+                self.disconnected_admin_name = player.name
+                break
 
         # Stop timer if in PLAYING
         if self.phase == GamePhase.PLAYING:
