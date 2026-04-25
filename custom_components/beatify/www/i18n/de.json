@@ -330,6 +330,12 @@
     "rematchConfirmTitle": "Revanche starten?",
     "rematchConfirmMessage": "Alle Punkte werden zurückgesetzt. Spieler bleiben verbunden.",
     "rematchConfirm": "Revanche starten",
+    "reset": {
+      "tooltip": "Beatify zurücksetzen",
+      "title": "Beatify zurücksetzen?",
+      "message": "Beendet das aktuelle Spiel und verwirft die letzten Einstellungen. Verbundene Spieler werden getrennt. Die Integration selbst bleibt installiert.",
+      "confirm": "Zurücksetzen"
+    },
     "endCurrentGame": "Aktuelles Spiel beenden",
     "newGame": "Neues Spiel",
     "newGameTitle": "Neues Spiel?",

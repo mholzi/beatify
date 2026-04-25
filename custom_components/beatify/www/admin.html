@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.1-rc1">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.1-rc6">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -134,6 +134,10 @@
             <a href="/beatify/analytics" class="analytics-icon-link" id="analytics-link" aria-label="Analytics Dashboard">
                 <span aria-hidden="true">📊</span>
             </a>
+            <!-- Emergency reset (#777 follow-up) — visible escape hatch when state gets stuck -->
+            <button type="button" class="reset-icon-btn" id="reset-btn" data-i18n-title="admin.reset.tooltip" title="Reset Beatify session" aria-label="Reset Beatify session">
+                <span aria-hidden="true">⟲</span>
+            </button>
         </div>
     </header>
 
@@ -986,6 +990,19 @@
         </div>
     </div>
 
+    <!-- Force-reset confirmation modal (#777 follow-up — emergency escape hatch) -->
+    <div id="reset-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="reset-modal-title" data-i18n="admin.reset.title">Reset Beatify?</h2>
+            <p data-i18n="admin.reset.message">Ends any active game and forgets your last setup. Connected players will be disconnected. The integration itself stays installed.</p>
+            <div class="modal-actions">
+                <button id="reset-confirm-btn" class="btn btn-primary" data-i18n="admin.reset.confirm">Reset</button>
+                <button id="reset-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- QR Modal (tap to enlarge) -->
     <div id="qr-modal" class="qr-modal hidden" role="dialog" aria-modal="true"
          aria-labelledby="qr-modal-title">
@@ -1057,7 +1074,7 @@
     <script src="/beatify/static/js/playlist-requests.min.js?v=3.3.0"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.3.0"></script>
     <script type="module" src="/beatify/static/js/wizard.js?v=3.3.1-rc3"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.3.1-rc4"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.3.1-rc6"></script>
     <script src="/beatify/static/js/party-lights.min.js?v=3.3.0"></script>
     <script src="/beatify/static/js/tts-settings.js?v=3.3.0"></script>
 </body>

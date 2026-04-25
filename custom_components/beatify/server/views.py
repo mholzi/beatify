@@ -33,6 +33,7 @@ from custom_components.beatify.services.media_player import async_get_media_play
 # Re-export game views
 from custom_components.beatify.server.game_views import (  # noqa: F401
     EndGameView,
+    ForceResetView,
     GameStatusView,
     RematchGameView,
     StartGameplayView,

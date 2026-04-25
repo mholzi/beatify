@@ -31,7 +31,6 @@ from custom_components.beatify.server.base import (
     RateLimitMixin,
     _json_error,
     _read_file,
-    _verify_admin_token,
 )
 from custom_components.beatify.server.serializers import (
     build_state_message,
@@ -70,13 +69,14 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         # Check for existing game
         if game_state and game_state.game_id:
-
             if game_state.phase == GamePhase.END:
                 # Game is already finished -- auto-clean state so a new game can start
                 # without requiring the user to explicitly dismiss the end screen (#206)
                 await game_state.end_game()
             else:
-                return _json_error("End current game first", 409, code="GAME_ALREADY_STARTED")
+                return _json_error(
+                    "End current game first", 409, code="GAME_ALREADY_STARTED"
+                )
 
         try:
             body = await request.json()
@@ -89,7 +89,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         round_duration = body.get("round_duration")  # Story 13.1
         difficulty = body.get("difficulty", DIFFICULTY_DEFAULT)  # Story 14.1
         provider = body.get("provider", PROVIDER_DEFAULT)  # Story 17.2
-        artist_challenge_enabled = body.get("artist_challenge_enabled", True)  # Story 20.7
+        artist_challenge_enabled = body.get(
+            "artist_challenge_enabled", True
+        )  # Story 20.7
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
@@ -102,7 +104,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             difficulty = DIFFICULTY_DEFAULT
 
         # Validate provider (Story 17.6: Spotify, YouTube Music, Tidal supported)
-        valid_providers = (PROVIDER_SPOTIFY, PROVIDER_YOUTUBE_MUSIC, PROVIDER_TIDAL, PROVIDER_DEEZER)
+        valid_providers = (
+            PROVIDER_SPOTIFY,
+            PROVIDER_YOUTUBE_MUSIC,
+            PROVIDER_TIDAL,
+            PROVIDER_DEEZER,
+        )
         if provider not in valid_providers:
             provider = PROVIDER_DEFAULT
 
@@ -117,7 +124,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                         code="INVALID_REQUEST",
                     )
             except (ValueError, TypeError):
-                return _json_error("Invalid round duration value", 400, code="INVALID_REQUEST")
+                return _json_error(
+                    "Invalid round duration value", 400, code="INVALID_REQUEST"
+                )
 
         if not playlist_paths:
             return _json_error("No playlists selected", 400, code="INVALID_REQUEST")
@@ -130,7 +139,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         if not media_player_state:
             return _json_error("Media player not found", 400, code="INVALID_REQUEST")
         if media_player_state.state == "unavailable":
-            return _json_error("Media player is unavailable", 400, code="INVALID_REQUEST")
+            return _json_error(
+                "Media player is unavailable", 400, code="INVALID_REQUEST"
+            )
 
         # Load and validate playlists
         songs: list[dict[str, Any]] = []
@@ -155,26 +166,41 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     continue
 
                 # Read file in executor to avoid blocking event loop
-                file_content = await self.hass.async_add_executor_job(_read_file, full_path)
+                file_content = await self.hass.async_add_executor_job(
+                    _read_file, full_path
+                )
                 playlist_data = json.loads(file_content)
 
                 for song in playlist_data.get("songs", []):
                     has_uri = any(
                         song.get(k)
-                        for k in ("uri", "uri_spotify", "uri_youtube_music", "uri_tidal", "uri_deezer", "uri_apple_music")
+                        for k in (
+                            "uri",
+                            "uri_spotify",
+                            "uri_youtube_music",
+                            "uri_tidal",
+                            "uri_deezer",
+                            "uri_apple_music",
+                        )
                     )
                     if "year" in song and has_uri:
                         tagged = dict(song)
                         tagged["_playlist_source"] = playlist_path
                         songs.append(tagged)
                     else:
-                        warnings.append(f"Invalid song in {playlist_path}: missing year or uri")
+                        warnings.append(
+                            f"Invalid song in {playlist_path}: missing year or uri"
+                        )
 
             except Exception as err:  # noqa: BLE001
                 warnings.append(f"Failed to load {playlist_path}: {err}")
 
         if not songs:
-            return _json_error("No valid songs found in selected playlists", 400, code="INVALID_REQUEST")
+            return _json_error(
+                "No valid songs found in selected playlists",
+                400,
+                code="INVALID_REQUEST",
+            )
 
         # Get base URL for join URL construction (from request URL)
         base_url = self._get_base_url(request)
@@ -253,7 +279,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         result = game_state.create_game(**create_kwargs)
         result["warnings"] = warnings
-        result["admin_token"] = game_state.admin_token  # Issue #386: for REST admin auth
+        result["admin_token"] = (
+            game_state.admin_token
+        )  # Issue #386: for REST admin auth
 
         # Record game start time for analytics (Story 19.1)
         stats_service = data.get("stats")
@@ -279,9 +307,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         if tts_config and tts_config.get("enabled"):
             tts_entity_id = tts_config.get("entity_id", "")
             if tts_entity_id:
-                tts_announce_game_start = tts_config.get(
-                    "announce_game_start", True
-                )
+                tts_announce_game_start = tts_config.get("announce_game_start", True)
                 tts_announce_winner = tts_config.get("announce_winner", True)
                 await game_state.configure_tts(
                     tts_entity_id,
@@ -303,7 +329,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         """Get base URL for join URL construction from request."""
         # Use the request URL - this is what the user actually used to access the app
         url = request.url
-        return f"{url.scheme}://{url.host}:{url.port}" if url.port else f"{url.scheme}://{url.host}"
+        return (
+            f"{url.scheme}://{url.host}:{url.port}"
+            if url.port
+            else f"{url.scheme}://{url.host}"
+        )
 
 
 class EndGameView(BeatifyAdminView):
@@ -335,6 +365,58 @@ class EndGameView(BeatifyAdminView):
         return web.json_response({"success": True})
 
 
+class ForceResetView(RateLimitMixin, HomeAssistantView):
+    """Emergency escape hatch when state gets stuck (#777 follow-up).
+
+    Unlike EndGameView this does NOT require an admin_token — by definition
+    the user might not have a valid token if state is unrecoverable (e.g.
+    a stuck lobby from before an HA restart, mismatched tokens after a
+    Reload). Rate-limited per IP to prevent DoS abuse.
+    """
+
+    url = "/beatify/api/force-reset"
+    name = "beatify:api:force-reset"
+    requires_auth = False
+
+    # Tighter than EndGameView's defaults — this kills active games, so
+    # 3 hits per hour per IP is plenty for legitimate "I got stuck" use.
+    RATE_LIMIT_REQUESTS = 3
+    RATE_LIMIT_WINDOW = 3600  # seconds
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+        self._init_rate_limits()
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Force-end any active game and report what was cleaned up."""
+        client_ip = request.remote or "unknown"
+        if not self._check_rate_limit(client_ip):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
+        data = self.hass.data.get(DOMAIN, {})
+        game_state = data.get("game")
+        ended_game_id = None
+        if game_state and game_state.game_id:
+            ended_game_id = game_state.game_id
+            try:
+                await game_state.end_game()
+            except Exception:  # noqa: BLE001
+                # Even if end_game raises, the user is stuck and needs
+                # the response — log and continue rather than 500.
+                _LOGGER.exception("force-reset: end_game raised; continuing anyway")
+
+            ws_handler = data.get("ws_handler")
+            if ws_handler:
+                try:
+                    await ws_handler.broadcast({"type": "game_ended"})
+                    await ws_handler.broadcast_state()
+                except Exception:  # noqa: BLE001
+                    _LOGGER.exception("force-reset: WS broadcast raised; continuing")
+
+        return web.json_response({"success": True, "ended_game_id": ended_game_id})
+
+
 class RematchGameView(HomeAssistantView):
     """Handle rematch game requests (Issue #108)."""
 
@@ -360,7 +442,9 @@ class RematchGameView(HomeAssistantView):
         # and the action just resets for a new game with the same players.
         # Token auth was blocking rematch from the player page (#535).
         if game_state.phase != GamePhase.END:
-            return _json_error("Can only rematch from END phase", 400, code="INVALID_PHASE")
+            return _json_error(
+                "Can only rematch from END phase", 400, code="INVALID_PHASE"
+            )
 
         player_count = len(game_state.players)
         game_state.rematch_game()
@@ -408,7 +492,9 @@ class StartGameplayView(BeatifyAdminView):
         if ws_handler:
             game_state.set_round_end_callback(ws_handler.broadcast_state)
             # Set metadata update callback for fast transitions (Issue #42)
-            game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)
+            game_state.set_metadata_update_callback(
+                ws_handler.broadcast_metadata_update
+            )
 
         # Start the first round
         success = await game_state.start_round()
@@ -443,6 +529,4 @@ class GameStatusView(HomeAssistantView):
         game_id = request.query.get("game")
         game_state = get_game_state(self.hass)
 
-        return web.json_response(
-            build_game_status_response(game_state, game_id)
-        )
+        return web.json_response(build_game_status_response(game_state, game_id))
