@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.1-rc6] - 2026-04-25
+
+### Added
+- **Reset button — emergency escape hatch (#777 follow-up).** A small ⟲ button now sits in the admin header next to the analytics icon. Tapping it opens a confirmation modal (*"Reset Beatify? Ends any active game and forgets your last setup."*). On confirm, Beatify ends any active game on the server (no admin token required — by definition the user might not have one if state is stuck), clears the integration's localStorage keys, unregisters the service worker, and reloads onto the admin entry point. Reported by @Levtos: stuck on a stale lobby after an HA restart with no in-product way out.
+
+### For contributors
+- New backend endpoint: `POST /beatify/api/force-reset` (no auth, rate-limited to 3 per hour per IP — same blast radius as `/end-game` but the lower friction is intentional).
+- Bumped manifest + `sw.js CACHE_VERSION` + `admin.min.js?v=` + `styles.min.css?v=` cache-busters → `3.3.1-rc6`.
+- 4 new i18n keys per locale: `admin.reset.{tooltip,title,message,confirm}` (en/de/es/fr/nl).
+
 ## [3.3.1-rc5] - 2026-04-24
 
 ### Fixed

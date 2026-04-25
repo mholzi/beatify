@@ -330,6 +330,12 @@
     "rematchConfirmTitle": "Start Rematch?",
     "rematchConfirmMessage": "All scores will reset. Players stay connected.",
     "rematchConfirm": "Start Rematch",
+    "reset": {
+      "tooltip": "Reset Beatify session",
+      "title": "Reset Beatify?",
+      "message": "Ends any active game and forgets your last setup. Connected players will be disconnected. The integration itself stays installed.",
+      "confirm": "Reset"
+    },
     "endCurrentGame": "End Current Game",
     "newGame": "New Game",
     "newGameTitle": "New Game?",

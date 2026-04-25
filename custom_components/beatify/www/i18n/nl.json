@@ -330,6 +330,12 @@
     "rematchConfirmTitle": "Rematch starten?",
     "rematchConfirmMessage": "Alle scores worden gereset. Spelers blijven verbonden.",
     "rematchConfirm": "Rematch starten",
+    "reset": {
+      "tooltip": "Beatify-sessie resetten",
+      "title": "Beatify resetten?",
+      "message": "Beëindigt het huidige spel en vergeet de laatste instellingen. Verbonden spelers worden losgekoppeld. De integratie zelf blijft geïnstalleerd.",
+      "confirm": "Resetten"
+    },
     "endCurrentGame": "Huidig spel beëindigen",
     "newGame": "Nieuw spel",
     "newGameTitle": "Nieuw spel?",

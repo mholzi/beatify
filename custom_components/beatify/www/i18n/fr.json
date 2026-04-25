@@ -330,6 +330,12 @@
     "rematchConfirmTitle": "Commencer la revanche ?",
     "rematchConfirmMessage": "Tous les scores seront remis à zéro. Les joueurs restent connectés.",
     "rematchConfirm": "Commencer la revanche",
+    "reset": {
+      "tooltip": "Réinitialiser la session Beatify",
+      "title": "Réinitialiser Beatify ?",
+      "message": "Termine la partie en cours et oublie la dernière configuration. Les joueurs connectés seront déconnectés. L'intégration reste installée.",
+      "confirm": "Réinitialiser"
+    },
     "endCurrentGame": "Terminer la partie en cours",
     "newGame": "Nouvelle partie",
     "newGameTitle": "Nouvelle partie ?",

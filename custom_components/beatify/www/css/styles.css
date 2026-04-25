@@ -302,6 +302,32 @@ body.theme-dark .analytics-icon-link:focus {
     outline: none;
 }
 
+/* Reset button (#777 follow-up — emergency escape hatch).
+   Same 44px icon-button shape as the analytics + PWA install buttons,
+   but neon-pink to signal "destructive, last resort". Stays subtle at
+   rest so it doesn't read as a primary action. */
+.reset-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 45, 106, 0.1);
+    color: var(--color-text-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.reset-icon-btn:hover,
+.reset-icon-btn:focus {
+    background: rgba(255, 45, 106, 0.25);
+    transform: scale(1.1);
+    outline: none;
+}
+
 /* PWA iOS Hint Modal (#226) */
 .pwa-ios-hint {
     position: fixed;

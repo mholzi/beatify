@@ -31,6 +31,7 @@ from .server.views import (
     CapabilitiesView,
     DashboardView,
     EndGameView,
+    ForceResetView,
     GameStatusView,
     LauncherView,
     LightsView,
@@ -144,6 +145,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(StartGameView(hass))
     hass.http.register_view(StartGameplayView(hass))
     hass.http.register_view(EndGameView(hass))
+    hass.http.register_view(
+        ForceResetView(hass)
+    )  # #777 follow-up — stuck-state escape hatch
     hass.http.register_view(RematchGameView(hass))  # Issue #108
     hass.http.register_view(PlayerView(hass))
     hass.http.register_view(

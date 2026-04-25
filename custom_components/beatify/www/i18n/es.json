@@ -330,6 +330,12 @@
     "rematchConfirmTitle": "¿Iniciar revancha?",
     "rematchConfirmMessage": "Todos los puntos se reiniciarán. Los jugadores permanecen conectados.",
     "rematchConfirm": "Iniciar revancha",
+    "reset": {
+      "tooltip": "Reiniciar sesión de Beatify",
+      "title": "¿Reiniciar Beatify?",
+      "message": "Termina la partida actual y olvida la última configuración. Los jugadores conectados serán desconectados. La integración permanece instalada.",
+      "confirm": "Reiniciar"
+    },
     "endCurrentGame": "Terminar juego actual",
     "newGame": "Nuevo juego",
     "newGameTitle": "¿Nuevo juego?",
