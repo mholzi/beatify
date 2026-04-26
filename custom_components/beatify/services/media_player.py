@@ -100,17 +100,31 @@ MA_PLAYBACK_TIMEOUT = 15.0
 # Timeout for waiting for metadata to update after playing (seconds)
 METADATA_WAIT_TIMEOUT = 5.0
 
-# Candidate URI fields on a song, in default fallback order for MA (#768).
-# Primary always comes from `_resolved_uri`; these are the alternates we walk
-# when the user's selected provider isn't configured in Music Assistant.
-_URI_FIELDS: tuple[str, ...] = (
-    "uri_spotify",
-    "uri",
-    "uri_apple_music",
-    "uri_youtube_music",
-    "uri_tidal",
-    "uri_deezer",
-)
+# Candidate URI fields on a song, by user-selected provider (#805).
+#
+# Each provider lists its own playable URI fields in priority order. The
+# fallback cascade in `_get_ma_uri_candidates` only walks the fields for
+# `self._provider` — never tries a different provider's URI.
+#
+# Why: prior to #805 the cascade walked ALL six URI fields regardless of
+# which provider the user picked in the wizard. On Levtos's Apple-Music-only
+# MA setup, every round paid 4×15s of timeouts on Spotify/YT/Tidal URIs that
+# his MA had no provider configured for, before getting to the Apple Music
+# URI that actually worked. After 3 cumulative play_song failures the game
+# was force-paused and the admin couldn't recover.
+#
+# The "fall through to other providers when primary fails" intent of #768
+# only makes sense when the user's MA actually has those other providers
+# configured — which the wizard already gates. If the user picked Apple
+# Music, they're saying "this is the provider MA is set up for". Trust
+# them.
+_PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
+    "spotify": ("uri_spotify", "uri"),
+    "apple_music": ("uri_apple_music",),
+    "youtube_music": ("uri_youtube_music",),
+    "tidal": ("uri_tidal",),
+    "deezer": ("uri_deezer",),
+}
 
 
 class MediaPlayerService:
@@ -267,11 +281,17 @@ class MediaPlayerService:
         self, song: dict[str, Any]
     ) -> list[tuple[str | None, str]]:
         """
-        Build the ordered list of MA-ready URIs to try for this song (#768).
+        Build the ordered list of MA-ready URIs to try for this song (#805).
+
+        Only walks URI fields belonging to the user's selected provider
+        (`self._provider`). The wizard's provider choice represents what's
+        actually configured in MA — trying URIs from other providers when
+        the user said "Apple Music only" just buys 15s timeouts per
+        unsupported provider before MA reports `MediaNotFoundError`.
 
         Order: previously-successful field (if any) first, then the user's
-        selected URI (`_resolved_uri`), then every other `uri_*` on the song.
-        URIs are converted for MA and deduped by their converted form.
+        selected URI (`_resolved_uri`), then any remaining provider URI
+        fields. URIs are converted for MA and deduped by their converted form.
 
         Returns:
             List of `(field_name, converted_uri)`. `field_name` is `None` for
@@ -280,6 +300,7 @@ class MediaPlayerService:
         """
         seen: set[str] = set()
         candidates: list[tuple[str | None, str]] = []
+        provider_fields = _PROVIDER_URI_FIELDS.get(self._provider, ())
 
         def _add(field: str | None, raw: str | None) -> None:
             if not raw:
@@ -290,16 +311,20 @@ class MediaPlayerService:
             seen.add(converted)
             candidates.append((field, converted))
 
-        # Learned preference — if a specific field worked last time, try it
-        # first so Apple-Music-only setups stop paying the Spotify timeout.
-        if self._ma_preferred_uri_field:
+        # Learned preference — but only if it's a field belonging to the
+        # current provider (the cache survives across games where provider
+        # may have changed).
+        if (
+            self._ma_preferred_uri_field
+            and self._ma_preferred_uri_field in provider_fields
+        ):
             _add(self._ma_preferred_uri_field, song.get(self._ma_preferred_uri_field))
 
         # Primary: the URI Beatify picked based on the user's selected provider.
         _add(None, song.get("_resolved_uri"))
 
-        # Remaining alternates.
-        for field in _URI_FIELDS:
+        # Remaining alternates within the same provider.
+        for field in provider_fields:
             if field != self._ma_preferred_uri_field:
                 _add(field, song.get(field))
 
@@ -307,13 +332,14 @@ class MediaPlayerService:
 
     async def _play_via_music_assistant(self, song: dict[str, Any]) -> bool:
         """
-        Play via Music Assistant, falling back through alternate-provider URIs (#768).
+        Play via Music Assistant, walking the user-provider's URI fields (#805).
 
-        Without this fallback, users whose MA has e.g. only Apple Music see
-        `Could not resolve spotify:track:... to playable media item` on every
-        round. We try the user-selected URI first, then walk the other URIs
-        present on the track, and remember the first field that succeeds so
-        subsequent songs start with the right one.
+        Only candidates from `_PROVIDER_URI_FIELDS[self._provider]` are tried —
+        the wizard's provider choice represents what MA is configured for, so
+        attempting other providers' URIs just burns 15s timeouts per
+        unsupported provider before MA reports `MediaNotFoundError`. This was
+        the originating bug for #805 (Levtos's Apple-Music-only setup paid
+        4×15s of Spotify/YT/Tidal timeouts on every failed round).
         """
         candidates = self._get_ma_uri_candidates(song)
         if not candidates:

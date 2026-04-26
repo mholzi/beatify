@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc7] - 2026-04-27
+
+### Fixed
+- **MA URI cascade now respects the user's provider choice (#805).** @Levtos's Apple-Music-only setup paid 4×15s of timeouts every failed round because the cascade walked Spotify → legacy `uri` → Apple Music → YouTube Music → Tidal → Deezer regardless of the wizard provider. Three failed rounds in a row hit `MAX_SONG_RETRIES`, the game force-paused, and the WS handler then promoted PAUSED → END so admin couldn't recover. New `_PROVIDER_URI_FIELDS` map keys URI fields by provider; `_get_ma_uri_candidates()` only walks the user-selected provider's fields. `_resolved_uri` is still tried first; the same-provider fallback (e.g. legacy `uri` for Spotify) is preserved.
+- **Game no longer ends silently after MA-error pause (#805 part 2).** When `start_round()` paused the game (media-player error / `MAX_SONG_RETRIES` exhausted), `admin_next_round` was unconditionally calling `advance_to_end()` and dropping the user onto the podium screen. Now: if `start_round()` returns False AND phase has transitioned to PAUSED, we leave it paused and broadcast that state so the UI shows the paused indicator instead. (A resume-from-paused admin button is filed as a follow-up.)
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc7`. No frontend asset changes — HTML cache-busters unchanged.
+- Rewrote 5 cross-provider tests in `TestMAProviderFallback` to assert the new same-provider invariant. Added 2 new `TestAdminNextRoundPausedRecovery` tests in `test_websocket.py` covering the PAUSED-stays-paused path and a regression guard for natural end. 406 passed, 1 xfailed.
+
 ## [3.3.2-rc6] - 2026-04-26
 
 ### Fixed

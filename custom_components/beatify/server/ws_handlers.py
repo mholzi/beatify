@@ -424,6 +424,16 @@ async def admin_next_round(
             success = await game_state.start_round()
             if success:
                 await handler.broadcast_state()
+            elif game_state.phase == GamePhase.PAUSED:
+                # #805: start_round paused the game (MAX_SONG_RETRIES exhausted
+                # or media-player unavailable). Don't force-end — let the
+                # admin recover. The PAUSED-phase state will be broadcast so
+                # the UI shows the paused indicator instead of the podium.
+                _LOGGER.info(
+                    "start_round paused the game (%s); leaving paused for recovery",
+                    game_state.last_error_detail or "playback error",
+                )
+                await handler.broadcast_state()
             else:
                 stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
                 if stats_service:

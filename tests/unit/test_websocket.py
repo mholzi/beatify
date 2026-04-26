@@ -938,3 +938,70 @@ class TestPlayerOnboarded:
 
         alice.reset_round()
         assert alice.onboarded is True, "onboarded must survive reset_round()"
+
+
+# ---------------------------------------------------------------------------
+# admin_next_round — recovery from PAUSED (#805)
+# ---------------------------------------------------------------------------
+
+
+class TestAdminNextRoundPausedRecovery:
+    """#805: when start_round() pauses the game (e.g. MAX_SONG_RETRIES exhausted),
+    admin_next_round must NOT force-end the game. Levtos's playthrough hit
+    this path and saw the podium instead of a recoverable PAUSED state.
+    """
+
+    async def test_paused_after_start_round_failure_does_not_advance_to_end(self):
+        """start_round → False with phase=PAUSED → keep paused, broadcast state."""
+        from custom_components.beatify.server.ws_handlers import admin_next_round
+
+        handler, game_state, ws = _make_handler_and_game()
+        # Setup: REVEAL phase with more rounds remaining (last_round=False).
+        game_state.phase = GamePhase.REVEAL
+        game_state.last_round = False
+
+        # Simulate the pause_game path inside start_round: returns False AND
+        # transitions phase to PAUSED.
+        async def fake_start_round():
+            game_state.phase = GamePhase.PAUSED
+            game_state.last_error_detail = "media player error"
+            return False
+
+        game_state.start_round = AsyncMock(side_effect=fake_start_round)
+        game_state.advance_to_end = AsyncMock()
+        handler.broadcast_state = AsyncMock()
+
+        await admin_next_round(handler, ws, {"action": "next_round"}, game_state)
+
+        # CRITICAL: must NOT have called advance_to_end — game stays paused.
+        game_state.advance_to_end.assert_not_awaited()
+        # State broadcast still fires so clients see phase=PAUSED.
+        handler.broadcast_state.assert_awaited()
+        assert game_state.phase == GamePhase.PAUSED
+
+    async def test_natural_end_still_advances_to_end(self):
+        """Regression guard: when start_round returns False without pausing
+        (e.g. all songs exhausted, phase already END), the existing
+        advance-to-end path must still fire.
+        """
+        from custom_components.beatify.server.ws_handlers import admin_next_round
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.REVEAL
+        game_state.last_round = False
+
+        # Simulate "out of songs" path: start_round sets phase=END internally
+        # and returns False. (Code path at game/state.py:1141-1143.)
+        async def fake_start_round():
+            game_state.phase = GamePhase.END
+            return False
+
+        game_state.start_round = AsyncMock(side_effect=fake_start_round)
+        game_state.advance_to_end = AsyncMock()
+        game_state.finalize_game = MagicMock(return_value={})
+        handler.broadcast_state = AsyncMock()
+
+        await admin_next_round(handler, ws, {"action": "next_round"}, game_state)
+
+        # advance_to_end IS called for the natural-end path.
+        game_state.advance_to_end.assert_awaited_once()
