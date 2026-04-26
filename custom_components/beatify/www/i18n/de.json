@@ -441,6 +441,13 @@
     "ttsTested": "Gesendet",
     "ttsTestFailed": "Fehlgeschlagen",
     "ttsTestNoSpeaker": "Erst einen Lautsprecher auswählen",
+    "pauseRecovery": {
+      "title": "Spiel pausiert",
+      "mediaPlayerError": "Die Wiedergabe ist bei den letzten 3 Songs fehlgeschlagen. Fortsetzen, um den nächsten Song zu versuchen, oder Spiel beenden.",
+      "noSongsAvailable": "Keine spielbaren Songs für diesen Anbieter mehr. Fortsetzen, um es erneut zu versuchen, oder Spiel beenden.",
+      "resume": "Fortsetzen",
+      "endGame": "Spiel beenden"
+    },
     "haEntities": "HA-Entitäten",
     "haEntitiesSummary": "6 Entitäten",
     "haEntitiesDesc": "Beatify stellt den Spielstatus als Home Assistant Entitäten bereit. Finde sie unter Entwicklerwerkzeuge → Zustände oder suche nach beatify in der Entitätsregistrierung.",

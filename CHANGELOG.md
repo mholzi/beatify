@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc8] - 2026-04-27
+
+### Added
+- **Resume-from-paused recovery UI (#805 follow-up).** When the game pauses due to a playback error, the admin now sees a warning banner at the top of the playing section: title, explanatory message keyed to `pause_reason`, optional `last_error_detail` line, and two buttons — Resume (calls new `resume_game` admin action) and End game. Previously the only PAUSED indicator was the timer label saying `⏸ Paused`, with no way to recover other than reconnecting.
+- **`resume_game` admin WS action.** Calls `game_state.resume_game()` and broadcasts. Validates the phase is PAUSED before acting; surfaces ERR_INVALID_ACTION if the resume itself fails (e.g. no `_previous_phase` stored).
+- **`pauseRecovery` i18n keys** in en/de/es/fr/nl: `title`, `mediaPlayerError`, `noSongsAvailable`, `resume`, `endGame`.
+
+### Fixed
+- **End game from PAUSED no longer rejected (#805 follow-up).** `admin_end_game` was only allowing PLAYING and REVEAL — clicking End on the (already-visible) PAUSED control bar silently failed with ERR_INVALID_ACTION. Added PAUSED to the allowed phases.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc8`. Bumped `admin.min.js` + `styles.min.css` cache-busters in `admin.html`. CSS + admin.js minified rebuild.
+- 7 new tests across `test_websocket.py` (3 for `admin_resume_game`, 2 for `admin_end_game` from PAUSED) and `test_state.py` (2 for serializer surfacing `pause_reason` + `last_error_detail`). 413 passed, 1 xfailed.
+- Serializer now includes `last_error_detail` in PAUSED-phase state payloads (frontend reads it for the recovery-banner detail line).
+
 ## [3.3.2-rc7] - 2026-04-27
 
 ### Fixed

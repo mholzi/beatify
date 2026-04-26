@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.1">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.2-rc8">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -642,6 +642,28 @@
                     <span data-i18n="admin.switchToPlayerView">Player View →</span>
                 </button>
             </div>
+            <!-- #805: Recovery banner shown when game pauses due to playback error.
+                 Hidden by default; populated + shown by showAdminPausedView(). -->
+            <div id="admin-pause-recovery" class="admin-pause-recovery hidden" role="alert">
+                <div class="admin-pause-recovery-header">
+                    <span class="admin-pause-recovery-icon" aria-hidden="true">⚠️</span>
+                    <strong class="admin-pause-recovery-title" data-i18n="admin.pauseRecovery.title">Game paused</strong>
+                </div>
+                <p class="admin-pause-recovery-message" id="admin-pause-recovery-message" data-i18n="admin.pauseRecovery.mediaPlayerError">
+                    Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.
+                </p>
+                <p class="admin-pause-recovery-detail" id="admin-pause-recovery-detail"></p>
+                <div class="admin-pause-recovery-actions">
+                    <button id="admin-resume-game" class="btn btn-primary" type="button">
+                        <span aria-hidden="true">▶️</span>
+                        <span data-i18n="admin.pauseRecovery.resume">Resume</span>
+                    </button>
+                    <button id="admin-end-game-paused" class="btn btn-outline" type="button">
+                        <span aria-hidden="true">🏁</span>
+                        <span data-i18n="admin.pauseRecovery.endGame">End game</span>
+                    </button>
+                </div>
+            </div>
             <div class="game-container">
                 <!-- Game Header (matches player game-header-compact) -->
                 <div class="game-header-compact">
@@ -1074,7 +1096,7 @@
     <script src="/beatify/static/js/playlist-requests.min.js?v=3.3.1"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.3.1"></script>
     <script type="module" src="/beatify/static/js/wizard.js?v=3.3.2-rc1"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.3.2-rc1"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.3.2-rc8"></script>
     <script src="/beatify/static/js/party-lights.min.js?v=3.3.1"></script>
     <script src="/beatify/static/js/tts-settings.js?v=3.3.2-rc1"></script>
 </body>

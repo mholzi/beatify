@@ -265,6 +265,7 @@ async def handle_admin(
         "set_volume": admin_set_volume,
         "seek_forward": admin_seek_forward,
         "end_game": admin_end_game,
+        "resume_game": admin_resume_game,
         "dismiss_game": admin_dismiss_game,
         "rematch_game": admin_rematch_game,
         "set_language": admin_set_language,
@@ -535,7 +536,11 @@ async def admin_end_game(
     game_state: GameState,
 ) -> None:
     """Handle admin end_game action."""
-    if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
+    # #805: PAUSED is allowed too — when start_round() pauses the game after
+    # MAX_SONG_RETRIES, the admin's only escape (other than Resume) is to end
+    # the game cleanly. Without PAUSED here, the End button in the control bar
+    # silently rejects with ERR_INVALID_ACTION.
+    if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL, GamePhase.PAUSED):
         await ws.send_json(
             {
                 "type": "error",
@@ -558,6 +563,45 @@ async def admin_end_game(
         "Admin ended game early at round %d - players preserved for rematch",
         game_state.round,
     )
+    await handler.broadcast_state()
+
+
+async def admin_resume_game(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin resume_game action — manual recovery from PAUSED (#805).
+
+    Before this existed, the only resume path was via admin reconnect. After
+    #805, when MA fails to play 3 songs in a row the game lands in PAUSED
+    with no UI affordance to recover. This action lets the Resume button in
+    the PAUSED view call back into `game_state.resume_game()` to restore the
+    prior phase (typically REVEAL, where the admin can try the next round).
+    """
+    if game_state.phase != GamePhase.PAUSED:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Game is not paused",
+            }
+        )
+        return
+
+    success = await game_state.resume_game()
+    if not success:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Resume failed — no previous phase to restore",
+            }
+        )
+        return
+
+    _LOGGER.info("Admin resumed game from PAUSED")
     await handler.broadcast_state()
 
 

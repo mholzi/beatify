@@ -600,6 +600,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
 
+    // #805: Pause-recovery banner buttons (Resume / End game)
+    document.getElementById('admin-resume-game')?.addEventListener('click', function() {
+        sendAdminCommand({ type: 'admin', action: 'resume_game' });
+    });
+    document.getElementById('admin-end-game-paused')?.addEventListener('click', endGame);
+
     // End game modal setup (Story 9.10)
     setupEndGameModal();
 
@@ -3431,6 +3437,9 @@ function showAdminPlayingView(data) {
     if (!section) return;
     section.classList.remove('hidden');
 
+    // #805: clear any pause-recovery banner left over from a prior PAUSED phase.
+    _hidePauseRecoveryBanner();
+
     // Show fixed control bar (matches player admin-control-bar)
     var controlBar = document.getElementById('admin-control-bar');
     if (controlBar) controlBar.classList.remove('hidden');
@@ -3554,6 +3563,9 @@ function showAdminRevealView(data) {
     var section = document.getElementById('admin-reveal-section');
     if (!section) return;
     section.classList.remove('hidden');
+
+    // #805: clear any pause-recovery banner left over from a prior PAUSED phase.
+    _hidePauseRecoveryBanner();
 
     // Show control bar during reveal too (admin can skip, end game)
     var controlBar = document.getElementById('admin-control-bar');
@@ -3827,6 +3839,55 @@ function showAdminEndView(data) {
 
 // ---- PAUSED phase view ----
 
+/**
+ * #805: Show/hide the recovery banner based on pause_reason.
+ *
+ * Only error-driven pauses (media_player_error, no_songs_available) get the
+ * recovery UI. Admin-disconnect pauses resume automatically on rejoin and
+ * don't need a button.
+ */
+function _renderPauseRecoveryBanner(data) {
+    var banner = document.getElementById('admin-pause-recovery');
+    if (!banner) return;
+    var reason = data && data.pause_reason ? data.pause_reason : '';
+    var detail = data && data.last_error_detail ? data.last_error_detail : '';
+
+    var isErrorPause = reason === 'media_player_error' || reason === 'no_songs_available';
+    if (!isErrorPause) {
+        banner.classList.add('hidden');
+        return;
+    }
+
+    var msgEl = document.getElementById('admin-pause-recovery-message');
+    if (msgEl) {
+        var key = reason === 'no_songs_available'
+            ? 'admin.pauseRecovery.noSongsAvailable'
+            : 'admin.pauseRecovery.mediaPlayerError';
+        var fallback = reason === 'no_songs_available'
+            ? 'No playable songs left for this provider. Resume to retry, or end the game.'
+            : 'Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.';
+        msgEl.textContent = BeatifyI18n.t(key) || fallback;
+    }
+
+    var detailEl = document.getElementById('admin-pause-recovery-detail');
+    if (detailEl) {
+        if (detail) {
+            detailEl.textContent = detail;
+            detailEl.classList.remove('hidden');
+        } else {
+            detailEl.textContent = '';
+            detailEl.classList.add('hidden');
+        }
+    }
+
+    banner.classList.remove('hidden');
+}
+
+function _hidePauseRecoveryBanner() {
+    var banner = document.getElementById('admin-pause-recovery');
+    if (banner) banner.classList.add('hidden');
+}
+
 function showAdminPausedView(data) {
     // Reuse the playing section but show pause overlay
     var section = document.getElementById('admin-playing-section');
@@ -3842,6 +3903,10 @@ function showAdminPausedView(data) {
         clearInterval(countdownInterval);
         countdownInterval = null;
     }
+
+    // #805: surface the recovery banner if the pause was caused by a
+    // playback error. Admin-disconnect pauses leave the banner hidden.
+    _renderPauseRecoveryBanner(data);
 }
 
 // ---- Admin game controls (sent via WS) ----

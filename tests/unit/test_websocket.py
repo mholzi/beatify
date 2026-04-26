@@ -1005,3 +1005,104 @@ class TestAdminNextRoundPausedRecovery:
 
         # advance_to_end IS called for the natural-end path.
         game_state.advance_to_end.assert_awaited_once()
+
+
+# ---------------------------------------------------------------------------
+# admin_resume_game — manual recovery from PAUSED (#805 follow-up)
+# ---------------------------------------------------------------------------
+
+
+class TestAdminResumeGame:
+    """#805 follow-up: admin can resume from PAUSED via the recovery UI."""
+
+    async def test_resume_from_paused_calls_resume_game(self):
+        """Happy path: PAUSED + resume_game returns True → broadcast new state."""
+        from custom_components.beatify.server.ws_handlers import admin_resume_game
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PAUSED
+        game_state.resume_game = AsyncMock(return_value=True)
+        handler.broadcast_state = AsyncMock()
+
+        await admin_resume_game(handler, ws, {"action": "resume_game"}, game_state)
+
+        game_state.resume_game.assert_awaited_once()
+        handler.broadcast_state.assert_awaited()
+
+    async def test_resume_when_not_paused_rejects(self):
+        """Defensive: resume_game from non-PAUSED phase returns ERR_INVALID_ACTION."""
+        from custom_components.beatify.server.ws_handlers import admin_resume_game
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PLAYING
+        game_state.resume_game = AsyncMock()
+        handler.broadcast_state = AsyncMock()
+
+        await admin_resume_game(handler, ws, {"action": "resume_game"}, game_state)
+
+        # Reject with error; no resume call, no broadcast.
+        game_state.resume_game.assert_not_awaited()
+        handler.broadcast_state.assert_not_awaited()
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION
+
+    async def test_resume_failure_sends_error(self):
+        """If resume_game returns False (no _previous_phase), surface an error."""
+        from custom_components.beatify.server.ws_handlers import admin_resume_game
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PAUSED
+        game_state.resume_game = AsyncMock(return_value=False)
+        handler.broadcast_state = AsyncMock()
+
+        await admin_resume_game(handler, ws, {"action": "resume_game"}, game_state)
+
+        game_state.resume_game.assert_awaited_once()
+        handler.broadcast_state.assert_not_awaited()
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION
+
+
+# ---------------------------------------------------------------------------
+# admin_end_game from PAUSED — required for stuck-game escape (#805)
+# ---------------------------------------------------------------------------
+
+
+class TestAdminEndGameFromPaused:
+    async def test_end_game_allowed_from_paused(self):
+        """#805: PAUSED is a valid phase for end_game (admin's escape hatch)."""
+        from custom_components.beatify.server.ws_handlers import admin_end_game
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PAUSED
+        game_state.stop_media = AsyncMock()
+        game_state.advance_to_end = AsyncMock()
+        game_state.finalize_game = MagicMock(return_value={})
+        handler.broadcast_state = AsyncMock()
+
+        await admin_end_game(handler, ws, {"action": "end_game"}, game_state)
+
+        # advance_to_end must fire — admin's End Game button worked.
+        game_state.advance_to_end.assert_awaited_once()
+        handler.broadcast_state.assert_awaited()
+        # No error sent.
+        for call in ws.send_json.call_args_list:
+            assert call[0][0].get("type") != "error"
+
+    async def test_end_game_still_blocked_from_lobby(self):
+        """Regression guard: LOBBY is still rejected (game hasn't started)."""
+        from custom_components.beatify.server.ws_handlers import admin_end_game
+
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.LOBBY
+        game_state.advance_to_end = AsyncMock()
+        handler.broadcast_state = AsyncMock()
+
+        await admin_end_game(handler, ws, {"action": "end_game"}, game_state)
+
+        game_state.advance_to_end.assert_not_awaited()
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION

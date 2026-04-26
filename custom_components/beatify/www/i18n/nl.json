@@ -441,6 +441,13 @@
     "ttsTested": "Verzonden",
     "ttsTestFailed": "Mislukt",
     "ttsTestNoSpeaker": "Kies eerst een luidspreker",
+    "pauseRecovery": {
+      "title": "Spel gepauzeerd",
+      "mediaPlayerError": "Afspelen is mislukt voor de laatste 3 nummers. Hervat om het volgende nummer te proberen, of stop het spel.",
+      "noSongsAvailable": "Geen afspeelbare nummers meer voor deze provider. Hervat om opnieuw te proberen, of stop het spel.",
+      "resume": "Hervatten",
+      "endGame": "Spel beëindigen"
+    },
     "haEntities": "HA-entiteiten",
     "haEntitiesSummary": "6 entiteiten",
     "haEntitiesDesc": "Beatify stelt de spelstatus beschikbaar als Home Assistant entiteiten. Vind ze onder Ontwikkelaarshulpmiddelen → Staten of zoek naar beatify in het entiteitenregister.",

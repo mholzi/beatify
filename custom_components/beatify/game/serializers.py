@@ -67,6 +67,10 @@ class GameStateSerializer:
 
         elif gs.phase == GamePhase.PAUSED:
             state["pause_reason"] = gs.pause_reason
+            # #805: surface human-readable error detail so the admin sees
+            # *why* the game paused instead of staring at a blank "⏸ Paused"
+            # label. Empty string for non-error pauses (admin disconnect etc).
+            state["last_error_detail"] = gs.last_error_detail or ""
 
         elif gs.phase == GamePhase.END:
             GameStateSerializer._add_end_state(gs, state)

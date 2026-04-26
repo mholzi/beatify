@@ -441,6 +441,13 @@
     "ttsTested": "Enviado",
     "ttsTestFailed": "Error",
     "ttsTestNoSpeaker": "Elige primero un altavoz",
+    "pauseRecovery": {
+      "title": "Partida en pausa",
+      "mediaPlayerError": "La reproducción ha fallado en las últimas 3 canciones. Reanuda para probar la siguiente, o finaliza la partida.",
+      "noSongsAvailable": "No quedan canciones reproducibles para este proveedor. Reanuda para reintentarlo, o finaliza la partida.",
+      "resume": "Reanudar",
+      "endGame": "Finalizar partida"
+    },
     "haEntities": "Entidades HA",
     "haEntitiesSummary": "6 entidades",
     "haEntitiesDesc": "Beatify expone el estado del juego como entidades de Home Assistant. Encuéntralas en Herramientas de desarrollo → Estados o busca beatify en el registro de entidades.",
