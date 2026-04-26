@@ -465,11 +465,22 @@ class MediaPlayerService:
             )
             return False
 
-        # Hard failure #777: speaker still shows the *previous* track. If
-        # neither the title nor the position-updated timestamp moved during
-        # the entire wait window, the new track never started on the speaker
-        # (common with AirPlay when MA silently fails to enqueue). Fall
-        # through so the caller can try the next URI candidate.
+        # Hard failure: speaker title did not advance. If the title field is
+        # identical to what it was before we called play_media, the new track
+        # never started on the speaker — even if media_position_updated_at
+        # changed (that just means the *prior* track is still ticking).
+        #
+        # #777 originally caught only "title unchanged AND position unchanged"
+        # (everything frozen), but #795 surfaced the more common pattern:
+        # the prior track keeps playing, position advances, and the #345
+        # tolerance below would falsely return True. Levtos's playthrough
+        # had the speaker stuck on 'Sugar, Sugar' then 'Lazy Sunday (Mono)'
+        # for multiple rounds while UI advanced into "guess the year of
+        # SongX" with no actual SongX audio.
+        #
+        # Title-must-advance is the right invariant: if a new track really
+        # started, the title field must eventually become *something*
+        # different. Position alone is not proof of a new track.
         title_after = (
             current_state.attributes.get("media_title", "") if current_state else ""
         )
@@ -478,33 +489,37 @@ class MediaPlayerService:
             if current_state
             else None
         )
-        stale_title = title_after == title_before
-        stale_position = position_updated_after == position_updated_before
-        if stale_title and stale_position:
+        title_advanced = title_after != title_before
+        if not title_advanced:
+            position_changed = position_updated_after != position_updated_before
             _LOGGER.error(
                 "MA playback failed after %.1fs for %s — speaker still on "
-                "prior track %r, position timestamp unchanged; skipping (#777)",
+                "prior track %r (position timestamp %s); skipping (#795, was #777)",
                 MA_PLAYBACK_TIMEOUT,
                 uri,
                 title_before,
+                "advanced — prior track still playing"
+                if position_changed
+                else "also unchanged",
             )
             return False
 
-        # #345 slow-buffer tolerance: something changed on the speaker during
-        # the wait (either title swapped or position clock advanced), so MA is
-        # making progress — just not matching the exact expected title yet.
-        # Returning False here would chase unnecessary retries and cause the
-        # race condition #345 was filed for.
+        # #345 slow-buffer tolerance, narrowed to "title genuinely changed":
+        # title is now different from what it was before the call, so MA is
+        # making progress on *some* new track. We still don't require the
+        # title to match expected_title (AirPlay sometimes delivers
+        # remasters/alternates with mismatched-but-valid titles), but we do
+        # require title evidence of forward motion. Returning False here
+        # would re-trigger the race condition #345 was originally filed for.
         _LOGGER.warning(
             "MA playback not confirmed after %.1fs for %s (state: %s). "
-            "Speaker moved (title %r, pos ts %r → %r). Continuing anyway — "
-            "MA may still be buffering. (#345)",
+            "Title moved %r → %r. Continuing anyway — MA may still be "
+            "buffering. (#345)",
             MA_PLAYBACK_TIMEOUT,
             uri,
             speaker_state,
+            title_before,
             title_after,
-            position_updated_before,
-            position_updated_after,
         )
         return True
 
