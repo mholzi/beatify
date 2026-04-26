@@ -618,6 +618,32 @@ class TestGetState:
         assert "winner" in state
         assert state["winner"]["name"] == "Alice"
 
+    def test_paused_state_includes_reason_and_error_detail(self):
+        """#805: PAUSED state must surface pause_reason AND last_error_detail
+        so the admin's recovery banner can render the right message.
+        """
+        _create_fresh_game(self.state)
+        self.state.phase = GamePhase.PAUSED
+        self.state.pause_reason = "media_player_error"
+        self.state.last_error_detail = "Speaker timed out after 15s"
+        state = self.state.get_state()
+        assert state is not None
+        assert state["phase"] == "PAUSED"
+        assert state["pause_reason"] == "media_player_error"
+        assert state["last_error_detail"] == "Speaker timed out after 15s"
+
+    def test_paused_state_empty_error_detail_when_unset(self):
+        """admin_disconnected pauses leave last_error_detail empty —
+        client uses this to skip the banner.
+        """
+        _create_fresh_game(self.state)
+        self.state.phase = GamePhase.PAUSED
+        self.state.pause_reason = "admin_disconnected"
+        # last_error_detail defaults to "" on init, but be explicit:
+        self.state.last_error_detail = ""
+        state = self.state.get_state()
+        assert state["last_error_detail"] == ""
+
 
 # ---------------------------------------------------------------------------
 # Issue #228: rematch_game → LOBBY phase with join_url (Start Gameplay fix)

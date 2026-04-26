@@ -8860,6 +8860,63 @@ body.device-tier-low .reveal-skip-hint {
     border-radius: var(--radius-sm, 8px);
 }
 
+/* #805: Recovery banner shown when game pauses due to playback error. */
+.admin-pause-recovery {
+    margin: var(--space-md, 16px);
+    padding: var(--space-md, 16px) var(--space-lg, 20px);
+    background: var(--bg-card, rgba(255, 255, 255, 0.06));
+    border: 2px solid var(--color-warning, #f5a623);
+    border-radius: var(--radius-md, 12px);
+}
+
+.admin-pause-recovery-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 8px);
+    margin-bottom: var(--space-sm, 8px);
+}
+
+.admin-pause-recovery-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.admin-pause-recovery-title {
+    font-size: 1rem;
+    color: var(--color-warning, #f5a623);
+}
+
+.admin-pause-recovery-message {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0 0 var(--space-sm, 8px) 0;
+    color: var(--text-primary, #ffffff);
+}
+
+.admin-pause-recovery-detail {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin: 0 0 var(--space-md, 16px) 0;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    font-family: var(--font-monospace, monospace);
+    word-break: break-word;
+}
+
+.admin-pause-recovery-detail.hidden {
+    display: none;
+}
+
+.admin-pause-recovery-actions {
+    display: flex;
+    gap: var(--space-sm, 8px);
+    flex-wrap: wrap;
+}
+
+.admin-pause-recovery-actions .btn {
+    flex: 1;
+    min-width: 120px;
+}
+
 /* #660: Admin personal result card (reveal phase) */
 .admin-personal-result-card {
     display: flex;

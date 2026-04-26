@@ -441,6 +441,13 @@
     "ttsTested": "Sent",
     "ttsTestFailed": "Failed",
     "ttsTestNoSpeaker": "Pick a speaker first",
+    "pauseRecovery": {
+      "title": "Game paused",
+      "mediaPlayerError": "Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.",
+      "noSongsAvailable": "No playable songs left for this provider. Resume to retry, or end the game.",
+      "resume": "Resume",
+      "endGame": "End game"
+    },
     "haEntities": "HA Entities",
     "haEntitiesSummary": "6 entities",
     "haEntitiesDesc": "Beatify exposes live game state as Home Assistant entities. Find them under Developer Tools → States or search for beatify in your entity registry.",
