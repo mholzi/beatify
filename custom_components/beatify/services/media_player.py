@@ -511,6 +511,25 @@ class MediaPlayerService:
                 if position_changed
                 else "also unchanged",
             )
+            # #801: Hard-stop the speaker so the prior track doesn't keep
+            # playing while the fallback cascade tries the next URI. Without
+            # this, Levtos's setup heard 'Kill Bill' continuing for multiple
+            # rounds while the UI advanced — strict-detection was rejecting
+            # candidates correctly but nobody was telling the speaker to
+            # actually stop. Best-effort: failure here doesn't change the
+            # outcome (we're already returning False).
+            try:
+                await self._hass.services.async_call(
+                    "media_player",
+                    "media_stop",
+                    {"entity_id": self._entity_id},
+                    blocking=False,
+                )
+            except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError):
+                _LOGGER.debug(
+                    "media_stop call after stale-title detect failed for %s",
+                    self._entity_id,
+                )
             return False
 
         # #345 slow-buffer tolerance, narrowed to "title genuinely changed":
