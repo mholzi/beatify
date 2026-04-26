@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc3] - 2026-04-26
+
+### Fixed
+- **Game no longer advances while speaker is stuck on a prior track (#795).** Levtos's playthrough on AirPlay + Apple Music + MA had the speaker stuck on `'Sugar, Sugar'` then `'Lazy Sunday (Mono)'` for multiple rounds while position kept advancing — the rc5 #345 tolerance was treating "title unchanged + position changed" as success because position alone was advancing. But position-only-changing means the *prior* track is still playing in real time, not that a new track started. Tightened invariant: `media_title` MUST advance to something different from before the call. Position alone is no longer enough. The #345 slow-buffer tolerance is preserved when title genuinely changed (handles the "speaker reports new title late" case for legitimate slow buffers).
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc3`. No frontend asset changes — HTML cache-busters unchanged.
+- Updated 1 existing test (renamed `test_ma_tolerates_slow_buffer_when_position_timestamp_advanced` → `test_ma_returns_false_when_title_unchanged_but_position_advances`, flipped expectation to `False`). 402 passed, 1 xfailed.
+
 ## [3.3.2-rc2] - 2026-04-26
 
 ### Fixed
