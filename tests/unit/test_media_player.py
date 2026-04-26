@@ -89,8 +89,13 @@ class TestMANonBlockingPlayback:
         )
 
     @pytest.mark.asyncio
-    async def test_ma_waits_for_position_ge_1(self):
-        """Should NOT return when position=0 (queued but not playing yet)."""
+    async def test_ma_fast_path_succeeds_when_title_matches_even_if_position_zero(self):
+        """#803: on cold MA start the speaker reports state=playing + correct
+        title within seconds, but `media_position` lags at 0 for 10-15s.
+        Fast-path must accept title_matches + position_fresh without waiting
+        for position >= 1, otherwise round 1 sits frozen for the full 15s
+        timeout while audio is already playing.
+        """
         hass = _make_hass("playing", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
@@ -101,29 +106,19 @@ class TestMANonBlockingPlayback:
             media_position=120,
             media_position_updated_at="2020-01-01T00:00:00+00:00",
         )
-        # Title changed, position=0, updated_at fresh — but NOT actually playing yet
-        queued_state = _make_state(
+        # Title matches expected, position still 0, but updated_at moved →
+        # MA is reporting fresh state for the right track. Accept.
+        playing_pos_zero = _make_state(
             "playing",
             media_title="New Song",
             media_position=0,
             media_position_updated_at="2020-01-01T00:00:05+00:00",
         )
-        # Actually playing: position >= 1
-        playing_state = _make_state(
-            "playing",
-            media_title="New Song",
-            media_position=1,
-            media_position_updated_at="2020-01-01T00:00:10+00:00",
-        )
 
         def state_progression(*args):
             nonlocal call_count
             call_count += 1
-            if call_count <= 1:
-                return old_state
-            if call_count <= 5:
-                return queued_state  # pos=0, should NOT trigger
-            return playing_state  # pos=1, should trigger
+            return old_state if call_count <= 1 else playing_pos_zero
 
         hass.states.get = MagicMock(side_effect=state_progression)
 
@@ -134,52 +129,8 @@ class TestMANonBlockingPlayback:
             result = await svc.play_song(_make_song(title="New Song"))
 
         assert result is True
-        # Event-based waits don't poll; state_before + post-timeout snapshot = 2 calls.
+        # Event-based wait: state_before snapshot + post-timeout snapshot.
         assert call_count >= 2
-
-    @pytest.mark.asyncio
-    async def test_ma_does_not_trigger_on_title_change_alone(self):
-        """Title change with position=0 should NOT trigger (song only queued)."""
-        hass = _make_hass("playing", media_title="Old Song")
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
-
-        poll_count = 0
-        old_state = _make_state(
-            "playing",
-            media_title="Old Song",
-            media_position=100,
-            media_position_updated_at="2020-01-01T00:00:00+00:00",
-        )
-        queued_only = _make_state(
-            "playing",
-            media_title="New Song",
-            media_position=0,
-            media_position_updated_at="2020-01-01T00:00:05+00:00",
-        )
-
-        def always_queued(*args):
-            nonlocal poll_count
-            poll_count += 1
-            if poll_count <= 1:
-                return old_state
-            return queued_only
-
-        hass.states.get = MagicMock(side_effect=always_queued)
-
-        with patch(
-            "custom_components.beatify.services.media_player.asyncio.sleep",
-            new_callable=AsyncMock,
-        ):
-            with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
-                2.0,
-            ):
-                result = await svc.play_song(_make_song(title="New Song"))
-
-        assert (
-            result is True
-        )  # #345: return True on timeout — MA may still be buffering
-        assert poll_count >= 2  # event-based wait, state_before + post-timeout snapshot
 
     @pytest.mark.asyncio
     async def test_ma_realistic_ytmusic_flow(self):
