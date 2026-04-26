@@ -620,6 +620,24 @@ class TestMAProviderFallback:
         candidates = svc._get_ma_uri_candidates(song)
         assert candidates[0][1] == "apple_music://track/999"
 
+    def test_candidates_keeps_deezer_native_form(self):
+        """deezer://track/ URIs are passed through unchanged (#797).
+
+        The previous https://www.deezer.com/track/<id> form routed via MA's
+        generic http(s):// branch to the 'builtin' provider, which doesn't
+        know how to play Deezer tracks — failed with "No playable items
+        found". Native provider-URI form routes directly to the deezer
+        provider domain.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        song = {
+            "_resolved_uri": "deezer://track/12345",
+            "uri_deezer": "deezer://track/12345",
+        }
+        candidates = svc._get_ma_uri_candidates(song)
+        assert candidates[0][1] == "deezer://track/12345"
+
     def test_candidates_learned_preference_goes_first(self):
         """If a field was learned as preferred, its URI is tried before primary."""
         hass = _make_hass()

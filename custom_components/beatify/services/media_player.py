@@ -222,6 +222,7 @@ class MediaPlayerService:
 
         Beatify playlists store URIs in internal formats:
         - applemusic://track/<id>  → apple_music://track/<id>  (MA native, #772)
+        - deezer://track/<id>      → unchanged (MA native, #797)
         - tidal://track/<id>       → https://tidal.com/browse/track/<id>
         - spotify:track:<id>       → unchanged (MA native format)
         - https://music.youtube.com/... → unchanged (already a URL)
@@ -237,8 +238,12 @@ class MediaPlayerService:
             return uri
 
         if uri.startswith("deezer://track/"):
-            track_id = uri.removeprefix("deezer://track/")
-            return f"https://www.deezer.com/track/{track_id}"
+            # MA's Deezer provider has domain "deezer". The previous
+            # https://www.deezer.com/track/<id> form was being routed to the
+            # "builtin" provider via MA's generic http(s):// branch — and
+            # builtin doesn't know Deezer, so playback failed with
+            # "No playable items found". Pass through the native form. (#797)
+            return uri
 
         if uri.startswith("applemusic://track/"):
             # MA's Apple Music provider has domain "apple_music". Use MA's native
