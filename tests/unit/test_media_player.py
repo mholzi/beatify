@@ -316,9 +316,16 @@ class TestMANonBlockingPlayback:
         assert result is True
 
     @pytest.mark.asyncio
-    async def test_ma_tolerates_slow_buffer_when_position_timestamp_advanced(self):
-        """#345 tolerance: title stayed the same but position_updated_at moved —
-        the speaker clock is ticking, MA is reporting fresh state. Trust it.
+    async def test_ma_returns_false_when_title_unchanged_but_position_advances(self):
+        """#795 (was #345 tolerance pre-rc3): if the speaker title is identical
+        to before the call but position keeps ticking, the *prior* track is
+        still playing — a new track did NOT start. Reject so the fallback
+        cascade tries the next URI.
+
+        This is exactly Levtos's #795 scenario: speaker stuck on
+        'Sugar, Sugar' / 'Lazy Sunday (Mono)' for multiple rounds while
+        position advanced; old logic would falsely return True here and
+        the UI advanced into rounds with no actual audio change.
         """
         hass = MagicMock()
         hass.services.async_call = AsyncMock()
@@ -330,9 +337,9 @@ class TestMANonBlockingPlayback:
         )
         after = _make_state(
             "playing",
-            media_title="Old Song",  # same
+            media_title="Old Song",  # SAME title — prior track still playing
             media_position=101,
-            media_position_updated_at="2020-01-01T00:00:05+00:00",  # moved
+            media_position_updated_at="2020-01-01T00:00:05+00:00",  # position moved
         )
 
         poll = 0
@@ -355,7 +362,7 @@ class TestMANonBlockingPlayback:
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
 
-        assert result is True
+        assert result is False
 
     @pytest.mark.asyncio
     async def test_ma_first_song_no_previous_title(self):
