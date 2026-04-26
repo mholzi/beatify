@@ -222,6 +222,67 @@ class TestMANonBlockingPlayback:
         assert result is False
 
     @pytest.mark.asyncio
+    async def test_ma_hard_stops_speaker_on_stale_title_detection(self):
+        """#801: when stale-title is detected, hard-stop the speaker so the
+        prior track doesn't keep playing while the fallback cascade tries
+        the next URI. Without this, Levtos heard 'Kill Bill' continuing
+        for multiple rounds while UI advanced — strict-detection rejected
+        candidates correctly but nobody told the speaker to stop.
+        """
+        hass = MagicMock()
+        hass.services.async_call = AsyncMock()
+        # title_before == 'Old Song', title_after == 'Old Song' (stale),
+        # position advanced — simulates Levtos's "Kill Bill keeps playing"
+        before = _make_state(
+            "playing",
+            media_title="Old Song",
+            media_position=100,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        after = _make_state(
+            "playing",
+            media_title="Old Song",
+            media_position=101,
+            media_position_updated_at="2020-01-01T00:00:05+00:00",
+        )
+
+        poll = 0
+
+        def progression(*_args):
+            nonlocal poll
+            poll += 1
+            return before if poll <= 1 else after
+
+        hass.states.get = MagicMock(side_effect=progression)
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            with patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ):
+                result = await svc.play_song(_make_song(title="New Song"))
+
+        assert result is False
+        # The play_media call + the media_stop call must both have been issued
+        stop_calls = [
+            c
+            for c in hass.services.async_call.call_args_list
+            if c[0][:2] == ("media_player", "media_stop")
+        ]
+        assert len(stop_calls) == 1, (
+            "media_stop must be called exactly once on stale-title detect"
+        )
+        assert (
+            stop_calls[0][1].get("blocking") is False
+            or (len(stop_calls[0][0]) > 3 and stop_calls[0][0][3] is False)
+            or stop_calls[0].kwargs.get("blocking") is False
+        )
+
+    @pytest.mark.asyncio
     async def test_ma_tolerates_slow_buffer_when_title_advanced(self):
         """#345 tolerance: the speaker title changed to SOMETHING during the
         wait — maybe not exactly matching expected, but MA is clearly
