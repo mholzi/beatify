@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc2] - 2026-04-26
+
+### Fixed
+- **Deezer via Music Assistant (#797)** — same shape of bug as #772 (Apple Music) but for Deezer. Beatify was converting `deezer://track/<id>` → `https://www.deezer.com/track/<id>`, which routed through MA's generic `http(s)://` branch to the **builtin** provider — and builtin doesn't know how to play Deezer. Result: `HomeAssistantError: No playable items found`. Pass through the native `deezer://track/<id>` form so MA routes directly to the Deezer provider domain. Reported by @Ziigmund84.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc2`. No frontend asset changes — HTML cache-busters unchanged.
+- 1 new test in `test_media_player.py` covering the native Deezer URI passthrough. 402 passed, 1 xfailed.
+
 ## [3.3.2-rc1] - 2026-04-25
 
 ### Fixed
