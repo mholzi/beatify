@@ -389,10 +389,21 @@ class MediaPlayerService:
         )
 
         # Wait for the EXPECTED song to actually play on the speaker:
-        # - media_title contains expected title (not just "any change" — prevents
-        #   race condition where a previous slow song arrives during retry)
-        # - media_position >= 1 (pos=0 means only queued in MA, not yet playing)
-        # - media_position_updated_at changed (speaker is actively reporting)
+        # - media_title contains expected title (the strongest single signal —
+        #   speaker explicitly identifies our requested track)
+        # - media_position_updated_at changed (MA is actively reporting state)
+        #
+        # We used to also require media_position >= 1 here as a guard against
+        # MA reporting `state=playing` while a track was only queued. In
+        # practice that case shows itself by `media_position_updated_at`
+        # *not* changing — the queued track's position never updates. So
+        # `position_fresh` already filters it out, and the position-value
+        # check was needlessly delaying confirmation.
+        #
+        # Ziigmund84 reported (#803) on cold MA start the speaker shows
+        # state=playing + correct title within seconds, but media_position
+        # lags at 0 for 10-15s. Old fast-path didn't fire; user heard music
+        # while UI sat in REVEAL waiting for the timeout.
         expected_lower = expected_title.lower()
 
         confirmed = asyncio.Event()
@@ -404,15 +415,13 @@ class MediaPlayerService:
                 return False
             try:
                 current_title = state.attributes.get("media_title", "")
-                position = state.attributes.get("media_position", 0)
                 position_updated = state.attributes.get("media_position_updated_at")
 
                 position_fresh = position_updated != position_updated_before
-                actually_playing = isinstance(position, (int, float)) and position >= 1
                 title_matches = (not expected_lower) or (
                     expected_lower in current_title.lower() if current_title else False
                 )
-                return title_matches and position_fresh and actually_playing
+                return title_matches and position_fresh
             except (AttributeError, KeyError):
                 return False
 

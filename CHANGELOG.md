@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc5] - 2026-04-26
+
+### Fixed
+- **Round 1 no longer freezes for 10–15s on cold MA start (#803).** @Ziigmund84 reported the wizard kicking off the first round and sitting frozen on REVEAL while audio was already playing through the speaker. Root cause: the strict-detect fast-path in `_try_ma_play` required `media_position >= 1`. On a cold MA boot, the speaker reports `state=playing` and the correct `media_title` within a few seconds, but `media_position` lags at `0` for 10–15s while MA finishes warming up. The old fast-path didn't fire, so `_try_ma_play` waited the full `MA_PLAYBACK_TIMEOUT` before letting the round advance — even though playback was already healthy. Dropped the `position >= 1` requirement: `position_updated_at` advancing already filters out the queued-but-not-playing case (a queued track's timestamp doesn't move). Title-match + fresh `position_updated_at` is enough.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc5` (skipped `rc4` — that number is reserved for unmerged PR #802 on a separate branch). No frontend asset changes — HTML cache-busters unchanged.
+- Renamed `test_ma_waits_for_position_ge_1` → `test_ma_fast_path_succeeds_when_title_matches_even_if_position_zero` and removed the now-redundant `test_ma_does_not_trigger_on_title_change_alone`. 401 passed, 1 xfailed.
+
 ## [3.3.2-rc3] - 2026-04-26
 
 ### Fixed
