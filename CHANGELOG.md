@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc6] - 2026-04-26
+
+### Fixed
+- **Speaker is now actively stopped when stale-title is detected (#801).** @Levtos's playthrough showed `'Kill Bill'` continuing through multiple rounds while strict-detection (#795) correctly rejected URI candidates — the rejection logic worked, but nothing was telling the speaker to stop the prior track. Added a `media_stop` call in the stale-title branch of `_try_ma_play` (best-effort, failure swallowed since we're already returning False). The hard-stop only triggers on the explicit failure path; normal playback continues uninterrupted until the admin advances the round.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc6`. No frontend asset changes — HTML cache-busters unchanged.
+- 1 new unit test in `test_media_player.py` covering `media_stop` called exactly once on stale-title detect. 402 passed, 1 xfailed.
+
 ## [3.3.2-rc5] - 2026-04-26
 
 ### Fixed
