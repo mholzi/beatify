@@ -589,7 +589,15 @@ class TestMAPollingResilience:
 
 
 class TestMAProviderFallback:
-    """Tests for multi-provider URI fallback in MA playback (#768)."""
+    """Tests for per-provider URI candidate generation (#768 → narrowed by #805).
+
+    The cascade was originally cross-provider (#768): if Spotify failed, walk
+    Apple Music / YT / Tidal / Deezer URIs in order. #805 narrowed it: only
+    URIs belonging to the user-selected provider are considered. Trying URIs
+    from providers MA isn't configured for just buys 15s timeouts per
+    candidate (Levtos's Apple-Music-only setup paid 4×15s on every failed
+    round before the fix).
+    """
 
     def test_candidates_primary_only(self):
         """Song with only spotify URI → single candidate, field=None (primary)."""
@@ -599,39 +607,85 @@ class TestMAProviderFallback:
         candidates = svc._get_ma_uri_candidates(song)
         assert candidates == [(None, "spotify:track:abc")]
 
-    def test_candidates_primary_then_alternates(self):
-        """Primary comes first, alternates follow in _URI_FIELDS order."""
+    def test_candidates_skip_other_providers_when_apple_music_only(self):
+        """#805: Apple-Music user must NEVER see Spotify/YT/Tidal/Deezer URIs.
+
+        Levtos's exact setup: provider="apple_music", song dict has all six
+        URI fields populated by the catalog. Old cascade tried all of them
+        in fixed order; new behavior tries only apple_music URIs.
+        """
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
         song = {
             "uri": "spotify:track:abc",
-            "_resolved_uri": "spotify:track:abc",
+            "uri_spotify": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+            "uri_youtube_music": "https://music.youtube.com/watch?v=xyz",
+            "uri_tidal": "tidal://track/222",
+            "uri_deezer": "deezer://track/333",
+            "_resolved_uri": "applemusic://track/111",
+        }
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        # Only the Apple Music URI (converted to MA's native form) should be tried.
+        assert uris == ["apple_music://track/111"]
+
+    def test_candidates_spotify_provider_walks_uri_and_uri_spotify(self):
+        """Spotify provider includes both `uri_spotify` and legacy `uri` fields."""
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
+        # Two distinct Spotify URIs in the legacy + canonical fields. Both
+        # should be candidates (spotify provider lists both fields).
+        song = {
+            "uri": "spotify:track:legacy",
+            "uri_spotify": "spotify:track:canonical",
+            "_resolved_uri": "spotify:track:canonical",
+            # These should be filtered out — different provider:
             "uri_apple_music": "applemusic://track/111",
             "uri_tidal": "tidal://track/222",
         }
-        fields = [field for field, _ in svc._get_ma_uri_candidates(song)]
-        # Primary first (None), then apple_music before tidal per _URI_FIELDS
-        assert fields[0] is None
-        assert fields.index("uri_apple_music") < fields.index("uri_tidal")
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        assert "spotify:track:canonical" in uris
+        assert "spotify:track:legacy" in uris
+        # Apple Music + Tidal must be excluded.
+        assert all(not u.startswith("apple_music://") for u in uris)
+        assert all(not u.startswith("https://tidal.com") for u in uris)
 
     def test_candidates_dedupe_by_converted_uri(self):
         """`uri` and `uri_spotify` with the same value collapse to one candidate."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
         song = {
             "uri": "spotify:track:abc",
             "uri_spotify": "spotify:track:abc",  # same as uri
             "_resolved_uri": "spotify:track:abc",
-            "uri_apple_music": "applemusic://track/111",
         }
         uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
-        assert uris.count("spotify:track:abc") == 1
-        assert len(uris) == 2
+        assert uris == ["spotify:track:abc"]
 
     def test_candidates_converts_apple_music(self):
         """applemusic:// URIs are converted to MA-native apple_music:// form (#772)."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
         song = {
             "_resolved_uri": "applemusic://track/999",
             "uri_apple_music": "applemusic://track/999",
@@ -649,7 +703,12 @@ class TestMAProviderFallback:
         provider domain.
         """
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="deezer",
+        )
         song = {
             "_resolved_uri": "deezer://track/12345",
             "uri_deezer": "deezer://track/12345",
@@ -657,20 +716,52 @@ class TestMAProviderFallback:
         candidates = svc._get_ma_uri_candidates(song)
         assert candidates[0][1] == "deezer://track/12345"
 
-    def test_candidates_learned_preference_goes_first(self):
-        """If a field was learned as preferred, its URI is tried before primary."""
+    def test_candidates_learned_preference_within_same_provider(self):
+        """Cached preferred field is honored when it belongs to current provider."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
-        svc._ma_preferred_uri_field = "uri_apple_music"
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
+        # Cached: legacy `uri` field worked last time.
+        svc._ma_preferred_uri_field = "uri"
         song = {
-            "uri": "spotify:track:abc",
-            "_resolved_uri": "spotify:track:abc",
-            "uri_apple_music": "applemusic://track/111",
+            "uri": "spotify:track:legacy",
+            "uri_spotify": "spotify:track:canonical",
+            "_resolved_uri": "spotify:track:canonical",
         }
         candidates = svc._get_ma_uri_candidates(song)
-        assert candidates[0] == ("uri_apple_music", "apple_music://track/111")
-        # Primary still present after
-        assert (None, "spotify:track:abc") in candidates
+        # Cached field's URI is first (before _resolved_uri).
+        assert candidates[0] == ("uri", "spotify:track:legacy")
+        # Primary still present after.
+        assert (None, "spotify:track:canonical") in candidates
+
+    def test_candidates_learned_preference_ignored_across_providers(self):
+        """Cached preferred field from a different provider is not honored.
+
+        The cache survives across games where provider may have changed —
+        e.g. user played a Spotify game (cached `uri_spotify`), then started
+        an Apple Music game on the same speaker. The cached Spotify field
+        must be ignored, not retried as a phantom candidate.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
+        svc._ma_preferred_uri_field = "uri_spotify"  # stale cache
+        song = {
+            "uri_spotify": "spotify:track:abc",
+            "uri_apple_music": "applemusic://track/111",
+            "_resolved_uri": "applemusic://track/111",
+        }
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        # Stale cached field is ignored; only Apple Music URI is tried.
+        assert uris == ["apple_music://track/111"]
 
     def test_candidates_no_uris_returns_empty(self):
         """Song with no URI fields yields no candidates."""
@@ -679,39 +770,50 @@ class TestMAProviderFallback:
         assert svc._get_ma_uri_candidates({"title": "x", "artist": "y"}) == []
 
     @pytest.mark.asyncio
-    async def test_fallback_tried_when_primary_fails(self):
-        """If primary URI returns False, the orchestrator tries the next candidate."""
+    async def test_fallback_within_provider_tries_next_when_primary_fails(self):
+        """For Spotify, if `_resolved_uri` fails, legacy `uri` field is tried next."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
         song = {
             "title": "Song",
             "artist": "Artist",
-            "_resolved_uri": "spotify:track:abc",
-            "uri_apple_music": "applemusic://track/111",
+            "uri": "spotify:track:legacy",
+            "uri_spotify": "spotify:track:canonical",
+            "_resolved_uri": "spotify:track:canonical",
         }
 
         calls: list[str] = []
 
         async def fake_try(uri: str, expected_title: str) -> bool:
             calls.append(uri)
-            return uri != "spotify:track:abc"  # primary fails, alternate succeeds
+            return uri == "spotify:track:legacy"  # primary fails, legacy succeeds
 
         with patch.object(svc, "_try_ma_play", side_effect=fake_try):
             result = await svc._play_via_music_assistant(song)
 
         assert result is True
-        assert calls == ["spotify:track:abc", "apple_music://track/111"]
-        assert svc._ma_preferred_uri_field == "uri_apple_music"
+        assert calls == ["spotify:track:canonical", "spotify:track:legacy"]
+        assert svc._ma_preferred_uri_field == "uri"
 
     @pytest.mark.asyncio
     async def test_primary_success_does_not_update_preference(self):
         """When primary (`_resolved_uri`) succeeds, no field is cached."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
         song = {
             "title": "Song",
             "_resolved_uri": "spotify:track:abc",
-            "uri_apple_music": "applemusic://track/111",
+            "uri_spotify": "spotify:track:abc",
         }
 
         with patch.object(svc, "_try_ma_play", AsyncMock(return_value=True)):
@@ -724,10 +826,15 @@ class TestMAProviderFallback:
     async def test_all_candidates_fail_returns_false(self):
         """Exhausted candidates → False, no cached preference."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
         song = {
             "title": "Song",
-            "_resolved_uri": "spotify:track:abc",
+            "_resolved_uri": "applemusic://track/111",
             "uri_apple_music": "applemusic://track/111",
         }
 
@@ -739,38 +846,45 @@ class TestMAProviderFallback:
 
     @pytest.mark.asyncio
     async def test_learned_preference_used_on_next_song(self):
-        """After a fallback succeeds, the next song tries that field first."""
+        """Within Spotify: after legacy `uri` succeeds, next song tries it first."""
         hass = _make_hass()
-        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
 
         song_a = {
             "title": "A",
-            "_resolved_uri": "spotify:track:a",
-            "uri_apple_music": "applemusic://track/a",
+            "uri": "spotify:track:a-legacy",
+            "uri_spotify": "spotify:track:a-canonical",
+            "_resolved_uri": "spotify:track:a-canonical",
         }
         song_b = {
             "title": "B",
-            "_resolved_uri": "spotify:track:b",
-            "uri_apple_music": "applemusic://track/b",
+            "uri": "spotify:track:b-legacy",
+            "uri_spotify": "spotify:track:b-canonical",
+            "_resolved_uri": "spotify:track:b-canonical",
         }
 
         calls: list[str] = []
 
         async def fake_try(uri: str, expected_title: str) -> bool:
             calls.append(uri)
-            # Spotify never works in this user's setup; apple_music always does.
-            return uri.startswith("apple_music://")
+            # Canonical never works in this user's setup; legacy always does.
+            return uri.endswith("-legacy")
 
         with patch.object(svc, "_try_ma_play", side_effect=fake_try):
             assert await svc._play_via_music_assistant(song_a) is True
             assert await svc._play_via_music_assistant(song_b) is True
 
-        # Song A: spotify fails, apple_music succeeds (2 calls)
-        # Song B: apple_music tried first (cached), succeeds (1 call)
+        # Song A: canonical fails, legacy succeeds (2 calls)
+        # Song B: legacy tried first (cached), succeeds (1 call)
         assert calls == [
-            "spotify:track:a",
-            "apple_music://track/a",
-            "apple_music://track/b",
+            "spotify:track:a-canonical",
+            "spotify:track:a-legacy",
+            "spotify:track:b-legacy",
         ]
 
     @pytest.mark.asyncio
