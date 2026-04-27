@@ -443,10 +443,16 @@
     "ttsTestNoSpeaker": "Pick a speaker first",
     "pauseRecovery": {
       "title": "Game paused",
-      "mediaPlayerError": "Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.",
+      "mediaPlayerError": "Playback failed for the last 3 songs in a row. This often means {provider} in Music Assistant needs re-authentication — open Settings → Music Assistant → {provider} → Reconnect, then click Resume.",
+      "mediaPlayerErrorGeneric": "Playback failed for the last 3 songs in a row. This often means your music provider in Music Assistant needs re-authentication — open Settings → Music Assistant → your provider → Reconnect, then click Resume.",
       "noSongsAvailable": "No playable songs left for this provider. Resume to retry, or end the game.",
       "resume": "Resume",
-      "endGame": "End game"
+      "endGame": "End game",
+      "providerSpotify": "Spotify",
+      "providerAppleMusic": "Apple Music",
+      "providerYouTubeMusic": "YouTube Music",
+      "providerTidal": "Tidal",
+      "providerDeezer": "Deezer"
     },
     "haEntities": "HA Entities",
     "haEntitiesSummary": "6 entities",

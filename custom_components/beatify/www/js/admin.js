@@ -3846,11 +3846,37 @@ function showAdminEndView(data) {
  * recovery UI. Admin-disconnect pauses resume automatically on rejoin and
  * don't need a button.
  */
+/**
+ * Map a provider key to its display name (i18n-aware, falls back to a
+ * presentable default if the key is missing).
+ */
+function _providerDisplayName(provider) {
+    if (!provider) return '';
+    var keyMap = {
+        spotify: 'admin.pauseRecovery.providerSpotify',
+        apple_music: 'admin.pauseRecovery.providerAppleMusic',
+        youtube_music: 'admin.pauseRecovery.providerYouTubeMusic',
+        tidal: 'admin.pauseRecovery.providerTidal',
+        deezer: 'admin.pauseRecovery.providerDeezer'
+    };
+    var fallbackMap = {
+        spotify: 'Spotify',
+        apple_music: 'Apple Music',
+        youtube_music: 'YouTube Music',
+        tidal: 'Tidal',
+        deezer: 'Deezer'
+    };
+    var key = keyMap[provider];
+    if (!key) return '';
+    return BeatifyI18n.t(key) || fallbackMap[provider] || '';
+}
+
 function _renderPauseRecoveryBanner(data) {
     var banner = document.getElementById('admin-pause-recovery');
     if (!banner) return;
     var reason = data && data.pause_reason ? data.pause_reason : '';
     var detail = data && data.last_error_detail ? data.last_error_detail : '';
+    var providerKey = data && data.provider ? data.provider : '';
 
     var isErrorPause = reason === 'media_player_error' || reason === 'no_songs_available';
     if (!isErrorPause) {
@@ -3860,13 +3886,22 @@ function _renderPauseRecoveryBanner(data) {
 
     var msgEl = document.getElementById('admin-pause-recovery-message');
     if (msgEl) {
-        var key = reason === 'no_songs_available'
-            ? 'admin.pauseRecovery.noSongsAvailable'
-            : 'admin.pauseRecovery.mediaPlayerError';
-        var fallback = reason === 'no_songs_available'
-            ? 'No playable songs left for this provider. Resume to retry, or end the game.'
-            : 'Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.';
-        msgEl.textContent = BeatifyI18n.t(key) || fallback;
+        var providerName = _providerDisplayName(providerKey);
+        var msg;
+        if (reason === 'no_songs_available') {
+            msg = BeatifyI18n.t('admin.pauseRecovery.noSongsAvailable') ||
+                'No playable songs left for this provider. Resume to retry, or end the game.';
+        } else if (providerName) {
+            // #808 follow-up: name the actual provider so the user knows
+            // which one to re-authenticate in Music Assistant.
+            var template = BeatifyI18n.t('admin.pauseRecovery.mediaPlayerError') ||
+                'Playback failed for the last 3 songs in a row. This often means {provider} in Music Assistant needs re-authentication — open Settings → Music Assistant → {provider} → Reconnect, then click Resume.';
+            msg = template.replace(/\{provider\}/g, providerName);
+        } else {
+            msg = BeatifyI18n.t('admin.pauseRecovery.mediaPlayerErrorGeneric') ||
+                'Playback failed for the last 3 songs in a row. This often means your music provider in Music Assistant needs re-authentication — open Settings → Music Assistant → your provider → Reconnect, then click Resume.';
+        }
+        msgEl.textContent = msg;
     }
 
     var detailEl = document.getElementById('admin-pause-recovery-detail');

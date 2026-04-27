@@ -644,6 +644,22 @@ class TestGetState:
         state = self.state.get_state()
         assert state["last_error_detail"] == ""
 
+    def test_paused_state_includes_provider(self):
+        """#808 follow-up: PAUSED state must surface the user's selected
+        provider so the recovery banner can name it explicitly
+        ("Re-authenticate Apple Music in Music Assistant") instead of a
+        generic "your music provider" hint.
+        """
+        _create_fresh_game(self.state)
+        # Override provider after creation — bypasses the create_game URI
+        # validation (test fixtures don't have apple_music URIs populated).
+        self.state.provider = "apple_music"
+        self.state.phase = GamePhase.PAUSED
+        self.state.pause_reason = "media_player_error"
+        state = self.state.get_state()
+        assert state is not None
+        assert state["provider"] == "apple_music"
+
 
 # ---------------------------------------------------------------------------
 # Issue #228: rematch_game → LOBBY phase with join_url (Start Gameplay fix)
