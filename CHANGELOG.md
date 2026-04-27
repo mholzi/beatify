@@ -4,6 +4,27 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2] - 2026-04-27
+
+Stable promotion of the 3.3.2-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.2) for the user-facing summary.
+
+### Fixed
+- **TTS announcements actually play (#793)** — modern HA `tts.speak` requires both `entity_id` (the TTS provider) and `media_player_entity_id` (the speaker target). Beatify only supplied the first, so audio went silent on every modern TTS entity.
+- **Deezer via Music Assistant (#797)** — emit native `deezer://track/<id>` URI so MA routes to the Deezer provider instead of the generic builtin branch (which doesn't know Deezer).
+- **Game no longer advances while speaker is stuck on a prior track (#795)** — strict `media_title`-must-advance invariant. Position alone is no longer proof of a new track.
+- **Round 1 no longer freezes 10–15s on cold MA start (#803)** — dropped the `media_position >= 1` requirement from the strict-detect fast path. `position_updated_at` advancing already filters out the queued-but-not-playing case.
+- **Speaker is actively stopped when stale-title is detected (#801)** — `media_stop` call in the failure branch so the prior track doesn't keep playing while the cascade tries the next URI.
+- **MA URI cascade now respects the user's provider choice (#805)** — `_PROVIDER_URI_FIELDS` map keys URI fields by provider; the cascade only walks the user-selected provider's fields. Apple-Music-only setups no longer pay 4×15s of timeouts on Spotify/YT/Tidal URIs.
+- **Game no longer ends silently after MA-error pause (#805 part 2)** — `admin_next_round` now leaves PAUSED paused instead of force-ending. `admin_end_game` now allows PAUSED too so the End button works during recovery.
+
+### Added
+- **Resume-from-paused recovery UI (#805 follow-up)** — banner at the top of the playing section with reason text, optional error detail, and Resume + End game buttons. Calls a new `resume_game` admin WS action.
+- **`pauseRecovery` i18n keys** in en/de/es/fr/nl.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2`. Bumped `admin.min.js` + `styles.min.css` cache-busters in `admin.html` → `3.3.2`. Minified assets regenerated.
+- Final test count: 413 passed, 1 xfailed.
+
 ## [3.3.2-rc8] - 2026-04-27
 
 ### Added
