@@ -17,6 +17,7 @@ from custom_components.beatify.const import (
     DIFFICULTY_HARD,
     DIFFICULTY_NORMAL,
     DOMAIN,
+    PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
     PROVIDER_DEEZER,
     PROVIDER_SPOTIFY,
@@ -41,6 +42,28 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _validate_provider(provider: str) -> str:
+    """Coerce unknown providers to PROVIDER_DEFAULT.
+
+    Single source of truth for which providers the wizard may select. #808
+    surfaced the cost of forgetting to update this list: PROVIDER_APPLE_MUSIC
+    was missing, so wizard selections of "apple_music" silently became
+    "spotify". Pre-#805 the cascade walked all six URI fields anyway so the
+    wrong provider was a near-invisible bug. After #805 the cascade only
+    walks the user-selected provider's fields — Apple-Music users were
+    getting Spotify-only candidates, all of which fail on MA without a
+    Spotify provider configured.
+    """
+    valid_providers = (
+        PROVIDER_SPOTIFY,
+        PROVIDER_APPLE_MUSIC,
+        PROVIDER_YOUTUBE_MUSIC,
+        PROVIDER_TIDAL,
+        PROVIDER_DEEZER,
+    )
+    return provider if provider in valid_providers else PROVIDER_DEFAULT
 
 
 class StartGameView(RateLimitMixin, HomeAssistantView):
@@ -103,15 +126,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         if difficulty not in valid_difficulties:
             difficulty = DIFFICULTY_DEFAULT
 
-        # Validate provider (Story 17.6: Spotify, YouTube Music, Tidal supported)
-        valid_providers = (
-            PROVIDER_SPOTIFY,
-            PROVIDER_YOUTUBE_MUSIC,
-            PROVIDER_TIDAL,
-            PROVIDER_DEEZER,
-        )
-        if provider not in valid_providers:
-            provider = PROVIDER_DEFAULT
+        # Validate provider (Story 17.6 + #808). See _validate_provider for
+        # the cost of forgetting to update this list.
+        provider = _validate_provider(provider)
 
         # Validate round_duration if provided (Story 13.1)
         if round_duration is not None:

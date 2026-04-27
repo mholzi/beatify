@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc9] - 2026-04-28
+
+### Fixed
+- **Apple Music wizard selection no longer silently coerced to Spotify (#808).** @Levtos's report against (the now-deleted) v3.3.2 tag exposed the originating bug behind the rc6+rc8 cascade work: `PROVIDER_APPLE_MUSIC` was missing from the `valid_providers` tuple in `StartGameView`, so any wizard selection of "apple_music" silently became "spotify" before reaching `game_state.create_game`. Pre-rc7 this was near-invisible because the cascade walked all six URI fields anyway; after rc7's provider-narrowed cascade (#805), Apple-Music users got Spotify-only candidates and every round failed before MA's resolver. Round 1 couldn't start, the game paused, and the integration was unusable on Apple-Music-only Music Assistant setups.
+
+### For contributors
+- Refactored the inline `valid_providers` tuple into module-level `_validate_provider()` so the rule is unit-testable.
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc9`. No frontend asset changes — HTML cache-busters unchanged.
+- 13 new tests in `tests/unit/test_game_views.py` (round-trip for all 5 providers, explicit Apple-Music regression guard, invalid-input fallback). 426 passed, 1 xfailed.
+
 ## [3.3.2-rc8] - 2026-04-27
 
 ### Added
