@@ -443,10 +443,16 @@
     "ttsTestNoSpeaker": "Choisis d'abord une enceinte",
     "pauseRecovery": {
       "title": "Partie en pause",
-      "mediaPlayerError": "La lecture a échoué pour les 3 dernières chansons. Reprends pour essayer la suivante, ou termine la partie.",
+      "mediaPlayerError": "La lecture a échoué pour les 3 dernières chansons. Cause fréquente : {provider} dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → {provider} → Reconnecter, puis clique sur Reprendre.",
+      "mediaPlayerErrorGeneric": "La lecture a échoué pour les 3 dernières chansons. Cause fréquente : ton service de musique dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → ton service → Reconnecter, puis clique sur Reprendre.",
       "noSongsAvailable": "Plus aucune chanson lisible pour ce service. Reprends pour réessayer, ou termine la partie.",
       "resume": "Reprendre",
-      "endGame": "Terminer la partie"
+      "endGame": "Terminer la partie",
+      "providerSpotify": "Spotify",
+      "providerAppleMusic": "Apple Music",
+      "providerYouTubeMusic": "YouTube Music",
+      "providerTidal": "Tidal",
+      "providerDeezer": "Deezer"
     },
     "haEntities": "Entités HA",
     "haEntitiesSummary": "6 entités",

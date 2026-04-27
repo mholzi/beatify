@@ -71,6 +71,12 @@ class GameStateSerializer:
             # *why* the game paused instead of staring at a blank "⏸ Paused"
             # label. Empty string for non-error pauses (admin disconnect etc).
             state["last_error_detail"] = gs.last_error_detail or ""
+            # #808 follow-up: surface the user's selected music provider so
+            # the recovery banner can name it ("Re-authenticate Apple Music
+            # in Music Assistant") instead of generic "your music provider".
+            # The unauthenticated-MA-provider failure mode is the most
+            # common cause of media_player_error pauses on MA setups.
+            state["provider"] = gs.provider
 
         elif gs.phase == GamePhase.END:
             GameStateSerializer._add_end_state(gs, state)

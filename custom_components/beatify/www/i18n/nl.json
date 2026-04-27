@@ -443,10 +443,16 @@
     "ttsTestNoSpeaker": "Kies eerst een luidspreker",
     "pauseRecovery": {
       "title": "Spel gepauzeerd",
-      "mediaPlayerError": "Afspelen is mislukt voor de laatste 3 nummers. Hervat om het volgende nummer te proberen, of stop het spel.",
+      "mediaPlayerError": "Afspelen is mislukt voor de laatste 3 nummers. Veelvoorkomende oorzaak: {provider} in Music Assistant moet opnieuw worden geverifieerd — Instellingen → Music Assistant → {provider} → Opnieuw verbinden, en klik dan op Hervatten.",
+      "mediaPlayerErrorGeneric": "Afspelen is mislukt voor de laatste 3 nummers. Veelvoorkomende oorzaak: je muziekprovider in Music Assistant moet opnieuw worden geverifieerd — Instellingen → Music Assistant → je provider → Opnieuw verbinden, en klik dan op Hervatten.",
       "noSongsAvailable": "Geen afspeelbare nummers meer voor deze provider. Hervat om opnieuw te proberen, of stop het spel.",
       "resume": "Hervatten",
-      "endGame": "Spel beëindigen"
+      "endGame": "Spel beëindigen",
+      "providerSpotify": "Spotify",
+      "providerAppleMusic": "Apple Music",
+      "providerYouTubeMusic": "YouTube Music",
+      "providerTidal": "Tidal",
+      "providerDeezer": "Deezer"
     },
     "haEntities": "HA-entiteiten",
     "haEntitiesSummary": "6 entiteiten",

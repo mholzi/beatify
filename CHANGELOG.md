@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc10] - 2026-04-28
+
+### Changed
+- **Pause-recovery banner now teaches the actual fix (#808 follow-up).** When `pause_reason` is `media_player_error`, the banner used to say "Playback failed for the last 3 songs. Resume or end the game" — generic and unactionable. After @mholzi diagnosed his own #808 instance as "Apple Music provider needed re-authentication in MA settings", the banner now explicitly names the user's selected provider and points them at the exact recovery step: *"Playback failed for the last 3 songs. This often means [Apple Music] in Music Assistant needs re-authentication — Settings → Music Assistant → [Apple Music] → Reconnect, then click Resume."* Backend serializer surfaces `provider` in PAUSED state payloads; frontend renderer interpolates `{provider}` placeholder against locale-specific names.
+
+### For contributors
+- Added `provider` to PAUSED-phase state payload in `serializers.py`. Frontend reads `data.provider` for the banner template.
+- New i18n keys per locale (en/de/es/fr/nl): `admin.pauseRecovery.mediaPlayerError` (with `{provider}` placeholder), `admin.pauseRecovery.mediaPlayerErrorGeneric` (provider-less fallback), `admin.pauseRecovery.providerSpotify`/`AppleMusic`/`YouTubeMusic`/`Tidal`/`Deezer` for display-name interpolation.
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc10`. `admin.min.js` + `styles.min.css` cache-busters bumped; minified rebuilt.
+- 1 new serializer test covering `provider` in PAUSED payload. 427 passed, 1 xfailed.
+
+### Out of scope (filed for later)
+- Real preflight check via MA's WebSocket API (`config/providers/get_all`) so we can detect unauthenticated providers *before* the game starts and skip the 3×15s pause cycle. Filing as a separate enhancement issue — needs MA WS auth handling, schema versioning, and fallback paths.
+
 ## [3.3.2-rc9] - 2026-04-28
 
 ### Fixed
