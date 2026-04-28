@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc13] - 2026-04-28
+
+### Fixed
+- **UI no longer lags ~15s after pressing "Next song" when MA reports a title that doesn't substring-match the playlist (#808 follow-up).** @Levtos's playthrough on rc12 had the music start immediately on round-advance, but the game screen took several seconds to appear. The cause: `_check_state` fast-path required `expected_title.lower()` to be a substring of the speaker's reported `media_title`. When the playlist had "Das Modell" but Apple Music returned "The Model", or "Hallelujah" became "Hallelujah - Live", the substring check failed and the wait timed out via the 15s slow-buffer tolerance fallback. Relaxed the fast-path to also accept *"title moved to anything different from before the call"* — the same signal the slow-buffer fallback was using, just promoted into the fast-path. UI now returns within ~1s of MA actually starting playback. The #795 stale-title invariant is preserved: if the title hasn't changed from before the call, the fast-path still rejects (covered by the existing test).
+- **Reduced metadata-fetch timeout 5s → 2s.** When the playback fast-path fired (which it now does in ~1s), the game's pre-round metadata refresh would still wait up to 5 more seconds for fresh artwork from MA. That was the secondary contributor to the post-fix UI lag. New 2s budget; on timeout we fall back to the playlist's existing `album_art` field. Briefly stale art at the top of a round in worst case, but the speaker corrects on its own state callback.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc13`. No frontend asset changes.
+- 1 new test in `test_media_player.py` covering the German/English title-mismatch fast-path. 440 passed, 1 xfailed.
+
 ## [3.3.2-rc12] - 2026-04-28
 
 ### Added
@@ -24,7 +34,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
   For DE users: 55 region-locked tracks are now silently *skipped* before any MA call, instead of silently *failing* through 15s timeouts and possibly tripping the 3-failure pause limit. Same pattern across all non-US regions.
 
 ### For contributors
-- New `scripts/fetch_apple_music_regions.py` — uses Apple Music API + ISRC to resolve per-region track IDs across configurable storefronts. Idempotent, batched (25 ISRCs per call), runs in ~3 minutes for the full 1288-song catalog. Credentials read from `.env` (`APPLE_MUSIC_KEY_ID`, `APPLE_MUSIC_TEAM_ID`, `APPLE_MUSIC_PRIVATE_KEY_PATH`). Re-run when adding new playlists or new storefronts.
+- New `scripts/fetch_apple_music_regions.py` — uses Apple Music API + ISRC to resolve per-region track IDs across configurable storefronts. Idempotent, batched (25 ISRCs per call), runs in ~3 minutes for the full 2481-song catalog (22 playlists: 11 main + 11 community). Credentials read from `.env` (`APPLE_MUSIC_KEY_ID`, `APPLE_MUSIC_TEAM_ID`, `APPLE_MUSIC_PRIVATE_KEY_PATH`). Re-run when adding new playlists or new storefronts.
 - New song fields: `isrc` (universal recording identifier, populated for 2204/2481 songs) and `uri_apple_music_by_region` (per-region track ID, `null` for confirmed-unavailable). 277 songs without `uri_apple_music` still need ISRC backfill via Spotify API — filed as a future enhancement.
 - `get_song_uri(song, provider, storefront=None)` — backwards-compatible signature; storefront only affects Apple Music. `PlaylistManager(songs, provider, storefront=None)` filters out region-locked songs at construction time.
 - `GameState._detect_storefront()` reads `hass.config.country` (lower-cased). Future enhancement: query Music Assistant's WebSocket API for the actual Apple Music provider's storefront, which may differ from HA's country.
