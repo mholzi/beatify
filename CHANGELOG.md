@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc17] - 2026-04-28
+
+### Fixed
+- **Wizard's "Game language" pill now defaults to current UI language even with stale saved value (#822).** @mholzi reported that on a German UI install, the wizard preselected English in the *Ansagesprache* pill group. The rc15 #815 fix only kicked in when no saved language existed; users who'd been through the wizard before still saw the stale 'en' from a prior session. Now the wizard always prefers the current `BeatifyI18n.getLanguage()` value as the game-language default. Saved value only takes effect when the UI language can't be determined. Power users who want game-language ≠ UI-language can tap the chip during the wizard; that explicit tap resaves and the next entry will see UI=game both times.
+
+### Changed
+- **Playlist Hub layout tighter — cards are the visual centerpiece (#821).** @mholzi reported the playlist cards felt small relative to all the chrome above them (header, search, stats tabs, genre chips, action bar). Three small CSS adjustments shift focus to the cards:
+  - `.plh-card` width: **136px → 160px** (~17% larger area; still under 50% viewport on the smallest phones so two cards fit side-by-side)
+  - `.plh-header` vertical padding: **12px/10px → 8px/6px** (saves ~8px above the fold)
+  - `.plh-wordmark` font-size: **24px → 20px**, and titlebar bottom margin **10px → 6px**
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc17`. Bumped `admin.html` + `player.html` cache-busters (`styles.min.css`, `wizard.js`) to `3.3.2-rc17`. Minified rebuilt.
+- 442 tests pass, 1 xfailed (no new tests; both fixes are JS/CSS-only outside the unit-test surface).
+
 ## [3.3.2-rc16] - 2026-04-28
 
 ### Fixed
