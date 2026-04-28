@@ -24,9 +24,25 @@ window.BeatifyI18n = (function() {
      * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
      * @returns {Promise<Object>} - Loaded translations
      */
+    /**
+     * Read the page's version (set via <meta name="beatify-version" ...>) so
+     * we can cache-bust the i18n fetch URL. Without this, the service-worker
+     * cache-first strategy serves a stale en.json from a prior rc — a user
+     * who updates from rc14 to rc18 would still see raw keys like
+     * "admin.home.waitingForGuests" because the new admin.min.js refers to
+     * keys that the cached en.json doesn't have. (#824)
+     */
+    function getVersionForCacheBust() {
+        if (typeof document === 'undefined') return '';
+        var meta = document.querySelector('meta[name="beatify-version"]');
+        return meta ? meta.getAttribute('content') || '' : '';
+    }
+
     async function fetchTranslations(langCode) {
+        var v = getVersionForCacheBust();
+        var qs = v ? ('?v=' + encodeURIComponent(v)) : '';
         try {
-            var response = await fetch('/beatify/static/i18n/' + langCode + '.json');
+            var response = await fetch('/beatify/static/i18n/' + langCode + '.json' + qs);
             if (!response.ok) {
                 console.warn('[i18n] Failed to load ' + langCode + '.json:', response.status);
                 return {};
