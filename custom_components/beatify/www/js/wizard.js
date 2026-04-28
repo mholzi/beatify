@@ -1037,22 +1037,30 @@ export async function show(stepOverride) {
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
-            // #815 + #822: prefer the CURRENT UI language as the game-language
-            // default. The saved value only takes precedence if the UI
-            // language can't be determined.
+            // #815 + #822: prefer the BROWSER's language as the game-language
+            // default. Saved value only wins if browser detection isn't
+            // available.
             //
-            // Why: a user with German UI saw "English" preselected in the
-            // game-language pills because a previous wizard run had saved
-            // language='en' — even after rc15 corrected the first-time
-            // default. People treat UI language as their canonical signal,
-            // and saved game-language is usually a stale leftover. Power
-            // users who actually want game language ≠ UI language can tap
-            // the chip during the wizard; that explicit tap re-saves and
-            // the next wizard entry will see UI=game both times.
+            // Why navigator.language (via detectBrowserLanguage), not
+            // BeatifyI18n.getLanguage()?  Earlier rc15/rc17 attempts used
+            // getLanguage() but `admin.js:loadSavedSettings()` calls
+            // BeatifyI18n.setLanguage(settings.language) on every page
+            // load — which silently overrides the auto-detected language
+            // with whatever's in localStorage. A user with `navigator
+            // .language='de-DE'` plus stale settings.language='en' from a
+            // pre-rc15 wizard run would see currentLanguage='en' by the
+            // time the wizard opened, and the rc17 fix returned 'en' too.
+            // detectBrowserLanguage() is a pure read of navigator.language
+            // — no session state, no race.
+            //
+            // Power users who actually want game-language ≠ browser-
+            // language can tap the chip during the wizard; that explicit
+            // tap re-saves and persists across reloads via the chip
+            // handler in wizard.js's _renderChipGroup callback.
             let _resolvedLang = null;
             try {
-                if (window.BeatifyI18n && typeof window.BeatifyI18n.getLanguage === 'function') {
-                    _resolvedLang = window.BeatifyI18n.getLanguage();
+                if (window.BeatifyI18n && typeof window.BeatifyI18n.detectBrowserLanguage === 'function') {
+                    _resolvedLang = window.BeatifyI18n.detectBrowserLanguage();
                 }
             } catch (e) { /* ignore */ }
             if (!_resolvedLang && s.language) _resolvedLang = s.language;

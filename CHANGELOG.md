@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc18] - 2026-04-28
+
+### Fixed
+- **Wizard "Game language" default actually works now (#822 part 2).** The rc17 fix used `BeatifyI18n.getLanguage()` to read the current UI language, but `admin.js:loadSavedSettings()` runs on every page load and calls `BeatifyI18n.setLanguage(settings.language)` to apply the saved language preference. For a user with `navigator.language='de-DE'` and a stale `settings.language='en'` (from any pre-rc15 wizard run), the auto-detection's `'de'` got silently overridden to `'en'` BEFORE the wizard opened — so `getLanguage()` returned `'en'` and the rc17 fix selected the English chip. Now using `BeatifyI18n.detectBrowserLanguage()` instead — a pure read of `navigator.language`, no session state, no race. The user's browser language wins as the wizard default; explicit chip-tap during the wizard still overrides and persists.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc18`. Bumped `wizard.js` cache-buster in `admin.html` to `3.3.2-rc18`. No CSS or other JS changes.
+- 442 tests pass, 1 xfailed.
+
 ## [3.3.2-rc17] - 2026-04-28
 
 ### Fixed
