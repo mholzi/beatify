@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc19] - 2026-04-28
+
+### Fixed
+- **i18n keys no longer render as raw strings after upgrade (#824).** @mholzi reported the admin home view showing literal strings like `admin.home.waitingForGuests` and `admin.home.playlistRequestsTitle` instead of their translations. Root cause: the service worker's cache-first strategy was serving a stale `en.json` cached from a prior rc, but the new `admin.min.js` was referencing keys (`waitingForGuests`, `playlistRequestsTitle`, etc.) that didn't exist in that stale JSON. The i18n fetch URL had no cache-buster — every release ships a new admin.min.js that may reference new i18n keys, but the JSON URL stayed identical (`/beatify/static/i18n/en.json`), so the SW kept serving the old cached version. Now: HTML pages declare a `<meta name="beatify-version" content="3.3.2-rc19">` tag, and `i18n.js` reads it to append `?v=3.3.2-rc19` to the JSON fetch URL. Each rc bump invalidates the cache for i18n files just like other static assets.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc19`. Bumped `admin.html` + `player.html` cache-busters (`styles.min.css`, `admin.min.js`, `wizard.js`, `player.bundle.min.js`) → rc19.
+- Added `<meta name="beatify-version">` to admin.html, player.html, dashboard.html. The version content gets bumped each rc alongside manifest/sw versions. New helper `getVersionForCacheBust()` in `i18n.js` reads it.
+- 442 tests pass.
+
 ## [3.3.2-rc18] - 2026-04-28
 
 ### Fixed
