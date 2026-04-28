@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
@@ -886,3 +886,68 @@ class TestResumeGame:
         assert self.state.phase == GamePhase.PAUSED
         await self.state.resume_game()
         assert self.state.phase == original_phase
+
+
+# ---------------------------------------------------------------------------
+# end_round resilience (#816)
+# ---------------------------------------------------------------------------
+
+
+class TestEndRoundResilience:
+    """#816: a scoring exception on one player must NOT block the round-end
+    transition. Without the defensive try/except in `_end_round_unlocked`,
+    `ScoringService.score_player_round` raising propagated up before line
+    1573 (where `phase = GamePhase.REVEAL` is set) — leaving the UI frozen
+    on the PLAYING screen with the timer at 0 and no broadcast.
+
+    The transition + broadcast must happen even if scoring partially fails.
+    """
+
+    def setup_method(self):
+        self.state = make_game_state()
+        _create_fresh_game(self.state)
+        self.state.add_player("Alice", MagicMock())
+        self.state.add_player("Bob", MagicMock())
+        self.state.start_game()
+        # Set up a current song so end_round has correct_year context.
+        self.state.current_song = {
+            "title": "Test Song",
+            "artist": "Test Artist",
+            "year": 1990,
+        }
+        self.state.round_start_time = self.state._now()
+
+    @pytest.mark.asyncio
+    async def test_end_round_completes_when_scoring_one_player_throws(self):
+        """If ScoringService.score_player_round throws on one player,
+        the round STILL transitions to REVEAL and the broadcast still fires.
+        """
+        broadcast = AsyncMock()
+        self.state.set_round_end_callback(broadcast)
+
+        with patch(
+            "custom_components.beatify.game.scoring.ScoringService.score_player_round",
+            side_effect=AttributeError("simulated state corruption"),
+        ):
+            await self.state.end_round()
+
+        # Phase MUST have transitioned despite the scoring exception.
+        assert self.state.phase == GamePhase.REVEAL
+        # Broadcast MUST have been called so the UI updates.
+        broadcast.assert_awaited_once()
+
+    @pytest.mark.asyncio
+    async def test_end_round_completes_when_apply_closest_wins_throws(self):
+        """Closest-wins exception path: same defensive guarantee."""
+        self.state.closest_wins_mode = True
+        broadcast = AsyncMock()
+        self.state.set_round_end_callback(broadcast)
+
+        with patch(
+            "custom_components.beatify.game.scoring.ScoringService.apply_closest_wins",
+            side_effect=ValueError("simulated bad state"),
+        ):
+            await self.state.end_round()
+
+        assert self.state.phase == GamePhase.REVEAL
+        broadcast.assert_awaited_once()

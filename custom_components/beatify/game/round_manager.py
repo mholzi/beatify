@@ -33,6 +33,30 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+
+def _log_timer_task_failure(task: asyncio.Task) -> None:
+    """Surface silent crashes in the round timer task (#816).
+
+    Without this done-callback, an unhandled exception in the timer
+    coroutine (or anything it awaits — including end_round and the
+    full scoring path) leaves the task in `done with exception` state
+    but nobody retrieves the result, so the round stays frozen on
+    PLAYING with no diagnostic in the logs. Logging the exception here
+    means the next time this happens we have a clear stack trace
+    pointing at the actual cause.
+    """
+    if task.cancelled():
+        return  # Cancellation is expected (admin pressed End/Pause/Skip).
+    exc = task.exception()
+    if exc is not None:
+        _LOGGER.error(
+            "Round timer task crashed silently — round will stay frozen "
+            "on PLAYING. Error: %s",
+            exc,
+            exc_info=exc,
+        )
+
+
 # Intro mode constraints
 _INTRO_MIN_ROUND = 3  # No intro before round 3
 _INTRO_MIN_GAP = 2  # At least 2 normal rounds between intros
@@ -311,6 +335,13 @@ class RoundManager:
         else:
             delay = (self.deadline - int(self._now() * 1000)) / 1000.0
             self._timer_task = asyncio.create_task(timer_countdown(delay))
+            # #816: surface any silent task crash. Without this callback,
+            # an unhandled exception inside `timer_countdown` (or anything
+            # it awaits, e.g. end_round → scoring) leaves the task in
+            # `done with exception` state but nobody calls `task.result()`,
+            # so the round stays frozen on PLAYING with no log of what
+            # went wrong. Now we always log the failure mode.
+            self._timer_task.add_done_callback(_log_timer_task_failure)
 
             # Start intro auto-stop timer if this is an intro round
             if self.is_intro_round and on_round_end:
@@ -365,6 +396,7 @@ class RoundManager:
         delay = (self.deadline - int(now * 1000)) / 1000.0
         countdown = timer_countdown or self._timer_countdown
         self._timer_task = asyncio.create_task(countdown(delay))
+        self._timer_task.add_done_callback(_log_timer_task_failure)
 
         # Start intro auto-stop
         self._intro_stop_task = asyncio.create_task(
