@@ -1037,20 +1037,26 @@ export async function show(stepOverride) {
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
-            // #815: if the user explicitly saved a language, honor it.
-            // Otherwise, default to whatever UI language they're currently
-            // viewing the wizard in. Without this, the wizard always
-            // defaulted `chosenLanguage = 'en'`, so a German-UI user who
-            // didn't tap the language chip ended up with EN game language
-            // (TTS in English) and the home badge bar showing "EN".
-            if (s.language) {
-                chosenLanguage = s.language;
-            } else if (window.BeatifyI18n && typeof window.BeatifyI18n.getLanguage === 'function') {
-                try {
-                    const uiLang = window.BeatifyI18n.getLanguage();
-                    if (uiLang) chosenLanguage = uiLang;
-                } catch (e) { /* ignore */ }
-            }
+            // #815 + #822: prefer the CURRENT UI language as the game-language
+            // default. The saved value only takes precedence if the UI
+            // language can't be determined.
+            //
+            // Why: a user with German UI saw "English" preselected in the
+            // game-language pills because a previous wizard run had saved
+            // language='en' — even after rc15 corrected the first-time
+            // default. People treat UI language as their canonical signal,
+            // and saved game-language is usually a stale leftover. Power
+            // users who actually want game language ≠ UI language can tap
+            // the chip during the wizard; that explicit tap re-saves and
+            // the next wizard entry will see UI=game both times.
+            let _resolvedLang = null;
+            try {
+                if (window.BeatifyI18n && typeof window.BeatifyI18n.getLanguage === 'function') {
+                    _resolvedLang = window.BeatifyI18n.getLanguage();
+                }
+            } catch (e) { /* ignore */ }
+            if (!_resolvedLang && s.language) _resolvedLang = s.language;
+            if (_resolvedLang) chosenLanguage = _resolvedLang;
             if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;

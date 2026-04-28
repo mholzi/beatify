@@ -12579,7 +12579,10 @@ body.theme-dark .your-result-stats .stat-value {
     background: rgba(10, 10, 18, 0.82);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    padding: 12px 18px 10px;
+    /* #821: tightened from 12px 18px 10px → 8px 14px 6px so the playlist
+       cards below get more vertical room above the fold. The header still
+       has its blurred backdrop + bottom border for visual separation. */
+    padding: 8px 14px 6px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -12587,13 +12590,17 @@ body.theme-dark .your-result-stats .stat-value {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    /* #821: was 10px — tightened so chrome compresses and cards get more
+       breathing room. */
+    margin-bottom: 6px;
 }
 
 .plh-wordmark {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 24px;
+    /* #821: was 24px — small reduction shifts visual focus to the cards
+       below without losing branding presence. */
+    font-size: 20px;
     letter-spacing: -0.02em;
     line-height: 1;
     background: linear-gradient(90deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
@@ -12894,7 +12901,12 @@ body.theme-dark .your-result-stats .stat-value {
 
 .plh-card {
     flex-shrink: 0;
-    width: 136px;
+    /* #821: bumped from 136px → 160px (~17% bigger area). Makes the
+       playlist cards the visual centerpiece of the hub instead of feeling
+       small relative to the surrounding chrome (header, search, stats,
+       chips, action bar). Stays under 50% viewport width on the smallest
+       phones (e.g. 375px) so two cards still fit side-by-side. */
+    width: 160px;
     cursor: pointer;
     position: relative;
     background: transparent;
@@ -12906,8 +12918,9 @@ body.theme-dark .your-result-stats .stat-value {
 }
 
 .plh-card .plh-cover {
-    width: 136px;
-    height: 136px;
+    /* #821: matched to .plh-card width; keeps the 1:1 aspect ratio. */
+    width: 160px;
+    height: 160px;
     border-radius: 12px;
     position: relative;
     overflow: hidden;
