@@ -847,8 +847,16 @@ class GameState:
 
             if remaining_ms > 0:
                 remaining_seconds = remaining_ms / 1000.0
+                # Local import to avoid module-level cycle.
+                from custom_components.beatify.game.round_manager import (  # noqa: PLC0415
+                    _log_timer_task_failure,
+                )
+
                 self._round_manager._timer_task = asyncio.create_task(
                     self._timer_countdown(remaining_seconds)
+                )
+                self._round_manager._timer_task.add_done_callback(
+                    _log_timer_task_failure
                 )
                 _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
 
@@ -1462,29 +1470,55 @@ class GameState:
                     "missing" if self.current_song is None else "no year field",
                 )
 
-        # Calculate scores for all players — delegates to ScoringService (#139)
+        # Calculate scores for all players — delegates to ScoringService (#139).
+        # #816: wrap in try/except so an unexpected state shape in ONE player
+        # doesn't abort the whole round-end transition. Without this, a
+        # ScoringService exception bubbles up before line 1573 (where phase
+        # gets set to REVEAL) and broadcast_state never fires — the UI
+        # stays frozen on the PLAYING screen with the timer at 0. Per-player
+        # isolation: if one player's scoring fails, the rest still score and
+        # the round still ends.
         all_players = list(self.players.values())
         for player in self.players.values():
-            ScoringService.score_player_round(
-                player,
-                correct_year=correct_year,
-                round_start_time=self.round_start_time,
-                round_duration=self.round_duration,
-                difficulty=self.difficulty,
-                artist_challenge=self.artist_challenge,
-                movie_challenge=self.movie_challenge,
-                is_intro_round=self.is_intro_round,
-                intro_round_start_time=self._round_manager._intro_round_start_time,
-                all_players=all_players,
-                streak_achievements=self.streak_achievements,
-                bet_tracking=self.bet_tracking,
-            )
+            try:
+                ScoringService.score_player_round(
+                    player,
+                    correct_year=correct_year,
+                    round_start_time=self.round_start_time,
+                    round_duration=self.round_duration,
+                    difficulty=self.difficulty,
+                    artist_challenge=self.artist_challenge,
+                    movie_challenge=self.movie_challenge,
+                    is_intro_round=self.is_intro_round,
+                    intro_round_start_time=self._round_manager._intro_round_start_time,
+                    all_players=all_players,
+                    streak_achievements=self.streak_achievements,
+                    bet_tracking=self.bet_tracking,
+                )
+            except (KeyError, AttributeError, TypeError, ValueError) as err:
+                _LOGGER.error(
+                    "Scoring failed for player %s in round %d: %s — "
+                    "their score is unchanged this round, round still ends",
+                    getattr(player, "name", "?"),
+                    self.round,
+                    err,
+                )
 
-        # Issue #442: Closest Wins — zero out non-closest players' scores
+        # Issue #442: Closest Wins — zero out non-closest players' scores.
+        # #816: same defensive wrap as above.
         if self.closest_wins_mode and correct_year is not None:
-            ScoringService.apply_closest_wins(all_players, correct_year)
+            try:
+                ScoringService.apply_closest_wins(all_players, correct_year)
+            except (KeyError, AttributeError, TypeError, ValueError) as err:
+                _LOGGER.error(
+                    "apply_closest_wins failed in round %d: %s — round still ends",
+                    self.round,
+                    err,
+                )
 
-        # Issue #120: Track round results for shareable result cards
+        # Issue #120: Track round results for shareable result cards.
+        # #816: defensive wrap so a corrupt player.years_off doesn't block
+        # the round-end transition.
         if correct_year is not None:
             scoring_cfg = DIFFICULTY_SCORING.get(
                 self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT]
@@ -1492,17 +1526,24 @@ class GameState:
             close_range = scoring_cfg["close_range"]
             near_range = scoring_cfg["near_range"]
             for player in self.players.values():
-                if player.submitted and player.years_off is not None:
-                    if player.years_off == 0:
-                        player.round_results.append("exact")
-                    elif close_range > 0 and player.years_off <= close_range:
-                        player.round_results.append("scored")
-                    elif near_range > 0 and player.years_off <= near_range:
-                        player.round_results.append("close")
+                try:
+                    if player.submitted and player.years_off is not None:
+                        if player.years_off == 0:
+                            player.round_results.append("exact")
+                        elif close_range > 0 and player.years_off <= close_range:
+                            player.round_results.append("scored")
+                        elif near_range > 0 and player.years_off <= near_range:
+                            player.round_results.append("close")
+                        else:
+                            player.round_results.append("missed")
                     else:
                         player.round_results.append("missed")
-                else:
-                    player.round_results.append("missed")
+                except (AttributeError, TypeError) as err:
+                    _LOGGER.error(
+                        "round_results append failed for player %s: %s",
+                        getattr(player, "name", "?"),
+                        err,
+                    )
 
         # Issue #75: Record highlights after scoring
         try:

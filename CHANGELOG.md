@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc14] - 2026-04-28
+
+### Fixed
+- **Round no longer freezes on PLAYING when scoring throws (#816).** @mholzi reported the timer hitting 0 but the UI staying frozen on the playing screen — no transition to REVEAL, no broadcast. Root cause: the scoring loop in `_end_round_unlocked` (`ScoringService.score_player_round` × every player, plus `apply_closest_wins`, plus the `round_results` append loop) was NOT wrapped in try/except. By round 9 of a long playlist, accumulated state edge cases (a player with an unusual challenge field, a corrupted timer, etc.) could throw mid-loop, propagating up and aborting `_end_round_unlocked` BEFORE the phase-transition line. Phase stayed `PLAYING`, no broadcast fired, the UI was stuck. Now: each scoring step is per-player isolated and wrapped — one failed player loses their score for the round (logged loudly) but the round still ends and the broadcast fires.
+- **Silent timer-task crashes are now logged.** Companion fix to #816: every timer task created in `RoundManager.initialize_round`, `confirm_intro_splash`, and `GameState.resume_game` now has an `add_done_callback` that surfaces any unretrieved exception with a stack trace. Previously, an unhandled exception in the timer coroutine would leave the asyncio Task in `done with exception` state but nobody called `task.result()`, so the round stayed frozen with no diagnostic in the logs. Future occurrences of this class of bug will leave a clear trail.
+
+### For contributors
+- 2 new tests in `TestEndRoundResilience` (`test_state.py`) covering the scoring-throws path and the closest-wins-throws path. 442 passed, 1 xfailed.
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc14`. No frontend asset changes.
+
 ## [3.3.2-rc13] - 2026-04-28
 
 ### Fixed
