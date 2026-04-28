@@ -133,6 +133,56 @@ class TestMANonBlockingPlayback:
         assert call_count >= 2
 
     @pytest.mark.asyncio
+    async def test_ma_fast_path_accepts_title_advanced_without_exact_match(self):
+        """Levtos's UI-lag scenario: title moved to a NEW song after the call,
+        but the new title doesn't substring-match what the playlist expected
+        (e.g. playlist has 'Das Modell', MA reports 'The Model'; or
+        playlist has 'Hallelujah' and MA returns 'Hallelujah - Live'). The
+        fast-path must still confirm playback so the UI returns within ~1s
+        instead of waiting the full 15s timeout.
+
+        #795 invariant is preserved: if the title is UNCHANGED from before,
+        the fast-path still rejects (covered by the separate stale-title test).
+        """
+        hass = _make_hass("playing", media_title="Manhattan Skyline")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        before = _make_state(
+            "playing",
+            media_title="Manhattan Skyline",  # previous track
+            media_position=120,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        # MA started playing the new track. Title moved to "The Model" but
+        # the playlist expected "Das Modell" (German title) — substring match
+        # fails, but title_advanced succeeds.
+        after = _make_state(
+            "playing",
+            media_title="The Model",  # different from `before`, but doesn't contain "Das Modell"
+            media_position=2,
+            media_position_updated_at="2020-01-01T00:00:01+00:00",  # fresh
+        )
+        call_count = 0
+
+        def state_progression(*_args):
+            nonlocal call_count
+            call_count += 1
+            return before if call_count <= 1 else after
+
+        hass.states.get = MagicMock(side_effect=state_progression)
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            result = await svc.play_song(_make_song(title="Das Modell"))
+
+        # Fast-path must fire — title moved, even though it doesn't match.
+        assert result is True
+        # Should NOT have needed to wait the full timeout; few state reads.
+        assert call_count >= 2
+
+    @pytest.mark.asyncio
     async def test_ma_realistic_ytmusic_flow(self):
         """Simulate real MA+YTMusic flow: queued → idle → playing pos=0 → playing pos=1."""
         hass = _make_hass("playing", media_title="Old Song")

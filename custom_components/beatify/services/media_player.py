@@ -98,7 +98,15 @@ PLAYBACK_TIMEOUT = 8.0
 MA_PLAYBACK_TIMEOUT = 15.0
 
 # Timeout for waiting for metadata to update after playing (seconds)
-METADATA_WAIT_TIMEOUT = 5.0
+# Wait up to 2s for MA to push fresh metadata (album art, etc.) after a
+# playback transition. Reduced from 5s — that earlier value was the
+# dominant secondary cause of "UI lag after pressing next" (after the 15s
+# playback-confirm wait, addressed by the title_advanced fast-path).
+# When this times out, Beatify falls back to the playlist's existing
+# album_art / title / artist fields; the visible cost is briefly stale
+# album art at the top of a round, which the speaker corrects on its own
+# state callback within a few seconds.
+METADATA_WAIT_TIMEOUT = 2.0
 
 # Candidate URI fields on a song, by user-selected provider (#805).
 #
@@ -462,18 +470,49 @@ class MediaPlayerService:
         start_time = asyncio.get_event_loop().time()
 
         def _check_state(state) -> bool:
-            """Return True if the state confirms expected playback."""
+            """Return True if the state confirms expected playback.
+
+            Two acceptance paths:
+              1. Title contains expected (substring) — the strongest signal.
+              2. Title moved to ANYTHING different from before the call — MA
+                 is making progress on a new track, accept it.
+
+            Path 2 was previously only reachable via the 15-second slow-buffer
+            tolerance below. Levtos reported that pressing "next" caused the
+            UI to lag while the music had already started: the playlist had
+            a song with a slightly different title format (e.g. German
+            "Das Modell" vs MA's English "The Model", or "(Remastered)"
+            suffix mismatches) so the substring-match in path 1 failed and
+            the wait timed out. With path 2 in the fast-path, the UI now
+            returns within ~1s of MA actually starting playback.
+
+            #795 invariant still holds: if the title is unchanged from
+            before the call (`title_before`), neither path fires and we
+            fall through to the title-must-advance hard-failure check.
+            """
             if not state or state.state != "playing":
                 return False
             try:
-                current_title = state.attributes.get("media_title", "")
+                current_title = state.attributes.get("media_title", "") or ""
                 position_updated = state.attributes.get("media_position_updated_at")
 
                 position_fresh = position_updated != position_updated_before
-                title_matches = (not expected_lower) or (
-                    expected_lower in current_title.lower() if current_title else False
-                )
-                return title_matches and position_fresh
+                if not position_fresh:
+                    return False
+
+                # Path 1: exact-ish title match (substring).
+                if expected_lower and expected_lower in current_title.lower():
+                    return True
+                # If no expected title was supplied, position-fresh alone is
+                # all the signal we have — accept (matches old behavior).
+                if not expected_lower:
+                    return True
+
+                # Path 2: title moved to something different from before.
+                if current_title and current_title != title_before:
+                    return True
+
+                return False
             except (AttributeError, KeyError):
                 return False
 
