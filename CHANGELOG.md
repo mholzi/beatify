@@ -4,6 +4,37 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc12] - 2026-04-28
+
+### Added
+- **Storefront-aware Apple Music URIs (#808 follow-up — the real fix).** Beatify's playlists now carry per-region Apple Music track IDs, resolved at game start based on HA's configured country. Track IDs that are confirmed unavailable in the user's storefront get filtered out of the playable pool *before* any MA call is made — no 15s timeout, no strict-detect fallback, no recovery banner. The `rc11` skip-on-unavailable behavior is preserved as a safety net for region-locks we haven't measured yet, but the common case (US-only IDs on a DE storefront) now never reaches MA.
+
+  Concrete numbers across all 22 playlists (main + community) / 2204 ISRC-resolved songs:
+
+  | Region | Available | Region-locked | % Coverage |
+  |---|---|---|---|
+  | US | 2194 | 10 | 99.5% |
+  | DE | 2149 | 55 | 97.5% ← @Levtos |
+  | GB | 2138 | 66 | 97.0% |
+  | FR | 2147 | 57 | 97.4% |
+  | ES | 2150 | 54 | 97.6% |
+  | NL | 2151 | 53 | 97.6% |
+  | IT | 2148 | 56 | 97.5% |
+
+  For DE users: 55 region-locked tracks are now silently *skipped* before any MA call, instead of silently *failing* through 15s timeouts and possibly tripping the 3-failure pause limit. Same pattern across all non-US regions.
+
+### For contributors
+- New `scripts/fetch_apple_music_regions.py` — uses Apple Music API + ISRC to resolve per-region track IDs across configurable storefronts. Idempotent, batched (25 ISRCs per call), runs in ~3 minutes for the full 1288-song catalog. Credentials read from `.env` (`APPLE_MUSIC_KEY_ID`, `APPLE_MUSIC_TEAM_ID`, `APPLE_MUSIC_PRIVATE_KEY_PATH`). Re-run when adding new playlists or new storefronts.
+- New song fields: `isrc` (universal recording identifier, populated for 2204/2481 songs) and `uri_apple_music_by_region` (per-region track ID, `null` for confirmed-unavailable). 277 songs without `uri_apple_music` still need ISRC backfill via Spotify API — filed as a future enhancement.
+- `get_song_uri(song, provider, storefront=None)` — backwards-compatible signature; storefront only affects Apple Music. `PlaylistManager(songs, provider, storefront=None)` filters out region-locked songs at construction time.
+- `GameState._detect_storefront()` reads `hass.config.country` (lower-cased). Future enhancement: query Music Assistant's WebSocket API for the actual Apple Music provider's storefront, which may differ from HA's country.
+- 10 new tests in `tests/unit/test_playlist.py` covering storefront resolution + filtering. 439 passed, 1 xfailed.
+- All 22 playlist files (11 main + 11 community) regenerated with the new fields (commit includes the data updates).
+
+### Out of scope (filed for later)
+- Spotify-API ISRC backfill for the 92 songs that have only `uri_spotify` (no `uri_apple_music` to look up against). Adds Spotify auth flow but unblocks per-region resolution for those songs.
+- Music Assistant WebSocket API for storefront detection — would catch cases where the user's Apple Music account is on a different storefront from HA's configured country. Requires MA WS auth handling.
+
 ## [3.3.2-rc11] - 2026-04-28
 
 ### Fixed
