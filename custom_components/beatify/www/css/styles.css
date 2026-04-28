@@ -11741,6 +11741,61 @@ body.is-learning-screen .player-header { display: none; }
     margin-bottom: var(--space-md);
 }
 
+/* #817: floating mini-timer — always visible during PLAYING when the main
+   neon timer scrolls out of view. Position-fixed so it works regardless of
+   any sticky-positioning quirks on iOS Safari. Smaller and quieter than
+   the main timer so it doesn't overwhelm the lower content (slider,
+   challenges, submit button) once it's revealed. Syncing with the main
+   timer + show/hide via IntersectionObserver lives in player-game.js. */
+.timer-float {
+    position: fixed;
+    top: max(env(safe-area-inset-top, 0px) + 8px, 8px);
+    right: 12px;
+    z-index: 100;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(10, 10, 18, 0.78);
+    border: 2px solid var(--color-accent-primary);
+    box-shadow: 0 0 14px rgba(255, 45, 106, 0.45),
+                inset 0 0 8px rgba(255, 45, 106, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 8px rgba(255, 45, 106, 0.6);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    pointer-events: none;
+    /* Default: hidden via .hidden override below. Becomes visible when
+       JS adds .timer-float--visible (gated on the main timer being
+       offscreen + game-view being active). */
+}
+.timer-float.hidden {
+    opacity: 0;
+    transform: scale(0.7);
+    pointer-events: none;
+}
+.timer-float.timer-float--visible {
+    opacity: 1;
+    transform: scale(1);
+}
+.timer-float.timer-float--warn {
+    border-color: var(--color-error-neon, #ff0040);
+    color: var(--color-error-neon, #ff0040);
+    box-shadow: 0 0 16px rgba(255, 0, 64, 0.6),
+                inset 0 0 8px rgba(255, 0, 64, 0.3);
+    animation: arc-urgency 0.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .timer-float { transition: none; }
+    .timer-float.timer-float--warn { animation: none; }
+}
+
 .arc-pulse-orb {
     width: 56px; height: 56px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
