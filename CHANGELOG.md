@@ -4,6 +4,43 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2] - 2026-04-28
+
+Stable promotion of the 3.3.2-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.2) for the user-facing summary.
+
+### Fixed
+- **Storefront-aware Apple Music URIs (#808 + family).** Per-region `uri_apple_music_by_region` map for 2,204 ISRC-resolved songs across all 22 playlists; runtime resolver picks the right track ID based on `hass.config.country`; songs explicitly unavailable in the user's region get filtered at playlist load. DE coverage 97.5%.
+- **Apple Music wizard selection honored end-to-end (#808 root cause).** `PROVIDER_APPLE_MUSIC` was missing from `valid_providers` in `StartGameView`; selections were silently coerced to Spotify before reaching `create_game()`.
+- **Playback recovery banner with Resume button (#805 + #801 + #795).** Speaker no longer keeps playing prior track while UI advances rounds; speaker `media_stop`'d on stale-title detect; PAUSED phase is recoverable instead of force-ending; recovery banner names the provider and points at the re-auth flow.
+- **Round always ends cleanly (#816, #813, #803).** Per-player try/except around scoring isolates failures; title-match fast-path returns within ~1s instead of 15s timeout; cold-MA-start `media_position=0` no longer prevents Round 1 confirmation. Worst-case round-advance lag dropped from ~20s to ~3s.
+- **TTS announcements actually play (#793).** `tts.speak` now receives both `entity_id` and `media_player_entity_id`. Affected every modern TTS entity (Gemini, Cloud, etc.).
+- **Deezer via Music Assistant (#797).** Pass through native `deezer://track/<id>` URI instead of routing through MA's generic builtin branch.
+- **Admin role survives WS reconnect from any phase (#790).** Same-name reclaim during PLAYING/REVEAL/PAUSED is recognized as the existing admin returning.
+- **End game works from PAUSED phase.** `admin_end_game` was rejecting it; the End button in the control bar silently failed during recovery.
+- **WS reconnect tolerance after server restart (#814).** Bumped 5s → 20s, replaced jarring `alert()` with inline modal error, added "Connecting…" button state.
+- **MA URI cascade respects user's provider choice (#805).** `_PROVIDER_URI_FIELDS` keys the cascade by selected provider; no more 4×15s timeouts on Spotify/YT/Tidal URIs that an Apple-Music-only setup couldn't resolve.
+- **Region-locked songs skip silently (rc11 + #816 follow-up).** Strict-detect failures classified as `last_failure_reason="unavailable"`, don't count toward `MAX_SONG_RETRIES`.
+- **i18n keys cache-busted on upgrade (#824).** New `<meta name="beatify-version">` on every HTML page; `i18n.js` reads it to append `?v=` to JSON fetch URLs. Self-correcting going forward.
+
+### Added
+- **Floating mini-timer (#817).** Pinned top-right of the player view, shown via IntersectionObserver only when the main neon timer scrolls offscreen.
+- **Resume-from-paused recovery UI (#805 follow-up).** Banner with Resume + End game buttons when `pause_reason` is `media_player_error` or `no_songs_available`.
+- **Per-region Apple Music URI map** on every playlist song.
+- **Tooling: `playlist-health-check` skill enriched with a Mode 2** to refresh per-region Apple Music URIs on demand using the Apple Music API + ISRC.
+- **`pauseRecovery` i18n keys** in en/de/es/fr/nl.
+
+### Changed
+- **Wizard "Game language" defaults to browser language (#815, #822).** Uses `BeatifyI18n.detectBrowserLanguage()` directly — no session-state race with `loadSavedSettings()`.
+- **Playlist Hub layout (#821).** Cards 17% larger (`136px → 160px`); header chrome compressed.
+- **3 untranslated home-view strings** ("Waiting for guests…", playlist-requests pill text) now in en/de/es/fr/nl.
+- **Round-flow defensive coding.** Every timer-task now has an `add_done_callback` so silent crashes leave a stack trace.
+
+### For contributors
+- 442 unit tests pass.
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2`. Bumped all HTML cache-busters to `3.3.2`. New `<meta name="beatify-version">` on admin.html, player.html, dashboard.html.
+- Final test count: 442 passed, 1 xfailed.
+- 19 release candidates over 4 days condensed into this stable promotion.
+
 ## [3.3.2-rc19] - 2026-04-28
 
 ### Fixed
