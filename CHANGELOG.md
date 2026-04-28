@@ -4,6 +4,32 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc15] - 2026-04-28
+
+Combines the rc14 round-end resilience fix (#816) with two new bug fixes for #814 and #815. The rc14 GitHub release was held back to bundle these together so HACS only sees one new pre-release.
+
+### Fixed
+- **Admin "Join as player" no longer trips a false "Reconnecting…" alert after server restart (#814).** When the admin clicked *Als Spieler beitreten* shortly after a fresh HA start, the WS poll gave up after 5s and showed a blocking native-`alert()` modal saying *"Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen."* The 5s budget wasn't enough — fresh HA restarts can take ~10s to expose the WS endpoint. Bumped to 20s and replaced the jarring alert with an inline error message inside the join modal so the user keeps their typed name and just clicks Join again. Also added a *"Connecting…"* button state during the wait so it's visible the system is working.
+- **Untranslated strings on the admin home view (#815):**
+  - *"Waiting for guests…"* — was hard-coded English in `BeatifyHome.renderPlayers`. Now reads `admin.home.waitingForGuests` from i18n.
+  - *"X playlist requests"* / *"N pending · tap to review"* / *"Tap to install"* / *"Tap to review"* — same hard-coded English. Now reads from i18n keys (`admin.home.playlistRequests*`, `admin.home.tapToReview`, `admin.home.tapToInstall`).
+  - **Game language badge (the "EN" at the end of the meta line)** — wizard defaulted `chosenLanguage = 'en'` regardless of the UI language. A user viewing the wizard in German but never tapping the language chip ended up with `language: 'en'` in their saved game settings and saw "EN" on the home badge. Now: if no saved language exists and `BeatifyI18n.getLanguage()` is available, default to the current UI language.
+- **(Already on main, was tagged as rc14)** Round no longer freezes on PLAYING when scoring throws (#816). See the rc14 entry below.
+
+### Added (i18n keys)
+
+Per locale (en/de/es/fr/nl):
+- `admin.connecting` — button label while WS poll is in flight ("Connecting…" / "Verbinde…" / "Conectando…" / "Connexion…" / "Verbinden…")
+- `admin.home.waitingForGuests` ("Waiting for guests…" / "Warte auf Gäste…" / etc.)
+- `admin.home.playlistRequestsTitle` ("{count} playlist requests")
+- `admin.home.playlistRequestsReady` ("{count} playlists ready")
+- `admin.home.playlistRequestsPending` ("{count} pending • tap to review")
+- `admin.home.tapToReview`, `admin.home.tapToInstall`
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc15`. Bumped `admin.min.js` + `wizard.js` + `styles.min.css` cache-busters in `admin.html` to `3.3.2-rc15`. `admin.min.js` regenerated via `make build`.
+- 442 unit tests pass, 1 xfailed (carries forward from rc14 — no new tests for #814/#815, both are JS-only fixes outside the unit-test surface).
+
 ## [3.3.2-rc14] - 2026-04-28
 
 ### Fixed

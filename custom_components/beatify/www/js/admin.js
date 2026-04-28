@@ -327,7 +327,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             const el = document.getElementById('home-players');
             if (!el) return;
             if (!players.length) {
-                el.innerHTML = '<div class="home-players-waiting">Waiting for guests…</div>';
+                // #815: was hard-coded English; now i18n with English fallback.
+                const waitingText = (window.BeatifyI18n && BeatifyI18n.t('admin.home.waitingForGuests')) || 'Waiting for guests…';
+                el.innerHTML = '<div class="home-players-waiting">' + waitingText + '</div>';
                 return;
             }
             // Jackbox-style tile grid. Host always wears the pink-primary
@@ -438,17 +440,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             const pending = requests.filter((r) => r.status === 'pending').length;
             const total = requests.length;
 
+            // #815: localize the requests pill text. Falls back to English
+            // if i18n hasn't loaded yet.
+            const t = (k, fb) => (window.BeatifyI18n && BeatifyI18n.t(k)) || fb;
             if (titleEl) {
-                titleEl.textContent = ready > 0
-                    ? `${ready} playlist${ready === 1 ? '' : 's'} ready`
-                    : `${total} playlist request${total === 1 ? '' : 's'}`;
+                if (ready > 0) {
+                    titleEl.textContent = t('admin.home.playlistRequestsReady', `${ready} playlists ready`).replace('{count}', String(ready));
+                } else {
+                    titleEl.textContent = t('admin.home.playlistRequestsTitle', `${total} playlist requests`).replace('{count}', String(total));
+                }
             }
             if (subEl) {
-                subEl.textContent = ready > 0
-                    ? 'Tap to install'
-                    : pending > 0
-                        ? `${pending} pending · tap to review`
-                        : 'Tap to review';
+                if (ready > 0) {
+                    subEl.textContent = t('admin.home.tapToInstall', 'Tap to install');
+                } else if (pending > 0) {
+                    subEl.textContent = t('admin.home.playlistRequestsPending', `${pending} pending · tap to review`).replace('{count}', String(pending));
+                } else {
+                    subEl.textContent = t('admin.home.tapToReview', 'Tap to review');
+                }
             }
             pill.classList.remove('hidden');
         },
@@ -2365,18 +2374,38 @@ function handleAdminJoin() {
             // "admin stays on home-view" promise and surfaces "No active game
             // found" when currentGame.game_id is stale. Instead, nudge the WS
             // open and send the join once it's ready.
+            //
+            // #814: bumped timeout from 5s to 20s. After a fresh HA restart
+            // the WS server can take ~10s to be ready and 5s was tripping
+            // false-positive "Reconnecting to game server" alerts. Also
+            // moved the error from a native alert() into an inline message
+            // on the modal, so the user can keep their typed name and just
+            // click Join again.
             connectAdminWebSocket();
+            joinBtn.textContent = (BeatifyI18n.t('admin.connecting') || 'Connecting…');
+            const errorEl = document.getElementById('admin-name-error');
+            if (errorEl) {
+                errorEl.classList.add('hidden');
+                errorEl.textContent = '';
+            }
             const startedAt = Date.now();
             const poll = setInterval(() => {
                 if (adminWs && adminWs.readyState === WebSocket.OPEN) {
                     clearInterval(poll);
                     sendJoin();
-                } else if (Date.now() - startedAt > 5000) {
+                } else if (Date.now() - startedAt > 20000) {
                     clearInterval(poll);
                     joinBtn.disabled = false;
-                    joinBtn.textContent = BeatifyI18n.t('admin.join');
-                    showError(BeatifyI18n.t('admin.home.wsReconnecting') ||
-                        'Reconnecting to game server — please try again.');
+                    joinBtn.textContent = BeatifyI18n.t('admin.join') || 'Join';
+                    if (errorEl) {
+                        errorEl.textContent = BeatifyI18n.t('admin.home.wsReconnecting') ||
+                            'Reconnecting to game server — please try again.';
+                        errorEl.classList.remove('hidden');
+                    } else {
+                        // No error element on this modal — fall back to alert.
+                        showError(BeatifyI18n.t('admin.home.wsReconnecting') ||
+                            'Reconnecting to game server — please try again.');
+                    }
                 }
             }, 100);
         }

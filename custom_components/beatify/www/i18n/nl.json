@@ -430,6 +430,7 @@
     "requestFailed": "Aanvraag versturen mislukt. Probeer het opnieuw.",
     "musicService": "Muziekdienst",
     "join": "Deelnemen",
+    "connecting": "Verbinden…",
     "ttsAnnouncements": "TTS-aankondigingen",
     "ttsEnabled": "TTS inschakelen",
     "ttsEntityId": "TTS-entiteit",
@@ -482,7 +483,13 @@
       "startSetup": "Setup starten",
       "requestNew": "+ Nieuwe afspeellijst aanvragen",
       "needPlayerToStart": "Doe mee als speler (of laat een gast de QR scannen) voordat je begint.",
-      "wsReconnecting": "Opnieuw verbinden met de spelserver — probeer het opnieuw."
+      "wsReconnecting": "Opnieuw verbinden met de spelserver — probeer het opnieuw.",
+      "waitingForGuests": "Wacht op gasten…",
+      "playlistRequestsTitle": "{count} playlistverzoeken",
+      "playlistRequestsReady": "{count} playlists klaar",
+      "playlistRequestsPending": "{count} open • tik om te bekijken",
+      "tapToReview": "Tik om te bekijken",
+      "tapToInstall": "Tik om te installeren"
     }
   },
   "analyticsDashboard": {

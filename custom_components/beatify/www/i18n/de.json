@@ -430,6 +430,7 @@
     "requestFailed": "Anfrage fehlgeschlagen. Bitte erneut versuchen.",
     "musicService": "Musikdienst",
     "join": "Beitreten",
+    "connecting": "Verbinde…",
     "ttsAnnouncements": "TTS-Ansagen",
     "ttsEnabled": "TTS aktivieren",
     "ttsEntityId": "TTS-Entität",
@@ -482,7 +483,13 @@
       "startSetup": "Einrichtung starten",
       "requestNew": "+ Neue Playlist anfragen",
       "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt.",
-      "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen."
+      "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen.",
+      "waitingForGuests": "Warte auf Gäste…",
+      "playlistRequestsTitle": "{count} Playlist-Anfragen",
+      "playlistRequestsReady": "{count} Playlists bereit",
+      "playlistRequestsPending": "{count} offen • zum Prüfen tippen",
+      "tapToReview": "Zum Prüfen tippen",
+      "tapToInstall": "Zum Installieren tippen"
     }
   },
   "analyticsDashboard": {

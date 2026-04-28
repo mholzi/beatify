@@ -430,6 +430,7 @@
     "requestFailed": "Erreur lors de l'envoi de la demande. Réessaie.",
     "musicService": "Service de musique",
     "join": "Rejoindre",
+    "connecting": "Connexion…",
     "ttsAnnouncements": "Annonces TTS",
     "ttsEnabled": "Activer TTS",
     "ttsEntityId": "Entité TTS",
@@ -482,7 +483,13 @@
       "startSetup": "Commencer la configuration",
       "requestNew": "+ Demander une playlist",
       "needPlayerToStart": "Rejoins la partie (ou demande à un invité de scanner le QR) avant de commencer.",
-      "wsReconnecting": "Reconnexion au serveur de jeu — réessaie."
+      "wsReconnecting": "Reconnexion au serveur de jeu — réessaie.",
+      "waitingForGuests": "En attente des invités…",
+      "playlistRequestsTitle": "{count} demandes de playlist",
+      "playlistRequestsReady": "{count} playlists prêtes",
+      "playlistRequestsPending": "{count} en attente • touche pour vérifier",
+      "tapToReview": "Touche pour vérifier",
+      "tapToInstall": "Touche pour installer"
     }
   },
   "analyticsDashboard": {

@@ -1037,7 +1037,20 @@ export async function show(stepOverride) {
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
-            if (s.language) chosenLanguage = s.language;
+            // #815: if the user explicitly saved a language, honor it.
+            // Otherwise, default to whatever UI language they're currently
+            // viewing the wizard in. Without this, the wizard always
+            // defaulted `chosenLanguage = 'en'`, so a German-UI user who
+            // didn't tap the language chip ended up with EN game language
+            // (TTS in English) and the home badge bar showing "EN".
+            if (s.language) {
+                chosenLanguage = s.language;
+            } else if (window.BeatifyI18n && typeof window.BeatifyI18n.getLanguage === 'function') {
+                try {
+                    const uiLang = window.BeatifyI18n.getLanguage();
+                    if (uiLang) chosenLanguage = uiLang;
+                } catch (e) { /* ignore */ }
+            }
             if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
