@@ -430,6 +430,7 @@
     "requestFailed": "Failed to submit request. Please try again.",
     "musicService": "Music Service",
     "join": "Join",
+    "connecting": "Connecting…",
     "ttsAnnouncements": "TTS Announcements",
     "ttsEnabled": "Enable TTS",
     "ttsEntityId": "TTS Entity",
@@ -482,7 +483,13 @@
       "startSetup": "Start setup",
       "requestNew": "+ Request new playlist",
       "needPlayerToStart": "Join as player (or ask a guest to scan the QR) before starting.",
-      "wsReconnecting": "Reconnecting to game server — please try again."
+      "wsReconnecting": "Reconnecting to game server — please try again.",
+      "waitingForGuests": "Waiting for guests…",
+      "playlistRequestsTitle": "{count} playlist requests",
+      "playlistRequestsReady": "{count} playlists ready",
+      "playlistRequestsPending": "{count} pending • tap to review",
+      "tapToReview": "Tap to review",
+      "tapToInstall": "Tap to install"
     }
   },
   "analyticsDashboard": {

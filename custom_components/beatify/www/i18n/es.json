@@ -430,6 +430,7 @@
     "requestFailed": "Error al enviar solicitud. Intenta de nuevo.",
     "musicService": "Servicio de Musica",
     "join": "Unirse",
+    "connecting": "Conectando…",
     "ttsAnnouncements": "Anuncios TTS",
     "ttsEnabled": "Activar TTS",
     "ttsEntityId": "Entidad TTS",
@@ -482,7 +483,13 @@
       "startSetup": "Empezar configuración",
       "requestNew": "+ Solicitar nueva lista",
       "needPlayerToStart": "Únete como jugador (o pide a un invitado que escanee el QR) antes de empezar.",
-      "wsReconnecting": "Reconectando con el servidor del juego — inténtalo de nuevo."
+      "wsReconnecting": "Reconectando con el servidor del juego — inténtalo de nuevo.",
+      "waitingForGuests": "Esperando a los invitados…",
+      "playlistRequestsTitle": "{count} solicitudes de playlist",
+      "playlistRequestsReady": "{count} playlists listas",
+      "playlistRequestsPending": "{count} pendientes • toca para revisar",
+      "tapToReview": "Toca para revisar",
+      "tapToInstall": "Toca para instalar"
     }
   },
   "analyticsDashboard": {
