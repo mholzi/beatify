@@ -34,7 +34,17 @@
       "uri_tidal": "tidal://track/78447224",
       "uri_deezer": "deezer://track/1137255",
       "fun_fact_nl": "Deze protestsong werd in een uur geschreven en werd door veel radiostations verboden, maar haalde toch #1. Barry McGuire kwam nooit meer in de hitlijsten van de VS.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMC16500802",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442439941",
+        "de": "applemusic://track/1443341633",
+        "gb": "applemusic://track/1443341633",
+        "fr": "applemusic://track/1443341633",
+        "es": "applemusic://track/1443341633",
+        "nl": "applemusic://track/1443341633",
+        "it": "applemusic://track/1443341633"
+      }
     },
     {
       "year": 1966,
@@ -62,7 +72,17 @@
       "uri_tidal": "tidal://track/2285458",
       "uri_deezer": "deezer://track/2950821",
       "fun_fact_nl": "De leadzanger veranderde zijn naam in '?' en treedt nog steeds op onder die naam. Het nummer werd opgenomen in een woonkamer voor $500.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USA176640140",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1696209760",
+        "de": "applemusic://track/1696209760",
+        "gb": "applemusic://track/1696209760",
+        "fr": "applemusic://track/1696209760",
+        "es": "applemusic://track/1696209760",
+        "nl": "applemusic://track/1696209760",
+        "it": "applemusic://track/1696209760"
+      }
     },
     {
       "year": 1967,
@@ -91,7 +111,17 @@
       "uri_tidal": "tidal://track/14558019",
       "uri_deezer": "deezer://track/869731",
       "fun_fact_nl": "Geschreven door John Phillips van The Mamas & the Papas om het Monterey Pop Festival te promoten. McKenzie was naar verluidt terughoudend om het op te nemen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM16701025",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158701769",
+        "de": "applemusic://track/348894696",
+        "gb": "applemusic://track/348894696",
+        "fr": "applemusic://track/348894696",
+        "es": "applemusic://track/348894696",
+        "nl": "applemusic://track/348894696",
+        "it": "applemusic://track/348894696"
+      }
     },
     {
       "year": 1968,
@@ -119,7 +149,17 @@
       "uri_tidal": "tidal://track/1298030",
       "uri_deezer": "deezer://track/2680926",
       "fun_fact_nl": "De titel was een vage 'In the Garden of Eden' - de zanger was te dronken om het duidelijk uit te spreken tijdens de opname.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USEE10181094",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1839415198",
+        "de": "applemusic://track/1839415198",
+        "gb": "applemusic://track/1839415198",
+        "fr": "applemusic://track/1839415198",
+        "es": "applemusic://track/1839415198",
+        "nl": "applemusic://track/1839415198",
+        "it": "applemusic://track/1839415198"
+      }
     },
     {
       "year": 1968,
@@ -147,7 +187,17 @@
       "uri_tidal": "tidal://track/615160",
       "uri_deezer": "deezer://track/1560273",
       "fun_fact_nl": "Arthur Brown trad op met een brandende helm op. Hij stak meerdere keren per ongeluk zijn hoofd in brand tijdens liveshows.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBBLY1605630",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1577744764",
+        "de": "applemusic://track/1657674276",
+        "gb": "applemusic://track/1657674276",
+        "fr": "applemusic://track/1657674276",
+        "es": "applemusic://track/1657674276",
+        "nl": "applemusic://track/1657674276",
+        "it": "applemusic://track/1657674276"
+      }
     },
     {
       "year": 1969,
@@ -172,7 +222,17 @@
       "uri_tidal": "tidal://track/124660699",
       "uri_deezer": "deezer://track/3471083641",
       "fun_fact_nl": "Geschreven terwijl hij ingesneeuwd raakte in een piepklein appartement in Seattle. Ondanks een bescheiden succes in de hitlijsten werd het een belangrijk nummer voor de FM-radio in het psychedelische tijdperk.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM16800342",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      }
     },
     {
       "year": 1969,
@@ -207,7 +267,17 @@
       "fun_fact_nl": "Won de Ivor Novello Award voor Beste Lied. Zijn broers Eden Kane en Clive Sarstedt waren ook zangers, maar Peter had alleen deze ene hit.",
       "awards_nl": [
         "Ivor Novello Award (1969)"
-      ]
+      ],
+      "isrc": "GBAYE6900097",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1801195465",
+        "de": "applemusic://track/1801195465",
+        "gb": "applemusic://track/1801195465",
+        "fr": "applemusic://track/1801195465",
+        "es": "applemusic://track/1801195465",
+        "nl": "applemusic://track/1801195465",
+        "it": "applemusic://track/1801195465"
+      }
     },
     {
       "year": 1969,
@@ -235,7 +305,17 @@
       "uri_tidal": "tidal://track/75496351",
       "uri_deezer": "deezer://track/60703394",
       "fun_fact_nl": "De nummer 1-hit van deze Nederlandse band werd later gecoverd door Bananarama in 1986, die ook nummer 1 bereikte. De originele riff was geïnspireerd op 'The Sorcerer's Apprentice'.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "NLC286900001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/303734299",
+        "de": "applemusic://track/303734299",
+        "gb": "applemusic://track/303734299",
+        "fr": "applemusic://track/303734299",
+        "es": "applemusic://track/303734299",
+        "nl": "applemusic://track/303734299",
+        "it": "applemusic://track/303734299"
+      }
     },
     {
       "year": 1969,
@@ -264,7 +344,17 @@
       "uri_tidal": "tidal://track/17593678",
       "uri_deezer": "deezer://track/1382508",
       "fun_fact_nl": "De best verkopende single van 1969 werd uitgevoerd door een fictieve cartoonband. Echte muzikanten namen het op, maar de 'bandleden' bestonden niet.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USA560619882",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/214805381",
+        "de": "applemusic://track/214805381",
+        "gb": "applemusic://track/214805381",
+        "fr": "applemusic://track/214805381",
+        "es": "applemusic://track/214805381",
+        "nl": "applemusic://track/214805381",
+        "it": "applemusic://track/214805381"
+      }
     },
     {
       "year": 1969,
@@ -292,7 +382,17 @@
       "uri_tidal": "tidal://track/91980877",
       "uri_deezer": "deezer://track/527883771",
       "fun_fact_nl": "Pete Townshend van The Who produceerde en speelde bas op dit nummer. De band ging kort na hun enige hit uit elkaar.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBF066925310",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1680766396",
+        "de": "applemusic://track/1680766396",
+        "gb": "applemusic://track/1680766396",
+        "fr": "applemusic://track/1680766396",
+        "es": "applemusic://track/1680766396",
+        "nl": "applemusic://track/1680766396",
+        "it": "applemusic://track/1680766396"
+      }
     },
     {
       "year": 1969,
@@ -321,7 +421,17 @@
       "uri_tidal": "tidal://track/1805318",
       "uri_deezer": "deezer://track/392461892",
       "fun_fact_nl": "Stond 6 weken op #1 maar het duo kwam nooit meer in de hitlijsten. Het is een van de meest dramatische valpartijen van #1 naar obscuriteit in de muziekgeschiedenis.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC19901100",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1268962872",
+        "de": "applemusic://track/425237275",
+        "gb": "applemusic://track/618891160",
+        "fr": "applemusic://track/618891160",
+        "es": "applemusic://track/618891160",
+        "nl": "applemusic://track/618891160",
+        "it": "applemusic://track/618891160"
+      }
     },
     {
       "year": 1970,
@@ -350,7 +460,17 @@
       "uri_tidal": "tidal://track/117743480",
       "uri_deezer": "deezer://track/673832662",
       "fun_fact_nl": "Greenbaum, die Joods is, schreef dit gospelrocknummer in 15 minuten. Hij verdiende er meer dan 2 miljoen dollar mee, maar had nooit meer een hit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRE19600416",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6762674785",
+        "de": "applemusic://track/6762674785",
+        "gb": "applemusic://track/6762674785",
+        "fr": "applemusic://track/6762674785",
+        "es": "applemusic://track/6762674785",
+        "nl": "applemusic://track/6762674785",
+        "it": "applemusic://track/6762674785"
+      }
     },
     {
       "year": 1970,
@@ -375,7 +495,17 @@
       "uri_tidal": "tidal://track/1498790",
       "uri_deezer": "deezer://track/3299331",
       "fun_fact_nl": "Deze progrockband stond erom bekend geen gitarist te hebben. Het nummer werd een grotere hit in Europa dan in hun thuisland UK.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAAA6900001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724210230",
+        "de": "applemusic://track/724210230",
+        "gb": "applemusic://track/1440671708",
+        "fr": "applemusic://track/724210230",
+        "es": "applemusic://track/724210230",
+        "nl": "applemusic://track/724210230",
+        "it": "applemusic://track/724210230"
+      }
     },
     {
       "year": 1972,
@@ -410,7 +540,17 @@
       "fun_fact_nl": "Dit verhaal over een buitenechtelijke affaire won een Grammy. Paul zei later dat hij wenste dat hij een ander signatuurnummer had om door herinnerd te worden.",
       "awards_nl": [
         "Grammy Award voor Beste Mannelijke R&B Zangprestatie (1973)"
-      ]
+      ],
+      "isrc": "USSM17200413",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1566958799",
+        "de": "applemusic://track/1566958799",
+        "gb": "applemusic://track/590672655",
+        "fr": "applemusic://track/1566958799",
+        "es": "applemusic://track/1566958799",
+        "nl": "applemusic://track/1566958799",
+        "it": "applemusic://track/1566958799"
+      }
     },
     {
       "year": 1972,
@@ -438,7 +578,17 @@
       "uri_tidal": "tidal://track/391027",
       "uri_deezer": "deezer://track/682805",
       "fun_fact_nl": "Opgenomen met alleen Thomas op orgel en een drumcomputer. Drake samplede het meer dan 40 jaar later voor 'Hotline Bling'.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRH10125815",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1794990478",
+        "de": "applemusic://track/1794990478",
+        "gb": "applemusic://track/1794990478",
+        "fr": "applemusic://track/1794990478",
+        "es": "applemusic://track/1794990478",
+        "nl": "applemusic://track/1794990478",
+        "it": "applemusic://track/1794990478"
+      }
     },
     {
       "year": 1974,
@@ -467,7 +617,17 @@
       "uri_tidal": "tidal://track/224189661",
       "uri_deezer": "deezer://track/4633154",
       "fun_fact_nl": "Opgenomen in slechts 10 minuten als B-kant. Het werd een nummer 1 hit in meerdere landen tijdens de martial arts film rage van de jaren 1970.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAJE7400014",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1618248927",
+        "de": "applemusic://track/1618248927",
+        "gb": "applemusic://track/1618248927",
+        "fr": "applemusic://track/1618248927",
+        "es": "applemusic://track/1618248927",
+        "nl": "applemusic://track/1618248927",
+        "it": "applemusic://track/1618248927"
+      }
     },
     {
       "year": 1974,
@@ -496,7 +656,17 @@
       "uri_tidal": "tidal://track/4553606",
       "uri_deezer": "deezer://track/124563036",
       "fun_fact_nl": "Een van de eerste disco songs die #1 werd. Het was oorspronkelijk geschreven voor zijn vrouw Gwen McCrae, maar ze kon niet op de opnamesessie komen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USDEI8704316",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1679403832",
+        "de": "applemusic://track/1679403832",
+        "gb": "applemusic://track/1679403832",
+        "fr": "applemusic://track/1679403832",
+        "es": "applemusic://track/1679403832",
+        "nl": "applemusic://track/1679403832",
+        "it": "applemusic://track/1679403832"
+      }
     },
     {
       "year": 1974,
@@ -525,7 +695,17 @@
       "uri_tidal": "tidal://track/6739245",
       "uri_deezer": "deezer://track/1353054752",
       "fun_fact_nl": "Oorspronkelijk een Belgisch liedje over een stervende man. De Beach Boys namen het bijna als eerste op, maar Jacks was hen voor en verkocht miljoenen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USAR17400171",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/215791443",
+        "de": "applemusic://track/322796562",
+        "gb": "applemusic://track/322796562",
+        "fr": "applemusic://track/322796562",
+        "es": "applemusic://track/322796562",
+        "nl": "applemusic://track/322796562",
+        "it": "applemusic://track/322796562"
+      }
     },
     {
       "year": 1976,
@@ -550,7 +730,17 @@
       "uri_tidal": "tidal://track/298804730",
       "uri_deezer": "deezer://track/521162822",
       "fun_fact_nl": "Een zeldzaam voorbeeld van een cult one-hit wonder. De band had progressieve rockelementen, maar slaagde er niet in om munt te slaan uit hun korte optreden in de hitlijsten.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DED462200616",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691588293",
+        "de": "applemusic://track/1691588293",
+        "gb": "applemusic://track/1691588293",
+        "fr": "applemusic://track/1691588293",
+        "es": "applemusic://track/1691588293",
+        "nl": "applemusic://track/1691588293",
+        "it": "applemusic://track/1691588293"
+      }
     },
     {
       "year": 1977,
@@ -578,7 +768,17 @@
       "uri_tidal": "tidal://track/30265305",
       "uri_deezer": "deezer://track/550518",
       "fun_fact_nl": "Een rockversie van een traditioneel Afro-Amerikaans werklied. De NAACP protesteerde tegen de tekst. Ram Jam ging kort na deze enige hit uit elkaar.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM10105935",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/971740354",
+        "de": "applemusic://track/444100480",
+        "gb": "applemusic://track/1308659903",
+        "fr": "applemusic://track/1308659903",
+        "es": "applemusic://track/1308659903",
+        "nl": "applemusic://track/1308659903",
+        "it": "applemusic://track/1308659903"
+      }
     },
     {
       "year": 1978,
@@ -606,7 +806,17 @@
       "uri_tidal": "tidal://track/2878744",
       "uri_deezer": "deezer://track/1108249182",
       "fun_fact_nl": "Deze Jamaicaanse tieners namen het nummer op toen ze nog maar 17 en 18 waren. Het was het eerste reggaelied van vrouwelijke artiesten dat #1 werd in de UK.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAAA0100135",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1620050048",
+        "de": "applemusic://track/1620050048",
+        "gb": "applemusic://track/1620050048",
+        "fr": "applemusic://track/1620050048",
+        "es": "applemusic://track/1620050048",
+        "nl": "applemusic://track/1620050048",
+        "it": "applemusic://track/1620050048"
+      }
     },
     {
       "year": 1979,
@@ -635,7 +845,17 @@
       "uri_tidal": "tidal://track/82358708",
       "uri_deezer": "deezer://track/404691712",
       "fun_fact_nl": "Oorspronkelijk geschreven voor een tienerzangeres, werd het herschreven tot een suggestieve discohit. Ward werd een eendagsvlieg ondanks het enorme succes van het nummer.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSZ10503009",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/147664822",
+        "de": "applemusic://track/147664822",
+        "gb": "applemusic://track/147664822",
+        "fr": "applemusic://track/147664822",
+        "es": "applemusic://track/147664822",
+        "nl": "applemusic://track/147664822",
+        "it": "applemusic://track/147664822"
+      }
     },
     {
       "year": 1979,
@@ -690,7 +910,17 @@
       "uri_tidal": "tidal://track/2531405",
       "uri_deezer": "deezer://track/2509817",
       "fun_fact_nl": "De eerste videoclip ooit op MTV op 1 augustus 1981. Bandleden Trevor Horn en Geoff Downes sloten zich later aan bij de progrockband Yes.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAAN7900013",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1810518291",
+        "de": "applemusic://track/1810518291",
+        "gb": "applemusic://track/1810518291",
+        "fr": "applemusic://track/1810518291",
+        "es": "applemusic://track/1810518291",
+        "nl": "applemusic://track/1810518291",
+        "it": "applemusic://track/1810518291"
+      }
     },
     {
       "year": 1979,
@@ -718,7 +948,17 @@
       "uri_tidal": "tidal://track/1747034",
       "uri_deezer": "deezer://track/3248376",
       "fun_fact_nl": "De echte Sharona was de vriendin van de leadzanger - ze was 17. Het nummer stond 6 weken op #1 en was de best verkochte single van 1979.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USCA28900153",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1636947914",
+        "de": "applemusic://track/1636947914",
+        "gb": "applemusic://track/1636947914",
+        "fr": "applemusic://track/1636947914",
+        "es": "applemusic://track/1636947914",
+        "nl": "applemusic://track/1636947914",
+        "it": "applemusic://track/1636947914"
+      }
     },
     {
       "year": 1979,
@@ -747,7 +987,17 @@
       "uri_tidal": "tidal://track/69145431",
       "uri_deezer": "deezer://track/8081935",
       "fun_fact_nl": "Wordt beschouwd als de eerste commercieel succesvolle hiphopsingle. De leden werden bij elkaar gebracht door een eigenaar van een platenlabel die het potentieel van hiphop zag.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRH10403145",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/52310973",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      }
     },
     {
       "year": 1980,
@@ -800,7 +1050,17 @@
       "uri_tidal": "tidal://track/39683424",
       "uri_deezer": "deezer://track/93114370",
       "fun_fact_nl": "Uitgelicht in de Franse film 'La Boum' (Het feest). Het werd een enorme hit in heel Europa, maar Sanderson bleef elders grotendeels onbekend.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "NLF360801720",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/957549647",
+        "de": "applemusic://track/957549647",
+        "gb": "applemusic://track/957549647",
+        "fr": "applemusic://track/957549647",
+        "es": "applemusic://track/957549647",
+        "nl": "applemusic://track/957549647",
+        "it": "applemusic://track/957549647"
+      }
     },
     {
       "year": 1980,
@@ -826,7 +1086,17 @@
       "uri_tidal": "tidal://track/1574744",
       "uri_deezer": "deezer://track/3177990",
       "fun_fact_nl": "Over de betekenis wordt nog steeds gediscussieerd - de band beweert dat het over obsessie gaat. Vaak verkeerd geïnterpreteerd, werd het een new wave klassieker ondanks dat het hun enige hit was.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYE8000027",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/714837031",
+        "de": "applemusic://track/696955216",
+        "gb": "applemusic://track/696955216",
+        "fr": "applemusic://track/696955216",
+        "es": "applemusic://track/696955216",
+        "nl": "applemusic://track/696955216",
+        "it": "applemusic://track/723735894"
+      }
     },
     {
       "year": 1980,
@@ -852,7 +1122,17 @@
       "uri_tidal": "tidal://track/618408",
       "uri_deezer": "deezer://track/2285082",
       "fun_fact_nl": "Met Steve Strange als frontman, een pionier van de New Romantic-beweging. Het nummer werd een hymne voor de synthpop scene van begin jaren 80.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USPR38080067",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1890402321",
+        "de": "applemusic://track/1574744315",
+        "gb": "applemusic://track/1574744315",
+        "fr": "applemusic://track/1574744315",
+        "es": "applemusic://track/1574744315",
+        "nl": "applemusic://track/1574744315",
+        "it": "applemusic://track/1574744315"
+      }
     },
     {
       "year": 1982,
@@ -880,7 +1160,17 @@
       "uri_tidal": "tidal://track/4930181",
       "uri_deezer": "deezer://track/1025577",
       "fun_fact_nl": "Het opvallende kapsel van de leadzanger werd net zo beroemd als het nummer. Ondanks lovende kritieken hebben ze dit succes nooit kunnen evenaren in Amerika.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAHK9500304",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1874709779",
+        "de": "applemusic://track/825793214",
+        "gb": "applemusic://track/825793214",
+        "fr": "applemusic://track/825793214",
+        "es": "applemusic://track/825793214",
+        "nl": "applemusic://track/825793214",
+        "it": "applemusic://track/825793214"
+      }
     },
     {
       "year": 1982,
@@ -908,7 +1198,17 @@
       "uri_tidal": "tidal://track/4186366",
       "uri_deezer": "deezer://track/12180202",
       "fun_fact_nl": "Geschreven als protest tegen uitsmijters die pogoën in clubs verboden. De video met middeleeuws thema werd een nietje op MTV in de jaren 1980.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USUM71918013",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1479631804",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      }
     },
     {
       "year": 1982,
@@ -935,7 +1235,17 @@
       "uri_tidal": "tidal://track/348276175",
       "uri_deezer": "deezer://track/943152",
       "fun_fact_nl": "Oorspronkelijk ging het over de nucleaire apocalyps, maar het werd een anthem voor liefdesliedjes. De band was verrast toen het een nieuw leven vond in soundtracks van films uit de jaren 80.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAFL8200036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1452735552",
+        "de": "applemusic://track/27548320",
+        "gb": "applemusic://track/27548320",
+        "fr": "applemusic://track/27548320",
+        "es": "applemusic://track/27548320",
+        "nl": "applemusic://track/27548320",
+        "it": "applemusic://track/27548320"
+      }
     },
     {
       "year": 1982,
@@ -964,7 +1274,17 @@
       "uri_tidal": "tidal://track/3392942",
       "uri_deezer": "deezer://track/555755",
       "fun_fact_nl": "Het werd een homo-hymne en discoklassieker. Geri Halliwell's cover uit 2001 bereikte #1, maar het originele duo had nooit meer een grote hit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM19913325",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/347282458",
+        "de": "applemusic://track/1076305745",
+        "gb": "applemusic://track/453302693",
+        "fr": "applemusic://track/273098536",
+        "es": "applemusic://track/273098536",
+        "nl": "applemusic://track/273098536",
+        "it": "applemusic://track/273098536"
+      }
     },
     {
       "year": 1983,
@@ -992,7 +1312,17 @@
       "uri_tidal": "tidal://track/1379251",
       "uri_deezer": "deezer://track/3357587",
       "fun_fact_nl": "De band ontsloeg leadzanger Limahl kort na deze hit. Hij ging solo met het thema 'NeverEnding Story' terwijl de band in de vergetelheid raakte.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYE8300270",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1717063925",
+        "de": "applemusic://track/1571725724",
+        "gb": "applemusic://track/1671169221",
+        "fr": "applemusic://track/1671169221",
+        "es": "applemusic://track/1671169221",
+        "nl": "applemusic://track/1671169221",
+        "it": "applemusic://track/1671169221"
+      }
     },
     {
       "year": 1983,
@@ -1020,7 +1350,17 @@
       "uri_tidal": "tidal://track/1105888",
       "uri_deezer": "deezer://track/540168502",
       "fun_fact_nl": "Oorspronkelijk geschreven over een seriemoordenaar voordat het werd herschreven voor Flashdance. Sembello was sessiegitarist voor Stevie Wonder.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USPR38302462",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1808046460",
+        "de": "applemusic://track/1808046460",
+        "gb": "applemusic://track/1443325806",
+        "fr": "applemusic://track/1808046460",
+        "es": "applemusic://track/1808046460",
+        "nl": "applemusic://track/1808046460",
+        "it": "applemusic://track/1808046460"
+      }
     },
     {
       "year": 1983,
@@ -1048,7 +1388,17 @@
       "uri_tidal": "tidal://track/169150",
       "uri_deezer": "deezer://track/14683660",
       "fun_fact_nl": "Een vervolg op David Bowie's 'Space Oddity'. De Duitse versie 'Völlig Losgelöst' was nog groter in Europa, maar Schilling kwam nooit meer in de hitlijsten van de VS.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DEA622100161",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1689366988",
+        "de": "applemusic://track/1550643321",
+        "gb": "applemusic://track/1550643321",
+        "fr": "applemusic://track/1550643321",
+        "es": "applemusic://track/1550643321",
+        "nl": "applemusic://track/1550643321",
+        "it": "applemusic://track/1550643321"
+      }
     },
     {
       "year": 1983,
@@ -1073,7 +1423,17 @@
       "uri_tidal": "tidal://track/27325274",
       "uri_deezer": "deezer://track/80610262",
       "fun_fact_nl": "Deze Duitse synthpopband had een kleine hit in heel Europa. De nostalgische tekst van het nummer sloeg aan bij het New Wave publiek van de vroege jaren 80.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DED461300130",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/844775625",
+        "de": "applemusic://track/844775625",
+        "gb": "applemusic://track/844775625",
+        "fr": "applemusic://track/844775625",
+        "es": "applemusic://track/844775625",
+        "nl": "applemusic://track/844775625",
+        "it": "applemusic://track/844775625"
+      }
     },
     {
       "year": 1984,
@@ -1101,7 +1461,17 @@
       "uri_tidal": "tidal://track/2450874",
       "uri_deezer": "deezer://track/2321084495",
       "fun_fact_nl": "Hart draagt in het echt een bril. De kenmerkende synthriff van het nummer maakte het tot een klassieker uit de jaren 80, maar hij heeft dit Amerikaanse succes nooit geëvenaard.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USEM30200105",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1434903648",
+        "de": null,
+        "gb": "applemusic://track/1443124564",
+        "fr": "applemusic://track/1443124564",
+        "es": "applemusic://track/1443124564",
+        "nl": "applemusic://track/1443124564",
+        "it": "applemusic://track/1443124564"
+      }
     },
     {
       "year": 1984,
@@ -1129,7 +1499,17 @@
       "uri_tidal": "tidal://track/5254510",
       "uri_deezer": "deezer://track/1484703292",
       "fun_fact_nl": "Rockwell is eigenlijk de zoon van Berry Gordy Jr. Michael Jackson zong het refrein als een gunst, wat hielp om dit paranoïde volkslied tot een succes te maken.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMO10000307",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1647277494",
+        "de": "applemusic://track/1647277494",
+        "gb": "applemusic://track/1647277494",
+        "fr": "applemusic://track/1647277494",
+        "es": "applemusic://track/1647277494",
+        "nl": "applemusic://track/1647277494",
+        "it": "applemusic://track/1647277494"
+      }
     },
     {
       "year": 1985,
@@ -1158,7 +1538,17 @@
       "uri_tidal": "tidal://track/49420",
       "uri_deezer": "deezer://track/958021",
       "fun_fact_nl": "Het duurde 3 pogingen in 18 maanden om te produceren. Leadzanger Pete Burns bracht jaren door met juridische gevechten en tv-optredens, maar had nooit meer een grote hit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBBBM8400015",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/471205226",
+        "de": "applemusic://track/471205226",
+        "gb": "applemusic://track/471205226",
+        "fr": "applemusic://track/471205226",
+        "es": "applemusic://track/471205226",
+        "nl": "applemusic://track/471205226",
+        "it": "applemusic://track/471205226"
+      }
     },
     {
       "year": 1985,
@@ -1186,7 +1576,17 @@
       "uri_tidal": "tidal://track/233178244",
       "uri_deezer": "deezer://track/2324397795",
       "fun_fact_nl": "Genoemd naar de gemiddelde leeftijd van Amerikaanse soldaten in Vietnam. De stotterende vocale samples waren destijds baanbrekend en beïnvloedden de elektronische muziek.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYK8500015",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1629177761",
+        "de": "applemusic://track/1629177761",
+        "gb": "applemusic://track/1629177761",
+        "fr": "applemusic://track/1629177761",
+        "es": "applemusic://track/1629177761",
+        "nl": "applemusic://track/1629177761",
+        "it": "applemusic://track/723470830"
+      }
     },
     {
       "year": 1986,
@@ -1215,7 +1615,17 @@
       "uri_tidal": "tidal://track/1307332",
       "uri_deezer": "deezer://track/619310",
       "fun_fact_nl": "De synthriff werd geschreven toen toetsenist Joey Tempest nog maar 14 was. Ondanks het wereldwijde succes hebben ze deze hit nooit internationaal gerepliceerd.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM18600196",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691572936",
+        "de": "applemusic://track/1739340645",
+        "gb": "applemusic://track/1739340645",
+        "fr": "applemusic://track/1739340645",
+        "es": "applemusic://track/1739340645",
+        "nl": "applemusic://track/1739340645",
+        "it": "applemusic://track/827861903"
+      }
     },
     {
       "year": 1987,
@@ -1270,7 +1680,17 @@
       "uri_tidal": "tidal://track/153834077",
       "uri_deezer": "deezer://track/3077080",
       "fun_fact_nl": "Een baanbrekende sample-gebaseerde track die hielp house muziek te definiëren. Het was een eenmalige samenwerking die nooit werd herhaald.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "US23A8017467",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1695812529",
+        "de": "applemusic://track/1695812529",
+        "gb": "applemusic://track/1695812529",
+        "fr": "applemusic://track/1695812529",
+        "es": "applemusic://track/1695812529",
+        "nl": "applemusic://track/1695812529",
+        "it": "applemusic://track/1695812529"
+      }
     },
     {
       "year": 1988,
@@ -1308,7 +1728,17 @@
       "awards_nl": [
         "Grammy Award voor Lied van het Jaar (1989)",
         "Grammy Award voor Opname van het Jaar (1989)"
-      ]
+      ],
+      "isrc": "USEM38800361",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6762672295",
+        "de": "applemusic://track/6762672295",
+        "gb": "applemusic://track/6762672295",
+        "fr": "applemusic://track/6762672295",
+        "es": "applemusic://track/6762672295",
+        "nl": "applemusic://track/6762672295",
+        "it": "applemusic://track/6762672295"
+      }
     },
     {
       "year": 1988,
@@ -1334,7 +1764,17 @@
       "uri_tidal": "tidal://track/2527322",
       "uri_deezer": "deezer://track/2498905",
       "fun_fact_nl": "Brickell trouwde later met Paul Simon nadat hij haar dit nummer had zien zingen op SNL. De band ging uit elkaar, maar zij ging verder als folkartiest.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USGF18819201",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1471580732",
+        "de": "applemusic://track/1834281323",
+        "gb": "applemusic://track/1834281323",
+        "fr": "applemusic://track/1834281323",
+        "es": "applemusic://track/1834281323",
+        "nl": "applemusic://track/1834281323",
+        "it": "applemusic://track/1834281323"
+      }
     },
     {
       "year": 1988,
@@ -1362,7 +1802,17 @@
       "uri_tidal": "tidal://track/280493",
       "uri_deezer": "deezer://track/3580415",
       "fun_fact_nl": "Een van de eerste vrouwelijke rapgroepen die mainstream succes had. Ze werden ontdekt door Eazy-E en werden genomineerd voor een Grammy.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USEW18800001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1740119264",
+        "de": "applemusic://track/1650960428",
+        "gb": "applemusic://track/1650960428",
+        "fr": "applemusic://track/1650960428",
+        "es": "applemusic://track/1650960428",
+        "nl": "applemusic://track/1650960428",
+        "it": "applemusic://track/1650960428"
+      }
     },
     {
       "year": 1988,
@@ -1387,7 +1837,17 @@
       "uri_tidal": "tidal://track/75062708",
       "uri_deezer": "deezer://track/372714321",
       "fun_fact_nl": "Werd iconisch door het gebruik in 'The Silence of the Lambs'. De mysterieuze Q Lazzarus verdween uit de muziek en haar identiteit bleef jarenlang onbekend.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "QMFME1337712",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1247752093",
+        "de": "applemusic://track/1247752093",
+        "gb": "applemusic://track/1247752093",
+        "fr": "applemusic://track/1247752093",
+        "es": "applemusic://track/1247752093",
+        "nl": "applemusic://track/1247752093",
+        "it": "applemusic://track/1247752093"
+      }
     },
     {
       "year": 1988,
@@ -1414,7 +1874,17 @@
       "uri_tidal": "tidal://track/2158292",
       "uri_deezer": "deezer://track/2686266",
       "fun_fact_nl": "Uitgebracht toen ze nog maar 19 jaar oud was. Haar diepe, kenmerkende stem werd vaak vergeleken met Suzanne Vega, maar mainstream succes bleef uit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAHS0104635",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1776580033",
+        "de": "applemusic://track/1776580033",
+        "gb": "applemusic://track/1776580033",
+        "fr": "applemusic://track/1776580033",
+        "es": "applemusic://track/1776580033",
+        "nl": "applemusic://track/1776580033",
+        "it": "applemusic://track/1776580033"
+      }
     },
     {
       "year": 1988,
@@ -1442,7 +1912,17 @@
       "uri_tidal": "tidal://track/3009887",
       "uri_deezer": "deezer://track/2455621",
       "fun_fact_nl": "De dromerige hit van deze Australische band was geïnspireerd op de opmerking van een vriend dat hij zich verloren voelde. Ze bleven cultfavorieten maar kwamen nooit meer zo hoog in de hitlijsten.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USAR18800002",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1739845144",
+        "de": "applemusic://track/1739845144",
+        "gb": "applemusic://track/1739845144",
+        "fr": "applemusic://track/1739845144",
+        "es": "applemusic://track/1739845144",
+        "nl": "applemusic://track/1739845144",
+        "it": "applemusic://track/1739845144"
+      }
     },
     {
       "year": 1989,
@@ -1468,7 +1948,17 @@
       "uri_tidal": "tidal://track/2067509",
       "uri_deezer": "deezer://track/3528860",
       "fun_fact_nl": "Het door reggae beïnvloede nummer van dit Deense duo werd een Europese culthit. Ze hadden eerder succes met 'White Horse', maar geen van beide nummers brak door in Amerika.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DKFN70700201",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/693306869",
+        "de": "applemusic://track/693306869",
+        "gb": "applemusic://track/693306869",
+        "fr": "applemusic://track/693306869",
+        "es": "applemusic://track/693306869",
+        "nl": "applemusic://track/693306869",
+        "it": "applemusic://track/693306869"
+      }
     },
     {
       "year": 1989,
@@ -1494,7 +1984,17 @@
       "uri_tidal": "tidal://track/3614191",
       "uri_deezer": "deezer://track/1173523",
       "fun_fact_nl": "Dochter van rockgitarist Joe Brown. Deze krachtige ballad was een Europese hit, maar ze had moeite om een vervolg te krijgen in de popwereld.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAAM8800004",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1706249950",
+        "de": "applemusic://track/1706249950",
+        "gb": "applemusic://track/1706249950",
+        "fr": "applemusic://track/1706249950",
+        "es": "applemusic://track/1706249950",
+        "nl": "applemusic://track/1706249950",
+        "it": "applemusic://track/1706249950"
+      }
     },
     {
       "year": 1989,
@@ -1529,7 +2029,17 @@
       "fun_fact_nl": "Won de Grammy voor beste rapprestatie. Young MC schreef ook de hits van Tone Loc, maar heroverde nooit zijn eigen hitsucces.",
       "awards_nl": [
         "Grammy Award voor Beste Rapprestatie (1990)"
-      ]
+      ],
+      "isrc": "USA370507645",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1807406244",
+        "de": "applemusic://track/1807406244",
+        "gb": "applemusic://track/1807406244",
+        "fr": "applemusic://track/1807406244",
+        "es": "applemusic://track/1807406244",
+        "nl": "applemusic://track/1807406244",
+        "it": "applemusic://track/1807406244"
+      }
     },
     {
       "year": 1990,
@@ -1558,7 +2068,17 @@
       "uri_tidal": "tidal://track/3267941",
       "uri_deezer": "deezer://track/75070408",
       "fun_fact_nl": "Met Bootsy Collins en Q-Tip als gastartiesten. De kleurrijke stijl van Lady Miss Kier bepaalde de danscultuur van begin jaren 90, maar de opvolgers flopten.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USEE19687204",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1562873481",
+        "de": "applemusic://track/1391549360",
+        "gb": "applemusic://track/1747286115",
+        "fr": "applemusic://track/1747286115",
+        "es": "applemusic://track/1747286115",
+        "nl": "applemusic://track/1391549360",
+        "it": "applemusic://track/1747286115"
+      }
     },
     {
       "year": 1990,
@@ -1583,7 +2103,17 @@
       "uri_tidal": "tidal://track/147235",
       "uri_deezer": "deezer://track/3113250",
       "fun_fact_nl": "Spanje's grootste rockband van de jaren 90. Ze waren enorm populair in Latijns-Amerika, maar dit blijft hun enige internationaal erkende nummer.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "ES5089000064",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1687931289",
+        "de": "applemusic://track/1838718622",
+        "gb": "applemusic://track/1838718622",
+        "fr": "applemusic://track/1838718622",
+        "es": "applemusic://track/1838718622",
+        "nl": "applemusic://track/1838718622",
+        "it": "applemusic://track/1838718622"
+      }
     },
     {
       "year": 1990,
@@ -1621,7 +2151,17 @@
       "awards_nl": [
         "Grammy Award voor Beste Rap Soloprestatie (1991)",
         "Grammy Award voor Beste R&B-nummer (1991)"
-      ]
+      ],
+      "isrc": "USCA29000294",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1890039717",
+        "de": "applemusic://track/1890039717",
+        "gb": "applemusic://track/1890039717",
+        "fr": "applemusic://track/1890039717",
+        "es": "applemusic://track/1890039717",
+        "nl": "applemusic://track/1890039717",
+        "it": "applemusic://track/1890039717"
+      }
     },
     {
       "year": 1990,
@@ -1649,7 +2189,17 @@
       "uri_tidal": "tidal://track/1666608",
       "uri_deezer": "deezer://track/2518361",
       "fun_fact_nl": "Bandleider Lee Mavers was zo perfectionistisch dat hij hun enige album verstootte. Het nummer vond een nieuw publiek door meerdere film- en tv-plaatsingen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAQT8800001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1702052707",
+        "de": "applemusic://track/1702052707",
+        "gb": "applemusic://track/1702052707",
+        "fr": "applemusic://track/1702052707",
+        "es": "applemusic://track/1702052707",
+        "nl": "applemusic://track/1702052707",
+        "it": "applemusic://track/1702052707"
+      }
     },
     {
       "year": 1990,
@@ -1678,7 +2228,17 @@
       "uri_tidal": "tidal://track/2615705",
       "uri_deezer": "deezer://track/2397026",
       "fun_fact_nl": "Eerste hiphopsingle die bovenaan de Billboard Hot 100 staat. Hij ontkende in eerste instantie het samplen van Queen's 'Under Pressure', maar schikte later buiten de rechtbank om.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSB29000129",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1888299696",
+        "de": "applemusic://track/1888299696",
+        "gb": "applemusic://track/1888299696",
+        "fr": "applemusic://track/1888299696",
+        "es": "applemusic://track/1888299696",
+        "nl": "applemusic://track/1888299696",
+        "it": "applemusic://track/1888299696"
+      }
     },
     {
       "year": 1991,
@@ -1707,7 +2267,17 @@
       "uri_tidal": "tidal://track/1330757",
       "uri_deezer": "deezer://track/3152715",
       "fun_fact_nl": "Door de controversiële teksten werd het in sommige landen verboden. Leadzangeres Chrissy Amphlett zei dat het echt over zelfversterking ging.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USVI29000004",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1584859579",
+        "de": "applemusic://track/1584859579",
+        "gb": "applemusic://track/1584859579",
+        "fr": "applemusic://track/1584859579",
+        "es": "applemusic://track/1584859579",
+        "nl": "applemusic://track/1584859579",
+        "it": "applemusic://track/1584859579"
+      }
     },
     {
       "year": 1991,
@@ -1735,7 +2305,17 @@
       "uri_tidal": "tidal://track/74568253",
       "uri_deezer": "deezer://track/367782641",
       "fun_fact_nl": "De bandnaam zou staan voor 'Ecstasy Mother****ers'. Ze waren tieners toen deze hit de Amerikaanse hitlijsten haalde, maar verdwenen al snel uit beeld.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYE9000089",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/72267285",
+        "de": "applemusic://track/72267285",
+        "gb": "applemusic://track/714632458",
+        "fr": "applemusic://track/72267285",
+        "es": "applemusic://track/72267285",
+        "nl": "applemusic://track/72267285",
+        "it": "applemusic://track/72267285"
+      }
     },
     {
       "year": 1991,
@@ -1763,7 +2343,17 @@
       "uri_tidal": "tidal://track/1311444",
       "uri_deezer": "deezer://track/630283",
       "fun_fact_nl": "Het duurde 2 jaar toeren voordat dit nummer eindelijk aansloeg. Ondanks het enorme succes werd de band een punchline voor jaren 90 nostalgie.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM19000350",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1565619209",
+        "de": "applemusic://track/1565619209",
+        "gb": "applemusic://track/1565619209",
+        "fr": "applemusic://track/1565619209",
+        "es": "applemusic://track/1565619209",
+        "nl": "applemusic://track/1565619209",
+        "it": "applemusic://track/1565619209"
+      }
     },
     {
       "year": 1992,
@@ -1791,7 +2381,17 @@
       "uri_tidal": "tidal://track/1332492",
       "uri_deezer": "deezer://track/3359652",
       "fun_fact_nl": "De 'Bee Girl' uit de video werd op slag beroemd. Leadzanger Shannon Hoon stierf in 1995 aan een overdosis, waarmee een einde kwam aan het potentieel van de band.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USCA29200194",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1700785141",
+        "de": "applemusic://track/1700785141",
+        "gb": "applemusic://track/1700785141",
+        "fr": "applemusic://track/1700785141",
+        "es": "applemusic://track/1700785141",
+        "nl": "applemusic://track/1700785141",
+        "it": "applemusic://track/1700785141"
+      }
     },
     {
       "year": 1992,
@@ -1819,7 +2419,17 @@
       "uri_tidal": "tidal://track/222367324",
       "uri_deezer": "deezer://track/1584589772",
       "fun_fact_nl": "Niet weg te denken bij sportevenementen over de hele wereld. DJ Lethal sloot zich later aan bij Limp Bizkit, terwijl Everlast een bescheiden solosucces had maar deze hit nooit evenaarde.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USTB12100088",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1616079470",
+        "de": "applemusic://track/1616079470",
+        "gb": "applemusic://track/1616079470",
+        "fr": "applemusic://track/1616079470",
+        "es": "applemusic://track/1616079470",
+        "nl": "applemusic://track/1616079470",
+        "it": "applemusic://track/1616079470"
+      }
     },
     {
       "year": 1993,
@@ -1847,7 +2457,17 @@
       "uri_tidal": "tidal://track/634519",
       "uri_deezer": "deezer://track/2184743",
       "fun_fact_nl": "Linda Perry schreef later hits voor Pink, Christina Aguilera en Gwen Stefani. Het nummer werd tientallen jaren later een virale meme.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USIR19200553",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442267078",
+        "de": "applemusic://track/1443342983",
+        "gb": "applemusic://track/1443342983",
+        "fr": "applemusic://track/1443342983",
+        "es": "applemusic://track/1443342983",
+        "nl": "applemusic://track/1443342983",
+        "it": "applemusic://track/1443342983"
+      }
     },
     {
       "year": 1993,
@@ -1873,7 +2493,17 @@
       "uri_tidal": "tidal://track/12585826",
       "uri_deezer": "deezer://track/90630611",
       "fun_fact_nl": "De ongewoon diepe stem van Brad Roberts werd het handelsmerk van het nummer. Weird Al parodieerde het als 'Headline News' op het hoogtepunt van zijn populariteit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "CAA359300084",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/309226521",
+        "de": "applemusic://track/1154118731",
+        "gb": "applemusic://track/203898858",
+        "fr": "applemusic://track/203898858",
+        "es": "applemusic://track/203898858",
+        "nl": "applemusic://track/1501166566",
+        "it": "applemusic://track/1242098163"
+      }
     },
     {
       "year": 1993,
@@ -1898,7 +2528,17 @@
       "uri_tidal": "tidal://track/440777531",
       "uri_deezer": "deezer://track/3375877811",
       "fun_fact_nl": "De grootste hit van dit Britse elektronische duo samplede een koor. Het werd een rave anthem maar buiten Europa bleven ze grotendeels onbekend.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAHS0500214",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1815573796",
+        "de": "applemusic://track/1815573796",
+        "gb": "applemusic://track/1815573796",
+        "fr": "applemusic://track/1815573796",
+        "es": "applemusic://track/1815573796",
+        "nl": "applemusic://track/1815573796",
+        "it": "applemusic://track/1815573796"
+      }
     },
     {
       "year": 1993,
@@ -1924,7 +2564,17 @@
       "uri_tidal": "tidal://track/2205831",
       "uri_deezer": "deezer://track/378817711",
       "fun_fact_nl": "Opgericht door Pixies-bassist Kim Deal. Dit alternatieve rockjuweeltje betekende hun doorbraak, maar de grillige carrière van de band verhinderde een blijvend mainstreamsucces.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAFL9300109",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/273106994",
+        "de": "applemusic://track/273106994",
+        "gb": "applemusic://track/273106994",
+        "fr": "applemusic://track/273106994",
+        "es": "applemusic://track/273106994",
+        "nl": "applemusic://track/273106994",
+        "it": "applemusic://track/273106994"
+      }
     },
     {
       "year": 1994,
@@ -1974,7 +2624,17 @@
       "uri_tidal": "tidal://track/70686664",
       "uri_deezer": "deezer://track/6907036",
       "fun_fact_nl": "De eerste debuutsingle die op #1 binnenkwam in de UK chart sinds 1984. De bijbehorende dansroutine werd een rage in clubs in heel Europa.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "IT00D9400207",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/125867612",
+        "de": "applemusic://track/1613178667",
+        "gb": "applemusic://track/125867612",
+        "fr": "applemusic://track/125867612",
+        "es": "applemusic://track/125867612",
+        "nl": "applemusic://track/125867612",
+        "it": "applemusic://track/125867612"
+      }
     },
     {
       "year": 1995,
@@ -2000,7 +2660,17 @@
       "uri_tidal": "tidal://track/3969023",
       "uri_deezer": "deezer://track/2315711",
       "fun_fact_nl": "Geschreven over een stel dat zich realiseert dat ze niets gemeen hebben behalve dat ze de film Audrey Hepburn leuk vinden. De band kon deze eigenzinnige hit niet kopiëren.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USIR19500177",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1717158411",
+        "de": "applemusic://track/1717158411",
+        "gb": "applemusic://track/1717158411",
+        "fr": "applemusic://track/1717158411",
+        "es": "applemusic://track/1717158411",
+        "nl": "applemusic://track/1717158411",
+        "it": "applemusic://track/1717158411"
+      }
     },
     {
       "year": 1995,
@@ -2026,7 +2696,17 @@
       "uri_tidal": "tidal://track/258291340",
       "uri_deezer": "deezer://track/14282849",
       "fun_fact_nl": "Collins zat vroeger in Orange Juice. In 2005 kreeg hij twee hersenbloedingen, maar hij herstelde en maakt nog steeds muziek.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GB72T1100001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/474270145",
+        "de": "applemusic://track/474270145",
+        "gb": "applemusic://track/474270145",
+        "fr": "applemusic://track/474270145",
+        "es": "applemusic://track/474270145",
+        "nl": "applemusic://track/474270145",
+        "it": "applemusic://track/474270145"
+      }
     },
     {
       "year": 1995,
@@ -2052,7 +2732,17 @@
       "uri_tidal": "tidal://track/486407015",
       "uri_deezer": "deezer://track/3750996632",
       "fun_fact_nl": "Het vrolijke nummer van deze Duitse band ging over verveling en depressie. Het voerde de hitlijsten in heel Europa aan, maar in Amerika bleven ze onbekend.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DEAF70927221",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1847889648",
+        "de": "applemusic://track/1847889648",
+        "gb": "applemusic://track/1847889648",
+        "fr": "applemusic://track/1847889648",
+        "es": "applemusic://track/1847889648",
+        "nl": "applemusic://track/1847889648",
+        "it": "applemusic://track/1847889648"
+      }
     },
     {
       "year": 1995,
@@ -2078,7 +2768,17 @@
       "uri_tidal": "tidal://track/638870",
       "uri_deezer": "deezer://track/2463249",
       "fun_fact_nl": "Dit filosofische lied over God verdiende 3 Grammy nominaties. Sommige religieuze groeperingen protesteerden, wat de populariteit alleen maar vergrootte.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USPR39500200",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1893169328",
+        "de": "applemusic://track/1893169328",
+        "gb": "applemusic://track/1893169328",
+        "fr": "applemusic://track/1893169328",
+        "es": "applemusic://track/1893169328",
+        "nl": "applemusic://track/1893169328",
+        "it": "applemusic://track/1893169328"
+      }
     },
     {
       "year": 1995,
@@ -2104,7 +2804,17 @@
       "uri_tidal": "tidal://track/40845550",
       "uri_deezer": "deezer://track/73219987",
       "fun_fact_nl": "Een zelfspottende rap over groter en cooler willen zijn. Skee-Lo was eigenlijk 5'8\" - niet zo klein - maar het nummer vond weerklank bij underdogs overal.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "NLML61100033",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/925659212",
+        "de": "applemusic://track/925659212",
+        "gb": "applemusic://track/925659212",
+        "fr": "applemusic://track/925659212",
+        "es": "applemusic://track/925659212",
+        "nl": "applemusic://track/925659212",
+        "it": "applemusic://track/925659212"
+      }
     },
     {
       "year": 1995,
@@ -2130,7 +2840,17 @@
       "uri_tidal": "tidal://track/160558",
       "uri_deezer": "deezer://track/3217894",
       "fun_fact_nl": "Het provocerende industriële rocknummer van deze Zweedse band werd ondanks de vreemde titel airplay op MTV. Ze bereikten nooit meer een mainstream succes.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAAA9500059",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724612537",
+        "de": "applemusic://track/724612537",
+        "gb": "applemusic://track/724612537",
+        "fr": "applemusic://track/724612537",
+        "es": "applemusic://track/724612537",
+        "nl": "applemusic://track/724612537",
+        "it": "applemusic://track/724612537"
+      }
     },
     {
       "year": 1996,
@@ -2156,7 +2876,17 @@
       "uri_tidal": "tidal://track/1471748",
       "uri_deezer": "deezer://track/3389663",
       "fun_fact_nl": "Gebruikt in een Levi's reclame, werd het de snelst verkopende debuutsingle in de geschiedenis van Groot-Brittannië in die tijd. De hype verdween net zo snel als hij kwam.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYE9500084",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1590127365",
+        "de": "applemusic://track/1243422020",
+        "gb": "applemusic://track/1590127365",
+        "fr": "applemusic://track/1590127365",
+        "es": "applemusic://track/1590127365",
+        "nl": "applemusic://track/1590127365",
+        "it": "applemusic://track/1590127365"
+      }
     },
     {
       "year": 1996,
@@ -2184,7 +2914,17 @@
       "uri_tidal": "tidal://track/79970915",
       "uri_deezer": "deezer://track/2234278",
       "fun_fact_nl": "De grootste internationale hit van Nieuw-Zeeland. Pauly Fuemana verkocht miljoenen exemplaren maar maakte weinig winst door een slecht platencontract. Hij stierf in 2010.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "NZPY09500002",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1584859314",
+        "de": "applemusic://track/1584859314",
+        "gb": "applemusic://track/1584859314",
+        "fr": "applemusic://track/1584859314",
+        "es": "applemusic://track/1584859314",
+        "nl": "applemusic://track/1584859314",
+        "it": "applemusic://track/1584859314"
+      }
     },
     {
       "year": 1996,
@@ -2209,7 +2949,17 @@
       "uri_tidal": "tidal://track/7917620",
       "uri_deezer": "deezer://track/13807568",
       "fun_fact_nl": "Stootte door naar #1 nadat ze te zien waren in een Levi's jeans advertentie. De band werd speciaal voor de commercial opgericht en ging daarna snel uit elkaar.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DEPA81100120",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/464578812",
+        "de": "applemusic://track/464578812",
+        "gb": "applemusic://track/464578812",
+        "fr": "applemusic://track/464578812",
+        "es": "applemusic://track/464578812",
+        "nl": "applemusic://track/464578812",
+        "it": "applemusic://track/464578812"
+      }
     },
     {
       "year": 1997,
@@ -2235,7 +2985,17 @@
       "uri_tidal": "tidal://track/62846208",
       "uri_deezer": "deezer://track/128237751",
       "fun_fact_nl": "De relaxte hit van dit collectief uit Montreal gaf de slackercultuur van de late jaren 90 perfect weer. Ondanks lovende kritieken bleven ze internationaal een eendagsvlieg.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "CAA509814003",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551605882",
+        "de": "applemusic://track/1551605882",
+        "gb": "applemusic://track/1551605882",
+        "fr": "applemusic://track/1551605882",
+        "es": "applemusic://track/1551605882",
+        "nl": "applemusic://track/1551605882",
+        "it": "applemusic://track/1551605882"
+      }
     },
     {
       "year": 1997,
@@ -2264,7 +3024,17 @@
       "uri_tidal": "tidal://track/15254370",
       "uri_deezer": "deezer://track/3154917",
       "fun_fact_nl": "Deze anarchistische band maakte voor deze hit al 15 jaar muziek. Ze doneerden hun inkomsten aan goede doelen en hebben ooit water over een politicus gegooid.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "DEA349700542",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691631077",
+        "de": "applemusic://track/1691631077",
+        "gb": "applemusic://track/1691631077",
+        "fr": "applemusic://track/1691631077",
+        "es": "applemusic://track/1691631077",
+        "nl": "applemusic://track/1691631077",
+        "it": "applemusic://track/1691631077"
+      }
     },
     {
       "year": 1997,
@@ -2290,7 +3060,17 @@
       "uri_tidal": "tidal://track/583613",
       "uri_deezer": "deezer://track/3239961",
       "fun_fact_nl": "De mysterieuze teksten werden geïnspireerd door een desoriënterende feestervaring. De lo-fi opnamekwaliteit was opzettelijk en werd een deel van de charme.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "TCAEY2022600",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1518392883",
+        "de": "applemusic://track/1518392883",
+        "gb": "applemusic://track/1518392883",
+        "fr": "applemusic://track/1518392883",
+        "es": "applemusic://track/1518392883",
+        "nl": "applemusic://track/1518392883",
+        "it": "applemusic://track/1518392883"
+      }
     },
     {
       "year": 1997,
@@ -2316,7 +3096,17 @@
       "uri_tidal": "tidal://track/1409900",
       "uri_deezer": "deezer://track/3156760",
       "fun_fact_nl": "Vaak verward met de stijl van Alanis Morissette. Brooks omarmde haar one-hit wonder status en zei dat ze liever één groot nummer had dan geen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USCA29701376",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878462499",
+        "de": "applemusic://track/1878462499",
+        "gb": "applemusic://track/1878462499",
+        "fr": "applemusic://track/1878462499",
+        "es": "applemusic://track/1878462499",
+        "nl": "applemusic://track/1878462499",
+        "it": "applemusic://track/1878462499"
+      }
     },
     {
       "year": 1997,
@@ -2346,7 +3136,17 @@
       "uri_tidal": "tidal://track/500426",
       "uri_deezer": "deezer://track/992131",
       "fun_fact_nl": "Eigenlijk een cover van een obscuur nummer uit 1995. De voormalige Australische soapactrice werd een wereldwijde ster, maar had moeite om deze debuuthit te evenaren.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBARL9700412",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1635638730",
+        "de": "applemusic://track/774761984",
+        "gb": "applemusic://track/1635638730",
+        "fr": "applemusic://track/285296230",
+        "es": "applemusic://track/1635638730",
+        "nl": "applemusic://track/1635638730",
+        "it": "applemusic://track/285296230"
+      }
     },
     {
       "year": 1997,
@@ -2372,7 +3172,17 @@
       "uri_tidal": "tidal://track/215538535",
       "uri_deezer": "deezer://track/10426810",
       "fun_fact_nl": "Een slaapkameropname die een Al Bowlly-nummer uit 1930 samplet. Jyoti Mishra nam alles zelf op en was geschokt toen het nummer #1 werd in de UK.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBAYE9600116",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/716067885",
+        "de": "applemusic://track/716067885",
+        "gb": "applemusic://track/716067885",
+        "fr": "applemusic://track/716067885",
+        "es": "applemusic://track/716067885",
+        "nl": "applemusic://track/716067885",
+        "it": "applemusic://track/716067885"
+      }
     },
     {
       "year": 1998,
@@ -2398,7 +3208,17 @@
       "uri_tidal": "tidal://track/2215907",
       "uri_deezer": "deezer://track/1120924",
       "fun_fact_nl": "Oorspronkelijk een flop totdat de remix van Fatboy Slim #1 werd. Het gaat over de Bollywood zangeres Asha Bhosle, die meer liedjes heeft opgenomen dan wie dan ook in de geschiedenis.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "GBBKT9700052",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/714943313",
+        "de": "applemusic://track/286274955",
+        "gb": "applemusic://track/286274955",
+        "fr": "applemusic://track/286274955",
+        "es": "applemusic://track/286274955",
+        "nl": "applemusic://track/286274955",
+        "it": "applemusic://track/286274955"
+      }
     },
     {
       "year": 1998,
@@ -2424,7 +3244,17 @@
       "uri_tidal": "tidal://track/610923",
       "uri_deezer": "deezer://track/2252935",
       "fun_fact_nl": "Zoon van jazzlegende Don Cherry en halfbroer van Neneh Cherry. Ondanks familiebanden kon hij zijn eigen succes in de hitlijsten niet behouden.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM10027246",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1695903012",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      }
     },
     {
       "year": 1998,
@@ -2453,7 +3283,17 @@
       "uri_tidal": "tidal://track/2529963",
       "uri_deezer": "deezer://track/2441438",
       "fun_fact_nl": "Gregg Alexander ging na één album uit elkaar omdat hij een hekel had aan roem. De shoutouts naar beroemdheden zorgden voor controverse, maar versterkten het profiel.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMC19858327",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1671911352",
+        "de": "applemusic://track/1671911352",
+        "gb": "applemusic://track/1671911352",
+        "fr": "applemusic://track/1671911352",
+        "es": "applemusic://track/1671911352",
+        "nl": "applemusic://track/1671911352",
+        "it": "applemusic://track/1671911352"
+      }
     },
     {
       "year": 1998,
@@ -2481,7 +3321,17 @@
       "uri_tidal": "tidal://track/94760881",
       "uri_deezer": "deezer://track/546248912",
       "fun_fact_nl": "Eigenlijk geschreven over de geboorte van het kind van de leadzanger, niet over een cafésluiting. Het werd het ultieme afscheidsliedje ondanks de verborgen betekenis.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMC19800013",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1779813571",
+        "de": "applemusic://track/1779813571",
+        "gb": "applemusic://track/1779813571",
+        "fr": "applemusic://track/1779813571",
+        "es": "applemusic://track/1779813571",
+        "nl": "applemusic://track/1779813571",
+        "it": "applemusic://track/1779813571"
+      }
     },
     {
       "year": 1999,
@@ -2507,7 +3357,17 @@
       "uri_tidal": "tidal://track/2358828",
       "uri_deezer": "deezer://track/3748159",
       "fun_fact_nl": "De marionet Flat Eric in Levi's advertenties. De Franse producer Quentin Dupieux werd later een cultfilmregisseur.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "FRV229900012",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/121304778",
+        "de": "applemusic://track/121304778",
+        "gb": "applemusic://track/121304778",
+        "fr": "applemusic://track/121304778",
+        "es": "applemusic://track/121304778",
+        "nl": "applemusic://track/121304778",
+        "it": "applemusic://track/121304778"
+      }
     },
     {
       "year": 2000,
@@ -2535,7 +3395,17 @@
       "uri_tidal": "tidal://track/34793",
       "uri_deezer": "deezer://track/13144808",
       "fun_fact_nl": "Een sample van Red Hot Chili Peppers' 'Pretty Little Ditty'. Het rap-rocknummer werd nummer 1, maar de band werd synoniem voor de one-hit wonders uit het begin van de jaren 2000.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM19911429",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/203304621",
+        "de": "applemusic://track/1799780923",
+        "gb": "applemusic://track/203304621",
+        "fr": "applemusic://track/203304621",
+        "es": "applemusic://track/203304621",
+        "nl": "applemusic://track/203304621",
+        "it": "applemusic://track/203304621"
+      }
     },
     {
       "year": 2000,
@@ -2561,7 +3431,17 @@
       "uri_tidal": "tidal://track/1924",
       "uri_deezer": "deezer://track/870041",
       "fun_fact_nl": "Uitgelicht in de film 'Loser' met Jason Biggs in de hoofdrol. De nerdy hymne vond een nieuw leven via sociale media meer dan 20 jaar na de release.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM10008431",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1788997007",
+        "de": "applemusic://track/1788997007",
+        "gb": "applemusic://track/1788997007",
+        "fr": "applemusic://track/1788997007",
+        "es": "applemusic://track/1788997007",
+        "nl": "applemusic://track/1788997007",
+        "it": "applemusic://track/1788997007"
+      }
     },
     {
       "year": 2002,
@@ -2587,7 +3467,17 @@
       "uri_tidal": "tidal://track/45929210",
       "uri_deezer": "deezer://track/7804693",
       "fun_fact_nl": "Een expliciete clubanthem die een cultfavoriet werd. Khia nam het op voor slechts $350 en het werd een vaste waarde op feestjes in de jaren 2000.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USAR50210857",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/5622208",
+        "de": "applemusic://track/5622208",
+        "gb": "applemusic://track/5622208",
+        "fr": "applemusic://track/5622208",
+        "es": "applemusic://track/5622208",
+        "nl": "applemusic://track/5622208",
+        "it": "applemusic://track/5622208"
+      }
     },
     {
       "year": 2002,
@@ -2636,7 +3526,17 @@
       "uri_tidal": "tidal://track/1273756",
       "uri_deezer": "deezer://track/624206",
       "fun_fact_nl": "Bekend geworden als het themalied van de tv-serie 'The O.C.'. Acteur Jason Schwartzman was hun originele drummer voordat zijn filmcarrière begon.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM10105453",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1006175834",
+        "de": "applemusic://track/308198608",
+        "gb": "applemusic://track/308198608",
+        "fr": "applemusic://track/308198608",
+        "es": "applemusic://track/308198608",
+        "nl": "applemusic://track/308198608",
+        "it": "applemusic://track/308198608"
+      }
     },
     {
       "year": 2005,
@@ -2662,7 +3562,17 @@
       "uri_tidal": "tidal://track/1309889",
       "uri_deezer": "deezer://track/2553109",
       "fun_fact_nl": "De drumsample van The Meters maakte het meteen herkenbaar. Ondanks lovende kritieken kon Amerie haar aanwezigheid in de hitlijsten niet handhaven.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM10500100",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/153437689",
+        "de": "applemusic://track/153437689",
+        "gb": "applemusic://track/153437689",
+        "fr": "applemusic://track/153437689",
+        "es": "applemusic://track/153437689",
+        "nl": "applemusic://track/153437689",
+        "it": "applemusic://track/153437689"
+      }
     },
     {
       "year": 2006,
@@ -2698,7 +3608,17 @@
       "fun_fact_nl": "Eerste nummer dat alleen al door downloads #1 werd in de Britse hitlijsten. Het duo CeeLo Green en Danger Mouse droeg bij elk optreden uitgebreide kostuums.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (2007)"
-      ]
+      ],
+      "isrc": "USAT20611041",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1741403966",
+        "de": "applemusic://track/1181210744",
+        "gb": "applemusic://track/1181210744",
+        "fr": "applemusic://track/1181210744",
+        "es": "applemusic://track/1181210744",
+        "nl": "applemusic://track/1181210744",
+        "it": "applemusic://track/1181210744"
+      }
     },
     {
       "year": 2011,
@@ -2724,7 +3644,17 @@
       "uri_tidal": "tidal://track/13467719",
       "uri_deezer": "deezer://track/14539929",
       "fun_fact_nl": "Het meest verkochte nummer van 2012 wereldwijd. De Belgisch-Australische Gotye maakte de video voor minder dan $1000 en won 3 Grammy's, maar trok zich terug uit de popmuziek.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "AUZS21100040",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1582231392",
+        "de": "applemusic://track/1582231392",
+        "gb": "applemusic://track/1582231392",
+        "fr": "applemusic://track/1582231392",
+        "es": "applemusic://track/1582231392",
+        "nl": "applemusic://track/1519612333",
+        "it": "applemusic://track/1582231392"
+      }
     }
   ]
 }

@@ -508,11 +508,22 @@ class GameState:
         # Store platform for playback routing
         self.platform = platform
 
+        # #808 follow-up: detect the user's Apple Music storefront from
+        # HA's configured country. Beatify's playlists carry per-region
+        # Apple Music URIs; PlaylistManager uses this to pick the right
+        # one and to filter out songs explicitly unavailable in this
+        # region. Lower-case to match the storefront codes used by
+        # Apple's API ("us", "de", "gb", ...). None when HA doesn't have
+        # a country configured → falls back to the legacy single URI.
+        self.storefront = self._detect_storefront()
+
         # Reset error detail
         self.last_error_detail = ""
 
         # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
-        self._playlist_manager = PlaylistManager(songs, provider)
+        self._playlist_manager = PlaylistManager(
+            songs, provider, storefront=self.storefront
+        )
 
         # #709: if the chosen provider has zero playable songs, fail fast with
         # a clear error rather than silently starting a game that will stall.
@@ -735,8 +746,13 @@ class GameState:
             setattr(self, attr, value)
 
         # Re-create PlaylistManager with fresh song list
+        # #808 follow-up: re-detect storefront for the rematch (in case
+        # HA's country config changed) and re-attach it.
+        self.storefront = self._detect_storefront()
         self._playlist_manager = PlaylistManager(
-            preserved["songs"], preserved["provider"]
+            preserved["songs"],
+            preserved["provider"],
+            storefront=self.storefront,
         )
         self.total_rounds = len(preserved["songs"])
 
@@ -1098,6 +1114,30 @@ class GameState:
         """Mark a player as admin. Delegates to PlayerRegistry."""
         return self._player_registry.set_admin(name)
 
+    def _detect_storefront(self) -> str | None:
+        """Determine the user's Apple Music storefront for URI resolution.
+
+        Sources, in order:
+          1. ``hass.config.country`` — HA's configured country code, set
+             during initial HA setup. This is what most users will have.
+             Returned lower-cased to match Apple's storefront codes.
+          2. None — fall back to the legacy single Apple Music URI in
+             ``uri_apple_music`` (typically a US track ID).
+
+        Future: query Music Assistant's WebSocket API for the actual
+        Apple Music provider's configured storefront, which may differ
+        from HA's country (e.g. an expat using a US Apple Music account
+        from a German HA install). For now HA's country covers ~80%+ of
+        users without any extra round-trip.
+        """
+        hass = getattr(self, "_hass", None)
+        if hass is None:
+            return None
+        country = getattr(hass.config, "country", None) if hass.config else None
+        if not country:
+            return None
+        return str(country).strip().lower() or None
+
     def start_game(self) -> tuple[bool, str | None]:
         """
         Start the game, transitioning from LOBBY to PLAYING.
@@ -1148,7 +1188,7 @@ class GameState:
                 "Skipping song (year %s) - no URI for provider", song.get("year", "?")
             )
             self._playlist_manager.mark_played(
-                get_song_uri(song, self.provider) or song.get("uri")
+                get_song_uri(song, self.provider, self.storefront) or song.get("uri")
             )
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error(

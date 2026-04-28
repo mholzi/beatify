@@ -54,26 +54,49 @@ class PlaylistManager:
     """
 
     def __init__(
-        self, songs: list[dict[str, Any]], provider: str = PROVIDER_DEFAULT
+        self,
+        songs: list[dict[str, Any]],
+        provider: str = PROVIDER_DEFAULT,
+        storefront: str | None = None,
     ) -> None:
         """Initialize with list of songs from loaded playlists.
 
         Args:
             songs: List of song dictionaries (may include _playlist_source tag)
             provider: Music provider to use
+            storefront: For Apple Music, the user's regional storefront code
+                (e.g. "us", "de"). Songs explicitly unavailable in that
+                region (per ``uri_apple_music_by_region``) are filtered out
+                up-front so they never appear in playback (#808 follow-up).
 
         """
         self._provider = provider
+        self._storefront = storefront
         total_count = len(songs)
         filtered_songs, _ = filter_songs_for_provider(songs, provider)
         self._played_uris: set[str] = set()
 
-        # Group songs into per-playlist buckets, deduplicating by URI
+        # Group songs into per-playlist buckets, deduplicating by URI.
+        # Songs explicitly unavailable in the user's storefront (per
+        # `uri_apple_music_by_region`) get filtered out here — they never
+        # enter the playable pool, so the runtime never even tries to play
+        # them.
         seen_uris: set[str] = set()
         buckets: dict[str, list[dict[str, Any]]] = {}
+        regional_skipped = 0
         for song in filtered_songs:
-            uri = get_song_uri(song, provider)
-            if not uri or uri in seen_uris:
+            uri = get_song_uri(song, provider, storefront)
+            if not uri:
+                # Could be no URI for provider OR explicitly null in storefront.
+                if (
+                    provider == PROVIDER_APPLE_MUSIC
+                    and storefront
+                    and storefront in (song.get("uri_apple_music_by_region") or {})
+                    and song["uri_apple_music_by_region"][storefront] is None
+                ):
+                    regional_skipped += 1
+                continue
+            if uri in seen_uris:
                 continue
             seen_uris.add(uri)
             source = song.get("_playlist_source", "__default__")
@@ -86,12 +109,20 @@ class PlaylistManager:
         deduped = sum(len(v) for v in buckets.values())
         _LOGGER.info(
             "PlaylistManager: %d/%d songs across %d playlist(s) for %s"
+            + (f" [{storefront}]" if storefront else "")
             + (" (balanced mode)" if self._multi_playlist else ""),
             deduped,
             total_count,
             len(buckets),
             provider,
         )
+        if regional_skipped:
+            _LOGGER.info(
+                "Filtered %d song(s) confirmed unavailable in storefront '%s' "
+                "(#808: per-region Apple Music data)",
+                regional_skipped,
+                storefront,
+            )
 
     def get_next_song(self) -> dict[str, Any] | None:
         """Get random unplayed song with balanced playlist selection.
@@ -106,7 +137,10 @@ class PlaylistManager:
         # Balanced: pick a random non-exhausted playlist, then a song
         active_buckets = {
             k: [
-                s for s in v if get_song_uri(s, self._provider) not in self._played_uris
+                s
+                for s in v
+                if get_song_uri(s, self._provider, self._storefront)
+                not in self._played_uris
             ]
             for k, v in self._buckets.items()
         }
@@ -118,19 +152,26 @@ class PlaylistManager:
         chosen_key = random.choice(list(active_buckets.keys()))  # noqa: S311
         song = random.choice(active_buckets[chosen_key])  # noqa: S311
         song_copy = song.copy()
-        song_copy["_resolved_uri"] = get_song_uri(song, self._provider)
+        song_copy["_resolved_uri"] = get_song_uri(
+            song, self._provider, self._storefront
+        )
         return song_copy
 
     def _pick_from_pool(self, pool: list[dict[str, Any]]) -> dict[str, Any] | None:
         """Pick a random unplayed song from a flat pool."""
         available = [
-            s for s in pool if get_song_uri(s, self._provider) not in self._played_uris
+            s
+            for s in pool
+            if get_song_uri(s, self._provider, self._storefront)
+            not in self._played_uris
         ]
         if not available:
             return None
         song = random.choice(available)  # noqa: S311
         song_copy = song.copy()
-        song_copy["_resolved_uri"] = get_song_uri(song, self._provider)
+        song_copy["_resolved_uri"] = get_song_uri(
+            song, self._provider, self._storefront
+        )
         return song_copy
 
     def mark_played(self, uri: str) -> None:
@@ -380,23 +421,48 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
     return (len(errors) == 0, errors)
 
 
-def get_song_uri(song: dict[str, Any], provider: str) -> str | None:
+def get_song_uri(
+    song: dict[str, Any],
+    provider: str,
+    storefront: str | None = None,
+) -> str | None:
     """
     Get the URI for a song based on the provider.
 
     Args:
         song: Song dictionary with uri fields
         provider: Provider identifier (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC, or PROVIDER_YOUTUBE_MUSIC)
+        storefront: For Apple Music, the user's regional storefront code
+            (e.g. "us", "de", "gb"). Used to resolve per-region track IDs
+            from ``uri_apple_music_by_region`` when present (#808 follow-up).
+            None means "use the legacy single-URI field" (typically a US
+            track ID). Other providers ignore this param.
 
     Returns:
-        URI string for the provider, or None if not available
+        URI string for the provider/storefront, or None if not available.
+        For Apple Music with a storefront set: returns None when the
+        ``uri_apple_music_by_region`` map explicitly lists the region as
+        unavailable (key present, value is None) — this lets the caller
+        skip the song silently without ever calling MA.
 
     """
     if provider == PROVIDER_SPOTIFY:
         # For Spotify, prefer uri_spotify, fall back to legacy uri field
         return song.get("uri_spotify") or song.get("uri") or None
     if provider == PROVIDER_APPLE_MUSIC:
-        # For Apple Music, only use uri_apple_music
+        # #808 follow-up: storefront-aware resolution. Beatify's playlists
+        # historically stored a single Apple Music URI per song (typically
+        # a US-storefront track ID); for users on other storefronts (DE,
+        # GB, FR, ...) some subset isn't in their regional catalog. The
+        # `uri_apple_music_by_region` map (populated by
+        # `scripts/fetch_apple_music_regions.py`) gives per-region track
+        # IDs (or explicit None for confirmed-unavailable).
+        if storefront:
+            regional = song.get("uri_apple_music_by_region") or {}
+            if storefront in regional:
+                # Explicit per-region answer (URI string OR None).
+                return regional[storefront]
+        # No storefront, or no per-region data: fall back to legacy field.
         return song.get("uri_apple_music") or None
     if provider == PROVIDER_YOUTUBE_MUSIC:
         # For YouTube Music, only use uri_youtube_music
