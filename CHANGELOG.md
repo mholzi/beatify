@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc16] - 2026-04-28
+
+### Fixed
+- **Timer is now always visible during a round (#817).** @mholzi reported that scrolling down to reach the Submit Guess button on the player view caused the countdown timer to scroll off the top of the screen — leaving no idea how many seconds were left. The existing `.arc-header` was `position: sticky` already, but iOS Safari has known sticky-positioning quirks in flex/grid containers and it wasn't reliably pinning. Added a small floating mini-timer (`#timer-float`) that's `position: fixed` in the top-right corner, syncs its number from the main countdown, and is shown via IntersectionObserver only when the main neon timer is offscreen. Same warn-state pulse animation at ≤10 seconds. Hidden between rounds.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc16`. Bumped `admin.html` + `player.html` cache-busters (`styles.min.css`, `player.bundle.min.js`) to `3.3.2-rc16`. Minified rebuilt.
+- 442 tests pass, 1 xfailed (unchanged from rc15 — #817 is a JS-only fix outside the unit-test surface).
+
 ## [3.3.2-rc15] - 2026-04-28
 
 Combines the rc14 round-end resilience fix (#816) with two new bug fixes for #814 and #815. The rc14 GitHub release was held back to bundle these together so HACS only sees one new pre-release.
