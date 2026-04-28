@@ -1191,10 +1191,34 @@ class GameState:
 
             success = await self._media_player_service.play_song(song)
             if not success:
-                _LOGGER.warning("Failed to play song: %s", song.get("uri"))
+                # #808 follow-up: classify the failure. "unavailable" means
+                # MA accepted the URI but the speaker stayed on the prior
+                # track — typically a region/storefront mismatch (the track
+                # ID isn't in the user's catalog). Skip silently and try the
+                # next song without counting against MAX_SONG_RETRIES; the
+                # user can't fix individual track availability and the game
+                # should keep playing the subset that IS available.
+                #
+                # "error" / unset → systemic failure (speaker offline, MA
+                # provider broken). Count toward MAX_SONG_RETRIES so the
+                # recovery banner kicks in for real problems.
+                failure_reason = getattr(
+                    self._media_player_service, "last_failure_reason", None
+                )
                 self._playlist_manager.mark_played(
                     song.get("_resolved_uri") or song.get("uri")
                 )
+
+                if failure_reason == "unavailable":
+                    _LOGGER.info(
+                        "Skipping unavailable song silently: %s (likely not in "
+                        "your provider's storefront/catalog) — trying next song",
+                        song.get("title") or song.get("uri"),
+                    )
+                    await asyncio.sleep(0.2)
+                    return await self.start_round(_retry_count)
+
+                _LOGGER.warning("Failed to play song: %s", song.get("uri"))
                 if _retry_count >= MAX_SONG_RETRIES:
                     _LOGGER.error(
                         "Media player unreachable after %d attempts, pausing game",

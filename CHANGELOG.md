@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.2-rc11] - 2026-04-28
+
+### Fixed
+- **Region/storefront-locked songs no longer count toward the pause-the-game retry limit (#808 follow-up).** @Levtos's playthrough on rc10 had `apple_music://track/302229811` ("All Together Now") fail with the strict-detect signature ("speaker still on prior track") — and iTunes Lookup confirmed the track is in the **US** Apple Music catalog but **NOT in DE**. Beatify's playlists store predominantly US-storefront Apple Music IDs; for users on other regional storefronts, some subset of songs will be unresolvable through their MA Apple Music provider. These individual track failures shouldn't pause the game — the user can't fix per-track availability. Now: when `_try_ma_play` detects the strict-detect failure mode, the song is classified as `last_failure_reason = "unavailable"` and `start_round` skips it silently without incrementing `_retry_count`. The game keeps playing whatever subset IS in the user's catalog. Systemic failures (offline speaker, broken provider auth) still classify as `"error"`, count toward `MAX_SONG_RETRIES`, and trigger the recovery banner.
+
+### Changed
+- **Clearer log messages on playback failure modes.** The strict-detect path now explicitly explains *"Track is likely not available in your provider's catalog/storefront, OR your provider needs re-authentication in MA. Skipping this song silently — game will try the next one."* The speaker-idle path mentions both possibilities ("speaker offline / MA unauthenticated / track unavailable") so users know which to check. This is the same diagnostic chain @mholzi walked through to find the rc8/rc9 root cause; surfacing it in the logs short-circuits the GitHub-issue-and-back-and-forth cycle.
+
+### For contributors
+- New `MediaPlayerService.last_failure_reason` field (None / "unavailable" / "error"). Cleared at the start of each `_play_via_music_assistant` call; set in the failure paths of `_try_ma_play`. Read by `start_round` in `game/state.py` to decide retry-counter behavior.
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.2-rc11`. No frontend asset changes — HTML cache-busters unchanged.
+- 2 new tests in `TestStartRoundFailureClassification`: one verifies "unavailable" doesn't pause across many failures, one verifies "error" still pauses at MAX_SONG_RETRIES. Existing `test_ma_returns_false_when_title_unchanged_but_position_advances` extended to assert classification. 429 passed, 1 xfailed.
+
+### Out of scope (filed as future enhancement)
+- Storefront-aware playlist generation: re-fetch all Apple Music URIs against US/DE/GB/FR/ES storefronts during playlist build; pick the right URI based on the user's MA provider config. Would eliminate the "skip this track" frequency entirely, but requires a meaningful playlist-pipeline change and per-storefront URI storage. Filing separately.
+
 ## [3.3.2-rc10] - 2026-04-28
 
 ### Changed

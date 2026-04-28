@@ -338,6 +338,11 @@ class TestMANonBlockingPlayback:
         'Sugar, Sugar' / 'Lazy Sunday (Mono)' for multiple rounds while
         position advanced; old logic would falsely return True here and
         the UI advanced into rounds with no actual audio change.
+
+        #808 follow-up: this failure mode is now classified as "unavailable"
+        — start_round will skip the song silently rather than counting it
+        toward MAX_SONG_RETRIES (track is most likely region-locked /
+        not in the user's provider catalog).
         """
         hass = MagicMock()
         hass.services.async_call = AsyncMock()
@@ -375,6 +380,9 @@ class TestMANonBlockingPlayback:
                 result = await svc.play_song(_make_song(title="New Song"))
 
         assert result is False
+        # #808 follow-up: title-stale failure is classified as "unavailable"
+        # so start_round can skip silently instead of counting toward retries.
+        assert svc.last_failure_reason == "unavailable"
 
     @pytest.mark.asyncio
     async def test_ma_first_song_no_previous_title(self):
@@ -929,3 +937,95 @@ class TestStartRoundAvailabilityCheck:
         mock_media_service.is_available.assert_called_once()
         mock_game_state.pause_game.assert_awaited_once_with("media_player_error")
         assert "unavailable" in mock_game_state.last_error_detail
+
+
+class TestStartRoundFailureClassification:
+    """#808 follow-up: start_round must distinguish 'unavailable' (skip silently)
+    from 'error' (count toward MAX_SONG_RETRIES → pause).
+    """
+
+    @pytest.mark.asyncio
+    async def test_unavailable_failure_does_not_count_toward_retry_limit(self):
+        """When play_song fails with last_failure_reason='unavailable', the
+        next start_round call must NOT see _retry_count incremented.
+        Region/storefront-locked tracks are user-uncontrollable; the game
+        should keep playing whatever subset IS available without ever
+        pausing on these.
+        """
+        from custom_components.beatify.game.state import GameState  # noqa: PLC0415
+        from tests.conftest import (  # noqa: PLC0415
+            make_game_state,
+            make_songs,
+        )
+
+        gs: GameState = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(5),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+        )
+
+        # Service: always fails with "unavailable"
+        mock_service = MagicMock()
+        mock_service.is_available.return_value = True
+        mock_service.last_failure_reason = "unavailable"
+        mock_service.play_song = AsyncMock(return_value=False)
+        gs._media_player_service = mock_service
+        gs.media_player = "media_player.test"
+        gs.platform = "music_assistant"
+        gs.pause_game = AsyncMock()  # spy to ensure NOT called
+
+        # Cap recursion to keep the test bounded — start_round will loop
+        # through the playlist marking each song unavailable, eventually
+        # returning False because all songs are exhausted (NOT pausing).
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        # Must NOT have called pause_game — unavailable doesn't pause.
+        gs.pause_game.assert_not_awaited()
+        # play_song was called multiple times (once per song until exhausted).
+        assert mock_service.play_song.await_count >= 2
+
+    @pytest.mark.asyncio
+    async def test_error_failure_still_pauses_after_max_retries(self):
+        """Regression guard: 'error' failures (or unset reason) must still
+        count toward MAX_SONG_RETRIES and pause the game. We don't want the
+        skip-silent path to mask actual systemic problems (offline speaker,
+        broken provider auth across the board).
+        """
+        from custom_components.beatify.game.state import GameState  # noqa: PLC0415
+        from tests.conftest import (  # noqa: PLC0415
+            make_game_state,
+            make_songs,
+        )
+
+        gs: GameState = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(10),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+        )
+
+        mock_service = MagicMock()
+        mock_service.is_available.return_value = True
+        mock_service.last_failure_reason = "error"
+        mock_service.play_song = AsyncMock(return_value=False)
+        gs._media_player_service = mock_service
+        gs.media_player = "media_player.test"
+        gs.platform = "music_assistant"
+        gs.pause_game = AsyncMock()
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            result = await gs.start_round()
+
+        # Must have paused once retries exhausted.
+        assert result is False
+        gs.pause_game.assert_awaited_once_with("media_player_error")

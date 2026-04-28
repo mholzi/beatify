@@ -157,6 +157,24 @@ class MediaPlayerService:
         # candidate list so subsequent songs don't pay the primary-attempt
         # timeout on every round (#768).
         self._ma_preferred_uri_field: str | None = None
+        # #808 follow-up: classify the most recent failure mode so the
+        # caller (game/state.py:start_round) can decide whether to count
+        # this against MAX_SONG_RETRIES (real failure) or skip silently
+        # (track unavailable in the user's catalog/storefront).
+        #
+        # Values:
+        #   None         — last call succeeded or hasn't been called yet
+        #   "unavailable" — MA accepted the URI but speaker stayed on the
+        #                   prior track. Almost always means the track ID
+        #                   isn't in the user's Apple Music storefront, or
+        #                   MA's provider needs re-authentication for this
+        #                   track. Skipping silently lets the game continue
+        #                   with whatever subset IS playable.
+        #   "error"       — speaker idle/off/unavailable, or hard speaker
+        #                   problem. Counts toward MAX_SONG_RETRIES so the
+        #                   game pauses on systemic issues (offline speaker,
+        #                   broken provider auth across the board).
+        self.last_failure_reason: str | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -341,6 +359,10 @@ class MediaPlayerService:
         the originating bug for #805 (Levtos's Apple-Music-only setup paid
         4×15s of Spotify/YT/Tidal timeouts on every failed round).
         """
+        # #808 follow-up: clear stale failure classification before each
+        # attempt so start_round reads only the result of THIS song.
+        self.last_failure_reason = None
+
         candidates = self._get_ma_uri_candidates(song)
         if not candidates:
             _LOGGER.error(
@@ -348,6 +370,7 @@ class MediaPlayerService:
                 song.get("artist"),
                 song.get("title"),
             )
+            self.last_failure_reason = "unavailable"
             return False
 
         expected_title = song.get("title") or ""
@@ -369,6 +392,7 @@ class MediaPlayerService:
                 if field and field != self._ma_preferred_uri_field:
                     _LOGGER.debug("MA preferred URI field now: %s (#768)", field)
                     self._ma_preferred_uri_field = field
+                self.last_failure_reason = None
                 return True
 
         _LOGGER.error(
@@ -377,6 +401,8 @@ class MediaPlayerService:
             song.get("artist"),
             song.get("title"),
         )
+        # last_failure_reason carries the classification of the last
+        # _try_ma_play attempt (set by that method); start_round reads it.
         return False
 
     async def _try_ma_play(self, uri: str, expected_title: str) -> bool:
@@ -493,11 +519,19 @@ class MediaPlayerService:
         # Hard failure: speaker is idle/unavailable/off — song won't play
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
             _LOGGER.error(
-                "MA playback failed after %.1fs for %s (state: %s)",
+                "MA playback failed after %.1fs for %s (state: %s). "
+                "Either the speaker is offline, MA's provider is unauthenticated, "
+                "or the track is not available in your provider's catalog. If this "
+                "happens for many tracks, re-authenticate your music provider in MA.",
                 MA_PLAYBACK_TIMEOUT,
                 uri,
                 speaker_state,
             )
+            # Conservative: speaker-idle failures could be systemic (provider
+            # broken across the board) so we keep counting them toward
+            # MAX_SONG_RETRIES. The recovery banner will guide the user to
+            # the re-auth fix once 3 land in a row.
+            self.last_failure_reason = "error"
             return False
 
         # Hard failure: speaker title did not advance. If the title field is
@@ -527,9 +561,18 @@ class MediaPlayerService:
         title_advanced = title_after != title_before
         if not title_advanced:
             position_changed = position_updated_after != position_updated_before
-            _LOGGER.error(
+            # #808 follow-up: this is the storefront/region-mismatch
+            # signature — MA accepted the URI but couldn't resolve a stream
+            # for it, so the speaker just keeps playing the prior track.
+            # @Levtos hit this for `apple_music://track/302229811` (US-only
+            # 'All Together Now' on a DE-storefront MA), and the iTunes
+            # Lookup confirmed: track in US catalog, NOT in DE catalog.
+            _LOGGER.warning(
                 "MA playback failed after %.1fs for %s — speaker still on "
-                "prior track %r (position timestamp %s); skipping (#795, was #777)",
+                "prior track %r (position timestamp %s). Track is likely "
+                "not available in your provider's catalog/storefront, OR "
+                "your provider needs re-authentication in MA. Skipping "
+                "this song silently — game will try the next one. (#795)",
                 MA_PLAYBACK_TIMEOUT,
                 uri,
                 title_before,
@@ -556,6 +599,12 @@ class MediaPlayerService:
                     "media_stop call after stale-title detect failed for %s",
                     self._entity_id,
                 )
+            # #808 follow-up: classify as "unavailable" so start_round skips
+            # silently without counting against MAX_SONG_RETRIES. Storefront
+            # gaps shouldn't pause the game — the user can't fix individual
+            # track availability and the game should keep playing whatever
+            # subset IS in their catalog.
+            self.last_failure_reason = "unavailable"
             return False
 
         # #345 slow-buffer tolerance, narrowed to "title genuinely changed":
