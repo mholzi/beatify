@@ -4,6 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.3-rc2] - 2026-05-04
+
+Adds the new "Deutschpop Klassiker" community playlist (100 tracks of modern German pop, 2002–2019), plus a small playback-resilience hardening.
+
+### Added
+- **New community playlist: Deutschpop Klassiker (#839).** 100 tracks of modern German pop sourced from the Spotify Editorial playlist of the same name (475k saves). Bridges Beatify's German content gap between traditional Schlager and contemporary mainstream — Wir sind Helden, Peter Fox, AnnenMayKantereit, Helene Fischer, Andreas Bourani, Mark Forster, Tim Bendzko, Juli, Sarah Connor, Silbermond, Wincent Weiss, Clueso, Herbert Grönemeyer et al. Year range 2002–2019. Coverage: Spotify / YouTube Music / Deezer 100/100; Apple Music + 7 regional URIs (US/DE/GB/FR/ES/NL/IT) 99/100; alt_artists 100/100; fun_facts in en/de/es/fr/nl 100/100; chart_info 69/100; certifications 47/100; Tidal 1/100 (search via OAuth not available in maintainer's free APIs — leftover slots will fill in a follow-up).
+
+### Fixed
+- **State-read resilience during MA playback confirmation (formerly xfailed test).** A transient `RuntimeError` from `hass.states.get()` mid-playback (rare, but possible during HA restarts / state-machine reloads) used to abort the whole song play. Now wrapped via two new helpers in `MediaPlayerService` — `_safe_state()` for the pre/in-wait read sites and `_safe_state_with_retry()` for the post-timeout assessment. Closes the lone xfailed test from v3.3.2 (`TestMAPollingResilience::test_state_read_exception_does_not_skip_song`); pytest goes from 442 passed / 1 xfailed → 443 passed / 0 xfailed.
+
+### Documentation
+- **README "Built With AI Assistance" section.** Frames AI-assisted development as a strength: cites the test coverage (19 Python test files + 35 Vitest tests + WS integration), in-code architecture comments, 800+ closed issues with traceable root causes, and real-user metrics. Closes the loop on the same talking points the public outreach pitches use.
+- **Repo cleanup: untrack internal-only docs.** `CLAUDE.md`, `DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/release-3.3.0.md` removed from the public repo (gitignored — files remain on disk locally for the maintainer). Public surface trimmed to the strict HACS-essential set (README, CHANGELOG, LICENSE, hacs.json, custom_components/beatify/, plus test infra for CI). Three corresponding README links cleaned up.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.3-rc2`. Bumped `admin.html` + `player.html` cache-busters and `<meta name="beatify-version">` on admin/player/dashboard.html → `3.3.3-rc2`.
+- 35 vitest tests pass. pytest: 443 passed (was 442 in rc1), 0 xfailed (was 1).
+- No JS source changes since rc1, but `make build` regenerates `admin.min.js` + `playlist-requests.min.js` against the bumped headers.
+
 ## [3.3.3-rc1] - 2026-05-04
 
 First rc of the 3.3.3 patch line. Surfaces structured worker error codes in the playlist-request UI and rolls in three small URI-maintenance commits that landed since v3.3.2.
