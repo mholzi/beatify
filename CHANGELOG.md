@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.3-rc3] - 2026-05-04
+
+### Fixed
+- **Playlist Hub "Request a playlist" FAB icon now reliably visible.** The cyan envelope FAB at the bottom of the Playlist Hub had an invisible icon for some users (reported by @mholzi). The SVG used `stroke="currentColor"` and inherited the icon color via a CSS variable on the button — but some Safari/Webkit versions don't reliably propagate that inheritance to the SVG stroke. Added a defensive `.plh-cta-fab svg { stroke: var(--color-bg-primary); fill: none; }` rule to pin the dark stroke against the cyan FAB regardless of inheritance behaviour.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.3-rc3`. Bumped HTML cache-busters + `<meta name="beatify-version">` to `3.3.3-rc3`.
+- CSS-only fix; `make build` regenerates `styles.min.css`.
+
 ## [3.3.3-rc2] - 2026-05-04
 
 Adds the new "Deutschpop Klassiker" community playlist (100 tracks of modern German pop, 2002–2019), plus a small playback-resilience hardening.

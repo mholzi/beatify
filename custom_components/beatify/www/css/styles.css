@@ -13890,6 +13890,15 @@ body.theme-dark .your-result-stats .stat-value {
 
 .plh-cta-fab:hover { filter: brightness(1.1); }
 
+/* Defensive: pin the SVG stroke to the dark BG color directly. Without this,
+   some Safari/Webkit versions don't reliably inherit `currentColor` into the
+   stroke attribute when the inherited color comes via a CSS variable, leaving
+   the envelope-icon invisible against the cyan FAB. v3.3.3-rc3 fix. */
+.plh-cta-fab svg {
+    stroke: var(--color-bg-primary);
+    fill: none;
+}
+
 .plh-cta-back {
     flex-shrink: 0;
     display: inline-flex;
