@@ -4,6 +4,29 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.3-rc1] - 2026-05-04
+
+First rc of the 3.3.3 patch line. Surfaces structured worker error codes in the playlist-request UI and rolls in three small URI-maintenance commits that landed since v3.3.2.
+
+### Fixed
+- **Helpful error hints when a playlist request fails (#835 follow-up).** `playlist-requests.js:submitRequest` now attaches the worker's `data.error` code as `err.code` on the thrown Error; `admin.js` looks up `errors.<UPPER_CODE>` via `BeatifyI18n.t()` and prefers that hint over the raw `error.message` when a translation exists. Falls back to the original message if no key matches. Worker error-code shape verified by curl probe against the live worker.
+- **Playlist requests reaching the backend again (#835 root cause, infra).** Cloudflare worker `beatify-api.mholzi.workers.dev` had its `GITHUB_TOKEN` rotated after the previous Fine-grained PAT expired and started returning HTTP 500 / `error: github_error` for every submission (editorial and user-owned alike). Resolves the symptom @Helloitsme reported in discussion #834.
+
+### Data
+- **1 dead YouTube Music URI in `greatest-hits-of-all-time` (PR #833).**
+- **1 dead Apple Music URI in `eurovision-winners` (#830, PR #831).**
+- **10 broken URIs in `top100-allertijden-nederlandstalig` (#828, PR #829).**
+
+### Added (i18n keys)
+
+Per locale (en/de/es/fr/nl) under `errors.*`:
+- `INVALID_FORMAT`, `PLAYLIST_NOT_FOUND`, `GITHUB_ERROR`, `RATE_LIMITED`
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.3-rc1`. Bumped `admin.html` + `player.html` cache-busters (`styles.min.css`, `wizard.js`, `admin.min.js`, `playlist-requests.min.js`, `player.bundle.min.js`) → `3.3.3-rc1`. Bumped `<meta name="beatify-version">` on admin.html / player.html / dashboard.html → `3.3.3-rc1` so the rc19 (#824) i18n cache-bust pattern carries the new error keys.
+- `make build` regenerated `admin.min.js` + `playlist-requests.min.js`.
+- 35 vitest tests pass (no new tests; #835 follow-up is a JS-only fix outside the existing playlist-requests test surface).
+
 ## [3.3.2] - 2026-04-28
 
 Stable promotion of the 3.3.2-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.2) for the user-facing summary.
