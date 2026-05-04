@@ -450,8 +450,6 @@ Home Assistant
             └── Web UI (Admin + Player)
 ```
 
-See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system overview and [WEBSOCKET.md](docs/WEBSOCKET.md) for the WebSocket API protocol.
-
 ---
 
 <br>
@@ -528,7 +526,6 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 - **Gameplay Redesigned Arcade-Style** — 128px year number as the hero, neon timer circle that flips red and pulses at ≤10s, 3D tile buttons for artist/movie challenges, Submit morphs into a "Waiting for others" ghost state after lock-in
 - **Round Reveal as a Duel** — Your guess × gap-count × correct year side-by-side. Full points breakdown and round analytics moved into tappable bottom-sheet popups
 - **Vinyl Share Card** — End-of-game share card rebuilt as a vinyl-record design (navy base, pink/cyan radial glows, pink→cyan gradient label with your score, optional 🏆 WINNER badge), previewed inline on the end screen
-- **DESIGN.md** — Authoritative design-system reference now checked into the repo (typography, color, spacing, motion, patterns, anti-patterns)
 - Browser cache overhaul (no-cache HTML + conditional GETs), 90+ broken streaming URIs fixed, 14 game-logic fixes, Spotify playlist import removed (Nov 2024 API deprecation), admin session handoff rewrite
 - 24 playlists, 2,481 songs, 5 music platforms, 5 languages
 
@@ -718,8 +715,6 @@ Have a question? Check our [Discussions Q&A](https://github.com/mholzi/beatify/d
 ## Contributing
 
 Contributions welcome! Whether it's a new playlist, a bug fix, or a translation — check our [**CONTRIBUTING.md**](CONTRIBUTING.md) for the full guide.
-
-Developer docs: [Architecture](docs/ARCHITECTURE.md) | [WebSocket API](docs/WEBSOCKET.md) | [Changelog](CHANGELOG.md)
 
 Quick start: Fork → Branch → PR. See [good first issues](https://github.com/mholzi/beatify/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) for easy starting points.
 
