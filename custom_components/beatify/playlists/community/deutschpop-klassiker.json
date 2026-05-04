@@ -44,7 +44,10 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 4,
+        "weeks_on_chart": 27
+      }
     },
     {
       "artist": "Peter Fox",
@@ -77,8 +80,12 @@
       "fun_fact_nl": "Gebouwd rond een sample uit de 7e symfonie 'Leningrad' van Sjostakovitsj. In 2008 #1 in Duitsland, Oostenrijk en Zwitserland.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "AnnenMayKantereit",
@@ -145,8 +152,12 @@
       "fun_fact_nl": "Samenwerking met Lary van het album 'Mama' (2015). #6 in Duitsland en 4× goud — de grootste mainstream-crossover van de Libanees-Duitse rapper.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 6
+      }
     },
     {
       "artist": "Provinz",
@@ -180,7 +191,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 28
+      }
     },
     {
       "artist": "Helene Fischer",
@@ -213,8 +226,12 @@
       "fun_fact_nl": "Gecomponeerd door Kristina Bach. #1 in Duitsland, meer dan 1 miljoen exemplaren verkocht en de onofficiële soundtrack van Duitslands WK-titel in 2014.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "7× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Peter Fox",
@@ -247,8 +264,12 @@
       "fun_fact_nl": "Van het soloalbum 'Stadtaffe' (2008) — het project waarmee de Seeed-zanger doorbrak naar de mainstream. De track haalde #4 in de Duitse hitlijst en werd 7× goud.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "7× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "AnnenMayKantereit",
@@ -282,7 +303,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Wir sind Helden",
@@ -316,7 +339,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 13
+      }
     },
     {
       "artist": "Sido, Andreas Bourani",
@@ -349,8 +374,12 @@
       "fun_fact_nl": "De samenwerking van Sido en Andreas Bourani uit 2015 werd #1 in Duitsland en 5× platina — Sido's grootste pop-crossover.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "5× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Andreas Bourani",
@@ -383,8 +412,12 @@
       "fun_fact_nl": "Door de ARD gekozen als officieel WK-lied 2014. #1 in Duitsland, 700.000 verkochte exemplaren en 3× goud.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "JORIS",
@@ -417,8 +450,12 @@
       "fun_fact_nl": "Van zijn debuutalbum 'Hoffnungslos hoffnungsvoll' (2015). De track leverde JORIS de Bambi voor nieuwe artiest op en bereikte #6 in Duitsland.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 6
+      }
     },
     {
       "artist": "Namika",
@@ -451,8 +488,12 @@
       "fun_fact_nl": "De doorbraaksingle van de Frankfurtse zangeres met Marokkaanse roots. #2 in Duitsland en 3× platina.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Juli",
@@ -485,8 +526,13 @@
       "fun_fact_nl": "Uitgebracht in maart 2004 — de piek viel samen met de tsunami in de Indische Oceaan eind 2004, waardoor Duitse radiozenders het lied uit de rotatie haalden. Toch stond het 60 weken in de hitlijst.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2,
+        "weeks_on_chart": 60
+      }
     },
     {
       "artist": "Die Firma",
@@ -587,8 +633,12 @@
       "fun_fact_nl": "De samenwerking met rapper Sido bezorgde de track #2 in Duitsland en 4× platina. De clip werd opgenomen in Winnweiler, de geboorteplaats van Mark Forster.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Polarkreis 18",
@@ -621,8 +671,13 @@
       "fun_fact_nl": "Bereikte #2 in Duitsland en stond ruim een half jaar in de top 10. Het electropop-refrein maakte de Dresdense band in één klap bekend.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2,
+        "weeks_on_chart": 30
+      }
     },
     {
       "artist": "Juli",
@@ -656,7 +711,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 22
+      }
     },
     {
       "artist": "Sarah Connor",
@@ -689,8 +746,12 @@
       "fun_fact_nl": "Eerste single van haar eerste Duitstalige album 'Muttersprache' (2015). #1 in Duitsland — haar eerste nummer-1-hit sinds 2002.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Revolverheld",
@@ -723,8 +784,12 @@
       "fun_fact_nl": "Eerste single van het album 'Immer in Bewegung' (2013). #4 in Duitsland en 3× goud.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Mark Forster",
@@ -757,8 +822,13 @@
       "fun_fact_nl": "De met een Echo Award bekroonde single van het album 'Tape' (2016). Stond 22 weken in de Duitse top 10 en werd 4× platina.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4,
+        "weeks_on_chart": 22
+      }
     },
     {
       "artist": "Helene Fischer",
@@ -791,8 +861,12 @@
       "fun_fact_nl": "Eerste single van haar gelijknamige album uit 2017, dat in 9 weken een miljoen keer werd verkocht. Het nummer werd gespeeld bij de finalefestiviteiten van het WK 2018.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 7
+      }
     },
     {
       "artist": "SDP",
@@ -859,8 +933,12 @@
       "fun_fact_nl": "De Berlijnse rapper Juju en Henning May van AnnenMayKantereit. #2 in Duitsland en 6× platina — de rap-folk-crossover van 2019.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "6× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Tim Bendzko",
@@ -893,8 +971,12 @@
       "fun_fact_nl": "Zijn debuutsingle, #4 in Duitsland. De zin 'kurz die Welt retten' werd in de Duitse popcultuur een gevleugeld woord voor last-minute drukte.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Von Wegen Lisbeth",
@@ -961,8 +1043,12 @@
       "fun_fact_nl": "#4 in Duitsland en 3× platina. Het tweetalige refrein weerspiegelt Namika's Frankfurts-Marokkaanse afkomst — haar moeder spreekt ook Frans.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "AnnenMayKantereit",
@@ -1029,8 +1115,12 @@
       "fun_fact_nl": "Zijn debuutsingle (2011), uitgebracht na acht jaar voorbereiding in Augsburg. De Radio Edit haalde #5 in Duitsland.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 5
+      }
     },
     {
       "artist": "LEA, Cyril aka Aaron Hilmer",
@@ -1063,8 +1153,12 @@
       "fun_fact_nl": "Soundtrack van de Duitse romcom 'Das schönste Mädchen der Welt' (2018). #2 in Duitsland en 3× platina.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Mark Forster",
@@ -1097,8 +1191,12 @@
       "fun_fact_nl": "Eerste single van het album 'Liebe s/w' (2018). #4 in Duitsland — Mark Forsters reflectie op de 194 VN-lidstaten.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Clueso",
@@ -1132,7 +1230,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 16
+      }
     },
     {
       "artist": "Echt",
@@ -1165,8 +1265,12 @@
       "fun_fact_nl": "Hun #1-hit uit 1999, al staat op de meeste streamingdiensten alleen de re-release uit 2002. De tieners uit Flensburg legden de basis voor wat Tokio Hotel jaren later deed.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Ben Zucker",
@@ -1200,7 +1304,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 19
+      }
     },
     {
       "artist": "Wincent Weiss",
@@ -1233,8 +1339,12 @@
       "fun_fact_nl": "Zijn doorbraaksingle (2017), #4 in Duitsland. Het verhaal van DSDS-afwijzing tot singer-songwriter maakte hem een tabloid-favoriet.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Herbert Grönemeyer",
@@ -1267,8 +1377,12 @@
       "fun_fact_nl": "Geschreven voor zijn in 1998 overleden vrouw. Van het album 'Mensch' (2002), met meer dan 3 miljoen verkochte exemplaren — destijds het bestverkochte Duitse album ooit.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Bosse",
@@ -1301,8 +1415,12 @@
       "fun_fact_nl": "Titeltrack van zijn vijfde album (2013). De 'voor altijd 17'-nostalgiehit haalde #4 in Duitsland en werd 4× platina.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "SDP",
@@ -1369,8 +1487,12 @@
       "fun_fact_nl": "Van het album 'Treppenhaus' (2018). De emotionele oproep van de Kassel-zangeres haalde #16 in Duitsland en werd 3× platina.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 16
+      }
     },
     {
       "artist": "Jan Delay",
@@ -1403,8 +1525,12 @@
       "fun_fact_nl": "Van het album 'Wir Kinder vom Bahnhof Soul' (2009). #5 in Duitsland — Jan Delays grootste crossover sinds zijn reggae-roots met Beginner.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 5
+      }
     },
     {
       "artist": "Juli",
@@ -1471,8 +1597,12 @@
       "fun_fact_nl": "Hun debuutsingle (2011) uit Wuppertal. #2 in Duitsland en ruim een jaar in de hitlijst.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Rosenstolz",
@@ -1506,7 +1636,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Johannes Oerding",
@@ -1573,8 +1705,13 @@
       "fun_fact_nl": "Werd in 2017 #1 in Duitsland en bleef daar 13 weken staan. De commerciële doorbraak van de Stuttgart-rapper werd de op een na meest gestreamde Duitse track van het jaar.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "5× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1,
+        "weeks_on_chart": 13
+      }
     },
     {
       "artist": "Juju",
@@ -1607,8 +1744,12 @@
       "fun_fact_nl": "Van het solodebuut 'Bling Bling' (2019). Het zelfstandige debuut van de voormalige SXTN-helft haalde #2 in Duitsland.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 16
+      }
     },
     {
       "artist": "Sarah Connor",
@@ -1641,8 +1782,12 @@
       "fun_fact_nl": "Het nummer over een coming-out van een tienerjongen leidde in 2019 tot een groot debat: door sommige Duitse zenders geweerd, door andere uitgeroepen tot meest gedraaide track van de week.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 16
+      }
     },
     {
       "artist": "Kraftklub",
@@ -1676,7 +1821,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 50
+      }
     },
     {
       "artist": "Silbermond",
@@ -1709,8 +1856,12 @@
       "fun_fact_nl": "Hun doorbraakhit van het album 'Laut gedacht' (2006). #2 in Duitsland en 3× goud — vaste prik voor bruiloft-dj's.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Tim Bendzko",
@@ -1744,7 +1895,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 11
+      }
     },
     {
       "artist": "Jonathan Zelter",
@@ -1845,8 +1998,12 @@
       "fun_fact_nl": "Zijn debuutsingle (2016) — ironisch genoeg datzelfde jaar afgewezen bij DSDS. #36 in Duitsland, maar startpunt van zijn streamingcarrière.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 36
+      }
     },
     {
       "artist": "Silbermond",
@@ -1880,7 +2037,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Juliane Werding",
@@ -2015,8 +2174,12 @@
       "fun_fact_nl": "Van het tweede studioalbum 'Irgendwie anders' (2019). #2 in Duitsland — zijn hoogste single-notering.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Casper",
@@ -2050,7 +2213,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 14
+      }
     },
     {
       "artist": "SDP",
@@ -2118,7 +2283,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 12
+      }
     },
     {
       "artist": "Sarah Connor, Henning Wehland",
@@ -2152,7 +2319,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 13
+      }
     },
     {
       "artist": "Die Fantastischen Vier",
@@ -2185,8 +2354,12 @@
       "fun_fact_nl": "Van het album 'Lauschgift' (1996). Een van de eerste Duitse hiphop-tracks met serieuze mainstream-radioairplay, 3× goud.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Faber",
@@ -2220,7 +2393,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 27
+      }
     },
     {
       "artist": "Samy Deluxe",
@@ -2287,8 +2462,12 @@
       "fun_fact_nl": "Van zijn MTV Unplugged-album (2011). Het duet tussen de rockveteraan en de Erfurt-zanger Clueso overbrugde 30 jaar Duitse popgeneraties.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 14
+      }
     },
     {
       "artist": "AnnenMayKantereit",
@@ -2389,8 +2568,12 @@
       "fun_fact_nl": "Eerste single van het album 'Die Suche geht weiter' (2008). #2 in Duitsland — de hoogste single-notering van AnNa R. en Peter Plate.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Die Fantastischen Vier",
@@ -2559,8 +2742,12 @@
       "fun_fact_nl": "Van het album 'Mosaik' (2019). #8 in Duitsland en 4× goud — de grootste Schlager-hit van 2019, vaak gespeeld op bruiloften.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 8
+      }
     },
     {
       "artist": "Bilderbuch",
@@ -2594,7 +2781,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 48
+      }
     },
     {
       "artist": "Silbermond",
@@ -2628,7 +2817,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 9
+      }
     },
     {
       "artist": "Stereoact, Kerstin Ott",
@@ -2661,8 +2852,13 @@
       "fun_fact_nl": "Hun remix van Kerstin Otts track werd 6× platina in Duitsland en stond 13 weken op #1 — destijds een Duits chartrecord.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "6× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1,
+        "weeks_on_chart": 13
+      }
     },
     {
       "artist": "Capital Bra, Samra, LEA",
@@ -2695,8 +2891,12 @@
       "fun_fact_nl": "De Berlijnse trap-collab uit 2019 van Capital Bra, Samra en LEA werd #1 in Duitsland — Capital Bra's 14e nummer-1-hit, waarmee hij het Duitse Beatles-record verbrak.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "3× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Gestört aber GeiL, Sebastian Hämer",
@@ -2729,8 +2929,12 @@
       "fun_fact_nl": "DJ-duo uit Saksen met zanger Sebastian Hämer. #14 in Duitsland en 2× goud — de EDM-Schlagerfusie die de Duitse radio van 2015 stempelde.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "2× Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 14
+      }
     },
     {
       "artist": "MAJAN, CRO",
@@ -2865,8 +3069,12 @@
       "fun_fact_nl": "Hun #1-debuutsingle uit 2005 van de toen 15-jarige tweeling uit Maagdenburg. Ruim 250.000 verkochte exemplaren en het startsein van een wereldwijde teenpop-golf.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 1
+      }
     },
     {
       "artist": "Kerstin Ott",
@@ -3001,8 +3209,12 @@
       "fun_fact_nl": "Van het album 'Powerphonie' (2018). #11 in Duitsland — Bausa zet de Stuttgartse trap-rap-golf voort die met 'Was du Liebe nennst' begon.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 11
+      }
     },
     {
       "artist": "Vanessa Mai",
@@ -3036,7 +3248,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 4
+      }
     },
     {
       "artist": "Echt",
@@ -3103,8 +3317,12 @@
       "fun_fact_nl": "Eerste single van het album 'Tag X' (2015). #5 in Duitsland en 4× platina — grootste hit van het Duitse electropop-duo.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "4× Platin (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 5
+      }
     },
     {
       "artist": "Herbert Grönemeyer, Amadou, Mariam",
@@ -3137,8 +3355,12 @@
       "fun_fact_nl": "Geschreven als het officiële WK-lied 2006 in Duitsland. Met de Malinese zangers Amadou & Mariam — een mix van Duitse en West-Afrikaanse pop.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 12
+      }
     },
     {
       "artist": "Mia.",
@@ -3172,7 +3394,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 19
+      }
     },
     {
       "artist": "Ich + Ich, Adel Tawil",
@@ -3205,8 +3429,12 @@
       "fun_fact_nl": "Van het derde studioalbum 'Gute Reise' (2009) van het duo, met Adel Tawil. #2 in Duitsland.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 2
+      }
     },
     {
       "artist": "Bosse",
@@ -3240,7 +3468,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 18
+      }
     },
     {
       "artist": "Faber",
@@ -3307,8 +3537,12 @@
       "fun_fact_nl": "Van het album 'Noiz' (2004). Het 12-koppige collectief uit Mannheim met Xavier Naidoo leverde een van de meest gedraaide Duitse trouwliedjes van het decennium.",
       "awards": [],
       "awards_nl": [],
-      "certifications": [],
-      "chart_info": {}
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "chart_info": {
+        "german_peak": 14
+      }
     },
     {
       "artist": "Johannes Oerding",
@@ -3342,7 +3576,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 11
+      }
     },
     {
       "artist": "Jan Delay",
@@ -3376,7 +3612,9 @@
       "awards": [],
       "awards_nl": [],
       "certifications": [],
-      "chart_info": {}
+      "chart_info": {
+        "german_peak": 5
+      }
     },
     {
       "artist": "Clueso",
