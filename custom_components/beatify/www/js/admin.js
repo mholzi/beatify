@@ -2956,7 +2956,16 @@ function setupPlaylistRequests() {
             console.error('Failed to submit request:', error);
             urlInput?.classList.add('input-error');
             if (urlError) {
-                urlError.textContent = error.message || 'Failed to submit request';
+                // Map worker error.code (e.g. "github_error") to a localized hint
+                // via BeatifyI18n. Worker uses lower_snake codes; i18n keys are
+                // UPPER_SNAKE under errors.* (#835 follow-up).
+                let hint = null;
+                if (error.code && window.BeatifyI18n) {
+                    const key = 'errors.' + String(error.code).toUpperCase();
+                    const translated = BeatifyI18n.t(key);
+                    if (translated && translated !== key) hint = translated;
+                }
+                urlError.textContent = hint || error.message || 'Failed to submit request';
                 urlError.classList.remove('hidden');
             }
         } finally {

@@ -96,7 +96,11 @@
         const data = await response.json();
 
         if (!data.success) {
-            throw new Error(data.message || 'Failed to submit request');
+            // Worker returns {success:false, error:"<code>", message:"<text>"}.
+            // Surface the code so the UI can map it to a localized hint (#835).
+            const err = new Error(data.message || 'Failed to submit request');
+            err.code = data.error || null;
+            throw err;
         }
 
         // Store the request in backend
