@@ -594,17 +594,6 @@ class TestMAPollingResilience:
     """Tests for polling loop error handling."""
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(
-        reason=(
-            "Written against a polling implementation. Current code uses event-based "
-            "waits (asyncio.wait_for on confirmed event), so there is no mid-poll to "
-            "recover from — states.get is called at fixed points (before / fast path / "
-            "post-timeout) and a transient exception propagates. Resilience could be "
-            "added by catching exceptions around those three sites, but that's a "
-            "separate scope from #777. Tracked for follow-up."
-        ),
-        strict=False,
-    )
     async def test_state_read_exception_does_not_skip_song(self):
         """If hass.states.get() throws mid-poll, treat as 'not ready' and keep polling."""
         hass = _make_hass("playing", media_title="Old Song")

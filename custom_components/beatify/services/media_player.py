@@ -206,6 +206,45 @@ class MediaPlayerService:
         if self._analytics:
             self._analytics.record_error(error_type, message)
 
+    def _safe_state(self):
+        """Read entity state, return None on any exception.
+
+        Resilience for the playback-confirmation read sites in `_play_via_ma`.
+        A transient exception from `hass.states.get()` (rare but possible during
+        HA restarts / state-machine reload) used to propagate up and abort the
+        whole song play, even though the existing code paths gracefully handle
+        a None return. Catching here lets the flow downgrade to "state unknown"
+        and continue. (#777 follow-up — the polling-resilience scope flagged in
+        TestMAPollingResilience.)
+        """
+        try:
+            return self._hass.states.get(self._entity_id)
+        except Exception as err:  # noqa: BLE001 — defensive read of HA state
+            _LOGGER.warning(
+                "hass.states.get(%s) raised %s; treating as unknown",
+                self._entity_id,
+                err,
+            )
+            return None
+
+    async def _safe_state_with_retry(
+        self, retries: int = 3, delay: float = 0.5
+    ):
+        """Read entity state with short retry loop; for the post-timeout site
+        where having a state is critical for the title-advance check.
+
+        Most reads succeed on attempt 1; this only kicks in when HA's state
+        machine is briefly unreadable (HA restart edge, MA reload). Returns
+        None if all attempts return None.
+        """
+        for attempt in range(retries):
+            state = self._safe_state()
+            if state is not None:
+                return state
+            if attempt < retries - 1:
+                await asyncio.sleep(delay)
+        return None
+
     async def play_song(self, song: dict[str, Any]) -> bool:
         """
         Play a song using appropriate method for platform.
@@ -429,7 +468,7 @@ class MediaPlayerService:
         # distinguish #345 slow-buffer (one of them changed during the wait)
         # from #777 silent failure (neither changed, speaker still on prior
         # track).
-        state_before = self._hass.states.get(self._entity_id)
+        state_before = self._safe_state()
         if state_before is not None:
             title_before = state_before.attributes.get("media_title", "")
             position_updated_before = state_before.attributes.get(
@@ -526,7 +565,7 @@ class MediaPlayerService:
         )
         try:
             # Check current state first — may already be playing
-            current = self._hass.states.get(self._entity_id)
+            current = self._safe_state()
             if _check_state(current):
                 elapsed = asyncio.get_event_loop().time() - start_time
                 _LOGGER.debug(
@@ -539,7 +578,7 @@ class MediaPlayerService:
 
             await asyncio.wait_for(confirmed.wait(), timeout=MA_PLAYBACK_TIMEOUT)
             elapsed = asyncio.get_event_loop().time() - start_time
-            final = self._hass.states.get(self._entity_id)
+            final = self._safe_state()
             _LOGGER.debug(
                 "MA playback confirmed after %.1fs: %s (pos=%.1f)",
                 elapsed,
@@ -552,7 +591,7 @@ class MediaPlayerService:
         finally:
             unsub()
 
-        current_state = self._hass.states.get(self._entity_id)
+        current_state = await self._safe_state_with_retry()
         speaker_state = current_state.state if current_state else "unknown"
 
         # Hard failure: speaker is idle/unavailable/off — song won't play
