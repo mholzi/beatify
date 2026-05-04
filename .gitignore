@@ -85,6 +85,12 @@ beatify-stats-history.json
 RELEASE_NOTES_*.md
 CONTRIBUTING.md
 
+# ---- Internal-only docs (not relevant for HACS users) ----
+# CLAUDE.md is a Claude Code agent project file, only useful to the
+# maintainer's dev setup. DESIGN.md + docs/ARCHITECTURE.md are kept
+# tracked (referenced from README as user-facing authoritative docs).
+CLAUDE.md
+
 # ---- GitHub workflows ----
 # Track CI workflows (test + HACS validation) so GitHub Actions can run them.
 # Untracking the whole .github/ in April 2026 silently broke CI for 2+ months
