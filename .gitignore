@@ -86,10 +86,12 @@ RELEASE_NOTES_*.md
 CONTRIBUTING.md
 
 # ---- Internal-only docs (not relevant for HACS users) ----
-# CLAUDE.md is a Claude Code agent project file, only useful to the
-# maintainer's dev setup. DESIGN.md + docs/ARCHITECTURE.md are kept
-# tracked (referenced from README as user-facing authoritative docs).
+# Keep the public surface to README + CHANGELOG + LICENSE + hacs.json
+# + custom_components/beatify/. Everything else is dev/internal noise.
 CLAUDE.md
+DESIGN.md
+# docs/ is already covered by the `docs/` rule on line 14 — no force-add
+# exceptions left after this commit.
 
 # ---- GitHub workflows ----
 # Track CI workflows (test + HACS validation) so GitHub Actions can run them.
