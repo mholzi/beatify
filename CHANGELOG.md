@@ -4,6 +4,33 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.3] - 2026-05-04
+
+Stable promotion of the 3.3.3-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.3) for the user-facing summary.
+
+### Added
+- **New community playlist: Deutschpop Klassiker (#839).** 100 tracks of modern German pop (2002–2019) joining the Community library — sourced from the Spotify Editorial of the same name (475k saves) via Beatify's playlist-request flow. Coverage: Spotify / YouTube Music / Deezer 100/100; Apple Music + 7 regional URIs (US/DE/GB/FR/ES/NL/IT) 99/100; alt_artists 100/100; fun_facts in en/de/es/fr/nl 100/100; chart_info 69/100; certifications 47/100. Tidal 1/100 (search-by-ISRC requires OAuth — pending follow-up).
+
+### Fixed
+- **Helpful error hints when a playlist request fails (#835 follow-up).** The Cloudflare worker behind the playlist-request flow had always returned a structured `error.code` field, but `playlist-requests.js` silently dropped it and forwarded only the raw message. Now the code rides through to `admin.js`, which maps `errors.<UPPER_CODE>` via `BeatifyI18n.t()` and falls back to the original message when no key matches. Four new keys — `INVALID_FORMAT`, `PLAYLIST_NOT_FOUND`, `GITHUB_ERROR`, `RATE_LIMITED` — localized in en/de/es/fr/nl.
+- **Worker `GITHUB_TOKEN` rotated (#835 root cause, infra).** Closes the symptom @Helloitsme reported in discussion #834 — playlist submissions had been failing with `error: github_error` until the Fine-grained PAT was refreshed.
+- **State-read resilience during MA playback confirmation.** A transient `RuntimeError` from `hass.states.get()` mid-playback used to abort the whole song play. New `_safe_state()` + `_safe_state_with_retry()` helpers in `MediaPlayerService` downgrade transient exceptions to "speaker state unknown", letting the title-advance check still succeed. Closes the lone xfailed test from v3.3.2.
+- **Playlist Hub "Request a playlist" FAB icon now reliably visible.** The cyan envelope FAB had an invisible icon for some users — Webkit doesn't always propagate CSS-variable `currentColor` into SVG strokes. Pinned the dark stroke directly via `.plh-cta-fab svg { stroke: var(--color-bg-primary); fill: none; }`.
+
+### Data
+- **1 dead YouTube Music URI in `greatest-hits-of-all-time` (PR #833).**
+- **1 dead Apple Music URI in `eurovision-winners` (#830, PR #831).**
+- **10 broken URIs in `top100-allertijden-nederlandstalig` (#828, PR #829).**
+
+### Documentation
+- **README "Built With AI Assistance" section.** Frames AI-assisted development as a strength: cites test coverage (19 Python test files + 35 Vitest tests + WS integration), in-code architecture comments, 800+ closed issues with traceable root causes, and real-user metrics.
+- **Repo cleanup: untrack internal-only docs.** `CLAUDE.md`, `DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/release-3.3.0.md` removed from the public repo (gitignored — files remain on disk locally for the maintainer). Public surface trimmed to the strict HACS-essential set.
+
+### For contributors
+- Bumped manifest + `sw.js CACHE_VERSION` → `3.3.3`. Bumped `admin.html` + `player.html` cache-busters and `<meta name="beatify-version">` on admin/player/dashboard.html → `3.3.3`.
+- pytest 443 passed (was 442 + 1 xfailed in v3.3.2). 35 vitest tests pass.
+- 3 release candidates (rc1 → rc2 → rc3) condensed into this stable promotion.
+
 ## [3.3.3-rc3] - 2026-05-04
 
 ### Fixed
