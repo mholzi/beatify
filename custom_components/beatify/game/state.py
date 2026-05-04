@@ -114,6 +114,12 @@ class GameState:
         self._tts_service: Any = None  # TTSService (lazy import)
         self._tts_announce_game_start: bool = True
         self._tts_announce_winner: bool = True
+        # Issue #471 Phase 1: Game Flow announcements
+        self._tts_announce_round_start: bool = True
+        self._tts_announce_countdown: bool = False  # off by default — intrusive every round
+        self._tts_announce_time_up: bool = True
+        self._tts_announce_correct_answer: bool = True
+        self._tts_announce_nobody_correct: bool = True
         self._bg_tasks: set[asyncio.Task] = (
             set()
         )  # Issue #391: prevent GC of fire-and-forget tasks
@@ -1289,6 +1295,14 @@ class GameState:
             self.current_song.get("title"),
             delay_seconds,
         )
+
+        # Issue #471 Phase 1: Game Flow announcements at round start.
+        # Fired AFTER lights/log so the audio aligns with the user-visible
+        # transition. countdown is opt-in (default off) — chained after
+        # round_start when both are enabled.
+        await self.announce_round_start()
+        await self.announce_countdown()
+
         return True
 
     def _ensure_media_player_service(self) -> None:
@@ -1358,6 +1372,10 @@ class GameState:
             await self._round_manager._timer_countdown(delay_seconds)
             # Timer completed normally — check phase and end round
             if self.phase == GamePhase.PLAYING:
+                # #471 Phase 1: announce time-up only when timer ran to zero
+                # (not on early-reveal). Done before end_round so the audio
+                # leads the REVEAL transition.
+                await self.announce_time_up()
                 await self.end_round()
             else:
                 _LOGGER.debug(
@@ -1606,6 +1624,18 @@ class GameState:
                     )
                 except (OSError, KeyError, TypeError, ValueError) as err:
                     _LOGGER.error("Failed to record song results: %s", err)
+
+        # Issue #471 Phase 1: Game Flow announcements at REVEAL.
+        # Fire BEFORE phase transition so the audio leads the visible state
+        # change. announce_nobody_correct is conditional — only when the
+        # round had at least one submitter and zero of them got years_off == 0.
+        await self.announce_correct_answer(correct_year)
+        had_submitters = any(p.submitted for p in self.players.values())
+        any_exact = any(
+            p.submitted and p.years_off == 0 for p in self.players.values()
+        )
+        if had_submitters and not any_exact:
+            await self.announce_nobody_correct()
 
         # Transition to REVEAL
         self._player_registry._reactions_this_phase = (
@@ -1959,12 +1989,22 @@ class GameState:
         *,
         announce_game_start: bool = True,
         announce_winner: bool = True,
+        # Issue #471 Phase 1: Game Flow announcements
+        announce_round_start: bool = True,
+        announce_countdown: bool = False,
+        announce_time_up: bool = True,
+        announce_correct_answer: bool = True,
+        announce_nobody_correct: bool = True,
     ) -> None:
         """Configure TTS announcement service for the game.
 
         ``entity_id`` is the TTS provider entity (e.g. ``tts.google_gemini_tts``).
         Beatify routes the audio through the game's existing speaker
         (``self.media_player``) — see #793 for why we need both identifiers.
+
+        The announce_* booleans toggle individual event types; defaults match
+        the most common host expectation (round start + time's up + correct
+        answer announced; per-round 3-2-1 countdown opt-in only).
         """
         from custom_components.beatify.services.tts import TTSService  # noqa: PLC0415
 
@@ -1975,6 +2015,11 @@ class GameState:
         )
         self._tts_announce_game_start = announce_game_start
         self._tts_announce_winner = announce_winner
+        self._tts_announce_round_start = announce_round_start
+        self._tts_announce_countdown = announce_countdown
+        self._tts_announce_time_up = announce_time_up
+        self._tts_announce_correct_answer = announce_correct_answer
+        self._tts_announce_nobody_correct = announce_nobody_correct
 
     async def disable_tts(self) -> None:
         """Disable TTS announcements."""
@@ -2011,6 +2056,59 @@ class GameState:
         else:
             names = " and ".join(w.name for w in winners)
             message = f"It's a tie between {names} with {top_score} points!"
+        await self._tts_announce(message)
+
+    # ------------------------------------------------------------------
+    # Issue #471 Phase 1 — Game Flow announcements
+    # ------------------------------------------------------------------
+
+    async def announce_round_start(self) -> None:
+        """Announce round start (use case 1). Fires after round number bump."""
+        if not self._tts_service or not self._tts_announce_round_start:
+            return
+        message = f"Round {self.round} — get ready!"
+        await self._tts_announce(message)
+
+    async def announce_countdown(self) -> None:
+        """Announce 3-2-1 countdown before round start (use case 2).
+
+        Single utterance, not a per-second sequence. Defaults off because
+        firing on every round is intrusive — opt-in for hosts who want a
+        rhythmic intro.
+        """
+        if not self._tts_service or not self._tts_announce_countdown:
+            return
+        message = "Three, two, one — go!"
+        await self._tts_announce(message)
+
+    async def announce_time_up(self) -> None:
+        """Announce timer expiration (use case 3). Fires only when the
+        round-timer ran to zero — NOT on early-reveal (all-submitted) path.
+        """
+        if not self._tts_service or not self._tts_announce_time_up:
+            return
+        message = "Time's up!"
+        await self._tts_announce(message)
+
+    async def announce_correct_answer(self, correct_year: int | None) -> None:
+        """Announce the correct year at REVEAL (use case 4)."""
+        if not self._tts_service or not self._tts_announce_correct_answer:
+            return
+        if correct_year is None:
+            return
+        message = f"The answer was {correct_year}!"
+        await self._tts_announce(message)
+
+    async def announce_nobody_correct(self) -> None:
+        """Announce when no player guessed exactly (use case 5).
+
+        Fires alongside announce_correct_answer when no player landed
+        years_off == 0. The two combine narratively: "The answer was 1987!
+        Nobody got it this round!"
+        """
+        if not self._tts_service or not self._tts_announce_nobody_correct:
+            return
+        message = "Nobody got it this round!"
         await self._tts_announce(message)
 
     def adjust_volume(self, direction: str) -> float:

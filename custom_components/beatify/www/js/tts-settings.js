@@ -9,6 +9,14 @@
     var ttsEntityId = '';
     var announceGameStart = true;
     var announceWinner = true;
+    // #471 Phase 1: Game Flow toggles. Defaults match the most common host
+    // expectation — round start + time's up + correct answer announced;
+    // 3-2-1 countdown opt-in only because firing it every round is intrusive.
+    var announceRoundStart = true;
+    var announceCountdown = false;
+    var announceTimeUp = true;
+    var announceCorrectAnswer = true;
+    var announceNobodyCorrect = true;
 
     function loadState() {
         try {
@@ -17,6 +25,11 @@
             ttsEntityId = saved.entity_id || '';
             announceGameStart = saved.announce_game_start !== false;
             announceWinner = saved.announce_winner !== false;
+            announceRoundStart = saved.announce_round_start !== false;
+            announceCountdown = saved.announce_countdown === true;
+            announceTimeUp = saved.announce_time_up !== false;
+            announceCorrectAnswer = saved.announce_correct_answer !== false;
+            announceNobodyCorrect = saved.announce_nobody_correct !== false;
         } catch (e) { /* ignore */ }
     }
 
@@ -26,7 +39,12 @@
                 enabled: ttsEnabled,
                 entity_id: ttsEntityId,
                 announce_game_start: announceGameStart,
-                announce_winner: announceWinner
+                announce_winner: announceWinner,
+                announce_round_start: announceRoundStart,
+                announce_countdown: announceCountdown,
+                announce_time_up: announceTimeUp,
+                announce_correct_answer: announceCorrectAnswer,
+                announce_nobody_correct: announceNobodyCorrect
             }));
         } catch (e) { /* ignore */ }
     }
@@ -104,6 +122,28 @@
             });
         }
 
+        // #471 Phase 1: Game Flow toggles. Each toggle reads/writes the same
+        // localStorage shape so admin.js / configure_tts can pick up the
+        // settings at game-start without any further plumbing. The DOM IDs
+        // are optional — if the HTML doesn't render a toggle for one, the
+        // default from loadState() applies.
+        [
+            ['tts-announce-round-start', function(v) { announceRoundStart = v; }, function() { return announceRoundStart; }],
+            ['tts-announce-countdown', function(v) { announceCountdown = v; }, function() { return announceCountdown; }],
+            ['tts-announce-time-up', function(v) { announceTimeUp = v; }, function() { return announceTimeUp; }],
+            ['tts-announce-correct-answer', function(v) { announceCorrectAnswer = v; }, function() { return announceCorrectAnswer; }],
+            ['tts-announce-nobody-correct', function(v) { announceNobodyCorrect = v; }, function() { return announceNobodyCorrect; }]
+        ].forEach(function(pair) {
+            var el = document.getElementById(pair[0]);
+            if (el) {
+                el.checked = pair[2]();
+                el.addEventListener('change', function() {
+                    pair[1](this.checked);
+                    saveState();
+                });
+            }
+        });
+
         // Test TTS button
         var testBtn = document.getElementById('tts-test');
         if (testBtn) {
@@ -151,7 +191,13 @@
             enabled: ttsEnabled,
             entity_id: ttsEntityId,
             announce_game_start: announceGameStart,
-            announce_winner: announceWinner
+            announce_winner: announceWinner,
+            // #471 Phase 1: Game Flow toggles
+            announce_round_start: announceRoundStart,
+            announce_countdown: announceCountdown,
+            announce_time_up: announceTimeUp,
+            announce_correct_answer: announceCorrectAnswer,
+            announce_nobody_correct: announceNobodyCorrect
         };
     };
 

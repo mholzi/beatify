@@ -321,15 +321,23 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 )
 
         # Issue #447: Configure TTS if enabled
+        # Issue #471 Phase 1: Forward Game Flow toggles too.
         if tts_config and tts_config.get("enabled"):
             tts_entity_id = tts_config.get("entity_id", "")
             if tts_entity_id:
-                tts_announce_game_start = tts_config.get("announce_game_start", True)
-                tts_announce_winner = tts_config.get("announce_winner", True)
                 await game_state.configure_tts(
                     tts_entity_id,
-                    announce_game_start=tts_announce_game_start,
-                    announce_winner=tts_announce_winner,
+                    announce_game_start=tts_config.get("announce_game_start", True),
+                    announce_winner=tts_config.get("announce_winner", True),
+                    announce_round_start=tts_config.get("announce_round_start", True),
+                    announce_countdown=tts_config.get("announce_countdown", False),
+                    announce_time_up=tts_config.get("announce_time_up", True),
+                    announce_correct_answer=tts_config.get(
+                        "announce_correct_answer", True
+                    ),
+                    announce_nobody_correct=tts_config.get(
+                        "announce_nobody_correct", True
+                    ),
                 )
                 await game_state.announce_game_start()
 
