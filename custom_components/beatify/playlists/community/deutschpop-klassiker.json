@@ -251,7 +251,7 @@
       },
       "uri_deezer": "deezer://track/2200206",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Vgwkxa-uGcE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11010220",
       "alt_artists": [
         "Seeed",
         "Jan Delay",
