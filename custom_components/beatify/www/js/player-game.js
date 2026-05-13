@@ -686,14 +686,23 @@ var pendingMovieGuess = null;
 var MOVIE_DEBOUNCE_MS = 500;
 var lastMovieGuessTime = 0;
 
+// #854: initYearSelector is called from player-core.js on every PLAYING-phase
+// state update (once per round). Without this guard, every round stacks
+// another pointerdown listener on each ±1/±5 button → step count grows with
+// the round number (round 2 → +2, round 3 → +3, etc).
+var yearSelectorInitialized = false;
+
 /**
  * Initialize year selector interaction
  */
 export function initYearSelector() {
+    if (yearSelectorInitialized) return;  // #854
     var slider = document.getElementById('year-slider');
     var yearDisplay = document.getElementById('selected-year');
 
     if (!slider || !yearDisplay) return;
+
+    yearSelectorInitialized = true;  // #854 — set only after DOM was found
 
     slider.addEventListener('input', function() {
         yearDisplay.textContent = this.value;
