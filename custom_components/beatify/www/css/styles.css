@@ -12017,6 +12017,14 @@ body.is-learning-screen .player-header { display: none; }
 .slider-btn-year:disabled {
     opacity: 0.4; cursor: not-allowed;
 }
+/* #851 coarse-step variant: smaller +5/-5 buttons next to the main +/-. */
+.slider-btn-year--coarse {
+    width: 36px; height: 36px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.slider-arcade { gap: 8px; }  /* tighten gap so 5 children fit on narrow screens */
 .slider-arcade-track { flex: 1; display: flex; align-items: center; }
 .year-slider-arcade {
     -webkit-appearance: none;

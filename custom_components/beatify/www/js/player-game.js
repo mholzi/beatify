@@ -699,10 +699,7 @@ export function initYearSelector() {
         yearDisplay.textContent = this.value;
     });
 
-    // +/- buttons for precise year adjustment (Issue #662)
-    var decrBtn = document.getElementById('year-decrement');
-    var incrBtn = document.getElementById('year-increment');
-
+    // ±1 / ±5 year-step buttons (Issue #662 — orig +/- · Issue #851 — fix double-fire + add ±5)
     function adjustYear(delta) {
         var newVal = parseInt(slider.value, 10) + delta;
         newVal = Math.max(parseInt(slider.min, 10), Math.min(parseInt(slider.max, 10), newVal));
@@ -710,43 +707,49 @@ export function initYearSelector() {
         yearDisplay.textContent = newVal;
     }
 
-    function setupLongPress(btn, delta) {
+    /**
+     * #851: single pointerdown = exactly one step. Long-press repeat only kicks
+     * in after a 500ms hold (longer than a normal tap, so quick taps stay 1×).
+     * No separate click handler — synthetic clicks on touch caused 2-4× fire
+     * combined with the legacy 200ms-interval-on-pointerdown. Keyboard fallback
+     * via keydown (Enter / Space).
+     */
+    function setupYearButton(btn, delta) {
+        if (!btn) return;
         var intervalId = null;
-        var timeoutId = null;
-
-        function startRepeat() {
-            adjustYear(delta);
-            // Start slow (200ms), accelerate after 1s
-            intervalId = setInterval(function() { adjustYear(delta); }, 200);
-            timeoutId = setTimeout(function() {
-                if (intervalId) clearInterval(intervalId);
-                intervalId = setInterval(function() { adjustYear(delta); }, 100);
-            }, 1000);
-        }
-
-        function stopRepeat() {
-            if (intervalId) { clearInterval(intervalId); intervalId = null; }
-            if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
-        }
+        var longPressTimeoutId = null;
 
         btn.addEventListener('pointerdown', function(e) {
             if (hasSubmitted) return;
             e.preventDefault();
-            startRepeat();
+            adjustYear(delta);
+            longPressTimeoutId = setTimeout(function() {
+                intervalId = setInterval(function() { adjustYear(delta); }, 150);
+            }, 500);
         });
-        btn.addEventListener('pointerup', stopRepeat);
-        btn.addEventListener('pointerleave', stopRepeat);
-        btn.addEventListener('pointercancel', stopRepeat);
+
+        function cancel() {
+            if (longPressTimeoutId) { clearTimeout(longPressTimeoutId); longPressTimeoutId = null; }
+            if (intervalId) { clearInterval(intervalId); intervalId = null; }
+        }
+        ['pointerup', 'pointerleave', 'pointercancel'].forEach(function(ev) {
+            btn.addEventListener(ev, cancel);
+        });
+
+        // Keyboard fallback (Space / Enter when the button has focus)
+        btn.addEventListener('keydown', function(e) {
+            if (hasSubmitted) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                adjustYear(delta);
+            }
+        });
     }
 
-    if (decrBtn) {
-        decrBtn.addEventListener('click', function() { if (!hasSubmitted) adjustYear(-1); });
-        setupLongPress(decrBtn, -1);
-    }
-    if (incrBtn) {
-        incrBtn.addEventListener('click', function() { if (!hasSubmitted) adjustYear(1); });
-        setupLongPress(incrBtn, 1);
-    }
+    setupYearButton(document.getElementById('year-decrement'), -1);
+    setupYearButton(document.getElementById('year-increment'), 1);
+    setupYearButton(document.getElementById('year-decrement-5'), -5);
+    setupYearButton(document.getElementById('year-increment-5'), 5);
 
     var betToggle = document.getElementById('bet-toggle');
     if (betToggle) {
@@ -847,11 +850,11 @@ export function handleSubmitAck() {
         submittedBanner.classList.remove('hidden');
     }
 
-    // Disable +/- buttons (Issue #662)
-    var decrBtn = document.getElementById('year-decrement');
-    var incrBtn = document.getElementById('year-increment');
-    if (decrBtn) decrBtn.disabled = true;
-    if (incrBtn) incrBtn.disabled = true;
+    // Disable ±1 / ±5 buttons (Issues #662, #851)
+    ['year-decrement', 'year-increment', 'year-decrement-5', 'year-increment-5'].forEach(function(id) {
+        var b = document.getElementById(id);
+        if (b) b.disabled = true;
+    });
 }
 
 /**
@@ -935,11 +938,11 @@ export function resetSubmissionState() {
         if (yearDisplay) yearDisplay.textContent = '1990';
     }
 
-    // Re-enable +/- buttons (Issue #662)
-    var decrBtn = document.getElementById('year-decrement');
-    var incrBtn = document.getElementById('year-increment');
-    if (decrBtn) decrBtn.disabled = false;
-    if (incrBtn) incrBtn.disabled = false;
+    // Re-enable ±1 / ±5 buttons (Issues #662, #851)
+    ['year-decrement', 'year-increment', 'year-decrement-5', 'year-increment-5'].forEach(function(id) {
+        var b = document.getElementById(id);
+        if (b) b.disabled = false;
+    });
 
     hasStealAvailable = false;
     hideStealUI();

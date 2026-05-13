@@ -357,9 +357,10 @@
                     <span data-i18n="game.closestWins">CLOSEST WINS</span>
                 </div>
 
-                <!-- Year slider (− · track · +) -->
+                <!-- Year slider (−5 · − · track · + · +5) — #851 -->
                 <div id="year-selector-container" class="slider-arcade-wrap">
                     <div id="year-selector" class="slider-arcade">
+                        <button type="button" id="year-decrement-5" class="slider-btn-year slider-btn-year--coarse" aria-label="Decrease year by 5">&minus;5</button>
                         <button type="button" id="year-decrement" class="slider-btn-year" aria-label="Decrease year">&minus;</button>
                         <div class="slider-arcade-track">
                             <input type="range"
@@ -370,6 +371,7 @@
                                    class="year-slider year-slider-arcade">
                         </div>
                         <button type="button" id="year-increment" class="slider-btn-year" aria-label="Increase year">+</button>
+                        <button type="button" id="year-increment-5" class="slider-btn-year slider-btn-year--coarse" aria-label="Increase year by 5">+5</button>
                     </div>
                 </div>
 
