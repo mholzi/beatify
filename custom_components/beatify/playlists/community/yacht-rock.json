@@ -1,6 +1,6 @@
 {
   "name": "Yacht Rock ⛵",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "1970s",
     "1980s",
@@ -15,7 +15,7 @@
   "songs": [
     {
       "year": 1978,
-      "uri": "spotify:track:6UhKMbIO4VDmkBSHSFgSKa",
+      "uri": "spotify:track:0xUfVLKOHxkE6QgVHLeqTc",
       "artist": "The Doobie Brothers",
       "alt_artists": [
         "Steely Dan",
@@ -36,21 +36,21 @@
       "fun_fact_de": "Gewann zwei Grammys, darunter Song des Jahres. Michael McDonald schrieb ihn mit Kenny Loggins während einer spontanen Session.",
       "fun_fact_es": "Ganó dos Grammys incluyendo Canción del Año. Michael McDonald lo coescribió con Kenny Loggins durante una sesión improvisada.",
       "fun_fact_fr": "A remporté deux Grammy Awards, dont celui de la Chanson de l'année. Michael McDonald l'a coécrite avec Kenny Loggins lors d'une jam session improvisée.",
-      "uri_apple_music": "applemusic://track/1443184580",
+      "uri_apple_music": "applemusic://track/1820875426",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dJe1iUuAW4M",
       "uri_tidal": "tidal://track/17737009",
       "uri_deezer": "deezer://track/4688887",
       "fun_fact_nl": "Won twee Grammy's, waaronder Song of the Year. Michael McDonald schreef het samen met Kenny Loggins tijdens een informele jamsessie.",
       "awards_nl": [],
-      "isrc": "US7VG1839677",
+      "isrc": "USWB19903690",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443184580",
-        "de": "applemusic://track/1443184580",
-        "gb": "applemusic://track/1443184580",
-        "fr": "applemusic://track/1443184580",
-        "es": "applemusic://track/1443184580",
-        "nl": "applemusic://track/1443184580",
-        "it": "applemusic://track/1443184580"
+        "us": "applemusic://track/1820875426",
+        "de": "applemusic://track/1847684954",
+        "gb": "applemusic://track/1847684954",
+        "fr": "applemusic://track/1847684954",
+        "es": "applemusic://track/1847684954",
+        "nl": "applemusic://track/1847684954",
+        "it": "applemusic://track/1847684954"
       }
     },
     {
@@ -76,12 +76,22 @@
       "fun_fact_de": "Hall & Oates' erster #1 Hit. Trotz des Titels handelt der Song von einem reichen Ex-Freund von Sara Allen.",
       "fun_fact_es": "El primer #1 de Hall & Oates. A pesar del título, la canción fue escrita sobre un ex novio rico de Sara Allen.",
       "fun_fact_fr": "Le premier numéro 1 de Hall & Oates. Malgré le titre, la chanson parlait en réalité d'un ex-petit ami fortuné de Sara Allen.",
-      "uri_apple_music": "applemusic://track/1436852677",
+      "uri_apple_music": "applemusic://track/284762004",
       "uri_youtube_music": "https://music.youtube.com/watch?v=oIAkRVBS-0U",
       "uri_tidal": "tidal://track/31007048",
       "uri_deezer": "deezer://track/566101",
       "fun_fact_nl": "Hall & Oates' eerste nummer 1-hit. Ondanks de titel werd het nummer eigenlijk geschreven over een rijke ex-vriend van Sara Allen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC10301815",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/284762004",
+        "de": "applemusic://track/284762004",
+        "gb": "applemusic://track/1378303432",
+        "fr": "applemusic://track/284762004",
+        "es": "applemusic://track/284762004",
+        "nl": "applemusic://track/284762004",
+        "it": "applemusic://track/284762004"
+      }
     },
     {
       "year": 1979,
@@ -106,21 +116,21 @@
       "fun_fact_de": "Mit Michael McDonald geschrieben. Kenny Loggins schrieb es, als sein Vater im Krankenhaus lag und dem Tod gegenüberstand.",
       "fun_fact_es": "Coescrita con Michael McDonald. Kenny Loggins la escribió cuando su padre estaba hospitalizado enfrentando la muerte.",
       "fun_fact_fr": "Coécrite avec Michael McDonald. Kenny Loggins l'a composée après l'hospitalisation de son père, alors en danger de mort.",
-      "uri_apple_music": "applemusic://track/310505616",
+      "uri_apple_music": "applemusic://track/1058078786",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9mKALmmvaWg",
       "uri_tidal": "tidal://track/1781878",
       "uri_deezer": "deezer://track/10199831",
       "fun_fact_nl": "Mede-geschreven met Michael McDonald. Kenny Loggins schreef het nadat zijn vader was opgenomen in het ziekenhuis en met de dood werd geconfronteerd.",
       "awards_nl": [],
-      "isrc": "USSM18200004",
+      "isrc": "USSM10020938",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/310505616",
-        "de": "applemusic://track/310505616",
-        "gb": "applemusic://track/310505616",
-        "fr": "applemusic://track/310505616",
-        "es": "applemusic://track/310505616",
-        "nl": "applemusic://track/310505616",
-        "it": "applemusic://track/310505616"
+        "us": "applemusic://track/1058078786",
+        "de": "applemusic://track/201423999",
+        "gb": "applemusic://track/201423999",
+        "fr": "applemusic://track/201423999",
+        "es": "applemusic://track/201423999",
+        "nl": "applemusic://track/201423999",
+        "it": "applemusic://track/201423999"
       }
     },
     {
@@ -146,21 +156,21 @@
       "fun_fact_de": "Prominent in Guardians of the Galaxy Vol. 2, wo er als 'der größte Song der Welt' beschrieben wird.",
       "fun_fact_es": "Destacada en Guardianes de la Galaxia Vol. 2 donde se describe como 'la mejor canción del mundo.'",
       "fun_fact_fr": "Mise en vedette dans Les Gardiens de la Galaxie Vol. 2, où elle est décrite comme « la plus grande chanson du monde ».",
-      "uri_apple_music": "applemusic://track/197882289",
+      "uri_apple_music": "applemusic://track/1695901687",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DVx8L7a3MuE",
       "uri_tidal": "tidal://track/540137",
       "uri_deezer": "deezer://track/6917710",
       "fun_fact_nl": "Prominent te zien in Guardians of the Galaxy Vol. 2, waar het wordt omschreven als 'het grootste nummer ter wereld.'",
       "awards_nl": [],
-      "isrc": "USSM19914421",
+      "isrc": "USSM10903222",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1058078772",
-        "de": "applemusic://track/1058078772",
-        "gb": "applemusic://track/1058078772",
-        "fr": "applemusic://track/1058078772",
-        "es": "applemusic://track/1058078772",
-        "nl": "applemusic://track/1058078772",
-        "it": "applemusic://track/1058078772"
+        "us": "applemusic://track/1695901687",
+        "de": "applemusic://track/1695901687",
+        "gb": "applemusic://track/1695901687",
+        "fr": "applemusic://track/1695901687",
+        "es": "applemusic://track/1695901687",
+        "nl": "applemusic://track/1695901687",
+        "it": "applemusic://track/1695901687"
       }
     },
     {
@@ -183,12 +193,22 @@
       "fun_fact_de": "Die '21. Nacht im September' hat keine besondere Bedeutung - Autorin Allee Willis mochte einfach den Klang. Jeder 21. September ist jetzt ein Social-Media-Fest.",
       "fun_fact_es": "La 'noche del 21 de septiembre' no tiene significado especial - la escritora Allee Willis solo le gustó cómo sonaba. Cada 21 de septiembre es ahora una celebración en redes sociales.",
       "fun_fact_fr": "Le « 21e soir de septembre » n'a aucune signification particulière : l'auteure Allee Willis aimait simplement la sonorité. Chaque 21 septembre est désormais célébré sur les réseaux sociaux.",
-      "uri_apple_music": "applemusic://track/1440831282",
+      "uri_apple_music": "applemusic://track/355934752",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Gs069dndIYk",
       "uri_tidal": "tidal://track/559884",
       "uri_deezer": "deezer://track/487484142",
       "fun_fact_nl": "De '21ste nacht van september' heeft geen speciale betekenis - schrijfster Allee Willis vond gewoon dat het goed klonk. Elke 21 september is nu een feestdag op sociale media.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM17800845",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/355934752",
+        "de": "applemusic://track/272470555",
+        "gb": "applemusic://track/272470555",
+        "fr": "applemusic://track/272470555",
+        "es": "applemusic://track/272470555",
+        "nl": "applemusic://track/272470555",
+        "it": "applemusic://track/272470555"
+      }
     },
     {
       "year": 1980,
@@ -213,21 +233,21 @@
       "fun_fact_de": "Michael McDonald singt die Background-Vocals. Die Geschichte über einen Gesetzlosen, der nach Mexiko flieht, war ungewöhnlich für Soft Rock.",
       "fun_fact_es": "Michael McDonald hace los coros. La narrativa sobre un forajido huyendo a México era inusual para el soft rock.",
       "fun_fact_fr": "Michael McDonald assure les chœurs. Le récit d'un hors-la-loi fuyant vers le Mexique était plutôt inhabituel pour du soft rock.",
-      "uri_apple_music": "applemusic://track/1088536638",
+      "uri_apple_music": "applemusic://track/1862733677",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ur8ftRFb2Ac",
       "uri_tidal": "tidal://track/57787838",
       "uri_deezer": "deezer://track/4828148",
       "fun_fact_nl": "Michael McDonald verzorgt de achtergrondzang. Het verhaal over een outlaw die naar Mexico vlucht was ongebruikelijk voor soft rock.",
       "awards_nl": [],
-      "isrc": "USAR17600150",
+      "isrc": "USWB19901342",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1744536655",
-        "de": "applemusic://track/1744536655",
-        "gb": "applemusic://track/1744536655",
-        "fr": "applemusic://track/1744536655",
-        "es": "applemusic://track/1744536655",
-        "nl": "applemusic://track/1744536655",
-        "it": "applemusic://track/1744536655"
+        "us": "applemusic://track/1862733677",
+        "de": "applemusic://track/1570434033",
+        "gb": "applemusic://track/1570434033",
+        "fr": "applemusic://track/1570434033",
+        "es": "applemusic://track/1570434033",
+        "nl": "applemusic://track/1570434033",
+        "it": "applemusic://track/1832019227"
       }
     },
     {
@@ -254,12 +274,22 @@
       "fun_fact_de": "Gewann den Grammy für Aufnahme des Jahres. Das berühmte 'Rosanna-Shuffle'-Schlagzeugmuster kombiniert Half-Time-Shuffle mit einem Bo-Diddley-Beat.",
       "fun_fact_es": "Ganó el Grammy a la Grabación del Año. El famoso patrón de batería 'Rosanna shuffle' combina un shuffle a media velocidad con un ritmo de Bo Diddley.",
       "fun_fact_fr": "A remporté le Grammy de l'Enregistrement de l'année. Le célèbre motif de batterie « Rosanna shuffle » de Jeff Porcaro combine un shuffle en demi-temps avec un rythme à la Bo Diddley.",
-      "uri_apple_music": "applemusic://track/1440841468",
+      "uri_apple_music": "applemusic://track/1627007133",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qmOLtTGvsbM",
       "uri_tidal": "tidal://track/542179",
       "uri_deezer": "deezer://track/1079628",
       "fun_fact_nl": "Won de Grammy voor Record of the Year. Het beroemde 'Rosanna shuffle'-drumpatroon van Jeff Porcaro combineert een half-time shuffle met een Bo Diddley-beat.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM18200245",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1627007133",
+        "de": "applemusic://track/1627007133",
+        "gb": "applemusic://track/1627007133",
+        "fr": "applemusic://track/1627007133",
+        "es": "applemusic://track/1627007133",
+        "nl": "applemusic://track/1627007133",
+        "it": "applemusic://track/1627007133"
+      }
     },
     {
       "year": 1977,
@@ -284,21 +314,21 @@
       "fun_fact_de": "Bill Withers hält eine Note 18 Sekunden lang - eine der längsten Noten in der Popmusik-Geschichte. Der Song wurde über 100 Mal gesampelt.",
       "fun_fact_es": "Bill Withers sostiene una nota durante 18 segundos - una de las notas más largas en la historia del pop. La canción ha sido sampleada más de 100 veces.",
       "fun_fact_fr": "Bill Withers y tient une note pendant 18 secondes, l'une des plus longues de l'histoire de la pop. La chanson a été samplée plus de 100 fois.",
-      "uri_apple_music": "applemusic://track/391725492",
+      "uri_apple_music": "applemusic://track/286251956",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bEeaS6fuUoA",
       "uri_tidal": "tidal://track/45105672",
       "uri_deezer": "deezer://track/70016835",
       "fun_fact_nl": "Bevat een noot die Bill Withers 18 seconden vasthoudt - een van de langste noten in de popgeschiedeniss. Het nummer is meer dan 100 keer gesampeld.",
       "awards_nl": [],
-      "isrc": "USSM17700024",
+      "isrc": "USSM10207844",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/391725492",
-        "de": "applemusic://track/390435224",
-        "gb": "applemusic://track/390435224",
-        "fr": "applemusic://track/390435224",
-        "es": "applemusic://track/390435224",
-        "nl": "applemusic://track/390435224",
-        "it": "applemusic://track/390435224"
+        "us": "applemusic://track/286251956",
+        "de": "applemusic://track/286251956",
+        "gb": "applemusic://track/1632611905",
+        "fr": "applemusic://track/286251956",
+        "es": "applemusic://track/286251956",
+        "nl": "applemusic://track/286251956",
+        "it": "applemusic://track/286251956"
       }
     },
     {
@@ -324,21 +354,21 @@
       "fun_fact_de": "Die Band Player hatte nur diesen einen großen Hit, was sie zum typischen Yacht-Rock-One-Hit-Wonder macht.",
       "fun_fact_es": "La banda Player solo tuvo este gran éxito, convirtiéndolos en el típico one-hit wonder del yacht rock.",
       "fun_fact_fr": "Le groupe Player n'a connu qu'un seul grand succès, ce qui en fait le one-hit wonder par excellence du yacht rock.",
-      "uri_apple_music": "applemusic://track/262058983",
+      "uri_apple_music": "applemusic://track/1711381702",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Hn-enjcgV1o",
       "uri_tidal": "tidal://track/2919752",
       "uri_deezer": "deezer://track/665411512",
       "fun_fact_nl": "De band Player had maar deze ene grote hit, waarmee ze de ultieme yacht rock-eenaggers werden.",
       "awards_nl": [],
-      "isrc": "USRC17607760",
+      "isrc": "NLF057790013",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1744521231",
-        "de": "applemusic://track/1778581249",
-        "gb": "applemusic://track/1778581249",
-        "fr": "applemusic://track/1778581249",
-        "es": "applemusic://track/1778581249",
-        "nl": "applemusic://track/1778581249",
-        "it": "applemusic://track/1778581249"
+        "us": "applemusic://track/1711381702",
+        "de": "applemusic://track/1711381702",
+        "gb": "applemusic://track/1711381702",
+        "fr": "applemusic://track/1711381702",
+        "es": "applemusic://track/1711381702",
+        "nl": "applemusic://track/1711381702",
+        "it": "applemusic://track/1711381702"
       }
     },
     {
@@ -364,16 +394,26 @@
       "fun_fact_de": "Geschrieben über Sara Allen, die langjährige Freundin von Daryl Hall war und auch viele Hall & Oates Songs mitschrieb.",
       "fun_fact_es": "Escrita sobre Sara Allen, quien fue la novia de Daryl Hall por mucho tiempo y también coescribió muchas canciones de Hall & Oates.",
       "fun_fact_fr": "Écrite pour Sara Allen, la compagne de longue date de Daryl Hall, qui a également coécrit de nombreuses chansons de Hall & Oates.",
-      "uri_apple_music": "applemusic://track/1436852454",
+      "uri_apple_music": "applemusic://track/273750237",
       "uri_youtube_music": "https://music.youtube.com/watch?v=E-VTJFzCNPw",
       "uri_tidal": "tidal://track/1743876",
       "uri_deezer": "deezer://track/548218",
       "fun_fact_nl": "Geschreven over Sara Allen, die Daryl Halls langdurige vriendin was en ook vele Hall & Oates-nummers mede-schreef.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC10000820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/273750237",
+        "de": "applemusic://track/273750237",
+        "gb": "applemusic://track/1308535156",
+        "fr": "applemusic://track/273750237",
+        "es": "applemusic://track/273750237",
+        "nl": "applemusic://track/273750237",
+        "it": "applemusic://track/273750237"
+      }
     },
     {
       "year": 1974,
-      "uri": "spotify:track:58GMMPlkBkhAFnO0aGPVyP",
+      "uri": "spotify:track:0OCgcMy6fvOYL3PIugXjYl",
       "artist": "Redbone",
       "alt_artists": [
         "Three Dog Night",
@@ -394,7 +434,7 @@
       "fun_fact_de": "Erlebte ein großes Revival, nachdem er in der Eröffnungsszene von Guardians of the Galaxy (2014) verwendet wurde.",
       "fun_fact_es": "Experimentó un gran resurgimiento después de aparecer en la escena inicial de Guardianes de la Galaxia (2014).",
       "fun_fact_fr": "A connu un immense regain de popularité après avoir figuré dans la scène d'ouverture des Gardiens de la Galaxie (2014).",
-      "uri_apple_music": "applemusic://track/1268712504",
+      "uri_apple_music": "applemusic://track/1627071111",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bc0KhhjJP98",
       "uri_tidal": "tidal://track/77139773",
       "uri_deezer": "deezer://track/392284592",
@@ -402,13 +442,13 @@
       "awards_nl": [],
       "isrc": "USSM17300653",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1719083094",
-        "de": "applemusic://track/1719083094",
-        "gb": "applemusic://track/1719083094",
-        "fr": "applemusic://track/1719083094",
-        "es": "applemusic://track/1719083094",
-        "nl": "applemusic://track/1719083094",
-        "it": "applemusic://track/1719083094"
+        "us": "applemusic://track/1627071111",
+        "de": "applemusic://track/1632611409",
+        "gb": "applemusic://track/1632611409",
+        "fr": "applemusic://track/1632611409",
+        "es": "applemusic://track/1632611409",
+        "nl": "applemusic://track/1632611409",
+        "it": "applemusic://track/1632611409"
       }
     },
     {
@@ -434,12 +474,22 @@
       "fun_fact_de": "Wurde Jahrzehnte nach Veröffentlichung durch Verwendung in (500) Days of Summer und unzähligen TikTok-Videos viral.",
       "fun_fact_es": "Se volvió viral décadas después de su lanzamiento por su uso en (500) Days of Summer y innumerables videos de TikTok.",
       "fun_fact_fr": "Devenue virale des décennies après sa sortie grâce à son utilisation dans (500) Jours ensemble et d'innombrables vidéos TikTok.",
-      "uri_apple_music": "applemusic://track/1436853476",
+      "uri_apple_music": "applemusic://track/1627007120",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EErSKhC0CZs",
       "uri_tidal": "tidal://track/560045",
       "uri_deezer": "deezer://track/546004",
       "fun_fact_nl": "Werd een viraal fenomeen decennia na de release door het gebruik in (500) Days of Summer en talloze TikTok-video's.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC10301828",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1627007120",
+        "de": "applemusic://track/1627007120",
+        "gb": "applemusic://track/1627007120",
+        "fr": "applemusic://track/1627007120",
+        "es": "applemusic://track/1627007120",
+        "nl": "applemusic://track/1627007120",
+        "it": "applemusic://track/1627007120"
+      }
     },
     {
       "year": 1980,
@@ -464,21 +514,21 @@
       "fun_fact_de": "Gewann drei Grammys, darunter Song des Jahres. Christopher Cross' sanfte Stimme und nautisches Thema verkörpern den Yacht-Rock-Sound.",
       "fun_fact_es": "Ganó tres Grammys incluyendo Canción del Año. La voz suave de Christopher Cross y el tema náutico epitomizan el sonido yacht rock.",
       "fun_fact_fr": "A remporté trois Grammy Awards, dont celui de la Chanson de l'année. La voix douce de Christopher Cross et le thème nautique incarnent parfaitement le son yacht rock.",
-      "uri_apple_music": "applemusic://track/1088536640",
+      "uri_apple_music": "applemusic://track/70259605",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MEO6gYCFbr0",
       "uri_tidal": "tidal://track/36056987",
       "uri_deezer": "deezer://track/4828150",
       "fun_fact_nl": "Won drie Grammy's, waaronder Song of the Year. Christopher Cross' zachte stem en nautische thema belichamen het yacht rock-geluid.",
       "awards_nl": [],
-      "isrc": "USAR10200246",
+      "isrc": "USWB19901344",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1088536640",
-        "de": "applemusic://track/1088536640",
-        "gb": "applemusic://track/1088536640",
-        "fr": "applemusic://track/1088536640",
-        "es": "applemusic://track/1088536640",
-        "nl": "applemusic://track/1088536640",
-        "it": "applemusic://track/1088536640"
+        "us": "applemusic://track/70259605",
+        "de": "applemusic://track/1801985591",
+        "gb": "applemusic://track/1801985591",
+        "fr": "applemusic://track/1801985591",
+        "es": "applemusic://track/1801985591",
+        "nl": "applemusic://track/1801985591",
+        "it": "applemusic://track/1801985591"
       }
     },
     {
@@ -504,26 +554,26 @@
       "fun_fact_de": "Später von The Isley Brothers und Type O Negative gecovert. Die friedliche Bildsprache machte es jahrzehntelang zum Sommer-Radio-Klassiker.",
       "fun_fact_es": "Posteriormente versionada por The Isley Brothers y Type O Negative. Su imaginería pacífica la convirtió en un clásico de radio veraniega por décadas.",
       "fun_fact_fr": "Reprise plus tard par The Isley Brothers et Type O Negative. Son imagerie paisible en a fait un incontournable de la radio estivale pendant des décennies.",
-      "uri_apple_music": "applemusic://track/265605311",
+      "uri_apple_music": "applemusic://track/1700741395",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MsW8rXPcnM0",
       "uri_tidal": "tidal://track/10923661",
       "uri_deezer": "deezer://track/5416564",
       "fun_fact_nl": "Later gecoverd door The Isley Brothers en Type O Negative. De vredige beelden maakten het decennialang een zomerhit op de radio.",
       "awards_nl": [],
-      "isrc": "USAT20181306",
+      "isrc": "USWB19901645",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1718541736",
-        "de": "applemusic://track/1553905681",
-        "gb": "applemusic://track/1553905681",
-        "fr": "applemusic://track/1553905681",
-        "es": "applemusic://track/1553905681",
-        "nl": "applemusic://track/1553905681",
-        "it": "applemusic://track/1553905681"
+        "us": "applemusic://track/1700741395",
+        "de": "applemusic://track/1700741395",
+        "gb": "applemusic://track/1700741395",
+        "fr": "applemusic://track/1700741395",
+        "es": "applemusic://track/1700741395",
+        "nl": "applemusic://track/1700741395",
+        "it": "applemusic://track/1700741395"
       }
     },
     {
       "year": 1978,
-      "uri": "spotify:track:3gN5syjRwIuLVsJamtjOKd",
+      "uri": "spotify:track:4rxUUz6n1DhfEbQZ2GWujD",
       "artist": "TOTO",
       "alt_artists": [
         "Steely Dan",
@@ -545,12 +595,22 @@
       "fun_fact_de": "TOTOs Debütsingle und erster Hit. Das treibende Keyboard-Riff wurde von Steve Porcaro auf einem Yamaha CS-80 Synthesizer gespielt.",
       "fun_fact_es": "El sencillo debut de TOTO y su primer éxito. El riff de teclado fue tocado por Steve Porcaro en un sintetizador Yamaha CS-80.",
       "fun_fact_fr": "Premier single et premier succès de TOTO. Le riff de clavier entraînant a été joué par Steve Porcaro sur un synthétiseur Yamaha CS-80.",
-      "uri_apple_music": "applemusic://track/1440841460",
+      "uri_apple_music": "applemusic://track/1737585385",
       "uri_youtube_music": "https://music.youtube.com/watch?v=htgr3pvBr-I",
       "uri_tidal": "tidal://track/3670334",
       "uri_deezer": "deezer://track/1078779",
       "fun_fact_nl": "TOTO's debuutsingle en eerste hit. Het kenmerkende toetsenriff werd gespeeld door Steve Porcaro op een Yamaha CS-80-synthesizer.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM17800444",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1737585385",
+        "de": "applemusic://track/1378301382",
+        "gb": "applemusic://track/1378301382",
+        "fr": "applemusic://track/1378301382",
+        "es": "applemusic://track/1378301382",
+        "nl": "applemusic://track/1378301382",
+        "it": "applemusic://track/1378301382"
+      }
     },
     {
       "year": 1978,
@@ -575,21 +635,20 @@
       "fun_fact_de": "Der Titeltrack von The Doobie Brothers' Grammy-prämiertem Album. Er markierte Michael McDonalds vollständige Übernahme des Band-Sounds.",
       "fun_fact_es": "La canción principal del álbum ganador del Grammy de The Doobie Brothers. Marcó la toma completa del sonido de la banda por Michael McDonald.",
       "fun_fact_fr": "La chanson-titre de l'album primé aux Grammy des Doobie Brothers. Elle a marqué la prise de contrôle totale du son du groupe par Michael McDonald.",
-      "uri_apple_music": "applemusic://track/1443184576",
       "uri_youtube_music": "https://music.youtube.com/watch?v=k-0IbrKRfmU",
       "uri_tidal": "tidal://track/3247290",
       "uri_deezer": "deezer://track/3821914",
       "fun_fact_nl": "De titelsong van The Doobie Brothers' Grammy-winnende album. Het markeerde Michael McDonalds volledige overname van het geluid van de band.",
       "awards_nl": [],
-      "isrc": "GBUM71504816",
+      "isrc": "USWB10902442",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443184576",
-        "de": "applemusic://track/1443184576",
-        "gb": "applemusic://track/1443184576",
-        "fr": "applemusic://track/1443184576",
-        "es": "applemusic://track/1443184576",
-        "nl": "applemusic://track/1443184576",
-        "it": "applemusic://track/1443184576"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -615,21 +674,21 @@
       "fun_fact_de": "Basiert auf einer echten Kontaktanzeige, die Rupert Holmes sah. Die Wendung, dass beide Partner sich gegenseitig betrügen, war kontrovers.",
       "fun_fact_es": "Basada en un anuncio personal real que Rupert Holmes vio. El giro final donde ambos se están engañando mutuamente fue controvertido.",
       "fun_fact_fr": "Inspirée d'une vraie petite annonce repérée par Rupert Holmes. La chute, où les deux partenaires se trompent mutuellement, a fait polémique.",
-      "uri_apple_music": "applemusic://track/888837456",
+      "uri_apple_music": "applemusic://track/1668265708",
       "uri_youtube_music": "https://music.youtube.com/watch?v=TazHNpt6OTo",
       "uri_tidal": "tidal://track/32997688",
       "uri_deezer": "deezer://track/2801132",
       "fun_fact_nl": "Gebaseerd op een echte persoonlijke advertentie die Rupert Holmes zag. Het eindigde controversieel, met beide partners die elkaar bedriegen.",
       "awards_nl": [],
-      "isrc": "USSM10025228",
+      "isrc": "USMC10000619",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/888837456",
-        "de": "applemusic://track/888837456",
-        "gb": "applemusic://track/888837456",
-        "fr": "applemusic://track/888837456",
-        "es": "applemusic://track/888837456",
-        "nl": "applemusic://track/888837456",
-        "it": "applemusic://track/888837456"
+        "us": "applemusic://track/1668265708",
+        "de": "applemusic://track/1668265708",
+        "gb": "applemusic://track/1668265708",
+        "fr": "applemusic://track/1668265708",
+        "es": "applemusic://track/1668265708",
+        "nl": "applemusic://track/1668265708",
+        "it": "applemusic://track/1668265708"
       }
     },
     {
@@ -656,21 +715,21 @@
       "fun_fact_de": "Wurde in den 2010ern viral und wurde in mehreren Internet-Umfragen zum 'besten Song aller Zeiten' gewählt. Weezers Cover wurde 2018 Platin.",
       "fun_fact_es": "Se volvió viral en los 2010s y fue nombrada 'la mejor canción de todos los tiempos' en múltiples encuestas de internet. La versión de Weezer fue platino en 2018.",
       "fun_fact_fr": "Devenue un phénomène viral dans les années 2010 et élue « meilleure chanson de tous les temps » dans de nombreux sondages en ligne. La reprise de Weezer a été certifiée platine en 2018.",
-      "uri_apple_music": "applemusic://track/1440841474",
+      "uri_apple_music": "applemusic://track/1691396565",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FTQbiNvZqaY",
       "uri_tidal": "tidal://track/539204",
       "uri_deezer": "deezer://track/1079668",
       "fun_fact_nl": "Werd in de jaren 2010 een viraal meme en werd in meerdere internetpeilingen uitgeroepen tot 'het beste nummer ooit'. Weezers cover werd in 2018 platina.",
       "awards_nl": [],
-      "isrc": "DEUM71602006",
+      "isrc": "USSM19801941",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440841474",
-        "de": "applemusic://track/1440841474",
-        "gb": "applemusic://track/1440841474",
-        "fr": "applemusic://track/1440841474",
-        "es": "applemusic://track/1440841474",
-        "nl": "applemusic://track/1440841474",
-        "it": "applemusic://track/1440841474"
+        "us": "applemusic://track/1691396565",
+        "de": "applemusic://track/1632611395",
+        "gb": "applemusic://track/1632611395",
+        "fr": "applemusic://track/1632611395",
+        "es": "applemusic://track/1632611395",
+        "nl": "applemusic://track/1632611395",
+        "it": "applemusic://track/1632611395"
       }
     },
     {
@@ -696,21 +755,21 @@
       "fun_fact_de": "Wurde zur inoffiziellen Hymne von San Francisco. Die Bay Area Baseball-Teams spielen es seit den 1980ern bei Spielen.",
       "fun_fact_es": "Se convirtió en el himno no oficial de San Francisco. Los equipos de béisbol del Bay Area lo tocan en los juegos desde los 1980s.",
       "fun_fact_fr": "Devenue l'hymne officieux de San Francisco. Les équipes de baseball de la baie la diffusent lors des matchs depuis les années 1980.",
-      "uri_apple_music": "applemusic://track/1443155084",
+      "uri_apple_music": "applemusic://track/169004832",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bPFJm3dTViE",
       "uri_tidal": "tidal://track/29907",
       "uri_deezer": "deezer://track/534470",
       "fun_fact_nl": "Werd het onofficiële hymne van San Francisco. De honkbalteams uit de Bay Area spelen het al sinds de jaren 80 bij wedstrijden.",
       "awards_nl": [],
-      "isrc": "DEB330917610",
+      "isrc": "USSM19932797",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443155084",
-        "de": "applemusic://track/1443155084",
-        "gb": "applemusic://track/1443155084",
-        "fr": "applemusic://track/1443155084",
-        "es": "applemusic://track/1443155084",
-        "nl": "applemusic://track/1443155084",
-        "it": "applemusic://track/1443155084"
+        "us": "applemusic://track/169004832",
+        "de": "applemusic://track/169004832",
+        "gb": "applemusic://track/169004832",
+        "fr": "applemusic://track/169004832",
+        "es": "applemusic://track/169004832",
+        "nl": "applemusic://track/169004832",
+        "it": "applemusic://track/298152444"
       }
     },
     {
@@ -736,21 +795,21 @@
       "fun_fact_de": "Kenny Loggins' sanfte Ballade zeigte seine Fähigkeit, auf demselben Album von Uptempo-Hits zu zarten Liebesliedern zu wechseln.",
       "fun_fact_es": "La suave balada de Kenny Loggins mostró su habilidad para cambiar de éxitos uptempo a tiernas canciones de amor en el mismo álbum.",
       "fun_fact_fr": "La douce ballade de Kenny Loggins a démontré sa capacité à passer des tubes rythmés à des chansons d'amour tendres sur un même album.",
-      "uri_apple_music": "applemusic://track/1131446775",
+      "uri_apple_music": "applemusic://track/900209117",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gSP_Jqn5eUM",
       "uri_tidal": "tidal://track/62712130",
       "uri_deezer": "deezer://track/15526164",
       "fun_fact_nl": "Kenny Loggins' vloeiende ballade liet zijn vermogen zien om binnen hetzelfde album te schakelen van uptempo hits naar tedere liefdesliedjes.",
       "awards_nl": [],
-      "isrc": "USRC17308512",
+      "isrc": "USSM18200128",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1568797857",
-        "de": "applemusic://track/1568797857",
-        "gb": "applemusic://track/454438491",
-        "fr": "applemusic://track/1568797857",
-        "es": "applemusic://track/1568797857",
-        "nl": "applemusic://track/1656111809",
-        "it": "applemusic://track/1568797857"
+        "us": "applemusic://track/900209117",
+        "de": "applemusic://track/201424411",
+        "gb": "applemusic://track/201424411",
+        "fr": "applemusic://track/201424411",
+        "es": "applemusic://track/201424411",
+        "nl": "applemusic://track/201424411",
+        "it": "applemusic://track/201424411"
       }
     },
     {
@@ -776,21 +835,21 @@
       "fun_fact_de": "Bobby Caldwell wurde anfangs ohne Foto vermarktet, da das Label befürchtete, weiße Hörer würden einen weiß aussehenden Sänger mit schwarzem Sound nicht akzeptieren.",
       "fun_fact_es": "Bobby Caldwell fue promocionado sin su foto inicialmente porque el sello temía que las audiencias blancas no aceptarían a un cantante blanco con sonido negro.",
       "fun_fact_fr": "Bobby Caldwell a d'abord été commercialisé sans photo, car le label craignait que le public blanc n'accepte pas un chanteur blanc au timbre si soul.",
-      "uri_apple_music": "applemusic://track/1446862138",
+      "uri_apple_music": "applemusic://track/1606273844",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GjEoQxjhJBQ",
       "uri_tidal": "tidal://track/79976217",
       "uri_deezer": "deezer://track/1627634952",
       "fun_fact_nl": "Bobby Caldwell werd aanvankelijk zonder zijn foto op de markt gebracht omdat het platenlabel vreesde dat een witte zanger die klinkt als zwart niet geaccepteerd zou worden door het blanke publiek.",
       "awards_nl": [],
-      "isrc": "USMC17146462",
+      "isrc": "USA370532331",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1875385979",
-        "de": "applemusic://track/1442207039",
-        "gb": "applemusic://track/1442207039",
-        "fr": "applemusic://track/1442207039",
-        "es": "applemusic://track/1442207039",
-        "nl": "applemusic://track/1442207039",
-        "it": "applemusic://track/1442207039"
+        "us": "applemusic://track/1606273844",
+        "de": "applemusic://track/1606273844",
+        "gb": "applemusic://track/1606273844",
+        "fr": "applemusic://track/1606273844",
+        "es": "applemusic://track/1606273844",
+        "nl": "applemusic://track/1606273844",
+        "it": "applemusic://track/1606273844"
       }
     },
     {
@@ -816,21 +875,20 @@
       "fun_fact_de": "Ein Duett mit Stevie Nicks, das zu einer der definitiven Yacht-Rock-Kollaborationen der späten 1970er wurde.",
       "fun_fact_es": "Un dueto con Stevie Nicks que se convirtió en una de las colaboraciones definitivas del yacht rock de finales de los 70.",
       "fun_fact_fr": "Un duo avec Stevie Nicks devenu l'une des collaborations emblématiques du yacht rock de la fin des années 1970.",
-      "uri_apple_music": "applemusic://track/303178223",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ogoIxkPjRts",
       "uri_tidal": "tidal://track/2865124",
       "uri_deezer": "deezer://track/740855962",
       "fun_fact_nl": "Een duet met Stevie Nicks dat een van de bepalende yacht rock-samenwerkingen van de late jaren 70 werd.",
       "awards_nl": [],
-      "isrc": "USAR18300001",
+      "isrc": "GBSMU6699600",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1796834282",
-        "de": "applemusic://track/1793191728",
-        "gb": "applemusic://track/1793191728",
-        "fr": "applemusic://track/1793191728",
-        "es": "applemusic://track/1793191728",
-        "nl": "applemusic://track/1793191728",
-        "it": "applemusic://track/1793191728"
+        "us": null,
+        "de": "applemusic://track/1478105574",
+        "gb": "applemusic://track/1478105574",
+        "fr": "applemusic://track/1478105574",
+        "es": "applemusic://track/1478105574",
+        "nl": "applemusic://track/1478105574",
+        "it": "applemusic://track/1478105574"
       }
     },
     {
@@ -856,21 +914,21 @@
       "fun_fact_de": "Über einen älteren Mann, der eine Frau datet, die zu jung ist, um Aretha Franklins Musik zu kennen. Mit prominentem Fender Rhodes Piano.",
       "fun_fact_es": "Sobre un hombre mayor saliendo con una mujer demasiado joven para conocer la música de Aretha Franklin. Presenta un prominente piano Fender Rhodes.",
       "fun_fact_fr": "L'histoire d'un homme mûr sortant avec une femme trop jeune pour connaître la musique d'Aretha Franklin. On y entend un piano Fender Rhodes très présent.",
-      "uri_apple_music": "applemusic://track/1440879498",
+      "uri_apple_music": "applemusic://track/1890402319",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0JWoENQlDFI",
       "uri_tidal": "tidal://track/26798607",
       "uri_deezer": "deezer://track/75785460",
       "fun_fact_nl": "Over een oudere man die een vrouw datet die te jong is om Aretha Franklins muziek te kennen. Bevat een prominente Fender Rhodes-piano.",
       "awards_nl": [],
-      "isrc": "USUM71602598",
+      "isrc": "USMC17947237",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440879498",
-        "de": "applemusic://track/1440879498",
-        "gb": "applemusic://track/1440879498",
-        "fr": "applemusic://track/1440879498",
-        "es": "applemusic://track/1440879498",
-        "nl": "applemusic://track/1440879498",
-        "it": "applemusic://track/1440879498"
+        "us": "applemusic://track/1890402319",
+        "de": "applemusic://track/1890402319",
+        "gb": "applemusic://track/1890402319",
+        "fr": "applemusic://track/1890402319",
+        "es": "applemusic://track/1890402319",
+        "nl": "applemusic://track/1890402319",
+        "it": "applemusic://track/1890402319"
       }
     },
     {
@@ -896,26 +954,26 @@
       "fun_fact_de": "James Taylors fröhlicher Liebessong hob sich von seinem typisch introspektiven Katalog ab. Er wurde für seine damalige Frau geschrieben.",
       "fun_fact_es": "La alegre canción de amor de James Taylor destacó de su catálogo típicamente introspectivo. Fue escrita para su esposa en ese momento.",
       "fun_fact_fr": "Cette chanson d'amour enjouée de James Taylor tranchait avec son répertoire habituellement introspectif. Elle a été écrite pour sa femme de l'époque.",
-      "uri_apple_music": "applemusic://track/304781315",
+      "uri_apple_music": "applemusic://track/169630057",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xQUnN-fZsHM",
       "uri_tidal": "tidal://track/2861209",
       "uri_deezer": "deezer://track/1015636",
       "fun_fact_nl": "James Taylors vrolijke liefdeslied stak af bij zijn typisch introspectieve repertoire. Het werd geschreven voor zijn toenmalige vrouw.",
       "awards_nl": [],
-      "isrc": "USAR17500002",
+      "isrc": "USSM10021539",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/304781315",
-        "de": "applemusic://track/304781315",
-        "gb": "applemusic://track/304781315",
-        "fr": "applemusic://track/304781315",
-        "es": "applemusic://track/304781315",
-        "nl": "applemusic://track/304781315",
-        "it": "applemusic://track/304781315"
+        "us": "applemusic://track/169630057",
+        "de": "applemusic://track/169630057",
+        "gb": "applemusic://track/169630057",
+        "fr": "applemusic://track/169630057",
+        "es": "applemusic://track/169630057",
+        "nl": "applemusic://track/169630057",
+        "it": "applemusic://track/169630057"
       }
     },
     {
       "year": 1987,
-      "uri": "spotify:track:2RlgNHKcydI9sayD2Df2xp",
+      "uri": "spotify:track:0U6Ga0VWSGq6iEE1AKkgO1",
       "artist": "Fleetwood Mac",
       "alt_artists": [
         "Heart",
@@ -937,12 +995,22 @@
       "fun_fact_de": "Einer der romantischsten Songs von Fleetwood Macs spätem 80er-Comeback. Von Christine McVie über ihren Ex-Mann geschrieben.",
       "fun_fact_es": "Una de las canciones más románticas del regreso de Fleetwood Mac en los 80 tardíos. Escrita por Christine McVie sobre su ex esposo.",
       "fun_fact_fr": "L'une des chansons les plus romantiques du retour de Fleetwood Mac à la fin des années 80. Écrite par Christine McVie à propos de son ex-mari.",
-      "uri_apple_music": "applemusic://track/1440833789",
+      "uri_apple_music": "applemusic://track/202272247",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YF1R0hc5Q2I",
       "uri_tidal": "tidal://track/17182863",
       "uri_deezer": "deezer://track/664444",
       "fun_fact_nl": "Een van Fleetwood Macs meest romantische nummers van hun late 80s-comeback. Geschreven door Christine McVie over haar ex-man.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USWB19900202",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/202272247",
+        "de": "applemusic://track/1294750451",
+        "gb": "applemusic://track/1294750451",
+        "fr": "applemusic://track/1294750451",
+        "es": "applemusic://track/1294750451",
+        "nl": "applemusic://track/1294750451",
+        "it": "applemusic://track/1294750451"
+      }
     },
     {
       "year": 1984,
@@ -967,26 +1035,26 @@
       "fun_fact_de": "Steve Perrys Solokarriere bewies, dass er Journeys Erfolg mit seiner kraftvollen Tenorstimme allein replizieren konnte.",
       "fun_fact_es": "La carrera solista de Steve Perry demostró que podía replicar el éxito de Journey por su cuenta con su poderosa voz de tenor.",
       "fun_fact_fr": "La carrière solo de Steve Perry a prouvé qu'il pouvait reproduire le succès de Journey par lui-même grâce à sa puissante voix de ténor.",
-      "uri_apple_music": "applemusic://track/447759255",
+      "uri_apple_music": "applemusic://track/1741686174",
       "uri_youtube_music": "https://music.youtube.com/watch?v=t7Csc6l4QLs",
       "uri_tidal": "tidal://track/7204763",
       "uri_deezer": "deezer://track/5495390",
       "fun_fact_nl": "Steve Perry's solocarrière bewees dat hij het succes van Journey op eigen kracht kon evenaren met zijn krachtige tenorstem.",
       "awards_nl": [],
-      "isrc": "USSM11102620",
+      "isrc": "USSM18400073",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/447759255",
-        "de": "applemusic://track/447759255",
-        "gb": "applemusic://track/447759255",
-        "fr": "applemusic://track/447759255",
-        "es": "applemusic://track/447759255",
-        "nl": "applemusic://track/447759255",
-        "it": "applemusic://track/447759255"
+        "us": "applemusic://track/1741686174",
+        "de": "applemusic://track/477025771",
+        "gb": "applemusic://track/477025771",
+        "fr": "applemusic://track/477025771",
+        "es": "applemusic://track/477025771",
+        "nl": "applemusic://track/477025771",
+        "it": "applemusic://track/443379438"
       }
     },
     {
       "year": 1984,
-      "uri": "spotify:track:2TIlqbIneP0ZY1O0EzYLlc",
+      "uri": "spotify:track:7ahVIh8YbGN9XTJcxIvhkO",
       "artist": "REO Speedwagon",
       "alt_artists": [
         "Journey",
@@ -1007,21 +1075,21 @@
       "fun_fact_de": "REO Speedwagons größter Hit wurde von Kevin Cronin in seinem Keller über vier Jahre hinweg geschrieben, bevor die Band ihn aufnahm.",
       "fun_fact_es": "El mayor éxito de REO Speedwagon fue escrito por Kevin Cronin en su sótano durante cuatro años antes de que la banda lo grabara.",
       "fun_fact_fr": "Le plus grand succès de REO Speedwagon a été écrit par Kevin Cronin dans son sous-sol, sur une période de quatre ans, avant que le groupe ne l'enregistre.",
-      "uri_apple_music": "applemusic://track/388158216",
+      "uri_apple_music": "applemusic://track/1719059284",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zpOULjyy-n8",
       "uri_tidal": "tidal://track/4350147",
       "uri_deezer": "deezer://track/581533",
       "fun_fact_nl": "REO Speedwagons grootste hit werd geschreven door Kevin Cronin in zijn kelder over de loop van vier jaar voordat de band het opnam.",
       "awards_nl": [],
-      "isrc": "USSM10903222",
+      "isrc": "USSM18400442",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1737563250",
-        "de": "applemusic://track/1737563250",
-        "gb": "applemusic://track/1737563250",
-        "fr": "applemusic://track/1737563250",
-        "es": "applemusic://track/1737563250",
-        "nl": "applemusic://track/1737563250",
-        "it": "applemusic://track/1737563250"
+        "us": "applemusic://track/1719059284",
+        "de": "applemusic://track/1489243240",
+        "gb": "applemusic://track/1489243240",
+        "fr": "applemusic://track/1489243240",
+        "es": "applemusic://track/1489243240",
+        "nl": "applemusic://track/1489243240",
+        "it": "applemusic://track/1489243240"
       }
     },
     {
@@ -1045,21 +1113,21 @@
       "fun_fact_de": "Mit Cheryl Lynn als Sängerin. Das komplexe Jazz-Fusion-Arrangement zeigt TOTOs außergewöhnliche Musikalität.",
       "fun_fact_es": "Presenta a Cheryl Lynn en las voces. El complejo arreglo de jazz-fusión muestra la excepcional musicalidad de TOTO.",
       "fun_fact_fr": "Avec Cheryl Lynn au chant. L'arrangement complexe de jazz-fusion témoigne du talent exceptionnel des musiciens de TOTO.",
-      "uri_apple_music": "applemusic://track/1440841454",
+      "uri_apple_music": "applemusic://track/890507498",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NmRh69YyKnA",
       "uri_tidal": "tidal://track/1886618",
       "uri_deezer": "deezer://track/1081145",
       "fun_fact_nl": "Bevat Cheryl Lynn op zang. Het complexe jazz-fusionarrangement toont TOTO's uitzonderlijke muzikantschap.",
       "awards_nl": [],
-      "isrc": "DEUM71602000",
+      "isrc": "USSM17800433",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440841454",
-        "de": "applemusic://track/1440841454",
-        "gb": "applemusic://track/1440841454",
-        "fr": "applemusic://track/1440841454",
-        "es": "applemusic://track/1440841454",
-        "nl": "applemusic://track/1440841454",
-        "it": "applemusic://track/1440841454"
+        "us": "applemusic://track/890507498",
+        "de": "applemusic://track/890507498",
+        "gb": "applemusic://track/890507498",
+        "fr": "applemusic://track/890507498",
+        "es": "applemusic://track/890507498",
+        "nl": "applemusic://track/890507498",
+        "it": "applemusic://track/890507498"
       }
     },
     {
@@ -1079,26 +1147,26 @@
       "fun_fact_de": "Silvers einziger Hit fängt perfekt den verspielten, sorglosen Geist des Soft Rock der mittleren 70er ein, bevor Disco übernahm.",
       "fun_fact_es": "El único éxito de Silver captura perfectamente el espíritu juguetón y despreocupado del soft rock de mediados de los 70 antes de que la disco tomara el control.",
       "fun_fact_fr": "L'unique succès de Silver capture parfaitement l'esprit ludique et insouciant du soft rock du milieu des années 70, avant la vague disco.",
-      "uri_apple_music": "applemusic://track/252949591",
+      "uri_apple_music": "applemusic://track/1695901679",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hnBDT14DuNg",
       "uri_tidal": "tidal://track/31006711",
       "uri_deezer": "deezer://track/120731576",
       "fun_fact_nl": "Silvers enige hit vangt de speelse, zorgeloze geest van de mid-70s soft rock perfect, voordat disco de overhand nam.",
       "awards_nl": [],
-      "isrc": "USAR18900124",
+      "isrc": "USAR17600150",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/888867609",
-        "de": "applemusic://track/888867609",
-        "gb": "applemusic://track/888867609",
-        "fr": "applemusic://track/888867609",
-        "es": "applemusic://track/888867609",
-        "nl": "applemusic://track/888867609",
-        "it": "applemusic://track/888867609"
+        "us": "applemusic://track/1695901679",
+        "de": "applemusic://track/1695901679",
+        "gb": "applemusic://track/1695901679",
+        "fr": "applemusic://track/1695901679",
+        "es": "applemusic://track/1695901679",
+        "nl": "applemusic://track/1695901679",
+        "it": "applemusic://track/1695901679"
       }
     },
     {
       "year": 1976,
-      "uri": "spotify:track:3sBlCaCZNVshcGUFbTK2D7",
+      "uri": "spotify:track:7B4gn4dPeLtB3x63exF7F4",
       "artist": "Kenny Loggins",
       "alt_artists": [
         "Michael McDonald",
@@ -1117,26 +1185,26 @@
       "fun_fact_de": "Ein früher Kenny Loggins Track aus seiner Duo-Zeit mit Jim Messina, der auf seinen zukünftigen Yacht-Rock-Erfolg hindeutete.",
       "fun_fact_es": "Una canción temprana de Kenny Loggins de sus días de dúo con Jim Messina que insinuaba su futuro éxito en el yacht rock.",
       "fun_fact_fr": "Un titre des débuts de Kenny Loggins, issu de sa période en duo avec Jim Messina, qui laissait entrevoir son futur succès dans le yacht rock.",
-      "uri_apple_music": "applemusic://track/303230013",
+      "uri_apple_music": "applemusic://track/1058078772",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GQQbjpomexo",
       "uri_tidal": "tidal://track/3400972",
       "uri_deezer": "deezer://track/1078711",
       "fun_fact_nl": "Een vroeg Kenny Loggins-nummer uit zijn duetperiode met Jim Messina dat een hint gaf naar zijn toekomstige yacht rock-succes.",
       "awards_nl": [],
-      "isrc": "USWB19901645",
+      "isrc": "USSM19914421",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1703789022",
-        "de": "applemusic://track/1703789022",
-        "gb": "applemusic://track/1703789022",
-        "fr": "applemusic://track/1703789022",
-        "es": "applemusic://track/1703789022",
-        "nl": "applemusic://track/1703789022",
-        "it": "applemusic://track/1703789022"
+        "us": "applemusic://track/1058078772",
+        "de": "applemusic://track/201423386",
+        "gb": "applemusic://track/201423386",
+        "fr": "applemusic://track/201423386",
+        "es": "applemusic://track/201423386",
+        "nl": "applemusic://track/201423386",
+        "it": "applemusic://track/201423386"
       }
     },
     {
       "year": 1978,
-      "uri": "spotify:track:3U4M7BCjL0Tsd1YqIPuFq8",
+      "uri": "spotify:track:2Xb6wJYGi0QXwURw5WWvI5",
       "artist": "Gerry Rafferty",
       "alt_artists": [
         "Steely Dan",
@@ -1157,21 +1225,21 @@
       "fun_fact_de": "Gerry Raffertys Nachfolger zu 'Baker Street' bewies mit seiner ebenso glatten Produktion, dass er kein One-Hit-Wonder war.",
       "fun_fact_es": "El seguimiento de Gerry Rafferty a 'Baker Street' demostró que no era un one-hit wonder con su producción igualmente suave.",
       "fun_fact_fr": "Ce successeur de « Baker Street » par Gerry Rafferty a prouvé, grâce à sa production tout aussi soignée, qu'il n'était pas un artiste éphémère.",
-      "uri_apple_music": "applemusic://track/762187045",
+      "uri_apple_music": "applemusic://track/1819680512",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rAZbhFJrEI4",
       "uri_tidal": "tidal://track/25688918",
       "uri_deezer": "deezer://track/3169190",
       "fun_fact_nl": "Gerry Rafferty's opvolger van 'Baker Street' bewees dat hij geen eenaggers was met zijn even vloeiende productie.",
       "awards_nl": [],
-      "isrc": "USSM11003948",
+      "isrc": "GBAYE7800544",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/741231263",
-        "de": "applemusic://track/741231263",
-        "gb": "applemusic://track/741231263",
-        "fr": "applemusic://track/741231263",
-        "es": "applemusic://track/741231263",
-        "nl": "applemusic://track/741231263",
-        "it": "applemusic://track/741231263"
+        "us": "applemusic://track/1819680512",
+        "de": "applemusic://track/1819680512",
+        "gb": "applemusic://track/1819680512",
+        "fr": "applemusic://track/1819680512",
+        "es": "applemusic://track/1819680512",
+        "nl": "applemusic://track/1819680512",
+        "it": "applemusic://track/1819680512"
       }
     },
     {
@@ -1197,16 +1265,26 @@
       "fun_fact_de": "Billy Joels Unabhängigkeitserklärung war in der TV-Show Bosom Buddies mit einem jungen Tom Hanks zu sehen.",
       "fun_fact_es": "La declaración de independencia de Billy Joel apareció en la serie de TV Bosom Buddies protagonizada por un joven Tom Hanks.",
       "fun_fact_fr": "Cette déclaration d'indépendance de Billy Joel a été utilisée dans la série télévisée Bosom Buddies avec un jeune Tom Hanks.",
-      "uri_apple_music": "applemusic://track/1443196400",
+      "uri_apple_music": "applemusic://track/158816084",
       "uri_youtube_music": "https://music.youtube.com/watch?v=h3JFEfdK_Ls",
       "uri_tidal": "tidal://track/2925926",
       "uri_deezer": "deezer://track/1025636",
       "fun_fact_nl": "Billy Joels onafhankelijkheidsverklaring was te zien in de tv-serie Bosom Buddies met een jonge Tom Hanks.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM17800448",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158816084",
+        "de": "applemusic://track/158816084",
+        "gb": "applemusic://track/158816084",
+        "fr": "applemusic://track/158816084",
+        "es": "applemusic://track/158816084",
+        "nl": "applemusic://track/158816084",
+        "it": "applemusic://track/158816084"
+      }
     },
     {
       "year": 1980,
-      "uri": "spotify:track:17Nowfk8b5WOFxAC0GJoXt",
+      "uri": "spotify:track:4oumGmdm9k9E6AXym1tPBb",
       "artist": "Air Supply",
       "alt_artists": [
         "Ambrosia",
@@ -1227,21 +1305,21 @@
       "fun_fact_de": "Air Supplys Durchbruchshit in Amerika startete eine Reihe von Soft-Rock-Balladen, die das Radio der frühen 80er dominierten.",
       "fun_fact_es": "El éxito de Air Supply en América lanzó una serie de baladas de soft rock que dominaron la radio de principios de los 80.",
       "fun_fact_fr": "Le tube qui a lancé Air Supply en Amérique, ouvrant la voie à une série de ballades soft rock qui ont dominé la radio du début des années 80.",
-      "uri_apple_music": "applemusic://track/254180909",
+      "uri_apple_music": "applemusic://track/280839462",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JWdZEumNRmI",
       "uri_tidal": "tidal://track/3120903",
       "uri_deezer": "deezer://track/546790",
       "fun_fact_nl": "Air Supplys doorbraakhit in Amerika lanceerde een reeks soft rock-ballades die de vroege 80s-radio domineerden.",
       "awards_nl": [],
-      "isrc": "USAT20000622",
+      "isrc": "USAR18000002",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/367380173",
-        "de": "applemusic://track/367380173",
-        "gb": "applemusic://track/580026164",
-        "fr": "applemusic://track/367380173",
-        "es": "applemusic://track/367380173",
-        "nl": "applemusic://track/367380173",
-        "it": "applemusic://track/367380173"
+        "us": "applemusic://track/280839462",
+        "de": "applemusic://track/350793269",
+        "gb": "applemusic://track/350793269",
+        "fr": "applemusic://track/350793269",
+        "es": "applemusic://track/350793269",
+        "nl": "applemusic://track/350793269",
+        "it": "applemusic://track/350793269"
       }
     },
     {
@@ -1267,21 +1345,21 @@
       "fun_fact_de": "Gewann einen Grammy. Bill Withers' sanfter Gesang über Grover Washington Jr.s Saxophon schuf den ultimativen Soul-Jazz-Crossover.",
       "fun_fact_es": "Ganó un Grammy. Las suaves voces de Bill Withers sobre el saxofón de Grover Washington Jr. crearon el máximo crossover de soul-jazz sofisticado.",
       "fun_fact_fr": "A remporté un Grammy. Les voix suaves de Bill Withers sur le saxophone de Grover Washington Jr. ont créé le crossover soul-jazz par excellence.",
-      "uri_apple_music": "applemusic://track/1110557401",
+      "uri_apple_music": "applemusic://track/1358689428",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jEy6MGu3bIA",
       "uri_tidal": "tidal://track/68659095",
       "uri_deezer": "deezer://track/3821992",
       "fun_fact_nl": "Won een Grammy. Bill Withers' vloeiende zang over Grover Washington Jr.'s saxofoon creëerde de ultieme verfijnde soul-jazz crossover.",
       "awards_nl": [],
-      "isrc": "USRH11600652",
+      "isrc": "USEE10900522",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1111346318",
-        "de": "applemusic://track/1111346318",
-        "gb": "applemusic://track/1111346318",
-        "fr": "applemusic://track/1111346318",
-        "es": "applemusic://track/1111346318",
-        "nl": "applemusic://track/1111346318",
-        "it": "applemusic://track/1111346318"
+        "us": "applemusic://track/1358689428",
+        "de": "applemusic://track/1337354974",
+        "gb": "applemusic://track/1337354974",
+        "fr": "applemusic://track/1337354974",
+        "es": "applemusic://track/1337354974",
+        "nl": "applemusic://track/1337354974",
+        "it": "applemusic://track/1337354974"
       }
     },
     {
@@ -1307,12 +1385,22 @@
       "fun_fact_de": "Das ikonische Klatschmuster im Refrain wurde erreicht, indem das gesamte Studiopublikum zusammen klatschte.",
       "fun_fact_es": "El icónico patrón de aplausos en el coro se logró haciendo que toda la audiencia del estudio aplaudiera junta.",
       "fun_fact_fr": "Le motif de claquements de mains emblématique du refrain a été obtenu en faisant taper des mains à tout le public présent en studio.",
-      "uri_apple_music": "applemusic://track/1436853094",
+      "uri_apple_music": "applemusic://track/1695914974",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JsntlJZ9h1U",
       "uri_tidal": "tidal://track/40691",
       "uri_deezer": "deezer://track/13165885",
       "fun_fact_nl": "Het iconische handgeklap-patroon tijdens het refrein werd bereikt door het volledige studiopubliek samen te laten klappen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC10301825",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1695914974",
+        "de": "applemusic://track/541518962",
+        "gb": "applemusic://track/541518962",
+        "fr": "applemusic://track/541518962",
+        "es": "applemusic://track/541518962",
+        "nl": "applemusic://track/541518962",
+        "it": "applemusic://track/773120551"
+      }
     },
     {
       "year": 1977,
@@ -1337,12 +1425,22 @@
       "fun_fact_de": "Geschrieben und gesungen von Lionel Richie während seiner Zeit bei den Commodores. Einer seiner ersten Hinweise auf eine erfolgreiche Solokarriere.",
       "fun_fact_es": "Escrita y cantada por Lionel Richie mientras aún estaba con los Commodores. Una de sus primeras señales de una exitosa carrera solista por venir.",
       "fun_fact_fr": "Écrite et interprétée par Lionel Richie alors qu'il faisait encore partie des Commodores. L'un des premiers signes de sa future carrière solo à succès.",
-      "uri_apple_music": "applemusic://track/1440839072",
+      "uri_apple_music": "applemusic://track/6765497127",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7XcTyEKSnYg",
       "uri_tidal": "tidal://track/252767336",
       "uri_deezer": "deezer://track/2177862",
       "fun_fact_nl": "Geschreven en gezongen door Lionel Richie terwijl hij nog bij the Commodores zat. Een van zijn eerste aanwijzingen voor een succesvolle solocarrière.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMO17700543",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6765497127",
+        "de": "applemusic://track/6765497127",
+        "gb": "applemusic://track/6765497127",
+        "fr": "applemusic://track/6765497127",
+        "es": "applemusic://track/6765497127",
+        "nl": "applemusic://track/6765497127",
+        "it": "applemusic://track/6765497127"
+      }
     },
     {
       "year": 1977,
@@ -1367,12 +1465,22 @@
       "fun_fact_de": "Gewann den Grammy für Aufnahme und Song des Jahres. Billy Joel sagt, er hasst es, den Song aufzuführen wegen Überexposition.",
       "fun_fact_es": "Ganó el Grammy a la Grabación del Año y Canción del Año. Billy Joel ha dicho que odia interpretarla debido a la sobreexposición.",
       "fun_fact_fr": "A remporté le Grammy de l'Enregistrement de l'année et de la Chanson de l'année. Billy Joel a déclaré détester la jouer en concert à force de surexposition.",
-      "uri_apple_music": "applemusic://track/1443196394",
+      "uri_apple_music": "applemusic://track/158816077",
       "uri_tidal": "tidal://track/29593015",
       "uri_deezer": "deezer://track/988630",
       "fun_fact_nl": "Won Grammy voor Record of the Year en Song of the Year. Billy Joel heeft gezegd dat hij het haat om het te spelen vanwege overblootstelling.",
       "awards_nl": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HaA3YZ6QdJU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HaA3YZ6QdJU",
+      "isrc": "USSM17700371",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158816077",
+        "de": "applemusic://track/158816077",
+        "gb": "applemusic://track/158816077",
+        "fr": "applemusic://track/158816077",
+        "es": "applemusic://track/158816077",
+        "nl": "applemusic://track/158816077",
+        "it": "applemusic://track/158816077"
+      }
     },
     {
       "year": 1976,
@@ -1397,21 +1505,21 @@
       "fun_fact_de": "Der 'Lido' im Song ist eine fiktive Figur. Boz Scaggs' seidig glatter Vortrag machte ihn zum Yacht-Rock-Klassiker.",
       "fun_fact_es": "El 'Lido' en la canción es un personaje ficticio. La entrega suave como la seda de Boz Scaggs lo convirtió en un clásico del yacht rock.",
       "fun_fact_fr": "Le « Lido » de la chanson est un personnage fictif. L'interprétation soyeuse de Boz Scaggs en a fait un classique du yacht rock.",
-      "uri_apple_music": "applemusic://track/1440872750",
+      "uri_apple_music": "applemusic://track/177423808",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HQZBaJAngH8",
       "uri_tidal": "tidal://track/247879944",
       "uri_deezer": "deezer://track/3730976",
       "fun_fact_nl": "De 'Lido' in het nummer is een fictief personage. Boz Scaggs' zijdezachte zang maakte het een yacht rock-klassieker.",
       "awards_nl": [],
-      "isrc": "ITUM71500028",
+      "isrc": "USSM17500569",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440872750",
-        "de": "applemusic://track/1440872750",
-        "gb": "applemusic://track/1440872750",
-        "fr": "applemusic://track/1440872750",
-        "es": "applemusic://track/1440872750",
-        "nl": "applemusic://track/1440872750",
-        "it": "applemusic://track/1440872750"
+        "us": "applemusic://track/177423808",
+        "de": "applemusic://track/177423808",
+        "gb": "applemusic://track/177423808",
+        "fr": "applemusic://track/177423808",
+        "es": "applemusic://track/177423808",
+        "nl": "applemusic://track/177423808",
+        "it": "applemusic://track/177423808"
       }
     },
     {
@@ -1437,21 +1545,21 @@
       "fun_fact_de": "Little River Bands größter Hit. Die australische Band war überraschend erfolgreich in Amerika während der Yacht-Rock-Ära.",
       "fun_fact_es": "El mayor éxito de Little River Band. La banda australiana fue sorprendentemente exitosa en América durante la era del yacht rock.",
       "fun_fact_fr": "Le plus grand succès de Little River Band. Ce groupe australien a connu un succès surprenant en Amérique pendant l'ère du yacht rock.",
-      "uri_apple_music": "applemusic://track/1440858694",
+      "uri_apple_music": "applemusic://track/1677013212",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iDvBuEmAjxM",
       "uri_tidal": "tidal://track/2871015",
       "uri_deezer": "deezer://track/1952713137",
       "fun_fact_nl": "Little River Bands grootste hit. De Australische band was verrassend succesvol in Amerika tijdens het yacht rock-tijdperk.",
       "awards_nl": [],
-      "isrc": "CA5KR1839394",
+      "isrc": "AUEM01000133",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1570550941",
-        "de": "applemusic://track/1570550941",
-        "gb": "applemusic://track/1570550941",
-        "fr": "applemusic://track/1570550941",
-        "es": "applemusic://track/1570550941",
-        "nl": "applemusic://track/1570550941",
-        "it": "applemusic://track/1570550941"
+        "us": "applemusic://track/1677013212",
+        "de": "applemusic://track/1677013212",
+        "gb": "applemusic://track/1677013212",
+        "fr": "applemusic://track/1677013212",
+        "es": "applemusic://track/1677013212",
+        "nl": "applemusic://track/1677013212",
+        "it": "applemusic://track/1677013212"
       }
     },
     {
@@ -1477,21 +1585,21 @@
       "fun_fact_de": "Das erste Duett von Michael Jackson und Paul McCartney führte zu ihrer Freundschaft, bevor es zum berühmten Streit um den Beatles-Katalog kam.",
       "fun_fact_es": "El primer dueto de Michael Jackson y Paul McCartney los llevó a ser amigos antes de su famosa disputa comercial sobre el catálogo de los Beatles.",
       "fun_fact_fr": "Le premier duo de Michael Jackson et Paul McCartney les a rapprochés, avant leur célèbre brouille autour du catalogue des Beatles.",
-      "uri_apple_music": "applemusic://track/1440807775",
+      "uri_apple_music": "applemusic://track/655262181",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y380bkHlye8",
       "uri_tidal": "tidal://track/40692",
       "uri_deezer": "deezer://track/831298",
       "fun_fact_nl": "Michael Jackson en Paul McCartneys eerste duet leidde tot een vriendschap voordat hun beroemde zakelijke conflict over de Beatles-catalogus uitbrak.",
       "awards_nl": [],
-      "isrc": "USJY51100057",
+      "isrc": "USSM19902988",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1623272739",
-        "de": "applemusic://track/1440665727",
-        "gb": "applemusic://track/1440665727",
-        "fr": "applemusic://track/1440665727",
-        "es": "applemusic://track/1440665727",
-        "nl": "applemusic://track/1440665727",
-        "it": "applemusic://track/1440665727"
+        "us": "applemusic://track/655262181",
+        "de": "applemusic://track/655262181",
+        "gb": "applemusic://track/655262181",
+        "fr": "applemusic://track/655262181",
+        "es": "applemusic://track/655262181",
+        "nl": "applemusic://track/655262181",
+        "it": "applemusic://track/655262181"
       }
     },
     {
@@ -1517,16 +1625,26 @@
       "fun_fact_de": "Erreichte Platz 1 sowohl in den Pop- als auch R&B-Charts. Michael Jackson sagte später, dieser Song inspirierte die Basslinie für 'Billie Jean.'",
       "fun_fact_es": "Encabezó tanto las listas de pop como de R&B. Michael Jackson dijo más tarde que esta canción inspiró la línea de bajo de 'Billie Jean.'",
       "fun_fact_fr": "A atteint la première place des classements pop et R&B. Michael Jackson a déclaré plus tard que cette chanson avait inspiré la ligne de basse de « Billie Jean ».",
-      "uri_apple_music": "applemusic://track/1436853238",
+      "uri_apple_music": "applemusic://track/200001978",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ccenFp_3kq8",
       "uri_tidal": "tidal://track/1287357",
       "uri_deezer": "deezer://track/569559",
       "fun_fact_nl": "Bereikte zowel de pop- als de R&B-hitparade. Michael Jackson zei later dat dit nummer hem inspireerde voor de baslijn van 'Billie Jean'.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USRC10301819",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/200001978",
+        "de": "applemusic://track/194670058",
+        "gb": "applemusic://track/194670058",
+        "fr": "applemusic://track/194670058",
+        "es": "applemusic://track/194670058",
+        "nl": "applemusic://track/194670058",
+        "it": "applemusic://track/194670058"
+      }
     },
     {
       "year": 1977,
-      "uri": "spotify:track:07q0QVgO56EorrSGHC48y3",
+      "uri": "spotify:track:5RgFlk1fcClZd0Y4SGYhqH",
       "artist": "Billy Joel",
       "alt_artists": [
         "Elton John",
@@ -1547,16 +1665,26 @@
       "fun_fact_de": "Geschrieben über Billy Joels damalige Frau und Managerin Elizabeth Weber. Der Song erlebte 2010 in UK ein Revival nach einer John Lewis Werbung.",
       "fun_fact_es": "Escrita sobre la entonces esposa y manager de Billy Joel, Elizabeth Weber. La canción experimentó un resurgimiento en UK en 2010 después de un comercial de John Lewis.",
       "fun_fact_fr": "Écrite à propos de la femme et manager de Billy Joel à l'époque, Elizabeth Weber. La chanson a connu un regain au Royaume-Uni en 2010 après une publicité John Lewis.",
-      "uri_apple_music": "applemusic://track/1443196396",
+      "uri_apple_music": "applemusic://track/158816065",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cx3QmqV2pHg",
       "uri_tidal": "tidal://track/544229",
       "uri_deezer": "deezer://track/988632",
       "fun_fact_nl": "Geschreven over Billy Joels toenmalige vrouw en manager Elizabeth Weber. Het nummer beleefde een VK-revival in 2010 na een John Lewis-reclame.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM17700375",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158816065",
+        "de": "applemusic://track/158816065",
+        "gb": "applemusic://track/158816065",
+        "fr": "applemusic://track/158816065",
+        "es": "applemusic://track/158816065",
+        "nl": "applemusic://track/158816065",
+        "it": "applemusic://track/158816065"
+      }
     },
     {
       "year": 1984,
-      "uri": "spotify:track:0p9WFnPazPSNdXTbgJcQas",
+      "uri": "spotify:track:0iWvd4XEzPaDO25HQBNGh3",
       "artist": "Steve Perry",
       "alt_artists": [
         "Journey",
@@ -1578,20 +1706,20 @@
       "fun_fact_es": "Escrita sobre la entonces novia de Steve Perry, Sherrie Swafford, quien también apareció en el video musical. La canción fue más personal que su trabajo con Journey.",
       "fun_fact_fr": "Écrite pour la petite amie de Steve Perry, Sherrie Swafford, qui apparaît également dans le clip. La chanson était plus personnelle que ses travaux avec Journey.",
       "uri_youtube_music": "https://music.youtube.com/watch?v=z9vRBPtXK5w",
-      "uri_apple_music": "applemusic://track/724969164",
+      "uri_apple_music": "applemusic://track/304208032",
       "uri_tidal": "tidal://track/1274704",
       "uri_deezer": "deezer://track/5495387",
       "fun_fact_nl": "Geschreven over Steve Perry's toenmalige vriendin Sherrie Swafford, die ook in de muziekvideo verscheen. Het nummer was persoonlijker dan zijn Journey-werk.",
       "awards_nl": [],
-      "isrc": "USSM19916847",
+      "isrc": "USSM18400070",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/197977916",
-        "de": "applemusic://track/197977916",
-        "gb": "applemusic://track/197977916",
-        "fr": "applemusic://track/197977916",
-        "es": "applemusic://track/197977916",
-        "nl": "applemusic://track/197977916",
-        "it": "applemusic://track/197977916"
+        "us": "applemusic://track/304208032",
+        "de": "applemusic://track/304208032",
+        "gb": "applemusic://track/304208032",
+        "fr": "applemusic://track/304208032",
+        "es": "applemusic://track/304208032",
+        "nl": "applemusic://track/304208032",
+        "it": "applemusic://track/304208032"
       }
     },
     {
@@ -1622,16 +1750,16 @@
       "uri_deezer": "deezer://track/1081069",
       "fun_fact_nl": "Barry Gibb schreef en produceerde dit voor Barbra Streisand. Het gelijknamige album werd het bestverkochte album van een vrouwelijke artiest op dat moment.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1440862988",
-      "isrc": "USUM71209505",
+      "uri_apple_music": "applemusic://track/185861143",
+      "isrc": "USSM10209145",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1471704327",
-        "de": "applemusic://track/1440854503",
-        "gb": "applemusic://track/1440854503",
-        "fr": "applemusic://track/1440854503",
-        "es": "applemusic://track/1440854503",
-        "nl": "applemusic://track/1440854503",
-        "it": "applemusic://track/1440854503"
+        "us": "applemusic://track/185861143",
+        "de": "applemusic://track/907287255",
+        "gb": "applemusic://track/907287255",
+        "fr": "applemusic://track/907287255",
+        "es": "applemusic://track/907287255",
+        "nl": "applemusic://track/907287255",
+        "it": "applemusic://track/907287255"
       }
     },
     {
@@ -1653,21 +1781,21 @@
       "fun_fact_de": "Gewann den Grammy für den besten R&B-Song. Von David Foster, Jay Graydon und Bill Champlin geschrieben, zeigte es die sanftere Seite von Earth, Wind & Fire.",
       "fun_fact_es": "Ganó el Grammy a la Mejor Canción R&B. Escrita por David Foster, Jay Graydon y Bill Champlin, mostró el lado más suave de Earth, Wind & Fire.",
       "fun_fact_fr": "A remporté le Grammy de la Meilleure chanson R&B. Composée par David Foster, Jay Graydon et Bill Champlin, elle révélait le côté le plus doux d'Earth, Wind & Fire.",
-      "uri_apple_music": "applemusic://track/1440831292",
+      "uri_apple_music": "applemusic://track/1566958165",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GlEKrSbihkE",
       "uri_tidal": "tidal://track/1290302",
       "uri_deezer": "deezer://track/487484172",
       "fun_fact_nl": "Won de Grammy voor Best R&B Song. Geschreven door David Foster, Jay Graydon en Bill Champlin, toonde het de zachtere kant van Earth, Wind & Fire.",
       "awards_nl": [],
-      "isrc": "GBUM71502343",
+      "isrc": "USSM19801712",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440831292",
-        "de": "applemusic://track/1440831292",
-        "gb": "applemusic://track/1440831292",
-        "fr": "applemusic://track/1440831292",
-        "es": "applemusic://track/1440831292",
-        "nl": "applemusic://track/1440831292",
-        "it": "applemusic://track/1440831292"
+        "us": "applemusic://track/1566958165",
+        "de": "applemusic://track/904438837",
+        "gb": "applemusic://track/904438837",
+        "fr": "applemusic://track/1566958165",
+        "es": "applemusic://track/904438837",
+        "nl": "applemusic://track/904438837",
+        "it": "applemusic://track/904438837"
       }
     },
     {
@@ -1693,16 +1821,26 @@
       "fun_fact_de": "TOTOs sanfte Ballade mit Michael McDonald als Background-Sänger festigte die Vernetzung der Top-Künstler des Yacht Rock.",
       "fun_fact_es": "La suave balada de TOTO presentó a Michael McDonald en coros, cementando la polinización cruzada de los mejores artistas del yacht rock.",
       "fun_fact_fr": "La douce ballade de TOTO avec Michael McDonald aux chœurs a illustré les liens étroits entre les grands artistes du yacht rock.",
-      "uri_apple_music": "applemusic://track/1440841498",
+      "uri_apple_music": "applemusic://track/200598090",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b8kA3zWJcWw",
       "uri_tidal": "tidal://track/494121",
       "uri_deezer": "deezer://track/1080115",
       "fun_fact_nl": "TOTO's vloeiende ballade bevatte Michael McDonald op achtergrondzang, waarmee de onderlinge kruisbestuiving van top yacht rock-artiesten werd bevestigd.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USSM18600734",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/200598090",
+        "de": "applemusic://track/303848794",
+        "gb": "applemusic://track/250465771",
+        "fr": "applemusic://track/250465771",
+        "es": "applemusic://track/250465771",
+        "nl": "applemusic://track/250465771",
+        "it": "applemusic://track/250465771"
+      }
     },
     {
       "year": 1983,
-      "uri": "spotify:track:53LfabLlKFBIAdDNZgf5CE",
+      "uri": "spotify:track:01MXkFA8sL7at6txavDErt",
       "artist": "Air Supply",
       "alt_artists": [
         "Ambrosia",
@@ -1723,21 +1861,21 @@
       "fun_fact_de": "Geschrieben von Jim Steinman, der auch 'Total Eclipse of the Heart' schrieb. Die epische Produktion passt zu seinem typischen bombastischen Stil.",
       "fun_fact_es": "Escrita por Jim Steinman, quien también escribió 'Total Eclipse of the Heart.' La producción épica coincide con su característico estilo bombástico.",
       "fun_fact_fr": "Écrite par Jim Steinman, également auteur de « Total Eclipse of the Heart ». La production épique est fidèle à son style grandiloquent.",
-      "uri_apple_music": "applemusic://track/939730110",
+      "uri_apple_music": "applemusic://track/1736215195",
       "uri_youtube_music": "https://music.youtube.com/watch?v=O9hhpZKlTaU",
       "uri_tidal": "tidal://track/37772290",
       "uri_deezer": "deezer://track/546801",
       "fun_fact_nl": "Geschreven door Jim Steinman, die ook 'Total Eclipse of the Heart' schreef. De epische productie past bij zijn kenmerkende bombastische stijl.",
       "awards_nl": [],
-      "isrc": "USAR18100182",
+      "isrc": "USAR18300001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/939730110",
-        "de": "applemusic://track/939730110",
-        "gb": "applemusic://track/939730110",
-        "fr": "applemusic://track/939730110",
-        "es": "applemusic://track/939730110",
-        "nl": "applemusic://track/939730110",
-        "it": "applemusic://track/939730110"
+        "us": "applemusic://track/1736215195",
+        "de": "applemusic://track/1736215195",
+        "gb": "applemusic://track/1308655790",
+        "fr": "applemusic://track/1308655790",
+        "es": "applemusic://track/1308655790",
+        "nl": "applemusic://track/1308655790",
+        "it": "applemusic://track/1308655790"
       }
     },
     {
@@ -1763,12 +1901,22 @@
       "fun_fact_de": "Mit einem berühmten Gitarrensolo von Elliott Randall, das Jimmy Page sein Lieblings-Gitarrensolo aller Zeiten nannte.",
       "fun_fact_es": "Presenta un famoso solo de guitarra de Elliott Randall que Jimmy Page llamó su solo de guitarra favorito de todos los tiempos.",
       "fun_fact_fr": "Contient un célèbre solo de guitare d'Elliott Randall, que Jimmy Page a qualifié de solo de guitare préféré de tous les temps.",
-      "uri_apple_music": "applemusic://track/1440879448",
+      "uri_apple_music": "applemusic://track/1684996621",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mKBbI63MFr8",
       "uri_tidal": "tidal://track/3029661",
       "uri_deezer": "deezer://track/75785429",
       "fun_fact_nl": "Bevat een beroemde gitaarsolo van Elliott Randall die Jimmy Page zijn favoriete gitaarsolo aller tijden noemde.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USMC17347184",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1684996621",
+        "de": "applemusic://track/1684996621",
+        "gb": "applemusic://track/1684996621",
+        "fr": "applemusic://track/1684996621",
+        "es": "applemusic://track/1684996621",
+        "nl": "applemusic://track/1684996621",
+        "it": "applemusic://track/1684996621"
+      }
     },
     {
       "year": 1977,
@@ -1793,21 +1941,21 @@
       "fun_fact_de": "Dave Masons größter Solo-Hit. Von Jim Krueger geschrieben, wurde es ein FM-Radio-Klassiker über das Akzeptieren von Unterschieden in Beziehungen.",
       "fun_fact_es": "El mayor éxito solista de Dave Mason. Escrita por Jim Krueger, se convirtió en un clásico de radio FM sobre aceptar diferencias en las relaciones.",
       "fun_fact_fr": "Le plus grand succès solo de Dave Mason. Écrite par Jim Krueger, la chanson est devenue un classique des radios FM sur l'acceptation des différences dans les relations.",
-      "uri_apple_music": "applemusic://track/1434887050",
+      "uri_apple_music": "applemusic://track/355939469",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YKp7g0mxHVc",
       "uri_tidal": "tidal://track/94405601",
       "uri_deezer": "deezer://track/13228242",
       "fun_fact_nl": "Dave Masons grootste solosucces. Geschreven door Jim Krueger, werd het een FM-radioklassieker over het accepteren van verschillen in relaties.",
       "awards_nl": [],
-      "isrc": "USUMG9900628",
+      "isrc": "USSM17700902",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1700308640",
-        "de": "applemusic://track/1700308640",
-        "gb": "applemusic://track/1700308640",
-        "fr": "applemusic://track/1700308640",
-        "es": "applemusic://track/1700308640",
-        "nl": "applemusic://track/1700308640",
-        "it": "applemusic://track/1700308640"
+        "us": "applemusic://track/355939469",
+        "de": "applemusic://track/555229393",
+        "gb": "applemusic://track/555229393",
+        "fr": "applemusic://track/555229393",
+        "es": "applemusic://track/555229393",
+        "nl": "applemusic://track/555229393",
+        "it": "applemusic://track/555229393"
       }
     },
     {
@@ -1831,26 +1979,26 @@
       "fun_fact_de": "Von Bostons Third Stage Album, das nach einer 8-jährigen Pause kam. Der Perfektionismus der Band verursachte erhebliche Verzögerungen.",
       "fun_fact_es": "Del álbum Third Stage de Boston que llegó después de una pausa de 8 años. El perfeccionismo de la banda causó retrasos significativos.",
       "fun_fact_fr": "Tirée de l'album Third Stage de Boston, sorti après une absence de huit ans. Le perfectionnisme du groupe a causé des retards considérables.",
-      "uri_apple_music": "applemusic://track/185861143",
+      "uri_apple_music": "applemusic://track/913902467",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Phh9B1-4EYs",
       "uri_tidal": "tidal://track/1317421",
       "uri_deezer": "deezer://track/84340039",
       "fun_fact_nl": "Van Boston's Third Stage-album, dat uitkwam na een onderbreking van 8 jaar. Het perfectionisme van de band veroorzaakte aanzienlijke vertragingen.",
       "awards_nl": [],
-      "isrc": "USSM10209145",
+      "isrc": "USSM17600650",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/185861143",
-        "de": "applemusic://track/185861143",
-        "gb": "applemusic://track/185861143",
-        "fr": "applemusic://track/185861143",
-        "es": "applemusic://track/185861143",
-        "nl": "applemusic://track/185861143",
-        "it": "applemusic://track/185861143"
+        "us": "applemusic://track/913902467",
+        "de": "applemusic://track/913902467",
+        "gb": "applemusic://track/913902467",
+        "fr": "applemusic://track/913902467",
+        "es": "applemusic://track/913902467",
+        "nl": "applemusic://track/913902467",
+        "it": "applemusic://track/913902467"
       }
     },
     {
       "year": 1980,
-      "uri": "spotify:track:3rA1o5hOQiKlR8TZi9J5E5",
+      "uri": "spotify:track:4aRQjwr1JUy5pb70yP6iKH",
       "artist": "The Pointer Sisters",
       "alt_artists": [
         "Donna Summer",
@@ -1871,21 +2019,21 @@
       "fun_fact_de": "Der Crossover-Hit der Pointer Sisters zeigte, dass sie in Pop wie auch in R&B erfolgreich sein konnten, was den Weg für ihren 80er-Erfolg ebnete.",
       "fun_fact_es": "El éxito crossover de The Pointer Sisters demostró que podían tener éxito en pop así como en R&B, abriendo puertas para su éxito en los 80.",
       "fun_fact_fr": "Le succès crossover des Pointer Sisters a prouvé qu'elles pouvaient percer en pop comme en R&B, ouvrant la voie à leurs triomphes des années 80.",
-      "uri_apple_music": "applemusic://track/671200657",
+      "uri_apple_music": "applemusic://track/268528025",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cx3QmqV2pHg",
       "uri_tidal": "tidal://track/1809085",
       "uri_deezer": "deezer://track/599045",
       "fun_fact_nl": "The Pointer Sisters' crossover-hit bewees dat ze ook in de pop konden slagen naast R&B, waarmee de weg werd vrijgemaakt voor hun succes in de jaren 80.",
       "awards_nl": [],
-      "isrc": "USSM17700375",
+      "isrc": "USRC18003278",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1737735830",
-        "de": "applemusic://track/1737735830",
-        "gb": "applemusic://track/273854296",
-        "fr": "applemusic://track/1737735830",
-        "es": "applemusic://track/1737735830",
-        "nl": "applemusic://track/1737735830",
-        "it": "applemusic://track/1737735830"
+        "us": "applemusic://track/268528025",
+        "de": "applemusic://track/268528025",
+        "gb": "applemusic://track/268528025",
+        "fr": "applemusic://track/268528025",
+        "es": "applemusic://track/268528025",
+        "nl": "applemusic://track/268528025",
+        "it": "applemusic://track/268528025"
       }
     },
     {
@@ -1911,21 +2059,21 @@
       "fun_fact_de": "Hues Corporations One-Hit-Wonder wurde ein Disco-Klassiker, aber sein glatter, Pre-Disco-Sound passt auch perfekt zu Yacht Rock.",
       "fun_fact_es": "El one-hit wonder de Hues Corporation se convirtió en un clásico disco pero su sonido suave pre-disco encaja perfectamente con el yacht rock también.",
       "fun_fact_fr": "L'unique grand succès de Hues Corporation est devenu un classique du disco, mais son groove lisse et pré-disco s'intègre aussi parfaitement au yacht rock.",
-      "uri_apple_music": "applemusic://track/253210381",
+      "uri_apple_music": "applemusic://track/355939065",
       "uri_youtube_music": "https://music.youtube.com/watch?v=goc5wF50-Xo",
       "uri_tidal": "tidal://track/2865125",
       "uri_deezer": "deezer://track/106115758",
       "fun_fact_nl": "Hues Corporations eenaggers werd een discoklassieker, maar het vloeiende, pre-disco geluid past ook perfect bij yacht rock.",
       "awards_nl": [],
-      "isrc": "USAR18500001",
+      "isrc": "USRC19900635",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/303178225",
-        "de": "applemusic://track/212048187",
-        "gb": "applemusic://track/212048187",
-        "fr": "applemusic://track/212048187",
-        "es": "applemusic://track/212048187",
-        "nl": "applemusic://track/212048187",
-        "it": "applemusic://track/212048187"
+        "us": "applemusic://track/355939065",
+        "de": "applemusic://track/355939065",
+        "gb": "applemusic://track/355939065",
+        "fr": "applemusic://track/355939065",
+        "es": "applemusic://track/355939065",
+        "nl": "applemusic://track/355939065",
+        "it": "applemusic://track/355939065"
       }
     },
     {
@@ -1951,26 +2099,26 @@
       "fun_fact_de": "Geschrieben von TOTOs Steve Porcaro über seine Tochter, die nach menschlichem Verhalten fragte. Einer der anspruchsvollsten Tracks von Thriller.",
       "fun_fact_es": "Escrita por Steve Porcaro de TOTO sobre su hija preguntando sobre el comportamiento humano. Es una de las canciones más sofisticadas de Thriller.",
       "fun_fact_fr": "Écrite par Steve Porcaro de TOTO, inspiré par sa fille qui s'interrogeait sur le comportement humain. C'est l'un des morceaux les plus raffinés de Thriller.",
-      "uri_apple_music": "applemusic://track/1440807780",
+      "uri_apple_music": "applemusic://track/1641781005",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tYwvcQMbY7s",
       "uri_tidal": "tidal://track/53230843",
       "uri_deezer": "deezer://track/831196",
       "fun_fact_nl": "Geschreven door TOTO's Steve Porcaro over zijn dochter die vragen stelde over menselijk gedrag. Het is een van Thrillers meest verfijnde nummers.",
       "awards_nl": [],
-      "isrc": "USWD11157157",
+      "isrc": "USSM19902992",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440807780",
-        "de": "applemusic://track/1440807780",
-        "gb": "applemusic://track/1440807780",
-        "fr": "applemusic://track/1440807780",
-        "es": "applemusic://track/1440807780",
-        "nl": "applemusic://track/1440807780",
-        "it": "applemusic://track/1440807780"
+        "us": "applemusic://track/1641781005",
+        "de": "applemusic://track/1641781005",
+        "gb": "applemusic://track/1641781005",
+        "fr": "applemusic://track/1641781005",
+        "es": "applemusic://track/1641781005",
+        "nl": "applemusic://track/1641781005",
+        "it": "applemusic://track/1641781005"
       }
     },
     {
       "year": 1973,
-      "uri": "spotify:track:55bHUFaAIHsfJxBViBSh2q",
+      "uri": "spotify:track:12zM5OcXYT9bAHArKRsHN9",
       "artist": "Dobie Gray",
       "alt_artists": [
         "Bill Withers",
@@ -1991,21 +2139,21 @@
       "fun_fact_de": "Später 2003 von Uncle Kracker mit Dobie Gray gecovert, was ein noch größerer Hit wurde. Das Original bleibt ein Yacht-Rock-Essential.",
       "fun_fact_es": "Posteriormente versionada por Uncle Kracker con Dobie Gray en 2003, que se convirtió en un éxito aún mayor. El original sigue siendo esencial del yacht rock.",
       "fun_fact_fr": "Reprise par Uncle Kracker avec Dobie Gray en 2003, devenant un succès encore plus grand. L'original reste un incontournable du yacht rock.",
-      "uri_apple_music": "applemusic://track/185798016",
+      "uri_apple_music": "applemusic://track/1697030600",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gr_yTk5n9hY",
       "uri_tidal": "tidal://track/38298566",
       "uri_deezer": "deezer://track/620021372",
       "fun_fact_nl": "Later gecoverd door Uncle Kracker met Dobie Gray in 2003, wat een nog grotere hit werd. Het origineel blijft een yacht rock-essentieel.",
       "awards_nl": [],
-      "isrc": "USSM18200128",
+      "isrc": "USMC17146462",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/405600300",
-        "de": "applemusic://track/405600300",
-        "gb": "applemusic://track/405600300",
-        "fr": "applemusic://track/405600300",
-        "es": "applemusic://track/405600300",
-        "nl": "applemusic://track/405600300",
-        "it": "applemusic://track/405600300"
+        "us": "applemusic://track/1697030600",
+        "de": "applemusic://track/1697030600",
+        "gb": "applemusic://track/1697030600",
+        "fr": "applemusic://track/1697030600",
+        "es": "applemusic://track/1697030600",
+        "nl": "applemusic://track/1697030600",
+        "it": "applemusic://track/1697030600"
       }
     },
     {
@@ -2031,26 +2179,26 @@
       "fun_fact_de": "Der größte Hit von England Dan & John Ford Coley. Die Textzeile 'I'm not talking 'bout moving in' stellte klar, dass es um lockere Romantik ging.",
       "fun_fact_es": "El mayor éxito de England Dan & John Ford Coley. La letra 'I'm not talking 'bout moving in' dejó claro que era sobre romance casual.",
       "fun_fact_fr": "Le plus grand succès d'England Dan & John Ford Coley. Les paroles « I'm not talking 'bout moving in » précisent bien qu'il s'agit d'un flirt sans engagement.",
-      "uri_apple_music": "applemusic://track/185716729",
+      "uri_apple_music": "applemusic://track/1793101203",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3WlRcAGbkpw",
       "uri_tidal": "tidal://track/539525",
       "uri_deezer": "deezer://track/3919664",
       "fun_fact_nl": "England Dan & John Ford Coley's grootste hit. De tekst 'I'm not talking 'bout moving in' maakte duidelijk dat dit over een vrijblijvende romance ging.",
       "awards_nl": [],
-      "isrc": "USSM19801933",
+      "isrc": "USAT20181306",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/185716729",
-        "de": "applemusic://track/185716729",
-        "gb": "applemusic://track/185716729",
-        "fr": "applemusic://track/185716729",
-        "es": "applemusic://track/185716729",
-        "nl": "applemusic://track/185716729",
-        "it": "applemusic://track/1007028881"
+        "us": "applemusic://track/1793101203",
+        "de": "applemusic://track/1543721968",
+        "gb": "applemusic://track/1543721968",
+        "fr": "applemusic://track/1543721968",
+        "es": "applemusic://track/1543721968",
+        "nl": "applemusic://track/1543721968",
+        "it": "applemusic://track/1543721968"
       }
     },
     {
       "year": 1980,
-      "uri": "spotify:track:42et6fnHCw1HIPSrdPprMl",
+      "uri": "spotify:track:7dCsbZDKTAQl0ckBOTz3hx",
       "artist": "Air Supply",
       "alt_artists": [
         "Ambrosia",
@@ -2071,26 +2219,26 @@
       "fun_fact_de": "Air Supplys erster amerikanischer Hit etablierte ihren typischen Sound mit schwebenden Harmonien und romantischen Texten.",
       "fun_fact_es": "El primer éxito americano de Air Supply estableció su sonido característico de armonías elevadas y letras románticas.",
       "fun_fact_fr": "Le premier succès américain d'Air Supply a établi leur signature sonore : des harmonies planantes et des paroles romantiques.",
-      "uri_apple_music": "applemusic://track/728526020",
+      "uri_apple_music": "applemusic://track/429802756",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9QYk1E8zdxU",
       "uri_tidal": "tidal://track/26798608",
       "uri_deezer": "deezer://track/546793",
       "fun_fact_nl": "Air Supplys eerste Amerikaanse hit vestigde hun kenmerkende geluid van zwevende harmonieën en romantische teksten.",
       "awards_nl": [],
-      "isrc": "USSM17500265",
+      "isrc": "USAR18000001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/186183809",
-        "de": "applemusic://track/186183809",
-        "gb": "applemusic://track/309850174",
-        "fr": "applemusic://track/186183809",
-        "es": "applemusic://track/309850174",
-        "nl": "applemusic://track/309850174",
-        "it": "applemusic://track/309850174"
+        "us": "applemusic://track/429802756",
+        "de": "applemusic://track/477025738",
+        "gb": "applemusic://track/477025738",
+        "fr": "applemusic://track/477025738",
+        "es": "applemusic://track/477025738",
+        "nl": "applemusic://track/477025738",
+        "it": "applemusic://track/477025738"
       }
     },
     {
       "year": 1988,
-      "uri": "spotify:track:4PQhiCJUbCNy4ZUkr5SS05",
+      "uri": "spotify:track:31HhcRSNcS8Rgv9ldIfh66",
       "artist": "Eric Carmen",
       "alt_artists": [
         "Barry Manilow",
@@ -2111,21 +2259,21 @@
       "fun_fact_de": "Eric Carmens spätes Comeback würdigte den Sound der frühen 60er mit seiner Oldies-Produktion und nostalgischen Texten.",
       "fun_fact_es": "El tardío regreso de Eric Carmen rindió homenaje al sonido de los primeros 60 con su producción estilo oldies y letras nostálgicas.",
       "fun_fact_fr": "Le retour tardif d'Eric Carmen rendait hommage au son des années 60 avec une production rétro et des paroles nostalgiques.",
-      "uri_apple_music": "applemusic://track/1606064876",
+      "uri_apple_music": "applemusic://track/815691921",
       "uri_youtube_music": "https://music.youtube.com/watch?v=n9DmdAwUbxc",
       "uri_tidal": "tidal://track/213218874",
       "uri_deezer": "deezer://track/75487832",
       "fun_fact_nl": "Eric Carmens late comeback-hit bracht een eerbetoon aan het geluid van de vroege jaren 60 met zijn oldies-stijlproductie en nostalgische teksten.",
       "awards_nl": [],
-      "isrc": "USA370532331",
+      "isrc": "USAR11300099",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1606273844",
-        "de": "applemusic://track/1606273844",
-        "gb": "applemusic://track/1606273844",
-        "fr": "applemusic://track/1606273844",
-        "es": "applemusic://track/1606273844",
-        "nl": "applemusic://track/1606273844",
-        "it": "applemusic://track/1606273844"
+        "us": "applemusic://track/815691921",
+        "de": "applemusic://track/815691921",
+        "gb": "applemusic://track/815691921",
+        "fr": "applemusic://track/815691921",
+        "es": "applemusic://track/815691921",
+        "nl": "applemusic://track/815691921",
+        "it": "applemusic://track/815691921"
       }
     },
     {
@@ -2151,21 +2299,21 @@
       "fun_fact_de": "Billy Oceans größter Hit wurde auch als 'European Queen' und 'African Queen' mit leicht unterschiedlichen Texten für verschiedene Märkte veröffentlicht.",
       "fun_fact_es": "El mayor éxito de Billy Ocean también fue lanzado como 'European Queen' y 'African Queen' con letras ligeramente diferentes para diferentes mercados.",
       "fun_fact_fr": "Le plus grand tube de Billy Ocean a aussi été publié sous les titres « European Queen » et « African Queen », avec des paroles légèrement adaptées selon les marchés.",
-      "uri_apple_music": "applemusic://track/190448243",
+      "uri_apple_music": "applemusic://track/1695901934",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9f16Fw_K45s",
       "uri_tidal": "tidal://track/1783784",
       "uri_deezer": "deezer://track/2168095",
       "fun_fact_nl": "Billy Oceans grootste hit werd ook uitgebracht als 'European Queen' en 'African Queen' met licht aangepaste teksten voor verschillende markten.",
       "awards_nl": [],
-      "isrc": "USSM17700889",
+      "isrc": "GBAHK9700109",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1142416117",
-        "de": "applemusic://track/1142416117",
-        "gb": "applemusic://track/1142416117",
-        "fr": "applemusic://track/1142416117",
-        "es": "applemusic://track/1142416117",
-        "nl": "applemusic://track/1142416117",
-        "it": "applemusic://track/1142416117"
+        "us": "applemusic://track/1695901934",
+        "de": "applemusic://track/1719041756",
+        "gb": "applemusic://track/1719041756",
+        "fr": "applemusic://track/1719041756",
+        "es": "applemusic://track/1719041756",
+        "nl": "applemusic://track/1719041756",
+        "it": "applemusic://track/1719041756"
       }
     },
     {
@@ -2191,21 +2339,21 @@
       "fun_fact_de": "REO Speedwagons Hi Infidelity Album war 15 Wochen auf Platz 1. Dieser Song über vermutete Untreue war ein Radio-Klassiker.",
       "fun_fact_es": "El álbum Hi Infidelity de REO Speedwagon estuvo 15 semanas en el #1. Esta canción sobre sospecha de infidelidad fue un clásico de radio.",
       "fun_fact_fr": "L'album Hi Infidelity de REO Speedwagon est resté 15 semaines en tête du classement. Cette chanson sur les soupçons d'infidélité est devenue un incontournable des radios.",
-      "uri_apple_music": "applemusic://track/1440869600",
+      "uri_apple_music": "applemusic://track/447759255",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cx3QmqV2pHg",
       "uri_tidal": "tidal://track/27331623",
       "uri_deezer": "deezer://track/12754211",
       "fun_fact_nl": "REO Speedwagons Hi Infidelity-album stond 15 weken op nummer 1. Dit nummer over vermoed overspel was een radioklassieker.",
       "awards_nl": [],
-      "isrc": "USUM71022556",
+      "isrc": "USSM11102620",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440869600",
-        "de": "applemusic://track/1440869600",
-        "gb": "applemusic://track/1440869600",
-        "fr": "applemusic://track/1440869600",
-        "es": "applemusic://track/1440869600",
-        "nl": "applemusic://track/1440869600",
-        "it": "applemusic://track/1440869600"
+        "us": "applemusic://track/447759255",
+        "de": "applemusic://track/1489243451",
+        "gb": "applemusic://track/1489243451",
+        "fr": "applemusic://track/1489243451",
+        "es": "applemusic://track/1489243451",
+        "nl": "applemusic://track/1489243451",
+        "it": "applemusic://track/1489243451"
       }
     },
     {
@@ -2231,12 +2379,22 @@
       "fun_fact_de": "Ein früher Hall & Oates Song, der ihr Blue-Eyed-Soul-Potenzial zeigte, bevor sie die 80er-Charts dominierten.",
       "fun_fact_es": "Una canción temprana de Hall & Oates que mostró su potencial de blue-eyed soul antes de dominar las listas de los 80.",
       "fun_fact_fr": "Un titre de la première époque de Hall & Oates, qui révélait déjà leur potentiel blue-eyed soul avant leur domination des classements dans les années 80.",
-      "uri_apple_music": "applemusic://track/1436852210",
+      "uri_apple_music": "applemusic://track/1836925546",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tt4cR9szMS8",
       "uri_tidal": "tidal://track/3236688",
       "uri_deezer": "deezer://track/4288127",
       "fun_fact_nl": "Een vroeg Hall & Oates-nummer dat hun blue-eyed soul-potentieel liet zien voordat ze de hitparades van de jaren 80 domineerden.",
-      "awards_nl": []
+      "awards_nl": [],
+      "isrc": "USAT20614606",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1836925546",
+        "de": "applemusic://track/1812423306",
+        "gb": "applemusic://track/1812423306",
+        "fr": "applemusic://track/1812423306",
+        "es": "applemusic://track/1812423306",
+        "nl": "applemusic://track/1812423306",
+        "it": "applemusic://track/1812423306"
+      }
     },
     {
       "year": 1981,
@@ -2261,26 +2419,26 @@
       "fun_fact_de": "Der sinnliche Hit der Pointer Sisters galt 1981 als ziemlich provokant mit seinen anzüglichen Texten über das Sich-Zeit-Nehmen in der Romantik.",
       "fun_fact_es": "El sensual éxito de The Pointer Sisters fue considerado bastante provocativo para 1981 con sus letras sugestivas sobre tomarse tiempo en el romance.",
       "fun_fact_fr": "Le tube sensuel des Pointer Sisters était jugé assez provocant pour l'époque, avec ses paroles suggestives sur l'art de prendre son temps en amour.",
-      "uri_apple_music": "applemusic://track/273048790",
+      "uri_apple_music": "applemusic://track/268528216",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ElN_4vUvTPs",
       "uri_tidal": "tidal://track/1781812",
       "uri_deezer": "deezer://track/13142737",
       "fun_fact_nl": "The Pointer Sisters' sensuele hit werd in 1981 als behoorlijk provocatief beschouwd vanwege de suggestieve teksten over het nemen van de tijd in de romance.",
       "awards_nl": [],
-      "isrc": "USSM19902992",
+      "isrc": "USRC18101745",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1641781005",
-        "de": "applemusic://track/1641781005",
-        "gb": "applemusic://track/1641781005",
-        "fr": "applemusic://track/1641781005",
-        "es": "applemusic://track/1641781005",
-        "nl": "applemusic://track/1641781005",
-        "it": "applemusic://track/1641781005"
+        "us": "applemusic://track/268528216",
+        "de": "applemusic://track/268528216",
+        "gb": "applemusic://track/268528216",
+        "fr": "applemusic://track/268528216",
+        "es": "applemusic://track/268528216",
+        "nl": "applemusic://track/268528216",
+        "it": "applemusic://track/268528216"
       }
     },
     {
       "year": 1978,
-      "uri": "spotify:track:5wj4E6IsrVen8CbFjCqbMR",
+      "uri": "spotify:track:5gOd6zDC8vhlYjqbQdJVWP",
       "artist": "Gerry Rafferty",
       "alt_artists": [
         "Steely Dan",
@@ -2302,21 +2460,21 @@
       "fun_fact_de": "Das ikonische Saxophonsolo wurde von Raphael Ravenscroft gespielt, obwohl er angeblich mit seiner Bezahlung für diesen denkwürdigen Hook unzufrieden war.",
       "fun_fact_es": "El icónico solo de saxofón fue tocado por Raphael Ravenscroft, aunque supuestamente estaba descontento con su pago por crear un gancho tan memorable.",
       "fun_fact_fr": "L'iconique solo de saxophone a été interprété par Raphael Ravenscroft, qui se serait plaint de sa rémunération pour avoir créé un riff aussi mémorable.",
-      "uri_apple_music": "applemusic://track/913765102",
+      "uri_apple_music": "applemusic://track/693606496",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Fo6aKnRnBxM",
       "uri_tidal": "tidal://track/2865114",
       "uri_deezer": "deezer://track/3169189",
       "fun_fact_nl": "Het iconische saxofoonriff werd gespeeld door Raphael Ravenscroft, die naar verluidt niet blij was met zijn betaling voor het creëren van zo'n memorabele hook.",
       "awards_nl": [],
-      "isrc": "USAR18000002",
+      "isrc": "GBAYE7800619",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/280839462",
-        "de": "applemusic://track/280839462",
-        "gb": "applemusic://track/280839462",
-        "fr": "applemusic://track/280839462",
-        "es": "applemusic://track/280839462",
-        "nl": "applemusic://track/280839462",
-        "it": "applemusic://track/280839462"
+        "us": "applemusic://track/693606496",
+        "de": "applemusic://track/696804850",
+        "gb": "applemusic://track/693696670",
+        "fr": "applemusic://track/1518613773",
+        "es": "applemusic://track/1518613773",
+        "nl": "applemusic://track/1518613773",
+        "it": "applemusic://track/1518613773"
       }
     },
     {
@@ -2342,26 +2500,26 @@
       "fun_fact_de": "Ein Duett zwischen Chris Norman von Smokie und Suzi Quatro, es war in Amerika größer als in den Heimatländern der beiden Künstler.",
       "fun_fact_es": "Un dueto entre Chris Norman de Smokie y Suzi Quatro, fue más grande en América que en el país de origen de ninguno de los artistas.",
       "fun_fact_fr": "Un duo entre Chris Norman de Smokie et Suzi Quatro, qui a mieux marché en Amérique que dans les pays d'origine de chacun des artistes.",
-      "uri_apple_music": "applemusic://track/452398017",
+      "uri_apple_music": "applemusic://track/255981581",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dbk29JZdl5A",
       "uri_tidal": "tidal://track/668084",
       "uri_deezer": "deezer://track/1559253732",
       "fun_fact_nl": "Een duet tussen Chris Norman van Smokie en Suzi Quatro, het was groter in Amerika dan in het thuisland van beide artiesten.",
       "awards_nl": [],
-      "isrc": "USRC18101745",
+      "isrc": "DEA817800048",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/298411223",
-        "de": "applemusic://track/298411223",
-        "gb": "applemusic://track/298411223",
-        "fr": "applemusic://track/298411223",
-        "es": "applemusic://track/298411223",
-        "nl": "applemusic://track/298411223",
-        "it": "applemusic://track/298411223"
+        "us": "applemusic://track/255981581",
+        "de": "applemusic://track/255981581",
+        "gb": "applemusic://track/255981581",
+        "fr": "applemusic://track/255981581",
+        "es": "applemusic://track/255981581",
+        "nl": "applemusic://track/255981581",
+        "it": "applemusic://track/255981581"
       }
     },
     {
       "year": 1980,
-      "uri": "spotify:track:0k4JVfJSSZBsPPcOPfgdBj",
+      "uri": "spotify:track:62GYoGszQfROZswLee6W3O",
       "artist": "George Benson",
       "alt_artists": [
         "Grover Washington Jr.",
@@ -2382,21 +2540,21 @@
       "fun_fact_de": "Von Quincy Jones produziert, half es George Benson als Smooth-Jazz-Pop-Crossover-Künstler zu etablieren, nicht nur als Jazz-Gitarrist.",
       "fun_fact_es": "Producida por Quincy Jones, ayudó a establecer a George Benson como artista crossover de smooth jazz-pop en lugar de solo un guitarrista de jazz.",
       "fun_fact_fr": "Produit par Quincy Jones, ce titre a contribué à faire de George Benson un artiste crossover smooth jazz-pop, et non plus seulement un guitariste de jazz.",
-      "uri_apple_music": "applemusic://track/815691921",
+      "uri_apple_music": "applemusic://track/1837150743",
       "uri_youtube_music": "https://music.youtube.com/watch?v=imYJpr09IHQ",
       "uri_deezer": "deezer://track/5094396",
       "fun_fact_nl": "Geproduceerd door Quincy Jones, hielp het George Benson te vestigen als een smooth jazz-pop-crossover artiest in plaats van alleen een jazzgitarist.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3529717",
-      "isrc": "USAR11300099",
+      "isrc": "USWB10000902",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/815691921",
-        "de": "applemusic://track/815691921",
-        "gb": "applemusic://track/815691921",
-        "fr": "applemusic://track/815691921",
-        "es": "applemusic://track/815691921",
-        "nl": "applemusic://track/815691921",
-        "it": "applemusic://track/815691921"
+        "us": "applemusic://track/1837150743",
+        "de": "applemusic://track/1837150743",
+        "gb": "applemusic://track/1837150743",
+        "fr": "applemusic://track/1837150743",
+        "es": "applemusic://track/1837150743",
+        "nl": "applemusic://track/1837150743",
+        "it": "applemusic://track/1837150743"
       }
     },
     {
@@ -2422,21 +2580,21 @@
       "fun_fact_de": "Michael McDonalds Solo-Hit wurde später berühmt von Warren G für 'Regulate' gesampelt, was ihn einer neuen Generation vorstellte.",
       "fun_fact_es": "El éxito solista de Michael McDonald fue posteriormente sampleado por Warren G para 'Regulate,' introduciéndolo a una nueva generación.",
       "fun_fact_fr": "Le succès solo de Michael McDonald a été célèbrement samplé par Warren G pour « Regulate », le faisant découvrir à une nouvelle génération.",
-      "uri_apple_music": "applemusic://track/107635516",
+      "uri_apple_music": "applemusic://track/1815494856",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CU6ap2njSTY",
       "uri_deezer": "deezer://track/5617796",
       "fun_fact_nl": "Michael McDonalds solosucces werd later beroemd gesampeld door Warren G voor 'Regulate', waarmee het een nieuwe generatie kennis maakte.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2913652",
-      "isrc": "USRH10553197",
+      "isrc": "USWB19903128",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1710519401",
-        "de": "applemusic://track/1846832145",
-        "gb": "applemusic://track/1846832145",
-        "fr": "applemusic://track/1846832145",
-        "es": "applemusic://track/1846832145",
-        "nl": "applemusic://track/1846832145",
-        "it": "applemusic://track/1846832145"
+        "us": "applemusic://track/1815494856",
+        "de": "applemusic://track/1815494856",
+        "gb": "applemusic://track/1815494856",
+        "fr": "applemusic://track/1815494856",
+        "es": "applemusic://track/1815494856",
+        "nl": "applemusic://track/1815494856",
+        "it": "applemusic://track/1815494856"
       }
     },
     {
@@ -2462,26 +2620,26 @@
       "fun_fact_de": "Gewann den Grammy für den besten R&B-Song. Boz Scaggs' anspruchsvolle Mischung aus Rock, R&B und Jazz definierte den Yacht-Rock-Sound.",
       "fun_fact_es": "Ganó el Grammy a la Mejor Canción R&B. La sofisticada mezcla de rock, R&B y jazz de Boz Scaggs definió el sonido del yacht rock.",
       "fun_fact_fr": "A remporté le Grammy de la Meilleure chanson R&B. Le mélange raffiné de rock, R&B et jazz de Boz Scaggs a défini le son yacht rock.",
-      "uri_apple_music": "applemusic://track/1440872746",
+      "uri_apple_music": "applemusic://track/1744472654",
       "uri_youtube_music": "https://music.youtube.com/watch?v=I-hKBmTAADo",
       "uri_deezer": "deezer://track/563391",
       "fun_fact_nl": "Won Grammy voor Best R&B Song. Boz Scaggs' verfijnde vermenging van rock, R&B en jazz definieerde het yacht rock-geluid.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/247879940",
-      "isrc": "ITUM71500030",
+      "isrc": "USSM17500295",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440872746",
-        "de": "applemusic://track/1440872746",
-        "gb": "applemusic://track/1440872746",
-        "fr": "applemusic://track/1440872746",
-        "es": "applemusic://track/1440872746",
-        "nl": "applemusic://track/1440872746",
-        "it": "applemusic://track/1440872746"
+        "us": "applemusic://track/1744472654",
+        "de": "applemusic://track/908640357",
+        "gb": "applemusic://track/908640357",
+        "fr": "applemusic://track/908640357",
+        "es": "applemusic://track/908640357",
+        "nl": "applemusic://track/908640357",
+        "it": "applemusic://track/908640357"
       }
     },
     {
       "year": 1972,
-      "uri": "spotify:track:0g2fhbLkBSjuUfFxna4VUB",
+      "uri": "spotify:track:7vZNm4wxlVy51FINZ5O5ng",
       "artist": "Dr. Hook",
       "alt_artists": [
         "Looking Glass",
@@ -2502,26 +2660,26 @@
       "fun_fact_de": "Dr. Hooks erzählender Song über das Blockiert-Werden beim Versuch, mit einer Ex-Freundin zu sprechen, basierte auf einer wahren Geschichte von Autor Shel Silverstein.",
       "fun_fact_es": "La canción narrativa de Dr. Hook sobre ser bloqueado de hablar con una ex novia se basó en una historia real del escritor Shel Silverstein.",
       "fun_fact_fr": "La chanson narrative de Dr. Hook, sur un homme empêché de parler à son ex, est tirée d'une histoire vraie de l'auteur Shel Silverstein.",
-      "uri_apple_music": "applemusic://track/303178217",
+      "uri_apple_music": "applemusic://track/202596295",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BRx58DgOxeg",
       "uri_deezer": "deezer://track/569737",
       "fun_fact_nl": "Dr. Hook's verhalende nummer over het niet mogen spreken met een ex-vriendin was gebaseerd op een waargebeurd verhaal van schrijver Shel Silverstein.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2975741",
-      "isrc": "USAR18200001",
+      "isrc": "USSM10105635",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1739927802",
-        "de": "applemusic://track/1739927802",
-        "gb": "applemusic://track/1739927802",
-        "fr": "applemusic://track/1739927802",
-        "es": "applemusic://track/1739927802",
-        "nl": "applemusic://track/1739927802",
-        "it": "applemusic://track/1739927802"
+        "us": "applemusic://track/202596295",
+        "de": "applemusic://track/290505226",
+        "gb": "applemusic://track/290505226",
+        "fr": "applemusic://track/290505226",
+        "es": "applemusic://track/290505226",
+        "nl": "applemusic://track/290505226",
+        "it": "applemusic://track/290505226"
       }
     },
     {
       "year": 1982,
-      "uri": "spotify:track:6lQlcaBGGDJFFkZmDwcFxW",
+      "uri": "spotify:track:6Xh1WURJavY4C6MJneyJOq",
       "artist": "Air Supply",
       "alt_artists": [
         "Ambrosia",
@@ -2542,21 +2700,21 @@
       "fun_fact_de": "Air Supplys Serie von Soft-Rock-Hits in den frühen 80ern machte sie zu einem der zuverlässigsten Hitlieferanten der Ära.",
       "fun_fact_es": "La racha de éxitos de soft rock de Air Supply a principios de los 80 los convirtió en uno de los hitmakers más confiables de la era.",
       "fun_fact_fr": "La série de tubes soft rock d'Air Supply au début des années 80 en a fait l'un des faiseurs de hits les plus fiables de l'époque.",
-      "uri_apple_music": "applemusic://track/321976389",
+      "uri_apple_music": "applemusic://track/1796834395",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FIF7wKJb2iU",
       "uri_deezer": "deezer://track/4213907",
       "fun_fact_nl": "Air Supplys reeks soft rock-hits in het begin van de jaren 80 maakte hen een van de meest betrouwbare hitmakers van het tijdperk.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3120908",
-      "isrc": "USWB10902424",
+      "isrc": "USAR18900124",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/321976389",
-        "de": "applemusic://track/1734384167",
-        "gb": "applemusic://track/1734384167",
-        "fr": "applemusic://track/1734384167",
-        "es": "applemusic://track/1734384167",
-        "nl": "applemusic://track/1734384167",
-        "it": "applemusic://track/1734384167"
+        "us": "applemusic://track/1796834395",
+        "de": "applemusic://track/1793151014",
+        "gb": "applemusic://track/1793151014",
+        "fr": "applemusic://track/1793151014",
+        "es": "applemusic://track/1793151014",
+        "nl": "applemusic://track/1793151014",
+        "it": "applemusic://track/1793151014"
       }
     },
     {
@@ -2582,12 +2740,22 @@
       "fun_fact_de": "Hall & Oates' erster #1-Hit der 80er startete ihre unglaubliche Serie von Chart-Dominanz während des Jahrzehnts.",
       "fun_fact_es": "El primer #1 de Hall & Oates en los 80 inició su increíble racha de dominancia en las listas durante la década.",
       "fun_fact_fr": "Le premier numéro 1 de Hall & Oates dans les années 80 a lancé leur incroyable domination des classements tout au long de la décennie.",
-      "uri_apple_music": "applemusic://track/1436853464",
+      "uri_apple_music": "applemusic://track/200001094",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9f16Fw_K45s",
       "uri_deezer": "deezer://track/545936",
       "fun_fact_nl": "Hall & Oates' eerste nummer 1-hit van de jaren 80 begon hun ongelooflijke reeks hitparadesuccessen door het decennium heen.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/560041"
+      "uri_tidal": "tidal://track/560041",
+      "isrc": "USRC10301820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/200001094",
+        "de": "applemusic://track/550096524",
+        "gb": "applemusic://track/550096524",
+        "fr": "applemusic://track/550096524",
+        "es": "applemusic://track/550096524",
+        "nl": "applemusic://track/550096524",
+        "it": "applemusic://track/550096524"
+      }
     },
     {
       "year": 1979,
@@ -2610,21 +2778,21 @@
       "fun_fact_de": "Pages war eine kurzlebige aber einflussreiche Yacht-Rock-Band mit den späteren Mr. Mister Mitgliedern Steve George und Richard Page.",
       "fun_fact_es": "Pages fue una banda de yacht rock de corta duración pero influyente con los futuros miembros de Mr. Mister, Steve George y Richard Page.",
       "fun_fact_fr": "Pages était un groupe de yacht rock éphémère mais influent, réunissant les futurs membres de Mr. Mister, Steve George et Richard Page.",
-      "uri_apple_music": "applemusic://track/1111749679",
+      "uri_apple_music": "applemusic://track/403427685",
       "uri_youtube_music": "https://music.youtube.com/watch?v=E0sha1XfHxw",
       "uri_deezer": "deezer://track/7721441",
       "fun_fact_nl": "Pages was een kortlevende maar invloedrijke yacht rock-band met de latere Mr. Mister-leden Steve George en Richard Page.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/7721440",
-      "isrc": "USRH11602321",
+      "isrc": "USSM10108908",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1111749679",
-        "de": "applemusic://track/1111749679",
-        "gb": "applemusic://track/1111749679",
-        "fr": "applemusic://track/1111749679",
-        "es": "applemusic://track/1111749679",
-        "nl": "applemusic://track/1111749679",
-        "it": "applemusic://track/1111749679"
+        "us": "applemusic://track/403427685",
+        "de": "applemusic://track/403427685",
+        "gb": "applemusic://track/403427685",
+        "fr": "applemusic://track/403427685",
+        "es": "applemusic://track/403427685",
+        "nl": "applemusic://track/403427685",
+        "it": null
       }
     },
     {
@@ -2650,12 +2818,22 @@
       "fun_fact_de": "ELOs Jeff Lynne schuf üppigen, orchestralen Pop, der die Beatles und Yacht Rock mit anspruchsvollen Produktionstechniken verband.",
       "fun_fact_es": "Jeff Lynne de ELO creó pop orquestal exuberante que unió a los Beatles y el yacht rock con técnicas de producción sofisticadas.",
       "fun_fact_fr": "Jeff Lynne d'ELO a créé une pop orchestrale luxuriante, faisant le lien entre les Beatles et le yacht rock grâce à des techniques de production sophistiquées.",
-      "uri_apple_music": "applemusic://track/1440833480",
+      "uri_apple_music": "applemusic://track/1054525007",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4kxpsvW2gAE",
       "uri_deezer": "deezer://track/112662164",
       "fun_fact_nl": "ELO's Jeff Lynne creëerde weelderige, orkestrale pop die The Beatles en yacht rock overbrugde met verfijnde productietechnieken.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/37178"
+      "uri_tidal": "tidal://track/37178",
+      "isrc": "USSM17200398",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1054525007",
+        "de": "applemusic://track/1054525007",
+        "gb": "applemusic://track/1054525007",
+        "fr": "applemusic://track/1054525007",
+        "es": "applemusic://track/1054525007",
+        "nl": "applemusic://track/1054525007",
+        "it": "applemusic://track/1054525007"
+      }
     },
     {
       "year": 1978,
@@ -2680,12 +2858,22 @@
       "fun_fact_de": "Obwohl anfangs kein großer Hit, wurde es ein FM-Rock-Klassiker und ist jetzt einer von REO Speedwagons beliebtesten Songs.",
       "fun_fact_es": "Aunque no fue un gran éxito inicialmente, se convirtió en un clásico del rock FM y ahora es una de las canciones más queridas de REO Speedwagon.",
       "fun_fact_fr": "Bien qu'il n'ait pas été un grand succès à sa sortie, il est devenu un classique du rock FM et figure aujourd'hui parmi les chansons les plus aimées de REO Speedwagon.",
-      "uri_apple_music": "applemusic://track/1440869574",
+      "uri_apple_music": "applemusic://track/385550998",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kj4-_-iq1A8",
       "uri_deezer": "deezer://track/7674885",
       "fun_fact_nl": "Geen grote hit bij de originele release, maar werd een FM rock-klassieker en is nu een van REO Speedwagons meest geliefde nummers.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/4350140"
+      "uri_tidal": "tidal://track/4350140",
+      "isrc": "USSM17800670",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/385550998",
+        "de": "applemusic://track/385550998",
+        "gb": "applemusic://track/385550998",
+        "fr": "applemusic://track/385550998",
+        "es": "applemusic://track/385550998",
+        "nl": "applemusic://track/385550998",
+        "it": "applemusic://track/385550998"
+      }
     },
     {
       "year": 1982,
@@ -2710,21 +2898,21 @@
       "fun_fact_de": "Ein Fleetwood Mac Duett zwischen Christine McVie und Lindsey Buckingham von Mirage, ihrem kommerziell erfolgreichsten 80er-Album.",
       "fun_fact_es": "Un dueto de Fleetwood Mac entre Christine McVie y Lindsey Buckingham de Mirage, su álbum más exitoso comercialmente de los 80.",
       "fun_fact_fr": "Un duo de Fleetwood Mac entre Christine McVie et Lindsey Buckingham, issu de Mirage, leur album le plus rentable des années 80.",
-      "uri_apple_music": "applemusic://track/1440833748",
+      "uri_apple_music": "applemusic://track/202272100",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VS52sEUqxMo",
       "uri_deezer": "deezer://track/664442",
       "fun_fact_nl": "Een Fleetwood Mac-duet tussen Christine McVie en Lindsey Buckingham van Mirage, hun commercieel meest succesvolle 80s-album.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/17182856",
-      "isrc": "GBUM71507422",
+      "isrc": "USWB19900201",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440833748",
-        "de": "applemusic://track/1440833748",
-        "gb": "applemusic://track/1440833748",
-        "fr": "applemusic://track/1440833748",
-        "es": "applemusic://track/1440833748",
-        "nl": "applemusic://track/1440833748",
-        "it": "applemusic://track/1440833748"
+        "us": "applemusic://track/202272100",
+        "de": "applemusic://track/202272100",
+        "gb": "applemusic://track/202272100",
+        "fr": "applemusic://track/202272100",
+        "es": "applemusic://track/202272100",
+        "nl": "applemusic://track/202272100",
+        "it": "applemusic://track/202272100"
       }
     },
     {
@@ -2750,21 +2938,21 @@
       "fun_fact_de": "Gino Vannellis sanftes Falsett und anspruchsvolle Produktion machten ihn trotz begrenztem Chart-Erfolg zum Yacht-Rock-Kultfavoriten.",
       "fun_fact_es": "El suave falsete de Gino Vannelli y su producción sofisticada lo convirtieron en un favorito de culto del yacht rock a pesar del limitado éxito en las listas.",
       "fun_fact_fr": "Le falsetto velouté et la production sophistiquée de Gino Vannelli en ont fait un favori culte du yacht rock malgré un succès commercial limité.",
-      "uri_apple_music": "applemusic://track/913902467",
+      "uri_apple_music": "applemusic://track/939730110",
       "uri_youtube_music": "https://music.youtube.com/watch?v=m6inZCMnpVo",
       "uri_deezer": "deezer://track/90094593",
       "fun_fact_nl": "Gino Vannelli's vloeiende falsetto en verfijnde productie maakten hem een yacht rock-cultfavoriet ondanks beperkt hitparadesucces.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2870866",
-      "isrc": "USSM17600650",
+      "isrc": "USAR18100182",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/913902467",
-        "de": "applemusic://track/913902467",
-        "gb": "applemusic://track/913902467",
-        "fr": "applemusic://track/913902467",
-        "es": "applemusic://track/913902467",
-        "nl": "applemusic://track/913902467",
-        "it": "applemusic://track/913902467"
+        "us": "applemusic://track/939730110",
+        "de": "applemusic://track/477025774",
+        "gb": "applemusic://track/477025774",
+        "fr": "applemusic://track/477025774",
+        "es": "applemusic://track/477025774",
+        "nl": "applemusic://track/477025774",
+        "it": "applemusic://track/477025774"
       }
     },
     {
@@ -2790,21 +2978,21 @@
       "fun_fact_de": "Melissa Manchesters Durchbruchshit zeigte ihre kraftvolle Stimme und Barry Manilows Einfluss als ihr früher Produzent.",
       "fun_fact_es": "El éxito revelación de Melissa Manchester mostró su poderosa voz y la influencia de Barry Manilow como su productor temprano.",
       "fun_fact_fr": "Le tube révélation de Melissa Manchester a mis en valeur sa voix puissante et l'influence de Barry Manilow, son producteur des débuts.",
-      "uri_apple_music": "applemusic://track/356893398",
+      "uri_apple_music": "applemusic://track/298426797",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1rmPckNvD3E",
       "uri_deezer": "deezer://track/13184502",
       "fun_fact_nl": "Melissa Manchesters doorbraakhit toonde haar krachtige stem en Barry Manilows invloed als haar vroege producer.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/4929771",
-      "isrc": "USSM18000120",
+      "isrc": "USAR17500002",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/356893398",
-        "de": "applemusic://track/356893398",
-        "gb": "applemusic://track/356893398",
-        "fr": "applemusic://track/356893398",
-        "es": "applemusic://track/356893398",
-        "nl": "applemusic://track/356893398",
-        "it": "applemusic://track/356893398"
+        "us": "applemusic://track/298426797",
+        "de": "applemusic://track/298426797",
+        "gb": "applemusic://track/298426797",
+        "fr": "applemusic://track/298426797",
+        "es": "applemusic://track/298426797",
+        "nl": "applemusic://track/298426797",
+        "it": "applemusic://track/298426797"
       }
     },
     {
@@ -2830,21 +3018,21 @@
       "fun_fact_de": "Vom Caddyshack Soundtrack. Kenny Loggins wurde nach diesem und 'Footloose' Hollywoods erste Wahl für Filmsoundtracks.",
       "fun_fact_es": "Del soundtrack de Caddyshack. Kenny Loggins se convirtió en el elegido de Hollywood para bandas sonoras después de esta y 'Footloose.'",
       "fun_fact_fr": "Tirée de la bande originale de Caddyshack. Après ce titre et « Footloose », Kenny Loggins est devenu l'artiste incontournable des musiques de film à Hollywood.",
-      "uri_apple_music": "applemusic://track/523223723",
+      "uri_apple_music": "applemusic://track/356893398",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CUCLNPOjPZw",
       "uri_deezer": "deezer://track/5431773",
       "fun_fact_nl": "Van de Caddyshack-soundtrack. Kenny Loggins werd Hollywoods go-to-man voor filmsoundtracks na dit nummer en 'Footloose'.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2865128",
-      "isrc": "USSM19801712",
+      "isrc": "USSM18000120",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1372947839",
-        "de": "applemusic://track/1372947839",
-        "gb": "applemusic://track/1372947839",
-        "fr": "applemusic://track/1372947839",
-        "es": "applemusic://track/1372947839",
-        "nl": "applemusic://track/1372947839",
-        "it": "applemusic://track/1372947839"
+        "us": "applemusic://track/356893398",
+        "de": "applemusic://track/356893398",
+        "gb": "applemusic://track/356893398",
+        "fr": "applemusic://track/356893398",
+        "es": "applemusic://track/356893398",
+        "nl": "applemusic://track/356893398",
+        "it": "applemusic://track/356893398"
       }
     },
     {
@@ -2870,21 +3058,21 @@
       "fun_fact_de": "Todd Rundgrens einziger großer Hit. Er ist besser als Produzent (Meat Loafs Bat Out of Hell) bekannt denn als Musiker.",
       "fun_fact_es": "El único gran éxito de Todd Rundgren. Es más conocido como productor (Bat Out of Hell de Meat Loaf) que por su propia música.",
       "fun_fact_fr": "Le seul grand succès de Todd Rundgren. Il est davantage connu comme producteur (Bat Out of Hell de Meat Loaf) que pour sa propre musique.",
-      "uri_apple_music": "applemusic://track/158816077",
+      "uri_apple_music": "applemusic://track/1868938591",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HaA3YZ6QdJU",
       "uri_deezer": "deezer://track/672394",
       "fun_fact_nl": "Todd Rundgrens enige grote hit. Hij staat beter bekend als producer (Meat Loafs Bat Out of Hell) dan voor zijn eigen muziek.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2961406",
-      "isrc": "USSM17700371",
+      "isrc": "USRH10553197",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1739853941",
-        "de": "applemusic://track/1739853941",
-        "gb": "applemusic://track/1739853941",
-        "fr": "applemusic://track/1739853941",
-        "es": "applemusic://track/1739853941",
-        "nl": "applemusic://track/1739853941",
-        "it": "applemusic://track/1739853941"
+        "us": "applemusic://track/1868938591",
+        "de": "applemusic://track/1868938591",
+        "gb": "applemusic://track/1868938591",
+        "fr": "applemusic://track/1868938591",
+        "es": "applemusic://track/1868938591",
+        "nl": "applemusic://track/1868938591",
+        "it": "applemusic://track/1868938591"
       }
     },
     {
@@ -2910,21 +3098,21 @@
       "fun_fact_de": "Dan Fogelbergs Soft-Rock-Ballade fing perfekt die sensible Singer-Songwriter-Ästhetik der frühen 80er ein.",
       "fun_fact_es": "La balada de soft rock de Dan Fogelberg capturó perfectamente la estética sensible del cantautor de principios de los 80.",
       "fun_fact_fr": "La ballade soft rock de Dan Fogelberg capturait parfaitement la sensibilité des auteurs-compositeurs-interprètes du début des années 80.",
-      "uri_apple_music": "applemusic://track/150058668",
+      "uri_apple_music": "applemusic://track/205884821",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rMdkw7Jh1o8",
       "uri_deezer": "deezer://track/1014360",
       "fun_fact_nl": "Dan Fogelbergs soft rock-ballade ving de gevoelige singer-songwriter-esthetiek van het begin van de jaren 80 perfect.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2865129",
-      "isrc": "USWB19901801",
+      "isrc": "USSM18200160",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1829435604",
-        "de": "applemusic://track/1626974448",
-        "gb": "applemusic://track/1626974448",
-        "fr": "applemusic://track/1626974448",
-        "es": "applemusic://track/1626974448",
-        "nl": "applemusic://track/1626974448",
-        "it": "applemusic://track/1626974448"
+        "us": "applemusic://track/205884821",
+        "de": "applemusic://track/205884821",
+        "gb": "applemusic://track/205884821",
+        "fr": "applemusic://track/205884821",
+        "es": "applemusic://track/205884821",
+        "nl": "applemusic://track/205884821",
+        "it": "applemusic://track/205884821"
       }
     },
     {
@@ -2950,26 +3138,26 @@
       "fun_fact_de": "Von Carole Kings Tapestry, einem der meistverkauften Alben aller Zeiten. Sie schrieb es darüber, ihre Familie während der Tour zu vermissen.",
       "fun_fact_es": "De Tapestry de Carole King, uno de los álbumes más vendidos de la historia. La escribió sobre extrañar a su familia mientras estaba de gira.",
       "fun_fact_fr": "Tirée de Tapestry de Carole King, l'un des albums les plus vendus de l'histoire. Elle l'a écrite en pensant à sa famille qui lui manquait pendant les tournées.",
-      "uri_apple_music": "applemusic://track/200598090",
+      "uri_apple_music": "applemusic://track/1835503992",
       "uri_youtube_music": "https://music.youtube.com/watch?v=r7XhWUDj-Ts",
       "uri_deezer": "deezer://track/119819700",
       "fun_fact_nl": "Van Carole Kings Tapestry, een van de bestverkochte albums ooit. Ze schreef het over het missen van haar familie tijdens een tournee.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2858729",
-      "isrc": "USSM18600734",
+      "isrc": "USSM17100516",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1739905634",
-        "de": "applemusic://track/1739905634",
-        "gb": "applemusic://track/1739905634",
-        "fr": "applemusic://track/1739905634",
-        "es": "applemusic://track/1739905634",
-        "nl": "applemusic://track/1739905634",
-        "it": "applemusic://track/1739905634"
+        "us": "applemusic://track/1835503992",
+        "de": "applemusic://track/965773542",
+        "gb": "applemusic://track/965773542",
+        "fr": "applemusic://track/965773542",
+        "es": "applemusic://track/965773542",
+        "nl": "applemusic://track/965773542",
+        "it": "applemusic://track/965773542"
       }
     },
     {
       "year": 1981,
-      "uri": "spotify:track:3lPx2bfSE9wLaWsm5flhSn",
+      "uri": "spotify:track:7DZQd335o3GLCJhkqUox4I",
       "artist": "Atlanta Rhythm Section",
       "alt_artists": [
         "38 Special",
@@ -2988,21 +3176,21 @@
       "fun_fact_de": "Atlanta Rhythm Sections glatter Southern Rock ging mit seiner polierten Produktion in Yacht-Rock-Territorium über.",
       "fun_fact_es": "El suave Southern rock de Atlanta Rhythm Section cruzó al territorio del yacht rock con su producción pulida.",
       "fun_fact_fr": "Le Southern rock soigné d'Atlanta Rhythm Section s'aventurait sur le territoire du yacht rock grâce à une production très léchée.",
-      "uri_apple_music": "applemusic://track/1650885304",
+      "uri_apple_music": "applemusic://track/305458221",
       "uri_youtube_music": "https://music.youtube.com/watch?v=91XTZ92zs2w",
       "uri_deezer": "deezer://track/70353308",
       "fun_fact_nl": "Atlanta Rhythm Sections vloeiende Southern rock begaf zich in yacht rock-territorium met zijn gepolijste productie.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/17686571",
-      "isrc": "USMC17347184",
+      "isrc": "USCMG0301444",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1686459150",
-        "de": "applemusic://track/1440803730",
-        "gb": "applemusic://track/1440803730",
-        "fr": "applemusic://track/1440803730",
-        "es": "applemusic://track/1440803730",
-        "nl": "applemusic://track/1440803730",
-        "it": "applemusic://track/1440803730"
+        "us": "applemusic://track/305458221",
+        "de": "applemusic://track/305458221",
+        "gb": "applemusic://track/305458221",
+        "fr": "applemusic://track/305458221",
+        "es": "applemusic://track/305458221",
+        "nl": "applemusic://track/305458221",
+        "it": "applemusic://track/305458221"
       }
     },
     {
@@ -3028,21 +3216,21 @@
       "fun_fact_de": "Ursprünglich über das Ende der Prohibition geschrieben, änderte Frankie Valli es zu einem Song über das erste Mal. Es erreichte 1994 als Remix erneut #1.",
       "fun_fact_es": "Originalmente escrita sobre el fin de la Prohibición, Frankie Valli la cambió para ser sobre perder la virginidad. Llegó al #1 de nuevo en un remix de 1994.",
       "fun_fact_fr": "Initialement écrite sur la fin de la Prohibition, Frankie Valli en a fait une chanson sur la perte de sa virginité. Elle est revenue au numéro 1 dans un remix de 1994.",
-      "uri_apple_music": "applemusic://track/1443170382",
+      "uri_apple_music": "applemusic://track/1795657915",
       "uri_youtube_music": "https://music.youtube.com/watch?v=h3JFEfdK_Ls",
       "uri_deezer": "deezer://track/725715",
       "fun_fact_nl": "Oorspronkelijk geschreven over het einde van de drooglegging, veranderde Frankie Valli het in een nummer over het verliezen van de maagdelijkheid. Het bereikte opnieuw nummer 1 in een remix uit 1994.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2963680",
-      "isrc": "USDJ29800844",
+      "isrc": "USRH10175221",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443170382",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1795657915",
+        "de": "applemusic://track/1795657915",
+        "gb": "applemusic://track/1795657915",
+        "fr": "applemusic://track/1795657915",
+        "es": "applemusic://track/1795657915",
+        "nl": "applemusic://track/1795657915",
+        "it": "applemusic://track/1795657915"
       }
     },
     {
@@ -3068,21 +3256,21 @@
       "fun_fact_de": "Pablo Cruises größter Hit verkörperte den entspannten kalifornischen Yacht-Rock-Sound mit seiner optimistischen Botschaft und glatten Harmonien.",
       "fun_fact_es": "El mayor éxito de Pablo Cruise ejemplificó el sonido relajado del yacht rock californiano con su mensaje optimista y armonías suaves.",
       "fun_fact_fr": "Le plus grand succès de Pablo Cruise incarnait le son décontracté du yacht rock californien, porté par un message optimiste et des harmonies veloutées.",
-      "uri_apple_music": "applemusic://track/399222355",
+      "uri_apple_music": "applemusic://track/1440908276",
       "uri_youtube_music": "https://music.youtube.com/watch?v=H-W3wC0zRWs",
       "uri_deezer": "deezer://track/1762490187",
       "fun_fact_nl": "Pablo Cruises grootste hit belichaamde het ontspannen Californische yacht rock-geluid met zijn optimistische boodschap en vloeiende harmonieën.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/7453549",
-      "isrc": "USRC19901209",
+      "isrc": "USAM10110111",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/399222355",
-        "de": "applemusic://track/399222355",
-        "gb": "applemusic://track/399222355",
-        "fr": "applemusic://track/399222355",
-        "es": "applemusic://track/399222355",
-        "nl": "applemusic://track/399222355",
-        "it": "applemusic://track/399222355"
+        "us": "applemusic://track/1440908276",
+        "de": "applemusic://track/1440908276",
+        "gb": "applemusic://track/1440908276",
+        "fr": "applemusic://track/1440908276",
+        "es": "applemusic://track/1440908276",
+        "nl": "applemusic://track/1440908276",
+        "it": "applemusic://track/1440908276"
       }
     },
     {
@@ -3106,12 +3294,22 @@
       "fun_fact_de": "REO Speedwagon setzte ihre Power-Balladen-Formel mit diesem inspirierenden Track bis in die Mitte der 80er fort.",
       "fun_fact_es": "REO Speedwagon continuó su fórmula de power ballad hasta mediados de los 80 con esta canción inspiradora.",
       "fun_fact_fr": "REO Speedwagon a poursuivi sa recette de power ballads jusqu'au milieu des années 80 avec ce titre inspirant.",
-      "uri_apple_music": "applemusic://track/1440869608",
+      "uri_apple_music": "applemusic://track/194771488",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fKTQVBnXrZs",
       "uri_deezer": "deezer://track/581543",
       "fun_fact_nl": "REO Speedwagon zette hun power ballad-formule voort in het midden van de jaren 80 met dit inspirerende nummer.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/4350154"
+      "uri_tidal": "tidal://track/4350154",
+      "isrc": "USSM18400714",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/194771488",
+        "de": "applemusic://track/194771488",
+        "gb": "applemusic://track/194771488",
+        "fr": "applemusic://track/194771488",
+        "es": "applemusic://track/194771488",
+        "nl": "applemusic://track/194771488",
+        "it": "applemusic://track/194771488"
+      }
     },
     {
       "year": 1975,
@@ -3136,12 +3334,22 @@
       "fun_fact_de": "Americas zweiter #1-Hit (nach 'A Horse with No Name') zeigte ihre typischen akustischen Harmonien und sanften Rock-Sound.",
       "fun_fact_es": "El segundo #1 de America (después de 'A Horse with No Name') presentó sus características armonías acústicas y sonido de rock suave.",
       "fun_fact_fr": "Le deuxième numéro 1 d'America (après « A Horse with No Name ») mettait en avant leurs harmonies acoustiques caractéristiques et leur rock tout en douceur.",
-      "uri_apple_music": "applemusic://track/1440804580",
+      "uri_apple_music": "applemusic://track/1781681258",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rJGPXP7i-RM",
       "uri_deezer": "deezer://track/727762",
       "fun_fact_nl": "America's tweede nummer 1-hit (na 'A Horse with No Name') bevatte hun kenmerkende akoestische harmonieën en zacht rockgeluid.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/2858230"
+      "uri_tidal": "tidal://track/2858230",
+      "isrc": "USWB19901801",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1781681258",
+        "de": "applemusic://track/1550294227",
+        "gb": "applemusic://track/1550294227",
+        "fr": "applemusic://track/1550294227",
+        "es": "applemusic://track/1550294227",
+        "nl": "applemusic://track/1550294227",
+        "it": "applemusic://track/1550294227"
+      }
     },
     {
       "year": 1977,
@@ -3166,21 +3374,21 @@
       "fun_fact_de": "Paul Simons Meditation über Lebenskämpfe hatte die Oak Ridge Boys als Background-Sänger, eine ungewöhnliche aber effektive Kombination.",
       "fun_fact_es": "La meditación de Paul Simon sobre las luchas de la vida presentó a los Oak Ridge Boys en coros, una combinación inusual pero efectiva.",
       "fun_fact_fr": "La méditation de Paul Simon sur les aléas de la vie mettait en scène les Oak Ridge Boys aux chœurs, une association inattendue mais très réussie.",
-      "uri_apple_music": "applemusic://track/1442972225",
+      "uri_apple_music": "applemusic://track/703069487",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aCsZ3_db_Fk",
       "uri_deezer": "deezer://track/6599446",
       "fun_fact_nl": "Paul Simons meditatie over de strubbelingen van het leven bevatte de Oak Ridge Boys op achtergrondzang, een ongebruikelijke maar effectieve combinatie.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2867459",
-      "isrc": "USMO17700543",
+      "isrc": "USSM19900786",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1692666726",
-        "de": "applemusic://track/1692666726",
-        "gb": "applemusic://track/1692666726",
-        "fr": "applemusic://track/1692666726",
-        "es": "applemusic://track/1692666726",
-        "nl": "applemusic://track/1692666726",
-        "it": "applemusic://track/1692666726"
+        "us": "applemusic://track/703069487",
+        "de": "applemusic://track/571726",
+        "gb": "applemusic://track/571726",
+        "fr": "applemusic://track/571726",
+        "es": "applemusic://track/703069487",
+        "nl": "applemusic://track/703069487",
+        "it": "applemusic://track/703069487"
       }
     },
     {
@@ -3204,21 +3412,21 @@
       "fun_fact_de": "TOTOs anspruchsvolle Musikalität war immer präsent. Die Bandmitglieder waren Top-LA-Studiomusiker bevor sie die Gruppe gründeten.",
       "fun_fact_es": "La sofisticada musicalidad de TOTO siempre estuvo en exhibición. Los miembros de la banda eran músicos de sesión de primera en LA antes de formar el grupo.",
       "fun_fact_fr": "Le talent musical de TOTO était toujours impressionnant. Les membres du groupe étaient des musiciens de studio très demandés à Los Angeles avant de former le groupe.",
-      "uri_apple_music": "applemusic://track/1440841456",
+      "uri_apple_music": "applemusic://track/1310067323",
       "uri_youtube_music": "https://music.youtube.com/watch?v=S9iTAYYAybI",
       "uri_deezer": "deezer://track/1080433",
       "fun_fact_nl": "TOTO's verfijnde muzikantschap was altijd aanwezig. De bandleden waren topstudio-muzikanten in LA voordat ze de groep vormden.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3670330",
-      "isrc": "DEUM71602001",
+      "isrc": "USSM17800432",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440841456",
-        "de": "applemusic://track/1440841456",
-        "gb": "applemusic://track/1440841456",
-        "fr": "applemusic://track/1440841456",
-        "es": "applemusic://track/1440841456",
-        "nl": "applemusic://track/1440841456",
-        "it": "applemusic://track/1440841456"
+        "us": "applemusic://track/1310067323",
+        "de": "applemusic://track/269289490",
+        "gb": "applemusic://track/269289490",
+        "fr": "applemusic://track/269289490",
+        "es": "applemusic://track/269289490",
+        "nl": "applemusic://track/269289490",
+        "it": "applemusic://track/1007028758"
       }
     },
     {
@@ -3242,21 +3450,21 @@
       "fun_fact_de": "Herbie Hancocks Smooth-Jazz-Crossover half, die Lücke zwischen Jazz-Fusion und Pop zu überbrücken und sprach Yacht-Rock-Fans an.",
       "fun_fact_es": "El crossover de smooth jazz de Herbie Hancock ayudó a cerrar la brecha entre el jazz fusión y el pop, atrayendo a los fans del yacht rock.",
       "fun_fact_fr": "Le crossover smooth jazz de Herbie Hancock a contribué à combler le fossé entre le jazz fusion et la pop, séduisant au passage les amateurs de yacht rock.",
-      "uri_apple_music": "applemusic://track/281139574",
+      "uri_apple_music": "applemusic://track/741231263",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6IO74QV6wHY",
       "uri_deezer": "deezer://track/74494297",
       "fun_fact_nl": "Herbie Hancocks smooth jazz-crossover hielp de kloof te overbruggen tussen jazzfusie en pop, en sprak yacht rock-fans aan.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3529720",
-      "isrc": "USEE19901162",
+      "isrc": "USSM11003948",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/310527535",
-        "de": "applemusic://track/310527535",
-        "gb": "applemusic://track/310527535",
-        "fr": "applemusic://track/310527535",
-        "es": "applemusic://track/310527535",
-        "nl": "applemusic://track/310527535",
-        "it": "applemusic://track/310527535"
+        "us": "applemusic://track/741231263",
+        "de": "applemusic://track/741231263",
+        "gb": "applemusic://track/741231263",
+        "fr": "applemusic://track/741231263",
+        "es": "applemusic://track/741231263",
+        "nl": "applemusic://track/741231263",
+        "it": "applemusic://track/741231263"
       }
     },
     {
@@ -3282,21 +3490,21 @@
       "fun_fact_de": "Gewann Melissa Manchester den Grammy für die beste weibliche Pop-Gesangsdarbietung. Ein später Karriere-Hit, der ihre Popularität wiederbelebte.",
       "fun_fact_es": "Le ganó a Melissa Manchester el Grammy a la Mejor Interpretación Vocal Pop Femenina. Un éxito tardío que revitalizó su popularidad.",
       "fun_fact_fr": "A valu à Melissa Manchester le Grammy de la Meilleure prestation vocale pop féminine. Un succès tardif qui a relancé sa popularité.",
-      "uri_apple_music": "applemusic://track/198226436",
+      "uri_apple_music": "applemusic://track/497752519",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EWIgEtkE3GA",
       "uri_deezer": "deezer://track/540671",
       "fun_fact_nl": "Bezorgde Melissa Manchester de Grammy voor Best Female Pop Vocal Performance. Een late-carrière-hit die haar populariteit nieuw leven inblies.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/4929774",
-      "isrc": "USSM17800433",
+      "isrc": "USAR18200125",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/890507498",
-        "de": "applemusic://track/890507498",
-        "gb": "applemusic://track/890507498",
-        "fr": "applemusic://track/890507498",
-        "es": "applemusic://track/890507498",
-        "nl": "applemusic://track/890507498",
-        "it": "applemusic://track/890507498"
+        "us": "applemusic://track/497752519",
+        "de": "applemusic://track/466842873",
+        "gb": "applemusic://track/466842873",
+        "fr": "applemusic://track/466842873",
+        "es": "applemusic://track/466842873",
+        "nl": "applemusic://track/466842873",
+        "it": "applemusic://track/466842873"
       }
     },
     {
@@ -3322,21 +3530,21 @@
       "fun_fact_de": "Ray Parker Jr. vor seinem Ghostbusters-Ruhm. Sein glatter R&B-Stil passte perfekt zu Yacht Rock im Radio der späten 70er.",
       "fun_fact_es": "Ray Parker Jr. antes de su fama de Ghostbusters. Su estilo suave de R&B encajó perfectamente con el yacht rock en la radio de finales de los 70.",
       "fun_fact_fr": "Ray Parker Jr. avant sa gloire de Ghostbusters. Son style R&B velouté s'intégrait parfaitement au yacht rock diffusé sur les ondes à la fin des années 70.",
-      "uri_apple_music": "applemusic://track/1458825378",
+      "uri_apple_music": "applemusic://track/1439768920",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NmEyGiaqm7k",
       "uri_deezer": "deezer://track/970621",
       "fun_fact_nl": "Ray Parker Jr. vóór zijn Ghostbusters-roem. Zijn vloeiende R&B-stijl paste perfect naast yacht rock op de late jaren 70-radio.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/6831426",
-      "isrc": "NLF057790013",
+      "isrc": "USAR17900119",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1700309394",
-        "de": "applemusic://track/1700309394",
-        "gb": "applemusic://track/1700309394",
-        "fr": "applemusic://track/1700309394",
-        "es": "applemusic://track/1700309394",
-        "nl": "applemusic://track/1700309394",
-        "it": "applemusic://track/1700309394"
+        "us": "applemusic://track/1439768920",
+        "de": "applemusic://track/1439768920",
+        "gb": "applemusic://track/1439768920",
+        "fr": "applemusic://track/1439768920",
+        "es": "applemusic://track/1439768920",
+        "nl": "applemusic://track/1439768920",
+        "it": "applemusic://track/1439768920"
       }
     },
     {
@@ -3362,21 +3570,21 @@
       "fun_fact_de": "Americas 80er-Comeback-Hit wurde von Russ Ballard geschrieben und zeigte, dass sie sich an den polierten Produktionsstil des Jahrzehnts anpassen konnten.",
       "fun_fact_es": "El éxito de regreso de America en los 80 fue escrito por Russ Ballard y mostró que podían adaptarse al estilo de producción pulido de la década.",
       "fun_fact_fr": "Le tube du retour d'America dans les années 80, écrit par Russ Ballard, a prouvé que le groupe savait s'adapter au son léché de la décennie.",
-      "uri_apple_music": "applemusic://track/380625700",
+      "uri_apple_music": "applemusic://track/1890402316",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iUODdPpnxcA",
       "uri_deezer": "deezer://track/729597952",
       "fun_fact_nl": "America's comeback-hit uit de jaren 80 werd geschreven door Russ Ballard en toonde aan dat ze zich konden aanpassen aan de gepolijste productiestijl van het decennium.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2858234",
-      "isrc": "USSM19900786",
+      "isrc": "USCA29300290",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/703069487",
-        "de": "applemusic://track/571726",
-        "gb": "applemusic://track/571726",
-        "fr": "applemusic://track/571726",
-        "es": "applemusic://track/703069487",
-        "nl": "applemusic://track/703069487",
-        "it": "applemusic://track/703069487"
+        "us": "applemusic://track/1890402316",
+        "de": "applemusic://track/1890402316",
+        "gb": "applemusic://track/1890402316",
+        "fr": "applemusic://track/1890402316",
+        "es": "applemusic://track/1890402316",
+        "nl": "applemusic://track/1890402316",
+        "it": "applemusic://track/1890402316"
       }
     },
     {
@@ -3402,21 +3610,21 @@
       "fun_fact_de": "Barry Manilows inspirierender Hit zeigte seinen theatralischen, Broadway-beeinflussten Pop-Stil, der ihn zum Soft-Rock-Klassiker machte.",
       "fun_fact_es": "El éxito inspirador de Barry Manilow mostró su estilo pop teatral influenciado por Broadway que lo convirtió en un clásico del soft rock.",
       "fun_fact_fr": "Le titre inspirant de Barry Manilow a mis en lumière son style pop théâtral, influencé par Broadway, qui a fait de lui une figure emblématique du soft rock.",
-      "uri_apple_music": "applemusic://track/358568310",
+      "uri_apple_music": "applemusic://track/268158619",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Z1z7oipqPc",
       "uri_deezer": "deezer://track/599402",
       "fun_fact_nl": "Barry Manilows inspirerende hit toonde zijn theatrale, Broadway-geïnspireerde popstijl die hem een soft rock-vaste waarde maakte.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2903685",
-      "isrc": "USWB19903128",
+      "isrc": "USAR17400167",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1550936576",
-        "de": "applemusic://track/1550936576",
-        "gb": "applemusic://track/1550936576",
-        "fr": "applemusic://track/1550936576",
-        "es": "applemusic://track/1550936576",
-        "nl": "applemusic://track/1550936576",
-        "it": "applemusic://track/1550936576"
+        "us": "applemusic://track/268158619",
+        "de": "applemusic://track/268158619",
+        "gb": "applemusic://track/268158619",
+        "fr": "applemusic://track/268158619",
+        "es": "applemusic://track/268158619",
+        "nl": "applemusic://track/268158619",
+        "it": "applemusic://track/268158619"
       }
     },
     {
@@ -3440,21 +3648,21 @@
       "fun_fact_de": "Air Supply setzte ihre Hitserie bis Mitte der 80er fort und bewies, dass die Nachfrage nach romantischen Soft-Rock-Balladen stark blieb.",
       "fun_fact_es": "Air Supply continuó su racha de éxitos hasta mediados de los 80, demostrando que la demanda de baladas románticas de soft rock seguía siendo fuerte.",
       "fun_fact_fr": "Air Supply a poursuivi sa série de succès jusqu'au milieu des années 80, prouvant que la demande de ballades romantiques en soft rock restait bien vivante.",
-      "uri_apple_music": "applemusic://track/1456623340",
+      "uri_apple_music": "applemusic://track/1271007161",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Gs069dndIYk",
       "uri_deezer": "deezer://track/13145316",
       "fun_fact_nl": "Air Supply zette hun hitreeks voort tot in het midden van de jaren 80, wat bewees dat de vraag naar romantische soft rock-ballades sterk bleef.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3120920",
-      "isrc": "USSM17800845",
+      "isrc": "USAR18500001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1456446747",
-        "de": "applemusic://track/1456446747",
-        "gb": "applemusic://track/1456446747",
-        "fr": "applemusic://track/1456446747",
-        "es": "applemusic://track/1456446747",
-        "nl": "applemusic://track/1456446747",
-        "it": "applemusic://track/1456446747"
+        "us": "applemusic://track/1271007161",
+        "de": "applemusic://track/250520278",
+        "gb": "applemusic://track/1308655788",
+        "fr": "applemusic://track/250520278",
+        "es": "applemusic://track/250520278",
+        "nl": "applemusic://track/250520278",
+        "it": "applemusic://track/250520278"
       }
     },
     {
@@ -3480,21 +3688,21 @@
       "fun_fact_de": "Gary Wrights Synthesizer-getriebener Hit war seiner Zeit voraus. Er wurde in Wayne's World verwendet und stellte den Song einer neuen Generation vor.",
       "fun_fact_es": "El éxito impulsado por sintetizador de Gary Wright estaba adelantado a su tiempo. Se usó en Wayne's World e introdujo la canción a una nueva generación.",
       "fun_fact_fr": "Le tube de Gary Wright, porté par le synthétiseur, était en avance sur son temps. Son utilisation dans Wayne's World l'a fait découvrir à une nouvelle génération.",
-      "uri_apple_music": "applemusic://track/1227004981",
+      "uri_apple_music": "applemusic://track/1828952377",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xZKuzwPOEBU",
       "uri_deezer": "deezer://track/3821960",
       "fun_fact_nl": "Gary Wrights synthesizer-gedreven hit was zijn tijd vooruit. Het werd gebruikt in Wayne's World en introduceerde het nummer bij een nieuwe generatie.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2970073",
-      "isrc": "USSM10210125",
+      "isrc": "USWB10902466",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1227004981",
-        "de": "applemusic://track/1227004981",
-        "gb": "applemusic://track/1227004981",
-        "fr": "applemusic://track/1227004981",
-        "es": "applemusic://track/1227004981",
-        "nl": "applemusic://track/1227004981",
-        "it": "applemusic://track/1227004981"
+        "us": "applemusic://track/1828952377",
+        "de": "applemusic://track/1828952377",
+        "gb": "applemusic://track/1828952377",
+        "fr": "applemusic://track/1828952377",
+        "es": "applemusic://track/1828952377",
+        "nl": "applemusic://track/1828952377",
+        "it": "applemusic://track/1828952377"
       }
     },
     {
@@ -3520,21 +3728,21 @@
       "fun_fact_de": "Ambrosias glatter Sound und komplexe Harmonien machten sie zu Yacht-Rock-Favoriten. David Packs Gesang schwebt auf diesem Track.",
       "fun_fact_es": "El sonido suave de Ambrosia y sus intrincadas armonías los convirtieron en favoritos del yacht rock. Las voces de David Pack se elevan en esta canción.",
       "fun_fact_fr": "Le son velouté et les harmonies complexes d'Ambrosia en ont fait des favoris du yacht rock. La voix de David Pack s'envole sur ce morceau.",
-      "uri_apple_music": "applemusic://track/1440803570",
+      "uri_apple_music": "applemusic://track/342382936",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9PnXcP8ZI7M",
       "uri_deezer": "deezer://track/764505",
       "fun_fact_nl": "Ambrosias vloeiende geluid en ingewikkelde harmonieën maakten hen tot yacht rock-favorieten. David Packs zang schittert op dit nummer.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/2857836",
-      "isrc": "HKG079900410",
+      "isrc": "USWB18000096",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443389089",
-        "de": "applemusic://track/1443389089",
-        "gb": "applemusic://track/1443389089",
-        "fr": "applemusic://track/1443389089",
-        "es": "applemusic://track/1443389089",
-        "nl": "applemusic://track/1443389089",
-        "it": "applemusic://track/1443389089"
+        "us": "applemusic://track/342382936",
+        "de": "applemusic://track/1849182055",
+        "gb": "applemusic://track/1849182055",
+        "fr": "applemusic://track/1849182055",
+        "es": "applemusic://track/1849182055",
+        "nl": "applemusic://track/1849182055",
+        "it": "applemusic://track/1849182055"
       }
     },
     {
@@ -3558,26 +3766,26 @@
       "fun_fact_de": "Airplay war ein kurzlebiges Supergruppe mit Jay Graydon und David Foster - zwei der wichtigsten Yacht-Rock-Produzenten.",
       "fun_fact_es": "Airplay fue un supergrupo de corta duración con Jay Graydon y David Foster - dos de los productores más importantes del yacht rock.",
       "fun_fact_fr": "Airplay était un supergroupe éphémère réunissant Jay Graydon et David Foster, deux des producteurs les plus importants du yacht rock.",
-      "uri_apple_music": "applemusic://track/169641833",
+      "uri_apple_music": "applemusic://track/399222355",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FZHYVYI-9Nk",
       "uri_deezer": "deezer://track/7453550",
       "fun_fact_nl": "Airplay was een kortlevende supergroep met Jay Graydon en David Foster - twee van de belangrijkste producers van yacht rock.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/7453548",
-      "isrc": "USSM18400714",
+      "isrc": "USRC19901209",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/194771488",
-        "de": "applemusic://track/194771488",
-        "gb": "applemusic://track/194771488",
-        "fr": "applemusic://track/194771488",
-        "es": "applemusic://track/194771488",
-        "nl": "applemusic://track/194771488",
-        "it": "applemusic://track/194771488"
+        "us": "applemusic://track/399222355",
+        "de": "applemusic://track/399222355",
+        "gb": "applemusic://track/399222355",
+        "fr": "applemusic://track/399222355",
+        "es": "applemusic://track/399222355",
+        "nl": "applemusic://track/399222355",
+        "it": "applemusic://track/399222355"
       }
     },
     {
       "year": 1977,
-      "uri": "spotify:track:3WfeaOZYCYJcNl5dy7MOji",
+      "uri": "spotify:track:2M7EflZCPCqqRLB9hy5MDy",
       "artist": "Chuck Mangione",
       "alt_artists": [
         "Grover Washington Jr.",
@@ -3598,21 +3806,21 @@
       "fun_fact_de": "Chuck Mangiones Flügelhorn-Instrumental schaffte es ins Pop-Radio und bewies, dass Jazz kommerziell erfolgreich sein kann.",
       "fun_fact_es": "El instrumental de fliscorno de Chuck Mangione cruzó a la radio pop, demostrando que el jazz podía ser comercialmente exitoso.",
       "fun_fact_fr": "L'instrumental au bugle de Chuck Mangione a conquis la radio pop, prouvant que le jazz pouvait rencontrer un succès commercial.",
-      "uri_apple_music": "applemusic://track/1715946512",
+      "uri_apple_music": "applemusic://track/1708974988",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dwgr3bDRPmg",
       "uri_deezer": "deezer://track/548727132",
       "fun_fact_nl": "Chuck Mangiones flugelhorn-instrumentaal waaide over naar de popradio, waarmee werd bewezen dat jazz commercieel succesvol kon zijn.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3514547",
-      "isrc": "USMC17947237",
+      "isrc": "USUMG9900628",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1700307672",
-        "de": "applemusic://track/1700307672",
-        "gb": "applemusic://track/1700307672",
-        "fr": "applemusic://track/1700307672",
-        "es": "applemusic://track/1700307672",
-        "nl": "applemusic://track/1700307672",
-        "it": "applemusic://track/1700307672"
+        "us": "applemusic://track/1708974988",
+        "de": "applemusic://track/1708974988",
+        "gb": "applemusic://track/1708974988",
+        "fr": "applemusic://track/1708974988",
+        "es": "applemusic://track/1708974988",
+        "nl": "applemusic://track/1708974988",
+        "it": "applemusic://track/1708974988"
       }
     },
     {
@@ -3638,21 +3846,21 @@
       "fun_fact_de": "Air Supplys Serie von sieben aufeinanderfolgenden Top-5-Hits in Amerika wurde von keinem anderen Soft-Rock-Act der Ära erreicht.",
       "fun_fact_es": "La racha de Air Supply de siete éxitos consecutivos en el top cinco en América no fue igualada por ningún otro acto de soft rock de la era.",
       "fun_fact_fr": "La série de sept succès consécutifs d'Air Supply dans le top 5 américain n'a été égalée par aucun autre groupe de soft rock de l'époque.",
-      "uri_apple_music": "applemusic://track/321974997",
+      "uri_apple_music": "applemusic://track/298528596",
       "uri_youtube_music": "https://music.youtube.com/watch?v=McZYYe0kAtg",
       "uri_deezer": "deezer://track/3551809",
       "fun_fact_nl": "Air Supplys reeks van zeven opeenvolgende top vijf-hits in Amerika werd door geen enkele andere soft rock-act van het tijdperk geëvenaard.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/3120906",
-      "isrc": "USWB10902466",
+      "isrc": "USAR19901120",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1778245411",
-        "de": "applemusic://track/1231208857",
-        "gb": "applemusic://track/1231208857",
-        "fr": "applemusic://track/1231208857",
-        "es": "applemusic://track/1231208857",
-        "nl": "applemusic://track/1231208857",
-        "it": "applemusic://track/1231208857"
+        "us": "applemusic://track/298528596",
+        "de": "applemusic://track/298528596",
+        "gb": "applemusic://track/315188552",
+        "fr": "applemusic://track/298528596",
+        "es": "applemusic://track/298528596",
+        "nl": "applemusic://track/298528596",
+        "it": "applemusic://track/298528596"
       }
     },
     {
@@ -3680,8 +3888,18 @@
       "fun_fact_nl": "Boz Scaggs keerde terug naar de hitparades na een lange onderbreking, waarmee hij bewees dat het yacht rock-geluid nog steeds aanslaan kon in de late jaren 80.",
       "awards_nl": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=fQlKa1IeZF8",
-      "uri_apple_music": "applemusic://track/1440872768",
-      "uri_tidal": "tidal://track/247879952"
+      "uri_apple_music": "applemusic://track/1515388453",
+      "uri_tidal": "tidal://track/247879952",
+      "isrc": "USMB50400019",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1515388453",
+        "de": "applemusic://track/1515388453",
+        "gb": "applemusic://track/1515388453",
+        "fr": "applemusic://track/1515388453",
+        "es": "applemusic://track/1515388453",
+        "nl": "applemusic://track/1515388453",
+        "it": "applemusic://track/1515388453"
+      }
     },
     {
       "year": 1982,
@@ -3708,17 +3926,17 @@
       "fun_fact_nl": "Van TOTO's enorm succesvolle TOTO IV-album dat zes Grammy's won, waaronder Album of the Year.",
       "awards_nl": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=qmOLtTGvsbM",
-      "uri_apple_music": "applemusic://track/1440841470",
+      "uri_apple_music": "applemusic://track/890507687",
       "uri_tidal": "tidal://track/542177",
-      "isrc": "DEUM71602005",
+      "isrc": "USSM19801933",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440841470",
-        "de": "applemusic://track/1440841470",
-        "gb": "applemusic://track/1440841470",
-        "fr": "applemusic://track/1440841470",
-        "es": "applemusic://track/1440841470",
-        "nl": "applemusic://track/1440841470",
-        "it": "applemusic://track/1440841470"
+        "us": "applemusic://track/890507687",
+        "de": "applemusic://track/890507687",
+        "gb": "applemusic://track/890507687",
+        "fr": "applemusic://track/890507687",
+        "es": "applemusic://track/890507687",
+        "nl": "applemusic://track/890507687",
+        "it": "applemusic://track/890507687"
       }
     },
     {
@@ -3746,8 +3964,18 @@
       "fun_fact_nl": "Paul Davis' vloeiende stem en productiestijl pasten perfect in het yacht rock-model van het begin van de jaren 80.",
       "awards_nl": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=BRx58DgOxeg",
-      "uri_apple_music": "applemusic://track/278498556",
-      "uri_tidal": "tidal://track/4965780"
+      "uri_apple_music": "applemusic://track/1227004981",
+      "uri_tidal": "tidal://track/4965780",
+      "isrc": "USSM10210125",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1227004981",
+        "de": "applemusic://track/1227004981",
+        "gb": "applemusic://track/1227004981",
+        "fr": "applemusic://track/1227004981",
+        "es": "applemusic://track/1227004981",
+        "nl": "applemusic://track/1227004981",
+        "it": "applemusic://track/1227004981"
+      }
     }
   ]
 }
