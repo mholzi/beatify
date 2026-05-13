@@ -11826,6 +11826,13 @@ body.is-learning-screen .player-header { display: none; }
     object-fit: cover;
     border-radius: 50%;
     z-index: 1;
+    /* #850: blur cover during PLAYING so readable text on artwork (album titles,
+       years, artist names) can't leak the year-guess answer. Colour/vibe is
+       preserved. At REVEAL, the larger #reveal-album-cover (player.html:481) is
+       rendered crisp — that element is unaffected by this rule. */
+    filter: blur(12px);
+    transform: scale(1.15);
+    transition: filter 0.4s ease, transform 0.4s ease;
 }
 
 .arc-round-center {
