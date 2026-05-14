@@ -12007,6 +12007,7 @@ body.is-learning-screen .player-header { display: none; }
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     transition: all var(--transition-fast);
+    touch-action: manipulation;
 }
 .slider-btn-year:hover,
 .slider-btn-year:focus-visible {
