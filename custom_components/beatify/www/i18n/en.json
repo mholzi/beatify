@@ -604,7 +604,8 @@
     "clickToOpenAnother": "Click the button to open another window, or navigate elsewhere in Home Assistant.",
     "popupBlocked": "Pop-up blocked! Click the button below.",
     "allowPopups": "Your browser blocked the pop-up. Please allow pop-ups for this site.",
-    "description": "Music guessing party game"
+    "description": "Music guessing party game",
+    "clickToLaunch": "Launch the game in fullscreen — no distractions."
   },
   "analytics": {
     "title": "Round Stats",
@@ -688,7 +689,7 @@
     "ADMIN_EXISTS": "Host already exists",
     "ALREADY_SUBMITTED": "Already submitted",
     "CONNECTION_LOST": "Connection Lost",
-    "GAME_ALREADY_STARTED": "Game already in progress",
+    "GAME_ALREADY_STARTED": "A game is already in progress. End the current game before starting a new one.",
     "GAME_ENDED": "Game has ended",
     "GAME_FULL": "Game is full",
     "GAME_NOT_STARTED": "Game has not started",
@@ -841,6 +842,13 @@
         "testOk": "Sent",
         "testFail": "Failed"
       }
+    },
+    "summary": {
+      "speaker": "Speaker",
+      "service": "Service",
+      "playlist": "Playlist",
+      "mode": "Mode",
+      "atmosphere": "Atmosphere"
     }
   },
   "onboarding": {

@@ -604,7 +604,8 @@
     "clickToOpenAnother": "Klicke den Button um ein weiteres Fenster zu öffnen.",
     "popupBlocked": "Pop-up blockiert! Klicke den Button unten.",
     "allowPopups": "Dein Browser hat das Pop-up blockiert. Bitte erlaube Pop-ups für diese Seite.",
-    "description": "Musik-Rate-Partyspiel"
+    "description": "Musik-Rate-Partyspiel",
+    "clickToLaunch": "Spiel im Vollbildmodus starten — keine Ablenkungen."
   },
   "analytics": {
     "title": "Runden-Statistik",
@@ -688,7 +689,7 @@
     "ADMIN_EXISTS": "Gastgeber bereits vorhanden",
     "ALREADY_SUBMITTED": "Bereits abgegeben",
     "CONNECTION_LOST": "Verbindung verloren",
-    "GAME_ALREADY_STARTED": "Spiel bereits gestartet",
+    "GAME_ALREADY_STARTED": "Es läuft bereits ein Spiel. Beende es, bevor du ein neues startest.",
     "GAME_ENDED": "Spiel beendet",
     "GAME_FULL": "Spiel ist voll",
     "GAME_NOT_STARTED": "Spiel noch nicht gestartet",
@@ -841,6 +842,13 @@
         "testOk": "Gesendet",
         "testFail": "Fehlgeschlagen"
       }
+    },
+    "summary": {
+      "speaker": "Lautsprecher",
+      "service": "Musikdienst",
+      "playlist": "Playlist",
+      "mode": "Modus",
+      "atmosphere": "Atmosphäre"
     }
   },
   "onboarding": {

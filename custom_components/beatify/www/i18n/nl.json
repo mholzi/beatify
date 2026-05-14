@@ -604,7 +604,8 @@
     "clickToOpenAnother": "Klik op de knop om nog een venster te openen, of ga ergens anders heen in Home Assistant.",
     "popupBlocked": "Pop-up geblokkeerd! Klik op de knop hieronder.",
     "allowPopups": "Je browser heeft de pop-up geblokkeerd. Sta pop-ups toe voor deze site.",
-    "description": "Partyspel om muziek te raden"
+    "description": "Partyspel om muziek te raden",
+    "clickToLaunch": "Start het spel op volledig scherm — geen afleiding."
   },
   "analytics": {
     "title": "Rondestatistieken",
@@ -688,7 +689,7 @@
     "ADMIN_EXISTS": "Er is al een host",
     "ALREADY_SUBMITTED": "Al verstuurd",
     "CONNECTION_LOST": "Verbinding verbroken",
-    "GAME_ALREADY_STARTED": "Er is al een spel bezig",
+    "GAME_ALREADY_STARTED": "Er is al een spel bezig. Beëindig het voordat je een nieuwe start.",
     "GAME_ENDED": "Het spel is afgelopen",
     "GAME_FULL": "Het spel zit vol",
     "GAME_NOT_STARTED": "Het spel is nog niet gestart",
@@ -841,6 +842,13 @@
         "testOk": "Verzonden",
         "testFail": "Mislukt"
       }
+    },
+    "summary": {
+      "speaker": "Speaker",
+      "service": "Service",
+      "playlist": "Playlist",
+      "mode": "Modus",
+      "atmosphere": "Sfeer"
     }
   },
   "onboarding": {

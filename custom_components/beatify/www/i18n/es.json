@@ -604,7 +604,8 @@
     "clickToOpenAnother": "Haz clic en el boton para abrir otra ventana, o navega a otro lugar en Home Assistant.",
     "popupBlocked": "Ventana emergente bloqueada! Haz clic en el boton de abajo.",
     "allowPopups": "Tu navegador bloqueo la ventana emergente. Por favor permite las ventanas emergentes para este sitio.",
-    "description": "Juego musical de fiesta"
+    "description": "Juego musical de fiesta",
+    "clickToLaunch": "Inicia el juego en pantalla completa — sin distracciones."
   },
   "analytics": {
     "title": "Estadisticas de la ronda",
@@ -688,7 +689,7 @@
     "ADMIN_EXISTS": "El anfitrion ya existe",
     "ALREADY_SUBMITTED": "Ya enviaste tu respuesta",
     "CONNECTION_LOST": "Conexion perdida",
-    "GAME_ALREADY_STARTED": "El juego ya esta en progreso",
+    "GAME_ALREADY_STARTED": "Ya hay una partida en curso. Termínala antes de empezar una nueva.",
     "GAME_ENDED": "El juego ha terminado",
     "GAME_FULL": "El juego esta lleno",
     "GAME_NOT_STARTED": "El juego no ha comenzado",
@@ -841,6 +842,13 @@
         "testOk": "Enviado",
         "testFail": "Falló"
       }
+    },
+    "summary": {
+      "speaker": "Altavoz",
+      "service": "Servicio",
+      "playlist": "Lista",
+      "mode": "Modo",
+      "atmosphere": "Ambiente"
     }
   },
   "onboarding": {

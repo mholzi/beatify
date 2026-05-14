@@ -1890,7 +1890,15 @@ async function startGame() {
         const data = await response.json();
 
         if (!response.ok) {
-            showError(data.message || 'Failed to start game');
+            // #864: prefer i18n-by-code over the backend's English message.
+            // Matches the playlist-request pattern at line ~2964.
+            let msg = data.message || 'Failed to start game';
+            if (data.code && window.BeatifyI18n) {
+                const key = 'errors.' + String(data.code).toUpperCase();
+                const t = BeatifyI18n.t(key);
+                if (t && t !== key) msg = t;
+            }
+            showError(msg);
             return;
         }
 

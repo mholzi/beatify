@@ -604,7 +604,8 @@
     "clickToOpenAnother": "Clique sur le bouton pour ouvrir une autre fenêtre, ou navigue ailleurs dans Home Assistant.",
     "popupBlocked": "Pop-up bloqué ! Clique sur le bouton ci-dessous.",
     "allowPopups": "Ton navigateur a bloqué le pop-up. Autorise les pop-ups pour ce site.",
-    "description": "Jeu musical de soirée"
+    "description": "Jeu musical de soirée",
+    "clickToLaunch": "Lancez le jeu en plein écran — aucune distraction."
   },
   "analytics": {
     "title": "Statistiques de la manche",
@@ -688,7 +689,7 @@
     "ADMIN_EXISTS": "L'hôte existe déjà",
     "ALREADY_SUBMITTED": "Tu as déjà envoyé ta réponse",
     "CONNECTION_LOST": "Connexion perdue",
-    "GAME_ALREADY_STARTED": "La partie est déjà en cours",
+    "GAME_ALREADY_STARTED": "Une partie est déjà en cours. Termine-la avant d'en lancer une nouvelle.",
     "GAME_ENDED": "La partie est terminée",
     "GAME_FULL": "La partie est complète",
     "GAME_NOT_STARTED": "La partie n'a pas commencé",
@@ -841,6 +842,13 @@
         "testOk": "Envoyé",
         "testFail": "Échec"
       }
+    },
+    "summary": {
+      "speaker": "Enceinte",
+      "service": "Service",
+      "playlist": "Playlist",
+      "mode": "Mode",
+      "atmosphere": "Ambiance"
     }
   },
   "onboarding": {
