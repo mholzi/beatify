@@ -60,6 +60,13 @@ export function updateRevealView(data) {
 
     var albumCover = document.getElementById('reveal-album-cover');
     if (albumCover) {
+        // song.album_art may be a stale media-player-proxy URL (token-expired,
+        // entity gone, MA-side hiccup). Fallback to the precached no-artwork
+        // SVG so the cover slot always renders something — without onerror the
+        // .song-strip-cover gradient bleeds through and looks intentional.
+        albumCover.onerror = function() {
+            albumCover.src = '/beatify/static/img/no-artwork.svg';
+        };
         albumCover.src = song.album_art || '/beatify/static/img/no-artwork.svg';
     }
 
