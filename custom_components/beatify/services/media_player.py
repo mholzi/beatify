@@ -227,9 +227,7 @@ class MediaPlayerService:
             )
             return None
 
-    async def _safe_state_with_retry(
-        self, retries: int = 3, delay: float = 0.5
-    ):
+    async def _safe_state_with_retry(self, retries: int = 3, delay: float = 0.5):
         """Read entity state with short retry loop; for the post-timeout site
         where having a state is critical for the title-advance check.
 
