@@ -969,11 +969,11 @@ function _renderDoneSummary() {
     }
 
     el.innerHTML = `
-        <div class="wiz-done-line"><span>Speaker</span><strong>${speaker}</strong></div>
-        <div class="wiz-done-line"><span>Service</span><strong>${provider}</strong></div>
-        <div class="wiz-done-line"><span>Playlist</span><strong>${playlistLabel}</strong></div>
-        <div class="wiz-done-line"><span>Mode</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
-        <div class="wiz-done-line"><span>Atmosphere</span><strong>${atmosphere}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.speaker', 'Speaker')}</span><strong>${speaker}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.service', 'Service')}</span><strong>${provider}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.playlist', 'Playlist')}</span><strong>${playlistLabel}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.atmosphere', 'Atmosphere')}</span><strong>${atmosphere}</strong></div>
     `;
 }
 
