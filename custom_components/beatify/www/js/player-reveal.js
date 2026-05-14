@@ -1022,7 +1022,12 @@ function renderPointsBreakdown() {
     var base = player.base_score || 0;
     var roundScore = player.round_score || 0;
     var speedMultiplier = player.speed_multiplier || 1.0;
-    var speedAddon = roundScore - base;
+    // Backend computes round_score = int(base × speed) × bet_multiplier. The
+    // pre-bet speed addon is what we want to display on the Speed bonus row —
+    // otherwise the +addon line silently absorbs the ×2 bet multiplier and the
+    // breakdown stops summing to total (e.g. base=5, speed=1.54, bet won → JS
+    // showed Speed +9 + ×2 but total=14, not 18). Match Python int() with floor.
+    var speedAddon = Math.floor(base * speedMultiplier) - base;
 
     rows.push({
         emoji: '🎯',
