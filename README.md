@@ -519,6 +519,15 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v3.3.4 — Cover Blur, Sharp Year Steps & Round-Show Audio 🎙️
+- **Round-show audio (TTS Phase 1)** — Five new voice announcements wired into the round flow: round start, optional 3-2-1 countdown, time's up, correct-answer reveal, and a "nobody got it" line. Each is a separate toggle, works with any HA TTS engine
+- **Album cover blurs during PLAYING, crisp at REVEAL** — Cover artwork sometimes carries readable titles, years or artist names — now blurred during the round so it can't leak the answer, crisp the moment REVEAL hits
+- **Year ±5 buttons next to ±1, and both finally count properly on iOS** — Decade-jump buttons added next to the existing ±1, and the mobile quirk where each tap stepped 2/4/by-the-round-number is gone — now exactly 1 per tap, every time. Long-press repeat still works after 500ms
+- **German launcher, lobby and error toasts — fully translated** — Launcher subtitle, wizard summary labels (Speaker → Lautsprecher etc.) and the "End current game first" alert all leaked through in English. Plugged. ES/FR/NL got the same treatment
+- **247 broken music URIs repaired** — Yacht-rock playlist (190 across all three providers — Apple Music, Spotify, YouTube Music) plus Pure-Pop-Punk (52 cyclically scrambled), plus 5 maintenance fixes across one-hit-wonders, greatest-metal-songs, top-songs-der-60er
+- **Quality-of-life polish** — Playlist detail-sheet Add button respects iPhone home-indicator safe-area, admin lobby no longer drags freely on iOS, reveal cover falls back to no-artwork placeholder when MA artwork URL fails, points breakdown finally sums to total when a Double-or-Nothing bet is won
+- 24 playlists, 2,481 songs, 5 music platforms, 5 languages
+
 ### v3.2.0 — Onboarding, Redesigns & Design System 🎨
 - **First-Run Wizard** — Five-step guided setup for new admins: Speakers → Music service → Playlist → Game mode → Lights/Voice. After finishing, every chip on the admin dashboard is pre-selected — first thing you see is the Start Game button
 - **Admin Home View** — Branded "Ready to host" landing screen with Beatify wordmark, glowing QR hero card, and Jackbox-style player tiles that appear as guests join (host in pink with 👑, guests cycling cyan → green → orange in join order)

@@ -4,6 +4,39 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.4] - 2026-05-14
+
+Stable promotion of the 3.3.4-rc line (rc1 → rc5). See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.4) for the user-facing summary.
+
+### Added
+- **Round-show audio — TTS Phase 1 (#471).** Five new round-lifecycle voice announcements wired into the game flow: round start, optional 3-2-1 countdown (off by default — intrusive every round), time's up (fires only when the timer runs to zero, not on early-reveal), correct-answer reveal, and "nobody got it this round" (fires alongside correct-answer when no player landed years_off=0). Each is an independent toggle in `configure_tts`. Works with any HA TTS engine. Phases 2-4 (player achievements, betting/state, special modes) remain tracked in #840 / #841 / #842.
+- **Year ±5 buttons flanking the existing ±1 buttons.** Quick decade-jumps without holding for long-press repeat. ±1 and ±5 share the same single-pointerdown contract from #851.
+- **Album cover blur during PLAYING, crisp at REVEAL (#850).** A permanent 12px CSS blur (+15% scale to keep the orb fully filled) on `.arc-pulse-orb-img` during the round, preserving colour/vibe but hiding readable text (titles, years, artist names) that could leak the year answer. The larger `#reveal-album-cover` is a separate element and remains crisp at REVEAL. Closes discussion #847.
+
+### Fixed
+- **Year ±1/±5 buttons step exactly 1 per tap on iOS (#866).** `.slider-btn-year` was missing `touch-action: manipulation`, so iOS Safari emitted a synthesized mouse `pointerdown` after the touch one — each tap fired the handler twice (±1 stepped 2, ±5 stepped 10). Other interactive surfaces in the codebase already declared the property; this was the missed selector.
+- **Year ±N step grew with the round number on touch devices (#854, rc2).** `initYearSelector()` was being called from `player-core.js:570` on every PLAYING-phase state update. Without a guard, every round stacked another `pointerdown` listener on each ±1/±5 button — round 2 → +2 per tap, round 3 → +3, etc. Module-level `yearSelectorInitialized` flag now ensures listener setup runs at most once per page load.
+- **Points breakdown rows reconcile to total (#867).** The Speed bonus row was computed as `round_score - base_score`, which silently absorbed the ×2 Double-or-Nothing multiplier into the +addon. A bet-won round showed `Base 5 / Speed +9 / ×2 / Total +14` — math nonsense (5+9=14 already). Now derives the speed addon from `Math.floor(base × speed_multiplier) - base`, matching the Python `int()` truncation on the backend. Same round now reads `Base 5 / Speed +2 / ×2 / Total +14` and reconciles.
+- **Reveal cover falls back to no-artwork.svg on HTTP failure (#869).** The reveal song-strip cover's JS `||` coalesce only catches falsy `song.album_art`, not a populated-but-404'ing URL (e.g. an expired media-player-proxy token). Without an HTTP-error handler the broken img let the `.song-strip-cover` gradient background bleed through, looking like the cover was intentionally a pink/purple block. Added an `onerror` handler that swaps to the precached `/beatify/static/img/no-artwork.svg`, mirroring the pattern at `player-game.js:241` for the in-round `#album-cover`.
+- **Playlist detail-sheet button no longer clipped on iOS (#855).** `.plh-sheet-foot` had no `env(safe-area-inset-bottom)` padding, so the Add/Remove button at the bottom of the playlist detail sheet was clipped underneath the iPhone home-indicator gesture area. Now respects safe-area. First report by @ludgerbeckmann.
+- **Admin lobby no longer drags freely on iOS (#865).** Body had no `overscroll-behavior` — iOS Safari's default bounce/overscroll let the user pan the page freely when no inner element claimed the touch. The home-view's `min-height: calc(100vh - 120px)` is shorter than the viewport, so the touch fell through to body. `overscroll-behavior: none` on body fixes it everywhere without disabling legitimate inner scrolling.
+- **German launcher, lobby and error toasts fully translated (#864).** Three root causes plugged: `launcher.html`'s `data-i18n="launcher.clickToLaunch"` referenced a key that was never added to any locale file; `wizard.js`'s `_renderDoneSummary` hard-coded label names in the template (`<span>Speaker</span>` etc.) without going through `_t()`; and `admin.js`'s `startGame` error handler displayed the backend's English message verbatim instead of mapping `data.code` → `errors.<CODE>` via `BeatifyI18n.t()`. 7 new keys × 5 locales (en/de/es/fr/nl); ES/FR/NL received identical treatment.
+
+### Data
+- **73 broken YouTube Music URIs in `community/yacht-rock` (#852, PR #860).** 16 dead videos + 57 cyclically scrambled. All 73 resolved via `ytmusicapi` search with artist+title scoring; 2 low-confidence batch hits manually overridden after re-search (REO Speedwagon "Live Every Moment", Ray Parker Jr. "You Can't Change That"). All HTTP-200 verified before commit. Apple Music (96) + Spotify (21) for the same playlist already shipped via #853 in rc2.
+- **52 broken/scrambled URIs in `pure-pop-punk` (#848, PR #849, rc2).** YouTube + Apple columns cyclically scrambled across the second half of the playlist. 4 dead Apple IDs replaced + 3 wrong Spotify URIs corrected.
+- **2 broken URIs in `one-hit-wonders` (#843, PR #844, rc2).** Modern English "I Melt With You" (2012-Re-Record → 1982-Original) + Peter Schilling "Major Tom (Coming Home)" (deutsche Version → englische "Coming Home").
+- **2 broken YouTube Music URIs in `greatest-metal-songs` (#845, PR #846, rc2).**
+- **1 dead YouTube Music URI in `top-songs-der-60er` (#862, PR #863).**
+
+### Documentation
+- **`docs/release-notes-v3.3.4.md`** — User-facing marketing-style release notes in the v3.3.3 voice.
+
+### For contributors
+- Bumped `manifest.json` + `sw.js CACHE_VERSION` → `3.3.4`. Bumped `?v=` cache-busters on `admin.html` + `player.html` (3.3.3 → 3.3.4) and `<meta name="beatify-version">` on admin/player/dashboard.html.
+- pytest 443 / vitest 35 — green.
+- 5 release candidates (rc1 → rc5) condensed into this stable promotion — most of the rc3/rc4/rc5 cycle was driven by @ludgerbeckmann's live screenshot testing on the rc-line.
+
 ## [3.3.3] - 2026-05-04
 
 Stable promotion of the 3.3.3-rc line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.3) for the user-facing summary.
