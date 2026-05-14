@@ -116,7 +116,9 @@ class GameState:
         self._tts_announce_winner: bool = True
         # Issue #471 Phase 1: Game Flow announcements
         self._tts_announce_round_start: bool = True
-        self._tts_announce_countdown: bool = False  # off by default — intrusive every round
+        self._tts_announce_countdown: bool = (
+            False  # off by default — intrusive every round
+        )
         self._tts_announce_time_up: bool = True
         self._tts_announce_correct_answer: bool = True
         self._tts_announce_nobody_correct: bool = True
@@ -1631,9 +1633,7 @@ class GameState:
         # round had at least one submitter and zero of them got years_off == 0.
         await self.announce_correct_answer(correct_year)
         had_submitters = any(p.submitted for p in self.players.values())
-        any_exact = any(
-            p.submitted and p.years_off == 0 for p in self.players.values()
-        )
+        any_exact = any(p.submitted and p.years_off == 0 for p in self.players.values())
         if had_submitters and not any_exact:
             await self.announce_nobody_correct()
 
