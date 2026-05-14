@@ -152,6 +152,10 @@ body {
     line-height: 1.5;
     padding: var(--space-sm);
     min-height: 100vh;
+    /* #865: lock iOS overscroll-bounce so the admin lobby (and any other
+       short view) doesn't drag freely in all directions when the user
+       touches the background. */
+    overscroll-behavior: none;
 }
 
 /* ==========================================
