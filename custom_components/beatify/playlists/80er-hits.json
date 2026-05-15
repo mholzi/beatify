@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.4",
+  "version": "2.5",
   "tags": [
     "1980s",
     "pop",
@@ -7679,6 +7679,123 @@
         "nl": "applemusic://track/98318466",
         "it": "applemusic://track/98318466"
       }
+    },
+    {
+      "artist": "The Temptations",
+      "title": "I Could Never Love Another (After Loving You)",
+      "year": 1980,
+      "isrc": null,
+      "uri": "spotify:track:3IVgZoEiWpv2FKgWpmdPeL",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Tf-l7UEppK0",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "A chart hit by The Temptations (1980).",
+      "fun_fact_de": "Ein Chart-Hit von The Temptations (1980).",
+      "fun_fact_es": "Un éxito de The Temptations (1980).",
+      "fun_fact_fr": "Un tube de The Temptations (1980).",
+      "fun_fact_nl": "Een chart-hit van The Temptations (1980)."
+    },
+    {
+      "artist": "The B-52's",
+      "title": "Love Shack - Edit",
+      "year": 1989,
+      "isrc": "USRE18900030",
+      "uri": "spotify:track:64B4UbGRLtGRBtiN2m8OvF",
+      "uri_apple_music": "applemusic://track/1797543617",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1797543617",
+        "de": "applemusic://track/1742524785",
+        "gb": "applemusic://track/1797543617",
+        "fr": "applemusic://track/1797543617",
+        "es": "applemusic://track/1797543617",
+        "nl": "applemusic://track/1797543617",
+        "it": "applemusic://track/1797543617"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LXZFtJceQC4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3929350",
+      "fun_fact": "A chart hit by The B-52's (1989).",
+      "fun_fact_de": "Ein Chart-Hit von The B-52's (1989).",
+      "fun_fact_es": "Un éxito de The B-52's (1989).",
+      "fun_fact_fr": "Un tube de The B-52's (1989).",
+      "fun_fact_nl": "Een chart-hit van The B-52's (1989)."
+    },
+    {
+      "artist": "Don McLean",
+      "title": "American Pie",
+      "year": 1987,
+      "isrc": "USEM38600088",
+      "uri": "spotify:track:1fDsrQ23eTAVFElUMaf38X",
+      "uri_apple_music": "applemusic://track/1891813116",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1891813116",
+        "de": "applemusic://track/1891813116",
+        "gb": "applemusic://track/1891813116",
+        "fr": "applemusic://track/1891813116",
+        "es": "applemusic://track/1891813116",
+        "nl": "applemusic://track/1891813116",
+        "it": "applemusic://track/1891813116"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iX_TFkut1PM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3166505",
+      "fun_fact": "A chart hit by Don McLean (1987).",
+      "fun_fact_de": "Ein Chart-Hit von Don McLean (1987).",
+      "fun_fact_es": "Un éxito de Don McLean (1987).",
+      "fun_fact_fr": "Un tube de Don McLean (1987).",
+      "fun_fact_nl": "Een chart-hit van Don McLean (1987)."
+    },
+    {
+      "artist": "The J. Geils Band",
+      "title": "Freeze-Frame",
+      "year": 1989,
+      "isrc": "USEM38800164",
+      "uri": "spotify:track:6QqK6a1CmV4L504uMQaGDH",
+      "uri_apple_music": "applemusic://track/1445835892",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445835892",
+        "de": "applemusic://track/1445835892",
+        "gb": "applemusic://track/1445835892",
+        "fr": "applemusic://track/1445835892",
+        "es": "applemusic://track/1445835892",
+        "nl": "applemusic://track/1445835892",
+        "it": "applemusic://track/1445835892"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y9mPp5IZbrY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3168234",
+      "fun_fact": "A chart hit by The J. Geils Band (1989).",
+      "fun_fact_de": "Ein Chart-Hit von The J. Geils Band (1989).",
+      "fun_fact_es": "Un éxito de The J. Geils Band (1989).",
+      "fun_fact_fr": "Un tube de The J. Geils Band (1989).",
+      "fun_fact_nl": "Een chart-hit van The J. Geils Band (1989)."
+    },
+    {
+      "artist": "George Harrison",
+      "title": "Got My Mind Set on You",
+      "year": 1987,
+      "isrc": "GBEXP0300054",
+      "uri": "spotify:track:4wswaG5vmNINMZcVBsAyBP",
+      "uri_apple_music": "applemusic://track/1666655533",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1666655533",
+        "de": "applemusic://track/1666655533",
+        "gb": "applemusic://track/1666655533",
+        "fr": "applemusic://track/1666655533",
+        "es": "applemusic://track/1666655533",
+        "nl": "applemusic://track/1666655533",
+        "it": "applemusic://track/1666655533"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lQuln0tbgDA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3164587",
+      "fun_fact": "A chart hit by George Harrison (1987).",
+      "fun_fact_de": "Ein Chart-Hit von George Harrison (1987).",
+      "fun_fact_es": "Un éxito de George Harrison (1987).",
+      "fun_fact_fr": "Un tube de George Harrison (1987).",
+      "fun_fact_nl": "Een chart-hit van George Harrison (1987)."
     }
   ]
 }
