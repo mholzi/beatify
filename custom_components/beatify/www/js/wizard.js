@@ -760,7 +760,7 @@ function _ttsDetailHtml() {
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.tts.entityLabel', 'TTS service (entity ID)')}</span>
             <input type="text" id="wiz-tts-entity" class="wiz-detail-input" placeholder="tts.google_en_com" value="${chosenTtsEntityId}">
-            <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', 'Copy from Home Assistant → Developer Tools → States (filter: tts.)')}</span>
+            <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', "No TTS service yet? In Home Assistant: Settings → Devices & Services → Add Integration → 'Google Translate text-to-speech' (free, no API key). Then enter the tts.* entity it creates here.")}</span>
             <button type="button" id="wiz-tts-test" class="btn btn-ghost wiz-detail-test" ${chosenTtsEntityId ? '' : 'disabled'}>
               🔊 ${_t('wizard.step5.tts.test', 'Send test announcement')}
             </button>

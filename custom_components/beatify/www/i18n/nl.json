@@ -834,7 +834,7 @@
         "desc": "TTS roept rondenummers, winnaars en weetjes uit.",
         "unavailable": "Geen TTS-service geregistreerd in Home Assistant.",
         "entityLabel": "TTS-service (entity ID)",
-        "entityHint": "Kopieer vanuit Home Assistant → Ontwikkelaarstools → Statussen (filter: tts.)",
+        "entityHint": "Nog geen TTS-dienst? In Home Assistant: Instellingen → Apparaten en diensten → Integratie toevoegen → 'Google Translate text-to-speech' (gratis, geen API-sleutel). Voer daarna de aangemaakte tts.*-entiteit hier in.",
         "announce": "Aankondigen",
         "announceStart": "Start van het spel",
         "announceWinner": "Winnaar van ronde",

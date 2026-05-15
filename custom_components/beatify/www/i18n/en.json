@@ -834,7 +834,7 @@
         "desc": "TTS calls out round numbers, winners, and fun facts.",
         "unavailable": "No TTS service registered in Home Assistant.",
         "entityLabel": "TTS service (entity ID)",
-        "entityHint": "Copy from Home Assistant → Developer Tools → States (filter: tts.)",
+        "entityHint": "No TTS service yet? In Home Assistant: Settings → Devices & Services → Add Integration → 'Google Translate text-to-speech' (free, no API key). Then enter the tts.* entity it creates here.",
         "announce": "Announce",
         "announceStart": "Game start",
         "announceWinner": "Round winner",

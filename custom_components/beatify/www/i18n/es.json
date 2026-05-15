@@ -834,7 +834,7 @@
         "desc": "TTS anuncia número de ronda, ganadores y datos curiosos.",
         "unavailable": "No hay servicio TTS registrado en Home Assistant.",
         "entityLabel": "Servicio TTS (ID de entidad)",
-        "entityHint": "Copia desde Home Assistant → Herramientas para desarrolladores → Estados (filtro: tts.)",
+        "entityHint": "¿Aún no tienes servicio TTS? En Home Assistant: Ajustes → Dispositivos y servicios → Añadir integración → 'Google Translate text-to-speech' (gratis, sin clave API). Luego introduce aquí la entidad tts.* creada.",
         "announce": "Anunciar",
         "announceStart": "Inicio del juego",
         "announceWinner": "Ganador de ronda",

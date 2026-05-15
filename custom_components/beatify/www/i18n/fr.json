@@ -834,7 +834,7 @@
         "desc": "Le TTS annonce le numéro de manche, les gagnants et les anecdotes.",
         "unavailable": "Aucun service TTS enregistré dans Home Assistant.",
         "entityLabel": "Service TTS (ID d'entité)",
-        "entityHint": "Copie depuis Home Assistant → Outils développeur → États (filtre : tts.)",
+        "entityHint": "Pas encore de service TTS ? Dans Home Assistant : Paramètres → Appareils et services → Ajouter une intégration → 'Google Translate text-to-speech' (gratuit, sans clé API). Saisis ensuite ici l'entité tts.* créée.",
         "announce": "Annoncer",
         "announceStart": "Début de partie",
         "announceWinner": "Gagnant de manche",
