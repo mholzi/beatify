@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "anime",
     "japanese",
@@ -688,26 +688,6 @@
       "uri_deezer": "deezer://track/1171495792"
     },
     {
-      "artist": "Ner Leva",
-      "title": "The Rumbling (Attack on Titan)",
-      "year": 2022,
-      "isrc": "FRR642200295",
-      "uri": "spotify:track:4m1slXE2kaXbXVfZQ0q3Om",
-      "uri_apple_music": "applemusic://track/1613141312",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1613141312",
-        "de": "applemusic://track/1613141312",
-        "gb": "applemusic://track/1613141312",
-        "fr": "applemusic://track/1613141312",
-        "es": "applemusic://track/1613141312",
-        "nl": "applemusic://track/1613141312",
-        "it": "applemusic://track/1613141312"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=t6MPrSIh3-w",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1677345367"
-    },
-    {
       "artist": "ALI",
       "title": "LOST IN PARADISE",
       "year": 2020,
@@ -831,29 +811,6 @@
       "uri_deezer": null
     },
     {
-      "artist": "Otaku",
-      "title": "Unravel (Tokyo Ghoul)",
-      "year": 2021,
-      "isrc": "FRR642100233",
-      "uri": "spotify:track:46fpycbDAktlUgSCY1fMJd",
-      "uri_apple_music": "applemusic://track/1556104621",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1672109190",
-        "de": "applemusic://track/1672109190",
-        "gb": "applemusic://track/1672109190",
-        "fr": "applemusic://track/1672109190",
-        "es": "applemusic://track/1672109190",
-        "nl": "applemusic://track/1672109190",
-        "it": "applemusic://track/1672109190"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NbAsQZteG64",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1254862782",
-      "alt_artists": [
-        "LoFi Waiter"
-      ]
-    },
-    {
       "artist": "BLUE ENCOUNT",
       "title": "ポラリス",
       "year": 2019,
@@ -916,46 +873,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=3SqhXiimlrg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2665357712"
-    },
-    {
-      "artist": "Otaku",
-      "title": "Blue Bird (Naruto)",
-      "year": 2021,
-      "isrc": "FRR642100234",
-      "uri": "spotify:track:2HYPqSwitksTpCFzYmP7Po",
-      "uri_apple_music": "applemusic://track/1556104622",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1556104622",
-        "de": "applemusic://track/1556104622",
-        "gb": "applemusic://track/1556104622",
-        "fr": "applemusic://track/1556104622",
-        "es": "applemusic://track/1556104622",
-        "nl": "applemusic://track/1556104622",
-        "it": "applemusic://track/1556104622"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kMu1xjRBeZw",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1254862792"
-    },
-    {
-      "artist": "Otaku",
-      "title": "Asterisk (Bleach)",
-      "year": 2022,
-      "isrc": "FRR642201124",
-      "uri": "spotify:track:4e4S6dOAX0c0iTVA1uGRWc",
-      "uri_apple_music": "applemusic://track/1635121202",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1635121202",
-        "de": "applemusic://track/1635121202",
-        "gb": "applemusic://track/1635121202",
-        "fr": "applemusic://track/1635121202",
-        "es": "applemusic://track/1635121202",
-        "nl": "applemusic://track/1635121202",
-        "it": "applemusic://track/1635121202"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XUlpq03FEcE",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1829060547"
     },
     {
       "artist": "YOASOBI",
@@ -1038,26 +955,6 @@
       "uri_deezer": "deezer://track/2122215167"
     },
     {
-      "artist": "Ner Leva",
-      "title": "My War (Attack on Titan) - 僕の戦争",
-      "year": 2021,
-      "isrc": "FRR642100439",
-      "uri": "spotify:track:3CspfYGpqAqgbRqUuxmW0r",
-      "uri_apple_music": "applemusic://track/1560008475",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1560008475",
-        "de": "applemusic://track/1560008475",
-        "gb": "applemusic://track/1560008475",
-        "fr": "applemusic://track/1560008475",
-        "es": "applemusic://track/1560008475",
-        "nl": "applemusic://track/1560008475",
-        "it": "applemusic://track/1560008475"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=0IDuNithv7c",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1285823922"
-    },
-    {
       "artist": "3年E組うた担(渚&茅野&業&磯貝&前原)",
       "title": "バイバイ YESTERDAY",
       "year": 2016,
@@ -1076,26 +973,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=woFU8DGg1UI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3896319501"
-    },
-    {
-      "artist": "Otaku",
-      "title": "Guren No Yumiya (Attack On Titan)",
-      "year": 2021,
-      "isrc": "FRR642100236",
-      "uri": "spotify:track:70CbcDczLupouV8PYWjk5Z",
-      "uri_apple_music": "applemusic://track/1556104624",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1673002147",
-        "de": "applemusic://track/1673002147",
-        "gb": "applemusic://track/1673002147",
-        "fr": "applemusic://track/1673002147",
-        "es": "applemusic://track/1673002147",
-        "nl": "applemusic://track/1673002147",
-        "it": "applemusic://track/1673002147"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VsrwUrJP1tA",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1254862812"
     },
     {
       "artist": "Mrs. GREEN APPLE",
@@ -1138,29 +1015,6 @@
       "uri_deezer": null
     },
     {
-      "artist": "Otaku",
-      "title": "Hacking to the Gate (Stein;Gate)",
-      "year": 2021,
-      "isrc": "FRR642100509",
-      "uri": "spotify:track:2pCNTrsuKNerjXXSJK2kzP",
-      "uri_apple_music": "applemusic://track/1562132496",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132496",
-        "de": "applemusic://track/1562132496",
-        "gb": "applemusic://track/1562132496",
-        "fr": "applemusic://track/1562132496",
-        "es": "applemusic://track/1562132496",
-        "nl": "applemusic://track/1562132496",
-        "it": "applemusic://track/1562132496"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dWmuw4iuNfk",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022392",
-      "alt_artists": [
-        "LoFi Waiter"
-      ]
-    },
-    {
       "artist": "Yorushika",
       "title": "晴る",
       "year": 2024,
@@ -1201,26 +1055,6 @@
       "uri_deezer": "deezer://track/2665262582"
     },
     {
-      "artist": "Otaku",
-      "title": "Bye Bye Yesterday (Assassination Classroom)",
-      "year": 2022,
-      "isrc": "FRR642201129",
-      "uri": "spotify:track:2dXrd5rdHpNDfK5g32xq6K",
-      "uri_apple_music": "applemusic://track/1635121208",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1635121208",
-        "de": "applemusic://track/1635121208",
-        "gb": "applemusic://track/1635121208",
-        "fr": "applemusic://track/1635121208",
-        "es": "applemusic://track/1635121208",
-        "nl": "applemusic://track/1635121208",
-        "it": "applemusic://track/1635121208"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=w2ftJ01H2aU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1829060597"
-    },
-    {
       "artist": "RADWIMPS",
       "title": "前前前世 - movie ver.",
       "year": 2016,
@@ -1239,52 +1073,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=qp0AktOIAag",
       "uri_tidal": null,
       "uri_deezer": null
-    },
-    {
-      "artist": "Otaku",
-      "title": "Silhouette (Naruto Shippuden)",
-      "year": 2021,
-      "isrc": "FRR642100237",
-      "uri": "spotify:track:5BbAbnlNW3JfGGwG0Hkei9",
-      "uri_apple_music": "applemusic://track/1556104625",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1556104625",
-        "de": "applemusic://track/1556104625",
-        "gb": "applemusic://track/1556104625",
-        "fr": "applemusic://track/1556104625",
-        "es": "applemusic://track/1556104625",
-        "nl": "applemusic://track/1556104625",
-        "it": "applemusic://track/1556104625"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BL3l8fRZeDU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1254862822",
-      "alt_artists": [
-        "LoFi Waiter"
-      ]
-    },
-    {
-      "artist": "Ryuven",
-      "title": "Kyoumen no Nami (Houseki no Kuni) - 鏡面の波",
-      "year": 2021,
-      "isrc": "FRR642100440",
-      "uri": "spotify:track:1Xhy1gBPc2441AMBp8ztgY",
-      "uri_apple_music": "applemusic://track/1560009215",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1560009215",
-        "de": "applemusic://track/1560009215",
-        "gb": "applemusic://track/1560009215",
-        "fr": "applemusic://track/1560009215",
-        "es": "applemusic://track/1560009215",
-        "nl": "applemusic://track/1560009215",
-        "it": "applemusic://track/1560009215"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=P4bGpf4WvUg",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1285823912",
-      "alt_artists": [
-        "Ner Leva"
-      ]
     },
     {
       "artist": "Daoko",
@@ -1307,29 +1095,6 @@
       "uri_deezer": null,
       "alt_artists": [
         "Kenshi Yonezu"
-      ]
-    },
-    {
-      "artist": "Otaku",
-      "title": "Tank! (Cowboy Bebop)",
-      "year": 2021,
-      "isrc": "FRR642100504",
-      "uri": "spotify:track:2X7iYoVNlL7aXjqViBO77q",
-      "uri_apple_music": "applemusic://track/1712435469",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132311",
-        "de": "applemusic://track/1562132311",
-        "gb": "applemusic://track/1562132311",
-        "fr": "applemusic://track/1562132311",
-        "es": "applemusic://track/1562132311",
-        "nl": "applemusic://track/1562132311",
-        "it": "applemusic://track/1562132311"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hWfVJvzd4eM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022342",
-      "alt_artists": [
-        "LoFi Waiter"
       ]
     },
     {
@@ -1453,26 +1218,6 @@
       "uri_deezer": "deezer://track/138539973"
     },
     {
-      "artist": "Otaku",
-      "title": "Jiyuu No Tsubasa (SNK)",
-      "year": 2022,
-      "isrc": "FRR642201131",
-      "uri": "spotify:track:044hhTpsrKGZsc7IZQeWwk",
-      "uri_apple_music": "applemusic://track/1635121210",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1635121210",
-        "de": "applemusic://track/1635121210",
-        "gb": "applemusic://track/1635121210",
-        "fr": "applemusic://track/1635121210",
-        "es": "applemusic://track/1635121210",
-        "nl": "applemusic://track/1635121210",
-        "it": "applemusic://track/1635121210"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=C7_Ck1P7dVI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1829060617"
-    },
-    {
       "artist": "Tia",
       "title": "Deal with the devil",
       "year": 2017,
@@ -1491,26 +1236,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=pJ-MywdW98o",
       "uri_tidal": null,
       "uri_deezer": null
-    },
-    {
-      "artist": "Otaku",
-      "title": "The World (Death Note)",
-      "year": 2021,
-      "isrc": "FRR642100512",
-      "uri": "spotify:track:0xkupRB0jicKmpRgzq5yv7",
-      "uri_apple_music": "applemusic://track/1562132499",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132499",
-        "de": "applemusic://track/1562132499",
-        "gb": "applemusic://track/1562132499",
-        "fr": "applemusic://track/1562132499",
-        "es": "applemusic://track/1562132499",
-        "nl": "applemusic://track/1562132499",
-        "it": "applemusic://track/1562132499"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=b4vc629T4b8",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022422"
     },
     {
       "artist": "Hello Sleepwalkers",
@@ -1533,26 +1258,6 @@
       "uri_deezer": null
     },
     {
-      "artist": "Otaku",
-      "title": "Departure! (Hunter X Hunter)",
-      "year": 2024,
-      "isrc": "QZTBB2480074",
-      "uri": "spotify:track:2NjxUGJaBS11zkUv86MOQP",
-      "uri_apple_music": "applemusic://track/1556104867",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1766001975",
-        "de": "applemusic://track/1766001975",
-        "gb": "applemusic://track/1766001975",
-        "fr": "applemusic://track/1766001975",
-        "es": "applemusic://track/1766001975",
-        "nl": "applemusic://track/1766001975",
-        "it": "applemusic://track/1766001975"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=e9P0tqskB6I",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2975158571"
-    },
-    {
       "artist": "LiSA",
       "title": "Catch the Moment",
       "year": 2017,
@@ -1571,26 +1276,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=GWysc_zFTIA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1355425922"
-    },
-    {
-      "artist": "Otaku",
-      "title": "This Game (No Game No Life)",
-      "year": 2021,
-      "isrc": "FRR642100505",
-      "uri": "spotify:track:0i4FFEupAyk8bfnTZrH1Vr",
-      "uri_apple_music": "applemusic://track/1562132312",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132312",
-        "de": "applemusic://track/1562132312",
-        "gb": "applemusic://track/1562132312",
-        "fr": "applemusic://track/1562132312",
-        "es": "applemusic://track/1562132312",
-        "nl": "applemusic://track/1562132312",
-        "it": "applemusic://track/1562132312"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WNqHy_5AmrI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022352"
     },
     {
       "artist": "FLOW",
@@ -1631,26 +1316,6 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4vZUSkshCg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1024952482"
-    },
-    {
-      "artist": "Otaku",
-      "title": "Resonance (Soul Eater)",
-      "year": 2021,
-      "isrc": "FRR642100513",
-      "uri": "spotify:track:3N3NMIUjbDugrQtW1ET9W1",
-      "uri_apple_music": "applemusic://track/1562132500",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132500",
-        "de": "applemusic://track/1562132500",
-        "gb": "applemusic://track/1562132500",
-        "fr": "applemusic://track/1562132500",
-        "es": "applemusic://track/1562132500",
-        "nl": "applemusic://track/1562132500",
-        "it": "applemusic://track/1562132500"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YsC4hKxJLHI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022432"
     },
     {
       "artist": "Sawano Hiroyuki",
@@ -1736,10 +1401,18 @@
       "artist": "LiSA",
       "title": "だってアタシのヒーロー。",
       "year": 2019,
-      "isrc": null,
+      "isrc": "JPU901701951",
       "uri": "spotify:track:1htJGL473Dub5QGKecXi9R",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
+      "uri_apple_music": "applemusic://track/1537899080",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1538286096",
+        "de": "applemusic://track/1538286096",
+        "gb": "applemusic://track/1538286096",
+        "fr": "applemusic://track/1538286096",
+        "es": "applemusic://track/1538286096",
+        "nl": "applemusic://track/1538286096",
+        "it": "applemusic://track/1538286096"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8A0hgdWuRnI",
       "uri_tidal": null,
       "uri_deezer": null
@@ -1750,7 +1423,7 @@
       "year": 2020,
       "isrc": "JPKS00601721",
       "uri": "spotify:track:0ggHt5jwwtMsWME2PDB6a0",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1538160322",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1538160322",
         "de": "applemusic://track/1538160322",
@@ -1765,36 +1438,21 @@
       "uri_deezer": "deezer://track/976202432"
     },
     {
-      "artist": "Otaku",
-      "title": "Bloody Stream (Jojo)",
-      "year": 2022,
-      "isrc": "FRR642201133",
-      "uri": "spotify:track:5vJrZa7S5o0zHcb5Lnc50k",
-      "uri_apple_music": "applemusic://track/1635121212",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1635121212",
-        "de": "applemusic://track/1635121212",
-        "gb": "applemusic://track/1635121212",
-        "fr": "applemusic://track/1635121212",
-        "es": "applemusic://track/1635121212",
-        "nl": "applemusic://track/1635121212",
-        "it": "applemusic://track/1635121212"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4RkntTILUq0",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1829060637",
-      "alt_artists": [
-        "LoFi Waiter"
-      ]
-    },
-    {
       "artist": "ASIAN KUNG-FU GENERATION",
       "title": "ブラッドサーキュレーター",
       "year": 2017,
-      "isrc": null,
+      "isrc": "JPU901601440",
       "uri": "spotify:track:3xQBvKxm8mdy9OBLiJDcwB",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
+      "uri_apple_music": "applemusic://track/1536461315",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536461315",
+        "de": "applemusic://track/1536461315",
+        "gb": "applemusic://track/1536461315",
+        "fr": "applemusic://track/1536461315",
+        "es": "applemusic://track/1536461315",
+        "nl": "applemusic://track/1536461315",
+        "it": "applemusic://track/1536461315"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=psUh0fbszsw",
       "uri_tidal": null,
       "uri_deezer": null
@@ -1880,26 +1538,6 @@
       "uri_deezer": "deezer://track/545599532"
     },
     {
-      "artist": "Otaku",
-      "title": "Kyoran Hey Kids!! (Noragami Aragoto)",
-      "year": 2021,
-      "isrc": "FRR642100242",
-      "uri": "spotify:track:4ZRwXmftin5396X6wiBCt4",
-      "uri_apple_music": "applemusic://track/1556104873",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1556104873",
-        "de": "applemusic://track/1556104873",
-        "gb": "applemusic://track/1556104873",
-        "fr": "applemusic://track/1556104873",
-        "es": "applemusic://track/1556104873",
-        "nl": "applemusic://track/1556104873",
-        "it": "applemusic://track/1556104873"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=A7tCMa8lE6E",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1254862872"
-    },
-    {
       "artist": "Given",
       "title": "冬のはなし",
       "year": 2019,
@@ -1964,29 +1602,6 @@
       ]
     },
     {
-      "artist": "Ryuven",
-      "title": "speedrun",
-      "year": 2022,
-      "isrc": "FRR642201788",
-      "uri": "spotify:track:2yvlI8mpxVk1i7KYyyLDOV",
-      "uri_apple_music": "applemusic://track/1660272272",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1660272272",
-        "de": "applemusic://track/1660272272",
-        "gb": "applemusic://track/1660272272",
-        "fr": "applemusic://track/1660272272",
-        "es": "applemusic://track/1660272272",
-        "nl": "applemusic://track/1660272272",
-        "it": "applemusic://track/1660272272"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qFcbKsYxIz0",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2073991717",
-      "alt_artists": [
-        "mayday"
-      ]
-    },
-    {
       "artist": "CHiCO with HoneyWorks",
       "title": "決戦スピリット",
       "year": 2022,
@@ -2007,32 +1622,12 @@
       "uri_deezer": null
     },
     {
-      "artist": "Otaku",
-      "title": "Crossing Field (Sword Art Online)",
-      "year": 2021,
-      "isrc": "FRR642100507",
-      "uri": "spotify:track:63uQC332PwUFqV2Lqiw5pu",
-      "uri_apple_music": "applemusic://track/1562132314",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1562132314",
-        "de": "applemusic://track/1562132314",
-        "gb": "applemusic://track/1562132314",
-        "fr": "applemusic://track/1562132314",
-        "es": "applemusic://track/1562132314",
-        "nl": "applemusic://track/1562132314",
-        "it": "applemusic://track/1562132314"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=xc8Fn0FbElM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1331022372"
-    },
-    {
       "artist": "Who-ya Extended",
       "title": "VIVID VICE",
       "year": 2021,
       "isrc": "JPU902003456",
       "uri": "spotify:track:1a1b22lYmn0y5YPJUGFCqb",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1590326855",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1590326855",
         "de": "applemusic://track/1590326855",
@@ -2052,7 +1647,7 @@
       "year": 2025,
       "isrc": "JPU902404163",
       "uri": "spotify:track:5wDeR4q2dm5UAOFSWDEiaR",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1783489424",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1783489424",
         "de": "applemusic://track/1783489424",
@@ -2065,6 +1660,406 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=8cAYlTjVdsQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3127692481"
+    },
+    {
+      "artist": "SEATBELTS",
+      "title": "Tank!",
+      "year": 1998,
+      "isrc": "JPVI09809220",
+      "uri": "spotify:track:2Wi5ubKr8zSk8L3CLemyS4",
+      "uri_apple_music": "applemusic://track/1521453384",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1521453384",
+        "de": "applemusic://track/1521453384",
+        "gb": "applemusic://track/1521453384",
+        "fr": "applemusic://track/1521453384",
+        "es": "applemusic://track/1521453384",
+        "nl": "applemusic://track/1521453384",
+        "it": "applemusic://track/1521453384"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UFFa0QoHWvE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1006888182"
+    },
+    {
+      "artist": "Yoko Takahashi",
+      "title": "残酷な天使のテーゼ",
+      "year": 1995,
+      "isrc": "JPKI09519950",
+      "uri": "spotify:track:23phSRwoMy48rwFpmuAP8q",
+      "uri_apple_music": "applemusic://track/1664383396",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1664383396",
+        "de": "applemusic://track/1664383396",
+        "gb": "applemusic://track/1664383396",
+        "fr": "applemusic://track/1664383396",
+        "es": "applemusic://track/1664383396",
+        "nl": "applemusic://track/1664383396",
+        "it": "applemusic://track/1664383396"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xyVatKhd4s4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2229412677"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "そばかす",
+      "year": 1996,
+      "isrc": "JPES09500952",
+      "uri": "spotify:track:0IL7LGrnYObWYyYaJ3GzWr",
+      "uri_apple_music": "applemusic://track/1536279554",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536279554",
+        "de": "applemusic://track/1536279554",
+        "gb": "applemusic://track/1536279554",
+        "fr": "applemusic://track/1536279554",
+        "es": "applemusic://track/1536279554",
+        "nl": "applemusic://track/1536279554",
+        "it": "applemusic://track/1536279554"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0DBkXcDU270",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "L'Arc-en-Ciel",
+      "title": "READY STEADY GO",
+      "year": 2004,
+      "isrc": "JPKS00301961",
+      "uri": "spotify:track:18Z9odGzO4WPtF4FUJzre9",
+      "uri_apple_music": "applemusic://track/1536387606",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536387606",
+        "de": "applemusic://track/1536387606",
+        "gb": "applemusic://track/1536387606",
+        "fr": "applemusic://track/1536387606",
+        "es": "applemusic://track/1536387606",
+        "nl": "applemusic://track/1536387606",
+        "it": "applemusic://track/1536387606"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8gE7LxbxvZY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976828652"
+    },
+    {
+      "artist": "MAXIMUM THE HORMONE",
+      "title": "What's up, people?!",
+      "year": 2007,
+      "isrc": "JPVP00510201",
+      "uri": "spotify:track:07qCt941ZIm3alfGCoP247",
+      "uri_apple_music": "applemusic://track/1290661205",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1290661205",
+        "de": "applemusic://track/1290661205",
+        "gb": "applemusic://track/1290661205",
+        "fr": "applemusic://track/1290661205",
+        "es": "applemusic://track/1290661205",
+        "nl": "applemusic://track/1290661205",
+        "it": "applemusic://track/1290661205"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=muoWDA6zmsY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2665324252"
+    },
+    {
+      "artist": "ClariS",
+      "title": "コネクト",
+      "year": 2011,
+      "isrc": "JPU901001861",
+      "uri": "spotify:track:3DZG4wc2NQbgjR2m8iXpG1",
+      "uri_apple_music": "applemusic://track/1537267446",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1563450907",
+        "de": "applemusic://track/1563450907",
+        "gb": "applemusic://track/1563450907",
+        "fr": "applemusic://track/1563450907",
+        "es": "applemusic://track/1563450907",
+        "nl": "applemusic://track/1563450907",
+        "it": "applemusic://track/1563450907"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A8CbP6Pjqko",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Hikaru Utada",
+      "title": "Beautiful World",
+      "year": 2007,
+      "isrc": "JPPO01806081",
+      "uri": "spotify:track:6aOoUkiQ9rLweL8IkPBN0L",
+      "uri_apple_music": "applemusic://track/1444575351",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444575351",
+        "de": "applemusic://track/1444575351",
+        "gb": "applemusic://track/1444575351",
+        "fr": "applemusic://track/1444575351",
+        "es": "applemusic://track/1444575351",
+        "nl": "applemusic://track/1444575351",
+        "it": "applemusic://track/1444575351"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N2tSDKngeoY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/598884752"
+    },
+    {
+      "artist": "the pillows",
+      "title": "Ride on shooting star",
+      "year": 2000,
+      "isrc": "JPKI00001840",
+      "uri": "spotify:track:4RXAU8uBG5huAnubxY3ycC",
+      "uri_apple_music": "applemusic://track/1639887721",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1639887721",
+        "de": "applemusic://track/1639887721",
+        "gb": "applemusic://track/1639887721",
+        "fr": "applemusic://track/1639887721",
+        "es": "applemusic://track/1639887721",
+        "nl": "applemusic://track/1639887721",
+        "it": "applemusic://track/1639887721"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9cC8Q8RAEso",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1831943227"
+    },
+    {
+      "artist": "YUI",
+      "title": "Rolling star",
+      "year": 2006,
+      "isrc": "JPSR00603361",
+      "uri": "spotify:track:0rVH35mmwtelHycrJxFexC",
+      "uri_apple_music": "applemusic://track/1537515443",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537515443",
+        "de": "applemusic://track/1537515443",
+        "gb": "applemusic://track/1537515443",
+        "fr": "applemusic://track/1537515443",
+        "es": "applemusic://track/1537515443",
+        "nl": "applemusic://track/1537515443",
+        "it": "applemusic://track/1537515443"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L1RG1YqWwuo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/975971522"
+    },
+    {
+      "artist": "ASIAN KUNG-FU GENERATION",
+      "title": "リライト",
+      "year": 2004,
+      "isrc": "JPKS00400641",
+      "uri": "spotify:track:3txqYlzoDZGLoW8MGll9tQ",
+      "uri_apple_music": "applemusic://track/1536364096",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536363700",
+        "de": "applemusic://track/1536363700",
+        "gb": "applemusic://track/1536363700",
+        "fr": "applemusic://track/1536363700",
+        "es": "applemusic://track/1536363700",
+        "nl": "applemusic://track/1536363700",
+        "it": "applemusic://track/1536363700"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G3_8jgVceBs",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "ROUND TABLE featuring Nino",
+      "title": "Let Me Be With You",
+      "year": 2002,
+      "isrc": "JPVI00209150",
+      "uri": "spotify:track:4UBt00S6TNsKwgfxMcfNal",
+      "uri_apple_music": "applemusic://track/208201045",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/208201045",
+        "de": "applemusic://track/208201045",
+        "gb": "applemusic://track/208201045",
+        "fr": "applemusic://track/208201045",
+        "es": "applemusic://track/208201045",
+        "nl": "applemusic://track/208201045",
+        "it": "applemusic://track/208201045"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dWmFeYA9Nj4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2116054937"
+    },
+    {
+      "artist": "SCANDAL",
+      "title": "少女Ｓ",
+      "year": 2009,
+      "isrc": "QMFMF1324377",
+      "uri": "spotify:track:31A3fFQivbhGo9aJQQCdtP",
+      "uri_apple_music": "applemusic://track/1367858045",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1367858045",
+        "de": "applemusic://track/1367858045",
+        "gb": "applemusic://track/1367858045",
+        "fr": "applemusic://track/1367858045",
+        "es": "applemusic://track/1367858045",
+        "nl": "applemusic://track/1367858045",
+        "it": "applemusic://track/1367858045"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7TRD1UZkXN0",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "HIGH and MIGHTY COLOR",
+      "title": "一輪の花",
+      "year": 2005,
+      "isrc": "JPU900502081",
+      "uri": "spotify:track:4F8dTXGtILugNJ88mivxsl",
+      "uri_apple_music": "applemusic://track/1537233480",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537236697",
+        "de": "applemusic://track/1537236697",
+        "gb": "applemusic://track/1537236697",
+        "fr": "applemusic://track/1537236697",
+        "es": "applemusic://track/1537236697",
+        "nl": "applemusic://track/1537236697",
+        "it": "applemusic://track/1537236697"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_oqGqdJueXM",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "UVERworld",
+      "title": "D-tecnoLife",
+      "year": 2005,
+      "isrc": "JPSR00500865",
+      "uri": "spotify:track:3eyxh8xkW0X7k1FSHlAatt",
+      "uri_apple_music": "applemusic://track/1538966061",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1538966061",
+        "de": "applemusic://track/1538966061",
+        "gb": "applemusic://track/1538966061",
+        "fr": "applemusic://track/1538966061",
+        "es": "applemusic://track/1538966061",
+        "nl": "applemusic://track/1538966061",
+        "it": "applemusic://track/1538966061"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0Ob_NVJ09Mw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976093112"
+    },
+    {
+      "artist": "FLOW",
+      "title": "Re:member",
+      "year": 2004,
+      "isrc": "JPKS00600481",
+      "uri": "spotify:track:7eyNBX6ffLGH4q2Ef0Xbvz",
+      "uri_apple_music": "applemusic://track/1536475736",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536475736",
+        "de": "applemusic://track/1536475736",
+        "gb": "applemusic://track/1536475736",
+        "fr": "applemusic://track/1536475736",
+        "es": "applemusic://track/1536475736",
+        "nl": "applemusic://track/1536475736",
+        "it": "applemusic://track/1536475736"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0FRnEHwZroM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976282242"
+    },
+    {
+      "artist": "Nana Mizuki",
+      "title": "ETERNAL BLAZE",
+      "year": 2005,
+      "isrc": "JPKI00507727",
+      "uri": "spotify:track:6fyIfewtQJOBNsK4jhyc9N",
+      "uri_apple_music": "applemusic://track/378480340",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/378480340",
+        "de": "applemusic://track/378480340",
+        "gb": "applemusic://track/378480340",
+        "fr": "applemusic://track/378480340",
+        "es": "applemusic://track/378480340",
+        "nl": "applemusic://track/378480340",
+        "it": "applemusic://track/378480340"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iEBAmO7RXEw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2230714427"
+    },
+    {
+      "artist": "OLDCODEX",
+      "title": "The Misfit Go",
+      "year": 2013,
+      "isrc": "JPI101300799",
+      "uri": "spotify:track:2XpmHnDPEFH6ANzBCWUBAQ",
+      "uri_apple_music": "applemusic://track/1746903724",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1746903724",
+        "de": "applemusic://track/1746903724",
+        "gb": "applemusic://track/1746903724",
+        "fr": "applemusic://track/1746903724",
+        "es": "applemusic://track/1746903724",
+        "nl": "applemusic://track/1746903724",
+        "it": "applemusic://track/1746903724"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=33PRAngMcSI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2806493382"
+    },
+    {
+      "artist": "GRANRODEO",
+      "title": "Can Do",
+      "year": 2012,
+      "isrc": "JPI101200505",
+      "uri": "spotify:track:61MJ6Zn91wMSX2sEj5zE5W",
+      "uri_apple_music": "applemusic://track/1793063511",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1793063511",
+        "de": "applemusic://track/1793063511",
+        "gb": "applemusic://track/1793063511",
+        "fr": "applemusic://track/1793063511",
+        "es": "applemusic://track/1793063511",
+        "nl": "applemusic://track/1793063511",
+        "it": "applemusic://track/1793063511"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=74nQhJzUZec",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2793587022"
+    },
+    {
+      "artist": "BUMP OF CHICKEN",
+      "title": "Hello,world!",
+      "year": 2015,
+      "isrc": "JPTF02305102",
+      "uri": "spotify:track:1YqVJ2YSgwxWpfuENocF2t",
+      "uri_apple_music": "applemusic://track/1679484430",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1679484430",
+        "de": "applemusic://track/1679484430",
+        "gb": "applemusic://track/1679484430",
+        "fr": "applemusic://track/1679484430",
+        "es": "applemusic://track/1679484430",
+        "nl": "applemusic://track/1679484430",
+        "it": "applemusic://track/1679484430"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XPerYFKqk60",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2212229337"
+    },
+    {
+      "artist": "PornoGraffitti",
+      "title": "ヒトリノ夜",
+      "year": 2000,
+      "isrc": "JPSR09915082",
+      "uri": "spotify:track:6bTvUbet6vqM885XWvxTl1",
+      "uri_apple_music": "applemusic://track/1537350353",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537350353",
+        "de": "applemusic://track/1537350353",
+        "gb": "applemusic://track/1537350353",
+        "fr": "applemusic://track/1537350353",
+        "es": "applemusic://track/1537350353",
+        "nl": "applemusic://track/1537350353",
+        "it": "applemusic://track/1537350353"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D1FHfPN39Y4",
+      "uri_tidal": null,
+      "uri_deezer": null
     }
   ]
 }
