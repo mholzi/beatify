@@ -17,6 +17,14 @@
     var announceTimeUp = true;
     var announceCorrectAnswer = true;
     var announceNobodyCorrect = true;
+    // #840 Phase 2: Player Achievement toggles. streak-broken defaults off —
+    // firing on every missed round mid-game is noisy.
+    var announceExactGuess = true;
+    var announceClosestGuess = true;
+    var announceStreakMilestone = true;
+    var announceStreakBroken = false;
+    var announceLeaderChange = true;
+    var announceTiedFirst = true;
 
     function loadState() {
         try {
@@ -30,6 +38,12 @@
             announceTimeUp = saved.announce_time_up !== false;
             announceCorrectAnswer = saved.announce_correct_answer !== false;
             announceNobodyCorrect = saved.announce_nobody_correct !== false;
+            announceExactGuess = saved.announce_exact_guess !== false;
+            announceClosestGuess = saved.announce_closest_guess !== false;
+            announceStreakMilestone = saved.announce_streak_milestone !== false;
+            announceStreakBroken = saved.announce_streak_broken === true;
+            announceLeaderChange = saved.announce_leader_change !== false;
+            announceTiedFirst = saved.announce_tied_first !== false;
         } catch (e) { /* ignore */ }
     }
 
@@ -44,7 +58,13 @@
                 announce_countdown: announceCountdown,
                 announce_time_up: announceTimeUp,
                 announce_correct_answer: announceCorrectAnswer,
-                announce_nobody_correct: announceNobodyCorrect
+                announce_nobody_correct: announceNobodyCorrect,
+                announce_exact_guess: announceExactGuess,
+                announce_closest_guess: announceClosestGuess,
+                announce_streak_milestone: announceStreakMilestone,
+                announce_streak_broken: announceStreakBroken,
+                announce_leader_change: announceLeaderChange,
+                announce_tied_first: announceTiedFirst
             }));
         } catch (e) { /* ignore */ }
     }
@@ -132,7 +152,14 @@
             ['tts-announce-countdown', function(v) { announceCountdown = v; }, function() { return announceCountdown; }],
             ['tts-announce-time-up', function(v) { announceTimeUp = v; }, function() { return announceTimeUp; }],
             ['tts-announce-correct-answer', function(v) { announceCorrectAnswer = v; }, function() { return announceCorrectAnswer; }],
-            ['tts-announce-nobody-correct', function(v) { announceNobodyCorrect = v; }, function() { return announceNobodyCorrect; }]
+            ['tts-announce-nobody-correct', function(v) { announceNobodyCorrect = v; }, function() { return announceNobodyCorrect; }],
+            // #840 Phase 2: Player Achievement toggles
+            ['tts-announce-exact-guess', function(v) { announceExactGuess = v; }, function() { return announceExactGuess; }],
+            ['tts-announce-closest-guess', function(v) { announceClosestGuess = v; }, function() { return announceClosestGuess; }],
+            ['tts-announce-streak-milestone', function(v) { announceStreakMilestone = v; }, function() { return announceStreakMilestone; }],
+            ['tts-announce-streak-broken', function(v) { announceStreakBroken = v; }, function() { return announceStreakBroken; }],
+            ['tts-announce-leader-change', function(v) { announceLeaderChange = v; }, function() { return announceLeaderChange; }],
+            ['tts-announce-tied-first', function(v) { announceTiedFirst = v; }, function() { return announceTiedFirst; }]
         ].forEach(function(pair) {
             var el = document.getElementById(pair[0]);
             if (el) {
@@ -197,7 +224,14 @@
             announce_countdown: announceCountdown,
             announce_time_up: announceTimeUp,
             announce_correct_answer: announceCorrectAnswer,
-            announce_nobody_correct: announceNobodyCorrect
+            announce_nobody_correct: announceNobodyCorrect,
+            // #840 Phase 2: Player Achievement toggles
+            announce_exact_guess: announceExactGuess,
+            announce_closest_guess: announceClosestGuess,
+            announce_streak_milestone: announceStreakMilestone,
+            announce_streak_broken: announceStreakBroken,
+            announce_leader_change: announceLeaderChange,
+            announce_tied_first: announceTiedFirst
         };
     };
 
