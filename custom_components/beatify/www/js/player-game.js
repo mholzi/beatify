@@ -1620,7 +1620,7 @@ function showStealConfirmation(target, year) {
 // Admin Control Bar (Story 6.1)
 // ============================================
 
-var adminActionPending = false;
+var lastAdminActionAt = 0;
 var ADMIN_ACTION_DEBOUNCE_MS = 500;
 
 var songStopped = false;
@@ -1632,9 +1632,13 @@ var currentVolume = 0.5;
  * @returns {boolean} True if action can proceed, false if debounced
  */
 function debounceAdminAction() {
-    if (adminActionPending) return false;
-    adminActionPending = true;
-    setTimeout(function() { adminActionPending = false; }, ADMIN_ACTION_DEBOUNCE_MS);
+    // #880: timestamp-based, self-healing. The old boolean + setTimeout could
+    // wedge `true` forever if the timer was lost (background-tab throttling,
+    // an exception between set and schedule) — that silently killed every
+    // admin button. A pure time comparison can't get stuck.
+    var now = Date.now();
+    if (now - lastAdminActionAt < ADMIN_ACTION_DEBOUNCE_MS) return false;
+    lastAdminActionAt = now;
     return true;
 }
 
@@ -1804,12 +1808,25 @@ function handleStopSong() {
 
     if (!debounceAdminAction()) return;
 
+    var stopBtn = document.getElementById('stop-song-btn');
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        // #880: the WebSocket can briefly be CONNECTING right after an
+        // admin->player handoff or a tab-return reconnect. The old code
+        // returned with only a console.warn — to the admin the button just
+        // looked dead. Flash visible feedback on the label so they know the
+        // click registered and to retry once reconnected.
         console.warn('[Beatify] Cannot stop song: WebSocket not connected');
+        if (stopBtn) {
+            var warnLabel = stopBtn.querySelector('.control-label');
+            if (warnLabel) {
+                var prevText = warnLabel.textContent;
+                warnLabel.textContent = utils.t('errors.CONNECTION_LOST') || 'No connection';
+                setTimeout(function() { warnLabel.textContent = prevText; }, 1800);
+            }
+        }
         return;
     }
 
-    var stopBtn = document.getElementById('stop-song-btn');
     if (stopBtn) {
         stopBtn.classList.add('is-disabled');
         stopBtn.disabled = true;
