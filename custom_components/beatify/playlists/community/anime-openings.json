@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.2",
+  "version": "1.3",
   "tags": [
     "anime",
     "japanese",
@@ -30,7 +30,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cb0JZhdmjtg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3540533651"
+      "uri_deezer": "deezer://track/3540533651",
+      "fun_fact": "Theme song for the 2025 film 'Chainsaw Man – The Movie: Reze Arc'.",
+      "fun_fact_de": "Titelsong des Films 'Chainsaw Man – The Movie: Reze Arc' (2025).",
+      "fun_fact_es": "Tema de la película 'Chainsaw Man – The Movie: Reze Arc' (2025).",
+      "fun_fact_fr": "Chanson-thème du film 'Chainsaw Man – The Movie: Reze Arc' (2025).",
+      "fun_fact_nl": "Titelsong van de film 'Chainsaw Man – The Movie: Reze Arc' (2025)."
     },
     {
       "artist": "Creepy Nuts",
@@ -50,7 +55,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=W0dsUNS4RT8",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening theme of 'Dandadan' (2024) — Creepy Nuts following up their viral 'Bling-Bang-Bang-Born'.",
+      "fun_fact_de": "Opening von 'Dandadan' (2024) — Creepy Nuts' Nachfolger zum viralen 'Bling-Bang-Bang-Born'.",
+      "fun_fact_es": "Opening de 'Dandadan' (2024), de Creepy Nuts tras su viral 'Bling-Bang-Bang-Born'.",
+      "fun_fact_fr": "Générique de 'Dandadan' (2024), par Creepy Nuts après leur tube viral 'Bling-Bang-Bang-Born'.",
+      "fun_fact_nl": "Openingstune van 'Dandadan' (2024) — Creepy Nuts na hun virale 'Bling-Bang-Bang-Born'."
     },
     {
       "artist": "LiSA",
@@ -73,7 +83,12 @@
       "uri_deezer": "deezer://track/3126427261",
       "alt_artists": [
         "Felix"
-      ]
+      ],
+      "fun_fact": "Opening of 'Solo Leveling' Season 2 — LiSA teaming up with Felix of Stray Kids.",
+      "fun_fact_de": "Opening von 'Solo Leveling' Staffel 2 — LiSA gemeinsam mit Felix von Stray Kids.",
+      "fun_fact_es": "Opening de 'Solo Leveling' temporada 2, con LiSA y Felix de Stray Kids.",
+      "fun_fact_fr": "Générique de 'Solo Leveling' saison 2, avec LiSA et Felix de Stray Kids.",
+      "fun_fact_nl": "Opening van 'Solo Leveling' seizoen 2 — LiSA samen met Felix van Stray Kids."
     },
     {
       "artist": "Lilas",
@@ -93,7 +108,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yzvFG03sSwM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3155594841"
+      "uri_deezer": "deezer://track/3155594841",
+      "fun_fact": "Anime opening by singer-songwriter Lilas Ikuta (also half of the duo YOASOBI's vocalist Ikura).",
+      "fun_fact_de": "Anime-Opening von Singer-Songwriterin Lilas Ikuta (zugleich YOASOBI-Sängerin Ikura).",
+      "fun_fact_es": "Opening de anime de la cantautora Lilas Ikuta (también Ikura, voz de YOASOBI).",
+      "fun_fact_fr": "Générique d'anime de l'autrice-compositrice Lilas Ikuta (aussi Ikura, voix de YOASOBI).",
+      "fun_fact_nl": "Anime-opening van singer-songwriter Lilas Ikuta (tevens Ikura, zangeres van YOASOBI)."
     },
     {
       "artist": "AiNA THE END",
@@ -113,7 +133,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ntRVm85--b4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3402450951"
+      "uri_deezer": "deezer://track/3402450951",
+      "fun_fact": "Anime opening by AiNA THE END, former vocalist of the alt-idol group BiSH.",
+      "fun_fact_de": "Anime-Opening von AiNA THE END, ehemalige Sängerin der Alt-Idol-Gruppe BiSH.",
+      "fun_fact_es": "Opening de anime de AiNA THE END, exvocalista del grupo alt-idol BiSH.",
+      "fun_fact_fr": "Générique d'anime par AiNA THE END, ex-chanteuse du groupe alt-idol BiSH.",
+      "fun_fact_nl": "Anime-opening van AiNA THE END, voormalig zangeres van de alt-idolgroep BiSH."
     },
     {
       "artist": "Mrs. GREEN APPLE",
@@ -133,7 +158,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wNjvuRZtQeI",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'Fire Force' (2019) — one of Mrs. GREEN APPLE's signature hits.",
+      "fun_fact_de": "Opening 1 von 'Fire Force' (2019) — einer der Signature-Hits von Mrs. GREEN APPLE.",
+      "fun_fact_es": "Opening 1 de 'Fire Force' (2019), uno de los grandes éxitos de Mrs. GREEN APPLE.",
+      "fun_fact_fr": "Générique 1 de 'Fire Force' (2019), l'un des grands succès de Mrs. GREEN APPLE.",
+      "fun_fact_nl": "Opening 1 van 'Fire Force' (2019) — een van de kenmerkende hits van Mrs. GREEN APPLE."
     },
     {
       "artist": "Kenshi Yonezu",
@@ -153,7 +183,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NMA_isZYsYQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1946911957"
+      "uri_deezer": "deezer://track/1946911957",
+      "fun_fact": "Opening of 'Chainsaw Man' (2022) — the first anime song to be certified Gold by the RIAA in the US.",
+      "fun_fact_de": "Opening von 'Chainsaw Man' (2022) — der erste Anime-Song mit RIAA-Gold-Auszeichnung in den USA.",
+      "fun_fact_es": "Opening de 'Chainsaw Man' (2022), la primera canción de anime con disco de oro de la RIAA en EE. UU.",
+      "fun_fact_fr": "Générique de 'Chainsaw Man' (2022), première chanson d'anime certifiée or par la RIAA aux États-Unis.",
+      "fun_fact_nl": "Opening van 'Chainsaw Man' (2022) — het eerste animenummer met RIAA-goud in de VS."
     },
     {
       "artist": "Ikimonogakari",
@@ -173,7 +208,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=udNgJUiBCRg",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 3 of 'Naruto Shippuden' (2008) — one of the most beloved Naruto openings.",
+      "fun_fact_de": "Opening 3 von 'Naruto Shippuden' (2008) — eines der beliebtesten Naruto-Openings.",
+      "fun_fact_es": "Opening 3 de 'Naruto Shippuden' (2008), uno de los openings más queridos de Naruto.",
+      "fun_fact_fr": "Générique 3 de 'Naruto Shippuden' (2008), l'un des plus aimés de Naruto.",
+      "fun_fact_nl": "Opening 3 van 'Naruto Shippuden' (2008) — een van de geliefdste Naruto-openings."
     },
     {
       "artist": "Sakurazaka46",
@@ -196,7 +236,12 @@
       "uri_deezer": "deezer://track/3325137991",
       "alt_artists": [
         "Naeleck"
-      ]
+      ],
+      "fun_fact": "Naeleck remix of a Sakurazaka46 track, from the SACRA BEATS anime-remix series.",
+      "fun_fact_de": "Naeleck-Remix eines Sakurazaka46-Tracks aus der SACRA-BEATS-Anime-Remix-Reihe.",
+      "fun_fact_es": "Remix de Naeleck de un tema de Sakurazaka46, de la serie de remixes de anime SACRA BEATS.",
+      "fun_fact_fr": "Remix de Naeleck d'un titre de Sakurazaka46, issu de la série de remix d'anime SACRA BEATS.",
+      "fun_fact_nl": "Naeleck-remix van een Sakurazaka46-nummer, uit de SACRA BEATS anime-remixreeks."
     },
     {
       "artist": "bôa",
@@ -216,7 +261,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o7fgFaXKVa0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1557745322"
+      "uri_deezer": "deezer://track/1557745322",
+      "fun_fact": "Opening of the cult 1998 series 'Serial Experiments Lain' — bôa's enduring signature song.",
+      "fun_fact_de": "Opening der Kultserie 'Serial Experiments Lain' (1998) — bôas bis heute bekanntester Song.",
+      "fun_fact_es": "Opening de la serie de culto 'Serial Experiments Lain' (1998), la canción más conocida de bôa.",
+      "fun_fact_fr": "Générique de la série culte 'Serial Experiments Lain' (1998), le titre phare de bôa.",
+      "fun_fact_nl": "Opening van de cultserie 'Serial Experiments Lain' (1998) — bôa's bekendste nummer."
     },
     {
       "artist": "King Gnu",
@@ -236,7 +286,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=r_hJWTufE6w",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2413426495"
+      "uri_deezer": "deezer://track/2413426495",
+      "fun_fact": "Opening of 'Jujutsu Kaisen' Season 2 (Shibuya Incident arc) by King Gnu.",
+      "fun_fact_de": "Opening von 'Jujutsu Kaisen' Staffel 2 (Shibuya-Incident-Arc) von King Gnu.",
+      "fun_fact_es": "Opening de 'Jujutsu Kaisen' temporada 2 (arco del Incidente de Shibuya), de King Gnu.",
+      "fun_fact_fr": "Générique de 'Jujutsu Kaisen' saison 2 (arc Shibuya) par King Gnu.",
+      "fun_fact_nl": "Opening van 'Jujutsu Kaisen' seizoen 2 (Shibuya Incident-arc) van King Gnu."
     },
     {
       "artist": "Creepy Nuts",
@@ -256,7 +311,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6gMBmZ28Xg4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2580253682"
+      "uri_deezer": "deezer://track/2580253682",
+      "fun_fact": "Opening of 'Mashle' Season 2 (2024) — its dance went massively viral on TikTok.",
+      "fun_fact_de": "Opening von 'Mashle' Staffel 2 (2024) — der Tanz dazu ging auf TikTok extrem viral.",
+      "fun_fact_es": "Opening de 'Mashle' temporada 2 (2024); su baile se hizo enormemente viral en TikTok.",
+      "fun_fact_fr": "Générique de 'Mashle' saison 2 (2024) — sa chorégraphie est devenue virale sur TikTok.",
+      "fun_fact_nl": "Opening van 'Mashle' seizoen 2 (2024) — de dans ging enorm viraal op TikTok."
     },
     {
       "artist": "LiSA",
@@ -276,7 +336,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TqyfmFaZlqw",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'Demon Slayer: Kimetsu no Yaiba' (2019) — LiSA's career-defining smash.",
+      "fun_fact_de": "Opening 1 von 'Demon Slayer: Kimetsu no Yaiba' (2019) — LiSAs karrieredefinierender Hit.",
+      "fun_fact_es": "Opening 1 de 'Demon Slayer: Kimetsu no Yaiba' (2019), el éxito que definió la carrera de LiSA.",
+      "fun_fact_fr": "Générique 1 de 'Demon Slayer' (2019), le tube qui a défini la carrière de LiSA.",
+      "fun_fact_nl": "Opening 1 van 'Demon Slayer' (2019) — de hit die LiSA's carrière bepaalde."
     },
     {
       "artist": "TK from Ling tosite sigure",
@@ -296,7 +361,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mtawrvojDyU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/975968052"
+      "uri_deezer": "deezer://track/975968052",
+      "fun_fact": "Opening of 'Tokyo Ghoul' (2014) — one of the most iconic anime openings of the 2010s.",
+      "fun_fact_de": "Opening von 'Tokyo Ghoul' (2014) — eines der ikonischsten Anime-Openings der 2010er.",
+      "fun_fact_es": "Opening de 'Tokyo Ghoul' (2014), uno de los openings más icónicos de la década de 2010.",
+      "fun_fact_fr": "Générique de 'Tokyo Ghoul' (2014), l'un des plus emblématiques des années 2010.",
+      "fun_fact_nl": "Opening van 'Tokyo Ghoul' (2014) — een van de iconischste anime-openings van de jaren 2010."
     },
     {
       "artist": "YOASOBI",
@@ -316,7 +386,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=m9SMT5ipbxk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2210493097"
+      "uri_deezer": "deezer://track/2210493097",
+      "fun_fact": "Opening of 'Oshi no Ko' (2023) — hit #1 on the Billboard Global chart.",
+      "fun_fact_de": "Opening von 'Oshi no Ko' (2023) — erreichte Platz 1 der Billboard-Global-Charts.",
+      "fun_fact_es": "Opening de 'Oshi no Ko' (2023); llegó al n.º 1 de la lista Billboard Global.",
+      "fun_fact_fr": "Générique de 'Oshi no Ko' (2023) — n°1 du classement Billboard Global.",
+      "fun_fact_nl": "Opening van 'Oshi no Ko' (2023) — bereikte nr. 1 in de Billboard Global-lijst."
     },
     {
       "artist": "Aimer",
@@ -336,7 +411,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=d6NPs3OQIAU",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Demon Slayer: Entertainment District Arc' (2021) by Aimer.",
+      "fun_fact_de": "Opening von 'Demon Slayer: Entertainment District Arc' (2021) von Aimer.",
+      "fun_fact_es": "Opening de 'Demon Slayer: Distrito del Entretenimiento' (2021), de Aimer.",
+      "fun_fact_fr": "Générique de 'Demon Slayer: Arc du quartier des plaisirs' (2021) par Aimer.",
+      "fun_fact_nl": "Opening van 'Demon Slayer: Entertainment District Arc' (2021) van Aimer."
     },
     {
       "artist": "Tatsuya Kitani",
@@ -356,7 +436,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A2jr18ZbkFc",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'Jujutsu Kaisen' Season 2 by Tatsuya Kitani.",
+      "fun_fact_de": "Opening 1 von 'Jujutsu Kaisen' Staffel 2 von Tatsuya Kitani.",
+      "fun_fact_es": "Opening 1 de 'Jujutsu Kaisen' temporada 2, de Tatsuya Kitani.",
+      "fun_fact_fr": "Générique 1 de 'Jujutsu Kaisen' saison 2 par Tatsuya Kitani.",
+      "fun_fact_nl": "Opening 1 van 'Jujutsu Kaisen' seizoen 2 van Tatsuya Kitani."
     },
     {
       "artist": "YUI",
@@ -376,7 +461,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0NJCpJZ19n8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/975952742"
+      "uri_deezer": "deezer://track/975952742",
+      "fun_fact": "Opening 1 of 'Fullmetal Alchemist: Brotherhood' (2009).",
+      "fun_fact_de": "Opening 1 von 'Fullmetal Alchemist: Brotherhood' (2009).",
+      "fun_fact_es": "Opening 1 de 'Fullmetal Alchemist: Brotherhood' (2009).",
+      "fun_fact_fr": "Générique 1 de 'Fullmetal Alchemist: Brotherhood' (2009).",
+      "fun_fact_nl": "Opening 1 van 'Fullmetal Alchemist: Brotherhood' (2009)."
     },
     {
       "artist": "Cö shu Nie",
@@ -399,7 +489,12 @@
       "uri_deezer": "deezer://track/1634748192",
       "alt_artists": [
         "Naeleck"
-      ]
+      ],
+      "fun_fact": "Naeleck remix of a Cö shu Nie song, from the SACRA BEATS anime-remix series.",
+      "fun_fact_de": "Naeleck-Remix eines Cö-shu-Nie-Songs aus der SACRA-BEATS-Anime-Remix-Reihe.",
+      "fun_fact_es": "Remix de Naeleck de una canción de Cö shu Nie, de la serie SACRA BEATS.",
+      "fun_fact_fr": "Remix de Naeleck d'un titre de Cö shu Nie, série SACRA BEATS.",
+      "fun_fact_nl": "Naeleck-remix van een Cö shu Nie-nummer, uit de SACRA BEATS-reeks."
     },
     {
       "artist": "Eve",
@@ -419,7 +514,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=isY3rtuSsK8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1143848452"
+      "uri_deezer": "deezer://track/1143848452",
+      "fun_fact": "Opening 1 of 'Jujutsu Kaisen' (2020) by Eve.",
+      "fun_fact_de": "Opening 1 von 'Jujutsu Kaisen' (2020) von Eve.",
+      "fun_fact_es": "Opening 1 de 'Jujutsu Kaisen' (2020), de Eve.",
+      "fun_fact_fr": "Générique 1 de 'Jujutsu Kaisen' (2020) par Eve.",
+      "fun_fact_nl": "Opening 1 van 'Jujutsu Kaisen' (2020) van Eve."
     },
     {
       "artist": "Linked Horizon",
@@ -439,7 +539,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-S8iIjxyzSU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1831699647"
+      "uri_deezer": "deezer://track/1831699647",
+      "fun_fact": "Opening 1 of 'Attack on Titan' (2013) — Linked Horizon's thunderous debut anime theme.",
+      "fun_fact_de": "Opening 1 von 'Attack on Titan' (2013) — Linked Horizons donnernder erster Anime-Titel.",
+      "fun_fact_es": "Opening 1 de 'Attack on Titan' (2013), el atronador primer tema de anime de Linked Horizon.",
+      "fun_fact_fr": "Générique 1 de 'L'Attaque des Titans' (2013), le premier thème fracassant de Linked Horizon.",
+      "fun_fact_nl": "Opening 1 van 'Attack on Titan' (2013) — Linked Horizons donderende eerste animethema."
     },
     {
       "artist": "SiM",
@@ -459,7 +564,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uFUEq5ZadUw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2152253197"
+      "uri_deezer": "deezer://track/2152253197",
+      "fun_fact": "Opening of 'Attack on Titan' The Final Season by Japanese reggae-metal band SiM.",
+      "fun_fact_de": "Opening der finalen Staffel von 'Attack on Titan' von der Reggae-Metal-Band SiM.",
+      "fun_fact_es": "Opening de la temporada final de 'Attack on Titan', de la banda de reggae-metal SiM.",
+      "fun_fact_fr": "Générique de la saison finale de 'L'Attaque des Titans' par le groupe reggae-metal SiM.",
+      "fun_fact_nl": "Opening van het laatste seizoen van 'Attack on Titan' van reggae-metalband SiM."
     },
     {
       "artist": "MAN WITH A MISSION",
@@ -482,7 +592,12 @@
       "uri_deezer": null,
       "alt_artists": [
         "milet"
-      ]
+      ],
+      "fun_fact": "Opening of 'Demon Slayer: Swordsmith Village Arc' (2023) — MAN WITH A MISSION x milet.",
+      "fun_fact_de": "Opening von 'Demon Slayer: Swordsmith Village Arc' (2023) — MAN WITH A MISSION x milet.",
+      "fun_fact_es": "Opening de 'Demon Slayer: Pueblo de los Herreros' (2023), MAN WITH A MISSION x milet.",
+      "fun_fact_fr": "Générique de 'Demon Slayer: Le village des forgerons' (2023), MAN WITH A MISSION x milet.",
+      "fun_fact_nl": "Opening van 'Demon Slayer: Swordsmith Village Arc' (2023) — MAN WITH A MISSION x milet."
     },
     {
       "artist": "NIGHTMARE",
@@ -502,7 +617,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=b4vc629T4b8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2665292502"
+      "uri_deezer": "deezer://track/2665292502",
+      "fun_fact": "Opening 1 of 'Death Note' (2006) by visual-kei band NIGHTMARE.",
+      "fun_fact_de": "Opening 1 von 'Death Note' (2006) von der Visual-Kei-Band NIGHTMARE.",
+      "fun_fact_es": "Opening 1 de 'Death Note' (2006), de la banda visual kei NIGHTMARE.",
+      "fun_fact_fr": "Générique 1 de 'Death Note' (2006) par le groupe visual kei NIGHTMARE.",
+      "fun_fact_nl": "Opening 1 van 'Death Note' (2006) van visual-keiband NIGHTMARE."
     },
     {
       "artist": "Coda",
@@ -522,7 +642,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uz9NT98_ulk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/837029882"
+      "uri_deezer": "deezer://track/837029882",
+      "fun_fact": "Opening 2 of 'JoJo's Bizarre Adventure' (Battle Tendency arc, 2013).",
+      "fun_fact_de": "Opening 2 von 'JoJo's Bizarre Adventure' (Battle-Tendency-Arc, 2013).",
+      "fun_fact_es": "Opening 2 de 'JoJo's Bizarre Adventure' (arco Battle Tendency, 2013).",
+      "fun_fact_fr": "Générique 2 de 'JoJo's Bizarre Adventure' (arc Battle Tendency, 2013).",
+      "fun_fact_nl": "Opening 2 van 'JoJo's Bizarre Adventure' (Battle Tendency-arc, 2013)."
     },
     {
       "artist": "THE ORAL CIGARETTES",
@@ -542,7 +667,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=IHaUGQVrBa8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3628584642"
+      "uri_deezer": "deezer://track/3628584642",
+      "fun_fact": "Opening 2 of 'Noragami Aragoto' (2015) by THE ORAL CIGARETTES.",
+      "fun_fact_de": "Opening 2 von 'Noragami Aragoto' (2015) von THE ORAL CIGARETTES.",
+      "fun_fact_es": "Opening 2 de 'Noragami Aragoto' (2015), de THE ORAL CIGARETTES.",
+      "fun_fact_fr": "Générique 2 de 'Noragami Aragoto' (2015) par THE ORAL CIGARETTES.",
+      "fun_fact_nl": "Opening 2 van 'Noragami Aragoto' (2015) van THE ORAL CIGARETTES."
     },
     {
       "artist": "amazarashi",
@@ -565,7 +695,12 @@
       "uri_deezer": null,
       "alt_artists": [
         "Naeleck"
-      ]
+      ],
+      "fun_fact": "Naeleck remix of an amazarashi song, from the SACRA BEATS anime-remix series.",
+      "fun_fact_de": "Naeleck-Remix eines amazarashi-Songs aus der SACRA-BEATS-Anime-Remix-Reihe.",
+      "fun_fact_es": "Remix de Naeleck de una canción de amazarashi, de la serie SACRA BEATS.",
+      "fun_fact_fr": "Remix de Naeleck d'un titre d'amazarashi, série SACRA BEATS.",
+      "fun_fact_nl": "Naeleck-remix van een amazarashi-nummer, uit de SACRA BEATS-reeks."
     },
     {
       "artist": "OFFICIAL HIGE DANDISM",
@@ -585,7 +720,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=EZy_vHyFedw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1701852587"
+      "uri_deezer": "deezer://track/1701852587",
+      "fun_fact": "Opening of 'Spy x Family' (2022) by OFFICIAL HIGE DANDISM.",
+      "fun_fact_de": "Opening von 'Spy x Family' (2022) von OFFICIAL HIGE DANDISM.",
+      "fun_fact_es": "Opening de 'Spy x Family' (2022), de OFFICIAL HIGE DANDISM.",
+      "fun_fact_fr": "Générique de 'Spy x Family' (2022) par OFFICIAL HIGE DANDISM.",
+      "fun_fact_nl": "Opening van 'Spy x Family' (2022) van OFFICIAL HIGE DANDISM."
     },
     {
       "artist": "KANA-BOON",
@@ -605,7 +745,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zqKrpw36xnU",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 16 of 'Naruto Shippuden' (2014) by KANA-BOON.",
+      "fun_fact_de": "Opening 16 von 'Naruto Shippuden' (2014) von KANA-BOON.",
+      "fun_fact_es": "Opening 16 de 'Naruto Shippuden' (2014), de KANA-BOON.",
+      "fun_fact_fr": "Générique 16 de 'Naruto Shippuden' (2014) par KANA-BOON.",
+      "fun_fact_nl": "Opening 16 van 'Naruto Shippuden' (2014) van KANA-BOON."
     },
     {
       "artist": "Gen Hoshino",
@@ -625,7 +770,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=URR_Nv-6MZs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2128227357"
+      "uri_deezer": "deezer://track/2128227357",
+      "fun_fact": "Theme song from 'Spy x Family' (2022), written and performed by Gen Hoshino.",
+      "fun_fact_de": "Titelsong aus 'Spy x Family' (2022), geschrieben und gesungen von Gen Hoshino.",
+      "fun_fact_es": "Tema de 'Spy x Family' (2022), escrito e interpretado por Gen Hoshino.",
+      "fun_fact_fr": "Chanson-thème de 'Spy x Family' (2022), écrite et interprétée par Gen Hoshino.",
+      "fun_fact_nl": "Titelsong uit 'Spy x Family' (2022), geschreven en gezongen door Gen Hoshino."
     },
     {
       "artist": "OFFICIAL HIGE DANDISM",
@@ -645,7 +795,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tty54CzXZDg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1347377252"
+      "uri_deezer": "deezer://track/1347377252",
+      "fun_fact": "Opening of 'Tokyo Revengers' (2021) by OFFICIAL HIGE DANDISM.",
+      "fun_fact_de": "Opening von 'Tokyo Revengers' (2021) von OFFICIAL HIGE DANDISM.",
+      "fun_fact_es": "Opening de 'Tokyo Revengers' (2021), de OFFICIAL HIGE DANDISM.",
+      "fun_fact_fr": "Générique de 'Tokyo Revengers' (2021) par OFFICIAL HIGE DANDISM.",
+      "fun_fact_nl": "Opening van 'Tokyo Revengers' (2021) van OFFICIAL HIGE DANDISM."
     },
     {
       "artist": "Sawano Hiroyuki",
@@ -665,7 +820,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zroFzv7sFis",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/367620991"
+      "uri_deezer": "deezer://track/367620991",
+      "fun_fact": "Track from the 'Attack on Titan' soundtrack composed by Hiroyuki Sawano.",
+      "fun_fact_de": "Track aus dem 'Attack on Titan'-Soundtrack, komponiert von Hiroyuki Sawano.",
+      "fun_fact_es": "Tema de la banda sonora de 'Attack on Titan', compuesta por Hiroyuki Sawano.",
+      "fun_fact_fr": "Morceau de la bande originale de 'L'Attaque des Titans', composée par Hiroyuki Sawano.",
+      "fun_fact_nl": "Nummer uit de 'Attack on Titan'-soundtrack, gecomponeerd door Hiroyuki Sawano."
     },
     {
       "artist": "YOASOBI",
@@ -685,7 +845,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k0g04t7ZeSw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1171495792"
+      "uri_deezer": "deezer://track/1171495792",
+      "fun_fact": "Opening 2 of 'Beastars' (2021) by YOASOBI.",
+      "fun_fact_de": "Opening 2 von 'Beastars' (2021) von YOASOBI.",
+      "fun_fact_es": "Opening 2 de 'Beastars' (2021), de YOASOBI.",
+      "fun_fact_fr": "Générique 2 de 'Beastars' (2021) par YOASOBI.",
+      "fun_fact_nl": "Opening 2 van 'Beastars' (2021) van YOASOBI."
     },
     {
       "artist": "ALI",
@@ -708,7 +873,12 @@
       "uri_deezer": "deezer://track/1093607442",
       "alt_artists": [
         "AKLO"
-      ]
+      ],
+      "fun_fact": "Ending theme of 'Jujutsu Kaisen' (2020) by hip-hop band ALI.",
+      "fun_fact_de": "Ending-Theme von 'Jujutsu Kaisen' (2020) von der Hip-Hop-Band ALI.",
+      "fun_fact_es": "Tema de cierre de 'Jujutsu Kaisen' (2020), de la banda de hip-hop ALI.",
+      "fun_fact_fr": "Générique de fin de 'Jujutsu Kaisen' (2020) par le groupe hip-hop ALI.",
+      "fun_fact_nl": "Eindtune van 'Jujutsu Kaisen' (2020) van hiphopband ALI."
     },
     {
       "artist": "VK Blanka",
@@ -728,7 +898,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yIlBb1Jvjbk",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Black Clover' (2018) by VK Blanka.",
+      "fun_fact_de": "Opening von 'Black Clover' (2018) von VK Blanka.",
+      "fun_fact_es": "Opening de 'Black Clover' (2018), de VK Blanka.",
+      "fun_fact_fr": "Générique de 'Black Clover' (2018) par VK Blanka.",
+      "fun_fact_nl": "Opening van 'Black Clover' (2018) van VK Blanka."
     },
     {
       "artist": "UVERworld",
@@ -748,7 +923,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dOVWGxU5YsU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/526633962"
+      "uri_deezer": "deezer://track/526633962",
+      "fun_fact": "Opening of 'My Hero Academia' Season 3 (2018) by UVERworld.",
+      "fun_fact_de": "Opening von 'My Hero Academia' Staffel 3 (2018) von UVERworld.",
+      "fun_fact_es": "Opening de 'My Hero Academia' temporada 3 (2018), de UVERworld.",
+      "fun_fact_fr": "Générique de 'My Hero Academia' saison 3 (2018) par UVERworld.",
+      "fun_fact_nl": "Opening van 'My Hero Academia' seizoen 3 (2018) van UVERworld."
     },
     {
       "artist": "Ai Higuchi",
@@ -768,7 +948,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tdzsOODJiX8",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Ending theme of 'Attack on Titan' The Final Season by Ai Higuchi.",
+      "fun_fact_de": "Ending-Theme der finalen Staffel von 'Attack on Titan' von Ai Higuchi.",
+      "fun_fact_es": "Tema de cierre de la temporada final de 'Attack on Titan', de Ai Higuchi.",
+      "fun_fact_fr": "Générique de fin de la saison finale de 'L'Attaque des Titans' par Ai Higuchi.",
+      "fun_fact_nl": "Eindtune van het laatste seizoen van 'Attack on Titan' van Ai Higuchi."
     },
     {
       "artist": "BURNOUT SYNDROMES",
@@ -788,7 +973,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=weGtT2hxFvg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976022032"
+      "uri_deezer": "deezer://track/976022032",
+      "fun_fact": "Opening of 'Haikyu!!' (2016) by BURNOUT SYNDROMES.",
+      "fun_fact_de": "Opening von 'Haikyu!!' (2016) von BURNOUT SYNDROMES.",
+      "fun_fact_es": "Opening de 'Haikyu!!' (2016), de BURNOUT SYNDROMES.",
+      "fun_fact_fr": "Générique de 'Haikyu!!' (2016) par BURNOUT SYNDROMES.",
+      "fun_fact_nl": "Opening van 'Haikyu!!' (2016) van BURNOUT SYNDROMES."
     },
     {
       "artist": "PornoGraffitti",
@@ -808,7 +998,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N8wfYwSDTa4",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'My Hero Academia' (2016) by Porno Graffitti.",
+      "fun_fact_de": "Opening 1 von 'My Hero Academia' (2016) von Porno Graffitti.",
+      "fun_fact_es": "Opening 1 de 'My Hero Academia' (2016), de Porno Graffitti.",
+      "fun_fact_fr": "Générique 1 de 'My Hero Academia' (2016) par Porno Graffitti.",
+      "fun_fact_nl": "Opening 1 van 'My Hero Academia' (2016) van Porno Graffitti."
     },
     {
       "artist": "BLUE ENCOUNT",
@@ -828,7 +1023,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fMU6nclDzNs",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'My Hero Academia' Season 4 (2019) by BLUE ENCOUNT.",
+      "fun_fact_de": "Opening von 'My Hero Academia' Staffel 4 (2019) von BLUE ENCOUNT.",
+      "fun_fact_es": "Opening de 'My Hero Academia' temporada 4 (2019), de BLUE ENCOUNT.",
+      "fun_fact_fr": "Générique de 'My Hero Academia' saison 4 (2019) par BLUE ENCOUNT.",
+      "fun_fact_nl": "Opening van 'My Hero Academia' seizoen 4 (2019) van BLUE ENCOUNT."
     },
     {
       "artist": "Fukkk Offf",
@@ -852,7 +1052,12 @@
       "alt_artists": [
         "Naeleck",
         "KATFYR"
-      ]
+      ],
+      "fun_fact": "Naeleck & KATFYR remix from the SACRA BEATS anime-remix series.",
+      "fun_fact_de": "Naeleck-&-KATFYR-Remix aus der SACRA-BEATS-Anime-Remix-Reihe.",
+      "fun_fact_es": "Remix de Naeleck y KATFYR de la serie SACRA BEATS.",
+      "fun_fact_fr": "Remix de Naeleck & KATFYR, série SACRA BEATS.",
+      "fun_fact_nl": "Naeleck & KATFYR-remix uit de SACRA BEATS-reeks."
     },
     {
       "artist": "Masatoshi Ono",
@@ -872,7 +1077,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3SqhXiimlrg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2665357712"
+      "uri_deezer": "deezer://track/2665357712",
+      "fun_fact": "Opening 1 of 'Hunter x Hunter' (2011) — Masatoshi Ono's high-energy anthem.",
+      "fun_fact_de": "Opening 1 von 'Hunter x Hunter' (2011) — Masatoshi Onos energiegeladene Hymne.",
+      "fun_fact_es": "Opening 1 de 'Hunter x Hunter' (2011), el himno enérgico de Masatoshi Ono.",
+      "fun_fact_fr": "Générique 1 de 'Hunter x Hunter' (2011), l'hymne énergique de Masatoshi Ono.",
+      "fun_fact_nl": "Opening 1 van 'Hunter x Hunter' (2011) — Masatoshi Ono's energieke anthem."
     },
     {
       "artist": "YOASOBI",
@@ -892,7 +1102,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=by4SYYWlhEs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/824731152"
+      "uri_deezer": "deezer://track/824731152",
+      "fun_fact": "YOASOBI's breakout debut single (2019), based on a short story — over a billion streams.",
+      "fun_fact_de": "YOASOBIs Durchbruch-Debütsingle (2019), basierend auf einer Kurzgeschichte — über eine Milliarde Streams.",
+      "fun_fact_es": "Single debut y trampolín de YOASOBI (2019), basada en un relato corto; más de mil millones de reproducciones.",
+      "fun_fact_fr": "Premier single révélation de YOASOBI (2019), inspiré d'une nouvelle — plus d'un milliard d'écoutes.",
+      "fun_fact_nl": "YOASOBI's doorbraaksingle (2019), gebaseerd op een kort verhaal — meer dan een miljard streams."
     },
     {
       "artist": "UVERworld",
@@ -912,7 +1127,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GA9Yw5t-Mto",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1024962302"
+      "uri_deezer": "deezer://track/1024962302",
+      "fun_fact": "Opening of 'The Promised Neverland' (2019) by UVERworld.",
+      "fun_fact_de": "Opening von 'The Promised Neverland' (2019) von UVERworld.",
+      "fun_fact_es": "Opening de 'The Promised Neverland' (2019), de UVERworld.",
+      "fun_fact_fr": "Générique de 'The Promised Neverland' (2019) par UVERworld.",
+      "fun_fact_nl": "Opening van 'The Promised Neverland' (2019) van UVERworld."
     },
     {
       "artist": "FLOW",
@@ -932,7 +1152,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=csVeFCLhmAM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3000818931"
+      "uri_deezer": "deezer://track/3000818931",
+      "fun_fact": "Opening 6 of 'Naruto Shippuden' (2008) by FLOW.",
+      "fun_fact_de": "Opening 6 von 'Naruto Shippuden' (2008) von FLOW.",
+      "fun_fact_es": "Opening 6 de 'Naruto Shippuden' (2008), de FLOW.",
+      "fun_fact_fr": "Générique 6 de 'Naruto Shippuden' (2008) par FLOW.",
+      "fun_fact_nl": "Opening 6 van 'Naruto Shippuden' (2008) van FLOW."
     },
     {
       "artist": "Linked Horizon",
@@ -952,7 +1177,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8QPyFlJNmus",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2122215167"
+      "uri_deezer": "deezer://track/2122215167",
+      "fun_fact": "Opening of 'Attack on Titan' Season 2 (2017) by Linked Horizon.",
+      "fun_fact_de": "Opening von 'Attack on Titan' Staffel 2 (2017) von Linked Horizon.",
+      "fun_fact_es": "Opening de 'Attack on Titan' temporada 2 (2017), de Linked Horizon.",
+      "fun_fact_fr": "Générique de 'L'Attaque des Titans' saison 2 (2017) par Linked Horizon.",
+      "fun_fact_nl": "Opening van 'Attack on Titan' seizoen 2 (2017) van Linked Horizon."
     },
     {
       "artist": "3年E組うた担(渚&茅野&業&磯貝&前原)",
@@ -972,7 +1202,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=woFU8DGg1UI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3896319501"
+      "uri_deezer": "deezer://track/3896319501",
+      "fun_fact": "Opening of 'Assassination Classroom' Season 2 (2016), performed by the in-show Class 3-E cast.",
+      "fun_fact_de": "Opening von 'Assassination Classroom' Staffel 2 (2016), gesungen von der Klasse-3-E-Besetzung.",
+      "fun_fact_es": "Opening de 'Assassination Classroom' temporada 2 (2016), interpretado por el reparto de la clase 3-E.",
+      "fun_fact_fr": "Générique de 'Assassination Classroom' saison 2 (2016), interprété par la classe 3-E.",
+      "fun_fact_nl": "Opening van 'Assassination Classroom' seizoen 2 (2016), gezongen door de klas 3-E-cast."
     },
     {
       "artist": "Mrs. GREEN APPLE",
@@ -992,7 +1227,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DO_aopUeFnw",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Frieren: Beyond Journey's End' (2024) by Mrs. GREEN APPLE.",
+      "fun_fact_de": "Opening von 'Frieren: Beyond Journey's End' (2024) von Mrs. GREEN APPLE.",
+      "fun_fact_es": "Opening de 'Frieren: Beyond Journey's End' (2024), de Mrs. GREEN APPLE.",
+      "fun_fact_fr": "Générique de 'Frieren' (2024) par Mrs. GREEN APPLE.",
+      "fun_fact_nl": "Opening van 'Frieren: Beyond Journey's End' (2024) van Mrs. GREEN APPLE."
     },
     {
       "artist": "美波",
@@ -1012,7 +1252,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gxp3R7l1iSk",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Domestic Girlfriend' (2019) by singer-songwriter Minami.",
+      "fun_fact_de": "Opening von 'Domestic Girlfriend' (2019) von Singer-Songwriterin Minami.",
+      "fun_fact_es": "Opening de 'Domestic Girlfriend' (2019), de la cantautora Minami.",
+      "fun_fact_fr": "Générique de 'Domestic Girlfriend' (2019) par l'autrice-compositrice Minami.",
+      "fun_fact_nl": "Opening van 'Domestic Girlfriend' (2019) van singer-songwriter Minami."
     },
     {
       "artist": "Yorushika",
@@ -1032,7 +1277,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PXkHAlskFAM",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Frieren: Beyond Journey's End' (2024) by Yorushika.",
+      "fun_fact_de": "Opening von 'Frieren: Beyond Journey's End' (2024) von Yorushika.",
+      "fun_fact_es": "Opening de 'Frieren: Beyond Journey's End' (2024), de Yorushika.",
+      "fun_fact_fr": "Générique de 'Frieren' (2024) par Yorushika.",
+      "fun_fact_nl": "Opening van 'Frieren: Beyond Journey's End' (2024) van Yorushika."
     },
     {
       "artist": "GALNERYUS",
@@ -1052,7 +1302,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CyIoNt2m1Gw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2665262582"
+      "uri_deezer": "deezer://track/2665262582",
+      "fun_fact": "Opening of 'Hunter x Hunter' (2011) by power-metal band GALNERYUS.",
+      "fun_fact_de": "Opening von 'Hunter x Hunter' (2011) von der Power-Metal-Band GALNERYUS.",
+      "fun_fact_es": "Opening de 'Hunter x Hunter' (2011), de la banda de power metal GALNERYUS.",
+      "fun_fact_fr": "Générique de 'Hunter x Hunter' (2011) par le groupe de power metal GALNERYUS.",
+      "fun_fact_nl": "Opening van 'Hunter x Hunter' (2011) van powermetalband GALNERYUS."
     },
     {
       "artist": "RADWIMPS",
@@ -1072,7 +1327,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qp0AktOIAag",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Theme from the record-breaking 2016 film 'Your Name' by RADWIMPS.",
+      "fun_fact_de": "Titelmusik aus dem Rekordfilm 'Your Name' (2016) von RADWIMPS.",
+      "fun_fact_es": "Tema de la exitosa película 'Your Name' (2016), de RADWIMPS.",
+      "fun_fact_fr": "Thème du film à succès 'Your Name' (2016) par RADWIMPS.",
+      "fun_fact_nl": "Thema uit de recordbrekende film 'Your Name' (2016) van RADWIMPS."
     },
     {
       "artist": "Daoko",
@@ -1095,7 +1355,12 @@
       "uri_deezer": null,
       "alt_artists": [
         "Kenshi Yonezu"
-      ]
+      ],
+      "fun_fact": "Theme from the 2017 film 'Fireworks', a duet by DAOKO and Kenshi Yonezu.",
+      "fun_fact_de": "Titelsong des Films 'Fireworks' (2017), ein Duett von DAOKO und Kenshi Yonezu.",
+      "fun_fact_es": "Tema de la película 'Fireworks' (2017), dúo de DAOKO y Kenshi Yonezu.",
+      "fun_fact_fr": "Thème du film 'Fireworks' (2017), duo de DAOKO et Kenshi Yonezu.",
+      "fun_fact_nl": "Thema uit de film 'Fireworks' (2017), een duet van DAOKO en Kenshi Yonezu."
     },
     {
       "artist": "MAN WITH A MISSION",
@@ -1115,7 +1380,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mAENQIa-MtM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/442437862"
+      "uri_deezer": "deezer://track/442437862",
+      "fun_fact": "Opening of 'The Seven Deadly Sins' (2015) by MAN WITH A MISSION.",
+      "fun_fact_de": "Opening von 'The Seven Deadly Sins' (2015) von MAN WITH A MISSION.",
+      "fun_fact_es": "Opening de 'The Seven Deadly Sins' (2015), de MAN WITH A MISSION.",
+      "fun_fact_fr": "Générique de 'Seven Deadly Sins' (2015) par MAN WITH A MISSION.",
+      "fun_fact_nl": "Opening van 'The Seven Deadly Sins' (2015) van MAN WITH A MISSION."
     },
     {
       "artist": "LiSA",
@@ -1135,7 +1405,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=F9GXgPHeKfA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976378422"
+      "uri_deezer": "deezer://track/976378422",
+      "fun_fact": "Opening 1 of 'Sword Art Online' (2012) — LiSA's breakthrough anime song.",
+      "fun_fact_de": "Opening 1 von 'Sword Art Online' (2012) — LiSAs Durchbruch-Anime-Song.",
+      "fun_fact_es": "Opening 1 de 'Sword Art Online' (2012), la canción que lanzó a LiSA.",
+      "fun_fact_fr": "Générique 1 de 'Sword Art Online' (2012), la chanson révélation de LiSA.",
+      "fun_fact_nl": "Opening 1 van 'Sword Art Online' (2012) — LiSA's doorbraaknummer."
     },
     {
       "artist": "Kenshi Yonezu",
@@ -1155,7 +1430,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_AfZwbht5yE",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'My Hero Academia' Season 2 (2017) by Kenshi Yonezu.",
+      "fun_fact_de": "Opening von 'My Hero Academia' Staffel 2 (2017) von Kenshi Yonezu.",
+      "fun_fact_es": "Opening de 'My Hero Academia' temporada 2 (2017), de Kenshi Yonezu.",
+      "fun_fact_fr": "Générique de 'My Hero Academia' saison 2 (2017) par Kenshi Yonezu.",
+      "fun_fact_nl": "Opening van 'My Hero Academia' seizoen 2 (2017) van Kenshi Yonezu."
     },
     {
       "artist": "amazarashi",
@@ -1175,7 +1455,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MUGYErw8QU0",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'My Hero Academia' Season 3 (2017) by amazarashi.",
+      "fun_fact_de": "Opening von 'My Hero Academia' Staffel 3 (2017) von amazarashi.",
+      "fun_fact_es": "Opening de 'My Hero Academia' temporada 3 (2017), de amazarashi.",
+      "fun_fact_fr": "Générique de 'My Hero Academia' saison 3 (2017) par amazarashi.",
+      "fun_fact_nl": "Opening van 'My Hero Academia' seizoen 3 (2017) van amazarashi."
     },
     {
       "artist": "Fear, and Loathing in Las Vegas",
@@ -1195,7 +1480,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4dOw3TpoHtk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2665262552"
+      "uri_deezer": "deezer://track/2665262552",
+      "fun_fact": "Opening of 'Parasyte -the maxim-' (2014) by Fear, and Loathing in Las Vegas.",
+      "fun_fact_de": "Opening von 'Parasyte -the maxim-' (2014) von Fear, and Loathing in Las Vegas.",
+      "fun_fact_es": "Opening de 'Parasyte -the maxim-' (2014), de Fear, and Loathing in Las Vegas.",
+      "fun_fact_fr": "Générique de 'Parasyte' (2014) par Fear, and Loathing in Las Vegas.",
+      "fun_fact_nl": "Opening van 'Parasyte -the maxim-' (2014) van Fear, and Loathing in Las Vegas."
     },
     {
       "artist": "Radiohead",
@@ -1215,7 +1505,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Lt8AfIeJOxw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/138539973"
+      "uri_deezer": "deezer://track/138539973",
+      "fun_fact": "Radiohead's 1997 classic, used as the ending theme of the 2006 anime 'Ergo Proxy'.",
+      "fun_fact_de": "Radioheads Klassiker von 1997, verwendet als Ending-Theme des Animes 'Ergo Proxy' (2006).",
+      "fun_fact_es": "Clásico de Radiohead de 1997, usado como tema de cierre del anime 'Ergo Proxy' (2006).",
+      "fun_fact_fr": "Le classique de Radiohead de 1997, générique de fin de l'anime 'Ergo Proxy' (2006).",
+      "fun_fact_nl": "Radioheads klassieker uit 1997, gebruikt als eindtune van de anime 'Ergo Proxy' (2006)."
     },
     {
       "artist": "Tia",
@@ -1235,7 +1530,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pJ-MywdW98o",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Kakegurui' (2017) by Tia.",
+      "fun_fact_de": "Opening von 'Kakegurui' (2017) von Tia.",
+      "fun_fact_es": "Opening de 'Kakegurui' (2017), de Tia.",
+      "fun_fact_fr": "Générique de 'Kakegurui' (2017) par Tia.",
+      "fun_fact_nl": "Opening van 'Kakegurui' (2017) van Tia."
     },
     {
       "artist": "Hello Sleepwalkers",
@@ -1255,7 +1555,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=M8w716ZKYY0",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'Noragami' (2014) by Hello Sleepwalkers.",
+      "fun_fact_de": "Opening 1 von 'Noragami' (2014) von Hello Sleepwalkers.",
+      "fun_fact_es": "Opening 1 de 'Noragami' (2014), de Hello Sleepwalkers.",
+      "fun_fact_fr": "Générique 1 de 'Noragami' (2014) par Hello Sleepwalkers.",
+      "fun_fact_nl": "Opening 1 van 'Noragami' (2014) van Hello Sleepwalkers."
     },
     {
       "artist": "LiSA",
@@ -1275,7 +1580,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GWysc_zFTIA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1355425922"
+      "uri_deezer": "deezer://track/1355425922",
+      "fun_fact": "Theme of the film 'Sword Art Online: Ordinal Scale' (2017) by LiSA.",
+      "fun_fact_de": "Titelsong des Films 'Sword Art Online: Ordinal Scale' (2017) von LiSA.",
+      "fun_fact_es": "Tema de la película 'Sword Art Online: Ordinal Scale' (2017), de LiSA.",
+      "fun_fact_fr": "Thème du film 'Sword Art Online: Ordinal Scale' (2017) par LiSA.",
+      "fun_fact_nl": "Thema van de film 'Sword Art Online: Ordinal Scale' (2017) van LiSA."
     },
     {
       "artist": "FLOW",
@@ -1295,7 +1605,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5etD8mRAsio",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1124776602"
+      "uri_deezer": "deezer://track/1124776602",
+      "fun_fact": "Opening 4 of 'Naruto' (2004) by FLOW — among the most famous Naruto openings.",
+      "fun_fact_de": "Opening 4 von 'Naruto' (2004) von FLOW — eines der berühmtesten Naruto-Openings.",
+      "fun_fact_es": "Opening 4 de 'Naruto' (2004), de FLOW; uno de los más famosos de Naruto.",
+      "fun_fact_fr": "Générique 4 de 'Naruto' (2004) par FLOW — l'un des plus célèbres de Naruto.",
+      "fun_fact_nl": "Opening 4 van 'Naruto' (2004) van FLOW — een van de bekendste Naruto-openings."
     },
     {
       "artist": "Cö shu Nie",
@@ -1315,7 +1630,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4vZUSkshCg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1024952482"
+      "uri_deezer": "deezer://track/1024952482",
+      "fun_fact": "Opening of 'Tokyo Ghoul:re' (2018) by Cö shu Nie.",
+      "fun_fact_de": "Opening von 'Tokyo Ghoul:re' (2018) von Cö shu Nie.",
+      "fun_fact_es": "Opening de 'Tokyo Ghoul:re' (2018), de Cö shu Nie.",
+      "fun_fact_fr": "Générique de 'Tokyo Ghoul:re' (2018) par Cö shu Nie.",
+      "fun_fact_nl": "Opening van 'Tokyo Ghoul:re' (2018) van Cö shu Nie."
     },
     {
       "artist": "Sawano Hiroyuki",
@@ -1335,7 +1655,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nMNU9lhVdy4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1837567857"
+      "uri_deezer": "deezer://track/1837567857",
+      "fun_fact": "Theme from the 'Attack on Titan' soundtrack by Hiroyuki Sawano's project SawanoHiroyuki[nZk].",
+      "fun_fact_de": "Stück aus dem 'Attack on Titan'-Soundtrack von Hiroyuki Sawanos Projekt SawanoHiroyuki[nZk].",
+      "fun_fact_es": "Tema de la banda sonora de 'Attack on Titan', del proyecto SawanoHiroyuki[nZk].",
+      "fun_fact_fr": "Morceau de la BO de 'L'Attaque des Titans' par le projet SawanoHiroyuki[nZk].",
+      "fun_fact_nl": "Nummer uit de 'Attack on Titan'-soundtrack van Sawano's project SawanoHiroyuki[nZk]."
     },
     {
       "artist": "ASIAN KUNG-FU GENERATION",
@@ -1355,7 +1680,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wCqpacYI6b0",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 2 of 'Naruto' (2002) by ASIAN KUNG-FU GENERATION.",
+      "fun_fact_de": "Opening 2 von 'Naruto' (2002) von ASIAN KUNG-FU GENERATION.",
+      "fun_fact_es": "Opening 2 de 'Naruto' (2002), de ASIAN KUNG-FU GENERATION.",
+      "fun_fact_fr": "Générique 2 de 'Naruto' (2002) par ASIAN KUNG-FU GENERATION.",
+      "fun_fact_nl": "Opening 2 van 'Naruto' (2002) van ASIAN KUNG-FU GENERATION."
     },
     {
       "artist": "KANA-BOON",
@@ -1375,7 +1705,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cj3Q_bh_UTQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/467267512"
+      "uri_deezer": "deezer://track/467267512",
+      "fun_fact": "Anime opening by Japanese rock band KANA-BOON.",
+      "fun_fact_de": "Anime-Opening der japanischen Rockband KANA-BOON.",
+      "fun_fact_es": "Opening de anime de la banda de rock japonesa KANA-BOON.",
+      "fun_fact_fr": "Générique d'anime du groupe de rock japonais KANA-BOON.",
+      "fun_fact_nl": "Anime-opening van de Japanse rockband KANA-BOON."
     },
     {
       "artist": "Mika Nakashima",
@@ -1395,7 +1730,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N0ixzrZe--0",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Darling in the Franxx' (2018), produced by HYDE of L'Arc-en-Ciel.",
+      "fun_fact_de": "Opening von 'Darling in the Franxx' (2018), produziert von HYDE (L'Arc-en-Ciel).",
+      "fun_fact_es": "Opening de 'Darling in the Franxx' (2018), producido por HYDE de L'Arc-en-Ciel.",
+      "fun_fact_fr": "Générique de 'Darling in the Franxx' (2018), produit par HYDE de L'Arc-en-Ciel.",
+      "fun_fact_nl": "Opening van 'Darling in the Franxx' (2018), geproduceerd door HYDE van L'Arc-en-Ciel."
     },
     {
       "artist": "LiSA",
@@ -1415,7 +1755,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8A0hgdWuRnI",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'My Hero Academia' Season 4 (2019) by LiSA.",
+      "fun_fact_de": "Opening von 'My Hero Academia' Staffel 4 (2019) von LiSA.",
+      "fun_fact_es": "Opening de 'My Hero Academia' temporada 4 (2019), de LiSA.",
+      "fun_fact_fr": "Générique de 'My Hero Academia' saison 4 (2019) par LiSA.",
+      "fun_fact_nl": "Opening van 'My Hero Academia' seizoen 4 (2019) van LiSA."
     },
     {
       "artist": "FLOW",
@@ -1435,7 +1780,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GrIEGraOuSQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976202432"
+      "uri_deezer": "deezer://track/976202432",
+      "fun_fact": "Opening of 'Code Geass' (2006) by FLOW.",
+      "fun_fact_de": "Opening von 'Code Geass' (2006) von FLOW.",
+      "fun_fact_es": "Opening de 'Code Geass' (2006), de FLOW.",
+      "fun_fact_fr": "Générique de 'Code Geass' (2006) par FLOW.",
+      "fun_fact_nl": "Opening van 'Code Geass' (2006) van FLOW."
     },
     {
       "artist": "ASIAN KUNG-FU GENERATION",
@@ -1455,7 +1805,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=psUh0fbszsw",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Naruto Shippuden' by ASIAN KUNG-FU GENERATION.",
+      "fun_fact_de": "Opening von 'Naruto Shippuden' von ASIAN KUNG-FU GENERATION.",
+      "fun_fact_es": "Opening de 'Naruto Shippuden', de ASIAN KUNG-FU GENERATION.",
+      "fun_fact_fr": "Générique de 'Naruto Shippuden' par ASIAN KUNG-FU GENERATION.",
+      "fun_fact_nl": "Opening van 'Naruto Shippuden' van ASIAN KUNG-FU GENERATION."
     },
     {
       "artist": "RADWIMPS",
@@ -1475,7 +1830,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MtLHwqbE1eI",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Theme from the 2016 film 'Your Name' by RADWIMPS.",
+      "fun_fact_de": "Titelmusik aus dem Film 'Your Name' (2016) von RADWIMPS.",
+      "fun_fact_es": "Tema de la película 'Your Name' (2016), de RADWIMPS.",
+      "fun_fact_fr": "Thème du film 'Your Name' (2016) par RADWIMPS.",
+      "fun_fact_nl": "Thema uit de film 'Your Name' (2016) van RADWIMPS."
     },
     {
       "artist": "Sawano Hiroyuki",
@@ -1495,7 +1855,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vy63u2hKoPE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/370201211"
+      "uri_deezer": "deezer://track/370201211",
+      "fun_fact": "Theme from 'Attack on Titan' by Hiroyuki Sawano's project SawanoHiroyuki[nZk].",
+      "fun_fact_de": "Stück aus 'Attack on Titan' von Hiroyuki Sawanos Projekt SawanoHiroyuki[nZk].",
+      "fun_fact_es": "Tema de 'Attack on Titan', del proyecto SawanoHiroyuki[nZk].",
+      "fun_fact_fr": "Morceau de 'L'Attaque des Titans' par le projet SawanoHiroyuki[nZk].",
+      "fun_fact_nl": "Nummer uit 'Attack on Titan' van Sawano's project SawanoHiroyuki[nZk]."
     },
     {
       "artist": "Ikimonogakari",
@@ -1515,7 +1880,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7GMPeHFy2Dk",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 5 of 'Naruto Shippuden' (2009) by Ikimonogakari.",
+      "fun_fact_de": "Opening 5 von 'Naruto Shippuden' (2009) von Ikimonogakari.",
+      "fun_fact_es": "Opening 5 de 'Naruto Shippuden' (2009), de Ikimonogakari.",
+      "fun_fact_fr": "Générique 5 de 'Naruto Shippuden' (2009) par Ikimonogakari.",
+      "fun_fact_nl": "Opening 5 van 'Naruto Shippuden' (2009) van Ikimonogakari."
     },
     {
       "artist": "RADWIMPS",
@@ -1535,7 +1905,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n89SKAymNfA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/545599532"
+      "uri_deezer": "deezer://track/545599532",
+      "fun_fact": "Theme from the 2016 film 'Your Name' by RADWIMPS.",
+      "fun_fact_de": "Titelmusik aus dem Film 'Your Name' (2016) von RADWIMPS.",
+      "fun_fact_es": "Tema de la película 'Your Name' (2016), de RADWIMPS.",
+      "fun_fact_fr": "Thème du film 'Your Name' (2016) par RADWIMPS.",
+      "fun_fact_nl": "Thema uit de film 'Your Name' (2016) van RADWIMPS."
     },
     {
       "artist": "Given",
@@ -1555,7 +1930,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nnmb1GXqz60",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Theme from the anime 'Given' (2019), a story about a band of the same name.",
+      "fun_fact_de": "Titelsong des Animes 'Given' (2019), die Geschichte einer gleichnamigen Band.",
+      "fun_fact_es": "Tema del anime 'Given' (2019), la historia de una banda del mismo nombre.",
+      "fun_fact_fr": "Thème de l'anime 'Given' (2019), l'histoire d'un groupe du même nom.",
+      "fun_fact_nl": "Thema uit de anime 'Given' (2019), het verhaal van een gelijknamige band."
     },
     {
       "artist": "King Gnu",
@@ -1575,7 +1955,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Tll_g1Gx7I8",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "King Gnu's breakout hit (2019), originally a TV-drama theme — over 500 million streams.",
+      "fun_fact_de": "King Gnus Durchbruchshit (2019), ursprünglich ein TV-Drama-Theme — über 500 Mio. Streams.",
+      "fun_fact_es": "Éxito revelación de King Gnu (2019), originalmente tema de un drama de TV; más de 500 millones de reproducciones.",
+      "fun_fact_fr": "Le tube révélation de King Gnu (2019), à l'origine thème d'un drama TV — plus de 500 millions d'écoutes.",
+      "fun_fact_nl": "King Gnu's doorbraakhit (2019), oorspronkelijk een tv-dramathema — meer dan 500 miljoen streams."
     },
     {
       "artist": "Lyn",
@@ -1599,7 +1984,12 @@
       "alt_artists": [
         "ATLUS Sound Team",
         "ATLUS GAME MUSIC"
-      ]
+      ],
+      "fun_fact": "Opening of the video game 'Persona 5' (2017), performed by Lyn Inaizumi.",
+      "fun_fact_de": "Opening des Videospiels 'Persona 5' (2017), gesungen von Lyn Inaizumi.",
+      "fun_fact_es": "Opening del videojuego 'Persona 5' (2017), interpretado por Lyn Inaizumi.",
+      "fun_fact_fr": "Générique du jeu vidéo 'Persona 5' (2017), interprété par Lyn Inaizumi.",
+      "fun_fact_nl": "Opening van de videogame 'Persona 5' (2017), gezongen door Lyn Inaizumi."
     },
     {
       "artist": "CHiCO with HoneyWorks",
@@ -1619,7 +2009,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=AyXwQ3bZZ7c",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Anime opening by the unit CHiCO with HoneyWorks.",
+      "fun_fact_de": "Anime-Opening der Formation CHiCO with HoneyWorks.",
+      "fun_fact_es": "Opening de anime del grupo CHiCO with HoneyWorks.",
+      "fun_fact_fr": "Générique d'anime du groupe CHiCO with HoneyWorks.",
+      "fun_fact_nl": "Anime-opening van de groep CHiCO with HoneyWorks."
     },
     {
       "artist": "Who-ya Extended",
@@ -1639,7 +2034,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DEZd8I6QMIM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1186939392"
+      "uri_deezer": "deezer://track/1186939392",
+      "fun_fact": "Opening 2 of 'Jujutsu Kaisen' (2021) by Who-ya Extended.",
+      "fun_fact_de": "Opening 2 von 'Jujutsu Kaisen' (2021) von Who-ya Extended.",
+      "fun_fact_es": "Opening 2 de 'Jujutsu Kaisen' (2021), de Who-ya Extended.",
+      "fun_fact_fr": "Générique 2 de 'Jujutsu Kaisen' (2021) par Who-ya Extended.",
+      "fun_fact_nl": "Opening 2 van 'Jujutsu Kaisen' (2021) van Who-ya Extended."
     },
     {
       "artist": "Awich",
@@ -1659,7 +2059,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8cAYlTjVdsQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3127692481"
+      "uri_deezer": "deezer://track/3127692481",
+      "fun_fact": "Anime opening by Awich, one of Japan's most prominent hip-hop artists.",
+      "fun_fact_de": "Anime-Opening von Awich, einer der prominentesten Hip-Hop-Künstlerinnen Japans.",
+      "fun_fact_es": "Opening de anime de Awich, una de las artistas de hip-hop más destacadas de Japón.",
+      "fun_fact_fr": "Générique d'anime par Awich, l'une des plus grandes artistes hip-hop du Japon.",
+      "fun_fact_nl": "Anime-opening van Awich, een van Japans bekendste hiphopartiesten."
     },
     {
       "artist": "SEATBELTS",
@@ -1679,7 +2084,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UFFa0QoHWvE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1006888182"
+      "uri_deezer": "deezer://track/1006888182",
+      "fun_fact": "Opening of 'Cowboy Bebop' (1998) — the jazz-fueled classic by The Seatbelts.",
+      "fun_fact_de": "Opening von 'Cowboy Bebop' (1998) — der jazzgetriebene Klassiker von The Seatbelts.",
+      "fun_fact_es": "Opening de 'Cowboy Bebop' (1998), el clásico con sabor a jazz de The Seatbelts.",
+      "fun_fact_fr": "Générique de 'Cowboy Bebop' (1998), le classique jazzy de The Seatbelts.",
+      "fun_fact_nl": "Opening van 'Cowboy Bebop' (1998) — de jazzy klassieker van The Seatbelts."
     },
     {
       "artist": "Yoko Takahashi",
@@ -1699,7 +2109,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xyVatKhd4s4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2229412677"
+      "uri_deezer": "deezer://track/2229412677",
+      "fun_fact": "Opening of 'Neon Genesis Evangelion' (1995) — possibly the most famous anime song ever.",
+      "fun_fact_de": "Opening von 'Neon Genesis Evangelion' (1995) — vielleicht der berühmteste Anime-Song überhaupt.",
+      "fun_fact_es": "Opening de 'Neon Genesis Evangelion' (1995), quizá la canción de anime más famosa de la historia.",
+      "fun_fact_fr": "Générique de 'Neon Genesis Evangelion' (1995), peut-être la chanson d'anime la plus célèbre.",
+      "fun_fact_nl": "Opening van 'Neon Genesis Evangelion' (1995) — misschien wel het beroemdste animenummer ooit."
     },
     {
       "artist": "JUDY AND MARY",
@@ -1719,7 +2134,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0DBkXcDU270",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 1 of 'Rurouni Kenshin' (1996) by JUDY AND MARY.",
+      "fun_fact_de": "Opening 1 von 'Rurouni Kenshin' (1996) von JUDY AND MARY.",
+      "fun_fact_es": "Opening 1 de 'Rurouni Kenshin' (1996), de JUDY AND MARY.",
+      "fun_fact_fr": "Générique 1 de 'Kenshin le vagabond' (1996) par JUDY AND MARY.",
+      "fun_fact_nl": "Opening 1 van 'Rurouni Kenshin' (1996) van JUDY AND MARY."
     },
     {
       "artist": "L'Arc-en-Ciel",
@@ -1739,7 +2159,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8gE7LxbxvZY",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976828652"
+      "uri_deezer": "deezer://track/976828652",
+      "fun_fact": "Opening 2 of 'Fullmetal Alchemist' (2004) by rock legends L'Arc-en-Ciel.",
+      "fun_fact_de": "Opening 2 von 'Fullmetal Alchemist' (2004) von den Rocklegenden L'Arc-en-Ciel.",
+      "fun_fact_es": "Opening 2 de 'Fullmetal Alchemist' (2004), de las leyendas del rock L'Arc-en-Ciel.",
+      "fun_fact_fr": "Générique 2 de 'Fullmetal Alchemist' (2004) par les légendes du rock L'Arc-en-Ciel.",
+      "fun_fact_nl": "Opening 2 van 'Fullmetal Alchemist' (2004) van rocklegendes L'Arc-en-Ciel."
     },
     {
       "artist": "MAXIMUM THE HORMONE",
@@ -1759,7 +2184,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=muoWDA6zmsY",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2665324252"
+      "uri_deezer": "deezer://track/2665324252",
+      "fun_fact": "Opening 2 of 'Death Note' (2007) by metal band MAXIMUM THE HORMONE.",
+      "fun_fact_de": "Opening 2 von 'Death Note' (2007) von der Metal-Band MAXIMUM THE HORMONE.",
+      "fun_fact_es": "Opening 2 de 'Death Note' (2007), de la banda de metal MAXIMUM THE HORMONE.",
+      "fun_fact_fr": "Générique 2 de 'Death Note' (2007) par le groupe de metal MAXIMUM THE HORMONE.",
+      "fun_fact_nl": "Opening 2 van 'Death Note' (2007) van metalband MAXIMUM THE HORMONE."
     },
     {
       "artist": "ClariS",
@@ -1779,7 +2209,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A8CbP6Pjqko",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Puella Magi Madoka Magica' (2011) by ClariS.",
+      "fun_fact_de": "Opening von 'Puella Magi Madoka Magica' (2011) von ClariS.",
+      "fun_fact_es": "Opening de 'Puella Magi Madoka Magica' (2011), de ClariS.",
+      "fun_fact_fr": "Générique de 'Puella Magi Madoka Magica' (2011) par ClariS.",
+      "fun_fact_nl": "Opening van 'Puella Magi Madoka Magica' (2011) van ClariS."
     },
     {
       "artist": "Hikaru Utada",
@@ -1799,7 +2234,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N2tSDKngeoY",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/598884752"
+      "uri_deezer": "deezer://track/598884752",
+      "fun_fact": "Theme of the film 'Evangelion: 1.0 You Are (Not) Alone' (2007) by Hikaru Utada.",
+      "fun_fact_de": "Titelsong des Films 'Evangelion: 1.0 You Are (Not) Alone' (2007) von Hikaru Utada.",
+      "fun_fact_es": "Tema de la película 'Evangelion: 1.0' (2007), de Hikaru Utada.",
+      "fun_fact_fr": "Thème du film 'Evangelion: 1.0' (2007) par Hikaru Utada.",
+      "fun_fact_nl": "Thema van de film 'Evangelion: 1.0' (2007) van Hikaru Utada."
     },
     {
       "artist": "the pillows",
@@ -1819,7 +2259,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9cC8Q8RAEso",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1831943227"
+      "uri_deezer": "deezer://track/1831943227",
+      "fun_fact": "Theme of the cult OVA 'FLCL' (2000) by alt-rock band the pillows.",
+      "fun_fact_de": "Titelsong des Kult-OVA 'FLCL' (2000) von der Alt-Rock-Band the pillows.",
+      "fun_fact_es": "Tema del OVA de culto 'FLCL' (2000), de la banda de rock alternativo the pillows.",
+      "fun_fact_fr": "Thème de l'OVA culte 'FLCL' (2000) par le groupe rock alternatif the pillows.",
+      "fun_fact_nl": "Thema van de cult-OVA 'FLCL' (2000) van alt-rockband the pillows."
     },
     {
       "artist": "YUI",
@@ -1839,7 +2284,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L1RG1YqWwuo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/975971522"
+      "uri_deezer": "deezer://track/975971522",
+      "fun_fact": "Opening 5 of 'Bleach' (2006) by YUI.",
+      "fun_fact_de": "Opening 5 von 'Bleach' (2006) von YUI.",
+      "fun_fact_es": "Opening 5 de 'Bleach' (2006), de YUI.",
+      "fun_fact_fr": "Générique 5 de 'Bleach' (2006) par YUI.",
+      "fun_fact_nl": "Opening 5 van 'Bleach' (2006) van YUI."
     },
     {
       "artist": "ASIAN KUNG-FU GENERATION",
@@ -1859,7 +2309,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=G3_8jgVceBs",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 4 of 'Fullmetal Alchemist' (2004) by ASIAN KUNG-FU GENERATION.",
+      "fun_fact_de": "Opening 4 von 'Fullmetal Alchemist' (2004) von ASIAN KUNG-FU GENERATION.",
+      "fun_fact_es": "Opening 4 de 'Fullmetal Alchemist' (2004), de ASIAN KUNG-FU GENERATION.",
+      "fun_fact_fr": "Générique 4 de 'Fullmetal Alchemist' (2004) par ASIAN KUNG-FU GENERATION.",
+      "fun_fact_nl": "Opening 4 van 'Fullmetal Alchemist' (2004) van ASIAN KUNG-FU GENERATION."
     },
     {
       "artist": "ROUND TABLE featuring Nino",
@@ -1879,7 +2334,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dWmFeYA9Nj4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2116054937"
+      "uri_deezer": "deezer://track/2116054937",
+      "fun_fact": "Opening of 'Chobits' (2002) by ROUND TABLE featuring Nino.",
+      "fun_fact_de": "Opening von 'Chobits' (2002) von ROUND TABLE featuring Nino.",
+      "fun_fact_es": "Opening de 'Chobits' (2002), de ROUND TABLE featuring Nino.",
+      "fun_fact_fr": "Générique de 'Chobits' (2002) par ROUND TABLE featuring Nino.",
+      "fun_fact_nl": "Opening van 'Chobits' (2002) van ROUND TABLE featuring Nino."
     },
     {
       "artist": "SCANDAL",
@@ -1899,7 +2359,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7TRD1UZkXN0",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 10 of 'Bleach' (2009) by all-female rock band SCANDAL.",
+      "fun_fact_de": "Opening 10 von 'Bleach' (2009) von der reinen Frauen-Rockband SCANDAL.",
+      "fun_fact_es": "Opening 10 de 'Bleach' (2009), de la banda de rock femenina SCANDAL.",
+      "fun_fact_fr": "Générique 10 de 'Bleach' (2009) par le groupe de rock féminin SCANDAL.",
+      "fun_fact_nl": "Opening 10 van 'Bleach' (2009) van de vrouwelijke rockband SCANDAL."
     },
     {
       "artist": "HIGH and MIGHTY COLOR",
@@ -1919,7 +2384,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_oqGqdJueXM",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening 3 of 'Bleach' (2005) by HIGH and MIGHTY COLOR.",
+      "fun_fact_de": "Opening 3 von 'Bleach' (2005) von HIGH and MIGHTY COLOR.",
+      "fun_fact_es": "Opening 3 de 'Bleach' (2005), de HIGH and MIGHTY COLOR.",
+      "fun_fact_fr": "Générique 3 de 'Bleach' (2005) par HIGH and MIGHTY COLOR.",
+      "fun_fact_nl": "Opening 3 van 'Bleach' (2005) van HIGH and MIGHTY COLOR."
     },
     {
       "artist": "UVERworld",
@@ -1939,7 +2409,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0Ob_NVJ09Mw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976093112"
+      "uri_deezer": "deezer://track/976093112",
+      "fun_fact": "Opening 2 of 'Bleach' (2005) by UVERworld.",
+      "fun_fact_de": "Opening 2 von 'Bleach' (2005) von UVERworld.",
+      "fun_fact_es": "Opening 2 de 'Bleach' (2005), de UVERworld.",
+      "fun_fact_fr": "Générique 2 de 'Bleach' (2005) par UVERworld.",
+      "fun_fact_nl": "Opening 2 van 'Bleach' (2005) van UVERworld."
     },
     {
       "artist": "FLOW",
@@ -1959,7 +2434,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0FRnEHwZroM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/976282242"
+      "uri_deezer": "deezer://track/976282242",
+      "fun_fact": "Opening 4 of 'Naruto' (2004) by FLOW.",
+      "fun_fact_de": "Opening 4 von 'Naruto' (2004) von FLOW.",
+      "fun_fact_es": "Opening 4 de 'Naruto' (2004), de FLOW.",
+      "fun_fact_fr": "Générique 4 de 'Naruto' (2004) par FLOW.",
+      "fun_fact_nl": "Opening 4 van 'Naruto' (2004) van FLOW."
     },
     {
       "artist": "Nana Mizuki",
@@ -1979,7 +2459,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iEBAmO7RXEw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2230714427"
+      "uri_deezer": "deezer://track/2230714427",
+      "fun_fact": "Opening of 'Magical Girl Lyrical Nanoha A's' (2005) by voice actress and singer Nana Mizuki.",
+      "fun_fact_de": "Opening von 'Magical Girl Lyrical Nanoha A's' (2005) von Synchronsprecherin und Sängerin Nana Mizuki.",
+      "fun_fact_es": "Opening de 'Magical Girl Lyrical Nanoha A's' (2005), de la actriz de voz y cantante Nana Mizuki.",
+      "fun_fact_fr": "Générique de 'Magical Girl Lyrical Nanoha A's' (2005) par la comédienne et chanteuse Nana Mizuki.",
+      "fun_fact_nl": "Opening van 'Magical Girl Lyrical Nanoha A's' (2005) van stemactrice en zangeres Nana Mizuki."
     },
     {
       "artist": "OLDCODEX",
@@ -1999,7 +2484,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=33PRAngMcSI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2806493382"
+      "uri_deezer": "deezer://track/2806493382",
+      "fun_fact": "Opening of 'Kuroko's Basketball' (2013) by OLDCODEX.",
+      "fun_fact_de": "Opening von 'Kuroko's Basketball' (2013) von OLDCODEX.",
+      "fun_fact_es": "Opening de 'Kuroko's Basketball' (2013), de OLDCODEX.",
+      "fun_fact_fr": "Générique de 'Kuroko's Basketball' (2013) par OLDCODEX.",
+      "fun_fact_nl": "Opening van 'Kuroko's Basketball' (2013) van OLDCODEX."
     },
     {
       "artist": "GRANRODEO",
@@ -2019,7 +2509,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=74nQhJzUZec",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2793587022"
+      "uri_deezer": "deezer://track/2793587022",
+      "fun_fact": "Opening 1 of 'Kuroko's Basketball' (2012) by GRANRODEO.",
+      "fun_fact_de": "Opening 1 von 'Kuroko's Basketball' (2012) von GRANRODEO.",
+      "fun_fact_es": "Opening 1 de 'Kuroko's Basketball' (2012), de GRANRODEO.",
+      "fun_fact_fr": "Générique 1 de 'Kuroko's Basketball' (2012) par GRANRODEO.",
+      "fun_fact_nl": "Opening 1 van 'Kuroko's Basketball' (2012) van GRANRODEO."
     },
     {
       "artist": "BUMP OF CHICKEN",
@@ -2039,7 +2534,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XPerYFKqk60",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2212229337"
+      "uri_deezer": "deezer://track/2212229337",
+      "fun_fact": "Opening of 'Blood Blockade Battlefront' (2015) by BUMP OF CHICKEN.",
+      "fun_fact_de": "Opening von 'Blood Blockade Battlefront' (2015) von BUMP OF CHICKEN.",
+      "fun_fact_es": "Opening de 'Blood Blockade Battlefront' (2015), de BUMP OF CHICKEN.",
+      "fun_fact_fr": "Générique de 'Blood Blockade Battlefront' (2015) par BUMP OF CHICKEN.",
+      "fun_fact_nl": "Opening van 'Blood Blockade Battlefront' (2015) van BUMP OF CHICKEN."
     },
     {
       "artist": "PornoGraffitti",
@@ -2059,7 +2559,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=D1FHfPN39Y4",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Opening of 'Great Teacher Onizuka' (1999) by Porno Graffitti.",
+      "fun_fact_de": "Opening von 'Great Teacher Onizuka' (1999) von Porno Graffitti.",
+      "fun_fact_es": "Opening de 'Great Teacher Onizuka' (1999), de Porno Graffitti.",
+      "fun_fact_fr": "Générique de 'Great Teacher Onizuka' (1999) par Porno Graffitti.",
+      "fun_fact_nl": "Opening van 'Great Teacher Onizuka' (1999) van Porno Graffitti."
     }
   ]
 }
