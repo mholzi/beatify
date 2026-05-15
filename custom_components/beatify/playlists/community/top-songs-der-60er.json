@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.4",
+  "version": "1.5",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -1685,6 +1685,81 @@
         "nl": "applemusic://track/1833249921",
         "it": "applemusic://track/1833249921"
       }
+    },
+    {
+      "artist": "Small Faces",
+      "title": "Itchycoo Park (Stereo Version) - 2013 Remaster",
+      "year": 1967,
+      "isrc": "GBA7H1244642",
+      "uri": "spotify:track:6qo9HLauNkHByF9tqXDeNB",
+      "uri_apple_music": "applemusic://track/1475647117",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1475647117",
+        "de": "applemusic://track/1475647117",
+        "gb": null,
+        "fr": "applemusic://track/1475647117",
+        "es": "applemusic://track/1475647117",
+        "nl": "applemusic://track/1475647117",
+        "it": "applemusic://track/1475647117"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nO9DqvznjrQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/719296102",
+      "fun_fact": "A chart hit by Small Faces (1967).",
+      "fun_fact_de": "Ein Chart-Hit von Small Faces (1967).",
+      "fun_fact_es": "Un éxito de Small Faces (1967).",
+      "fun_fact_fr": "Un tube de Small Faces (1967).",
+      "fun_fact_nl": "Een chart-hit van Small Faces (1967)."
+    },
+    {
+      "artist": "Sly & The Family Stone",
+      "title": "Everyday People",
+      "year": 1969,
+      "isrc": "USSM19913826",
+      "uri": "spotify:track:4ZVZBc5xvMyV3WzWktn8i7",
+      "uri_apple_music": "applemusic://track/498296735",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/498296735",
+        "de": "applemusic://track/1737583574",
+        "gb": "applemusic://track/1737583574",
+        "fr": "applemusic://track/1737583574",
+        "es": "applemusic://track/1737583574",
+        "nl": "applemusic://track/1737583574",
+        "it": "applemusic://track/1737583574"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TU02G4wnWh0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/534508",
+      "fun_fact": "A chart hit by Sly & The Family Stone (1969).",
+      "fun_fact_de": "Ein Chart-Hit von Sly & The Family Stone (1969).",
+      "fun_fact_es": "Un éxito de Sly & The Family Stone (1969).",
+      "fun_fact_fr": "Un tube de Sly & The Family Stone (1969).",
+      "fun_fact_nl": "Een chart-hit van Sly & The Family Stone (1969)."
+    },
+    {
+      "artist": "The 5th Dimension",
+      "title": "Aquarius/Let The Sunshine In (The Flesh Failures) - From the Musical \"Hair\"",
+      "year": 1969,
+      "isrc": "USAR10001747",
+      "uri": "spotify:track:0HZlND4giwzgolBpaNIRGV",
+      "uri_apple_music": "applemusic://track/1739857095",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1739857095",
+        "de": "applemusic://track/1739857095",
+        "gb": "applemusic://track/1739857095",
+        "fr": "applemusic://track/1739857095",
+        "es": "applemusic://track/1739857095",
+        "nl": "applemusic://track/1739857095",
+        "it": "applemusic://track/1739857095"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MQOQqn1qH4o",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13186207",
+      "fun_fact": "A chart hit by The 5th Dimension (1969).",
+      "fun_fact_de": "Ein Chart-Hit von The 5th Dimension (1969).",
+      "fun_fact_es": "Un éxito de The 5th Dimension (1969).",
+      "fun_fact_fr": "Un tube de The 5th Dimension (1969).",
+      "fun_fact_nl": "Een chart-hit van The 5th Dimension (1969)."
     }
   ]
 }
