@@ -65,6 +65,11 @@ async def handle_join(
     name = data.get("name", "").strip()
     is_admin = data.get("is_admin", False)
 
+    # #841 Phase 3: distinguish a reconnect from a fresh join for the TTS
+    # hook below — a player record already existing under this name means
+    # add_player() will take its reconnection path.
+    was_existing_player = game_state.get_player(name) is not None
+
     success, error_code = game_state.add_player(name, ws)
 
     if success:
@@ -167,6 +172,13 @@ async def handle_join(
                             "cancelled pause task: %s",
                             name,
                         )
+
+            # Issue #841 Phase 3: announce the join / reconnect over TTS.
+            if player is not None:
+                if was_existing_player:
+                    await game_state.announce_player_reconnect(player.name)
+                else:
+                    await game_state.announce_player_join(player.name)
 
         # Send join acknowledgment with session_id (Story 11.1)
         if player:
@@ -648,6 +660,9 @@ async def admin_rematch_game(
 
     player_count = len(game_state.players)
     game_state.rematch_game()
+    # Issue #841 Phase 3: announce the rematch (use case 20). TTS survives
+    # rematch_game() — only end_game() tears the service down.
+    await game_state.announce_rematch()
     _LOGGER.info("Rematch started with %d players", player_count)
 
     game_state._admin_ws = ws
