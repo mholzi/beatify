@@ -1,0 +1,3969 @@
+{
+  "name": "Ballermann Party Hits",
+  "version": "1.0",
+  "tags": [
+    "schlager",
+    "party",
+    "ballermann",
+    "mallorca",
+    "deutsch"
+  ],
+  "language": "de",
+  "author": "Beatify Community",
+  "added_date": "2026-05-15",
+  "description": "189 Ballermann- und Mallorca-Partyhits — von Schlager-Klassikern bis zu den aktuellen Bierkönig-Hits. Mickie Krause, Lorenz Büffel, Ikke Hüftgold und mehr. Angefragt über den In-App-Playlist-Funnel (#887).",
+  "songs": [
+    {
+      "artist": "Mickie Krause",
+      "title": "Für die Ewigkeit",
+      "year": 2018,
+      "isrc": "DEUM71801028",
+      "uri": "spotify:track:4wYzLS2bkm71lpx9I06yTX",
+      "uri_apple_music": "applemusic://track/1383694789",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1664954218",
+        "de": "applemusic://track/1664954218",
+        "gb": "applemusic://track/1664954218",
+        "fr": "applemusic://track/1664954218",
+        "es": "applemusic://track/1664954218",
+        "nl": "applemusic://track/1664954218",
+        "it": "applemusic://track/1664954218"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RfZ8fIY2RmY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/497124582"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Doppelhorn",
+      "year": 2020,
+      "isrc": "DEHM81900964",
+      "uri": "spotify:track:5xnuau22YKBwZWJ7SIdVVd",
+      "uri_apple_music": "applemusic://track/1522764389",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167478",
+        "de": "applemusic://track/1878167478",
+        "gb": "applemusic://track/1878167478",
+        "fr": "applemusic://track/1878167478",
+        "es": "applemusic://track/1878167478",
+        "nl": "applemusic://track/1878167478",
+        "it": "applemusic://track/1878167478"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5qNhCWy5-xs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598561312"
+    },
+    {
+      "artist": "Almklausi",
+      "title": "Die Pure Lust am Leben",
+      "year": 2009,
+      "isrc": "DEEQ80800058",
+      "uri": "spotify:track:3ACzWKB7R56sGDzEa3ZQH8",
+      "uri_apple_music": "applemusic://track/323511421",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/408204871",
+        "de": "applemusic://track/408204871",
+        "gb": "applemusic://track/408204871",
+        "fr": "applemusic://track/408204871",
+        "es": "applemusic://track/408204871",
+        "nl": "applemusic://track/408204871",
+        "it": "applemusic://track/408204871"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DIpNMWGUiA4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/61750163"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Ich glaub es geht schon wieder los (2015)",
+      "year": 2015,
+      "isrc": "DEEQ81500002",
+      "uri": "spotify:track:3Y2liHs8CZ0PlhWmgOhiJY",
+      "uri_apple_music": "applemusic://track/1721563579",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1066840782",
+        "de": "applemusic://track/1066840782",
+        "gb": "applemusic://track/1066840782",
+        "fr": "applemusic://track/1066840782",
+        "es": "applemusic://track/1066840782",
+        "nl": "applemusic://track/1066840782",
+        "it": "applemusic://track/1066840782"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0ZKnBGrTUd0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567132"
+    },
+    {
+      "artist": "Asphalt Anton",
+      "title": "Borris (Alpaka-Song)",
+      "year": 2020,
+      "isrc": "DEL942000039",
+      "uri": "spotify:track:7Hqt9ogrCNkJwe2puihu2N",
+      "uri_apple_music": "applemusic://track/1691276284",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691276284",
+        "de": "applemusic://track/1691276284",
+        "gb": "applemusic://track/1691276284",
+        "fr": "applemusic://track/1691276284",
+        "es": "applemusic://track/1691276284",
+        "nl": "applemusic://track/1691276284",
+        "it": "applemusic://track/1691276284"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SWsVQF7ZUos",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2319577355"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "100 Liter Bier",
+      "year": 2023,
+      "isrc": "DEUM72305266",
+      "uri": "spotify:track:0BiWxw6vpPlDpyl3nNZR2n",
+      "uri_apple_music": "applemusic://track/1686543229",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1862840836",
+        "de": "applemusic://track/1862840836",
+        "gb": "applemusic://track/1862840836",
+        "fr": "applemusic://track/1862840836",
+        "es": "applemusic://track/1862840836",
+        "nl": "applemusic://track/1862840836",
+        "it": "applemusic://track/1686543229"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iQ6-280aIzs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2270184257",
+      "alt_artists": [
+        "DJ Juanjo"
+      ]
+    },
+    {
+      "artist": "Tobee",
+      "title": "Margarethe (Sie war 44...)",
+      "year": 2022,
+      "isrc": "DEEQ82200105",
+      "uri": "spotify:track:1FTH49seEsCZPa7g1yDObI",
+      "uri_apple_music": "applemusic://track/1648696218",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1649047735",
+        "de": "applemusic://track/1649047735",
+        "gb": "applemusic://track/1649047735",
+        "fr": "applemusic://track/1649047735",
+        "es": "applemusic://track/1649047735",
+        "nl": "applemusic://track/1649047735",
+        "it": "applemusic://track/1649047735"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rmlEOnidHHs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1951584357"
+    },
+    {
+      "artist": "Isi Glück",
+      "title": "Nimm mich mit ins Paradies",
+      "year": 2022,
+      "isrc": "DEHK92104612",
+      "uri": "spotify:track:2ZqVzQrbA3FuXKOUBBqpRy",
+      "uri_apple_music": "applemusic://track/1721339437",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721259858",
+        "de": "applemusic://track/1721259858",
+        "gb": "applemusic://track/1721259858",
+        "fr": "applemusic://track/1721259858",
+        "es": "applemusic://track/1721259858",
+        "nl": "applemusic://track/1721259858",
+        "it": "applemusic://track/1721259858"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tDL_KqkHWzo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598561232",
+      "alt_artists": [
+        "Julian Benz"
+      ]
+    },
+    {
+      "artist": "Killermichel",
+      "title": "Auswärts sind wir asozial",
+      "year": 2016,
+      "isrc": "DEZ521602224",
+      "uri": "spotify:track:3bchZJRGQwi0ohrkxi3jE2",
+      "uri_apple_music": "applemusic://track/1721339208",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6768698316",
+        "de": "applemusic://track/6768698316",
+        "gb": "applemusic://track/6768698316",
+        "fr": "applemusic://track/6768698316",
+        "es": "applemusic://track/6768698316",
+        "nl": "applemusic://track/6768698316",
+        "it": "applemusic://track/6768698316"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DW__F_sePo0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598564572"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Mallorca wir sind wieder da - Video Edit",
+      "year": 2014,
+      "isrc": "DEHK91375130",
+      "uri": "spotify:track:4G01BR6tZms9zI9IIoiEqi",
+      "uri_apple_music": "applemusic://track/886569636",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/886569636",
+        "de": "applemusic://track/886569636",
+        "gb": "applemusic://track/886569636",
+        "fr": "applemusic://track/886569636",
+        "es": "applemusic://track/886569636",
+        "nl": "applemusic://track/886569636",
+        "it": "applemusic://track/886569636"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/81423068"
+    },
+    {
+      "artist": "Breitner",
+      "title": "Baby Bell",
+      "year": 2026,
+      "isrc": "USZXT2557695",
+      "uri": "spotify:track:6790Rqyau5Ol6mxj2UbTP3",
+      "uri_apple_music": "applemusic://track/6764634974",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166009",
+        "de": "applemusic://track/1878166009",
+        "gb": "applemusic://track/1878166009",
+        "fr": "applemusic://track/1878166009",
+        "es": "applemusic://track/1878166009",
+        "nl": "applemusic://track/1878166009",
+        "it": "applemusic://track/1878166009"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n6tBIIQQplE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3504651201"
+    },
+    {
+      "artist": "Caro Winter",
+      "title": "Willst du",
+      "year": 2026,
+      "isrc": "DECE72601542",
+      "uri": "spotify:track:7yRiNMSWR3cQqtxOPIzdoG",
+      "uri_apple_music": "applemusic://track/1891364268",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1891364268",
+        "de": "applemusic://track/1891364268",
+        "gb": "applemusic://track/1891364268",
+        "fr": "applemusic://track/1891364268",
+        "es": "applemusic://track/1891364268",
+        "nl": "applemusic://track/1891364268",
+        "it": "applemusic://track/1891364268"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V1picOnkqJU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3952478221",
+      "alt_artists": [
+        "Justin Flieger"
+      ]
+    },
+    {
+      "artist": "Rumbombe",
+      "title": "INSELBANDE",
+      "year": 2026,
+      "isrc": "DEUM72601961",
+      "uri": "spotify:track:16OpcUzFLKdf6wmDQsHcNg",
+      "uri_apple_music": "applemusic://track/1882994210",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1882994210",
+        "de": "applemusic://track/1882994210",
+        "gb": "applemusic://track/1882994210",
+        "fr": "applemusic://track/1882994210",
+        "es": "applemusic://track/1882994210",
+        "nl": "applemusic://track/1882994210",
+        "it": "applemusic://track/1882994210"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X3WzMDNb6lw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3898152331",
+      "alt_artists": [
+        "bozi"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Dachdecker",
+      "year": 2026,
+      "isrc": "DECE72600957",
+      "uri": "spotify:track:3cfI9iCdGgHTCxiZa6Q9AC",
+      "uri_apple_music": "applemusic://track/1883026809",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6768696704",
+        "de": "applemusic://track/6768696704",
+        "gb": "applemusic://track/6768696704",
+        "fr": "applemusic://track/6768696704",
+        "es": "applemusic://track/6768696704",
+        "nl": "applemusic://track/6768696704",
+        "it": "applemusic://track/6768696704"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HrFgfHIBiA8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3885416411"
+    },
+    {
+      "artist": "Nina Reh",
+      "title": "Schwerstkriminell",
+      "year": 2026,
+      "isrc": "USZXT2658941",
+      "uri": "spotify:track:0mnyhVH97JzMifXAL8nOEQ",
+      "uri_apple_music": "applemusic://track/1877888870",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6765750605",
+        "de": "applemusic://track/6765750605",
+        "gb": "applemusic://track/6765750605",
+        "fr": "applemusic://track/6765750605",
+        "es": "applemusic://track/6765750605",
+        "nl": "applemusic://track/6765750605",
+        "it": "applemusic://track/6765750605"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_oIbocH505E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3856158681",
+      "alt_artists": [
+        "Ikke Hüftgold",
+        "Playaton"
+      ]
+    },
+    {
+      "artist": "Almklausi",
+      "title": "Ich war noch niemals auf Mallorca",
+      "year": 2022,
+      "isrc": "DEEQ82200078",
+      "uri": "spotify:track:1U9xdL004RFCKyZf0MDCJP",
+      "uri_apple_music": "applemusic://track/1639865452",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1708222619",
+        "de": "applemusic://track/1708222619",
+        "gb": "applemusic://track/1708222619",
+        "fr": "applemusic://track/1708222619",
+        "es": "applemusic://track/1708222619",
+        "nl": "applemusic://track/1708222619",
+        "it": "applemusic://track/1708222619"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gaFQ4Hhl8YE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1867701317",
+      "alt_artists": [
+        "Kings of Günter",
+        "Luca Heinken"
+      ]
+    },
+    {
+      "artist": "Tommy Fieber",
+      "title": "Was soll ich im Hotel",
+      "year": 2025,
+      "isrc": "DECE72503074",
+      "uri": "spotify:track:5pYf1Rc8lylvPVBSgTNdWE",
+      "uri_apple_music": "applemusic://track/1839500910",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1839500910",
+        "de": "applemusic://track/1839500910",
+        "gb": "applemusic://track/1839500910",
+        "fr": "applemusic://track/1839500910",
+        "es": "applemusic://track/1839500910",
+        "nl": "applemusic://track/1839500910",
+        "it": "applemusic://track/1839500910"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H6su3VwkMGA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3562765671",
+      "alt_artists": [
+        "Ingo ohne Flamingo",
+        "Luca Heinken",
+        "DJ Chris Caramello"
+      ]
+    },
+    {
+      "artist": "Frenzy",
+      "title": "Beam mich in den Süden",
+      "year": 2026,
+      "isrc": "DEUM72600157",
+      "uri": "spotify:track:79VaG1NA6FHq4iuo6tHrEw",
+      "uri_apple_music": "applemusic://track/1869621664",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166364",
+        "de": "applemusic://track/1878166364",
+        "gb": "applemusic://track/1878166364",
+        "fr": "applemusic://track/1878166364",
+        "es": "applemusic://track/1878166364",
+        "nl": "applemusic://track/1878166364",
+        "it": "applemusic://track/1878166364"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aEuKqlcohTA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3792397922"
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Und ab dafür!",
+      "year": 2025,
+      "isrc": "USZXT2558103",
+      "uri": "spotify:track:78DklSkDV1OLGRL0pyvuff",
+      "uri_apple_music": "applemusic://track/1842166681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166755",
+        "de": "applemusic://track/1878166755",
+        "gb": "applemusic://track/1878166755",
+        "fr": "applemusic://track/1878166755",
+        "es": "applemusic://track/1878166755",
+        "nl": "applemusic://track/1878166755",
+        "it": "applemusic://track/1878166755"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YG6k0EZR8Uo",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Julian Sommer",
+        "Roxy",
+        "Honk!",
+        "Beerstreet Boys"
+      ]
+    },
+    {
+      "artist": "Paulina Wagner",
+      "title": "Eins steht fest",
+      "year": 2025,
+      "isrc": "DELV42500456",
+      "uri": "spotify:track:02DPX026VBucSRdDYfaIIh",
+      "uri_apple_music": "applemusic://track/1822359190",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1822359190",
+        "de": "applemusic://track/1822359190",
+        "gb": "applemusic://track/1822359190",
+        "fr": "applemusic://track/1822359190",
+        "es": "applemusic://track/1822359190",
+        "nl": "applemusic://track/1822359190",
+        "it": "applemusic://track/1822359190"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V6Eaw_WvnsU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3696190672"
+    },
+    {
+      "artist": "Domy Berger",
+      "title": "Sophia Loren",
+      "year": 2025,
+      "isrc": "USZXT2557386",
+      "uri": "spotify:track:0tbtogiiDkAjsKLHtzOlwv",
+      "uri_apple_music": "applemusic://track/1823233297",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1823233297",
+        "de": "applemusic://track/1823233297",
+        "gb": "applemusic://track/1823233297",
+        "fr": "applemusic://track/1823233297",
+        "es": "applemusic://track/1823233297",
+        "nl": "applemusic://track/1823233297",
+        "it": "applemusic://track/1823233297"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YY0krzw0kJ8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3434310821",
+      "alt_artists": [
+        "Timo Scheppert",
+        "SdZunT"
+      ]
+    },
+    {
+      "artist": "Kreisligalegende",
+      "title": "Malle Lalala",
+      "year": 2025,
+      "isrc": "USZXT2557578",
+      "uri": "spotify:track:5QaXIvDnARo7dKbYiviFJL",
+      "uri_apple_music": "applemusic://track/1828462374",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166747",
+        "de": "applemusic://track/1878166747",
+        "gb": "applemusic://track/1878166747",
+        "fr": "applemusic://track/1878166747",
+        "es": "applemusic://track/1878166747",
+        "nl": "applemusic://track/1878166747",
+        "it": "applemusic://track/1878166747"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZQ2DafYzxyQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3487142851",
+      "alt_artists": [
+        "Frenzy"
+      ]
+    },
+    {
+      "artist": "Justin Flieger",
+      "title": "Flugzeug",
+      "year": 2025,
+      "isrc": "DECE72502301",
+      "uri": "spotify:track:7Hpq42VIuHI1hRLyrBJfFh",
+      "uri_apple_music": "applemusic://track/1827498588",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1827498588",
+        "de": "applemusic://track/1827498588",
+        "gb": "applemusic://track/1827498588",
+        "fr": "applemusic://track/1827498588",
+        "es": "applemusic://track/1827498588",
+        "nl": "applemusic://track/1827498588",
+        "it": "applemusic://track/1827498588"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IKYqx_B_8Dk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3476764771",
+      "alt_artists": [
+        "Malle Anja",
+        "Eliah Sternhardt",
+        "Marius & Kaktus"
+      ]
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Mallorca Mallorca",
+      "year": 2025,
+      "isrc": "DEEQ81600063",
+      "uri": "spotify:track:4RNfIYpaiDSb5dPT3KNdsv",
+      "uri_apple_music": "applemusic://track/1825593929",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167016",
+        "de": "applemusic://track/1878167016",
+        "gb": "applemusic://track/1878167016",
+        "fr": "applemusic://track/1878167016",
+        "es": "applemusic://track/1878167016",
+        "nl": "applemusic://track/1878167016",
+        "it": "applemusic://track/1878167016"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5G6WhC39x3k",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/141827681",
+      "alt_artists": [
+        "Olaf der Flipper"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Gartenhütte",
+      "year": 2025,
+      "isrc": "FRX452587471",
+      "uri": "spotify:track:4c5CmXIlx8ur2SVBEyghOs",
+      "uri_apple_music": "applemusic://track/1823944742",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1823944742",
+        "de": "applemusic://track/1823944742",
+        "gb": "applemusic://track/1823944742",
+        "fr": "applemusic://track/1823944742",
+        "es": "applemusic://track/1823944742",
+        "nl": "applemusic://track/1823944742",
+        "it": "applemusic://track/1823944742"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FRQxLNtfQvA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3439697741"
+    },
+    {
+      "artist": "Frenzy",
+      "title": "3er",
+      "year": 2025,
+      "isrc": "DEUM72505342",
+      "uri": "spotify:track:27djNuigXbNE4OJ5R5NEa5",
+      "uri_apple_music": "applemusic://track/1824406521",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166275",
+        "de": "applemusic://track/1878166275",
+        "gb": "applemusic://track/1878166275",
+        "fr": "applemusic://track/1878166275",
+        "es": "applemusic://track/1878166275",
+        "nl": "applemusic://track/1878166275",
+        "it": "applemusic://track/1878166275"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ctQtJjiR-vE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3444245451"
+    },
+    {
+      "artist": "Caro Winter",
+      "title": "Will kommen auf Mallorca",
+      "year": 2025,
+      "isrc": "DECE72501092",
+      "uri": "spotify:track:0tHX7gzhIqO8IA3bkvoRlO",
+      "uri_apple_music": "applemusic://track/1807944993",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167216",
+        "de": "applemusic://track/1878167216",
+        "gb": "applemusic://track/1878167216",
+        "fr": "applemusic://track/1878167216",
+        "es": "applemusic://track/1878167216",
+        "nl": "applemusic://track/1878167216",
+        "it": "applemusic://track/1878167216"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nPmF7OtXc3U",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3329750091",
+      "alt_artists": [
+        "Justin Flieger"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Baila Baila",
+      "year": 2025,
+      "isrc": "DEEQ82500060",
+      "uri": "spotify:track:1xS7XV1k4Q2YRldPsPswdf",
+      "uri_apple_music": "applemusic://track/1827029538",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1845097191",
+        "de": "applemusic://track/1845097191",
+        "gb": "applemusic://track/1845097191",
+        "fr": "applemusic://track/1845097191",
+        "es": "applemusic://track/1845097191",
+        "nl": "applemusic://track/1845097191",
+        "it": "applemusic://track/1845097191"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cufilu37DE8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3466713041",
+      "alt_artists": [
+        "Lorenz Büffel",
+        "Kings of Günter",
+        "Immer Hansi"
+      ]
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Tage am Meer",
+      "year": 2025,
+      "isrc": "USZXT2557088",
+      "uri": "spotify:track:5wHbdukTwEgViGA1sCYHLS",
+      "uri_apple_music": "applemusic://track/1812685704",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1812685704",
+        "de": "applemusic://track/1812685704",
+        "gb": "applemusic://track/1812685704",
+        "fr": "applemusic://track/1812685704",
+        "es": "applemusic://track/1812685704",
+        "nl": "applemusic://track/1812685704",
+        "it": "applemusic://track/1812685704"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LL1TdwxmiQU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3369469331",
+      "alt_artists": [
+        "Domy Berger"
+      ]
+    },
+    {
+      "artist": "Julian Benz",
+      "title": "Fiesta Alemania",
+      "year": 2025,
+      "isrc": "USZXT2556859",
+      "uri": "spotify:track:3lXb2yqsugR8GOrxz61DSV",
+      "uri_apple_music": "applemusic://track/1804937686",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1813909265",
+        "de": "applemusic://track/1813909265",
+        "gb": "applemusic://track/1813909265",
+        "fr": "applemusic://track/1813909265",
+        "es": "applemusic://track/1813909265",
+        "nl": "applemusic://track/1813909265",
+        "it": "applemusic://track/1813909265"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xI-ny8ry8ZA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3309764461",
+      "alt_artists": [
+        "Calvin Kleinen",
+        "Kreisligalegende"
+      ]
+    },
+    {
+      "artist": "Tim Toupet",
+      "title": "Fit for Malle",
+      "year": 2025,
+      "isrc": "DEEQ82500017",
+      "uri": "spotify:track:3bvslaUSEFjMwokz9vr1Pp",
+      "uri_apple_music": "applemusic://track/1800173062",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1829707910",
+        "de": "applemusic://track/1829707910",
+        "gb": "applemusic://track/1829707910",
+        "fr": "applemusic://track/1829707910",
+        "es": "applemusic://track/1829707910",
+        "nl": "applemusic://track/1829707910",
+        "it": "applemusic://track/1829707910"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bwoYDTB1Qlk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3265489061",
+      "alt_artists": [
+        "Der Partycrasher",
+        "DJ Cashi"
+      ]
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Gottlos",
+      "year": 2025,
+      "isrc": "USZXT2557142",
+      "uri": "spotify:track:3wvzTck7lEEVwON0ae7FBg",
+      "uri_apple_music": "applemusic://track/1814660199",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6768697176",
+        "de": "applemusic://track/6768697176",
+        "gb": "applemusic://track/6768697176",
+        "fr": "applemusic://track/6768697176",
+        "es": "applemusic://track/6768697176",
+        "nl": "applemusic://track/6768697176",
+        "it": "applemusic://track/6768697176"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5SXdEjVpHxY",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Specktakel",
+        "DJ Cashi",
+        "DJ Chris Caramello"
+      ]
+    },
+    {
+      "artist": "Calvin Kleinen",
+      "title": "Ex on the Beach",
+      "year": 2025,
+      "isrc": "USZXT2557016",
+      "uri": "spotify:track:5fcJ9HJVkYWOJdV35wHCrJ",
+      "uri_apple_music": "applemusic://track/1810236778",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166562",
+        "de": "applemusic://track/1878166562",
+        "gb": "applemusic://track/1878166562",
+        "fr": "applemusic://track/1878166562",
+        "es": "applemusic://track/1878166562",
+        "nl": "applemusic://track/1878166562",
+        "it": "applemusic://track/1878166562"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DWbn3WpKLhg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3348931221",
+      "alt_artists": [
+        "Marvin Kleinen"
+      ]
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Tankwart",
+      "year": 2024,
+      "isrc": "USZXT2455153",
+      "uri": "spotify:track:45qugXU0vQkqiStF1gBDWv",
+      "uri_apple_music": "applemusic://track/1764503973",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1764503973",
+        "de": "applemusic://track/1764503973",
+        "gb": "applemusic://track/1764503973",
+        "fr": "applemusic://track/1764503973",
+        "es": "applemusic://track/1764503973",
+        "nl": "applemusic://track/1764503973",
+        "it": "applemusic://track/1764503973"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WDVBRvSVLqM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2970847831",
+      "alt_artists": [
+        "Malin Brown"
+      ]
+    },
+    {
+      "artist": "Isi Glück",
+      "title": "Bax Banni",
+      "year": 2025,
+      "isrc": "USZXT2556940",
+      "uri": "spotify:track:52GprfHSif2qjdtnfg8ySy",
+      "uri_apple_music": "applemusic://track/1807810463",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6768697709",
+        "de": "applemusic://track/6768697709",
+        "gb": "applemusic://track/6768697709",
+        "fr": "applemusic://track/6768697709",
+        "es": "applemusic://track/6768697709",
+        "nl": "applemusic://track/6768697709",
+        "it": "applemusic://track/6768697709"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=muanMtynQV0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3329770641",
+      "alt_artists": [
+        "Julian Sommer"
+      ]
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Bella Napoli",
+      "year": 2024,
+      "isrc": "USZXT2455898",
+      "uri": "spotify:track:6SFxIcELtIPh357CCfjY1b",
+      "uri_apple_music": "applemusic://track/1774757902",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1774757902",
+        "de": "applemusic://track/1774757902",
+        "gb": "applemusic://track/1774757902",
+        "fr": "applemusic://track/1774757902",
+        "es": "applemusic://track/1774757902",
+        "nl": "applemusic://track/1774757902",
+        "it": "applemusic://track/1774757902"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S_6IFBcT1ZA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3051869611",
+      "alt_artists": [
+        "Fabio Gandolfo"
+      ]
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Pferdeschwanz",
+      "year": 2025,
+      "isrc": "DEUM72503389",
+      "uri": "spotify:track:3u4Z9vEIWQlE4tJW7dSxKz",
+      "uri_apple_music": "applemusic://track/1808696928",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1808696928",
+        "de": "applemusic://track/1808696928",
+        "gb": "applemusic://track/1808696928",
+        "fr": "applemusic://track/1808696928",
+        "es": "applemusic://track/1808696928",
+        "nl": "applemusic://track/1808696928",
+        "it": "applemusic://track/1808696928"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lZYHLLIjQJE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3329758001"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "SOS",
+      "year": 2025,
+      "isrc": "DEUM72502711",
+      "uri": "spotify:track:0eZ79jSIKo6SfpJ90iU3Nu",
+      "uri_apple_music": "applemusic://track/1803411278",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166283",
+        "de": "applemusic://track/1878166283",
+        "gb": "applemusic://track/1878166283",
+        "fr": "applemusic://track/1878166283",
+        "es": "applemusic://track/1878166283",
+        "nl": "applemusic://track/1878166283",
+        "it": "applemusic://track/1878166283"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DTwUGnlV38k",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3298452871"
+    },
+    {
+      "artist": "Fäaschtbänkler",
+      "title": "ALL IN (Lieblingslieder)",
+      "year": 2023,
+      "isrc": "DEEP82300001",
+      "uri": "spotify:track:3VIEbpdr64a1mNSa8MqBAm",
+      "uri_apple_music": "applemusic://track/1670922703",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1732690226",
+        "de": "applemusic://track/1732690226",
+        "gb": "applemusic://track/1732690226",
+        "fr": "applemusic://track/1732690226",
+        "es": "applemusic://track/1732690226",
+        "nl": "applemusic://track/1732690226",
+        "it": "applemusic://track/1732690226"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kfgJtwHOwXg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2078308317"
+    },
+    {
+      "artist": "Kreisligalegende",
+      "title": "Malle is' Liebe",
+      "year": 2024,
+      "isrc": "USZXT2453953",
+      "uri": "spotify:track:67mnzKCqtZONicrkSVHYNA",
+      "uri_apple_music": "applemusic://track/1734408795",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1746158280",
+        "de": "applemusic://track/1746158280",
+        "gb": "applemusic://track/1746158280",
+        "fr": "applemusic://track/1746158280",
+        "es": "applemusic://track/1746158280",
+        "nl": "applemusic://track/1746158280",
+        "it": "applemusic://track/1746158280"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XAubdQRDx0o",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2694093702"
+    },
+    {
+      "artist": "Rumbombe",
+      "title": "HURENSOHN",
+      "year": 2025,
+      "isrc": "DECE72500567",
+      "uri": "spotify:track:1wsndzfARmcXLntwDwGAQu",
+      "uri_apple_music": "applemusic://track/1818665726",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166016",
+        "de": "applemusic://track/1878166016",
+        "gb": "applemusic://track/1878166016",
+        "fr": "applemusic://track/1878166016",
+        "es": "applemusic://track/1878166016",
+        "nl": "applemusic://track/1878166016",
+        "it": "applemusic://track/1878166016"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=slplhHRuR60",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3278039971",
+      "alt_artists": [
+        "bozi"
+      ]
+    },
+    {
+      "artist": "Oimara",
+      "title": "Wackelkontakt",
+      "year": 2024,
+      "isrc": "DEW242400081",
+      "uri": "spotify:track:4x7j9ed3FRH6CHj27kiTQ3",
+      "uri_apple_music": "applemusic://track/1792241771",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878161688",
+        "de": "applemusic://track/1860646277",
+        "gb": "applemusic://track/1878161688",
+        "fr": "applemusic://track/1878161688",
+        "es": "applemusic://track/1878161688",
+        "nl": "applemusic://track/1878161688",
+        "it": "applemusic://track/1878161688"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A5IRWvKVHUQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3200185401"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Eine Nacht in Arenal",
+      "year": 2025,
+      "isrc": "DEUM72501657",
+      "uri": "spotify:track:4bHvXW0RbZZJ09ckq5xGn6",
+      "uri_apple_music": "applemusic://track/1801487251",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166367",
+        "de": "applemusic://track/1878166367",
+        "gb": "applemusic://track/1878166367",
+        "fr": "applemusic://track/1878166367",
+        "es": "applemusic://track/1878166367",
+        "nl": "applemusic://track/1878166367",
+        "it": "applemusic://track/1878166367"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=v0npA7hI0oU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3278043381",
+      "alt_artists": [
+        "Frenzy"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Bock auf Bier",
+      "year": 2024,
+      "isrc": "DGA072427048",
+      "uri": "spotify:track:6MvRkE1BZHAEg92WQcR9Pw",
+      "uri_apple_music": "applemusic://track/1756340331",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1815499022",
+        "de": "applemusic://track/1815499022",
+        "gb": "applemusic://track/1815499022",
+        "fr": "applemusic://track/1815499022",
+        "es": "applemusic://track/1815499022",
+        "nl": "applemusic://track/1815499022",
+        "it": "applemusic://track/1815499022"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-TsV2EWIxFk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2882789562",
+      "alt_artists": [
+        "Lorenz Büffel"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Dann leg ich Schlager auf",
+      "year": 2024,
+      "isrc": "DGA0M2440664",
+      "uri": "spotify:track:21YH3LX7O0uayHWOmDGPbL",
+      "uri_apple_music": "applemusic://track/1764544627",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1764544627",
+        "de": "applemusic://track/1764544627",
+        "gb": "applemusic://track/1764544627",
+        "fr": "applemusic://track/1764544627",
+        "es": "applemusic://track/1764544627",
+        "nl": "applemusic://track/1764544627",
+        "it": "applemusic://track/1764544627"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pResZ4R2GhE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2960519231",
+      "alt_artists": [
+        "Tim Toupet"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Handwerker",
+      "year": 2024,
+      "isrc": "DEUM72404664",
+      "uri": "spotify:track:3ut6td3I2l0z63rSt1HOwz",
+      "uri_apple_music": "applemusic://track/1742172007",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166370",
+        "de": "applemusic://track/1878166370",
+        "gb": "applemusic://track/1878166370",
+        "fr": "applemusic://track/1878166370",
+        "es": "applemusic://track/1878166370",
+        "nl": "applemusic://track/1878166370",
+        "it": "applemusic://track/1878166370"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wFiX3Oi6QmY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2767030321",
+      "alt_artists": [
+        "Julian Sommer"
+      ]
+    },
+    {
+      "artist": "Isi Glück",
+      "title": "Mallekind",
+      "year": 2024,
+      "isrc": "USZXT2454976",
+      "uri": "spotify:track:3NlCLRvhG5gno1HutG23u6",
+      "uri_apple_music": "applemusic://track/1757431594",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6768697526",
+        "de": "applemusic://track/6768697526",
+        "gb": "applemusic://track/6768697526",
+        "fr": "applemusic://track/6768697526",
+        "es": "applemusic://track/6768697526",
+        "nl": "applemusic://track/6768697526",
+        "it": "applemusic://track/6768697526"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m-geiNjwELA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2913236571",
+      "alt_artists": [
+        "Julian Benz"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Ruf den Doc (Inselfieber)",
+      "year": 2024,
+      "isrc": "DEUM72405922",
+      "uri": "spotify:track:5qen9QTB4wsvQzOQlBjQBw",
+      "uri_apple_music": "applemusic://track/1746501190",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1746501190",
+        "de": "applemusic://track/1746501190",
+        "gb": "applemusic://track/1746501190",
+        "fr": "applemusic://track/1746501190",
+        "es": "applemusic://track/1746501190",
+        "nl": "applemusic://track/1746501190",
+        "it": "applemusic://track/1746501190"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qxhLU2Nhp5g",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2805838582",
+      "alt_artists": [
+        "Mia Julia",
+        "Frenzy"
+      ]
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Kneipen von Innen",
+      "year": 2024,
+      "isrc": "USZXT2454315",
+      "uri": "spotify:track:5JxGWsY27JxMfHOLKraxN1",
+      "uri_apple_music": "applemusic://track/1741357993",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1741357993",
+        "de": "applemusic://track/1741357993",
+        "gb": "applemusic://track/1741357993",
+        "fr": "applemusic://track/1741357993",
+        "es": "applemusic://track/1741357993",
+        "nl": "applemusic://track/1741357993",
+        "it": "applemusic://track/1741357993"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k2NyzXa1RP4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2757270301"
+    },
+    {
+      "artist": "Rumbombe",
+      "title": "Ein Leben lang",
+      "year": 2024,
+      "isrc": "DECE72401063",
+      "uri": "spotify:track:7hdrNuYm4Uzlf1cYgwE9ZS",
+      "uri_apple_music": "applemusic://track/1825576211",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1825576211",
+        "de": "applemusic://track/1825576211",
+        "gb": "applemusic://track/1825576211",
+        "fr": "applemusic://track/1825576211",
+        "es": "applemusic://track/1825576211",
+        "nl": "applemusic://track/1825576211",
+        "it": "applemusic://track/1825576211"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t-QY0V7x1sM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2836097982",
+      "alt_artists": [
+        "Julian Sommer"
+      ]
+    },
+    {
+      "artist": "Isi Glück",
+      "title": "Oberteil",
+      "year": 2024,
+      "isrc": "USZXT2454297",
+      "uri": "spotify:track:6wujgYJX36mC0rtOdzEcAK",
+      "uri_apple_music": "applemusic://track/1878166024",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166024",
+        "de": "applemusic://track/1878166024",
+        "gb": "applemusic://track/1878166024",
+        "fr": "applemusic://track/1878166024",
+        "es": "applemusic://track/1878166024",
+        "nl": "applemusic://track/1878166024",
+        "it": "applemusic://track/1878166024"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=35Gta9lC_04",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2757228921",
+      "alt_artists": [
+        "Marc Eggers"
+      ]
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Mallebird",
+      "year": 2024,
+      "isrc": null,
+      "uri": "spotify:track:5t2L4RyK0XjpMgbkvOxwrD",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7ICiUTFl0H0",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Julian Benz",
+        "Lyzar"
+      ]
+    },
+    {
+      "artist": "Frenzy",
+      "title": "Lampen an",
+      "year": 2024,
+      "isrc": "DECE72401309",
+      "uri": "spotify:track:5y2rztbeRghBK0UyKK96Tg",
+      "uri_apple_music": "applemusic://track/1878166291",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166291",
+        "de": "applemusic://track/1878166291",
+        "gb": "applemusic://track/1878166291",
+        "fr": "applemusic://track/1878166291",
+        "es": "applemusic://track/1878166291",
+        "nl": "applemusic://track/1878166291",
+        "it": "applemusic://track/1878166291"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-sWSz7qCvps",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2877069062"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Weisser Geier",
+      "year": 2024,
+      "isrc": "DEEQ82400034",
+      "uri": "spotify:track:2S1xCOJKISJInHsfqafLWX",
+      "uri_apple_music": "applemusic://track/1783624413",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1783624413",
+        "de": "applemusic://track/1783624413",
+        "gb": "applemusic://track/1783624413",
+        "fr": "applemusic://track/1783624413",
+        "es": "applemusic://track/1783624413",
+        "nl": "applemusic://track/1783624413",
+        "it": "applemusic://track/1783624413"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hh_VsdOgb6U",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2751408821"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Oben ohne",
+      "year": 2024,
+      "isrc": "DEUM72402726",
+      "uri": "spotify:track:5evW30Vom9nZ9YKadUymD3",
+      "uri_apple_music": "applemusic://track/1736119505",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1736119505",
+        "de": "applemusic://track/1736119505",
+        "gb": "applemusic://track/1736119505",
+        "fr": "applemusic://track/1736119505",
+        "es": "applemusic://track/1736119505",
+        "nl": "applemusic://track/1736119505",
+        "it": "applemusic://track/1736119505"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_815df1x70w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2705361842"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Midnight Lady",
+      "year": 2024,
+      "isrc": "DECE72400500",
+      "uri": "spotify:track:0CbNz8F2OUOfxOnZyV6pDJ",
+      "uri_apple_music": "applemusic://track/1733692530",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1733692530",
+        "de": "applemusic://track/1733692530",
+        "gb": "applemusic://track/1733692530",
+        "fr": "applemusic://track/1733692530",
+        "es": "applemusic://track/1733692530",
+        "nl": "applemusic://track/1733692530",
+        "it": "applemusic://track/1733692530"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cH5lcXQkx2A",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2694100132",
+      "alt_artists": [
+        "Knossi"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Neverland",
+      "year": 2024,
+      "isrc": "DEUM72401019",
+      "uri": "spotify:track:7HJ7K2RacfpaX2DTEvwYpS",
+      "uri_apple_music": "applemusic://track/1729155005",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1729155005",
+        "de": "applemusic://track/1729155005",
+        "gb": "applemusic://track/1729155005",
+        "fr": "applemusic://track/1729155005",
+        "es": "applemusic://track/1729155005",
+        "nl": "applemusic://track/1729155005",
+        "it": "applemusic://track/1729155005"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o2l7I2O2zeA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2655163012"
+    },
+    {
+      "artist": "Julian Benz",
+      "title": "König von Malle",
+      "year": 2024,
+      "isrc": "DEHK92104720",
+      "uri": "spotify:track:3jgAO5ER7yl7okNwz1BRL0",
+      "uri_apple_music": "applemusic://track/1721259505",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721259505",
+        "de": "applemusic://track/1721259505",
+        "gb": "applemusic://track/1721259505",
+        "fr": "applemusic://track/1721259505",
+        "es": "applemusic://track/1721259505",
+        "nl": "applemusic://track/1721259505",
+        "it": "applemusic://track/1721259505"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hycladeLR1w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598569102"
+    },
+    {
+      "artist": "Bierkapitän",
+      "title": "Aladin",
+      "year": 2023,
+      "isrc": "DEUM72304023",
+      "uri": "spotify:track:00M4Q52cP3c6Ij5S1P89AK",
+      "uri_apple_music": "applemusic://track/1689300309",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1689300309",
+        "de": "applemusic://track/1689300309",
+        "gb": "applemusic://track/1689300309",
+        "fr": "applemusic://track/1689300309",
+        "es": "applemusic://track/1689300309",
+        "nl": "applemusic://track/1689300309",
+        "it": "applemusic://track/1689300309"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=utNEEh4ZZ-c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2234741697",
+      "alt_artists": [
+        "Carolina",
+        "Dj Aaron",
+        "Säulenbande"
+      ]
+    },
+    {
+      "artist": "Rumbombe",
+      "title": "Zum Greifen nah",
+      "year": 2022,
+      "isrc": "DEPI82213193",
+      "uri": "spotify:track:5LEBEcAsQTL2ZoRQEvsE1D",
+      "uri_apple_music": "applemusic://track/1637904848",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1637904848",
+        "de": "applemusic://track/1657550119",
+        "gb": "applemusic://track/1657550119",
+        "fr": "applemusic://track/1657550119",
+        "es": "applemusic://track/1657550119",
+        "nl": "applemusic://track/1657550119",
+        "it": "applemusic://track/1657550119"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=68UkfvlN8sI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1853781297",
+      "alt_artists": [
+        "Anstandslos & Durchgeknallt"
+      ]
+    },
+    {
+      "artist": "Rumbombe",
+      "title": "Sauf die Insel leer",
+      "year": 2023,
+      "isrc": "DEPI82309968",
+      "uri": "spotify:track:0gOp0hFK9VYYgJhnv1gRkv",
+      "uri_apple_music": "applemusic://track/1690151220",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1690151220",
+        "de": "applemusic://track/1690151220",
+        "gb": "applemusic://track/1690151220",
+        "fr": "applemusic://track/1690151220",
+        "es": "applemusic://track/1690151220",
+        "nl": "applemusic://track/1690151220",
+        "it": "applemusic://track/1690151220"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RSEZpGE6yjU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2300967955"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Arielle",
+      "year": 2023,
+      "isrc": "DEUM72307547",
+      "uri": "spotify:track:0fy3cqUm8msuhJg7k43yh2",
+      "uri_apple_music": "applemusic://track/1707114384",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1707114384",
+        "de": "applemusic://track/1707114384",
+        "gb": "applemusic://track/1707114384",
+        "fr": "applemusic://track/1707114384",
+        "es": "applemusic://track/1707114384",
+        "nl": "applemusic://track/1707114384",
+        "it": "applemusic://track/1707114384"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2jQiOU3FUlE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2348742575",
+      "alt_artists": [
+        "Lorenz Büffel"
+      ]
+    },
+    {
+      "artist": "Frenzy",
+      "title": "Lanzelot",
+      "year": 2023,
+      "isrc": "DEUM72307445",
+      "uri": "spotify:track:2UYFcmRi8ks6EU0iWfIvTa",
+      "uri_apple_music": "applemusic://track/1693386997",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1714671090",
+        "de": "applemusic://track/1714671090",
+        "gb": "applemusic://track/1714671090",
+        "fr": "applemusic://track/1714671090",
+        "es": "applemusic://track/1714671090",
+        "nl": "applemusic://track/1714671090",
+        "it": "applemusic://track/1714671090"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2pbtrF2prR8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2334669275"
+    },
+    {
+      "artist": "Die Flippers",
+      "title": "Wir sagen danke schön - DAS ORIGINAL",
+      "year": 2011,
+      "isrc": "DEA810900727",
+      "uri": "spotify:track:5oCCVPPduu3KNtf9wRo1eV",
+      "uri_apple_music": "applemusic://track/1786346039",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1786346039",
+        "de": "applemusic://track/428287290",
+        "gb": "applemusic://track/1786346039",
+        "fr": "applemusic://track/1786346039",
+        "es": "applemusic://track/1786346039",
+        "nl": "applemusic://track/428287290",
+        "it": "applemusic://track/1786346039"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JAKVQyIStFM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15038934"
+    },
+    {
+      "artist": "Honk!",
+      "title": "Delfin",
+      "year": 2024,
+      "isrc": "DEHK92104745",
+      "uri": "spotify:track:4jAHH8WkHiJQP9JlW2PlEi",
+      "uri_apple_music": "applemusic://track/1878166376",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166376",
+        "de": "applemusic://track/1878166376",
+        "gb": "applemusic://track/1878166376",
+        "fr": "applemusic://track/1878166376",
+        "es": "applemusic://track/1878166376",
+        "nl": "applemusic://track/1878166376",
+        "it": "applemusic://track/1878166376"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CCvfuTxBhBI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567802",
+      "alt_artists": [
+        "Isi Glück"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Peter Pan",
+      "year": 2023,
+      "isrc": "DEUM72301260",
+      "uri": "spotify:track:5CvAzdenlzv3ImMcG7awJV",
+      "uri_apple_music": "applemusic://track/1701684878",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701684878",
+        "de": "applemusic://track/1701684878",
+        "gb": "applemusic://track/1701684878",
+        "fr": "applemusic://track/1701684878",
+        "es": "applemusic://track/1701684878",
+        "nl": "applemusic://track/1701684878",
+        "it": "applemusic://track/1701684878"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FM2S_GrjB-Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2195325947",
+      "alt_artists": [
+        "Mia Julia"
+      ]
+    },
+    {
+      "artist": "GABBY",
+      "title": "Klempner Klaus",
+      "year": 2022,
+      "isrc": "DEUM72205988",
+      "uri": "spotify:track:0LStK5S9hM7tmi8X7TItkY",
+      "uri_apple_music": "applemusic://track/1709413701",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1709413701",
+        "de": "applemusic://track/1709413701",
+        "gb": "applemusic://track/1709413701",
+        "fr": "applemusic://track/1709413701",
+        "es": "applemusic://track/1709413701",
+        "nl": "applemusic://track/1709413701",
+        "it": "applemusic://track/1709413701"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DTIp_X6WGHo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1906465027",
+      "alt_artists": [
+        "Anstandslos & Durchgeknallt"
+      ]
+    },
+    {
+      "artist": "Die Zipfelbuben",
+      "title": "Nur ein bisschen Sex",
+      "year": 2023,
+      "isrc": "DEEQ82300064",
+      "uri": "spotify:track:7949hH8XafTIqCtJrW2MQe",
+      "uri_apple_music": "applemusic://track/1734997522",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1734997522",
+        "de": "applemusic://track/1734997522",
+        "gb": "applemusic://track/1734997522",
+        "fr": "applemusic://track/1734997522",
+        "es": "applemusic://track/1734997522",
+        "nl": "applemusic://track/1734997522",
+        "it": "applemusic://track/1734997522"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JQ0eDP0rcc8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2297987275",
+      "alt_artists": [
+        "Der Zipfelbube",
+        "DJ Cashi"
+      ]
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Mallorca mein Zuhause",
+      "year": 2023,
+      "isrc": "DECE72300813",
+      "uri": "spotify:track:6luBzalzRjUvzBhCbBhJL3",
+      "uri_apple_music": "applemusic://track/1687095080",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1687095080",
+        "de": "applemusic://track/1687095080",
+        "gb": "applemusic://track/1687095080",
+        "fr": "applemusic://track/1687095080",
+        "es": "applemusic://track/1687095080",
+        "nl": "applemusic://track/1687095080",
+        "it": "applemusic://track/1687095080"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=84ut4GWagBM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2238200727",
+      "alt_artists": [
+        "Rumbombe",
+        "Skatschie"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Heisser Sand",
+      "year": 2023,
+      "isrc": "DEUM72305270",
+      "uri": "spotify:track:6AcRKskDUMJxjoTKOPeg0z",
+      "uri_apple_music": "applemusic://track/1701685708",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701685708",
+        "de": "applemusic://track/1701685708",
+        "gb": "applemusic://track/1701685708",
+        "fr": "applemusic://track/1701685708",
+        "es": "applemusic://track/1701685708",
+        "nl": "applemusic://track/1701685708",
+        "it": "applemusic://track/1701685708"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PkZ7GUXWmMU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2280880877"
+    },
+    {
+      "artist": "Killermichel",
+      "title": "Malle du Magnet",
+      "year": 2023,
+      "isrc": "DEEQ82300062",
+      "uri": "spotify:track:6sSZIq2KIyl1fDJFjoNRkI",
+      "uri_apple_music": "applemusic://track/1699364895",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1699364895",
+        "de": "applemusic://track/1699364895",
+        "gb": "applemusic://track/1699364895",
+        "fr": "applemusic://track/1699364895",
+        "es": "applemusic://track/1699364895",
+        "nl": "applemusic://track/1699364895",
+        "it": "applemusic://track/1699364895"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dlsQslj7NRc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2297761205",
+      "alt_artists": [
+        "Domy Berger"
+      ]
+    },
+    {
+      "artist": "Isi Glück",
+      "title": "Das Leben ist ne Party",
+      "year": 2018,
+      "isrc": "DEZ521800226",
+      "uri": "spotify:track:76RRYzT9f5yuQEXvVGShY4",
+      "uri_apple_music": "applemusic://track/1401292435",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1401292435",
+        "de": "applemusic://track/1401292435",
+        "gb": "applemusic://track/1401292435",
+        "fr": "applemusic://track/1401292435",
+        "es": "applemusic://track/1401292435",
+        "nl": "applemusic://track/1401292435",
+        "it": "applemusic://track/1401292435"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ixyp4xni1ws",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/508848102"
+    },
+    {
+      "artist": "Wolfgang Petry",
+      "title": "Der Wolfgang Petry-Hitmix - 2021 Remastered",
+      "year": 2005,
+      "isrc": "DEBA22100040",
+      "uri": "spotify:track:6aTfhuoDXuGIyXLhSNfyZd",
+      "uri_apple_music": "applemusic://track/1626938164",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1626938164",
+        "de": "applemusic://track/1626938164",
+        "gb": "applemusic://track/1626938164",
+        "fr": "applemusic://track/1626938164",
+        "es": "applemusic://track/1626938164",
+        "nl": "applemusic://track/1626938164",
+        "it": "applemusic://track/1626938164"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hV7rPUZa1Bc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1524754712"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Da muss ich erstmal ne Nacht drüber saufen",
+      "year": 2023,
+      "isrc": "DEEQ82300056",
+      "uri": "spotify:track:32k0n4gq7jE7YfuA6Pv3Yi",
+      "uri_apple_music": "applemusic://track/1695197820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1695197820",
+        "de": "applemusic://track/1695197820",
+        "gb": "applemusic://track/1695197820",
+        "fr": "applemusic://track/1695197820",
+        "es": "applemusic://track/1695197820",
+        "nl": "applemusic://track/1695197820",
+        "it": "applemusic://track/1695197820"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xsuHYg5kWqQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2279814117"
+    },
+    {
+      "artist": "Banjee",
+      "title": "Wir saufen wieder Kuemmerling",
+      "year": 2023,
+      "isrc": "FRX762378417",
+      "uri": "spotify:track:1oPwYSZgijGgopb8l7xsgp",
+      "uri_apple_music": "applemusic://track/1695123243",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1695123243",
+        "de": "applemusic://track/1695123243",
+        "gb": "applemusic://track/1695123243",
+        "fr": "applemusic://track/1695123243",
+        "es": "applemusic://track/1695123243",
+        "nl": "applemusic://track/1695123243",
+        "it": "applemusic://track/1695123243"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=clE-6F_VEBc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2291612965",
+      "alt_artists": [
+        "Deejay Biene",
+        "Mr. Kuemmerling"
+      ]
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Bumsbar",
+      "year": 2023,
+      "isrc": null,
+      "uri": "spotify:track:62NrIrsxxNXJVvtRivWYjM",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VnW2FBUnRuc",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Schürze",
+        "DJ Robin"
+      ]
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Hotel",
+      "year": 2023,
+      "isrc": "DEHK92104688",
+      "uri": "spotify:track:5sxITsxPS46GISU6QsT7AB",
+      "uri_apple_music": "applemusic://track/1681196511",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1681196511",
+        "de": "applemusic://track/1681196511",
+        "gb": "applemusic://track/1681196511",
+        "fr": "applemusic://track/1681196511",
+        "es": "applemusic://track/1681196511",
+        "nl": "applemusic://track/1681196511",
+        "it": "applemusic://track/1681196511"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6tsp6Z0toNI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2238211297"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Nie mehr Alkohol - freie Getränke",
+      "year": 2023,
+      "isrc": "DEUM72305179",
+      "uri": "spotify:track:3tjl4GDKVHhWUdTOlxbHc1",
+      "uri_apple_music": "applemusic://track/1684553444",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1707114391",
+        "de": "applemusic://track/1707114391",
+        "gb": "applemusic://track/1707114391",
+        "fr": "applemusic://track/1707114391",
+        "es": "applemusic://track/1707114391",
+        "nl": "applemusic://track/1707114391",
+        "it": "applemusic://track/1707114391"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5a_9gngSTsQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2256754637"
+    },
+    {
+      "artist": "Schürze",
+      "title": "Freundschaft Plus",
+      "year": 2023,
+      "isrc": "DEHK92107731",
+      "uri": "spotify:track:1aYom5qmp2W1IjwXYawWDR",
+      "uri_apple_music": "applemusic://track/1721258520",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721258520",
+        "de": "applemusic://track/1721258520",
+        "gb": "applemusic://track/1721258520",
+        "fr": "applemusic://track/1721258520",
+        "es": "applemusic://track/1721258520",
+        "nl": "applemusic://track/1721258520",
+        "it": "applemusic://track/1721258520"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nDhzI6hYbms",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "DJ Dee"
+      ]
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Rum Cola Korn Kabänes - Mallorcastyle Edition",
+      "year": 2023,
+      "isrc": "DEUM72305165",
+      "uri": "spotify:track:3ihyGlrxAMEItZgzfovjCs",
+      "uri_apple_music": "applemusic://track/1688362012",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1687094830",
+        "de": "applemusic://track/1687094830",
+        "gb": "applemusic://track/1687094830",
+        "fr": "applemusic://track/1687094830",
+        "es": "applemusic://track/1687094830",
+        "nl": "applemusic://track/1687094830",
+        "it": "applemusic://track/1687094830"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b9dRvKj72ws",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2406223455",
+      "alt_artists": [
+        "Malle Anja"
+      ]
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Inselfieber",
+      "year": 2023,
+      "isrc": "DEEQ82300028",
+      "uri": "spotify:track:4aqVi3KlBMbmbbD07MHNFS",
+      "uri_apple_music": "applemusic://track/1742756277",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1752107890",
+        "de": "applemusic://track/1752107890",
+        "gb": "applemusic://track/1752107890",
+        "fr": "applemusic://track/1752107890",
+        "es": "applemusic://track/1752107890",
+        "nl": "applemusic://track/1752107890",
+        "it": "applemusic://track/1752107890"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=86bdOs8Q33s",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2195862057"
+    },
+    {
+      "artist": "David Dichter",
+      "title": "Ciao 3 Tage Blau",
+      "year": 2023,
+      "isrc": "DEUM72300395",
+      "uri": "spotify:track:3AZ24YPWIpb82PaduK1FZS",
+      "uri_apple_music": "applemusic://track/1671609070",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701685187",
+        "de": "applemusic://track/1701685187",
+        "gb": "applemusic://track/1701685187",
+        "fr": "applemusic://track/1701685187",
+        "es": "applemusic://track/1701685187",
+        "nl": "applemusic://track/1701685187",
+        "it": "applemusic://track/1701685187"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_0N1VqDP5rk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2185020947",
+      "alt_artists": [
+        "Inki Nici",
+        "Dj Aaron"
+      ]
+    },
+    {
+      "artist": "Ina Colada",
+      "title": "Ich liebe das Leben",
+      "year": 2013,
+      "isrc": "DEEQ81300064",
+      "uri": "spotify:track:0fI2CxqE38UsXhcDbENaU5",
+      "uri_apple_music": "applemusic://track/691182365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/930057836",
+        "de": "applemusic://track/930057836",
+        "gb": "applemusic://track/930057836",
+        "fr": "applemusic://track/930057836",
+        "es": "applemusic://track/930057836",
+        "nl": "applemusic://track/930057836",
+        "it": "applemusic://track/930057836"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xTHtV4NSKwk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/70082673"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Spreng dein Limit",
+      "year": 2021,
+      "isrc": "DEL942100032",
+      "uri": "spotify:track:1VwhDVf62Y1qawgaf15a7R",
+      "uri_apple_music": "applemusic://track/1659425325",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1625402009",
+        "de": "applemusic://track/1625402009",
+        "gb": "applemusic://track/1625402009",
+        "fr": "applemusic://track/1625402009",
+        "es": "applemusic://track/1625402009",
+        "nl": "applemusic://track/1625402009",
+        "it": "applemusic://track/1625402009"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bK1k_nDY0o0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2066590617"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Hüpfen bis die Insel wackelt",
+      "year": 2022,
+      "isrc": "DEUM72202560",
+      "uri": "spotify:track:1HH49txgBABUuy86Y2m4EK",
+      "uri_apple_music": "applemusic://track/1688069606",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1688069606",
+        "de": "applemusic://track/1688069606",
+        "gb": "applemusic://track/1688069606",
+        "fr": "applemusic://track/1688069606",
+        "es": "applemusic://track/1688069606",
+        "nl": "applemusic://track/1688069606",
+        "it": "applemusic://track/1688069606"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9jrBjOZWvmA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1732115507"
+    },
+    {
+      "artist": "Malle Anja",
+      "title": "Der Papst von Palma",
+      "year": 2023,
+      "isrc": "DEUM72301283",
+      "uri": "spotify:track:7lBf6AbMCNlQbHLydFOeeY",
+      "uri_apple_music": "applemusic://track/1677102964",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167480",
+        "de": "applemusic://track/1878167480",
+        "gb": "applemusic://track/1878167480",
+        "fr": "applemusic://track/1878167480",
+        "es": "applemusic://track/1878167480",
+        "nl": "applemusic://track/1878167480",
+        "it": "applemusic://track/1878167480"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9JLg-oYRp2Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2195310717",
+      "alt_artists": [
+        "Lorenz Büffel"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Mallorca Fanatiker",
+      "year": 2020,
+      "isrc": "DEEQ82000074",
+      "uri": "spotify:track:7DFNlbuRg9SqcXtMWIWqK9",
+      "uri_apple_music": "applemusic://track/1768813119",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1768813119",
+        "de": "applemusic://track/1768813119",
+        "gb": "applemusic://track/1768813119",
+        "fr": "applemusic://track/1768813119",
+        "es": "applemusic://track/1768813119",
+        "nl": "applemusic://track/1768813119",
+        "it": "applemusic://track/1768813119"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1R8Aq9TdM7c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3400429861"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Blau wie das Meer",
+      "year": 2014,
+      "isrc": "DEEQ81400051",
+      "uri": "spotify:track:4ueHS5EeRWosYfJB9wKjOf",
+      "uri_apple_music": "applemusic://track/880039518",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/880039518",
+        "de": "applemusic://track/934395107",
+        "gb": "applemusic://track/880039518",
+        "fr": "applemusic://track/880039518",
+        "es": "applemusic://track/880039518",
+        "nl": "applemusic://track/880039518",
+        "it": "applemusic://track/880039518"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5bgL1LMIkvg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/346173531"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Trinken ist auch Sport",
+      "year": 2022,
+      "isrc": "DEUM72206287",
+      "uri": "spotify:track:2LEXL4gU32Bd8pMQE7e1Mg",
+      "uri_apple_music": "applemusic://track/1646225621",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701685214",
+        "de": "applemusic://track/1701685214",
+        "gb": "applemusic://track/1701685214",
+        "fr": "applemusic://track/1701685214",
+        "es": "applemusic://track/1701685214",
+        "nl": "applemusic://track/1701685214",
+        "it": "applemusic://track/1701685214"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8DLk2m5srJs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1926808767",
+      "alt_artists": [
+        "Knossi"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Für Dich",
+      "year": 2021,
+      "isrc": "DEUM72118144",
+      "uri": "spotify:track:0I6uuGiWV9n9g3z0jRVzqn",
+      "uri_apple_music": "applemusic://track/1709026570",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1709026570",
+        "de": "applemusic://track/1606440895",
+        "gb": "applemusic://track/1709026570",
+        "fr": "applemusic://track/1709026570",
+        "es": "applemusic://track/1709026570",
+        "nl": "applemusic://track/1709026570",
+        "it": "applemusic://track/1709026570"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=M9CDtiJhzuM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1522695572"
+    },
+    {
+      "artist": "Die Draufgänger",
+      "title": "Rapunzel",
+      "year": 2023,
+      "isrc": "DEUM72300124",
+      "uri": "spotify:track:0XwCSW7cP4e9FjhCgm21ze",
+      "uri_apple_music": "applemusic://track/1701685215",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701685215",
+        "de": "applemusic://track/1701685215",
+        "gb": "applemusic://track/1701685215",
+        "fr": "applemusic://track/1701685215",
+        "es": "applemusic://track/1701685215",
+        "nl": "applemusic://track/1701685215",
+        "it": "applemusic://track/1701685215"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HuBR86nnaMA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2125898617",
+      "alt_artists": [
+        "Ikke Hüftgold"
+      ]
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Der Zug hat keine Bremse - Mallorcastyle Edition",
+      "year": 2022,
+      "isrc": "DEUM72203789",
+      "uri": "spotify:track:3T4DdPVqWeaC4U7vrIxlKz",
+      "uri_apple_music": "applemusic://track/1701686164",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701686164",
+        "de": "applemusic://track/1701686164",
+        "gb": "applemusic://track/1701686164",
+        "fr": "applemusic://track/1701686164",
+        "es": "applemusic://track/1701686164",
+        "nl": "applemusic://track/1701686164",
+        "it": "applemusic://track/1701686164"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ef7K02HIdGA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1799764447",
+      "alt_artists": [
+        "Malle Anja",
+        "Lorenz Büffel"
+      ]
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Es regnet Bier",
+      "year": 2022,
+      "isrc": null,
+      "uri": "spotify:track:6HtDN2JPFmUTZXjs9dewjN",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JGBUp35-ZqQ",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Bierkapitän",
+      "title": "Lea",
+      "year": 2022,
+      "isrc": "DEUM72205584",
+      "uri": "spotify:track:02AnxXaXzxredcMjjb26U0",
+      "uri_apple_music": "applemusic://track/1878167210",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167210",
+        "de": "applemusic://track/1878167210",
+        "gb": "applemusic://track/1878167210",
+        "fr": "applemusic://track/1878167210",
+        "es": "applemusic://track/1878167210",
+        "nl": "applemusic://track/1878167210",
+        "it": "applemusic://track/1878167210"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-Ntkbl4HyvE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1861024137",
+      "alt_artists": [
+        "Andy Luxx",
+        "Dj Aaron"
+      ]
+    },
+    {
+      "artist": "Die Zipfelbuben",
+      "title": "Olivia",
+      "year": 2022,
+      "isrc": "DEEQ82200059",
+      "uri": "spotify:track:6weT0OACEb3e4KLQJInf4I",
+      "uri_apple_music": "applemusic://track/1724990223",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1724990223",
+        "de": "applemusic://track/1724990223",
+        "gb": "applemusic://track/1724990223",
+        "fr": "applemusic://track/1724990223",
+        "es": "applemusic://track/1724990223",
+        "nl": "applemusic://track/1724990223",
+        "it": "applemusic://track/1724990223"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HUZfXJaWGnM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1789665297",
+      "alt_artists": [
+        "Der Zipfelbube",
+        "DJ Cashi"
+      ]
+    },
+    {
+      "artist": "Honk!",
+      "title": "Ohne Simone",
+      "year": 2024,
+      "isrc": "DEHK92104571",
+      "uri": "spotify:track:3Dkigr7OGXm19dHnCOoCH2",
+      "uri_apple_music": "applemusic://track/1721340406",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721340406",
+        "de": "applemusic://track/1721340406",
+        "gb": "applemusic://track/1721340406",
+        "fr": "applemusic://track/1721340406",
+        "es": "applemusic://track/1721340406",
+        "nl": "applemusic://track/1721340406",
+        "it": "applemusic://track/1721340406"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5TV9_BTlZrs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567322"
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Morgen kickt der Kater",
+      "year": 2022,
+      "isrc": "DEUM72204710",
+      "uri": "spotify:track:0VB7FDKebXYVAkqZinFRxc",
+      "uri_apple_music": "applemusic://track/1688069142",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1688069142",
+        "de": "applemusic://track/1680595506",
+        "gb": "applemusic://track/1680595506",
+        "fr": "applemusic://track/1680595506",
+        "es": "applemusic://track/1680595506",
+        "nl": "applemusic://track/1680595506",
+        "it": "applemusic://track/1688069142"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5H78PJkYZ9w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1834442237"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Ich bleib hier",
+      "year": 2021,
+      "isrc": "DEUM72115894",
+      "uri": "spotify:track:7vcCXaCkdWuoAxUvB9uQRj",
+      "uri_apple_music": "applemusic://track/1672129362",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1672129362",
+        "de": "applemusic://track/1614329724",
+        "gb": "applemusic://track/1672129362",
+        "fr": "applemusic://track/1672129362",
+        "es": "applemusic://track/1672129362",
+        "nl": "applemusic://track/1672129362",
+        "it": "applemusic://track/1672129362"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ucw7_1UD884",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1394255372",
+      "alt_artists": [
+        "Mütze Katze"
+      ]
+    },
+    {
+      "artist": "Julian Sommer",
+      "title": "Dicht im Flieger",
+      "year": 2022,
+      "isrc": "DEUM72201033",
+      "uri": "spotify:track:6sS77FZh2eJfYBsFUW6hjI",
+      "uri_apple_music": "applemusic://track/1878166374",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878166374",
+        "de": "applemusic://track/1878166374",
+        "gb": "applemusic://track/1878166374",
+        "fr": "applemusic://track/1878166374",
+        "es": "applemusic://track/1878166374",
+        "nl": "applemusic://track/1878166374",
+        "it": "applemusic://track/1878166374"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3FoxrP3P8gk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1667190232"
+    },
+    {
+      "artist": "DJ Robin",
+      "title": "Layla",
+      "year": 2022,
+      "isrc": "DEHK92104561",
+      "uri": "spotify:track:3QY5JrK6MU3ebwlvQ0iniO",
+      "uri_apple_music": "applemusic://track/1736653319",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1736653319",
+        "de": "applemusic://track/1736653319",
+        "gb": "applemusic://track/1736653319",
+        "fr": "applemusic://track/1736653319",
+        "es": "applemusic://track/1736653319",
+        "nl": "applemusic://track/1736653319",
+        "it": "applemusic://track/1736653319"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H9paxlC_RLk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1777525717",
+      "alt_artists": [
+        "Schürze"
+      ]
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Goodbye - Am Arsch",
+      "year": 2020,
+      "isrc": "DEEQ82000133",
+      "uri": "spotify:track:6B4IqFD0mvlDihW5uunKed",
+      "uri_apple_music": "applemusic://track/1659001624",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1659001624",
+        "de": "applemusic://track/1659001624",
+        "gb": "applemusic://track/1659001624",
+        "fr": "applemusic://track/1659001624",
+        "es": "applemusic://track/1659001624",
+        "nl": "applemusic://track/1659001624",
+        "it": "applemusic://track/1659001624"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RRt3z0jQ8fE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2056645967"
+    },
+    {
+      "artist": "Julian Benz",
+      "title": "Malle und ich",
+      "year": 2024,
+      "isrc": "DEHK92104581",
+      "uri": "spotify:track:65l9YXZkwm7wuY3NMAFkhb",
+      "uri_apple_music": "applemusic://track/1721339508",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721339508",
+        "de": "applemusic://track/1721339508",
+        "gb": "applemusic://track/1721339508",
+        "fr": "applemusic://track/1721339508",
+        "es": "applemusic://track/1721339508",
+        "nl": "applemusic://track/1721339508",
+        "it": "applemusic://track/1721339508"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ww5VZc40O90",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598562402"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Heimweh nach der Insel - Party Mix",
+      "year": 2007,
+      "isrc": "DEC610700958",
+      "uri": "spotify:track:7KixiPGe9oIRx6bwy8Pjz6",
+      "uri_apple_music": "applemusic://track/715645277",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/715645277",
+        "gb": "applemusic://track/715645277",
+        "fr": "applemusic://track/715645277",
+        "es": "applemusic://track/715645277",
+        "nl": "applemusic://track/715645277",
+        "it": "applemusic://track/715645277"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LHTF9dUfw9c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3164082"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Mallorca ich komm heim - Wellerman",
+      "year": 2022,
+      "isrc": "DEL942100016",
+      "uri": "spotify:track:73qVrLuea6ouzQEeix78Mf",
+      "uri_apple_music": "applemusic://track/1565934569",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1565934569",
+        "de": "applemusic://track/1565934569",
+        "gb": "applemusic://track/1565934569",
+        "fr": "applemusic://track/1565934569",
+        "es": "applemusic://track/1565934569",
+        "nl": "applemusic://track/1565934569",
+        "it": "applemusic://track/1565934569"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hlFxJhVisJI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2066569277",
+      "alt_artists": [
+        "Bierkapitän",
+        "Julian Sommer"
+      ]
+    },
+    {
+      "artist": "Tim Toupet",
+      "title": "Ich liebe Dich (Obwohl Du....)",
+      "year": 2017,
+      "isrc": "DEEQ81700133",
+      "uri": "spotify:track:2QcnNXsIFaeG261g5k3AVf",
+      "uri_apple_music": "applemusic://track/1316559619",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1316559619",
+        "de": "applemusic://track/1316559619",
+        "gb": "applemusic://track/1316559619",
+        "fr": "applemusic://track/1316559619",
+        "es": "applemusic://track/1316559619",
+        "nl": "applemusic://track/1316559619",
+        "it": "applemusic://track/1316559619"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MTTf_Xy5YM0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/433037562",
+      "alt_artists": [
+        "Frenzy"
+      ]
+    },
+    {
+      "artist": "Honk!",
+      "title": "Anna-Lena",
+      "year": 2024,
+      "isrc": "DEHM81800558",
+      "uri": "spotify:track:5NTiHVwhx2FpUsuSbgkDGE",
+      "uri_apple_music": "applemusic://track/1487225623",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487225623",
+        "de": "applemusic://track/1487225623",
+        "gb": "applemusic://track/1487225623",
+        "fr": "applemusic://track/1487225623",
+        "es": "applemusic://track/1487225623",
+        "nl": "applemusic://track/1487225623",
+        "it": "applemusic://track/1487225623"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WzyYnKjWILo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598568972",
+      "alt_artists": [
+        "Deejay Matze"
+      ]
+    },
+    {
+      "artist": "Markus Becker",
+      "title": "Bierkapitän",
+      "year": 2023,
+      "isrc": "DEA371900523",
+      "uri": "spotify:track:3nm3zHhlOE7LZ4SdqPLhpI",
+      "uri_apple_music": "applemusic://track/1572266247",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1572266247",
+        "de": "applemusic://track/1572266247",
+        "gb": "applemusic://track/1572266247",
+        "fr": "applemusic://track/1572266247",
+        "es": "applemusic://track/1572266247",
+        "nl": "applemusic://track/1572266247",
+        "it": "applemusic://track/1572266247"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oztEyij_qDM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2139771297",
+      "alt_artists": [
+        "Bierkapitän"
+      ]
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Buenas Noches - Partymix",
+      "year": 2022,
+      "isrc": "DEEQ81300041",
+      "uri": "spotify:track:75vfyOOFG0oKO2I82SNLOu",
+      "uri_apple_music": "applemusic://track/1718940251",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1718940251",
+        "de": "applemusic://track/1718940251",
+        "gb": "applemusic://track/1718940251",
+        "fr": "applemusic://track/1718940251",
+        "es": "applemusic://track/1718940251",
+        "nl": "applemusic://track/1718940251",
+        "it": "applemusic://track/1718940251"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Im5cIDzpDuw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1993429497"
+    },
+    {
+      "artist": "Brings",
+      "title": "Polka, Polka, Polka - Club Mix",
+      "year": 2014,
+      "isrc": "DEUM71403647",
+      "uri": "spotify:track:1wMoaYl7HCU9thAkhBt383",
+      "uri_apple_music": "applemusic://track/1442689018",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442689018",
+        "de": "applemusic://track/1444398785",
+        "gb": "applemusic://track/1444398785",
+        "fr": "applemusic://track/1444398785",
+        "es": "applemusic://track/1444398785",
+        "nl": "applemusic://track/1444398785",
+        "it": "applemusic://track/1444398785"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=00W44I0ti-Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/88278237"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Joana",
+      "year": 2007,
+      "isrc": "DEC610700960",
+      "uri": "spotify:track:01Ub6TnIVJOgdSSM18VkLP",
+      "uri_apple_music": "applemusic://track/1638020489",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1638020489",
+        "de": "applemusic://track/1597835130",
+        "gb": "applemusic://track/1597835130",
+        "fr": "applemusic://track/1597835130",
+        "es": "applemusic://track/1597835130",
+        "nl": "applemusic://track/1597835130",
+        "it": "applemusic://track/1597835130"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y7kFC3h_gqQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3164083",
+      "alt_artists": [
+        "Chriss Tuxi"
+      ]
+    },
+    {
+      "artist": "Tim Toupet",
+      "title": "Allee, Allee - Party Mix",
+      "year": 2010,
+      "isrc": "ATHE50800022",
+      "uri": "spotify:track:0uZIFbIMoc6fLVYKj0Dra5",
+      "uri_apple_music": "applemusic://track/399592881",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/399592881",
+        "de": "applemusic://track/399592881",
+        "gb": "applemusic://track/399592881",
+        "fr": "applemusic://track/399592881",
+        "es": "applemusic://track/399592881",
+        "nl": "applemusic://track/399592881",
+        "it": "applemusic://track/399592881"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Vsz3sp1Ja3M",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15319294"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Schwarze Natascha",
+      "year": 2014,
+      "isrc": "DEEQ81400005",
+      "uri": "spotify:track:5puYddtWKaEUaz5v5zFdha",
+      "uri_apple_music": "applemusic://track/892357475",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/892357475",
+        "de": "applemusic://track/892357475",
+        "gb": "applemusic://track/892357475",
+        "fr": "applemusic://track/892357475",
+        "es": "applemusic://track/892357475",
+        "nl": "applemusic://track/892357475",
+        "it": "applemusic://track/892357475"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J-MHp8z9Lx0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/81030852"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Paradies - Video Edit",
+      "year": 2022,
+      "isrc": "DEHK91688686",
+      "uri": "spotify:track:2niwnJOimyLDABN1MCTmig",
+      "uri_apple_music": "applemusic://track/1614260612",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1614260612",
+        "de": "applemusic://track/1614260612",
+        "gb": "applemusic://track/1614260612",
+        "fr": "applemusic://track/1614260612",
+        "es": "applemusic://track/1614260612",
+        "nl": "applemusic://track/1614260612",
+        "it": "applemusic://track/1614260612"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4EDnDjZoVso",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1685014507"
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Modeste Song",
+      "year": 2017,
+      "isrc": null,
+      "uri": "spotify:track:2kVaYYo0HCAh6DLEBVFyrC",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ozegflGA8jM",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "VFL Eschhofen",
+        "Kreisligalegende"
+      ]
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Urensohn",
+      "year": 2024,
+      "isrc": null,
+      "uri": "spotify:track:0VRemx1mBBJ9LeWQjIecWH",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=R1khp5lA6Cc",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Alt wie ein Baum - Party Remix",
+      "year": 2012,
+      "isrc": "DEEQ81200037",
+      "uri": "spotify:track:5jB7If6pecb89mFSeWyeQu",
+      "uri_apple_music": "applemusic://track/724725207",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724725207",
+        "de": "applemusic://track/724725207",
+        "gb": "applemusic://track/724725207",
+        "fr": "applemusic://track/724725207",
+        "es": "applemusic://track/724725207",
+        "nl": "applemusic://track/724725207",
+        "it": "applemusic://track/724725207"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KGQ65ywSC1I",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/51419701"
+    },
+    {
+      "artist": "Rick Arena",
+      "title": "Nacht voll Schatten - Radio-Mix",
+      "year": 2011,
+      "isrc": "DEGE20700014",
+      "uri": "spotify:track:7rJJwQ4R5POoJplkyOgsMN",
+      "uri_apple_music": "applemusic://track/1502108582",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1502108582",
+        "de": "applemusic://track/1502108582",
+        "gb": "applemusic://track/1502108582",
+        "fr": "applemusic://track/1502108582",
+        "es": "applemusic://track/1502108582",
+        "nl": "applemusic://track/1502108582",
+        "it": "applemusic://track/1502108582"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L_BUIVGKlrA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/887060442"
+    },
+    {
+      "artist": "Jürgen Drews",
+      "title": "Irgendwann irgendwo irgendwie - seh'n wir uns wieder - Remastered 2017",
+      "year": 2017,
+      "isrc": "DEUM71724149",
+      "uri": "spotify:track:4rRy0O445uZImn0Lrni1Ip",
+      "uri_apple_music": "applemusic://track/1862840847",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1862840847",
+        "de": "applemusic://track/1862840847",
+        "gb": "applemusic://track/1862840847",
+        "fr": "applemusic://track/1862840847",
+        "es": "applemusic://track/1862840847",
+        "nl": "applemusic://track/1862840847",
+        "it": "applemusic://track/1884053594"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RXanHWN-h00",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/417358492"
+    },
+    {
+      "artist": "Rick Arena",
+      "title": "Kein Mann Für Eine Nacht",
+      "year": 2010,
+      "isrc": null,
+      "uri": "spotify:track:7xTy2pipCAytjQJSySIbKT",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X0qtLof0eeg",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Jürgen Drews",
+      "title": "Ein Bett im Kornfeld - Version 2017",
+      "year": 2017,
+      "isrc": "DEUM71724145",
+      "uri": "spotify:track:6vxwh7gW1qhl3XW4QHGznj",
+      "uri_apple_music": "applemusic://track/1838526767",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1838526767",
+        "de": "applemusic://track/1838526767",
+        "gb": "applemusic://track/1838526767",
+        "fr": "applemusic://track/1838526767",
+        "es": "applemusic://track/1838526767",
+        "nl": "applemusic://track/1838526767",
+        "it": "applemusic://track/1838526767"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bHbNI2I_r1U",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/417358452"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Eviva Espana 2011",
+      "year": 2013,
+      "isrc": "DEEQ81100025",
+      "uri": "spotify:track:6zWPJn72r0wBPGJY29TjDE",
+      "uri_apple_music": "applemusic://track/424458112",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/424458112",
+        "de": "applemusic://track/424458112",
+        "gb": "applemusic://track/424458112",
+        "fr": "applemusic://track/424458112",
+        "es": "applemusic://track/424458112",
+        "nl": "applemusic://track/424458112",
+        "it": "applemusic://track/424458112"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DZWgwWh2ZFo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/70128395"
+    },
+    {
+      "artist": "Sabbotage",
+      "title": "Hömma Samma Womma Nomma (Bier trinken gehen)",
+      "year": 2024,
+      "isrc": "DEHM81600436",
+      "uri": "spotify:track:5lIYtDPp6OeRgKPXmYKdfN",
+      "uri_apple_music": "applemusic://track/1721519674",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721519674",
+        "de": "applemusic://track/1721519674",
+        "gb": "applemusic://track/1721519674",
+        "fr": "applemusic://track/1721519674",
+        "es": "applemusic://track/1721519674",
+        "nl": "applemusic://track/1721519674",
+        "it": "applemusic://track/1721519674"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eg1yzyFSaw8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598565512"
+    },
+    {
+      "artist": "Jürgen Drews",
+      "title": "Wieder alles im Griff - Version 2017",
+      "year": 2017,
+      "isrc": "DEUM71724153",
+      "uri": "spotify:track:3pM7s35mlmUNl7XP6GMoxh",
+      "uri_apple_music": "applemusic://track/1658577200",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1658577200",
+        "de": "applemusic://track/1658577200",
+        "gb": "applemusic://track/1658577200",
+        "fr": "applemusic://track/1658577200",
+        "es": "applemusic://track/1658577200",
+        "nl": "applemusic://track/1658577200",
+        "it": "applemusic://track/1658577200"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5G9IH2pOYUA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/417358532"
+    },
+    {
+      "artist": "Sabbotage",
+      "title": "Moskau im Regen",
+      "year": 2013,
+      "isrc": "DEEQ81200089",
+      "uri": "spotify:track:49TQKDnARJUm9ZoWRqceCR",
+      "uri_apple_music": "applemusic://track/591828475",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/591828475",
+        "de": "applemusic://track/591828475",
+        "gb": "applemusic://track/591828475",
+        "fr": "applemusic://track/591828475",
+        "es": "applemusic://track/591828475",
+        "nl": "applemusic://track/591828475",
+        "it": "applemusic://track/591828475"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y4Qzczb3Zow",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/70557285"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Ich hab den Jürgen Drews gesehn",
+      "year": 2017,
+      "isrc": "DEUM71603457",
+      "uri": "spotify:track:65W2HoVMbp4pWVgb5Vp0kS",
+      "uri_apple_music": "applemusic://track/1652992931",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1652992931",
+        "de": "applemusic://track/1444311147",
+        "gb": "applemusic://track/1444311147",
+        "fr": "applemusic://track/1444311147",
+        "es": "applemusic://track/1444311147",
+        "nl": "applemusic://track/1444311147",
+        "it": "applemusic://track/1444311147"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UAdiG824dtk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/139404725"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Mallorca - Mein Herz ruft nach Dir",
+      "year": 2022,
+      "isrc": "DEL942100016",
+      "uri": "spotify:track:0J26VAtZqKQsez0WAJh7Q6",
+      "uri_apple_music": "applemusic://track/1565934569",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1565934569",
+        "de": "applemusic://track/1565934569",
+        "gb": "applemusic://track/1565934569",
+        "fr": "applemusic://track/1565934569",
+        "es": "applemusic://track/1565934569",
+        "nl": "applemusic://track/1565934569",
+        "it": "applemusic://track/1565934569"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2066569277"
+    },
+    {
+      "artist": "Paveier",
+      "title": "Buenos Dias Matthias",
+      "year": 2007,
+      "isrc": "DED199700062",
+      "uri": "spotify:track:2b3L9REIapotTEGLxt8UnJ",
+      "uri_apple_music": "applemusic://track/269374064",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/269374064",
+        "de": "applemusic://track/269374064",
+        "gb": "applemusic://track/269374064",
+        "fr": "applemusic://track/269374064",
+        "es": "applemusic://track/269374064",
+        "nl": "applemusic://track/269374064",
+        "it": "applemusic://track/269374064"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RLEFFpe0ZDA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2647773"
+    },
+    {
+      "artist": "Jürgen Drews",
+      "title": "König von Mallorca - Version 2017",
+      "year": 2020,
+      "isrc": "DEUM72001472",
+      "uri": "spotify:track:65kQJwtUMVeurCmXTOGfeI",
+      "uri_apple_music": "applemusic://track/1535124794",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1535124794",
+        "de": "applemusic://track/1535124794",
+        "gb": "applemusic://track/1535124794",
+        "fr": "applemusic://track/1535124794",
+        "es": "applemusic://track/1535124794",
+        "nl": "applemusic://track/1535124794",
+        "it": "applemusic://track/1535124794"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jSuT0dg_R-Y",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1110639402"
+    },
+    {
+      "artist": "Brings",
+      "title": "Superjeilezick - Version 2014",
+      "year": 2008,
+      "isrc": "DEC680001342",
+      "uri": "spotify:track:4rSj0fQAfrDVz7WSEYOOEK",
+      "uri_apple_music": "applemusic://track/1892051365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1892051365",
+        "de": "applemusic://track/1892051365",
+        "gb": "applemusic://track/1892051365",
+        "fr": "applemusic://track/1892051365",
+        "es": "applemusic://track/1892051365",
+        "nl": "applemusic://track/1892051365",
+        "it": "applemusic://track/1892051365"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OP2QTdh0J6s",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2809924"
+    },
+    {
+      "artist": "Tim Toupet",
+      "title": "Henri Henrisson",
+      "year": 2019,
+      "isrc": "DEEQ81900023",
+      "uri": "spotify:track:5SGTLn2i6nWYQCLcggKijs",
+      "uri_apple_music": "applemusic://track/1462749587",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1462749587",
+        "de": "applemusic://track/1462749587",
+        "gb": "applemusic://track/1462749587",
+        "fr": "applemusic://track/1462749587",
+        "es": "applemusic://track/1462749587",
+        "nl": "applemusic://track/1462749587",
+        "it": "applemusic://track/1462749587"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YB2LQOeRcm0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/650269792"
+    },
+    {
+      "artist": "Frenzy",
+      "title": "Wir sind wir (Mallorcastyle)",
+      "year": 2019,
+      "isrc": "DEEQ81900003",
+      "uri": "spotify:track:5uHWBQddf04yWAYJkDmoNo",
+      "uri_apple_music": "applemusic://track/1783617215",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1783617215",
+        "de": "applemusic://track/1783617215",
+        "gb": "applemusic://track/1783617215",
+        "fr": "applemusic://track/1783617215",
+        "es": "applemusic://track/1783617215",
+        "nl": "applemusic://track/1783617215",
+        "it": "applemusic://track/1783617215"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LsQOn3WNnX8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/624011192",
+      "alt_artists": [
+        "Mia Julia"
+      ]
+    },
+    {
+      "artist": "Tobee",
+      "title": "Saufi saufi",
+      "year": 2019,
+      "isrc": "DEEQ81900035",
+      "uri": "spotify:track:3IsASNnv8A9dS7GoZy1LY9",
+      "uri_apple_music": "applemusic://track/1485631352",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1485631352",
+        "de": "applemusic://track/1485631352",
+        "gb": "applemusic://track/1485631352",
+        "fr": "applemusic://track/1485631352",
+        "es": "applemusic://track/1485631352",
+        "nl": "applemusic://track/1485631352",
+        "it": "applemusic://track/1485631352"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4WOOZONIdhA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/664225902"
+    },
+    {
+      "artist": "Brings",
+      "title": "Kölsche Jung - Party Edit",
+      "year": 2013,
+      "isrc": "DEUM71303655",
+      "uri": "spotify:track:3DQ4U7YOBorXDyaGraMBE7",
+      "uri_apple_music": "applemusic://track/1764119273",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1764119273",
+        "de": "applemusic://track/1764119273",
+        "gb": "applemusic://track/1764119273",
+        "fr": "applemusic://track/1764119273",
+        "es": "applemusic://track/1764119273",
+        "nl": "applemusic://track/1764119273",
+        "it": "applemusic://track/1764119273"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=93lYqZztgxY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/71847519"
+    },
+    {
+      "artist": "Rick Arena",
+      "title": "Jeder muss an etwas glauben",
+      "year": 2019,
+      "isrc": "DEEQ81900029",
+      "uri": "spotify:track:0l3vdIQRC5YVOb5XiCCZgt",
+      "uri_apple_music": "applemusic://track/1465285017",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1465285017",
+        "de": "applemusic://track/1465285017",
+        "gb": "applemusic://track/1465285017",
+        "fr": "applemusic://track/1465285017",
+        "es": "applemusic://track/1465285017",
+        "nl": "applemusic://track/1465285017",
+        "it": "applemusic://track/1465285017"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xp-sgjsb0wo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/664463032"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Endlich wieder Malle - Original Mix",
+      "year": 2024,
+      "isrc": "DEHM81600441",
+      "uri": "spotify:track:6Q7rd6bp8z8KBcnMoPM51N",
+      "uri_apple_music": "applemusic://track/1878167468",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167468",
+        "de": "applemusic://track/1878167468",
+        "gb": "applemusic://track/1878167468",
+        "fr": "applemusic://track/1878167468",
+        "es": "applemusic://track/1878167468",
+        "nl": "applemusic://track/1878167468",
+        "it": "applemusic://track/1878167468"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ADqR7u-rkyI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598585892"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Beate, die Harte",
+      "year": 2024,
+      "isrc": "DEHM81800042",
+      "uri": "spotify:track:0kfojaryK4CqTymwftCyXf",
+      "uri_apple_music": "applemusic://track/1470063962",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1470063962",
+        "de": "applemusic://track/1470063962",
+        "gb": "applemusic://track/1470063962",
+        "fr": "applemusic://track/1470063962",
+        "es": "applemusic://track/1470063962",
+        "nl": "applemusic://track/1470063962",
+        "it": "applemusic://track/1470063962"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a1Flb6BmEsA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598566852",
+      "alt_artists": [
+        "DJ Eisbär"
+      ]
+    },
+    {
+      "artist": "Tim Toupet",
+      "title": "Inselverbot",
+      "year": 2018,
+      "isrc": "DEEQ81800032",
+      "uri": "spotify:track:5fpdBBvASqpbWluJPNGlBh",
+      "uri_apple_music": "applemusic://track/1445698039",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445698039",
+        "de": "applemusic://track/1445698039",
+        "gb": "applemusic://track/1445698039",
+        "fr": "applemusic://track/1445698039",
+        "es": "applemusic://track/1445698039",
+        "nl": "applemusic://track/1445698039",
+        "it": "applemusic://track/1445698039"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a7k8ASQWrtE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/479899102"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Mallorca (Da bin ich daheim)",
+      "year": 2024,
+      "isrc": "DEEQ81500030",
+      "uri": "spotify:track:6ob0UKDI5cAVja0aMtUCGJ",
+      "uri_apple_music": "applemusic://track/1012884166",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1012884166",
+        "de": "applemusic://track/1012884166",
+        "gb": "applemusic://track/1012884166",
+        "fr": "applemusic://track/1012884166",
+        "es": "applemusic://track/1012884166",
+        "nl": "applemusic://track/1012884166",
+        "it": "applemusic://track/1012884166"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AHIGlIUGBuw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567562",
+      "alt_artists": [
+        "DJ Mico"
+      ]
+    },
+    {
+      "artist": "Sabbotage",
+      "title": "Voll zu sein bedarf es wenig",
+      "year": 2019,
+      "isrc": "DEEQ81900033",
+      "uri": "spotify:track:5JkPQxgIvW1PKr5Qw5a54U",
+      "uri_apple_music": "applemusic://track/1489547857",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1489547857",
+        "de": "applemusic://track/1489547857",
+        "gb": "applemusic://track/1489547857",
+        "fr": "applemusic://track/1489547857",
+        "es": "applemusic://track/1489547857",
+        "nl": "applemusic://track/1489547857",
+        "it": "applemusic://track/1489547857"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5zfrkyQoePs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/660214822"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "I Love Malle",
+      "year": 2018,
+      "isrc": "DEEQ81800041",
+      "uri": "spotify:track:7fVOlzJI3TUUcPDX5hBzh3",
+      "uri_apple_music": "applemusic://track/1377701856",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1377701856",
+        "de": "applemusic://track/1377701856",
+        "gb": "applemusic://track/1377701856",
+        "fr": "applemusic://track/1377701856",
+        "es": "applemusic://track/1377701856",
+        "nl": "applemusic://track/1377701856",
+        "it": "applemusic://track/1377701856"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SUrnJYYEbi8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/482656772"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "M.I.A. meine Gang",
+      "year": 2024,
+      "isrc": "DEHM81600522",
+      "uri": "spotify:track:0draBKufTTX0adsDSV3Djd",
+      "uri_apple_music": "applemusic://track/1721517464",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721517464",
+        "de": "applemusic://track/1822592243",
+        "gb": "applemusic://track/1721517464",
+        "fr": "applemusic://track/1721517464",
+        "es": "applemusic://track/1721517464",
+        "nl": "applemusic://track/1721517464",
+        "it": "applemusic://track/1721517464"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OmQz5N6x4pE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598565492"
+    },
+    {
+      "artist": "Lorenz Büffel",
+      "title": "Johnny Däpp",
+      "year": 2016,
+      "isrc": "DEEQ81600063",
+      "uri": "spotify:track:5Qht2aUJcCjRuhrlHvvKt2",
+      "uri_apple_music": "applemusic://track/1878167016",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878167016",
+        "de": "applemusic://track/1878167016",
+        "gb": "applemusic://track/1878167016",
+        "fr": "applemusic://track/1878167016",
+        "es": "applemusic://track/1878167016",
+        "nl": "applemusic://track/1878167016",
+        "it": "applemusic://track/1878167016"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2Yezroz4O7M",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/127667789"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Helikopter 117 (Mach' den Hub Hub Hub)",
+      "year": 2018,
+      "isrc": "DEEQ81700163",
+      "uri": "spotify:track:2PBPiostU8ogrfIGziacz0",
+      "uri_apple_music": "applemusic://track/1469514707",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469514707",
+        "de": "applemusic://track/1469514707",
+        "gb": "applemusic://track/1469514707",
+        "fr": "applemusic://track/1469514707",
+        "es": "applemusic://track/1469514707",
+        "nl": "applemusic://track/1469514707",
+        "it": "applemusic://track/1469514707"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pU6OZmbO3W0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/556981552"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Wir sind die Geilsten",
+      "year": 2017,
+      "isrc": "DEEQ81600069",
+      "uri": "spotify:track:0rq1AsVHkuIuAkXsitskt6",
+      "uri_apple_music": "applemusic://track/1862213079",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1862213079",
+        "de": "applemusic://track/1862213079",
+        "gb": "applemusic://track/1862213079",
+        "fr": "applemusic://track/1862213079",
+        "es": "applemusic://track/1862213079",
+        "nl": "applemusic://track/1862213079",
+        "it": "applemusic://track/1862213079"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=auESWfe2yG0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/141827711"
+    },
+    {
+      "artist": "Stefan Stürmer",
+      "title": "Willst du mit mir gehn - Video Edit",
+      "year": 2017,
+      "isrc": "DEHK91688618",
+      "uri": "spotify:track:2eAdzxFThLU7R3ZKkKoCUh",
+      "uri_apple_music": "applemusic://track/1235649302",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1235649302",
+        "de": "applemusic://track/1235649302",
+        "gb": "applemusic://track/1235649302",
+        "fr": "applemusic://track/1235649302",
+        "es": "applemusic://track/1235649302",
+        "nl": "applemusic://track/1235649302",
+        "it": "applemusic://track/1235649302"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VyZ5dM0BU_0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/361234931"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Die Nacht von Freitag auf Montag - Partymix",
+      "year": 2015,
+      "isrc": "DEEQ81500076",
+      "uri": "spotify:track:6AwTJm9VxPT7kQKPsCKPy0",
+      "uri_apple_music": "applemusic://track/1567235461",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1567235461",
+        "de": "applemusic://track/1567235461",
+        "gb": "applemusic://track/1567235461",
+        "fr": "applemusic://track/1567235461",
+        "es": "applemusic://track/1567235461",
+        "nl": "applemusic://track/1567235461",
+        "it": "applemusic://track/1567235461"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Sm8LAwKPJuU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/103871698"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Cordula Grün (Ich hab' Dich tanzen gesehen)",
+      "year": 2021,
+      "isrc": null,
+      "uri": "spotify:track:5p72jZxWouRGRrNJawy2d3",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PJVqqdbaluE",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Tobee",
+      "title": "Der Bass muss fi****",
+      "year": 2017,
+      "isrc": "DEEQ81700050",
+      "uri": "spotify:track:1JEMzSHdmaHKB9einWpFGD",
+      "uri_apple_music": "applemusic://track/1297573291",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1297573291",
+        "de": "applemusic://track/1297573291",
+        "gb": "applemusic://track/1297573291",
+        "fr": "applemusic://track/1297573291",
+        "es": "applemusic://track/1297573291",
+        "nl": "applemusic://track/1297573291",
+        "it": "applemusic://track/1297573291"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tcDEpbiddU0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/353122341"
+    },
+    {
+      "artist": "Almklausi",
+      "title": "Mama Laudaaa",
+      "year": 2018,
+      "isrc": "DEEQ81800005",
+      "uri": "spotify:track:1RcWWgnw5fVm3wcNq11zBu",
+      "uri_apple_music": "applemusic://track/1825576225",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1825576225",
+        "de": "applemusic://track/1825576225",
+        "gb": "applemusic://track/1825576225",
+        "fr": "applemusic://track/1825576225",
+        "es": "applemusic://track/1825576225",
+        "nl": "applemusic://track/1825576225",
+        "it": "applemusic://track/1825576225"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RCpakXJu_o8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/456436052",
+      "alt_artists": [
+        "Specktakel"
+      ]
+    },
+    {
+      "artist": "Markus Becker",
+      "title": "Die schönste Frau der Welt",
+      "year": 2023,
+      "isrc": "DEUM72309564",
+      "uri": "spotify:track:1rT2BaEBHHiQRtWyH3AviW",
+      "uri_apple_music": "applemusic://track/1714671423",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1714671423",
+        "de": "applemusic://track/1714671423",
+        "gb": "applemusic://track/1714671423",
+        "fr": "applemusic://track/1714671423",
+        "es": "applemusic://track/1714671423",
+        "nl": "applemusic://track/1714671423",
+        "it": "applemusic://track/1714671423"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wrrqXZDC9YE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2420409535"
+    },
+    {
+      "artist": "Honk!",
+      "title": "So geil auf Malle",
+      "year": 2024,
+      "isrc": "DEHM81800170",
+      "uri": "spotify:track:2yVNnGet8Z7Y6AuPNOxSGw",
+      "uri_apple_music": "applemusic://track/1445459144",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445459144",
+        "de": "applemusic://track/1445459144",
+        "gb": "applemusic://track/1445459144",
+        "fr": "applemusic://track/1445459144",
+        "es": "applemusic://track/1445459144",
+        "nl": "applemusic://track/1445459144",
+        "it": "applemusic://track/1445459144"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zk-GhIKtLHc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567692"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Ich verkaufe meinen Körper",
+      "year": 2017,
+      "isrc": "DEEQ81700025",
+      "uri": "spotify:track:3NXZKCnMY9I4neCpaHF906",
+      "uri_apple_music": "applemusic://track/1276250471",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1276250471",
+        "de": "applemusic://track/1276250471",
+        "gb": "applemusic://track/1276250471",
+        "fr": "applemusic://track/1276250471",
+        "es": "applemusic://track/1276250471",
+        "nl": "applemusic://track/1276250471",
+        "it": "applemusic://track/1276250471"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GuCSesMFUGU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145052236"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Lotusblume",
+      "year": 2019,
+      "isrc": "DEEQ81100026",
+      "uri": "spotify:track:1X0XcqGaofdhLpIY6ljXKP",
+      "uri_apple_music": "applemusic://track/1430000166",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1430000166",
+        "de": "applemusic://track/1430000166",
+        "gb": "applemusic://track/1430000166",
+        "fr": "applemusic://track/1430000166",
+        "es": "applemusic://track/1430000166",
+        "nl": "applemusic://track/1430000166",
+        "it": "applemusic://track/1430000166"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gUOltPlrz5E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/631190652"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Scheiss drauf! (...Mallorca ist nur einmal im Jahr) - Long Version",
+      "year": 2013,
+      "isrc": "DEEQ81300038",
+      "uri": "spotify:track:4deIuQ3eL6Cb1Mn69hP4eU",
+      "uri_apple_music": "applemusic://track/1759209462",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1759209462",
+        "de": "applemusic://track/1759209462",
+        "gb": "applemusic://track/1759209462",
+        "fr": "applemusic://track/1759209462",
+        "es": "applemusic://track/1759209462",
+        "nl": "applemusic://track/1759209462",
+        "it": "applemusic://track/1759209462"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MeZfP-JSJTw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2584815622"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Party Mix I",
+      "year": 2017,
+      "isrc": "DEZ521700360",
+      "uri": "spotify:track:19p2sPgSkXSU8QW1D3BFEv",
+      "uri_apple_music": "applemusic://track/1713345699",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1713345699",
+        "de": "applemusic://track/1713345699",
+        "gb": "applemusic://track/1713345699",
+        "fr": "applemusic://track/1713345699",
+        "es": "applemusic://track/1713345699",
+        "nl": "applemusic://track/1713345699",
+        "it": "applemusic://track/1713345699"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FqjGxCtFhDI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/405520092"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Oh Baby",
+      "year": 2024,
+      "isrc": "DEEQ81300033",
+      "uri": "spotify:track:3WcyCRUB0hMSqGsekkuyHp",
+      "uri_apple_music": "applemusic://track/967197602",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/967197602",
+        "de": "applemusic://track/967197602",
+        "gb": "applemusic://track/967197602",
+        "fr": "applemusic://track/967197602",
+        "es": "applemusic://track/967197602",
+        "nl": "applemusic://track/967197602",
+        "it": "applemusic://track/967197602"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vGFNXN4Mm0k",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598567202"
+    },
+    {
+      "artist": "Tobee",
+      "title": "Westerland",
+      "year": 2008,
+      "isrc": "DEEQ80800040",
+      "uri": "spotify:track:4DESqVp3UlkTq6k9No2sUa",
+      "uri_apple_music": "applemusic://track/445944694",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/445944694",
+        "de": "applemusic://track/445944694",
+        "gb": "applemusic://track/445944694",
+        "fr": "applemusic://track/445944694",
+        "es": "applemusic://track/445944694",
+        "nl": "applemusic://track/445944694",
+        "it": "applemusic://track/445944694"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UEI7txY9dio",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/61721437"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Nur noch Schuhe an - Party-Version 2013",
+      "year": 2012,
+      "isrc": "DEC611200301",
+      "uri": "spotify:track:49RTrYhydcQGGm4RxUtVhv",
+      "uri_apple_music": "applemusic://track/1784923514",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784923514",
+        "de": "applemusic://track/1784923514",
+        "gb": "applemusic://track/1784923514",
+        "fr": "applemusic://track/1784923514",
+        "es": "applemusic://track/1784923514",
+        "nl": "applemusic://track/1784923514",
+        "it": "applemusic://track/1784923514"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KJV1ZMMZ0pU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3136075381"
+    },
+    {
+      "artist": "Ingo ohne Flamingo",
+      "title": "Saufen morgens, mittags, abends",
+      "year": 2018,
+      "isrc": "DEHY11700420",
+      "uri": "spotify:track:40dXejNIzrBxnqraepPUky",
+      "uri_apple_music": "applemusic://track/1645636593",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1645636593",
+        "de": "applemusic://track/1645636593",
+        "gb": "applemusic://track/1645636593",
+        "fr": "applemusic://track/1645636593",
+        "es": "applemusic://track/1645636593",
+        "nl": "applemusic://track/1645636593",
+        "it": "applemusic://track/1645636593"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b8nWIxEODn0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/453959592"
+    },
+    {
+      "artist": "Mia Julia",
+      "title": "Dorfkind - Mallorcastyle Mix",
+      "year": 2024,
+      "isrc": "DEHM81600433",
+      "uri": "spotify:track:5noKEq65wHMJXJ28aqfk9A",
+      "uri_apple_music": "applemusic://track/1721339139",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1721339139",
+        "de": "applemusic://track/1721339139",
+        "gb": "applemusic://track/1721339139",
+        "fr": "applemusic://track/1721339139",
+        "es": "applemusic://track/1721339139",
+        "nl": "applemusic://track/1721339139",
+        "it": "applemusic://track/1721339139"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qFAeK_8cklw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2598585822",
+      "alt_artists": [
+        "Dorfrocker"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Mich hat ein Engel geküsst",
+      "year": 2017,
+      "isrc": "DEUM71604846",
+      "uri": "spotify:track:0fM3zrqfH433epM9bSW7nr",
+      "uri_apple_music": "applemusic://track/1701688010",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701688010",
+        "de": "applemusic://track/1701688010",
+        "gb": "applemusic://track/1701688010",
+        "fr": "applemusic://track/1701688010",
+        "es": "applemusic://track/1701688010",
+        "nl": "applemusic://track/1701688010",
+        "it": "applemusic://track/1701688010"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VAJzBz4DtsE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/139404723"
+    },
+    {
+      "artist": "Sabbotage",
+      "title": "Wir versaufen unser Geld",
+      "year": 2015,
+      "isrc": "DEEQ81500011",
+      "uri": "spotify:track:5l1ReQ4S8mfTQp1nCUO5vT",
+      "uri_apple_music": "applemusic://track/1050694817",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1050694817",
+        "de": "applemusic://track/1050694817",
+        "gb": "applemusic://track/1050694817",
+        "fr": "applemusic://track/1050694817",
+        "es": "applemusic://track/1050694817",
+        "nl": "applemusic://track/1050694817",
+        "it": "applemusic://track/1050694817"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e_lHA4Fo-bc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/98831946",
+      "alt_artists": [
+        "Deejay Biene"
+      ]
+    },
+    {
+      "artist": "Remmi Demmi Boys",
+      "title": "Trink mal was (Die Leute gucken schon)",
+      "year": 2018,
+      "isrc": "DEEQ81800055",
+      "uri": "spotify:track:6cPEskcMgd9iVlvL1oQwlU",
+      "uri_apple_music": "applemusic://track/1436883062",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1436883062",
+        "de": "applemusic://track/1436883062",
+        "gb": "applemusic://track/1436883062",
+        "fr": "applemusic://track/1436883062",
+        "es": "applemusic://track/1436883062",
+        "nl": "applemusic://track/1436883062",
+        "it": "applemusic://track/1436883062"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2JU1mDe7Izg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/501254962",
+      "alt_artists": [
+        "Suffgeschwader"
+      ]
+    },
+    {
+      "artist": "Tobee",
+      "title": "Aua im Kopf (Morgen sind wir schlauer...)",
+      "year": 2016,
+      "isrc": "DEEQ81600041",
+      "uri": "spotify:track:0dDvEjTmTa1n2X7shN3gE0",
+      "uri_apple_music": "applemusic://track/1118343162",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1118343162",
+        "de": "applemusic://track/1118343162",
+        "gb": "applemusic://track/1118343162",
+        "fr": "applemusic://track/1118343162",
+        "es": "applemusic://track/1118343162",
+        "nl": "applemusic://track/1118343162",
+        "it": "applemusic://track/1118343162"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0gxXe7IUMZA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/123880402"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Schatzi schenk mir ein Foto",
+      "year": 2010,
+      "isrc": "DEC611000840",
+      "uri": "spotify:track:4j8zZZWeP6Ijn5oKLlfelE",
+      "uri_apple_music": "applemusic://track/1784925586",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784925586",
+        "de": "applemusic://track/1442337155",
+        "gb": "applemusic://track/1784925586",
+        "fr": "applemusic://track/1784925586",
+        "es": "applemusic://track/1784925586",
+        "nl": "applemusic://track/1784925586",
+        "it": "applemusic://track/1784925586"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4JfhOtZJtZo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3136075321"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Kenn Nicht Deinen Namen - Scheißegal (Besoffen) - Single Version",
+      "year": 2009,
+      "isrc": "DEEQ80900029",
+      "uri": "spotify:track:4vk2GKcemR6avfXiYPZGGp",
+      "uri_apple_music": "applemusic://track/715747853",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/715747853",
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_W7s6d2K1Ps",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13486846",
+      "alt_artists": [
+        "Chriss Tuxi"
+      ]
+    },
+    {
+      "artist": "Ina Colada",
+      "title": "Wodka mit irgendwas",
+      "year": 2017,
+      "isrc": "DEEQ81700037",
+      "uri": "spotify:track:6o1s3Kj2mwDOaygdnRtYzt",
+      "uri_apple_music": "applemusic://track/1259157705",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1259157705",
+        "de": "applemusic://track/1259157705",
+        "gb": "applemusic://track/1259157705",
+        "fr": "applemusic://track/1259157705",
+        "es": "applemusic://track/1259157705",
+        "nl": "applemusic://track/1259157705",
+        "it": "applemusic://track/1259157705"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A1MGW8bjxtQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145690796"
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Wir sind Weltmeister (Im Saufen)",
+      "year": 2018,
+      "isrc": null,
+      "uri": "spotify:track:7sdBx6DRf6r7a8ILex6cys",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b3CYsa_luYI",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Ole ohne Kohle",
+      "title": "Du kannst mir die Nudel putzen",
+      "year": 2018,
+      "isrc": "DEEQ81800044",
+      "uri": "spotify:track:6Kf8uJjjLpnPgXWKuXngXG",
+      "uri_apple_music": "applemusic://track/1384581799",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1384581799",
+        "de": "applemusic://track/1384581799",
+        "gb": "applemusic://track/1384581799",
+        "fr": "applemusic://track/1384581799",
+        "es": "applemusic://track/1384581799",
+        "nl": "applemusic://track/1384581799",
+        "it": "applemusic://track/1384581799"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D3OtI4pjbgc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/489442172"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Die Nummer 1 der Welt sind wir",
+      "year": 2016,
+      "isrc": "DEZ521400137",
+      "uri": "spotify:track:60JkFHEQZTjsZU2UYBZXks",
+      "uri_apple_music": "applemusic://track/1656396262",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1656396262",
+        "de": "applemusic://track/934388876",
+        "gb": "applemusic://track/993279864",
+        "fr": "applemusic://track/993279864",
+        "es": "applemusic://track/993279864",
+        "nl": "applemusic://track/993279864",
+        "it": "applemusic://track/993279864"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p2djvpbA5e0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/139077379"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Wir sind die Kinder vom Süderhof",
+      "year": 2016,
+      "isrc": "DEUM71601332",
+      "uri": "spotify:track:3tqTFXu8XnTvD8xQLBJTyt",
+      "uri_apple_music": "applemusic://track/1706432499",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1706432499",
+        "de": "applemusic://track/1706432499",
+        "gb": "applemusic://track/1706432499",
+        "fr": "applemusic://track/1706432499",
+        "es": "applemusic://track/1706432499",
+        "nl": "applemusic://track/1706432499",
+        "it": "applemusic://track/1706432499"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VzFXDaAhqZM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/124190262",
+      "alt_artists": [
+        "Chaos Team"
+      ]
+    },
+    {
+      "artist": "Sabbotage",
+      "title": "Glück auf (Wir müssen aufhören weniger zu trinken)",
+      "year": 2014,
+      "isrc": "DEEQ81400128",
+      "uri": "spotify:track:6yeRR2fO92gx2agPtIufob",
+      "uri_apple_music": "applemusic://track/947808281",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/947808281",
+        "de": "applemusic://track/947808281",
+        "gb": "applemusic://track/947808281",
+        "fr": "applemusic://track/947808281",
+        "es": "applemusic://track/947808281",
+        "nl": "applemusic://track/947808281",
+        "it": "applemusic://track/947808281"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_AEiTxs5tzQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/88983775",
+      "alt_artists": [
+        "Dj Biene"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Finger weg von Sachen ohne Alkohol",
+      "year": 2016,
+      "isrc": "DEUM71601736",
+      "uri": "spotify:track:2kjlOZ10YPK3deMN45l4bS",
+      "uri_apple_music": "applemusic://track/1701688696",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701688696",
+        "de": "applemusic://track/1701688696",
+        "gb": "applemusic://track/1701688696",
+        "fr": "applemusic://track/1701688696",
+        "es": "applemusic://track/1701688696",
+        "nl": "applemusic://track/1701688696",
+        "it": "applemusic://track/1701688696"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V7rIlSiynnk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/127244027"
+    },
+    {
+      "artist": "Axel Fischer",
+      "title": "Amsterdam - 2010 Vollgas-Party-Mix",
+      "year": 2020,
+      "isrc": "DEUM72006668",
+      "uri": "spotify:track:6utaoKGSLouzClxNttqPa4",
+      "uri_apple_music": "applemusic://track/1862840544",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1862840544",
+        "de": "applemusic://track/1862840544",
+        "gb": "applemusic://track/1862840544",
+        "fr": "applemusic://track/1862840544",
+        "es": "applemusic://track/1862840544",
+        "nl": "applemusic://track/1862840544",
+        "it": "applemusic://track/1721010037"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HV-1R3-HzDI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1173643792"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Reiß die Hütte ab!",
+      "year": 2008,
+      "isrc": "DEC610800449",
+      "uri": "spotify:track:1t5EDeT8kQPVV5yaqmWW5n",
+      "uri_apple_music": "applemusic://track/1858289932",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1858289932",
+        "de": "applemusic://track/1858289932",
+        "gb": "applemusic://track/1858289932",
+        "fr": "applemusic://track/1858289932",
+        "es": "applemusic://track/1858289932",
+        "nl": "applemusic://track/1858289932",
+        "it": "applemusic://track/1858289932"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qEKuLvKINxI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3138448611"
+    },
+    {
+      "artist": "Ramonstar",
+      "title": "Für immer blau",
+      "year": 2018,
+      "isrc": "DEEQ81800031",
+      "uri": "spotify:track:26LySy4IlNLS3oOqJE6H7I",
+      "uri_apple_music": "applemusic://track/1692730461",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1692730461",
+        "de": "applemusic://track/1692730461",
+        "gb": "applemusic://track/1692730461",
+        "fr": "applemusic://track/1692730461",
+        "es": "applemusic://track/1692730461",
+        "nl": "applemusic://track/1692730461",
+        "it": "applemusic://track/1692730461"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J9BUVx6HjpA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/479068622"
+    },
+    {
+      "artist": "Jöli",
+      "title": "Je mehr ich trinke",
+      "year": 2016,
+      "isrc": "DEEQ81600039",
+      "uri": "spotify:track:2ntbKpXwyMQ7FkrCoaV0cj",
+      "uri_apple_music": "applemusic://track/1129707655",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1129707655",
+        "de": "applemusic://track/1129707655",
+        "gb": "applemusic://track/1129707655",
+        "fr": "applemusic://track/1129707655",
+        "es": "applemusic://track/1129707655",
+        "nl": "applemusic://track/1129707655",
+        "it": "applemusic://track/1129707655"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y19evaOjO1o",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/123355000"
+    },
+    {
+      "artist": "Frenzy Blitz",
+      "title": "20 Zentimeter",
+      "year": 2018,
+      "isrc": "DEEQ81800015",
+      "uri": "spotify:track:7AlbSP4LdDOXOTP3awboOv",
+      "uri_apple_music": "applemusic://track/1862214094",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1862214094",
+        "de": "applemusic://track/1860959098",
+        "gb": "applemusic://track/1862214094",
+        "fr": "applemusic://track/1862214094",
+        "es": "applemusic://track/1862214094",
+        "nl": "applemusic://track/1862214094",
+        "it": "applemusic://track/1862214094"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1Hm3x0YUF48",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/462482932"
+    },
+    {
+      "artist": "Ikke Hüftgold",
+      "title": "Wir sind der Bierkönig",
+      "year": 2016,
+      "isrc": null,
+      "uri": "spotify:track:404cZYK4mrx3Mwf27C08Dq",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QIdVNto7mkI",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Mia Julia"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Die Krankenschwester",
+      "year": 2016,
+      "isrc": "DEUM71603458",
+      "uri": "spotify:track:1MxeyuLwAP2Jj30Q2Zh8wr",
+      "uri_apple_music": "applemusic://track/1706431616",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1706431616",
+        "de": "applemusic://track/1822592538",
+        "gb": "applemusic://track/1706431616",
+        "fr": "applemusic://track/1706431616",
+        "es": "applemusic://track/1706431616",
+        "nl": "applemusic://track/1706431616",
+        "it": "applemusic://track/1706431616"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Xy7PmR7Bcd8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/134521826",
+      "alt_artists": [
+        "Klaus & Klaus"
+      ]
+    },
+    {
+      "artist": "minnie rock",
+      "title": "6,2 Promille",
+      "year": 2018,
+      "isrc": null,
+      "uri": "spotify:track:4LDwIQ6zHywMuMVQqjDB2D",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hEUMThMU0l4",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Jürgen Milski",
+      "title": "Wir schwören Mallorca die Treue",
+      "year": 2018,
+      "isrc": "DEEQ81800056",
+      "uri": "spotify:track:76VHKajcgkQNsbP2m28EAi",
+      "uri_apple_music": "applemusic://track/1454409681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1454409681",
+        "de": "applemusic://track/1454409681",
+        "gb": "applemusic://track/1454409681",
+        "fr": "applemusic://track/1454409681",
+        "es": "applemusic://track/1454409681",
+        "nl": "applemusic://track/1454409681",
+        "it": "applemusic://track/1454409681"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f3NiVLswEic",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/492254452"
+    },
+    {
+      "artist": "Peter Wackel",
+      "title": "Party, Palmen, Weiber und'n Bier",
+      "year": 2013,
+      "isrc": "DEEQ81300021",
+      "uri": "spotify:track:5bsBGqtMRSNniq8pvEV9yP",
+      "uri_apple_music": "applemusic://track/1520552835",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1520552835",
+        "de": "applemusic://track/1520552835",
+        "gb": "applemusic://track/1520552835",
+        "fr": "applemusic://track/1520552835",
+        "es": "applemusic://track/1520552835",
+        "nl": "applemusic://track/1520552835",
+        "it": "applemusic://track/1520552835"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QmAs9U5si_Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/65544206"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Geh mal Bier hol'n - GmBh",
+      "year": 2014,
+      "isrc": "DEUM71401923",
+      "uri": "spotify:track:0NipOXqC53PNZVUMfthzPt",
+      "uri_apple_music": "applemusic://track/1702250898",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1702250898",
+        "de": "applemusic://track/1657546903",
+        "gb": "applemusic://track/1657546903",
+        "fr": "applemusic://track/1657546903",
+        "es": "applemusic://track/1657546903",
+        "nl": "applemusic://track/1657546903",
+        "it": "applemusic://track/1657546903"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xPL0xX28HSo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/78386143"
+    },
+    {
+      "artist": "Rick Arena",
+      "title": "Radler ist kein Alkohol",
+      "year": 2015,
+      "isrc": "DEEQ81500050",
+      "uri": "spotify:track:4HqlbB0BuahK05r6P2KcwP",
+      "uri_apple_music": "applemusic://track/1062536321",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1062536321",
+        "de": "applemusic://track/1062536321",
+        "gb": "applemusic://track/1062536321",
+        "fr": "applemusic://track/1062536321",
+        "es": "applemusic://track/1062536321",
+        "nl": "applemusic://track/1062536321",
+        "it": "applemusic://track/1062536321"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_OHaEJd3FkM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/100769312",
+      "alt_artists": [
+        "DJ Düse"
+      ]
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Oh wie ist das schön - Single Version",
+      "year": 2025,
+      "isrc": "DEA340600388",
+      "uri": "spotify:track:0UuSYtbEYiebBUTsuTzPsZ",
+      "uri_apple_music": "applemusic://track/1784935801",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784935801",
+        "de": "applemusic://track/1784935801",
+        "gb": "applemusic://track/1784935801",
+        "fr": "applemusic://track/1784935801",
+        "es": "applemusic://track/1784935801",
+        "nl": "applemusic://track/1784935801",
+        "it": "applemusic://track/1784935801"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MMziNvvnS8U",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3694090582"
+    },
+    {
+      "artist": "Mickie Krause",
+      "title": "Zehn Nackte Friseusen 2003",
+      "year": 2008,
+      "isrc": "DEC610800451",
+      "uri": "spotify:track:11sqYqOdI6Mt8to9w2HuJV",
+      "uri_apple_music": "applemusic://track/1784937256",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784937256",
+        "de": "applemusic://track/1784937256",
+        "gb": "applemusic://track/1784937256",
+        "fr": "applemusic://track/1784937256",
+        "es": "applemusic://track/1784937256",
+        "nl": "applemusic://track/1784937256",
+        "it": "applemusic://track/1784937256"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YGGnS4QQndo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3138448641"
+    },
+    {
+      "artist": "Wolfgang Petry",
+      "title": "Ballermann",
+      "year": 1998,
+      "isrc": "DEH499800149",
+      "uri": "spotify:track:4beEUfPRCtBeKhSLVg9fmi",
+      "uri_apple_music": "applemusic://track/313846151",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/313846151",
+        "de": "applemusic://track/323093950",
+        "gb": "applemusic://track/633432259",
+        "fr": "applemusic://track/633432259",
+        "es": "applemusic://track/633432259",
+        "nl": "applemusic://track/633432259",
+        "it": "applemusic://track/633432259"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-rq0KKmjxUs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/69946270"
+    },
+    {
+      "artist": "DJ Ötzi",
+      "title": "Sweet Caroline - Single Version",
+      "year": 2010,
+      "isrc": "DEUM70903738",
+      "uri": "spotify:track:4IXxoFmHujKVqZL6BKMZh4",
+      "uri_apple_music": "applemusic://track/1884990094",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1884990094",
+        "de": "applemusic://track/1822592220",
+        "gb": "applemusic://track/1884990094",
+        "fr": "applemusic://track/1884990094",
+        "es": "applemusic://track/1884990094",
+        "nl": "applemusic://track/1884990094",
+        "it": "applemusic://track/1884990094"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jq-D7UXroeM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/5137423"
+    }
+  ]
+}
