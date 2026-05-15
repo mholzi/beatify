@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.5] - 2026-05-15
+
+Stable promotion of the 3.3.5-rc1 line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.5) for the user-facing summary.
+
+### Added
+- **TTS Player Achievements — Phase 2 of 4 (#840).** Six new voice announcements driven from player results rather than round lifecycle: exact-year guess, Closest-Wins winner, streak milestone, streak broken, new leader, and a tie at the top. Each is an independent toggle in `configure_tts`. Orchestrated by a new `_announce_player_achievements()` in `game/state.py` with six `_tts_announce_*` flags plus `_tts_previous_leader` for leader-change detection. Phase 1 (round lifecycle) shipped in 3.3.4; phases 3-4 (betting/state, special modes) remain in #841 / #842.
+- **Five new community playlists.** Anime Openings (101 songs), Ballermann Party Hits (189), Harder Styles (150), Best of Giraffenaffen (26), and 2010s & 2020s Hits (128) — the last closing the decade gap between the 2000s playlist and today. Four came from in-app playlist requests (#878, #887, #889, #883).
+
+### Fixed
+- **Admin Stop button no longer silently dead (#880).** On a WebSocket reconnect race the player-view Stop button could no-op without feedback. `handleStopSong()` now surfaces a connection-lost label when the socket is down, and `debounceAdminAction()` was rewritten to a timestamp-based guard (`lastAdminActionAt`) so it can no longer wedge every admin button after a missed action.
+- **Fun-fact spoiler leak on participant admin dashboard closed (#882).** A reconnect race could briefly render the song's fun fact on a playing admin's dashboard before REVEAL. The fair-play guard now uses a durable `sessionStorage['beatify_admin_name']` signal that survives reconnects.
+- **Repo landing-page link works again (#881).** The GitHub project link redirected to a parked blank page — the `beatify.life` custom domain on the `gh-pages` branch pointed at a Strato parking page. The dead `CNAME` was removed and SEO URLs updated so the link serves directly.
+
+### Data
+- 98 songs backfilled into the existing decade and greatest-hits playlists (`top-songs-der-60er`, `greatest-hits-of-all-time`, `80er-hits`, `90er-hits`, `2000s-pop-anthems`) from the Hitster Deutschland request (#892) — only 29% overlap with existing coverage, the rest bucketed by decade. Beatify now ships 30 playlists / 3,273 songs. All new and backfilled songs carry full Spotify / Apple Music (incl. per-region) / YouTube Music / Deezer URIs, years and fun facts in 5 languages.
+
 ## [3.3.4] - 2026-05-14
 
 Stable promotion of the 3.3.4-rc line (rc1 → rc5). See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.4) for the user-facing summary.
