@@ -1,0 +1,1076 @@
+{
+  "name": "Anime Openings",
+  "version": "1.0",
+  "tags": [
+    "anime",
+    "japanese",
+    "j-pop",
+    "openings"
+  ],
+  "language": "en",
+  "author": "Beatify Community",
+  "added_date": "2026-05-15",
+  "description": "100+ anime opening themes — from 2000s classics to the latest seasonal hits. Kenshi Yonezu, LiSA, YOASOBI, Creepy Nuts, Aimer and more. Requested via the in-app playlist funnel (#878).",
+  "songs": [
+    {
+      "artist": "Kenshi Yonezu",
+      "title": "IRIS OUT",
+      "year": 2025,
+      "uri": "spotify:track:59hVbgr8rfYkDbHfr8RcGI",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cb0JZhdmjtg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3540533651"
+    },
+    {
+      "artist": "Creepy Nuts",
+      "title": "オトノケ - Otonoke",
+      "year": 2024,
+      "uri": "spotify:track:6KYOlIwDHbrbeBbJEtQ0Fj",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W0dsUNS4RT8",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "LiSA",
+      "title": "ReawakeR (feat. Felix of Stray Kids)",
+      "year": 2025,
+      "uri": "spotify:track:2rOUaQ1TGj7wZdHdn9UgTL",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o4rpy5gaUJw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3126427261",
+      "alt_artists": [
+        "Felix"
+      ]
+    },
+    {
+      "artist": "Lilas",
+      "title": "百花繚乱",
+      "year": 2025,
+      "uri": "spotify:track:79zgdvnTPyWSuTrd48Ik5O",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yzvFG03sSwM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3155594841"
+    },
+    {
+      "artist": "AiNA THE END",
+      "title": "革命道中 - On The Way",
+      "year": 2025,
+      "uri": "spotify:track:1oFqKeepmT5S8BCGqJl7Ar",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ntRVm85--b4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3402450951"
+    },
+    {
+      "artist": "Mrs. GREEN APPLE",
+      "title": "インフェルノ",
+      "year": 2019,
+      "uri": "spotify:track:2vOAHp8PBBFYqvQUWSoITY",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wNjvuRZtQeI",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Kenshi Yonezu",
+      "title": "KICK BACK",
+      "year": 2022,
+      "uri": "spotify:track:3khEEPRyBeOUabbmOPJzAG",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NMA_isZYsYQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1946911957"
+    },
+    {
+      "artist": "Ikimonogakari",
+      "title": "ブルーバード",
+      "year": 2008,
+      "uri": "spotify:track:2XpV9sHBexcNrz0Gyf3l18",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=udNgJUiBCRg",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Sakurazaka46",
+      "title": "I want tomorrow to come -Naeleck Remix-",
+      "year": 2025,
+      "uri": "spotify:track:2YP7mNFMM606WP3cTb46i6",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L96bDUNaRVI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3325137991",
+      "alt_artists": [
+        "Naeleck"
+      ]
+    },
+    {
+      "artist": "bôa",
+      "title": "Duvet",
+      "year": 2000,
+      "uri": "spotify:track:42qNWdLKCI41S4uzfamhFM",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o7fgFaXKVa0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1557745322"
+    },
+    {
+      "artist": "King Gnu",
+      "title": "SPECIALZ",
+      "year": 2023,
+      "uri": "spotify:track:0GWNtMohuYUEHVZ40tcnHF",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r_hJWTufE6w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2413426495"
+    },
+    {
+      "artist": "Creepy Nuts",
+      "title": "Bling-Bang-Bang-Born",
+      "year": 2024,
+      "uri": "spotify:track:0kdqcbwei4MDWFEX5f33yG",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6gMBmZ28Xg4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2580253682"
+    },
+    {
+      "artist": "LiSA",
+      "title": "紅蓮華",
+      "year": 2019,
+      "uri": "spotify:track:0qMip0B2D4ePEjBJvAtYre",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TqyfmFaZlqw",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "TK from Ling tosite sigure",
+      "title": "unravel",
+      "year": 2021,
+      "uri": "spotify:track:5orAKrVdrk1kPtTa7zNvYL",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mtawrvojDyU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/975968052"
+    },
+    {
+      "artist": "YOASOBI",
+      "title": "アイドル",
+      "year": 2023,
+      "uri": "spotify:track:7ovUcF5uHTBRzUpB6ZOmvt",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m9SMT5ipbxk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2210493097"
+    },
+    {
+      "artist": "Aimer",
+      "title": "残響散歌",
+      "year": 2021,
+      "uri": "spotify:track:7v8wKvNQQIxkugCFFjrkaO",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=d6NPs3OQIAU",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Tatsuya Kitani",
+      "title": "青のすみか",
+      "year": 2023,
+      "uri": "spotify:track:12usPU2WnqgCHAW1EK2dfd",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A2jr18ZbkFc",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "YUI",
+      "title": "again",
+      "year": 2009,
+      "uri": "spotify:track:7EUSByOz1UUx78lLDxfxRQ",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0NJCpJZ19n8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/975952742"
+    },
+    {
+      "artist": "Cö shu Nie",
+      "title": "SAKURA BURST (Naeleck Remix) - SACRA BEATS Singles",
+      "year": 2022,
+      "uri": "spotify:track:3Zj9WSEjueL8UecCOC67tT",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rdryKml2YXI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1634748192",
+      "alt_artists": [
+        "Naeleck"
+      ]
+    },
+    {
+      "artist": "Eve",
+      "title": "Kaikai Kitan",
+      "year": 2020,
+      "uri": "spotify:track:6y4GYuZszeXNOXuBFsJlos",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=isY3rtuSsK8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1143848452"
+    },
+    {
+      "artist": "Linked Horizon",
+      "title": "Guren no Yumiya Tv Size Ver.",
+      "year": 2013,
+      "uri": "spotify:track:6rsbsdiGDrYvhbb1K7ziTL",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-S8iIjxyzSU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1831699647"
+    },
+    {
+      "artist": "SiM",
+      "title": "Under the Tree",
+      "year": 2023,
+      "uri": "spotify:track:7qKXSF8MilgyiL52oq1AA0",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uFUEq5ZadUw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2152253197"
+    },
+    {
+      "artist": "MAN WITH A MISSION",
+      "title": "絆ノ奇跡",
+      "year": 2023,
+      "uri": "spotify:track:2VBLFxCUyFp5BfmsZpxcis",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fR8iPh9S9qg",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "milet"
+      ]
+    },
+    {
+      "artist": "NIGHTMARE",
+      "title": "the WORLD",
+      "year": 2006,
+      "uri": "spotify:track:1g0SlTCGN9j3OicWHfSKEn",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b4vc629T4b8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2665292502"
+    },
+    {
+      "artist": "Coda",
+      "title": "BLOODY STREAM",
+      "year": 2013,
+      "uri": "spotify:track:3BSPKTravgBDjmuG1rIXvw",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uz9NT98_ulk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/837029882"
+    },
+    {
+      "artist": "THE ORAL CIGARETTES",
+      "title": "Kyouran Hey Kids!!",
+      "year": 2015,
+      "uri": "spotify:track:38kcwx5znepLWCIBID0Bwm",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IHaUGQVrBa8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3628584642"
+    },
+    {
+      "artist": "amazarashi",
+      "title": "境界線 (Naeleck Remix) - SACRA BEATS Singles",
+      "year": 2021,
+      "uri": "spotify:track:3AAvbpyyti6U6lTUynTkKc",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Sdy5fSHz6t4",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Naeleck"
+      ]
+    },
+    {
+      "artist": "OFFICIAL HIGE DANDISM",
+      "title": "Mixed Nuts",
+      "year": 2022,
+      "uri": "spotify:track:3RFL9hE5cBocBsjD5XLJLQ",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EZy_vHyFedw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1701852587"
+    },
+    {
+      "artist": "KANA-BOON",
+      "title": "シルエット",
+      "year": 2014,
+      "uri": "spotify:track:21z1GxeHjfD3qkaF5CgCTO",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zqKrpw36xnU",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Gen Hoshino",
+      "title": "Comedy",
+      "year": 2022,
+      "uri": "spotify:track:5SuOikwiRyPMVoIQDJUgSV",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=URR_Nv-6MZs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2128227357"
+    },
+    {
+      "artist": "OFFICIAL HIGE DANDISM",
+      "title": "Cry Baby",
+      "year": 2021,
+      "uri": "spotify:track:7nF9c1EmRF3BNAtKDCwUAK",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tty54CzXZDg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1347377252"
+    },
+    {
+      "artist": "Sawano Hiroyuki",
+      "title": "Attack on Titan",
+      "year": 2019,
+      "uri": "spotify:track:5IzZpz0vA73IIjqFPpXSXP",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zroFzv7sFis",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/367620991"
+    },
+    {
+      "artist": "YOASOBI",
+      "title": "怪物",
+      "year": 2021,
+      "uri": "spotify:track:2vjY3jGKElvqXoaGNEuYef",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k0g04t7ZeSw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1171495792"
+    },
+    {
+      "artist": "Ner Leva",
+      "title": "The Rumbling (Attack on Titan)",
+      "year": 2022,
+      "uri": "spotify:track:4m1slXE2kaXbXVfZQ0q3Om",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t6MPrSIh3-w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1677345367"
+    },
+    {
+      "artist": "ALI",
+      "title": "LOST IN PARADISE",
+      "year": 2020,
+      "uri": "spotify:track:7ywfu5Bo7wKZW2WMwLpSOg",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4qqeafI9kXM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1093607442",
+      "alt_artists": [
+        "AKLO"
+      ]
+    },
+    {
+      "artist": "VK Blanka",
+      "title": "Black Rover",
+      "year": 2018,
+      "uri": "spotify:track:0OGw7V8wAI6OsZIQ12JkTP",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yIlBb1Jvjbk",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "UVERworld",
+      "title": "ODD FUTURE",
+      "year": 2018,
+      "uri": "spotify:track:7CFwSQV0rl9oGcvOfEDJCa",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dOVWGxU5YsU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/526633962"
+    },
+    {
+      "artist": "Ai Higuchi",
+      "title": "悪魔の子",
+      "year": 2022,
+      "uri": "spotify:track:2TVFbLCdzrX0RdhWNWJmdp",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tdzsOODJiX8",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "BURNOUT SYNDROMES",
+      "title": "FLY HIGH!!",
+      "year": 2016,
+      "uri": "spotify:track:1y3Ml1b1c4v3ZdpbWLKD1F",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=weGtT2hxFvg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976022032"
+    },
+    {
+      "artist": "PornoGraffitti",
+      "title": "THE DAY",
+      "year": 2016,
+      "uri": "spotify:track:1tjOClAkdMxDfYPO0xvGbG",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N8wfYwSDTa4",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "Unravel (Tokyo Ghoul)",
+      "year": 2021,
+      "uri": "spotify:track:46fpycbDAktlUgSCY1fMJd",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NbAsQZteG64",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1254862782",
+      "alt_artists": [
+        "LoFi Waiter"
+      ]
+    },
+    {
+      "artist": "BLUE ENCOUNT",
+      "title": "ポラリス",
+      "year": 2019,
+      "uri": "spotify:track:1f6HC5dTviPmopQjYi4uVT",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fMU6nclDzNs",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Fukkk Offf",
+      "title": "Bang Your Head - Naeleck & KATFYR Remix",
+      "year": 2018,
+      "uri": "spotify:track:2Y9VShrN7eDx8BXzDXI4fZ",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B_Bm36MqxWU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/560996512",
+      "alt_artists": [
+        "Naeleck",
+        "KATFYR"
+      ]
+    },
+    {
+      "artist": "Masatoshi Ono",
+      "title": "Departure!",
+      "year": 2022,
+      "uri": "spotify:track:5sjoJa0YmBCCPMrBPsBMge",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3SqhXiimlrg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2665357712"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Blue Bird (Naruto)",
+      "year": 2021,
+      "uri": "spotify:track:2HYPqSwitksTpCFzYmP7Po",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kMu1xjRBeZw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1254862792"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Asterisk (Bleach)",
+      "year": 2022,
+      "uri": "spotify:track:4e4S6dOAX0c0iTVA1uGRWc",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XUlpq03FEcE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1829060547"
+    },
+    {
+      "artist": "YOASOBI",
+      "title": "夜に駆ける",
+      "year": 2019,
+      "uri": "spotify:track:6MCjmGYlw6mQVWRFVgBRvB",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=by4SYYWlhEs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/824731152"
+    },
+    {
+      "artist": "UVERworld",
+      "title": "Touch off",
+      "year": 2024,
+      "uri": "spotify:track:2iscENxaM7EI43TVSyNUjz",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GA9Yw5t-Mto",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1024962302"
+    },
+    {
+      "artist": "FLOW",
+      "title": "Sign",
+      "year": 2013,
+      "uri": "spotify:track:1hi0P1Y2he1p09xnUccuAN",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=csVeFCLhmAM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3000818931"
+    },
+    {
+      "artist": "Linked Horizon",
+      "title": "Shinzo wo Sasageyo! - TV Size",
+      "year": 2017,
+      "uri": "spotify:track:27iksNpaur1CcH0w8703by",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8QPyFlJNmus",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2122215167"
+    },
+    {
+      "artist": "Ner Leva",
+      "title": "My War (Attack on Titan) - 僕の戦争",
+      "year": 2021,
+      "uri": "spotify:track:3CspfYGpqAqgbRqUuxmW0r",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0IDuNithv7c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1285823922"
+    },
+    {
+      "artist": "3年E組うた担(渚&茅野&業&磯貝&前原)",
+      "title": "バイバイ YESTERDAY",
+      "year": 2016,
+      "uri": "spotify:track:66lF1QWtLZXJofJ3x388RV",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=woFU8DGg1UI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3896319501"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Guren No Yumiya (Attack On Titan)",
+      "year": 2021,
+      "uri": "spotify:track:70CbcDczLupouV8PYWjk5Z",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VsrwUrJP1tA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1254862812"
+    },
+    {
+      "artist": "Mrs. GREEN APPLE",
+      "title": "ライラック",
+      "year": 2024,
+      "uri": "spotify:track:21VsLvoE7elUmJZLSawaMh",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DO_aopUeFnw",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "美波",
+      "title": "カワキヲアメク",
+      "year": 2019,
+      "uri": "spotify:track:1gUAX2ImxDsB3YDcyxMXlB",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gxp3R7l1iSk",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "Hacking to the Gate (Stein;Gate)",
+      "year": 2021,
+      "uri": "spotify:track:2pCNTrsuKNerjXXSJK2kzP",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dWmuw4iuNfk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022392",
+      "alt_artists": [
+        "LoFi Waiter"
+      ]
+    },
+    {
+      "artist": "Yorushika",
+      "title": "晴る",
+      "year": 2024,
+      "uri": "spotify:track:5eY7692tmgHB9dbmq6wa2M",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PXkHAlskFAM",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "GALNERYUS",
+      "title": "HUNTING FOR YOUR DREAM",
+      "year": 2013,
+      "uri": "spotify:track:0jXK4Xy4LAEKFgRiTr3M7w",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CyIoNt2m1Gw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2665262582"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Bye Bye Yesterday (Assassination Classroom)",
+      "year": 2022,
+      "uri": "spotify:track:2dXrd5rdHpNDfK5g32xq6K",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w2ftJ01H2aU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1829060597"
+    },
+    {
+      "artist": "RADWIMPS",
+      "title": "前前前世 - movie ver.",
+      "year": 2016,
+      "uri": "spotify:track:4n5f6vydWvNsCcQH6p1Bmw",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qp0AktOIAag",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "Silhouette (Naruto Shippuden)",
+      "year": 2021,
+      "uri": "spotify:track:5BbAbnlNW3JfGGwG0Hkei9",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BL3l8fRZeDU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1254862822",
+      "alt_artists": [
+        "LoFi Waiter"
+      ]
+    },
+    {
+      "artist": "Ryuven",
+      "title": "Kyoumen no Nami (Houseki no Kuni) - 鏡面の波",
+      "year": 2021,
+      "uri": "spotify:track:1Xhy1gBPc2441AMBp8ztgY",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P4bGpf4WvUg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1285823912",
+      "alt_artists": [
+        "Ner Leva"
+      ]
+    },
+    {
+      "artist": "Daoko",
+      "title": "打上花火",
+      "year": 2017,
+      "uri": "spotify:track:7pcTLUekZJQnzDOUDuExVJ",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yuTesDwv6uA",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": [
+        "Kenshi Yonezu"
+      ]
+    },
+    {
+      "artist": "Otaku",
+      "title": "Tank! (Cowboy Bebop)",
+      "year": 2021,
+      "uri": "spotify:track:2X7iYoVNlL7aXjqViBO77q",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hWfVJvzd4eM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022342",
+      "alt_artists": [
+        "LoFi Waiter"
+      ]
+    },
+    {
+      "artist": "MAN WITH A MISSION",
+      "title": "Seven Deadly Sins",
+      "year": 2015,
+      "uri": "spotify:track:2NSTW0OgQoTG3wnshWErKM",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mAENQIa-MtM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/442437862"
+    },
+    {
+      "artist": "LiSA",
+      "title": "crossing field",
+      "year": 2017,
+      "uri": "spotify:track:3mScGCzxiXA9OaHdBeuk7O",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F9GXgPHeKfA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976378422"
+    },
+    {
+      "artist": "Kenshi Yonezu",
+      "title": "ピースサイン - Peace Sign",
+      "year": 2017,
+      "uri": "spotify:track:5aHfGUxRec6c41luxkDqhX",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_AfZwbht5yE",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "amazarashi",
+      "title": "空に歌えば",
+      "year": 2017,
+      "uri": "spotify:track:6wZcefZGc6vrd3zLCQoOYe",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MUGYErw8QU0",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Fear, and Loathing in Las Vegas",
+      "title": "Let Me Hear",
+      "year": 2015,
+      "uri": "spotify:track:5sqkarfxe7UejHTlCtHCLS",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4dOw3TpoHtk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2665262552"
+    },
+    {
+      "artist": "Radiohead",
+      "title": "Paranoid Android",
+      "year": 2000,
+      "uri": "spotify:track:6LgJvl0Xdtc73RJ1mmpotq",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lt8AfIeJOxw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/138539973"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Jiyuu No Tsubasa (SNK)",
+      "year": 2022,
+      "uri": "spotify:track:044hhTpsrKGZsc7IZQeWwk",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C7_Ck1P7dVI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1829060617"
+    },
+    {
+      "artist": "Tia",
+      "title": "Deal with the devil",
+      "year": 2017,
+      "uri": "spotify:track:2qEIVphvwMEkE35CXxdWAT",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pJ-MywdW98o",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "The World (Death Note)",
+      "year": 2021,
+      "uri": "spotify:track:0xkupRB0jicKmpRgzq5yv7",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b4vc629T4b8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022422"
+    },
+    {
+      "artist": "Hello Sleepwalkers",
+      "title": "Goya No Machiawase",
+      "year": 2014,
+      "uri": "spotify:track:5s0AxcVJJD2YYPstMb61ro",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=M8w716ZKYY0",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "Departure! (Hunter X Hunter)",
+      "year": 2024,
+      "uri": "spotify:track:2NjxUGJaBS11zkUv86MOQP",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e9P0tqskB6I",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2975158571"
+    },
+    {
+      "artist": "LiSA",
+      "title": "Catch the Moment",
+      "year": 2017,
+      "uri": "spotify:track:13sxKGMd5RDQYavHyZ8Flw",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GWysc_zFTIA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1355425922"
+    },
+    {
+      "artist": "Otaku",
+      "title": "This Game (No Game No Life)",
+      "year": 2021,
+      "uri": "spotify:track:0i4FFEupAyk8bfnTZrH1Vr",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WNqHy_5AmrI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022352"
+    },
+    {
+      "artist": "FLOW",
+      "title": "GO!!!",
+      "year": 2017,
+      "uri": "spotify:track:0GSs0GV34KX7KCpLw9tWjk",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5etD8mRAsio",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1124776602"
+    },
+    {
+      "artist": "Cö shu Nie",
+      "title": "asphyxia",
+      "year": 2018,
+      "uri": "spotify:track:49u6NxoLP5S6kfTYLmUfkQ",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y4vZUSkshCg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1024952482"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Resonance (Soul Eater)",
+      "year": 2021,
+      "uri": "spotify:track:3N3NMIUjbDugrQtW1ET9W1",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YsC4hKxJLHI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022432"
+    },
+    {
+      "artist": "Sawano Hiroyuki",
+      "title": "The Reluctant Heroes",
+      "year": 2013,
+      "uri": "spotify:track:6zSXcvXQ8T74fXm72OpSOb",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nMNU9lhVdy4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1837567857"
+    },
+    {
+      "artist": "ASIAN KUNG-FU GENERATION",
+      "title": "遥か彼方",
+      "year": 2018,
+      "uri": "spotify:track:052C0m9kD30nZqcPWPPRqm",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wCqpacYI6b0",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "KANA-BOON",
+      "title": "ないものねだり",
+      "year": 2018,
+      "uri": "spotify:track:1dsh4buvcBs2u7YtHy29c7",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cj3Q_bh_UTQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/467267512"
+    },
+    {
+      "artist": "Mika Nakashima",
+      "title": "KISS OF DEATH（Produced by HYDE）",
+      "year": 2018,
+      "uri": "spotify:track:0ekGJQiqn1DzeZ3w5AsBoH",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N0ixzrZe--0",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "LiSA",
+      "title": "だってアタシのヒーロー。",
+      "year": 2019,
+      "uri": "spotify:track:1htJGL473Dub5QGKecXi9R",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8A0hgdWuRnI",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "FLOW",
+      "title": "COLORS",
+      "year": 2020,
+      "uri": "spotify:track:0ggHt5jwwtMsWME2PDB6a0",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GrIEGraOuSQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/976202432"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Bloody Stream (Jojo)",
+      "year": 2022,
+      "uri": "spotify:track:5vJrZa7S5o0zHcb5Lnc50k",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4RkntTILUq0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1829060637",
+      "alt_artists": [
+        "LoFi Waiter"
+      ]
+    },
+    {
+      "artist": "ASIAN KUNG-FU GENERATION",
+      "title": "ブラッドサーキュレーター",
+      "year": 2017,
+      "uri": "spotify:track:3xQBvKxm8mdy9OBLiJDcwB",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=psUh0fbszsw",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "RADWIMPS",
+      "title": "夢灯籠",
+      "year": 2016,
+      "uri": "spotify:track:6CsMd91gWWntqjZfXAScWe",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MtLHwqbE1eI",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Sawano Hiroyuki",
+      "title": "You See Big Girl / T:T",
+      "year": 2017,
+      "uri": "spotify:track:4dHOnPucB5VBYq3gjRtYy9",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vy63u2hKoPE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/370201211"
+    },
+    {
+      "artist": "Ikimonogakari",
+      "title": "ホタルノヒカリ",
+      "year": 2009,
+      "uri": "spotify:track:7HAkrW8JUYoVR9dXwb6Uku",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7GMPeHFy2Dk",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "RADWIMPS",
+      "title": "Nandemonaiya - movie ver.",
+      "year": 2016,
+      "uri": "spotify:track:7dEfa89dZfo6CQPdsgGCF6",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n89SKAymNfA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/545599532"
+    },
+    {
+      "artist": "Otaku",
+      "title": "Kyoran Hey Kids!! (Noragami Aragoto)",
+      "year": 2021,
+      "uri": "spotify:track:4ZRwXmftin5396X6wiBCt4",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A7tCMa8lE6E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1254862872"
+    },
+    {
+      "artist": "Given",
+      "title": "冬のはなし",
+      "year": 2019,
+      "uri": "spotify:track:0bgujdpFkvd6vmQpqmT2pz",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nnmb1GXqz60",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "King Gnu",
+      "title": "白日",
+      "year": 2019,
+      "uri": "spotify:track:4wel6DQu0dMVBRVn2ZTPoy",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Tll_g1Gx7I8",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Lyn",
+      "title": "Wake Up, Get Up, Get Out There",
+      "year": 2017,
+      "uri": "spotify:track:4AuZBIN4aeFL9egQldQfRn",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=azNG-AU0eGg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1248334202",
+      "alt_artists": [
+        "ATLUS Sound Team",
+        "ATLUS GAME MUSIC"
+      ]
+    },
+    {
+      "artist": "Ryuven",
+      "title": "speedrun",
+      "year": 2022,
+      "uri": "spotify:track:2yvlI8mpxVk1i7KYyyLDOV",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qFcbKsYxIz0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2073991717",
+      "alt_artists": [
+        "mayday"
+      ]
+    },
+    {
+      "artist": "CHiCO with HoneyWorks",
+      "title": "決戦スピリット",
+      "year": 2022,
+      "uri": "spotify:track:4DSSRuiWONPIvHJ3GxCECH",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AyXwQ3bZZ7c",
+      "uri_tidal": null,
+      "uri_deezer": null
+    },
+    {
+      "artist": "Otaku",
+      "title": "Crossing Field (Sword Art Online)",
+      "year": 2021,
+      "uri": "spotify:track:63uQC332PwUFqV2Lqiw5pu",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xc8Fn0FbElM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1331022372"
+    },
+    {
+      "artist": "Who-ya Extended",
+      "title": "VIVID VICE",
+      "year": 2021,
+      "uri": "spotify:track:1a1b22lYmn0y5YPJUGFCqb",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DEZd8I6QMIM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1186939392"
+    },
+    {
+      "artist": "Awich",
+      "title": "Frontiers",
+      "year": 2025,
+      "uri": "spotify:track:5wDeR4q2dm5UAOFSWDEiaR",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8cAYlTjVdsQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3127692481"
+    }
+  ]
+}
