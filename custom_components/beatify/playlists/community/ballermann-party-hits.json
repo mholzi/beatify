@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "schlager",
     "party",
@@ -31,7 +31,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RfZ8fIY2RmY",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/497124582"
+      "uri_deezer": "deezer://track/497124582",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Lorenz Büffel",
@@ -51,7 +56,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5qNhCWy5-xs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598561312"
+      "uri_deezer": "deezer://track/2598561312",
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Almklausi",
@@ -71,7 +81,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DIpNMWGUiA4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/61750163"
+      "uri_deezer": "deezer://track/61750163",
+      "fun_fact": "Almklausi is a Mallorca party-Schlager singer, best known for the 2018 hit \"Mama Laudaaa\".",
+      "fun_fact_de": "Almklausi ist ein Mallorca-Party-Schlager-Sänger, bekannt vor allem durch den 2018er-Hit \"Mama Laudaaa\".",
+      "fun_fact_es": "Almklausi es un cantante del Schlager fiestero de Mallorca, conocido sobre todo por el éxito de 2018 \"Mama Laudaaa\".",
+      "fun_fact_fr": "Almklausi est un chanteur du Schlager festif de Majorque, connu surtout pour le tube de 2018 \"Mama Laudaaa\".",
+      "fun_fact_nl": "Almklausi is een Mallorca-feest-Schlagerzanger, vooral bekend van de hit \"Mama Laudaaa\" uit 2018."
     },
     {
       "artist": "Stefan Stürmer",
@@ -91,7 +106,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0ZKnBGrTUd0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598567132"
+      "uri_deezer": "deezer://track/2598567132",
+      "fun_fact": "A Mallorca / Ballermann party hit (2015).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2015).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2015).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2015).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2015)."
     },
     {
       "artist": "Asphalt Anton",
@@ -111,7 +131,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SWsVQF7ZUos",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2319577355"
+      "uri_deezer": "deezer://track/2319577355",
+      "fun_fact": "A Mallorca / Ballermann party hit (2020).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2020).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2020).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2020).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2020)."
     },
     {
       "artist": "Lorenz Büffel",
@@ -134,7 +159,12 @@
       "uri_deezer": "deezer://track/2270184257",
       "alt_artists": [
         "DJ Juanjo"
-      ]
+      ],
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Tobee",
@@ -154,7 +184,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rmlEOnidHHs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1951584357"
+      "uri_deezer": "deezer://track/1951584357",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Isi Glück",
@@ -177,7 +212,12 @@
       "uri_deezer": "deezer://track/2598561232",
       "alt_artists": [
         "Julian Benz"
-      ]
+      ],
+      "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
+      "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
+      "fun_fact_es": "Isi Glück, exMiss Alemania, es una de las voces destacadas de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Isi Glück, ancienne Miss Allemagne, est l'une des voix phares de la scène festive de Majorque.",
+      "fun_fact_nl": "Isi Glück, voormalig Miss Germany, is een van de leidende stemmen van de Mallorca-feestscene."
     },
     {
       "artist": "Killermichel",
@@ -197,7 +237,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DW__F_sePo0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598564572"
+      "uri_deezer": "deezer://track/2598564572",
+      "fun_fact": "A Mallorca / Ballermann party hit (2016).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2016).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2016).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2016).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2016)."
     },
     {
       "artist": "Stefan Stürmer",
@@ -217,7 +262,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/81423068"
+      "uri_deezer": "deezer://track/81423068",
+      "fun_fact": "A Mallorca / Ballermann party hit (2014).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2014).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2014).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2014).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2014)."
     },
     {
       "artist": "Breitner",
@@ -237,7 +287,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n6tBIIQQplE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3504651201"
+      "uri_deezer": "deezer://track/3504651201",
+      "fun_fact": "A Mallorca / Ballermann party hit (2026).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2026).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2026).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2026)."
     },
     {
       "artist": "Caro Winter",
@@ -260,7 +315,12 @@
       "uri_deezer": "deezer://track/3952478221",
       "alt_artists": [
         "Justin Flieger"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2026).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2026).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2026).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2026)."
     },
     {
       "artist": "Rumbombe",
@@ -283,7 +343,12 @@
       "uri_deezer": "deezer://track/3898152331",
       "alt_artists": [
         "bozi"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2026).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2026).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2026).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2026)."
     },
     {
       "artist": "Julian Sommer",
@@ -303,7 +368,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HrFgfHIBiA8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3885416411"
+      "uri_deezer": "deezer://track/3885416411",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Nina Reh",
@@ -327,7 +397,12 @@
       "alt_artists": [
         "Ikke Hüftgold",
         "Playaton"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2026).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2026).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2026).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2026)."
     },
     {
       "artist": "Almklausi",
@@ -351,7 +426,12 @@
       "alt_artists": [
         "Kings of Günter",
         "Luca Heinken"
-      ]
+      ],
+      "fun_fact": "Almklausi is a Mallorca party-Schlager singer, best known for the 2018 hit \"Mama Laudaaa\".",
+      "fun_fact_de": "Almklausi ist ein Mallorca-Party-Schlager-Sänger, bekannt vor allem durch den 2018er-Hit \"Mama Laudaaa\".",
+      "fun_fact_es": "Almklausi es un cantante del Schlager fiestero de Mallorca, conocido sobre todo por el éxito de 2018 \"Mama Laudaaa\".",
+      "fun_fact_fr": "Almklausi est un chanteur du Schlager festif de Majorque, connu surtout pour le tube de 2018 \"Mama Laudaaa\".",
+      "fun_fact_nl": "Almklausi is een Mallorca-feest-Schlagerzanger, vooral bekend van de hit \"Mama Laudaaa\" uit 2018."
     },
     {
       "artist": "Tommy Fieber",
@@ -376,7 +456,12 @@
         "Ingo ohne Flamingo",
         "Luca Heinken",
         "DJ Chris Caramello"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Frenzy",
@@ -396,7 +481,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aEuKqlcohTA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3792397922"
+      "uri_deezer": "deezer://track/3792397922",
+      "fun_fact": "A Mallorca / Ballermann party hit (2026).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2026).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2026).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2026)."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -422,7 +512,12 @@
         "Roxy",
         "Honk!",
         "Beerstreet Boys"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Paulina Wagner",
@@ -442,7 +537,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=V6Eaw_WvnsU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3696190672"
+      "uri_deezer": "deezer://track/3696190672",
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Domy Berger",
@@ -466,7 +566,12 @@
       "alt_artists": [
         "Timo Scheppert",
         "SdZunT"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Kreisligalegende",
@@ -489,7 +594,12 @@
       "uri_deezer": "deezer://track/3487142851",
       "alt_artists": [
         "Frenzy"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Justin Flieger",
@@ -514,7 +624,12 @@
         "Malle Anja",
         "Eliah Sternhardt",
         "Marius & Kaktus"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Lorenz Büffel",
@@ -537,7 +652,12 @@
       "uri_deezer": "deezer://track/141827681",
       "alt_artists": [
         "Olaf der Flipper"
-      ]
+      ],
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Mickie Krause",
@@ -557,7 +677,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FRQxLNtfQvA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3439697741"
+      "uri_deezer": "deezer://track/3439697741",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Frenzy",
@@ -577,7 +702,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ctQtJjiR-vE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3444245451"
+      "uri_deezer": "deezer://track/3444245451",
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Caro Winter",
@@ -600,7 +730,12 @@
       "uri_deezer": "deezer://track/3329750091",
       "alt_artists": [
         "Justin Flieger"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Mickie Krause",
@@ -625,7 +760,12 @@
         "Lorenz Büffel",
         "Kings of Günter",
         "Immer Hansi"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "DJ Robin",
@@ -648,7 +788,12 @@
       "uri_deezer": "deezer://track/3369469331",
       "alt_artists": [
         "Domy Berger"
-      ]
+      ],
+      "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
+      "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
+      "fun_fact_es": "DJ Robin es un DJ y productor del Ballermann que saltó a la fama con el n.º 1 de 2022 \"Layla\".",
+      "fun_fact_fr": "DJ Robin est un DJ et producteur du Ballermann devenu célèbre avec le n°1 de 2022 \"Layla\".",
+      "fun_fact_nl": "DJ Robin is een Ballermann-dj en producer die beroemd werd met de nummer 1-hit \"Layla\" uit 2022."
     },
     {
       "artist": "Julian Benz",
@@ -672,7 +817,12 @@
       "alt_artists": [
         "Calvin Kleinen",
         "Kreisligalegende"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Tim Toupet",
@@ -696,7 +846,12 @@
       "alt_artists": [
         "Der Partycrasher",
         "DJ Cashi"
-      ]
+      ],
+      "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
+      "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
+      "fun_fact_es": "Tim Toupet es un cantante de Schlager fiestero conocido por sus éxitos cómicos para cantar.",
+      "fun_fact_fr": "Tim Toupet est un chanteur de Schlager festif connu pour ses tubes humoristiques à reprendre en chœur.",
+      "fun_fact_nl": "Tim Toupet is een feest-Schlagerzanger bekend om grappige meezinghits."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -721,7 +876,12 @@
         "Specktakel",
         "DJ Cashi",
         "DJ Chris Caramello"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Calvin Kleinen",
@@ -744,7 +904,12 @@
       "uri_deezer": "deezer://track/3348931221",
       "alt_artists": [
         "Marvin Kleinen"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "DJ Robin",
@@ -767,7 +932,12 @@
       "uri_deezer": "deezer://track/2970847831",
       "alt_artists": [
         "Malin Brown"
-      ]
+      ],
+      "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
+      "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
+      "fun_fact_es": "DJ Robin es un DJ y productor del Ballermann que saltó a la fama con el n.º 1 de 2022 \"Layla\".",
+      "fun_fact_fr": "DJ Robin est un DJ et producteur du Ballermann devenu célèbre avec le n°1 de 2022 \"Layla\".",
+      "fun_fact_nl": "DJ Robin is een Ballermann-dj en producer die beroemd werd met de nummer 1-hit \"Layla\" uit 2022."
     },
     {
       "artist": "Isi Glück",
@@ -790,7 +960,12 @@
       "uri_deezer": "deezer://track/3329770641",
       "alt_artists": [
         "Julian Sommer"
-      ]
+      ],
+      "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
+      "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
+      "fun_fact_es": "Isi Glück, exMiss Alemania, es una de las voces destacadas de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Isi Glück, ancienne Miss Allemagne, est l'une des voix phares de la scène festive de Majorque.",
+      "fun_fact_nl": "Isi Glück, voormalig Miss Germany, is een van de leidende stemmen van de Mallorca-feestscene."
     },
     {
       "artist": "DJ Robin",
@@ -813,7 +988,12 @@
       "uri_deezer": "deezer://track/3051869611",
       "alt_artists": [
         "Fabio Gandolfo"
-      ]
+      ],
+      "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
+      "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
+      "fun_fact_es": "DJ Robin es un DJ y productor del Ballermann que saltó a la fama con el n.º 1 de 2022 \"Layla\".",
+      "fun_fact_fr": "DJ Robin est un DJ et producteur du Ballermann devenu célèbre avec le n°1 de 2022 \"Layla\".",
+      "fun_fact_nl": "DJ Robin is een Ballermann-dj en producer die beroemd werd met de nummer 1-hit \"Layla\" uit 2022."
     },
     {
       "artist": "Lorenz Büffel",
@@ -833,7 +1013,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lZYHLLIjQJE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3329758001"
+      "uri_deezer": "deezer://track/3329758001",
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Julian Sommer",
@@ -853,7 +1038,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DTwUGnlV38k",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3298452871"
+      "uri_deezer": "deezer://track/3298452871",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Fäaschtbänkler",
@@ -873,7 +1063,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kfgJtwHOwXg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2078308317"
+      "uri_deezer": "deezer://track/2078308317",
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Kreisligalegende",
@@ -893,7 +1088,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XAubdQRDx0o",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2694093702"
+      "uri_deezer": "deezer://track/2694093702",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Rumbombe",
@@ -916,7 +1116,12 @@
       "uri_deezer": "deezer://track/3278039971",
       "alt_artists": [
         "bozi"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2025).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2025).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2025).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2025).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2025)."
     },
     {
       "artist": "Oimara",
@@ -936,7 +1141,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A5IRWvKVHUQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3200185401"
+      "uri_deezer": "deezer://track/3200185401",
+      "fun_fact": "\"Wackelkontakt\" by Oimara became a surprise viral hit in 2024.",
+      "fun_fact_de": "\"Wackelkontakt\" von Oimara wurde 2024 zum überraschenden viralen Hit.",
+      "fun_fact_es": "\"Wackelkontakt\" de Oimara se convirtió en un éxito viral sorpresa en 2024.",
+      "fun_fact_fr": "\"Wackelkontakt\" d'Oimara est devenu un tube viral surprise en 2024.",
+      "fun_fact_nl": "\"Wackelkontakt\" van Oimara werd in 2024 een verrassende virale hit."
     },
     {
       "artist": "Julian Sommer",
@@ -959,7 +1169,12 @@
       "uri_deezer": "deezer://track/3278043381",
       "alt_artists": [
         "Frenzy"
-      ]
+      ],
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Mickie Krause",
@@ -982,7 +1197,12 @@
       "uri_deezer": "deezer://track/2882789562",
       "alt_artists": [
         "Lorenz Büffel"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Mickie Krause",
@@ -1005,7 +1225,12 @@
       "uri_deezer": "deezer://track/2960519231",
       "alt_artists": [
         "Tim Toupet"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Mickie Krause",
@@ -1028,7 +1253,12 @@
       "uri_deezer": "deezer://track/2767030321",
       "alt_artists": [
         "Julian Sommer"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Isi Glück",
@@ -1051,7 +1281,12 @@
       "uri_deezer": "deezer://track/2913236571",
       "alt_artists": [
         "Julian Benz"
-      ]
+      ],
+      "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
+      "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
+      "fun_fact_es": "Isi Glück, exMiss Alemania, es una de las voces destacadas de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Isi Glück, ancienne Miss Allemagne, est l'une des voix phares de la scène festive de Majorque.",
+      "fun_fact_nl": "Isi Glück, voormalig Miss Germany, is een van de leidende stemmen van de Mallorca-feestscene."
     },
     {
       "artist": "Julian Sommer",
@@ -1075,7 +1310,12 @@
       "alt_artists": [
         "Mia Julia",
         "Frenzy"
-      ]
+      ],
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "DJ Robin",
@@ -1095,7 +1335,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k2NyzXa1RP4",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2757270301"
+      "uri_deezer": "deezer://track/2757270301",
+      "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
+      "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
+      "fun_fact_es": "DJ Robin es un DJ y productor del Ballermann que saltó a la fama con el n.º 1 de 2022 \"Layla\".",
+      "fun_fact_fr": "DJ Robin est un DJ et producteur du Ballermann devenu célèbre avec le n°1 de 2022 \"Layla\".",
+      "fun_fact_nl": "DJ Robin is een Ballermann-dj en producer die beroemd werd met de nummer 1-hit \"Layla\" uit 2022."
     },
     {
       "artist": "Rumbombe",
@@ -1118,7 +1363,12 @@
       "uri_deezer": "deezer://track/2836097982",
       "alt_artists": [
         "Julian Sommer"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Isi Glück",
@@ -1141,7 +1391,12 @@
       "uri_deezer": "deezer://track/2757228921",
       "alt_artists": [
         "Marc Eggers"
-      ]
+      ],
+      "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
+      "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
+      "fun_fact_es": "Isi Glück, exMiss Alemania, es una de las voces destacadas de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Isi Glück, ancienne Miss Allemagne, est l'une des voix phares de la scène festive de Majorque.",
+      "fun_fact_nl": "Isi Glück, voormalig Miss Germany, is een van de leidende stemmen van de Mallorca-feestscene."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -1157,7 +1412,12 @@
       "alt_artists": [
         "Julian Benz",
         "Lyzar"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Frenzy",
@@ -1177,7 +1437,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-sWSz7qCvps",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2877069062"
+      "uri_deezer": "deezer://track/2877069062",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Peter Wackel",
@@ -1197,7 +1462,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hh_VsdOgb6U",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2751408821"
+      "uri_deezer": "deezer://track/2751408821",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Julian Sommer",
@@ -1217,7 +1487,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_815df1x70w",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2705361842"
+      "uri_deezer": "deezer://track/2705361842",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Lorenz Büffel",
@@ -1240,7 +1515,12 @@
       "uri_deezer": "deezer://track/2694100132",
       "alt_artists": [
         "Knossi"
-      ]
+      ],
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Julian Sommer",
@@ -1260,7 +1540,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o2l7I2O2zeA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2655163012"
+      "uri_deezer": "deezer://track/2655163012",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Julian Benz",
@@ -1280,7 +1565,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hycladeLR1w",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598569102"
+      "uri_deezer": "deezer://track/2598569102",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Bierkapitän",
@@ -1305,7 +1595,12 @@
         "Carolina",
         "Dj Aaron",
         "Säulenbande"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Rumbombe",
@@ -1328,7 +1623,12 @@
       "uri_deezer": "deezer://track/1853781297",
       "alt_artists": [
         "Anstandslos & Durchgeknallt"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Rumbombe",
@@ -1348,7 +1648,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RSEZpGE6yjU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2300967955"
+      "uri_deezer": "deezer://track/2300967955",
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Julian Sommer",
@@ -1371,7 +1676,12 @@
       "uri_deezer": "deezer://track/2348742575",
       "alt_artists": [
         "Lorenz Büffel"
-      ]
+      ],
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Frenzy",
@@ -1391,7 +1701,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2pbtrF2prR8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2334669275"
+      "uri_deezer": "deezer://track/2334669275",
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Die Flippers",
@@ -1411,7 +1726,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JAKVQyIStFM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/15038934"
+      "uri_deezer": "deezer://track/15038934",
+      "fun_fact": "Die Flippers were one of Germany's most successful Schlager groups, active for over four decades.",
+      "fun_fact_de": "Die Flippers waren eine der erfolgreichsten Schlagergruppen Deutschlands, über vier Jahrzehnte aktiv.",
+      "fun_fact_es": "Die Flippers fue uno de los grupos de Schlager más exitosos de Alemania, activo durante más de cuatro décadas.",
+      "fun_fact_fr": "Die Flippers fut l'un des groupes de Schlager les plus populaires d'Allemagne, actif pendant plus de quatre décennies.",
+      "fun_fact_nl": "Die Flippers waren een van Duitslands succesvolste Schlagergroepen, ruim vier decennia actief."
     },
     {
       "artist": "Honk!",
@@ -1434,7 +1754,12 @@
       "uri_deezer": "deezer://track/2598567802",
       "alt_artists": [
         "Isi Glück"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Julian Sommer",
@@ -1457,7 +1782,12 @@
       "uri_deezer": "deezer://track/2195325947",
       "alt_artists": [
         "Mia Julia"
-      ]
+      ],
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "GABBY",
@@ -1480,7 +1810,12 @@
       "uri_deezer": "deezer://track/1906465027",
       "alt_artists": [
         "Anstandslos & Durchgeknallt"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Die Zipfelbuben",
@@ -1504,7 +1839,12 @@
       "alt_artists": [
         "Der Zipfelbube",
         "DJ Cashi"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Mia Julia",
@@ -1528,7 +1868,12 @@
       "alt_artists": [
         "Rumbombe",
         "Skatschie"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Julian Sommer",
@@ -1548,7 +1893,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PkZ7GUXWmMU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2280880877"
+      "uri_deezer": "deezer://track/2280880877",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Killermichel",
@@ -1571,7 +1921,12 @@
       "uri_deezer": "deezer://track/2297761205",
       "alt_artists": [
         "Domy Berger"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Isi Glück",
@@ -1591,7 +1946,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ixyp4xni1ws",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/508848102"
+      "uri_deezer": "deezer://track/508848102",
+      "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
+      "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
+      "fun_fact_es": "Isi Glück, exMiss Alemania, es una de las voces destacadas de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Isi Glück, ancienne Miss Allemagne, est l'une des voix phares de la scène festive de Majorque.",
+      "fun_fact_nl": "Isi Glück, voormalig Miss Germany, is een van de leidende stemmen van de Mallorca-feestscene."
     },
     {
       "artist": "Wolfgang Petry",
@@ -1611,7 +1971,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hV7rPUZa1Bc",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1524754712"
+      "uri_deezer": "deezer://track/1524754712",
+      "fun_fact": "Wolfgang Petry is a legend of German Schlager, beloved for sing-along anthems like \"Wahnsinn\".",
+      "fun_fact_de": "Wolfgang Petry ist eine Legende des deutschen Schlagers, geliebt für Mitsing-Hymnen wie \"Wahnsinn\".",
+      "fun_fact_es": "Wolfgang Petry es una leyenda del Schlager alemán, querido por himnos para cantar como \"Wahnsinn\".",
+      "fun_fact_fr": "Wolfgang Petry est une légende du Schlager allemand, adoré pour des hymnes à reprendre en chœur comme \"Wahnsinn\".",
+      "fun_fact_nl": "Wolfgang Petry is een legende van de Duitse Schlager, geliefd om meezing-anthems als \"Wahnsinn\"."
     },
     {
       "artist": "Tobee",
@@ -1631,7 +1996,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xsuHYg5kWqQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2279814117"
+      "uri_deezer": "deezer://track/2279814117",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Banjee",
@@ -1655,7 +2025,12 @@
       "alt_artists": [
         "Deejay Biene",
         "Mr. Kuemmerling"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -1671,7 +2046,12 @@
       "alt_artists": [
         "Schürze",
         "DJ Robin"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "DJ Robin",
@@ -1691,7 +2071,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6tsp6Z0toNI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2238211297"
+      "uri_deezer": "deezer://track/2238211297",
+      "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
+      "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
+      "fun_fact_es": "DJ Robin es un DJ y productor del Ballermann que saltó a la fama con el n.º 1 de 2022 \"Layla\".",
+      "fun_fact_fr": "DJ Robin est un DJ et producteur du Ballermann devenu célèbre avec le n°1 de 2022 \"Layla\".",
+      "fun_fact_nl": "DJ Robin is een Ballermann-dj en producer die beroemd werd met de nummer 1-hit \"Layla\" uit 2022."
     },
     {
       "artist": "Mickie Krause",
@@ -1711,7 +2096,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5a_9gngSTsQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2256754637"
+      "uri_deezer": "deezer://track/2256754637",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Schürze",
@@ -1734,7 +2124,12 @@
       "uri_deezer": null,
       "alt_artists": [
         "DJ Dee"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Mia Julia",
@@ -1757,7 +2152,12 @@
       "uri_deezer": "deezer://track/2406223455",
       "alt_artists": [
         "Malle Anja"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Peter Wackel",
@@ -1777,7 +2177,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=86bdOs8Q33s",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2195862057"
+      "uri_deezer": "deezer://track/2195862057",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "David Dichter",
@@ -1801,7 +2206,12 @@
       "alt_artists": [
         "Inki Nici",
         "Dj Aaron"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Ina Colada",
@@ -1821,7 +2231,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xTHtV4NSKwk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/70082673"
+      "uri_deezer": "deezer://track/70082673",
+      "fun_fact": "A Mallorca / Ballermann party hit (2013).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2013).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2013).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2013).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2013)."
     },
     {
       "artist": "Julian Sommer",
@@ -1841,7 +2256,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bK1k_nDY0o0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2066590617"
+      "uri_deezer": "deezer://track/2066590617",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Lorenz Büffel",
@@ -1861,7 +2281,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9jrBjOZWvmA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1732115507"
+      "uri_deezer": "deezer://track/1732115507",
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Malle Anja",
@@ -1884,7 +2309,12 @@
       "uri_deezer": "deezer://track/2195310717",
       "alt_artists": [
         "Lorenz Büffel"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Julian Sommer",
@@ -1904,7 +2334,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1R8Aq9TdM7c",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3400429861"
+      "uri_deezer": "deezer://track/3400429861",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Tobee",
@@ -1924,7 +2359,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5bgL1LMIkvg",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/346173531"
+      "uri_deezer": "deezer://track/346173531",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Lorenz Büffel",
@@ -1947,7 +2387,12 @@
       "uri_deezer": "deezer://track/1926808767",
       "alt_artists": [
         "Knossi"
-      ]
+      ],
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Mickie Krause",
@@ -1967,7 +2412,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=M9CDtiJhzuM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1522695572"
+      "uri_deezer": "deezer://track/1522695572",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Die Draufgänger",
@@ -1990,7 +2440,12 @@
       "uri_deezer": "deezer://track/2125898617",
       "alt_artists": [
         "Ikke Hüftgold"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2023).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2023).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2023).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2023)."
     },
     {
       "artist": "Mia Julia",
@@ -2014,7 +2469,12 @@
       "alt_artists": [
         "Malle Anja",
         "Lorenz Büffel"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Peter Wackel",
@@ -2026,7 +2486,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=JGBUp35-ZqQ",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Bierkapitän",
@@ -2050,7 +2515,12 @@
       "alt_artists": [
         "Andy Luxx",
         "Dj Aaron"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Die Zipfelbuben",
@@ -2074,7 +2544,12 @@
       "alt_artists": [
         "Der Zipfelbube",
         "DJ Cashi"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Honk!",
@@ -2094,7 +2569,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5TV9_BTlZrs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598567322"
+      "uri_deezer": "deezer://track/2598567322",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Julian Sommer",
@@ -2114,7 +2594,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5H78PJkYZ9w",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1834442237"
+      "uri_deezer": "deezer://track/1834442237",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "Mia Julia",
@@ -2137,7 +2622,12 @@
       "uri_deezer": "deezer://track/1394255372",
       "alt_artists": [
         "Mütze Katze"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Julian Sommer",
@@ -2157,7 +2647,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3FoxrP3P8gk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1667190232"
+      "uri_deezer": "deezer://track/1667190232",
+      "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
+      "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
+      "fun_fact_es": "Julian Sommer es una estrella de la nueva generación de la fiesta de Mallorca; su \"Dicht im Flieger\" fue un exitazo en 2022.",
+      "fun_fact_fr": "Julian Sommer est une star de la nouvelle génération de la fête à Majorque ; son \"Dicht im Flieger\" fut un énorme tube en 2022.",
+      "fun_fact_nl": "Julian Sommer is een Mallorca-feeststerren van de nieuwe generatie; zijn \"Dicht im Flieger\" was een grote hit in 2022."
     },
     {
       "artist": "DJ Robin",
@@ -2180,7 +2675,12 @@
       "uri_deezer": "deezer://track/1777525717",
       "alt_artists": [
         "Schürze"
-      ]
+      ],
+      "fun_fact": "\"Layla\" was the German #1 of summer 2022 and sparked a nationwide debate — some town festivals tried to ban it.",
+      "fun_fact_de": "\"Layla\" war der Sommerhit und Nummer-1-Hit 2022 und löste eine bundesweite Debatte aus — einzelne Volksfeste wollten es verbieten.",
+      "fun_fact_es": "\"Layla\" fue el n.º 1 de Alemania en el verano de 2022 y desató un debate nacional; algunas fiestas locales intentaron prohibirla.",
+      "fun_fact_fr": "\"Layla\" fut le n°1 allemand de l'été 2022 et déclencha un débat national — certaines fêtes locales ont voulu l'interdire.",
+      "fun_fact_nl": "\"Layla\" was de Duitse zomerhit en nummer 1 van 2022 en zorgde voor een landelijk debat — sommige dorpsfeesten wilden het verbieden."
     },
     {
       "artist": "Peter Wackel",
@@ -2200,7 +2700,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RRt3z0jQ8fE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2056645967"
+      "uri_deezer": "deezer://track/2056645967",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Julian Benz",
@@ -2220,7 +2725,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ww5VZc40O90",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598562402"
+      "uri_deezer": "deezer://track/2598562402",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Peter Wackel",
@@ -2240,7 +2750,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LHTF9dUfw9c",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3164082"
+      "uri_deezer": "deezer://track/3164082",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Stefan Stürmer",
@@ -2264,7 +2779,12 @@
       "alt_artists": [
         "Bierkapitän",
         "Julian Sommer"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Tim Toupet",
@@ -2287,7 +2807,12 @@
       "uri_deezer": "deezer://track/433037562",
       "alt_artists": [
         "Frenzy"
-      ]
+      ],
+      "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
+      "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
+      "fun_fact_es": "Tim Toupet es un cantante de Schlager fiestero conocido por sus éxitos cómicos para cantar.",
+      "fun_fact_fr": "Tim Toupet est un chanteur de Schlager festif connu pour ses tubes humoristiques à reprendre en chœur.",
+      "fun_fact_nl": "Tim Toupet is een feest-Schlagerzanger bekend om grappige meezinghits."
     },
     {
       "artist": "Honk!",
@@ -2310,7 +2835,12 @@
       "uri_deezer": "deezer://track/2598568972",
       "alt_artists": [
         "Deejay Matze"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Markus Becker",
@@ -2333,7 +2863,12 @@
       "uri_deezer": "deezer://track/2139771297",
       "alt_artists": [
         "Bierkapitän"
-      ]
+      ],
+      "fun_fact": "Markus Becker is a party-Schlager singer famous for the line-dance hit \"Das rote Pferd\".",
+      "fun_fact_de": "Markus Becker ist ein Party-Schlager-Sänger, berühmt für den Line-Dance-Hit \"Das rote Pferd\".",
+      "fun_fact_es": "Markus Becker es un cantante de Schlager fiestero famoso por el éxito de line dance \"Das rote Pferd\".",
+      "fun_fact_fr": "Markus Becker est un chanteur de Schlager festif célèbre pour le tube de line dance \"Das rote Pferd\".",
+      "fun_fact_nl": "Markus Becker is een feest-Schlagerzanger beroemd van de line-dancehit \"Das rote Pferd\"."
     },
     {
       "artist": "Peter Wackel",
@@ -2353,7 +2888,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Im5cIDzpDuw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1993429497"
+      "uri_deezer": "deezer://track/1993429497",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Brings",
@@ -2373,7 +2913,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=00W44I0ti-Q",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/88278237"
+      "uri_deezer": "deezer://track/88278237",
+      "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
+      "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
+      "fun_fact_es": "Brings es una banda de Colonia conocida sobre todo por el himno de carnaval \"Superjeilezick\".",
+      "fun_fact_fr": "Brings est un groupe de Cologne connu surtout pour l'hymne de carnaval \"Superjeilezick\".",
+      "fun_fact_nl": "Brings is een band uit Keulen, vooral bekend van de carnavalshit \"Superjeilezick\"."
     },
     {
       "artist": "Peter Wackel",
@@ -2396,7 +2941,12 @@
       "uri_deezer": "deezer://track/3164083",
       "alt_artists": [
         "Chriss Tuxi"
-      ]
+      ],
+      "fun_fact": "\"Joana\" is one of Peter Wackel's signature songs and a Ballermann anthem played every season.",
+      "fun_fact_de": "\"Joana\" ist einer von Peter Wackels Signature-Songs und eine Ballermann-Hymne, die jede Saison läuft.",
+      "fun_fact_es": "\"Joana\" es una de las canciones insignia de Peter Wackel y un himno del Ballermann que suena cada temporada.",
+      "fun_fact_fr": "\"Joana\" est l'un des titres emblématiques de Peter Wackel et un hymne du Ballermann joué chaque saison.",
+      "fun_fact_nl": "\"Joana\" is een van Peter Wackels kenmerkende nummers en een Ballermann-anthem dat elk seizoen klinkt."
     },
     {
       "artist": "Tim Toupet",
@@ -2416,7 +2966,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Vsz3sp1Ja3M",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/15319294"
+      "uri_deezer": "deezer://track/15319294",
+      "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
+      "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
+      "fun_fact_es": "Tim Toupet es un cantante de Schlager fiestero conocido por sus éxitos cómicos para cantar.",
+      "fun_fact_fr": "Tim Toupet est un chanteur de Schlager festif connu pour ses tubes humoristiques à reprendre en chœur.",
+      "fun_fact_nl": "Tim Toupet is een feest-Schlagerzanger bekend om grappige meezinghits."
     },
     {
       "artist": "Peter Wackel",
@@ -2436,7 +2991,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=J-MHp8z9Lx0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/81030852"
+      "uri_deezer": "deezer://track/81030852",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Stefan Stürmer",
@@ -2456,7 +3016,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4EDnDjZoVso",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1685014507"
+      "uri_deezer": "deezer://track/1685014507",
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -2472,7 +3037,12 @@
       "alt_artists": [
         "VFL Eschhofen",
         "Kreisligalegende"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -2484,7 +3054,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=R1khp5lA6Cc",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Peter Wackel",
@@ -2504,7 +3079,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KGQ65ywSC1I",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/51419701"
+      "uri_deezer": "deezer://track/51419701",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Rick Arena",
@@ -2524,7 +3104,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L_BUIVGKlrA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/887060442"
+      "uri_deezer": "deezer://track/887060442",
+      "fun_fact": "A Mallorca / Ballermann party hit (2011).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2011).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2011).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2011).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2011)."
     },
     {
       "artist": "Jürgen Drews",
@@ -2544,7 +3129,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RXanHWN-h00",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/417358492"
+      "uri_deezer": "deezer://track/417358492",
+      "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
+      "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
+      "fun_fact_es": "Jürgen Drews — el autoproclamado \"Rey de Mallorca\" — fue una leyenda del Schlager alemán hasta su retiro en 2023.",
+      "fun_fact_fr": "Jürgen Drews — l'autoproclamé \"Roi de Majorque\" — fut une légende du Schlager allemand jusqu'à sa retraite en 2023.",
+      "fun_fact_nl": "Jürgen Drews — de zelfbenoemde \"Koning van Mallorca\" — was een legende van de Duitse Schlager tot zijn afscheid in 2023."
     },
     {
       "artist": "Rick Arena",
@@ -2556,7 +3146,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=X0qtLof0eeg",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "A Mallorca / Ballermann party hit (2010).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2010).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2010).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2010).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2010)."
     },
     {
       "artist": "Jürgen Drews",
@@ -2576,7 +3171,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bHbNI2I_r1U",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/417358452"
+      "uri_deezer": "deezer://track/417358452",
+      "fun_fact": "\"Ein Bett im Kornfeld\" is the timeless 1976 Jürgen Drews classic — here in a 2017 re-recording.",
+      "fun_fact_de": "\"Ein Bett im Kornfeld\" ist der zeitlose Jürgen-Drews-Klassiker von 1976 — hier in einer Neuaufnahme von 2017.",
+      "fun_fact_es": "\"Ein Bett im Kornfeld\" es el clásico atemporal de Jürgen Drews de 1976, aquí en una regrabación de 2017.",
+      "fun_fact_fr": "\"Ein Bett im Kornfeld\" est le classique intemporel de Jürgen Drews de 1976 — ici en réenregistrement de 2017.",
+      "fun_fact_nl": "\"Ein Bett im Kornfeld\" is de tijdloze Jürgen Drews-klassieker uit 1976 — hier in een heropname uit 2017."
     },
     {
       "artist": "Peter Wackel",
@@ -2596,7 +3196,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DZWgwWh2ZFo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/70128395"
+      "uri_deezer": "deezer://track/70128395",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Sabbotage",
@@ -2616,7 +3221,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eg1yzyFSaw8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598565512"
+      "uri_deezer": "deezer://track/2598565512",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Jürgen Drews",
@@ -2636,7 +3246,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5G9IH2pOYUA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/417358532"
+      "uri_deezer": "deezer://track/417358532",
+      "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
+      "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
+      "fun_fact_es": "Jürgen Drews — el autoproclamado \"Rey de Mallorca\" — fue una leyenda del Schlager alemán hasta su retiro en 2023.",
+      "fun_fact_fr": "Jürgen Drews — l'autoproclamé \"Roi de Majorque\" — fut une légende du Schlager allemand jusqu'à sa retraite en 2023.",
+      "fun_fact_nl": "Jürgen Drews — de zelfbenoemde \"Koning van Mallorca\" — was een legende van de Duitse Schlager tot zijn afscheid in 2023."
     },
     {
       "artist": "Sabbotage",
@@ -2656,7 +3271,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4Qzczb3Zow",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/70557285"
+      "uri_deezer": "deezer://track/70557285",
+      "fun_fact": "A Mallorca / Ballermann party hit (2013).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2013).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2013).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2013).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2013)."
     },
     {
       "artist": "Mickie Krause",
@@ -2676,7 +3296,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UAdiG824dtk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/139404725"
+      "uri_deezer": "deezer://track/139404725",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Stefan Stürmer",
@@ -2696,7 +3321,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2066569277"
+      "uri_deezer": "deezer://track/2066569277",
+      "fun_fact": "A Mallorca / Ballermann party hit (2022).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
     },
     {
       "artist": "Paveier",
@@ -2716,7 +3346,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RLEFFpe0ZDA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2647773"
+      "uri_deezer": "deezer://track/2647773",
+      "fun_fact": "A Mallorca / Ballermann party hit (2007).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2007).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2007).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2007).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2007)."
     },
     {
       "artist": "Jürgen Drews",
@@ -2736,7 +3371,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jSuT0dg_R-Y",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1110639402"
+      "uri_deezer": "deezer://track/1110639402",
+      "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
+      "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
+      "fun_fact_es": "Jürgen Drews — el autoproclamado \"Rey de Mallorca\" — fue una leyenda del Schlager alemán hasta su retiro en 2023.",
+      "fun_fact_fr": "Jürgen Drews — l'autoproclamé \"Roi de Majorque\" — fut une légende du Schlager allemand jusqu'à sa retraite en 2023.",
+      "fun_fact_nl": "Jürgen Drews — de zelfbenoemde \"Koning van Mallorca\" — was een legende van de Duitse Schlager tot zijn afscheid in 2023."
     },
     {
       "artist": "Brings",
@@ -2756,7 +3396,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OP2QTdh0J6s",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2809924"
+      "uri_deezer": "deezer://track/2809924",
+      "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
+      "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
+      "fun_fact_es": "Brings es una banda de Colonia conocida sobre todo por el himno de carnaval \"Superjeilezick\".",
+      "fun_fact_fr": "Brings est un groupe de Cologne connu surtout pour l'hymne de carnaval \"Superjeilezick\".",
+      "fun_fact_nl": "Brings is een band uit Keulen, vooral bekend van de carnavalshit \"Superjeilezick\"."
     },
     {
       "artist": "Tim Toupet",
@@ -2776,7 +3421,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YB2LQOeRcm0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/650269792"
+      "uri_deezer": "deezer://track/650269792",
+      "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
+      "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
+      "fun_fact_es": "Tim Toupet es un cantante de Schlager fiestero conocido por sus éxitos cómicos para cantar.",
+      "fun_fact_fr": "Tim Toupet est un chanteur de Schlager festif connu pour ses tubes humoristiques à reprendre en chœur.",
+      "fun_fact_nl": "Tim Toupet is een feest-Schlagerzanger bekend om grappige meezinghits."
     },
     {
       "artist": "Frenzy",
@@ -2799,7 +3449,12 @@
       "uri_deezer": "deezer://track/624011192",
       "alt_artists": [
         "Mia Julia"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2019).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2019).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2019).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2019).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2019)."
     },
     {
       "artist": "Tobee",
@@ -2819,7 +3474,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4WOOZONIdhA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/664225902"
+      "uri_deezer": "deezer://track/664225902",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Brings",
@@ -2839,7 +3499,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=93lYqZztgxY",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/71847519"
+      "uri_deezer": "deezer://track/71847519",
+      "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
+      "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
+      "fun_fact_es": "Brings es una banda de Colonia conocida sobre todo por el himno de carnaval \"Superjeilezick\".",
+      "fun_fact_fr": "Brings est un groupe de Cologne connu surtout pour l'hymne de carnaval \"Superjeilezick\".",
+      "fun_fact_nl": "Brings is een band uit Keulen, vooral bekend van de carnavalshit \"Superjeilezick\"."
     },
     {
       "artist": "Rick Arena",
@@ -2859,7 +3524,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xp-sgjsb0wo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/664463032"
+      "uri_deezer": "deezer://track/664463032",
+      "fun_fact": "A Mallorca / Ballermann party hit (2019).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2019).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2019).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2019).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2019)."
     },
     {
       "artist": "Mia Julia",
@@ -2879,7 +3549,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ADqR7u-rkyI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598585892"
+      "uri_deezer": "deezer://track/2598585892",
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Lorenz Büffel",
@@ -2902,7 +3577,12 @@
       "uri_deezer": "deezer://track/2598566852",
       "alt_artists": [
         "DJ Eisbär"
-      ]
+      ],
+      "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
+      "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
+      "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
+      "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
     },
     {
       "artist": "Tim Toupet",
@@ -2922,7 +3602,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=a7k8ASQWrtE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/479899102"
+      "uri_deezer": "deezer://track/479899102",
+      "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
+      "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
+      "fun_fact_es": "Tim Toupet es un cantante de Schlager fiestero conocido por sus éxitos cómicos para cantar.",
+      "fun_fact_fr": "Tim Toupet est un chanteur de Schlager festif connu pour ses tubes humoristiques à reprendre en chœur.",
+      "fun_fact_nl": "Tim Toupet is een feest-Schlagerzanger bekend om grappige meezinghits."
     },
     {
       "artist": "Mia Julia",
@@ -2945,7 +3630,12 @@
       "uri_deezer": "deezer://track/2598567562",
       "alt_artists": [
         "DJ Mico"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Sabbotage",
@@ -2965,7 +3655,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5zfrkyQoePs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/660214822"
+      "uri_deezer": "deezer://track/660214822",
+      "fun_fact": "A Mallorca / Ballermann party hit (2019).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2019).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2019).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2019).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2019)."
     },
     {
       "artist": "Peter Wackel",
@@ -2985,7 +3680,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SUrnJYYEbi8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/482656772"
+      "uri_deezer": "deezer://track/482656772",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Mia Julia",
@@ -3005,7 +3705,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OmQz5N6x4pE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598565492"
+      "uri_deezer": "deezer://track/2598565492",
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Lorenz Büffel",
@@ -3025,7 +3730,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2Yezroz4O7M",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/127667789"
+      "uri_deezer": "deezer://track/127667789",
+      "fun_fact": "\"Johnny Däpp\" was Lorenz Büffel's breakthrough — the \"Yippie Yippie Yeah\" hook became a Mallorca standard.",
+      "fun_fact_de": "\"Johnny Däpp\" war Lorenz Büffels Durchbruch — der \"Yippie Yippie Yeah\"-Hook wurde zum Mallorca-Standard.",
+      "fun_fact_es": "\"Johnny Däpp\" fue el gran éxito de Lorenz Büffel; el estribillo \"Yippie Yippie Yeah\" se volvió un clásico de Mallorca.",
+      "fun_fact_fr": "\"Johnny Däpp\" fut la révélation de Lorenz Büffel — le refrain \"Yippie Yippie Yeah\" est devenu un standard de Majorque.",
+      "fun_fact_nl": "\"Johnny Däpp\" was Lorenz Büffels doorbraak — de \"Yippie Yippie Yeah\"-hook werd een Mallorca-standaard."
     },
     {
       "artist": "Tobee",
@@ -3045,7 +3755,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pU6OZmbO3W0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/556981552"
+      "uri_deezer": "deezer://track/556981552",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Mia Julia",
@@ -3065,7 +3780,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=auESWfe2yG0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/141827711"
+      "uri_deezer": "deezer://track/141827711",
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Stefan Stürmer",
@@ -3085,7 +3805,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VyZ5dM0BU_0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/361234931"
+      "uri_deezer": "deezer://track/361234931",
+      "fun_fact": "A Mallorca / Ballermann party hit (2017).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2017).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2017).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2017).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2017)."
     },
     {
       "artist": "Peter Wackel",
@@ -3105,7 +3830,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Sm8LAwKPJuU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/103871698"
+      "uri_deezer": "deezer://track/103871698",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Tobee",
@@ -3117,7 +3847,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=PJVqqdbaluE",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Tobee's party cover of \"Cordula Grün\" turned the originally folk-pop tune into a Ballermann smash.",
+      "fun_fact_de": "Tobees Party-Coverversion von \"Cordula Grün\" machte aus dem ursprünglichen Folk-Pop-Lied einen Ballermann-Hit.",
+      "fun_fact_es": "La versión fiestera de Tobee de \"Cordula Grün\" convirtió la canción folk-pop original en un éxito del Ballermann.",
+      "fun_fact_fr": "La reprise festive de \"Cordula Grün\" par Tobee a transformé le morceau folk-pop d'origine en tube du Ballermann.",
+      "fun_fact_nl": "Tobees feestcover van \"Cordula Grün\" maakte van het oorspronkelijke folk-popnummer een Ballermann-hit."
     },
     {
       "artist": "Tobee",
@@ -3137,7 +3872,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tcDEpbiddU0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/353122341"
+      "uri_deezer": "deezer://track/353122341",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Almklausi",
@@ -3160,7 +3900,12 @@
       "uri_deezer": "deezer://track/456436052",
       "alt_artists": [
         "Specktakel"
-      ]
+      ],
+      "fun_fact": "\"Mama Laudaaa\" was one of the biggest Ballermann hits of 2018 and a TikTok favourite.",
+      "fun_fact_de": "\"Mama Laudaaa\" war einer der größten Ballermann-Hits 2018 und ein TikTok-Favorit.",
+      "fun_fact_es": "\"Mama Laudaaa\" fue uno de los mayores éxitos del Ballermann de 2018 y un favorito de TikTok.",
+      "fun_fact_fr": "\"Mama Laudaaa\" fut l'un des plus grands tubes du Ballermann en 2018 et un favori de TikTok.",
+      "fun_fact_nl": "\"Mama Laudaaa\" was een van de grootste Ballermann-hits van 2018 en een TikTok-favoriet."
     },
     {
       "artist": "Markus Becker",
@@ -3180,7 +3925,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wrrqXZDC9YE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2420409535"
+      "uri_deezer": "deezer://track/2420409535",
+      "fun_fact": "Markus Becker is a party-Schlager singer famous for the line-dance hit \"Das rote Pferd\".",
+      "fun_fact_de": "Markus Becker ist ein Party-Schlager-Sänger, berühmt für den Line-Dance-Hit \"Das rote Pferd\".",
+      "fun_fact_es": "Markus Becker es un cantante de Schlager fiestero famoso por el éxito de line dance \"Das rote Pferd\".",
+      "fun_fact_fr": "Markus Becker est un chanteur de Schlager festif célèbre pour le tube de line dance \"Das rote Pferd\".",
+      "fun_fact_nl": "Markus Becker is een feest-Schlagerzanger beroemd van de line-dancehit \"Das rote Pferd\"."
     },
     {
       "artist": "Honk!",
@@ -3200,7 +3950,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Zk-GhIKtLHc",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598567692"
+      "uri_deezer": "deezer://track/2598567692",
+      "fun_fact": "A Mallorca / Ballermann party hit (2024).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2024).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2024).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2024)."
     },
     {
       "artist": "Peter Wackel",
@@ -3220,7 +3975,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GuCSesMFUGU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/145052236"
+      "uri_deezer": "deezer://track/145052236",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Tobee",
@@ -3240,7 +4000,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gUOltPlrz5E",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/631190652"
+      "uri_deezer": "deezer://track/631190652",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Peter Wackel",
@@ -3260,7 +4025,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MeZfP-JSJTw",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2584815622"
+      "uri_deezer": "deezer://track/2584815622",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Peter Wackel",
@@ -3280,7 +4050,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FqjGxCtFhDI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/405520092"
+      "uri_deezer": "deezer://track/405520092",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Mia Julia",
@@ -3300,7 +4075,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vGFNXN4Mm0k",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2598567202"
+      "uri_deezer": "deezer://track/2598567202",
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Tobee",
@@ -3320,7 +4100,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UEI7txY9dio",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/61721437"
+      "uri_deezer": "deezer://track/61721437",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Mickie Krause",
@@ -3340,7 +4125,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KJV1ZMMZ0pU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3136075381"
+      "uri_deezer": "deezer://track/3136075381",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Ingo ohne Flamingo",
@@ -3360,7 +4150,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=b8nWIxEODn0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/453959592"
+      "uri_deezer": "deezer://track/453959592",
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Mia Julia",
@@ -3383,7 +4178,12 @@
       "uri_deezer": "deezer://track/2598585822",
       "alt_artists": [
         "Dorfrocker"
-      ]
+      ],
+      "fun_fact": "Mia Julia is one of the most popular performers on the Mallorca party scene.",
+      "fun_fact_de": "Mia Julia ist eine der beliebtesten Performerinnen der Mallorca-Partyszene.",
+      "fun_fact_es": "Mia Julia es una de las artistas más populares de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Mia Julia est l'une des artistes les plus populaires de la scène festive de Majorque.",
+      "fun_fact_nl": "Mia Julia is een van de populairste artiesten in de Mallorca-feestscene."
     },
     {
       "artist": "Mickie Krause",
@@ -3403,7 +4203,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VAJzBz4DtsE",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/139404723"
+      "uri_deezer": "deezer://track/139404723",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Sabbotage",
@@ -3426,7 +4231,12 @@
       "uri_deezer": "deezer://track/98831946",
       "alt_artists": [
         "Deejay Biene"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2015).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2015).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2015).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2015).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2015)."
     },
     {
       "artist": "Remmi Demmi Boys",
@@ -3449,7 +4259,12 @@
       "uri_deezer": "deezer://track/501254962",
       "alt_artists": [
         "Suffgeschwader"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Tobee",
@@ -3469,7 +4284,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0gxXe7IUMZA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/123880402"
+      "uri_deezer": "deezer://track/123880402",
+      "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
+      "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
+      "fun_fact_es": "Tobee es un artista del Schlager fiestero de Mallorca, conocido por sus pegadizas versiones y temas propios.",
+      "fun_fact_fr": "Tobee est un artiste du Schlager festif de Majorque, connu pour ses reprises et titres originaux entraînants.",
+      "fun_fact_nl": "Tobee is een Mallorca-feest-Schlagerartiest, bekend om aanstekelijke feestcovers en eigen werk."
     },
     {
       "artist": "Mickie Krause",
@@ -3489,7 +4309,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4JfhOtZJtZo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3136075321"
+      "uri_deezer": "deezer://track/3136075321",
+      "fun_fact": "\"Schatzi schenk mir ein Foto\" is one of Mickie Krause's most-played sing-along anthems.",
+      "fun_fact_de": "\"Schatzi schenk mir ein Foto\" zählt zu Mickie Krauses meistgespielten Mitsing-Hymnen.",
+      "fun_fact_es": "\"Schatzi schenk mir ein Foto\" es uno de los himnos para cantar más sonados de Mickie Krause.",
+      "fun_fact_fr": "\"Schatzi schenk mir ein Foto\" est l'un des hymnes à reprendre en chœur les plus joués de Mickie Krause.",
+      "fun_fact_nl": "\"Schatzi schenk mir ein Foto\" is een van Mickie Krauses meestgedraaide meezing-anthems."
     },
     {
       "artist": "Peter Wackel",
@@ -3512,7 +4337,12 @@
       "uri_deezer": "deezer://track/13486846",
       "alt_artists": [
         "Chriss Tuxi"
-      ]
+      ],
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Ina Colada",
@@ -3532,7 +4362,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A1MGW8bjxtQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/145690796"
+      "uri_deezer": "deezer://track/145690796",
+      "fun_fact": "A Mallorca / Ballermann party hit (2017).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2017).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2017).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2017).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2017)."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -3544,7 +4379,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=b3CYsa_luYI",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Ole ohne Kohle",
@@ -3564,7 +4404,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=D3OtI4pjbgc",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/489442172"
+      "uri_deezer": "deezer://track/489442172",
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Peter Wackel",
@@ -3584,7 +4429,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=p2djvpbA5e0",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/139077379"
+      "uri_deezer": "deezer://track/139077379",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Mickie Krause",
@@ -3607,7 +4457,12 @@
       "uri_deezer": "deezer://track/124190262",
       "alt_artists": [
         "Chaos Team"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Sabbotage",
@@ -3630,7 +4485,12 @@
       "uri_deezer": "deezer://track/88983775",
       "alt_artists": [
         "Dj Biene"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2014).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2014).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2014).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2014).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2014)."
     },
     {
       "artist": "Mickie Krause",
@@ -3650,7 +4510,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=V7rIlSiynnk",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/127244027"
+      "uri_deezer": "deezer://track/127244027",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Axel Fischer",
@@ -3670,7 +4535,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HV-1R3-HzDI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1173643792"
+      "uri_deezer": "deezer://track/1173643792",
+      "fun_fact": "Axel Fischer is a party-Schlager singer best known for the Mallorca hit \"Amsterdam\".",
+      "fun_fact_de": "Axel Fischer ist ein Party-Schlager-Sänger, bekannt vor allem durch den Mallorca-Hit \"Amsterdam\".",
+      "fun_fact_es": "Axel Fischer es un cantante de Schlager fiestero conocido sobre todo por el éxito de Mallorca \"Amsterdam\".",
+      "fun_fact_fr": "Axel Fischer est un chanteur de Schlager festif connu surtout pour le tube majorquin \"Amsterdam\".",
+      "fun_fact_nl": "Axel Fischer is een feest-Schlagerzanger vooral bekend van de Mallorca-hit \"Amsterdam\"."
     },
     {
       "artist": "Mickie Krause",
@@ -3690,7 +4560,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qEKuLvKINxI",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3138448611"
+      "uri_deezer": "deezer://track/3138448611",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Ramonstar",
@@ -3710,7 +4585,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=J9BUVx6HjpA",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/479068622"
+      "uri_deezer": "deezer://track/479068622",
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Jöli",
@@ -3730,7 +4610,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y19evaOjO1o",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/123355000"
+      "uri_deezer": "deezer://track/123355000",
+      "fun_fact": "A Mallorca / Ballermann party hit (2016).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2016).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2016).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2016).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2016)."
     },
     {
       "artist": "Frenzy Blitz",
@@ -3750,7 +4635,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Hm3x0YUF48",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/462482932"
+      "uri_deezer": "deezer://track/462482932",
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Ikke Hüftgold",
@@ -3765,7 +4655,12 @@
       "uri_deezer": null,
       "alt_artists": [
         "Mia Julia"
-      ]
+      ],
+      "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
+      "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
+      "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
+      "fun_fact_fr": "Ikke Hüftgold est artiste du Ballermann et patron de label — son label Summerfield était derrière le tube \"Layla\" de 2022.",
+      "fun_fact_nl": "Ikke Hüftgold is Ballermann-artiest en labelbaas — zijn label Summerfield zat achter de hit \"Layla\" uit 2022."
     },
     {
       "artist": "Mickie Krause",
@@ -3788,7 +4683,12 @@
       "uri_deezer": "deezer://track/134521826",
       "alt_artists": [
         "Klaus & Klaus"
-      ]
+      ],
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "minnie rock",
@@ -3800,7 +4700,12 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=hEUMThMU0l4",
       "uri_tidal": null,
-      "uri_deezer": null
+      "uri_deezer": null,
+      "fun_fact": "A Mallorca / Ballermann party hit (2018).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2018).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2018)."
     },
     {
       "artist": "Jürgen Milski",
@@ -3820,7 +4725,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f3NiVLswEic",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/492254452"
+      "uri_deezer": "deezer://track/492254452",
+      "fun_fact": "Jürgen Milski rose to fame on Big Brother and became a fixture of the Mallorca party scene.",
+      "fun_fact_de": "Jürgen Milski wurde durch Big Brother bekannt und ist seitdem fester Bestandteil der Mallorca-Partyszene.",
+      "fun_fact_es": "Jürgen Milski se hizo famoso en Gran Hermano y se convirtió en un fijo de la escena de fiesta de Mallorca.",
+      "fun_fact_fr": "Jürgen Milski s'est fait connaître dans Big Brother et est devenu un incontournable de la scène festive de Majorque.",
+      "fun_fact_nl": "Jürgen Milski werd bekend via Big Brother en is sindsdien een vaste waarde in de Mallorca-feestscene."
     },
     {
       "artist": "Peter Wackel",
@@ -3840,7 +4750,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QmAs9U5si_Q",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/65544206"
+      "uri_deezer": "deezer://track/65544206",
+      "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
+      "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
+      "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
+      "fun_fact_fr": "Peter Wackel est un pilier de la scène Schlager festive de Majorque et un habitué du Bierkönig.",
+      "fun_fact_nl": "Peter Wackel is een vaste waarde in de Mallorca-feest-Schlagerscene en vaste gast in de Bierkönig."
     },
     {
       "artist": "Mickie Krause",
@@ -3860,7 +4775,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xPL0xX28HSo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/78386143"
+      "uri_deezer": "deezer://track/78386143",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Rick Arena",
@@ -3883,7 +4803,12 @@
       "uri_deezer": "deezer://track/100769312",
       "alt_artists": [
         "DJ Düse"
-      ]
+      ],
+      "fun_fact": "A Mallorca / Ballermann party hit (2015).",
+      "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2015).",
+      "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2015).",
+      "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2015).",
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2015)."
     },
     {
       "artist": "Mickie Krause",
@@ -3903,7 +4828,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MMziNvvnS8U",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3694090582"
+      "uri_deezer": "deezer://track/3694090582",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Mickie Krause",
@@ -3923,7 +4853,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YGGnS4QQndo",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/3138448641"
+      "uri_deezer": "deezer://track/3138448641",
+      "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
+      "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
+      "fun_fact_es": "Mickie Krause es uno de los animadores del Ballermann más conocidos de Alemania, famoso por sus éxitos para cantar.",
+      "fun_fact_fr": "Mickie Krause est l'un des animateurs du Ballermann les plus connus d'Allemagne, célèbre pour ses tubes à reprendre en chœur.",
+      "fun_fact_nl": "Mickie Krause is een van Duitslands bekendste Ballermann-entertainers, beroemd om zijn meezing-feesthits."
     },
     {
       "artist": "Wolfgang Petry",
@@ -3943,7 +4878,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-rq0KKmjxUs",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/69946270"
+      "uri_deezer": "deezer://track/69946270",
+      "fun_fact": "Wolfgang Petry's \"Ballermann\" (1998) helped cement the Mallorca beach strip as a party-music institution.",
+      "fun_fact_de": "Wolfgang Petrys \"Ballermann\" (1998) trug dazu bei, die Strandmeile Mallorcas als Party-Musik-Institution zu etablieren.",
+      "fun_fact_es": "\"Ballermann\" (1998) de Wolfgang Petry ayudó a consolidar la playa de Mallorca como institución de la música de fiesta.",
+      "fun_fact_fr": "\"Ballermann\" (1998) de Wolfgang Petry a contribué à faire de la plage de Majorque une institution de la musique de fête.",
+      "fun_fact_nl": "Wolfgang Petry's \"Ballermann\" (1998) hielp de strandboulevard van Mallorca als feestmuziek-instituut te vestigen."
     },
     {
       "artist": "DJ Ötzi",
@@ -3963,7 +4903,12 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jq-D7UXroeM",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/5137423"
+      "uri_deezer": "deezer://track/5137423",
+      "fun_fact": "DJ Ötzi's party version of \"Sweet Caroline\" is an après-ski and Ballermann sing-along staple.",
+      "fun_fact_de": "DJ Ötzis Partyversion von \"Sweet Caroline\" ist ein Après-Ski- und Ballermann-Mitsing-Klassiker.",
+      "fun_fact_es": "La versión fiestera de \"Sweet Caroline\" de DJ Ötzi es un clásico para cantar del après-ski y el Ballermann.",
+      "fun_fact_fr": "La version festive de \"Sweet Caroline\" par DJ Ötzi est un classique à reprendre en chœur de l'après-ski et du Ballermann.",
+      "fun_fact_nl": "DJ Ötzi's feestversie van \"Sweet Caroline\" is een meezing-klassieker van de après-ski en het Ballermann."
     }
   ]
 }
