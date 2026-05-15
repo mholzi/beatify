@@ -338,6 +338,20 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     announce_nobody_correct=tts_config.get(
                         "announce_nobody_correct", True
                     ),
+                    announce_exact_guess=tts_config.get("announce_exact_guess", True),
+                    announce_closest_guess=tts_config.get(
+                        "announce_closest_guess", True
+                    ),
+                    announce_streak_milestone=tts_config.get(
+                        "announce_streak_milestone", True
+                    ),
+                    announce_streak_broken=tts_config.get(
+                        "announce_streak_broken", False
+                    ),
+                    announce_leader_change=tts_config.get(
+                        "announce_leader_change", True
+                    ),
+                    announce_tied_first=tts_config.get("announce_tied_first", True),
                 )
                 await game_state.announce_game_start()
 

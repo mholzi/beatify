@@ -122,6 +122,15 @@ class GameState:
         self._tts_announce_time_up: bool = True
         self._tts_announce_correct_answer: bool = True
         self._tts_announce_nobody_correct: bool = True
+        # Issue #840 Phase 2: Player Achievement announcements
+        self._tts_announce_exact_guess: bool = True
+        self._tts_announce_closest_guess: bool = True
+        self._tts_announce_streak_milestone: bool = True
+        self._tts_announce_streak_broken: bool = False  # off — noisy mid-game
+        self._tts_announce_leader_change: bool = True
+        self._tts_announce_tied_first: bool = True
+        # Leader-change detection needs the prior round's leader name.
+        self._tts_previous_leader: str | None = None
         self._bg_tasks: set[asyncio.Task] = (
             set()
         )  # Issue #391: prevent GC of fire-and-forget tasks
@@ -1637,6 +1646,13 @@ class GameState:
         if had_submitters and not any_exact:
             await self.announce_nobody_correct()
 
+        # Issue #840 Phase 2: Player Achievement announcements. Wrapped so a
+        # TTS hiccup never blocks the REVEAL phase transition below.
+        try:
+            await self._announce_player_achievements(correct_year)
+        except (KeyError, AttributeError, TypeError, ValueError) as err:
+            _LOGGER.error("Phase-2 achievement announcements failed: %s", err)
+
         # Transition to REVEAL
         self._player_registry._reactions_this_phase = (
             set()
@@ -1995,6 +2011,13 @@ class GameState:
         announce_time_up: bool = True,
         announce_correct_answer: bool = True,
         announce_nobody_correct: bool = True,
+        # Issue #840 Phase 2: Player Achievement announcements
+        announce_exact_guess: bool = True,
+        announce_closest_guess: bool = True,
+        announce_streak_milestone: bool = True,
+        announce_streak_broken: bool = False,
+        announce_leader_change: bool = True,
+        announce_tied_first: bool = True,
     ) -> None:
         """Configure TTS announcement service for the game.
 
@@ -2020,6 +2043,14 @@ class GameState:
         self._tts_announce_time_up = announce_time_up
         self._tts_announce_correct_answer = announce_correct_answer
         self._tts_announce_nobody_correct = announce_nobody_correct
+        self._tts_announce_exact_guess = announce_exact_guess
+        self._tts_announce_closest_guess = announce_closest_guess
+        self._tts_announce_streak_milestone = announce_streak_milestone
+        self._tts_announce_streak_broken = announce_streak_broken
+        self._tts_announce_leader_change = announce_leader_change
+        self._tts_announce_tied_first = announce_tied_first
+        # Fresh game — no prior leader yet.
+        self._tts_previous_leader = None
 
     async def disable_tts(self) -> None:
         """Disable TTS announcements."""
@@ -2110,6 +2141,130 @@ class GameState:
             return
         message = "Nobody got it this round!"
         await self._tts_announce(message)
+
+    # ------------------------------------------------------------------
+    # Issue #840 Phase 2 — Player Achievement announcements
+    # ------------------------------------------------------------------
+
+    async def announce_exact_guess(self, player_names: list[str]) -> None:
+        """Announce players who guessed the year exactly (use case 6).
+
+        ``player_names`` is the list of players with years_off == 0 this
+        round. Single name → "Marco got it exactly right!"; multiple →
+        "Marco and Anna got it exactly right!".
+        """
+        if not self._tts_service or not self._tts_announce_exact_guess:
+            return
+        if not player_names:
+            return
+        if len(player_names) == 1:
+            message = f"{player_names[0]} got it exactly right!"
+        else:
+            names = " and ".join(player_names)
+            message = f"{names} got it exactly right!"
+        await self._tts_announce(message)
+
+    async def announce_closest_guess(self, player_name: str, year: int | None) -> None:
+        """Announce the Closest-Wins-mode round winner (use case 7)."""
+        if not self._tts_service or not self._tts_announce_closest_guess:
+            return
+        if year is None:
+            message = f"{player_name} was closest!"
+        else:
+            message = f"{player_name} was closest with {year}!"
+        await self._tts_announce(message)
+
+    async def announce_streak_milestone(self, player_name: str, streak: int) -> None:
+        """Announce a player hitting a streak milestone (use case 8)."""
+        if not self._tts_service or not self._tts_announce_streak_milestone:
+            return
+        message = f"{player_name} is on a {streak}-song streak!"
+        await self._tts_announce(message)
+
+    async def announce_streak_broken(self, player_name: str, streak: int) -> None:
+        """Announce a notable streak ending (use case 9).
+
+        Off by default — firing on every missed round mid-game is noisy.
+        Only fires for streaks worth calling out (caller gates on length).
+        """
+        if not self._tts_service or not self._tts_announce_streak_broken:
+            return
+        message = f"{player_name}'s streak ends at {streak}!"
+        await self._tts_announce(message)
+
+    async def announce_leader_change(self, player_name: str) -> None:
+        """Announce a new game leader (use case 10)."""
+        if not self._tts_service or not self._tts_announce_leader_change:
+            return
+        message = f"{player_name} just took the lead!"
+        await self._tts_announce(message)
+
+    async def announce_tied_first(self) -> None:
+        """Announce a tie at the top of the leaderboard (use case 11)."""
+        if not self._tts_service or not self._tts_announce_tied_first:
+            return
+        message = "It's a tie at the top!"
+        await self._tts_announce(message)
+
+    async def _announce_player_achievements(self, correct_year: int | None) -> None:
+        """Fire all Phase-2 achievement announcements for the round just scored.
+
+        Called from end_round() right after the Phase-1 REVEAL announcements,
+        before the phase transition. Reads post-scoring player state.
+
+        Ordering is intentional — accuracy first (exact / closest), then
+        streaks, then standings — so the audio narrates the round in the
+        order a host would describe it.
+        """
+        if not self._tts_service:
+            return
+        players = list(self.players.values())
+
+        # Use case 6 — exact guesses.
+        exact = [p.name for p in players if p.submitted and p.years_off == 0]
+        if exact:
+            await self.announce_exact_guess(exact)
+
+        # Use case 7 — Closest-Wins round winner. Only meaningful in that
+        # mode, and only when nobody was exact (otherwise #6 already covered
+        # it). The closest player is the one with the smallest years_off
+        # who still has a non-zero round_score after the closest-wins sweep.
+        if self.closest_wins_mode and not exact:
+            submitted = [p for p in players if p.submitted and p.years_off is not None]
+            if submitted:
+                winner = min(submitted, key=lambda p: p.years_off)
+                if winner.round_score > 0:
+                    await self.announce_closest_guess(winner.name, correct_year)
+
+        # Use case 8 — streak milestones. streak_bonus is non-zero only on
+        # the exact round a milestone (3/5/10/15/20/25) is reached.
+        for p in players:
+            if p.streak_bonus > 0:
+                await self.announce_streak_milestone(p.name, p.streak)
+
+        # Use case 9 — streak broken. previous_streak holds the pre-reset
+        # length for players who missed this round. Gate at >= 3 so a
+        # one-off miss after a short run doesn't trigger chatter.
+        for p in players:
+            if p.streak == 0 and p.previous_streak >= 3:
+                await self.announce_streak_broken(p.name, p.previous_streak)
+
+        # Use cases 10 + 11 — leader change / tie at the top.
+        leaderboard = sorted(players, key=lambda p: p.score, reverse=True)
+        if leaderboard and leaderboard[0].score > 0:
+            top_score = leaderboard[0].score
+            leaders = [p for p in leaderboard if p.score == top_score]
+            if len(leaders) > 1:
+                await self.announce_tied_first()
+                self._tts_previous_leader = None
+            else:
+                new_leader = leaders[0].name
+                if new_leader != self._tts_previous_leader:
+                    # Suppress the very first leader announcement — round 1
+                    # always "changes" the leader from nobody.
+                    if self._tts_previous_leader is not None:
+                        await self.announce_leader_change(new_leader)
+                self._tts_previous_leader = new_leader
 
     def adjust_volume(self, direction: str) -> float:
         """
