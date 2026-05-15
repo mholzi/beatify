@@ -3507,12 +3507,22 @@ function showAdminPlayingView(data) {
     if (artEl && data.song && data.song.album_art) artEl.src = data.song.album_art;
 
     // Admin-only song details (year, fun fact) — only for spectator admin (#660).
-    // Fair-play guard: hide if the admin is a participant OR if the incoming
-    // player list tags anyone as is_admin (covers races where `isPlaying` hasn't
-    // been restored yet after a reconnect).
+    // Fair-play guard: hide if the admin is a participant. We OR three signals
+    // so a reconnect race can't open a spoiler leak (#882):
+    //   - isPlaying            — runtime flag, but resets to false on reconnect
+    //                            until the player list is re-processed
+    //   - sessionStorage name  — set the moment the admin joins as a player;
+    //                            survives reload/reconnect, the durable signal
+    //   - players[].is_admin   — the incoming list, may briefly lag
+    // If ANY says "participant", spoilers stay hidden. A genuine spectator
+    // never sets beatify_admin_name, so this can't wrongly hide from them.
     var yearEl = document.getElementById('admin-song-year');
     var factEl = document.getElementById('admin-song-funfact');
-    var adminIsParticipant = isPlaying || (data.players || []).some(function(p) { return p.is_admin; });
+    var adminJoinedAsPlayer = false;
+    try { adminJoinedAsPlayer = !!sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* ignore */ }
+    var adminIsParticipant = isPlaying
+        || adminJoinedAsPlayer
+        || (data.players || []).some(function(p) { return p.is_admin; });
     if (data.admin_song && !adminIsParticipant) {
         if (yearEl) {
             if (data.admin_song.year) {
