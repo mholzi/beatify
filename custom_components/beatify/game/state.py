@@ -1657,25 +1657,15 @@ class GameState:
                 except (OSError, KeyError, TypeError, ValueError) as err:
                     _LOGGER.error("Failed to record song results: %s", err)
 
-        # Issue #471 Phase 1: Game Flow announcements at REVEAL.
-        # Fire BEFORE phase transition so the audio leads the visible state
-        # change. announce_nobody_correct is conditional — only when the
-        # round had at least one submitter and zero of them got years_off == 0.
-        await self.announce_correct_answer(correct_year)
-        had_submitters = any(p.submitted for p in self.players.values())
-        any_exact = any(p.submitted and p.years_off == 0 for p in self.players.values())
-        if had_submitters and not any_exact:
-            await self.announce_nobody_correct()
-
-        # Issue #840 Phase 2 + #841 Phase 3: Player Achievement and betting
-        # announcements. Wrapped so a TTS hiccup never blocks the REVEAL
-        # phase transition below.
+        # The per-round REVEAL announcements (correct answer, accuracy,
+        # streaks, bets, steal unlocks, standings) collected into ONE
+        # combined utterance — see _announce_reveal. Fired BEFORE the phase
+        # transition so the audio leads the visible state change, and
+        # wrapped so a TTS hiccup never blocks REVEAL below.
         try:
-            await self._announce_player_achievements(correct_year)
-            await self._announce_betting()
-            await self._announce_steal_unlocks()
+            await self._announce_reveal(correct_year)
         except (KeyError, AttributeError, TypeError, ValueError) as err:
-            _LOGGER.error("Phase-2/3/4 achievement announcements failed: %s", err)
+            _LOGGER.error("REVEAL announcement failed: %s", err)
 
         # Transition to REVEAL
         self._player_registry._reactions_this_phase = (
@@ -2170,168 +2160,109 @@ class GameState:
         message = "Time's up!"
         await self._tts_announce(message)
 
-    async def announce_correct_answer(self, correct_year: int | None) -> None:
-        """Announce the correct year at REVEAL (use case 4)."""
-        if not self._tts_service or not self._tts_announce_correct_answer:
-            return
-        if correct_year is None:
-            return
-        message = f"The answer was {correct_year}!"
-        await self._tts_announce(message)
+    async def _announce_reveal(self, correct_year: int | None) -> None:
+        """Build and speak the single combined REVEAL announcement.
 
-    async def announce_nobody_correct(self) -> None:
-        """Announce when no player guessed exactly (use case 5).
+        The per-round REVEAL events from phases 1-4 (correct answer,
+        accuracy, streaks, bet outcomes, steal unlocks, standings) used to
+        fire as up to ~7 separate TTS utterances — a stutter of clips. They
+        are now collected into ONE narrated sentence, each fragment still
+        gated by its own ``_tts_announce_*`` toggle, so the audio flows the
+        way a host would describe the round.
 
-        Fires alongside announce_correct_answer when no player landed
-        years_off == 0. The two combine narratively: "The answer was 1987!
-        Nobody got it this round!"
-        """
-        if not self._tts_service or not self._tts_announce_nobody_correct:
-            return
-        message = "Nobody got it this round!"
-        await self._tts_announce(message)
-
-    # ------------------------------------------------------------------
-    # Issue #840 Phase 2 — Player Achievement announcements
-    # ------------------------------------------------------------------
-
-    async def announce_exact_guess(self, player_names: list[str]) -> None:
-        """Announce players who guessed the year exactly (use case 6).
-
-        ``player_names`` is the list of players with years_off == 0 this
-        round. Single name → "Marco got it exactly right!"; multiple →
-        "Marco and Anna got it exactly right!".
-        """
-        if not self._tts_service or not self._tts_announce_exact_guess:
-            return
-        if not player_names:
-            return
-        if len(player_names) == 1:
-            message = f"{player_names[0]} got it exactly right!"
-        else:
-            names = " and ".join(player_names)
-            message = f"{names} got it exactly right!"
-        await self._tts_announce(message)
-
-    async def announce_closest_guess(self, player_name: str, year: int | None) -> None:
-        """Announce the Closest-Wins-mode round winner (use case 7)."""
-        if not self._tts_service or not self._tts_announce_closest_guess:
-            return
-        if year is None:
-            message = f"{player_name} was closest!"
-        else:
-            message = f"{player_name} was closest with {year}!"
-        await self._tts_announce(message)
-
-    async def announce_streak_milestone(self, player_name: str, streak: int) -> None:
-        """Announce a player hitting a streak milestone (use case 8)."""
-        if not self._tts_service or not self._tts_announce_streak_milestone:
-            return
-        message = f"{player_name} is on a {streak}-song streak!"
-        await self._tts_announce(message)
-
-    async def announce_streak_broken(self, player_name: str, streak: int) -> None:
-        """Announce a notable streak ending (use case 9).
-
-        Off by default — firing on every missed round mid-game is noisy.
-        Only fires for streaks worth calling out (caller gates on length).
-        """
-        if not self._tts_service or not self._tts_announce_streak_broken:
-            return
-        message = f"{player_name}'s streak ends at {streak}!"
-        await self._tts_announce(message)
-
-    async def announce_leader_change(self, player_name: str) -> None:
-        """Announce a new game leader (use case 10)."""
-        if not self._tts_service or not self._tts_announce_leader_change:
-            return
-        message = f"{player_name} just took the lead!"
-        await self._tts_announce(message)
-
-    async def announce_tied_first(self) -> None:
-        """Announce a tie at the top of the leaderboard (use case 11)."""
-        if not self._tts_service or not self._tts_announce_tied_first:
-            return
-        message = "It's a tie at the top!"
-        await self._tts_announce(message)
-
-    async def _announce_player_achievements(self, correct_year: int | None) -> None:
-        """Fire all Phase-2 achievement announcements for the round just scored.
-
-        Called from end_round() right after the Phase-1 REVEAL announcements,
-        before the phase transition. Reads post-scoring player state.
-
-        Ordering is intentional — accuracy first (exact / closest), then
-        streaks, then standings — so the audio narrates the round in the
-        order a host would describe it.
+        Fragment order is intentional: answer → accuracy → streaks → bets →
+        steal → standings.
         """
         if not self._tts_service:
             return
         players = list(self.players.values())
+        frags: list[str] = []
 
-        # Use case 6 — exact guesses.
+        # Correct answer.
+        if self._tts_announce_correct_answer and correct_year is not None:
+            frags.append(f"The answer was {correct_year}.")
+
+        # Accuracy — exact guesses, else the Closest-Wins winner, else the
+        # "nobody got it" line (mutually exclusive).
         exact = [p.name for p in players if p.submitted and p.years_off == 0]
-        if exact:
-            await self.announce_exact_guess(exact)
-
-        # Use case 7 — Closest-Wins round winner. Only meaningful in that
-        # mode, and only when nobody was exact (otherwise #6 already covered
-        # it). The closest player is the one with the smallest years_off
-        # who still has a non-zero round_score after the closest-wins sweep.
-        if self.closest_wins_mode and not exact:
-            submitted = [p for p in players if p.submitted and p.years_off is not None]
+        had_submitters = any(p.submitted for p in players)
+        if exact and self._tts_announce_exact_guess:
+            names = exact[0] if len(exact) == 1 else " and ".join(exact)
+            frags.append(f"{names} got it exactly right.")
+        elif (
+            self.closest_wins_mode
+            and not exact
+            and self._tts_announce_closest_guess
+        ):
+            submitted = [
+                p for p in players if p.submitted and p.years_off is not None
+            ]
             if submitted:
                 winner = min(submitted, key=lambda p: p.years_off)
                 if winner.round_score > 0:
-                    await self.announce_closest_guess(winner.name, correct_year)
+                    frags.append(f"{winner.name} was closest.")
+        elif had_submitters and not exact and self._tts_announce_nobody_correct:
+            frags.append("Nobody got it this round.")
 
-        # Use case 8 — streak milestones. streak_bonus is non-zero only on
-        # the exact round a milestone (3/5/10/15/20/25) is reached.
+        # Streak milestones — streak_bonus is non-zero only on the exact
+        # round a milestone (3/5/10/15/20/25) is reached.
+        if self._tts_announce_streak_milestone:
+            for p in players:
+                if p.streak_bonus > 0:
+                    frags.append(f"{p.name} is on a {p.streak}-song streak.")
+
+        # Streak broken — previous_streak holds the pre-reset length. Gate
+        # at >= 3 so a one-off miss after a short run doesn't trigger it.
+        if self._tts_announce_streak_broken:
+            for p in players:
+                if p.streak == 0 and p.previous_streak >= 3:
+                    frags.append(f"{p.name}'s streak ends at {p.previous_streak}.")
+
+        # Bet outcomes — gated on submitted so a stale outcome can't misfire.
         for p in players:
-            if p.streak_bonus > 0:
-                await self.announce_streak_milestone(p.name, p.streak)
+            if not (p.submitted and p.bet):
+                continue
+            if p.bet_outcome == "won" and self._tts_announce_bet_won:
+                frags.append(f"{p.name} doubled their points.")
+            elif p.bet_outcome == "lost" and self._tts_announce_bet_lost:
+                frags.append(f"{p.name} loses the bet.")
 
-        # Use case 9 — streak broken. previous_streak holds the pre-reset
-        # length for players who missed this round. Gate at >= 3 so a
-        # one-off miss after a short run doesn't trigger chatter.
+        # Steal unlocks — once per player per game. The dedup set is updated
+        # regardless of the toggle so a mid-game toggle-on can't replay it.
         for p in players:
-            if p.streak == 0 and p.previous_streak >= 3:
-                await self.announce_streak_broken(p.name, p.previous_streak)
+            if p.steal_available and p.name not in self._tts_steal_unlocked_announced:
+                self._tts_steal_unlocked_announced.add(p.name)
+                if self._tts_announce_steal_unlocked:
+                    frags.append(f"{p.name} unlocked steal.")
 
-        # Use cases 10 + 11 — leader change / tie at the top.
+        # Standings — leader change / tie at the top. _tts_previous_leader
+        # is updated regardless of the toggles so detection stays correct.
         leaderboard = sorted(players, key=lambda p: p.score, reverse=True)
         if leaderboard and leaderboard[0].score > 0:
             top_score = leaderboard[0].score
             leaders = [p for p in leaderboard if p.score == top_score]
             if len(leaders) > 1:
-                await self.announce_tied_first()
+                if self._tts_announce_tied_first:
+                    frags.append("It's a tie at the top.")
                 self._tts_previous_leader = None
             else:
                 new_leader = leaders[0].name
                 if new_leader != self._tts_previous_leader:
-                    # Suppress the very first leader announcement — round 1
-                    # always "changes" the leader from nobody.
-                    if self._tts_previous_leader is not None:
-                        await self.announce_leader_change(new_leader)
+                    # Suppress round 1 — the leader always "changes" from
+                    # nobody on the first scored round.
+                    if (
+                        self._tts_previous_leader is not None
+                        and self._tts_announce_leader_change
+                    ):
+                        frags.append(f"{new_leader} just took the lead.")
                 self._tts_previous_leader = new_leader
+
+        if frags:
+            await self._tts_announce(" ".join(frags))
 
     # ------------------------------------------------------------------
     # Issue #841 Phase 3 — Betting & Game State announcements
     # ------------------------------------------------------------------
-
-    async def announce_bet_won(self, player_name: str) -> None:
-        """Announce a player winning a double-or-nothing bet (use case 12)."""
-        if not self._tts_service or not self._tts_announce_bet_won:
-            return
-        message = f"{player_name} doubled their points!"
-        await self._tts_announce(message)
-
-    async def announce_bet_lost(self, player_name: str) -> None:
-        """Announce a player losing a double-or-nothing bet (use case 13)."""
-        if not self._tts_service or not self._tts_announce_bet_lost:
-            return
-        message = f"Risky move — {player_name} loses the bet!"
-        await self._tts_announce(message)
 
     async def announce_player_join(self, player_name: str) -> None:
         """Announce a new player joining the game (use case 14)."""
@@ -2390,23 +2321,6 @@ class GameState:
         message = "Rematch! Get ready!"
         await self._tts_announce(message)
 
-    async def _announce_betting(self) -> None:
-        """Fire bet-outcome announcements for the round just scored (#841).
-
-        Called from end_round right after _announce_player_achievements, in
-        the same guarded block. Reads post-scoring ``player.bet_outcome``;
-        gated on ``submitted`` so a stale outcome can never misfire.
-        """
-        if not self._tts_service:
-            return
-        for p in self.players.values():
-            if not (p.submitted and p.bet):
-                continue
-            if p.bet_outcome == "won":
-                await self.announce_bet_won(p.name)
-            elif p.bet_outcome == "lost":
-                await self.announce_bet_lost(p.name)
-
     # ------------------------------------------------------------------
     # Issue #842 Phase 4 — Special Modes announcements
     # ------------------------------------------------------------------
@@ -2419,12 +2333,6 @@ class GameState:
             "Intro round — quick, you only get the opening seconds!"
         )
 
-    async def announce_steal_unlocked(self, player_name: str) -> None:
-        """Announce a player unlocking the steal power-up (use case 22)."""
-        if not self._tts_service or not self._tts_announce_steal_unlocked:
-            return
-        await self._tts_announce(f"{player_name} unlocked steal!")
-
     async def announce_steal_used(self, stealer_name: str, target_name: str) -> None:
         """Announce a player using steal on another (use case 23)."""
         if not self._tts_service or not self._tts_announce_steal_used:
@@ -2432,21 +2340,6 @@ class GameState:
         await self._tts_announce(
             f"{stealer_name} stole the answer from {target_name}!"
         )
-
-    async def _announce_steal_unlocks(self) -> None:
-        """Announce players who newly unlocked the steal power-up (#842).
-
-        Called from end_round in the same guarded block as the Phase 2/3
-        announcements. ``_tts_steal_unlocked_announced`` dedups so each
-        player is announced at most once per game, even if their streak
-        re-crosses the unlock threshold after the power-up was granted.
-        """
-        if not self._tts_service:
-            return
-        for p in self.players.values():
-            if p.steal_available and p.name not in self._tts_steal_unlocked_announced:
-                self._tts_steal_unlocked_announced.add(p.name)
-                await self.announce_steal_unlocked(p.name)
 
     def adjust_volume(self, direction: str) -> float:
         """

@@ -1,105 +1,123 @@
 /**
  * TTS Announcements UI — Admin setup (#447)
+ *
+ * 23 per-event announcement toggles, plus verbosity presets (Minimal /
+ * Standard / Full) that bulk-set them. Picking a preset sets every toggle;
+ * editing a toggle by hand flips the preset to "Custom". The backend is
+ * unaware of presets — _ttsConfig() always emits the 23 booleans.
  */
 (function() {
     'use strict';
 
     var STORAGE_KEY = 'beatify_tts';
+
+    // All 23 announcement keys.
+    var KEYS = [
+        'announce_game_start', 'announce_round_start', 'announce_countdown',
+        'announce_time_up', 'announce_correct_answer', 'announce_nobody_correct',
+        'announce_exact_guess', 'announce_closest_guess', 'announce_streak_milestone',
+        'announce_streak_broken', 'announce_leader_change', 'announce_tied_first',
+        'announce_bet_won', 'announce_bet_lost', 'announce_player_join',
+        'announce_player_reconnect', 'announce_last_round', 'announce_podium',
+        'announce_rematch', 'announce_winner', 'announce_intro_round',
+        'announce_steal_unlocked', 'announce_steal_used'
+    ];
+
+    // Verbosity presets (#2) — each lists the keys that are ON. Anything not
+    // listed is OFF. "standard" is the default for a fresh setup.
+    var PRESETS = {
+        // Game/round boundaries only — no per-round chatter.
+        minimal: [
+            'announce_game_start', 'announce_round_start', 'announce_last_round',
+            'announce_winner', 'announce_podium', 'announce_rematch',
+            'announce_intro_round'
+        ],
+        // Minimal + the combined reveal narration + key drama.
+        standard: [
+            'announce_game_start', 'announce_round_start', 'announce_time_up',
+            'announce_correct_answer', 'announce_nobody_correct',
+            'announce_exact_guess', 'announce_closest_guess',
+            'announce_streak_milestone', 'announce_leader_change',
+            'announce_tied_first', 'announce_bet_won', 'announce_bet_lost',
+            'announce_last_round', 'announce_podium', 'announce_rematch',
+            'announce_winner', 'announce_intro_round', 'announce_steal_used'
+        ],
+        // Everything.
+        full: KEYS.slice()
+    };
+    var PRESET_NAMES = ['minimal', 'standard', 'full'];
+
     var ttsEnabled = false;
     var ttsEntityId = '';
-    var announceGameStart = true;
-    var announceWinner = true;
-    // #471 Phase 1: Game Flow toggles. Defaults match the most common host
-    // expectation — round start + time's up + correct answer announced;
-    // 3-2-1 countdown opt-in only because firing it every round is intrusive.
-    var announceRoundStart = true;
-    var announceCountdown = false;
-    var announceTimeUp = true;
-    var announceCorrectAnswer = true;
-    var announceNobodyCorrect = true;
-    // #840 Phase 2: Player Achievement toggles. streak-broken defaults off —
-    // firing on every missed round mid-game is noisy.
-    var announceExactGuess = true;
-    var announceClosestGuess = true;
-    var announceStreakMilestone = true;
-    var announceStreakBroken = false;
-    var announceLeaderChange = true;
-    var announceTiedFirst = true;
-    // #841 Phase 3: Betting & Game State toggles. player-reconnect defaults
-    // off — phones re-establish the WS constantly (screen lock, network).
-    var announceBetWon = true;
-    var announceBetLost = true;
-    var announcePlayerJoin = true;
-    var announcePlayerReconnect = false;
-    var announceLastRound = true;
-    var announcePodium = true;
-    var announceRematch = true;
-    // #842 Phase 4: Special Modes toggles.
-    var announceIntroRound = true;
-    var announceStealUnlocked = true;
-    var announceStealUsed = true;
+    var ttsPreset = 'standard';
+    var announce = {};  // snake_case key -> bool
+
+    function domId(key) {
+        return 'tts-' + key.replace(/_/g, '-');
+    }
+
+    function presetValues(name) {
+        var on = PRESETS[name] || [];
+        var out = {};
+        KEYS.forEach(function(k) { out[k] = on.indexOf(k) !== -1; });
+        return out;
+    }
+
+    function detectPreset() {
+        for (var i = 0; i < PRESET_NAMES.length; i++) {
+            var pv = presetValues(PRESET_NAMES[i]);
+            var match = KEYS.every(function(k) { return announce[k] === pv[k]; });
+            if (match) return PRESET_NAMES[i];
+        }
+        return 'custom';
+    }
 
     function loadState() {
+        var defaults = presetValues('standard');
         try {
             var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
             ttsEnabled = saved.enabled || false;
             ttsEntityId = saved.entity_id || '';
-            announceGameStart = saved.announce_game_start !== false;
-            announceWinner = saved.announce_winner !== false;
-            announceRoundStart = saved.announce_round_start !== false;
-            announceCountdown = saved.announce_countdown === true;
-            announceTimeUp = saved.announce_time_up !== false;
-            announceCorrectAnswer = saved.announce_correct_answer !== false;
-            announceNobodyCorrect = saved.announce_nobody_correct !== false;
-            announceExactGuess = saved.announce_exact_guess !== false;
-            announceClosestGuess = saved.announce_closest_guess !== false;
-            announceStreakMilestone = saved.announce_streak_milestone !== false;
-            announceStreakBroken = saved.announce_streak_broken === true;
-            announceLeaderChange = saved.announce_leader_change !== false;
-            announceTiedFirst = saved.announce_tied_first !== false;
-            announceBetWon = saved.announce_bet_won !== false;
-            announceBetLost = saved.announce_bet_lost !== false;
-            announcePlayerJoin = saved.announce_player_join !== false;
-            announcePlayerReconnect = saved.announce_player_reconnect === true;
-            announceLastRound = saved.announce_last_round !== false;
-            announcePodium = saved.announce_podium !== false;
-            announceRematch = saved.announce_rematch !== false;
-            announceIntroRound = saved.announce_intro_round !== false;
-            announceStealUnlocked = saved.announce_steal_unlocked !== false;
-            announceStealUsed = saved.announce_steal_used !== false;
-        } catch (e) { /* ignore */ }
+            KEYS.forEach(function(k) {
+                announce[k] = (typeof saved[k] === 'boolean') ? saved[k] : defaults[k];
+            });
+            // Pre-#2 saved configs have no `preset` — derive it from the toggles.
+            ttsPreset = saved.preset || detectPreset();
+        } catch (e) {
+            KEYS.forEach(function(k) { announce[k] = defaults[k]; });
+            ttsPreset = 'standard';
+        }
     }
 
     function saveState() {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                enabled: ttsEnabled,
-                entity_id: ttsEntityId,
-                announce_game_start: announceGameStart,
-                announce_winner: announceWinner,
-                announce_round_start: announceRoundStart,
-                announce_countdown: announceCountdown,
-                announce_time_up: announceTimeUp,
-                announce_correct_answer: announceCorrectAnswer,
-                announce_nobody_correct: announceNobodyCorrect,
-                announce_exact_guess: announceExactGuess,
-                announce_closest_guess: announceClosestGuess,
-                announce_streak_milestone: announceStreakMilestone,
-                announce_streak_broken: announceStreakBroken,
-                announce_leader_change: announceLeaderChange,
-                announce_tied_first: announceTiedFirst,
-                announce_bet_won: announceBetWon,
-                announce_bet_lost: announceBetLost,
-                announce_player_join: announcePlayerJoin,
-                announce_player_reconnect: announcePlayerReconnect,
-                announce_last_round: announceLastRound,
-                announce_podium: announcePodium,
-                announce_rematch: announceRematch,
-                announce_intro_round: announceIntroRound,
-                announce_steal_unlocked: announceStealUnlocked,
-                announce_steal_used: announceStealUsed
-            }));
+            var payload = { enabled: ttsEnabled, entity_id: ttsEntityId, preset: ttsPreset };
+            KEYS.forEach(function(k) { payload[k] = announce[k]; });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
         } catch (e) { /* ignore */ }
+    }
+
+    function syncCheckboxes() {
+        KEYS.forEach(function(k) {
+            var el = document.getElementById(domId(k));
+            if (el) el.checked = announce[k];
+        });
+    }
+
+    function syncPresetChips() {
+        ['minimal', 'standard', 'full', 'custom'].forEach(function(name) {
+            var chip = document.getElementById('tts-preset-' + name);
+            if (chip) chip.classList.toggle('chip--active', ttsPreset === name);
+        });
+    }
+
+    function applyPreset(name) {
+        var pv = presetValues(name);
+        KEYS.forEach(function(k) { announce[k] = pv[k]; });
+        ttsPreset = name;
+        syncCheckboxes();
+        syncPresetChips();
+        saveState();
     }
 
     function updateSummary() {
@@ -155,66 +173,30 @@
             });
         }
 
-        // Announce game start toggle
-        var gameStartToggle = document.getElementById('tts-announce-game-start');
-        if (gameStartToggle) {
-            gameStartToggle.checked = announceGameStart;
-            gameStartToggle.addEventListener('change', function() {
-                announceGameStart = this.checked;
-                saveState();
-            });
-        }
+        // #2: verbosity preset chips. Picking one bulk-sets all 23 toggles.
+        PRESET_NAMES.forEach(function(name) {
+            var chip = document.getElementById('tts-preset-' + name);
+            if (chip) {
+                chip.addEventListener('click', function() { applyPreset(name); });
+            }
+        });
 
-        // Announce winner toggle
-        var winnerToggle = document.getElementById('tts-announce-winner');
-        if (winnerToggle) {
-            winnerToggle.checked = announceWinner;
-            winnerToggle.addEventListener('change', function() {
-                announceWinner = this.checked;
-                saveState();
-            });
-        }
-
-        // #471 Phase 1: Game Flow toggles. Each toggle reads/writes the same
-        // localStorage shape so admin.js / configure_tts can pick up the
-        // settings at game-start without any further plumbing. The DOM IDs
-        // are optional — if the HTML doesn't render a toggle for one, the
-        // default from loadState() applies.
-        [
-            ['tts-announce-round-start', function(v) { announceRoundStart = v; }, function() { return announceRoundStart; }],
-            ['tts-announce-countdown', function(v) { announceCountdown = v; }, function() { return announceCountdown; }],
-            ['tts-announce-time-up', function(v) { announceTimeUp = v; }, function() { return announceTimeUp; }],
-            ['tts-announce-correct-answer', function(v) { announceCorrectAnswer = v; }, function() { return announceCorrectAnswer; }],
-            ['tts-announce-nobody-correct', function(v) { announceNobodyCorrect = v; }, function() { return announceNobodyCorrect; }],
-            // #840 Phase 2: Player Achievement toggles
-            ['tts-announce-exact-guess', function(v) { announceExactGuess = v; }, function() { return announceExactGuess; }],
-            ['tts-announce-closest-guess', function(v) { announceClosestGuess = v; }, function() { return announceClosestGuess; }],
-            ['tts-announce-streak-milestone', function(v) { announceStreakMilestone = v; }, function() { return announceStreakMilestone; }],
-            ['tts-announce-streak-broken', function(v) { announceStreakBroken = v; }, function() { return announceStreakBroken; }],
-            ['tts-announce-leader-change', function(v) { announceLeaderChange = v; }, function() { return announceLeaderChange; }],
-            ['tts-announce-tied-first', function(v) { announceTiedFirst = v; }, function() { return announceTiedFirst; }],
-            // #841 Phase 3: Betting & Game State toggles
-            ['tts-announce-bet-won', function(v) { announceBetWon = v; }, function() { return announceBetWon; }],
-            ['tts-announce-bet-lost', function(v) { announceBetLost = v; }, function() { return announceBetLost; }],
-            ['tts-announce-player-join', function(v) { announcePlayerJoin = v; }, function() { return announcePlayerJoin; }],
-            ['tts-announce-player-reconnect', function(v) { announcePlayerReconnect = v; }, function() { return announcePlayerReconnect; }],
-            ['tts-announce-last-round', function(v) { announceLastRound = v; }, function() { return announceLastRound; }],
-            ['tts-announce-podium', function(v) { announcePodium = v; }, function() { return announcePodium; }],
-            ['tts-announce-rematch', function(v) { announceRematch = v; }, function() { return announceRematch; }],
-            // #842 Phase 4: Special Modes toggles
-            ['tts-announce-intro-round', function(v) { announceIntroRound = v; }, function() { return announceIntroRound; }],
-            ['tts-announce-steal-unlocked', function(v) { announceStealUnlocked = v; }, function() { return announceStealUnlocked; }],
-            ['tts-announce-steal-used', function(v) { announceStealUsed = v; }, function() { return announceStealUsed; }]
-        ].forEach(function(pair) {
-            var el = document.getElementById(pair[0]);
+        // Per-event toggles. Editing one by hand re-derives the preset
+        // (which usually flips it to "Custom"). The DOM IDs are optional —
+        // a missing checkbox just falls back to the loaded value.
+        KEYS.forEach(function(k) {
+            var el = document.getElementById(domId(k));
             if (el) {
-                el.checked = pair[2]();
+                el.checked = announce[k];
                 el.addEventListener('change', function() {
-                    pair[1](this.checked);
+                    announce[k] = this.checked;
+                    ttsPreset = detectPreset();
+                    syncPresetChips();
                     saveState();
                 });
             }
         });
+        syncPresetChips();
 
         // Test TTS button
         var testBtn = document.getElementById('tts-test');
@@ -257,39 +239,11 @@
         updateTestButton();
     }
 
-    // Expose for admin.js to read when starting game
+    // Expose for admin.js to read when starting game.
     window._ttsConfig = function() {
-        return {
-            enabled: ttsEnabled,
-            entity_id: ttsEntityId,
-            announce_game_start: announceGameStart,
-            announce_winner: announceWinner,
-            // #471 Phase 1: Game Flow toggles
-            announce_round_start: announceRoundStart,
-            announce_countdown: announceCountdown,
-            announce_time_up: announceTimeUp,
-            announce_correct_answer: announceCorrectAnswer,
-            announce_nobody_correct: announceNobodyCorrect,
-            // #840 Phase 2: Player Achievement toggles
-            announce_exact_guess: announceExactGuess,
-            announce_closest_guess: announceClosestGuess,
-            announce_streak_milestone: announceStreakMilestone,
-            announce_streak_broken: announceStreakBroken,
-            announce_leader_change: announceLeaderChange,
-            announce_tied_first: announceTiedFirst,
-            // #841 Phase 3: Betting & Game State toggles
-            announce_bet_won: announceBetWon,
-            announce_bet_lost: announceBetLost,
-            announce_player_join: announcePlayerJoin,
-            announce_player_reconnect: announcePlayerReconnect,
-            announce_last_round: announceLastRound,
-            announce_podium: announcePodium,
-            announce_rematch: announceRematch,
-            // #842 Phase 4: Special Modes toggles
-            announce_intro_round: announceIntroRound,
-            announce_steal_unlocked: announceStealUnlocked,
-            announce_steal_used: announceStealUsed
-        };
+        var cfg = { enabled: ttsEnabled, entity_id: ttsEntityId };
+        KEYS.forEach(function(k) { cfg[k] = announce[k]; });
+        return cfg;
     };
 
     // Init when DOM ready
