@@ -4,6 +4,27 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.6] - 2026-05-16
+
+First rc of the 3.3.6 line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6-rc1) for the user-facing summary.
+
+### Added
+- **TTS announcements — Betting & Game State (Phase 3 of 4, #841).** Seven new voice announcements: bet won, bet lost, player join, player reconnect, last round, podium, and rematch. Player-reconnect defaults off (phones re-establish the WebSocket constantly).
+- **TTS announcements — Special Modes (Phase 4 of 4, #842).** Three new announcements: intro round, steal unlocked, steal used. Completes the #471 TTS roadmap.
+- **Admin TTS toggle UI for all three phases.** Phase 1/2 shipped toggle plumbing but no checkboxes; all 23 event toggles are now rendered in the TTS Announcements section, grouped into Game Flow / Player Achievements / Betting & Game State / Special Modes. 39 i18n keys across all 5 locales.
+- **TTS verbosity presets.** A Minimal / Standard / Full selector bulk-sets the 23 toggles; editing one by hand flips it to Custom.
+
+### Changed
+- **Combined REVEAL announcement.** The per-round REVEAL events (correct answer, accuracy, streaks, bet outcomes, steal unlocks, standings) are collected into one narrated utterance instead of up to ~7 separate TTS clips. Each fragment is still gated by its own toggle.
+
+### Fixed
+- _(none — rc1 is feature + data work; see 3.3.5 for the prior fix line.)_
+
+### Data
+- **Harder Styles — 150 → 190 songs (#899).** 40 modern hardstyle tracks (festival anthems + hardstyle remixes of chart hits) folded in from playlist request #899, with per-region Apple Music URIs.
+- **90er Ohrwürmer request routed (#906).** 90s Hits 58 → 94 songs (international, no German-language tracks — EAV removed); Deutschpop Klassiker 100 → 106 songs (scope widened to the 90s/NDW canon). Years resolved via MusicBrainz first-release dates.
+- **TTS announcement test coverage.** 14 unit tests for the combined REVEAL announcement.
+
 ## [3.3.5] - 2026-05-15
 
 Stable promotion of the 3.3.5-rc1 line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.5) for the user-facing summary.
