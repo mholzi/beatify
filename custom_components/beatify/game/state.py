@@ -140,6 +140,12 @@ class GameState:
         self._tts_announce_last_round: bool = True
         self._tts_announce_podium: bool = True
         self._tts_announce_rematch: bool = True
+        # Issue #842 Phase 4: Special Modes announcements
+        self._tts_announce_intro_round: bool = True
+        self._tts_announce_steal_unlocked: bool = True
+        self._tts_announce_steal_used: bool = True
+        # Steal-unlock is announced once per player per game.
+        self._tts_steal_unlocked_announced: set[str] = set()
         self._bg_tasks: set[asyncio.Task] = (
             set()
         )  # Issue #391: prevent GC of fire-and-forget tasks
@@ -1325,6 +1331,9 @@ class GameState:
         # Issue #841 Phase 3: flag the final round (use case 17).
         if self.total_rounds > 1 and self.round >= self.total_rounds:
             await self.announce_last_round()
+        # Issue #842 Phase 4: flag an intro-mode round (use case 21).
+        if self.is_intro_round:
+            await self.announce_intro_round()
 
         return True
 
@@ -1664,8 +1673,9 @@ class GameState:
         try:
             await self._announce_player_achievements(correct_year)
             await self._announce_betting()
+            await self._announce_steal_unlocks()
         except (KeyError, AttributeError, TypeError, ValueError) as err:
-            _LOGGER.error("Phase-2/3 achievement announcements failed: %s", err)
+            _LOGGER.error("Phase-2/3/4 achievement announcements failed: %s", err)
 
         # Transition to REVEAL
         self._player_registry._reactions_this_phase = (
@@ -2042,6 +2052,10 @@ class GameState:
         announce_last_round: bool = True,
         announce_podium: bool = True,
         announce_rematch: bool = True,
+        # Issue #842 Phase 4: Special Modes announcements
+        announce_intro_round: bool = True,
+        announce_steal_unlocked: bool = True,
+        announce_steal_used: bool = True,
     ) -> None:
         """Configure TTS announcement service for the game.
 
@@ -2080,8 +2094,12 @@ class GameState:
         self._tts_announce_last_round = announce_last_round
         self._tts_announce_podium = announce_podium
         self._tts_announce_rematch = announce_rematch
-        # Fresh game — no prior leader yet.
+        self._tts_announce_intro_round = announce_intro_round
+        self._tts_announce_steal_unlocked = announce_steal_unlocked
+        self._tts_announce_steal_used = announce_steal_used
+        # Fresh game — no prior leader, no steal unlocks announced yet.
         self._tts_previous_leader = None
+        self._tts_steal_unlocked_announced = set()
 
     async def disable_tts(self) -> None:
         """Disable TTS announcements."""
@@ -2388,6 +2406,47 @@ class GameState:
                 await self.announce_bet_won(p.name)
             elif p.bet_outcome == "lost":
                 await self.announce_bet_lost(p.name)
+
+    # ------------------------------------------------------------------
+    # Issue #842 Phase 4 — Special Modes announcements
+    # ------------------------------------------------------------------
+
+    async def announce_intro_round(self) -> None:
+        """Announce the start of an intro-mode round (use case 21)."""
+        if not self._tts_service or not self._tts_announce_intro_round:
+            return
+        await self._tts_announce(
+            "Intro round — quick, you only get the opening seconds!"
+        )
+
+    async def announce_steal_unlocked(self, player_name: str) -> None:
+        """Announce a player unlocking the steal power-up (use case 22)."""
+        if not self._tts_service or not self._tts_announce_steal_unlocked:
+            return
+        await self._tts_announce(f"{player_name} unlocked steal!")
+
+    async def announce_steal_used(self, stealer_name: str, target_name: str) -> None:
+        """Announce a player using steal on another (use case 23)."""
+        if not self._tts_service or not self._tts_announce_steal_used:
+            return
+        await self._tts_announce(
+            f"{stealer_name} stole the answer from {target_name}!"
+        )
+
+    async def _announce_steal_unlocks(self) -> None:
+        """Announce players who newly unlocked the steal power-up (#842).
+
+        Called from end_round in the same guarded block as the Phase 2/3
+        announcements. ``_tts_steal_unlocked_announced`` dedups so each
+        player is announced at most once per game, even if their streak
+        re-crosses the unlock threshold after the power-up was granted.
+        """
+        if not self._tts_service:
+            return
+        for p in self.players.values():
+            if p.steal_available and p.name not in self._tts_steal_unlocked_announced:
+                self._tts_steal_unlocked_announced.add(p.name)
+                await self.announce_steal_unlocked(p.name)
 
     def adjust_volume(self, direction: str) -> float:
         """

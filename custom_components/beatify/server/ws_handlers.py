@@ -1143,6 +1143,8 @@ async def handle_steal(
                 "year": result["year"],
             }
         )
+        # Issue #842 Phase 4: announce the steal (use case 23).
+        await game_state.announce_steal_used(player.name, result["target"])
         if not game_state.check_all_guesses_complete():
             await handler.broadcast_state()
         await game_state.trigger_early_reveal_if_complete()

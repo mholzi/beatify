@@ -808,6 +808,44 @@
                     </div>
                 </div>
 
+                <!-- Special Modes announcements (#842 Phase 4) -->
+                <div class="setting-group">
+                    <p class="tts-group-title" data-i18n="admin.ttsGroupSpecialModes">Special Modes</p>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⚡</span>
+                            <span data-i18n="admin.ttsAnnounceIntroRound">Announce Intro Round</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceIntroRoundHint">Announce when an intro-mode round starts</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-intro-round" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🔓</span>
+                            <span data-i18n="admin.ttsAnnounceStealUnlocked">Announce Steal Unlocked</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceStealUnlockedHint">Announce when a player unlocks the steal power-up</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-steal-unlocked" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🥷</span>
+                            <span data-i18n="admin.ttsAnnounceStealUsed">Announce Steal Used</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceStealUsedHint">Announce when a player steals another's answer</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-steal-used" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- Test TTS button -->
                 <button type="button" id="tts-test" class="btn btn-secondary btn-full-width" disabled>
                     🔊 Test TTS
