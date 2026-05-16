@@ -204,6 +204,8 @@
       "onlyPercent": "Only {percent}% of all players guess it right.",
       "empty": "No stats for this round yet."
     },
+    "reportBtn": "🚩 Wrong year?",
+    "reportBtnDone": "✓ Reported — thanks!",
     "emotions": {
       "exact": [
         "NAILED IT!",

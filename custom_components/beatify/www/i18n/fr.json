@@ -204,6 +204,8 @@
       "onlyPercent": "Seulement {percent}% des joueurs trouvent.",
       "empty": "Pas encore de stats."
     },
+    "reportBtn": "🚩 Mauvaise année ?",
+    "reportBtnDone": "✓ Signalé — merci !",
     "emotions": {
       "exact": [
         "PARFAIT !",
