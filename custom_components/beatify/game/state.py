@@ -131,6 +131,15 @@ class GameState:
         self._tts_announce_tied_first: bool = True
         # Leader-change detection needs the prior round's leader name.
         self._tts_previous_leader: str | None = None
+        # Issue #841 Phase 3: Betting & Game State announcements
+        self._tts_announce_bet_won: bool = True
+        self._tts_announce_bet_lost: bool = True
+        self._tts_announce_player_join: bool = True
+        # off — phones re-establish the WS constantly (screen lock, network)
+        self._tts_announce_player_reconnect: bool = False
+        self._tts_announce_last_round: bool = True
+        self._tts_announce_podium: bool = True
+        self._tts_announce_rematch: bool = True
         self._bg_tasks: set[asyncio.Task] = (
             set()
         )  # Issue #391: prevent GC of fire-and-forget tasks
@@ -1313,6 +1322,9 @@ class GameState:
         # round_start when both are enabled.
         await self.announce_round_start()
         await self.announce_countdown()
+        # Issue #841 Phase 3: flag the final round (use case 17).
+        if self.total_rounds > 1 and self.round >= self.total_rounds:
+            await self.announce_last_round()
 
         return True
 
@@ -1646,12 +1658,14 @@ class GameState:
         if had_submitters and not any_exact:
             await self.announce_nobody_correct()
 
-        # Issue #840 Phase 2: Player Achievement announcements. Wrapped so a
-        # TTS hiccup never blocks the REVEAL phase transition below.
+        # Issue #840 Phase 2 + #841 Phase 3: Player Achievement and betting
+        # announcements. Wrapped so a TTS hiccup never blocks the REVEAL
+        # phase transition below.
         try:
             await self._announce_player_achievements(correct_year)
+            await self._announce_betting()
         except (KeyError, AttributeError, TypeError, ValueError) as err:
-            _LOGGER.error("Phase-2 achievement announcements failed: %s", err)
+            _LOGGER.error("Phase-2/3 achievement announcements failed: %s", err)
 
         # Transition to REVEAL
         self._player_registry._reactions_this_phase = (
@@ -1918,6 +1932,8 @@ class GameState:
 
         # Issue #447: Announce winner via TTS
         await self.announce_winner()
+        # Issue #841 Phase 3: read out the podium (use case 19).
+        await self.announce_podium()
 
         _LOGGER.info("Game advanced to END phase")
 
@@ -2018,6 +2034,14 @@ class GameState:
         announce_streak_broken: bool = False,
         announce_leader_change: bool = True,
         announce_tied_first: bool = True,
+        # Issue #841 Phase 3: Betting & Game State announcements
+        announce_bet_won: bool = True,
+        announce_bet_lost: bool = True,
+        announce_player_join: bool = True,
+        announce_player_reconnect: bool = False,
+        announce_last_round: bool = True,
+        announce_podium: bool = True,
+        announce_rematch: bool = True,
     ) -> None:
         """Configure TTS announcement service for the game.
 
@@ -2049,6 +2073,13 @@ class GameState:
         self._tts_announce_streak_broken = announce_streak_broken
         self._tts_announce_leader_change = announce_leader_change
         self._tts_announce_tied_first = announce_tied_first
+        self._tts_announce_bet_won = announce_bet_won
+        self._tts_announce_bet_lost = announce_bet_lost
+        self._tts_announce_player_join = announce_player_join
+        self._tts_announce_player_reconnect = announce_player_reconnect
+        self._tts_announce_last_round = announce_last_round
+        self._tts_announce_podium = announce_podium
+        self._tts_announce_rematch = announce_rematch
         # Fresh game — no prior leader yet.
         self._tts_previous_leader = None
 
@@ -2265,6 +2296,98 @@ class GameState:
                     if self._tts_previous_leader is not None:
                         await self.announce_leader_change(new_leader)
                 self._tts_previous_leader = new_leader
+
+    # ------------------------------------------------------------------
+    # Issue #841 Phase 3 — Betting & Game State announcements
+    # ------------------------------------------------------------------
+
+    async def announce_bet_won(self, player_name: str) -> None:
+        """Announce a player winning a double-or-nothing bet (use case 12)."""
+        if not self._tts_service or not self._tts_announce_bet_won:
+            return
+        message = f"{player_name} doubled their points!"
+        await self._tts_announce(message)
+
+    async def announce_bet_lost(self, player_name: str) -> None:
+        """Announce a player losing a double-or-nothing bet (use case 13)."""
+        if not self._tts_service or not self._tts_announce_bet_lost:
+            return
+        message = f"Risky move — {player_name} loses the bet!"
+        await self._tts_announce(message)
+
+    async def announce_player_join(self, player_name: str) -> None:
+        """Announce a new player joining the game (use case 14)."""
+        if not self._tts_service or not self._tts_announce_player_join:
+            return
+        message = f"{player_name} has joined the game!"
+        await self._tts_announce(message)
+
+    async def announce_player_reconnect(self, player_name: str) -> None:
+        """Announce a player reconnecting (use case 15).
+
+        Off by default — phones drop and re-establish the WebSocket
+        constantly (screen lock, network handoff), so firing on every
+        reconnect is noisy. Opt-in for hosts who want it.
+        """
+        if not self._tts_service or not self._tts_announce_player_reconnect:
+            return
+        message = f"Welcome back, {player_name}!"
+        await self._tts_announce(message)
+
+    async def announce_last_round(self) -> None:
+        """Announce that the final round is starting (use case 17).
+
+        Fires from start_round, chained after announce_round_start, only
+        when the round just started is the last one.
+        """
+        if not self._tts_service or not self._tts_announce_last_round:
+            return
+        message = "This is the final round!"
+        await self._tts_announce(message)
+
+    async def announce_podium(self) -> None:
+        """Announce the top-3 finishers at game end (use case 19).
+
+        Fires from advance_to_end after announce_winner. Names the podium
+        bottom-up — 3rd, 2nd, 1st — the way a host reads an awards list.
+        With fewer than three scoring players the podium shrinks to match.
+        """
+        if not self._tts_service or not self._tts_announce_podium:
+            return
+        ranked = sorted(self.players.values(), key=lambda p: p.score, reverse=True)
+        podium = [p for p in ranked if p.score > 0][:3]
+        if not podium:
+            return
+        labels = {0: "1st place", 1: "2nd place", 2: "3rd place"}
+        segments = [
+            f"{labels[i]}: {podium[i].name}{'!' if i == 0 else '.'}"
+            for i in reversed(range(len(podium)))
+        ]
+        await self._tts_announce(" ".join(segments))
+
+    async def announce_rematch(self) -> None:
+        """Announce a rematch starting (use case 20)."""
+        if not self._tts_service or not self._tts_announce_rematch:
+            return
+        message = "Rematch! Get ready!"
+        await self._tts_announce(message)
+
+    async def _announce_betting(self) -> None:
+        """Fire bet-outcome announcements for the round just scored (#841).
+
+        Called from end_round right after _announce_player_achievements, in
+        the same guarded block. Reads post-scoring ``player.bet_outcome``;
+        gated on ``submitted`` so a stale outcome can never misfire.
+        """
+        if not self._tts_service:
+            return
+        for p in self.players.values():
+            if not (p.submitted and p.bet):
+                continue
+            if p.bet_outcome == "won":
+                await self.announce_bet_won(p.name)
+            elif p.bet_outcome == "lost":
+                await self.announce_bet_lost(p.name)
 
     def adjust_volume(self, direction: str) -> float:
         """

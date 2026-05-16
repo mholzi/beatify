@@ -352,6 +352,17 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                         "announce_leader_change", True
                     ),
                     announce_tied_first=tts_config.get("announce_tied_first", True),
+                    announce_bet_won=tts_config.get("announce_bet_won", True),
+                    announce_bet_lost=tts_config.get("announce_bet_lost", True),
+                    announce_player_join=tts_config.get(
+                        "announce_player_join", True
+                    ),
+                    announce_player_reconnect=tts_config.get(
+                        "announce_player_reconnect", False
+                    ),
+                    announce_last_round=tts_config.get("announce_last_round", True),
+                    announce_podium=tts_config.get("announce_podium", True),
+                    announce_rematch=tts_config.get("announce_rematch", True),
                 )
                 await game_state.announce_game_start()
 

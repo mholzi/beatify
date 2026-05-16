@@ -25,6 +25,15 @@
     var announceStreakBroken = false;
     var announceLeaderChange = true;
     var announceTiedFirst = true;
+    // #841 Phase 3: Betting & Game State toggles. player-reconnect defaults
+    // off — phones re-establish the WS constantly (screen lock, network).
+    var announceBetWon = true;
+    var announceBetLost = true;
+    var announcePlayerJoin = true;
+    var announcePlayerReconnect = false;
+    var announceLastRound = true;
+    var announcePodium = true;
+    var announceRematch = true;
 
     function loadState() {
         try {
@@ -44,6 +53,13 @@
             announceStreakBroken = saved.announce_streak_broken === true;
             announceLeaderChange = saved.announce_leader_change !== false;
             announceTiedFirst = saved.announce_tied_first !== false;
+            announceBetWon = saved.announce_bet_won !== false;
+            announceBetLost = saved.announce_bet_lost !== false;
+            announcePlayerJoin = saved.announce_player_join !== false;
+            announcePlayerReconnect = saved.announce_player_reconnect === true;
+            announceLastRound = saved.announce_last_round !== false;
+            announcePodium = saved.announce_podium !== false;
+            announceRematch = saved.announce_rematch !== false;
         } catch (e) { /* ignore */ }
     }
 
@@ -64,7 +80,14 @@
                 announce_streak_milestone: announceStreakMilestone,
                 announce_streak_broken: announceStreakBroken,
                 announce_leader_change: announceLeaderChange,
-                announce_tied_first: announceTiedFirst
+                announce_tied_first: announceTiedFirst,
+                announce_bet_won: announceBetWon,
+                announce_bet_lost: announceBetLost,
+                announce_player_join: announcePlayerJoin,
+                announce_player_reconnect: announcePlayerReconnect,
+                announce_last_round: announceLastRound,
+                announce_podium: announcePodium,
+                announce_rematch: announceRematch
             }));
         } catch (e) { /* ignore */ }
     }
@@ -159,7 +182,15 @@
             ['tts-announce-streak-milestone', function(v) { announceStreakMilestone = v; }, function() { return announceStreakMilestone; }],
             ['tts-announce-streak-broken', function(v) { announceStreakBroken = v; }, function() { return announceStreakBroken; }],
             ['tts-announce-leader-change', function(v) { announceLeaderChange = v; }, function() { return announceLeaderChange; }],
-            ['tts-announce-tied-first', function(v) { announceTiedFirst = v; }, function() { return announceTiedFirst; }]
+            ['tts-announce-tied-first', function(v) { announceTiedFirst = v; }, function() { return announceTiedFirst; }],
+            // #841 Phase 3: Betting & Game State toggles
+            ['tts-announce-bet-won', function(v) { announceBetWon = v; }, function() { return announceBetWon; }],
+            ['tts-announce-bet-lost', function(v) { announceBetLost = v; }, function() { return announceBetLost; }],
+            ['tts-announce-player-join', function(v) { announcePlayerJoin = v; }, function() { return announcePlayerJoin; }],
+            ['tts-announce-player-reconnect', function(v) { announcePlayerReconnect = v; }, function() { return announcePlayerReconnect; }],
+            ['tts-announce-last-round', function(v) { announceLastRound = v; }, function() { return announceLastRound; }],
+            ['tts-announce-podium', function(v) { announcePodium = v; }, function() { return announcePodium; }],
+            ['tts-announce-rematch', function(v) { announceRematch = v; }, function() { return announceRematch; }]
         ].forEach(function(pair) {
             var el = document.getElementById(pair[0]);
             if (el) {
@@ -231,7 +262,15 @@
             announce_streak_milestone: announceStreakMilestone,
             announce_streak_broken: announceStreakBroken,
             announce_leader_change: announceLeaderChange,
-            announce_tied_first: announceTiedFirst
+            announce_tied_first: announceTiedFirst,
+            // #841 Phase 3: Betting & Game State toggles
+            announce_bet_won: announceBetWon,
+            announce_bet_lost: announceBetLost,
+            announce_player_join: announcePlayerJoin,
+            announce_player_reconnect: announcePlayerReconnect,
+            announce_last_round: announceLastRound,
+            announce_podium: announcePodium,
+            announce_rematch: announceRematch
         };
     };
 

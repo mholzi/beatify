@@ -3518,6 +3518,16 @@ body.theme-dark .admin-controls {
     border-bottom: none;
 }
 
+.tts-group-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-xs) 0;
+    opacity: 0.8;
+}
+
 .setting-hint {
     font-size: 0.7rem;
     color: var(--color-text-muted);

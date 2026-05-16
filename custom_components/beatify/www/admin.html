@@ -573,30 +573,239 @@
                     <input type="text" id="tts-entity-id" class="input-compact" placeholder="tts.google_en_com" data-i18n-placeholder="admin.ttsEntityIdHint">
                 </div>
 
-                <!-- Announce game start toggle -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🎬</span>
-                        <span data-i18n="admin.ttsAnnounceGameStart">Announce Game Start</span>
-                        <span class="setting-hint" data-i18n="admin.ttsAnnounceGameStartHint">Announce when the game begins</span>
-                    </span>
-                    <label class="toggle-compact">
-                        <input type="checkbox" id="tts-announce-game-start" checked>
-                        <span class="toggle-switch-compact"></span>
-                    </label>
+                <!-- Game Flow announcements (#471 Phase 1) -->
+                <div class="setting-group">
+                    <p class="tts-group-title" data-i18n="admin.ttsGroupGameFlow">Game Flow</p>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎬</span>
+                            <span data-i18n="admin.ttsAnnounceGameStart">Announce Game Start</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceGameStartHint">Announce when the game begins</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-game-start" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎯</span>
+                            <span data-i18n="admin.ttsAnnounceRoundStart">Announce Round Start</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceRoundStartHint">Announce the start of each round</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-round-start" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⏳</span>
+                            <span data-i18n="admin.ttsAnnounceCountdown">Announce Countdown</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceCountdownHint">Speak a 3-2-1 countdown before each round</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-countdown">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⏰</span>
+                            <span data-i18n="admin.ttsAnnounceTimeUp">Announce Time's Up</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceTimeUpHint">Announce when the round timer runs out</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-time-up" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">✅</span>
+                            <span data-i18n="admin.ttsAnnounceCorrectAnswer">Announce Correct Answer</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceCorrectAnswerHint">Announce the correct year at reveal</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-correct-answer" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🙈</span>
+                            <span data-i18n="admin.ttsAnnounceNobodyCorrect">Announce Nobody Correct</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceNobodyCorrectHint">Announce when no one guessed the exact year</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-nobody-correct" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
                 </div>
 
-                <!-- Announce winner toggle -->
-                <div class="setting-row">
-                    <span class="setting-label">
-                        <span class="setting-icon" aria-hidden="true">🏆</span>
-                        <span data-i18n="admin.ttsAnnounceWinner">Announce Winner</span>
-                        <span class="setting-hint" data-i18n="admin.ttsAnnounceWinnerHint">Announce the winner at game end</span>
-                    </span>
-                    <label class="toggle-compact">
-                        <input type="checkbox" id="tts-announce-winner" checked>
-                        <span class="toggle-switch-compact"></span>
-                    </label>
+                <!-- Player Achievement announcements (#840 Phase 2) -->
+                <div class="setting-group">
+                    <p class="tts-group-title" data-i18n="admin.ttsGroupAchievements">Player Achievements</p>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">💯</span>
+                            <span data-i18n="admin.ttsAnnounceExactGuess">Announce Exact Guess</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceExactGuessHint">Announce players who guessed the year exactly</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-exact-guess" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">📏</span>
+                            <span data-i18n="admin.ttsAnnounceClosestGuess">Announce Closest Guess</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceClosestGuessHint">Announce the closest-wins round winner</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-closest-guess" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🔥</span>
+                            <span data-i18n="admin.ttsAnnounceStreakMilestone">Announce Streak Milestone</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceStreakMilestoneHint">Announce when a player hits a streak milestone</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-streak-milestone" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">💔</span>
+                            <span data-i18n="admin.ttsAnnounceStreakBroken">Announce Streak Broken</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceStreakBrokenHint">Announce when a notable streak ends</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-streak-broken">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">👑</span>
+                            <span data-i18n="admin.ttsAnnounceLeaderChange">Announce Leader Change</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceLeaderChangeHint">Announce when a new player takes the lead</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-leader-change" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🤝</span>
+                            <span data-i18n="admin.ttsAnnounceTiedFirst">Announce Tie at the Top</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceTiedFirstHint">Announce when the leaderboard is tied for first</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-tied-first" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Betting & Game State announcements (#841 Phase 3) -->
+                <div class="setting-group">
+                    <p class="tts-group-title" data-i18n="admin.ttsGroupBetting">Betting &amp; Game State</p>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">💰</span>
+                            <span data-i18n="admin.ttsAnnounceBetWon">Announce Bet Won</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceBetWonHint">Announce when a player wins a double-or-nothing bet</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-bet-won" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">📉</span>
+                            <span data-i18n="admin.ttsAnnounceBetLost">Announce Bet Lost</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceBetLostHint">Announce when a player loses a bet</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-bet-lost" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">👋</span>
+                            <span data-i18n="admin.ttsAnnouncePlayerJoin">Announce Player Join</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnouncePlayerJoinHint">Announce when a new player joins the game</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-player-join" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🔄</span>
+                            <span data-i18n="admin.ttsAnnouncePlayerReconnect">Announce Player Reconnect</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnouncePlayerReconnectHint">Announce when a player reconnects</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-player-reconnect">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🏁</span>
+                            <span data-i18n="admin.ttsAnnounceLastRound">Announce Last Round</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceLastRoundHint">Announce when the final round begins</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-last-round" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🥇</span>
+                            <span data-i18n="admin.ttsAnnouncePodium">Announce Podium</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnouncePodiumHint">Read out the top 3 finishers at game end</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-podium" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🔁</span>
+                            <span data-i18n="admin.ttsAnnounceRematch">Announce Rematch</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceRematchHint">Announce when a rematch begins</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-rematch" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🏆</span>
+                            <span data-i18n="admin.ttsAnnounceWinner">Announce Winner</span>
+                            <span class="setting-hint" data-i18n="admin.ttsAnnounceWinnerHint">Announce the winner at game end</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="tts-announce-winner" checked>
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
                 </div>
 
                 <!-- Test TTS button -->
