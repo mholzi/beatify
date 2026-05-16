@@ -573,6 +573,23 @@
                     <input type="text" id="tts-entity-id" class="input-compact" placeholder="tts.google_en_com" data-i18n-placeholder="admin.ttsEntityIdHint">
                 </div>
 
+                <!-- Verbosity preset (#2) — bulk-sets the per-event toggles below -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎚️</span>
+                            <span data-i18n="admin.ttsVerbosity">Verbosity</span>
+                            <span class="setting-hint" data-i18n="admin.ttsVerbosityHint">How much the game announces — pick a preset, or fine-tune the toggles below</span>
+                        </span>
+                        <div class="chip-group" role="group" aria-label="TTS verbosity">
+                            <button type="button" id="tts-preset-minimal" class="chip" data-i18n="admin.ttsPresetMinimal">Minimal</button>
+                            <button type="button" id="tts-preset-standard" class="chip" data-i18n="admin.ttsPresetStandard">Standard</button>
+                            <button type="button" id="tts-preset-full" class="chip" data-i18n="admin.ttsPresetFull">Full</button>
+                            <button type="button" id="tts-preset-custom" class="chip" data-i18n="admin.ttsPresetCustom">Custom</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Game Flow announcements (#471 Phase 1) -->
                 <div class="setting-group">
                     <p class="tts-group-title" data-i18n="admin.ttsGroupGameFlow">Game Flow</p>
