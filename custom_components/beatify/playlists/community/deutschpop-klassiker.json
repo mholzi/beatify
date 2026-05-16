@@ -3759,7 +3759,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Z0aQxOOMCjw",
       "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2935831211",
       "alt_artists": [],
       "fun_fact": "A German-language après-ski party anthem, a fixture of winter-holiday playlists.",
       "fun_fact_de": "Eine deutschsprachige Après-Ski-Partyhymne — fester Bestandteil jeder Winterurlaubs-Playlist.",

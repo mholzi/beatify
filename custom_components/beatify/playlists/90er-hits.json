@@ -2924,7 +2924,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ck0LO6b6OQc",
       "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1802291377",
       "alt_artists": [],
       "fun_fact": "The Dutch trance-pop hit that started life as a DJ Jurgen instrumental.",
       "fun_fact_de": "Der niederländische Trance-Pop-Hit, der als DJ-Jurgen-Instrumental begann.",
