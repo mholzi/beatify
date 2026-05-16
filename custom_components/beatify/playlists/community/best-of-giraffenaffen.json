@@ -1,6 +1,6 @@
 {
   "name": "Best of Giraffenaffen",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "kinderlieder",
     "kids",
@@ -529,7 +529,7 @@
         "nl": "applemusic://track/1615368685",
         "it": "applemusic://track/1615368685"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VBWo0f7qrjo",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2009).",
@@ -632,7 +632,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ngc8KChibgI",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aKl4o76rvOQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/559296952",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2018).",
