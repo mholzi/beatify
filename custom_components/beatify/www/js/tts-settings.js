@@ -34,6 +34,10 @@
     var announceLastRound = true;
     var announcePodium = true;
     var announceRematch = true;
+    // #842 Phase 4: Special Modes toggles.
+    var announceIntroRound = true;
+    var announceStealUnlocked = true;
+    var announceStealUsed = true;
 
     function loadState() {
         try {
@@ -60,6 +64,9 @@
             announceLastRound = saved.announce_last_round !== false;
             announcePodium = saved.announce_podium !== false;
             announceRematch = saved.announce_rematch !== false;
+            announceIntroRound = saved.announce_intro_round !== false;
+            announceStealUnlocked = saved.announce_steal_unlocked !== false;
+            announceStealUsed = saved.announce_steal_used !== false;
         } catch (e) { /* ignore */ }
     }
 
@@ -87,7 +94,10 @@
                 announce_player_reconnect: announcePlayerReconnect,
                 announce_last_round: announceLastRound,
                 announce_podium: announcePodium,
-                announce_rematch: announceRematch
+                announce_rematch: announceRematch,
+                announce_intro_round: announceIntroRound,
+                announce_steal_unlocked: announceStealUnlocked,
+                announce_steal_used: announceStealUsed
             }));
         } catch (e) { /* ignore */ }
     }
@@ -190,7 +200,11 @@
             ['tts-announce-player-reconnect', function(v) { announcePlayerReconnect = v; }, function() { return announcePlayerReconnect; }],
             ['tts-announce-last-round', function(v) { announceLastRound = v; }, function() { return announceLastRound; }],
             ['tts-announce-podium', function(v) { announcePodium = v; }, function() { return announcePodium; }],
-            ['tts-announce-rematch', function(v) { announceRematch = v; }, function() { return announceRematch; }]
+            ['tts-announce-rematch', function(v) { announceRematch = v; }, function() { return announceRematch; }],
+            // #842 Phase 4: Special Modes toggles
+            ['tts-announce-intro-round', function(v) { announceIntroRound = v; }, function() { return announceIntroRound; }],
+            ['tts-announce-steal-unlocked', function(v) { announceStealUnlocked = v; }, function() { return announceStealUnlocked; }],
+            ['tts-announce-steal-used', function(v) { announceStealUsed = v; }, function() { return announceStealUsed; }]
         ].forEach(function(pair) {
             var el = document.getElementById(pair[0]);
             if (el) {
@@ -270,7 +284,11 @@
             announce_player_reconnect: announcePlayerReconnect,
             announce_last_round: announceLastRound,
             announce_podium: announcePodium,
-            announce_rematch: announceRematch
+            announce_rematch: announceRematch,
+            // #842 Phase 4: Special Modes toggles
+            announce_intro_round: announceIntroRound,
+            announce_steal_unlocked: announceStealUnlocked,
+            announce_steal_used: announceStealUsed
         };
     };
 

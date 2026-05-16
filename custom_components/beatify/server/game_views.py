@@ -363,6 +363,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     announce_last_round=tts_config.get("announce_last_round", True),
                     announce_podium=tts_config.get("announce_podium", True),
                     announce_rematch=tts_config.get("announce_rematch", True),
+                    announce_intro_round=tts_config.get("announce_intro_round", True),
+                    announce_steal_unlocked=tts_config.get(
+                        "announce_steal_unlocked", True
+                    ),
+                    announce_steal_used=tts_config.get("announce_steal_used", True),
                 )
                 await game_state.announce_game_start()
 
