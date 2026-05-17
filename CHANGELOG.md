@@ -19,6 +19,7 @@ See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for t
 
 ### Fixed
 - **40 broken URIs in `harder-styles` (#916).** An automated health-check found 40 URIs (32 YouTube Music, 5 Apple Music, 3 Deezer) pointing to the wrong track. 32 re-resolved automatically; 5 obscure festival anthems pointed at the official label/organiser channel uploads; 3 left as best-available.
+- **Round stuck on "Waiting for others" (#928).** Early reveal counted every `connected` player, including a stale ghost whose WebSocket had already dropped — that ghost never submits, so the round never advanced and a restart hit the same wall. All-submitted detection now ignores players with a closed WebSocket, and a mid-round disconnect re-checks for early reveal.
 
 ### Data
 - **Harder Styles — 150 → 190 songs (#899).** 40 modern hardstyle tracks (festival anthems + hardstyle remixes of chart hits) folded in from playlist request #899, with per-region Apple Music URIs.
