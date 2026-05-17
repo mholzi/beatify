@@ -13,7 +13,7 @@ var MAX_CACHE_ITEMS = 50;
 var PRECACHE_ASSETS = [
     '/beatify/static/css/styles.min.css',
     '/beatify/static/css/dashboard.min.css',
-    '/beatify/static/js/player.min.js',
+    '/beatify/static/js/player.bundle.min.js',
     '/beatify/static/js/admin.min.js',
     '/beatify/static/js/dashboard.min.js',
     '/beatify/static/js/i18n.min.js',
