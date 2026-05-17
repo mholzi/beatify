@@ -6,7 +6,10 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.beatify.services.media_player import MediaPlayerService
+from custom_components.beatify.services.media_player import (
+    MediaPlayerService,
+    proxy_album_art,
+)
 
 
 def _make_state(
@@ -1068,3 +1071,65 @@ class TestStartRoundFailureClassification:
         # Must have paused once retries exhausted.
         assert result is False
         gs.pause_game.assert_awaited_once_with("media_player_error")
+
+
+class TestProxyAlbumArt:
+    """proxy_album_art — same-origin wrapping so remote players see art (#933)."""
+
+    def test_absolute_http_lan_url_is_wrapped(self):
+        # The exact shape Music Assistant emits — an absolute LAN URL.
+        url = "http://192.168.0.191:8095/imageproxy?provider=apple_music&path=x"
+        result = proxy_album_art(url)
+        assert result.startswith("/beatify/api/albumart?url=")
+        # The LAN host is percent-encoded into the query, not left bare.
+        assert "192.168.0.191" not in result.split("?url=")[0]
+        assert "%3A%2F%2F" in result  # :// is encoded
+
+    def test_https_url_is_wrapped(self):
+        result = proxy_album_art("https://cdn.example.com/cover.jpg")
+        assert result.startswith("/beatify/api/albumart?url=")
+
+    def test_relative_ha_proxy_path_passes_through(self):
+        # HA's own signed media-player proxy path is already same-origin.
+        url = "/api/media_player_proxy/media_player.sonos?token=abc"
+        assert proxy_album_art(url) == url
+
+    def test_no_artwork_fallback_passes_through(self):
+        url = "/beatify/static/img/no-artwork.svg"
+        assert proxy_album_art(url) == url
+
+    def test_empty_string_passes_through(self):
+        assert proxy_album_art("") == ""
+
+
+class TestMetadataAlbumArtWrapping:
+    """get_metadata / _extract_metadata route absolute art through the proxy (#933)."""
+
+    async def test_get_metadata_wraps_ma_lan_url(self):
+        hass = _make_hass()
+        hass.states.get().attributes["entity_picture"] = (
+            "http://192.168.0.191:8095/imageproxy?x=1"
+        )
+        svc = MediaPlayerService(hass, "media_player.test")
+        meta = await svc.get_metadata()
+        assert meta["album_art"].startswith("/beatify/api/albumart?url=")
+
+    def test_extract_metadata_wraps_ma_lan_url(self):
+        svc = MediaPlayerService(_make_hass(), "media_player.test")
+        state = _make_state()
+        state.attributes["entity_picture"] = "http://10.0.0.5:8095/imageproxy?y=2"
+        meta = svc._extract_metadata(state)
+        assert meta["album_art"].startswith("/beatify/api/albumart?url=")
+
+    def test_extract_metadata_keeps_relative_entity_picture(self):
+        svc = MediaPlayerService(_make_hass(), "media_player.test")
+        state = _make_state()
+        state.attributes["entity_picture"] = "/api/media_player_proxy/x?token=t"
+        meta = svc._extract_metadata(state)
+        assert meta["album_art"] == "/api/media_player_proxy/x?token=t"
+
+    def test_extract_metadata_defaults_to_no_artwork(self):
+        # No entity_picture attribute → the relative fallback, left untouched.
+        svc = MediaPlayerService(_make_hass(), "media_player.test")
+        meta = svc._extract_metadata(_make_state())
+        assert meta["album_art"] == "/beatify/static/img/no-artwork.svg"
