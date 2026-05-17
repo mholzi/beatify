@@ -498,8 +498,8 @@
     "ttsTestNoSpeaker": "Elige primero un altavoz",
     "pauseRecovery": {
       "title": "Partida en pausa",
-      "mediaPlayerError": "La reproducción ha fallado en las últimas 3 canciones. Causa habitual: {provider} en Music Assistant necesita reautenticarse — Ajustes → Music Assistant → {provider} → Reconectar, y luego pulsa Reanudar.",
-      "mediaPlayerErrorGeneric": "La reproducción ha fallado en las últimas 3 canciones. Causa habitual: tu proveedor de música en Music Assistant necesita reautenticarse — Ajustes → Music Assistant → tu proveedor → Reconectar, y luego pulsa Reanudar.",
+      "mediaPlayerError": "La reproducción no se ha iniciado — el altavoz no responde. Causa habitual: {provider} en Music Assistant necesita reautenticarse — Ajustes → Music Assistant → {provider} → Reconectar, y luego pulsa Reanudar.",
+      "mediaPlayerErrorGeneric": "La reproducción no se ha iniciado — el altavoz no responde. Causa habitual: tu proveedor de música en Music Assistant necesita reautenticarse — Ajustes → Music Assistant → tu proveedor → Reconectar, y luego pulsa Reanudar.",
       "noSongsAvailable": "No quedan canciones reproducibles para este proveedor. Reanuda para reintentarlo, o finaliza la partida.",
       "resume": "Reanudar",
       "endGame": "Finalizar partida",

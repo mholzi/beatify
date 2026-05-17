@@ -498,8 +498,8 @@
     "ttsTestNoSpeaker": "Erst einen Lautsprecher auswählen",
     "pauseRecovery": {
       "title": "Spiel pausiert",
-      "mediaPlayerError": "Die Wiedergabe ist bei den letzten 3 Songs fehlgeschlagen. Häufige Ursache: {provider} in Music Assistant muss neu authentifiziert werden — Einstellungen → Music Assistant → {provider} → Neu verbinden, dann auf Fortsetzen klicken.",
-      "mediaPlayerErrorGeneric": "Die Wiedergabe ist bei den letzten 3 Songs fehlgeschlagen. Häufige Ursache: dein Musikanbieter in Music Assistant muss neu authentifiziert werden — Einstellungen → Music Assistant → Anbieter → Neu verbinden, dann auf Fortsetzen klicken.",
+      "mediaPlayerError": "Die Wiedergabe konnte nicht starten — der Lautsprecher reagiert nicht. Häufige Ursache: {provider} in Music Assistant muss neu authentifiziert werden — Einstellungen → Music Assistant → {provider} → Neu verbinden, dann auf Fortsetzen klicken.",
+      "mediaPlayerErrorGeneric": "Die Wiedergabe konnte nicht starten — der Lautsprecher reagiert nicht. Häufige Ursache: dein Musikanbieter in Music Assistant muss neu authentifiziert werden — Einstellungen → Music Assistant → Anbieter → Neu verbinden, dann auf Fortsetzen klicken.",
       "noSongsAvailable": "Keine spielbaren Songs für diesen Anbieter mehr. Fortsetzen, um es erneut zu versuchen, oder Spiel beenden.",
       "resume": "Fortsetzen",
       "endGame": "Spiel beenden",

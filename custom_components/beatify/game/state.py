@@ -1298,16 +1298,20 @@ class GameState:
                     await asyncio.sleep(0.2)
                     return await self.start_round(_retry_count)
 
-                _LOGGER.warning("Failed to play song: %s", song.get("uri"))
-                if _retry_count >= MAX_SONG_RETRIES:
-                    _LOGGER.error(
-                        "Media player unreachable after %d attempts, pausing game",
-                        MAX_SONG_RETRIES,
-                    )
-                    await self.pause_game("media_player_error")
-                    return False
-                await asyncio.sleep(1.0)
-                return await self.start_round(_retry_count + 1)
+                # #949: a systemic playback failure — the speaker stayed idle,
+                # or the Music Assistant provider is unauthenticated — does not
+                # fix itself by retrying. play_song already waited a full MA
+                # timeout. Retrying it ~3x more meant ~2 minutes of a silent
+                # "Starting..." button before the admin saw anything. Pause
+                # now so the recovery banner (which names the provider to
+                # re-authenticate) appears within seconds; its Resume button
+                # is the manual retry if it really was a transient blip.
+                _LOGGER.error(
+                    "Playback failed for %s — speaker unreachable, pausing game",
+                    song.get("uri"),
+                )
+                await self.pause_game("media_player_error")
+                return False
 
         metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
         self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash)
