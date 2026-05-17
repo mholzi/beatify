@@ -115,6 +115,9 @@ let adminSessionId = null;    // Set on join_ack — passed to /play so it can
                               // fresh {type:'join'} (which races ERR_NAME_TAKEN).
 let isPlaying = false;        // Whether admin is participating as a player
 let adminReconnectAttempts = 0;
+// #949: the home "Start game" button's pre-"Starting…" HTML, stashed so a WS
+// start-failure error (MEDIA_PLAYER_UNAVAILABLE etc.) can un-stick the button.
+let _homeStartBtnHTML = null;
 const MAX_ADMIN_RECONNECT = 10;
 let countdownInterval = null;
 
@@ -1966,6 +1969,18 @@ async function startGame() {
 }
 
 /**
+ * #949: un-stick the home "Start game" button after a failed start. The WS
+ * path of startGameplay() sets it to "⏳ Starting…" and returns; on a start
+ * rejection there is otherwise nothing to restore it.
+ */
+function resetHomeStartButton() {
+    var b = document.getElementById('home-start-game');
+    if (!b) return;
+    b.disabled = false;
+    if (_homeStartBtnHTML) b.innerHTML = _homeStartBtnHTML;
+}
+
+/**
  * Start gameplay from lobby — transitions LOBBY → PLAYING (Issue #228).
  * Called from the "Spiel starten" button in the lobby view.
  * Preserves admin session: admin can start the game without having to
@@ -1983,6 +1998,7 @@ async function startGameplay() {
     if (btn) {
         btn.disabled = true;
         originalHTML = btn.innerHTML;
+        _homeStartBtnHTML = originalHTML;  // #949: so a WS error can restore it
         btn.innerHTML = '<span class="btn-icon" aria-hidden="true">⏳</span> ' + BeatifyI18n.t('game.starting');
     }
 
@@ -3353,6 +3369,14 @@ function handleAdminWsMessage(data) {
                     joinBtn.disabled = false;
                     joinBtn.textContent = BeatifyI18n.t('admin.join');
                 }
+            } else {
+                // #949: a start_game / next_round rejection — MEDIA_PLAYER_UNAVAILABLE,
+                // GAME_NOT_STARTED, NO_SONGS_REMAINING, INVALID_ACTION, … startGameplay()
+                // left the home "Start game" button on "⏳ Starting…" and returned to
+                // wait for a broadcast. Un-stick the button and surface the message so
+                // the host is not staring at a frozen "Starting…".
+                resetHomeStartButton();
+                showError(data.message);
             }
             break;
 
