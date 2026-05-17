@@ -1379,14 +1379,18 @@ async def handle_report_data(
         playlist_file,
     )
 
-    reports_path = Path(handler.hass.config.path("beatify")) / "data_quality_reports.json"
+    reports_path = (
+        Path(handler.hass.config.path("beatify")) / "data_quality_reports.json"
+    )
     try:
         reports_path.parent.mkdir(parents=True, exist_ok=True)
         existing: list = []
         if reports_path.exists():
             existing = json.loads(reports_path.read_text(encoding="utf-8"))
         existing.append(report)
-        reports_path.write_text(json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8")
+        reports_path.write_text(
+            json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
     except Exception:  # noqa: BLE001
         _LOGGER.warning("Failed to write data quality report to %s", reports_path)
 
@@ -1424,7 +1428,11 @@ async def _create_gh_issue(
                 if resp.status not in (200, 201):
                     _LOGGER.debug(
                         "Worker /report-data returned %s for %s — %s",
-                        resp.status, artist, title,
+                        resp.status,
+                        artist,
+                        title,
                     )
     except Exception:  # noqa: BLE001
-        _LOGGER.debug("Worker /report-data call failed (non-critical) for %s — %s", artist, title)
+        _LOGGER.debug(
+            "Worker /report-data call failed (non-critical) for %s — %s", artist, title
+        )
