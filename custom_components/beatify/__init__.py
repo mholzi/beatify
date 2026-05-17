@@ -28,6 +28,7 @@ from .game.state import GameState
 from .server import async_register_static_paths
 from .server.views import (
     AdminView,
+    AlbumArtView,
     AnalyticsPageView,
     AnalyticsView,
     CapabilitiesView,
@@ -169,6 +170,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(StatusView(hass))
     hass.http.register_view(CapabilitiesView(hass))
     hass.http.register_view(LightsView(hass))  # Issue #331
+    hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
     hass.http.register_view(PreviewLightsView(hass))  # Issue #408
     hass.http.register_view(TtsTestView(hass))
     hass.http.register_view(StartGameView(hass))

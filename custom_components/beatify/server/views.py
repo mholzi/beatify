@@ -7,12 +7,14 @@ views from sub-modules for backward compatibility.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from aiohttp import web
+from aiohttp import ClientError, ClientTimeout, web
 from homeassistant.components.http import HomeAssistantView
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.game.state import GamePhase
@@ -278,6 +280,51 @@ class LightsView(HomeAssistantView):
             )
 
         return web.json_response({"lights": lights})
+
+
+class AlbumArtView(HomeAssistantView):
+    """Same-origin proxy for media-player album art (#933).
+
+    Music Assistant exposes ``entity_picture`` as an absolute URL on the MA
+    server's LAN address (e.g. ``http://192.168.x.x:8095/imageproxy?...``). A
+    player who joined via the nabu.casa remote URL is on a public origin, so
+    the browser's Private Network Access policy blocks the LAN request and
+    album art never loads. This view re-fetches the image server-side — HA can
+    reach the LAN — and re-serves it same-origin under ``/beatify/api/albumart``.
+    """
+
+    url = "/beatify/api/albumart"
+    name = "beatify:api:albumart"
+    requires_auth = False  # player browsers are unauthenticated
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the album-art proxy view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Fetch the upstream image and re-serve it same-origin."""
+        raw_url = request.query.get("url", "")
+        if not raw_url.startswith(("http://", "https://")):
+            return web.Response(status=400, text="invalid url")
+
+        session = async_get_clientsession(self.hass)
+        try:
+            async with session.get(
+                raw_url, timeout=ClientTimeout(total=10)
+            ) as resp:
+                if resp.status != 200:
+                    return web.Response(status=resp.status)
+                body = await resp.read()
+                content_type = resp.headers.get("Content-Type", "image/jpeg")
+        except (ClientError, asyncio.TimeoutError):
+            _LOGGER.warning("Album-art proxy fetch failed for %s", raw_url)
+            return web.Response(status=502, text="upstream fetch failed")
+
+        return web.Response(
+            body=body,
+            content_type=content_type,
+            headers={"Cache-Control": "public, max-age=86400"},
+        )
 
 
 class PreviewLightsView(HomeAssistantView):

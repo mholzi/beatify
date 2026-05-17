@@ -7,6 +7,7 @@ import logging
 import sys
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any
+from urllib.parse import quote
 
 if sys.version_info >= (3, 11):
     from asyncio import timeout as async_timeout
@@ -133,6 +134,26 @@ _PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
     "tidal": ("uri_tidal",),
     "deezer": ("uri_deezer",),
 }
+
+
+def proxy_album_art(url: str) -> str:
+    """Route an absolute album-art URL through the same-origin proxy (#933).
+
+    Music Assistant exposes ``entity_picture`` as an absolute URL on the MA
+    server's LAN address (e.g. ``http://192.168.x.x:8095/imageproxy?...``). A
+    player who joined via the nabu.casa remote URL is on a public origin, so
+    the browser's Private Network Access policy blocks the LAN request and
+    album art never loads. Wrapping such URLs in ``/beatify/api/albumart`` lets
+    the HA server fetch the image (it can reach the LAN) and re-serve it
+    same-origin.
+
+    Relative URLs — HA's own signed media-player proxy path, the
+    ``no-artwork.svg`` fallback — are already same-origin and pass through
+    unchanged.
+    """
+    if url and url.startswith(("http://", "https://")):
+        return "/beatify/api/albumart?url=" + quote(url, safe="")
+    return url
 
 
 class MediaPlayerService:
@@ -776,8 +797,10 @@ class MediaPlayerService:
         return {
             "artist": state.attributes.get("media_artist", "Unknown Artist"),
             "title": state.attributes.get("media_title", "Unknown Title"),
-            "album_art": state.attributes.get(
-                "entity_picture", "/beatify/static/img/no-artwork.svg"
+            "album_art": proxy_album_art(
+                state.attributes.get(
+                    "entity_picture", "/beatify/static/img/no-artwork.svg"
+                )
             ),
         }
 
@@ -876,8 +899,10 @@ class MediaPlayerService:
         return {
             "artist": state.attributes.get("media_artist", "Unknown Artist"),
             "title": state.attributes.get("media_title", "Unknown Title"),
-            "album_art": state.attributes.get(
-                "entity_picture", "/beatify/static/img/no-artwork.svg"
+            "album_art": proxy_album_art(
+                state.attributes.get(
+                    "entity_picture", "/beatify/static/img/no-artwork.svg"
+                )
             ),
         }
 
