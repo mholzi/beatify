@@ -26,6 +26,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_join,
     handle_leave,
     handle_movie_guess,
+    handle_ping,
     handle_player_onboarded,
     handle_reaction,
     handle_reconnect,
@@ -197,6 +198,12 @@ class BeatifyWebSocketHandler:
         """
         msg_type = data.get("type")
         game_state = get_game_state(self.hass)
+
+        # Heartbeat ping: answer before the active-game guard so the client
+        # heartbeat keeps working between games and on the end screen (#967).
+        if msg_type == "ping":
+            await handle_ping(self, ws, data, game_state)
+            return
 
         if not game_state or not game_state.game_id:
             await ws.send_json(

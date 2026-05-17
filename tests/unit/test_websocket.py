@@ -1149,3 +1149,34 @@ class TestRoundTimeoutWatchdog:
         await handler._handle_message(ws, {"type": "round_timeout"})
 
         game_state.end_round.assert_not_awaited()
+
+
+# ---------------------------------------------------------------------------
+# Heartbeat
+# ---------------------------------------------------------------------------
+
+
+class TestHeartbeat:
+    """A client `ping` is answered with `pong` so the client can detect a
+    half-open socket and reconnect — even between games."""
+
+    async def test_ping_replies_pong(self):
+        handler, game_state, ws = _make_handler_and_game()
+
+        await handler._handle_message(ws, {"type": "ping"})
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "pong"
+
+    async def test_ping_answered_with_no_active_game(self):
+        # The active-game guard must NOT swallow a ping — the heartbeat has
+        # to keep working on the end screen and between games.
+        mock_hass = MagicMock()
+        mock_hass.data = {}
+        handler = BeatifyWebSocketHandler(mock_hass)
+        ws = _make_ws()
+
+        await handler._handle_message(ws, {"type": "ping"})
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "pong"
