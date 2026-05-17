@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "german",
     "pop",
@@ -499,7 +499,7 @@
     {
       "artist": "Juli",
       "title": "Perfekte Welle",
-      "year": 2016,
+      "year": 2004,
       "isrc": "DEN120402022",
       "uri": "spotify:track:2LV5joNDrsyuXEh4FBARVK",
       "uri_apple_music": "applemusic://track/6762966374",
@@ -683,7 +683,7 @@
     {
       "artist": "Juli",
       "title": "Geile Zeit",
-      "year": 2016,
+      "year": 2004,
       "isrc": "DEN120404257",
       "uri": "spotify:track:3hT1h7FiFFxoLqiTMJM7Ew",
       "uri_apple_music": "applemusic://track/1804123747",
@@ -1088,7 +1088,7 @@
     {
       "artist": "Andreas Bourani",
       "title": "Nur in meinem Kopf - Radio Edit",
-      "year": 2015,
+      "year": 2011,
       "isrc": "DEUM71100995",
       "uri": "spotify:track:6sJqyTUtxpzdISd2iYVAPT",
       "uri_apple_music": "applemusic://track/6762966263",
@@ -1350,7 +1350,7 @@
     {
       "artist": "Herbert Grönemeyer",
       "title": "Der Weg - Remastered 2016",
-      "year": 2018,
+      "year": 2002,
       "isrc": "GBLAZ1600800",
       "uri": "spotify:track:7py0pONdy9D0DxNnT3elik",
       "uri_apple_music": null,
@@ -2045,7 +2045,7 @@
     {
       "artist": "Juliane Werding",
       "title": "Stimmen im Wind",
-      "year": 2014,
+      "year": 1986,
       "isrc": "DEA629253260",
       "uri": "spotify:track:0swD6DCpBdolN97nsBOR56",
       "uri_apple_music": "applemusic://track/1620406823",
@@ -2079,7 +2079,7 @@
     {
       "artist": "Rosenstolz",
       "title": "Liebe ist alles",
-      "year": 2016,
+      "year": 2004,
       "isrc": "DEN120307259",
       "uri": "spotify:track:6EatiOQBv70o94sr2oTHLB",
       "uri_apple_music": "applemusic://track/1790246908",
@@ -2327,7 +2327,7 @@
     {
       "artist": "Die Fantastischen Vier",
       "title": "Sie ist weg",
-      "year": 2009,
+      "year": 1995,
       "isrc": "DEE869500515",
       "uri": "spotify:track:3rTSoSOTvOebYMy2kzKvkJ",
       "uri_apple_music": "applemusic://track/969571294",
@@ -2435,7 +2435,7 @@
     {
       "artist": "Udo Lindenberg, Clueso",
       "title": "Cello (feat. Clueso) - MTV Unplugged Radio Atmo-Version",
-      "year": 2011,
+      "year": 1973,
       "isrc": "DEA621100330",
       "uri": "spotify:track:62BukCU8nVt44KQXm0LUff",
       "uri_apple_music": "applemusic://track/1561828484",
@@ -2579,7 +2579,7 @@
     {
       "artist": "Die Fantastischen Vier",
       "title": "Troy",
-      "year": 2009,
+      "year": 2004,
       "isrc": "DEE860400443",
       "uri": "spotify:track:6QRng4ZFJxeRnjcnquKlx2",
       "uri_apple_music": "applemusic://track/969577078",
@@ -2647,7 +2647,7 @@
     {
       "artist": "Deichkind",
       "title": "Luftbahn",
-      "year": 2014,
+      "year": 2012,
       "isrc": "DEUM70806186",
       "uri": "spotify:track:28VHPpOFGdY2PByaTe10ZX",
       "uri_apple_music": "applemusic://track/6762966384",
@@ -2974,7 +2974,7 @@
     {
       "artist": "SDP",
       "title": "Eigentlich wollte er nie ein Liebeslied schreiben",
-      "year": 2010,
+      "year": 2006,
       "isrc": "DEBL61067136",
       "uri": "spotify:track:3j0ykg82KM5eagr3lIcA9b",
       "uri_apple_music": "applemusic://track/375748055",
@@ -3042,7 +3042,7 @@
     {
       "artist": "Tokio Hotel",
       "title": "Durch den Monsun - Radio Mix",
-      "year": 2010,
+      "year": 2005,
       "isrc": "DEUM70500187",
       "uri": "spotify:track:5OiC3eltQO7gXvOZMbrTn3",
       "uri_apple_music": "applemusic://track/6762966195",
@@ -3328,7 +3328,7 @@
     {
       "artist": "Herbert Grönemeyer, Amadou, Mariam",
       "title": "Zeit, dass sich was dreht - Deutsche Version",
-      "year": 2016,
+      "year": 2006,
       "isrc": "DEC610800606",
       "uri": "spotify:track:2ln6685JphEqCJYclkusqW",
       "uri_apple_music": "applemusic://track/1020603717",
@@ -3510,7 +3510,7 @@
     {
       "artist": "Söhne Mannheims",
       "title": "Und wenn ein Lied - Radio Edit",
-      "year": 2011,
+      "year": 2004,
       "isrc": "DEP470400063",
       "uri": "spotify:track:7CFr7KuO7CWuqxJ3PtByXC",
       "uri_apple_music": "applemusic://track/1501749291",

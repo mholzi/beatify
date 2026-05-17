@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "pop",
     "charts",
@@ -15,7 +15,7 @@
     {
       "artist": "SNAP!",
       "title": "The Power",
-      "year": 2026,
+      "year": 1990,
       "isrc": "DEC229000107",
       "uri": "spotify:track:0nQLxiNGbbUoSGrxksETLm",
       "uri_apple_music": "applemusic://track/1498447546",
@@ -90,7 +90,7 @@
     {
       "artist": "Earth, Wind & Fire",
       "title": "Boogie Wonderland (with The Emotions) - Single Version",
-      "year": 2012,
+      "year": 1979,
       "isrc": "USSM19922860",
       "uri": "spotify:track:6ztstiyZL6FXzh4aG46ZPD",
       "uri_apple_music": "applemusic://track/1737583904",
@@ -118,7 +118,7 @@
     {
       "artist": "Gipsy Kings",
       "title": "Djobi, Djoba",
-      "year": 2012,
+      "year": 1982,
       "isrc": "GBARL0700404",
       "uri": "spotify:track:2Mz7HwloqFNdA6iZeZk5PJ",
       "uri_apple_music": "applemusic://track/1512944833",
@@ -168,7 +168,7 @@
     {
       "artist": "The Spencer Davis Group",
       "title": "Keep On Running - Remastered 2010",
-      "year": 2010,
+      "year": 1965,
       "isrc": "GBUM71002671",
       "uri": "spotify:track:45ghY6i6XTeHuOEtG1HwrQ",
       "uri_apple_music": "applemusic://track/1422665979",
@@ -327,7 +327,7 @@
     {
       "artist": "Bandolero",
       "title": "Paris Latino - Original Version 1983",
-      "year": 2011,
+      "year": 1983,
       "isrc": "FR1OI8300160",
       "uri": "spotify:track:3LCup59DMpM3r6fwQsZMYs",
       "uri_apple_music": "applemusic://track/906486219",
@@ -352,7 +352,7 @@
     {
       "artist": "Incognito",
       "title": "Always There - Edit",
-      "year": 2010,
+      "year": 1991,
       "isrc": "USGR10001014",
       "uri": "spotify:track:6BxLhB782dObX1y4kDJDIU",
       "uri_apple_music": "applemusic://track/1669406231",
@@ -380,7 +380,7 @@
     {
       "artist": "Eddy Grant",
       "title": "Gimme Hope Jo'Anna",
-      "year": 2026,
+      "year": 1988,
       "isrc": "UKALA2600005",
       "uri": "spotify:track:09lZ2Mx2NSpzy6KBpX2kDq",
       "uri_apple_music": "applemusic://track/1882033162",
@@ -433,7 +433,7 @@
     {
       "artist": "Die Toten Hosen",
       "title": "Zehn kleine Jägermeister",
-      "year": 2011,
+      "year": 1996,
       "isrc": "DEF241112444",
       "uri": "spotify:track:4wNsh8RqG6bvwuUNaX18pT",
       "uri_apple_music": "applemusic://track/478013623",
@@ -458,7 +458,7 @@
     {
       "artist": "Safri Duo",
       "title": "Played-A-Live (The Bongo Song)",
-      "year": 2021,
+      "year": 2000,
       "isrc": "DKBKA0001601",
       "uri": "spotify:track:7uuo02BIR76qZ6ZXQhz7Ys",
       "uri_apple_music": "applemusic://track/6767050012",
@@ -508,7 +508,7 @@
     {
       "artist": "T.S. Monk",
       "title": "Bon bon vie - Gimme the Good Life",
-      "year": 2014,
+      "year": 1980,
       "isrc": "CAU111122152",
       "uri": "spotify:track:7ovnSuNF7xp348DXh7Ns5u",
       "uri_apple_music": "applemusic://track/1769118265",
@@ -586,7 +586,7 @@
     {
       "artist": "Central Line",
       "title": "Walking Into Sunshine - Edit",
-      "year": 2015,
+      "year": 1981,
       "isrc": "USMR18289041",
       "uri": "spotify:track:5r2OXBrMdXIBk3BQemVUGJ",
       "uri_apple_music": "applemusic://track/1444100932",
@@ -664,7 +664,7 @@
     {
       "artist": "S Club",
       "title": "Don't Stop Movin'",
-      "year": 2015,
+      "year": 2001,
       "isrc": "GBCVL0100001",
       "uri": "spotify:track:4dzreTCcGVgeF1vCcd22AC",
       "uri_apple_music": "applemusic://track/1584857947",
@@ -745,7 +745,7 @@
     {
       "artist": "Peter Gabriel",
       "title": "Sledgehammer",
-      "year": 2012,
+      "year": 1986,
       "isrc": "GBCPB1200864",
       "uri": "spotify:track:029NqmIySn1kOY305AAhxT",
       "uri_apple_music": "applemusic://track/994361949",
@@ -798,7 +798,7 @@
     {
       "artist": "5000 Volts",
       "title": "I’m On Fire",
-      "year": 2024,
+      "year": 1975,
       "isrc": "ES64E2413022",
       "uri": "spotify:track:7bjtTJ4M10kpl2pGJxsg1Q",
       "uri_apple_music": null,
@@ -823,7 +823,7 @@
     {
       "artist": "The Jamies",
       "title": "Summertime, Summertime",
-      "year": 2024,
+      "year": 1958,
       "isrc": "USSM19700760",
       "uri": "spotify:track:37Vct7oArn3tHN3XXCJJ7p",
       "uri_apple_music": "applemusic://track/1473830324",
@@ -901,7 +901,7 @@
     {
       "artist": "Michael Jackson",
       "title": "Bad",
-      "year": 2012,
+      "year": 1987,
       "isrc": "USSM11204980",
       "uri": "spotify:track:3FvQH46A4B37eNHjooIXcu",
       "uri_apple_music": "applemusic://track/559334751",
@@ -926,7 +926,7 @@
     {
       "artist": "Daft Punk",
       "title": "Harder, Better, Faster, Stronger",
-      "year": 2022,
+      "year": 2001,
       "isrc": null,
       "uri": "spotify:track:5W3cjX2J3tjhG8zb6u0qHn",
       "uri_apple_music": null,
@@ -993,7 +993,7 @@
     {
       "artist": "Michael McDonald",
       "title": "Sweet Freedom",
-      "year": 2021,
+      "year": 1986,
       "isrc": "USUM72107422",
       "uri": "spotify:track:4ZsYF5rjUXIwds6KNimPRo",
       "uri_apple_music": "applemusic://track/1700309643",
@@ -1018,7 +1018,7 @@
     {
       "artist": "Little Eva",
       "title": "The Locomotion",
-      "year": 2013,
+      "year": 1962,
       "isrc": "GBAYE6200144",
       "uri": "spotify:track:5xzdDMhFYiuUONB0Mha9VS",
       "uri_apple_music": "applemusic://track/1671222971",
@@ -1043,7 +1043,7 @@
     {
       "artist": "Kool & The Gang",
       "title": "Let's Go Dancin' (Ooh La, La, La) - Single Version",
-      "year": 2018,
+      "year": 1982,
       "isrc": "USPR38200048",
       "uri": "spotify:track:1tcC3OHLh3ROsSIwfM8bEp",
       "uri_apple_music": "applemusic://track/1445227982",
@@ -1068,7 +1068,7 @@
     {
       "artist": "Daddy DJ",
       "title": "Daddy DJ",
-      "year": 2022,
+      "year": 2000,
       "isrc": "ITV952200075",
       "uri": "spotify:track:6MPTmoLt4IaL1XKRgKER4I",
       "uri_apple_music": null,
@@ -1093,7 +1093,7 @@
     {
       "artist": "The Surfaris",
       "title": "Wipe Out",
-      "year": 2018,
+      "year": 1963,
       "isrc": "USUM71802349",
       "uri": "spotify:track:4SDGb2V6J2rEbxNujwNeMl",
       "uri_apple_music": "applemusic://track/1748016223",
@@ -1163,7 +1163,7 @@
     {
       "artist": "The Crystals",
       "title": "Da Doo Ron Ron (When He Walked Me Home)",
-      "year": 2011,
+      "year": 1963,
       "isrc": "USQX91100116",
       "uri": "spotify:track:0fonScmHUzC0MglSLn9saA",
       "uri_apple_music": "applemusic://track/518082135",
@@ -1298,7 +1298,7 @@
     {
       "artist": "Matia Bazar",
       "title": "Ti Sento",
-      "year": 2012,
+      "year": 1985,
       "isrc": "ITPOO9800109",
       "uri": "spotify:track:72BnKkKnrOeCDY9vy2avFk",
       "uri_apple_music": "applemusic://track/712911374",
@@ -1323,7 +1323,7 @@
     {
       "artist": "Roxette",
       "title": "How Do You Do!",
-      "year": 2014,
+      "year": 1992,
       "isrc": "SEAMA9252010",
       "uri": "spotify:track:2D7GRdSAcRkBsDtXsnjh1v",
       "uri_apple_music": "applemusic://track/726418680",
@@ -1348,7 +1348,7 @@
     {
       "artist": "DJ BoBo",
       "title": "Pray",
-      "year": 2017,
+      "year": 1996,
       "isrc": "DEMI69600045",
       "uri": "spotify:track:0UQhKr79tTjADwLHb77CwE",
       "uri_apple_music": "applemusic://track/1508311027",
@@ -1398,7 +1398,7 @@
     {
       "artist": "Girls Aloud",
       "title": "Sound Of The Underground",
-      "year": 2023,
+      "year": 2002,
       "isrc": "GBAKW0201569",
       "uri": "spotify:track:0SKjqIViHaXWhmaKuJbMrq",
       "uri_apple_music": "applemusic://track/1681137250",
@@ -1526,7 +1526,7 @@
     {
       "artist": "Counting Crows",
       "title": "Accidentally In Love",
-      "year": 2017,
+      "year": 2004,
       "isrc": "USIR10400291",
       "uri": "spotify:track:4ccM2xBxicGigjLqt6A0YY",
       "uri_apple_music": "applemusic://track/1691419161",
@@ -1551,7 +1551,7 @@
     {
       "artist": "Pino D'Angiò",
       "title": "Ma quale idea",
-      "year": 2011,
+      "year": 1980,
       "isrc": "ITA647900295",
       "uri": "spotify:track:0nHdPB5NA4xkoDoSLbREwD",
       "uri_apple_music": "applemusic://track/1760798546",
@@ -1604,7 +1604,7 @@
     {
       "artist": "The Adventures Of Stevie V",
       "title": "Dirty Cash (Money Talks) - Sold Out 7 Inch Mix",
-      "year": 2013,
+      "year": 1990,
       "isrc": null,
       "uri": "spotify:track:3lcUQs5nyrjoHpQR9Vo2aA",
       "uri_apple_music": null,
@@ -1646,7 +1646,7 @@
     {
       "artist": "The Offspring",
       "title": "Pretty Fly (For A White Guy)",
-      "year": 2016,
+      "year": 1998,
       "isrc": "USSM19804199",
       "uri": "spotify:track:3SFXsFpeGmBTtQvKiwYMDA",
       "uri_apple_music": "applemusic://track/1706930679",
@@ -1724,7 +1724,7 @@
     {
       "artist": "Rozalla",
       "title": "Everybody's Free (To Feel Good)",
-      "year": 2010,
+      "year": 1991,
       "isrc": "GBBLG0400723",
       "uri": "spotify:track:4rkiST7hsHEuU5EMvApemD",
       "uri_apple_music": "applemusic://track/685311338",
@@ -1749,7 +1749,7 @@
     {
       "artist": "Village People",
       "title": "Go West - Original Version 1979",
-      "year": 2026,
+      "year": 1979,
       "isrc": "FR22F7900020",
       "uri": "spotify:track:0SdfUMRHhcjxrMv5d9V1UP",
       "uri_apple_music": "applemusic://track/1872718907",
@@ -1774,7 +1774,7 @@
     {
       "artist": "Christian Steiffen",
       "title": "Ich fühl' mich Disco",
-      "year": 2013,
+      "year": 2012,
       "isrc": "DEA621301036",
       "uri": "spotify:track:2zUKhXh78KzEnC7NzigNjn",
       "uri_apple_music": "applemusic://track/1697183130",
@@ -1849,7 +1849,7 @@
     {
       "artist": "Alphabeat",
       "title": "Fascination",
-      "year": 2013,
+      "year": 2007,
       "isrc": "DKBR70704104",
       "uri": "spotify:track:5AKQ1JHezaXDmN5SyMSpEr",
       "uri_apple_music": "applemusic://track/1700327230",
@@ -1955,7 +1955,7 @@
     {
       "artist": "Reel 2 Real",
       "title": "I Like To Move It (feat. The Mad Stuntman) - Erick \"More\" Album Mix",
-      "year": 2022,
+      "year": 1993,
       "isrc": "USDXS2203009",
       "uri": "spotify:track:6dHTkQYY3zdR9i9Nj0IGVW",
       "uri_apple_music": "applemusic://track/1641440790",
@@ -1984,7 +1984,7 @@
     {
       "artist": "Alex Gaudino",
       "title": "Destination Calabria (Feat. Crystal Waters) - Original Radio Edit",
-      "year": 2025,
+      "year": 2007,
       "isrc": "QZK6H2557367",
       "uri": "spotify:track:2QMdxS78DaXP8aS8qJqGzU",
       "uri_apple_music": null,
@@ -2009,7 +2009,7 @@
     {
       "artist": "Scooter",
       "title": "How Much Is The Fish?",
-      "year": 2013,
+      "year": 1998,
       "isrc": "DEN061302559",
       "uri": "spotify:track:1H61DWGuD5nk6ZAm6Jb92B",
       "uri_apple_music": "applemusic://track/1692345562",
@@ -2104,7 +2104,7 @@
     {
       "artist": "Akcent",
       "title": "Kylie",
-      "year": 2025,
+      "year": 2005,
       "isrc": "ROROT2501080",
       "uri": "spotify:track:1zhUaodzu43qKwK0idP6IA",
       "uri_apple_music": "applemusic://track/1823040456",
@@ -2129,7 +2129,7 @@
     {
       "artist": "France Gall",
       "title": "Poupée de cire, poupée de son",
-      "year": 2019,
+      "year": 1965,
       "isrc": "DEXO11960577",
       "uri": "spotify:track:5kLCC1MMxOACV632KrSAS3",
       "uri_apple_music": null,
@@ -2154,7 +2154,7 @@
     {
       "artist": "Michael Jackson",
       "title": "Dirty Diana",
-      "year": 2012,
+      "year": 1987,
       "isrc": "USSM11204988",
       "uri": "spotify:track:6JZYMxvcoeLD4IifJPvDux",
       "uri_apple_music": "applemusic://track/559334762",
@@ -2204,7 +2204,7 @@
     {
       "artist": "Aretha Franklin",
       "title": "Think",
-      "year": 2011,
+      "year": 1968,
       "isrc": "USAT29200097",
       "uri": "spotify:track:4yQw7FR9lcvL6RHtegbJBh",
       "uri_apple_music": "applemusic://track/1533478781",
@@ -2229,7 +2229,7 @@
     {
       "artist": "Martha Reeves & The Vandellas",
       "title": "Heatwave",
-      "year": 2010,
+      "year": 1963,
       "isrc": "UKU6H1936000",
       "uri": "spotify:track:3Cbh1EJ6OYAPkkNRuTIz6T",
       "uri_apple_music": null,
@@ -2254,7 +2254,7 @@
     {
       "artist": "Fettes Brot",
       "title": "Jein",
-      "year": 2016,
+      "year": 1996,
       "isrc": "DEAH91600042",
       "uri": "spotify:track:22f8RBGm0xklH4wSh36J3w",
       "uri_apple_music": "applemusic://track/1840884443",
@@ -2304,7 +2304,7 @@
     {
       "artist": "The Pointer Sisters",
       "title": "Fire",
-      "year": 2010,
+      "year": 1978,
       "isrc": "USRC10201815",
       "uri": "spotify:track:65lHwG8JFJs67PnOUhCYPq",
       "uri_apple_music": "applemusic://track/367515038",
@@ -2379,7 +2379,7 @@
     {
       "artist": "Arthur Conley",
       "title": "Sweet Soul Music",
-      "year": 2016,
+      "year": 1967,
       "isrc": "USAT20001064",
       "uri": "spotify:track:645ojoX65Fjby38wU9mSZd",
       "uri_apple_music": "applemusic://track/1794575720",
@@ -2454,7 +2454,7 @@
     {
       "artist": "Rednex",
       "title": "The Spirit of the Hawk",
-      "year": 2017,
+      "year": 2000,
       "isrc": "GBMJG1712578",
       "uri": "spotify:track:7xXSaVgEvUrV1GCc3oO8HC",
       "uri_apple_music": "applemusic://track/1269627144",
@@ -2479,7 +2479,7 @@
     {
       "artist": "The Bucketheads",
       "title": "The Bomb! (These Sounds Fall Into My Mind) - Radio Edit",
-      "year": 2013,
+      "year": 1994,
       "isrc": "USRK31100015",
       "uri": "spotify:track:0qQiqwzddwQmtoGcF3Uzm5",
       "uri_apple_music": "applemusic://track/925643803",
@@ -2504,7 +2504,7 @@
     {
       "artist": "Miami Sound Machine",
       "title": "Bad Boy",
-      "year": 2011,
+      "year": 1985,
       "isrc": "USSM10026150",
       "uri": "spotify:track:4X03MUMRXh51b5sulKYi3F",
       "uri_apple_music": "applemusic://track/209953751",
@@ -2529,7 +2529,7 @@
     {
       "artist": "Helen Shapiro",
       "title": "Walkin' Back to Happiness",
-      "year": 2013,
+      "year": 1961,
       "isrc": "GBA7H1265495",
       "uri": "spotify:track:19SxvsX3cFBDExvGaRkyQr",
       "uri_apple_music": null,
@@ -2554,7 +2554,7 @@
     {
       "artist": "Tiësto",
       "title": "Love Comes Again",
-      "year": 2010,
+      "year": 2004,
       "isrc": "NLE710481721",
       "uri": "spotify:track:23x1l5fneuI3tfw52NftWH",
       "uri_apple_music": "applemusic://track/1793821664",
@@ -2635,7 +2635,7 @@
     {
       "artist": "Sweet",
       "title": "Co-Co",
-      "year": 2015,
+      "year": 1971,
       "isrc": "GBARL7100002",
       "uri": "spotify:track:2tmp3qeYcaOYE2cUsQBkWH",
       "uri_apple_music": "applemusic://track/1382326500",
@@ -2763,7 +2763,7 @@
     {
       "artist": "The Isley Brothers",
       "title": "SUMMER BREEZE",
-      "year": 2015,
+      "year": 1974,
       "isrc": "USSM11503412",
       "uri": "spotify:track:7whfo8cT6vgHJh1jngqNvt",
       "uri_apple_music": "applemusic://track/1030452490",
@@ -2788,7 +2788,7 @@
     {
       "artist": "David Bowie",
       "title": "\"Heroes\" - 2017 Remaster",
-      "year": 2011,
+      "year": 1977,
       "isrc": "GBUM71029622",
       "uri": "spotify:track:7Jh1bpe76CNTCgdgAdBw4Z",
       "uri_apple_music": "applemusic://track/1824351140",
@@ -2838,7 +2838,7 @@
     {
       "artist": "Stretch",
       "title": "Why Did You Do It?",
-      "year": 2012,
+      "year": 1975,
       "isrc": "DED461110048",
       "uri": "spotify:track:1d4N1mJ6m4V7mGlIfamTGy",
       "uri_apple_music": "applemusic://track/709791060",
@@ -2916,7 +2916,7 @@
     {
       "artist": "Tokyo Ghetto Pussy",
       "title": "I Kiss Your Lips - Radio Edit",
-      "year": 2010,
+      "year": 1995,
       "isrc": "DEMW61000007",
       "uri": "spotify:track:0y7Xf4d6snUqmMFrCTD3ql",
       "uri_apple_music": "applemusic://track/394874967",
@@ -3077,7 +3077,7 @@
     {
       "artist": "First Class",
       "title": "Beach Baby",
-      "year": 2023,
+      "year": 1974,
       "isrc": "GBBLY2201571",
       "uri": "spotify:track:5J74pF4Nn86qyLQihpkXq4",
       "uri_apple_music": "applemusic://track/1612479580",
@@ -3127,7 +3127,7 @@
     {
       "artist": "Roy Orbison",
       "title": "Oh, Pretty Woman",
-      "year": 2014,
+      "year": 1964,
       "isrc": "USSM16401425",
       "uri": "spotify:track:48i055G1OT5KxGGftwFxWy",
       "uri_apple_music": "applemusic://track/1566940247",
@@ -3152,7 +3152,7 @@
     {
       "artist": "T. Rex",
       "title": "Get It On",
-      "year": 2012,
+      "year": 1971,
       "isrc": "GBCHM7100038",
       "uri": "spotify:track:0LoQuiekvzqx7n8flgEKzF",
       "uri_apple_music": "applemusic://track/1688231671",
@@ -3205,7 +3205,7 @@
     {
       "artist": "The Ronettes",
       "title": "Be My Baby",
-      "year": 2011,
+      "year": 1963,
       "isrc": "USQX91100088",
       "uri": "spotify:track:2G2YzndIA6jeWFPBXhUjh5",
       "uri_apple_music": "applemusic://track/1196430719",
@@ -3230,7 +3230,7 @@
     {
       "artist": "Matthew Wilder",
       "title": "Break My Stride",
-      "year": 2010,
+      "year": 1983,
       "isrc": "USSM18300576",
       "uri": "spotify:track:1mCsF9Tw4AkIZOjvZbZZdT",
       "uri_apple_music": "applemusic://track/1741861455",
