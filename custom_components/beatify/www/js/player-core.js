@@ -678,6 +678,17 @@ function handleServerMessage(data) {
             console.warn('[Beatify] Stop song failed: No song playing');
             return;
         }
+        if (data.code === 'INVALID_ACTION') {
+            // A benign, late action rejection — e.g. a year/artist/movie
+            // guess that landed just after the round flipped PLAYING ->
+            // REVEAL. This is NOT a session failure: the catch-all below
+            // would wrongly dump the player to the join screen and wipe
+            // their stored session. Surface it inline and stay put — the
+            // next state broadcast renders the reveal view. (#934)
+            console.warn('[Beatify] Action rejected:', data.message);
+            handleSubmitError(data);
+            return;
+        }
         showView('join-view');
         showJoinError(data.message);
         if (joinBtn) {
