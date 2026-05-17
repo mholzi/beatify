@@ -307,13 +307,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             const isPlayingPhase = gameData.phase && gameData.phase !== 'LOBBY' && gameData.phase !== 'END';
             document.getElementById('home-end-game')?.classList.toggle('hidden', !isPlayingPhase);
 
-            // Join-as-player: prominent next step — shown until admin registers.
-            // When visible, we also demote Start game to a ghost button so the eye
-            // lands on "Join as player" first (the correct flow order).
+            // Join-as-player: prominent next step — shown until the admin has
+            // joined THIS game. Visibility is driven purely by authoritative
+            // state: the current game's player list (adminInPlayers) and the
+            // live isPlaying flag.
+            //
+            // It used to also consult sessionStorage 'beatify_admin_name', but
+            // that marker is set on the admin's first-ever join and never
+            // cleared per game — so once the host had joined any game, the
+            // button vanished for every later game in the same tab, even a
+            // brand-new empty lobby they had not joined. adminInPlayers already
+            // answers "did the admin join THIS game" from the server's list.
             const adminInPlayers = (gameData.players || []).some((p) => p.is_admin);
-            let adminNameStored = null;
-            try { adminNameStored = sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* ignore */ }
-            const canJoin = hasLobby && !adminInPlayers && !adminNameStored && !isPlaying;
+            const canJoin = hasLobby && !adminInPlayers && !isPlaying;
             document.getElementById('home-join-player')?.classList.toggle('hidden', !canJoin);
             const startBtn = document.getElementById('home-start-game');
             if (startBtn) {
