@@ -572,10 +572,6 @@
         });
 
         container.innerHTML = html;
-
-        // #963: expose the row count so CSS can scale rows down as more
-        // players join — keeps the whole board on-screen without scrolling.
-        container.style.setProperty('--lb-count', String(leaderboard.length || 1));
     }
 
     // ============================================

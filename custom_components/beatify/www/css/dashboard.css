@@ -1536,21 +1536,20 @@
 }
 
 /* Leaderboard rows: grid layout with rank circle + score + delta.
-   #963 — dynamic row scaling: on the playing screen, rows flex to share
-   the section height (capped at their natural size) and fonts scale by
-   player count, so the board always fits the TV viewport without
-   scrolling or cropping. overflow stays visible so the #1 glow is kept. */
+   #963 — rows flex to share the section height (capped at their natural
+   size), and each row is a size container so its text scales in cqh
+   units (a fraction of the row's own height). Text therefore always
+   fits its row, whatever the player count or viewport height — no
+   overflow, no overlap, no cropping. overflow stays visible so the #1
+   row's glow is never clipped. */
 .playing-right-section .dashboard-leaderboard,
 .reveal-right-section .dashboard-leaderboard {
-    gap: clamp(5px, calc(12px * var(--lb-scale, 1)), 12px);
+    gap: clamp(4px, 0.8vh, 12px);
     overflow: visible;  /* #1 lead row grows bigger — don't clip glow */
     padding-right: 0;
     max-height: none;
 }
-/* --lb-count is set per render by dashboard.js renderLeaderboard().
-   --lb-scale: 1.0 up to ~7 players, then shrinks, floored at 0.4. */
 .playing-right-section .dashboard-leaderboard {
-    --lb-scale: clamp(0.4, calc(7 / var(--lb-count, 4)), 1);
     flex: 1;
     min-height: 0;
     justify-content: center;
@@ -1559,33 +1558,40 @@
     flex: 1 1 0;
     min-height: 0;
     max-height: 92px;
-    padding: calc(12px * var(--lb-scale)) calc(20px * var(--lb-scale));
+    container-type: size;
+    padding: 0 20px;
 }
 .playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 {
     flex-grow: 1.35;
     max-height: 124px;
-    padding: calc(22px * var(--lb-scale)) calc(26px * var(--lb-scale));
+    padding: 0 26px;
 }
+/* Sizes in cqh resolve against each row's own (flexed) height. */
 .playing-right-section .dashboard-leaderboard .entry-rank {
-    width: calc(52px * var(--lb-scale));
-    height: calc(52px * var(--lb-scale));
-    font-size: calc(22px * var(--lb-scale));
+    width: 56cqh;
+    height: 56cqh;
+    font-size: 24cqh;
 }
 .playing-right-section .dashboard-leaderboard .entry-name {
-    font-size: calc(30px * var(--lb-scale));
-}
-.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-name {
-    font-size: calc(38px * var(--lb-scale));
+    font-size: 33cqh;
 }
 .playing-right-section .dashboard-leaderboard .entry-score {
-    font-size: calc(44px * var(--lb-scale));
+    font-size: 48cqh;
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-rank {
+    width: 42cqh;
+    height: 42cqh;
+    font-size: 18cqh;
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-name {
+    font-size: 31cqh;
 }
 .playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-score {
-    font-size: calc(56px * var(--lb-scale));
+    font-size: 45cqh;
 }
 .playing-right-section .dashboard-leaderboard .entry-change {
-    font-size: calc(16px * var(--lb-scale));
-    padding: calc(6px * var(--lb-scale)) calc(12px * var(--lb-scale));
+    font-size: 17cqh;
+    padding: 6cqh 12cqh;
 }
 .playing-right-section,
 .reveal-right-section {
