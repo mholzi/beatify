@@ -309,9 +309,7 @@ class AlbumArtView(HomeAssistantView):
 
         session = async_get_clientsession(self.hass)
         try:
-            async with session.get(
-                raw_url, timeout=ClientTimeout(total=10)
-            ) as resp:
+            async with session.get(raw_url, timeout=ClientTimeout(total=10)) as resp:
                 if resp.status != 200:
                     return web.Response(status=resp.status)
                 body = await resp.read()
