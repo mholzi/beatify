@@ -1471,14 +1471,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: clamp(14px, 3vh, 24px);
 }
 
-/* Larger album with SVG timer ring wrapper */
+/* Larger album with SVG timer ring wrapper.
+   #963 — album + timer scale with viewport height (min() against the design
+   px size) so the hero column fits shorter screens without overflowing.
+   Full 480px / 160px are preserved at 1080p; reveal keeps its own sizes. */
 .dashboard-album-container {
     position: relative;
-    width: 480px;
-    height: 480px;
+    width: min(480px, 45vh);
+    height: min(480px, 45vh);
     border-radius: 0;
     overflow: visible;  /* ring glow spills out */
     box-shadow: none;
@@ -1488,8 +1491,8 @@
 }
 
 .dashboard-album-container .dashboard-album-art {
-    width: 420px;
-    height: 420px;
+    width: 87.5%;   /* 420/480 — tracks the now-fluid container */
+    height: 87.5%;
     border-radius: 16px;
     border: 2px solid var(--color-accent-primary);
     box-shadow: 0 0 40px rgba(255, 45, 106, 0.4);
@@ -1522,7 +1525,7 @@
 /* Big glowing cyan timer below the album (the headline moment) */
 .playing-left-section > .dashboard-timer {
     font-family: 'Outfit', sans-serif;
-    font-size: 160px;
+    font-size: min(160px, 15vh);
     font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.04em;
@@ -1532,13 +1535,57 @@
     margin: 0;
 }
 
-/* Leaderboard rows: grid layout with rank circle + score + delta */
+/* Leaderboard rows: grid layout with rank circle + score + delta.
+   #963 — dynamic row scaling: on the playing screen, rows flex to share
+   the section height (capped at their natural size) and fonts scale by
+   player count, so the board always fits the TV viewport without
+   scrolling or cropping. overflow stays visible so the #1 glow is kept. */
 .playing-right-section .dashboard-leaderboard,
 .reveal-right-section .dashboard-leaderboard {
-    gap: 12px;
-    overflow: visible;  /* #1 lead row grows bigger — don't clip glow or crop top */
+    gap: clamp(5px, calc(12px * var(--lb-scale, 1)), 12px);
+    overflow: visible;  /* #1 lead row grows bigger — don't clip glow */
     padding-right: 0;
     max-height: none;
+}
+/* --lb-count is set per render by dashboard.js renderLeaderboard().
+   --lb-scale: 1.0 up to ~7 players, then shrinks, floored at 0.4. */
+.playing-right-section .dashboard-leaderboard {
+    --lb-scale: clamp(0.4, calc(7 / var(--lb-count, 4)), 1);
+    flex: 1;
+    min-height: 0;
+    justify-content: center;
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 92px;
+    padding: calc(12px * var(--lb-scale)) calc(20px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 {
+    flex-grow: 1.35;
+    max-height: 124px;
+    padding: calc(22px * var(--lb-scale)) calc(26px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .entry-rank {
+    width: calc(52px * var(--lb-scale));
+    height: calc(52px * var(--lb-scale));
+    font-size: calc(22px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .entry-name {
+    font-size: calc(30px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-name {
+    font-size: calc(38px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .entry-score {
+    font-size: calc(44px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-score {
+    font-size: calc(56px * var(--lb-scale));
+}
+.playing-right-section .dashboard-leaderboard .entry-change {
+    font-size: calc(16px * var(--lb-scale));
+    padding: calc(6px * var(--lb-scale)) calc(12px * var(--lb-scale));
 }
 .playing-right-section,
 .reveal-right-section {

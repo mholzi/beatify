@@ -112,8 +112,7 @@ let chosenLightMode = 'dynamic'; // static | dynamic | wled
 const chosenWledPresets = {}; // { LOBBY: 1, PLAYING: 2, ... }
 const WLED_PHASES = ['LOBBY', 'PLAYING', 'REVEAL', 'STREAK', 'COUNTDOWN', 'END'];
 let chosenTtsEntityId = '';
-let chosenTtsAnnounceStart = true;
-let chosenTtsAnnounceWinner = true;
+let chosenTtsPreset = 'standard'; // minimal | standard | full | custom
 
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
@@ -188,8 +187,9 @@ function _hydrateLevelUpDetails() {
         if (rawT) {
             const s = JSON.parse(rawT);
             if (s.entity_id) chosenTtsEntityId = s.entity_id;
-            if (typeof s.announce_game_start === 'boolean') chosenTtsAnnounceStart = s.announce_game_start;
-            if (typeof s.announce_winner === 'boolean') chosenTtsAnnounceWinner = s.announce_winner;
+            // `preset` is written by both the admin TTS panel and this wizard.
+            // Pre-preset configs simply fall back to the 'standard' default.
+            if (s.preset) chosenTtsPreset = s.preset;
             if (typeof s.enabled === 'boolean' && s.enabled) chosenLevelUps.tts = true;
         }
     } catch (e) { /* ignore */ }
@@ -751,10 +751,14 @@ function _lightsDetailHtml() {
 }
 
 function _ttsDetailHtml() {
-    const announce = (key, label, val) => `<label class="wiz-detail-check">
-        <input type="checkbox" data-tts-flag="${key}" ${val ? 'checked' : ''}>
-        <span class="wiz-detail-check-name">${label}</span>
-      </label>`;
+    // Verbosity presets mirror the admin TTS panel. Picking one here expands
+    // to the same 23 announce_* booleans on save (see _persistLevelUpDetails).
+    const presetChip = (id, label) => `<button type="button" class="wiz-chip ${chosenTtsPreset === id ? 'active' : ''}" data-tts-preset="${id}">${label}</button>`;
+    // A hand-tuned config (preset 'custom', set in the admin panel) shows a
+    // non-selectable Custom chip so the user sees their tuning is preserved.
+    const customChip = chosenTtsPreset === 'custom'
+        ? `<button type="button" class="wiz-chip active" aria-disabled="true" data-tts-preset-custom>${_t('wizard.step5.tts.presetCustom', 'Custom')}</button>`
+        : '';
     return `
         <div class="wiz-detail">
           <div class="wiz-field">
@@ -766,11 +770,14 @@ function _ttsDetailHtml() {
             </button>
           </div>
           <div class="wiz-field">
-            <span class="wiz-field-label">${_t('wizard.step5.tts.announce', 'Announce')}</span>
-            <div class="wiz-detail-checks">
-              ${announce('start', _t('wizard.step5.tts.announceStart', 'Game start'), chosenTtsAnnounceStart)}
-              ${announce('winner', _t('wizard.step5.tts.announceWinner', 'Round winner'), chosenTtsAnnounceWinner)}
+            <span class="wiz-field-label">${_t('wizard.step5.tts.verbosity', 'Verbosity')}</span>
+            <div class="wiz-chip-group">
+              ${presetChip('minimal', _t('wizard.step5.tts.presetMinimal', 'Minimal'))}
+              ${presetChip('standard', _t('wizard.step5.tts.presetStandard', 'Standard'))}
+              ${presetChip('full', _t('wizard.step5.tts.presetFull', 'Full'))}
+              ${customChip}
             </div>
+            <span class="wiz-field-hint">${_t('wizard.step5.tts.verbosityHint', 'How much the game announces. Fine-tune individual events later in admin settings.')}</span>
           </div>
         </div>`;
 }
@@ -907,10 +914,11 @@ function _renderLevelUp() {
             }, 2000);
         });
     }
-    list.querySelectorAll('[data-tts-flag]').forEach((cb) => {
-        cb.addEventListener('change', () => {
-            if (cb.dataset.ttsFlag === 'start') chosenTtsAnnounceStart = cb.checked;
-            else if (cb.dataset.ttsFlag === 'winner') chosenTtsAnnounceWinner = cb.checked;
+    list.querySelectorAll('[data-tts-preset]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            chosenTtsPreset = btn.dataset.ttsPreset;
+            _renderLevelUp();
         });
     });
 }
@@ -928,12 +936,26 @@ function _persistLevelUpDetails() {
             }
             localStorage.setItem('beatify_party_lights', JSON.stringify(payload));
         }
-        localStorage.setItem('beatify_tts', JSON.stringify({
+        // Write a complete config: enabled + entity + preset + all 23
+        // announce_* booleans, so the admin TTS panel and game engine read a
+        // consistent state. BeatifyTtsPresets is exposed by tts-settings.js.
+        const ttsPayload = {
             enabled: chosenLevelUps.tts,
             entity_id: chosenTtsEntityId,
-            announce_game_start: chosenTtsAnnounceStart,
-            announce_winner: chosenTtsAnnounceWinner,
-        }));
+            preset: chosenTtsPreset,
+        };
+        const presets = window.BeatifyTtsPresets;
+        if (presets && chosenTtsPreset !== 'custom') {
+            const vals = presets.presetValues(chosenTtsPreset);
+            presets.KEYS.forEach((k) => { ttsPayload[k] = vals[k]; });
+        } else if (presets && chosenTtsPreset === 'custom') {
+            // Preserve hand-tuned toggles from the admin panel — don't clobber.
+            const prev = JSON.parse(localStorage.getItem('beatify_tts') || '{}');
+            presets.KEYS.forEach((k) => {
+                if (typeof prev[k] === 'boolean') ttsPayload[k] = prev[k];
+            });
+        }
+        localStorage.setItem('beatify_tts', JSON.stringify(ttsPayload));
     } catch (e) { /* private mode */ }
 }
 
