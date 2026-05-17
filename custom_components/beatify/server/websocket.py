@@ -30,6 +30,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_reaction,
     handle_reconnect,
     handle_report_data,
+    handle_round_timeout,
     handle_steal,
     handle_submit,
 )
@@ -84,6 +85,7 @@ class BeatifyWebSocketHandler:
             "movie_guess": handle_movie_guess,
             "player_onboarded": handle_player_onboarded,
             "report_data": handle_report_data,
+            "round_timeout": handle_round_timeout,
         }
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:

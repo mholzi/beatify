@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import (
@@ -1106,3 +1107,45 @@ class TestAdminEndGameFromPaused:
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
         assert msg["code"] == ERR_INVALID_ACTION
+
+
+# ---------------------------------------------------------------------------
+# Round-timeout watchdog
+# ---------------------------------------------------------------------------
+
+
+class TestRoundTimeoutWatchdog:
+    """A client's `round_timeout` nudge force-ends a round the server timer
+    left frozen on PLAYING — but only when the deadline genuinely passed."""
+
+    async def test_forces_end_round_when_playing_past_deadline(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PLAYING
+        game_state.deadline = int(time.time() * 1000) - 10_000  # 10s in the past
+        game_state.end_round = AsyncMock()
+        handler.broadcast_state = AsyncMock()
+
+        await handler._handle_message(ws, {"type": "round_timeout"})
+
+        game_state.end_round.assert_awaited_once()
+        handler.broadcast_state.assert_awaited_once()
+
+    async def test_ignored_before_the_deadline(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.PLAYING
+        game_state.deadline = int(time.time() * 1000) + 60_000  # 60s in the future
+        game_state.end_round = AsyncMock()
+
+        await handler._handle_message(ws, {"type": "round_timeout"})
+
+        game_state.end_round.assert_not_awaited()
+
+    async def test_ignored_when_not_playing(self):
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.phase = GamePhase.REVEAL
+        game_state.deadline = int(time.time() * 1000) - 10_000
+        game_state.end_round = AsyncMock()
+
+        await handler._handle_message(ws, {"type": "round_timeout"})
+
+        game_state.end_round.assert_not_awaited()
