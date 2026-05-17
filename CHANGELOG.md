@@ -16,6 +16,7 @@ See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for t
 
 ### Changed
 - **Combined REVEAL announcement.** The per-round REVEAL events (correct answer, accuracy, streaks, bet outcomes, steal unlocks, standings) are collected into one narrated utterance instead of up to ~7 separate TTS clips. Each fragment is still gated by its own toggle.
+- **Setup wizard TTS step uses verbosity presets.** Step 5 previously exposed only two announce checkboxes (game start, round winner) and silently dropped the other 21 toggles on save. It now offers the same Minimal / Standard / Full presets as the admin panel; a hand-tuned (Custom) config is preserved, not clobbered.
 
 ### Fixed
 - **40 broken URIs in `harder-styles` (#916).** An automated health-check found 40 URIs (32 YouTube Music, 5 Apple Music, 3 Deezer) pointing to the wrong track. 32 re-resolved automatically; 5 obscure festival anthems pointed at the official label/organiser channel uploads; 3 left as best-available.
@@ -32,6 +33,8 @@ See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for t
 - **Missing Intro Mode translations (#938).** The intro-round splash referenced four translation keys that didn't exist, logging console warnings on load; added across all five languages.
 - **Admin page no longer calls the GitHub API from the browser (#939).** The playlist-request list polled GitHub directly from the browser — unauthenticated, rate-limited, and spamming the console with 403s. The browser-side poll was removed; the list still loads from Beatify's own backend.
 - **"1 players in lobby" pluralization (#940).** A one-player lobby now reads "1 player".
+- **Round froze on the playing screen when a player didn't submit (#964).** The server's round timer is a single async task — if it died, the round stayed on PLAYING forever with no way out. Each player's browser now nudges the server when its own countdown hits zero; the server force-ends the round only if it really is past its deadline. A self-healing watchdog independent of the trigger.
+- **Dashboard overflowed or cropped on shorter TVs (#963).** As more players joined, the playing screen's leaderboard and album/timer hero could run off-screen. Rows now flex to share the section height and scale by player count, and the hero column scales with viewport height — 1080p output is unchanged.
 
 ### Data
 - **3 wrong URIs fixed in 2010s & 2020s Hits (#954).** Three tracks in the community playlist pointed at the wrong song; re-resolved.
