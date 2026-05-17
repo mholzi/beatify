@@ -311,6 +311,33 @@ async def handle_get_state(
         await ws.send_json(state_msg)
 
 
+async def handle_round_timeout(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Watchdog: a client's round countdown reached zero.
+
+    The server's round timer is a single asyncio task — if it is cancelled or
+    dies, the round freezes on PLAYING forever with no way out. Every player's
+    browser also counts the round down independently; when one reports the
+    deadline has passed while the round is still PLAYING, force the transition
+    to REVEAL. end_round() is idempotent (it no-ops once the phase has moved
+    on), so the server timer firing and nudges from several clients all racing
+    is harmless. The WARNING is intentional — it is the breadcrumb that the
+    server-side round timer failed to fire.
+    """
+    if game_state.phase == GamePhase.PLAYING and game_state.is_deadline_passed():
+        _LOGGER.warning(
+            "Round %d still PLAYING past its deadline — client watchdog "
+            "forcing end_round (the server round timer did not fire)",
+            game_state.round,
+        )
+        await game_state.end_round()
+        await handler.broadcast_state()
+
+
 async def handle_player_onboarded(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,

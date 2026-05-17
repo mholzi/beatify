@@ -86,6 +86,14 @@ export function startCountdown(deadline) {
 
         if (remaining <= 0) {
             stopCountdown();
+            // Watchdog: the server's round timer is a single async task — if
+            // it dies the round freezes on PLAYING forever. Our countdown is
+            // independent, so when it hits zero, nudge the server to end the
+            // round. handle_round_timeout only acts if the deadline really
+            // passed and the round is still PLAYING; end_round is idempotent.
+            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                state.ws.send(JSON.stringify({ type: 'round_timeout' }));
+            }
         }
     }
 
