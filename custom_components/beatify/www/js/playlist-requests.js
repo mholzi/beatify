@@ -9,8 +9,6 @@
     const STORAGE_KEY = 'beatify_playlist_requests';
     const API_URL = 'https://beatify-api.mholzi.workers.dev';
     const BACKEND_API = '/beatify/api/playlist-requests';
-    const GITHUB_API = 'https://api.github.com/repos/mholzi/beatify/issues';
-    const POLL_INTERVAL_MS = 60 * 60 * 1000; // 1 hour
 
     // In-memory cache for current session
     let _cache = null;
@@ -152,81 +150,6 @@
     }
 
     /**
-     * Poll GitHub API for status updates on pending requests
-     * @returns {Promise<boolean>} True if any statuses changed
-     */
-    async function pollStatuses() {
-        const store = await loadRequestsAsync();
-
-        // Check rate limiting
-        if (store.last_poll) {
-            const lastPoll = new Date(store.last_poll).getTime();
-            if (Date.now() - lastPoll < POLL_INTERVAL_MS) {
-                console.log('Skipping poll - rate limited');
-                return false;
-            }
-        }
-
-        const pendingRequests = store.requests.filter(r => r.status === 'pending' || r.status === 'ready');
-        if (pendingRequests.length === 0) {
-            return false;
-        }
-
-        let changed = false;
-        const currentVersion = window.BEATIFY_VERSION;
-
-        for (const request of pendingRequests) {
-            try {
-                const response = await fetch(`${GITHUB_API}/${request.issue_number}`, {
-                    headers: { 'Accept': 'application/vnd.github.v3+json' }
-                });
-
-                if (!response.ok) continue;
-
-                const issue = await response.json();
-                const labels = issue.labels.map(l => l.name);
-
-                request.last_checked = new Date().toISOString();
-
-                if (issue.state === 'closed') {
-                    if (labels.includes('wont-fix')) {
-                        // Declined
-                        if (request.status !== 'declined') {
-                            request.status = 'declined';
-                            request.decline_reason = 'Request was declined';
-                            changed = true;
-                        }
-                    } else if (labels.includes('playlist-ready')) {
-                        // Find version label (vX.X.X format)
-                        const versionLabel = labels.find(l => /^v\d+\.\d+\.\d+/.test(l));
-                        if (versionLabel) {
-                            request.release_version = versionLabel.replace(/^v/, '');
-
-                            // Check if user has this version installed
-                            if (currentVersion && compareVersions(currentVersion, request.release_version) >= 0) {
-                                if (request.status !== 'installed') {
-                                    request.status = 'installed';
-                                    changed = true;
-                                }
-                            } else if (request.status !== 'ready') {
-                                request.status = 'ready';
-                                changed = true;
-                            }
-                        }
-                    }
-                }
-            } catch (e) {
-                console.error(`Failed to poll issue #${request.issue_number}:`, e);
-            }
-        }
-
-        store.last_poll = new Date().toISOString();
-        await saveRequests(store);
-
-        return changed;
-    }
-
-    /**
      * Get requests formatted for UI display (sync version using cache)
      * @returns {Array} Requests with computed display properties
      */
@@ -301,7 +224,6 @@
         loadRequestsAsync,
         saveRequests,
         submitRequest,
-        pollStatuses,
         getRequestsForDisplay,
         getRequestsForDisplayAsync,
         compareVersions,

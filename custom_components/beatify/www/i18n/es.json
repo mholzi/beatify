@@ -68,6 +68,10 @@
     "players": "jugadores"
   },
   "game": {
+    "introSplashTitle": "¡Ronda Intro!",
+    "introSplashDesc": "¡Detén la canción en cuanto la reconozcas!",
+    "introSplashWaiting": "Esperando al anfitrión...",
+    "introSplashStart": "Empezar ronda intro",
     "roundLabel": "Ronda",
     "yourGuess": "Tu respuesta",
     "ofLabel": "de",
@@ -926,6 +930,7 @@
     "readySubtitle": "Prepárate para jugar",
     "waitingHost": "Esperando al anfitrión...",
     "waitingCount": "{count} jugadores en el vestíbulo · {difficulty}",
+    "waitingCountOne": "{count} jugador en el vestíbulo · {difficulty}",
     "replayTour": "Repetir el tour",
     "learningWarning": "⚠️ {count} jugador aún aprende las reglas",
     "learningWarningPlural": "⚠️ {count} jugadores aún aprenden las reglas",

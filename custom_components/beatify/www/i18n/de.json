@@ -68,6 +68,10 @@
     "players": "Spieler"
   },
   "game": {
+    "introSplashTitle": "Intro-Runde!",
+    "introSplashDesc": "Stoppe den Song, sobald du ihn erkennst!",
+    "introSplashWaiting": "Warte auf den Host...",
+    "introSplashStart": "Intro-Runde starten",
     "roundLabel": "Runde",
     "yourGuess": "Dein Tipp",
     "ofLabel": "von",
@@ -926,6 +930,7 @@
     "readySubtitle": "Mach dich bereit",
     "waitingHost": "Warte auf den Host...",
     "waitingCount": "{count} Spieler in der Lobby · {difficulty}",
+    "waitingCountOne": "{count} Spieler in der Lobby · {difficulty}",
     "replayTour": "Tour wiederholen",
     "learningWarning": "⚠️ {count} Spieler lernt noch die Regeln",
     "learningWarningPlural": "⚠️ {count} Spieler lernen noch die Regeln",

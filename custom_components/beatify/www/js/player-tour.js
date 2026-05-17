@@ -229,13 +229,16 @@ export function updateReadyCount(playersArg, difficultyArg) {
     var count = (playersArg && playersArg.length) || state.lastPlayerCount || 0;
     var difficulty = difficultyArg || state.lastDifficulty || '';
     if (!count) { el.textContent = ''; return; }
+    // #940: a 1-player lobby reads "1 player", not "1 players" — pick the
+    // singular key, and pluralise the no-i18n fallback the same way.
+    var key = count === 1 ? 'onboarding.waitingCountOne' : 'onboarding.waitingCount';
     var template = utils.t
-        ? utils.t('onboarding.waitingCount', { count: count, difficulty: difficulty })
+        ? utils.t(key, { count: count, difficulty: difficulty })
         : null;
-    if (template && template !== 'onboarding.waitingCount') {
+    if (template && template !== key) {
         el.textContent = template;
     } else {
-        el.textContent = count + ' players in lobby';
+        el.textContent = count + (count === 1 ? ' player' : ' players') + ' in lobby';
     }
 }
 

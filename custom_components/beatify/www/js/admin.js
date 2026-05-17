@@ -3044,23 +3044,16 @@ function setupPlaylistRequests() {
 }
 
 /**
- * Initialize playlist requests display and polling
+ * Initialize playlist requests display.
+ *
+ * #939: previously also polled GitHub for issue-status updates, but that
+ * fetch ran from the browser straight to api.github.com — unauthenticated,
+ * rate-limited, and 403-spamming the console. Removed; the request list
+ * still loads from the Beatify backend.
  */
 async function initPlaylistRequests() {
     // Render existing requests (loads from backend)
     await renderRequestsList();
-
-    // Poll for status updates (Story 44.4)
-    if (window.PlaylistRequests) {
-        try {
-            const changed = await window.PlaylistRequests.pollStatuses();
-            if (changed) {
-                await renderRequestsList();
-            }
-        } catch (e) {
-            console.error('Failed to poll request statuses:', e);
-        }
-    }
 }
 
 /**
