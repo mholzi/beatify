@@ -1033,11 +1033,12 @@ class TestStartRoundFailureClassification:
         assert mock_service.play_song.await_count >= 2
 
     @pytest.mark.asyncio
-    async def test_error_failure_still_pauses_after_max_retries(self):
-        """Regression guard: 'error' failures (or unset reason) must still
-        count toward MAX_SONG_RETRIES and pause the game. We don't want the
-        skip-silent path to mask actual systemic problems (offline speaker,
-        broken provider auth across the board).
+    async def test_error_failure_pauses_immediately(self):
+        """#949: an 'error' failure (speaker idle / provider unauthenticated)
+        is systemic — play_song already waited a full MA timeout. start_round
+        must pause on the FIRST such failure, not grind ~3 silent retries
+        (~2 min) before the recovery banner appears. The banner's Resume
+        button is the manual retry if it really was a transient blip.
         """
         from custom_components.beatify.game.state import GameState  # noqa: PLC0415
         from tests.conftest import (  # noqa: PLC0415
@@ -1068,8 +1069,9 @@ class TestStartRoundFailureClassification:
         ):
             result = await gs.start_round()
 
-        # Must have paused once retries exhausted.
+        # Pauses on the FIRST failure — no silent retry grind (#949).
         assert result is False
+        assert mock_service.play_song.await_count == 1
         gs.pause_game.assert_awaited_once_with("media_player_error")
 
 

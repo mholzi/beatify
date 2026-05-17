@@ -3981,11 +3981,11 @@ function _renderPauseRecoveryBanner(data) {
             // #808 follow-up: name the actual provider so the user knows
             // which one to re-authenticate in Music Assistant.
             var template = BeatifyI18n.t('admin.pauseRecovery.mediaPlayerError') ||
-                'Playback failed for the last 3 songs in a row. This often means {provider} in Music Assistant needs re-authentication — open Settings → Music Assistant → {provider} → Reconnect, then click Resume.';
+                'Playback did not start — the speaker is not responding. This often means {provider} in Music Assistant needs re-authentication — open Settings → Music Assistant → {provider} → Reconnect, then click Resume.';
             msg = template.replace(/\{provider\}/g, providerName);
         } else {
             msg = BeatifyI18n.t('admin.pauseRecovery.mediaPlayerErrorGeneric') ||
-                'Playback failed for the last 3 songs in a row. This often means your music provider in Music Assistant needs re-authentication — open Settings → Music Assistant → your provider → Reconnect, then click Resume.';
+                'Playback did not start — the speaker is not responding. This often means your music provider in Music Assistant needs re-authentication — open Settings → Music Assistant → your provider → Reconnect, then click Resume.';
         }
         msgEl.textContent = msg;
     }

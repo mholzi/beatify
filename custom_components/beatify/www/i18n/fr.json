@@ -498,8 +498,8 @@
     "ttsTestNoSpeaker": "Choisis d'abord une enceinte",
     "pauseRecovery": {
       "title": "Partie en pause",
-      "mediaPlayerError": "La lecture a échoué pour les 3 dernières chansons. Cause fréquente : {provider} dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → {provider} → Reconnecter, puis clique sur Reprendre.",
-      "mediaPlayerErrorGeneric": "La lecture a échoué pour les 3 dernières chansons. Cause fréquente : ton service de musique dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → ton service → Reconnecter, puis clique sur Reprendre.",
+      "mediaPlayerError": "La lecture n'a pas démarré — l'enceinte ne répond pas. Cause fréquente : {provider} dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → {provider} → Reconnecter, puis clique sur Reprendre.",
+      "mediaPlayerErrorGeneric": "La lecture n'a pas démarré — l'enceinte ne répond pas. Cause fréquente : ton service de musique dans Music Assistant doit être ré-authentifié — Paramètres → Music Assistant → ton service → Reconnecter, puis clique sur Reprendre.",
       "noSongsAvailable": "Plus aucune chanson lisible pour ce service. Reprends pour réessayer, ou termine la partie.",
       "resume": "Reprendre",
       "endGame": "Terminer la partie",
