@@ -295,6 +295,44 @@ function checkAdminStatus() {
 // WebSocket Client (Story 3.2)
 // ============================================
 
+// Connection heartbeat (#967).
+// The server pings the client (aiohttp heartbeat), but nothing on the client
+// notices server *silence*. On a half-open socket the browser never fires
+// onclose, so the player never reconnects and freezes on the last view while
+// the game moves on. This client-side heartbeat sends an app-level ping on an
+// interval; if no message arrives from the server for HEARTBEAT_TIMEOUT_MS,
+// the socket is treated as dead and force-closed to trigger the reconnect
+// path — which pulls fresh state and unsticks the player.
+var HEARTBEAT_INTERVAL_MS = 15000;
+var HEARTBEAT_TIMEOUT_MS = 40000;
+var heartbeatTimer = null;
+
+function startHeartbeat() {
+    stopHeartbeat();
+    state.lastServerActivity = Date.now();
+    heartbeatTimer = setInterval(function() {
+        if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+            return;
+        }
+        if (Date.now() - state.lastServerActivity > HEARTBEAT_TIMEOUT_MS) {
+            console.warn('[Beatify] No server activity for '
+                + HEARTBEAT_TIMEOUT_MS + 'ms — socket appears dead, forcing reconnect');
+            try { state.ws.close(); } catch (e) { /* onclose drives reconnect */ }
+            return;
+        }
+        try {
+            state.ws.send(JSON.stringify({ type: 'ping' }));
+        } catch (e) { /* next tick detects the dead socket via the timeout */ }
+    }, HEARTBEAT_INTERVAL_MS);
+}
+
+function stopHeartbeat() {
+    if (heartbeatTimer) {
+        clearInterval(heartbeatTimer);
+        heartbeatTimer = null;
+    }
+}
+
 /**
  * Connect with session cookie (Story 11.2)
  */
@@ -317,6 +355,7 @@ function connectWithSession() {
         state.isReconnecting = false;
         hideReconnectingOverlay();
         hideConnectionIndicator();
+        startHeartbeat();
 
         state.ws.send(JSON.stringify({
             type: 'reconnect',
@@ -334,6 +373,7 @@ function connectWithSession() {
     };
 
     state.ws.onclose = function() {
+        stopHeartbeat();
         if (state.intentionalLeave) {
             state.intentionalLeave = false;
             return;
@@ -407,6 +447,7 @@ function connectWebSocket(name) {
         state.isReconnecting = false;
         hideReconnectingOverlay();
         hideConnectionIndicator();
+        startHeartbeat();
 
         var joinMsg = { type: 'join', name: name };
         if (state.isAdmin) {
@@ -425,6 +466,7 @@ function connectWebSocket(name) {
     };
 
     state.ws.onclose = function() {
+        stopHeartbeat();
         if (state.intentionalLeave) {
             state.intentionalLeave = false;
             return;
@@ -463,6 +505,12 @@ state.connectWebSocket = connectWebSocket;
  * @param {Object} data - Parsed message data
  */
 function handleServerMessage(data) {
+    // Heartbeat: any inbound message proves the socket is alive (#967).
+    state.lastServerActivity = Date.now();
+    if (data.type === 'pong') {
+        return;
+    }
+
     var joinBtn = document.getElementById('join-btn');
     var nameInput = document.getElementById('name-input');
 

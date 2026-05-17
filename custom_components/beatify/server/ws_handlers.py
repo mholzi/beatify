@@ -338,6 +338,25 @@ async def handle_round_timeout(
         await handler.broadcast_state()
 
 
+async def handle_ping(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Reply to a client heartbeat ping.
+
+    The client sends {type: 'ping'} on an interval and treats prolonged
+    server silence as a dead (half-open) socket worth reconnecting. Echoing
+    a pong keeps that heartbeat satisfied during quiet phases when no state
+    broadcast would otherwise reach the client.
+    """
+    try:
+        await ws.send_json({"type": "pong"})
+    except Exception as err:  # noqa: BLE001
+        _LOGGER.debug("Failed to send pong: %s", err)
+
+
 async def handle_player_onboarded(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
