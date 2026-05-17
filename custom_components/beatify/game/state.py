@@ -2189,14 +2189,8 @@ class GameState:
         if exact and self._tts_announce_exact_guess:
             names = exact[0] if len(exact) == 1 else " and ".join(exact)
             frags.append(f"{names} got it exactly right.")
-        elif (
-            self.closest_wins_mode
-            and not exact
-            and self._tts_announce_closest_guess
-        ):
-            submitted = [
-                p for p in players if p.submitted and p.years_off is not None
-            ]
+        elif self.closest_wins_mode and not exact and self._tts_announce_closest_guess:
+            submitted = [p for p in players if p.submitted and p.years_off is not None]
             if submitted:
                 winner = min(submitted, key=lambda p: p.years_off)
                 if winner.round_score > 0:
@@ -2337,9 +2331,7 @@ class GameState:
         """Announce a player using steal on another (use case 23)."""
         if not self._tts_service or not self._tts_announce_steal_used:
             return
-        await self._tts_announce(
-            f"{stealer_name} stole the answer from {target_name}!"
-        )
+        await self._tts_announce(f"{stealer_name} stole the answer from {target_name}!")
 
     def adjust_volume(self, direction: str) -> float:
         """

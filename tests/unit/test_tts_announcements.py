@@ -83,8 +83,9 @@ async def test_multiple_exact_guesses_joined():
 async def test_streak_milestone_fragment():
     state = _state()
     state.players = {
-        "Marco": _player("Marco", submitted=True, years_off=0, score=10,
-                          streak=5, streak_bonus=3),
+        "Marco": _player(
+            "Marco", submitted=True, years_off=0, score=10, streak=5, streak_bonus=3
+        ),
     }
     await state._announce_reveal(1991)
     assert "Marco is on a 5-song streak." in _spoken(state)
@@ -94,10 +95,12 @@ async def test_streak_milestone_fragment():
 async def test_bet_won_and_lost_fragments():
     state = _state()
     state.players = {
-        "Marco": _player("Marco", submitted=True, years_off=0, score=10,
-                          bet=True, bet_outcome="won"),
-        "Anna": _player("Anna", submitted=True, years_off=8, score=2,
-                        bet=True, bet_outcome="lost"),
+        "Marco": _player(
+            "Marco", submitted=True, years_off=0, score=10, bet=True, bet_outcome="won"
+        ),
+        "Anna": _player(
+            "Anna", submitted=True, years_off=8, score=2, bet=True, bet_outcome="lost"
+        ),
     }
     await state._announce_reveal(1991)
     spoken = _spoken(state)
@@ -109,10 +112,8 @@ async def test_bet_won_and_lost_fragments():
 async def test_closest_wins_winner_fragment():
     state = _state(closest_wins_mode=True)
     state.players = {
-        "Marco": _player("Marco", submitted=True, years_off=2, round_score=5,
-                         score=5),
-        "Anna": _player("Anna", submitted=True, years_off=9, round_score=0,
-                        score=0),
+        "Marco": _player("Marco", submitted=True, years_off=2, round_score=5, score=5),
+        "Anna": _player("Anna", submitted=True, years_off=9, round_score=0, score=0),
     }
     await state._announce_reveal(1991)
     assert "Marco was closest." in _spoken(state)
@@ -153,8 +154,9 @@ async def test_tie_at_top_resets_previous_leader():
 @pytest.mark.asyncio
 async def test_steal_unlock_announced_once_per_game():
     state = _state()
-    marco = _player("Marco", submitted=True, years_off=0, score=10,
-                    steal_available=True)
+    marco = _player(
+        "Marco", submitted=True, years_off=0, score=10, steal_available=True
+    )
     state.players = {"Marco": marco}
 
     await state._announce_reveal(1991)
@@ -192,8 +194,16 @@ async def test_all_toggles_off_is_silent():
 async def test_fragments_combine_into_one_utterance():
     state = _state(_tts_previous_leader="Anna")
     state.players = {
-        "Marco": _player("Marco", submitted=True, years_off=0, score=20,
-                         streak=5, streak_bonus=3, bet=True, bet_outcome="won"),
+        "Marco": _player(
+            "Marco",
+            submitted=True,
+            years_off=0,
+            score=20,
+            streak=5,
+            streak_bonus=3,
+            bet=True,
+            bet_outcome="won",
+        ),
     }
     await state._announce_reveal(1987)
     # One call, one combined sentence carrying every enabled fragment.
