@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+import aiohttp
 from aiohttp import web
 
 from custom_components.beatify.const import (
@@ -1396,6 +1397,9 @@ async def handle_report_data(
     await ws.send_json({"type": "report_data_ack"})
 
 
+_WORKER_URL = "https://beatify-api.mholzi.workers.dev"
+
+
 async def _create_gh_issue(
     artist: str,
     title: str,
@@ -1403,31 +1407,24 @@ async def _create_gh_issue(
     playlist_file: str,
     reporter: str,
 ) -> None:
-    """Create a GitHub issue for the data quality report (best-effort)."""
-    issue_title = f"data: wrong year reported — {artist} – {title}"
-    issue_body = (
-        f"## Wrong Year Report\n\n"
-        f"A player flagged incorrect data during a game.\n\n"
-        f"| Field | Value |\n"
-        f"|-------|-------|\n"
-        f"| **Song** | {artist} – {title} |\n"
-        f"| **Year in playlist** | {year} |\n"
-        f"| **Playlist file** | `{playlist_file}` |\n"
-        f"| **Reported by** | {reporter} |\n\n"
-        f"### Next steps\n"
-        f"Look up the correct release year and update `{playlist_file}`.\n\n"
-        f"---\n"
-        f"*Auto-reported by Beatify in-game data quality flag (Issue #911)*"
-    )
+    """Report data quality issue via Cloudflare Worker (best-effort)."""
     try:
-        proc = await asyncio.create_subprocess_exec(
-            "gh", "issue", "create",
-            "--title", issue_title,
-            "--body", issue_body,
-            "--label", "data-quality",
-            stdout=asyncio.subprocess.DEVNULL,
-            stderr=asyncio.subprocess.DEVNULL,
-        )
-        await asyncio.wait_for(proc.wait(), timeout=15)
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                f"{_WORKER_URL}/report-data",
+                json={
+                    "artist": artist,
+                    "title": title,
+                    "year": year,
+                    "playlist_file": playlist_file,
+                    "reporter": reporter,
+                },
+                timeout=aiohttp.ClientTimeout(total=15),
+            ) as resp:
+                if resp.status not in (200, 201):
+                    _LOGGER.debug(
+                        "Worker /report-data returned %s for %s — %s",
+                        resp.status, artist, title,
+                    )
     except Exception:  # noqa: BLE001
-        _LOGGER.debug("gh issue create failed (non-critical) for %s — %s", artist, title)
+        _LOGGER.debug("Worker /report-data call failed (non-critical) for %s — %s", artist, title)
