@@ -96,6 +96,17 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 # Game is already finished -- auto-clean state so a new game can start
                 # without requiring the user to explicitly dismiss the end screen (#206)
                 await game_state.end_game()
+            elif game_state.phase == GamePhase.LOBBY:
+                # #935: a LOBBY game already exists — the caller should begin
+                # gameplay, not create another. A distinct code lets the client
+                # recover by routing to start-gameplay instead of dead-ending
+                # the host on "End current game first" for a game that is
+                # sitting right there in the lobby.
+                return _json_error(
+                    "A game is already in the lobby — start gameplay instead",
+                    409,
+                    code="GAME_IN_LOBBY",
+                )
             else:
                 return _json_error(
                     "End current game first", 409, code="GAME_ALREADY_STARTED"

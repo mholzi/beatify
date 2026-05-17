@@ -529,9 +529,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.BeatifyWizard.show(1);
         }
     });
-    document.getElementById('home-start-game')?.addEventListener('click', () => {
+    document.getElementById('home-start-game')?.addEventListener('click', async () => {
         // Home-mode auto-creates the LOBBY session on enter, so the user's Start
         // button triggers the actual "begin rounds" action (startGameplay).
+        // #935: currentGame is null until the async loadStatus() fetch returns,
+        // but this button renders immediately on page load. A click in that
+        // window (or after any reload / tab-switch) would fall through to the
+        // else-branch and call startGame() — the *create* endpoint — which
+        // then 409s because the game already exists. Reconcile with the server
+        // first so the LOBBY check below is decided against fresh state.
+        if (!currentGame || currentGame.phase !== 'LOBBY') {
+            await loadStatus();
+        }
         if (currentGame && currentGame.phase === 'LOBBY') {
             // Require at least one player. Starting with 0 players renders a
             // game nobody can answer — previously this was allowed and the
@@ -1890,6 +1899,14 @@ async function startGame() {
         const data = await response.json();
 
         if (!response.ok) {
+            // #935: a LOBBY game already exists — this create call raced ahead
+            // of state hydration. Recover transparently by beginning gameplay
+            // instead of dead-ending the host on "End current game first".
+            if (data.code === 'GAME_IN_LOBBY') {
+                await loadStatus();
+                startGameplay();
+                return;
+            }
             // #864: prefer i18n-by-code over the backend's English message.
             // Matches the playlist-request pattern at line ~2964.
             let msg = data.message || 'Failed to start game';
