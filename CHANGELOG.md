@@ -4,9 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.3.6] - 2026-05-16
+## [3.3.6] - 2026-05-17
 
-First rc of the 3.3.6 line. See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6-rc1) for the user-facing summary.
+See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for the user-facing summary.
 
 ### Added
 - **TTS announcements — Betting & Game State (Phase 3 of 4, #841).** Seven new voice announcements: bet won, bet lost, player join, player reconnect, last round, podium, and rematch. Player-reconnect defaults off (phones re-establish the WebSocket constantly).
@@ -18,12 +18,17 @@ First rc of the 3.3.6 line. See [release notes](https://github.com/mholzi/beatif
 - **Combined REVEAL announcement.** The per-round REVEAL events (correct answer, accuracy, streaks, bet outcomes, steal unlocks, standings) are collected into one narrated utterance instead of up to ~7 separate TTS clips. Each fragment is still gated by its own toggle.
 
 ### Fixed
-- _(none — rc1 is feature + data work; see 3.3.5 for the prior fix line.)_
+- **40 broken URIs in `harder-styles` (#916).** An automated health-check found 40 URIs (32 YouTube Music, 5 Apple Music, 3 Deezer) pointing to the wrong track. 32 re-resolved automatically; 5 obscure festival anthems pointed at the official label/organiser channel uploads; 3 left as best-available.
 
 ### Data
 - **Harder Styles — 150 → 190 songs (#899).** 40 modern hardstyle tracks (festival anthems + hardstyle remixes of chart hits) folded in from playlist request #899, with per-region Apple Music URIs.
 - **90er Ohrwürmer request routed (#906).** 90s Hits 58 → 94 songs (international, no German-language tracks — EAV removed); Deutschpop Klassiker 100 → 106 songs (scope widened to the 90s/NDW canon). Years resolved via MusicBrainz first-release dates.
+- **New community playlist — Divorced Dad Rock (#910).** 107 post-grunge / nu-metal / 2000s radio-rock tracks (Nickelback, Creed, 3 Doors Down, Linkin Park, Audioslave, …), curated from a 130-track request — cover-band re-recordings and obscure filler dropped.
+- **Playlist-wide year audit — 274 release years corrected (#911).** All 3,400+ songs were checked against MusicBrainz first-release dates; 274 stored years that were re-release / compilation / cover dates were corrected and independently verified. 78 songs revealed to be in the wrong decade playlist were re-bucketed; 22 with no decade playlist were tracked as new playlist ideas (#921 70s, #922 50s, #923 Christmas).
 - **TTS announcement test coverage.** 14 unit tests for the combined REVEAL announcement.
+
+### Docs
+- README now states that Beatify needs a premium streaming subscription — free/ad-supported tiers (e.g. Spotify Free) can't do on-demand single-track playback.
 
 ## [3.3.5] - 2026-05-15
 
