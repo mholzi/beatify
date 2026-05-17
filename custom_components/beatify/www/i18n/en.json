@@ -68,6 +68,10 @@
     "players": "players"
   },
   "game": {
+    "introSplashTitle": "Intro Round!",
+    "introSplashDesc": "Stop the song the moment you recognise it!",
+    "introSplashWaiting": "Waiting for host...",
+    "introSplashStart": "Start Intro Round",
     "roundLabel": "Round",
     "yourGuess": "Your Guess",
     "ofLabel": "of",
@@ -926,6 +930,7 @@
     "readySubtitle": "Get ready to play",
     "waitingHost": "Waiting for host to start",
     "waitingCount": "{count} players in lobby · {difficulty}",
+    "waitingCountOne": "{count} player in lobby · {difficulty}",
     "replayTour": "Replay the tour",
     "learningWarning": "⚠️ {count} player still learning the rules",
     "learningWarningPlural": "⚠️ {count} players still learning the rules",

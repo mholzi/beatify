@@ -68,6 +68,10 @@
     "players": "joueurs"
   },
   "game": {
+    "introSplashTitle": "Manche Intro !",
+    "introSplashDesc": "Arrête la chanson dès que tu la reconnais !",
+    "introSplashWaiting": "En attente de l'hôte...",
+    "introSplashStart": "Démarrer la manche intro",
     "roundLabel": "Manche",
     "yourGuess": "Ta réponse",
     "ofLabel": "sur",
@@ -926,6 +930,7 @@
     "readySubtitle": "Prépare-toi à jouer",
     "waitingHost": "En attente de l'hôte...",
     "waitingCount": "{count} joueurs dans le salon · {difficulty}",
+    "waitingCountOne": "{count} joueur dans le salon · {difficulty}",
     "replayTour": "Revoir le tour",
     "learningWarning": "⚠️ {count} joueur apprend encore les règles",
     "learningWarningPlural": "⚠️ {count} joueurs apprennent encore les règles",

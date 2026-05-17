@@ -68,6 +68,10 @@
     "players": "spelers"
   },
   "game": {
+    "introSplashTitle": "Intro-ronde!",
+    "introSplashDesc": "Stop het nummer zodra je het herkent!",
+    "introSplashWaiting": "Wachten op de host...",
+    "introSplashStart": "Intro-ronde starten",
     "roundLabel": "Ronde",
     "yourGuess": "Jouw gok",
     "ofLabel": "van",
@@ -926,6 +930,7 @@
     "readySubtitle": "Maak je klaar",
     "waitingHost": "Wachten op de host...",
     "waitingCount": "{count} spelers in de lobby · {difficulty}",
+    "waitingCountOne": "{count} speler in de lobby · {difficulty}",
     "replayTour": "Tour opnieuw bekijken",
     "learningWarning": "⚠️ {count} speler leert nog de regels",
     "learningWarningPlural": "⚠️ {count} spelers leren nog de regels",
