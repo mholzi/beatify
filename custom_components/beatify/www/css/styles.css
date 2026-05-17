@@ -6756,6 +6756,34 @@ body.theme-dark .result-value.is-bet-lost {
 }
 
 /* Admin Controls */
+.reveal-report-row {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-md);
+}
+
+.reveal-report-btn {
+    background: none;
+    border: none;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: color 0.15s ease, opacity 0.15s ease;
+    opacity: 0.7;
+}
+
+.reveal-report-btn:hover {
+    color: var(--color-text-neon-muted);
+    opacity: 1;
+}
+
+.reveal-report-btn:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
 .reveal-admin-controls {
     margin-top: var(--space-md);
 }

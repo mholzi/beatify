@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.0",
+  "version": "1.2",
   "tags": [
     "pop",
     "charts",
@@ -12,31 +12,6 @@
   "added_date": "2026-05-15",
   "description": "The big chart hits of the 2010s and 2020s — filling Beatify's decade gap between the 2000s playlist and today. Sourced from the German Hitster song pool (#892).",
   "songs": [
-    {
-      "artist": "SNAP!",
-      "title": "The Power",
-      "year": 2026,
-      "isrc": "DEC229000107",
-      "uri": "spotify:track:0nQLxiNGbbUoSGrxksETLm",
-      "uri_apple_music": "applemusic://track/1498447546",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1498447546",
-        "de": "applemusic://track/1498447546",
-        "gb": "applemusic://track/1498447546",
-        "fr": "applemusic://track/1498447546",
-        "es": "applemusic://track/1498447546",
-        "nl": "applemusic://track/1498447546",
-        "it": "applemusic://track/1498447546"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fUwf21uaVvw",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3802703102",
-      "fun_fact": "A chart hit by SNAP! (2026).",
-      "fun_fact_de": "Ein Chart-Hit von SNAP! (2026).",
-      "fun_fact_es": "Un éxito de SNAP! (2026).",
-      "fun_fact_fr": "Un tube de SNAP! (2026).",
-      "fun_fact_nl": "Een chart-hit van SNAP! (2026)."
-    },
     {
       "artist": "Dermot Kennedy",
       "title": "Power Over Me",
@@ -88,59 +63,6 @@
       "fun_fact_nl": "Een chart-hit van Galantis (2016)."
     },
     {
-      "artist": "Earth, Wind & Fire",
-      "title": "Boogie Wonderland (with The Emotions) - Single Version",
-      "year": 2012,
-      "isrc": "USSM19922860",
-      "uri": "spotify:track:6ztstiyZL6FXzh4aG46ZPD",
-      "uri_apple_music": "applemusic://track/1737583904",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1737583904",
-        "de": "applemusic://track/1737583904",
-        "gb": "applemusic://track/1737583904",
-        "fr": "applemusic://track/888878375",
-        "es": "applemusic://track/1737583904",
-        "nl": "applemusic://track/888878375",
-        "it": "applemusic://track/1737583904"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PbpIyn70t8c",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/27533081",
-      "alt_artists": [
-        "The Emotions"
-      ],
-      "fun_fact": "A chart hit by Earth, Wind & Fire (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Earth, Wind & Fire (2012).",
-      "fun_fact_es": "Un éxito de Earth, Wind & Fire (2012).",
-      "fun_fact_fr": "Un tube de Earth, Wind & Fire (2012).",
-      "fun_fact_nl": "Een chart-hit van Earth, Wind & Fire (2012)."
-    },
-    {
-      "artist": "Gipsy Kings",
-      "title": "Djobi, Djoba",
-      "year": 2012,
-      "isrc": "GBARL0700404",
-      "uri": "spotify:track:2Mz7HwloqFNdA6iZeZk5PJ",
-      "uri_apple_music": "applemusic://track/1512944833",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/1512944833",
-        "gb": "applemusic://track/1512944833",
-        "fr": "applemusic://track/1519718252",
-        "es": "applemusic://track/1512944833",
-        "nl": "applemusic://track/1512944833",
-        "it": "applemusic://track/1512944833"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Sik6eDQ18WE",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/958716392",
-      "fun_fact": "A chart hit by Gipsy Kings (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Gipsy Kings (2012).",
-      "fun_fact_es": "Un éxito de Gipsy Kings (2012).",
-      "fun_fact_fr": "Un tube de Gipsy Kings (2012).",
-      "fun_fact_nl": "Een chart-hit van Gipsy Kings (2012)."
-    },
-    {
       "artist": "BTS",
       "title": "Dynamite",
       "year": 2020,
@@ -164,31 +86,6 @@
       "fun_fact_es": "Un éxito de BTS (2020).",
       "fun_fact_fr": "Un tube de BTS (2020).",
       "fun_fact_nl": "Een chart-hit van BTS (2020)."
-    },
-    {
-      "artist": "The Spencer Davis Group",
-      "title": "Keep On Running - Remastered 2010",
-      "year": 2010,
-      "isrc": "GBUM71002671",
-      "uri": "spotify:track:45ghY6i6XTeHuOEtG1HwrQ",
-      "uri_apple_music": "applemusic://track/1422665979",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1422665979",
-        "de": "applemusic://track/1648940328",
-        "gb": "applemusic://track/1442900758",
-        "fr": "applemusic://track/1648940328",
-        "es": "applemusic://track/1648940328",
-        "nl": "applemusic://track/1648940328",
-        "it": "applemusic://track/1648940328"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YrxHcSZBU38",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/6435675",
-      "fun_fact": "A chart hit by The Spencer Davis Group (2010).",
-      "fun_fact_de": "Ein Chart-Hit von The Spencer Davis Group (2010).",
-      "fun_fact_es": "Un éxito de The Spencer Davis Group (2010).",
-      "fun_fact_fr": "Un tube de The Spencer Davis Group (2010).",
-      "fun_fact_nl": "Een chart-hit van The Spencer Davis Group (2010)."
     },
     {
       "artist": "Jawsh 685",
@@ -325,84 +222,6 @@
       "fun_fact_nl": "Een chart-hit van Yolanda Be Cool (2010)."
     },
     {
-      "artist": "Bandolero",
-      "title": "Paris Latino - Original Version 1983",
-      "year": 2011,
-      "isrc": "FR1OI8300160",
-      "uri": "spotify:track:3LCup59DMpM3r6fwQsZMYs",
-      "uri_apple_music": "applemusic://track/906486219",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/906486219",
-        "de": "applemusic://track/906486219",
-        "gb": "applemusic://track/906486219",
-        "fr": "applemusic://track/906486219",
-        "es": "applemusic://track/906486219",
-        "nl": "applemusic://track/906486219",
-        "it": "applemusic://track/906486219"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ruauz315oms",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/14750330",
-      "fun_fact": "A chart hit by Bandolero (2011).",
-      "fun_fact_de": "Ein Chart-Hit von Bandolero (2011).",
-      "fun_fact_es": "Un éxito de Bandolero (2011).",
-      "fun_fact_fr": "Un tube de Bandolero (2011).",
-      "fun_fact_nl": "Een chart-hit van Bandolero (2011)."
-    },
-    {
-      "artist": "Incognito",
-      "title": "Always There - Edit",
-      "year": 2010,
-      "isrc": "USGR10001014",
-      "uri": "spotify:track:6BxLhB782dObX1y4kDJDIU",
-      "uri_apple_music": "applemusic://track/1669406231",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1669406231",
-        "de": "applemusic://track/1669406231",
-        "gb": "applemusic://track/1442391217",
-        "fr": "applemusic://track/1669406231",
-        "es": "applemusic://track/1669406231",
-        "nl": "applemusic://track/1669406231",
-        "it": "applemusic://track/1669406231"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TLYdt-uIe-U",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2133777737",
-      "alt_artists": [
-        "Jocelyn Brown"
-      ],
-      "fun_fact": "A chart hit by Incognito (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Incognito (2010).",
-      "fun_fact_es": "Un éxito de Incognito (2010).",
-      "fun_fact_fr": "Un tube de Incognito (2010).",
-      "fun_fact_nl": "Een chart-hit van Incognito (2010)."
-    },
-    {
-      "artist": "Eddy Grant",
-      "title": "Gimme Hope Jo'Anna",
-      "year": 2026,
-      "isrc": "UKALA2600005",
-      "uri": "spotify:track:09lZ2Mx2NSpzy6KBpX2kDq",
-      "uri_apple_music": "applemusic://track/1882033162",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1882033162",
-        "de": "applemusic://track/1882033162",
-        "gb": "applemusic://track/1882033162",
-        "fr": "applemusic://track/1882033162",
-        "es": "applemusic://track/1882033162",
-        "nl": "applemusic://track/1882033162",
-        "it": "applemusic://track/1882033162"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZTGOAFXUEyI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3878886741",
-      "fun_fact": "A chart hit by Eddy Grant (2026).",
-      "fun_fact_de": "Ein Chart-Hit von Eddy Grant (2026).",
-      "fun_fact_es": "Un éxito de Eddy Grant (2026).",
-      "fun_fact_fr": "Un tube de Eddy Grant (2026).",
-      "fun_fact_nl": "Een chart-hit van Eddy Grant (2026)."
-    },
-    {
       "artist": "Becky G",
       "title": "Arranca (feat. Omega)",
       "year": 2023,
@@ -431,56 +250,6 @@
       "fun_fact_nl": "Een chart-hit van Becky G (2023)."
     },
     {
-      "artist": "Die Toten Hosen",
-      "title": "Zehn kleine Jägermeister",
-      "year": 2011,
-      "isrc": "DEF241112444",
-      "uri": "spotify:track:4wNsh8RqG6bvwuUNaX18pT",
-      "uri_apple_music": "applemusic://track/478013623",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/478013623",
-        "de": "applemusic://track/478013623",
-        "gb": "applemusic://track/478013623",
-        "fr": "applemusic://track/478013623",
-        "es": "applemusic://track/478013623",
-        "nl": "applemusic://track/478013623",
-        "it": "applemusic://track/478013623"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JTF0CkXib0s",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/142393497",
-      "fun_fact": "A chart hit by Die Toten Hosen (2011).",
-      "fun_fact_de": "Ein Chart-Hit von Die Toten Hosen (2011).",
-      "fun_fact_es": "Un éxito de Die Toten Hosen (2011).",
-      "fun_fact_fr": "Un tube de Die Toten Hosen (2011).",
-      "fun_fact_nl": "Een chart-hit van Die Toten Hosen (2011)."
-    },
-    {
-      "artist": "Safri Duo",
-      "title": "Played-A-Live (The Bongo Song)",
-      "year": 2021,
-      "isrc": "DKBKA0001601",
-      "uri": "spotify:track:7uuo02BIR76qZ6ZXQhz7Ys",
-      "uri_apple_music": "applemusic://track/6767050012",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/6767050012",
-        "de": "applemusic://track/6767050012",
-        "gb": "applemusic://track/6767050012",
-        "fr": "applemusic://track/6767050012",
-        "es": "applemusic://track/6767050012",
-        "nl": "applemusic://track/6767050012",
-        "it": "applemusic://track/6767050012"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=o_ZBzGlYS6g",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1399345572",
-      "fun_fact": "A chart hit by Safri Duo (2021).",
-      "fun_fact_de": "Ein Chart-Hit von Safri Duo (2021).",
-      "fun_fact_es": "Un éxito de Safri Duo (2021).",
-      "fun_fact_fr": "Un tube de Safri Duo (2021).",
-      "fun_fact_nl": "Een chart-hit van Safri Duo (2021)."
-    },
-    {
       "artist": "Nina Chuba",
       "title": "Wildberry Lillet",
       "year": 2022,
@@ -504,31 +273,6 @@
       "fun_fact_es": "Un éxito de Nina Chuba (2022).",
       "fun_fact_fr": "Un tube de Nina Chuba (2022).",
       "fun_fact_nl": "Een chart-hit van Nina Chuba (2022)."
-    },
-    {
-      "artist": "T.S. Monk",
-      "title": "Bon bon vie - Gimme the Good Life",
-      "year": 2014,
-      "isrc": "CAU111122152",
-      "uri": "spotify:track:7ovnSuNF7xp348DXh7Ns5u",
-      "uri_apple_music": "applemusic://track/1769118265",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1769118265",
-        "de": "applemusic://track/1769118265",
-        "gb": "applemusic://track/1769118265",
-        "fr": "applemusic://track/1769118265",
-        "es": "applemusic://track/1769118265",
-        "nl": "applemusic://track/1769118265",
-        "it": "applemusic://track/1769118265"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kgbxH-Ii6dM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/89339263",
-      "fun_fact": "A chart hit by T.S. Monk (2014).",
-      "fun_fact_de": "Ein Chart-Hit von T.S. Monk (2014).",
-      "fun_fact_es": "Un éxito de T.S. Monk (2014).",
-      "fun_fact_fr": "Un tube de T.S. Monk (2014).",
-      "fun_fact_nl": "Een chart-hit van T.S. Monk (2014)."
     },
     {
       "artist": "DJ Snake",
@@ -584,31 +328,6 @@
       "fun_fact_nl": "Een chart-hit van Dua Lipa (2018)."
     },
     {
-      "artist": "Central Line",
-      "title": "Walking Into Sunshine - Edit",
-      "year": 2015,
-      "isrc": "USMR18289041",
-      "uri": "spotify:track:5r2OXBrMdXIBk3BQemVUGJ",
-      "uri_apple_music": "applemusic://track/1444100932",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1444100932",
-        "de": "applemusic://track/1444173794",
-        "gb": "applemusic://track/1442507971",
-        "fr": "applemusic://track/1444173794",
-        "es": "applemusic://track/1444173794",
-        "nl": "applemusic://track/1444173794",
-        "it": "applemusic://track/1444173794"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4ERFvbvUJRE",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/121588468",
-      "fun_fact": "A chart hit by Central Line (2015).",
-      "fun_fact_de": "Ein Chart-Hit von Central Line (2015).",
-      "fun_fact_es": "Un éxito de Central Line (2015).",
-      "fun_fact_fr": "Un tube de Central Line (2015).",
-      "fun_fact_nl": "Een chart-hit van Central Line (2015)."
-    },
-    {
       "artist": "Armin van Buuren",
       "title": "Sunny Days",
       "year": 2017,
@@ -660,31 +379,6 @@
       "fun_fact_es": "Un éxito de Imagine Dragons (2013).",
       "fun_fact_fr": "Un tube de Imagine Dragons (2013).",
       "fun_fact_nl": "Een chart-hit van Imagine Dragons (2013)."
-    },
-    {
-      "artist": "S Club",
-      "title": "Don't Stop Movin'",
-      "year": 2015,
-      "isrc": "GBCVL0100001",
-      "uri": "spotify:track:4dzreTCcGVgeF1vCcd22AC",
-      "uri_apple_music": "applemusic://track/1584857947",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1584857947",
-        "de": "applemusic://track/1584857947",
-        "gb": "applemusic://track/1442940747",
-        "fr": "applemusic://track/1584857947",
-        "es": "applemusic://track/1584857947",
-        "nl": "applemusic://track/1584857947",
-        "it": "applemusic://track/1584857947"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=w60C081sLtI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/98981562",
-      "fun_fact": "A chart hit by S Club (2015).",
-      "fun_fact_de": "Ein Chart-Hit von S Club (2015).",
-      "fun_fact_es": "Un éxito de S Club (2015).",
-      "fun_fact_fr": "Un tube de S Club (2015).",
-      "fun_fact_nl": "Een chart-hit van S Club (2015)."
     },
     {
       "artist": "Owl City",
@@ -743,31 +437,6 @@
       "fun_fact_nl": "Een chart-hit van Rudimental (2013)."
     },
     {
-      "artist": "Peter Gabriel",
-      "title": "Sledgehammer",
-      "year": 2012,
-      "isrc": "GBCPB1200864",
-      "uri": "spotify:track:029NqmIySn1kOY305AAhxT",
-      "uri_apple_music": "applemusic://track/994361949",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/994361949",
-        "de": "applemusic://track/994361949",
-        "gb": "applemusic://track/994361949",
-        "fr": "applemusic://track/994361949",
-        "es": "applemusic://track/994361949",
-        "nl": "applemusic://track/994361949",
-        "it": "applemusic://track/994361949"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GYiIzez8LrM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/540503442",
-      "fun_fact": "A chart hit by Peter Gabriel (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Peter Gabriel (2012).",
-      "fun_fact_es": "Un éxito de Peter Gabriel (2012).",
-      "fun_fact_fr": "Un tube de Peter Gabriel (2012).",
-      "fun_fact_nl": "Een chart-hit van Peter Gabriel (2012)."
-    },
-    {
       "artist": "Calvin Harris",
       "title": "By Your Side (feat. Tom Grennan)",
       "year": 2021,
@@ -794,56 +463,6 @@
       "fun_fact_es": "Un éxito de Calvin Harris (2021).",
       "fun_fact_fr": "Un tube de Calvin Harris (2021).",
       "fun_fact_nl": "Een chart-hit van Calvin Harris (2021)."
-    },
-    {
-      "artist": "5000 Volts",
-      "title": "I’m On Fire",
-      "year": 2024,
-      "isrc": "ES64E2413022",
-      "uri": "spotify:track:7bjtTJ4M10kpl2pGJxsg1Q",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_k4slku58u0",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3093902351",
-      "fun_fact": "A chart hit by 5000 Volts (2024).",
-      "fun_fact_de": "Ein Chart-Hit von 5000 Volts (2024).",
-      "fun_fact_es": "Un éxito de 5000 Volts (2024).",
-      "fun_fact_fr": "Un tube de 5000 Volts (2024).",
-      "fun_fact_nl": "Een chart-hit van 5000 Volts (2024)."
-    },
-    {
-      "artist": "The Jamies",
-      "title": "Summertime, Summertime",
-      "year": 2024,
-      "isrc": "USSM19700760",
-      "uri": "spotify:track:37Vct7oArn3tHN3XXCJJ7p",
-      "uri_apple_music": "applemusic://track/1473830324",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1473830324",
-        "de": "applemusic://track/1473830324",
-        "gb": "applemusic://track/1473830324",
-        "fr": "applemusic://track/1473830324",
-        "es": "applemusic://track/1473830324",
-        "nl": "applemusic://track/1473830324",
-        "it": "applemusic://track/1473830324"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Tvq1ZBkG5xM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/717077602",
-      "fun_fact": "A chart hit by The Jamies (2024).",
-      "fun_fact_de": "Ein Chart-Hit von The Jamies (2024).",
-      "fun_fact_es": "Un éxito de The Jamies (2024).",
-      "fun_fact_fr": "Un tube de The Jamies (2024).",
-      "fun_fact_nl": "Een chart-hit van The Jamies (2024)."
     },
     {
       "artist": "Tones And I",
@@ -899,48 +518,6 @@
       "fun_fact_nl": "Een chart-hit van Martin Garrix (2018)."
     },
     {
-      "artist": "Michael Jackson",
-      "title": "Bad",
-      "year": 2012,
-      "isrc": "USSM11204980",
-      "uri": "spotify:track:3FvQH46A4B37eNHjooIXcu",
-      "uri_apple_music": "applemusic://track/559334751",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/559334751",
-        "de": "applemusic://track/559334751",
-        "gb": "applemusic://track/559334751",
-        "fr": "applemusic://track/559334751",
-        "es": "applemusic://track/559334751",
-        "nl": "applemusic://track/559334751",
-        "it": "applemusic://track/559334751"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-DlMoJ2V6uk",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/59509531",
-      "fun_fact": "A chart hit by Michael Jackson (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Michael Jackson (2012).",
-      "fun_fact_es": "Un éxito de Michael Jackson (2012).",
-      "fun_fact_fr": "Un tube de Michael Jackson (2012).",
-      "fun_fact_nl": "Een chart-hit van Michael Jackson (2012)."
-    },
-    {
-      "artist": "Daft Punk",
-      "title": "Harder, Better, Faster, Stronger",
-      "year": 2022,
-      "isrc": null,
-      "uri": "spotify:track:5W3cjX2J3tjhG8zb6u0qHn",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JhulBGMA7G4",
-      "uri_tidal": null,
-      "uri_deezer": null,
-      "fun_fact": "A chart hit by Daft Punk (2022).",
-      "fun_fact_de": "Ein Chart-Hit von Daft Punk (2022).",
-      "fun_fact_es": "Un éxito de Daft Punk (2022).",
-      "fun_fact_fr": "Un tube de Daft Punk (2022).",
-      "fun_fact_nl": "Een chart-hit van Daft Punk (2022)."
-    },
-    {
       "artist": "Andreas Gabalier",
       "title": "Hallihallo",
       "year": 2018,
@@ -991,131 +568,6 @@
       "fun_fact_nl": "Een chart-hit van INNA (2011)."
     },
     {
-      "artist": "Michael McDonald",
-      "title": "Sweet Freedom",
-      "year": 2021,
-      "isrc": "USUM72107422",
-      "uri": "spotify:track:4ZsYF5rjUXIwds6KNimPRo",
-      "uri_apple_music": "applemusic://track/1700309643",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1700309643",
-        "de": "applemusic://track/1700309643",
-        "gb": "applemusic://track/1700309643",
-        "fr": "applemusic://track/1700309643",
-        "es": "applemusic://track/1700309643",
-        "nl": "applemusic://track/1700309643",
-        "it": "applemusic://track/1700309643"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yvXFGUWBMHY",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1408780112",
-      "fun_fact": "A chart hit by Michael McDonald (2021).",
-      "fun_fact_de": "Ein Chart-Hit von Michael McDonald (2021).",
-      "fun_fact_es": "Un éxito de Michael McDonald (2021).",
-      "fun_fact_fr": "Un tube de Michael McDonald (2021).",
-      "fun_fact_nl": "Een chart-hit van Michael McDonald (2021)."
-    },
-    {
-      "artist": "Little Eva",
-      "title": "The Locomotion",
-      "year": 2013,
-      "isrc": "GBAYE6200144",
-      "uri": "spotify:track:5xzdDMhFYiuUONB0Mha9VS",
-      "uri_apple_music": "applemusic://track/1671222971",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1671222971",
-        "de": "applemusic://track/1671222971",
-        "gb": "applemusic://track/1671222971",
-        "fr": "applemusic://track/1671222971",
-        "es": "applemusic://track/1671222971",
-        "nl": "applemusic://track/1671222971",
-        "it": "applemusic://track/1671222971"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1Lej7aQDrGM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/120080938",
-      "fun_fact": "A chart hit by Little Eva (2013).",
-      "fun_fact_de": "Ein Chart-Hit von Little Eva (2013).",
-      "fun_fact_es": "Un éxito de Little Eva (2013).",
-      "fun_fact_fr": "Un tube de Little Eva (2013).",
-      "fun_fact_nl": "Een chart-hit van Little Eva (2013)."
-    },
-    {
-      "artist": "Kool & The Gang",
-      "title": "Let's Go Dancin' (Ooh La, La, La) - Single Version",
-      "year": 2018,
-      "isrc": "USPR38200048",
-      "uri": "spotify:track:1tcC3OHLh3ROsSIwfM8bEp",
-      "uri_apple_music": "applemusic://track/1445227982",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1445227982",
-        "de": "applemusic://track/1442676094",
-        "gb": "applemusic://track/1445227982",
-        "fr": "applemusic://track/1445227982",
-        "es": "applemusic://track/1445227982",
-        "nl": "applemusic://track/1445227982",
-        "it": "applemusic://track/1445227982"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QsppPGDrNdg",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/541624382",
-      "fun_fact": "A chart hit by Kool & The Gang (2018).",
-      "fun_fact_de": "Ein Chart-Hit von Kool & The Gang (2018).",
-      "fun_fact_es": "Un éxito de Kool & The Gang (2018).",
-      "fun_fact_fr": "Un tube de Kool & The Gang (2018).",
-      "fun_fact_nl": "Een chart-hit van Kool & The Gang (2018)."
-    },
-    {
-      "artist": "Daddy DJ",
-      "title": "Daddy DJ",
-      "year": 2022,
-      "isrc": "ITV952200075",
-      "uri": "spotify:track:6MPTmoLt4IaL1XKRgKER4I",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QWBMCtIllEM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1745366907",
-      "fun_fact": "A chart hit by Daddy DJ (2022).",
-      "fun_fact_de": "Ein Chart-Hit von Daddy DJ (2022).",
-      "fun_fact_es": "Un éxito de Daddy DJ (2022).",
-      "fun_fact_fr": "Un tube de Daddy DJ (2022).",
-      "fun_fact_nl": "Een chart-hit van Daddy DJ (2022)."
-    },
-    {
-      "artist": "The Surfaris",
-      "title": "Wipe Out",
-      "year": 2018,
-      "isrc": "USUM71802349",
-      "uri": "spotify:track:4SDGb2V6J2rEbxNujwNeMl",
-      "uri_apple_music": "applemusic://track/1748016223",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1748016223",
-        "de": "applemusic://track/1748016223",
-        "gb": "applemusic://track/1748016223",
-        "fr": "applemusic://track/1748016223",
-        "es": "applemusic://track/1748016223",
-        "nl": "applemusic://track/1748016223",
-        "it": "applemusic://track/1748016223"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dBURLdhmmZ8",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/474644972",
-      "fun_fact": "A chart hit by The Surfaris (2018).",
-      "fun_fact_de": "Ein Chart-Hit von The Surfaris (2018).",
-      "fun_fact_es": "Un éxito de The Surfaris (2018).",
-      "fun_fact_fr": "Un tube de The Surfaris (2018).",
-      "fun_fact_nl": "Een chart-hit van The Surfaris (2018)."
-    },
-    {
       "artist": "Artemas",
       "title": "i like the way you kiss me",
       "year": 2024,
@@ -1159,31 +611,6 @@
       "fun_fact_es": "Un éxito de Calvin Harris (2018).",
       "fun_fact_fr": "Un tube de Calvin Harris (2018).",
       "fun_fact_nl": "Een chart-hit van Calvin Harris (2018)."
-    },
-    {
-      "artist": "The Crystals",
-      "title": "Da Doo Ron Ron (When He Walked Me Home)",
-      "year": 2011,
-      "isrc": "USQX91100116",
-      "uri": "spotify:track:0fonScmHUzC0MglSLn9saA",
-      "uri_apple_music": "applemusic://track/518082135",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/518082135",
-        "de": "applemusic://track/420136963",
-        "gb": "applemusic://track/1732268302",
-        "fr": "applemusic://track/420136963",
-        "es": "applemusic://track/420136963",
-        "nl": "applemusic://track/420136963",
-        "it": "applemusic://track/420136963"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=q3_KgmgrUm8",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/12809345",
-      "fun_fact": "A chart hit by The Crystals (2011).",
-      "fun_fact_de": "Ein Chart-Hit von The Crystals (2011).",
-      "fun_fact_es": "Un éxito de The Crystals (2011).",
-      "fun_fact_fr": "Un tube de The Crystals (2011).",
-      "fun_fact_nl": "Een chart-hit van The Crystals (2011)."
     },
     {
       "artist": "Jennifer Lopez",
@@ -1296,81 +723,6 @@
       "fun_fact_nl": "Een chart-hit van Jessie J (2014)."
     },
     {
-      "artist": "Matia Bazar",
-      "title": "Ti Sento",
-      "year": 2012,
-      "isrc": "ITPOO9800109",
-      "uri": "spotify:track:72BnKkKnrOeCDY9vy2avFk",
-      "uri_apple_music": "applemusic://track/712911374",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/712911374",
-        "de": "applemusic://track/712911374",
-        "gb": "applemusic://track/712911374",
-        "fr": "applemusic://track/712911374",
-        "es": "applemusic://track/712911374",
-        "nl": "applemusic://track/712911374",
-        "it": "applemusic://track/712911374"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_-zk_dWBmAg",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/18111574",
-      "fun_fact": "A chart hit by Matia Bazar (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Matia Bazar (2012).",
-      "fun_fact_es": "Un éxito de Matia Bazar (2012).",
-      "fun_fact_fr": "Un tube de Matia Bazar (2012).",
-      "fun_fact_nl": "Een chart-hit van Matia Bazar (2012)."
-    },
-    {
-      "artist": "Roxette",
-      "title": "How Do You Do!",
-      "year": 2014,
-      "isrc": "SEAMA9252010",
-      "uri": "spotify:track:2D7GRdSAcRkBsDtXsnjh1v",
-      "uri_apple_music": "applemusic://track/726418680",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/726418680",
-        "de": "applemusic://track/726418680",
-        "gb": "applemusic://track/726418680",
-        "fr": "applemusic://track/726418680",
-        "es": "applemusic://track/726418680",
-        "nl": "applemusic://track/726418680",
-        "it": "applemusic://track/726418680"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GX1Y7ri_0zU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/89388951",
-      "fun_fact": "A chart hit by Roxette (2014).",
-      "fun_fact_de": "Ein Chart-Hit von Roxette (2014).",
-      "fun_fact_es": "Un éxito de Roxette (2014).",
-      "fun_fact_fr": "Un tube de Roxette (2014).",
-      "fun_fact_nl": "Een chart-hit van Roxette (2014)."
-    },
-    {
-      "artist": "DJ BoBo",
-      "title": "Pray",
-      "year": 2017,
-      "isrc": "DEMI69600045",
-      "uri": "spotify:track:0UQhKr79tTjADwLHb77CwE",
-      "uri_apple_music": "applemusic://track/1508311027",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1508311027",
-        "de": "applemusic://track/1508311027",
-        "gb": "applemusic://track/1508311027",
-        "fr": "applemusic://track/1508311027",
-        "es": "applemusic://track/1508311027",
-        "nl": "applemusic://track/1508311027",
-        "it": "applemusic://track/1508311027"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SGeDy6txc2k",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/918091092",
-      "fun_fact": "A chart hit by DJ BoBo (2017).",
-      "fun_fact_de": "Ein Chart-Hit von DJ BoBo (2017).",
-      "fun_fact_es": "Un éxito de DJ BoBo (2017).",
-      "fun_fact_fr": "Un tube de DJ BoBo (2017).",
-      "fun_fact_nl": "Een chart-hit van DJ BoBo (2017)."
-    },
-    {
       "artist": "Linkin Park",
       "title": "The Emptiness Machine",
       "year": 2024,
@@ -1394,31 +746,6 @@
       "fun_fact_es": "Un éxito de Linkin Park (2024).",
       "fun_fact_fr": "Un tube de Linkin Park (2024).",
       "fun_fact_nl": "Een chart-hit van Linkin Park (2024)."
-    },
-    {
-      "artist": "Girls Aloud",
-      "title": "Sound Of The Underground",
-      "year": 2023,
-      "isrc": "GBAKW0201569",
-      "uri": "spotify:track:0SKjqIViHaXWhmaKuJbMrq",
-      "uri_apple_music": "applemusic://track/1681137250",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1681137250",
-        "de": "applemusic://track/1681137250",
-        "gb": "applemusic://track/1681137250",
-        "fr": "applemusic://track/1681137250",
-        "es": "applemusic://track/1681137250",
-        "nl": "applemusic://track/1681137250",
-        "it": "applemusic://track/1681137250"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ogJJoVqfXHY",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2321097235",
-      "fun_fact": "A chart hit by Girls Aloud (2023).",
-      "fun_fact_de": "Ein Chart-Hit von Girls Aloud (2023).",
-      "fun_fact_es": "Un éxito de Girls Aloud (2023).",
-      "fun_fact_fr": "Un tube de Girls Aloud (2023).",
-      "fun_fact_nl": "Een chart-hit van Girls Aloud (2023)."
     },
     {
       "artist": "Peggy Gou",
@@ -1524,56 +851,6 @@
       "fun_fact_nl": "Een chart-hit van Conkarah (2020)."
     },
     {
-      "artist": "Counting Crows",
-      "title": "Accidentally In Love",
-      "year": 2017,
-      "isrc": "USIR10400291",
-      "uri": "spotify:track:4ccM2xBxicGigjLqt6A0YY",
-      "uri_apple_music": "applemusic://track/1691419161",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1691419161",
-        "de": "applemusic://track/1691419161",
-        "gb": "applemusic://track/1691419161",
-        "fr": "applemusic://track/1691419161",
-        "es": "applemusic://track/1691419161",
-        "nl": "applemusic://track/1691419161",
-        "it": "applemusic://track/1691419161"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GEo7W-uJNkc",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/145425722",
-      "fun_fact": "A chart hit by Counting Crows (2017).",
-      "fun_fact_de": "Ein Chart-Hit von Counting Crows (2017).",
-      "fun_fact_es": "Un éxito de Counting Crows (2017).",
-      "fun_fact_fr": "Un tube de Counting Crows (2017).",
-      "fun_fact_nl": "Een chart-hit van Counting Crows (2017)."
-    },
-    {
-      "artist": "Pino D'Angiò",
-      "title": "Ma quale idea",
-      "year": 2011,
-      "isrc": "ITA647900295",
-      "uri": "spotify:track:0nHdPB5NA4xkoDoSLbREwD",
-      "uri_apple_music": "applemusic://track/1760798546",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1760798546",
-        "de": "applemusic://track/1760798546",
-        "gb": "applemusic://track/1760798546",
-        "fr": "applemusic://track/1760798546",
-        "es": "applemusic://track/1760798546",
-        "nl": "applemusic://track/1760798546",
-        "it": "applemusic://track/1760798546"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=pqlZQIsRdmQ",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/518970902",
-      "fun_fact": "A chart hit by Pino D'Angiò (2011).",
-      "fun_fact_de": "Ein Chart-Hit von Pino D'Angiò (2011).",
-      "fun_fact_es": "Un éxito de Pino D'Angiò (2011).",
-      "fun_fact_fr": "Un tube de Pino D'Angiò (2011).",
-      "fun_fact_nl": "Een chart-hit van Pino D'Angiò (2011)."
-    },
-    {
       "artist": "Kygo",
       "title": "Dancing Feet (feat. DNCE)",
       "year": 2022,
@@ -1602,23 +879,6 @@
       "fun_fact_nl": "Een chart-hit van Kygo (2022)."
     },
     {
-      "artist": "The Adventures Of Stevie V",
-      "title": "Dirty Cash (Money Talks) - Sold Out 7 Inch Mix",
-      "year": 2013,
-      "isrc": null,
-      "uri": "spotify:track:3lcUQs5nyrjoHpQR9Vo2aA",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MMeA8N1y3JA",
-      "uri_tidal": null,
-      "uri_deezer": null,
-      "fun_fact": "A chart hit by The Adventures Of Stevie V (2013).",
-      "fun_fact_de": "Ein Chart-Hit von The Adventures Of Stevie V (2013).",
-      "fun_fact_es": "Un éxito de The Adventures Of Stevie V (2013).",
-      "fun_fact_fr": "Un tube de The Adventures Of Stevie V (2013).",
-      "fun_fact_nl": "Een chart-hit van The Adventures Of Stevie V (2013)."
-    },
-    {
       "artist": "Alexandra Stan",
       "title": "Mr. Saxobeat - Radio Edit",
       "year": 2011,
@@ -1642,31 +902,6 @@
       "fun_fact_es": "Un éxito de Alexandra Stan (2011).",
       "fun_fact_fr": "Un tube de Alexandra Stan (2011).",
       "fun_fact_nl": "Een chart-hit van Alexandra Stan (2011)."
-    },
-    {
-      "artist": "The Offspring",
-      "title": "Pretty Fly (For A White Guy)",
-      "year": 2016,
-      "isrc": "USSM19804199",
-      "uri": "spotify:track:3SFXsFpeGmBTtQvKiwYMDA",
-      "uri_apple_music": "applemusic://track/1706930679",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1706930679",
-        "de": "applemusic://track/1893463652",
-        "gb": "applemusic://track/1893463652",
-        "fr": "applemusic://track/1893463652",
-        "es": "applemusic://track/1893463652",
-        "nl": "applemusic://track/1893463652",
-        "it": "applemusic://track/1893463652"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BepGmpLT9HA",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/137233982",
-      "fun_fact": "A chart hit by The Offspring (2016).",
-      "fun_fact_de": "Ein Chart-Hit von The Offspring (2016).",
-      "fun_fact_es": "Un éxito de The Offspring (2016).",
-      "fun_fact_fr": "Un tube de The Offspring (2016).",
-      "fun_fact_nl": "Een chart-hit van The Offspring (2016)."
     },
     {
       "artist": "Madcon",
@@ -1722,59 +957,9 @@
       "fun_fact_nl": "Een chart-hit van LMFAO (2011)."
     },
     {
-      "artist": "Rozalla",
-      "title": "Everybody's Free (To Feel Good)",
-      "year": 2010,
-      "isrc": "GBBLG0400723",
-      "uri": "spotify:track:4rkiST7hsHEuU5EMvApemD",
-      "uri_apple_music": "applemusic://track/685311338",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/685311338",
-        "gb": "applemusic://track/685311338",
-        "fr": "applemusic://track/685311338",
-        "es": "applemusic://track/685311338",
-        "nl": "applemusic://track/685311338",
-        "it": "applemusic://track/685311338"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gMKC5OfNJfs",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/12169961",
-      "fun_fact": "A chart hit by Rozalla (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Rozalla (2010).",
-      "fun_fact_es": "Un éxito de Rozalla (2010).",
-      "fun_fact_fr": "Un tube de Rozalla (2010).",
-      "fun_fact_nl": "Een chart-hit van Rozalla (2010)."
-    },
-    {
-      "artist": "Village People",
-      "title": "Go West - Original Version 1979",
-      "year": 2026,
-      "isrc": "FR22F7900020",
-      "uri": "spotify:track:0SdfUMRHhcjxrMv5d9V1UP",
-      "uri_apple_music": "applemusic://track/1872718907",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/1872718907",
-        "gb": "applemusic://track/1872718907",
-        "fr": "applemusic://track/1872718907",
-        "es": "applemusic://track/1872718907",
-        "nl": "applemusic://track/1872718907",
-        "it": "applemusic://track/1872718907"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kij7VFkE1eI",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3809085962",
-      "fun_fact": "A chart hit by Village People (2026).",
-      "fun_fact_de": "Ein Chart-Hit von Village People (2026).",
-      "fun_fact_es": "Un éxito de Village People (2026).",
-      "fun_fact_fr": "Un tube de Village People (2026).",
-      "fun_fact_nl": "Een chart-hit van Village People (2026)."
-    },
-    {
       "artist": "Christian Steiffen",
       "title": "Ich fühl' mich Disco",
-      "year": 2013,
+      "year": 2012,
       "isrc": "DEA621301036",
       "uri": "spotify:track:2zUKhXh78KzEnC7NzigNjn",
       "uri_apple_music": "applemusic://track/1697183130",
@@ -1845,31 +1030,6 @@
       "fun_fact_es": "Un éxito de Alcatraz (2012).",
       "fun_fact_fr": "Un tube de Alcatraz (2012).",
       "fun_fact_nl": "Een chart-hit van Alcatraz (2012)."
-    },
-    {
-      "artist": "Alphabeat",
-      "title": "Fascination",
-      "year": 2013,
-      "isrc": "DKBR70704104",
-      "uri": "spotify:track:5AKQ1JHezaXDmN5SyMSpEr",
-      "uri_apple_music": "applemusic://track/1700327230",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1700327230",
-        "de": "applemusic://track/1700327230",
-        "gb": "applemusic://track/1700327230",
-        "fr": "applemusic://track/1700327230",
-        "es": "applemusic://track/1700327230",
-        "nl": "applemusic://track/1700327230",
-        "it": "applemusic://track/1700327230"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ey8BvkgO4bk",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/14194027",
-      "fun_fact": "A chart hit by Alphabeat (2013).",
-      "fun_fact_de": "Ein Chart-Hit von Alphabeat (2013).",
-      "fun_fact_es": "Un éxito de Alphabeat (2013).",
-      "fun_fact_fr": "Un tube de Alphabeat (2013).",
-      "fun_fact_nl": "Een chart-hit van Alphabeat (2013)."
     },
     {
       "artist": "Imany",
@@ -1953,85 +1113,6 @@
       "fun_fact_nl": "Een chart-hit van Die Atzen (2010)."
     },
     {
-      "artist": "Reel 2 Real",
-      "title": "I Like To Move It (feat. The Mad Stuntman) - Erick \"More\" Album Mix",
-      "year": 2022,
-      "isrc": "USDXS2203009",
-      "uri": "spotify:track:6dHTkQYY3zdR9i9Nj0IGVW",
-      "uri_apple_music": "applemusic://track/1641440790",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1641440790",
-        "de": "applemusic://track/1641440790",
-        "gb": "applemusic://track/1641440790",
-        "fr": "applemusic://track/1641440790",
-        "es": "applemusic://track/1641440790",
-        "nl": "applemusic://track/1641440790",
-        "it": "applemusic://track/1641440790"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3gEyEfMtZOE",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/1880251197",
-      "alt_artists": [
-        "The Mad Stuntman",
-        "Erick Morillo"
-      ],
-      "fun_fact": "A chart hit by Reel 2 Real (2022).",
-      "fun_fact_de": "Ein Chart-Hit von Reel 2 Real (2022).",
-      "fun_fact_es": "Un éxito de Reel 2 Real (2022).",
-      "fun_fact_fr": "Un tube de Reel 2 Real (2022).",
-      "fun_fact_nl": "Een chart-hit van Reel 2 Real (2022)."
-    },
-    {
-      "artist": "Alex Gaudino",
-      "title": "Destination Calabria (Feat. Crystal Waters) - Original Radio Edit",
-      "year": 2025,
-      "isrc": "QZK6H2557367",
-      "uri": "spotify:track:2QMdxS78DaXP8aS8qJqGzU",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=oGDjI40SjrA",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3305815511",
-      "fun_fact": "A chart hit by Alex Gaudino (2025).",
-      "fun_fact_de": "Ein Chart-Hit von Alex Gaudino (2025).",
-      "fun_fact_es": "Un éxito de Alex Gaudino (2025).",
-      "fun_fact_fr": "Un tube de Alex Gaudino (2025).",
-      "fun_fact_nl": "Een chart-hit van Alex Gaudino (2025)."
-    },
-    {
-      "artist": "Scooter",
-      "title": "How Much Is The Fish?",
-      "year": 2013,
-      "isrc": "DEN061302559",
-      "uri": "spotify:track:1H61DWGuD5nk6ZAm6Jb92B",
-      "uri_apple_music": "applemusic://track/1692345562",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1692345562",
-        "de": "applemusic://track/1692345562",
-        "gb": "applemusic://track/1692345562",
-        "fr": "applemusic://track/1692345562",
-        "es": "applemusic://track/1692345562",
-        "nl": "applemusic://track/1692345562",
-        "it": "applemusic://track/1692345562"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TcfxxUVc20M",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2168791217",
-      "fun_fact": "A chart hit by Scooter (2013).",
-      "fun_fact_de": "Ein Chart-Hit von Scooter (2013).",
-      "fun_fact_es": "Un éxito de Scooter (2013).",
-      "fun_fact_fr": "Un tube de Scooter (2013).",
-      "fun_fact_nl": "Een chart-hit van Scooter (2013)."
-    },
-    {
       "artist": "Twenty One Pilots",
       "title": "Stressed Out",
       "year": 2015,
@@ -2102,81 +1183,6 @@
       "fun_fact_nl": "Een chart-hit van Taylor Swift (2015)."
     },
     {
-      "artist": "Akcent",
-      "title": "Kylie",
-      "year": 2025,
-      "isrc": "ROROT2501080",
-      "uri": "spotify:track:1zhUaodzu43qKwK0idP6IA",
-      "uri_apple_music": "applemusic://track/1823040456",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1823040456",
-        "de": "applemusic://track/1823040456",
-        "gb": "applemusic://track/1823040456",
-        "fr": "applemusic://track/1823040456",
-        "es": "applemusic://track/1823040456",
-        "nl": "applemusic://track/1825429906",
-        "it": "applemusic://track/1823040456"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Kj0wBAtCN5o",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3432957681",
-      "fun_fact": "A chart hit by Akcent (2025).",
-      "fun_fact_de": "Ein Chart-Hit von Akcent (2025).",
-      "fun_fact_es": "Un éxito de Akcent (2025).",
-      "fun_fact_fr": "Un tube de Akcent (2025).",
-      "fun_fact_nl": "Een chart-hit van Akcent (2025)."
-    },
-    {
-      "artist": "France Gall",
-      "title": "Poupée de cire, poupée de son",
-      "year": 2019,
-      "isrc": "DEXO11960577",
-      "uri": "spotify:track:5kLCC1MMxOACV632KrSAS3",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iCrmoGujhdU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/639971642",
-      "fun_fact": "A chart hit by France Gall (2019).",
-      "fun_fact_de": "Ein Chart-Hit von France Gall (2019).",
-      "fun_fact_es": "Un éxito de France Gall (2019).",
-      "fun_fact_fr": "Un tube de France Gall (2019).",
-      "fun_fact_nl": "Een chart-hit van France Gall (2019)."
-    },
-    {
-      "artist": "Michael Jackson",
-      "title": "Dirty Diana",
-      "year": 2012,
-      "isrc": "USSM11204988",
-      "uri": "spotify:track:6JZYMxvcoeLD4IifJPvDux",
-      "uri_apple_music": "applemusic://track/559334762",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/559334762",
-        "de": "applemusic://track/559334762",
-        "gb": "applemusic://track/559334762",
-        "fr": "applemusic://track/559334762",
-        "es": "applemusic://track/559334762",
-        "nl": "applemusic://track/559334762",
-        "it": "applemusic://track/559334762"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=aUD0juRwb3I",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/59509611",
-      "fun_fact": "A chart hit by Michael Jackson (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Michael Jackson (2012).",
-      "fun_fact_es": "Un éxito de Michael Jackson (2012).",
-      "fun_fact_fr": "Un tube de Michael Jackson (2012).",
-      "fun_fact_nl": "Een chart-hit van Michael Jackson (2012)."
-    },
-    {
       "artist": "Panic! At The Disco",
       "title": "High Hopes",
       "year": 2018,
@@ -2202,81 +1208,6 @@
       "fun_fact_nl": "Een chart-hit van Panic! At The Disco (2018)."
     },
     {
-      "artist": "Aretha Franklin",
-      "title": "Think",
-      "year": 2011,
-      "isrc": "USAT29200097",
-      "uri": "spotify:track:4yQw7FR9lcvL6RHtegbJBh",
-      "uri_apple_music": "applemusic://track/1533478781",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1533478781",
-        "de": "applemusic://track/1533478781",
-        "gb": "applemusic://track/1533478781",
-        "fr": "applemusic://track/1533478781",
-        "es": "applemusic://track/1533478781",
-        "nl": "applemusic://track/1533478781",
-        "it": "applemusic://track/1533478781"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=FNagYP9LIp4",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/13100388",
-      "fun_fact": "A chart hit by Aretha Franklin (2011).",
-      "fun_fact_de": "Ein Chart-Hit von Aretha Franklin (2011).",
-      "fun_fact_es": "Un éxito de Aretha Franklin (2011).",
-      "fun_fact_fr": "Un tube de Aretha Franklin (2011).",
-      "fun_fact_nl": "Een chart-hit van Aretha Franklin (2011)."
-    },
-    {
-      "artist": "Martha Reeves & The Vandellas",
-      "title": "Heatwave",
-      "year": 2010,
-      "isrc": "UKU6H1936000",
-      "uri": "spotify:track:3Cbh1EJ6OYAPkkNRuTIz6T",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bBgYbw_u230",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/821757832",
-      "fun_fact": "A chart hit by Martha Reeves & The Vandellas (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Martha Reeves & The Vandellas (2010).",
-      "fun_fact_es": "Un éxito de Martha Reeves & The Vandellas (2010).",
-      "fun_fact_fr": "Un tube de Martha Reeves & The Vandellas (2010).",
-      "fun_fact_nl": "Een chart-hit van Martha Reeves & The Vandellas (2010)."
-    },
-    {
-      "artist": "Fettes Brot",
-      "title": "Jein",
-      "year": 2016,
-      "isrc": "DEAH91600042",
-      "uri": "spotify:track:22f8RBGm0xklH4wSh36J3w",
-      "uri_apple_music": "applemusic://track/1840884443",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1840884443",
-        "de": "applemusic://track/1840884443",
-        "gb": "applemusic://track/1840884443",
-        "fr": "applemusic://track/1840884443",
-        "es": "applemusic://track/1840884443",
-        "nl": "applemusic://track/1840884443",
-        "it": "applemusic://track/1840884443"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=q-UPoJxfW0A",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3558361541",
-      "fun_fact": "A chart hit by Fettes Brot (2016).",
-      "fun_fact_de": "Ein Chart-Hit von Fettes Brot (2016).",
-      "fun_fact_es": "Un éxito de Fettes Brot (2016).",
-      "fun_fact_fr": "Un tube de Fettes Brot (2016).",
-      "fun_fact_nl": "Een chart-hit van Fettes Brot (2016)."
-    },
-    {
       "artist": "Taio Cruz",
       "title": "Dynamite",
       "year": 2010,
@@ -2300,31 +1231,6 @@
       "fun_fact_es": "Un éxito de Taio Cruz (2010).",
       "fun_fact_fr": "Un tube de Taio Cruz (2010).",
       "fun_fact_nl": "Een chart-hit van Taio Cruz (2010)."
-    },
-    {
-      "artist": "The Pointer Sisters",
-      "title": "Fire",
-      "year": 2010,
-      "isrc": "USRC10201815",
-      "uri": "spotify:track:65lHwG8JFJs67PnOUhCYPq",
-      "uri_apple_music": "applemusic://track/367515038",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/367515038",
-        "de": "applemusic://track/367515038",
-        "gb": "applemusic://track/367515038",
-        "fr": "applemusic://track/367515038",
-        "es": "applemusic://track/367515038",
-        "nl": "applemusic://track/367515038",
-        "it": "applemusic://track/367515038"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1xGGoTgdads",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/6070993",
-      "fun_fact": "A chart hit by The Pointer Sisters (2010).",
-      "fun_fact_de": "Ein Chart-Hit von The Pointer Sisters (2010).",
-      "fun_fact_es": "Un éxito de The Pointer Sisters (2010).",
-      "fun_fact_fr": "Un tube de The Pointer Sisters (2010).",
-      "fun_fact_nl": "Een chart-hit van The Pointer Sisters (2010)."
     },
     {
       "artist": "Beyoncé",
@@ -2377,31 +1283,6 @@
       "fun_fact_nl": "Een chart-hit van Avicii (2015)."
     },
     {
-      "artist": "Arthur Conley",
-      "title": "Sweet Soul Music",
-      "year": 2016,
-      "isrc": "USAT20001064",
-      "uri": "spotify:track:645ojoX65Fjby38wU9mSZd",
-      "uri_apple_music": "applemusic://track/1794575720",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1794575720",
-        "de": "applemusic://track/1794575720",
-        "gb": "applemusic://track/1794575720",
-        "fr": "applemusic://track/1794575720",
-        "es": "applemusic://track/1794575720",
-        "nl": "applemusic://track/1794575720",
-        "it": "applemusic://track/1794575720"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SaphQafq3NQ",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/137439762",
-      "fun_fact": "A chart hit by Arthur Conley (2016).",
-      "fun_fact_de": "Ein Chart-Hit von Arthur Conley (2016).",
-      "fun_fact_es": "Un éxito de Arthur Conley (2016).",
-      "fun_fact_fr": "Un tube de Arthur Conley (2016).",
-      "fun_fact_nl": "Een chart-hit van Arthur Conley (2016)."
-    },
-    {
       "artist": "P!nk",
       "title": "Raise Your Glass",
       "year": 2010,
@@ -2450,134 +1331,6 @@
       "fun_fact_es": "Un éxito de AronChupa (2014).",
       "fun_fact_fr": "Un tube de AronChupa (2014).",
       "fun_fact_nl": "Een chart-hit van AronChupa (2014)."
-    },
-    {
-      "artist": "Rednex",
-      "title": "The Spirit of the Hawk",
-      "year": 2017,
-      "isrc": "GBMJG1712578",
-      "uri": "spotify:track:7xXSaVgEvUrV1GCc3oO8HC",
-      "uri_apple_music": "applemusic://track/1269627144",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/1269627144",
-        "gb": "applemusic://track/1269627144",
-        "fr": "applemusic://track/1269627144",
-        "es": "applemusic://track/1269627144",
-        "nl": "applemusic://track/1269627144",
-        "it": "applemusic://track/1269627144"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WFGhOkCzp2g",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/393003352",
-      "fun_fact": "A chart hit by Rednex (2017).",
-      "fun_fact_de": "Ein Chart-Hit von Rednex (2017).",
-      "fun_fact_es": "Un éxito de Rednex (2017).",
-      "fun_fact_fr": "Un tube de Rednex (2017).",
-      "fun_fact_nl": "Een chart-hit van Rednex (2017)."
-    },
-    {
-      "artist": "The Bucketheads",
-      "title": "The Bomb! (These Sounds Fall Into My Mind) - Radio Edit",
-      "year": 2013,
-      "isrc": "USRK31100015",
-      "uri": "spotify:track:0qQiqwzddwQmtoGcF3Uzm5",
-      "uri_apple_music": "applemusic://track/925643803",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/925643803",
-        "gb": "applemusic://track/925643803",
-        "fr": "applemusic://track/925643803",
-        "es": "applemusic://track/925643803",
-        "nl": "applemusic://track/925643803",
-        "it": "applemusic://track/925643803"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=X4UGPCR3zEQ",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/73219903",
-      "fun_fact": "A chart hit by The Bucketheads (2013).",
-      "fun_fact_de": "Ein Chart-Hit von The Bucketheads (2013).",
-      "fun_fact_es": "Un éxito de The Bucketheads (2013).",
-      "fun_fact_fr": "Un tube de The Bucketheads (2013).",
-      "fun_fact_nl": "Een chart-hit van The Bucketheads (2013)."
-    },
-    {
-      "artist": "Miami Sound Machine",
-      "title": "Bad Boy",
-      "year": 2011,
-      "isrc": "USSM10026150",
-      "uri": "spotify:track:4X03MUMRXh51b5sulKYi3F",
-      "uri_apple_music": "applemusic://track/209953751",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/209953751",
-        "de": "applemusic://track/209953751",
-        "gb": "applemusic://track/209953751",
-        "fr": "applemusic://track/209953751",
-        "es": "applemusic://track/209953751",
-        "nl": "applemusic://track/657320859",
-        "it": "applemusic://track/209953751"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DPm3qb-zDqs",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/9437107",
-      "fun_fact": "A chart hit by Miami Sound Machine (2011).",
-      "fun_fact_de": "Ein Chart-Hit von Miami Sound Machine (2011).",
-      "fun_fact_es": "Un éxito de Miami Sound Machine (2011).",
-      "fun_fact_fr": "Un tube de Miami Sound Machine (2011).",
-      "fun_fact_nl": "Een chart-hit van Miami Sound Machine (2011)."
-    },
-    {
-      "artist": "Helen Shapiro",
-      "title": "Walkin' Back to Happiness",
-      "year": 2013,
-      "isrc": "GBA7H1265495",
-      "uri": "spotify:track:19SxvsX3cFBDExvGaRkyQr",
-      "uri_apple_music": null,
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QCbHubvwFs0",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/65049652",
-      "fun_fact": "A chart hit by Helen Shapiro (2013).",
-      "fun_fact_de": "Ein Chart-Hit von Helen Shapiro (2013).",
-      "fun_fact_es": "Un éxito de Helen Shapiro (2013).",
-      "fun_fact_fr": "Un tube de Helen Shapiro (2013).",
-      "fun_fact_nl": "Een chart-hit van Helen Shapiro (2013)."
-    },
-    {
-      "artist": "Tiësto",
-      "title": "Love Comes Again",
-      "year": 2010,
-      "isrc": "NLE710481721",
-      "uri": "spotify:track:23x1l5fneuI3tfw52NftWH",
-      "uri_apple_music": "applemusic://track/1793821664",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1793821664",
-        "de": "applemusic://track/1793821664",
-        "gb": "applemusic://track/1793821664",
-        "fr": "applemusic://track/1793821664",
-        "es": "applemusic://track/1793821664",
-        "nl": "applemusic://track/1793821664",
-        "it": "applemusic://track/1793821664"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ChNc3td4YQw",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/3212563591",
-      "alt_artists": [
-        "BT"
-      ],
-      "fun_fact": "A chart hit by Tiësto (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Tiësto (2010).",
-      "fun_fact_es": "Un éxito de Tiësto (2010).",
-      "fun_fact_fr": "Un tube de Tiësto (2010).",
-      "fun_fact_nl": "Een chart-hit van Tiësto (2010)."
     },
     {
       "artist": "ROSÉ",
@@ -2631,31 +1384,6 @@
       "fun_fact_es": "Un éxito de Vincent Gross (2023).",
       "fun_fact_fr": "Un tube de Vincent Gross (2023).",
       "fun_fact_nl": "Een chart-hit van Vincent Gross (2023)."
-    },
-    {
-      "artist": "Sweet",
-      "title": "Co-Co",
-      "year": 2015,
-      "isrc": "GBARL7100002",
-      "uri": "spotify:track:2tmp3qeYcaOYE2cUsQBkWH",
-      "uri_apple_music": "applemusic://track/1382326500",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/1382326500",
-        "gb": "applemusic://track/1626878093",
-        "fr": "applemusic://track/532853139",
-        "es": "applemusic://track/532853139",
-        "nl": "applemusic://track/1382326500",
-        "it": "applemusic://track/532853139"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SSCH66cUAMs",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/107736834",
-      "fun_fact": "A chart hit by Sweet (2015).",
-      "fun_fact_de": "Ein Chart-Hit von Sweet (2015).",
-      "fun_fact_es": "Un éxito de Sweet (2015).",
-      "fun_fact_fr": "Un tube de Sweet (2015).",
-      "fun_fact_nl": "Een chart-hit van Sweet (2015)."
     },
     {
       "artist": "AFROJACK",
@@ -2761,56 +1489,6 @@
       "fun_fact_nl": "Een chart-hit van Chris Brown (2011)."
     },
     {
-      "artist": "The Isley Brothers",
-      "title": "SUMMER BREEZE",
-      "year": 2015,
-      "isrc": "USSM11503412",
-      "uri": "spotify:track:7whfo8cT6vgHJh1jngqNvt",
-      "uri_apple_music": "applemusic://track/1030452490",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1030452490",
-        "de": "applemusic://track/1030452490",
-        "gb": "applemusic://track/1030452490",
-        "fr": "applemusic://track/1030452490",
-        "es": "applemusic://track/1030452490",
-        "nl": "applemusic://track/1030452490",
-        "it": "applemusic://track/1030452490"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=w3o6ECdCZ7Q",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/106026674",
-      "fun_fact": "A chart hit by The Isley Brothers (2015).",
-      "fun_fact_de": "Ein Chart-Hit von The Isley Brothers (2015).",
-      "fun_fact_es": "Un éxito de The Isley Brothers (2015).",
-      "fun_fact_fr": "Un tube de The Isley Brothers (2015).",
-      "fun_fact_nl": "Een chart-hit van The Isley Brothers (2015)."
-    },
-    {
-      "artist": "David Bowie",
-      "title": "\"Heroes\" - 2017 Remaster",
-      "year": 2011,
-      "isrc": "GBUM71029622",
-      "uri": "spotify:track:7Jh1bpe76CNTCgdgAdBw4Z",
-      "uri_apple_music": "applemusic://track/1824351140",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1824351140",
-        "de": "applemusic://track/1824351140",
-        "gb": "applemusic://track/1824351140",
-        "fr": "applemusic://track/1824351140",
-        "es": "applemusic://track/1824351140",
-        "nl": "applemusic://track/1824351140",
-        "it": "applemusic://track/1824351140"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YLp2cW7ICCU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/12274786",
-      "fun_fact": "A chart hit by David Bowie (2011).",
-      "fun_fact_de": "Ein Chart-Hit von David Bowie (2011).",
-      "fun_fact_es": "Un éxito de David Bowie (2011).",
-      "fun_fact_fr": "Un tube de David Bowie (2011).",
-      "fun_fact_nl": "Een chart-hit van David Bowie (2011)."
-    },
-    {
       "artist": "Miley Cyrus",
       "title": "Midnight Sky",
       "year": 2020,
@@ -2834,31 +1512,6 @@
       "fun_fact_es": "Un éxito de Miley Cyrus (2020).",
       "fun_fact_fr": "Un tube de Miley Cyrus (2020).",
       "fun_fact_nl": "Een chart-hit van Miley Cyrus (2020)."
-    },
-    {
-      "artist": "Stretch",
-      "title": "Why Did You Do It?",
-      "year": 2012,
-      "isrc": "DED461110048",
-      "uri": "spotify:track:1d4N1mJ6m4V7mGlIfamTGy",
-      "uri_apple_music": "applemusic://track/709791060",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/709791060",
-        "de": "applemusic://track/530816764",
-        "gb": "applemusic://track/530816764",
-        "fr": "applemusic://track/530816764",
-        "es": "applemusic://track/530816764",
-        "nl": "applemusic://track/530816764",
-        "it": "applemusic://track/530816764"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=36V5oTEcoJ0",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/35116831",
-      "fun_fact": "A chart hit by Stretch (2012).",
-      "fun_fact_de": "Ein Chart-Hit von Stretch (2012).",
-      "fun_fact_es": "Un éxito de Stretch (2012).",
-      "fun_fact_fr": "Un tube de Stretch (2012).",
-      "fun_fact_nl": "Een chart-hit van Stretch (2012)."
     },
     {
       "artist": "Nicky Jam",
@@ -2912,31 +1565,6 @@
       "fun_fact_es": "Un éxito de USHER (2011).",
       "fun_fact_fr": "Un tube de USHER (2011).",
       "fun_fact_nl": "Een chart-hit van USHER (2011)."
-    },
-    {
-      "artist": "Tokyo Ghetto Pussy",
-      "title": "I Kiss Your Lips - Radio Edit",
-      "year": 2010,
-      "isrc": "DEMW61000007",
-      "uri": "spotify:track:0y7Xf4d6snUqmMFrCTD3ql",
-      "uri_apple_music": "applemusic://track/394874967",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/394874967",
-        "de": "applemusic://track/394874967",
-        "gb": "applemusic://track/394874967",
-        "fr": "applemusic://track/394874967",
-        "es": "applemusic://track/394874967",
-        "nl": "applemusic://track/394874967",
-        "it": "applemusic://track/394874967"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=K_t1xV6PEOU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/7395378",
-      "fun_fact": "A chart hit by Tokyo Ghetto Pussy (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Tokyo Ghetto Pussy (2010).",
-      "fun_fact_es": "Un éxito de Tokyo Ghetto Pussy (2010).",
-      "fun_fact_fr": "Un tube de Tokyo Ghetto Pussy (2010).",
-      "fun_fact_nl": "Een chart-hit van Tokyo Ghetto Pussy (2010)."
     },
     {
       "artist": "SIRA",
@@ -3075,31 +1703,6 @@
       "fun_fact_nl": "Een chart-hit van Axwell /\\ Ingrosso (2017)."
     },
     {
-      "artist": "First Class",
-      "title": "Beach Baby",
-      "year": 2023,
-      "isrc": "GBBLY2201571",
-      "uri": "spotify:track:5J74pF4Nn86qyLQihpkXq4",
-      "uri_apple_music": "applemusic://track/1612479580",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1612479580",
-        "de": "applemusic://track/1612479580",
-        "gb": "applemusic://track/1612479580",
-        "fr": "applemusic://track/1612479580",
-        "es": "applemusic://track/1612479580",
-        "nl": "applemusic://track/1612479580",
-        "it": "applemusic://track/1612479580"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hXh55vg_rME",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/2122738207",
-      "fun_fact": "A chart hit by First Class (2023).",
-      "fun_fact_de": "Ein Chart-Hit von First Class (2023).",
-      "fun_fact_es": "Un éxito de First Class (2023).",
-      "fun_fact_fr": "Un tube de First Class (2023).",
-      "fun_fact_nl": "Een chart-hit van First Class (2023)."
-    },
-    {
       "artist": "Nathan Evans",
       "title": "Wellerman - Sea Shanty",
       "year": 2021,
@@ -3123,56 +1726,6 @@
       "fun_fact_es": "Un éxito de Nathan Evans (2021).",
       "fun_fact_fr": "Un tube de Nathan Evans (2021).",
       "fun_fact_nl": "Een chart-hit van Nathan Evans (2021)."
-    },
-    {
-      "artist": "Roy Orbison",
-      "title": "Oh, Pretty Woman",
-      "year": 2014,
-      "isrc": "USSM16401425",
-      "uri": "spotify:track:48i055G1OT5KxGGftwFxWy",
-      "uri_apple_music": "applemusic://track/1566940247",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1566940247",
-        "de": "applemusic://track/1566940247",
-        "gb": "applemusic://track/1566940247",
-        "fr": "applemusic://track/1566940247",
-        "es": "applemusic://track/1566940247",
-        "nl": "applemusic://track/1566940247",
-        "it": "applemusic://track/1566940247"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3KFvoDDs0XM",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/78033230",
-      "fun_fact": "A chart hit by Roy Orbison (2014).",
-      "fun_fact_de": "Ein Chart-Hit von Roy Orbison (2014).",
-      "fun_fact_es": "Un éxito de Roy Orbison (2014).",
-      "fun_fact_fr": "Un tube de Roy Orbison (2014).",
-      "fun_fact_nl": "Een chart-hit van Roy Orbison (2014)."
-    },
-    {
-      "artist": "T. Rex",
-      "title": "Get It On",
-      "year": 2012,
-      "isrc": "GBCHM7100038",
-      "uri": "spotify:track:0LoQuiekvzqx7n8flgEKzF",
-      "uri_apple_music": "applemusic://track/1688231671",
-      "uri_apple_music_by_region": {
-        "us": null,
-        "de": "applemusic://track/1688231671",
-        "gb": "applemusic://track/1688231671",
-        "fr": "applemusic://track/1688231671",
-        "es": "applemusic://track/1688231671",
-        "nl": "applemusic://track/1688231671",
-        "it": "applemusic://track/1688231671"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cp1m4B3HRhg",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/25003811",
-      "fun_fact": "A chart hit by T. Rex (2012).",
-      "fun_fact_de": "Ein Chart-Hit von T. Rex (2012).",
-      "fun_fact_es": "Un éxito de T. Rex (2012).",
-      "fun_fact_fr": "Un tube de T. Rex (2012).",
-      "fun_fact_nl": "Een chart-hit van T. Rex (2012)."
     },
     {
       "artist": "Mark Ronson",
@@ -3203,56 +1756,6 @@
       "fun_fact_nl": "Een chart-hit van Mark Ronson (2015)."
     },
     {
-      "artist": "The Ronettes",
-      "title": "Be My Baby",
-      "year": 2011,
-      "isrc": "USQX91100088",
-      "uri": "spotify:track:2G2YzndIA6jeWFPBXhUjh5",
-      "uri_apple_music": "applemusic://track/1196430719",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1196430719",
-        "de": "applemusic://track/1341392587",
-        "gb": "applemusic://track/1341392587",
-        "fr": "applemusic://track/1341392587",
-        "es": "applemusic://track/1341392587",
-        "nl": "applemusic://track/1341392587",
-        "it": "applemusic://track/1341392587"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QBDem6bffyo",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/12809317",
-      "fun_fact": "A chart hit by The Ronettes (2011).",
-      "fun_fact_de": "Ein Chart-Hit von The Ronettes (2011).",
-      "fun_fact_es": "Un éxito de The Ronettes (2011).",
-      "fun_fact_fr": "Un tube de The Ronettes (2011).",
-      "fun_fact_nl": "Een chart-hit van The Ronettes (2011)."
-    },
-    {
-      "artist": "Matthew Wilder",
-      "title": "Break My Stride",
-      "year": 2010,
-      "isrc": "USSM18300576",
-      "uri": "spotify:track:1mCsF9Tw4AkIZOjvZbZZdT",
-      "uri_apple_music": "applemusic://track/1741861455",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1741861455",
-        "de": "applemusic://track/908640278",
-        "gb": "applemusic://track/908640278",
-        "fr": "applemusic://track/908640278",
-        "es": "applemusic://track/908640278",
-        "nl": "applemusic://track/908640278",
-        "it": "applemusic://track/908640278"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UhLDA4Wr2GU",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/5503498",
-      "fun_fact": "A chart hit by Matthew Wilder (2010).",
-      "fun_fact_de": "Ein Chart-Hit von Matthew Wilder (2010).",
-      "fun_fact_es": "Un éxito de Matthew Wilder (2010).",
-      "fun_fact_fr": "Un tube de Matthew Wilder (2010).",
-      "fun_fact_nl": "Een chart-hit van Matthew Wilder (2010)."
-    },
-    {
       "artist": "Daft Punk",
       "title": "Get Lucky (Radio Edit) [feat. Pharrell Williams and Nile Rodgers]",
       "year": 2013,
@@ -3272,6 +1775,130 @@
       "fun_fact_es": "Un éxito de Daft Punk (2013).",
       "fun_fact_fr": "Un tube de Daft Punk (2013).",
       "fun_fact_nl": "Een chart-hit van Daft Punk (2013)."
+    },
+    {
+      "year": 2010,
+      "uri": "spotify:track:7w87IxuO7BDcJ3YUqCyMTT",
+      "artist": "Foster The People",
+      "alt_artists": [
+        "MGMT",
+        "Passion Pit",
+        "Two Door Cinema Club",
+        "Walk the Moon"
+      ],
+      "title": "Pumped Up Kicks",
+      "chart_info": {
+        "billboard_peak": 3,
+        "uk_peak": 18,
+        "weeks_on_chart": 37
+      },
+      "certifications": [
+        "6x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "⚠️ NOTE: Released in 2010, technically outside the 2000-2009 range. The song's dark lyrics about a troubled youth are contrasted by its upbeat indie-pop melody.",
+      "fun_fact_de": "⚠️ HINWEIS: 2010 veröffentlicht, technisch außerhalb des 2000-2009-Zeitraums. Die dunklen Texte über einen gestörten Jugendlichen stehen im Kontrast zur fröhlichen Indie-Pop-Melodie.",
+      "fun_fact_es": "⚠️ NOTA: Lanzada en 2010, técnicamente fuera del rango 2000-2009. La letra oscura sobre un joven problemático contrasta con su alegre melodía indie-pop.",
+      "fun_fact_fr": "Sorti en 2010, donc techniquement hors de la période 2000-2009. Les paroles sombres sur un jeune en difficulté contrastent avec la mélodie indie-pop entraînante du titre.",
+      "uri_apple_music": "applemusic://track/435761212",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SDTZ7iX4vTQ",
+      "uri_tidal": "tidal://track/25280917",
+      "uri_deezer": "deezer://track/15546830",
+      "fun_fact_nl": "⚠️ OPMERKING: Uitgebracht in 2010, technisch gezien buiten het bereik 2000-2009. de duistere tekst van het nummer over een probleemjongere wordt gecontrasteerd door de vrolijke indie-popmelodie.",
+      "awards_nl": [],
+      "isrc": "USSM11002931",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1459540500",
+        "de": "applemusic://track/1459540500",
+        "gb": "applemusic://track/1459540500",
+        "fr": "applemusic://track/1459540500",
+        "es": "applemusic://track/1459540500",
+        "nl": "applemusic://track/1459540500",
+        "it": "applemusic://track/1459540500"
+      }
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:3iVcZ5G6tvkXZkZKlMpIUs",
+      "artist": "Kendrick Lamar",
+      "alt_artists": [
+        "J. Cole",
+        "Chance The Rapper",
+        "Childish Gambino",
+        "Tyler, The Creator"
+      ],
+      "title": "Alright",
+      "chart_info": {
+        "billboard_peak": 57,
+        "uk_peak": 81,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "3x Platinum (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Though from 2015 (outside the 2000s decade), Alright became an anthem of the Black Lives Matter movement. Produced by Pharrell Williams, its chant 'We gon' be alright' was adopted at protests across America.",
+      "fun_fact_de": "Obwohl der Song aus dem Jahr 2015 stammt, wurde 'Alright' zur Hymne der Black-Lives-Matter-Bewegung. Von Pharrell Williams produziert, wurde der Refrain 'We gon' be alright' bei Protesten in ganz Amerika gesungen.",
+      "fun_fact_es": "Aunque es de 2015 (fuera de la década de los 2000), 'Alright' se convirtió en el himno del movimiento Black Lives Matter. Producida por Pharrell Williams, su coro fue adoptado en protestas por toda América.",
+      "fun_fact_fr": "Bien que sortie en 2015 (hors de la décennie 2000), Alright est devenue un hymne du mouvement Black Lives Matter. Produite par Pharrell Williams, son refrain 'We gon' be alright' a été repris lors de manifestations à travers les États-Unis.",
+      "uri_apple_music": "applemusic://track/1440829463",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z-48u_uWMHY",
+      "uri_tidal": "tidal://track/77703643",
+      "uri_deezer": "deezer://track/97206068",
+      "fun_fact_nl": "Hoewel uit 2015 (buiten het jaren 2000-decennium), werd Alright een volkslied van de Black Lives Matter-beweging. Geproduceerd door Pharrell Williams, werd de chant 'We gon' be alright' overgenomen bij protesten in heel Amerika.",
+      "awards_nl": [],
+      "isrc": "USUM71502498",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440829463",
+        "de": "applemusic://track/1440829463",
+        "gb": "applemusic://track/1440829463",
+        "fr": "applemusic://track/1440829463",
+        "es": "applemusic://track/1440829463",
+        "nl": "applemusic://track/1440829463",
+        "it": "applemusic://track/1440829463"
+      }
+    },
+    {
+      "year": 2010,
+      "uri": "spotify:track:2V4bv1fNWfTcyRJKmej6Sj",
+      "artist": "Mike Posner",
+      "alt_artists": [
+        "B.o.B",
+        "Jason Derulo",
+        "Travie McCoy",
+        "Gym Class Heroes"
+      ],
+      "title": "Cooler Than Me",
+      "chart_info": {
+        "billboard_peak": 6,
+        "uk_peak": 5,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Silver (UK)"
+      ],
+      "awards": [],
+      "fun_fact": "Though from 2010 (just outside the 2000s), Mike Posner wrote and produced this song in his dorm room at Duke University. The remix by Gigamesh turned it from a blog hit into a worldwide smash.",
+      "fun_fact_de": "Obwohl von 2010 (knapp außerhalb der 2000er), schrieb und produzierte Mike Posner den Song in seinem Studentenwohnheim an der Duke University. Der Gigamesh-Remix verwandelte ihn von einem Blog-Hit in einen weltweiten Erfolg.",
+      "fun_fact_es": "Aunque es de 2010, Mike Posner escribió y produjo esta canción en su dormitorio de la Universidad Duke. El remix de Gigamesh la transformó de un éxito de blogs a un hit mundial.",
+      "fun_fact_fr": "Bien que sorti en 2010 (juste en dehors des années 2000), Mike Posner a écrit et produit ce titre dans sa chambre d'étudiant à l'université Duke. Le remix de Gigamesh l'a transformé d'un tube de blogs en succès planétaire.",
+      "uri_apple_music": "applemusic://track/383458635",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Bsr8hb3TPBI",
+      "uri_tidal": "tidal://track/4253935",
+      "uri_deezer": "deezer://track/6697128",
+      "fun_fact_nl": "Hoewel uit 2010 (vlak buiten de jaren 2000), schreef en produceerde Mike Posner dit nummer in zijn studentenkamer aan de Duke University. De remix door Gigamesh maakte er van een bloghit een wereldwijde knaller van.",
+      "awards_nl": [],
+      "isrc": "USJAY1000035",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1744523906",
+        "de": "applemusic://track/1744523906",
+        "gb": "applemusic://track/1744523906",
+        "fr": "applemusic://track/1744523906",
+        "es": "applemusic://track/1744523906",
+        "nl": "applemusic://track/1744523906",
+        "it": "applemusic://track/1744523906"
+      }
     }
   ]
 }

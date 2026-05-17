@@ -204,6 +204,8 @@
       "onlyPercent": "Nur {percent}% aller Spieler raten richtig.",
       "empty": "Noch keine Statistiken."
     },
+    "reportBtn": "🚩 Falsches Jahr?",
+    "reportBtnDone": "✓ Gemeldet — Danke!",
     "emotions": {
       "exact": [
         "VOLLTREFFER!",

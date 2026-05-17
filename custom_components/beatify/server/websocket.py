@@ -29,6 +29,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_player_onboarded,
     handle_reaction,
     handle_reconnect,
+    handle_report_data,
     handle_steal,
     handle_submit,
 )
@@ -82,6 +83,7 @@ class BeatifyWebSocketHandler:
             "artist_guess": handle_artist_guess,
             "movie_guess": handle_movie_guess,
             "player_onboarded": handle_player_onboarded,
+            "report_data": handle_report_data,
         }
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:

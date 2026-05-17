@@ -204,6 +204,8 @@
       "onlyPercent": "Slechts {percent}% van de spelers raadt het goed.",
       "empty": "Nog geen statistieken."
     },
+    "reportBtn": "🚩 Verkeerd jaar?",
+    "reportBtnDone": "✓ Gemeld — bedankt!",
     "emotions": {
       "exact": [
         "GERAAD!",

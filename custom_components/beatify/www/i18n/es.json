@@ -204,6 +204,8 @@
       "onlyPercent": "Solo el {percent}% de los jugadores acierta.",
       "empty": "Aún no hay estadísticas."
     },
+    "reportBtn": "🚩 ¿Año incorrecto?",
+    "reportBtnDone": "✓ Reportado — ¡gracias!",
     "emotions": {
       "exact": [
         "PERFECTO!",

@@ -11,10 +11,15 @@ See GitHub issue #606.
 
 from __future__ import annotations
 
+import asyncio
 import hmac
+import json
 import logging
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import TYPE_CHECKING
 
+import aiohttp
 from aiohttp import web
 
 from custom_components.beatify.const import (
@@ -1324,3 +1329,102 @@ async def handle_movie_guess(
         result["correct"],
         result.get("rank"),
     )
+
+
+# ---------------------------------------------------------------------------
+# Data quality report (Issue #911)
+# ---------------------------------------------------------------------------
+
+
+async def handle_report_data(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle player report of wrong song data (Issue #911).
+
+    Appends a record to beatify/data_quality_reports.json in the HA config
+    directory and fires a GitHub issue via `gh` (best-effort, non-blocking).
+    """
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        return
+
+    if game_state.phase != GamePhase.REVEAL:
+        return
+
+    song = game_state.current_song or {}
+    artist = song.get("artist", "Unknown")
+    title = song.get("title", "Unknown")
+    year = song.get("year")
+    playlist_file = song.get("_playlist_source", "unknown")
+
+    report = {
+        "date": datetime.now(timezone.utc).isoformat(),
+        "artist": artist,
+        "title": title,
+        "year": year,
+        "playlist_file": playlist_file,
+        "reported_by": player.name,
+        "game_id": game_state.game_id,
+    }
+
+    _LOGGER.info(
+        "Data quality report from %s: %s — %s (%s) in %s",
+        player.name,
+        artist,
+        title,
+        year,
+        playlist_file,
+    )
+
+    reports_path = Path(handler.hass.config.path("beatify")) / "data_quality_reports.json"
+    try:
+        reports_path.parent.mkdir(parents=True, exist_ok=True)
+        existing: list = []
+        if reports_path.exists():
+            existing = json.loads(reports_path.read_text(encoding="utf-8"))
+        existing.append(report)
+        reports_path.write_text(json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8")
+    except Exception:  # noqa: BLE001
+        _LOGGER.warning("Failed to write data quality report to %s", reports_path)
+
+    asyncio.ensure_future(
+        _create_gh_issue(artist, title, year, playlist_file, player.name)
+    )
+
+    await ws.send_json({"type": "report_data_ack"})
+
+
+_WORKER_URL = "https://beatify-api.mholzi.workers.dev"
+
+
+async def _create_gh_issue(
+    artist: str,
+    title: str,
+    year: int | None,
+    playlist_file: str,
+    reporter: str,
+) -> None:
+    """Report data quality issue via Cloudflare Worker (best-effort)."""
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                f"{_WORKER_URL}/report-data",
+                json={
+                    "artist": artist,
+                    "title": title,
+                    "year": year,
+                    "playlist_file": playlist_file,
+                    "reporter": reporter,
+                },
+                timeout=aiohttp.ClientTimeout(total=15),
+            ) as resp:
+                if resp.status not in (200, 201):
+                    _LOGGER.debug(
+                        "Worker /report-data returned %s for %s — %s",
+                        resp.status, artist, title,
+                    )
+    except Exception:  # noqa: BLE001
+        _LOGGER.debug("Worker /report-data call failed (non-critical) for %s — %s", artist, title)

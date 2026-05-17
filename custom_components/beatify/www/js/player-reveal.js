@@ -138,6 +138,8 @@ export function updateRevealView(data) {
     renderArtistReveal(data.artist_challenge || null, state.playerName);
     renderMovieReveal(data.movie_challenge || null, state.playerName);
 
+    _resetReportBtn();
+
     // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
     if (data.game_performance && data.game_performance.is_new_record) {
         triggerConfetti('record');
@@ -1314,5 +1316,40 @@ export function setupRevealSheets() {
             var el = document.getElementById(id);
             if (el && !el.classList.contains('hidden')) closeSheet(id);
         });
+    });
+}
+
+// ============================================
+// Report wrong data (Issue #911)
+// ============================================
+
+function _resetReportBtn() {
+    var btn = document.getElementById('reveal-report-btn');
+    if (!btn) return;
+    btn.textContent = utils.t('reveal.reportBtn') || '🚩 Wrong year?';
+    btn.disabled = false;
+}
+
+/**
+ * Wire the "Report wrong year" button on the reveal screen (#911).
+ * Called once from player-core's initAll.
+ */
+export function setupRevealReportBtn() {
+    var btn = document.getElementById('reveal-report-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+        var ctx = state.lastRevealContext;
+        if (!ctx || !ctx.song) return;
+        if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+
+        state.ws.send(JSON.stringify({
+            type: 'report_data',
+            artist: ctx.song.artist || '',
+            title: ctx.song.title || '',
+            year: ctx.song.year || null,
+        }));
+
+        btn.textContent = utils.t('reveal.reportBtnDone') || '✓ Reported — thanks!';
+        btn.disabled = true;
     });
 }
