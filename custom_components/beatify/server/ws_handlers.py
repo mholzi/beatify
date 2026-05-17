@@ -415,6 +415,11 @@ async def admin_start_game(
                 "message": error_message,
             }
         )
+        # #949: start_round failing pauses the game (media_player_error etc.),
+        # but without broadcasting that the admin and players never leave the
+        # lobby / "Starting..." view for the PAUSED recovery banner. Mirror
+        # what admin_next_round already does on its paused branch.
+        await handler.broadcast_state()
 
 
 async def admin_next_round(
