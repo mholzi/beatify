@@ -63,6 +63,14 @@
         return out;
     }
 
+    // Shared with the setup wizard (wizard.js step 5) so its verbosity chips
+    // expand to the same 23 booleans without duplicating the preset table.
+    window.BeatifyTtsPresets = {
+        KEYS: KEYS,
+        PRESETS: PRESETS,
+        presetValues: presetValues
+    };
+
     function detectPreset() {
         for (var i = 0; i < PRESET_NAMES.length; i++) {
             var pv = presetValues(PRESET_NAMES[i]);
