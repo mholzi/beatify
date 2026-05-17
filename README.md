@@ -431,6 +431,7 @@ That's it. No mDNS, no broadcast, no additional ports.
 ### Requirements
 - **Home Assistant** 2024.1+
 - **Supported media player** (see [Supported Speakers](#supported-speakers) above)
+- **A premium streaming subscription** — Spotify, Apple Music, YouTube Music, Tidal or Deezer. On-demand single-track playback needs a paid plan; free/ad-supported tiers (e.g. Spotify Free) don't allow it.
 - **HACS** (recommended) or manual installation
 
 ### How It Works
@@ -493,6 +494,12 @@ Game pauses automatically. Reconnect and continue exactly where you left off.
 <summary><strong>What music services work?</strong></summary>
 <br>
 Spotify, Apple Music, YouTube Music, Tidal, and Deezer. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details.
+</details>
+
+<details>
+<summary><strong>Do I need a paid music subscription? Does Beatify work with free Spotify?</strong></summary>
+<br>
+Yes, you need a <strong>premium</strong> plan on one of the supported services. Beatify plays a specific song on demand each round, and that requires a paid subscription—<strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect). This is a streaming-service limitation, not a Beatify one. If you don't have Spotify Premium, just pick another service in the setup wizard—Apple Music, YouTube Music, Tidal or Deezer. The curated playlists carry URIs for all of them.
 </details>
 
 <details>
