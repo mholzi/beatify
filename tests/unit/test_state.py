@@ -241,8 +241,9 @@ class TestAllSubmitted:
     def setup_method(self):
         self.state = make_game_state()
         _create_fresh_game(self.state)
-        self.state.add_player("Alice", MagicMock())
-        self.state.add_player("Bob", MagicMock())
+        # closed=False → the ws looks live, so is_active is True.
+        self.state.add_player("Alice", MagicMock(closed=False))
+        self.state.add_player("Bob", MagicMock(closed=False))
 
     def test_no_submissions_returns_false(self):
         assert self.state.all_submitted() is False
@@ -258,6 +259,13 @@ class TestAllSubmitted:
 
     def test_disconnected_player_excluded(self):
         self.state.players["Bob"].connected = False
+        self.state.players["Alice"].submitted = True
+        assert self.state.all_submitted() is True
+
+    def test_stale_connected_ghost_excluded(self):
+        # #928: a player whose WebSocket is already closed but whose
+        # `connected` flag has not been cleared must not block all-submitted.
+        self.state.players["Bob"].ws.closed = True
         self.state.players["Alice"].submitted = True
         assert self.state.all_submitted() is True
 

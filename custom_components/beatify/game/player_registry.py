@@ -204,11 +204,16 @@ class PlayerRegistry:
         ]
 
     def all_submitted(self) -> bool:
-        """Check if all connected players have submitted their guess."""
-        connected_players = [p for p in self.players.values() if p.connected]
-        if not connected_players:
+        """Check if all genuinely-connected players have submitted their guess.
+
+        Uses ``is_active`` rather than the raw ``connected`` flag so a stale
+        ghost (closed WebSocket not yet cleaned up) can't block early reveal
+        for the whole room — #928.
+        """
+        active_players = [p for p in self.players.values() if p.is_active]
+        if not active_players:
             return False
-        return all(p.submitted for p in connected_players)
+        return all(p.submitted for p in active_players)
 
     def get_average_score(self) -> int:
         """Calculate average score for late joiners.

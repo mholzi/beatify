@@ -94,6 +94,17 @@ class PlayerSession:
         default_factory=list
     )  # Per-round: who stole this player's answer
 
+    @property
+    def is_active(self) -> bool:
+        """True only if the player is genuinely still connected.
+
+        ``connected`` alone is not enough: a dropped/closed WebSocket whose
+        ``_handle_disconnect`` has not run yet leaves a stale ``connected =
+        True`` ghost. Counting such a ghost as an active participant blocks
+        all-submitted detection (early reveal) for the whole room — #928.
+        """
+        return self.connected and self.ws is not None and not self.ws.closed
+
     def submit_guess(self, year: int, timestamp: float) -> None:
         """Record a guess submission."""
         self.submitted = True

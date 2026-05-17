@@ -361,6 +361,15 @@ class BeatifyWebSocketHandler:
         # Broadcast disconnect state immediately
         await self.broadcast_state()
 
+        # #928: a mid-round disconnect can itself complete the round. If
+        # everyone still active has already submitted, the departing player
+        # was the last thing the room was waiting on — advance to REVEAL now
+        # instead of stalling on "Waiting for others" until the timer.
+        try:
+            await game_state.trigger_early_reveal_if_complete()
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning("Early-reveal check after disconnect failed")
+
         # Admin disconnect: pause game after grace period (Story 7-1)
         if player.is_admin:
 
