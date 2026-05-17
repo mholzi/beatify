@@ -664,6 +664,19 @@ async function loadStatus() {
 
         const status = await response.json();
 
+        // #935 follow-up: the server embeds the active game's admin token in
+        // the page (<meta name="beatify-admin-token">). Capture it before the
+        // WS connects below, so an admin that *reconnected* to an existing
+        // game (reload / second tab) has a token — without it, start-gameplay
+        // and other token-gated REST calls 403. Runs before connectAdminWebSocket().
+        if (status.active_game && status.active_game.game_id) {
+            const embeddedToken = document
+                .querySelector('meta[name="beatify-admin-token"]')?.content;
+            if (embeddedToken) {
+                _setAdminToken(embeddedToken, status.active_game.game_id);
+            }
+        }
+
         playlistDocsUrl = status.playlist_docs_url || '';
         mediaPlayerDocsUrl = status.media_player_docs_url || '';
         // Set Music Assistant availability from backend (not based on entity names)
