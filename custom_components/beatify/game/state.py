@@ -1016,11 +1016,11 @@ class GameState:
         if self.artist_challenge_enabled and self.artist_challenge:
             has_winner = getattr(self.artist_challenge, "winner", None) is not None
             anyone_guessed = any(
-                p.has_artist_guess for p in self.players.values() if p.connected
+                p.has_artist_guess for p in self.players.values() if p.is_active
             )
             if not has_winner and anyone_guessed:
                 for player in self.players.values():
-                    if player.connected and not player.has_artist_guess:
+                    if player.is_active and not player.has_artist_guess:
                         return False
 
         # Issue #28: If movie quiz enabled and active, check movie guesses
@@ -1028,11 +1028,11 @@ class GameState:
         if self.movie_quiz_enabled and self.movie_challenge:
             has_correct = len(self.movie_challenge.correct_guesses) > 0
             anyone_guessed = any(
-                p.has_movie_guess for p in self.players.values() if p.connected
+                p.has_movie_guess for p in self.players.values() if p.is_active
             )
             if not has_correct and anyone_guessed:
                 for player in self.players.values():
-                    if player.connected and not player.has_movie_guess:
+                    if player.is_active and not player.has_movie_guess:
                         return False
 
         return True
