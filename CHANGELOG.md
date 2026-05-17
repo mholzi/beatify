@@ -28,6 +28,10 @@ See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for t
 - **Service worker no longer logs a failed-cache error (#948).** The offline precache list still pointed at the old single-file player script after it became a bundle; corrected to the real filename.
 - **No feedback when Music Assistant can't play (#949).** When the speaker stayed silent (idle, or the streaming provider unauthenticated), the game retried for ~2 minutes behind a frozen "Starting…" button before saying anything. It now pauses within seconds and shows the recovery banner — which names the provider to re-authenticate and offers Resume — straight away.
 - **"Join as player" button vanished after the first game (#956).** Once the host had joined any game as a player, a stale browser-session marker hid the button for every later game in that tab — even a brand-new lobby. The button now reflects only the current game's state.
+- **Admin "Start game" button could freeze on "Starting…" (#949).** When playback couldn't begin, the server reported the failure but the admin page didn't act on it — the button stayed frozen with no message. It now resets, surfaces the reason, and drops the host straight onto the recovery banner.
+- **Missing Intro Mode translations (#938).** The intro-round splash referenced four translation keys that didn't exist, logging console warnings on load; added across all five languages.
+- **Admin page no longer calls the GitHub API from the browser (#939).** The playlist-request list polled GitHub directly from the browser — unauthenticated, rate-limited, and spamming the console with 403s. The browser-side poll was removed; the list still loads from Beatify's own backend.
+- **"1 players in lobby" pluralization (#940).** A one-player lobby now reads "1 player".
 
 ### Data
 - **3 wrong URIs fixed in 2010s & 2020s Hits (#954).** Three tracks in the community playlist pointed at the wrong song; re-resolved.
