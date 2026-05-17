@@ -78,16 +78,17 @@ class TestCancelTimer:
         rm.cancel_timer()  # Should not raise
         assert rm._timer_task is None
 
-    def test_cancel_clears_task(self):
+    async def test_cancel_clears_task(self):
         import asyncio
 
-        async def _run():
-            rm = _make_rm()
-            rm._timer_task = asyncio.create_task(asyncio.sleep(100))
-            rm.cancel_timer()
-            assert rm._timer_task is None
-
-        asyncio.run(_run())
+        # Must be an async test (asyncio_mode=auto manages the loop). A bare
+        # asyncio.run() here calls set_event_loop(None) on exit, poisoning the
+        # global loop policy so every later async test in the suite errors
+        # with "There is no current event loop".
+        rm = _make_rm()
+        rm._timer_task = asyncio.create_task(asyncio.sleep(100))
+        rm.cancel_timer()
+        assert rm._timer_task is None
 
 
 # ---------------------------------------------------------------------------
