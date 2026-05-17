@@ -20,6 +20,10 @@ See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for t
 ### Fixed
 - **40 broken URIs in `harder-styles` (#916).** An automated health-check found 40 URIs (32 YouTube Music, 5 Apple Music, 3 Deezer) pointing to the wrong track. 32 re-resolved automatically; 5 obscure festival anthems pointed at the official label/organiser channel uploads; 3 left as best-available.
 - **Round stuck on "Waiting for others" (#928).** Early reveal counted every `connected` player, including a stale ghost whose WebSocket had already dropped — that ghost never submits, so the round never advanced and a restart hit the same wall. All-submitted detection now ignores players with a closed WebSocket, and a mid-round disconnect re-checks for early reveal.
+- **Album art broken for remote players (#933).** With a Music Assistant speaker, album art was served straight from the MA server's LAN address — so any guest who joined via the QR code / remote URL had it blocked by the browser. Art is now proxied through Beatify, same-origin, so remote players see it.
+- **Player kicked back to the join screen mid-round (#934).** A year/artist guess submitted in the instant a round flipped to reveal was rejected, and the player UI fell all the way back to the name-entry screen — wiping their session. Late guesses are now handled gracefully; the player simply lands on the reveal.
+- **"Start game" did nothing in the lobby (#935).** After a page reload the admin's Start button could call the create-game endpoint instead of begin-rounds and dead-end on a "409 — end current game first", for a game already sitting in the lobby. It now reconciles with the server before acting, and recovers automatically if it raced.
+- **Playlist requests never saved (#937).** Every save to the playlist-request store failed with a 400 — the handler passed an aiohttp parameter that newer versions removed, so the call crashed before reading the body. Saves work again.
 
 ### Data
 - **Harder Styles — 150 → 190 songs (#899).** 40 modern hardstyle tracks (festival anthems + hardstyle remixes of chart hits) folded in from playlist request #899, with per-region Apple Music URIs.
