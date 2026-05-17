@@ -91,7 +91,13 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
 
         try:
-            body = await request.json(content_type=None)
+            # #937: do NOT pass `content_type=` here — aiohttp 3.11+ removed
+            # that parameter from Request.json(). Passing it raised TypeError
+            # on every call, which the broad except below mislabelled as
+            # "Invalid JSON" — so every playlist-request save 400'd. Modern
+            # json() already parses without a content-type check, which is
+            # exactly what `content_type=None` was meant to achieve.
+            body = await request.json()
         except Exception:  # noqa: BLE001
             return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
 
