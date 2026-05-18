@@ -81,27 +81,41 @@ class TestPlaylistRequestsPost:
 
 class TestIssueToStatus:
     """The issue STATE is the source of truth — not a specific label. A
-    request closed however the maintainer labelled it counts as delivered."""
+    request closed as completed counts as delivered; one closed as "not
+    planned" (or carrying a decline label) counts as declined."""
 
     def test_open_issue_is_pending(self):
-        assert _issue_to_status("open", ["playlist-request"]) == ("pending", None)
+        assert _issue_to_status("open", "", ["playlist-request"]) == ("pending", None)
 
     def test_closed_with_approved_is_delivered(self):
         # The exact case of #73 / #74 — closed with `approved`, never
         # `playlist-ready`. The old poller left these stuck on "submitted".
-        assert _issue_to_status("closed", ["playlist-request", "approved"]) == (
-            "ready",
+        assert _issue_to_status(
+            "closed", "completed", ["playlist-request", "approved"]
+        ) == ("ready", None)
+
+    def test_closed_with_no_labels_is_delivered(self):
+        assert _issue_to_status("closed", "completed", []) == ("ready", None)
+
+    def test_closed_with_decline_label_is_declined(self):
+        assert _issue_to_status("closed", "completed", ["wont-fix"]) == (
+            "declined",
             None,
         )
 
-    def test_closed_with_no_labels_is_delivered(self):
-        assert _issue_to_status("closed", []) == ("ready", None)
-
-    def test_closed_with_decline_label_is_declined(self):
-        assert _issue_to_status("closed", ["wont-fix"]) == ("declined", None)
+    def test_closed_not_planned_is_declined(self):
+        # A request the maintainer simply closed as "not planned", with no
+        # decline label — must not show the user a misleading "ready".
+        assert _issue_to_status("closed", "not_planned", []) == ("declined", None)
+        assert _issue_to_status("closed", "not_planned", ["playlist-request"]) == (
+            "declined",
+            None,
+        )
 
     def test_version_label_is_extracted(self):
-        status, version = _issue_to_status("closed", ["playlist-ready", "v3.3.6"])
+        status, version = _issue_to_status(
+            "closed", "completed", ["playlist-ready", "v3.3.6"]
+        )
         assert status == "ready"
         assert version == "3.3.6"
 
@@ -131,7 +145,9 @@ class TestStatusSyncOnGet:
             "last_poll": None,
         }
         view = _get_view_with_store(store)
-        view._fetch_issue = AsyncMock(return_value=("closed", ["approved"]))
+        view._fetch_issue = AsyncMock(
+            return_value=("closed", "completed", ["approved"])
+        )
 
         with mock.patch(
             "custom_components.beatify.server.playlist_views.async_get_clientsession",
@@ -143,6 +159,25 @@ class TestStatusSyncOnGet:
         assert body["requests"][0]["status"] == "ready"
         assert body["last_poll"] is not None
         view._save_requests.assert_called_once()
+
+    async def test_get_corrects_ready_to_declined_when_not_planned(self):
+        # A request previously synced to "ready" must be re-polled and
+        # corrected once the issue is seen as closed "not planned" — the
+        # poller already re-checks "ready" rows, so the fix is retroactive.
+        store = {
+            "requests": [{"issue_number": 980, "status": "ready"}],
+            "last_poll": None,
+        }
+        view = _get_view_with_store(store)
+        view._fetch_issue = AsyncMock(return_value=("closed", "not_planned", []))
+
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.async_get_clientsession",
+            return_value=MagicMock(),
+        ):
+            resp = await view.get(_get_request())
+
+        assert json.loads(resp.body)["requests"][0]["status"] == "declined"
 
     async def test_get_skips_poll_when_recently_polled(self):
         store = {
