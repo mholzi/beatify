@@ -462,7 +462,7 @@ Beatify is built with substantial help from AI coding tools (Claude Code). That'
 - **Test coverage**: 19 Python test files, JS tests via Vitest, integration tests for the WebSocket protocol — every regression gets a test before the fix lands.
 - **Architecture is documented in code**: see `custom_components/beatify/services/media_player.py` lines 111–128 — the comment block walks through *why* the provider-URI dispatch was rewritten, names the specific user (Levtos) whose bug report drove the change, and references the original GitHub issues (#768, #805, #808).
 - **800+ closed issues with traceable root causes**, not just "fixed". URI-validation, playback-recovery, and import-flow security got dedicated sweeps in v3.3.x.
-- **Real users, not vanity metrics**: 134 stars, 7 forks (forks = devs reading the code), 126 active HACS installs, top 22% HACS rank, MIT-licensed.
+- **Real users, not vanity metrics**: 174 stars, 7 forks (forks = devs reading the code), 289 active HACS installs, top 14% HACS rank, MIT-licensed.
 
 The AI is the typist. The decisions, the architecture, the bug triage, and the "ship it" call are all human. If something looks off in the code, [open an issue](https://github.com/mholzi/beatify/issues) — that's how the documented bug-fix sweeps started in the first place.
 
