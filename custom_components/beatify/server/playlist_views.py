@@ -2,13 +2,17 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
+import re
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from custom_components.beatify.server.base import (
     RateLimitMixin,
@@ -19,6 +23,36 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
+
+# Labels that mean a closed request was turned down rather than delivered.
+_DECLINED_LABELS = frozenset(
+    {"declined", "wont-fix", "wontfix", "duplicate", "invalid"}
+)
+# Optional vX.Y.Z label the maintainer may add to record the shipping release.
+_VERSION_LABEL_RE = re.compile(r"^v?(\d+\.\d+\.\d+\S*)$")
+
+
+def _issue_to_status(state: str, labels: list[str]) -> tuple[str, str | None]:
+    """Map a GitHub issue's state + labels to a request status (#970).
+
+    The issue STATE is the source of truth, not a specific label: any
+    closed request issue counts as delivered unless it carries a decline
+    label. This is deliberate — the old browser poller only recognised a
+    `playlist-ready` + `vX.Y.Z` label pair, so requests the maintainer
+    closed with `approved` (the actual habit) never advanced past
+    "submitted". Returns (status, release_version | None).
+    """
+    if state != "closed":
+        return "pending", None
+    if any(label.lower() in _DECLINED_LABELS for label in labels):
+        return "declined", None
+    version: str | None = None
+    for label in labels:
+        match = _VERSION_LABEL_RE.match(label.strip())
+        if match:
+            version = match.group(1)
+            break
+    return "ready", version
 
 
 class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
@@ -36,6 +70,13 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
     MAX_FIELD_LENGTH = 500
     RATE_LIMIT_REQUESTS = 10
     RATE_LIMIT_WINDOW = 60  # seconds
+
+    # Server-side status sync (#970). GET reconciles pending requests
+    # against GitHub issue state, throttled to once an hour so a busy Hub
+    # tab can't hammer GitHub's unauthenticated 60/hr-per-IP limit.
+    GITHUB_ISSUES_API = "https://api.github.com/repos/mholzi/beatify/issues"
+    POLL_INTERVAL_SECONDS = 3600
+    POLL_TIMEOUT_SECONDS = 12
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
@@ -78,9 +119,102 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
             _LOGGER.error("Failed to save playlist requests: %s", e)
             return False
 
+    def _poll_due(self, data: dict) -> bool:
+        """Return True if the GitHub status sync hasn't run within the interval."""
+        last_poll = data.get("last_poll")
+        if not last_poll:
+            return True
+        try:
+            last = datetime.fromisoformat(str(last_poll).replace("Z", "+00:00"))
+        except ValueError:
+            return True
+        if last.tzinfo is None:
+            last = last.replace(tzinfo=timezone.utc)
+        elapsed = (datetime.now(timezone.utc) - last).total_seconds()
+        return elapsed >= self.POLL_INTERVAL_SECONDS
+
+    async def _fetch_issue(
+        self, session: object, issue_number: object
+    ) -> tuple[str, list[str]] | None:
+        """Fetch one GitHub issue's state + label names, or None on any failure."""
+        try:
+            async with session.get(
+                f"{self.GITHUB_ISSUES_API}/{issue_number}",
+                headers={"Accept": "application/vnd.github+json"},
+            ) as resp:
+                if resp.status != 200:
+                    _LOGGER.debug(
+                        "Playlist-request poll: issue %s returned HTTP %s",
+                        issue_number,
+                        resp.status,
+                    )
+                    return None
+                issue = await resp.json()
+            labels = [
+                label.get("name", "")
+                for label in issue.get("labels", [])
+                if isinstance(label, dict)
+            ]
+            return issue.get("state", ""), labels
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.debug(
+                "Playlist-request poll: issue %s failed: %s", issue_number, err
+            )
+            return None
+
+    async def _poll_statuses(self, data: dict) -> dict:
+        """Reconcile pending request statuses against GitHub issue state (#970).
+
+        Stamps `last_poll` whenever a poll is attempted — even if there is
+        nothing pending or GitHub is unreachable — so a failure backs off
+        for the full interval instead of retrying on every Hub open.
+        """
+        now = datetime.now(timezone.utc).isoformat()
+        data["last_poll"] = now
+
+        requests = data.get("requests", [])
+        pending = [
+            r
+            for r in requests
+            if isinstance(r, dict)
+            and r.get("issue_number")
+            and r.get("status") in (None, "", "pending", "ready")
+        ]
+        if not pending:
+            return data
+
+        session = async_get_clientsession(self.hass)
+        try:
+            results = await asyncio.wait_for(
+                asyncio.gather(
+                    *(self._fetch_issue(session, r["issue_number"]) for r in pending)
+                ),
+                timeout=self.POLL_TIMEOUT_SECONDS,
+            )
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.debug("Playlist-request poll aborted: %s", err)
+            return data
+
+        for req, result in zip(pending, results):
+            if result is None:
+                continue
+            state, labels = result
+            status, version = _issue_to_status(state, labels)
+            req["status"] = status
+            req["last_checked"] = now
+            if version:
+                req["release_version"] = version
+        return data
+
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
-        """Get all playlist requests."""
+        """Get all playlist requests, refreshing statuses from GitHub if due."""
         data = await self.hass.async_add_executor_job(self._load_requests)
+        if self._poll_due(data):
+            try:
+                data = await self._poll_statuses(data)
+                await self.hass.async_add_executor_job(self._save_requests, data)
+            except Exception as err:  # noqa: BLE001
+                _LOGGER.debug("Playlist-request status poll failed: %s", err)
         return web.json_response(data)
 
     async def post(self, request: web.Request) -> web.Response:
