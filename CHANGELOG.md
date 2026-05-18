@@ -4,7 +4,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.3.6] - 2026-05-17
+## [3.3.6] - 2026-05-18
 
 See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for the user-facing summary.
 
