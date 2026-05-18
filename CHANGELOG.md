@@ -6,8 +6,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [3.3.7] - 2026-05-18
 
+### Added
+- **Playlist acceptance criteria in the request modal (#986).** The request form carried only a one-line note; it now lists the six concrete criteria a playlist must meet — themed, not a duplicate, a fixed selection, curated in size, recognisable to a party crowd, no explicit content — so users can self-filter before submitting. Translated across all five locales.
+
 ### Fixed
 - **Playlist-request status never updated (#970).** A delivered playlist request stayed stuck on "submitted" in the Playlist Hub's "Meine" tab forever. The request `status` field was write-once and nothing reconciled it afterward — the old browser poller (removed in #939) had only ever advanced a request carrying both a `playlist-ready` label and a `vX.Y.Z` version label, so requests the maintainer closed with `approved` never matched. `PlaylistRequestsView.get()` now reconciles pending requests against GitHub issue **state** (a closed issue means delivered, independent of label), server-side and throttled to once an hour.
+- **Declined playlist requests showed as "ready" (#970 follow-up).** A request the maintainer closed as "not planned" without a decline label was still synced to "✅ Ready", telling the user their playlist had shipped when it had been turned down. The status sync now also honours GitHub's `not_planned` close reason, and existing mis-marked requests were corrected.
+
+### Data
+- **New playlist: 40s & 50s Classics (#922).** 152 rock'n'roll, doo-wop and early-pop classics spanning 1939–1962.
+- **Greatest Metal Songs enriched (#981).** Nine canonical anthems added — Painkiller, Breaking the Law, Angel of Death, Cemetery Gates, Hangar 18, Stargazer, Nothing Else Matters, I Want Out, B.Y.O.B. — taking the playlist from 52 to 61 songs.
 
 ## [3.3.6] - 2026-05-18
 
