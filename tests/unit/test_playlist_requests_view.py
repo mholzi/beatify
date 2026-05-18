@@ -11,12 +11,14 @@ from __future__ import annotations
 
 import asyncio
 import json
+from datetime import datetime, timezone
 from unittest import mock
 from unittest.mock import AsyncMock, MagicMock
 
 from aiohttp import StreamReader
 from aiohttp.test_utils import make_mocked_request
 
+from custom_components.beatify.server.playlist_views import _issue_to_status
 from custom_components.beatify.server.views import PlaylistRequestsView
 
 
@@ -70,3 +72,107 @@ class TestPlaylistRequestsPost:
         resp = await _view().post(request)
         assert resp.status == 400
         assert json.loads(resp.body)["error"] == "INVALID_REQUEST"
+
+
+# ---------------------------------------------------------------------------
+# Server-side status sync (#970)
+# ---------------------------------------------------------------------------
+
+
+class TestIssueToStatus:
+    """The issue STATE is the source of truth — not a specific label. A
+    request closed however the maintainer labelled it counts as delivered."""
+
+    def test_open_issue_is_pending(self):
+        assert _issue_to_status("open", ["playlist-request"]) == ("pending", None)
+
+    def test_closed_with_approved_is_delivered(self):
+        # The exact case of #73 / #74 — closed with `approved`, never
+        # `playlist-ready`. The old poller left these stuck on "submitted".
+        assert _issue_to_status("closed", ["playlist-request", "approved"]) == (
+            "ready",
+            None,
+        )
+
+    def test_closed_with_no_labels_is_delivered(self):
+        assert _issue_to_status("closed", []) == ("ready", None)
+
+    def test_closed_with_decline_label_is_declined(self):
+        assert _issue_to_status("closed", ["wont-fix"]) == ("declined", None)
+
+    def test_version_label_is_extracted(self):
+        status, version = _issue_to_status("closed", ["playlist-ready", "v3.3.6"])
+        assert status == "ready"
+        assert version == "3.3.6"
+
+
+def _get_view_with_store(store: dict) -> PlaylistRequestsView:
+    """A view whose load/save are stubbed so get() runs against `store`."""
+    hass = MagicMock()
+    hass.config.path = MagicMock(return_value="/tmp/beatify-test/requests.json")
+    # get() funnels both _load_requests and _save_requests through this.
+    hass.async_add_executor_job = AsyncMock(side_effect=lambda fn, *a: fn(*a))
+    view = PlaylistRequestsView(hass)
+    view._load_requests = MagicMock(return_value=store)
+    view._save_requests = MagicMock(return_value=True)
+    return view
+
+
+def _get_request():
+    return make_mocked_request("GET", "/beatify/api/playlist-requests")
+
+
+class TestStatusSyncOnGet:
+    """GET reconciles pending requests against GitHub, throttled by last_poll."""
+
+    async def test_get_marks_closed_request_delivered(self):
+        store = {
+            "requests": [{"issue_number": 73, "status": "pending"}],
+            "last_poll": None,
+        }
+        view = _get_view_with_store(store)
+        view._fetch_issue = AsyncMock(return_value=("closed", ["approved"]))
+
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.async_get_clientsession",
+            return_value=MagicMock(),
+        ):
+            resp = await view.get(_get_request())
+
+        body = json.loads(resp.body)
+        assert body["requests"][0]["status"] == "ready"
+        assert body["last_poll"] is not None
+        view._save_requests.assert_called_once()
+
+    async def test_get_skips_poll_when_recently_polled(self):
+        store = {
+            "requests": [{"issue_number": 73, "status": "pending"}],
+            "last_poll": datetime.now(timezone.utc).isoformat(),
+        }
+        view = _get_view_with_store(store)
+        view._fetch_issue = AsyncMock()
+
+        resp = await view.get(_get_request())
+
+        view._fetch_issue.assert_not_awaited()
+        assert json.loads(resp.body)["requests"][0]["status"] == "pending"
+
+    async def test_get_keeps_status_when_github_unreachable(self):
+        store = {
+            "requests": [{"issue_number": 73, "status": "pending"}],
+            "last_poll": None,
+        }
+        view = _get_view_with_store(store)
+        # _fetch_issue returning None == GitHub error / 403 / network failure.
+        view._fetch_issue = AsyncMock(return_value=None)
+
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.async_get_clientsession",
+            return_value=MagicMock(),
+        ):
+            resp = await view.get(_get_request())
+
+        body = json.loads(resp.body)
+        assert body["requests"][0]["status"] == "pending"
+        # last_poll still stamped so a failure backs off for the full interval.
+        assert body["last_poll"] is not None
