@@ -1,6 +1,6 @@
 {
   "name": "Greatest Metal Songs of All Time 🤘",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "metal",
     "rock",
@@ -2245,6 +2245,345 @@
         "es": "applemusic://track/1493581631",
         "nl": "applemusic://track/1493581631",
         "it": "applemusic://track/1493581631"
+      }
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:0L7zm6afBEtrNKo6C6Gj08",
+      "artist": "Judas Priest",
+      "title": "Painkiller",
+      "alt_artists": [
+        "Iron Maiden",
+        "Accept",
+        "Saxon"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 74,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Painkiller is the title track of Judas Priest's 1990 album and marked a furious return to pure speed metal. It opens with one of metal's most explosive drum intros, performed by new drummer Scott Travis. Rob Halford's banshee scream on the song is widely regarded as one of the greatest vocal performances in heavy metal.",
+      "fun_fact_de": "Painkiller ist der Titeltrack von Judas Priests Album von 1990 und eine furiose Rückkehr zum reinen Speed Metal. Es eröffnet mit einem der explosivsten Schlagzeug-Intros des Metal. Rob Halfords Banshee-Schrei gilt als eine der größten Gesangsleistungen des Heavy Metal.",
+      "fun_fact_es": "Painkiller es la canción que da título al álbum de Judas Priest de 1990 y supuso un furioso regreso al speed metal puro. Abre con una de las intros de batería más explosivas del metal. El grito de Rob Halford está considerado una de las mejores interpretaciones vocales del heavy metal.",
+      "fun_fact_fr": "Painkiller est la chanson-titre de l'album de Judas Priest de 1990 et marqua un retour furieux au speed metal pur. Elle s'ouvre sur l'une des intros de batterie les plus explosives du metal. Le cri de Rob Halford est considéré comme l'une des plus grandes performances vocales du heavy metal.",
+      "uri_apple_music": "applemusic://track/207178166",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4s1gBIVOTtk",
+      "uri_tidal": null,
+      "fun_fact_nl": "Painkiller is het titelnummer van het album van Judas Priest uit 1990 en betekende een woeste terugkeer naar pure speedmetal. Het opent met een van de meest explosieve drumintro's uit de metal. De gillende schreeuw van Rob Halford geldt als een van de grootste zangprestaties uit de heavy metal.",
+      "awards_nl": [],
+      "isrc": "GBBBN0102557",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/207178166",
+        "de": "applemusic://track/207178166",
+        "gb": "applemusic://track/207178166",
+        "fr": "applemusic://track/207178166",
+        "es": "applemusic://track/207178166",
+        "nl": "applemusic://track/207178166",
+        "it": "applemusic://track/207178166"
+      }
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2RaA6kIcvomt77qlIgGhCT",
+      "artist": "Judas Priest",
+      "title": "Breaking the Law",
+      "alt_artists": [
+        "Iron Maiden",
+        "Motörhead",
+        "Saxon"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 12,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Breaking the Law, from 1980's British Steel, is one of Judas Priest's most recognisable songs, built around a simple but unforgettable riff. Despite running under two and a half minutes, it became a metal anthem and a staple of pop culture, parodied everywhere from Beavis and Butt-Head to countless adverts.",
+      "fun_fact_de": "Breaking the Law vom Album British Steel (1980) ist einer der bekanntesten Judas-Priest-Songs, getragen von einem simplen, aber unvergesslichen Riff. Obwohl es keine zweieinhalb Minuten dauert, wurde es zur Metal-Hymne und zum Popkultur-Klassiker.",
+      "fun_fact_es": "Breaking the Law, del álbum British Steel (1980), es una de las canciones más reconocibles de Judas Priest, construida sobre un riff simple pero inolvidable. Pese a durar menos de dos minutos y medio, se convirtió en un himno del metal y un clásico de la cultura pop.",
+      "fun_fact_fr": "Breaking the Law, de l'album British Steel (1980), est l'une des chansons les plus reconnaissables de Judas Priest, bâtie sur un riff simple mais inoubliable. Bien qu'elle dure moins de deux minutes et demie, elle est devenue un hymne du metal et un classique de la culture pop.",
+      "uri_apple_music": "applemusic://track/207346225",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BXtPycm5dGc",
+      "uri_tidal": null,
+      "fun_fact_nl": "Breaking the Law, van het album British Steel (1980), is een van de meest herkenbare nummers van Judas Priest, gebouwd rond een simpele maar onvergetelijke riff. Hoewel het nog geen tweeënhalve minuut duurt, werd het een metalhymne en een popcultuurklassieker.",
+      "awards_nl": [],
+      "isrc": "GBBBN8000007",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/168329238",
+        "de": "applemusic://track/466738322",
+        "gb": "applemusic://track/466738322",
+        "fr": "applemusic://track/466738322",
+        "es": "applemusic://track/466738322",
+        "nl": "applemusic://track/466738322",
+        "it": "applemusic://track/466738322"
+      }
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:61dTqhd46yMkSWmC5LAh5F",
+      "artist": "Slayer",
+      "title": "Angel of Death",
+      "alt_artists": [
+        "Metallica",
+        "Megadeth",
+        "Anthrax"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Angel of Death opens Slayer's landmark 1986 album Reign in Blood. Written by guitarist Jeff Hanneman, its graphic lyrics about Nazi doctor Josef Mengele caused enormous controversy and delayed the album's release. Musically it is regarded as one of the most influential thrash metal songs ever recorded.",
+      "fun_fact_de": "Angel of Death eröffnet Slayers wegweisendes Album Reign in Blood von 1986. Die von Gitarrist Jeff Hanneman geschriebenen drastischen Texte über den Nazi-Arzt Josef Mengele sorgten für enorme Kontroversen. Musikalisch gilt es als einer der einflussreichsten Thrash-Metal-Songs überhaupt.",
+      "fun_fact_es": "Angel of Death abre el álbum decisivo de Slayer, Reign in Blood, de 1986. Su letra explícita sobre el médico nazi Josef Mengele, escrita por el guitarrista Jeff Hanneman, causó enorme polémica. Musicalmente está considerada una de las canciones de thrash metal más influyentes jamás grabadas.",
+      "fun_fact_fr": "Angel of Death ouvre l'album décisif de Slayer, Reign in Blood, sorti en 1986. Ses paroles crues sur le médecin nazi Josef Mengele, écrites par le guitariste Jeff Hanneman, provoquèrent une énorme controverse. Musicalement, c'est l'une des chansons de thrash metal les plus influentes jamais enregistrées.",
+      "uri_apple_music": "applemusic://track/1733769074",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TnRZhLRv6eM",
+      "uri_tidal": null,
+      "fun_fact_nl": "Angel of Death opent het baanbrekende album Reign in Blood van Slayer uit 1986. De expliciete tekst over de nazi-arts Josef Mengele, geschreven door gitarist Jeff Hanneman, zorgde voor enorme controverse. Muzikaal geldt het als een van de invloedrijkste thrashmetalnummers ooit opgenomen.",
+      "awards_nl": [],
+      "isrc": "USSM18600233",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1733769074",
+        "de": "applemusic://track/1733769074",
+        "gb": "applemusic://track/1733769074",
+        "fr": "applemusic://track/1733769074",
+        "es": "applemusic://track/1733769074",
+        "nl": "applemusic://track/1733769074",
+        "it": "applemusic://track/1733769074"
+      }
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:4vJr55lngvhSM8WIh9CjQc",
+      "artist": "Pantera",
+      "title": "Cemetery Gates",
+      "alt_artists": [
+        "Metallica",
+        "Megadeth",
+        "Sepultura"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Cemetery Gates, from Pantera's 1990 breakthrough Cowboys from Hell, is a power ballad that showcases the full range of singer Phil Anselmo and the soaring guitar work of Dimebag Darrell. Its dramatic dynamics made it a fan favourite and a defining track of the band's groove-metal sound.",
+      "fun_fact_de": "Cemetery Gates vom Durchbruchsalbum Cowboys from Hell (1990) ist eine Power-Ballade, die die ganze Bandbreite von Sänger Phil Anselmo und das geniale Gitarrenspiel von Dimebag Darrell zeigt. Die dramatischen Dynamiken machten es zum Fan-Favoriten.",
+      "fun_fact_es": "Cemetery Gates, del álbum de la consagración de Pantera, Cowboys from Hell (1990), es una power ballad que muestra todo el registro del cantante Phil Anselmo y la brillante guitarra de Dimebag Darrell. Sus dramáticos contrastes la convirtieron en favorita de los fans.",
+      "fun_fact_fr": "Cemetery Gates, de l'album de la révélation de Pantera, Cowboys from Hell (1990), est une power ballad qui met en valeur toute l'étendue du chanteur Phil Anselmo et le jeu de guitare éblouissant de Dimebag Darrell. Ses contrastes dramatiques en firent un favori des fans.",
+      "uri_apple_music": "applemusic://track/389079946",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fiPEn2W_8oE",
+      "uri_tidal": null,
+      "fun_fact_nl": "Cemetery Gates, van Pantera's doorbraakalbum Cowboys from Hell (1990), is een power ballad die het volledige bereik van zanger Phil Anselmo en het verbluffende gitaarwerk van Dimebag Darrell laat horen. De dramatische dynamiek maakte het een favoriet onder fans.",
+      "awards_nl": [],
+      "isrc": "USEE10170410",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1676608036",
+        "de": "applemusic://track/1568092372",
+        "gb": "applemusic://track/1568092372",
+        "fr": "applemusic://track/1568092372",
+        "es": "applemusic://track/1568092372",
+        "nl": "applemusic://track/1568092372",
+        "it": "applemusic://track/1568092372"
+      }
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:6b6uLZsoGhObYexIxnRbIb",
+      "artist": "Megadeth",
+      "title": "Hangar 18",
+      "alt_artists": [
+        "Metallica",
+        "Slayer",
+        "Testament"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 26,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Hangar 18, from Megadeth's acclaimed 1990 album Rust in Peace, takes its name from the conspiracy theory that the US military stores recovered alien craft at a secret facility. The song is famous for its cascade of duelling guitar solos between Dave Mustaine and Marty Friedman.",
+      "fun_fact_de": "Hangar 18 vom gefeierten Album Rust in Peace (1990) ist nach der Verschwörungstheorie benannt, das US-Militär lagere geborgene Alien-Fluggeräte in einer geheimen Anlage. Berühmt ist der Song für seine Kaskade von Duell-Gitarrensoli zwischen Dave Mustaine und Marty Friedman.",
+      "fun_fact_es": "Hangar 18, del aclamado álbum Rust in Peace (1990), toma su nombre de la teoría conspirativa de que el ejército de EE. UU. guarda naves alienígenas recuperadas en unas instalaciones secretas. La canción es famosa por su cascada de solos de guitarra a dúo entre Dave Mustaine y Marty Friedman.",
+      "fun_fact_fr": "Hangar 18, de l'album acclamé Rust in Peace (1990), tire son nom de la théorie du complot selon laquelle l'armée américaine entreposerait des engins extraterrestres dans une installation secrète. La chanson est célèbre pour sa cascade de solos de guitare en duel entre Dave Mustaine et Marty Friedman.",
+      "uri_apple_music": "applemusic://track/724649293",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x5A9Aa-WU5E",
+      "uri_tidal": null,
+      "fun_fact_nl": "Hangar 18, van het bejubelde album Rust in Peace (1990), is genoemd naar de samenzweringstheorie dat het Amerikaanse leger geborgen buitenaardse toestellen in een geheime faciliteit bewaart. Het nummer is beroemd om zijn aaneenschakeling van duellerende gitaarsolo's tussen Dave Mustaine en Marty Friedman.",
+      "awards_nl": [],
+      "isrc": "USCA20400648",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/719004159",
+        "de": "applemusic://track/719004159",
+        "gb": "applemusic://track/719004159",
+        "fr": "applemusic://track/719004159",
+        "es": "applemusic://track/719004159",
+        "nl": "applemusic://track/719004159",
+        "it": "applemusic://track/719004159"
+      }
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:1aDNYyeU62BuQsBAY18i48",
+      "artist": "Rainbow",
+      "title": "Stargazer",
+      "alt_artists": [
+        "Deep Purple",
+        "Black Sabbath",
+        "Led Zeppelin"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Stargazer, from Rainbow's 1976 album Rising, is an epic built on a thunderous riff by guitarist Ritchie Blackmore and a towering vocal from Ronnie James Dio. Recorded with a full orchestra, its tale of a wizard forcing slaves to build a tower is considered a cornerstone of epic and power metal.",
+      "fun_fact_de": "Stargazer vom Album Rising (1976) ist ein Epos, getragen von einem donnernden Riff von Gitarrist Ritchie Blackmore und einem gewaltigen Gesang von Ronnie James Dio. Mit vollem Orchester aufgenommen, gilt es als Grundstein des Epic und Power Metal.",
+      "fun_fact_es": "Stargazer, del álbum Rising (1976), es una pieza épica sostenida por un riff atronador del guitarrista Ritchie Blackmore y una imponente voz de Ronnie James Dio. Grabada con orquesta completa, está considerada una piedra angular del epic y el power metal.",
+      "fun_fact_fr": "Stargazer, de l'album Rising (1976), est une épopée portée par un riff tonitruant du guitariste Ritchie Blackmore et une voix monumentale de Ronnie James Dio. Enregistrée avec un orchestre complet, elle est considérée comme une pierre angulaire de l'epic et du power metal.",
+      "uri_apple_music": "applemusic://track/1440922977",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YmJIccPWnEk",
+      "uri_tidal": null,
+      "fun_fact_nl": "Stargazer, van het album Rising (1976), is een epos gedragen door een donderende riff van gitarist Ritchie Blackmore en een imposante zang van Ronnie James Dio. Opgenomen met een volledig orkest, geldt het als een hoeksteen van epic- en powermetal.",
+      "awards_nl": [],
+      "isrc": "USPR37680077",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1595183983",
+        "de": "applemusic://track/1445099013",
+        "gb": "applemusic://track/1443359399",
+        "fr": "applemusic://track/1445099013",
+        "es": "applemusic://track/1445099013",
+        "nl": "applemusic://track/1445099013",
+        "it": "applemusic://track/1445099013"
+      }
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:3ZFwuJwUpIl0GeXsvF1ELf",
+      "artist": "Metallica",
+      "title": "Nothing Else Matters",
+      "alt_artists": [
+        "Megadeth",
+        "Guns N' Roses",
+        "Black Sabbath"
+      ],
+      "chart_info": {
+        "billboard_peak": 34,
+        "uk_peak": 6,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "RIAA Platinum"
+      ],
+      "awards": [],
+      "fun_fact": "Nothing Else Matters, from 1991's self-titled 'Black Album', began as a private piece James Hetfield wrote while on the phone with his girlfriend and never intended to release. The ballad broadened Metallica's audience enormously and has since been covered by dozens of artists across every genre.",
+      "fun_fact_de": "Nothing Else Matters vom selbstbetitelten 'Black Album' (1991) begann als privates Stück, das James Hetfield am Telefon mit seiner Freundin schrieb und nie veröffentlichen wollte. Die Ballade erweiterte Metallicas Publikum enorm und wurde seither von Dutzenden Künstlern gecovert.",
+      "fun_fact_es": "Nothing Else Matters, del homónimo 'Álbum Negro' (1991), empezó como una pieza privada que James Hetfield escribió mientras hablaba por teléfono con su novia y que nunca pensó publicar. La balada amplió enormemente el público de Metallica y ha sido versionada por decenas de artistas.",
+      "fun_fact_fr": "Nothing Else Matters, de l'album éponyme « Black Album » (1991), débuta comme un morceau privé que James Hetfield écrivit au téléphone avec sa petite amie, sans intention de le publier. La ballade élargit énormément le public de Metallica et fut depuis reprise par des dizaines d'artistes.",
+      "uri_apple_music": "applemusic://track/1572046444",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pTYIf2pkxzQ",
+      "uri_tidal": null,
+      "fun_fact_nl": "Nothing Else Matters, van het titelloze 'Black Album' (1991), begon als een privénummer dat James Hetfield schreef terwijl hij met zijn vriendin belde en nooit wilde uitbrengen. De ballad verbreedde Metallica's publiek enorm en is sindsdien door tientallen artiesten gecoverd.",
+      "awards_nl": [],
+      "isrc": "QMKHM1900008",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1572046444",
+        "de": "applemusic://track/1571969050",
+        "gb": "applemusic://track/1571969050",
+        "fr": "applemusic://track/1571969050",
+        "es": "applemusic://track/1571969050",
+        "nl": "applemusic://track/1571969050",
+        "it": "applemusic://track/1571969050"
+      }
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:5VZwMq6yaFb04PCTfdNY3K",
+      "artist": "Helloween",
+      "title": "I Want Out",
+      "alt_artists": [
+        "Iron Maiden",
+        "Blind Guardian",
+        "Gamma Ray"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 69,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "I Want Out, from Helloween's 1988 album Keeper of the Seven Keys: Part II, is the German band's best-known song and a defining anthem of power metal. Written by guitarist Kai Hansen, its soaring melodies and singalong chorus influenced an entire generation of European metal bands.",
+      "fun_fact_de": "I Want Out vom Album Keeper of the Seven Keys: Part II (1988) ist der bekannteste Song der deutschen Band Helloween und eine prägende Power-Metal-Hymne. Der von Gitarrist Kai Hansen geschriebene Track beeinflusste mit seinen Melodien eine ganze Generation europäischer Metal-Bands.",
+      "fun_fact_es": "I Want Out, del álbum Keeper of the Seven Keys: Part II (1988), es la canción más conocida de la banda alemana Helloween y un himno definitorio del power metal. Escrita por el guitarrista Kai Hansen, sus melodías influyeron en toda una generación de bandas de metal europeas.",
+      "fun_fact_fr": "I Want Out, de l'album Keeper of the Seven Keys: Part II (1988), est la chanson la plus connue du groupe allemand Helloween et un hymne fondateur du power metal. Écrite par le guitariste Kai Hansen, ses mélodies influencèrent toute une génération de groupes de metal européens.",
+      "uri_apple_music": "applemusic://track/1439725167",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H7-pFa8KHAU",
+      "uri_tidal": null,
+      "fun_fact_nl": "I Want Out, van het album Keeper of the Seven Keys: Part II (1988), is het bekendste nummer van de Duitse band Helloween en een bepalende powermetalhymne. Geschreven door gitarist Kai Hansen, beïnvloedden de melodieën een hele generatie Europese metalbands.",
+      "awards_nl": [],
+      "isrc": "GBAJE0200152",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1725518942",
+        "de": "applemusic://track/1725518942",
+        "gb": "applemusic://track/1725518942",
+        "fr": "applemusic://track/1725518942",
+        "es": "applemusic://track/1725518942",
+        "nl": "applemusic://track/1725518942",
+        "it": "applemusic://track/1725518942"
+      }
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:0EYOdF5FCkgOJJla8DI2Md",
+      "artist": "System of a Down",
+      "title": "B.Y.O.B.",
+      "alt_artists": [
+        "Rage Against the Machine",
+        "Korn",
+        "Disturbed"
+      ],
+      "chart_info": {
+        "billboard_peak": 27,
+        "uk_peak": 15,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [
+        "Grammy Award for Best Hard Rock Performance"
+      ],
+      "fun_fact": "B.Y.O.B. ('Bring Your Own Bombs'), from System of a Down's 2005 album Mezmerize, is a furious protest song against the Iraq War, contrasting frantic verses with an unexpectedly melodic chorus. It won the 2006 Grammy Award for Best Hard Rock Performance.",
+      "fun_fact_de": "B.Y.O.B. ('Bring Your Own Bombs') vom Album Mezmerize (2005) ist ein wütender Protestsong gegen den Irakkrieg, der hektische Strophen mit einem überraschend melodischen Refrain kontrastiert. Er gewann 2006 den Grammy für die beste Hard-Rock-Darbietung.",
+      "fun_fact_es": "B.Y.O.B. ('Bring Your Own Bombs'), del álbum Mezmerize (2005), es una furiosa canción de protesta contra la guerra de Irak que contrasta estrofas frenéticas con un estribillo sorprendentemente melódico. Ganó el Grammy de 2006 a la mejor interpretación de hard rock.",
+      "fun_fact_fr": "B.Y.O.B. (« Bring Your Own Bombs »), de l'album Mezmerize (2005), est une chanson de protestation furieuse contre la guerre d'Irak, opposant des couplets frénétiques à un refrain étonnamment mélodique. Elle remporta le Grammy 2006 de la meilleure performance hard rock.",
+      "uri_apple_music": "applemusic://track/986888670",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OMtq6JzREcA",
+      "uri_tidal": null,
+      "fun_fact_nl": "B.Y.O.B. ('Bring Your Own Bombs'), van het album Mezmerize (2005), is een woedend protestlied tegen de Irakoorlog, dat razende coupletten contrasteert met een verrassend melodieus refrein. Het won in 2006 de Grammy Award voor Beste Hardrockprestatie.",
+      "awards_nl": [
+        "Grammy Award voor Beste Hardrockprestatie"
+      ],
+      "isrc": "USSM10501327",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/187472354",
+        "de": "applemusic://track/187472354",
+        "gb": "applemusic://track/187472354",
+        "fr": "applemusic://track/187472354",
+        "es": "applemusic://track/187472354",
+        "nl": "applemusic://track/187472354",
+        "it": "applemusic://track/187472354"
       }
     }
   ]
