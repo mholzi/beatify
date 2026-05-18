@@ -32,19 +32,29 @@ _DECLINED_LABELS = frozenset(
 _VERSION_LABEL_RE = re.compile(r"^v?(\d+\.\d+\.\d+\S*)$")
 
 
-def _issue_to_status(state: str, labels: list[str]) -> tuple[str, str | None]:
-    """Map a GitHub issue's state + labels to a request status (#970).
+def _issue_to_status(
+    state: str, state_reason: str, labels: list[str]
+) -> tuple[str, str | None]:
+    """Map a GitHub issue's state + close reason + labels to a request status.
 
     The issue STATE is the source of truth, not a specific label: any
-    closed request issue counts as delivered unless it carries a decline
-    label. This is deliberate — the old browser poller only recognised a
-    `playlist-ready` + `vX.Y.Z` label pair, so requests the maintainer
-    closed with `approved` (the actual habit) never advanced past
-    "submitted". Returns (status, release_version | None).
+    closed request issue counts as delivered unless it was closed as "not
+    planned" or carries a decline label. This is deliberate — the old
+    browser poller only recognised a `playlist-ready` + `vX.Y.Z` label
+    pair, so requests the maintainer closed with `approved` (the actual
+    habit) never advanced past "submitted".
+
+    Honouring GitHub's `not_planned` close reason (follow-up to #970) means
+    a maintainer can decline a request just by closing it that way — a
+    declined request would otherwise show the user a misleading "ready"
+    status unless a decline label was added by hand. Returns
+    (status, release_version | None).
     """
     if state != "closed":
         return "pending", None
-    if any(label.lower() in _DECLINED_LABELS for label in labels):
+    if state_reason == "not_planned" or any(
+        label.lower() in _DECLINED_LABELS for label in labels
+    ):
         return "declined", None
     version: str | None = None
     for label in labels:
@@ -135,8 +145,8 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
 
     async def _fetch_issue(
         self, session: object, issue_number: object
-    ) -> tuple[str, list[str]] | None:
-        """Fetch one GitHub issue's state + label names, or None on any failure."""
+    ) -> tuple[str, str, list[str]] | None:
+        """Fetch a GitHub issue's state, close reason and labels, or None on failure."""
         try:
             async with session.get(
                 f"{self.GITHUB_ISSUES_API}/{issue_number}",
@@ -155,7 +165,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
                 for label in issue.get("labels", [])
                 if isinstance(label, dict)
             ]
-            return issue.get("state", ""), labels
+            return issue.get("state", ""), issue.get("state_reason") or "", labels
         except Exception as err:  # noqa: BLE001
             _LOGGER.debug(
                 "Playlist-request poll: issue %s failed: %s", issue_number, err
@@ -198,8 +208,8 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
         for req, result in zip(pending, results):
             if result is None:
                 continue
-            state, labels = result
-            status, version = _issue_to_status(state, labels)
+            state, state_reason, labels = result
+            status, version = _issue_to_status(state, state_reason, labels)
             req["status"] = status
             req["last_checked"] = now
             if version:
