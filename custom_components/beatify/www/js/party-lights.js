@@ -45,7 +45,7 @@
     // Fetch available lights from API
     async function fetchLights() {
         try {
-            var resp = await fetch('/beatify/api/lights');
+            var resp = await BeatifyAuth.fetch('/beatify/api/lights');
             var data = await resp.json();
             lightsData = data.lights || [];
             renderLightPicker();
@@ -212,7 +212,7 @@
                 previewBtn.disabled = true;
                 previewBtn.textContent = '✨ Running...';
 
-                fetch('/beatify/api/preview-lights', {
+                BeatifyAuth.fetch('/beatify/api/preview-lights', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ entity_ids: selectedLights, intensity: selectedIntensity })

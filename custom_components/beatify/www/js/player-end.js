@@ -100,10 +100,9 @@ export function updateEndView(data) {
                     return;
                 }
 
-                fetch('/beatify/api/rematch-game', {
+                BeatifyAuth.fetch('/beatify/api/rematch-game', {
                     method: 'POST',
-                    credentials: 'same-origin',
-                    headers: { 'Content-Type': 'application/json' }
+                    credentials: 'same-origin'
                 })
                     .then(function(resp) {
                         if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });

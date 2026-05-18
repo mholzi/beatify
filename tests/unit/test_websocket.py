@@ -187,11 +187,25 @@ class TestJoin:
         handler, game_state, ws = _make_handler_and_game()
 
         await handler._handle_message(
-            ws, {"type": "join", "name": "Host", "is_admin": True}
+            ws,
+            {"type": "join", "name": "Host", "is_admin": True, "ha_token": "t"},
         )
 
         assert "Host" in game_state.players
         assert game_state.players["Host"].is_admin is True
+
+    async def test_admin_join_without_ha_token_rejected(self):
+        """#998: an is_admin claim with no HA token is rejected."""
+        handler, game_state, ws = _make_handler_and_game()
+
+        await handler._handle_message(
+            ws, {"type": "join", "name": "Host", "is_admin": True}
+        )
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_UNAUTHORIZED
+        assert "Host" not in game_state.players
 
     async def test_second_admin_join_rejected(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -201,7 +215,8 @@ class TestJoin:
 
         ws2 = _make_ws()
         await handler._handle_message(
-            ws2, {"type": "join", "name": "Intruder", "is_admin": True}
+            ws2,
+            {"type": "join", "name": "Intruder", "is_admin": True, "ha_token": "t"},
         )
 
         msg = ws2.send_json.call_args[0][0]
@@ -226,7 +241,8 @@ class TestJoin:
 
         new_ws = _make_ws()
         await handler._handle_message(
-            new_ws, {"type": "join", "name": "Host", "is_admin": True}
+            new_ws,
+            {"type": "join", "name": "Host", "is_admin": True, "ha_token": "t"},
         )
 
         # Game should be resumed
@@ -253,7 +269,8 @@ class TestJoin:
 
         new_ws = _make_ws()
         await handler._handle_message(
-            new_ws, {"type": "join", "name": "Ben", "is_admin": True}
+            new_ws,
+            {"type": "join", "name": "Ben", "is_admin": True, "ha_token": "t"},
         )
 
         # Ben should still be admin, still in players, no error sent.
@@ -282,7 +299,7 @@ class TestJoin:
         intruder_ws = _make_ws()
         await handler._handle_message(
             intruder_ws,
-            {"type": "join", "name": "Intruder", "is_admin": True},
+            {"type": "join", "name": "Intruder", "is_admin": True, "ha_token": "t"},
         )
 
         msg = intruder_ws.send_json.call_args[0][0]
@@ -779,9 +796,11 @@ class TestAdminConnect:
     async def test_valid_token_stores_ws_and_sends_ack(self):
         handler, game_state, ws = _make_handler_and_game()
         handler.connections.add(ws)
+        # #998: admin_connect is gated by an HA access token. The mock hass'
+        # auth manager returns a truthy refresh token for any string.
 
         await handler._handle_message(
-            ws, {"type": "admin_connect", "admin_token": game_state.admin_token}
+            ws, {"type": "admin_connect", "ha_token": "valid-ha-token"}
         )
 
         assert game_state._admin_ws is ws
@@ -793,9 +812,11 @@ class TestAdminConnect:
 
     async def test_invalid_token_rejected(self):
         handler, game_state, ws = _make_handler_and_game()
+        # #998: HA rejects the access token — auth manager returns None.
+        handler.hass.auth.async_validate_access_token = MagicMock(return_value=None)
 
         await handler._handle_message(
-            ws, {"type": "admin_connect", "admin_token": "wrong-token"}
+            ws, {"type": "admin_connect", "ha_token": "wrong-token"}
         )
 
         assert game_state._admin_ws is None

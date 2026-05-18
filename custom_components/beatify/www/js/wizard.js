@@ -151,7 +151,7 @@ async function _fetchStatus() {
 
 async function _fetchCapabilities() {
     try {
-        const r = await fetch('/beatify/api/capabilities');
+        const r = await BeatifyAuth.fetch('/beatify/api/capabilities');
         if (!r.ok) return { has_lights: true, has_tts: true };
         return await r.json();
     } catch (e) {
@@ -161,7 +161,7 @@ async function _fetchCapabilities() {
 
 async function _fetchLights() {
     try {
-        const r = await fetch('/beatify/api/lights');
+        const r = await BeatifyAuth.fetch('/beatify/api/lights');
         if (!r.ok) return [];
         const data = await r.json();
         return (data && data.lights) || [];
@@ -893,7 +893,7 @@ function _renderLevelUp() {
             ttsTestBtn.disabled = true;
             ttsTestBtn.innerHTML = '🔊 …';
             try {
-                const r = await fetch('/beatify/api/tts-test', {
+                const r = await BeatifyAuth.fetch('/beatify/api/tts-test', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

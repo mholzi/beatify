@@ -71,7 +71,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
     url = "/beatify/api/start-game"
     name = "beatify:api:start-game"
-    requires_auth = False
+    requires_auth = True  # #998 — only a logged-in HA user may host a game
 
     RATE_LIMIT_REQUESTS = 5
     RATE_LIMIT_WINDOW = 60  # seconds
@@ -406,17 +406,13 @@ class EndGameView(BeatifyAdminView):
     url = "/beatify/api/end-game"
     name = "beatify:api:end-game"
 
-    async def post(self, request: web.Request) -> web.Response:
+    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """End the current game."""
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
 
         if not game_state or not game_state.game_id:
             return _json_error("No active game", 404, code="GAME_NOT_STARTED")
-
-        err = self._verify_admin(request)
-        if err:
-            return err
 
         await game_state.end_game()
 
@@ -432,15 +428,15 @@ class EndGameView(BeatifyAdminView):
 class ForceResetView(RateLimitMixin, HomeAssistantView):
     """Emergency escape hatch when state gets stuck (#777 follow-up).
 
-    Unlike EndGameView this does NOT require an admin_token — by definition
-    the user might not have a valid token if state is unrecoverable (e.g.
-    a stuck lobby from before an HA restart, mismatched tokens after a
-    Reload). Rate-limited per IP to prevent DoS abuse.
+    Requires a logged-in HA user (#998). Recovery is no longer tied to a
+    per-game admin token — any household HA user can unwedge stuck state —
+    so the old "you might not have a valid token" rationale no longer
+    applies. Still rate-limited per IP to prevent DoS abuse.
     """
 
     url = "/beatify/api/force-reset"
     name = "beatify:api:force-reset"
-    requires_auth = False
+    requires_auth = True  # #998
 
     # Tighter than EndGameView's defaults — this kills active games, so
     # 3 hits per hour per IP is plenty for legitimate "I got stuck" use.
@@ -486,7 +482,7 @@ class RematchGameView(HomeAssistantView):
 
     url = "/beatify/api/rematch-game"
     name = "beatify:api:rematch-game"
-    requires_auth = False
+    requires_auth = True  # #998
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
@@ -534,7 +530,7 @@ class StartGameplayView(BeatifyAdminView):
     url = "/beatify/api/start-gameplay"
     name = "beatify:api:start-gameplay"
 
-    async def post(self, request: web.Request) -> web.Response:
+    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Start gameplay from lobby."""
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
@@ -543,10 +539,6 @@ class StartGameplayView(BeatifyAdminView):
 
         if not game_state or not game_state.game_id:
             return _json_error("No active game", 404, code="GAME_NOT_STARTED")
-
-        err = self._verify_admin(request)
-        if err:
-            return err
 
         if game_state.phase != GamePhase.LOBBY:
             return _json_error("Game already started", 409, code="INVALID_PHASE")

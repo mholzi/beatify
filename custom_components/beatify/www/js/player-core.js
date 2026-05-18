@@ -442,7 +442,7 @@ function connectWebSocket(name) {
 
     state.ws = new WebSocket(wsUrl);
 
-    state.ws.onopen = function() {
+    state.ws.onopen = async function() {
         state.reconnectAttempts = 0;
         state.isReconnecting = false;
         hideReconnectingOverlay();
@@ -451,7 +451,12 @@ function connectWebSocket(name) {
 
         var joinMsg = { type: 'join', name: name };
         if (state.isAdmin) {
+            // #998: claiming the host role on the player page requires a
+            // logged-in HA user. ensureAuthenticated() returns the token, or
+            // redirects to HA login (this tab navigates away). The server
+            // validates ha_token before granting the admin claim.
             joinMsg.is_admin = true;
+            joinMsg.ha_token = await BeatifyAuth.ensureAuthenticated();
         }
         state.ws.send(JSON.stringify(joinMsg));
     };
@@ -958,6 +963,11 @@ function setupRetryConnection() {
 // ============================================
 
 async function initAll() {
+    // #998: consume any pending HA login redirect (?code=). Normal players
+    // never authenticate — requireAuth:false means this only exchanges a
+    // code if the host claimed the admin role and came back from HA login.
+    try { await BeatifyAuth.init({ requireAuth: false }); } catch (e) { /* non-fatal */ }
+
     var deviceTier = AnimationUtils.getDeviceTier();
     document.body.classList.add('device-tier-' + deviceTier);
 

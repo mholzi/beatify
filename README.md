@@ -115,6 +115,23 @@ http://YOUR-HA-IP:8123/beatify/admin
 2. Tap the menu (☰) or swipe from left
 3. Select **Beatify** from the sidebar
 
+### Hosting Requires a Home Assistant Login
+
+The admin/host side of Beatify is protected by **your Home Assistant login**.
+The first time you open `/beatify/admin` on a device (or claim the host role
+from the player page), you are sent to the normal HA login screen; after that
+the device stays signed in and opening Beatify is instant.
+
+This keeps the host controls private: if your Home Assistant is reachable from
+the internet, a stranger who finds the Beatify URL **cannot** start a game,
+control playback, trigger your speakers/lights, or end a game — every host
+action requires a valid HA login. **Players are unaffected** — joining a game
+at `/beatify/play` stays password-free, so guests still scan the QR code and
+play with zero friction.
+
+> Any Home Assistant user account can host — Beatify does not distinguish
+> between HA admin and non-admin users.
+
 ### Starting a Game
 
 **First time?** Beatify drops you into a 5-step first-run wizard that walks you through the whole setup:
