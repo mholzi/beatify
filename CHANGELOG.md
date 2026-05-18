@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.3.7] - 2026-05-18
+
+### Fixed
+- **Playlist-request status never updated (#970).** A delivered playlist request stayed stuck on "submitted" in the Playlist Hub's "Meine" tab forever. The request `status` field was write-once and nothing reconciled it afterward — the old browser poller (removed in #939) had only ever advanced a request carrying both a `playlist-ready` label and a `vX.Y.Z` version label, so requests the maintainer closed with `approved` never matched. `PlaylistRequestsView.get()` now reconciles pending requests against GitHub issue **state** (a closed issue means delivered, independent of label), server-side and throttled to once an hour.
+
 ## [3.3.6] - 2026-05-18
 
 See [release notes](https://github.com/mholzi/beatify/releases/tag/v3.3.6) for the user-facing summary.
