@@ -41,7 +41,7 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 **Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer playlists. Curated song packs included. Create your own.
 
-**Runs Locally** — No cloud. No subscription. No data leaves your network. Fast, private, reliable.
+**Runs Locally** — No cloud, no Beatify account, no data leaves your network. Free and open-source. (You bring your own music-streaming subscription — see [Requirements](#requirements).)
 
 **Everyone Competes** — Points, streaks, power-ups, and a dramatic finale with podium and stats. Real competition, real laughs.
 
@@ -287,25 +287,33 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 2,481 songs across 24 curated playlists:
+Beatify comes with 3,566 songs across 32 curated playlists:
 
-- 🎸 **60s Classics** — 44 tracks from the golden age of rock & roll
-- 🎹 **80s Hits** — 208 classic hits from the decade of synths and MTV
-- 🎵 **90s Hits** — 32 essential tracks from the decade
-- 🎵 **2000s Pop Anthems** — 150 essential pop hits from the 2000s
-- 🎤 **90s & 2000s Hip-Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
-- 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
+- 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957-2020
+- 🎵 **2000s Pop Anthems** — 182 essential pop hits from the 2000s
+- 🎵 **2010s & 2020s Hits** — 71 chart hits closing the modern-decade gap
+- 🎸 **60s Classics** — 64 tracks from the golden age of rock & roll
+- 🎹 **80s Hits** — 239 classic hits from the decade of synths and MTV
+- 🎤 **90s & 2000s Hip-Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
+- 🎵 **90s Hits** — 115 essential tracks from the decade
+- 🎌 **Anime Openings** — 101 opening themes from Cowboy Bebop to Chainsaw Man
+- 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
+- 🦒 **Best of Giraffenaffen** — 26 German children's songs
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
+- 🇩🇪 **Deutschpop Klassiker** — 106 German pop classics, incl. the 90s / NDW canon
 - 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
+- 🎸 **Divorced Dad Rock** — 107 post-grunge, nu-metal and 2000s radio-rock tracks
+- 🎧 **EDM Anthems** — 126 festival and mainstream EDM tracks (2009–2024)
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
 - 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
-- 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
+- 🎯 **Greatest Hits of All Time** — 182 chart-toppers across four decades
 - 🤘 **Greatest Metal Songs** — 52 legendary tracks across all major metal subgenres
-- 🎯 **Greatest Hits of All Time** — 179 chart-toppers across four decades
+- 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
@@ -525,6 +533,21 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v3.3.6 — Beatify Finds Its Voice 🎙️
+- **The voice roadmap is complete** — TTS Phases 3 & 4 add the last ten announcements (bets, joins, podium, rematch, intro, steals); the per-round reveal is now narrated as one flowing sentence instead of a stutter of clips. 23 spoken moments in total
+- **Verbosity presets** — pick Minimal, Standard or Full and all 23 toggles are set for you; fine-tune any of them and it switches to Custom. Available in both the admin TTS panel and the setup wizard
+- **Party-night reliability pass** — self-healing stuck rounds (a client watchdog and heartbeat recover frozen rounds and half-open connections), reload-proof host controls, an actionable banner when playback can't start, album art for remote QR-code players, and a TV dashboard that scales to any viewport
+- **Two new playlists** — Divorced Dad Rock (107 tracks) and EDM Anthems (126 tracks)
+- **Library-wide year audit** — every song checked against MusicBrainz first-release dates; 274 wrong release years corrected
+- 32 playlists, 3,566 songs, 5 music platforms, 5 languages
+
+### v3.3.5 — Five New Playlists & Voice That Calls the Game 🎤
+- **TTS Player Achievements (Phase 2)** — six voice announcements driven by player results: exact-year guess, Closest-Wins winner, streak milestone, streak broken, new leader, and a tie at the top. Each an independent toggle
+- **Five new playlists** — Anime Openings (101), Ballermann Party Hits (189), Harder Styles (150), Best of Giraffenaffen (26) and 2010s & 2020s Hits (128), closing the decade gap to today
+- **98 songs backfilled** into the existing decade and greatest-hits playlists
+- **Admin Stop button always responds** — visible feedback if the connection drops mid-tap; the fix hardens every admin button. Plus: a reconnect race that could briefly leak a fun fact on the admin dashboard is closed
+- 30 playlists, 3,273 songs, 5 music platforms, 5 languages
 
 ### v3.3.4 — Cover Blur, Sharp Year Steps & Round-Show Audio 🎙️
 - **Round-show audio (TTS Phase 1)** — Five new voice announcements wired into the round flow: round start, optional 3-2-1 countdown, time's up, correct-answer reveal, and a "nobody got it" line. Each is a separate toggle, works with any HA TTS engine
