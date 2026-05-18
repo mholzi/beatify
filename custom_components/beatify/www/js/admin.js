@@ -147,6 +147,11 @@ const PLATFORM_LABELS = {
 const utils = window.BeatifyUtils || {};
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // #998: the admin console requires a logged-in Home Assistant user.
+    // If not authenticated this redirects to HA login and never resolves,
+    // so nothing below runs for an unauthenticated visitor.
+    await BeatifyAuth.init({ requireAuth: true });
+
     // Initialize i18n based on browser language (Story 12.4)
     // Guard clause: wait for BeatifyI18n in case fallback script is loading
     const i18nAvailable = await utils.waitForI18n();
@@ -1955,7 +1960,7 @@ async function startGame() {
     }
 
     try {
-        const response = await fetch('/beatify/api/start-game', {
+        const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -2069,7 +2074,7 @@ async function startGameplay() {
 
     // Fallback to REST
     try {
-        const response = await fetch('/beatify/api/start-gameplay', { method: 'POST', headers: _adminHeaders() });
+        const response = await BeatifyAuth.fetch('/beatify/api/start-gameplay', { method: 'POST' });
         const data = await response.json();
 
         if (!response.ok) {
@@ -2136,7 +2141,7 @@ async function confirmEndGame() {
     }
 
     try {
-        const response = await fetch('/beatify/api/end-game', { method: 'POST', headers: _adminHeaders() });
+        const response = await BeatifyAuth.fetch('/beatify/api/end-game', { method: 'POST' });
         if (response.ok) {
             cachedQRUrl = null;
             showSetupView();
@@ -2202,7 +2207,7 @@ async function confirmReset() {
 
     // 1. Hit the server, but don't block local cleanup on its result.
     try {
-        await fetch('/beatify/api/force-reset', { method: 'POST' });
+        await BeatifyAuth.fetch('/beatify/api/force-reset', { method: 'POST' });
     } catch (err) {
         console.warn('[Reset] force-reset POST failed (continuing with local cleanup):', err);
     }
@@ -2289,7 +2294,7 @@ async function confirmRematch() {
     }
 
     try {
-        var response = await fetch('/beatify/api/rematch-game', { method: 'POST', headers: _adminHeaders() });
+        var response = await BeatifyAuth.fetch('/beatify/api/rematch-game', { method: 'POST' });
         if (response.ok) {
             var data = await response.json();
             await loadStatus();
@@ -3308,10 +3313,12 @@ function escapeHtml(text) {
 
 /**
  * Connect admin WebSocket for real-time game state updates.
- * Authenticates via admin_connect with the stored admin token.
+ * #998: authenticates via admin_connect with a Home Assistant access token.
  */
-function connectAdminWebSocket() {
-    var token = _getAdminToken();
+async function connectAdminWebSocket() {
+    // #998: the admin WS is gated by HA login. getAccessToken() refreshes a
+    // stale token transparently; null means the host is not logged in.
+    var token = await BeatifyAuth.getAccessToken();
     if (!token) return;
 
     // Close existing connection if any
@@ -3334,7 +3341,7 @@ function connectAdminWebSocket() {
         adminReconnectAttempts = 0;
         adminWs.send(JSON.stringify({
             type: 'admin_connect',
-            admin_token: token
+            ha_token: token
         }));
     };
 
