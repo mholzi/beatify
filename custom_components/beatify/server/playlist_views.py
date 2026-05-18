@@ -25,7 +25,9 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 # Labels that mean a closed request was turned down rather than delivered.
-_DECLINED_LABELS = frozenset({"declined", "wont-fix", "wontfix", "duplicate", "invalid"})
+_DECLINED_LABELS = frozenset(
+    {"declined", "wont-fix", "wontfix", "duplicate", "invalid"}
+)
 # Optional vX.Y.Z label the maintainer may add to record the shipping release.
 _VERSION_LABEL_RE = re.compile(r"^v?(\d+\.\d+\.\d+\S*)$")
 
@@ -155,7 +157,9 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
             ]
             return issue.get("state", ""), labels
         except Exception as err:  # noqa: BLE001
-            _LOGGER.debug("Playlist-request poll: issue %s failed: %s", issue_number, err)
+            _LOGGER.debug(
+                "Playlist-request poll: issue %s failed: %s", issue_number, err
+            )
             return None
 
     async def _poll_statuses(self, data: dict) -> dict:
