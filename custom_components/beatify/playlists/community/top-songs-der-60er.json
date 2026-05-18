@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.6",
+  "version": "1.7",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -2188,6 +2188,56 @@
       "fun_fact_es": "Un éxito de Elvis Presley (2002).",
       "fun_fact_fr": "Un tube de Elvis Presley (2002).",
       "fun_fact_nl": "Een chart-hit van Elvis Presley (2002)."
+    },
+    {
+      "artist": "The Jackson 5",
+      "title": "I Want You Back",
+      "year": 1969,
+      "isrc": "USMO19400306",
+      "uri": "spotify:track:5LxvwujISqiB8vpRYv887S",
+      "uri_apple_music": "applemusic://track/1440912105",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1577639056",
+        "de": "applemusic://track/1577639056",
+        "gb": "applemusic://track/1577639056",
+        "fr": "applemusic://track/6764661466",
+        "es": "applemusic://track/1577639056",
+        "nl": "applemusic://track/1577639056",
+        "it": "applemusic://track/1577639056"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UvynvnxZJ3Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4188287",
+      "fun_fact": "A 70s classic (1969).",
+      "fun_fact_de": "Ein 70er-Klassiker (1969).",
+      "fun_fact_es": "Un clásico de los 70 (1969).",
+      "fun_fact_fr": "Un classique des années 70 (1969).",
+      "fun_fact_nl": "Een 70's-klassieker (1969)."
+    },
+    {
+      "artist": "Simon & Garfunkel",
+      "title": "The Boxer",
+      "year": 1969,
+      "isrc": "USSM16900831",
+      "uri": "spotify:track:76TZCvJ8GitQ2FA1q5dKu0",
+      "uri_apple_music": "applemusic://track/324127939",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1463652191",
+        "de": "applemusic://track/318312890",
+        "gb": "applemusic://track/318312890",
+        "fr": "applemusic://track/318312890",
+        "es": "applemusic://track/318312890",
+        "nl": "applemusic://track/318312890",
+        "it": "applemusic://track/318312890"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C1VUWDcp5Sg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13174769",
+      "fun_fact": "A 70s classic (1969).",
+      "fun_fact_de": "Ein 70er-Klassiker (1969).",
+      "fun_fact_es": "Un clásico de los 70 (1969).",
+      "fun_fact_fr": "Un classique des années 70 (1969).",
+      "fun_fact_nl": "Een 70's-klassieker (1969)."
     }
   ]
 }

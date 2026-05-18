@@ -11,7 +11,7 @@
   "language": "en",
   "author": "Beatify Community",
   "added_date": "2026-05-18",
-  "description": "165 classics from the 1970s — disco, classic rock, soul and pop. ABBA, Queen, Fleetwood Mac, Earth, Wind & Fire, Bee Gees, Eagles, Led Zeppelin, David Bowie and more. Fills Beatify's decade gap between the 60s and 80s playlists (#921).",
+  "description": "163 classics from the 1970s — disco, classic rock, soul and pop. ABBA, Queen, Fleetwood Mac, Earth, Wind & Fire, Bee Gees, Eagles, Led Zeppelin, David Bowie and more. Fills Beatify's decade gap between the 60s and 80s playlists (#921).",
   "songs": [
     {
       "artist": "ABBA",
@@ -337,31 +337,6 @@
       "fun_fact_es": "Fleetwood Mac, en su era 'Rumours', fue una de las bandas que definieron los 70.",
       "fun_fact_fr": "Fleetwood Mac, à l'époque de « Rumours », fut l'un des groupes phares des années 70.",
       "fun_fact_nl": "Fleetwood Mac werd in het 'Rumours'-tijdperk een van de bepalende bands van de jaren 70."
-    },
-    {
-      "artist": "The Jackson 5",
-      "title": "I Want You Back",
-      "year": 1969,
-      "isrc": "USMO19400306",
-      "uri": "spotify:track:5LxvwujISqiB8vpRYv887S",
-      "uri_apple_music": "applemusic://track/1440912105",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1577639056",
-        "de": "applemusic://track/1577639056",
-        "gb": "applemusic://track/1577639056",
-        "fr": "applemusic://track/6764661466",
-        "es": "applemusic://track/1577639056",
-        "nl": "applemusic://track/1577639056",
-        "it": "applemusic://track/1577639056"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UvynvnxZJ3Q",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/4188287",
-      "fun_fact": "A 70s classic (1969).",
-      "fun_fact_de": "Ein 70er-Klassiker (1969).",
-      "fun_fact_es": "Un clásico de los 70 (1969).",
-      "fun_fact_fr": "Un classique des années 70 (1969).",
-      "fun_fact_nl": "Een 70's-klassieker (1969)."
     },
     {
       "artist": "Dire Straits",
@@ -2712,31 +2687,6 @@
       "fun_fact_es": "Un clásico de los 70 (1975).",
       "fun_fact_fr": "Un classique des années 70 (1975).",
       "fun_fact_nl": "Een 70's-klassieker (1975)."
-    },
-    {
-      "artist": "Simon & Garfunkel",
-      "title": "The Boxer",
-      "year": 1969,
-      "isrc": "USSM16900831",
-      "uri": "spotify:track:76TZCvJ8GitQ2FA1q5dKu0",
-      "uri_apple_music": "applemusic://track/324127939",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1463652191",
-        "de": "applemusic://track/318312890",
-        "gb": "applemusic://track/318312890",
-        "fr": "applemusic://track/318312890",
-        "es": "applemusic://track/318312890",
-        "nl": "applemusic://track/318312890",
-        "it": "applemusic://track/318312890"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=C1VUWDcp5Sg",
-      "uri_tidal": null,
-      "uri_deezer": "deezer://track/13174769",
-      "fun_fact": "A 70s classic (1969).",
-      "fun_fact_de": "Ein 70er-Klassiker (1969).",
-      "fun_fact_es": "Un clásico de los 70 (1969).",
-      "fun_fact_fr": "Un classique des années 70 (1969).",
-      "fun_fact_nl": "Een 70's-klassieker (1969)."
     },
     {
       "artist": "The Buggles",
