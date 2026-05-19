@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "german",
     "pop",
@@ -3825,6 +3825,41 @@
       "fun_fact_es": "Un éxito de EAV (Erste Allgemeine Verunsicherung) (1990).",
       "fun_fact_fr": "Un tube de EAV (Erste Allgemeine Verunsicherung) (1990).",
       "fun_fact_nl": "Een chart-hit van EAV (Erste Allgemeine Verunsicherung) (1990)."
+    },
+    {
+      "artist": "Die Orsons",
+      "title": "Schwung in die Kiste",
+      "year": 2015,
+      "isrc": "DEUM71403809",
+      "uri": "spotify:track:1d0LKskvREPlQfBanvabh8",
+      "uri_apple_music": "applemusic://track/1443399430",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443399430",
+        "de": "applemusic://track/1443399430",
+        "gb": "applemusic://track/1443399430",
+        "fr": "applemusic://track/1443399430",
+        "es": "applemusic://track/1443399430",
+        "nl": "applemusic://track/1443399430",
+        "it": "applemusic://track/1443399430"
+      },
+      "uri_deezer": "deezer://track/95965268",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6_7qL92z3pA",
+      "uri_tidal": null,
+      "alt_artists": [
+        "Die Fantastischen Vier",
+        "Kraftklub",
+        "Marteria",
+        "Casper"
+      ],
+      "fun_fact": "Stand-out track from Die Orsons' 2015 album 'What's Goes?' on Chimperator. The Stuttgart hip-hop collective behind it — Tua, KAAS, Bartek and Maeckes — all went on to successful solo careers, but this brass-driven sing-along stayed a festival staple and one of the album's signature singles.",
+      "fun_fact_de": "Markante Single aus dem 2015er Album 'What's Goes?' der Stuttgarter Crew Die Orsons (Chimperator). Tua, KAAS, Bartek und Maeckes machten danach alle solo Karriere — der Bläser-getriebene Mitsing-Refrain blieb aber ein Festival-Klassiker und einer der prägenden Hits des Albums.",
+      "fun_fact_es": "Tema destacado del álbum 'What's Goes?' (2015) de Die Orsons en el sello Chimperator. El cuarteto de Stuttgart — Tua, KAAS, Bartek y Maeckes — siguió luego con exitosas carreras en solitario, pero este pegadizo himno con vientos se mantuvo como un fijo de los festivales.",
+      "fun_fact_fr": "Morceau emblématique de l'album 'What's Goes?' (2015) du collectif hip-hop de Stuttgart Die Orsons (label Chimperator). Tua, KAAS, Bartek et Maeckes ont tous mené ensuite des carrières solos, mais ce refrain à cuivres reste un classique des festivals.",
+      "fun_fact_nl": "Stand-outtrack van het album 'What's Goes?' (2015) van Die Orsons (label Chimperator). De Stuttgartse hiphopcrew — Tua, KAAS, Bartek en Maeckes — ging daarna solo, maar deze blazergedreven meezinger bleef een vaste waarde op zomerfestivals.",
+      "awards": [],
+      "awards_nl": [],
+      "certifications": [],
+      "chart_info": {}
     }
   ]
 }
