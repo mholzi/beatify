@@ -236,8 +236,8 @@ Miss one? Streak resets. The pressure is real.
 
 ### Double or Nothing
 Feeling confident? Toggle the bet before submitting.
-Score points: **Double them.**
-Score zero: **Lose it all.**
+Nail the **exact** year: **triple your points.**
+Miss it — even by a year: **score nothing that round.**
 
 ### Artist Challenge (Optional)
 Know your artists? Enable this mode in game setup.

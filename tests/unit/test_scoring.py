@@ -171,29 +171,38 @@ class TestRoundScore:
 
 
 class TestBetMultiplier:
+    """Betting is exact-or-nothing (#1004): a bet wins only on the exact
+    year (x3), and any non-exact guess forfeits the round score."""
+
     def test_no_bet_unchanged(self):
-        score, outcome = apply_bet_multiplier(10, False)
+        score, outcome = apply_bet_multiplier(10, False, is_exact=True)
         assert score == 10
         assert outcome is None
 
-    def test_bet_won(self):
-        score, outcome = apply_bet_multiplier(10, True)
-        assert score == 20
+    def test_bet_won_on_exact(self):
+        score, outcome = apply_bet_multiplier(10, True, is_exact=True)
+        assert score == 30
         assert outcome == "won"
 
+    def test_bet_lost_when_not_exact_forfeits_score(self):
+        # A close guess that would have scored 5 — betting forfeits it.
+        score, outcome = apply_bet_multiplier(5, True, is_exact=False)
+        assert score == 0
+        assert outcome == "lost"
+
     def test_bet_lost_zero_score(self):
-        score, outcome = apply_bet_multiplier(0, True)
+        score, outcome = apply_bet_multiplier(0, True, is_exact=False)
         assert score == 0
         assert outcome == "lost"
 
     def test_no_bet_zero_score(self):
-        score, outcome = apply_bet_multiplier(0, False)
+        score, outcome = apply_bet_multiplier(0, False, is_exact=False)
         assert score == 0
         assert outcome is None
 
     def test_bet_won_large_score(self):
-        score, outcome = apply_bet_multiplier(50, True)
-        assert score == 100
+        score, outcome = apply_bet_multiplier(50, True, is_exact=True)
+        assert score == 150
         assert outcome == "won"
 
 

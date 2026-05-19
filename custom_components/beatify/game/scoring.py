@@ -36,6 +36,9 @@ from custom_components.beatify.const import (
 POINTS_EXACT = 10
 POINTS_WRONG = 0
 
+# A won bet (exact year) multiplies the round score by this (#1004).
+BET_WIN_MULTIPLIER = 3
+
 
 def calculate_accuracy_score(
     guess: int,
@@ -136,18 +139,23 @@ def calculate_round_score(
 def apply_bet_multiplier(
     round_score: int,
     bet: bool,  # noqa: FBT001
+    is_exact: bool,  # noqa: FBT001
 ) -> tuple[int, str | None]:
     """
-    Apply bet multiplier to round score (Story 5.3).
+    Apply bet multiplier to round score (Story 5.3, redesigned #1004).
 
-    Betting is double-or-nothing:
-    - If bet and scored points (>0): double the score, outcome="won"
-    - If bet and 0 points: score stays 0, outcome="lost"
-    - If no bet: score unchanged, outcome=None
+    Betting is a real "exact or nothing" gamble:
+    - If bet and the guess is the EXACT year: round_score x BET_WIN_MULTIPLIER,
+      outcome="won".
+    - If bet and the guess is not exact: score becomes 0, outcome="lost" —
+      the player forfeits the points a close guess would otherwise have
+      earned. That forfeit is the stake that makes the bet a real risk.
+    - If no bet: score unchanged, outcome=None.
 
     Args:
         round_score: Points earned before bet (accuracy x speed)
         bet: Whether player placed a bet
+        is_exact: Whether the guess matched the correct year exactly
 
     Returns:
         Tuple of (final_score, bet_outcome)
@@ -157,8 +165,8 @@ def apply_bet_multiplier(
     if not bet:
         return round_score, None
 
-    if round_score > 0:
-        return round_score * 2, "won"
+    if is_exact:
+        return round_score * BET_WIN_MULTIPLIER, "won"
     return 0, "lost"
 
 
@@ -599,7 +607,7 @@ class ScoringService:
             player.years_off = abs(player.current_guess - correct_year)
             player.missed_round = False
             player.round_score, player.bet_outcome = apply_bet_multiplier(
-                speed_score, player.bet
+                speed_score, player.bet, player.years_off == 0
             )
 
             _apply_streak(player, speed_score, streak_achievements)
