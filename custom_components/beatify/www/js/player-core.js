@@ -543,6 +543,13 @@ function handleServerMessage(data) {
             }
         }
 
+        // #1009: capture the join URL from any phase, so the in-game
+        // "Invite players" button works even when this client never saw
+        // the lobby (e.g. the admin joins as a player mid-game).
+        if (data.join_url) {
+            renderQRCode(data.join_url);
+        }
+
         if (data.phase === 'LOBBY') {
             stopCountdown();
             hideAdminControlBar();
@@ -582,9 +589,6 @@ function handleServerMessage(data) {
             renderPlayerList(players);
             if (data.difficulty) {
                 renderDifficultyBadge(data.difficulty);
-            }
-            if (data.join_url) {
-                renderQRCode(data.join_url);
             }
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
