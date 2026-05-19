@@ -1495,6 +1495,43 @@ class GameState:
             _LOGGER.debug("REVEAL auto-advance cancelled")
             raise
 
+    async def _reveal_idle_halt(self) -> None:
+        """Hold the game when a round ends with zero guesses (#1012 follow-up).
+
+        A round where nobody submitted a guess means the party is idle —
+        rather than auto-advancing through the playlist unattended, let the
+        round's song play out, stop the speaker, and hold on REVEAL without
+        starting a new round. The host's manual "Next round" still resumes;
+        a pause or game-end cancels this task, and the phase re-check makes
+        a late firing a no-op.
+        """
+        poll = 2.0
+        # Never poll forever if song-end is undetectable (songs run ~3-5 min).
+        hard_cap = 360
+        try:
+            elapsed = 0.0
+            while True:
+                await asyncio.sleep(poll)
+                elapsed += poll
+                if self.phase != GamePhase.REVEAL:
+                    return  # host advanced / paused / ended elsewhere
+                if self._song_finished() or elapsed >= hard_cap:
+                    break
+            # Clear the handle before stopping so a manual start_round's
+            # _cancel_auto_advance() doesn't cancel this running task.
+            self._auto_advance_task = None
+            if self._media_player_service:
+                try:
+                    await self._media_player_service.stop()
+                except Exception as err:  # noqa: BLE001 — a stop error must not raise
+                    _LOGGER.warning("Idle-halt stop playback failed: %s", err)
+            _LOGGER.info(
+                "REVEAL idle halt — no guesses this round; game holds on REVEAL"
+            )
+        except asyncio.CancelledError:
+            _LOGGER.debug("REVEAL idle halt cancelled")
+            raise
+
     async def _fetch_metadata_async(self, uri: str) -> None:
         """
         Fetch album art in background and update current_song (Issue #42).
@@ -1756,10 +1793,24 @@ class GameState:
         # (timer 0 = advance at song-end). start_round itself ends the
         # game when songs are exhausted, so this also carries the final
         # round's REVEAL through to END.
+        #
+        # Exception: a round where nobody submitted a guess means the party
+        # is idle — let the song finish, stop playback, and hold on REVEAL
+        # instead of burning through the playlist unattended. The host's
+        # manual "Next round" still resumes the game.
         self._cancel_auto_advance()
-        self._auto_advance_task = asyncio.create_task(
-            self._reveal_auto_advance(self.reveal_auto_advance)
-        )
+        if any(p.submitted for p in self.players.values()):
+            self._auto_advance_task = asyncio.create_task(
+                self._reveal_auto_advance(self.reveal_auto_advance)
+            )
+        else:
+            _LOGGER.info(
+                "Round %d ended with zero guesses — holding after song-end",
+                self.round,
+            )
+            self._auto_advance_task = asyncio.create_task(
+                self._reveal_idle_halt()
+            )
 
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
