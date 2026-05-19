@@ -241,7 +241,7 @@ Score zero: **Lose it all.**
 
 ### Artist Challenge (Optional)
 Know your artists? Enable this mode in game setup.
-Guess the artist after the song: **+5 bonus points.**
+After the song, it's a race — the **first** player to guess the artist correctly earns **+5 bonus points.**
 Alternate names accepted—"Prince" or "The Artist" both count.
 
 ### Movie Quiz Bonus (Optional)
