@@ -156,13 +156,13 @@ After finishing, you land on the **"Ready to host"** screen: big Beatify wordmar
 </div>
 
 **Learn the Game in 20 Seconds**
-Players who scan the QR code drop into a swipeable 4-card tour that teaches the core mechanics in order: guess the year, double-or-nothing bet, steal an answer, guess the artist. Skip/Next always visible, auto-advances after 4 seconds per card. By the time the host hits Start, everyone knows what to do.
+Players who scan the QR code drop into a swipeable 4-card tour that teaches the core mechanics in order: guess the year, triple-or-nothing bet, steal an answer, guess the artist. Skip/Next always visible, auto-advances after 4 seconds per card. By the time the host hits Start, everyone knows what to do.
 
 **The Rush**
 A song starts playing. The clock is ticking. You *know* this song... but was it '85 or '87?
 
 **The Strategy**
-Answer fast for bonus points. Hit a streak for multipliers. Feeling confident? Bet double-or-nothing.
+Answer fast for bonus points. Hit a streak for multipliers. Feeling confident? Bet triple-or-nothing.
 
 **The Reveal**
 The year drops. The room erupts. Someone nailed it. Someone was *way* off. Everyone's laughing.
@@ -234,10 +234,10 @@ Linear scale in between. Hesitation costs points.
 
 Miss one? Streak resets. The pressure is real.
 
-### Double or Nothing
+### Triple or Nothing
 Feeling confident? Toggle the bet before submitting.
-Score points: **Double them.**
-Score zero: **Lose it all.**
+Nail the **exact** year: **triple your points.**
+Miss it — even by a year: **score nothing that round.**
 
 ### Artist Challenge (Optional)
 Know your artists? Enable this mode in game setup.
