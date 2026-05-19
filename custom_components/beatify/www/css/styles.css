@@ -13737,7 +13737,7 @@ body.theme-dark .your-result-stats .stat-value {
     justify-content: center;
 }
 
-.plh-sheet-head { padding: 28px 20px 0; display: flex; gap: 14px; align-items: flex-start; }
+.plh-sheet-head { padding: 28px 20px 0; display: flex; gap: 14px; align-items: flex-start; flex-shrink: 0; }
 
 .plh-sheet-cover {
     width: 100px;
@@ -13801,6 +13801,7 @@ body.theme-dark .your-result-stats .stat-value {
     padding: 18px 20px 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: 18px;
+    flex-shrink: 0;
 }
 
 .plh-stat { flex: 1; text-align: center; position: relative; }
@@ -13902,6 +13903,7 @@ body.theme-dark .your-result-stats .stat-value {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .plh-sheet-foot .plh-btn { flex: 1; }
