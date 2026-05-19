@@ -937,7 +937,13 @@ function _renderLevelUp() {
 function _persistLevelUpDetails() {
     try {
         if (chosenLevelUps.lights) {
+            // #1011: include `enabled: true` so party-lights.js hydrates the
+            // toggle state (it reads `saved.enabled || false`). Without this,
+            // the wizard saved lights + entities but the admin start-game
+            // request sent `enabled: false`, and the server skipped
+            // configure_party_lights — lights never reacted during the game.
             const payload = {
+                enabled: true,
                 lights: Array.from(chosenLightEntityIds),
                 intensity: chosenLightIntensity,
                 light_mode: chosenLightMode,
