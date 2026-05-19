@@ -117,3 +117,6 @@ custom_components/beatify/www/**/*.min.js
 custom_components/beatify/www/**/*.min.css
 scripts/.env
 .gstack/
+
+# Local design mockups / scratch HTML — not tracked
+mockups/
