@@ -8902,6 +8902,28 @@ body.device-tier-low .reveal-skip-hint {
     border-radius: var(--radius-sm, 8px);
 }
 
+/* #1012 follow-up: Idle-halt banner — shown on REVEAL when a round
+   ended with zero guesses, so the screen doesn't look generically stuck. */
+.idle-halt-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 8px);
+    margin: var(--space-md, 16px) auto;
+    padding: var(--space-sm, 8px) var(--space-md, 16px);
+    background: var(--bg-card, rgba(255, 255, 255, 0.06));
+    border: 1px solid var(--color-warning, #f5a623);
+    border-radius: var(--radius-md, 12px);
+    color: var(--color-warning, #f5a623);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    max-width: 540px;
+}
+
+.idle-halt-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
 /* #805: Recovery banner shown when game pauses due to playback error. */
 .admin-pause-recovery {
     margin: var(--space-md, 16px);

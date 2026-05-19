@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.4">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.3.7-rc8">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -1101,6 +1101,13 @@
                 </button>
             </div>
             <div class="reveal-container reveal-container--compact">
+                <!-- #1012 follow-up: Idle-halt banner — shown when a round
+                     ended with zero guesses and the game is holding here. -->
+                <div id="admin-reveal-idle-halt" class="idle-halt-banner hidden" role="status">
+                    <span class="idle-halt-icon" aria-hidden="true">⏸️</span>
+                    <span data-i18n="reveal.idleHaltBanner">Game idle — no one played this round. Tap Next round to keep going.</span>
+                </div>
+
                 <!-- Reveal Header (matches player reveal-header-compact) -->
                 <div class="reveal-header-compact">
                     <div class="reveal-header-left">
@@ -1406,7 +1413,7 @@
     <script src="/beatify/static/js/playlist-requests.min.js?v=3.3.6-rc7"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.3.1"></script>
     <script type="module" src="/beatify/static/js/wizard.js?v=3.3.6-rc8"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.3.7-rc7"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.3.7-rc8"></script>
     <script src="/beatify/static/js/party-lights.min.js?v=3.3.1"></script>
     <script src="/beatify/static/js/tts-settings.js?v=3.3.6-rc8"></script>
 </body>
