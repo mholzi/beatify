@@ -3742,10 +3742,10 @@ function showAdminRevealView(data) {
             emotionText = '🔥 ' + (BeatifyI18n.t('reveal.soClose') || 'So close!');
             emotionClass = 'reveal-emotion--close';
         } else if (avgOff <= 10) {
-            emotionText = '👀 Ø ' + avgOff + ' ' + (BeatifyI18n.t('reveal.yearsOff') || 'years off');
+            emotionText = '👀 Ø ' + (BeatifyI18n.t('reveal.yearsOff', { years: avgOff }) || avgOff + ' years off');
             emotionClass = 'reveal-emotion--wrong';
         } else {
-            emotionText = '😅 Ø ' + avgOff + ' ' + (BeatifyI18n.t('reveal.yearsOff') || 'years off');
+            emotionText = '😅 Ø ' + (BeatifyI18n.t('reveal.yearsOff', { years: avgOff }) || avgOff + ' years off');
             emotionClass = 'reveal-emotion--wrong';
         }
         emotionEl.className = 'reveal-emotion-inline ' + emotionClass;

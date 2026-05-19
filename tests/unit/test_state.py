@@ -167,6 +167,34 @@ class TestRevealAutoAdvance:
             await state._reveal_auto_advance(0)
         state.start_round.assert_not_awaited()
 
+    async def test_idle_halt_stops_playback_and_does_not_advance(self):
+        """Zero-guess round: song-end stops the speaker, no new round."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.REVEAL
+        state.start_round = AsyncMock()
+        state._song_finished = MagicMock(return_value=True)
+        state._media_player_service = MagicMock()
+        state._media_player_service.stop = AsyncMock()
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_idle_halt()
+        state._media_player_service.stop.assert_awaited_once()
+        state.start_round.assert_not_awaited()
+
+    async def test_idle_halt_no_stop_when_phase_left_reveal(self):
+        """A manual next-round / pause before song-end makes the halt a no-op."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.PLAYING
+        state.start_round = AsyncMock()
+        state._song_finished = MagicMock(return_value=True)
+        state._media_player_service = MagicMock()
+        state._media_player_service.stop = AsyncMock()
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_idle_halt()
+        state._media_player_service.stop.assert_not_awaited()
+        state.start_round.assert_not_awaited()
+
 
 # ---------------------------------------------------------------------------
 # GameState.add_player
