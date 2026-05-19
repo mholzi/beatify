@@ -404,6 +404,8 @@
     "timerHint": "Cuántos segundos tienen los jugadores para enviar su respuesta en cada ronda.",
     "difficultyHint": "Fácil: tolerancia amplia (±7 años). Normal: media (±3 años). Difícil: solo las respuestas cercanas puntúan.",
     "artistChallengeHint": "Después de cada ronda, los jugadores pueden adivinar el artista para ganar puntos extra. Primera respuesta correcta: +5 puntos.",
+    "movieQuiz": "Bonus de Quiz de Películas",
+    "movieQuizHint": "En canciones de bandas sonoras, los jugadores adivinan la película para puntos extra escalonados. Solo se activa en canciones con metadatos de película.",
     "gameSettings": "Configuracion del Juego",
     "language": "Idioma",
     "timer": "Temporizador",

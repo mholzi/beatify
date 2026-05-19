@@ -97,6 +97,9 @@ let hasMusicAssistant = false;
 // Artist Challenge state (Story 20.7)
 let artistChallengeEnabled = true;
 
+// Movie Quiz Bonus state (#947)
+let movieQuizEnabled = true;
+
 // Intro Mode state (Issue #23)
 let introModeEnabled = false;
 
@@ -216,6 +219,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (s.difficulty) selectedDifficulty = s.difficulty;
                     if (s.provider) selectedProvider = s.provider;
                     if (typeof s.artistChallenge === 'boolean') artistChallengeEnabled = s.artistChallenge;
+                    if (typeof s.movieQuiz === 'boolean') movieQuizEnabled = s.movieQuiz;
                     if (typeof s.introMode === 'boolean') introModeEnabled = s.introMode;
                     if (typeof s.closestWinsMode === 'boolean') closestWinsModeEnabled = s.closestWinsMode;
                     const wizPaths = Array.isArray(s.selectedPlaylists)
@@ -801,6 +805,13 @@ function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Movie Quiz Bonus toggle (#947)
+    document.getElementById('movie-quiz-toggle')?.addEventListener('change', function() {
+        movieQuizEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Intro Mode toggle (Issue #23)
     document.getElementById('intro-mode-toggle')?.addEventListener('change', function() {
         introModeEnabled = this.checked;
@@ -880,6 +891,13 @@ async function loadSavedSettings() {
                 if (toggle) toggle.checked = settings.artistChallenge;
             }
 
+            // Apply movie quiz bonus (#947)
+            if (typeof settings.movieQuiz === 'boolean') {
+                movieQuizEnabled = settings.movieQuiz;
+                const toggle = document.getElementById('movie-quiz-toggle');
+                if (toggle) toggle.checked = settings.movieQuiz;
+            }
+
             // Apply intro mode (Issue #23)
             if (typeof settings.introMode === 'boolean') {
                 introModeEnabled = settings.introMode;
@@ -919,6 +937,7 @@ function saveGameSettings() {
             duration: selectedDuration,
             difficulty: selectedDifficulty,
             artistChallenge: artistChallengeEnabled,
+            movieQuiz: movieQuizEnabled,  // #947
             introMode: introModeEnabled,  // Issue #23
             closestWinsMode: closestWinsModeEnabled,  // Issue #442
             provider: selectedProvider
@@ -939,10 +958,11 @@ function updateGameSettingsSummary() {
     const difficultyLabels = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
     const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
     const artistIcon = artistChallengeEnabled ? ' • 🎤' : '';
+    const movieIcon = movieQuizEnabled ? ' • 🎬' : '';  // #947
     const introIcon = introModeEnabled ? ' • ⚡' : '';  // Issue #23
     const closestIcon = closestWinsModeEnabled ? ' • 🎯' : '';  // Issue #442
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${introIcon}${closestIcon}`;
+    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
 }
 
 /**
@@ -1911,6 +1931,7 @@ async function startGame() {
                 difficulty: selectedDifficulty,  // Story 14.1
                 provider: selectedProvider,  // Story 17.2
                 artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
+                movie_quiz_enabled: movieQuizEnabled,  // #947
                 intro_mode_enabled: introModeEnabled,  // Issue #23
                 closest_wins_mode: closestWinsModeEnabled,  // Issue #442
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
