@@ -4,18 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.3.7] - 2026-05-18
+## [3.3.7] - 2026-05-19
 
 ### Added
+- **Movie Quiz Bonus toggle in game setup (#1009).** The engine supported `movie_quiz_enabled` but no UI ever exposed it, so the bonus was effectively always on. A toggle now sits next to Artist Challenge in the game-settings panel and the first-run wizard.
 - **Playlist acceptance criteria in the request modal (#986).** The request form carried only a one-line note; it now lists the six concrete criteria a playlist must meet — themed, not a duplicate, a fixed selection, curated in size, recognisable to a party crowd, no explicit content — so users can self-filter before submitting. Translated across all five locales.
+
+### Changed
+- **REVEAL auto-advance — the game runs unattended (#1012).** The game no longer stalls in REVEAL waiting for the host to click "Next round". A new **Auto-advance** setting (Off / 30 / 60 / 90s, default 30s) starts the next round on its own; "Off" advances when the round's song finishes playing. The manual "Next round" button stays as an early-skip override.
+- **Betting is now Triple or Nothing (#1004).** The double-or-nothing bet had no real downside — a lost bet scored 0, which is what a missed round scores anyway. A bet now wins only on the **exact** year (×3 points); any non-exact guess forfeits the round score. Renamed and re-copied across all five locales.
 
 ### Fixed
 - **Playlist-request status never updated (#970).** A delivered playlist request stayed stuck on "submitted" in the Playlist Hub's "Meine" tab forever. The request `status` field was write-once and nothing reconciled it afterward — the old browser poller (removed in #939) had only ever advanced a request carrying both a `playlist-ready` label and a `vX.Y.Z` version label, so requests the maintainer closed with `approved` never matched. `PlaylistRequestsView.get()` now reconciles pending requests against GitHub issue **state** (a closed issue means delivered, independent of label), server-side and throttled to once an hour.
 - **Declined playlist requests showed as "ready" (#970 follow-up).** A request the maintainer closed as "not planned" without a decline label was still synced to "✅ Ready", telling the user their playlist had shipped when it had been turned down. The status sync now also honours GitHub's `not_planned` close reason, and existing mis-marked requests were corrected.
+- **Playlist detail sheet's CTA button clipped (#1013).** On a short viewport the "Add to round" button was cut off by the sheet's `overflow:hidden`; the fixed header/stats/footer sections no longer compress, so the button always renders fully.
 
 ### Data
 - **New playlist: 40s & 50s Classics (#922).** 152 rock'n'roll, doo-wop and early-pop classics spanning 1939–1962.
+- **New playlist: Trance Classics (#988).** 120 trance, hands-up and Loveparade-era dance classics spanning 1991–2009.
 - **Greatest Metal Songs enriched (#981).** Nine canonical anthems added — Painkiller, Breaking the Law, Angel of Death, Cemetery Gates, Hangar 18, Stargazer, Nothing Else Matters, I Want Out, B.Y.O.B. — taking the playlist from 52 to 61 songs.
+
+### Docs
+- TV Dashboard link renamed **Open TV Dashboard** so the feature is findable (#1009). README corrected: YouTube Music works on a free account (#912), Artist Challenge is first-correct-wins (#947); the version badge is now dynamic.
 
 ## [3.3.6] - 2026-05-18
 
