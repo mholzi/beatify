@@ -297,11 +297,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             const urlEl = document.getElementById('home-join-url');
             if (urlEl && gameData.join_url) urlEl.textContent = gameData.join_url;
 
-            // Cast to TV link — point at the spectator dashboard when the server provides it
+            // "Open TV Dashboard" link — point at the spectator dashboard.
+            // Prefer a server-provided URL; otherwise derive it from join_url:
+            // the dashboard lives at /beatify/dashboard on the same host and
+            // needs no game parameter (it observes whatever game is live).
             const castEl = document.getElementById('home-dashboard-url');
             if (castEl) {
-                if (gameData.dashboard_url) {
-                    castEl.href = gameData.dashboard_url;
+                let dashboardUrl = gameData.dashboard_url;
+                if (!dashboardUrl && gameData.join_url) {
+                    dashboardUrl =
+                        gameData.join_url.split('/beatify/play')[0] +
+                        '/beatify/dashboard';
+                }
+                if (dashboardUrl) {
+                    castEl.href = dashboardUrl;
                     castEl.classList.remove('hidden');
                 } else {
                     castEl.classList.add('hidden');

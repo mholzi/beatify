@@ -48,6 +48,10 @@ export function startCountdown(deadline) {
     // hides it when scrolled back up. Tear down on stopCountdown.
     _ensureTimerFloatObserver(timerNeon, timerFloat);
 
+    // Watchdog tick counter — counts updateCountdown ticks spent past the
+    // deadline so the round_timeout nudge can retry instead of firing once.
+    var timedOutTicks = 0;
+
     function updateCountdown() {
         var now = Date.now();
         var remaining = Math.max(0, Math.ceil((deadline - now) / 1000));
@@ -85,14 +89,21 @@ export function startCountdown(deadline) {
         }
 
         if (remaining <= 0) {
-            stopCountdown();
             // Watchdog: the server's round timer is a single async task — if
-            // it dies the round freezes on PLAYING forever. Our countdown is
-            // independent, so when it hits zero, nudge the server to end the
-            // round. handle_round_timeout only acts if the deadline really
-            // passed and the round is still PLAYING; end_round is idempotent.
-            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-                state.ws.send(JSON.stringify({ type: 'round_timeout' }));
+            // it dies the round freezes on PLAYING forever (cancelled on a
+            // pause and never restarted, lost to a resume/desync edge). Our
+            // countdown is independent, so once it passes zero we nudge the
+            // server to end the round. handle_round_timeout is idempotent and
+            // only acts once the deadline truly passed — so a single nudge can
+            // race (clock skew) or be dropped (socket mid-reconnect) with no
+            // recovery. Keep nudging every few seconds until the phase leaves
+            // PLAYING, which tears this countdown down (player-core.js). Do
+            // NOT stopCountdown() here — that would make this single-shot.
+            timedOutTicks += 1;
+            if (timedOutTicks === 1 || timedOutTicks % 3 === 0) {
+                if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                    state.ws.send(JSON.stringify({ type: 'round_timeout' }));
+                }
             }
         }
     }
