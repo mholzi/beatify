@@ -99,8 +99,9 @@ const chosenPlaylists = new Set(); // paths — multi-select
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
 let chosenLanguage = 'en';
-// Game-mode toggles (defaults match admin.js: artistChallenge on, intro off, closestWins off)
+// Game-mode toggles (defaults match admin.js: artistChallenge on, movieQuiz on, intro off, closestWins off)
 let chosenArtistChallenge = true;
+let chosenMovieQuiz = true;
 let chosenIntroMode = false;
 let chosenClosestWins = false;
 const chosenLevelUps = { lights: false, tts: false };
@@ -615,6 +616,16 @@ const GAME_MODES = [
         set: (v) => { chosenArtistChallenge = v; },
     },
     {
+        key: 'movie',
+        icon: '🎬',
+        titleKey: 'admin.movieQuiz',
+        titleFallback: 'Movie Quiz Bonus',
+        hintKey: 'admin.movieQuizHint',
+        hintFallback: 'For soundtrack songs, players guess the movie for tiered bonus points. Only triggers on songs with movie metadata.',
+        get: () => chosenMovieQuiz,
+        set: (v) => { chosenMovieQuiz = v; },
+    },
+    {
         key: 'intro',
         icon: '⚡',
         titleKey: 'admin.introMode',
@@ -1026,6 +1037,7 @@ function _persistGameSettings() {
             duration: chosenDuration,
             language: chosenLanguage,
             artistChallenge: chosenArtistChallenge,
+            movieQuiz: chosenMovieQuiz,
             introMode: chosenIntroMode,
             closestWinsMode: chosenClosestWins,
         };
@@ -1088,6 +1100,7 @@ export async function show(stepOverride) {
             if (!_resolvedLang && s.language) _resolvedLang = s.language;
             if (_resolvedLang) chosenLanguage = _resolvedLang;
             if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
+            if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
             if (Array.isArray(s.selectedPlaylists)) {

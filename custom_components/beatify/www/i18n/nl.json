@@ -404,6 +404,8 @@
     "timerHint": "Hoeveel seconden spelers hebben om hun antwoord in te dienen per ronde.",
     "difficultyHint": "Makkelijk: ruime tolerantie (±7 jaar). Normaal: gemiddeld (±3 jaar). Moeilijk: alleen goede gokken tellen mee.",
     "artistChallengeHint": "Na elke ronde kunnen spelers de artiest raden voor bonuspunten. Eerste juiste antwoord: +5 punten.",
+    "movieQuiz": "Filmquiz-bonus",
+    "movieQuizHint": "Bij soundtracknummers raden spelers de film voor getrapte bonuspunten. Werkt alleen bij nummers met filmmetadata.",
     "gameSettings": "Spelinstellingen",
     "language": "Taal",
     "timer": "Timer",

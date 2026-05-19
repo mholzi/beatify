@@ -404,6 +404,8 @@
     "timerHint": "Nombre de secondes dont les joueurs disposent pour soumettre leur réponse à chaque manche.",
     "difficultyHint": "Facile : large tolérance (±7 ans). Normal : moyenne (±3 ans). Difficile : seules les réponses proches comptent.",
     "artistChallengeHint": "Après chaque manche, les joueurs peuvent deviner l'artiste pour des points bonus. Première bonne réponse : +5 points.",
+    "movieQuiz": "Bonus Quiz Film",
+    "movieQuizHint": "Pour les chansons de bandes originales, les joueurs devinent le film pour des points bonus échelonnés. Ne se déclenche que sur les chansons avec métadonnées de film.",
     "gameSettings": "Paramètres du jeu",
     "language": "Langue",
     "timer": "Temps",
