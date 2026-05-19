@@ -108,6 +108,9 @@ class GameState:
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
         self.phase: GamePhase = GamePhase.LOBBY
+        # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
+        self.reveal_auto_advance: int = 0
+        self._auto_advance_task: asyncio.Task | None = None
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
         # Issue #447: TTS announcement service
@@ -489,6 +492,7 @@ class GameState:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
+        reveal_auto_advance: int = 30,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -583,6 +587,11 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
+
+        # #1012: REVEAL auto-advance — seconds to wait in REVEAL before
+        # starting the next round automatically (0 = off / manual only).
+        self.reveal_auto_advance = reveal_auto_advance
+        self._auto_advance_task = None
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
@@ -839,6 +848,9 @@ class GameState:
             if player.is_admin:
                 self.disconnected_admin_name = player.name
                 break
+
+        # #1012: a pause stops the unattended REVEAL auto-advance too.
+        self._cancel_auto_advance()
 
         # Stop timer if in PLAYING
         if self.phase == GamePhase.PLAYING:
@@ -1210,6 +1222,11 @@ class GameState:
         """
         MAX_SONG_RETRIES = 3
 
+        # #1012: a (manual or auto) round start supersedes any pending
+        # REVEAL auto-advance.
+        if _retry_count == 0:
+            self._cancel_auto_advance()
+
         if not self._playlist_manager:
             _LOGGER.error("No playlist manager configured")
             return False
@@ -1419,6 +1436,63 @@ class GameState:
                 )
         except asyncio.CancelledError:
             _LOGGER.debug("Timer task cancelled")
+            raise
+
+    def _cancel_auto_advance(self) -> None:
+        """Cancel the pending REVEAL auto-advance task, if any (#1012)."""
+        if self._auto_advance_task is not None:
+            self._auto_advance_task.cancel()
+            self._auto_advance_task = None
+
+    def _song_finished(self) -> bool:
+        """True once the round's song is no longer playing (#1012).
+
+        The song keeps playing through REVEAL; when the track ends the
+        media player drops out of "playing", which is the song-end
+        signal for the auto-advance.
+        """
+        if not self._media_player_service:
+            return False
+        try:
+            pstate = self._media_player_service.get_playback_state()
+        except Exception:  # noqa: BLE001 — defensive: never let a poll error stall
+            return False
+        return pstate not in ("playing", "buffering")
+
+    async def _reveal_auto_advance(self, timer_seconds: int) -> None:
+        """Auto-advance from REVEAL to the next round (#1012).
+
+        Advances on whichever comes first: the round's song finishing,
+        or — when ``timer_seconds`` > 0 — that many seconds elapsing.
+        ``timer_seconds == 0`` ("Off") means wait for the song to end.
+        A generous hard cap guarantees the game can never stall even if
+        song-end is undetectable. A manual next_round, pause or game-end
+        cancels this task; the phase re-check makes a late firing a no-op.
+        """
+        poll = 2.0
+        # Even in song-end mode, never wait longer than this (songs run
+        # ~3-5 min) so an undetectable song-end can't stall the game.
+        hard_cap = timer_seconds if timer_seconds > 0 else 360
+        try:
+            elapsed = 0.0
+            while True:
+                await asyncio.sleep(poll)
+                elapsed += poll
+                if self.phase != GamePhase.REVEAL:
+                    return  # advanced / paused / ended elsewhere
+                if self._song_finished() or elapsed >= hard_cap:
+                    break
+            # Clear the handle before advancing so start_round's own
+            # _cancel_auto_advance() doesn't cancel this running task.
+            self._auto_advance_task = None
+            _LOGGER.info(
+                "REVEAL auto-advance (timer=%ss, %.0fs elapsed) — next round",
+                timer_seconds,
+                elapsed,
+            )
+            await self.start_round()
+        except asyncio.CancelledError:
+            _LOGGER.debug("REVEAL auto-advance cancelled")
             raise
 
     async def _fetch_metadata_async(self, uri: str) -> None:
@@ -1678,6 +1752,15 @@ class GameState:
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
+        # #1012: schedule the unattended REVEAL auto-advance — always on
+        # (timer 0 = advance at song-end). start_round itself ends the
+        # game when songs are exhausted, so this also carries the final
+        # round's REVEAL through to END.
+        self._cancel_auto_advance()
+        self._auto_advance_task = asyncio.create_task(
+            self._reveal_auto_advance(self.reveal_auto_advance)
+        )
+
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
         if correct_year is not None:
@@ -1923,6 +2006,7 @@ class GameState:
         """
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
+        self._cancel_auto_advance()  # #1012
         self.phase = GamePhase.END
         self._notify_state_callbacks()
 

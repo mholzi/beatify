@@ -1033,6 +1033,17 @@ class MediaPlayerService:
         state = self._hass.states.get(self._entity_id)
         return state is not None and state.state != "unavailable"
 
+    def get_playback_state(self) -> str | None:
+        """Return the player's current state string ("playing", "paused",
+        "idle", ...), or None if unavailable.
+
+        Used by the REVEAL auto-advance (#1012) to tell when the round's
+        song has finished — the player drops out of "playing" once the
+        track ends.
+        """
+        state = self._safe_state()
+        return state.state if state else None
+
     async def verify_responsive(self) -> tuple[bool, str]:
         """
         Verify media player is actually responsive (pre-flight check).

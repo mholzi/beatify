@@ -399,6 +399,23 @@
                     <p class="setting-hint" data-i18n="admin.timerHint">How many seconds players have to submit their guess each round.</p>
                 </div>
 
+                <!-- Reveal auto-advance - Compact chips (#1012) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⏭️</span>
+                            <span data-i18n="admin.revealAdvance">Auto-advance</span>
+                        </span>
+                        <div class="chip-group" role="group" aria-label="Reveal auto-advance">
+                            <button type="button" class="chip" data-reveal-advance="0" data-i18n="admin.revealAdvanceOff">Off</button>
+                            <button type="button" class="chip chip--active" data-reveal-advance="30">30s</button>
+                            <button type="button" class="chip" data-reveal-advance="60">60s</button>
+                            <button type="button" class="chip" data-reveal-advance="90">90s</button>
+                        </div>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.revealAdvanceHint">After the reveal, automatically start the next round — so the game runs without anyone at the admin screen. "Off" means you advance each round manually.</p>
+                </div>
+
                 <!-- Difficulty - Compact chips -->
                 <div class="setting-group">
                     <div class="setting-row">
