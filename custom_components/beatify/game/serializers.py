@@ -177,6 +177,12 @@ class GameStateSerializer:
         # Story 20.9: Early reveal flag for client-side toast
         if gs.early_reveal:
             state["early_reveal"] = True
+        # #1012 follow-up: idle-halt — a round where no one submitted holds on
+        # REVEAL with playback stopped instead of auto-advancing. Surface this
+        # so the REVEAL screen can show a clear "Game idle — tap Next round"
+        # banner instead of looking generically stuck.
+        if not any(p.submitted for p in gs.players.values()):
+            state["idle_halt"] = True
 
     @staticmethod
     def _add_end_state(gs: GameState, state: dict[str, Any]) -> None:

@@ -32,6 +32,11 @@ export function updateRevealView(data) {
     if (roundEl) roundEl.textContent = data.round || 1;
     if (totalEl) totalEl.textContent = data.total_rounds || 10;
 
+    // #1012 follow-up: idle-halt notice — the round ended with zero guesses,
+    // playback has stopped, and the game is holding here until "Next round".
+    var idleHalt = document.getElementById('reveal-idle-halt');
+    if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
+
     // Issue #442: Show/hide Closest Wins badge during REVEAL
     var closestBadge = document.getElementById('closest-wins-badge');
     if (closestBadge) {

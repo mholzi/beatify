@@ -3728,6 +3728,11 @@ function showAdminRevealView(data) {
     // #805: clear any pause-recovery banner left over from a prior PAUSED phase.
     _hidePauseRecoveryBanner();
 
+    // #1012 follow-up: idle-halt notice — the round ended with zero guesses,
+    // playback has stopped, and the game is holding here until "Next round".
+    var idleHalt = document.getElementById('admin-reveal-idle-halt');
+    if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
+
     // Show control bar during reveal too (admin can skip, end game)
     var controlBar = document.getElementById('admin-control-bar');
     if (controlBar) controlBar.classList.remove('hidden');
