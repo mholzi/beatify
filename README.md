@@ -439,7 +439,7 @@ That's it. No mDNS, no broadcast, no additional ports.
 ### Requirements
 - **Home Assistant** 2024.1+
 - **Supported media player** (see [Supported Speakers](#supported-speakers) above)
-- **A premium streaming subscription** — Spotify, Apple Music, YouTube Music, Tidal or Deezer. On-demand single-track playback needs a paid plan; free/ad-supported tiers (e.g. Spotify Free) don't allow it.
+- **A music service** — Spotify, Apple Music, Tidal or Deezer need a **paid plan** (on-demand single-track playback; free/ad-supported tiers like Spotify Free don't allow it). **YouTube Music is the exception** — it works with a free Google account (with ads).
 - **HACS** (recommended) or manual installation
 
 ### How It Works
@@ -507,7 +507,7 @@ Spotify, Apple Music, YouTube Music, Tidal, and Deezer. Support depends on your 
 <details>
 <summary><strong>Do I need a paid music subscription? Does Beatify work with free Spotify?</strong></summary>
 <br>
-Yes, you need a <strong>premium</strong> plan on one of the supported services. Beatify plays a specific song on demand each round, and that requires a paid subscription—<strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect). This is a streaming-service limitation, not a Beatify one. If you don't have Spotify Premium, just pick another service in the setup wizard—Apple Music, YouTube Music, Tidal or Deezer. The curated playlists carry URIs for all of them.
+For most services, yes. Beatify plays a specific song on demand each round, and on Spotify, Apple Music, Tidal and Deezer that requires a <strong>paid</strong> plan—<strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect). This is a streaming-service limitation, not a Beatify one. <strong>The exception is YouTube Music</strong>, which works with a free Google account (you'll just hear the occasional ad). So if you don't want a paid subscription, pick YouTube Music in the setup wizard. The curated playlists carry URIs for all five services.
 </details>
 
 <details>
