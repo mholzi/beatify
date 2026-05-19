@@ -129,8 +129,18 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
+        reveal_auto_advance = body.get("reveal_auto_advance", 30)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
+
+        # #1012: REVEAL auto-advance — 0 (manual) or 30/60/90 seconds;
+        # defaults to 30 so an unattended game keeps moving on its own.
+        try:
+            reveal_auto_advance = int(reveal_auto_advance)
+        except (ValueError, TypeError):
+            reveal_auto_advance = 30
+        if reveal_auto_advance not in (0, 30, 60, 90):
+            reveal_auto_advance = 30
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)
@@ -301,6 +311,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
             "intro_mode_enabled": intro_mode_enabled,  # Issue #23
             "closest_wins_mode": closest_wins_mode,  # Issue #442
+            "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration

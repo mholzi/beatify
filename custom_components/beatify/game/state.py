@@ -108,6 +108,9 @@ class GameState:
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
         self.phase: GamePhase = GamePhase.LOBBY
+        # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
+        self.reveal_auto_advance: int = 0
+        self._auto_advance_task: asyncio.Task | None = None
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
         # Issue #447: TTS announcement service
@@ -489,6 +492,7 @@ class GameState:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
+        reveal_auto_advance: int = 30,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -583,6 +587,11 @@ class GameState:
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
+
+        # #1012: REVEAL auto-advance — seconds to wait in REVEAL before
+        # starting the next round automatically (0 = off / manual only).
+        self.reveal_auto_advance = reveal_auto_advance
+        self._auto_advance_task = None
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
@@ -839,6 +848,9 @@ class GameState:
             if player.is_admin:
                 self.disconnected_admin_name = player.name
                 break
+
+        # #1012: a pause stops the unattended REVEAL auto-advance too.
+        self._cancel_auto_advance()
 
         # Stop timer if in PLAYING
         if self.phase == GamePhase.PLAYING:
@@ -1210,6 +1222,11 @@ class GameState:
         """
         MAX_SONG_RETRIES = 3
 
+        # #1012: a (manual or auto) round start supersedes any pending
+        # REVEAL auto-advance.
+        if _retry_count == 0:
+            self._cancel_auto_advance()
+
         if not self._playlist_manager:
             _LOGGER.error("No playlist manager configured")
             return False
@@ -1419,6 +1436,34 @@ class GameState:
                 )
         except asyncio.CancelledError:
             _LOGGER.debug("Timer task cancelled")
+            raise
+
+    def _cancel_auto_advance(self) -> None:
+        """Cancel the pending REVEAL auto-advance task, if any (#1012)."""
+        if self._auto_advance_task is not None:
+            self._auto_advance_task.cancel()
+            self._auto_advance_task = None
+
+    async def _reveal_auto_advance(self, delay_seconds: int) -> None:
+        """Wait out the REVEAL phase, then start the next round (#1012).
+
+        Lets the game run unattended — the host need not click "Next
+        round". A manual next_round, a pause or game-end cancels this
+        task; the phase re-check makes a late firing a harmless no-op.
+        """
+        try:
+            await asyncio.sleep(delay_seconds)
+            if self.phase == GamePhase.REVEAL:
+                # Clear the handle before advancing so start_round's own
+                # _cancel_auto_advance() doesn't cancel this running task.
+                self._auto_advance_task = None
+                _LOGGER.info(
+                    "REVEAL auto-advance (%ss) — starting next round",
+                    delay_seconds,
+                )
+                await self.start_round()
+        except asyncio.CancelledError:
+            _LOGGER.debug("REVEAL auto-advance cancelled")
             raise
 
     async def _fetch_metadata_async(self, uri: str) -> None:
@@ -1678,6 +1723,15 @@ class GameState:
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
+        # #1012: schedule the unattended REVEAL auto-advance. start_round
+        # itself ends the game when songs are exhausted, so this also
+        # carries the final round's REVEAL through to END.
+        self._cancel_auto_advance()
+        if self.reveal_auto_advance and self.reveal_auto_advance > 0:
+            self._auto_advance_task = asyncio.create_task(
+                self._reveal_auto_advance(self.reveal_auto_advance)
+            )
+
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
         if correct_year is not None:
@@ -1923,6 +1977,7 @@ class GameState:
         """
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
+        self._cancel_auto_advance()  # #1012
         self.phase = GamePhase.END
         self._notify_state_callbacks()
 

@@ -86,6 +86,7 @@ let selectedLanguage = 'en';
 
 // Timer state (Story 13.1)
 let selectedDuration = 45;
+let revealAutoAdvance = 30;  // #1012: REVEAL auto-advance seconds (0 = off)
 
 // Difficulty state (Story 14.1)
 let selectedDifficulty = 'normal';
@@ -216,6 +217,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const s = JSON.parse(raw);
                     if (s.language) selectedLanguage = s.language;
                     if (s.duration) selectedDuration = s.duration;
+                    if (typeof s.revealAutoAdvance === 'number') revealAutoAdvance = s.revealAutoAdvance;
                     if (s.difficulty) selectedDifficulty = s.difficulty;
                     if (s.provider) selectedProvider = s.provider;
                     if (typeof s.artistChallenge === 'boolean') artistChallengeEnabled = s.artistChallenge;
@@ -786,6 +788,16 @@ function setupGameSettings() {
         });
     });
 
+    // Reveal auto-advance chips (#1012)
+    document.querySelectorAll('.chip[data-reveal-advance]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
+            document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            saveGameSettings();
+        });
+    });
+
     // Difficulty chips
     document.querySelectorAll('.chip[data-difficulty]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -876,6 +888,14 @@ async function loadSavedSettings() {
                 });
             }
 
+            // Apply reveal auto-advance (#1012)
+            if (typeof settings.revealAutoAdvance === 'number') {
+                revealAutoAdvance = settings.revealAutoAdvance;
+                document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => {
+                    c.classList.toggle('chip--active', parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
+                });
+            }
+
             // Apply difficulty
             if (settings.difficulty) {
                 selectedDifficulty = settings.difficulty;
@@ -935,6 +955,7 @@ function saveGameSettings() {
         const settings = {
             language: selectedLanguage,
             duration: selectedDuration,
+            revealAutoAdvance: revealAutoAdvance,  // #1012
             difficulty: selectedDifficulty,
             artistChallenge: artistChallengeEnabled,
             movieQuiz: movieQuizEnabled,  // #947
@@ -1928,6 +1949,7 @@ async function startGame() {
                 media_player: selectedMediaPlayer?.entityId,
                 language: selectedLanguage,
                 round_duration: selectedDuration,  // Story 13.1
+                reveal_auto_advance: revealAutoAdvance,  // #1012
                 difficulty: selectedDifficulty,  // Story 14.1
                 provider: selectedProvider,  // Story 17.2
                 artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7

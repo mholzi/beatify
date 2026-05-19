@@ -107,6 +107,44 @@ class TestCreateGame:
 
 
 # ---------------------------------------------------------------------------
+# REVEAL auto-advance (#1012)
+# ---------------------------------------------------------------------------
+
+
+class TestRevealAutoAdvance:
+    def test_defaults_to_30s(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        assert state.reveal_auto_advance == 30
+
+    def test_stores_configured_value(self):
+        state = make_game_state()
+        _create_fresh_game(state, reveal_auto_advance=60)
+        assert state.reveal_auto_advance == 60
+
+    def test_cancel_with_no_task_is_safe(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._cancel_auto_advance()  # must not raise
+
+    async def test_advances_when_phase_is_reveal(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.REVEAL
+        state.start_round = AsyncMock()
+        await state._reveal_auto_advance(0)
+        state.start_round.assert_awaited_once()
+
+    async def test_does_not_advance_when_phase_left_reveal(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.PLAYING
+        state.start_round = AsyncMock()
+        await state._reveal_auto_advance(0)
+        state.start_round.assert_not_awaited()
+
+
+# ---------------------------------------------------------------------------
 # GameState.add_player
 # ---------------------------------------------------------------------------
 
