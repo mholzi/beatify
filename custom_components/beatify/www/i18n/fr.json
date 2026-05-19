@@ -404,7 +404,7 @@
     "timerHint": "Nombre de secondes dont les joueurs disposent pour soumettre leur réponse à chaque manche.",
     "revealAdvance": "Avance auto",
     "revealAdvanceOff": "Désactivé",
-    "revealAdvanceHint": "Après la révélation, démarre automatiquement la manche suivante — le jeu avance sans personne devant l'écran d'administration. « Désactivé » signifie que vous passez chaque manche manuellement.",
+    "revealAdvanceHint": "Après la révélation, la manche suivante démarre seule — après un temps fixe, ou (Désactivé) quand la chanson se termine. Le jeu avance sans personne devant l'écran d'administration.",
     "difficultyHint": "Facile : large tolérance (±7 ans). Normal : moyenne (±3 ans). Difficile : seules les réponses proches comptent.",
     "artistChallengeHint": "Après chaque manche, les joueurs peuvent deviner l'artiste pour des points bonus. Première bonne réponse : +5 points.",
     "movieQuiz": "Bonus Quiz Film",

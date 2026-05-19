@@ -1444,24 +1444,53 @@ class GameState:
             self._auto_advance_task.cancel()
             self._auto_advance_task = None
 
-    async def _reveal_auto_advance(self, delay_seconds: int) -> None:
-        """Wait out the REVEAL phase, then start the next round (#1012).
+    def _song_finished(self) -> bool:
+        """True once the round's song is no longer playing (#1012).
 
-        Lets the game run unattended — the host need not click "Next
-        round". A manual next_round, a pause or game-end cancels this
-        task; the phase re-check makes a late firing a harmless no-op.
+        The song keeps playing through REVEAL; when the track ends the
+        media player drops out of "playing", which is the song-end
+        signal for the auto-advance.
         """
+        if not self._media_player_service:
+            return False
         try:
-            await asyncio.sleep(delay_seconds)
-            if self.phase == GamePhase.REVEAL:
-                # Clear the handle before advancing so start_round's own
-                # _cancel_auto_advance() doesn't cancel this running task.
-                self._auto_advance_task = None
-                _LOGGER.info(
-                    "REVEAL auto-advance (%ss) — starting next round",
-                    delay_seconds,
-                )
-                await self.start_round()
+            pstate = self._media_player_service.get_playback_state()
+        except Exception:  # noqa: BLE001 — defensive: never let a poll error stall
+            return False
+        return pstate not in ("playing", "buffering")
+
+    async def _reveal_auto_advance(self, timer_seconds: int) -> None:
+        """Auto-advance from REVEAL to the next round (#1012).
+
+        Advances on whichever comes first: the round's song finishing,
+        or — when ``timer_seconds`` > 0 — that many seconds elapsing.
+        ``timer_seconds == 0`` ("Off") means wait for the song to end.
+        A generous hard cap guarantees the game can never stall even if
+        song-end is undetectable. A manual next_round, pause or game-end
+        cancels this task; the phase re-check makes a late firing a no-op.
+        """
+        poll = 2.0
+        # Even in song-end mode, never wait longer than this (songs run
+        # ~3-5 min) so an undetectable song-end can't stall the game.
+        hard_cap = timer_seconds if timer_seconds > 0 else 360
+        try:
+            elapsed = 0.0
+            while True:
+                await asyncio.sleep(poll)
+                elapsed += poll
+                if self.phase != GamePhase.REVEAL:
+                    return  # advanced / paused / ended elsewhere
+                if self._song_finished() or elapsed >= hard_cap:
+                    break
+            # Clear the handle before advancing so start_round's own
+            # _cancel_auto_advance() doesn't cancel this running task.
+            self._auto_advance_task = None
+            _LOGGER.info(
+                "REVEAL auto-advance (timer=%ss, %.0fs elapsed) — next round",
+                timer_seconds,
+                elapsed,
+            )
+            await self.start_round()
         except asyncio.CancelledError:
             _LOGGER.debug("REVEAL auto-advance cancelled")
             raise
@@ -1723,14 +1752,14 @@ class GameState:
         self.phase = GamePhase.REVEAL
         self._notify_state_callbacks()
 
-        # #1012: schedule the unattended REVEAL auto-advance. start_round
-        # itself ends the game when songs are exhausted, so this also
-        # carries the final round's REVEAL through to END.
+        # #1012: schedule the unattended REVEAL auto-advance — always on
+        # (timer 0 = advance at song-end). start_round itself ends the
+        # game when songs are exhausted, so this also carries the final
+        # round's REVEAL through to END.
         self._cancel_auto_advance()
-        if self.reveal_auto_advance and self.reveal_auto_advance > 0:
-            self._auto_advance_task = asyncio.create_task(
-                self._reveal_auto_advance(self.reveal_auto_advance)
-            )
+        self._auto_advance_task = asyncio.create_task(
+            self._reveal_auto_advance(self.reveal_auto_advance)
+        )
 
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)

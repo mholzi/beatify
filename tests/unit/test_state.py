@@ -127,12 +127,34 @@ class TestRevealAutoAdvance:
         _create_fresh_game(state)
         state._cancel_auto_advance()  # must not raise
 
-    async def test_advances_when_phase_is_reveal(self):
+    def test_song_finished_true_when_player_idle(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = MagicMock()
+        state._media_player_service.get_playback_state.return_value = "idle"
+        assert state._song_finished() is True
+
+    def test_song_finished_false_while_playing(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = MagicMock()
+        state._media_player_service.get_playback_state.return_value = "playing"
+        assert state._song_finished() is False
+
+    def test_song_finished_false_without_media_service(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = None
+        assert state._song_finished() is False
+
+    async def test_advances_on_song_end(self):
         state = make_game_state()
         _create_fresh_game(state)
         state.phase = GamePhase.REVEAL
         state.start_round = AsyncMock()
-        await state._reveal_auto_advance(0)
+        state._song_finished = MagicMock(return_value=True)
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_auto_advance(0)
         state.start_round.assert_awaited_once()
 
     async def test_does_not_advance_when_phase_left_reveal(self):
@@ -140,7 +162,9 @@ class TestRevealAutoAdvance:
         _create_fresh_game(state)
         state.phase = GamePhase.PLAYING
         state.start_round = AsyncMock()
-        await state._reveal_auto_advance(0)
+        state._song_finished = MagicMock(return_value=True)
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_auto_advance(0)
         state.start_round.assert_not_awaited()
 
 
