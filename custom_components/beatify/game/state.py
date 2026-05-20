@@ -492,7 +492,7 @@ class GameState:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
-        reveal_auto_advance: int = 30,
+        reveal_auto_advance: int = 0,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -1500,7 +1500,19 @@ class GameState:
                 timer_seconds,
                 elapsed,
             )
-            await self.start_round()
+            success = await self.start_round()
+            # start_round() only fires sync state-callbacks via
+            # _notify_state_callbacks; the async WebSocket broadcast
+            # (`_on_round_end` = ws_handler.broadcast_state) is what actually
+            # pushes the new PLAYING state to clients. The manual
+            # admin_next_round path explicitly awaits handler.broadcast_state()
+            # after start_round — mirror that here, otherwise music starts but
+            # the admin + player UIs stay frozen on REVEAL.
+            if success and self._on_round_end:
+                try:
+                    await self._on_round_end()
+                except (ConnectionError, OSError, TypeError) as err:
+                    _LOGGER.error("Auto-advance broadcast failed: %s", err)
         except asyncio.CancelledError:
             _LOGGER.debug("REVEAL auto-advance cancelled")
             raise

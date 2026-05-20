@@ -129,18 +129,18 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
-        reveal_auto_advance = body.get("reveal_auto_advance", 30)  # #1012
+        reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
 
-        # #1012: REVEAL auto-advance — 0 (manual) or 30/60/90 seconds;
-        # defaults to 30 so an unattended game keeps moving on its own.
+        # #1012: REVEAL auto-advance — 0 (off, manual + song-end advance)
+        # or 30/60/90 seconds. Default 0: host stays in control.
         try:
             reveal_auto_advance = int(reveal_auto_advance)
         except (ValueError, TypeError):
-            reveal_auto_advance = 30
+            reveal_auto_advance = 0
         if reveal_auto_advance not in (0, 30, 60, 90):
-            reveal_auto_advance = 30
+            reveal_auto_advance = 0
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)

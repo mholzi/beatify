@@ -112,10 +112,10 @@ class TestCreateGame:
 
 
 class TestRevealAutoAdvance:
-    def test_defaults_to_30s(self):
+    def test_defaults_to_off(self):
         state = make_game_state()
         _create_fresh_game(state)
-        assert state.reveal_auto_advance == 30
+        assert state.reveal_auto_advance == 0
 
     def test_stores_configured_value(self):
         state = make_game_state()
