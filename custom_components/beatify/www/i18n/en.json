@@ -863,6 +863,8 @@
       "sub": "Defaults work for most parties. Tweak if you want.",
       "difficulty": "Difficulty",
       "timer": "Time per round",
+      "autoAdvance": "Auto-advance reveal",
+      "autoAdvanceOff": "Off",
       "language": "Announcement language",
       "easy": "Easy",
       "normal": "Normal",

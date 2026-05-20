@@ -863,6 +863,8 @@
       "sub": "Les réglages par défaut conviennent pour la plupart. Ajuste si tu veux.",
       "difficulty": "Difficulté",
       "timer": "Temps par manche",
+      "autoAdvance": "Avance auto au reveal",
+      "autoAdvanceOff": "Désactivé",
       "language": "Langue des annonces",
       "easy": "Facile",
       "normal": "Normal",
