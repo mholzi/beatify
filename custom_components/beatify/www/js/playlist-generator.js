@@ -22,6 +22,34 @@
     'use strict';
 
     // -----------------------------------------------------------------
+    // i18n shim. window.BeatifyI18n is loaded from i18n.js earlier in
+    // admin.html; we read it lazily because the IIFE itself runs at
+    // script-tag time (before user interaction). Falls back to the
+    // English literal when a key is unknown or i18n isn't ready.
+    //
+    // The prompt itself (buildPrompt) and the LLM refinement brief
+    // (formatValidationForLLM) deliberately stay English: both are
+    // prompt-engineering payloads sent to an LLM, not user-visible
+    // chrome. Beatify already passes English to LLMs in this feature,
+    // and English is the strongest instruction-following channel.
+    // -----------------------------------------------------------------
+    function _t(key, fallback, args) {
+        let val = fallback;
+        try {
+            if (window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
+                const got = window.BeatifyI18n.t(key, fallback);
+                if (got) val = got;
+            }
+        } catch (e) { /* i18n not ready */ }
+        if (args && typeof val === 'string') {
+            for (const [k, v] of Object.entries(args)) {
+                val = val.replace(new RegExp('\\{' + k + '\\}', 'g'), String(v));
+            }
+        }
+        return val;
+    }
+
+    // -----------------------------------------------------------------
     // Pure helpers — exported via window.PlaylistGenerator for vitest.
     // -----------------------------------------------------------------
 
@@ -154,6 +182,24 @@ RULES
         return re.test(value) ? 'ok' : 'bad-shape';
     }
 
+    // Echo the value the LLM returned alongside each shape-error so a
+    // paste-corruption issue (smart quotes, non-breaking spaces in the
+    // middle of a URL, etc.) is one glance away from being diagnosed
+    // instead of looking like a regex/data mystery.
+    function _echo(value) {
+        if (value === undefined) return ' Got: (missing)';
+        if (value === null) return ' Got: null';
+        if (typeof value === 'string') {
+            const safe = value.length > 80 ? value.slice(0, 77) + '…' : value;
+            return ` Got: ${JSON.stringify(safe)}`;
+        }
+        if (typeof value === 'object') {
+            const j = JSON.stringify(value);
+            return ` Got: ${j.length > 100 ? j.slice(0, 97) + '…' : j}`;
+        }
+        return ` Got: ${JSON.stringify(value)}`;
+    }
+
     function validateSong(song, idx) {
         const result = { index: idx, fields: {}, errors: [], warnings: [] };
         if (!song || typeof song !== 'object' || Array.isArray(song)) {
@@ -182,14 +228,14 @@ RULES
             const status = _checkUri(song.uri, SPOTIFY_TRACK_RE, false);
             const ok = status === 'ok';
             result.fields.uri = ok;
-            if (!ok) result.errors.push({ field: 'uri', message: 'uri must look like spotify:track:<22 base62>' });
+            if (!ok) result.errors.push({ field: 'uri', message: 'uri must look like spotify:track:<22 base62>.' + _echo(song.uri) });
         }
         // apple music single + by_region
         {
             const status = _checkUri(song.uri_apple_music, APPLE_MUSIC_RE, false);
             const ok = status === 'ok';
             result.fields.uri_apple_music = ok;
-            if (!ok) result.errors.push({ field: 'uri_apple_music', message: 'uri_apple_music must look like applemusic://track/<digits>' });
+            if (!ok) result.errors.push({ field: 'uri_apple_music', message: 'uri_apple_music must look like applemusic://track/<digits>.' + _echo(song.uri_apple_music) });
         }
         {
             const r = song.uri_apple_music_by_region;
@@ -233,7 +279,7 @@ RULES
             const status = _checkUri(song.uri_youtube_music, YT_MUSIC_RE, false);
             const ok = status === 'ok';
             result.fields.uri_youtube_music = ok;
-            if (!ok) result.errors.push({ field: 'uri_youtube_music', message: 'uri_youtube_music must look like https://music.youtube.com/watch?v=<id>' });
+            if (!ok) result.errors.push({ field: 'uri_youtube_music', message: 'uri_youtube_music must look like https://music.youtube.com/watch?v=<id>.' + _echo(song.uri_youtube_music) });
         }
         // Tidal — nullable, anything string-ish accepted (Tidal URI shapes vary)
         {
@@ -247,7 +293,7 @@ RULES
             const status = _checkUri(song.uri_deezer, DEEZER_RE, true);
             const ok = status === 'ok';
             result.fields.uri_deezer = ok;
-            if (!ok) result.errors.push({ field: 'uri_deezer', message: 'uri_deezer must be null or deezer://track/<digits>' });
+            if (!ok) result.errors.push({ field: 'uri_deezer', message: 'uri_deezer must be null or deezer://track/<digits>.' + _echo(song.uri_deezer) });
         }
         // fun_facts (all required)
         for (const f of ['fun_fact', 'fun_fact_de', 'fun_fact_es', 'fun_fact_fr', 'fun_fact_nl']) {
@@ -326,6 +372,137 @@ RULES
     }
 
     // -----------------------------------------------------------------
+    // Validation → Markdown brief for an LLM (refinement round-trip).
+    // Users paste this back into the same LLM session that produced the
+    // original JSON, so it can return a corrected object.
+    // -----------------------------------------------------------------
+
+    function _summarizeValue(v) {
+        if (v === undefined) return '(missing)';
+        if (v === null) return 'null';
+        if (typeof v === 'string') {
+            const trimmed = v.length > 120 ? v.slice(0, 117) + '…' : v;
+            return JSON.stringify(trimmed);
+        }
+        if (typeof v === 'object') {
+            const json = JSON.stringify(v);
+            return json.length > 200 ? json.slice(0, 197) + '…' : json;
+        }
+        return JSON.stringify(v);
+    }
+
+    function formatValidationForLLM(validation, originalJsonText) {
+        if (!validation) return '';
+        if (validation.parseError) {
+            return [
+                'The JSON you returned could not be parsed.',
+                '',
+                `Parser error: ${validation.parseError}`,
+                '',
+                'Common causes: leading or trailing markdown fences (```json … ```), preamble text before `{`, trailing commas, smart quotes instead of `"`.',
+                '',
+                'Return a single valid JSON object that conforms to the Beatify playlist schema you were originally given. No markdown fences, no commentary.',
+            ].join('\n');
+        }
+
+        // The validator already ran on this text — re-parse only to look up
+        // actual values per field. If somehow this fails we degrade
+        // gracefully and skip the value echoes.
+        let data = null;
+        if (typeof originalJsonText === 'string') {
+            try { data = JSON.parse(originalJsonText); } catch (e) { data = null; }
+        }
+
+        const errorLines = [];
+        const warningLines = [];
+
+        // The validator already appends a `Got: ...` echo to most shape
+        // errors (see _echo), so we don't append a second echo here for
+        // top-level + per-song errors. For warnings we still echo the
+        // current value because warnings don't carry one yet.
+
+        for (const e of validation.topErrors) {
+            const actual = data && data !== null && (e.field in data) ? data[e.field] : undefined;
+            const echo = /Got:/.test(e.message) ? '' : ` Got: ${_summarizeValue(actual)}`;
+            errorLines.push(`- \`${e.field}\` — ${e.message}${echo}`);
+        }
+
+        const songs = data && Array.isArray(data.songs) ? data.songs : null;
+        for (const r of validation.songResults) {
+            const song = songs ? songs[r.index] : null;
+            const ref = song && typeof song === 'object'
+                ? `${song.artist || '?'} / ${song.title || '?'}`
+                : '';
+            const songPath = `songs[${r.index}]`;
+            for (const e of r.errors) {
+                const actual = song && typeof song === 'object' && (e.field in song) ? song[e.field] : undefined;
+                const echo = /Got:/.test(e.message) ? '' : ` Got: ${_summarizeValue(actual)}`;
+                errorLines.push(`- \`${songPath}.${e.field}\`${ref ? ` (${ref})` : ''} — ${e.message}${echo}`);
+            }
+            for (const w of r.warnings) {
+                const actual = song && typeof song === 'object' && (w.field in song) ? song[w.field] : undefined;
+                warningLines.push(`- \`${songPath}.${w.field}\`${ref ? ` (${ref})` : ''} — ${w.message}. Current value: ${_summarizeValue(actual)}`);
+            }
+        }
+
+        const totalSongs = validation.songResults.length;
+        const cleanSongs = validation.songResults.filter((r) => r.errors.length === 0 && r.warnings.length === 0).length;
+        const cleanIndices = validation.songResults
+            .filter((r) => r.errors.length === 0 && r.warnings.length === 0)
+            .map((r) => r.index);
+
+        const parts = [];
+        parts.push('# Beatify playlist JSON — validation feedback');
+        parts.push('');
+        parts.push(`You returned a playlist with ${totalSongs} song${totalSongs === 1 ? '' : 's'}. The validator found **${errorLines.length} error${errorLines.length === 1 ? '' : 's'}** and **${warningLines.length} warning${warningLines.length === 1 ? '' : 's'}**.`);
+        parts.push('');
+
+        if (errorLines.length) {
+            parts.push('## Errors — these must be fixed');
+            parts.push(...errorLines);
+            parts.push('');
+        }
+
+        if (warningLines.length) {
+            parts.push('## Warnings — likely hallucinated identifiers');
+            parts.push('These passed shape validation but match patterns that usually indicate the LLM guessed. Double-check against the actual streaming services if you can; if you cannot find verified IDs, leave the field as-is and append `(LLM-generated identifiers — verify with the Beatify URI resolver)` to the playlist `description`.');
+            parts.push('');
+            parts.push(...warningLines);
+            parts.push('');
+        }
+
+        if (cleanSongs > 0 && cleanSongs < totalSongs) {
+            const refList = cleanIndices.map((i) => `songs[${i}]`).join(', ');
+            parts.push(`The following entries validated cleanly — **do not modify them**: ${refList} (${cleanSongs}/${totalSongs} songs).`);
+            parts.push('');
+        }
+
+        if (errorLines.length === 0 && warningLines.length === 0) {
+            parts.push('No errors or warnings — your JSON validated cleanly. You probably do not need to send this back. Sending it anyway is fine if you want the LLM to extend the playlist with more songs in the same shape.');
+            parts.push('');
+        }
+
+        // Embed the original JSON so the LLM can patch in place without
+        // having to remember every field it produced — saves a round-trip
+        // when the user's chat history is truncated or compressed.
+        if (data !== null) {
+            parts.push('## Your previous JSON (patch this; do not regenerate from scratch)');
+            parts.push('```json');
+            parts.push(JSON.stringify(data, null, 2));
+            parts.push('```');
+            parts.push('');
+        }
+
+        parts.push('## Output instructions');
+        parts.push('- Return ONLY the corrected JSON object.');
+        parts.push('- No markdown code fences, no preamble, no closing remarks.');
+        parts.push('- Keep every field that validated cleanly exactly as it was.');
+        parts.push('- For each error above: replace the bad value with a correctly-shaped one.');
+        parts.push('- For each warning above: either replace with a verified value or follow the description-note convention above.');
+        return parts.join('\n');
+    }
+
+    // -----------------------------------------------------------------
     // Submit-as-issue URL builder
     // -----------------------------------------------------------------
 
@@ -383,13 +560,13 @@ __JSON__
     function _renderResultsTable(validation) {
         if (!validation) return '';
         if (validation.parseError) {
-            return `<div class="plg-error">JSON parse failed: ${_esc(validation.parseError)}</div>`;
+            return `<div class="plg-error">${_esc(_t('playlistGenerator.results.parseFailed', 'JSON parse failed: {error}', { error: validation.parseError }))}</div>`;
         }
         const blocks = [];
         if (validation.topErrors.length) {
             blocks.push(`
                 <div class="plg-block plg-block-err">
-                    <h4>Top-level errors</h4>
+                    <h4>${_esc(_t('playlistGenerator.results.topErrors', 'Top-level errors'))}</h4>
                     <ul>${validation.topErrors.map((e) => `<li><b>${_esc(e.field)}</b> — ${_esc(e.message)}</li>`).join('')}</ul>
                 </div>
             `);
@@ -411,7 +588,7 @@ __JSON__
             }).join('');
             blocks.push(`
                 <div class="plg-block">
-                    <h4>Per-song validation (${songCount} songs)</h4>
+                    <h4>${_esc(_t('playlistGenerator.results.perSong', 'Per-song validation ({n} songs)', { n: songCount }))}</h4>
                     <div class="plg-table-wrap">
                         <table class="plg-table">
                             <thead><tr><th>#</th>${allFields.map((f) => `<th title="${_esc(f)}">${_esc(f.replace(/^uri_/, '').replace(/^fun_fact_?/, 'ff_').replace(/_by_region$/, '·rgn'))}</th>`).join('')}</tr></thead>
@@ -422,46 +599,55 @@ __JSON__
             `);
         }
         const verdict = validation.ok
-            ? `<div class="plg-verdict plg-verdict-ok">✓ Validation passed — ready to submit.</div>`
-            : `<div class="plg-verdict plg-verdict-bad">✗ Validation failed — fix the rows highlighted above and re-validate.</div>`;
-        return verdict + blocks.join('');
+            ? `<div class="plg-verdict plg-verdict-ok">${_esc(_t('playlistGenerator.verdict.ok', '✓ Validation passed — ready to submit.'))}</div>`
+            : `<div class="plg-verdict plg-verdict-bad">${_esc(_t('playlistGenerator.verdict.fail', '✗ Validation failed — fix the rows highlighted above and re-validate.'))}</div>`;
+        const copyForLlm = `
+            <div class="plg-row plg-results-actions">
+                <button class="plg-btn plg-btn-secondary" data-plg-action="copy-result">${_esc(_t('playlistGenerator.actions.copyResult', 'Copy result for LLM'))}</button>
+                <span class="plg-hint plg-hint-inline">${_esc(_t('playlistGenerator.hints.copyResultHint', 'Paste this back into your LLM to ask for a corrected JSON.'))}</span>
+            </div>
+        `;
+        return verdict + copyForLlm + blocks.join('');
     }
 
     function _renderModal() {
         if (!state.rootEl) return;
         const v = state.lastValidation;
         const canSubmit = !!(v && v.ok);
+        const submitTooltip = canSubmit
+            ? _t('playlistGenerator.hints.submitTooltip', 'Open a new GitHub issue with the JSON pre-filled')
+            : _t('playlistGenerator.hints.submitDisabledTooltip', 'Validate first');
         state.rootEl.innerHTML = `
             <div class="plg-scrim" data-plg-action="close"></div>
             <div class="plg-modal" role="dialog" aria-modal="true" aria-labelledby="plg-title">
-                <button class="plg-close" data-plg-action="close" aria-label="Close">✕</button>
-                <h2 class="plg-title" id="plg-title">Playlist Generator</h2>
-                <p class="plg-sub">Paste a Spotify playlist URL → copy a prompt → run it in your own LLM (ChatGPT, Claude.ai, local) → paste the JSON back → validate → submit. <b>No LLM calls leave Beatify.</b></p>
+                <button class="plg-close" data-plg-action="close" aria-label="${_esc(_t('playlistGenerator.actions.close', 'Close'))}">✕</button>
+                <h2 class="plg-title" id="plg-title">${_esc(_t('playlistGenerator.title', 'Playlist Generator'))}</h2>
+                <p class="plg-sub">${_t('playlistGenerator.intro', 'Paste a Spotify playlist URL → copy a prompt → run it in your own LLM (ChatGPT, Claude.ai, local) → paste the JSON back → validate → submit. <b>No LLM calls leave Beatify.</b>')}</p>
 
-                <label class="plg-label">Spotify playlist URL</label>
-                <input type="url" class="plg-input" data-plg-field="spotify_url" placeholder="https://open.spotify.com/playlist/…" />
+                <label class="plg-label">${_esc(_t('playlistGenerator.fields.spotifyUrl', 'Spotify playlist URL'))}</label>
+                <input type="url" class="plg-input" data-plg-field="spotify_url" placeholder="${_esc(_t('playlistGenerator.placeholders.spotifyUrl', 'https://open.spotify.com/playlist/…'))}" />
                 <div class="plg-row">
-                    <button class="plg-btn plg-btn-primary" data-plg-action="copy-prompt">Copy prompt</button>
+                    <button class="plg-btn plg-btn-primary" data-plg-action="copy-prompt">${_esc(_t('playlistGenerator.actions.copyPrompt', 'Copy prompt'))}</button>
                     <span class="plg-hint" data-plg-hint></span>
                 </div>
 
-                <label class="plg-label">Paste the LLM's JSON output here</label>
-                <textarea class="plg-textarea" data-plg-field="json" placeholder='{"name": "…", "version": "1.0", "songs": [ … ]}' spellcheck="false"></textarea>
+                <label class="plg-label">${_esc(_t('playlistGenerator.fields.jsonPaste', "Paste the LLM's JSON output here"))}</label>
+                <textarea class="plg-textarea" data-plg-field="json" placeholder='${_esc(_t('playlistGenerator.placeholders.json', '{"name": "…", "version": "1.0", "songs": [ … ]}'))}' spellcheck="false"></textarea>
                 <div class="plg-row">
-                    <button class="plg-btn plg-btn-secondary" data-plg-action="validate">Validate</button>
-                    <button class="plg-btn plg-btn-ghost" data-plg-action="clear">Clear</button>
+                    <button class="plg-btn plg-btn-secondary" data-plg-action="validate">${_esc(_t('playlistGenerator.actions.validate', 'Validate'))}</button>
+                    <button class="plg-btn plg-btn-ghost" data-plg-action="clear">${_esc(_t('playlistGenerator.actions.clear', 'Clear'))}</button>
                 </div>
 
                 <div class="plg-results" data-plg-results>${_renderResultsTable(v)}</div>
 
                 <div class="plg-actions">
-                    <button class="plg-btn plg-btn-success" data-plg-action="submit-issue" ${canSubmit ? '' : 'disabled'} title="${canSubmit ? 'Open a new GitHub issue with the JSON pre-filled' : 'Validate first'}">Submit as GitHub issue</button>
-                    <button class="plg-btn plg-btn-secondary" data-plg-action="copy-json" ${canSubmit ? '' : 'disabled'}>Copy validated JSON</button>
-                    <button class="plg-btn plg-btn-disabled" disabled title="Coming in v1.1 — needs backend support">Save locally (v1.1)</button>
+                    <button class="plg-btn plg-btn-success" data-plg-action="submit-issue" ${canSubmit ? '' : 'disabled'} title="${_esc(submitTooltip)}">${_esc(_t('playlistGenerator.actions.submitIssue', 'Submit as GitHub issue'))}</button>
+                    <button class="plg-btn plg-btn-secondary" data-plg-action="copy-json" ${canSubmit ? '' : 'disabled'}>${_esc(_t('playlistGenerator.actions.copyJson', 'Copy validated JSON'))}</button>
+                    <button class="plg-btn plg-btn-disabled" disabled title="${_esc(_t('playlistGenerator.hints.saveLocalTooltip', 'Coming in v1.1 — needs backend support'))}">${_esc(_t('playlistGenerator.actions.saveLocal', 'Save locally (v1.1)'))}</button>
                 </div>
 
                 <div class="plg-footer">
-                    <p><b>Known limitation:</b> LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones.</p>
+                    <p><b>${_esc(_t('playlistGenerator.footer.limitation', 'Known limitation:'))}</b> ${_t('playlistGenerator.footer.limitationBody', 'LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones.')}</p>
                 </div>
             </div>
         `;
@@ -480,8 +666,8 @@ __JSON__
             const url = urlEl ? urlEl.value.trim() : '';
             const prompt = buildPrompt(url);
             _copyToClipboard(prompt)
-                .then(() => _setHint('Prompt copied to clipboard — paste it into your LLM.'))
-                .catch(() => _setHint('Could not access clipboard — select the prompt manually below.'));
+                .then(() => _setHint(_t('playlistGenerator.hints.promptCopied', 'Prompt copied to clipboard — paste it into your LLM.')))
+                .catch(() => _setHint(_t('playlistGenerator.hints.clipboardUnavailable', 'Could not access clipboard — select the prompt manually below.')));
             return;
         }
         if (action === 'validate') {
@@ -509,6 +695,14 @@ __JSON__
             } catch (err) {
                 _setHint('Could not parse JSON for submission: ' + err.message);
             }
+            return;
+        }
+        if (action === 'copy-result') {
+            if (!state.lastValidation) return;
+            const md = formatValidationForLLM(state.lastValidation, state.lastJsonText);
+            _copyToClipboard(md)
+                .then(() => _setHint('Validation feedback copied — paste it back into your LLM.'))
+                .catch(() => _setHint('Could not access clipboard.'));
             return;
         }
         if (action === 'copy-json') {
@@ -599,6 +793,7 @@ __JSON__
             validatePlaylist,
             validateSong,
             buildSubmitIssueUrl,
+            formatValidationForLLM,
             parseSpotifyPlaylistId,
             slugify,
         },

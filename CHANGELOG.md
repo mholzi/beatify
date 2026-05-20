@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc2] - 2026-05-20
+
+### Added
+- **"Copy result for LLM" button in the playlist generator (#1052).** Once you Validate, a button next to the verdict copies a structured Markdown brief — error and warning lists with `songs[N].field` paths, each song's artist/title for human reference, the actual value that was returned, and the full original JSON embedded as a fenced block — so you can paste it straight back into the same LLM session and ask for a corrected JSON. The brief explicitly lists which entries validated cleanly and must not be touched.
+- **i18n for the entire generator UI.** All user-visible strings in the generator modal and the new Mine-tab tiles now route through `window.BeatifyI18n`. Added a top-level `playlistGenerator` block + `playlistHub.mine.generator` entries to all five locales (en/de/es/fr/nl). The LLM-bound payloads — the prompt itself and the validation refinement brief — stay English by design, since both are prompt-engineering payloads where English yields the strongest instruction-following.
+- **Per-row error messages now echo the bad value.** When a URI fails shape validation, the error message includes `Got: "<actual value>"` so paste-corruption (smart quotes, non-breaking spaces in URLs, etc.) is one glance to diagnose instead of looking like a regex mystery. Validator helper count is now 34 vitest cases (69 passing total).
+
 ## [3.4.0-rc1] - 2026-05-20
 
 ### Added

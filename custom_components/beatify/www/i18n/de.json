@@ -1033,6 +1033,11 @@
         "reviewed": "Geprüft",
         "building": "In Arbeit",
         "inBundled": "Geliefert"
+      },
+      "generator": {
+        "title": "Oder erstelle deine eigene mit einem LLM",
+        "sub": "Spotify-URL → Prompt kopieren → in deinem LLM ausführen → zurück einfügen → validieren → einreichen.",
+        "subShort": "Spotify-URL → Prompt → JSON → validieren → einreichen."
       }
     },
     "status": {
@@ -1096,6 +1101,52 @@
     "sections": {
       "byCountry": "Nach Land",
       "countries": "Länder"
+    }
+  },
+  "playlistGenerator": {
+    "title": "Playlist-Generator",
+    "intro": "Spotify-Playlist-URL einfügen → Prompt kopieren → in deinem eigenen LLM ausführen (ChatGPT, Claude.ai, lokal) → JSON zurück einfügen → validieren → einreichen. <b>Keine LLM-Aufrufe verlassen Beatify.</b>",
+    "fields": {
+      "spotifyUrl": "Spotify-Playlist-URL",
+      "jsonPaste": "JSON-Ausgabe des LLM hier einfügen"
+    },
+    "placeholders": {
+      "spotifyUrl": "https://open.spotify.com/playlist/…",
+      "json": "{\"name\": \"…\", \"version\": \"1.0\", \"songs\": [ … ]}"
+    },
+    "actions": {
+      "copyPrompt": "Prompt kopieren",
+      "validate": "Validieren",
+      "clear": "Leeren",
+      "submitIssue": "Als GitHub-Issue einreichen",
+      "copyJson": "Validiertes JSON kopieren",
+      "saveLocal": "Lokal speichern (v1.1)",
+      "copyResult": "Ergebnis für das LLM kopieren",
+      "close": "Schließen"
+    },
+    "hints": {
+      "promptCopied": "Prompt in die Zwischenablage kopiert — füge ihn in dein LLM ein.",
+      "clipboardUnavailable": "Zwischenablage nicht verfügbar — markiere den Prompt manuell unten.",
+      "jsonCopied": "Formatiertes JSON kopiert.",
+      "clipboardError": "Zwischenablage nicht verfügbar.",
+      "resultCopied": "Validierungs-Feedback kopiert — füge es zurück in dein LLM ein.",
+      "copyResultHint": "Füge dies zurück in dein LLM ein, um ein korrigiertes JSON zu erhalten.",
+      "submitTooltip": "Neues GitHub-Issue mit vorausgefülltem JSON öffnen",
+      "submitDisabledTooltip": "Zuerst validieren",
+      "saveLocalTooltip": "Kommt in v1.1 — benötigt Backend-Unterstützung"
+    },
+    "verdict": {
+      "ok": "✓ Validierung erfolgreich — bereit zum Einreichen.",
+      "fail": "✗ Validierung fehlgeschlagen — behebe die oben markierten Zeilen und validiere erneut."
+    },
+    "results": {
+      "topErrors": "Top-Level-Fehler",
+      "perSong": "Pro-Song-Validierung ({n} Songs)",
+      "parseFailed": "JSON-Parsing fehlgeschlagen: {error}"
+    },
+    "footer": {
+      "limitation": "Bekannte Einschränkung:",
+      "limitationBody": "LLMs halluzinieren ISRC und länderspezifische Apple-Music-IDs. Der Validator prüft <i>die Form</i>, nicht die tatsächliche Existenz. Lass den URI-Resolver nach dem Merge laufen, um geratene IDs durch verifizierte zu ersetzen."
     }
   }
 }

@@ -295,3 +295,106 @@ describe('buildSubmitIssueUrl', () => {
         expect(qs.get('body')).toContain('Trance Classics');
     });
 });
+
+// ------------------------------------------------------------------
+// formatValidationForLLM
+// ------------------------------------------------------------------
+
+describe('formatValidationForLLM', () => {
+    it('on parse failure, returns a self-contained prompt mentioning the parser error', () => {
+        const v = api.validatePlaylist('not json {');
+        const out = api.formatValidationForLLM(v, 'not json {');
+        expect(out).toContain('could not be parsed');
+        expect(out).toContain('markdown fences');
+        expect(out).toContain('schema you were originally given');
+    });
+
+    it('on a clean playlist, says no issues and embeds the original JSON', () => {
+        const pl = goldPlaylist();
+        const txt = JSON.stringify(pl);
+        const v = api.validatePlaylist(txt);
+        const out = api.formatValidationForLLM(v, txt);
+        expect(out).toContain('No errors or warnings');
+        expect(out).toContain('"name": "Trance Classics"');
+        expect(out).toContain('```json');
+    });
+
+    it('lists each per-song error with field path, song reference, and actual value', () => {
+        const bad = goldSong({
+            uri_youtube_music: 'https://youtube.com/not-music',
+            artist: 'Robert Miles',
+            title: 'Children',
+        });
+        const pl = goldPlaylist([goldSong(), bad]);
+        const txt = JSON.stringify(pl);
+        const v = api.validatePlaylist(txt);
+        const out = api.formatValidationForLLM(v, txt);
+        expect(out).toContain('songs[1].uri_youtube_music');
+        expect(out).toContain('Robert Miles / Children');
+        expect(out).toContain('https://youtube.com/not-music');
+        expect(out).toContain('## Errors');
+    });
+
+    it('lists clean song indices in a do-not-modify directive when a mix is present', () => {
+        // gold song has distinct per-region Apple IDs → no warning.
+        // Two copies share an ISRC → song[1] gets a duplicate-ISRC warning.
+        // Song[1] also has a bad uri → an error.
+        // So song[0] is fully clean; song[1] has 1 error and 1 warning.
+        const clean = goldSong({ artist: 'A', title: 'B' });
+        const broken = goldSong({ artist: 'C', title: 'D', uri: 'spotify:track:bad' });
+        const pl = goldPlaylist([clean, broken]);
+        const txt = JSON.stringify(pl);
+        const v = api.validatePlaylist(txt);
+        const out = api.formatValidationForLLM(v, txt);
+        expect(out).toContain('## Errors');
+        expect(out).toContain('## Warnings');
+        expect(out).toMatch(/do not modify them.*songs\[0\]/);
+    });
+
+    it('reports "(missing)" for top-level fields that were absent', () => {
+        const pl = goldPlaylist();
+        delete pl.author;
+        const txt = JSON.stringify(pl);
+        const v = api.validatePlaylist(txt);
+        const out = api.formatValidationForLLM(v, txt);
+        expect(out).toContain('`author`');
+        expect(out).toContain('(missing)');
+    });
+
+    it('truncates long string values in echoes', () => {
+        const long = 'x'.repeat(500);
+        const s = goldSong({ uri: long });
+        const txt = JSON.stringify(goldPlaylist([s]));
+        const v = api.validatePlaylist(txt);
+        const out = api.formatValidationForLLM(v, txt);
+        const lines = out.split('\n');
+        const errorLine = lines.find((l) => l.includes('songs[0].uri'));
+        // 500-char URI must not survive verbatim into the error line; both
+        // the validator's _echo and the LLM brief's _summarizeValue cap it.
+        expect(errorLine.length).toBeLessThan(400);
+        expect(errorLine).toContain('…');
+    });
+});
+
+// ------------------------------------------------------------------
+// Validator error-message echoes (paste-corruption diagnostics)
+// ------------------------------------------------------------------
+
+describe('validator Got: echoes', () => {
+    it('includes the bad value in uri_youtube_music errors', () => {
+        const s = goldSong({ uri_youtube_music: 'https://youtube.com/notmusic' });
+        const r = api.validateSong(s, 0);
+        const e = r.errors.find((x) => x.field === 'uri_youtube_music');
+        expect(e).toBeTruthy();
+        expect(e.message).toContain('Got:');
+        expect(e.message).toContain('https://youtube.com/notmusic');
+    });
+
+    it('reports "(missing)" when a uri field is undefined', () => {
+        const s = goldSong();
+        delete s.uri;
+        const r = api.validateSong(s, 0);
+        const e = r.errors.find((x) => x.field === 'uri');
+        expect(e.message).toContain('Got: (missing)');
+    });
+});

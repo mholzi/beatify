@@ -953,5 +953,51 @@
     "learningWarningPlural": "⚠️ {count} jugadores aún aprenden las reglas",
     "startAnyway": "{count} jugador aún aprende las reglas. ¿Empezar igualmente?",
     "startAnywayPlural": "{count} jugadores aún aprenden las reglas. ¿Empezar igualmente?"
+  },
+  "playlistGenerator": {
+    "title": "Generador de listas",
+    "intro": "Pega una URL de lista de Spotify → copia un prompt → ejecútalo en tu propio LLM (ChatGPT, Claude.ai, local) → pega el JSON de vuelta → valida → envía. <b>Beatify no realiza ninguna llamada a un LLM.</b>",
+    "fields": {
+      "spotifyUrl": "URL de la lista de Spotify",
+      "jsonPaste": "Pega aquí el JSON devuelto por el LLM"
+    },
+    "placeholders": {
+      "spotifyUrl": "https://open.spotify.com/playlist/…",
+      "json": "{\"name\": \"…\", \"version\": \"1.0\", \"songs\": [ … ]}"
+    },
+    "actions": {
+      "copyPrompt": "Copiar prompt",
+      "validate": "Validar",
+      "clear": "Limpiar",
+      "submitIssue": "Enviar como issue de GitHub",
+      "copyJson": "Copiar JSON validado",
+      "saveLocal": "Guardar localmente (v1.1)",
+      "copyResult": "Copiar resultado para el LLM",
+      "close": "Cerrar"
+    },
+    "hints": {
+      "promptCopied": "Prompt copiado al portapapeles — pégalo en tu LLM.",
+      "clipboardUnavailable": "No se pudo acceder al portapapeles — selecciona el prompt manualmente debajo.",
+      "jsonCopied": "JSON con formato copiado.",
+      "clipboardError": "No se pudo acceder al portapapeles.",
+      "resultCopied": "Feedback de validación copiado — pégalo de vuelta en tu LLM.",
+      "copyResultHint": "Pega esto de vuelta en tu LLM para pedir un JSON corregido.",
+      "submitTooltip": "Abrir un nuevo issue de GitHub con el JSON precargado",
+      "submitDisabledTooltip": "Valida primero",
+      "saveLocalTooltip": "Próximamente en v1.1 — requiere soporte del backend"
+    },
+    "verdict": {
+      "ok": "✓ Validación correcta — listo para enviar.",
+      "fail": "✗ Validación fallida — corrige las filas marcadas arriba y vuelve a validar."
+    },
+    "results": {
+      "topErrors": "Errores de nivel superior",
+      "perSong": "Validación por canción ({n} canciones)",
+      "parseFailed": "Fallo al analizar JSON: {error}"
+    },
+    "footer": {
+      "limitation": "Limitación conocida:",
+      "limitationBody": "Los LLM alucinan ISRC e IDs de Apple Music por región. El validador comprueba <i>la forma</i>, no la existencia real. Pasa el resolver de URIs tras el merge para sustituir los IDs adivinados por verificados."
+    }
   }
 }

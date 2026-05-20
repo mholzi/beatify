@@ -1028,6 +1028,11 @@
         "title": "Meanwhile, browse community playlists",
         "sub": "User-contributed picks, installable in one tap."
       },
+      "generator": {
+        "title": "Or generate your own with an LLM",
+        "sub": "Spotify URL → copy prompt → run it in your LLM → paste back → validate → submit.",
+        "subShort": "Spotify URL → prompt → JSON → validate → submit."
+      },
       "step": {
         "submitted": "Submitted",
         "reviewed": "Reviewed",
@@ -1096,6 +1101,52 @@
     "sections": {
       "byCountry": "By Country",
       "countries": "countries"
+    }
+  },
+  "playlistGenerator": {
+    "title": "Playlist Generator",
+    "intro": "Paste a Spotify playlist URL → copy a prompt → run it in your own LLM (ChatGPT, Claude.ai, local) → paste the JSON back → validate → submit. <b>No LLM calls leave Beatify.</b>",
+    "fields": {
+      "spotifyUrl": "Spotify playlist URL",
+      "jsonPaste": "Paste the LLM's JSON output here"
+    },
+    "placeholders": {
+      "spotifyUrl": "https://open.spotify.com/playlist/…",
+      "json": "{\"name\": \"…\", \"version\": \"1.0\", \"songs\": [ … ]}"
+    },
+    "actions": {
+      "copyPrompt": "Copy prompt",
+      "validate": "Validate",
+      "clear": "Clear",
+      "submitIssue": "Submit as GitHub issue",
+      "copyJson": "Copy validated JSON",
+      "saveLocal": "Save locally (v1.1)",
+      "copyResult": "Copy result for LLM",
+      "close": "Close"
+    },
+    "hints": {
+      "promptCopied": "Prompt copied to clipboard — paste it into your LLM.",
+      "clipboardUnavailable": "Could not access clipboard — select the prompt manually below.",
+      "jsonCopied": "Pretty-printed JSON copied.",
+      "clipboardError": "Could not access clipboard.",
+      "resultCopied": "Validation feedback copied — paste it back into your LLM.",
+      "copyResultHint": "Paste this back into your LLM to ask for a corrected JSON.",
+      "submitTooltip": "Open a new GitHub issue with the JSON pre-filled",
+      "submitDisabledTooltip": "Validate first",
+      "saveLocalTooltip": "Coming in v1.1 — needs backend support"
+    },
+    "verdict": {
+      "ok": "✓ Validation passed — ready to submit.",
+      "fail": "✗ Validation failed — fix the rows highlighted above and re-validate."
+    },
+    "results": {
+      "topErrors": "Top-level errors",
+      "perSong": "Per-song validation ({n} songs)",
+      "parseFailed": "JSON parse failed: {error}"
+    },
+    "footer": {
+      "limitation": "Known limitation:",
+      "limitationBody": "LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones."
     }
   }
 }

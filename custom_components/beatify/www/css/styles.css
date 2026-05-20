@@ -14234,6 +14234,8 @@ body.theme-dark .your-result-stats .stat-value {
 .plg-row-details td { text-align: left; padding-left: 24px; }
 .plg-err-list { color: #ff8a8a; }
 .plg-warn-list { color: #ffd66b; }
+.plg-results-actions { margin-top: 0 !important; margin-bottom: 6px; }
+.plg-hint-inline { font-style: italic; }
 .plg-error {
     background: rgba(255, 80, 80, 0.12);
     border: 1px solid rgba(255, 80, 80, 0.4);
