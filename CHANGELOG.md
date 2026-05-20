@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc1] - 2026-05-20
+
+### Added
+- **LLM-assisted playlist generator (#1052).** A new "Generate via LLM" tile in the Playlist Hub's Mine tab opens a modal that bridges a Spotify playlist URL → templated prompt → user pastes JSON from their own LLM (ChatGPT, Claude.ai, local model — no API calls leave Beatify) → client-side validator with per-row ✓/✗ table → submit as GitHub issue. The validator checks JSON shape, every required top-level field + type, all 15 per-song fields, and URI shape per provider; it also warns on the two common LLM hallucination tells — identical Apple Music IDs across all 7 regions, and duplicate ISRCs across songs. **Pre-release scope:** the "Save locally" and "Submit as PR" buttons are deferred to a v3.4.0 follow-up (need a new backend write endpoint and a real fork/commit flow respectively); the modal surfaces both omissions inline.
+
 ## [3.3.7] - 2026-05-20
 
 ### Added
