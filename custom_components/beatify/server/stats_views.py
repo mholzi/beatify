@@ -15,7 +15,6 @@ from custom_components.beatify.server.base import (
     RateLimitMixin,
     _get_html,
     _json_error,
-    _verify_admin_token,
 )
 
 if TYPE_CHECKING:
@@ -50,23 +49,18 @@ class StatsView(HomeAssistantView):
 
     url = "/beatify/api/stats"
     name = "beatify:api:stats"
-    requires_auth = False
+    # #998: stats are host data. The old #386 "admin token when a game is
+    # active" check is retired along with the per-game token — HA login is
+    # the gate now. No Beatify page fetches this endpoint, so gating it
+    # breaks nothing.
+    requires_auth = True
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Get game statistics summary and history."""
-        # Issue #386: Admin token required when game is active
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
-        if (
-            game_state
-            and game_state.game_id
-            and not _verify_admin_token(request, game_state)
-        ):
-            return _json_error("Admin token required", 403, code="UNAUTHORIZED")
-
         stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
 
         if not stats_service:

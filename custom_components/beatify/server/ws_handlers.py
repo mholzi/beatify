@@ -12,7 +12,6 @@ See GitHub issue #606.
 from __future__ import annotations
 
 import asyncio
-import hmac
 import json
 import logging
 from datetime import datetime, timezone
@@ -55,6 +54,31 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+
+# ---------------------------------------------------------------------------
+# Authentication helper (#998)
+# ---------------------------------------------------------------------------
+
+
+def _is_ha_authenticated(handler: BeatifyWebSocketHandler, data: dict) -> bool:
+    """Return True if the message carries a valid Home Assistant access token.
+
+    #998: hosting a game (admin spectator connection or an ``is_admin`` join)
+    requires a logged-in HA user. The client obtains an HA access token via
+    the OAuth flow in ha-auth.js and sends it as ``ha_token``. We validate it
+    with HA's own auth manager — the same check HA's HTTP middleware applies
+    to ``requires_auth`` views. ``async_validate_access_token`` is a
+    synchronous ``@callback`` returning a RefreshToken or None.
+    """
+    token = data.get("ha_token")
+    if not token or not isinstance(token, str):
+        return False
+    try:
+        return handler.hass.auth.async_validate_access_token(token) is not None
+    except Exception:  # noqa: BLE001 — any decode/validation error means "no"
+        return False
+
+
 # ---------------------------------------------------------------------------
 # Player action handlers
 # ---------------------------------------------------------------------------
@@ -81,6 +105,19 @@ async def handle_join(
         player = game_state.get_player(name)
 
         if is_admin:
+            # #998: claiming the host role requires a logged-in HA user.
+            # Normal players join with no auth — only the admin claim is
+            # gated. add_player() already ran, so undo it on rejection.
+            if not _is_ha_authenticated(handler, data):
+                game_state.remove_player(name)
+                await ws.send_json(
+                    {
+                        "type": "error",
+                        "code": ERR_UNAUTHORIZED,
+                        "message": "Home Assistant login required to host",
+                    }
+                )
+                return
             # #790: Existing admin reclaiming their own role should always be
             # allowed, regardless of phase. Without this check, an admin whose
             # WS dropped (network blip, AirPlay-induced HA hiccup) tries to
@@ -227,14 +264,18 @@ async def handle_admin_connect(
     data: dict,
     game_state: GameState,
 ) -> None:
-    """Handle admin spectator connection (Issue #477)."""
-    token = data.get("admin_token")
-    if not token or not hmac.compare_digest(token, game_state.admin_token):
+    """Handle admin spectator connection (Issue #477).
+
+    #998: gated by Home Assistant login — the message must carry a valid HA
+    access token (``ha_token``). The former per-game ``admin_token`` check is
+    retired; that token was embedded into the admin page for any visitor.
+    """
+    if not _is_ha_authenticated(handler, data):
         await ws.send_json(
             {
                 "type": "error",
                 "code": ERR_UNAUTHORIZED,
-                "message": "Invalid admin token",
+                "message": "Home Assistant login required",
             }
         )
         return

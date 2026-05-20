@@ -15,6 +15,7 @@ var PRECACHE_ASSETS = [
     '/beatify/static/css/dashboard.min.css',
     '/beatify/static/js/player.bundle.min.js',
     '/beatify/static/js/admin.min.js',
+    '/beatify/static/js/ha-auth.js',
     '/beatify/static/js/dashboard.min.js',
     '/beatify/static/js/i18n.min.js',
     '/beatify/static/js/vendor/qrcode.min.js',

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from html import escape as html_escape
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -91,49 +90,25 @@ class AdminView(HomeAssistantView):
 
     url = "/beatify/admin"
     name = "beatify:admin"
-    requires_auth = False  # Frictionless access per PRD
+    # Served unauthenticated on purpose: a browser navigation carries no HA
+    # bearer token, so the page itself must load before its JS can run the
+    # Home Assistant login flow. The shell embeds no secrets — every admin
+    # action and the admin token are obtained over authenticated requests
+    # (see ha-auth.js), so an unauthenticated visitor gets an inert page (#998).
+    requires_auth = False
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the admin view."""
         self.hass = hass
 
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
-        """Serve the admin HTML page.
-
-        When a game is active, the current admin token is embedded into the
-        page as a <meta> tag. The token is otherwise handed back only once,
-        in the start-game response — so an admin page that *reconnects* to an
-        existing game (after a reload, or in a second tab) had no token, and
-        every token-gated REST call (e.g. start-gameplay) 403'd. Embedding it
-        here gives the admin page its token regardless of how it reached the
-        lobby. The /beatify/admin page is the host surface (it already serves
-        tokenless create + reset), so the token belongs with it.
-        """
+        """Serve the admin HTML page as a static, secret-free shell (#998)."""
         html_path = Path(__file__).parent.parent / "www" / "admin.html"
         html_content = await _get_html(self.hass, html_path)
         if html_content is None:
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
-        return _html_response(self._inject_admin_token(html_content))
-
-    def _inject_admin_token(self, html: str) -> str:
-        """Embed the active game's admin token into the page, if a game is live."""
-        game_state = self.hass.data.get(DOMAIN, {}).get("game")
-        token = getattr(game_state, "admin_token", None)
-        if not token or not getattr(game_state, "game_id", None):
-            return html
-        meta = (
-            f'<meta name="beatify-admin-token" '
-            f'content="{html_escape(str(token), quote=True)}">'
-        )
-        # Inject just before the version meta so it lands inside <head>.
-        if '<meta name="beatify-version"' in html:
-            return html.replace(
-                '<meta name="beatify-version"',
-                meta + '\n    <meta name="beatify-version"',
-                1,
-            )
-        return html.replace("<head>", "<head>\n    " + meta, 1)
+        return _html_response(html_content)
 
 
 class LauncherView(HomeAssistantView):
@@ -253,7 +228,7 @@ class CapabilitiesView(HomeAssistantView):
 
     url = "/beatify/api/capabilities"
     name = "beatify:api:capabilities"
-    requires_auth = False
+    requires_auth = True  # #998 — leaks light/TTS inventory; admin-only
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the capabilities view."""
@@ -278,7 +253,7 @@ class LightsView(HomeAssistantView):
 
     url = "/beatify/api/lights"
     name = "beatify:api:lights"
-    requires_auth = False
+    requires_auth = True  # #998 — leaks light entity inventory; admin-only
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the lights view."""
@@ -361,7 +336,7 @@ class PreviewLightsView(HomeAssistantView):
 
     url = "/beatify/api/preview-lights"
     name = "beatify:api:preview-lights"
-    requires_auth = False
+    requires_auth = True  # #998 — actuates the host's lights; admin-only
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
@@ -403,7 +378,7 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
 
     url = "/beatify/api/tts-test"
     name = "beatify:api:tts-test"
-    requires_auth = False
+    requires_auth = True  # #998 — actuates the host's speakers; admin-only
 
     MAX_TTS_MESSAGE_LENGTH = 500
 

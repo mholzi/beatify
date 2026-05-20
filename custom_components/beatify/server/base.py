@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hmac
 import logging
 import time
 from pathlib import Path
@@ -73,26 +72,6 @@ def _json_error(message: str, status: int, *, code: str = "ERROR") -> web.Respon
     return web.json_response({"error": code, "message": message}, status=status)
 
 
-def _verify_admin_token(request: web.Request, game_state: Any) -> bool:
-    """Verify admin token from Authorization header or query param (#386).
-
-    Accepts:
-    - Header: Authorization: Bearer <token>
-    - Query: ?admin_token=<token>
-    """
-    if not game_state or not game_state.admin_token:
-        return False
-    token = None
-    auth = request.headers.get("Authorization", "")
-    if auth.startswith("Bearer "):
-        token = auth[7:]
-    if not token:
-        token = request.query.get("admin_token")
-    if not token:
-        return False
-    return hmac.compare_digest(token, game_state.admin_token)
-
-
 class RateLimitMixin:
     """Mixin providing IP-based rate limiting for views."""
 
@@ -124,9 +103,15 @@ class RateLimitMixin:
 
 
 class BeatifyAdminView(HomeAssistantView):
-    """Base class for admin-protected Beatify views."""
+    """Base class for admin-protected Beatify views.
 
-    requires_auth = False
+    #998: gating is delegated to Home Assistant's own auth — ``requires_auth``
+    makes HA's middleware reject any request without a valid HA bearer token
+    before the handler runs. The former per-game ``admin_token`` check is
+    retired: a logged-in HA user *is* the admin.
+    """
+
+    requires_auth = True
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the view with hass reference."""
@@ -137,10 +122,3 @@ class BeatifyAdminView(HomeAssistantView):
     def _get_game_state(self) -> Any | None:
         """Return the current GameState or None."""
         return self.hass.data.get(DOMAIN, {}).get("game")
-
-    def _verify_admin(self, request: web.Request) -> web.Response | None:
-        """Verify admin token; return an error response if invalid, else None."""
-        game_state = self._get_game_state()
-        if not _verify_admin_token(request, game_state):
-            return _json_error("Admin token required", 403, code="UNAUTHORIZED")
-        return None
