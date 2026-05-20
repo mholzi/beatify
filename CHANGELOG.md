@@ -4,7 +4,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.3.7] - 2026-05-19
+## [3.3.7] - 2026-05-20
 
 ### Added
 - **Movie Quiz Bonus toggle in game setup (#1009).** The engine supported `movie_quiz_enabled` but no UI ever exposed it, so the bonus was effectively always on. A toggle now sits next to Artist Challenge in the game-settings panel and the first-run wizard.
