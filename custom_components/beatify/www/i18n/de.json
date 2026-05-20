@@ -889,6 +889,7 @@
         "desc": "Synchronisiere deine Hue-Lampen zum Beat. Puls bei Rundenwechsel, Blitz beim Sieger.",
         "unavailable": "Keine Lampen in Home Assistant gefunden.",
         "pickLabel": "Lampen zum Synchronisieren",
+        "searchPlaceholder": "Lampen suchen…",
         "intensity": "Intensität",
         "subtle": "Dezent",
         "medium": "Mittel",

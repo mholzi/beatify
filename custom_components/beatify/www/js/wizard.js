@@ -736,12 +736,22 @@ function _lightsDetailHtml() {
     const rows = lights.length
         ? lights.map((l) => {
               const checked = chosenLightEntityIds.has(l.entity_id) ? 'checked' : '';
-              return `<label class="wiz-detail-check">
+              const searchable = `${l.friendly_name || ''} ${l.entity_id}`.toLowerCase();
+              return `<label class="wiz-detail-check" data-light-search="${searchable.replace(/"/g, '&quot;')}">
             <input type="checkbox" data-light-id="${l.entity_id}" ${checked}>
             <span class="wiz-detail-check-name">${l.friendly_name || l.entity_id}</span>
           </label>`;
           }).join('')
         : `<div class="wiz-detail-empty">${_t('wizard.step5.lights.noneFound', 'No lights available')}</div>`;
+    // #1039: search input above the entity list — long HA installs have 10+
+    // light.* entities, alphabetical scroll is the only way to find one today.
+    // Filter is applied via class toggle so chosenLightEntityIds (the source
+    // of truth for selection state) is untouched when rows hide/show.
+    const searchInput = lights.length > 1
+        ? `<input type="text" id="wiz-light-search" class="wiz-detail-input wiz-light-search"
+             placeholder="${_t('wizard.step5.lights.searchPlaceholder', 'Search lights…')}"
+             aria-label="${_t('wizard.step5.lights.searchPlaceholder', 'Search lights…')}">`
+        : '';
     const chip = (id, label, group) => `<button type="button" class="wiz-chip ${(group === 'intensity' ? chosenLightIntensity : chosenLightMode) === id ? 'active' : ''}" data-${group}="${id}">${label}</button>`;
 
     const wledBlock = chosenLightMode === 'wled'
@@ -764,6 +774,7 @@ function _lightsDetailHtml() {
         <div class="wiz-detail">
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.lights.pickLabel', 'Lights to sync')}</span>
+            ${searchInput}
             <div class="wiz-detail-checks">${rows}</div>
           </div>
           <div class="wiz-field">
@@ -879,6 +890,19 @@ function _renderLevelUp() {
             else chosenLightEntityIds.delete(id);
         });
     });
+    // #1039: filter light rows by substring match on friendly_name/entity_id.
+    // Hide via inline display so chosenLightEntityIds is unaffected — clearing
+    // the search restores rows with their original checkbox state intact.
+    const lightSearch = list.querySelector('#wiz-light-search');
+    if (lightSearch) {
+        lightSearch.addEventListener('input', () => {
+            const q = lightSearch.value.trim().toLowerCase();
+            list.querySelectorAll('[data-light-search]').forEach((row) => {
+                const hay = row.getAttribute('data-light-search') || '';
+                row.style.display = !q || hay.includes(q) ? '' : 'none';
+            });
+        });
+    }
     list.querySelectorAll('[data-intensity]').forEach((btn) => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();

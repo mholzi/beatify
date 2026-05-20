@@ -889,6 +889,7 @@
         "desc": "Sync your Hue lights to the beat. Pulse on round changes, flash on winner.",
         "unavailable": "No lights found in Home Assistant.",
         "pickLabel": "Lights to sync",
+        "searchPlaceholder": "Search lights…",
         "intensity": "Intensity",
         "subtle": "Subtle",
         "medium": "Medium",
