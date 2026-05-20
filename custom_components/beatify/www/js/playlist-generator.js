@@ -679,30 +679,25 @@ __JSON__
                 </div>
             `);
         }
-        const songCount = validation.songResults.length;
-        if (songCount > 0) {
-            const allFields = SONG_FIELDS;
-            const rows = validation.songResults.map((r) => {
-                const tds = allFields.map((f) => {
-                    const ok = !!r.fields[f];
-                    return `<td class="plg-cell plg-cell-${ok ? 'ok' : 'bad'}" title="${_esc(f)}">${ok ? '✓' : '✗'}</td>`;
-                }).join('');
-                const songErrors = (r.errors || []).map((e) => `<li>${_esc(e.field)}: ${_esc(e.message)}</li>`).join('');
-                const songWarns = (r.warnings || []).map((w) => `<li>${_esc(w.field)}: ${_esc(w.message)}</li>`).join('');
-                const details = (songErrors || songWarns)
-                    ? `<tr class="plg-row-details"><td colspan="${allFields.length + 1}"><ul class="plg-err-list">${songErrors}</ul>${songWarns ? `<ul class="plg-warn-list">${songWarns}</ul>` : ''}</td></tr>`
-                    : '';
-                return `<tr class="plg-row ${r.errors.length ? 'plg-row-bad' : 'plg-row-ok'}"><td class="plg-row-idx">#${r.index + 1}</td>${tds}</tr>${details}`;
+        // Per-song details: only show songs that have actual issues.
+        // The per-row ✓/✗ checkmark grid was removed — on narrow mobile
+        // viewports the cells stacked vertically (because the table was
+        // wider than the viewport with horizontal scroll), and on any
+        // viewport a green tick-grid told the user nothing they didn't
+        // already see in the verdict line.
+        const songsWithIssues = validation.songResults.filter((r) => (r.errors && r.errors.length) || (r.warnings && r.warnings.length));
+        if (songsWithIssues.length > 0) {
+            const songBlocks = songsWithIssues.map((r) => {
+                const errs = (r.errors || []).map((e) => `<li class="plg-err-item"><b>${_esc(e.field)}</b>: ${_esc(e.message)}</li>`).join('');
+                const warns = (r.warnings || []).map((w) => `<li class="plg-warn-item"><b>${_esc(w.field)}</b>: ${_esc(w.message)}</li>`).join('');
+                const heading = _t('playlistGenerator.results.songLabel', 'Song #{n}', { n: r.index + 1 });
+                return `<div class="plg-song-issue"><div class="plg-song-issue-head">${_esc(heading)}</div>${errs ? `<ul class="plg-err-list">${errs}</ul>` : ''}${warns ? `<ul class="plg-warn-list">${warns}</ul>` : ''}</div>`;
             }).join('');
+            const headerText = _t('playlistGenerator.results.songIssues', 'Songs with issues ({n})', { n: songsWithIssues.length });
             blocks.push(`
-                <div class="plg-block">
-                    <h4>${_esc(_t('playlistGenerator.results.perSong', 'Per-song validation ({n} songs)', { n: songCount }))}</h4>
-                    <div class="plg-table-wrap">
-                        <table class="plg-table">
-                            <thead><tr><th>#</th>${allFields.map((f) => `<th title="${_esc(f)}">${_esc(f.replace(/^uri_/, '').replace(/^fun_fact_?/, 'ff_').replace(/_by_region$/, '·rgn'))}</th>`).join('')}</tr></thead>
-                            <tbody>${rows}</tbody>
-                        </table>
-                    </div>
+                <div class="plg-block plg-block-err">
+                    <h4>${_esc(headerText)}</h4>
+                    ${songBlocks}
                 </div>
             `);
         }

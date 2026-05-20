@@ -996,7 +996,9 @@
     "results": {
       "topErrors": "Errores de nivel superior",
       "perSong": "Validación por canción ({n} canciones)",
-      "parseFailed": "Fallo al analizar JSON: {error}"
+      "parseFailed": "Fallo al analizar JSON: {error}",
+      "songLabel": "Canción #{n}",
+      "songIssues": "Canciones con problemas ({n})"
     },
     "footer": {
       "limitation": "Limitación conocida:",

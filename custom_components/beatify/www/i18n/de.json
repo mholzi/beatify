@@ -1145,7 +1145,9 @@
     "results": {
       "topErrors": "Top-Level-Fehler",
       "perSong": "Pro-Song-Validierung ({n} Songs)",
-      "parseFailed": "JSON-Parsing fehlgeschlagen: {error}"
+      "parseFailed": "JSON-Parsing fehlgeschlagen: {error}",
+      "songLabel": "Song #{n}",
+      "songIssues": "Songs mit Problemen ({n})"
     },
     "footer": {
       "limitation": "Bekannte Einschränkung:",

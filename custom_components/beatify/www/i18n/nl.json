@@ -996,7 +996,9 @@
     "results": {
       "topErrors": "Fouten op topniveau",
       "perSong": "Validatie per nummer ({n} nummers)",
-      "parseFailed": "JSON-parsing mislukt: {error}"
+      "parseFailed": "JSON-parsing mislukt: {error}",
+      "songLabel": "Nummer #{n}",
+      "songIssues": "Nummers met problemen ({n})"
     },
     "footer": {
       "limitation": "Bekende beperking:",

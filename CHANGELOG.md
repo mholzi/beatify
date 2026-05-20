@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc5] - 2026-05-20
+
+### Changed
+- **Playlist generator validation result is now a flat error list, not a per-row ✓/✗ table (#1052).** The 16-column checkmark grid was ambitious-looking but information-poor: on a clean validation it added a wall of green ticks the user already inferred from the verdict line, and on narrow mobile viewports the cells stacked vertically because the table was wider than the viewport. The new render shows only songs that have actual issues, grouped under a `Songs with issues (N)` heading, with `field: message` lines per problem. On a clean validation, the user sees the green verdict + the "Copy result for LLM" button and nothing else.
+
 ## [3.4.0-rc4] - 2026-05-20
 
 ### Added

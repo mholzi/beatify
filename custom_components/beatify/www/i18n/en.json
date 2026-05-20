@@ -1145,7 +1145,9 @@
     "results": {
       "topErrors": "Top-level errors",
       "perSong": "Per-song validation ({n} songs)",
-      "parseFailed": "JSON parse failed: {error}"
+      "parseFailed": "JSON parse failed: {error}",
+      "songLabel": "Song #{n}",
+      "songIssues": "Songs with issues ({n})"
     },
     "footer": {
       "limitation": "Known limitation:",

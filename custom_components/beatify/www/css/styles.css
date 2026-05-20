@@ -14234,6 +14234,12 @@ body.theme-dark .your-result-stats .stat-value {
 .plg-row-details td { text-align: left; padding-left: 24px; }
 .plg-err-list { color: #ff8a8a; }
 .plg-warn-list { color: #ffd66b; }
+.plg-song-issue { padding: 8px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.plg-song-issue:first-of-type { border-top: 0; padding-top: 4px; }
+.plg-song-issue-head { font-weight: 700; font-size: 12px; margin: 0 0 4px; color: #f1f3f7; letter-spacing: 0.02em; }
+.plg-song-issue ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+.plg-err-item { color: #ff8a8a; }
+.plg-warn-item { color: #ffd66b; }
 .plg-results-actions { margin-top: 0 !important; margin-bottom: 6px; }
 .plg-hint-inline { font-style: italic; }
 .plg-error {
