@@ -4,6 +4,31 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc5] - 2026-05-20
+
+### Changed
+- **Playlist generator validation result is now a flat error list, not a per-row ✓/✗ table (#1052).** The 16-column checkmark grid was ambitious-looking but information-poor: on a clean validation it added a wall of green ticks the user already inferred from the verdict line, and on narrow mobile viewports the cells stacked vertically because the table was wider than the viewport. The new render shows only songs that have actual issues, grouped under a `Songs with issues (N)` heading, with `field: message` lines per problem. On a clean validation, the user sees the green verdict + the "Copy result for LLM" button and nothing else.
+
+## [3.4.0-rc4] - 2026-05-20
+
+### Added
+- **Sanitizer now also strips Markdown wrappers around the JSON (#1052).** Two more paste-corruption patterns surfaced during testing: (a) LLMs ignoring "no markdown fences" and returning their output inside ` ```json … ``` `, and (b) users accidentally pasting the "Copy result for LLM" brief — which starts with `# Beatify playlist JSON — validation feedback` — back into the textarea. Both made the JSON parser bail with "Unrecognized token '#'" or similar. The Validate button now runs a pre-parse cleanup that (1) extracts content between the first/last triple-backtick fences and (2) trims anything before the first `{` and after the last `}`. The cleaned text is written back to the textarea, and a localised hint tells the user what was stripped. Combined with rc3's per-URI angle-bracket sanitizer, a single Validate click now handles both layers in one pass. 5 new vitest cases (80 passing total).
+
+### Added
+- **Paste-corruption auto-cleaner in the playlist generator (#1052).** Some chat renderers (Telegram and friends) wrap bare URLs inside code blocks with Markdown autolink syntax `<URL>`. When users copy-pasted JSON from chat into Beatify's textarea, every URI field arrived corrupted and validation rejected the playlist with no clear way to recover. The Validate button now strips those wrappers from all five URI fields (Spotify / Apple Music / per-region Apple Music / YouTube Music / Tidal / Deezer) before running shape checks, rewrites the textarea so the user sees exactly what changed, and shows a localised "Auto-cleaned N URL wrapper(s)" hint. Non-URI fields (e.g. a `fun_fact` that mentions "<Sandstorm>") are left untouched. 6 new vitest cases cover the sanitizer (75 passing total).
+
+## [3.4.0-rc2] - 2026-05-20
+
+### Added
+- **"Copy result for LLM" button in the playlist generator (#1052).** Once you Validate, a button next to the verdict copies a structured Markdown brief — error and warning lists with `songs[N].field` paths, each song's artist/title for human reference, the actual value that was returned, and the full original JSON embedded as a fenced block — so you can paste it straight back into the same LLM session and ask for a corrected JSON. The brief explicitly lists which entries validated cleanly and must not be touched.
+- **i18n for the entire generator UI.** All user-visible strings in the generator modal and the new Mine-tab tiles now route through `window.BeatifyI18n`. Added a top-level `playlistGenerator` block + `playlistHub.mine.generator` entries to all five locales (en/de/es/fr/nl). The LLM-bound payloads — the prompt itself and the validation refinement brief — stay English by design, since both are prompt-engineering payloads where English yields the strongest instruction-following.
+- **Per-row error messages now echo the bad value.** When a URI fails shape validation, the error message includes `Got: "<actual value>"` so paste-corruption (smart quotes, non-breaking spaces in URLs, etc.) is one glance to diagnose instead of looking like a regex mystery. Validator helper count is now 34 vitest cases (69 passing total).
+
+## [3.4.0-rc1] - 2026-05-20
+
+### Added
+- **LLM-assisted playlist generator (#1052).** A new "Generate via LLM" tile in the Playlist Hub's Mine tab opens a modal that bridges a Spotify playlist URL → templated prompt → user pastes JSON from their own LLM (ChatGPT, Claude.ai, local model — no API calls leave Beatify) → client-side validator with per-row ✓/✗ table → submit as GitHub issue. The validator checks JSON shape, every required top-level field + type, all 15 per-song fields, and URI shape per provider; it also warns on the two common LLM hallucination tells — identical Apple Music IDs across all 7 regions, and duplicate ISRCs across songs. **Pre-release scope:** the "Save locally" and "Submit as PR" buttons are deferred to a v3.4.0 follow-up (need a new backend write endpoint and a real fork/commit flow respectively); the modal surfaces both omissions inline.
+
 ## [3.3.7] - 2026-05-20
 
 ### Added

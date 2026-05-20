@@ -953,5 +953,56 @@
     "learningWarningPlural": "⚠️ {count} spelers leren nog de regels",
     "startAnyway": "{count} speler leert nog de regels. Toch beginnen?",
     "startAnywayPlural": "{count} spelers leren nog de regels. Toch beginnen?"
+  },
+  "playlistGenerator": {
+    "title": "Playlist-generator",
+    "intro": "Plak een Spotify-playlist-URL → kopieer een prompt → voer hem uit in je eigen LLM (ChatGPT, Claude.ai, lokaal) → plak het JSON terug → valideer → indienen. <b>Geen LLM-aanroepen verlaten Beatify.</b>",
+    "fields": {
+      "spotifyUrl": "Spotify-playlist-URL",
+      "jsonPaste": "Plak hier de JSON-output van het LLM"
+    },
+    "placeholders": {
+      "spotifyUrl": "https://open.spotify.com/playlist/…",
+      "json": "{\"name\": \"…\", \"version\": \"1.0\", \"songs\": [ … ]}"
+    },
+    "actions": {
+      "copyPrompt": "Prompt kopiëren",
+      "validate": "Valideren",
+      "clear": "Wissen",
+      "submitIssue": "Indienen als GitHub-issue",
+      "copyJson": "Gevalideerde JSON kopiëren",
+      "saveLocal": "Lokaal opslaan (v1.1)",
+      "copyResult": "Resultaat voor LLM kopiëren",
+      "close": "Sluiten"
+    },
+    "hints": {
+      "promptCopied": "Prompt naar klembord gekopieerd — plak hem in je LLM.",
+      "clipboardUnavailable": "Geen toegang tot klembord — selecteer de prompt handmatig hieronder.",
+      "jsonCopied": "Geformatteerde JSON gekopieerd.",
+      "clipboardError": "Geen toegang tot klembord.",
+      "resultCopied": "Validatiefeedback gekopieerd — plak het terug in je LLM.",
+      "copyResultHint": "Plak dit terug in je LLM om een gecorrigeerde JSON te vragen.",
+      "submitTooltip": "Een nieuw GitHub-issue openen met het JSON vooringevuld",
+      "submitDisabledTooltip": "Eerst valideren",
+      "saveLocalTooltip": "Komt in v1.1 — vereist backend-ondersteuning",
+      "sanitized": "{n} URL-omhulsel(s) automatisch opgeschoond vóór validatie (Markdown-autolink-artefacten).",
+      "sanitizedBoth": "Automatisch opgeschoond: een Markdown-omhulsel rond het JSON en {n} URL-omhulsel(s) verwijderd vóór validatie.",
+      "sanitizedWrapper": "Automatisch opgeschoond: een Markdown-omhulsel rond het JSON verwijderd vóór validatie."
+    },
+    "verdict": {
+      "ok": "✓ Validatie geslaagd — klaar om in te dienen.",
+      "fail": "✗ Validatie mislukt — corrigeer de hierboven gemarkeerde rijen en valideer opnieuw."
+    },
+    "results": {
+      "topErrors": "Fouten op topniveau",
+      "perSong": "Validatie per nummer ({n} nummers)",
+      "parseFailed": "JSON-parsing mislukt: {error}",
+      "songLabel": "Nummer #{n}",
+      "songIssues": "Nummers met problemen ({n})"
+    },
+    "footer": {
+      "limitation": "Bekende beperking:",
+      "limitationBody": "LLM's hallucineren ISRC en regionale Apple Music-ID's. De validator controleert <i>de vorm</i>, niet of de waarden echt bestaan. Draai de URI-resolver na de merge om gegokte ID's door geverifieerde te vervangen."
+    }
   }
 }

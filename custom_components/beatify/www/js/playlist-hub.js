@@ -412,6 +412,13 @@ function _onClick(e) {
         }
         return;
     }
+    const openGenerator = e.target.closest('[data-plh-action="open-generator"]');
+    if (openGenerator) {
+        if (window.PlaylistGenerator && typeof window.PlaylistGenerator.open === 'function') {
+            window.PlaylistGenerator.open();
+        }
+        return;
+    }
     const refresh = e.target.closest('[data-plh-action="refresh"]');
     if (refresh) { _loadData(); return; }
     const retry = e.target.closest('[data-plh-action="retry"]');
@@ -809,6 +816,14 @@ function _renderMine(host) {
                         ${_escape(_t('playlistHub.mine.request.cta', 'Start a request'))}
                     </button>
                 </div>
+                <div class="plh-meanwhile" data-plh-action="open-generator" role="button" tabindex="0">
+                    <div class="plh-meanwhile-icon">🪄</div>
+                    <div class="plh-meanwhile-body">
+                        <div class="plh-meanwhile-t1">${_escape(_t('playlistHub.mine.generator.title', 'Or generate your own with an LLM'))}</div>
+                        <div class="plh-meanwhile-t2">${_escape(_t('playlistHub.mine.generator.sub', 'Spotify URL → copy prompt → run it in your LLM → paste back → validate → submit.'))}</div>
+                    </div>
+                    <div class="plh-meanwhile-arrow">›</div>
+                </div>
                 <div class="plh-meanwhile" data-plh-action="switch-tab" data-plh-tab="community">
                     <div class="plh-meanwhile-icon">✨</div>
                     <div class="plh-meanwhile-body">
@@ -835,6 +850,13 @@ function _renderMine(host) {
             <div>
                 <div class="plh-new-t1">${_escape(_t('playlistHub.mine.newRequest.title', 'Request another playlist'))}</div>
                 <div class="plh-new-t2">${_escape(_t('playlistHub.mine.newRequest.sub', 'Paste a Spotify URL, we take it from there.'))}</div>
+            </div>
+        </div>
+        <div class="plh-new-request" data-plh-action="open-generator" role="button" tabindex="0">
+            <div class="plh-new-plus">🪄</div>
+            <div>
+                <div class="plh-new-t1">${_escape(_t('playlistHub.mine.generator.title', 'Or generate your own with an LLM'))}</div>
+                <div class="plh-new-t2">${_escape(_t('playlistHub.mine.generator.subShort', 'Spotify URL → prompt → JSON → validate → submit.'))}</div>
             </div>
         </div>
         <div class="plh-req-list">${rows}</div>
