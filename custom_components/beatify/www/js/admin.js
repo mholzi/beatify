@@ -86,7 +86,7 @@ let selectedLanguage = 'en';
 
 // Timer state (Story 13.1)
 let selectedDuration = 45;
-let revealAutoAdvance = 30;  // #1012: REVEAL auto-advance seconds (0 = off)
+let revealAutoAdvance = 0;  // #1012: REVEAL auto-advance seconds (0 = off, default)
 
 // Difficulty state (Story 14.1)
 let selectedDifficulty = 'normal';
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const playlistLabel = pls.length === 0 ? 'no playlist'
                     : pls.length === 1 ? (pls[0].path || pls[0]).split('/').pop().replace('.json', '').replace(/-/g, ' ')
                     : `${pls.length} playlists`;
-                const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 30;
+                const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 0;
                 const autoLabel = autoAdv > 0 ? `${autoAdv}s` : 'Off';
                 const mode = `${s.difficulty || 'normal'} · ${s.duration || 45}s · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
                 const meta = `${playlistLabel} · ${mode}`;

@@ -98,7 +98,7 @@ const chosenPlaylists = new Set(); // paths — multi-select
 // Step 4 (game mode) — default to what admin.js uses when beatify_game_settings is empty
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
-let chosenRevealAutoAdvance = 30; // #1028: REVEAL auto-advance seconds (0 = off)
+let chosenRevealAutoAdvance = 0; // #1028: REVEAL auto-advance seconds (0 = off, default)
 let chosenLanguage = 'en';
 // Game-mode toggles (defaults match admin.js: artistChallenge on, movieQuiz on, intro off, closestWins off)
 let chosenArtistChallenge = true;
