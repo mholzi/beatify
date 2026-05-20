@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc6] - 2026-05-20
+
+### Security
+- **Admin console gated behind Home Assistant login (#998).** `/beatify/admin` and every host-control endpoint (`start-game`, `start-gameplay`, `end-game`, `rematch-game`, `force-reset`, `preview-lights`, `tts-test`, `lights`, `capabilities`) used to be reachable by anyone who could reach Home Assistant; the admin page even embedded the active admin token into the HTML. Hosting now requires a logged-in HA user — the admin page is served as a static, secret-free shell that runs an OAuth flow against HA's own auth (`ha-auth.js`), every authed REST call carries the resulting bearer token, and the admin WebSocket validates an HA access token on `admin_connect`. Players joining `/beatify/play` remain unauthenticated.
+- **OAuth flicker-and-bounce loop fixed.** Initial testing showed a redirect loop: after HA login the admin briefly rendered, then bounced back to the login screen. Root cause: the token-exchange POST omitted `redirect_uri`, which RFC 6749 §4.1.3 (and HA's IndieAuth impl) requires when it was sent on `/auth/authorize`. The exchange now sends the same `redirect_uri` as `login()`, the code grant succeeds, and the admin sticks.
+
 ## [3.4.0-rc5] - 2026-05-20
 
 ### Changed
