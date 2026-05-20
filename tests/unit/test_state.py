@@ -197,6 +197,54 @@ class TestRevealAutoAdvance:
 
 
 # ---------------------------------------------------------------------------
+# REVEAL countdown surface (#1048)
+# ---------------------------------------------------------------------------
+
+
+class TestRevealStartedAt:
+    def test_starts_as_none(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        assert state.reveal_started_at is None
+
+    async def test_cleared_on_advance_to_end(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.reveal_started_at = 123456789
+        await state.advance_to_end()
+        assert state.reveal_started_at is None
+
+    def test_serializer_includes_advance_and_started_at_in_reveal(self):
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        state = make_game_state()
+        _create_fresh_game(state, reveal_auto_advance=30)
+        state.phase = GamePhase.REVEAL
+        state.reveal_started_at = 1_700_000_000_000
+        # Mark at least one player as submitted so idle_halt isn't set.
+        state.add_player("Alice", MagicMock())
+        state.players["Alice"].submitted = True
+
+        payload = GameStateSerializer.serialize(state)
+        assert payload["reveal_auto_advance"] == 30
+        assert payload["reveal_started_at"] == 1_700_000_000_000
+
+    def test_serializer_omits_started_at_when_unset(self):
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        state = make_game_state()
+        _create_fresh_game(state, reveal_auto_advance=0)
+        state.phase = GamePhase.REVEAL
+        state.reveal_started_at = None
+        state.add_player("Alice", MagicMock())
+        state.players["Alice"].submitted = True
+
+        payload = GameStateSerializer.serialize(state)
+        assert payload["reveal_auto_advance"] == 0
+        assert "reveal_started_at" not in payload
+
+
+# ---------------------------------------------------------------------------
 # GameState.add_player
 # ---------------------------------------------------------------------------
 

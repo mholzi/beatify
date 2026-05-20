@@ -183,6 +183,14 @@ class GameStateSerializer:
         # banner instead of looking generically stuck.
         if not any(p.submitted for p in gs.players.values()):
             state["idle_halt"] = True
+        # #1048: surface the auto-advance config + REVEAL entry timestamp so
+        # the admin sticky-menu Next button can render a 1-Hz countdown
+        # (deadline = reveal_started_at + reveal_auto_advance * 1000 ms).
+        # Client falls back to the plain icon when these are missing or when
+        # idle_halt is set.
+        state["reveal_auto_advance"] = gs.reveal_auto_advance
+        if gs.reveal_started_at is not None:
+            state["reveal_started_at"] = gs.reveal_started_at
 
     @staticmethod
     def _add_end_state(gs: GameState, state: dict[str, Any]) -> None:
