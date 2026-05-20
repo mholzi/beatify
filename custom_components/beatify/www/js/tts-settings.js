@@ -84,8 +84,15 @@
         var defaults = presetValues('standard');
         try {
             var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-            ttsEnabled = saved.enabled || false;
             ttsEntityId = saved.entity_id || '';
+            // #1011 follow-up: legacy payloads from older wizards have
+            // entity_id but no `enabled` key. Treat "entity selected with
+            // no explicit enabled flag" as implied on. Explicit false wins.
+            if (typeof saved.enabled === 'boolean') {
+                ttsEnabled = saved.enabled;
+            } else {
+                ttsEnabled = !!ttsEntityId;
+            }
             KEYS.forEach(function(k) {
                 announce[k] = (typeof saved[k] === 'boolean') ? saved[k] : defaults[k];
             });

@@ -200,7 +200,12 @@ function _hydrateLevelUpDetails() {
             // `preset` is written by both the admin TTS panel and this wizard.
             // Pre-preset configs simply fall back to the 'standard' default.
             if (s.preset) chosenTtsPreset = s.preset;
-            if (typeof s.enabled === 'boolean' && s.enabled) chosenLevelUps.tts = true;
+            // #1011 follow-up: legacy payloads have entity_id but no
+            // explicit `enabled` key. Treat "entity selected with no
+            // explicit flag" as implied on, mirroring the lights hydrate.
+            if (s.enabled === true || (s.enabled === undefined && !!s.entity_id)) {
+                chosenLevelUps.tts = true;
+            }
         }
     } catch (e) { /* ignore */ }
 }

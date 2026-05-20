@@ -6,7 +6,7 @@
  */
 'use strict';
 
-var CACHE_VERSION = 'beatify-v3.3.7-rc9-fix1011b';
+var CACHE_VERSION = 'beatify-v3.3.7-rc9-fix1011c';
 var MAX_CACHE_ITEMS = 50;
 
 // Critical assets to precache on install (minified versions only - fallback handled by HTML)
