@@ -863,6 +863,8 @@
       "sub": "Standaardinstellingen werken voor de meeste feesten. Pas aan indien gewenst.",
       "difficulty": "Moeilijkheid",
       "timer": "Tijd per ronde",
+      "autoAdvance": "Auto-doorgaan bij reveal",
+      "autoAdvanceOff": "Uit",
       "language": "Aankondigingstaal",
       "easy": "Makkelijk",
       "normal": "Normaal",

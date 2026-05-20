@@ -863,6 +863,8 @@
       "sub": "Los valores por defecto funcionan para la mayoría. Ajusta si quieres.",
       "difficulty": "Dificultad",
       "timer": "Tiempo por ronda",
+      "autoAdvance": "Avance automático en revelación",
+      "autoAdvanceOff": "Desactivado",
       "language": "Idioma de anuncios",
       "easy": "Fácil",
       "normal": "Normal",

@@ -863,6 +863,8 @@
       "sub": "Standardwerte passen für die meisten Partys. Anpassen optional.",
       "difficulty": "Schwierigkeit",
       "timer": "Zeit pro Runde",
+      "autoAdvance": "Auto-Weiter im Reveal",
+      "autoAdvanceOff": "Aus",
       "language": "Ansagesprache",
       "easy": "Leicht",
       "normal": "Normal",

@@ -98,6 +98,7 @@ const chosenPlaylists = new Set(); // paths — multi-select
 // Step 4 (game mode) — default to what admin.js uses when beatify_game_settings is empty
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
+let chosenRevealAutoAdvance = 30; // #1028: REVEAL auto-advance seconds (0 = off)
 let chosenLanguage = 'en';
 // Game-mode toggles (defaults match admin.js: artistChallenge on, movieQuiz on, intro off, closestWins off)
 let chosenArtistChallenge = true;
@@ -588,6 +589,12 @@ const DIFFICULTY_HINTS = {
     },
 };
 const DURATIONS = [15, 30, 45, 60]; // seconds per round
+const AUTO_ADVANCE_OPTIONS = [
+    { id: 0, labelKey: 'wizard.step4.autoAdvanceOff', labelFallback: 'Off' },
+    { id: 30, label: '30s' },
+    { id: 60, label: '60s' },
+    { id: 90, label: '90s' },
+];
 const LANGUAGES = [
     { id: 'en', label: 'English' },
     { id: 'de', label: 'Deutsch' },
@@ -700,6 +707,10 @@ function _renderGameMode() {
     _renderDifficultyHint();
     _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
         chosenDuration = val;
+        _renderGameMode();
+    });
+    _renderChipGroup('wiz-autoadvance', AUTO_ADVANCE_OPTIONS, chosenRevealAutoAdvance, (val) => {
+        chosenRevealAutoAdvance = parseInt(val, 10) || 0;
         _renderGameMode();
     });
     _renderChipGroup('wiz-language', LANGUAGES, chosenLanguage, async (val) => {
@@ -1055,6 +1066,7 @@ function _persistGameSettings() {
             provider: chosenProvider || existing.provider,
             difficulty: chosenDifficulty,
             duration: chosenDuration,
+            revealAutoAdvance: chosenRevealAutoAdvance,
             language: chosenLanguage,
             artistChallenge: chosenArtistChallenge,
             movieQuiz: chosenMovieQuiz,
@@ -1091,6 +1103,7 @@ export async function show(stepOverride) {
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
+            if (typeof s.revealAutoAdvance === 'number') chosenRevealAutoAdvance = s.revealAutoAdvance;
             // #815 + #822: prefer the BROWSER's language as the game-language
             // default. Saved value only wins if browser detection isn't
             // available.
