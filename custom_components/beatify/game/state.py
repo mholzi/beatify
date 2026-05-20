@@ -1423,6 +1423,16 @@ class GameState:
         """
         try:
             await self._round_manager._timer_countdown(delay_seconds)
+            # #1029: release the timer-task handle BEFORE invoking end_round.
+            # end_round → _end_round_unlocked calls self.cancel_timer(), which
+            # would cancel `_timer_task` — and `_timer_task` IS the currently
+            # running task. A self-cancel schedules CancelledError on the next
+            # real yield, interrupting the REVEAL broadcast (and historically
+            # the phase transition itself before fake-await chains masked it).
+            # _log_timer_task_failure treats cancellations as silent, so the
+            # round froze on PLAYING with no diagnostic. Clearing the handle
+            # here makes the subsequent cancel_timer() a no-op for this task.
+            self._round_manager._timer_task = None
             # Timer completed normally — check phase and end round
             if self.phase == GamePhase.PLAYING:
                 # #471 Phase 1: announce time-up only when timer ran to zero
