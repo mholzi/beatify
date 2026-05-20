@@ -14069,3 +14069,185 @@ body.theme-dark .your-result-stats .stat-value {
     .plh-req-list { padding: 0 24px; }
     .plh-mine-head { padding: 14px 24px 6px; }
 }
+
+/* ------------------------------------------------------------------
+ * Playlist Generator (#1052) — modal that bridges Spotify URL → LLM
+ * prompt → validated bundled-format JSON. Lives under .plg-* namespace.
+ * Built to match the dark playlist-hub look + admin tokens.
+ * ------------------------------------------------------------------ */
+.plg-host {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+.plg-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+.plg-modal {
+    position: relative;
+    z-index: 1;
+    margin: 32px 16px;
+    max-width: 880px;
+    width: 100%;
+    background: #0f1116;
+    color: #f1f3f7;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    padding: 24px 24px 20px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    font-family: var(--font-body, system-ui);
+}
+.plg-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f1f3f7;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.plg-close:hover { background: rgba(255, 255, 255, 0.12); }
+.plg-title {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-family: var(--font-display, system-ui);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+.plg-sub {
+    margin: 0 0 18px;
+    color: #aab0bd;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.plg-label {
+    display: block;
+    margin: 14px 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a92a3;
+}
+.plg-input,
+.plg-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: #181b24;
+    color: #f1f3f7;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+}
+.plg-input:focus,
+.plg-textarea:focus { border-color: #5cc8ff; }
+.plg-textarea {
+    min-height: 200px;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 12.5px;
+    line-height: 1.45;
+    resize: vertical;
+}
+.plg-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0 0;
+    flex-wrap: wrap;
+}
+.plg-hint {
+    color: #8a92a3;
+    font-size: 12px;
+}
+.plg-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 9px 16px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+    background: rgba(255, 255, 255, 0.08);
+    color: #f1f3f7;
+}
+.plg-btn:disabled { cursor: not-allowed; opacity: 0.45; }
+.plg-btn-primary { background: linear-gradient(180deg, #ff3a8c, #cf2e72); color: #fff; }
+.plg-btn-secondary { background: rgba(255, 255, 255, 0.1); }
+.plg-btn-ghost { background: transparent; color: #aab0bd; }
+.plg-btn-success { background: linear-gradient(180deg, #2dd66f, #20b659); color: #04140a; }
+.plg-btn-disabled { background: rgba(255, 255, 255, 0.04); color: #5a606e; }
+.plg-actions {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0 0;
+    flex-wrap: wrap;
+}
+.plg-results {
+    margin-top: 16px;
+}
+.plg-verdict {
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin: 6px 0 12px;
+    font-weight: 700;
+    font-size: 13px;
+}
+.plg-verdict-ok { background: rgba(45, 214, 111, 0.16); color: #2dd66f; border: 1px solid rgba(45, 214, 111, 0.4); }
+.plg-verdict-bad { background: rgba(255, 80, 80, 0.14); color: #ff8a8a; border: 1px solid rgba(255, 80, 80, 0.4); }
+.plg-block {
+    background: #14171f;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 8px 0;
+}
+.plg-block h4 { margin: 0 0 6px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #aab0bd; }
+.plg-block ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+.plg-block-err { border-color: rgba(255, 80, 80, 0.4); }
+.plg-table-wrap { overflow-x: auto; }
+.plg-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.plg-table th, .plg-table td { padding: 4px 6px; text-align: center; }
+.plg-table th { color: #8a92a3; font-weight: 600; letter-spacing: 0.04em; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.plg-row-idx { color: #aab0bd; text-align: left; font-weight: 700; }
+.plg-cell-ok { color: #2dd66f; }
+.plg-cell-bad { color: #ff8a8a; background: rgba(255, 80, 80, 0.06); }
+.plg-row-bad { background: rgba(255, 80, 80, 0.04); }
+.plg-row-details td { text-align: left; padding-left: 24px; }
+.plg-err-list { color: #ff8a8a; }
+.plg-warn-list { color: #ffd66b; }
+.plg-error {
+    background: rgba(255, 80, 80, 0.12);
+    border: 1px solid rgba(255, 80, 80, 0.4);
+    color: #ff8a8a;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 12px;
+}
+.plg-footer {
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 10px;
+    color: #8a92a3;
+    font-size: 12px;
+    line-height: 1.5;
+}
