@@ -889,6 +889,7 @@
         "desc": "Synchronise tes ampoules Hue sur le rythme. Pulsation entre manches, flash pour le gagnant.",
         "unavailable": "Aucune lumière trouvée dans Home Assistant.",
         "pickLabel": "Lumières à synchroniser",
+        "searchPlaceholder": "Rechercher des lumières…",
         "intensity": "Intensité",
         "subtle": "Discret",
         "medium": "Moyen",
