@@ -1808,9 +1808,7 @@ class GameState:
                 "Round %d ended with zero guesses — holding after song-end",
                 self.round,
             )
-            self._auto_advance_task = asyncio.create_task(
-                self._reveal_idle_halt()
-            )
+            self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
 
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
