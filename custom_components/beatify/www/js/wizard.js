@@ -183,6 +183,15 @@ function _hydrateLevelUpDetails() {
             if (s.wled_presets && typeof s.wled_presets === 'object') {
                 Object.assign(chosenWledPresets, s.wled_presets);
             }
+            // #1011 follow-up: hydrate the lights-on toggle when the user
+            // previously configured lights. Without this, re-entering the
+            // wizard with existing lights leaves chosenLevelUps.lights=false,
+            // so _persistLevelUpDetails skips the lights branch and the
+            // `enabled: true` fix from PR #1031 never gets written to
+            // localStorage. Mirror of the TTS hydration on line below.
+            if (s.enabled === true || (Array.isArray(s.lights) && s.lights.length > 0)) {
+                chosenLevelUps.lights = true;
+            }
         }
         const rawT = localStorage.getItem('beatify_tts');
         if (rawT) {

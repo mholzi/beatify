@@ -26,7 +26,17 @@
             selectedIntensity = saved.intensity || 'medium';
             selectedLightMode = saved.light_mode || 'dynamic';
             wledPresets = saved.wled_presets || {};
-            partyLightsEnabled = saved.enabled || false;
+            // #1011 follow-up: legacy payloads written by pre-#1031 wizard runs
+            // are missing the `enabled` key entirely. Without recovery the
+            // admin panel hydrates the toggle as off even though the user
+            // had configured lights, and the game-start request carries
+            // `enabled: false`. Treat "has lights but no explicit enabled
+            // flag" as implied enabled. Explicit `false` still wins.
+            if (typeof saved.enabled === 'boolean') {
+                partyLightsEnabled = saved.enabled;
+            } else {
+                partyLightsEnabled = selectedLights.length > 0;
+            }
         } catch (e) { /* ignore */ }
     }
 
