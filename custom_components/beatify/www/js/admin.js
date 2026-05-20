@@ -498,7 +498,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const playlistLabel = pls.length === 0 ? 'no playlist'
                     : pls.length === 1 ? (pls[0].path || pls[0]).split('/').pop().replace('.json', '').replace(/-/g, ' ')
                     : `${pls.length} playlists`;
-                const mode = `${s.difficulty || 'normal'} · ${s.duration || 45}s · ${(s.language || 'en').toUpperCase()}`;
+                const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 30;
+                const autoLabel = autoAdv > 0 ? `${autoAdv}s` : 'Off';
+                const mode = `${s.difficulty || 'normal'} · ${s.duration || 45}s · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
                 const meta = `${playlistLabel} · ${mode}`;
                 const metaEl = document.getElementById('home-meta');
                 if (metaEl) metaEl.textContent = meta;
