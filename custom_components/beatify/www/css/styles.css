@@ -14260,3 +14260,23 @@ body.theme-dark .your-result-stats .stat-value {
     font-size: 12px;
     line-height: 1.5;
 }
+.plg-followup:empty { display: none; }
+.plg-banner {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.plg-banner p { margin: 0 0 8px; }
+.plg-banner .plg-row { margin-top: 4px; flex-wrap: wrap; }
+.plg-banner-ok {
+    background: rgba(45, 214, 111, 0.14);
+    border: 1px solid rgba(45, 214, 111, 0.4);
+    color: #c8f3d8;
+}
+.plg-banner-info {
+    background: rgba(99, 102, 241, 0.14);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    color: #d6d8ff;
+}

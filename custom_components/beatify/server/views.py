@@ -46,6 +46,7 @@ from custom_components.beatify.server.game_views import (  # noqa: F401
 # Re-export playlist views
 from custom_components.beatify.server.playlist_views import (  # noqa: F401
     PlaylistRequestsView,
+    SavePlaylistView,
 )
 
 # Re-export stats views

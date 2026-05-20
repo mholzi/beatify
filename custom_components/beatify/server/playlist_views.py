@@ -6,6 +6,7 @@ import asyncio
 import json
 import logging
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -14,6 +15,10 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
+from custom_components.beatify.game.playlist import (
+    get_playlist_directory,
+    validate_playlist,
+)
 from custom_components.beatify.server.base import (
     RateLimitMixin,
     _json_error,
@@ -272,3 +277,116 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
             return _json_error("Failed to save request", 500, code="SAVE_FAILED")
 
         return web.json_response({"success": True, "requests": data["requests"]})
+
+
+# ---------------------------------------------------------------------------
+# Save-locally endpoint for the Playlist Generator (#1057)
+# ---------------------------------------------------------------------------
+
+
+_SLUG_INVALID_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _slugify_playlist_name(name: str) -> str:
+    """Filesystem-safe slug used as the saved playlist's filename stem.
+
+    Mirrors the JS slugify in playlist-generator.js so the server-side
+    derivation matches whatever the frontend would have picked.
+    """
+    s = (name or "").lower().strip()
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = _SLUG_INVALID_RE.sub("-", s).strip("-")
+    return s[:60] or "untitled-playlist"
+
+
+class SavePlaylistView(RateLimitMixin, HomeAssistantView):
+    """Write a generator-produced playlist into the user-playlist subfolder.
+
+    The file lands in ``<config>/beatify/playlists/user/<slug>.json``.
+    ``async_discover_playlists`` picks it up on the next refresh and
+    surfaces it in the Playlist Hub Community tab. ``_copy_bundled_playlists``
+    never writes to ``user/`` because the bundled playlists tree has no
+    ``user/`` directory to copy from, so a HACS update cannot clobber a
+    user save (#1057).
+    """
+
+    url = "/beatify/api/playlists/save"
+    name = "beatify:api:playlists:save"
+    requires_auth = False
+
+    MAX_SONGS = 1000
+    RATE_LIMIT_REQUESTS = 5
+    RATE_LIMIT_WINDOW = 60
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+        self._init_rate_limits()
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Save a validated playlist JSON to the user/ subfolder."""
+        client_ip = request.remote or "unknown"
+        if not self._check_rate_limit(client_ip):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
+        try:
+            body = await request.json()
+        except Exception:  # noqa: BLE001
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+
+        if not isinstance(body, dict):
+            return _json_error("Invalid request body", 400, code="INVALID_REQUEST")
+
+        playlist = body.get("playlist")
+        if not isinstance(playlist, dict):
+            return _json_error("Missing 'playlist' object", 400, code="INVALID_REQUEST")
+
+        songs = playlist.get("songs")
+        if isinstance(songs, list) and len(songs) > self.MAX_SONGS:
+            return _json_error(
+                f"Too many songs (max {self.MAX_SONGS})", 400, code="TOO_LARGE"
+            )
+
+        is_valid, errors = validate_playlist(playlist)
+        if not is_valid:
+            return _json_error(
+                "Playlist validation failed: " + "; ".join(errors[:5]),
+                400,
+                code="INVALID_PLAYLIST",
+            )
+
+        slug = _slugify_playlist_name(playlist.get("name", ""))
+        playlist_dir = get_playlist_directory(self.hass)
+        user_dir = playlist_dir / "user"
+
+        def _write() -> Path:
+            user_dir.mkdir(parents=True, exist_ok=True)
+            target = user_dir / f"{slug}.json"
+            # Pick a non-clobbering name if a saved playlist with the same
+            # slug already exists — two users with similar names should not
+            # silently overwrite each other.
+            final = target
+            counter = 2
+            while final.exists():
+                final = user_dir / f"{slug}-{counter}.json"
+                counter += 1
+            final.write_text(
+                json.dumps(playlist, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            return final
+
+        try:
+            written = await self.hass.async_add_executor_job(_write)
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.error("Failed to save user playlist: %s", err)
+            return _json_error("Failed to save playlist", 500, code="SAVE_FAILED")
+
+        return web.json_response(
+            {
+                "success": True,
+                "path": str(written),
+                "filename": written.name,
+            }
+        )
