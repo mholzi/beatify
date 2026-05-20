@@ -126,10 +126,17 @@
   }
 
   function exchangeCode(code) {
+    // redirect_uri is REQUIRED here per RFC 6749 §4.1.3 (and HA's IndieAuth
+    // impl enforces it): the value must match the one sent to /auth/authorize.
+    // Without it HA returns 400; the catch in handleRedirectCallback then
+    // resolves false silently, init sees !isAuthenticated, calls login()
+    // and bounces back to the HA approve screen — the "flicker admin then
+    // back to login" loop Markus reported.
     return postToken({
       grant_type: 'authorization_code',
       code: code,
       client_id: clientId(),
+      redirect_uri: redirectUri(),
     }).then(function (resp) {
       storeTokens(resp);
       return resp.access_token;
