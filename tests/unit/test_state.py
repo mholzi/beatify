@@ -1049,3 +1049,60 @@ class TestEndRoundResilience:
 
         assert self.state.phase == GamePhase.REVEAL
         broadcast.assert_awaited_once()
+
+
+# ---------------------------------------------------------------------------
+# Timer-task self-cancellation (#1029)
+# ---------------------------------------------------------------------------
+
+
+class TestTimerExpiryNoSubmissions:
+    """#1029: timer expiry with zero submitted guesses must transition to
+    REVEAL and broadcast cleanly. The timer task is `_timer_task`, and
+    end_round calls cancel_timer() — which cancels the running task itself.
+    That self-cancel schedules CancelledError on the next real `await`,
+    interrupting the broadcast at the end of end_round. The fix releases the
+    timer-task handle before invoking end_round so cancel_timer() is a no-op.
+    """
+
+    def setup_method(self):
+        self.state = make_game_state()
+        _create_fresh_game(self.state)
+        self.state.add_player("Alice", MagicMock())
+        self.state.add_player("Bob", MagicMock())
+        self.state.start_game()
+        self.state.current_song = {
+            "title": "Test Song",
+            "artist": "Test Artist",
+            "year": 1990,
+        }
+        self.state.round_start_time = self.state._now()
+        # Players have NOT submitted — this is the #1029 scenario.
+
+    @pytest.mark.asyncio
+    async def test_timer_expiry_no_submissions_reaches_reveal_and_broadcasts(
+        self,
+    ):
+        """Run _timer_countdown as a real asyncio task so cancel_timer()
+        inside end_round targets the running task. Without the fix, the
+        broadcast at the end of end_round is interrupted by CancelledError.
+        """
+        broadcast = AsyncMock()
+        self.state.set_round_end_callback(broadcast)
+
+        # Patch the inner sleep so the test finishes instantly.
+        with patch.object(
+            self.state._round_manager,
+            "_timer_countdown",
+            new=AsyncMock(return_value=None),
+        ):
+            timer_task = asyncio.create_task(self.state._timer_countdown(0.0))
+            # Register as the round timer so cancel_timer() targets it
+            # (this mirrors how RoundManager.initialize_round wires it up).
+            self.state._round_manager._timer_task = timer_task
+            await timer_task
+
+        assert self.state.phase == GamePhase.REVEAL
+        broadcast.assert_awaited_once()
+        # Task must complete cleanly — no self-cancellation.
+        assert not timer_task.cancelled()
