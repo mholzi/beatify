@@ -1148,10 +1148,6 @@
       "parseFailed": "JSON parse failed: {error}",
       "songLabel": "Song #{n}",
       "songIssues": "Songs with issues ({n})"
-    },
-    "footer": {
-      "limitation": "Known limitation:",
-      "limitationBody": "LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones."
     }
   }
 }

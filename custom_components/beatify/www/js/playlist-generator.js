@@ -779,10 +779,6 @@ __JSON__
                 </div>
 
                 <div class="plg-followup" data-plg-followup>${_renderFollowup()}</div>
-
-                <div class="plg-footer">
-                    <p><b>${_esc(_t('playlistGenerator.footer.limitation', 'Known limitation:'))}</b> ${_t('playlistGenerator.footer.limitationBody', 'LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones.')}</p>
-                </div>
             </div>
         `;
     }
