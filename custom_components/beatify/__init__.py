@@ -42,6 +42,7 @@ from .server.views import (
     TtsTestView,
     PlayerView,
     PlaylistRequestsView,
+    SavePlaylistView,
     SwJsView,
     RematchGameView,
     SongStatsView,
@@ -191,6 +192,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(AnalyticsPageView(hass))
     hass.http.register_view(SongStatsView(hass))  # Story 19.7
     hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
+    hass.http.register_view(SavePlaylistView(hass))  # #1057
     hass.http.register_view(UsageView(hass))  # v3.3 Playlist Hub local stats
 
     # Register WebSocket endpoint

@@ -515,3 +515,44 @@ describe('validator Got: echoes', () => {
         expect(e.message).toContain('Got: (missing)');
     });
 });
+
+// ------------------------------------------------------------------
+// parseIssueNumberFromUrl — #1057 paste-back flow
+// ------------------------------------------------------------------
+
+describe('parseIssueNumberFromUrl', () => {
+    it('extracts the issue number from a canonical issue URL', () => {
+        expect(api.parseIssueNumberFromUrl(
+            'https://github.com/mholzi/beatify/issues/1057'
+        )).toBe(1057);
+    });
+
+    it('handles trailing fragments and query strings', () => {
+        expect(api.parseIssueNumberFromUrl(
+            'https://github.com/mholzi/beatify/issues/42#issuecomment-12345'
+        )).toBe(42);
+        expect(api.parseIssueNumberFromUrl(
+            'https://github.com/mholzi/beatify/issues/7?notification_referrer_id=abc'
+        )).toBe(7);
+    });
+
+    it('matches forks / owner-rename variants', () => {
+        expect(api.parseIssueNumberFromUrl(
+            'https://github.com/some-fork/beatify/issues/3'
+        )).toBe(3);
+    });
+
+    it('returns null for non-issue URLs', () => {
+        expect(api.parseIssueNumberFromUrl(
+            'https://github.com/mholzi/beatify/pull/1057'
+        )).toBeNull();
+        expect(api.parseIssueNumberFromUrl('https://example.com/issues/1')).toBeNull();
+        expect(api.parseIssueNumberFromUrl('not a url at all')).toBeNull();
+    });
+
+    it('returns null for empty / non-string input', () => {
+        expect(api.parseIssueNumberFromUrl('')).toBeNull();
+        expect(api.parseIssueNumberFromUrl(null)).toBeNull();
+        expect(api.parseIssueNumberFromUrl(undefined)).toBeNull();
+    });
+});

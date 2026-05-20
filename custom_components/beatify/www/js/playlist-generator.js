@@ -1,5 +1,5 @@
 /**
- * Beatify Playlist Generator (#1052).
+ * Beatify Playlist Generator (#1052, #1057).
  *
  * Bridge between a Spotify playlist URL and Beatify's bundled-format JSON,
  * without Beatify itself calling any LLM. The flow is:
@@ -9,11 +9,10 @@
  *   3. User runs the prompt in their own LLM, copies the JSON back.
  *   4. User pastes the JSON, clicks Validate.
  *   5. Per-row table shows ✓/✗ per field; suspicious-looking IDs are warned.
- *   6. When valid → "Submit as issue" opens a pre-filled GitHub issue with the JSON.
- *
- * v1 omits the "Save locally" path — that needs a new backend endpoint and
- * playlist-registry reload, both of which are out of scope for the first
- * iteration. The disabled placeholder explains this.
+ *   6. When valid → either "Save locally" (writes to <config>/beatify/playlists/user/)
+ *      or "Submit as GitHub issue" (opens pre-filled compose URL, then prompts
+ *      the user to paste back the resulting issue URL so the submission shows
+ *      up alongside existing playlist requests in the Mine tab).
  *
  * Loaded as a classic IIFE (not an ES module) so it works without import
  * plumbing inside admin.html.
@@ -611,6 +610,21 @@ RULES
     }
 
     // -----------------------------------------------------------------
+    // Issue URL parser (#1057): pull the issue number out of a GitHub
+    // issue URL the user pastes back after submitting on github.com.
+    // Accepts:
+    //   https://github.com/<owner>/<repo>/issues/<n>
+    //   https://github.com/<owner>/<repo>/issues/<n>#issuecomment-...
+    //   github.com/.../issues/<n>
+    // -----------------------------------------------------------------
+
+    function parseIssueNumberFromUrl(url) {
+        if (!url || typeof url !== 'string') return null;
+        const m = url.match(/github\.com\/[\w.-]+\/[\w.-]+\/issues\/(\d+)/i);
+        return m ? parseInt(m[1], 10) : null;
+    }
+
+    // -----------------------------------------------------------------
     // Submit-as-issue URL builder
     // -----------------------------------------------------------------
 
@@ -663,6 +677,18 @@ __JSON__
         rootEl: null,
         lastJsonText: '',
         lastValidation: null,
+        // After the user clicks "Submit as GitHub issue" we open the compose
+        // URL in a new tab and surface a follow-up panel that asks them to
+        // paste the resulting issue URL — that's the only way we can recover
+        // the issue number for tracking (the compose URL gives us no
+        // round-trip). null until submitted; while truthy the paste panel
+        // is visible.
+        pendingSubmission: null,
+        // Set once the issue-paste form has been resolved successfully so
+        // we can show a confirmation rather than re-prompting the user.
+        capturedIssueNumber: null,
+        // Set after a successful Save locally so we can confirm in-modal.
+        savedFilename: null,
     };
 
     function _renderResultsTable(validation) {
@@ -720,6 +746,9 @@ __JSON__
         const submitTooltip = canSubmit
             ? _t('playlistGenerator.hints.submitTooltip', 'Open a new GitHub issue with the JSON pre-filled')
             : _t('playlistGenerator.hints.submitDisabledTooltip', 'Validate first');
+        const saveLocalTooltip = canSubmit
+            ? _t('playlistGenerator.hints.saveLocalTooltip', 'Save this playlist to your Home Assistant — it appears in the Community tab.')
+            : _t('playlistGenerator.hints.submitDisabledTooltip', 'Validate first');
         state.rootEl.innerHTML = `
             <div class="plg-scrim" data-plg-action="close"></div>
             <div class="plg-modal" role="dialog" aria-modal="true" aria-labelledby="plg-title">
@@ -746,14 +775,63 @@ __JSON__
                 <div class="plg-actions">
                     <button class="plg-btn plg-btn-success" data-plg-action="submit-issue" ${canSubmit ? '' : 'disabled'} title="${_esc(submitTooltip)}">${_esc(_t('playlistGenerator.actions.submitIssue', 'Submit as GitHub issue'))}</button>
                     <button class="plg-btn plg-btn-secondary" data-plg-action="copy-json" ${canSubmit ? '' : 'disabled'}>${_esc(_t('playlistGenerator.actions.copyJson', 'Copy validated JSON'))}</button>
-                    <button class="plg-btn plg-btn-disabled" disabled title="${_esc(_t('playlistGenerator.hints.saveLocalTooltip', 'Coming in v1.1 — needs backend support'))}">${_esc(_t('playlistGenerator.actions.saveLocal', 'Save locally (v1.1)'))}</button>
+                    <button class="plg-btn plg-btn-primary" data-plg-action="save-local" ${canSubmit ? '' : 'disabled'} title="${_esc(saveLocalTooltip)}">${_esc(_t('playlistGenerator.actions.saveLocal', 'Save locally'))}</button>
                 </div>
+
+                <div class="plg-followup" data-plg-followup>${_renderFollowup()}</div>
 
                 <div class="plg-footer">
                     <p><b>${_esc(_t('playlistGenerator.footer.limitation', 'Known limitation:'))}</b> ${_t('playlistGenerator.footer.limitationBody', 'LLMs hallucinate ISRC and per-region Apple Music IDs. The validator checks <i>shape</i>, not real-world existence. Run the URI resolver after merge to replace any guessed IDs with verified ones.')}</p>
                 </div>
             </div>
         `;
+    }
+
+    function _renderFollowup() {
+        // Submission paste-back + save confirmation banners (#1057).
+        // Both blocks are inert when their state slot is empty so the
+        // modal stays clean for first-time users.
+        const blocks = [];
+        if (state.savedFilename) {
+            blocks.push(`
+                <div class="plg-banner plg-banner-ok">
+                    ${_esc(_t(
+                        'playlistGenerator.saveLocal.success',
+                        'Saved as {filename}. It will show up in Playlist Hub → Community on the next refresh.',
+                        { filename: state.savedFilename }
+                    ))}
+                </div>
+            `);
+        }
+        if (state.pendingSubmission && !state.capturedIssueNumber) {
+            blocks.push(`
+                <div class="plg-banner plg-banner-info">
+                    <p>${_esc(_t(
+                        'playlistGenerator.submit.pasteIssuePrompt',
+                        'Finish the issue on GitHub, then paste the issue URL here so it shows up in your Mine tab alongside existing playlist requests.'
+                    ))}</p>
+                    <div class="plg-row">
+                        <input type="url" class="plg-input" data-plg-field="issue_url"
+                            placeholder="https://github.com/mholzi/beatify/issues/…" />
+                        <button class="plg-btn plg-btn-primary" data-plg-action="capture-issue">${_esc(_t('playlistGenerator.actions.captureIssue', 'Track this submission'))}</button>
+                        <button class="plg-btn plg-btn-ghost" data-plg-action="dismiss-submission">${_esc(_t('playlistGenerator.actions.dismissSubmission', 'Skip'))}</button>
+                    </div>
+                    <span class="plg-hint" data-plg-followup-hint></span>
+                </div>
+            `);
+        }
+        if (state.capturedIssueNumber) {
+            blocks.push(`
+                <div class="plg-banner plg-banner-ok">
+                    ${_esc(_t(
+                        'playlistGenerator.submit.captured',
+                        'Tracked as issue #{n}. Check progress in Playlist Hub → Mine.',
+                        { n: state.capturedIssueNumber }
+                    ))}
+                </div>
+            `);
+        }
+        return blocks.join('');
     }
 
     function _onClick(e) {
@@ -824,11 +902,52 @@ __JSON__
             if (!state.lastValidation || !state.lastValidation.ok) return;
             try {
                 const data = JSON.parse(state.lastJsonText);
+                const spotifyEl = state.rootEl.querySelector('[data-plg-field="spotify_url"]');
+                state.pendingSubmission = {
+                    playlist_name: (data && data.name) ? String(data.name) : 'Generated playlist',
+                    spotify_url: spotifyEl ? spotifyEl.value.trim() : '',
+                };
+                state.capturedIssueNumber = null;
                 const url = buildSubmitIssueUrl(data);
                 window.open(url, '_blank', 'noopener,noreferrer');
+                _renderFollowupOnly();
             } catch (err) {
                 _setHint('Could not parse JSON for submission: ' + err.message);
             }
+            return;
+        }
+        if (action === 'save-local') {
+            if (!state.lastValidation || !state.lastValidation.ok) return;
+            let data;
+            try {
+                data = JSON.parse(state.lastJsonText);
+            } catch (err) {
+                _setHint('Could not parse JSON for save: ' + err.message);
+                return;
+            }
+            _saveLocally(data).catch((err) => {
+                _setHint(_t(
+                    'playlistGenerator.saveLocal.error',
+                    'Save failed: {error}',
+                    { error: (err && err.message) || 'unknown error' }
+                ));
+            });
+            return;
+        }
+        if (action === 'capture-issue') {
+            _captureIssueSubmission().catch((err) => {
+                _setFollowupHint(_t(
+                    'playlistGenerator.submit.captureError',
+                    'Could not record submission: {error}',
+                    { error: (err && err.message) || 'unknown error' }
+                ));
+            });
+            return;
+        }
+        if (action === 'dismiss-submission') {
+            state.pendingSubmission = null;
+            state.capturedIssueNumber = null;
+            _renderFollowupOnly();
             return;
         }
         if (action === 'copy-result') {
@@ -856,12 +975,126 @@ __JSON__
     function _renderResults() {
         const host = state.rootEl && state.rootEl.querySelector('[data-plg-results]');
         if (host) host.innerHTML = _renderResultsTable(state.lastValidation);
-        // Refresh submit-button enablement.
+        // Refresh action-button enablement (#1057: save-local follows the same
+        // gate as submit/copy — needs a passing validation).
         const submit = state.rootEl && state.rootEl.querySelector('[data-plg-action="submit-issue"]');
         const copy = state.rootEl && state.rootEl.querySelector('[data-plg-action="copy-json"]');
+        const save = state.rootEl && state.rootEl.querySelector('[data-plg-action="save-local"]');
         const can = !!(state.lastValidation && state.lastValidation.ok);
         if (submit) submit.disabled = !can;
         if (copy) copy.disabled = !can;
+        if (save) save.disabled = !can;
+    }
+
+    function _renderFollowupOnly() {
+        const host = state.rootEl && state.rootEl.querySelector('[data-plg-followup]');
+        if (host) host.innerHTML = _renderFollowup();
+    }
+
+    function _setFollowupHint(msg) {
+        const h = state.rootEl && state.rootEl.querySelector('[data-plg-followup-hint]');
+        if (h) h.textContent = msg;
+    }
+
+    // -----------------------------------------------------------------
+    // Save locally (#1057)
+    //
+    // POST the validated playlist to /beatify/api/playlists/save. The
+    // server validates again, writes to <config>/beatify/playlists/user/
+    // and returns the resolved filename. We surface the filename in the
+    // confirmation banner so the user can find it on disk if needed.
+    // -----------------------------------------------------------------
+
+    async function _saveLocally(playlist) {
+        const resp = await fetch('/beatify/api/playlists/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ playlist }),
+        });
+        if (!resp.ok) {
+            let detail = '';
+            try {
+                const body = await resp.json();
+                detail = body && (body.message || body.error) || '';
+            } catch (e) { /* non-JSON body */ }
+            throw new Error(detail || ('HTTP ' + resp.status));
+        }
+        const data = await resp.json();
+        state.savedFilename = data && data.filename ? String(data.filename) : null;
+        _renderFollowupOnly();
+    }
+
+    // -----------------------------------------------------------------
+    // Capture GitHub submission (#1057, Part B)
+    //
+    // After the user finishes the issue on github.com they paste the
+    // resulting URL into the follow-up panel. We parse out the issue
+    // number, then append a record to /beatify/api/playlist-requests so
+    // the existing PlaylistRequestsView GitHub-sync (#970) advances the
+    // status from SUBMITTED → REVIEWED → BUILDING → IN BUNDLED without
+    // any other code changes. The record carries `source: "generator"`
+    // so the Mine tab can distinguish it from the existing request-modal
+    // entries if it ever wants to.
+    // -----------------------------------------------------------------
+
+    async function _captureIssueSubmission() {
+        const sub = state.pendingSubmission;
+        if (!sub) return;
+        const input = state.rootEl && state.rootEl.querySelector('[data-plg-field="issue_url"]');
+        const url = input ? input.value.trim() : '';
+        const issueNumber = parseIssueNumberFromUrl(url);
+        if (!issueNumber) {
+            _setFollowupHint(_t(
+                'playlistGenerator.submit.invalidIssueUrl',
+                'That does not look like a GitHub issue URL. Expected something like https://github.com/mholzi/beatify/issues/123.'
+            ));
+            return;
+        }
+
+        // Read-modify-write against the same backend store the existing
+        // request-modal flow uses (BACKEND_API = /beatify/api/playlist-requests).
+        // POST replaces the full list; we GET first so we don't drop existing
+        // requests on append.
+        const getResp = await fetch('/beatify/api/playlist-requests');
+        let store = { requests: [], last_poll: null };
+        if (getResp.ok) {
+            try { store = await getResp.json(); } catch (e) { /* keep default */ }
+        }
+        if (!store || !Array.isArray(store.requests)) {
+            store = { requests: [], last_poll: store ? store.last_poll : null };
+        }
+
+        const existing = store.requests.findIndex((r) => r && r.issue_number === issueNumber);
+        const record = {
+            issue_number: issueNumber,
+            spotify_url: sub.spotify_url || '',
+            playlist_name: sub.playlist_name || 'Generated playlist',
+            thumbnail_url: null,
+            requested_at: new Date().toISOString(),
+            status: 'pending',
+            release_version: null,
+            decline_reason: null,
+            last_checked: null,
+            source: 'generator',
+        };
+        if (existing >= 0) {
+            store.requests[existing] = Object.assign({}, store.requests[existing], record);
+        } else {
+            store.requests.push(record);
+        }
+
+        const postResp = await fetch('/beatify/api/playlist-requests', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(store),
+        });
+        if (!postResp.ok) {
+            throw new Error('HTTP ' + postResp.status);
+        }
+
+        state.capturedIssueNumber = issueNumber;
+        state.pendingSubmission = null;
+        _renderFollowupOnly();
     }
 
     function _setHint(msg) {
@@ -930,6 +1163,7 @@ __JSON__
             formatValidationForLLM,
             sanitizePlaylistText,
             parseSpotifyPlaylistId,
+            parseIssueNumberFromUrl,
             slugify,
         },
     };

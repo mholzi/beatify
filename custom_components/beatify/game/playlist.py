@@ -530,7 +530,9 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
         try:
             rel = json_file.relative_to(playlist_dir)
             source = (
-                "community" if rel.parts and rel.parts[0] == "community" else "bundled"
+                "community"
+                if rel.parts and rel.parts[0] in ("community", "user")
+                else "bundled"
             )
             content = await loop.run_in_executor(None, _read_file, json_file)
             data = json.loads(content)
@@ -600,7 +602,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                 rel = json_file.relative_to(playlist_dir)
                 source = (
                     "community"
-                    if rel.parts and rel.parts[0] == "community"
+                    if rel.parts and rel.parts[0] in ("community", "user")
                     else "bundled"
                 )
             except ValueError:
