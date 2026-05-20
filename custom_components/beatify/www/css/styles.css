@@ -4242,6 +4242,7 @@ body.theme-dark .game-sticky-bar {
 .artist-options-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
     gap: var(--space-sm);
 }
 
@@ -4255,7 +4256,7 @@ body.theme-dark .game-sticky-bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
+    min-height: 72px;
     padding: var(--space-sm) var(--space-md);
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
