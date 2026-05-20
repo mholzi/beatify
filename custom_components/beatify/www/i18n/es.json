@@ -985,7 +985,9 @@
       "submitTooltip": "Abrir un nuevo issue de GitHub con el JSON precargado",
       "submitDisabledTooltip": "Valida primero",
       "saveLocalTooltip": "Próximamente en v1.1 — requiere soporte del backend",
-      "sanitized": "Se limpiaron automáticamente {n} envoltorio(s) de URL antes de validar (artefactos de autoenlace Markdown)."
+      "sanitized": "Se limpiaron automáticamente {n} envoltorio(s) de URL antes de validar (artefactos de autoenlace Markdown).",
+      "sanitizedBoth": "Limpieza automática: se eliminó un envoltorio Markdown alrededor del JSON y {n} envoltorio(s) de URL antes de validar.",
+      "sanitizedWrapper": "Limpieza automática: se eliminó un envoltorio Markdown alrededor del JSON antes de validar."
     },
     "verdict": {
       "ok": "✓ Validación correcta — listo para enviar.",

@@ -429,6 +429,56 @@ describe('sanitizePlaylistText', () => {
         expect(s.changes).toBe(0);
     });
 
+    it('strips a ```json … ``` markdown code fence around the JSON', () => {
+        const json = JSON.stringify(goldPlaylist());
+        const wrapped = '```json\n' + json + '\n```';
+        const s = api.sanitizePlaylistText(wrapped);
+        expect(s.strippedWrapper).toBe(true);
+        expect(s.parseError).toBeNull();
+        const cleaned = JSON.parse(s.text);
+        expect(cleaned.name).toBe('Trance Classics');
+    });
+
+    it('strips bare ``` … ``` fences (no language tag)', () => {
+        const json = JSON.stringify(goldPlaylist());
+        const s = api.sanitizePlaylistText('```\n' + json + '\n```');
+        expect(s.strippedWrapper).toBe(true);
+        expect(s.parseError).toBeNull();
+    });
+
+    it('strips a leading # heading and trailing prose', () => {
+        const json = JSON.stringify(goldPlaylist());
+        const wrapped = '# Beatify playlist JSON\n\n' + json + '\n\nHope that helps!';
+        const s = api.sanitizePlaylistText(wrapped);
+        expect(s.strippedWrapper).toBe(true);
+        expect(s.parseError).toBeNull();
+        const cleaned = JSON.parse(s.text);
+        expect(cleaned.songs).toHaveLength(1);
+    });
+
+    it('handles both wrappers AND URL angle-brackets in one pass', () => {
+        const s1 = goldSong({ uri_youtube_music: '<https://music.youtube.com/watch?v=0snTYLgg9w0>' });
+        const json = JSON.stringify(goldPlaylist([s1]));
+        const wrapped = '```json\n' + json + '\n```';
+        const s = api.sanitizePlaylistText(wrapped);
+        expect(s.strippedWrapper).toBe(true);
+        expect(s.changes).toBe(1);
+        const cleaned = JSON.parse(s.text);
+        expect(cleaned.songs[0].uri_youtube_music).toBe('https://music.youtube.com/watch?v=0snTYLgg9w0');
+    });
+
+    it('still reports parseError when the wrapper-stripped body is still invalid', () => {
+        // Braces are balanced, so wrapper-strip succeeds; content inside
+        // is not valid JSON, so parse fails. We surface the stripped
+        // body so the parse-error path renders against the unwrapped
+        // text (cleaner error message).
+        const s = api.sanitizePlaylistText('# Heading\n\n{ "name": invalid }');
+        expect(s.strippedWrapper).toBe(true);
+        expect(s.parseError).toBeTruthy();
+        expect(s.text).not.toContain('# Heading');
+        expect(s.text.startsWith('{')).toBe(true);
+    });
+
     it('a sanitized corrupt playlist round-trips through validatePlaylist as ok', () => {
         const corrupt = goldSong({
             uri_youtube_music: '<https://music.youtube.com/watch?v=0snTYLgg9w0>',

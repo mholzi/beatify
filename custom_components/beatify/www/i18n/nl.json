@@ -985,7 +985,9 @@
       "submitTooltip": "Een nieuw GitHub-issue openen met het JSON vooringevuld",
       "submitDisabledTooltip": "Eerst valideren",
       "saveLocalTooltip": "Komt in v1.1 — vereist backend-ondersteuning",
-      "sanitized": "{n} URL-omhulsel(s) automatisch opgeschoond vóór validatie (Markdown-autolink-artefacten)."
+      "sanitized": "{n} URL-omhulsel(s) automatisch opgeschoond vóór validatie (Markdown-autolink-artefacten).",
+      "sanitizedBoth": "Automatisch opgeschoond: een Markdown-omhulsel rond het JSON en {n} URL-omhulsel(s) verwijderd vóór validatie.",
+      "sanitizedWrapper": "Automatisch opgeschoond: een Markdown-omhulsel rond het JSON verwijderd vóór validatie."
     },
     "verdict": {
       "ok": "✓ Validatie geslaagd — klaar om in te dienen.",

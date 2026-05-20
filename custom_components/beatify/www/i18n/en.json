@@ -1134,7 +1134,9 @@
       "submitTooltip": "Open a new GitHub issue with the JSON pre-filled",
       "submitDisabledTooltip": "Validate first",
       "saveLocalTooltip": "Coming in v1.1 — needs backend support",
-      "sanitized": "Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts)."
+      "sanitized": "Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts).",
+      "sanitizedBoth": "Auto-cleaned: stripped a Markdown wrapper around the JSON and {n} URL wrapper(s) before validating.",
+      "sanitizedWrapper": "Auto-cleaned: stripped a Markdown wrapper around the JSON before validating."
     },
     "verdict": {
       "ok": "✓ Validation passed — ready to submit.",

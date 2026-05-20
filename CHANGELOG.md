@@ -4,7 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.4.0-rc3] - 2026-05-20
+## [3.4.0-rc4] - 2026-05-20
+
+### Added
+- **Sanitizer now also strips Markdown wrappers around the JSON (#1052).** Two more paste-corruption patterns surfaced during testing: (a) LLMs ignoring "no markdown fences" and returning their output inside ` ```json … ``` `, and (b) users accidentally pasting the "Copy result for LLM" brief — which starts with `# Beatify playlist JSON — validation feedback` — back into the textarea. Both made the JSON parser bail with "Unrecognized token '#'" or similar. The Validate button now runs a pre-parse cleanup that (1) extracts content between the first/last triple-backtick fences and (2) trims anything before the first `{` and after the last `}`. The cleaned text is written back to the textarea, and a localised hint tells the user what was stripped. Combined with rc3's per-URI angle-bracket sanitizer, a single Validate click now handles both layers in one pass. 5 new vitest cases (80 passing total).
 
 ### Added
 - **Paste-corruption auto-cleaner in the playlist generator (#1052).** Some chat renderers (Telegram and friends) wrap bare URLs inside code blocks with Markdown autolink syntax `<URL>`. When users copy-pasted JSON from chat into Beatify's textarea, every URI field arrived corrupted and validation rejected the playlist with no clear way to recover. The Validate button now strips those wrappers from all five URI fields (Spotify / Apple Music / per-region Apple Music / YouTube Music / Tidal / Deezer) before running shape checks, rewrites the textarea so the user sees exactly what changed, and shows a localised "Auto-cleaned N URL wrapper(s)" hint. Non-URI fields (e.g. a `fun_fact` that mentions "<Sandstorm>") are left untouched. 6 new vitest cases cover the sanitizer (75 passing total).

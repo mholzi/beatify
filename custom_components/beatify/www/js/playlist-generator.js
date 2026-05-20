@@ -194,12 +194,50 @@ RULES
         return s;
     }
 
+    // Pre-parse cleanup. LLMs ignore "no markdown fences" rules; users
+    // paste back the validation brief by accident; some chat renderers
+    // add a heading line. The common shape: real JSON is nested inside
+    // non-JSON wrapping. Try (a) extracting between ``` fences, then
+    // (b) trimming everything before the first `{` and after the last
+    // `}`. Both heuristics are safe because a Beatify playlist is a
+    // single JSON object — text outside the outermost braces cannot be
+    // part of it.
+    function _stripMarkdownWrapper(text) {
+        if (typeof text !== 'string') return { text, changed: false };
+        let s = text;
+        let changed = false;
+        const fenceMatch = s.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/i);
+        if (fenceMatch) {
+            s = fenceMatch[1];
+            changed = true;
+        }
+        const first = s.indexOf('{');
+        const last = s.lastIndexOf('}');
+        if (first > 0 || (last !== -1 && last < s.length - 1)) {
+            if (first !== -1 && last > first) {
+                const candidate = s.slice(first, last + 1);
+                if (candidate !== s) {
+                    s = candidate;
+                    changed = true;
+                }
+            }
+        }
+        return { text: s, changed };
+    }
+
     function sanitizePlaylistText(jsonText) {
-        const out = { text: jsonText, changes: 0, parseError: null };
+        const out = { text: jsonText, changes: 0, parseError: null, strippedWrapper: false };
         if (typeof jsonText !== 'string' || jsonText.trim() === '') return out;
+        let working = jsonText;
+        const stripped = _stripMarkdownWrapper(working);
+        if (stripped.changed) {
+            working = stripped.text;
+            out.strippedWrapper = true;
+        }
         let data;
-        try { data = JSON.parse(jsonText); } catch (e) {
+        try { data = JSON.parse(working); } catch (e) {
             out.parseError = e && e.message ? e.message : String(e);
+            if (out.strippedWrapper) out.text = working;
             return out;
         }
         let changes = 0;
@@ -230,7 +268,9 @@ RULES
             }
         }
         out.changes = changes;
-        out.text = changes > 0 ? JSON.stringify(data, null, 2) : jsonText;
+        out.text = (changes > 0 || out.strippedWrapper)
+            ? JSON.stringify(data, null, 2)
+            : jsonText;
         return out;
     }
 
@@ -741,18 +781,36 @@ __JSON__
         if (action === 'validate') {
             const ta = state.rootEl.querySelector('[data-plg-field="json"]');
             let txt = ta ? ta.value : '';
-            // Strip Markdown autolink wrappers that some chat renderers
-            // add around URLs in code blocks. We rewrite the textarea so
-            // the user sees exactly what got cleaned up.
+            // Two layers of paste-corruption cleanup before validation:
+            //  1) Strip markdown wrappers (``` fences or # heading +
+            //     trailing prose) so the JSON parses at all.
+            //  2) Strip <URL> autolink wrappers from URI fields.
+            // Both edits are written back to the textarea so the user
+            // sees exactly what changed.
             const sanitized = sanitizePlaylistText(txt);
-            if (sanitized.changes > 0) {
+            const wrapperStripped = sanitized.strippedWrapper;
+            const fieldChanges = sanitized.changes;
+            if ((wrapperStripped || fieldChanges > 0) && !sanitized.parseError) {
                 if (ta) ta.value = sanitized.text;
                 txt = sanitized.text;
-                _setHint(_t(
-                    'playlistGenerator.hints.sanitized',
-                    'Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts).',
-                    { n: sanitized.changes }
-                ));
+                if (wrapperStripped && fieldChanges > 0) {
+                    _setHint(_t(
+                        'playlistGenerator.hints.sanitizedBoth',
+                        'Auto-cleaned: stripped a Markdown wrapper around the JSON and {n} URL wrapper(s) before validating.',
+                        { n: fieldChanges }
+                    ));
+                } else if (wrapperStripped) {
+                    _setHint(_t(
+                        'playlistGenerator.hints.sanitizedWrapper',
+                        'Auto-cleaned: stripped a Markdown wrapper around the JSON before validating.'
+                    ));
+                } else {
+                    _setHint(_t(
+                        'playlistGenerator.hints.sanitized',
+                        'Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts).',
+                        { n: fieldChanges }
+                    ));
+                }
             }
             state.lastJsonText = txt;
             state.lastValidation = validatePlaylist(txt);

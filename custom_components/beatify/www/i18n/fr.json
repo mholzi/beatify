@@ -985,7 +985,9 @@
       "submitTooltip": "Ouvrir une nouvelle issue GitHub avec le JSON pré-rempli",
       "submitDisabledTooltip": "Validez d'abord",
       "saveLocalTooltip": "Bientôt en v1.1 — nécessite le support du backend",
-      "sanitized": "{n} habillage(s) d'URL nettoyé(s) automatiquement avant validation (artefacts d'autolien Markdown)."
+      "sanitized": "{n} habillage(s) d'URL nettoyé(s) automatiquement avant validation (artefacts d'autolien Markdown).",
+      "sanitizedBoth": "Nettoyage auto : un habillage Markdown autour du JSON et {n} habillage(s) d'URL retirés avant validation.",
+      "sanitizedWrapper": "Nettoyage auto : un habillage Markdown autour du JSON retiré avant validation."
     },
     "verdict": {
       "ok": "✓ Validation réussie — prêt à envoyer.",

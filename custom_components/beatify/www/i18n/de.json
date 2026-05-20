@@ -1134,7 +1134,9 @@
       "submitTooltip": "Neues GitHub-Issue mit vorausgefülltem JSON öffnen",
       "submitDisabledTooltip": "Zuerst validieren",
       "saveLocalTooltip": "Kommt in v1.1 — benötigt Backend-Unterstützung",
-      "sanitized": "{n} URL-Wrapper vor der Validierung automatisch bereinigt (Markdown-Autolink-Artefakte)."
+      "sanitized": "{n} URL-Wrapper vor der Validierung automatisch bereinigt (Markdown-Autolink-Artefakte).",
+      "sanitizedBoth": "Automatisch bereinigt: Markdown-Hülle um das JSON und {n} URL-Wrapper vor der Validierung entfernt.",
+      "sanitizedWrapper": "Automatisch bereinigt: Markdown-Hülle um das JSON vor der Validierung entfernt."
     },
     "verdict": {
       "ok": "✓ Validierung erfolgreich — bereit zum Einreichen.",
