@@ -1133,7 +1133,8 @@
       "copyResultHint": "Paste this back into your LLM to ask for a corrected JSON.",
       "submitTooltip": "Open a new GitHub issue with the JSON pre-filled",
       "submitDisabledTooltip": "Validate first",
-      "saveLocalTooltip": "Coming in v1.1 — needs backend support"
+      "saveLocalTooltip": "Coming in v1.1 — needs backend support",
+      "sanitized": "Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts)."
     },
     "verdict": {
       "ok": "✓ Validation passed — ready to submit.",

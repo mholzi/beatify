@@ -167,6 +167,74 @@ RULES
     }
 
     // -----------------------------------------------------------------
+    // Paste-corruption sanitizer.
+    //
+    // Some chat renderers (Telegram and friends) wrap bare URLs inside
+    // code blocks with Markdown autolink syntax `<URL>`. When the user
+    // copy-pastes JSON from chat into Beatify's textarea, those angle
+    // brackets travel along as part of the JSON string value, breaking
+    // shape validation on every URI field. We can't fix the chat
+    // renderer; we CAN strip the wrappers transparently before
+    // validation and write the cleaned JSON back to the textarea so
+    // the user sees what was changed.
+    //
+    // Limited to known URI fields (Spotify/Apple/YouTube/Tidal/Deezer)
+    // because stripping `<>` from arbitrary strings would silently
+    // mutate legitimate content (e.g. a fun_fact that mentions
+    // "<Sandstorm>" in quotes).
+    // -----------------------------------------------------------------
+
+    const URI_FIELD_NAMES = ['uri', 'uri_apple_music', 'uri_youtube_music', 'uri_tidal', 'uri_deezer'];
+
+    function _stripWrappers(v) {
+        if (typeof v !== 'string') return v;
+        let s = v;
+        if (s.length >= 2 && s.startsWith('<') && s.endsWith('>')) s = s.slice(1, -1);
+        s = s.replace(/^\s+|\s+$/g, '');
+        return s;
+    }
+
+    function sanitizePlaylistText(jsonText) {
+        const out = { text: jsonText, changes: 0, parseError: null };
+        if (typeof jsonText !== 'string' || jsonText.trim() === '') return out;
+        let data;
+        try { data = JSON.parse(jsonText); } catch (e) {
+            out.parseError = e && e.message ? e.message : String(e);
+            return out;
+        }
+        let changes = 0;
+        if (data && typeof data === 'object' && Array.isArray(data.songs)) {
+            for (const song of data.songs) {
+                if (!song || typeof song !== 'object') continue;
+                for (const f of URI_FIELD_NAMES) {
+                    if (f in song) {
+                        const before = song[f];
+                        const after = _stripWrappers(before);
+                        if (after !== before) {
+                            song[f] = after;
+                            changes += 1;
+                        }
+                    }
+                }
+                const r = song.uri_apple_music_by_region;
+                if (r && typeof r === 'object' && !Array.isArray(r)) {
+                    for (const k of Object.keys(r)) {
+                        const before = r[k];
+                        const after = _stripWrappers(before);
+                        if (after !== before) {
+                            r[k] = after;
+                            changes += 1;
+                        }
+                    }
+                }
+            }
+        }
+        out.changes = changes;
+        out.text = changes > 0 ? JSON.stringify(data, null, 2) : jsonText;
+        return out;
+    }
+
+    // -----------------------------------------------------------------
     // Validator
     // -----------------------------------------------------------------
 
@@ -672,7 +740,20 @@ __JSON__
         }
         if (action === 'validate') {
             const ta = state.rootEl.querySelector('[data-plg-field="json"]');
-            const txt = ta ? ta.value : '';
+            let txt = ta ? ta.value : '';
+            // Strip Markdown autolink wrappers that some chat renderers
+            // add around URLs in code blocks. We rewrite the textarea so
+            // the user sees exactly what got cleaned up.
+            const sanitized = sanitizePlaylistText(txt);
+            if (sanitized.changes > 0) {
+                if (ta) ta.value = sanitized.text;
+                txt = sanitized.text;
+                _setHint(_t(
+                    'playlistGenerator.hints.sanitized',
+                    'Auto-cleaned {n} URL wrapper(s) before validating (Markdown autolink artifacts).',
+                    { n: sanitized.changes }
+                ));
+            }
             state.lastJsonText = txt;
             state.lastValidation = validatePlaylist(txt);
             _renderResults();
@@ -794,6 +875,7 @@ __JSON__
             validateSong,
             buildSubmitIssueUrl,
             formatValidationForLLM,
+            sanitizePlaylistText,
             parseSpotifyPlaylistId,
             slugify,
         },

@@ -984,7 +984,8 @@
       "copyResultHint": "Recollez ceci dans votre LLM pour demander un JSON corrigé.",
       "submitTooltip": "Ouvrir une nouvelle issue GitHub avec le JSON pré-rempli",
       "submitDisabledTooltip": "Validez d'abord",
-      "saveLocalTooltip": "Bientôt en v1.1 — nécessite le support du backend"
+      "saveLocalTooltip": "Bientôt en v1.1 — nécessite le support du backend",
+      "sanitized": "{n} habillage(s) d'URL nettoyé(s) automatiquement avant validation (artefacts d'autolien Markdown)."
     },
     "verdict": {
       "ok": "✓ Validation réussie — prêt à envoyer.",

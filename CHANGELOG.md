@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc3] - 2026-05-20
+
+### Added
+- **Paste-corruption auto-cleaner in the playlist generator (#1052).** Some chat renderers (Telegram and friends) wrap bare URLs inside code blocks with Markdown autolink syntax `<URL>`. When users copy-pasted JSON from chat into Beatify's textarea, every URI field arrived corrupted and validation rejected the playlist with no clear way to recover. The Validate button now strips those wrappers from all five URI fields (Spotify / Apple Music / per-region Apple Music / YouTube Music / Tidal / Deezer) before running shape checks, rewrites the textarea so the user sees exactly what changed, and shows a localised "Auto-cleaned N URL wrapper(s)" hint. Non-URI fields (e.g. a `fun_fact` that mentions "<Sandstorm>") are left untouched. 6 new vitest cases cover the sanitizer (75 passing total).
+
 ## [3.4.0-rc2] - 2026-05-20
 
 ### Added

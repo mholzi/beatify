@@ -1133,7 +1133,8 @@
       "copyResultHint": "Füge dies zurück in dein LLM ein, um ein korrigiertes JSON zu erhalten.",
       "submitTooltip": "Neues GitHub-Issue mit vorausgefülltem JSON öffnen",
       "submitDisabledTooltip": "Zuerst validieren",
-      "saveLocalTooltip": "Kommt in v1.1 — benötigt Backend-Unterstützung"
+      "saveLocalTooltip": "Kommt in v1.1 — benötigt Backend-Unterstützung",
+      "sanitized": "{n} URL-Wrapper vor der Validierung automatisch bereinigt (Markdown-Autolink-Artefakte)."
     },
     "verdict": {
       "ok": "✓ Validierung erfolgreich — bereit zum Einreichen.",

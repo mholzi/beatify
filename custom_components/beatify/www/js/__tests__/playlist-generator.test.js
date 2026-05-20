@@ -377,6 +377,73 @@ describe('formatValidationForLLM', () => {
 });
 
 // ------------------------------------------------------------------
+// sanitizePlaylistText — paste-corruption auto-clean
+// ------------------------------------------------------------------
+
+describe('sanitizePlaylistText', () => {
+    it('returns the input unchanged when no wrappers are present', () => {
+        const txt = JSON.stringify(goldPlaylist());
+        const s = api.sanitizePlaylistText(txt);
+        expect(s.changes).toBe(0);
+        expect(s.text).toBe(txt);
+    });
+
+    it('strips <…> Markdown autolink wrappers from uri_youtube_music', () => {
+        const corrupt = goldSong({
+            uri_youtube_music: '<https://music.youtube.com/watch?v=0snTYLgg9w0>',
+        });
+        const txt = JSON.stringify(goldPlaylist([corrupt]));
+        const s = api.sanitizePlaylistText(txt);
+        expect(s.changes).toBe(1);
+        const cleaned = JSON.parse(s.text);
+        expect(cleaned.songs[0].uri_youtube_music).toBe('https://music.youtube.com/watch?v=0snTYLgg9w0');
+    });
+
+    it('strips wrappers from all URI fields including the per-region Apple map', () => {
+        const s1 = goldSong();
+        s1.uri = '<spotify:track:5A3IdgGphzKS2etiGFB73S>';
+        s1.uri_apple_music = '<applemusic://track/965771834>';
+        s1.uri_deezer = '<deezer://track/94877938>';
+        s1.uri_apple_music_by_region.de = '<applemusic://track/965771835>';
+        const txt = JSON.stringify(goldPlaylist([s1]));
+        const s = api.sanitizePlaylistText(txt);
+        expect(s.changes).toBe(4);
+        const c = JSON.parse(s.text);
+        expect(c.songs[0].uri).toBe('spotify:track:5A3IdgGphzKS2etiGFB73S');
+        expect(c.songs[0].uri_apple_music).toBe('applemusic://track/965771834');
+        expect(c.songs[0].uri_deezer).toBe('deezer://track/94877938');
+        expect(c.songs[0].uri_apple_music_by_region.de).toBe('applemusic://track/965771835');
+    });
+
+    it('does NOT strip wrappers from non-URI fields (fun_fact mentions are preserved)', () => {
+        const s1 = goldSong({ fun_fact: 'A track named <Sandstorm> by Darude.' });
+        const txt = JSON.stringify(goldPlaylist([s1]));
+        const s = api.sanitizePlaylistText(txt);
+        expect(s.changes).toBe(0);
+        expect(JSON.parse(s.text).songs[0].fun_fact).toContain('<Sandstorm>');
+    });
+
+    it('reports parseError instead of throwing on invalid JSON', () => {
+        const s = api.sanitizePlaylistText('{ not json');
+        expect(s.parseError).toBeTruthy();
+        expect(s.changes).toBe(0);
+    });
+
+    it('a sanitized corrupt playlist round-trips through validatePlaylist as ok', () => {
+        const corrupt = goldSong({
+            uri_youtube_music: '<https://music.youtube.com/watch?v=0snTYLgg9w0>',
+            uri: '<spotify:track:5A3IdgGphzKS2etiGFB73S>',
+        });
+        const corruptTxt = JSON.stringify(goldPlaylist([corrupt]));
+        const sanitized = api.sanitizePlaylistText(corruptTxt);
+        expect(sanitized.changes).toBe(2);
+        const v = api.validatePlaylist(sanitized.text);
+        expect(v.ok).toBe(true);
+        expect(v.songResults[0].errors).toEqual([]);
+    });
+});
+
+// ------------------------------------------------------------------
 // Validator error-message echoes (paste-corruption diagnostics)
 // ------------------------------------------------------------------
 

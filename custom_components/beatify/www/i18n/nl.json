@@ -984,7 +984,8 @@
       "copyResultHint": "Plak dit terug in je LLM om een gecorrigeerde JSON te vragen.",
       "submitTooltip": "Een nieuw GitHub-issue openen met het JSON vooringevuld",
       "submitDisabledTooltip": "Eerst valideren",
-      "saveLocalTooltip": "Komt in v1.1 — vereist backend-ondersteuning"
+      "saveLocalTooltip": "Komt in v1.1 — vereist backend-ondersteuning",
+      "sanitized": "{n} URL-omhulsel(s) automatisch opgeschoond vóór validatie (Markdown-autolink-artefacten)."
     },
     "verdict": {
       "ok": "✓ Validatie geslaagd — klaar om in te dienen.",
