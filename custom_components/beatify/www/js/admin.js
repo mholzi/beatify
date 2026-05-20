@@ -124,6 +124,9 @@ let adminReconnectAttempts = 0;
 let _homeStartBtnHTML = null;
 const MAX_ADMIN_RECONNECT = 10;
 let countdownInterval = null;
+// #1048: REVEAL auto-advance countdown on the sticky Next button
+let revealAdvanceInterval = null;
+let revealAdvanceOrigIcon = null;
 
 // LocalStorage keys
 const STORAGE_LAST_PLAYER = 'beatify_last_player';
@@ -3475,6 +3478,12 @@ function handleAdminStateUpdate(data) {
         if (el) el.classList.add('hidden');
     });
 
+    // #1048: leaving REVEAL — make sure the auto-advance countdown is torn
+    // down so the sticky Next button restores its icon for other phases.
+    if (data.phase !== 'REVEAL') {
+        _stopRevealAdvanceCountdown();
+    }
+
     // Also hide setup sections
     setupSections.forEach(function(id) {
         var el = document.getElementById(id);
@@ -3739,6 +3748,10 @@ function showAdminRevealView(data) {
     var controlBar = document.getElementById('admin-control-bar');
     if (controlBar) controlBar.classList.remove('hidden');
 
+    // #1048: replace the Next button icon with a 1-Hz auto-advance countdown
+    // when one is running. Idle-halt and Off both keep the plain icon.
+    _updateRevealAdvanceCountdown(data);
+
     // Emotion display (summary for spectator admin)
     var emotionEl = document.getElementById('admin-reveal-emotion');
     if (emotionEl && data.players) {
@@ -3867,6 +3880,61 @@ function showAdminRevealView(data) {
 
     // Leaderboard (player-style entries)
     renderAdminLeaderboard(data.leaderboard);
+}
+
+/**
+ * #1048: 1-Hz countdown on the sticky Next button while REVEAL auto-advance
+ * runs. Replaces the ⏭️ icon with the remaining seconds; falls back to the
+ * icon when auto-advance is Off, idle-halt is active, or the deadline is
+ * missing from the state payload.
+ */
+function _stopRevealAdvanceCountdown() {
+    if (revealAdvanceInterval) {
+        clearInterval(revealAdvanceInterval);
+        revealAdvanceInterval = null;
+    }
+    var iconEl = document.querySelector('#admin-skip-round .control-icon');
+    if (iconEl) {
+        iconEl.classList.remove('is-countdown');
+        if (revealAdvanceOrigIcon !== null) {
+            iconEl.textContent = revealAdvanceOrigIcon;
+        }
+    }
+}
+
+function _updateRevealAdvanceCountdown(data) {
+    var iconEl = document.querySelector('#admin-skip-round .control-icon');
+    if (!iconEl) return;
+
+    var advance = data.reveal_auto_advance || 0;
+    var startedAt = data.reveal_started_at;
+    if (advance <= 0 || data.idle_halt || !startedAt) {
+        _stopRevealAdvanceCountdown();
+        return;
+    }
+
+    if (revealAdvanceOrigIcon === null) {
+        revealAdvanceOrigIcon = iconEl.textContent;
+    }
+
+    var deadline = startedAt + advance * 1000;
+
+    function tick() {
+        var remainingMs = deadline - Date.now();
+        var remaining = Math.max(0, Math.ceil(remainingMs / 1000));
+        iconEl.textContent = String(remaining);
+        iconEl.classList.add('is-countdown');
+        if (remaining <= 0 && revealAdvanceInterval) {
+            // Stop ticking; the server will broadcast PLAYING shortly and
+            // showAdminPlayingView's setup tears the countdown down.
+            clearInterval(revealAdvanceInterval);
+            revealAdvanceInterval = null;
+        }
+    }
+
+    if (revealAdvanceInterval) clearInterval(revealAdvanceInterval);
+    tick();
+    revealAdvanceInterval = setInterval(tick, 1000);
 }
 
 /**

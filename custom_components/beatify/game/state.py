@@ -111,6 +111,9 @@ class GameState:
         # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
         self.reveal_auto_advance: int = 0
         self._auto_advance_task: asyncio.Task | None = None
+        # #1048: ms timestamp REVEAL was entered — clients compute remaining
+        # countdown vs Date.now(). None outside REVEAL.
+        self.reveal_started_at: int | None = None
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
         # Issue #447: TTS announcement service
@@ -592,6 +595,7 @@ class GameState:
         # starting the next round automatically (0 = off / manual only).
         self.reveal_auto_advance = reveal_auto_advance
         self._auto_advance_task = None
+        self.reveal_started_at = None  # #1048
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
@@ -863,6 +867,7 @@ class GameState:
 
         # Transition to PAUSED
         self.phase = GamePhase.PAUSED
+        self.reveal_started_at = None  # #1048: leaving REVEAL
         self._notify_state_callbacks()
         _LOGGER.info("Game paused: %s", reason)
 
@@ -1414,6 +1419,7 @@ class GameState:
         )
         self.round_analytics = None
         self.phase = GamePhase.PLAYING
+        self.reveal_started_at = None  # #1048: leaving REVEAL
         self._notify_state_callbacks()
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
@@ -1809,6 +1815,9 @@ class GameState:
             set()
         )  # Story 18.9: Clear for new reveal phase
         self.phase = GamePhase.REVEAL
+        # #1048: timestamp REVEAL entry so admin client can render the
+        # auto-advance countdown on the sticky Next button.
+        self.reveal_started_at = int(self._now() * 1000)
         self._notify_state_callbacks()
 
         # #1012: schedule the unattended REVEAL auto-advance — always on
@@ -2079,6 +2088,7 @@ class GameState:
         self._round_manager._cancel_intro_timer()
         self._cancel_auto_advance()  # #1012
         self.phase = GamePhase.END
+        self.reveal_started_at = None  # #1048
         self._notify_state_callbacks()
 
         # Issue #331: Celebrate with Party Lights, then stop (#553)

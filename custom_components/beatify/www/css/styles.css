@@ -7280,6 +7280,16 @@ body.theme-dark .card-score {
     line-height: 1;
 }
 
+/* #1048: REVEAL auto-advance countdown — replaces the icon in the Next
+   button with the remaining seconds while the auto-advance timer runs.
+   Tabular numerals so 30 → 29 → 28 doesn't shift the layout. */
+.control-icon.is-countdown {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    min-width: 1.5em;
+    text-align: center;
+}
+
 .control-label {
     font-size: var(--font-size-xs);
     margin-top: 2px;
