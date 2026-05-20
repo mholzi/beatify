@@ -248,7 +248,7 @@
     }
 
     // Expose for admin.js to read when starting game.
-    // #1010: re-load from localStorage so wizard-written values (saved after
+    // Re-load from localStorage so wizard-written values (saved after
     // this module's init ran) are picked up. Without this, the start-game
     // payload carries the stale page-load defaults (enabled:false) and the
     // backend skips configure_tts, leaving the game silent.
