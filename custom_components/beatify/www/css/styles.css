@@ -12470,6 +12470,51 @@ body.is-learning-screen .player-header { display: none; }
 }
 
 /* ============================================
+   #1076: Compact game-view layout for mobile.
+   On 360-411 CSS-px phones the artist/movie challenge tiles
+   and Submit button were rendering below the fold, so every
+   round players had to scroll before they could vote. Scoped
+   to body:has(#game-view:not(.hidden)) so it only fires while
+   game-view is the active screen — lobby/reveal/end keep the
+   original spacing. :has() degrades gracefully: browsers that
+   don't support it fall back to the looser pre-fix layout.
+   ============================================ */
+body:has(#game-view:not(.hidden)) .player-header { display: none; }
+body:has(#game-view:not(.hidden)) .player-container {
+    padding-top: max(var(--space-xs), env(safe-area-inset-top));
+}
+body:has(#game-view:not(.hidden)) .arc-header {
+    margin-bottom: var(--space-sm);
+}
+body:has(#game-view:not(.hidden)) .year-xxl {
+    font-size: clamp(72px, 26vw, 104px);
+    margin: 2px 0 var(--space-sm);
+}
+body:has(#game-view:not(.hidden)) .slider-arcade-wrap {
+    margin-bottom: var(--space-sm);
+}
+body:has(#game-view:not(.hidden)) .arc-tiles {
+    padding: 10px 12px;
+    margin: 0 var(--space-md) var(--space-sm);
+}
+body:has(#game-view:not(.hidden)) .arc-tiles-header {
+    margin-bottom: 6px;
+}
+body:has(#game-view:not(.hidden)) .arc-tiles-grid { gap: 8px; }
+body:has(#game-view:not(.hidden)) .arc-tiles-grid .artist-option-btn,
+body:has(#game-view:not(.hidden)) .arc-tiles-grid .movie-option-btn {
+    min-height: 52px;
+    padding: 12px 10px;
+}
+body:has(#game-view:not(.hidden)) .arc-actions {
+    margin-bottom: var(--space-sm);
+}
+body:has(#game-view:not(.hidden)) .bonus-filler {
+    padding: var(--space-sm) var(--space-md);
+    margin: 0 var(--space-md) var(--space-sm);
+}
+
+/* ============================================
    End-of-Game Podium v2 — Hero Winner (rc31)
    Scoped under body.theme-dark so player.html end-view
    is restyled from a 3-column stands layout into a
