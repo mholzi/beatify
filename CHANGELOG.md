@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc14] - 2026-05-21
+
+### Fixed
+- **Safari 18 login loop — server-side OAuth exchange proxy (#998 follow-up to rc11–rc13).** Three previous attempts (rc11 self-healing SW, rc12 urlencoded fetch fallback, rc13 XHR fallback) all failed because the issue wasn't the browser transport — it was the response from HA's `/auth/token` as relayed through Nabu Casa SniTun. Safari 18 rejected the response itself with `XMLHttpRequest cannot load … due to access control checks`, even though the request is same-origin and HA's TokenView declares `cors_allowed = True`. Both fetch (FormData and urlencoded) and XHR were dead on Safari 18 + Nabu Casa.
+- **Fix: route the OAuth code/refresh exchange through a Beatify-owned path.** New `BeatifyAuthExchangeView` at `/beatify/auth/exchange` forwards the body to HA's local `/auth/token` over loopback HTTP (or HTTPS if HA is configured with a cert). The exchange never crosses SniTun, so the response Safari sees comes from a path it has no reason to special-case — same-origin, plain JSON, explicit `Cache-Control: no-store`. `ha-auth.js` now uses a single transport (URLSearchParams body via fetch); the FormData/XHR fallback chain is gone.
+- **Tests: 88 JS + 5 new Python tests cover the proxy view (loopback URL selection HTTP vs HTTPS, body forwarding, HA-rejection passthrough, connection-failure 502).** 88/88 JS + 525/525 Python pass.
+
+After rc14, the Safari 18 console is silent on auth — no more `FormData /auth/token failed` warning, no CORS error, no loop. The proxy is on for all browsers; behavior change for non-Safari users is one extra hop server-side (~5ms over loopback).
+
 ## [3.4.0-rc13] - 2026-05-21
 
 ### Fixed
