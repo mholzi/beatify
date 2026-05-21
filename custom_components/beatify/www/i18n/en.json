@@ -1107,6 +1107,14 @@
     "sections": {
       "byCountry": "By Country",
       "countries": "countries"
+    },
+    "selected": {
+      "title": "Your selected playlists",
+      "subtitleOne": "1 playlist selected — tap × to remove",
+      "subtitleN": "{n} playlists selected — tap × to remove",
+      "empty": "No playlists selected yet",
+      "removeAria": "Remove {name}",
+      "openAria": "Show selected playlists"
     }
   },
   "playlistGenerator": {

@@ -14056,10 +14056,124 @@ body.theme-dark .your-result-stats .stat-value {
 .plh-cta-start-arrow { opacity: 0.9; flex-shrink: 0; }
 .plh-cta-count-empty { opacity: 0.5; }
 
+.plh-cta-count-btn {
+    background: transparent;
+    border: 1px solid rgba(57, 255, 20, 0.35);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.plh-cta-count-btn:hover,
+.plh-cta-count-btn:focus-visible {
+    background: rgba(57, 255, 20, 0.12);
+    border-color: rgba(57, 255, 20, 0.6);
+    outline: none;
+}
+.plh-cta-count-btn:active { transform: scale(0.96); }
+
 .plh-cta-start-disabled {
     opacity: 0.5;
     cursor: not-allowed;
     box-shadow: none;
+}
+
+/* Selected-playlists sheet (issue #1074) */
+.plh-sheet-selected { border-top-color: rgba(57, 255, 20, 0.35); }
+.plh-selected-head {
+    padding: 28px 20px 12px;
+    flex-shrink: 0;
+}
+.plh-selected-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--color-text-white);
+    margin: 0 0 4px;
+    letter-spacing: 0.01em;
+}
+.plh-selected-subtitle {
+    font-size: 13px;
+    color: var(--color-text-neon-muted);
+    letter-spacing: 0.01em;
+}
+.plh-selected-scroll {
+    overflow-y: auto;
+    padding: 4px 16px 24px;
+    flex: 1;
+    min-height: 0;
+}
+.plh-selected-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.plh-selected-row:last-child { border-bottom: none; }
+.plh-selected-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.06);
+}
+.plh-selected-glyph { font-size: 20px; }
+.plh-selected-meta {
+    flex: 1;
+    min-width: 0;
+}
+.plh-selected-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-text-white);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.plh-selected-sub {
+    font-size: 12px;
+    color: var(--color-text-neon-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+.plh-selected-sub b { color: var(--color-text-white); font-weight: 700; }
+.plh-selected-remove {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-bg-surface);
+    border: 1px solid rgba(255, 45, 106, 0.35);
+    color: var(--color-text-neon-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+.plh-selected-remove:hover,
+.plh-selected-remove:focus-visible {
+    background: rgba(255, 45, 106, 0.18);
+    color: #ff5fa4;
+    outline: none;
+}
+.plh-selected-remove:active { transform: scale(0.92); }
+.plh-selected-empty {
+    text-align: center;
+    padding: 36px 20px;
+    color: var(--color-text-neon-muted);
+}
+.plh-selected-empty-icon { font-size: 36px; margin-bottom: 8px; }
+.plh-selected-empty-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
 }
 
 /* Wider viewport: widen cards a touch, keep layout stable */
