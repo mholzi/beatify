@@ -842,9 +842,10 @@ class TestAdminConnect:
         handler, game_state, ws = _make_handler_and_game()
         handler.connections.add(ws)
 
-        # Connect as admin spectator
+        # #998: admin_connect is gated by an HA access token. The mock hass'
+        # auth manager returns a truthy refresh token for any string.
         await handler._handle_message(
-            ws, {"type": "admin_connect", "admin_token": game_state.admin_token}
+            ws, {"type": "admin_connect", "ha_token": "valid-ha-token"}
         )
         ws.send_json.reset_mock()
 
