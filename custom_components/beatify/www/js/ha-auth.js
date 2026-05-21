@@ -6,11 +6,23 @@
  * IndieAuth-style OAuth2 flow so a host authenticates as a real HA user
  * before any admin action is allowed.
  *
- * Why this exists: /beatify/admin and the game-control endpoints used to be
- * wide open — anyone who could reach Home Assistant could host/control a game.
- * Now every admin REST call carries an HA bearer token and every admin
- * WebSocket message carries `ha_token`; the server rejects anything without a
- * valid HA login.
+ * rc15 architecture (Safari 18 workaround):
+ *   Safari 18 silently refuses certain same-origin POSTs from the OAuth-
+ *   callback page state — fetch (FormData + urlencoded), XHR, /auth/token
+ *   and the rc14 /beatify/auth/exchange proxy. The browser was never the
+ *   right layer to fix this. rc15 moves the OAuth code exchange and the
+ *   refresh flow server-side; this module never POSTs to an auth endpoint.
+ *
+ *   - login() redirects to /auth/authorize with redirect_uri=
+ *     /beatify/auth/callback. The Beatify server (BeatifyAuthCallbackView)
+ *     receives the code, exchanges it over loopback HTTP, and sets two
+ *     cookies before redirecting back to /beatify/admin.
+ *   - beatify_access cookie: JS-readable JSON {access_token, expires_at}.
+ *     This module reads it on page load and includes the token in
+ *     Authorization headers for /beatify/api/* calls.
+ *   - beatify_refresh cookie: HttpOnly. Never exposed to JS. The refresh
+ *     view (BeatifyAuthRefreshView) reads it server-side when this module
+ *     does fetch GET /beatify/auth/refresh.
  *
  * Normal players never touch this module — joining /beatify/play stays
  * frictionless. It is only invoked on the admin page (on load) and on the
@@ -21,15 +33,23 @@
 (function () {
   'use strict';
 
-  // localStorage survives tab close so a host does not re-login every session.
-  var K_ACCESS = 'beatify_ha_access';
-  var K_REFRESH = 'beatify_ha_refresh';
-  var K_EXPIRES = 'beatify_ha_expires';
+  // JS-readable session cookie set by BeatifyAuthCallbackView. Contains a
+  // URL-encoded JSON object: {access_token: string, expires_at: number}.
+  // expires_at is an absolute Unix timestamp (seconds) so we don't depend
+  // on the client clock matching the server when the cookie was set.
+  var ACCESS_COOKIE = 'beatify_access';
+
   // sessionStorage: CSRF state lives only for the duration of one redirect.
   var K_STATE = 'beatify_ha_oauth_state';
 
-  // Refresh a little early so a request never races the expiry boundary.
-  var EXPIRY_MARGIN_MS = 30000;
+  // Old rc8–rc14 localStorage keys. We clear them once on init so a user
+  // upgrading from a previous RC doesn't carry forward dead state that
+  // could confuse a future debugger.
+  var LEGACY_LOCAL_KEYS = [
+    'beatify_ha_access',
+    'beatify_ha_refresh',
+    'beatify_ha_expires',
+  ];
 
   // client_id / redirect_uri share the HA host, so HA auto-allows the
   // redirect without needing link-rel discovery. Computed per page load so
@@ -41,8 +61,10 @@
     return origin() + '/beatify/';
   }
   function redirectUri() {
-    // The page that initiated login (/beatify/admin or /beatify/play).
-    return origin() + window.location.pathname;
+    // rc15: redirect_uri is the server-side callback view, not the page.
+    // The view performs the code exchange and sets cookies before the
+    // browser ever reaches the admin page again.
+    return origin() + '/beatify/auth/callback';
   }
 
   function randomState() {
@@ -55,138 +77,93 @@
       .join('');
   }
 
-  // -- token storage -------------------------------------------------------
+  // -- cookie session ------------------------------------------------------
 
-  function storeTokens(resp) {
+  function _readSessionCookie() {
     try {
-      if (resp.access_token) localStorage.setItem(K_ACCESS, resp.access_token);
-      // The refresh_token is only returned by the authorization_code grant,
-      // not by a refresh — keep the existing one when refreshing.
-      if (resp.refresh_token) localStorage.setItem(K_REFRESH, resp.refresh_token);
-      var ttl = (resp.expires_in || 1800) * 1000;
-      localStorage.setItem(K_EXPIRES, String(Date.now() + ttl - EXPIRY_MARGIN_MS));
+      var raw = document.cookie || '';
+      var prefix = ACCESS_COOKIE + '=';
+      var parts = raw.split(';');
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i].replace(/^\s+/, '');
+        if (p.indexOf(prefix) === 0) {
+          var value = p.substring(prefix.length);
+          var data = JSON.parse(decodeURIComponent(value));
+          if (data && data.access_token && data.expires_at) return data;
+          return null;
+        }
+      }
+      return null;
     } catch (e) {
-      /* private-mode / storage disabled — auth simply won't persist */
+      return null;
     }
   }
 
-  function clearTokens() {
+  function _clearAccessCookie() {
+    // The HttpOnly refresh cookie can only be cleared server-side (the
+    // refresh view does this when refresh fails). The access cookie is
+    // JS-readable, so we can wipe it here on logout / state mismatch.
     try {
-      localStorage.removeItem(K_ACCESS);
-      localStorage.removeItem(K_REFRESH);
-      localStorage.removeItem(K_EXPIRES);
+      document.cookie =
+        ACCESS_COOKIE +
+        '=; Max-Age=0; Path=/beatify; SameSite=Lax' +
+        (location.protocol === 'https:' ? '; Secure' : '');
     } catch (e) {
       /* ignore */
     }
   }
 
+  function _migrateFromLocalStorage() {
+    // One-shot cleanup of pre-rc15 localStorage keys. Cookies are now the
+    // canonical session source; leftover entries here can only mislead.
+    try {
+      for (var i = 0; i < LEGACY_LOCAL_KEYS.length; i++) {
+        localStorage.removeItem(LEGACY_LOCAL_KEYS[i]);
+      }
+    } catch (e) {
+      /* private-mode storage disabled — safe to ignore */
+    }
+  }
+
   function storedAccess() {
-    try {
-      return localStorage.getItem(K_ACCESS);
-    } catch (e) {
-      return null;
-    }
+    var data = _readSessionCookie();
+    return data ? data.access_token : null;
   }
-  function storedRefresh() {
-    try {
-      return localStorage.getItem(K_REFRESH);
-    } catch (e) {
-      return null;
-    }
-  }
+
   function accessFresh() {
-    try {
-      var exp = parseInt(localStorage.getItem(K_EXPIRES) || '0', 10);
-      return !!storedAccess() && Date.now() < exp;
-    } catch (e) {
-      return false;
-    }
+    var data = _readSessionCookie();
+    if (!data) return false;
+    // expires_at from the server is Unix seconds; Date.now() is millis.
+    return data.expires_at * 1000 > Date.now();
   }
 
-  // -- OAuth2 token endpoint ----------------------------------------------
-
-  function _readTokenResponse(resp) {
-    if (!resp.ok) {
-      return resp.text().then(function (t) {
-        throw new Error('HA token endpoint ' + resp.status + ': ' + t);
-      });
-    }
-    return resp.json();
-  }
-
-  // rc14: route the OAuth code/refresh exchange through Beatify's own
-  // proxy view (/beatify/auth/exchange) instead of HA's /auth/token.
-  //
-  // Background: Safari 18 + Nabu Casa rejects both fetch (FormData and
-  // urlencoded) and XHR POSTs to /auth/token with "access control
-  // checks" errors even though the request is same-origin and HA's
-  // TokenView declares cors_allowed = True. Three RCs of frontend
-  // workarounds (rc11 SW self-heal, rc12 urlencoded fallback, rc13 XHR
-  // fallback) failed because the issue is on the response side, not the
-  // transport — likely a header-shape mismatch introduced by the SniTun
-  // relay that Safari 18 newly cares about.
-  //
-  // The proxy view forwards the body to HA's local /auth/token over
-  // loopback HTTP, so the auth exchange never crosses SniTun and never
-  // picks up the bad headers. Safari has no reason to special-case
-  // /beatify/auth/exchange, so a single simple transport works. The
-  // FormData/XHR fallback chain is gone — one transport, one URL.
-  var TOKEN_ENDPOINT = '/beatify/auth/exchange';
-
-  function postToken(params) {
-    // URLSearchParams body sets Content-Type to application/x-www-form-
-    // urlencoded automatically — the simplest "simple request" shape
-    // that no browser elevates to a CORS preflight.
-    var body = new URLSearchParams();
-    Object.keys(params).forEach(function (k) {
-      body.append(k, params[k]);
-    });
-    return fetch(origin() + TOKEN_ENDPOINT, {
-      method: 'POST',
-      credentials: 'same-origin',
-      body: body,
-    }).then(_readTokenResponse);
-  }
-
-  function exchangeCode(code) {
-    // redirect_uri is REQUIRED here per RFC 6749 §4.1.3 (and HA's IndieAuth
-    // impl enforces it): the value must match the one sent to /auth/authorize.
-    // Without it HA returns 400; the catch in handleRedirectCallback then
-    // resolves false silently, init sees !isAuthenticated, calls login()
-    // and bounces back to the HA approve screen — the "flicker admin then
-    // back to login" loop Markus reported.
-    return postToken({
-      grant_type: 'authorization_code',
-      code: code,
-      client_id: clientId(),
-      redirect_uri: redirectUri(),
-    }).then(function (resp) {
-      storeTokens(resp);
-      return resp.access_token;
-    });
-  }
+  // -- silent refresh via /beatify/auth/refresh ----------------------------
 
   // Coalesce concurrent refreshes into a single in-flight request.
   var refreshInFlight = null;
 
   function refreshAccess() {
     if (refreshInFlight) return refreshInFlight;
-    var rt = storedRefresh();
-    if (!rt) return Promise.resolve(null);
-    refreshInFlight = postToken({
-      grant_type: 'refresh_token',
-      refresh_token: rt,
-      client_id: clientId(),
+    refreshInFlight = fetch(origin() + '/beatify/auth/refresh', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json' },
     })
       .then(function (resp) {
-        storeTokens(resp);
-        return resp.access_token || null;
+        if (!resp.ok) {
+          // 401 means the server cleared the refresh cookie (refresh
+          // token revoked, HA wiped, etc). The browser receives the
+          // Set-Cookie wipe automatically. Surface null so callers
+          // fall through to login().
+          return null;
+        }
+        return resp.json().then(function (body) {
+          return (body && body.access_token) || null;
+        });
       })
       .catch(function (err) {
-        // Refresh token revoked / HA restarted with a wiped session — the
-        // only recovery is a fresh login.
-        console.warn('[BeatifyAuth] refresh failed:', err);
-        clearTokens();
+        // Network failure — don't clear cookies on a transient blip.
+        console.warn('[BeatifyAuth] refresh GET failed:', err);
         return null;
       })
       .finally(function () {
@@ -216,12 +193,32 @@
     window.location.replace(url);
   }
 
-  // Detect & consume the ?code=&state= redirect HA sends back to us.
-  function handleRedirectCallback() {
+  /**
+   * Consume the ?auth_state= / ?auth_error= echo BeatifyAuthCallbackView
+   * appends after the server-side code exchange. The callback view has
+   * already set cookies (or cleared them on failure); we just validate
+   * the state echo here for CSRF and strip the query.
+   *
+   * Returns:
+   *   true  — state validated, cookies should hold a fresh session
+   *   false — state mismatch OR ?auth_error= present; caller may re-login
+   *   null  — no auth callback in this URL (regular page load)
+   */
+  function _consumeAuthCallback() {
     var params = new URLSearchParams(window.location.search);
-    var code = params.get('code');
-    var state = params.get('state');
-    if (!code) return Promise.resolve(false);
+    var authError = params.get('auth_error');
+    var authState = params.get('auth_state');
+    if (!authError && !authState) return null;
+
+    if (authError) {
+      console.warn(
+        '[BeatifyAuth] server-side OAuth exchange returned error:',
+        authError
+      );
+      _clearAccessCookie();
+      _stripQuery();
+      return false;
+    }
 
     var expected = null;
     try {
@@ -230,26 +227,16 @@
     } catch (e) {
       /* ignore */
     }
-    if (expected && state !== expected) {
-      console.warn('[BeatifyAuth] OAuth state mismatch — ignoring callback');
-      stripQuery();
-      return Promise.resolve(false);
+    _stripQuery();
+    if (expected && authState !== expected) {
+      console.warn('[BeatifyAuth] OAuth state mismatch — clearing session');
+      _clearAccessCookie();
+      return false;
     }
-
-    return exchangeCode(code)
-      .then(function () {
-        stripQuery();
-        return true;
-      })
-      .catch(function (err) {
-        console.error('[BeatifyAuth] code exchange failed:', err);
-        stripQuery();
-        return false;
-      });
+    return true;
   }
 
-  // Remove ?code/&state/&auth_callback from the address bar after exchange.
-  function stripQuery() {
+  function _stripQuery() {
     try {
       window.history.replaceState(
         {},
@@ -264,22 +251,22 @@
   // -- public API ----------------------------------------------------------
 
   /**
-   * Return a valid access token, refreshing if needed. Resolves null when the
-   * user is not logged in (no tokens, or refresh failed).
+   * Return a valid access token, refreshing via the server if needed.
+   * Resolves null when no session can be obtained without a redirect.
    */
   function getAccessToken() {
     if (accessFresh()) return Promise.resolve(storedAccess());
     return refreshAccess();
   }
 
-  /** True if a usable token exists or can be obtained without a redirect. */
+  /** True if a usable token is in the cookie. Refresh is async, see init(). */
   function isAuthenticated() {
-    return accessFresh() || !!storedRefresh();
+    return accessFresh();
   }
 
   /**
-   * Guarantee an access token. If none can be obtained this navigates away to
-   * the HA login page and the returned promise never resolves.
+   * Guarantee an access token. If none can be obtained this navigates away
+   * to the HA login page and the returned promise never resolves.
    */
   function ensureAuthenticated() {
     return getAccessToken().then(function (token) {
@@ -291,18 +278,13 @@
 
   /**
    * Recover when a non-HTTP transport (e.g. WebSocket admin auth) reports the
-   * stored access token is rejected server-side. accessFresh() only checks the
-   * local expiry timestamp, so the same dead token would be retried forever.
-   * Clear the local "fresh" state, force a refresh, and bounce to HA login if
-   * refresh also fails (returned promise never resolves in that case).
+   * cookied access token is rejected server-side. Force a server-side
+   * refresh — the local cookie's expires_at could still be in the future
+   * even after HA wiped the refresh token (HA restart, user logged out
+   * elsewhere).
    */
   function handleServerRejection() {
-    try {
-      localStorage.removeItem(K_ACCESS);
-      localStorage.removeItem(K_EXPIRES);
-    } catch (e) {
-      /* ignore */
-    }
+    _clearAccessCookie();
     return refreshAccess().then(function (token) {
       if (token) return token;
       login();
@@ -362,43 +344,41 @@
    */
   function init(options) {
     options = options || {};
-    return handleRedirectCallback().then(function () {
-      if (!isAuthenticated()) {
-        if (options.requireAuth) {
-          login();
-          return new Promise(function () {});
-        }
-        return false;
+    _migrateFromLocalStorage();
+    var callbackResult = _consumeAuthCallback();
+
+    // callbackResult === false means the server-side exchange reported a
+    // failure or the state echo didn't match what we stored before login.
+    // In either case the cookies are not usable; jump straight to login.
+    if (callbackResult === false) {
+      if (options.requireAuth) {
+        login();
+        return new Promise(function () {});
       }
-      // Player path defers HA calls until the user actually claims the host
-      // role — let authedFetch handle a stale token at that point.
-      if (!options.requireAuth) return true;
-      // accessFresh() only checks the local expiry timestamp, so a token
-      // revoked server-side (HA restart, user logged out elsewhere) still
-      // looks valid. Admin would then load but every authed action — including
-      // joining the game as host — would silently 401. Probe /api/ to confirm
-      // the token still works. authedFetch handles 401 by refreshing once;
-      // if refresh also fails it calls login() and the promise never resolves.
-      return authedFetch(origin() + '/api/')
-        .then(function (resp) {
-          if (resp.ok) return true;
-          clearTokens();
-          login();
-          return new Promise(function () {});
-        })
-        .catch(function () {
-          // Transport failure (HA unreachable, captive portal). Don't lock
-          // the user out on a transient blip — let the next real action
-          // surface any genuine issue.
-          return true;
-        });
+      return Promise.resolve(false);
+    }
+
+    if (accessFresh()) {
+      // Cookie has a fresh access token (either from the just-completed
+      // callback, or a returning session within the cookie's lifetime).
+      return Promise.resolve(true);
+    }
+
+    // No fresh access in the cookie — try a silent refresh. The HttpOnly
+    // refresh cookie may still be valid even if the access cookie has
+    // already expired (different lifetimes by design).
+    return refreshAccess().then(function (token) {
+      if (token) return true;
+      if (!options.requireAuth) return false;
+      login();
+      return new Promise(function () {});
     });
   }
 
   window.BeatifyAuth = {
     init: init,
     login: login,
-    logout: clearTokens,
+    logout: _clearAccessCookie,
     isAuthenticated: isAuthenticated,
     getAccessToken: getAccessToken,
     ensureAuthenticated: ensureAuthenticated,

@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc15] - 2026-05-21
+
+### Fixed
+- **Safari 18 login loop — OAuth flow rewritten server-side (#998 follow-up to rc11–rc14).** Four RCs of frontend transport workarounds (rc11 self-heal, rc12 urlencoded fetch, rc13 XHR, rc14 server-side proxy still POSTed from the browser) all failed because Safari 18 silently refuses certain same-origin POSTs from the OAuth-callback page state — fetch (FormData and urlencoded), XHR, /auth/token and /beatify/auth/exchange were all rejected with `TypeError: Load failed` or `access control checks` errors. Confirmed even in a fresh Safari window outside the HA panel iframe. Chrome and other engines unaffected.
+- **Fix: the frontend no longer POSTs to any auth endpoint.** Two new server-side views handle the entire OAuth lifecycle:
+  - `BeatifyAuthCallbackView` at `/beatify/auth/callback` is the new `redirect_uri`. The browser arrives here via `/auth/authorize`'s 302; the view exchanges the code with HA's `/auth/token` over loopback HTTP, sets two cookies (`beatify_access` JS-readable JSON with `{access_token, expires_at}`; `beatify_refresh` HttpOnly with the refresh_token, scoped Path=/beatify, SameSite=Lax, Secure when the page was loaded over HTTPS — Nabu Casa included), and 302s back to `/beatify/admin?auth_state=…` for the frontend to CSRF-validate.
+  - `BeatifyAuthRefreshView` at `/beatify/auth/refresh` is a GET endpoint that reads the HttpOnly refresh cookie, performs the refresh-token grant over loopback, reissues the access cookie, and returns JSON for ha-auth.js to use immediately. The HttpOnly refresh cookie is never exposed to JS, even on the refresh path.
+- **`ha-auth.js` rewritten for cookies.** All transport-fallback code from rc12/rc13 (FormData → urlencoded → XHR) is gone. One transport: read the access cookie at init; on miss, fetch GET the refresh endpoint. `login()` redirect_uri now points at the callback view. Legacy localStorage keys from rc11–rc14 are wiped on init for users upgrading mid-stream.
+- **Tests: 532 Python + 96 JS pass.** 7 new tests for `BeatifyAuthCallbackView` (HTTP/HTTPS loopback URL, success path with cookie shape assertions including HttpOnly + Path=/beatify + Secure derived from `X-Forwarded-Proto`, missing-code redirect, HA-rejection redirect, loopback connection-failure redirect). 5 new tests for `BeatifyAuthRefreshView` (success returns JSON + reissues access cookie without touching the long-lived refresh cookie, HA-rejection wipes both cookies, missing-cookie 401, body shape). 11 JS tests covering the cookie reader, state-mismatch CSRF wipe, legacy-localStorage migration, refresh coalescing, and the rc15 `redirect_uri` shape.
+
+After rc15, Safari 18 admin loads with one HTTP redirect (HA login → callback view → admin). No frontend POSTs to auth endpoints at any point; the entire transport class Safari was rejecting is no longer used.
+
 ## [3.4.0-rc14] - 2026-05-21
 
 ### Fixed

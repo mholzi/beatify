@@ -8,9 +8,12 @@ views from sub-modules for backward compatibility.
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
+import time
 from pathlib import Path
 from typing import TYPE_CHECKING
+from urllib.parse import urlencode
 
 from aiohttp import ClientError, ClientTimeout, web
 from homeassistant.components.http import HomeAssistantView
@@ -153,80 +156,304 @@ class PlayerView(HomeAssistantView):
         return _html_response(html_content)
 
 
-class BeatifyAuthExchangeView(HomeAssistantView):
-    """Server-side proxy for HA's /auth/token (Safari 18 workaround).
+# ---------------------------------------------------------------------------
+# Auth flow (rc15+) — server-side OAuth, no browser POSTs
+# ---------------------------------------------------------------------------
+#
+# Safari 18 (macOS Sequoia / iOS 18) silently refuses certain same-origin
+# POSTs from the OAuth-callback page state — fetch (FormData and
+# urlencoded), XHR, both /auth/token and /beatify/auth/exchange. Three
+# RCs of frontend transport workarounds (rc11–rc14) failed because the
+# browser was never the right layer to fix this. Chrome and other
+# engines are unaffected.
+#
+# Solution: the browser only does GETs and redirects. The OAuth code
+# exchange and refresh both run server-side, with tokens delivered via
+# cookies. ``BeatifyAuthCallbackView`` is the new ``redirect_uri`` for
+# ``/auth/authorize``; it exchanges the code over loopback HTTP and sets
+# two cookies (JS-readable ``beatify_access`` + HttpOnly
+# ``beatify_refresh``) before redirecting back to /beatify/admin.
+# ``BeatifyAuthRefreshView`` handles silent refreshes the same way, via
+# fetch-GET, so the frontend never needs to POST.
+#
+# Cookies: Path=/beatify (so they only ride along on Beatify requests),
+# SameSite=Lax (enough for the same-origin OAuth redirect + fetch GET
+# flows; tighter Strict would break the post-login redirect), and
+# Secure when the page was loaded over HTTPS (so Nabu Casa users get
+# the cookie-security upgrade for free, and LAN HTTP users still work).
 
-    On Safari 18 (macOS Sequoia / iOS 18), browser POSTs to ``/auth/token``
-    from Nabu Casa origins are rejected with "access control checks"
-    errors — both fetch (FormData multipart and urlencoded) and XHR. The
-    request is same-origin and HA's TokenView already declares
-    ``cors_allowed = True``, so this is almost certainly a CORS-header
-    shape mismatch introduced by the SniTun relay. The HA frontend itself
-    likely dodges it because users stay logged-in via cookies and rarely
-    re-hit ``/auth/token`` after the first session, but Beatify does an
-    OAuth code exchange on every fresh admin load and trips the bug.
 
-    Routing the exchange through a Beatify-owned path bypasses the issue
-    entirely: Safari has no reason to special-case
-    ``/beatify/auth/exchange`` and we control the response shape. This
-    view forwards the body to HA's local ``/auth/token`` over loopback
-    HTTP — the request never crosses the SniTun relay, never picks up
-    the bad headers, and gets sent back to the browser as plain JSON
-    with explicit ``Cache-Control: no-store``.
+_ACCESS_COOKIE = "beatify_access"
+_REFRESH_COOKIE = "beatify_refresh"
+
+# Belt + suspenders: HA access tokens are short (~30 min by default), but
+# refresh tokens are long-lived. 30 days lines up with HA's own refresh-
+# token rotation window and means a user who hits the admin once a month
+# never has to re-do the full OAuth dance.
+_REFRESH_COOKIE_MAX_AGE = 30 * 24 * 60 * 60
+
+
+def _ssl_kwargs(hass: HomeAssistant) -> dict:
+    """Build aiohttp ssl kwargs for the loopback /auth/token call.
+
+    HA on HTTPS still listens on localhost only with its own cert. We
+    don't verify (the cert almost certainly doesn't SAN 127.0.0.1) —
+    no security loss because the call never leaves the process.
     """
+    if getattr(hass.http, "ssl_certificate", None):
+        return {"ssl": False}
+    return {}
 
-    url = "/beatify/auth/exchange"
-    name = "beatify:auth_exchange"
-    requires_auth = False  # /auth/token itself is unauthed by design
 
-    def __init__(self, hass: HomeAssistant) -> None:
-        """Initialize the auth-exchange proxy view."""
-        self.hass = hass
+def _loopback_url(hass: HomeAssistant) -> str:
+    """Compose the loopback URL for HA's own /auth/token."""
+    scheme = "https" if getattr(hass.http, "ssl_certificate", None) else "http"
+    return f"{scheme}://127.0.0.1:{hass.http.server_port}/auth/token"
 
-    async def post(self, request: web.Request) -> web.Response:
-        """Forward the OAuth code/refresh exchange to HA's /auth/token."""
-        body_bytes = await request.read()
-        content_type = request.headers.get(
-            "Content-Type", "application/x-www-form-urlencoded"
+
+def _origin_from_request(request: web.Request) -> str:
+    """Return the scheme+host the browser sees, for client_id/redirect_uri.
+
+    The browser sent ``/auth/authorize`` with client_id and redirect_uri
+    derived from ``window.location.origin``; the exchange request must
+    use byte-identical values (per RFC 6749 §4.1.3). Reconstruct from
+    Forwarded headers when present (Nabu Casa terminates TLS upstream
+    and proxies plain HTTP to HA, so request.scheme alone says "http").
+    """
+    forwarded_proto = request.headers.get("X-Forwarded-Proto")
+    forwarded_host = request.headers.get("X-Forwarded-Host") or request.headers.get(
+        "Host"
+    )
+    scheme = forwarded_proto or request.scheme
+    host = forwarded_host or request.host
+    return f"{scheme}://{host}"
+
+
+def _is_secure_origin(request: web.Request) -> bool:
+    """True if the browser loaded the page over HTTPS — drives cookie Secure."""
+    forwarded_proto = request.headers.get("X-Forwarded-Proto")
+    if forwarded_proto:
+        return forwarded_proto.lower() == "https"
+    return request.scheme == "https"
+
+
+def _set_session_cookies(
+    response: web.Response,
+    request: web.Request,
+    *,
+    access_token: str,
+    expires_in: int,
+    refresh_token: str | None,
+) -> None:
+    """Write the two-cookie pair onto an outgoing response."""
+    secure = _is_secure_origin(request)
+    # Render ``expires_at`` as an absolute Unix timestamp (seconds) so the
+    # frontend doesn't have to know when the cookie was actually set.
+    expires_at = int(time.time()) + max(0, int(expires_in) - 30)
+    access_payload = json.dumps(
+        {"access_token": access_token, "expires_at": expires_at}
+    )
+    response.set_cookie(
+        _ACCESS_COOKIE,
+        access_payload,
+        path="/beatify",
+        # Match HA's own token lifetime — when the cookie expires the
+        # frontend re-fetches a fresh access via /beatify/auth/refresh.
+        max_age=max(60, int(expires_in) - 30),
+        samesite="Lax",
+        secure=secure,
+        httponly=False,  # JS reads this to populate Authorization header
+    )
+    if refresh_token is not None:
+        response.set_cookie(
+            _REFRESH_COOKIE,
+            refresh_token,
+            path="/beatify",
+            max_age=_REFRESH_COOKIE_MAX_AGE,
+            samesite="Lax",
+            secure=secure,
+            httponly=True,  # JS cannot read; only ever sent to refresh view
         )
 
-        # Loopback to HA's own /auth/token endpoint. The internal request
-        # never leaves the HA process's network namespace, so any
-        # browser-CORS / SniTun-relay quirks are sidestepped. Use HTTPS
-        # only if HA itself is configured with a certificate — otherwise
-        # plain HTTP on 127.0.0.1 is always available.
-        ssl_cert = getattr(self.hass.http, "ssl_certificate", None)
-        scheme = "https" if ssl_cert else "http"
-        port = self.hass.http.server_port
-        url = f"{scheme}://127.0.0.1:{port}/auth/token"
 
-        session = async_get_clientsession(self.hass)
-        # ssl=False disables verification for the localhost loopback; the
-        # cert almost certainly doesn't list 127.0.0.1 as a SAN. No
-        # security loss — we're inside the HA process.
-        ssl_kwargs = {"ssl": False} if scheme == "https" else {}
+def _clear_session_cookies(response: web.Response) -> None:
+    """Wipe both cookies — call on refresh failure or explicit logout."""
+    response.del_cookie(_ACCESS_COOKIE, path="/beatify")
+    response.del_cookie(_REFRESH_COOKIE, path="/beatify")
 
-        try:
-            async with session.post(
-                url,
-                data=body_bytes,
-                headers={"Content-Type": content_type},
-                timeout=ClientTimeout(total=10),
-                **ssl_kwargs,
-            ) as resp:
-                resp_text = await resp.text()
-                return web.Response(
-                    text=resp_text,
-                    status=resp.status,
-                    content_type="application/json",
-                    headers={"Cache-Control": "no-store"},
-                )
-        except (ClientError, asyncio.TimeoutError) as err:
-            _LOGGER.error("Auth exchange proxy failed: %s", err)
-            return web.json_response(
-                {"error": "proxy_failed", "error_description": str(err)},
-                status=502,
+
+async def _exchange_with_ha(
+    hass: HomeAssistant, body: str
+) -> tuple[int, dict | None, str]:
+    """POST the urlencoded body to HA's loopback /auth/token.
+
+    Returns ``(status, parsed_json_or_None, raw_text)``. ``parsed_json``
+    is None when HA returned non-JSON (HTTP error pages, mostly), which
+    callers should treat as an exchange failure.
+    """
+    session = async_get_clientsession(hass)
+    try:
+        async with session.post(
+            _loopback_url(hass),
+            data=body,
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=ClientTimeout(total=10),
+            **_ssl_kwargs(hass),
+        ) as resp:
+            text = await resp.text()
+            try:
+                parsed = json.loads(text)
+            except ValueError:
+                parsed = None
+            return resp.status, parsed, text
+    except (ClientError, asyncio.TimeoutError) as err:
+        _LOGGER.error("Loopback /auth/token call failed: %s", err)
+        return 502, None, str(err)
+
+
+class BeatifyAuthCallbackView(HomeAssistantView):
+    """OAuth ``redirect_uri`` target — server-side code exchange.
+
+    Replaces the rc11–rc14 frontend POST exchange path. The browser
+    arrives here via ``/auth/authorize``'s redirect, hands us ``?code=``
+    and ``?state=``; we exchange the code over loopback HTTP and set
+    the two session cookies before redirecting to /beatify/admin (with
+    state echoed so the frontend can CSRF-validate against its
+    sessionStorage entry on the next load).
+
+    Failures redirect to /beatify/admin?auth_error=<reason> so the
+    frontend can surface a clean message instead of a silent loop.
+    """
+
+    url = "/beatify/auth/callback"
+    name = "beatify:auth_callback"
+    requires_auth = False  # this *is* the auth entry point
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the callback view."""
+        self.hass = hass
+
+    def _redirect_to_admin(
+        self,
+        request: web.Request,
+        *,
+        state: str | None = None,
+        error: str | None = None,
+    ) -> web.Response:
+        """Build the post-exchange redirect back to the admin page."""
+        params: list[tuple[str, str]] = []
+        if state:
+            params.append(("auth_state", state))
+        if error:
+            params.append(("auth_error", error))
+        suffix = ("?" + urlencode(params)) if params else ""
+        return web.HTTPFound(f"/beatify/admin{suffix}")
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Handle the OAuth code redirect from HA."""
+        code = request.query.get("code")
+        state = request.query.get("state", "")
+        if not code:
+            return self._redirect_to_admin(request, error="missing_code")
+
+        origin = _origin_from_request(request)
+        body = urlencode(
+            {
+                "grant_type": "authorization_code",
+                "code": code,
+                # client_id and redirect_uri MUST match what the frontend
+                # sent to /auth/authorize, per RFC 6749 §4.1.3. ha-auth.js
+                # uses origin + '/beatify/' as client_id and this exact
+                # callback URL as redirect_uri.
+                "client_id": f"{origin}/beatify/",
+                "redirect_uri": f"{origin}/beatify/auth/callback",
+            }
+        )
+
+        status, parsed, raw = await _exchange_with_ha(self.hass, body)
+        if status != 200 or not parsed or not parsed.get("access_token"):
+            _LOGGER.warning(
+                "OAuth code exchange failed (status=%s body=%s)", status, raw[:200]
             )
+            return self._redirect_to_admin(request, error="exchange_failed")
+
+        response = self._redirect_to_admin(request, state=state)
+        _set_session_cookies(
+            response,
+            request,
+            access_token=parsed["access_token"],
+            expires_in=parsed.get("expires_in", 1800),
+            refresh_token=parsed.get("refresh_token"),
+        )
+        return response
+
+
+class BeatifyAuthRefreshView(HomeAssistantView):
+    """Silent refresh endpoint — keeps the frontend off ``/auth/token``.
+
+    Reads the HttpOnly ``beatify_refresh`` cookie, posts the refresh
+    grant to HA over loopback, updates the access cookie, and returns
+    JSON with the fresh access token so ha-auth.js can populate its
+    in-memory cache. On refresh failure both cookies are wiped — the
+    frontend then redirects to ``/auth/authorize`` for a full re-login.
+    """
+
+    url = "/beatify/auth/refresh"
+    name = "beatify:auth_refresh"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the refresh view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Refresh the access token using the HttpOnly refresh cookie."""
+        refresh_token = request.cookies.get(_REFRESH_COOKIE)
+        if not refresh_token:
+            response = web.json_response(
+                {"error": "no_refresh_token"}, status=401
+            )
+            _clear_session_cookies(response)
+            return response
+
+        origin = _origin_from_request(request)
+        body = urlencode(
+            {
+                "grant_type": "refresh_token",
+                "refresh_token": refresh_token,
+                "client_id": f"{origin}/beatify/",
+            }
+        )
+        status, parsed, raw = await _exchange_with_ha(self.hass, body)
+        if status != 200 or not parsed or not parsed.get("access_token"):
+            _LOGGER.info(
+                "Refresh failed (status=%s) — clearing session", status
+            )
+            response = web.json_response(
+                {"error": "refresh_failed", "ha_status": status}, status=401
+            )
+            _clear_session_cookies(response)
+            return response
+
+        # HA's refresh-token grant does NOT return a new refresh_token —
+        # it stays the long-lived one already in the HttpOnly cookie.
+        # Reissue ONLY the access cookie.
+        response = web.json_response(
+            {
+                "access_token": parsed["access_token"],
+                "expires_in": parsed.get("expires_in", 1800),
+            },
+            headers={"Cache-Control": "no-store"},
+        )
+        _set_session_cookies(
+            response,
+            request,
+            access_token=parsed["access_token"],
+            expires_in=parsed.get("expires_in", 1800),
+            # Don't overwrite the long-lived refresh cookie.
+            refresh_token=None,
+        )
+        return response
 
 
 class SwJsView(HomeAssistantView):

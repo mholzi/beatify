@@ -31,7 +31,8 @@ from .server.views import (
     AlbumArtView,
     AnalyticsPageView,
     AnalyticsView,
-    BeatifyAuthExchangeView,
+    BeatifyAuthCallbackView,
+    BeatifyAuthRefreshView,
     CapabilitiesView,
     DashboardView,
     EndGameView,
@@ -170,8 +171,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Register HTTP views
     hass.http.register_view(AdminView(hass))
     hass.http.register_view(LauncherView(hass))
-    # Safari 18 /auth/token workaround — server-side OAuth exchange proxy.
-    hass.http.register_view(BeatifyAuthExchangeView(hass))
+    # Safari 18 /auth/token workaround — server-side OAuth handling, the
+    # frontend never POSTs to auth endpoints (rc15+).
+    hass.http.register_view(BeatifyAuthCallbackView(hass))
+    hass.http.register_view(BeatifyAuthRefreshView(hass))
     hass.http.register_view(StatusView(hass))
     hass.http.register_view(CapabilitiesView(hass))
     hass.http.register_view(LightsView(hass))  # Issue #331
