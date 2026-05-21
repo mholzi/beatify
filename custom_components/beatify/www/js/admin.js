@@ -2480,15 +2480,24 @@ function handleAdminJoin() {
     // through handleAdminStateUpdate → showLobbyView → BeatifyHome.renderSession
     // so the admin shows up in the player list without navigating away.
     if (inHomeMode) {
-        const sendJoin = () => {
+        const sendJoin = async () => {
             try {
                 sessionStorage.setItem('beatify_admin_name', name);
                 sessionStorage.setItem('beatify_is_admin', 'true');
                 adminPlayerName = name;
+                // #998: server validates ha_token before granting the admin
+                // claim. Without this field handle_join returns ERR_UNAUTHORIZED
+                // ("Home Assistant login required to host") and the host's
+                // name never appears in the player list — even with a fresh
+                // OAuth login, because admin_connect's ha_token doesn't carry
+                // over to subsequent messages on the same socket. Match the
+                // pattern player-core.js:459 uses.
+                const token = await BeatifyAuth.ensureAuthenticated();
                 adminWs.send(JSON.stringify({
                     type: 'join',
                     name: name,
                     is_admin: true,
+                    ha_token: token,
                 }));
                 closeAdminJoinModal();
             } catch (err) {
