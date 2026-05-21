@@ -288,6 +288,36 @@ class LightsView(HomeAssistantView):
         return web.json_response({"lights": lights})
 
 
+class TtsEntitiesView(HomeAssistantView):
+    """API endpoint for available TTS entities (#1073).
+
+    Backs the dropdown picker that replaced the legacy free-text
+    ``tts.*`` entity_id field in the admin TTS panel and the setup
+    wizard's voice-announcements card. Listing real entities removes
+    the typo class that was the most common TTS setup failure.
+    """
+
+    url = "/beatify/api/tts-entities"
+    name = "beatify:api:tts-entities"
+    requires_auth = True  # #998 — leaks TTS entity inventory; admin-only
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the TTS entities view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Return registered TTS entities sorted by friendly name."""
+        entities = [
+            {
+                "entity_id": state.entity_id,
+                "friendly_name": state.attributes.get("friendly_name", state.entity_id),
+            }
+            for state in self.hass.states.async_all("tts")
+        ]
+        entities.sort(key=lambda e: e["friendly_name"].lower())
+        return web.json_response({"entities": entities})
+
+
 class AlbumArtView(HomeAssistantView):
     """Same-origin proxy for media-player album art (#933).
 

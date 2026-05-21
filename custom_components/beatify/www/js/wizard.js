@@ -115,6 +115,7 @@ const chosenWledPresets = {}; // { LOBBY: 1, PLAYING: 2, ... }
 const WLED_PHASES = ['LOBBY', 'PLAYING', 'REVEAL', 'STREAK', 'COUNTDOWN', 'END'];
 let chosenTtsEntityId = '';
 let chosenTtsPreset = 'standard'; // minimal | standard | full | custom
+let cachedTtsEntities = null; // #1073: [{entity_id, friendly_name}], lazy-fetched
 
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
 
@@ -167,6 +168,18 @@ async function _fetchLights() {
         if (!r.ok) return [];
         const data = await r.json();
         return (data && data.lights) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+// #1073: list registered tts.* entities for the Step 5 dropdown picker.
+async function _fetchTtsEntities() {
+    try {
+        const r = await BeatifyAuth.fetch('/beatify/api/tts-entities');
+        if (!r.ok) return [];
+        const data = await r.json();
+        return (data && data.entities) || [];
     } catch (e) {
         return [];
     }
@@ -806,12 +819,40 @@ function _ttsDetailHtml() {
     const customChip = chosenTtsPreset === 'custom'
         ? `<button type="button" class="wiz-chip active" aria-disabled="true" data-tts-preset-custom>${_t('wizard.step5.tts.presetCustom', 'Custom')}</button>`
         : '';
+    // #1073: dropdown of registered tts.* entities instead of a free-text
+    // field. Falls back to the legacy text input only if the API failed to
+    // load any entities (e.g. offline or older HA) so the wizard never
+    // becomes un-completable.
+    const entities = cachedTtsEntities || [];
+    const escapeAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const escapeText = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const known = new Set(entities.map((e) => e.entity_id));
+    const optsHtml = entities.map((e) => {
+        const label = e.friendly_name && e.friendly_name !== e.entity_id
+            ? `${e.friendly_name} (${e.entity_id})`
+            : e.entity_id;
+        const selected = e.entity_id === chosenTtsEntityId ? ' selected' : '';
+        return `<option value="${escapeAttr(e.entity_id)}"${selected}>${escapeText(label)}</option>`;
+    }).join('');
+    // Preserve renamed/removed entities so the saved value is visible.
+    const staleOpt = (chosenTtsEntityId && !known.has(chosenTtsEntityId))
+        ? `<option value="${escapeAttr(chosenTtsEntityId)}" selected>${escapeText(chosenTtsEntityId)} ${_t('wizard.step5.tts.entityStale', '(not currently registered)')}</option>`
+        : '';
+    const placeholderLabel = entities.length === 0
+        ? _t('wizard.step5.tts.entityNone', 'No TTS entities — add one in HA first')
+        : _t('wizard.step5.tts.entityPlaceholder', '— Select TTS entity —');
+    const entityFieldHtml = `
+            <select id="wiz-tts-entity" class="wiz-detail-input">
+              <option value=""${chosenTtsEntityId ? '' : ' selected'}>${escapeText(placeholderLabel)}</option>
+              ${optsHtml}
+              ${staleOpt}
+            </select>`;
     return `
         <div class="wiz-detail">
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.tts.entityLabel', 'TTS service (entity ID)')}</span>
-            <input type="text" id="wiz-tts-entity" class="wiz-detail-input" placeholder="tts.google_en_com" value="${chosenTtsEntityId}">
-            <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', "No TTS service yet? In Home Assistant: Settings → Devices & Services → Add Integration → 'Google Translate text-to-speech' (free, no API key). Then enter the tts.* entity it creates here.")}</span>
+            ${entityFieldHtml}
+            <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', "No TTS service yet? In Home Assistant: Settings → Devices & Services → Add Integration → 'Google Translate text-to-speech' (free, no API key). It will then appear in this list.")}</span>
             <button type="button" id="wiz-tts-test" class="btn btn-ghost wiz-detail-test" ${chosenTtsEntityId ? '' : 'disabled'}>
               🔊 ${_t('wizard.step5.tts.test', 'Send test announcement')}
             </button>
@@ -926,14 +967,17 @@ function _renderLevelUp() {
         });
     });
 
-    // TTS fields
+    // TTS fields — #1073 made wiz-tts-entity a <select>; listen for change.
     const ttsInput = document.getElementById('wiz-tts-entity');
     const ttsTestBtn = document.getElementById('wiz-tts-test');
     if (ttsInput) {
-        ttsInput.addEventListener('input', () => {
-            chosenTtsEntityId = ttsInput.value.trim();
+        const ttsOnPick = () => {
+            chosenTtsEntityId = (ttsInput.value || '').trim();
             if (ttsTestBtn) ttsTestBtn.disabled = !chosenTtsEntityId;
-        });
+        };
+        ttsInput.addEventListener('change', ttsOnPick);
+        // Keep 'input' too for older fallback environments.
+        ttsInput.addEventListener('input', ttsOnPick);
     }
     if (ttsTestBtn) {
         ttsTestBtn.addEventListener('click', async () => {
@@ -1207,6 +1251,11 @@ async function _advance() {
         if (!cachedCapabilities) cachedCapabilities = await _fetchCapabilities();
         if (cachedCapabilities && cachedCapabilities.has_lights && cachedLights === null) {
             cachedLights = await _fetchLights();
+        }
+        // #1073: prefetch TTS entities so the picker renders synchronously
+        // alongside the lights detail. Cheap call, gated on has_tts.
+        if (cachedCapabilities && cachedCapabilities.has_tts && cachedTtsEntities === null) {
+            cachedTtsEntities = await _fetchTtsEntities();
         }
         _renderLevelUp();
         _showFrame(5);

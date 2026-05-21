@@ -149,6 +149,58 @@
         }
     }
 
+    // #1073: replace free-text entity_id with a picker. Falls back gracefully
+    // when the API errors or returns no entities — the user keeps whatever
+    // they had before, and (in the empty case) sees a hint to add TTS in HA.
+    function populateEntityDropdown(selectEl) {
+        var emptyOption = selectEl.querySelector('option[value=""]');
+        var emptyLabel = emptyOption ? emptyOption.textContent : '';
+        var i18n = window.BeatifyI18n;
+        var fetcher = (window.BeatifyAuth && window.BeatifyAuth.fetch)
+            ? window.BeatifyAuth.fetch.bind(window.BeatifyAuth)
+            : fetch;
+        fetcher('/beatify/api/tts-entities').then(function(resp) {
+            if (!resp.ok) return { entities: [] };
+            return resp.json();
+        }).then(function(data) {
+            var entities = (data && data.entities) || [];
+            // Clear old options except the placeholder.
+            while (selectEl.options.length > (emptyOption ? 1 : 0)) {
+                selectEl.remove(selectEl.options.length - 1);
+            }
+            if (entities.length === 0) {
+                if (emptyOption) {
+                    emptyOption.textContent = i18n && i18n.t
+                        ? i18n.t('admin.ttsEntityNone')
+                        : 'No TTS entities — add one in HA first';
+                }
+                selectEl.value = '';
+                return;
+            }
+            if (emptyOption) emptyOption.textContent = emptyLabel;
+            var seen = {};
+            entities.forEach(function(e) {
+                var opt = document.createElement('option');
+                opt.value = e.entity_id;
+                opt.textContent = e.friendly_name === e.entity_id
+                    ? e.entity_id
+                    : e.friendly_name + ' (' + e.entity_id + ')';
+                selectEl.appendChild(opt);
+                seen[e.entity_id] = true;
+            });
+            // Preserve a previously-saved entity that no longer exists (renamed
+            // or removed in HA) so the user can see what they had configured.
+            if (ttsEntityId && !seen[ttsEntityId]) {
+                var staleOpt = document.createElement('option');
+                staleOpt.value = ttsEntityId;
+                staleOpt.textContent = ttsEntityId + ' '
+                    + (i18n && i18n.t ? i18n.t('admin.ttsEntityStale') : '(not currently registered)');
+                selectEl.appendChild(staleOpt);
+            }
+            selectEl.value = ttsEntityId || '';
+        }).catch(function() { /* leave dropdown with just the placeholder */ });
+    }
+
     // #793: tts.speak needs both a TTS entity AND a media player to route
     // through. Read the speaker from the same localStorage key the wizard
     // and admin home view write — falls back to game settings.
@@ -176,16 +228,29 @@
             });
         }
 
-        // Entity ID input
+        // Entity picker (#1073) — dropdown populated from /beatify/api/tts-entities.
+        // The element is a <select> in admin.html; older browsers / tests with a
+        // bare <input> still work because we only touch .value/.addEventListener.
         var entityInput = document.getElementById('tts-entity-id');
         if (entityInput) {
             entityInput.value = ttsEntityId;
+            entityInput.addEventListener('change', function() {
+                ttsEntityId = this.value.trim();
+                updateSummary();
+                updateTestButton();
+                saveState();
+            });
+            // Keep the legacy text-input behaviour for environments that
+            // still render an <input> (placeholder for tests / fallback).
             entityInput.addEventListener('input', function() {
                 ttsEntityId = this.value.trim();
                 updateSummary();
                 updateTestButton();
                 saveState();
             });
+            if (entityInput.tagName === 'SELECT') {
+                populateEntityDropdown(entityInput);
+            }
         }
 
         // #2: verbosity preset chips. Picking one bulk-sets all 23 toggles.

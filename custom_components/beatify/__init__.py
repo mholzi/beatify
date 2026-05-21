@@ -39,6 +39,7 @@ from .server.views import (
     LauncherView,
     LightsView,
     PreviewLightsView,
+    TtsEntitiesView,
     TtsTestView,
     PlayerView,
     PlaylistRequestsView,
@@ -173,6 +174,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.http.register_view(LightsView(hass))  # Issue #331
     hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
     hass.http.register_view(PreviewLightsView(hass))  # Issue #408
+    hass.http.register_view(TtsEntitiesView(hass))  # Issue #1073
     hass.http.register_view(TtsTestView(hass))
     hass.http.register_view(StartGameView(hass))
     hass.http.register_view(StartGameplayView(hass))
