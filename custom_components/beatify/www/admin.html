@@ -600,13 +600,15 @@
                     </label>
                 </div>
 
-                <!-- Entity ID input -->
+                <!-- Entity picker (#1073) — dropdown of registered tts.* entities -->
                 <div class="setting-row">
                     <span class="setting-label">
                         <span class="setting-icon" aria-hidden="true">🏷️</span>
                         <span data-i18n="admin.ttsEntityId">TTS Entity</span>
                     </span>
-                    <input type="text" id="tts-entity-id" class="input-compact" placeholder="tts.google_en_com" data-i18n-placeholder="admin.ttsEntityIdHint">
+                    <select id="tts-entity-id" class="input-compact">
+                        <option value="" data-i18n="admin.ttsEntityPlaceholder">— Select TTS entity —</option>
+                    </select>
                 </div>
 
                 <!-- Verbosity preset (#2) — bulk-sets the per-event toggles below -->
