@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc12] - 2026-05-21
+
+### Fixed
+- **Safari 18 login loop on macOS Sequoia / iOS 18 (#998 follow-up).** Markus reported the rc11 admin still flickered to HA-login on Safari 18 — both on LAN and via Nabu Casa, in private windows, with the SW unregistered. Chrome worked fine. Console showed `TypeError: Load failed` at `ha-auth.js:228` (the `exchangeCode` catch); the Network tab had no `/auth/token` entry — Safari rejected the FormData fetch before the request left the browser. `exchangeCode` resolved false silently, `init()` saw `!isAuthenticated`, called `login()` and bounced the user back to the HA approve screen. Same loop shape as the original `c03b4ae5` redirect_uri bug, different transport-layer failure. The rc8 FormData fix is still needed (it survives the Nabu Casa SniTun relay that drops urlencoded POSTs); Safari 18 broke the other side of that trade.
+- **Fix: `postToken` now tries FormData first (keeps Nabu Casa working) and falls back to urlencoded on `TypeError` only — fetch-level failures where the request never reached HA. HTTP rejections (4xx/5xx) propagate without retry, since retrying a server-side `invalid_grant` would just produce the same response. Both transports are needed now: FormData survives SniTun, urlencoded survives Safari 18.** New `__tests__/ha-auth.test.js` covers all three paths (TypeError → retry, HTTP 4xx → no retry, happy path → no retry). 88/88 JS tests pass.
+
 ## [3.4.0-rc11] - 2026-05-21
 
 ### Fixed

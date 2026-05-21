@@ -105,14 +105,22 @@
 
   // -- OAuth2 token endpoint ----------------------------------------------
 
-  function postToken(params) {
+  function _readTokenResponse(resp) {
+    if (!resp.ok) {
+      return resp.text().then(function (t) {
+        throw new Error('HA token endpoint ' + resp.status + ': ' + t);
+      });
+    }
+    return resp.json();
+  }
+
+  function _postTokenFormData(params) {
     // Mirror home-assistant-js-websocket's tokenRequest: FormData (multipart),
     // explicit credentials:'same-origin', no manual Content-Type. The URL-
     // encoded variant intermittently fails through the Nabu Casa SniTun
     // relay with Safari's "TypeError: Load failed" — the bytes never make
     // it back. HA's own frontend works on cloud because it uses this shape;
-    // matching it removes Beatify from the broken path. Same wire format
-    // HA's /auth/token already accepts, just a different Content-Type.
+    // matching it removes Beatify from the broken path.
     var form = new FormData();
     Object.keys(params).forEach(function (k) {
       form.append(k, params[k]);
@@ -121,13 +129,45 @@
       method: 'POST',
       credentials: 'same-origin',
       body: form,
-    }).then(function (resp) {
-      if (!resp.ok) {
-        return resp.text().then(function (t) {
-          throw new Error('HA token endpoint ' + resp.status + ': ' + t);
-        });
+    }).then(_readTokenResponse);
+  }
+
+  function _postTokenUrlEncoded(params) {
+    // Pre-rc8 transport, kept as a fallback. Safari 18 throws
+    // "TypeError: Load failed" on the FormData variant for some users on
+    // both LAN and Nabu Casa — the request never leaves the browser. The
+    // urlencoded body sidesteps Safari's multipart-boundary path entirely
+    // and still hits HA's IndieAuth /auth/token (HA accepts both
+    // application/x-www-form-urlencoded and multipart/form-data here).
+    var body = Object.keys(params)
+      .map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      })
+      .join('&');
+    return fetch(origin() + '/auth/token', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+    }).then(_readTokenResponse);
+  }
+
+  function postToken(params) {
+    // FormData first (the rc8 fix that survives Nabu Casa SniTun). On a
+    // TypeError — fetch-level failure, the request never reached HA —
+    // retry once with urlencoded. Other errors (HTTP 4xx/5xx surfaced by
+    // _readTokenResponse) propagate as-is; retrying a server rejection
+    // would just produce the same response.
+    return _postTokenFormData(params).catch(function (err) {
+      if (err && err.name === 'TypeError') {
+        console.warn(
+          '[BeatifyAuth] FormData /auth/token failed (' +
+            err.message +
+            '); retrying urlencoded'
+        );
+        return _postTokenUrlEncoded(params);
       }
-      return resp.json();
+      throw err;
     });
   }
 
