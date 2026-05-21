@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc7] - 2026-05-21
+
+### Fixed
+- **Unresolved Git merge conflict markers in admin assets (#1071).** The PR #1007 (security gate #998) merge accidentally committed unresolved `<<<<<<< HEAD … >>>>>>> 984697bd` markers in `admin.html`, `admin.min.js` (3 places), and `party-lights.min.js`. Symptom on rc6: the literal marker block leaked into the admin page footer, and because `admin.min.js` started with `<<<<<<<` on line 1, the whole admin UI failed with a JS SyntaxError and only skeleton loaders rendered. The sources (`admin.js`, `party-lights.js`) were already correctly merged — only the minified outputs were broken; this release regenerates them via `make build`. Also re-includes `playlist-generator.min.js` (deleted by `make clean` because it was missing from Makefile `JS_FILES`).
+- **Stale unit test for `admin_connect` (post-#998).** `test_admin_command_from_admin_ws` still sent the retired `admin_token` field; the handler now expects `ha_token`. The test is updated to mirror the pattern of the passing tests; full `test_websocket.py` suite (71 tests) green.
+
 ## [3.4.0-rc6] - 2026-05-20
 
 ### Security
