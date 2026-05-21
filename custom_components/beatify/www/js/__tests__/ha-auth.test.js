@@ -1,16 +1,23 @@
 /**
  * Unit tests for ha-auth.js token POST fallback.
  *
- * The bug under test: Safari 18 throws "TypeError: Load failed" on the
- * FormData /auth/token POST (the rc8 fix that survives Nabu Casa SniTun).
- * The request never reaches HA, exchangeCode rejects, init bounces to
- * login() — the symptom is a HA-login → flash-of-Beatify → HA-login loop.
+ * The bug under test: Safari 18 rejects the rc8 FormData /auth/token POST
+ * with "TypeError: Load failed" (the request never leaves the browser),
+ * and rejects the rc12 urlencoded fetch fallback with "Fetch API cannot
+ * load … due to access control checks" (Safari incorrectly applies a
+ * CORS check to a same-origin POST). rc13 falls back to XMLHttpRequest,
+ * which uses a different network path internally and isn't subject to
+ * the fetch CORS quirk for same-origin POST.
  *
- * The fix: postToken tries FormData first, falls back to urlencoded on
- * TypeError. Other errors (HTTP 4xx/5xx) propagate without a retry —
- * retrying a server rejection just wastes a request.
+ * Symptom for users: HA-login → flash of Beatify → bounce back to HA-login.
+ *
+ * Strategy: postToken tries FormData via fetch first (preserves rc8 Nabu
+ * Casa SniTun support for Chrome and pre-Safari-18), falls back to XHR
+ * urlencoded on TypeError. HTTP rejections (4xx/5xx) propagate without
+ * retry — retrying a server-side invalid_grant just produces the same
+ * response.
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -20,9 +27,38 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const SRC_PATH = join(__dirname, '..', 'ha-auth.js');
 const SRC = readFileSync(SRC_PATH, 'utf8');
 
-// Build a fresh sandbox per test so localStorage / window.BeatifyAuth from
-// one test don't leak into the next.
-function loadHaAuth({ fetchFn, localStorageData = {} } = {}) {
+// Mock XMLHttpRequest that drives a queued list of responses. Each test
+// configures one response shape (success/4xx/network-error) per XHR opened.
+function makeMockXhrCtor(responseFn, callLog) {
+    return function MockXMLHttpRequest() {
+        const xhr = {
+            _headers: {},
+            open(method, url) { this._method = method; this._url = url; },
+            setRequestHeader(k, v) { this._headers[k] = v; },
+            withCredentials: false,
+            onload: null,
+            onerror: null,
+            send(body) {
+                callLog.push({ method: this._method, url: this._url, headers: this._headers, body, withCredentials: this.withCredentials });
+                // Defer the callback so .send returns first, matching real XHR.
+                setTimeout(() => {
+                    const r = responseFn(body, this);
+                    if (r.networkError) {
+                        if (this.onerror) this.onerror();
+                    } else {
+                        this.status = r.status;
+                        this.statusText = r.statusText || '';
+                        this.responseText = r.responseText;
+                        if (this.onload) this.onload();
+                    }
+                }, 0);
+            },
+        };
+        return xhr;
+    };
+}
+
+function loadHaAuth({ fetchFn, xhrCtor, localStorageData = {} } = {}) {
     const storage = (initial) => {
         const map = new Map(Object.entries(initial));
         return {
@@ -43,14 +79,12 @@ function loadHaAuth({ fetchFn, localStorageData = {} } = {}) {
     };
     const ctx = {
         window: sandboxWindow,
-        // ha-auth.js references bare `localStorage` / `sessionStorage` (not
-        // window.localStorage) — expose them at the top level of the vm
-        // context so the IIFE can read them.
         localStorage: ls,
         sessionStorage: ss,
         document: { title: 'test' },
         console,
         fetch: fetchFn,
+        XMLHttpRequest: xhrCtor,
         URLSearchParams,
         FormData,
         Promise,
@@ -65,95 +99,122 @@ function loadHaAuth({ fetchFn, localStorageData = {} } = {}) {
     };
     vm.createContext(ctx);
     vm.runInContext(SRC, ctx);
-    return { BeatifyAuth: sandboxWindow.BeatifyAuth, localStorage: ls, calls: [] };
+    return { BeatifyAuth: sandboxWindow.BeatifyAuth, localStorage: ls };
 }
 
 describe('postToken transport fallback', () => {
-    it('retries with urlencoded body when FormData fetch throws TypeError', async () => {
-        const calls = [];
+    it('retries via XHR when FormData fetch throws TypeError (Safari 18 path)', async () => {
+        const fetchCalls = [];
         const fetchFn = async (url, opts) => {
-            calls.push({ url, body: opts.body, headers: opts.headers });
-            if (opts.body instanceof FormData) {
-                // Simulate Safari 18: the FormData request never leaves the browser.
-                throw new TypeError('Load failed');
-            }
-            // urlencoded fallback succeeds
-            return {
-                ok: true,
-                json: async () => ({
-                    access_token: 'new-access',
-                    refresh_token: 'new-refresh',
-                    expires_in: 1800,
-                }),
-            };
+            fetchCalls.push({ url, body: opts.body });
+            // Simulate Safari 18 + Nabu Casa: FormData request never leaves the browser.
+            throw new TypeError('Load failed');
         };
+        const xhrCalls = [];
+        const xhrCtor = makeMockXhrCtor(() => ({
+            status: 200,
+            responseText: JSON.stringify({
+                access_token: 'xhr-access',
+                refresh_token: 'xhr-refresh',
+                expires_in: 1800,
+            }),
+        }), xhrCalls);
         const { BeatifyAuth } = loadHaAuth({
             fetchFn,
+            xhrCtor,
             localStorageData: { beatify_ha_refresh: 'stored-refresh' },
         });
 
-        // getAccessToken with a stored refresh token but no fresh access token
-        // takes the refreshAccess path, which calls postToken.
+        // getAccessToken with a stored refresh token but no fresh access takes
+        // the refreshAccess path → postToken.
         const token = await BeatifyAuth.getAccessToken();
 
-        expect(token).toBe('new-access');
-        expect(calls).toHaveLength(2);
-        expect(calls[0].body).toBeInstanceOf(FormData);
-        expect(typeof calls[1].body).toBe('string');
-        expect(calls[1].body).toContain('grant_type=refresh_token');
-        expect(calls[1].body).toContain('refresh_token=stored-refresh');
-        expect(calls[1].headers['Content-Type']).toBe('application/x-www-form-urlencoded');
+        expect(token).toBe('xhr-access');
+        expect(fetchCalls).toHaveLength(1);
+        expect(fetchCalls[0].body).toBeInstanceOf(FormData);
+        expect(xhrCalls).toHaveLength(1);
+        expect(xhrCalls[0].method).toBe('POST');
+        expect(xhrCalls[0].url).toBe('https://ha.example/auth/token');
+        expect(xhrCalls[0].body).toContain('grant_type=refresh_token');
+        expect(xhrCalls[0].body).toContain('refresh_token=stored-refresh');
+        expect(xhrCalls[0].headers['Content-Type']).toBe('application/x-www-form-urlencoded');
+        expect(xhrCalls[0].withCredentials).toBe(true);
     });
 
-    it('does NOT retry on a 4xx HTTP response — server rejection propagates', async () => {
-        const calls = [];
+    it('does NOT fall back to XHR on a 4xx fetch response — server rejection propagates', async () => {
+        const fetchCalls = [];
         const fetchFn = async (url, opts) => {
-            calls.push({ url, body: opts.body });
-            // Server-side rejection (e.g. revoked refresh token). Retrying with
-            // urlencoded would just produce the same 400 — pointless work.
+            fetchCalls.push({ url, body: opts.body });
+            // HA-side rejection (e.g. revoked refresh token). Retrying with XHR
+            // would just produce the same 400.
             return {
                 ok: false,
                 status: 400,
                 text: async () => 'invalid_grant',
             };
         };
+        const xhrCalls = [];
+        const xhrCtor = makeMockXhrCtor(() => ({ status: 500, responseText: 'should-not-be-called' }), xhrCalls);
         const { BeatifyAuth } = loadHaAuth({
             fetchFn,
+            xhrCtor,
             localStorageData: { beatify_ha_refresh: 'revoked-refresh' },
         });
 
-        // refreshAccess catches the error internally and resolves to null.
-        // What we care about is that only ONE fetch happened — no fallback
-        // retry on a server-level rejection.
         const token = await BeatifyAuth.getAccessToken();
 
         expect(token).toBeNull();
-        expect(calls).toHaveLength(1);
-        expect(calls[0].body).toBeInstanceOf(FormData);
+        expect(fetchCalls).toHaveLength(1);
+        expect(xhrCalls).toHaveLength(0);
     });
 
-    it('skips the fallback when the FormData request succeeds', async () => {
-        const calls = [];
+    it('skips the fallback when FormData fetch succeeds (Chrome / pre-Safari-18 path)', async () => {
+        const fetchCalls = [];
         const fetchFn = async (url, opts) => {
-            calls.push({ url, body: opts.body });
+            fetchCalls.push({ url, body: opts.body });
             return {
                 ok: true,
                 json: async () => ({
-                    access_token: 'cloud-token',
-                    refresh_token: 'cloud-refresh',
+                    access_token: 'fetch-token',
+                    refresh_token: 'fetch-refresh',
                     expires_in: 1800,
                 }),
             };
         };
+        const xhrCalls = [];
+        const xhrCtor = makeMockXhrCtor(() => { throw new Error('XHR should not be invoked'); }, xhrCalls);
         const { BeatifyAuth } = loadHaAuth({
             fetchFn,
+            xhrCtor,
             localStorageData: { beatify_ha_refresh: 'stored-refresh' },
         });
 
         const token = await BeatifyAuth.getAccessToken();
 
-        expect(token).toBe('cloud-token');
-        expect(calls).toHaveLength(1);
-        expect(calls[0].body).toBeInstanceOf(FormData);
+        expect(token).toBe('fetch-token');
+        expect(fetchCalls).toHaveLength(1);
+        expect(fetchCalls[0].body).toBeInstanceOf(FormData);
+        expect(xhrCalls).toHaveLength(0);
+    });
+
+    it('surfaces XHR HTTP errors when the fallback path also fails server-side', async () => {
+        const fetchFn = async () => { throw new TypeError('Load failed'); };
+        const xhrCalls = [];
+        const xhrCtor = makeMockXhrCtor(() => ({
+            status: 400,
+            responseText: 'invalid_grant',
+        }), xhrCalls);
+        const { BeatifyAuth } = loadHaAuth({
+            fetchFn,
+            xhrCtor,
+            localStorageData: { beatify_ha_refresh: 'broken-refresh' },
+        });
+
+        // refreshAccess catches the rejection internally and returns null,
+        // but the XHR fallback should have been attempted.
+        const token = await BeatifyAuth.getAccessToken();
+
+        expect(token).toBeNull();
+        expect(xhrCalls).toHaveLength(1);
     });
 });

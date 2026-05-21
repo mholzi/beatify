@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc13] - 2026-05-21
+
+### Fixed
+- **Safari 18 login loop — `/auth/token` fallback now uses XHR (#998 follow-up to rc12).** rc12's urlencoded-via-`fetch` fallback hit a different Safari 18 failure mode on both LAN and Nabu Casa: `Fetch API cannot load … due to access control checks` — Safari incorrectly applies a CORS check to the same-origin POST, rejecting the request before it leaves the browser. Same end symptom as rc11/rc12 (HA-login → flash of Beatify → bounce), one transport layer deeper. The full failure shape on Safari 18 is: FormData via `fetch` throws `TypeError: Load failed` (Safari rejects multipart synchronously); urlencoded via `fetch` is rejected for "access control checks" (same-origin POST treated as cross-origin); both transports through `fetch` are dead.
+- **Fix:** the fallback now uses `XMLHttpRequest` with an urlencoded body. XHR predates the `fetch` spec quirks Safari 18 is hitting and uses a different network path internally — same-origin POST through XHR isn't subject to the buggy CORS check. `postToken` still tries FormData via `fetch` first (preserves rc8 Nabu Casa SniTun support for Chrome and pre-Safari-18) and falls back to XHR only on `TypeError`. HTTP rejections still propagate without retry. New test case in `ha-auth.test.js` covers the XHR HTTP-error path; 89/89 JS tests pass.
+
+After rc13, Safari 18 users will see a one-time console warning when the fallback fires:
+```
+[BeatifyAuth] FormData /auth/token failed (Load failed); retrying via XHR
+```
+That's the fix doing its job — the XHR request then succeeds and admin loads normally.
+
 ## [3.4.0-rc12] - 2026-05-21
 
 ### Fixed

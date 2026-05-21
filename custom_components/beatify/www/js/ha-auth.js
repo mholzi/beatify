@@ -132,40 +132,71 @@
     }).then(_readTokenResponse);
   }
 
-  function _postTokenUrlEncoded(params) {
-    // Pre-rc8 transport, kept as a fallback. Safari 18 throws
-    // "TypeError: Load failed" on the FormData variant for some users on
-    // both LAN and Nabu Casa — the request never leaves the browser. The
-    // urlencoded body sidesteps Safari's multipart-boundary path entirely
-    // and still hits HA's IndieAuth /auth/token (HA accepts both
-    // application/x-www-form-urlencoded and multipart/form-data here).
-    var body = Object.keys(params)
-      .map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-      })
-      .join('&');
-    return fetch(origin() + '/auth/token', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
-    }).then(_readTokenResponse);
+  function _postTokenXhrUrlEncoded(params) {
+    // rc13 fallback: XMLHttpRequest with urlencoded body. The rc12 attempt
+    // used fetch + urlencoded as the fallback, but on Safari 18 + Nabu
+    // Casa that path is rejected with "Fetch API cannot load … due to
+    // access control checks" — Safari incorrectly applies a CORS check to
+    // the same-origin POST. XHR predates fetch and uses a different
+    // network path internally; same-origin POSTs through XHR don't hit
+    // the buggy CORS path. Same wire format HA's /auth/token expects.
+    return new Promise(function (resolve, reject) {
+      var body = Object.keys(params)
+        .map(function (k) {
+          return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+        })
+        .join('&');
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', origin() + '/auth/token', true);
+      // Matches `credentials: 'same-origin'` for same-origin URLs — sends
+      // session cookies. (For cross-origin XHR this would request CORS
+      // with credentials, but /auth/token is always same-origin here.)
+      xhr.withCredentials = true;
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          try {
+            resolve(JSON.parse(xhr.responseText));
+          } catch (e) {
+            reject(new Error('HA token endpoint: malformed JSON response'));
+          }
+        } else {
+          reject(
+            new Error(
+              'HA token endpoint ' +
+                xhr.status +
+                ': ' +
+                (xhr.responseText || xhr.statusText)
+            )
+          );
+        }
+      };
+      // Surface a TypeError for parity with fetch's network-error shape,
+      // though nothing currently differentiates on this — kept for tests.
+      xhr.onerror = function () {
+        reject(new TypeError('XHR /auth/token network error'));
+      };
+      xhr.send(body);
+    });
   }
 
   function postToken(params) {
-    // FormData first (the rc8 fix that survives Nabu Casa SniTun). On a
-    // TypeError — fetch-level failure, the request never reached HA —
-    // retry once with urlencoded. Other errors (HTTP 4xx/5xx surfaced by
-    // _readTokenResponse) propagate as-is; retrying a server rejection
-    // would just produce the same response.
+    // FormData via fetch first (the rc8 fix that survives Nabu Casa
+    // SniTun on Chrome and pre-Safari-18). On a TypeError — fetch-level
+    // failure, the request never reached HA — retry via XHR. Safari 18
+    // breaks the fetch path entirely (FormData = TypeError, urlencoded
+    // fetch = CORS access-control rejection), but XHR same-origin POST
+    // works. Other errors (HTTP 4xx/5xx surfaced by _readTokenResponse)
+    // propagate as-is; retrying a server rejection would produce the
+    // same response.
     return _postTokenFormData(params).catch(function (err) {
       if (err && err.name === 'TypeError') {
         console.warn(
           '[BeatifyAuth] FormData /auth/token failed (' +
             err.message +
-            '); retrying urlencoded'
+            '); retrying via XHR'
         );
-        return _postTokenUrlEncoded(params);
+        return _postTokenXhrUrlEncoded(params);
       }
       throw err;
     });
