@@ -4281,9 +4281,17 @@ function adminDismissGame() {
     cachedQRUrl = null;
     isPlaying = false;
     adminPlayerName = null;
-    // "Start New Game" at end-of-game sends the host back through onboarding.
-    // Wizard re-hydrates from localStorage so previous picks stay pre-selected —
-    // user can change anything or click straight through to Done.
+    // #1080: "Start New Game" gives Restart semantics — a fresh wizard with
+    // no pre-selected speaker or playlists. The Rematch button is the
+    // keep-state path (same players, same setup, back to lobby); this is
+    // the fresh path. Without clearing the wizard re-hydrates speaker +
+    // playlists from localStorage and the user sees their old picks
+    // pre-selected, which reads as "the reset didn't work."
+    try {
+        localStorage.removeItem(STORAGE_LAST_PLAYER);
+        localStorage.removeItem(STORAGE_GAME_SETTINGS);
+        localStorage.removeItem('beatify_wizard_state');
+    } catch (e) { /* private mode */ }
     if (window.BeatifyHome) window.BeatifyHome.exit();
     if (window.BeatifyWizard && typeof window.BeatifyWizard.show === 'function') {
         window.BeatifyWizard.show(1);
