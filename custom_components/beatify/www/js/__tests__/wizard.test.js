@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, pickAutoSelections } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -192,5 +192,63 @@ describe('capabilityBadgeForPlayer', () => {
         const player = { supports_spotify: true, supports_apple_music: true, supports_youtube_music: true };
         const badge = capabilityBadgeForPlayer(player, providers, { all: 'Alle Dienste' });
         expect(badge.label).toBe('Alle Dienste');
+    });
+});
+
+// ------------------------------------------------------------------
+// pickAutoSelections — first-run defaults: first speaker + Spotify when supported (#1082)
+// ------------------------------------------------------------------
+describe('pickAutoSelections', () => {
+    it('picks the first player and Spotify on a fresh install', () => {
+        const players = [
+            { entity_id: 'media_player.sonos_kitchen', supports_spotify: true },
+            { entity_id: 'media_player.sonos_lounge', supports_spotify: true },
+        ];
+        expect(pickAutoSelections(players, null, null)).toEqual({
+            speaker: 'media_player.sonos_kitchen',
+            provider: 'spotify',
+        });
+    });
+
+    it('skips provider when the picked speaker does not support Spotify', () => {
+        const players = [
+            { entity_id: 'media_player.cast', supports_spotify: false, supports_apple_music: true },
+        ];
+        expect(pickAutoSelections(players, null, null)).toEqual({
+            speaker: 'media_player.cast',
+            provider: null,
+        });
+    });
+
+    it('keeps a previously saved speaker even when more are available', () => {
+        const players = [
+            { entity_id: 'media_player.sonos_kitchen', supports_spotify: true },
+            { entity_id: 'media_player.sonos_lounge', supports_spotify: true },
+        ];
+        const result = pickAutoSelections(players, 'media_player.sonos_lounge', null);
+        expect(result.speaker).toBe('media_player.sonos_lounge');
+        expect(result.provider).toBe('spotify');
+    });
+
+    it('keeps a previously saved provider even when not Spotify', () => {
+        const players = [
+            { entity_id: 'media_player.ma_lounge', supports_spotify: true, supports_apple_music: true },
+        ];
+        const result = pickAutoSelections(players, null, 'apple_music');
+        expect(result.provider).toBe('apple_music');
+    });
+
+    it('returns nulls when no players exist (fresh HA before MA finishes)', () => {
+        expect(pickAutoSelections([], null, null)).toEqual({ speaker: null, provider: null });
+        expect(pickAutoSelections(null, null, null)).toEqual({ speaker: null, provider: null });
+    });
+
+    it('falls through to Spotify when supports_spotify is undefined (treat unknown as supported)', () => {
+        // Older backend responses may omit supports_* flags entirely.
+        const players = [{ entity_id: 'media_player.legacy' }];
+        expect(pickAutoSelections(players, null, null)).toEqual({
+            speaker: 'media_player.legacy',
+            provider: 'spotify',
+        });
     });
 });

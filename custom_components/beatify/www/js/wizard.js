@@ -413,6 +413,27 @@ export function providerSupportedForPlayer(player, providerId) {
     return player[key] !== false;
 }
 
+// Pure: pick sensible first-run defaults from the API-returned player list.
+// Honors any value the user already saved — only fills empty slots.
+// Returns { speaker, provider }, either field may be null when nothing fits.
+// Spotify is the default provider per #1082 because it plays directly on
+// Sonos/Alexa without Music Assistant, so it's the lowest-friction default.
+export function pickAutoSelections(players, savedSpeaker, savedProvider) {
+    const list = Array.isArray(players) ? players : [];
+    let speaker = savedSpeaker || null;
+    if (!speaker && list.length > 0) {
+        speaker = list[0].entity_id || null;
+    }
+    let provider = savedProvider || null;
+    if (!provider && speaker) {
+        const playerRec = list.find((p) => p.entity_id === speaker) || null;
+        if (providerSupportedForPlayer(playerRec, 'spotify')) {
+            provider = 'spotify';
+        }
+    }
+    return { speaker, provider };
+}
+
 function _providerSupported(providerId) {
     return providerSupportedForPlayer(_selectedPlayer(), providerId);
 }
@@ -1212,6 +1233,19 @@ export async function show(stepOverride) {
             }
         }
     } catch (e) { /* private mode or malformed JSON */ }
+    // #1082 — pre-fill first-run defaults (first speaker, Spotify when supported)
+    // so fresh installs land on a "click Continue" path instead of a "pick from
+    // empty selectors" path. Persist the speaker so resumeAtStep moves past
+    // step 1 next open, matching the behavior of a manual selection.
+    const players = (cachedStatus && cachedStatus.media_players) || [];
+    const auto = pickAutoSelections(players, chosenSpeaker, chosenProvider);
+    if (!chosenSpeaker && auto.speaker) {
+        chosenSpeaker = auto.speaker;
+        try { if (ls) ls.setItem(LS_SELECTED_PLAYER, chosenSpeaker); } catch (e) { /* private mode */ }
+    }
+    if (!chosenProvider && auto.provider) {
+        chosenProvider = auto.provider;
+    }
     _hydrateLevelUpDetails();
     _renderSpeakers();
     _renderProviders();
