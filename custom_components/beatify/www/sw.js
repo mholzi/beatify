@@ -6,16 +6,16 @@
  */
 'use strict';
 
-var CACHE_VERSION = 'beatify-v3.4.0-rc10';
+var CACHE_VERSION = 'beatify-v3.4.0-rc11';
 var MAX_CACHE_ITEMS = 50;
 
-// Critical assets to precache on install (minified versions only - fallback handled by HTML)
+// Critical assets to precache on install (minified versions only - fallback handled by HTML).
+// ha-auth.js is intentionally excluded — see NEVER_CACHE below.
 var PRECACHE_ASSETS = [
     '/beatify/static/css/styles.min.css',
     '/beatify/static/css/dashboard.min.css',
     '/beatify/static/js/player.bundle.min.js',
     '/beatify/static/js/admin.min.js',
-    '/beatify/static/js/ha-auth.js',
     '/beatify/static/js/dashboard.min.js',
     '/beatify/static/js/i18n.min.js',
     '/beatify/static/js/vendor/qrcode.min.js',
@@ -23,6 +23,16 @@ var PRECACHE_ASSETS = [
     '/beatify/static/site.webmanifest',
     '/beatify/static/img/icon-256.png',
     '/beatify/static/img/icon-512.png'
+];
+
+// Files that must NEVER be served from cache. The cache-buster on script tags
+// is supposed to defeat staleness, but once the SW has precached the canonical
+// URL (no query string), some browsers (notably Safari/WebKit) will return the
+// stale entry for the versioned URL too. A stale ha-auth.js leaves users in an
+// unrecoverable login loop. Network-only ensures the user's browser always
+// asks HA directly, where _NO_CACHE_HEADERS makes ETag revalidation work.
+var NEVER_CACHE = [
+    '/beatify/static/js/ha-auth.js',
 ];
 
 /**
@@ -92,6 +102,12 @@ self.addEventListener('fetch', function(event) {
 
     // Skip non-GET requests
     if (event.request.method !== 'GET') {
+        return;
+    }
+
+    // Auth-critical files: never cache. Returning without respondWith lets the
+    // browser do its normal network fetch (still respects HTTP cache headers).
+    if (NEVER_CACHE.indexOf(url.pathname) !== -1) {
         return;
     }
 
