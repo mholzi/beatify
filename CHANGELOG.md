@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc10] - 2026-05-21
+
+### Added
+- **TTS-Entity-Dropdown im Setup-Wizard (#1073, ludgerbeckmann).** Statt freier Texteingabe listet die TTS-Konfiguration jetzt alle in HA registrierten `tts.*`-Entities zur Auswahl. Reduziert Tippfehler und macht die TTS-Konfiguration einsehbar (bisheriges Behavior: User musste die Entity-ID exakt eintippen, mit hoher Fehlerrate). Locales: en/de/es/fr/nl. PR #1079.
+- **"Ausgewählte Playlists"-Sheet mit Bulk-Remove (#1074, ludgerbeckmann).** Die Bottom-Nav-Counter-Pill ("N Playlists gewählt") öffnet jetzt ein Sheet mit allen aktuell gewählten Playlists, jede mit Remove-Button — Markus-Schmerzpunkt: bisher musste man jede Playlist im Hub einzeln finden um sie zu entfernen. Locales en+de. PR #1083.
+
+### Fixed
+- **Year truncation auf Reveal-Screen schmaler Telefone (#1072, laberning).** Auf Android Chrome mit Default-Zoom waren bei manchen Bildschirmgrößen nur 2-3 Stellen der Jahreszahl sichtbar. CSS-Fix zwingt die Year-Anzeige auf overflow-visible mit responsivem `min-width`. PR #1077.
+- **Tighter Game-View-Layout — Artist-Tiles über dem Fold (#1076, laberning).** Beim Player-Screen lagen die Artist-Selection-Buttons im unteren Bildschirmdrittel — alle Spieler mussten jede Runde scrollen um zu voten. Padding/Margin der oberen Sektionen reduziert + Artist-Grid kompakter; die Vote-Buttons sind jetzt direkt unter dem Song-Indicator sichtbar. CSS-Only. PR #1084.
+
 ## [3.4.0-rc9] - 2026-05-21
 
 ### Fixed
