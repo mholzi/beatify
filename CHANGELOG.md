@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc11] - 2026-05-21
+
+### Fixed
+- **Login loop after HACS update — users no longer need to clear browser cache (#998 follow-up).** The service worker from a previous Beatify version was sticky: it precached `/beatify/static/js/ha-auth.js` (no query string) and Safari/WebKit would serve the stale entry for the cache-busted `?v=...` URL too, leaving users in an unrecoverable login loop on any auth-code change. Two structural fixes ensure no future upgrade requires a manual "Quit Safari + Clear Storage" dance:
+  1. `sw.js` — `ha-auth.js` is now in a `NEVER_CACHE` list and the fetch handler bypasses the cache for it. The browser fetches it directly from HA on every load, where `_NO_CACHE_HEADERS` keeps ETag revalidation cheap (~30 bytes of overhead). Stale `ha-auth.js` is no longer reachable from the SW path.
+  2. `admin.html` and `player.html` — inline bootstrap script at the very top of `<head>` compares the page's `beatify-version` meta tag against `localStorage.beatify_sw_version`. On mismatch with an active SW, it unregisters all SWs and reloads before any other script runs. First load after upgrade self-heals; steady-state cost is one localStorage read. Users stuck on rc10 with a stale SW auto-recover on their next admin/player page load.
+
+The rc8/rc9 auth fixes (FormData transport, zombie-token probe, ha_token in admin join) are unchanged — those addressed the symptoms; rc11 closes the upgrade-pathology that masked them.
+
 ## [3.4.0-rc10] - 2026-05-21
 
 ### Added
