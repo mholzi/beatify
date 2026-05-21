@@ -119,6 +119,15 @@ let adminSessionId = null;    // Set on join_ack — passed to /play so it can
                               // fresh {type:'join'} (which races ERR_NAME_TAKEN).
 let isPlaying = false;        // Whether admin is participating as a player
 let adminReconnectAttempts = 0;
+// Zombie-auth recovery state. The HA access token in localStorage can pass
+// the local expiry check while being dead server-side (HA restart, refresh-
+// token revoke). When the admin WS responds UNAUTHORIZED we force a refresh
+// and reconnect; the recovery flow owns the reconnect during that window,
+// so onclose must not double-schedule. The counter prevents an infinite
+// loop if the refreshed token is *also* rejected — bounce to HA login.
+let adminWsAuthRecovering = false;
+let adminWsAuthRecoveryAttempts = 0;
+const MAX_ADMIN_WS_AUTH_RECOVERIES = 2;
 // #949: the home "Start game" button's pre-"Starting…" HTML, stashed so a WS
 // start-failure error (MEDIA_PLAYER_UNAVAILABLE etc.) can un-stick the button.
 let _homeStartBtnHTML = null;
@@ -3362,6 +3371,9 @@ async function connectAdminWebSocket() {
         if (currentView === 'lobby') {
             startLobbyPolling();
         }
+        // Zombie-auth recovery owns the reconnect during refresh — skipping
+        // the backoff path here avoids two parallel WSes racing admin_connect.
+        if (adminWsAuthRecovering) return;
         // Auto-reconnect with backoff
         if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && currentGame) {
             adminReconnectAttempts++;
@@ -3382,6 +3394,9 @@ function handleAdminWsMessage(data) {
     switch (data.type) {
         case 'admin_connect_ack':
             console.log('[Admin WS] Authenticated, game_id:', data.game_id);
+            // Authenticated cleanly — reset the zombie-auth recovery budget
+            // so future revocations get their full attempt allowance.
+            adminWsAuthRecoveryAttempts = 0;
             // Stop REST polling — WS pushes are active
             stopLobbyPolling();
             break;
@@ -3423,7 +3438,37 @@ function handleAdminWsMessage(data) {
         case 'error':
             console.error('[Admin WS] Error:', data.code, data.message);
             if (data.code === 'UNAUTHORIZED') {
-                adminWs?.close();
+                // Server rejected ha_token even though BeatifyAuth's local
+                // expiry says it's fresh — HA wiped the session (restart,
+                // refresh-token revoke). Without recovery the onclose path
+                // reconnects with the same dead token forever. Force a
+                // token refresh; on success, reconnect. If refresh also
+                // fails handleServerRejection() navigates to HA login. The
+                // attempt counter prevents an infinite loop if the
+                // refreshed token is also rejected.
+                if (adminWsAuthRecovering) {
+                    // Already recovering — let the in-flight refresh finish.
+                    break;
+                }
+                if (adminWsAuthRecoveryAttempts >= MAX_ADMIN_WS_AUTH_RECOVERIES) {
+                    // Refreshed access token still rejected. Sessions are
+                    // wedged — bounce to HA login.
+                    console.warn('[Admin WS] Auth recovery exhausted; forcing re-login');
+                    BeatifyAuth.logout();
+                    BeatifyAuth.login();
+                    break;
+                }
+                adminWsAuthRecovering = true;
+                adminWsAuthRecoveryAttempts++;
+                var deadWs = adminWs;
+                adminWs = null;
+                try { deadWs?.close(); } catch (e) { /* ignore */ }
+                BeatifyAuth.handleServerRejection().then(function (token) {
+                    adminWsAuthRecovering = false;
+                    if (!token) return; // handleServerRejection navigated away
+                    adminReconnectAttempts = 0;
+                    connectAdminWebSocket();
+                });
             } else if (data.code === 'NAME_TAKEN' || data.code === 'NAME_INVALID') {
                 showError(data.message);
                 isPlaying = false;

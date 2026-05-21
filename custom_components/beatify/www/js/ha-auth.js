@@ -273,6 +273,27 @@
   }
 
   /**
+   * Recover when a non-HTTP transport (e.g. WebSocket admin auth) reports the
+   * stored access token is rejected server-side. accessFresh() only checks the
+   * local expiry timestamp, so the same dead token would be retried forever.
+   * Clear the local "fresh" state, force a refresh, and bounce to HA login if
+   * refresh also fails (returned promise never resolves in that case).
+   */
+  function handleServerRejection() {
+    try {
+      localStorage.removeItem(K_ACCESS);
+      localStorage.removeItem(K_EXPIRES);
+    } catch (e) {
+      /* ignore */
+    }
+    return refreshAccess().then(function (token) {
+      if (token) return token;
+      login();
+      return new Promise(function () {});
+    });
+  }
+
+  /**
    * fetch() wrapper that attaches the HA bearer token and transparently
    * refreshes + retries once on 401. On unrecoverable auth failure it
    * redirects to login.
@@ -365,5 +386,6 @@
     getAccessToken: getAccessToken,
     ensureAuthenticated: ensureAuthenticated,
     fetch: authedFetch,
+    handleServerRejection: handleServerRejection,
   };
 })();
