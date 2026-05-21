@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc8] - 2026-05-21
+
+### Fixed
+- **Home Assistant login over Nabu Casa cloud failed with "TypeError: Load failed" (#998 follow-up).** When the admin or player page completed the HA OAuth redirect on a `*.ui.nabu.casa` URL, the `POST /auth/token` exchange rejected with Safari's generic transport error and bounced the user back to HA login in a loop. Root cause: the SniTun relay drops `application/x-www-form-urlencoded` POSTs to `/auth/token` on this path; the bytes never reach HA. `ha-auth.js` `postToken` now uses `FormData` (multipart) with explicit `credentials: 'same-origin'` and no manual `Content-Type` — matching the transport Home Assistant's own frontend (`home-assistant-js-websocket`) uses on the same cloud URLs. Same wire intent; HA's `/auth/token` accepts both content types. LAN/direct-HA users were never affected.
+- **Admin "join as player" silently failed when HA tokens were server-revoked.** After an HA restart (or manual refresh-token revoke), the locally-stored access token still passed Beatify's `accessFresh()` check because that only inspects the local expiry timestamp. Admin would load, but every authed action — adding yourself as a player, hosting a game — silently 401'd, leaving the host's name absent from the player list while regular players (no HA auth required) joined fine. `BeatifyAuth.init({ requireAuth: true })` now probes `GET /api/` once to confirm the token is valid server-side; the existing `authedFetch` 401-refresh-login chain handles recovery automatically. Player path (`requireAuth: false`) skips the probe so it defers HA calls until the user actually claims the host role.
+
 ## [3.4.0-rc7] - 2026-05-21
 
 ### Fixed
