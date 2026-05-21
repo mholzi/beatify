@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc9] - 2026-05-21
+
+### Fixed
+- **Admin "join as player" rejected with "Home Assistant login required to host" even after a fresh OAuth login (#998 follow-up).** rc8 chased the wrong cause (zombie tokens) — that's a real bug but not what users were hitting. Actual root cause: the home-mode join flow in `admin.js` sends `{type:'join', name, is_admin:true}` to the WebSocket but never includes `ha_token`. Server's `handle_join` calls `_is_ha_authenticated(data)` which checks `data.get("ha_token")`, finds nothing, returns `ERR_UNAUTHORIZED`. The host's name never appears in the player list, even with a fully valid OAuth session (verified by browser test: fresh incognito + completed login still triggered the loop). `admin_connect` was sending `ha_token` correctly all along, but its auth doesn't carry over to subsequent messages on the same socket — every authed message needs its own token. Fix mirrors the working pattern at `player-core.js:459`: `await BeatifyAuth.ensureAuthenticated()` before sending, and include the token in the join payload. The rc8 zombie-token probe stays — it's still a valid defense against server-revoked refresh tokens.
+
 ## [3.4.0-rc8] - 2026-05-21
 
 ### Fixed
