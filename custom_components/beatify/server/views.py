@@ -153,6 +153,82 @@ class PlayerView(HomeAssistantView):
         return _html_response(html_content)
 
 
+class BeatifyAuthExchangeView(HomeAssistantView):
+    """Server-side proxy for HA's /auth/token (Safari 18 workaround).
+
+    On Safari 18 (macOS Sequoia / iOS 18), browser POSTs to ``/auth/token``
+    from Nabu Casa origins are rejected with "access control checks"
+    errors — both fetch (FormData multipart and urlencoded) and XHR. The
+    request is same-origin and HA's TokenView already declares
+    ``cors_allowed = True``, so this is almost certainly a CORS-header
+    shape mismatch introduced by the SniTun relay. The HA frontend itself
+    likely dodges it because users stay logged-in via cookies and rarely
+    re-hit ``/auth/token`` after the first session, but Beatify does an
+    OAuth code exchange on every fresh admin load and trips the bug.
+
+    Routing the exchange through a Beatify-owned path bypasses the issue
+    entirely: Safari has no reason to special-case
+    ``/beatify/auth/exchange`` and we control the response shape. This
+    view forwards the body to HA's local ``/auth/token`` over loopback
+    HTTP — the request never crosses the SniTun relay, never picks up
+    the bad headers, and gets sent back to the browser as plain JSON
+    with explicit ``Cache-Control: no-store``.
+    """
+
+    url = "/beatify/auth/exchange"
+    name = "beatify:auth_exchange"
+    requires_auth = False  # /auth/token itself is unauthed by design
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the auth-exchange proxy view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Forward the OAuth code/refresh exchange to HA's /auth/token."""
+        body_bytes = await request.read()
+        content_type = request.headers.get(
+            "Content-Type", "application/x-www-form-urlencoded"
+        )
+
+        # Loopback to HA's own /auth/token endpoint. The internal request
+        # never leaves the HA process's network namespace, so any
+        # browser-CORS / SniTun-relay quirks are sidestepped. Use HTTPS
+        # only if HA itself is configured with a certificate — otherwise
+        # plain HTTP on 127.0.0.1 is always available.
+        ssl_cert = getattr(self.hass.http, "ssl_certificate", None)
+        scheme = "https" if ssl_cert else "http"
+        port = self.hass.http.server_port
+        url = f"{scheme}://127.0.0.1:{port}/auth/token"
+
+        session = async_get_clientsession(self.hass)
+        # ssl=False disables verification for the localhost loopback; the
+        # cert almost certainly doesn't list 127.0.0.1 as a SAN. No
+        # security loss — we're inside the HA process.
+        ssl_kwargs = {"ssl": False} if scheme == "https" else {}
+
+        try:
+            async with session.post(
+                url,
+                data=body_bytes,
+                headers={"Content-Type": content_type},
+                timeout=ClientTimeout(total=10),
+                **ssl_kwargs,
+            ) as resp:
+                resp_text = await resp.text()
+                return web.Response(
+                    text=resp_text,
+                    status=resp.status,
+                    content_type="application/json",
+                    headers={"Cache-Control": "no-store"},
+                )
+        except (ClientError, asyncio.TimeoutError) as err:
+            _LOGGER.error("Auth exchange proxy failed: %s", err)
+            return web.json_response(
+                {"error": "proxy_failed", "error_description": str(err)},
+                status=502,
+            )
+
+
 class SwJsView(HomeAssistantView):
     """Serve sw.js from /beatify/sw.js so the SW can claim /beatify/ scope (#780).
 
