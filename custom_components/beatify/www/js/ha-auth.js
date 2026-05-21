@@ -106,15 +106,21 @@
   // -- OAuth2 token endpoint ----------------------------------------------
 
   function postToken(params) {
-    var body = Object.keys(params)
-      .map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-      })
-      .join('&');
+    // Mirror home-assistant-js-websocket's tokenRequest: FormData (multipart),
+    // explicit credentials:'same-origin', no manual Content-Type. The URL-
+    // encoded variant intermittently fails through the Nabu Casa SniTun
+    // relay with Safari's "TypeError: Load failed" — the bytes never make
+    // it back. HA's own frontend works on cloud because it uses this shape;
+    // matching it removes Beatify from the broken path. Same wire format
+    // HA's /auth/token already accepts, just a different Content-Type.
+    var form = new FormData();
+    Object.keys(params).forEach(function (k) {
+      form.append(k, params[k]);
+    });
     return fetch(origin() + '/auth/token', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
+      credentials: 'same-origin',
+      body: form,
     }).then(function (resp) {
       if (!resp.ok) {
         return resp.text().then(function (t) {
@@ -319,12 +325,35 @@
   function init(options) {
     options = options || {};
     return handleRedirectCallback().then(function () {
-      if (isAuthenticated()) return true;
-      if (options.requireAuth) {
-        login();
-        return new Promise(function () {});
+      if (!isAuthenticated()) {
+        if (options.requireAuth) {
+          login();
+          return new Promise(function () {});
+        }
+        return false;
       }
-      return false;
+      // Player path defers HA calls until the user actually claims the host
+      // role — let authedFetch handle a stale token at that point.
+      if (!options.requireAuth) return true;
+      // accessFresh() only checks the local expiry timestamp, so a token
+      // revoked server-side (HA restart, user logged out elsewhere) still
+      // looks valid. Admin would then load but every authed action — including
+      // joining the game as host — would silently 401. Probe /api/ to confirm
+      // the token still works. authedFetch handles 401 by refreshing once;
+      // if refresh also fails it calls login() and the promise never resolves.
+      return authedFetch(origin() + '/api/')
+        .then(function (resp) {
+          if (resp.ok) return true;
+          clearTokens();
+          login();
+          return new Promise(function () {});
+        })
+        .catch(function () {
+          // Transport failure (HA unreachable, captive portal). Don't lock
+          // the user out on a transient blip — let the next real action
+          // surface any genuine issue.
+          return true;
+        });
     });
   }
 
