@@ -4,6 +4,35 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-05-21
+
+Stable promotion of the v3.4.0-rc15 line with one additional fix (#1080 reset-state-persistence, PR #1089). See [release-notes-v3.4.0.md](release-notes-v3.4.0.md) for the user-facing summary.
+
+### Headline
+- **Security Gate (#998, PR #1007).** `/beatify/admin` and every WebSocket command behind it now require an authenticated Home Assistant session. Anonymous external access is no longer possible.
+- **LLM-Assisted Playlist Generator (#1052, #1057, #1060).** Describe a vibe, get a 40-track candidate list with provider URIs + release years, validated and sanitized. Save locally or submit upstream.
+- **REVEAL Auto-Advance countdown (#1048).** v3.3.7's Auto-Advance now shows the countdown on the sticky "Next round" button.
+
+### Added
+- TTS-Entity-Dropdown im Setup-Wizard (#1073, PR #1079, @ludgerbeckmann)
+- "Ausgewählte Playlists"-Sheet mit Bulk-Remove (#1074, PR #1083, @ludgerbeckmann)
+
+### Fixed
+- Reset-State-Persistence — wizard state now clears on Start New Game (#1080, PR #1089, @BK0101xx)
+- Year-truncation on narrow phones (#1072, PR #1077, @laberning)
+- Tighter game-view so artist tiles land above the fold on mobile (#1076, PR #1084, @laberning)
+- Self-healing service worker — upgrades no longer require manual cache clearing (PR #1086)
+- Safari 18 OAuth flow — entire token exchange now server-side, cookies for transport (rc12–rc15, PRs #1091–#1094)
+- Nabu Casa SniTun token relay — FormData transport (rc8, PR #1078)
+- Zombie token detection (rc8/rc9, commit 36f84e93)
+- Merge-conflict-markers in admin assets (rc7, PR #1071)
+- Playlist Generator modal copy tightened (PR #1065)
+- Playlist Hub FAB icon visibility (#1054, PR #1058)
+
+### Data
+- Danube Incident release year 1968 → 1969 (PR #1063)
+- Alcazar "Crying At the Discoteque" year 2012 → 2000 (PR #1070)
+
 ## [3.4.0-rc15] - 2026-05-21
 
 ### Fixed

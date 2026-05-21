@@ -410,9 +410,7 @@ class BeatifyAuthRefreshView(HomeAssistantView):
         """Refresh the access token using the HttpOnly refresh cookie."""
         refresh_token = request.cookies.get(_REFRESH_COOKIE)
         if not refresh_token:
-            response = web.json_response(
-                {"error": "no_refresh_token"}, status=401
-            )
+            response = web.json_response({"error": "no_refresh_token"}, status=401)
             _clear_session_cookies(response)
             return response
 
@@ -426,9 +424,7 @@ class BeatifyAuthRefreshView(HomeAssistantView):
         )
         status, parsed, raw = await _exchange_with_ha(self.hass, body)
         if status != 200 or not parsed or not parsed.get("access_token"):
-            _LOGGER.info(
-                "Refresh failed (status=%s) — clearing session", status
-            )
+            _LOGGER.info("Refresh failed (status=%s) — clearing session", status)
             response = web.json_response(
                 {"error": "refresh_failed", "ha_status": status}, status=401
             )

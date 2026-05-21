@@ -114,9 +114,7 @@ class TestBeatifyAuthRefreshView:
         view = BeatifyAuthRefreshView(_hass())
         mock_session = MagicMock()
         mock_session.post = MagicMock(
-            return_value=_MockResponseCtx(
-                status=400, text='{"error":"invalid_grant"}'
-            )
+            return_value=_MockResponseCtx(status=400, text='{"error":"invalid_grant"}')
         )
 
         with patch(

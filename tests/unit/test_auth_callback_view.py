@@ -83,9 +83,7 @@ class TestBeatifyAuthCallbackView:
             "custom_components.beatify.server.views.async_get_clientsession",
             return_value=mock_session,
         ):
-            resp = await view.get(
-                _request({"code": "abc", "state": "xyz"})
-            )
+            resp = await view.get(_request({"code": "abc", "state": "xyz"}))
 
         assert resp.status == 302
         location = resp.headers["Location"]
@@ -123,18 +121,14 @@ class TestBeatifyAuthCallbackView:
         view = BeatifyAuthCallbackView(_hass())
         mock_session = MagicMock()
         mock_session.post = MagicMock(
-            return_value=_MockResponseCtx(
-                status=400, text='{"error":"invalid_grant"}'
-            )
+            return_value=_MockResponseCtx(status=400, text='{"error":"invalid_grant"}')
         )
 
         with patch(
             "custom_components.beatify.server.views.async_get_clientsession",
             return_value=mock_session,
         ):
-            resp = await view.get(
-                _request({"code": "expired", "state": "xyz"})
-            )
+            resp = await view.get(_request({"code": "expired", "state": "xyz"}))
 
         assert resp.status == 302
         assert "auth_error=exchange_failed" in resp.headers["Location"]
@@ -152,9 +146,7 @@ class TestBeatifyAuthCallbackView:
             "custom_components.beatify.server.views.async_get_clientsession",
             return_value=mock_session,
         ):
-            resp = await view.get(
-                _request({"code": "abc", "state": "xyz"})
-            )
+            resp = await view.get(_request({"code": "abc", "state": "xyz"}))
 
         assert resp.status == 302
         assert "auth_error=exchange_failed" in resp.headers["Location"]
@@ -170,9 +162,7 @@ class TestBeatifyAuthCallbackView:
         mock_session.post = MagicMock(
             return_value=_MockResponseCtx(
                 status=200,
-                text=(
-                    '{"access_token":"a","refresh_token":"r","expires_in":1800}'
-                ),
+                text=('{"access_token":"a","refresh_token":"r","expires_in":1800}'),
             )
         )
 
