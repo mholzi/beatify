@@ -11458,7 +11458,7 @@ body.is-learning-screen .player-header { display: none; }
     gap: var(--space-sm);
     align-items: center;
 }
-.duel-side { text-align: center; }
+.duel-side { text-align: center; min-width: 0; }
 .duel-label {
     font-family: var(--font-body);
     font-size: var(--font-size-xs);
@@ -11471,7 +11471,9 @@ body.is-learning-screen .player-header { display: none; }
 .duel-year {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: 64px;
+    /* Issue #1072: scale down on narrow viewports so a 4-digit year never overflows
+       its 1fr track and pushes the duel-row past the screen edge. */
+    font-size: clamp(40px, 12vw, 64px);
     line-height: 1;
     letter-spacing: -0.03em;
 }
