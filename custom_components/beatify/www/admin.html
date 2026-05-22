@@ -8,7 +8,7 @@
          query-string version, a stale en.json from a prior rc gets served
          after upgrade and references to newer keys render as raw strings.
          Bumped each rc alongside manifest.json + sw.js CACHE_VERSION. -->
-    <meta name="beatify-version" content="3.4.0">
+    <meta name="beatify-version" content="3.4.0-rc16">
     <!-- Self-healing SW recovery (rc11): an older-version service worker
          may serve a stale ha-auth.js even with cache-busters, leaving users
          in an unrecoverable login loop. Compare the current page's version
@@ -55,7 +55,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.4.0">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v=3.4.0-rc16">
 </head>
 <body class="theme-dark">
     <!-- First-run wizard takeover (see DESIGN.md ## Patterns → First-run wizard) -->
@@ -1446,17 +1446,17 @@
     <!-- Story 18.4: Use minified JS in production with fallback to source -->
     <!-- Version query strings prevent browser caching issues -->
     <!-- #998: HA OAuth client — must load before any admin script uses BeatifyAuth -->
-    <script src="/beatify/static/js/ha-auth.js?v=3.4.0"></script>
+    <script src="/beatify/static/js/ha-auth.js?v=3.4.0-rc16"></script>
     <script src="/beatify/static/js/i18n.js?v=1.7.0"></script>
     <script src="/beatify/static/js/utils.js?v=1.7.0"></script>
     <!-- Story 44.1: Playlist requests module -->
-    <script src="/beatify/static/js/playlist-requests.min.js?v=3.4.0"></script>
+    <script src="/beatify/static/js/playlist-requests.min.js?v=3.4.0-rc16"></script>
     <!-- #1052: LLM-assisted playlist generator (load before playlist-hub so the Mine-tab button finds it) -->
-    <script src="/beatify/static/js/playlist-generator.min.js?v=3.4.0"></script>
-    <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.4.0"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v=3.4.0"></script>
-    <script src="/beatify/static/js/admin.min.js?v=3.4.0"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v=3.4.0"></script>
-    <script src="/beatify/static/js/tts-settings.js?v=3.4.0"></script>
+    <script src="/beatify/static/js/playlist-generator.min.js?v=3.4.0-rc16"></script>
+    <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.4.0-rc16"></script>
+    <script type="module" src="/beatify/static/js/wizard.js?v=3.4.0-rc16"></script>
+    <script src="/beatify/static/js/admin.min.js?v=3.4.0-rc16"></script>
+    <script src="/beatify/static/js/party-lights.min.js?v=3.4.0-rc16"></script>
+    <script src="/beatify/static/js/tts-settings.js?v=3.4.0-rc16"></script>
 </body>
 </html>

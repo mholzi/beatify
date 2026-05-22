@@ -357,16 +357,23 @@ class BeatifyAuthCallbackView(HomeAssistantView):
             return self._redirect_to_admin(request, error="missing_code")
 
         origin = _origin_from_request(request)
+        # rc16 (#1096): redirect_uri now arrives as a query param from
+        # ha-auth.js because the HA Companion App on iOS rejects callback-
+        # path redirect_uris with "Invalid redirect URI". ha-auth.js sends
+        # the page URL it told HA, and we forward that byte-identical
+        # value here per RFC 6749 §4.1.3. Fall back to the rc15 hardcoded
+        # value defensively if the param is missing.
+        redirect_uri = request.query.get(
+            "redirect_uri", f"{origin}/beatify/auth/callback"
+        )
         body = urlencode(
             {
                 "grant_type": "authorization_code",
                 "code": code,
-                # client_id and redirect_uri MUST match what the frontend
-                # sent to /auth/authorize, per RFC 6749 §4.1.3. ha-auth.js
-                # uses origin + '/beatify/' as client_id and this exact
-                # callback URL as redirect_uri.
+                # client_id mirrors what ha-auth.js computes:
+                # window.location.origin + '/beatify/'.
                 "client_id": f"{origin}/beatify/",
-                "redirect_uri": f"{origin}/beatify/auth/callback",
+                "redirect_uri": redirect_uri,
             }
         )
 

@@ -764,6 +764,7 @@
     "GAME_ALREADY_STARTED": "Ya hay una partida en curso. Termínala antes de empezar una nueva.",
     "GAME_ENDED": "El juego ha terminado",
     "GAME_FULL": "El juego esta lleno",
+    "GAME_IN_LOBBY": "Ya hay un juego esperando en el lobby — comienza a jugar directamente.",
     "GAME_NOT_STARTED": "El juego no ha comenzado",
     "GITHUB_ERROR": "El backend no esta disponible ahora mismo — intentalo de nuevo en un momento.",
     "INVALID_ACTION": "Accion invalida",

@@ -68,8 +68,26 @@ async def _get_html(hass: HomeAssistant, path: Path) -> str | None:
 
 
 def _json_error(message: str, status: int, *, code: str = "ERROR") -> web.Response:
-    """Return a consistent JSON error response."""
-    return web.json_response({"error": code, "message": message}, status=status)
+    """Return a consistent JSON error response.
+
+    rc16 (#1097): the body now puts the machine-readable code under
+    ``code`` (matching the WebSocket error shape — see ws_handlers.py).
+    Before rc16 this used the key ``error``, which caused two regressions:
+
+    1. ``admin.js`` checks ``data.code === 'GAME_IN_LOBBY'`` to silently
+       recover when a LOBBY game already exists; with the old key the
+       check was dead code and the user got dropped into a modal with
+       the raw English message instead of the seamless gameplay start.
+    2. The ``errors.<CODE>`` i18n lookup (also reading ``data.code``)
+       never fired, so German / Spanish / French / Dutch users saw the
+       raw English ``message`` for every REST-side error response.
+
+    The ``error`` key is kept too so anything still reading it from
+    older builds doesn't break — drop after a few releases.
+    """
+    return web.json_response(
+        {"code": code, "error": code, "message": message}, status=status
+    )
 
 
 class RateLimitMixin:

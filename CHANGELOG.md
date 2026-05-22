@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc16] - 2026-05-22
+
+Walks back v3.4.0 stable to fix two regressions reported within hours of the v3.4.0 release. The v3.4.0 GitHub release has been removed; rc16 ships as the new pre-release while these fixes bake before re-cutting stable.
+
+### Fixed
+- **HA Companion App on iOS — "Invalid redirect URI" on Beatify open (#1096, @ludgerbeckmann).** Since v3.4.0, opening Beatify via the HA Companion App on iOS surfaced HA's IndieAuth error page immediately, on both LAN and Nabu Casa. rc15 had changed the OAuth `redirect_uri` from the page URL to the new server-side callback path (`/beatify/auth/callback`), and the Companion App rejects redirect_uris pointing at paths it doesn't recognize as registered panel URLs. rc16 reverts the `redirect_uri` to the page URL (the value the Companion App accepted from rc1 through rc14) and threads the actual server-side exchange via a JS-level top-level navigation step: the page receives `?code=&state=`, ha-auth.js immediately navigates to `/beatify/auth/callback?code=…&state=…&redirect_uri=<page>`, and the callback view uses the threaded `redirect_uri` for the loopback `/auth/token` exchange (RFC 6749 §4.1.3 requires byte-identical redirect_uri values across `/auth/authorize` and `/auth/token`). The Safari 18 fix is preserved end-to-end — the browser still never POSTs to an auth endpoint.
+- **REST error responses now expose `data.code` instead of just `data.error` (#1097, @ludgerbeckmann).** Two regressions collapsed into one root cause: `_json_error` in `server/base.py` wrote `{error: <code>, message: <text>}`, but the frontend admin.js reads `data.code` (matching the WebSocket error shape). The mismatch made (a) the `GAME_IN_LOBBY` auto-recovery silently dead — users saw a modal with the raw English message instead of seamless gameplay start — and (b) the `errors.<CODE>` i18n lookup never fire, so German, Spanish, French, and Dutch users got the raw English `message` for every REST-side error. rc16 emits both `code` and `error` (full backwards-compat) so existing code paths light up. New `errors.GAME_IN_LOBBY` translations added to all five locales.
+
+### Tests
+- 539 Python pass (+5 new for `_json_error` body shape, +2 for the `redirect_uri` query-param forwarding in `BeatifyAuthCallbackView`).
+- 98 JS pass (+2 for the new `?code=` → callback-view bounce path and the rc16 `redirect_uri` shape).
+
 ## [3.4.0] - 2026-05-21
 
 Stable promotion of the v3.4.0-rc15 line with one additional fix (#1080 reset-state-persistence, PR #1089). See [release-notes-v3.4.0.md](release-notes-v3.4.0.md) for the user-facing summary.

@@ -764,6 +764,7 @@
     "GAME_ALREADY_STARTED": "Er is al een spel bezig. Beëindig het voordat je een nieuwe start.",
     "GAME_ENDED": "Het spel is afgelopen",
     "GAME_FULL": "Het spel zit vol",
+    "GAME_IN_LOBBY": "Er wacht al een spel in de lobby — start het gameplay direct.",
     "GAME_NOT_STARTED": "Het spel is nog niet gestart",
     "GITHUB_ERROR": "Backend is op dit moment niet bereikbaar — probeer het zo nog eens.",
     "INVALID_ACTION": "Ongeldige actie",

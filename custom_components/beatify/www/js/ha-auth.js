@@ -61,10 +61,14 @@
     return origin() + '/beatify/';
   }
   function redirectUri() {
-    // rc15: redirect_uri is the server-side callback view, not the page.
-    // The view performs the code exchange and sets cookies before the
-    // browser ever reaches the admin page again.
-    return origin() + '/beatify/auth/callback';
+    // rc16 (#1096): the HA Companion App on iOS rejects /auth/authorize
+    // with "Invalid redirect URI" when redirect_uri points at a path
+    // it doesn't recognize. Sending the page URL itself (the value used
+    // up through rc14) is the only redirect_uri shape Companion accepts.
+    // The server-side callback view still handles the code exchange —
+    // ha-auth.js detects the ?code= echo on this page and navigates to
+    // /beatify/auth/callback as a separate step (see _bounceCodeToCallback).
+    return origin() + window.location.pathname;
   }
 
   function randomState() {
@@ -191,6 +195,34 @@
       '&state=' +
       encodeURIComponent(state);
     window.location.replace(url);
+  }
+
+  /**
+   * Forward a freshly-arrived OAuth code to the server-side callback view.
+   *
+   * HA redirected us back to ``${origin}${pathname}?code=…&state=…`` because
+   * that's the redirect_uri the HA Companion App accepts (see ``redirectUri``).
+   * The actual exchange must happen server-side (Safari 18 can't POST it from
+   * the browser); navigate to the callback view, passing the exact
+   * redirect_uri HA saw so the loopback exchange can satisfy RFC 6749 §4.1.3.
+   *
+   * Returns true when navigation has been initiated — caller should suspend.
+   */
+  function _bounceCodeToCallback() {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    var state = params.get('state');
+    if (!code) return false;
+    var url =
+      origin() +
+      '/beatify/auth/callback?code=' +
+      encodeURIComponent(code) +
+      '&state=' +
+      encodeURIComponent(state || '') +
+      '&redirect_uri=' +
+      encodeURIComponent(redirectUri());
+    window.location.replace(url);
+    return true;
   }
 
   /**
@@ -345,6 +377,16 @@
   function init(options) {
     options = options || {};
     _migrateFromLocalStorage();
+
+    // If we arrived from /auth/authorize with ?code=&state=, forward
+    // to the server-side callback view. This is the rc16 detour: HA's
+    // redirect lands on the page itself (the only redirect_uri the
+    // Companion App accepts) and we hop one extra step to do the
+    // exchange server-side. Navigation is in-flight; suspend init.
+    if (_bounceCodeToCallback()) {
+      return new Promise(function () {});
+    }
+
     var callbackResult = _consumeAuthCallback();
 
     // callbackResult === false means the server-side exchange reported a
