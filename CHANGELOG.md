@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.2] - 2026-05-22
+
+Hot-fix for an Android Companion App regression introduced by the v3.4.0-rc17 launcher rework. iOS Companion was unblocked at the cost of breaking Android Companion. Three reporters in two days confirmed it; v3.4.2 unblocks Android without touching the rest of v3.4.
+
+### Fixed
+- **HA Companion App on Android — launcher tap did nothing (#1114).** v3.4.0-rc17 replaced the script-driven `window.open()` with an `<a target="_blank" rel="noopener">` link so iOS WKWebView users could escape the Companion's OAuth interception. On iOS that routes the URL out to Safari and works cleanly; on Android the Companion WebView silently swallowed `target="_blank"` — the click handler fired (toast "Beatify in neuem Tab geöffnet!" appeared), but no tab was ever spawned. Fix: the launcher now detects the Companion Android UA on click and navigates the top frame directly (`window.top.location.href`) instead of relying on the new-tab route. Beatify loads inline in the same Companion view — trade-off: no separate tab, but it actually opens. iOS Companion, desktop iframe, and standalone-browser paths are unchanged.
+
+### Patch test totals
+- 538 Python pass (no Python changes since v3.4.1)
+- 96 JS pass (no test changes; launcher fix exercised manually across iOS Companion, Android Companion, Brave, Chrome desktop)
+
 ## [3.4.1] - 2026-05-22
 
 Re-cut of the v3.4.0 line after the original stable was pulled to fix two regressions found within hours of release. Contains everything in v3.4.0 plus the rc16–rc18 fix series.

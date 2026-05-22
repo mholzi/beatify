@@ -551,6 +551,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v3.4.2 — Unstick the Android Launcher 🤖
+- **HA Companion on Android opens Beatify again** — The launcher fix that shipped in v3.4.0 for iOS broke Android: tap "Beatify öffnen", see the toast, watch nothing happen. v3.4.2 detects the Android Companion app and navigates the top frame directly instead of opening a new tab that never materialises
+- **One-file, one-bug, one-PR rc cycle** — Standard 6-file version bumps; iOS Companion, desktop, and standalone browsers untouched
+- Closes #1114; thanks to @Dtrieb, @nixbuongiorno, and @markist for two days of repro and the "works in Brave" datapoint that cracked it
+- 35 playlists, 4,013 songs, 5 music platforms, 5 languages
+
 ### v3.3.6 — Beatify Finds Its Voice 🎙️
 - **The voice roadmap is complete** — TTS Phases 3 & 4 add the last ten announcements (bets, joins, podium, rematch, intro, steals); the per-round reveal is now narrated as one flowing sentence instead of a stutter of clips. 23 spoken moments in total
 - **Verbosity presets** — pick Minimal, Standard or Full and all 23 toggles are set for you; fine-tune any of them and it switches to Custom. Available in both the admin TTS panel and the setup wizard
