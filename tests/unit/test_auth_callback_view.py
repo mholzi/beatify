@@ -66,48 +66,11 @@ class TestBeatifyAuthCallbackView:
         assert "auth_error=missing_code" in resp.headers["Location"]
 
     @pytest.mark.asyncio
-    async def test_forwards_redirect_uri_query_param_to_loopback_exchange(self):
-        # rc16 (#1096): ha-auth.js passes the page URL it told HA as the
-        # redirect_uri query param. We must forward that byte-identical
-        # value to /auth/token (RFC 6749 §4.1.3), NOT hardcode our own.
-        view = BeatifyAuthCallbackView(_hass())
-        mock_session = MagicMock()
-        mock_session.post = MagicMock(
-            return_value=_MockResponseCtx(
-                status=200,
-                text=(
-                    '{"access_token":"a","refresh_token":"r","expires_in":1800}'
-                ),
-            )
-        )
-
-        with patch(
-            "custom_components.beatify.server.views.async_get_clientsession",
-            return_value=mock_session,
-        ):
-            await view.get(
-                _request(
-                    {
-                        "code": "abc",
-                        "state": "xyz",
-                        # The page URL ha-auth.js used as redirect_uri at
-                        # /auth/authorize. The Companion App accepts this.
-                        "redirect_uri": "http://ha.local:8123/beatify/admin",
-                    }
-                )
-            )
-
-        call_body = mock_session.post.call_args.kwargs["data"]
-        # urlencoded body — the forwarded redirect_uri must match.
-        assert (
-            "redirect_uri=http%3A%2F%2Fha.local%3A8123%2Fbeatify%2Fadmin"
-            in call_body
-        )
-
-    @pytest.mark.asyncio
-    async def test_falls_back_to_legacy_callback_redirect_uri_when_param_missing(self):
-        # Defensive fallback for the rc15 frontend that didn't send a
-        # redirect_uri param. Should keep working until everyone's on rc16+.
+    async def test_loopback_exchange_uses_callback_redirect_uri(self):
+        # rc18: redirect_uri is the callback view itself, matching what
+        # ha-auth.js sends to /auth/authorize per RFC 6749 §4.1.3. The
+        # rc16 query-param-forwarding mechanism was reverted along with
+        # the JS-bounce architecture it supported.
         view = BeatifyAuthCallbackView(_hass())
         mock_session = MagicMock()
         mock_session.post = MagicMock(
@@ -124,9 +87,12 @@ class TestBeatifyAuthCallbackView:
             await view.get(_request({"code": "abc", "state": "xyz"}))
 
         call_body = mock_session.post.call_args.kwargs["data"]
-        # Falls back to the rc15 hardcoded callback URL.
-        assert "redirect_uri=" in call_body
-        assert "%2Fbeatify%2Fauth%2Fcallback" in call_body
+        # The exchange must send redirect_uri = callback URL itself.
+        assert (
+            "redirect_uri=http%3A%2F%2Fha.local%3A8123%2Fbeatify%2Fauth%2Fcallback"
+            in call_body
+        )
+        assert "client_id=http%3A%2F%2Fha.local%3A8123%2Fbeatify%2F" in call_body
 
     @pytest.mark.asyncio
     async def test_successful_exchange_sets_cookies_and_redirects(self):
