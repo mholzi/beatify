@@ -145,17 +145,39 @@
         //
         // We lose the "focus existing tab" affordance the old window.open
         // path had — acceptable trade for unblocking iOS Companion users.
+        //
+        // Android HA Companion (#1114) follow-up: the Android WebView
+        // swallows target="_blank" silently — no external tab opens, the
+        // launcher UI just shows the "opened in new tab" toast but
+        // nothing actually launched. We detect the Companion Android UA
+        // and switch to a top-frame navigation (`window.top.location`)
+        // on click, which loads Beatify directly in the same Companion
+        // view. Trade-off: no separate tab, but Beatify actually opens.
+
+        function isAndroidCompanion() {
+            var ua = navigator.userAgent || '';
+            return /Android/i.test(ua) && /Home ?Assistant/i.test(ua);
+        }
 
         window.addEventListener('load', async function() {
             // Set the href on load so we pick up window.location.origin
             // dynamically (LAN, Nabu Casa, custom domain all just work).
             var openBtn = document.getElementById('openBtn');
-            if (openBtn) openBtn.href = window.location.origin + '/beatify/admin';
+            var beatifyUrl = window.location.origin + '/beatify/admin';
+            if (openBtn) openBtn.href = beatifyUrl;
 
-            // Once the user taps, update the launcher UI so it's obvious
-            // Beatify opened in another tab/window. target="_blank" still
-            // fires the click — we just decorate the same page after.
-            if (openBtn) openBtn.addEventListener('click', function() {
+            if (openBtn) openBtn.addEventListener('click', function(evt) {
+                // Android Companion: bypass target="_blank" entirely —
+                // navigate the top frame so Beatify actually loads.
+                if (isAndroidCompanion()) {
+                    evt.preventDefault();
+                    try { window.top.location.href = beatifyUrl; }
+                    catch (e) { window.location.href = beatifyUrl; }
+                    return;
+                }
+                // All other contexts (iOS Companion, desktop iframe,
+                // standalone browser): let target="_blank" do its job
+                // and decorate the launcher to say "opened in a new tab".
                 var msg = document.getElementById('message');
                 if (msg) {
                     msg.textContent =
