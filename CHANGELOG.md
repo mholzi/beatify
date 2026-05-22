@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc18] - 2026-05-22
+
+### Fixed
+- **Safari auth loop on rc17 — restored the rc15 OAuth architecture (#1096 follow-up).** rc17's `target="_blank"` launcher correctly opens Beatify outside the HA Companion App webview, but rc16's leftover JS-bounce hop (`/beatify/admin?code=...` → ha-auth.js navigates to `/beatify/auth/callback`) tripped Safari 18 in a different way and brought back the pre-rc15 auth loop in external Safari. The bounce was a workaround for HA Companion's interception of `/auth/authorize`; the rc17 launcher already eliminates that by opening externally, so the bounce was both unnecessary and disruptive.
+- **Fix: ha-auth.js back to rc15's clean OAuth flow.** `redirect_uri` points directly at `/beatify/auth/callback`, the server-side callback runs the exchange, sets cookies, and 302s to `/beatify/admin?auth_state=…`. No JS-driven mid-flow navigation. The rc16/17 callback-view `redirect_uri` query-param handling reverted along with it. The rc17 launcher (`<a target="_blank">`) is preserved — that's the actual fix for HA Companion App, and it works without any OAuth-side adjustment.
+
+### Net architecture (rc18)
+- Launcher: `<a target="_blank">` opens Beatify in external Safari / Safari View Controller / Custom Tabs, outside any HA Companion webview.
+- OAuth: `redirect_uri = /beatify/auth/callback` (server-side endpoint); HA login → callback view exchanges over loopback → sets cookies → 302 to admin. No frontend POSTs to auth endpoints (Safari 18 fix preserved). No extra JS bounce (Safari 18 second-order fix preserved).
+
 ## [3.4.0-rc17] - 2026-05-22
 
 ### Fixed
