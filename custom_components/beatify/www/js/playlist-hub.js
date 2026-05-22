@@ -1141,8 +1141,9 @@ function _renderSelectedSheetInto(host) {
     });
     const title = _t('playlistHub.selected.title', 'Your selected playlists');
     const subtitle = selectedItems.length === 1
-        ? _t('playlistHub.selected.subtitleOne', '1 playlist selected — tap × to remove')
-        : (_t('playlistHub.selected.subtitleN', '{n} playlists selected — tap × to remove').replace('{n}', String(selectedItems.length)));
+        ? _t('playlistHub.selected.subtitleOne', '1 playlist selected')
+        : (_t('playlistHub.selected.subtitleN', '{n} playlists selected').replace('{n}', String(selectedItems.length)));
+    const removeLabel = _t('playlistHub.selected.remove', 'Remove');
     const closeLabel = _t('playlistHub.close', 'Close');
     const empty = `
         <div class="plh-selected-empty">
@@ -1171,7 +1172,8 @@ function _renderSelectedSheetInto(host) {
                     <div class="plh-selected-sub">${author} · <b>${songCount}</b> ${_escape(_t('playlistHub.songs', 'songs'))}</div>
                 </div>
                 <button class="plh-selected-remove" data-plh-action="remove-selected" data-plh-path="${_escape(path)}" aria-label="${_escape(removeAria)}">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    <span class="plh-selected-remove-label">${_escape(removeLabel)}</span>
                 </button>
             </div>
         `;

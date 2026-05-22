@@ -1111,9 +1111,10 @@
     },
     "selected": {
       "title": "Your selected playlists",
-      "subtitleOne": "1 playlist selected — tap × to remove",
-      "subtitleN": "{n} playlists selected — tap × to remove",
+      "subtitleOne": "1 playlist selected",
+      "subtitleN": "{n} playlists selected",
       "empty": "No playlists selected yet",
+      "remove": "Remove",
       "removeAria": "Remove {name}",
       "openAria": "Show selected playlists"
     }

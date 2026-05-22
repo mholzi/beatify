@@ -14189,26 +14189,34 @@ body.theme-dark .your-result-stats .stat-value {
 }
 .plh-selected-sub b { color: var(--color-text-white); font-weight: 700; }
 .plh-selected-remove {
-    width: 32px;
     height: 32px;
-    border-radius: 50%;
+    padding: 0 12px;
+    border-radius: 16px;
     background: var(--color-bg-surface);
     border: 1px solid rgba(255, 45, 106, 0.35);
-    color: var(--color-text-neon-muted);
+    color: #ff5fa4;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     flex-shrink: 0;
-    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
 .plh-selected-remove:hover,
 .plh-selected-remove:focus-visible {
     background: rgba(255, 45, 106, 0.18);
-    color: #ff5fa4;
+    border-color: rgba(255, 45, 106, 0.65);
+    color: #ff7ab3;
     outline: none;
 }
-.plh-selected-remove:active { transform: scale(0.92); }
+.plh-selected-remove:active { transform: scale(0.94); }
+.plh-selected-remove-label { line-height: 1; }
 .plh-selected-empty {
     text-align: center;
     padding: 36px 20px;
