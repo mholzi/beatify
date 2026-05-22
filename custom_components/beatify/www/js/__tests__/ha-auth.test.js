@@ -255,18 +255,60 @@ describe('init() auth callback handling', () => {
 });
 
 describe('login() OAuth redirect', () => {
-    it('uses /beatify/auth/callback as redirect_uri (rc15: server-side exchange)', () => {
+    it('uses the page URL as redirect_uri (rc16: Companion App accepts only registered paths)', () => {
+        // rc15 pointed redirect_uri at /beatify/auth/callback, which the HA
+        // iOS Companion App rejected as "Invalid redirect URI". rc16
+        // reverts to the page URL (the value Companion accepted for years)
+        // and routes the code via JS into the callback view instead.
         const { BeatifyAuth, sandboxWindow } = loadHaAuth({});
         BeatifyAuth.login();
         const url = sandboxWindow.location._lastReplace;
         expect(url).toContain('/auth/authorize');
         expect(url).toContain('response_type=code');
         expect(url).toContain(
-            'redirect_uri=' + encodeURIComponent('https://ha.example/beatify/auth/callback')
+            'redirect_uri=' + encodeURIComponent('https://ha.example/beatify/admin')
         );
-        // client_id is origin + /beatify/
+        // client_id is origin + /beatify/ (unchanged across RCs).
         expect(url).toContain(
             'client_id=' + encodeURIComponent('https://ha.example/beatify/')
         );
+    });
+});
+
+describe('init() ?code= bounce to callback (rc16)', () => {
+    it('navigates to /beatify/auth/callback when ?code=&state= arrive on the page', async () => {
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({});
+        sandboxWindow.location.search = '?code=AUTH_CODE_123&state=state-xyz';
+
+        const result = await Promise.race([
+            BeatifyAuth.init({ requireAuth: true }),
+            new Promise((r) => setTimeout(() => r('SUSPENDED'), 5)),
+        ]);
+        expect(result).toBe('SUSPENDED');
+
+        const navigated = sandboxWindow.location._lastReplace;
+        expect(navigated).toContain('/beatify/auth/callback');
+        expect(navigated).toContain('code=AUTH_CODE_123');
+        expect(navigated).toContain('state=state-xyz');
+        // The redirect_uri threaded through must be byte-identical to
+        // what login() sent to /auth/authorize, per RFC 6749 §4.1.3.
+        expect(navigated).toContain(
+            'redirect_uri=' + encodeURIComponent('https://ha.example/beatify/admin')
+        );
+    });
+
+    it('does not bounce when there is no ?code= (regular page load)', async () => {
+        const fetchFn = async () => ({ ok: false, status: 401, json: async () => ({}) });
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({ fetchFn });
+        // No ?code= — init must fall through to refreshAccess (and on
+        // failure, login()), NOT bounce to the callback view.
+        const result = await Promise.race([
+            BeatifyAuth.init({ requireAuth: true }),
+            new Promise((r) => setTimeout(() => r('SUSPENDED'), 5)),
+        ]);
+        expect(result).toBe('SUSPENDED');
+        // login() was called (target is /auth/authorize, not callback view).
+        expect(sandboxWindow.location._lastReplace).toContain('/auth/authorize');
+        expect(sandboxWindow.location._lastReplace).not.toContain('/beatify/auth/callback');
     });
 });

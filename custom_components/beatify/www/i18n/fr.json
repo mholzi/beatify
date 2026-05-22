@@ -764,6 +764,7 @@
     "GAME_ALREADY_STARTED": "Une partie est déjà en cours. Termine-la avant d'en lancer une nouvelle.",
     "GAME_ENDED": "La partie est terminée",
     "GAME_FULL": "La partie est complète",
+    "GAME_IN_LOBBY": "Une partie attend déjà dans le lobby — lance directement le jeu.",
     "GAME_NOT_STARTED": "La partie n'a pas commencé",
     "GITHUB_ERROR": "Le backend est indisponible pour le moment — réessaye dans un instant.",
     "INVALID_ACTION": "Action invalide",
