@@ -9708,6 +9708,22 @@ body.wizard-active > .pwa-ios-hint {
 .wiz-cta .btn { flex: 1; }
 .wiz-cta .wiz-back { flex: 0 0 auto; min-width: 80px; }
 
+/* On step 3 the Playlist Hub renders its own CTA + detail sheet flush
+   to the viewport bottom. wizard.js hides the legacy wiz-next/wiz-back
+   buttons individually, but the wrapper itself stays visible — a ~33px
+   tall empty band with padding + border + semi-opaque background pinned
+   to the viewport bottom. Because `.wiz-cta` (z-1) is later in the DOM
+   than `.wiz-frame` (z-1) at the same z-index inside `.wizard-takeover`,
+   it paints on top of the wiz-frame subtree, including the playlist
+   hub's `.plh-sheet-host`. (The host's z-50 only counts inside
+   `.plh-root`'s `isolation: isolate` stacking context, not against
+   wiz-cta.) The detail sheet's footer button at viewport bottom
+   appeared clipped by the band. Drop the band on step 3 — the hub
+   owns the chrome there. */
+.wiz-frame-playlist:not([hidden]) ~ .wiz-cta {
+    display: none;
+}
+
 /* Finish-setup pill in admin header */
 .finish-setup-pill {
     font-family: var(--font-display);
