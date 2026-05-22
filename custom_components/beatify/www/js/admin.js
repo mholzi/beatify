@@ -618,12 +618,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             startGame();
         }
     });
-    // Always enter home-mode on admin load (unless an active game is running).
-    // Home-view shows a setup prompt for unconfigured users + the QR lobby for configured ones.
-    // The old 8 setup sections stay hidden behind the "Edit setup" affordance.
-    if (!currentGame) {
-        window.BeatifyHome.enter();
-    }
 
     // Start setup: clear the dismiss flag and open the wizard at Step 1.
     document.getElementById('home-start-setup')?.addEventListener('click', () => {
@@ -689,6 +683,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadSavedSettings();
 
     await loadStatus();
+
+    // #1098: enter home-mode only after loadStatus() has resolved.
+    // Previously this ran before the status fetch, so currentGame was always
+    // null at this point — BeatifyHome.enter() would auto-call startSession()
+    // → POST /start-game, hit 409 GAME_IN_LOBBY on an existing lobby, and the
+    // silent recovery would transition LOBBY → PLAYING (auto-starting the
+    // game). Visible regression when navigating Analytics → Admin with a
+    // lobby open.
+    // - If loadStatus found an active LOBBY, it already called showLobbyView()
+    //   which invokes BeatifyHome.renderSession() — no extra enter() needed.
+    // - If there is no active game, currentGame stays null → enter() runs and
+    //   (for a configured user) creates a fresh LOBBY, as before.
+    if (!currentGame) {
+        window.BeatifyHome.enter();
+    }
 
     // Initialize playlist requests display (Story 44.3, 44.4)
     initPlaylistRequests();

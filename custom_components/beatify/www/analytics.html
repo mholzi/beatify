@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- #1098: drives the footer version string + cache-busts i18n JSON.
+         Bumped each rc alongside manifest.json + sw.js CACHE_VERSION. -->
+    <meta name="beatify-version" content="3.4.1">
     <title data-i18n="analyticsDashboard.title">Beatify Analytics</title>
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -234,8 +237,21 @@
     </main>
 
     <footer>
-        <p>Beatify <span id="app-version">v1.7.0</span></p>
+        <p>Beatify <span id="app-version">v...</span></p>
     </footer>
+
+    <!-- #1098: populate footer version from the beatify-version meta tag.
+         Mirrors admin/dashboard/player; no more hardcoded "v1.7.0". -->
+    <script>
+        (function() {
+            var meta = document.querySelector('meta[name="beatify-version"]');
+            var version = meta && meta.getAttribute('content');
+            var el = document.getElementById('app-version');
+            if (el && version) {
+                el.textContent = 'v' + version;
+            }
+        })();
+    </script>
 
     <!-- Translation Script -->
     <script src="/beatify/static/js/i18n.js"></script>
