@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.0-rc17] - 2026-05-22
+
+### Fixed
+- **HA Companion App on iOS — "Invalid redirect URI" still appears on rc16 (#1096 follow-up).** rc16's fix (revert `redirect_uri` to the page URL) wasn't enough — the Companion App on iOS intercepts `/auth/authorize` navigations inside its own WKWebView and runs its native auto-login flow with hardcoded values that don't match Beatify's client_id. The fix has to happen one layer earlier: don't let the OAuth flow run inside the Companion App's webview at all.
+- **Fix: launcher now uses `<a target="_blank" rel="noopener">` instead of a script-driven `window.open`.** From any webview (HA Companion on iOS / Android), `target="_blank"` opens the URL outside the webview — external Safari, Safari View Controller, or in-app Custom Tabs depending on platform and user settings. Each has its own cookie jar and runs the OAuth flow cleanly with no Companion-side interception. On desktop browsers iframed in the HA panel, the same `target="_blank"` opens a new top-level tab outside the iframe — same effect as the old `window.open` path. Trade-off: we lose the "click again to focus the existing tab" affordance the old launcher had, but the auth fix is the priority.
+
 ## [3.4.0-rc16] - 2026-05-22
 
 Walks back v3.4.0 stable to fix two regressions reported within hours of the v3.4.0 release. The v3.4.0 GitHub release has been removed; rc16 ships as the new pre-release while these fixes bake before re-cutting stable.
