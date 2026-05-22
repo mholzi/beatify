@@ -657,16 +657,11 @@ function _renderBundled(host) {
         }));
     }
 
-    // Editor's Picks — featured (sorted by song_count desc, top 5)
-    const featured = [...filtered].sort((a, b) => (b.song_count || 0) - (a.song_count || 0)).slice(0, 5);
-    if (featured.length > 0) {
-        html.push(_shelfHtml({
-            title: `✨ ${_t('playlistHub.shelves.editorsPicks', "Editor's Picks")}`,
-            featured: true,
-            see: _t('playlistHub.seeAll', 'See all'),
-            cards: featured.map((p) => _cardHtml(p, { featured: true })),
-        }));
-    }
+    // #1108: "Editor's Picks" was just top-5-by-song-count on the Bundled
+    // tab — not actual curation, and the song-count proxy is misleading.
+    // Removed from Bundled. The Community tab keeps its equivalent shelf
+    // where "popular by song-count" is a more defensible signal for
+    // user-contributed content.
 
     // Genre shelves (up to 4)
     const genreShelves = groupByGenreShelves(filtered, 4);
@@ -788,6 +783,36 @@ function _renderCommunity(host) {
                     see: `${items.length}`,
                     cards: items.slice(0, 8).map((p) => _cardHtml(p, { community: true, showAuthor: true })),
                 }));
+            }
+        }
+
+        // #1108: By Style — same idea as By Country, but for community
+        // playlists that have no language label (instrumental, electronic,
+        // movie soundtracks, etc.). Without this section those playlists
+        // are invisible in the structured view and only show up in
+        // Editor's Picks / Recently added / Regional & Specialty (if any).
+        const noLang = all.filter((p) => !(p.language || '').trim());
+        if (noLang.length >= 2) {
+            const styleShelves = groupByGenreShelves(noLang, 4);
+            if (styleShelves.length >= 1) {
+                const totalStyles = styleShelves.length;
+                const totalPlaylists = styleShelves.reduce((n, s) => n + s.items.length, 0);
+                html.push(`
+                    <div class="plh-section-head">
+                        <div class="plh-section-head-title">
+                            <span class="plh-section-head-emoji">🎨</span>
+                            <span>${_escape(_t('playlistHub.sections.byStyle', 'By Style'))}</span>
+                        </div>
+                        <div class="plh-section-head-meta">${totalStyles} ${_escape(_t('playlistHub.sections.styles', 'styles'))} · ${totalPlaylists} ${_escape(_t('playlistHub.songs', 'playlists'))}</div>
+                    </div>
+                `);
+                for (const g of styleShelves) {
+                    html.push(_shelfHtml({
+                        title: _t(g.genre.key, g.genre.fallback),
+                        see: `${g.items.length}`,
+                        cards: g.items.slice(0, 8).map((p) => _cardHtml(p, { community: true, showAuthor: true })),
+                    }));
+                }
             }
         }
 

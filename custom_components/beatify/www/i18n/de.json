@@ -1107,7 +1107,9 @@
     },
     "sections": {
       "byCountry": "Nach Land",
-      "countries": "Länder"
+      "byStyle": "Nach Stil",
+      "countries": "Länder",
+      "styles": "Stile"
     },
     "selected": {
       "title": "Deine ausgewählten Playlists",
