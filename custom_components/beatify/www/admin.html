@@ -1115,9 +1115,17 @@
                 <span class="control-icon">🔊</span>
                 <span class="control-label" data-i18n="admin.volUp">Up</span>
             </button>
+            <!-- #1111: same handler as the in-page "Next Round" button
+                 (`adminNextRound`). Used to say "Skip" / "Überspringen",
+                 but that read as "skip this", not "advance round" — users
+                 with the in-page button below the fold concluded there
+                 was no way to advance and fell back to End Game. The
+                 player view's identical-function button at
+                 player.html:775 has used `admin.next` for years, so just
+                 align the admin browser to the same key. -->
             <button id="admin-skip-round" class="control-btn" type="button">
                 <span class="control-icon">⏭️</span>
-                <span class="control-label" data-i18n="admin.skipRound">Skip</span>
+                <span class="control-label" data-i18n="admin.next">Next</span>
             </button>
             <button id="admin-end-game-playing" class="control-btn control-btn--danger" type="button">
                 <span class="control-icon">🛑</span>
