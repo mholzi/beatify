@@ -1107,7 +1107,9 @@
     },
     "sections": {
       "byCountry": "By Country",
-      "countries": "countries"
+      "byStyle": "By Style",
+      "countries": "countries",
+      "styles": "styles"
     },
     "selected": {
       "title": "Your selected playlists",
