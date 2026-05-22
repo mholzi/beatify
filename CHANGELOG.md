@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.1] - 2026-05-22
+
+Re-cut of the v3.4.0 line after the original stable was pulled to fix two regressions found within hours of release. Contains everything in v3.4.0 plus the rc16–rc18 fix series.
+
+### Fixed (since v3.4.0)
+- **HA Companion App on iOS — "Invalid redirect URI" on Beatify open (#1096).** Companion App intercepts `/auth/authorize` navigations inside its WKWebView and runs its native auto-login flow with hardcoded values that don't match Beatify's client_id. Fix: launcher now opens Beatify via `<a target="_blank" rel="noopener">` so the URL opens outside the Companion webview (external Safari, Safari View Controller, or Custom Tabs depending on platform). OAuth flow then runs in a clean browser context with no Companion-side interception.
+- **REST error responses now expose `data.code` (#1097).** `_json_error` was writing `{error: <code>, message: <text>}` but the frontend reads `data.code` (matching the WebSocket error shape). Mismatch silently killed both the `GAME_IN_LOBBY` seamless-start auto-recovery and the `errors.<CODE>` i18n lookup — non-English locales got the raw English `message` for every REST-side error. Fix emits both `code` and `error` (backwards-compat); added `errors.GAME_IN_LOBBY` translation to en/de/es/fr/nl.
+
+### Patch test totals
+- 538 Python pass (+5 for `_json_error` body shape, callback view tests adjusted for the rc18 architecture restore)
+- 96 JS pass (+1 net after the rc16-bounce tests retired)
+
 ## [3.4.0-rc18] - 2026-05-22
 
 ### Fixed
