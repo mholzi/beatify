@@ -115,73 +115,59 @@
         <span class="beat">Beat</span><span class="ify">ify</span>
     </div>
     <p class="message" id="message" data-i18n="launcher.clickToLaunch">Launch the game in fullscreen — no distractions.</p>
-    <button class="btn" id="openBtn" onclick="openBeatify()">
+    <a class="btn" id="openBtn" target="_blank" rel="noopener" href="#">
         <span class="btn-icon">🎵</span>
         <span data-i18n="launcher.openBeatify">Open Beatify</span>
-    </button>
+    </a>
     <p class="hint" id="hint"></p>
     <p class="status" id="status"></p>
 
     <script src="/beatify/static/js/i18n.js"></script>
     <script>
-        var beatifyWindow = null;
+        // rc17 (#1096): the launcher is an `<a target="_blank">` link
+        // instead of a script-driven `window.open`. Reason:
+        //
+        //   - HA Companion App on iOS intercepts `/auth/authorize`
+        //     navigations inside its own WKWebView and runs its native
+        //     auto-login flow, which uses a hardcoded client_id /
+        //     redirect_uri pair that doesn't match Beatify's. Result:
+        //     "Invalid redirect URI" 403 from HA's IndieAuth.
+        //   - `target="_blank"` from a Companion App webview opens the
+        //     URL OUTSIDE the webview (external Safari, or Safari View
+        //     Controller — both fine: each has its own cookie jar and
+        //     runs the OAuth flow cleanly with no Companion-side
+        //     interception).
+        //   - On desktop browsers iframed inside the HA panel,
+        //     `target="_blank"` opens a new top-level tab outside the
+        //     iframe — same effect as the old `window.open` path.
+        //   - On Android Companion, `target="_blank"` opens external
+        //     Chrome / Custom Tabs (or honors the user's preference).
+        //
+        // We lose the "focus existing tab" affordance the old window.open
+        // path had — acceptable trade for unblocking iOS Companion users.
 
-        function openBeatify() {
-            var adminUrl = window.location.origin + '/beatify/admin';
-
-            // HA Companion App and mobile WebViews block window.open(). Desktop
-            // browsers inside the HA sidebar iframe CAN open popups, so don't
-            // force same-tab navigation just because we're iframed — try popup
-            // first and fall back if it's blocked.
-            var isWebView = /HomeAssistant|wv|WebView/i.test(navigator.userAgent);
-
-            if (isWebView) {
-                window.location.href = adminUrl;
-                return;
-            }
-
-            // If we already have an open window, focus it
-            if (beatifyWindow && !beatifyWindow.closed) {
-                beatifyWindow.focus();
-                updateUI('focused');
-                return;
-            }
-
-            var messageEl = document.getElementById('message');
-            messageEl.classList.add('opening');
-
-            beatifyWindow = window.open(adminUrl, 'beatify_game', 'noopener');
-
-            if (beatifyWindow) {
-                updateUI('opened');
-            } else {
-                // Fallback if popup still blocked
-                window.location.href = adminUrl;
-            }
-        }
-
-        function updateUI(state) {
-            var messageEl = document.getElementById('message');
-            var hintEl = document.getElementById('hint');
-            var btnEl = document.getElementById('openBtn');
-            messageEl.classList.remove('opening');
-
-            if (state === 'opened') {
-                messageEl.textContent = BeatifyI18n.t('launcher.openedInNewTab') || 'Beatify is running in a new tab! 🎶';
-                hintEl.textContent = BeatifyI18n.t('launcher.clickToFocus') || 'Click again to focus the game tab';
-                btnEl.querySelector('[data-i18n]').textContent = BeatifyI18n.t('launcher.focusBeatify') || 'Focus Beatify';
-            } else if (state === 'focused') {
-                messageEl.textContent = BeatifyI18n.t('launcher.focusedTab') || 'Switched to Beatify tab! 🎯';
-            } else if (state === 'blocked') {
-                messageEl.textContent = BeatifyI18n.t('launcher.popupBlocked') || 'Pop-up was blocked by your browser.';
-                hintEl.innerHTML = BeatifyI18n.t('launcher.allowPopups') || 'Allow pop-ups for this site, or <a href="' + window.location.origin + '/beatify/admin" target="_blank" style="color: var(--color-accent-secondary);">click here</a> to open directly.';
-            }
-        }
-
-        // Initialize i18n
         window.addEventListener('load', async function() {
-            await BeatifyI18n.init();
-            BeatifyI18n.initPageTranslations();
+            // Set the href on load so we pick up window.location.origin
+            // dynamically (LAN, Nabu Casa, custom domain all just work).
+            var openBtn = document.getElementById('openBtn');
+            if (openBtn) openBtn.href = window.location.origin + '/beatify/admin';
+
+            // Once the user taps, update the launcher UI so it's obvious
+            // Beatify opened in another tab/window. target="_blank" still
+            // fires the click — we just decorate the same page after.
+            if (openBtn) openBtn.addEventListener('click', function() {
+                var msg = document.getElementById('message');
+                if (msg) {
+                    msg.textContent =
+                        (window.BeatifyI18n && BeatifyI18n.t('launcher.openedInNewTab')) ||
+                        'Beatify is running in a new tab! 🎶';
+                }
+            });
+
+            if (window.BeatifyI18n) {
+                await BeatifyI18n.init();
+                BeatifyI18n.initPageTranslations();
+            }
         });
     </script>
 </body>
