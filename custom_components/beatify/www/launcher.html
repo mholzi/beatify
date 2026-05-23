@@ -150,9 +150,18 @@
         // swallows target="_blank" silently — no external tab opens, the
         // launcher UI just shows the "opened in new tab" toast but
         // nothing actually launched. We detect the Companion Android UA
-        // and switch to a top-frame navigation (`window.top.location`)
-        // on click, which loads Beatify directly in the same Companion
-        // view. Trade-off: no separate tab, but Beatify actually opens.
+        // and navigate `window.location` (the current iframe) to the
+        // admin URL directly, bypassing HA's SPA router.
+        //
+        // Why not window.top? HA's SPA is registered as a panel under
+        // the path prefix `/beatify/*`. Navigating the top frame to
+        // `/beatify/admin` causes HA's router to intercept and re-load
+        // the Beatify panel (which iframes `/beatify/launcher`), bouncing
+        // the user back to this page. Navigating `window.location` (the
+        // iframe itself) skips HA's router entirely — the backend serves
+        // the admin HTML straight into the panel frame.
+        // Trade-off: admin runs inside HA's chrome rather than fullscreen,
+        // but it is fully functional.
 
         function isAndroidCompanion() {
             var ua = navigator.userAgent || '';
@@ -168,11 +177,10 @@
 
             if (openBtn) openBtn.addEventListener('click', function(evt) {
                 // Android Companion: bypass target="_blank" entirely —
-                // navigate the top frame so Beatify actually loads.
+                // navigate the current iframe so Beatify actually loads.
                 if (isAndroidCompanion()) {
                     evt.preventDefault();
-                    try { window.top.location.href = beatifyUrl; }
-                    catch (e) { window.location.href = beatifyUrl; }
+                    window.location.href = beatifyUrl;
                     return;
                 }
                 // All other contexts (iOS Companion, desktop iframe,
