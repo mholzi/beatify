@@ -146,41 +146,172 @@
 
   // -- Android Companion App auth bridge (#1114 follow-up) -----------------
   //
-  // rc2 of the v3.4.3 launcher cycle: even after rc1 navigated the panel
-  // iframe directly to /beatify/admin (bypassing HA's SPA router), the
-  // first thing the admin page does is call BeatifyAuth.init({requireAuth}),
-  // which on a fresh install has no cookie, so it falls through to login()
-  // and redirects to /auth/authorize. Android Companion's WebView intercepts
-  // /auth/authorize, runs its own auto-login with hardcoded client_id, and
-  // returns 403 Invalid redirect URI — same loop, different cause from rc1.
+  // rc3 of the v3.4.3 launcher cycle: rc2 introduced a Companion bridge but
+  // only knew `window.externalApp.getExternalAuth(jsonString)`. Recent
+  // Companion builds (≥ 2026.4.x) dropped that direct method and only
+  // expose the generic `window.externalApp.externalBus(jsonString)` channel
+  // used by the HA frontend. Result: `_hasCompanionAuthBridge()` returned
+  // false, refreshAccess() fell through to fetch /beatify/auth/refresh,
+  // and Companion's WebView returned 401 (no cookie context). rc3 tries
+  // the externalBus protocol first, then falls back to the legacy direct
+  // method for older Companion builds. Responses arrive via
+  // `window.externalBus({type:"result", id, success, result})`, which rc3
+  // installs as a multiplexed receiver keyed by command id.
   //
-  // The native Companion app exposes window.externalApp.getExternalAuth as
-  // an in-app token bridge (no /auth/authorize round-trip). On Android
-  // Companion only, we use it instead of the OAuth redirect. The HA access
-  // token it returns is the same shape /beatify/api accepts, so the rest
-  // of the auth state machine (cookie + refresh + 401 retry) keeps working.
+  // We also widen the Android-Companion UA regex (some builds report
+  // "HACompanion" or just "Hass" instead of "Home Assistant") and treat
+  // the mere presence of a Companion JS bridge as a sufficient signal —
+  // if the native app injected `externalApp.externalBus`, we are on
+  // Companion regardless of what the UA string claims.
 
   function isAndroidCompanion() {
-    if (typeof navigator === 'undefined') return false;
-    var ua = navigator.userAgent || '';
-    return /Android/i.test(ua) && /Home ?Assistant/i.test(ua);
+    var ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
+    if (/Android/i.test(ua) && /Home ?Assistant|HACompanion|Hass/i.test(ua)) {
+      return true;
+    }
+    // Some Companion builds rewrite the UA in ways that don't match the
+    // strings above. The injected JS bridge is a stronger signal than UA.
+    if (
+      typeof window.externalApp !== 'undefined' &&
+      window.externalApp !== null &&
+      (typeof window.externalApp.externalBus === 'function' ||
+        typeof window.externalApp.getExternalAuth === 'function')
+    ) {
+      return true;
+    }
+    return false;
   }
 
   function _hasCompanionAuthBridge() {
+    if (
+      typeof window.externalApp === 'undefined' ||
+      window.externalApp === null
+    ) {
+      return false;
+    }
     return (
-      typeof window.externalApp !== 'undefined' &&
-      window.externalApp !== null &&
+      typeof window.externalApp.externalBus === 'function' ||
       typeof window.externalApp.getExternalAuth === 'function'
     );
   }
 
-  // Wrap window.externalApp.getExternalAuth in a Promise. The native side
-  // calls back into window[callbackName](success, payloadOrError) with
-  // payload = {access_token, expires_in} on success.
-  function getCompanionAuthToken(force) {
+  // -- externalBus path (newer Companion) ----------------------------------
+  //
+  // Native ↔ JS protocol:
+  //   JS → native:  window.externalApp.externalBus(JSON.stringify({
+  //                   id, type:"command", command:"get_external_auth",
+  //                   payload:{force}
+  //                 }))
+  //   native → JS:  window.externalBus({type:"result", id, success, result})
+  //                 result = {access_token, expires_in}
+  //
+  // The HA frontend defines `window.externalBus` and routes responses to
+  // its own command table. Beatify's admin/dashboard/player pages do not
+  // load the HA frontend, so `window.externalBus` is unset and we install
+  // our own. If something else already set it (shouldn't happen on our
+  // pages, but be defensive), we wrap rather than replace.
+
+  var _externalBusPending = {}; // id → {resolve, reject, timeoutId}
+  var _externalBusCommandId = 0;
+  var _externalBusInstalled = false;
+
+  function _ensureExternalBusReceiver() {
+    if (_externalBusInstalled) return;
+    var prior =
+      typeof window.externalBus === 'function' ? window.externalBus : null;
+    window.externalBus = function (raw) {
+      try {
+        var msg = typeof raw === 'string' ? JSON.parse(raw) : raw;
+        if (
+          msg &&
+          msg.type === 'result' &&
+          typeof msg.id !== 'undefined' &&
+          _externalBusPending[msg.id]
+        ) {
+          var entry = _externalBusPending[msg.id];
+          delete _externalBusPending[msg.id];
+          if (entry.timeoutId) {
+            try { clearTimeout(entry.timeoutId); } catch (e) { /* ignore */ }
+          }
+          if (msg.success && msg.result && msg.result.access_token) {
+            entry.resolve(msg.result);
+          } else {
+            var errMsg = 'externalBus get_external_auth rejected';
+            if (msg.error) {
+              errMsg = typeof msg.error === 'string'
+                ? msg.error
+                : msg.error.message || msg.error.code || JSON.stringify(msg.error);
+            }
+            entry.reject(new Error(errMsg));
+          }
+          return; // claimed by us — don't forward
+        }
+      } catch (e) {
+        /* malformed — fall through to prior handler */
+      }
+      if (prior) {
+        try { prior(raw); } catch (e) { /* ignore */ }
+      }
+    };
+    _externalBusInstalled = true;
+  }
+
+  function _sendViaExternalBus(force) {
     return new Promise(function (resolve, reject) {
-      if (!_hasCompanionAuthBridge()) {
-        reject(new Error('Companion getExternalAuth bridge not available'));
+      if (
+        typeof window.externalApp === 'undefined' ||
+        window.externalApp === null ||
+        typeof window.externalApp.externalBus !== 'function'
+      ) {
+        reject(new Error('externalBus method unavailable'));
+        return;
+      }
+      _ensureExternalBusReceiver();
+      _externalBusCommandId += 1;
+      var id = _externalBusCommandId;
+      var timeoutId = setTimeout(function () {
+        if (_externalBusPending[id]) {
+          delete _externalBusPending[id];
+          reject(new Error('externalBus get_external_auth timeout (10s)'));
+        }
+      }, 10000);
+      _externalBusPending[id] = {
+        resolve: resolve,
+        reject: reject,
+        timeoutId: timeoutId,
+      };
+      try {
+        window.externalApp.externalBus(
+          JSON.stringify({
+            id: id,
+            type: 'command',
+            command: 'get_external_auth',
+            payload: { force: !!force },
+          })
+        );
+      } catch (e) {
+        delete _externalBusPending[id];
+        try { clearTimeout(timeoutId); } catch (e2) { /* ignore */ }
+        reject(e);
+      }
+    });
+  }
+
+  // -- legacy getExternalAuth path (older Companion) -----------------------
+  //
+  // Older Companion builds (pre-2026.4.x) exposed the auth bridge as a
+  // dedicated method. The native side calls back into a generated
+  // window[callbackName](success, payload) function. Kept as a fallback
+  // for users on older Companion installs.
+
+  function _sendViaLegacyGetExternalAuth(force) {
+    return new Promise(function (resolve, reject) {
+      if (
+        typeof window.externalApp === 'undefined' ||
+        window.externalApp === null ||
+        typeof window.externalApp.getExternalAuth !== 'function'
+      ) {
+        reject(new Error('legacy getExternalAuth method unavailable'));
         return;
       }
       var callbackName =
@@ -188,8 +319,12 @@
         Date.now() +
         '_' +
         Math.floor(Math.random() * 1e9);
-      // Native side invokes window[callbackName](success, payload).
+      var timeoutId = setTimeout(function () {
+        try { delete window[callbackName]; } catch (e) { /* ignore */ }
+        reject(new Error('legacy getExternalAuth timeout (10s)'));
+      }, 10000);
       window[callbackName] = function (success, payload) {
+        try { clearTimeout(timeoutId); } catch (e) { /* ignore */ }
         try { delete window[callbackName]; } catch (e) { /* ignore */ }
         if (success && payload && payload.access_token) {
           resolve(payload);
@@ -197,7 +332,7 @@
           var msg =
             payload && (payload.message || payload.error)
               ? payload.message || payload.error
-              : 'Companion getExternalAuth rejected';
+              : 'legacy getExternalAuth rejected';
           reject(new Error(msg));
         }
       };
@@ -206,10 +341,44 @@
           JSON.stringify({ callback: callbackName, force: !!force })
         );
       } catch (e) {
+        try { clearTimeout(timeoutId); } catch (e2) { /* ignore */ }
         try { delete window[callbackName]; } catch (e2) { /* ignore */ }
         reject(e);
       }
     });
+  }
+
+  // Try modern externalBus first, fall back to legacy direct method.
+  function getCompanionAuthToken(force) {
+    if (
+      typeof window.externalApp !== 'undefined' &&
+      window.externalApp !== null &&
+      typeof window.externalApp.externalBus === 'function'
+    ) {
+      return _sendViaExternalBus(force).catch(function (err) {
+        if (
+          window.externalApp &&
+          typeof window.externalApp.getExternalAuth === 'function'
+        ) {
+          console.warn(
+            '[BeatifyAuth] externalBus failed, falling back to legacy getExternalAuth:',
+            err && err.message ? err.message : err
+          );
+          return _sendViaLegacyGetExternalAuth(force);
+        }
+        throw err;
+      });
+    }
+    if (
+      typeof window.externalApp !== 'undefined' &&
+      window.externalApp !== null &&
+      typeof window.externalApp.getExternalAuth === 'function'
+    ) {
+      return _sendViaLegacyGetExternalAuth(force);
+    }
+    return Promise.reject(
+      new Error('No Companion auth bridge method available')
+    );
   }
 
   // Persist a Companion-supplied token in the JS-readable session cookie so
