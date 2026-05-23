@@ -1230,29 +1230,79 @@ export function stopConfetti() {
  * Show static celebration for reduced motion users (AC5)
  */
 // ============================================
-// Screen Wake Lock (#622)
-// Prevents screen from dimming/locking during gameplay.
-// Supported on iOS Safari 16.4+, Chrome, Edge; fails silently elsewhere.
+// Screen Wake Lock (#622, #1122)
+// Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox direct
+// Layer 2: NoSleep.js silent-video fallback — iOS HA Companion (WKWebView),
+//          older Safari, anywhere Layer 1 is unavailable or rejected.
+// Both layers fail silently if neither works.
+// NoSleep dependency loaded via /beatify/static/js/vendor/no-sleep.min.js
+// in player.html / dashboard.html / admin.html before this module runs.
 // ============================================
 
 var _wakeLock = null;
+var _noSleep = null;
+var _noSleepActive = false;
+
+function _logWakeLock(msg) {
+    try { console.debug('[BeatifyWakeLock]', msg); } catch (e) { /* console may be absent */ }
+}
+
+function _ensureNoSleep() {
+    if (_noSleep) return _noSleep;
+    if (typeof window !== 'undefined' && typeof window.NoSleep === 'function') {
+        try { _noSleep = new window.NoSleep(); } catch (err) {
+            _logWakeLock('NoSleep instantiation failed: ' + err);
+        }
+    }
+    return _noSleep;
+}
 
 export async function requestWakeLock() {
-    if (!('wakeLock' in navigator)) return;
+    if ('wakeLock' in navigator) {
+        try {
+            _wakeLock = await navigator.wakeLock.request('screen');
+            _wakeLock.addEventListener('release', function () {
+                _logWakeLock('Layer 1 wakeLock released by browser');
+                _wakeLock = null;
+            });
+            _logWakeLock('Layer 1 (native wakeLock) acquired');
+            return;
+        } catch (err) {
+            _logWakeLock('Layer 1 request failed: ' + err + ' — trying Layer 2');
+        }
+    } else {
+        _logWakeLock('Layer 1 unavailable (no navigator.wakeLock) — using Layer 2');
+    }
+    var ns = _ensureNoSleep();
+    if (!ns) {
+        _logWakeLock('Layer 2 unavailable (NoSleep vendor not loaded)');
+        return;
+    }
+    if (_noSleepActive) return;
     try {
-        _wakeLock = await navigator.wakeLock.request('screen');
-        _wakeLock.addEventListener('release', function() {
-            _wakeLock = null;
-        });
+        var p = ns.enable();
+        _noSleepActive = true;
+        if (p && typeof p.catch === 'function') {
+            p.catch(function (err) {
+                _logWakeLock('Layer 2 enable promise rejected: ' + err);
+            });
+        }
+        _logWakeLock('Layer 2 (NoSleep video) enabled');
     } catch (err) {
-        // Silently fail — browser may deny if page is not visible
+        _logWakeLock('Layer 2 enable failed: ' + err);
+        _noSleepActive = false;
     }
 }
 
 export function releaseWakeLock() {
     if (_wakeLock) {
-        _wakeLock.release();
+        try { _wakeLock.release(); } catch (e) { /* may already be released */ }
         _wakeLock = null;
+    }
+    if (_noSleepActive && _noSleep) {
+        try { _noSleep.disable(); } catch (e) { /* defensive */ }
+        _noSleepActive = false;
+        _logWakeLock('Layer 2 (NoSleep) disabled');
     }
 }
 
