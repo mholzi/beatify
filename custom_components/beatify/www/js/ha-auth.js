@@ -144,6 +144,101 @@
     return data.expires_at * 1000 > Date.now();
   }
 
+  // -- Android Companion App auth bridge (#1114 follow-up) -----------------
+  //
+  // rc2 of the v3.4.3 launcher cycle: even after rc1 navigated the panel
+  // iframe directly to /beatify/admin (bypassing HA's SPA router), the
+  // first thing the admin page does is call BeatifyAuth.init({requireAuth}),
+  // which on a fresh install has no cookie, so it falls through to login()
+  // and redirects to /auth/authorize. Android Companion's WebView intercepts
+  // /auth/authorize, runs its own auto-login with hardcoded client_id, and
+  // returns 403 Invalid redirect URI — same loop, different cause from rc1.
+  //
+  // The native Companion app exposes window.externalApp.getExternalAuth as
+  // an in-app token bridge (no /auth/authorize round-trip). On Android
+  // Companion only, we use it instead of the OAuth redirect. The HA access
+  // token it returns is the same shape /beatify/api accepts, so the rest
+  // of the auth state machine (cookie + refresh + 401 retry) keeps working.
+
+  function isAndroidCompanion() {
+    if (typeof navigator === 'undefined') return false;
+    var ua = navigator.userAgent || '';
+    return /Android/i.test(ua) && /Home ?Assistant/i.test(ua);
+  }
+
+  function _hasCompanionAuthBridge() {
+    return (
+      typeof window.externalApp !== 'undefined' &&
+      window.externalApp !== null &&
+      typeof window.externalApp.getExternalAuth === 'function'
+    );
+  }
+
+  // Wrap window.externalApp.getExternalAuth in a Promise. The native side
+  // calls back into window[callbackName](success, payloadOrError) with
+  // payload = {access_token, expires_in} on success.
+  function getCompanionAuthToken(force) {
+    return new Promise(function (resolve, reject) {
+      if (!_hasCompanionAuthBridge()) {
+        reject(new Error('Companion getExternalAuth bridge not available'));
+        return;
+      }
+      var callbackName =
+        '__beatifyAuthCb_' +
+        Date.now() +
+        '_' +
+        Math.floor(Math.random() * 1e9);
+      // Native side invokes window[callbackName](success, payload).
+      window[callbackName] = function (success, payload) {
+        try { delete window[callbackName]; } catch (e) { /* ignore */ }
+        if (success && payload && payload.access_token) {
+          resolve(payload);
+        } else {
+          var msg =
+            payload && (payload.message || payload.error)
+              ? payload.message || payload.error
+              : 'Companion getExternalAuth rejected';
+          reject(new Error(msg));
+        }
+      };
+      try {
+        window.externalApp.getExternalAuth(
+          JSON.stringify({ callback: callbackName, force: !!force })
+        );
+      } catch (e) {
+        try { delete window[callbackName]; } catch (e2) { /* ignore */ }
+        reject(e);
+      }
+    });
+  }
+
+  // Persist a Companion-supplied token in the JS-readable session cookie so
+  // the rest of the module (accessFresh / storedAccess / authedFetch) keeps
+  // working without further branching. The HttpOnly refresh cookie isn't
+  // needed on Companion — we just call getExternalAuth(force=true) again
+  // when the access token expires.
+  function _setSessionCookieFromCompanion(payload) {
+    var expiresIn =
+      typeof payload.expires_in === 'number' && payload.expires_in > 0
+        ? payload.expires_in
+        : 1800;
+    var expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
+    var cookieValue = encodeURIComponent(
+      JSON.stringify({
+        access_token: payload.access_token,
+        expires_at: expiresAt,
+      })
+    );
+    var cookieStr =
+      ACCESS_COOKIE +
+      '=' +
+      cookieValue +
+      '; Path=/beatify; SameSite=Lax; Max-Age=' +
+      expiresIn;
+    if (location.protocol === 'https:') cookieStr += '; Secure';
+    try { document.cookie = cookieStr; } catch (e) { /* ignore */ }
+  }
+
   // -- silent refresh via /beatify/auth/refresh ----------------------------
 
   // Coalesce concurrent refreshes into a single in-flight request.
@@ -151,6 +246,29 @@
 
   function refreshAccess() {
     if (refreshInFlight) return refreshInFlight;
+    if (isAndroidCompanion() && _hasCompanionAuthBridge()) {
+      // Skip the /beatify/auth/refresh round-trip entirely. The HttpOnly
+      // refresh cookie was set by the server-side OAuth callback view,
+      // which is unreachable on Companion (see comment block above). Use
+      // the Companion in-app token bridge instead.
+      refreshInFlight = getCompanionAuthToken(true)
+        .then(function (payload) {
+          _setSessionCookieFromCompanion(payload);
+          return payload.access_token;
+        })
+        .catch(function (err) {
+          console.warn(
+            '[BeatifyAuth] Companion getExternalAuth refresh failed:',
+            err && err.message ? err.message : err
+          );
+          return null;
+        })
+        .then(function (token) {
+          refreshInFlight = null;
+          return token;
+        });
+      return refreshInFlight;
+    }
     refreshInFlight = fetch(origin() + '/beatify/auth/refresh', {
       method: 'GET',
       credentials: 'same-origin',
@@ -181,7 +299,7 @@
 
   // -- redirect (login) ----------------------------------------------------
 
-  function login() {
+  function _legacyOAuthLogin() {
     var state = randomState();
     try {
       sessionStorage.setItem(K_STATE, state);
@@ -198,6 +316,29 @@
       '&state=' +
       encodeURIComponent(state);
     window.location.replace(url);
+  }
+
+  function login() {
+    if (isAndroidCompanion() && _hasCompanionAuthBridge()) {
+      // Companion path: pull a fresh token from the in-app bridge, plant
+      // it in the cookie, and reload so init() re-enters with cookies
+      // already valid. Avoids the /auth/authorize redirect that Companion
+      // intercepts and 403s.
+      getCompanionAuthToken(true)
+        .then(function (payload) {
+          _setSessionCookieFromCompanion(payload);
+          window.location.href = origin() + '/beatify/admin';
+        })
+        .catch(function (err) {
+          console.warn(
+            '[BeatifyAuth] Companion login bridge failed, falling back to OAuth:',
+            err && err.message ? err.message : err
+          );
+          _legacyOAuthLogin();
+        });
+      return;
+    }
+    _legacyOAuthLogin();
   }
 
   /**
