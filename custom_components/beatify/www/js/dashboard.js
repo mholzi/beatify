@@ -92,6 +92,45 @@
         };
     }
 
+    // ============================================
+    // Screen Wake Lock (#1122)
+    // ============================================
+    // Dashboard is typically used as an always-on TV / monitor display.
+    // Without the wake lock the screen sleeps after the OS idle timer,
+    // the tab is backgrounded, and the WebSocket connection drops within
+    // ~30s (iOS Safari is especially aggressive). Mirrors the pattern
+    // player-core.js uses (#622 / #646).
+
+    var _wakeLock = null;
+
+    async function requestWakeLock() {
+        if (!('wakeLock' in navigator)) return;
+        try {
+            _wakeLock = await navigator.wakeLock.request('screen');
+            _wakeLock.addEventListener('release', function() {
+                _wakeLock = null;
+            });
+        } catch (err) {
+            // Silently fail — browser may deny if page is not visible.
+        }
+    }
+
+    // Re-acquire the lock and reconnect the WS when the tab becomes
+    // visible again. Mobile browsers release wake locks automatically
+    // on tab hide; without this handler the dashboard would freeze on
+    // its last frame until the exponential-backoff reconnect catches up,
+    // which can take 30 seconds.
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+            requestWakeLock();
+            if (!ws || ws.readyState === WebSocket.CLOSING || ws.readyState === WebSocket.CLOSED) {
+                console.log('[Dashboard] Page visible, WebSocket dead — reconnecting immediately.');
+                reconnectAttempts = 0;
+                connectWebSocket();
+            }
+        }
+    });
+
     /**
      * Handle messages from server
      * @param {Object} data - Parsed message data
@@ -1225,6 +1264,7 @@
             BeatifyI18n.initPageTranslations();
         }
         connectWebSocket();
+        requestWakeLock();  // #1122: keep TV/monitor display awake
     }
 
     // Start when DOM is ready
