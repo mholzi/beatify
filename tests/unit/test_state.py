@@ -195,6 +195,36 @@ class TestRevealAutoAdvance:
         state._media_player_service.stop.assert_not_awaited()
         state.start_round.assert_not_awaited()
 
+    async def test_idle_halt_no_stop_when_phase_changes_as_song_finishes(self):
+        """#1123 regression guard: admin clicked 'Next Round' exactly when the
+        song finished.  The loop detects song-end and exits, but between the
+        loop exit and the stop() call the admin's next_round command was
+        processed and phase moved to PLAYING.  idle_halt must skip stop() so
+        the newly-started song is not immediately silenced.
+
+        Simulated by having _song_finished() flip the phase to PLAYING as a
+        side-effect (represents the instant the song ends AND admin advances).
+        """
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.REVEAL
+        state._media_player_service = MagicMock()
+        state._media_player_service.stop = AsyncMock()
+
+        def song_finished_and_phase_change():
+            # Admin clicked Next Round at the exact moment the song ended:
+            # start_round() already transitioned the phase to PLAYING.
+            state.phase = GamePhase.PLAYING
+            return True
+
+        state._song_finished = MagicMock(side_effect=song_finished_and_phase_change)
+
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_idle_halt()
+
+        # Phase left REVEAL — stop() must NOT be called (would silence new song)
+        state._media_player_service.stop.assert_not_awaited()
+
 
 # ---------------------------------------------------------------------------
 # REVEAL countdown surface (#1048)
