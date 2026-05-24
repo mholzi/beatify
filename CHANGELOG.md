@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc7] - 2026-05-24
+
+Extends the rc4 iOS Wake-Lock fix (#1122) to the admin and dashboard surfaces. rc4 deliberately scoped the layered fallback to the player surface only (95% of the field-test coverage at the time) and noted "Dashboard and admin still rely on Layer 1; they get the same layered treatment in a follow-up." rc7 is that follow-up. Static code analysis (no iOS device required) confirmed the gap was real: both `admin.js` and `dashboard.js` short-circuit on `if (!('wakeLock' in navigator)) return;` — silent no-op on iOS Companion's WKWebView where `navigator.wakeLock` is undefined.
+
+### Fixed
+- **iOS HA Companion — admin and dashboard screens still sleep despite rc4 (#1122).** rc4 added the [NoSleep.js](https://github.com/richtr/NoSleep.js) Layer 2 fallback only to `player-utils.js` + `player.html`. Admin (tablet) and dashboard (always-on TV / monitor) kept the original Layer-1-only wake-lock implementation, which silently no-ops inside HA Companion's WKWebView. If @maxlin1's reported "screen still goes into sleep mode on iOS devices" was the admin or dashboard surface — statistically likely since the player surface was already fixed — rc4 didn't address it. rc7 mirrors the player surface's layered pattern: `navigator.wakeLock.request('screen')` first, NoSleep silent-video fallback when Layer 1 is missing or rejected. Both `admin.html` and `dashboard.html` now load `/beatify/static/js/vendor/no-sleep.min.js` before their main bundle so `window.NoSleep` is in scope.
+
+### Patch test totals
+- 101 JS pass (no test changes — wake-lock isn't exercised in unit tests; layered fallback parallels what player-utils.js already does).
+- 540 Python pass (unchanged — server-side untouched).
+- `admin.min.js` + `dashboard.min.js` regenerated; `grep -c "NoSleep"` confirms 8 / 5 occurrences in the bundles.
+
 ## [3.4.3-rc6] - 2026-05-24
 
 Diagnostic + UX iteration after @nelbs reported on rc5 that the admin renders for ~20 s and then bounces (#1120). rc5's auth bridge demonstrably works — the admin rendered, which means the token was retrieved successfully — but the WebSocket `admin_connect` is rejected by HA's `async_validate_access_token`, the recovery cycle exhausts at `MAX_ADMIN_WS_AUTH_RECOVERIES = 2`, and `BeatifyAuth.login()` then navigates back to the launcher. rc6 doesn't blindly guess the root cause; it instruments every layer so rc7 has data.

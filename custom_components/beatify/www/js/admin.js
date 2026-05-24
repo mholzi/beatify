@@ -32,26 +32,72 @@ function _adminHeaders() {
     return headers;
 }
 
-// Screen Wake Lock (#622)
-// Prevents screen from dimming/locking while the admin is running a game.
+// Screen Wake Lock (#622, #1122)
+// Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
+// Layer 2: NoSleep.js silent-video fallback — iOS HA Companion WKWebView,
+//          older Safari, anywhere Layer 1 is unavailable or rejected.
+// NoSleep dependency loaded via /beatify/static/js/vendor/no-sleep.min.js
+// in admin.html before this script runs.
 var _wakeLock = null;
+var _noSleep = null;
+var _noSleepActive = false;
+
+function _ensureNoSleep() {
+    if (_noSleep) return _noSleep;
+    if (typeof window !== 'undefined' && typeof window.NoSleep === 'function') {
+        try { _noSleep = new window.NoSleep(); } catch (err) {
+            console.debug('[BeatifyWakeLock] NoSleep instantiation failed:', err);
+        }
+    }
+    return _noSleep;
+}
 
 async function _requestWakeLock() {
-    if (!('wakeLock' in navigator)) return;
+    if ('wakeLock' in navigator) {
+        try {
+            _wakeLock = await navigator.wakeLock.request('screen');
+            _wakeLock.addEventListener('release', function() {
+                console.debug('[BeatifyWakeLock] Layer 1 released by browser');
+                _wakeLock = null;
+            });
+            console.debug('[BeatifyWakeLock] Layer 1 (native wakeLock) acquired');
+            return;
+        } catch (err) {
+            console.debug('[BeatifyWakeLock] Layer 1 request failed:', err, '— trying Layer 2');
+        }
+    } else {
+        console.debug('[BeatifyWakeLock] Layer 1 unavailable — using Layer 2');
+    }
+    var ns = _ensureNoSleep();
+    if (!ns) {
+        console.debug('[BeatifyWakeLock] Layer 2 unavailable (NoSleep vendor not loaded)');
+        return;
+    }
+    if (_noSleepActive) return;
     try {
-        _wakeLock = await navigator.wakeLock.request('screen');
-        _wakeLock.addEventListener('release', function() {
-            _wakeLock = null;
-        });
+        var p = ns.enable();
+        _noSleepActive = true;
+        if (p && typeof p.catch === 'function') {
+            p.catch(function(err) {
+                console.debug('[BeatifyWakeLock] Layer 2 enable promise rejected:', err);
+            });
+        }
+        console.debug('[BeatifyWakeLock] Layer 2 (NoSleep video) enabled');
     } catch (err) {
-        // Silently fail — browser may deny if page is not visible
+        console.debug('[BeatifyWakeLock] Layer 2 enable failed:', err);
+        _noSleepActive = false;
     }
 }
 
 function _releaseWakeLock() {
     if (_wakeLock) {
-        _wakeLock.release();
+        try { _wakeLock.release(); } catch (e) { /* may already be released */ }
         _wakeLock = null;
+    }
+    if (_noSleepActive && _noSleep) {
+        try { _noSleep.disable(); } catch (e) { /* defensive */ }
+        _noSleepActive = false;
+        console.debug('[BeatifyWakeLock] Layer 2 (NoSleep) disabled');
     }
 }
 
