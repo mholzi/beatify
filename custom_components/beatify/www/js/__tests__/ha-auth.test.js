@@ -27,6 +27,7 @@ function loadHaAuth({
     localStorageData = {},
     userAgent = '',
     externalApp = null,
+    externalAppV2 = null,
 } = {}) {
     const storage = (initial) => {
         const map = new Map(Object.entries(initial));
@@ -73,6 +74,7 @@ function loadHaAuth({
         crypto: { getRandomValues: (buf) => { for (let i = 0; i < buf.length; i++) buf[i] = i; return buf; } },
         history: { replaceState: () => {} },
         externalApp: externalApp || undefined,
+        externalAppV2: externalAppV2 || undefined,
     };
     const navigatorShim = { userAgent: userAgent };
     const ctx = {
@@ -266,52 +268,28 @@ describe('init() auth callback handling', () => {
     });
 });
 
-describe('Android Companion auth bridge (#1114 rc3)', () => {
+describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
     const COMPANION_UA =
         'Mozilla/5.0 (Linux; Android 16; Pixel 7 Pro) AppleWebKit/537.36 ' +
         '(KHTML, like Gecko) Chrome/Mobile Safari Home Assistant/2026.4.4-full';
 
-    function externalBusBridge({ respondWithToken = 'companion-fresh', respondSuccess = true, expiresIn = 1800 } = {}) {
+    // externalAppV2 is the modern, origin-checked Companion bridge added in
+    // 2026.4.2 alongside the security fix GHSA-7jp2-p2fw-mgvf. JS → native:
+    // postMessage({type:"getExternalAuth"}). Native → JS: invokes the fixed
+    // global function window.externalAuthSetToken(success, payload).
+    function externalAppV2Bridge({
+        respondWithToken = 'v2-fresh',
+        respondSuccess = true,
+        expiresIn = 1800,
+    } = {}) {
         const calls = [];
         const bridge = {
             calls,
-            externalApp: {
-                externalBus(json) {
+            externalAppV2: {
+                postMessage(json) {
                     calls.push(JSON.parse(json));
-                    // Simulate the native side calling window.externalBus
-                    // back on a microtask, matching the async nature of the
-                    // real Companion JS↔Kotlin bridge.
-                    const parsed = JSON.parse(json);
                     setTimeout(() => {
-                        if (typeof bridge.window?.externalBus !== 'function') return;
-                        bridge.window.externalBus(
-                            JSON.stringify({
-                                type: 'result',
-                                id: parsed.id,
-                                success: respondSuccess,
-                                result: respondSuccess
-                                    ? { access_token: respondWithToken, expires_in: expiresIn }
-                                    : null,
-                                error: respondSuccess ? null : { message: 'auth_denied' },
-                            })
-                        );
-                    }, 0);
-                },
-            },
-        };
-        return bridge;
-    }
-
-    function legacyGetExternalAuthBridge({ respondWithToken = 'legacy-fresh', respondSuccess = true, expiresIn = 1800 } = {}) {
-        const calls = [];
-        const bridge = {
-            calls,
-            externalApp: {
-                getExternalAuth(json) {
-                    calls.push(JSON.parse(json));
-                    const parsed = JSON.parse(json);
-                    setTimeout(() => {
-                        const fn = bridge.window?.[parsed.callback];
+                        const fn = bridge.window?.externalAuthSetToken;
                         if (typeof fn !== 'function') return;
                         if (respondSuccess) {
                             fn(true, { access_token: respondWithToken, expires_in: expiresIn });
@@ -325,29 +303,59 @@ describe('Android Companion auth bridge (#1114 rc3)', () => {
         return bridge;
     }
 
-    it('refreshAccess() uses externalBus bridge on modern Companion (no /beatify/auth/refresh fetch)', async () => {
-        const bridge = externalBusBridge({ respondWithToken: 'companion-bus-token' });
-        const fetchFn = async () => { throw new Error('should not fetch — Companion path active'); };
+    // externalApp (V1) is the legacy direct method, retained for older
+    // Companion builds. Same fixed callback name; security fix whitelisted
+    // it so randomised callback names no longer work.
+    function legacyGetExternalAuthBridge({
+        respondWithToken = 'v1-fresh',
+        respondSuccess = true,
+        expiresIn = 1800,
+    } = {}) {
+        const calls = [];
+        const bridge = {
+            calls,
+            externalApp: {
+                getExternalAuth(json) {
+                    calls.push(JSON.parse(json));
+                    setTimeout(() => {
+                        const fn = bridge.window?.externalAuthSetToken;
+                        if (typeof fn !== 'function') return;
+                        if (respondSuccess) {
+                            fn(true, { access_token: respondWithToken, expires_in: expiresIn });
+                        } else {
+                            fn(false, { message: 'auth_denied' });
+                        }
+                    }, 0);
+                },
+            },
+        };
+        return bridge;
+    }
+
+    it('refreshAccess() uses externalAppV2.postMessage on modern Companion (no /beatify/auth/refresh fetch)', async () => {
+        const bridge = externalAppV2Bridge({ respondWithToken: 'v2-token' });
+        const fetchFn = async () => { throw new Error('should not fetch — Companion V2 path active'); };
         const { BeatifyAuth, sandboxWindow, cookieJar } = loadHaAuth({
             fetchFn,
             userAgent: COMPANION_UA,
-            externalApp: bridge.externalApp,
+            externalAppV2: bridge.externalAppV2,
         });
         bridge.window = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();
-        expect(token).toBe('companion-bus-token');
+        expect(token).toBe('v2-token');
         // The cookie was planted by _setSessionCookieFromCompanion.
         expect(cookieJar.value).toContain('beatify_access=');
-        // The bridge was called with a get_external_auth command.
+        // V2 message shape: {id, type: "getExternalAuth", payload: {callback, force}}
         expect(bridge.calls).toHaveLength(1);
-        expect(bridge.calls[0].type).toBe('command');
-        expect(bridge.calls[0].command).toBe('get_external_auth');
+        expect(bridge.calls[0].type).toBe('getExternalAuth');
+        expect(bridge.calls[0].payload.callback).toBe('externalAuthSetToken');
         expect(bridge.calls[0].payload.force).toBe(true);
+        // The whitelisted callback is required by Companion ≥ 2026.4.4.
     });
 
-    it('refreshAccess() falls back to legacy getExternalAuth when only that method is exposed', async () => {
-        const bridge = legacyGetExternalAuthBridge({ respondWithToken: 'companion-legacy-token' });
-        const fetchFn = async () => { throw new Error('should not fetch — Companion legacy path active'); };
+    it('refreshAccess() uses legacy externalApp.getExternalAuth when V2 is unavailable', async () => {
+        const bridge = legacyGetExternalAuthBridge({ respondWithToken: 'v1-token' });
+        const fetchFn = async () => { throw new Error('should not fetch — Companion V1 path active'); };
         const { BeatifyAuth, sandboxWindow, cookieJar } = loadHaAuth({
             fetchFn,
             userAgent: COMPANION_UA,
@@ -355,40 +363,36 @@ describe('Android Companion auth bridge (#1114 rc3)', () => {
         });
         bridge.window = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();
-        expect(token).toBe('companion-legacy-token');
+        expect(token).toBe('v1-token');
         expect(cookieJar.value).toContain('beatify_access=');
+        // V1 message shape: {callback, force}. The callback MUST be the
+        // fixed string "externalAuthSetToken" — Companion ≥ 2026.4.4 silently
+        // rejects any other name (security fix GHSA-7jp2-p2fw-mgvf).
         expect(bridge.calls).toHaveLength(1);
-        expect(typeof bridge.calls[0].callback).toBe('string');
+        expect(bridge.calls[0].callback).toBe('externalAuthSetToken');
         expect(bridge.calls[0].force).toBe(true);
     });
 
-    it('falls back from failing externalBus to legacy getExternalAuth when both are present', async () => {
-        // externalBus rejects, getExternalAuth succeeds. Should land on the legacy token.
-        const calls = { bus: [], legacy: [] };
+    it('falls back from failing V2 to legacy V1 when both are present', async () => {
+        // V2 rejects, V1 succeeds. Should land on the V1 token.
+        const calls = { v2: [], v1: [] };
         const bridge = {
-            externalApp: {
-                externalBus(json) {
-                    const parsed = JSON.parse(json);
-                    calls.bus.push(parsed);
+            externalAppV2: {
+                postMessage(json) {
+                    calls.v2.push(JSON.parse(json));
                     setTimeout(() => {
-                        sandbox.externalBus(
-                            JSON.stringify({
-                                type: 'result',
-                                id: parsed.id,
-                                success: false,
-                                error: { message: 'bus_failure' },
-                            })
-                        );
+                        sandbox.externalAuthSetToken(false, { message: 'v2_failure' });
                     }, 0);
                 },
+            },
+            externalApp: {
                 getExternalAuth(json) {
-                    const parsed = JSON.parse(json);
-                    calls.legacy.push(parsed);
+                    calls.v1.push(JSON.parse(json));
                     setTimeout(() => {
-                        const fn = sandbox[parsed.callback];
-                        if (typeof fn === 'function') {
-                            fn(true, { access_token: 'fallback-token', expires_in: 1800 });
-                        }
+                        sandbox.externalAuthSetToken(true, {
+                            access_token: 'fallback-token',
+                            expires_in: 1800,
+                        });
                     }, 0);
                 },
             },
@@ -398,22 +402,23 @@ describe('Android Companion auth bridge (#1114 rc3)', () => {
             fetchFn,
             userAgent: COMPANION_UA,
             externalApp: bridge.externalApp,
+            externalAppV2: bridge.externalAppV2,
         });
         const sandbox = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();
         expect(token).toBe('fallback-token');
-        expect(calls.bus).toHaveLength(1);
-        expect(calls.legacy).toHaveLength(1);
+        expect(calls.v2).toHaveLength(1);
+        expect(calls.v1).toHaveLength(1);
     });
 
-    it('detects Companion via injected externalApp even when UA does not match', async () => {
-        // No Companion UA, but externalApp is injected — should still take the bridge path.
-        const bridge = externalBusBridge({ respondWithToken: 'ua-fallback-token' });
+    it('detects Companion via injected externalAppV2 even when UA does not match', async () => {
+        // No Companion UA, but externalAppV2 is injected — should still take the bridge path.
+        const bridge = externalAppV2Bridge({ respondWithToken: 'ua-fallback-token' });
         const fetchFn = async () => { throw new Error('should not fetch'); };
         const { BeatifyAuth, sandboxWindow } = loadHaAuth({
             fetchFn,
             userAgent: 'Mozilla/5.0 (Linux; Android 16) Chrome/Mobile Safari', // no "Home Assistant"
-            externalApp: bridge.externalApp,
+            externalAppV2: bridge.externalAppV2,
         });
         bridge.window = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();

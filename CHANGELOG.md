@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc5] - 2026-05-24
+
+Fifth iteration of the v3.4.3 Android Companion fix series (rc1–rc4 all called the wrong native surface and were silently rejected by Companion 2026.4.4 on @Dtrieb's Pixel 7 Pro). rc5 calls the bridges the HA docs actually specify.
+
+### Fixed
+- **HA Companion App on Android — admin bounces back to launcher after rc3 (#1114, #1120, @Dtrieb @nelbs).** Three things were wrong at once: (a) rc3 routed auth through `window.externalApp.externalBus({command:"get_external_auth"})`, but `externalBus` is for HA-frontend ↔ native commands like NFC/Matter/navigation — it has no `get_external_auth` command, so native silently dropped the message and JS timed out after 10 s; (b) the legacy fallback used a randomised callback name (`__beatifyAuthCb_<rand>`), but the security fix [GHSA-7jp2-p2fw-mgvf](https://github.com/home-assistant/core/security/advisories/GHSA-7jp2-p2fw-mgvf) (shipped in Companion 2026.4.4) whitelisted the callback to the fixed string `"externalAuthSetToken"` and silently rejects all others; (c) the modern `externalAppV2` bridge (introduced 2026.4.2 alongside the security fix, the recommended path) wasn't checked at all.
+- **Fix: ha-auth.js now calls the documented surfaces.** Primary path is `window.externalAppV2.postMessage({type:"getExternalAuth", payload:{callback:"externalAuthSetToken", force:true}})`; fallback for older Companion is `window.externalApp.getExternalAuth(...)` with the same fixed callback name. Both bridges respond by invoking the fixed global `window.externalAuthSetToken(success, payload)`, which rc5 installs as a multiplexed FIFO receiver. The misnamed `externalBus` path is removed entirely. Logs which bridge fired once per session at `[BeatifyAuth] Companion bridge: …` so future Companion-version regressions are diagnosable without DevTools round-trips.
+
+### Patch test totals
+- 101 JS pass (96 + 5 new Companion-bridge tests: V2 happy path, V1 happy path, V2→V1 fallback, UA-miss-but-bridge-present detection, no-bridge regression guard)
+- 0 Python touched
+
 ## [3.4.2] - 2026-05-22
 
 Hot-fix for an Android Companion App regression introduced by the v3.4.0-rc17 launcher rework. iOS Companion was unblocked at the cost of breaking Android Companion. Three reporters in two days confirmed it; v3.4.2 unblocks Android without touching the rest of v3.4.
