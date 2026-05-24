@@ -368,6 +368,22 @@
         ? payload.expires_in
         : 1800;
     var expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
+    // rc6 (#1120 diagnostics): log token characteristics on each bridge
+    // response. If `force: true` is honoured by Companion, the prefix
+    // should change between successive calls; if it's the same prefix
+    // every time, force is being silently ignored (H1 confirmed) and
+    // we'll need a Companion-side fix.
+    try {
+      console.log(
+        '[BeatifyAuth] Bridge token received (len=' +
+        (payload.access_token ? payload.access_token.length : 0) +
+        ', prefix=' +
+        (payload.access_token
+          ? String(payload.access_token).slice(0, 12)
+          : 'null') +
+        ', expires_in=' + expiresIn + ')'
+      );
+    } catch (e) { /* ignore */ }
     var cookieValue = encodeURIComponent(
       JSON.stringify({
         access_token: payload.access_token,

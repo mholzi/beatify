@@ -3364,7 +3364,19 @@ async function connectAdminWebSocket() {
     }
 
     adminWs.onopen = function() {
-        console.log('[Admin WS] Connected, sending admin_connect');
+        // rc6 (#1120 diagnostics): log token characteristics so chrome://inspect
+        // captures whether force=true bridge calls actually return different
+        // tokens across recovery cycles. Prefix only — first 12 chars, safe
+        // to share; HA tokens are JWT so prefix is just the header.
+        console.log(
+            '[Admin WS] Connected, sending admin_connect (token: len=' +
+            (token ? token.length : 0) +
+            ', prefix=' +
+            (token ? token.slice(0, 12) : 'null') +
+            ', recoveryAttempt=' +
+            adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
+            ')'
+        );
         adminReconnectAttempts = 0;
         adminWs.send(JSON.stringify({
             type: 'admin_connect',
@@ -3470,14 +3482,31 @@ function handleAdminWsMessage(data) {
                 }
                 if (adminWsAuthRecoveryAttempts >= MAX_ADMIN_WS_AUTH_RECOVERIES) {
                     // Refreshed access token still rejected. Sessions are
-                    // wedged — bounce to HA login.
-                    console.warn('[Admin WS] Auth recovery exhausted; forcing re-login');
+                    // wedged — bounce to HA login. rc6 (#1120): surface a
+                    // visible toast first so the user knows what's
+                    // happening instead of silently watching the admin
+                    // page reload after ~20s of dead WebSocket.
+                    console.warn(
+                        '[Admin WS] Auth recovery exhausted after ' +
+                        MAX_ADMIN_WS_AUTH_RECOVERIES +
+                        ' attempts; HA rejected every bridge-supplied token. ' +
+                        'Forcing re-login.'
+                    );
+                    var exhaustedMsg =
+                        (window.BeatifyI18n && BeatifyI18n.t('admin.wsAuthFailed')) ||
+                        'Home Assistant rejected the access token. Re-authenticating…';
+                    try { showError(exhaustedMsg); } catch (e) { /* showError may not be in scope on early load */ }
                     BeatifyAuth.logout();
                     BeatifyAuth.login();
                     break;
                 }
                 adminWsAuthRecovering = true;
                 adminWsAuthRecoveryAttempts++;
+                console.warn(
+                    '[Admin WS] UNAUTHORIZED — recovery attempt ' +
+                    adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
+                    ' (server message: ' + (data.message || '') + ')'
+                );
                 var deadWs = adminWs;
                 adminWs = null;
                 try { deadWs?.close(); } catch (e) { /* ignore */ }

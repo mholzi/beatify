@@ -65,18 +65,48 @@ def _is_ha_authenticated(handler: BeatifyWebSocketHandler, data: dict) -> bool:
 
     #998: hosting a game (admin spectator connection or an ``is_admin`` join)
     requires a logged-in HA user. The client obtains an HA access token via
-    the OAuth flow in ha-auth.js and sends it as ``ha_token``. We validate it
-    with HA's own auth manager — the same check HA's HTTP middleware applies
-    to ``requires_auth`` views. ``async_validate_access_token`` is a
-    synchronous ``@callback`` returning a RefreshToken or None.
+    the OAuth flow in ha-auth.js (or the Companion bridge on Android) and
+    sends it as ``ha_token``. We validate it with HA's own auth manager —
+    the same check HA's HTTP middleware applies to ``requires_auth`` views.
+    ``async_validate_access_token`` is a synchronous ``@callback`` returning
+    a RefreshToken or None.
+
+    rc6 (#1120 diagnostics): logs *why* a token was rejected at warning
+    level. We log only the first 12 chars of the token (HA tokens are JWT
+    so the header prefix is deterministic and not secret) plus the length
+    and exception class — enough to distinguish "no token sent" from
+    "token decoded but no refresh_token matched" from "token raised
+    JWTError on parse".
     """
     token = data.get("ha_token")
     if not token or not isinstance(token, str):
+        _LOGGER.warning(
+            "[WS auth] admin_connect rejected: ha_token field missing or non-string "
+            "(type=%s)",
+            type(data.get("ha_token")).__name__,
+        )
         return False
     try:
-        return handler.hass.auth.async_validate_access_token(token) is not None
-    except Exception:  # noqa: BLE001 — any decode/validation error means "no"
+        result = handler.hass.auth.async_validate_access_token(token)
+    except Exception as err:  # noqa: BLE001 — any decode/validation error means "no"
+        _LOGGER.warning(
+            "[WS auth] admin_connect rejected: validator raised %s (len=%d, prefix=%s)",
+            type(err).__name__,
+            len(token),
+            token[:12],
+        )
         return False
+    if result is None:
+        _LOGGER.warning(
+            "[WS auth] admin_connect rejected: HA auth manager returned None "
+            "(len=%d, prefix=%s) — token is well-formed but no refresh_token in "
+            "hass.auth matched it (HA restarted? user logged out? Companion "
+            "token from a different HA install?)",
+            len(token),
+            token[:12],
+        )
+        return False
+    return True
 
 
 # ---------------------------------------------------------------------------

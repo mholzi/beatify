@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc6] - 2026-05-24
+
+Diagnostic + UX iteration after @nelbs reported on rc5 that the admin renders for ~20 s and then bounces (#1120). rc5's auth bridge demonstrably works — the admin rendered, which means the token was retrieved successfully — but the WebSocket `admin_connect` is rejected by HA's `async_validate_access_token`, the recovery cycle exhausts at `MAX_ADMIN_WS_AUTH_RECOVERIES = 2`, and `BeatifyAuth.login()` then navigates back to the launcher. rc6 doesn't blindly guess the root cause; it instruments every layer so rc7 has data.
+
+### Diagnostics
+- **Server (`ws_handlers.py:_is_ha_authenticated`)** — warning log on every rejected token with length, prefix (first 12 chars, deterministic JWT header — not secret), and exception class. Distinguishes "no token" / "token decode failed" / "no matching refresh_token" (the suspected case — token is well-formed but HA's auth manager doesn't recognise it).
+- **Client (`admin.js:connectAdminWebSocket`)** — log on every `admin_connect` send with token length + prefix + current recovery attempt counter. If `force: true` is honoured by Companion, the prefix should change between successive recovery cycles; if it doesn't, the Companion is silently ignoring the force flag (the H1 hypothesis from the rc5 post-mortem).
+- **Client (`ha-auth.js:_setSessionCookieFromCompanion`)** — log on every fresh bridge response with length, prefix, and `expires_in`. Cross-referenced with the WS log shows whether the bridge actually rotates the token.
+
+### UX
+- **Visible toast on `MAX_ADMIN_WS_AUTH_RECOVERIES` exhaustion**, before the silent `logout()` + `login()` navigation. Users see "Home Assistant rejected the access token. Re-authenticating…" instead of staring at a frozen admin page that suddenly reloads. Translations follow in rc7 once the underlying token-rejection bug is fixed.
+
+### Patch test totals
+- 101 JS pass (no test changes — the new console.log lines flow through existing fixtures).
+- 71 Python WS-handler tests pass (added log statements don't alter return values).
+
 ## [3.4.3-rc5] - 2026-05-24
 
 Fifth iteration of the v3.4.3 Android Companion fix series (rc1–rc4 all called the wrong native surface and were silently rejected by Companion 2026.4.4 on @Dtrieb's Pixel 7 Pro). rc5 calls the bridges the HA docs actually specify.
