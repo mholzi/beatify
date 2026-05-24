@@ -1548,6 +1548,16 @@ class GameState:
             # Clear the handle before stopping so a manual start_round's
             # _cancel_auto_advance() doesn't cancel this running task.
             self._auto_advance_task = None
+            # #1123: re-check phase after clearing the handle.  The admin may have
+            # clicked "Next Round" in the narrow window between the song-finished
+            # detection (loop exit) and this stop() call.  Without the guard,
+            # stop() would silence the newly-started next song even though the
+            # game has already advanced to PLAYING.
+            if self.phase != GamePhase.REVEAL:
+                _LOGGER.debug(
+                    "Idle halt: phase left REVEAL before stop() — skipping stop"
+                )
+                return
             if self._media_player_service:
                 try:
                     await self._media_player_service.stop()
