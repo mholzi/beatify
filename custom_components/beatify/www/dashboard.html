@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- #824: cache-bust i18n JSON fetches. See admin.html for rationale. -->
     <meta name="beatify-version" content="3.4.3-rc7">
+    <!-- Self-healing SW recovery — see admin.html for the rationale.
+         Mirrored here because dashboards run on always-on TVs that rarely
+         get hard-refreshed, so a stale SW serving rc(N-1) assets is the
+         most likely upgrade-loss surface. Inline + first script in head
+         so it runs before any other script that depends on fresh code. -->
+    <script>
+        (function() {
+            if (!('serviceWorker' in navigator)) return;
+            var meta = document.querySelector('meta[name=beatify-version]');
+            var current = meta && meta.content;
+            if (!current) return;
+            var seen = null;
+            try { seen = localStorage.getItem('beatify_sw_version'); } catch (e) {}
+            if (seen === current) return;
+            if (!navigator.serviceWorker.controller) {
+                try { localStorage.setItem('beatify_sw_version', current); } catch (e) {}
+                return;
+            }
+            navigator.serviceWorker.getRegistrations()
+                .then(function(regs) {
+                    return Promise.all(regs.map(function(r) { return r.unregister(); }));
+                })
+                .then(function() {
+                    try { localStorage.setItem('beatify_sw_version', current); } catch (e) {}
+                    location.reload();
+                })
+                .catch(function() { /* best-effort; reload will retry */ });
+        })();
+    </script>
     <title data-i18n="dashboard.title">Beatify - Dashboard</title>
     <!-- Preconnect for faster font loading (Story 9.8) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

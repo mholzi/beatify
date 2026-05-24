@@ -6,6 +6,34 @@
     <!-- #1098: drives the footer version string + cache-busts i18n JSON.
          Bumped each rc alongside manifest.json + sw.js CACHE_VERSION. -->
     <meta name="beatify-version" content="3.4.3-rc7">
+    <!-- Self-healing SW recovery — see admin.html for the rationale.
+         Analytics is rarely opened, so a session that lands here after a
+         long gap may still hold a stale SW from many rcs back. Inline +
+         first script in head so it runs before anything else. -->
+    <script>
+        (function() {
+            if (!('serviceWorker' in navigator)) return;
+            var meta = document.querySelector('meta[name=beatify-version]');
+            var current = meta && meta.content;
+            if (!current) return;
+            var seen = null;
+            try { seen = localStorage.getItem('beatify_sw_version'); } catch (e) {}
+            if (seen === current) return;
+            if (!navigator.serviceWorker.controller) {
+                try { localStorage.setItem('beatify_sw_version', current); } catch (e) {}
+                return;
+            }
+            navigator.serviceWorker.getRegistrations()
+                .then(function(regs) {
+                    return Promise.all(regs.map(function(r) { return r.unregister(); }));
+                })
+                .then(function() {
+                    try { localStorage.setItem('beatify_sw_version', current); } catch (e) {}
+                    location.reload();
+                })
+                .catch(function() { /* best-effort; reload will retry */ });
+        })();
+    </script>
     <title data-i18n="analyticsDashboard.title">Beatify Analytics</title>
     <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
