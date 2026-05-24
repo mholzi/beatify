@@ -109,14 +109,20 @@ window.BeatifyI18n = (function() {
         // Fall back to English if not found
         if (value === undefined && currentLanguage !== 'en') {
             value = getNestedValue(fallbackTranslations, key);
-            if (value !== undefined) {
+            if (value !== undefined && isLoaded) {
+                // Only warn after initial load — pre-init t() calls would
+                // spam the console with false positives. initPageTranslations()
+                // re-renders data-i18n elements after load, replacing any
+                // raw-key text the user briefly saw.
                 console.warn('[i18n] Missing translation for "' + key + '" in ' + currentLanguage + ', using English');
             }
         }
 
         // Return key itself as last resort
         if (value === undefined) {
-            console.warn('[i18n] Missing translation key: "' + key + '"');
+            if (isLoaded) {
+                console.warn('[i18n] Missing translation key: "' + key + '"');
+            }
             return key;
         }
 
