@@ -455,12 +455,16 @@ describe('Companion bypass mode (#1131 — UA + RFC1918 trust on server)', () =>
         expect(BeatifyAuth.isCompanionBypassMode()).toBe(true);
     });
 
-    it('isCompanionBypassMode() returns false when externalAppV2 is exposed (bridge path will work)', () => {
+    it('isCompanionBypassMode() returns true even when externalAppV2 is exposed (rc10: bridge unreliable)', () => {
+        // rc10 (#1131): field data shows recent Companion builds advertise the
+        // bridge but it either never replies or replies with a token HA rejects.
+        // The bypass therefore ignores bridge presence and trusts the
+        // server-side UA+RFC1918 check unconditionally.
         const { BeatifyAuth } = loadHaAuth({
             userAgent: COMPANION_UA,
             externalAppV2: { postMessage() {} },
         });
-        expect(BeatifyAuth.isCompanionBypassMode()).toBe(false);
+        expect(BeatifyAuth.isCompanionBypassMode()).toBe(true);
     });
 
     it('isCompanionBypassMode() returns false on desktop browsers', () => {

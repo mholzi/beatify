@@ -212,17 +212,27 @@
     return false;
   }
 
-  // #1131: when HA Android Companion is detected but the externalAppV2 bridge
-  // is missing (older Companion build, or a build that hides the bridge from
-  // user-script contexts), the OAuth flow is also dead — Companion intercepts
-  // /auth/authorize. In that case the server-side companion_auth.py grants
-  // access based on UA + RFC1918, so the frontend just skips the auth dance.
-  // UA presence alone is enough here; the server still verifies remote-addr.
+  // #1131 / rc10: when HA Android Companion is detected, ALWAYS skip the OAuth
+  // dance and rely on the server-side UA+RFC1918 bypass in companion_auth.py.
+  //
+  // History: rc8/rc9 limited the client-side skip to "bridge missing" — the
+  // reasoning was that builds with a working bridge could still get a real
+  // Bearer token. Field data (Logan-80, nelbs) showed that path is wrong:
+  // recent Companion builds advertise the bridge but it either never replies
+  // or replies with a token HA rejects. The bridge attempt then runs into a
+  // 10s timeout (see _CompanionAuthBridge below) and falls through to a hard
+  // OAuth redirect that Companion's WebView blocks with "Invalid redirect URI".
+  //
+  // Trade-off: builds where the bridge would have worked no longer get a
+  // real Bearer token. Admin endpoints continue to function because the
+  // server-side bypass authorises any UA-matching request from an RFC1918
+  // address. No HA per-user identity is exposed in beatify's admin surface,
+  // so dropping the per-user token has no functional consequence.
   function isCompanionBypassMode() {
     var ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
     if (!/Android/i.test(ua)) return false;
     if (!/Home ?Assistant|HACompanion|Hass/i.test(ua)) return false;
-    return !_hasCompanionAuthBridge();
+    return true;
   }
 
   // -- multiplexed callback receiver ---------------------------------------
