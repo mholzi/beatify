@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc10] - 2026-05-25
+
+Fixes the Android Companion bounce-to-launcher / "Invalid redirect URI" bug that rc8 and rc9 did not address (#1131, #1120).
+
+### Fixed
+- **Android Companion: 15s wait, then "Invalid redirect URI" (#1131, #1120).** rc8/rc9 only skipped OAuth when the externalApp/externalAppV2 bridge was *missing*. Field data on rc8/rc9 (Logan-80 on his own setup, reproduced locally on Redmi 25028RN03Y / Android 15 with Companion 2026.4.4-full / 21576) showed the bridge IS exposed on recent Companion builds — but its `postMessage` either never replies or replies with a token HA's `async_validate_access_token` rejects. ha-auth.js hit the 10-second bridge timeout, fell through to `login()` which redirected to `/auth/authorize`, and Companion's WebView blocked the redirect with "Invalid redirect URI". Symptom: admin renders for ~15s (bridge wait), then bounces to the IndieAuth error page. rc10: `isCompanionBypassMode()` now returns true unconditionally when the UA matches Android + HA Companion. The bridge is no longer probed for the auth-skip decision. Subsequent API calls reach beatify without a Bearer token; the server-side `companion_auth.py` UA+RFC1918 bypass introduced in rc8 (already merged, no server change needed for rc10) accepts them. Trade-off: Companion builds where the bridge *would* have worked no longer obtain a real Bearer token. Beatify's admin surface does not consume HA per-user identity, so dropping the per-user token has no functional consequence here.
+
+### Patch test totals
+- 106 / 106 JS pass (one `isCompanionBypassMode` test inverted to assert the new behaviour).
+- 40 / 40 Python pass (server side untouched).
+- No `.min.js` regeneration (ha-auth.js is loaded directly, no bundle).
+
 ## [3.4.3-rc9] - 2026-05-25
 
 Diagnostic build, **not a fix**. Instruments `companion_auth.py` with INFO-level `[Companion-Debug]` logging at every HTTP and WebSocket trust check so #1131 / #1120 reports can be correlated with the actual User-Agent + remote-IP that reaches the server.
