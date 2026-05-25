@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc11] - 2026-05-25
+
+Two changes that ride together because they're both prerequisites for unblocking the Android Companion player-join flow on rc10.
+
+### Fixed
+- **#1138 — kill the legacy flat admin layout.** `showSetupView()` used to call `setupSections.forEach(removeClass('hidden'))`, leaving returning users (no `LS_WIZARD_STATE`, but `LS_SELECTED_PLAYER` set) staring at the pre-wizard flat layout — Media Players + Music Service chips + Playlists + Game Settings — instead of the polished home-view. `BeatifyWizard.shouldTrigger()` returns false for these users (wizard.js:65), and `BeatifyHome.enter()` only ran on init when there was no current game. Between those two it was very easy to land on the flat UI. rc11 strips the flat-section reveal from `showSetupView()` and routes all four call sites (loadStatus / end-game / unknown-phase / rematch-fallback) through `BeatifyHome.enter()` for the no-game UI. The flat sections stay in the DOM (referenced by event handlers in admin.js that have not been audited yet), but `body.home-mode` keeps them hidden via the existing CSS in `styles.css:9902-9911`.
+
+### Diagnostics
+- **`[WS-Debug]` logging across the WebSocket layer (#1131 follow-up).** rc10's HTTP-side OAuth-skip works (admin loads cleanly), but the player-join WebSocket on the same Companion App shows "Reconnecting to game server" forever. rc11 adds `[WS-Debug]` lines for the upgrade (`request.path`, `request.remote`, truncated UA, total connection count), every received message (`type` + `keys`), every disconnect (`ws.closed`, `ws.close_code`), and every `handle_join` (`name`, `is_admin`, `ha_token` presence, game phase, stashed meta, `add_player` result, and `_is_ha_authenticated` outcome on the is_admin path). No behaviour change — only log calls added.
+
+### Patch test totals
+- 111 / 111 Python pass (companion_auth + websocket — return values unchanged).
+- 106 / 106 JS pass (the `setupSections.forEach` strip is a pure subtraction with no behaviour the existing tests exercised).
+- `admin.min.js` regenerated via `make build` (81.4kb).
+
 ## [3.4.3-rc10] - 2026-05-25
 
 Fixes the Android Companion bounce-to-launcher / "Invalid redirect URI" bug that rc8 and rc9 did not address (#1131, #1120).
