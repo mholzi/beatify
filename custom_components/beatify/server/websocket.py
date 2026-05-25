@@ -157,20 +157,39 @@ class BeatifyWebSocketHandler:
         # Stash the request's UA + remote so ws_handlers._is_ha_authenticated
         # can re-evaluate the HA Android Companion trust signature on the
         # admin_connect message. Scoped per-connection (#1131).
+        ua_at_upgrade = request.headers.get("User-Agent")
         ws.beatify_request_meta = {
-            "ua": request.headers.get("User-Agent"),
+            "ua": ua_at_upgrade,
             "remote": request.remote,
         }
         await ws.prepare(request)
 
         self.connections.add(ws)
-        _LOGGER.debug("WebSocket connected, total: %d", len(self.connections))
+        # rc11 diagnostic (#1131 follow-up, player-join "Reconnecting" issue):
+        # the HTTP bypass works (admin loads) but the WS player-join fails.
+        # Log every WS upgrade with the *exact* UA + remote the server saw at
+        # upgrade time so we can confirm whether the WS path sees the same
+        # Companion signature the HTTP path does, or whether the upgrade
+        # arrives with a different UA / through a different proxy hop.
+        _LOGGER.info(
+            "[WS-Debug] upgrade path=%s remote=%s ua=%r total=%d",
+            request.path,
+            request.remote,
+            (ua_at_upgrade[:200] if isinstance(ua_at_upgrade, str) else ua_at_upgrade),
+            len(self.connections),
+        )
 
         try:
             async for msg in ws:
                 if msg.type == WSMsgType.TEXT:
                     try:
-                        await self._handle_message(ws, msg.json())
+                        parsed = msg.json()
+                        _LOGGER.info(
+                            "[WS-Debug] recv type=%s keys=%s",
+                            parsed.get("type") if isinstance(parsed, dict) else "?",
+                            list(parsed.keys()) if isinstance(parsed, dict) else None,
+                        )
+                        await self._handle_message(ws, parsed)
                     except Exception as err:  # noqa: BLE001
                         _LOGGER.warning("Failed to parse WebSocket message: %s", err)
                 elif msg.type == WSMsgType.ERROR:
@@ -182,11 +201,23 @@ class BeatifyWebSocketHandler:
                     )
 
                     self._record_error(ERROR_WEBSOCKET_DISCONNECT, err_msg)
+                else:
+                    _LOGGER.info(
+                        "[WS-Debug] non-text msg type=%s",
+                        msg.type,
+                    )
 
         finally:
             self.connections.discard(ws)
             await self._handle_disconnect(ws)
-            _LOGGER.debug("WebSocket disconnected, total: %d", len(self.connections))
+            _LOGGER.info(
+                "[WS-Debug] disconnect path=%s remote=%s total=%d ws_closed=%s close_code=%s",
+                request.path,
+                request.remote,
+                len(self.connections),
+                ws.closed,
+                ws.close_code,
+            )
 
         return ws
 

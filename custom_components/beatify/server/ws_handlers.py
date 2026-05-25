@@ -159,6 +159,19 @@ async def handle_join(
     """Handle player join request."""
     name = data.get("name", "").strip()
     is_admin = data.get("is_admin", False)
+    # rc11 diagnostic (#1131 follow-up): log every join attempt so we can
+    # see exactly which path the player-join takes when "Reconnecting"
+    # surfaces on the client. Remove once #1131 lands stable.
+    meta = getattr(ws, "beatify_request_meta", None)
+    _LOGGER.info(
+        "[WS-Debug] join name=%r is_admin=%s ha_token_present=%s "
+        "phase=%s meta=%s",
+        name,
+        is_admin,
+        bool(data.get("ha_token")),
+        game_state.phase.value if hasattr(game_state.phase, "value") else game_state.phase,
+        meta,
+    )
 
     # #841 Phase 3: distinguish a reconnect from a fresh join for the TTS
     # hook below — a player record already existing under this name means
@@ -166,6 +179,14 @@ async def handle_join(
     was_existing_player = game_state.get_player(name) is not None
 
     success, error_code = game_state.add_player(name, ws)
+    _LOGGER.info(
+        "[WS-Debug] join add_player name=%r success=%s error_code=%s "
+        "was_existing=%s",
+        name,
+        success,
+        error_code,
+        was_existing_player,
+    )
 
     if success:
         player = game_state.get_player(name)
@@ -174,7 +195,12 @@ async def handle_join(
             # #998: claiming the host role requires a logged-in HA user.
             # Normal players join with no auth — only the admin claim is
             # gated. add_player() already ran, so undo it on rejection.
-            if not _is_ha_authenticated(handler, data, ws):
+            authed = _is_ha_authenticated(handler, data, ws)
+            _LOGGER.info(
+                "[WS-Debug] join is_admin=True _is_ha_authenticated=%s",
+                authed,
+            )
+            if not authed:
                 game_state.remove_player(name)
                 await ws.send_json(
                     {
