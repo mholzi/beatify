@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc13] - 2026-05-25
+
+### Fixed
+- **#1131 — `connectAdminWebSocket()` never opened the admin WS on Android Companion.** rc12 fixed `ensureAuthenticated()` but `connectAdminWebSocket()` uses `getAccessToken()` directly with an early `return` on null. In Companion bypass mode no OAuth token exists, so the function `return`ed before `new WebSocket()` ever fired — no WS upgrade hit beatify, no `[WS-Debug] upgrade` log. Confirmed by mholzi's rc12 HA log download: 4× HTTP-bypass `[Companion-Debug] HTTP ... trusted=True` lines, zero `[WS-Debug]` lines. rc13 widens the early-return: only bail when there's no token AND `isCompanionBypassMode()` is false. In bypass mode the admin_connect message ships `ha_token: null`; server-side `_is_ha_authenticated` already treats falsy tokens as the trigger to consult `is_companion_trusted_meta(ws.beatify_request_meta)` for the UA+RFC1918 accept.
+
+### Patch test totals
+- 107 / 107 JS pass.
+- `admin.min.js` regenerated via `make build` (81.4kb).
+
 ## [3.4.3-rc12] - 2026-05-25
 
 ### Fixed
