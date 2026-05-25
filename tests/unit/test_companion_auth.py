@@ -122,9 +122,7 @@ class TestIsCompanionTrustedRequest:
 
     def test_desktop_ua_on_local_net_is_not_trusted(self):
         # Local-net alone isn't enough — must look like Companion.
-        req = _request(
-            "Mozilla/5.0 (Macintosh) Safari/17", "192.168.1.5"
-        )
+        req = _request("Mozilla/5.0 (Macintosh) Safari/17", "192.168.1.5")
         assert is_companion_trusted_request(req) is False
 
     def test_missing_ua_is_not_trusted(self):
@@ -224,7 +222,10 @@ class TestExtractRequestMeta:
     def test_captures_ua_and_remote(self):
         req = _request("Home Assistant/2026 (Android 14)", "192.168.1.5")
         meta = extract_request_meta(req)
-        assert meta == {"ua": "Home Assistant/2026 (Android 14)", "remote": "192.168.1.5"}
+        assert meta == {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "192.168.1.5",
+        }
 
     def test_handles_missing_ua_header(self):
         req = _request(None, "192.168.1.5")

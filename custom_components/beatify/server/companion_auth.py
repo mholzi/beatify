@@ -70,9 +70,7 @@ def is_companion_ua(user_agent: str | None) -> bool:
     """Return True if ``user_agent`` looks like HA's Android Companion App."""
     if not isinstance(user_agent, str) or not user_agent:
         return False
-    return bool(_ANDROID_RE.search(user_agent)) and bool(
-        _HA_APP_RE.search(user_agent)
-    )
+    return bool(_ANDROID_RE.search(user_agent)) and bool(_HA_APP_RE.search(user_agent))
 
 
 def is_companion_trusted_request(request: web.Request) -> bool:
