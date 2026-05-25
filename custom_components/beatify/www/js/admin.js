@@ -3404,7 +3404,12 @@ async function connectAdminWebSocket() {
     // #998: the admin WS is gated by HA login. getAccessToken() refreshes a
     // stale token transparently; null means the host is not logged in.
     var token = await BeatifyAuth.getAccessToken();
-    if (!token) return;
+    // rc13 (#1131): in Companion bypass mode there is no OAuth token but the
+    // WS must still open — server-side admin_connect accepts the request on
+    // UA+RFC1918 signature when ha_token is falsy. Without this short-circuit
+    // the admin WS never opens on Android Companion (no `[WS-Debug] upgrade`
+    // log fires either, which is what surfaced the bug on rc12).
+    if (!token && !BeatifyAuth.isCompanionBypassMode()) return;
 
     // Close existing connection if any
     if (adminWs && adminWs.readyState === WebSocket.OPEN) {
