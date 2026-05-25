@@ -508,6 +508,33 @@ describe('Companion bypass mode (#1131 — UA + RFC1918 trust on server)', () =>
         const h = observedHeaders[0].headers;
         expect(h?.Authorization).toBeUndefined();
     });
+
+    it('ensureAuthenticated() resolves null in Companion bypass mode (rc12: no OAuth attempt)', async () => {
+        // rc11 admin → "join as host" hung on Android Companion because
+        // ensureAuthenticated() called login() → /auth/authorize → blocked
+        // by Companion's WebView ("Invalid redirect URI"). The returned
+        // promise never resolved and `adminWs.send({...ha_token: token})`
+        // never fired. rc12 short-circuits to null so the WS send proceeds
+        // and the server-side bypass kicks in on UA+RFC1918.
+        let loginCalls = 0;
+        const fetchFn = async () => {
+            // refreshAccess should NOT be called either — bypass mode means
+            // there is no OAuth to refresh.
+            return { ok: false, status: 401 };
+        };
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({
+            fetchFn,
+            userAgent: COMPANION_UA,
+        });
+        const _originalReplace = sandboxWindow.location.replace;
+        sandboxWindow.location.replace = function (url) {
+            loginCalls += 1;
+            return _originalReplace.call(this, url);
+        };
+        const token = await BeatifyAuth.ensureAuthenticated();
+        expect(token).toBeNull();
+        expect(loginCalls).toBe(0); // no /auth/authorize navigation
+    });
 });
 
 describe('login() OAuth redirect', () => {
