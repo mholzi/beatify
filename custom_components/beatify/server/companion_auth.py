@@ -23,12 +23,16 @@ off in the integration config.
 from __future__ import annotations
 
 import ipaddress
+import logging
 import re
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from aiohttp import web
     from homeassistant.core import HomeAssistant
+
+
+_LOGGER = logging.getLogger(__name__)
 
 
 # Companion UAs vary by build — order between "Android" and the app name
@@ -82,9 +86,24 @@ def is_companion_trusted_request(request: web.Request) -> bool:
       3. (No header check — Companion's WebView does not reliably ship Bearer
          when ha-auth.js fails, and that's exactly the case we're bypassing.)
     """
-    return is_companion_ua(request.headers.get("User-Agent")) and is_local_remote(
-        request.remote
+    ua = request.headers.get("User-Agent")
+    remote = request.remote
+    ua_match = is_companion_ua(ua)
+    ip_match = is_local_remote(remote)
+    trusted = ua_match and ip_match
+    # rc9 diagnostic: log every HTTP trust check so #1131 / #1120 reports can
+    # be correlated with the actual UA + remote that reaches the server.
+    # Remove once Companion auth lands stable.
+    _LOGGER.info(
+        "[Companion-Debug] HTTP path=%s ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
+        request.path,
+        (ua[:200] if isinstance(ua, str) else ua),
+        remote,
+        ua_match,
+        ip_match,
+        trusted,
     )
+    return trusted
 
 
 def is_companion_trusted_meta(meta: dict | None) -> bool:
@@ -95,8 +114,22 @@ def is_companion_trusted_meta(meta: dict | None) -> bool:
     same trust decision.
     """
     if not isinstance(meta, dict):
+        _LOGGER.info("[Companion-Debug] WS meta=None (no signature collected)")
         return False
-    return is_companion_ua(meta.get("ua")) and is_local_remote(meta.get("remote"))
+    ua = meta.get("ua")
+    remote = meta.get("remote")
+    ua_match = is_companion_ua(ua)
+    ip_match = is_local_remote(remote)
+    trusted = ua_match and ip_match
+    _LOGGER.info(
+        "[Companion-Debug] WS ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
+        (ua[:200] if isinstance(ua, str) else ua),
+        remote,
+        ua_match,
+        ip_match,
+        trusted,
+    )
+    return trusted
 
 
 async def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
@@ -113,12 +146,23 @@ async def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
     code — equivalent behaviour for the happy path, plus the Companion fallback.
     """
     auth = request.headers.get("Authorization", "")
+    bearer_present = False
     if auth.lower().startswith("bearer "):
         token = auth[7:].strip()
         if token:
+            bearer_present = True
             result = hass.auth.async_validate_access_token(token)
             if result is not None:
+                _LOGGER.info(
+                    "[Companion-Debug] HTTP path=%s bearer_valid=True (bypass not consulted)",
+                    request.path,
+                )
                 return True
+    if bearer_present:
+        _LOGGER.info(
+            "[Companion-Debug] HTTP path=%s bearer_present=True bearer_valid=False (falling back to bypass)",
+            request.path,
+        )
     return is_companion_trusted_request(request)
 
 
