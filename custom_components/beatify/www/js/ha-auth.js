@@ -599,8 +599,26 @@
   /**
    * Guarantee an access token. If none can be obtained this navigates away
    * to the HA login page and the returned promise never resolves.
+   *
+   * rc12 (#1131): when the page is running inside HA Android Companion's
+   * WebView and `isCompanionBypassMode()` told `init()` to skip OAuth,
+   * there is no access token to obtain — and calling `login()` here would
+   * navigate to `/auth/authorize`, which Companion's WebView blocks with
+   * "Invalid redirect URI" (the exact bug rc10 worked around for `init()`).
+   * Resolve with `null` instead so callers can still send their WS / fetch
+   * with no `ha_token`; the server-side bypass in `companion_auth.py`
+   * accepts those requests on the UA+RFC1918 signature.
+   *
+   * Without this rc11 admin → "join the game as host" hung forever on
+   * Android Companion: `admin.js:2562` awaits this function before sending
+   * the WS join, so the WS upgrade fired (admin already had a socket open)
+   * but the join message was never enqueued and `[WS-Debug] join` never
+   * logged — the missing data point that surfaced the bug.
    */
   function ensureAuthenticated() {
+    if (isCompanionBypassMode()) {
+      return Promise.resolve(null);
+    }
     return getAccessToken().then(function (token) {
       if (token) return token;
       login();
