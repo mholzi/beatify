@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc14] - 2026-05-25
+
+### Fixed
+- **Stale rc8 cache-busters caused legacy admin flash on rc11–rc13.** `admin.html`, `player.html`, `dashboard.html`, `analytics.html` all referenced minified JS / CSS with `?v=3.4.3-rc8` — never bumped alongside the manifest / sw cache version since rc8. mholzi's rc13 symptom ("tap join as host → briefly shows legacy flat admin → updates to home-view") was caused by HA Companion's WebView caching `admin.min.js?v=rc8` and serving the pre-#1138 build while the SW eventually activated rc13's cache and triggered a refresh. rc14 bumps all asset references to `?v=3.4.3-rc14` plus the `<meta name="beatify-version">` tags, invalidating every cache layer simultaneously.
+- **Default `home-mode` class on `<body>` in admin.html.** Even with fresh JS the legacy `#media-players` / `#playlists` / `#game-settings` sections briefly flashed visible between page render and `BeatifyHome.enter()`. rc14 adds `home-mode` by default so CSS hides them from first paint; `BeatifyHome.enter().add('home-mode')` stays idempotent.
+
+### Patch test totals
+- 107 / 107 JS pass
+- 40 / 40 Python `companion_auth` pass
+- No `.min.js` regeneration (HTML / CSS only).
+
 ## [3.4.3-rc13] - 2026-05-25
 
 ### Fixed
