@@ -4,6 +4,29 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc9] - 2026-05-25
+
+Diagnostic build, **not a fix**. Instruments `companion_auth.py` with INFO-level `[Companion-Debug]` logging at every HTTP and WebSocket trust check so #1131 / #1120 reports can be correlated with the actual User-Agent + remote-IP that reaches the server.
+
+Triggered by Logan-80's 2026-05-25 report that rc8 still fails on his Android Companion. The server-side bypass *should* match Android-Companion UA + RFC1918 remote, but we have no data on what `request.headers["User-Agent"]` actually contains in his build, nor what `request.remote` resolves to — and HA Companion's Production WebView disables `chrome://inspect`, so client-side console logs cannot be retrieved. rc9 makes both visible from HA's standard log surface.
+
+### Diagnostics
+- **`is_companion_trusted_request` (HTTP path)** — logs `request.path`, truncated UA (200 chars), `request.remote`, `ua_match`, `ip_match`, `trusted` on every call.
+- **`is_companion_trusted_meta` (WS path)** — same fields at WebSocket handshake time.
+- **`is_authorized_http`** — logs Bearer-token presence + validity. Distinguishes "no token" / "bearer present but rejected" / "bearer valid" so we know whether requests hit the bypass because OAuth is dead (expected) or because token rotation broke mid-session.
+
+### How to read the logs
+Settings → System → Logs → search `[Companion-Debug]`:
+- `ua_match=False` → Android Companion UA regex needs widening (see `_ANDROID_RE` / `_HA_APP_RE` in `companion_auth.py`).
+- `ip_match=False` → request crosses a reverse proxy; `X-Forwarded-For` handling is missing.
+- `trusted=True` but client still bounces → server bypass works, client-side `ha-auth.js` is failing OAuth before reaching the bypassed endpoints.
+
+Each is fixable in rc10 with the data rc9 produces.
+
+### Patch test totals
+- 40 / 40 `tests/unit/test_companion_auth.py` pass (return values unchanged — only log calls added).
+- No `.min.js` regeneration (Python-only change).
+
 ## [3.4.3-rc7] - 2026-05-24
 
 Extends the rc4 iOS Wake-Lock fix (#1122) to the admin and dashboard surfaces. rc4 deliberately scoped the layered fallback to the player surface only (95% of the field-test coverage at the time) and noted "Dashboard and admin still rely on Layer 1; they get the same layered treatment in a follow-up." rc7 is that follow-up. Static code analysis (no iOS device required) confirmed the gap was real: both `admin.js` and `dashboard.js` short-circuit on `if (!('wakeLock' in navigator)) return;` — silent no-op on iOS Companion's WKWebView where `navigator.wakeLock` is undefined.
