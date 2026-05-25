@@ -212,6 +212,19 @@
     return false;
   }
 
+  // #1131: when HA Android Companion is detected but the externalAppV2 bridge
+  // is missing (older Companion build, or a build that hides the bridge from
+  // user-script contexts), the OAuth flow is also dead — Companion intercepts
+  // /auth/authorize. In that case the server-side companion_auth.py grants
+  // access based on UA + RFC1918, so the frontend just skips the auth dance.
+  // UA presence alone is enough here; the server still verifies remote-addr.
+  function isCompanionBypassMode() {
+    var ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
+    if (!/Android/i.test(ua)) return false;
+    if (!/Home ?Assistant|HACompanion|Hass/i.test(ua)) return false;
+    return !_hasCompanionAuthBridge();
+  }
+
   // -- multiplexed callback receiver ---------------------------------------
 
   var _authCbQueue = []; // FIFO of {resolve, reject, timeoutId}
@@ -608,6 +621,13 @@
    */
   function authedFetch(url, opts) {
     opts = opts || {};
+    if (isCompanionBypassMode()) {
+      // Server authorizes via UA + RFC1918; sending a Bearer token would just
+      // hit Path 1 of is_authorized_http (which would 401 since we have no
+      // token to send) before falling through to the Companion path. Cleaner
+      // to skip the header entirely.
+      return fetch(url, opts);
+    }
     return getAccessToken().then(function (token) {
       if (!token) {
         login();
@@ -653,6 +673,18 @@
    */
   function init(options) {
     options = options || {};
+    if (isCompanionBypassMode()) {
+      // No OAuth, no bridge — the server-side companion_auth.py grants
+      // access via UA + RFC1918 detection. Skipping init() avoids the
+      // /auth/authorize redirect that lands Companion users on the
+      // "Invalid redirect URI" error page (#1131).
+      try {
+        console.info(
+          '[BeatifyAuth] Companion bypass mode — server authorizes by UA+local-net'
+        );
+      } catch (e) { /* ignore */ }
+      return Promise.resolve(true);
+    }
     _migrateFromLocalStorage();
     var callbackResult = _consumeAuthCallback();
 
@@ -693,5 +725,6 @@
     ensureAuthenticated: ensureAuthenticated,
     fetch: authedFetch,
     handleServerRejection: handleServerRejection,
+    isCompanionBypassMode: isCompanionBypassMode,
   };
 })();

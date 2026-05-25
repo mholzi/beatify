@@ -154,6 +154,13 @@ class BeatifyWebSocketHandler:
 
         # heartbeat parameter enables automatic ping/pong to prevent proxy timeouts
         ws = web.WebSocketResponse(heartbeat=self.HEARTBEAT_INTERVAL)
+        # Stash the request's UA + remote so ws_handlers._is_ha_authenticated
+        # can re-evaluate the HA Android Companion trust signature on the
+        # admin_connect message. Scoped per-connection (#1131).
+        ws.beatify_request_meta = {
+            "ua": request.headers.get("User-Agent"),
+            "remote": request.remote,
+        }
         await ws.prepare(request)
 
         self.connections.add(ws)
