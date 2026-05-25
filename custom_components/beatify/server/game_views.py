@@ -33,6 +33,7 @@ from custom_components.beatify.server.base import (
     _json_error,
     _read_file,
 )
+from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_state_message,
 )
@@ -71,7 +72,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
     url = "/beatify/api/start-game"
     name = "beatify:api:start-game"
-    requires_auth = True  # #998 — only a logged-in HA user may host a game
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     RATE_LIMIT_REQUESTS = 5
     RATE_LIMIT_WINDOW = 60  # seconds
@@ -83,6 +84,8 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:  # noqa: PLR0911, PLR0912
         """Start a new game."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
@@ -447,7 +450,7 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
 
     url = "/beatify/api/force-reset"
     name = "beatify:api:force-reset"
-    requires_auth = True  # #998
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     # Tighter than EndGameView's defaults — this kills active games, so
     # 3 hits per hour per IP is plenty for legitimate "I got stuck" use.
@@ -461,6 +464,8 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Force-end any active game and report what was cleaned up."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
@@ -493,7 +498,7 @@ class RematchGameView(HomeAssistantView):
 
     url = "/beatify/api/rematch-game"
     name = "beatify:api:rematch-game"
-    requires_auth = True  # #998
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
@@ -501,6 +506,8 @@ class RematchGameView(HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Start a rematch with current players."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
         data = self.hass.data.get(DOMAIN, {})

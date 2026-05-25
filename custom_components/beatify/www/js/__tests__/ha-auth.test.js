@@ -441,6 +441,71 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
     });
 });
 
+describe('Companion bypass mode (#1131 — UA + RFC1918 trust on server)', () => {
+    const COMPANION_UA =
+        'Mozilla/5.0 (Linux; Android 16; Pixel 7 Pro) AppleWebKit/537.36 ' +
+        '(KHTML, like Gecko) Chrome/Mobile Safari Home Assistant/2026.4.4-full';
+
+    it('isCompanionBypassMode() returns true when Companion UA is set and no bridge is exposed', () => {
+        const { BeatifyAuth } = loadHaAuth({
+            userAgent: COMPANION_UA,
+            // neither externalApp nor externalAppV2 — older Companion build
+            // that hides the bridge or has the security fix not deployed.
+        });
+        expect(BeatifyAuth.isCompanionBypassMode()).toBe(true);
+    });
+
+    it('isCompanionBypassMode() returns false when externalAppV2 is exposed (bridge path will work)', () => {
+        const { BeatifyAuth } = loadHaAuth({
+            userAgent: COMPANION_UA,
+            externalAppV2: { postMessage() {} },
+        });
+        expect(BeatifyAuth.isCompanionBypassMode()).toBe(false);
+    });
+
+    it('isCompanionBypassMode() returns false on desktop browsers', () => {
+        const { BeatifyAuth } = loadHaAuth({
+            userAgent: 'Mozilla/5.0 (Macintosh) Safari/605',
+        });
+        expect(BeatifyAuth.isCompanionBypassMode()).toBe(false);
+    });
+
+    it('init() resolves true and skips OAuth flow in Companion bypass mode', async () => {
+        const fetchCalls = [];
+        const fetchFn = async (url) => {
+            fetchCalls.push(url);
+            // Should never be called — but if init regresses to call refresh,
+            // we want the test to fail loudly with a clear assertion below.
+            return { ok: true, status: 200, json: async () => ({}) };
+        };
+        const { BeatifyAuth } = loadHaAuth({
+            fetchFn,
+            userAgent: COMPANION_UA,
+        });
+        const ok = await BeatifyAuth.init({ requireAuth: true });
+        expect(ok).toBe(true);
+        // No /beatify/auth/refresh call, no /auth/authorize redirect.
+        expect(fetchCalls).toHaveLength(0);
+    });
+
+    it('authedFetch() in Companion bypass mode sends NO Authorization header (server detects via UA+IP)', async () => {
+        const observedHeaders = [];
+        const fetchFn = async (url, opts) => {
+            observedHeaders.push({ url, headers: opts?.headers });
+            return { ok: true, status: 200 };
+        };
+        const { BeatifyAuth } = loadHaAuth({
+            fetchFn,
+            userAgent: COMPANION_UA,
+        });
+        await BeatifyAuth.fetch('/beatify/api/lights');
+        expect(observedHeaders).toHaveLength(1);
+        // Either undefined headers (no opts passed) or no Authorization key.
+        const h = observedHeaders[0].headers;
+        expect(h?.Authorization).toBeUndefined();
+    });
+});
+
 describe('login() OAuth redirect', () => {
     it('uses /beatify/auth/callback as redirect_uri (rc18: restored from rc15)', () => {
         // rc16/rc17 routed redirect_uri at the page URL with a JS-bounce

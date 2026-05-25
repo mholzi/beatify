@@ -29,6 +29,7 @@ from custom_components.beatify.server.base import (
     _json_error,
     _read_file,
 )
+from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_status_response,
 )
@@ -530,14 +531,19 @@ class CapabilitiesView(HomeAssistantView):
 
     url = "/beatify/api/capabilities"
     name = "beatify:api:capabilities"
-    requires_auth = True  # #998 — leaks light/TTS inventory; admin-only
+    # requires_auth=False + in-handler check so HA Android Companion (which
+    # can't reliably attach a Bearer token, see companion_auth.py) is still
+    # served while desktop browsers without a valid token are still rejected.
+    requires_auth = False
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the capabilities view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def get(self, request: web.Request) -> web.Response:
         """Return flags the wizard's Step 4 uses to gate toggles."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         light_count = len(self.hass.states.async_all("light"))
         tts_services = self.hass.services.async_services().get("tts", {})
         return web.json_response(
@@ -555,14 +561,16 @@ class LightsView(HomeAssistantView):
 
     url = "/beatify/api/lights"
     name = "beatify:api:lights"
-    requires_auth = True  # #998 — leaks light entity inventory; admin-only
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the lights view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def get(self, request: web.Request) -> web.Response:
         """Return available light entities with capabilities."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         lights = []
         for state in self.hass.states.async_all("light"):
             color_modes = state.attributes.get("supported_color_modes", [])
@@ -601,14 +609,16 @@ class TtsEntitiesView(HomeAssistantView):
 
     url = "/beatify/api/tts-entities"
     name = "beatify:api:tts-entities"
-    requires_auth = True  # #998 — leaks TTS entity inventory; admin-only
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the TTS entities view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def get(self, request: web.Request) -> web.Response:
         """Return registered TTS entities sorted by friendly name."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         entities = [
             {
                 "entity_id": state.entity_id,
@@ -668,7 +678,7 @@ class PreviewLightsView(HomeAssistantView):
 
     url = "/beatify/api/preview-lights"
     name = "beatify:api:preview-lights"
-    requires_auth = True  # #998 — actuates the host's lights; admin-only
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize view."""
@@ -676,6 +686,8 @@ class PreviewLightsView(HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Run a ~5s party lights preview on the given entity_ids."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         try:
             body = await request.json()
         except Exception:  # noqa: BLE001
@@ -710,7 +722,7 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
 
     url = "/beatify/api/tts-test"
     name = "beatify:api:tts-test"
-    requires_auth = True  # #998 — actuates the host's speakers; admin-only
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
 
     MAX_TTS_MESSAGE_LENGTH = 500
 
@@ -729,6 +741,8 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
         media player to route through (#793). Caller passes both:
         ``entity_id`` (the TTS entity) and ``media_player_entity_id``.
         """
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
