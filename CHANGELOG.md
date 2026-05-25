@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc12] - 2026-05-25
+
+### Fixed
+- **#1131 — Android Companion "join as host" hung forever after rc10/rc11.** `ensureAuthenticated()` ran OAuth even in Companion bypass mode: `getAccessToken() → null → login() → window.location = /auth/authorize`, which Companion's WebView blocks ("Invalid redirect URI"). The returned promise never resolved and `admin.js:2562` hung before sending the WS join message. `[WS-Debug] join` never logged because the JS hung before the send — confirmed by mholzi's "no WS-Debug entries in the log" report on rc11. iPhone Companion path was unaffected because `isCompanionBypassMode()` returns false there. rc12 short-circuits `ensureAuthenticated()` to `Promise.resolve(null)` when bypass mode is active; callers send `ha_token: null` and server-side `_is_ha_authenticated` already treats falsy tokens as the trigger to consult `is_companion_trusted_meta(ws.beatify_request_meta)` for the UA+RFC1918 accept.
+
+### Patch test totals
+- 22 / 22 ha-auth tests pass — new test asserts both the null return AND that `window.location.replace` is NOT called (no OAuth navigation).
+- No `.min.js` regeneration (ha-auth.js loaded directly).
+
 ## [3.4.3-rc11] - 2026-05-25
 
 Two changes that ride together because they're both prerequisites for unblocking the Android Companion player-join flow on rc10.
