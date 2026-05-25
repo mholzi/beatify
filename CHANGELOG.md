@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.3-rc15] - 2026-05-25
+
+### Fixed
+- **#1131 — "Network error. Please try again." alert on admin → Start game.** `EndGameView` and `StartGameplayView` extended `BeatifyAdminView` and inherited `requires_auth = True`. HA's middleware blocked Companion-bypass requests with a 401 HTML page *before* `is_authorized_http()` could consult the UA+RFC1918 trust signature. `admin.js`'s `response.json()` parsed the HTML, threw, and the catch surfaced `alert('Network error. Please try again.')`. Confirmed by mholzi's rc14 screenshot: home-view with QR (LOBBY created) + the native alert overlay. rc15 sets `requires_auth = False` on both views and calls `is_authorized_http()` at the top of each handler — same pattern `StartGameView` / `ForceResetView` / `RematchView` already use.
+
+### Patch test totals
+- 53 / 53 Python `companion_auth` + `game_views` pass.
+- No `.min.js` regeneration (Python-only change).
+
 ## [3.4.3-rc14] - 2026-05-25
 
 ### Fixed
