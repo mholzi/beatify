@@ -419,9 +419,17 @@ class EndGameView(BeatifyAdminView):
 
     url = "/beatify/api/end-game"
     name = "beatify:api:end-game"
+    # rc15 (#1131): HA's middleware-enforced auth would block the request
+    # before is_authorized_http() ever runs, so Companion bypass requests
+    # land on a generic 401 HTML page from HA → admin.js fetches it and
+    # response.json() throws → "Network error" alert. Match the pattern
+    # StartGameView / ForceResetView / RematchView already use.
+    requires_auth = False
 
-    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def post(self, request: web.Request) -> web.Response:
         """End the current game."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
 
@@ -547,9 +555,15 @@ class StartGameplayView(BeatifyAdminView):
 
     url = "/beatify/api/start-gameplay"
     name = "beatify:api:start-gameplay"
+    # rc15 (#1131): see EndGameView above — without this override,
+    # Companion-bypass requests get a HA-middleware 401 and the JSON parse
+    # fails on the admin client, surfacing as "Network error".
+    requires_auth = False
 
-    async def post(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def post(self, request: web.Request) -> web.Response:
         """Start gameplay from lobby."""
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
         data = self.hass.data.get(DOMAIN, {})
