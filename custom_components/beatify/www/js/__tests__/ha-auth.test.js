@@ -273,6 +273,14 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
         'Mozilla/5.0 (Linux; Android 16; Pixel 7 Pro) AppleWebKit/537.36 ' +
         '(KHTML, like Gecko) Chrome/Mobile Safari Home Assistant/2026.4.4-full';
 
+    // UA that has "Android" (so isAndroidCompanion() returns true via bridge
+    // detection) but NOT "Home Assistant" (so isCompanionBypassMode() = false).
+    // Bridge tests use this UA so they exercise the bridge code path — the full
+    // COMPANION_UA triggers bypass mode (#1153) and short-circuits getAccessToken()
+    // before the bridge is consulted.
+    const ANDROID_NO_HA_UA =
+        'Mozilla/5.0 (Linux; Android 16; Pixel 7 Pro) Chrome/Mobile Safari/537.36';
+
     // externalAppV2 is the modern, origin-checked Companion bridge added in
     // 2026.4.2 alongside the security fix GHSA-7jp2-p2fw-mgvf. JS → native:
     // postMessage({type:"getExternalAuth"}). Native → JS: invokes the fixed
@@ -333,11 +341,14 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
     }
 
     it('refreshAccess() uses externalAppV2.postMessage on modern Companion (no /beatify/auth/refresh fetch)', async () => {
+        // Uses ANDROID_NO_HA_UA: bridge IS consulted (isAndroidCompanion() returns
+        // true via _hasCompanionAuthBridge()), but bypass mode is NOT active
+        // (isCompanionBypassMode() requires both "Android" AND "Home Assistant").
         const bridge = externalAppV2Bridge({ respondWithToken: 'v2-token' });
         const fetchFn = async () => { throw new Error('should not fetch — Companion V2 path active'); };
         const { BeatifyAuth, sandboxWindow, cookieJar } = loadHaAuth({
             fetchFn,
-            userAgent: COMPANION_UA,
+            userAgent: ANDROID_NO_HA_UA,
             externalAppV2: bridge.externalAppV2,
         });
         bridge.window = sandboxWindow;
@@ -358,7 +369,7 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
         const fetchFn = async () => { throw new Error('should not fetch — Companion V1 path active'); };
         const { BeatifyAuth, sandboxWindow, cookieJar } = loadHaAuth({
             fetchFn,
-            userAgent: COMPANION_UA,
+            userAgent: ANDROID_NO_HA_UA,
             externalApp: bridge.externalApp,
         });
         bridge.window = sandboxWindow;
@@ -400,7 +411,7 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
         const fetchFn = async () => { throw new Error('should not fetch'); };
         const { BeatifyAuth, sandboxWindow } = loadHaAuth({
             fetchFn,
-            userAgent: COMPANION_UA,
+            userAgent: ANDROID_NO_HA_UA,
             externalApp: bridge.externalApp,
             externalAppV2: bridge.externalAppV2,
         });
@@ -507,6 +518,33 @@ describe('Companion bypass mode (#1131 — UA + RFC1918 trust on server)', () =>
         // Either undefined headers (no opts passed) or no Authorization key.
         const h = observedHeaders[0].headers;
         expect(h?.Authorization).toBeUndefined();
+    });
+
+    it('getAccessToken() returns null in bypass mode even when bridge is exposed (#1153)', async () => {
+        // rc10 showed the bridge either never replies or gives a token that HA's
+        // async_validate_access_token rejects → admin WS sends ERR_UNAUTHORIZED
+        // → recovery loop → visible "unauthorized message". In bypass mode
+        // getAccessToken() must return null so connectAdminWebSocket() sends
+        // ha_token: null; the server then accepts via UA+RFC1918 companion trust.
+        const bridgeCalls = [];
+        const fetchFn = async () => { throw new Error('should not fetch'); };
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({
+            fetchFn,
+            userAgent: COMPANION_UA, // full Android + "Home Assistant" UA → bypass mode
+            externalAppV2: {
+                postMessage(json) {
+                    bridgeCalls.push(JSON.parse(json));
+                    // bridge would reply with a token — but it must never be called
+                    setTimeout(() => {
+                        const fn = sandboxWindow.externalAuthSetToken;
+                        if (typeof fn === 'function') fn(true, { access_token: 'bridge-token', expires_in: 1800 });
+                    }, 0);
+                },
+            },
+        });
+        const token = await BeatifyAuth.getAccessToken();
+        expect(token).toBeNull();           // bypass mode → null, not the bridge token
+        expect(bridgeCalls).toHaveLength(0); // bridge was NOT called at all
     });
 
     it('ensureAuthenticated() resolves null in Companion bypass mode (rc12: no OAuth attempt)', async () => {

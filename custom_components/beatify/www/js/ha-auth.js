@@ -585,8 +585,18 @@
   /**
    * Return a valid access token, refreshing via the server if needed.
    * Resolves null when no session can be obtained without a redirect.
+   *
+   * #1153: In Companion bypass mode the server authenticates via UA+RFC1918,
+   * not a Bearer token. Calling refreshAccess() here would attempt the
+   * Companion bridge (isAndroidCompanion() && _hasCompanionAuthBridge()), which
+   * either never replies or returns a token HA's async_validate_access_token
+   * rejects. admin_connect then receives ERR_UNAUTHORIZED, the recovery loop
+   * exhausts, and the user sees the "unauthorized message". Return null
+   * immediately so connectAdminWebSocket() sends ha_token: null and the server
+   * falls through to is_companion_trusted_meta (UA+RFC1918 accept).
    */
   function getAccessToken() {
+    if (isCompanionBypassMode()) return Promise.resolve(null);
     if (accessFresh()) return Promise.resolve(storedAccess());
     return refreshAccess();
   }
