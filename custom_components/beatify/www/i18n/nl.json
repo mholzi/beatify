@@ -548,7 +548,6 @@
       "castToTv": "TV-dashboard openen",
       "printQr": "Afdrukken",
       "endGame": "Spel beëindigen",
-      "requestsTitle": "Afspeellijst-verzoeken",
       "joinAsPlayer": "Meedoen als speler",
       "setupTitle": "Nog niet ingesteld",
       "setupSub": "Duurt ongeveer 2 minuten. We leiden je door luidsprekers, muziekdienst, afspeellijsten en spelmodus.",
@@ -556,12 +555,7 @@
       "requestNew": "+ Nieuwe afspeellijst aanvragen",
       "needPlayerToStart": "Doe mee als speler (of laat een gast de QR scannen) voordat je begint.",
       "wsReconnecting": "Opnieuw verbinden met de spelserver — probeer het opnieuw.",
-      "waitingForGuests": "Wacht op gasten…",
-      "playlistRequestsTitle": "{count} playlistverzoeken",
-      "playlistRequestsReady": "{count} playlists klaar",
-      "playlistRequestsPending": "{count} open • tik om te bekijken",
-      "tapToReview": "Tik om te bekijken",
-      "tapToInstall": "Tik om te installeren"
+      "waitingForGuests": "Wacht op gasten…"
     }
   },
   "analyticsDashboard": {

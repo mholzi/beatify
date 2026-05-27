@@ -548,7 +548,6 @@
       "castToTv": "Ouvrir le tableau de bord TV",
       "printQr": "Imprimer",
       "endGame": "Terminer la partie",
-      "requestsTitle": "Demandes de playlist",
       "joinAsPlayer": "Rejoindre en joueur",
       "setupTitle": "Pas encore configuré",
       "setupSub": "Environ 2 minutes. On te guide à travers enceintes, service musical, playlists et mode de jeu.",
@@ -556,12 +555,7 @@
       "requestNew": "+ Demander une playlist",
       "needPlayerToStart": "Rejoins la partie (ou demande à un invité de scanner le QR) avant de commencer.",
       "wsReconnecting": "Reconnexion au serveur de jeu — réessaie.",
-      "waitingForGuests": "En attente des invités…",
-      "playlistRequestsTitle": "{count} demandes de playlist",
-      "playlistRequestsReady": "{count} playlists prêtes",
-      "playlistRequestsPending": "{count} en attente • touche pour vérifier",
-      "tapToReview": "Touche pour vérifier",
-      "tapToInstall": "Touche pour installer"
+      "waitingForGuests": "En attente des invités…"
     }
   },
   "analyticsDashboard": {

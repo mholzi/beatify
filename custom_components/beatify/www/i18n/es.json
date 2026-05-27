@@ -548,7 +548,6 @@
       "castToTv": "Abrir panel de TV",
       "printQr": "Imprimir",
       "endGame": "Terminar partida",
-      "requestsTitle": "Solicitudes de listas",
       "joinAsPlayer": "Unirse como jugador",
       "setupTitle": "Aún no has configurado",
       "setupSub": "Unos 2 minutos. Te guiamos por altavoces, servicio de música, listas y modo de juego.",
@@ -556,12 +555,7 @@
       "requestNew": "+ Solicitar nueva lista",
       "needPlayerToStart": "Únete como jugador (o pide a un invitado que escanee el QR) antes de empezar.",
       "wsReconnecting": "Reconectando con el servidor del juego — inténtalo de nuevo.",
-      "waitingForGuests": "Esperando a los invitados…",
-      "playlistRequestsTitle": "{count} solicitudes de playlist",
-      "playlistRequestsReady": "{count} playlists listas",
-      "playlistRequestsPending": "{count} pendientes • toca para revisar",
-      "tapToReview": "Toca para revisar",
-      "tapToInstall": "Toca para instalar"
+      "waitingForGuests": "Esperando a los invitados…"
     }
   },
   "analyticsDashboard": {
