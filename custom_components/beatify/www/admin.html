@@ -193,19 +193,6 @@
     </div>
 
     <main class="admin-content">
-        <!-- Home view — My Requests inline modal (read-only overview, stays in home-mode) -->
-        <div id="home-requests-modal" class="home-modal hidden" role="dialog" aria-modal="true" aria-labelledby="home-requests-modal-title">
-            <div class="home-modal-backdrop"></div>
-            <div class="home-modal-sheet">
-                <div class="home-modal-head">
-                    <h2 id="home-requests-modal-title" class="home-modal-title" data-i18n="admin.home.requestsTitle">Playlist requests</h2>
-                    <button type="button" id="home-requests-modal-close" class="home-modal-close" aria-label="Close">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                    </button>
-                </div>
-                <div id="home-requests-modal-list" class="home-modal-body"></div>
-            </div>
-        </div>
 
         <!-- Home view — canonical pre-session LOBBY landing.
              Shown when setup is complete (wizard just finished OR returning configured user).
@@ -248,19 +235,6 @@
                         <span aria-hidden="true">→</span>
                     </a>
                 </div>
-                <!-- My Requests pill — visible only when requests.length > 0. Tap to review. -->
-                <button type="button" id="home-requests-pill" class="home-requests-pill hidden" aria-label="Review playlist requests">
-                    <span class="home-requests-ic" aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 5.5A6.5 6.5 0 1 1 4.5 12"/><path d="M12 8v4l3 2"/><path d="M14 3l3-2v3h3"/>
-                        </svg>
-                    </span>
-                    <span class="home-requests-text">
-                        <span class="home-requests-title" id="home-requests-title">0 playlist requests</span>
-                        <span class="home-requests-sub" id="home-requests-sub"></span>
-                    </span>
-                    <span class="home-requests-arrow" aria-hidden="true">→</span>
-                </button>
                 <div class="home-players" id="home-players"></div>
                 <!-- Warning banner: shown when any player is still in the onboarding tour (v2) -->
                 <div class="home-learning-warning hidden" id="home-learning-warning" role="status" aria-live="polite"></div>

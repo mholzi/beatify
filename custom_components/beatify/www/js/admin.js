@@ -237,7 +237,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const v = document.getElementById('home-view');
             if (v) v.classList.remove('hidden');
             this.refresh();
-            this.refreshRequests();
             // Two paths: configured user → auto-create LOBBY + show QR. Unconfigured
             // user → show the setup prompt hero and wait for them to tap Start setup.
             if (this.isConfigured()) {
@@ -474,80 +473,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
         },
-        // Fetch playlist-build requests and show/hide the pill. Tap-to-open
-        // renders into the inline modal (stays in home-mode). "Manage in admin"
-        // still available as an escape hatch for delete / resubmit flows.
-        async openRequestsModal() {
-            const modal = document.getElementById('home-requests-modal');
-            const body = document.getElementById('home-requests-modal-list');
-            if (!modal || !body || !window.PlaylistRequests) return;
-
-            body.innerHTML = `<div class="home-modal-empty">Loading…</div>`;
-            modal.classList.remove('hidden');
-
-            let requests = [];
-            try {
-                requests = (await window.PlaylistRequests.getRequestsForDisplayAsync()) || [];
-            } catch (e) { /* show empty */ }
-
-            this.renderRequestsInto(requests);
-        },
-        // Re-render the modal body. Called by openRequestsModal AND by renderRequestsList()
-        // when underlying data changes — keeps the modal live without a manual refresh.
-        renderRequestsInto(requests) {
-            const body = document.getElementById('home-requests-modal-list');
-            if (!body) return;
-            requests = requests || [];
-            if (!requests.length) {
-                body.innerHTML = `<div class="home-modal-empty">No requests yet</div>`;
-                return;
-            }
-            body.innerHTML = requests.map((r) => buildRequestRowHtml(r, 'home-modal')).join('');
-        },
-        closeRequestsModal() {
-            document.getElementById('home-requests-modal')?.classList.add('hidden');
-        },
-        async refreshRequests() {
-            const pill = document.getElementById('home-requests-pill');
-            const titleEl = document.getElementById('home-requests-title');
-            const subEl = document.getElementById('home-requests-sub');
-            if (!pill || !window.PlaylistRequests) return;
-            let requests = [];
-            try {
-                requests = (await window.PlaylistRequests.getRequestsForDisplayAsync()) || [];
-            } catch (e) { /* network hiccup — leave pill hidden */ }
-
-            if (!requests.length) {
-                pill.classList.add('hidden');
-                return;
-            }
-
-            // Prioritize "ready" (actionable) count, fall back to total
-            const ready = requests.filter((r) => r.status === 'ready').length;
-            const pending = requests.filter((r) => r.status === 'pending').length;
-            const total = requests.length;
-
-            // #815: localize the requests pill text. Falls back to English
-            // if i18n hasn't loaded yet.
-            const t = (k, fb) => (window.BeatifyI18n && BeatifyI18n.t(k)) || fb;
-            if (titleEl) {
-                if (ready > 0) {
-                    titleEl.textContent = t('admin.home.playlistRequestsReady', `${ready} playlists ready`).replace('{count}', String(ready));
-                } else {
-                    titleEl.textContent = t('admin.home.playlistRequestsTitle', `${total} playlist requests`).replace('{count}', String(total));
-                }
-            }
-            if (subEl) {
-                if (ready > 0) {
-                    subEl.textContent = t('admin.home.tapToInstall', 'Tap to install');
-                } else if (pending > 0) {
-                    subEl.textContent = t('admin.home.playlistRequestsPending', `${pending} pending · tap to review`).replace('{count}', String(pending));
-                } else {
-                    subEl.textContent = t('admin.home.tapToReview', 'Tap to review');
-                }
-            }
-            pill.classList.remove('hidden');
-        },
         exit() {
             document.body.classList.remove('home-mode');
             const v = document.getElementById('home-view');
@@ -599,16 +524,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Pill click: open inline modal (stays in home-mode)
-    document.getElementById('home-requests-pill')?.addEventListener('click', () => {
-        window.BeatifyHome.openRequestsModal();
-    });
-    document.getElementById('home-requests-modal-close')?.addEventListener('click', () => {
-        window.BeatifyHome.closeRequestsModal();
-    });
-    document.querySelector('#home-requests-modal .home-modal-backdrop')?.addEventListener('click', () => {
-        window.BeatifyHome.closeRequestsModal();
-    });
     document.getElementById('home-edit-setup')?.addEventListener('click', () => {
         // "Edit setup" re-opens the wizard at Step 1 (not the legacy admin sections).
         // The wizard re-hydrates all picks from localStorage, so the user sees
@@ -3231,11 +3146,9 @@ const REQUEST_STATUS_LABELS = {
 };
 
 /**
- * Build the HTML for one request row. Variant:
- *   'legacy'    → wide card for the old #my-requests-list
- *   'home-modal' → compact row for the home-view modal
+ * Build the HTML for one request row (legacy #my-requests-list card).
  */
-function buildRequestRowHtml(request, variant) {
+function buildRequestRowHtml(request) {
     const statusLabel = REQUEST_STATUS_LABELS[request.status] || request.status;
     const playlistName = escapeHtml(request.playlist_name || request.name || 'Untitled request');
     const relativeTime = request.relative_time || '';
@@ -3243,24 +3156,6 @@ function buildRequestRowHtml(request, variant) {
         ? `<a href="https://github.com/mholzi/beatify/releases" target="_blank" rel="noopener" class="btn btn-primary request-update-btn">Update to v${escapeHtml(request.release_version || '')}</a>`
         : '';
 
-    if (variant === 'home-modal') {
-        const thumbHtml = request.thumbnail_url
-            ? `<img src="${request.thumbnail_url}" alt="">`
-            : '🎵';
-        const updateHomeBtn = (request.status === 'ready' && request.update_available)
-            ? `<a class="home-req-row-action" href="https://github.com/mholzi/beatify/releases" target="_blank" rel="noopener">Update</a>`
-            : '';
-        return `<div class="home-req-row">
-            <div class="home-req-row-thumb">${thumbHtml}</div>
-            <div class="home-req-row-text">
-                <div class="home-req-row-name">${playlistName}</div>
-                <div class="home-req-row-status ${request.status}">${statusLabel}${relativeTime ? ' · ' + escapeHtml(relativeTime) : ''}</div>
-            </div>
-            ${updateHomeBtn}
-        </div>`;
-    }
-
-    // legacy variant
     const thumbnail = request.thumbnail_url
         ? `<img class="request-item-thumbnail" src="${request.thumbnail_url}" alt="">`
         : `<div class="request-item-thumbnail-placeholder">🎵</div>`;
@@ -3286,16 +3181,6 @@ async function renderRequestsList() {
     // Load requests from backend (async)
     const requests = await window.PlaylistRequests.getRequestsForDisplayAsync();
 
-    // Sync the home-view pill + open modal (if any)
-    if (window.BeatifyHome) {
-        window.BeatifyHome.refreshRequests();
-        // Re-render the modal in place if it's currently open — keeps live updates flowing
-        const modal = document.getElementById('home-requests-modal');
-        if (modal && !modal.classList.contains('hidden')) {
-            window.BeatifyHome.renderRequestsInto(requests);
-        }
-    }
-
     // Legacy #my-requests section — null-safe so the section can be deleted later
     const section = document.getElementById('my-requests');
     const listContainer = document.getElementById('my-requests-list');
@@ -3312,7 +3197,7 @@ async function renderRequestsList() {
         emptyState?.classList.remove('hidden');
     } else {
         emptyState?.classList.add('hidden');
-        listContainer.innerHTML = requests.map((r) => buildRequestRowHtml(r, 'legacy')).join('');
+        listContainer.innerHTML = requests.map((r) => buildRequestRowHtml(r)).join('');
     }
 }
 

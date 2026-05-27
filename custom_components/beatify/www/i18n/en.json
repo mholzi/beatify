@@ -548,7 +548,6 @@
       "castToTv": "Open TV Dashboard",
       "printQr": "Print",
       "endGame": "End game",
-      "requestsTitle": "Playlist requests",
       "joinAsPlayer": "Join as player",
       "setupTitle": "You haven't set up yet",
       "setupSub": "Takes about 2 minutes. We'll walk you through speakers, music service, playlists, and game mode.",
@@ -556,12 +555,7 @@
       "requestNew": "+ Request new playlist",
       "needPlayerToStart": "Join as player (or ask a guest to scan the QR) before starting.",
       "wsReconnecting": "Reconnecting to game server — please try again.",
-      "waitingForGuests": "Waiting for guests…",
-      "playlistRequestsTitle": "{count} playlist requests",
-      "playlistRequestsReady": "{count} playlists ready",
-      "playlistRequestsPending": "{count} pending • tap to review",
-      "tapToReview": "Tap to review",
-      "tapToInstall": "Tap to install"
+      "waitingForGuests": "Waiting for guests…"
     }
   },
   "analyticsDashboard": {

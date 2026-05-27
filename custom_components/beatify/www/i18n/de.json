@@ -548,7 +548,6 @@
       "castToTv": "TV-Dashboard öffnen",
       "printQr": "Drucken",
       "endGame": "Spiel beenden",
-      "requestsTitle": "Playlist-Anfragen",
       "joinAsPlayer": "Als Spieler beitreten",
       "setupTitle": "Noch nicht eingerichtet",
       "setupSub": "Dauert etwa 2 Minuten. Wir führen dich durch Lautsprecher, Musikdienst, Playlists und Spielmodus.",
@@ -556,12 +555,7 @@
       "requestNew": "+ Neue Playlist anfragen",
       "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt.",
       "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen.",
-      "waitingForGuests": "Warte auf Gäste…",
-      "playlistRequestsTitle": "{count} Playlist-Anfragen",
-      "playlistRequestsReady": "{count} Playlists bereit",
-      "playlistRequestsPending": "{count} offen • zum Prüfen tippen",
-      "tapToReview": "Zum Prüfen tippen",
-      "tapToInstall": "Zum Installieren tippen"
+      "waitingForGuests": "Warte auf Gäste…"
     }
   },
   "analyticsDashboard": {
