@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.8",
+  "version": "2.9",
   "tags": [
     "classics",
     "top-hits",
@@ -7854,15 +7854,15 @@
       "year": 1978,
       "isrc": "FR22F8000900",
       "uri": "spotify:track:54OR1VDpfkBuOY5zZjhZAY",
-      "uri_apple_music": "applemusic://track/1874432085",
+      "uri_apple_music": null,
       "uri_apple_music_by_region": {
         "us": null,
-        "de": "applemusic://track/1874432085",
-        "gb": "applemusic://track/1874432085",
-        "fr": "applemusic://track/1874432085",
-        "es": "applemusic://track/1874432085",
-        "nl": "applemusic://track/1874432085",
-        "it": "applemusic://track/1874432085"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7-F8wkjKWg8",
       "uri_tidal": null,
