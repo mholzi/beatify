@@ -4,6 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.4] - 2026-05-28
+
+### Added
+- **essential-alternative — new community playlist (100 tracks).** 90s/2000s alternative rock (1991–2011), plays on all five providers. Built via the in-app "request a playlist" funnel. Closes #1134 (PR #1145).
+- **anime-openings grown 101 → 140 tracks.** 39 new opening/ending themes spanning two decades. Closes #1149 (PR #1156).
+
+### Fixed
+- **#1153 — Android Companion still showing "unauthorized" after v3.4.3.** One last login path missed in the v3.4.3 bypass rewrite; v3.4.4 routes it through the same path. Thanks to **@nelbs** for the screenshot the same day v3.4.3 landed (PR #1154).
+- **#1159 — Y.M.C.A. by Village People in `greatest-hits-of-all-time`.** Apple Music ID pointed at a "YMCA (Live)" recording that has since 404'd; replaced with the 1978 studio original (`1872720856`), verified in 6 storefront regions (PR #1161).
+- **#1162 — "Prelude and Rooftop" by Bernard Herrmann in `movies-100-greatest-themes`.** Apple Music IDs `600474544` + `599988249` returned 404 across all 7 regions; replaced with `1444008064` from the official *Vertigo (Original Motion Picture Soundtrack)* album (PR #1163). Caught by the weekly automated playlist-health-check.
+- **#1135 — Axwell /\\ Ingrosso "Sun Is Shining" tagged 2017, should be 2015.** Reported in-game by Simon Herzog (PR #1146).
+- **Jennifer Rush "The Power of Love" tagged 1985, should be 1984.** Single came out in West Germany December 1984; the UK 1985 release was the source of the old tag. Reported in-game by Ingo.
+
+### Changed
+- **Admin lobby: "N playlists ready · Tap to install" pill removed.** Useful info in the wrong place — playlist requests live in the setup view, not the lobby (PR #1158).
+
+### Chore
+- `ruff format` cleanup on `ws_handlers.py` to clear pre-existing main-Lint-Drift (PR #1164).
+
 ## [3.4.3-rc15] - 2026-05-25
 
 ### Fixed
