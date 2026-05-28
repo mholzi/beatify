@@ -164,12 +164,13 @@ async def handle_join(
     # surfaces on the client. Remove once #1131 lands stable.
     meta = getattr(ws, "beatify_request_meta", None)
     _LOGGER.info(
-        "[WS-Debug] join name=%r is_admin=%s ha_token_present=%s "
-        "phase=%s meta=%s",
+        "[WS-Debug] join name=%r is_admin=%s ha_token_present=%s phase=%s meta=%s",
         name,
         is_admin,
         bool(data.get("ha_token")),
-        game_state.phase.value if hasattr(game_state.phase, "value") else game_state.phase,
+        game_state.phase.value
+        if hasattr(game_state.phase, "value")
+        else game_state.phase,
         meta,
     )
 
@@ -180,8 +181,7 @@ async def handle_join(
 
     success, error_code = game_state.add_player(name, ws)
     _LOGGER.info(
-        "[WS-Debug] join add_player name=%r success=%s error_code=%s "
-        "was_existing=%s",
+        "[WS-Debug] join add_player name=%r success=%s error_code=%s was_existing=%s",
         name,
         success,
         error_code,
