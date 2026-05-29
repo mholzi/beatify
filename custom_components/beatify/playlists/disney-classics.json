@@ -1,0 +1,3428 @@
+{
+  "name": "Disney Classics",
+  "version": "1.0",
+  "tags": [
+    "disney",
+    "movies",
+    "soundtrack",
+    "family",
+    "international"
+  ],
+  "movie_quiz_enabled": true,
+  "songs": [
+    {
+      "year": 2016,
+      "artist": "Auli'i Cravalho",
+      "title": "How Far I'll Go",
+      "uri": "spotify:track:6mb6lVLNrcUgLnEN8QnDJd",
+      "alt_artists": [
+        "Lin-Manuel Miranda",
+        "Alessia Cara",
+        "Idina Menzel",
+        "Demi Lovato"
+      ],
+      "fun_fact": "Auli'i Cravalho recorded the song at 14, beating thousands at the casting call. Lin-Manuel Miranda wrote over 100 demo versions before locking the final lyric.",
+      "fun_fact_de": "Auli'i Cravalho war erst 14 Jahre alt bei der Aufnahme und setzte sich gegen Tausende Casting-Bewerberinnen durch. Lin-Manuel Miranda schrieb über 100 Demo-Versionen bevor die finale Fassung stand.",
+      "fun_fact_es": "Auli'i Cravalho tenía solo 14 años cuando grabó la canción, tras un casting con miles de aspirantes. Lin-Manuel Miranda escribió más de 100 versiones demo antes de fijar la letra definitiva.",
+      "fun_fact_fr": "Auli'i Cravalho avait seulement 14 ans lors de l'enregistrement et a été choisie parmi des milliers de candidates au casting. Lin-Manuel Miranda a écrit plus de 100 versions démo avant la version définitive.",
+      "fun_fact_nl": "Auli'i Cravalho was pas 14 toen ze de song opnam, geselecteerd uit duizenden auditiekandidaten. Lin-Manuel Miranda schreef meer dan 100 demoversies voordat de definitieve tekst vaststond.",
+      "chart_info": {},
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2017)",
+        "Grammy Award nomination for Best Song Written for Visual Media (2018)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2017)",
+        "Grammy-Nominierung für Best Song Written for Visual Media (2018)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2017)",
+        "Nominación al Grammy a la mejor canción escrita para medios visuales (2018)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2017)",
+        "Nomination au Grammy de la meilleure chanson écrite pour médias visuels (2018)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2017)",
+        "Grammy-nominatie voor Best Song Written for Visual Media (2018)"
+      ],
+      "uri_apple_music": "applemusic://track/1440639381",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cPAbx5kgCJo",
+      "movie": "Moana",
+      "movie_choices": [
+        "Moana",
+        "Frozen",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/136349848",
+      "isrc": "USWD11677855",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639381",
+        "de": "applemusic://track/1434821537",
+        "gb": "applemusic://track/1440639381",
+        "fr": "applemusic://track/1434821537",
+        "es": "applemusic://track/1434821537",
+        "nl": "applemusic://track/1434821537",
+        "it": "applemusic://track/1388083703"
+      }
+    },
+    {
+      "year": 2016,
+      "artist": "Dwayne Johnson",
+      "title": "You're Welcome",
+      "uri": "spotify:track:1gAqEg0gMyxJrM4DOOaYEA",
+      "alt_artists": [
+        "Dwayne Johnson",
+        "Lin-Manuel Miranda",
+        "Jordan Fisher"
+      ],
+      "fun_fact": "Dwayne Johnson rapped his part for the song in just two takes — he had warned the studio he was not a singer. Lin-Manuel Miranda built the rhythm specifically around Johnson's speaking voice.",
+      "fun_fact_de": "Dwayne Johnson nahm seinen Part in nur zwei Takes auf — er hatte das Studio gewarnt, er sei kein Sänger. Lin-Manuel Miranda baute den Rhythmus gezielt um Johnsons Sprechstimme.",
+      "fun_fact_es": "Dwayne Johnson grabó su parte en solo dos tomas — había advertido al estudio que no era cantante. Lin-Manuel Miranda construyó el ritmo en torno a la voz hablada de Johnson.",
+      "fun_fact_fr": "Dwayne Johnson a enregistré sa partie en seulement deux prises — il avait prévenu le studio qu'il n'était pas chanteur. Lin-Manuel Miranda a construit le rythme autour de la voix parlée de Johnson.",
+      "fun_fact_nl": "Dwayne Johnson nam zijn deel op in slechts twee takes — hij had de studio gewaarschuwd dat hij geen zanger was. Lin-Manuel Miranda bouwde het ritme rond Johnsons spreekstem.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440639393",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bhiLtH5X97w",
+      "movie": "Moana",
+      "movie_choices": [
+        "Moana",
+        "Tangled",
+        "Encanto"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/136349854",
+      "isrc": "USWD11677860",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639393",
+        "de": "applemusic://track/1684017918",
+        "gb": "applemusic://track/1440639393",
+        "fr": "applemusic://track/1264950420",
+        "es": "applemusic://track/1790581283",
+        "nl": "applemusic://track/1684017918",
+        "it": "applemusic://track/1420102384"
+      }
+    },
+    {
+      "year": 2016,
+      "artist": "Christopher Jackson, Rachel House, Nicole Scherzinger, Auli'i Cravalho & Louise Bush",
+      "title": "Where You Are",
+      "uri": "spotify:track:0KBgLJ9hRd40jq1DeuYmNM",
+      "alt_artists": [
+        "Christopher Jackson",
+        "Rachel House",
+        "Auli'i Cravalho",
+        "Lin-Manuel Miranda"
+      ],
+      "fun_fact": "The song was co-written by Lin-Manuel Miranda, Opetaia Foa'i and Mark Mancina. Christopher Jackson, who voices Chief Tui, had previously worked with Miranda in the original Broadway cast of Hamilton.",
+      "fun_fact_de": "Der Song wurde von Lin-Manuel Miranda, Opetaia Foa'i und Mark Mancina gemeinsam geschrieben. Christopher Jackson (Chief Tui) hatte zuvor mit Miranda in der Originalbesetzung von Hamilton am Broadway gespielt.",
+      "fun_fact_es": "La canción fue coescrita por Lin-Manuel Miranda, Opetaia Foa'i y Mark Mancina. Christopher Jackson, que da voz al jefe Tui, ya había trabajado con Miranda en el elenco original de Hamilton en Broadway.",
+      "fun_fact_fr": "La chanson a été co-écrite par Lin-Manuel Miranda, Opetaia Foa'i et Mark Mancina. Christopher Jackson, qui prête sa voix à Chef Tui, avait déjà travaillé avec Miranda dans la distribution originale de Hamilton à Broadway.",
+      "fun_fact_nl": "Het lied werd geschreven door Lin-Manuel Miranda, Opetaia Foa'i en Mark Mancina. Christopher Jackson, die Chief Tui inspreekt, werkte eerder met Miranda in de originele Hamilton-cast op Broadway.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440639292",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NVzDrqOmYiY",
+      "movie": "Moana",
+      "movie_choices": [
+        "Moana",
+        "Pocahontas",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2506660671",
+      "isrc": "DEUM72311526",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639292",
+        "de": "applemusic://track/1440638150",
+        "gb": "applemusic://track/1440639292",
+        "fr": "applemusic://track/1440638150",
+        "es": "applemusic://track/1570496908",
+        "nl": "applemusic://track/1440638150",
+        "it": "applemusic://track/1441715347"
+      }
+    },
+    {
+      "year": 2016,
+      "artist": "Opetaia Foa’i & Lin-Manuel Miranda",
+      "title": "We Know The Way",
+      "uri": "spotify:track:3RQgKATDv2oohwgqMoVZxC",
+      "alt_artists": [
+        "Opetaia Foa'i",
+        "Lin-Manuel Miranda",
+        "Te Vaka"
+      ],
+      "fun_fact": "Opetaia Foa'i sings parts of the song in Tokelauan — a Polynesian language with around 4,000 native speakers worldwide. It was the first Disney song ever sung in Tokelauan.",
+      "fun_fact_de": "Opetaia Foa'i singt Teile des Songs auf Tokelauan — einer polynesischen Sprache mit rund 4.000 Muttersprachlern weltweit. Es war der erste Disney-Song überhaupt auf Tokelauan.",
+      "fun_fact_es": "Opetaia Foa'i canta partes del tema en tokelauano — una lengua polinesia con apenas 4.000 hablantes nativos en todo el mundo. Fue la primera canción Disney en este idioma.",
+      "fun_fact_fr": "Opetaia Foa'i chante des passages en tokélaouan — une langue polynésienne comptant environ 4 000 locuteurs natifs dans le monde. C'était la toute première chanson Disney en tokélaouan.",
+      "fun_fact_nl": "Opetaia Foa'i zingt delen in het Tokelauaans — een Polynesische taal met wereldwijd slechts zo'n 4.000 moedertaalsprekers. Het was het eerste Disney-nummer ooit in deze taal.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440639389",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ubZrAmRxy_M",
+      "movie": "Moana",
+      "movie_choices": [
+        "Moana",
+        "Pocahontas",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/136349850",
+      "isrc": "USWD11677859",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639389",
+        "de": "applemusic://track/1264950425",
+        "gb": "applemusic://track/1440639389",
+        "fr": "applemusic://track/1714523830",
+        "es": "applemusic://track/1264950425",
+        "nl": "applemusic://track/1714523830",
+        "it": "applemusic://track/1264950425"
+      }
+    },
+    {
+      "year": 1994,
+      "artist": "JD McCrary, Shahadi Wright Joseph & John Oliver",
+      "title": "I Just Can't Wait to Be King",
+      "uri": "spotify:track:2xUdYfY3LpJb4Iv37RypnO",
+      "alt_artists": [
+        "Jason Weaver",
+        "Rowan Atkinson",
+        "Laura Williams",
+        "JD McCrary"
+      ],
+      "fun_fact": "In the 1994 film, Jason Weaver provided Simba's singing voice — and accepted a one-time fee instead of royalties, a decision that reportedly cost him millions over the decades.",
+      "fun_fact_de": "Im Film von 1994 sang Jason Weaver für Simba — und entschied sich für eine Einmalzahlung statt Tantiemen, eine Entscheidung die ihn über die Jahrzehnte Millionen kostete.",
+      "fun_fact_es": "En la película de 1994, Jason Weaver puso la voz cantada de Simba — y aceptó un pago único en lugar de regalías, una decisión que con los años le costó millones.",
+      "fun_fact_fr": "Dans le film de 1994, Jason Weaver prêtait sa voix chantée à Simba — et a accepté un paiement unique au lieu de droits d'auteur, une décision qui lui a coûté des millions au fil des décennies.",
+      "fun_fact_nl": "In de film uit 1994 zong Jason Weaver voor Simba — en koos hij voor een eenmalige betaling in plaats van royalty's, een keuze die hem in de loop der jaren miljoenen kostte.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1472083392",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ysb_gxJ8LE4",
+      "movie": "The Lion King",
+      "movie_choices": [
+        "The Lion King",
+        "The Jungle Book",
+        "Tarzan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/81105404",
+      "isrc": "USWD10321345",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1472083392",
+        "de": "applemusic://track/1472083392",
+        "gb": "applemusic://track/1472083392",
+        "fr": "applemusic://track/1472083392",
+        "es": "applemusic://track/1472083392",
+        "nl": "applemusic://track/1472083392",
+        "it": "applemusic://track/1472083392"
+      }
+    },
+    {
+      "year": 1994,
+      "artist": "Joseph Williams, Sally Dworsky, Nathan Lane, Ernie Sabella & Kristle Edwards",
+      "title": "Can You Feel the Love Tonight",
+      "uri": "spotify:track:32RxZnEk5KyWUTZR4azxbD",
+      "alt_artists": [
+        "Elton John",
+        "Joseph Williams",
+        "Sally Dworsky",
+        "Tim Rice"
+      ],
+      "fun_fact": "Elton John fought to keep the song in the film — the producers nearly cut it. It won the Academy Award for Best Original Song and the Golden Globe in 1995.",
+      "fun_fact_de": "Elton John kämpfte dafür, dass der Song im Film bleibt — die Produzenten wollten ihn fast streichen. Er gewann 1995 den Oscar für den besten Filmsong und den Golden Globe.",
+      "fun_fact_es": "Elton John luchó para que la canción permaneciera en la película — los productores estuvieron a punto de cortarla. Ganó el Óscar a la mejor canción original y el Globo de Oro en 1995.",
+      "fun_fact_fr": "Elton John s'est battu pour que la chanson reste dans le film — les producteurs avaient failli la couper. Elle a remporté l'Oscar de la meilleure chanson originale et le Golden Globe en 1995.",
+      "fun_fact_nl": "Elton John vocht om het nummer in de film te houden — de producenten wilden het bijna schrappen. Het won in 1995 de Oscar voor Beste Originele Song en de Golden Globe.",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 14,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (1995)",
+        "Golden Globe Award for Best Original Song (1995)",
+        "Grammy Award for Best Male Pop Vocal Performance (1995)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1995)",
+        "Golden Globe für den besten Filmsong (1995)",
+        "Grammy für die beste männliche Pop-Gesangsdarbietung (1995)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1995)",
+        "Globo de Oro a la mejor canción original (1995)",
+        "Grammy a la mejor interpretación vocal pop masculina (1995)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1995)",
+        "Golden Globe de la meilleure chanson originale (1995)",
+        "Grammy de la meilleure performance vocale pop masculine (1995)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1995)",
+        "Golden Globe voor Beste Originele Song (1995)",
+        "Grammy voor Best Male Pop Vocal Performance (1995)"
+      ],
+      "uri_apple_music": "applemusic://track/1442813103",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=25QyCxVkXwQ",
+      "movie": "The Lion King",
+      "movie_choices": [
+        "The Lion King",
+        "Beauty and the Beast",
+        "Aladdin"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3117869",
+      "isrc": "USWD10220758",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442813103",
+        "de": "applemusic://track/1442813103",
+        "gb": "applemusic://track/1442813103",
+        "fr": "applemusic://track/1442813103",
+        "es": "applemusic://track/1442813103",
+        "nl": "applemusic://track/1442813103",
+        "it": "applemusic://track/1442813103"
+      }
+    },
+    {
+      "year": 1994,
+      "artist": "Billy Eichner, Seth Rogen, JD McCrary & Donald Glover",
+      "title": "Hakuna Matata",
+      "uri": "spotify:track:1ymvyDsiAUbzEhmSkfCSYh",
+      "alt_artists": [
+        "Nathan Lane",
+        "Ernie Sabella",
+        "Jason Weaver",
+        "Billy Eichner",
+        "Seth Rogen"
+      ],
+      "fun_fact": "'Hakuna Matata' is Swahili for 'no worries'. Disney trademarked the phrase in 1994, which sparked international protest from Swahili speakers who consider it a common saying.",
+      "fun_fact_de": "'Hakuna Matata' ist Swahili für 'Keine Sorgen'. Disney ließ sich den Begriff 1994 als Marke schützen, was zu internationalem Protest von Swahili-Sprechern führte, die es als alltäglichen Ausdruck sehen.",
+      "fun_fact_es": "'Hakuna Matata' es suajili y significa 'sin preocupaciones'. Disney registró la frase como marca en 1994, lo que generó protestas internacionales de hablantes de suajili que lo consideran un dicho cotidiano.",
+      "fun_fact_fr": "« Hakuna Matata » signifie « sans souci » en swahili. Disney a déposé l'expression comme marque en 1994, ce qui a provoqué la protestation internationale des locuteurs swahili qui la considèrent comme une expression courante.",
+      "fun_fact_nl": "'Hakuna Matata' is Swahili voor 'geen zorgen'. Disney legde de term in 1994 vast als handelsmerk, wat tot internationaal protest leidde van Swahili-sprekers die het een alledaagse uitdrukking vinden.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1995)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1995)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1995)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1995)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1995)"
+      ],
+      "uri_apple_music": "applemusic://track/1472083402",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MBIWFTXQbi4",
+      "movie": "The Lion King",
+      "movie_choices": [
+        "The Lion King",
+        "The Jungle Book",
+        "Tarzan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/10067014",
+      "isrc": "USA371170545",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1472083402",
+        "de": "applemusic://track/1472083402",
+        "gb": "applemusic://track/1472083402",
+        "fr": "applemusic://track/1472083402",
+        "es": "applemusic://track/1472083402",
+        "nl": "applemusic://track/1472083402",
+        "it": "applemusic://track/1472083402"
+      }
+    },
+    {
+      "year": 1994,
+      "artist": "Jeremy Irons, Whoopi Goldberg, Cheech Marin & Jim Cummings",
+      "title": "Be Prepared",
+      "uri": "spotify:track:0thLjC4DpkwSpxX8bUe0EB",
+      "alt_artists": [
+        "Jeremy Irons",
+        "Whoopi Goldberg",
+        "Cheech Marin",
+        "Jim Cummings"
+      ],
+      "fun_fact": "Jeremy Irons strained his voice partway through recording, so Jim Cummings finished the second half — listen carefully and you can hear the change. The villain song was nearly cut from the film.",
+      "fun_fact_de": "Jeremy Irons brach sich mitten in der Aufnahme fast die Stimme, sodass Jim Cummings die zweite Hälfte übernahm — bei genauem Hinhören erkennt man den Wechsel. Der Bösewicht-Song wäre fast aus dem Film geflogen.",
+      "fun_fact_es": "Jeremy Irons forzó la voz a mitad de la grabación y Jim Cummings tuvo que terminar la segunda mitad — si se escucha con atención, se nota el cambio. Estuvieron a punto de cortar la canción del villano.",
+      "fun_fact_fr": "Jeremy Irons s'est cassé la voix en cours d'enregistrement et Jim Cummings a terminé la seconde moitié — en écoutant attentivement, on entend le changement. La chanson du méchant a failli être coupée du film.",
+      "fun_fact_nl": "Jeremy Irons forceerde zijn stem halverwege de opname, waarna Jim Cummings de tweede helft inzong — bij goed luisteren is de wissel hoorbaar. De schurkensong haalde bijna de film niet.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1445732929",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OEQmeTalXfM",
+      "movie": "The Lion King",
+      "movie_choices": [
+        "The Lion King",
+        "Aladdin",
+        "The Hunchback of Notre Dame"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2145306847",
+      "isrc": "QZDA52357127",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445732929",
+        "de": "applemusic://track/1445732929",
+        "gb": "applemusic://track/1445732929",
+        "fr": "applemusic://track/1445732929",
+        "es": "applemusic://track/1445732929",
+        "nl": "applemusic://track/1445732929",
+        "it": "applemusic://track/1445732929"
+      }
+    },
+    {
+      "year": 1998,
+      "artist": "Donny Osmond",
+      "title": "I'll Make a Man Out of You",
+      "uri": "spotify:track:28UMEtwyUUy5u0UWOVHwiI",
+      "alt_artists": [
+        "Donny Osmond",
+        "Lea Salonga",
+        "BD Wong",
+        "Beth Fowler"
+      ],
+      "fun_fact": "Donny Osmond sang Shang's musical number while BD Wong handled the speaking voice — and Osmond went uncredited in the original cinema release. It is the most-streamed song from Mulan on Spotify.",
+      "fun_fact_de": "Donny Osmond sang Shangs Musiknummer, während BD Wong die Sprechstimme übernahm — Osmond blieb im Original-Kinoabspann unerwähnt. Der Song ist der meistgestreamte aus Mulan auf Spotify.",
+      "fun_fact_es": "Donny Osmond cantó la parte musical de Shang, mientras BD Wong puso la voz hablada — Osmond no fue acreditado en el estreno original. Es la canción más reproducida de Mulan en Spotify.",
+      "fun_fact_fr": "Donny Osmond a chanté la partie musicale de Shang tandis que BD Wong en assurait la voix parlée — Osmond n'apparaissait pas au générique de la sortie cinéma. C'est le titre de Mulan le plus écouté sur Spotify.",
+      "fun_fact_nl": "Donny Osmond zong het muziekstuk van Shang, terwijl BD Wong de spreekstem deed — Osmond werd in de oorspronkelijke bioscoopcredits niet vermeld. Het is het meest gestreamde Mulan-nummer op Spotify.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440662805",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nExOFS6ZjeU",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Hercules",
+        "Tarzan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1377537512",
+      "isrc": "USWD10423004",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440662805",
+        "de": "applemusic://track/1440662805",
+        "gb": "applemusic://track/1440662805",
+        "fr": "applemusic://track/1440662805",
+        "es": "applemusic://track/1440662805",
+        "nl": "applemusic://track/1440662805",
+        "it": "applemusic://track/1440662805"
+      }
+    },
+    {
+      "year": 1998,
+      "artist": "Lea Salonga",
+      "title": "Reflection",
+      "uri": "spotify:track:2AILbz83cBnrAMAG06rZts",
+      "alt_artists": [
+        "Lea Salonga",
+        "Christina Aguilera",
+        "Ming-Na Wen"
+      ],
+      "fun_fact": "Lea Salonga sang the film version, with Ming-Na Wen handling the speaking voice. The Christina Aguilera pop version, released as a single, helped launch her solo career and was her first US Top-20 hit.",
+      "fun_fact_de": "Lea Salonga sang im Film, während Ming-Na Wen die Sprechstimme übernahm. Christina Aguileras Pop-Version startete als Single ihre Solokarriere und war ihr erster US-Top-20-Hit.",
+      "fun_fact_es": "Lea Salonga cantó la versión de la película, con Ming-Na Wen poniendo la voz hablada. La versión pop de Christina Aguilera, lanzada como sencillo, impulsó su carrera solista y fue su primer Top-20 en EE. UU.",
+      "fun_fact_fr": "Lea Salonga a chanté la version du film, Ming-Na Wen assurant la voix parlée. La version pop de Christina Aguilera, sortie en single, a lancé sa carrière solo et fut son premier Top 20 américain.",
+      "fun_fact_nl": "Lea Salonga zong de filmversie, met Ming-Na Wen als spreekstem. De popversie van Christina Aguilera, uitgebracht als single, lanceerde haar solocarrière en werd haar eerste Amerikaanse Top-20-hit.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440662804",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RNprQYHenNI",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Pocahontas",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1377537502",
+      "isrc": "USWD10110091",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440662804",
+        "de": "applemusic://track/1440662804",
+        "gb": "applemusic://track/1440662804",
+        "fr": "applemusic://track/1440662804",
+        "es": "applemusic://track/1440662804",
+        "nl": "applemusic://track/1440662804",
+        "it": "applemusic://track/1440662804"
+      }
+    },
+    {
+      "year": 1998,
+      "artist": "Lea Salonga, Harvey Fierstein, Matthew Wilder, James Hong & Jerry Tondo",
+      "title": "A Girl Worth Fighting For",
+      "uri": "spotify:track:3wjgPeXocinhLyPL37p70e",
+      "alt_artists": [
+        "Lea Salonga",
+        "Donny Osmond",
+        "Harvey Fierstein",
+        "Matthew Wilder"
+      ],
+      "fun_fact": "The song originally ended abruptly when the soldiers discover the burned villages — a deliberate tonal whiplash to mark the film's shift to its dramatic third act.",
+      "fun_fact_de": "Der Song endet bewusst abrupt, wenn die Soldaten die zerstörten Dörfer entdecken — ein bewusster Stimmungsbruch, der den Übergang in den dramatischen dritten Akt markiert.",
+      "fun_fact_es": "La canción termina de forma deliberadamente abrupta cuando los soldados descubren los pueblos arrasados — un giro tonal pensado para marcar el comienzo del tercer acto dramático.",
+      "fun_fact_fr": "La chanson s'arrête volontairement net lorsque les soldats découvrent les villages incendiés — un changement de ton voulu pour marquer le passage au troisième acte dramatique.",
+      "fun_fact_nl": "Het lied stopt bewust abrupt wanneer de soldaten de verwoeste dorpen ontdekken — een opzettelijke wisseling van toon die de overgang naar de dramatische derde akte markeert.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440662808",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0RCMM4qwz3U",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Hercules",
+        "The Hunchback of Notre Dame"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3262889141",
+      "isrc": "USWD10423390",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440662808",
+        "de": "applemusic://track/1440662808",
+        "gb": "applemusic://track/1440662808",
+        "fr": "applemusic://track/1440662808",
+        "es": "applemusic://track/1440662808",
+        "nl": "applemusic://track/1440662808",
+        "it": "applemusic://track/1440662808"
+      }
+    },
+    {
+      "year": 1998,
+      "artist": "Lea Salonga, Beth Fowler & Marnie Nixon",
+      "title": "Honor To Us All",
+      "uri": "spotify:track:78EMhiyAcalWWtnpk20Eoo",
+      "alt_artists": [
+        "Lea Salonga",
+        "Beth Fowler",
+        "Marni Nixon"
+      ],
+      "fun_fact": "Marni Nixon, the legendary ghost-singer for Audrey Hepburn in My Fair Lady and Natalie Wood in West Side Story, plays Grandmother Fa in Mulan — one of her last on-screen credits.",
+      "fun_fact_de": "Marni Nixon, die legendäre 'Geistersängerin' für Audrey Hepburn in My Fair Lady und Natalie Wood in West Side Story, spielt Großmutter Fa in Mulan — eine ihrer letzten Filmrollen.",
+      "fun_fact_es": "Marni Nixon, la legendaria 'voz fantasma' de Audrey Hepburn en My Fair Lady y Natalie Wood en West Side Story, interpreta a la abuela Fa en Mulan — uno de sus últimos créditos en pantalla.",
+      "fun_fact_fr": "Marni Nixon, légendaire « voix fantôme » d'Audrey Hepburn dans My Fair Lady et de Natalie Wood dans West Side Story, interprète Grand-mère Fa dans Mulan — l'un de ses derniers crédits à l'écran.",
+      "fun_fact_nl": "Marni Nixon, de legendarische 'ghost singer' voor Audrey Hepburn in My Fair Lady en Natalie Wood in West Side Story, vertolkt Grootmoeder Fa in Mulan — een van haar laatste film-credits.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440662319",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-1S9pYmpkG8",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Pocahontas",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1377537492",
+      "isrc": "USWD10322240",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440662319",
+        "de": "applemusic://track/1440662319",
+        "gb": "applemusic://track/1440662319",
+        "fr": "applemusic://track/1440662319",
+        "es": "applemusic://track/1440662319",
+        "nl": "applemusic://track/1440662319",
+        "it": "applemusic://track/1440662319"
+      }
+    },
+    {
+      "year": 1989,
+      "artist": "Samuel E. Wright",
+      "title": "Under the Sea",
+      "uri": "spotify:track:5ts818owahWjkhiBgMwlCX",
+      "alt_artists": [
+        "Samuel E. Wright",
+        "Sebastian",
+        "Howard Ashman"
+      ],
+      "fun_fact": "Howard Ashman wrote the lyric in roughly an hour after a calypso-themed pitch meeting. Samuel E. Wright's energetic performance won the song the Academy Award for Best Original Song in 1990.",
+      "fun_fact_de": "Howard Ashman schrieb den Text in etwa einer Stunde nach einem Pitch-Meeting im Calypso-Stil. Samuel E. Wrights energiegeladene Performance brachte dem Song 1990 den Oscar für den besten Filmsong ein.",
+      "fun_fact_es": "Howard Ashman escribió la letra en aproximadamente una hora tras una reunión de pitch con temática calipso. La enérgica interpretación de Samuel E. Wright le valió al tema el Óscar a la mejor canción original en 1990.",
+      "fun_fact_fr": "Howard Ashman a écrit le texte en une heure environ après une réunion de pitch sur le thème calypso. L'interprétation énergique de Samuel E. Wright a valu à la chanson l'Oscar de la meilleure chanson originale en 1990.",
+      "fun_fact_nl": "Howard Ashman schreef de tekst in ongeveer een uur na een pitchmeeting met calypsothema. Samuel E. Wrights energieke uitvoering bezorgde het nummer in 1990 de Oscar voor Beste Originele Song.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award for Best Original Song (1990)",
+        "Grammy Award for Best Song Written for Visual Media (1991)",
+        "Golden Globe nomination for Best Original Song (1990)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1990)",
+        "Grammy für Best Song Written for Visual Media (1991)",
+        "Golden-Globe-Nominierung für den besten Filmsong (1990)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1990)",
+        "Grammy a la mejor canción escrita para medios visuales (1991)",
+        "Nominación al Globo de Oro a la mejor canción original (1990)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1990)",
+        "Grammy de la meilleure chanson écrite pour médias visuels (1991)",
+        "Nomination au Golden Globe de la meilleure chanson originale (1990)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1990)",
+        "Grammy voor Best Song Written for Visual Media (1991)",
+        "Golden Globe-nominatie voor Beste Originele Song (1990)"
+      ],
+      "uri_apple_music": "applemusic://track/1440661297",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GC_mV1IpjWA",
+      "movie": "The Little Mermaid",
+      "movie_choices": [
+        "The Little Mermaid",
+        "Moana",
+        "Finding Nemo"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145187392",
+      "isrc": "USWD10220463",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440661297",
+        "de": "applemusic://track/1440661297",
+        "gb": "applemusic://track/1440661297",
+        "fr": "applemusic://track/1440661297",
+        "es": "applemusic://track/1440661297",
+        "nl": "applemusic://track/1440661297",
+        "it": "applemusic://track/1440661297"
+      }
+    },
+    {
+      "year": 1989,
+      "artist": "Jodi Benson",
+      "title": "Part of Your World",
+      "uri": "spotify:track:76Ozj8mlinMPzFCu9h0dQo",
+      "alt_artists": [
+        "Jodi Benson",
+        "Halle Bailey",
+        "Sierra Boggess"
+      ],
+      "fun_fact": "Studio chief Jeffrey Katzenberg wanted to cut the song after kids fidgeted during a test screening. Director Ron Clements insisted it stay — and the 'I want' number became a defining Disney moment.",
+      "fun_fact_de": "Studio-Chef Jeffrey Katzenberg wollte den Song streichen, weil Kinder beim Testscreening unruhig wurden. Regisseur Ron Clements bestand auf dem Verbleib — und die 'I want'-Nummer wurde zum prägenden Disney-Moment.",
+      "fun_fact_es": "El jefe del estudio Jeffrey Katzenberg quería cortar la canción tras ver a los niños inquietos en una proyección de prueba. El director Ron Clements insistió en mantenerla — y el número 'I want' se convirtió en un momento Disney emblemático.",
+      "fun_fact_fr": "Le patron du studio Jeffrey Katzenberg voulait couper la chanson après une projection-test où les enfants s'agitaient. Le réalisateur Ron Clements a insisté pour la garder — et ce moment 'I want' est devenu emblématique de Disney.",
+      "fun_fact_nl": "Studiobaas Jeffrey Katzenberg wilde het nummer schrappen nadat kinderen tijdens een testvertoning onrustig werden. Regisseur Ron Clements stond erop dat het bleef — en de 'I want'-song werd een iconisch Disney-moment.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440661296",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SXKlJuO07eM",
+      "movie": "The Little Mermaid",
+      "movie_choices": [
+        "The Little Mermaid",
+        "Moana",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145187390",
+      "isrc": "USWD10220403",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440661296",
+        "de": "applemusic://track/1440661296",
+        "gb": "applemusic://track/1440661296",
+        "fr": "applemusic://track/1440661296",
+        "es": "applemusic://track/1440661296",
+        "nl": "applemusic://track/1440661296",
+        "it": "applemusic://track/1440661296"
+      }
+    },
+    {
+      "year": 1989,
+      "artist": "Samuel E. Wright",
+      "title": "Kiss the Girl",
+      "uri": "spotify:track:0rK55dSZtz4zCUizkcJYpt",
+      "alt_artists": [
+        "Samuel E. Wright",
+        "Daveed Diggs",
+        "Ashley Tisdale"
+      ],
+      "fun_fact": "Samuel E. Wright sang the song live during recording, and the animators used his physical energy as direct reference for Sebastian's movements during the boat sequence.",
+      "fun_fact_de": "Samuel E. Wright sang den Song live während der Aufnahme, und die Animatoren nutzten seine körperliche Energie direkt als Referenz für Sebastians Bewegungen in der Bootsszene.",
+      "fun_fact_es": "Samuel E. Wright cantó la canción en directo durante la grabación, y los animadores usaron su energía física como referencia directa para los movimientos de Sebastian en la escena de la barca.",
+      "fun_fact_fr": "Samuel E. Wright a chanté le titre en direct pendant l'enregistrement, et les animateurs ont utilisé son énergie physique comme référence directe pour les mouvements de Sébastien dans la scène de la barque.",
+      "fun_fact_nl": "Samuel E. Wright zong het nummer live tijdens de opname, en de animators gebruikten zijn lichamelijke energie als directe referentie voor Sebastians bewegingen in de bootscène.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1990)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1990)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1990)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1990)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1990)"
+      ],
+      "uri_apple_music": "applemusic://track/1440661481",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3BNpW7cxzrw",
+      "movie": "The Little Mermaid",
+      "movie_choices": [
+        "The Little Mermaid",
+        "Beauty and the Beast",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145187400",
+      "isrc": "USWD10110093",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440661481",
+        "de": "applemusic://track/1440661481",
+        "gb": "applemusic://track/1440661481",
+        "fr": "applemusic://track/1440661481",
+        "es": "applemusic://track/1440661481",
+        "nl": "applemusic://track/1440661481",
+        "it": "applemusic://track/1440661481"
+      }
+    },
+    {
+      "year": 1989,
+      "artist": "Pat Carroll",
+      "title": "Poor Unfortunate Souls",
+      "uri": "spotify:track:7yyTZAgwQUy1a5kDjQJJNN",
+      "alt_artists": [
+        "Pat Carroll",
+        "Melissa McCarthy",
+        "Sarah Paulson"
+      ],
+      "fun_fact": "Ursula was originally written as Triton's sister, making her Ariel's aunt — a plot point dropped from the final film. Pat Carroll based the performance on drag legend Divine and Tallulah Bankhead.",
+      "fun_fact_de": "Ursula war ursprünglich als Tritons Schwester konzipiert — also Ariels Tante — ein Story-Element, das aus dem fertigen Film flog. Pat Carroll basierte ihre Performance auf Drag-Ikone Divine und Tallulah Bankhead.",
+      "fun_fact_es": "Originalmente, Úrsula era hermana de Tritón, lo que la convertía en tía de Ariel — un giro descartado en la versión final. Pat Carroll inspiró su interpretación en la leyenda drag Divine y en Tallulah Bankhead.",
+      "fun_fact_fr": "Ursula était à l'origine la sœur de Triton — donc la tante d'Ariel — un point d'intrigue abandonné dans le film final. Pat Carroll a basé son jeu sur la légende drag Divine et sur Tallulah Bankhead.",
+      "fun_fact_nl": "Ursula was oorspronkelijk Tritons zus, en dus Ariels tante — een plotelement dat de uiteindelijke film niet haalde. Pat Carroll baseerde haar vertolking op draglegende Divine en Tallulah Bankhead.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440661299",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YxrTRc0P_xs",
+      "movie": "The Little Mermaid",
+      "movie_choices": [
+        "The Little Mermaid",
+        "The Princess and the Frog",
+        "Hercules"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/145187396",
+      "isrc": "USWD10220402",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440661299",
+        "de": "applemusic://track/1440661299",
+        "gb": "applemusic://track/1440661299",
+        "fr": "applemusic://track/1440661299",
+        "es": "applemusic://track/1440661299",
+        "nl": "applemusic://track/1440661299",
+        "it": "applemusic://track/1440661299"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Idina Menzel",
+      "title": "Let It Go",
+      "uri": "spotify:track:600HVBpzF1WfBdaRwbEvLz",
+      "alt_artists": [
+        "Idina Menzel",
+        "Demi Lovato",
+        "Kristen Anderson-Lopez",
+        "Robert Lopez"
+      ],
+      "fun_fact": "The most-streamed Disney song ever on Spotify, with over 1 billion plays. It rewrote Frozen's plot — Elsa was originally written as a villain, but the song's emotional arc convinced the writers to make her a hero.",
+      "fun_fact_de": "Der meistgestreamte Disney-Song aller Zeiten auf Spotify mit über einer Milliarde Plays. Er veränderte die Frozen-Handlung — Elsa war ursprünglich als Bösewicht angelegt, doch der emotionale Bogen des Songs überzeugte die Autoren, sie zur Heldin zu machen.",
+      "fun_fact_es": "La canción Disney más reproducida en Spotify, con más de mil millones de escuchas. Reescribió la trama de Frozen — Elsa estaba inicialmente concebida como villana, pero el arco emocional del tema convenció a los guionistas de convertirla en heroína.",
+      "fun_fact_fr": "La chanson Disney la plus écoutée sur Spotify, avec plus d'un milliard de lectures. Elle a réécrit l'intrigue de La Reine des Neiges — Elsa était à l'origine conçue comme méchante, mais l'arc émotionnel du titre a convaincu les scénaristes d'en faire l'héroïne.",
+      "fun_fact_nl": "Het meest gestreamde Disney-nummer ooit op Spotify, met meer dan een miljard plays. Het herschreef het Frozen-verhaal — Elsa was oorspronkelijk als schurk bedacht, maar de emotionele boog van het lied overtuigde de schrijvers om haar een heldin te maken.",
+      "chart_info": {
+        "billboard_peak": 5,
+        "uk_peak": 11,
+        "weeks_on_chart": 39
+      },
+      "certifications": [
+        "Diamond (US)",
+        "3× Platinum (UK)",
+        "Diamond (France)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (2014)",
+        "Grammy Award for Best Song Written for Visual Media (2015)",
+        "Golden Globe nomination for Best Original Song (2014)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (2014)",
+        "Grammy für Best Song Written for Visual Media (2015)",
+        "Golden-Globe-Nominierung für den besten Filmsong (2014)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (2014)",
+        "Grammy a la mejor canción escrita para medios visuales (2015)",
+        "Nominación al Globo de Oro a la mejor canción original (2014)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (2014)",
+        "Grammy de la meilleure chanson écrite pour médias visuels (2015)",
+        "Nomination au Golden Globe de la meilleure chanson originale (2014)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (2014)",
+        "Grammy voor Best Song Written for Visual Media (2015)",
+        "Golden Globe-nominatie voor Beste Originele Song (2014)"
+      ],
+      "uri_apple_music": "applemusic://track/1440626764",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YVVTZgwYwVo",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Frozen 2",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371930",
+      "isrc": "USWD11366376",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440626764",
+        "de": "applemusic://track/1440626764",
+        "gb": "applemusic://track/1440626764",
+        "fr": "applemusic://track/1440626764",
+        "es": "applemusic://track/1440626764",
+        "nl": "applemusic://track/1440626764",
+        "it": "applemusic://track/1440626764"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Kristen Bell, Agatha Lee Monn & Katie Lopez",
+      "title": "Do You Want to Build a Snowman?",
+      "uri": "spotify:track:7Ctju5iILqGbvMKG6CgTl9",
+      "alt_artists": [
+        "Kristen Bell",
+        "Agatha Lee Monn",
+        "Katie Lopez"
+      ],
+      "fun_fact": "Kristen Bell voiced Anna at three ages — five, nine, and adult — and recorded each part separately. Child actresses provided the youngest singing voices.",
+      "fun_fact_de": "Kristen Bell sprach Anna in drei Lebensaltern — fünf, neun und erwachsen — und nahm jeden Part separat auf. Kinderdarstellerinnen übernahmen die jüngsten Gesangsstimmen.",
+      "fun_fact_es": "Kristen Bell puso voz a Anna a tres edades — cinco, nueve y adulta — grabando cada parte por separado. Actrices infantiles aportaron las voces más jóvenes.",
+      "fun_fact_fr": "Kristen Bell a prêté sa voix à Anna à trois âges — cinq, neuf ans et adulte — en enregistrant chaque partie séparément. Des enfants comédiennes ont assuré les voix les plus jeunes.",
+      "fun_fact_nl": "Kristen Bell sprak Anna in op drie leeftijden — vijf, negen en volwassen — en nam elk deel apart op. Jonge actrices verzorgden de jongste zangstemmen.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618183",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TeQ_TTyLGMs",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Tangled",
+        "Moana"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371923",
+      "isrc": "USWD11366364",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618183",
+        "de": "applemusic://track/1440618183",
+        "gb": "applemusic://track/1440618183",
+        "fr": "applemusic://track/1440618183",
+        "es": "applemusic://track/1440618183",
+        "nl": "applemusic://track/1440618183",
+        "it": "applemusic://track/1440618183"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Kristen Bell & Santino Fontana",
+      "title": "Love Is an Open Door",
+      "uri": "spotify:track:6PlHaDiKonFXoKz1Lbdn53",
+      "alt_artists": [
+        "Kristen Bell",
+        "Santino Fontana",
+        "Idina Menzel"
+      ],
+      "fun_fact": "Songwriters Kristen Anderson-Lopez and Robert Lopez wrote the duet as a deliberate parody of classic Disney love songs, with Hans positioned as the too-good-to-be-true Prince Charming.",
+      "fun_fact_de": "Die Songwriter Kristen Anderson-Lopez und Robert Lopez schrieben das Duett als bewusste Parodie auf klassische Disney-Liebeslieder, mit Hans als zu-perfektem Märchenprinzen.",
+      "fun_fact_es": "Los compositores Kristen Anderson-Lopez y Robert Lopez escribieron el dueto como una parodia deliberada de las clásicas canciones de amor Disney, con Hans como un príncipe encantador demasiado perfecto.",
+      "fun_fact_fr": "Les compositeurs Kristen Anderson-Lopez et Robert Lopez ont écrit le duo comme une parodie volontaire des chansons d'amour Disney classiques, avec Hans en prince charmant trop parfait.",
+      "fun_fact_nl": "De componisten Kristen Anderson-Lopez en Robert Lopez schreven het duet als een bewuste parodie op klassieke Disney-liefdesliedjes, met Hans als de té perfecte sprookjesprins.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618188",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kQDw88hEr2c",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Tangled",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371928",
+      "isrc": "USWD11366375",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618188",
+        "de": "applemusic://track/1440618188",
+        "gb": "applemusic://track/1440618188",
+        "fr": "applemusic://track/1440618188",
+        "es": "applemusic://track/1440618188",
+        "nl": "applemusic://track/1440618188",
+        "it": "applemusic://track/1440618188"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Kristen Bell & Idina Menzel",
+      "title": "For the First Time in Forever",
+      "uri": "spotify:track:1SCw7GSw06Fpk5vQilILui",
+      "alt_artists": [
+        "Kristen Bell",
+        "Idina Menzel"
+      ],
+      "fun_fact": "Kristen Bell is a lifelong Disney fan and reportedly cried when she got the role. The song contains hidden musical references to earlier 'I want' moments in Disney history.",
+      "fun_fact_de": "Kristen Bell ist bekennender Disney-Fan und weinte angeblich, als sie die Rolle bekam. Der Song enthält versteckte musikalische Anspielungen auf frühere 'I want'-Momente der Disney-Geschichte.",
+      "fun_fact_es": "Kristen Bell es fan declarada de Disney y, según ella, lloró al conseguir el papel. La canción incluye referencias musicales ocultas a anteriores momentos 'I want' de la historia Disney.",
+      "fun_fact_fr": "Kristen Bell est une fan inconditionnelle de Disney et aurait pleuré en obtenant le rôle. La chanson contient des références musicales discrètes à d'anciens moments « I want » de l'histoire Disney.",
+      "fun_fact_nl": "Kristen Bell is een levenslange Disney-fan en huilde naar verluidt toen ze de rol kreeg. Het lied bevat verborgen muzikale verwijzingen naar eerdere 'I want'-momenten uit de Disney-geschiedenis.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618186",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZrX1XKtShSI",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Tangled",
+        "Moana"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371927",
+      "isrc": "USWD11366365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618186",
+        "de": "applemusic://track/1440618186",
+        "gb": "applemusic://track/1440618186",
+        "fr": "applemusic://track/1440618186",
+        "es": "applemusic://track/1440618186",
+        "nl": "applemusic://track/1440618186",
+        "it": "applemusic://track/1440618186"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Maia Wilson & The Cast of Frozen",
+      "title": "Fixer Upper",
+      "uri": "spotify:track:3JOfOrmLwNGMyEKyXqVW4w",
+      "alt_artists": [
+        "Maia Wilson",
+        "Frozen Ensemble"
+      ],
+      "fun_fact": "The trolls' number was a late addition to the screenplay, written specifically to advance the romance between Anna and Kristoff and to set up the film's twist ending.",
+      "fun_fact_de": "Die Troll-Nummer war eine späte Ergänzung des Drehbuchs, geschrieben um die Romanze zwischen Anna und Kristoff voranzutreiben und die Wendung am Filmende vorzubereiten.",
+      "fun_fact_es": "El número de los trolls fue una incorporación tardía al guion, escrito específicamente para hacer avanzar el romance entre Anna y Kristoff y preparar el giro final de la película.",
+      "fun_fact_fr": "Le numéro des trolls a été ajouté tardivement au scénario, écrit pour faire avancer la romance entre Anna et Kristoff et préparer le retournement final du film.",
+      "fun_fact_nl": "Het trollennummer werd laat aan het scenario toegevoegd, speciaal om de romance tussen Anna en Kristoff te ontwikkelen en de plotwending op het eind voor te bereiden.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618291",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IyO-vdsgq1s",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Tangled",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371941",
+      "isrc": "USWD11366380",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618291",
+        "de": "applemusic://track/1440618291",
+        "gb": "applemusic://track/1440618291",
+        "fr": "applemusic://track/1440618291",
+        "es": "applemusic://track/1440618291",
+        "nl": "applemusic://track/1440618291",
+        "it": "applemusic://track/1440618291"
+      }
+    },
+    {
+      "year": 2013,
+      "artist": "Josh Gad",
+      "title": "In Summer",
+      "uri": "spotify:track:7bG6SQBGZthPDG5QJL5Gf7",
+      "alt_artists": [
+        "Josh Gad",
+        "Robert Lopez"
+      ],
+      "fun_fact": "Josh Gad improvised many of Olaf's physical gags during motion-capture sessions. The joke of the song rests on Olaf not realizing what summer would do to a snowman.",
+      "fun_fact_de": "Josh Gad improvisierte viele von Olafs körperlichen Gags bei den Motion-Capture-Sessions. Der Witz des Songs liegt darin, dass Olaf nicht begreift, was der Sommer einem Schneemann antut.",
+      "fun_fact_es": "Josh Gad improvisó muchos de los gags físicos de Olaf durante las sesiones de captura de movimiento. El chiste del tema reside en que Olaf no entiende lo que el verano le haría a un muñeco de nieve.",
+      "fun_fact_fr": "Josh Gad a improvisé de nombreux gags physiques d'Olaf lors des sessions de motion capture. La blague repose sur le fait qu'Olaf ne réalise pas ce que l'été ferait à un bonhomme de neige.",
+      "fun_fact_nl": "Josh Gad improviseerde veel van Olafs lichamelijke grappen tijdens de motion-capturesessies. De grap van het lied zit hem erin dat Olaf niet beseft wat de zomer met een sneeuwpop zou doen.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618285",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9tcaM06eGrY",
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Frozen 2",
+        "The Snowman"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72371935",
+      "isrc": "USWD11366378",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618285",
+        "de": "applemusic://track/1440618285",
+        "gb": "applemusic://track/1440618285",
+        "fr": "applemusic://track/1440618285",
+        "es": "applemusic://track/1440618285",
+        "nl": "applemusic://track/1440618285",
+        "it": "applemusic://track/1440618285"
+      }
+    },
+    {
+      "year": 1992,
+      "artist": "Lea Salonga & Brad Kane",
+      "title": "A Whole New World",
+      "uri": "spotify:track:5VIfacsWytkcgr7aTt8Tql",
+      "alt_artists": [
+        "Brad Kane",
+        "Lea Salonga",
+        "Peabo Bryson",
+        "Regina Belle",
+        "Mena Massoud",
+        "Naomi Scott"
+      ],
+      "fun_fact": "Brad Kane and Lea Salonga sang the film version, while the pop duet by Peabo Bryson and Regina Belle won the Academy Award and Grammy. It became the first Disney song to top the Billboard Hot 100.",
+      "fun_fact_de": "Brad Kane und Lea Salonga sangen die Filmversion, während das Pop-Duett von Peabo Bryson und Regina Belle den Oscar und den Grammy gewann. Es war der erste Disney-Song, der die Billboard Hot 100 anführte.",
+      "fun_fact_es": "Brad Kane y Lea Salonga cantaron la versión de la película, mientras que el dúo pop de Peabo Bryson y Regina Belle ganó el Óscar y el Grammy. Fue la primera canción Disney en alcanzar el número uno del Billboard Hot 100.",
+      "fun_fact_fr": "Brad Kane et Lea Salonga ont chanté la version du film, tandis que le duo pop de Peabo Bryson et Regina Belle a remporté l'Oscar et le Grammy. C'est la première chanson Disney à atteindre la première place du Billboard Hot 100.",
+      "fun_fact_nl": "Brad Kane en Lea Salonga zongen de filmversie, terwijl het popduet van Peabo Bryson en Regina Belle de Oscar en Grammy wonnen. Het was het eerste Disney-nummer dat de top van de Billboard Hot 100 bereikte.",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 12,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (1993)",
+        "Grammy Award for Song of the Year (1994)",
+        "Golden Globe Award for Best Original Song (1993)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1993)",
+        "Grammy für den Song des Jahres (1994)",
+        "Golden Globe für den besten Filmsong (1993)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1993)",
+        "Grammy a la canción del año (1994)",
+        "Globo de Oro a la mejor canción original (1993)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1993)",
+        "Grammy de la chanson de l'année (1994)",
+        "Golden Globe de la meilleure chanson originale (1993)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1993)",
+        "Grammy voor Lied van het Jaar (1994)",
+        "Golden Globe voor Beste Originele Song (1993)"
+      ],
+      "uri_apple_music": "applemusic://track/1440722284",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eitDnP0_83k",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "The Lion King",
+        "Beauty and the Beast"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7703143",
+      "isrc": "USWD10423000",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440722284",
+        "de": "applemusic://track/1440722284",
+        "gb": "applemusic://track/1440722284",
+        "fr": "applemusic://track/1440722284",
+        "es": "applemusic://track/1440722284",
+        "nl": "applemusic://track/1440722284",
+        "it": "applemusic://track/1440722284"
+      }
+    },
+    {
+      "year": 1992,
+      "artist": "Brad Kane",
+      "title": "One Jump Ahead",
+      "uri": "spotify:track:4wN8Ov3kPZdkJ8XcYxYUGz",
+      "alt_artists": [
+        "Brad Kane",
+        "Mena Massoud"
+      ],
+      "fun_fact": "Scott Weinger spoke for Aladdin, but Brad Kane took over the singing — at the time Weinger was best known as Steve on the sitcom Full House. Kane never appeared on screen.",
+      "fun_fact_de": "Scott Weinger sprach Aladdin, doch Brad Kane übernahm den Gesangspart — Weinger war damals als Steve aus der Sitcom Full House bekannt. Kane war nie im Bild zu sehen.",
+      "fun_fact_es": "Scott Weinger ponía la voz hablada de Aladdín, pero Brad Kane se encargó del canto — Weinger era entonces conocido por interpretar a Steve en la sitcom Full House. Kane nunca apareció en pantalla.",
+      "fun_fact_fr": "Scott Weinger prêtait sa voix parlée à Aladdin, mais Brad Kane assurait la voix chantée — Weinger était alors connu pour le rôle de Steve dans la sitcom Full House. Kane n'apparaissait jamais à l'écran.",
+      "fun_fact_nl": "Scott Weinger sprak Aladdin in, maar Brad Kane nam het zingen voor zijn rekening — Weinger was destijds vooral bekend als Steve uit de sitcom Full House. Kane was nooit in beeld.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440722268",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jtvc8DXNO4Q",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Hercules",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/120917654",
+      "isrc": "USWD10423200",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440722268",
+        "de": "applemusic://track/1440722268",
+        "gb": "applemusic://track/1440722268",
+        "fr": "applemusic://track/1440722268",
+        "es": "applemusic://track/1440722268",
+        "nl": "applemusic://track/1440722268",
+        "it": "applemusic://track/1440722268"
+      }
+    },
+    {
+      "year": 1992,
+      "artist": "Bruce Adler",
+      "title": "Arabian Nights",
+      "uri": "spotify:track:0CKmN3Wwk8W4zjU0pqq2cv",
+      "alt_artists": [
+        "Bruce Adler",
+        "Will Smith"
+      ],
+      "fun_fact": "The original 1992 lyric included lines later considered offensive to Arab audiences; subsequent home-video and 2019 releases revised the verse after protests.",
+      "fun_fact_de": "Der Originaltext von 1992 enthielt Zeilen, die später als beleidigend für ein arabisches Publikum galten; nach Protesten wurde die Strophe in späteren Heimkino- und 2019er-Veröffentlichungen geändert.",
+      "fun_fact_es": "La letra original de 1992 incluía versos considerados ofensivos para el público árabe; tras las protestas, las versiones posteriores en vídeo y la película de 2019 revisaron la estrofa.",
+      "fun_fact_fr": "Le texte original de 1992 comportait des paroles jugées offensantes pour le public arabe ; après protestation, les sorties vidéo ultérieures et le film de 2019 ont révisé le couplet.",
+      "fun_fact_nl": "De oorspronkelijke tekst uit 1992 bevatte regels die later als beledigend voor het Arabische publiek werden gezien; na protesten werden ze in latere videoreleases en in 2019 herzien.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1445883242",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T9GmO_WFhjQ",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "The Prince of Egypt",
+        "Sinbad"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/120917650",
+      "isrc": "USWD10423197",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445883242",
+        "de": "applemusic://track/1445883242",
+        "gb": "applemusic://track/1445883242",
+        "fr": "applemusic://track/1445883242",
+        "es": "applemusic://track/1445883242",
+        "nl": "applemusic://track/1445883242",
+        "it": "applemusic://track/1445883242"
+      }
+    },
+    {
+      "year": 1995,
+      "artist": "Judy Kuhn",
+      "title": "Colors of the Wind",
+      "uri": "spotify:track:1OYOLWqKmhkFIx2KC9ek1a",
+      "alt_artists": [
+        "Judy Kuhn",
+        "Vanessa Williams",
+        "Alan Menken",
+        "Stephen Schwartz"
+      ],
+      "fun_fact": "Vanessa Williams's pop version became a No. 1 hit on the Billboard Hot 100. The song, written by Alan Menken and Stephen Schwartz, won the Oscar, the Golden Globe and the Grammy in the same season.",
+      "fun_fact_de": "Vanessa Williams' Pop-Version wurde ein Nummer-1-Hit der Billboard Hot 100. Der Song von Alan Menken und Stephen Schwartz gewann in derselben Saison Oscar, Golden Globe und Grammy.",
+      "fun_fact_es": "La versión pop de Vanessa Williams alcanzó el número 1 del Billboard Hot 100. La canción, escrita por Alan Menken y Stephen Schwartz, ganó el Óscar, el Globo de Oro y el Grammy en la misma temporada.",
+      "fun_fact_fr": "La version pop de Vanessa Williams a atteint la première place du Billboard Hot 100. La chanson, écrite par Alan Menken et Stephen Schwartz, a remporté l'Oscar, le Golden Globe et le Grammy la même saison.",
+      "fun_fact_nl": "Vanessa Williams' popversie werd een nummer 1-hit in de Billboard Hot 100. Het door Alan Menken en Stephen Schwartz geschreven nummer won in hetzelfde seizoen de Oscar, de Golden Globe en de Grammy.",
+      "chart_info": {
+        "billboard_peak": 4,
+        "uk_peak": 21,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (1996)",
+        "Grammy Award for Best Song Written for Visual Media (1997)",
+        "Golden Globe Award for Best Original Song (1996)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1996)",
+        "Grammy für Best Song Written for Visual Media (1997)",
+        "Golden Globe für den besten Filmsong (1996)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1996)",
+        "Grammy a la mejor canción escrita para medios visuales (1997)",
+        "Globo de Oro a la mejor canción original (1996)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1996)",
+        "Grammy de la meilleure chanson écrite pour médias visuels (1997)",
+        "Golden Globe de la meilleure chanson originale (1996)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1996)",
+        "Grammy voor Best Song Written for Visual Media (1997)",
+        "Golden Globe voor Beste Originele Song (1996)"
+      ],
+      "uri_apple_music": "applemusic://track/1440720093",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hcmpj5HPue0",
+      "movie": "Pocahontas",
+      "movie_choices": [
+        "Pocahontas",
+        "The Lion King",
+        "Mulan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3118641",
+      "isrc": "USWD10423005",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440720093",
+        "de": "applemusic://track/1440720093",
+        "gb": "applemusic://track/1440720093",
+        "fr": "applemusic://track/1440720093",
+        "es": "applemusic://track/1440720093",
+        "nl": "applemusic://track/1440720093",
+        "it": "applemusic://track/1440720093"
+      }
+    },
+    {
+      "year": 1995,
+      "artist": "Judy Kuhn",
+      "title": "Just Around the Riverbend",
+      "uri": "spotify:track:3SZXvtZabmTK2oRmdSjfBO",
+      "alt_artists": [
+        "Judy Kuhn",
+        "Vanessa Williams"
+      ],
+      "fun_fact": "Judy Kuhn provided Pocahontas's singing voice while Irene Bedard handled the spoken role. Pocahontas remains one of the very few Disney princesses based on a historical figure.",
+      "fun_fact_de": "Judy Kuhn übernahm Pocahontas' Gesangsstimme, während Irene Bedard die Sprechrolle spielte. Pocahontas zählt zu den wenigen Disney-Prinzessinnen, die auf einer realen Person basieren.",
+      "fun_fact_es": "Judy Kuhn aportó la voz cantada de Pocahontas mientras Irene Bedard ponía la voz hablada. Pocahontas es una de las pocas princesas Disney basadas en un personaje histórico real.",
+      "fun_fact_fr": "Judy Kuhn assurait la voix chantée de Pocahontas tandis qu'Irene Bedard en faisait la voix parlée. Pocahontas est l'une des rares princesses Disney inspirées d'un personnage historique réel.",
+      "fun_fact_nl": "Judy Kuhn verzorgde de zangstem van Pocahontas terwijl Irene Bedard de spreekrol speelde. Pocahontas is een van de weinige Disney-prinsessen die op een historische figuur is gebaseerd.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440720085",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x6kl9oW2NRU",
+      "movie": "Pocahontas",
+      "movie_choices": [
+        "Pocahontas",
+        "Moana",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/122832110",
+      "isrc": "USWD10220442",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440720085",
+        "de": "applemusic://track/1440720085",
+        "gb": "applemusic://track/1440720085",
+        "fr": "applemusic://track/1440720085",
+        "es": "applemusic://track/1440720085",
+        "nl": "applemusic://track/1440720085",
+        "it": "applemusic://track/1440720085"
+      }
+    },
+    {
+      "year": 1997,
+      "artist": "Roger Bart",
+      "title": "Go the Distance",
+      "uri": "spotify:track:0D1OY0M5A0qD5HGBvFmFid",
+      "alt_artists": [
+        "Roger Bart",
+        "Michael Bolton",
+        "Alan Menken"
+      ],
+      "fun_fact": "Roger Bart performed the in-film version while Michael Bolton recorded the pop release. Bolton's single earned a Golden Globe nomination and the song was Oscar-nominated.",
+      "fun_fact_de": "Roger Bart sang die Filmversion, während Michael Bolton die Pop-Auskopplung aufnahm. Boltons Single brachte eine Golden-Globe-Nominierung, der Song selbst wurde für den Oscar nominiert.",
+      "fun_fact_es": "Roger Bart interpretó la versión de la película, mientras Michael Bolton grabó la versión pop como sencillo. La de Bolton recibió una nominación al Globo de Oro y la canción fue nominada al Óscar.",
+      "fun_fact_fr": "Roger Bart a chanté la version du film tandis que Michael Bolton enregistrait la version pop en single. Le single de Bolton a obtenu une nomination aux Golden Globes et la chanson fut nommée aux Oscars.",
+      "fun_fact_nl": "Roger Bart zong de filmversie terwijl Michael Bolton de popsingle opnam. Boltons single werd genomineerd voor een Golden Globe en het nummer kreeg een Oscarnominatie.",
+      "chart_info": {
+        "billboard_peak": 24,
+        "uk_peak": 37,
+        "weeks_on_chart": 20
+      },
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1998)",
+        "Golden Globe nomination for Best Original Song (1998)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1998)",
+        "Golden-Globe-Nominierung für den besten Filmsong (1998)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1998)",
+        "Nominación al Globo de Oro a la mejor canción original (1998)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1998)",
+        "Nomination au Golden Globe de la meilleure chanson originale (1998)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1998)",
+        "Golden Globe-nominatie voor Beste Originele Song (1998)"
+      ],
+      "uri_apple_music": "applemusic://track/1412859027",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=44LambNZgd4",
+      "movie": "Hercules",
+      "movie_choices": [
+        "Hercules",
+        "Mulan",
+        "Tarzan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/531228861",
+      "isrc": "USWD10220438",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1412859027",
+        "de": "applemusic://track/1412859027",
+        "gb": "applemusic://track/1412859027",
+        "fr": "applemusic://track/1412859027",
+        "es": "applemusic://track/1412859027",
+        "nl": "applemusic://track/1412859027",
+        "it": "applemusic://track/1412859027"
+      }
+    },
+    {
+      "year": 1997,
+      "artist": "Healing Energy",
+      "title": "I Won't Say (I'm in Love)",
+      "uri": "spotify:track:0PKmDncVOiNQLO6D1P6PXi",
+      "alt_artists": [
+        "Susan Egan",
+        "Lillias White",
+        "Tawatha Agee",
+        "Roz Ryan"
+      ],
+      "fun_fact": "The song channels the sound of 1940s girl-group records and is performed in character by the Muses. Meg is one of the few Disney heroines written with overtly sardonic humor.",
+      "fun_fact_de": "Der Song greift den Sound der Girl-Group-Aufnahmen der 1940er auf und wird in der Geschichte von den Musen vorgetragen. Meg ist eine der wenigen Disney-Heldinnen mit ausgesprochen zynischem Humor.",
+      "fun_fact_es": "La canción evoca el sonido de los grupos vocales femeninos de los años 40 y la interpretan en la trama las Musas. Meg es una de las pocas heroínas Disney con un humor abiertamente sardónico.",
+      "fun_fact_fr": "Le titre rappelle le son des « girl groups » des années 1940 et est interprété dans l'histoire par les Muses. Meg est l'une des rares héroïnes Disney au sens de l'humour ouvertement sarcastique.",
+      "fun_fact_nl": "Het lied roept de sound op van de meidengroepen uit de jaren 40 en wordt in het verhaal door de Muzen gezongen. Meg is een van de weinige Disney-heldinnen met openlijk sardonische humor.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1784845460",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DPMjsfJwUow",
+      "movie": "Hercules",
+      "movie_choices": [
+        "Hercules",
+        "Aladdin",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/957383232",
+      "isrc": "JPE562011237",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784845460",
+        "de": "applemusic://track/1784845460",
+        "gb": "applemusic://track/1784845460",
+        "fr": "applemusic://track/1784845460",
+        "es": "applemusic://track/1784845460",
+        "nl": "applemusic://track/1784845460",
+        "it": "applemusic://track/1784845460"
+      }
+    },
+    {
+      "year": 1997,
+      "artist": "Lillias White, Cheryl Freeman, LaChanze, Roz Ryan, Vaneese Thomas & Tawatha Agee",
+      "title": "Zero to Hero",
+      "uri": "spotify:track:4zDfgax6Ihb0UWdour1ZEs",
+      "alt_artists": [
+        "Lillias White",
+        "Vaneese Y. Thomas",
+        "Roz Ryan",
+        "Cheryl Freeman"
+      ],
+      "fun_fact": "The Muses were modeled after the chorus of ancient Greek theatre, with their performance grounded in 1960s Motown soul to mirror the song's mid-film fame-montage.",
+      "fun_fact_de": "Die Musen sind dem Chor des antiken griechischen Theaters nachempfunden, ihre Performance ist im 1960er-Motown-Soul verankert, um die Ruhm-Montage in der Mitte des Films zu unterstreichen.",
+      "fun_fact_es": "Las Musas están inspiradas en el coro del teatro griego antiguo, con una interpretación enraizada en el soul Motown de los años 60 para acompañar el montaje de la fama del medio del filme.",
+      "fun_fact_fr": "Les Muses s'inspirent du chœur du théâtre grec antique, leur interprétation s'ancre dans la soul Motown des années 1960 pour accompagner le montage de la gloire au milieu du film.",
+      "fun_fact_nl": "De Muzen zijn gebaseerd op het koor van het oude Griekse theater, en hun uitvoering is geworteld in de Motown-soul van de jaren 60 om de roem-montage halverwege de film te ondersteunen.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1412859037",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=woO9FidFa6o",
+      "movie": "Hercules",
+      "movie_choices": [
+        "Hercules",
+        "The Lion King",
+        "Aladdin"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3272583431",
+      "isrc": "USNLR2500155",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1412859037",
+        "de": "applemusic://track/1412859037",
+        "gb": "applemusic://track/1412859037",
+        "fr": "applemusic://track/1412859037",
+        "es": "applemusic://track/1412859037",
+        "nl": "applemusic://track/1412859037",
+        "it": "applemusic://track/1412859037"
+      }
+    },
+    {
+      "year": 1999,
+      "artist": "Phil Collins",
+      "title": "You'll Be In My Heart",
+      "uri": "spotify:track:4Y8vb1uy9IjM2V1hqvrAid",
+      "alt_artists": [
+        "Phil Collins",
+        "Glenn Close",
+        "*NSYNC"
+      ],
+      "fun_fact": "Phil Collins re-recorded the soundtrack in five languages including German, French and Italian. The song won the Academy Award and Golden Globe for Best Original Song in 2000.",
+      "fun_fact_de": "Phil Collins nahm den Soundtrack in fünf Sprachen neu auf — darunter Deutsch, Französisch und Italienisch. Der Song gewann 2000 Oscar und Golden Globe als bester Filmsong.",
+      "fun_fact_es": "Phil Collins regrabó la banda sonora en cinco idiomas — entre ellos alemán, francés e italiano. El tema ganó el Óscar y el Globo de Oro a la mejor canción original en 2000.",
+      "fun_fact_fr": "Phil Collins a réenregistré la bande originale en cinq langues, dont l'allemand, le français et l'italien. La chanson a remporté l'Oscar et le Golden Globe de la meilleure chanson originale en 2000.",
+      "fun_fact_nl": "Phil Collins nam de soundtrack opnieuw op in vijf talen, waaronder Duits, Frans en Italiaans. Het lied won in 2000 de Oscar en de Golden Globe voor Beste Originele Song.",
+      "chart_info": {
+        "billboard_peak": 21,
+        "uk_peak": 17,
+        "weeks_on_chart": 19
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (2000)",
+        "Golden Globe Award for Best Original Song (2000)",
+        "Grammy Award for Best Song Written for Visual Media (2001)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (2000)",
+        "Golden Globe für den besten Filmsong (2000)",
+        "Grammy für Best Song Written for Visual Media (2001)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (2000)",
+        "Globo de Oro a la mejor canción original (2000)",
+        "Grammy a la mejor canción escrita para medios visuales (2001)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (2000)",
+        "Golden Globe de la meilleure chanson originale (2000)",
+        "Grammy de la meilleure chanson écrite pour médias visuels (2001)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (2000)",
+        "Golden Globe voor Beste Originele Song (2000)",
+        "Grammy voor Best Song Written for Visual Media (2001)"
+      ],
+      "uri_apple_music": "applemusic://track/1437333914",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=O1NoURD1YFs",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "The Lion King",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/561875132",
+      "isrc": "USWD10110146",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1437333914",
+        "de": "applemusic://track/1437333914",
+        "gb": "applemusic://track/1437333914",
+        "fr": "applemusic://track/1437333914",
+        "es": "applemusic://track/1437333914",
+        "nl": "applemusic://track/1437333914",
+        "it": "applemusic://track/1437333914"
+      }
+    },
+    {
+      "year": 1999,
+      "artist": "Healing Energy",
+      "title": "Strangers Like Me",
+      "uri": "spotify:track:3T74kgnbHw8JqkYGJKD4Tl",
+      "alt_artists": [
+        "Phil Collins"
+      ],
+      "fun_fact": "Phil Collins wrote and performed every song on the Tarzan soundtrack and never appears on screen. The album became his most commercially successful release of the late 1990s.",
+      "fun_fact_de": "Phil Collins schrieb und sang sämtliche Songs des Tarzan-Soundtracks und ist im Film nicht zu sehen. Das Album wurde sein kommerziell erfolgreichstes der späten 1990er.",
+      "fun_fact_es": "Phil Collins escribió e interpretó todas las canciones de la banda sonora de Tarzán y no aparece en pantalla. El álbum se convirtió en su lanzamiento más exitoso comercialmente de finales de los 90.",
+      "fun_fact_fr": "Phil Collins a écrit et interprété toutes les chansons de la bande originale de Tarzan et n'apparaît jamais à l'écran. L'album est devenu sa sortie la plus rentable de la fin des années 1990.",
+      "fun_fact_nl": "Phil Collins schreef en zong alle nummers van de Tarzan-soundtrack en is niet in beeld te zien. Het album werd zijn commercieel meest succesvolle release uit de late jaren 90.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1784845462",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nWN9d6tfwS8",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "The Jungle Book",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/561875072",
+      "isrc": "USWD10110151",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784845462",
+        "de": "applemusic://track/1784845462",
+        "gb": "applemusic://track/1784845462",
+        "fr": "applemusic://track/1784845462",
+        "es": "applemusic://track/1784845462",
+        "nl": "applemusic://track/1784845462",
+        "it": "applemusic://track/1784845462"
+      }
+    },
+    {
+      "year": 1991,
+      "artist": "Audra McDonald, Emma Thompson & Ensemble - Beauty and the Beast",
+      "title": "Beauty and the Beast",
+      "uri": "spotify:track:7wMPhUSe6CZga1vOMpLTJP",
+      "alt_artists": [
+        "Angela Lansbury",
+        "Celine Dion",
+        "Peabo Bryson",
+        "Ariana Grande",
+        "John Legend"
+      ],
+      "fun_fact": "Angela Lansbury initially refused to record the song, then captured it in a single take. The Celine Dion–Peabo Bryson pop version became a No. 9 Billboard hit and won the Grammy.",
+      "fun_fact_de": "Angela Lansbury wollte den Song zunächst nicht aufnehmen — und sang ihn dann in einem einzigen Take ein. Die Pop-Version von Celine Dion und Peabo Bryson erreichte Platz 9 der Billboard-Charts und gewann den Grammy.",
+      "fun_fact_es": "Angela Lansbury se negó al principio a grabarla y luego la cantó en una sola toma. La versión pop de Celine Dion y Peabo Bryson llegó al puesto 9 del Billboard y ganó el Grammy.",
+      "fun_fact_fr": "Angela Lansbury a d'abord refusé d'enregistrer la chanson, puis l'a interprétée en une seule prise. La version pop de Céline Dion et Peabo Bryson a atteint la 9e place du Billboard et remporté le Grammy.",
+      "fun_fact_nl": "Angela Lansbury weigerde aanvankelijk de song op te nemen en zong hem vervolgens in één enkele take. De popversie van Celine Dion en Peabo Bryson bereikte plaats 9 in de Billboard en won een Grammy.",
+      "chart_info": {
+        "billboard_peak": 9,
+        "uk_peak": 9,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Academy Award for Best Original Song (1992)",
+        "Grammy Award for Best Pop Performance by a Duo or Group (1993)",
+        "Golden Globe Award for Best Original Song (1992)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1992)",
+        "Grammy für Best Pop Performance by a Duo or Group (1993)",
+        "Golden Globe für den besten Filmsong (1992)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1992)",
+        "Grammy a la mejor interpretación pop de dúo o grupo (1993)",
+        "Globo de Oro a la mejor canción original (1992)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1992)",
+        "Grammy de la meilleure performance pop en duo ou groupe (1993)",
+        "Golden Globe de la meilleure chanson originale (1992)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1992)",
+        "Grammy voor Best Pop Performance by a Duo or Group (1993)",
+        "Golden Globe voor Beste Originele Song (1992)"
+      ],
+      "uri_apple_music": "applemusic://track/1443431255",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=axySrE0Kg6k",
+      "movie": "Beauty and the Beast",
+      "movie_choices": [
+        "Beauty and the Beast",
+        "The Little Mermaid",
+        "Aladdin"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3913809571",
+      "isrc": "QZHN72636555",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443431255",
+        "de": "applemusic://track/1443431255",
+        "gb": "applemusic://track/1443431255",
+        "fr": "applemusic://track/1443431255",
+        "es": "applemusic://track/1443431255",
+        "nl": "applemusic://track/1443431255",
+        "it": "applemusic://track/1443431255"
+      }
+    },
+    {
+      "year": 1991,
+      "artist": "Angela Lansbury, Jerry Orbach & The Chorus of Beauty and the Beast",
+      "title": "Be Our Guest",
+      "uri": "spotify:track:6btdYzQ8eZFBrOlUKVHuz0",
+      "alt_artists": [
+        "Jerry Orbach",
+        "Angela Lansbury",
+        "Ewan McGregor"
+      ],
+      "fun_fact": "The number was originally written for a welcome at Maurice's arrival, then re-targeted at Belle. Jerry Orbach's accent for Lumière was inspired by classic French cabaret.",
+      "fun_fact_de": "Die Nummer war ursprünglich als Begrüßung für Maurice geschrieben, wurde dann auf Belle umgemünzt. Jerry Orbachs Akzent für Lumière war vom klassischen französischen Cabaret inspiriert.",
+      "fun_fact_es": "El número estaba escrito originalmente como bienvenida a Maurice, y luego se redirigió a Bella. El acento de Jerry Orbach para Lumière estaba inspirado en el cabaret francés clásico.",
+      "fun_fact_fr": "Le numéro était à l'origine écrit comme accueil pour Maurice, puis redirigé vers Belle. L'accent de Jerry Orbach pour Lumière s'inspirait du cabaret français classique.",
+      "fun_fact_nl": "Het nummer was oorspronkelijk geschreven als welkom voor Maurice en werd later op Belle gericht. Jerry Orbachs accent voor Lumière was geïnspireerd op het klassieke Franse cabaret.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1992)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1992)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1992)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1992)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1992)"
+      ],
+      "uri_apple_music": "applemusic://track/1440618901",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=afzmwAKUppU",
+      "movie": "Beauty and the Beast",
+      "movie_choices": [
+        "Beauty and the Beast",
+        "The Aristocats",
+        "Ratatouille"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2250629177",
+      "isrc": "AUMEV2344379",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618901",
+        "de": "applemusic://track/1440618901",
+        "gb": "applemusic://track/1440618901",
+        "fr": "applemusic://track/1440618901",
+        "es": "applemusic://track/1440618901",
+        "nl": "applemusic://track/1440618901",
+        "it": "applemusic://track/1440618901"
+      }
+    },
+    {
+      "year": 1991,
+      "artist": "Paige O'Hara, RICHARD WHITE/JESSE CORTI & The Chorus of Beauty and the Beast",
+      "title": "Belle",
+      "uri": "spotify:track:1cPfKp9ThNZ1fez9itmUMN",
+      "alt_artists": [
+        "Paige O'Hara",
+        "Emma Watson"
+      ],
+      "fun_fact": "The opening Belle sequence is staged as one near-continuous Disney production number — a technical and choreographic milestone for hand-drawn animation in 1991.",
+      "fun_fact_de": "Die Eröffnungssequenz mit Belle ist als beinahe durchgehende Disney-Musiknummer inszeniert — ein technischer und choreografischer Meilenstein für die handgezeichnete Animation von 1991.",
+      "fun_fact_es": "La secuencia inicial de Bella está montada como un número musical Disney casi continuo — un hito técnico y coreográfico para la animación tradicional de 1991.",
+      "fun_fact_fr": "La séquence d'ouverture de Belle est mise en scène comme un numéro musical Disney quasi continu — une prouesse technique et chorégraphique pour l'animation traditionnelle de 1991.",
+      "fun_fact_nl": "De openingssequentie van Belle is geënsceneerd als een bijna doorlopend Disney-muzieknummer — een technische en choreografische mijlpaal voor de handgetekende animatie van 1991.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618895",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ed7SUEN-4T0",
+      "movie": "Beauty and the Beast",
+      "movie_choices": [
+        "Beauty and the Beast",
+        "The Little Mermaid",
+        "Aladdin"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2320097",
+      "isrc": "USMC60400031",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618895",
+        "de": "applemusic://track/1440618895",
+        "gb": "applemusic://track/1440618895",
+        "fr": "applemusic://track/1440618895",
+        "es": "applemusic://track/1440618895",
+        "nl": "applemusic://track/1440618895",
+        "it": "applemusic://track/1440618895"
+      }
+    },
+    {
+      "year": 1991,
+      "artist": "Jesse Corti & RICHARD WHITE/JESSE CORTI",
+      "title": "Gaston",
+      "uri": "spotify:track:1v7HQKegIjcBAsAsHjnXZU",
+      "alt_artists": [
+        "Richard White",
+        "Jesse Corti",
+        "Luke Evans",
+        "Josh Gad"
+      ],
+      "fun_fact": "Richard White, a trained operatic baritone, voiced Gaston. The tavern scene is the longest musical number in the original animated film.",
+      "fun_fact_de": "Richard White, ausgebildeter Opern-Bariton, sang Gaston. Die Tavernen-Szene ist die längste Musiknummer des Original-Zeichentrickfilms.",
+      "fun_fact_es": "Richard White, barítono operístico de formación, puso voz a Gastón. La escena de la taberna es el número musical más largo de la película animada original.",
+      "fun_fact_fr": "Richard White, baryton lyrique de formation, prêtait sa voix à Gaston. La scène de la taverne est le plus long numéro musical du film d'animation original.",
+      "fun_fact_nl": "Richard White, een geschoolde operabariton, sprak Gaston in. De tavernescène is het langste muzieknummer van de oorspronkelijke tekenfilm.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440618898",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F16O5OAK2K8",
+      "movie": "Beauty and the Beast",
+      "movie_choices": [
+        "Beauty and the Beast",
+        "Hercules",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2381495915",
+      "isrc": "USWD10220401",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440618898",
+        "de": "applemusic://track/1440618898",
+        "gb": "applemusic://track/1440618898",
+        "fr": "applemusic://track/1440618898",
+        "es": "applemusic://track/1440618898",
+        "nl": "applemusic://track/1440618898",
+        "it": "applemusic://track/1440618898"
+      }
+    },
+    {
+      "year": 2017,
+      "artist": "Dan Stevens",
+      "title": "Evermore",
+      "uri": "spotify:track:3Yn97I3qIj7Px0Bi4rkD2q",
+      "alt_artists": [
+        "Dan Stevens",
+        "Josh Groban",
+        "Alan Menken"
+      ],
+      "fun_fact": "Dan Stevens sang Evermore on set while wearing motion-capture stilts to imitate the Beast's height. Josh Groban's pop version played over the end credits.",
+      "fun_fact_de": "Dan Stevens sang Evermore am Set auf Motion-Capture-Stelzen, um die Körpergröße des Biests zu imitieren. Josh Grobans Pop-Version lief über dem Abspann.",
+      "fun_fact_es": "Dan Stevens cantó Evermore en el set sobre zancos de captura de movimiento para imitar la altura de la Bestia. La versión pop de Josh Groban sonó en los créditos finales.",
+      "fun_fact_fr": "Dan Stevens a chanté Evermore sur le plateau, monté sur des échasses de motion capture pour imiter la stature de la Bête. La version pop de Josh Groban accompagnait le générique de fin.",
+      "fun_fact_nl": "Dan Stevens zong Evermore op de set op motion-capturestelten om de lengte van het Beest na te bootsen. Josh Grobans popversie klonk over de eindcredits.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2017)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2017)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2017)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2017)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2017)"
+      ],
+      "uri_apple_music": "applemusic://track/1443431128",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=diLa-gpHRKc",
+      "movie": "Beauty and the Beast (Live Action)",
+      "movie_choices": [
+        "Beauty and the Beast (Live Action)",
+        "Beauty and the Beast",
+        "Cinderella"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/144130196",
+      "isrc": "USWD11778936",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443431128",
+        "de": "applemusic://track/1443431128",
+        "gb": "applemusic://track/1443431128",
+        "fr": "applemusic://track/1443431128",
+        "es": "applemusic://track/1443431128",
+        "nl": "applemusic://track/1443431128",
+        "it": "applemusic://track/1443431128"
+      }
+    },
+    {
+      "year": 2010,
+      "artist": "Relaxing Piano",
+      "title": "When Will My Life Begin?",
+      "uri": "spotify:track:2d2MKpLhjBYytG9xuOJsdZ",
+      "alt_artists": [
+        "Mandy Moore"
+      ],
+      "fun_fact": "The film was renamed from 'Rapunzel' to 'Tangled' late in development to broaden its appeal to boys — a decision that drew sharp public criticism from animation insiders.",
+      "fun_fact_de": "Der Film wurde spät in der Entwicklung von 'Rapunzel' in 'Tangled' umbenannt, um auch Jungen anzusprechen — eine Entscheidung, die in der Animationsbranche scharf kritisiert wurde.",
+      "fun_fact_es": "La película pasó tarde en su desarrollo de llamarse 'Rapunzel' a 'Tangled' para atraer también al público masculino — una decisión criticada con dureza dentro de la industria de animación.",
+      "fun_fact_fr": "Le film a été rebaptisé tard dans le développement de « Raiponce » en « Tangled » pour séduire aussi un public masculin — une décision vivement critiquée au sein de l'industrie de l'animation.",
+      "fun_fact_nl": "De film werd laat in de ontwikkeling hernoemd van 'Rapunzel' naar 'Tangled' om ook jongens aan te spreken — een beslissing die binnen de animatie-industrie scherp werd bekritiseerd.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1434821536",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kRXmAIHYQR4",
+      "movie": "Tangled",
+      "movie_choices": [
+        "Tangled",
+        "Frozen",
+        "Moana"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/626144342",
+      "isrc": "FR10S1933882",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1434821536",
+        "de": "applemusic://track/1434821536",
+        "gb": "applemusic://track/1434821536",
+        "fr": "applemusic://track/1434821536",
+        "es": "applemusic://track/1434821536",
+        "nl": "applemusic://track/1434821536",
+        "it": "applemusic://track/1434821536"
+      }
+    },
+    {
+      "year": 2010,
+      "artist": "Mandy Moore & Zachary Levi",
+      "title": "I See the Light",
+      "uri": "spotify:track:6HuyP5a5QXQNWV9vf4GkUJ",
+      "alt_artists": [
+        "Mandy Moore",
+        "Zachary Levi"
+      ],
+      "fun_fact": "Mandy Moore and Zachary Levi recorded the duet together to preserve the chemistry. It won the Golden Globe and was nominated for the Academy Award for Best Original Song.",
+      "fun_fact_de": "Mandy Moore und Zachary Levi nahmen das Duett gemeinsam auf, um die Chemie zu erhalten. Es gewann den Golden Globe und wurde für den Oscar als bester Filmsong nominiert.",
+      "fun_fact_es": "Mandy Moore y Zachary Levi grabaron el dueto juntos para conservar la química. Ganó el Globo de Oro y fue nominado al Óscar a la mejor canción original.",
+      "fun_fact_fr": "Mandy Moore et Zachary Levi ont enregistré le duo ensemble pour préserver la complicité. Il a remporté le Golden Globe et été nommé à l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Mandy Moore en Zachary Levi namen het duet samen op om de chemie te behouden. Het won een Golden Globe en kreeg een Oscarnominatie voor Beste Originele Song.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2011)",
+        "Golden Globe nomination for Best Original Song (2011)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2011)",
+        "Golden-Globe-Nominierung für den besten Filmsong (2011)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2011)",
+        "Nominación al Globo de Oro a la mejor canción original (2011)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2011)",
+        "Nomination au Golden Globe de la meilleure chanson originale (2011)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2011)",
+        "Golden Globe-nominatie voor Beste Originele Song (2011)"
+      ],
+      "uri_apple_music": "applemusic://track/1440639422",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ILRs2r6lcHY",
+      "movie": "Tangled",
+      "movie_choices": [
+        "Tangled",
+        "Frozen",
+        "The Princess and the Frog"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7599985",
+      "isrc": "USWD11054842",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639422",
+        "de": "applemusic://track/1440639422",
+        "gb": "applemusic://track/1440639422",
+        "fr": "applemusic://track/1440639422",
+        "es": "applemusic://track/1440639422",
+        "nl": "applemusic://track/1440639422",
+        "it": "applemusic://track/1440639422"
+      }
+    },
+    {
+      "year": 2010,
+      "artist": "Mandy Moore, Brad Garrett, Tangled Ensemble, Zachary Levi & Jeffrey Tambor",
+      "title": "I've Got a Dream",
+      "uri": "spotify:track:0x6KKx5DATCW0tBdosjMyg",
+      "alt_artists": [
+        "Mandy Moore",
+        "Brad Garrett",
+        "Zachary Levi",
+        "Jeffrey Tambor"
+      ],
+      "fun_fact": "The thugs in the Snuggly Duckling were modelled on real Disney animators, directors and writers — each with an individually scripted back-story.",
+      "fun_fact_de": "Die Schläger im Snuggly Duckling wurden echten Disney-Animatoren, Regisseuren und Autoren nachempfunden — jeder mit einer eigens geschriebenen Hintergrundgeschichte.",
+      "fun_fact_es": "Los matones del Pato Acogedor están inspirados en animadores, directores y guionistas reales de Disney — cada uno con su propia historia ficticia.",
+      "fun_fact_fr": "Les brutes du Canard Hutch s'inspirent de véritables animateurs, réalisateurs et scénaristes Disney — chacun doté de sa propre biographie fictive.",
+      "fun_fact_nl": "De boeven in de Snuggly Duckling zijn gemodelleerd naar echte Disney-animators, regisseurs en schrijvers — elk met een eigen achtergrondverhaal.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440639401",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b_lmq9IVr8k",
+      "movie": "Tangled",
+      "movie_choices": [
+        "Tangled",
+        "Frozen",
+        "Brave"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7599983",
+      "isrc": "USWD11054841",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639401",
+        "de": "applemusic://track/1440639401",
+        "gb": "applemusic://track/1440639401",
+        "fr": "applemusic://track/1440639401",
+        "es": "applemusic://track/1440639401",
+        "nl": "applemusic://track/1440639401",
+        "it": "applemusic://track/1440639401"
+      }
+    },
+    {
+      "year": 2010,
+      "artist": "Donna Murphy",
+      "title": "Mother Knows Best",
+      "uri": "spotify:track:6rjYXL7iOt0REQFKqI9IOg",
+      "alt_artists": [
+        "Donna Murphy"
+      ],
+      "fun_fact": "Donna Murphy, a Broadway veteran with two Tony Awards, voices Mother Gothel. The song is staged as a classic musical-theatre menace number.",
+      "fun_fact_de": "Donna Murphy, Broadway-Veteranin mit zwei Tony Awards, spricht Mutter Gothel. Der Song ist als klassische Drohnummer aus dem Musiktheater inszeniert.",
+      "fun_fact_es": "Donna Murphy, veterana de Broadway con dos Tony, da voz a Madre Gothel. El número está concebido como una clásica pieza amenazante del teatro musical.",
+      "fun_fact_fr": "Donna Murphy, vétérane de Broadway et deux fois lauréate des Tony Awards, prête sa voix à Mère Gothel. Le titre est conçu comme un classique numéro menaçant de théâtre musical.",
+      "fun_fact_nl": "Donna Murphy, Broadway-veteraan met twee Tony Awards, sprak Moeder Gothel in. Het lied is opgezet als een klassiek dreigend musicalnummer.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440639326",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-7jWt3JvJto",
+      "movie": "Tangled",
+      "movie_choices": [
+        "Tangled",
+        "Snow White and the Seven Dwarfs",
+        "The Little Mermaid"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7599981",
+      "isrc": "USWD11054838",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440639326",
+        "de": "applemusic://track/1440639326",
+        "gb": "applemusic://track/1440639326",
+        "fr": "applemusic://track/1440639326",
+        "es": "applemusic://track/1440639326",
+        "nl": "applemusic://track/1440639326",
+        "it": "applemusic://track/1440639326"
+      }
+    },
+    {
+      "year": 2009,
+      "artist": "Anika Noni Rose",
+      "title": "Almost There",
+      "uri": "spotify:track:2GLyruWagsv8o7aGNXboH1",
+      "alt_artists": [
+        "Anika Noni Rose"
+      ],
+      "fun_fact": "Tiana is Disney's first Black princess, and Anika Noni Rose was the first Black actress cast in the canonical princess role — a milestone first floated decades earlier and finally realised in 2009.",
+      "fun_fact_de": "Tiana ist Disneys erste schwarze Prinzessin, und Anika Noni Rose war die erste schwarze Darstellerin in dieser kanonischen Prinzessinnenrolle — ein Meilenstein, der jahrzehntelang diskutiert und 2009 endlich realisiert wurde.",
+      "fun_fact_es": "Tiana es la primera princesa negra de Disney, y Anika Noni Rose fue la primera actriz negra en encarnar a una princesa canónica — un hito largamente debatido que se concretó en 2009.",
+      "fun_fact_fr": "Tiana est la première princesse noire de Disney, et Anika Noni Rose la première actrice noire à incarner une princesse canonique — une étape évoquée des décennies plus tôt et concrétisée en 2009.",
+      "fun_fact_nl": "Tiana is Disneys eerste zwarte prinses, en Anika Noni Rose was de eerste zwarte actrice in deze canonieke prinsessenrol — een mijlpaal die al decennia eerder werd genoemd en pas in 2009 werd verwezenlijkt.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2010)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2010)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2010)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2010)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2010)"
+      ],
+      "uri_apple_music": "applemusic://track/1417397131",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ThMwHKfzz1I",
+      "movie": "The Princess and the Frog",
+      "movie_choices": [
+        "The Princess and the Frog",
+        "Moana",
+        "Tangled"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/534375642",
+      "isrc": "USWD10936987",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1417397131",
+        "de": "applemusic://track/1417397131",
+        "gb": "applemusic://track/1417397131",
+        "fr": "applemusic://track/1417397131",
+        "es": "applemusic://track/1417397131",
+        "nl": "applemusic://track/1417397131",
+        "it": "applemusic://track/1417397131"
+      }
+    },
+    {
+      "year": 2009,
+      "artist": "Jenifer Lewis",
+      "title": "Dig a Little Deeper",
+      "uri": "spotify:track:7kh64k3P9Fk4EsA6vOdwmj",
+      "alt_artists": [
+        "Jenifer Lewis",
+        "The Pinnacle Gospel Choir"
+      ],
+      "fun_fact": "Jenifer Lewis, who voices Mama Odie, was 70 at the time of recording. The gospel-flavoured number was Disney's official Academy Award submission for the film.",
+      "fun_fact_de": "Jenifer Lewis, die Mama Odie spricht, war zur Aufnahmezeit 70 Jahre alt. Der vom Gospel beeinflusste Song war Disneys offizielle Oscar-Einreichung für den Film.",
+      "fun_fact_es": "Jenifer Lewis, que pone voz a Mama Odie, tenía 70 años cuando se grabó. El tema, con sabor gospel, fue la propuesta oficial de Disney al Óscar por la película.",
+      "fun_fact_fr": "Jenifer Lewis, qui prête sa voix à Mama Odie, avait 70 ans au moment de l'enregistrement. Le morceau, aux accents gospel, fut la proposition officielle de Disney aux Oscars pour le film.",
+      "fun_fact_nl": "Jenifer Lewis, die Mama Odie inspreekt, was 70 bij de opname. Het gospelnummer was Disneys officiële Oscar-inzending voor de film.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1417397894",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s5kKqgw5CtU",
+      "movie": "The Princess and the Frog",
+      "movie_choices": [
+        "The Princess and the Frog",
+        "Hercules",
+        "The Lion King"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/534375692",
+      "isrc": "USWD10936993",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1417397894",
+        "de": "applemusic://track/1417397894",
+        "gb": "applemusic://track/1417397894",
+        "fr": "applemusic://track/1417397894",
+        "es": "applemusic://track/1417397894",
+        "nl": "applemusic://track/1417397894",
+        "it": "applemusic://track/1417397894"
+      }
+    },
+    {
+      "year": 2007,
+      "artist": "Amy Adams",
+      "title": "That's How You Know",
+      "uri": "spotify:track:1OzSfjFW08DTD51XoNnog7",
+      "alt_artists": [
+        "Amy Adams",
+        "Alan Menken",
+        "Stephen Schwartz"
+      ],
+      "fun_fact": "Amy Adams sang and danced live in Central Park alongside more than 150 extras. Multiple days of shooting drew real crowds who thought a public concert was underway.",
+      "fun_fact_de": "Amy Adams sang und tanzte live im Central Park neben mehr als 150 Statisten. Die mehrtägigen Dreharbeiten lockten echte Schaulustige an, die ein öffentliches Konzert vermuteten.",
+      "fun_fact_es": "Amy Adams cantó y bailó en directo en Central Park junto a más de 150 figurantes. El rodaje, de varios días, atrajo a multitudes reales que pensaban estar ante un concierto público.",
+      "fun_fact_fr": "Amy Adams a chanté et dansé en direct dans Central Park avec plus de 150 figurants. Le tournage, étalé sur plusieurs jours, a attiré un public croyant assister à un concert.",
+      "fun_fact_nl": "Amy Adams zong en danste live in Central Park met meer dan 150 figuranten. De meerdaagse opnamen trokken echte toeschouwers aan die dachten dat er een openbaar concert was.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2008)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2008)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2008)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2008)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2008)"
+      ],
+      "uri_apple_music": "applemusic://track/1452871166",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iFiGp2QrsCw",
+      "movie": "Enchanted",
+      "movie_choices": [
+        "Enchanted",
+        "Tangled",
+        "Frozen"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1110643562",
+      "isrc": "USWD12098246",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1452871166",
+        "de": "applemusic://track/1452871166",
+        "gb": "applemusic://track/1452871166",
+        "fr": "applemusic://track/1452871166",
+        "es": "applemusic://track/1452871166",
+        "nl": "applemusic://track/1452871166",
+        "it": "applemusic://track/1452871166"
+      }
+    },
+    {
+      "year": 2002,
+      "artist": "Iam Tongi, Kamehameha Schools Children's Chorus & Disney",
+      "title": "Hawaiian Roller Coaster Ride",
+      "uri": "spotify:track:5coZgMb9D2sypM21bwEOAq",
+      "alt_artists": [
+        "Mark Keali'i Ho'omalu",
+        "Kamehameha Schools Children's Chorus"
+      ],
+      "fun_fact": "Lilo & Stitch was the only canonical Disney animated feature produced entirely at the studio's Florida facility — and the only one set in Hawaii.",
+      "fun_fact_de": "Lilo & Stitch war der einzige kanonische Disney-Zeichentrickfilm, der vollständig im Florida-Studio des Hauses entstand — und der einzige, der in Hawaii spielt.",
+      "fun_fact_es": "Lilo y Stitch fue la única película animada canónica de Disney producida íntegramente en sus estudios de Florida — y la única ambientada en Hawái.",
+      "fun_fact_fr": "Lilo & Stitch est le seul long métrage d'animation canonique Disney entièrement produit dans le studio de Floride — et le seul situé à Hawaï.",
+      "fun_fact_nl": "Lilo & Stitch was de enige canonieke Disney-animatiefilm die volledig in de studio in Florida werd gemaakt — en de enige die zich op Hawaï afspeelt.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1812749916",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kXB-Ibr55LI",
+      "movie": "Lilo & Stitch",
+      "movie_choices": [
+        "Lilo & Stitch",
+        "Moana",
+        "The Princess and the Frog"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3369469621",
+      "isrc": "USWD12536665",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1812749916",
+        "de": "applemusic://track/1812749916",
+        "gb": "applemusic://track/1812749916",
+        "fr": "applemusic://track/1812749916",
+        "es": "applemusic://track/1812749916",
+        "nl": "applemusic://track/1812749916",
+        "it": "applemusic://track/1812749916"
+      }
+    },
+    {
+      "year": 1999,
+      "artist": "Sarah McLachlan",
+      "title": "When She Loved Me",
+      "uri": "spotify:track:6lMh9k54E4mxbGBMkSwYhT",
+      "alt_artists": [
+        "Sarah McLachlan",
+        "Randy Newman"
+      ],
+      "fun_fact": "Sarah McLachlan reportedly reduced directors and animators to tears at the first playback. The song was nominated for the Academy Award for Best Original Song.",
+      "fun_fact_de": "Sarah McLachlan brachte angeblich Regisseure und Animatoren beim ersten Anhören zu Tränen. Der Song wurde für den Oscar als bester Filmsong nominiert.",
+      "fun_fact_es": "Sarah McLachlan hizo llorar — según cuentan — a directores y animadores la primera vez que escucharon la grabación. La canción fue nominada al Óscar a la mejor canción original.",
+      "fun_fact_fr": "Sarah McLachlan aurait fait pleurer réalisateurs et animateurs dès la première écoute. La chanson a été nommée à l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Sarah McLachlan zou regisseurs en animators bij de eerste beluistering tot tranen geroerd hebben. Het nummer werd genomineerd voor de Oscar voor Beste Originele Song.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2000)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2000)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2000)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2000)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2000)"
+      ],
+      "uri_apple_music": "applemusic://track/1463095449",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QApcQh9_kQw",
+      "movie": "Toy Story 2",
+      "movie_choices": [
+        "Toy Story 2",
+        "Toy Story",
+        "Finding Nemo"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13674187",
+      "isrc": "USWD10110114",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1463095449",
+        "de": "applemusic://track/1463095449",
+        "gb": "applemusic://track/1463095449",
+        "fr": "applemusic://track/1463095449",
+        "es": "applemusic://track/1463095449",
+        "nl": "applemusic://track/1463095449",
+        "it": "applemusic://track/1463095449"
+      }
+    },
+    {
+      "year": 2001,
+      "artist": "Makiko Hirohashi",
+      "title": "If I Didn't Have You",
+      "uri": "spotify:track:7xf3S6Bv8hDqOtevZou602",
+      "alt_artists": [
+        "Billy Crystal",
+        "John Goodman",
+        "Randy Newman"
+      ],
+      "fun_fact": "Randy Newman won the Academy Award for Best Original Song in 2002. Billy Crystal and John Goodman performed the song live at the Oscars ceremony.",
+      "fun_fact_de": "Randy Newman gewann 2002 den Oscar für den besten Filmsong. Billy Crystal und John Goodman sangen den Song live bei der Oscar-Verleihung.",
+      "fun_fact_es": "Randy Newman ganó el Óscar a la mejor canción original en 2002. Billy Crystal y John Goodman lo interpretaron en directo en la ceremonia.",
+      "fun_fact_fr": "Randy Newman a remporté l'Oscar de la meilleure chanson originale en 2002. Billy Crystal et John Goodman l'ont interprétée en direct lors de la cérémonie.",
+      "fun_fact_nl": "Randy Newman won in 2002 de Oscar voor Beste Originele Song. Billy Crystal en John Goodman zongen het nummer live tijdens de Oscaruitreiking.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award for Best Original Song (2002)"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (2002)"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (2002)"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (2002)"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (2002)"
+      ],
+      "uri_apple_music": "applemusic://track/893108671",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CMJPhCh4ARc",
+      "movie": "Monsters, Inc.",
+      "movie_choices": [
+        "Monsters, Inc.",
+        "Toy Story",
+        "Finding Nemo"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/5323380",
+      "isrc": "USWD10220395",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/893108671",
+        "de": "applemusic://track/893108671",
+        "gb": "applemusic://track/893108671",
+        "fr": "applemusic://track/893108671",
+        "es": "applemusic://track/893108671",
+        "nl": "applemusic://track/893108671",
+        "it": "applemusic://track/893108671"
+      }
+    },
+    {
+      "year": 2016,
+      "artist": "Shakira",
+      "title": "Try Everything",
+      "uri": "spotify:track:0VCJ5YjphljOf1YRcPp08v",
+      "alt_artists": [
+        "Shakira",
+        "Sia",
+        "Stargate"
+      ],
+      "fun_fact": "Shakira co-wrote, performed and also voices the pop-star character Gazelle in the film. The track became a global chart hit, peaking high across Europe and Latin America.",
+      "fun_fact_de": "Shakira schrieb den Song mit, sang ihn und spricht zudem die Popstar-Figur Gazelle im Film. Der Titel wurde ein weltweiter Chart-Hit mit Top-Platzierungen in Europa und Lateinamerika.",
+      "fun_fact_es": "Shakira coescribió, interpretó y dobla además al personaje de la estrella pop Gazelle en la película. El tema fue un éxito mundial con altos puestos en Europa y América Latina.",
+      "fun_fact_fr": "Shakira a co-écrit et interprété la chanson, et prête aussi sa voix à la pop star Gazelle dans le film. Le titre est devenu un tube mondial avec de très bons classements en Europe et en Amérique latine.",
+      "fun_fact_nl": "Shakira schreef en zong het nummer en spreekt ook de popster Gazelle in de film in. Het nummer werd een wereldwijde hit met hoge noteringen in Europa en Latijns-Amerika.",
+      "chart_info": {
+        "billboard_peak": 81,
+        "uk_peak": 49,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Award nomination for Best Song Written for Visual Media (2017)"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung für Best Song Written for Visual Media (2017)"
+      ],
+      "awards_es": [
+        "Nominación al Grammy a la mejor canción escrita para medios visuales (2017)"
+      ],
+      "awards_fr": [
+        "Nomination au Grammy de la meilleure chanson écrite pour médias visuels (2017)"
+      ],
+      "awards_nl": [
+        "Grammy-nominatie voor Best Song Written for Visual Media (2017)"
+      ],
+      "uri_apple_music": "applemusic://track/1440667007",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c6rP-YP4c5I",
+      "movie": "Zootopia",
+      "movie_choices": [
+        "Zootopia",
+        "Moana",
+        "Frozen"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/586860862",
+      "isrc": "USWD11575402",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440667007",
+        "de": "applemusic://track/1300497240",
+        "gb": "applemusic://track/1300497240",
+        "fr": "applemusic://track/1300497240",
+        "es": "applemusic://track/1440357368",
+        "nl": "applemusic://track/1300497240",
+        "it": "applemusic://track/1300497240"
+      }
+    },
+    {
+      "year": 2019,
+      "artist": "Idina Menzel & AURORA",
+      "title": "Into the Unknown",
+      "uri": "spotify:track:2JJwUreki4qNMcQiwlaojo",
+      "alt_artists": [
+        "Idina Menzel",
+        "AURORA",
+        "Panic! at the Disco"
+      ],
+      "fun_fact": "The mysterious siren voice was performed by Norwegian singer AURORA. The song was released on Spotify in 29 different languages on the day of the film's premiere.",
+      "fun_fact_de": "Die mysteriöse Sirenenstimme stammt von der norwegischen Sängerin AURORA. Der Song wurde am Premierentag in 29 verschiedenen Sprachen auf Spotify veröffentlicht.",
+      "fun_fact_es": "La misteriosa voz de sirena pertenece a la cantante noruega AURORA. La canción se publicó el día del estreno en 29 idiomas distintos en Spotify.",
+      "fun_fact_fr": "La voix mystérieuse de sirène est celle de la chanteuse norvégienne AURORA. La chanson est sortie le jour de la première en 29 langues différentes sur Spotify.",
+      "fun_fact_nl": "De mysterieuze sirenenstem werd ingezongen door de Noorse zangeres AURORA. Het nummer verscheen op de premièredag in 29 verschillende talen op Spotify.",
+      "chart_info": {
+        "billboard_peak": 24,
+        "uk_peak": 22,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2020)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2020)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2020)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2020)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2020)"
+      ],
+      "uri_apple_music": "applemusic://track/1487738283",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gIOyB9ZXn8s",
+      "movie": "Frozen 2",
+      "movie_choices": [
+        "Frozen 2",
+        "Frozen",
+        "Brave"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/803932592",
+      "isrc": "USWD11994667",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487738283",
+        "de": "applemusic://track/1487738283",
+        "gb": "applemusic://track/1487738283",
+        "fr": "applemusic://track/1487738283",
+        "es": "applemusic://track/1487738283",
+        "nl": "applemusic://track/1487738283",
+        "it": "applemusic://track/1487738283"
+      }
+    },
+    {
+      "year": 2019,
+      "artist": "Idina Menzel & Evan Rachel Wood",
+      "title": "Show Yourself",
+      "uri": "spotify:track:50WeOnXhM1H7AZEeIDoWfZ",
+      "alt_artists": [
+        "Idina Menzel",
+        "Evan Rachel Wood"
+      ],
+      "fun_fact": "Idina Menzel described the track as 'Let It Go for grown-ups' — exploring identity and self-acceptance on a more layered emotional plane.",
+      "fun_fact_de": "Idina Menzel bezeichnete den Song als 'Let It Go für Erwachsene' — er behandelt Identitätssuche und Selbstakzeptanz auf einer vielschichtigeren emotionalen Ebene.",
+      "fun_fact_es": "Idina Menzel describió el tema como 'Let It Go para adultos' — explora la identidad y la autoaceptación en un nivel emocional más complejo.",
+      "fun_fact_fr": "Idina Menzel a décrit la chanson comme « Libérée, délivrée pour adultes » — elle explore la quête d'identité et l'acceptation de soi sur un plan émotionnel plus complexe.",
+      "fun_fact_nl": "Idina Menzel noemde het nummer 'Let It Go voor volwassenen' — het behandelt identiteit en zelfacceptatie op een gelaagder emotioneel niveau.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1487738499",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nrZxwPwmgrw",
+      "movie": "Frozen 2",
+      "movie_choices": [
+        "Frozen 2",
+        "Frozen",
+        "Moana"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/803932632",
+      "isrc": "USWD11994671",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487738499",
+        "de": "applemusic://track/1487738499",
+        "gb": "applemusic://track/1487738499",
+        "fr": "applemusic://track/1487738499",
+        "es": "applemusic://track/1487738499",
+        "nl": "applemusic://track/1487738499",
+        "it": "applemusic://track/1487738499"
+      }
+    },
+    {
+      "year": 2019,
+      "artist": "Jonathan Groff",
+      "title": "Lost in the Woods",
+      "uri": "spotify:track:7namdlOhbtsc8FvoSafOQt",
+      "alt_artists": [
+        "Jonathan Groff",
+        "Weezer"
+      ],
+      "fun_fact": "Jonathan Groff's Kristoff performs the song as a deliberate parody of 1980s power ballads à la Bonnie Tyler and a-ha, complete with slow-motion shots in the music video.",
+      "fun_fact_de": "Jonathan Groffs Kristoff performt den Song als bewusste Parodie auf 1980er-Power-Balladen à la Bonnie Tyler und a-ha — komplett mit Slow-Motion-Szenen im Musikvideo.",
+      "fun_fact_es": "El Kristoff de Jonathan Groff interpreta el tema como una parodia deliberada de las baladas pop de los 80 al estilo Bonnie Tyler y a-ha, con secuencias en cámara lenta en el vídeo musical.",
+      "fun_fact_fr": "Le Kristoff de Jonathan Groff interprète le titre comme une parodie volontaire des power ballads des années 80 à la Bonnie Tyler et a-ha, avec ralentis dans le clip.",
+      "fun_fact_nl": "De Kristoff van Jonathan Groff brengt het nummer als een bewuste parodie op de powerballads van de jaren 80 in de stijl van Bonnie Tyler en a-ha, compleet met slow-motionbeelden in de clip.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1487738498",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_8jNbZIsBQU",
+      "movie": "Frozen 2",
+      "movie_choices": [
+        "Frozen 2",
+        "Tangled",
+        "Brave"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/803932622",
+      "isrc": "USWD11994670",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487738498",
+        "de": "applemusic://track/1487738498",
+        "gb": "applemusic://track/1487738498",
+        "fr": "applemusic://track/1487738498",
+        "es": "applemusic://track/1487738498",
+        "nl": "applemusic://track/1487738498",
+        "it": "applemusic://track/1487738498"
+      }
+    },
+    {
+      "year": 2021,
+      "artist": "Carolina Gaitán - La Gaita, Mauro Castillo, Adassa, Rhenzy Feliz, Diane Guerrero, Stephanie Beatriz & Encanto - Cast",
+      "title": "We Don't Talk About Bruno",
+      "uri": "spotify:track:52xJxFP6TqMuO4Yt0eOkMz",
+      "alt_artists": [
+        "Carolina Gaitán",
+        "Mauro Castillo",
+        "Adassa",
+        "Rhenzy Feliz",
+        "Diane Guerrero",
+        "Stephanie Beatriz",
+        "Lin-Manuel Miranda"
+      ],
+      "fun_fact": "The first Disney song since A Whole New World (1993) to reach No. 1 on the Billboard Hot 100 — 29 years later. It overtook Let It Go to become the franchise's biggest streaming hit.",
+      "fun_fact_de": "Der erste Disney-Song seit A Whole New World (1993), der die Spitze der Billboard Hot 100 erreichte — 29 Jahre später. Er löste Let It Go als größten Streaming-Hit des Disney-Songkatalogs ab.",
+      "fun_fact_es": "La primera canción de Disney desde A Whole New World (1993) en alcanzar el número 1 del Billboard Hot 100 — 29 años después. Desbancó a Let It Go como el mayor éxito de streaming del catálogo Disney.",
+      "fun_fact_fr": "La première chanson Disney depuis A Whole New World (1993) à atteindre la première place du Billboard Hot 100 — 29 ans plus tard. Elle a détrôné Libérée, délivrée comme plus gros tube en streaming du catalogue Disney.",
+      "fun_fact_nl": "Het eerste Disney-nummer sinds A Whole New World (1993) dat de top van de Billboard Hot 100 bereikte — 29 jaar later. Het verdrong Let It Go als grootste streaminghit uit het Disney-repertoire.",
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 1,
+        "weeks_on_chart": 38
+      },
+      "certifications": [
+        "3× Platinum (US)",
+        "2× Platinum (UK)"
+      ],
+      "awards": [
+        "Grammy Award nomination for Song of the Year (2023)",
+        "Critics' Choice Movie Award for Best Song (2022)"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung für den Song des Jahres (2023)",
+        "Critics' Choice Movie Award für den besten Song (2022)"
+      ],
+      "awards_es": [
+        "Nominación al Grammy a la canción del año (2023)",
+        "Critics' Choice Movie Award a la mejor canción (2022)"
+      ],
+      "awards_fr": [
+        "Nomination au Grammy de la chanson de l'année (2023)",
+        "Critics' Choice Movie Award de la meilleure chanson (2022)"
+      ],
+      "awards_nl": [
+        "Grammy-nominatie voor Lied van het Jaar (2023)",
+        "Critics' Choice Movie Award voor Beste Song (2022)"
+      ],
+      "uri_apple_music": "applemusic://track/1594677760",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0tGMPAodXJA",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Moana"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1550821762",
+      "isrc": "USWD12112915",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1594677760",
+        "de": "applemusic://track/1594677760",
+        "gb": "applemusic://track/1594677760",
+        "fr": "applemusic://track/1594677760",
+        "es": "applemusic://track/1594677760",
+        "nl": "applemusic://track/1594677760",
+        "it": "applemusic://track/1594677760"
+      }
+    },
+    {
+      "year": 2021,
+      "artist": "Jessica Darrow",
+      "title": "Surface Pressure",
+      "uri": "spotify:track:760jhRscwGbIIe1m1IIQpU",
+      "alt_artists": [
+        "Jessica Darrow",
+        "Lin-Manuel Miranda"
+      ],
+      "fun_fact": "Jessica Darrow had almost no prior screen-acting credits when she was cast as Luisa. The song went viral on TikTok and became an anthem for people with helper-syndrome and burnout.",
+      "fun_fact_de": "Jessica Darrow hatte vor dem Film kaum Schauspielerfahrung. Der Song wurde über TikTok viral und stieg zur Hymne für Menschen mit Helfersyndrom und Burn-out auf.",
+      "fun_fact_es": "Jessica Darrow apenas tenía experiencia frente a la cámara antes del filme. La canción se hizo viral en TikTok y se convirtió en himno para personas con síndrome del ayudador y desgaste emocional.",
+      "fun_fact_fr": "Jessica Darrow n'avait quasiment aucune expérience à l'écran avant le film. Le titre est devenu viral sur TikTok et s'est imposé comme hymne pour les personnes au syndrome de l'aidant et en burn-out.",
+      "fun_fact_nl": "Jessica Darrow had vóór de film nauwelijks acteerervaring. Het lied ging viral op TikTok en groeide uit tot een hymne voor mensen met een helpersyndroom en burn-out.",
+      "chart_info": {
+        "billboard_peak": 8,
+        "uk_peak": 11,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Award nomination for Best Song Written for Visual Media (2023)"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung für Best Song Written for Visual Media (2023)"
+      ],
+      "awards_es": [
+        "Nominación al Grammy a la mejor canción escrita para medios visuales (2023)"
+      ],
+      "awards_fr": [
+        "Nomination au Grammy de la meilleure chanson écrite pour médias visuels (2023)"
+      ],
+      "awards_nl": [
+        "Grammy-nominatie voor Best Song Written for Visual Media (2023)"
+      ],
+      "uri_apple_music": "applemusic://track/1594677759",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tQwVKr8rCYw",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Moana",
+        "Frozen"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1550821752",
+      "isrc": "USWD12112914",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1594677759",
+        "de": "applemusic://track/1594677759",
+        "gb": "applemusic://track/1594677759",
+        "fr": "applemusic://track/1594677759",
+        "es": "applemusic://track/1594677759",
+        "nl": "applemusic://track/1594677759",
+        "it": "applemusic://track/1594677759"
+      }
+    },
+    {
+      "year": 2021,
+      "artist": "Sebastián Yatra",
+      "title": "Dos Oruguitas",
+      "uri": "spotify:track:5rohUzwEoRsUvAA1Bf3DLo",
+      "alt_artists": [
+        "Sebastián Yatra",
+        "Lin-Manuel Miranda"
+      ],
+      "fun_fact": "Lin-Manuel Miranda wrote the song entirely in Spanish, without an English translation. Sebastián Yatra performed it live during the Academy Awards broadcast.",
+      "fun_fact_de": "Lin-Manuel Miranda schrieb den Song komplett auf Spanisch — ohne englische Übersetzung. Sebastián Yatra sang ihn live während der Oscar-Übertragung.",
+      "fun_fact_es": "Lin-Manuel Miranda escribió la canción enteramente en español, sin traducción al inglés. Sebastián Yatra la interpretó en directo en la gala de los Óscar.",
+      "fun_fact_fr": "Lin-Manuel Miranda a écrit la chanson entièrement en espagnol, sans traduction anglaise. Sebastián Yatra l'a interprétée en direct lors de la cérémonie des Oscars.",
+      "fun_fact_nl": "Lin-Manuel Miranda schreef het lied volledig in het Spaans, zonder Engelse vertaling. Sebastián Yatra zong het live tijdens de Oscaruitreiking.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (2022)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (2022)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (2022)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (2022)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (2022)"
+      ],
+      "uri_apple_music": "applemusic://track/1594677763",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DUGtyj5QlEM",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "The Book of Life"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1550811312",
+      "isrc": "USWD12112917",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1594677763",
+        "de": "applemusic://track/1594677763",
+        "gb": "applemusic://track/1594677763",
+        "fr": "applemusic://track/1594677763",
+        "es": "applemusic://track/1594677763",
+        "nl": "applemusic://track/1594677763",
+        "it": "applemusic://track/1594677763"
+      }
+    },
+    {
+      "year": 2021,
+      "artist": "Diane Guerrero & Stephanie Beatriz",
+      "title": "What Else Can I Do?",
+      "uri": "spotify:track:3XoYqtiWHhsk59frZupImG",
+      "alt_artists": [
+        "Diane Guerrero",
+        "Stephanie Beatriz",
+        "Lin-Manuel Miranda"
+      ],
+      "fun_fact": "Isabela sings about breaking free from her perfectionist mould. The flowers she creates shift visually from neat roses to wild cacti, mirroring her inner liberation.",
+      "fun_fact_de": "Isabela singt von ihrer Befreiung vom Perfektionsdruck. Die Blumen, die sie erschafft, wandeln sich visuell von makellosen Rosen zu wilden Kakteen — Spiegel ihrer inneren Befreiung.",
+      "fun_fact_es": "Isabela canta sobre liberarse de su exigencia de perfección. Las flores que crea pasan visualmente de rosas impecables a cactus salvajes, reflejando su liberación interior.",
+      "fun_fact_fr": "Isabela chante sa libération de l'exigence de perfection. Les fleurs qu'elle crée passent visuellement de roses parfaites à des cactus sauvages, reflet de sa libération intérieure.",
+      "fun_fact_nl": "Isabela bezingt haar bevrijding van de druk om perfect te zijn. De bloemen die ze creëert veranderen visueel van perfecte rozen in wilde cactussen, als spiegel van haar innerlijke bevrijding.",
+      "chart_info": {
+        "billboard_peak": 20,
+        "uk_peak": 32,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1594677762",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bBeZSuHI4Qc",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Moana",
+        "Frozen"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1550821772",
+      "isrc": "USWD12112916",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1594677762",
+        "de": "applemusic://track/1594677762",
+        "gb": "applemusic://track/1594677762",
+        "fr": "applemusic://track/1594677762",
+        "es": "applemusic://track/1594677762",
+        "nl": "applemusic://track/1594677762",
+        "it": "applemusic://track/1594677762"
+      }
+    },
+    {
+      "year": 1997,
+      "artist": "Christy Altomare",
+      "title": "Once Upon a December",
+      "uri": "spotify:track:4W37fDymJzsqaarlKKEvcM",
+      "alt_artists": [
+        "Liz Callaway",
+        "Deana Carter",
+        "Christy Altomare",
+        "Lana Del Rey"
+      ],
+      "fun_fact": "Anastasia was produced by 20th Century Fox — not Disney — though it is frequently mistaken for a Disney title. Liz Callaway sang the in-film version and Deana Carter the pop release.",
+      "fun_fact_de": "Anastasia wurde von 20th Century Fox produziert — nicht von Disney — wird aber oft als Disney-Film verwechselt. Liz Callaway sang die Filmversion, Deana Carter die Pop-Auskopplung.",
+      "fun_fact_es": "Anastasia fue producida por 20th Century Fox — no por Disney — aunque suele confundirse con un título Disney. Liz Callaway cantó la versión de la película y Deana Carter el sencillo pop.",
+      "fun_fact_fr": "Anastasia a été produit par la 20th Century Fox — et non par Disney — bien qu'on le confonde souvent avec un Disney. Liz Callaway a chanté la version du film, Deana Carter la version pop.",
+      "fun_fact_nl": "Anastasia werd geproduceerd door 20th Century Fox — niet door Disney — al wordt het vaak met een Disney-film verward. Liz Callaway zong de filmversie en Deana Carter de popsingle.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1664564080",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=koWKsgOSs1w",
+      "movie": "Anastasia",
+      "movie_choices": [
+        "Anastasia",
+        "Beauty and the Beast",
+        "The Nutcracker"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2104086157",
+      "isrc": "QMQYB1709707",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1664564080",
+        "de": "applemusic://track/1664564080",
+        "gb": "applemusic://track/1664564080",
+        "fr": "applemusic://track/1664564080",
+        "es": "applemusic://track/1664564080",
+        "nl": "applemusic://track/1664564080",
+        "it": "applemusic://track/1664564080"
+      }
+    },
+    {
+      "year": 1997,
+      "artist": "Christy Altomare",
+      "title": "Journey to the Past",
+      "uri": "spotify:track:5bVNYvkjRZuaQnKKdAGuq5",
+      "alt_artists": [
+        "Liz Callaway",
+        "Aaliyah",
+        "Christy Altomare"
+      ],
+      "fun_fact": "Liz Callaway provided the in-film vocals while Aaliyah recorded the end-credits version. The song was nominated for the Academy Award for Best Original Song.",
+      "fun_fact_de": "Liz Callaway sang die Filmversion, während Aaliyah die Abspann-Version aufnahm. Der Song wurde für den Oscar als bester Filmsong nominiert.",
+      "fun_fact_es": "Liz Callaway interpretó la versión de la película, mientras que Aaliyah grabó la de los créditos finales. La canción fue nominada al Óscar a la mejor canción original.",
+      "fun_fact_fr": "Liz Callaway a chanté la version du film, tandis qu'Aaliyah a enregistré celle du générique de fin. La chanson a été nommée à l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Liz Callaway verzorgde de filmversie en Aaliyah de versie voor de aftiteling. Het nummer kreeg een Oscarnominatie voor Beste Originele Song.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1998)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1998)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1998)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1998)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1998)"
+      ],
+      "uri_apple_music": "applemusic://track/1664565006",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gZQJsceaqDA",
+      "movie": "Anastasia",
+      "movie_choices": [
+        "Anastasia",
+        "The Prince of Egypt",
+        "Mulan"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2104086197",
+      "isrc": "QMQYB1709711",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1664565006",
+        "de": "applemusic://track/1664565006",
+        "gb": "applemusic://track/1664565006",
+        "fr": "applemusic://track/1664565006",
+        "es": "applemusic://track/1664565006",
+        "nl": "applemusic://track/1664565006",
+        "it": "applemusic://track/1664565006"
+      }
+    },
+    {
+      "year": 2002,
+      "artist": "John Rzeznik",
+      "title": "I'm Still Here",
+      "uri": "spotify:track:6BfOhpHADzrvKN2kMPTMPv",
+      "alt_artists": [
+        "John Rzeznik",
+        "Goo Goo Dolls"
+      ],
+      "fun_fact": "John Rzeznik of the Goo Goo Dolls wrote and performed the song. Treasure Planet became Disney's largest theatrical loss of the era despite the soundtrack's strong critical reception.",
+      "fun_fact_de": "John Rzeznik von den Goo Goo Dolls schrieb und sang den Song. Treasure Planet wurde trotz starker Kritiken zum Soundtrack zum größten Kino-Verlust der Disney-Ära jener Jahre.",
+      "fun_fact_es": "John Rzeznik, de Goo Goo Dolls, escribió e interpretó la canción. A pesar de las buenas críticas a la banda sonora, El planeta del tesoro fue el mayor fracaso de taquilla de Disney de aquellos años.",
+      "fun_fact_fr": "John Rzeznik des Goo Goo Dolls a écrit et interprété la chanson. Malgré une bande originale saluée, La Planète au trésor reste le plus gros échec en salles de Disney à cette époque.",
+      "fun_fact_nl": "John Rzeznik van de Goo Goo Dolls schreef en zong het nummer. Ondanks de lof voor de soundtrack werd Treasure Planet Disneys grootste bioscoopverlies uit die periode.",
+      "chart_info": {
+        "billboard_peak": 60,
+        "uk_peak": 17,
+        "weeks_on_chart": 12
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1443634546",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2b9cbz1mkBk",
+      "movie": "Treasure Planet",
+      "movie_choices": [
+        "Treasure Planet",
+        "Atlantis: The Lost Empire",
+        "Brother Bear"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1762551507",
+      "isrc": "USWD10220511",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443634546",
+        "de": "applemusic://track/1443634546",
+        "gb": "applemusic://track/1443634546",
+        "fr": "applemusic://track/1443634546",
+        "es": "applemusic://track/1443634546",
+        "nl": "applemusic://track/1443634546",
+        "it": "applemusic://track/1443634546"
+      }
+    },
+    {
+      "year": 1967,
+      "artist": "Louis Prima, Phil Harris & Bruce Reitherman",
+      "title": "I Wan'na Be Like You",
+      "uri": "spotify:track:5VwaB46hxTW0CBZCdtJkxb",
+      "alt_artists": [
+        "Louis Prima",
+        "Phil Harris",
+        "Christopher Walken"
+      ],
+      "fun_fact": "Big-band leader Louis Prima improvised so freely on the recording date that the animators had additional sessions filmed so they could match his mannerisms to King Louie.",
+      "fun_fact_de": "Big-Band-Leader Louis Prima improvisierte am Aufnahmetag so frei, dass die Animatoren zusätzliche Sessions filmten, um seine Bewegungen auf King Louie zu übertragen.",
+      "fun_fact_es": "El líder de big band Louis Prima improvisó tanto durante la sesión que los animadores filmaron sesiones extra para trasladar sus gestos al Rey Louie.",
+      "fun_fact_fr": "Le chef de big band Louis Prima a tellement improvisé en studio que les animateurs ont filmé des sessions supplémentaires pour transposer ses mimiques sur le roi Louie.",
+      "fun_fact_nl": "Bigbandleider Louis Prima improviseerde tijdens de opname zo vrij dat de animators extra sessies filmden om zijn gebaren over te brengen op King Louie.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1467938153",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tqQxlvZfeLE",
+      "movie": "The Jungle Book",
+      "movie_choices": [
+        "The Jungle Book",
+        "The Aristocats",
+        "Robin Hood"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/122886568",
+      "isrc": "USWD11676132",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1467938153",
+        "de": "applemusic://track/1467938153",
+        "gb": "applemusic://track/1467938153",
+        "fr": "applemusic://track/1467938153",
+        "es": "applemusic://track/1467938153",
+        "nl": "applemusic://track/1467938153",
+        "it": "applemusic://track/1467938153"
+      }
+    },
+    {
+      "year": 1940,
+      "artist": "Cliff Edwards & Disney Studio Chorus",
+      "title": "When You Wish Upon a Star",
+      "uri": "spotify:track:2W8gLHUnOwEanO3ei2tiW4",
+      "alt_artists": [
+        "Cliff Edwards",
+        "Louis Armstrong",
+        "Linda Ronstadt"
+      ],
+      "fun_fact": "The first Disney song ever to win the Academy Award for Best Original Song (1941). Its melody became the company's official corporate sting and opens the Walt Disney Pictures logo to this day.",
+      "fun_fact_de": "Der erste Disney-Song überhaupt, der den Oscar für den besten Filmsong gewann (1941). Seine Melodie wurde zum offiziellen Corporate-Jingle und eröffnet bis heute das Walt-Disney-Pictures-Logo.",
+      "fun_fact_es": "La primera canción Disney que ganó el Óscar a la mejor canción original (1941). Su melodía se convirtió en el jingle corporativo del estudio y aún hoy acompaña el logotipo de Walt Disney Pictures.",
+      "fun_fact_fr": "La toute première chanson Disney à remporter l'Oscar de la meilleure chanson originale (1941). Sa mélodie est devenue le jingle officiel du studio et accompagne encore aujourd'hui le logo Walt Disney Pictures.",
+      "fun_fact_nl": "Het eerste Disney-nummer dat de Oscar voor Beste Originele Song won (1941). De melodie werd de officiële bedrijfsjingle en opent tot op vandaag het Walt Disney Pictures-logo.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award for Best Original Song (1941)",
+        "Recording Industry Association of America 'Songs of the Century'"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1941)",
+        "RIAA 'Songs of the Century'-Liste"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1941)",
+        "Lista 'Songs of the Century' de la RIAA"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1941)",
+        "Liste « Songs of the Century » de la RIAA"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1941)",
+        "RIAA 'Songs of the Century'-lijst"
+      ],
+      "uri_apple_music": "applemusic://track/1452851094",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0oyxywZJsIs",
+      "movie": "Pinocchio",
+      "movie_choices": [
+        "Pinocchio",
+        "Snow White and the Seven Dwarfs",
+        "Cinderella"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3145964",
+      "isrc": "USWD10220003",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1452851094",
+        "de": "applemusic://track/1452851094",
+        "gb": "applemusic://track/1452851094",
+        "fr": "applemusic://track/1452851094",
+        "es": "applemusic://track/1452851094",
+        "nl": "applemusic://track/1452851094",
+        "it": "applemusic://track/1452851094"
+      }
+    },
+    {
+      "year": 1964,
+      "artist": "The Australian Cast of Mary Poppins",
+      "title": "Supercalifragilisticexpialidocious",
+      "uri": "spotify:track:7fImDWw5bcUhRbZ0w1ny4J",
+      "alt_artists": [
+        "Julie Andrews",
+        "Dick Van Dyke",
+        "The Sherman Brothers"
+      ],
+      "fun_fact": "Variants of the word had appeared in print since the 1940s. The Sherman Brothers' version is now an entry in the Oxford English Dictionary and was Oscar-nominated for Best Original Song.",
+      "fun_fact_de": "Varianten des Wortes existieren in Druckform schon seit den 1940ern. Die Fassung der Sherman Brothers steht heute im Oxford English Dictionary und wurde für den Oscar als bester Filmsong nominiert.",
+      "fun_fact_es": "Existían variantes de la palabra impresas desde los años 40. La versión de los hermanos Sherman figura hoy en el Oxford English Dictionary y fue nominada al Óscar a la mejor canción original.",
+      "fun_fact_fr": "Des variantes du mot apparaissaient dans la presse dès les années 1940. La version des frères Sherman figure aujourd'hui au Oxford English Dictionary et fut nommée à l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Varianten van het woord doken al in de jaren 40 in druk op. De versie van de gebroeders Sherman staat tegenwoordig in de Oxford English Dictionary en kreeg een Oscarnominatie voor Beste Originele Song.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award nomination for Best Original Song (1965)"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung für den besten Filmsong (1965)"
+      ],
+      "awards_es": [
+        "Nominación al Óscar a la mejor canción original (1965)"
+      ],
+      "awards_fr": [
+        "Nomination à l'Oscar de la meilleure chanson originale (1965)"
+      ],
+      "awards_nl": [
+        "Oscar-nominatie voor Beste Originele Song (1965)"
+      ],
+      "uri_apple_music": "applemusic://track/1444019946",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XH-dPy9JJMY",
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Bedknobs and Broomsticks",
+        "Chitty Chitty Bang Bang"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3118718",
+      "isrc": "USWD10320942",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444019946",
+        "de": "applemusic://track/1534783648",
+        "gb": "applemusic://track/1444019946",
+        "fr": "applemusic://track/1534783648",
+        "es": "applemusic://track/1534783648",
+        "nl": "applemusic://track/1534783648",
+        "it": "applemusic://track/287374276"
+      }
+    },
+    {
+      "year": 1964,
+      "artist": "The Australian Cast of Mary Poppins",
+      "title": "A Spoonful of Sugar",
+      "uri": "spotify:track:39pyTfazAd7FNhM2ptDfB8",
+      "alt_artists": [
+        "Julie Andrews",
+        "Dick Van Dyke"
+      ],
+      "fun_fact": "Robert Sherman got the idea after his son came home and described receiving the new polio vaccine on a sugar cube — turning a real medical anecdote into a Disney standard.",
+      "fun_fact_de": "Robert Sherman kam die Idee, als sein Sohn zuhause erzählte, er habe die neue Polio-Impfung auf einem Stück Zucker bekommen — eine echte medizinische Anekdote wurde so zum Disney-Klassiker.",
+      "fun_fact_es": "A Robert Sherman se le ocurrió la idea cuando su hijo le contó que había recibido la nueva vacuna contra la polio en un terrón de azúcar — una anécdota médica real convertida en clásico Disney.",
+      "fun_fact_fr": "Robert Sherman a eu l'idée lorsque son fils a raconté avoir reçu le nouveau vaccin contre la polio sur un sucre — une anecdote médicale réelle transformée en classique Disney.",
+      "fun_fact_nl": "Robert Sherman kreeg het idee toen zijn zoon thuiskwam met het verhaal dat hij het nieuwe poliovaccin op een suikerklontje had gekregen — een echte medische anekdote werd zo een Disney-klassieker.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1444019703",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dKzqc54g0z4",
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Bedknobs and Broomsticks",
+        "Cinderella"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/677778572",
+      "isrc": "USWD10220406",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444019703",
+        "de": "applemusic://track/1405333234",
+        "gb": "applemusic://track/1444019703",
+        "fr": "applemusic://track/1377468579",
+        "es": "applemusic://track/1377468579",
+        "nl": "applemusic://track/1377468579",
+        "it": "applemusic://track/1377468579"
+      }
+    },
+    {
+      "year": 1964,
+      "artist": "Relaxing Piano",
+      "title": "Chim Chim Cher-ee",
+      "uri": "spotify:track:0IKYsgkoaylTKGzrlfrpu7",
+      "alt_artists": [
+        "Dick Van Dyke",
+        "Julie Andrews",
+        "The Sherman Brothers"
+      ],
+      "fun_fact": "The song won the Academy Award for Best Original Song in 1965. 'Chim chim cher-ee' is nonsense chimney-sweep slang invented for the film by the Sherman Brothers.",
+      "fun_fact_de": "Der Song gewann 1965 den Oscar für den besten Filmsong. 'Chim chim cher-ee' ist Nonsens-Slang der Kaminkehrer, eigens für den Film von den Sherman Brothers erfunden.",
+      "fun_fact_es": "La canción ganó el Óscar a la mejor canción original en 1965. 'Chim chim cher-ee' es jerga inventada de deshollinadores, creada para la película por los hermanos Sherman.",
+      "fun_fact_fr": "La chanson a remporté l'Oscar de la meilleure chanson originale en 1965. « Chim chim cher-ee » est un argot inventé de ramoneur, créé pour le film par les frères Sherman.",
+      "fun_fact_nl": "Het nummer won in 1965 de Oscar voor Beste Originele Song. 'Chim chim cher-ee' is verzonnen schoorsteenvegersjargon, speciaal voor de film bedacht door de gebroeders Sherman.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [
+        "Academy Award for Best Original Song (1965)",
+        "Grammy Award nomination"
+      ],
+      "awards_de": [
+        "Oscar für den besten Filmsong (1965)",
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Óscar a la mejor canción original (1965)",
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Oscar de la meilleure chanson originale (1965)",
+        "Nomination au Grammy"
+      ],
+      "awards_nl": [
+        "Oscar voor Beste Originele Song (1965)",
+        "Grammy-nominatie"
+      ],
+      "uri_apple_music": "applemusic://track/1434821546",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8Mh09VuGlKo",
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Bedknobs and Broomsticks",
+        "Chitty Chitty Bang Bang"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/462639092",
+      "isrc": "FR10S1851773",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1434821546",
+        "de": "applemusic://track/1434821546",
+        "gb": "applemusic://track/1434821546",
+        "fr": "applemusic://track/1434821546",
+        "es": "applemusic://track/1434821546",
+        "nl": "applemusic://track/1434821546",
+        "it": "applemusic://track/1434821546"
+      }
+    },
+    {
+      "year": 1996,
+      "artist": "Ciara Renée, The Hunchback of Notre Dame Ensemble & The Hunchback of Notre Dame Choir",
+      "title": "God Help the Outcasts",
+      "uri": "spotify:track:1hA0XjshsOjuYScKX2BsZm",
+      "alt_artists": [
+        "Heidi Mollenhauer",
+        "Bette Midler",
+        "Demi Moore"
+      ],
+      "fun_fact": "Bette Midler was originally cast as Esmeralda — Heidi Mollenhauer ultimately recorded the in-film vocals while Demi Moore handled the spoken role without singing.",
+      "fun_fact_de": "Bette Midler war ursprünglich als Esmeralda besetzt — Heidi Mollenhauer nahm schließlich die Filmgesänge auf, während Demi Moore die Sprechrolle ohne Gesang übernahm.",
+      "fun_fact_es": "Bette Midler había sido inicialmente elegida como Esmeralda — Heidi Mollenhauer acabó grabando las partes cantadas, mientras Demi Moore se ocupaba de la voz hablada sin cantar.",
+      "fun_fact_fr": "Bette Midler avait initialement été choisie pour Esmeralda — Heidi Mollenhauer a finalement assuré la partie chantée tandis que Demi Moore se chargeait de la voix parlée sans chanter.",
+      "fun_fact_nl": "Bette Midler was oorspronkelijk gecast als Esmeralda — Heidi Mollenhauer nam uiteindelijk de zangpartij op, terwijl Demi Moore de spreekrol zonder zang voor haar rekening nam.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440357115",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bdIR6-6BMyA",
+      "movie": "The Hunchback of Notre Dame",
+      "movie_choices": [
+        "The Hunchback of Notre Dame",
+        "Pocahontas",
+        "Beauty and the Beast"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3867512211",
+      "isrc": "GX8KD2412728",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440357115",
+        "de": "applemusic://track/1440357115",
+        "gb": "applemusic://track/1440357115",
+        "fr": "applemusic://track/1440357115",
+        "es": "applemusic://track/1440357115",
+        "nl": "applemusic://track/1440357115",
+        "it": "applemusic://track/1440357115"
+      }
+    },
+    {
+      "year": 1937,
+      "artist": "The Dwarf Chorus",
+      "title": "Heigh-Ho",
+      "uri": "spotify:track:4OkD0WYpUTu8eJcDDVJERl",
+      "alt_artists": [
+        "The Dwarf Chorus",
+        "Disney Studio Chorus"
+      ],
+      "fun_fact": "Snow White and the Seven Dwarfs (1937) was the first full-length animated feature ever made. Hollywood at the time dismissed the project as 'Disney's Folly' — it became a worldwide phenomenon.",
+      "fun_fact_de": "Snow White and the Seven Dwarfs (1937) war der erste abendfüllende Zeichentrickfilm überhaupt. Hollywood nannte das Projekt damals 'Disneys Dummheit' — es wurde zum weltweiten Phänomen.",
+      "fun_fact_es": "Blancanieves y los siete enanitos (1937) fue el primer largometraje animado de la historia. Hollywood lo tachó entonces de 'la locura de Disney' — y se convirtió en un fenómeno mundial.",
+      "fun_fact_fr": "Blanche-Neige et les Sept Nains (1937) fut le tout premier long métrage d'animation. Hollywood, à l'époque, qualifiait le projet de « la folie de Disney » — il devint un phénomène mondial.",
+      "fun_fact_nl": "Sneeuwwitje en de Zeven Dwergen (1937) was de eerste avondvullende animatiefilm ooit. Hollywood noemde het project destijds 'Disney's Folly' — het werd een wereldwijd fenomeen.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1409984039",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nOPrzBhoCeo",
+      "movie": "Snow White and the Seven Dwarfs",
+      "movie_choices": [
+        "Snow White and the Seven Dwarfs",
+        "Pinocchio",
+        "Cinderella"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3203549",
+      "isrc": "USWD10321898",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1409984039",
+        "de": "applemusic://track/1409984039",
+        "gb": "applemusic://track/1409984039",
+        "fr": "applemusic://track/1409984039",
+        "es": "applemusic://track/1409984039",
+        "nl": "applemusic://track/1409984039",
+        "it": "applemusic://track/1409984039"
+      }
+    },
+    {
+      "year": 1961,
+      "artist": "Bill Lee",
+      "title": "Cruella De Vil",
+      "uri": "spotify:track:4VF8YWqMsY3Y1UcKJBg5XO",
+      "alt_artists": [
+        "Bill Lee",
+        "Selena Gomez",
+        "Doctor John"
+      ],
+      "fun_fact": "Bill Lee, an acclaimed ghost-singer for film soundtracks, performed the song in 1961. Cruella De Vil is regularly ranked among the greatest movie villains of all time and even has a star on the Hollywood Walk of Fame.",
+      "fun_fact_de": "Bill Lee, ein renommierter 'Geistersänger' für Filmsoundtracks, performte den Song 1961. Cruella De Vil gilt als eine der größten Filmschurkinnen aller Zeiten und hat sogar einen Stern auf dem Walk of Fame.",
+      "fun_fact_es": "Bill Lee, célebre 'voz fantasma' de bandas sonoras, interpretó el tema en 1961. Cruella De Vil figura habitualmente entre las mayores villanas del cine y hasta tiene una estrella en el Paseo de la Fama.",
+      "fun_fact_fr": "Bill Lee, célèbre « voix fantôme » des bandes originales, a interprété la chanson en 1961. Cruella d'Enfer figure régulièrement parmi les plus grandes méchantes du cinéma et possède même une étoile sur le Walk of Fame.",
+      "fun_fact_nl": "Bill Lee, een gevierde 'ghost singer' voor filmsoundtracks, zong het nummer in 1961. Cruella De Vil staat geregeld in lijstjes van de grootste filmschurken aller tijden en heeft zelfs een ster op de Walk of Fame.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1443823522",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jbsR6_b-xJQ",
+      "movie": "101 Dalmatians",
+      "movie_choices": [
+        "101 Dalmatians",
+        "The Aristocats",
+        "Lady and the Tramp"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/119928454",
+      "isrc": "USWD10220295",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443823522",
+        "de": "applemusic://track/1443823522",
+        "gb": "applemusic://track/1443823522",
+        "fr": "applemusic://track/1443823522",
+        "es": "applemusic://track/1443823522",
+        "nl": "applemusic://track/1443823522",
+        "it": "applemusic://track/1443823522"
+      }
+    },
+    {
+      "year": 1970,
+      "artist": "Scatman Crothers, Phil Harris & Thurl Ravenscroft",
+      "title": "Ev'rybody Wants to Be a Cat",
+      "uri": "spotify:track:7jiz2D862pMkDPEl9TwohN",
+      "alt_artists": [
+        "Phil Harris",
+        "Scatman Crothers",
+        "Thurl Ravenscroft"
+      ],
+      "fun_fact": "The Aristocats was the first Disney animated feature released after Walt Disney's death in 1966. The jazz sequences are built on authentic 1910s jazz idioms.",
+      "fun_fact_de": "The Aristocats war der erste Disney-Zeichentrickfilm, der nach Walt Disneys Tod 1966 erschien. Die Jazz-Einlagen basieren auf authentischen Jazz-Idiomen der 1910er.",
+      "fun_fact_es": "Los aristogatos fue el primer largometraje animado de Disney estrenado tras la muerte de Walt Disney en 1966. Sus secuencias de jazz se basan en lenguajes auténticos del jazz de los años 10.",
+      "fun_fact_fr": "Les Aristochats fut le premier long métrage animé Disney sorti après la mort de Walt Disney en 1966. Les séquences jazz reposent sur des idiomes authentiques du jazz des années 1910.",
+      "fun_fact_nl": "The Aristocats was de eerste Disney-animatiefilm na de dood van Walt Disney in 1966. De jazzscènes zijn gebouwd op authentieke jazzpatronen uit de jaren 1910.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440669863",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yq8XjPReQpw",
+      "movie": "The Aristocats",
+      "movie_choices": [
+        "The Aristocats",
+        "The Jungle Book",
+        "101 Dalmatians"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/134519754",
+      "isrc": "FRUM71601092",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440669863",
+        "de": "applemusic://track/1440669863",
+        "gb": "applemusic://track/1440669863",
+        "fr": "applemusic://track/1440669863",
+        "es": "applemusic://track/1440669863",
+        "nl": "applemusic://track/1440669863",
+        "it": "applemusic://track/1440669863"
+      }
+    },
+    {
+      "year": 1953,
+      "artist": "Bobby Driscoll, Kathryn Beaumont, Paul Collins, The Jud Conlon Chorus & Tommy Luske",
+      "title": "You Can Fly!",
+      "uri": "spotify:track:1HTqoEMp8bRSfPDM7c5xIm",
+      "alt_artists": [
+        "Bobby Driscoll",
+        "Kathryn Beaumont",
+        "Paul Collins",
+        "Tommy Luske"
+      ],
+      "fun_fact": "Bobby Driscoll, the voice of Peter Pan, became Disney's first official contract talent. His career later collapsed and he died at only 31 in 1968.",
+      "fun_fact_de": "Bobby Driscoll, die Stimme von Peter Pan, wurde Disneys erstes offiziell vertraglich gebundenes Talent. Seine Karriere zerbrach später und er starb 1968 mit nur 31 Jahren.",
+      "fun_fact_es": "Bobby Driscoll, la voz de Peter Pan, fue el primer talento oficial bajo contrato con Disney. Su carrera se desplomó después y murió a los 31 años en 1968.",
+      "fun_fact_fr": "Bobby Driscoll, voix de Peter Pan, fut le premier talent officiellement sous contrat chez Disney. Sa carrière s'est effondrée par la suite et il est mort à seulement 31 ans en 1968.",
+      "fun_fact_nl": "Bobby Driscoll, de stem van Peter Pan, was Disneys eerste officieel gecontracteerde talent. Zijn carrière liep later spaak en hij stierf in 1968 op slechts 31-jarige leeftijd.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440652163",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TAcMdO9UI_w",
+      "movie": "Peter Pan",
+      "movie_choices": [
+        "Peter Pan",
+        "Pinocchio",
+        "Cinderella"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/106122128",
+      "isrc": "BEDO61509811",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440652163",
+        "de": "applemusic://track/1440652163",
+        "gb": "applemusic://track/1440652163",
+        "fr": "applemusic://track/1440652163",
+        "es": "applemusic://track/1440652163",
+        "nl": "applemusic://track/1440652163",
+        "it": "applemusic://track/1440652163"
+      }
+    },
+    {
+      "year": 2003,
+      "artist": "Phil Collins",
+      "title": "On My Way",
+      "uri": "spotify:track:3xoeKjCqijkindc2u0lZm4",
+      "alt_artists": [
+        "Phil Collins"
+      ],
+      "fun_fact": "Phil Collins's second Disney soundtrack after Tarzan. Brother Bear performed only moderately at the box office, but its fan base remained loyal and the soundtrack became a steady catalogue seller.",
+      "fun_fact_de": "Phil Collins' zweiter Disney-Soundtrack nach Tarzan. Brother Bear lief an den Kinokassen nur mittelmäßig, hat aber bis heute eine treue Fangemeinde und der Soundtrack ist ein stetiger Katalog-Verkäufer.",
+      "fun_fact_es": "La segunda banda sonora Disney de Phil Collins tras Tarzán. Hermano oso tuvo un rendimiento sólo moderado en taquilla, pero conserva una base de seguidores fiel y el álbum es un éxito constante de catálogo.",
+      "fun_fact_fr": "La deuxième bande originale Disney de Phil Collins après Tarzan. Frère des Ours n'a connu qu'un succès modéré en salles, mais conserve une base de fans fidèle et l'album reste un titre de catalogue durable.",
+      "fun_fact_nl": "Phil Collins' tweede Disney-soundtrack na Tarzan. Brother Bear deed het in de bioscoop maar matig, maar de film houdt een trouwe fanbase en het album blijft een gestage catalogusverkoper.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440648423",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EKphgamhPrw",
+      "movie": "Brother Bear",
+      "movie_choices": [
+        "Brother Bear",
+        "Tarzan",
+        "The Lion King"
+      ],
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3191609",
+      "isrc": "USWD10322458",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440648423",
+        "de": "applemusic://track/1440648423",
+        "gb": "applemusic://track/1440648423",
+        "fr": "applemusic://track/1440648423",
+        "es": "applemusic://track/1440648423",
+        "nl": "applemusic://track/1440648423",
+        "it": "applemusic://track/1440648423"
+      }
+    }
+  ]
+}
