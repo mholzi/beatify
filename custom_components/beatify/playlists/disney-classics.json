@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "disney",
     "movies",
@@ -3148,7 +3148,6 @@
         "Grammy-nominatie"
       ],
       "uri_apple_music": "applemusic://track/1434821546",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8Mh09VuGlKo",
       "movie": "Mary Poppins",
       "movie_choices": [
         "Mary Poppins",
