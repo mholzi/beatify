@@ -210,7 +210,9 @@ function renderRoundAnalytics(analytics, correctYear) {
         }
     }
 
-    var histogramHtml = renderHistogram(analytics.all_guesses, correctYear);
+    // #1178: per-player dot-axis replaces the aggregated histogram so each player
+    // can see at a glance where everyone else guessed and what they scored.
+    var histogramHtml = renderPlayerDotAxis(analytics.all_guesses, correctYear, state.playerName);
 
     var achievementsHtml = '';
 
@@ -258,7 +260,7 @@ function renderRoundAnalytics(analytics, correctYear) {
         '</div>' +
         '<div class="stat-comparison-line">' + avgComparison + '</div>' +
         '<div class="analytics-histogram">' +
-        '<h4 class="histogram-title">' + utils.t('analytics.histogram') + '</h4>' +
+        '<h4 class="histogram-title">' + utils.t('analytics.guessAxis') + '</h4>' +
         histogramHtml +
         '</div>' +
         (achievementsHtml ? '<div class="analytics-achievements">' + achievementsHtml + '</div>' : '');
@@ -338,6 +340,113 @@ function renderHistogram(allGuesses, correctYear) {
     }
 
     return '<div class="histogram-bars">' + barsHtml + '</div>';
+}
+
+/**
+ * Render per-player dot-axis (#1178): each player's guess is a colored dot on
+ * a horizontal year-axis, with the correct year marked by a vertical cyan
+ * line. Replaces the aggregated histogram on the player phone — same backend
+ * data (all_guesses), denser per-player view.
+ *
+ * @param {Array} allGuesses - {name, guess, years_off, round_score}[]
+ * @param {number} correctYear - The correct year for the cyan marker
+ * @param {string} currentPlayerName - Mark "you" with an extra ring
+ * @returns {string} HTML string
+ */
+function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
+    if (!allGuesses || allGuesses.length === 0) {
+        return '<div class="histogram-empty">' + utils.t('analytics.noGuesses') + '</div>';
+    }
+
+    var guessYears = allGuesses.map(function(g) { return g.guess; });
+    var minBound = Math.min.apply(null, guessYears.concat([correctYear]));
+    var maxBound = Math.max.apply(null, guessYears.concat([correctYear]));
+    var pad = Math.max(2, Math.floor((maxBound - minBound) * 0.1));
+    var axisMin = minBound - pad;
+    var axisMax = maxBound + pad;
+    var axisRange = Math.max(1, axisMax - axisMin);
+
+    function pct(year) { return ((year - axisMin) / axisRange) * 100; }
+
+    // Cyan correct-year marker.
+    var correctPct = pct(correctYear);
+    var markerHtml =
+        '<div class="dotaxis-marker" style="left:' + correctPct + '%">' +
+        '<div class="dotaxis-marker-label">' + correctYear + '</div>' +
+        '</div>';
+
+    // 5 evenly spaced axis tick-labels.
+    var ticksHtml = '';
+    for (var t = 0; t <= 4; t++) {
+        var yr = Math.round(axisMin + (axisRange * t / 4));
+        var lp = (t * 25);
+        ticksHtml +=
+            '<div class="dotaxis-tick" style="left:' + lp + '%"></div>' +
+            '<div class="dotaxis-tick-label" style="left:' + lp + '%">' + yr + '</div>';
+    }
+
+    // Player dots. Color is a deterministic hash of name → c1..c4.
+    function colorClass(name) {
+        var h = 0;
+        for (var i = 0; i < name.length; i++) {
+            h = (h * 31 + name.charCodeAt(i)) >>> 0;
+        }
+        return 'c' + ((h % 4) + 1);
+    }
+
+    var dotsHtml = '';
+    for (var k = 0; k < allGuesses.length; k++) {
+        var g = allGuesses[k];
+        var p = pct(g.guess);
+        var initial = (g.name || '?').charAt(0).toUpperCase();
+        var cls = colorClass(g.name || '');
+        var isMe = currentPlayerName && g.name === currentPlayerName;
+        var meCls = isMe ? ' dotaxis-dot--me' : '';
+        var glowCls = (g.years_off === 0) ? ' dotaxis-dot--correct' : '';
+        var score = g.round_score || 0;
+        var scoreCls = score > 0 ? 'dotaxis-score--pos' : 'dotaxis-score--zero';
+        var scoreText = score > 0 ? '+' + score : '+0';
+
+        dotsHtml +=
+            '<div class="dotaxis-dot dotaxis-dot--' + cls + glowCls + meCls + '" ' +
+                'style="left:' + p + '%" ' +
+                'title="' + escapeHtml(g.name) + ' — ' + g.guess + ' (' + scoreText + ')">' +
+            initial +
+            '</div>' +
+            '<div class="dotaxis-score ' + scoreCls + '" style="left:' + p + '%">' + scoreText + '</div>';
+    }
+
+    // Compact legend: name with color-dot, "(DU)" marker for current player.
+    var legendItems = allGuesses.slice().sort(function(a, b) {
+        return (a.years_off || 0) - (b.years_off || 0);
+    });
+    var medals = ['🏆', '🥈', '🥉'];
+    var legendHtml = '';
+    for (var m = 0; m < legendItems.length; m++) {
+        var item = legendItems[m];
+        var lcls = colorClass(item.name || '');
+        var medal = m < 3 ? '<span class="dotaxis-legend-medal">' + medals[m] + '</span>' : '';
+        var meMark = (currentPlayerName && item.name === currentPlayerName)
+            ? ' <span class="dotaxis-legend-me">' + utils.t('analytics.youMarker') + '</span>' : '';
+        legendHtml +=
+            '<span class="dotaxis-legend-entry">' +
+                medal +
+                '<span class="dotaxis-legend-dot dotaxis-dot--' + lcls + '"></span>' +
+                escapeHtml(item.name || '?') + meMark +
+            '</span>';
+    }
+
+    return (
+        '<div class="dotaxis-wrap">' +
+            '<div class="dotaxis-axis">' +
+                ticksHtml +
+                '<div class="dotaxis-line"></div>' +
+                markerHtml +
+                dotsHtml +
+            '</div>' +
+        '</div>' +
+        '<div class="dotaxis-legend">' + legendHtml + '</div>'
+    );
 }
 
 // ============================================

@@ -685,7 +685,9 @@
     "furthestGuess": "Am weitesten daneben",
     "noSubmissions": "Keine Antworten in dieser Runde",
     "noGuesses": "Keine Tipps",
-    "histogram": "Antwort-Verteilung"
+    "histogram": "Antwort-Verteilung",
+    "guessAxis": "Wo alle getippt haben",
+    "youMarker": "(DU)"
   },
   "artistChallenge": {
     "whoSings": "Wer singt diesen Song?",

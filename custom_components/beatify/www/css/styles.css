@@ -5735,6 +5735,147 @@ body.theme-dark .movie-reveal-section {
     margin-bottom: var(--space-sm);
 }
 
+/* #1178: per-player dot-axis (replaces aggregated histogram on phone reveal).
+   Each player's guess is a colored dot at the exact year on a horizontal axis;
+   the correct year is marked by a vertical cyan line. */
+.dotaxis-wrap {
+    margin: 14px 0 16px;
+}
+.dotaxis-axis {
+    position: relative;
+    height: 88px;
+    margin: 0 14px;
+}
+.dotaxis-line {
+    position: absolute;
+    left: 0; right: 0;
+    top: 52px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+}
+.dotaxis-tick {
+    position: absolute;
+    top: 48px;
+    width: 1px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.18);
+}
+.dotaxis-tick-label {
+    position: absolute;
+    top: 64px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-50%);
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
+.dotaxis-marker {
+    position: absolute;
+    top: 4px;
+    bottom: 18px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--color-cyan, #00d4ff) 30%, var(--color-cyan, #00d4ff) 80%, transparent);
+    box-shadow: 0 0 8px var(--color-cyan, #00d4ff), 0 0 16px rgba(0, 212, 255, 0.6);
+}
+.dotaxis-marker-label {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-cyan, #00d4ff);
+    color: #0a0a0e;
+    font-family: var(--font-family-display, 'Outfit', sans-serif);
+    font-weight: 900;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    box-shadow: 0 0 14px rgba(0, 212, 255, 0.6);
+    white-space: nowrap;
+}
+.dotaxis-dot {
+    position: absolute;
+    top: 39px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-display, 'Outfit', sans-serif);
+    font-weight: 900;
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px var(--color-bg-primary, #0d0d12), 0 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: default;
+}
+.dotaxis-dot--c1 { background: linear-gradient(135deg, #ff6ec7, #d846a7); }
+.dotaxis-dot--c2 { background: linear-gradient(135deg, #6e3bff, #4a25c8); }
+.dotaxis-dot--c3 { background: linear-gradient(135deg, #ffd60a, #e6b800); color: #1a1a22; text-shadow: none; }
+.dotaxis-dot--c4 { background: linear-gradient(135deg, #00d4ff, #008abf); }
+.dotaxis-dot--correct {
+    box-shadow: 0 0 0 3px var(--color-bg-primary, #0d0d12), 0 0 18px currentColor, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.dotaxis-dot--me {
+    box-shadow: 0 0 0 3px var(--color-bg-primary, #0d0d12), 0 0 0 5px rgba(255, 159, 67, 0.6), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.dotaxis-dot--correct.dotaxis-dot--me {
+    box-shadow: 0 0 0 3px var(--color-bg-primary, #0d0d12), 0 0 0 5px rgba(255, 159, 67, 0.6), 0 0 22px currentColor, 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.dotaxis-score {
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+    font-family: var(--font-family-display, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+.dotaxis-score--pos {
+    background: rgba(0, 212, 255, 0.18);
+    color: var(--color-cyan, #00d4ff);
+}
+.dotaxis-score--zero {
+    color: rgba(255, 255, 255, 0.35);
+}
+.dotaxis-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 14px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 4px;
+}
+.dotaxis-legend-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.dotaxis-legend-dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.dotaxis-legend-medal {
+    font-size: 13px;
+    line-height: 1;
+}
+.dotaxis-legend-me {
+    color: rgba(255, 159, 67, 1);
+    font-weight: 700;
+    font-size: 10px;
+    margin-left: 2px;
+    letter-spacing: 0.3px;
+}
+
 .histogram-bars {
     display: flex;
     justify-content: space-between;

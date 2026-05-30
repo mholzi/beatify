@@ -685,7 +685,9 @@
     "furthestGuess": "Most off",
     "noSubmissions": "No submissions this round",
     "noGuesses": "No guesses",
-    "histogram": "Guess distribution"
+    "histogram": "Guess distribution",
+    "guessAxis": "Where everyone guessed",
+    "youMarker": "(YOU)"
   },
   "artistChallenge": {
     "whoSings": "Who sings this song?",

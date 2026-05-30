@@ -685,7 +685,9 @@
     "furthestGuess": "Mas alejado",
     "noSubmissions": "Sin respuestas en esta ronda",
     "noGuesses": "Sin respuestas",
-    "histogram": "Distribucion de respuestas"
+    "histogram": "Distribucion de respuestas",
+    "guessAxis": "Donde apostaron todos",
+    "youMarker": "(TU)"
   },
   "artistChallenge": {
     "whoSings": "¿Quién canta esta canción?",
