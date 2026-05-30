@@ -159,6 +159,54 @@ After finishing, you land on the **"Ready to host"** screen: big Beatify wordmar
 
 <br>
 
+## Play On A TV (Big-Screen Dashboard)
+
+Beatify ships with a dedicated TV display — a landscape-locked, big-format
+view that shows the lobby (QR code + joined players), round artwork, year
+reveal, and live leaderboard. Players keep their phones for guessing; the
+TV is the shared "stage" everyone watches.
+
+The TV URL:
+
+```
+http://YOUR-HA-IP:8123/beatify/static/dashboard.html
+```
+
+### Three ways to put it on the TV
+
+1. **Smart TV / Fire TV / Apple TV browser (cleanest)** — Open the URL
+   directly in the TV's built-in browser. No laptop in the loop, no browser
+   chrome around the page.
+2. **Chromecast from Chrome (laptop / desktop)** — Open the URL in Chrome,
+   then `⋮ → Cast → Cast tab → <your Chromecast>`. Easiest if you already
+   have the URL up to test.
+3. **HA Lovelace iframe card (most polished)** — Embed the dashboard
+   inside a Lovelace view, then open that view on the TV via HA Cast or
+   the HA Companion app. No browser chrome at all:
+
+   ```yaml
+   type: iframe
+   url: /beatify/static/dashboard.html
+   aspect_ratio: 56.25%   # 16:9
+   ```
+
+### Sending audio to the TV
+
+The dashboard is purely visual. **Music plays through whichever speaker you
+picked in the admin setup**, routed via Music Assistant. If you want the
+sound coming out of the TV (or a soundbar/AVR attached to it), select that
+device as the playback target in Music Assistant when you set up the game.
+The dashboard URL and the audio target are independent — pick each one to
+fit your room.
+
+> **Tip:** A Fire TV Stick (or any cheap browser-capable streaming stick)
+> opened to the dashboard URL gives you a "permanent" Beatify TV display
+> with one device, no laptop required.
+
+---
+
+<br>
+
 ## The Experience
 
 <div align="center">
