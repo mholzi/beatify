@@ -646,6 +646,7 @@
     "pagination": "Page {current} sur {total}"
   },
   "dashboard": {
+    "autoAdvance": "Suite auto",
     "title": "Beatify - Tableau de bord",
     "connecting": "Connexion à la partie...",
     "noActiveGame": "Pas de partie en cours",

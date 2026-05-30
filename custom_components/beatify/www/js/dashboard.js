@@ -698,6 +698,10 @@
         // Render motivational message (Story 14.4)
         renderMotivationalMessage(data.game_performance);
 
+        // #1185: Auto-advance countdown ring (Phone reveal already shows one;
+        // TV dashboard didn't until @Dtrieb asked for it).
+        updateRevealCountdown(data);
+
         // Render song difficulty rating (Story 15.1)
         renderSongDifficulty(data.song_difficulty);
 
@@ -746,6 +750,56 @@
         textEl.textContent = funFact;
         container.classList.remove('hidden');
         console.log('[Dashboard] Fun fact shown:', funFact);
+    }
+
+    /**
+     * #1185: Drive the auto-advance countdown ring in the reveal chip strip.
+     * Backend sends reveal_auto_advance (seconds, 0 = off) and reveal_started_at
+     * (ms epoch). We render: remaining = max(0, started + duration*1000 - now).
+     * Hidden when auto-advance is off OR when the round is idle-halted (no
+     * submissions, game holds on REVEAL until manual advance).
+     */
+    var _countdownTick = null;
+    function updateRevealCountdown(data) {
+        var chip = document.getElementById('reveal-countdown');
+        var numEl = document.getElementById('reveal-countdown-num');
+        var fgCircle = chip ? chip.querySelector('.chip-countdown-fg') : null;
+        if (!chip || !numEl || !fgCircle) return;
+
+        // Stop any existing tick before re-binding state.
+        if (_countdownTick !== null) {
+            clearInterval(_countdownTick);
+            _countdownTick = null;
+        }
+
+        var duration = data.reveal_auto_advance || 0;
+        var startedAt = data.reveal_started_at || 0;
+        var idleHalt = !!data.idle_halt;
+
+        if (duration <= 0 || !startedAt || idleHalt) {
+            chip.classList.add('hidden');
+            return;
+        }
+
+        chip.classList.remove('hidden');
+        // SVG circle r=25 → circumference 2πr ≈ 157.08
+        var circumference = 157.08;
+        fgCircle.style.strokeDasharray = circumference;
+
+        function paint() {
+            var remainingMs = Math.max(0, startedAt + duration * 1000 - Date.now());
+            var remaining = Math.ceil(remainingMs / 1000);
+            numEl.textContent = remaining;
+            // Drained progress: ring is full at start, empties as time elapses.
+            var pctRemaining = remainingMs / (duration * 1000);
+            fgCircle.style.strokeDashoffset = String(circumference * (1 - pctRemaining));
+            if (remainingMs <= 0 && _countdownTick !== null) {
+                clearInterval(_countdownTick);
+                _countdownTick = null;
+            }
+        }
+        paint();
+        _countdownTick = setInterval(paint, 500);
     }
 
     /**

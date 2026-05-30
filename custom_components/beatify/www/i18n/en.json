@@ -646,6 +646,7 @@
     "pagination": "Page {current} of {total}"
   },
   "dashboard": {
+    "autoAdvance": "Auto-advance",
     "title": "Beatify - Dashboard",
     "connecting": "Connecting to game...",
     "noActiveGame": "No active game",
