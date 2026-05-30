@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "disney",
     "movies",
@@ -94,7 +94,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1440639393",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bhiLtH5X97w",
+      "uri_youtube_music": null,
       "movie": "Moana",
       "movie_choices": [
         "Moana",
@@ -1541,7 +1541,7 @@
         "Grammy voor Best Song Written for Visual Media (2001)"
       ],
       "uri_apple_music": "applemusic://track/1437333914",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=O1NoURD1YFs",
+      "uri_youtube_music": null,
       "movie": "Tarzan",
       "movie_choices": [
         "Tarzan",
@@ -2592,7 +2592,7 @@
         "Critics' Choice Movie Award voor Beste Song (2022)"
       ],
       "uri_apple_music": "applemusic://track/1594677760",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=0tGMPAodXJA",
+      "uri_youtube_music": null,
       "movie": "Encanto",
       "movie_choices": [
         "Encanto",
@@ -2795,7 +2795,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1664564080",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=koWKsgOSs1w",
+      "uri_youtube_music": null,
       "movie": "Anastasia",
       "movie_choices": [
         "Anastasia",
@@ -2848,7 +2848,7 @@
         "Oscar-nominatie voor Beste Originele Song (1998)"
       ],
       "uri_apple_music": "applemusic://track/1664565006",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gZQJsceaqDA",
+      "uri_youtube_music": null,
       "movie": "Anastasia",
       "movie_choices": [
         "Anastasia",
@@ -2894,7 +2894,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1443634546",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=2b9cbz1mkBk",
+      "uri_youtube_music": null,
       "movie": "Treasure Planet",
       "movie_choices": [
         "Treasure Planet",
@@ -2937,7 +2937,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1467938153",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tqQxlvZfeLE",
+      "uri_youtube_music": null,
       "movie": "The Jungle Book",
       "movie_choices": [
         "The Jungle Book",
@@ -3048,7 +3048,7 @@
         "Oscar-nominatie voor Beste Originele Song (1965)"
       ],
       "uri_apple_music": "applemusic://track/1444019946",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XH-dPy9JJMY",
+      "uri_youtube_music": null,
       "movie": "Mary Poppins",
       "movie_choices": [
         "Mary Poppins",
@@ -3090,7 +3090,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1444019703",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dKzqc54g0z4",
+      "uri_youtube_music": null,
       "movie": "Mary Poppins",
       "movie_choices": [
         "Mary Poppins",
@@ -3190,7 +3190,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1440357115",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bdIR6-6BMyA",
+      "uri_youtube_music": null,
       "movie": "The Hunchback of Notre Dame",
       "movie_choices": [
         "The Hunchback of Notre Dame",
@@ -3318,7 +3318,7 @@
       "awards_fr": [],
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1440669863",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yq8XjPReQpw",
+      "uri_youtube_music": null,
       "movie": "The Aristocats",
       "movie_choices": [
         "The Aristocats",
