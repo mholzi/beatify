@@ -185,6 +185,17 @@
                     <span class="chip-motivator-icon motivational-icon" aria-hidden="true">🔥</span>
                     <span class="motivational-text"></span>
                 </div>
+                <!-- #1185: Auto-advance countdown ring (hidden when reveal_auto_advance==0 or idle_halt) -->
+                <div id="reveal-countdown" class="chip-countdown hidden" aria-hidden="true">
+                    <span class="chip-countdown-ring">
+                        <svg viewBox="0 0 60 60" class="chip-countdown-svg">
+                            <circle class="chip-countdown-bg" cx="30" cy="30" r="25"></circle>
+                            <circle class="chip-countdown-fg" cx="30" cy="30" r="25"></circle>
+                        </svg>
+                        <span class="chip-countdown-num" id="reveal-countdown-num">0</span>
+                    </span>
+                    <span class="chip-countdown-label" data-i18n="dashboard.autoAdvance">Auto-Weiter</span>
+                </div>
             </div>
 
             <div class="dashboard-reveal-content">

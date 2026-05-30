@@ -646,6 +646,7 @@
     "pagination": "Pagina {current} van {total}"
   },
   "dashboard": {
+    "autoAdvance": "Auto-volgende",
     "title": "Beatify - Dashboard",
     "connecting": "Verbinden met spel...",
     "noActiveGame": "Geen actief spel",

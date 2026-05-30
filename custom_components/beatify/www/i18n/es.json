@@ -646,6 +646,7 @@
     "pagination": "Pagina {current} de {total}"
   },
   "dashboard": {
+    "autoAdvance": "Auto-avance",
     "title": "Beatify - Panel",
     "connecting": "Conectando al juego...",
     "noActiveGame": "Sin juego activo",
