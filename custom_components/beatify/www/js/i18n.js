@@ -167,6 +167,14 @@ window.BeatifyI18n = (function() {
         }
 
         currentLanguage = langCode;
+
+        // #1177: keep <html lang="..."> in sync so Android Chrome doesn't auto-translate
+        // German UI ("Tipp abgeben" → "Trinkgeld abgeben") because the static lang="en"
+        // attribute disagrees with the rendered locale.
+        if (typeof document !== 'undefined' && document.documentElement) {
+            document.documentElement.lang = langCode;
+        }
+
         await loadTranslations();
     }
 
