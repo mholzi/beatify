@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "world-cup",
     "fifa",
@@ -135,7 +135,7 @@
       "uri_apple_music": null,
       "uri_youtube_music": null,
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/71964438",
+      "uri_deezer": null,
       "isrc": null,
       "uri_apple_music_by_region": {}
     },
@@ -295,7 +295,7 @@
       "uri_apple_music": "applemusic://track/359615452",
       "uri_youtube_music": null,
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1072800762",
+      "uri_deezer": null,
       "isrc": null,
       "uri_apple_music_by_region": {}
     },
@@ -317,7 +317,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1440912652",
+      "uri_apple_music": "applemusic://track/471764799",
       "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3345558141",
@@ -346,7 +346,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1465709259",
+      "uri_apple_music": "applemusic://track/1536120433",
       "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": null,
