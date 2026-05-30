@@ -685,7 +685,9 @@
     "furthestGuess": "Meest ernaast",
     "noSubmissions": "Geen inzendingen deze ronde",
     "noGuesses": "Geen gokken",
-    "histogram": "Verdeling van gokken"
+    "histogram": "Verdeling van gokken",
+    "guessAxis": "Waar iedereen gokte",
+    "youMarker": "(JIJ)"
   },
   "artistChallenge": {
     "whoSings": "Wie zingt dit nummer?",

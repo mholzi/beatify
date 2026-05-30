@@ -521,6 +521,7 @@ class ScoringService:
                     "name": p.name,
                     "guess": p.current_guess,
                     "years_off": p.years_off or 0,
+                    "round_score": p.round_score,
                 }
                 for p in submitted
             ],

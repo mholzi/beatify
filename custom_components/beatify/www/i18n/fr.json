@@ -685,7 +685,9 @@
     "furthestGuess": "Le plus éloigné",
     "noSubmissions": "Pas de réponses cette manche",
     "noGuesses": "Pas de réponses",
-    "histogram": "Distribution des réponses"
+    "histogram": "Distribution des réponses",
+    "guessAxis": "Où chacun a parié",
+    "youMarker": "(TOI)"
   },
   "artistChallenge": {
     "whoSings": "Qui chante cette chanson ?",
