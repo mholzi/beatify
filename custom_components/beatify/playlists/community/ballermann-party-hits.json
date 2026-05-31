@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.2",
+  "version": "1.3",
   "tags": [
     "schlager",
     "party",
@@ -649,7 +649,6 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5G6WhC39x3k",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/141827681",
       "alt_artists": [
         "Olaf der Flipper"
       ],
@@ -3117,7 +3116,7 @@
       "year": 1989,
       "isrc": "DEUM71724149",
       "uri": "spotify:track:4rRy0O445uZImn0Lrni1Ip",
-      "uri_apple_music": "applemusic://track/1862840847",
+      "uri_apple_music": "applemusic://track/1676710601",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1862840847",
         "de": "applemusic://track/1862840847",
@@ -3309,7 +3308,7 @@
       "year": 2014,
       "isrc": "DEL942100016",
       "uri": "spotify:track:0J26VAtZqKQsez0WAJh7Q6",
-      "uri_apple_music": "applemusic://track/1565934569",
+      "uri_apple_music": "applemusic://track/981944911",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1565934569",
         "de": "applemusic://track/1565934569",
@@ -3319,9 +3318,9 @@
         "nl": "applemusic://track/1565934569",
         "it": "applemusic://track/1565934569"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bo-VESZUZY8",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2066569277",
+      "uri_deezer": "deezer://track/98699294",
       "fun_fact": "A Mallorca / Ballermann party hit (2022).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
       "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
@@ -4123,7 +4122,7 @@
         "nl": "applemusic://track/1784923514",
         "it": "applemusic://track/1784923514"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KJV1ZMMZ0pU",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nqraNWUjasA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3136075381",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
@@ -4523,7 +4522,6 @@
       "year": 2008,
       "isrc": "DEUM72006668",
       "uri": "spotify:track:6utaoKGSLouzClxNttqPa4",
-      "uri_apple_music": "applemusic://track/1862840544",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1862840544",
         "de": "applemusic://track/1862840544",
