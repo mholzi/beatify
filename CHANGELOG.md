@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.5-rc1] - 2026-05-31
+
+### Added
+- **Reveal: per-player dot-axis on phone.** The phone reveal now shows a dot for each player on a timeline instead of a histogram — see at a glance where everyone landed (#1178, PR #1184).
+- **Dashboard: auto-advance countdown ring on TV reveal.** The round advances on its own on the big-screen view. Requested by @Dtrieb (#1185, PR #1199).
+- **README: "Play On A TV" section.** Documents the dashboard.html TV display + Lovelace iframe-card path. Prompted by @Exacute (#1181, PR #1182).
+- **world-cup-anthems — new playlist (26 tracks).** Official FIFA World Cup songs 1962–2026 (#1190, PR #1191).
+- **disney-classics grown +69 tracks.** Requested by @maxlin1 (#1171, PR #1172).
+- **disco-funk-classics grown +22 tracks** from "This is Disco" (#1165, PR #1166).
+
+### Fixed
+- **`<html lang>` now syncs with the active locale** (#1177, PR #1179).
+- **Catalog data:** several Apple Music / Spotify / Deezer / YouTube Music URIs repaired and a handful of release-year tags corrected across world-cup-anthems, disney-classics, 80er-hits, 90er-hits, pure-pop-punk, 2000s-pop-anthems and one-hit-wonders (PRs #1168, #1170, #1175, #1176, #1187, #1189, #1194, #1196, #1198, #1200).
+
 ## [3.4.4] - 2026-05-28
 
 ### Added
