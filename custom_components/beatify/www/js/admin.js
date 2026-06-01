@@ -534,6 +534,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     document.getElementById('home-start-game')?.addEventListener('click', async () => {
+        // #1122: Acquire the wake lock SYNCHRONOUSLY here, inside the click's
+        // user-gesture window. The Layer 2 NoSleep.js silent-video fallback
+        // needs an active user activation to call video.play() on iOS — and
+        // iOS consumes that activation after the first `await`. Both start
+        // paths below (startGameplay / startGame) only reach their existing
+        // _requestWakeLock() calls *after* awaiting fetch()/loadStatus(), by
+        // which point the gesture is gone and the video silently fails to
+        // start, so admin/admin+player screens kept sleeping. This call runs
+        // before any await; the later calls are idempotent re-affirms
+        // (guarded by _noSleepActive).
+        _requestWakeLock();
         // Home-mode auto-creates the LOBBY session on enter, so the user's Start
         // button triggers the actual "begin rounds" action (startGameplay).
         // #935: currentGame is null until the async loadStatus() fetch returns,
