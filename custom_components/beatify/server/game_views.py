@@ -391,6 +391,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                         "announce_steal_unlocked", True
                     ),
                     announce_steal_used=tts_config.get("announce_steal_used", True),
+                    # Issue #1211: compensate for pre-round TTS overhead so the
+                    # timer doesn't eat into actual music play time.
+                    tts_pre_round_delay=float(
+                        tts_config.get("tts_pre_round_delay", 0)
+                    ),
                 )
                 await game_state.announce_game_start()
 

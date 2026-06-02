@@ -152,6 +152,9 @@ class GameState:
         self._tts_announce_steal_used: bool = True
         # Steal-unlock is announced once per player per game.
         self._tts_steal_unlocked_announced: set[str] = set()
+        # Issue #1211: seconds to add to the deadline so the timer only starts
+        # counting once music has resumed after pre-round TTS announcements.
+        self._tts_pre_round_delay: float = 0.0
         self._bg_tasks: set[asyncio.Task] = (
             set()
         )  # Issue #391: prevent GC of fire-and-forget tasks
@@ -1336,7 +1339,15 @@ class GameState:
                 return False
 
         metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
-        self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash)
+        # Issue #1211: when TTS pre-round announcements are active, shift the
+        # deadline forward so the timer doesn't count down during the TTS
+        # overhead (e.g. Google Home chime → announcement → chime before music
+        # resumes). Default is 0 ms (no change); users configure this via the
+        # TTS settings "Timer delay" field.
+        extra_ms = 0
+        if self._tts_service and self._tts_pre_round_delay > 0:
+            extra_ms = int(self._tts_pre_round_delay * 1000)
+        self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash, extra_deadline_ms=extra_ms)
 
         delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
         await self._lights_set_phase(GamePhase.PLAYING)
@@ -1404,6 +1415,7 @@ class GameState:
         metadata: dict,
         resolved_uri: str,
         will_defer_for_splash: bool,
+        extra_deadline_ms: int = 0,
     ) -> None:
         """Commit all round state. Delegates to RoundManager."""
         self._round_manager.initialize_round(
@@ -1416,6 +1428,7 @@ class GameState:
             self.players,
             self._timer_countdown,
             self._on_round_end,
+            extra_deadline_ms=extra_deadline_ms,
         )
         self.round_analytics = None
         self.phase = GamePhase.PLAYING
@@ -2225,6 +2238,9 @@ class GameState:
         announce_intro_round: bool = True,
         announce_steal_unlocked: bool = True,
         announce_steal_used: bool = True,
+        # Issue #1211: seconds to add to the round deadline when pre-round TTS
+        # fires, so the countdown only starts once music has actually resumed.
+        tts_pre_round_delay: float = 0.0,
     ) -> None:
         """Configure TTS announcement service for the game.
 
@@ -2266,6 +2282,8 @@ class GameState:
         self._tts_announce_intro_round = announce_intro_round
         self._tts_announce_steal_unlocked = announce_steal_unlocked
         self._tts_announce_steal_used = announce_steal_used
+        # Issue #1211: deadline offset to compensate for pre-round TTS overhead.
+        self._tts_pre_round_delay = max(0.0, float(tts_pre_round_delay))
         # Fresh game — no prior leader, no steal unlocks announced yet.
         self._tts_previous_leader = None
         self._tts_steal_unlocked_announced = set()

@@ -51,6 +51,7 @@
     var ttsEntityId = '';
     var ttsPreset = 'standard';
     var announce = {};  // snake_case key -> bool
+    var ttsPreRoundDelay = 0;  // #1211: seconds to add to deadline for TTS overhead
 
     function domId(key) {
         return 'tts-' + key.replace(/_/g, '-');
@@ -98,15 +99,23 @@
             });
             // Pre-#2 saved configs have no `preset` — derive it from the toggles.
             ttsPreset = saved.preset || detectPreset();
+            // #1211: load pre-round delay (0 = no offset, backward-compatible default).
+            ttsPreRoundDelay = parseFloat(saved.tts_pre_round_delay) || 0;
         } catch (e) {
             KEYS.forEach(function(k) { announce[k] = defaults[k]; });
             ttsPreset = 'standard';
+            ttsPreRoundDelay = 0;
         }
     }
 
     function saveState() {
         try {
-            var payload = { enabled: ttsEnabled, entity_id: ttsEntityId, preset: ttsPreset };
+            var payload = {
+                enabled: ttsEnabled,
+                entity_id: ttsEntityId,
+                preset: ttsPreset,
+                tts_pre_round_delay: ttsPreRoundDelay  // #1211
+            };
             KEYS.forEach(function(k) { payload[k] = announce[k]; });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
         } catch (e) { /* ignore */ }
@@ -253,6 +262,17 @@
             }
         }
 
+        // #1211: pre-round delay — seconds added to deadline for TTS overhead.
+        var delayInput = document.getElementById('tts-pre-round-delay');
+        if (delayInput) {
+            delayInput.value = ttsPreRoundDelay;
+            delayInput.addEventListener('change', function() {
+                ttsPreRoundDelay = Math.max(0, parseFloat(this.value) || 0);
+                this.value = ttsPreRoundDelay;
+                saveState();
+            });
+        }
+
         // #2: verbosity preset chips. Picking one bulk-sets all 23 toggles.
         PRESET_NAMES.forEach(function(name) {
             var chip = document.getElementById('tts-preset-' + name);
@@ -326,7 +346,11 @@
     // backend skips configure_tts, leaving the game silent.
     window._ttsConfig = function() {
         loadState();
-        var cfg = { enabled: ttsEnabled, entity_id: ttsEntityId };
+        var cfg = {
+            enabled: ttsEnabled,
+            entity_id: ttsEntityId,
+            tts_pre_round_delay: ttsPreRoundDelay  // #1211
+        };
         KEYS.forEach(function(k) { cfg[k] = announce[k]; });
         return cfg;
     };
