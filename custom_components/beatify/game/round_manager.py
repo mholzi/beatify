@@ -298,12 +298,18 @@ class RoundManager:
         players: dict[str, PlayerSession],
         timer_countdown: Callable[[float], Awaitable[None]],
         on_round_end: Callable[[], Awaitable[None]] | None,
+        extra_deadline_ms: int = 0,
     ) -> None:
         """Commit all round state for a new round.
 
         Increments round counter, sets current song, deadline, resets
         per-round player state, generates challenges, marks song as
         played, and starts timer/intro tasks.
+
+        ``extra_deadline_ms`` shifts the deadline forward by that many
+        milliseconds. Use this to compensate for TTS playback overhead
+        (e.g. Google Home chime + announcement before music resumes) so
+        the round timer only starts counting when music actually plays.
         """
         self.round += 1
         self.current_song = dict(song)
@@ -314,7 +320,9 @@ class RoundManager:
 
         now = self._now()
         self.round_start_time = now
-        self.deadline = int(now * 1000) + int(self.round_duration * 1000)
+        self.deadline = (
+            int(now * 1000) + int(self.round_duration * 1000) + extra_deadline_ms
+        )
 
         # Reset per-round player state
         for player in players.values():

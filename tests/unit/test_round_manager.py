@@ -139,6 +139,67 @@ class TestRoundManagerReset:
 
 
 # ---------------------------------------------------------------------------
+# RoundManager.initialize_round — extra_deadline_ms (#1211)
+# ---------------------------------------------------------------------------
+
+
+class TestInitializeRoundExtraDeadline:
+    """extra_deadline_ms shifts the deadline so TTS overhead doesn't eat the timer."""
+
+    def _call_initialize(self, rm, extra_deadline_ms=0):
+        """Helper: call initialize_round with minimal stubs."""
+
+        async def _noop_timer(_delay):
+            pass
+
+        rm.initialize_round(
+            song={
+                "year": 2000,
+                "uri": "spotify:track:abc",
+                "_resolved_uri": "spotify:track:abc",
+            },
+            metadata={
+                "metadata_pending": False,
+                "metadata_coro": None,
+                "resolved_uri": "spotify:track:abc",
+            },
+            resolved_uri="spotify:track:abc",
+            will_defer_for_splash=True,  # deferred — avoids creating asyncio tasks
+            playlist_manager=None,
+            challenge_manager=None,
+            players={},
+            timer_countdown=_noop_timer,
+            on_round_end=None,
+            extra_deadline_ms=extra_deadline_ms,
+        )
+
+    def test_zero_extra_ms_sets_normal_deadline(self):
+        now = 1_000_000.0
+        rm = _make_rm(time_fn=lambda: now)
+        rm.round_duration = 30.0
+        self._call_initialize(rm, extra_deadline_ms=0)
+        expected = int(now * 1000) + 30_000
+        assert rm.deadline == expected
+
+    def test_extra_ms_extends_deadline(self):
+        now = 1_000_000.0
+        rm = _make_rm(time_fn=lambda: now)
+        rm.round_duration = 30.0
+        self._call_initialize(rm, extra_deadline_ms=10_000)
+        expected = int(now * 1000) + 30_000 + 10_000
+        assert rm.deadline == expected
+
+    def test_default_extra_ms_is_zero(self):
+        """Calling without extra_deadline_ms must be backward-compatible."""
+        now = 1_000_000.0
+        rm = _make_rm(time_fn=lambda: now)
+        rm.round_duration = 30.0
+        self._call_initialize(rm)  # no extra_deadline_ms arg
+        expected = int(now * 1000) + 30_000
+        assert rm.deadline == expected
+
+
+# ---------------------------------------------------------------------------
 # RoundManager.prepare_intro_round
 # ---------------------------------------------------------------------------
 
