@@ -1347,7 +1347,13 @@ class GameState:
         extra_ms = 0
         if self._tts_service and self._tts_pre_round_delay > 0:
             extra_ms = int(self._tts_pre_round_delay * 1000)
-        self._initialize_round(song, metadata, resolved_uri, will_defer_for_splash, extra_deadline_ms=extra_ms)
+        self._initialize_round(
+            song,
+            metadata,
+            resolved_uri,
+            will_defer_for_splash,
+            extra_deadline_ms=extra_ms,
+        )
 
         delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
         await self._lights_set_phase(GamePhase.PLAYING)

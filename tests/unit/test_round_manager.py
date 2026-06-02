@@ -148,12 +148,21 @@ class TestInitializeRoundExtraDeadline:
 
     def _call_initialize(self, rm, extra_deadline_ms=0):
         """Helper: call initialize_round with minimal stubs."""
+
         async def _noop_timer(_delay):
             pass
 
         rm.initialize_round(
-            song={"year": 2000, "uri": "spotify:track:abc", "_resolved_uri": "spotify:track:abc"},
-            metadata={"metadata_pending": False, "metadata_coro": None, "resolved_uri": "spotify:track:abc"},
+            song={
+                "year": 2000,
+                "uri": "spotify:track:abc",
+                "_resolved_uri": "spotify:track:abc",
+            },
+            metadata={
+                "metadata_pending": False,
+                "metadata_coro": None,
+                "resolved_uri": "spotify:track:abc",
+            },
             resolved_uri="spotify:track:abc",
             will_defer_for_splash=True,  # deferred — avoids creating asyncio tasks
             playlist_manager=None,
