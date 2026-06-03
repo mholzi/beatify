@@ -45,7 +45,13 @@
         "es": "applemusic://track/434569791",
         "nl": "applemusic://track/434569791",
         "it": "applemusic://track/433399860"
-      }
+      },
+      "movie": "Easy A",
+      "movie_choices": [
+        "Easy A",
+        "Moana",
+        "Walking on Sunshine"
+      ]
     },
     {
       "year": 2008,
@@ -79,7 +85,13 @@
         "es": "applemusic://track/1443234133",
         "nl": "applemusic://track/1443234133",
         "it": "applemusic://track/1443234133"
-      }
+      },
+      "movie": "The Breakfast Club",
+      "movie_choices": [
+        "The Breakfast Club",
+        "Girls Just Want to Have Fun",
+        "Shrek 2"
+      ]
     },
     {
       "year": 2006,
@@ -113,7 +125,13 @@
         "es": "applemusic://track/207445080",
         "nl": "applemusic://track/254685026",
         "it": "applemusic://track/456794433"
-      }
+      },
+      "movie": "Rocky III",
+      "movie_choices": [
+        "Rocky III",
+        "The Wizard of Oz",
+        "Beauty and the Beast"
+      ]
     },
     {
       "year": 1987,
@@ -147,7 +165,13 @@
         "es": "applemusic://track/254938549",
         "nl": "applemusic://track/254938549",
         "it": "applemusic://track/254938549"
-      }
+      },
+      "movie": "Dirty Dancing",
+      "movie_choices": [
+        "Dirty Dancing",
+        "Titanic",
+        "Hairspray"
+      ]
     },
     {
       "year": 2008,
@@ -181,7 +205,13 @@
         "es": "applemusic://track/205745391",
         "nl": "applemusic://track/1481507900",
         "it": "applemusic://track/1481507900"
-      }
+      },
+      "movie": "Titanic",
+      "movie_choices": [
+        "Titanic",
+        "Pitch Perfect",
+        "Back to the Future"
+      ]
     },
     {
       "year": 1984,
@@ -215,7 +245,13 @@
         "es": "applemusic://track/209743272",
         "nl": "applemusic://track/1164757333",
         "it": "applemusic://track/209743272"
-      }
+      },
+      "movie": "Footloose",
+      "movie_choices": [
+        "Footloose",
+        "Beauty and the Beast",
+        "Spider-Man 2"
+      ]
     },
     {
       "year": 2024,
@@ -249,7 +285,13 @@
         "es": "applemusic://track/684857884",
         "nl": "applemusic://track/921956098",
         "it": "applemusic://track/907411805"
-      }
+      },
+      "movie": "Breakfast at Tiffany's",
+      "movie_choices": [
+        "Breakfast at Tiffany's",
+        "The Hunger Games: Mockingjay",
+        "The Bodyguard"
+      ]
     },
     {
       "year": 2018,
@@ -283,7 +325,13 @@
         "es": "applemusic://track/1434371887",
         "nl": "applemusic://track/1434371887",
         "it": "applemusic://track/1434371887"
-      }
+      },
+      "movie": "A Star Is Born",
+      "movie_choices": [
+        "A Star Is Born",
+        "Grease",
+        "The Wizard of Oz"
+      ]
     },
     {
       "year": 2009,
@@ -317,7 +365,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Wizard of Oz",
+      "movie_choices": [
+        "The Wizard of Oz",
+        "Grease",
+        "Coco"
+      ]
     },
     {
       "year": 2006,
@@ -351,7 +405,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Beauty and the Beast",
+      "movie_choices": [
+        "Beauty and the Beast",
+        "The Little Mermaid",
+        "Thriller"
+      ]
     },
     {
       "year": 2019,
@@ -385,7 +445,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Grease",
+      "movie_choices": [
+        "Grease",
+        "Easy A",
+        "La La Land"
+      ]
     },
     {
       "year": 2025,
@@ -419,7 +485,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Pinocchio",
+      "movie_choices": [
+        "Pinocchio",
+        "Spider-Man 2",
+        "Snow White and the Seven Dwarfs"
+      ]
     },
     {
       "year": 2021,
@@ -453,7 +525,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Sound of Music",
+      "movie_choices": [
+        "The Sound of Music",
+        "Titanic",
+        "Aladdin"
+      ]
     },
     {
       "year": 2006,
@@ -487,7 +565,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Back to the Future",
+      "movie_choices": [
+        "Back to the Future",
+        "Girls Just Want to Have Fun",
+        "Anyone But You"
+      ]
     },
     {
       "year": 2019,
@@ -521,7 +605,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Lion King",
+      "movie_choices": [
+        "The Lion King",
+        "The Bodyguard",
+        "Mulan"
+      ]
     },
     {
       "year": 2021,
@@ -555,7 +645,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Sound of Music",
+      "movie_choices": [
+        "The Sound of Music",
+        "La La Land",
+        "Back to the Future"
+      ]
     },
     {
       "year": 2019,
@@ -589,7 +685,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Grease",
+      "movie_choices": [
+        "Grease",
+        "Hairspray",
+        "The Wizard of Oz"
+      ]
     },
     {
       "year": 1992,
@@ -623,7 +725,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Bodyguard",
+      "movie_choices": [
+        "The Bodyguard",
+        "Pitch Perfect",
+        "La La Land"
+      ]
     },
     {
       "year": 2010,
@@ -657,7 +765,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Jailhouse Rock",
+      "movie_choices": [
+        "Jailhouse Rock",
+        "La La Land",
+        "Moana"
+      ]
     },
     {
       "year": 1993,
@@ -691,7 +805,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Snow White and the Seven Dwarfs",
+      "movie_choices": [
+        "Snow White and the Seven Dwarfs",
+        "The Wizard of Oz",
+        "Grease"
+      ]
     },
     {
       "year": 2010,
@@ -725,7 +845,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Gentlemen Prefer Blondes",
+      "movie_choices": [
+        "Gentlemen Prefer Blondes",
+        "Snow White and the Seven Dwarfs",
+        "Mamma Mia! Here We Go Again"
+      ]
     },
     {
       "year": 2016,
@@ -759,7 +885,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Saturday Night Fever",
+      "movie_choices": [
+        "Saturday Night Fever",
+        "Mamma Mia!",
+        "Gentlemen Prefer Blondes"
+      ]
     },
     {
       "year": 2021,
@@ -793,7 +925,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Sound of Music",
+      "movie_choices": [
+        "The Sound of Music",
+        "Girls Just Want to Have Fun",
+        "Frozen"
+      ]
     },
     {
       "year": 2023,
@@ -827,7 +965,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Hunger Games",
+      "movie_choices": [
+        "The Hunger Games",
+        "Breakfast at Tiffany's",
+        "Saturday Night Fever"
+      ]
     },
     {
       "year": 2016,
@@ -861,7 +1005,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "La La Land",
+      "movie_choices": [
+        "La La Land",
+        "Pitch Perfect",
+        "Easy A"
+      ]
     },
     {
       "year": 2016,
@@ -895,7 +1045,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "La La Land",
+      "movie_choices": [
+        "La La Land",
+        "Snow White and the Seven Dwarfs",
+        "Aladdin"
+      ]
     },
     {
       "year": 2004,
@@ -929,7 +1085,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Spider-Man 2",
+      "movie_choices": [
+        "Spider-Man 2",
+        "Pinocchio",
+        "Mulan"
+      ]
     },
     {
       "year": 2011,
@@ -963,7 +1125,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Twilight Saga: Breaking Dawn",
+      "movie_choices": [
+        "The Twilight Saga: Breaking Dawn",
+        "Rocky III",
+        "Mamma Mia!"
+      ]
     },
     {
       "year": 2017,
@@ -997,7 +1165,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Shrek 2",
+      "movie_choices": [
+        "Shrek 2",
+        "Gentlemen Prefer Blondes",
+        "Rocky III"
+      ]
     },
     {
       "year": 2016,
@@ -1031,7 +1205,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "La La Land",
+      "movie_choices": [
+        "La La Land",
+        "The Twilight Saga: Breaking Dawn",
+        "Walking on Sunshine"
+      ]
     },
     {
       "year": 2014,
@@ -1065,7 +1245,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Despicable Me 2",
+      "movie_choices": [
+        "Despicable Me 2",
+        "The Hunger Games: Mockingjay",
+        "Dirty Dancing"
+      ]
     },
     {
       "year": 2013,
@@ -1099,7 +1285,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Beauty and the Beast",
+        "Easy A"
+      ]
     },
     {
       "year": 2007,
@@ -1133,7 +1325,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2003,
@@ -1167,7 +1361,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2008,
@@ -1201,7 +1397,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2000,
@@ -1235,7 +1433,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2018,
@@ -1269,7 +1469,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2000,
@@ -1303,7 +1505,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2004,
@@ -1337,7 +1541,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Anyone But You",
+      "movie_choices": [
+        "Anyone But You",
+        "High School Musical",
+        "Despicable Me 2"
+      ]
     },
     {
       "year": 2018,
@@ -1371,7 +1581,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2006,
@@ -1405,7 +1617,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2020,
@@ -1439,7 +1653,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2005,
@@ -1473,7 +1689,9 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": null,
+      "movie_choices": []
     },
     {
       "year": 2008,
@@ -1507,7 +1725,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Thriller",
+      "movie_choices": [
+        "Thriller",
+        "The Bodyguard",
+        "Hairspray"
+      ]
     },
     {
       "year": 2016,
@@ -1541,7 +1765,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Moana",
+      "movie_choices": [
+        "Moana",
+        "Hairspray",
+        "Tangled"
+      ]
     },
     {
       "year": 2023,
@@ -1575,7 +1805,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Little Mermaid",
+      "movie_choices": [
+        "The Little Mermaid",
+        "Rocky III",
+        "The Bodyguard"
+      ]
     },
     {
       "year": 2017,
@@ -1609,7 +1845,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Greatest Showman",
+      "movie_choices": [
+        "The Greatest Showman",
+        "Moana",
+        "Hannah Montana: The Movie"
+      ]
     },
     {
       "year": 2017,
@@ -1643,7 +1885,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Greatest Showman",
+      "movie_choices": [
+        "The Greatest Showman",
+        "Grease",
+        "Pitch Perfect"
+      ]
     },
     {
       "year": 2018,
@@ -1677,7 +1925,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Toy Story",
+      "movie_choices": [
+        "Toy Story",
+        "Anyone But You",
+        "The Lion King"
+      ]
     },
     {
       "year": 2019,
@@ -1711,7 +1965,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Full House",
+      "movie_choices": [
+        "Full House",
+        "Toy Story",
+        "The Breakfast Club"
+      ]
     },
     {
       "year": 2010,
@@ -1745,7 +2005,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Hannah Montana: The Movie",
+      "movie_choices": [
+        "Hannah Montana: The Movie",
+        "The Hunger Games",
+        "Mulan"
+      ]
     },
     {
       "year": 2019,
@@ -1779,7 +2045,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Gentlemen Prefer Blondes",
+        "Rocky III"
+      ]
     },
     {
       "year": 2019,
@@ -1813,7 +2085,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Despicable Me 2",
+        "La La Land"
+      ]
     },
     {
       "year": 2019,
@@ -1847,7 +2125,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Hannah Montana: The Movie",
+        "Gentlemen Prefer Blondes"
+      ]
     },
     {
       "year": 2017,
@@ -1881,7 +2165,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Coco",
+      "movie_choices": [
+        "Coco",
+        "The Greatest Showman",
+        "Beauty and the Beast"
+      ]
     },
     {
       "year": 2010,
@@ -1915,7 +2205,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Tangled",
+      "movie_choices": [
+        "Tangled",
+        "Toy Story",
+        "The Lion King"
+      ]
     },
     {
       "year": 2013,
@@ -1949,7 +2245,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Frozen",
+      "movie_choices": [
+        "Frozen",
+        "Full House",
+        "Coco"
+      ]
     },
     {
       "year": 2014,
@@ -1983,7 +2285,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Hunger Games: Mockingjay",
+      "movie_choices": [
+        "The Hunger Games: Mockingjay",
+        "Walking on Sunshine",
+        "The Bodyguard"
+      ]
     },
     {
       "year": 2008,
@@ -2017,7 +2325,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Breakfast Club",
+      "movie_choices": [
+        "The Breakfast Club",
+        "Gentlemen Prefer Blondes",
+        "The Twilight Saga: Breaking Dawn"
+      ]
     },
     {
       "year": 2008,
@@ -2051,7 +2365,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "Girls Just Want to Have Fun",
+        "The Greatest Showman"
+      ]
     },
     {
       "year": 2008,
@@ -2085,7 +2405,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "Friends",
+        "Gentlemen Prefer Blondes"
+      ]
     },
     {
       "year": 2008,
@@ -2119,7 +2445,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "Spider-Man 2",
+        "Mary Poppins"
+      ]
     },
     {
       "year": 2008,
@@ -2153,7 +2485,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "The Hunger Games",
+        "Snow White and the Seven Dwarfs"
+      ]
     },
     {
       "year": 2008,
@@ -2187,7 +2525,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "Girls Just Want to Have Fun",
+        "Friends"
+      ]
     },
     {
       "year": 2008,
@@ -2221,7 +2565,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia!",
+      "movie_choices": [
+        "Mamma Mia!",
+        "Grease",
+        "The Hunger Games: Mockingjay"
+      ]
     },
     {
       "year": 2007,
@@ -2255,7 +2605,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Mamma Mia!",
+        "Jailhouse Rock"
+      ]
     },
     {
       "year": 2019,
@@ -2289,7 +2645,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Grease",
+      "movie_choices": [
+        "Grease",
+        "Jailhouse Rock",
+        "Back to the Future"
+      ]
     },
     {
       "year": 2007,
@@ -2323,7 +2685,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Hairspray",
+      "movie_choices": [
+        "Hairspray",
+        "Grease",
+        "Gentlemen Prefer Blondes"
+      ]
     },
     {
       "year": 2012,
@@ -2357,7 +2725,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Pitch Perfect",
+      "movie_choices": [
+        "Pitch Perfect",
+        "Moana",
+        "Tangled"
+      ]
     },
     {
       "year": 2014,
@@ -2391,7 +2765,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Walking on Sunshine",
+      "movie_choices": [
+        "Walking on Sunshine",
+        "Tangled",
+        "Back to the Future"
+      ]
     },
     {
       "year": 2006,
@@ -2425,7 +2805,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Friends",
+      "movie_choices": [
+        "Friends",
+        "Beauty and the Beast",
+        "Tangled"
+      ]
     },
     {
       "year": 1983,
@@ -2459,7 +2845,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Girls Just Want to Have Fun",
+      "movie_choices": [
+        "Girls Just Want to Have Fun",
+        "The Lion King",
+        "The Hunger Games: Mockingjay"
+      ]
     },
     {
       "year": 2018,
@@ -2493,7 +2885,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia! Here We Go Again",
+      "movie_choices": [
+        "Mamma Mia! Here We Go Again",
+        "Back to the Future",
+        "Spider-Man 2"
+      ]
     },
     {
       "year": 2018,
@@ -2527,7 +2925,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mamma Mia! Here We Go Again",
+      "movie_choices": [
+        "Mamma Mia! Here We Go Again",
+        "Pitch Perfect",
+        "Thriller"
+      ]
     },
     {
       "year": 2021,
@@ -2561,7 +2965,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Annie",
+      "movie_choices": [
+        "Annie",
+        "Full House",
+        "The Little Mermaid"
+      ]
     },
     {
       "year": 2021,
@@ -2595,7 +3005,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Annie",
+      "movie_choices": [
+        "Annie",
+        "The Twilight Saga: Breaking Dawn",
+        "The Hunger Games: Mockingjay"
+      ]
     },
     {
       "year": 2017,
@@ -2629,7 +3045,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Greatest Showman",
+      "movie_choices": [
+        "The Greatest Showman",
+        "Tangled",
+        "Saturday Night Fever"
+      ]
     },
     {
       "year": 2013,
@@ -2663,7 +3085,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Pitch Perfect",
+      "movie_choices": [
+        "Pitch Perfect",
+        "Annie",
+        "Mary Poppins"
+      ]
     },
     {
       "year": 2017,
@@ -2697,7 +3125,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Greatest Showman",
+      "movie_choices": [
+        "The Greatest Showman",
+        "The Lion King",
+        "Toy Story"
+      ]
     },
     {
       "year": 2017,
@@ -2731,7 +3165,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "The Greatest Showman",
+      "movie_choices": [
+        "The Greatest Showman",
+        "The Lion King",
+        "Snow White and the Seven Dwarfs"
+      ]
     },
     {
       "year": 2006,
@@ -2765,7 +3205,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Walking on Sunshine",
+        "Annie"
+      ]
     },
     {
       "year": 2006,
@@ -2799,7 +3245,13 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "movie": "High School Musical",
+      "movie_choices": [
+        "High School Musical",
+        "The Hunger Games",
+        "Frozen"
+      ]
     }
   ]
 }
