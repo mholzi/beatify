@@ -132,6 +132,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
+        title_artist_mode = body.get("title_artist_mode", False)  # #1180
         reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
@@ -314,6 +315,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
             "intro_mode_enabled": intro_mode_enabled,  # Issue #23
             "closest_wins_mode": closest_wins_mode,  # Issue #442
+            "title_artist_mode": title_artist_mode,  # #1180
             "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
         if round_duration is not None:
