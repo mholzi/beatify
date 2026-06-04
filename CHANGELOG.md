@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
+
+### Fixed
+- **#1122 — screen sleep disconnected players and the admin from the game.** The admin wake lock is now acquired inside the start-game tap gesture, so a fresh session holds it straight away instead of waiting for the first tab-switch. Reported by **@maxlin1** (PR #1207).
+- **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video now satisfies iOS's gesture requirement on passive displays (PR #1216).
+- **#1211 — Timer and TTS announcements were out of sync.** A new `tts_pre_round_delay` offsets the round timer for the TTS speak-time, so the countdown starts when the music does (~10s drift removed). Reported by **@nixbuongiorno** (PR #1212).
+- **Catalog data:** broken or wrong provider URIs repaired across hitster-100-en-espanol, anime-openings, ballermann-party-hits, harder-styles, trance-classics and edm-anthems, plus a release-year correction (Masatoshi Ono – "Departure!" 2022→2011) (PRs #1202, #1204, #1206, #1210, #1214, #1219, #1220).
+
 ## [3.4.5-rc1] - 2026-05-31
 
 ### Added
