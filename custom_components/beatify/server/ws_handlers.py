@@ -612,6 +612,10 @@ async def admin_next_round(
     if game_state.phase == GamePhase.PLAYING:
         await game_state.end_round()
     elif game_state.phase == GamePhase.REVEAL:
+        # #1180 Phase 4: finalize an open title/artist vote window (apply host
+        # override + majority, rescore) before the round advances or the game
+        # ends, so accepted near-misses count toward the leaderboard.
+        await game_state.resolve_title_artist_if_pending()
         if game_state.last_round:
             stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
             if stats_service:
@@ -1598,6 +1602,137 @@ async def handle_title_artist_guess(
         artist,
         result["artist_status"],
     )
+
+
+async def handle_title_artist_vote(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a community vote on a title/artist near-miss (#1180 Phase 4).
+
+    REVEAL-only. A player may not vote on their own near-miss (the near-miss
+    player is encoded as the prefix of nearmiss_id, "player:field").
+    """
+    if game_state.phase != GamePhase.REVEAL:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only vote during REVEAL phase",
+            }
+        )
+        return
+
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            }
+        )
+        return
+
+    nearmiss_id = data.get("nearmiss_id")
+    accept = data.get("accept")
+    if not isinstance(nearmiss_id, str) or ":" not in nearmiss_id:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid nearmiss_id",
+            }
+        )
+        return
+    if not isinstance(accept, bool):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid vote value",
+            }
+        )
+        return
+
+    # Reject self-vote: the near-miss player is the part before the last ":".
+    nearmiss_player = nearmiss_id.rsplit(":", 1)[0]
+    if nearmiss_player == player.name:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Cannot vote on your own guess",
+            }
+        )
+        return
+
+    game_state.register_title_artist_vote(player.name, nearmiss_id, accept)
+    _LOGGER.debug(
+        "Title/artist vote by %s on %s -> %s", player.name, nearmiss_id, accept
+    )
+    await handler.broadcast_state()
+
+
+async def handle_title_artist_override(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a host override on a title/artist near-miss (#1180 Phase 4).
+
+    REVEAL-only, admin-only. Override precedence is applied at resolve time
+    (window expiry or host-advance) by resolve_title_artist.
+    """
+    if game_state.phase != GamePhase.REVEAL:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only override during REVEAL phase",
+            }
+        )
+        return
+
+    is_admin_ws = game_state._admin_ws is not None and game_state._admin_ws is ws
+    sender = game_state.get_player_by_ws(ws)
+    if not (is_admin_ws or (sender and sender.is_admin)):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_ADMIN,
+                "message": "Only admin can override",
+            }
+        )
+        return
+
+    nearmiss_id = data.get("nearmiss_id")
+    accept = data.get("accept")
+    if not isinstance(nearmiss_id, str) or ":" not in nearmiss_id:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid nearmiss_id",
+            }
+        )
+        return
+    if not isinstance(accept, bool):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid override value",
+            }
+        )
+        return
+
+    game_state.set_title_artist_override(nearmiss_id, accept)
+    _LOGGER.info("Title/artist override on %s -> %s", nearmiss_id, accept)
+    await handler.broadcast_state()
 
 
 # ---------------------------------------------------------------------------
