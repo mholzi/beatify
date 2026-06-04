@@ -309,3 +309,103 @@ class TestResolveTitleArtist:
         mgr.resolve_title_artist()
         mgr.register_title_artist_vote("V1", "X:title", accept=True)
         mgr.set_title_artist_override("X:title", accept=True)
+
+
+class TestResolveTitleArtistVotePolicy:
+    """resolve_title_artist applies votes + overrides to near-misses."""
+
+    def test_no_near_misses_resolves_clean(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Alice", "Bohemian Rhapsody", "Queen", ts=1.0)
+        assert mgr.has_near_misses() is False
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_challenge.resolved is True
+        assert mgr.title_artist_points("Alice") == (10, 5)
+
+    def test_majority_accepts_near_miss(self):
+        mgr = _make_manager()
+        # title near-miss, artist exact
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.register_title_artist_vote("Carol", nm, True)
+        mgr.register_title_artist_vote("Eve", nm, False)
+        mgr.resolve_title_artist()
+        # 2/3 yes -> accepted -> partial title (5), full artist (5)
+        assert mgr.title_artist_points("Dan") == (5, 5)
+
+    def test_exact_tie_accepts(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.register_title_artist_vote("Carol", nm, False)
+        mgr.resolve_title_artist()
+        # 1/2 == 0.5 -> accepted
+        assert mgr.title_artist_points("Dan") == (5, 5)
+
+    def test_minority_rejects(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.register_title_artist_vote("Carol", nm, False)
+        mgr.register_title_artist_vote("Eve", nm, False)
+        mgr.resolve_title_artist()
+        # 1/3 yes -> rejected -> 0 title, full artist
+        assert mgr.title_artist_points("Dan") == (0, 5)
+
+    def test_no_votes_default_reject(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_points("Dan") == (0, 5)
+
+    def test_override_accept_beats_votes(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        # votes would reject (all no), but host accepts
+        mgr.register_title_artist_vote("Bob", nm, False)
+        mgr.register_title_artist_vote("Carol", nm, False)
+        mgr.set_title_artist_override(nm, True)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_points("Dan") == (5, 5)
+
+    def test_override_reject_beats_votes(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        # votes would accept (all yes), but host rejects
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.register_title_artist_vote("Carol", nm, True)
+        mgr.set_title_artist_override(nm, False)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_points("Dan") == (0, 5)
+
+    def test_resolve_is_idempotent(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Queen", ts=1.0)
+        nm = "Dan:title"
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.resolve_title_artist()
+        # late vote after resolve must not flip an already-finalized field
+        mgr.register_title_artist_vote("Carol", nm, False)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_points("Dan") == (5, 5)
+
+    def test_get_near_misses_shape(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Bohemian Rap City", "Wrong", ts=1.0)
+        nm = "Dan:title"
+        mgr.register_title_artist_vote("Bob", nm, True)
+        mgr.register_title_artist_vote("Carol", nm, False)
+        near = mgr.get_near_misses()
+        ids = {n["id"] for n in near}
+        assert ids == {"Dan:title", "Dan:artist"}
+        title_nm = next(n for n in near if n["id"] == "Dan:title")
+        assert title_nm["player"] == "Dan"
+        assert title_nm["field"] == "title"
+        assert title_nm["guess"] == "Bohemian Rap City"
+        assert title_nm["votes_yes"] == 1
+        assert title_nm["votes_no"] == 1
