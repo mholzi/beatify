@@ -327,3 +327,65 @@ class TestResolveTitleArtist:
         mgr.resolve_title_artist()
         mgr.register_title_artist_vote("V1", "X:title", accept=True)
         mgr.set_title_artist_override("X:title", accept=True)
+
+
+class TestGameStateTitleArtistMode:
+    """GameState exposes title_artist_mode and wires it into create_game."""
+
+    def _songs(self):
+        return [
+            {
+                "title": "Bohemian Rhapsody",
+                "artist": "Queen",
+                "year": 1975,
+                "uri": "spotify:track:1",
+                "uri_spotify": "spotify:track:1",
+            },
+            {
+                "title": "Imagine",
+                "artist": "John Lennon",
+                "year": 1971,
+                "uri": "spotify:track:2",
+                "uri_spotify": "spotify:track:2",
+            },
+        ]
+
+    def test_default_off(self):
+        from custom_components.beatify.game.state import GameState
+
+        gs = GameState()
+        assert gs.title_artist_mode is False
+
+    def test_create_game_enables_mode(self):
+        from custom_components.beatify.game.state import GameState
+
+        gs = GameState()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=self._songs(),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+            provider="spotify",
+            title_artist_mode=True,
+        )
+        assert gs.title_artist_mode is True
+        # init_round wires the challenge through the manager
+        gs._challenge_manager.init_round(self._songs()[0])
+        assert gs.title_artist_challenge is not None
+        assert gs.title_artist_challenge.correct_title == "Bohemian Rhapsody"
+
+    def test_property_setter_writes_through(self):
+        from custom_components.beatify.game.state import GameState
+
+        gs = GameState()
+        gs.title_artist_mode = True
+        assert gs._challenge_manager.title_artist_mode is True
+
+    def test_apply_config_does_not_clobber_mode(self):
+        from custom_components.beatify.game.state import GameState
+
+        gs = GameState()
+        gs.title_artist_mode = True
+        # _apply_config must not reset the manager-owned flag back to False
+        gs._apply_config(gs._default_config)
+        assert gs.title_artist_mode is True

@@ -462,6 +462,24 @@ class GameState:
     def movie_quiz_enabled(self, value: bool) -> None:
         self._challenge_manager.movie_quiz_enabled = value
 
+    @property
+    def title_artist_mode(self) -> bool:
+        """Whether title/artist guessing mode is enabled (Issue #1180)."""
+        return self._challenge_manager.title_artist_mode
+
+    @title_artist_mode.setter
+    def title_artist_mode(self, value: bool) -> None:
+        self._challenge_manager.title_artist_mode = value
+
+    @property
+    def title_artist_challenge(self) -> Any:
+        """Current title/artist challenge state (Issue #1180)."""
+        return self._challenge_manager.title_artist_challenge
+
+    @title_artist_challenge.setter
+    def title_artist_challenge(self, value: Any) -> None:
+        self._challenge_manager.title_artist_challenge = value
+
     def get_artist_challenge_dict(
         self, *, include_answer: bool
     ) -> dict[str, Any] | None:
@@ -498,6 +516,7 @@ class GameState:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
+        title_artist_mode: bool = False,
         reveal_auto_advance: int = 0,
     ) -> dict[str, Any]:
         """
@@ -516,6 +535,7 @@ class GameState:
             movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
             intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
             closest_wins_mode: Whether only the closest guess(es) earn points
+            title_artist_mode: Whether title/artist guessing replaces the year guess
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -606,10 +626,11 @@ class GameState:
         # Issue #351: Reset power-up state for new game
         self._powerup_manager.reset()
 
-        # Story 20.1 / Issue #28: Set challenge configuration
+        # Story 20.1 / Issue #28 / Issue #1180: Set challenge configuration
         self._challenge_manager.configure(
             artist_challenge_enabled=artist_challenge_enabled,
             movie_quiz_enabled=movie_quiz_enabled,
+            title_artist_mode=title_artist_mode,
         )
 
         # Issue #23: Set intro mode configuration
@@ -785,6 +806,7 @@ class GameState:
             "movie_quiz_enabled": self.movie_quiz_enabled,
             "intro_mode_enabled": self.intro_mode_enabled,
             "closest_wins_mode": self.closest_wins_mode,
+            "title_artist_mode": self.title_artist_mode,
         }
 
         self._reset_game_internals()
