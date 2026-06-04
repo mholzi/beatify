@@ -1090,6 +1090,15 @@ class GameState:
                     if player.is_active and not player.has_movie_guess:
                         return False
 
+        # #1180: In Title & Artist mode, wait for every active player to submit
+        # their title/artist guess before auto-advancing. This mode replaces the
+        # year guess, so there is no "winner" short-circuit — each player guesses
+        # independently and we hold PLAYING until all are in.
+        if self.title_artist_mode and self.title_artist_challenge:
+            for player in self.players.values():
+                if player.is_active and not player.has_title_artist_guess:
+                    return False
+
         return True
 
     async def _trigger_early_reveal(self) -> None:

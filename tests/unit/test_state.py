@@ -47,6 +47,13 @@ def _create_fresh_game(state: GameState, songs=None, **kwargs) -> dict:
     )
 
 
+def _make_ws_for_state() -> AsyncMock:
+    ws = AsyncMock()
+    ws.send_json = AsyncMock()
+    ws.closed = False
+    return ws
+
+
 # ---------------------------------------------------------------------------
 # GameState.create_game
 # ---------------------------------------------------------------------------
@@ -1251,3 +1258,21 @@ class TestTitleArtistMode:
         gs = self._make_game(title_artist_mode=False)
         assert gs.get_title_artist_challenge_dict(include_answer=False) is None
         assert gs.get_title_artist_challenge_dict(include_answer=True) is None
+
+    def test_early_reveal_waits_for_title_artist_guesses(self):
+        gs = self._make_game(title_artist_mode=True)
+        gs.phase = GamePhase.PLAYING
+        gs._challenge_manager.init_round(
+            {"title": "Yesterday", "artist": "The Beatles"}
+        )
+        gs.add_player("Alice", _make_ws_for_state())
+        gs.add_player("Bob", _make_ws_for_state())
+        # Year guesses in for both (the existing all_submitted gate)
+        gs.players["Alice"].submit_guess(1965, 1.0)
+        gs.players["Bob"].submit_guess(1965, 1.0)
+        # Only Alice submitted her title/artist guess
+        gs.players["Alice"].has_title_artist_guess = True
+        assert gs.check_all_guesses_complete() is False
+        # Now Bob too
+        gs.players["Bob"].has_title_artist_guess = True
+        assert gs.check_all_guesses_complete() is True
