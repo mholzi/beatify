@@ -887,7 +887,7 @@
       "sub": "Optional. Skip all of this and Beatify still works.",
       "lights": {
         "title": "Party lights",
-        "desc": "Sync your Hue lights to the beat. Pulse on round changes, flash on winner.",
+        "desc": "Sync your smart lights to the beat. Pulse on round changes, flash on winner.",
         "unavailable": "No lights found in Home Assistant.",
         "pickLabel": "Lights to sync",
         "searchPlaceholder": "Search lights…",

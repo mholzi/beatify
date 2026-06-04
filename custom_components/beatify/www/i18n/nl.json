@@ -887,7 +887,7 @@
       "sub": "Optioneel. Beatify werkt ook zonder.",
       "lights": {
         "title": "Partylicht",
-        "desc": "Synchroniseer je Hue-lampen op het ritme. Puls bij ronde-wissel, flits bij winnaar.",
+        "desc": "Synchroniseer je slimme lampen op het ritme. Puls bij ronde-wissel, flits bij winnaar.",
         "unavailable": "Geen lampen gevonden in Home Assistant.",
         "pickLabel": "Lampen om te synchroniseren",
         "searchPlaceholder": "Lampen zoeken…",
