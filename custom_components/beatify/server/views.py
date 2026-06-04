@@ -573,6 +573,11 @@ class LightsView(HomeAssistantView):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         lights = []
         for state in self.hass.states.async_all("light"):
+            # Hide unreachable lights — an "unavailable" entity can't be
+            # controlled by anyone, so listing it only invites dead selections
+            # that silently do nothing during the game.
+            if state.state == "unavailable":
+                continue
             color_modes = state.attributes.get("supported_color_modes", [])
             if any(m in color_modes for m in ("rgb", "rgbw", "rgbww", "hs", "xy")):
                 capability = "rgb"

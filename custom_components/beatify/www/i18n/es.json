@@ -887,7 +887,7 @@
       "sub": "Opcional. Beatify funciona sin esto.",
       "lights": {
         "title": "Luces de fiesta",
-        "desc": "Sincroniza tus luces Hue al ritmo. Pulso al cambiar ronda, destello para el ganador.",
+        "desc": "Sincroniza tus luces inteligentes al ritmo. Pulso al cambiar ronda, destello para el ganador.",
         "unavailable": "No hay luces en Home Assistant.",
         "pickLabel": "Luces a sincronizar",
         "searchPlaceholder": "Buscar luces…",

@@ -887,7 +887,7 @@
       "sub": "Facultatif. Beatify fonctionne sans.",
       "lights": {
         "title": "Lumières de fête",
-        "desc": "Synchronise tes ampoules Hue sur le rythme. Pulsation entre manches, flash pour le gagnant.",
+        "desc": "Synchronise tes ampoules connectées sur le rythme. Pulsation entre manches, flash pour le gagnant.",
         "unavailable": "Aucune lumière trouvée dans Home Assistant.",
         "pickLabel": "Lumières à synchroniser",
         "searchPlaceholder": "Rechercher des lumières…",
