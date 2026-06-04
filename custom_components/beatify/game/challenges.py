@@ -809,3 +809,42 @@ class ChallengeManager:
         if self.movie_quiz_enabled and self.movie_challenge:
             return self.movie_challenge.to_dict(include_answer=include_answer)
         return None
+
+    def get_title_artist_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """
+        Get title/artist challenge state for broadcast, or None if inactive (#1180).
+
+        PLAYING (include_answer=False): ``{"active": True}`` with NO truth, or
+        None when the mode/challenge is inactive. REVEAL (include_answer=True):
+        truth + per-player results + (Phase 4) voting state. ``near_misses`` and
+        ``voting_open`` are emitted as empty/False here and filled by Phase 4.
+
+        Args:
+            include_answer: If True, include the truth + results (for REVEAL).
+
+        """
+        if not self.title_artist_mode or self.title_artist_challenge is None:
+            return None
+
+        if not include_answer:
+            return {"active": True}
+
+        results = [
+            {
+                "player": name,
+                "title": g.get("title", ""),
+                "artist": g.get("artist", ""),
+                "title_status": g.get("title_status", ""),
+                "artist_status": g.get("artist_status", ""),
+            }
+            for name, g in self.title_artist_challenge.guesses.items()
+        ]
+        return {
+            "correct_title": self.title_artist_challenge.correct_title,
+            "correct_artist": self.title_artist_challenge.correct_artist,
+            "results": results,
+            "near_misses": [],
+            "voting_open": False,
+        }

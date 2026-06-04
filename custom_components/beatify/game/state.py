@@ -496,6 +496,19 @@ class GameState:
             include_answer=include_answer
         )
 
+    def get_title_artist_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """Build Title & Artist challenge dict — delegated to ChallengeManager (#1180).
+
+        PLAYING (include_answer=False): {"active": True} with NO truth, or None
+        when the mode/challenge is inactive. REVEAL (include_answer=True):
+        truth + per-player results + (Phase 4) voting state.
+        """
+        return self._challenge_manager.get_title_artist_challenge_dict(
+            include_answer=include_answer
+        )
+
     def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
         """Get song difficulty rating — delegated to StatsService."""
         if self._stats_service:
@@ -2617,4 +2630,16 @@ class GameState:
         """Submit movie guess for bonus points (Issue #28). Delegates to ChallengeManager."""
         return self._challenge_manager.submit_movie_guess(
             player_name, movie, guess_time, self.round_start_time
+        )
+
+    def submit_title_artist_guess(
+        self, player_name: str, title: str, artist: str, ts: float
+    ) -> dict[str, Any]:
+        """Submit a Title & Artist guess (#1180). Delegates to ChallengeManager.
+
+        Returns {"title_status": str, "artist_status": str}; classification and
+        storage live on the challenge.
+        """
+        return self._challenge_manager.submit_title_artist_guess(
+            player_name, title, artist, ts
         )
