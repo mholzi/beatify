@@ -49,6 +49,9 @@ class PlayerSession:
     # Artist guess tracking (Story 20.9)
     has_artist_guess: bool = False
 
+    # Title & Artist guess tracking (Issue #1180) — early-reveal trigger
+    has_title_artist_guess: bool = False
+
     # Movie quiz bonus tracking (Issue #28)
     movie_bonus: int = 0
     has_movie_guess: bool = False
@@ -128,6 +131,8 @@ class PlayerSession:
         self.artist_bonus = 0
         # Reset artist guess tracking (Story 20.9)
         self.has_artist_guess = False
+        # Reset title & artist guess tracking (Issue #1180)
+        self.has_title_artist_guess = False
         # Reset movie quiz fields (Issue #28)
         self.movie_bonus = 0
         self.has_movie_guess = False
