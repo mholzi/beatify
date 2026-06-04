@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "pop",
     "charts",
@@ -1357,14 +1357,14 @@
       "year": 2023,
       "isrc": "CH7812354719",
       "uri": "spotify:track:6QeQs7lz8qR2miwx9n2epp",
-      "uri_apple_music": "applemusic://track/1862841058",
+      "uri_apple_music": "applemusic://track/1705233750",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1862841058",
-        "de": "applemusic://track/1862841058",
-        "gb": "applemusic://track/1862841058",
-        "fr": "applemusic://track/1862841058",
-        "es": "applemusic://track/1862841058",
-        "nl": "applemusic://track/1862841058",
+        "us": "applemusic://track/1705233750",
+        "de": "applemusic://track/1705233750",
+        "gb": "applemusic://track/1705233750",
+        "fr": "applemusic://track/1705233750",
+        "es": "applemusic://track/1705233750",
+        "nl": "applemusic://track/1705233750",
         "it": "applemusic://track/1705233750"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bKoWnKMgRr8",
