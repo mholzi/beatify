@@ -1,28 +1,10 @@
-"""Tests for Title & Artist guessing mode (challenge model + scoring)."""
+"""Tests for Title & Artist guessing mode (PlayerSession flag)."""
 
 from __future__ import annotations
 
 from unittest.mock import MagicMock
 
-import pytest
-
-from custom_components.beatify.game.challenges import (
-    ChallengeManager,
-    TitleArtistChallenge,
-)
 from custom_components.beatify.game.player import PlayerSession
-
-
-def _make_manager(*, title_artist_mode: bool = True) -> ChallengeManager:
-    """Build a ChallengeManager configured for title/artist mode with a round."""
-    mgr = ChallengeManager()
-    mgr.configure(
-        artist_challenge_enabled=False,
-        movie_quiz_enabled=False,
-        title_artist_mode=title_artist_mode,
-    )
-    mgr.init_round({"title": "Bohemian Rhapsody", "artist": "Queen"})
-    return mgr
 
 
 class TestPlayerSessionTitleArtistFlag:
