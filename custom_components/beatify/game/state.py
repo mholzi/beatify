@@ -508,9 +508,17 @@ class GameState:
         when the mode/challenge is inactive. REVEAL (include_answer=True):
         truth + per-player results + (Phase 4) voting state.
         """
-        return self._challenge_manager.get_title_artist_challenge_dict(
+        challenge_dict = self._challenge_manager.get_title_artist_challenge_dict(
             include_answer=include_answer
         )
+        # Phase 4 (#1180): surface the vote-eligible near-misses tally and the
+        # REVEAL vote window flag so the player vote cards / host override
+        # controls can render. ``_title_artist_voting_open`` lives on GameState,
+        # so the truth-bearing REVEAL dict is finalized here, not in the manager.
+        if include_answer and challenge_dict is not None:
+            challenge_dict["near_misses"] = self.get_near_misses()
+            challenge_dict["voting_open"] = self.is_title_artist_voting_open()
+        return challenge_dict
 
     # ------------------------------------------------------------------
     # Title/Artist vote delegation (#1180 Phase 4)

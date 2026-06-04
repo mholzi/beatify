@@ -1250,7 +1250,18 @@ class TestTitleArtistMode:
         assert reveal["correct_title"] == "Imagine"
         assert reveal["correct_artist"] == "John Lennon"
         assert reveal["voting_open"] is False
-        assert reveal["near_misses"] == []
+        # #1180 Phase 4: "Lennon" vs "John Lennon" is a genuine near-miss, now
+        # surfaced via get_near_misses() instead of the Phase 2 placeholder [].
+        assert reveal["near_misses"] == [
+            {
+                "id": "Alice:artist",
+                "player": "Alice",
+                "field": "artist",
+                "guess": "Lennon",
+                "votes_yes": 0,
+                "votes_no": 0,
+            }
+        ]
         names = {r["player"] for r in reveal["results"]}
         assert "Alice" in names
 
