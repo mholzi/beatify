@@ -5,6 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
+- **Localized TTS voice announcements.** In-game voice announcements now follow the selected game language (German, Spanish, French, Dutch) instead of always speaking English — the `language` setting previously drove only the web UI. The game language is forwarded to the TTS engine only when the target entity advertises support for it (resolved to the engine's own code, e.g. `de`→`de-DE`), so an unsupported code can't silence announcements. Numbers (years, scores, round/streak counts) are spoken as words via `num2words` so neural engines (e.g. ElevenLabs) don't swallow bare digits in non-English speech. English output is unchanged. Adds the `num2words` dependency.
 - **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
 
 ### Fixed
