@@ -17,6 +17,7 @@ from custom_components.beatify.const import (
 from custom_components.beatify.game.text_match import (
     STATUS_EXACT,
     STATUS_FUZZY,
+    STATUS_NEAR_MISS,
     classify_field,
 )
 
@@ -663,7 +664,6 @@ class ChallengeManager:
             return []
 
         near_misses: list[dict[str, Any]] = []
-        from custom_components.beatify.game.text_match import STATUS_NEAR_MISS  # noqa: PLC0415
 
         for player_name, guess in self.title_artist_challenge.guesses.items():
             for field_name in ("title", "artist"):

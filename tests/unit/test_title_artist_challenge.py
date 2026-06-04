@@ -148,3 +148,164 @@ class TestTitleArtistPoints:
     def test_unknown_player_zero(self):
         mgr = _make_manager()
         assert mgr.title_artist_points("Nobody") == (0, 0)
+
+
+class TestNearMisses:
+    """get_near_misses / has_near_misses surface near-miss fields."""
+
+    def test_no_near_misses_empty(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Alice", "Bohemian Rhapsody", "Queen", ts=1.0)
+        assert mgr.get_near_misses() == []
+        assert mgr.has_near_misses() is False
+
+    def test_near_miss_shape_and_counts(self):
+        mgr = _make_manager()
+        # Both title and artist classify as near_miss.
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # Cast votes only on the title near-miss.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
+        mgr.register_title_artist_vote("V3", "Dan:title", accept=True)
+
+        near = {nm["id"]: nm for nm in mgr.get_near_misses()}
+        assert set(near) == {"Dan:title", "Dan:artist"}
+        assert mgr.has_near_misses() is True
+
+        title_nm = near["Dan:title"]
+        assert title_nm == {
+            "id": "Dan:title",
+            "player": "Dan",
+            "field": "title",
+            "guess": "Some Other Song",
+            "votes_yes": 2,
+            "votes_no": 1,
+        }
+        artist_nm = near["Dan:artist"]
+        assert artist_nm["votes_yes"] == 0
+        assert artist_nm["votes_no"] == 0
+
+    def test_near_misses_empty_without_challenge(self):
+        mgr = ChallengeManager()
+        mgr.configure(title_artist_mode=False)
+        mgr.init_round({"title": "X", "artist": "Y"})
+        assert mgr.get_near_misses() == []
+        assert mgr.has_near_misses() is False
+
+
+class TestResolveTitleArtist:
+    """resolve_title_artist applies override/vote policy to near-misses."""
+
+    def test_accept_by_vote_majority(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # 2 yes / 1 no -> 2/3 >= 0.5 -> accepted (partial points).
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V3", "Dan:title", accept=False)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss_accepted"
+        # artist had no votes/override -> rejected, stays near_miss
+        assert stored["artist_status"] == "near_miss"
+        assert mgr.title_artist_points("Dan") == (5, 0)
+        assert mgr.title_artist_challenge.resolved is True
+
+    def test_reject_by_default_no_votes(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss"
+        assert stored["artist_status"] == "near_miss"
+        assert mgr.title_artist_points("Dan") == (0, 0)
+
+    def test_one_one_tie_is_accepted(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # 1 yes / 1 no -> 1/2 == 0.5 >= 0.5 -> accepted by majority policy.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss_accepted"
+        assert mgr.title_artist_points("Dan") == (5, 0)
+
+    def test_reject_by_vote_minority(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # 1 yes / 2 no -> 1/3 < 0.5 -> rejected.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
+        mgr.register_title_artist_vote("V3", "Dan:title", accept=False)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss"
+        assert mgr.title_artist_points("Dan") == (0, 0)
+
+    def test_override_accepts_against_no_majority(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # Votes would reject (0 yes / 2 no) but host override accepts.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=False)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
+        mgr.set_title_artist_override("Dan:title", accept=True)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss_accepted"
+        assert mgr.title_artist_points("Dan") == (5, 0)
+
+    def test_override_rejects_against_yes_majority(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # Votes would accept (2 yes / 0 no) but host override rejects.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
+        mgr.set_title_artist_override("Dan:title", accept=False)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss"
+        assert mgr.title_artist_points("Dan") == (0, 0)
+
+    def test_accepted_near_miss_awards_partial_both_fields(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # Override both near-miss fields to accepted -> partial (5, 3).
+        mgr.set_title_artist_override("Dan:title", accept=True)
+        mgr.set_title_artist_override("Dan:artist", accept=True)
+        mgr.resolve_title_artist()
+
+        assert mgr.title_artist_points("Dan") == (5, 3)
+
+    def test_resolve_is_idempotent(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_challenge.resolved is True
+        assert mgr.title_artist_points("Dan") == (5, 0)
+
+        # A late "yes" vote on the artist field after resolve must not change
+        # the already-finalized result.
+        mgr.register_title_artist_vote("V2", "Dan:artist", accept=True)
+        mgr.resolve_title_artist()
+
+        stored = mgr.title_artist_challenge.guesses["Dan"]
+        assert stored["title_status"] == "near_miss_accepted"
+        assert stored["artist_status"] == "near_miss"
+        assert mgr.title_artist_points("Dan") == (5, 0)
+
+    def test_resolve_noop_without_challenge(self):
+        mgr = ChallengeManager()
+        mgr.configure(title_artist_mode=False)
+        mgr.init_round({"title": "X", "artist": "Y"})
+        # Should not raise.
+        mgr.resolve_title_artist()
+        mgr.register_title_artist_vote("V1", "X:title", accept=True)
+        mgr.set_title_artist_override("X:title", accept=True)
