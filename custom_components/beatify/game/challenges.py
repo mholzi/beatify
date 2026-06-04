@@ -754,6 +754,21 @@ class ChallengeManager:
         )
         return title_pts, artist_pts
 
+    def title_artist_status(self, player_name: str) -> str:
+        """
+        Return the stored title field status for a player (Issue #1180).
+
+        Used by scoring to decide streak ("correct") on the title field.
+        Returns "skipped" if the player has no stored guess.
+
+        """
+        if not self.title_artist_challenge:
+            return "skipped"
+        guess = self.title_artist_challenge.guesses.get(player_name)
+        if not guess:
+            return "skipped"
+        return guess["title_status"]
+
     @staticmethod
     def _field_points(status: str, full: int, partial: int) -> int:
         """Map a stored field status to awarded points."""
