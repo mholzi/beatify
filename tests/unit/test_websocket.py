@@ -1202,3 +1202,73 @@ class TestHeartbeat:
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "pong"
+
+
+class TestTitleArtistGuess:
+    """WS handler for title/artist guess submission (#1180, Phase 3)."""
+
+    def _playing_game(self):
+        handler, game_state, ws = _make_handler_and_game(title_artist_mode=True)
+        game_state.add_player("Alice", ws)
+        game_state.add_player("Bob", _make_ws())
+        game_state.phase = GamePhase.PLAYING
+        game_state.current_song = {"title": "Imagine", "artist": "John Lennon"}
+        game_state._challenge_manager.init_round(game_state.current_song)
+        handler.connections.add(ws)
+        return handler, game_state, ws
+
+    async def test_valid_guess_acks_with_statuses(self):
+        handler, game_state, ws = self._playing_game()
+
+        await handler._handle_message(
+            ws,
+            {"type": "title_artist_guess", "title": "Imagine", "artist": "John Lennon"},
+        )
+
+        ack = next(
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "title_artist_guess_ack"
+        )
+        assert ack["title_status"] == "exact"
+        assert ack["artist_status"] == "exact"
+        assert game_state.players["Alice"].has_title_artist_guess is True
+
+    async def test_empty_fields_allowed_as_skipped(self):
+        handler, game_state, ws = self._playing_game()
+
+        await handler._handle_message(
+            ws, {"type": "title_artist_guess", "title": "", "artist": ""}
+        )
+
+        ack = next(
+            c[0][0]
+            for c in ws.send_json.call_args_list
+            if c[0][0]["type"] == "title_artist_guess_ack"
+        )
+        assert ack["title_status"] == "skipped"
+        assert ack["artist_status"] == "skipped"
+
+    async def test_wrong_phase_rejected(self):
+        handler, game_state, ws = self._playing_game()
+        game_state.phase = GamePhase.REVEAL
+
+        await handler._handle_message(
+            ws, {"type": "title_artist_guess", "title": "X", "artist": "Y"}
+        )
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION
+
+    async def test_not_in_game_rejected(self):
+        handler, game_state, _ws = self._playing_game()
+        stranger = _make_ws()
+
+        await handler._handle_message(
+            stranger, {"type": "title_artist_guess", "title": "X", "artist": "Y"}
+        )
+
+        msg = stranger.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_NOT_IN_GAME

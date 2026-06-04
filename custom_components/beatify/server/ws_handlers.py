@@ -37,6 +37,7 @@ from custom_components.beatify.const import (
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
     ERR_NO_SONGS_REMAINING,
+    ERR_NO_TITLE_ARTIST_CHALLENGE,
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
@@ -1512,6 +1513,90 @@ async def handle_movie_guess(
         movie,
         result["correct"],
         result.get("rank"),
+    )
+
+
+async def handle_title_artist_guess(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a title & artist guess submission (#1180).
+
+    Mirrors handle_artist_guess: phase-gated to PLAYING, classifies the
+    submitted title and artist independently via the challenge, acks the
+    per-field status, marks the player done, and triggers early reveal once
+    everyone has guessed. Empty fields are allowed — they classify as
+    "skipped" (0 points for that field), so they are NOT rejected here.
+    """
+    if game_state.phase != GamePhase.PLAYING:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only guess during PLAYING phase",
+            }
+        )
+        return
+
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            }
+        )
+        return
+
+    if not game_state.title_artist_challenge:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_TITLE_ARTIST_CHALLENGE,
+                "message": "No title & artist challenge this round",
+            }
+        )
+        return
+
+    title = data.get("title", "")
+    artist = data.get("artist", "")
+    if not isinstance(title, str):
+        title = ""
+    if not isinstance(artist, str):
+        artist = ""
+
+    guess_time = game_state.current_time()
+    result = game_state.submit_title_artist_guess(
+        player.name, title, artist, guess_time
+    )
+    player.has_title_artist_guess = True
+
+    await ws.send_json(
+        {
+            "type": "title_artist_guess_ack",
+            "title_status": result["title_status"],
+            "artist_status": result["artist_status"],
+        }
+    )
+
+    # Mirror handle_artist_guess / handle_submit: avoid a redundant broadcast
+    # when the early-reveal path is about to broadcast via the round_end
+    # callback. Only broadcast here when the round is NOT yet complete.
+    if not game_state.check_all_guesses_complete():
+        await handler.broadcast_state()
+
+    await game_state.trigger_early_reveal_if_complete()
+
+    _LOGGER.debug(
+        "Title/artist guess from %s: title=%r (%s), artist=%r (%s)",
+        player.name,
+        title,
+        result["title_status"],
+        artist,
+        result["artist_status"],
     )
 
 

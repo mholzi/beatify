@@ -34,6 +34,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_round_timeout,
     handle_steal,
     handle_submit,
+    handle_title_artist_guess,
 )
 
 if TYPE_CHECKING:
@@ -84,6 +85,7 @@ class BeatifyWebSocketHandler:
             "reaction": handle_reaction,
             "artist_guess": handle_artist_guess,
             "movie_guess": handle_movie_guess,
+            "title_artist_guess": handle_title_artist_guess,
             "player_onboarded": handle_player_onboarded,
             "report_data": handle_report_data,
             "round_timeout": handle_round_timeout,
