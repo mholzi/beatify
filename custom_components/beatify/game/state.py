@@ -68,6 +68,7 @@ from .scoring import (
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .serializers import GameStateSerializer
+from . import tts_phrases
 
 from .types import RoundAnalytics, _get_decade_label
 
@@ -2298,11 +2299,21 @@ class GameState:
         """Disable TTS announcements."""
         self._tts_service = None
 
+    def _lang(self) -> str:
+        """Resolve the game's TTS language, defaulting to English.
+
+        ``self.language`` is injected by the start-game handlers; fall back to
+        English defensively so announcements never crash if it's unset.
+        """
+        return tts_phrases.normalize_language(getattr(self, "language", None))
+
     async def _tts_announce(self, message: str) -> None:
         """Speak a TTS announcement (fire-and-forget)."""
         if self._tts_service:
             try:
-                task = asyncio.create_task(self._tts_service.speak(message))
+                task = asyncio.create_task(
+                    self._tts_service.speak(message, language=self._lang())
+                )
                 self._bg_tasks.add(task)
                 task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
@@ -2312,9 +2323,12 @@ class GameState:
         """Announce game start (use case 16)."""
         if not self._tts_service or not self._tts_announce_game_start:
             return
-        message = (
-            f"Let's play Beatify! {self.total_rounds} rounds, "
-            f"{self.difficulty} difficulty."
+        lang = self._lang()
+        message = tts_phrases.phrase(
+            lang,
+            "game_start",
+            rounds=tts_phrases.spoken_number(lang, self.total_rounds),
+            difficulty=tts_phrases.difficulty_label(lang, self.difficulty),
         )
         await self._tts_announce(message)
 
@@ -2322,13 +2336,17 @@ class GameState:
         """Announce the winner (use case 18)."""
         if not self._tts_service or not self._tts_announce_winner or not self.players:
             return
+        lang = self._lang()
         top_score = max(p.score for p in self.players.values())
         winners = [p for p in self.players.values() if p.score == top_score]
+        points = tts_phrases.spoken_number(lang, top_score)
         if len(winners) == 1:
-            message = f"And the winner is... {winners[0].name} with {top_score} points!"
+            message = tts_phrases.phrase(
+                lang, "winner_single", name=winners[0].name, points=points
+            )
         else:
-            names = " and ".join(w.name for w in winners)
-            message = f"It's a tie between {names} with {top_score} points!"
+            names = tts_phrases.join_names(lang, [w.name for w in winners])
+            message = tts_phrases.phrase(lang, "winner_tie", names=names, points=points)
         await self._tts_announce(message)
 
     # ------------------------------------------------------------------
@@ -2339,7 +2357,10 @@ class GameState:
         """Announce round start (use case 1). Fires after round number bump."""
         if not self._tts_service or not self._tts_announce_round_start:
             return
-        message = f"Round {self.round} — get ready!"
+        lang = self._lang()
+        message = tts_phrases.phrase(
+            lang, "round_start", round=tts_phrases.spoken_number(lang, self.round)
+        )
         await self._tts_announce(message)
 
     async def announce_countdown(self) -> None:
@@ -2351,7 +2372,7 @@ class GameState:
         """
         if not self._tts_service or not self._tts_announce_countdown:
             return
-        message = "Three, two, one — go!"
+        message = tts_phrases.phrase(self._lang(), "countdown")
         await self._tts_announce(message)
 
     async def announce_time_up(self) -> None:
@@ -2360,7 +2381,7 @@ class GameState:
         """
         if not self._tts_service or not self._tts_announce_time_up:
             return
-        message = "Time's up!"
+        message = tts_phrases.phrase(self._lang(), "time_up")
         await self._tts_announce(message)
 
     async def _announce_reveal(self, correct_year: int | None) -> None:
@@ -2378,51 +2399,67 @@ class GameState:
         """
         if not self._tts_service:
             return
+        lang = self._lang()
         players = list(self.players.values())
         frags: list[str] = []
 
         # Correct answer.
         if self._tts_announce_correct_answer and correct_year is not None:
-            frags.append(f"The answer was {correct_year}.")
+            year = tts_phrases.spoken_number(lang, correct_year, "year")
+            frags.append(tts_phrases.phrase(lang, "answer", year=year))
 
         # Accuracy — exact guesses, else the Closest-Wins winner, else the
         # "nobody got it" line (mutually exclusive).
         exact = [p.name for p in players if p.submitted and p.years_off == 0]
         had_submitters = any(p.submitted for p in players)
         if exact and self._tts_announce_exact_guess:
-            names = exact[0] if len(exact) == 1 else " and ".join(exact)
-            frags.append(f"{names} got it exactly right.")
+            names = tts_phrases.join_names(lang, exact)
+            frags.append(tts_phrases.phrase(lang, "exact", names=names))
         elif self.closest_wins_mode and not exact and self._tts_announce_closest_guess:
             submitted = [p for p in players if p.submitted and p.years_off is not None]
             if submitted:
                 winner = min(submitted, key=lambda p: p.years_off)
                 if winner.round_score > 0:
-                    frags.append(f"{winner.name} was closest.")
+                    frags.append(tts_phrases.phrase(lang, "closest", name=winner.name))
         elif had_submitters and not exact and self._tts_announce_nobody_correct:
-            frags.append("Nobody got it this round.")
+            frags.append(tts_phrases.phrase(lang, "nobody"))
 
         # Streak milestones — streak_bonus is non-zero only on the exact
         # round a milestone (3/5/10/15/20/25) is reached.
         if self._tts_announce_streak_milestone:
             for p in players:
                 if p.streak_bonus > 0:
-                    frags.append(f"{p.name} is on a {p.streak}-song streak.")
+                    frags.append(
+                        tts_phrases.phrase(
+                            lang,
+                            "streak_milestone",
+                            name=p.name,
+                            streak=tts_phrases.spoken_number(lang, p.streak),
+                        )
+                    )
 
         # Streak broken — previous_streak holds the pre-reset length. Gate
         # at >= 3 so a one-off miss after a short run doesn't trigger it.
         if self._tts_announce_streak_broken:
             for p in players:
                 if p.streak == 0 and p.previous_streak >= 3:
-                    frags.append(f"{p.name}'s streak ends at {p.previous_streak}.")
+                    frags.append(
+                        tts_phrases.phrase(
+                            lang,
+                            "streak_broken",
+                            name=p.name,
+                            previous=tts_phrases.spoken_number(lang, p.previous_streak),
+                        )
+                    )
 
         # Bet outcomes — gated on submitted so a stale outcome can't misfire.
         for p in players:
             if not (p.submitted and p.bet):
                 continue
             if p.bet_outcome == "won" and self._tts_announce_bet_won:
-                frags.append(f"{p.name} doubled their points.")
+                frags.append(tts_phrases.phrase(lang, "bet_won", name=p.name))
             elif p.bet_outcome == "lost" and self._tts_announce_bet_lost:
-                frags.append(f"{p.name} loses the bet.")
+                frags.append(tts_phrases.phrase(lang, "bet_lost", name=p.name))
 
         # Steal unlocks — once per player per game. The dedup set is updated
         # regardless of the toggle so a mid-game toggle-on can't replay it.
@@ -2430,7 +2467,9 @@ class GameState:
             if p.steal_available and p.name not in self._tts_steal_unlocked_announced:
                 self._tts_steal_unlocked_announced.add(p.name)
                 if self._tts_announce_steal_unlocked:
-                    frags.append(f"{p.name} unlocked steal.")
+                    frags.append(
+                        tts_phrases.phrase(lang, "steal_unlocked", name=p.name)
+                    )
 
         # Standings — leader change / tie at the top. _tts_previous_leader
         # is updated regardless of the toggles so detection stays correct.
@@ -2440,7 +2479,7 @@ class GameState:
             leaders = [p for p in leaderboard if p.score == top_score]
             if len(leaders) > 1:
                 if self._tts_announce_tied_first:
-                    frags.append("It's a tie at the top.")
+                    frags.append(tts_phrases.phrase(lang, "tie_at_top"))
                 self._tts_previous_leader = None
             else:
                 new_leader = leaders[0].name
@@ -2451,7 +2490,9 @@ class GameState:
                         self._tts_previous_leader is not None
                         and self._tts_announce_leader_change
                     ):
-                        frags.append(f"{new_leader} just took the lead.")
+                        frags.append(
+                            tts_phrases.phrase(lang, "leader_change", name=new_leader)
+                        )
                 self._tts_previous_leader = new_leader
 
         if frags:
@@ -2465,7 +2506,7 @@ class GameState:
         """Announce a new player joining the game (use case 14)."""
         if not self._tts_service or not self._tts_announce_player_join:
             return
-        message = f"{player_name} has joined the game!"
+        message = tts_phrases.phrase(self._lang(), "player_join", name=player_name)
         await self._tts_announce(message)
 
     async def announce_player_reconnect(self, player_name: str) -> None:
@@ -2477,7 +2518,7 @@ class GameState:
         """
         if not self._tts_service or not self._tts_announce_player_reconnect:
             return
-        message = f"Welcome back, {player_name}!"
+        message = tts_phrases.phrase(self._lang(), "player_reconnect", name=player_name)
         await self._tts_announce(message)
 
     async def announce_last_round(self) -> None:
@@ -2488,7 +2529,7 @@ class GameState:
         """
         if not self._tts_service or not self._tts_announce_last_round:
             return
-        message = "This is the final round!"
+        message = tts_phrases.phrase(self._lang(), "last_round")
         await self._tts_announce(message)
 
     async def announce_podium(self) -> None:
@@ -2504,9 +2545,10 @@ class GameState:
         podium = [p for p in ranked if p.score > 0][:3]
         if not podium:
             return
-        labels = {0: "1st place", 1: "2nd place", 2: "3rd place"}
+        lang = self._lang()
         segments = [
-            f"{labels[i]}: {podium[i].name}{'!' if i == 0 else '.'}"
+            f"{tts_phrases.place_label(lang, i + 1)}: "
+            f"{podium[i].name}{'!' if i == 0 else '.'}"
             for i in reversed(range(len(podium)))
         ]
         await self._tts_announce(" ".join(segments))
@@ -2515,7 +2557,7 @@ class GameState:
         """Announce a rematch starting (use case 20)."""
         if not self._tts_service or not self._tts_announce_rematch:
             return
-        message = "Rematch! Get ready!"
+        message = tts_phrases.phrase(self._lang(), "rematch")
         await self._tts_announce(message)
 
     # ------------------------------------------------------------------
@@ -2526,15 +2568,17 @@ class GameState:
         """Announce the start of an intro-mode round (use case 21)."""
         if not self._tts_service or not self._tts_announce_intro_round:
             return
-        await self._tts_announce(
-            "Intro round — quick, you only get the opening seconds!"
-        )
+        await self._tts_announce(tts_phrases.phrase(self._lang(), "intro_round"))
 
     async def announce_steal_used(self, stealer_name: str, target_name: str) -> None:
         """Announce a player using steal on another (use case 23)."""
         if not self._tts_service or not self._tts_announce_steal_used:
             return
-        await self._tts_announce(f"{stealer_name} stole the answer from {target_name}!")
+        await self._tts_announce(
+            tts_phrases.phrase(
+                self._lang(), "steal_used", stealer=stealer_name, target=target_name
+            )
+        )
 
     def adjust_volume(self, direction: str) -> float:
         """

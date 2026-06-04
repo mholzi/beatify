@@ -11,6 +11,29 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
+def _match_language(language: str | None, supported: list[str] | None) -> str | None:
+    """Resolve a game language to a code the TTS engine actually supports.
+
+    Returns the engine's own code (so game ``"de"`` resolves to ``"de-DE"`` when
+    that's what the engine advertises), or ``None`` when the language can't be
+    matched — callers then omit it rather than forcing a code the engine would
+    reject (which makes some engines drop the announcement entirely). Matching is
+    case-insensitive and treats ``-``/``_`` separators alike, first exact then by
+    base language.
+    """
+    if not language or not supported:
+        return None
+    target = language.lower()
+    for code in supported:
+        if code.lower() == target:
+            return code
+    for code in supported:
+        base = code.lower().replace("_", "-").split("-", 1)[0]
+        if base == target:
+            return code
+    return None
+
+
 class TTSService:
     """Announce game events via Home Assistant TTS.
 
@@ -35,8 +58,16 @@ class TTSService:
         self._tts_entity_id = tts_entity_id
         self._media_player_entity_id = media_player_entity_id
 
-    async def speak(self, message: str) -> None:
-        """Speak a message via TTS. Fails gracefully if either entity is unavailable."""
+    async def speak(self, message: str, language: str | None = None) -> None:
+        """Speak a message via TTS. Fails gracefully if either entity is unavailable.
+
+        ``language`` (e.g. ``"de"``) is the game language. It is forwarded to
+        ``tts.speak`` ONLY when the target entity advertises support for it
+        (resolved to the engine's own code, e.g. ``"de-DE"``). If support can't
+        be confirmed it is omitted and the engine uses its configured voice —
+        forcing an unsupported code makes some engines silently drop the
+        announcement. The message text is already localized either way.
+        """
         if not message:
             return
         if not self._tts_entity_id or not self._media_player_entity_id:
@@ -63,15 +94,22 @@ class TTSService:
             )
             return
 
+        service_data = {
+            "entity_id": self._tts_entity_id,
+            "media_player_entity_id": self._media_player_entity_id,
+            "message": message,
+        }
+        resolved = (
+            _match_language(language, self._supported_languages()) if language else None
+        )
+        if resolved:
+            service_data["language"] = resolved
+
         try:
             await self._hass.services.async_call(
                 "tts",
                 "speak",
-                {
-                    "entity_id": self._tts_entity_id,
-                    "media_player_entity_id": self._media_player_entity_id,
-                    "message": message,
-                },
+                service_data,
                 blocking=False,
             )
         except Exception:  # noqa: BLE001
@@ -80,3 +118,28 @@ class TTSService:
                 self._tts_entity_id,
                 self._media_player_entity_id,
             )
+
+    def _supported_languages(self) -> list[str] | None:
+        """Best-effort read of the TTS entity's advertised language codes.
+
+        Locates the ``tts`` entity component regardless of HA version (it scans
+        ``hass.data`` for the component rather than assuming a key) and returns
+        the entity's ``supported_languages``. Returns ``None`` on any problem so
+        the caller safely omits the language rather than guessing one.
+        """
+        try:
+            from homeassistant.helpers.entity_component import (  # noqa: PLC0415
+                EntityComponent,
+            )
+
+            for value in self._hass.data.values():
+                if (
+                    isinstance(value, EntityComponent)
+                    and getattr(value, "domain", None) == "tts"
+                ):
+                    entity = value.get_entity(self._tts_entity_id)
+                    langs = getattr(entity, "supported_languages", None)
+                    return list(langs) if langs else None
+        except Exception:  # noqa: BLE001 — introspection is strictly best-effort
+            return None
+        return None
