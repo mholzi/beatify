@@ -153,6 +153,9 @@ let introModeEnabled = false;
 // Closest Wins mode state (Issue #442)
 let closestWinsModeEnabled = false;
 
+// Title & Artist Mode state (#1180)
+let titleArtistModeEnabled = false;
+
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
@@ -847,6 +850,14 @@ function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Title & Artist Mode toggle (#1180)
+    document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
+        titleArtistModeEnabled = this.checked;
+        syncTitleArtistModeUI();
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Provider chips (Music Service)
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -941,6 +952,14 @@ async function loadSavedSettings() {
                 if (closestToggle) closestToggle.checked = settings.closestWinsMode;
             }
 
+            // Apply Title & Artist mode (#1180)
+            if (typeof settings.titleArtistMode === 'boolean') {
+                titleArtistModeEnabled = settings.titleArtistMode;
+                const taToggle = document.getElementById('title-artist-mode-toggle');
+                if (taToggle) taToggle.checked = settings.titleArtistMode;
+            }
+            syncTitleArtistModeUI();
+
             // Apply provider
             if (settings.provider) {
                 selectedProvider = settings.provider;
@@ -970,6 +989,7 @@ function saveGameSettings() {
             movieQuiz: movieQuizEnabled,  // #947
             introMode: introModeEnabled,  // Issue #23
             closestWinsMode: closestWinsModeEnabled,  // Issue #442
+            titleArtistMode: titleArtistModeEnabled,  // #1180
             provider: selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -991,8 +1011,26 @@ function updateGameSettingsSummary() {
     const movieIcon = movieQuizEnabled ? ' • 🎬' : '';  // #947
     const introIcon = introModeEnabled ? ' • ⚡' : '';  // Issue #23
     const closestIcon = closestWinsModeEnabled ? ' • 🎯' : '';  // Issue #442
+    const taIcon = titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+}
+
+/**
+ * #1180: Title & Artist mode replaces the year round, so the year-only
+ * bonuses (artist challenge, movie quiz, intro, closest wins) have nothing to
+ * attach to. Hide their setting-groups and force their flags off while TA
+ * mode is on. Restoring the toggle re-shows them (flags re-read on change).
+ */
+function syncTitleArtistModeUI() {
+    var ids = ['artist-challenge-toggle', 'movie-quiz-toggle', 'intro-mode-toggle', 'closest-wins-toggle'];
+    ids.forEach(function(id) {
+        var input = document.getElementById(id);
+        if (!input) return;
+        var group = input.closest('.setting-group');
+        if (group) group.classList.toggle('hidden', titleArtistModeEnabled);
+        input.disabled = titleArtistModeEnabled;
+    });
 }
 
 /**
@@ -1977,6 +2015,7 @@ async function startGame() {
                 movie_quiz_enabled: movieQuizEnabled,  // #947
                 intro_mode_enabled: introModeEnabled,  // Issue #23
                 closest_wins_mode: closestWinsModeEnabled,  // Issue #442
+                title_artist_mode: titleArtistModeEnabled,  // #1180
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })
