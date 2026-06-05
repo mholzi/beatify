@@ -85,6 +85,60 @@ export function shouldShowPill(localStorage) {
     return resumeAtStep(localStorage) !== null;
 }
 
+/**
+ * #1180: Step 4 game-mode toggle precedence.
+ *
+ * Title & Artist mode replaces the year round, so it's mutually exclusive with
+ * the four year-round bonuses (artist challenge, movie quiz, intro, closest
+ * wins). The exclusivity is ASYMMETRIC, mirroring admin.js's contract:
+ *
+ *   - Turning a year-round bonus ON turns TA mode OFF. TA is the replaceable
+ *     round, so re-enabling a year bonus cleanly exits TA mode.
+ *   - Turning TA mode ON does NOT touch the year-round flags. They stay the
+ *     host's untouched source of truth so the wizard never persists `false`
+ *     over a previously-true bonus into beatify_game_settings (admin.js reads
+ *     that same key). Suppression while TA is on is applied later, only at
+ *     start-game-payload build time, by admin.js's
+ *     applyTitleArtistBonusPrecedence(). Forcing the flags off here instead
+ *     would silently destroy the host's saved choices on the next admin reload.
+ *
+ * Pure function: returns a NEW flags object, never mutates the input. Exported
+ * for vitest (the wizard module-internal state isn't otherwise testable).
+ *
+ * @param {Object} flags - { artistChallenge, movieQuiz, introMode,
+ *   closestWinsMode, titleArtistMode } booleans (the wizard's chosen* state).
+ * @param {string} key - which toggle the user flipped: 'artist' | 'movie' |
+ *   'intro' | 'closest' | 'titleArtist'.
+ * @param {boolean} value - the new value for that toggle.
+ * @returns {Object} a new flags object with precedence applied.
+ */
+export function applyGameModeTogglePrecedence(flags, key, value) {
+    const next = { ...flags };
+    switch (key) {
+        case 'artist':
+            next.artistChallenge = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'movie':
+            next.movieQuiz = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'intro':
+            next.introMode = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'closest':
+            next.closestWinsMode = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'titleArtist':
+            next.titleArtistMode = value;
+            // Intentionally does NOT mutate the year-round flags — see above.
+            break;
+    }
+    return next;
+}
+
 // ------------------------------------------------------------------
 // DOM-driven controller (browser-only below this line)
 // ------------------------------------------------------------------
@@ -639,6 +693,31 @@ function _renderChipGroup(elId, items, active, onPick) {
     });
 }
 
+// Apply a Step-4 toggle through the pure precedence helper and write the
+// result back into the module's chosen* state. Centralizes the mutual-
+// exclusion so the four year-round setters and the TA setter share one
+// (tested) rule. Crucially, turning TA on does NOT zero the year-round flags
+// (see applyGameModeTogglePrecedence) — that would persist false over the
+// host's saved bonus choices in beatify_game_settings.
+function _setGameModeToggle(key, value) {
+    const next = applyGameModeTogglePrecedence(
+        {
+            artistChallenge: chosenArtistChallenge,
+            movieQuiz: chosenMovieQuiz,
+            introMode: chosenIntroMode,
+            closestWinsMode: chosenClosestWins,
+            titleArtistMode: chosenTitleArtistMode,
+        },
+        key,
+        value,
+    );
+    chosenArtistChallenge = next.artistChallenge;
+    chosenMovieQuiz = next.movieQuiz;
+    chosenIntroMode = next.introMode;
+    chosenClosestWins = next.closestWinsMode;
+    chosenTitleArtistMode = next.titleArtistMode;
+}
+
 const GAME_MODES = [
     {
         key: 'artist',
@@ -648,7 +727,7 @@ const GAME_MODES = [
         hintKey: 'admin.artistChallengeHint',
         hintFallback: 'After each round, players can guess the artist for bonus points. First correct guess earns +5 points.',
         get: () => chosenArtistChallenge,
-        set: (v) => { chosenArtistChallenge = v; if (v) chosenTitleArtistMode = false; },
+        set: (v) => { _setGameModeToggle('artist', v); },
     },
     {
         key: 'movie',
@@ -658,7 +737,7 @@ const GAME_MODES = [
         hintKey: 'admin.movieQuizHint',
         hintFallback: 'For soundtrack songs, players guess the movie for tiered bonus points. Only triggers on songs with movie metadata.',
         get: () => chosenMovieQuiz,
-        set: (v) => { chosenMovieQuiz = v; if (v) chosenTitleArtistMode = false; },
+        set: (v) => { _setGameModeToggle('movie', v); },
     },
     {
         key: 'intro',
@@ -668,7 +747,7 @@ const GAME_MODES = [
         hintKey: 'admin.introModeHint',
         hintFallback: '~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.',
         get: () => chosenIntroMode,
-        set: (v) => { chosenIntroMode = v; if (v) chosenTitleArtistMode = false; },
+        set: (v) => { _setGameModeToggle('intro', v); },
     },
     {
         key: 'closest',
@@ -678,7 +757,7 @@ const GAME_MODES = [
         hintKey: 'admin.closestWinsHint',
         hintFallback: 'Only the player with the closest guess scores points each round. All-or-nothing showdown.',
         get: () => chosenClosestWins,
-        set: (v) => { chosenClosestWins = v; if (v) chosenTitleArtistMode = false; },
+        set: (v) => { _setGameModeToggle('closest', v); },
     },
     {
         key: 'titleArtist',
@@ -688,16 +767,10 @@ const GAME_MODES = [
         hintKey: 'admin.titleArtistModeHint',
         hintFallback: 'Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses are turned off.',
         get: () => chosenTitleArtistMode,
-        set: (v) => {
-            chosenTitleArtistMode = v;
-            if (v) {
-                // Replaces the year round → year-round bonuses can't attach.
-                chosenArtistChallenge = false;
-                chosenMovieQuiz = false;
-                chosenIntroMode = false;
-                chosenClosestWins = false;
-            }
-        },
+        // Does NOT zero the year-round flags — they stay the host's source of
+        // truth in beatify_game_settings; suppression happens at start-game
+        // time in admin.js. See applyGameModeTogglePrecedence.
+        set: (v) => { _setGameModeToggle('titleArtist', v); },
     },
 ];
 
