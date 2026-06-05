@@ -126,11 +126,22 @@ export function updateRevealView(data) {
         }
     }
 
-    showRevealEmotion(currentPlayer, song.year);
-
-    // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
-    renderDuel(currentPlayer, song.year);
-    renderChipRow(currentPlayer, data);
+    // #1180: in Title & Artist mode there is no year, so the year duel /
+    // emotion ("BINGO" + "You said × N years × Actually <year>") and the
+    // year chip row don't apply — hide them and let the Title & Artist reveal
+    // carry the round result. The mode-agnostic score row stays.
+    var taMode = !!(data.title_artist_challenge && data.title_artist_challenge.correct_title);
+    var duelEl = document.querySelector('#reveal-view .duel');
+    if (duelEl) duelEl.classList.toggle('hidden', taMode);
+    if (taMode) {
+        var chipRowEl = document.getElementById('reveal-chip-row');
+        if (chipRowEl) chipRowEl.classList.add('hidden');
+    } else {
+        showRevealEmotion(currentPlayer, song.year);
+        // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
+        renderDuel(currentPlayer, song.year);
+        renderChipRow(currentPlayer, data);
+    }
     renderScoreRow(currentPlayer);
 
     // Cache context for bottom-sheet renderers that run on demand.

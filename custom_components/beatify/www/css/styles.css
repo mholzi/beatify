@@ -14399,3 +14399,68 @@ body.theme-dark .your-result-stats .stat-value {
     border: 1px solid rgba(99, 102, 241, 0.4);
     color: #d6d8ff;
 }
+
+/* ============================================
+   Title & Artist reveal (#1180)
+   ============================================ */
+.ta-reveal-truth {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display, inherit);
+    font-size: var(--font-size-lg, 1.25rem);
+    margin-bottom: var(--space-md, 16px);
+}
+.ta-truth-title { font-weight: 700; }
+.ta-truth-sep { opacity: 0.5; }
+.ta-truth-artist { color: var(--color-text-secondary, #b9b9c6); }
+
+.ta-reveal-own {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ta-own-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.ta-own-label {
+    color: var(--color-text-secondary, #b9b9c6);
+    font-size: var(--font-size-sm, 0.875rem);
+    min-width: 6em;
+}
+.ta-own-guess {
+    font-weight: 600;
+    flex: 1 1 auto;
+    word-break: break-word;
+}
+.ta-own-row--none {
+    color: var(--color-text-secondary, #b9b9c6);
+    font-style: italic;
+}
+.ta-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: var(--radius-full, 999px);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+}
+.ta-pill--exact,
+.ta-pill--fuzzy,
+.ta-pill--near-miss-accepted {
+    background: rgba(46, 229, 157, 0.16);
+    color: #2ee59d;
+}
+.ta-pill--near-miss {
+    background: rgba(255, 180, 0, 0.16);
+    color: #ffb400;
+}
+.ta-pill--skipped {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary, #b9b9c6);
+}
