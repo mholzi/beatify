@@ -1279,11 +1279,21 @@ function _renderDoneSummary() {
         playlistLabel = `${chosenPlaylists.size} picked · ${first} + more`;
     }
 
+    // #1180: lead the mode line with the core game mode so the host can confirm
+    // Title & Artist vs Year at a glance. Difficulty is year-only, so it's
+    // dropped in T&I mode (where it doesn't affect scoring).
+    const coreModeLabel = chosenTitleArtistMode
+        ? _t('wizard.step4.modeTitleArtist', 'Title & Artist')
+        : _t('wizard.step4.modeYear', 'Year mode');
+    const modeSummary = chosenTitleArtistMode
+        ? `${coreModeLabel} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}`
+        : `${coreModeLabel} · ${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}`;
+
     el.innerHTML = `
         <div class="wiz-done-line"><span>${_t('wizard.summary.speaker', 'Speaker')}</span><strong>${speaker}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.service', 'Service')}</span><strong>${provider}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.playlist', 'Playlist')}</span><strong>${playlistLabel}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${modeSummary}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.atmosphere', 'Atmosphere')}</span><strong>${atmosphere}</strong></div>
     `;
 }
