@@ -780,20 +780,59 @@ const GAME_MODES = [
         get: () => chosenClosestWins,
         set: (v) => { _setGameModeToggle('closest', v); },
     },
+];
+
+// Core game mode — exactly one selected. Backed by the chosenTitleArtistMode
+// boolean (Jahr = false, Titel & Interpret = true). Clicking routes through the
+// tested precedence helper so T&I auto-clears the incompatible year-modifiers.
+const CORE_MODES = [
+    {
+        key: 'year',
+        icon: '📅',
+        titleKey: 'wizard.step4.modeYear',
+        titleFallback: 'Year mode',
+        hintKey: 'wizard.step4.modeYearHint',
+        hintFallback: "Guess each song's release year.",
+        selected: () => !chosenTitleArtistMode,
+        pick: () => { _setGameModeToggle('titleArtist', false); },
+    },
     {
         key: 'titleArtist',
-        icon: '🎵',
-        titleKey: 'admin.titleArtistMode',
-        titleFallback: 'Title & Artist Mode',
-        hintKey: 'admin.titleArtistModeHint',
-        hintFallback: 'Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses are turned off.',
-        get: () => chosenTitleArtistMode,
-        // Does NOT zero the year-round flags — they stay the host's source of
-        // truth in beatify_game_settings; suppression happens at start-game
-        // time in admin.js. See applyGameModeTogglePrecedence.
-        set: (v) => { _setGameModeToggle('titleArtist', v); },
+        icon: '✍️',
+        titleKey: 'wizard.step4.modeTitleArtist',
+        titleFallback: 'Title & Artist',
+        hintKey: 'wizard.step4.modeTitleArtistHint',
+        hintFallback: 'Type the song title + artist.',
+        selected: () => chosenTitleArtistMode,
+        pick: () => { _setGameModeToggle('titleArtist', true); },
     },
 ];
+
+function _renderCoreMode() {
+    const el = document.getElementById('wiz-coremode');
+    if (!el) return;
+    el.innerHTML = CORE_MODES.map((m) => {
+        const sel = m.selected();
+        return `<div class="wiz-coremode-card ${sel ? 'selected' : ''}" data-coremode="${m.key}" role="button" tabindex="0" aria-pressed="${sel}">
+            <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
+            <div class="wiz-mode-body">
+                <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>
+                <div class="wiz-mode-hint">${_t(m.hintKey, m.hintFallback)}</div>
+            </div>
+        </div>`;
+    }).join('');
+    el.querySelectorAll('[data-coremode]').forEach((card) => {
+        card.addEventListener('click', () => {
+            const m = CORE_MODES.find((x) => x.key === card.dataset.coremode);
+            if (!m) return;
+            m.pick();
+            // A mode change cascades into the difficulty + bonus sections.
+            _renderCoreMode();
+            _renderDifficulty();
+            _renderGameModes();
+        });
+    });
+}
 
 function _renderGameModes() {
     const el = document.getElementById('wiz-modes');
@@ -831,12 +870,33 @@ function _renderDifficultyHint() {
     el.textContent = _t(hint.key, hint.fallback);
 }
 
+// Difficulty area depends on the core mode. Jahr: year-distance chips + hint.
+// Title & Artist: chips hidden, a fixed scoring summary shown instead.
+function _renderDifficulty() {
+    const display = difficultyDisplayFor(chosenTitleArtistMode);
+    const group = document.getElementById('wiz-difficulty');
+    const hintEl = document.getElementById('wiz-difficulty-hint');
+    const summaryEl = document.getElementById('wiz-difficulty-summary');
+    if (group) group.classList.toggle('hidden', !display.showChips);
+    if (hintEl) hintEl.classList.toggle('hidden', !display.showChips);
+    if (summaryEl) {
+        summaryEl.classList.toggle('hidden', display.showChips);
+        if (display.summaryKey) {
+            summaryEl.textContent = _t(display.summaryKey, 'Title 10 · Artist 5 · Partial 5/3');
+        }
+    }
+    if (display.showChips) {
+        _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
+            chosenDifficulty = val;
+            _renderDifficulty();
+        });
+        _renderDifficultyHint();
+    }
+}
+
 function _renderGameMode() {
-    _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
-        chosenDifficulty = val;
-        _renderGameMode();
-    });
-    _renderDifficultyHint();
+    _renderCoreMode();
+    _renderDifficulty();
     _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
         chosenDuration = val;
         _renderGameMode();
