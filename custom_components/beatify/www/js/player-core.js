@@ -534,7 +534,7 @@ function handleServerMessage(data) {
                     BeatifyI18n.initPageTranslations();
                     renderPlayerList(players);
                     if (data.difficulty) {
-                        renderDifficultyBadge(data.difficulty);
+                        renderDifficultyBadge(data.difficulty, data.title_artist_mode);
                     }
                     if (data.phase === 'REVEAL') {
                         updateRevealView(data);
@@ -593,7 +593,7 @@ function handleServerMessage(data) {
 
             renderPlayerList(players);
             if (data.difficulty) {
-                renderDifficultyBadge(data.difficulty);
+                renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
@@ -619,7 +619,7 @@ function handleServerMessage(data) {
                 hideIntroSplashModal();
             }
             if (data.difficulty) {
-                renderDifficultyBadge(data.difficulty);
+                renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
             if (data.deadline) {
                 startCountdown(data.deadline);

@@ -140,8 +140,21 @@ export function renderPlayerList(players) {
 /**
  * Render difficulty badge in lobby and game views
  * @param {string} difficulty - Difficulty level ('easy', 'normal', or 'hard')
+ * @param {boolean} [titleArtistMode] - when true, hide the badge (#1180): the
+ *   year-distance difficulty doesn't apply in Title & Artist mode.
  */
-export function renderDifficultyBadge(difficulty) {
+export function renderDifficultyBadge(difficulty, titleArtistMode) {
+    var lobbyBadge = document.getElementById('lobby-difficulty-badge');
+    var gameBadge = document.getElementById('game-difficulty-badge');
+
+    // #1180: difficulty is year-distance scoring — it has no meaning in Title &
+    // Artist mode. Hide the badge instead of showing a misleading "Normal".
+    if (titleArtistMode) {
+        if (lobbyBadge) lobbyBadge.classList.add('hidden');
+        if (gameBadge) gameBadge.classList.add('hidden');
+        return;
+    }
+
     var labelKey = {
         easy: 'game.difficultyEasy',
         normal: 'game.difficultyNormal',
@@ -149,9 +162,6 @@ export function renderDifficultyBadge(difficulty) {
     }[difficulty] || 'game.difficultyNormal';
 
     var label = utils.t(labelKey);
-
-    var lobbyBadge = document.getElementById('lobby-difficulty-badge');
-    var gameBadge = document.getElementById('game-difficulty-badge');
 
     if (lobbyBadge) {
         lobbyBadge.textContent = label;

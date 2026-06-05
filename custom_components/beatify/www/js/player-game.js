@@ -384,7 +384,10 @@ function syncNoBonusFiller(data) {
     if (!filler) return;
     var hasArtist = !!(data && data.artist_challenge && data.artist_challenge.options);
     var hasMovie = !!(data && data.movie_challenge && data.movie_challenge.options);
-    filler.classList.toggle('hidden', hasArtist || hasMovie);
+    // #1180: in Title & Artist mode the "no bonus — nail the year" filler makes
+    // no sense (there's no year; the T&I input card is the task). Hide it.
+    var taMode = !!(data && data.title_artist_mode);
+    filler.classList.toggle('hidden', hasArtist || hasMovie || taMode);
 }
 
 function renderSubmissionTracker(players) {
