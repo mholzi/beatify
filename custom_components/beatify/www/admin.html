@@ -1462,6 +1462,9 @@
     <script src="/beatify/static/js/playlist-generator.min.js?v=3.4.5-rc1"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.4.5-rc1"></script>
     <script type="module" src="/beatify/static/js/wizard.js?v=3.4.5-rc1"></script>
+    <!-- #1180: Title & Artist mode bonus-flag precedence (exposes
+         window.BeatifyTitleArtist; must load before admin.min.js uses it). -->
+    <script type="module" src="/beatify/static/js/title-artist-bonuses.js?v=3.4.5-rc1"></script>
     <!-- #1122 rc7: NoSleep.js Layer 2 fallback for iOS Companion WKWebView,
          loaded before admin.min.js so window.NoSleep is available when
          _requestWakeLock() runs on game start. -->
