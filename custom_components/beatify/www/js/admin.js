@@ -1036,7 +1036,9 @@ function updateGameSettingsSummary() {
  * the next reload.
  */
 function syncTitleArtistModeUI() {
-    var ids = ['artist-challenge-toggle', 'movie-quiz-toggle', 'intro-mode-toggle', 'closest-wins-toggle'];
+    // #1180: only the truly-incompatible modes are hidden in TA mode. Movie
+    // quiz and intro mode are compatible bonuses, so they stay available.
+    var ids = ['artist-challenge-toggle', 'closest-wins-toggle'];
     ids.forEach(function(id) {
         var input = document.getElementById(id);
         if (!input) return;

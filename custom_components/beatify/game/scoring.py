@@ -646,6 +646,18 @@ class ScoringService:
                 _score_title_artist_round(
                     player, title_artist_manager, streak_achievements
                 )
+                # #1180: movie quiz + intro mode are compatible bonuses that
+                # stack on top of the title/artist score (both are independent
+                # of the year). The _score_*_round helpers overwrite the zeros
+                # _score_title_artist_round set, then we add them to the score.
+                _score_movie_challenge(player, movie_challenge)
+                _score_intro_round(
+                    player,
+                    is_intro_round=is_intro_round,
+                    intro_round_start_time=intro_round_start_time,
+                    all_players=all_players,
+                )
+                player.score += player.movie_bonus + player.intro_bonus
             else:
                 player.previous_streak = player.streak
                 player.round_score = 0

@@ -120,12 +120,12 @@ export function applyGameModeTogglePrecedence(flags, key, value) {
             if (value) next.titleArtistMode = false;
             break;
         case 'movie':
+            // #1180: movie quiz is a per-song bonus, compatible with TA mode.
             next.movieQuiz = value;
-            if (value) next.titleArtistMode = false;
             break;
         case 'intro':
+            // #1180: intro mode (shorter clip) is compatible with TA mode.
             next.introMode = value;
-            if (value) next.titleArtistMode = false;
             break;
         case 'closest':
             next.closestWinsMode = value;
@@ -133,7 +133,13 @@ export function applyGameModeTogglePrecedence(flags, key, value) {
             break;
         case 'titleArtist':
             next.titleArtistMode = value;
-            // Intentionally does NOT mutate the year-round flags — see above.
+            // #1180: TA replaces the year round, so the year-distance modes
+            // (artist challenge, closest wins) can't apply — force them off.
+            // Movie quiz and intro mode stay (compatible bonuses).
+            if (value) {
+                next.artistChallenge = false;
+                next.closestWinsMode = false;
+            }
             break;
     }
     return next;
@@ -779,6 +785,11 @@ function _renderGameModes() {
     if (!el) return;
     el.innerHTML = GAME_MODES.map((m) => {
         const on = m.get();
+        // #1180: hide modes incompatible with Title & Artist mode (artist
+        // challenge + closest wins). Movie quiz and intro stay (compatible).
+        if (chosenTitleArtistMode && (m.key === 'artist' || m.key === 'closest')) {
+            return '';
+        }
         return `<div class="wiz-mode-card ${on ? 'on' : ''}" data-mode="${m.key}" role="button" tabindex="0">
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
             <div class="wiz-mode-body">

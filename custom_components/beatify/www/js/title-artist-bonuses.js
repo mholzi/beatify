@@ -22,8 +22,6 @@
  */
 export const YEAR_ROUND_BONUS_KEYS = [
     'artist_challenge_enabled',
-    'movie_quiz_enabled',
-    'intro_mode_enabled',
     'closest_wins_mode',
 ];
 
