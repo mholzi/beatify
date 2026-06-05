@@ -26,7 +26,7 @@ import {
     updateLeaderboard, setupLeaderboardToggle,
     initYearSelector, handleSubmitAck, handleSubmitError,
     resetSubmissionState,
-    handleArtistGuessAck, handleMovieGuessAck,
+    handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
     handleStealAck, handleStealTargets,
     showAdminControlBar, hideAdminControlBar,
     showReactionBar, hideReactionBar, setupReactionBar,
@@ -793,6 +793,8 @@ function handleServerMessage(data) {
         handleArtistGuessAck(data);
     } else if (data.type === 'movie_guess_ack') {
         handleMovieGuessAck(data);
+    } else if (data.type === 'title_artist_guess_ack') {
+        handleTitleArtistGuessAck(data);
     } else if (data.type === 'player_reaction') {
         showFloatingReaction(data.player_name, data.emoji);
     }
