@@ -232,6 +232,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Expose loadStatus so wizard.js can ask admin to refresh after completion
     window.loadStatus = loadStatus;
+    // Expose loadSavedSettings so wizard.js can re-sync the admin's in-memory game
+    // settings (mode, difficulty, bonuses, language, playlists) from localStorage
+    // after the wizard persists them. The admin only reads beatify_game_settings
+    // once at page-init — without this refresh, start-game keeps the stale values
+    // and ignores the wizard's choices, e.g. Title & Artist mode (#1180).
+    window.loadSavedSettings = loadSavedSettings;
 
     // Home view — shown when setup is complete and no game is active (post-wizard landing)
     window.BeatifyHome = {

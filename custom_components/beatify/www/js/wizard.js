@@ -1453,6 +1453,15 @@ async function _advance() {
         // (the lobby landing card with Start Game + Edit setup), then refresh status.
         try { localStorage.setItem(LS_WIZARD_STATE, 'done'); } catch (e) { /* private mode */ }
         hide({ dismissed: false });
+        // Sync the admin's in-memory game settings from the choices the wizard
+        // just persisted (mode, difficulty, bonuses, language, playlists) BEFORE
+        // refreshing status + entering home. The admin reads beatify_game_settings
+        // only once at page-init, so without this the start-game payload would
+        // ignore the wizard's selections (e.g. Title & Artist mode) and run with
+        // stale/default values. See window.loadSavedSettings in admin.js (#1180).
+        if (typeof window !== 'undefined' && typeof window.loadSavedSettings === 'function') {
+            try { await window.loadSavedSettings(); } catch (e) { /* non-fatal */ }
+        }
         if (typeof window !== 'undefined' && typeof window.loadStatus === 'function') {
             window.loadStatus();
         }
