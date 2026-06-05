@@ -900,7 +900,14 @@
       "modes": "Spelmodi",
       "difficultyHintEasy": "Soepel: 10 ptn voor exact jaar, 5 ptn binnen ±7 jaar, 1 pt binnen ±10 jaar.",
       "difficultyHintNormal": "In balans: 10 ptn voor exact jaar, 5 ptn binnen ±3 jaar, 1 pt binnen ±5 jaar.",
-      "difficultyHintHard": "Streng: 10 ptn voor exact jaar, 3 ptn binnen ±2 jaar, anders 0."
+      "difficultyHintHard": "Streng: 10 ptn voor exact jaar, 3 ptn binnen ±2 jaar, anders 0.",
+      "coreMode": "Spelmodus",
+      "modeYear": "Jaar-modus",
+      "modeYearHint": "Raad het releasejaar van elk nummer.",
+      "modeTitleArtist": "Titel & Artiest",
+      "modeTitleArtistHint": "Typ de titel en artiest.",
+      "taScoring": "Titel 10 · Artiest 5 · Gedeeltelijk 5/3",
+      "bonusModes": "Bonusmodi"
     },
     "done": {
       "badge": "KLAAR OM TE SPELEN",

@@ -900,7 +900,14 @@
       "modes": "Modes de jeu",
       "difficultyHintEasy": "Indulgent : 10 pts pour l'année exacte, 5 pts à ±7 ans, 1 pt à ±10 ans.",
       "difficultyHintNormal": "Équilibré : 10 pts pour l'année exacte, 5 pts à ±3 ans, 1 pt à ±5 ans.",
-      "difficultyHintHard": "Strict : 10 pts pour l'année exacte, 3 pts à ±2 ans, sinon 0."
+      "difficultyHintHard": "Strict : 10 pts pour l'année exacte, 3 pts à ±2 ans, sinon 0.",
+      "coreMode": "Mode de jeu",
+      "modeYear": "Mode Année",
+      "modeYearHint": "Devinez l'année de sortie de chaque morceau.",
+      "modeTitleArtist": "Titre & Artiste",
+      "modeTitleArtistHint": "Tapez le titre et l'artiste.",
+      "taScoring": "Titre 10 · Artiste 5 · Partiel 5/3",
+      "bonusModes": "Modes bonus"
     },
     "done": {
       "badge": "PRÊT À JOUER",

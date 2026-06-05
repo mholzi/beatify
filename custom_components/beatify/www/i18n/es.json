@@ -900,7 +900,14 @@
       "modes": "Modos de juego",
       "difficultyHintEasy": "Generoso: 10 pts por el año exacto, 5 pts dentro de ±7 años, 1 pt dentro de ±10 años.",
       "difficultyHintNormal": "Equilibrado: 10 pts por el año exacto, 5 pts dentro de ±3 años, 1 pt dentro de ±5 años.",
-      "difficultyHintHard": "Estricto: 10 pts por el año exacto, 3 pts dentro de ±2 años, en otro caso 0."
+      "difficultyHintHard": "Estricto: 10 pts por el año exacto, 3 pts dentro de ±2 años, en otro caso 0.",
+      "coreMode": "Modo de juego",
+      "modeYear": "Modo Año",
+      "modeYearHint": "Adivina el año de cada canción.",
+      "modeTitleArtist": "Título e Intérprete",
+      "modeTitleArtistHint": "Escribe el título y el intérprete.",
+      "taScoring": "Título 10 · Intérprete 5 · Parcial 5/3",
+      "bonusModes": "Modos extra"
     },
     "done": {
       "badge": "LISTO PARA JUGAR",

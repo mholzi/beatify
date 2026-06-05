@@ -900,7 +900,14 @@
       "modes": "Spielmodi",
       "difficultyHintEasy": "Großzügig: 10 Punkte für das exakte Jahr, 5 Punkte innerhalb ±7 Jahren, 1 Punkt innerhalb ±10 Jahren.",
       "difficultyHintNormal": "Ausgewogen: 10 Punkte für das exakte Jahr, 5 Punkte innerhalb ±3 Jahren, 1 Punkt innerhalb ±5 Jahren.",
-      "difficultyHintHard": "Scharf: 10 Punkte für das exakte Jahr, 3 Punkte innerhalb ±2 Jahren, sonst 0."
+      "difficultyHintHard": "Scharf: 10 Punkte für das exakte Jahr, 3 Punkte innerhalb ±2 Jahren, sonst 0.",
+      "coreMode": "Spielmodus",
+      "modeYear": "Jahres-Modus",
+      "modeYearHint": "Schätze das Erscheinungsjahr.",
+      "modeTitleArtist": "Titel & Interpret",
+      "modeTitleArtistHint": "Tippe Titel + Interpret.",
+      "taScoring": "Titel 10 · Interpret 5 · Teiltreffer 5/3",
+      "bonusModes": "Zusatz-Modi"
     },
     "done": {
       "badge": "BEREIT ZUM SPIELEN",
