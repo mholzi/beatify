@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -335,5 +335,21 @@ describe('wizard TA enable → persist → reload does not destroy bonus choices
         flags = hydrate(ls);
         expect(flags.titleArtistMode).toBe(false);
         expect(flags.artistChallenge).toBe(true);
+    });
+});
+
+// ------------------------------------------------------------------
+// difficultyDisplayFor — difficulty area depends on the core mode
+// ------------------------------------------------------------------
+describe('difficultyDisplayFor', () => {
+    it('shows the year-distance chips and no summary in Jahr mode', () => {
+        expect(difficultyDisplayFor(false)).toEqual({ showChips: true, summaryKey: null });
+    });
+
+    it('hides the chips and shows the T&I scoring summary in Title & Artist mode', () => {
+        expect(difficultyDisplayFor(true)).toEqual({
+            showChips: false,
+            summaryKey: 'wizard.step4.taScoring',
+        });
     });
 });

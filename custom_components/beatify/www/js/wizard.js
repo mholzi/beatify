@@ -145,6 +145,21 @@ export function applyGameModeTogglePrecedence(flags, key, value) {
     return next;
 }
 
+/**
+ * Decide how the Step-4 difficulty area renders for the chosen core mode.
+ * In Title & Artist mode the year-distance scoring bands don't apply, so the
+ * Leicht/Normal/Schwer chips are hidden and a fixed T&I scoring summary is
+ * shown in their place. Pure — no DOM, exported for vitest.
+ *
+ * @param {boolean} titleArtistMode
+ * @returns {{ showChips: boolean, summaryKey: string|null }}
+ */
+export function difficultyDisplayFor(titleArtistMode) {
+    return titleArtistMode
+        ? { showChips: false, summaryKey: 'wizard.step4.taScoring' }
+        : { showChips: true, summaryKey: null };
+}
+
 // ------------------------------------------------------------------
 // DOM-driven controller (browser-only below this line)
 // ------------------------------------------------------------------
