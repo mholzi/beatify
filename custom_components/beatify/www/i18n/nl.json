@@ -711,6 +711,31 @@
     "noWinner": "Niemand heeft de film geraden",
     "winnersTitle": "Winnaars filmquiz"
   },
+  "titleArtist": {
+    "titleLabel": "Songtitel",
+    "artistLabel": "Artiest",
+    "titlePlaceholder": "Typ de songtitel…",
+    "artistPlaceholder": "Typ de artiest…",
+    "submitGuess": "Gok indienen",
+    "submitted": "Gok ingediend",
+    "theAnswerWas": "Het antwoord was",
+    "voteHeader": "Net niet — jullie beslissen",
+    "statusExact": "Correct",
+    "statusFuzzy": "Dichtbij genoeg",
+    "statusAccepted": "Geaccepteerd",
+    "statusNearMiss": "Net niet",
+    "statusSkipped": "Overgeslagen",
+    "yourTitle": "Jouw titel",
+    "yourArtist": "Jouw artiest",
+    "noGuess": "Geen gok deze ronde",
+    "yourCloseCall": "Jouw bijna-goed — anderen beslissen",
+    "hostOverride": "Host beslist",
+    "accept": "Accepteren",
+    "reject": "Afwijzen",
+    "voteCountdown": "{seconds}s",
+    "voteClosed": "Stemmen gesloten",
+    "dashboardVoting": "Stemmen op bijna-goede antwoorden…"
+  },
   "earlyReveal": {
     "message": "Alle gokken zijn binnen!"
   },

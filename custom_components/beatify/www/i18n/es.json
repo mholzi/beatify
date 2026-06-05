@@ -711,6 +711,31 @@
     "noWinner": "Nadie adivinó la película",
     "winnersTitle": "Ganadores del Quiz de Películas"
   },
+  "titleArtist": {
+    "titleLabel": "Título de la canción",
+    "artistLabel": "Artista",
+    "titlePlaceholder": "Escribe el título…",
+    "artistPlaceholder": "Escribe el artista…",
+    "submitGuess": "Enviar respuesta",
+    "submitted": "Respuesta enviada",
+    "theAnswerWas": "La respuesta era",
+    "voteHeader": "Casi aciertos — vosotros decidís",
+    "statusExact": "Correcto",
+    "statusFuzzy": "Suficientemente cerca",
+    "statusAccepted": "Aceptado",
+    "statusNearMiss": "Casi",
+    "statusSkipped": "Omitido",
+    "yourTitle": "Tu título",
+    "yourArtist": "Tu artista",
+    "noGuess": "Sin respuesta esta ronda",
+    "yourCloseCall": "Tu casi acierto — otros deciden",
+    "hostOverride": "El anfitrión decide",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "voteCountdown": "{seconds}s",
+    "voteClosed": "Votación cerrada",
+    "dashboardVoting": "Votando los casi aciertos…"
+  },
   "earlyReveal": {
     "message": "¡Todos han respondido!"
   },

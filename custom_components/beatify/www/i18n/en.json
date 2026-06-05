@@ -711,6 +711,31 @@
     "noWinner": "No one guessed the movie",
     "winnersTitle": "Movie Quiz Winners"
   },
+  "titleArtist": {
+    "titleLabel": "Song title",
+    "artistLabel": "Artist",
+    "titlePlaceholder": "Type the song title…",
+    "artistPlaceholder": "Type the artist…",
+    "submitGuess": "Submit guess",
+    "submitted": "Guess submitted",
+    "theAnswerWas": "The answer was",
+    "voteHeader": "Close calls — your call",
+    "statusExact": "Correct",
+    "statusFuzzy": "Close enough",
+    "statusAccepted": "Accepted",
+    "statusNearMiss": "Near miss",
+    "statusSkipped": "Skipped",
+    "yourTitle": "Your title",
+    "yourArtist": "Your artist",
+    "noGuess": "No guess this round",
+    "yourCloseCall": "Your close call — others decide",
+    "hostOverride": "Host decides",
+    "accept": "Accept",
+    "reject": "Reject",
+    "voteCountdown": "{seconds}s",
+    "voteClosed": "Voting closed",
+    "dashboardVoting": "Voting on close calls…"
+  },
   "earlyReveal": {
     "message": "All guesses in!"
   },

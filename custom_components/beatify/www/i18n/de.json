@@ -711,6 +711,31 @@
     "noWinner": "Niemand hat den Film erraten",
     "winnersTitle": "Film-Quiz Gewinner"
   },
+  "titleArtist": {
+    "titleLabel": "Songtitel",
+    "artistLabel": "Interpret",
+    "titlePlaceholder": "Songtitel eingeben…",
+    "artistPlaceholder": "Interpret eingeben…",
+    "submitGuess": "Tipp abgeben",
+    "submitted": "Tipp abgegeben",
+    "theAnswerWas": "Die Antwort war",
+    "voteHeader": "Knappe Treffer — ihr entscheidet",
+    "statusExact": "Richtig",
+    "statusFuzzy": "Nah genug",
+    "statusAccepted": "Akzeptiert",
+    "statusNearMiss": "Knapp daneben",
+    "statusSkipped": "Übersprungen",
+    "yourTitle": "Dein Titel",
+    "yourArtist": "Dein Interpret",
+    "noGuess": "Kein Tipp in dieser Runde",
+    "yourCloseCall": "Dein knapper Treffer — andere entscheiden",
+    "hostOverride": "Host entscheidet",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "voteCountdown": "{seconds}s",
+    "voteClosed": "Abstimmung beendet",
+    "dashboardVoting": "Über knappe Treffer wird abgestimmt…"
+  },
   "earlyReveal": {
     "message": "Alle haben geraten!"
   },

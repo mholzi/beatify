@@ -38,7 +38,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
-import { updateRevealView, setupRevealSheets, setupRevealReportBtn } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
 
@@ -1003,6 +1003,7 @@ async function initAll() {
     setupAdminControls();
     setupRevealSheets();
     setupRevealReportBtn();
+    setupTitleArtistVoting();
     setupRevealControls();
     setupAdminControlBar();
     setupRetryConnection();
