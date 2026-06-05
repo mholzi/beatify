@@ -110,9 +110,14 @@
                 <h2 class="wiz-title" data-i18n="wizard.step4.title">How do you want to play?</h2>
                 <p class="wiz-sub" data-i18n="wizard.step4.sub">Defaults work for most parties. Tweak if you want.</p>
                 <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.coreMode">Game mode</label>
+                    <div id="wiz-coremode" class="wiz-coremode-cards"></div>
+                </div>
+                <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.difficulty">Difficulty</label>
                     <div id="wiz-difficulty" class="wiz-chip-group"></div>
                     <div id="wiz-difficulty-hint" class="wiz-difficulty-hint"></div>
+                    <div id="wiz-difficulty-summary" class="wiz-difficulty-hint hidden"></div>
                 </div>
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.timer">Time per round</label>
@@ -127,7 +132,7 @@
                     <div id="wiz-language" class="wiz-chip-group"></div>
                 </div>
                 <div class="wiz-field">
-                    <label class="wiz-field-label" data-i18n="wizard.step4.modes">Game modes</label>
+                    <label class="wiz-field-label" data-i18n="wizard.step4.bonusModes">Bonus modes</label>
                     <div id="wiz-modes" class="wiz-mode-cards"></div>
                 </div>
             </div>
@@ -428,7 +433,7 @@
 
                 <!-- Difficulty - Compact chips -->
                 <div class="setting-group">
-                    <div class="setting-row">
+                    <div class="setting-row" id="admin-difficulty-row">
                         <span class="setting-label">
                             <span class="setting-icon" aria-hidden="true">🎯</span>
                             <span data-i18n="admin.difficulty">Difficulty</span>
@@ -439,7 +444,8 @@
                             <button type="button" class="chip" data-difficulty="hard" data-i18n="admin.hard">Hard</button>
                         </div>
                     </div>
-                    <p class="setting-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
+                    <p class="setting-hint" id="admin-difficulty-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
+                    <p class="setting-hint hidden" id="admin-difficulty-ta-summary" data-i18n="wizard.step4.taScoring">Title 10 · Artist 5 · Partial 5/3</p>
                 </div>
 
                 <!-- Title & Artist Mode - Inline toggle (#1180) -->
