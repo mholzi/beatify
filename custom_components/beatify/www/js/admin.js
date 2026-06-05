@@ -1020,16 +1020,27 @@ function updateGameSettingsSummary() {
  * #1180: Title & Artist mode replaces the year round, so the year-only
  * bonuses (artist challenge, movie quiz, intro, closest wins) have nothing to
  * attach to. Hide their setting-groups and force their flags off while TA
- * mode is on. Restoring the toggle re-shows them (flags re-read on change).
+ * mode is on so they are never sent to the server (the checkbox .checked
+ * state is left untouched as the source of truth). When TA mode is off the
+ * flags are re-read from the checkboxes, restoring the host's prior choices.
  */
 function syncTitleArtistModeUI() {
-    var ids = ['artist-challenge-toggle', 'movie-quiz-toggle', 'intro-mode-toggle', 'closest-wins-toggle'];
-    ids.forEach(function(id) {
-        var input = document.getElementById(id);
+    // [id, setter] pairs so we can force each year-round flag off / re-read it.
+    var bonuses = [
+        ['artist-challenge-toggle', function(v) { artistChallengeEnabled = v; }],
+        ['movie-quiz-toggle', function(v) { movieQuizEnabled = v; }],
+        ['intro-mode-toggle', function(v) { introModeEnabled = v; }],
+        ['closest-wins-toggle', function(v) { closestWinsModeEnabled = v; }]
+    ];
+    bonuses.forEach(function(pair) {
+        var input = document.getElementById(pair[0]);
         if (!input) return;
         var group = input.closest('.setting-group');
         if (group) group.classList.toggle('hidden', titleArtistModeEnabled);
         input.disabled = titleArtistModeEnabled;
+        // Force the flag off while TA mode is on; otherwise re-read the
+        // checkbox so toggling TA off restores the host's saved preference.
+        pair[1](titleArtistModeEnabled ? false : input.checked);
     });
 }
 

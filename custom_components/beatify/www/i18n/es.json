@@ -399,6 +399,8 @@
     "introModeHint": "~20% de las rondas reproducen solo la intro de la canción. Los jugadores deben adivinar el año solo con los primeros segundos. Requiere al menos 3 rondas.",
     "closestWinsMode": "El más cercano gana",
     "closestWinsModeHint": "Solo el más cercano gana puntos",
+    "titleArtistMode": "Modo título y artista",
+    "titleArtistModeHint": "Los jugadores escriben el título y el artista de la canción en lugar de adivinar el año. Sustituye la ronda del año, por lo que las bonificaciones por ronda de abajo se desactivan.",
     "closestWinsHint": "Solo el jugador con la respuesta más cercana gana puntos en cada ronda. Duelo de todo o nada.",
     "roundsHint": "Número total de rondas en el juego, basado en las playlists seleccionadas.",
     "languageHint": "Establece el idioma para todos los jugadores durante la partida.",

@@ -399,6 +399,8 @@
     "introModeHint": "~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.",
     "closestWinsMode": "Closest Wins",
     "closestWinsModeHint": "Only the closest guess earns points",
+    "titleArtistMode": "Title & Artist Mode",
+    "titleArtistModeHint": "Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses below are turned off.",
     "closestWinsHint": "Only the player with the closest guess scores points each round. All-or-nothing showdown.",
     "roundsHint": "Total number of rounds in the game, based on the selected playlists.",
     "languageHint": "Sets the language for all players during the game.",

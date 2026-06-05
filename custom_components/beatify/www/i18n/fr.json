@@ -399,6 +399,8 @@
     "introModeHint": "~20% des manches ne jouent que l'intro de la chanson. Les joueurs doivent deviner l'année à partir des premières secondes. Nécessite au moins 3 manches.",
     "closestWinsMode": "Le plus proche gagne",
     "closestWinsModeHint": "Seul le plus proche gagne des points",
+    "titleArtistMode": "Mode titre et artiste",
+    "titleArtistModeHint": "Les joueurs saisissent le titre et l'artiste de la chanson au lieu de deviner l'année. Remplace la manche de l'année, donc les bonus par manche ci-dessous sont désactivés.",
     "closestWinsHint": "Seul le joueur le plus proche marque des points à chaque manche. Duel tout ou rien.",
     "roundsHint": "Nombre total de manches dans la partie, basé sur les playlists sélectionnées.",
     "languageHint": "Définit la langue pour tous les joueurs pendant la partie.",
