@@ -1046,6 +1046,14 @@ function syncTitleArtistModeUI() {
         if (group) group.classList.toggle('hidden', titleArtistModeEnabled);
         input.disabled = titleArtistModeEnabled;
     });
+    // #1180 polish: year-distance difficulty doesn't apply in TA mode. Hide the
+    // chips + year hint and show the fixed T&I scoring summary in their place.
+    var diffRow = document.getElementById('admin-difficulty-row');
+    if (diffRow) diffRow.classList.toggle('hidden', titleArtistModeEnabled);
+    var diffHint = document.getElementById('admin-difficulty-hint');
+    if (diffHint) diffHint.classList.toggle('hidden', titleArtistModeEnabled);
+    var taSummary = document.getElementById('admin-difficulty-ta-summary');
+    if (taSummary) taSummary.classList.toggle('hidden', !titleArtistModeEnabled);
 }
 
 /**
