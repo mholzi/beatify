@@ -132,14 +132,14 @@ export function applyGameModeTogglePrecedence(flags, key, value) {
             if (value) next.titleArtistMode = false;
             break;
         case 'titleArtist':
+            // #1180: Turning TA mode ON must NOT touch the year-round flags.
+            // They stay the host's source of truth so the wizard never persists
+            // `false` over a previously-true bonus into beatify_game_settings
+            // (admin.js reads that same key). Suppression while TA is on is
+            // applied later, only at start-game-payload build time, by
+            // admin.js's applyTitleArtistBonusPrecedence(). Zeroing here would
+            // silently destroy the host's saved choices on the next reload.
             next.titleArtistMode = value;
-            // #1180: TA replaces the year round, so the year-distance modes
-            // (artist challenge, closest wins) can't apply — force them off.
-            // Movie quiz and intro mode stay (compatible bonuses).
-            if (value) {
-                next.artistChallenge = false;
-                next.closestWinsMode = false;
-            }
             break;
     }
     return next;

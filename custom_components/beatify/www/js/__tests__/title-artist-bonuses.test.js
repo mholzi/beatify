@@ -31,11 +31,14 @@ describe('applyTitleArtistBonusPrecedence', () => {
         expect(applyTitleArtistBonusPrecedence(allOn, false)).toEqual(allOn);
     });
 
-    it('forces every year-round bonus off when TA mode is on', () => {
+    it('forces the year-distance bonuses (artist/closest) off when TA mode is on, leaving the compatible ones', () => {
+        // #1180: only the year-distance bonuses are suppressed by TA mode.
+        // Movie quiz + intro mode are compatible bonuses and pass through
+        // (mirrors YEAR_ROUND_BONUS_KEYS and the wizard-side precedence).
         expect(applyTitleArtistBonusPrecedence(allOn, true)).toEqual({
             artist_challenge_enabled: false,
-            movie_quiz_enabled: false,
-            intro_mode_enabled: false,
+            movie_quiz_enabled: true,
+            intro_mode_enabled: true,
             closest_wins_mode: false,
         });
     });
@@ -143,9 +146,11 @@ describe('save → reload → toggle-off preference persistence', () => {
         expect(state.artistChallengeEnabled).toBe(true);
     });
 
-    it('still suppresses the bonus in the start-game payload while TA is on', () => {
+    it('suppresses only the year-distance bonuses in the start-game payload while TA is on', () => {
         // Even though the stored preference stays ON, the payload sent to the
-        // server must have it suppressed for the duration of TA mode.
+        // server must have the year-distance bonuses (artist/closest) suppressed
+        // for the duration of TA mode. Movie quiz + intro are compatible and
+        // stay on (#1180).
         const state = load((() => {
             const ls = makeLS();
             ls.setItem(KEY, JSON.stringify({
@@ -167,8 +172,8 @@ describe('save → reload → toggle-off preference persistence', () => {
 
         expect(payload).toEqual({
             artist_challenge_enabled: false,
-            movie_quiz_enabled: false,
-            intro_mode_enabled: false,
+            movie_quiz_enabled: true,
+            intro_mode_enabled: true,
             closest_wins_mode: false,
         });
     });

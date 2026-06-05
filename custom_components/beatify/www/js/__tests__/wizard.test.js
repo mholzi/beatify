@@ -228,17 +228,31 @@ describe('applyGameModeTogglePrecedence', () => {
         });
     });
 
-    it('turns TA mode off when a year-round bonus is turned on', () => {
+    it('turns TA mode off when a year-distance bonus (artist/closest) is turned on', () => {
+        // #1180: only the year-distance modes (artist challenge, closest wins)
+        // are mutually exclusive with TA. Movie quiz + intro are compatible
+        // bonuses and leave titleArtistMode untouched (see the movie/intro
+        // compatibility tests below), so they're deliberately excluded here.
         const taOn = { ...allYearOn, artistChallenge: false, movieQuiz: false, introMode: false, closestWinsMode: false, titleArtistMode: true };
         for (const [key, flag] of [
             ['artist', 'artistChallenge'],
-            ['movie', 'movieQuiz'],
-            ['intro', 'introMode'],
             ['closest', 'closestWinsMode'],
         ]) {
             const out = applyGameModeTogglePrecedence(taOn, key, true);
             expect(out[flag]).toBe(true);
             expect(out.titleArtistMode).toBe(false);
+        }
+    });
+
+    it('keeps TA mode on when a compatible bonus (movie/intro) is turned on', () => {
+        const taOn = { artistChallenge: false, movieQuiz: false, introMode: false, closestWinsMode: false, titleArtistMode: true };
+        for (const [key, flag] of [
+            ['movie', 'movieQuiz'],
+            ['intro', 'introMode'],
+        ]) {
+            const out = applyGameModeTogglePrecedence(taOn, key, true);
+            expect(out[flag]).toBe(true);
+            expect(out.titleArtistMode).toBe(true);
         }
     });
 
