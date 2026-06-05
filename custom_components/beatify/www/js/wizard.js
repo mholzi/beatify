@@ -105,6 +105,7 @@ let chosenArtistChallenge = true;
 let chosenMovieQuiz = true;
 let chosenIntroMode = false;
 let chosenClosestWins = false;
+let chosenTitleArtistMode = false; // #1180
 const chosenLevelUps = { lights: false, tts: false };
 // Details the user sets when a level-up is toggled on
 let cachedLights = null; // HA lights from /api/lights
@@ -647,7 +648,7 @@ const GAME_MODES = [
         hintKey: 'admin.artistChallengeHint',
         hintFallback: 'After each round, players can guess the artist for bonus points. First correct guess earns +5 points.',
         get: () => chosenArtistChallenge,
-        set: (v) => { chosenArtistChallenge = v; },
+        set: (v) => { chosenArtistChallenge = v; if (v) chosenTitleArtistMode = false; },
     },
     {
         key: 'movie',
@@ -657,7 +658,7 @@ const GAME_MODES = [
         hintKey: 'admin.movieQuizHint',
         hintFallback: 'For soundtrack songs, players guess the movie for tiered bonus points. Only triggers on songs with movie metadata.',
         get: () => chosenMovieQuiz,
-        set: (v) => { chosenMovieQuiz = v; },
+        set: (v) => { chosenMovieQuiz = v; if (v) chosenTitleArtistMode = false; },
     },
     {
         key: 'intro',
@@ -667,7 +668,7 @@ const GAME_MODES = [
         hintKey: 'admin.introModeHint',
         hintFallback: '~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.',
         get: () => chosenIntroMode,
-        set: (v) => { chosenIntroMode = v; },
+        set: (v) => { chosenIntroMode = v; if (v) chosenTitleArtistMode = false; },
     },
     {
         key: 'closest',
@@ -677,7 +678,26 @@ const GAME_MODES = [
         hintKey: 'admin.closestWinsHint',
         hintFallback: 'Only the player with the closest guess scores points each round. All-or-nothing showdown.',
         get: () => chosenClosestWins,
-        set: (v) => { chosenClosestWins = v; },
+        set: (v) => { chosenClosestWins = v; if (v) chosenTitleArtistMode = false; },
+    },
+    {
+        key: 'titleArtist',
+        icon: '🎵',
+        titleKey: 'admin.titleArtistMode',
+        titleFallback: 'Title & Artist Mode',
+        hintKey: 'admin.titleArtistModeHint',
+        hintFallback: 'Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses are turned off.',
+        get: () => chosenTitleArtistMode,
+        set: (v) => {
+            chosenTitleArtistMode = v;
+            if (v) {
+                // Replaces the year round → year-round bonuses can't attach.
+                chosenArtistChallenge = false;
+                chosenMovieQuiz = false;
+                chosenIntroMode = false;
+                chosenClosestWins = false;
+            }
+        },
     },
 ];
 
@@ -1140,6 +1160,7 @@ function _persistGameSettings() {
             movieQuiz: chosenMovieQuiz,
             introMode: chosenIntroMode,
             closestWinsMode: chosenClosestWins,
+            titleArtistMode: chosenTitleArtistMode,  // #1180
         };
         if (chosenPlaylists.size > 0) {
             // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
@@ -1204,6 +1225,7 @@ export async function show(stepOverride) {
             if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
+            if (typeof s.titleArtistMode === 'boolean') chosenTitleArtistMode = s.titleArtistMode;
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
                     const path = typeof entry === 'string' ? entry : entry && entry.path;
