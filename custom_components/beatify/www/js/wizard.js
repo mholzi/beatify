@@ -894,9 +894,9 @@ function _lightsDetailHtml() {
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.lights.mode', 'Mode')}</span>
             <div class="wiz-chip-group">
-              ${chip('static', _t('wizard.step5.lights.modeStatic', 'Static'), 'lightMode')}
-              ${chip('dynamic', _t('wizard.step5.lights.modeDynamic', 'Dynamic'), 'lightMode')}
-              ${chip('wled', 'WLED', 'lightMode')}
+              ${chip('static', _t('wizard.step5.lights.modeStatic', 'Static'), 'light-mode')}
+              ${chip('dynamic', _t('wizard.step5.lights.modeDynamic', 'Dynamic'), 'light-mode')}
+              ${chip('wled', 'WLED', 'light-mode')}
             </div>
           </div>
           ${wledBlock}

@@ -1,6 +1,6 @@
 {
   "name": "ICONIC movie songs 🎬",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "movies",
     "soundtracks",
@@ -833,7 +833,7 @@
       "uri_apple_music": "applemusic://track/1448886260",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KsRqhCWYfsQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/7745618",
+      "uri_deezer": "deezer://track/5531981",
       "fun_fact_nl": "Marilyn Monroe zong het in Gentlemen Prefer Blondes (1953) in haar iconische roze jurk.",
       "awards_nl": [],
       "isrc": "USA370959761",
@@ -934,7 +934,7 @@
       ]
     },
     {
-      "year": 2023,
+      "year": 2012,
       "uri": "spotify:track:0z9UVN8VBHJ9HdfYsOuuNf",
       "artist": "Taylor Swift, The Civil Wars",
       "alt_artists": [
@@ -950,15 +950,15 @@
       "fun_fact_de": "Taylor Swift und The Civil Wars schrieben es für Die Tribute von Panem (2012).",
       "fun_fact_es": "Taylor Swift y The Civil Wars la escribieron para Los juegos del hambre (2012).",
       "fun_fact_fr": "Taylor Swift et The Civil Wars l'écrivirent pour Hunger Games (2012).",
-      "uri_apple_music": "applemusic://track/1766005715",
+      "uri_apple_music": "applemusic://track/1440795596",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RzhAS_GnJIc",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/2195561957",
+      "uri_deezer": "deezer://track/16657365",
       "fun_fact_nl": "Taylor Swift en The Civil Wars schreven dit voor The Hunger Games (2012).",
       "awards_nl": [],
-      "isrc": "USUG12301405",
+      "isrc": "USUM71120255",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1766005715",
+        "us": "applemusic://track/1440795596",
         "de": "applemusic://track/1445870931",
         "gb": null,
         "fr": "applemusic://track/1445870931",

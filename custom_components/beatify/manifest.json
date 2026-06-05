@@ -12,5 +12,8 @@
   "documentation": "https://github.com/mholzi/beatify",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/mholzi/beatify/issues",
-  "version": "3.4.5-rc2"
+  "requirements": [
+    "num2words==0.5.14"
+  ],
+  "version": "3.4.5-rc3"
 }

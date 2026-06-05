@@ -4,11 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.5-rc3] - 2026-06-04
+
 ### Added
 - **"Title & Artist" guessing mode.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact/fuzzy/near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales. The year-round bonuses hide while the mode is on. Regenerated `player.bundle.min.js`, `admin.min.js`, `dashboard.min.js`; bumped `?v=` cache-busters and `sw.js CACHE_VERSION` → `3.4.5-rc3` so the PWA service worker serves the new assets (#1180).
+- **Localized TTS voice announcements.** In-game voice announcements now follow the selected game language (German, Spanish, French, Dutch) instead of always speaking English — the `language` setting previously drove only the web UI. The game language is forwarded to the TTS engine only when the target entity advertises support for it (resolved to the engine's own code, e.g. `de`→`de-DE`), so an unsupported code can't silence announcements. Numbers (years, scores, round/streak counts) are spoken as words via `num2words` so neural engines (e.g. ElevenLabs) don't swallow bare digits in non-English speech. English output is unchanged. Adds the `num2words` dependency.
 - **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
 
 ### Fixed
+- **Party lights never activated for many setups (e.g. Govee).** The start-game request sent a stale, empty party-lights config because the picker state wasn't re-read from storage before sending, so the backend skipped light control entirely — most visible with non-Hue lights and wizard-configured setups. The enabled flag and selected lights are now sent reliably (mirrors the same fix already in TTS).
+- **Wizard "Light Mode" chips (Static / Dynamic / WLED) couldn't be selected.** A `data-lightMode` vs `[data-light-mode]` attribute-case mismatch left them unbound, so cloud lights (e.g. Govee Cloud) couldn't be switched to the gentler Static mode that avoids cloud-API rate limits.
+- **Unreachable lights are hidden from the picker.** `unavailable` entities can't be controlled by anyone, so listing them only produced dead selections that silently did nothing during the game.
+- **Party-lights setup copy no longer implies Philips Hue only** — it works with any Home Assistant light. Reworded across all five languages.
 - **#1122 — screen sleep disconnected players and the admin from the game.** The admin wake lock is now acquired inside the start-game tap gesture, so a fresh session holds it straight away instead of waiting for the first tab-switch. Reported by **@maxlin1** (PR #1207).
 - **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video now satisfies iOS's gesture requirement on passive displays (PR #1216).
 - **#1211 — Timer and TTS announcements were out of sync.** A new `tts_pre_round_delay` offsets the round timer for the TTS speak-time, so the countdown starts when the music does (~10s drift removed). Reported by **@nixbuongiorno** (PR #1212).

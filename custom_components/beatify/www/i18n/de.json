@@ -914,7 +914,7 @@
       "sub": "Optional. Beatify funktioniert auch ohne.",
       "lights": {
         "title": "Party-Licht",
-        "desc": "Synchronisiere deine Hue-Lampen zum Beat. Puls bei Rundenwechsel, Blitz beim Sieger.",
+        "desc": "Synchronisiere deine smarten Lampen zum Beat. Puls bei Rundenwechsel, Blitz beim Sieger.",
         "unavailable": "Keine Lampen in Home Assistant gefunden.",
         "pickLabel": "Lampen zum Synchronisieren",
         "searchPlaceholder": "Lampen suchen…",
