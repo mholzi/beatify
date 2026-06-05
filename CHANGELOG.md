@@ -5,6 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
+- **"Title & Artist" guessing mode.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact/fuzzy/near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales. The year-round bonuses hide while the mode is on. Regenerated `player.bundle.min.js`, `admin.min.js`, `dashboard.min.js`; bumped `?v=` cache-busters and `sw.js CACHE_VERSION` → `3.4.5-rc3` so the PWA service worker serves the new assets (#1180).
 - **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
 
 ### Fixed
