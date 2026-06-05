@@ -1577,6 +1577,14 @@ async def handle_title_artist_guess(
         player.name, title, artist, guess_time
     )
     player.has_title_artist_guess = True
+    # Mark the player as submitted so the round behaves like a normal
+    # submission (#1180): ScoringService.score_player_round gates the
+    # title/artist points path on ``player.submitted``, and all_submitted() /
+    # check_all_guesses_complete() rely on it for early reveal. There is no
+    # year in this mode, so we set the submission state directly rather than
+    # going through player.submit_guess (which expects a year).
+    player.submitted = True
+    player.submission_time = guess_time
 
     await ws.send_json(
         {
