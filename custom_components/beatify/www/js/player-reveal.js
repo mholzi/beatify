@@ -1246,7 +1246,7 @@ function renderPointsBreakdown() {
 
 // ---------- Round stats sheet ----------
 
-function renderRoundStatsSheet() {
+export function renderRoundStatsSheet() {
     var el = document.getElementById('round-stats-content');
     if (!el) return;
     var ctx = state.lastRevealContext;
@@ -1339,6 +1339,22 @@ function renderRoundStatsSheet() {
         if (cards.length > 0) {
             parts.push('<div class="stats-grid">' + cards.join('') + '</div>');
         }
+    }
+
+    // #1178: per-player dot-axis — each player as a dot on a year-axis with
+    // their score bubble. Lives here in the round-stats sheet (the live reveal-v2
+    // analytics surface); the old renderRoundAnalytics() it was first wired into
+    // has been dead code since the v3.2.0 Duel reveal redesign (#1184 regression).
+    if (analytics && analytics.all_guesses && analytics.all_guesses.length > 0) {
+        parts.push(
+            '<div class="card-section">' +
+                '<div class="section-header">' +
+                    '<span class="icon" aria-hidden="true">🎯</span>' +
+                    '<span>' + escapeHtml(utils.t('analytics.guessAxis') || 'Where everyone guessed') + '</span>' +
+                '</div>' +
+                renderPlayerDotAxis(analytics.all_guesses, correctYear, state.playerName) +
+            '</div>'
+        );
     }
 
     // Furthest off this round
