@@ -2,11 +2,11 @@
  * Regression test for #1184: the per-player dot-axis must actually render.
  *
  * The dot-axis (renderPlayerDotAxis) was originally wired into
- * renderRoundAnalytics(), which has been DEAD CODE since the v3.2.0 "Guess
- * Duel" reveal redesign removed its only call site. The live reveal-v2
- * analytics surface is the round-stats bottom-sheet (renderRoundStatsSheet),
- * so the dot-axis must be emitted there. This test fails if the wiring is
- * removed again (dot-axis goes back to never rendering).
+ * renderRoundAnalytics(), which went dead at the v3.2.0 "Guess Duel" reveal
+ * redesign (its only call site was removed) and has since been deleted. The
+ * live reveal-v2 analytics surface is the round-stats bottom-sheet
+ * (renderRoundStatsSheet), so the dot-axis must be emitted there. This test
+ * fails if the wiring is removed again (dot-axis goes back to never rendering).
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
