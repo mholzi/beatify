@@ -674,21 +674,6 @@ export function setupRevealLeaderboardToggle() {
     }
 }
 
-/**
- * Setup toggle for round analytics section (collapsed by default)
- */
-export function setupRoundAnalyticsToggle() {
-    var toggle = document.getElementById('round-analytics-toggle');
-    var section = document.getElementById('round-analytics');
-    if (toggle && section && !toggle.hasAttribute('data-initialized')) {
-        toggle.setAttribute('data-initialized', 'true');
-        toggle.addEventListener('click', function() {
-            var isCollapsed = section.classList.toggle('collapsed');
-            toggle.setAttribute('aria-expanded', !isCollapsed);
-        });
-    }
-}
-
 // ============================================
 // Year Selector & Submission (Story 4.3)
 // ============================================

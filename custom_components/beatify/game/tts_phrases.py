@@ -246,6 +246,12 @@ def spoken_number(language: str | None, value: int, kind: str = "cardinal") -> s
     digits if num2words is unavailable or errors, so an announcement is never
     lost over a number.
     """
+    # Defensive (callers always pass plain ints): guard a stray None / float so
+    # it can never speak as "None" or "neunzehn Komma fünf" in an announcement.
+    if value is None:
+        return ""
+    if isinstance(value, float):
+        value = round(value)
     lang = normalize_language(language)
     if lang == DEFAULT_LANGUAGE:
         return str(value)

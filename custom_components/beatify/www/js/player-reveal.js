@@ -40,6 +40,11 @@ export function updateRevealView(data) {
     var idleHalt = document.getElementById('reveal-idle-halt');
     if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
 
+    // Auto-advance countdown — mirrors the admin sticky-Next countdown (#1048)
+    // and the TV dashboard ring (#1185). Players had no way to see how long the
+    // reveal stays up before the next round; now they do.
+    updateRevealCountdown(data);
+
     // Issue #442: Show/hide Closest Wins badge during REVEAL
     var closestBadge = document.getElementById('closest-wins-badge');
     if (closestBadge) {
@@ -192,170 +197,70 @@ export function updateRevealView(data) {
 }
 
 // ============================================
-// Round Analytics (Story 13.3)
+// Reveal auto-advance countdown (mirrors admin #1048 / dashboard #1185)
 // ============================================
 
+var _revealAdvanceTick = null;
+
 /**
- * Render round analytics section (Story 13.3)
- * @param {Object} analytics - Round analytics data from server
- * @param {number} correctYear - The correct year for comparison
+ * Stop and reset the reveal auto-advance countdown. Safe to call any time;
+ * called from player-core on every phase that leaves REVEAL.
  */
-function renderRoundAnalytics(analytics, correctYear) {
-    var section = document.getElementById('round-analytics');
-    var container = document.getElementById('round-analytics-content');
-    if (!section || !container || !analytics) {
-        if (section) section.classList.add('hidden');
-        return;
+export function stopRevealCountdown() {
+    if (_revealAdvanceTick !== null) {
+        clearInterval(_revealAdvanceTick);
+        _revealAdvanceTick = null;
     }
-
-    if (analytics.total_submitted === 0) {
-        container.innerHTML = '<div class="analytics-empty">' + utils.t('analytics.noSubmissions') + '</div>';
-        section.classList.remove('hidden');
-        return;
-    }
-
-    var avgComparison = '';
-    if (analytics.average_guess !== null && correctYear) {
-        var diff = Math.round(analytics.average_guess - correctYear);
-        if (diff === 0) {
-            avgComparison = utils.t('analytics.onTarget');
-        } else if (diff > 0) {
-            avgComparison = utils.t('analytics.yearsLate', { years: diff });
-        } else {
-            avgComparison = utils.t('analytics.yearsEarly', { years: Math.abs(diff) });
-        }
-    }
-
-    // #1178: per-player dot-axis replaces the aggregated histogram so each player
-    // can see at a glance where everyone else guessed and what they scored.
-    var histogramHtml = renderPlayerDotAxis(analytics.all_guesses, correctYear, state.playerName);
-
-    var achievementsHtml = '';
-
-    if (analytics.exact_match_players && analytics.exact_match_players.length > 0) {
-        achievementsHtml += '<div class="achievement-item">' +
-            '<span class="achievement-emoji">&#127919;</span>' +
-            '<span class="achievement-label">' + utils.t('analytics.exactMatches') + ':</span>' +
-            '<span class="achievement-names">' + analytics.exact_match_players.map(escapeHtml).join(', ') + '</span>' +
-            '</div>';
-    }
-
-    if (analytics.speed_champion && analytics.speed_champion.names) {
-        var names = analytics.speed_champion.names.map(escapeHtml).join(', ');
-        achievementsHtml += '<div class="achievement-item">' +
-            '<span class="achievement-emoji">&#9889;</span>' +
-            '<span class="achievement-label">' + utils.t('analytics.speedChampion') + ':</span>' +
-            '<span class="achievement-names">' + names + '</span>' +
-            '<span class="achievement-value">(' + analytics.speed_champion.time + 's)</span>' +
-            '</div>';
-    }
-
-    if (analytics.furthest_players && analytics.furthest_players.length > 0 && analytics.all_guesses && analytics.all_guesses.length > 0) {
-        var furthestOff = analytics.all_guesses[analytics.all_guesses.length - 1].years_off;
-        if (furthestOff > 0) {
-            achievementsHtml += '<div class="achievement-item">' +
-                '<span class="achievement-emoji">&#128517;</span>' +
-                '<span class="achievement-label">' + utils.t('analytics.furthestGuess') + ':</span>' +
-                '<span class="achievement-names">' + analytics.furthest_players.map(escapeHtml).join(', ') + '</span>' +
-                '<span class="achievement-value">(' + furthestOff + ' years)</span>' +
-                '</div>';
-        }
-    }
-
-    var avgDisplay = analytics.average_guess !== null ? Math.round(analytics.average_guess) : '?';
-    container.innerHTML =
-        '<div class="analytics-stats-row">' +
-        '<div class="stat-primary">' +
-        '<span class="stat-label">' + utils.t('analytics.averageGuess') + '</span>' +
-        '<span class="stat-value">' + avgDisplay + '</span>' +
-        '</div>' +
-        '<div class="stat-secondary">' +
-        '<span class="stat-value">' + analytics.accuracy_percentage + '%</span>' +
-        '<span class="stat-label">' + utils.t('analytics.accuracy', { percent: '' }).replace('%', '') + '</span>' +
-        '</div>' +
-        '</div>' +
-        '<div class="stat-comparison-line">' + avgComparison + '</div>' +
-        '<div class="analytics-histogram">' +
-        '<h4 class="histogram-title">' + utils.t('analytics.guessAxis') + '</h4>' +
-        histogramHtml +
-        '</div>' +
-        (achievementsHtml ? '<div class="analytics-achievements">' + achievementsHtml + '</div>' : '');
-
-    section.classList.remove('hidden');
+    var chip = document.getElementById('player-reveal-countdown');
+    if (chip) chip.classList.add('hidden');
 }
 
 /**
- * Render histogram with 7 dynamic year bins based on actual guesses
- * @param {Array} allGuesses - Array of {name, guess, years_off} sorted by years_off
- * @param {number} correctYear - The correct year for highlighting
- * @returns {string} HTML string for histogram
+ * Drive the reveal auto-advance countdown ring on the player's phone.
+ * Server sends reveal_auto_advance (seconds, 0 = off) and reveal_started_at
+ * (ms epoch); remaining = max(0, started + duration*1000 - now). Hidden when
+ * auto-advance is off OR the round is idle-halted (server holds REVEAL).
  */
-function renderHistogram(allGuesses, correctYear) {
-    var NUM_BINS = 7;
+export function updateRevealCountdown(data) {
+    var chip = document.getElementById('player-reveal-countdown');
+    var numEl = document.getElementById('player-reveal-countdown-num');
+    var fgCircle = chip ? chip.querySelector('.reveal-advance-fg') : null;
+    if (!chip || !numEl || !fgCircle) return;
 
-    if (!allGuesses || allGuesses.length === 0) {
-        return '<div class="histogram-empty">' + utils.t('analytics.noGuesses') + '</div>';
+    // Stop any existing tick before re-binding state (no stacking intervals).
+    if (_revealAdvanceTick !== null) {
+        clearInterval(_revealAdvanceTick);
+        _revealAdvanceTick = null;
     }
 
-    var guesses = allGuesses.map(function(g) { return g.guess; });
-    var minGuess = Math.min.apply(null, guesses);
-    var maxGuess = Math.max.apply(null, guesses);
-    var range = maxGuess - minGuess;
+    var duration = data.reveal_auto_advance || 0;
+    var startedAt = data.reveal_started_at || 0;
+    var idleHalt = !!data.idle_halt;
 
-    var yearsPerBin = Math.max(1, Math.ceil(range / NUM_BINS));
-
-    var totalYears = yearsPerBin * NUM_BINS;
-    var extraYears = totalYears - range - 1;
-    var startYear = minGuess - Math.floor(extraYears / 2);
-
-    var bins = [];
-    for (var i = 0; i < NUM_BINS; i++) {
-        var binStart = startYear + (i * yearsPerBin);
-        var binEnd = binStart + yearsPerBin - 1;
-        bins.push({
-            start: binStart,
-            end: binEnd,
-            count: 0,
-            containsCorrect: correctYear >= binStart && correctYear <= binEnd
-        });
+    if (duration <= 0 || !startedAt || idleHalt) {
+        chip.classList.add('hidden');
+        return;
     }
 
-    for (var j = 0; j < guesses.length; j++) {
-        var guess = guesses[j];
-        for (var k = 0; k < bins.length; k++) {
-            if (guess >= bins[k].start && guess <= bins[k].end) {
-                bins[k].count++;
-                break;
-            }
+    chip.classList.remove('hidden');
+    // SVG circle r=25 -> circumference 2*pi*r ~= 157.08
+    var circumference = 157.08;
+    fgCircle.style.strokeDasharray = circumference;
+
+    function paint() {
+        var remainingMs = Math.max(0, startedAt + duration * 1000 - Date.now());
+        var remaining = Math.ceil(remainingMs / 1000);
+        numEl.textContent = remaining;
+        // Drained progress: ring is full at start, empties as time elapses.
+        var pctRemaining = remainingMs / (duration * 1000);
+        fgCircle.style.strokeDashoffset = String(circumference * (1 - pctRemaining));
+        if (remainingMs <= 0 && _revealAdvanceTick !== null) {
+            clearInterval(_revealAdvanceTick);
+            _revealAdvanceTick = null;
         }
     }
-
-    var maxCount = 1;
-    for (var m = 0; m < bins.length; m++) {
-        if (bins[m].count > maxCount) maxCount = bins[m].count;
-    }
-
-    var barsHtml = '';
-    for (var n = 0; n < bins.length; n++) {
-        var bin = bins[n];
-        var heightPercent = (bin.count / maxCount) * 100;
-        var delay = n * 0.05;
-
-        var barClass = 'histogram-bar' + (bin.containsCorrect ? ' is-correct' : '');
-        var barHeight = bin.count > 0 ? Math.max(heightPercent, 10) : 0;
-        var countHtml = bin.count > 0 ? '<span class="bar-count">' + bin.count + '</span>' : '';
-
-        var label = yearsPerBin === 1 ? String(bin.start) : bin.start + '-' + String(bin.end).slice(-2);
-
-        barsHtml += '<div class="histogram-bar-wrapper" style="animation-delay: ' + delay + 's">' +
-            '<div class="' + barClass + '" style="height: ' + barHeight + '%">' +
-            countHtml +
-            '</div>' +
-            '<span class="histogram-label">' + label + '</span>' +
-            '</div>';
-    }
-
-    return '<div class="histogram-bars">' + barsHtml + '</div>';
+    paint();
+    _revealAdvanceTick = setInterval(paint, 500);
 }
 
 /**
@@ -1262,7 +1167,7 @@ function renderPointsBreakdown() {
 
 // ---------- Round stats sheet ----------
 
-function renderRoundStatsSheet() {
+export function renderRoundStatsSheet() {
     var el = document.getElementById('round-stats-content');
     if (!el) return;
     var ctx = state.lastRevealContext;
@@ -1355,6 +1260,23 @@ function renderRoundStatsSheet() {
         if (cards.length > 0) {
             parts.push('<div class="stats-grid">' + cards.join('') + '</div>');
         }
+    }
+
+    // #1178: per-player dot-axis — each player as a dot on a year-axis with
+    // their score bubble. Lives here in the round-stats sheet (the live reveal-v2
+    // analytics surface); it was first (mis)wired into renderRoundAnalytics(),
+    // which the v3.2.0 Duel reveal redesign had already retired (#1184 regression,
+    // since deleted).
+    if (analytics && analytics.all_guesses && analytics.all_guesses.length > 0) {
+        parts.push(
+            '<div class="card-section">' +
+                '<div class="section-header">' +
+                    '<span class="icon" aria-hidden="true">🎯</span>' +
+                    '<span>' + escapeHtml(utils.t('analytics.guessAxis') || 'Where everyone guessed') + '</span>' +
+                '</div>' +
+                renderPlayerDotAxis(analytics.all_guesses, correctYear, state.playerName) +
+            '</div>'
+        );
     }
 
     // Furthest off this round

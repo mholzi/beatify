@@ -284,7 +284,8 @@
     "weeksOnChart": "weeks on chart",
     "weeksShort": "wks",
     "moreAwards": "more",
-    "playerNotFound": "Player not found"
+    "playerNotFound": "Player not found",
+    "autoAdvanceAria": "Next round countdown"
   },
   "leaderboard": {
     "title": "Leaderboard",

@@ -154,6 +154,16 @@ def test_spoken_number_spells_out_non_english():
     assert tp.spoken_number("es", 2005, "year") == "dos mil cinco"
 
 
+def test_spoken_number_guards_none_and_float():
+    # Defense-in-depth (#1225): a stray None / float must never speak as "None"
+    # or a fractional reading. None drops out; a float rounds to a whole number.
+    assert tp.spoken_number("de", None) == ""
+    assert tp.spoken_number("en", None) == ""
+    assert tp.spoken_number("en", 19.0) == "19"
+    assert tp.spoken_number("de", 42.4) == "zweiundvierzig"  # rounds, no "Komma"
+    assert "," not in tp.spoken_number("de", 19.5)  # never "neunzehn Komma fünf"
+
+
 # ---------------------------------------------------------------------------
 # GameState wiring
 # ---------------------------------------------------------------------------

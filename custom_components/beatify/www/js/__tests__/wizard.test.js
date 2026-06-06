@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -365,5 +365,27 @@ describe('difficultyDisplayFor', () => {
             showChips: false,
             summaryKey: 'wizard.step4.taScoring',
         });
+    });
+});
+
+// buildWizChip — Light Mode chip markup contract (#1228 regression)
+// ------------------------------------------------------------------
+describe('buildWizChip', () => {
+    it('emits a kebab-case data-light-mode attribute (matches the [data-light-mode] binding)', () => {
+        const html = buildWizChip('static', 'Static', 'light-mode', 'dynamic');
+        // The exact attribute that broke before: must be data-light-mode, not
+        // data-lightMode. The browser maps data-light-mode -> dataset.lightMode
+        // by spec, so locking the kebab attribute name guards the whole binding.
+        expect(html).toContain('data-light-mode="static"');
+        expect(html).not.toContain('data-lightMode');
+    });
+
+    it('marks the active chip and only the active chip', () => {
+        expect(buildWizChip('static', 'Static', 'light-mode', 'static')).toContain('wiz-chip active');
+        expect(buildWizChip('dynamic', 'Dynamic', 'light-mode', 'static')).not.toContain('active');
+    });
+
+    it('works for the intensity group too', () => {
+        expect(buildWizChip('party', 'Party', 'intensity', 'party')).toContain('data-intensity="party"');
     });
 });

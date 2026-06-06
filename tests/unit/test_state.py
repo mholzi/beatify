@@ -232,6 +232,34 @@ class TestRevealAutoAdvance:
         # Phase left REVEAL — stop() must NOT be called (would silence new song)
         state._media_player_service.stop.assert_not_awaited()
 
+    async def test_end_game_cancels_auto_advance_task(self):
+        """#1012 hardening: ending the game during REVEAL must cancel the
+        auto-advance task synchronously, before end_game's awaits — otherwise a
+        countdown expiring at that instant could fire start_round() (phase still
+        REVEAL inside disable_party_lights/disable_tts) and play the next song
+        after the game ended. Mirrors advance_to_end(); guards the HTTP/force-end
+        path that calls end_game() directly.
+        """
+        state = make_game_state()
+        _create_fresh_game(state, reveal_auto_advance=30)
+        state.phase = GamePhase.REVEAL
+        state.start_round = AsyncMock()
+
+        # A real pending auto-advance task, parked on its first poll-sleep.
+        task = asyncio.create_task(state._reveal_auto_advance(30))
+        state._auto_advance_task = task
+        await asyncio.sleep(0)  # let it reach `await asyncio.sleep(poll)`
+
+        await state.end_game()
+
+        # Handle cleared, task cancelled, no next round triggered.
+        assert state._auto_advance_task is None
+        with pytest.raises(asyncio.CancelledError):
+            await task
+        assert task.cancelled()
+        state.start_round.assert_not_awaited()
+        assert state.phase == GamePhase.LOBBY
+
 
 # ---------------------------------------------------------------------------
 # REVEAL countdown surface (#1048)

@@ -7,6 +7,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ### Added
 - **Wizard Step 4 redesign — pick the game mode up front.** The host wizard's "How do you want to play?" step now leads with two **mode cards** (📅 Year mode · ✍️ Title & Artist) instead of burying Title & Artist at the bottom of the bonus toggles. Dependent options react live: the year-distance **difficulty** picker shows only in Year mode and is replaced by a fixed "Title 10 · Artist 5 · Partial 5/3" scoring summary in Title & Artist mode, and the incompatible bonuses (Artist Challenge, Closest Wins) are hidden. The standalone admin settings panel gets the same behaviour, and the wizard's "Ready to play" summary now names the chosen mode (#1180).
 - **Title & Artist now runs alongside Movie Quiz and Intro Mode.** These two bonuses are compatible with the mode — a soundtrack round can still ask for the movie, an intro round can still play a shortened clip — and their points stack with the title/artist score. Only the year-distance modes (Artist Challenge, Closest Wins) remain mutually exclusive with it (supersedes the earlier "all year-round bonuses hide" behaviour) (#1180).
+- **"Title & Artist" guessing mode.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact / fuzzy / near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, a host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales (#1180).
 
 ### Fixed
 - **Title & Artist mode chosen in the wizard wasn't applied at game start.** The wizard saved the mode to local storage, but the admin read its game settings only once at page load and refreshed game *status* (not *settings*) when the wizard closed — so start-game sent `title_artist_mode: false` and the round ran in normal (year) mode. The admin now re-reads its settings on wizard completion, so every wizard choice (mode, difficulty, bonuses, language, playlists) takes effect (#1180).
@@ -14,36 +15,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - **Title & Artist rounds no longer show year-only chrome.** The player view dropped the leftover "Normal" difficulty badge and the "No bonus this round — nail the year" filler, neither of which makes sense when there's no year to guess (#1180).
 - **Title & Artist input boxes are properly styled.** The two free-text fields shipped with no CSS and rendered as ragged browser-default inputs; they now sit in a themed card (label above a full-width input, points pill, focus glow) consistent with the movie/artist bonus cards (#1180).
 
-## [3.4.5-rc3] - 2026-06-04
+## [3.5.0] - 2026-06-06
 
 ### Added
-- **"Title & Artist" guessing mode.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact/fuzzy/near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales. The year-round bonuses hide while the mode is on. Regenerated `player.bundle.min.js`, `admin.min.js`, `dashboard.min.js`; bumped `?v=` cache-busters and `sw.js CACHE_VERSION` → `3.4.5-rc3` so the PWA service worker serves the new assets (#1180).
-- **Localized TTS voice announcements.** In-game voice announcements now follow the selected game language (German, Spanish, French, Dutch) instead of always speaking English — the `language` setting previously drove only the web UI. The game language is forwarded to the TTS engine only when the target entity advertises support for it (resolved to the engine's own code, e.g. `de`→`de-DE`), so an unsupported code can't silence announcements. Numbers (years, scores, round/streak counts) are spoken as words via `num2words` so neural engines (e.g. ElevenLabs) don't swallow bare digits in non-English speech. English output is unchanged. Adds the `num2words` dependency.
-- **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
-
-### Fixed
-- **Party lights never activated for many setups (e.g. Govee).** The start-game request sent a stale, empty party-lights config because the picker state wasn't re-read from storage before sending, so the backend skipped light control entirely — most visible with non-Hue lights and wizard-configured setups. The enabled flag and selected lights are now sent reliably (mirrors the same fix already in TTS).
-- **Wizard "Light Mode" chips (Static / Dynamic / WLED) couldn't be selected.** A `data-lightMode` vs `[data-light-mode]` attribute-case mismatch left them unbound, so cloud lights (e.g. Govee Cloud) couldn't be switched to the gentler Static mode that avoids cloud-API rate limits.
-- **Unreachable lights are hidden from the picker.** `unavailable` entities can't be controlled by anyone, so listing them only produced dead selections that silently did nothing during the game.
-- **Party-lights setup copy no longer implies Philips Hue only** — it works with any Home Assistant light. Reworded across all five languages.
-- **#1122 — screen sleep disconnected players and the admin from the game.** The admin wake lock is now acquired inside the start-game tap gesture, so a fresh session holds it straight away instead of waiting for the first tab-switch. Reported by **@maxlin1** (PR #1207).
-- **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video now satisfies iOS's gesture requirement on passive displays (PR #1216).
-- **#1211 — Timer and TTS announcements were out of sync.** A new `tts_pre_round_delay` offsets the round timer for the TTS speak-time, so the countdown starts when the music does (~10s drift removed). Reported by **@nixbuongiorno** (PR #1212).
-- **Catalog data:** broken or wrong provider URIs repaired across hitster-100-en-espanol, anime-openings, ballermann-party-hits, harder-styles, trance-classics and edm-anthems, plus a release-year correction (Masatoshi Ono – "Departure!" 2022→2011) (PRs #1202, #1204, #1206, #1210, #1214, #1219, #1220).
-
-## [3.4.5-rc1] - 2026-05-31
-
-### Added
-- **Reveal: per-player dot-axis on phone.** The phone reveal now shows a dot for each player on a timeline instead of a histogram — see at a glance where everyone landed (#1178, PR #1184).
-- **Dashboard: auto-advance countdown ring on TV reveal.** The round advances on its own on the big-screen view. Requested by @Dtrieb (#1185, PR #1199).
-- **README: "Play On A TV" section.** Documents the dashboard.html TV display + Lovelace iframe-card path. Prompted by @Exacute (#1181, PR #1182).
+- **Reveal: per-player dot-axis.** After each round, the round-stats (ⓘ) sheet shows every player as a dot on a year timeline — who guessed what and the points they earned, with your own dot ringed and the top three medalled (#1178, PR #1184 / #1230).
+- **Auto-advance countdown on every screen.** The seconds to the next round now show on the host's Next button, the TV/dashboard view, and the player's phone (#1048, #1185, PR #1231). TV countdown requested by @Dtrieb.
+- **Localized TTS voice announcements.** Announcements follow the selected game language (German, Spanish, French, Dutch), forwarded to the engine only when it advertises support, with years/scores spoken as words via `num2words`. English output unchanged (#1225).
+- **iconic-movie-songs — new playlist (72 tracks)** with a dedicated movie-quiz mode (#1215, PR #1217).
 - **world-cup-anthems — new playlist (26 tracks).** Official FIFA World Cup songs 1962–2026 (#1190, PR #1191).
-- **disney-classics grown +69 tracks.** Requested by @maxlin1 (#1171, PR #1172).
-- **disco-funk-classics grown +22 tracks** from "This is Disco" (#1165, PR #1166).
+- **disney-classics grown +69 tracks** (requested by @maxlin1) and **disco-funk-classics +22** (#1165, #1171).
+- **README "Play On A TV" section** documenting the dashboard TV display + Lovelace iframe card (#1181, PR #1182).
 
 ### Fixed
-- **`<html lang>` now syncs with the active locale** (#1177, PR #1179).
-- **Catalog data:** several Apple Music / Spotify / Deezer / YouTube Music URIs repaired and a handful of release-year tags corrected across world-cup-anthems, disney-classics, 80er-hits, 90er-hits, pure-pop-punk, 2000s-pop-anthems and one-hit-wonders (PRs #1168, #1170, #1175, #1176, #1187, #1189, #1194, #1196, #1198, #1200).
+- **Party lights now fire on game start** for non-Hue / wizard-configured setups (e.g. Govee) — the config is read fresh and sent on start. Light Mode chips (Static / Dynamic / WLED) are selectable again, unreachable lights are hidden from the picker, and the setup copy no longer implies Philips Hue only (reworded in all 5 languages) (#1228).
+- **#1122 — screen sleep disconnected players and the admin.** The wake lock is acquired inside the start-game gesture. Reported by @maxlin1 (PR #1207).
+- **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video satisfies iOS's gesture requirement (PR #1216).
+- **#1211 — timer and TTS announcements were out of sync.** `tts_pre_round_delay` offsets the round timer so the countdown starts when the music does. Reported by @nixbuongiorno (PR #1212).
+- **`<html lang>` now syncs with the active locale**, so Android Chrome stops auto-translating the UI (#1177, PR #1179).
+- **No stray next-song after force-ending a game.** `end_game()` cancels the REVEAL auto-advance task synchronously, closing a race on the API / force-reset path (#1012, PR #1233).
+- **Catalog data:** broken or wrong provider URIs repaired and release years corrected across world-cup-anthems, disney-classics, anime-openings, 80er-hits, 90er-hits, pure-pop-punk, 2000s-pop-anthems, one-hit-wonders, hitster-100-en-espanol, ballermann-party-hits, harder-styles, trance-classics and edm-anthems.
+
+### Chore
+- **Removed dead round-analytics code** (retired renderers + hidden placeholder DOM) after the per-player dot-axis moved to the round-stats sheet (PR #1232).
 
 ## [3.4.4] - 2026-05-28
 
