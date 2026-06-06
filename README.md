@@ -352,39 +352,46 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 3,566 songs across 32 curated playlists:
+Beatify comes with 4,340 songs across 39 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
+- ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
-- ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957-2020
 - 🎵 **2000s Pop Anthems** — 182 essential pop hits from the 2000s
 - 🎵 **2010s & 2020s Hits** — 71 chart hits closing the modern-decade gap
-- 🎸 **60s Classics** — 64 tracks from the golden age of rock & roll
-- 🎹 **80s Hits** — 239 classic hits from the decade of synths and MTV
+- 🎶 **40s & 50s Classics** — 152 swing, crooner and early rock 'n' roll standards
+- 🎸 **60s Classics** — 66 tracks from the golden age of rock & roll
+- 🎙️ **70s Hits** — 163 essential hits from the seventies
+- 🎹 **80s Hits** — 238 classic hits from the decade of synths and MTV
 - 🎤 **90s & 2000s Hip-Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
 - 🎵 **90s Hits** — 115 essential tracks from the decade
-- 🎌 **Anime Openings** — 101 opening themes from Cowboy Bebop to Chainsaw Man
+- 🎌 **Anime Openings** — 140 opening themes from Cowboy Bebop to Chainsaw Man
 - 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
 - 🦒 **Best of Giraffenaffen** — 26 German children's songs
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
-- 🇩🇪 **Deutschpop Klassiker** — 106 German pop classics, incl. the 90s / NDW canon
-- 🕺 **Disco & Funk Classics** — 76 essential disco and funk tracks from the 70s and 80s
+- 🇩🇪 **Deutschpop Klassiker** — 107 German pop classics, incl. the 90s / NDW canon
+- 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
+- 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
 - 🎸 **Divorced Dad Rock** — 107 post-grunge, nu-metal and 2000s radio-rock tracks
 - 🎧 **EDM Anthems** — 126 festival and mainstream EDM tracks (2009–2024)
+- 🎸 **Essential Alternative** — 100 90s/2000s alternative rock essentials
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
-- 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
+- 🏆 **Eurovision Winners (1956–2025)** — 72 winning songs
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
 - 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 🎯 **Greatest Hits of All Time** — 182 chart-toppers across four decades
-- 🤘 **Greatest Metal Songs** — 52 legendary tracks across all major metal subgenres
+- 🤘 **Greatest Metal Songs** — 61 legendary tracks across all major metal subgenres
 - 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
+- 🎬 **ICONIC Movie Songs** — 72 songs from the movies, with a dedicated movie-quiz mode
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
 - 🇩🇪 **Schlager Classics** — 60 German schlager classics
 - 🇳🇱 **Top 100 Dutch Classics** — 100 Nederlandstalig tracks
+- 🌀 **Trance Classics** — 120 classic trance anthems
+- 🌍 **World Cup Anthems** — 26 official FIFA World Cup songs, 1962–2026
 - ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
 
 ### Adding Custom Playlists
@@ -598,6 +605,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v3.5.0 — Everyone's Guess, On the Clock 🎯
+- **See where everyone guessed** — the reveal's round-stats (ⓘ) sheet now shows every player as a dot on a year timeline: who guessed what, who nailed it, and the points each one earned, with your own dot ringed and the top three medalled
+- **A countdown on every screen** — the seconds to the next round now show on the host's Next button, the big TV/dashboard, and each player's phone
+- **Voice announcements speak your game language** — German, Spanish, French and Dutch instead of always English, with years and scores spoken as words so neural voices don't swallow the digits
+- **Party lights actually fire on game start** — fixed for Govee and other non-Hue / wizard-configured setups; Light Mode chips (Static / Dynamic / WLED) are selectable again
+- **Two new playlists** — World Cup Anthems (26, just in time for the tournament) and ICONIC Movie Songs (72, with movie-quiz mode); Disney Classics grew +69
+- 39 playlists, 4,340 songs, 5 music platforms, 5 languages
 
 ### v3.4.2 — Unstick the Android Launcher 🤖
 - **HA Companion on Android opens Beatify again** — The launcher fix that shipped in v3.4.0 for iOS broke Android: tap "Beatify öffnen", see the toast, watch nothing happen. v3.4.2 detects the Android Companion app and navigates the top frame directly instead of opening a new tab that never materialises
