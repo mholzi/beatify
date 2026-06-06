@@ -33,7 +33,7 @@ import {
     showFloatingReaction,
     updateControlBarState, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
-    setupRevealLeaderboardToggle, setupRoundAnalyticsToggle,
+    setupRevealLeaderboardToggle,
     resetSongStoppedState,
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
@@ -640,7 +640,6 @@ function handleServerMessage(data) {
             showView('reveal-view');
             updateRevealView(data);
             setupRevealLeaderboardToggle();
-            setupRoundAnalyticsToggle();
             showAdminControlBar();
             updateControlBarState('REVEAL');
             state.hasReactedThisPhase = false;
