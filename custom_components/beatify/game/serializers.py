@@ -48,6 +48,8 @@ class GameStateSerializer:
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
             "closest_wins_mode": gs.closest_wins_mode,
+            # #1180: Title & Artist guessing mode (player UI renders inputs)
+            "title_artist_mode": gs.title_artist_mode,
             "is_intro_round": gs.is_intro_round,
             "intro_stopped": gs.intro_stopped,
             "intro_splash_pending": gs.intro_splash_pending,
@@ -123,6 +125,10 @@ class GameStateSerializer:
         mc = gs.get_movie_challenge_dict(include_answer=False)
         if mc is not None:
             state["movie_challenge"] = mc
+        # #1180: Title & Artist challenge (hide truth during PLAYING)
+        tac = gs.get_title_artist_challenge_dict(include_answer=False)
+        if tac is not None:
+            state["title_artist_challenge"] = tac
 
     @staticmethod
     def _add_reveal_state(gs: GameState, state: dict[str, Any]) -> None:
@@ -174,6 +180,10 @@ class GameStateSerializer:
         mc = gs.get_movie_challenge_dict(include_answer=True)
         if mc is not None:
             state["movie_challenge"] = mc
+        # #1180: Title & Artist challenge (reveal truth + per-player results)
+        tac = gs.get_title_artist_challenge_dict(include_answer=True)
+        if tac is not None:
+            state["title_artist_challenge"] = tac
         # Story 20.9: Early reveal flag for client-side toast
         if gs.early_reveal:
             state["early_reveal"] = True

@@ -37,6 +37,7 @@ from custom_components.beatify.const import (
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
     ERR_NO_SONGS_REMAINING,
+    ERR_NO_TITLE_ARTIST_CHALLENGE,
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
@@ -611,6 +612,10 @@ async def admin_next_round(
     if game_state.phase == GamePhase.PLAYING:
         await game_state.end_round()
     elif game_state.phase == GamePhase.REVEAL:
+        # #1180 Phase 4: finalize an open title/artist vote window (apply host
+        # override + majority, rescore) before the round advances or the game
+        # ends, so accepted near-misses count toward the leaderboard.
+        await game_state.resolve_title_artist_if_pending()
         if game_state.last_round:
             stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
             if stats_service:
@@ -1513,6 +1518,229 @@ async def handle_movie_guess(
         result["correct"],
         result.get("rank"),
     )
+
+
+async def handle_title_artist_guess(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a title & artist guess submission (#1180).
+
+    Mirrors handle_artist_guess: phase-gated to PLAYING, classifies the
+    submitted title and artist independently via the challenge, acks the
+    per-field status, marks the player done, and triggers early reveal once
+    everyone has guessed. Empty fields are allowed — they classify as
+    "skipped" (0 points for that field), so they are NOT rejected here.
+    """
+    if game_state.phase != GamePhase.PLAYING:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only guess during PLAYING phase",
+            }
+        )
+        return
+
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            }
+        )
+        return
+
+    if not game_state.title_artist_challenge:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_TITLE_ARTIST_CHALLENGE,
+                "message": "No title & artist challenge this round",
+            }
+        )
+        return
+
+    title = data.get("title", "")
+    artist = data.get("artist", "")
+    if not isinstance(title, str):
+        title = ""
+    if not isinstance(artist, str):
+        artist = ""
+
+    guess_time = game_state.current_time()
+    result = game_state.submit_title_artist_guess(
+        player.name, title, artist, guess_time
+    )
+    player.has_title_artist_guess = True
+    # Mark the player as submitted so the round behaves like a normal
+    # submission (#1180): ScoringService.score_player_round gates the
+    # title/artist points path on ``player.submitted``, and all_submitted() /
+    # check_all_guesses_complete() rely on it for early reveal. There is no
+    # year in this mode, so we set the submission state directly rather than
+    # going through player.submit_guess (which expects a year).
+    player.submitted = True
+    player.submission_time = guess_time
+
+    await ws.send_json(
+        {
+            "type": "title_artist_guess_ack",
+            "title_status": result["title_status"],
+            "artist_status": result["artist_status"],
+        }
+    )
+
+    # Mirror handle_artist_guess / handle_submit: avoid a redundant broadcast
+    # when the early-reveal path is about to broadcast via the round_end
+    # callback. Only broadcast here when the round is NOT yet complete.
+    if not game_state.check_all_guesses_complete():
+        await handler.broadcast_state()
+
+    await game_state.trigger_early_reveal_if_complete()
+
+    _LOGGER.debug(
+        "Title/artist guess from %s: title=%r (%s), artist=%r (%s)",
+        player.name,
+        title,
+        result["title_status"],
+        artist,
+        result["artist_status"],
+    )
+
+
+async def handle_title_artist_vote(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a community vote on a title/artist near-miss (#1180 Phase 4).
+
+    REVEAL-only. A player may not vote on their own near-miss (the near-miss
+    player is encoded as the prefix of nearmiss_id, "player:field").
+    """
+    if game_state.phase != GamePhase.REVEAL:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only vote during REVEAL phase",
+            }
+        )
+        return
+
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            }
+        )
+        return
+
+    nearmiss_id = data.get("nearmiss_id")
+    accept = data.get("accept")
+    if not isinstance(nearmiss_id, str) or ":" not in nearmiss_id:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid nearmiss_id",
+            }
+        )
+        return
+    if not isinstance(accept, bool):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid vote value",
+            }
+        )
+        return
+
+    # Reject self-vote: the near-miss player is the part before the last ":".
+    nearmiss_player = nearmiss_id.rsplit(":", 1)[0]
+    if nearmiss_player == player.name:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Cannot vote on your own guess",
+            }
+        )
+        return
+
+    game_state.register_title_artist_vote(player.name, nearmiss_id, accept)
+    _LOGGER.debug(
+        "Title/artist vote by %s on %s -> %s", player.name, nearmiss_id, accept
+    )
+    await handler.broadcast_state()
+
+
+async def handle_title_artist_override(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle a host override on a title/artist near-miss (#1180 Phase 4).
+
+    REVEAL-only, admin-only. Override precedence is applied at resolve time
+    (window expiry or host-advance) by resolve_title_artist.
+    """
+    if game_state.phase != GamePhase.REVEAL:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only override during REVEAL phase",
+            }
+        )
+        return
+
+    is_admin_ws = game_state._admin_ws is not None and game_state._admin_ws is ws
+    sender = game_state.get_player_by_ws(ws)
+    if not (is_admin_ws or (sender and sender.is_admin)):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_ADMIN,
+                "message": "Only admin can override",
+            }
+        )
+        return
+
+    nearmiss_id = data.get("nearmiss_id")
+    accept = data.get("accept")
+    if not isinstance(nearmiss_id, str) or ":" not in nearmiss_id:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid nearmiss_id",
+            }
+        )
+        return
+    if not isinstance(accept, bool):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid override value",
+            }
+        )
+        return
+
+    game_state.set_title_artist_override(nearmiss_id, accept)
+    _LOGGER.info("Title/artist override on %s -> %s", nearmiss_id, accept)
+    await handler.broadcast_state()
 
 
 # ---------------------------------------------------------------------------

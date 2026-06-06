@@ -30,6 +30,21 @@ ARTIST_BONUS_POINTS = 5
 # Index 0 = fastest correct, index 1 = 2nd fastest, etc.
 MOVIE_BONUS_TIERS: list[int] = [5, 3, 1]
 
+# Title & Artist guessing mode (Issue #1180)
+# Full-credit points for an exact or fuzzy match per field.
+TITLE_POINTS = 10
+ARTIST_POINTS = 5
+# Partial-credit points for a vote-accepted near-miss per field.
+TITLE_PARTIAL_POINTS = 5
+ARTIST_PARTIAL_POINTS = 3
+# Fuzzy matching: max Levenshtein edits to auto-accept as a typo.
+FUZZY_MAX_EDITS = 2
+# Guard: only apply fuzzy matching when the normalized truth is at least
+# this long, to avoid 2-edit false positives on short words.
+FUZZY_MIN_LEN = 5
+# Conditional near-miss community-vote window (REVEAL phase), in seconds.
+TITLE_ARTIST_VOTE_WINDOW_SECONDS = 15
+
 # Intro mode constants (Issue #23)
 INTRO_DURATION_SECONDS = 15
 INTRO_ROUND_CHANCE = 0.20  # 20% chance per round
@@ -94,6 +109,7 @@ ERR_TARGET_NOT_SUBMITTED = (
 ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
 ERR_NO_ARTIST_CHALLENGE = "NO_ARTIST_CHALLENGE"  # Story 20.3 - no artist challenge
 ERR_NO_MOVIE_CHALLENGE = "NO_MOVIE_CHALLENGE"  # Issue #28 - no movie quiz this round
+ERR_NO_TITLE_ARTIST_CHALLENGE = "NO_TITLE_ARTIST_CHALLENGE"  # #1180 - no T&A this round
 ERR_UNAUTHORIZED = "UNAUTHORIZED"  # Issue #477 - invalid admin token
 
 # Song difficulty rating constants (Story 15.1)

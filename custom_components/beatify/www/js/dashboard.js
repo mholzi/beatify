@@ -732,6 +732,9 @@
         if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
         if (yearEl) yearEl.textContent = song.year || '????';
 
+        // Title & Artist mode (#1180): show truth banner + voting status on TV.
+        renderDashboardTitleArtist(data);
+
         // Render fun fact (Story 16.4)
         renderFunFact(song);
 
@@ -763,6 +766,35 @@
             if (hasExactGuess) {
                 triggerConfetti('exact');
             }
+        }
+    }
+
+    /**
+     * Render the Title & Artist reveal banner on the TV (#1180): the truth
+     * (correct_title — correct_artist) plus a "voting in progress" status when
+     * the vote window is open. The standings leaderboard is rendered by the
+     * existing renderRevealLeaderboard path and is unchanged.
+     * @param {Object} data - State data (carries title_artist_mode + title_artist_challenge)
+     */
+    function renderDashboardTitleArtist(data) {
+        var banner = document.getElementById('dashboard-ta-banner');
+        if (!banner) return;
+
+        var ta = data.title_artist_challenge || null;
+        if (!data.title_artist_mode || !ta || !ta.correct_title) {
+            banner.classList.add('hidden');
+            return;
+        }
+        banner.classList.remove('hidden');
+
+        var titleEl = document.getElementById('dashboard-ta-title');
+        var artistEl = document.getElementById('dashboard-ta-artist');
+        if (titleEl) titleEl.textContent = ta.correct_title || '';
+        if (artistEl) artistEl.textContent = ta.correct_artist || '';
+
+        var votingEl = document.getElementById('dashboard-ta-voting');
+        if (votingEl) {
+            votingEl.classList.toggle('hidden', !ta.voting_open);
         }
     }
 

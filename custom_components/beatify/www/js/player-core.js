@@ -26,7 +26,7 @@ import {
     updateLeaderboard, setupLeaderboardToggle,
     initYearSelector, handleSubmitAck, handleSubmitError,
     resetSubmissionState,
-    handleArtistGuessAck, handleMovieGuessAck,
+    handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
     handleStealAck, handleStealTargets,
     showAdminControlBar, hideAdminControlBar,
     showReactionBar, hideReactionBar, setupReactionBar,
@@ -38,7 +38,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
-import { updateRevealView, setupRevealSheets, setupRevealReportBtn, stopRevealCountdown } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
 
@@ -534,7 +534,7 @@ function handleServerMessage(data) {
                     BeatifyI18n.initPageTranslations();
                     renderPlayerList(players);
                     if (data.difficulty) {
-                        renderDifficultyBadge(data.difficulty);
+                        renderDifficultyBadge(data.difficulty, data.title_artist_mode);
                     }
                     if (data.phase === 'REVEAL') {
                         updateRevealView(data);
@@ -594,7 +594,7 @@ function handleServerMessage(data) {
 
             renderPlayerList(players);
             if (data.difficulty) {
-                renderDifficultyBadge(data.difficulty);
+                renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
@@ -621,7 +621,7 @@ function handleServerMessage(data) {
                 hideIntroSplashModal();
             }
             if (data.difficulty) {
-                renderDifficultyBadge(data.difficulty);
+                renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
             if (data.deadline) {
                 startCountdown(data.deadline);
@@ -796,6 +796,8 @@ function handleServerMessage(data) {
         handleArtistGuessAck(data);
     } else if (data.type === 'movie_guess_ack') {
         handleMovieGuessAck(data);
+    } else if (data.type === 'title_artist_guess_ack') {
+        handleTitleArtistGuessAck(data);
     } else if (data.type === 'player_reaction') {
         showFloatingReaction(data.player_name, data.emoji);
     }
@@ -1004,6 +1006,7 @@ async function initAll() {
     setupAdminControls();
     setupRevealSheets();
     setupRevealReportBtn();
+    setupTitleArtistVoting();
     setupRevealControls();
     setupAdminControlBar();
     setupRetryConnection();

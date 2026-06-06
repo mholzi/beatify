@@ -286,6 +286,8 @@ export function updateGameView(data) {
     if (data.movie_challenge !== undefined) {
         renderMovieChallenge(data.movie_challenge, 'PLAYING');
     }
+
+    renderTitleArtistInput(data);
 }
 
 /**
@@ -382,7 +384,10 @@ function syncNoBonusFiller(data) {
     if (!filler) return;
     var hasArtist = !!(data && data.artist_challenge && data.artist_challenge.options);
     var hasMovie = !!(data && data.movie_challenge && data.movie_challenge.options);
-    filler.classList.toggle('hidden', hasArtist || hasMovie);
+    // #1180: in Title & Artist mode the "no bonus — nail the year" filler makes
+    // no sense (there's no year; the T&I input card is the task). Hide it.
+    var taMode = !!(data && data.title_artist_mode);
+    filler.classList.toggle('hidden', hasArtist || hasMovie || taMode);
 }
 
 function renderSubmissionTracker(players) {
@@ -690,6 +695,10 @@ var pendingMovieGuess = null;
 var MOVIE_DEBOUNCE_MS = 500;
 var lastMovieGuessTime = 0;
 
+// Title & Artist Mode state (#1180)
+var titleArtistMode = false;
+var taInputWired = false;
+
 // #854: initYearSelector is called from player-core.js on every PLAYING-phase
 // state update (once per round). Without this guard, every round stacks
 // another pointerdown listener on each ±1/±5 button → step count grows with
@@ -775,7 +784,35 @@ export function initYearSelector() {
 
     var submitBtn = document.getElementById('submit-btn');
     if (submitBtn) {
-        submitBtn.addEventListener('click', handleSubmitGuess);
+        submitBtn.addEventListener('click', function() {
+            if (titleArtistMode) {
+                handleTitleArtistSubmit();
+            } else {
+                handleSubmitGuess();
+            }
+        });
+    }
+
+    if (!taInputWired) {
+        var titleInput = document.getElementById('ta-title-input');
+        var artistInput = document.getElementById('ta-artist-input');
+        if (titleInput) {
+            titleInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (artistInput) artistInput.focus();
+                }
+            });
+        }
+        if (artistInput) {
+            artistInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (titleArtistMode) handleTitleArtistSubmit();
+                }
+            });
+        }
+        taInputWired = true;
     }
 
     var stealBtn = document.getElementById('steal-btn');
@@ -963,6 +1000,110 @@ export function resetSubmissionState() {
     resetArtistChallengeState();
 
     resetMovieChallengeState();
+
+    resetTitleArtistState();
+}
+
+// ============================================
+// Title & Artist Mode (#1180)
+// ============================================
+
+/**
+ * Render the Title & Artist input section. When title_artist_mode is on we
+ * REPLACE the year UI (slider, ±buttons, bet, year XXL) with two free-text
+ * inputs and a single submit. The year-based artist/movie challenges never
+ * run in this mode (backend won't send them), so nothing else changes.
+ * @param {Object} data - State data from server (carries top-level title_artist_mode)
+ */
+export function renderTitleArtistInput(data) {
+    var on = !!(data && data.title_artist_mode);
+    titleArtistMode = on;
+
+    var taContainer = document.getElementById('title-artist-container');
+    var yearWrap = document.getElementById('year-selector-container');
+    var yearXxl = document.getElementById('year-display-arc');
+    var betToggle = document.getElementById('bet-toggle');
+
+    if (taContainer) taContainer.classList.toggle('hidden', !on);
+
+    // Hide the year-specific UI when TA mode is on.
+    if (yearWrap) yearWrap.classList.toggle('hidden', on);
+    if (yearXxl) yearXxl.classList.toggle('hidden', on);
+    if (betToggle) betToggle.classList.toggle('hidden', on);  // no betting in v1 TA mode
+
+    if (!on) return;
+
+    // Relabel the submit button (still id=submit-btn, reused). Only while not
+    // already submitted/locked, so we don't stomp the "Waiting for others" copy.
+    var submitBtn = document.getElementById('submit-btn');
+    if (submitBtn && !hasSubmitted) {
+        submitBtn.textContent = utils.t('titleArtist.submitGuess') || 'Submit';
+    }
+}
+
+/**
+ * Send the combined title+artist guess. Single submit; an empty field is
+ * allowed (scores 0 for that field server-side, status "skipped").
+ */
+export function handleTitleArtistSubmit() {
+    if (hasSubmitted) return;
+
+    var titleInput = document.getElementById('ta-title-input');
+    var artistInput = document.getElementById('ta-artist-input');
+    var submitBtn = document.getElementById('submit-btn');
+    if (!titleInput || !artistInput || !submitBtn) return;
+
+    var title = (titleInput.value || '').trim();
+    var artist = (artistInput.value || '').trim();
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-loading');
+
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({
+            type: 'title_artist_guess',
+            title: title,
+            artist: artist
+        }));
+    } else {
+        showSubmitError(utils.t('errors.connectionLost'));
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+    }
+}
+
+/**
+ * Handle the server's title_artist_guess_ack. Locks the inputs and surfaces
+ * the per-field status. handleSubmitAck() (driven from the 'submit_ack' path)
+ * handles the generic locked-button styling; this adds the per-field ack copy.
+ * @param {Object} data - { title_status, artist_status }
+ */
+export function handleTitleArtistGuessAck(data) {
+    handleSubmitAck();
+
+    var titleInput = document.getElementById('ta-title-input');
+    var artistInput = document.getElementById('ta-artist-input');
+    if (titleInput) titleInput.disabled = true;
+    if (artistInput) artistInput.disabled = true;
+
+    var ackEl = document.getElementById('ta-input-ack');
+    if (ackEl) {
+        ackEl.textContent = utils.t('titleArtist.submitted') || 'Submitted — see how you did at the reveal!';
+        ackEl.classList.remove('hidden');
+    }
+}
+
+/**
+ * Reset Title & Artist input state for a new round.
+ */
+function resetTitleArtistState() {
+    var titleInput = document.getElementById('ta-title-input');
+    var artistInput = document.getElementById('ta-artist-input');
+    var ackEl = document.getElementById('ta-input-ack');
+
+    if (titleInput) { titleInput.value = ''; titleInput.disabled = false; }
+    if (artistInput) { artistInput.value = ''; artistInput.disabled = false; }
+    if (ackEl) { ackEl.textContent = ''; ackEl.classList.add('hidden'); }
 }
 
 // ============================================

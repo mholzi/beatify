@@ -400,6 +400,47 @@
                     </div>
                 </div>
 
+                <!-- Title & Artist Guessing Mode (#1180) — replaces the year slider when title_artist_mode is on -->
+                <section id="title-artist-container" class="ta-input-section hidden">
+                    <div class="ta-input-field">
+                        <label class="ta-input-label" for="ta-title-input">
+                            <span aria-hidden="true">🎵</span>
+                            <span data-i18n="titleArtist.titleLabel">Song title</span>
+                            <span class="ta-input-points">+10</span>
+                        </label>
+                        <input type="text"
+                               id="ta-title-input"
+                               class="ta-text-input"
+                               maxlength="100"
+                               autocomplete="off"
+                               autocapitalize="off"
+                               autocorrect="off"
+                               spellcheck="false"
+                               enterkeyhint="next"
+                               data-i18n-placeholder="titleArtist.titlePlaceholder"
+                               placeholder="Type the song title">
+                    </div>
+                    <div class="ta-input-field">
+                        <label class="ta-input-label" for="ta-artist-input">
+                            <span aria-hidden="true">🎤</span>
+                            <span data-i18n="titleArtist.artistLabel">Artist</span>
+                            <span class="ta-input-points">+5</span>
+                        </label>
+                        <input type="text"
+                               id="ta-artist-input"
+                               class="ta-text-input"
+                               maxlength="100"
+                               autocomplete="off"
+                               autocapitalize="off"
+                               autocorrect="off"
+                               spellcheck="false"
+                               enterkeyhint="done"
+                               data-i18n-placeholder="titleArtist.artistPlaceholder"
+                               placeholder="Type the artist">
+                    </div>
+                    <div id="ta-input-ack" class="ta-input-ack hidden" aria-live="polite"></div>
+                </section>
+
                 <!-- Artist Challenge — arcade tiles (Story 20.5) -->
                 <section id="artist-challenge-container" class="arc-tiles artist-challenge hidden">
                     <div class="arc-tiles-header">
@@ -580,6 +621,25 @@
                     <div class="section-content-padded">
                         <div id="artist-reveal-name" class="artist-reveal-name"></div>
                         <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
+                    </div>
+                </section>
+
+                <!-- Title & Artist Reveal + Voting (#1180) -->
+                <section id="ta-reveal-section" class="card-section ta-reveal-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🎵</span>
+                        <span data-i18n="titleArtist.theAnswerWas">The answer was</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="ta-reveal-truth" class="ta-reveal-truth"></div>
+                        <div id="ta-reveal-own" class="ta-reveal-own"></div>
+                        <div id="ta-voting" class="ta-voting hidden">
+                            <div class="ta-voting-header">
+                                <span data-i18n="titleArtist.voteHeader">Close calls — vote 👍/👎</span>
+                                <span id="ta-voting-countdown" class="ta-voting-countdown" aria-live="polite"></span>
+                            </div>
+                            <div id="ta-voting-cards" class="ta-voting-cards"></div>
+                        </div>
                     </div>
                 </section>
 

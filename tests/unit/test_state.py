@@ -47,6 +47,13 @@ def _create_fresh_game(state: GameState, songs=None, **kwargs) -> dict:
     )
 
 
+def _make_ws_for_state() -> AsyncMock:
+    ws = AsyncMock()
+    ws.send_json = AsyncMock()
+    ws.closed = False
+    return ws
+
+
 # ---------------------------------------------------------------------------
 # GameState.create_game
 # ---------------------------------------------------------------------------
@@ -1212,3 +1219,99 @@ class TestTimerExpiryNoSubmissions:
         broadcast.assert_awaited_once()
         # Task must complete cleanly — no self-cancellation.
         assert not timer_task.cancelled()
+
+
+class TestTitleArtistMode:
+    """Title & Artist guessing mode wiring on GameState (Phase 3)."""
+
+    def _make_game(self, *, title_artist_mode: bool):
+        gs = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(3),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+            title_artist_mode=title_artist_mode,
+        )
+        return gs
+
+    def test_create_game_sets_title_artist_mode_flag(self):
+        gs = self._make_game(title_artist_mode=True)
+        assert gs.title_artist_mode is True
+
+    def test_create_game_defaults_title_artist_mode_off(self):
+        gs = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(3),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+        )
+        assert gs.title_artist_mode is False
+
+    def test_init_round_creates_challenge_when_mode_on(self):
+        gs = self._make_game(title_artist_mode=True)
+        gs._challenge_manager.init_round(
+            {"title": "Bohemian Rhapsody", "artist": "Queen"}
+        )
+        ch = gs.title_artist_challenge
+        assert ch is not None
+        assert ch.correct_title == "Bohemian Rhapsody"
+        assert ch.correct_artist == "Queen"
+
+    def test_submit_and_challenge_dict_hidden_in_playing(self):
+        gs = self._make_game(title_artist_mode=True)
+        gs._challenge_manager.init_round({"title": "Imagine", "artist": "John Lennon"})
+        result = gs.submit_title_artist_guess("Alice", "Imagine", "John Lennon", 1.0)
+        assert result["title_status"] == "exact"
+        assert result["artist_status"] == "exact"
+        # PLAYING: no truth leaked
+        playing = gs.get_title_artist_challenge_dict(include_answer=False)
+        assert playing == {"active": True}
+        assert "correct_title" not in playing
+
+    def test_challenge_dict_revealed_in_reveal(self):
+        gs = self._make_game(title_artist_mode=True)
+        gs._challenge_manager.init_round({"title": "Imagine", "artist": "John Lennon"})
+        gs.submit_title_artist_guess("Alice", "Imagine", "Lennon", 1.0)
+        reveal = gs.get_title_artist_challenge_dict(include_answer=True)
+        assert reveal["correct_title"] == "Imagine"
+        assert reveal["correct_artist"] == "John Lennon"
+        assert reveal["voting_open"] is False
+        # #1180 Phase 4: "Lennon" vs "John Lennon" is a genuine near-miss, now
+        # surfaced via get_near_misses() instead of the Phase 2 placeholder [].
+        assert reveal["near_misses"] == [
+            {
+                "id": "Alice:artist",
+                "player": "Alice",
+                "field": "artist",
+                "guess": "Lennon",
+                "votes_yes": 0,
+                "votes_no": 0,
+            }
+        ]
+        names = {r["player"] for r in reveal["results"]}
+        assert "Alice" in names
+
+    def test_challenge_dict_none_when_mode_off(self):
+        gs = self._make_game(title_artist_mode=False)
+        assert gs.get_title_artist_challenge_dict(include_answer=False) is None
+        assert gs.get_title_artist_challenge_dict(include_answer=True) is None
+
+    def test_early_reveal_waits_for_title_artist_guesses(self):
+        gs = self._make_game(title_artist_mode=True)
+        gs.phase = GamePhase.PLAYING
+        gs._challenge_manager.init_round(
+            {"title": "Yesterday", "artist": "The Beatles"}
+        )
+        gs.add_player("Alice", _make_ws_for_state())
+        gs.add_player("Bob", _make_ws_for_state())
+        # Year guesses in for both (the existing all_submitted gate)
+        gs.players["Alice"].submit_guess(1965, 1.0)
+        gs.players["Bob"].submit_guess(1965, 1.0)
+        # Only Alice submitted her title/artist guess
+        gs.players["Alice"].has_title_artist_guess = True
+        assert gs.check_all_guesses_complete() is False
+        # Now Bob too
+        gs.players["Bob"].has_title_artist_guess = True
+        assert gs.check_all_guesses_complete() is True

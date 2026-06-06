@@ -153,6 +153,9 @@ let introModeEnabled = false;
 // Closest Wins mode state (Issue #442)
 let closestWinsModeEnabled = false;
 
+// Title & Artist Mode state (#1180)
+let titleArtistModeEnabled = false;
+
 // Lobby state (Story 16.8)
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
@@ -229,6 +232,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Expose loadStatus so wizard.js can ask admin to refresh after completion
     window.loadStatus = loadStatus;
+    // Expose loadSavedSettings so wizard.js can re-sync the admin's in-memory game
+    // settings (mode, difficulty, bonuses, language, playlists) from localStorage
+    // after the wizard persists them. The admin only reads beatify_game_settings
+    // once at page-init — without this refresh, start-game keeps the stale values
+    // and ignores the wizard's choices, e.g. Title & Artist mode (#1180).
+    window.loadSavedSettings = loadSavedSettings;
 
     // Home view — shown when setup is complete and no game is active (post-wizard landing)
     window.BeatifyHome = {
@@ -847,6 +856,14 @@ function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Title & Artist Mode toggle (#1180)
+    document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
+        titleArtistModeEnabled = this.checked;
+        syncTitleArtistModeUI();
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Provider chips (Music Service)
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -941,6 +958,14 @@ async function loadSavedSettings() {
                 if (closestToggle) closestToggle.checked = settings.closestWinsMode;
             }
 
+            // Apply Title & Artist mode (#1180)
+            if (typeof settings.titleArtistMode === 'boolean') {
+                titleArtistModeEnabled = settings.titleArtistMode;
+                const taToggle = document.getElementById('title-artist-mode-toggle');
+                if (taToggle) taToggle.checked = settings.titleArtistMode;
+            }
+            syncTitleArtistModeUI();
+
             // Apply provider
             if (settings.provider) {
                 selectedProvider = settings.provider;
@@ -970,6 +995,7 @@ function saveGameSettings() {
             movieQuiz: movieQuizEnabled,  // #947
             introMode: introModeEnabled,  // Issue #23
             closestWinsMode: closestWinsModeEnabled,  // Issue #442
+            titleArtistMode: titleArtistModeEnabled,  // #1180
             provider: selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -987,12 +1013,53 @@ function updateGameSettingsSummary() {
 
     const difficultyLabels = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
     const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
-    const artistIcon = artistChallengeEnabled ? ' • 🎤' : '';
-    const movieIcon = movieQuizEnabled ? ' • 🎬' : '';  // #947
-    const introIcon = introModeEnabled ? ' • ⚡' : '';  // Issue #23
-    const closestIcon = closestWinsModeEnabled ? ' • 🎯' : '';  // Issue #442
+    // #1180: year-round bonuses are suppressed while TA mode is on, so the badge
+    // hides their icons too — but the underlying flags stay the host's untouched
+    // source of truth (so toggling TA off restores them).
+    const yearRoundActive = !titleArtistModeEnabled;
+    const artistIcon = (yearRoundActive && artistChallengeEnabled) ? ' • 🎤' : '';
+    const movieIcon = (yearRoundActive && movieQuizEnabled) ? ' • 🎬' : '';  // #947
+    const introIcon = (yearRoundActive && introModeEnabled) ? ' • ⚡' : '';  // Issue #23
+    const closestIcon = (yearRoundActive && closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
+    const taIcon = titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+}
+
+/**
+ * #1180: Title & Artist mode replaces the year round, so the year-only
+ * bonuses (artist challenge, movie quiz, intro, closest wins) have nothing to
+ * attach to. Hide and disable their setting-groups while TA mode is on.
+ *
+ * This is purely a visibility/disabled-state sync — it does NOT mutate the
+ * year-round flags or the checkboxes. The host's real bonus preferences stay
+ * the single source of truth (in the in-memory flags, the checkboxes, and
+ * localStorage), so the save → reload → toggle-off cycle is lossless. The
+ * actual suppression (forcing year-round bonuses off when TA mode is on) is
+ * applied only when building the start-game payload, in startGame(), via
+ * applyTitleArtistBonusPrecedence(). Forcing the flags off here instead would
+ * persist false to localStorage and silently destroy the host's choices on
+ * the next reload.
+ */
+function syncTitleArtistModeUI() {
+    // #1180: only the truly-incompatible modes are hidden in TA mode. Movie
+    // quiz and intro mode are compatible bonuses, so they stay available.
+    var ids = ['artist-challenge-toggle', 'closest-wins-toggle'];
+    ids.forEach(function(id) {
+        var input = document.getElementById(id);
+        if (!input) return;
+        var group = input.closest('.setting-group');
+        if (group) group.classList.toggle('hidden', titleArtistModeEnabled);
+        input.disabled = titleArtistModeEnabled;
+    });
+    // #1180 polish: year-distance difficulty doesn't apply in TA mode. Hide the
+    // chips + year hint and show the fixed T&I scoring summary in their place.
+    var diffRow = document.getElementById('admin-difficulty-row');
+    if (diffRow) diffRow.classList.toggle('hidden', titleArtistModeEnabled);
+    var diffHint = document.getElementById('admin-difficulty-hint');
+    if (diffHint) diffHint.classList.toggle('hidden', titleArtistModeEnabled);
+    var taSummary = document.getElementById('admin-difficulty-ta-summary');
+    if (taSummary) taSummary.classList.toggle('hidden', !titleArtistModeEnabled);
 }
 
 /**
@@ -1962,6 +2029,20 @@ async function startGame() {
     }
 
     try {
+        // #1180: Title & Artist mode replaces the year round, so the year-only
+        // bonuses are suppressed here at payload-build time (NOT by mutating the
+        // stored flags — that would corrupt the host's saved preferences on the
+        // next reload). The in-memory flags remain the host's untouched choices.
+        const rawBonusFlags = {
+            artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
+            movie_quiz_enabled: movieQuizEnabled,  // #947
+            intro_mode_enabled: introModeEnabled,  // Issue #23
+            closest_wins_mode: closestWinsModeEnabled  // Issue #442
+        };
+        const bonusFlags = (window.BeatifyTitleArtist && typeof window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence === 'function')
+            ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, titleArtistModeEnabled)
+            : { ...rawBonusFlags, ...(titleArtistModeEnabled ? { artist_challenge_enabled: false, movie_quiz_enabled: false, intro_mode_enabled: false, closest_wins_mode: false } : {}) };
+
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1973,10 +2054,11 @@ async function startGame() {
                 reveal_auto_advance: revealAutoAdvance,  // #1012
                 difficulty: selectedDifficulty,  // Story 14.1
                 provider: selectedProvider,  // Story 17.2
-                artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
-                movie_quiz_enabled: movieQuizEnabled,  // #947
-                intro_mode_enabled: introModeEnabled,  // Issue #23
-                closest_wins_mode: closestWinsModeEnabled,  // Issue #442
+                artist_challenge_enabled: bonusFlags.artist_challenge_enabled,  // Story 20.7 (#1180: suppressed in TA mode)
+                movie_quiz_enabled: bonusFlags.movie_quiz_enabled,  // #947 (#1180: suppressed in TA mode)
+                intro_mode_enabled: bonusFlags.intro_mode_enabled,  // Issue #23 (#1180: suppressed in TA mode)
+                closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
+                title_artist_mode: titleArtistModeEnabled,  // #1180
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })

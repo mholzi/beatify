@@ -15,6 +15,9 @@ import { updateLeaderboard, renderArtistReveal, renderMovieReveal } from './play
 
 var utils = window.BeatifyUtils || {};
 
+var VOTE_WINDOW_SECONDS = 15;  // mirrors TITLE_ARTIST_VOTE_WINDOW_SECONDS
+var _taVoteCountdownTimer = null;
+
 // ============================================
 // Reveal View (Story 4.6)
 // ============================================
@@ -128,11 +131,22 @@ export function updateRevealView(data) {
         }
     }
 
-    showRevealEmotion(currentPlayer, song.year);
-
-    // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
-    renderDuel(currentPlayer, song.year);
-    renderChipRow(currentPlayer, data);
+    // #1180: in Title & Artist mode there is no year, so the year duel /
+    // emotion ("BINGO" + "You said × N years × Actually <year>") and the
+    // year chip row don't apply — hide them and let the Title & Artist reveal
+    // carry the round result. The mode-agnostic score row stays.
+    var taMode = !!(data.title_artist_challenge && data.title_artist_challenge.correct_title);
+    var duelEl = document.querySelector('#reveal-view .duel');
+    if (duelEl) duelEl.classList.toggle('hidden', taMode);
+    if (taMode) {
+        var chipRowEl = document.getElementById('reveal-chip-row');
+        if (chipRowEl) chipRowEl.classList.add('hidden');
+    } else {
+        showRevealEmotion(currentPlayer, song.year);
+        // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
+        renderDuel(currentPlayer, song.year);
+        renderChipRow(currentPlayer, data);
+    }
     renderScoreRow(currentPlayer);
 
     // Cache context for bottom-sheet renderers that run on demand.
@@ -143,10 +157,12 @@ export function updateRevealView(data) {
         analytics: data.round_analytics || null,
         difficulty: data.song_difficulty || null,
         closestWinsMode: !!data.closest_wins_mode,
+        revealStartedAt: data.reveal_started_at || Date.now(),
     };
 
     renderArtistReveal(data.artist_challenge || null, state.playerName);
     renderMovieReveal(data.movie_challenge || null, state.playerName);
+    renderTitleArtistReveal(data.title_artist_challenge || null, currentPlayer);
 
     _resetReportBtn();
 
@@ -1387,5 +1403,253 @@ export function setupRevealReportBtn() {
 
         btn.textContent = utils.t('reveal.reportBtnDone') || '✓ Reported — thanks!';
         btn.disabled = true;
+    });
+}
+
+// ============================================
+// Title & Artist Reveal + Voting (#1180)
+// ============================================
+
+/**
+ * Build the status pill HTML for a per-field result.
+ * @param {string} status - exact|fuzzy|near_miss|near_miss_accepted|skipped
+ * @returns {string} HTML
+ */
+function _taStatusPill(status) {
+    var cls = 'ta-pill ta-pill--' + (status || 'skipped').replace(/_/g, '-');
+    var label;
+    switch (status) {
+        case 'exact': label = utils.t('titleArtist.statusExact') || 'Correct'; break;
+        case 'fuzzy': label = utils.t('titleArtist.statusFuzzy') || 'Close enough'; break;
+        case 'near_miss_accepted': label = utils.t('titleArtist.statusAccepted') || 'Accepted'; break;
+        case 'near_miss': label = utils.t('titleArtist.statusNearMiss') || 'Near miss'; break;
+        default: label = utils.t('titleArtist.statusSkipped') || 'Skipped';
+    }
+    return '<span class="' + cls + '">' + escapeHtml(label) + '</span>';
+}
+
+/**
+ * Render the Title & Artist reveal: the truth, the current player's own
+ * per-field result, the 👍/👎 voting cards for OTHER players' near-misses
+ * (a player never votes on their own), and — for the host — Accept/Reject
+ * override buttons. Drives a display-only 15s countdown off voting_open.
+ *
+ * @param {Object|null} ta - data.title_artist_challenge (REVEAL shape) or null
+ * @param {Object|null} currentPlayer - resolved current player object
+ */
+function renderTitleArtistReveal(ta, currentPlayer) {
+    var section = document.getElementById('ta-reveal-section');
+    if (!section) return;
+
+    if (!ta || !ta.correct_title) {
+        section.classList.add('hidden');
+        _stopTaVoteCountdown();
+        return;
+    }
+    section.classList.remove('hidden');
+
+    // 1) Truth
+    var truthEl = document.getElementById('ta-reveal-truth');
+    if (truthEl) {
+        truthEl.innerHTML =
+            '<span class="ta-truth-title">' + escapeHtml(ta.correct_title) + '</span>' +
+            '<span class="ta-truth-sep" aria-hidden="true">—</span>' +
+            '<span class="ta-truth-artist">' + escapeHtml(ta.correct_artist || '') + '</span>';
+    }
+
+    // 2) Own per-field result
+    var ownEl = document.getElementById('ta-reveal-own');
+    var results = ta.results || [];
+    var own = null;
+    for (var i = 0; i < results.length; i++) {
+        if (results[i].player === state.playerName) { own = results[i]; break; }
+    }
+    if (ownEl) {
+        if (own) {
+            ownEl.innerHTML =
+                '<div class="ta-own-row">' +
+                    '<span class="ta-own-label">' + escapeHtml(utils.t('titleArtist.yourTitle') || 'Your title') + '</span>' +
+                    '<span class="ta-own-guess">' + escapeHtml(own.title || '—') + '</span>' +
+                    _taStatusPill(own.title_status) +
+                '</div>' +
+                '<div class="ta-own-row">' +
+                    '<span class="ta-own-label">' + escapeHtml(utils.t('titleArtist.yourArtist') || 'Your artist') + '</span>' +
+                    '<span class="ta-own-guess">' + escapeHtml(own.artist || '—') + '</span>' +
+                    _taStatusPill(own.artist_status) +
+                '</div>';
+        } else {
+            ownEl.innerHTML = '<div class="ta-own-row ta-own-row--none">' +
+                escapeHtml(utils.t('titleArtist.noGuess') || 'No guess this round') + '</div>';
+        }
+    }
+
+    // 3) Voting cards (other players' near-misses only)
+    var votingWrap = document.getElementById('ta-voting');
+    var cardsEl = document.getElementById('ta-voting-cards');
+    var nearMisses = ta.near_misses || [];
+    var votingOpen = !!ta.voting_open;
+    var isHost = !!(currentPlayer && currentPlayer.is_admin);
+
+    if (!votingWrap || !cardsEl) { _stopTaVoteCountdown(); return; }
+
+    if (nearMisses.length === 0) {
+        votingWrap.classList.add('hidden');
+        cardsEl.innerHTML = '';
+        _stopTaVoteCountdown();
+        return;
+    }
+
+    votingWrap.classList.remove('hidden');
+
+    var fieldLabel = function(field) {
+        return field === 'artist'
+            ? (utils.t('titleArtist.artistLabel') || 'Artist')
+            : (utils.t('titleArtist.titleLabel') || 'Song title');
+    };
+
+    var html = '';
+    nearMisses.forEach(function(nm) {
+        // The owner of the near-miss never votes on it.
+        var isOwn = nm.player === state.playerName;
+        var yes = nm.votes_yes || 0;
+        var no = nm.votes_no || 0;
+
+        html += '<div class="ta-vote-card" data-nearmiss-id="' + escapeHtml(nm.id) + '">' +
+            '<div class="ta-vote-card-head">' +
+                '<span class="ta-vote-who">' + escapeHtml(nm.player) + '</span>' +
+                '<span class="ta-vote-field">' + escapeHtml(fieldLabel(nm.field)) + '</span>' +
+            '</div>' +
+            '<div class="ta-vote-guess">' + escapeHtml(nm.guess || '—') + '</div>' +
+            '<div class="ta-vote-tally">' +
+                '<span class="ta-tally-yes">👍 ' + yes + '</span>' +
+                '<span class="ta-tally-no">👎 ' + no + '</span>' +
+            '</div>';
+
+        if (isOwn) {
+            html += '<div class="ta-vote-own-note">' +
+                escapeHtml(utils.t('titleArtist.yourCloseCall') || 'Your close call — others decide') + '</div>';
+        } else if (votingOpen) {
+            html += '<div class="ta-vote-actions">' +
+                '<button type="button" class="ta-vote-btn ta-vote-btn--yes" ' +
+                    'data-nearmiss-id="' + escapeHtml(nm.id) + '" data-accept="1">👍</button>' +
+                '<button type="button" class="ta-vote-btn ta-vote-btn--no" ' +
+                    'data-nearmiss-id="' + escapeHtml(nm.id) + '" data-accept="0">👎</button>' +
+            '</div>';
+        }
+
+        // Host override row (always shown to host while voting is open).
+        if (isHost && votingOpen) {
+            html += '<div class="ta-override-actions">' +
+                '<span class="ta-override-label">' + escapeHtml(utils.t('titleArtist.hostOverride') || 'Host decides') + '</span>' +
+                '<button type="button" class="ta-override-btn ta-override-btn--accept" ' +
+                    'data-nearmiss-id="' + escapeHtml(nm.id) + '" data-accept="1" ' +
+                    'data-i18n="titleArtist.accept">Accept</button>' +
+                '<button type="button" class="ta-override-btn ta-override-btn--reject" ' +
+                    'data-nearmiss-id="' + escapeHtml(nm.id) + '" data-accept="0" ' +
+                    'data-i18n="titleArtist.reject">Reject</button>' +
+            '</div>';
+        }
+
+        html += '</div>';
+    });
+    cardsEl.innerHTML = html;
+
+    // 4) Countdown — display-only, driven by reveal_started_at + window.
+    if (votingOpen) {
+        _startTaVoteCountdown(ta);
+    } else {
+        _stopTaVoteCountdown();
+        var cd = document.getElementById('ta-voting-countdown');
+        if (cd) cd.textContent = utils.t('titleArtist.voteClosed') || 'Voting closed';
+    }
+}
+
+/**
+ * Start the display-only voting countdown. Uses reveal_started_at (ms epoch)
+ * from the last reveal context when available, falling back to a fresh 15s
+ * window anchored to now. The server is authoritative on voting_open; this is
+ * purely a visual aid.
+ * @param {Object} ta - title_artist_challenge dict
+ */
+function _startTaVoteCountdown(ta) {
+    _stopTaVoteCountdown();
+    var cd = document.getElementById('ta-voting-countdown');
+    if (!cd) return;
+
+    var ctx = state.lastRevealContext || {};
+    var startedAt = ctx.revealStartedAt || Date.now();
+    var endAt = startedAt + VOTE_WINDOW_SECONDS * 1000;
+
+    function paint() {
+        var remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+        cd.textContent = (utils.t('titleArtist.voteCountdown', { seconds: remaining })
+            || (remaining + 's'));
+        if (remaining <= 0) {
+            _stopTaVoteCountdown();
+        }
+    }
+    paint();
+    _taVoteCountdownTimer = setInterval(paint, 500);
+}
+
+function _stopTaVoteCountdown() {
+    if (_taVoteCountdownTimer) {
+        clearInterval(_taVoteCountdownTimer);
+        _taVoteCountdownTimer = null;
+    }
+}
+
+/**
+ * Wire vote and host-override clicks via event delegation on #ta-voting-cards.
+ * Called once from player-core's initAll. Buttons re-render from each state
+ * broadcast, so delegation survives the innerHTML rebuilds.
+ */
+export function setupTitleArtistVoting() {
+    var cardsEl = document.getElementById('ta-voting-cards');
+    if (!cardsEl) return;
+
+    cardsEl.addEventListener('click', function(e) {
+        var voteBtn = e.target.closest('.ta-vote-btn');
+        var overrideBtn = e.target.closest('.ta-override-btn');
+
+        if (voteBtn) {
+            var voteId = voteBtn.getAttribute('data-nearmiss-id');
+            var voteAccept = voteBtn.getAttribute('data-accept') === '1';
+            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                state.ws.send(JSON.stringify({
+                    type: 'title_artist_vote',
+                    nearmiss_id: voteId,
+                    accept: voteAccept
+                }));
+            }
+            // Optimistic press feedback only; tally updates on next broadcast.
+            var card = voteBtn.closest('.ta-vote-card');
+            if (card) {
+                card.querySelectorAll('.ta-vote-btn').forEach(function(b) {
+                    b.classList.remove('is-chosen');
+                });
+                voteBtn.classList.add('is-chosen');
+            }
+            return;
+        }
+
+        if (overrideBtn) {
+            var ovId = overrideBtn.getAttribute('data-nearmiss-id');
+            var ovAccept = overrideBtn.getAttribute('data-accept') === '1';
+            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                state.ws.send(JSON.stringify({
+                    type: 'title_artist_override',
+                    nearmiss_id: ovId,
+                    accept: ovAccept
+                }));
+            }
+            var ovCard = overrideBtn.closest('.ta-vote-card');
+            if (ovCard) {
+                ovCard.querySelectorAll('.ta-override-btn').forEach(function(b) {
+                    b.classList.remove('is-chosen');
+                });
+                overrideBtn.classList.add('is-chosen');
+            }
+        }
     });
 }

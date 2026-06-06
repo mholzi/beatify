@@ -7,7 +7,24 @@ import random
 from dataclasses import dataclass, field
 from typing import Any
 
-from custom_components.beatify.const import MOVIE_BONUS_TIERS
+from custom_components.beatify.const import (
+    ARTIST_PARTIAL_POINTS,
+    ARTIST_POINTS,
+    MOVIE_BONUS_TIERS,
+    TITLE_PARTIAL_POINTS,
+    TITLE_POINTS,
+)
+from custom_components.beatify.game.text_match import (
+    STATUS_EXACT,
+    STATUS_FUZZY,
+    STATUS_NEAR_MISS,
+    classify_field,
+)
+
+# Status stored on a near-miss field once a community vote / host override
+# accepts it during resolve_title_artist (Issue #1180). Distinct from the
+# raw classification STATUS_* values produced at submit time.
+STATUS_NEAR_MISS_ACCEPTED = "near_miss_accepted"
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -108,6 +125,29 @@ class MovieChallenge:
             if guess["name"] == player_name:
                 return MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
         return 0
+
+
+@dataclass
+class TitleArtistChallenge:
+    """Title & Artist guessing challenge state (Issue #1180).
+
+    Replaces the year guess for the whole game. Title and artist are matched
+    independently. ``guesses`` holds the raw text plus the per-field
+    classification (exact/fuzzy/near_miss/skipped, and later
+    near_miss_accepted once resolved). ``votes`` and ``overrides`` are the
+    per-near-miss aggregation state (wired to WS handlers in Phase 4).
+    """
+
+    correct_title: str
+    correct_artist: str
+    # player_name -> {"title": str, "artist": str,
+    #                 "title_status": str, "artist_status": str, "ts": float}
+    guesses: dict[str, dict[str, Any]] = field(default_factory=dict)
+    # nearmiss_id ("player:field") -> {voter_name: accept_bool}
+    votes: dict[str, dict[str, bool]] = field(default_factory=dict)
+    # nearmiss_id ("player:field") -> host accept_bool
+    overrides: dict[str, bool] = field(default_factory=dict)
+    resolved: bool = False
 
 
 # ------------------------------------------------------------------
@@ -221,6 +261,10 @@ class ChallengeManager:
         self.movie_challenge: MovieChallenge | None = None
         self.movie_quiz_enabled: bool = False
 
+        # Issue #1180: Title & Artist guessing mode
+        self.title_artist_mode: bool = False
+        self.title_artist_challenge: TitleArtistChallenge | None = None
+
     # ------------------------------------------------------------------
     # Configuration
     # ------------------------------------------------------------------
@@ -230,6 +274,7 @@ class ChallengeManager:
         *,
         artist_challenge_enabled: bool = True,
         movie_quiz_enabled: bool = True,
+        title_artist_mode: bool = False,
     ) -> None:
         """
         Set challenge configuration for a new game.
@@ -237,6 +282,7 @@ class ChallengeManager:
         Args:
             artist_challenge_enabled: Whether to enable artist guessing
             movie_quiz_enabled: Whether to enable movie quiz bonus
+            title_artist_mode: Whether title/artist guessing replaces the year guess
 
         """
         self.artist_challenge_enabled = artist_challenge_enabled
@@ -245,6 +291,9 @@ class ChallengeManager:
         self.movie_quiz_enabled = movie_quiz_enabled
         self.movie_challenge = None
 
+        self.title_artist_mode = title_artist_mode
+        self.title_artist_challenge = None
+
     def reset(self) -> None:
         """Reset challenge state (for game reset / end)."""
         self.artist_challenge = None
@@ -252,6 +301,10 @@ class ChallengeManager:
 
         self.movie_challenge = None
         self.movie_quiz_enabled = True  # Reset to default
+
+        # Issue #1180: Title & Artist mode is opt-in, default off
+        self.title_artist_challenge = None
+        self.title_artist_mode = False
 
     # ------------------------------------------------------------------
     # Round initialization
@@ -267,6 +320,36 @@ class ChallengeManager:
         """
         self.artist_challenge = self._init_artist_challenge(song)
         self.movie_challenge = self._init_movie_challenge(song)
+        self.title_artist_challenge = self._init_title_artist_challenge(song)
+
+    def _init_title_artist_challenge(
+        self, song: dict[str, Any]
+    ) -> TitleArtistChallenge | None:
+        """
+        Initialize the title/artist challenge for a round (Issue #1180).
+
+        Args:
+            song: Song dict with title/artist info from playlist
+
+        Returns:
+            TitleArtistChallenge instance or None if mode disabled.
+
+        """
+        if not self.title_artist_mode:
+            return None
+
+        title = song.get("title", "")
+        title = title.strip() if isinstance(title, str) else ""
+        artist = song.get("artist", "")
+        artist = artist.strip() if isinstance(artist, str) else ""
+
+        return TitleArtistChallenge(
+            correct_title=title,
+            correct_artist=artist,
+            guesses={},
+            votes={},
+            overrides={},
+        )
 
     def _init_artist_challenge(self, song: dict[str, Any]) -> ArtistChallenge | None:
         """
@@ -482,6 +565,220 @@ class ChallengeManager:
         return result
 
     # ------------------------------------------------------------------
+    # Title & Artist guess submission + voting (Issue #1180)
+    # ------------------------------------------------------------------
+
+    def submit_title_artist_guess(
+        self, player_name: str, title: str, artist: str, ts: float
+    ) -> dict[str, str]:
+        """
+        Submit a title + artist guess; classify each field independently.
+
+        Args:
+            player_name: Name of the player guessing
+            title: Raw title guess (may be empty)
+            artist: Raw artist guess (may be empty)
+            ts: Server timestamp of the submission
+
+        Returns:
+            Dict with keys: title_status, artist_status
+            (each in exact|fuzzy|near_miss|skipped)
+
+        Raises:
+            ValueError: If no title/artist challenge active
+
+        """
+        if not self.title_artist_challenge:
+            raise ValueError("No title/artist challenge active")
+
+        title_status = classify_field(title, self.title_artist_challenge.correct_title)
+        artist_status = classify_field(
+            artist, self.title_artist_challenge.correct_artist
+        )
+
+        self.title_artist_challenge.guesses[player_name] = {
+            "title": title,
+            "artist": artist,
+            "title_status": title_status,
+            "artist_status": artist_status,
+            "ts": ts,
+        }
+
+        return {"title_status": title_status, "artist_status": artist_status}
+
+    def register_title_artist_vote(
+        self,
+        voter_name: str,
+        nearmiss_id: str,
+        accept: bool,  # noqa: FBT001
+    ) -> None:
+        """
+        Record one player's vote on a near-miss (Issue #1180).
+
+        Wired to the WS vote handler in Phase 4. A no-op if there is no
+        active challenge.
+
+        Args:
+            voter_name: Name of the voting player
+            nearmiss_id: "player:field" identifier of the near-miss
+            accept: True for 👍 (accept), False for 👎 (reject)
+
+        """
+        if not self.title_artist_challenge:
+            return
+        self.title_artist_challenge.votes.setdefault(nearmiss_id, {})[voter_name] = (
+            accept
+        )
+
+    def set_title_artist_override(
+        self,
+        nearmiss_id: str,
+        accept: bool,  # noqa: FBT001
+    ) -> None:
+        """
+        Record a host override for a near-miss (Issue #1180).
+
+        Wired to the WS override handler in Phase 4. A no-op if there is no
+        active challenge.
+
+        Args:
+            nearmiss_id: "player:field" identifier of the near-miss
+            accept: True to accept, False to reject
+
+        """
+        if not self.title_artist_challenge:
+            return
+        self.title_artist_challenge.overrides[nearmiss_id] = accept
+
+    def get_near_misses(self) -> list[dict[str, Any]]:
+        """
+        Return every near-miss field across all players (Issue #1180).
+
+        Returns:
+            List of dicts: {id, player, field, guess, votes_yes, votes_no}.
+            ``field`` is "title" or "artist". Empty list if no active
+            challenge or no near-misses.
+
+        """
+        if not self.title_artist_challenge:
+            return []
+
+        near_misses: list[dict[str, Any]] = []
+
+        for player_name, guess in self.title_artist_challenge.guesses.items():
+            for field_name in ("title", "artist"):
+                if guess[f"{field_name}_status"] != STATUS_NEAR_MISS:
+                    continue
+                nearmiss_id = f"{player_name}:{field_name}"
+                cast = self.title_artist_challenge.votes.get(nearmiss_id, {})
+                votes_yes = sum(1 for v in cast.values() if v)
+                votes_no = sum(1 for v in cast.values() if not v)
+                near_misses.append(
+                    {
+                        "id": nearmiss_id,
+                        "player": player_name,
+                        "field": field_name,
+                        "guess": guess[field_name],
+                        "votes_yes": votes_yes,
+                        "votes_no": votes_no,
+                    }
+                )
+        return near_misses
+
+    def has_near_misses(self) -> bool:
+        """Whether any field is currently a near-miss (Issue #1180)."""
+        return bool(self.get_near_misses())
+
+    def resolve_title_artist(self) -> None:
+        """
+        Finalize all near-misses and mark the challenge resolved (Issue #1180).
+
+        Per near-miss field, accept if:
+          * a host override is present -> use the override value; else
+          * cast votes exist and 👍 / (👍 + 👎) >= 0.5 (majority of cast).
+        Default with no votes and no override -> reject.
+
+        Accepted fields get their status set to "near_miss_accepted" so
+        title_artist_points awards partial credit. Idempotent: a no-op if
+        there is no active challenge or it is already resolved.
+
+        """
+        if not self.title_artist_challenge or self.title_artist_challenge.resolved:
+            return
+
+        for near_miss in self.get_near_misses():
+            nearmiss_id = near_miss["id"]
+            override = self.title_artist_challenge.overrides.get(nearmiss_id)
+            if override is not None:
+                accepted = override
+            else:
+                yes = near_miss["votes_yes"]
+                no = near_miss["votes_no"]
+                total = yes + no
+                accepted = total > 0 and (yes / total) >= 0.5
+
+            if accepted:
+                player = near_miss["player"]
+                field_name = near_miss["field"]
+                self.title_artist_challenge.guesses[player][f"{field_name}_status"] = (
+                    STATUS_NEAR_MISS_ACCEPTED
+                )
+
+        self.title_artist_challenge.resolved = True
+
+    def title_artist_points(self, player_name: str) -> tuple[int, int]:
+        """
+        Return (title_pts, artist_pts) for a player (Issue #1180).
+
+        exact/fuzzy -> full points; near_miss_accepted -> partial points;
+        anything else (near_miss/skipped/unknown) -> 0.
+
+        Args:
+            player_name: Name of the player
+
+        Returns:
+            (title_pts, artist_pts)
+
+        """
+        if not self.title_artist_challenge:
+            return 0, 0
+        guess = self.title_artist_challenge.guesses.get(player_name)
+        if not guess:
+            return 0, 0
+
+        title_pts = self._field_points(
+            guess["title_status"], TITLE_POINTS, TITLE_PARTIAL_POINTS
+        )
+        artist_pts = self._field_points(
+            guess["artist_status"], ARTIST_POINTS, ARTIST_PARTIAL_POINTS
+        )
+        return title_pts, artist_pts
+
+    def title_artist_status(self, player_name: str) -> str:
+        """
+        Return the stored title field status for a player (Issue #1180).
+
+        Used by scoring to decide streak ("correct") on the title field.
+        Returns "skipped" if the player has no stored guess.
+
+        """
+        if not self.title_artist_challenge:
+            return "skipped"
+        guess = self.title_artist_challenge.guesses.get(player_name)
+        if not guess:
+            return "skipped"
+        return guess["title_status"]
+
+    @staticmethod
+    def _field_points(status: str, full: int, partial: int) -> int:
+        """Map a stored field status to awarded points."""
+        if status in (STATUS_EXACT, STATUS_FUZZY):
+            return full
+        if status == STATUS_NEAR_MISS_ACCEPTED:
+            return partial
+        return 0
+
+    # ------------------------------------------------------------------
     # State serialization helpers
     # ------------------------------------------------------------------
 
@@ -512,3 +809,42 @@ class ChallengeManager:
         if self.movie_quiz_enabled and self.movie_challenge:
             return self.movie_challenge.to_dict(include_answer=include_answer)
         return None
+
+    def get_title_artist_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """
+        Get title/artist challenge state for broadcast, or None if inactive (#1180).
+
+        PLAYING (include_answer=False): ``{"active": True}`` with NO truth, or
+        None when the mode/challenge is inactive. REVEAL (include_answer=True):
+        truth + per-player results + (Phase 4) voting state. ``near_misses`` and
+        ``voting_open`` are emitted as empty/False here and filled by Phase 4.
+
+        Args:
+            include_answer: If True, include the truth + results (for REVEAL).
+
+        """
+        if not self.title_artist_mode or self.title_artist_challenge is None:
+            return None
+
+        if not include_answer:
+            return {"active": True}
+
+        results = [
+            {
+                "player": name,
+                "title": g.get("title", ""),
+                "artist": g.get("artist", ""),
+                "title_status": g.get("title_status", ""),
+                "artist_status": g.get("artist_status", ""),
+            }
+            for name, g in self.title_artist_challenge.guesses.items()
+        ]
+        return {
+            "correct_title": self.title_artist_challenge.correct_title,
+            "correct_artist": self.title_artist_challenge.correct_artist,
+            "results": results,
+            "near_misses": [],
+            "voting_open": False,
+        }

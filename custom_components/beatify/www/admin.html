@@ -110,9 +110,14 @@
                 <h2 class="wiz-title" data-i18n="wizard.step4.title">How do you want to play?</h2>
                 <p class="wiz-sub" data-i18n="wizard.step4.sub">Defaults work for most parties. Tweak if you want.</p>
                 <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.coreMode">Game mode</label>
+                    <div id="wiz-coremode" class="wiz-coremode-cards"></div>
+                </div>
+                <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.difficulty">Difficulty</label>
                     <div id="wiz-difficulty" class="wiz-chip-group"></div>
                     <div id="wiz-difficulty-hint" class="wiz-difficulty-hint"></div>
+                    <div id="wiz-difficulty-summary" class="wiz-difficulty-hint hidden"></div>
                 </div>
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.timer">Time per round</label>
@@ -127,7 +132,7 @@
                     <div id="wiz-language" class="wiz-chip-group"></div>
                 </div>
                 <div class="wiz-field">
-                    <label class="wiz-field-label" data-i18n="wizard.step4.modes">Game modes</label>
+                    <label class="wiz-field-label" data-i18n="wizard.step4.bonusModes">Bonus modes</label>
                     <div id="wiz-modes" class="wiz-mode-cards"></div>
                 </div>
             </div>
@@ -428,7 +433,7 @@
 
                 <!-- Difficulty - Compact chips -->
                 <div class="setting-group">
-                    <div class="setting-row">
+                    <div class="setting-row" id="admin-difficulty-row">
                         <span class="setting-label">
                             <span class="setting-icon" aria-hidden="true">🎯</span>
                             <span data-i18n="admin.difficulty">Difficulty</span>
@@ -439,7 +444,23 @@
                             <button type="button" class="chip" data-difficulty="hard" data-i18n="admin.hard">Hard</button>
                         </div>
                     </div>
-                    <p class="setting-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
+                    <p class="setting-hint" id="admin-difficulty-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
+                    <p class="setting-hint hidden" id="admin-difficulty-ta-summary" data-i18n="wizard.step4.taScoring">Title 10 · Artist 5 · Partial 5/3</p>
+                </div>
+
+                <!-- Title & Artist Mode - Inline toggle (#1180) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">🎵</span>
+                            <span data-i18n="admin.titleArtistMode">Title &amp; Artist Mode</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="title-artist-mode-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.titleArtistModeHint">Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses below are turned off.</p>
                 </div>
 
                 <!-- Artist Challenge - Inline toggle -->
@@ -1447,6 +1468,9 @@
     <script src="/beatify/static/js/playlist-generator.min.js?v=3.5.0"></script>
     <script type="module" src="/beatify/static/js/playlist-hub.js?v=3.5.0"></script>
     <script type="module" src="/beatify/static/js/wizard.js?v=3.5.0"></script>
+    <!-- #1180: Title & Artist mode bonus-flag precedence (exposes
+         window.BeatifyTitleArtist; must load before admin.min.js uses it). -->
+    <script type="module" src="/beatify/static/js/title-artist-bonuses.js?v=3.5.0"></script>
     <!-- #1122 rc7: NoSleep.js Layer 2 fallback for iOS Companion WKWebView,
          loaded before admin.min.js so window.NoSleep is available when
          _requestWakeLock() runs on game start. -->

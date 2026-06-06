@@ -344,3 +344,117 @@ class TestApplyClosestWins:
         assert p2.streak_bonus == 0
         assert p2.previous_streak == 4
         assert p2.round_score == 0
+
+
+# ---------------------------------------------------------------------------
+# Title & Artist mode scoring (Issue #1180)
+# ---------------------------------------------------------------------------
+
+
+class _FakeTitleArtistManager:
+    """Minimal stand-in matching the ChallengeManager title/artist surface."""
+
+    def __init__(self, points_by_player, title_status_by_player):
+        self._points = points_by_player
+        self._title_status = title_status_by_player
+
+    def title_artist_points(self, player_name):
+        return self._points.get(player_name, (0, 0))
+
+    def title_artist_status(self, player_name):
+        return self._title_status.get(player_name, "skipped")
+
+
+def _score_title_artist(player, manager):
+    """Invoke score_player_round in title/artist mode with sane defaults."""
+    ScoringService.score_player_round(
+        player,
+        correct_year=1975,
+        round_start_time=0.0,
+        round_duration=30.0,
+        difficulty="normal",
+        artist_challenge=None,
+        movie_challenge=None,
+        is_intro_round=False,
+        intro_round_start_time=None,
+        all_players=[player],
+        streak_achievements={},
+        bet_tracking={"total_bets": 0, "bets_won": 0},
+        title_artist_manager=manager,
+    )
+
+
+class TestTitleArtistScoring:
+    """Round score = title_pts + artist_pts; streak keyed on title."""
+
+    def _player(self, name="Alice"):
+        p = PlayerSession(name=name, ws=MagicMock())
+        p.submitted = True
+        p.current_guess = 1980  # ignored in title/artist mode
+        p.submission_time = 5.0
+        return p
+
+    def test_full_points_replace_year_score(self):
+        mgr = _FakeTitleArtistManager({"Alice": (10, 5)}, {"Alice": "exact"})
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.round_score == 15
+        assert p.base_score == 15
+        assert p.score == 15
+        assert p.streak == 1  # title exact -> correct
+        assert p.missed_round is False
+        assert p.round_scores == [15]
+
+    def test_partial_points(self):
+        mgr = _FakeTitleArtistManager(
+            {"Alice": (5, 3)}, {"Alice": "near_miss_accepted"}
+        )
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.round_score == 8
+        assert p.streak == 1  # near_miss_accepted title -> correct
+
+    def test_fuzzy_title_counts_for_streak(self):
+        mgr = _FakeTitleArtistManager({"Alice": (10, 0)}, {"Alice": "fuzzy"})
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.round_score == 10
+        assert p.streak == 1
+
+    def test_wrong_title_breaks_streak(self):
+        mgr = _FakeTitleArtistManager({"Alice": (0, 5)}, {"Alice": "near_miss"})
+        p = self._player()
+        p.streak = 4  # had a streak going
+        _score_title_artist(p, mgr)
+        assert p.round_score == 5  # artist still scores
+        assert p.streak == 0  # title not correct -> streak broken
+        assert p.previous_streak == 4
+
+    def test_streak_milestone_bonus_applies(self):
+        mgr = _FakeTitleArtistManager({"Alice": (10, 5)}, {"Alice": "exact"})
+        p = self._player()
+        p.streak = 2  # this round makes it 3 -> +20 milestone
+        _score_title_artist(p, mgr)
+        assert p.streak == 3
+        assert p.streak_bonus == 20
+        assert p.score == 15 + 20
+
+    def test_no_speed_bet_intro_in_title_artist_mode(self):
+        mgr = _FakeTitleArtistManager({"Alice": (10, 5)}, {"Alice": "exact"})
+        p = self._player()
+        p.bet = True  # bets must not multiply in this mode
+        _score_title_artist(p, mgr)
+        assert p.round_score == 15  # not multiplied
+        assert p.speed_multiplier == 1.0
+        assert p.intro_bonus == 0
+        assert p.bet_outcome is None
+
+    def test_not_submitted_scores_zero(self):
+        mgr = _FakeTitleArtistManager({}, {})
+        p = self._player()
+        p.submitted = False
+        _score_title_artist(p, mgr)
+        assert p.round_score == 0
+        assert p.missed_round is True
+        assert p.streak == 0
+        assert p.round_scores == [0]

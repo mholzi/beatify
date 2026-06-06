@@ -85,6 +85,81 @@ export function shouldShowPill(localStorage) {
     return resumeAtStep(localStorage) !== null;
 }
 
+/**
+ * #1180: Step 4 game-mode toggle precedence.
+ *
+ * Title & Artist mode replaces the year round, so it's mutually exclusive with
+ * the four year-round bonuses (artist challenge, movie quiz, intro, closest
+ * wins). The exclusivity is ASYMMETRIC, mirroring admin.js's contract:
+ *
+ *   - Turning a year-round bonus ON turns TA mode OFF. TA is the replaceable
+ *     round, so re-enabling a year bonus cleanly exits TA mode.
+ *   - Turning TA mode ON does NOT touch the year-round flags. They stay the
+ *     host's untouched source of truth so the wizard never persists `false`
+ *     over a previously-true bonus into beatify_game_settings (admin.js reads
+ *     that same key). Suppression while TA is on is applied later, only at
+ *     start-game-payload build time, by admin.js's
+ *     applyTitleArtistBonusPrecedence(). Forcing the flags off here instead
+ *     would silently destroy the host's saved choices on the next admin reload.
+ *
+ * Pure function: returns a NEW flags object, never mutates the input. Exported
+ * for vitest (the wizard module-internal state isn't otherwise testable).
+ *
+ * @param {Object} flags - { artistChallenge, movieQuiz, introMode,
+ *   closestWinsMode, titleArtistMode } booleans (the wizard's chosen* state).
+ * @param {string} key - which toggle the user flipped: 'artist' | 'movie' |
+ *   'intro' | 'closest' | 'titleArtist'.
+ * @param {boolean} value - the new value for that toggle.
+ * @returns {Object} a new flags object with precedence applied.
+ */
+export function applyGameModeTogglePrecedence(flags, key, value) {
+    const next = { ...flags };
+    switch (key) {
+        case 'artist':
+            next.artistChallenge = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'movie':
+            // #1180: movie quiz is a per-song bonus, compatible with TA mode.
+            next.movieQuiz = value;
+            break;
+        case 'intro':
+            // #1180: intro mode (shorter clip) is compatible with TA mode.
+            next.introMode = value;
+            break;
+        case 'closest':
+            next.closestWinsMode = value;
+            if (value) next.titleArtistMode = false;
+            break;
+        case 'titleArtist':
+            // #1180: Turning TA mode ON must NOT touch the year-round flags.
+            // They stay the host's source of truth so the wizard never persists
+            // `false` over a previously-true bonus into beatify_game_settings
+            // (admin.js reads that same key). Suppression while TA is on is
+            // applied later, only at start-game-payload build time, by
+            // admin.js's applyTitleArtistBonusPrecedence(). Zeroing here would
+            // silently destroy the host's saved choices on the next reload.
+            next.titleArtistMode = value;
+            break;
+    }
+    return next;
+}
+
+/**
+ * Decide how the Step-4 difficulty area renders for the chosen core mode.
+ * In Title & Artist mode the year-distance scoring bands don't apply, so the
+ * Leicht/Normal/Schwer chips are hidden and a fixed T&I scoring summary is
+ * shown in their place. Pure — no DOM, exported for vitest.
+ *
+ * @param {boolean} titleArtistMode
+ * @returns {{ showChips: boolean, summaryKey: string|null }}
+ */
+export function difficultyDisplayFor(titleArtistMode) {
+    return titleArtistMode
+        ? { showChips: false, summaryKey: 'wizard.step4.taScoring' }
+        : { showChips: true, summaryKey: null };
+}
+
 // ------------------------------------------------------------------
 // DOM-driven controller (browser-only below this line)
 // ------------------------------------------------------------------
@@ -105,6 +180,7 @@ let chosenArtistChallenge = true;
 let chosenMovieQuiz = true;
 let chosenIntroMode = false;
 let chosenClosestWins = false;
+let chosenTitleArtistMode = false; // #1180
 const chosenLevelUps = { lights: false, tts: false };
 // Details the user sets when a level-up is toggled on
 let cachedLights = null; // HA lights from /api/lights
@@ -654,6 +730,31 @@ function _renderChipGroup(elId, items, active, onPick) {
     });
 }
 
+// Apply a Step-4 toggle through the pure precedence helper and write the
+// result back into the module's chosen* state. Centralizes the mutual-
+// exclusion so the four year-round setters and the TA setter share one
+// (tested) rule. Crucially, turning TA on does NOT zero the year-round flags
+// (see applyGameModeTogglePrecedence) — that would persist false over the
+// host's saved bonus choices in beatify_game_settings.
+function _setGameModeToggle(key, value) {
+    const next = applyGameModeTogglePrecedence(
+        {
+            artistChallenge: chosenArtistChallenge,
+            movieQuiz: chosenMovieQuiz,
+            introMode: chosenIntroMode,
+            closestWinsMode: chosenClosestWins,
+            titleArtistMode: chosenTitleArtistMode,
+        },
+        key,
+        value,
+    );
+    chosenArtistChallenge = next.artistChallenge;
+    chosenMovieQuiz = next.movieQuiz;
+    chosenIntroMode = next.introMode;
+    chosenClosestWins = next.closestWinsMode;
+    chosenTitleArtistMode = next.titleArtistMode;
+}
+
 const GAME_MODES = [
     {
         key: 'artist',
@@ -663,7 +764,7 @@ const GAME_MODES = [
         hintKey: 'admin.artistChallengeHint',
         hintFallback: 'After each round, players can guess the artist for bonus points. First correct guess earns +5 points.',
         get: () => chosenArtistChallenge,
-        set: (v) => { chosenArtistChallenge = v; },
+        set: (v) => { _setGameModeToggle('artist', v); },
     },
     {
         key: 'movie',
@@ -673,7 +774,7 @@ const GAME_MODES = [
         hintKey: 'admin.movieQuizHint',
         hintFallback: 'For soundtrack songs, players guess the movie for tiered bonus points. Only triggers on songs with movie metadata.',
         get: () => chosenMovieQuiz,
-        set: (v) => { chosenMovieQuiz = v; },
+        set: (v) => { _setGameModeToggle('movie', v); },
     },
     {
         key: 'intro',
@@ -683,7 +784,7 @@ const GAME_MODES = [
         hintKey: 'admin.introModeHint',
         hintFallback: '~20% of rounds play only the song intro. Players must guess the year from just the opening seconds. Requires at least 3 rounds.',
         get: () => chosenIntroMode,
-        set: (v) => { chosenIntroMode = v; },
+        set: (v) => { _setGameModeToggle('intro', v); },
     },
     {
         key: 'closest',
@@ -693,15 +794,78 @@ const GAME_MODES = [
         hintKey: 'admin.closestWinsHint',
         hintFallback: 'Only the player with the closest guess scores points each round. All-or-nothing showdown.',
         get: () => chosenClosestWins,
-        set: (v) => { chosenClosestWins = v; },
+        set: (v) => { _setGameModeToggle('closest', v); },
     },
 ];
+
+// Core game mode — exactly one selected. Backed by the chosenTitleArtistMode
+// boolean (Jahr = false, Titel & Interpret = true). Clicking routes through the
+// tested precedence helper so T&I auto-clears the incompatible year-modifiers.
+const CORE_MODES = [
+    {
+        key: 'year',
+        icon: '📅',
+        accent: 'pink',
+        titleKey: 'wizard.step4.modeYear',
+        titleFallback: 'Year mode',
+        hintKey: 'wizard.step4.modeYearHint',
+        hintFallback: "Guess each song's release year.",
+        selected: () => !chosenTitleArtistMode,
+        pick: () => { _setGameModeToggle('titleArtist', false); },
+    },
+    {
+        key: 'titleArtist',
+        icon: '✍️',
+        accent: 'cyan',
+        titleKey: 'wizard.step4.modeTitleArtist',
+        titleFallback: 'Title & Artist',
+        hintKey: 'wizard.step4.modeTitleArtistHint',
+        hintFallback: 'Type the song title + artist.',
+        selected: () => chosenTitleArtistMode,
+        pick: () => { _setGameModeToggle('titleArtist', true); },
+    },
+];
+
+function _renderCoreMode() {
+    const el = document.getElementById('wiz-coremode');
+    if (!el) return;
+    el.innerHTML = CORE_MODES.map((m) => {
+        const sel = m.selected();
+        const badge = sel
+            ? `<span class="wiz-coremode-badge">${_t('wizard.step4.modePlaying', 'Playing')}</span>`
+            : '';
+        return `<div class="wiz-coremode-card wiz-coremode-card--${m.accent} ${sel ? 'selected' : 'dim'}" data-coremode="${m.key}" role="button" tabindex="0" aria-pressed="${sel}">
+            ${badge}
+            <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
+            <div class="wiz-mode-body">
+                <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>
+                <div class="wiz-mode-hint">${_t(m.hintKey, m.hintFallback)}</div>
+            </div>
+        </div>`;
+    }).join('');
+    el.querySelectorAll('[data-coremode]').forEach((card) => {
+        card.addEventListener('click', () => {
+            const m = CORE_MODES.find((x) => x.key === card.dataset.coremode);
+            if (!m) return;
+            m.pick();
+            // A mode change cascades into the difficulty + bonus sections.
+            _renderCoreMode();
+            _renderDifficulty();
+            _renderGameModes();
+        });
+    });
+}
 
 function _renderGameModes() {
     const el = document.getElementById('wiz-modes');
     if (!el) return;
     el.innerHTML = GAME_MODES.map((m) => {
         const on = m.get();
+        // #1180: hide modes incompatible with Title & Artist mode (artist
+        // challenge + closest wins). Movie quiz and intro stay (compatible).
+        if (chosenTitleArtistMode && (m.key === 'artist' || m.key === 'closest')) {
+            return '';
+        }
         return `<div class="wiz-mode-card ${on ? 'on' : ''}" data-mode="${m.key}" role="button" tabindex="0">
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
             <div class="wiz-mode-body">
@@ -728,12 +892,33 @@ function _renderDifficultyHint() {
     el.textContent = _t(hint.key, hint.fallback);
 }
 
+// Difficulty area depends on the core mode. Jahr: year-distance chips + hint.
+// Title & Artist: chips hidden, a fixed scoring summary shown instead.
+function _renderDifficulty() {
+    const display = difficultyDisplayFor(chosenTitleArtistMode);
+    const group = document.getElementById('wiz-difficulty');
+    const hintEl = document.getElementById('wiz-difficulty-hint');
+    const summaryEl = document.getElementById('wiz-difficulty-summary');
+    if (group) group.classList.toggle('hidden', !display.showChips);
+    if (hintEl) hintEl.classList.toggle('hidden', !display.showChips);
+    if (summaryEl) {
+        summaryEl.classList.toggle('hidden', display.showChips);
+        if (display.summaryKey) {
+            summaryEl.textContent = _t(display.summaryKey, 'Title 10 · Artist 5 · Partial 5/3');
+        }
+    }
+    if (display.showChips) {
+        _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
+            chosenDifficulty = val;
+            _renderDifficulty();
+        });
+        _renderDifficultyHint();
+    }
+}
+
 function _renderGameMode() {
-    _renderChipGroup('wiz-difficulty', DIFFICULTIES, chosenDifficulty, (val) => {
-        chosenDifficulty = val;
-        _renderGameMode();
-    });
-    _renderDifficultyHint();
+    _renderCoreMode();
+    _renderDifficulty();
     _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
         chosenDuration = val;
         _renderGameMode();
@@ -1116,11 +1301,21 @@ function _renderDoneSummary() {
         playlistLabel = `${chosenPlaylists.size} picked · ${first} + more`;
     }
 
+    // #1180: lead the mode line with the core game mode so the host can confirm
+    // Title & Artist vs Year at a glance. Difficulty is year-only, so it's
+    // dropped in T&I mode (where it doesn't affect scoring).
+    const coreModeLabel = chosenTitleArtistMode
+        ? _t('wizard.step4.modeTitleArtist', 'Title & Artist')
+        : _t('wizard.step4.modeYear', 'Year mode');
+    const modeSummary = chosenTitleArtistMode
+        ? `${coreModeLabel} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}`
+        : `${coreModeLabel} · ${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}`;
+
     el.innerHTML = `
         <div class="wiz-done-line"><span>${_t('wizard.summary.speaker', 'Speaker')}</span><strong>${speaker}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.service', 'Service')}</span><strong>${provider}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.playlist', 'Playlist')}</span><strong>${playlistLabel}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${chosenDifficulty} · ${chosenDuration}s · ${chosenLanguage.toUpperCase()}</strong></div>
+        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${modeSummary}</strong></div>
         <div class="wiz-done-line"><span>${_t('wizard.summary.atmosphere', 'Atmosphere')}</span><strong>${atmosphere}</strong></div>
     `;
 }
@@ -1156,6 +1351,7 @@ function _persistGameSettings() {
             movieQuiz: chosenMovieQuiz,
             introMode: chosenIntroMode,
             closestWinsMode: chosenClosestWins,
+            titleArtistMode: chosenTitleArtistMode,  // #1180
         };
         if (chosenPlaylists.size > 0) {
             // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
@@ -1220,6 +1416,7 @@ export async function show(stepOverride) {
             if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
+            if (typeof s.titleArtistMode === 'boolean') chosenTitleArtistMode = s.titleArtistMode;
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
                     const path = typeof entry === 'string' ? entry : entry && entry.path;
@@ -1288,6 +1485,15 @@ async function _advance() {
         // (the lobby landing card with Start Game + Edit setup), then refresh status.
         try { localStorage.setItem(LS_WIZARD_STATE, 'done'); } catch (e) { /* private mode */ }
         hide({ dismissed: false });
+        // Sync the admin's in-memory game settings from the choices the wizard
+        // just persisted (mode, difficulty, bonuses, language, playlists) BEFORE
+        // refreshing status + entering home. The admin reads beatify_game_settings
+        // only once at page-init, so without this the start-game payload would
+        // ignore the wizard's selections (e.g. Title & Artist mode) and run with
+        // stale/default values. See window.loadSavedSettings in admin.js (#1180).
+        if (typeof window !== 'undefined' && typeof window.loadSavedSettings === 'function') {
+            try { await window.loadSavedSettings(); } catch (e) { /* non-fatal */ }
+        }
         if (typeof window !== 'undefined' && typeof window.loadStatus === 'function') {
             window.loadStatus();
         }

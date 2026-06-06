@@ -50,8 +50,19 @@ class GameStateConfig:
 
     # Mode flags
     closest_wins_mode: bool = False
+    # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
+    # listed here for reset symmetry. GameState exposes a delegation property,
+    # and _apply_config skips manager-delegated names (see field_names()).
+    title_artist_mode: bool = False
 
     @classmethod
     def field_names(cls) -> list[str]:
-        """Return the names of all config-managed fields."""
-        return [f.name for f in fields(cls)]
+        """Return the names of config-managed fields applied to GameState.
+
+        Excludes flags that are owned by a subsystem manager and exposed on
+        GameState only via a delegation property (Issue #1180:
+        ``title_artist_mode`` is owned by ChallengeManager and reset by
+        ChallengeManager.reset()).
+        """
+        delegated = {"title_artist_mode"}
+        return [f.name for f in fields(cls) if f.name not in delegated]

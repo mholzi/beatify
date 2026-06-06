@@ -32,6 +32,9 @@ from custom_components.beatify.const import (
     STREAK_MILESTONES,
 )
 
+from custom_components.beatify.game.challenges import STATUS_NEAR_MISS_ACCEPTED
+from custom_components.beatify.game.text_match import STATUS_EXACT, STATUS_FUZZY
+
 # Points awarded
 POINTS_EXACT = 10
 POINTS_WRONG = 0
@@ -234,6 +237,48 @@ def _score_artist_challenge(
         else 0
     )
     return player.artist_bonus
+
+
+# Title statuses that count as a "correct" round for streak purposes (#1180).
+_TITLE_CORRECT_STATUSES = (STATUS_EXACT, STATUS_FUZZY, STATUS_NEAR_MISS_ACCEPTED)
+
+
+def _score_title_artist_round(
+    player: PlayerSession,
+    title_artist_manager: Any,
+    streak_achievements: dict[str, int],
+) -> None:
+    """Score a player in title/artist mode (#1180). Mutates player in-place.
+
+    Round score = title points + artist points (replacing the year score).
+    Speed/bet/intro do not apply. Streak counts the round as correct when the
+    title status is exact/fuzzy/near_miss_accepted. Cumulative score, streak
+    milestone bonus, and round_scores are all updated here.
+    """
+    title_pts, artist_pts = title_artist_manager.title_artist_points(player.name)
+    round_score = title_pts + artist_pts
+
+    player.round_score = round_score
+    player.base_score = round_score
+    player.speed_multiplier = 1.0
+    player.years_off = None
+    player.missed_round = False
+    player.bet_outcome = None
+    player.artist_bonus = 0
+    player.movie_bonus = 0
+    player.intro_bonus = 0
+
+    title_correct = (
+        title_artist_manager.title_artist_status(player.name) in _TITLE_CORRECT_STATUSES
+    )
+    # Reuse the shared streak machinery, keyed on title correctness rather
+    # than a positive year score (which doesn't exist in this mode).
+    _apply_streak(player, 1 if title_correct else 0, streak_achievements)
+
+    player.score += player.round_score + player.streak_bonus
+    player.rounds_played += 1
+    player.best_streak = max(player.best_streak, player.streak)
+    player.round_scores.append(player.round_score)
 
 
 def _score_movie_challenge(
@@ -588,8 +633,48 @@ class ScoringService:
         all_players: list[PlayerSession],
         streak_achievements: dict[str, int],
         bet_tracking: dict[str, int],
+        title_artist_manager: Any | None = None,
     ) -> None:
-        """Score a single player for the current round. Mutates player in-place."""
+        """Score a single player for the current round. Mutates player in-place.
+
+        When ``title_artist_manager`` is provided (title/artist mode, #1180),
+        the round score is title points + artist points and the year-based
+        scoring path is bypassed entirely.
+        """
+        if title_artist_manager is not None:
+            if player.submitted:
+                _score_title_artist_round(
+                    player, title_artist_manager, streak_achievements
+                )
+                # #1180: movie quiz + intro mode are compatible bonuses that
+                # stack on top of the title/artist score (both are independent
+                # of the year). The _score_*_round helpers overwrite the zeros
+                # _score_title_artist_round set, then we add them to the score.
+                _score_movie_challenge(player, movie_challenge)
+                _score_intro_round(
+                    player,
+                    is_intro_round=is_intro_round,
+                    intro_round_start_time=intro_round_start_time,
+                    all_players=all_players,
+                )
+                player.score += player.movie_bonus + player.intro_bonus
+            else:
+                player.previous_streak = player.streak
+                player.round_score = 0
+                player.base_score = 0
+                player.speed_multiplier = 1.0
+                player.years_off = None
+                player.missed_round = True
+                player.streak = 0
+                player.streak_bonus = 0
+                player.bet_outcome = None
+                player.artist_bonus = 0
+                player.movie_bonus = 0
+                player.intro_bonus = 0
+                player.rounds_played += 1
+                player.round_scores.append(0)
+            return
+
         if player.submitted and correct_year is not None:
             elapsed = (
                 player.submission_time - round_start_time

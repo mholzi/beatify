@@ -46,6 +46,7 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
     STREAK_MILESTONES,
+    TITLE_ARTIST_VOTE_WINDOW_SECONDS,
     VOLUME_STEP,
 )
 
@@ -112,6 +113,8 @@ class GameState:
         # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
         self.reveal_auto_advance: int = 0
         self._auto_advance_task: asyncio.Task | None = None
+        # #1180 Phase 4: title/artist near-miss vote window is open in REVEAL.
+        self._title_artist_voting_open: bool = False
         # #1048: ms timestamp REVEAL was entered — clients compute remaining
         # countdown vs Date.now(). None outside REVEAL.
         self.reveal_started_at: int | None = None
@@ -463,6 +466,24 @@ class GameState:
     def movie_quiz_enabled(self, value: bool) -> None:
         self._challenge_manager.movie_quiz_enabled = value
 
+    @property
+    def title_artist_mode(self) -> bool:
+        """Whether title/artist guessing mode is enabled (Issue #1180)."""
+        return self._challenge_manager.title_artist_mode
+
+    @title_artist_mode.setter
+    def title_artist_mode(self, value: bool) -> None:
+        self._challenge_manager.title_artist_mode = value
+
+    @property
+    def title_artist_challenge(self) -> Any:
+        """Current title/artist challenge state (Issue #1180)."""
+        return self._challenge_manager.title_artist_challenge
+
+    @title_artist_challenge.setter
+    def title_artist_challenge(self, value: Any) -> None:
+        self._challenge_manager.title_artist_challenge = value
+
     def get_artist_challenge_dict(
         self, *, include_answer: bool
     ) -> dict[str, Any] | None:
@@ -478,6 +499,55 @@ class GameState:
         return self._challenge_manager.get_movie_challenge_dict(
             include_answer=include_answer
         )
+
+    def get_title_artist_challenge_dict(
+        self, *, include_answer: bool
+    ) -> dict[str, Any] | None:
+        """Build Title & Artist challenge dict — delegated to ChallengeManager (#1180).
+
+        PLAYING (include_answer=False): {"active": True} with NO truth, or None
+        when the mode/challenge is inactive. REVEAL (include_answer=True):
+        truth + per-player results + (Phase 4) voting state.
+        """
+        challenge_dict = self._challenge_manager.get_title_artist_challenge_dict(
+            include_answer=include_answer
+        )
+        # Phase 4 (#1180): surface the vote-eligible near-misses tally and the
+        # REVEAL vote window flag so the player vote cards / host override
+        # controls can render. ``_title_artist_voting_open`` lives on GameState,
+        # so the truth-bearing REVEAL dict is finalized here, not in the manager.
+        if include_answer and challenge_dict is not None:
+            challenge_dict["near_misses"] = self.get_near_misses()
+            challenge_dict["voting_open"] = self.is_title_artist_voting_open()
+        return challenge_dict
+
+    # ------------------------------------------------------------------
+    # Title/Artist vote delegation (#1180 Phase 4)
+    # ------------------------------------------------------------------
+
+    def register_title_artist_vote(
+        self, voter_name: str, nearmiss_id: str, accept: bool
+    ) -> None:
+        """Record a community vote on a near-miss — delegates to ChallengeManager."""
+        self._challenge_manager.register_title_artist_vote(
+            voter_name, nearmiss_id, accept
+        )
+
+    def set_title_artist_override(self, nearmiss_id: str, accept: bool) -> None:
+        """Record a host override on a near-miss — delegates to ChallengeManager."""
+        self._challenge_manager.set_title_artist_override(nearmiss_id, accept)
+
+    def get_near_misses(self) -> list[dict[str, Any]]:
+        """List vote-eligible near-misses — delegates to ChallengeManager."""
+        return self._challenge_manager.get_near_misses()
+
+    def has_near_misses(self) -> bool:
+        """True if any near-miss is vote-eligible — delegates to ChallengeManager."""
+        return self._challenge_manager.has_near_misses()
+
+    def is_title_artist_voting_open(self) -> bool:
+        """True while the conditional REVEAL vote window is open (#1180 P4)."""
+        return self._title_artist_voting_open
 
     def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
         """Get song difficulty rating — delegated to StatsService."""
@@ -499,6 +569,7 @@ class GameState:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
+        title_artist_mode: bool = False,
         reveal_auto_advance: int = 0,
     ) -> dict[str, Any]:
         """
@@ -517,6 +588,7 @@ class GameState:
             movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
             intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
             closest_wins_mode: Whether only the closest guess(es) earn points
+            title_artist_mode: Whether title/artist guessing replaces the year guess
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -607,10 +679,11 @@ class GameState:
         # Issue #351: Reset power-up state for new game
         self._powerup_manager.reset()
 
-        # Story 20.1 / Issue #28: Set challenge configuration
+        # Story 20.1 / Issue #28 / Issue #1180: Set challenge configuration
         self._challenge_manager.configure(
             artist_challenge_enabled=artist_challenge_enabled,
             movie_quiz_enabled=movie_quiz_enabled,
+            title_artist_mode=title_artist_mode,
         )
 
         # Issue #23: Set intro mode configuration
@@ -792,6 +865,7 @@ class GameState:
             "movie_quiz_enabled": self.movie_quiz_enabled,
             "intro_mode_enabled": self.intro_mode_enabled,
             "closest_wins_mode": self.closest_wins_mode,
+            "title_artist_mode": self.title_artist_mode,
         }
 
         self._reset_game_internals()
@@ -1061,6 +1135,15 @@ class GameState:
                 for player in self.players.values():
                     if player.is_active and not player.has_movie_guess:
                         return False
+
+        # #1180: In Title & Artist mode, wait for every active player to submit
+        # their title/artist guess before auto-advancing. This mode replaces the
+        # year guess, so there is no "winner" short-circuit — each player guesses
+        # independently and we hold PLAYING until all are in.
+        if self.title_artist_mode and self.title_artist_challenge:
+            for player in self.players.values():
+                if player.is_active and not player.has_title_artist_guess:
+                    return False
 
         return True
 
@@ -1486,6 +1569,149 @@ class GameState:
             self._auto_advance_task.cancel()
             self._auto_advance_task = None
 
+    def _score_all_players(
+        self, correct_year: int | None, all_players: list[PlayerSession]
+    ) -> None:
+        """Score every player for the current round via ScoringService.
+
+        Single source of truth for the per-player score loop so the round-end
+        path (_end_round_unlocked) and the title/artist rescore path
+        (_finalize_title_artist_window) cannot drift. In title/artist mode the
+        manager is passed so scoring uses the title+artist points path (#1180).
+        NOT idempotent — ScoringService.score_player_round accumulates score,
+        rounds_played and round_scores — so each player must be scored exactly
+        once per round. The caller is responsible for that (the title/artist
+        near-miss path defers scoring to a single post-resolve invocation).
+
+        #816: wrap per player so an unexpected state shape in ONE player doesn't
+        abort the round-end transition; the rest still score and the round ends.
+        """
+        title_artist_manager = (
+            self._challenge_manager if self.title_artist_mode else None
+        )
+        for player in self.players.values():
+            try:
+                ScoringService.score_player_round(
+                    player,
+                    correct_year=correct_year,
+                    round_start_time=self.round_start_time,
+                    round_duration=self.round_duration,
+                    difficulty=self.difficulty,
+                    artist_challenge=self.artist_challenge,
+                    movie_challenge=self.movie_challenge,
+                    is_intro_round=self.is_intro_round,
+                    intro_round_start_time=self._round_manager._intro_round_start_time,
+                    all_players=all_players,
+                    streak_achievements=self.streak_achievements,
+                    bet_tracking=self.bet_tracking,
+                    title_artist_manager=title_artist_manager,
+                )
+            except (KeyError, AttributeError, TypeError, ValueError) as err:
+                _LOGGER.error(
+                    "Scoring failed for player %s in round %d: %s — "
+                    "their score is unchanged this round, round still ends",
+                    getattr(player, "name", "?"),
+                    self.round,
+                    err,
+                )
+
+    def _schedule_title_artist_vote_window(self) -> None:
+        """Open or skip the conditional 15s near-miss vote window (#1180 P4).
+
+        Called from _end_round_unlocked while phase is REVEAL and title/artist
+        mode is on. If there are near-misses, flip voting_open and spawn the
+        window task (reused _auto_advance_task slot so a manual next_round,
+        pause or end cancels it via _cancel_auto_advance). With no near-misses,
+        resolve immediately so scoring/advance proceed unchanged.
+        """
+        if not self.title_artist_mode:
+            return
+        if self.has_near_misses():
+            self._title_artist_voting_open = True
+            self._cancel_auto_advance()
+            self._auto_advance_task = asyncio.create_task(
+                self._title_artist_vote_window(TITLE_ARTIST_VOTE_WINDOW_SECONDS)
+            )
+        else:
+            # No vote-eligible fields — finalize now (everything exact/fuzzy/
+            # skipped), no window, advance behaves exactly as the year mode.
+            self._challenge_manager.resolve_title_artist()
+            self._title_artist_voting_open = False
+
+    async def _title_artist_vote_window(self, window_seconds: int) -> None:
+        """Hold REVEAL open for community voting, then resolve (#1180 P4).
+
+        Sleeps in short polls so a manual host-advance / pause / end can
+        cancel promptly. On natural expiry, finalizes near-misses via
+        resolve_title_artist, scores the deferred round, then re-broadcasts so
+        the accepted points and closed window reach every client. A late firing
+        is a no-op once the phase has left REVEAL.
+        """
+        poll = 0.5
+        try:
+            elapsed = 0.0
+            while elapsed < window_seconds:
+                await asyncio.sleep(poll)
+                elapsed += poll
+                if self.phase != GamePhase.REVEAL:
+                    return  # advanced / paused / ended elsewhere
+            # Window expired naturally — clear the handle first so a manual
+            # start_round's _cancel_auto_advance() can't cancel this task.
+            self._auto_advance_task = None
+            if self.phase != GamePhase.REVEAL:
+                return
+            await self._finalize_title_artist_window()
+            if self._on_round_end:
+                try:
+                    await self._on_round_end()
+                except (ConnectionError, OSError, TypeError) as err:
+                    _LOGGER.error("Vote-window broadcast failed: %s", err)
+        except asyncio.CancelledError:
+            _LOGGER.debug("Title/artist vote window cancelled")
+            raise
+
+    async def _finalize_title_artist_window(self) -> None:
+        """Resolve near-misses and apply title/artist scoring (#1180 P4).
+
+        Guarded by voting_open so a host-advance + timer expiry race resolves
+        exactly once. Scoring was deferred out of _end_round_unlocked's main
+        loop (the per-player score depends on the final near-miss resolution),
+        so this runs the single, post-resolve scoring pass under the score lock
+        — accepted near-misses are now reflected in the leaderboard.
+        """
+        if not self._title_artist_voting_open:
+            return
+        self._title_artist_voting_open = False
+        self._challenge_manager.resolve_title_artist()
+        async with self._score_lock:
+            await self._score_title_artist_round()
+
+    async def _score_title_artist_round(self) -> None:
+        """Run the deferred title/artist scoring pass. Caller holds the lock.
+
+        Scores every player exactly once now that near-misses are resolved,
+        reusing _score_all_players so this path and _end_round_unlocked share
+        one scoring loop. Players were intentionally NOT scored in the main
+        loop (defer_title_artist), so this is the first and only score for the
+        round — no double-counting.
+        """
+        correct_year = self.current_song.get("year") if self.current_song else None
+        all_players = list(self.players.values())
+        self._score_all_players(correct_year, all_players)
+
+    async def resolve_title_artist_if_pending(self) -> None:
+        """Finalize an open vote window early (host advanced) (#1180 P4).
+
+        Called from the next_round admin handler before it starts the next
+        round / ends the game, so accepted near-misses are scored first.
+        Cancels the pending window task and finalizes. No-op when the window
+        isn't open (year mode, no near-misses, or already resolved).
+        """
+        if not self._title_artist_voting_open:
+            return
+        self._cancel_auto_advance()
+        await self._finalize_title_artist_window()
+
     def _song_finished(self) -> bool:
         """True once the round's song is no longer playing (#1012).
 
@@ -1708,30 +1934,16 @@ class GameState:
         # isolation: if one player's scoring fails, the rest still score and
         # the round still ends.
         all_players = list(self.players.values())
-        for player in self.players.values():
-            try:
-                ScoringService.score_player_round(
-                    player,
-                    correct_year=correct_year,
-                    round_start_time=self.round_start_time,
-                    round_duration=self.round_duration,
-                    difficulty=self.difficulty,
-                    artist_challenge=self.artist_challenge,
-                    movie_challenge=self.movie_challenge,
-                    is_intro_round=self.is_intro_round,
-                    intro_round_start_time=self._round_manager._intro_round_start_time,
-                    all_players=all_players,
-                    streak_achievements=self.streak_achievements,
-                    bet_tracking=self.bet_tracking,
-                )
-            except (KeyError, AttributeError, TypeError, ValueError) as err:
-                _LOGGER.error(
-                    "Scoring failed for player %s in round %d: %s — "
-                    "their score is unchanged this round, round still ends",
-                    getattr(player, "name", "?"),
-                    self.round,
-                    err,
-                )
+        # #1180 Phase 4: in title/artist mode with vote-eligible near-misses,
+        # the per-player score depends on the final near-miss resolution, which
+        # only happens after the REVEAL vote window closes. Defer scoring those
+        # players to _finalize_title_artist_window (scored exactly once, after
+        # resolve) so the leaderboard reflects accepted near-misses without the
+        # main loop and the rescore double-counting. With no near-misses the
+        # challenge resolves immediately, so scoring here is already final.
+        defer_title_artist = self.title_artist_mode and self.has_near_misses()
+        if not defer_title_artist:
+            self._score_all_players(correct_year, all_players)
 
         # Issue #442: Closest Wins — zero out non-closest players' scores.
         # #816: same defensive wrap as above.
@@ -1866,16 +2078,25 @@ class GameState:
         # instead of burning through the playlist unattended. The host's
         # manual "Next round" still resumes the game.
         self._cancel_auto_advance()
-        if any(p.submitted for p in self.players.values()):
-            self._auto_advance_task = asyncio.create_task(
-                self._reveal_auto_advance(self.reveal_auto_advance)
-            )
-        else:
-            _LOGGER.info(
-                "Round %d ended with zero guesses — holding after song-end",
-                self.round,
-            )
-            self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
+        # #1180 Phase 4: in title/artist mode the conditional vote window owns
+        # the REVEAL dwell. It opens the 15s window when there are near-misses
+        # (the window task also scores + rebroadcasts on expiry), or resolves
+        # immediately and falls through to the normal auto-advance when there
+        # are none. When the window is open it already owns _auto_advance_task,
+        # so skip the song-end auto-advance scheduling entirely.
+        if self.title_artist_mode:
+            self._schedule_title_artist_vote_window()
+        if not self._title_artist_voting_open:
+            if any(p.submitted for p in self.players.values()):
+                self._auto_advance_task = asyncio.create_task(
+                    self._reveal_auto_advance(self.reveal_auto_advance)
+                )
+            else:
+                _LOGGER.info(
+                    "Round %d ended with zero guesses — holding after song-end",
+                    self.round,
+                )
+                self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
 
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
@@ -2645,4 +2866,16 @@ class GameState:
         """Submit movie guess for bonus points (Issue #28). Delegates to ChallengeManager."""
         return self._challenge_manager.submit_movie_guess(
             player_name, movie, guess_time, self.round_start_time
+        )
+
+    def submit_title_artist_guess(
+        self, player_name: str, title: str, artist: str, ts: float
+    ) -> dict[str, Any]:
+        """Submit a Title & Artist guess (#1180). Delegates to ChallengeManager.
+
+        Returns {"title_status": str, "artist_status": str}; classification and
+        storage live on the challenge.
+        """
+        return self._challenge_manager.submit_title_artist_guess(
+            player_name, title, artist, ts
         )

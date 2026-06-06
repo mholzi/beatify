@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, buildWizChip } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -196,6 +196,178 @@ describe('capabilityBadgeForPlayer', () => {
 });
 
 // ------------------------------------------------------------------
+// applyGameModeTogglePrecedence — Step 4 mutual exclusion (#1180)
+//
+// The load-bearing requirement: enabling Title & Artist mode must NOT zero the
+// year-round bonus flags. The wizard writes these flags verbatim into
+// beatify_game_settings on every advance past Step 4, and admin.js reads that
+// same key — so zeroing them here would silently destroy the host's saved
+// bonus choices on the next admin reload (the exact regression admin.js's
+// applyTitleArtistBonusPrecedence contract guards against). Exclusivity is
+// asymmetric: TA is the replaceable round, so turning a year bonus on exits TA,
+// but turning TA on leaves the year flags untouched (suppression is applied
+// later, at start-game-payload build time in admin.js).
+// ------------------------------------------------------------------
+describe('applyGameModeTogglePrecedence', () => {
+    const allYearOn = {
+        artistChallenge: true,
+        movieQuiz: true,
+        introMode: true,
+        closestWinsMode: true,
+        titleArtistMode: false,
+    };
+
+    it('does NOT zero the year-round flags when TA mode is turned on', () => {
+        const out = applyGameModeTogglePrecedence(allYearOn, 'titleArtist', true);
+        expect(out).toEqual({
+            artistChallenge: true,
+            movieQuiz: true,
+            introMode: true,
+            closestWinsMode: true,
+            titleArtistMode: true,
+        });
+    });
+
+    it('turns TA mode off when a year-distance bonus (artist/closest) is turned on', () => {
+        // #1180: only the year-distance modes (artist challenge, closest wins)
+        // are mutually exclusive with TA. Movie quiz + intro are compatible
+        // bonuses and leave titleArtistMode untouched (see the movie/intro
+        // compatibility tests below), so they're deliberately excluded here.
+        const taOn = { ...allYearOn, artistChallenge: false, movieQuiz: false, introMode: false, closestWinsMode: false, titleArtistMode: true };
+        for (const [key, flag] of [
+            ['artist', 'artistChallenge'],
+            ['closest', 'closestWinsMode'],
+        ]) {
+            const out = applyGameModeTogglePrecedence(taOn, key, true);
+            expect(out[flag]).toBe(true);
+            expect(out.titleArtistMode).toBe(false);
+        }
+    });
+
+    it('keeps TA mode on when a compatible bonus (movie/intro) is turned on', () => {
+        const taOn = { artistChallenge: false, movieQuiz: false, introMode: false, closestWinsMode: false, titleArtistMode: true };
+        for (const [key, flag] of [
+            ['movie', 'movieQuiz'],
+            ['intro', 'introMode'],
+        ]) {
+            const out = applyGameModeTogglePrecedence(taOn, key, true);
+            expect(out[flag]).toBe(true);
+            expect(out.titleArtistMode).toBe(true);
+        }
+    });
+
+    it('does NOT touch TA mode when a year-round bonus is turned off', () => {
+        const taOn = { artistChallenge: false, movieQuiz: false, introMode: false, closestWinsMode: false, titleArtistMode: true };
+        const out = applyGameModeTogglePrecedence(taOn, 'artist', false);
+        expect(out.artistChallenge).toBe(false);
+        expect(out.titleArtistMode).toBe(true); // turning a bonus OFF must not exit TA
+    });
+
+    it('does not mutate the input object (source of truth survives)', () => {
+        const flags = { ...allYearOn };
+        const snapshot = { ...flags };
+        applyGameModeTogglePrecedence(flags, 'titleArtist', true);
+        expect(flags).toEqual(snapshot);
+    });
+
+    it('returns a new object reference', () => {
+        expect(applyGameModeTogglePrecedence(allYearOn, 'titleArtist', true)).not.toBe(allYearOn);
+    });
+});
+
+// ------------------------------------------------------------------
+// Persist → hydrate round-trip: enabling TA must NOT persist false over a
+// previously-true year-round bonus (#1180).
+//
+// This models the wizard's beatify_game_settings contract:
+//   - _persistGameSettings() merges the chosen* flags into the stored object
+//     under keys { artistChallenge, movieQuiz, introMode, closestWinsMode,
+//     titleArtistMode } (wizard.js).
+//   - On the next admin load, admin.js's loadSavedSettings() reads those keys
+//     straight back. The wizard's own show()/hydration reads them too.
+//   - Toggle precedence runs through applyGameModeTogglePrecedence.
+// The previous bug zeroed the year flags when TA was enabled, persisting false
+// and destroying the host's choices on the next admin reload. This is the
+// regression guard for that.
+// ------------------------------------------------------------------
+describe('wizard TA enable → persist → reload does not destroy bonus choices', () => {
+    // Mirror of _persistGameSettings()'s merge shape (only the Step-4 flags).
+    function persist(ls, flags) {
+        const raw = ls.getItem('beatify_game_settings');
+        const existing = raw ? JSON.parse(raw) : {};
+        ls.setItem('beatify_game_settings', JSON.stringify({
+            ...existing,
+            artistChallenge: flags.artistChallenge,
+            movieQuiz: flags.movieQuiz,
+            introMode: flags.introMode,
+            closestWinsMode: flags.closestWinsMode,
+            titleArtistMode: flags.titleArtistMode,
+        }));
+    }
+
+    // Mirror of the wizard / admin hydration: read flags straight back.
+    function hydrate(ls) {
+        const s = JSON.parse(ls.getItem('beatify_game_settings'));
+        return {
+            artistChallenge: s.artistChallenge,
+            movieQuiz: s.movieQuiz,
+            introMode: s.introMode,
+            closestWinsMode: s.closestWinsMode,
+            titleArtistMode: s.titleArtistMode,
+        };
+    }
+
+    it('keeps a previously-true Artist Challenge after enabling TA, persisting, reloading, then disabling TA', () => {
+        const ls = makeLS();
+
+        // Host has Artist Challenge ON, TA off. Wizard advances past Step 4.
+        let flags = {
+            artistChallenge: true,
+            movieQuiz: false,
+            introMode: false,
+            closestWinsMode: false,
+            titleArtistMode: false,
+        };
+        persist(ls, flags);
+
+        // Host taps the TA card ON in the wizard.
+        flags = applyGameModeTogglePrecedence(flags, 'titleArtist', true);
+        // The bonus flag must NOT have been zeroed by the toggle...
+        expect(flags.artistChallenge).toBe(true);
+        persist(ls, flags);
+        // ...and must NOT be persisted as false.
+        expect(JSON.parse(ls.getItem('beatify_game_settings')).artistChallenge).toBe(true);
+
+        // Reload admin (no wizard mutation): the stored choice survives.
+        flags = hydrate(ls);
+        expect(flags.titleArtistMode).toBe(true);
+        expect(flags.artistChallenge).toBe(true);
+
+        // Host turns TA off again (e.g. via admin) → Artist Challenge restored.
+        flags = applyGameModeTogglePrecedence(flags, 'titleArtist', false);
+        persist(ls, flags);
+        flags = hydrate(ls);
+        expect(flags.titleArtistMode).toBe(false);
+        expect(flags.artistChallenge).toBe(true);
+    });
+});
+
+// ------------------------------------------------------------------
+// difficultyDisplayFor — difficulty area depends on the core mode
+// ------------------------------------------------------------------
+describe('difficultyDisplayFor', () => {
+    it('shows the year-distance chips and no summary in Jahr mode', () => {
+        expect(difficultyDisplayFor(false)).toEqual({ showChips: true, summaryKey: null });
+    });
+
+    it('hides the chips and shows the T&I scoring summary in Title & Artist mode', () => {
+        expect(difficultyDisplayFor(true)).toEqual({
+            showChips: false,
+            summaryKey: 'wizard.step4.taScoring',
+        });
+    });
+});
+
 // buildWizChip — Light Mode chip markup contract (#1228 regression)
 // ------------------------------------------------------------------
 describe('buildWizChip', () => {
