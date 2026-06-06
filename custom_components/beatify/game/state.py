@@ -755,6 +755,12 @@ class GameState:
         """End the current game and reset state."""
         _LOGGER.info("Game ended: %s", self.game_id)
         self.cancel_timer()
+        # #1012: cancel the REVEAL auto-advance task synchronously, BEFORE the
+        # awaits below. Otherwise a countdown expiring at the same instant could
+        # fire start_round() during disable_party_lights()/disable_tts() (phase
+        # is still REVEAL there) and trigger the next song after the game ended.
+        # advance_to_end() already does this; the HTTP/force-end path lands here.
+        self._cancel_auto_advance()
         # Issue #331: Restore lights before resetting
         await self.disable_party_lights()
         # Issue #447: Disable TTS
