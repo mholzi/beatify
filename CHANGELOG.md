@@ -4,51 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [3.4.5-rc5] - 2026-06-06
+## [3.5.0] - 2026-06-06
+
+### Added
+- **Reveal: per-player dot-axis.** After each round, the round-stats (ⓘ) sheet shows every player as a dot on a year timeline — who guessed what and the points they earned, with your own dot ringed and the top three medalled (#1178, PR #1184 / #1230).
+- **Auto-advance countdown on every screen.** The seconds to the next round now show on the host's Next button, the TV/dashboard view, and the player's phone (#1048, #1185, PR #1231). TV countdown requested by @Dtrieb.
+- **Localized TTS voice announcements.** Announcements follow the selected game language (German, Spanish, French, Dutch), forwarded to the engine only when it advertises support, with years/scores spoken as words via `num2words`. English output unchanged (#1225).
+- **iconic-movie-songs — new playlist (72 tracks)** with a dedicated movie-quiz mode (#1215, PR #1217).
+- **world-cup-anthems — new playlist (26 tracks).** Official FIFA World Cup songs 1962–2026 (#1190, PR #1191).
+- **disney-classics grown +69 tracks** (requested by @maxlin1) and **disco-funk-classics +22** (#1165, #1171).
+- **README "Play On A TV" section** documenting the dashboard TV display + Lovelace iframe card (#1181, PR #1182).
 
 ### Fixed
-- **No stray next-song after force-ending a game.** `end_game()` now cancels the REVEAL auto-advance task synchronously, closing a race where ending the game (via the API / force-reset path) at the exact instant the reveal countdown expired could start the next song after the game had already ended (#1012, PR #1233).
+- **Party lights now fire on game start** for non-Hue / wizard-configured setups (e.g. Govee) — the config is read fresh and sent on start. Light Mode chips (Static / Dynamic / WLED) are selectable again, unreachable lights are hidden from the picker, and the setup copy no longer implies Philips Hue only (reworded in all 5 languages) (#1228).
+- **#1122 — screen sleep disconnected players and the admin.** The wake lock is acquired inside the start-game gesture. Reported by @maxlin1 (PR #1207).
+- **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video satisfies iOS's gesture requirement (PR #1216).
+- **#1211 — timer and TTS announcements were out of sync.** `tts_pre_round_delay` offsets the round timer so the countdown starts when the music does. Reported by @nixbuongiorno (PR #1212).
+- **`<html lang>` now syncs with the active locale**, so Android Chrome stops auto-translating the UI (#1177, PR #1179).
+- **No stray next-song after force-ending a game.** `end_game()` cancels the REVEAL auto-advance task synchronously, closing a race on the API / force-reset path (#1012, PR #1233).
+- **Catalog data:** broken or wrong provider URIs repaired and release years corrected across world-cup-anthems, disney-classics, anime-openings, 80er-hits, 90er-hits, pure-pop-punk, 2000s-pop-anthems, one-hit-wonders, hitster-100-en-espanol, ballermann-party-hits, harder-styles, trance-classics and edm-anthems.
 
 ### Chore
-- **Removed dead round-analytics code.** The retired round-analytics renderers (`renderRoundAnalytics` / `renderHistogram` / `setupRoundAnalyticsToggle`) and their hidden placeholder DOM — orphaned since the v3.2.0 "Guess Duel" reveal redesign — were removed after rc4 moved the per-player dot-axis to the round-stats sheet. No user-facing change (PR #1232).
-
-## [3.4.5-rc4] - 2026-06-06
-
-### Added
-- **Reveal auto-advance countdown on the player's phone.** The countdown ring already lived on the admin's Next button (#1048) and the TV dashboard (#1185), but the player had no way to see how long the reveal stays up before the next round. The phone reveal header now shows a compact countdown ring — server-authoritative (in sync with the other two), hidden when auto-advance is Off or the round is idle-halted, cyan to match the player's round timer (PR #1231).
-
-### Fixed
-- **Per-player dot-axis never rendered (rc1–rc3).** The phone reveal's per-player dot-axis (#1178) was wired into `renderRoundAnalytics()`, a code path retired by the v3.2.0 "Guess Duel" reveal redesign — so it never showed. It now renders in the round-stats (ⓘ) sheet, the live analytics surface (#1184, PR #1230).
-
-## [3.4.5-rc3] - 2026-06-04
-
-### Added
-- **Localized TTS voice announcements.** In-game voice announcements now follow the selected game language (German, Spanish, French, Dutch) instead of always speaking English — the `language` setting previously drove only the web UI. The game language is forwarded to the TTS engine only when the target entity advertises support for it (resolved to the engine's own code, e.g. `de`→`de-DE`), so an unsupported code can't silence announcements. Numbers (years, scores, round/streak counts) are spoken as words via `num2words` so neural engines (e.g. ElevenLabs) don't swallow bare digits in non-English speech. English output is unchanged. Adds the `num2words` dependency.
-- **iconic-movie-songs — new community playlist (72 tracks).** Iconic songs from the movies, built end-to-end through the in-app "request a playlist" funnel and enriched across all providers (Spotify, Apple Music across 7 storefront regions, Deezer, YouTube Music), with a dedicated movie-quiz mode (`movie` + `movie_choices`). Closes #1215 (PR #1217).
-
-### Fixed
-- **Party lights never activated for many setups (e.g. Govee).** The start-game request sent a stale, empty party-lights config because the picker state wasn't re-read from storage before sending, so the backend skipped light control entirely — most visible with non-Hue lights and wizard-configured setups. The enabled flag and selected lights are now sent reliably (mirrors the same fix already in TTS).
-- **Wizard "Light Mode" chips (Static / Dynamic / WLED) couldn't be selected.** A `data-lightMode` vs `[data-light-mode]` attribute-case mismatch left them unbound, so cloud lights (e.g. Govee Cloud) couldn't be switched to the gentler Static mode that avoids cloud-API rate limits.
-- **Unreachable lights are hidden from the picker.** `unavailable` entities can't be controlled by anyone, so listing them only produced dead selections that silently did nothing during the game.
-- **Party-lights setup copy no longer implies Philips Hue only** — it works with any Home Assistant light. Reworded across all five languages.
-- **#1122 — screen sleep disconnected players and the admin from the game.** The admin wake lock is now acquired inside the start-game tap gesture, so a fresh session holds it straight away instead of waiting for the first tab-switch. Reported by **@maxlin1** (PR #1207).
-- **#1208 — passive iOS dashboard / TV displays fell asleep.** A muted, inline autoplay keep-awake video now satisfies iOS's gesture requirement on passive displays (PR #1216).
-- **#1211 — Timer and TTS announcements were out of sync.** A new `tts_pre_round_delay` offsets the round timer for the TTS speak-time, so the countdown starts when the music does (~10s drift removed). Reported by **@nixbuongiorno** (PR #1212).
-- **Catalog data:** broken or wrong provider URIs repaired across hitster-100-en-espanol, anime-openings, ballermann-party-hits, harder-styles, trance-classics and edm-anthems, plus a release-year correction (Masatoshi Ono – "Departure!" 2022→2011) (PRs #1202, #1204, #1206, #1210, #1214, #1219, #1220).
-
-## [3.4.5-rc1] - 2026-05-31
-
-### Added
-- **Reveal: per-player dot-axis on phone.** The phone reveal now shows a dot for each player on a timeline instead of a histogram — see at a glance where everyone landed (#1178, PR #1184).
-- **Dashboard: auto-advance countdown ring on TV reveal.** The round advances on its own on the big-screen view. Requested by @Dtrieb (#1185, PR #1199).
-- **README: "Play On A TV" section.** Documents the dashboard.html TV display + Lovelace iframe-card path. Prompted by @Exacute (#1181, PR #1182).
-- **world-cup-anthems — new playlist (26 tracks).** Official FIFA World Cup songs 1962–2026 (#1190, PR #1191).
-- **disney-classics grown +69 tracks.** Requested by @maxlin1 (#1171, PR #1172).
-- **disco-funk-classics grown +22 tracks** from "This is Disco" (#1165, PR #1166).
-
-### Fixed
-- **`<html lang>` now syncs with the active locale** (#1177, PR #1179).
-- **Catalog data:** several Apple Music / Spotify / Deezer / YouTube Music URIs repaired and a handful of release-year tags corrected across world-cup-anthems, disney-classics, 80er-hits, 90er-hits, pure-pop-punk, 2000s-pop-anthems and one-hit-wonders (PRs #1168, #1170, #1175, #1176, #1187, #1189, #1194, #1196, #1198, #1200).
+- **Removed dead round-analytics code** (retired renderers + hidden placeholder DOM) after the per-player dot-axis moved to the round-stats sheet (PR #1232).
 
 ## [3.4.4] - 2026-05-28
 
