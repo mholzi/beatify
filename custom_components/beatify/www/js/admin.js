@@ -2041,7 +2041,7 @@ async function startGame() {
         };
         const bonusFlags = (window.BeatifyTitleArtist && typeof window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence === 'function')
             ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, titleArtistModeEnabled)
-            : { ...rawBonusFlags, ...(titleArtistModeEnabled ? { artist_challenge_enabled: false, movie_quiz_enabled: false, intro_mode_enabled: false, closest_wins_mode: false } : {}) };
+            : { ...rawBonusFlags, ...(titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
 
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
