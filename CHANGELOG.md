@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.5-rc4] - 2026-06-06
+
+### Added
+- **Reveal auto-advance countdown on the player's phone.** The countdown ring already lived on the admin's Next button (#1048) and the TV dashboard (#1185), but the player had no way to see how long the reveal stays up before the next round. The phone reveal header now shows a compact countdown ring — server-authoritative (in sync with the other two), hidden when auto-advance is Off or the round is idle-halted, cyan to match the player's round timer (PR #1231).
+
+### Fixed
+- **Per-player dot-axis never rendered (rc1–rc3).** The phone reveal's per-player dot-axis (#1178) was wired into `renderRoundAnalytics()`, a code path retired by the v3.2.0 "Guess Duel" reveal redesign — so it never showed. It now renders in the round-stats (ⓘ) sheet, the live analytics surface (#1184, PR #1230).
+
 ## [3.4.5-rc3] - 2026-06-04
 
 ### Added
