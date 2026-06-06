@@ -503,6 +503,15 @@
                         <span id="reveal-total">10</span>
                     </div>
                     <div class="header-right">
+                        <!-- Auto-advance countdown ring (hidden when reveal_auto_advance==0 or idle_halt) -->
+                        <span id="player-reveal-countdown" class="reveal-advance-pill hidden" role="timer"
+                              aria-label="Next round countdown" data-i18n-aria-label="reveal.autoAdvanceAria">
+                            <svg viewBox="0 0 60 60" class="reveal-advance-svg" aria-hidden="true">
+                                <circle class="reveal-advance-bg" cx="30" cy="30" r="25"></circle>
+                                <circle class="reveal-advance-fg" cx="30" cy="30" r="25"></circle>
+                            </svg>
+                            <span class="reveal-advance-num" id="player-reveal-countdown-num">0</span>
+                        </span>
                         <span id="reveal-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
                         <button type="button" id="round-stats-btn" class="info-btn"
                                 aria-label="Round stats"

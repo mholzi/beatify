@@ -284,7 +284,8 @@
     "weeksOnChart": "semaines au classement",
     "weeksShort": "sem",
     "moreAwards": "plus",
-    "playerNotFound": "Joueur introuvable"
+    "playerNotFound": "Joueur introuvable",
+    "autoAdvanceAria": "Compte à rebours avant la prochaine manche"
   },
   "leaderboard": {
     "title": "Classement",
