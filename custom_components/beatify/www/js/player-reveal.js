@@ -37,6 +37,11 @@ export function updateRevealView(data) {
     var idleHalt = document.getElementById('reveal-idle-halt');
     if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
 
+    // Auto-advance countdown — mirrors the admin sticky-Next countdown (#1048)
+    // and the TV dashboard ring (#1185). Players had no way to see how long the
+    // reveal stays up before the next round; now they do.
+    updateRevealCountdown(data);
+
     // Issue #442: Show/hide Closest Wins badge during REVEAL
     var closestBadge = document.getElementById('closest-wins-badge');
     if (closestBadge) {
@@ -173,6 +178,73 @@ export function updateRevealView(data) {
     } else if (adminControls) {
         adminControls.classList.add('hidden');
     }
+}
+
+// ============================================
+// Reveal auto-advance countdown (mirrors admin #1048 / dashboard #1185)
+// ============================================
+
+var _revealAdvanceTick = null;
+
+/**
+ * Stop and reset the reveal auto-advance countdown. Safe to call any time;
+ * called from player-core on every phase that leaves REVEAL.
+ */
+export function stopRevealCountdown() {
+    if (_revealAdvanceTick !== null) {
+        clearInterval(_revealAdvanceTick);
+        _revealAdvanceTick = null;
+    }
+    var chip = document.getElementById('player-reveal-countdown');
+    if (chip) chip.classList.add('hidden');
+}
+
+/**
+ * Drive the reveal auto-advance countdown ring on the player's phone.
+ * Server sends reveal_auto_advance (seconds, 0 = off) and reveal_started_at
+ * (ms epoch); remaining = max(0, started + duration*1000 - now). Hidden when
+ * auto-advance is off OR the round is idle-halted (server holds REVEAL).
+ */
+export function updateRevealCountdown(data) {
+    var chip = document.getElementById('player-reveal-countdown');
+    var numEl = document.getElementById('player-reveal-countdown-num');
+    var fgCircle = chip ? chip.querySelector('.reveal-advance-fg') : null;
+    if (!chip || !numEl || !fgCircle) return;
+
+    // Stop any existing tick before re-binding state (no stacking intervals).
+    if (_revealAdvanceTick !== null) {
+        clearInterval(_revealAdvanceTick);
+        _revealAdvanceTick = null;
+    }
+
+    var duration = data.reveal_auto_advance || 0;
+    var startedAt = data.reveal_started_at || 0;
+    var idleHalt = !!data.idle_halt;
+
+    if (duration <= 0 || !startedAt || idleHalt) {
+        chip.classList.add('hidden');
+        return;
+    }
+
+    chip.classList.remove('hidden');
+    // SVG circle r=25 -> circumference 2*pi*r ~= 157.08
+    var circumference = 157.08;
+    fgCircle.style.strokeDasharray = circumference;
+
+    function paint() {
+        var remainingMs = Math.max(0, startedAt + duration * 1000 - Date.now());
+        var remaining = Math.ceil(remainingMs / 1000);
+        numEl.textContent = remaining;
+        // Drained progress: ring is full at start, empties as time elapses.
+        var pctRemaining = remainingMs / (duration * 1000);
+        fgCircle.style.strokeDashoffset = String(circumference * (1 - pctRemaining));
+        if (remainingMs <= 0 && _revealAdvanceTick !== null) {
+            clearInterval(_revealAdvanceTick);
+            _revealAdvanceTick = null;
+        }
+    }
+    paint();
+    _revealAdvanceTick = setInterval(paint, 500);
 }
 
 // ============================================

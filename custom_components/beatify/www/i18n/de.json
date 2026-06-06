@@ -284,7 +284,8 @@
     "weeksOnChart": "Wochen in den Charts",
     "weeksShort": "Wo.",
     "moreAwards": "weitere",
-    "playerNotFound": "Spieler nicht gefunden"
+    "playerNotFound": "Spieler nicht gefunden",
+    "autoAdvanceAria": "Countdown bis zur nächsten Runde"
   },
   "leaderboard": {
     "title": "Rangliste",

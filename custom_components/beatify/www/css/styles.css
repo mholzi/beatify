@@ -11282,6 +11282,40 @@ body.is-learning-screen .player-header { display: none; }
 .reveal-header-v2 .header-right {
     display: flex; align-items: center; gap: var(--space-sm);
 }
+/* Auto-advance countdown ring on the player reveal (mirrors admin #1048 /
+   dashboard #1185). Cyan per DESIGN.md — timer = --color-accent-secondary. */
+.reveal-advance-pill {
+    position: relative;
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.reveal-advance-pill.hidden { display: none; }
+.reveal-advance-svg {
+    width: 100%; height: 100%;
+    transform: rotate(-90deg);
+}
+.reveal-advance-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 5;
+}
+.reveal-advance-fg {
+    fill: none;
+    stroke: var(--color-accent-secondary);
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s linear;
+    filter: drop-shadow(var(--glow-secondary));
+}
+.reveal-advance-num {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 13px;
+    color: var(--color-accent-secondary);
+}
 .info-btn {
     width: 28px; height: 28px;
     border-radius: 50%;

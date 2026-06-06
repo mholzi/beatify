@@ -38,7 +38,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
-import { updateRevealView, setupRevealSheets, setupRevealReportBtn } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets, setupRevealReportBtn, stopRevealCountdown } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
 
@@ -557,6 +557,7 @@ function handleServerMessage(data) {
 
         if (data.phase === 'LOBBY') {
             stopCountdown();
+            stopRevealCountdown();
             hideAdminControlBar();
             hideReactionBar();
             state.currentRoundNumber = 0;
@@ -602,6 +603,7 @@ function handleServerMessage(data) {
                 exitTour();
             }
             stopConfetti();
+            stopRevealCountdown();  // leaving REVEAL for the next round
             requestWakeLock(); // #622: keep screen on during gameplay
             var newRound = data.round || 1;
             if (newRound !== state.currentRoundNumber) {
@@ -645,6 +647,7 @@ function handleServerMessage(data) {
             showReactionBar();
         } else if (data.phase === 'PAUSED') {
             stopCountdown();
+            stopRevealCountdown();
             hideAdminControlBar();
             hideReactionBar();
             setEnergyLevel('warmup');
@@ -652,6 +655,7 @@ function handleServerMessage(data) {
             updatePausedView(data);
         } else if (data.phase === 'END') {
             stopCountdown();
+            stopRevealCountdown();
             hideAdminControlBar();
             hideReactionBar();
             releaseWakeLock(); // #622: allow screen to sleep again

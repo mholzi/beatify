@@ -284,7 +284,8 @@
     "weeksOnChart": "weken in de hitlijst",
     "weeksShort": "wk",
     "moreAwards": "meer",
-    "playerNotFound": "Speler niet gevonden"
+    "playerNotFound": "Speler niet gevonden",
+    "autoAdvanceAria": "Aftellen tot de volgende ronde"
   },
   "leaderboard": {
     "title": "Scorebord",

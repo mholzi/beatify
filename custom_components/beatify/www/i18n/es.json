@@ -284,7 +284,8 @@
     "weeksOnChart": "semanas en el chart",
     "weeksShort": "sem",
     "moreAwards": "mas",
-    "playerNotFound": "Jugador no encontrado"
+    "playerNotFound": "Jugador no encontrado",
+    "autoAdvanceAria": "Cuenta atrás para la siguiente ronda"
   },
   "leaderboard": {
     "title": "Clasificacion",
