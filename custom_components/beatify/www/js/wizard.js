@@ -789,6 +789,7 @@ const CORE_MODES = [
     {
         key: 'year',
         icon: '📅',
+        accent: 'pink',
         titleKey: 'wizard.step4.modeYear',
         titleFallback: 'Year mode',
         hintKey: 'wizard.step4.modeYearHint',
@@ -799,6 +800,7 @@ const CORE_MODES = [
     {
         key: 'titleArtist',
         icon: '✍️',
+        accent: 'cyan',
         titleKey: 'wizard.step4.modeTitleArtist',
         titleFallback: 'Title & Artist',
         hintKey: 'wizard.step4.modeTitleArtistHint',
@@ -813,7 +815,11 @@ function _renderCoreMode() {
     if (!el) return;
     el.innerHTML = CORE_MODES.map((m) => {
         const sel = m.selected();
-        return `<div class="wiz-coremode-card ${sel ? 'selected' : ''}" data-coremode="${m.key}" role="button" tabindex="0" aria-pressed="${sel}">
+        const badge = sel
+            ? `<span class="wiz-coremode-badge">${_t('wizard.step4.modePlaying', 'Playing')}</span>`
+            : '';
+        return `<div class="wiz-coremode-card wiz-coremode-card--${m.accent} ${sel ? 'selected' : 'dim'}" data-coremode="${m.key}" role="button" tabindex="0" aria-pressed="${sel}">
+            ${badge}
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
             <div class="wiz-mode-body">
                 <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>

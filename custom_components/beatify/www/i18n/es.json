@@ -907,6 +907,7 @@
       "modeTitleArtist": "Título e Intérprete",
       "modeTitleArtistHint": "Escribe el título y el intérprete.",
       "taScoring": "Título 10 · Intérprete 5 · Parcial 5/3",
+      "modePlaying": "Activo",
       "bonusModes": "Modos extra"
     },
     "done": {

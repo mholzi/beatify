@@ -907,6 +907,7 @@
       "modeTitleArtist": "Title & Artist",
       "modeTitleArtistHint": "Type the song title + artist.",
       "taScoring": "Title 10 · Artist 5 · Partial 5/3",
+      "modePlaying": "Playing",
       "bonusModes": "Bonus modes"
     },
     "done": {

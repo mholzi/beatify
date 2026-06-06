@@ -10392,32 +10392,88 @@ body.home-mode .home-view {
     background: var(--color-bg-primary);
 }
 
-/* Wizard Step 4 — core game-mode selector (#1180 polish).
-   Reuses .wiz-mode-icon/.wiz-mode-body/.wiz-mode-title/.wiz-mode-hint. */
+/* Wizard Step 4 — core game-mode selector (#1180).
+   "Pick your game" split: two poster panels, each with its own accent
+   (year = pink, title&artist = cyan). The chosen one lifts + glows and shows a
+   "Playing" badge; the other dims. Shared .wiz-mode-* type rules are overridden
+   only inside .wiz-coremode-card so the bonus-mode cards are unaffected. */
 .wiz-coremode-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-sm);
 }
 .wiz-coremode-card {
+    position: relative;
     display: flex;
-    align-items: flex-start;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: var(--space-md) var(--space-sm);
     background: var(--color-dark-surface);
-    border: 1px solid var(--color-border-neon);
-    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--color-border-neon);
+    border-radius: var(--radius-xl);
     cursor: pointer;
-    transition: var(--transition-fast);
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+                background var(--transition-fast), border-color var(--transition-fast),
+                opacity var(--transition-fast);
 }
 .wiz-coremode-card:hover { background: var(--color-dark-surface-hover); }
-.wiz-coremode-card.selected {
-    background: rgba(255, 45, 106, 0.10);
-    border-color: var(--color-accent-primary);
-    box-shadow: 0 0 0 1px var(--color-accent-primary) inset;
+.wiz-coremode-card .wiz-mode-icon {
+    font-size: 32px;
+    margin-top: 0;
 }
-@media (max-width: 420px) {
-    .wiz-coremode-cards { grid-template-columns: 1fr; }
+.wiz-coremode-card .wiz-mode-body { flex: none; }
+.wiz-coremode-card .wiz-mode-title {
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+.wiz-coremode-card .wiz-mode-hint { color: var(--color-text-dim); }
+
+/* Selected — accent fill + lift + glow, per mode. */
+.wiz-coremode-card.selected { transform: translateY(-2px); }
+.wiz-coremode-card--pink.selected {
+    border-color: var(--color-accent-primary);
+    background: radial-gradient(120% 100% at 50% 0%, rgba(255, 45, 106, 0.22), rgba(255, 45, 106, 0.04));
+    box-shadow: 0 0 24px rgba(255, 45, 106, 0.30);
+}
+.wiz-coremode-card--cyan.selected {
+    border-color: var(--color-accent-secondary);
+    background: radial-gradient(120% 100% at 50% 0%, rgba(0, 245, 255, 0.20), rgba(0, 245, 255, 0.03));
+    box-shadow: 0 0 24px rgba(0, 245, 255, 0.28);
+}
+
+/* Unselected — dimmed, but lifts toward full on hover so it still feels pickable. */
+.wiz-coremode-card.dim { opacity: 0.5; }
+.wiz-coremode-card.dim:hover { opacity: 0.8; }
+
+/* "Playing" badge, top-right, tinted to the panel's accent. */
+.wiz-coremode-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+}
+.wiz-coremode-card--pink .wiz-coremode-badge {
+    background: var(--color-accent-primary);
+    color: var(--color-text-white);
+}
+.wiz-coremode-card--cyan .wiz-coremode-badge {
+    background: var(--color-accent-secondary);
+    color: #04222a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wiz-coremode-card { transition: none; }
+    .wiz-coremode-card.selected { transform: none; }
 }
 
 /* Home-view: Cast to TV link */
