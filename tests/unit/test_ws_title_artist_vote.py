@@ -121,6 +121,25 @@ class TestVoteHandler:
         sent = [c.args[0] for c in bob_ws.send_json.await_args_list]
         assert any(m.get("code") == ERR_INVALID_ACTION for m in sent)
 
+    async def test_vote_rejected_for_unknown_nearmiss_id(self):
+        # #1180: a fabricated nearmiss_id must not create a votes entry — this
+        # is the DoS guard against flooding the dict with arbitrary ids.
+        handler, gs = _make_handler_game()
+        alice_ws, bob_ws = await _setup_reveal_with_near_miss(handler, gs)
+        ta = gs._challenge_manager.title_artist_challenge
+        await handler._handle_message(
+            bob_ws,
+            {
+                "type": "title_artist_vote",
+                "nearmiss_id": "Ghost:title",  # no such near-miss
+                "accept": True,
+            },
+        )
+        assert "Ghost:title" not in ta.votes
+        sent = [c.args[0] for c in bob_ws.send_json.await_args_list]
+        assert any(m.get("code") == ERR_INVALID_ACTION for m in sent)
+        gs._cancel_auto_advance()
+
 
 class TestOverrideHandler:
     async def test_override_recorded_by_admin(self):
@@ -157,6 +176,25 @@ class TestOverrideHandler:
         )
         sent = [c.args[0] for c in alice_ws.send_json.await_args_list]
         assert any(m.get("code") == ERR_NOT_ADMIN for m in sent)
+        gs._cancel_auto_advance()
+
+    async def test_override_rejected_for_unknown_nearmiss_id(self):
+        # #1180: admin overrides are allowlisted to real near-misses too, so a
+        # fabricated id can't grow the overrides dict.
+        handler, gs = _make_handler_game()
+        alice_ws, bob_ws = await _setup_reveal_with_near_miss(handler, gs)
+        ta = gs._challenge_manager.title_artist_challenge
+        await handler._handle_message(
+            bob_ws,  # Bob is admin
+            {
+                "type": "title_artist_override",
+                "nearmiss_id": "Ghost:title",  # no such near-miss
+                "accept": True,
+            },
+        )
+        assert "Ghost:title" not in ta.overrides
+        sent = [c.args[0] for c in bob_ws.send_json.await_args_list]
+        assert any(m.get("code") == ERR_INVALID_ACTION for m in sent)
         gs._cancel_auto_advance()
 
 

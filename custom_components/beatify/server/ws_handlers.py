@@ -1665,6 +1665,19 @@ async def handle_title_artist_vote(
         )
         return
 
+    # #1180: only accept votes for a real, vote-eligible near-miss. Without this
+    # the votes dict would store an entry for ANY string, letting a player flood
+    # it with fabricated ids during REVEAL and exhaust server memory.
+    if nearmiss_id not in {nm["id"] for nm in game_state.get_near_misses()}:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Unknown nearmiss_id",
+            }
+        )
+        return
+
     # Reject self-vote: the near-miss player is the part before the last ":".
     nearmiss_player = nearmiss_id.rsplit(":", 1)[0]
     if nearmiss_player == player.name:
@@ -1734,6 +1747,18 @@ async def handle_title_artist_override(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Invalid override value",
+            }
+        )
+        return
+
+    # #1180: only accept overrides for a real, vote-eligible near-miss (mirrors
+    # the vote handler) so the overrides dict can't be grown with fake ids.
+    if nearmiss_id not in {nm["id"] for nm in game_state.get_near_misses()}:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Unknown nearmiss_id",
             }
         )
         return
