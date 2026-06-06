@@ -616,6 +616,22 @@ const LANGUAGES = [
     { id: 'nl', label: 'Nederlands' },
 ];
 
+/**
+ * Build a wizard chip button. Pure helper so the attribute contract is testable
+ * (#1228 regression: the `data-<group>` name must stay kebab-case so the
+ * `[data-light-mode]` click binding + `dataset.lightMode` read keep matching —
+ * a `data-lightMode` typo silently unbinds the Static/Dynamic/WLED chips).
+ * @param {string} id - chip value, written into data-<group>
+ * @param {string} label - visible text
+ * @param {string} group - kebab-case attribute group (e.g. "light-mode")
+ * @param {string} activeId - currently-selected id; adds "active" when it matches
+ * @returns {string} button HTML
+ */
+export function buildWizChip(id, label, group, activeId) {
+    const active = activeId === id ? ' active' : '';
+    return `<button type="button" class="wiz-chip${active}" data-${group}="${id}">${label}</button>`;
+}
+
 function _renderChipGroup(elId, items, active, onPick) {
     const el = document.getElementById(elId);
     if (!el) return;
@@ -765,7 +781,7 @@ function _lightsDetailHtml() {
              placeholder="${_t('wizard.step5.lights.searchPlaceholder', 'Search lights…')}"
              aria-label="${_t('wizard.step5.lights.searchPlaceholder', 'Search lights…')}">`
         : '';
-    const chip = (id, label, group) => `<button type="button" class="wiz-chip ${(group === 'intensity' ? chosenLightIntensity : chosenLightMode) === id ? 'active' : ''}" data-${group}="${id}">${label}</button>`;
+    const chip = (id, label, group) => buildWizChip(id, label, group, group === 'intensity' ? chosenLightIntensity : chosenLightMode);
 
     const wledBlock = chosenLightMode === 'wled'
         ? `<div class="wiz-field">
