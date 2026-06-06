@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [3.4.5-rc5] - 2026-06-06
+
+### Fixed
+- **No stray next-song after force-ending a game.** `end_game()` now cancels the REVEAL auto-advance task synchronously, closing a race where ending the game (via the API / force-reset path) at the exact instant the reveal countdown expired could start the next song after the game had already ended (#1012, PR #1233).
+
+### Chore
+- **Removed dead round-analytics code.** The retired round-analytics renderers (`renderRoundAnalytics` / `renderHistogram` / `setupRoundAnalyticsToggle`) and their hidden placeholder DOM — orphaned since the v3.2.0 "Guess Duel" reveal redesign — were removed after rc4 moved the per-player dot-axis to the round-stats sheet. No user-facing change (PR #1232).
+
 ## [3.4.5-rc4] - 2026-06-06
 
 ### Added
