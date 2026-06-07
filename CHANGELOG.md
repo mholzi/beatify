@@ -4,10 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.0.0-rc1] - 2026-06-07
+
 ### Added
+- **"Title & Artist" guessing mode — a whole new way to play.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact / fuzzy / near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, a host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales (#1180, #1229).
 - **Wizard Step 4 redesign — pick the game mode up front.** The host wizard's "How do you want to play?" step now leads with two **mode cards** (📅 Year mode · ✍️ Title & Artist) instead of burying Title & Artist at the bottom of the bonus toggles. Dependent options react live: the year-distance **difficulty** picker shows only in Year mode and is replaced by a fixed "Title 10 · Artist 5 · Partial 5/3" scoring summary in Title & Artist mode, and the incompatible bonuses (Artist Challenge, Closest Wins) are hidden. The standalone admin settings panel gets the same behaviour, and the wizard's "Ready to play" summary now names the chosen mode (#1180).
 - **Title & Artist now runs alongside Movie Quiz and Intro Mode.** These two bonuses are compatible with the mode — a soundtrack round can still ask for the movie, an intro round can still play a shortened clip — and their points stack with the title/artist score. Only the year-distance modes (Artist Challenge, Closest Wins) remain mutually exclusive with it (supersedes the earlier "all year-round bonuses hide" behaviour) (#1180).
-- **"Title & Artist" guessing mode.** A new game mode where players type the song title and artist as free text instead of guessing the year. Per-field exact / fuzzy / near-miss scoring with Levenshtein matching, 👍/👎 peer voting on near-misses, a host Accept/Reject override, a 15s reveal countdown, and full TV standings — across all 5 locales (#1180).
 
 ### Fixed
 - **Title & Artist mode chosen in the wizard wasn't applied at game start.** The wizard saved the mode to local storage, but the admin read its game settings only once at page load and refreshed game *status* (not *settings*) when the wizard closed — so start-game sent `title_artist_mode: false` and the round ran in normal (year) mode. The admin now re-reads its settings on wizard completion, so every wizard choice (mode, difficulty, bonuses, language, playlists) takes effect (#1180).
