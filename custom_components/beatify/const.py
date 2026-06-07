@@ -37,11 +37,17 @@ ARTIST_POINTS = 5
 # Partial-credit points for a vote-accepted near-miss per field.
 TITLE_PARTIAL_POINTS = 5
 ARTIST_PARTIAL_POINTS = 3
-# Fuzzy matching: max Levenshtein edits to auto-accept as a typo.
+# Fuzzy matching: base Levenshtein budget to auto-accept as a typo, for
+# normalized truths in the short range (FUZZY_MIN_LEN up to the first
+# FUZZY_EXTRA_EDIT_LENGTHS threshold).
 FUZZY_MAX_EDITS = 2
 # Guard: only apply fuzzy matching when the normalized truth is at least
 # this long, to avoid 2-edit false positives on short words.
 FUZZY_MIN_LEN = 5
+# Longer titles can absorb more slips: each normalized-length threshold here
+# grants +1 to the fuzzy edit budget. With (12, 20): 5-11 chars -> 2 edits,
+# 12-19 -> 3, 20+ -> 4. Tune by adding/removing thresholds.
+FUZZY_EXTRA_EDIT_LENGTHS = (12, 20)
 # Near-miss band: beyond the fuzzy auto-accept, a guess is still "debatable"
 # (-> community vote) if its edit distance is within this fraction of the longer
 # string, or it shares a significant word with the truth. Anything further is
