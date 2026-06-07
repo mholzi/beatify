@@ -742,7 +742,11 @@
     "dashboardDeciding": "La sala decide…",
     "youVoted": "Has votado",
     "tapToChange": "toca para cambiar",
-    "closeCallsDecided": "Casos dudosos — decididos"
+    "closeCallsDecided": "Casos dudosos — decididos",
+    "verdictWin": "¡Clavado!",
+    "verdictPartial": "¡Una bien!",
+    "verdictMiss": "Esta vez no",
+    "verdictPending": "Esperando el veredicto…"
   },
   "earlyReveal": {
     "message": "¡Todos han respondido!"

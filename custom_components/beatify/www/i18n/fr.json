@@ -742,7 +742,11 @@
     "dashboardDeciding": "La salle décide…",
     "youVoted": "Vous avez voté",
     "tapToChange": "appuyez pour changer",
-    "closeCallsDecided": "Cas limites — tranchés"
+    "closeCallsDecided": "Cas limites — tranchés",
+    "verdictWin": "Dans le mille !",
+    "verdictPartial": "Une bonne !",
+    "verdictMiss": "Pas cette fois",
+    "verdictPending": "En attente du verdict…"
   },
   "earlyReveal": {
     "message": "Tout le monde a répondu !"
