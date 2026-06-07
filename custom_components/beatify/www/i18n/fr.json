@@ -737,7 +737,9 @@
     "hostOverride": "L'hôte décide",
     "accept": "Accepter",
     "reject": "Refuser",
-    "dashboardVoting": "Vote sur les cas limites…"
+    "dashboardVoting": "Vote sur les cas limites…",
+    "youVoted": "Vous avez voté",
+    "tapToChange": "appuyez pour changer"
   },
   "earlyReveal": {
     "message": "Tout le monde a répondu !"

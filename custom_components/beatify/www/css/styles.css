@@ -14521,6 +14521,8 @@ body.theme-dark .your-result-stats .stat-value {
 /* ============================================
    Title & Artist reveal (#1180)
    ============================================ */
+/* Crowd Court layout (#1180): truth + own result collapse into a compact
+   header so the community voting below becomes the hero of the screen. */
 .ta-reveal-truth {
     display: flex;
     flex-wrap: wrap;
@@ -14528,17 +14530,25 @@ body.theme-dark .your-result-stats .stat-value {
     justify-content: center;
     gap: 8px;
     font-family: var(--font-display, inherit);
-    font-size: var(--font-size-lg, 1.25rem);
-    margin-bottom: var(--space-md, 16px);
+    font-size: var(--font-size-md, 1rem);
+    margin-bottom: var(--space-sm, 8px);
 }
-.ta-truth-title { font-weight: 700; }
-.ta-truth-sep { opacity: 0.5; }
-.ta-truth-artist { color: var(--color-text-secondary, #b9b9c6); }
+.ta-truth-title { font-weight: 800; }
+.ta-truth-sep { opacity: 0.4; }
+.ta-truth-artist {
+    color: var(--color-text-neon-muted, #b3b3c2);
+    font-family: var(--font-body, inherit);
+    font-weight: 600;
+}
 
 .ta-reveal-own {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-lg, 12px);
 }
 .ta-own-row {
     display: flex;
@@ -14547,7 +14557,7 @@ body.theme-dark .your-result-stats .stat-value {
     gap: 10px;
 }
 .ta-own-label {
-    color: var(--color-text-secondary, #b9b9c6);
+    color: var(--color-text-dim, #6b6b7a);
     font-size: var(--font-size-sm, 0.875rem);
     min-width: 6em;
 }
@@ -14557,7 +14567,7 @@ body.theme-dark .your-result-stats .stat-value {
     word-break: break-word;
 }
 .ta-own-row--none {
-    color: var(--color-text-secondary, #b9b9c6);
+    color: var(--color-text-neon-muted, #b3b3c2);
     font-style: italic;
 }
 .ta-pill {
@@ -14581,6 +14591,253 @@ body.theme-dark .your-result-stats .stat-value {
 .ta-pill--skipped {
     background: rgba(255, 255, 255, 0.08);
     color: var(--color-text-secondary, #b9b9c6);
+}
+
+/* ---- Crowd Court community voting (#1180) ---- */
+.ta-voting {
+    margin-top: var(--space-lg, 24px);
+}
+.ta-voting.hidden { display: none; }
+.ta-voting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: var(--space-md, 16px);
+}
+.ta-voting-header > span:not(.ta-voting-countdown) {
+    font-family: var(--font-display, inherit);
+    font-weight: 900;
+    font-size: var(--font-size-sm, 0.875rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-white, #fff);
+}
+/* Countdown ring: hollow centre via a radial mask over a draining conic arc. */
+.ta-voting-countdown {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-secondary, #00f5ff);
+    background:
+        radial-gradient(circle at center, var(--color-bg-primary, #0a0a12) 56%, transparent 57%),
+        conic-gradient(var(--color-accent-secondary, #00f5ff) var(--ta-vote-progress, 360deg), rgba(255, 255, 255, 0.1) 0);
+    box-shadow: var(--glow-secondary, 0 0 20px rgba(0, 245, 255, 0.5));
+}
+.ta-voting-countdown--closed {
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-full, 999px);
+    padding: 4px 12px;
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: 700;
+    color: var(--color-text-neon-muted, #b3b3c2);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+.ta-voting-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.ta-vote-card {
+    background: var(--color-bg-surface, rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg, 12px);
+    padding: 14px;
+}
+.ta-vote-card--mine {
+    border-color: rgba(255, 45, 106, 0.45);
+    box-shadow: inset 0 0 16px rgba(255, 45, 106, 0.07);
+}
+.ta-vote-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.ta-vote-avatar {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display, inherit);
+    font-weight: 800;
+    font-size: 13px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-accent-primary, #ff2d6a), var(--color-neon-purple, #9d4edd));
+}
+.ta-vote-who {
+    flex: 1;
+    font-weight: 700;
+    font-size: var(--font-size-md, 1rem);
+    word-break: break-word;
+}
+.ta-vote-field {
+    flex-shrink: 0;
+    font-size: var(--font-size-xs, 0.625rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-dim, #6b6b7a);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 3px 8px;
+    border-radius: var(--radius-full, 999px);
+}
+.ta-vote-guess {
+    font-family: var(--font-display, inherit);
+    font-weight: 800;
+    font-size: var(--font-size-lg, 1.125rem);
+    margin: 2px 0 12px;
+    word-break: break-word;
+}
+.ta-vote-tally {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+.ta-tally-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.ta-tally-yes { color: var(--color-success-neon, #39ff14); min-width: 48px; }
+.ta-tally-no { color: var(--color-error-neon, #ff0040); min-width: 48px; }
+.ta-tally-track {
+    flex: 1;
+    height: 8px;
+    border-radius: var(--radius-full, 999px);
+    background: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+}
+.ta-tally-fill {
+    display: block;
+    height: 100%;
+    border-radius: var(--radius-full, 999px);
+    transition: width var(--transition-normal, 300ms) ease-out;
+}
+.ta-tally-fill--yes {
+    background: var(--color-success-neon, #39ff14);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+.ta-tally-fill--no {
+    background: var(--color-error-neon, #ff0040);
+    box-shadow: 0 0 10px rgba(255, 0, 64, 0.45);
+}
+.ta-vote-actions {
+    display: flex;
+    gap: 10px;
+}
+.ta-vote-btn {
+    position: relative;
+    flex: 1;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg, 12px);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform var(--transition-fast, 150ms),
+        box-shadow var(--transition-fast, 150ms),
+        opacity var(--transition-fast, 150ms),
+        background var(--transition-fast, 150ms);
+}
+.ta-vote-btn--yes {
+    background: rgba(57, 255, 20, 0.12);
+    border-color: rgba(57, 255, 20, 0.4);
+    color: var(--color-success-neon, #39ff14);
+}
+.ta-vote-btn--no {
+    background: rgba(255, 0, 64, 0.1);
+    border-color: rgba(255, 0, 64, 0.38);
+    color: var(--color-error-neon, #ff0040);
+}
+/* Voted state: chosen button lights up + ✓, the other dims but stays
+   tappable (the server lets a player change their vote). */
+.ta-vote-btn.is-chosen { transform: translateY(-1px); }
+.ta-vote-btn--yes.is-chosen {
+    background: rgba(57, 255, 20, 0.22);
+    border-color: rgba(57, 255, 20, 0.6);
+    box-shadow: var(--glow-success, 0 0 20px rgba(57, 255, 20, 0.5));
+}
+.ta-vote-btn--no.is-chosen {
+    background: rgba(255, 0, 64, 0.2);
+    border-color: rgba(255, 0, 64, 0.55);
+    box-shadow: var(--glow-error, 0 0 20px rgba(255, 0, 64, 0.5));
+}
+.ta-vote-actions--voted .ta-vote-btn { opacity: 0.34; }
+.ta-vote-actions--voted .ta-vote-btn.is-chosen { opacity: 1; }
+.ta-vote-actions--voted .ta-vote-btn.is-chosen::after {
+    content: "✓";
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    font-size: 12px;
+    font-weight: 800;
+}
+.ta-vote-btn--yes.is-chosen::after { color: var(--color-success-neon, #39ff14); }
+.ta-vote-btn--no.is-chosen::after { color: var(--color-error-neon, #ff0040); }
+.ta-voted-caption {
+    margin-top: 8px;
+    text-align: center;
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--color-text-neon-muted, #b3b3c2);
+}
+.ta-vote-own-note {
+    text-align: center;
+    font-size: var(--font-size-sm, 0.875rem);
+    font-style: italic;
+    color: var(--color-accent-primary, #ff2d6a);
+    opacity: 0.85;
+}
+.ta-override-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ta-override-label {
+    margin-right: auto;
+    font-size: var(--font-size-xs, 0.625rem);
+    color: var(--color-text-dim, #6b6b7a);
+}
+.ta-override-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-white, #fff);
+    font-weight: 700;
+    font-size: var(--font-size-sm, 0.875rem);
+    cursor: pointer;
+}
+.ta-override-btn--accept.is-chosen {
+    border-color: var(--color-success-neon, #39ff14);
+    color: var(--color-success-neon, #39ff14);
+}
+.ta-override-btn--reject.is-chosen {
+    border-color: var(--color-error-neon, #ff0040);
+    color: var(--color-error-neon, #ff0040);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ta-tally-fill,
+    .ta-vote-btn { transition: none; }
 }
 
 /* Title & Artist guessing inputs (#1180) — primary-round input card.

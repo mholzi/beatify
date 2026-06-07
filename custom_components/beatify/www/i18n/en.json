@@ -737,7 +737,9 @@
     "hostOverride": "Host decides",
     "accept": "Accept",
     "reject": "Reject",
-    "dashboardVoting": "Voting on close calls…"
+    "dashboardVoting": "Voting on close calls…",
+    "youVoted": "You voted",
+    "tapToChange": "tap to change"
   },
   "earlyReveal": {
     "message": "All guesses in!"

@@ -737,7 +737,9 @@
     "hostOverride": "Decide el anfitrión",
     "accept": "Aceptar",
     "reject": "Rechazar",
-    "dashboardVoting": "Votando casos ajustados…"
+    "dashboardVoting": "Votando casos ajustados…",
+    "youVoted": "Has votado",
+    "tapToChange": "toca para cambiar"
   },
   "earlyReveal": {
     "message": "¡Todos han respondido!"

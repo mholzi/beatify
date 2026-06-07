@@ -1616,7 +1616,7 @@ class GameState:
                 )
 
     def _schedule_title_artist_vote_window(self) -> None:
-        """Open or skip the conditional 15s near-miss vote window (#1180 P4).
+        """Open or skip the conditional 30s near-miss vote window (#1180 P4).
 
         Called from _end_round_unlocked while phase is REVEAL and title/artist
         mode is on. If there are near-misses, flip voting_open and spawn the
@@ -2079,7 +2079,7 @@ class GameState:
         # manual "Next round" still resumes the game.
         self._cancel_auto_advance()
         # #1180 Phase 4: in title/artist mode the conditional vote window owns
-        # the REVEAL dwell. It opens the 15s window when there are near-misses
+        # the REVEAL dwell. It opens the 30s window when there are near-misses
         # (the window task also scores + rebroadcasts on expiry), or resolves
         # immediately and falls through to the normal auto-advance when there
         # are none. When the window is open it already owns _auto_advance_task,
