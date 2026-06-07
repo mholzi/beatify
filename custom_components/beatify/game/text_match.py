@@ -12,6 +12,7 @@ import re
 import unicodedata
 
 from custom_components.beatify.const import (
+    FUZZY_BUDGET_LEN_DIVISOR,
     FUZZY_EXTRA_EDIT_LENGTHS,
     FUZZY_MAX_EDITS,
     FUZZY_MIN_LEN,
@@ -106,14 +107,16 @@ def levenshtein(a: str, b: str) -> int:
 def fuzzy_budget(truth_len: int) -> int:
     """Allowed fuzzy edit distance for a normalized truth of this length.
 
-    Returns 0 below ``FUZZY_MIN_LEN`` (too short to fuzz — a 2-edit slack on a
-    4-char word is half the string). Otherwise the base ``FUZZY_MAX_EDITS`` plus
-    one for each ``FUZZY_EXTRA_EDIT_LENGTHS`` threshold the length reaches, so a
-    long title tolerates an extra typo a short one would not.
+    Returns 0 below ``FUZZY_MIN_LEN`` (too short to fuzz at all). Otherwise the
+    base ``FUZZY_MAX_EDITS`` plus one per ``FUZZY_EXTRA_EDIT_LENGTHS`` threshold
+    reached — so a long title tolerates an extra typo — but never more than one
+    edit per ``FUZZY_BUDGET_LEN_DIVISOR`` characters, which keeps short titles
+    strict (a 5-char title gets 1 edit, not the full base of 3).
     """
     if truth_len < FUZZY_MIN_LEN:
         return 0
-    return FUZZY_MAX_EDITS + sum(1 for t in FUZZY_EXTRA_EDIT_LENGTHS if truth_len >= t)
+    scaled = FUZZY_MAX_EDITS + sum(1 for t in FUZZY_EXTRA_EDIT_LENGTHS if truth_len >= t)
+    return min(scaled, truth_len // FUZZY_BUDGET_LEN_DIVISOR)
 
 
 def _shares_significant_token(a: str, b: str) -> bool:

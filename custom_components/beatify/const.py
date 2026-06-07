@@ -45,9 +45,13 @@ FUZZY_MAX_EDITS = 3
 # this long, to avoid edit-slack false positives on short words.
 FUZZY_MIN_LEN = 5
 # Longer titles can absorb more slips: each normalized-length threshold here
-# grants +1 to the fuzzy edit budget. With base 3 and (12, 20): 5-11 chars ->
-# 3 edits, 12-19 -> 4, 20+ -> 5. Tune by adjusting the base or thresholds.
+# grants +1 to the fuzzy edit budget. With base 3 and (12, 20): 12-19 -> 4,
+# 20+ -> 5. Tune by adjusting the base or thresholds.
 FUZZY_EXTRA_EDIT_LENGTHS = (12, 20)
+# Hard cap so short titles stay strict: the budget never exceeds one edit per
+# this many characters. With 3: a 5-char title tolerates 1 edit, 6-8 -> 2,
+# 9-11 -> 3 (where the scaled budget takes over). Stops "Queen" matching 3 typos.
+FUZZY_BUDGET_LEN_DIVISOR = 3
 # Near-miss band: beyond the fuzzy auto-accept, a guess is still "debatable"
 # (-> community vote) if its edit distance is within this fraction of the longer
 # string, or it shares a significant word with the truth. Anything further is

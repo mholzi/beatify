@@ -167,8 +167,8 @@ class TestClassifyFieldFuzzy:
 
     def test_budget_boundary_is_inclusive(self):
         # A guess at exactly the length-scaled budget must still be fuzzy.
-        truth = "Coldplay"  # normalized len 8 -> budget 3
-        guess = "Codplaayy"  # 3 edits from "coldplay"
+        truth = "Coldplay"  # normalized len 8 -> budget 2 (length-capped)
+        guess = "Codplaay"  # 2 edits from "coldplay"
         truth_norm = normalize(truth)
         assert FUZZY_MIN_LEN <= len(truth_norm)
         assert levenshtein(normalize(guess), truth_norm) == fuzzy_budget(len(truth_norm))
@@ -225,8 +225,15 @@ class TestFuzzyBudgetScaling:
     def test_short_truth_gets_zero_budget(self):
         assert fuzzy_budget(4) == 0  # below FUZZY_MIN_LEN
 
-    def test_mid_length_gets_base_budget(self):
-        assert fuzzy_budget(5) == FUZZY_MAX_EDITS
+    def test_short_lengths_are_capped(self):
+        # The per-length cap (1 edit / 3 chars) bites below the base budget.
+        assert fuzzy_budget(5) == 1
+        assert fuzzy_budget(6) == 2
+        assert fuzzy_budget(8) == 2
+
+    def test_base_budget_reached_when_uncapped(self):
+        # Once long enough, the full base budget applies.
+        assert fuzzy_budget(9) == FUZZY_MAX_EDITS
         assert fuzzy_budget(11) == FUZZY_MAX_EDITS
 
     def test_twelve_plus_gets_one_extra(self):
