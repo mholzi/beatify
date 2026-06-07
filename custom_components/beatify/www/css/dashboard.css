@@ -1996,3 +1996,45 @@
     }
 }
 
+/* Title & Artist resolved verdicts — spectator view (#1180, #1243).
+   Once voting closes the room sees what counted: a chip per close call. */
+.dashboard-ta-outcomes.hidden { display: none; }
+.dashboard-ta-decided {
+    font-family: var(--font-display, inherit);
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted, #b3b3c2);
+    margin-bottom: 12px;
+}
+.dashboard-ta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.dashboard-ta-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full, 999px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 20px;
+}
+.dashboard-ta-chip--accepted { border-color: rgba(57, 255, 20, 0.4); }
+.dashboard-ta-chip--rejected { opacity: 0.78; }
+.dashboard-ta-chip-who { font-weight: 700; color: var(--color-text-white, #fff); }
+.dashboard-ta-chip-field {
+    font-size: 15px;
+    color: var(--color-text-dim, #6b6b7a);
+}
+.dashboard-ta-chip-verdict {
+    font-family: var(--font-display, inherit);
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+}
+.dashboard-ta-chip--accepted .dashboard-ta-chip-verdict { color: var(--color-success-neon, #39ff14); }
+.dashboard-ta-chip--rejected .dashboard-ta-chip-verdict { color: var(--color-error-neon, #ff0040); }
+

@@ -796,6 +796,37 @@
         if (votingEl) {
             votingEl.classList.toggle('hidden', !ta.voting_open);
         }
+
+        // Once voting closes, swap the "Voting on close calls…" line for the
+        // resolved verdicts so the room sees what counted (#1180, #1243).
+        var outcomesEl = document.getElementById('dashboard-ta-outcomes');
+        if (outcomesEl) {
+            var outcomes = ta.near_miss_outcomes || [];
+            if (!ta.voting_open && outcomes.length > 0) {
+                var fieldLabel = function(field) {
+                    return field === 'artist'
+                        ? utils.t('titleArtist.artistLabel', 'Artist')
+                        : utils.t('titleArtist.titleLabel', 'Song title');
+                };
+                var chips = outcomes.map(function(o) {
+                    var accepted = !!o.accepted;
+                    var verdict = accepted ? '✓ +' + (o.points || 0) : '✗';
+                    return '<div class="dashboard-ta-chip dashboard-ta-chip--' +
+                            (accepted ? 'accepted' : 'rejected') + '">' +
+                        '<span class="dashboard-ta-chip-who">' + utils.escapeHtml(o.player) + '</span>' +
+                        '<span class="dashboard-ta-chip-field">' + utils.escapeHtml(fieldLabel(o.field)) + '</span>' +
+                        '<span class="dashboard-ta-chip-verdict">' + verdict + '</span>' +
+                    '</div>';
+                }).join('');
+                outcomesEl.innerHTML = '<div class="dashboard-ta-decided">' +
+                    utils.escapeHtml(utils.t('titleArtist.closeCallsDecided', 'Close calls — decided')) +
+                    '</div><div class="dashboard-ta-chips">' + chips + '</div>';
+                outcomesEl.classList.remove('hidden');
+            } else {
+                outcomesEl.innerHTML = '';
+                outcomesEl.classList.add('hidden');
+            }
+        }
     }
 
     /**

@@ -739,7 +739,8 @@
     "reject": "Afwijzen",
     "dashboardVoting": "Stemmen over twijfelgevallen…",
     "youVoted": "Je hebt gestemd",
-    "tapToChange": "tik om te wijzigen"
+    "tapToChange": "tik om te wijzigen",
+    "closeCallsDecided": "Twijfelgevallen — beslist"
   },
   "earlyReveal": {
     "message": "Alle gokken zijn binnen!"

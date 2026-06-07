@@ -739,7 +739,8 @@
     "reject": "Rechazar",
     "dashboardVoting": "Votando casos ajustados…",
     "youVoted": "Has votado",
-    "tapToChange": "toca para cambiar"
+    "tapToChange": "toca para cambiar",
+    "closeCallsDecided": "Casos dudosos — decididos"
   },
   "earlyReveal": {
     "message": "¡Todos han respondido!"

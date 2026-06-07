@@ -1429,6 +1429,32 @@ function _taStatusPill(status) {
 }
 
 /**
+ * Render one resolved near-miss verdict card for the post-voting "decided"
+ * view: avatar, who · field, the guess, the final 👍/👎 tally, and a verdict
+ * badge (green ✓ +points when accepted, red ✗ when rejected). (#1180, #1243)
+ * @param {Object} o - a near_miss_outcomes entry
+ * @param {function} fieldLabel - maps "title"/"artist" to a localized label
+ */
+function _taOutcomeCard(o, fieldLabel) {
+    var accepted = !!o.accepted;
+    var initial = ((o.player || '?').trim().charAt(0) || '?').toUpperCase();
+    var verdict = accepted
+        ? '✓ +' + (o.points || 0)
+        : '✗';
+    return '<div class="ta-outcome-card ta-outcome-card--' + (accepted ? 'accepted' : 'rejected') + '">' +
+        '<span class="ta-outcome-avatar" aria-hidden="true">' + escapeHtml(initial) + '</span>' +
+        '<div class="ta-outcome-main">' +
+            '<div class="ta-outcome-who">' + escapeHtml(o.player) +
+                ' <span class="ta-outcome-field">· ' + escapeHtml(fieldLabel(o.field)) + '</span></div>' +
+            '<div class="ta-outcome-guess">“' + escapeHtml(o.guess || '—') + '”</div>' +
+            '<div class="ta-outcome-tally">👍 ' + (o.votes_yes || 0) + ' · 👎 ' + (o.votes_no || 0) + '</div>' +
+        '</div>' +
+        '<span class="ta-outcome-verdict ta-outcome-verdict--' + (accepted ? 'accepted' : 'rejected') + '">' +
+            verdict + '</span>' +
+    '</div>';
+}
+
+/**
  * Render the Title & Artist reveal: the truth, the current player's own
  * per-field result, the 👍/👎 voting cards for OTHER players' near-misses
  * (a player never votes on their own), and — for the host — Accept/Reject
@@ -1493,14 +1519,36 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
         }
     }
 
-    // 3) Voting cards (other players' near-misses only)
+    // 3) Voting cards (while open) or resolved outcomes (once decided)
     var votingWrap = document.getElementById('ta-voting');
     var cardsEl = document.getElementById('ta-voting-cards');
+    var titleEl = document.getElementById('ta-voting-title');
+    var countdownEl = document.getElementById('ta-voting-countdown');
     var nearMisses = ta.near_misses || [];
+    var outcomes = ta.near_miss_outcomes || [];
     var votingOpen = !!ta.voting_open;
     var isHost = !!(currentPlayer && currentPlayer.is_admin);
 
     if (!votingWrap || !cardsEl) { _stopTaVoteCountdown(); return; }
+
+    var fieldLabel = function(field) {
+        return field === 'artist'
+            ? (utils.t('titleArtist.artistLabel') || 'Artist')
+            : (utils.t('titleArtist.titleLabel') || 'Song title');
+    };
+
+    // Voting closed + verdicts available → the resolution moment: each near-miss
+    // shown as accepted ✓ +points / rejected ✗, with its final tally.
+    if (!votingOpen && outcomes.length > 0) {
+        _stopTaVoteCountdown();
+        votingWrap.classList.remove('hidden');
+        if (titleEl) {
+            titleEl.textContent = utils.t('titleArtist.closeCallsDecided') || 'Close calls — decided';
+        }
+        if (countdownEl) { countdownEl.textContent = ''; countdownEl.classList.add('hidden'); }
+        cardsEl.innerHTML = outcomes.map(function(o) { return _taOutcomeCard(o, fieldLabel); }).join('');
+        return;
+    }
 
     if (nearMisses.length === 0) {
         votingWrap.classList.add('hidden');
@@ -1510,12 +1558,11 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
     }
 
     votingWrap.classList.remove('hidden');
-
-    var fieldLabel = function(field) {
-        return field === 'artist'
-            ? (utils.t('titleArtist.artistLabel') || 'Artist')
-            : (utils.t('titleArtist.titleLabel') || 'Song title');
-    };
+    // Reset header to the live-vote state (a prior round may have set "decided").
+    if (titleEl) {
+        titleEl.textContent = utils.t('titleArtist.voteHeader') || 'Close calls — vote 👍/👎';
+    }
+    if (countdownEl) { countdownEl.classList.remove('hidden'); }
 
     var html = '';
     nearMisses.forEach(function(nm) {

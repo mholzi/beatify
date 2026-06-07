@@ -739,7 +739,8 @@
     "reject": "Refuser",
     "dashboardVoting": "Vote sur les cas limites…",
     "youVoted": "Vous avez voté",
-    "tapToChange": "appuyez pour changer"
+    "tapToChange": "appuyez pour changer",
+    "closeCallsDecided": "Cas limites — tranchés"
   },
   "earlyReveal": {
     "message": "Tout le monde a répondu !"

@@ -203,3 +203,73 @@ describe('setupTitleArtistVoting records the vote (#1243)', () => {
         expect(mockState.taMyVotes['Mia:title']).toBe(false);
     });
 });
+
+describe('Title & Artist resolution moment (#1243)', () => {
+    beforeEach(() => {
+        vi.useFakeTimers();
+        els = {
+            'ta-reveal-section': makeEl(),
+            'ta-reveal-truth': makeEl(),
+            'ta-reveal-own': makeEl(),
+            'ta-voting': makeEl(),
+            'ta-voting-title': makeEl(),
+            'ta-voting-cards': makeEl(),
+            'ta-voting-countdown': makeEl(),
+        };
+        mockState.playerName = 'Alice';
+        mockState.lastRevealContext = { revealStartedAt: 1_000_000 };
+        mockState.taMyVotes = undefined;
+        mockState._taRevealTruth = undefined;
+    });
+
+    afterEach(() => {
+        vi.clearAllTimers();
+        vi.useRealTimers();
+    });
+
+    function resolvedTa() {
+        return {
+            correct_title: 'Bohemian Rhapsody',
+            correct_artist: 'Queen',
+            results: [],
+            near_misses: [],
+            voting_open: false,
+            near_miss_outcomes: [
+                { id: 'Mia:title', player: 'Mia', field: 'title', guess: 'Bohem Rapsody', votes_yes: 2, votes_no: 1, accepted: true, points: 5 },
+                { id: 'Sam:artist', player: 'Sam', field: 'artist', guess: 'that band', votes_yes: 0, votes_no: 4, accepted: false, points: 0 },
+            ],
+        };
+    }
+
+    it('renders accepted ✓ +points and rejected ✗ outcome cards', () => {
+        renderTitleArtistReveal(resolvedTa(), { is_admin: false });
+        const html = els['ta-voting-cards'].innerHTML;
+
+        expect(html).toContain('ta-outcome-card--accepted');
+        expect(html).toContain('ta-outcome-card--rejected');
+        expect(html).toContain('✓ +5');
+        expect(html).toContain('✗');
+        // Final tallies are shown on the verdict cards.
+        expect(html).toContain('👍 2 · 👎 1');
+        // No live vote buttons in the decided view.
+        expect(html).not.toContain('ta-vote-btn');
+    });
+
+    it('swaps the header to "decided" and hides the countdown', () => {
+        renderTitleArtistReveal(resolvedTa(), { is_admin: false });
+        expect(els['ta-voting-title'].textContent).toBe('titleArtist.closeCallsDecided');
+        expect(els['ta-voting-countdown'].classList.contains('hidden')).toBe(true);
+    });
+
+    it('still shows live vote cards (not outcomes) while voting is open', () => {
+        const openTa = resolvedTa();
+        openTa.voting_open = true;
+        openTa.near_misses = [
+            { id: 'Mia:title', player: 'Mia', field: 'title', guess: 'Bohem Rapsody', votes_yes: 2, votes_no: 1 },
+        ];
+        renderTitleArtistReveal(openTa, { is_admin: false });
+        const html = els['ta-voting-cards'].innerHTML;
+        expect(html).toContain('ta-vote-btn');
+        expect(html).not.toContain('ta-outcome-card');
+    });
+});

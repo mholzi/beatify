@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Title & Artist close calls now show their verdict.** When the near-miss vote closes, the reveal shows each close call as **accepted ✓ +points** or **rejected ✗** with its final 👍/👎 tally — on the player screen as outcome cards and on the TV as verdict chips the whole room can read. Previously accepted near-misses just vanished and the score ticked up silently (#1180).
+
 ### Changed
 - **Title & Artist reveal redesigned — "Crowd Court".** On the player screen the near-miss community vote is now the hero of the reveal: the correct answer and your own result collapse into a compact header, and the vote gets large cards with a glowing countdown ring, live 👍/👎 tally bars, and full-width vote buttons. The voting cards previously shipped with no styling at all (#1180).
 - **Your near-miss vote now sticks.** After you vote, your choice stays lit with a ✓ and the other option dims, with a "tap to change" hint. The choice now survives the live state re-renders that previously wiped it. Re-voting is still allowed — last vote wins (#1180).

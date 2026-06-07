@@ -689,6 +689,53 @@ class ChallengeManager:
         """Whether any field is currently a near-miss (Issue #1180)."""
         return bool(self.get_near_misses())
 
+    def get_near_miss_outcomes(self) -> list[dict[str, Any]]:
+        """Return the resolved verdict for every near-miss that went to a vote.
+
+        Only populated AFTER the challenge is resolved — while voting is open the
+        live tally lives in ``get_near_misses`` instead. Accepted near-misses flip
+        to ``near_miss_accepted`` (and drop out of ``get_near_misses``), so without
+        this the client can't show "accepted ✓ +5"; rejected fields stay
+        ``near_miss``. Both are surfaced here with their final tally and points
+        (Issue #1180, #1243).
+
+        Returns:
+            List of dicts: {id, player, field, guess, votes_yes, votes_no,
+            accepted, points}. Empty list if there is no challenge, it is not
+            yet resolved, or nothing went to a vote.
+
+        """
+        if not self.title_artist_challenge or not self.title_artist_challenge.resolved:
+            return []
+
+        outcomes: list[dict[str, Any]] = []
+        for player_name, guess in self.title_artist_challenge.guesses.items():
+            for field_name in ("title", "artist"):
+                status = guess[f"{field_name}_status"]
+                # exact / fuzzy / skipped were never near-misses — skip them.
+                if status not in (STATUS_NEAR_MISS, STATUS_NEAR_MISS_ACCEPTED):
+                    continue
+                nearmiss_id = f"{player_name}:{field_name}"
+                cast = self.title_artist_challenge.votes.get(nearmiss_id, {})
+                accepted = status == STATUS_NEAR_MISS_ACCEPTED
+                if field_name == "title":
+                    points = TITLE_PARTIAL_POINTS if accepted else 0
+                else:
+                    points = ARTIST_PARTIAL_POINTS if accepted else 0
+                outcomes.append(
+                    {
+                        "id": nearmiss_id,
+                        "player": player_name,
+                        "field": field_name,
+                        "guess": guess[field_name],
+                        "votes_yes": sum(1 for v in cast.values() if v),
+                        "votes_no": sum(1 for v in cast.values() if not v),
+                        "accepted": accepted,
+                        "points": points,
+                    }
+                )
+        return outcomes
+
     def resolve_title_artist(self) -> None:
         """
         Finalize all near-misses and mark the challenge resolved (Issue #1180).
@@ -846,5 +893,6 @@ class ChallengeManager:
             "correct_artist": self.title_artist_challenge.correct_artist,
             "results": results,
             "near_misses": [],
+            "near_miss_outcomes": [],
             "voting_open": False,
         }
