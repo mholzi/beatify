@@ -176,6 +176,18 @@ function renderSuperlatives(superlatives) {
             case 'close_guesses':
                 valueText = award.value + ' ' + utils.t('superlatives.closeGuesses');
                 break;
+            case 'perfect_rounds':
+                valueText = award.value + ' ' + utils.t('superlatives.perfectRounds');
+                break;
+            case 'exact_titles':
+                valueText = award.value + ' ' + utils.t('superlatives.exactTitles');
+                break;
+            case 'artists':
+                valueText = award.value + ' ' + utils.t('superlatives.artists');
+                break;
+            case 'near_misses':
+                valueText = award.value + ' ' + utils.t('superlatives.nearMisses');
+                break;
             default:
                 valueText = award.value;
         }

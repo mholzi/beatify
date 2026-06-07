@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Title & Artist mode gets its own end-of-game awards.** Four superlatives that only the song-naming mode can earn: **💯 Perfect Pair** (most rounds with both title *and* artist right), **🧠 Name Dropper** (most exact title hits), **🎤 Artist Whisperer** (most artists named — finally rewards the player who's great at artists, since artist correctness doesn't drive the streak), and **🤏 So Close** (most debated near-misses). They take the slots the year-mode awards (Speed Demon, Risk Taker, Close Calls) structurally can't earn in this mode, so the awards screen finally fits the game being played. Across all 5 locales (#1180).
+
 ## [4.0.0-rc1] - 2026-06-07
 
 ### Added
