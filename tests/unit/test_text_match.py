@@ -165,21 +165,23 @@ class TestClassifyFieldFuzzy:
         # "rhianna" vs "rihanna": 2 edits, truth len 7
         assert classify_field("Rhianna", "Rihanna") == STATUS_FUZZY
 
-    def test_two_edit_boundary_is_inclusive(self):
-        # Exactly FUZZY_MAX_EDITS edits must still be fuzzy.
-        truth = "Coldplay"  # normalized len 8
-        guess = "Codplaay"  # 2 edits from "coldplay"
-        assert FUZZY_MIN_LEN <= len(normalize(truth))
-        assert levenshtein(normalize(guess), normalize(truth)) == FUZZY_MAX_EDITS
+    def test_budget_boundary_is_inclusive(self):
+        # A guess at exactly the length-scaled budget must still be fuzzy.
+        truth = "Coldplay"  # normalized len 8 -> budget 3
+        guess = "Codplaayy"  # 3 edits from "coldplay"
+        truth_norm = normalize(truth)
+        assert FUZZY_MIN_LEN <= len(truth_norm)
+        assert levenshtein(normalize(guess), truth_norm) == fuzzy_budget(len(truth_norm))
         assert classify_field(guess, truth) == STATUS_FUZZY
 
 
 class TestClassifyFieldNearMiss:
-    def test_three_edits_is_near_miss(self):
-        # > FUZZY_MAX_EDITS -> near miss, even on a long truth.
-        truth = "Coldplay"
-        guess = "Codplaayy"  # 3 edits from "coldplay"
-        assert levenshtein(normalize(guess), normalize(truth)) > FUZZY_MAX_EDITS
+    def test_over_budget_edits_is_near_miss(self):
+        # One past the budget -> near miss (still close enough by ratio).
+        truth = "Coldplay"  # len 8 -> budget 3
+        guess = "Codplaayyy"  # 4 edits from "coldplay"
+        truth_norm = normalize(truth)
+        assert levenshtein(normalize(guess), truth_norm) > fuzzy_budget(len(truth_norm))
         assert classify_field(guess, truth) == STATUS_NEAR_MISS
 
     def test_short_truth_guard_blocks_fuzzy(self):
@@ -195,8 +197,12 @@ class TestClassifyFieldNearMiss:
         assert classify_field("Bohemian", "Bohemian Rhapsody") == STATUS_NEAR_MISS
 
     def test_close_ratio_is_near_miss(self):
-        # Within NEAR_MISS_MAX_RATIO edits of the truth -> near miss.
-        assert classify_field("Bohem Rapsody", "Bohemian Rhapsody") == STATUS_NEAR_MISS
+        # Past the fuzzy budget but within NEAR_MISS_MAX_RATIO -> near miss.
+        truth = "Bohemian Rhapsody"  # len 17 -> budget 4
+        guess = "Bohe Rapsod"  # 6 edits: > budget, ratio 6/17 <= 0.5
+        truth_norm = normalize(truth)
+        assert levenshtein(normalize(guess), truth_norm) > fuzzy_budget(len(truth_norm))
+        assert classify_field(guess, truth) == STATUS_NEAR_MISS
 
 
 class TestClassifyFieldWrong:
@@ -231,26 +237,30 @@ class TestFuzzyBudgetScaling:
         assert fuzzy_budget(20) == FUZZY_MAX_EDITS + 2
         assert fuzzy_budget(40) == FUZZY_MAX_EDITS + 2
 
-    def test_three_edits_on_long_truth_is_fuzzy(self):
-        # 17-char truth (budget 3): a 3-edit guess that flat-2 would reject is
-        # now auto-accepted as fuzzy. "Bohemian Rhaps" drops the trailing "ody".
+    def test_extra_edits_on_long_truth_is_fuzzy(self):
+        # The same edit count that is near-miss on a short title is fuzzy on a
+        # long one: 4 edits > budget(8) but <= budget(17).
         truth = "Bohemian Rhapsody"
-        guess = "Bohemian Rhaps"
-        assert len(normalize(truth)) >= 12
-        d = levenshtein(normalize(guess), normalize(truth))
-        assert d == 3 and d > FUZZY_MAX_EDITS
+        guess = "Bohem Rapsody"  # 4 edits
+        truth_norm = normalize(truth)
+        d = levenshtein(normalize(guess), truth_norm)
+        assert d == 4
+        assert d > fuzzy_budget(8)  # would be near-miss on a short title
+        assert d <= fuzzy_budget(len(truth_norm))
         assert classify_field(guess, truth) == STATUS_FUZZY
 
-    def test_three_edits_on_short_truth_is_not_fuzzy(self):
-        # 8-char truth, 3 edits -> exceeds base budget (2) -> not fuzzy.
+    def test_over_budget_on_short_truth_is_not_fuzzy(self):
+        # 8-char truth: a guess past budget(8) is not fuzzy.
         truth = "Coldplay"
-        guess = "Codplaayy"  # 3 edits
-        assert levenshtein(normalize(guess), normalize(truth)) == 3
+        guess = "Codplaayyy"  # 4 edits
+        truth_norm = normalize(truth)
+        assert levenshtein(normalize(guess), truth_norm) > fuzzy_budget(len(truth_norm))
         assert classify_field(guess, truth) != STATUS_FUZZY
 
-    def test_four_edits_on_very_long_truth_is_fuzzy(self):
-        truth = "Smells Like Teen Spirit"  # 23 normalized chars
-        guess = "Smels Like Ten Sprit"  # several edits, within budget 4
-        assert len(normalize(truth)) >= 20
-        assert levenshtein(normalize(guess), normalize(truth)) <= 4
+    def test_five_edits_on_very_long_truth_is_fuzzy(self):
+        truth = "Smells Like Teen Spirit"  # 23 normalized chars -> budget 5
+        guess = "Smels Like Ten Sprit"  # within budget
+        truth_norm = normalize(truth)
+        assert len(truth_norm) >= 20
+        assert levenshtein(normalize(guess), truth_norm) <= fuzzy_budget(len(truth_norm))
         assert classify_field(guess, truth) == STATUS_FUZZY

@@ -72,7 +72,7 @@ async def _setup_reveal_with_near_miss(handler, gs):
     gs.set_admin("Bob")
     await gs.start_round()
     gs._challenge_manager.submit_title_artist_guess(
-        "Alice", "Real Title Zero", gs.current_song["artist"], 1.0
+        "Alice", "Real Mismatch", gs.current_song["artist"], 1.0
     )
     gs._challenge_manager.submit_title_artist_guess(
         "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
