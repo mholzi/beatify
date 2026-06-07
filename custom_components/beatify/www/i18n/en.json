@@ -739,7 +739,8 @@
     "reject": "Reject",
     "dashboardVoting": "Voting on close calls…",
     "youVoted": "You voted",
-    "tapToChange": "tap to change"
+    "tapToChange": "tap to change",
+    "closeCallsDecided": "Close calls — decided"
   },
   "earlyReveal": {
     "message": "All guesses in!"

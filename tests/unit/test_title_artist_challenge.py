@@ -389,3 +389,71 @@ class TestGameStateTitleArtistMode:
         # _apply_config must not reset the manager-owned flag back to False
         gs._apply_config(gs._default_config)
         assert gs.title_artist_mode is True
+
+
+class TestGetNearMissOutcomes:
+    """get_near_miss_outcomes surfaces resolved verdicts for the reveal UI (#1243)."""
+
+    def test_empty_before_resolution(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        # Not resolved yet -> outcomes are empty; the live tally lives in
+        # get_near_misses until the window closes.
+        assert mgr.get_near_miss_outcomes() == []
+
+    def test_empty_without_challenge(self):
+        mgr = ChallengeManager()
+        mgr.configure(title_artist_mode=False)
+        mgr.init_round({"title": "X", "artist": "Y"})
+        assert mgr.get_near_miss_outcomes() == []
+
+    def test_accepted_and_rejected_after_resolution(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        # Title: 2 yes / 1 no -> accepted (partial 5). Artist: no votes -> rejected.
+        mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
+        mgr.register_title_artist_vote("V3", "Dan:title", accept=False)
+        mgr.resolve_title_artist()
+
+        outcomes = {o["id"]: o for o in mgr.get_near_miss_outcomes()}
+        assert set(outcomes) == {"Dan:title", "Dan:artist"}
+
+        assert outcomes["Dan:title"] == {
+            "id": "Dan:title",
+            "player": "Dan",
+            "field": "title",
+            "guess": "Some Other Song",
+            "votes_yes": 2,
+            "votes_no": 1,
+            "accepted": True,
+            "points": 5,
+        }
+        assert outcomes["Dan:artist"] == {
+            "id": "Dan:artist",
+            "player": "Dan",
+            "field": "artist",
+            "guess": "Beatles",
+            "votes_yes": 0,
+            "votes_no": 0,
+            "accepted": False,
+            "points": 0,
+        }
+
+    def test_accepted_artist_awards_partial_three(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.register_title_artist_vote("V1", "Dan:artist", accept=True)
+        mgr.resolve_title_artist()
+
+        outcomes = {o["id"]: o for o in mgr.get_near_miss_outcomes()}
+        assert outcomes["Dan:artist"]["accepted"] is True
+        assert outcomes["Dan:artist"]["points"] == 3
+
+    def test_exact_fields_excluded(self):
+        mgr = _make_manager()
+        # Exact title + exact artist -> never a near-miss, never in outcomes.
+        mgr.submit_title_artist_guess("Eve", "Bohemian Rhapsody", "Queen", ts=1.0)
+        mgr.resolve_title_artist()
+        assert mgr.get_near_miss_outcomes() == []

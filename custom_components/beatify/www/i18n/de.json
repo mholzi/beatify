@@ -739,7 +739,8 @@
     "reject": "Ablehnen",
     "dashboardVoting": "Abstimmung über knappe Fälle…",
     "youVoted": "Du hast abgestimmt",
-    "tapToChange": "zum Ändern tippen"
+    "tapToChange": "zum Ändern tippen",
+    "closeCallsDecided": "Knappe Fälle — entschieden"
   },
   "earlyReveal": {
     "message": "Alle haben geraten!"

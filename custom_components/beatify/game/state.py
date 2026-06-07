@@ -518,6 +518,7 @@ class GameState:
         # so the truth-bearing REVEAL dict is finalized here, not in the manager.
         if include_answer and challenge_dict is not None:
             challenge_dict["near_misses"] = self.get_near_misses()
+            challenge_dict["near_miss_outcomes"] = self.get_near_miss_outcomes()
             challenge_dict["voting_open"] = self.is_title_artist_voting_open()
         return challenge_dict
 
@@ -544,6 +545,10 @@ class GameState:
     def has_near_misses(self) -> bool:
         """True if any near-miss is vote-eligible — delegates to ChallengeManager."""
         return self._challenge_manager.has_near_misses()
+
+    def get_near_miss_outcomes(self) -> list[dict[str, Any]]:
+        """Resolved near-miss verdicts — delegates to ChallengeManager (#1180)."""
+        return self._challenge_manager.get_near_miss_outcomes()
 
     def is_title_artist_voting_open(self) -> bool:
         """True while the conditional REVEAL vote window is open (#1180 P4)."""

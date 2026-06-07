@@ -14840,6 +14840,71 @@ body.theme-dark .your-result-stats .stat-value {
     .ta-vote-btn { transition: none; }
 }
 
+/* ---- Resolution moment: "Close calls — decided" (#1180, #1243) ----
+   Outcome cards render inside #ta-voting-cards, which already lays out a
+   gapped column, so no extra wrapper is needed. */
+.ta-outcome-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-bg-surface, rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg, 12px);
+    padding: 11px 13px;
+}
+.ta-outcome-card--accepted { border-color: rgba(57, 255, 20, 0.3); }
+.ta-outcome-card--rejected { opacity: 0.72; }
+.ta-outcome-avatar {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display, inherit);
+    font-weight: 800;
+    font-size: 12px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-accent-primary, #ff2d6a), var(--color-neon-purple, #9d4edd));
+}
+.ta-outcome-main { flex: 1; min-width: 0; }
+.ta-outcome-who {
+    font-weight: 700;
+    font-size: var(--font-size-base, 0.875rem);
+}
+.ta-outcome-field { color: var(--color-text-dim, #6b6b7a); font-weight: 600; }
+.ta-outcome-guess {
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--color-text-neon-muted, #b3b3c2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ta-outcome-tally {
+    font-size: var(--font-size-xs, 0.625rem);
+    color: var(--color-text-dim, #6b6b7a);
+    font-variant-numeric: tabular-nums;
+}
+.ta-outcome-verdict {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display, inherit);
+    font-weight: 800;
+    font-size: var(--font-size-base, 0.875rem);
+    padding: 5px 11px;
+    border-radius: var(--radius-full, 999px);
+    font-variant-numeric: tabular-nums;
+}
+.ta-outcome-verdict--accepted {
+    background: rgba(57, 255, 20, 0.16);
+    color: var(--color-success-neon, #39ff14);
+}
+.ta-outcome-verdict--rejected {
+    background: rgba(255, 0, 64, 0.12);
+    color: var(--color-error-neon, #ff0040);
+}
+
 /* Title & Artist guessing inputs (#1180) — primary-round input card.
    Echoes the .arc-tiles bonus card but with the pink (primary) accent, and
    stacks each label above a full-width input so the two fields align cleanly. */

@@ -71,3 +71,36 @@ class TestRevealVoteFields:
         assert ta is not None
         assert ta["voting_open"] is True
         assert ta["near_misses"][0]["id"] == "Alice:title"
+
+
+class TestRevealOutcomeFields:
+    """near_miss_outcomes appears in the REVEAL dict once the vote resolves (#1243)."""
+
+    def test_outcomes_empty_while_voting_open(self):
+        gs = _gs_in_mode()
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Completely Different", "Queen", 1.0
+        )
+        gs._title_artist_voting_open = True
+        d = gs.get_title_artist_challenge_dict(include_answer=True)
+        # Live tally drives the UI while open; outcomes fill in after resolution.
+        assert d["near_miss_outcomes"] == []
+
+    def test_outcomes_present_after_resolution(self):
+        gs = _gs_in_mode()
+        # Both fields wrong enough to be near-misses (artist "Beatles" != "Queen").
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Completely Different", "Beatles", 1.0
+        )
+        gs._challenge_manager.register_title_artist_vote("Bob", "Alice:title", accept=True)
+        gs._challenge_manager.resolve_title_artist()
+        gs._title_artist_voting_open = False
+
+        d = gs.get_title_artist_challenge_dict(include_answer=True)
+        outcomes = {o["id"]: o for o in d["near_miss_outcomes"]}
+        assert outcomes["Alice:title"]["accepted"] is True
+        assert outcomes["Alice:title"]["points"] == 5
+        assert outcomes["Alice:title"]["votes_yes"] == 1
+        # Artist had no votes -> rejected verdict, zero points.
+        assert outcomes["Alice:artist"]["accepted"] is False
+        assert outcomes["Alice:artist"]["points"] == 0
