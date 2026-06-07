@@ -89,6 +89,12 @@ class PlayerSession:
         default_factory=list
     )  # All round scores for final 3 calc
 
+    # Title & Artist superlative tracking (#1180) - CUMULATIVE, NOT reset per round
+    exact_titles: int = 0  # Rounds with an exact title match (Name Dropper)
+    correct_artists: int = 0  # Rounds with the artist named correctly (Artist Whisperer)
+    perfect_pairs: int = 0  # Rounds with both title and artist correct (Perfect Pair)
+    near_misses: int = 0  # Count of debated near-miss fields, title + artist (So Close)
+
     # Steal power-up tracking (Story 15.3)
     steal_available: bool = False  # True if steal unlocked and not yet used
     steal_used: bool = False  # True if steal was used this game (max 1 per game)
@@ -180,6 +186,12 @@ class PlayerSession:
         self.bets_placed = 0
         self.close_calls = 0
         self.round_scores = []
+
+        # Reset title & artist superlative tracking (#1180)
+        self.exact_titles = 0
+        self.correct_artists = 0
+        self.perfect_pairs = 0
+        self.near_misses = 0
 
         # Reset steal tracking
         self.steal_available = False

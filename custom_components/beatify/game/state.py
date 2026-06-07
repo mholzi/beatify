@@ -2878,6 +2878,7 @@ class GameState:
             rounds_played=self.round,
             movie_quiz_enabled=self.movie_quiz_enabled,
             intro_mode_enabled=self.intro_mode_enabled,
+            title_artist_mode_enabled=self.title_artist_mode,
         )
 
     def submit_artist_guess(
