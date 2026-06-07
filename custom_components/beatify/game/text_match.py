@@ -12,6 +12,7 @@ import re
 import unicodedata
 
 from custom_components.beatify.const import (
+    FUZZY_EXTRA_EDIT_LENGTHS,
     FUZZY_MAX_EDITS,
     FUZZY_MIN_LEN,
     NEAR_MISS_MAX_RATIO,
@@ -102,6 +103,19 @@ def levenshtein(a: str, b: str) -> int:
     return previous[-1]
 
 
+def fuzzy_budget(truth_len: int) -> int:
+    """Allowed fuzzy edit distance for a normalized truth of this length.
+
+    Returns 0 below ``FUZZY_MIN_LEN`` (too short to fuzz — a 2-edit slack on a
+    4-char word is half the string). Otherwise the base ``FUZZY_MAX_EDITS`` plus
+    one for each ``FUZZY_EXTRA_EDIT_LENGTHS`` threshold the length reaches, so a
+    long title tolerates an extra typo a short one would not.
+    """
+    if truth_len < FUZZY_MIN_LEN:
+        return 0
+    return FUZZY_MAX_EDITS + sum(1 for t in FUZZY_EXTRA_EDIT_LENGTHS if truth_len >= t)
+
+
 def _shares_significant_token(a: str, b: str) -> bool:
     """True if normalized strings ``a`` and ``b`` share a word >= the min length."""
     a_tokens = {t for t in a.split() if len(t) >= _MIN_SHARED_TOKEN_LEN}
@@ -115,10 +129,11 @@ def classify_field(guess: str, truth: str) -> str:
     Returns one of ``STATUS_SKIPPED``, ``STATUS_EXACT``, ``STATUS_FUZZY``,
     ``STATUS_NEAR_MISS``, ``STATUS_WRONG``.
 
-    The near-miss band is what goes to the community vote: a guess past the
-    fuzzy auto-accept is only a near-miss if it is still plausibly close —
-    within ``NEAR_MISS_MAX_RATIO`` edits of the truth, or sharing a significant
-    word with it. A guess that is neither (e.g. "Beatles" for "Queen") is just
+    The fuzzy auto-accept budget scales with the truth's length (see
+    ``fuzzy_budget``). The near-miss band is what goes to the community vote: a
+    guess past fuzzy is only a near-miss if it is still plausibly close — within
+    ``NEAR_MISS_MAX_RATIO`` edits of the truth, or sharing a significant word
+    with it. A guess that is neither (e.g. "Beatles" for "Queen") is just
     ``STATUS_WRONG``: no vote, no points.
     """
     if not guess or not guess.strip():
@@ -131,7 +146,7 @@ def classify_field(guess: str, truth: str) -> str:
         return STATUS_EXACT
 
     dist = levenshtein(guess_norm, truth_norm)
-    if len(truth_norm) >= FUZZY_MIN_LEN and dist <= FUZZY_MAX_EDITS:
+    if dist <= fuzzy_budget(len(truth_norm)):
         return STATUS_FUZZY
 
     longest = max(len(guess_norm), len(truth_norm), 1)

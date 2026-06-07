@@ -15,6 +15,7 @@ from custom_components.beatify.game.text_match import (
     STATUS_SKIPPED,
     STATUS_WRONG,
     classify_field,
+    fuzzy_budget,
     levenshtein,
     normalize,
 )
@@ -210,3 +211,46 @@ class TestClassifyFieldWrong:
 
     def test_unrelated_long_title_is_wrong(self):
         assert classify_field("Hotel California", "Bohemian Rhapsody") == STATUS_WRONG
+
+
+class TestFuzzyBudgetScaling:
+    """Fuzzy edit budget scales with normalized truth length (#1180)."""
+
+    def test_short_truth_gets_zero_budget(self):
+        assert fuzzy_budget(4) == 0  # below FUZZY_MIN_LEN
+
+    def test_mid_length_gets_base_budget(self):
+        assert fuzzy_budget(5) == FUZZY_MAX_EDITS
+        assert fuzzy_budget(11) == FUZZY_MAX_EDITS
+
+    def test_twelve_plus_gets_one_extra(self):
+        assert fuzzy_budget(12) == FUZZY_MAX_EDITS + 1
+        assert fuzzy_budget(19) == FUZZY_MAX_EDITS + 1
+
+    def test_twenty_plus_gets_two_extra(self):
+        assert fuzzy_budget(20) == FUZZY_MAX_EDITS + 2
+        assert fuzzy_budget(40) == FUZZY_MAX_EDITS + 2
+
+    def test_three_edits_on_long_truth_is_fuzzy(self):
+        # 17-char truth (budget 3): a 3-edit guess that flat-2 would reject is
+        # now auto-accepted as fuzzy. "Bohemian Rhaps" drops the trailing "ody".
+        truth = "Bohemian Rhapsody"
+        guess = "Bohemian Rhaps"
+        assert len(normalize(truth)) >= 12
+        d = levenshtein(normalize(guess), normalize(truth))
+        assert d == 3 and d > FUZZY_MAX_EDITS
+        assert classify_field(guess, truth) == STATUS_FUZZY
+
+    def test_three_edits_on_short_truth_is_not_fuzzy(self):
+        # 8-char truth, 3 edits -> exceeds base budget (2) -> not fuzzy.
+        truth = "Coldplay"
+        guess = "Codplaayy"  # 3 edits
+        assert levenshtein(normalize(guess), normalize(truth)) == 3
+        assert classify_field(guess, truth) != STATUS_FUZZY
+
+    def test_four_edits_on_very_long_truth_is_fuzzy(self):
+        truth = "Smells Like Teen Spirit"  # 23 normalized chars
+        guess = "Smels Like Ten Sprit"  # several edits, within budget 4
+        assert len(normalize(truth)) >= 20
+        assert levenshtein(normalize(guess), normalize(truth)) <= 4
+        assert classify_field(guess, truth) == STATUS_FUZZY
