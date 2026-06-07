@@ -115,6 +115,10 @@ class GameState:
         self._auto_advance_task: asyncio.Task | None = None
         # #1180 Phase 4: title/artist near-miss vote window is open in REVEAL.
         self._title_artist_voting_open: bool = False
+        # #1180: server-owned wall-clock deadline (in self._now units) for the
+        # open vote window, so the serializer publishes an authoritative
+        # vote_seconds_remaining (no client clock-skew). None when not voting.
+        self._title_artist_vote_deadline: float | None = None
         # #1048: ms timestamp REVEAL was entered — clients compute remaining
         # countdown vs Date.now(). None outside REVEAL.
         self.reveal_started_at: int | None = None
@@ -520,7 +524,21 @@ class GameState:
             challenge_dict["near_misses"] = self.get_near_misses()
             challenge_dict["near_miss_outcomes"] = self.get_near_miss_outcomes()
             challenge_dict["voting_open"] = self.is_title_artist_voting_open()
+            challenge_dict["vote_seconds_remaining"] = (
+                self.title_artist_vote_seconds_remaining()
+            )
         return challenge_dict
+
+    def title_artist_vote_seconds_remaining(self) -> int:
+        """Whole seconds left in the open vote window, server-authoritative.
+
+        Computed from the server-owned deadline against the same clock that set
+        it, so clients never compare their wall clock to the server's. Returns 0
+        when voting is closed or no deadline is set (#1180).
+        """
+        if not self._title_artist_voting_open or self._title_artist_vote_deadline is None:
+            return 0
+        return max(0, round(self._title_artist_vote_deadline - self._now()))
 
     # ------------------------------------------------------------------
     # Title/Artist vote delegation (#1180 Phase 4)
@@ -1633,6 +1651,9 @@ class GameState:
             return
         if self.has_near_misses():
             self._title_artist_voting_open = True
+            self._title_artist_vote_deadline = (
+                self._now() + TITLE_ARTIST_VOTE_WINDOW_SECONDS
+            )
             self._cancel_auto_advance()
             self._auto_advance_task = asyncio.create_task(
                 self._title_artist_vote_window(TITLE_ARTIST_VOTE_WINDOW_SECONDS)
@@ -1642,6 +1663,7 @@ class GameState:
             # skipped), no window, advance behaves exactly as the year mode.
             self._challenge_manager.resolve_title_artist()
             self._title_artist_voting_open = False
+            self._title_artist_vote_deadline = None
 
     async def _title_artist_vote_window(self, window_seconds: int) -> None:
         """Hold REVEAL open for community voting, then resolve (#1180 P4).
@@ -1687,6 +1709,7 @@ class GameState:
         if not self._title_artist_voting_open:
             return
         self._title_artist_voting_open = False
+        self._title_artist_vote_deadline = None
         self._challenge_manager.resolve_title_artist()
         async with self._score_lock:
             await self._score_title_artist_round()

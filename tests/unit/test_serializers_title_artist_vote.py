@@ -104,3 +104,37 @@ class TestRevealOutcomeFields:
         # Artist had no votes -> rejected verdict, zero points.
         assert outcomes["Alice:artist"]["accepted"] is False
         assert outcomes["Alice:artist"]["points"] == 0
+
+
+class TestVoteSecondsRemaining:
+    """Server publishes an authoritative countdown, not a client-clock guess (#1180)."""
+
+    def test_remaining_zero_when_not_voting(self):
+        gs = _gs_in_mode()
+        gs._challenge_manager.submit_title_artist_guess("Alice", "Bohemian", "Queen", 1.0)
+        # Voting not opened -> 0.
+        assert gs.title_artist_vote_seconds_remaining() == 0
+        d = gs.get_title_artist_challenge_dict(include_answer=True)
+        assert d["vote_seconds_remaining"] == 0
+
+    def test_remaining_counts_down_from_deadline(self):
+        # Inject a controllable clock so we can advance it deterministically.
+        clock = {"t": 1000.0}
+        gs = make_game_state(time_fn=lambda: clock["t"])
+        gs._challenge_manager.configure(
+            artist_challenge_enabled=False,
+            movie_quiz_enabled=False,
+            title_artist_mode=True,
+        )
+        gs._challenge_manager.init_round({"title": "Bohemian Rhapsody", "artist": "Queen"})
+        gs._title_artist_voting_open = True
+        gs._title_artist_vote_deadline = clock["t"] + 30  # 30s window
+
+        assert gs.title_artist_vote_seconds_remaining() == 30
+        clock["t"] += 12
+        assert gs.title_artist_vote_seconds_remaining() == 18
+        d = gs.get_title_artist_challenge_dict(include_answer=True)
+        assert d["vote_seconds_remaining"] == 18
+        # Never goes negative past the deadline.
+        clock["t"] += 100
+        assert gs.title_artist_vote_seconds_remaining() == 0

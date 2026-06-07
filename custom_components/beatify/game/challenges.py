@@ -895,4 +895,5 @@ class ChallengeManager:
             "near_misses": [],
             "near_miss_outcomes": [],
             "voting_open": False,
+            "vote_seconds_remaining": 0,
         }

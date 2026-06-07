@@ -5,6 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Fixed
+- **Title & Artist: the vote countdown is now server-authoritative.** The reveal ring counted down by comparing the player's device clock to the server's start time, so a skewed phone clock or a late join could show the wrong number. The server now publishes the exact seconds remaining and the client ticks from that, re-syncing on every update (#1180).
 - **Title & Artist: a flat-wrong guess no longer triggers a community vote.** The matcher had no "wrong" category — any guess that wasn't an exact/typo match was a "near miss", so answering "Beatles" for Queen opened a 👍/👎 vote on it. Now only genuinely-close guesses (sharing a real word, or within half the truth's length in edits) are near-misses; everything else is marked **Wrong** (red), scores 0, and never reaches the vote (#1180).
 
 ### Added
