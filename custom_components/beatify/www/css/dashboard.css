@@ -2038,3 +2038,99 @@
 .dashboard-ta-chip--accepted .dashboard-ta-chip-verdict { color: var(--color-success-neon, #39ff14); }
 .dashboard-ta-chip--rejected .dashboard-ta-chip-verdict { color: var(--color-error-neon, #ff0040); }
 
+/* Live community vote on the TV while the window is open (#1180) — read-only,
+   so the whole room can watch the close calls being judged in real time. */
+.dashboard-ta-live.hidden { display: none; }
+.dashboard-ta-live-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+.dashboard-ta-deciding {
+    font-family: var(--font-display, inherit);
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted, #b3b3c2);
+}
+.dashboard-ta-live-cd {
+    min-width: 52px;
+    padding: 4px 14px;
+    border-radius: var(--radius-full, 999px);
+    font-family: var(--font-body, inherit);
+    font-weight: 800;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-secondary, #00f5ff);
+    background: rgba(0, 245, 255, 0.1);
+    box-shadow: var(--glow-secondary, 0 0 20px rgba(0, 245, 255, 0.5));
+}
+.dashboard-ta-live-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+.dashboard-ta-live-card {
+    flex: 0 1 320px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg, 12px);
+    padding: 14px 16px;
+}
+.dashboard-ta-live-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+.dashboard-ta-live-who { font-weight: 700; font-size: 18px; color: var(--color-text-white, #fff); }
+.dashboard-ta-live-field {
+    font-size: 13px;
+    color: var(--color-text-dim, #6b6b7a);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.dashboard-ta-live-guess {
+    font-family: var(--font-display, inherit);
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--color-text-white, #fff);
+}
+.dashboard-ta-live-tally {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+}
+.dashboard-ta-live-y { color: var(--color-success-neon, #39ff14); }
+.dashboard-ta-live-n { color: var(--color-error-neon, #ff0040); }
+.dashboard-ta-live-track {
+    flex: 1;
+    height: 10px;
+    border-radius: var(--radius-full, 999px);
+    background: rgba(255, 0, 64, 0.25);
+    overflow: hidden;
+}
+.dashboard-ta-live-fill {
+    display: block;
+    height: 100%;
+    border-radius: var(--radius-full, 999px);
+    transition: width var(--transition-normal, 300ms) ease-out;
+}
+.dashboard-ta-live-fill--y {
+    background: var(--color-success-neon, #39ff14);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dashboard-ta-live-fill { transition: none; }
+}
+

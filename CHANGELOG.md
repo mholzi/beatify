@@ -9,6 +9,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - **Title & Artist: a flat-wrong guess no longer triggers a community vote.** The matcher had no "wrong" category — any guess that wasn't an exact/typo match was a "near miss", so answering "Beatles" for Queen opened a 👍/👎 vote on it. Now only genuinely-close guesses (sharing a real word, or within half the truth's length in edits) are near-misses; everything else is marked **Wrong** (red), scores 0, and never reaches the vote (#1180).
 
 ### Added
+- **Title & Artist: the whole room can watch the vote on the TV.** While a close call is being decided, the spectator screen now shows the live community vote — each near-miss guess with its running 👍/👎 tally and a countdown — instead of a static "Voting…" line. The TV is read-only (everyone votes on their phones); when the window closes it shows the verdict chips (#1180).
 - **Title & Artist close calls now show their verdict.** When the near-miss vote closes, the reveal shows each close call as **accepted ✓ +points** or **rejected ✗** with its final 👍/👎 tally — on the player screen as outcome cards and on the TV as verdict chips the whole room can read. Previously accepted near-misses just vanished and the score ticked up silently (#1180).
 
 ### Changed

@@ -739,6 +739,7 @@
     "accept": "Accept",
     "reject": "Reject",
     "dashboardVoting": "Voting on close calls…",
+    "dashboardDeciding": "The room is deciding…",
     "youVoted": "You voted",
     "tapToChange": "tap to change",
     "closeCallsDecided": "Close calls — decided"
