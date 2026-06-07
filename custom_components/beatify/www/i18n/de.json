@@ -729,6 +729,7 @@
     "statusFuzzy": "Nah genug",
     "statusAccepted": "Anerkannt",
     "statusNearMiss": "Knapp daneben",
+    "statusWrong": "Falsch",
     "statusSkipped": "Übersprungen",
     "voteHeader": "Knappe Fälle — abstimmen 👍/👎",
     "voteCountdown": "{seconds}s",

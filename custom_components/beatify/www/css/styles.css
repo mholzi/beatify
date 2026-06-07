@@ -14588,6 +14588,10 @@ body.theme-dark .your-result-stats .stat-value {
     background: rgba(255, 180, 0, 0.16);
     color: #ffb400;
 }
+.ta-pill--wrong {
+    background: rgba(255, 0, 64, 0.14);
+    color: var(--color-error-neon, #ff0040);
+}
 .ta-pill--skipped {
     background: rgba(255, 255, 255, 0.08);
     color: var(--color-text-secondary, #b9b9c6);

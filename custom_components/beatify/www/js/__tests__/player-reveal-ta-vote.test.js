@@ -100,6 +100,18 @@ describe('Title & Artist voted state persistence (#1180, #1243)', () => {
         vi.useRealTimers();
     });
 
+    it('shows a "Wrong" pill for a wrong own result, not "Skipped"', () => {
+        // A wrong-but-typed guess must read as Wrong (red), never Skipped.
+        const ta = makeTa({ results: [
+            { player: 'Alice', title: 'Beatles', artist: 'Beatles', title_status: 'wrong', artist_status: 'wrong' },
+        ] });
+        renderTitleArtistReveal(ta, { is_admin: false });
+        const own = els['ta-reveal-own'].innerHTML;
+        expect(own).toContain('ta-pill--wrong');
+        expect(own).toContain('titleArtist.statusWrong');
+        expect(own).not.toContain('ta-pill--skipped');
+    });
+
     it('renders fresh vote buttons with no voted markup before the player votes', () => {
         renderTitleArtistReveal(makeTa(), { is_admin: false });
         const html = els['ta-voting-cards'].innerHTML;

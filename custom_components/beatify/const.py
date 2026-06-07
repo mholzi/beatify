@@ -42,6 +42,11 @@ FUZZY_MAX_EDITS = 2
 # Guard: only apply fuzzy matching when the normalized truth is at least
 # this long, to avoid 2-edit false positives on short words.
 FUZZY_MIN_LEN = 5
+# Near-miss band: beyond the fuzzy auto-accept, a guess is still "debatable"
+# (-> community vote) if its edit distance is within this fraction of the longer
+# string, or it shares a significant word with the truth. Anything further is
+# just wrong (no vote, 0 points). Keeps "Beatles" for "Queen" out of the vote.
+NEAR_MISS_MAX_RATIO = 0.5
 # Conditional near-miss community-vote window (REVEAL phase), in seconds.
 TITLE_ARTIST_VOTE_WINDOW_SECONDS = 30
 

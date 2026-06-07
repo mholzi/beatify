@@ -1423,6 +1423,7 @@ function _taStatusPill(status) {
         case 'fuzzy': label = utils.t('titleArtist.statusFuzzy') || 'Close enough'; break;
         case 'near_miss_accepted': label = utils.t('titleArtist.statusAccepted') || 'Accepted'; break;
         case 'near_miss': label = utils.t('titleArtist.statusNearMiss') || 'Near miss'; break;
+        case 'wrong': label = utils.t('titleArtist.statusWrong') || 'Wrong'; break;
         default: label = utils.t('titleArtist.statusSkipped') || 'Skipped';
     }
     return '<span class="' + cls + '">' + escapeHtml(label) + '</span>';

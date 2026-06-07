@@ -729,6 +729,7 @@
     "statusFuzzy": "Dichtbij genoeg",
     "statusAccepted": "Geaccepteerd",
     "statusNearMiss": "Net niet",
+    "statusWrong": "Fout",
     "statusSkipped": "Overgeslagen",
     "voteHeader": "Twijfelgevallen — stem 👍/👎",
     "voteCountdown": "{seconds}s",

@@ -13,6 +13,7 @@ from custom_components.beatify.game.text_match import (
     STATUS_FUZZY,
     STATUS_NEAR_MISS,
     STATUS_SKIPPED,
+    STATUS_WRONG,
     classify_field,
     levenshtein,
     normalize,
@@ -30,6 +31,7 @@ class TestStatusConstants:
         assert STATUS_EXACT == "exact"
         assert STATUS_FUZZY == "fuzzy"
         assert STATUS_NEAR_MISS == "near_miss"
+        assert STATUS_WRONG == "wrong"
         assert STATUS_SKIPPED == "skipped"
 
 
@@ -187,5 +189,24 @@ class TestClassifyFieldNearMiss:
         assert levenshtein(normalize(guess), normalize(truth)) <= FUZZY_MAX_EDITS
         assert classify_field(guess, truth) == STATUS_NEAR_MISS
 
-    def test_completely_different_is_near_miss(self):
-        assert classify_field("Toto", "Queen") == STATUS_NEAR_MISS
+    def test_partial_title_shares_token_is_near_miss(self):
+        # A partial guess that shares a real word stays debatable -> near miss.
+        assert classify_field("Bohemian", "Bohemian Rhapsody") == STATUS_NEAR_MISS
+
+    def test_close_ratio_is_near_miss(self):
+        # Within NEAR_MISS_MAX_RATIO edits of the truth -> near miss.
+        assert classify_field("Bohem Rapsody", "Bohemian Rhapsody") == STATUS_NEAR_MISS
+
+
+class TestClassifyFieldWrong:
+    """A guess that is neither close nor token-sharing is just wrong (#1180)."""
+
+    def test_completely_different_is_wrong(self):
+        # "Toto" is not a near miss for "Queen" — it's just wrong.
+        assert classify_field("Toto", "Queen") == STATUS_WRONG
+
+    def test_different_band_is_wrong(self):
+        assert classify_field("Beatles", "Queen") == STATUS_WRONG
+
+    def test_unrelated_long_title_is_wrong(self):
+        assert classify_field("Hotel California", "Bohemian Rhapsody") == STATUS_WRONG
