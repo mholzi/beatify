@@ -737,7 +737,9 @@
     "hostOverride": "Host entscheidet",
     "accept": "Anerkennen",
     "reject": "Ablehnen",
-    "dashboardVoting": "Abstimmung über knappe Fälle…"
+    "dashboardVoting": "Abstimmung über knappe Fälle…",
+    "youVoted": "Du hast abgestimmt",
+    "tapToChange": "zum Ändern tippen"
   },
   "earlyReveal": {
     "message": "Alle haben geraten!"

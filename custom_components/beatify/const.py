@@ -43,7 +43,7 @@ FUZZY_MAX_EDITS = 2
 # this long, to avoid 2-edit false positives on short words.
 FUZZY_MIN_LEN = 5
 # Conditional near-miss community-vote window (REVEAL phase), in seconds.
-TITLE_ARTIST_VOTE_WINDOW_SECONDS = 15
+TITLE_ARTIST_VOTE_WINDOW_SECONDS = 30
 
 # Intro mode constants (Issue #23)
 INTRO_DURATION_SECONDS = 15

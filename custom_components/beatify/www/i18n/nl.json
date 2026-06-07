@@ -737,7 +737,9 @@
     "hostOverride": "Host beslist",
     "accept": "Accepteren",
     "reject": "Afwijzen",
-    "dashboardVoting": "Stemmen over twijfelgevallen…"
+    "dashboardVoting": "Stemmen over twijfelgevallen…",
+    "youVoted": "Je hebt gestemd",
+    "tapToChange": "tik om te wijzigen"
   },
   "earlyReveal": {
     "message": "Alle gokken zijn binnen!"
