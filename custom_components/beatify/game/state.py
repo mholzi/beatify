@@ -536,7 +536,10 @@ class GameState:
         it, so clients never compare their wall clock to the server's. Returns 0
         when voting is closed or no deadline is set (#1180).
         """
-        if not self._title_artist_voting_open or self._title_artist_vote_deadline is None:
+        if (
+            not self._title_artist_voting_open
+            or self._title_artist_vote_deadline is None
+        ):
             return 0
         return max(0, round(self._title_artist_vote_deadline - self._now()))
 
@@ -2878,6 +2881,7 @@ class GameState:
             rounds_played=self.round,
             movie_quiz_enabled=self.movie_quiz_enabled,
             intro_mode_enabled=self.intro_mode_enabled,
+            title_artist_mode_enabled=self.title_artist_mode,
         )
 
     def submit_artist_guess(

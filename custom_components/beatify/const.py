@@ -152,6 +152,16 @@ MIN_ROUNDS_FOR_COMEBACK = 6  # Minimum rounds played for Comeback King (Issue #1
 MIN_COMEBACK_IMPROVEMENT = (
     2.0  # Minimum avg score improvement for Comeback King (Issue #143)
 )
+# Title & Artist mode superlatives (#1180). These award off cumulative per-field
+# correctness counters tracked only while title_artist_mode is on.
+MIN_EXACT_TITLES_FOR_AWARD = 2  # Minimum exact titles to qualify for Name Dropper
+MIN_CORRECT_ARTISTS_FOR_AWARD = (
+    2  # Minimum artists named to qualify for Artist Whisperer
+)
+MIN_PERFECT_PAIRS_FOR_AWARD = (
+    2  # Minimum title+artist rounds to qualify for Perfect Pair
+)
+MIN_NEAR_MISSES_FOR_AWARD = 2  # Minimum near misses to qualify for So Close
 MAX_SUPERLATIVES = 6  # Maximum number of superlatives to display
 
 # External URLs

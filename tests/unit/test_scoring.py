@@ -354,14 +354,19 @@ class TestApplyClosestWins:
 class _FakeTitleArtistManager:
     """Minimal stand-in matching the ChallengeManager title/artist surface."""
 
-    def __init__(self, points_by_player, title_status_by_player):
+    def __init__(
+        self, points_by_player, title_status_by_player, artist_status_by_player=None
+    ):
         self._points = points_by_player
         self._title_status = title_status_by_player
+        self._artist_status = artist_status_by_player or {}
 
     def title_artist_points(self, player_name):
         return self._points.get(player_name, (0, 0))
 
-    def title_artist_status(self, player_name):
+    def title_artist_status(self, player_name, field="title"):
+        if field == "artist":
+            return self._artist_status.get(player_name, "skipped")
         return self._title_status.get(player_name, "skipped")
 
 
@@ -458,3 +463,142 @@ class TestTitleArtistScoring:
         assert p.missed_round is True
         assert p.streak == 0
         assert p.round_scores == [0]
+
+
+class TestTitleArtistSuperlativeCounters:
+    """Per-field cumulative counters that drive the TA superlatives (#1180)."""
+
+    def _player(self, name="Alice"):
+        p = PlayerSession(name=name, ws=MagicMock())
+        p.submitted = True
+        p.submission_time = 5.0
+        return p
+
+    def test_exact_title_and_artist_increments_all(self):
+        mgr = _FakeTitleArtistManager(
+            {"Alice": (10, 5)}, {"Alice": "exact"}, {"Alice": "exact"}
+        )
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.exact_titles == 1
+        assert p.correct_artists == 1
+        assert p.perfect_pairs == 1
+        assert p.near_misses == 0
+
+    def test_fuzzy_title_not_counted_as_exact_but_pairs(self):
+        mgr = _FakeTitleArtistManager(
+            {"Alice": (10, 5)}, {"Alice": "fuzzy"}, {"Alice": "fuzzy"}
+        )
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.exact_titles == 0  # fuzzy is correct but not "exact"
+        assert p.correct_artists == 1
+        assert p.perfect_pairs == 1  # both fields correct
+
+    def test_near_miss_on_both_fields_counts_twice(self):
+        mgr = _FakeTitleArtistManager(
+            {"Alice": (0, 0)}, {"Alice": "near_miss"}, {"Alice": "near_miss"}
+        )
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.near_misses == 2
+        assert p.perfect_pairs == 0
+        assert p.correct_artists == 0
+
+    def test_accepted_near_miss_artist_counts_as_correct(self):
+        mgr = _FakeTitleArtistManager(
+            {"Alice": (10, 3)},
+            {"Alice": "exact"},
+            {"Alice": "near_miss_accepted"},
+        )
+        p = self._player()
+        _score_title_artist(p, mgr)
+        assert p.correct_artists == 1
+        assert p.perfect_pairs == 1
+        assert p.near_misses == 0
+
+    def test_counters_accumulate_across_rounds(self):
+        p = self._player()
+        exact = _FakeTitleArtistManager(
+            {"Alice": (10, 5)}, {"Alice": "exact"}, {"Alice": "exact"}
+        )
+        _score_title_artist(p, exact)
+        _score_title_artist(p, exact)
+        assert p.exact_titles == 2
+        assert p.perfect_pairs == 2
+
+
+class TestTitleArtistSuperlatives:
+    """calculate_superlatives surfaces the TA awards only in TA mode (#1180)."""
+
+    def _player(self, name, **counters):
+        p = PlayerSession(name=name, ws=MagicMock())
+        for key, val in counters.items():
+            setattr(p, key, val)
+        return p
+
+    def _ids(self, players, **kwargs):
+        awards = ScoringService.calculate_superlatives(
+            players, rounds_played=5, **kwargs
+        )
+        return {a["id"] for a in awards}
+
+    def test_ta_awards_present_in_ta_mode(self):
+        players = [
+            self._player(
+                "Alice",
+                exact_titles=3,
+                correct_artists=3,
+                perfect_pairs=3,
+                near_misses=3,
+            )
+        ]
+        ids = self._ids(players, title_artist_mode_enabled=True)
+        assert {
+            "perfect_pair",
+            "name_dropper",
+            "artist_whisperer",
+            "so_close",
+        } <= ids
+
+    def test_ta_awards_absent_when_mode_off(self):
+        players = [
+            self._player(
+                "Alice",
+                exact_titles=3,
+                correct_artists=3,
+                perfect_pairs=3,
+                near_misses=3,
+            )
+        ]
+        ids = self._ids(players, title_artist_mode_enabled=False)
+        assert not (
+            {"perfect_pair", "name_dropper", "artist_whisperer", "so_close"} & ids
+        )
+
+    def test_below_threshold_does_not_award(self):
+        players = [
+            self._player(
+                "Alice",
+                exact_titles=1,
+                correct_artists=1,
+                perfect_pairs=1,
+                near_misses=1,
+            )
+        ]
+        ids = self._ids(players, title_artist_mode_enabled=True)
+        assert not (
+            {"perfect_pair", "name_dropper", "artist_whisperer", "so_close"} & ids
+        )
+
+    def test_awarded_to_highest_counter(self):
+        players = [
+            self._player("Alice", exact_titles=2),
+            self._player("Bob", exact_titles=5),
+        ]
+        awards = ScoringService.calculate_superlatives(
+            players, rounds_played=5, title_artist_mode_enabled=True
+        )
+        name_dropper = next(a for a in awards if a["id"] == "name_dropper")
+        assert name_dropper["player_name"] == "Bob"
+        assert name_dropper["value"] == 5

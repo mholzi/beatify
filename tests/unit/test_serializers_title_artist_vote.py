@@ -92,7 +92,9 @@ class TestRevealOutcomeFields:
         gs._challenge_manager.submit_title_artist_guess(
             "Alice", "Bohemian", "Queen Rock", 1.0
         )
-        gs._challenge_manager.register_title_artist_vote("Bob", "Alice:title", accept=True)
+        gs._challenge_manager.register_title_artist_vote(
+            "Bob", "Alice:title", accept=True
+        )
         gs._challenge_manager.resolve_title_artist()
         gs._title_artist_voting_open = False
 
@@ -111,7 +113,9 @@ class TestVoteSecondsRemaining:
 
     def test_remaining_zero_when_not_voting(self):
         gs = _gs_in_mode()
-        gs._challenge_manager.submit_title_artist_guess("Alice", "Bohemian", "Queen", 1.0)
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Bohemian", "Queen", 1.0
+        )
         # Voting not opened -> 0.
         assert gs.title_artist_vote_seconds_remaining() == 0
         d = gs.get_title_artist_challenge_dict(include_answer=True)
@@ -126,7 +130,9 @@ class TestVoteSecondsRemaining:
             movie_quiz_enabled=False,
             title_artist_mode=True,
         )
-        gs._challenge_manager.init_round({"title": "Bohemian Rhapsody", "artist": "Queen"})
+        gs._challenge_manager.init_round(
+            {"title": "Bohemian Rhapsody", "artist": "Queen"}
+        )
         gs._title_artist_voting_open = True
         gs._title_artist_vote_deadline = clock["t"] + 30  # 30s window
 

@@ -22,8 +22,12 @@ from custom_components.beatify.const import (
     MIN_BETS_FOR_AWARD,
     MIN_CLOSE_CALLS,
     MIN_COMEBACK_IMPROVEMENT,
+    MIN_CORRECT_ARTISTS_FOR_AWARD,
+    MIN_EXACT_TITLES_FOR_AWARD,
     MIN_INTRO_BONUSES_FOR_AWARD,
     MIN_MOVIE_WINS_FOR_AWARD,
+    MIN_NEAR_MISSES_FOR_AWARD,
+    MIN_PERFECT_PAIRS_FOR_AWARD,
     MIN_ROUNDS_FOR_CLUTCH,
     MIN_ROUNDS_FOR_COMEBACK,
     MIN_STREAK_FOR_AWARD,
@@ -33,7 +37,11 @@ from custom_components.beatify.const import (
 )
 
 from custom_components.beatify.game.challenges import STATUS_NEAR_MISS_ACCEPTED
-from custom_components.beatify.game.text_match import STATUS_EXACT, STATUS_FUZZY
+from custom_components.beatify.game.text_match import (
+    STATUS_EXACT,
+    STATUS_FUZZY,
+    STATUS_NEAR_MISS,
+)
 
 # Points awarded
 POINTS_EXACT = 10
@@ -268,9 +276,23 @@ def _score_title_artist_round(
     player.movie_bonus = 0
     player.intro_bonus = 0
 
-    title_correct = (
-        title_artist_manager.title_artist_status(player.name) in _TITLE_CORRECT_STATUSES
+    title_status = title_artist_manager.title_artist_status(player.name)
+    artist_status = title_artist_manager.title_artist_status(player.name, "artist")
+    title_correct = title_status in _TITLE_CORRECT_STATUSES
+    artist_correct = artist_status in _TITLE_CORRECT_STATUSES
+
+    # Cumulative per-field counters drive the Title & Artist superlatives
+    # (#1180): Name Dropper, Artist Whisperer, Perfect Pair, So Close.
+    if title_status == STATUS_EXACT:
+        player.exact_titles += 1
+    if artist_correct:
+        player.correct_artists += 1
+    if title_correct and artist_correct:
+        player.perfect_pairs += 1
+    player.near_misses += (title_status == STATUS_NEAR_MISS) + (
+        artist_status == STATUS_NEAR_MISS
     )
+
     # Reuse the shared streak machinery, keyed on title correctness rather
     # than a positive year score (which doesn't exist in this mode).
     _apply_streak(player, 1 if title_correct else 0, streak_achievements)
@@ -468,6 +490,62 @@ def _superlative_comeback_king(
 
 
 # ---------------------------------------------------------------------------
+# Title & Artist mode superlatives (#1180). Computed only when title_artist_mode
+# is on; their counters stay 0 in year mode so they self-gate regardless.
+# ---------------------------------------------------------------------------
+
+
+def _superlative_perfect_pair(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.perfect_pairs)
+        for p in players
+        if p.perfect_pairs >= MIN_PERFECT_PAIRS_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    best = max(candidates, key=lambda x: x[1])
+    return _award("perfect_pair", "💯", best[0].name, best[1], "perfect_rounds")
+
+
+def _superlative_name_dropper(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.exact_titles)
+        for p in players
+        if p.exact_titles >= MIN_EXACT_TITLES_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    best = max(candidates, key=lambda x: x[1])
+    return _award("name_dropper", "🧠", best[0].name, best[1], "exact_titles")
+
+
+def _superlative_artist_whisperer(
+    players: list[PlayerSession],
+) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.correct_artists)
+        for p in players
+        if p.correct_artists >= MIN_CORRECT_ARTISTS_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    best = max(candidates, key=lambda x: x[1])
+    return _award("artist_whisperer", "🎤", best[0].name, best[1], "artists")
+
+
+def _superlative_so_close(players: list[PlayerSession]) -> dict[str, Any] | None:
+    candidates = [
+        (p, p.near_misses)
+        for p in players
+        if p.near_misses >= MIN_NEAR_MISSES_FOR_AWARD
+    ]
+    if not candidates:
+        return None
+    best = max(candidates, key=lambda x: x[1])
+    return _award("so_close", "🤏", best[0].name, best[1], "near_misses")
+
+
+# ---------------------------------------------------------------------------
 # ScoringService — extracted from GameState (Issue #139)
 # ---------------------------------------------------------------------------
 
@@ -528,14 +606,26 @@ class ScoringService:
         rounds_played: int,
         movie_quiz_enabled: bool = False,
         intro_mode_enabled: bool = False,
+        title_artist_mode_enabled: bool = False,
     ) -> list[dict[str, Any]]:
         """Calculate fun awards based on game performance (Story 15.2)."""
         if not players:
             return []
 
+        # In Title & Artist mode (#1180) the speed/bet/close-call awards can
+        # never qualify (their counters aren't tracked), so the TA-native
+        # awards take their slots near the top of the priority order.
         builders = [
             _superlative_speed_demon(players),
             _superlative_lucky_streak(players),
+            _superlative_perfect_pair(players) if title_artist_mode_enabled else None,
+            _superlative_name_dropper(players) if title_artist_mode_enabled else None,
+            (
+                _superlative_artist_whisperer(players)
+                if title_artist_mode_enabled
+                else None
+            ),
+            _superlative_so_close(players) if title_artist_mode_enabled else None,
             _superlative_risk_taker(players),
             _superlative_clutch_player(players, rounds_played),
             _superlative_close_calls(players),
