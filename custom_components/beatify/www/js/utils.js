@@ -287,6 +287,31 @@ window.BeatifyUtils = (function() {
         return wsProtocol + '//' + window.location.host + path;
     }
 
+    /**
+     * Title & Artist verdict label for a resolved near-miss (#1180).
+     * @param {boolean} accepted - whether the close call was accepted
+     * @param {number} points - points awarded (only shown when accepted)
+     * @returns {string} "✓ +N" when accepted, "✗" when rejected
+     */
+    function taVerdictLabel(accepted, points) {
+        return accepted ? '✓ +' + (points || 0) : '✗';
+    }
+
+    /**
+     * Title & Artist live tally split as integer percentages (#1180).
+     * Returns {yes, no} summing to 100 when any vote is cast, else {0, 0}.
+     * @param {number} yes - 👍 count
+     * @param {number} no - 👎 count
+     */
+    function taTallyPercents(yes, no) {
+        yes = yes || 0;
+        no = no || 0;
+        var total = yes + no;
+        if (total <= 0) return { yes: 0, no: 0 };
+        var yesPct = Math.round((yes / total) * 100);
+        return { yes: yesPct, no: 100 - yesPct };
+    }
+
     // ==========================================================================
     // Public API
     // ==========================================================================
@@ -295,6 +320,10 @@ window.BeatifyUtils = (function() {
         // i18n
         waitForI18n: waitForI18n,
         t: t,
+
+        // Title & Artist helpers
+        taVerdictLabel: taVerdictLabel,
+        taTallyPercents: taTallyPercents,
 
         // View management
         showView: showView,

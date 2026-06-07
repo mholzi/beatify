@@ -783,6 +783,7 @@
         var ta = data.title_artist_challenge || null;
         if (!data.title_artist_mode || !ta || !ta.correct_title) {
             banner.classList.add('hidden');
+            _stopTaLiveCountdown();
             return;
         }
         banner.classList.remove('hidden');
@@ -792,30 +793,75 @@
         if (titleEl) titleEl.textContent = ta.correct_title || '';
         if (artistEl) artistEl.textContent = ta.correct_artist || '';
 
+        var votingOpen = !!ta.voting_open;
+        var nearMisses = ta.near_misses || [];
+        var outcomes = ta.near_miss_outcomes || [];
         var votingEl = document.getElementById('dashboard-ta-voting');
-        if (votingEl) {
-            votingEl.classList.toggle('hidden', !ta.voting_open);
+        var liveEl = document.getElementById('dashboard-ta-live');
+        var outcomesEl = document.getElementById('dashboard-ta-outcomes');
+
+        var fieldLabel = function(field) {
+            return field === 'artist'
+                ? utils.t('titleArtist.artistLabel', 'Artist')
+                : utils.t('titleArtist.titleLabel', 'Song title');
+        };
+
+        // LIVE: while voting is open, show the running vote so the whole room can
+        // watch it unfold — near-miss guesses + live 👍/👎 tally + countdown
+        // (read-only; spectators vote on their phones) (#1180).
+        if (votingOpen && nearMisses.length > 0 && liveEl) {
+            if (votingEl) votingEl.classList.add('hidden');
+            if (outcomesEl) { outcomesEl.innerHTML = ''; outcomesEl.classList.add('hidden'); }
+
+            var cards = nearMisses.map(function(nm) {
+                var pct = utils.taTallyPercents(nm.votes_yes, nm.votes_no);
+                return '<div class="dashboard-ta-live-card">' +
+                    '<div class="dashboard-ta-live-top">' +
+                        '<span class="dashboard-ta-live-who">' + utils.escapeHtml(nm.player) + '</span>' +
+                        '<span class="dashboard-ta-live-field">' + utils.escapeHtml(fieldLabel(nm.field)) + '</span>' +
+                    '</div>' +
+                    '<div class="dashboard-ta-live-guess">“' + utils.escapeHtml(nm.guess || '—') + '”</div>' +
+                    '<div class="dashboard-ta-live-tally">' +
+                        '<span class="dashboard-ta-live-y">👍 ' + (nm.votes_yes || 0) + '</span>' +
+                        '<span class="dashboard-ta-live-track">' +
+                            '<span class="dashboard-ta-live-fill dashboard-ta-live-fill--y" style="width:' + pct.yes + '%"></span>' +
+                        '</span>' +
+                        '<span class="dashboard-ta-live-n">👎 ' + (nm.votes_no || 0) + '</span>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+
+            liveEl.innerHTML =
+                '<div class="dashboard-ta-live-head">' +
+                    '<span class="dashboard-ta-deciding">' +
+                        utils.escapeHtml(utils.t('titleArtist.dashboardDeciding', 'The room is deciding…')) +
+                    '</span>' +
+                    '<span id="dashboard-ta-live-cd" class="dashboard-ta-live-cd" aria-hidden="true"></span>' +
+                '</div>' +
+                '<div class="dashboard-ta-live-cards">' + cards + '</div>';
+            liveEl.classList.remove('hidden');
+            _startTaLiveCountdown(ta.vote_seconds_remaining);
+            return;
         }
 
-        // Once voting closes, swap the "Voting on close calls…" line for the
-        // resolved verdicts so the room sees what counted (#1180, #1243).
-        var outcomesEl = document.getElementById('dashboard-ta-outcomes');
+        // Not live: stop the ticker and clear the live view.
+        _stopTaLiveCountdown();
+        if (liveEl) { liveEl.innerHTML = ''; liveEl.classList.add('hidden'); }
+        if (votingEl) votingEl.classList.add('hidden');
+
+        // DECIDED: once voting closes, show the resolved verdicts so the room
+        // sees what counted (#1180, #1243).
         if (outcomesEl) {
-            var outcomes = ta.near_miss_outcomes || [];
-            if (!ta.voting_open && outcomes.length > 0) {
-                var fieldLabel = function(field) {
-                    return field === 'artist'
-                        ? utils.t('titleArtist.artistLabel', 'Artist')
-                        : utils.t('titleArtist.titleLabel', 'Song title');
-                };
+            if (!votingOpen && outcomes.length > 0) {
                 var chips = outcomes.map(function(o) {
                     var accepted = !!o.accepted;
-                    var verdict = accepted ? '✓ +' + (o.points || 0) : '✗';
                     return '<div class="dashboard-ta-chip dashboard-ta-chip--' +
                             (accepted ? 'accepted' : 'rejected') + '">' +
                         '<span class="dashboard-ta-chip-who">' + utils.escapeHtml(o.player) + '</span>' +
                         '<span class="dashboard-ta-chip-field">' + utils.escapeHtml(fieldLabel(o.field)) + '</span>' +
-                        '<span class="dashboard-ta-chip-verdict">' + verdict + '</span>' +
+                        '<span class="dashboard-ta-chip-verdict">' +
+                            utils.escapeHtml(utils.taVerdictLabel(accepted, o.points)) +
+                        '</span>' +
                     '</div>';
                 }).join('');
                 outcomesEl.innerHTML = '<div class="dashboard-ta-decided">' +
@@ -827,6 +873,27 @@
                 outcomesEl.classList.add('hidden');
             }
         }
+    }
+
+    // Local countdown ticker for the TV live-vote view. Anchored to the server's
+    // vote_seconds_remaining (#1180) and re-synced on every broadcast.
+    var _taLiveTick = null;
+    function _startTaLiveCountdown(secondsRemaining) {
+        _stopTaLiveCountdown();
+        var el = document.getElementById('dashboard-ta-live-cd');
+        if (!el) return;
+        var remaining = (typeof secondsRemaining === 'number') ? secondsRemaining : 0;
+        var endAt = Date.now() + remaining * 1000;
+        function paint() {
+            var r = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+            el.textContent = r + 's';
+            if (r <= 0) _stopTaLiveCountdown();
+        }
+        paint();
+        _taLiveTick = setInterval(paint, 500);
+    }
+    function _stopTaLiveCountdown() {
+        if (_taLiveTick) { clearInterval(_taLiveTick); _taLiveTick = null; }
     }
 
     /**
