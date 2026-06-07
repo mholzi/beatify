@@ -171,7 +171,9 @@ class TestClassifyFieldFuzzy:
         guess = "Codplaay"  # 2 edits from "coldplay"
         truth_norm = normalize(truth)
         assert FUZZY_MIN_LEN <= len(truth_norm)
-        assert levenshtein(normalize(guess), truth_norm) == fuzzy_budget(len(truth_norm))
+        assert levenshtein(normalize(guess), truth_norm) == fuzzy_budget(
+            len(truth_norm)
+        )
         assert classify_field(guess, truth) == STATUS_FUZZY
 
 
@@ -269,5 +271,7 @@ class TestFuzzyBudgetScaling:
         guess = "Smels Like Ten Sprit"  # within budget
         truth_norm = normalize(truth)
         assert len(truth_norm) >= 20
-        assert levenshtein(normalize(guess), truth_norm) <= fuzzy_budget(len(truth_norm))
+        assert levenshtein(normalize(guess), truth_norm) <= fuzzy_budget(
+            len(truth_norm)
+        )
         assert classify_field(guess, truth) == STATUS_FUZZY

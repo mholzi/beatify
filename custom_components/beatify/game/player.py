@@ -91,7 +91,9 @@ class PlayerSession:
 
     # Title & Artist superlative tracking (#1180) - CUMULATIVE, NOT reset per round
     exact_titles: int = 0  # Rounds with an exact title match (Name Dropper)
-    correct_artists: int = 0  # Rounds with the artist named correctly (Artist Whisperer)
+    correct_artists: int = (
+        0  # Rounds with the artist named correctly (Artist Whisperer)
+    )
     perfect_pairs: int = 0  # Rounds with both title and artist correct (Perfect Pair)
     near_misses: int = 0  # Count of debated near-miss fields, title + artist (So Close)
 

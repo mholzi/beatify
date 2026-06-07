@@ -536,7 +536,10 @@ class GameState:
         it, so clients never compare their wall clock to the server's. Returns 0
         when voting is closed or no deadline is set (#1180).
         """
-        if not self._title_artist_voting_open or self._title_artist_vote_deadline is None:
+        if (
+            not self._title_artist_voting_open
+            or self._title_artist_vote_deadline is None
+        ):
             return 0
         return max(0, round(self._title_artist_vote_deadline - self._now()))
 

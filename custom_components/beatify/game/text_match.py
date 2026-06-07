@@ -115,7 +115,9 @@ def fuzzy_budget(truth_len: int) -> int:
     """
     if truth_len < FUZZY_MIN_LEN:
         return 0
-    scaled = FUZZY_MAX_EDITS + sum(1 for t in FUZZY_EXTRA_EDIT_LENGTHS if truth_len >= t)
+    scaled = FUZZY_MAX_EDITS + sum(
+        1 for t in FUZZY_EXTRA_EDIT_LENGTHS if truth_len >= t
+    )
     return min(scaled, truth_len // FUZZY_BUDGET_LEN_DIVISOR)
 
 
