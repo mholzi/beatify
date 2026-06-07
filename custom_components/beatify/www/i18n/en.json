@@ -1001,7 +1001,10 @@
     "learningWarning": "⚠️ {count} player still learning the rules",
     "learningWarningPlural": "⚠️ {count} players still learning the rules",
     "startAnyway": "{count} player is still learning the rules. Start anyway?",
-    "startAnywayPlural": "{count} players are still learning the rules. Start anyway?"
+    "startAnywayPlural": "{count} players are still learning the rules. Start anyway?",
+    "titleArtistTitle": "Name that tune",
+    "titleArtistCaption": "Some games: type the title & artist",
+    "titleArtistHint": "Close? The room votes 👍/👎."
   },
   "playlistHub": {
     "title": "Playlist Hub",

@@ -20,8 +20,14 @@ var utils = window.BeatifyUtils || {};
 
 var STORAGE_KEY_ONBOARDED = 'beatify_onboarded_v2';
 var AUTO_ADVANCE_MS = 4000;
-var TOTAL_CARDS = 4;
 var READY_HOLD_MS = 1400; // dwell on ready screen before lobby
+
+// Card count is derived from the DOM so adding/removing a .tour-card needs no
+// JS change (just the markup + a matching progress segment).
+function totalCards() {
+    var n = document.querySelectorAll('.tour-card').length;
+    return n > 0 ? n : 4;
+}
 
 // ============================================
 // localStorage helpers
@@ -120,8 +126,8 @@ function renderCard(idx) {
     // after a mid-tour language change.
     var nextBtn = document.getElementById('tour-next-btn');
     if (nextBtn) {
-        var i18nKey = idx === TOTAL_CARDS - 1 ? 'onboarding.letsPlay' : 'onboarding.nextBtn';
-        var fallback = idx === TOTAL_CARDS - 1 ? "Let's play" : 'Next';
+        var i18nKey = idx === totalCards() - 1 ? 'onboarding.letsPlay' : 'onboarding.nextBtn';
+        var fallback = idx === totalCards() - 1 ? "Let's play" : 'Next';
         var label = utils.t ? utils.t(i18nKey) : fallback;
         if (label === i18nKey) label = fallback;
         nextBtn.innerHTML = '<span data-i18n="' + i18nKey + '">' + label + '</span>'
@@ -135,7 +141,7 @@ function renderCard(idx) {
 
 function advance() {
     clearAutoAdvance();
-    if (tour.currentIdx < TOTAL_CARDS - 1) {
+    if (tour.currentIdx < totalCards() - 1) {
         tour.currentIdx++;
         renderProgress();
         renderCard(tour.currentIdx);

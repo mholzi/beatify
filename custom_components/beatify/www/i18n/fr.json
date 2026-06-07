@@ -1001,7 +1001,10 @@
     "learningWarning": "⚠️ {count} joueur apprend encore les règles",
     "learningWarningPlural": "⚠️ {count} joueurs apprennent encore les règles",
     "startAnyway": "{count} joueur apprend encore les règles. Démarrer quand même ?",
-    "startAnywayPlural": "{count} joueurs apprennent encore les règles. Démarrer quand même ?"
+    "startAnywayPlural": "{count} joueurs apprennent encore les règles. Démarrer quand même ?",
+    "titleArtistTitle": "Trouve le titre",
+    "titleArtistCaption": "Parfois : tape le titre & l’artiste",
+    "titleArtistHint": "Presque ? La salle vote 👍/👎."
   },
   "playlistGenerator": {
     "title": "Générateur de playlists",
