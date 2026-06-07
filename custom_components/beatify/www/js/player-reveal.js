@@ -1636,7 +1636,7 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
     });
     cardsEl.innerHTML = html;
 
-    // 4) Countdown — display-only, driven by reveal_started_at + window.
+    // 4) Countdown — ticks from the server's authoritative vote_seconds_remaining.
     if (votingOpen) {
         _startTaVoteCountdown(ta);
     } else {
@@ -1651,10 +1651,11 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
 }
 
 /**
- * Start the display-only voting countdown. Uses reveal_started_at (ms epoch)
- * from the last reveal context when available, falling back to a fresh 30s
- * window anchored to now. The server is authoritative on voting_open; this is
- * purely a visual aid.
+ * Start the voting countdown from the server's authoritative
+ * ``vote_seconds_remaining`` (re-synced on every broadcast), ticking down
+ * locally between broadcasts. Anchoring to a server-computed remaining instead
+ * of comparing a server epoch to the client clock avoids clock-skew drift.
+ * Falls back to VOTE_WINDOW_SECONDS only if the field is absent.
  * @param {Object} ta - title_artist_challenge dict
  */
 function _startTaVoteCountdown(ta) {
@@ -1662,9 +1663,12 @@ function _startTaVoteCountdown(ta) {
     var cd = document.getElementById('ta-voting-countdown');
     if (!cd) return;
 
-    var ctx = state.lastRevealContext || {};
-    var startedAt = ctx.revealStartedAt || Date.now();
-    var endAt = startedAt + VOTE_WINDOW_SECONDS * 1000;
+    var serverRemaining = (ta && typeof ta.vote_seconds_remaining === 'number')
+        ? ta.vote_seconds_remaining
+        : VOTE_WINDOW_SECONDS;
+    // Anchor to the client's own clock from the moment we received the server's
+    // remaining — purely relative, so no cross-machine epoch comparison.
+    var endAt = Date.now() + serverRemaining * 1000;
 
     function paint() {
         var remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
