@@ -1437,7 +1437,7 @@ function _taStatusPill(status) {
  * @param {Object|null} ta - data.title_artist_challenge (REVEAL shape) or null
  * @param {Object|null} currentPlayer - resolved current player object
  */
-function renderTitleArtistReveal(ta, currentPlayer) {
+export function renderTitleArtistReveal(ta, currentPlayer) {
     var section = document.getElementById('ta-reveal-section');
     if (!section) return;
 
