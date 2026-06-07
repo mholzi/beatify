@@ -1001,7 +1001,10 @@
     "learningWarning": "⚠️ {count} speler leert nog de regels",
     "learningWarningPlural": "⚠️ {count} spelers leren nog de regels",
     "startAnyway": "{count} speler leert nog de regels. Toch beginnen?",
-    "startAnywayPlural": "{count} spelers leren nog de regels. Toch beginnen?"
+    "startAnywayPlural": "{count} spelers leren nog de regels. Toch beginnen?",
+    "titleArtistTitle": "Raad het nummer",
+    "titleArtistCaption": "Soms: typ de titel & artiest",
+    "titleArtistHint": "Bijna? De zaal stemt 👍/👎."
   },
   "playlistGenerator": {
     "title": "Playlist-generator",

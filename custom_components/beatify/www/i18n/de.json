@@ -1001,7 +1001,10 @@
     "learningWarning": "⚠️ {count} Spieler lernt noch die Regeln",
     "learningWarningPlural": "⚠️ {count} Spieler lernen noch die Regeln",
     "startAnyway": "{count} Spieler lernt noch die Regeln. Trotzdem starten?",
-    "startAnywayPlural": "{count} Spieler lernen noch die Regeln. Trotzdem starten?"
+    "startAnywayPlural": "{count} Spieler lernen noch die Regeln. Trotzdem starten?",
+    "titleArtistTitle": "Song erraten",
+    "titleArtistCaption": "Manche Spiele: Titel & Künstler tippen",
+    "titleArtistHint": "Knapp? Das Publikum stimmt 👍/👎 ab."
   },
   "playlistHub": {
     "title": "Playlist-Hub",

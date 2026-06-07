@@ -10927,6 +10927,38 @@ body.is-learning-screen .player-header { display: none; }
     margin-top: var(--space-xs);
 }
 
+/* Preview: Title & Artist mode (card 5, #1180) */
+.tour-ta-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+}
+.tour-ta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, rgba(255, 45, 106, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 45, 106, 0.22);
+    border-radius: var(--radius-lg);
+    text-align: left;
+}
+.tour-ta-field-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+.tour-ta-field-val {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--font-size-md);
+    color: var(--color-text-white);
+}
+
 /* Preview: artist (card 4) */
 .tour-artist-prompt {
     display: flex;

@@ -1001,7 +1001,10 @@
     "learningWarning": "⚠️ {count} jugador aún aprende las reglas",
     "learningWarningPlural": "⚠️ {count} jugadores aún aprenden las reglas",
     "startAnyway": "{count} jugador aún aprende las reglas. ¿Empezar igualmente?",
-    "startAnywayPlural": "{count} jugadores aún aprenden las reglas. ¿Empezar igualmente?"
+    "startAnywayPlural": "{count} jugadores aún aprenden las reglas. ¿Empezar igualmente?",
+    "titleArtistTitle": "Adivina la canción",
+    "titleArtistCaption": "A veces: escribe título y artista",
+    "titleArtistHint": "¿Cerca? La sala vota 👍/👎."
   },
   "playlistGenerator": {
     "title": "Generador de listas",

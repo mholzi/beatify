@@ -108,8 +108,9 @@
                         </span>
                         <button type="button" id="tour-skip-link" class="tour-skip-link" data-i18n="onboarding.skip">Skip tour</button>
                     </div>
-                    <div class="tour-wiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
+                    <div class="tour-wiz-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
                         <div class="tour-wiz-seg active"><div class="tour-wiz-seg-inner"></div></div>
+                        <div class="tour-wiz-seg"></div>
                         <div class="tour-wiz-seg"></div>
                         <div class="tour-wiz-seg"></div>
                         <div class="tour-wiz-seg"></div>
@@ -189,6 +190,25 @@
                             <div class="tour-artist-option">Billy Idol</div>
                         </div>
                         <p class="tour-hint" data-i18n="onboarding.artistHint">+5 bonus points.</p>
+                    </div>
+                </section>
+
+                <!-- Card 5: Name that tune (Title & Artist mode) -->
+                <section class="tour-card hidden" data-tour-card="4">
+                    <h2 class="tour-title" data-i18n="onboarding.titleArtistTitle">Name that tune</h2>
+                    <p class="tour-caption" data-i18n="onboarding.titleArtistCaption">Some games: type the title &amp; artist</p>
+                    <div class="tour-preview">
+                        <div class="tour-ta-fields" aria-hidden="true">
+                            <div class="tour-ta-field">
+                                <span class="tour-ta-field-label" data-i18n="titleArtist.titleLabel">Song title</span>
+                                <span class="tour-ta-field-val">Bohemian Rhapsody</span>
+                            </div>
+                            <div class="tour-ta-field">
+                                <span class="tour-ta-field-label" data-i18n="titleArtist.artistLabel">Artist</span>
+                                <span class="tour-ta-field-val">Queen</span>
+                            </div>
+                        </div>
+                        <p class="tour-hint" data-i18n="onboarding.titleArtistHint">Close? The room votes 👍/👎.</p>
                     </div>
                 </section>
 
