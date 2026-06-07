@@ -659,21 +659,22 @@ body.theme-dark .form-input {
 }
 
 .btn-primary {
-    background: var(--color-accent-blue);
-    color: var(--color-text-white);
+    background: var(--color-accent-primary);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: var(--color-accent-blue-hover);
+    background: #e0245c;
 }
 
 .btn-primary:disabled {
     background: var(--color-text-light);
     cursor: not-allowed;
+    opacity: 0.55;
 }
 
 body.theme-dark .btn-primary {
-    color: var(--color-text-white);
+    color: #fff;
 }
 
 .btn-secondary {
@@ -683,6 +684,46 @@ body.theme-dark .btn-primary {
 
 .btn-secondary:hover {
     background: var(--color-border-medium);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--color-accent-primary);
+    border: 1.5px solid var(--color-accent-primary);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 45, 106, 0.08);
+}
+
+.btn-ghost:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: 1.5px solid var(--color-border-medium);
+}
+
+.btn-outline:hover {
+    background: var(--color-border-light);
+    border-color: var(--color-text-secondary);
+}
+
+.btn-outline:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
 }
 
 /* Links */
