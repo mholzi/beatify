@@ -21,7 +21,7 @@ class TestRevealVoteFields:
     def test_near_misses_and_voting_open_present(self):
         gs = _gs_in_mode()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", "Queen", 1.0
+            "Alice", "Bohemian", "Queen", 1.0
         )
         gs._title_artist_voting_open = True
         d = gs.get_title_artist_challenge_dict(include_answer=True)
@@ -43,7 +43,7 @@ class TestRevealVoteFields:
     def test_playing_dict_has_no_truth_or_votes(self):
         gs = _gs_in_mode()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", "Queen", 1.0
+            "Alice", "Bohemian", "Queen", 1.0
         )
         d = gs.get_title_artist_challenge_dict(include_answer=False)
         # PLAYING: never leaks truth, results, or near_misses.
@@ -63,7 +63,7 @@ class TestRevealVoteFields:
             "year": 1975,
         }
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", "Queen", 1.0
+            "Alice", "Bohemian", "Queen", 1.0
         )
         gs._title_artist_voting_open = True
         state = GameStateSerializer.serialize(gs)
@@ -79,7 +79,7 @@ class TestRevealOutcomeFields:
     def test_outcomes_empty_while_voting_open(self):
         gs = _gs_in_mode()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", "Queen", 1.0
+            "Alice", "Bohemian", "Queen", 1.0
         )
         gs._title_artist_voting_open = True
         d = gs.get_title_artist_challenge_dict(include_answer=True)
@@ -88,9 +88,9 @@ class TestRevealOutcomeFields:
 
     def test_outcomes_present_after_resolution(self):
         gs = _gs_in_mode()
-        # Both fields wrong enough to be near-misses (artist "Beatles" != "Queen").
+        # Both fields wrong enough to be near-misses (artist "Queen Rock" != "Queen").
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", "Beatles", 1.0
+            "Alice", "Bohemian", "Queen Rock", 1.0
         )
         gs._challenge_manager.register_title_artist_vote("Bob", "Alice:title", accept=True)
         gs._challenge_manager.resolve_title_artist()

@@ -729,6 +729,7 @@
     "statusFuzzy": "Close enough",
     "statusAccepted": "Accepted",
     "statusNearMiss": "Near miss",
+    "statusWrong": "Wrong",
     "statusSkipped": "Skipped",
     "voteHeader": "Close calls — vote 👍/👎",
     "voteCountdown": "{seconds}s",

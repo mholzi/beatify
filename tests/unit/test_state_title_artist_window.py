@@ -64,9 +64,9 @@ class TestDelegation:
             movie_quiz_enabled=False,
             title_artist_mode=True,
         )
-        gs._challenge_manager.init_round({"title": "T Word", "artist": "A Word"})
+        gs._challenge_manager.init_round({"title": "Word Up Now", "artist": "A Word"})
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Wrong Wrong Title", "A Word", 1.0
+            "Alice", "Word Up Later", "A Word", 1.0
         )
         gs.register_title_artist_vote("Bob", "Alice:title", True)
         assert gs.has_near_misses() is True
@@ -98,7 +98,7 @@ class TestConditionalWindow:
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", gs.current_song["artist"], 1.0
+            "Alice", "Real Title Zero", gs.current_song["artist"], 1.0
         )
         gs._challenge_manager.submit_title_artist_guess(
             "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
@@ -117,7 +117,7 @@ class TestConditionalWindow:
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", gs.current_song["artist"], 1.0
+            "Alice", "Real Title Zero", gs.current_song["artist"], 1.0
         )
         gs._challenge_manager.submit_title_artist_guess(
             "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
@@ -142,7 +142,7 @@ class TestConditionalWindow:
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", gs.current_song["artist"], 1.0
+            "Alice", "Real Title Zero", gs.current_song["artist"], 1.0
         )
         gs._challenge_manager.submit_title_artist_guess(
             "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
@@ -178,7 +178,7 @@ class TestVoteWindowScoring:
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
-            "Alice", "Completely Different", gs.current_song["artist"], 1.0
+            "Alice", "Real Title Zero", gs.current_song["artist"], 1.0
         )
         gs._challenge_manager.submit_title_artist_guess(
             "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0

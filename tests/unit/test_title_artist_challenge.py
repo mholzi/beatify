@@ -101,7 +101,7 @@ class TestSubmitTitleArtistGuess:
 
     def test_near_miss_both(self):
         mgr = _make_manager()
-        res = mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        res = mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         assert res["title_status"] == "near_miss"
         assert res["artist_status"] == "near_miss"
 
@@ -137,7 +137,7 @@ class TestTitleArtistPoints:
 
     def test_near_miss_zero_until_resolved(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         assert mgr.title_artist_points("Dan") == (0, 0)
 
     def test_skipped_zero(self):
@@ -162,7 +162,7 @@ class TestNearMisses:
     def test_near_miss_shape_and_counts(self):
         mgr = _make_manager()
         # Both title and artist classify as near_miss.
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # Cast votes only on the title near-miss.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
@@ -177,7 +177,7 @@ class TestNearMisses:
             "id": "Dan:title",
             "player": "Dan",
             "field": "title",
-            "guess": "Some Other Song",
+            "guess": "Bohemian",
             "votes_yes": 2,
             "votes_no": 1,
         }
@@ -198,7 +198,7 @@ class TestResolveTitleArtist:
 
     def test_accept_by_vote_majority(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # 2 yes / 1 no -> 2/3 >= 0.5 -> accepted (partial points).
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
@@ -214,7 +214,7 @@ class TestResolveTitleArtist:
 
     def test_reject_by_default_no_votes(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         mgr.resolve_title_artist()
 
         stored = mgr.title_artist_challenge.guesses["Dan"]
@@ -224,7 +224,7 @@ class TestResolveTitleArtist:
 
     def test_one_one_tie_is_accepted(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # 1 yes / 1 no -> 1/2 == 0.5 >= 0.5 -> accepted by majority policy.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
@@ -236,7 +236,7 @@ class TestResolveTitleArtist:
 
     def test_reject_by_vote_minority(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # 1 yes / 2 no -> 1/3 < 0.5 -> rejected.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
@@ -249,7 +249,7 @@ class TestResolveTitleArtist:
 
     def test_override_accepts_against_no_majority(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # Votes would reject (0 yes / 2 no) but host override accepts.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=False)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=False)
@@ -262,7 +262,7 @@ class TestResolveTitleArtist:
 
     def test_override_rejects_against_yes_majority(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # Votes would accept (2 yes / 0 no) but host override rejects.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
@@ -275,7 +275,7 @@ class TestResolveTitleArtist:
 
     def test_accepted_near_miss_awards_partial_both_fields(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # Override both near-miss fields to accepted -> partial (5, 3).
         mgr.set_title_artist_override("Dan:title", accept=True)
         mgr.set_title_artist_override("Dan:artist", accept=True)
@@ -285,7 +285,7 @@ class TestResolveTitleArtist:
 
     def test_resolve_is_idempotent(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.resolve_title_artist()
         assert mgr.title_artist_challenge.resolved is True
@@ -303,7 +303,7 @@ class TestResolveTitleArtist:
 
     def test_late_opposing_vote_does_not_flip_accepted_field(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.resolve_title_artist()
         assert mgr.title_artist_challenge.guesses["Dan"]["title_status"] == (
@@ -396,7 +396,7 @@ class TestGetNearMissOutcomes:
 
     def test_empty_before_resolution(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         # Not resolved yet -> outcomes are empty; the live tally lives in
         # get_near_misses until the window closes.
@@ -410,7 +410,7 @@ class TestGetNearMissOutcomes:
 
     def test_accepted_and_rejected_after_resolution(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         # Title: 2 yes / 1 no -> accepted (partial 5). Artist: no votes -> rejected.
         mgr.register_title_artist_vote("V1", "Dan:title", accept=True)
         mgr.register_title_artist_vote("V2", "Dan:title", accept=True)
@@ -424,7 +424,7 @@ class TestGetNearMissOutcomes:
             "id": "Dan:title",
             "player": "Dan",
             "field": "title",
-            "guess": "Some Other Song",
+            "guess": "Bohemian",
             "votes_yes": 2,
             "votes_no": 1,
             "accepted": True,
@@ -434,7 +434,7 @@ class TestGetNearMissOutcomes:
             "id": "Dan:artist",
             "player": "Dan",
             "field": "artist",
-            "guess": "Beatles",
+            "guess": "Queen Rock",
             "votes_yes": 0,
             "votes_no": 0,
             "accepted": False,
@@ -443,7 +443,7 @@ class TestGetNearMissOutcomes:
 
     def test_accepted_artist_awards_partial_three(self):
         mgr = _make_manager()
-        mgr.submit_title_artist_guess("Dan", "Some Other Song", "Beatles", ts=1.0)
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
         mgr.register_title_artist_vote("V1", "Dan:artist", accept=True)
         mgr.resolve_title_artist()
 

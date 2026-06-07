@@ -729,6 +729,7 @@
     "statusFuzzy": "Casi exacto",
     "statusAccepted": "Aceptado",
     "statusNearMiss": "Por poco",
+    "statusWrong": "Incorrecto",
     "statusSkipped": "Omitido",
     "voteHeader": "Casos ajustados — vota 👍/👎",
     "voteCountdown": "{seconds}s",

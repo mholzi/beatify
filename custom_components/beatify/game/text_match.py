@@ -11,14 +11,24 @@ from __future__ import annotations
 import re
 import unicodedata
 
-from custom_components.beatify.const import FUZZY_MAX_EDITS, FUZZY_MIN_LEN
+from custom_components.beatify.const import (
+    FUZZY_MAX_EDITS,
+    FUZZY_MIN_LEN,
+    NEAR_MISS_MAX_RATIO,
+)
 
 # Per-field classification statuses. These exact strings cross the WebSocket
 # boundary (serializers + frontend), so do not rename them.
 STATUS_EXACT = "exact"
 STATUS_FUZZY = "fuzzy"
 STATUS_NEAR_MISS = "near_miss"
+STATUS_WRONG = "wrong"
 STATUS_SKIPPED = "skipped"
+
+# A guess shares a "significant" word with the truth if a token at least this
+# long appears in both — catches partial titles ("Bohemian" for "Bohemian
+# Rhapsody") that edit-distance ratio alone would call wrong.
+_MIN_SHARED_TOKEN_LEN = 4
 
 # Leading article ("the", "a", "an") followed by whitespace.
 _LEADING_ARTICLE_RE = re.compile(r"^(?:the|a|an)\s+")
@@ -92,11 +102,24 @@ def levenshtein(a: str, b: str) -> int:
     return previous[-1]
 
 
+def _shares_significant_token(a: str, b: str) -> bool:
+    """True if normalized strings ``a`` and ``b`` share a word >= the min length."""
+    a_tokens = {t for t in a.split() if len(t) >= _MIN_SHARED_TOKEN_LEN}
+    b_tokens = {t for t in b.split() if len(t) >= _MIN_SHARED_TOKEN_LEN}
+    return bool(a_tokens & b_tokens)
+
+
 def classify_field(guess: str, truth: str) -> str:
     """Classify a single field guess against the truth.
 
     Returns one of ``STATUS_SKIPPED``, ``STATUS_EXACT``, ``STATUS_FUZZY``,
-    ``STATUS_NEAR_MISS``.
+    ``STATUS_NEAR_MISS``, ``STATUS_WRONG``.
+
+    The near-miss band is what goes to the community vote: a guess past the
+    fuzzy auto-accept is only a near-miss if it is still plausibly close —
+    within ``NEAR_MISS_MAX_RATIO`` edits of the truth, or sharing a significant
+    word with it. A guess that is neither (e.g. "Beatles" for "Queen") is just
+    ``STATUS_WRONG``: no vote, no points.
     """
     if not guess or not guess.strip():
         return STATUS_SKIPPED
@@ -107,10 +130,14 @@ def classify_field(guess: str, truth: str) -> str:
     if guess_norm == truth_norm:
         return STATUS_EXACT
 
-    if (
-        len(truth_norm) >= FUZZY_MIN_LEN
-        and levenshtein(guess_norm, truth_norm) <= FUZZY_MAX_EDITS
-    ):
+    dist = levenshtein(guess_norm, truth_norm)
+    if len(truth_norm) >= FUZZY_MIN_LEN and dist <= FUZZY_MAX_EDITS:
         return STATUS_FUZZY
 
-    return STATUS_NEAR_MISS
+    longest = max(len(guess_norm), len(truth_norm), 1)
+    if dist / longest <= NEAR_MISS_MAX_RATIO or _shares_significant_token(
+        guess_norm, truth_norm
+    ):
+        return STATUS_NEAR_MISS
+
+    return STATUS_WRONG
