@@ -1430,6 +1430,29 @@ function _taStatusPill(status) {
 }
 
 /**
+ * Classify the current player's own Title & Artist result into an emotional
+ * verdict for the reveal banner (#1180). Honest about pending votes: while the
+ * window is open and a field is still a near-miss, it shows "awaiting the
+ * verdict" rather than calling a miss the room might still accept.
+ * @param {Object|null} own - the player's own results entry
+ * @param {boolean} votingOpen - whether the community vote is still open
+ * @returns {{tier:string,text:string}|null}
+ */
+function _taOwnVerdict(own, votingOpen) {
+    if (!own) return null;
+    var GOT = { exact: 1, fuzzy: 1, near_miss_accepted: 1 };
+    var ts = own.title_status;
+    var as = own.artist_status;
+    if (votingOpen && (ts === 'near_miss' || as === 'near_miss')) {
+        return { tier: 'pending', text: utils.t('titleArtist.verdictPending') || 'Awaiting the room’s verdict…' };
+    }
+    var got = (GOT[ts] ? 1 : 0) + (GOT[as] ? 1 : 0);
+    if (got === 2) return { tier: 'win', text: utils.t('titleArtist.verdictWin') || 'Nailed it!' };
+    if (got === 1) return { tier: 'partial', text: utils.t('titleArtist.verdictPartial') || 'Got one!' };
+    return { tier: 'miss', text: utils.t('titleArtist.verdictMiss') || 'Not this time' };
+}
+
+/**
  * Render one resolved near-miss verdict card for the post-voting "decided"
  * view: avatar, who · field, the guess, the final 👍/👎 tally, and a verdict
  * badge (green ✓ +points when accepted, red ✗ when rejected). (#1180, #1243)
@@ -1503,7 +1526,13 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
     }
     if (ownEl) {
         if (own) {
+            var verdict = _taOwnVerdict(own, !!ta.voting_open);
+            var verdictHtml = verdict
+                ? '<div class="ta-verdict ta-verdict--' + verdict.tier + '">' +
+                    escapeHtml(verdict.text) + '</div>'
+                : '';
             ownEl.innerHTML =
+                verdictHtml +
                 '<div class="ta-own-row">' +
                     '<span class="ta-own-label">' + escapeHtml(utils.t('titleArtist.yourTitle') || 'Your title') + '</span>' +
                     '<span class="ta-own-guess">' + escapeHtml(own.title || '—') + '</span>' +

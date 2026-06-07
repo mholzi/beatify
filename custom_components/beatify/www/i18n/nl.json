@@ -742,7 +742,11 @@
     "dashboardDeciding": "De zaal beslist…",
     "youVoted": "Je hebt gestemd",
     "tapToChange": "tik om te wijzigen",
-    "closeCallsDecided": "Twijfelgevallen — beslist"
+    "closeCallsDecided": "Twijfelgevallen — beslist",
+    "verdictWin": "Helemaal goed!",
+    "verdictPartial": "Eentje goed!",
+    "verdictMiss": "Deze keer niet",
+    "verdictPending": "Wachten op het oordeel…"
   },
   "earlyReveal": {
     "message": "Alle gokken zijn binnen!"

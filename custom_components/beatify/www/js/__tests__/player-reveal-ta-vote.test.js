@@ -285,3 +285,62 @@ describe('Title & Artist resolution moment (#1243)', () => {
         expect(html).not.toContain('ta-outcome-card');
     });
 });
+
+describe('Title & Artist win/lose verdict banner (#1180)', () => {
+    beforeEach(() => {
+        vi.useFakeTimers();
+        els = {
+            'ta-reveal-section': makeEl(),
+            'ta-reveal-truth': makeEl(),
+            'ta-reveal-own': makeEl(),
+            'ta-voting': makeEl(),
+            'ta-voting-title': makeEl(),
+            'ta-voting-cards': makeEl(),
+            'ta-voting-countdown': makeEl(),
+        };
+        mockState.playerName = 'Alice';
+        mockState.taMyVotes = undefined;
+        mockState._taRevealTruth = undefined;
+    });
+    afterEach(() => { vi.clearAllTimers(); vi.useRealTimers(); });
+
+    function taWithOwn(titleStatus, artistStatus, votingOpen) {
+        return {
+            correct_title: 'Bohemian Rhapsody',
+            correct_artist: 'Queen',
+            results: [{ player: 'Alice', title: 'x', artist: 'y', title_status: titleStatus, artist_status: artistStatus }],
+            near_misses: [],
+            near_miss_outcomes: [],
+            voting_open: !!votingOpen,
+        };
+    }
+
+    it('both fields correct → win banner', () => {
+        renderTitleArtistReveal(taWithOwn('exact', 'fuzzy', false), { is_admin: false });
+        const html = els['ta-reveal-own'].innerHTML;
+        expect(html).toContain('ta-verdict--win');
+        expect(html).toContain('titleArtist.verdictWin');
+    });
+
+    it('one field correct → partial banner', () => {
+        renderTitleArtistReveal(taWithOwn('exact', 'wrong', false), { is_admin: false });
+        expect(els['ta-reveal-own'].innerHTML).toContain('ta-verdict--partial');
+    });
+
+    it('both wrong → miss banner', () => {
+        renderTitleArtistReveal(taWithOwn('wrong', 'skipped', false), { is_admin: false });
+        expect(els['ta-reveal-own'].innerHTML).toContain('ta-verdict--miss');
+    });
+
+    it('accepted near-miss counts as a win', () => {
+        renderTitleArtistReveal(taWithOwn('near_miss_accepted', 'exact', false), { is_admin: false });
+        expect(els['ta-reveal-own'].innerHTML).toContain('ta-verdict--win');
+    });
+
+    it('pending near-miss while voting open → pending, not miss', () => {
+        renderTitleArtistReveal(taWithOwn('near_miss', 'wrong', true), { is_admin: false });
+        const html = els['ta-reveal-own'].innerHTML;
+        expect(html).toContain('ta-verdict--pending');
+        expect(html).not.toContain('ta-verdict--miss');
+    });
+});

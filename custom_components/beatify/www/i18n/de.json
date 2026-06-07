@@ -742,7 +742,11 @@
     "dashboardDeciding": "Das Publikum entscheidet…",
     "youVoted": "Du hast abgestimmt",
     "tapToChange": "zum Ändern tippen",
-    "closeCallsDecided": "Knappe Fälle — entschieden"
+    "closeCallsDecided": "Knappe Fälle — entschieden",
+    "verdictWin": "Volltreffer!",
+    "verdictPartial": "Eins erwischt!",
+    "verdictMiss": "Diesmal nicht",
+    "verdictPending": "Das Publikum entscheidet…"
   },
   "earlyReveal": {
     "message": "Alle haben geraten!"

@@ -742,7 +742,11 @@
     "dashboardDeciding": "The room is deciding…",
     "youVoted": "You voted",
     "tapToChange": "tap to change",
-    "closeCallsDecided": "Close calls — decided"
+    "closeCallsDecided": "Close calls — decided",
+    "verdictWin": "Nailed it!",
+    "verdictPartial": "Got one!",
+    "verdictMiss": "Not this time",
+    "verdictPending": "Awaiting the room’s verdict…"
   },
   "earlyReveal": {
     "message": "All guesses in!"
