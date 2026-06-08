@@ -109,6 +109,15 @@ MA_PLAYBACK_TIMEOUT = 15.0
 # state callback within a few seconds.
 METADATA_WAIT_TIMEOUT = 2.0
 
+# After detecting that the new song has started (content_id / title match),
+# wait up to this many additional seconds for entity_picture to also update.
+# entity_picture reliably lags behind content_id and media_title on most
+# platforms (Spotify, Music Assistant, etc.) — reading it at the moment of
+# content_id/title match returns the previous song's artwork (issue #1260).
+# If entity_picture hasn't changed within this window (same-album or platform
+# doesn't update it) we fall back to the current state, which is correct.
+ENTITY_PICTURE_WAIT = 1.0
+
 # Candidate URI fields on a song, by user-selected provider (#805).
 #
 # Each provider lists its own playable URI fields in priority order. The
@@ -811,6 +820,15 @@ class MediaPlayerService:
         Listens for state changes until media_content_id contains the track ID
         from the URI, or timeout is reached.
 
+        Two-phase approach (issue #1260 — stale album art):
+        Phase 1 — wait for content_id / title to match the new song.
+        Phase 2 — wait up to ENTITY_PICTURE_WAIT more seconds for
+                   entity_picture to also change (it reliably lags behind
+                   content_id/title on Spotify, Music Assistant, etc.).
+                   If entity_picture doesn't change (same-album or platform
+                   doesn't update it) we fall back to the current state,
+                   which is still correct for same-album art.
+
         Args:
             uri: The Spotify URI that was just played (e.g., spotify:track:xxx)
 
@@ -829,48 +847,68 @@ class MediaPlayerService:
         initial_title = (
             initial_state.attributes.get("media_title") if initial_state else None
         )
+        initial_entity_picture = (
+            initial_state.attributes.get("entity_picture") if initial_state else None
+        )
 
-        matched = asyncio.Event()
-        matched_metadata: dict[str, Any] = {}
+        # Phase 1: song started (content_id / title match)
+        song_matched = asyncio.Event()
+        # Phase 2: entity_picture also changed
+        art_changed = asyncio.Event()
+
+        art_metadata: dict[str, Any] = {}
         start_time = asyncio.get_event_loop().time()
 
-        def _check_state(state) -> dict[str, Any] | None:
-            """Return extracted metadata if state matches, else None."""
+        def _song_started(state) -> bool:
+            """Return True if state signals the new song has started."""
             if not state:
-                return None
-            # Check if media_content_id contains our track ID
+                return False
             content_id = state.attributes.get("media_content_id", "")
             if track_id in content_id:
-                return self._extract_metadata(state)
-            # Also check if title changed (fallback)
+                return True
             current_title = state.attributes.get("media_title")
-            if current_title and current_title != initial_title:
-                return self._extract_metadata(state)
-            return None
+            return bool(current_title and current_title != initial_title)
 
         def _state_changed(ev):
             new_state = ev.data.get("new_state")
-            result = _check_state(new_state)
-            if result is not None:
-                matched_metadata.update(result)
-                matched.set()
+            if new_state is None:
+                return
+            if not song_matched.is_set() and _song_started(new_state):
+                song_matched.set()
+            # Track entity_picture change regardless — it may arrive in a
+            # later event than the content_id/title change.
+            if not art_changed.is_set():
+                ep = new_state.attributes.get("entity_picture")
+                if ep != initial_entity_picture:
+                    art_metadata.update(self._extract_metadata(new_state))
+                    art_changed.set()
 
         unsub = async_track_state_change_event(
             self._hass, [self._entity_id], _state_changed
         )
         try:
-            # Check current state first — metadata may already be updated
+            # ── Phase 1: check current state / wait for song to start ──────
             current = self._hass.states.get(self._entity_id)
-            result = _check_state(current)
-            if result is not None:
-                elapsed = asyncio.get_event_loop().time() - start_time
-                _LOGGER.debug(
-                    "Metadata updated after %.1fs (immediate check)",
-                    elapsed,
-                )
-                return result
+            if current:
+                if _song_started(current):
+                    song_matched.set()
+                ep = current.attributes.get("entity_picture")
+                if ep != initial_entity_picture:
+                    art_metadata.update(self._extract_metadata(current))
+                    art_changed.set()
 
-            await asyncio.wait_for(matched.wait(), timeout=METADATA_WAIT_TIMEOUT)
+            if not song_matched.is_set():
+                try:
+                    await asyncio.wait_for(
+                        song_matched.wait(), timeout=METADATA_WAIT_TIMEOUT
+                    )
+                except asyncio.TimeoutError:
+                    _LOGGER.warning(
+                        "Metadata not updated within %.1fs, using current state",
+                        METADATA_WAIT_TIMEOUT,
+                    )
+                    return await self.get_metadata()
+
             elapsed = asyncio.get_event_loop().time() - start_time
             current_state = self._hass.states.get(self._entity_id)
             content_id = (
@@ -879,18 +917,31 @@ class MediaPlayerService:
                 else ""
             )
             reason = "matched track ID" if track_id in content_id else "title changed"
-            _LOGGER.debug(
-                "Metadata updated after %.1fs (%s)",
-                elapsed,
-                reason,
-            )
-            return matched_metadata
-        except asyncio.TimeoutError:
-            _LOGGER.warning(
-                "Metadata not updated within %.1fs, using current state",
-                METADATA_WAIT_TIMEOUT,
-            )
-            return await self.get_metadata()
+            _LOGGER.debug("Song started after %.1fs (%s)", elapsed, reason)
+
+            # ── Phase 2: wait for entity_picture to also update ───────────
+            if art_changed.is_set():
+                elapsed = asyncio.get_event_loop().time() - start_time
+                _LOGGER.debug("Album art updated after %.1fs (same event)", elapsed)
+                return art_metadata
+
+            try:
+                await asyncio.wait_for(art_changed.wait(), timeout=ENTITY_PICTURE_WAIT)
+                elapsed = asyncio.get_event_loop().time() - start_time
+                _LOGGER.debug("Album art updated after %.1fs total", elapsed)
+                return art_metadata
+            except asyncio.TimeoutError:
+                # entity_picture didn't change within ENTITY_PICTURE_WAIT.
+                # Either same-album art or the platform doesn't update it —
+                # read the current state, which is correct in both cases.
+                elapsed = asyncio.get_event_loop().time() - start_time
+                _LOGGER.debug(
+                    "Entity picture unchanged after %.1fs extra wait "
+                    "(same album art or platform unchanged) — using current state",
+                    ENTITY_PICTURE_WAIT,
+                )
+                return await self.get_metadata()
+
         finally:
             unsub()
 
