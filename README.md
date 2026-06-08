@@ -25,7 +25,7 @@ Guests scan, songs play, everyone competes. It's that simple.
 
 **Beatify is an open-source music quiz game for Home Assistant** — a multiplayer music trivia party game that turns your smart speakers into a game show.
 
-A song plays through your Sonos, Alexa, or Music Assistant speakers. Everyone races to guess the release year. Points fly. Streaks build. Champions emerge.
+A song plays through your Sonos, Alexa, or Music Assistant speakers. Everyone races to guess the release year — or, in the new **Title & Artist** mode, to name the song and who sings it. Points fly. Streaks build. Champions emerge.
 
 No apps to download. No accounts to create. Just scan a QR code and play.
 
@@ -38,6 +38,8 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 **Zero Friction Entry** — Guests scan a QR code. That's it. No apps. No accounts. No WiFi password drama. 10 seconds from scan to playing.
 
 **Uses Your Existing Smart Speakers** — Works with Music Assistant, Sonos, and Alexa speakers you already have. See [Supported Speakers](#supported-speakers) for details.
+
+**Two Ways to Play** — Guess the release year, or switch to **Title & Artist** mode and type the song title (+10) and artist (+5) in free text, with typo-forgiving partial credit. Close calls go to a live 👍/👎 vote — *Crowd Court* — that the whole room watches on the TV.
 
 **Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer playlists. Curated song packs included. Create your own.
 
@@ -221,7 +223,7 @@ fit your room.
 </div>
 
 **Learn the Game in 20 Seconds**
-Players who scan the QR code drop into a swipeable 4-card tour that teaches the core mechanics in order: guess the year, triple-or-nothing bet, steal an answer, guess the artist. Skip/Next always visible, auto-advances after 4 seconds per card. By the time the host hits Start, everyone knows what to do.
+Players who scan the QR code drop into a swipeable tour that teaches the core mechanics in order: guess the year, triple-or-nothing bet, steal an answer, guess the artist, and — in Title & Artist games — name that tune. The card count adapts to the game mode automatically. Skip/Next always visible, auto-advances after 4 seconds per card. By the time the host hits Start, everyone knows what to do.
 
 **The Rush**
 A song starts playing. The clock is ticking. You *know* this song... but was it '85 or '87?
@@ -553,6 +555,12 @@ The AI is the typist. The decisions, the architecture, the bug triage, and the "
 ## FAQ
 
 <details>
+<summary><strong>What game modes are there? How do you play Title & Artist?</strong></summary>
+<br>
+Two modes, chosen by the host in the setup wizard. <strong>Year</strong> mode is the classic: a song plays and everyone slides to guess the release year, scored by how close you are. <strong>Title &amp; Artist</strong> mode asks you to type the song title (<strong>+10</strong>) and the artist (<strong>+5</strong>) in free text — you don't have to be letter-perfect, since small typos earn partial credit and the forgiveness scales with title length. Genuinely close guesses go to <em>Crowd Court</em>, a live 30-second 👍/👎 vote the whole room can watch on the TV; plainly wrong answers are marked Wrong and scored zero. Movie Quiz and Intro bonuses stack on top of either mode.
+</details>
+
+<details>
 <summary><strong>How many players can join?</strong></summary>
 <br>
 Tested with 20+ players. Your WiFi is the only real constraint.
@@ -606,6 +614,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.0.0 — Name That Tune 🎵
+- **A whole new game mode: Title & Artist** — instead of guessing the year, answer in free text: song title (**+10**) and artist (**+5**), each scored on its own. Small typos and near spellings earn partial credit, with forgiveness that scales to the title's length. Movie and Intro bonuses still stack. Built by @jgossen01, from an idea by @Hendrik0123 (#1180)
+- **Crowd Court — the reveal becomes a live verdict** — close calls go to a 30-second 👍/👎 room vote with a glowing countdown, running tally, and host Accept/Reject override. The TV shows the same vote in real time so the whole room can weigh in (#1180, #1243)
+- **Pick your mode up front** — the setup wizard opens with two cards (📅 Year or ✍️ Title & Artist) and shows only the settings that apply; the first-join tour gains a "Name that tune" card
+- **End-of-game awards made for Title & Artist** — 💯 Perfect Pair, 🧠 Name Dropper, 🎤 Artist Whisperer, and 🤏 So Close, across all 5 locales
+- **The cover matches the music again** — the dashboard and in-game view no longer show the previous song's album art; Beatify waits for the real artwork before putting it on screen, with full test coverage (#1260, thanks @Dtrieb)
+- 39 playlists, 4,340 songs, 5 music platforms, 5 languages
+
 ### v3.5.0 — Everyone's Guess, On the Clock 🎯
 - **See where everyone guessed** — the reveal's round-stats (ⓘ) sheet now shows every player as a dot on a year timeline: who guessed what, who nailed it, and the points each one earned, with your own dot ringed and the top three medalled
 - **A countdown on every screen** — the seconds to the next round now show on the host's Next button, the big TV/dashboard, and each player's phone
@@ -647,7 +663,7 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 ### v3.2.0 — Onboarding, Redesigns & Design System 🎨
 - **First-Run Wizard** — Five-step guided setup for new admins: Speakers → Music service → Playlist → Game mode → Lights/Voice. After finishing, every chip on the admin dashboard is pre-selected — first thing you see is the Start Game button
 - **Admin Home View** — Branded "Ready to host" landing screen with Beatify wordmark, glowing QR hero card, and Jackbox-style player tiles that appear as guests join (host in pink with 👑, guests cycling cyan → green → orange in join order)
-- **Player Onboarding Tour** — Players who scan the QR drop into a swipeable 4-card tour that teaches year guess → bet → steal → artist challenge before the lobby. Host sees LEARNING players as dashed tiles with a cyan TOUR badge plus a confirm modal before starting
+- **Player Onboarding Tour** — Players who scan the QR drop into a swipeable tour that teaches year guess → bet → steal → artist challenge (→ name that tune in Title & Artist games) before the lobby, with the card count derived from the game mode. Host sees LEARNING players as dashed tiles with a cyan TOUR badge plus a confirm modal before starting
 - **Gameplay Redesigned Arcade-Style** — 128px year number as the hero, neon timer circle that flips red and pulses at ≤10s, 3D tile buttons for artist/movie challenges, Submit morphs into a "Waiting for others" ghost state after lock-in
 - **Round Reveal as a Duel** — Your guess × gap-count × correct year side-by-side. Full points breakdown and round analytics moved into tappable bottom-sheet popups
 - **Vinyl Share Card** — End-of-game share card rebuilt as a vinyl-record design (navy base, pink/cyan radial glows, pink→cyan gradient label with your score, optional 🏆 WINNER badge), previewed inline on the end screen
