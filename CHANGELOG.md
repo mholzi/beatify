@@ -4,6 +4,30 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-06-08
+
+Stable promotion of the v4.0.0-rc1–rc3 line. See [release-notes-v4.0.0.md](release-notes-v4.0.0.md) for the user-facing summary.
+
+### Headline
+- **"Title & Artist" guessing mode (#1180, #1229, @jgossen01).** A whole new, standalone way to play: type the song title (+10) and artist (+5) as free text instead of guessing the year, with per-field fuzzy/near-miss scoring and length-scaled typo tolerance. Idea originally raised by @Hendrik0123.
+- **Crowd Court reveal (#1180, #1243).** Close calls become a live 30-second community vote — glowing countdown ring, 👍/👎 tally, persistent voted state, host Accept/Reject override, and full TV standings with verdict chips.
+- **Mode-specific end-of-game awards (#1180).** Title & Artist games hand out 💯 Perfect Pair, 🧠 Name Dropper, 🎤 Artist Whisperer, and 🤏 So Close — across all 5 locales.
+
+### Added
+- Wizard Step 4 redesign — pick the game mode up front with two mode cards; dependent options react live (#1180).
+- Title & Artist runs alongside Movie Quiz and Intro Mode; their points stack (#1180).
+- Player onboarding tour gains a "Name that tune" card; tour card count derived from the DOM (#1180).
+
+### Fixed
+- **Stale album art on the dashboard and in-game view (#1260, @Dtrieb).** `entity_picture` lags `media_content_id`/`media_title` on Spotify and Music Assistant; `wait_for_metadata_update` now uses a two-phase wait with a transient-flicker guard, with full unit coverage.
+- Title & Artist vote countdown is now server-authoritative; flat-wrong guesses no longer trigger a vote; mode/difficulty/bonus preferences are preserved through the wizard (#1180).
+- Admin button styles aligned to design-system tokens (#1254).
+- CI pins ruff to a fixed version so a formatter update can't turn `main` red on its own.
+
+### Data
+- Release-year corrections for EMF, Jürgen Drews, Modern Talking, two *Anastasia* songs, and Höhner (#1237–#1241, #1255).
+- Wrong YouTube Music URI repaired in motown-soul-classics (#1264).
+
 ## [4.0.0-rc3] - 2026-06-08
 
 ### Fixed
