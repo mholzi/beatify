@@ -13,6 +13,7 @@ from homeassistant.components.http import HomeAssistantView
 from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.server.base import (
     RateLimitMixin,
+    _apply_cache_tokens,
     _get_html,
     _json_error,
 )
@@ -41,7 +42,10 @@ class DashboardView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Dashboard page not found: %s", html_path)
             return web.Response(text="Dashboard page not found", status=500)
-        return web.Response(text=html_content, content_type="text/html")
+        return web.Response(
+            text=_apply_cache_tokens(html_content, self.hass),
+            content_type="text/html",
+        )
 
 
 class StatsView(HomeAssistantView):
@@ -169,7 +173,10 @@ class AnalyticsPageView(HomeAssistantView):
         content = await _get_html(self.hass, www_path)
         if content is None:
             return web.Response(text="Analytics page not found", status=404)
-        return web.Response(text=content, content_type="text/html")
+        return web.Response(
+            text=_apply_cache_tokens(content, self.hass),
+            content_type="text/html",
+        )
 
 
 class SongStatsView(HomeAssistantView):

@@ -4,6 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **Asset cache-buster no longer depends on a hand-edited version (#1266).** Static assets were busted by a version string hardcoded in `admin/analytics/dashboard/player` HTML and `sw.js`, so a reused or forgotten bump left the marker identical and browsers / the service worker kept serving stale CSS/JS/i18n (the #824 class). The `?v=` params, the SW `CACHE_VERSION`, and the i18n-JSON fetch now derive from a fingerprint of the `www/css|js|i18n` files, so any asset change invalidates caches automatically. The displayed version stays the clean semantic version; the manifest remains the single source of truth.
+- Regenerated a stale `admin.min.js` left by #1263 — the Amazon Music admin UI changes were in `admin.js` but missing from the served minified bundle.
+
 ## [4.0.0] - 2026-06-08
 
 Stable promotion of the v4.0.0-rc1–rc3 line. See [release-notes-v4.0.0.md](release-notes-v4.0.0.md) for the user-facing summary.

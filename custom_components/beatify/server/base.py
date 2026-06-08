@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import logging
 import time
 from pathlib import Path
@@ -50,6 +51,92 @@ def _get_version(hass: HomeAssistant | None = None) -> str:
 def _read_file(path: Path) -> str:
     """Read file contents (runs in executor)."""
     return path.read_text(encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------
+# Cache-buster (#1266)
+# ---------------------------------------------------------------------------
+#
+# The ``?v=`` asset query strings and the service worker's ``CACHE_VERSION``
+# used to be hardcoded version literals, so busting depended on remembering to
+# bump every file on every release. A reused or forgotten bump left the marker
+# identical and browsers / the SW cache served stale CSS/JS/i18n (#824, and the
+# rc11 self-healing-SW workaround were symptoms of this).
+#
+# Instead we derive an ``{{ASSET_VER}}`` token = ``<version>-<fingerprint>``
+# where the fingerprint is a short hash of the served asset files. Because it
+# moves whenever ANY css/js/i18n file changes, cache-busting no longer needs a
+# manifest bump. ``{{VERSION}}`` stays the clean semantic version for the meta
+# tag / footer. Ported from the Quizify sibling (quizify#162).
+
+# Tokens substituted at serve time. {{VERSION}} -> clean semver (display);
+# {{ASSET_VER}} -> <version>-<fingerprint> (cache-busting).
+_VERSION_TOKEN = "{{VERSION}}"
+_ASSET_VER_TOKEN = "{{ASSET_VER}}"
+
+# Subdirs under www/ holding the ?v=-busted assets.
+_ASSET_SUBDIRS = ("css", "js", "i18n")
+
+# Recompute the fingerprint at most this often — a small dir walk, bounded so a
+# burst of player.html loads at game start doesn't re-walk per request.
+_ASSET_FP_TTL_NS = 5 * 1_000_000_000  # 5s
+_ASSET_FP_CACHE: tuple[int, str] | None = None  # (monotonic_ns, fingerprint)
+
+
+def _compute_asset_fingerprint(www_dir: Path) -> str:
+    """Short hash over the served assets' (relative path, mtime, size).
+
+    Changes whenever any css/js/i18n file is added, removed, or edited — so the
+    cache-buster moves on any real asset change, with no manifest bump needed.
+    Cheap: a handful of ``stat`` calls. Falls back gracefully if dirs/files are
+    missing (defensive — runs on the HTML serve path).
+    """
+    h = hashlib.md5(usedforsecurity=False)
+    for sub in _ASSET_SUBDIRS:
+        d = www_dir / sub
+        if not d.is_dir():
+            continue
+        for p in sorted(d.rglob("*")):
+            if not p.is_file():
+                continue
+            try:
+                st = p.stat()
+            except OSError:  # pragma: no cover — defensive
+                continue
+            h.update(str(p.relative_to(www_dir)).encode())
+            h.update(str(st.st_mtime_ns).encode())
+            h.update(str(st.st_size).encode())
+    return h.hexdigest()[:8]
+
+
+def _get_asset_version(version: str, www_dir: Path) -> str:
+    """Cache-buster value ``<version>-<asset_fingerprint>``.
+
+    The version prefix keeps it readable (which release) and back-compatible
+    with assertions that look for ``?v=<version>``; the fingerprint suffix is
+    what makes it move on asset changes. Fingerprint recompute is throttled to
+    ``_ASSET_FP_TTL_NS``.
+    """
+    global _ASSET_FP_CACHE  # noqa: PLW0603
+    now = time.monotonic_ns()
+    if _ASSET_FP_CACHE is not None and now - _ASSET_FP_CACHE[0] < _ASSET_FP_TTL_NS:
+        fingerprint = _ASSET_FP_CACHE[1]
+    else:
+        fingerprint = _compute_asset_fingerprint(www_dir)
+        _ASSET_FP_CACHE = (now, fingerprint)
+    return f"{version}-{fingerprint}"
+
+
+def _www_dir() -> Path:
+    """Absolute path to the integration's www/ asset directory."""
+    return Path(__file__).parent.parent / "www"
+
+
+def _apply_cache_tokens(text: str, hass: HomeAssistant) -> str:
+    """Substitute {{VERSION}} and {{ASSET_VER}} tokens at serve time (#1266)."""
+    version = _get_version(hass)
+    text = text.replace(_ASSET_VER_TOKEN, _get_asset_version(version, _www_dir()))
+    return text.replace(_VERSION_TOKEN, version)
 
 
 _html_cache: dict[str, str] = {}
