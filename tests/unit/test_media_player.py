@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -1135,3 +1136,250 @@ class TestMetadataAlbumArtWrapping:
         svc = MediaPlayerService(_make_hass(), "media_player.test")
         meta = svc._extract_metadata(_make_state())
         assert meta["album_art"] == "/beatify/static/img/no-artwork.svg"
+
+
+def _art_state(
+    title: str,
+    content_id: str,
+    entity_picture: str,
+    artist: str = "Test Artist",
+) -> MagicMock:
+    """Mock HA state carrying the attributes wait_for_metadata_update reads."""
+    state = MagicMock()
+    state.attributes = {
+        "media_artist": artist,
+        "media_title": title,
+        "media_content_id": content_id,
+        "entity_picture": entity_picture,
+    }
+    return state
+
+
+def _event(new_state) -> MagicMock:
+    """Mock a HA state_changed event carrying ``new_state``."""
+    ev = MagicMock()
+    ev.data = {"new_state": new_state}
+    return ev
+
+
+_TRACK_PATH = (
+    "custom_components.beatify.services.media_player.async_track_state_change_event"
+)
+
+
+class TestWaitForMetadataUpdateAlbumArt:
+    """Two-phase album-art wait — wait_for_metadata_update (#1260).
+
+    The bug: content_id/media_title update before entity_picture on Spotify and
+    Music Assistant, so reading entity_picture the instant the song matched
+    returned the *previous* song's cover. Phase 2 waits for entity_picture to
+    also change before reading it.
+    """
+
+    @staticmethod
+    def _service_with_states(initial_state):
+        """Build a service whose states.get returns a mutable 'current' state.
+
+        Returns (service, box); mutate ``box["current"]`` to advance what the
+        media player currently reports (read by the Phase-1 check and the
+        get_metadata fallback).
+        """
+        hass = MagicMock()
+        box = {"current": initial_state}
+        hass.states.get = MagicMock(side_effect=lambda *a, **k: box["current"])
+        svc = MediaPlayerService(hass, "media_player.test")
+        return svc, box
+
+    @pytest.mark.asyncio
+    async def test_waits_for_entity_picture_to_change_in_later_event(self):
+        """#1260 core fix: the new cover arrives in a LATER state event than
+        the content_id/title change. Phase 2 must wait for it and return the
+        NEW art, not the stale previous-song cover."""
+        old = _art_state(
+            title="Er gehört zu mir",
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("spotify:track:NEW")
+            )
+            await asyncio.sleep(0)  # let it reach the Phase 1 await
+
+            # Event 1: song started (content_id matches) — art still lagging.
+            song_started = _art_state(
+                title="Never Gonna Give You Up",
+                content_id="spotify:track:NEW",
+                entity_picture="/api/media_player_proxy/x?token=old",
+            )
+            box["current"] = song_started
+            captured["cb"](_event(song_started))
+            await asyncio.sleep(0)
+
+            # Event 2: entity_picture finally updates to the new cover.
+            art_arrived = _art_state(
+                title="Never Gonna Give You Up",
+                content_id="spotify:track:NEW",
+                entity_picture="/api/media_player_proxy/x?token=NEW",
+            )
+            box["current"] = art_arrived
+            captured["cb"](_event(art_arrived))
+
+            result = await task
+
+        assert result["title"] == "Never Gonna Give You Up"
+        assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
+
+    @pytest.mark.asyncio
+    async def test_art_present_in_same_event_returns_immediately(self):
+        """When entity_picture changes in the same event that signals the new
+        song, Phase 2 short-circuits and returns that event's art."""
+        old = _art_state(
+            title="Old",
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("spotify:track:NEW")
+            )
+            await asyncio.sleep(0)
+
+            both = _art_state(
+                title="New",
+                content_id="spotify:track:NEW",
+                entity_picture="/api/media_player_proxy/x?token=NEW",
+            )
+            box["current"] = both
+            captured["cb"](_event(both))
+
+            result = await task
+
+        assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
+
+    @pytest.mark.asyncio
+    async def test_same_album_falls_back_to_current_state(self):
+        """Two songs from the same album share entity_picture, so Phase 2 never
+        sees a change — after the short extra wait we fall back to the current
+        (correct, same-album) art rather than hanging or returning stale data."""
+        art = "/api/media_player_proxy/x?token=album"
+        old = _art_state(
+            title="Track A", content_id="spotify:track:OLD", entity_picture=art
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track), patch(
+            "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
+            0.05,
+        ):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("spotify:track:NEW")
+            )
+            await asyncio.sleep(0)
+
+            new = _art_state(
+                title="Track B", content_id="spotify:track:NEW", entity_picture=art
+            )
+            box["current"] = new
+            captured["cb"](_event(new))
+
+            result = await task
+
+        assert result["title"] == "Track B"
+        assert result["album_art"] == art
+
+    @pytest.mark.asyncio
+    async def test_song_never_starts_falls_back_after_phase1_timeout(self):
+        """If content_id/title never update, Phase 1 times out and we return
+        whatever get_metadata() reports for the current state."""
+        old = _art_state(
+            title="Old",
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, _box = self._service_with_states(old)
+
+        with patch(_TRACK_PATH, side_effect=lambda *a, **k: MagicMock()), patch(
+            "custom_components.beatify.services.media_player.METADATA_WAIT_TIMEOUT",
+            0.05,
+        ):
+            result = await svc.wait_for_metadata_update("spotify:track:NEW")
+
+        assert result["title"] == "Old"
+        assert result["album_art"] == "/api/media_player_proxy/x?token=old"
+
+    @pytest.mark.asyncio
+    @pytest.mark.xfail(
+        reason="#1260 follow-up: a transient entity_picture change (a momentary "
+        "None/placeholder during track transition) sets art_changed on the "
+        "FIRST change, so the placeholder can be broadcast instead of the real "
+        "cover. Not currently guarded — documents the known limitation.",
+        strict=False,
+    )
+    async def test_transient_entity_picture_flicker_should_be_ignored(self):
+        """Art goes old → placeholder → real cover across events. Desired
+        behaviour is to surface the REAL cover; the current code latches onto
+        the first (placeholder) change."""
+        old = _art_state(
+            title="Old",
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("spotify:track:NEW")
+            )
+            await asyncio.sleep(0)
+
+            # Song starts; entity_picture momentarily clears to the placeholder.
+            flicker = _art_state(
+                title="New",
+                content_id="spotify:track:NEW",
+                entity_picture="/beatify/static/img/no-artwork.svg",
+            )
+            box["current"] = flicker
+            captured["cb"](_event(flicker))
+            await asyncio.sleep(0)
+
+            # Real cover arrives a moment later.
+            real = _art_state(
+                title="New",
+                content_id="spotify:track:NEW",
+                entity_picture="/api/media_player_proxy/x?token=NEW",
+            )
+            box["current"] = real
+            captured["cb"](_event(real))
+
+            result = await task
+
+        assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
