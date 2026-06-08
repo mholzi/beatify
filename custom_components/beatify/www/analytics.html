@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- #1098: drives the footer version string + cache-busts i18n JSON.
          Bumped each rc alongside manifest.json + sw.js CACHE_VERSION. -->
-    <meta name="beatify-version" content="4.0.0">
+    <meta name="beatify-version" content="{{VERSION}}">
+    <meta name="beatify-asset-version" content="{{ASSET_VER}}">
     <!-- Self-healing SW recovery — see admin.html for the rationale.
          Analytics is rarely opened, so a session that lands here after a
          long gap may still hold a stale SW from many rcs back. Inline +
@@ -40,8 +41,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.css?v=1.7.0">
-    <link rel="stylesheet" href="/beatify/static/css/analytics.min.css">
+    <link rel="stylesheet" href="/beatify/static/css/styles.css?v={{ASSET_VER}}">
+    <link rel="stylesheet" href="/beatify/static/css/analytics.min.css?v={{ASSET_VER}}">
 </head>
 <body class="theme-dark">
     <header class="analytics-header">
@@ -282,7 +283,7 @@
     </script>
 
     <!-- Translation Script -->
-    <script src="/beatify/static/js/i18n.js"></script>
-    <script src="/beatify/static/js/analytics.min.js"></script>
+    <script src="/beatify/static/js/i18n.js?v={{ASSET_VER}}"></script>
+    <script src="/beatify/static/js/analytics.min.js?v={{ASSET_VER}}"></script>
 </body>
 </html>

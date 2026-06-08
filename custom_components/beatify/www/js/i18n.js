@@ -34,6 +34,13 @@ window.BeatifyI18n = (function() {
      */
     function getVersionForCacheBust() {
         if (typeof document === 'undefined') return '';
+        // Prefer the asset-fingerprint version (#1266): it moves whenever any
+        // i18n JSON changes, so editing de.json without a manifest bump still
+        // busts the SW cache. Fall back to the plain version for older cached
+        // shells that predate the beatify-asset-version meta tag (#824).
+        var assetMeta = document.querySelector('meta[name="beatify-asset-version"]');
+        var assetVer = assetMeta ? assetMeta.getAttribute('content') || '' : '';
+        if (assetVer) return assetVer;
         var meta = document.querySelector('meta[name="beatify-version"]');
         return meta ? meta.getAttribute('content') || '' : '';
     }

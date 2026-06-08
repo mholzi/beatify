@@ -6,7 +6,10 @@
  */
 'use strict';
 
-var CACHE_VERSION = 'beatify-v4.0.0';
+// CACHE_VERSION is templated by server/views.py::SwJsView at serve time —
+// {{ASSET_VER}} becomes <version>-<asset-fingerprint> (#1266), so any css/js/
+// i18n change invalidates every old SW cache on the next load. No manual bump.
+var CACHE_VERSION = 'beatify-v{{ASSET_VER}}';
 var MAX_CACHE_ITEMS = 50;
 
 // Critical assets to precache on install (minified versions only - fallback handled by HTML).

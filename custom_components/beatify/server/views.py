@@ -24,6 +24,7 @@ from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
     RateLimitMixin,
+    _apply_cache_tokens,
     _get_html,
     _get_version,
     _json_error,
@@ -112,7 +113,7 @@ class AdminView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
-        return _html_response(html_content)
+        return _html_response(_apply_cache_tokens(html_content, self.hass))
 
 
 class LauncherView(HomeAssistantView):
@@ -133,7 +134,7 @@ class LauncherView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Launcher page not found: %s", html_path)
             return web.Response(text="Launcher page not found", status=500)
-        return _html_response(html_content)
+        return _html_response(_apply_cache_tokens(html_content, self.hass))
 
 
 class PlayerView(HomeAssistantView):
@@ -154,7 +155,7 @@ class PlayerView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
-        return _html_response(html_content)
+        return _html_response(_apply_cache_tokens(html_content, self.hass))
 
 
 # ---------------------------------------------------------------------------
@@ -483,9 +484,10 @@ class SwJsView(HomeAssistantView):
             _LOGGER.error("Service worker script not found: %s", sw_path)
             return web.Response(text="Service worker not found", status=500)
         # Must be served as JS. No-cache so CACHE_VERSION bumps propagate without
-        # waiting for HTTP cache to expire on the SW bootstrap itself.
+        # waiting for HTTP cache to expire on the SW bootstrap itself. Tokens
+        # ({{ASSET_VER}}) are substituted at serve time (#1266).
         return web.Response(
-            text=content,
+            text=_apply_cache_tokens(content, self.hass),
             content_type="application/javascript",
             headers=_NO_CACHE_HEADERS,
         )
