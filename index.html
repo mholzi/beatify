@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beatify — Multiplayer Music Trivia for Home Assistant</title>
-  <meta name="description" content="Turn your smart speakers into a party game. Guests scan a QR code, a song plays, everyone guesses the year. No app, no account. Free and open source.">
+  <meta name="description" content="Turn your smart speakers into a party game. Guests scan a QR code, a song plays — guess the year, or name the title and artist. No app, no account. Free and open source.">
   <meta name="keywords" content="Home Assistant, music quiz, party game, HACS, smart home, music trivia, Sonos, Alexa, Music Assistant, self-hosted">
   <meta name="author" content="Markus Holzhäuser">
 
@@ -14,7 +14,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Beatify — Music Trivia for Home Assistant">
-  <meta property="og:description" content="Multiplayer music quiz game for Home Assistant. Guests scan a QR code and compete — no app, no account. Runs 100% locally.">
+  <meta property="og:description" content="Multiplayer music quiz game for Home Assistant. Guess the year or name the title & artist. Guests scan a QR code and compete — no app, no account. Runs 100% locally.">
   <meta property="og:url" content="https://mholzi.github.io/beatify/">
   <meta property="og:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
   <meta property="og:image:width" content="1280">
@@ -23,7 +23,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Beatify — Music Trivia for Home Assistant">
-  <meta name="twitter:description" content="Multiplayer music quiz game for Home Assistant. No app, no account. 100% local.">
+  <meta name="twitter:description" content="Multiplayer music quiz game for Home Assistant. Guess the year or name the title & artist. No app, no account. 100% local.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
 
   <!-- Favicon -->
@@ -46,10 +46,10 @@
     "name": "Beatify",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Home Assistant",
-    "description": "Multiplayer music trivia party game for Home Assistant. Guests scan a QR code to join — no app, no account. Works with Sonos, Alexa, and Music Assistant speakers.",
+    "description": "Multiplayer music trivia party game for Home Assistant. Guess the release year or name the title & artist. Guests scan a QR code to join — no app, no account. Works with Sonos, Alexa, and Music Assistant speakers.",
     "url": "https://mholzi.github.io/beatify/",
     "downloadUrl": "https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration",
-    "softwareVersion": "3.5.0",
+    "softwareVersion": "4.0.0",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -91,7 +91,7 @@
       <section class="hero" id="hero">
         <div class="container">
           <h1>The Music Quiz Party Game Your Smart Home Was Made For</h1>
-          <p class="tagline">Scan a QR code. Hear a song. Guess the year. Beats, laughs, rematches — all through your existing smart speakers.</p>
+          <p class="tagline">Scan a QR code. Hear a song. Guess the year — or name the title and artist. Beats, laughs, rematches — all through your existing smart speakers.</p>
 
           <div class="hero-stats">
             <span>39 playlists</span>
@@ -136,7 +136,7 @@
             <div class="step">
               <div class="step-number" aria-hidden="true">3</div>
               <h3>Party</h3>
-              <p>Guests scan a QR code to join — no app needed. Songs play, everyone guesses the year!</p>
+              <p>Guests scan a QR code to join — no app needed. Songs play; guess the year or name the tune!</p>
             </div>
           </div>
         </div>
@@ -161,6 +161,11 @@
               <div class="feature-icon" aria-hidden="true">🎵</div>
               <h3>Your Music</h3>
               <p>Spotify, Apple Music, YouTube Music, Deezer, Tidal. 39 curated playlists included.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">✍️</div>
+              <h3>Two Ways to Play</h3>
+              <p>Guess the release year, or name the title &amp; artist in free text — close calls go to a live 👍/👎 room vote.</p>
             </div>
             <div class="feature">
               <div class="feature-icon" aria-hidden="true">🏠</div>
@@ -282,6 +287,11 @@
         <div class="container">
           <h2 class="section-title">Changelog</h2>
           <div class="changelog-list">
+            <div class="changelog-entry">
+              <span class="changelog-version">v4.0.0</span>
+              <span class="changelog-date">Jun 8, 2026</span>
+              <p>🎵 Name That Tune — a new Title &amp; Artist mode (type the song &amp; artist, partial credit for near-misses), 🎭 Crowd Court live 👍/👎 vote on close calls, 🏆 mode-specific end-of-game awards, plus the album-art-in-sync fix</p>
+            </div>
             <div class="changelog-entry">
               <span class="changelog-version">v3.5.0</span>
               <span class="changelog-date">Jun 6, 2026</span>
