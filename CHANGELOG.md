@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.0.0-rc3] - 2026-06-08
+
+### Fixed
+- **Dashboard and in-game view showed the previous song's album art.** `entity_picture` lags `media_content_id`/`media_title` on Spotify and Music Assistant, so the cover was read at the moment the track matched and the prior song's art was broadcast. `wait_for_metadata_update` now uses a two-phase wait — confirm the song started, then wait briefly for `entity_picture` to also change — with a guard that ignores a transient `None`/placeholder flicker during the transition. Added full unit coverage for the method (#1260).
+
 ## [4.0.0-rc2] - 2026-06-07
 
 ### Added
