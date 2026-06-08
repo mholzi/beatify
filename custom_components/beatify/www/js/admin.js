@@ -1195,7 +1195,8 @@ function renderPlayerItem(player) {
              data-supports-apple-music="${player.supports_apple_music}"
              data-supports-youtube-music="${player.supports_youtube_music}"
              data-supports-tidal="${player.supports_tidal}"
-             data-supports-deezer="${player.supports_deezer}">
+             data-supports-deezer="${player.supports_deezer}"
+             data-supports-amazon-music="${player.supports_amazon_music}">
             <label class="radio-label">
                 <input type="radio"
                        class="media-player-radio"
@@ -1207,7 +1208,8 @@ function renderPlayerItem(player) {
                        data-supports-apple-music="${player.supports_apple_music}"
                        data-supports-youtube-music="${player.supports_youtube_music}"
                        data-supports-tidal="${player.supports_tidal}"
-                       data-supports-deezer="${player.supports_deezer}">
+                       data-supports-deezer="${player.supports_deezer}"
+                       data-supports-amazon-music="${player.supports_amazon_music}">
                 <span class="player-info">
                     <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
                     ${platformBadge}
@@ -1264,6 +1266,7 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     const supportsYoutubeMusic = radio.dataset.supportsYoutubeMusic === 'true';
     const supportsTidal = radio.dataset.supportsTidal === 'true';
     const supportsDeezer = radio.dataset.supportsDeezer === 'true';
+    const supportsAmazonMusic = radio.dataset.supportsAmazonMusic === 'true';
 
     // Update module state with platform capabilities
     selectedMediaPlayer = {
@@ -1275,6 +1278,7 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
         supportsYoutubeMusic,
         supportsTidal,
         supportsDeezer,
+        supportsAmazonMusic,
     };
 
     // Update visual selection
@@ -1322,6 +1326,7 @@ function updateProviderOptions(player) {
     const youtubeBtn = document.querySelector('.chip[data-provider="youtube_music"]');
     const tidalBtn = document.querySelector('.chip[data-provider="tidal"]');
     const deezerBtn = document.querySelector('.chip[data-provider="deezer"]');
+    const amazonBtn = document.querySelector('.chip[data-provider="amazon_music"]');
 
     if (spotifyBtn) {
         spotifyBtn.disabled = !player.supportsSpotify;
@@ -1346,6 +1351,11 @@ function updateProviderOptions(player) {
     if (deezerBtn) {
         deezerBtn.disabled = !player.supportsDeezer;
         deezerBtn.classList.toggle('chip--disabled', !player.supportsDeezer);
+    }
+
+    if (amazonBtn) {
+        amazonBtn.disabled = !player.supportsAmazonMusic;
+        amazonBtn.classList.toggle('chip--disabled', !player.supportsAmazonMusic);
     }
 
     // If current selection is now disabled, switch to Spotify
@@ -1377,17 +1387,32 @@ function updateProviderOptions(player) {
         selectedProvider = 'spotify';
     }
 
+    if (selectedProvider === 'amazon_music' && !player.supportsAmazonMusic) {
+        // Update UI
+        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
+        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
+        selectedProvider = 'spotify';
+    }
+
     // Show hint for disabled providers
     const hint = document.getElementById('provider-hint');
     if (hint) {
-        const disabledProviders = [];
-        if (!player.supportsAppleMusic) disabledProviders.push('Apple Music');
-        if (!player.supportsYoutubeMusic) disabledProviders.push('YouTube Music');
-        if (!player.supportsTidal) disabledProviders.push('Tidal');
-        if (!player.supportsDeezer) disabledProviders.push('Deezer');
+        const maSpeakerNeeded = [];
+        if (!player.supportsAppleMusic) maSpeakerNeeded.push('Apple Music');
+        if (!player.supportsYoutubeMusic) maSpeakerNeeded.push('YouTube Music');
+        if (!player.supportsTidal) maSpeakerNeeded.push('Tidal');
+        if (!player.supportsDeezer) maSpeakerNeeded.push('Deezer');
 
-        if (disabledProviders.length > 0) {
-            hint.textContent = `${disabledProviders.join(' and ')} require${disabledProviders.length === 1 ? 's' : ''} Music Assistant speaker`;
+        const hintParts = [];
+        if (maSpeakerNeeded.length > 0) {
+            hintParts.push(`${maSpeakerNeeded.join(' and ')} require${maSpeakerNeeded.length === 1 ? 's' : ''} a Music Assistant speaker`);
+        }
+        if (!player.supportsAmazonMusic) {
+            hintParts.push('Amazon Music requires an Amazon Echo (alexa_media)');
+        }
+
+        if (hintParts.length > 0) {
+            hint.textContent = hintParts.join(' · ');
             hint.classList.remove('hidden');
         } else {
             hint.classList.add('hidden');
@@ -1508,6 +1533,8 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
             const youtubeMusicCount = playlist.youtube_music_count || 0;
             const tidalCount = playlist.tidal_count || 0;
             const deezerCount = playlist.deezer_count || 0;
+            // Amazon Music uses Alexa text search — all songs are playable.
+            const amazonMusicCount = playlist.amazon_music_count || songCount;
 
             // Get provider count based on selected provider
             let providerCount = songCount;
@@ -1521,6 +1548,8 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 providerCount = tidalCount;
             } else if (selectedProvider === 'deezer') {
                 providerCount = deezerCount;
+            } else if (selectedProvider === 'amazon_music') {
+                providerCount = amazonMusicCount;
             }
 
             // Disable playlist if no songs for selected provider

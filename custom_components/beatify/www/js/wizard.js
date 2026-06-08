@@ -468,6 +468,7 @@ const PROVIDERS = [
     { id: 'youtube_music', label: 'YouTube Music' },
     { id: 'tidal', label: 'Tidal' },
     { id: 'deezer', label: 'Deezer' },
+    { id: 'amazon_music', label: 'Amazon Music' },
 ];
 
 // Lock icon SVG for dimmed provider chips (#772 UX).
@@ -550,35 +551,67 @@ function _showProviderExplainer(providerId) {
     const platform = player ? _platformLabel(player.platform) : _t('wizard.step2.explainer.yourSpeaker', 'your speaker');
     const provider = (PROVIDERS.find((p) => p.id === providerId) || {}).label || providerId;
     const vars = { provider, platform };
-    const title = _t('wizard.step2.explainer.title', '{provider} on {platform} needs Music Assistant', vars);
-    const body = _t(
-        'wizard.step2.explainer.body',
-        "{platform} plays Spotify directly from Home Assistant. {provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion {platform} can't do on its own.",
-        vars,
-    );
-    const step1 = _t('wizard.step2.explainer.step1', 'Install <strong>Music Assistant</strong> from HACS');
-    const step2 = _t('wizard.step2.explainer.step2', 'Add your {provider} account in MA → Providers', vars);
-    const step3 = _t('wizard.step2.explainer.step3', 'Come back — your {platform} appears as a Music Assistant speaker', vars);
-    const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
     const ghost = _t('wizard.step2.explainer.ghost', 'Pick a different service');
-    const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on {platform} directly — no add-on needed.', vars);
-    host.innerHTML = `
-        <div class="wiz-explainer-title">
-            <span class="icon" aria-hidden="true">⚠️</span>
-            <span>${title}</span>
-        </div>
-        <p class="wiz-explainer-body">${body}</p>
-        <ol class="wiz-explainer-steps">
-            <li>${step1}</li>
-            <li>${step2}</li>
-            <li>${step3}</li>
-        </ol>
-        <div class="wiz-explainer-actions">
-            <a class="btn btn-primary" href="https://www.home-assistant.io/integrations/music_assistant/" target="_blank" rel="noopener">${primary}</a>
-            <button type="button" class="btn btn-ghost" id="wiz-explainer-dismiss">${ghost}</button>
-        </div>
-        <div class="wiz-explainer-footer">${footer}</div>
-    `;
+
+    let innerHtml;
+    if (providerId === 'amazon_music') {
+        const title = _t('wizard.step2.explainer.amazonTitle', 'Amazon Music needs an Amazon Echo', vars);
+        const body = _t(
+            'wizard.step2.explainer.amazonBody',
+            'Amazon Music is not available through Music Assistant. To use it, select an Amazon Echo device (via the alexa_media integration) as your speaker.',
+            vars,
+        );
+        const step1 = _t('wizard.step2.explainer.amazonStep1', 'Install the <strong>Alexa Media Player</strong> integration in Home Assistant');
+        const step2 = _t('wizard.step2.explainer.amazonStep2', 'Link your Amazon account and Echo device');
+        const step3 = _t('wizard.step2.explainer.amazonStep3', 'Come back — your Echo appears as an available speaker');
+        const primary = _t('wizard.step2.explainer.amazonPrimary', 'Set up Alexa Media Player →');
+        innerHtml = `
+            <div class="wiz-explainer-title">
+                <span class="icon" aria-hidden="true">⚠️</span>
+                <span>${title}</span>
+            </div>
+            <p class="wiz-explainer-body">${body}</p>
+            <ol class="wiz-explainer-steps">
+                <li>${step1}</li>
+                <li>${step2}</li>
+                <li>${step3}</li>
+            </ol>
+            <div class="wiz-explainer-actions">
+                <a class="btn btn-primary" href="https://github.com/alandtse/alexa_media_player" target="_blank" rel="noopener">${primary}</a>
+                <button type="button" class="btn btn-ghost" id="wiz-explainer-dismiss">${ghost}</button>
+            </div>
+        `;
+    } else {
+        const title = _t('wizard.step2.explainer.title', '{provider} on {platform} needs Music Assistant', vars);
+        const body = _t(
+            'wizard.step2.explainer.body',
+            "{platform} plays Spotify directly from Home Assistant. {provider} and other streaming services need the Music Assistant add-on to route the track — it handles the login and format conversion {platform} can't do on its own.",
+            vars,
+        );
+        const step1 = _t('wizard.step2.explainer.step1', 'Install <strong>Music Assistant</strong> from HACS');
+        const step2 = _t('wizard.step2.explainer.step2', 'Add your {provider} account in MA → Providers', vars);
+        const step3 = _t('wizard.step2.explainer.step3', 'Come back — your {platform} appears as a Music Assistant speaker', vars);
+        const primary = _t('wizard.step2.explainer.primary', 'Set up Music Assistant →');
+        const footer = _t('wizard.step2.explainer.footer', 'Prefer Spotify? It works on {platform} directly — no add-on needed.', vars);
+        innerHtml = `
+            <div class="wiz-explainer-title">
+                <span class="icon" aria-hidden="true">⚠️</span>
+                <span>${title}</span>
+            </div>
+            <p class="wiz-explainer-body">${body}</p>
+            <ol class="wiz-explainer-steps">
+                <li>${step1}</li>
+                <li>${step2}</li>
+                <li>${step3}</li>
+            </ol>
+            <div class="wiz-explainer-actions">
+                <a class="btn btn-primary" href="https://www.home-assistant.io/integrations/music_assistant/" target="_blank" rel="noopener">${primary}</a>
+                <button type="button" class="btn btn-ghost" id="wiz-explainer-dismiss">${ghost}</button>
+            </div>
+            <div class="wiz-explainer-footer">${footer}</div>
+        `;
+    }
+    host.innerHTML = innerHtml;
     host.hidden = false;
     const dismiss = document.getElementById('wiz-explainer-dismiss');
     if (dismiss) {
