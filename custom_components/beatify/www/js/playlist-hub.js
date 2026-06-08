@@ -1139,6 +1139,7 @@ function _renderDetailSheet() {
                         ${p.youtube_music_count ? `<div class="plh-sheet-provider">YouTube <b>${p.youtube_music_count}</b>/${p.song_count || 0}</div>` : ''}
                         ${p.tidal_count ? `<div class="plh-sheet-provider">Tidal <b>${p.tidal_count}</b>/${p.song_count || 0}</div>` : ''}
                         ${p.deezer_count ? `<div class="plh-sheet-provider">Deezer <b>${p.deezer_count}</b>/${p.song_count || 0}</div>` : ''}
+                        ${p.song_count ? `<div class="plh-sheet-provider">Amazon <b>${p.song_count}</b>/${p.song_count || 0}</div>` : ''}
                     </div>
                 ` : ''}
             </div>

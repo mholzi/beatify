@@ -35,6 +35,7 @@ PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
         "youtube_music": True,
         "tidal": True,
         "deezer": True,
+        "amazon_music": False,
         "method": "uri",
         "warning": "Premium account must be configured in Music Assistant",
     },
@@ -44,6 +45,7 @@ PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
         "apple_music": False,
         "youtube_music": False,
         "tidal": False,
+        "amazon_music": False,
         "method": "uri",
         "warning": "Spotify must be linked in Sonos app",
     },
@@ -53,6 +55,7 @@ PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
         "apple_music": True,
         "youtube_music": False,
         "tidal": False,
+        "amazon_music": True,
         "method": "text_search",
         "warning": "Service must be linked in Alexa app",
         "caveat": "Uses voice search - may occasionally play different version",
@@ -148,6 +151,9 @@ _PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
     "youtube_music": ("uri_youtube_music",),
     "tidal": ("uri_tidal",),
     "deezer": ("uri_deezer",),
+    # Amazon Music uses Alexa text search — no URI fields; playback via
+    # _play_via_alexa() with content_type="AMAZON_MUSIC".
+    "amazon_music": (),
 }
 
 
@@ -759,7 +765,12 @@ class MediaPlayerService:
     async def _play_via_alexa(self, song: dict[str, Any]) -> bool:
         """Play via Alexa (text search-based)."""
         search_text = self._get_alexa_search_text(song)
-        content_type = "SPOTIFY" if self._provider == "spotify" else "APPLE_MUSIC"
+        if self._provider == "spotify":
+            content_type = "SPOTIFY"
+        elif self._provider == "amazon_music":
+            content_type = "AMAZON_MUSIC"
+        else:
+            content_type = "APPLE_MUSIC"
 
         _LOGGER.debug(
             "Alexa playback: '%s' (%s) on %s",
@@ -785,6 +796,10 @@ class MediaPlayerService:
         """Generate Alexa-compatible search text from song metadata."""
         artist = song.get("artist", "")
         title = song.get("title", "")
+
+        # Playlists may store multiple artists as "A;B" — use only the first.
+        if artist and ";" in artist:
+            artist = artist.split(";")[0].strip()
 
         if artist and title:
             return f"{title} by {artist}"

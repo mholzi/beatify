@@ -17,6 +17,7 @@ from custom_components.beatify.const import (
     DIFFICULTY_HARD,
     DIFFICULTY_NORMAL,
     DOMAIN,
+    PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
     PROVIDER_DEEZER,
@@ -63,6 +64,7 @@ def _validate_provider(provider: str) -> str:
         PROVIDER_YOUTUBE_MUSIC,
         PROVIDER_TIDAL,
         PROVIDER_DEEZER,
+        PROVIDER_AMAZON_MUSIC,
     )
     return provider if provider in valid_providers else PROVIDER_DEFAULT
 
@@ -296,6 +298,13 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         if provider == PROVIDER_DEEZER and not capabilities.get("deezer"):
             return _json_error(
                 "Deezer is not supported on this speaker. Use Music Assistant.",
+                400,
+                code="PROVIDER_NOT_SUPPORTED",
+            )
+
+        if provider == PROVIDER_AMAZON_MUSIC and not capabilities.get("amazon_music"):
+            return _json_error(
+                "Amazon Music is not supported on this speaker. Use an Amazon Echo (alexa_media).",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
             )

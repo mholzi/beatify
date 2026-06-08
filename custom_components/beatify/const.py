@@ -186,4 +186,5 @@ PROVIDER_APPLE_MUSIC = "apple_music"  # Preserved for future use
 PROVIDER_YOUTUBE_MUSIC = "youtube_music"
 PROVIDER_TIDAL = "tidal"
 PROVIDER_DEEZER = "deezer"
+PROVIDER_AMAZON_MUSIC = "amazon_music"
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY

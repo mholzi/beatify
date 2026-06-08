@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
     PLAYLIST_DIR,
+    PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
     PROVIDER_DEEZER,
@@ -473,6 +474,9 @@ def get_song_uri(
     if provider == PROVIDER_DEEZER:
         # For Deezer, only use uri_deezer
         return song.get("uri_deezer") or None
+    if provider == PROVIDER_AMAZON_MUSIC:
+        # Amazon Music uses Alexa text search — no URI needed; all songs are playable.
+        return PROVIDER_AMAZON_MUSIC
     return None
 
 
@@ -567,6 +571,9 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             youtube_music_count = _count("uri_youtube_music", URI_PATTERN_YOUTUBE_MUSIC)
             tidal_count = _count("uri_tidal", URI_PATTERN_TIDAL)
             deezer_count = _count("uri_deezer", URI_PATTERN_DEEZER)
+            # Amazon Music uses Alexa text search — every song in the playlist is
+            # playable, so the count always equals the total song count.
+            amazon_music_count = len(songs)
 
             # #716: skip playlists with no songs entirely — they only confuse the UI.
             if not is_valid and len(songs) == 0:
@@ -593,6 +600,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "youtube_music_count": youtube_music_count,
                     "tidal_count": tidal_count,
                     "deezer_count": deezer_count,
+                    "amazon_music_count": amazon_music_count,
                     "is_valid": is_valid,
                     "errors": errors,
                 }
@@ -625,6 +633,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "youtube_music_count": 0,
                     "tidal_count": 0,
                     "deezer_count": 0,
+                    "amazon_music_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                 }
