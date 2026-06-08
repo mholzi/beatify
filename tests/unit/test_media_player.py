@@ -1290,9 +1290,12 @@ class TestWaitForMetadataUpdateAlbumArt:
             captured["cb"] = cb
             return MagicMock()
 
-        with patch(_TRACK_PATH, side_effect=_fake_track), patch(
-            "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
-            0.05,
+        with (
+            patch(_TRACK_PATH, side_effect=_fake_track),
+            patch(
+                "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
+                0.05,
+            ),
         ):
             task = asyncio.create_task(
                 svc.wait_for_metadata_update("spotify:track:NEW")
@@ -1321,9 +1324,12 @@ class TestWaitForMetadataUpdateAlbumArt:
         )
         svc, _box = self._service_with_states(old)
 
-        with patch(_TRACK_PATH, side_effect=lambda *a, **k: MagicMock()), patch(
-            "custom_components.beatify.services.media_player.METADATA_WAIT_TIMEOUT",
-            0.05,
+        with (
+            patch(_TRACK_PATH, side_effect=lambda *a, **k: MagicMock()),
+            patch(
+                "custom_components.beatify.services.media_player.METADATA_WAIT_TIMEOUT",
+                0.05,
+            ),
         ):
             result = await svc.wait_for_metadata_update("spotify:track:NEW")
 
@@ -1395,9 +1401,12 @@ class TestWaitForMetadataUpdateAlbumArt:
             captured["cb"] = cb
             return MagicMock()
 
-        with patch(_TRACK_PATH, side_effect=_fake_track), patch(
-            "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
-            0.05,
+        with (
+            patch(_TRACK_PATH, side_effect=_fake_track),
+            patch(
+                "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
+                0.05,
+            ),
         ):
             task = asyncio.create_task(
                 svc.wait_for_metadata_update("spotify:track:NEW")
