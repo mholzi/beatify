@@ -118,6 +118,12 @@ METADATA_WAIT_TIMEOUT = 2.0
 # doesn't update it) we fall back to the current state, which is correct.
 ENTITY_PICTURE_WAIT = 1.0
 
+# Same-origin placeholder shown when a player reports no artwork. During a
+# track transition entity_picture can briefly clear to None or flip to this
+# placeholder before the real cover loads — Phase 2 must NOT treat that
+# transient as "the new art has arrived" (issue #1260 follow-up).
+NO_ARTWORK_PLACEHOLDER = "/beatify/static/img/no-artwork.svg"
+
 # Candidate URI fields on a song, by user-selected provider (#805).
 #
 # Each provider lists its own playable URI fields in priority order. The
@@ -869,6 +875,17 @@ class MediaPlayerService:
             current_title = state.attributes.get("media_title")
             return bool(current_title and current_title != initial_title)
 
+        def _is_new_art(ep) -> bool:
+            """True if entity_picture is a real cover that differs from initial.
+
+            A transient clear to None/empty or to the no-artwork placeholder
+            during the track transition is NOT the new art — keep waiting for
+            the real cover (issue #1260 follow-up).
+            """
+            if ep == initial_entity_picture:
+                return False
+            return bool(ep) and ep != NO_ARTWORK_PLACEHOLDER
+
         def _state_changed(ev):
             new_state = ev.data.get("new_state")
             if new_state is None:
@@ -879,7 +896,7 @@ class MediaPlayerService:
             # later event than the content_id/title change.
             if not art_changed.is_set():
                 ep = new_state.attributes.get("entity_picture")
-                if ep != initial_entity_picture:
+                if _is_new_art(ep):
                     art_metadata.update(self._extract_metadata(new_state))
                     art_changed.set()
 
@@ -893,7 +910,7 @@ class MediaPlayerService:
                 if _song_started(current):
                     song_matched.set()
                 ep = current.attributes.get("entity_picture")
-                if ep != initial_entity_picture:
+                if _is_new_art(ep):
                     art_metadata.update(self._extract_metadata(current))
                     art_changed.set()
 

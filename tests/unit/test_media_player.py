@@ -1331,17 +1331,10 @@ class TestWaitForMetadataUpdateAlbumArt:
         assert result["album_art"] == "/api/media_player_proxy/x?token=old"
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(
-        reason="#1260 follow-up: a transient entity_picture change (a momentary "
-        "None/placeholder during track transition) sets art_changed on the "
-        "FIRST change, so the placeholder can be broadcast instead of the real "
-        "cover. Not currently guarded — documents the known limitation.",
-        strict=False,
-    )
-    async def test_transient_entity_picture_flicker_should_be_ignored(self):
-        """Art goes old → placeholder → real cover across events. Desired
-        behaviour is to surface the REAL cover; the current code latches onto
-        the first (placeholder) change."""
+    async def test_transient_entity_picture_flicker_is_ignored(self):
+        """#1260 follow-up: art goes old → placeholder → real cover across
+        events. The guard skips the transient placeholder and surfaces the
+        REAL cover."""
         old = _art_state(
             title="Old",
             content_id="spotify:track:OLD",
@@ -1383,3 +1376,43 @@ class TestWaitForMetadataUpdateAlbumArt:
             result = await task
 
         assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
+
+    @pytest.mark.asyncio
+    async def test_art_that_stays_placeholder_falls_back_without_hanging(self):
+        """If the player genuinely reports no artwork (entity_picture never
+        leaves the placeholder), the guard must not hang waiting for a 'real'
+        cover — Phase 2 times out and falls back to the current state."""
+        old = _art_state(
+            title="Old",
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track), patch(
+            "custom_components.beatify.services.media_player.ENTITY_PICTURE_WAIT",
+            0.05,
+        ):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("spotify:track:NEW")
+            )
+            await asyncio.sleep(0)
+
+            new = _art_state(
+                title="New",
+                content_id="spotify:track:NEW",
+                entity_picture="/beatify/static/img/no-artwork.svg",
+            )
+            box["current"] = new
+            captured["cb"](_event(new))
+
+            result = await task
+
+        assert result["title"] == "New"
+        assert result["album_art"] == "/beatify/static/img/no-artwork.svg"
