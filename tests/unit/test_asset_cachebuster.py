@@ -15,7 +15,10 @@ from custom_components.beatify.server.base import (
     _compute_asset_fingerprint,
     _get_asset_version,
 )
-from custom_components.beatify.server.stats_views import AnalyticsPageView, DashboardView
+from custom_components.beatify.server.stats_views import (
+    AnalyticsPageView,
+    DashboardView,
+)
 from custom_components.beatify.server.views import AdminView, PlayerView, SwJsView
 
 
