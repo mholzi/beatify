@@ -1059,6 +1059,15 @@
       "parseFailed": "Fallo al analizar JSON: {error}",
       "songLabel": "Canción #{n}",
       "songIssues": "Canciones con problemas ({n})"
+    },
+    "guide": {
+      "heading": "Cómo funciona — paso a paso",
+      "step1": "Pega la URL de la lista de Spotify abajo y haz clic en «<b>Copiar prompt</b>».",
+      "step2": "Pega el prompt en ChatGPT, Claude.ai o un LLM local y ejecútalo.",
+      "step3": "Copia el <b>JSON</b> completo de vuelta en el campo de abajo.",
+      "step4": "Haz clic en <b>Validar</b> — verás ✓/✗ por cada campo.",
+      "warnTitle": "¿Más de ~32 canciones?",
+      "warnBody": "ChatGPT &amp; Claude suelen cortar las listas grandes a la mitad. Divídelas en <b>lotes de 30 canciones</b>: ejecuta el prompt por lote y luego fusiona los arrays de songs. Si ChatGPT se interrumpe con un error poco claro, casi siempre la causa es la longitud de la respuesta."
     }
   }
 }

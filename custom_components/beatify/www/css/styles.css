@@ -14445,6 +14445,86 @@ body.theme-dark .your-result-stats .stat-value {
     font-size: 15px;
     line-height: 1.55;
 }
+/* Inline step-by-step guide accordion (#1286) */
+.plg-guide {
+    margin: 0 0 18px;
+    background: #14171f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.plg-guide-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background: transparent;
+    border: 0;
+    color: #f1f3f7;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-align: left;
+}
+.plg-guide-toggle:hover { background: rgba(255, 255, 255, 0.03); }
+.plg-guide-chevron { color: #8a92a3; font-size: 13px; margin-left: 12px; }
+.plg-guide-body {
+    padding: 4px 14px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.plg-guide-steps {
+    list-style: none;
+    margin: 12px 0 14px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.plg-guide-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+.plg-guide-num {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ff3a8c, #cf2e72);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+.plg-guide-text {
+    color: #d8dce5;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+.plg-guide-text b { color: #f1f3f7; }
+.plg-guide-warn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255, 184, 0, 0.08);
+    border: 1px solid rgba(255, 184, 0, 0.35);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+.plg-guide-warn-icon { flex: 0 0 auto; font-size: 14px; line-height: 1.5; }
+.plg-guide-warn-text {
+    color: #f0d9a8;
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+.plg-guide-warn-text b { color: #ffd66b; }
 .plg-label {
     display: block;
     margin: 14px 0 6px;
