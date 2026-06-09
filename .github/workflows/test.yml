@@ -133,7 +133,7 @@ jobs:
             --cov-report=xml \
             --cov-report=html \
             --cov-report=term-missing \
-            --cov-fail-under=25  # baseline; raise progressively as coverage grows (#197)
+            --cov-fail-under=68  # gate just below measured 69.86% (#1282); raise progressively as coverage grows
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
