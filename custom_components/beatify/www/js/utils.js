@@ -14,6 +14,43 @@ window.BeatifyUtils = (function() {
     'use strict';
 
     // ==========================================================================
+    // Debug Logging (#1280)
+    // ==========================================================================
+
+    /**
+     * Whether debug logging is enabled. Off by default so the production console
+     * stays clean; opt in via either:
+     *   - localStorage: localStorage.setItem('beatify_debug', '1')
+     *   - URL query param: ?debug=1 (or ?BeatifyDebug=1)
+     * The query param, when present, is persisted to localStorage so it survives
+     * reloads/navigation. Evaluated once at module load.
+     */
+    var debugEnabled = (function() {
+        try {
+            var params = new URLSearchParams(window.location.search);
+            var qp = params.get('debug') || params.get('BeatifyDebug');
+            if (qp !== null) {
+                var on = qp !== '0' && qp.toLowerCase() !== 'false';
+                window.localStorage.setItem('beatify_debug', on ? '1' : '0');
+                return on;
+            }
+            return window.localStorage.getItem('beatify_debug') === '1';
+        } catch (e) {
+            return false;
+        }
+    })();
+
+    /**
+     * Gated console.log replacement. No-op unless debug logging is enabled.
+     * Use for diagnostic noise; keep console.error for real errors (#1280).
+     */
+    function debug() {
+        if (debugEnabled) {
+            console.log.apply(console, arguments);
+        }
+    }
+
+    // ==========================================================================
     // i18n Helpers
     // ==========================================================================
 
@@ -188,7 +225,7 @@ window.BeatifyUtils = (function() {
             ws = new WebSocket(wsUrl);
 
             ws.onopen = function() {
-                console.log('[' + logPrefix + '] Connected');
+                debug('[' + logPrefix + '] Connected');
                 reconnectAttempts = 0;
                 if (options.onOpen) {
                     options.onOpen(ws);
@@ -207,17 +244,17 @@ window.BeatifyUtils = (function() {
             };
 
             ws.onclose = function() {
-                console.log('[' + logPrefix + '] Disconnected');
+                debug('[' + logPrefix + '] Disconnected');
                 if (intentionallyClosed) {
                     return;
                 }
                 if (reconnectAttempts < maxReconnectAttempts) {
                     reconnectAttempts++;
                     var delay = getReconnectDelay();
-                    console.log('[' + logPrefix + '] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
+                    debug('[' + logPrefix + '] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
                     setTimeout(connect, delay);
                 } else {
-                    console.log('[' + logPrefix + '] Max reconnect attempts reached');
+                    debug('[' + logPrefix + '] Max reconnect attempts reached');
                     if (options.onClose) {
                         options.onClose();
                     }
@@ -317,6 +354,9 @@ window.BeatifyUtils = (function() {
     // ==========================================================================
 
     return {
+        // Debug
+        debug: debug,
+
         // i18n
         waitForI18n: waitForI18n,
         t: t,

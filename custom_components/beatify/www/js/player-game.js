@@ -16,6 +16,7 @@ import {
 } from './player-utils.js';
 
 var utils = window.BeatifyUtils || {};
+var debug = utils.debug || function() {};
 
 // ============================================
 // Countdown Timer (Story 4.2)
@@ -322,7 +323,7 @@ export function handleMetadataUpdate(song) {
         preloader.src = newSrc;
     }
 
-    console.log('[Metadata] Updated:', song.artist, '-', song.title);
+    debug('[Metadata] Updated:', song.artist, '-', song.title);
 }
 
 // ============================================
