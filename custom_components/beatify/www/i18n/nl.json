@@ -1059,6 +1059,15 @@
       "parseFailed": "JSON-parsing mislukt: {error}",
       "songLabel": "Nummer #{n}",
       "songIssues": "Nummers met problemen ({n})"
+    },
+    "guide": {
+      "heading": "Zo werkt het — stap voor stap",
+      "step1": "Plak de Spotify-playlist-URL hieronder en klik op “<b>Prompt kopiëren</b>”.",
+      "step2": "Plak de prompt in ChatGPT, Claude.ai of een lokale LLM en voer hem uit.",
+      "step3": "Kopieer de volledige <b>JSON</b> terug in het veld hieronder.",
+      "step4": "Klik op <b>Valideren</b> — je ziet ✓/✗ per veld.",
+      "warnTitle": "Meer dan ~32 nummers?",
+      "warnBody": "ChatGPT &amp; Claude breken grote playlists vaak halverwege af. Splits ze op in <b>batches van 30 nummers</b>: voer de prompt per batch uit en voeg daarna de songs-arrays samen. Breekt ChatGPT af met een onduidelijke foutmelding, dan is bijna altijd de lengte van het antwoord de oorzaak."
     }
   }
 }

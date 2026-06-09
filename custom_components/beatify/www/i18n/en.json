@@ -1219,6 +1219,15 @@
       "parseFailed": "JSON parse failed: {error}",
       "songLabel": "Song #{n}",
       "songIssues": "Songs with issues ({n})"
+    },
+    "guide": {
+      "heading": "How it works — step by step",
+      "step1": "Paste the Spotify playlist URL below and click “<b>Copy prompt</b>”.",
+      "step2": "Paste the prompt into ChatGPT, Claude.ai or a local LLM and run it.",
+      "step3": "Copy the full <b>JSON</b> back into the field below.",
+      "step4": "Click <b>Validate</b> — you’ll see ✓/✗ per field.",
+      "warnTitle": "More than ~32 songs?",
+      "warnBody": "ChatGPT &amp; Claude often cut large playlists off midway. Split them into <b>batches of 30 songs</b>: run the prompt per batch, then merge the songs arrays. If ChatGPT aborts with an unclear error, the response length is almost always the cause."
     }
   }
 }
