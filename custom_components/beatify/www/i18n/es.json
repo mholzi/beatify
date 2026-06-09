@@ -1073,5 +1073,9 @@
       "warnTitle": "¿Más de ~32 canciones?",
       "warnBody": "ChatGPT &amp; Claude suelen cortar las listas grandes a la mitad. Divídelas en <b>lotes de 30 canciones</b>: ejecuta el prompt por lote y luego fusiona los arrays de songs. Si ChatGPT se interrumpe con un error poco claro, casi siempre la causa es la longitud de la respuesta."
     }
+  },
+  "starting": {
+    "headline": "¡Ya empezamos!",
+    "sub": "Conectando el altavoz y cargando la primera ronda. Preparad vuestros pulsadores."
   }
 }

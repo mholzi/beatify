@@ -1073,5 +1073,9 @@
       "warnTitle": "Meer dan ~32 nummers?",
       "warnBody": "ChatGPT &amp; Claude breken grote playlists vaak halverwege af. Splits ze op in <b>batches van 30 nummers</b>: voer de prompt per batch uit en voeg daarna de songs-arrays samen. Breekt ChatGPT af met een onduidelijke foutmelding, dan is bijna altijd de lengte van het antwoord de oorzaak."
     }
+  },
+  "starting": {
+    "headline": "Daar gaan we!",
+    "sub": "We verbinden de speaker en laden ronde één. Pak alvast je buzzer."
   }
 }

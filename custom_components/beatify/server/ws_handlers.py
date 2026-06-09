@@ -562,6 +562,14 @@ async def admin_start_game(
         )
         return
 
+    # #1287: cold-start bridge. start_round() blocks for ~10-15s while Music
+    # Assistant connects the speaker and round 1 is prepared, and only then is
+    # the PLAYING state broadcast. Without an interim signal every client stays
+    # on the lobby/"Starting…" view the whole time. Fire a lightweight transient
+    # message FIRST so player phones + the TV/dashboard switch to the animated
+    # vinyl-disc loader immediately; the PLAYING broadcast below replaces it.
+    await handler.broadcast({"type": "game_starting"})
+
     success = await game_state.start_round()
     if success:
         await handler.broadcast_state()

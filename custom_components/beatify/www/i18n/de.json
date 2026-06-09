@@ -1233,5 +1233,9 @@
       "warnTitle": "Mehr als ~32 Songs?",
       "warnBody": "ChatGPT &amp; Claude brechen bei großen Playlists oft mittendrin ab. Teile sie in <b>Batches zu 30 Songs</b>: Prompt pro Batch ausführen, die songs-Arrays anschließend zusammenführen. Bricht ChatGPT mit unklarem Fehler ab, ist fast immer die Antwortlänge die Ursache."
     }
+  },
+  "starting": {
+    "headline": "Gleich geht's los!",
+    "sub": "Wir verbinden den Lautsprecher und laden die erste Runde. Schnappt euch schon mal eure Buzzer."
   }
 }
