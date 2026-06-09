@@ -59,6 +59,30 @@ jobs:
         run: ruff format --check .
 
   # ==========================================================================
+  # STAGE 1b: FRONTEND BUILD CHECK
+  # ==========================================================================
+  # Rebuilds the served .min.js bundles from their .js sources and fails if any
+  # committed bundle drifted. Guards against the #1263 class of bug (source edit
+  # not reflected in the minified bundle that browsers actually load).
+  frontend-build:
+    name: Frontend build check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Verify min.js bundles match source
+        run: npm run build:check
+
+  # ==========================================================================
   # STAGE 2: TEST
   # ==========================================================================
   test:
