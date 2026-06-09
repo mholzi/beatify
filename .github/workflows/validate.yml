@@ -4,6 +4,7 @@
 # Validates:
 # - HACS requirements (hacs.json, structure, manifest)
 # - Home Assistant hassfest (manifest.json, translations, services)
+# - Playlist JSON files against scripts/playlist_schema.json (#1284)
 
 name: Validate
 
@@ -38,3 +39,21 @@ jobs:
 
       - name: Hassfest
         uses: home-assistant/actions/hassfest@master
+
+  validate-playlists:
+    name: Playlist JSON Schema Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install jsonschema
+        run: pip install "jsonschema>=4.0"
+
+      - name: Validate playlist files against schema
+        run: python scripts/validate_playlists.py
