@@ -167,6 +167,32 @@
             </div>
         </div>
 
+        <!-- Cold-start bridge (#1287): animated vinyl disc while MA connects the
+             speaker and round 1 loads (~10-15s). Auto-replaced by the first
+             PLAYING state broadcast. -->
+        <div id="dashboard-starting" class="dashboard-view hidden">
+            <div class="vinyl-starting">
+                <div class="vinyl-row">
+                    <div class="vinyl-loader" aria-hidden="true">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-ring"></div>
+                            <div class="vinyl-hole"></div>
+                        </div>
+                    </div>
+                    <div class="vinyl-copy">
+                        <h1 class="wordmark wordmark-hero">
+                            <span class="wordmark-beat">Beat</span><span class="wordmark-gradient">ify</span>
+                        </h1>
+                        <h2 class="vinyl-headline" data-i18n="starting.headline">Here we go!</h2>
+                        <p class="vinyl-sub" data-i18n="starting.sub">Connecting the speaker and loading round one. Grab your buzzer.</p>
+                        <div class="vinyl-dots" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- No game state -->
         <div id="dashboard-no-game" class="dashboard-view hidden">
             <div class="dashboard-centered">

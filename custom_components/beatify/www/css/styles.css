@@ -209,6 +209,175 @@ body:not(.theme-dark) .wordmark-beat {
     }
 }
 
+/* ============================================================
+   Cold-start vinyl loader (#1287)
+   Animated vinyl disc + hype copy bridging the ~10-15s
+   Music-Assistant speaker-connect before round 1. Shared by
+   player.html (#starting-view) and dashboard.html
+   (#dashboard-starting).
+   ============================================================ */
+/* Outer: full-height column box that centers its single inner row both axes.
+   Mirrors the proven .dashboard-centered pattern (no explicit width → stretches
+   via the parent's align-items:stretch) so the group is always viewport-centered
+   on the TV/dashboard and the phone. */
+.vinyl-starting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* Inner: the disc-beside-copy row. Caps its own width and centers itself; wraps
+   to stacked (disc over copy) on narrow phones. */
+.vinyl-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(20px, 5vw, 56px);
+    max-width: 100%;
+}
+
+.vinyl-loader {
+    flex: 0 0 auto;
+    width: clamp(130px, 28vw, 260px);
+    height: clamp(130px, 28vw, 260px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* Soft pink/cyan glow halo behind the disc */
+    background: radial-gradient(circle at center,
+        rgba(255, 45, 106, 0.18) 0%,
+        rgba(99, 102, 241, 0.10) 45%,
+        transparent 70%);
+}
+
+.vinyl-disc {
+    position: relative;
+    width: 78%;
+    height: 78%;
+    border-radius: 50%;
+    /* Conic gradient = the spinning record */
+    background: conic-gradient(from 0deg,
+        var(--color-accent-primary),
+        var(--color-accent-brand),
+        var(--color-accent-secondary),
+        var(--color-accent-brand),
+        var(--color-accent-primary));
+    box-shadow:
+        0 0 40px rgba(255, 45, 106, 0.35),
+        0 0 80px rgba(0, 245, 255, 0.18),
+        inset 0 0 30px rgba(0, 0, 0, 0.45);
+    animation: vinyl-spin 3s linear infinite;
+}
+
+.vinyl-ring {
+    position: absolute;
+    top: 18%;
+    left: 18%;
+    width: 64%;
+    height: 64%;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.25);
+}
+
+.vinyl-hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14%;
+    height: 14%;
+    border-radius: 50%;
+    background: var(--color-bg-primary);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.vinyl-copy {
+    /* min-width:0 + width:min(100%,460px) keeps the copy inside its flex line
+       on every surface: beside the disc on landscape (TV/dashboard) and on its
+       own line when wrapped on a narrow phone — the text re-wraps, it never
+       overflows the viewport. */
+    flex: 1 1 280px;
+    min-width: 0;
+    width: min(100%, 460px);
+    max-width: 460px;
+    text-align: left;
+}
+
+.vinyl-copy .vinyl-headline,
+.vinyl-copy .vinyl-sub,
+.vinyl-copy .wordmark-hero {
+    overflow-wrap: break-word;
+}
+
+.vinyl-copy .wordmark-hero {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    margin: 0 0 0.5em;
+}
+
+.vinyl-headline {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--color-text-white);
+    margin: 0 0 0.4em;
+}
+
+.vinyl-sub {
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin: 0 0 1.2em;
+}
+
+.vinyl-dots {
+    display: flex;
+    gap: 12px;
+}
+
+.vinyl-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent-primary);
+    opacity: 0.3;
+    animation: vinyl-dot-pulse 1.4s ease-in-out infinite;
+}
+
+.vinyl-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.vinyl-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes vinyl-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes vinyl-dot-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    40% { opacity: 1; transform: scale(1.25); }
+}
+
+/* Narrow / portrait (phone player): the row wraps to stacked, so center the
+   copy under the disc and center the pulse dots — left-alignment only reads well
+   in the landscape side-by-side layout. */
+@media (max-width: 640px) {
+    .vinyl-copy { text-align: center; }
+    .vinyl-dots { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vinyl-disc { animation: none; }
+    .vinyl-dots span { animation: none; opacity: 0.7; }
+}
+
 /* Header */
 header {
     margin-bottom: var(--space-lg);

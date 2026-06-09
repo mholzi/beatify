@@ -1073,5 +1073,9 @@
       "warnTitle": "Plus de ~32 titres ?",
       "warnBody": "ChatGPT &amp; Claude coupent souvent les grandes playlists en cours de route. Divisez-les en <b>lots de 30 titres</b> : exécutez le prompt par lot, puis fusionnez les tableaux songs. Si ChatGPT s’interrompt avec une erreur peu claire, c’est presque toujours la longueur de la réponse qui est en cause."
     }
+  },
+  "starting": {
+    "headline": "C'est parti !",
+    "sub": "Connexion de l'enceinte et chargement de la première manche. Préparez vos buzzers."
   }
 }

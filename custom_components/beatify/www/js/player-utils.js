@@ -29,6 +29,7 @@ export var state = {
 // ============================================
 
 var loadingView = document.getElementById('loading-view');
+var startingView = document.getElementById('starting-view');  // #1287 cold-start vinyl loader
 var notFoundView = document.getElementById('not-found-view');
 var endedView = document.getElementById('ended-view');
 var inProgressView = document.getElementById('in-progress-view');
@@ -42,7 +43,7 @@ var pausedView = document.getElementById('paused-view');
 var endView = document.getElementById('end-view');
 var connectionLostView = document.getElementById('connection-lost-view');
 
-var allViews = [loadingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
+var allViews = [loadingView, startingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
 
 /**
  * Show a specific view and hide all others

@@ -10,6 +10,7 @@
 
     // View elements
     var loadingView = document.getElementById('dashboard-loading');
+    var startingView = document.getElementById('dashboard-starting');  // #1287 cold-start vinyl loader
     var noGameView = document.getElementById('dashboard-no-game');
     var lobbyView = document.getElementById('dashboard-lobby');
     var playingView = document.getElementById('dashboard-playing');
@@ -18,7 +19,7 @@
     var pausedView = document.getElementById('dashboard-paused');
 
     // All views array for showView helper
-    var allViews = [loadingView, noGameView, lobbyView, playingView, revealView, endView, pausedView];
+    var allViews = [loadingView, startingView, noGameView, lobbyView, playingView, revealView, endView, pausedView];
 
     // WebSocket connection
     var ws = null;
@@ -300,6 +301,13 @@
         } else if (data.type === 'metadata_update') {
             // Issue #42: Handle async metadata update for fast transitions
             handleMetadataUpdate(data.song);
+        } else if (data.type === 'game_starting') {
+            // #1287: cold-start bridge. The admin pressed start; show the
+            // animated vinyl-disc loader while the Music Assistant speaker
+            // connects + round 1 loads (~10-15s). The next PLAYING `state`
+            // broadcast replaces it.
+            stopCountdown();
+            showView('dashboard-starting');
         }
         // Dashboard ignores submit_ack, song_stopped, volume_changed since it doesn't interact
     }

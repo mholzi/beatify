@@ -516,6 +516,25 @@ function handleServerMessage(data) {
         return;
     }
 
+    // #1287: cold-start bridge. The admin pressed start; the server fires this
+    // the moment it begins connecting the Music Assistant speaker + loading
+    // round 1 (~10-15s of otherwise-empty wait). Show the animated vinyl-disc
+    // loader; the subsequent PLAYING `state` broadcast replaces it. Only players
+    // already past the join screen (i.e. who saw the lobby) should see it — a
+    // visitor still on the join form keeps their form.
+    if (data.type === 'game_starting') {
+        var loadingEl = document.getElementById('loading-view');
+        var lobbyEl = document.getElementById('lobby-view');
+        var joinEl = document.getElementById('join-view');
+        var lobbyActive = lobbyEl && !lobbyEl.classList.contains('hidden');
+        var loadingActive = loadingEl && !loadingEl.classList.contains('hidden');
+        var joinActive = joinEl && !joinEl.classList.contains('hidden');
+        if (lobbyActive || loadingActive || !joinActive) {
+            showView('starting-view');
+        }
+        return;
+    }
+
     var joinBtn = document.getElementById('join-btn');
     var nameInput = document.getElementById('name-input');
 

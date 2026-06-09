@@ -1233,5 +1233,9 @@
       "warnTitle": "More than ~32 songs?",
       "warnBody": "ChatGPT &amp; Claude often cut large playlists off midway. Split them into <b>batches of 30 songs</b>: run the prompt per batch, then merge the songs arrays. If ChatGPT aborts with an unclear error, the response length is almost always the cause."
     }
+  },
+  "starting": {
+    "headline": "Here we go!",
+    "sub": "Connecting the speaker and loading round one. Grab your buzzer."
   }
 }
