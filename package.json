@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "beatify",
+  "description": "Build tools for Beatify Home Assistant integration",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:check": "node scripts/build.mjs --check",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.7",
+    "vitest": "^2.1.9"
+  }
+}
