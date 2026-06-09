@@ -152,6 +152,11 @@
         return _keepAwakeVideo;
     }
 
+    // Returns true if a reliable wake lock engaged (native Layer 1), false if
+    // we had to fall back to a best-effort path. The #1285 banner uses the
+    // false result to offer a one-tap re-try inside a trusted user gesture —
+    // iOS blocks navigator.wakeLock.request() on a passive TV/dashboard
+    // display that never received a touch, but allows it from a tap handler.
     async function requestWakeLock() {
         if ('wakeLock' in navigator) {
             try {
@@ -161,7 +166,7 @@
                     _wakeLock = null;
                 });
                 console.debug('[BeatifyWakeLock] Layer 1 (native wakeLock) acquired');
-                return;
+                return true;
             } catch (err) {
                 console.debug('[BeatifyWakeLock] Layer 1 request failed:', err, '— trying Layer 2');
             }
@@ -186,9 +191,9 @@
         var ns = _ensureNoSleep();
         if (!ns) {
             console.debug('[BeatifyWakeLock] Layer 2 unavailable (NoSleep vendor not loaded)');
-            return;
+            return false;
         }
-        if (_noSleepActive) return;
+        if (_noSleepActive) return false;
         try {
             var p = ns.enable();
             _noSleepActive = true;
@@ -201,6 +206,61 @@
         } catch (err) {
             console.debug('[BeatifyWakeLock] Layer 2 enable failed:', err);
             _noSleepActive = false;
+        }
+        return false;
+    }
+
+    // ============================================
+    // Wake-Lock activation banner (#1285, design option 2)
+    // ============================================
+    // On a passive iOS TV/dashboard display the native screen wake lock is
+    // rejected without a user gesture, so requestWakeLock() above can only fall
+    // back to a best-effort path. The banner surfaces a single tap that re-runs
+    // requestWakeLock() inside a trusted gesture context, letting the native
+    // lock (and NoSleep video) fully engage. Dismissal is remembered so the
+    // banner never nags on a display where the user already chose.
+    var _WAKE_BANNER_DISMISS_KEY = 'beatify_wakelock_banner_dismissed';
+
+    function _wakeBannerDismissed() {
+        try { return localStorage.getItem(_WAKE_BANNER_DISMISS_KEY) === '1'; }
+        catch (e) { return false; }
+    }
+
+    function _rememberWakeBannerDismissed() {
+        try { localStorage.setItem(_WAKE_BANNER_DISMISS_KEY, '1'); } catch (e) { /* private mode */ }
+    }
+
+    function _hideWakeBanner() {
+        var banner = document.getElementById('dashboard-wakelock-banner');
+        if (banner) banner.classList.add('hidden');
+    }
+
+    function _showWakeBanner() {
+        if (_wakeBannerDismissed()) return;
+        var banner = document.getElementById('dashboard-wakelock-banner');
+        if (!banner) return;
+        banner.classList.remove('hidden');
+    }
+
+    function _initWakeBanner() {
+        var banner = document.getElementById('dashboard-wakelock-banner');
+        if (!banner) return;
+        var activateBtn = document.getElementById('dashboard-wakelock-activate');
+        var dismissBtn = document.getElementById('dashboard-wakelock-dismiss');
+        if (activateBtn) {
+            activateBtn.addEventListener('click', function() {
+                // Tap is the trusted gesture iOS requires — re-run the full
+                // request so the native lock can engage; remember the choice.
+                requestWakeLock();
+                _rememberWakeBannerDismissed();
+                _hideWakeBanner();
+            });
+        }
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', function() {
+                _rememberWakeBannerDismissed();
+                _hideWakeBanner();
+            });
         }
     }
 
@@ -1537,7 +1597,12 @@
             BeatifyI18n.initPageTranslations();
         }
         connectWebSocket();
-        requestWakeLock();  // #1122: keep TV/monitor display awake
+        _initWakeBanner();  // #1285: wire the activation banner's tap handlers
+        // #1122: keep TV/monitor display awake. On a passive iOS display the
+        // native lock is gesture-gated and won't engage here, so surface the
+        // #1285 banner that offers a one-tap re-try inside a trusted gesture.
+        var locked = await requestWakeLock();
+        if (!locked) _showWakeBanner();
     }
 
     // Start when DOM is ready

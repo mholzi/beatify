@@ -664,7 +664,11 @@
     "topGuesses": "Mejores respuestas de esta ronda",
     "submissions": "Respuestas",
     "timeRemaining": "Tiempo",
-    "castToTv": "Transmitir a TV:"
+    "castToTv": "Transmitir a TV:",
+    "wakeLockTitle": "¿Mantener la pantalla encendida?",
+    "wakeLockBody": "Evita que la pantalla del TV se apague durante la partida.",
+    "wakeLockActivate": "Activar",
+    "wakeLockDismiss": "Cerrar"
   },
   "launcher": {
     "title": "Beatify",

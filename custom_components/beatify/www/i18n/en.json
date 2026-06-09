@@ -664,7 +664,11 @@
     "topGuesses": "Top Guesses This Round",
     "submissions": "Submissions",
     "timeRemaining": "Time",
-    "castToTv": "Cast to TV:"
+    "castToTv": "Cast to TV:",
+    "wakeLockTitle": "Keep screen awake?",
+    "wakeLockBody": "Prevents the TV display from turning off during the game.",
+    "wakeLockActivate": "Activate",
+    "wakeLockDismiss": "Dismiss"
   },
   "launcher": {
     "title": "Beatify",

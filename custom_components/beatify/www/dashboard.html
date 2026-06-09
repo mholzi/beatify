@@ -45,6 +45,101 @@
     <link rel="stylesheet" href="/beatify/static/css/dashboard.min.css?v={{ASSET_VER}}">
     <!-- Confetti library for celebrations (Story 14.5) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Wake-Lock banner styles (#1285, design option 2). Inline + self-contained
+         so the dezenter Bottom-Banner ships with the directly-served HTML and
+         introduces no dashboard.css / dashboard.min.css drift. Uses the same
+         brand tokens (accent-primary pink, dark surface, radii) as the rest of
+         the dark theme. -->
+    <style>
+        .dashboard-wakelock-banner {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            z-index: 2147483000;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: min(560px, calc(100vw - 32px));
+            padding: 14px 16px;
+            background: rgba(20, 20, 28, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl, 16px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            animation: wakelock-banner-in 320ms ease-out;
+        }
+        .dashboard-wakelock-banner.hidden { display: none; }
+        @keyframes wakelock-banner-in {
+            from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        .dashboard-wakelock-icon {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg, 12px);
+            background: linear-gradient(135deg, var(--color-accent-primary, #ff2d6a), #ff5e8a);
+            color: #fff;
+        }
+        .dashboard-wakelock-text {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .dashboard-wakelock-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .dashboard-wakelock-body {
+            margin-top: 2px;
+            font-size: 0.78rem;
+            line-height: 1.3;
+            color: rgba(255, 255, 255, 0.62);
+        }
+        .dashboard-wakelock-activate {
+            flex: 0 0 auto;
+            border: none;
+            cursor: pointer;
+            padding: 9px 18px;
+            border-radius: var(--radius-full, 9999px);
+            background: linear-gradient(135deg, var(--color-accent-primary, #ff2d6a), #ff5e8a);
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: filter var(--transition-normal, 300ms) ease, transform 120ms ease;
+        }
+        .dashboard-wakelock-activate:hover { filter: brightness(1.08); }
+        .dashboard-wakelock-activate:active { transform: scale(0.97); }
+        .dashboard-wakelock-dismiss {
+            flex: 0 0 auto;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-full, 9999px);
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: background 120ms ease, color 120ms ease;
+        }
+        .dashboard-wakelock-dismiss:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .dashboard-wakelock-banner { animation: none; }
+            .dashboard-wakelock-activate { transition: none; }
+        }
+    </style>
 </head>
 <body class="theme-dark dashboard-body">
     <!-- Portrait orientation message (AC 10.4.6) -->
@@ -329,6 +424,25 @@
             </div>
         </div>
     </main>
+
+    <!-- Wake-Lock activation banner (#1285, design option 2) — dezenter
+         Bottom-Banner. Hidden by default; dashboard.js reveals it only when the
+         native screen wake lock could not engage without a user gesture (passive
+         iOS TV/dashboard displays). The tap on "Aktivieren" re-runs
+         requestWakeLock() inside a trusted gesture so the lock can take hold. -->
+    <div id="dashboard-wakelock-banner" class="dashboard-wakelock-banner hidden" role="dialog" aria-live="polite">
+        <div class="dashboard-wakelock-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/>
+            </svg>
+        </div>
+        <div class="dashboard-wakelock-text">
+            <div class="dashboard-wakelock-title" data-i18n="dashboard.wakeLockTitle">Bildschirm wachhalten?</div>
+            <div class="dashboard-wakelock-body" data-i18n="dashboard.wakeLockBody">Verhindert, dass sich das TV-Display während des Spiels abschaltet.</div>
+        </div>
+        <button id="dashboard-wakelock-activate" type="button" class="dashboard-wakelock-activate" data-i18n="dashboard.wakeLockActivate">Aktivieren</button>
+        <button id="dashboard-wakelock-dismiss" type="button" class="dashboard-wakelock-dismiss" data-i18n-title="dashboard.wakeLockDismiss" title="Schließen" aria-label="Schließen">&times;</button>
+    </div>
 
     <!-- Reaction Container (Story 18.9) - floating reactions from players -->
     <div id="reaction-container" class="reaction-container"></div>
