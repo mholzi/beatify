@@ -664,7 +664,11 @@
     "topGuesses": "Meilleures réponses de cette manche",
     "submissions": "Réponses",
     "timeRemaining": "Temps",
-    "castToTv": "Diffuser sur TV :"
+    "castToTv": "Diffuser sur TV :",
+    "wakeLockTitle": "Garder l'écran allumé ?",
+    "wakeLockBody": "Empêche l'écran TV de s'éteindre pendant la partie.",
+    "wakeLockActivate": "Activer",
+    "wakeLockDismiss": "Fermer"
   },
   "launcher": {
     "title": "Beatify",

@@ -664,7 +664,11 @@
     "topGuesses": "Beste Tipps dieser Runde",
     "submissions": "Abgaben",
     "timeRemaining": "Zeit",
-    "castToTv": "Auf TV zeigen:"
+    "castToTv": "Auf TV zeigen:",
+    "wakeLockTitle": "Bildschirm wachhalten?",
+    "wakeLockBody": "Verhindert, dass sich das TV-Display während des Spiels abschaltet.",
+    "wakeLockActivate": "Aktivieren",
+    "wakeLockDismiss": "Schließen"
   },
   "launcher": {
     "title": "Beatify",

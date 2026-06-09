@@ -664,7 +664,11 @@
     "topGuesses": "Beste gokken deze ronde",
     "submissions": "Inzendingen",
     "timeRemaining": "Tijd",
-    "castToTv": "Cast naar tv:"
+    "castToTv": "Cast naar tv:",
+    "wakeLockTitle": "Scherm wakker houden?",
+    "wakeLockBody": "Voorkomt dat het tv-scherm tijdens het spel uitschakelt.",
+    "wakeLockActivate": "Activeren",
+    "wakeLockDismiss": "Sluiten"
   },
   "launcher": {
     "title": "Beatify",
