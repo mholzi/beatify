@@ -83,7 +83,6 @@ beatify-stats-history.json
 
 # ---- Release notes (keep CHANGELOG.md) ----
 RELEASE_NOTES_*.md
-CONTRIBUTING.md
 
 # ---- Internal-only docs (not relevant for HACS users) ----
 # Keep the public surface to README + CHANGELOG + LICENSE + hacs.json
