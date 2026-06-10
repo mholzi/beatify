@@ -1482,7 +1482,13 @@
          loaded before admin.min.js so window.NoSleep is available when
          _requestWakeLock() runs on game start. -->
     <script src="/beatify/static/js/vendor/no-sleep.min.js?v={{ASSET_VER}}"></script>
-    <script src="/beatify/static/js/admin.min.js?v={{ASSET_VER}}"></script>
+    <!-- #1279 step 2: admin.min.js is now an ES module (imports admin/util.js).
+         type="module" loads deferred — its window.* compat shims (escapeHtml,
+         loadStatus, BeatifyHome, …) are set before any consumer reads them,
+         because every consumer (party-lights, tts-settings, wizard) reads admin
+         globals event-driven (after DOMContentLoaded / on click), never at
+         parse time. -->
+    <script type="module" src="/beatify/static/js/admin.min.js?v={{ASSET_VER}}"></script>
     <script src="/beatify/static/js/party-lights.min.js?v={{ASSET_VER}}"></script>
     <script src="/beatify/static/js/tts-settings.js?v={{ASSET_VER}}"></script>
 </body>
