@@ -20,7 +20,6 @@ const JS_DIR = "custom_components/beatify/www/js";
 
 // Per-file minify: readable IIFE source → minified IIFE, 1:1.
 const MINIFY = [
-  "admin",
   "analytics",
   "dashboard",
   "i18n",
@@ -32,8 +31,11 @@ const MINIFY = [
 ];
 
 // ESM bundles: an entry module that `import`s its siblings → one minified bundle.
+// admin (#1279 step 2): now an ES module that imports ./admin/util.js; bundled
+// to admin.min.js and loaded via `<script type="module">` in admin.html.
 const BUNDLES = [
   { entry: "player-core", out: "player.bundle.min.js", format: "esm" },
+  { entry: "admin", out: "admin.min.js", format: "esm" },
 ];
 
 /** Build one target and return { path, contents } without touching disk. */

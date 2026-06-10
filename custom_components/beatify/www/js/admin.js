@@ -1,36 +1,42 @@
 /**
  * Beatify Admin Page
  * Vanilla JS - no frameworks
+ *
+ * #1279 Schritt 2/6: admin.js is now an ES module (`<script type="module">`).
+ * Pure helpers live in ./admin/util.js; their previous top-level globals are
+ * re-exposed on `window` below (compat shim) for classic scripts that still
+ * read them. Token helpers read the live `currentGame` via a resolver
+ * registered once at module init.
  */
 
-// Issue #386: Admin token auth for REST endpoints
-// Issue #477: Persist token in localStorage (survives tab close)
-function _getAdminToken() {
-    try {
-        var gameId = currentGame?.game_id;
-        if (gameId) {
-            var token = localStorage.getItem('beatify_admin_token_' + gameId);
-            if (token) return token;
-        }
-        return localStorage.getItem('beatify_admin_token');
-    } catch(e) { return null; }
-}
+import {
+    setCurrentGameResolver,
+    _getAdminToken,
+    _setAdminToken,
+    _adminHeaders,
+    groupPlayersByPlatform,
+    REQUEST_STATUS_LABELS,
+    buildRequestRowHtml,
+    escapeHtml,
+} from './admin/util.js';
 
-function _setAdminToken(token, gameId) {
-    try {
-        if (gameId) localStorage.setItem('beatify_admin_token_' + gameId, token);
-        localStorage.setItem('beatify_admin_token', token);
-        // Migrate: also clear old sessionStorage key
-        sessionStorage.removeItem('beatify_admin_token');
-    } catch(e) {}
-}
+// Token helpers in util.js need the admin-private, mutable `currentGame`.
+// A closure resolver keeps them in sync across every `currentGame = …` below
+// without touching each assignment site (declared later via `let` hoist-safe
+// because the resolver is only ever invoked at runtime, not at module init).
+setCurrentGameResolver(() => currentGame);
 
-function _adminHeaders() {
-    var token = _getAdminToken();
-    var headers = { 'Content-Type': 'application/json' };
-    if (token) headers['Authorization'] = 'Bearer ' + token;
-    return headers;
-}
+// Compat shim (#1279 step 2): admin.js is now a module, so its top-level
+// helper declarations are no longer global. Classic scripts loaded after this
+// module (party-lights.min.js, tts-settings.js) and module siblings that read
+// these by name keep working by reading them off `window`. These helpers were
+// implicitly global before the module migration; the shim makes that explicit.
+window.escapeHtml = escapeHtml;
+window.groupPlayersByPlatform = groupPlayersByPlatform;
+window.buildRequestRowHtml = buildRequestRowHtml;
+window._getAdminToken = _getAdminToken;
+window._setAdminToken = _setAdminToken;
+window._adminHeaders = _adminHeaders;
 
 // Screen Wake Lock (#622, #1122)
 // Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
@@ -1074,22 +1080,7 @@ function updateMediaPlayerSummary(playerName) {
     }
 }
 
-/**
- * Group players by platform for organized display
- * @param {Array} players
- * @returns {Object} Grouped players by platform
- */
-function groupPlayersByPlatform(players) {
-    const groups = {};
-    players.forEach(player => {
-        const platform = player.platform || 'unknown';
-        if (!groups[platform]) {
-            groups[platform] = [];
-        }
-        groups[platform].push(player);
-    });
-    return groups;
-}
+// groupPlayersByPlatform moved to ./admin/util.js (#1279 step 2)
 
 /**
  * Render media players list grouped by platform with capability info
@@ -3257,44 +3248,11 @@ async function initPlaylistRequests() {
     await renderRequestsList();
 }
 
+// REQUEST_STATUS_LABELS + buildRequestRowHtml moved to ./admin/util.js (#1279 step 2)
+
 /**
  * Render the list of playlist requests
  */
-// Shared status labels for both the legacy #my-requests section and the home-view modal
-const REQUEST_STATUS_LABELS = {
-    pending: '⏳ Pending',
-    ready: '✅ Ready',
-    installed: '✓ Installed',
-    declined: '❌ Declined',
-};
-
-/**
- * Build the HTML for one request row (legacy #my-requests-list card).
- */
-function buildRequestRowHtml(request) {
-    const statusLabel = REQUEST_STATUS_LABELS[request.status] || request.status;
-    const playlistName = escapeHtml(request.playlist_name || request.name || 'Untitled request');
-    const relativeTime = request.relative_time || '';
-    const updateBtn = (request.status === 'ready' && request.update_available)
-        ? `<a href="https://github.com/mholzi/beatify/releases" target="_blank" rel="noopener" class="btn btn-primary request-update-btn">Update to v${escapeHtml(request.release_version || '')}</a>`
-        : '';
-
-    const thumbnail = request.thumbnail_url
-        ? `<img class="request-item-thumbnail" src="${request.thumbnail_url}" alt="">`
-        : `<div class="request-item-thumbnail-placeholder">🎵</div>`;
-    return `
-        <div class="request-item">
-            ${thumbnail}
-            <div class="request-item-info">
-                <div class="request-item-name">${playlistName}</div>
-                <div class="request-item-meta">${escapeHtml(relativeTime)}</div>
-            </div>
-            <span class="request-status request-status--${request.status}">${statusLabel}</span>
-            ${updateBtn}
-        </div>
-    `;
-}
-
 async function renderRequestsList() {
     if (!window.PlaylistRequests) {
         document.getElementById('my-requests')?.classList.add('hidden');
@@ -3322,15 +3280,6 @@ async function renderRequestsList() {
         emptyState?.classList.add('hidden');
         listContainer.innerHTML = requests.map((r) => buildRequestRowHtml(r)).join('');
     }
-}
-
-/**
- * Escape HTML to prevent XSS
- */
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
 }
 
 // ============================================

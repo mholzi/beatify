@@ -1,16 +1,11 @@
 /**
- * Smoke-test safety net for the pure helpers in admin.js (#1279, Schritt 1/6).
+ * Smoke-test safety net for the pure helpers extracted into admin/util.js
+ * (#1279, Schritt 2/6).
  *
- * admin.js (4428 lines) is a classic global script with ZERO test coverage and
- * is slated for a 6-step modularisation. Step 1 (this file) pins down the
- * behaviour of the small, side-effect-free helper functions BEFORE any code is
- * moved, so the later extraction into `admin/util.js` / `admin/api.js` can be
- * verified against a green baseline.
- *
- * The helpers are not exported (admin.js stays untouched in step 1), so their
- * source text is lifted out of admin.js at runtime and eval'd in an isolated
- * scope — see admin-helpers-loader.js. The tests run the exact production
- * source.
+ * Step 1 (#1310) pinned these helpers' behaviour by lifting their SOURCE TEXT
+ * out of the then-classic admin.js (eval-based admin-helpers-loader.js). Step 2
+ * extracts them into a real ES module `admin/util.js`, so this test now imports
+ * them directly — the eval loader is gone.
  *
  * Helpers covered:
  *   - _getAdminToken()           (token resolution: per-game → global → null)
@@ -20,8 +15,16 @@
  *   - escapeHtml()               (XSS escaping via DOM textContent)
  *   - buildRequestRowHtml()      (request-card HTML, status-label lookup, escaping)
  */
-import { describe, it, expect, beforeEach } from 'vitest';
-import { loadHelpers } from './admin-helpers-loader.js';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import {
+    setCurrentGameResolver,
+    _getAdminToken,
+    _setAdminToken,
+    _adminHeaders,
+    groupPlayersByPlatform,
+    escapeHtml,
+    buildRequestRowHtml,
+} from '../admin/util.js';
 
 // --- minimal localStorage / sessionStorage stub ----------------------------
 function makeStorage() {
@@ -56,43 +59,48 @@ function makeDocumentStub() {
     };
 }
 
-describe('admin.js pure helpers — token + headers (#1279 step 1)', () => {
+describe('admin/util.js pure helpers — token + headers (#1279 step 2)', () => {
     let localStorage;
     let sessionStorage;
 
-    function load(currentGame) {
-        return loadHelpers({
-            functions: ['_getAdminToken', '_setAdminToken', '_adminHeaders'],
-            globals: { currentGame, localStorage, sessionStorage },
-        });
+    function setGame(currentGame) {
+        setCurrentGameResolver(() => currentGame);
     }
 
     beforeEach(() => {
         localStorage = makeStorage();
         sessionStorage = makeStorage();
+        vi.stubGlobal('localStorage', localStorage);
+        vi.stubGlobal('sessionStorage', sessionStorage);
+        setCurrentGameResolver(() => null);
+    });
+
+    afterEach(() => {
+        vi.unstubAllGlobals();
+        setCurrentGameResolver(() => null);
     });
 
     it('_getAdminToken returns null when nothing is stored', () => {
-        const { _getAdminToken } = load({ game_id: 'g1' });
+        setGame({ game_id: 'g1' });
         expect(_getAdminToken()).toBeNull();
     });
 
     it('_getAdminToken prefers the per-game token over the global token', () => {
         localStorage.setItem('beatify_admin_token', 'GLOBAL');
         localStorage.setItem('beatify_admin_token_g1', 'PERGAME');
-        const { _getAdminToken } = load({ game_id: 'g1' });
+        setGame({ game_id: 'g1' });
         expect(_getAdminToken()).toBe('PERGAME');
     });
 
     it('_getAdminToken falls back to the global token when no per-game token', () => {
         localStorage.setItem('beatify_admin_token', 'GLOBAL');
-        const { _getAdminToken } = load({ game_id: 'g1' });
+        setGame({ game_id: 'g1' });
         expect(_getAdminToken()).toBe('GLOBAL');
     });
 
     it('_getAdminToken uses the global token when there is no current game', () => {
         localStorage.setItem('beatify_admin_token', 'GLOBAL');
-        const { _getAdminToken } = load(undefined);
+        setGame(undefined);
         expect(_getAdminToken()).toBe('GLOBAL');
     });
 
@@ -100,16 +108,14 @@ describe('admin.js pure helpers — token + headers (#1279 step 1)', () => {
         const throwing = {
             getItem() { throw new Error('SecurityError'); },
         };
-        const { _getAdminToken } = loadHelpers({
-            functions: ['_getAdminToken'],
-            globals: { currentGame: { game_id: 'g1' }, localStorage: throwing },
-        });
+        vi.stubGlobal('localStorage', throwing);
+        setGame({ game_id: 'g1' });
         expect(_getAdminToken()).toBeNull();
     });
 
     it('_setAdminToken writes both per-game and global keys and clears sessionStorage', () => {
         sessionStorage.setItem('beatify_admin_token', 'STALE');
-        const { _setAdminToken } = load({ game_id: 'g1' });
+        setGame({ game_id: 'g1' });
         _setAdminToken('TOKEN123', 'g1');
         expect(localStorage.getItem('beatify_admin_token_g1')).toBe('TOKEN123');
         expect(localStorage.getItem('beatify_admin_token')).toBe('TOKEN123');
@@ -117,7 +123,7 @@ describe('admin.js pure helpers — token + headers (#1279 step 1)', () => {
     });
 
     it('_setAdminToken writes only the global key when no gameId is given', () => {
-        const { _setAdminToken } = load(undefined);
+        setGame(undefined);
         _setAdminToken('TOKEN123');
         expect(localStorage.getItem('beatify_admin_token')).toBe('TOKEN123');
         expect(localStorage.getItem('beatify_admin_token_undefined')).toBeNull();
@@ -125,7 +131,7 @@ describe('admin.js pure helpers — token + headers (#1279 step 1)', () => {
 
     it('_adminHeaders includes a Bearer header when a token is present', () => {
         localStorage.setItem('beatify_admin_token', 'TOK');
-        const { _adminHeaders } = load(undefined);
+        setGame(undefined);
         expect(_adminHeaders()).toEqual({
             'Content-Type': 'application/json',
             Authorization: 'Bearer TOK',
@@ -133,20 +139,15 @@ describe('admin.js pure helpers — token + headers (#1279 step 1)', () => {
     });
 
     it('_adminHeaders omits Authorization when no token is present', () => {
-        const { _adminHeaders } = load(undefined);
+        setGame(undefined);
         const headers = _adminHeaders();
         expect(headers).toEqual({ 'Content-Type': 'application/json' });
         expect(headers.Authorization).toBeUndefined();
     });
 });
 
-describe('admin.js pure helpers — groupPlayersByPlatform (#1279 step 1)', () => {
-    function load() {
-        return loadHelpers({ functions: ['groupPlayersByPlatform'], globals: {} });
-    }
-
+describe('admin/util.js pure helpers — groupPlayersByPlatform (#1279 step 2)', () => {
     it('groups players by their platform field', () => {
-        const { groupPlayersByPlatform } = load();
         const players = [
             { entity_id: 'a', platform: 'spotify' },
             { entity_id: 'b', platform: 'sonos' },
@@ -159,56 +160,48 @@ describe('admin.js pure helpers — groupPlayersByPlatform (#1279 step 1)', () =
     });
 
     it('buckets players with a missing platform under "unknown"', () => {
-        const { groupPlayersByPlatform } = load();
         const groups = groupPlayersByPlatform([{ entity_id: 'x' }, { entity_id: 'y', platform: null }]);
         expect(groups.unknown.map((p) => p.entity_id)).toEqual(['x', 'y']);
     });
 
     it('returns an empty object for an empty list', () => {
-        const { groupPlayersByPlatform } = load();
         expect(groupPlayersByPlatform([])).toEqual({});
     });
 });
 
-describe('admin.js pure helpers — escapeHtml (#1279 step 1)', () => {
-    function load() {
-        return loadHelpers({
-            functions: ['escapeHtml'],
-            globals: { document: makeDocumentStub() },
-        });
-    }
+describe('admin/util.js pure helpers — escapeHtml (#1279 step 2)', () => {
+    beforeEach(() => {
+        vi.stubGlobal('document', makeDocumentStub());
+    });
+    afterEach(() => {
+        vi.unstubAllGlobals();
+    });
 
     it('escapes angle brackets and ampersands', () => {
-        const { escapeHtml } = load();
         expect(escapeHtml('<script>alert("x")&</script>')).toBe(
             '&lt;script&gt;alert("x")&amp;&lt;/script&gt;',
         );
     });
 
     it('leaves plain text unchanged', () => {
-        const { escapeHtml } = load();
         expect(escapeHtml('Hello World 123')).toBe('Hello World 123');
     });
 
     it('coerces nullish input to an empty string', () => {
-        const { escapeHtml } = load();
         expect(escapeHtml(null)).toBe('');
         expect(escapeHtml(undefined)).toBe('');
     });
 });
 
-describe('admin.js pure helpers — buildRequestRowHtml (#1279 step 1)', () => {
-    function load() {
-        return loadHelpers({
-            functions: ['buildRequestRowHtml', 'escapeHtml'],
-            consts: ['REQUEST_STATUS_LABELS'],
-            globals: { document: makeDocumentStub() },
-            expose: ['buildRequestRowHtml'],
-        });
-    }
+describe('admin/util.js pure helpers — buildRequestRowHtml (#1279 step 2)', () => {
+    beforeEach(() => {
+        vi.stubGlobal('document', makeDocumentStub());
+    });
+    afterEach(() => {
+        vi.unstubAllGlobals();
+    });
 
     it('renders the mapped status label and escaped playlist name', () => {
-        const { buildRequestRowHtml } = load();
         const html = buildRequestRowHtml({
             status: 'ready',
             playlist_name: 'Rock & <Roll>',
@@ -221,21 +214,18 @@ describe('admin.js pure helpers — buildRequestRowHtml (#1279 step 1)', () => {
     });
 
     it('falls back to the raw status when it is not in the label map', () => {
-        const { buildRequestRowHtml } = load();
         const html = buildRequestRowHtml({ status: 'weird', playlist_name: 'X' });
         expect(html).toContain('request-status--weird');
         expect(html).toContain('>weird</span>');
     });
 
     it('uses the "Untitled request" fallback when no name is provided', () => {
-        const { buildRequestRowHtml } = load();
         const html = buildRequestRowHtml({ status: 'pending' });
         expect(html).toContain('Untitled request');
         expect(html).toContain('⏳ Pending');
     });
 
     it('shows the update button only for ready+update_available requests', () => {
-        const { buildRequestRowHtml } = load();
         const withUpdate = buildRequestRowHtml({
             status: 'ready',
             update_available: true,
@@ -249,7 +239,6 @@ describe('admin.js pure helpers — buildRequestRowHtml (#1279 step 1)', () => {
     });
 
     it('renders the placeholder thumbnail when no thumbnail_url is set', () => {
-        const { buildRequestRowHtml } = load();
         const html = buildRequestRowHtml({ status: 'pending', playlist_name: 'P' });
         expect(html).toContain('request-item-thumbnail-placeholder');
     });
