@@ -1413,3 +1413,70 @@ class TestSetPhaseSSOT:
         state.register_state_callback(lambda: calls.append(1))
         state._set_phase(GamePhase.PLAYING, restore=True)
         assert calls == [1]
+
+    # -- Transition-validity table (#1273 AC#1 consolidation) ----------------
+
+    @pytest.mark.parametrize(
+        ("src", "dst"),
+        [
+            # Forward edges from the table.
+            (GamePhase.LOBBY, GamePhase.PLAYING),
+            (GamePhase.PLAYING, GamePhase.REVEAL),
+            (GamePhase.PLAYING, GamePhase.PAUSED),
+            (GamePhase.REVEAL, GamePhase.PLAYING),
+            (GamePhase.REVEAL, GamePhase.PAUSED),
+            # Universal targets reachable from any phase (re-init / terminal).
+            (GamePhase.PLAYING, GamePhase.LOBBY),
+            (GamePhase.REVEAL, GamePhase.LOBBY),
+            (GamePhase.PAUSED, GamePhase.LOBBY),
+            (GamePhase.END, GamePhase.LOBBY),
+            (GamePhase.PLAYING, GamePhase.END),
+            (GamePhase.REVEAL, GamePhase.END),
+            (GamePhase.PAUSED, GamePhase.END),
+        ],
+    )
+    def test_valid_transition_does_not_warn(self, src, dst, caplog):
+        state = make_game_state()
+        state.phase = src
+        with caplog.at_level("WARNING"):
+            state._set_phase(dst)
+        assert state.phase == dst
+        assert "Unexpected phase transition" not in caplog.text
+
+    def test_same_phase_write_does_not_warn(self, caplog):
+        # The PLAYING->PLAYING next-round commit must not be flagged.
+        state = make_game_state()
+        state.phase = GamePhase.PLAYING
+        with caplog.at_level("WARNING"):
+            state._set_phase(GamePhase.PLAYING)
+        assert "Unexpected phase transition" not in caplog.text
+
+    def test_restore_never_warns(self, caplog):
+        # A resume restores PAUSED->PLAYING/REVEAL — exempt from the check.
+        for dst in (GamePhase.PLAYING, GamePhase.REVEAL):
+            state = make_game_state()
+            state.phase = GamePhase.PAUSED
+            with caplog.at_level("WARNING"):
+                state._set_phase(dst, restore=True)
+            assert "Unexpected phase transition" not in caplog.text
+
+    def test_unexpected_transition_warns_but_proceeds(self, caplog):
+        # LOBBY->REVEAL is not a legal forward edge: it must WARN yet still
+        # perform the write (observational, never blocking).
+        state = make_game_state()
+        state.phase = GamePhase.LOBBY
+        with caplog.at_level("WARNING"):
+            state._set_phase(GamePhase.REVEAL)
+        assert "Unexpected phase transition" in caplog.text
+        assert "LOBBY -> REVEAL" in caplog.text
+        assert state.phase == GamePhase.REVEAL  # write still happened
+
+    def test_paused_to_playing_without_restore_warns(self, caplog):
+        # Resuming PAUSED->PLAYING is legal ONLY via restore=True; a plain
+        # forward write of that edge is unexpected and should be flagged.
+        state = make_game_state()
+        state.phase = GamePhase.PAUSED
+        with caplog.at_level("WARNING"):
+            state._set_phase(GamePhase.PLAYING)
+        assert "Unexpected phase transition" in caplog.text
+        assert state.phase == GamePhase.PLAYING

@@ -95,6 +95,47 @@ class GamePhase(Enum):
     PAUSED = "PAUSED"
 
 
+# ---------------------------------------------------------------------------
+# Phase-transition table (Issue #1273, AC#1 consolidation increment)
+# ---------------------------------------------------------------------------
+#
+# The legal *forward* phase transitions, derived from every ``_set_phase`` call
+# site in this module. This makes the transition graph an explicit, auditable
+# data structure layered on the single ``_set_phase`` chokepoint — the exact
+# follow-up the ``_set_phase`` docstring invited ("Follow-up increments can
+# layer a transition table on top of this single chokepoint").
+#
+# IMPORTANT — observational, not enforcing: ``_set_phase`` only logs a WARNING
+# when an *unexpected* edge is taken; it never raises and never blocks the
+# write. This is deliberately behaviour-preserving: it surfaces drift (a new
+# transition added without updating this table, or a genuinely illegal flip)
+# without ever changing control flow. Exemptions: same-phase writes (e.g. the
+# PLAYING→PLAYING next-round commit) and ``restore=True`` resumes are never
+# checked — a resume legitimately restores PAUSED→PLAYING / PAUSED→REVEAL.
+#
+# Edges (source → allowed targets):
+#   * LOBBY and END are valid targets from ANY phase — ``start_game`` /
+#     rematch / reset re-initialise to LOBBY from anywhere, and
+#     ``advance_to_end`` is a documented universal terminal.
+#   * LOBBY   → PLAYING            (start_game)
+#   * PLAYING → REVEAL, PAUSED     (reveal / pause)
+#   * REVEAL  → PLAYING, PAUSED    (next-round commit / pause)
+# Same-phase forward writes (LOBBY→LOBBY re-init, PLAYING→PLAYING next round)
+# are covered by the same-phase exemption, not by this table.
+_VALID_PHASE_TRANSITIONS: dict[GamePhase, frozenset[GamePhase]] = {
+    GamePhase.LOBBY: frozenset({GamePhase.PLAYING}),
+    GamePhase.PLAYING: frozenset({GamePhase.REVEAL, GamePhase.PAUSED}),
+    GamePhase.REVEAL: frozenset({GamePhase.PLAYING, GamePhase.PAUSED}),
+    GamePhase.PAUSED: frozenset(),
+    GamePhase.END: frozenset(),
+}
+
+# Targets reachable from *any* source phase (re-init + universal terminal).
+_UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
+    {GamePhase.LOBBY, GamePhase.END}
+)
+
+
 class GameState(LeaderboardMixin, TtsAnnouncerMixin):
     """Manages game state and phase transitions.
 
@@ -237,9 +278,12 @@ class GameState(LeaderboardMixin, TtsAnnouncerMixin):
     #     it untouched (resume must not restart the auto-advance countdown).
     #   * registered state observers (#441) are notified on every phase change.
     #
-    # This centralises the *write* path without yet modelling explicit
-    # transition guards. Follow-up increments can layer a transition table on
-    # top of this single chokepoint (see issue / migration path).
+    # This centralises the *write* path. An explicit, auditable transition
+    # table (``_VALID_PHASE_TRANSITIONS`` above) is now layered on top of this
+    # chokepoint: ``_set_phase`` logs a WARNING on any forward edge missing from
+    # the table. The check is observational only — it never raises or blocks, so
+    # behaviour is unchanged; it exists to surface drift (an un-tabled new edge
+    # or a genuinely illegal flip).
 
     def _set_phase(
         self, new_phase: GamePhase, *, notify: bool = True, restore: bool = False
@@ -267,6 +311,21 @@ class GameState(LeaderboardMixin, TtsAnnouncerMixin):
                 False (forward transitions own the timestamp invariant).
 
         """
+        # #1273 (AC#1 consolidation): observational transition-validity check.
+        # Logs — never raises, never blocks — when a forward edge isn't in the
+        # explicit transition table, so drift (an un-tabled new transition or a
+        # genuinely illegal flip) is surfaced without altering control flow.
+        # Same-phase writes and restores are exempt (see the table comment).
+        if not restore and new_phase is not self.phase:
+            allowed = _VALID_PHASE_TRANSITIONS.get(self.phase, frozenset())
+            if new_phase not in _UNIVERSAL_PHASE_TARGETS and new_phase not in allowed:
+                _LOGGER.warning(
+                    "Unexpected phase transition %s -> %s (not in transition "
+                    "table); proceeding. If this is a new legitimate edge, add "
+                    "it to _VALID_PHASE_TRANSITIONS (#1273).",
+                    self.phase.value,
+                    new_phase.value,
+                )
         self.phase = new_phase
         # #1048: the REVEAL-entry timestamp is owned entirely by forward phase
         # transitions. Entering REVEAL stamps it; any other phase clears it.
