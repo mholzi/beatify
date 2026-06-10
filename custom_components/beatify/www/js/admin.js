@@ -1834,61 +1834,6 @@ function setupArtistChallengeToggle() {
 }
 
 // ==========================================
-// Provider Selector Functions (Story 17.2)
-// ==========================================
-
-/**
- * Setup provider selector buttons
- */
-function setupProviderSelector() {
-    var providerButtons = document.querySelectorAll('.provider-btn');
-
-    providerButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            // Don't allow clicking disabled buttons
-            if (btn.classList.contains('provider-btn--disabled')) {
-                return;
-            }
-            var provider = btn.getAttribute('data-provider');
-            if (provider && provider !== adminState.selectedProvider) {
-                setProvider(provider);
-            }
-        });
-    });
-}
-
-/**
- * Update provider button states
- * @param {string} provider - Provider identifier ('spotify' or 'apple_music')
- */
-function updateProviderButtons(provider) {
-    var providerButtons = document.querySelectorAll('.provider-btn');
-    providerButtons.forEach(function(btn) {
-        var btnProvider = btn.getAttribute('data-provider');
-        if (btnProvider === provider) {
-            btn.classList.add('provider-btn--active');
-        } else {
-            btn.classList.remove('provider-btn--active');
-        }
-    });
-}
-
-/**
- * Set music provider and update UI
- * @param {string} provider - Provider identifier (only 'spotify' supported, Story 17.6)
- */
-function setProvider(provider) {
-    // Only Spotify is supported (Story 17.6: Apple Music removed)
-    adminState.selectedProvider = 'spotify';
-    updateProviderButtons('spotify');
-
-    // Re-render playlists to show coverage for selected provider
-    if (adminState.playlistData.length > 0) {
-        renderPlaylists(adminState.playlistData, '');
-    }
-}
-
-// ==========================================
 // Lobby Player List Functions (Story 16.8)
 // ==========================================
 
