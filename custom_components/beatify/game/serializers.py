@@ -11,7 +11,7 @@ GameState.get_state() becomes a thin wrapper calling
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 if TYPE_CHECKING:
     from .state import GameState
@@ -281,5 +281,5 @@ class GameStateSerializer:
                 player_data["intro_bonus"] = p.intro_bonus
             players.append(player_data)
         # Sort by score descending for leaderboard preview
-        players.sort(key=lambda p: p["score"], reverse=True)
+        players.sort(key=lambda p: cast("int", p["score"]), reverse=True)
         return players

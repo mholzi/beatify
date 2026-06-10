@@ -689,7 +689,7 @@ class StatsService:
                 p for p in by_playlist if p["playlist_id"] == playlist_filter
             ]
 
-        def _format_song(s: dict) -> dict | None:
+        def _format_song(s: dict | None) -> dict | None:
             """Format song for API response."""
             if not s:
                 return None

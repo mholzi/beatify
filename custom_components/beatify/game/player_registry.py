@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from typing import TYPE_CHECKING, Any
 
 from ..const import (
@@ -49,7 +50,7 @@ class PlayerRegistry:
         name: str,
         ws: web.WebSocketResponse,
         phase: GamePhase,
-        average_score_fn: callable,
+        average_score_fn: Callable[[], int],
     ) -> tuple[bool, str | None]:
         """
         Add a player to the game.

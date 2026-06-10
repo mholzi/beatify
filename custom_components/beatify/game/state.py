@@ -32,7 +32,7 @@ import logging
 import secrets
 import time
 from enum import Enum
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
@@ -96,6 +96,15 @@ class GamePhase(Enum):
 
 class GameState:
     """Manages game state and phase transitions."""
+
+    # Attributes applied dynamically from GameStateConfig via _apply_config()
+    # (setattr — see game/config.py). Declared here as annotation-only so the
+    # type checker knows their real types; no runtime assignment happens here,
+    # so behavior is unchanged. Keep these in sync with GameStateConfig fields.
+    language: str
+    pause_reason: str | None
+    _previous_phase: GamePhase | None
+    disconnected_admin_name: str | None
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
         """
@@ -877,7 +886,7 @@ class GameState:
         self.cancel_timer()
 
         # Preserve game settings that the admin configured (Issue #591)
-        preserved = {
+        preserved: dict[str, Any] = {
             "playlists": self.playlists,
             "songs": list(self.songs),
             "media_player": self.media_player,
@@ -1368,9 +1377,11 @@ class GameState:
             _LOGGER.warning(
                 "Skipping song (year %s) - no URI for provider", song.get("year", "?")
             )
-            self._playlist_manager.mark_played(
-                get_song_uri(song, self.provider, self.storefront) or song.get("uri")
+            skip_uri = get_song_uri(song, self.provider, self.storefront) or song.get(
+                "uri"
             )
+            if skip_uri is not None:
+                self._playlist_manager.mark_played(skip_uri)
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error(
                     "No playable songs found after %d attempts, pausing game",
@@ -1426,9 +1437,9 @@ class GameState:
                 failure_reason = getattr(
                     self._media_player_service, "last_failure_reason", None
                 )
-                self._playlist_manager.mark_played(
-                    song.get("_resolved_uri") or song.get("uri")
-                )
+                skip_uri = song.get("_resolved_uri") or song.get("uri")
+                if skip_uri is not None:
+                    self._playlist_manager.mark_played(skip_uri)
 
                 if failure_reason == "unavailable":
                     _LOGGER.info(
@@ -1471,13 +1482,18 @@ class GameState:
             extra_deadline_ms=extra_ms,
         )
 
-        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
+        # _initialize_round() has just set deadline and current_song to
+        # non-None values; restate that for the type checker.
+        deadline = self.deadline
+        current_song = self.current_song
+        assert deadline is not None and current_song is not None
+        delay_seconds = (deadline - int(self._now() * 1000)) / 1000.0
         await self._lights_set_phase(GamePhase.PLAYING)
         _LOGGER.info(
             "Round %d started: %s - %s (%.1fs timer)",
             self.round,
-            self.current_song.get("artist"),
-            self.current_song.get("title"),
+            current_song.get("artist"),
+            current_song.get("title"),
             delay_seconds,
         )
 
@@ -1512,7 +1528,7 @@ class GameState:
                 provider=self.provider,
             )
             # Connect analytics for error recording (Story 19.1 AC: #2)
-            if self._stats_service and hasattr(self._stats_service, "_analytics"):
+            if self._stats_service and self._stats_service._analytics is not None:
                 self._media_player_service.set_analytics(self._stats_service._analytics)
 
     def _prepare_intro_round(self, song: dict) -> bool:
@@ -2676,7 +2692,8 @@ class GameState:
         elif self.closest_wins_mode and not exact and self._tts_announce_closest_guess:
             submitted = [p for p in players if p.submitted and p.years_off is not None]
             if submitted:
-                winner = min(submitted, key=lambda p: p.years_off)
+                # years_off is non-None for every member of `submitted`.
+                winner = min(submitted, key=lambda p: cast("int", p.years_off))
                 if winner.round_score > 0:
                     frags.append(tts_phrases.phrase(lang, "closest", name=winner.name))
         elif had_submitters and not exact and self._tts_announce_nobody_correct:

@@ -8,7 +8,7 @@ Advanced scoring (Epic 5) adds speed bonus, streaks, and betting.
 from __future__ import annotations
 
 from statistics import mean, median
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 from .types import RoundAnalytics, _get_decade_label
 
@@ -576,9 +576,15 @@ class ScoringService:
         if not submitted:
             return
 
-        best_diff = min(abs(p.current_guess - correct_year) for p in submitted)
+        def _distance(player: PlayerSession) -> int:
+            # current_guess is non-None for every member of `submitted` (filtered
+            # above); restate it so the type checker can drop the Optional.
+            assert player.current_guess is not None
+            return abs(player.current_guess - correct_year)
+
+        best_diff = min(_distance(p) for p in submitted)
         for p in submitted:
-            if abs(p.current_guess - correct_year) != best_diff:
+            if _distance(p) != best_diff:
                 lost = p.round_score
                 p.round_score = 0
                 p.score -= lost
@@ -660,9 +666,10 @@ class ScoringService:
                 }
                 for p in submitted
             ],
-            key=lambda x: x["years_off"],
+            key=lambda x: cast("int", x["years_off"]),
         )
-        guesses = [p.current_guess for p in submitted]
+        # current_guess is non-None for every member of `submitted`.
+        guesses = [p.current_guess for p in submitted if p.current_guess is not None]
         avg_guess = mean(guesses)
         med_guess = int(median(guesses))
         min_off = min(p.years_off or 0 for p in submitted)
@@ -679,8 +686,12 @@ class ScoringService:
             for p in submitted
             if p.submission_time is not None and round_start_time is not None
         ]
-        if timed:
-            elapsed = [(p, p.submission_time - round_start_time) for p in timed]
+        if timed and round_start_time is not None:
+            elapsed = [
+                (p, p.submission_time - round_start_time)
+                for p in timed
+                if p.submission_time is not None
+            ]
             fastest_time = min(t for _, t in elapsed)
             speed_champion = {
                 "names": [p.name for p, t in elapsed if t == fastest_time],
@@ -712,7 +723,7 @@ class ScoringService:
     def score_player_round(
         player: PlayerSession,
         *,
-        correct_year: int,
+        correct_year: int | None,
         round_start_time: float | None,
         round_duration: float,
         difficulty: str,
@@ -765,7 +776,15 @@ class ScoringService:
                 player.round_scores.append(0)
             return
 
-        if player.submitted and correct_year is not None:
+        # submit_guess() always sets current_guess alongside submitted=True, so
+        # the explicit None-check is an invariant restatement for the type
+        # checker; a (never-occurring) submitted/None pair falls through to the
+        # missed-round branch, which is the safe outcome anyway.
+        if (
+            player.submitted
+            and correct_year is not None
+            and player.current_guess is not None
+        ):
             elapsed = (
                 player.submission_time - round_start_time
                 if player.submission_time is not None and round_start_time is not None

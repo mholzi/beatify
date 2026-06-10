@@ -51,8 +51,9 @@ warn_redundant_casts = true
 show_error_codes = true
 pretty = true
 
-# Clean subset that passes today. EXPAND this list (and eventually drop it for a
-# whole-package check) as the modules below in the ramp-up plan get fixed.
+# The full game/ + services/ set is now type-clean and gated. The ramp-up
+# (#1275 + this follow-up) is complete; the next strictness steps below operate
+# on this whole list.
 files = [
     "custom_components/beatify/game/types.py",
     "custom_components/beatify/game/tts_phrases.py",
@@ -69,22 +70,24 @@ files = [
     "custom_components/beatify/services/tts.py",
     "custom_components/beatify/services/media_player.py",
     "custom_components/beatify/services/lights.py",
+    # Ramp-up complete (#1275 follow-up): the previously-dirty game/ + services/
+    # modules are now type-clean and gated. Their ~36 real type errors (None
+    # arithmetic, Optional args, GameStateConfig attr declarations, sort/min
+    # key Optionals, Awaitable→Coroutine, MediaPlayerProtocol gaps) are fixed.
+    "custom_components/beatify/game/state.py",
+    "custom_components/beatify/game/scoring.py",
+    "custom_components/beatify/game/serializers.py",
+    "custom_components/beatify/game/round_manager.py",
+    "custom_components/beatify/game/player_registry.py",
+    "custom_components/beatify/services/stats.py",
 ]
 
 # -----------------------------------------------------------------------------
-# Ramp-up plan (#1275) — modules NOT yet in the gate, with their open issues.
-# Add each back to `files` above once its real type errors are fixed:
-#
-#   game/state.py           (~14 errors: None-arithmetic, attr-defined,
-#                            Optional args passed where non-Optional expected)
-#   game/scoring.py         (~13 errors: Optional year math, sort/key Optionals)
-#   game/serializers.py     (~3 errors: GameState.language attr, sort key)
-#   game/round_manager.py   (~2 errors: Awaitable vs Coroutine in create_task)
-#   game/player_registry.py (~2 errors: bare `callable` used as a type)
-#   services/stats.py       (~2 errors: Optional dict passed to _format_song)
-#
-# Next strictness steps once the above are clean:
-#   1. Replace `files` with whole-package check of game/ + services/.
+# Ramp-up plan (#1275) — COMPLETE. Every game/ + services/ module is now gated
+# above. Next strictness steps (whole-package check of game/ + services/ now
+# that the file list covers it):
+#   1. Replace the explicit `files` list with a directory-level check of
+#      game/ + services/ (and add new modules automatically).
 #   2. Enable `disallow_incomplete_defs`, then `disallow_untyped_defs`.
 #   3. Drop `ignore_missing_imports` selectively as stubs become available.
 # -----------------------------------------------------------------------------

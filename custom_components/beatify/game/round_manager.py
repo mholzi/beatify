@@ -21,7 +21,7 @@ from custom_components.beatify.const import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Awaitable, Callable
+    from collections.abc import Awaitable, Callable, Coroutine
 
     from homeassistant.core import HomeAssistant
 
@@ -296,7 +296,7 @@ class RoundManager:
         playlist_manager: PlaylistManager | None,
         challenge_manager: ChallengeManager | None,
         players: dict[str, PlayerSession],
-        timer_countdown: Callable[[float], Awaitable[None]],
+        timer_countdown: Callable[[float], Coroutine[Any, Any, None]],
         on_round_end: Callable[[], Awaitable[None]] | None,
         extra_deadline_ms: int = 0,
     ) -> None:
@@ -373,7 +373,7 @@ class RoundManager:
         self,
         play_deferred_song: Callable[[dict[str, Any]], Awaitable[bool]],
         on_round_end: Callable[[], Awaitable[None]] | None,
-        timer_countdown: Callable[[float], Awaitable[None]] | None = None,
+        timer_countdown: Callable[[float], Coroutine[Any, Any, None]] | None = None,
     ) -> None:
         """Handle admin confirmation of intro splash (Issue #292, #403).
 
