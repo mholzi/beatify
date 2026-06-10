@@ -697,7 +697,7 @@ class PreviewLightsView(HomeAssistantView):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (ValueError, UnicodeDecodeError):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_ids = body.get("entity_ids", [])
@@ -755,7 +755,7 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (ValueError, UnicodeDecodeError):
             return web.json_response({"error": "Invalid JSON"}, status=400)
 
         entity_id = body.get("entity_id", "")

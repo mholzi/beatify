@@ -259,5 +259,7 @@ def spoken_number(language: str | None, value: int, kind: str = "cardinal") -> s
         from num2words import num2words  # noqa: PLC0415
 
         return num2words(value, lang=lang, to=kind)
-    except Exception:  # noqa: BLE001 — never let a number break the announcement
+    except (ImportError, NotImplementedError):
+        # num2words raises NotImplementedError for an unsupported lang/converter
+        # and the import can fail; never let a number break the announcement.
         return str(value)

@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from aiohttp import web
+from aiohttp import ClientError, web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
@@ -118,7 +118,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
         if self._storage_path.exists():
             try:
                 return json.loads(self._storage_path.read_text(encoding="utf-8"))
-            except Exception as e:  # noqa: BLE001
+            except (OSError, ValueError) as e:
                 _LOGGER.error("Failed to load playlist requests: %s", e)
         return {"requests": [], "last_poll": None}
 
@@ -130,7 +130,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
                 json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
             )
             return True
-        except Exception as e:  # noqa: BLE001
+        except OSError as e:
             _LOGGER.error("Failed to save playlist requests: %s", e)
             return False
 
@@ -171,7 +171,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
                 if isinstance(label, dict)
             ]
             return issue.get("state", ""), issue.get("state_reason") or "", labels
-        except Exception as err:  # noqa: BLE001
+        except (ClientError, asyncio.TimeoutError, ValueError) as err:
             _LOGGER.debug(
                 "Playlist-request poll: issue %s failed: %s", issue_number, err
             )
@@ -206,7 +206,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
                 ),
                 timeout=self.POLL_TIMEOUT_SECONDS,
             )
-        except Exception as err:  # noqa: BLE001
+        except asyncio.TimeoutError as err:
             _LOGGER.debug("Playlist-request poll aborted: %s", err)
             return data
 
@@ -242,12 +242,12 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
         try:
             # #937: do NOT pass `content_type=` here — aiohttp 3.11+ removed
             # that parameter from Request.json(). Passing it raised TypeError
-            # on every call, which the broad except below mislabelled as
-            # "Invalid JSON" — so every playlist-request save 400'd. Modern
-            # json() already parses without a content-type check, which is
-            # exactly what `content_type=None` was meant to achieve.
+            # on every call (mislabelled "Invalid JSON"), so every
+            # playlist-request save 400'd. Modern json() already parses without
+            # a content-type check, which is exactly what `content_type=None`
+            # was meant to achieve.
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (ValueError, UnicodeDecodeError):
             return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
 
         # Validate data structure
@@ -332,7 +332,7 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
 
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (ValueError, UnicodeDecodeError):
             return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
 
         if not isinstance(body, dict):
@@ -379,7 +379,7 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
 
         try:
             written = await self.hass.async_add_executor_job(_write)
-        except Exception as err:  # noqa: BLE001
+        except OSError as err:
             _LOGGER.error("Failed to save user playlist: %s", err)
             return _json_error("Failed to save playlist", 500, code="SAVE_FAILED")
 

@@ -119,7 +119,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         try:
             body = await request.json()
-        except Exception:  # noqa: BLE001
+        except (ValueError, UnicodeDecodeError):
             return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
 
         playlist_paths = body.get("playlists", [])
@@ -236,7 +236,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                             f"Invalid song in {playlist_path}: missing year or uri"
                         )
 
-            except Exception as err:  # noqa: BLE001
+            except (OSError, ValueError) as err:
                 warnings.append(f"Failed to load {playlist_path}: {err}")
 
         if not songs:

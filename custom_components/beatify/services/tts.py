@@ -140,6 +140,8 @@ class TTSService:
                     entity = value.get_entity(self._tts_entity_id)
                     langs = getattr(entity, "supported_languages", None)
                     return list(langs) if langs else None
-        except Exception:  # noqa: BLE001 — introspection is strictly best-effort
+        except (ImportError, AttributeError, TypeError):
+            # Introspection is strictly best-effort: the helper import may be
+            # absent on some HA versions, and entity/attribute access may vary.
             return None
         return None

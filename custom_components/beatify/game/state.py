@@ -1755,6 +1755,11 @@ class GameState:
         try:
             pstate = self._media_player_service.get_playback_state()
         except Exception:  # noqa: BLE001 — defensive: never let a poll error stall
+            _LOGGER.debug(
+                "song-finished poll: get_playback_state raised; treating as "
+                "still playing",
+                exc_info=True,
+            )
             return False
         return pstate not in ("playing", "buffering")
 

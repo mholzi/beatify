@@ -313,7 +313,7 @@ class BeatifyWebSocketHandler:
         """
         try:
             await ws.send_json(message)
-        except Exception as err:  # noqa: BLE001
+        except (ConnectionError, RuntimeError) as err:
             _LOGGER.warning("Failed to send to WebSocket: %s", err)
 
     async def debounced_broadcast_state(self) -> None:
