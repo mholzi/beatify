@@ -1,0 +1,315 @@
+/**
+ * Beatify Admin — Game-Settings setup-section (#1279 Schritt 4b/6).
+ *
+ * Extracted from admin.js: the game-settings chip/toggle wiring (language,
+ * timer, reveal-auto-advance, difficulty, bonus/mode flags, AND the
+ * music-service provider chips) + the localStorage persistence round-trip
+ * (load/save) + the settings-summary badge + the Title&Artist-mode UI sync.
+ *
+ * The live provider/music-service UI lives HERE (the `.chip[data-provider]`
+ * handler) — there is no separate music-service module because that surface is
+ * just these chips plus the capability gate in media-players.js (see PR body).
+ *
+ * State: reads/writes the shared `adminState` object (admin/state.js) directly.
+ *
+ * Cross-section: the provider-chip handler calls `renderPlaylists` (playlists.js)
+ * to re-render coverage for the newly selected provider. Circular-import-safe:
+ * it's an event-driven click handler, never runs at module init.
+ *
+ * `loadSavedSettings` is called from wizard.js via `window.loadSavedSettings`
+ * (re-sync after the wizard persists settings), so admin.js shims it onto
+ * `window`. `saveGameSettings` / `syncTitleArtistModeUI` have no cross-file
+ * callers (verified: only comments/tests reference them) → no shim.
+ */
+
+import { adminState } from '../state.js';
+import { STORAGE_GAME_SETTINGS } from '../constants.js';
+import { renderPlaylists } from './playlists.js';
+
+/**
+ * Setup game settings controls (chips for language, timer, difficulty, toggle for artist challenge)
+ */
+export function setupGameSettings() {
+    // Language chips
+    document.querySelectorAll('.chip[data-lang]').forEach(chip => {
+        chip.addEventListener('click', async function() {
+            const lang = this.dataset.lang;
+            document.querySelectorAll('.chip[data-lang]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            adminState.selectedLanguage = lang;
+            if (window.BeatifyI18n) {
+                await BeatifyI18n.setLanguage(lang);
+                BeatifyI18n.initPageTranslations();
+            }
+            updateGameSettingsSummary();
+            saveGameSettings();
+        });
+    });
+
+    // Timer chips
+    document.querySelectorAll('.chip[data-duration]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            const duration = parseInt(this.dataset.duration, 10);
+            document.querySelectorAll('.chip[data-duration]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            adminState.selectedDuration = duration;
+            updateGameSettingsSummary();
+            saveGameSettings();
+        });
+    });
+
+    // Reveal auto-advance chips (#1012)
+    document.querySelectorAll('.chip[data-reveal-advance]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            adminState.revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
+            document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            saveGameSettings();
+        });
+    });
+
+    // Difficulty chips
+    document.querySelectorAll('.chip[data-difficulty]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            const difficulty = this.dataset.difficulty;
+            document.querySelectorAll('.chip[data-difficulty]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            adminState.selectedDifficulty = difficulty;
+            updateGameSettingsSummary();
+            saveGameSettings();
+        });
+    });
+
+    // Artist Challenge toggle
+    document.getElementById('artist-challenge-toggle')?.addEventListener('change', function() {
+        adminState.artistChallengeEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Movie Quiz Bonus toggle (#947)
+    document.getElementById('movie-quiz-toggle')?.addEventListener('change', function() {
+        adminState.movieQuizEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Intro Mode toggle (Issue #23)
+    document.getElementById('intro-mode-toggle')?.addEventListener('change', function() {
+        adminState.introModeEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Closest Wins toggle (Issue #442)
+    document.getElementById('closest-wins-toggle')?.addEventListener('change', function() {
+        adminState.closestWinsModeEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Title & Artist Mode toggle (#1180)
+    document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
+        adminState.titleArtistModeEnabled = this.checked;
+        syncTitleArtistModeUI();
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Provider chips (Music Service)
+    document.querySelectorAll('.chip[data-provider]').forEach(chip => {
+        chip.addEventListener('click', function() {
+            // Don't allow clicking disabled chips
+            if (this.disabled || this.classList.contains('chip--disabled')) {
+                return;
+            }
+            const provider = this.dataset.provider;
+            document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
+            this.classList.add('chip--active');
+            adminState.selectedProvider = provider;
+            updateGameSettingsSummary();
+            saveGameSettings();
+            // Re-render playlists to show coverage for selected provider (preserve valid selections)
+            if (adminState.playlistData.length > 0) {
+                renderPlaylists(adminState.playlistData, '', true);
+            }
+        });
+    });
+}
+
+/**
+ * Load saved settings from localStorage
+ */
+export async function loadSavedSettings() {
+    try {
+        const saved = localStorage.getItem(STORAGE_GAME_SETTINGS);
+        if (saved) {
+            const settings = JSON.parse(saved);
+
+            // Apply language
+            if (settings.language) {
+                adminState.selectedLanguage = settings.language;
+                document.querySelectorAll('.chip[data-lang]').forEach(c => {
+                    c.classList.toggle('chip--active', c.dataset.lang === settings.language);
+                });
+                if (window.BeatifyI18n) {
+                    await BeatifyI18n.setLanguage(settings.language);
+                    BeatifyI18n.initPageTranslations();
+                }
+            }
+
+            // Apply timer
+            if (settings.duration) {
+                adminState.selectedDuration = settings.duration;
+                document.querySelectorAll('.chip[data-duration]').forEach(c => {
+                    c.classList.toggle('chip--active', parseInt(c.dataset.duration, 10) === settings.duration);
+                });
+            }
+
+            // Apply reveal auto-advance (#1012)
+            if (typeof settings.revealAutoAdvance === 'number') {
+                adminState.revealAutoAdvance = settings.revealAutoAdvance;
+                document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => {
+                    c.classList.toggle('chip--active', parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
+                });
+            }
+
+            // Apply difficulty
+            if (settings.difficulty) {
+                adminState.selectedDifficulty = settings.difficulty;
+                document.querySelectorAll('.chip[data-difficulty]').forEach(c => {
+                    c.classList.toggle('chip--active', c.dataset.difficulty === settings.difficulty);
+                });
+            }
+
+            // Apply artist challenge
+            if (typeof settings.artistChallenge === 'boolean') {
+                adminState.artistChallengeEnabled = settings.artistChallenge;
+                const toggle = document.getElementById('artist-challenge-toggle');
+                if (toggle) toggle.checked = settings.artistChallenge;
+            }
+
+            // Apply movie quiz bonus (#947)
+            if (typeof settings.movieQuiz === 'boolean') {
+                adminState.movieQuizEnabled = settings.movieQuiz;
+                const toggle = document.getElementById('movie-quiz-toggle');
+                if (toggle) toggle.checked = settings.movieQuiz;
+            }
+
+            // Apply intro mode (Issue #23)
+            if (typeof settings.introMode === 'boolean') {
+                adminState.introModeEnabled = settings.introMode;
+                const introToggle = document.getElementById('intro-mode-toggle');
+                if (introToggle) introToggle.checked = settings.introMode;
+            }
+
+            // Apply closest wins mode (Issue #442)
+            if (typeof settings.closestWinsMode === 'boolean') {
+                adminState.closestWinsModeEnabled = settings.closestWinsMode;
+                const closestToggle = document.getElementById('closest-wins-toggle');
+                if (closestToggle) closestToggle.checked = settings.closestWinsMode;
+            }
+
+            // Apply Title & Artist mode (#1180)
+            if (typeof settings.titleArtistMode === 'boolean') {
+                adminState.titleArtistModeEnabled = settings.titleArtistMode;
+                const taToggle = document.getElementById('title-artist-mode-toggle');
+                if (taToggle) taToggle.checked = settings.titleArtistMode;
+            }
+            syncTitleArtistModeUI();
+
+            // Apply provider
+            if (settings.provider) {
+                adminState.selectedProvider = settings.provider;
+                document.querySelectorAll('.chip[data-provider]').forEach(c => {
+                    c.classList.toggle('chip--active', c.dataset.provider === settings.provider);
+                });
+            }
+        }
+    } catch (e) {
+        console.warn('Failed to load saved settings:', e);
+    }
+    // Always update summary (uses current state values)
+    updateGameSettingsSummary();
+}
+
+/**
+ * Save game settings to localStorage
+ */
+export function saveGameSettings() {
+    try {
+        const settings = {
+            language: adminState.selectedLanguage,
+            duration: adminState.selectedDuration,
+            revealAutoAdvance: adminState.revealAutoAdvance,  // #1012
+            difficulty: adminState.selectedDifficulty,
+            artistChallenge: adminState.artistChallengeEnabled,
+            movieQuiz: adminState.movieQuizEnabled,  // #947
+            introMode: adminState.introModeEnabled,  // Issue #23
+            closestWinsMode: adminState.closestWinsModeEnabled,  // Issue #442
+            titleArtistMode: adminState.titleArtistModeEnabled,  // #1180
+            provider: adminState.selectedProvider
+        };
+        localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
+    } catch (e) {
+        console.warn('Failed to save settings:', e);
+    }
+}
+
+/**
+ * Update the game settings summary badge
+ */
+export function updateGameSettingsSummary() {
+    const summary = document.getElementById('game-settings-summary');
+    if (!summary) return;
+
+    const difficultyLabels = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
+    const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
+    // #1180: year-round bonuses are suppressed while TA mode is on, so the badge
+    // hides their icons too — but the underlying flags stay the host's untouched
+    // source of truth (so toggling TA off restores them).
+    const yearRoundActive = !adminState.titleArtistModeEnabled;
+    const artistIcon = (yearRoundActive && adminState.artistChallengeEnabled) ? ' • 🎤' : '';
+    const movieIcon = (yearRoundActive && adminState.movieQuizEnabled) ? ' • 🎬' : '';  // #947
+    const introIcon = (yearRoundActive && adminState.introModeEnabled) ? ' • ⚡' : '';  // Issue #23
+    const closestIcon = (yearRoundActive && adminState.closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
+    const taIcon = adminState.titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
+
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+}
+
+/**
+ * #1180: Title & Artist mode replaces the year round, so the year-only
+ * bonuses (artist challenge, movie quiz, intro, closest wins) have nothing to
+ * attach to. Hide and disable their setting-groups while TA mode is on.
+ *
+ * This is purely a visibility/disabled-state sync — it does NOT mutate the
+ * year-round flags or the checkboxes. The host's real bonus preferences stay
+ * the single source of truth (in the in-memory flags, the checkboxes, and
+ * localStorage), so the save → reload → toggle-off cycle is lossless. The
+ * actual suppression (forcing year-round bonuses off when TA mode is on) is
+ * applied only when building the start-game payload, in startGame(), via
+ * applyTitleArtistBonusPrecedence(). Forcing the flags off here instead would
+ * persist false to localStorage and silently destroy the host's choices on
+ * the next reload.
+ */
+export function syncTitleArtistModeUI() {
+    // #1180: only the truly-incompatible modes are hidden in TA mode. Movie
+    // quiz and intro mode are compatible bonuses, so they stay available.
+    var ids = ['artist-challenge-toggle', 'closest-wins-toggle'];
+    ids.forEach(function(id) {
+        var input = document.getElementById(id);
+        if (!input) return;
+        var group = input.closest('.setting-group');
+        if (group) group.classList.toggle('hidden', adminState.titleArtistModeEnabled);
+        input.disabled = adminState.titleArtistModeEnabled;
+    });
+    // #1180 polish: year-distance difficulty doesn't apply in TA mode. Hide the
+    // chips + year hint and show the fixed T&I scoring summary in their place.
+    var diffRow = document.getElementById('admin-difficulty-row');
+    if (diffRow) diffRow.classList.toggle('hidden', adminState.titleArtistModeEnabled);
+    var diffHint = document.getElementById('admin-difficulty-hint');
+    if (diffHint) diffHint.classList.toggle('hidden', adminState.titleArtistModeEnabled);
+    var taSummary = document.getElementById('admin-difficulty-ta-summary');
+    if (taSummary) taSummary.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
+}
