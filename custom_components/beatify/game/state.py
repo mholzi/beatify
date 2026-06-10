@@ -69,6 +69,7 @@ from .scoring import (
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .serializers import GameStateSerializer
+from .state_leaderboard import LeaderboardMixin
 from .state_tts import TtsAnnouncerMixin
 
 from .types import RoundAnalytics, _get_decade_label
@@ -94,11 +95,14 @@ class GamePhase(Enum):
     PAUSED = "PAUSED"
 
 
-class GameState(TtsAnnouncerMixin):
+class GameState(LeaderboardMixin, TtsAnnouncerMixin):
     """Manages game state and phase transitions.
 
     The TTS / spoken-announcement subsystem (Issue #1271 first-increment
     extraction) lives in :class:`~custom_components.beatify.game.state_tts.TtsAnnouncerMixin`.
+
+    The leaderboard / ranking subsystem (Issue #1271 next-increment
+    extraction) lives in :class:`~custom_components.beatify.game.state_leaderboard.LeaderboardMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -2345,105 +2349,6 @@ class GameState(TtsAnnouncerMixin):
     def is_deadline_passed(self) -> bool:
         """Check if the round deadline has passed. Delegates to RoundManager."""
         return self._round_manager.is_deadline_passed()
-
-    def get_leaderboard(self) -> list[dict[str, Any]]:
-        """
-        Get leaderboard sorted by score (Story 5.5).
-
-        Returns:
-            List of player data with rank and movement info.
-            Note: is_current is set client-side based on playerName.
-
-        """
-        # Sort by score descending, then by name for tie-breaking display order
-        sorted_players = sorted(
-            self.players.values(),
-            key=lambda p: (-p.score, p.name),
-        )
-
-        leaderboard = []
-        current_rank = 0
-        previous_score = None
-
-        for i, player in enumerate(sorted_players):
-            # Handle ties (same score = same rank)
-            # Example: scores [100, 80, 80, 50] -> ranks [1, 2, 2, 4]
-            if player.score != previous_score:
-                current_rank = i + 1  # Rank jumps to position (skips tied ranks)
-            previous_score = player.score
-
-            # Calculate rank change (positive = moved up)
-            rank_change = 0
-            if player.previous_rank is not None:
-                rank_change = player.previous_rank - current_rank
-
-            entry = {
-                "rank": current_rank,
-                "name": player.name,
-                "score": player.score,
-                "streak": player.streak,
-                "is_admin": player.is_admin,
-                "rank_change": rank_change,
-                "connected": player.connected,
-            }
-            leaderboard.append(entry)
-
-        return leaderboard
-
-    def _store_previous_ranks(self) -> None:
-        """Store current ranks before scoring for rank change detection."""
-        sorted_players = sorted(
-            self.players.values(),
-            key=lambda p: (-p.score, p.name),
-        )
-
-        current_rank = 0
-        previous_score = None
-
-        for i, player in enumerate(sorted_players):
-            if player.score != previous_score:
-                current_rank = i + 1
-            previous_score = player.score
-            player.previous_rank = current_rank
-
-    def get_final_leaderboard(self) -> list[dict[str, Any]]:
-        """
-        Get final leaderboard with full player stats (Story 5.6).
-
-        Returns:
-            List of player data with rank and final stats.
-            Note: is_current is set client-side based on playerName.
-
-        """
-        # Sort by score descending, then by name for tie-breaking display order
-        sorted_players = sorted(
-            self.players.values(),
-            key=lambda p: (-p.score, p.name),
-        )
-
-        leaderboard = []
-        current_rank = 0
-        previous_score = None
-
-        for i, player in enumerate(sorted_players):
-            if player.score != previous_score:
-                current_rank = i + 1
-            previous_score = player.score
-
-            entry = {
-                "rank": current_rank,
-                "name": player.name,
-                "score": player.score,
-                "is_admin": player.is_admin,
-                "connected": player.connected,
-                # Final stats (Story 5.6)
-                "best_streak": player.best_streak,
-                "rounds_played": player.rounds_played,
-                "bets_won": player.bets_won,
-            }
-            leaderboard.append(entry)
-
-        return leaderboard
 
     async def advance_to_end(self) -> None:
         """Transition to END phase with proper cleanup (#321).
