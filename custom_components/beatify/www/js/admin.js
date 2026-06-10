@@ -20,6 +20,21 @@ import {
     escapeHtml,
 } from './admin/util.js';
 
+// #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
+// message dispatch live in ./admin/api.js; admin.js keeps the view/game-state
+// code and registers its callbacks + state setters once via initAdminApi()
+// (below, after the state declarations). The ~18 sites that used to poke
+// `adminWs` directly now call the exported accessors.
+import {
+    initAdminApi,
+    connectAdminWebSocket,
+    sendAdminCommand,
+    isAdminWsOpen,
+    sendAdminWs,
+    closeAdminWs,
+    resetReconnectAttempts,
+} from './admin/api.js';
+
 // Token helpers in util.js need the admin-private, mutable `currentGame`.
 // A closure resolver keeps them in sync across every `currentGame = …` below
 // without touching each assignment site (declared later via `let` hoist-safe
@@ -113,8 +128,8 @@ document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible' && currentGame && currentGame.phase !== 'END') {
         _requestWakeLock();
         // Reconnect WS if it died while tab was hidden
-        if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
-            adminReconnectAttempts = 0; // reset backoff on user-initiated return
+        if (!isAdminWsOpen()) {
+            resetReconnectAttempts(); // reset backoff on user-initiated return
             connectAdminWebSocket();
         }
     }
@@ -166,28 +181,39 @@ let titleArtistModeEnabled = false;
 let previousLobbyPlayers = [];
 let lobbyPollingInterval = null;
 
-// Issue #477: Admin WebSocket state
-let adminWs = null;
+// Issue #477: Admin player-participation state. (#1279 step 3: the WS socket
+// itself + reconnect/auth-recovery counters moved to ./admin/api.js; these
+// three stay here because admin's view code reads/writes them widely.)
 let adminPlayerName = null;   // Set when admin joins as player
 let adminSessionId = null;    // Set on join_ack — passed to /play so it can
                               // reconnect via {type:'reconnect'} instead of a
                               // fresh {type:'join'} (which races ERR_NAME_TAKEN).
 let isPlaying = false;        // Whether admin is participating as a player
-let adminReconnectAttempts = 0;
-// Zombie-auth recovery state. The HA access token in localStorage can pass
-// the local expiry check while being dead server-side (HA restart, refresh-
-// token revoke). When the admin WS responds UNAUTHORIZED we force a refresh
-// and reconnect; the recovery flow owns the reconnect during that window,
-// so onclose must not double-schedule. The counter prevents an infinite
-// loop if the refreshed token is *also* rejected — bounce to HA login.
-let adminWsAuthRecovering = false;
-let adminWsAuthRecoveryAttempts = 0;
-const MAX_ADMIN_WS_AUTH_RECOVERIES = 2;
 // #949: the home "Start game" button's pre-"Starting…" HTML, stashed so a WS
 // start-failure error (MEDIA_PLAYER_UNAVAILABLE etc.) can un-stick the button.
 let _homeStartBtnHTML = null;
-const MAX_ADMIN_RECONNECT = 10;
 let countdownInterval = null;
+
+// #1279 step 3: register admin.js's live state readers, setters and view
+// callbacks with the WS hub (./admin/api.js). Same DI pattern as the step-2
+// `setCurrentGameResolver`: the hub never owns admin's mutable state — it reads
+// it through these closures and writes via the setters. Functions referenced
+// here (handleAdminStateUpdate, startLobbyPolling, …) are declared later but
+// are only ever *invoked* at runtime, so hoisting makes this init-safe.
+initAdminApi({
+    debug: (...args) => debug(...args),
+    getCurrentGame: () => currentGame,
+    getCurrentView: () => currentView,
+    getAdminPlayerName: () => adminPlayerName,
+    setIsPlaying: (v) => { isPlaying = v; },
+    setAdminPlayerName: (v) => { adminPlayerName = v; },
+    setAdminSessionId: (v) => { adminSessionId = v; },
+    handleAdminStateUpdate: (data) => handleAdminStateUpdate(data),
+    startLobbyPolling: () => startLobbyPolling(),
+    stopLobbyPolling: () => stopLobbyPolling(),
+    showError: (msg) => showError(msg),
+    resetHomeStartButton: () => resetHomeStartButton(),
+});
 // #1048: REVEAL auto-advance countdown on the sticky Next button
 let revealAdvanceInterval = null;
 let revealAdvanceOrigIcon = null;
@@ -737,13 +763,13 @@ async function loadStatus() {
             _requestWakeLock(); // #647: keep screen on when reconnecting to active game
             showLobbyView(status.active_game);
             // Issue #477: Reconnect admin WS if we have a token
-            if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+            if (!isAdminWsOpen()) {
                 connectAdminWebSocket();
             }
         } else if (status.active_game && status.active_game.phase !== 'END') {
             currentGame = status.active_game;
             // Issue #477: Connect WS and render phase directly instead of stub
-            if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+            if (!isAdminWsOpen()) {
                 connectAdminWebSocket();
             }
             // Show correct phase view — WS state update will refine it
@@ -1922,10 +1948,7 @@ function showSetupView() {
     document.getElementById('admin-end-section')?.classList.add('hidden');
 
     // Issue #477: Close admin WS if switching to setup
-    if (adminWs) {
-        adminWs.close();
-        adminWs = null;
-    }
+    closeAdminWs();
     isPlaying = false;
     adminPlayerName = null;
 
@@ -1953,7 +1976,7 @@ function showLobbyView(gameData) {
     }
     // WS push is the primary source; fall back to REST polling if WS is down
     // so the home-view chips still update via renderLobbyPlayers → BeatifyHome.renderPlayers.
-    if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+    if (!isAdminWsOpen()) {
         startLobbyPolling();
     }
 }
@@ -2170,8 +2193,8 @@ async function startGameplay() {
     }
 
     // Issue #477: Prefer WS for game commands
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'start_game' }));
+    if (isAdminWsOpen()) {
+        sendAdminWs({ type: 'admin', action: 'start_game' });
         // State update will arrive via WS broadcast. handleAdminStateUpdate
         // exits home-mode on LOBBY → PLAYING, so the button is hidden.
         return;
@@ -2234,8 +2257,8 @@ async function confirmEndGame() {
     closeEndGameModal();
 
     // Issue #477: Prefer WS for admin commands
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'end_game' }));
+    if (isAdminWsOpen()) {
+        sendAdminWs({ type: 'admin', action: 'end_game' });
         return;
     }
 
@@ -2391,8 +2414,8 @@ async function confirmRematch() {
     closeRematchModal();
 
     // Issue #477: Prefer WS for rematch
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'rematch_game' }));
+    if (isAdminWsOpen()) {
+        sendAdminWs({ type: 'admin', action: 'rematch_game' });
         // WS broadcast will trigger lobby view transition
         rematchInProgress = false;
         return;
@@ -2476,7 +2499,7 @@ function openAdminJoinModal() {
 
     // Fix #228: If admin was already a player (sessionStorage has their name)
     // and no WS available, redirect to player page as fallback.
-    if (!adminWs || adminWs.readyState !== WebSocket.OPEN) {
+    if (!isAdminWsOpen()) {
         var adminName = null;
         try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
         if (adminName && currentGame && currentGame.game_id) {
@@ -2567,7 +2590,7 @@ function handleAdminJoin() {
     joinBtn.textContent = BeatifyI18n.t('game.joining');
 
     const inHomeMode = document.body.classList.contains('home-mode');
-    const wsOpen = adminWs && adminWs.readyState === WebSocket.OPEN;
+    const wsOpen = isAdminWsOpen();
 
     // Home-view path: keep admin on the new view. adminWs is already
     // authenticated via admin_connect; sending a join on the same socket
@@ -2589,12 +2612,12 @@ function handleAdminJoin() {
                 // over to subsequent messages on the same socket. Match the
                 // pattern player-core.js:459 uses.
                 const token = await BeatifyAuth.ensureAuthenticated();
-                adminWs.send(JSON.stringify({
+                sendAdminWs({
                     type: 'join',
                     name: name,
                     is_admin: true,
                     ha_token: token,
-                }));
+                });
                 closeAdminJoinModal();
             } catch (err) {
                 console.error('Admin join (home-mode) failed:', err);
@@ -2626,7 +2649,7 @@ function handleAdminJoin() {
             }
             const startedAt = Date.now();
             const poll = setInterval(() => {
-                if (adminWs && adminWs.readyState === WebSocket.OPEN) {
+                if (isAdminWsOpen()) {
                     clearInterval(poll);
                     sendJoin();
                 } else if (Date.now() - startedAt > 20000) {
@@ -3066,12 +3089,12 @@ function handleKickPlayer(playerName) {
         .replace('{name}', playerName);
     if (!confirm(message)) return;
 
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({
+    if (isAdminWsOpen()) {
+        sendAdminWs({
             type: 'admin',
             action: 'kick_player',
             player_name: playerName
-        }));
+        });
     }
 }
 
@@ -3350,218 +3373,11 @@ async function renderRequestsList() {
 })();
 
 // ============================================
-// Issue #477: Admin WebSocket + Game Phase Views
+// Issue #477: Admin Game Phase Views
 // ============================================
-
-/**
- * Connect admin WebSocket for real-time game state updates.
- * #998: authenticates via admin_connect with a Home Assistant access token.
- */
-async function connectAdminWebSocket() {
-    // #998: the admin WS is gated by HA login. getAccessToken() refreshes a
-    // stale token transparently; null means the host is not logged in.
-    var token = await BeatifyAuth.getAccessToken();
-    // rc13 (#1131): in Companion bypass mode there is no OAuth token but the
-    // WS must still open — server-side admin_connect accepts the request on
-    // UA+RFC1918 signature when ha_token is falsy. Without this short-circuit
-    // the admin WS never opens on Android Companion (no `[WS-Debug] upgrade`
-    // log fires either, which is what surfaced the bug on rc12).
-    if (!token && !BeatifyAuth.isCompanionBypassMode()) return;
-
-    // Close existing connection if any
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        return; // Already connected
-    }
-
-    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    var wsUrl = protocol + '//' + window.location.host + '/beatify/ws';
-
-    try {
-        adminWs = new WebSocket(wsUrl);
-    } catch (err) {
-        console.error('[Admin WS] Failed to create WebSocket:', err);
-        return;
-    }
-
-    adminWs.onopen = function() {
-        // rc6 (#1120 diagnostics): log token characteristics so chrome://inspect
-        // captures whether force=true bridge calls actually return different
-        // tokens across recovery cycles. Prefix only — first 12 chars, safe
-        // to share; HA tokens are JWT so prefix is just the header.
-        debug(
-            '[Admin WS] Connected, sending admin_connect (token: len=' +
-            (token ? token.length : 0) +
-            ', prefix=' +
-            (token ? token.slice(0, 12) : 'null') +
-            ', recoveryAttempt=' +
-            adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
-            ')'
-        );
-        adminReconnectAttempts = 0;
-        adminWs.send(JSON.stringify({
-            type: 'admin_connect',
-            ha_token: token
-        }));
-    };
-
-    adminWs.onmessage = function(event) {
-        try {
-            var data = JSON.parse(event.data);
-            handleAdminWsMessage(data);
-        } catch (err) {
-            console.error('[Admin WS] Message parse error:', err);
-        }
-    };
-
-    adminWs.onclose = function() {
-        debug('[Admin WS] Disconnected');
-        adminWs = null;
-        // Issue #550: Re-enable lobby polling while WS is down so
-        // spectator admin still sees player join/leave updates
-        if (currentView === 'lobby') {
-            startLobbyPolling();
-        }
-        // Zombie-auth recovery owns the reconnect during refresh — skipping
-        // the backoff path here avoids two parallel WSes racing admin_connect.
-        if (adminWsAuthRecovering) return;
-        // Auto-reconnect with backoff
-        if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && currentGame) {
-            adminReconnectAttempts++;
-            var delay = Math.min(1000 * Math.pow(2, adminReconnectAttempts - 1), 30000);
-            setTimeout(connectAdminWebSocket, delay);
-        }
-    };
-
-    adminWs.onerror = function(err) {
-        console.error('[Admin WS] Error:', err);
-    };
-}
-
-/**
- * Route incoming WebSocket messages.
- */
-function handleAdminWsMessage(data) {
-    switch (data.type) {
-        case 'admin_connect_ack':
-            debug('[Admin WS] Authenticated, game_id:', data.game_id);
-            // Authenticated cleanly — reset the zombie-auth recovery budget
-            // so future revocations get their full attempt allowance.
-            adminWsAuthRecoveryAttempts = 0;
-            // Stop REST polling — WS pushes are active
-            stopLobbyPolling();
-            break;
-
-        case 'state':
-            handleAdminStateUpdate(data);
-            break;
-
-        case 'join_ack':
-            // Admin successfully joined as player
-            isPlaying = true;
-            if (data.session_id) {
-                adminSessionId = data.session_id;
-                // Match player-core.js cookie convention: path=/beatify +
-                // Secure on HTTPS. The old path=/ without Secure was silently
-                // rejected by Nabu Casa's HTTPS tunnel, so /play never saw
-                // the identity and prompted for name again.
-                var secureFlag = location.protocol === 'https:' ? '; Secure' : '';
-                document.cookie = 'beatify_session=' + data.session_id +
-                    '; path=/beatify; max-age=86400; SameSite=Strict' + secureFlag;
-            }
-            debug('[Admin WS] Joined as player:', adminPlayerName);
-            break;
-
-        case 'metadata_update':
-            // Update album art when metadata arrives after round start
-            if (data.song) {
-                var artEl = document.getElementById('admin-album-art');
-                if (artEl && data.song.album_art) artEl.src = data.song.album_art;
-            }
-            break;
-
-        case 'admin_token_update':
-            // Issue #535: Update admin token after rematch (new game_id + token)
-            _setAdminToken(data.admin_token, data.game_id);
-            debug('[Admin WS] Admin token updated for game:', data.game_id);
-            break;
-
-        case 'error':
-            console.error('[Admin WS] Error:', data.code, data.message);
-            if (data.code === 'UNAUTHORIZED') {
-                // Server rejected ha_token even though BeatifyAuth's local
-                // expiry says it's fresh — HA wiped the session (restart,
-                // refresh-token revoke). Without recovery the onclose path
-                // reconnects with the same dead token forever. Force a
-                // token refresh; on success, reconnect. If refresh also
-                // fails handleServerRejection() navigates to HA login. The
-                // attempt counter prevents an infinite loop if the
-                // refreshed token is also rejected.
-                if (adminWsAuthRecovering) {
-                    // Already recovering — let the in-flight refresh finish.
-                    break;
-                }
-                if (adminWsAuthRecoveryAttempts >= MAX_ADMIN_WS_AUTH_RECOVERIES) {
-                    // Refreshed access token still rejected. Sessions are
-                    // wedged — bounce to HA login. rc6 (#1120): surface a
-                    // visible toast first so the user knows what's
-                    // happening instead of silently watching the admin
-                    // page reload after ~20s of dead WebSocket.
-                    console.warn(
-                        '[Admin WS] Auth recovery exhausted after ' +
-                        MAX_ADMIN_WS_AUTH_RECOVERIES +
-                        ' attempts; HA rejected every bridge-supplied token. ' +
-                        'Forcing re-login.'
-                    );
-                    var exhaustedMsg =
-                        (window.BeatifyI18n && BeatifyI18n.t('admin.wsAuthFailed')) ||
-                        'Home Assistant rejected the access token. Re-authenticating…';
-                    try { showError(exhaustedMsg); } catch (e) { /* showError may not be in scope on early load */ }
-                    BeatifyAuth.logout();
-                    BeatifyAuth.login();
-                    break;
-                }
-                adminWsAuthRecovering = true;
-                adminWsAuthRecoveryAttempts++;
-                console.warn(
-                    '[Admin WS] UNAUTHORIZED — recovery attempt ' +
-                    adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
-                    ' (server message: ' + (data.message || '') + ')'
-                );
-                var deadWs = adminWs;
-                adminWs = null;
-                try { deadWs?.close(); } catch (e) { /* ignore */ }
-                BeatifyAuth.handleServerRejection().then(function (token) {
-                    adminWsAuthRecovering = false;
-                    if (!token) return; // handleServerRejection navigated away
-                    adminReconnectAttempts = 0;
-                    connectAdminWebSocket();
-                });
-            } else if (data.code === 'NAME_TAKEN' || data.code === 'NAME_INVALID') {
-                showError(data.message);
-                isPlaying = false;
-                adminPlayerName = null;
-                var joinBtn = document.getElementById('admin-join-btn');
-                if (joinBtn) {
-                    joinBtn.disabled = false;
-                    joinBtn.textContent = BeatifyI18n.t('admin.join');
-                }
-            } else {
-                // #949: a start_game / next_round rejection — MEDIA_PLAYER_UNAVAILABLE,
-                // GAME_NOT_STARTED, NO_SONGS_REMAINING, INVALID_ACTION, … startGameplay()
-                // left the home "Start game" button on "⏳ Starting…" and returned to
-                // wait for a broadcast. Un-stick the button and surface the message so
-                // the host is not staring at a frozen "Starting…".
-                resetHomeStartButton();
-                showError(data.message);
-            }
-            break;
-
-        default:
-            // Ignore other message types (player_reaction, song_stopped, etc.)
-            break;
-    }
-}
-
+// (#1279 step 3: connectAdminWebSocket + handleAdminWsMessage moved to
+// ./admin/api.js. They call back into admin.js via the initAdminApi() deps —
+// notably handleAdminStateUpdate below.)
 /**
  * Handle game state update from WebSocket — route to correct phase view.
  */
@@ -4300,21 +4116,7 @@ function showAdminPausedView(data) {
 }
 
 // ---- Admin game controls (sent via WS) ----
-
-/**
- * #648: Send an admin WS command with feedback when disconnected.
- * Shows error + triggers reconnect if WS is down.
- */
-function sendAdminCommand(payload) {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify(payload));
-        return true;
-    }
-    showError(BeatifyI18n.t('admin.connectionLost') || 'Connection lost — reconnecting...');
-    adminReconnectAttempts = 0;
-    connectAdminWebSocket();
-    return false;
-}
+// (#1279 step 3: sendAdminCommand moved to ./admin/api.js — imported above.)
 
 function adminNextRound() {
     sendAdminCommand({ type: 'admin', action: 'next_round' });
@@ -4333,8 +4135,8 @@ function adminVolumeDown() {
 }
 
 function adminDismissGame() {
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        adminWs.send(JSON.stringify({ type: 'admin', action: 'dismiss_game' }));
+    if (isAdminWsOpen()) {
+        sendAdminWs({ type: 'admin', action: 'dismiss_game' });
     }
     cachedQRUrl = null;
     isPlaying = false;
