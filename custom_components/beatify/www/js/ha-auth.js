@@ -33,6 +33,21 @@
 (function () {
   'use strict';
 
+  // Gated debug logging (#1280). Self-contained to keep this module
+  // dependency-free (it loads before BeatifyUtils). Off by default; opt in
+  // via localStorage 'beatify_debug'='1' or URL ?debug=1 — same flag as
+  // BeatifyUtils.debug.
+  function debug() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var qp = params.get('debug') || params.get('BeatifyDebug');
+      var on = qp !== null
+        ? (qp !== '0' && qp.toLowerCase() !== 'false')
+        : (window.localStorage.getItem('beatify_debug') === '1');
+      if (on) console.log.apply(console, arguments);
+    } catch (e) { /* ignore */ }
+  }
+
   // JS-readable session cookie set by BeatifyAuthCallbackView. Contains a
   // URL-encoded JSON object: {access_token: string, expires_at: number}.
   // expires_at is an absolute Unix timestamp (seconds) so we don't depend
@@ -306,7 +321,7 @@
     if (_bridgePathLogged) return;
     _bridgePathLogged = true;
     try {
-      console.log(
+      debug(
         '[BeatifyAuth] Companion bridge: ' + path +
         ' (ua: ' + ((navigator && navigator.userAgent) || 'unknown') + ')'
       );
@@ -397,7 +412,7 @@
     // every time, force is being silently ignored (H1 confirmed) and
     // we'll need a Companion-side fix.
     try {
-      console.log(
+      debug(
         '[BeatifyAuth] Bridge token received (len=' +
         (payload.access_token ? payload.access_token.length : 0) +
         ', prefix=' +

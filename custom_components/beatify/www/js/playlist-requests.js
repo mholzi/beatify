@@ -6,6 +6,9 @@
 (function() {
     'use strict';
 
+    // Gated debug logging (#1280) — no-op unless BeatifyDebug flag is set.
+    const debug = (window.BeatifyUtils && window.BeatifyUtils.debug) || function() {};
+
     const STORAGE_KEY = 'beatify_playlist_requests';
     const API_URL = 'https://beatify-api.mholzi.workers.dev';
     const BACKEND_API = '/beatify/api/playlist-requests';
@@ -14,7 +17,7 @@
     let _cache = null;
 
     // Debug: Log origin on load
-    console.log('[PlaylistRequests] Module loaded. Origin:', window.location.origin);
+    debug('[PlaylistRequests] Module loaded. Origin:', window.location.origin);
 
     /**
      * Load requests from HA backend (with localStorage fallback)
@@ -23,7 +26,7 @@
     function loadRequests() {
         // Return cache if available (sync path for immediate UI)
         if (_cache) {
-            console.log('[PlaylistRequests] Returning cached data:', _cache.requests?.length || 0, 'requests');
+            debug('[PlaylistRequests] Returning cached data:', _cache.requests?.length || 0, 'requests');
             return _cache;
         }
         // Return empty for sync calls - async load will populate cache
@@ -36,11 +39,11 @@
      */
     async function loadRequestsAsync() {
         try {
-            console.log('[PlaylistRequests] Loading from backend API...');
+            debug('[PlaylistRequests] Loading from backend API...');
             const response = await fetch(BACKEND_API);
             if (response.ok) {
                 const data = await response.json();
-                console.log('[PlaylistRequests] Loaded from backend:', data.requests?.length || 0, 'requests');
+                debug('[PlaylistRequests] Loaded from backend:', data.requests?.length || 0, 'requests');
                 _cache = data;
                 return data;
             }
@@ -62,14 +65,14 @@
         _cache = data;
 
         try {
-            console.log('[PlaylistRequests] Saving to backend:', data.requests?.length || 0, 'requests');
+            debug('[PlaylistRequests] Saving to backend:', data.requests?.length || 0, 'requests');
             const response = await fetch(BACKEND_API, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
             if (response.ok) {
-                console.log('[PlaylistRequests] Saved to backend successfully');
+                debug('[PlaylistRequests] Saved to backend successfully');
                 return true;
             }
             console.error('[PlaylistRequests] Backend save failed:', response.status);

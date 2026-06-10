@@ -203,6 +203,7 @@ const PLATFORM_LABELS = {
 
 // Alias BeatifyUtils for convenience
 const utils = window.BeatifyUtils || {};
+const debug = utils.debug || function() {};
 
 document.addEventListener('DOMContentLoaded', async () => {
     // #998: the admin console requires a logged-in Home Assistant user.
@@ -3381,7 +3382,7 @@ function escapeHtml(text) {
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            console.log('[PWA] Install outcome:', outcome);
+            debug('[PWA] Install outcome:', outcome);
             deferredPrompt = null;
             if (outcome === 'accepted') {
                 btn.classList.add('hidden');
@@ -3438,7 +3439,7 @@ async function connectAdminWebSocket() {
         // captures whether force=true bridge calls actually return different
         // tokens across recovery cycles. Prefix only — first 12 chars, safe
         // to share; HA tokens are JWT so prefix is just the header.
-        console.log(
+        debug(
             '[Admin WS] Connected, sending admin_connect (token: len=' +
             (token ? token.length : 0) +
             ', prefix=' +
@@ -3464,7 +3465,7 @@ async function connectAdminWebSocket() {
     };
 
     adminWs.onclose = function() {
-        console.log('[Admin WS] Disconnected');
+        debug('[Admin WS] Disconnected');
         adminWs = null;
         // Issue #550: Re-enable lobby polling while WS is down so
         // spectator admin still sees player join/leave updates
@@ -3493,7 +3494,7 @@ async function connectAdminWebSocket() {
 function handleAdminWsMessage(data) {
     switch (data.type) {
         case 'admin_connect_ack':
-            console.log('[Admin WS] Authenticated, game_id:', data.game_id);
+            debug('[Admin WS] Authenticated, game_id:', data.game_id);
             // Authenticated cleanly — reset the zombie-auth recovery budget
             // so future revocations get their full attempt allowance.
             adminWsAuthRecoveryAttempts = 0;
@@ -3518,7 +3519,7 @@ function handleAdminWsMessage(data) {
                 document.cookie = 'beatify_session=' + data.session_id +
                     '; path=/beatify; max-age=86400; SameSite=Strict' + secureFlag;
             }
-            console.log('[Admin WS] Joined as player:', adminPlayerName);
+            debug('[Admin WS] Joined as player:', adminPlayerName);
             break;
 
         case 'metadata_update':
@@ -3532,7 +3533,7 @@ function handleAdminWsMessage(data) {
         case 'admin_token_update':
             // Issue #535: Update admin token after rematch (new game_id + token)
             _setAdminToken(data.admin_token, data.game_id);
-            console.log('[Admin WS] Admin token updated for game:', data.game_id);
+            debug('[Admin WS] Admin token updated for game:', data.game_id);
             break;
 
         case 'error':
@@ -4420,7 +4421,7 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/beatify/sw.js', {
             scope: '/beatify/'
         }).then(function(registration) {
-            console.log('[Admin] SW registered:', registration.scope);
+            debug('[Admin] SW registered:', registration.scope);
         }).catch(function(error) {
             console.warn('[Admin] SW registration failed:', error);
         });

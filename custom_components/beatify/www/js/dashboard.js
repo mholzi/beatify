@@ -7,6 +7,7 @@
 
     // Alias BeatifyUtils for convenience
     var utils = window.BeatifyUtils || {};
+    var debug = utils.debug || function() {};
 
     // View elements
     var loadingView = document.getElementById('dashboard-loading');
@@ -61,7 +62,7 @@
         ws = new WebSocket(wsUrl);
 
         ws.onopen = function() {
-            console.log('[Dashboard] WebSocket connected');
+            debug('[Dashboard] WebSocket connected');
             reconnectAttempts = 0;
             // Request current state as read-only observer
             ws.send(JSON.stringify({ type: 'get_state' }));
@@ -77,11 +78,11 @@
         };
 
         ws.onclose = function() {
-            console.log('[Dashboard] WebSocket closed');
+            debug('[Dashboard] WebSocket closed');
             if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
                 reconnectAttempts++;
                 var delay = getReconnectDelay();
-                console.log('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
+                debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
                 setTimeout(connectWebSocket, delay);
             } else {
                 showView('dashboard-no-game');
@@ -274,7 +275,7 @@
         if (document.visibilityState === 'visible') {
             requestWakeLock();
             if (!ws || ws.readyState === WebSocket.CLOSING || ws.readyState === WebSocket.CLOSED) {
-                console.log('[Dashboard] Page visible, WebSocket dead — reconnecting immediately.');
+                debug('[Dashboard] Page visible, WebSocket dead — reconnecting immediately.');
                 reconnectAttempts = 0;
                 connectWebSocket();
             }
@@ -289,11 +290,11 @@
         if (data.type === 'state') {
             // Debug: Log game_performance data (Story 14.4)
             if (data.game_performance) {
-                console.log('[Dashboard] game_performance:', data.game_performance);
+                debug('[Dashboard] game_performance:', data.game_performance);
             }
             handleStateUpdate(data);
         } else if (data.type === 'error') {
-            console.log('[Dashboard] Server error:', data.message);
+            debug('[Dashboard] Server error:', data.message);
             // Dashboard ignores most errors since it's read-only
         } else if (data.type === 'player_reaction') {
             // Live reactions from players (Story 18.9)
@@ -344,7 +345,7 @@
             preloader.src = newSrc;
         }
 
-        console.log('[Dashboard] Metadata updated:', song.artist, '-', song.title);
+        debug('[Dashboard] Metadata updated:', song.artist, '-', song.title);
     }
 
     /**
@@ -399,7 +400,7 @@
                 showView('dashboard-paused');
                 break;
             default:
-                console.log('[Dashboard] Unknown phase:', phase);
+                debug('[Dashboard] Unknown phase:', phase);
         }
     }
 
@@ -607,8 +608,8 @@
      * @param {Array} players - Players array
      */
     function renderRoundStats(data, players) {
-        console.log('[Dashboard] renderRoundStats called, players:', players);
-        console.log('[Dashboard] data.players:', data.players);
+        debug('[Dashboard] renderRoundStats called, players:', players);
+        debug('[Dashboard] data.players:', data.players);
 
         // Calculate submission count
         var submitted = 0;
@@ -617,12 +618,12 @@
             if (p.submitted) submitted++;
         });
 
-        console.log('[Dashboard] Submissions:', submitted, '/', total);
+        debug('[Dashboard] Submissions:', submitted, '/', total);
 
         var submissionsEl = document.getElementById('dashboard-submissions');
         if (submissionsEl) {
             submissionsEl.textContent = submitted + '/' + total;
-            console.log('[Dashboard] Updated submissions element');
+            debug('[Dashboard] Updated submissions element');
         } else {
             console.warn('[Dashboard] dashboard-submissions element not found');
         }
@@ -975,8 +976,8 @@
         // Get localized fun fact (Story 16.3)
         var funFact = utils.getLocalizedSongField(song, 'fun_fact');
 
-        console.log('[Dashboard] renderFunFact called with song:', song);
-        console.log('[Dashboard] fun_fact value:', funFact || 'no fun fact');
+        debug('[Dashboard] renderFunFact called with song:', song);
+        debug('[Dashboard] fun_fact value:', funFact || 'no fun fact');
 
         if (!container || !textEl) {
             console.warn('[Dashboard] Fun fact elements not found');
@@ -986,14 +987,14 @@
         // Hide if no fun fact
         if (!funFact || funFact.trim() === '') {
             container.classList.add('hidden');
-            console.log('[Dashboard] No fun_fact, hiding container');
+            debug('[Dashboard] No fun_fact, hiding container');
             return;
         }
 
         // Show fun fact
         textEl.textContent = funFact;
         container.classList.remove('hidden');
-        console.log('[Dashboard] Fun fact shown:', funFact);
+        debug('[Dashboard] Fun fact shown:', funFact);
     }
 
     /**
@@ -1594,7 +1595,7 @@
      * Initialize dashboard
      */
     async function init() {
-        console.log('[Dashboard] Initializing...');
+        debug('[Dashboard] Initializing...');
         // Initialize i18n (Story 12.5)
         // Guard clause: wait for BeatifyI18n in case fallback script is loading
         var i18nAvailable = await utils.waitForI18n();
@@ -1632,7 +1633,7 @@
             navigator.serviceWorker.register('/beatify/sw.js', {
                 scope: '/beatify/'
             }).then(function(registration) {
-                console.log('[Dashboard] SW registered:', registration.scope);
+                debug('[Dashboard] SW registered:', registration.scope);
             }).catch(function(error) {
                 console.warn('[Dashboard] SW registration failed:', error);
             });
