@@ -318,10 +318,7 @@ class GameState(LeaderboardMixin, TtsAnnouncerMixin):
         # Same-phase writes and restores are exempt (see the table comment).
         if not restore and new_phase is not self.phase:
             allowed = _VALID_PHASE_TRANSITIONS.get(self.phase, frozenset())
-            if (
-                new_phase not in _UNIVERSAL_PHASE_TARGETS
-                and new_phase not in allowed
-            ):
+            if new_phase not in _UNIVERSAL_PHASE_TARGETS and new_phase not in allowed:
                 _LOGGER.warning(
                     "Unexpected phase transition %s -> %s (not in transition "
                     "table); proceeding. If this is a new legitimate edge, add "
