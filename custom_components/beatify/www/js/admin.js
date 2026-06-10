@@ -35,6 +35,21 @@ import {
     resetReconnectAttempts,
 } from './admin/api.js';
 
+// #1279 Schritt 4/6: pure spectator-view render helpers. These are fully
+// data-in / DOM-out (no admin-private state, no cross-refs) so they lift out
+// cleanly into a unit-testable module. The four setup-sections themselves
+// (media-players, music-service, playlists, game-settings) share heavily-mutated
+// setup state with the start-game/lobby core that stays here and are deferred to
+// a post-step-5 follow-up — see the PR body. No window shims needed: every
+// caller is inside admin.js (verified) and none of these were ever global.
+import {
+    renderAdminSubmissionDots,
+    renderAdminLeaderboard,
+    renderAdminResultCards,
+    renderAdminChallengeOptions,
+    _providerDisplayName,
+} from './admin/sections/render-helpers.js';
+
 // Token helpers in util.js need the admin-private, mutable `currentGame`.
 // A closure resolver keeps them in sync across every `currentGame = …` below
 // without touching each assignment site (declared later via `let` hoist-safe
@@ -3621,25 +3636,7 @@ function showAdminPlayingView(data) {
 /**
  * Render player-style submission dots (matches player-game.js renderSubmissionTracker).
  */
-function renderAdminSubmissionDots(players) {
-    var container = document.getElementById('admin-submitted-players');
-    if (!container || !players) return;
-
-    container.innerHTML = players.map(function(p) {
-        var initials = (p.name || '?').split(/\s+/).map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
-        var classes = [
-            'player-indicator',
-            p.submitted ? 'is-submitted' : '',
-            p.connected === false ? 'player-indicator--disconnected' : ''
-        ].filter(Boolean).join(' ');
-        var badges = '';
-        if (p.steal_used) badges += '<span class="player-badge player-badge--steal">🥷</span>';
-        if (p.bet) badges += '<span class="player-badge player-badge--bet">🎲</span>';
-        return '<div class="' + classes + '">' + badges +
-            '<div class="player-avatar"><span class="player-initials">' + utils.escapeHtml(initials) + '</span></div>' +
-            '<span class="player-name">' + utils.escapeHtml(p.name) + '</span></div>';
-    }).join('');
-}
+// renderAdminSubmissionDots moved to ./admin/sections/render-helpers.js (#1279 step 4)
 
 function startAdminCountdown(deadline) {
     if (countdownInterval) clearInterval(countdownInterval);
@@ -3872,109 +3869,7 @@ function _updateRevealAdvanceCountdown(data) {
     revealAdvanceInterval = setInterval(tick, 1000);
 }
 
-/**
- * Render player-style leaderboard entries (matches player-utils.js renderLeaderboardEntry).
- */
-function renderAdminLeaderboard(leaderboard, containerId) {
-    var targets = containerId ? [containerId] : ['admin-playing-leaderboard-list', 'admin-reveal-leaderboard'];
-    if (!leaderboard) return;
-
-    var html = '';
-    leaderboard.forEach(function(entry) {
-        var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
-        var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-        var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
-        var streakIndicator = '';
-        if (entry.streak >= 2) {
-            var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
-            streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
-        }
-        var changeIndicator = '';
-        if (entry.rank_change > 0) changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
-        else if (entry.rank_change < 0) changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
-
-        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
-            '<span class="entry-rank">#' + entry.rank + '</span>' +
-            '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
-            '<span class="entry-meta">' + streakIndicator + changeIndicator + '</span>' +
-            '<span class="entry-score">' + entry.score + '</span>' +
-        '</div>';
-    });
-
-    targets.forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.innerHTML = html;
-    });
-
-    // Update summary badges
-    if (leaderboard.length > 0) {
-        ['admin-playing-leaderboard-summary', 'admin-reveal-leaderboard-summary'].forEach(function(id) {
-            var el = document.getElementById(id);
-            if (el) el.textContent = leaderboard[0].name + ' — ' + leaderboard[0].score;
-        });
-    }
-}
-
-/**
- * Render player-style result cards for reveal (matches player-reveal.js renderPlayerResultCards).
- */
-function renderAdminResultCards(players, closestWinsMode, correctYear) {
-    var container = document.getElementById('admin-reveal-guesses');
-    if (!container) return;
-    if (!players || players.length === 0) { container.innerHTML = ''; return; }
-
-    var bestDiff = null;
-    if (closestWinsMode) {
-        players.forEach(function(p) {
-            if (!p.missed_round && p.years_off != null) {
-                if (bestDiff === null || p.years_off < bestDiff) bestDiff = p.years_off;
-            }
-        });
-    }
-
-    var sorted = players.slice().sort(function(a, b) { return (b.round_score || 0) - (a.round_score || 0); });
-    var html = '<div class="results-cards-scroll">';
-
-    sorted.forEach(function(p) {
-        var isMissed = p.missed_round === true;
-        var yearsOff = p.years_off || 0;
-        var roundScore = p.round_score || 0;
-        var scoreClass = isMissed ? 'is-score-zero' : roundScore >= 10 ? 'is-score-high' : roundScore >= 1 ? 'is-score-medium' : 'is-score-zero';
-        var isClosest = closestWinsMode && !isMissed && bestDiff !== null && yearsOff === bestDiff;
-        var closestClass = isClosest ? ' is-closest-winner' : '';
-        var guessDisplay = isMissed ? '—' : (p.guess || 'n/a');
-        var yearsOffDisplay = isMissed ? BeatifyI18n.t('reveal.noGuessShort') || 'Missed' :
-            yearsOff === 0 ? BeatifyI18n.t('reveal.exact') || 'Exact!' :
-            (BeatifyI18n.t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
-        var betIndicator = p.bet ? '<span class="card-bet">🎲</span>' : '';
-        var closestBadge = isClosest ? '<span class="closest-winner-badge">🎯</span>' : '';
-        var artistBadge = p.artist_bonus > 0 ? '<span class="player-card-artist-badge">🎤 +' + p.artist_bonus + '</span>' : '';
-
-        html += '<div class="result-card ' + scoreClass + closestClass + '">' +
-            '<div class="card-name">' + utils.escapeHtml(p.name) + betIndicator + closestBadge + '</div>' +
-            '<div class="card-guess">' + guessDisplay + '</div>' +
-            '<div class="card-accuracy">' + yearsOffDisplay + '</div>' +
-            '<div class="card-score">+' + roundScore + artistBadge + '</div>' +
-        '</div>';
-    });
-
-    html += '</div>';
-    container.innerHTML = html;
-}
-
-/**
- * Render read-only challenge options (artist/movie) for admin spectator view.
- */
-function renderAdminChallengeOptions(containerId, options) {
-    var container = document.getElementById(containerId);
-    if (!container || !options) return;
-
-    container.innerHTML = options.map(function(opt) {
-        var label = typeof opt === 'string' ? opt : (opt.label || opt.name || opt);
-        return '<div class="artist-option artist-option--readonly">' +
-            utils.escapeHtml(label) + '</div>';
-    }).join('');
-}
+// renderAdminLeaderboard, renderAdminResultCards, renderAdminChallengeOptions moved to ./admin/sections/render-helpers.js (#1279 step 4)
 
 // ---- END phase view ----
 
@@ -4017,30 +3912,7 @@ function showAdminEndView(data) {
  * recovery UI. Admin-disconnect pauses resume automatically on rejoin and
  * don't need a button.
  */
-/**
- * Map a provider key to its display name (i18n-aware, falls back to a
- * presentable default if the key is missing).
- */
-function _providerDisplayName(provider) {
-    if (!provider) return '';
-    var keyMap = {
-        spotify: 'admin.pauseRecovery.providerSpotify',
-        apple_music: 'admin.pauseRecovery.providerAppleMusic',
-        youtube_music: 'admin.pauseRecovery.providerYouTubeMusic',
-        tidal: 'admin.pauseRecovery.providerTidal',
-        deezer: 'admin.pauseRecovery.providerDeezer'
-    };
-    var fallbackMap = {
-        spotify: 'Spotify',
-        apple_music: 'Apple Music',
-        youtube_music: 'YouTube Music',
-        tidal: 'Tidal',
-        deezer: 'Deezer'
-    };
-    var key = keyMap[provider];
-    if (!key) return '';
-    return BeatifyI18n.t(key) || fallbackMap[provider] || '';
-}
+// _providerDisplayName moved to ./admin/sections/render-helpers.js (#1279 step 4)
 
 function _renderPauseRecoveryBanner(data) {
     var banner = document.getElementById('admin-pause-recovery');
