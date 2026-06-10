@@ -18,8 +18,11 @@ import pytest
 # Register in sys.modules before exec so dataclass type-resolution works on 3.9.
 _SKILL = (
     Path(__file__).resolve().parents[2]
-    / ".claude" / "skills" / "provider-uri-backfill"
-    / "scripts" / "backfill_provider_uris.py"
+    / ".claude"
+    / "skills"
+    / "provider-uri-backfill"
+    / "scripts"
+    / "backfill_provider_uris.py"
 )
 _spec = importlib.util.spec_from_file_location("backfill_provider_uris", _SKILL)
 bf = importlib.util.module_from_spec(_spec)
@@ -29,10 +32,15 @@ _spec.loader.exec_module(bf)
 
 # --- spotify_track_id ------------------------------------------------------
 def test_spotify_track_id_valid():
-    assert bf.spotify_track_id("spotify:track:7aUCLXZ4D4UD5sCgIgxqjl") == "7aUCLXZ4D4UD5sCgIgxqjl"
+    assert (
+        bf.spotify_track_id("spotify:track:7aUCLXZ4D4UD5sCgIgxqjl")
+        == "7aUCLXZ4D4UD5sCgIgxqjl"
+    )
 
 
-@pytest.mark.parametrize("bad", [None, "", "spotify:album:x", "tidal://track/1", "spotify:track:short"])
+@pytest.mark.parametrize(
+    "bad", [None, "", "spotify:album:x", "tidal://track/1", "spotify:track:short"]
+)
 def test_spotify_track_id_invalid(bad):
     assert bf.spotify_track_id(bad) is None
 
@@ -42,10 +50,14 @@ def test_odesli_maps_tidal_and_deezer_from_entity_ids():
     # Shape mirrors the live response observed 2026-06 (entityUniqueId numeric).
     payload = {
         "linksByPlatform": {
-            "tidal": {"url": "https://listen.tidal.com/track/33833948",
-                      "entityUniqueId": "TIDAL_SONG::33833948"},
-            "deezer": {"url": "https://www.deezer.com/track/13111375",
-                       "entityUniqueId": "DEEZER_SONG::13111375"},
+            "tidal": {
+                "url": "https://listen.tidal.com/track/33833948",
+                "entityUniqueId": "TIDAL_SONG::33833948",
+            },
+            "deezer": {
+                "url": "https://www.deezer.com/track/13111375",
+                "entityUniqueId": "DEEZER_SONG::13111375",
+            },
         },
         "entitiesByUniqueId": {
             "TIDAL_SONG::33833948": {"id": "33833948"},
@@ -74,8 +86,10 @@ def test_odesli_falls_back_to_url_when_entity_missing():
 def test_odesli_maps_apple_when_present():
     payload = {
         "linksByPlatform": {
-            "appleMusic": {"url": "https://music.apple.com/us/album/x/123?i=987654321",
-                           "entityUniqueId": "ITUNES_SONG::987654321"},
+            "appleMusic": {
+                "url": "https://music.apple.com/us/album/x/123?i=987654321",
+                "entityUniqueId": "ITUNES_SONG::987654321",
+            },
         },
         "entitiesByUniqueId": {"ITUNES_SONG::987654321": {"id": "987654321"}},
     }
@@ -97,7 +111,9 @@ def test_odesli_apple_url_fallback_prefers_song_id():
 
 def test_odesli_empty_and_malformed_safe():
     assert bf.odesli_to_uris({}) == {}
-    assert bf.odesli_to_uris({"linksByPlatform": None, "entitiesByUniqueId": None}) == {}
+    assert (
+        bf.odesli_to_uris({"linksByPlatform": None, "entitiesByUniqueId": None}) == {}
+    )
 
 
 def test_odesli_skips_non_numeric_id():
@@ -127,11 +143,16 @@ def test_song_gaps_none_when_complete():
 # --- coverage aggregation --------------------------------------------------
 def test_coverage_counts_have_and_fillable():
     songs = [
-        {"uri": "spotify:track:" + "a" * 22, "uri_tidal": "tidal://track/1"},  # gaps → fillable
-        {"uri": "spotify:track:" + "b" * 22,                                   # all gaps → fillable
-         },
+        {
+            "uri": "spotify:track:" + "a" * 22,
+            "uri_tidal": "tidal://track/1",
+        },  # gaps → fillable
+        {
+            "uri": "spotify:track:" + "b" * 22,  # all gaps → fillable
+        },
         {"uri": None, "uri_tidal": None},  # no spotify uri → not fillable
-        {f: "x" for f in bf.PROVIDER_FIELDS.values()} | {"uri": "spotify:track:" + "c" * 22},  # complete
+        {f: "x" for f in bf.PROVIDER_FIELDS.values()}
+        | {"uri": "spotify:track:" + "c" * 22},  # complete
     ]
     cov = bf.coverage_for_playlist("p.json", "/p.json", songs)
     assert cov.total == 4
@@ -171,6 +192,7 @@ def test_load_state_missing_file(tmp_path):
 # --- HTTP wrappers with mocked getters -------------------------------------
 def test_fetch_odesli_retries_on_429(monkeypatch):
     import urllib.error
+
     calls = {"n": 0}
 
     def getter(url):
@@ -180,8 +202,9 @@ def test_fetch_odesli_retries_on_429(monkeypatch):
         return {"ok": True}
 
     slept = []
-    out = bf.fetch_odesli("x" * 22, sleep=0.01, getter=getter,
-                          sleeper=lambda s: slept.append(s))
+    out = bf.fetch_odesli(
+        "x" * 22, sleep=0.01, getter=getter, sleeper=lambda s: slept.append(s)
+    )
     assert out == {"ok": True}
     assert calls["n"] == 3
     assert len(slept) == 2 and slept[1] > slept[0]  # exponential backoff
@@ -208,8 +231,10 @@ def test_fetch_deezer_isrc_no_data():
 
 def test_youtube_search_extracts_video_id():
     resp = {"items": [{"id": {"videoId": "dQw4w9WgXcQ"}}]}
-    assert bf.youtube_search_id("KEY", "Rick Astley", "Never Gonna",
-                                getter=lambda u: resp) == "dQw4w9WgXcQ"
+    assert (
+        bf.youtube_search_id("KEY", "Rick Astley", "Never Gonna", getter=lambda u: resp)
+        == "dQw4w9WgXcQ"
+    )
 
 
 def test_youtube_search_no_items():
@@ -220,7 +245,12 @@ def test_youtube_search_no_items():
 def test_build_report_has_summary_and_rows():
     cov = bf.PlaylistCoverage(name="p.json", path="/p.json", total=10)
     cov.have = {"apple_music": 8, "tidal": 5, "deezer": 9, "youtube_music": 10}
-    cov.filled_this_run = {"apple_music": 0, "tidal": 3, "deezer": 0, "youtube_music": 0}
+    cov.filled_this_run = {
+        "apple_music": 0,
+        "tidal": 3,
+        "deezer": 0,
+        "youtube_music": 0,
+    }
     md = bf.build_report([cov], "2026-06-10", applied=True, yt_phase_note="skipped")
     assert "# Beatify Provider-URI Coverage" in md
     assert "## Summary" in md
@@ -234,33 +264,54 @@ def test_run_dry_run_no_mutation(tmp_path, monkeypatch):
     pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
     pl_dir.mkdir(parents=True)
     playlist = {
-        "name": "Test", "version": "1.0", "tags": [],
-        "songs": [{
-            "artist": "A", "title": "T", "year": 2000,
-            "uri": "spotify:track:" + "a" * 22,
-            "isrc": "USRE19901615",
-            "fun_fact": "", "fun_fact_de": "", "fun_fact_es": "",
-            "fun_fact_fr": "", "fun_fact_nl": "",
-        }],
+        "name": "Test",
+        "version": "1.0",
+        "tags": [],
+        "songs": [
+            {
+                "artist": "A",
+                "title": "T",
+                "year": 2000,
+                "uri": "spotify:track:" + "a" * 22,
+                "isrc": "USRE19901615",
+                "fun_fact": "",
+                "fun_fact_de": "",
+                "fun_fact_es": "",
+                "fun_fact_fr": "",
+                "fun_fact_nl": "",
+            }
+        ],
     }
     f = pl_dir / "test.json"
     f.write_text(json.dumps(playlist))
 
     # No network should be hit in dry-run: gaps are detected and resolvers are
     # called, so mock them to assert no mutation reaches disk anyway.
-    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: {
-        "linksByPlatform": {"tidal": {"entityUniqueId": "TIDAL_SONG::1"}},
-        "entitiesByUniqueId": {"TIDAL_SONG::1": {"id": "1"}},
-    })
+    monkeypatch.setattr(
+        bf,
+        "fetch_odesli",
+        lambda *a, **k: {
+            "linksByPlatform": {"tidal": {"entityUniqueId": "TIDAL_SONG::1"}},
+            "entitiesByUniqueId": {"TIDAL_SONG::1": {"id": "1"}},
+        },
+    )
     monkeypatch.setattr(bf, "fetch_deezer_isrc", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     out = tmp_path / "coverage.md"
-    rc = bf.main([
-        "--repo-root", str(tmp_path), "--output", str(out),
-        "--state", str(tmp_path / "state.json"), "--odesli-sleep", "0",
-    ])
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--output",
+            str(out),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
     assert rc == 0
     # Dry-run: report written, JSON untouched.
     assert out.exists()
@@ -272,35 +323,56 @@ def test_run_apply_writes_uri(tmp_path, monkeypatch):
     pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
     pl_dir.mkdir(parents=True)
     playlist = {
-        "name": "Test", "version": "1.0", "tags": [],
-        "songs": [{
-            "artist": "A", "title": "T", "year": 2000,
-            "uri": "spotify:track:" + "a" * 22,
-            "fun_fact": "", "fun_fact_de": "", "fun_fact_es": "",
-            "fun_fact_fr": "", "fun_fact_nl": "",
-        }],
+        "name": "Test",
+        "version": "1.0",
+        "tags": [],
+        "songs": [
+            {
+                "artist": "A",
+                "title": "T",
+                "year": 2000,
+                "uri": "spotify:track:" + "a" * 22,
+                "fun_fact": "",
+                "fun_fact_de": "",
+                "fun_fact_es": "",
+                "fun_fact_fr": "",
+                "fun_fact_nl": "",
+            }
+        ],
     }
     f = pl_dir / "test.json"
     f.write_text(json.dumps(playlist))
 
-    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: {
-        "linksByPlatform": {
-            "tidal": {"entityUniqueId": "TIDAL_SONG::42"},
-            "deezer": {"entityUniqueId": "DEEZER_SONG::99"},
+    monkeypatch.setattr(
+        bf,
+        "fetch_odesli",
+        lambda *a, **k: {
+            "linksByPlatform": {
+                "tidal": {"entityUniqueId": "TIDAL_SONG::42"},
+                "deezer": {"entityUniqueId": "DEEZER_SONG::99"},
+            },
+            "entitiesByUniqueId": {
+                "TIDAL_SONG::42": {"id": "42"},
+                "DEEZER_SONG::99": {"id": "99"},
+            },
         },
-        "entitiesByUniqueId": {
-            "TIDAL_SONG::42": {"id": "42"},
-            "DEEZER_SONG::99": {"id": "99"},
-        },
-    })
+    )
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
-    rc = bf.main([
-        "--repo-root", str(tmp_path), "--apply",
-        "--output", str(tmp_path / "coverage.md"),
-        "--state", str(tmp_path / "state.json"), "--odesli-sleep", "0",
-    ])
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "coverage.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
     assert rc == 0
     song = json.loads(f.read_text())["songs"][0]
     assert song["uri_tidal"] == "tidal://track/42"

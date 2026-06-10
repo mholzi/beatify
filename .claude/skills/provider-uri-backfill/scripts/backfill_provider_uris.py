@@ -32,6 +32,7 @@ Safety: defaults to **dry-run** (report only). JSON files are only mutated when
 ``--apply`` is passed. Running the full backfill at scale is a deliberate
 follow-up, not the default.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -258,13 +259,19 @@ def _http_get_json(url: str, timeout: int = 30) -> dict:
         return json.loads(resp.read().decode("utf-8"))
 
 
-def fetch_odesli(spotify_id: str, *, sleep: float = 6.0, max_retries: int = 4,
-                 getter: Callable[[str], dict] = _http_get_json,
-                 sleeper: Callable[[float], None] = time.sleep) -> dict | None:
+def fetch_odesli(
+    spotify_id: str,
+    *,
+    sleep: float = 6.0,
+    max_retries: int = 4,
+    getter: Callable[[str], dict] = _http_get_json,
+    sleeper: Callable[[float], None] = time.sleep,
+) -> dict | None:
     """Call Odesli for one Spotify track. Throttles + backs off on HTTP 429."""
     spotify_url = f"https://open.spotify.com/track/{spotify_id}"
-    api = ("https://api.song.link/v1-alpha.1/links?url="
-           + urllib.parse.quote(spotify_url, safe=""))
+    api = "https://api.song.link/v1-alpha.1/links?url=" + urllib.parse.quote(
+        spotify_url, safe=""
+    )
     backoff = sleep
     for attempt in range(max_retries + 1):
         try:
@@ -280,8 +287,9 @@ def fetch_odesli(spotify_id: str, *, sleep: float = 6.0, max_retries: int = 4,
     return None
 
 
-def fetch_deezer_isrc(isrc: str,
-                      getter: Callable[[str], dict] = _http_get_json) -> str | None:
+def fetch_deezer_isrc(
+    isrc: str, getter: Callable[[str], dict] = _http_get_json
+) -> str | None:
     """Map an ISRC to a Deezer track id via the public endpoint. None if absent."""
     try:
         data = getter(f"https://api.deezer.com/track/isrc:{isrc}")
@@ -292,8 +300,12 @@ def fetch_deezer_isrc(isrc: str,
     return _numeric_id(data.get("id"))
 
 
-def youtube_search_id(api_key: str, artist: str, title: str,
-                      getter: Callable[[str], dict] = _http_get_json) -> str | None:
+def youtube_search_id(
+    api_key: str,
+    artist: str,
+    title: str,
+    getter: Callable[[str], dict] = _http_get_json,
+) -> str | None:
     """search.list for ``artist title``; return the top video id (11 chars)."""
     q = urllib.parse.quote(f"{artist} {title}")
     url = (
@@ -331,16 +343,22 @@ def rel_name(root: Path, path: Path) -> str:
 # ---------------------------------------------------------------------------
 def run(args: argparse.Namespace) -> int:
     root = Path(args.repo_root).resolve()
-    state_path = Path(args.state) if args.state else (
-        Path(__file__).resolve().parent.parent / ".backfill-state.json")
+    state_path = (
+        Path(args.state)
+        if args.state
+        else (Path(__file__).resolve().parent.parent / ".backfill-state.json")
+    )
     today = time.strftime("%Y-%m-%d")
     yt_key = os.environ.get("YOUTUBE_API_KEY")
     yt_state = load_state(state_path, today, args.youtube_budget)
 
     playlist_paths = discover_playlists(root)
     if args.playlist:
-        playlist_paths = [p for p in playlist_paths
-                          if p.stem == args.playlist or rel_name(root, p) == args.playlist]
+        playlist_paths = [
+            p
+            for p in playlist_paths
+            if p.stem == args.playlist or rel_name(root, p) == args.playlist
+        ]
         if not playlist_paths:
             print(f"No playlist matched '{args.playlist}'", file=sys.stderr)
             return 2
@@ -349,9 +367,10 @@ def run(args: argparse.Namespace) -> int:
     # Global flat index for the YouTube resume cursor.
     global_idx = 0
     yt_phase_note = (
-        "skipped — YOUTUBE_API_KEY not set" if not yt_key
+        "skipped — YOUTUBE_API_KEY not set"
+        if not yt_key
         else f"budget {yt_state.remaining()}/{yt_state.budget} left today, "
-             f"cursor at song #{yt_state.cursor}"
+        f"cursor at song #{yt_state.cursor}"
     )
 
     for path in playlist_paths:
@@ -381,7 +400,11 @@ def run(args: argparse.Namespace) -> int:
                         cov.filled_this_run[prov] += 1
                         dirty = True
                 # Deezer secondary verify via ISRC if Odesli missed it.
-                if "deezer" in non_yt_gaps and not song.get("uri_deezer") and song.get("isrc"):
+                if (
+                    "deezer" in non_yt_gaps
+                    and not song.get("uri_deezer")
+                    and song.get("isrc")
+                ):
                     did = fetch_deezer_isrc(song["isrc"])
                     if did:
                         song["uri_deezer"] = deezer_uri(did)
@@ -394,11 +417,14 @@ def run(args: argparse.Namespace) -> int:
                 if this_global_idx < yt_state.cursor:
                     continue  # already passed this index in a prior run
                 if not yt_state.can_spend():
-                    yt_phase_note = (f"daily budget {yt_state.budget} exhausted; "
-                                     f"resume at song #{yt_state.cursor}")
+                    yt_phase_note = (
+                        f"daily budget {yt_state.budget} exhausted; "
+                        f"resume at song #{yt_state.cursor}"
+                    )
                     continue
-                vid = youtube_search_id(yt_key, song.get("artist", ""),
-                                        song.get("title", ""))
+                vid = youtube_search_id(
+                    yt_key, song.get("artist", ""), song.get("title", "")
+                )
                 yt_state.spend()
                 yt_state.cursor = this_global_idx + 1
                 if vid:
@@ -413,10 +439,12 @@ def run(args: argparse.Namespace) -> int:
     if yt_key:
         save_state(state_path, yt_state)
 
-    report = build_report(coverages, today, applied=args.apply,
-                          yt_phase_note=yt_phase_note)
-    out_path = Path(args.output) if args.output else (
-        root / "docs" / "provider-coverage.md")
+    report = build_report(
+        coverages, today, applied=args.apply, yt_phase_note=yt_phase_note
+    )
+    out_path = (
+        Path(args.output) if args.output else (root / "docs" / "provider-coverage.md")
+    )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(report)
     print(f"Wrote coverage report → {out_path}")
@@ -425,14 +453,20 @@ def run(args: argparse.Namespace) -> int:
     return 0
 
 
-def build_report(coverages: list[PlaylistCoverage], today: str, *,
-                 applied: bool, yt_phase_note: str) -> str:
-    label = {"apple_music": "Apple", "tidal": "Tidal",
-             "deezer": "Deezer", "youtube_music": "YouTube"}
+def build_report(
+    coverages: list[PlaylistCoverage], today: str, *, applied: bool, yt_phase_note: str
+) -> str:
+    label = {
+        "apple_music": "Apple",
+        "tidal": "Tidal",
+        "deezer": "Deezer",
+        "youtube_music": "YouTube",
+    }
     total = sum(c.total for c in coverages)
     have_tot = {p: sum(c.have[p] for c in coverages) for p in PROVIDER_FIELDS}
-    filled_tot = {p: sum(c.filled_this_run.get(p, 0) for c in coverages)
-                  for p in PROVIDER_FIELDS}
+    filled_tot = {
+        p: sum(c.filled_this_run.get(p, 0) for c in coverages) for p in PROVIDER_FIELDS
+    }
 
     lines = [
         "# Beatify Provider-URI Coverage",
@@ -448,8 +482,7 @@ def build_report(coverages: list[PlaylistCoverage], today: str, *,
     for p in PROVIDER_FIELDS:
         pct = (100 * have_tot[p] / total) if total else 0
         lines.append(
-            f"| {label[p]} | {have_tot[p]} | {total} | {pct:.1f}% | "
-            f"{filled_tot[p]} |"
+            f"| {label[p]} | {have_tot[p]} | {total} | {pct:.1f}% | {filled_tot[p]} |"
         )
     lines += [
         "",
@@ -475,22 +508,37 @@ def build_report(coverages: list[PlaylistCoverage], today: str, *,
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description=__doc__,
-                                formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--repo-root", default=".",
-                   help="Beatify repo root (default: cwd)")
-    p.add_argument("--playlist",
-                   help="Only process this playlist (basename or community/<name>)")
-    p.add_argument("--apply", action="store_true",
-                   help="Write filled URIs back to JSON (default: dry-run report only)")
-    p.add_argument("--output",
-                   help="Coverage report path (default: docs/provider-coverage.md)")
-    p.add_argument("--state",
-                   help="YouTube resume-state file (default: skill/.backfill-state.json)")
-    p.add_argument("--odesli-sleep", type=float, default=6.0,
-                   help="Seconds between Odesli calls (free tier ~10/min, default 6)")
-    p.add_argument("--youtube-budget", type=int, default=90,
-                   help="Max YouTube search.list calls per day (default 90)")
+    p = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    p.add_argument("--repo-root", default=".", help="Beatify repo root (default: cwd)")
+    p.add_argument(
+        "--playlist", help="Only process this playlist (basename or community/<name>)"
+    )
+    p.add_argument(
+        "--apply",
+        action="store_true",
+        help="Write filled URIs back to JSON (default: dry-run report only)",
+    )
+    p.add_argument(
+        "--output", help="Coverage report path (default: docs/provider-coverage.md)"
+    )
+    p.add_argument(
+        "--state",
+        help="YouTube resume-state file (default: skill/.backfill-state.json)",
+    )
+    p.add_argument(
+        "--odesli-sleep",
+        type=float,
+        default=6.0,
+        help="Seconds between Odesli calls (free tier ~10/min, default 6)",
+    )
+    p.add_argument(
+        "--youtube-budget",
+        type=int,
+        default=90,
+        help="Max YouTube search.list calls per day (default 90)",
+    )
     return p
 
 
