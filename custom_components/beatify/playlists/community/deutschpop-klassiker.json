@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "german",
     "pop",
@@ -798,10 +798,10 @@
       "year": 2017,
       "isrc": "DEQ321600148",
       "uri": "spotify:track:4ZPXuHp219ujq6QJ9oqteR",
-      "uri_apple_music": "applemusic://track/1473616796",
+      "uri_apple_music": "applemusic://track/1096694871",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1280912827",
-        "de": "applemusic://track/1473616796",
+        "de": "applemusic://track/1096694871",
         "gb": "applemusic://track/1280912827",
         "fr": "applemusic://track/1280912827",
         "es": "applemusic://track/1280912827",
@@ -809,7 +809,7 @@
         "it": "applemusic://track/1280912827"
       },
       "uri_deezer": "deezer://track/426347072",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1tD41isys1o",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6Mwvi40VSDU",
       "uri_tidal": null,
       "alt_artists": [
         "Tim Bendzko",
