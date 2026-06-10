@@ -1315,3 +1315,61 @@ class TestTitleArtistMode:
         # Now Bob too
         gs.players["Bob"].has_title_artist_guess = True
         assert gs.check_all_guesses_complete() is True
+
+
+# ---------------------------------------------------------------------------
+# Phase transition SSOT (_set_phase) — Issue #1273
+# ---------------------------------------------------------------------------
+
+
+class TestSetPhaseSSOT:
+    """The single phase write-point centralises phase + its invariants (#1273)."""
+
+    def test_sets_phase(self):
+        state = make_game_state()
+        state._set_phase(GamePhase.PLAYING)
+        assert state.phase == GamePhase.PLAYING
+
+    def test_entering_reveal_stamps_reveal_started_at(self):
+        # Deterministic clock so the stamp is predictable (#1048).
+        state = make_game_state(time_fn=lambda: 1000.0)
+        state._set_phase(GamePhase.REVEAL)
+        assert state.phase == GamePhase.REVEAL
+        assert state.reveal_started_at == 1_000_000  # int(now * 1000)
+
+    @pytest.mark.parametrize(
+        "phase",
+        [GamePhase.LOBBY, GamePhase.PLAYING, GamePhase.PAUSED, GamePhase.END],
+    )
+    def test_leaving_reveal_clears_reveal_started_at(self, phase):
+        state = make_game_state(time_fn=lambda: 1000.0)
+        state._set_phase(GamePhase.REVEAL)
+        assert state.reveal_started_at is not None
+        # Any non-REVEAL transition clears the stamp — the SSOT invariant.
+        state._set_phase(phase)
+        assert state.reveal_started_at is None
+
+    def test_invariant_reveal_started_at_iff_reveal(self):
+        # reveal_started_at is non-None *iff* phase is REVEAL, for every phase.
+        state = make_game_state(time_fn=lambda: 1000.0)
+        for phase in GamePhase:
+            state._set_phase(phase)
+            if phase is GamePhase.REVEAL:
+                assert state.reveal_started_at is not None
+            else:
+                assert state.reveal_started_at is None
+
+    def test_notifies_state_callbacks_by_default(self):
+        state = make_game_state()
+        calls: list[int] = []
+        state.register_state_callback(lambda: calls.append(1))
+        state._set_phase(GamePhase.PLAYING)
+        assert calls == [1]
+
+    def test_notify_false_skips_callbacks(self):
+        state = make_game_state()
+        calls: list[int] = []
+        state.register_state_callback(lambda: calls.append(1))
+        state._set_phase(GamePhase.PLAYING, notify=False)
+        assert calls == []
+        assert state.phase == GamePhase.PLAYING
