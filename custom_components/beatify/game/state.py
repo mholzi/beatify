@@ -1926,7 +1926,19 @@ class GameState:
             await self._end_round_unlocked()
 
     async def _end_round_unlocked(self) -> None:
-        """Inner end_round logic. Caller MUST hold _score_lock."""
+        """Inner end_round logic. Caller MUST hold _score_lock.
+
+        Short orchestrator over the round-end phases (#1272). Each helper runs
+        under the caller-held _score_lock — none acquires the lock itself, so
+        the _unlocked contract is preserved:
+          1. guard + setup (timer cancel, previous-rank snapshot, correct_year)
+          2. _score_round            — scoring pass + closest-wins + round_results
+          3. _record_round_stats     — highlights, analytics, song-result stats
+          4. _transition_to_reveal   — REVEAL announcement + phase flip
+          5. _schedule_reveal_advance — vote window / auto-advance / idle-halt
+          6. _apply_reveal_lights    — party-light phase + event flashes
+          7. round-end broadcast callback
+        """
         # Guard: skip if already transitioned (e.g. timer + early reveal race)
         if self.phase != GamePhase.PLAYING:
             _LOGGER.debug("end_round skipped — phase already %s", self.phase.value)
@@ -1956,6 +1968,44 @@ class GameState:
                     "missing" if self.current_song is None else "no year field",
                 )
 
+        # Phase 2: scoring pass (year/title-artist), closest-wins, round_results
+        self._score_round(correct_year)
+
+        # Phase 3: highlights, round analytics, persisted song-result stats
+        await self._record_round_stats(correct_year)
+
+        # Phase 4: REVEAL announcement + transition to the REVEAL phase
+        await self._transition_to_reveal(correct_year)
+
+        # Phase 5: schedule the title/artist vote window or REVEAL auto-advance
+        self._schedule_reveal_advance()
+
+        # Phase 6: party-light phase update + exact/correct flashes
+        await self._apply_reveal_lights(correct_year)
+
+        _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
+
+        # Invoke callback to broadcast state
+        if self._on_round_end:
+            _LOGGER.debug("Invoking round_end callback to broadcast REVEAL state")
+            try:
+                await self._on_round_end()
+                _LOGGER.debug("Round_end callback completed successfully")
+            except (ConnectionError, OSError, TypeError) as err:
+                _LOGGER.error("Round_end callback failed: %s", err)
+        else:
+            _LOGGER.warning(
+                "No round_end callback set - REVEAL state will not be broadcast!"
+            )
+
+    def _score_round(self, correct_year: int | None) -> None:
+        """Run the round's scoring pass (#1272 — extracted from end_round).
+
+        Sync; caller holds _score_lock (matches the prior inline behaviour —
+        no lock is acquired here). Mutates player scores / round_results in
+        place. Covers: ScoringService scoring, Closest-Wins zeroing, and the
+        per-player round_results classification.
+        """
         # Calculate scores for all players — delegates to ScoringService (#139).
         # #816: wrap in try/except so an unexpected state shape in ONE player
         # doesn't abort the whole round-end transition. Without this, a
@@ -2017,6 +2067,13 @@ class GameState:
                         err,
                     )
 
+    async def _record_round_stats(self, correct_year: int | None) -> None:
+        """Record highlights, round analytics and song-result stats (#1272).
+
+        Extracted from end_round; runs after scoring, before REVEAL. Each block
+        keeps its own defensive wrap so a stats hiccup never blocks the REVEAL
+        transition. No lock is acquired (caller holds _score_lock).
+        """
         # Issue #75: Record highlights after scoring
         try:
             self._record_round_highlights(correct_year)
@@ -2079,6 +2136,14 @@ class GameState:
                 except (OSError, KeyError, TypeError, ValueError) as err:
                     _LOGGER.error("Failed to record song results: %s", err)
 
+    async def _transition_to_reveal(self, correct_year: int | None) -> None:
+        """Announce the reveal and flip the phase to REVEAL (#1272).
+
+        Fires the combined REVEAL announcement (before the visible state
+        change so audio leads), clears per-phase reactions, sets phase +
+        reveal_started_at, and notifies state callbacks. Caller holds
+        _score_lock.
+        """
         # The per-round REVEAL announcements (correct answer, accuracy,
         # streaks, bets, steal unlocks, standings) collected into ONE
         # combined utterance — see _announce_reveal. Fired BEFORE the phase
@@ -2099,6 +2164,13 @@ class GameState:
         self.reveal_started_at = int(self._now() * 1000)
         self._notify_state_callbacks()
 
+    def _schedule_reveal_advance(self) -> None:
+        """Schedule the REVEAL vote window or auto-advance task (#1272).
+
+        Sync; caller holds _score_lock. Cancels any prior auto-advance, then
+        either opens the title/artist vote window (which owns the dwell) or
+        schedules the song-end auto-advance / idle-halt task.
+        """
         # #1012: schedule the unattended REVEAL auto-advance — always on
         # (timer 0 = advance at song-end). start_round itself ends the
         # game when songs are exhausted, so this also carries the final
@@ -2129,6 +2201,13 @@ class GameState:
                 )
                 self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
 
+    async def _apply_reveal_lights(self, correct_year: int | None) -> None:
+        """Update party lights for REVEAL + flash on exact/correct (#1272).
+
+        Caller holds _score_lock. Sets the REVEAL light phase, then flashes
+        gold when any player was exact (years_off == 0) or green when any was
+        within one year.
+        """
         # Issue #331/#517: Update Party Lights for reveal phase + event flashes
         await self._lights_set_phase(GamePhase.REVEAL)
         if correct_year is not None:
@@ -2144,21 +2223,6 @@ class GameState:
                 await self._lights_flash("gold")
             elif has_correct:
                 await self._lights_flash("green")
-
-        _LOGGER.info("Round %d ended, phase: REVEAL", self.round)
-
-        # Invoke callback to broadcast state
-        if self._on_round_end:
-            _LOGGER.debug("Invoking round_end callback to broadcast REVEAL state")
-            try:
-                await self._on_round_end()
-                _LOGGER.debug("Round_end callback completed successfully")
-            except (ConnectionError, OSError, TypeError) as err:
-                _LOGGER.error("Round_end callback failed: %s", err)
-        else:
-            _LOGGER.warning(
-                "No round_end callback set - REVEAL state will not be broadcast!"
-            )
 
     def _record_round_highlights(self, correct_year: int | None) -> None:
         """Detect and record highlights for the current round (Issue #75)."""
