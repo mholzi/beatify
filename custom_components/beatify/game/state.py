@@ -219,22 +219,27 @@ class GameState(TtsAnnouncerMixin):
     # Phase transitions — Single Source of Truth (Issue #1273)
     # ------------------------------------------------------------------
     #
-    # ALL writes to ``self.phase`` go through ``_set_phase``. This makes the
-    # backend the one authoritative owner of the game phase and gives every
-    # transition a single, auditable chokepoint. Two invariants that were
-    # previously hand-maintained at each scattered ``self.phase = …`` site are
-    # now enforced here so they can never drift:
+    # ALL writes to ``self.phase`` now go through ``_set_phase`` — including the
+    # two ``resume_game`` restores, which pass ``restore=True`` (#1273). There
+    # are no remaining direct ``self.phase = …`` assignments anywhere in the
+    # codebase. This makes the backend the one authoritative owner of the game
+    # phase and gives every transition a single, auditable chokepoint. Two
+    # invariants that were previously hand-maintained at each scattered
+    # ``self.phase = …`` site are now enforced here so they can never drift:
     #
-    #   * ``reveal_started_at`` (#1048) is non-None *iff* phase is REVEAL —
-    #     stamped on entry to REVEAL, cleared on every other transition.
+    #   * ``reveal_started_at`` (#1048) is owned by forward transitions: non-None
+    #     *iff* phase is REVEAL — stamped on entry to REVEAL, cleared on every
+    #     other forward transition. A ``restore=True`` resume deliberately leaves
+    #     it untouched (resume must not restart the auto-advance countdown).
     #   * registered state observers (#441) are notified on every phase change.
     #
-    # This is the first increment of the SSOT state-machine described in the
-    # issue: it centralises the *write* path without yet modelling explicit
+    # This centralises the *write* path without yet modelling explicit
     # transition guards. Follow-up increments can layer a transition table on
-    # top of this single chokepoint (see PR description / migration path).
+    # top of this single chokepoint (see issue / migration path).
 
-    def _set_phase(self, new_phase: GamePhase, *, notify: bool = True) -> None:
+    def _set_phase(
+        self, new_phase: GamePhase, *, notify: bool = True, restore: bool = False
+    ) -> None:
         """Authoritatively transition the game to ``new_phase``.
 
         The single write-point for ``self.phase`` (Issue #1273). Maintains the
@@ -247,15 +252,27 @@ class GameState(TtsAnnouncerMixin):
                 True; pass False only when the caller batches its own notify
                 immediately afterwards (kept for callers that interleave other
                 bookkeeping between the phase write and the broadcast).
+            restore: Pass True only from ``resume_game`` (#1273). A resume
+                *restores* a previously-saved phase rather than making a forward
+                transition, so it must NOT re-stamp ``reveal_started_at`` — a
+                resume-to-REVEAL would otherwise restart the auto-advance
+                countdown. With ``restore=True`` the ``reveal_started_at`` value
+                is left exactly as-is (neither stamped nor cleared); only the
+                phase write + notify happen. This lets the two resume writes
+                join the SSOT chokepoint without changing behaviour. Defaults to
+                False (forward transitions own the timestamp invariant).
 
         """
         self.phase = new_phase
-        # #1048: the REVEAL-entry timestamp is owned entirely by the phase
-        # transition. Entering REVEAL stamps it; any other phase clears it.
-        if new_phase is GamePhase.REVEAL:
-            self.reveal_started_at = int(self._now() * 1000)
-        else:
-            self.reveal_started_at = None
+        # #1048: the REVEAL-entry timestamp is owned entirely by forward phase
+        # transitions. Entering REVEAL stamps it; any other phase clears it.
+        # A restore (resume) deliberately leaves the timestamp untouched — see
+        # the ``restore`` arg docstring.
+        if not restore:
+            if new_phase is GamePhase.REVEAL:
+                self.reveal_started_at = int(self._now() * 1000)
+            else:
+                self.reveal_started_at = None
         if notify:
             self._notify_state_callbacks()
 
@@ -1057,23 +1074,22 @@ class GameState(TtsAnnouncerMixin):
             else:
                 # Timer expired during pause — end the round immediately.
                 # #1273: resume *restores* a saved phase rather than making a
-                # forward transition, so it intentionally does NOT route through
-                # _set_phase — re-stamping reveal_started_at on a resume-to-REVEAL
-                # would change behaviour (the auto-advance countdown must not
-                # restart). Kept as a direct write; see PR migration notes.
+                # forward transition, so it routes through _set_phase with
+                # restore=True — that writes the phase + notifies but leaves
+                # reveal_started_at untouched, so a resume-to-REVEAL does NOT
+                # re-stamp it (the auto-advance countdown must not restart).
                 _LOGGER.info("Timer expired during pause, ending round")
-                self.phase = previous
-                self._notify_state_callbacks()
+                self._set_phase(previous, restore=True)
                 self.pause_reason = None
                 self.disconnected_admin_name = None
                 self._previous_phase = None
                 await self.end_round()
                 return True
 
-        # Restore previous phase (direct write, not _set_phase — see #1273 note
-        # in the timer-expired branch above: resume must not re-stamp REVEAL).
-        self.phase = previous
-        self._notify_state_callbacks()
+        # Restore previous phase via _set_phase(restore=True) — see the
+        # timer-expired branch above and the _set_phase ``restore`` docstring:
+        # a resume must not re-stamp reveal_started_at on a resume-to-REVEAL.
+        self._set_phase(previous, restore=True)
         self.pause_reason = None
         self.disconnected_admin_name = None
         self._previous_phase = None

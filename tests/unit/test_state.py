@@ -1051,6 +1051,20 @@ class TestResumeGame:
         assert self.state.phase == GamePhase.REVEAL
 
     @pytest.mark.asyncio
+    async def test_resume_to_reveal_does_not_restamp_reveal_started_at(self):
+        # #1273: resume routes through _set_phase(restore=True), which must NOT
+        # re-stamp reveal_started_at. pause_game cleared it (left REVEAL), so it
+        # stays None across the resume — the auto-advance countdown is not
+        # restarted. Behaviour-preserving vs. the prior direct phase write.
+        self.state.phase = GamePhase.REVEAL
+        await self.state.pause_game("admin_disconnected")
+        assert self.state.reveal_started_at is None
+        result = await self.state.resume_game()
+        assert result is True
+        assert self.state.phase == GamePhase.REVEAL
+        assert self.state.reveal_started_at is None
+
+    @pytest.mark.asyncio
     async def test_resume_not_paused(self):
         result = await self.state.resume_game()
         assert result is False
@@ -1373,3 +1387,29 @@ class TestSetPhaseSSOT:
         state._set_phase(GamePhase.PLAYING, notify=False)
         assert calls == []
         assert state.phase == GamePhase.PLAYING
+
+    def test_restore_to_reveal_does_not_stamp_reveal_started_at(self):
+        # #1273: a resume *restores* a saved phase and must NOT re-stamp the
+        # REVEAL timestamp (that would restart the auto-advance countdown).
+        state = make_game_state(time_fn=lambda: 1000.0)
+        assert state.reveal_started_at is None
+        state._set_phase(GamePhase.REVEAL, restore=True)
+        assert state.phase == GamePhase.REVEAL
+        # restore=True leaves reveal_started_at exactly as it was (None here).
+        assert state.reveal_started_at is None
+
+    def test_restore_leaves_existing_reveal_started_at_untouched(self):
+        # A pre-existing stamp survives a restore unchanged (neither cleared
+        # nor re-stamped) — restore touches only the phase + notify.
+        state = make_game_state(time_fn=lambda: 1000.0)
+        state.reveal_started_at = 555
+        state._set_phase(GamePhase.LOBBY, restore=True)
+        assert state.phase == GamePhase.LOBBY
+        assert state.reveal_started_at == 555
+
+    def test_restore_still_notifies_by_default(self):
+        state = make_game_state()
+        calls: list[int] = []
+        state.register_state_callback(lambda: calls.append(1))
+        state._set_phase(GamePhase.PLAYING, restore=True)
+        assert calls == [1]
