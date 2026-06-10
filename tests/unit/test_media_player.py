@@ -820,6 +820,75 @@ class TestMAProviderFallback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         assert svc._get_ma_uri_candidates({"title": "x", "artist": "y"}) == []
 
+    def test_candidates_unknown_provider_warns_and_falls_back(self, caplog):
+        """#1276: an unmapped provider logs a warning and falls back to _resolved_uri.
+
+        The wizard is supposed to gate provider selection, but if an unknown
+        value reaches the dispatch the old `.get(..., ())` produced zero
+        candidates with no diagnostic (the silent-fail pattern behind
+        #768/#808). The provider must be named in the warning, and a song
+        that still carries `_resolved_uri` must remain playable.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="napster",  # not in _PROVIDER_URI_FIELDS
+        )
+        song = {
+            "artist": "A",
+            "title": "T",
+            "_resolved_uri": "spotify:track:abc",
+        }
+        with caplog.at_level("WARNING"):
+            candidates = svc._get_ma_uri_candidates(song)
+        # _resolved_uri is still honored as a last resort.
+        assert candidates == [(None, "spotify:track:abc")]
+        # Warning names the unknown provider so the mismatch is debuggable.
+        assert any(
+            "napster" in rec.message and rec.levelname == "WARNING"
+            for rec in caplog.records
+        )
+
+    def test_candidates_known_provider_empty_fields_stays_quiet(self, caplog):
+        """#1276: a known provider mapped to () (amazon_music) must NOT warn.
+
+        amazon_music plays via Alexa text-search and intentionally has no URI
+        fields — it must not be mistaken for the unknown-provider miss-case.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="amazon_music",
+        )
+        with caplog.at_level("WARNING"):
+            svc._get_ma_uri_candidates({"artist": "A", "title": "T"})
+        assert not any("unknown provider" in rec.message for rec in caplog.records)
+
+    @pytest.mark.asyncio
+    async def test_play_via_ma_no_candidate_warns_with_provider(self, caplog):
+        """#1276: a missing-URI miss logs a warning naming the provider + song."""
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
+        # Song has no apple_music URI → no candidates.
+        song = {"artist": "Artist", "title": "Title", "uri_spotify": "spotify:track:x"}
+        with caplog.at_level("WARNING"):
+            result = await svc._play_via_music_assistant(song)
+        assert result is False
+        assert svc.last_failure_reason == "unavailable"
+        assert any(
+            "apple_music" in rec.message and "Artist" in rec.message
+            for rec in caplog.records
+        )
+
     @pytest.mark.asyncio
     async def test_fallback_within_provider_tries_next_when_primary_fails(self):
         """For Spotify, if `_resolved_uri` fails, legacy `uri` field is tried next."""

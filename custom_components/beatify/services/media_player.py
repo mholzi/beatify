@@ -405,7 +405,25 @@ class MediaPlayerService:
         """
         seen: set[str] = set()
         candidates: list[tuple[str | None, str]] = []
-        provider_fields = _PROVIDER_URI_FIELDS.get(self._provider, ())
+        # Validate the dispatch key explicitly (#1276). An unknown provider
+        # (key absent from the table) is a config-level mismatch — the wizard
+        # is supposed to gate it, but if it slips through, `.get(..., ())`
+        # would silently yield zero candidates and playback would fail with
+        # no actionable diagnostic. This is the silent-fail pattern behind
+        # #768/#808. A KNOWN provider mapped to `()` (e.g. amazon_music, which
+        # plays via Alexa text-search, not URIs) is intentional and stays
+        # quiet. `_resolved_uri` is still honored below as a last resort so an
+        # unexpected provider doesn't hard-fail when the song does carry a URI.
+        provider_fields = _PROVIDER_URI_FIELDS.get(self._provider)
+        if provider_fields is None:
+            _LOGGER.warning(
+                "MA dispatch: unknown provider %r — no URI field mapping; "
+                "falling back to _resolved_uri only for %s - %s (#1276)",
+                self._provider,
+                song.get("artist"),
+                song.get("title"),
+            )
+            provider_fields = ()
 
         def _add(field: str | None, raw: str | None) -> None:
             if not raw:
@@ -452,8 +470,11 @@ class MediaPlayerService:
 
         candidates = self._get_ma_uri_candidates(song)
         if not candidates:
-            _LOGGER.error(
-                "MA playback: no URIs for %s - %s",
+            # #1276: surface the provider so a missing-URI miss is debuggable
+            # (which provider was selected vs. which fields the song carries).
+            _LOGGER.warning(
+                "MA playback: no playable URI for provider %r — %s - %s (#1276)",
+                self._provider,
                 song.get("artist"),
                 song.get("title"),
             )
