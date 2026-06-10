@@ -261,7 +261,7 @@ def _get_playlist_version(path: Path) -> str:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         return data.get("version", "0.0")
-    except Exception:  # noqa: BLE001
+    except (OSError, ValueError):
         return "0.0"
 
 
@@ -337,7 +337,7 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
                 _LOGGER.debug(
                     "Playlist %s is up to date (v%s)", playlist_file.name, existing_ver
                 )
-        except Exception as err:  # noqa: BLE001
+        except OSError as err:
             _LOGGER.warning(
                 "Failed to process playlist %s: %s", playlist_file.name, err
             )

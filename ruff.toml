@@ -1,0 +1,9 @@
+# Ruff configuration for the Beatify Home Assistant integration.
+#
+# Keeps Ruff's default rule selection (E4/E7/E9 + F) and additionally enforces
+# flake8-blind-except (BLE001) so that overly-broad `except Exception` / bare
+# `except:` handlers in the backend are flagged in CI (issue #1274). Handlers
+# that genuinely need a broad catch suppress the rule explicitly with
+# `# noqa: BLE001` and must log with context.
+[lint]
+extend-select = ["BLE001"]

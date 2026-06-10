@@ -331,7 +331,7 @@ async def handle_join(
             return
         try:
             await ws.send_json(state_msg)
-        except Exception as err:  # noqa: BLE001
+        except (ConnectionError, RuntimeError) as err:
             _LOGGER.warning("Failed to send state to new player: %s", err)
             return
         await handler.debounced_broadcast_state()
@@ -487,7 +487,7 @@ async def handle_ping(
     """
     try:
         await ws.send_json({"type": "pong"})
-    except Exception as err:  # noqa: BLE001
+    except (ConnectionError, RuntimeError) as err:
         _LOGGER.debug("Failed to send pong: %s", err)
 
 
@@ -1186,7 +1186,7 @@ async def handle_reconnect(
                 }
             )
             await player.ws.close()
-        except Exception:  # noqa: BLE001
+        except (ConnectionError, RuntimeError):
             pass
         _LOGGER.info("Session takeover: %s (old tab disconnected)", player.name)
 
@@ -1836,7 +1836,7 @@ async def handle_report_data(
         reports_path.write_text(
             json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
         )
-    except Exception:  # noqa: BLE001
+    except (OSError, ValueError):
         _LOGGER.warning("Failed to write data quality report to %s", reports_path)
 
     asyncio.ensure_future(
@@ -1877,7 +1877,7 @@ async def _create_gh_issue(
                         artist,
                         title,
                     )
-    except Exception:  # noqa: BLE001
+    except (aiohttp.ClientError, asyncio.TimeoutError, OSError):
         _LOGGER.debug(
             "Worker /report-data call failed (non-critical) for %s — %s", artist, title
         )
