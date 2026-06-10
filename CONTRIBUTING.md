@@ -155,7 +155,10 @@ bug where a source edit never reaches the bundle the browser actually loads.
 Notes:
 - HTML cache-busters (`?v={{ASSET_VER}}`) and the service worker's
   `CACHE_VERSION` are templated by the integration at serve time — you do **not**
-  edit `?v=` values or `CACHE_VERSION` by hand.
+  edit `?v=` values or `CACHE_VERSION` by hand. A CI guard
+  (`tests/unit/test_asset_cachebuster.py::TestNoHardcodedCacheBusters`) fails the
+  PR if a hardcoded literal is ever pasted back into a template, so the
+  rc8→rc14-style drift can't regress.
 - When you change a `.js`, commit both the source **and** the regenerated
   `.min.js` in the same PR.
 

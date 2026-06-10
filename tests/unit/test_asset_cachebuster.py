@@ -8,6 +8,11 @@ identical, so browsers / the service worker kept serving stale assets.
 
 from __future__ import annotations
 
+import re
+from pathlib import Path
+
+import pytest
+
 from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.server import base
 from custom_components.beatify.server.base import (
@@ -145,3 +150,66 @@ class TestServedPagesHaveNoUnresolvedTokens:
         assert resp.status == 200
         assert "{{ASSET_VER}}" not in resp.text
         assert "beatify-v9.9.9-" in resp.text
+
+
+# ---------------------------------------------------------------------------
+# Static consistency guard (#1278)
+# ---------------------------------------------------------------------------
+#
+# #1266 made cache-busting automatic by templating ``{{ASSET_VER}}`` /
+# ``{{VERSION}}`` at serve time, so nobody bumps ``?v=`` or ``CACHE_VERSION`` by
+# hand anymore. The remaining risk is a *regression*: someone re-introduces a
+# hardcoded literal (the rc8->rc14 drift / legacy-admin-flash class) by pasting
+# a ``?v=4.0.0`` or ``CACHE_VERSION = 'beatify-v4.0.0'`` back into a template.
+# These tests are the CI guard requested in #1278 AC #2 — they fail the PR the
+# moment a literal slips in, instead of waiting for stale assets in production.
+
+_WWW_DIR = Path(__file__).resolve().parents[2] / "custom_components" / "beatify" / "www"
+
+# Any ``?v=`` whose value is not the {{ASSET_VER}} token is a hardcoded literal.
+_HARDCODED_V = re.compile(r"\?v=(?!\{\{ASSET_VER\}\})")
+# A CACHE_VERSION assignment whose value doesn't carry the token is hardcoded.
+_HARDCODED_CACHE_VERSION = re.compile(
+    r"CACHE_VERSION\s*=\s*['\"](?![^'\"]*\{\{ASSET_VER\}\})"
+)
+
+
+def _html_files() -> list[Path]:
+    return sorted(_WWW_DIR.glob("*.html"))
+
+
+class TestNoHardcodedCacheBusters:
+    """Every shipped template must use the token, never a baked-in literal."""
+
+    def test_www_dir_is_present(self) -> None:
+        # Guards the guard: a wrong path would make the checks below vacuous.
+        assert _WWW_DIR.is_dir(), _WWW_DIR
+        assert _html_files(), "no HTML templates found to check"
+
+    @pytest.mark.parametrize("html", _html_files(), ids=lambda p: p.name)
+    def test_html_has_no_hardcoded_v_query(self, html: Path) -> None:
+        text = html.read_text(encoding="utf-8")
+        offenders = [
+            line
+            for line in text.splitlines()
+            if "?v=" in line and _HARDCODED_V.search(line)
+        ]
+        assert not offenders, (
+            f"{html.name} contains hardcoded ?v= cache-buster(s) — use "
+            f"'?v={{{{ASSET_VER}}}}' so #1266 templating busts them automatically "
+            f"(#1278):\n  " + "\n  ".join(offenders)
+        )
+
+    def test_sw_js_cache_version_uses_token(self) -> None:
+        sw = _WWW_DIR / "sw.js"
+        text = sw.read_text(encoding="utf-8")
+        assignments = [line for line in text.splitlines() if "CACHE_VERSION =" in line]
+        assert assignments, "sw.js has no CACHE_VERSION assignment"
+        offenders = [
+            line for line in assignments if _HARDCODED_CACHE_VERSION.search(line)
+        ]
+        assert not offenders, (
+            "sw.js CACHE_VERSION must carry the {{ASSET_VER}} token, not a "
+            "hardcoded literal, so it busts on any asset change (#1278):\n  "
+            + "\n  ".join(offenders)
+        )
