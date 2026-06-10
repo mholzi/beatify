@@ -9820,6 +9820,9 @@ body.wizard-active > .pwa-ios-hint {
     border-radius: var(--radius-sm);
     border: 1px solid;
     vertical-align: middle;
+    /* #1319: the badge text itself never wraps — summaries keep it short, the
+       accent cases ("Spotify only") are short by construction. */
+    white-space: nowrap;
 }
 .wiz-row-sub .cap-badge.full {
     color: var(--color-success-neon);
@@ -9835,6 +9838,18 @@ body.wizard-active > .pwa-ios-hint {
     color: var(--color-error-neon);
     background: rgba(255, 0, 64, 0.08);
     border-color: rgba(255, 0, 64, 0.4);
+}
+/* #1319: multi-service capability is static info, not actionable — drop the
+   orange/uppercase/pill chrome so the speaker name stays the hero. Muted,
+   borderless, plain-case secondary text. The full list lives on the tooltip. */
+.wiz-row-sub .cap-badge.summary {
+    color: var(--color-text-dim);
+    background: none;
+    border: none;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
 }
 
 /* Explainer card shown when user clicks a dimmed provider chip (#772). */

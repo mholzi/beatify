@@ -402,7 +402,9 @@ function _capabilityBadge(player) {
     return capabilityBadgeForPlayer(player, PROVIDERS, {
         none: _t('wizard.step1.capNone', 'No services'),
         all: _t('wizard.step1.capAll', 'All services'),
+        most: _t('wizard.step1.capMost', 'All major services'),
         onlyTemplate: _t('wizard.step1.capOnlyTemplate', '{provider} only'),
+        moreTemplate: _t('wizard.step1.capMoreTemplate', '{provider} +{count}'),
     });
 }
 
@@ -425,8 +427,11 @@ function _renderSpeakers() {
             const selected = chosenSpeaker === p.entity_id;
             const platform = _platformLabel(p.platform) || p.state || '';
             const badge = _capabilityBadge(p);
+            // Summarized badges keep the full service list on a title tooltip so
+            // no information is lost (#1319 AC: full list still discoverable).
+            const badgeTitle = badge && badge.title ? ` title="${badge.title}"` : '';
             const badgeHtml = badge
-                ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}">${badge.label}</span>`
+                ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}"${badgeTitle}>${badge.label}</span>`
                 : '';
             return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${p.entity_id}">
           <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
@@ -495,24 +500,50 @@ function _providerSupported(providerId) {
 }
 
 // Pure: summarize a player's service capabilities into a badge descriptor.
-// Returns { cls, label } or null. Exported for tests.
+// Returns { cls, label, title? } or null. Exported for tests.
+//
+// Layout contract (#1319): the badge must fit ONE line at mobile width and
+// stay visually secondary to the speaker name. Only the genuinely constrained
+// single-service case ("Spotify only") keeps the orange accent (cls 'partial');
+// every multi-service case is muted (cls 'summary') and, for 3+ providers,
+// collapsed to "first +N" so a typical MA player (5 of 6 services) no longer
+// spells out a wrapping uppercase list. The full list is preserved in `title`
+// (rendered as a tooltip) so no information is lost.
 //
 // labels.onlyTemplate is a format string containing `{provider}`. The word
 // order of "only" vs. the provider name differs per language — English
 // suffixes ("Spotify only") but German, Spanish, Dutch prefix ("nur Spotify",
 // "solo Spotify", "alleen Spotify"). Using a template lets each locale pick.
+// labels.moreTemplate ("{provider} +{count}") and labels.most ("All major
+// services") are the summary strings.
 export function capabilityBadgeForPlayer(player, providers, labels = {}) {
     if (!player) return null;
     const supported = providers.filter((p) => player[`supports_${p.id}`]);
-    if (supported.length === 0) return { cls: 'none', label: labels.none || 'No services' };
-    if (supported.length === providers.length) {
+    const n = supported.length;
+    if (n === 0) return { cls: 'none', label: labels.none || 'No services' };
+    if (n === providers.length) {
         return { cls: 'full', label: labels.all || 'All services' };
     }
-    if (supported.length === 1) {
+    if (n === 1) {
+        // The one case that genuinely limits playback — keep the accent.
         const template = labels.onlyTemplate || '{provider} only';
         return { cls: 'partial', label: template.replace('{provider}', supported[0].label) };
     }
-    return { cls: 'partial', label: supported.map((p) => p.label).join(', ') };
+    // Everything below is multi-service: muted, single-line, full list in title.
+    const fullList = supported.map((p) => p.label).join(', ');
+    // "Most" = all but one (only meaningful from 4+ providers, else it overlaps
+    // the two-service case). A typical MA player (5 of 6) lands here.
+    if (n >= 3 && n === providers.length - 1) {
+        return { cls: 'summary', label: labels.most || 'All major services', title: fullList };
+    }
+    if (n === 2) {
+        // Two still fits one line — list both, just de-emphasized.
+        return { cls: 'summary', label: fullList, title: fullList };
+    }
+    // 3+ (but not "most"): first provider + overflow count, full list on tooltip.
+    const moreTemplate = labels.moreTemplate || '{provider} +{count}';
+    const label = moreTemplate.replace('{provider}', supported[0].label).replace('{count}', String(n - 1));
+    return { cls: 'summary', label, title: fullList };
 }
 
 function _renderProviders() {

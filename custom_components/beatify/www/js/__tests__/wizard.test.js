@@ -178,9 +178,13 @@ describe('capabilityBadgeForPlayer', () => {
         expect(badge).toEqual({ cls: 'partial', label: 'nur Spotify' });
     });
 
-    it('returns a partial/orange comma-joined badge for a subset (Alexa case)', () => {
+    it('lists both services (muted summary) for a two-service subset, full list on title (#1319)', () => {
         const player = { supports_spotify: true, supports_apple_music: true, supports_youtube_music: false };
-        expect(capabilityBadgeForPlayer(player, providers)).toEqual({ cls: 'partial', label: 'Spotify, Apple Music' });
+        expect(capabilityBadgeForPlayer(player, providers)).toEqual({
+            cls: 'summary',
+            label: 'Spotify, Apple Music',
+            title: 'Spotify, Apple Music',
+        });
     });
 
     it('returns a none badge when no provider is supported (e.g. cast without MA)', () => {
@@ -192,6 +196,60 @@ describe('capabilityBadgeForPlayer', () => {
         const player = { supports_spotify: true, supports_apple_music: true, supports_youtube_music: true };
         const badge = capabilityBadgeForPlayer(player, providers, { all: 'Alle Dienste' });
         expect(badge.label).toBe('Alle Dienste');
+    });
+
+    // #1319: with the real 6-provider universe, multi-service rows must collapse
+    // to a single short, muted line instead of a wrapping uppercase comma list.
+    describe('summarization over the full 6-provider set (#1319)', () => {
+        const six = [
+            { id: 'spotify', label: 'Spotify' },
+            { id: 'apple_music', label: 'Apple Music' },
+            { id: 'youtube_music', label: 'YouTube Music' },
+            { id: 'tidal', label: 'Tidal' },
+            { id: 'deezer', label: 'Deezer' },
+            { id: 'amazon_music', label: 'Amazon Music' },
+        ];
+
+        it('collapses the typical MA player (5 of 6, all but Amazon) to "All major services"', () => {
+            const player = {
+                supports_spotify: true, supports_apple_music: true, supports_youtube_music: true,
+                supports_tidal: true, supports_deezer: true, supports_amazon_music: false,
+            };
+            expect(capabilityBadgeForPlayer(player, six)).toEqual({
+                cls: 'summary',
+                label: 'All major services',
+                title: 'Spotify, Apple Music, YouTube Music, Tidal, Deezer',
+            });
+        });
+
+        it('collapses 3 of 6 to "first +N" with the full list on title', () => {
+            const player = {
+                supports_spotify: true, supports_apple_music: true, supports_youtube_music: true,
+                supports_tidal: false, supports_deezer: false, supports_amazon_music: false,
+            };
+            expect(capabilityBadgeForPlayer(player, six)).toEqual({
+                cls: 'summary',
+                label: 'Spotify +2',
+                title: 'Spotify, Apple Music, YouTube Music',
+            });
+        });
+
+        it('keeps the single-service accent badge (cls partial) even in the 6-provider set', () => {
+            const player = {
+                supports_spotify: true, supports_apple_music: false, supports_youtube_music: false,
+                supports_tidal: false, supports_deezer: false, supports_amazon_music: false,
+            };
+            expect(capabilityBadgeForPlayer(player, six)).toEqual({ cls: 'partial', label: 'Spotify only' });
+        });
+
+        it('respects custom summary templates (locale)', () => {
+            const player = {
+                supports_spotify: true, supports_apple_music: true, supports_youtube_music: true,
+                supports_tidal: false, supports_deezer: false, supports_amazon_music: false,
+            };
+            const badge = capabilityBadgeForPlayer(player, six, { moreTemplate: '{provider} und {count} weitere' });
+            expect(badge.label).toBe('Spotify und 2 weitere');
+        });
     });
 });
 
