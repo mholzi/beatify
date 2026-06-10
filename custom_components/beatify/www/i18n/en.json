@@ -882,7 +882,9 @@
       "empty": "No speakers found yet",
       "emptyHint": "Install Music Assistant and refresh",
       "capAll": "All services",
+      "capMost": "All major services",
       "capOnlyTemplate": "{provider} only",
+      "capMoreTemplate": "{provider} +{count}",
       "capNone": "No services"
     },
     "step2": {

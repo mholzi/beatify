@@ -882,7 +882,9 @@
       "empty": "Aún no hay altavoces",
       "emptyHint": "Instala Music Assistant y actualiza",
       "capAll": "Todos los servicios",
+      "capMost": "Todos los servicios principales",
       "capOnlyTemplate": "solo {provider}",
+      "capMoreTemplate": "{provider} +{count}",
       "capNone": "Sin servicios"
     },
     "step2": {

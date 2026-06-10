@@ -882,7 +882,9 @@
       "empty": "Aucune enceinte détectée",
       "emptyHint": "Installe Music Assistant et rafraîchis",
       "capAll": "Tous les services",
+      "capMost": "Tous les services principaux",
       "capOnlyTemplate": "{provider} uniquement",
+      "capMoreTemplate": "{provider} +{count}",
       "capNone": "Aucun service"
     },
     "step2": {
