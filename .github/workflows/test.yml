@@ -59,6 +59,38 @@ jobs:
         run: ruff format --check .
 
   # ==========================================================================
+  # STAGE 1a: TYPE CHECK (mypy)
+  # ==========================================================================
+  # Static type checking (#1275). Runs in lenient + scoped mode: only the clean
+  # subset of game/ + services/ modules listed under [tool.mypy] in
+  # pyproject.toml is checked today. Catches the provider-URI-mismatch class of
+  # bug (#768/#808) statically. Scope/strictness ramp up over time — see the
+  # ramp-up plan in pyproject.toml.
+  typecheck:
+    name: Type check (mypy, ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install mypy
+        run: pip install mypy==1.18.2
+
+      - name: Run mypy
+        # Config + scoped file list both come from [tool.mypy] in pyproject.toml.
+        run: mypy
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+  # ==========================================================================
   # STAGE 1b: FRONTEND BUILD CHECK
   # ==========================================================================
   # Rebuilds the served .min.js bundles from their .js sources and fails if any

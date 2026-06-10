@@ -1,0 +1,90 @@
+# Beatify project configuration.
+#
+# Currently this file hosts only the mypy static-type-checking config (#1275).
+# Lint/format continue to be driven by ruff's own defaults (no [tool.ruff]
+# section here on purpose — adding one would silently change the ruff ruleset
+# that CI runs).
+
+# =============================================================================
+# mypy — static type checking (#1275)
+# =============================================================================
+# Introduced in *lenient + scoped* mode. The goal of #1275 is to ENABLE the
+# gate with a green baseline, not to annotate the whole codebase in one PR.
+#
+# Strategy:
+#   * Scope: only the subset of game/ + services/ modules that already pass a
+#     default-strictness mypy run is checked (see `files` below). The remaining
+#     6 modules carry real type issues (None-handling, attr access) that need
+#     dedicated fixes — see the ramp-up plan at the bottom.
+#   * Strictness: lenient. No `disallow_untyped_defs` / `strict` — we are not
+#     forcing annotations yet, only catching outright type errors in already
+#     clean modules. Tighten progressively as modules are cleaned.
+#
+# Run locally:  mypy   (config + file list are both read from here)
+[tool.mypy]
+python_version = "3.13"
+
+# Home Assistant + third-party libs are not installed in the lint/CI env and
+# ship no usable stubs for our purposes — treat their imports as Any rather
+# than erroring. This is the single biggest "lenient" lever and is standard for
+# HA custom integrations.
+ignore_missing_imports = true
+
+# custom_components is a namespace-style path (no custom_components/__init__.py),
+# so tell mypy to resolve modules from the repo root explicitly. Without this
+# mypy reports "Source file found twice under different module names".
+explicit_package_bases = true
+namespace_packages = true
+mypy_path = "."
+
+# Scoping is by the `files` list below. The unscoped modules those files import
+# (e.g. game/state.py) still carry real type errors during the ramp-up, so do
+# NOT surface errors discovered by following imports out of the checked set —
+# only the listed files are gated. `silent` type-checks imported modules for
+# resolution but suppresses their diagnostics. (Without this the result would
+# depend on PYTHONPATH; this makes the green baseline deterministic.)
+follow_imports = "silent"
+
+# Lenient baseline — no annotation-forcing flags yet.
+warn_unused_ignores = true
+warn_redundant_casts = true
+show_error_codes = true
+pretty = true
+
+# Clean subset that passes today. EXPAND this list (and eventually drop it for a
+# whole-package check) as the modules below in the ramp-up plan get fixed.
+files = [
+    "custom_components/beatify/game/types.py",
+    "custom_components/beatify/game/tts_phrases.py",
+    "custom_components/beatify/game/text_match.py",
+    "custom_components/beatify/game/share.py",
+    "custom_components/beatify/game/service.py",
+    "custom_components/beatify/game/protocols.py",
+    "custom_components/beatify/game/powerups.py",
+    "custom_components/beatify/game/playlist.py",
+    "custom_components/beatify/game/player.py",
+    "custom_components/beatify/game/highlights.py",
+    "custom_components/beatify/game/config.py",
+    "custom_components/beatify/game/challenges.py",
+    "custom_components/beatify/services/tts.py",
+    "custom_components/beatify/services/media_player.py",
+    "custom_components/beatify/services/lights.py",
+]
+
+# -----------------------------------------------------------------------------
+# Ramp-up plan (#1275) — modules NOT yet in the gate, with their open issues.
+# Add each back to `files` above once its real type errors are fixed:
+#
+#   game/state.py           (~14 errors: None-arithmetic, attr-defined,
+#                            Optional args passed where non-Optional expected)
+#   game/scoring.py         (~13 errors: Optional year math, sort/key Optionals)
+#   game/serializers.py     (~3 errors: GameState.language attr, sort key)
+#   game/round_manager.py   (~2 errors: Awaitable vs Coroutine in create_task)
+#   game/player_registry.py (~2 errors: bare `callable` used as a type)
+#   services/stats.py       (~2 errors: Optional dict passed to _format_song)
+#
+# Next strictness steps once the above are clean:
+#   1. Replace `files` with whole-package check of game/ + services/.
+#   2. Enable `disallow_incomplete_defs`, then `disallow_untyped_defs`.
+#   3. Drop `ignore_missing_imports` selectively as stubs become available.
+# -----------------------------------------------------------------------------
