@@ -215,6 +215,50 @@ class GameState(TtsAnnouncerMixin):
         for cb in self._state_callbacks:
             cb()
 
+    # ------------------------------------------------------------------
+    # Phase transitions — Single Source of Truth (Issue #1273)
+    # ------------------------------------------------------------------
+    #
+    # ALL writes to ``self.phase`` go through ``_set_phase``. This makes the
+    # backend the one authoritative owner of the game phase and gives every
+    # transition a single, auditable chokepoint. Two invariants that were
+    # previously hand-maintained at each scattered ``self.phase = …`` site are
+    # now enforced here so they can never drift:
+    #
+    #   * ``reveal_started_at`` (#1048) is non-None *iff* phase is REVEAL —
+    #     stamped on entry to REVEAL, cleared on every other transition.
+    #   * registered state observers (#441) are notified on every phase change.
+    #
+    # This is the first increment of the SSOT state-machine described in the
+    # issue: it centralises the *write* path without yet modelling explicit
+    # transition guards. Follow-up increments can layer a transition table on
+    # top of this single chokepoint (see PR description / migration path).
+
+    def _set_phase(self, new_phase: GamePhase, *, notify: bool = True) -> None:
+        """Authoritatively transition the game to ``new_phase``.
+
+        The single write-point for ``self.phase`` (Issue #1273). Maintains the
+        ``reveal_started_at`` invariant (#1048) and notifies state observers
+        (#441) so no transition site has to remember either bookkeeping step.
+
+        Args:
+            new_phase: The phase to transition into.
+            notify: Whether to fire registered state callbacks. Defaults to
+                True; pass False only when the caller batches its own notify
+                immediately afterwards (kept for callers that interleave other
+                bookkeeping between the phase write and the broadcast).
+
+        """
+        self.phase = new_phase
+        # #1048: the REVEAL-entry timestamp is owned entirely by the phase
+        # transition. Entering REVEAL stamps it; any other phase clears it.
+        if new_phase is GamePhase.REVEAL:
+            self.reveal_started_at = int(self._now() * 1000)
+        else:
+            self.reveal_started_at = None
+        if notify:
+            self._notify_state_callbacks()
+
     def current_time(self) -> float:
         """Return the current timestamp from the injected clock."""
         return self._now()
@@ -604,8 +648,7 @@ class GameState(TtsAnnouncerMixin):
 
         self.game_id = secrets.token_urlsafe(8)
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
-        self.phase = GamePhase.LOBBY
-        self._notify_state_callbacks()
+        self._set_phase(GamePhase.LOBBY)
         self.playlists = playlists
         self.songs = songs
         self.media_player = media_player
@@ -835,7 +878,7 @@ class GameState(TtsAnnouncerMixin):
         await self.disable_tts()
         self._reset_game_internals()
         self.game_id = None
-        self.phase = GamePhase.LOBBY
+        self._set_phase(GamePhase.LOBBY, notify=False)
         self.players = {}
         self.clear_all_sessions()
         self._notify_state_callbacks()
@@ -880,8 +923,7 @@ class GameState(TtsAnnouncerMixin):
         )
         self.total_rounds = len(preserved["songs"])
 
-        self.phase = GamePhase.LOBBY
-        self._notify_state_callbacks()
+        self._set_phase(GamePhase.LOBBY)
         # Reset each player's game stats but keep them connected
         for player in self.players.values():
             player.reset_for_new_game()
@@ -944,10 +986,8 @@ class GameState(TtsAnnouncerMixin):
             if self._media_player_service:
                 await self._media_player_service.stop()
 
-        # Transition to PAUSED
-        self.phase = GamePhase.PAUSED
-        self.reveal_started_at = None  # #1048: leaving REVEAL
-        self._notify_state_callbacks()
+        # Transition to PAUSED (clears reveal_started_at + notifies, #1273)
+        self._set_phase(GamePhase.PAUSED)
         _LOGGER.info("Game paused: %s", reason)
 
         return True
@@ -1015,7 +1055,12 @@ class GameState(TtsAnnouncerMixin):
                     await self._media_player_service.play()
                     _LOGGER.info("Media playback resumed")
             else:
-                # Timer expired during pause — end the round immediately
+                # Timer expired during pause — end the round immediately.
+                # #1273: resume *restores* a saved phase rather than making a
+                # forward transition, so it intentionally does NOT route through
+                # _set_phase — re-stamping reveal_started_at on a resume-to-REVEAL
+                # would change behaviour (the auto-advance countdown must not
+                # restart). Kept as a direct write; see PR migration notes.
                 _LOGGER.info("Timer expired during pause, ending round")
                 self.phase = previous
                 self._notify_state_callbacks()
@@ -1025,7 +1070,8 @@ class GameState(TtsAnnouncerMixin):
                 await self.end_round()
                 return True
 
-        # Restore previous phase
+        # Restore previous phase (direct write, not _set_phase — see #1273 note
+        # in the timer-expired branch above: resume must not re-stamp REVEAL).
         self.phase = previous
         self._notify_state_callbacks()
         self.pause_reason = None
@@ -1297,8 +1343,7 @@ class GameState(TtsAnnouncerMixin):
         if len(self.players) < MIN_PLAYERS:
             return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
 
-        self.phase = GamePhase.PLAYING
-        self._notify_state_callbacks()
+        self._set_phase(GamePhase.PLAYING)
         # Round and song selection will be implemented in Epic 4
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
@@ -1328,8 +1373,7 @@ class GameState(TtsAnnouncerMixin):
         song = self._playlist_manager.get_next_song()
         if not song:
             _LOGGER.info("All songs exhausted, ending game")
-            self.phase = GamePhase.END
-            self._notify_state_callbacks()
+            self._set_phase(GamePhase.END)
             return False
 
         resolved_uri = song.get("_resolved_uri")
@@ -1522,9 +1566,8 @@ class GameState(TtsAnnouncerMixin):
             extra_deadline_ms=extra_deadline_ms,
         )
         self.round_analytics = None
-        self.phase = GamePhase.PLAYING
-        self.reveal_started_at = None  # #1048: leaving REVEAL
-        self._notify_state_callbacks()
+        # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
+        self._set_phase(GamePhase.PLAYING)
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
         """Wait for round to end, then trigger reveal.
@@ -2127,11 +2170,10 @@ class GameState(TtsAnnouncerMixin):
         self._player_registry._reactions_this_phase = (
             set()
         )  # Story 18.9: Clear for new reveal phase
-        self.phase = GamePhase.REVEAL
-        # #1048: timestamp REVEAL entry so admin client can render the
-        # auto-advance countdown on the sticky Next button.
-        self.reveal_started_at = int(self._now() * 1000)
-        self._notify_state_callbacks()
+        # #1273: _set_phase stamps reveal_started_at on REVEAL entry (#1048 —
+        # so the admin client can render the auto-advance countdown on the
+        # sticky Next button) and notifies observers (#441).
+        self._set_phase(GamePhase.REVEAL)
 
     def _schedule_reveal_advance(self) -> None:
         """Schedule the REVEAL vote window or auto-advance task (#1272).
@@ -2408,9 +2450,8 @@ class GameState(TtsAnnouncerMixin):
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
         self._cancel_auto_advance()  # #1012
-        self.phase = GamePhase.END
-        self.reveal_started_at = None  # #1048
-        self._notify_state_callbacks()
+        # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
+        self._set_phase(GamePhase.END)
 
         # Issue #331: Celebrate with Party Lights, then stop (#553)
         if self._party_lights:
