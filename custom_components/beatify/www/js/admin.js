@@ -5,9 +5,18 @@
  * #1279 Schritt 2/6: admin.js is now an ES module (`<script type="module">`).
  * Pure helpers live in ./admin/util.js; their previous top-level globals are
  * re-exposed on `window` below (compat shim) for classic scripts that still
- * read them. Token helpers read the live `currentGame` via a resolver
+ * read them. Token helpers read the live `adminState.currentGame` via a resolver
  * registered once at module init.
  */
+
+// #1279 Schritt 5/6: centralized mutable setup-/game-state. Previously the ~24
+// setup `let`s (incl. `currentGame`) lived as top-level bindings here. They are
+// now a single shared `adminState` object exported from ./admin/state.js so the
+// (read-only live-binding) module boundary doesn't block cross-module writes —
+// the enabler for the deferred setup-section split (step 4b). Reads are
+// `adminState.x`, writes `adminState.x = …`. Pure infra handles (timers,
+// wake-lock, `_homeStartBtnHTML`, `rematchInProgress`) stay as admin.js `let`s.
+import { adminState } from './admin/state.js';
 
 import {
     setCurrentGameResolver,
@@ -50,11 +59,10 @@ import {
     _providerDisplayName,
 } from './admin/sections/render-helpers.js';
 
-// Token helpers in util.js need the admin-private, mutable `currentGame`.
-// A closure resolver keeps them in sync across every `currentGame = …` below
-// without touching each assignment site (declared later via `let` hoist-safe
-// because the resolver is only ever invoked at runtime, not at module init).
-setCurrentGameResolver(() => currentGame);
+// Token helpers in util.js need the live `currentGame`. The resolver reads it
+// off the shared `adminState` object (#1279 step 5), so it stays in sync across
+// every `adminState.currentGame = …` without touching each assignment site.
+setCurrentGameResolver(() => adminState.currentGame);
 
 // Compat shim (#1279 step 2): admin.js is now a module, so its top-level
 // helper declarations are no longer global. Classic scripts loaded after this
@@ -140,7 +148,7 @@ function _releaseWakeLock() {
 // #647: Re-acquire wake lock when admin tab becomes visible during an active game
 // #648: Reconnect admin WS on tab return (e.g. after screen sleep)
 document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible' && currentGame && currentGame.phase !== 'END') {
+    if (document.visibilityState === 'visible' && adminState.currentGame && adminState.currentGame.phase !== 'END') {
         _requestWakeLock();
         // Reconnect WS if it died while tab was hidden
         if (!isAdminWsOpen()) {
@@ -151,59 +159,15 @@ document.addEventListener('visibilitychange', function() {
 });
 
 // Module-level state
-let selectedPlaylists = [];
-let playlistData = [];
-let playlistDocsUrl = '';
-let activeFilterTags = ['all'];  // Tag filter state (Issue #70)
-let selectedMediaPlayer = null;  // { entityId: string, state: string } or null
-let mediaPlayerDocsUrl = '';
+// #1279 step 5: the setup-/game-state (playlists, media-player, game settings,
+// bonus flags, view, currentGame, lobby/admin-as-player) now lives in the shared
+// `adminState` object (./admin/state.js) — see the import at the top. Only the
+// admin-private infra handles below stay as plain `let`s (timers, the
+// "Start game" button HTML stash); they never cross a module boundary.
 
-// View state management (Story 2.3)
-let currentView = 'setup';
-let currentGame = null;
-let cachedQRUrl = null;
-
-// Language state (Story 12.4)
-let selectedLanguage = 'en';
-
-// Timer state (Story 13.1)
-let selectedDuration = 45;
-let revealAutoAdvance = 0;  // #1012: REVEAL auto-advance seconds (0 = off, default)
-
-// Difficulty state (Story 14.1)
-let selectedDifficulty = 'normal';
-
-// Provider state (Story 17.2)
-let selectedProvider = 'spotify';
-let hasMusicAssistant = false;
-
-// Artist Challenge state (Story 20.7)
-let artistChallengeEnabled = true;
-
-// Movie Quiz Bonus state (#947)
-let movieQuizEnabled = true;
-
-// Intro Mode state (Issue #23)
-let introModeEnabled = false;
-
-// Closest Wins mode state (Issue #442)
-let closestWinsModeEnabled = false;
-
-// Title & Artist Mode state (#1180)
-let titleArtistModeEnabled = false;
-
-// Lobby state (Story 16.8)
-let previousLobbyPlayers = [];
+// Lobby polling timer handle (Story 16.8)
 let lobbyPollingInterval = null;
 
-// Issue #477: Admin player-participation state. (#1279 step 3: the WS socket
-// itself + reconnect/auth-recovery counters moved to ./admin/api.js; these
-// three stay here because admin's view code reads/writes them widely.)
-let adminPlayerName = null;   // Set when admin joins as player
-let adminSessionId = null;    // Set on join_ack — passed to /play so it can
-                              // reconnect via {type:'reconnect'} instead of a
-                              // fresh {type:'join'} (which races ERR_NAME_TAKEN).
-let isPlaying = false;        // Whether admin is participating as a player
 // #949: the home "Start game" button's pre-"Starting…" HTML, stashed so a WS
 // start-failure error (MEDIA_PLAYER_UNAVAILABLE etc.) can un-stick the button.
 let _homeStartBtnHTML = null;
@@ -217,12 +181,12 @@ let countdownInterval = null;
 // are only ever *invoked* at runtime, so hoisting makes this init-safe.
 initAdminApi({
     debug: (...args) => debug(...args),
-    getCurrentGame: () => currentGame,
-    getCurrentView: () => currentView,
-    getAdminPlayerName: () => adminPlayerName,
-    setIsPlaying: (v) => { isPlaying = v; },
-    setAdminPlayerName: (v) => { adminPlayerName = v; },
-    setAdminSessionId: (v) => { adminSessionId = v; },
+    getCurrentGame: () => adminState.currentGame,
+    getCurrentView: () => adminState.currentView,
+    getAdminPlayerName: () => adminState.adminPlayerName,
+    setIsPlaying: (v) => { adminState.isPlaying = v; },
+    setAdminPlayerName: (v) => { adminState.adminPlayerName = v; },
+    setAdminSessionId: (v) => { adminState.adminSessionId = v; },
     handleAdminStateUpdate: (data) => handleAdminStateUpdate(data),
     startLobbyPolling: () => startLobbyPolling(),
     stopLobbyPolling: () => stopLobbyPolling(),
@@ -266,11 +230,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         await BeatifyI18n.init();
         BeatifyI18n.initPageTranslations();
-        selectedLanguage = BeatifyI18n.getLanguage();
+        adminState.selectedLanguage = BeatifyI18n.getLanguage();
     }
     // Set initial language chip active state
     document.querySelectorAll('.chip[data-lang]').forEach(c => {
-        c.classList.toggle('chip--active', c.dataset.lang === selectedLanguage);
+        c.classList.toggle('chip--active', c.dataset.lang === adminState.selectedLanguage);
     });
 
     // First-run wizard — initializes after i18n is ready (DESIGN.md ## Patterns)
@@ -299,11 +263,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (this.isConfigured()) {
                 this.setMode('configured');
                 // The wizard writes selections to localStorage but never touches the
-                // legacy admin globals (selectedMediaPlayer / selectedPlaylists).
+                // legacy admin globals (adminState.selectedMediaPlayer / adminState.selectedPlaylists).
                 // Hydrate them so startGame() has the data it needs to POST.
                 this.hydrateFromStorage();
-                if (currentGame && currentGame.phase === 'LOBBY' && currentGame.join_url) {
-                    this.renderSession(currentGame);
+                if (adminState.currentGame && adminState.currentGame.phase === 'LOBBY' && adminState.currentGame.join_url) {
+                    this.renderSession(adminState.currentGame);
                 } else {
                     this.startSession();
                 }
@@ -317,7 +281,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         hydrateFromStorage() {
             try {
                 const lastPlayerId = localStorage.getItem(STORAGE_LAST_PLAYER);
-                if (lastPlayerId && (!selectedMediaPlayer || !selectedMediaPlayer.entityId)) {
+                if (lastPlayerId && (!adminState.selectedMediaPlayer || !adminState.selectedMediaPlayer.entityId)) {
                     const radio = document.querySelector(
                         `.media-player-radio[data-entity-id="${CSS.escape(lastPlayerId)}"]`
                     );
@@ -328,27 +292,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                         // Players list not rendered yet — populate a minimal stub
                         // so startGame() has an entityId. Capability flags default
                         // to false; backend will validate.
-                        selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
+                        adminState.selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
                     }
                 }
                 const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
                 if (raw) {
                     const s = JSON.parse(raw);
-                    if (s.language) selectedLanguage = s.language;
-                    if (s.duration) selectedDuration = s.duration;
-                    if (typeof s.revealAutoAdvance === 'number') revealAutoAdvance = s.revealAutoAdvance;
-                    if (s.difficulty) selectedDifficulty = s.difficulty;
-                    if (s.provider) selectedProvider = s.provider;
-                    if (typeof s.artistChallenge === 'boolean') artistChallengeEnabled = s.artistChallenge;
-                    if (typeof s.movieQuiz === 'boolean') movieQuizEnabled = s.movieQuiz;
-                    if (typeof s.introMode === 'boolean') introModeEnabled = s.introMode;
-                    if (typeof s.closestWinsMode === 'boolean') closestWinsModeEnabled = s.closestWinsMode;
+                    if (s.language) adminState.selectedLanguage = s.language;
+                    if (s.duration) adminState.selectedDuration = s.duration;
+                    if (typeof s.revealAutoAdvance === 'number') adminState.revealAutoAdvance = s.revealAutoAdvance;
+                    if (s.difficulty) adminState.selectedDifficulty = s.difficulty;
+                    if (s.provider) adminState.selectedProvider = s.provider;
+                    if (typeof s.artistChallenge === 'boolean') adminState.artistChallengeEnabled = s.artistChallenge;
+                    if (typeof s.movieQuiz === 'boolean') adminState.movieQuizEnabled = s.movieQuiz;
+                    if (typeof s.introMode === 'boolean') adminState.introModeEnabled = s.introMode;
+                    if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
                     const wizPaths = Array.isArray(s.selectedPlaylists)
                         ? s.selectedPlaylists.map((p) => (typeof p === 'string' ? p : p.path)).filter(Boolean)
                         : [];
-                    if (wizPaths.length && selectedPlaylists.length === 0) {
-                        selectedPlaylists = wizPaths.map((path) => {
-                            const meta = (playlistData || []).find((d) => d.path === path);
+                    if (wizPaths.length && adminState.selectedPlaylists.length === 0) {
+                        adminState.selectedPlaylists = wizPaths.map((path) => {
+                            const meta = (adminState.playlistData || []).find((d) => d.path === path);
                             return { path, songCount: (meta && (meta.song_count || meta.songCount)) || 0 };
                         });
                     }
@@ -381,7 +345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const loading = document.getElementById('home-qr-loading');
             if (loading) loading.classList.remove('hidden');
             try {
-                // Guard: startGame() reads selectedPlaylists/selectedMediaPlayer from module globals.
+                // Guard: startGame() reads adminState.selectedPlaylists/adminState.selectedMediaPlayer from module globals.
                 // Those globals are populated by loadStatus() on page load, which runs before enter().
                 await startGame();
             } catch (err) {
@@ -411,7 +375,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     qrContainer.style.cursor = 'pointer';
                 }
                 // Share the cached URL with the existing openQRModal() so tap-to-enlarge works
-                cachedQRUrl = gameData.join_url;
+                adminState.cachedQRUrl = gameData.join_url;
             }
             const urlEl = document.getElementById('home-join-url');
             if (urlEl && gameData.join_url) urlEl.textContent = gameData.join_url;
@@ -447,7 +411,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Join-as-player: prominent next step — shown until the admin has
             // joined THIS game. Visibility is driven purely by authoritative
             // state: the current game's player list (adminInPlayers) and the
-            // live isPlaying flag.
+            // live adminState.isPlaying flag.
             //
             // It used to also consult sessionStorage 'beatify_admin_name', but
             // that marker is set on the admin's first-ever join and never
@@ -456,7 +420,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // brand-new empty lobby they had not joined. adminInPlayers already
             // answers "did the admin join THIS game" from the server's list.
             const adminInPlayers = (gameData.players || []).some((p) => p.is_admin);
-            const canJoin = hasLobby && !adminInPlayers && !isPlaying;
+            const canJoin = hasLobby && !adminInPlayers && !adminState.isPlaying;
             document.getElementById('home-join-player')?.classList.toggle('hidden', !canJoin);
             const startBtn = document.getElementById('home-start-game');
             if (startBtn) {
@@ -604,21 +568,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         _requestWakeLock();
         // Home-mode auto-creates the LOBBY session on enter, so the user's Start
         // button triggers the actual "begin rounds" action (startGameplay).
-        // #935: currentGame is null until the async loadStatus() fetch returns,
+        // #935: adminState.currentGame is null until the async loadStatus() fetch returns,
         // but this button renders immediately on page load. A click in that
         // window (or after any reload / tab-switch) would fall through to the
         // else-branch and call startGame() — the *create* endpoint — which
         // then 409s because the game already exists. Reconcile with the server
         // first so the LOBBY check below is decided against fresh state.
-        if (!currentGame || currentGame.phase !== 'LOBBY') {
+        if (!adminState.currentGame || adminState.currentGame.phase !== 'LOBBY') {
             await loadStatus();
         }
-        if (currentGame && currentGame.phase === 'LOBBY') {
+        if (adminState.currentGame && adminState.currentGame.phase === 'LOBBY') {
             // Require at least one player. Starting with 0 players renders a
             // game nobody can answer — previously this was allowed and the
             // server happily transitioned to PLAYING, leaving the admin
             // staring at an empty round with no way to progress.
-            const players = currentGame.players || [];
+            const players = adminState.currentGame.players || [];
             if (players.length === 0) {
                 const msg = (window.BeatifyI18n && BeatifyI18n.t('admin.home.needPlayerToStart')) ||
                     'Join as player (or ask a guest to scan the QR) before starting.';
@@ -714,7 +678,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadStatus();
 
     // #1098: enter home-mode only after loadStatus() has resolved.
-    // Previously this ran before the status fetch, so currentGame was always
+    // Previously this ran before the status fetch, so adminState.currentGame was always
     // null at this point — BeatifyHome.enter() would auto-call startSession()
     // → POST /start-game, hit 409 GAME_IN_LOBBY on an existing lobby, and the
     // silent recovery would transition LOBBY → PLAYING (auto-starting the
@@ -722,9 +686,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // lobby open.
     // - If loadStatus found an active LOBBY, it already called showLobbyView()
     //   which invokes BeatifyHome.renderSession() — no extra enter() needed.
-    // - If there is no active game, currentGame stays null → enter() runs and
+    // - If there is no active game, adminState.currentGame stays null → enter() runs and
     //   (for a configured user) creates a fresh LOBBY, as before.
-    if (!currentGame) {
+    if (!adminState.currentGame) {
         window.BeatifyHome.enter();
     }
 
@@ -758,10 +722,10 @@ async function loadStatus() {
             }
         }
 
-        playlistDocsUrl = status.playlist_docs_url || '';
-        mediaPlayerDocsUrl = status.media_player_docs_url || '';
+        adminState.playlistDocsUrl = status.playlist_docs_url || '';
+        adminState.mediaPlayerDocsUrl = status.media_player_docs_url || '';
         // Set Music Assistant availability from backend (not based on entity names)
-        hasMusicAssistant = status.has_music_assistant === true;
+        adminState.hasMusicAssistant = status.has_music_assistant === true;
         // Display version in footer and expose globally (Story 44.5)
         const versionEl = document.getElementById('app-version');
         if (versionEl && status.version) {
@@ -774,7 +738,7 @@ async function loadStatus() {
 
         // Check for active game and show appropriate view
         if (status.active_game && status.active_game.phase === 'LOBBY') {
-            currentGame = status.active_game;
+            adminState.currentGame = status.active_game;
             _requestWakeLock(); // #647: keep screen on when reconnecting to active game
             showLobbyView(status.active_game);
             // Issue #477: Reconnect admin WS if we have a token
@@ -782,7 +746,7 @@ async function loadStatus() {
                 connectAdminWebSocket();
             }
         } else if (status.active_game && status.active_game.phase !== 'END') {
-            currentGame = status.active_game;
+            adminState.currentGame = status.active_game;
             // Issue #477: Connect WS and render phase directly instead of stub
             if (!isAdminWsOpen()) {
                 connectAdminWebSocket();
@@ -832,7 +796,7 @@ function setupGameSettings() {
             const lang = this.dataset.lang;
             document.querySelectorAll('.chip[data-lang]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
-            selectedLanguage = lang;
+            adminState.selectedLanguage = lang;
             if (window.BeatifyI18n) {
                 await BeatifyI18n.setLanguage(lang);
                 BeatifyI18n.initPageTranslations();
@@ -848,7 +812,7 @@ function setupGameSettings() {
             const duration = parseInt(this.dataset.duration, 10);
             document.querySelectorAll('.chip[data-duration]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
-            selectedDuration = duration;
+            adminState.selectedDuration = duration;
             updateGameSettingsSummary();
             saveGameSettings();
         });
@@ -857,7 +821,7 @@ function setupGameSettings() {
     // Reveal auto-advance chips (#1012)
     document.querySelectorAll('.chip[data-reveal-advance]').forEach(chip => {
         chip.addEventListener('click', function() {
-            revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
+            adminState.revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
             document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
             saveGameSettings();
@@ -870,7 +834,7 @@ function setupGameSettings() {
             const difficulty = this.dataset.difficulty;
             document.querySelectorAll('.chip[data-difficulty]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
-            selectedDifficulty = difficulty;
+            adminState.selectedDifficulty = difficulty;
             updateGameSettingsSummary();
             saveGameSettings();
         });
@@ -878,35 +842,35 @@ function setupGameSettings() {
 
     // Artist Challenge toggle
     document.getElementById('artist-challenge-toggle')?.addEventListener('change', function() {
-        artistChallengeEnabled = this.checked;
+        adminState.artistChallengeEnabled = this.checked;
         updateGameSettingsSummary();
         saveGameSettings();
     });
 
     // Movie Quiz Bonus toggle (#947)
     document.getElementById('movie-quiz-toggle')?.addEventListener('change', function() {
-        movieQuizEnabled = this.checked;
+        adminState.movieQuizEnabled = this.checked;
         updateGameSettingsSummary();
         saveGameSettings();
     });
 
     // Intro Mode toggle (Issue #23)
     document.getElementById('intro-mode-toggle')?.addEventListener('change', function() {
-        introModeEnabled = this.checked;
+        adminState.introModeEnabled = this.checked;
         updateGameSettingsSummary();
         saveGameSettings();
     });
 
     // Closest Wins toggle (Issue #442)
     document.getElementById('closest-wins-toggle')?.addEventListener('change', function() {
-        closestWinsModeEnabled = this.checked;
+        adminState.closestWinsModeEnabled = this.checked;
         updateGameSettingsSummary();
         saveGameSettings();
     });
 
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
-        titleArtistModeEnabled = this.checked;
+        adminState.titleArtistModeEnabled = this.checked;
         syncTitleArtistModeUI();
         updateGameSettingsSummary();
         saveGameSettings();
@@ -922,12 +886,12 @@ function setupGameSettings() {
             const provider = this.dataset.provider;
             document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
             this.classList.add('chip--active');
-            selectedProvider = provider;
+            adminState.selectedProvider = provider;
             updateGameSettingsSummary();
             saveGameSettings();
             // Re-render playlists to show coverage for selected provider (preserve valid selections)
-            if (playlistData.length > 0) {
-                renderPlaylists(playlistData, '', true);
+            if (adminState.playlistData.length > 0) {
+                renderPlaylists(adminState.playlistData, '', true);
             }
         });
     });
@@ -944,7 +908,7 @@ async function loadSavedSettings() {
 
             // Apply language
             if (settings.language) {
-                selectedLanguage = settings.language;
+                adminState.selectedLanguage = settings.language;
                 document.querySelectorAll('.chip[data-lang]').forEach(c => {
                     c.classList.toggle('chip--active', c.dataset.lang === settings.language);
                 });
@@ -956,7 +920,7 @@ async function loadSavedSettings() {
 
             // Apply timer
             if (settings.duration) {
-                selectedDuration = settings.duration;
+                adminState.selectedDuration = settings.duration;
                 document.querySelectorAll('.chip[data-duration]').forEach(c => {
                     c.classList.toggle('chip--active', parseInt(c.dataset.duration, 10) === settings.duration);
                 });
@@ -964,7 +928,7 @@ async function loadSavedSettings() {
 
             // Apply reveal auto-advance (#1012)
             if (typeof settings.revealAutoAdvance === 'number') {
-                revealAutoAdvance = settings.revealAutoAdvance;
+                adminState.revealAutoAdvance = settings.revealAutoAdvance;
                 document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => {
                     c.classList.toggle('chip--active', parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
                 });
@@ -972,7 +936,7 @@ async function loadSavedSettings() {
 
             // Apply difficulty
             if (settings.difficulty) {
-                selectedDifficulty = settings.difficulty;
+                adminState.selectedDifficulty = settings.difficulty;
                 document.querySelectorAll('.chip[data-difficulty]').forEach(c => {
                     c.classList.toggle('chip--active', c.dataset.difficulty === settings.difficulty);
                 });
@@ -980,35 +944,35 @@ async function loadSavedSettings() {
 
             // Apply artist challenge
             if (typeof settings.artistChallenge === 'boolean') {
-                artistChallengeEnabled = settings.artistChallenge;
+                adminState.artistChallengeEnabled = settings.artistChallenge;
                 const toggle = document.getElementById('artist-challenge-toggle');
                 if (toggle) toggle.checked = settings.artistChallenge;
             }
 
             // Apply movie quiz bonus (#947)
             if (typeof settings.movieQuiz === 'boolean') {
-                movieQuizEnabled = settings.movieQuiz;
+                adminState.movieQuizEnabled = settings.movieQuiz;
                 const toggle = document.getElementById('movie-quiz-toggle');
                 if (toggle) toggle.checked = settings.movieQuiz;
             }
 
             // Apply intro mode (Issue #23)
             if (typeof settings.introMode === 'boolean') {
-                introModeEnabled = settings.introMode;
+                adminState.introModeEnabled = settings.introMode;
                 const introToggle = document.getElementById('intro-mode-toggle');
                 if (introToggle) introToggle.checked = settings.introMode;
             }
 
             // Apply closest wins mode (Issue #442)
             if (typeof settings.closestWinsMode === 'boolean') {
-                closestWinsModeEnabled = settings.closestWinsMode;
+                adminState.closestWinsModeEnabled = settings.closestWinsMode;
                 const closestToggle = document.getElementById('closest-wins-toggle');
                 if (closestToggle) closestToggle.checked = settings.closestWinsMode;
             }
 
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
-                titleArtistModeEnabled = settings.titleArtistMode;
+                adminState.titleArtistModeEnabled = settings.titleArtistMode;
                 const taToggle = document.getElementById('title-artist-mode-toggle');
                 if (taToggle) taToggle.checked = settings.titleArtistMode;
             }
@@ -1016,7 +980,7 @@ async function loadSavedSettings() {
 
             // Apply provider
             if (settings.provider) {
-                selectedProvider = settings.provider;
+                adminState.selectedProvider = settings.provider;
                 document.querySelectorAll('.chip[data-provider]').forEach(c => {
                     c.classList.toggle('chip--active', c.dataset.provider === settings.provider);
                 });
@@ -1035,16 +999,16 @@ async function loadSavedSettings() {
 function saveGameSettings() {
     try {
         const settings = {
-            language: selectedLanguage,
-            duration: selectedDuration,
-            revealAutoAdvance: revealAutoAdvance,  // #1012
-            difficulty: selectedDifficulty,
-            artistChallenge: artistChallengeEnabled,
-            movieQuiz: movieQuizEnabled,  // #947
-            introMode: introModeEnabled,  // Issue #23
-            closestWinsMode: closestWinsModeEnabled,  // Issue #442
-            titleArtistMode: titleArtistModeEnabled,  // #1180
-            provider: selectedProvider
+            language: adminState.selectedLanguage,
+            duration: adminState.selectedDuration,
+            revealAutoAdvance: adminState.revealAutoAdvance,  // #1012
+            difficulty: adminState.selectedDifficulty,
+            artistChallenge: adminState.artistChallengeEnabled,
+            movieQuiz: adminState.movieQuizEnabled,  // #947
+            introMode: adminState.introModeEnabled,  // Issue #23
+            closestWinsMode: adminState.closestWinsModeEnabled,  // Issue #442
+            titleArtistMode: adminState.titleArtistModeEnabled,  // #1180
+            provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
     } catch (e) {
@@ -1064,14 +1028,14 @@ function updateGameSettingsSummary() {
     // #1180: year-round bonuses are suppressed while TA mode is on, so the badge
     // hides their icons too — but the underlying flags stay the host's untouched
     // source of truth (so toggling TA off restores them).
-    const yearRoundActive = !titleArtistModeEnabled;
-    const artistIcon = (yearRoundActive && artistChallengeEnabled) ? ' • 🎤' : '';
-    const movieIcon = (yearRoundActive && movieQuizEnabled) ? ' • 🎬' : '';  // #947
-    const introIcon = (yearRoundActive && introModeEnabled) ? ' • ⚡' : '';  // Issue #23
-    const closestIcon = (yearRoundActive && closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
-    const taIcon = titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
+    const yearRoundActive = !adminState.titleArtistModeEnabled;
+    const artistIcon = (yearRoundActive && adminState.artistChallengeEnabled) ? ' • 🎤' : '';
+    const movieIcon = (yearRoundActive && adminState.movieQuizEnabled) ? ' • 🎬' : '';  // #947
+    const introIcon = (yearRoundActive && adminState.introModeEnabled) ? ' • ⚡' : '';  // Issue #23
+    const closestIcon = (yearRoundActive && adminState.closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
+    const taIcon = adminState.titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
 
-    summary.textContent = `${difficultyLabels[selectedDifficulty] || 'Normal'} • ${selectedDuration}s • ${langLabels[selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
 }
 
 /**
@@ -1097,17 +1061,17 @@ function syncTitleArtistModeUI() {
         var input = document.getElementById(id);
         if (!input) return;
         var group = input.closest('.setting-group');
-        if (group) group.classList.toggle('hidden', titleArtistModeEnabled);
-        input.disabled = titleArtistModeEnabled;
+        if (group) group.classList.toggle('hidden', adminState.titleArtistModeEnabled);
+        input.disabled = adminState.titleArtistModeEnabled;
     });
     // #1180 polish: year-distance difficulty doesn't apply in TA mode. Hide the
     // chips + year hint and show the fixed T&I scoring summary in their place.
     var diffRow = document.getElementById('admin-difficulty-row');
-    if (diffRow) diffRow.classList.toggle('hidden', titleArtistModeEnabled);
+    if (diffRow) diffRow.classList.toggle('hidden', adminState.titleArtistModeEnabled);
     var diffHint = document.getElementById('admin-difficulty-hint');
-    if (diffHint) diffHint.classList.toggle('hidden', titleArtistModeEnabled);
+    if (diffHint) diffHint.classList.toggle('hidden', adminState.titleArtistModeEnabled);
     var taSummary = document.getElementById('admin-difficulty-ta-summary');
-    if (taSummary) taSummary.classList.toggle('hidden', !titleArtistModeEnabled);
+    if (taSummary) taSummary.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
 }
 
 /**
@@ -1137,7 +1101,7 @@ function renderMediaPlayers(players) {
     const totalPlayers = players ? players.length : 0;
 
     // Reset selection state
-    selectedMediaPlayer = null;
+    adminState.selectedMediaPlayer = null;
 
     // Filter out unavailable players
     const availablePlayers = (players || []).filter(p => p.state !== 'unavailable');
@@ -1174,8 +1138,8 @@ function renderMediaPlayers(players) {
 
     if (availablePlayers.length === 0) {
         // Players exist but all unavailable
-        const docsLink = mediaPlayerDocsUrl
-            ? `<a href="${utils.escapeHtml(mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
+        const docsLink = adminState.mediaPlayerDocsUrl
+            ? `<a href="${utils.escapeHtml(adminState.mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
@@ -1302,7 +1266,7 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     const supportsAmazonMusic = radio.dataset.supportsAmazonMusic === 'true';
 
     // Update module state with platform capabilities
-    selectedMediaPlayer = {
+    adminState.selectedMediaPlayer = {
         entityId,
         state,
         platform,
@@ -1332,10 +1296,10 @@ function handleMediaPlayerSelect(radio, skipSave = false) {
     }
 
     // Update provider options based on platform capabilities
-    updateProviderOptions(selectedMediaPlayer);
+    updateProviderOptions(adminState.selectedMediaPlayer);
 
     // Update warning message
-    updateProviderWarning(selectedMediaPlayer);
+    updateProviderWarning(adminState.selectedMediaPlayer);
 
     // Save to localStorage
     if (!skipSave) {
@@ -1392,39 +1356,39 @@ function updateProviderOptions(player) {
     }
 
     // If current selection is now disabled, switch to Spotify
-    if (selectedProvider === 'apple_music' && !player.supportsAppleMusic) {
+    if (adminState.selectedProvider === 'apple_music' && !player.supportsAppleMusic) {
         // Update UI
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        selectedProvider = 'spotify';
+        adminState.selectedProvider = 'spotify';
     }
 
-    if (selectedProvider === 'youtube_music' && !player.supportsYoutubeMusic) {
+    if (adminState.selectedProvider === 'youtube_music' && !player.supportsYoutubeMusic) {
         // Update UI
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        selectedProvider = 'spotify';
+        adminState.selectedProvider = 'spotify';
     }
 
-    if (selectedProvider === 'tidal' && !player.supportsTidal) {
+    if (adminState.selectedProvider === 'tidal' && !player.supportsTidal) {
         // Update UI
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        selectedProvider = 'spotify';
+        adminState.selectedProvider = 'spotify';
     }
 
-    if (selectedProvider === 'deezer' && !player.supportsDeezer) {
+    if (adminState.selectedProvider === 'deezer' && !player.supportsDeezer) {
         // Update UI
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        selectedProvider = 'spotify';
+        adminState.selectedProvider = 'spotify';
     }
 
-    if (selectedProvider === 'amazon_music' && !player.supportsAmazonMusic) {
+    if (adminState.selectedProvider === 'amazon_music' && !player.supportsAmazonMusic) {
         // Update UI
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        selectedProvider = 'spotify';
+        adminState.selectedProvider = 'spotify';
     }
 
     // Show hint for disabled providers
@@ -1506,33 +1470,33 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
     container?.classList.remove('skeleton-list');
 
     // Store previous selections before reset (for preserveSelection mode)
-    const previousSelections = preserveSelection ? [...selectedPlaylists] : [];
+    const previousSelections = preserveSelection ? [...adminState.selectedPlaylists] : [];
 
     // Reset selection state
-    selectedPlaylists = [];
-    playlistData = playlists || [];
+    adminState.selectedPlaylists = [];
+    adminState.playlistData = playlists || [];
 
     // Render filter bar (Issue #70)
-    renderPlaylistFilterBar(playlistData);
+    renderPlaylistFilterBar(adminState.playlistData);
 
     // Filter playlists based on active filters (Issue #70 - Option B)
     // Uses AND logic: playlist must match ALL selected category filters
-    let filteredPlaylists = playlistData;
-    if (!activeFilterTags.includes('all') && activeFilterTags.length > 0) {
-        filteredPlaylists = playlistData.filter(p => {
+    let filteredPlaylists = adminState.playlistData;
+    if (!adminState.activeFilterTags.includes('all') && adminState.activeFilterTags.length > 0) {
+        filteredPlaylists = adminState.playlistData.filter(p => {
             const playlistTags = p.tags || [];
             // Playlist must contain ALL active filter tags (AND logic)
-            return activeFilterTags.every(tag => playlistTags.includes(tag));
+            return adminState.activeFilterTags.every(tag => playlistTags.includes(tag));
         });
     }
 
     // Check if we have any valid playlists
-    const hasValidPlaylists = playlistData.some(p => p.is_valid);
+    const hasValidPlaylists = adminState.playlistData.some(p => p.is_valid);
 
-    if (!playlistData || playlistData.length === 0) {
+    if (!adminState.playlistData || adminState.playlistData.length === 0) {
         // AC2: No playlists error with documentation link
-        const docsLink = playlistDocsUrl
-            ? `<a href="${utils.escapeHtml(playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
+        const docsLink = adminState.playlistDocsUrl
+            ? `<a href="${utils.escapeHtml(adminState.playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
@@ -1571,17 +1535,17 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
 
             // Get provider count based on selected provider
             let providerCount = songCount;
-            if (selectedProvider === 'spotify') {
+            if (adminState.selectedProvider === 'spotify') {
                 providerCount = spotifyCount || songCount; // fallback for legacy playlists
-            } else if (selectedProvider === 'apple_music') {
+            } else if (adminState.selectedProvider === 'apple_music') {
                 providerCount = appleMusicCount;
-            } else if (selectedProvider === 'youtube_music') {
+            } else if (adminState.selectedProvider === 'youtube_music') {
                 providerCount = youtubeMusicCount;
-            } else if (selectedProvider === 'tidal') {
+            } else if (adminState.selectedProvider === 'tidal') {
                 providerCount = tidalCount;
-            } else if (selectedProvider === 'deezer') {
+            } else if (adminState.selectedProvider === 'deezer') {
                 providerCount = deezerCount;
-            } else if (selectedProvider === 'amazon_music') {
+            } else if (adminState.selectedProvider === 'amazon_music') {
                 providerCount = amazonMusicCount;
             }
 
@@ -1656,7 +1620,7 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 const providerCount = parseInt(checkbox.dataset.providerCount, 10) || 0;
                 const item = checkbox.closest('.playlist-item');
                 if (providerCount > 0) {
-                    selectedPlaylists.push({ path: prev.path, songCount: providerCount });
+                    adminState.selectedPlaylists.push({ path: prev.path, songCount: providerCount });
                     item?.classList.add('is-selected');
                 }
             }
@@ -1673,7 +1637,7 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
     // Restore previously saved playlist selections from localStorage (mirrors the
     // last-player auto-restore in renderMediaPlayers). Without this, the wizard's
     // selections get wiped every time loadStatus() re-renders the playlist list.
-    if (selectedPlaylists.length === 0) {
+    if (adminState.selectedPlaylists.length === 0) {
         try {
             const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
             const saved = raw ? JSON.parse(raw) : null;
@@ -1685,8 +1649,8 @@ function renderPlaylists(playlists, playlistDir, preserveSelection = false) {
                 if (checkbox && !checkbox.disabled) {
                     checkbox.checked = true;
                     const providerCount = parseInt(checkbox.dataset.providerCount, 10) || 0;
-                    if (providerCount > 0 && !selectedPlaylists.some((p) => p.path === path)) {
-                        selectedPlaylists.push({ path, songCount: providerCount });
+                    if (providerCount > 0 && !adminState.selectedPlaylists.some((p) => p.path === path)) {
+                        adminState.selectedPlaylists.push({ path, songCount: providerCount });
                         checkbox.closest('.playlist-item')?.classList.add('is-selected');
                     }
                 }
@@ -1711,12 +1675,12 @@ function handlePlaylistToggle(checkbox) {
 
     if (checkbox.checked) {
         // Prevent duplicate selections
-        if (!selectedPlaylists.some(p => p.path === path)) {
-            selectedPlaylists.push({ path, songCount: providerCount });
+        if (!adminState.selectedPlaylists.some(p => p.path === path)) {
+            adminState.selectedPlaylists.push({ path, songCount: providerCount });
         }
         item.classList.add('is-selected');
     } else {
-        selectedPlaylists = selectedPlaylists.filter(p => p.path !== path);
+        adminState.selectedPlaylists = adminState.selectedPlaylists.filter(p => p.path !== path);
         item.classList.remove('is-selected');
     }
 
@@ -1748,13 +1712,7 @@ const TAG_CATEGORIES = {
     }
 };
 
-// Active filter state per category
-let activeFilters = {
-    decade: '',
-    style: '',
-    region: '',
-    special: ''
-};
+// Active filter state per category lives in adminState.activeFilters (step 5).
 
 function renderPlaylistFilterBar(playlists) {
     const filterBar = document.getElementById('playlist-filter-bar');
@@ -1784,7 +1742,7 @@ function renderPlaylistFilterBar(playlists) {
         
         if (categoryTags.length === 0) return;
         
-        const currentValue = activeFilters[categoryKey] || '';
+        const currentValue = adminState.activeFilters[categoryKey] || '';
         
         html += `
             <select class="filter-dropdown" data-category="${categoryKey}">
@@ -1800,7 +1758,7 @@ function renderPlaylistFilterBar(playlists) {
     html += '</div>';
 
     // Show active filters summary
-    const activeFiltersList = Object.entries(activeFilters)
+    const activeFiltersList = Object.entries(adminState.activeFilters)
         .filter(([_, value]) => value)
         .map(([_, value]) => capitalize(value));
     
@@ -1830,35 +1788,35 @@ function renderPlaylistFilterBar(playlists) {
  * @param {string} value - The selected tag value
  */
 function handleFilterDropdownChange(category, value) {
-    activeFilters[category] = value;
+    adminState.activeFilters[category] = value;
     
-    // Update activeFilterTags for compatibility with existing filter logic
+    // Update adminState.activeFilterTags for compatibility with existing filter logic
     updateActiveFilterTags();
     
     // Re-render playlists with new filter
-    renderPlaylists(playlistData, '', true);
+    renderPlaylists(adminState.playlistData, '', true);
 }
 
 /**
- * Update activeFilterTags array from activeFilters object
+ * Update adminState.activeFilterTags array from adminState.activeFilters object
  */
 function updateActiveFilterTags() {
-    const selectedTags = Object.values(activeFilters).filter(v => v);
-    activeFilterTags = selectedTags.length > 0 ? selectedTags : ['all'];
+    const selectedTags = Object.values(adminState.activeFilters).filter(v => v);
+    adminState.activeFilterTags = selectedTags.length > 0 ? selectedTags : ['all'];
 }
 
 /**
  * Clear all playlist filters (Issue #70)
  */
 function clearPlaylistFilters() {
-    activeFilters = {
+    adminState.activeFilters = {
         decade: '',
         style: '',
         region: '',
         special: ''
     };
-    activeFilterTags = ['all'];
-    renderPlaylists(playlistData, '', true);
+    adminState.activeFilterTags = ['all'];
+    renderPlaylists(adminState.playlistData, '', true);
 }
 
 // Expose clearPlaylistFilters globally for onclick handler
@@ -1869,7 +1827,7 @@ window.clearPlaylistFilters = clearPlaylistFilters;
  * @returns {number}
  */
 function calculateTotalSongs() {
-    return selectedPlaylists.reduce((sum, p) => sum + p.songCount, 0);
+    return adminState.selectedPlaylists.reduce((sum, p) => sum + p.songCount, 0);
 }
 
 /**
@@ -1885,11 +1843,11 @@ function updateSelectionSummary() {
         return;
     }
 
-    if (selectedPlaylists.length === 0) {
+    if (adminState.selectedPlaylists.length === 0) {
         summary.classList.add('hidden');
     } else {
         summary.classList.remove('hidden');
-        selectedCount.textContent = selectedPlaylists.length;
+        selectedCount.textContent = adminState.selectedPlaylists.length;
         totalSongs.textContent = calculateTotalSongs();
     }
 }
@@ -1907,8 +1865,8 @@ function updateStartButtonState() {
         return;
     }
 
-    const noPlaylist = selectedPlaylists.length === 0;
-    const noMediaPlayer = selectedMediaPlayer === null;
+    const noPlaylist = adminState.selectedPlaylists.length === 0;
+    const noMediaPlayer = adminState.selectedMediaPlayer === null;
 
     // Disable button if either selection is missing
     btn.disabled = noPlaylist || noMediaPlayer;
@@ -1944,13 +1902,13 @@ function updateStartButtonState() {
  * the caller is expected to route into wizard or home-view next.
  */
 function showSetupView() {
-    currentView = 'setup';
-    currentGame = null;
+    adminState.currentView = 'setup';
+    adminState.currentGame = null;
     _releaseWakeLock(); // #622: allow screen to sleep again
 
     // Stop lobby polling (Story 16.8)
     stopLobbyPolling();
-    previousLobbyPlayers = [];
+    adminState.previousLobbyPlayers = [];
 
     // #1138: do NOT unhide the legacy flat setup sections — let CSS keep
     // them hidden via body.home-mode (set by BeatifyHome.enter() below).
@@ -1964,8 +1922,8 @@ function showSetupView() {
 
     // Issue #477: Close admin WS if switching to setup
     closeAdminWs();
-    isPlaying = false;
-    adminPlayerName = null;
+    adminState.isPlaying = false;
+    adminState.adminPlayerName = null;
 
     // #1138: route into the home-view (or its setup-prompt sub-mode if the
     // user isn't configured). The function above is now pure cleanup; this
@@ -1984,8 +1942,8 @@ function showSetupView() {
  * a LOBBY state arrives (see handleAdminStateUpdate).
  */
 function showLobbyView(gameData) {
-    currentView = 'lobby';
-    currentGame = gameData;
+    adminState.currentView = 'lobby';
+    adminState.currentGame = gameData;
     if (window.BeatifyHome) {
         window.BeatifyHome.renderSession(gameData);
     }
@@ -2004,7 +1962,7 @@ function showLobbyView(gameData) {
  * Open QR modal with enlarged code
  */
 function openQRModal() {
-    if (!cachedQRUrl) return;
+    if (!adminState.cachedQRUrl) return;
 
     var modal = document.getElementById('qr-modal');
     var modalCode = document.getElementById('qr-modal-code');
@@ -2015,7 +1973,7 @@ function openQRModal() {
 
     if (typeof QRCode !== 'undefined') {
         new QRCode(modalCode, {
-            text: cachedQRUrl,
+            text: adminState.cachedQRUrl,
             width: 280,
             height: 280,
             colorDark: '#000000',
@@ -2077,7 +2035,7 @@ async function startGame() {
     // Bail only if a legacy button exists AND is already disabled, AND we're NOT
     // in home-mode. In home-mode the legacy button is disabled by default (no
     // click-path populates it), so we bypass its state and trust the hydrated
-    // module globals (selectedMediaPlayer / selectedPlaylists) instead.
+    // module globals (adminState.selectedMediaPlayer / adminState.selectedPlaylists) instead.
     if (btn && btn.disabled && !inHomeMode) return;
 
     let originalText;
@@ -2093,31 +2051,31 @@ async function startGame() {
         // stored flags — that would corrupt the host's saved preferences on the
         // next reload). The in-memory flags remain the host's untouched choices.
         const rawBonusFlags = {
-            artist_challenge_enabled: artistChallengeEnabled,  // Story 20.7
-            movie_quiz_enabled: movieQuizEnabled,  // #947
-            intro_mode_enabled: introModeEnabled,  // Issue #23
-            closest_wins_mode: closestWinsModeEnabled  // Issue #442
+            artist_challenge_enabled: adminState.artistChallengeEnabled,  // Story 20.7
+            movie_quiz_enabled: adminState.movieQuizEnabled,  // #947
+            intro_mode_enabled: adminState.introModeEnabled,  // Issue #23
+            closest_wins_mode: adminState.closestWinsModeEnabled  // Issue #442
         };
         const bonusFlags = (window.BeatifyTitleArtist && typeof window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence === 'function')
-            ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, titleArtistModeEnabled)
-            : { ...rawBonusFlags, ...(titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
+            ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, adminState.titleArtistModeEnabled)
+            : { ...rawBonusFlags, ...(adminState.titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
 
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                playlists: selectedPlaylists.map(p => p.path),
-                media_player: selectedMediaPlayer?.entityId,
-                language: selectedLanguage,
-                round_duration: selectedDuration,  // Story 13.1
-                reveal_auto_advance: revealAutoAdvance,  // #1012
-                difficulty: selectedDifficulty,  // Story 14.1
-                provider: selectedProvider,  // Story 17.2
+                playlists: adminState.selectedPlaylists.map(p => p.path),
+                media_player: adminState.selectedMediaPlayer?.entityId,
+                language: adminState.selectedLanguage,
+                round_duration: adminState.selectedDuration,  // Story 13.1
+                reveal_auto_advance: adminState.revealAutoAdvance,  // #1012
+                difficulty: adminState.selectedDifficulty,  // Story 14.1
+                provider: adminState.selectedProvider,  // Story 17.2
                 artist_challenge_enabled: bonusFlags.artist_challenge_enabled,  // Story 20.7 (#1180: suppressed in TA mode)
                 movie_quiz_enabled: bonusFlags.movie_quiz_enabled,  // #947 (#1180: suppressed in TA mode)
                 intro_mode_enabled: bonusFlags.intro_mode_enabled,  // Issue #23 (#1180: suppressed in TA mode)
                 closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
-                title_artist_mode: titleArtistModeEnabled,  // #1180
+                title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })
@@ -2286,7 +2244,7 @@ async function confirmEndGame() {
     try {
         const response = await BeatifyAuth.fetch('/beatify/api/end-game', { method: 'POST' });
         if (response.ok) {
-            cachedQRUrl = null;
+            adminState.cachedQRUrl = null;
             showSetupView();
         } else {
             const data = await response.json();
@@ -2507,8 +2465,8 @@ function showError(message) {
  */
 function openAdminJoinModal() {
     // Issue #477: If already joined inline, just show a toast
-    if (isPlaying && adminPlayerName) {
-        showError(BeatifyI18n.t('admin.alreadyJoined') || 'Already joined as ' + adminPlayerName);
+    if (adminState.isPlaying && adminState.adminPlayerName) {
+        showError(BeatifyI18n.t('admin.alreadyJoined') || 'Already joined as ' + adminState.adminPlayerName);
         return;
     }
 
@@ -2517,8 +2475,8 @@ function openAdminJoinModal() {
     if (!isAdminWsOpen()) {
         var adminName = null;
         try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch(e) {}
-        if (adminName && currentGame && currentGame.game_id) {
-            window.location.href = '/beatify/play?game=' + encodeURIComponent(currentGame.game_id);
+        if (adminName && adminState.currentGame && adminState.currentGame.game_id) {
+            window.location.href = '/beatify/play?game=' + encodeURIComponent(adminState.currentGame.game_id);
             return;
         }
     }
@@ -2618,7 +2576,7 @@ function handleAdminJoin() {
             try {
                 sessionStorage.setItem('beatify_admin_name', name);
                 sessionStorage.setItem('beatify_is_admin', 'true');
-                adminPlayerName = name;
+                adminState.adminPlayerName = name;
                 // #998: server validates ha_token before granting the admin
                 // claim. Without this field handle_join returns ERR_UNAUTHORIZED
                 // ("Home Assistant login required to host") and the host's
@@ -2646,7 +2604,7 @@ function handleAdminJoin() {
             // WS not yet open — page just loaded, or auto-reconnect is in flight.
             // Do NOT fall through to the legacy /play redirect: that breaks the
             // "admin stays on home-view" promise and surfaces "No active game
-            // found" when currentGame.game_id is stale. Instead, nudge the WS
+            // found" when adminState.currentGame.game_id is stale. Instead, nudge the WS
             // open and send the join once it's ready.
             //
             // #814: bumped timeout from 5s to 20s. After a fresh HA restart
@@ -2693,7 +2651,7 @@ function handleAdminJoin() {
         sessionStorage.setItem('beatify_admin_name', name);
         sessionStorage.setItem('beatify_is_admin', 'true');
 
-        const gameId = currentGame?.game_id;
+        const gameId = adminState.currentGame?.game_id;
         if (gameId) {
             window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
         } else {
@@ -2717,7 +2675,7 @@ function setupLanguageSelector() {
     langButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
             var lang = btn.getAttribute('data-lang');
-            if (lang && lang !== selectedLanguage) {
+            if (lang && lang !== adminState.selectedLanguage) {
                 setLanguage(lang);
             }
         });
@@ -2749,7 +2707,7 @@ async function setLanguage(lang) {
         lang = 'en';
     }
 
-    selectedLanguage = lang;
+    adminState.selectedLanguage = lang;
     updateLanguageButtons(lang);
 
     // Update i18n and re-render page
@@ -2770,7 +2728,7 @@ function setupTimerSelector() {
     timerButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
             var duration = parseInt(btn.getAttribute('data-duration'), 10);
-            if (duration && duration !== selectedDuration) {
+            if (duration && duration !== adminState.selectedDuration) {
                 setTimerDuration(duration);
             }
         });
@@ -2803,7 +2761,7 @@ function setTimerDuration(duration) {
         duration = 30;
     }
 
-    selectedDuration = duration;
+    adminState.selectedDuration = duration;
     updateTimerButtons(duration);
 }
 
@@ -2827,7 +2785,7 @@ function setupDifficultySelector() {
     difficultyButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
             var difficulty = btn.getAttribute('data-difficulty');
-            if (difficulty && difficulty !== selectedDifficulty) {
+            if (difficulty && difficulty !== adminState.selectedDifficulty) {
                 setDifficulty(difficulty);
             }
         });
@@ -2861,7 +2819,7 @@ function setDifficulty(difficulty) {
         difficulty = 'normal';
     }
 
-    selectedDifficulty = difficulty;
+    adminState.selectedDifficulty = difficulty;
     updateDifficultyButtons(difficulty);
 
     // Update description text
@@ -2909,14 +2867,14 @@ function setupArtistChallengeToggle() {
     // Load saved preference
     var saved = localStorage.getItem('beatify_artist_challenge');
     if (saved !== null) {
-        artistChallengeEnabled = saved === 'true';
-        toggle.checked = artistChallengeEnabled;
+        adminState.artistChallengeEnabled = saved === 'true';
+        toggle.checked = adminState.artistChallengeEnabled;
     }
 
     toggle.addEventListener('change', function() {
-        artistChallengeEnabled = toggle.checked;
+        adminState.artistChallengeEnabled = toggle.checked;
         // Save preference
-        localStorage.setItem('beatify_artist_challenge', artistChallengeEnabled.toString());
+        localStorage.setItem('beatify_artist_challenge', adminState.artistChallengeEnabled.toString());
     });
 }
 
@@ -2937,7 +2895,7 @@ function setupProviderSelector() {
                 return;
             }
             var provider = btn.getAttribute('data-provider');
-            if (provider && provider !== selectedProvider) {
+            if (provider && provider !== adminState.selectedProvider) {
                 setProvider(provider);
             }
         });
@@ -2966,12 +2924,12 @@ function updateProviderButtons(provider) {
  */
 function setProvider(provider) {
     // Only Spotify is supported (Story 17.6: Apple Music removed)
-    selectedProvider = 'spotify';
+    adminState.selectedProvider = 'spotify';
     updateProviderButtons('spotify');
 
     // Re-render playlists to show coverage for selected provider
-    if (playlistData.length > 0) {
-        renderPlaylists(playlistData, '');
+    if (adminState.playlistData.length > 0) {
+        renderPlaylists(adminState.playlistData, '');
     }
 }
 
@@ -3017,7 +2975,7 @@ function renderLobbyPlayers(players) {
         if (emptyEl) emptyEl.classList.remove('hidden');
         var startBtn = document.getElementById("start-gameplay-btn");
         if (startBtn) startBtn.classList.add("hidden");
-        previousLobbyPlayers = [];
+        adminState.previousLobbyPlayers = [];
         return;
     }
 
@@ -3033,7 +2991,7 @@ function renderLobbyPlayers(players) {
     });
 
     // Find new players by comparing with previous list
-    var previousNames = previousLobbyPlayers.map(function(p) { return p.name; });
+    var previousNames = adminState.previousLobbyPlayers.map(function(p) { return p.name; });
     var newNames = sortedPlayers
         .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
         .map(function(p) { return p.name; });
@@ -3093,7 +3051,7 @@ function renderLobbyPlayers(players) {
         startBtn.classList.remove("hidden");
     }
 
-    previousLobbyPlayers = players.slice();
+    adminState.previousLobbyPlayers = players.slice();
 }
 
 /**
@@ -3122,7 +3080,7 @@ function startLobbyPolling() {
 
     // Poll every 3 seconds (balanced between responsiveness and server load)
     lobbyPollingInterval = setInterval(async function() {
-        if (currentView !== 'lobby') {
+        if (adminState.currentView !== 'lobby') {
             stopLobbyPolling();
             return;
         }
@@ -3308,7 +3266,7 @@ async function renderRequestsList() {
 
     if (!section || !listContainer) return; // section deleted from DOM — home-view modal carries the load
 
-    if (currentView === 'setup') section.classList.remove('hidden');
+    if (adminState.currentView === 'setup') section.classList.remove('hidden');
     if (summary) summary.textContent = requests.length.toString();
 
     if (requests.length === 0) {
@@ -3397,14 +3355,14 @@ async function renderRequestsList() {
  * Handle game state update from WebSocket — route to correct phase view.
  */
 function handleAdminStateUpdate(data) {
-    currentGame = data;
+    adminState.currentGame = data;
 
-    // Restore isPlaying state from player list (survives page reload)
-    if (data.players && !isPlaying) {
+    // Restore adminState.isPlaying state from player list (survives page reload)
+    if (data.players && !adminState.isPlaying) {
         var adminInList = data.players.find(function(p) { return p.is_admin; });
         if (adminInList) {
-            isPlaying = true;
-            adminPlayerName = adminPlayerName || adminInList.name;
+            adminState.isPlaying = true;
+            adminState.adminPlayerName = adminState.adminPlayerName || adminInList.name;
             try { sessionStorage.setItem('beatify_admin_name', adminInList.name); } catch(e) {}
         }
     }
@@ -3469,9 +3427,9 @@ function handleAdminStateUpdate(data) {
             // automatically instead of staying on the admin-playing view. The
             // player page carries its own slim admin-control-bar, so control
             // isn't lost — and the "Admin View" exit is available on /play.
-            // Require adminSessionId so /play can reconnect via session_id
+            // Require adminState.adminSessionId so /play can reconnect via session_id
             // rather than a racey fresh join (ERR_NAME_TAKEN otherwise).
-            if (adminPlayerName && adminSessionId && currentGame && currentGame.game_id) {
+            if (adminState.adminPlayerName && adminState.adminSessionId && adminState.currentGame && adminState.currentGame.game_id) {
                 handleSwitchToPlayerView();
                 return;
             }
@@ -3503,9 +3461,9 @@ function updatePlayingModeBanner() {
     bannerIds.forEach(function(id, i) {
         var banner = document.getElementById(id);
         if (!banner) return;
-        if (isPlaying && adminPlayerName) {
+        if (adminState.isPlaying && adminState.adminPlayerName) {
             var nameEl = document.getElementById(nameIds[i]);
-            if (nameEl) nameEl.textContent = adminPlayerName;
+            if (nameEl) nameEl.textContent = adminState.adminPlayerName;
             banner.classList.remove('hidden');
         } else {
             banner.classList.add('hidden');
@@ -3517,13 +3475,13 @@ function updatePlayingModeBanner() {
  * Handle switch-to-player-view button click (#660).
  */
 function handleSwitchToPlayerView() {
-    var gameId = currentGame && currentGame.game_id;
-    if (gameId && adminPlayerName) {
+    var gameId = adminState.currentGame && adminState.currentGame.game_id;
+    if (gameId && adminState.adminPlayerName) {
         try {
-            sessionStorage.setItem('beatify_admin_name', adminPlayerName);
+            sessionStorage.setItem('beatify_admin_name', adminState.adminPlayerName);
             sessionStorage.setItem('beatify_is_admin', 'true');
-            if (adminSessionId) {
-                sessionStorage.setItem('beatify_session', adminSessionId);
+            if (adminState.adminSessionId) {
+                sessionStorage.setItem('beatify_session', adminState.adminSessionId);
             }
         } catch(e) {}
         // Pass session_id in the URL so /play can reconnect via
@@ -3531,8 +3489,8 @@ function handleSwitchToPlayerView() {
         // old admin WS hasn't disconnected yet and the fresh join gets
         // ERR_NAME_TAKEN from player_registry.add_player.
         var url = '/beatify/play?game=' + encodeURIComponent(gameId);
-        if (adminSessionId) {
-            url += '&session=' + encodeURIComponent(adminSessionId);
+        if (adminState.adminSessionId) {
+            url += '&session=' + encodeURIComponent(adminState.adminSessionId);
         }
         window.location.href = url;
     }
@@ -3575,7 +3533,7 @@ function showAdminPlayingView(data) {
     // Admin-only song details (year, fun fact) — only for spectator admin (#660).
     // Fair-play guard: hide if the admin is a participant. We OR three signals
     // so a reconnect race can't open a spoiler leak (#882):
-    //   - isPlaying            — runtime flag, but resets to false on reconnect
+    //   - adminState.isPlaying            — runtime flag, but resets to false on reconnect
     //                            until the player list is re-processed
     //   - sessionStorage name  — set the moment the admin joins as a player;
     //                            survives reload/reconnect, the durable signal
@@ -3586,7 +3544,7 @@ function showAdminPlayingView(data) {
     var factEl = document.getElementById('admin-song-funfact');
     var adminJoinedAsPlayer = false;
     try { adminJoinedAsPlayer = !!sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* ignore */ }
-    var adminIsParticipant = isPlaying
+    var adminIsParticipant = adminState.isPlaying
         || adminJoinedAsPlayer
         || (data.players || []).some(function(p) { return p.is_admin; });
     if (data.admin_song && !adminIsParticipant) {
@@ -3778,7 +3736,7 @@ function showAdminRevealView(data) {
     // #660: Personal result when admin is playing
     var personalEl = document.getElementById('admin-reveal-personal');
     if (personalEl) {
-        if (isPlaying && adminPlayerName && data.players) {
+        if (adminState.isPlaying && adminState.adminPlayerName && data.players) {
             var adminPlayer = data.players.find(function(p) { return p.is_admin; });
             if (adminPlayer) {
                 var guessEl = document.getElementById('admin-reveal-my-guess');
@@ -3895,8 +3853,8 @@ function showAdminEndView(data) {
     }
 
     // Clean up game state for admin
-    isPlaying = false;
-    adminPlayerName = null;
+    adminState.isPlaying = false;
+    adminState.adminPlayerName = null;
     if (countdownInterval) {
         clearInterval(countdownInterval);
         countdownInterval = null;
@@ -4010,9 +3968,9 @@ function adminDismissGame() {
     if (isAdminWsOpen()) {
         sendAdminWs({ type: 'admin', action: 'dismiss_game' });
     }
-    cachedQRUrl = null;
-    isPlaying = false;
-    adminPlayerName = null;
+    adminState.cachedQRUrl = null;
+    adminState.isPlaying = false;
+    adminState.adminPlayerName = null;
     // #1080: "Start New Game" gives Restart semantics — a fresh wizard with
     // no pre-selected speaker or playlists. The Rematch button is the
     // keep-state path (same players, same setup, back to lobby); this is
