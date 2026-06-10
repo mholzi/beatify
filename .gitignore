@@ -23,7 +23,7 @@ docs/
 *.env.local
 
 # ---- Config & tooling ----
-pyproject.toml
+# pyproject.toml is tracked — it hosts the [tool.mypy] config (#1275).
 package.json
 package-lock.json
 Makefile
