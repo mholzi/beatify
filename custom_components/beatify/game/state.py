@@ -37,7 +37,6 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
-    INTRO_DURATION_SECONDS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
@@ -65,6 +64,7 @@ from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
 from .state_lifecycle import RoundLifecycleMixin
 from .state_media import MediaControlMixin
+from .state_pause import PauseResumeMixin
 from .state_player import PlayerLifecycleMixin
 from .state_scoring import RoundScoringMixin
 from .state_serialization import StateSerializationMixin
@@ -139,6 +139,7 @@ class GameState(
     ChallengeMixin,
     LeaderboardMixin,
     MediaControlMixin,
+    PauseResumeMixin,
     PlayerLifecycleMixin,
     RoundLifecycleMixin,
     RoundScoringMixin,
@@ -199,6 +200,18 @@ class GameState(
     ``_build_round_metadata``, ``_initialize_round``); the round-*end* /
     REVEAL-transition path deliberately stays here) lives in
     :class:`~custom_components.beatify.game.state_lifecycle.RoundLifecycleMixin`.
+
+    The pause / resume subsystem (Issue #1271 next-increment extraction, stacked
+    on the round-lifecycle cut — the PLAYING/REVEAL→PAUSED pause gate
+    (``pause_game``: phase snapshot, timer + media-playback stop, REVEAL
+    auto-advance supersession) and the PAUSED→(previous phase) resume restore
+    (``resume_game``: remaining-deadline timer/intro-timer restart, media
+    resume, or immediate round-end if the deadline elapsed during the pause —
+    always writing the phase through ``_set_phase(restore=True)`` so a
+    resume-to-REVEAL never re-stamps ``reveal_started_at``); the ``_set_phase``
+    chokepoint and ``_timer_countdown`` / ``end_round`` stay on ``GameState``)
+    lives in
+    :class:`~custom_components.beatify.game.state_pause.PauseResumeMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -813,143 +826,10 @@ class GameState(
             self.game_id,
         )
 
-    async def pause_game(self, reason: str) -> bool:
-        """
-        Pause the game (typically due to admin disconnect).
-
-        Args:
-            reason: Pause reason code (e.g., "admin_disconnected")
-
-        Returns:
-            True if successfully paused, False if already paused/ended
-
-        """
-        if self.phase == GamePhase.PAUSED:
-            return False  # Already paused
-        if self.phase == GamePhase.END:
-            return False  # Can't pause ended game
-
-        # Store current phase for resume
-        self._previous_phase = self.phase
-        self.pause_reason = reason
-
-        # Store admin name for rejoin verification (Story 7-2). #790: capture
-        # this for ANY pause reason, not just "admin_disconnected" — when the
-        # pause is triggered server-side (media_player_error, no_songs_available)
-        # the admin's WS may still be open, but if it later drops they need a
-        # path back. Without this, ws_handlers.py:113 rejects all admin claims
-        # during non-LOBBY phases and the game becomes unrecoverable.
-        for player in self.players.values():
-            if player.is_admin:
-                self.disconnected_admin_name = player.name
-                break
-
-        # #1012: a pause stops the unattended REVEAL auto-advance too.
-        self._cancel_auto_advance()
-
-        # Stop timer if in PLAYING
-        if self.phase == GamePhase.PLAYING:
-            self.cancel_timer()
-            # Issue #23: Cancel intro timer if running
-            self._round_manager._cancel_intro_timer()
-            # Stop media playback
-            if self._media_player_service:
-                await self._media_player_service.stop()
-
-        # Transition to PAUSED (clears reveal_started_at + notifies, #1273)
-        self._set_phase(GamePhase.PAUSED)
-        _LOGGER.info("Game paused: %s", reason)
-
-        return True
-
-    async def resume_game(self) -> bool:
-        """
-        Resume game from PAUSED state.
-
-        Returns:
-            True if successfully resumed, False if not paused
-
-        """
-        if self.phase != GamePhase.PAUSED:
-            return False
-        if self._previous_phase is None:
-            _LOGGER.error("Cannot resume: no previous phase stored")
-            return False
-
-        previous = self._previous_phase
-
-        # Restart timer if resuming to PLAYING and deadline still valid
-        if previous == GamePhase.PLAYING and self.deadline:
-            now_ms = int(self._now() * 1000)
-            remaining_ms = self.deadline - now_ms
-
-            if remaining_ms > 0:
-                remaining_seconds = remaining_ms / 1000.0
-                # Local import to avoid module-level cycle.
-                from custom_components.beatify.game.round_manager import (  # noqa: PLC0415
-                    _log_timer_task_failure,
-                )
-
-                self._round_manager._timer_task = asyncio.create_task(
-                    self._timer_countdown(remaining_seconds)
-                )
-                self._round_manager._timer_task.add_done_callback(
-                    _log_timer_task_failure
-                )
-                _LOGGER.info("Timer restarted with %.1fs remaining", remaining_seconds)
-
-                # Issue #416: Restart intro stop timer if this was an intro round
-                # Issue #496: Use actual playing time (excludes pause duration)
-                if (
-                    self.is_intro_round
-                    and not self.intro_stopped
-                    and self._round_manager._intro_round_start_time is not None
-                ):
-                    elapsed_intro = (
-                        self._round_manager.round_duration - remaining_seconds
-                    )
-                    remaining_intro = INTRO_DURATION_SECONDS - elapsed_intro
-                    if remaining_intro > 0:
-                        self._round_manager._intro_stop_task = asyncio.create_task(
-                            self._round_manager._intro_auto_stop(
-                                remaining_intro, self._on_round_end
-                            )
-                        )
-                        _LOGGER.info(
-                            "Intro stop timer restarted with %.1fs remaining",
-                            remaining_intro,
-                        )
-
-                # Resume media playback if it was stopped
-                if self._media_player_service and self.current_song:
-                    await self._media_player_service.play()
-                    _LOGGER.info("Media playback resumed")
-            else:
-                # Timer expired during pause — end the round immediately.
-                # #1273: resume *restores* a saved phase rather than making a
-                # forward transition, so it routes through _set_phase with
-                # restore=True — that writes the phase + notifies but leaves
-                # reveal_started_at untouched, so a resume-to-REVEAL does NOT
-                # re-stamp it (the auto-advance countdown must not restart).
-                _LOGGER.info("Timer expired during pause, ending round")
-                self._set_phase(previous, restore=True)
-                self.pause_reason = None
-                self.disconnected_admin_name = None
-                self._previous_phase = None
-                await self.end_round()
-                return True
-
-        # Restore previous phase via _set_phase(restore=True) — see the
-        # timer-expired branch above and the _set_phase ``restore`` docstring:
-        # a resume must not re-stamp reveal_started_at on a resume-to-REVEAL.
-        self._set_phase(previous, restore=True)
-        self.pause_reason = None
-        self.disconnected_admin_name = None
-        self._previous_phase = None
-
-        _LOGGER.info("Game resumed to phase: %s", previous.value)
-
-        return True
+    # ------------------------------------------------------------------
+    # Pause / resume lives in PauseResumeMixin (Issue #1271 extraction).
+    # See game/state_pause.py.
+    # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
     # Player lifecycle / lookup + power-up delegation lives in
