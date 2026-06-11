@@ -160,6 +160,33 @@ export function difficultyDisplayFor(titleArtistMode) {
         : { showChips: true, summaryKey: null };
 }
 
+/**
+ * Resolve the game-language default the wizard sends when starting a game.
+ *
+ * #1354: the browser language must win on EVERY wizard open, including a
+ * first-time user with no saved settings — otherwise the wizard UI renders in
+ * the browser locale (via BeatifyI18n auto-detect) while the started game goes
+ * out as 'en', leaving the player/game screens stuck in English.
+ *
+ * Order: browser detection (navigator.language) → saved settings.language →
+ * the caller's current default. Returns the resolved code (or `current` when
+ * nothing else is available). Pure: `detectFn` and `saved` are injected so this
+ * is unit-testable without a DOM.
+ *
+ * @param {function():string} [detectFn] - browser-language detector
+ * @param {{language?: string}|null} [saved] - parsed saved game settings
+ * @param {string} [current='en'] - fallback when neither source resolves
+ * @returns {string}
+ */
+export function resolveGameLanguageDefault(detectFn, saved, current = 'en') {
+    let resolved = null;
+    try {
+        if (typeof detectFn === 'function') resolved = detectFn();
+    } catch (e) { /* ignore */ }
+    if (!resolved && saved && saved.language) resolved = saved.language;
+    return resolved || current;
+}
+
 // ------------------------------------------------------------------
 // DOM-driven controller (browser-only below this line)
 // ------------------------------------------------------------------
@@ -1442,40 +1469,44 @@ export async function show(stepOverride) {
     try {
         chosenSpeaker = ls ? ls.getItem(LS_SELECTED_PLAYER) : null;
         const rawSettings = ls ? ls.getItem(LS_GAME_SETTINGS) : null;
-        if (rawSettings) {
-            const s = JSON.parse(rawSettings);
+        const savedSettings = rawSettings ? JSON.parse(rawSettings) : null;
+
+        // #1354 + #815 + #822: resolve the game-language default from the
+        // BROWSER on EVERY wizard open, regardless of whether saved settings
+        // exist. Previously this lived inside the `if (rawSettings)` block, so
+        // a first-time user with no saved settings kept the hard-coded
+        // chosenLanguage='en' default — the wizard UI rendered in German (via
+        // BeatifyI18n auto-detect) but the started game went out as 'en',
+        // leaving the player/game screens in English (#1354).
+        //
+        // Why navigator.language (via detectBrowserLanguage), not
+        // BeatifyI18n.getLanguage()?  Earlier rc15/rc17 attempts used
+        // getLanguage() but `admin.js:loadSavedSettings()` calls
+        // BeatifyI18n.setLanguage(settings.language) on every page
+        // load — which silently overrides the auto-detected language
+        // with whatever's in localStorage. A user with `navigator
+        // .language='de-DE'` plus stale settings.language='en' from a
+        // pre-rc15 wizard run would see currentLanguage='en' by the
+        // time the wizard opened, and the rc17 fix returned 'en' too.
+        // detectBrowserLanguage() is a pure read of navigator.language
+        // — no session state, no race.
+        //
+        // Power users who actually want game-language ≠ browser-
+        // language can tap the chip during the wizard; that explicit
+        // tap re-saves and persists across reloads via the chip
+        // handler in wizard.js's _renderChipGroup callback.
+        const _detectFn = (typeof window !== 'undefined' && window.BeatifyI18n
+            && typeof window.BeatifyI18n.detectBrowserLanguage === 'function')
+            ? window.BeatifyI18n.detectBrowserLanguage
+            : null;
+        chosenLanguage = resolveGameLanguageDefault(_detectFn, savedSettings, chosenLanguage);
+
+        if (savedSettings) {
+            const s = savedSettings;
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
             if (typeof s.revealAutoAdvance === 'number') chosenRevealAutoAdvance = s.revealAutoAdvance;
-            // #815 + #822: prefer the BROWSER's language as the game-language
-            // default. Saved value only wins if browser detection isn't
-            // available.
-            //
-            // Why navigator.language (via detectBrowserLanguage), not
-            // BeatifyI18n.getLanguage()?  Earlier rc15/rc17 attempts used
-            // getLanguage() but `admin.js:loadSavedSettings()` calls
-            // BeatifyI18n.setLanguage(settings.language) on every page
-            // load — which silently overrides the auto-detected language
-            // with whatever's in localStorage. A user with `navigator
-            // .language='de-DE'` plus stale settings.language='en' from a
-            // pre-rc15 wizard run would see currentLanguage='en' by the
-            // time the wizard opened, and the rc17 fix returned 'en' too.
-            // detectBrowserLanguage() is a pure read of navigator.language
-            // — no session state, no race.
-            //
-            // Power users who actually want game-language ≠ browser-
-            // language can tap the chip during the wizard; that explicit
-            // tap re-saves and persists across reloads via the chip
-            // handler in wizard.js's _renderChipGroup callback.
-            let _resolvedLang = null;
-            try {
-                if (window.BeatifyI18n && typeof window.BeatifyI18n.detectBrowserLanguage === 'function') {
-                    _resolvedLang = window.BeatifyI18n.detectBrowserLanguage();
-                }
-            } catch (e) { /* ignore */ }
-            if (!_resolvedLang && s.language) _resolvedLang = s.language;
-            if (_resolvedLang) chosenLanguage = _resolvedLang;
             if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
             if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
