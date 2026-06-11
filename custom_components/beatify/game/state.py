@@ -47,7 +47,6 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MIN,
     STREAK_MILESTONES,
     TITLE_ARTIST_VOTE_WINDOW_SECONDS,
-    VOLUME_STEP,
 )
 
 from .challenges import (
@@ -70,6 +69,7 @@ from .scoring import (
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .serializers import GameStateSerializer
 from .state_leaderboard import LeaderboardMixin
+from .state_media import MediaControlMixin
 from .state_tts import TtsAnnouncerMixin
 
 from .types import RoundAnalytics, _get_decade_label
@@ -136,7 +136,7 @@ _UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
 )
 
 
-class GameState(LeaderboardMixin, TtsAnnouncerMixin):
+class GameState(LeaderboardMixin, MediaControlMixin, TtsAnnouncerMixin):
     """Manages game state and phase transitions.
 
     The TTS / spoken-announcement subsystem (Issue #1271 first-increment
@@ -144,6 +144,10 @@ class GameState(LeaderboardMixin, TtsAnnouncerMixin):
 
     The leaderboard / ranking subsystem (Issue #1271 next-increment
     extraction) lives in :class:`~custom_components.beatify.game.state_leaderboard.LeaderboardMixin`.
+
+    The media-player & party-lights output subsystem (Issue #1271
+    next-increment extraction) lives in
+    :class:`~custom_components.beatify.game.state_media.MediaControlMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -2452,102 +2456,6 @@ class GameState(LeaderboardMixin, TtsAnnouncerMixin):
         await self.announce_podium()
 
         _LOGGER.info("Game advanced to END phase")
-
-    async def stop_media(self) -> None:
-        """Stop media playback if a media player service is available (#321)."""
-        if self._media_player_service:
-            await self._media_player_service.stop()
-
-    async def set_volume_on_player(self, level: float) -> bool:
-        """Apply volume level to the media player (#321).
-
-        Returns:
-            True if successful, False if failed or no media player.
-        """
-        if self._media_player_service:
-            return await self._media_player_service.set_volume(level)
-        return False
-
-    async def seek_forward(self, seconds: int) -> bool:
-        """Seek media player forward by given seconds (#498)."""
-        if self._media_player_service:
-            return await self._media_player_service.seek_forward(seconds)
-        return False
-
-    async def play_deferred_song(self, song: dict) -> bool:
-        """Play a song that was deferred for intro splash (#321).
-
-        Returns:
-            True if playback started, False otherwise.
-        """
-        if self._media_player_service:
-            return await self._media_player_service.play_song(song)
-        return False
-
-    # ------------------------------------------------------------------
-    # Party Lights (#331)
-    # ------------------------------------------------------------------
-
-    async def configure_party_lights(
-        self,
-        entity_ids: list[str],
-        intensity: str = "medium",
-        light_mode: str = "dynamic",
-        wled_presets: dict[str, int] | None = None,
-    ) -> None:
-        """Configure and start Party Lights for the game."""
-        # Lazy import: only the concrete class for instantiation; type hints
-        # use PartyLightsProtocol (module-level) to keep the import graph acyclic.
-        from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
-
-        self._party_lights = PartyLightsService(self._hass)
-        await self._party_lights.start(entity_ids, intensity, light_mode, wled_presets)
-
-    async def disable_party_lights(self) -> None:
-        """Stop Party Lights and restore original light states."""
-        if self._party_lights:
-            await self._party_lights.stop()
-            self._party_lights = None
-
-    async def _lights_set_phase(self, phase: GamePhase) -> None:
-        """Set Party Lights phase color (fire-and-forget)."""
-        if self._party_lights:
-            try:
-                await self._party_lights.set_phase(phase)
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Party Lights phase change failed")
-
-    async def _lights_flash(self, color: str) -> None:
-        """Flash Party Lights (fire-and-forget)."""
-        if self._party_lights:
-            try:
-                task = asyncio.create_task(self._party_lights.flash(color))
-                self._bg_tasks.add(task)
-                task.add_done_callback(self._bg_tasks.discard)
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Party Lights flash failed")
-
-    def adjust_volume(self, direction: str) -> float:
-        """
-        Adjust volume level by step (Story 6.4).
-
-        Args:
-            direction: "up" to increase, "down" to decrease
-
-        Returns:
-            New volume level (clamped 0.0 to 1.0)
-
-        """
-        # Sync with actual media player volume before adjusting
-        if self._media_player_service:
-            self.volume_level = self._media_player_service.get_volume()
-
-        if direction == "up":
-            self.volume_level = min(1.0, self.volume_level + VOLUME_STEP)
-        elif direction == "down":
-            self.volume_level = max(0.0, self.volume_level - VOLUME_STEP)
-
-        return self.volume_level
 
     def calculate_round_analytics(self) -> RoundAnalytics:
         """Calculate round analytics (Story 13.3). Delegates to ScoringService (#139)."""
