@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -445,5 +445,36 @@ describe('buildWizChip', () => {
 
     it('works for the intensity group too', () => {
         expect(buildWizChip('party', 'Party', 'intensity', 'party')).toContain('data-intensity="party"');
+    });
+});
+
+// ------------------------------------------------------------------
+// resolveGameLanguageDefault — game language must follow the browser
+// locale on EVERY wizard open, including a first-time user with no
+// saved settings (#1354: German wizard but English game).
+// ------------------------------------------------------------------
+describe('resolveGameLanguageDefault', () => {
+    it('uses the browser language even when there are NO saved settings (#1354)', () => {
+        // The bug: first-time user, no beatify_game_settings → game went out
+        // as the hard-coded 'en' default while the wizard UI was German.
+        expect(resolveGameLanguageDefault(() => 'de', null, 'en')).toBe('de');
+    });
+
+    it('browser language wins over a stale saved language', () => {
+        expect(resolveGameLanguageDefault(() => 'de', { language: 'en' }, 'en')).toBe('de');
+    });
+
+    it('falls back to saved language when browser detection is unavailable', () => {
+        expect(resolveGameLanguageDefault(null, { language: 'fr' }, 'en')).toBe('fr');
+    });
+
+    it('falls back to saved language when the detector throws', () => {
+        const throwing = () => { throw new Error('no navigator'); };
+        expect(resolveGameLanguageDefault(throwing, { language: 'es' }, 'en')).toBe('es');
+    });
+
+    it('falls back to the current default when nothing resolves', () => {
+        expect(resolveGameLanguageDefault(null, null, 'en')).toBe('en');
+        expect(resolveGameLanguageDefault(() => '', {}, 'en')).toBe('en');
     });
 });
