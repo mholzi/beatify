@@ -37,10 +37,7 @@ from typing import TYPE_CHECKING, Any
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
-    ERR_GAME_ALREADY_STARTED,
-    ERR_GAME_NOT_STARTED,
     INTRO_DURATION_SECONDS,
-    MIN_PLAYERS,
     PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
@@ -56,7 +53,7 @@ from .challenges import (
 from .config import GameStateConfig
 from .highlights import HighlightsTracker
 from .player import PlayerSession
-from .playlist import PlaylistManager, get_song_uri
+from .playlist import PlaylistManager
 from .player_registry import PlayerRegistry
 from .powerups import PowerUpManager
 from .round_manager import RoundManager
@@ -66,6 +63,7 @@ from .scoring import (
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
+from .state_lifecycle import RoundLifecycleMixin
 from .state_media import MediaControlMixin
 from .state_player import PlayerLifecycleMixin
 from .state_scoring import RoundScoringMixin
@@ -142,6 +140,7 @@ class GameState(
     LeaderboardMixin,
     MediaControlMixin,
     PlayerLifecycleMixin,
+    RoundLifecycleMixin,
     RoundScoringMixin,
     StateSerializationMixin,
     TtsAnnouncerMixin,
@@ -191,6 +190,15 @@ class GameState(
     (``set_stats_service``) and the difficulty lookup (``get_song_difficulty``))
     lives in
     :class:`~custom_components.beatify.game.state_serialization.StateSerializationMixin`.
+
+    The round-lifecycle / round-start subsystem (Issue #1271 next-increment
+    extraction, stacked on the state-serialization cut — the LOBBY→PLAYING
+    start gate (``start_game``) plus the full ``start_round`` orchestration
+    (song selection, playback dispatch, metadata build, round-state commit) and
+    its setup helpers (``_ensure_media_player_service``, ``_prepare_intro_round``,
+    ``_build_round_metadata``, ``_initialize_round``); the round-*end* /
+    REVEAL-transition path deliberately stays here) lives in
+    :class:`~custom_components.beatify.game.state_lifecycle.RoundLifecycleMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -643,8 +651,11 @@ class GameState(
         self.round_start_time = None
         self.round_duration = round_duration
 
-        # Set difficulty (Story 14.1)
-        self.difficulty = difficulty
+        # Set difficulty (Story 14.1). Explicit annotation so mypy has a
+        # declared type at the assignment point — without it the gated
+        # game/service.py read (self._game_state.difficulty) hit a mypy
+        # has-type deferral once GameState grew to 9 mixins (#1271).
+        self.difficulty: str = difficulty
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
@@ -1076,246 +1087,6 @@ class GameState(
         if not country:
             return None
         return str(country).strip().lower() or None
-
-    def start_game(self) -> tuple[bool, str | None]:
-        """
-        Start the game, transitioning from LOBBY to PLAYING.
-
-        Returns:
-            (success, error_code) - error_code is None on success
-
-        """
-        if self.phase != GamePhase.LOBBY:
-            return False, ERR_GAME_ALREADY_STARTED
-
-        if len(self.players) < MIN_PLAYERS:
-            return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
-
-        self._set_phase(GamePhase.PLAYING)
-        # Round and song selection will be implemented in Epic 4
-        _LOGGER.info("Game started: %d players", len(self.players))
-        return True, None
-
-    async def start_round(self, _retry_count: int = 0) -> bool:
-        """Start a new round with song playback (#390).
-
-        Args:
-            _retry_count: Internal counter for failed song attempts (max 3)
-
-        Returns:
-            True if round started successfully, False otherwise
-
-        """
-        MAX_SONG_RETRIES = 3
-
-        # #1012: a (manual or auto) round start supersedes any pending
-        # REVEAL auto-advance.
-        if _retry_count == 0:
-            self._cancel_auto_advance()
-
-        if not self._playlist_manager:
-            _LOGGER.error("No playlist manager configured")
-            return False
-
-        # Get next playable song (skip songs without URI for selected provider)
-        song = self._playlist_manager.get_next_song()
-        if not song:
-            _LOGGER.info("All songs exhausted, ending game")
-            self._set_phase(GamePhase.END)
-            return False
-
-        resolved_uri = song.get("_resolved_uri")
-        if not resolved_uri:
-            _LOGGER.warning(
-                "Skipping song (year %s) - no URI for provider", song.get("year", "?")
-            )
-            self._playlist_manager.mark_played(
-                get_song_uri(song, self.provider, self.storefront) or song.get("uri")
-            )
-            if _retry_count >= MAX_SONG_RETRIES:
-                _LOGGER.error(
-                    "No playable songs found after %d attempts, pausing game",
-                    MAX_SONG_RETRIES,
-                )
-                await self.pause_game("no_songs_available")
-                return False
-            return await self.start_round(_retry_count + 1)
-
-        self.last_round = self._playlist_manager.get_remaining_count() <= 1
-        self._ensure_media_player_service()
-        will_defer_for_splash = self._prepare_intro_round(song)
-
-        # Play song via media player (skip if deferred for intro splash)
-        if self._media_player_service and not will_defer_for_splash:
-            if not self._media_player_service.is_available():
-                self.last_error_detail = (
-                    f"Media player {self.media_player} is unavailable"
-                )
-                _LOGGER.error(
-                    "Media player %s is not available, pausing game", self.media_player
-                )
-                await self.pause_game("media_player_error")
-                return False
-
-            # Additional responsiveness check for non-MA players
-            if self.platform != "music_assistant":
-                (
-                    responsive,
-                    error_detail,
-                ) = await self._media_player_service.verify_responsive()
-                if not responsive:
-                    self.last_error_detail = error_detail
-                    _LOGGER.error(
-                        "Media player not responsive: %s, pausing game", error_detail
-                    )
-                    await self.pause_game("media_player_error")
-                    return False
-
-            success = await self._media_player_service.play_song(song)
-            if not success:
-                # #808 follow-up: classify the failure. "unavailable" means
-                # MA accepted the URI but the speaker stayed on the prior
-                # track — typically a region/storefront mismatch (the track
-                # ID isn't in the user's catalog). Skip silently and try the
-                # next song without counting against MAX_SONG_RETRIES; the
-                # user can't fix individual track availability and the game
-                # should keep playing the subset that IS available.
-                #
-                # "error" / unset → systemic failure (speaker offline, MA
-                # provider broken). Count toward MAX_SONG_RETRIES so the
-                # recovery banner kicks in for real problems.
-                failure_reason = getattr(
-                    self._media_player_service, "last_failure_reason", None
-                )
-                self._playlist_manager.mark_played(
-                    song.get("_resolved_uri") or song.get("uri")
-                )
-
-                if failure_reason == "unavailable":
-                    _LOGGER.info(
-                        "Skipping unavailable song silently: %s (likely not in "
-                        "your provider's storefront/catalog) — trying next song",
-                        song.get("title") or song.get("uri"),
-                    )
-                    await asyncio.sleep(0.2)
-                    return await self.start_round(_retry_count)
-
-                # #949: a systemic playback failure — the speaker stayed idle,
-                # or the Music Assistant provider is unauthenticated — does not
-                # fix itself by retrying. play_song already waited a full MA
-                # timeout. Retrying it ~3x more meant ~2 minutes of a silent
-                # "Starting..." button before the admin saw anything. Pause
-                # now so the recovery banner (which names the provider to
-                # re-authenticate) appears within seconds; its Resume button
-                # is the manual retry if it really was a transient blip.
-                _LOGGER.error(
-                    "Playback failed for %s — speaker unreachable, pausing game",
-                    song.get("uri"),
-                )
-                await self.pause_game("media_player_error")
-                return False
-
-        metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
-        # Issue #1211: when TTS pre-round announcements are active, shift the
-        # deadline forward so the timer doesn't count down during the TTS
-        # overhead (e.g. Google Home chime → announcement → chime before music
-        # resumes). Default is 0 ms (no change); users configure this via the
-        # TTS settings "Timer delay" field.
-        extra_ms = 0
-        if self._tts_service and self._tts_pre_round_delay > 0:
-            extra_ms = int(self._tts_pre_round_delay * 1000)
-        self._initialize_round(
-            song,
-            metadata,
-            resolved_uri,
-            will_defer_for_splash,
-            extra_deadline_ms=extra_ms,
-        )
-
-        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
-        await self._lights_set_phase(GamePhase.PLAYING)
-        _LOGGER.info(
-            "Round %d started: %s - %s (%.1fs timer)",
-            self.round,
-            self.current_song.get("artist"),
-            self.current_song.get("title"),
-            delay_seconds,
-        )
-
-        # Issue #471 Phase 1: Game Flow announcements at round start.
-        # Fired AFTER lights/log so the audio aligns with the user-visible
-        # transition. countdown is opt-in (default off) — chained after
-        # round_start when both are enabled.
-        await self.announce_round_start()
-        await self.announce_countdown()
-        # Issue #841 Phase 3: flag the final round (use case 17).
-        if self.total_rounds > 1 and self.round >= self.total_rounds:
-            await self.announce_last_round()
-        # Issue #842 Phase 4: flag an intro-mode round (use case 21).
-        if self.is_intro_round:
-            await self.announce_intro_round()
-
-        return True
-
-    def _ensure_media_player_service(self) -> None:
-        """Create MediaPlayerService lazily on first round."""
-        # Lazy import: only the concrete class for instantiation; type hints
-        # use MediaPlayerProtocol (module-level) to keep the import graph acyclic.
-        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
-            MediaPlayerService,
-        )
-
-        if self.media_player and not self._media_player_service:
-            self._media_player_service = MediaPlayerService(
-                self._hass,
-                self.media_player,
-                platform=self.platform,
-                provider=self.provider,
-            )
-            # Connect analytics for error recording (Story 19.1 AC: #2)
-            if self._stats_service and hasattr(self._stats_service, "_analytics"):
-                self._media_player_service.set_analytics(self._stats_service._analytics)
-
-    def _prepare_intro_round(self, song: dict) -> bool:
-        """Determine if this is an intro round. Delegates to RoundManager."""
-        return self._round_manager.prepare_intro_round(song, self._hass)
-
-    def _build_round_metadata(
-        self, song: dict, resolved_uri: str, will_defer_for_splash: bool
-    ) -> dict:
-        """Build initial metadata dict. Delegates to RoundManager."""
-        return self._round_manager.build_round_metadata(
-            song,
-            resolved_uri,
-            will_defer_for_splash,
-            self._media_player_service,
-            self._fetch_metadata_async(resolved_uri),
-        )
-
-    def _initialize_round(
-        self,
-        song: dict,
-        metadata: dict,
-        resolved_uri: str,
-        will_defer_for_splash: bool,
-        extra_deadline_ms: int = 0,
-    ) -> None:
-        """Commit all round state. Delegates to RoundManager."""
-        self._round_manager.initialize_round(
-            song,
-            metadata,
-            resolved_uri,
-            will_defer_for_splash,
-            self._playlist_manager,
-            self._challenge_manager,
-            self.players,
-            self._timer_countdown,
-            self._on_round_end,
-            extra_deadline_ms=extra_deadline_ms,
-        )
-        self.round_analytics = None
-        # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
-        self._set_phase(GamePhase.PLAYING)
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
         """Wait for round to end, then trigger reveal.
