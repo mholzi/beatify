@@ -60,6 +60,7 @@ from .scoring import (
     ScoringService,
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
+from .state_auto_advance import RevealAutoAdvanceMixin
 from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
 from .state_lifecycle import RoundLifecycleMixin
@@ -141,6 +142,7 @@ class GameState(
     MediaControlMixin,
     PauseResumeMixin,
     PlayerLifecycleMixin,
+    RevealAutoAdvanceMixin,
     RoundLifecycleMixin,
     RoundScoringMixin,
     StateSerializationMixin,
@@ -212,6 +214,16 @@ class GameState(
     chokepoint and ``_timer_countdown`` / ``end_round`` stay on ``GameState``)
     lives in
     :class:`~custom_components.beatify.game.state_pause.PauseResumeMixin`.
+
+    The REVEAL auto-advance subsystem (Issue #1271 next-increment extraction,
+    off ``main`` after the pause/resume cut — the #1012 unattended REVEAL→next
+    machinery: the song-end / dwell auto-advance task (``_reveal_auto_advance``),
+    the zero-guesses idle-halt task (``_reveal_idle_halt``), their shared
+    song-end poll (``_song_finished``) and the cancel hook
+    (``_cancel_auto_advance``); the scheduler that *starts* these tasks
+    (``_schedule_reveal_advance``) and the ``_set_phase`` chokepoint stay on
+    ``GameState``) lives in
+    :class:`~custom_components.beatify.game.state_auto_advance.RevealAutoAdvanceMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -1000,12 +1012,6 @@ class GameState(
             _LOGGER.debug("Timer task cancelled")
             raise
 
-    def _cancel_auto_advance(self) -> None:
-        """Cancel the pending REVEAL auto-advance task, if any (#1012)."""
-        if self._auto_advance_task is not None:
-            self._auto_advance_task.cancel()
-            self._auto_advance_task = None
-
     def _score_all_players(
         self, correct_year: int | None, all_players: list[PlayerSession]
     ) -> None:
@@ -1051,121 +1057,6 @@ class GameState(
                     self.round,
                     err,
                 )
-
-    def _song_finished(self) -> bool:
-        """True once the round's song is no longer playing (#1012).
-
-        The song keeps playing through REVEAL; when the track ends the
-        media player drops out of "playing", which is the song-end
-        signal for the auto-advance.
-        """
-        if not self._media_player_service:
-            return False
-        try:
-            pstate = self._media_player_service.get_playback_state()
-        except Exception:  # noqa: BLE001 — defensive: never let a poll error stall
-            _LOGGER.debug(
-                "song-finished poll: get_playback_state raised; treating as "
-                "still playing",
-                exc_info=True,
-            )
-            return False
-        return pstate not in ("playing", "buffering")
-
-    async def _reveal_auto_advance(self, timer_seconds: int) -> None:
-        """Auto-advance from REVEAL to the next round (#1012).
-
-        Advances on whichever comes first: the round's song finishing,
-        or — when ``timer_seconds`` > 0 — that many seconds elapsing.
-        ``timer_seconds == 0`` ("Off") means wait for the song to end.
-        A generous hard cap guarantees the game can never stall even if
-        song-end is undetectable. A manual next_round, pause or game-end
-        cancels this task; the phase re-check makes a late firing a no-op.
-        """
-        poll = 2.0
-        # Even in song-end mode, never wait longer than this (songs run
-        # ~3-5 min) so an undetectable song-end can't stall the game.
-        hard_cap = timer_seconds if timer_seconds > 0 else 360
-        try:
-            elapsed = 0.0
-            while True:
-                await asyncio.sleep(poll)
-                elapsed += poll
-                if self.phase != GamePhase.REVEAL:
-                    return  # advanced / paused / ended elsewhere
-                if self._song_finished() or elapsed >= hard_cap:
-                    break
-            # Clear the handle before advancing so start_round's own
-            # _cancel_auto_advance() doesn't cancel this running task.
-            self._auto_advance_task = None
-            _LOGGER.info(
-                "REVEAL auto-advance (timer=%ss, %.0fs elapsed) — next round",
-                timer_seconds,
-                elapsed,
-            )
-            success = await self.start_round()
-            # start_round() only fires sync state-callbacks via
-            # _notify_state_callbacks; the async WebSocket broadcast
-            # (`_on_round_end` = ws_handler.broadcast_state) is what actually
-            # pushes the new PLAYING state to clients. The manual
-            # admin_next_round path explicitly awaits handler.broadcast_state()
-            # after start_round — mirror that here, otherwise music starts but
-            # the admin + player UIs stay frozen on REVEAL.
-            if success and self._on_round_end:
-                try:
-                    await self._on_round_end()
-                except (ConnectionError, OSError, TypeError) as err:
-                    _LOGGER.error("Auto-advance broadcast failed: %s", err)
-        except asyncio.CancelledError:
-            _LOGGER.debug("REVEAL auto-advance cancelled")
-            raise
-
-    async def _reveal_idle_halt(self) -> None:
-        """Hold the game when a round ends with zero guesses (#1012 follow-up).
-
-        A round where nobody submitted a guess means the party is idle —
-        rather than auto-advancing through the playlist unattended, let the
-        round's song play out, stop the speaker, and hold on REVEAL without
-        starting a new round. The host's manual "Next round" still resumes;
-        a pause or game-end cancels this task, and the phase re-check makes
-        a late firing a no-op.
-        """
-        poll = 2.0
-        # Never poll forever if song-end is undetectable (songs run ~3-5 min).
-        hard_cap = 360
-        try:
-            elapsed = 0.0
-            while True:
-                await asyncio.sleep(poll)
-                elapsed += poll
-                if self.phase != GamePhase.REVEAL:
-                    return  # host advanced / paused / ended elsewhere
-                if self._song_finished() or elapsed >= hard_cap:
-                    break
-            # Clear the handle before stopping so a manual start_round's
-            # _cancel_auto_advance() doesn't cancel this running task.
-            self._auto_advance_task = None
-            # #1123: re-check phase after clearing the handle.  The admin may have
-            # clicked "Next Round" in the narrow window between the song-finished
-            # detection (loop exit) and this stop() call.  Without the guard,
-            # stop() would silence the newly-started next song even though the
-            # game has already advanced to PLAYING.
-            if self.phase != GamePhase.REVEAL:
-                _LOGGER.debug(
-                    "Idle halt: phase left REVEAL before stop() — skipping stop"
-                )
-                return
-            if self._media_player_service:
-                try:
-                    await self._media_player_service.stop()
-                except Exception as err:  # noqa: BLE001 — a stop error must not raise
-                    _LOGGER.warning("Idle-halt stop playback failed: %s", err)
-            _LOGGER.info(
-                "REVEAL idle halt — no guesses this round; game holds on REVEAL"
-            )
-        except asyncio.CancelledError:
-            _LOGGER.debug("REVEAL idle halt cancelled")
-            raise
 
     async def _fetch_metadata_async(self, uri: str) -> None:
         """
