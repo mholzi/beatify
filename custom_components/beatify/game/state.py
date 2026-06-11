@@ -64,12 +64,12 @@ from .scoring import (
     ScoringService,
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
-from .serializers import GameStateSerializer
 from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
 from .state_media import MediaControlMixin
 from .state_player import PlayerLifecycleMixin
 from .state_scoring import RoundScoringMixin
+from .state_serialization import StateSerializationMixin
 from .state_tts import TtsAnnouncerMixin
 from .state_vote_window import VoteWindowMixin
 
@@ -143,6 +143,7 @@ class GameState(
     MediaControlMixin,
     PlayerLifecycleMixin,
     RoundScoringMixin,
+    StateSerializationMixin,
     TtsAnnouncerMixin,
     VoteWindowMixin,
 ):
@@ -180,6 +181,16 @@ class GameState(
     ``_score_all_players`` loop deliberately stays here so the round-end and
     vote-window deferred-rescore paths cannot drift) lives in
     :class:`~custom_components.beatify.game.state_scoring.RoundScoringMixin`.
+
+    The state-serialization & game-summary subsystem (Issue #1271
+    next-increment extraction, stacked on the round-scoring cut — the
+    frontend/StatsService serialization entry points ``get_state`` /
+    ``get_reveal_players_state`` plus the end-of-game summary
+    (``finalize_game``), live performance comparison (``get_game_performance``
+    / ``_calculate_current_avg``), the ``StatsService`` wiring
+    (``set_stats_service``) and the difficulty lookup (``get_song_difficulty``))
+    lives in
+    :class:`~custom_components.beatify.game.state_serialization.StateSerializationMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -527,12 +538,6 @@ class GameState(
     # (Issue #1271 extraction). See game/state_player.py.
     # ------------------------------------------------------------------
 
-    def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
-        """Get song difficulty rating — delegated to StatsService."""
-        if self._stats_service:
-            return self._stats_service.get_song_difficulty(song_uri)
-        return None
-
     def create_game(
         self,
         playlists: list[str],
@@ -684,91 +689,6 @@ class GameState(
             "join_url": self.join_url,
             "phase": self.phase.value,
             "song_count": len(songs),
-        }
-
-    def get_state(self) -> dict[str, Any] | None:
-        """Get current game state for broadcast.
-
-        Delegates to GameStateSerializer (Issue #464).
-
-        Returns:
-            Game state dict or None if no active game
-
-        """
-        return GameStateSerializer.serialize(self)
-
-    def get_reveal_players_state(self) -> list[dict[str, Any]]:
-        """Get player state with reveal info for REVEAL phase.
-
-        Delegates to GameStateSerializer (Issue #464).
-
-        Returns:
-            List of player dicts including guess, round_score, years_off,
-            speed bonus data (Story 5.1), streak bonus (Story 5.2),
-            and artist bonus (Story 20.4), sorted by total score descending.
-
-        """
-        return GameStateSerializer.get_reveal_players_state(self)
-
-    def finalize_game(self) -> dict[str, Any]:
-        """
-        Calculate final stats before ending the game (Story 14.4).
-
-        Must be called BEFORE end_game() to capture statistics.
-        Returns summary dict for StatsService.record_game().
-
-        Returns:
-            Game summary dict with playlist, rounds, player_count,
-            winner, winner_score, total_points, avg_score_per_round
-
-        """
-        # Calculate totals
-        total_points = sum(p.score for p in self.players.values())
-        player_count = len(self.players)
-        rounds_played = self.round
-
-        # Determine winner(s) — detect ties
-        winner_name = "Unknown"
-        winner_score = 0
-        if self.players:
-            top_score = max(p.score for p in self.players.values())
-            winners = [p for p in self.players.values() if p.score == top_score]
-            winner_score = top_score
-            if len(winners) == 1:
-                winner_name = winners[0].name
-            else:
-                winner_name = ", ".join(w.name for w in winners)
-
-        # Calculate average score per round
-        avg_score_per_round = 0.0
-        if rounds_played > 0 and player_count > 0:
-            avg_score_per_round = total_points / (rounds_played * player_count)
-
-        # Determine playlist name (use first playlist or "mixed")
-        playlist_name = "unknown"
-        if self.playlists:
-            # Extract playlist name from path
-            playlist_path = self.playlists[0]
-            if "/" in playlist_path:
-                playlist_name = playlist_path.split("/")[-1].replace(".json", "")
-            else:
-                playlist_name = playlist_path.replace(".json", "")
-
-        return {
-            "playlist": playlist_name,
-            "rounds": rounds_played,
-            "player_count": player_count,
-            "winner": winner_name,
-            "winner_score": winner_score,
-            "total_points": total_points,
-            "avg_score_per_round": round(avg_score_per_round, 2),
-            # Story 19.11: Include streak achievements
-            "streak_3_count": self.streak_achievements.get("streak_3", 0),
-            "streak_5_count": self.streak_achievements.get("streak_5", 0),
-            "streak_10_count": self.streak_achievements.get("streak_10", 0),
-            # Story 19.12: Include bet tracking
-            "total_bets": self.bet_tracking.get("total_bets", 0),
-            "bets_won": self.bet_tracking.get("bets_won", 0),
         }
 
     def _reset_game_internals(self) -> None:
@@ -1132,63 +1052,6 @@ class GameState(
 
         """
         self._on_metadata_update = callback
-
-    def set_stats_service(self, stats_service: StatsService) -> None:
-        """
-        Set stats service reference (Story 14.4).
-
-        Args:
-            stats_service: StatsService instance for game performance tracking
-
-        """
-        self._stats_service = stats_service
-        _LOGGER.info("Stats service connected to GameState")
-
-    def _calculate_current_avg(self) -> float:
-        """
-        Calculate current game's average score per round (Story 14.4).
-
-        Used for in-game comparison to all-time average.
-
-        Returns:
-            Current game average score per round, or 0.0 if no data
-
-        """
-        if self.round == 0 or not self.players:
-            return 0.0
-
-        total_points = sum(p.score for p in self.players.values())
-        player_count = len(self.players)
-
-        return total_points / (self.round * player_count)
-
-    def get_game_performance(self) -> dict[str, Any] | None:
-        """
-        Get game performance comparison data (Story 14.4).
-
-        Used during REVEAL and END phases to show motivational feedback.
-
-        Returns:
-            Performance dict with comparison data, or None if no stats service
-
-        """
-        if not self._stats_service:
-            _LOGGER.debug("get_game_performance: No stats service connected")
-            return None
-
-        current_avg = self._calculate_current_avg()
-        comparison = self._stats_service.get_game_comparison(current_avg)
-        message_data = self._stats_service.get_motivational_message(comparison)
-
-        return {
-            "current_avg": round(current_avg, 2),
-            "all_time_avg": comparison["all_time_avg"],
-            "difference": comparison["difference"],
-            "is_above_average": comparison["is_above_average"],
-            "is_new_record": comparison["is_new_record"],
-            "is_first_game": comparison["is_first_game"],
-            "message": message_data,
-        }
 
     def _detect_storefront(self) -> str | None:
         """Determine the user's Apple Music storefront for URI resolution.
