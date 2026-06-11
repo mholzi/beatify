@@ -150,7 +150,7 @@ class TestConditionalWindow:
         for p in gs.players.values():
             p.submitted = True
         # Patch the window length to ~0 so the test does not wait 15s.
-        import custom_components.beatify.game.state as state_mod
+        import custom_components.beatify.game.state_vote_window as state_mod
 
         orig = state_mod.TITLE_ARTIST_VOTE_WINDOW_SECONDS
         state_mod.TITLE_ARTIST_VOTE_WINDOW_SECONDS = 0
@@ -248,7 +248,7 @@ class TestVoteWindowScoring:
         gs = make_game_state()
         await self._setup_near_miss(gs)
         gs.set_title_artist_override("Alice:title", True)
-        import custom_components.beatify.game.state as state_mod
+        import custom_components.beatify.game.state_vote_window as state_mod
 
         orig = state_mod.TITLE_ARTIST_VOTE_WINDOW_SECONDS
         state_mod.TITLE_ARTIST_VOTE_WINDOW_SECONDS = 0
