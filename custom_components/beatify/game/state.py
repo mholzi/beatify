@@ -59,6 +59,7 @@ from .state_media import MediaControlMixin
 from .state_pause import PauseResumeMixin
 from .state_player import PlayerLifecycleMixin
 from .state_reveal_transition import RevealTransitionMixin
+from .state_round_delegation import RoundManagerDelegationMixin
 from .state_setup import GameSetupMixin
 from .state_scoring import RoundScoringMixin
 from .state_serialization import StateSerializationMixin
@@ -139,6 +140,7 @@ class GameState(
     RevealAutoAdvanceMixin,
     RevealTransitionMixin,
     RoundLifecycleMixin,
+    RoundManagerDelegationMixin,
     RoundScoringMixin,
     StateSerializationMixin,
     TtsAnnouncerMixin,
@@ -242,6 +244,19 @@ class GameState(
     ``_set_phase`` chokepoint, ``_score_all_players``, ``_end_round_unlocked`` and
     ``_schedule_reveal_advance`` round-end SSOT stay on ``GameState``) lives in
     :class:`~custom_components.beatify.game.state_reveal_transition.RevealTransitionMixin`.
+
+    The RoundManager delegation-property facade (Issue #1271 next-increment
+    extraction, off ``main`` — the read-only / setter ``@property`` cluster that
+    keeps the round-scoped public interface identical while the underlying
+    attributes live on the owned ``RoundManager``: ``round`` / ``total_rounds`` /
+    ``deadline`` / ``current_song`` / ``last_round`` / ``round_start_time`` /
+    ``round_duration`` / ``song_stopped`` / ``round_analytics``, the intro-mode
+    flags (``intro_mode_enabled`` / ``is_intro_round`` / ``intro_stopped`` /
+    ``intro_splash_pending``), ``early_reveal``, ``metadata_pending`` and the
+    ``PlaylistManager``-backed ``songs_remaining`` count; these are a pure
+    pass-through facade with no SSOT of their own, the managers themselves stay
+    on ``GameState``) lives in
+    :class:`~custom_components.beatify.game.state_round_delegation.RoundManagerDelegationMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -447,142 +462,12 @@ class GameState(
     # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
-    # RoundManager delegation (keep public interface identical)
+    # RoundManager delegation properties (round / total_rounds / deadline /
+    # current_song / last_round / round_start_time / round_duration /
+    # song_stopped / round_analytics / the intro-mode flags / early_reveal /
+    # songs_remaining / metadata_pending) live in RoundManagerDelegationMixin
+    # (Issue #1271 extraction). See game/state_round_delegation.py.
     # ------------------------------------------------------------------
-
-    @property
-    def round(self) -> int:
-        """Current round number — delegated to RoundManager."""
-        return self._round_manager.round
-
-    @round.setter
-    def round(self, value: int) -> None:
-        self._round_manager.round = value
-
-    @property
-    def total_rounds(self) -> int:
-        """Total rounds — delegated to RoundManager."""
-        return self._round_manager.total_rounds
-
-    @total_rounds.setter
-    def total_rounds(self, value: int) -> None:
-        self._round_manager.total_rounds = value
-
-    @property
-    def deadline(self) -> int | None:
-        """Round deadline (ms) — delegated to RoundManager."""
-        return self._round_manager.deadline
-
-    @deadline.setter
-    def deadline(self, value: int | None) -> None:
-        self._round_manager.deadline = value
-
-    @property
-    def current_song(self) -> dict[str, Any] | None:
-        """Current song dict — delegated to RoundManager."""
-        return self._round_manager.current_song
-
-    @current_song.setter
-    def current_song(self, value: dict[str, Any] | None) -> None:
-        self._round_manager.current_song = value
-
-    @property
-    def last_round(self) -> bool:
-        """Whether this is the last round — delegated to RoundManager."""
-        return self._round_manager.last_round
-
-    @last_round.setter
-    def last_round(self, value: bool) -> None:
-        self._round_manager.last_round = value
-
-    @property
-    def round_start_time(self) -> float | None:
-        """Round start timestamp — delegated to RoundManager."""
-        return self._round_manager.round_start_time
-
-    @round_start_time.setter
-    def round_start_time(self, value: float | None) -> None:
-        self._round_manager.round_start_time = value
-
-    @property
-    def round_duration(self) -> float:
-        """Round timer duration — delegated to RoundManager."""
-        return self._round_manager.round_duration
-
-    @round_duration.setter
-    def round_duration(self, value: float) -> None:
-        self._round_manager.round_duration = value
-
-    @property
-    def song_stopped(self) -> bool:
-        """Song stopped flag — delegated to RoundManager."""
-        return self._round_manager.song_stopped
-
-    @song_stopped.setter
-    def song_stopped(self, value: bool) -> None:
-        self._round_manager.song_stopped = value
-
-    @property
-    def round_analytics(self) -> RoundAnalytics | None:
-        """Round analytics — stored on RoundManager for lifecycle coherence."""
-        return self._round_manager.round_analytics
-
-    @round_analytics.setter
-    def round_analytics(self, value: RoundAnalytics | None) -> None:
-        self._round_manager.round_analytics = value
-
-    @property
-    def intro_mode_enabled(self) -> bool:
-        """Intro mode enabled — delegated to RoundManager."""
-        return self._round_manager.intro_mode_enabled
-
-    @intro_mode_enabled.setter
-    def intro_mode_enabled(self, value: bool) -> None:
-        self._round_manager.intro_mode_enabled = value
-
-    @property
-    def is_intro_round(self) -> bool:
-        """Whether current round is intro mode — delegated to RoundManager."""
-        return self._round_manager.is_intro_round
-
-    @is_intro_round.setter
-    def is_intro_round(self, value: bool) -> None:
-        self._round_manager.is_intro_round = value
-
-    @property
-    def intro_stopped(self) -> bool:
-        """Intro stopped flag — delegated to RoundManager."""
-        return self._round_manager.intro_stopped
-
-    @intro_stopped.setter
-    def intro_stopped(self, value: bool) -> None:
-        self._round_manager.intro_stopped = value
-
-    @property
-    def intro_splash_pending(self) -> bool:
-        """Intro splash pending flag — delegated to RoundManager."""
-        return self._round_manager._intro_splash_pending
-
-    @property
-    def early_reveal(self) -> bool:
-        """Early reveal flag — delegated to RoundManager."""
-        return self._round_manager._early_reveal
-
-    @property
-    def songs_remaining(self) -> int:
-        """Count of unplayed songs remaining in the playlist."""
-        if self._playlist_manager:
-            return self._playlist_manager.get_remaining_count()
-        return 0
-
-    @property
-    def metadata_pending(self) -> bool:
-        """Metadata pending flag — delegated to RoundManager."""
-        return self._round_manager.metadata_pending
-
-    @metadata_pending.setter
-    def metadata_pending(self, value: bool) -> None:
-        self._round_manager.metadata_pending = value
 
     # ------------------------------------------------------------------
     # Power-up delegation properties live in PlayerLifecycleMixin
