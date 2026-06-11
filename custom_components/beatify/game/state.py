@@ -46,7 +46,6 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
     STREAK_MILESTONES,
-    TITLE_ARTIST_VOTE_WINDOW_SECONDS,
 )
 
 from .challenges import (
@@ -73,6 +72,7 @@ from .state_leaderboard import LeaderboardMixin
 from .state_media import MediaControlMixin
 from .state_player import PlayerLifecycleMixin
 from .state_tts import TtsAnnouncerMixin
+from .state_vote_window import VoteWindowMixin
 
 from .types import RoundAnalytics, _get_decade_label
 
@@ -144,6 +144,7 @@ class GameState(
     MediaControlMixin,
     PlayerLifecycleMixin,
     TtsAnnouncerMixin,
+    VoteWindowMixin,
 ):
     """Manages game state and phase transitions.
 
@@ -165,6 +166,12 @@ class GameState(
     PlayerRegistry + PowerUpManager delegation — player lookups, sessions,
     reactions, admin, steal/streak/bet pass-throughs) lives in
     :class:`~custom_components.beatify.game.state_player.PlayerLifecycleMixin`.
+
+    The Title & Artist REVEAL vote-window subsystem (Issue #1271
+    next-increment extraction — the #1180 Phase 4 vote-window scheduling +
+    finalization writers the challenge-delegation cut deliberately left
+    behind, coupled to the score lock and the auto-advance task) lives in
+    :class:`~custom_components.beatify.game.state_vote_window.VoteWindowMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -1522,108 +1529,6 @@ class GameState(
                     self.round,
                     err,
                 )
-
-    def _schedule_title_artist_vote_window(self) -> None:
-        """Open or skip the conditional 30s near-miss vote window (#1180 P4).
-
-        Called from _end_round_unlocked while phase is REVEAL and title/artist
-        mode is on. If there are near-misses, flip voting_open and spawn the
-        window task (reused _auto_advance_task slot so a manual next_round,
-        pause or end cancels it via _cancel_auto_advance). With no near-misses,
-        resolve immediately so scoring/advance proceed unchanged.
-        """
-        if not self.title_artist_mode:
-            return
-        if self.has_near_misses():
-            self._title_artist_voting_open = True
-            self._title_artist_vote_deadline = (
-                self._now() + TITLE_ARTIST_VOTE_WINDOW_SECONDS
-            )
-            self._cancel_auto_advance()
-            self._auto_advance_task = asyncio.create_task(
-                self._title_artist_vote_window(TITLE_ARTIST_VOTE_WINDOW_SECONDS)
-            )
-        else:
-            # No vote-eligible fields — finalize now (everything exact/fuzzy/
-            # skipped), no window, advance behaves exactly as the year mode.
-            self._challenge_manager.resolve_title_artist()
-            self._title_artist_voting_open = False
-            self._title_artist_vote_deadline = None
-
-    async def _title_artist_vote_window(self, window_seconds: int) -> None:
-        """Hold REVEAL open for community voting, then resolve (#1180 P4).
-
-        Sleeps in short polls so a manual host-advance / pause / end can
-        cancel promptly. On natural expiry, finalizes near-misses via
-        resolve_title_artist, scores the deferred round, then re-broadcasts so
-        the accepted points and closed window reach every client. A late firing
-        is a no-op once the phase has left REVEAL.
-        """
-        poll = 0.5
-        try:
-            elapsed = 0.0
-            while elapsed < window_seconds:
-                await asyncio.sleep(poll)
-                elapsed += poll
-                if self.phase != GamePhase.REVEAL:
-                    return  # advanced / paused / ended elsewhere
-            # Window expired naturally — clear the handle first so a manual
-            # start_round's _cancel_auto_advance() can't cancel this task.
-            self._auto_advance_task = None
-            if self.phase != GamePhase.REVEAL:
-                return
-            await self._finalize_title_artist_window()
-            if self._on_round_end:
-                try:
-                    await self._on_round_end()
-                except (ConnectionError, OSError, TypeError) as err:
-                    _LOGGER.error("Vote-window broadcast failed: %s", err)
-        except asyncio.CancelledError:
-            _LOGGER.debug("Title/artist vote window cancelled")
-            raise
-
-    async def _finalize_title_artist_window(self) -> None:
-        """Resolve near-misses and apply title/artist scoring (#1180 P4).
-
-        Guarded by voting_open so a host-advance + timer expiry race resolves
-        exactly once. Scoring was deferred out of _end_round_unlocked's main
-        loop (the per-player score depends on the final near-miss resolution),
-        so this runs the single, post-resolve scoring pass under the score lock
-        — accepted near-misses are now reflected in the leaderboard.
-        """
-        if not self._title_artist_voting_open:
-            return
-        self._title_artist_voting_open = False
-        self._title_artist_vote_deadline = None
-        self._challenge_manager.resolve_title_artist()
-        async with self._score_lock:
-            await self._score_title_artist_round()
-
-    async def _score_title_artist_round(self) -> None:
-        """Run the deferred title/artist scoring pass. Caller holds the lock.
-
-        Scores every player exactly once now that near-misses are resolved,
-        reusing _score_all_players so this path and _end_round_unlocked share
-        one scoring loop. Players were intentionally NOT scored in the main
-        loop (defer_title_artist), so this is the first and only score for the
-        round — no double-counting.
-        """
-        correct_year = self.current_song.get("year") if self.current_song else None
-        all_players = list(self.players.values())
-        self._score_all_players(correct_year, all_players)
-
-    async def resolve_title_artist_if_pending(self) -> None:
-        """Finalize an open vote window early (host advanced) (#1180 P4).
-
-        Called from the next_round admin handler before it starts the next
-        round / ends the game, so accepted near-misses are scored first.
-        Cancels the pending window task and finalizes. No-op when the window
-        isn't open (year mode, no near-misses, or already resolved).
-        """
-        if not self._title_artist_voting_open:
-            return
-        self._cancel_auto_advance()
-        await self._finalize_title_artist_window()
 
     def _song_finished(self) -> bool:
         """True once the round's song is no longer playing (#1012).
