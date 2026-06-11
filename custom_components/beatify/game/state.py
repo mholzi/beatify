@@ -29,18 +29,9 @@ from __future__ import annotations
 
 import asyncio
 import logging
-import secrets
 import time
 from enum import Enum
 from typing import TYPE_CHECKING, Any
-
-from custom_components.beatify.const import (
-    DEFAULT_ROUND_DURATION,
-    DIFFICULTY_DEFAULT,
-    PROVIDER_DEFAULT,
-    ROUND_DURATION_MAX,
-    ROUND_DURATION_MIN,
-)
 
 from .challenges import (
     ArtistChallenge,  # noqa: F401 (re-exported for backward compatibility)
@@ -67,6 +58,7 @@ from .state_lifecycle import RoundLifecycleMixin
 from .state_media import MediaControlMixin
 from .state_pause import PauseResumeMixin
 from .state_player import PlayerLifecycleMixin
+from .state_setup import GameSetupMixin
 from .state_scoring import RoundScoringMixin
 from .state_serialization import StateSerializationMixin
 from .state_tts import TtsAnnouncerMixin
@@ -138,6 +130,7 @@ _UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
 
 class GameState(
     ChallengeMixin,
+    GameSetupMixin,
     LeaderboardMixin,
     MediaControlMixin,
     PauseResumeMixin,
@@ -224,6 +217,16 @@ class GameState(
     (``_schedule_reveal_advance``) and the ``_set_phase`` chokepoint stay on
     ``GameState``) lives in
     :class:`~custom_components.beatify.game.state_auto_advance.RevealAutoAdvanceMixin`.
+
+    The game-setup subsystem (Issue #1271 next-increment extraction, off
+    ``main`` — the new-session builder (``create_game``: token generation,
+    PlaylistManager construction, storefront detection, round-tracking + config
+    reset, challenge / power-up / mode configuration), the teardown
+    (``end_game``) and the player-preserving rebuild (``rematch_game``), their
+    shared field-reset (``_reset_game_internals``) and the Apple-Music
+    storefront detection (``_detect_storefront``); the ``_set_phase`` chokepoint
+    and ``_apply_config`` / ``_default_config`` stay on ``GameState``) lives in
+    :class:`~custom_components.beatify.game.state_setup.GameSetupMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -571,272 +574,11 @@ class GameState(
     # (Issue #1271 extraction). See game/state_player.py.
     # ------------------------------------------------------------------
 
-    def create_game(
-        self,
-        playlists: list[str],
-        songs: list[dict[str, Any]],
-        media_player: str,
-        base_url: str,
-        round_duration: int = DEFAULT_ROUND_DURATION,
-        difficulty: str = DIFFICULTY_DEFAULT,
-        provider: str = PROVIDER_DEFAULT,
-        platform: str = "unknown",
-        artist_challenge_enabled: bool = True,
-        movie_quiz_enabled: bool = True,
-        intro_mode_enabled: bool = False,
-        closest_wins_mode: bool = False,
-        title_artist_mode: bool = False,
-        reveal_auto_advance: int = 0,
-    ) -> dict[str, Any]:
-        """
-        Create a new game session.
-
-        Args:
-            playlists: List of playlist file paths
-            songs: List of song dicts loaded from playlists
-            media_player: Entity ID of media player
-            base_url: HA base URL for join URL construction
-            round_duration: Round timer duration in seconds (10-60, default 30)
-            difficulty: Difficulty level (easy/normal/hard, default normal)
-            provider: Music provider (spotify/apple_music, default spotify)
-            platform: Platform identifier for playback routing (music_assistant, sonos, alexa_media)
-            artist_challenge_enabled: Whether to enable artist guessing (default True)
-            movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
-            intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
-            closest_wins_mode: Whether only the closest guess(es) earn points
-            title_artist_mode: Whether title/artist guessing replaces the year guess
-
-        Returns:
-            dict with game_id, join_url, song_count, phase
-
-        Raises:
-            ValueError: If round_duration is outside valid range (10-60)
-
-        """
-        # Validate round duration (Story 13.1)
-        if not (ROUND_DURATION_MIN <= round_duration <= ROUND_DURATION_MAX):
-            raise ValueError(
-                f"Round duration must be between {ROUND_DURATION_MIN} "
-                f"and {ROUND_DURATION_MAX} seconds"
-            )
-
-        # Clear any leftover sessions from previous/crashed game (Story 11.6)
-        self.clear_all_sessions()
-
-        self.game_id = secrets.token_urlsafe(8)
-        self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
-        self._set_phase(GamePhase.LOBBY)
-        self.playlists = playlists
-        self.songs = songs
-        self.media_player = media_player
-        self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
-        self.players = {}
-
-        # Store provider setting (Story 17.2)
-        self.provider = provider
-
-        # Store platform for playback routing
-        self.platform = platform
-
-        # #808 follow-up: detect the user's Apple Music storefront from
-        # HA's configured country. Beatify's playlists carry per-region
-        # Apple Music URIs; PlaylistManager uses this to pick the right
-        # one and to filter out songs explicitly unavailable in this
-        # region. Lower-case to match the storefront codes used by
-        # Apple's API ("us", "de", "gb", ...). None when HA doesn't have
-        # a country configured → falls back to the legacy single URI.
-        self.storefront = self._detect_storefront()
-
-        # Reset error detail
-        self.last_error_detail = ""
-
-        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
-        self._playlist_manager = PlaylistManager(
-            songs, provider, storefront=self.storefront
-        )
-
-        # #709: if the chosen provider has zero playable songs, fail fast with
-        # a clear error rather than silently starting a game that will stall.
-        if not self._playlist_manager.has_playable_songs():
-            raise ValueError(
-                f"No playable songs for provider '{provider}' in the selected "
-                f"playlist(s). Pick a different playlist or provider."
-            )
-
-        # Reset round tracking for new game
-        self.round = 0
-        self.total_rounds = self._playlist_manager.get_total_count()
-        self.deadline = None
-        self.current_song = None
-        self.last_round = False
-        self.pause_reason = None
-        self._previous_phase = None
-
-        # Reset timing for speed bonus (Story 5.1) and configurable duration (Story 13.1)
-        self.round_start_time = None
-        self.round_duration = round_duration
-
-        # Set difficulty (Story 14.1). Explicit annotation so mypy has a
-        # declared type at the assignment point — without it the gated
-        # game/service.py read (self._game_state.difficulty) hit a mypy
-        # has-type deferral once GameState grew to 9 mixins (#1271).
-        self.difficulty: str = difficulty
-
-        # Reset song stopped flag (Story 6.2)
-        self.song_stopped = False
-
-        # #1012: REVEAL auto-advance — seconds to wait in REVEAL before
-        # starting the next round automatically (0 = off / manual only).
-        self.reveal_auto_advance = reveal_auto_advance
-        self._auto_advance_task = None
-        self.reveal_started_at = None  # #1048
-
-        # Reset round analytics (Story 13.3)
-        self.round_analytics = None
-
-        # Issue #351: Reset power-up state for new game
-        self._powerup_manager.reset()
-
-        # Story 20.1 / Issue #28 / Issue #1180: Set challenge configuration
-        self._challenge_manager.configure(
-            artist_challenge_enabled=artist_challenge_enabled,
-            movie_quiz_enabled=movie_quiz_enabled,
-            title_artist_mode=title_artist_mode,
-        )
-
-        # Issue #23: Set intro mode configuration
-        self.intro_mode_enabled = intro_mode_enabled
-
-        # Issue #442: Set closest wins mode
-        self.closest_wins_mode = closest_wins_mode
-        self.is_intro_round = False
-        self.intro_stopped = False
-        self._round_manager._intro_round_start_time = None
-        self._round_manager._rounds_since_intro = 0
-        self._round_manager._cancel_intro_timer()
-
-        # Reset timer task for new game
-        self.cancel_timer()
-
-        _LOGGER.info("Game created: %s with %d songs", self.game_id, len(songs))
-
-        return {
-            "game_id": self.game_id,
-            "join_url": self.join_url,
-            "phase": self.phase.value,
-            "song_count": len(songs),
-        }
-
-    def _reset_game_internals(self) -> None:
-        """Reset internal game state (Issue #108, #464).
-
-        Shared by end_game() and rematch_game() to prevent field drift.
-        Uses GameStateConfig to rebuild config-managed fields from defaults,
-        and delegates round state reset to RoundManager.reset().
-
-        Does NOT reset: players, sessions, phase, game_id, callbacks,
-        service refs (_stats_service, _on_round_end, _on_metadata_update),
-        or volume_level (caller's responsibility).
-        """
-        # Issue #477: Clear admin spectator WS (connection stays open, just de-ref)
-        self._admin_ws = None
-
-        # Issue #464: Reset round lifecycle (timers, metadata, intro state)
-        self._round_manager.reset()
-        self.cancel_timer()
-
-        # Issue #464: Rebuild config-managed fields from defaults
-        self._apply_config(self._default_config)
-
-        # Issue #351: Reset power-up state
-        self._powerup_manager.reset()
-
-        # Story 20.1 / Issue #28: Reset challenges
-        self._challenge_manager.reset()
-
-        # Issue #75: Reset highlights tracker
-        self.highlights_tracker.reset()
-
-    async def end_game(self) -> None:
-        """End the current game and reset state."""
-        _LOGGER.info("Game ended: %s", self.game_id)
-        self.cancel_timer()
-        # #1012: cancel the REVEAL auto-advance task synchronously, BEFORE the
-        # awaits below. Otherwise a countdown expiring at the same instant could
-        # fire start_round() during disable_party_lights()/disable_tts() (phase
-        # is still REVEAL there) and trigger the next song after the game ended.
-        # advance_to_end() already does this; the HTTP/force-end path lands here.
-        self._cancel_auto_advance()
-        # Issue #331: Restore lights before resetting
-        await self.disable_party_lights()
-        # Issue #447: Disable TTS
-        await self.disable_tts()
-        self._reset_game_internals()
-        self.game_id = None
-        self._set_phase(GamePhase.LOBBY, notify=False)
-        self.players = {}
-        self.clear_all_sessions()
-        self._notify_state_callbacks()
-
-    def rematch_game(self) -> None:
-        """Reset game for rematch, preserving connected players (Issue #108)."""
-        _LOGGER.info("Rematch initiated from game: %s", self.game_id)
-        self.cancel_timer()
-
-        # Preserve game settings that the admin configured (Issue #591)
-        preserved = {
-            "playlists": self.playlists,
-            "songs": list(self.songs),
-            "media_player": self.media_player,
-            "join_url": self.join_url,
-            "provider": self.provider,
-            "platform": self.platform,
-            "difficulty": self.difficulty,
-            "language": self.language,
-            "round_duration": self.round_duration,
-            "artist_challenge_enabled": self.artist_challenge_enabled,
-            "movie_quiz_enabled": self.movie_quiz_enabled,
-            "intro_mode_enabled": self.intro_mode_enabled,
-            "closest_wins_mode": self.closest_wins_mode,
-            "title_artist_mode": self.title_artist_mode,
-        }
-
-        self._reset_game_internals()
-
-        # Restore preserved settings for seamless rematch
-        for attr, value in preserved.items():
-            setattr(self, attr, value)
-
-        # Re-create PlaylistManager with fresh song list
-        # #808 follow-up: re-detect storefront for the rematch (in case
-        # HA's country config changed) and re-attach it.
-        self.storefront = self._detect_storefront()
-        self._playlist_manager = PlaylistManager(
-            preserved["songs"],
-            preserved["provider"],
-            storefront=self.storefront,
-        )
-        self.total_rounds = len(preserved["songs"])
-
-        self._set_phase(GamePhase.LOBBY)
-        # Reset each player's game stats but keep them connected
-        for player in self.players.values():
-            player.reset_for_new_game()
-        # Generate new game ID and admin token for the rematch
-        self.game_id = secrets.token_urlsafe(8)
-        self.admin_token = secrets.token_urlsafe(16)  # Issue #386
-
-        # Regenerate join_url with new game_id
-        if preserved["join_url"]:
-            base_url = preserved["join_url"].split("/beatify/play")[0]
-            self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
-
-        _LOGGER.info(
-            "Rematch ready with %d players, %d songs, new game_id: %s",
-            len(self.players),
-            self.total_rounds,
-            self.game_id,
-        )
+    # ------------------------------------------------------------------
+    # Game setup (create / reset / end / rematch) + Apple-Music storefront
+    # detection live in GameSetupMixin (Issue #1271 extraction).
+    # See game/state_setup.py.
+    # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
     # Pause / resume lives in PauseResumeMixin (Issue #1271 extraction).
@@ -955,30 +697,6 @@ class GameState(
 
         """
         self._on_metadata_update = callback
-
-    def _detect_storefront(self) -> str | None:
-        """Determine the user's Apple Music storefront for URI resolution.
-
-        Sources, in order:
-          1. ``hass.config.country`` — HA's configured country code, set
-             during initial HA setup. This is what most users will have.
-             Returned lower-cased to match Apple's storefront codes.
-          2. None — fall back to the legacy single Apple Music URI in
-             ``uri_apple_music`` (typically a US track ID).
-
-        Future: query Music Assistant's WebSocket API for the actual
-        Apple Music provider's configured storefront, which may differ
-        from HA's country (e.g. an expat using a US Apple Music account
-        from a German HA install). For now HA's country covers ~80%+ of
-        users without any extra round-trip.
-        """
-        hass = getattr(self, "_hass", None)
-        if hass is None:
-            return None
-        country = getattr(hass.config, "country", None) if hass.config else None
-        if not country:
-            return None
-        return str(country).strip().lower() or None
 
     async def _timer_countdown(self, delay_seconds: float) -> None:
         """Wait for round to end, then trigger reveal.
