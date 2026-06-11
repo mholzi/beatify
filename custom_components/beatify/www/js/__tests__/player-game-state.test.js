@@ -194,6 +194,80 @@ describe('startCountdown / stopCountdown', () => {
     });
 });
 
+// #1273 AC#3 — V1 Smooth Correct. When a fresh state_update re-pushes a
+// DIFFERENT authoritative deadline mid-round, the countdown must ease toward it
+// (no hard jump) and flash a ghost-ring catch-up glow. requestAnimationFrame is
+// absent in the default test env (so existing tests keep the simple path); here
+// we install a manual rAF driver to step the ease deterministically.
+describe('startCountdown smooth-correct on a re-pushed deadline (#1273)', () => {
+    let rafCbs;
+    beforeEach(() => {
+        els.timer = makeEl('timer');
+        els['timer-neon'] = makeEl('timer-neon');
+        els['timer-float'] = makeEl('timer-float');
+        els['timer-float-num'] = makeEl('timer-float-num');
+        rafCbs = [];
+        global.requestAnimationFrame = (cb) => { rafCbs.push(cb); return rafCbs.length; };
+        global.cancelAnimationFrame = () => {};
+    });
+    afterEach(() => {
+        delete global.requestAnimationFrame;
+        delete global.cancelAnimationFrame;
+    });
+
+    // drain one queued rAF frame at the current (fake) time
+    function flushFrame() {
+        const cb = rafCbs.shift();
+        if (cb) cb();
+    }
+
+    it('adopts a within-jitter deadline silently — no ease, no ghost-ring', () => {
+        startCountdown(Date.now() + 30_000);
+        expect(els.timer.textContent).toBe(30);
+        // +200ms is below the 250ms threshold → silent adopt, no rAF armed
+        startCountdown(Date.now() + 30_200);
+        expect(rafCbs).toHaveLength(0);
+        expect(els['timer-neon'].classList.contains('timer-neon--catchup')).toBe(false);
+    });
+
+    it('eases (does not hard-jump) and lands on the server value for real drift', () => {
+        startCountdown(Date.now() + 30_000); // shows 30
+        // server says there are really 25s left (5s of drift) → must NOT snap
+        startCountdown(Date.now() + 25_000);
+        // ease armed + ghost-ring on
+        expect(rafCbs.length).toBeGreaterThan(0);
+        expect(els['timer-neon'].classList.contains('timer-neon--catchup')).toBe(true);
+        // first eased frame at t≈0 is still near the old value (no instant 30→25 jump)
+        flushFrame();
+        expect(els.timer.textContent).toBeGreaterThan(25);
+        // after the ease window elapses, the final frame settles exactly on 25
+        vi.advanceTimersByTime(400);
+        // run remaining queued frames until the ease completes
+        for (let i = 0; i < 10 && rafCbs.length; i++) flushFrame();
+        expect(els.timer.textContent).toBe(25);
+        expect(els['timer-neon'].classList.contains('timer-neon--catchup')).toBe(false);
+    });
+
+    it('the interval keeps ticking from the corrected deadline afterwards', () => {
+        startCountdown(Date.now() + 30_000);
+        startCountdown(Date.now() + 25_000);
+        vi.advanceTimersByTime(400);
+        for (let i = 0; i < 10 && rafCbs.length; i++) flushFrame();
+        expect(els.timer.textContent).toBe(25);
+        // the underlying 1s interval still runs — it ticks down from 25
+        vi.advanceTimersByTime(2000);
+        expect(els.timer.textContent).toBe(23);
+    });
+
+    it('stopCountdown clears the ghost-ring and ease state', () => {
+        startCountdown(Date.now() + 30_000);
+        startCountdown(Date.now() + 25_000);
+        expect(els['timer-neon'].classList.contains('timer-neon--catchup')).toBe(true);
+        stopCountdown();
+        expect(els['timer-neon'].classList.contains('timer-neon--catchup')).toBe(false);
+    });
+});
+
 describe('updateControlBarState', () => {
     beforeEach(() => {
         els['stop-song-btn'] = makeControlBtn('stop-song-btn', true);
