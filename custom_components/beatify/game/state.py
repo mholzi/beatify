@@ -50,9 +50,9 @@ from custom_components.beatify.const import (
 )
 
 from .challenges import (
-    ArtistChallenge,
+    ArtistChallenge,  # noqa: F401 (re-exported for backward compatibility)
     ChallengeManager,
-    MovieChallenge,
+    MovieChallenge,  # noqa: F401 (re-exported for backward compatibility)
     build_artist_options,  # noqa: F401 (re-exported for backward compatibility)
     build_movie_options,  # noqa: F401 (re-exported for backward compatibility)
 )
@@ -68,6 +68,7 @@ from .scoring import (
 )
 from .protocols import MediaPlayerProtocol, PartyLightsProtocol
 from .serializers import GameStateSerializer
+from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
 from .state_media import MediaControlMixin
 from .state_tts import TtsAnnouncerMixin
@@ -136,7 +137,12 @@ _UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
 )
 
 
-class GameState(LeaderboardMixin, MediaControlMixin, TtsAnnouncerMixin):
+class GameState(
+    ChallengeMixin,
+    LeaderboardMixin,
+    MediaControlMixin,
+    TtsAnnouncerMixin,
+):
     """Manages game state and phase transitions.
 
     The TTS / spoken-announcement subsystem (Issue #1271 first-increment
@@ -148,6 +154,10 @@ class GameState(LeaderboardMixin, MediaControlMixin, TtsAnnouncerMixin):
     The media-player & party-lights output subsystem (Issue #1271
     next-increment extraction) lives in
     :class:`~custom_components.beatify.game.state_media.MediaControlMixin`.
+
+    The challenge-delegation subsystem (Issue #1271 next-increment
+    extraction, stacked on the media extraction) lives in
+    :class:`~custom_components.beatify.game.state_challenge.ChallengeMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -526,151 +536,6 @@ class GameState(LeaderboardMixin, MediaControlMixin, TtsAnnouncerMixin):
     @bet_tracking.setter
     def bet_tracking(self, value: dict[str, int]) -> None:
         self._powerup_manager.bet_tracking = value
-
-    # ------------------------------------------------------------------
-    # Challenge delegation properties (keep public interface identical)
-    # ------------------------------------------------------------------
-
-    @property
-    def artist_challenge(self) -> ArtistChallenge | None:
-        """Current artist challenge state."""
-        return self._challenge_manager.artist_challenge
-
-    @artist_challenge.setter
-    def artist_challenge(self, value: ArtistChallenge | None) -> None:
-        self._challenge_manager.artist_challenge = value
-
-    @property
-    def artist_challenge_enabled(self) -> bool:
-        """Whether artist challenge is enabled."""
-        return self._challenge_manager.artist_challenge_enabled
-
-    @artist_challenge_enabled.setter
-    def artist_challenge_enabled(self, value: bool) -> None:
-        self._challenge_manager.artist_challenge_enabled = value
-
-    @property
-    def movie_challenge(self) -> MovieChallenge | None:
-        """Current movie quiz challenge state."""
-        return self._challenge_manager.movie_challenge
-
-    @movie_challenge.setter
-    def movie_challenge(self, value: MovieChallenge | None) -> None:
-        self._challenge_manager.movie_challenge = value
-
-    @property
-    def movie_quiz_enabled(self) -> bool:
-        """Whether movie quiz is enabled."""
-        return self._challenge_manager.movie_quiz_enabled
-
-    @movie_quiz_enabled.setter
-    def movie_quiz_enabled(self, value: bool) -> None:
-        self._challenge_manager.movie_quiz_enabled = value
-
-    @property
-    def title_artist_mode(self) -> bool:
-        """Whether title/artist guessing mode is enabled (Issue #1180)."""
-        return self._challenge_manager.title_artist_mode
-
-    @title_artist_mode.setter
-    def title_artist_mode(self, value: bool) -> None:
-        self._challenge_manager.title_artist_mode = value
-
-    @property
-    def title_artist_challenge(self) -> Any:
-        """Current title/artist challenge state (Issue #1180)."""
-        return self._challenge_manager.title_artist_challenge
-
-    @title_artist_challenge.setter
-    def title_artist_challenge(self, value: Any) -> None:
-        self._challenge_manager.title_artist_challenge = value
-
-    def get_artist_challenge_dict(
-        self, *, include_answer: bool
-    ) -> dict[str, Any] | None:
-        """Build artist challenge dict — delegated to ChallengeManager."""
-        return self._challenge_manager.get_artist_challenge_dict(
-            include_answer=include_answer
-        )
-
-    def get_movie_challenge_dict(
-        self, *, include_answer: bool
-    ) -> dict[str, Any] | None:
-        """Build movie challenge dict — delegated to ChallengeManager."""
-        return self._challenge_manager.get_movie_challenge_dict(
-            include_answer=include_answer
-        )
-
-    def get_title_artist_challenge_dict(
-        self, *, include_answer: bool
-    ) -> dict[str, Any] | None:
-        """Build Title & Artist challenge dict — delegated to ChallengeManager (#1180).
-
-        PLAYING (include_answer=False): {"active": True} with NO truth, or None
-        when the mode/challenge is inactive. REVEAL (include_answer=True):
-        truth + per-player results + (Phase 4) voting state.
-        """
-        challenge_dict = self._challenge_manager.get_title_artist_challenge_dict(
-            include_answer=include_answer
-        )
-        # Phase 4 (#1180): surface the vote-eligible near-misses tally and the
-        # REVEAL vote window flag so the player vote cards / host override
-        # controls can render. ``_title_artist_voting_open`` lives on GameState,
-        # so the truth-bearing REVEAL dict is finalized here, not in the manager.
-        if include_answer and challenge_dict is not None:
-            challenge_dict["near_misses"] = self.get_near_misses()
-            challenge_dict["near_miss_outcomes"] = self.get_near_miss_outcomes()
-            challenge_dict["voting_open"] = self.is_title_artist_voting_open()
-            challenge_dict["vote_seconds_remaining"] = (
-                self.title_artist_vote_seconds_remaining()
-            )
-        return challenge_dict
-
-    def title_artist_vote_seconds_remaining(self) -> int:
-        """Whole seconds left in the open vote window, server-authoritative.
-
-        Computed from the server-owned deadline against the same clock that set
-        it, so clients never compare their wall clock to the server's. Returns 0
-        when voting is closed or no deadline is set (#1180).
-        """
-        if (
-            not self._title_artist_voting_open
-            or self._title_artist_vote_deadline is None
-        ):
-            return 0
-        return max(0, round(self._title_artist_vote_deadline - self._now()))
-
-    # ------------------------------------------------------------------
-    # Title/Artist vote delegation (#1180 Phase 4)
-    # ------------------------------------------------------------------
-
-    def register_title_artist_vote(
-        self, voter_name: str, nearmiss_id: str, accept: bool
-    ) -> None:
-        """Record a community vote on a near-miss — delegates to ChallengeManager."""
-        self._challenge_manager.register_title_artist_vote(
-            voter_name, nearmiss_id, accept
-        )
-
-    def set_title_artist_override(self, nearmiss_id: str, accept: bool) -> None:
-        """Record a host override on a near-miss — delegates to ChallengeManager."""
-        self._challenge_manager.set_title_artist_override(nearmiss_id, accept)
-
-    def get_near_misses(self) -> list[dict[str, Any]]:
-        """List vote-eligible near-misses — delegates to ChallengeManager."""
-        return self._challenge_manager.get_near_misses()
-
-    def has_near_misses(self) -> bool:
-        """True if any near-miss is vote-eligible — delegates to ChallengeManager."""
-        return self._challenge_manager.has_near_misses()
-
-    def get_near_miss_outcomes(self) -> list[dict[str, Any]]:
-        """Resolved near-miss verdicts — delegates to ChallengeManager (#1180)."""
-        return self._challenge_manager.get_near_miss_outcomes()
-
-    def is_title_artist_voting_open(self) -> bool:
-        """True while the conditional REVEAL vote window is open (#1180 P4)."""
-        return self._title_artist_voting_open
 
     def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
         """Get song difficulty rating — delegated to StatsService."""
@@ -2479,32 +2344,4 @@ class GameState(LeaderboardMixin, MediaControlMixin, TtsAnnouncerMixin):
             movie_quiz_enabled=self.movie_quiz_enabled,
             intro_mode_enabled=self.intro_mode_enabled,
             title_artist_mode_enabled=self.title_artist_mode,
-        )
-
-    def submit_artist_guess(
-        self, player_name: str, artist: str, guess_time: float
-    ) -> dict[str, Any]:
-        """Submit artist guess for bonus points (Story 20.3). Delegates to ChallengeManager."""
-        return self._challenge_manager.submit_artist_guess(
-            player_name, artist, guess_time
-        )
-
-    def submit_movie_guess(
-        self, player_name: str, movie: str, guess_time: float
-    ) -> dict[str, Any]:
-        """Submit movie guess for bonus points (Issue #28). Delegates to ChallengeManager."""
-        return self._challenge_manager.submit_movie_guess(
-            player_name, movie, guess_time, self.round_start_time
-        )
-
-    def submit_title_artist_guess(
-        self, player_name: str, title: str, artist: str, ts: float
-    ) -> dict[str, Any]:
-        """Submit a Title & Artist guess (#1180). Delegates to ChallengeManager.
-
-        Returns {"title_status": str, "artist_status": str}; classification and
-        storage live on the challenge.
-        """
-        return self._challenge_manager.submit_title_artist_guess(
-            player_name, title, artist, ts
         )
