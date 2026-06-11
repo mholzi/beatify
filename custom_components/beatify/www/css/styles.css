@@ -12289,8 +12289,21 @@ body.is-learning-screen .player-header { display: none; }
     0%, 100% { transform: scale(1); }
     50%      { transform: scale(1.06); }
 }
+/* #1273 AC#3 — ghost-ring catch-up glow. Briefly applied while the countdown
+   eases to the server's authoritative remaining-time (V1 Smooth Correct), so a
+   drift correction reads as a deliberate glow pulse in the existing ring
+   language rather than a jarring number jump. */
+.timer-neon.timer-neon--catchup {
+    animation: timer-catchup-glow 0.4s ease-out;
+}
+@keyframes timer-catchup-glow {
+    0%   { box-shadow: var(--glow-primary), inset 0 0 12px rgba(255, 45, 106, 0.3); }
+    45%  { box-shadow: 0 0 26px rgba(0, 245, 255, 0.7), inset 0 0 16px rgba(0, 245, 255, 0.35); }
+    100% { box-shadow: var(--glow-primary), inset 0 0 12px rgba(255, 45, 106, 0.3); }
+}
 @media (prefers-reduced-motion: reduce) {
     .timer-neon.timer-neon--warn { animation: none; }
+    .timer-neon.timer-neon--catchup { animation: none; }
 }
 
 /* Chip row — steal / closest-wins / intro / final (conditional) */
