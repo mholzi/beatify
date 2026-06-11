@@ -58,6 +58,7 @@ from .state_lifecycle import RoundLifecycleMixin
 from .state_media import MediaControlMixin
 from .state_pause import PauseResumeMixin
 from .state_player import PlayerLifecycleMixin
+from .state_reveal_transition import RevealTransitionMixin
 from .state_setup import GameSetupMixin
 from .state_scoring import RoundScoringMixin
 from .state_serialization import StateSerializationMixin
@@ -136,6 +137,7 @@ class GameState(
     PauseResumeMixin,
     PlayerLifecycleMixin,
     RevealAutoAdvanceMixin,
+    RevealTransitionMixin,
     RoundLifecycleMixin,
     RoundScoringMixin,
     StateSerializationMixin,
@@ -227,6 +229,19 @@ class GameState(
     storefront detection (``_detect_storefront``); the ``_set_phase`` chokepoint
     and ``_apply_config`` / ``_default_config`` stay on ``GameState``) lives in
     :class:`~custom_components.beatify.game.state_setup.GameSetupMixin`.
+
+    The round-timer & REVEAL/terminal-transition subsystem (Issue #1271
+    next-increment extraction, off ``main`` — the forward-flow machinery that
+    carries a round from "all guesses in / timer expired" through REVEAL to the
+    terminal END phase: the early-reveal gate (``check_all_guesses_complete``,
+    ``_trigger_early_reveal``, ``trigger_early_reveal_if_complete``), the
+    round-timer task (``_timer_countdown``, ``cancel_timer``), the REVEAL
+    transition helpers (``_transition_to_reveal``, ``_apply_reveal_lights``), the
+    intro-splash / deadline delegations (``confirm_intro_splash``,
+    ``is_deadline_passed``) and the terminal ``advance_to_end``; the
+    ``_set_phase`` chokepoint, ``_score_all_players``, ``_end_round_unlocked`` and
+    ``_schedule_reveal_advance`` round-end SSOT stay on ``GameState``) lives in
+    :class:`~custom_components.beatify.game.state_reveal_transition.RevealTransitionMixin`.
     """
 
     def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
@@ -590,91 +605,15 @@ class GameState(
     # PlayerLifecycleMixin (Issue #1271 extraction). See game/state_player.py.
     # ------------------------------------------------------------------
 
-    def check_all_guesses_complete(self) -> bool:
-        """
-        Check if all connected players have submitted all required guesses (Story 20.9).
-
-        For early reveal: checks year guesses, and if artist challenge is active,
-        also checks artist guesses.
-
-        Returns:
-            True if all connected players have completed all required guesses
-
-        """
-        # First check year guesses using existing method
-        # Note: all_submitted() already returns False for zero connected players
-        if not self.all_submitted():
-            return False
-
-        # If artist challenge enabled and active, check artist guesses
-        # Skip check if challenge already has a winner (buttons disabled for others)
-        # or if no one has guessed yet (don't block early reveal for ignored challenges)
-        if self.artist_challenge_enabled and self.artist_challenge:
-            has_winner = getattr(self.artist_challenge, "winner", None) is not None
-            anyone_guessed = any(
-                p.has_artist_guess for p in self.players.values() if p.is_active
-            )
-            if not has_winner and anyone_guessed:
-                for player in self.players.values():
-                    if player.is_active and not player.has_artist_guess:
-                        return False
-
-        # Issue #28: If movie quiz enabled and active, check movie guesses
-        # Skip check if challenge already has correct guesses or no one interacted
-        if self.movie_quiz_enabled and self.movie_challenge:
-            has_correct = len(self.movie_challenge.correct_guesses) > 0
-            anyone_guessed = any(
-                p.has_movie_guess for p in self.players.values() if p.is_active
-            )
-            if not has_correct and anyone_guessed:
-                for player in self.players.values():
-                    if player.is_active and not player.has_movie_guess:
-                        return False
-
-        # #1180: In Title & Artist mode, wait for every active player to submit
-        # their title/artist guess before auto-advancing. This mode replaces the
-        # year guess, so there is no "winner" short-circuit — each player guesses
-        # independently and we hold PLAYING until all are in.
-        if self.title_artist_mode and self.title_artist_challenge:
-            for player in self.players.values():
-                if player.is_active and not player.has_title_artist_guess:
-                    return False
-
-        return True
-
-    async def _trigger_early_reveal(self) -> None:
-        """
-        Trigger early transition to reveal when all guesses are in (Story 20.9).
-
-        Cancels timer, sets early_reveal flag, and calls end_round.
-        Uses _score_lock to prevent concurrent invocations from racing
-        when multiple players submit simultaneously (AF2-013).
-
-        """
-        async with self._score_lock:
-            # Re-check phase under lock — another coroutine may have already
-            # transitioned to REVEAL between our caller's check and acquiring
-            # the lock.
-            if self.phase != GamePhase.PLAYING:
-                _LOGGER.debug(
-                    "Early reveal skipped — phase already %s", self.phase.value
-                )
-                return
-
-            _LOGGER.info(
-                "All guesses complete - triggering early reveal (phase=%s, callback=%s)",
-                self.phase.value,
-                self._on_round_end is not None,
-            )
-            self.cancel_timer()
-            self._round_manager._early_reveal = True
-            await self._end_round_unlocked()
-            _LOGGER.info("Early reveal complete - phase now %s", self.phase.value)
-
-    async def trigger_early_reveal_if_complete(self) -> None:
-        """Trigger early reveal if the round is playing and all guesses are in."""
-        if self.phase == GamePhase.PLAYING and self.check_all_guesses_complete():
-            await self._trigger_early_reveal()
+    # ------------------------------------------------------------------
+    # Early-reveal gate (check_all_guesses_complete / _trigger_early_reveal /
+    # trigger_early_reveal_if_complete), the round-timer task (_timer_countdown
+    # / cancel_timer), the REVEAL transition helpers (_transition_to_reveal /
+    # _apply_reveal_lights), the intro-splash / deadline delegations
+    # (confirm_intro_splash / is_deadline_passed) and the terminal
+    # advance_to_end live in RevealTransitionMixin (Issue #1271 extraction).
+    # See game/state_reveal_transition.py.
+    # ------------------------------------------------------------------
 
     def set_round_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
         """
@@ -697,38 +636,6 @@ class GameState(
 
         """
         self._on_metadata_update = callback
-
-    async def _timer_countdown(self, delay_seconds: float) -> None:
-        """Wait for round to end, then trigger reveal.
-
-        Wraps RoundManager._timer_countdown with phase-aware end_round call.
-        """
-        try:
-            await self._round_manager._timer_countdown(delay_seconds)
-            # #1029: release the timer-task handle BEFORE invoking end_round.
-            # end_round → _end_round_unlocked calls self.cancel_timer(), which
-            # would cancel `_timer_task` — and `_timer_task` IS the currently
-            # running task. A self-cancel schedules CancelledError on the next
-            # real yield, interrupting the REVEAL broadcast (and historically
-            # the phase transition itself before fake-await chains masked it).
-            # _log_timer_task_failure treats cancellations as silent, so the
-            # round froze on PLAYING with no diagnostic. Clearing the handle
-            # here makes the subsequent cancel_timer() a no-op for this task.
-            self._round_manager._timer_task = None
-            # Timer completed normally — check phase and end round
-            if self.phase == GamePhase.PLAYING:
-                # #471 Phase 1: announce time-up only when timer ran to zero
-                # (not on early-reveal). Done before end_round so the audio
-                # leads the REVEAL transition.
-                await self.announce_time_up()
-                await self.end_round()
-            else:
-                _LOGGER.debug(
-                    "Timer expired but phase already changed to %s", self.phase
-                )
-        except asyncio.CancelledError:
-            _LOGGER.debug("Timer task cancelled")
-            raise
 
     def _score_all_players(
         self, correct_year: int | None, all_players: list[PlayerSession]
@@ -921,33 +828,6 @@ class GameState(
                 "No round_end callback set - REVEAL state will not be broadcast!"
             )
 
-    async def _transition_to_reveal(self, correct_year: int | None) -> None:
-        """Announce the reveal and flip the phase to REVEAL (#1272).
-
-        Fires the combined REVEAL announcement (before the visible state
-        change so audio leads), clears per-phase reactions, sets phase +
-        reveal_started_at, and notifies state callbacks. Caller holds
-        _score_lock.
-        """
-        # The per-round REVEAL announcements (correct answer, accuracy,
-        # streaks, bets, steal unlocks, standings) collected into ONE
-        # combined utterance — see _announce_reveal. Fired BEFORE the phase
-        # transition so the audio leads the visible state change, and
-        # wrapped so a TTS hiccup never blocks REVEAL below.
-        try:
-            await self._announce_reveal(correct_year)
-        except (KeyError, AttributeError, TypeError, ValueError) as err:
-            _LOGGER.error("REVEAL announcement failed: %s", err)
-
-        # Transition to REVEAL
-        self._player_registry._reactions_this_phase = (
-            set()
-        )  # Story 18.9: Clear for new reveal phase
-        # #1273: _set_phase stamps reveal_started_at on REVEAL entry (#1048 —
-        # so the admin client can render the auto-advance countdown on the
-        # sticky Next button) and notifies observers (#441).
-        self._set_phase(GamePhase.REVEAL)
-
     def _schedule_reveal_advance(self) -> None:
         """Schedule the REVEAL vote window or auto-advance task (#1272).
 
@@ -985,73 +865,13 @@ class GameState(
                 )
                 self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
 
-    async def _apply_reveal_lights(self, correct_year: int | None) -> None:
-        """Update party lights for REVEAL + flash on exact/correct (#1272).
-
-        Caller holds _score_lock. Sets the REVEAL light phase, then flashes
-        gold when any player was exact (years_off == 0) or green when any was
-        within one year.
-        """
-        # Issue #331/#517: Update Party Lights for reveal phase + event flashes
-        await self._lights_set_phase(GamePhase.REVEAL)
-        if correct_year is not None:
-            has_exact = False
-            has_correct = False
-            for p in self.players.values():
-                if p.submitted and p.years_off is not None:
-                    if p.years_off == 0:
-                        has_exact = True
-                    elif p.years_off <= 1:
-                        has_correct = True
-            if has_exact:
-                await self._lights_flash("gold")
-            elif has_correct:
-                await self._lights_flash("green")
-
-    def cancel_timer(self) -> None:
-        """Cancel the round timer. Delegates to RoundManager."""
-        self._round_manager.cancel_timer()
-
-    async def confirm_intro_splash(self) -> None:
-        """Handle admin confirmation of intro splash (Issue #292, #403).
-
-        Delegates to RoundManager.
-        """
-        await self._round_manager.confirm_intro_splash(
-            self.play_deferred_song, self._on_round_end, self._timer_countdown
-        )
-
-    def is_deadline_passed(self) -> bool:
-        """Check if the round deadline has passed. Delegates to RoundManager."""
-        return self._round_manager.is_deadline_passed()
-
-    async def advance_to_end(self) -> None:
-        """Transition to END phase with proper cleanup (#321).
-
-        Use this instead of setting ``phase = GamePhase.END`` directly.
-        Cancels timers so no stale callbacks fire after the game ends.
-        Does NOT clear players (they stay for rematch/end screen).
-        """
-        self.cancel_timer()
-        self._round_manager._cancel_intro_timer()
-        self._cancel_auto_advance()  # #1012
-        # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
-        self._set_phase(GamePhase.END)
-
-        # Issue #331: Celebrate with Party Lights, then stop (#553)
-        if self._party_lights:
-            try:
-                await self._party_lights.celebrate()
-            except Exception:  # noqa: BLE001
-                _LOGGER.warning("Party Lights celebration failed")
-            await self.disable_party_lights()
-
-        # Issue #447: Announce winner via TTS
-        await self.announce_winner()
-        # Issue #841 Phase 3: read out the podium (use case 19).
-        await self.announce_podium()
-
-        _LOGGER.info("Game advanced to END phase")
+    # ------------------------------------------------------------------
+    # REVEAL transition (_transition_to_reveal / _apply_reveal_lights), the
+    # round-timer task (_timer_countdown / cancel_timer), the intro-splash /
+    # deadline delegations (confirm_intro_splash / is_deadline_passed) and the
+    # terminal advance_to_end live in RevealTransitionMixin (Issue #1271
+    # extraction). See game/state_reveal_transition.py.
+    # ------------------------------------------------------------------
 
     def calculate_round_analytics(self) -> RoundAnalytics:
         """Calculate round analytics (Story 13.3). Delegates to ScoringService (#139)."""
