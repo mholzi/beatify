@@ -561,6 +561,7 @@ class ScoringService:
     def apply_closest_wins(
         players: list[PlayerSession],
         correct_year: int,
+        streak_achievements: dict[str, int] | None = None,
     ) -> None:
         """Zero out round_score for players who are not closest to the correct year.
 
@@ -571,6 +572,12 @@ class ScoringService:
         Must be called *after* score_player_round has run for every player, and
         *before* the round scores are appended to cumulative totals (they are
         already added in score_player_round, so we need to undo the difference).
+
+        ``streak_achievements`` is the same shared milestone-counter dict passed
+        to score_player_round. It is needed to roll back a milestone increment
+        for a streak round that closest-wins voids (#1375). When omitted the
+        milestone counter cannot be decremented (callers that don't track
+        achievements may pass ``None``).
         """
         submitted = [p for p in players if p.submitted and p.current_guess is not None]
         if not submitted:
@@ -596,8 +603,40 @@ class ScoringService:
                 p.streak_bonus = 0
                 p.score -= p.intro_bonus
                 p.intro_bonus = 0
-                p.previous_streak = p.streak
-                p.streak = 0
+                # #1375: only roll back / break the streak when this player
+                # actually SCORED this round (lost > 0). _apply_streak already
+                # set streak=0 and saved the real previous_streak for players
+                # who scored 0 — overwriting previous_streak with the now-0
+                # streak here would wipe their "lost X-streak" reveal display.
+                if lost > 0:
+                    # _apply_streak incremented streak for this scoring round,
+                    # so the pre-round streak is (streak - 1). Roll back the
+                    # side-effects that the now-voided round produced:
+                    pre_round_streak = p.streak - 1
+                    # (a) milestone achievement counter (#147) — decrement the
+                    #     bucket this round's streak ticked, if any.
+                    if streak_achievements is not None:
+                        milestone_key = f"streak_{p.streak}"
+                        if streak_achievements.get(milestone_key, 0) > 0:
+                            streak_achievements[milestone_key] -= 1
+                    # (b) steal unlock — revoke only if THIS round newly unlocked
+                    #     it (streak hit the threshold) and it hasn't been used.
+                    if (
+                        p.streak == STEAL_UNLOCK_STREAK
+                        and p.steal_available
+                        and not p.steal_used
+                    ):
+                        p.steal_available = False
+                    # (c) best_streak — roll back to the pre-round value only
+                    #     when THIS round set the record (best_streak == the
+                    #     streak we're voiding). If an earlier round already
+                    #     peaked higher, best_streak stays untouched. (A rare
+                    #     identical earlier peak would dip by 1 — acceptable vs.
+                    #     the inflated value the bug left, per #1375.)
+                    if p.best_streak == p.streak:
+                        p.best_streak = pre_round_streak
+                    p.previous_streak = pre_round_streak
+                    p.streak = 0
 
     @staticmethod
     def calculate_superlatives(
