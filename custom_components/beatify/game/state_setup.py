@@ -386,7 +386,13 @@ class GameSetupMixin:
             preserved["provider"],
             storefront=self.storefront,
         )
-        self.total_rounds = len(preserved["songs"])
+        # #1377: derive total_rounds from the filtered/deduped playable pool
+        # (exactly like create_game, state_setup.py), not the raw song list.
+        # Using len(preserved["songs"]) inflated total_rounds whenever the
+        # PlaylistManager dropped songs (no provider URI, duplicate URI, or
+        # storefront-unavailable), breaking 'Round X of Y' and the last-round
+        # TTS gate.
+        self.total_rounds = self._playlist_manager.get_total_count()
 
         self._set_phase(GamePhase.LOBBY)
         # #1358: a rematch replaces the game identity — invalidate any

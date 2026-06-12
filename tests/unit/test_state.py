@@ -992,6 +992,38 @@ class TestRematchGame:
         assert len(self.state.songs) > 0
         assert self.state.total_rounds > 0
 
+    def test_rematch_total_rounds_uses_filtered_count(self):
+        """#1377: total_rounds after rematch must come from the filtered/deduped
+        PlaylistManager pool (like create_game), NOT len(raw songs).
+
+        Two songs share a URI, so PlaylistManager dedupes one away: the raw
+        list has 2 entries but the playable pool has 1. total_rounds must be 1.
+        """
+        songs = [
+            {
+                "year": 2000,
+                "uri": "spotify:track:dup",
+                "_resolved_uri": "spotify:track:dup",
+                "title": "First",
+                "artist": "A",
+            },
+            {
+                "year": 2001,
+                "uri": "spotify:track:dup",  # duplicate URI → deduped out
+                "_resolved_uri": "spotify:track:dup",
+                "title": "Second",
+                "artist": "B",
+            },
+        ]
+        _create_fresh_game(self.state, songs=songs)
+        # create_game already derives the filtered count; sanity-check it.
+        assert self.state.total_rounds == 1
+        self.state.phase = GamePhase.END
+        self.state.rematch_game()
+        # rematch must match create_game, not len(preserved["songs"]) == 2.
+        assert self.state.total_rounds == self.state._playlist_manager.get_total_count()
+        assert self.state.total_rounds == 1
+
 
 # ---------------------------------------------------------------------------
 # GameState.pause_game / resume_game
