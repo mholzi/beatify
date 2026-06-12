@@ -153,6 +153,36 @@ class GameSetupMixin:
                 f"and {ROUND_DURATION_MAX} seconds"
             )
 
+        # #1378: validate BEFORE mutating any state. Building the
+        # PlaylistManager and running the #709 no-playable-songs check first —
+        # into locals, touching nothing on self — means a validation failure
+        # leaves GameState completely untouched (game_id stays None, phase
+        # unchanged, players intact). Otherwise the host hits a zombie
+        # zero-song LOBBY that the create-handler's existing-game guard
+        # (#935) then rejects with 409 on every retry.
+        #
+        # #808 follow-up: detect the user's Apple Music storefront from
+        # HA's configured country. Beatify's playlists carry per-region
+        # Apple Music URIs; PlaylistManager uses this to pick the right
+        # one and to filter out songs explicitly unavailable in this
+        # region. Lower-case to match the storefront codes used by
+        # Apple's API ("us", "de", "gb", ...). None when HA doesn't have
+        # a country configured → falls back to the legacy single URI.
+        # _detect_storefront is read-only, so it is safe to run pre-mutation.
+        storefront = self._detect_storefront()
+
+        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
+        playlist_manager = PlaylistManager(songs, provider, storefront=storefront)
+
+        # #709: if the chosen provider has zero playable songs, fail fast with
+        # a clear error rather than silently starting a game that will stall.
+        if not playlist_manager.has_playable_songs():
+            raise ValueError(
+                f"No playable songs for provider '{provider}' in the selected "
+                f"playlist(s). Pick a different playlist or provider."
+            )
+
+        # Validation passed — now it is safe to mutate game state.
         # Clear any leftover sessions from previous/crashed game (Story 11.6)
         self.clear_all_sessions()
 
@@ -174,30 +204,12 @@ class GameSetupMixin:
         # Store platform for playback routing
         self.platform = platform
 
-        # #808 follow-up: detect the user's Apple Music storefront from
-        # HA's configured country. Beatify's playlists carry per-region
-        # Apple Music URIs; PlaylistManager uses this to pick the right
-        # one and to filter out songs explicitly unavailable in this
-        # region. Lower-case to match the storefront codes used by
-        # Apple's API ("us", "de", "gb", ...). None when HA doesn't have
-        # a country configured → falls back to the legacy single URI.
-        self.storefront = self._detect_storefront()
+        self.storefront = storefront
 
         # Reset error detail
         self.last_error_detail = ""
 
-        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
-        self._playlist_manager = PlaylistManager(
-            songs, provider, storefront=self.storefront
-        )
-
-        # #709: if the chosen provider has zero playable songs, fail fast with
-        # a clear error rather than silently starting a game that will stall.
-        if not self._playlist_manager.has_playable_songs():
-            raise ValueError(
-                f"No playable songs for provider '{provider}' in the selected "
-                f"playlist(s). Pick a different playlist or provider."
-            )
+        self._playlist_manager = playlist_manager
 
         # Reset round tracking for new game
         self.round = 0
