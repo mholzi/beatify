@@ -238,6 +238,11 @@
             _noSleepActive = true;
             if (p && typeof p.catch === 'function') {
                 p.catch(function(err) {
+                    // Reset the flag so a later banner-tap (#1285) /
+                    // visibilitychange retry can re-attempt ns.enable() inside a
+                    // trusted gesture — otherwise the one-tap recovery silently
+                    // no-ops on iOS where the init() call was gesture-rejected.
+                    _noSleepActive = false;
                     console.debug('[BeatifyWakeLock] Layer 2 enable promise rejected:', err);
                 });
             }
