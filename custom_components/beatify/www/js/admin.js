@@ -31,6 +31,7 @@ import {
     REQUEST_STATUS_LABELS,
     buildRequestRowHtml,
     escapeHtml,
+    acquireWakeLockFirst,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -1007,6 +1008,15 @@ async function startGame() {
     if (adminState._startInFlight) return;
     adminState._startInFlight = true;
 
+    // #1396 (same defect class as #1122/#1207): acquire the wake lock
+    // SYNCHRONOUSLY here, before the `await BeatifyAuth.fetch('/start-game')`
+    // below. The legacy #start-game button (still wired at init) reaches this
+    // path directly, and the existing _requestWakeLock() near the end only runs
+    // after the await — by which point iOS has consumed the tap's user
+    // activation and the Layer 2 NoSleep video.play() silently fails. The later
+    // call stays as the idempotent re-affirm (guarded by _noSleepActive).
+    acquireWakeLockFirst(_requestWakeLock);
+
     let originalText;
     if (btn) {
         btn.disabled = true;
@@ -1350,6 +1360,16 @@ function closeRematchModal() {
 async function confirmRematch() {
     if (rematchInProgress) return;  // Debounce
     rematchInProgress = true;
+
+    // #1396 (same defect class as #1122/#1207): acquire the wake lock
+    // SYNCHRONOUSLY here, inside the rematch-confirm tap's user-activation
+    // window. The WS path below just sends `rematch_game` and returns — the lock
+    // would otherwise only be re-requested once the LOBBY broadcast arrives in
+    // handleAdminStateUpdate(), long after the gesture is consumed, so on iOS
+    // the Layer 2 NoSleep video.play() silently fails and the rematch runs with
+    // a sleeping host screen. The later handleAdminStateUpdate call stays as the
+    // idempotent re-affirm (guarded by _noSleepActive).
+    acquireWakeLockFirst(_requestWakeLock);
 
     // F8 fix: Show loading state on rematch button
     var rematchBtn = document.getElementById('rematch-game');
