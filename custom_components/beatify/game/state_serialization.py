@@ -67,6 +67,7 @@ from typing import TYPE_CHECKING, Any
 _LOGGER = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
+    from custom_components.beatify.game.player import PlayerSession
     from custom_components.beatify.services.stats import StatsService
 
 
@@ -124,6 +125,26 @@ class StateSerializationMixin:
             return self._stats_service.get_song_difficulty(song_uri)
         return None
 
+    def compute_winners(self) -> tuple[list[PlayerSession], int]:
+        """Return the top-scoring player(s) and the top score (#1402 B2).
+
+        Single source of truth for the "who won" computation that both
+        ``finalize_game`` (the StatsService summary) and the END-state
+        serializer (``GameStateSerializer._add_end_state``) need — previously
+        the ``max`` + tie-detection loop was duplicated in both, so a change to
+        one (e.g. a different tie rule) could silently diverge from the other.
+
+        Returns:
+            A ``(winners, top_score)`` tuple. ``winners`` is every player whose
+            score equals the maximum (length > 1 means a tie); ``top_score`` is
+            that maximum. With no players, returns ``([], 0)``.
+        """
+        if not self.players:
+            return [], 0
+        top_score = max(p.score for p in self.players.values())
+        winners = [p for p in self.players.values() if p.score == top_score]
+        return winners, top_score
+
     def finalize_game(self) -> dict[str, Any]:
         """
         Calculate final stats before ending the game (Story 14.4).
@@ -141,13 +162,10 @@ class StateSerializationMixin:
         player_count = len(self.players)
         rounds_played = self.round
 
-        # Determine winner(s) — detect ties
+        # Determine winner(s) — detect ties (#1402 B2: shared helper).
         winner_name = "Unknown"
-        winner_score = 0
-        if self.players:
-            top_score = max(p.score for p in self.players.values())
-            winners = [p for p in self.players.values() if p.score == top_score]
-            winner_score = top_score
+        winners, winner_score = self.compute_winners()
+        if winners:
             if len(winners) == 1:
                 winner_name = winners[0].name
             else:

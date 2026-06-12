@@ -400,7 +400,13 @@ class RoundLifecycleMixin:
             resolved_uri,
             will_defer_for_splash,
             self._media_player_service,
-            self._fetch_metadata_async(resolved_uri),
+            # #1402 B2: pass a factory, NOT an eagerly-created coroutine.
+            # On intro-splash-deferred rounds (or when no media player is
+            # configured) build_round_metadata sets metadata_coro=None — an
+            # eagerly-created coroutine would then be dropped un-awaited,
+            # leaking it (RuntimeWarning: coroutine never awaited). The factory
+            # is only invoked when the fetch is actually needed.
+            lambda: self._fetch_metadata_async(resolved_uri),
         )
 
     def _initialize_round(

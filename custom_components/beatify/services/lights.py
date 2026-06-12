@@ -89,14 +89,39 @@ class PartyLightsService:
         self._wled_presets: dict[str, int] = dict(WLED_PRESET_DEFAULTS)
         self._wled_entities: set[str] = set()
 
+    def snapshot_saved_states(self) -> dict[str, dict[str, Any]]:
+        """Return a copy of the captured pre-party light states (#1402 B2).
+
+        Exposed so a reconfigure (a second ``configure_party_lights`` mid-game)
+        can carry the *genuine* original light states forward into a fresh
+        service instead of letting the new ``start()`` re-capture states that
+        are already the party colors this service applied — which would make the
+        eventual ``stop()`` "restore" lights to party colors and permanently
+        lose the user's real original states.
+        """
+        return {entity: dict(state) for entity, state in self._saved_states.items()}
+
     async def start(
         self,
         entity_ids: list[str],
         intensity: str = "medium",
         light_mode: str = "dynamic",
         wled_presets: dict[str, int] | None = None,
+        inherited_states: dict[str, dict[str, Any]] | None = None,
     ) -> None:
-        """Save current light states and take control."""
+        """Save current light states and take control.
+
+        Args:
+            entity_ids: Light entities to take over.
+            intensity: Brightness preset.
+            light_mode: "static" / "dynamic" / "wled".
+            wled_presets: Optional WLED preset overrides.
+            inherited_states: #1402 B2 — pre-party states captured by a prior
+                service being replaced. For any overlapping entity these take
+                precedence over a fresh capture (the fresh read would otherwise
+                snapshot the party colors the prior service applied). Entities
+                NOT in ``inherited_states`` are captured fresh as normal.
+        """
         if not entity_ids:
             return
 
@@ -137,6 +162,16 @@ class PartyLightsService:
                     "rgb_color": state.attributes.get("rgb_color"),
                     "color_temp_kelvin": state.attributes.get("color_temp_kelvin"),
                 }
+
+        # #1402 B2: a prior service handed us the genuine pre-party states.
+        # Overlay them so overlapping entities restore to the user's REAL
+        # original look, not the party colors the fresh capture above just read
+        # back. Done before the base-brightness computation so subtle mode also
+        # derives its level from the real pre-game brightness.
+        if inherited_states:
+            for entity_id in self._entity_ids:
+                if entity_id in inherited_states:
+                    self._saved_states[entity_id] = dict(inherited_states[entity_id])
 
         # Compute base brightness for subtle mode from saved states
         brightnesses = [

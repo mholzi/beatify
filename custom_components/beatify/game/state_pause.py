@@ -124,8 +124,26 @@ class PauseResumeMixin:
         # #1012: a pause stops the unattended REVEAL auto-advance too.
         self._cancel_auto_advance()
 
-        # Stop timer if in PLAYING
-        if self.phase == GamePhase.PLAYING:
+        was_playing = self.phase == GamePhase.PLAYING
+
+        # #1402 B2: flip to PAUSED BEFORE the media stop() await below.
+        # The stop() await is the only suspension point inside pause_game; if
+        # the phase were still PLAYING across it, a concurrent early-reveal
+        # (end_round / _trigger_early_reveal) could run to completion during the
+        # await — flipping PLAYING->REVEAL — and then pause_game would resume and
+        # stamp PAUSED, leaving _previous_phase=PLAYING while the round had in
+        # fact already revealed. resume_game would then restore PLAYING and
+        # restart the round timer on an already-revealed round (corrupt pause
+        # snapshot). _previous_phase is snapshotted above (pre-flip), so the
+        # resume target stays correct; flipping here first means any early-reveal
+        # that runs during stop() sees phase=PAUSED and its `phase != PLAYING`
+        # guard makes it a no-op. _set_phase is synchronous (no await), so this
+        # flip + snapshot is atomic relative to the stop() suspension.
+        # (clears reveal_started_at + notifies, #1273)
+        self._set_phase(GamePhase.PAUSED)
+
+        # Stop timer + media if we were PLAYING when the pause arrived.
+        if was_playing:
             self.cancel_timer()
             # Issue #23: Cancel intro timer if running
             self._round_manager._cancel_intro_timer()
@@ -133,8 +151,6 @@ class PauseResumeMixin:
             if self._media_player_service:
                 await self._media_player_service.stop()
 
-        # Transition to PAUSED (clears reveal_started_at + notifies, #1273)
-        self._set_phase(GamePhase.PAUSED)
         _LOGGER.info("Game paused: %s", reason)
 
         return True

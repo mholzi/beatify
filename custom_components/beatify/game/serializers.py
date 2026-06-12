@@ -211,10 +211,10 @@ class GameStateSerializer:
             "total_rounds": gs.round,
             "total_players": len(gs.players),
         }
-        # Include winner info — detect ties
-        if gs.players:
-            top_score = max(p.score for p in gs.players.values())
-            winners = [p for p in gs.players.values() if p.score == top_score]
+        # Include winner info — detect ties (#1402 B2: shared helper, single
+        # source of truth with GameState.finalize_game).
+        winners, top_score = gs.compute_winners()
+        if winners:
             state["winner"] = {
                 "name": ", ".join(w.name for w in winners),
                 "score": top_score,

@@ -94,8 +94,27 @@ class MediaControlMixin:
         # use PartyLightsProtocol (module-level) to keep the import graph acyclic.
         from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
 
+        # #1402 B2: a reconfigure (admin changes intensity / mode / entities
+        # mid-game via admin_set_party_lights) previously replaced the active
+        # service outright — the old one was never stopped, so its captured
+        # pre-party light states were dropped and the new service's start()
+        # re-captured states that are now the PARTY colors it had applied. On
+        # game-end the new service would then "restore" lights to party colors,
+        # permanently losing the user's real original states. Carry the genuine
+        # pre-party snapshot forward into the new instance so overlapping
+        # entities still restore to their true original look.
+        inherited_states = (
+            self._party_lights.snapshot_saved_states() if self._party_lights else None
+        )
+
         self._party_lights = PartyLightsService(self._hass)
-        await self._party_lights.start(entity_ids, intensity, light_mode, wled_presets)
+        await self._party_lights.start(
+            entity_ids,
+            intensity,
+            light_mode,
+            wled_presets,
+            inherited_states=inherited_states,
+        )
 
     async def disable_party_lights(self) -> None:
         """Stop Party Lights and restore original light states."""
