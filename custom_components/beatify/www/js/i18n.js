@@ -19,6 +19,20 @@ window.BeatifyI18n = (function() {
     var isLoaded = false;
     var loadPromise = null;
 
+    // #1399: concurrency guard. setLanguage() is called from several places
+    // (admin loadSavedSettings, the wizard language chip, dashboard
+    // state-driven switches) and each one awaits an async fetch. Without a
+    // generation token a slower in-flight fetch can resolve AFTER a newer
+    // setLanguage() and clobber `translations` with the wrong locale (stale
+    // de.json landing while currentLanguage is already 'en'). _loadGen is
+    // bumped on every loadTranslations() entry; a fetch only commits its
+    // result if its captured gen is still the latest.
+    var _loadGen = 0;
+    // Promise that resolves when the most recent setLanguage()/init() load
+    // settles. Callers (e.g. dashboard handleStateUpdate) can await this to
+    // avoid rendering with empty/stale translations while a load is in flight.
+    var languageReadyPromise = Promise.resolve();
+
     /**
      * Load translations for a specific language
      * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
@@ -66,18 +80,38 @@ window.BeatifyI18n = (function() {
      * @returns {Promise<void>}
      */
     async function loadTranslations() {
+        // #1399: capture this load's generation + target locale up front.
+        // A newer setLanguage() bumps _loadGen, so a slower fetch started here
+        // can detect it is stale and refuse to commit its (now wrong) result.
+        var gen = ++_loadGen;
+        var targetLang = currentLanguage;
+
         // Load English as fallback first
         if (Object.keys(fallbackTranslations).length === 0) {
-            fallbackTranslations = await fetchTranslations('en');
+            var fb = await fetchTranslations('en');
+            // Fallback is locale-independent, so a superseding load doesn't
+            // invalidate it — always keep it once fetched.
+            if (Object.keys(fallbackTranslations).length === 0) {
+                fallbackTranslations = fb;
+            }
         }
 
         // Load current language
-        if (currentLanguage === 'en') {
-            translations = fallbackTranslations;
+        var data;
+        if (targetLang === 'en') {
+            data = fallbackTranslations;
         } else {
-            translations = await fetchTranslations(currentLanguage);
+            data = await fetchTranslations(targetLang);
         }
 
+        // #1399: bail if a newer setLanguage() has superseded this load while
+        // our fetch was in flight — committing now would clobber the active
+        // locale with stale data.
+        if (gen !== _loadGen) {
+            return;
+        }
+
+        translations = data;
         isLoaded = true;
     }
 
@@ -182,7 +216,13 @@ window.BeatifyI18n = (function() {
             document.documentElement.lang = langCode;
         }
 
-        await loadTranslations();
+        // #1399: expose the in-flight load so callers (e.g. dashboard's
+        // handleStateUpdate) can await it instead of rendering early with
+        // empty/stale translations — getLanguage() already returns the new
+        // code synchronously, so without this a concurrent render would skip
+        // its wait branch and flash raw keys / the previous locale.
+        languageReadyPromise = loadTranslations();
+        await languageReadyPromise;
     }
 
     /**
@@ -286,6 +326,17 @@ window.BeatifyI18n = (function() {
         return isLoaded;
     }
 
+    /**
+     * #1399: resolve once the most recent setLanguage()/init() load settles.
+     * Callers that react to state broadcasts (dashboard handleStateUpdate)
+     * should `await BeatifyI18n.languageReady()` before rendering dynamic
+     * content so an in-flight locale switch doesn't render raw keys.
+     * @returns {Promise<void>}
+     */
+    function languageReady() {
+        return languageReadyPromise;
+    }
+
     // Public API
     return {
         t: t,
@@ -295,7 +346,8 @@ window.BeatifyI18n = (function() {
         initPageTranslations: initPageTranslations,
         detectBrowserLanguage: detectBrowserLanguage,
         init: init,
-        isReady: isReady
+        isReady: isReady,
+        languageReady: languageReady
     };
 })();
 
