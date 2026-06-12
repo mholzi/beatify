@@ -130,3 +130,109 @@ describe('handleAdminWsMessage UNAUTHORIZED recovery exhaustion (#1393)', () => 
         expect(calls.showError[0]).toMatch(/rejected the access token/i);
     });
 });
+
+/**
+ * #1402 B7 — a WS `error` must only be treated as a start failure (reset the
+ * home "Start game" button + blocking showError) while a start_game is pending.
+ * Errors for unrelated mid-game commands (set_volume, stop_song, next_round, …)
+ * must NOT rewrite the home button or pop a blocking dialog — they go to a
+ * non-blocking console.warn instead. The flag is set by sendAdminWs() on a
+ * start_game payload (only over an OPEN socket) and cleared by the next `state`
+ * message OR by the start-failure branch itself.
+ */
+describe('handleAdminWsMessage start-failure gating (#1402 B7)', () => {
+    // Minimal fake WebSocket so sendAdminWs() sees an OPEN socket and arms the
+    // pending flag (mirrors admin-ws-lifecycle.test.js).
+    const WS_OPEN = 1;
+    let liveSockets = [];
+    class FakeWebSocket {
+        constructor(url) {
+            this.url = url;
+            this.readyState = 0;
+            this.onopen = this.onmessage = this.onclose = this.onerror = null;
+            liveSockets.push(this);
+        }
+        send() {}
+        close() { this.readyState = 3; }
+    }
+    FakeWebSocket.CONNECTING = 0;
+    FakeWebSocket.OPEN = WS_OPEN;
+    FakeWebSocket.CLOSED = 3;
+
+    let resolveToken;
+
+    afterEach(() => {
+        delete globalThis.BeatifyAuth;
+        delete globalThis.window;
+        delete globalThis.WebSocket;
+        delete globalThis.BeatifyI18n;
+        vi.restoreAllMocks();
+    });
+
+    // Boot a fresh module with injected deps + an OPEN fake socket so sendAdminWs
+    // can arm startPending through the real public path.
+    async function setup() {
+        vi.resetModules();
+        liveSockets = [];
+        globalThis.WebSocket = FakeWebSocket;
+        globalThis.window = { location: { protocol: 'https:', host: 'ha.local' } };
+        globalThis.BeatifyAuth = {
+            getAccessToken: () => new Promise((res) => { resolveToken = res; }),
+            isCompanionBypassMode: () => false,
+        };
+        globalThis.BeatifyI18n = { t: () => '' };
+        const api = await import('../admin/api.js?ts=' + Math.random());
+        const calls = { showError: [], resetHomeStartButton: 0 };
+        api.initAdminApi({
+            showError: (m) => calls.showError.push(m),
+            resetHomeStartButton: () => { calls.resetHomeStartButton++; },
+            handleAdminStateUpdate: () => {},
+            debug: () => {},
+            stopLobbyPolling: () => {},
+        });
+        // Open the socket so isAdminWsOpen() is true.
+        const p = api.connectAdminWebSocket();
+        resolveToken('tok');
+        await p;
+        liveSockets[0].readyState = WS_OPEN;
+        return { api, calls };
+    }
+
+    it('does NOT reset the home button for an unrelated command error when no start is pending', async () => {
+        const { api, calls } = await setup();
+        const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        api.handleAdminWsMessage({ type: 'error', code: 'INVALID_ACTION', message: 'volume failed' });
+        expect(calls.resetHomeStartButton).toBe(0);
+        expect(calls.showError).toHaveLength(0);
+        expect(warn).toHaveBeenCalled();
+    });
+
+    it('DOES reset the home button + shows error for an error while a start_game is pending', async () => {
+        const { api, calls } = await setup();
+        const sent = api.sendAdminWs({ type: 'admin', action: 'start_game' });
+        expect(sent).toBe(true); // confirms the socket was OPEN → flag armed
+        api.handleAdminWsMessage({ type: 'error', code: 'MEDIA_PLAYER_UNAVAILABLE', message: 'player gone' });
+        expect(calls.resetHomeStartButton).toBe(1);
+        expect(calls.showError).toContain('player gone');
+    });
+
+    it('a `state` message clears the pending flag so a later error is non-blocking', async () => {
+        const { api, calls } = await setup();
+        const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        expect(api.sendAdminWs({ type: 'admin', action: 'start_game' })).toBe(true);
+        api.handleAdminWsMessage({ type: 'state' }); // start succeeded → clears flag
+        api.handleAdminWsMessage({ type: 'error', code: 'NO_SONGS_REMAINING', message: 'oops' });
+        expect(calls.resetHomeStartButton).toBe(0);
+        expect(calls.showError).toHaveLength(0);
+        expect(warn).toHaveBeenCalled();
+    });
+
+    it('a non-start command does NOT arm the flag (sendAdminWs ignores set_volume)', async () => {
+        const { api, calls } = await setup();
+        const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+        api.sendAdminWs({ type: 'admin', action: 'set_volume', direction: 'up' });
+        api.handleAdminWsMessage({ type: 'error', code: 'INVALID_ACTION', message: 'vol fail' });
+        expect(calls.resetHomeStartButton).toBe(0);
+        expect(warn).toHaveBeenCalled();
+    });
+});

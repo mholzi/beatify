@@ -111,7 +111,14 @@ export function renderMediaPlayers(players) {
     // Try to auto-select last used player from localStorage
     const lastPlayerId = localStorage.getItem(STORAGE_LAST_PLAYER);
     if (lastPlayerId) {
-        const lastPlayerRadio = container.querySelector(`[data-entity-id="${lastPlayerId}"]`);
+        // Match the radio input specifically — the wrapper .media-player-item div
+        // also carries data-entity-id and appears first in DOM order, so a bare
+        // [data-entity-id] selector grabs the div: .checked is a no-op and
+        // handleMediaPlayerSelect reads undefined data-state. Mirror admin.js
+        // hydrateFromStorage and target .media-player-radio (CSS.escape the id).
+        const lastPlayerRadio = container.querySelector(
+            `.media-player-radio[data-entity-id="${CSS.escape(lastPlayerId)}"]`
+        );
         if (lastPlayerRadio) {
             lastPlayerRadio.checked = true;
             handleMediaPlayerSelect(lastPlayerRadio, true); // true = skip localStorage save
