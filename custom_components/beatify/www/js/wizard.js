@@ -23,6 +23,15 @@ const LS_GAME_SETTINGS = 'beatify_game_settings'; // set by admin.js, contains {
 
 let _hubMounted = false;
 
+// HTML-escape helpers. HA friendly_name / entity_id values come from devices
+// and integrations on the LAN and are NOT trusted — a Sonos/Cast/DLNA device
+// can advertise an arbitrary name (e.g. `<img src=x onerror=...>`) that HA
+// stores as friendly_name. They must be escaped before entering innerHTML.
+// escapeAttr also escapes quotes for use inside attribute values; escapeText
+// is for text content between tags (#1370).
+const escapeAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const escapeText = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 // ------------------------------------------------------------------
 // Pure helpers — exported for vitest
 // ------------------------------------------------------------------
@@ -460,10 +469,10 @@ function _renderSpeakers() {
             const badgeHtml = badge
                 ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}"${badgeTitle}>${badge.label}</span>`
                 : '';
-            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${p.entity_id}">
+            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${escapeAttr(p.entity_id)}">
           <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
           <div class="wiz-row-text">
-            <div class="wiz-row-name">${p.friendly_name || p.entity_id}</div>
+            <div class="wiz-row-name">${escapeText(p.friendly_name || p.entity_id)}</div>
             <div class="wiz-row-sub">${platform}${badgeHtml}</div>
           </div>
           ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
@@ -1042,9 +1051,9 @@ function _lightsDetailHtml() {
         ? lights.map((l) => {
               const checked = chosenLightEntityIds.has(l.entity_id) ? 'checked' : '';
               const searchable = `${l.friendly_name || ''} ${l.entity_id}`.toLowerCase();
-              return `<label class="wiz-detail-check" data-light-search="${searchable.replace(/"/g, '&quot;')}">
-            <input type="checkbox" data-light-id="${l.entity_id}" ${checked}>
-            <span class="wiz-detail-check-name">${l.friendly_name || l.entity_id}</span>
+              return `<label class="wiz-detail-check" data-light-search="${escapeAttr(searchable)}">
+            <input type="checkbox" data-light-id="${escapeAttr(l.entity_id)}" ${checked}>
+            <span class="wiz-detail-check-name">${escapeText(l.friendly_name || l.entity_id)}</span>
           </label>`;
           }).join('')
         : `<div class="wiz-detail-empty">${_t('wizard.step5.lights.noneFound', 'No lights available')}</div>`;
@@ -1116,8 +1125,6 @@ function _ttsDetailHtml() {
     // load any entities (e.g. offline or older HA) so the wizard never
     // becomes un-completable.
     const entities = cachedTtsEntities || [];
-    const escapeAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const escapeText = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const known = new Set(entities.map((e) => e.entity_id));
     const optsHtml = entities.map((e) => {
         const label = e.friendly_name && e.friendly_name !== e.entity_id
