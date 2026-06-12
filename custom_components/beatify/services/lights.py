@@ -157,6 +157,30 @@ class PartyLightsService:
             len(self._wled_entities),
         )
 
+    def _phase_service_data(self, phase_name: str) -> dict[str, Any] | None:
+        """Build the service data (color + intensity-adjusted brightness) for a phase.
+
+        Single source of truth for the subtle/intensity brightness logic so that
+        set_phase() and the flash()/strobe() restore paths all agree — in subtle
+        mode they must restore to the gentle pre-game level, not full brightness
+        (#1389).
+        """
+        phase_data = PHASE_COLORS.get(phase_name)
+        if not phase_data:
+            return None
+
+        service_data = dict(phase_data)
+        if self._intensity == "subtle":
+            offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
+            service_data["brightness"] = min(self._base_brightness + offset, 255)
+        else:
+            preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
+            if "brightness" in service_data:
+                service_data["brightness"] = int(
+                    service_data["brightness"] * preset["brightness_scale"]
+                )
+        return service_data
+
     async def set_phase(self, phase: Any) -> None:
         """Apply phase-appropriate colors/brightness."""
         if not self._active or not self._entity_ids:
@@ -186,22 +210,9 @@ class PartyLightsService:
                 if phase_data:
                     await self._apply(non_wled, dict(phase_data), transition=1.0)
         else:
-            phase_data = PHASE_COLORS.get(phase_name)
-            if not phase_data:
+            service_data = self._phase_service_data(phase_name)
+            if service_data is None:
                 return
-
-            service_data = dict(phase_data)
-            if self._intensity == "subtle":
-                offset = int(SUBTLE_BRIGHTNESS_OFFSETS.get(phase_name, 0.0) * 255)
-                service_data["brightness"] = min(self._base_brightness + offset, 255)
-            else:
-                preset = INTENSITY_PRESETS.get(
-                    self._intensity, INTENSITY_PRESETS["medium"]
-                )
-                if "brightness" in service_data:
-                    service_data["brightness"] = int(
-                        service_data["brightness"] * preset["brightness_scale"]
-                    )
 
             await self._apply(self._entity_ids, service_data, transition=1.0)
 
@@ -230,14 +241,11 @@ class PartyLightsService:
 
         await asyncio.sleep(flash_dur)
 
-        # Restore phase color
-        if self._current_phase and self._current_phase in PHASE_COLORS:
-            phase_data = dict(PHASE_COLORS[self._current_phase])
-            if "brightness" in phase_data:
-                phase_data["brightness"] = int(
-                    phase_data["brightness"] * preset["brightness_scale"]
-                )
-            await self._apply(self._entity_ids, phase_data, transition=0.3)
+        # Restore phase color at the intensity-adjusted brightness (#1389) — in
+        # subtle mode this restores the gentle pre-game level, not full brightness.
+        restore_data = self._phase_service_data(self._current_phase or "")
+        if restore_data is not None:
+            await self._apply(self._entity_ids, restore_data, transition=0.3)
 
     async def start_beat_loop(self, bpm: int = 120) -> None:
         """Start a background beat-flash loop during PLAYING phase (#517)."""
@@ -289,10 +297,11 @@ class PartyLightsService:
                 transition=0.05,
             )
             await asyncio.sleep(interval / 2)
-        # Restore phase color
-        if self._current_phase and self._current_phase in PHASE_COLORS:
-            phase_data = dict(PHASE_COLORS[self._current_phase])
-            await self._apply(self._entity_ids, phase_data, transition=0.3)
+        # Restore phase color at the intensity-adjusted brightness (#1389) — in
+        # subtle mode this restores the gentle pre-game level, not full brightness.
+        restore_data = self._phase_service_data(self._current_phase or "")
+        if restore_data is not None:
+            await self._apply(self._entity_ids, restore_data, transition=0.3)
 
     async def celebrate(self) -> None:
         """Rainbow cycle celebration for ~5 seconds."""

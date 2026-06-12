@@ -435,6 +435,99 @@ class TestFlash:
 
 
 # ---------------------------------------------------------------------------
+# subtle-mode restore (flash / strobe) — #1389
+# ---------------------------------------------------------------------------
+
+
+class TestSubtleRestore:
+    """flash() and strobe() must restore the subtle (pre-game) brightness, not full."""
+
+    @staticmethod
+    def _subtle_hass():
+        # Pre-game brightness 100 → base_brightness == 100 in subtle mode.
+        return _make_hass(
+            {
+                "light.living_room": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["rgb"],
+                        "brightness": 100,
+                        "rgb_color": [255, 255, 255],
+                    },
+                },
+            }
+        )
+
+    @pytest.mark.asyncio
+    async def test_flash_restores_subtle_brightness_not_full(self):
+        hass = self._subtle_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"], intensity="subtle")
+        svc._current_phase = "PLAYING"
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.flash("gold")
+
+        # PLAYING raw brightness is 153 (full). Subtle restore must be
+        # base (100) + 20% of 255 (51) = 151, NOT 153 and NOT 255.
+        expected = min(100 + int(0.2 * 255), 255)
+        restore_call = hass.services.async_call.call_args_list[1]
+        assert restore_call[0][2]["brightness"] == expected
+        assert restore_call[0][2]["brightness"] != 153
+        assert restore_call[0][2]["rgb_color"] == [0, 100, 255]
+
+    @pytest.mark.asyncio
+    async def test_strobe_restores_subtle_brightness_not_full(self):
+        hass = self._subtle_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"], intensity="subtle")
+        svc._current_phase = "REVEAL"
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.strobe(count=2, interval=0.1)
+
+        # REVEAL raw brightness is 204 (full). Subtle restore must be
+        # base (100) + 40% of 255 (102) = 202, NOT 204.
+        expected = min(100 + int(0.4 * 255), 255)
+        restore_call = hass.services.async_call.call_args_list[-1]
+        assert restore_call[0][2]["brightness"] == expected
+        assert restore_call[0][2]["brightness"] != 204
+
+    @pytest.mark.asyncio
+    async def test_strobe_restores_phase_color_in_medium_mode(self):
+        # Regression: non-subtle restore still applies the raw phase color.
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"], intensity="medium")
+        svc._current_phase = "PLAYING"
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.strobe(count=2, interval=0.1)
+
+        restore_call = hass.services.async_call.call_args_list[-1]
+        assert restore_call[0][2]["rgb_color"] == [0, 100, 255]
+        assert restore_call[0][2]["brightness"] == 153
+
+    @pytest.mark.asyncio
+    async def test_strobe_without_phase_does_not_restore(self):
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"])
+        svc._current_phase = None
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.strobe(count=1, interval=0.1)
+
+        # Two strobe applies (on + dim), no restore call with rgb_color.
+        for call in hass.services.async_call.call_args_list:
+            assert call[0][2].get("rgb_color") != [0, 100, 255]
+
+
+# ---------------------------------------------------------------------------
 # celebrate
 # ---------------------------------------------------------------------------
 
