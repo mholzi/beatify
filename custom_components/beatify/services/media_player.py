@@ -226,6 +226,13 @@ class MediaPlayerService:
         #                   broken provider auth across the board).
         self.last_failure_reason: str | None = None
 
+        # #1363: set when Beatify itself issues a same-song media_stop after a
+        # stale-title detect (line ~729). The stop forces the speaker to
+        # 'idle'; if the NEXT cascade candidate also fails to resolve, the
+        # idle-failure branch must NOT misread that self-induced idle as a
+        # systemic 'error' (which pauses the game). Reset before each song.
+        self._stopped_for_cascade: bool = False
+
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
         Set analytics storage for error recording (Story 19.1 AC: #2).
@@ -467,6 +474,9 @@ class MediaPlayerService:
         # #808 follow-up: clear stale failure classification before each
         # attempt so start_round reads only the result of THIS song.
         self.last_failure_reason = None
+        # #1363: clear the cascade-stop flag at the start of each song so a
+        # stop from a PRIOR song never leaks into this song's classification.
+        self._stopped_for_cascade = False
 
         candidates = self._get_ma_uri_candidates(song)
         if not candidates:
@@ -657,6 +667,25 @@ class MediaPlayerService:
 
         # Hard failure: speaker is idle/unavailable/off — song won't play
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
+            # #1363: if the speaker is 'idle' only because WE stopped it after a
+            # prior same-song stale-title detect, this is a storefront-gap
+            # cascade (e.g. apple_music's `_resolved_uri` and a differing
+            # `uri_apple_music` both point at an unavailable catalog entry), NOT
+            # a systemic speaker/provider failure. Misclassifying it as 'error'
+            # makes state_lifecycle pause the whole game on a per-track gap —
+            # the exact #805/#808 regression. Keep it 'unavailable' so the game
+            # skips the song silently and tries the next one.
+            if self._stopped_for_cascade and speaker_state == "idle":
+                _LOGGER.warning(
+                    "MA playback failed after %.1fs for %s — speaker idle, but "
+                    "Beatify stopped it after a same-song stale-title detect. "
+                    "Treating as a storefront/catalog gap (unavailable), not a "
+                    "systemic error — game will skip this song silently. (#1363)",
+                    MA_PLAYBACK_TIMEOUT,
+                    uri,
+                )
+                self.last_failure_reason = "unavailable"
+                return False
             _LOGGER.error(
                 "MA playback failed after %.1fs for %s (state: %s). "
                 "Either the speaker is offline, MA's provider is unauthenticated, "
@@ -733,6 +762,10 @@ class MediaPlayerService:
                     {"entity_id": self._entity_id},
                     blocking=False,
                 )
+                # #1363: record that the next cascade candidate will see an
+                # 'idle' speaker WE caused, so its idle-failure isn't
+                # misclassified as a systemic 'error'.
+                self._stopped_for_cascade = True
             except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError):
                 _LOGGER.debug(
                     "media_stop call after stale-title detect failed for %s",
