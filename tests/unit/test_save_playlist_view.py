@@ -19,6 +19,8 @@ from pathlib import Path
 from unittest import mock
 from unittest.mock import AsyncMock, MagicMock
 
+import pytest
+
 from aiohttp import StreamReader
 from aiohttp.test_utils import make_mocked_request
 
@@ -69,6 +71,14 @@ def _request_with_body(body: bytes):
     )
 
 
+def _authorized():
+    """Patch is_authorized_http to allow the POST through (#1368)."""
+    return mock.patch(
+        "custom_components.beatify.server.playlist_views.is_authorized_http",
+        new=AsyncMock(return_value=True),
+    )
+
+
 def _view_with_tmp_config(tmp_path: Path) -> SavePlaylistView:
     hass = MagicMock()
     # get_playlist_directory resolves to <config>/beatify/playlists.
@@ -100,6 +110,13 @@ class TestSlugify:
 
 
 class TestSavePlaylistView:
+    @pytest.fixture(autouse=True)
+    def _allow_auth(self):
+        # #1368: post() now gates on is_authorized_http before any disk work.
+        # These cases exercise the validation/persistence path, so authorize them.
+        with _authorized():
+            yield
+
     async def test_valid_payload_writes_to_user_subdir(self, tmp_path):
         view = _view_with_tmp_config(tmp_path)
         body = json.dumps({"playlist": _valid_playlist("My Mix")}).encode()
@@ -157,6 +174,38 @@ class TestSavePlaylistView:
         second = await view.post(_request_with_body(body))
         assert first.status == 200
         assert second.status == 429
+
+
+class TestSavePlaylistViewAuth:
+    """#1368: POST persists a caller-supplied JSON to disk and creates a new
+    non-clobbering file on every save, so it must require auth.
+
+    Before the fix any unauthenticated client on the LAN (or via the Nabu Casa
+    remote URL) could repeatedly POST distinct playlists to exhaust the HA
+    config volume (disk-exhaustion DoS) and pollute the Community tab — only IP
+    rate limiting stood in the way.
+    """
+
+    async def test_unauthorized_post_is_rejected_401(self, tmp_path):
+        view = _view_with_tmp_config(tmp_path)
+        body = json.dumps({"playlist": _valid_playlist("Blocked")}).encode()
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.is_authorized_http",
+            new=AsyncMock(return_value=False),
+        ):
+            resp = await view.post(_request_with_body(body))
+        assert resp.status == 401
+        assert json.loads(resp.body)["error"] == "UNAUTHORIZED"
+
+    async def test_unauthorized_post_does_not_write_to_disk(self, tmp_path):
+        view = _view_with_tmp_config(tmp_path)
+        body = json.dumps({"playlist": _valid_playlist("Blocked")}).encode()
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.is_authorized_http",
+            new=AsyncMock(return_value=False),
+        ):
+            await view.post(_request_with_body(body))
+        view.hass.async_add_executor_job.assert_not_called()
 
 
 class TestUserSubdirIsCommunityInDiscovery:
