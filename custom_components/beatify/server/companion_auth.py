@@ -132,7 +132,7 @@ def is_companion_trusted_meta(meta: dict | None) -> bool:
     return trusted
 
 
-async def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
+def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
     """Return True if ``request`` may invoke a #998-protected endpoint.
 
     Two paths are accepted:
@@ -144,6 +144,9 @@ async def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
     call this helper at the top of their handler. HA's middleware no longer
     short-circuits the request, so the Bearer check moves into application
     code — equivalent behaviour for the happy path, plus the Companion fallback.
+
+    Synchronous: ``async_validate_access_token`` and ``is_companion_trusted_request``
+    are both sync, so this helper does no awaiting and is a plain function.
     """
     auth = request.headers.get("Authorization", "")
     bearer_present = False

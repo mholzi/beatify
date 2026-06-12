@@ -257,7 +257,6 @@ async def handle_join(
                     handler._admin_disconnect_task.cancel()
                     handler._admin_disconnect_task = None
                     _LOGGER.info("Admin reconnected (own reclaim): %s", name)
-                handler.cancel_pending_removal(name)
                 if game_state.phase == GamePhase.PAUSED:
                     if await game_state.resume_game():
                         _LOGGER.info("Game resumed by admin reclaim during PAUSED")
@@ -269,7 +268,6 @@ async def handle_join(
                         _LOGGER.info(
                             "Admin reconnected, cancelled pause task: %s", name
                         )
-                    handler.cancel_pending_removal(name)
                     if game_state.phase == GamePhase.PAUSED:
                         if await game_state.resume_game():
                             _LOGGER.info("Game resumed by admin reconnection")
@@ -318,8 +316,6 @@ async def handle_join(
                 else:
                     game_state.set_admin(name)
         else:
-            handler.cancel_pending_removal(name)
-
             # Issue #420: If this player matches disconnected admin by name,
             # cancel the admin disconnect task even without is_admin flag
             if game_state.disconnected_admin_name:
@@ -1217,7 +1213,6 @@ async def handle_reconnect(
 
     player.ws = ws
     player.connected = True
-    handler.cancel_pending_removal(player.name)
 
     if player.is_admin:
         if handler._admin_disconnect_task:
