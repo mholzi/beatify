@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -610,3 +611,100 @@ class TestMiscProperties:
         self.service._stats["games"] = [{"id": f"g{i}"} for i in range(15)]
         history = await self.service.get_history()
         assert len(history) == 10
+
+
+# ---------------------------------------------------------------------------
+# StatsService.save — atomic write (#1386)
+# ---------------------------------------------------------------------------
+
+
+def _make_real_fs_service(stats_path) -> StatsService:
+    """Create a StatsService that writes to a real on-disk stats.json path."""
+    mock_hass = MagicMock()
+    mock_hass.config.path.return_value = str(stats_path)
+    # Run executor jobs inline on the calling thread.
+    mock_hass.async_add_executor_job = AsyncMock(
+        side_effect=lambda fn, *args: fn(*args)
+    )
+    return StatsService(mock_hass)
+
+
+class TestAtomicSave:
+    """save() must write stats.json atomically (temp file + os.replace)."""
+
+    @pytest.mark.asyncio
+    async def test_save_uses_temp_then_replace(self, tmp_path):
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+        service._stats["all_time"]["games_played"] = 7
+
+        await service.save()
+
+        # Final file exists with the written content.
+        assert stats_path.exists()
+        data = _json.loads(stats_path.read_text())
+        assert data["all_time"]["games_played"] == 7
+        # No leftover temp file after a successful save.
+        assert not (tmp_path / "beatify" / "stats.json.tmp").exists()
+
+    @pytest.mark.asyncio
+    async def test_crash_mid_write_leaves_old_file_intact(self, tmp_path):
+        """A crash before os.replace must not corrupt the existing stats.json."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        # First, persist a valid file with real game history.
+        service._stats["all_time"]["games_played"] = 42
+        service._stats["games"] = [{"id": "keepme"}]
+        await service.save()
+        good_content = stats_path.read_text()
+        assert _json.loads(good_content)["all_time"]["games_played"] == 42
+
+        # Now simulate a crash mid-write: os.replace raises before the temp
+        # file is promoted over the live stats.json.
+        service._stats["all_time"]["games_played"] = 999
+
+        def _boom(_src, _dst):
+            raise OSError("simulated power loss mid-write")
+
+        with patch("custom_components.beatify.services.stats.os.replace", _boom):
+            # save() swallows OSError and logs it; it must not raise.
+            await service.save()
+
+        # The original file is untouched — history is NOT lost.
+        assert stats_path.exists()
+        assert stats_path.read_text() == good_content
+        reloaded = _json.loads(stats_path.read_text())
+        assert reloaded["all_time"]["games_played"] == 42
+        assert reloaded["games"] == [{"id": "keepme"}]
+
+    @pytest.mark.asyncio
+    async def test_save_is_serialized_by_lock(self, tmp_path):
+        """Concurrent save() calls must not interleave (lock held)."""
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        in_flight = 0
+        max_concurrent = 0
+
+        async def _tracking_executor(fn, *args):
+            nonlocal in_flight, max_concurrent
+            in_flight += 1
+            max_concurrent = max(max_concurrent, in_flight)
+            # Yield control so a second save() could interleave if unlocked.
+            await asyncio.sleep(0)
+            try:
+                return fn(*args)
+            finally:
+                in_flight -= 1
+
+        service._hass.async_add_executor_job = AsyncMock(side_effect=_tracking_executor)
+
+        await asyncio.gather(service.save(), service.save())
+
+        # The lock guarantees the file-I/O sections never overlap.
+        assert max_concurrent == 1
