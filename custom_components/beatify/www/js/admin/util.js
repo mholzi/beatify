@@ -109,3 +109,26 @@ export function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
+// --- wake-lock-first gesture guard (#1396, same defect class as #1122/#1207) -
+/**
+ * Invoke `requestWakeLock` SYNCHRONOUSLY, then run `action`.
+ *
+ * iOS HA Companion WKWebView consumes the user-activation after the first
+ * `await`, so the Layer 2 NoSleep.js silent-video fallback can only call
+ * `video.play()` if the wake lock is requested *before* any await/WS send,
+ * inside the click's gesture window. #1122/#1207 fixed this for the
+ * #home-start-game path (admin.js ~L606); the rematch-confirm and legacy
+ * #start-game paths still acquired the lock only after an await, so this helper
+ * gives both the same gesture-first guarantee. `action`'s later
+ * `_requestWakeLock()` calls remain idempotent re-affirms (guarded by
+ * `_noSleepActive`).
+ *
+ * @param {Function} requestWakeLock - the synchronous-entry wake-lock requester
+ * @param {Function} action - the (possibly async) start/rematch work
+ * @returns {*} whatever `action` returns (e.g. its promise)
+ */
+export function acquireWakeLockFirst(requestWakeLock, action) {
+    if (typeof requestWakeLock === 'function') requestWakeLock();
+    return typeof action === 'function' ? action() : undefined;
+}
