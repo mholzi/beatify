@@ -11,7 +11,6 @@ import asyncio
 import json
 import logging
 import socket
-import time
 from ipaddress import ip_address
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -248,29 +247,23 @@ def _set_session_cookies(
     response: web.Response,
     request: web.Request,
     *,
-    access_token: str,
-    expires_in: int,
     refresh_token: str | None,
 ) -> None:
-    """Write the two-cookie pair onto an outgoing response."""
+    """Set the HttpOnly refresh cookie onto an outgoing response.
+
+    #1369: the HA access token is NEVER written to a cookie. A JS-readable
+    ``beatify_access`` cookie would let any XSS on a /beatify page exfiltrate
+    a token that authorizes the whole HA REST + WebSocket API. The access
+    token is instead returned only in the refresh endpoint's JSON body, where
+    the frontend (ha-auth.js) holds it in a module-scoped variable for the
+    page's lifetime and re-bootstraps it from this HttpOnly refresh cookie on
+    every page load. The callback view sets only the refresh cookie; the
+    frontend's first ``GET /beatify/auth/refresh`` then mints the access token.
+    """
     secure = _is_secure_origin(request)
-    # Render ``expires_at`` as an absolute Unix timestamp (seconds) so the
-    # frontend doesn't have to know when the cookie was actually set.
-    expires_at = int(time.time()) + max(0, int(expires_in) - 30)
-    access_payload = json.dumps(
-        {"access_token": access_token, "expires_at": expires_at}
-    )
-    response.set_cookie(
-        _ACCESS_COOKIE,
-        access_payload,
-        path="/beatify",
-        # Match HA's own token lifetime — when the cookie expires the
-        # frontend re-fetches a fresh access via /beatify/auth/refresh.
-        max_age=max(60, int(expires_in) - 30),
-        samesite="Lax",
-        secure=secure,
-        httponly=False,  # JS reads this to populate Authorization header
-    )
+    # Defensive: wipe any legacy JS-readable access cookie an upgraded client
+    # still carries, so a real HA token can't linger in document.cookie.
+    response.del_cookie(_ACCESS_COOKIE, path="/beatify")
     if refresh_token is not None:
         response.set_cookie(
             _REFRESH_COOKIE,
@@ -388,11 +381,12 @@ class BeatifyAuthCallbackView(HomeAssistantView):
             return self._redirect_to_admin(request, error="exchange_failed")
 
         response = self._redirect_to_admin(request, state=state)
+        # #1369: only the HttpOnly refresh cookie is set here. The frontend
+        # mints its in-memory access token via GET /beatify/auth/refresh on
+        # the post-callback page load.
         _set_session_cookies(
             response,
             request,
-            access_token=parsed["access_token"],
-            expires_in=parsed.get("expires_in", 1800),
             refresh_token=parsed.get("refresh_token"),
         )
         return response
@@ -402,9 +396,10 @@ class BeatifyAuthRefreshView(HomeAssistantView):
     """Silent refresh endpoint — keeps the frontend off ``/auth/token``.
 
     Reads the HttpOnly ``beatify_refresh`` cookie, posts the refresh
-    grant to HA over loopback, updates the access cookie, and returns
-    JSON with the fresh access token so ha-auth.js can populate its
-    in-memory cache. On refresh failure both cookies are wiped — the
+    grant to HA over loopback, and returns JSON with the fresh access
+    token so ha-auth.js can populate its in-memory cache (#1369: the
+    access token is never written to a cookie). On refresh failure both
+    cookies are wiped — the
     frontend then redirects to ``/auth/authorize`` for a full re-login.
     """
 
@@ -441,9 +436,11 @@ class BeatifyAuthRefreshView(HomeAssistantView):
             _clear_session_cookies(response)
             return response
 
-        # HA's refresh-token grant does NOT return a new refresh_token —
-        # it stays the long-lived one already in the HttpOnly cookie.
-        # Reissue ONLY the access cookie.
+        # #1369: the fresh access token is returned ONLY in the JSON body —
+        # the frontend caches it in memory, never in a cookie. HA's
+        # refresh-token grant does NOT return a new refresh_token (the
+        # long-lived one stays in the HttpOnly cookie), so no Set-Cookie is
+        # needed here beyond wiping any legacy JS-readable access cookie.
         response = web.json_response(
             {
                 "access_token": parsed["access_token"],
@@ -454,8 +451,6 @@ class BeatifyAuthRefreshView(HomeAssistantView):
         _set_session_cookies(
             response,
             request,
-            access_token=parsed["access_token"],
-            expires_in=parsed.get("expires_in", 1800),
             # Don't overwrite the long-lived refresh cookie.
             refresh_token=None,
         )

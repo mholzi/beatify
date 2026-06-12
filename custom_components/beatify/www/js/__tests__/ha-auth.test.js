@@ -1,15 +1,21 @@
 /**
- * Unit tests for ha-auth.js — rc15 cookie-based session.
+ * Unit tests for ha-auth.js — in-memory access-token session (#1369).
  *
- * rc15 moves the OAuth code exchange and refresh server-side because
+ * rc15 moved the OAuth code exchange and refresh server-side because
  * Safari 18 silently refuses certain same-origin POSTs from the OAuth-
- * callback page state. ha-auth.js now never POSTs to an auth endpoint:
+ * callback page state. ha-auth.js never POSTs to an auth endpoint.
  *
- *   - The access token lives in a JS-readable `beatify_access` cookie
- *     (JSON {access_token, expires_at}) set by BeatifyAuthCallbackView.
+ * #1369 hardening: the HA access token is NO LONGER persisted in a
+ * JS-readable cookie (it authorizes the whole HA API, so any XSS could
+ * exfiltrate it). Instead:
+ *
+ *   - The access token lives ONLY in a module-scoped variable, populated
+ *     from the JSON body of GET /beatify/auth/refresh.
  *   - The refresh token lives in an HttpOnly `beatify_refresh` cookie
- *     that JS can never read; only BeatifyAuthRefreshView reads it.
- *   - Silent refresh is a fetch GET to /beatify/auth/refresh.
+ *     that JS can never read; only BeatifyAuthRefreshView reads it. It is
+ *     the sole persistent credential and the page-load bootstrap source.
+ *   - Silent refresh is a fetch GET to /beatify/auth/refresh that returns
+ *     {access_token, expires_in} in its body (never via Set-Cookie).
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
@@ -153,33 +159,58 @@ function cookieFor(name, payload) {
     return name + '=' + encodeURIComponent(JSON.stringify(payload));
 }
 
-describe('cookie session', () => {
-    it('isAuthenticated() reads access_token + expires_at from beatify_access cookie', () => {
+describe('in-memory session (#1369)', () => {
+    it('never persists the access token in document.cookie', async () => {
+        // The whole point of #1369: even after a successful refresh, the HA
+        // access token must not appear in the JS-readable cookie jar.
+        const { BeatifyAuth, cookieJar } = loadHaAuth({
+            fetchFn: async () => ({
+                ok: true,
+                status: 200,
+                json: async () => ({ access_token: 'in-mem', expires_in: 1800 }),
+            }),
+        });
+        const token = await BeatifyAuth.getAccessToken();
+        expect(token).toBe('in-mem');
+        expect(cookieJar.value).not.toContain('beatify_access');
+    });
+
+    it('isAuthenticated() is false before any refresh (no cookie carries the token)', () => {
+        // A seeded JS-readable access cookie must NOT authenticate — the token
+        // only ever comes from the HttpOnly-refresh bootstrap now.
         const farFuture = Math.floor(Date.now() / 1000) + 3600;
         const { BeatifyAuth } = loadHaAuth({
             cookie: cookieFor('beatify_access', { access_token: 'abc', expires_at: farFuture }),
         });
-        expect(BeatifyAuth.isAuthenticated()).toBe(true);
-    });
-
-    it('isAuthenticated() returns false when expires_at is in the past', () => {
-        const farPast = Math.floor(Date.now() / 1000) - 60;
-        const { BeatifyAuth } = loadHaAuth({
-            cookie: cookieFor('beatify_access', { access_token: 'abc', expires_at: farPast }),
-        });
         expect(BeatifyAuth.isAuthenticated()).toBe(false);
     });
 
-    it('getAccessToken() returns the cookied token without hitting the network', async () => {
-        const farFuture = Math.floor(Date.now() / 1000) + 3600;
+    it('isAuthenticated() is true once a fresh token is held in memory', async () => {
+        const { BeatifyAuth } = loadHaAuth({
+            fetchFn: async () => ({
+                ok: true,
+                status: 200,
+                json: async () => ({ access_token: 'abc', expires_in: 1800 }),
+            }),
+        });
+        await BeatifyAuth.getAccessToken();
+        expect(BeatifyAuth.isAuthenticated()).toBe(true);
+    });
+
+    it('getAccessToken() reuses the in-memory token without a second fetch', async () => {
         const fetchCalls = [];
         const { BeatifyAuth } = loadHaAuth({
-            cookie: cookieFor('beatify_access', { access_token: 'cached', expires_at: farFuture }),
-            fetchFn: async (...args) => { fetchCalls.push(args); throw new Error('should not fetch'); },
+            fetchFn: async (...args) => {
+                fetchCalls.push(args);
+                return { ok: true, status: 200, json: async () => ({ access_token: 'cached', expires_in: 1800 }) };
+            },
         });
-        const token = await BeatifyAuth.getAccessToken();
-        expect(token).toBe('cached');
-        expect(fetchCalls).toHaveLength(0);
+        const first = await BeatifyAuth.getAccessToken();
+        const second = await BeatifyAuth.getAccessToken();
+        expect(first).toBe('cached');
+        expect(second).toBe('cached');
+        // First call bootstraps via refresh; the second reuses memory.
+        expect(fetchCalls).toHaveLength(1);
     });
 
     it('clears legacy localStorage keys on init (migration from rc11–rc14)', async () => {
@@ -274,10 +305,16 @@ describe('init() auth callback handling', () => {
         expect(cookieJar.value).not.toContain('beatify_access=');
     });
 
-    it('on ?auth_state= matching sessionStorage trusts the freshly-set cookie', async () => {
-        const farFuture = Math.floor(Date.now() / 1000) + 3600;
+    it('on ?auth_state= matching sessionStorage bootstraps the token via refresh (#1369)', async () => {
+        // After the server-side callback, only the HttpOnly refresh cookie is
+        // set — no JS-readable access cookie. init() validates the state echo
+        // then GETs /beatify/auth/refresh to mint the in-memory access token.
+        const fetchCalls = [];
         const { BeatifyAuth, sandboxWindow } = loadHaAuth({
-            cookie: cookieFor('beatify_access', { access_token: 'freshly-set', expires_at: farFuture }),
+            fetchFn: async (url) => {
+                fetchCalls.push(url);
+                return { ok: true, status: 200, json: async () => ({ access_token: 'freshly-set', expires_in: 1800 }) };
+            },
         });
         // Frontend stored this state before redirecting to /auth/authorize.
         sandboxWindow.sessionStorage.setItem('beatify_ha_oauth_state', 'state-abc');
@@ -285,6 +322,7 @@ describe('init() auth callback handling', () => {
 
         const ok = await BeatifyAuth.init({ requireAuth: true });
         expect(ok).toBe(true);
+        expect(fetchCalls[0]).toBe('https://ha.example/beatify/auth/refresh');
         expect(await BeatifyAuth.getAccessToken()).toBe('freshly-set');
     });
 
@@ -368,9 +406,16 @@ describe('bounded login loop on persistent OAuth failure (#1394)', () => {
     });
 
     it('resets the counter after a successful callback so later sessions get a fresh budget', async () => {
-        const farFuture = Math.floor(Date.now() / 1000) + 3600;
+        // #1369: a successful callback no longer carries a JS-readable access
+        // cookie — init() validates the state echo, then GETs
+        // /beatify/auth/refresh to mint the in-memory access token. The
+        // bounded-loop counter (#1394) is cleared on that success path.
         const ctx = loadHaAuth({
-            cookie: cookieFor('beatify_access', { access_token: 'freshly-set', expires_at: farFuture }),
+            fetchFn: async () => ({
+                ok: true,
+                status: 200,
+                json: async () => ({ access_token: 'freshly-set', expires_in: 1800 }),
+            }),
             sessionStorageData: { [K]: '2' }, // two prior failures
             withDomBody: true,
         });
@@ -482,8 +527,9 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
         bridge.window = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();
         expect(token).toBe('v2-token');
-        // The cookie was planted by _setSessionCookieFromCompanion.
-        expect(cookieJar.value).toContain('beatify_access=');
+        // #1369: the Companion token is held in memory, never in a cookie.
+        expect(cookieJar.value).not.toContain('beatify_access');
+        expect(BeatifyAuth.isAuthenticated()).toBe(true);
         // V2 message shape: {id, type: "getExternalAuth", payload: {callback, force}}
         expect(bridge.calls).toHaveLength(1);
         expect(bridge.calls[0].type).toBe('getExternalAuth');
@@ -503,7 +549,9 @@ describe('Android Companion auth bridge (#1114, #1120 — rc5)', () => {
         bridge.window = sandboxWindow;
         const token = await BeatifyAuth.getAccessToken();
         expect(token).toBe('v1-token');
-        expect(cookieJar.value).toContain('beatify_access=');
+        // #1369: in-memory, not cookie-persisted.
+        expect(cookieJar.value).not.toContain('beatify_access');
+        expect(BeatifyAuth.isAuthenticated()).toBe(true);
         // V1 message shape: {callback, force}. The callback MUST be the
         // fixed string "externalAuthSetToken" — Companion ≥ 2026.4.4 silently
         // rejects any other name (security fix GHSA-7jp2-p2fw-mgvf).
