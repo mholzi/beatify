@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import time
 from unittest.mock import AsyncMock, MagicMock, patch
 
@@ -592,3 +593,91 @@ class TestPlaylistStats:
         games = [_make_game_record(playlist_names=[f"playlist-{i}"]) for i in range(10)]
         result = self.storage.compute_playlist_stats(games)
         assert len(result) <= 5
+
+
+# ---------------------------------------------------------------------------
+# TestLoadPrewarm — playlist display names must be pre-warmed via the executor
+# on EVERY load path, so later sync callers never block the event loop (#1387)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadPrewarm:
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.hass.config.path.side_effect = lambda *parts: (
+            "/tmp/test_beatify/" + "/".join(parts)
+        )
+        self.storage = AnalyticsStorage(self.hass)
+
+    @pytest.mark.asyncio
+    async def test_fresh_install_prewarms_via_executor(self):
+        """On a fresh install (no analytics.json) load() must still pre-warm
+        the playlist display names through async_add_executor_job, so the first
+        sync compute_playlist_stats() is a pure cache hit (no event-loop I/O)."""
+        # No analytics file -> else branch.
+        with patch(
+            "custom_components.beatify.analytics.Path.exists", return_value=False
+        ):
+            await self.storage.load()
+
+        # The pre-warm ran through the executor (not directly in the loop) and
+        # populated the cache.
+        assert self.storage._playlist_display_names is not None
+        prewarm_calls = [
+            c
+            for c in self.hass.async_add_executor_job.await_args_list
+            if c.args
+            and getattr(c.args[0], "__name__", "") == "_get_playlist_display_names"
+        ]
+        assert prewarm_calls, "load() must pre-warm playlist names via the executor"
+
+    @pytest.mark.asyncio
+    async def test_corruption_recovery_prewarms_via_executor(self):
+        """After corruption recovery (JSONDecodeError branch) the cache must
+        still be pre-warmed via the executor."""
+
+        def _raise_corrupt(_content):
+            raise json.JSONDecodeError("corrupt", "doc", 0)
+
+        with (
+            patch("custom_components.beatify.analytics.Path.exists", return_value=True),
+            patch(
+                "custom_components.beatify.analytics.Path.read_text",
+                return_value="{ corrupt",
+            ),
+            patch(
+                "custom_components.beatify.analytics.json.loads",
+                side_effect=_raise_corrupt,
+            ),
+            patch.object(self.storage, "_save", new_callable=AsyncMock),
+            # _get_playlist_display_names globs playlist JSON; an empty glob
+            # keeps it from touching json.loads on real files.
+            patch("custom_components.beatify.analytics.Path.glob", return_value=[]),
+        ):
+            await self.storage.load()
+
+        prewarm_calls = [
+            c
+            for c in self.hass.async_add_executor_job.await_args_list
+            if c.args
+            and getattr(c.args[0], "__name__", "") == "_get_playlist_display_names"
+        ]
+        assert prewarm_calls, (
+            "load() must pre-warm playlist names via the executor even after "
+            "corruption recovery"
+        )
+        assert self.storage._playlist_display_names is not None
+
+    def test_missing_playlist_dir_caches_empty_result(self):
+        """When the playlist dir is absent, the empty result must be cached so
+        the blocking exists() stat does not run on every subsequent call."""
+        with patch(
+            "custom_components.beatify.analytics.Path.exists", return_value=False
+        ) as mock_exists:
+            first = self.storage._get_playlist_display_names()
+            assert first == {}
+            calls_after_first = mock_exists.call_count
+            # Second call must be a pure cache hit -> no further exists() stat.
+            second = self.storage._get_playlist_display_names()
+            assert second == {}
+            assert mock_exists.call_count == calls_after_first

@@ -130,11 +130,6 @@ class AnalyticsStorage:
                 )
                 # Prune old records on startup
                 await self._prune_old_records()
-                # Pre-load playlist display names so later sync
-                # callers don't block the event loop with file I/O
-                await self._hass.async_add_executor_job(
-                    self._get_playlist_display_names
-                )
             else:
                 _LOGGER.debug("No analytics file found, starting fresh")
                 self._data = self._empty_data()
@@ -142,6 +137,12 @@ class AnalyticsStorage:
             _LOGGER.warning("Analytics file corrupted, recreating: %s", err)
             self._data = self._empty_data()
             await self._save()
+        # Pre-load playlist display names so later sync callers don't block the
+        # event loop with file I/O. Must run on EVERY load path (fresh install,
+        # corruption recovery, normal load) — otherwise the first sync
+        # compute_playlist_stats() call globs+reads playlist JSON in the event
+        # loop. See #1387.
+        await self._hass.async_add_executor_job(self._get_playlist_display_names)
 
     async def _save(self) -> None:
         """
@@ -466,6 +467,9 @@ class AnalyticsStorage:
 
         if not playlist_dir.exists():
             _LOGGER.debug("Playlist directory not found: %s", playlist_dir)
+            # Cache the empty result so the blocking exists() stat does not run
+            # on every subsequent call. See #1387.
+            self._playlist_display_names = display_names
             return display_names
 
         for json_file in playlist_dir.glob("*.json"):
