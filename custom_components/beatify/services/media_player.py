@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
+import hmac
 import logging
+import secrets
 from asyncio import timeout as async_timeout
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any
@@ -208,6 +211,29 @@ _PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
 }
 
 
+# Process-global key used to sign the absolute URLs that the album-art proxy
+# is allowed to fetch (#1356). It is minted fresh on every HA start: only URLs
+# that *this* integration produced via ``proxy_album_art`` carry a valid
+# signature, which is what stops AlbumArtView from being an open SSRF proxy. A
+# restart simply invalidates previously-signed URLs — clients 403 once and pick
+# up the freshly-signed URL from the next state broadcast.
+_ALBUM_ART_SIGNING_KEY = secrets.token_bytes(32)
+
+
+def _album_art_signature(url: str) -> str:
+    """Return the hex HMAC-SHA256 signature for an album-art proxy URL (#1356)."""
+    return hmac.new(
+        _ALBUM_ART_SIGNING_KEY, url.encode("utf-8"), hashlib.sha256
+    ).hexdigest()
+
+
+def album_art_signature_is_valid(url: str, signature: str) -> bool:
+    """Verify, in constant time, that ``signature`` matches ``url`` (#1356)."""
+    if not signature:
+        return False
+    return hmac.compare_digest(_album_art_signature(url), signature)
+
+
 def proxy_album_art(url: str) -> str:
     """Route an absolute album-art URL through the same-origin proxy (#933).
 
@@ -219,12 +245,21 @@ def proxy_album_art(url: str) -> str:
     the HA server fetch the image (it can reach the LAN) and re-serve it
     same-origin.
 
+    The wrapped URL carries an HMAC signature (#1356) so the proxy only ever
+    fetches URLs the integration itself produced — without it the endpoint
+    would be an unauthenticated server-side request forge.
+
     Relative URLs — HA's own signed media-player proxy path, the
     ``no-artwork.svg`` fallback — are already same-origin and pass through
     unchanged.
     """
     if url and url.startswith(("http://", "https://")):
-        return "/beatify/api/albumart?url=" + quote(url, safe="")
+        return (
+            "/beatify/api/albumart?url="
+            + quote(url, safe="")
+            + "&sig="
+            + _album_art_signature(url)
+        )
     return url
 
 

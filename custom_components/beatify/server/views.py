@@ -10,10 +10,12 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import socket
 import time
+from ipaddress import ip_address
 from pathlib import Path
 from typing import TYPE_CHECKING
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit
 
 from aiohttp import ClientError, ClientTimeout, web
 from homeassistant.components.http import HomeAssistantView
@@ -35,7 +37,10 @@ from custom_components.beatify.server.serializers import (
     build_status_response,
 )
 from custom_components.beatify.services.lights import PartyLightsService
-from custom_components.beatify.services.media_player import async_get_media_players
+from custom_components.beatify.services.media_player import (
+    album_art_signature_is_valid,
+    async_get_media_players,
+)
 
 # Re-export game views
 from custom_components.beatify.server.game_views import (  # noqa: F401
@@ -652,32 +657,96 @@ class AlbumArtView(HomeAssistantView):
     name = "beatify:api:albumart"
     requires_auth = False  # player browsers are unauthenticated
 
+    # Cap the re-served image so a hostile/huge upstream can't exhaust memory.
+    _MAX_BYTES = 5 * 1024 * 1024
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the album-art proxy view."""
         self.hass = hass
 
     async def get(self, request: web.Request) -> web.Response:
-        """Fetch the upstream image and re-serve it same-origin."""
+        """Fetch the upstream image and re-serve it same-origin (#933, hardened #1356).
+
+        The endpoint is unauthenticated (player browsers have no token), so it
+        must not be usable as a server-side request forge. Defences:
+
+        * **HMAC signature** — only URLs the integration itself produced (via
+          ``proxy_album_art``) carry a valid ``sig``; everything else is 403.
+          This is the primary SSRF guard.
+        * **Host allow-list** — loopback, link-local (incl. the
+          ``169.254.169.254`` cloud-metadata endpoint), multicast and reserved
+          ranges are refused. RFC1918 private addresses stay allowed because
+          that is exactly where the Music Assistant LAN server lives (#933).
+        * **No redirects**, a **read-size cap** and an **``image/*``
+          content-type check** so the proxy can only ever return a bounded image.
+        """
         raw_url = request.query.get("url", "")
+        signature = request.query.get("sig", "")
         if not raw_url.startswith(("http://", "https://")):
             return web.Response(status=400, text="invalid url")
+        if not album_art_signature_is_valid(raw_url, signature):
+            _LOGGER.warning("Album-art proxy rejected an unsigned/forged URL")
+            return web.Response(status=403, text="forbidden")
+
+        host = urlsplit(raw_url).hostname
+        if not host or not await self._host_is_allowed(host):
+            _LOGGER.warning("Album-art proxy refused a disallowed host")
+            return web.Response(status=403, text="forbidden")
 
         session = async_get_clientsession(self.hass)
         try:
-            async with session.get(raw_url, timeout=ClientTimeout(total=10)) as resp:
+            async with session.get(
+                raw_url,
+                timeout=ClientTimeout(total=10),
+                allow_redirects=False,
+            ) as resp:
                 if resp.status != 200:
-                    return web.Response(status=resp.status)
-                body = await resp.read()
-                content_type = resp.headers.get("Content-Type", "image/jpeg")
+                    return web.Response(status=502, text="upstream fetch failed")
+                content_type = resp.headers.get("Content-Type", "")
+                if not content_type.startswith("image/"):
+                    return web.Response(status=415, text="not an image")
+                declared = resp.headers.get("Content-Length")
+                if declared is not None and declared.isdigit():
+                    if int(declared) > self._MAX_BYTES:
+                        return web.Response(status=413, text="image too large")
+                body = bytearray()
+                async for chunk in resp.content.iter_chunked(65536):
+                    body += chunk
+                    if len(body) > self._MAX_BYTES:
+                        return web.Response(status=413, text="image too large")
         except (ClientError, asyncio.TimeoutError):
-            _LOGGER.warning("Album-art proxy fetch failed for %s", raw_url)
+            _LOGGER.warning("Album-art proxy fetch failed")
             return web.Response(status=502, text="upstream fetch failed")
 
         return web.Response(
-            body=body,
+            body=bytes(body),
             content_type=content_type,
             headers={"Cache-Control": "public, max-age=86400"},
         )
+
+    async def _host_is_allowed(self, host: str) -> bool:
+        """Reject hosts that resolve to loopback/link-local/reserved ranges (#1356)."""
+        try:
+            infos = await self.hass.async_add_executor_job(
+                socket.getaddrinfo, host, None
+            )
+        except OSError:
+            return False
+        for info in infos:
+            addr = info[4][0]
+            try:
+                ip = ip_address(addr.split("%")[0])
+            except ValueError:
+                return False
+            if (
+                ip.is_loopback
+                or ip.is_link_local
+                or ip.is_multicast
+                or ip.is_unspecified
+                or ip.is_reserved
+            ):
+                return False
+        return True
 
 
 class PreviewLightsView(HomeAssistantView):
