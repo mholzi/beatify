@@ -122,7 +122,7 @@ def start_game_env():
     with (
         patch(
             "custom_components.beatify.server.game_views.is_authorized_http",
-            new=AsyncMock(return_value=True),
+            new=MagicMock(return_value=True),
         ),
         patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
         patch(

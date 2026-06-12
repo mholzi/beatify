@@ -94,23 +94,19 @@ def _make_handler() -> BeatifyWebSocketHandler:
 
 @pytest.mark.asyncio
 async def test_async_close_all_cancels_pending_tasks():
-    """Pending removals, admin-disconnect, and debounce tasks are cancelled."""
+    """Admin-disconnect and debounce tasks are cancelled."""
     handler = _make_handler()
 
-    removal = asyncio.ensure_future(_never())
     admin = asyncio.ensure_future(_never())
     debounce = asyncio.ensure_future(_never())
-    handler._pending_removals["Alice"] = removal
     handler._admin_disconnect_task = admin
     handler._broadcast_debounce_task = debounce
 
     await handler.async_close_all()
     await asyncio.sleep(0)
 
-    assert removal.cancelled() or removal.done()
     assert admin.cancelled() or admin.done()
     assert debounce.cancelled() or debounce.done()
-    assert handler._pending_removals == {}
     assert handler._admin_disconnect_task is None
     assert handler._broadcast_debounce_task is None
 

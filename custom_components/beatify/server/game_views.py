@@ -86,7 +86,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:  # noqa: PLR0911, PLR0912
         """Start a new game."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
@@ -442,7 +442,7 @@ class EndGameView(BeatifyAdminView):
 
     async def post(self, request: web.Request) -> web.Response:
         """End the current game."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
@@ -486,7 +486,7 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Force-end any active game and report what was cleaned up."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
@@ -528,7 +528,7 @@ class RematchGameView(HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Start a rematch with current players."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 
@@ -576,7 +576,7 @@ class StartGameplayView(BeatifyAdminView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Start gameplay from lobby."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         from custom_components.beatify.game.state import GamePhase  # noqa: PLC0415
 

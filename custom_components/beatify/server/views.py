@@ -544,7 +544,7 @@ class CapabilitiesView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:
         """Return flags the wizard's Step 4 uses to gate toggles."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         light_count = len(self.hass.states.async_all("light"))
         tts_services = self.hass.services.async_services().get("tts", {})
@@ -571,7 +571,7 @@ class LightsView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:
         """Return available light entities with capabilities."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         lights = []
         for state in self.hass.states.async_all("light"):
@@ -624,7 +624,7 @@ class TtsEntitiesView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:
         """Return registered TTS entities sorted by friendly name."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         entities = [
             {
@@ -693,7 +693,7 @@ class PreviewLightsView(HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Run a ~5s party lights preview on the given entity_ids."""
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         try:
             body = await request.json()
@@ -748,7 +748,7 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
         media player to route through (#793). Caller passes both:
         ``entity_id`` (the TTS entity) and ``media_player_entity_id``.
         """
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):

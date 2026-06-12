@@ -241,7 +241,7 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
         # {"requests": []} to wipe every household request, or inject arbitrary
         # entries. Mirror the StartGameView pattern: require a valid HA Bearer
         # token (or the Companion trust fallback) before touching disk.
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         # Rate limiting
         client_ip = request.remote or "unknown"
@@ -344,7 +344,7 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
         # Mirror the StartGameView / #1367 PlaylistRequestsView pattern: require
         # a valid HA Bearer token (or the Companion trust fallback) before
         # touching disk.
-        if not await is_authorized_http(request, self.hass):
+        if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):

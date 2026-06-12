@@ -50,7 +50,7 @@ def _authorized():
     """Patch is_authorized_http to allow the POST through (#1367)."""
     return mock.patch(
         "custom_components.beatify.server.playlist_views.is_authorized_http",
-        new=AsyncMock(return_value=True),
+        new=MagicMock(return_value=True),
     )
 
 
@@ -98,7 +98,7 @@ class TestPlaylistRequestsPostAuth:
         view = _view()
         with mock.patch(
             "custom_components.beatify.server.playlist_views.is_authorized_http",
-            new=AsyncMock(return_value=False),
+            new=MagicMock(return_value=False),
         ):
             resp = await view.post(request)
         assert resp.status == 401
@@ -110,7 +110,7 @@ class TestPlaylistRequestsPostAuth:
         view = _view()
         with mock.patch(
             "custom_components.beatify.server.playlist_views.is_authorized_http",
-            new=AsyncMock(return_value=False),
+            new=MagicMock(return_value=False),
         ):
             await view.post(request)
         view.hass.async_add_executor_job.assert_not_called()

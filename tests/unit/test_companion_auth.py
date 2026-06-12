@@ -171,7 +171,7 @@ class TestIsAuthorizedHttp:
             auth="Bearer good-token",
         )
         hass = _hass_with_token("good-token")
-        assert await is_authorized_http(req, hass) is True
+        assert is_authorized_http(req, hass) is True
 
     async def test_invalid_bearer_falls_through_to_companion_path(self):
         # Bearer is well-formed but HA auth manager rejects it. Companion
@@ -182,7 +182,7 @@ class TestIsAuthorizedHttp:
             auth="Bearer not-a-real-token",
         )
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is True
+        assert is_authorized_http(req, hass) is True
 
     async def test_invalid_bearer_and_no_companion_returns_false(self):
         req = _request(
@@ -191,31 +191,31 @@ class TestIsAuthorizedHttp:
             auth="Bearer not-a-real-token",
         )
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is False
+        assert is_authorized_http(req, hass) is False
 
     async def test_no_bearer_companion_local_authorizes(self):
         # The #1131 happy path — Companion fails to attach a token, server
         # picks up the request via UA + RFC1918.
         req = _request("Home Assistant/2026 (Android 14)", "192.168.1.5")
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is True
+        assert is_authorized_http(req, hass) is True
 
     async def test_no_bearer_companion_public_remote_rejects(self):
         # An attacker spoofing UA from the internet must NOT get access.
         req = _request("Home Assistant/2026 (Android 14)", "8.8.8.8")
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is False
+        assert is_authorized_http(req, hass) is False
 
     async def test_no_bearer_desktop_local_rejects(self):
         # Desktop user without a token stays 401 — no Companion-UA, no bypass.
         req = _request("Mozilla/5.0 (Macintosh) Safari/17", "192.168.1.5")
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is False
+        assert is_authorized_http(req, hass) is False
 
     async def test_no_bearer_no_ua_no_remote_rejects(self):
         req = _request(None, None)
         hass = _hass_with_token(None)
-        assert await is_authorized_http(req, hass) is False
+        assert is_authorized_http(req, hass) is False
 
 
 class TestExtractRequestMeta:

@@ -8,7 +8,7 @@ do nothing during the game.
 from __future__ import annotations
 
 import json
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -38,7 +38,7 @@ def _body(response) -> dict:
 
 @pytest.mark.asyncio
 async def test_unavailable_lights_are_hidden(monkeypatch):
-    monkeypatch.setattr(views, "is_authorized_http", AsyncMock(return_value=True))
+    monkeypatch.setattr(views, "is_authorized_http", MagicMock(return_value=True))
     hass = _hass(
         [
             _light("light.regal", "off", ["color_temp", "rgb"]),
@@ -54,7 +54,7 @@ async def test_unavailable_lights_are_hidden(monkeypatch):
 
 @pytest.mark.asyncio
 async def test_capability_mapping_for_listed_lights(monkeypatch):
-    monkeypatch.setattr(views, "is_authorized_http", AsyncMock(return_value=True))
+    monkeypatch.setattr(views, "is_authorized_http", MagicMock(return_value=True))
     hass = _hass(
         [
             _light("light.rgb", "on", ["rgb"]),

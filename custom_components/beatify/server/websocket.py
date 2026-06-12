@@ -68,7 +68,6 @@ class BeatifyWebSocketHandler:
         """
         self.hass = hass
         self.connections: set[web.WebSocketResponse] = set()
-        self._pending_removals: dict[str, asyncio.Task] = {}
         self._admin_disconnect_task: asyncio.Task | None = None
         self._analytics: AnalyticsStorage | None = None
         # Debouncing for concurrent player joins (Issue #41)
@@ -494,12 +493,6 @@ class BeatifyWebSocketHandler:
         Called when game ends to prevent dangling async tasks.
 
         """
-        # Cancel all pending player removals
-        for task in list(self._pending_removals.values()):
-            if not task.done():
-                task.cancel()
-        self._pending_removals.clear()
-
         # Cancel admin disconnect task
         if self._admin_disconnect_task and not self._admin_disconnect_task.done():
             self._admin_disconnect_task.cancel()
@@ -511,15 +504,15 @@ class BeatifyWebSocketHandler:
         """Cancel pending tasks and close every open WebSocket on unload (#1391).
 
         ``async_unload_entry`` previously left this handler's tasks
-        (``_pending_removals``, ``_admin_disconnect_task``,
-        ``_broadcast_debounce_task``) running and every player/admin WebSocket
-        open, pinning the orphaned handler + GameState after the integration was
-        torn down. This cancels all of them and sends each client a going-away
-        close so they reconnect cleanly to a fresh handler after reload.
+        (``_admin_disconnect_task``, ``_broadcast_debounce_task``) running and
+        every player/admin WebSocket open, pinning the orphaned handler +
+        GameState after the integration was torn down. This cancels all of them
+        and sends each client a going-away close so they reconnect cleanly to a
+        fresh handler after reload.
         """
-        # Reuse the existing pending-task cleanup (_pending_removals +
-        # _admin_disconnect_task), then additionally cancel the debounce task
-        # that cleanup_game_tasks does not cover.
+        # Reuse the existing pending-task cleanup (_admin_disconnect_task),
+        # then additionally cancel the debounce task that cleanup_game_tasks
+        # does not cover.
         await self.cleanup_game_tasks()
         if self._broadcast_debounce_task and not self._broadcast_debounce_task.done():
             self._broadcast_debounce_task.cancel()
@@ -541,16 +534,3 @@ class BeatifyWebSocketHandler:
         self.connections.clear()
 
         _LOGGER.debug("Closed all WebSocket connections on unload")
-
-    def cancel_pending_removal(self, player_name: str) -> None:
-        """
-        Cancel a pending player removal (on reconnect).
-
-        Args:
-            player_name: Name of reconnecting player
-
-        """
-        if player_name in self._pending_removals:
-            self._pending_removals[player_name].cancel()
-            del self._pending_removals[player_name]
-            _LOGGER.info("Cancelled removal for reconnecting player: %s", player_name)
