@@ -661,6 +661,8 @@
     "round": "Ronde {current}/{total}",
     "rounds": "rondes",
     "players": "Spelers",
+    "playersJoined": "{n} spelers toegevoegd",
+    "playersJoinedOne": "{n} speler toegevoegd",
     "topGuesses": "Beste gokken deze ronde",
     "submissions": "Inzendingen",
     "timeRemaining": "Tijd",

@@ -183,7 +183,13 @@ window.BeatifyI18n = (function() {
      * @returns {string} - Translated error message
      */
     function getErrorMessage(code) {
-        return t('errors.' + code) || t('errors.UNKNOWN');
+        // #1402-B8: t() returns the key itself when a translation is missing —
+        // it never returns a falsy value — so the old `|| t('errors.UNKNOWN')`
+        // fallback was dead code (an unknown code yielded the raw "errors.FOO"
+        // string instead of the generic message). Compare against the key.
+        var key = 'errors.' + code;
+        var msg = t(key);
+        return msg === key ? t('errors.UNKNOWN') : msg;
     }
 
     /**
@@ -194,7 +200,13 @@ window.BeatifyI18n = (function() {
     /**
      * Set the current language
      * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
-     * @returns {Promise<void>}
+     * @returns {Promise<string>} - The effectively-applied (normalized) code.
+     *   An unsupported code resolves to 'en'; callers that drive a render off
+     *   the requested code (dashboard handleStateUpdate) MUST compare against
+     *   THIS resolved value, not the raw request — otherwise a game state
+     *   carrying an unsupported language (e.g. 'pt') would loop forever:
+     *   getLanguage() can never equal 'pt', so each re-render re-invokes
+     *   setLanguage → resolve → re-render → ... (#1402-B8).
      */
     async function setLanguage(langCode) {
         // Validate language code (Story 16.3 - added Spanish support)
@@ -204,7 +216,7 @@ window.BeatifyI18n = (function() {
         }
 
         if (langCode === currentLanguage && isLoaded) {
-            return;
+            return langCode;
         }
 
         currentLanguage = langCode;
@@ -223,6 +235,7 @@ window.BeatifyI18n = (function() {
         // its wait branch and flash raw keys / the previous locale.
         languageReadyPromise = loadTranslations();
         await languageReadyPromise;
+        return langCode;
     }
 
     /**

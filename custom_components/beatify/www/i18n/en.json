@@ -663,6 +663,8 @@
     "round": "Round {current}/{total}",
     "rounds": "rounds",
     "players": "Players",
+    "playersJoined": "{n} players joined",
+    "playersJoinedOne": "{n} player joined",
     "topGuesses": "Top Guesses This Round",
     "submissions": "Submissions",
     "timeRemaining": "Time",

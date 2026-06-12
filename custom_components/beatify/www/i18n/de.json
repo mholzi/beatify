@@ -663,6 +663,8 @@
     "round": "Runde {current}/{total}",
     "rounds": "Runden",
     "players": "Spieler",
+    "playersJoined": "{n} Spieler beigetreten",
+    "playersJoinedOne": "{n} Spieler beigetreten",
     "topGuesses": "Beste Tipps dieser Runde",
     "submissions": "Abgaben",
     "timeRemaining": "Zeit",
