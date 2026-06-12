@@ -8,7 +8,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from custom_components.beatify.analytics import (
+    ERROR_SAVE_DEBOUNCE_SECONDS,
     MAX_DETAILED_RECORDS,
+    MAX_ERROR_RECORDS,
     PRUNE_INTERVAL,
     RETENTION_DAYS,
     AnalyticsStorage,
@@ -187,10 +189,75 @@ class TestRecordError:
             self.storage.record_error("ERR", long_msg)
         assert len(self.storage._data["errors"][0]["message"]) == 500
 
-    def test_calls_schedule_save(self):
+    def test_debounces_save_instead_of_per_event_rewrite(self):
+        """Each error schedules a debounced save, not an immediate full rewrite (#1388)."""
         with patch.object(self.storage, "schedule_save") as mock_save:
             self.storage.record_error("ERR", "msg")
+        # No immediate per-event save; a debounce timer is armed instead.
+        mock_save.assert_not_called()
+        self.hass.loop.call_later.assert_called_once()
+        # The debounce window is used.
+        assert self.hass.loop.call_later.call_args.args[0] == (
+            ERROR_SAVE_DEBOUNCE_SECONDS
+        )
+
+    def test_debounce_coalesces_burst_into_single_pending_save(self):
+        """A burst of errors cancels the prior timer and arms one new one (#1388)."""
+        handle1 = MagicMock()
+        handle2 = MagicMock()
+        handle3 = MagicMock()
+        self.hass.loop.call_later.side_effect = [handle1, handle2, handle3]
+        self.storage.record_error("ERR", "msg1")
+        self.storage.record_error("ERR", "msg2")
+        self.storage.record_error("ERR", "msg3")
+        # Each new error cancels the previous pending timer (coalescing).
+        handle1.cancel.assert_called_once()
+        handle2.cancel.assert_called_once()
+        handle3.cancel.assert_not_called()
+        # Only one save fires when the surviving timer elapses.
+        with patch.object(self.storage, "schedule_save") as mock_save:
+            fire = self.hass.loop.call_later.call_args.args[1]
+            fire()
         mock_save.assert_called_once()
+
+    def test_caps_errors_list_independently_of_game_prune(self):
+        """errors list is bounded by MAX_ERROR_RECORDS without any game prune (#1388)."""
+        with patch.object(self.storage, "_schedule_error_save"):
+            for i in range(MAX_ERROR_RECORDS + 200):
+                self.storage.record_error("ERR", f"msg{i}")
+        errors = self.storage._data["errors"]
+        assert len(errors) == MAX_ERROR_RECORDS
+        # Oldest entries are trimmed; the most recent are retained.
+        assert errors[0]["message"] == "msg200"
+        assert errors[-1]["message"] == f"msg{MAX_ERROR_RECORDS + 199}"
+
+
+# ---------------------------------------------------------------------------
+# TestErrorSaveShutdown
+# ---------------------------------------------------------------------------
+
+
+class TestErrorSaveShutdown:
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.storage = AnalyticsStorage(self.hass)
+
+    @pytest.mark.asyncio
+    async def test_shutdown_cancels_pending_timer_and_flushes(self):
+        handle = MagicMock()
+        self.hass.loop.call_later.return_value = handle
+        self.storage.record_error("ERR", "msg")
+        with patch.object(self.storage, "_save", AsyncMock()) as mock_save:
+            await self.storage.async_shutdown()
+        handle.cancel.assert_called_once()
+        mock_save.assert_awaited_once()
+        assert self.storage._error_save_handle is None
+
+    @pytest.mark.asyncio
+    async def test_shutdown_noop_when_nothing_pending(self):
+        with patch.object(self.storage, "_save", AsyncMock()) as mock_save:
+            await self.storage.async_shutdown()
+        mock_save.assert_not_awaited()
 
 
 # ---------------------------------------------------------------------------

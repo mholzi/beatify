@@ -133,6 +133,7 @@ def _patch_heavy_helpers(monkeypatch):
 
     analytics = MagicMock()
     analytics.load = AsyncMock()
+    analytics.async_shutdown = AsyncMock()
     analytics.total_games = 0
     monkeypatch.setattr(
         beatify_init, "AnalyticsStorage", MagicMock(return_value=analytics)

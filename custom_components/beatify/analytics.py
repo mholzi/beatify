@@ -26,6 +26,17 @@ MAX_DETAILED_RECORDS = 1000
 RETENTION_DAYS = 90
 PRUNE_INTERVAL = 10  # Prune every N game records
 
+# Hard cap on retained error events. record_error() is invoked once per
+# error event (e.g. websocket reconnect storms, flapping media players), so
+# without an independent cap the errors list grows unbounded between the rare
+# game-driven prune passes. Keep only the most recent events. (#1388)
+MAX_ERROR_RECORDS = 500
+
+# Debounce window (seconds) for coalescing error-driven saves. A burst of
+# errors would otherwise trigger one full-file rewrite per event; instead we
+# delay-coalesce them into a single write. (#1388)
+ERROR_SAVE_DEBOUNCE_SECONDS = 5.0
+
 # Period-to-days mapping used by stats functions
 PERIOD_DAYS_MAP: dict[str, int] = {"7d": 7, "30d": 30, "90d": 90, "all": 365 * 10}
 
@@ -103,6 +114,8 @@ class AnalyticsStorage:
         self._games_since_prune = 0
         self._session_error_count = 0
         self._save_lock = asyncio.Lock()
+        # Pending debounced error-save timer handle (#1388)
+        self._error_save_handle: asyncio.TimerHandle | None = None
         self._playlist_display_names: dict[str, str] | None = None
         self._metrics_cache: dict[
             str, tuple[float, dict]
@@ -185,6 +198,40 @@ class AnalyticsStorage:
         if (exc := task.exception()) is not None:
             _LOGGER.error("Unhandled error in analytics save task: %s", exc)
 
+    def _schedule_error_save(self) -> None:
+        """
+        Schedule a debounced save for error events (#1388).
+
+        Error events can arrive in bursts (reconnect storms, flapping media
+        players). Writing the whole analytics file per event hammers the disk
+        and runs json.dumps of the growing structure in the event loop. Instead
+        we coalesce: a save is scheduled ERROR_SAVE_DEBOUNCE_SECONDS in the
+        future, and any error arriving before it fires resets the timer, so a
+        burst results in a single write.
+        """
+        if self._error_save_handle is not None:
+            self._error_save_handle.cancel()
+
+        def _fire() -> None:
+            self._error_save_handle = None
+            self.schedule_save()
+
+        self._error_save_handle = self._hass.loop.call_later(
+            ERROR_SAVE_DEBOUNCE_SECONDS, _fire
+        )
+
+    async def async_shutdown(self) -> None:
+        """
+        Cancel any pending debounced error save and flush to disk (#1388).
+
+        Called on unload so the last coalesced batch of error events isn't lost
+        when its debounce timer never fires.
+        """
+        if self._error_save_handle is not None:
+            self._error_save_handle.cancel()
+            self._error_save_handle = None
+            await self._save()
+
     async def add_game(self, record: GameRecord) -> None:
         """
         Add game record and schedule save (AC: #1).
@@ -225,9 +272,16 @@ class AnalyticsStorage:
             "type": error_type,
             "message": message[:500],  # Limit message length
         }
-        self._data["errors"].append(event)
+        errors = self._data["errors"]
+        errors.append(event)
+        # Cap independently of the game-driven prune, which most installs never
+        # trigger. Keep only the most recent MAX_ERROR_RECORDS events so a burst
+        # cannot grow the list (and the per-save json.dumps) without bound.
+        if len(errors) > MAX_ERROR_RECORDS:
+            del errors[:-MAX_ERROR_RECORDS]
         self._session_error_count += 1
-        self.schedule_save()
+        # Debounce/coalesce the save instead of a full-file rewrite per event.
+        self._schedule_error_save()
 
         _LOGGER.debug("Recorded error event: %s - %s", error_type, message)
 
