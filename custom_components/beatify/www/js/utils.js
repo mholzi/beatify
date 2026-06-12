@@ -299,6 +299,46 @@ window.BeatifyUtils = (function() {
         };
     }
 
+    /**
+     * Reconnect-timer guard (#1397).
+     *
+     * Wraps a single pending exponential-backoff reconnect timer so an
+     * out-of-band reconnect (e.g. the dashboard's visibilitychange handler)
+     * can cancel it before opening its own socket. Without this the backoff
+     * timer fires later and opens a SECOND parallel WebSocket — double renders
+     * on the TV plus a reconnect storm against the HA server.
+     *
+     * Usage:
+     *   var guard = BeatifyUtils.createReconnectGuard();
+     *   // in ws.onclose: guard.schedule(connect, delay)
+     *   // at the top of connect(): guard.cancel()
+     *
+     * `schedule` always cancels any in-flight timer first, so it is safe to
+     * call repeatedly; only the most recent pending reconnect ever survives.
+     *
+     * @returns {{schedule: Function, cancel: Function, isPending: Function}}
+     */
+    function createReconnectGuard() {
+        var timer = null;
+        function cancel() {
+            if (timer !== null) {
+                clearTimeout(timer);
+                timer = null;
+            }
+        }
+        function schedule(fn, delay) {
+            cancel();
+            timer = setTimeout(function() {
+                timer = null;
+                fn();
+            }, delay);
+        }
+        function isPending() {
+            return timer !== null;
+        }
+        return { schedule: schedule, cancel: cancel, isPending: isPending };
+    }
+
     // ==========================================================================
     // URL Utilities
     // ==========================================================================
@@ -405,6 +445,7 @@ window.BeatifyUtils = (function() {
         createWebSocket: createWebSocket,
         buildWebSocketUrl: buildWebSocketUrl,
         reconnectBackoffDelay: reconnectBackoffDelay,
+        createReconnectGuard: createReconnectGuard,
 
         // URL utilities
         getQueryParam: getQueryParam
