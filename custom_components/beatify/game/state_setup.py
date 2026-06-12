@@ -347,16 +347,28 @@ class GameSetupMixin:
         # REVEAL/PLAYING — then sees the changed epoch and bails instead of
         # stamping PLAYING onto the now-empty game.
         self._game_epoch += 1
-        # Issue #331: Restore lights before resetting
-        await self.disable_party_lights()
-        # Issue #447: Disable TTS
-        await self.disable_tts()
-        self._reset_game_internals()
-        self.game_id = None
-        self._set_phase(GamePhase.LOBBY, notify=False)
-        self.players = {}
-        self.clear_all_sessions()
-        self._notify_state_callbacks()
+        # #1402 B2: serialize the teardown with any in-flight round-end. The
+        # synchronous guards above (cancel_timer / _cancel_auto_advance / the
+        # epoch bump) deliberately run BEFORE this acquire so a start_round
+        # parked in an await sees the new epoch immediately. But _end_round_
+        # unlocked runs its whole body under _score_lock and has no per-await
+        # epoch re-check — without taking the lock here, an end_round() parked
+        # mid-reveal could resume AFTER this teardown and flip the torn-down
+        # game back into REVEAL (an illegal LOBBY->REVEAL edge) while scheduling
+        # stray auto-advance tasks. Holding _score_lock around the teardown
+        # makes end_game and _end_round_unlocked mutually exclusive: either the
+        # round-end fully completes first, or it never starts on the dead game.
+        async with self._score_lock:
+            # Issue #331: Restore lights before resetting
+            await self.disable_party_lights()
+            # Issue #447: Disable TTS
+            await self.disable_tts()
+            self._reset_game_internals()
+            self.game_id = None
+            self._set_phase(GamePhase.LOBBY, notify=False)
+            self.players = {}
+            self.clear_all_sessions()
+            self._notify_state_callbacks()
 
     def rematch_game(self) -> None:
         """Reset game for rematch, preserving connected players (Issue #108)."""

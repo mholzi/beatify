@@ -263,7 +263,7 @@ class RoundManager:
         resolved_uri: str,
         will_defer_for_splash: bool,
         media_player_service: MediaPlayerProtocol | None,
-        metadata_coro: Any,
+        metadata_coro_factory: Callable[[], Any],
     ) -> dict[str, Any]:
         """Build the initial metadata dict used by ``initialize_round``.
 
@@ -272,7 +272,12 @@ class RoundManager:
             resolved_uri: Provider-resolved URI for playback.
             will_defer_for_splash: True if playback is deferred for intro splash.
             media_player_service: Media player service (may be None).
-            metadata_coro: Coroutine for async album-art fetch (may be None).
+            metadata_coro_factory: Zero-arg callable that *creates* the async
+                album-art fetch coroutine. Invoked lazily — and only when the
+                fetch is actually needed (``needs_fetch``). #1402 B2: taking a
+                factory rather than an already-created coroutine avoids leaking
+                an un-awaited coroutine on intro-splash-deferred rounds (or when
+                no media player is configured), where ``metadata_coro`` is None.
 
         Returns:
             Metadata dict consumed by ``initialize_round``.
@@ -283,7 +288,8 @@ class RoundManager:
         return {
             "album_art": album_art,
             "metadata_pending": needs_fetch,
-            "metadata_coro": metadata_coro if needs_fetch else None,
+            # Only create the coroutine when it will be awaited (#1402 B2).
+            "metadata_coro": metadata_coro_factory() if needs_fetch else None,
             "resolved_uri": resolved_uri,
         }
 

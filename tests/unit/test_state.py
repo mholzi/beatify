@@ -1887,3 +1887,319 @@ class TestStartRoundGhostRoundGuard:
         state.set_admin("Admin")
         state.rematch_game()
         assert state._game_epoch > e2
+
+
+# ---------------------------------------------------------------------------
+# #1402 B2 — game-core / concurrency batch
+# ---------------------------------------------------------------------------
+
+
+class TestMetadataCoroNoLeak:
+    """#1402 B2 finding 1: the album-art fetch coroutine must never be created
+    and dropped un-awaited.
+
+    Previously start_round eagerly created _fetch_metadata_async(uri) and
+    handed the live coroutine to build_round_metadata, which dropped it
+    (metadata_coro=None) on intro-splash-deferred rounds or when no media
+    player is configured — leaking it (RuntimeWarning: coroutine never
+    awaited). The fetch is now passed as a factory invoked only when needed.
+    """
+
+    def test_factory_not_invoked_when_deferred(self):
+        state = make_game_state()
+        called = {"n": 0}
+
+        def factory():
+            called["n"] += 1
+            return AsyncMock()()  # a real coroutine, only if invoked
+
+        # Defer for splash -> needs_fetch False -> factory must NOT run.
+        meta = state._round_manager.build_round_metadata(
+            {"title": "x"},
+            "spotify:track:x",
+            True,  # will_defer_for_splash
+            MagicMock(),  # media player present
+            factory,
+        )
+        assert called["n"] == 0
+        assert meta["metadata_coro"] is None
+        assert meta["metadata_pending"] is False
+
+    def test_factory_not_invoked_without_media_player(self):
+        state = make_game_state()
+        called = {"n": 0}
+
+        def factory():
+            called["n"] += 1
+            return AsyncMock()()
+
+        meta = state._round_manager.build_round_metadata(
+            {"title": "x"},
+            "spotify:track:x",
+            False,
+            None,  # no media player
+            factory,
+        )
+        assert called["n"] == 0
+        assert meta["metadata_coro"] is None
+
+    def test_factory_invoked_once_when_needed(self):
+        state = make_game_state()
+        sentinel = AsyncMock()
+        coro = sentinel()
+        called = {"n": 0}
+
+        def factory():
+            called["n"] += 1
+            return coro
+
+        meta = state._round_manager.build_round_metadata(
+            {"title": "x"},
+            "spotify:track:x",
+            False,  # not deferred
+            MagicMock(),  # media player present
+            factory,
+        )
+        assert called["n"] == 1
+        assert meta["metadata_coro"] is coro
+        assert meta["metadata_pending"] is True
+        # Close the coroutine we deliberately created so the test itself
+        # doesn't trigger the very warning it guards against.
+        coro.close()
+
+    @pytest.mark.asyncio
+    async def test_start_round_deferred_does_not_warn(self, recwarn):
+        """End-to-end: a deferred (intro-splash) round leaves no un-awaited
+        coroutine behind."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.add_player("Admin", MagicMock())
+        state.set_admin("Admin")
+        state.start_game()
+
+        # Force the intro-splash deferral path and a present media player.
+        state._media_player_service = AsyncMock()
+        state._round_manager.prepare_intro_round = MagicMock(return_value=True)
+
+        await state.start_round()
+
+        leaked = [
+            w
+            for w in recwarn.list
+            if issubclass(w.category, RuntimeWarning)
+            and "never awaited" in str(w.message)
+        ]
+        assert not leaked, f"un-awaited coroutine leaked: {leaked}"
+
+
+class TestEndGameSerializesWithRoundEnd:
+    """#1402 B2 finding 2: end_game must serialize with an in-flight
+    _end_round_unlocked so a torn-down game can't be flipped into REVEAL with
+    stray tasks."""
+
+    @pytest.mark.asyncio
+    async def test_end_game_waits_for_in_flight_round_end(self):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.add_player("Admin", MagicMock())
+        state.set_admin("Admin")
+        state.start_game()
+        state.phase = GamePhase.PLAYING
+
+        order = []
+
+        # Hold _score_lock as if a round-end were mid-flight.
+        async def fake_round_end():
+            async with state._score_lock:
+                order.append("round_end_start")
+                await asyncio.sleep(0.05)
+                order.append("round_end_finish")
+
+        task = asyncio.create_task(fake_round_end())
+        await asyncio.sleep(0)  # let it acquire the lock
+
+        await state.end_game()
+        order.append("end_game_done")
+        await task
+
+        # end_game's teardown (LOBBY) must land AFTER the round-end released
+        # the lock — never interleaved.
+        assert order == ["round_end_start", "round_end_finish", "end_game_done"]
+        assert state.phase == GamePhase.LOBBY
+
+    @pytest.mark.asyncio
+    async def test_end_game_still_reaches_lobby(self):
+        """Sanity: with no contention, end_game still tears down to LOBBY."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.add_player("Admin", MagicMock())
+        state.set_admin("Admin")
+        await state.end_game()
+        assert state.phase == GamePhase.LOBBY
+        assert state.game_id is None
+
+
+class TestComputeWinners:
+    """#1402 B2 finding 3: single winner/tie helper consumed by finalize_game
+    and the END-state serializer."""
+
+    def test_single_winner(self):
+        state = make_game_state()
+        state.add_player("Alice", MagicMock())
+        state.add_player("Bob", MagicMock())
+        state.players["Alice"].score = 120
+        state.players["Bob"].score = 80
+        winners, top = state.compute_winners()
+        assert [w.name for w in winners] == ["Alice"]
+        assert top == 120
+
+    def test_tie(self):
+        state = make_game_state()
+        state.add_player("Alice", MagicMock())
+        state.add_player("Bob", MagicMock())
+        state.players["Alice"].score = 100
+        state.players["Bob"].score = 100
+        winners, top = state.compute_winners()
+        assert {w.name for w in winners} == {"Alice", "Bob"}
+        assert top == 100
+
+    def test_no_players(self):
+        state = make_game_state()
+        assert state.compute_winners() == ([], 0)
+
+    def test_finalize_and_serializer_agree(self):
+        """The two consumers must report the same winner set (no drift)."""
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        state = make_game_state()
+        state.add_player("Alice", MagicMock())
+        state.add_player("Bob", MagicMock())
+        state.players["Alice"].score = 100
+        state.players["Bob"].score = 100
+        state.round = 3
+
+        summary = state.finalize_game()
+        end_state: dict = {}
+        GameStateSerializer._add_end_state(state, end_state)
+
+        assert summary["winner"] == "Alice, Bob"
+        assert end_state["winner"]["name"] == "Alice, Bob"
+        assert end_state["winner"]["is_tie"] is True
+        assert summary["winner_score"] == end_state["winner"]["score"] == 100
+
+
+class TestPauseSnapshotRace:
+    """#1402 B2 finding 4: pause_game must flip to PAUSED before the media
+    stop() await so an early-reveal interleaving during stop() cannot corrupt
+    the pause snapshot."""
+
+    @pytest.mark.asyncio
+    async def test_phase_paused_before_media_stop(self):
+        state = make_game_state()
+        _setup_playing_game(state)
+
+        observed = {}
+
+        class Media:
+            def __init__(self):
+                self.stops = 0
+
+            async def stop(self):
+                # By the time we await stop(), the phase must already be PAUSED
+                # so a concurrent early-reveal's `phase != PLAYING` guard bails.
+                self.stops += 1
+                observed["phase_during_stop"] = state.phase
+                return True
+
+        media = Media()
+        state._media_player_service = media
+
+        result = await state.pause_game("admin_disconnected")
+        assert result is True
+        assert observed["phase_during_stop"] == GamePhase.PAUSED
+        # Snapshot still records PLAYING as the resume target.
+        assert state._previous_phase == GamePhase.PLAYING
+        assert state.phase == GamePhase.PAUSED
+        assert media.stops == 1
+
+    @pytest.mark.asyncio
+    async def test_early_reveal_during_stop_is_noop(self):
+        """An early-reveal racing the pause's stop() await sees PAUSED and bails,
+        so the pause snapshot (_previous_phase=PLAYING) stays intact."""
+        state = make_game_state()
+        _setup_playing_game(state)
+
+        class Media:
+            async def stop(self):
+                # Simulate an early-reveal attempt landing mid-stop.
+                await state._end_round_unlocked()
+                return True
+
+        state._media_player_service = Media()
+
+        await state.pause_game("admin_disconnected")
+
+        # _end_round_unlocked must have no-op'd (guard: phase != PLAYING),
+        # leaving the game cleanly PAUSED with a PLAYING resume target.
+        assert state.phase == GamePhase.PAUSED
+        assert state._previous_phase == GamePhase.PLAYING
+
+
+class TestConfigurePartyLightsPreservesStates:
+    """#1402 B2 finding 5: a reconfigure must carry the genuine pre-party light
+    states forward, not lose them by replacing the service outright."""
+
+    @pytest.mark.asyncio
+    async def test_reconfigure_inherits_prior_saved_states(self):
+        state = make_game_state()
+        state._hass = MagicMock()
+
+        snap_calls = {"n": 0}
+
+        class PriorService:
+            def snapshot_saved_states(self):
+                snap_calls["n"] += 1
+                return {"light.a": {"state": "on", "brightness": 42}}
+
+        state._party_lights = PriorService()
+
+        captured = {}
+
+        class FakeService:
+            def __init__(self, hass):
+                self.hass = hass
+
+            async def start(self, *args, **kwargs):
+                captured["inherited"] = kwargs.get("inherited_states")
+
+        with patch(
+            "custom_components.beatify.services.lights.PartyLightsService",
+            FakeService,
+        ):
+            await state.configure_party_lights(["light.a"], "medium")
+
+        assert snap_calls["n"] == 1
+        assert captured["inherited"] == {"light.a": {"state": "on", "brightness": 42}}
+
+    @pytest.mark.asyncio
+    async def test_first_configure_passes_no_inherited_states(self):
+        state = make_game_state()
+        state._hass = MagicMock()
+        state._party_lights = None
+
+        captured = {}
+
+        class FakeService:
+            def __init__(self, hass):
+                pass
+
+            async def start(self, *args, **kwargs):
+                captured["inherited"] = kwargs.get("inherited_states")
+
+        with patch(
+            "custom_components.beatify.services.lights.PartyLightsService",
+            FakeService,
+        ):
+            await state.configure_party_lights(["light.a"], "medium")
+
+        assert captured["inherited"] is None

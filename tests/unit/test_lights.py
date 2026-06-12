@@ -102,6 +102,102 @@ class TestStartStop:
         assert svc._intensity == "medium"
 
     @pytest.mark.asyncio
+    async def test_snapshot_saved_states_returns_copy(self):
+        """#1402 B2: snapshot returns an independent deep-ish copy."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"])
+
+        snap = svc.snapshot_saved_states()
+        assert snap["light.living_room"]["brightness"] == 200
+        # Mutating the snapshot must not affect the live state.
+        snap["light.living_room"]["brightness"] = 1
+        assert svc._saved_states["light.living_room"]["brightness"] == 200
+
+    @pytest.mark.asyncio
+    async def test_start_inherited_states_override_fresh_capture(self):
+        """#1402 B2: a reconfigure must preserve the GENUINE pre-party states.
+
+        Without the inherited_states hand-off, the second service's start()
+        re-captures whatever the lights currently show — which is the party
+        color the first service applied — so its eventual stop() would "restore"
+        lights to the party color, permanently losing the user's real original
+        look. Passing the prior snapshot makes the new service restore to truth.
+        """
+        # Live HA state now reports the PARTY color (brightness 255, red) —
+        # this is what a fresh capture would wrongly snapshot.
+        hass = _make_hass(
+            {
+                "light.living_room": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["rgb"],
+                        "brightness": 255,
+                        "rgb_color": [255, 0, 0],
+                    },
+                },
+            }
+        )
+        # The genuine pre-party state the first service had captured.
+        original = {
+            "light.living_room": {
+                "state": "on",
+                "brightness": 80,
+                "rgb_color": [255, 255, 255],
+                "color_temp_kelvin": None,
+            }
+        }
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"], inherited_states=original)
+
+        # The inherited (real) state wins over the fresh party-color capture.
+        assert svc._saved_states["light.living_room"]["brightness"] == 80
+        assert svc._saved_states["light.living_room"]["rgb_color"] == [255, 255, 255]
+
+        # And stop() restores to the genuine original, not the party color.
+        await svc.stop()
+        hass.services.async_call.assert_any_call(
+            "light",
+            "turn_on",
+            {
+                "entity_id": "light.living_room",
+                "brightness": 80,
+                "rgb_color": [255, 255, 255],
+            },
+            blocking=False,
+        )
+
+    @pytest.mark.asyncio
+    async def test_start_inherited_states_only_overlap(self):
+        """#1402 B2: entities not in inherited_states are captured fresh."""
+        hass = _make_hass(
+            {
+                "light.a": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["rgb"], "brightness": 200},
+                },
+                "light.b": {
+                    "state": "on",
+                    "attributes": {"supported_color_modes": ["rgb"], "brightness": 90},
+                },
+            }
+        )
+        inherited = {
+            "light.a": {
+                "state": "on",
+                "brightness": 30,
+                "rgb_color": None,
+                "color_temp_kelvin": None,
+            }
+        }
+        svc = PartyLightsService(hass)
+        await svc.start(["light.a", "light.b"], inherited_states=inherited)
+
+        # a inherits the real pre-party brightness; b is captured fresh.
+        assert svc._saved_states["light.a"]["brightness"] == 30
+        assert svc._saved_states["light.b"]["brightness"] == 90
+
+    @pytest.mark.asyncio
     async def test_double_start_overwrites_saved_states(self):
         """Calling start() twice should save fresh states, not accumulate."""
         hass = _make_hass(
