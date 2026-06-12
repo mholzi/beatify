@@ -113,6 +113,65 @@ class TestCreateGame:
         assert state.total_rounds == 10
 
 
+class TestCreateGameNoPlayableSongsAtomicity:
+    """#1378: the #709 no-playable-songs check must run BEFORE any mutation.
+
+    make_songs() yields Spotify-only URIs, so requesting provider
+    "apple_music" leaves zero playable songs and create_game must raise
+    ValueError without leaving GameState half-built (game_id minted, phase
+    flipped to LOBBY, players wiped) — otherwise the host is dead-ended by
+    the create-handler's existing-game guard (#935) on every retry.
+    """
+
+    def test_raises_for_no_playable_songs(self):
+        state = make_game_state()
+        with pytest.raises(ValueError, match="No playable songs"):
+            _create_fresh_game(state, provider="apple_music")
+
+    def test_game_id_not_minted_on_validation_failure(self):
+        state = make_game_state()
+        assert state.game_id is None
+        with pytest.raises(ValueError, match="No playable songs"):
+            _create_fresh_game(state, provider="apple_music")
+        assert state.game_id is None
+
+    def test_set_phase_not_invoked_on_validation_failure(self):
+        # A fresh GameState already defaults to LOBBY, so asserting on the
+        # final phase value can't distinguish "never touched" from "flipped".
+        # Assert the _set_phase chokepoint is never called instead.
+        state = make_game_state()
+        with patch.object(state, "_set_phase", wraps=state._set_phase) as set_phase:
+            with pytest.raises(ValueError, match="No playable songs"):
+                _create_fresh_game(state, provider="apple_music")
+        set_phase.assert_not_called()
+
+    def test_players_not_wiped_on_validation_failure(self):
+        state = make_game_state()
+        # Seed a real lobby with a player (the "existing game" scenario).
+        _create_fresh_game(state)
+        state.add_player("Alice", MagicMock())
+        good_game_id = state.game_id
+        assert len(state.players) == 1
+
+        # A failed create attempt (bad provider) must NOT wipe the existing
+        # game's players, game_id, or phase.
+        with pytest.raises(ValueError, match="No playable songs"):
+            _create_fresh_game(state, provider="apple_music")
+        assert len(state.players) == 1
+        assert state.game_id == good_game_id
+        assert state.phase == GamePhase.LOBBY
+
+    def test_retry_with_valid_provider_succeeds_after_failure(self):
+        state = make_game_state()
+        with pytest.raises(ValueError, match="No playable songs"):
+            _create_fresh_game(state, provider="apple_music")
+        # Pre-mutation validation means retrying with a working provider just
+        # works — no zombie lobby blocking it.
+        result = _create_fresh_game(state, provider="spotify")
+        assert result["game_id"] is not None
+        assert state.phase == GamePhase.LOBBY
+
+
 # ---------------------------------------------------------------------------
 # REVEAL auto-advance (#1012)
 # ---------------------------------------------------------------------------
