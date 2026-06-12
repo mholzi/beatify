@@ -488,6 +488,17 @@
                     <div id="ta-input-ack" class="ta-input-ack hidden" aria-live="polite"></div>
                 </section>
 
+                <!-- Actions: bet (compact) + submit (primary) — moved above the challenge cards (#1458) -->
+                <div class="arc-actions">
+                    <button id="bet-toggle" class="bet-arc" type="button">
+                        <span class="bet-icon" aria-hidden="true">🎲</span>
+                        <span class="bet-label" data-i18n="game.betShort">×2</span>
+                    </button>
+                    <button id="submit-btn" class="submit-arc" data-i18n="game.submitGuess">
+                        Submit Guess
+                    </button>
+                </div>
+
                 <!-- Artist Challenge — arcade tiles (Story 20.5) -->
                 <section id="artist-challenge-container" class="arc-tiles artist-challenge hidden">
                     <div class="arc-tiles-header">
@@ -522,17 +533,6 @@
                 <div id="no-bonus-filler" class="bonus-filler hidden">
                     <span aria-hidden="true">🎵</span>
                     <span data-i18n="game.noBonusThisRound">No bonus this round — nail the year</span>
-                </div>
-
-                <!-- Actions: bet (compact) + submit (primary) -->
-                <div class="arc-actions">
-                    <button id="bet-toggle" class="bet-arc" type="button">
-                        <span class="bet-icon" aria-hidden="true">🎲</span>
-                        <span class="bet-label" data-i18n="game.betShort">×2</span>
-                    </button>
-                    <button id="submit-btn" class="submit-arc" data-i18n="game.submitGuess">
-                        Submit Guess
-                    </button>
                 </div>
 
                 <!-- Steal power-up button (full width, only when steal available) -->
