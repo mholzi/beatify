@@ -726,7 +726,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     //   which invokes BeatifyHome.renderSession() — no extra enter() needed.
     // - If there is no active game, adminState.currentGame stays null → enter() runs and
     //   (for a configured user) creates a fresh LOBBY, as before.
-    if (!adminState.currentGame) {
+    // #1365: loadStatus() may already have entered home-mode via showSetupView()
+    // (its else-branch) — that path itself calls BeatifyHome.enter(). Re-running
+    // enter() here fires a SECOND startSession() → duplicate POST /start-game
+    // (the first is still in-flight, so currentGame is null), which 409s and the
+    // recovery auto-starts an empty lobby. Only enter() if home-mode isn't on yet.
+    if (!adminState.currentGame && !document.body.classList.contains('home-mode')) {
         window.BeatifyHome.enter();
     }
 
@@ -993,6 +998,15 @@ async function startGame() {
     // module globals (adminState.selectedMediaPlayer / adminState.selectedPlaylists) instead.
     if (btn && btn.disabled && !inHomeMode) return;
 
+    // #1365: in-flight guard. In home-mode the legacy button's disabled state is
+    // bypassed above, so it cannot prevent a re-entrant create call. A second
+    // startGame() (e.g. duplicate BeatifyHome.enter() on fresh load, or a rapid
+    // double-tap of the home Start button while the first POST is pending) would
+    // fire a duplicate POST /start-game, 409 with GAME_IN_LOBBY, and the recovery
+    // below would race. Reject re-entry until the first call settles.
+    if (adminState._startInFlight) return;
+    adminState._startInFlight = true;
+
     let originalText;
     if (btn) {
         btn.disabled = true;
@@ -1039,12 +1053,17 @@ async function startGame() {
         const data = await response.json();
 
         if (!response.ok) {
-            // #935: a LOBBY game already exists — this create call raced ahead
-            // of state hydration. Recover transparently by beginning gameplay
-            // instead of dead-ending the host on "End current game first".
+            // #935 / #1365: a LOBBY game already exists — this create call raced
+            // ahead of state hydration. Recover by reconciling with the server
+            // and re-rendering the existing LOBBY (loadStatus → showLobbyView),
+            // NOT by auto-starting gameplay. The old unconditional startGameplay()
+            // transitioned a brand-new, zero-player LOBBY straight to PLAYING,
+            // bypassing the zero-player guard that only lived in the home Start
+            // click handler — and fired on any user-driven 409 (rapid double-tap)
+            // too. The host stays in the lobby and starts gameplay deliberately
+            // via the home Start button (which enforces players.length > 0).
             if (data.code === 'GAME_IN_LOBBY') {
                 await loadStatus();
-                startGameplay();
                 return;
             }
             // #864: prefer i18n-by-code over the backend's English message.
@@ -1078,6 +1097,7 @@ async function startGame() {
         showError('Network error. Please try again.');
         console.error('Start game error:', err);
     } finally {
+        adminState._startInFlight = false;  // #1365: release the in-flight guard
         if (btn) {
             btn.disabled = false;
             btn.textContent = originalText;
