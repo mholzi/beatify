@@ -352,6 +352,8 @@
     "stop": "Stop",
     "stopSong": "Stop Song",
     "connectionLost": "Connection lost — reconnecting...",
+    "wsAuthFailed": "Home Assistant rejected the access token. Re-authenticating…",
+    "companionLocalNetworkRequired": "Beatify admin requires local network access from the Companion app — open Beatify in an external browser, or connect to your home Wi-Fi.",
     "confirmIntro": "Start Round",
     "next": "Next",
     "nextRound": "Next Round",

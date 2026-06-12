@@ -518,6 +518,21 @@
   }
 
   function login() {
+    // #1393: defensive guard. Every getAccessToken()/ensureAuthenticated()/
+    // handleServerRejection() caller now short-circuits in bypass mode before
+    // reaching login(), but if any future path calls login() directly while in
+    // Companion bypass mode, _legacyOAuthLogin()'s window.location.replace to
+    // /auth/authorize would land the user on the Invalid-redirect-URI screen
+    // (#1153). Refuse the OAuth redirect and log an actionable hint instead.
+    if (isCompanionBypassMode()) {
+      console.warn(
+        '[BeatifyAuth] login() suppressed in Companion bypass mode — an ' +
+          '/auth/authorize redirect would hit the Invalid-redirect-URI ' +
+          'screen. Beatify admin requires local network access from the ' +
+          'Companion app: open in an external browser or connect to home Wi-Fi.'
+      );
+      return;
+    }
     if (isAndroidCompanion() && _hasCompanionAuthBridge()) {
       // Companion path: pull a fresh token from the in-app bridge, plant
       // it in the cookie, and reload so init() re-enters with cookies
@@ -659,6 +674,23 @@
    * elsewhere).
    */
   function handleServerRejection() {
+    // #1393: in Companion bypass mode the server authenticates via UA+RFC1918,
+    // not a Bearer token, so a server rejection here is NOT a stale-token
+    // problem — it means the request reached Beatify over a non-RFC1918 address
+    // where the server-side companion trust does not apply. refreshAccess()
+    // would hit the unreliable bridge and login() would window.location.replace
+    // to /auth/authorize inside the Companion WebView → the historically-buggy
+    // "Invalid redirect URI" / #1153 unauthorized screen with no recovery.
+    // Resolve null and let the caller surface an actionable local-network hint.
+    if (isCompanionBypassMode()) {
+      console.warn(
+        '[BeatifyAuth] server rejected a Companion bypass-mode connection — ' +
+          'likely reached Beatify over a non-local address; skipping OAuth ' +
+          'redirect (would land on the Invalid-redirect-URI screen). ' +
+          'Resolving null so the caller can surface a local-network hint.'
+      );
+      return Promise.resolve(null);
+    }
     _clearAccessCookie();
     return refreshAccess().then(function (token) {
       if (token) return token;
