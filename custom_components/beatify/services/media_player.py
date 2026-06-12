@@ -4,15 +4,10 @@ from __future__ import annotations
 
 import asyncio
 import logging
-import sys
+from asyncio import timeout as async_timeout
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any
 from urllib.parse import quote
-
-if sys.version_info >= (3, 11):
-    from asyncio import timeout as async_timeout
-else:
-    from async_timeout import timeout as async_timeout
 
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
@@ -388,7 +383,7 @@ class MediaPlayerService:
                 return await self._play_via_alexa(song)
             _LOGGER.error("Unsupported platform: %s", self._platform)
             return False
-        except TimeoutError:
+        except (TimeoutError, asyncio.TimeoutError):
             _LOGGER.error(
                 "Playback timed out after %ss for %s: %s",
                 PLAYBACK_TIMEOUT,
@@ -1004,7 +999,22 @@ class MediaPlayerService:
             content_type = "SPOTIFY"
         elif self._provider == "amazon_music":
             content_type = "AMAZON_MUSIC"
+        elif self._provider == "apple_music":
+            content_type = "APPLE_MUSIC"
         else:
+            # Unknown provider slipped past the wizard gate. Previously every
+            # non-spotify/non-amazon provider was silently mapped to
+            # APPLE_MUSIC, so a deezer/tidal/ytmusic mismatch played the wrong
+            # catalog with no diagnostic — the same silent-fail class as
+            # #768/#808. Surface it (mirrors the #1276 dispatch warning) before
+            # falling back to APPLE_MUSIC. (#1402)
+            _LOGGER.warning(
+                "Alexa dispatch: unexpected provider %r — no Alexa content-type "
+                "mapping; falling back to APPLE_MUSIC for %s - %s (#1402)",
+                self._provider,
+                song.get("artist"),
+                song.get("title"),
+            )
             content_type = "APPLE_MUSIC"
 
         _LOGGER.debug(
@@ -1445,7 +1455,7 @@ class MediaPlayerService:
             _LOGGER.debug("Media player %s is responsive", self._entity_id)
             self._preflight_verified = True
             return True, ""
-        except TimeoutError:
+        except (TimeoutError, asyncio.TimeoutError):
             msg = f"Timeout after {PREFLIGHT_TIMEOUT}s - speaker may be sleeping or offline"
             _LOGGER.warning(
                 "Media player %s not responsive: %s",

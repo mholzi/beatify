@@ -231,6 +231,125 @@ class TestStartStop:
         await svc.stop()
         assert svc._active is False
 
+    @pytest.mark.asyncio
+    async def test_start_saves_color_mode(self):
+        """#1402: start() must remember the active color_mode for restore."""
+        hass = _make_hass(
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["color_temp", "rgb"],
+                        "color_mode": "color_temp",
+                        "brightness": 180,
+                        "rgb_color": [255, 255, 255],
+                        "color_temp_kelvin": 2700,
+                    },
+                }
+            }
+        )
+        svc = PartyLightsService(hass)
+        await svc.start(["light.ct"])
+        assert svc._saved_states["light.ct"]["color_mode"] == "color_temp"
+
+    @pytest.mark.asyncio
+    async def test_stop_color_temp_mode_restores_only_kelvin(self):
+        """#1402: a color_temp light reports BOTH rgb_color and color_temp_kelvin;
+        restore must replay color_temp_kelvin only, never both in one turn_on."""
+        hass = _make_hass(
+            {
+                "light.ct": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["color_temp", "rgb"],
+                        "color_mode": "color_temp",
+                        "brightness": 180,
+                        "rgb_color": [255, 255, 255],
+                        "color_temp_kelvin": 2700,
+                    },
+                }
+            }
+        )
+        svc = PartyLightsService(hass)
+        await svc.start(["light.ct"])
+        await svc.stop()
+
+        hass.services.async_call.assert_any_call(
+            "light",
+            "turn_on",
+            {
+                "entity_id": "light.ct",
+                "brightness": 180,
+                "color_temp_kelvin": 2700,
+            },
+            blocking=False,
+        )
+
+    @pytest.mark.asyncio
+    async def test_stop_rgb_mode_restores_only_rgb(self):
+        """#1402: an rgb-mode light with a lingering color_temp_kelvin attribute
+        must restore rgb_color only, never both."""
+        hass = _make_hass(
+            {
+                "light.rgb": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["color_temp", "rgb"],
+                        "color_mode": "rgb",
+                        "brightness": 120,
+                        "rgb_color": [10, 20, 30],
+                        "color_temp_kelvin": 4000,
+                    },
+                }
+            }
+        )
+        svc = PartyLightsService(hass)
+        await svc.start(["light.rgb"])
+        await svc.stop()
+
+        hass.services.async_call.assert_any_call(
+            "light",
+            "turn_on",
+            {
+                "entity_id": "light.rgb",
+                "brightness": 120,
+                "rgb_color": [10, 20, 30],
+            },
+            blocking=False,
+        )
+
+    @pytest.mark.asyncio
+    async def test_stop_unknown_color_mode_prefers_rgb_not_both(self):
+        """#1402: when color_mode is absent (older/partial state) but both color
+        attributes were saved, restore picks rgb_color and never sends both."""
+        hass = _make_hass(
+            {
+                "light.legacy": {
+                    "state": "on",
+                    "attributes": {
+                        "supported_color_modes": ["rgb"],
+                        "brightness": 90,
+                        "rgb_color": [1, 2, 3],
+                        "color_temp_kelvin": 3500,
+                    },
+                }
+            }
+        )
+        svc = PartyLightsService(hass)
+        await svc.start(["light.legacy"])
+        await svc.stop()
+
+        hass.services.async_call.assert_any_call(
+            "light",
+            "turn_on",
+            {
+                "entity_id": "light.legacy",
+                "brightness": 90,
+                "rgb_color": [1, 2, 3],
+            },
+            blocking=False,
+        )
+
 
 # ---------------------------------------------------------------------------
 # set_phase
