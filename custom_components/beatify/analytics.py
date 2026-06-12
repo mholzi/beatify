@@ -80,6 +80,7 @@ class MonthlySummary(TypedDict):
     avg_players_per_game: float
     total_rounds: int
     avg_rounds_per_game: float
+    total_errors: int  # Running error total so error_rate can be recomputed (#1402)
     error_rate: float
 
 
@@ -146,7 +147,20 @@ class AnalyticsStorage:
                 self._data = self._empty_data()
                 return
 
-            content = await self._hass.async_add_executor_job(self._path.read_text)
+            try:
+                content = await self._hass.async_add_executor_job(self._path.read_text)
+            except OSError as err:
+                # The file exists but is unreadable (permissions, transient I/O
+                # error). Start fresh in memory so startup isn't blocked, but do
+                # NOT quarantine or save over it — that would destroy a
+                # possibly-recoverable file. A later successful save can still
+                # replace it once the read error clears (#1402).
+                _LOGGER.error(
+                    "Analytics file unreadable, starting fresh in memory: %s", err
+                )
+                self._data = self._empty_data()
+                return
+
             try:
                 parsed = json.loads(content)
             except json.JSONDecodeError as err:
@@ -395,6 +409,11 @@ class AnalyticsStorage:
                 existing["total_rounds"] += sum(
                     g.get("rounds_played", 0) for g in month_games
                 )
+                # Accumulate errors too, tolerating summaries written before
+                # total_errors existed (legacy schema) via .get() (#1402).
+                existing["total_errors"] = existing.get("total_errors", 0) + sum(
+                    g.get("error_count", 0) for g in month_games
+                )
                 # Recalculate averages
                 if existing["games_count"] > 0:
                     existing["avg_players_per_game"] = round(
@@ -402,6 +421,12 @@ class AnalyticsStorage:
                     )
                     existing["avg_rounds_per_game"] = round(
                         existing["total_rounds"] / existing["games_count"], 2
+                    )
+                    # error_rate was previously frozen at its first-write value;
+                    # recompute it from the running totals so additional months
+                    # of data are reflected (#1402).
+                    existing["error_rate"] = round(
+                        existing["total_errors"] / existing["games_count"], 2
                     )
             else:
                 # Create new summary
@@ -417,6 +442,7 @@ class AnalyticsStorage:
                     "avg_players_per_game": round(total_players / games_count, 2),
                     "total_rounds": total_rounds,
                     "avg_rounds_per_game": round(total_rounds / games_count, 2),
+                    "total_errors": total_errors,
                     "error_rate": round(total_errors / games_count, 2),
                 }
                 self._data["monthly_summaries"].append(summary)
@@ -689,12 +715,22 @@ class AnalyticsStorage:
                 week_start = now - timedelta(days=now.weekday() + 7 * i)
                 week_buckets[week_start.strftime("%Y-%m-%d")] = 0
 
+            # Oldest bucket key — used to clamp any game that falls before the
+            # first bucket so its count isn't silently dropped (#1402). Without
+            # this, games in the oldest partial week (or any out-of-range game)
+            # vanished and the chart sum no longer matched total_games.
+            oldest_key = min(week_buckets)
+
             for game in games:
                 dt = datetime.fromtimestamp(game["ended_at"], tz=timezone.utc)
                 week_start = dt - timedelta(days=dt.weekday())
                 key = week_start.strftime("%Y-%m-%d")
                 if key in week_buckets:
                     week_buckets[key] += 1
+                elif key < oldest_key:
+                    # Older than the chart window's first bucket: fold into the
+                    # oldest bucket so the totals stay consistent.
+                    week_buckets[oldest_key] += 1
 
             sorted_keys = sorted(week_buckets.keys())
             labels = [f"W{i + 1}" for i in range(len(sorted_keys))]

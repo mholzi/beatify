@@ -708,3 +708,162 @@ class TestAtomicSave:
 
         # The lock guarantees the file-I/O sections never overlap.
         assert max_concurrent == 1
+
+
+# ---------------------------------------------------------------------------
+# TestScheduleSaveDirtyFlag — mutations during an in-flight save aren't dropped
+# (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestScheduleSaveDirtyFlag:
+    @pytest.mark.asyncio
+    async def test_mutation_during_inflight_save_triggers_resave(self, tmp_path):
+        """A schedule_save() during an in-flight save must cause a follow-up
+        save so the later mutation reaches disk."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        # Block the first save inside the executor so we can mutate + re-schedule
+        # while it is in flight.
+        release = asyncio.Event()
+        save_count = 0
+
+        async def _gated_executor(fn, *args):
+            nonlocal save_count
+            # mkdir runs first; only gate the serialize-and-write call.
+            if getattr(fn, "__name__", "") == "_serialize_and_write":
+                save_count += 1
+                if save_count == 1:
+                    await release.wait()
+            return fn(*args)
+
+        service._hass.async_add_executor_job = AsyncMock(side_effect=_gated_executor)
+
+        service._stats["all_time"]["games_played"] = 1
+        service.schedule_save()  # starts save #1 (gated)
+        await asyncio.sleep(0)  # let the task reach the gate
+
+        # Mutate AFTER save #1 snapshotted, and re-schedule.
+        service._stats["all_time"]["games_played"] = 2
+        service.schedule_save()  # in flight -> sets dirty flag
+        assert service._save_dirty is True
+
+        release.set()  # let save #1 finish -> done-callback re-schedules
+        # Drain pending tasks.
+        for _ in range(10):
+            await asyncio.sleep(0)
+            if service._save_task is not None:
+                await service._save_task
+
+        data = _json.loads(stats_path.read_text())
+        assert data["all_time"]["games_played"] == 2
+        assert save_count >= 2
+
+
+# ---------------------------------------------------------------------------
+# TestPlaylistAvgScore — avg_score_per_round is maintained, not stuck at 0 (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestPlaylistAvgScore:
+    def setup_method(self):
+        self.service = _make_service()
+
+    @pytest.mark.asyncio
+    async def test_playlist_avg_score_updated(self):
+        # rounds=5, players=2, total_points=200 -> avg_score_per_round = 20.0
+        await self.service.record_game(_make_game_summary())
+        ps = self.service._stats["playlists"]["80s Hits"]
+        assert ps["avg_score_per_round"] == 20.0
+
+    @pytest.mark.asyncio
+    async def test_playlist_avg_score_weighted_across_games(self):
+        # Game 1: avg 20.0, weight 10 (5*2).
+        await self.service.record_game(_make_game_summary())
+        # Game 2: rounds=10, players=1, total_points=100 -> avg 10.0, weight 10.
+        await self.service.record_game(
+            _make_game_summary(rounds=10, player_count=1, total_points=100)
+        )
+        ps = self.service._stats["playlists"]["80s Hits"]
+        # (20*10 + 10*10) / 20 = 15.0
+        assert ps["avg_score_per_round"] == 15.0
+
+
+# ---------------------------------------------------------------------------
+# TestGamesCap — detailed games list is bounded; all_time_avg survives (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestGamesCap:
+    def setup_method(self):
+        self.service = _make_service()
+
+    @pytest.mark.asyncio
+    async def test_games_list_capped(self):
+        from custom_components.beatify.services.stats import MAX_DETAILED_GAMES
+
+        # Record a few more than the cap.
+        for _ in range(MAX_DETAILED_GAMES + 5):
+            await self.service.record_game(_make_game_summary())
+        assert len(self.service._stats["games"]) == MAX_DETAILED_GAMES
+
+    @pytest.mark.asyncio
+    async def test_all_time_avg_survives_cap(self):
+        from custom_components.beatify.services.stats import MAX_DETAILED_GAMES
+
+        # All games identical -> avg stays 20.0 even after capping drops the
+        # earliest detailed entries (running aggregates back the average).
+        for _ in range(MAX_DETAILED_GAMES + 50):
+            await self.service.record_game(_make_game_summary())
+        self.service._all_time_avg_cache = None
+        assert round(self.service.all_time_avg, 2) == 20.0
+
+    def test_legacy_stats_without_aggregates_still_compute_avg(self):
+        """A pre-#1402 stats file (no total_weight) falls back to the games
+        list so all_time_avg keeps working on upgrade."""
+        self.service._stats = {
+            "version": 1,
+            "games": [
+                {"rounds": 5, "player_count": 2, "avg_score_per_round": 30.0},
+            ],
+            "playlists": {},
+            "all_time": {
+                "games_played": 1,
+                "highest_avg_score": 30.0,
+                "highest_avg_game_id": "x",
+            },
+            "songs": {},
+        }
+        self.service._all_time_avg_cache = None
+        assert self.service.all_time_avg == 30.0
+
+
+# ---------------------------------------------------------------------------
+# TestLoadUnreadableFile — OSError must not wipe the on-disk stats file (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadUnreadableFile:
+    @pytest.mark.asyncio
+    async def test_oserror_on_read_starts_fresh_without_saving(self):
+        service = _make_service()
+        save_mock = AsyncMock()
+
+        with (
+            patch.object(type(service._stats_file), "exists", return_value=True),
+            patch.object(
+                type(service._stats_file),
+                "read_text",
+                side_effect=OSError("permission denied"),
+            ),
+            patch.object(service, "save", save_mock),
+        ):
+            # Must not raise.
+            await service.load()
+
+        # Fresh in-memory store, but no save() over the unreadable file.
+        assert service._stats == service._empty_stats()
+        save_mock.assert_not_awaited()
