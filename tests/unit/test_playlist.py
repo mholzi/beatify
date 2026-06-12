@@ -16,6 +16,7 @@ from custom_components.beatify.const import (
 )
 from custom_components.beatify.game.playlist import (
     PlaylistManager,
+    filter_songs_for_provider,
     get_song_uri,
 )
 
@@ -202,6 +203,75 @@ class TestPlaylistManagerStorefrontFiltering:
         picked = pm.get_next_song()
         assert picked is not None
         assert picked["_resolved_uri"] == "applemusic://track/legacy"
+
+    def test_storefront_only_song_without_legacy_uri_survives_prefilter(self):
+        """#1402 B3: a song that has NO legacy ``uri_apple_music`` field but is
+        available via ``uri_apple_music_by_region`` for the user's storefront
+        must NOT be dropped by the pre-filter. The storefront-blind pre-filter
+        used to call get_song_uri without the storefront, get None (no legacy
+        field), and silently drop the song before the storefront-aware bucket
+        loop ever saw it.
+        """
+        song = {
+            "title": "DE storefront-exclusive",
+            "artist": "Test Artist",
+            "year": 1990,
+            # No legacy uri_apple_music field at all — only per-region data.
+            "uri_apple_music_by_region": {"de": "applemusic://track/de-only"},
+        }
+        pm = PlaylistManager([song], provider=PROVIDER_APPLE_MUSIC, storefront="de")
+        assert pm.has_playable_songs()
+        picked = pm.get_next_song()
+        assert picked is not None
+        assert picked["_resolved_uri"] == "applemusic://track/de-only"
+
+
+class TestFilterSongsForProviderStorefront:
+    """#1402 B3: filter_songs_for_provider must thread the storefront through to
+    get_song_uri so it isn't storefront-blind."""
+
+    def test_storefront_only_song_kept(self):
+        songs = [
+            {
+                "title": "DE-only",
+                "artist": "A",
+                "year": 1990,
+                "uri_apple_music_by_region": {"de": "applemusic://track/de"},
+            },
+        ]
+        filtered, skipped = filter_songs_for_provider(
+            songs, PROVIDER_APPLE_MUSIC, storefront="de"
+        )
+        assert len(filtered) == 1
+        assert skipped == 0
+
+    def test_song_unavailable_in_storefront_is_skipped(self):
+        songs = [
+            {
+                "title": "Not in DE",
+                "artist": "A",
+                "year": 1990,
+                "uri_apple_music_by_region": {"de": None},
+            },
+        ]
+        filtered, skipped = filter_songs_for_provider(
+            songs, PROVIDER_APPLE_MUSIC, storefront="de"
+        )
+        assert filtered == []
+        assert skipped == 1
+
+    def test_default_no_storefront_still_works(self):
+        songs = [
+            {
+                "title": "Legacy",
+                "artist": "A",
+                "year": 1990,
+                "uri_apple_music": "applemusic://track/legacy",
+            },
+        ]
+        filtered, skipped = filter_songs_for_provider(songs, PROVIDER_APPLE_MUSIC)
+        assert len(filtered) == 1
+        assert skipped == 0
 
 
 # ---------------------------------------------------------------------------

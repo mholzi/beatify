@@ -232,10 +232,22 @@ def build_artist_options(song: dict[str, Any]) -> list[str] | None:
     if not alt_artists or not isinstance(alt_artists, list):
         return None
 
-    # Filter valid alternatives
-    valid_alts = [a.strip() for a in alt_artists if isinstance(a, str) and a.strip()]
+    # Filter valid alternatives, deduplicating case-insensitively and dropping
+    # any alt that equals the correct artist (a duplicated correct answer in the
+    # options would leak the truth / break the single-correct-choice contract).
+    seen = {artist.lower()}
+    valid_alts: list[str] = []
+    for a in alt_artists:
+        if not isinstance(a, str):
+            continue
+        stripped = a.strip()
+        if not stripped or stripped.lower() in seen:
+            continue
+        seen.add(stripped.lower())
+        valid_alts.append(stripped)
 
     if not valid_alts:
+        # No distinct decoy remains after dedup — challenge would be trivial.
         return None
 
     # Build and shuffle options
@@ -285,7 +297,14 @@ class ChallengeManager:
             title_artist_mode: Whether title/artist guessing replaces the year guess
 
         """
-        self.artist_challenge_enabled = artist_challenge_enabled
+        # Title & Artist mode already asks players for the artist directly, so
+        # the artist multiple-choice challenge must never run alongside it —
+        # otherwise the broadcast options leak the correct artist (and the +5
+        # ack path is dead anyway). Enforce this server-side, not just in the
+        # admin UI, so the options never reach clients in TA mode.
+        self.artist_challenge_enabled = (
+            artist_challenge_enabled and not title_artist_mode
+        )
         self.artist_challenge = None
 
         self.movie_quiz_enabled = movie_quiz_enabled
