@@ -54,6 +54,26 @@ def _make_ws_for_state() -> AsyncMock:
     return ws
 
 
+async def _drain_metadata_task(state: GameState) -> None:
+    """Cancel and await the round manager's background metadata-fetch task.
+
+    A real start_round happy-path spawns ``_fetch_metadata_async`` as a
+    background task (RoundManager._metadata_task). In tests that drive a full
+    start_round against an AsyncMock media player, that task awaits the mock's
+    ``wait_for_metadata_update`` and is never otherwise joined — leaving the
+    mock coroutine to be GC'd later as an "un-awaited coroutine", whose
+    RuntimeWarning can leak into an unrelated test's ``recwarn`` (#1402 B2).
+    Draining it here consumes the coroutine deterministically.
+    """
+    task = getattr(state._round_manager, "_metadata_task", None)
+    if task is not None:
+        task.cancel()
+        try:
+            await task
+        except (asyncio.CancelledError, Exception):  # noqa: BLE001
+            pass
+
+
 # ---------------------------------------------------------------------------
 # GameState.create_game
 # ---------------------------------------------------------------------------
@@ -1866,6 +1886,13 @@ class TestStartRoundGhostRoundGuard:
         assert result is True
         assert state.phase == GamePhase.PLAYING
         assert state.round == 1
+
+        # The happy path spawns a background _fetch_metadata_async task that
+        # awaits the AsyncMock media player's wait_for_metadata_update. Drain
+        # it before the test ends so its (mock) coroutine is consumed — an
+        # un-drained task is GC'd later as an un-awaited coroutine, whose
+        # RuntimeWarning can leak into an unrelated test's recwarn (#1402 B2).
+        await _drain_metadata_task(state)
 
     @pytest.mark.asyncio
     async def test_epoch_bumped_by_lifecycle_boundaries(self):
