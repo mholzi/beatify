@@ -149,6 +149,14 @@ class RoundLifecycleMixin:
 
         MAX_SONG_RETRIES = 3
 
+        # #1358: snapshot the game-identity epoch at entry. start_round parks in
+        # long awaits (verify_responsive, play_song — play_song waits a full
+        # Music Assistant timeout). If end_game / rematch_game / create_game runs
+        # while we're parked, the epoch advances and we must abort instead of
+        # resuming onto a torn-down or replaced game (game_id=None, no players,
+        # phase LOBBY) — see _round_start_aborted.
+        start_epoch = self._game_epoch
+
         # #1012: a (manual or auto) round start supersedes any pending
         # REVEAL auto-advance.
         if _retry_count == 0:
@@ -204,6 +212,11 @@ class RoundLifecycleMixin:
                     responsive,
                     error_detail,
                 ) = await self._media_player_service.verify_responsive()
+                # #1358: the game may have been torn down / replaced while we
+                # waited on verify_responsive — bail before play_song so we
+                # don't start music on a dead game.
+                if await self._round_start_aborted(start_epoch):
+                    return False
                 if not responsive:
                     self.last_error_detail = error_detail
                     _LOGGER.error(
@@ -256,6 +269,14 @@ class RoundLifecycleMixin:
                 await self.pause_game("media_player_error")
                 return False
 
+            # #1358: play_song just succeeded, but it parks for a full Music
+            # Assistant timeout — long enough for the admin to end the game
+            # (or a rematch / new game) in the meantime. If the game we started
+            # for is gone, stop the playback we just kicked off and bail BEFORE
+            # _initialize_round stamps PLAYING onto the torn-down game.
+            if await self._round_start_aborted(start_epoch, stop_playback=True):
+                return False
+
         metadata = self._build_round_metadata(song, resolved_uri, will_defer_for_splash)
         # Issue #1211: when TTS pre-round announcements are active, shift the
         # deadline forward so the timer doesn't count down during the TTS
@@ -296,6 +317,55 @@ class RoundLifecycleMixin:
         if self.is_intro_round:
             await self.announce_intro_round()
 
+        return True
+
+    async def _round_start_aborted(
+        self, start_epoch: int, *, stop_playback: bool = False
+    ) -> bool:
+        """Decide whether an in-flight ``start_round`` must bail (#1358).
+
+        Re-validates, after a long await, that the game ``start_round`` was
+        launched for is still the live, playable game. Returns ``True`` (abort)
+        when either:
+
+        * the game-identity epoch has advanced — ``create_game`` / ``end_game``
+          / ``rematch_game`` ran while we were parked (the original game is gone
+          or has been replaced; ``end_game``/``rematch`` flip the phase to
+          ``LOBBY`` without bumping it back), or
+        * the phase has moved to ``PAUSED`` or ``END`` — a concurrent
+          ``pause_game`` (which does NOT bump the epoch) or a game-end that
+          ``_initialize_round``'s unconditional ``_set_phase(PLAYING)`` would
+          otherwise silently undo.
+
+        ``LOBBY`` is deliberately NOT a stand-alone abort trigger: the very
+        first round of a game is started straight from ``LOBBY`` (no epoch
+        change), so checking ``LOBBY`` directly would abort every legitimate
+        first round. An ``end_game``/``rematch`` that lands on ``LOBBY`` is
+        instead caught by the epoch bump.
+
+        When ``stop_playback`` is set and we abort, the playback this round
+        already started is stopped so the speaker doesn't keep playing on a
+        torn-down game.
+        """
+        from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
+        if self._game_epoch == start_epoch and self.phase not in (
+            GamePhase.END,
+            GamePhase.PAUSED,
+        ):
+            return False
+
+        _LOGGER.info(
+            "Aborting start_round: game changed during await (epoch %s→%s, phase %s)",
+            start_epoch,
+            self._game_epoch,
+            self.phase.value,
+        )
+        if stop_playback and self._media_player_service:
+            try:
+                await self._media_player_service.stop()
+            except Exception as err:  # noqa: BLE001 — a stop error must not raise
+                _LOGGER.warning("start_round abort: stop playback failed: %s", err)
         return True
 
     def _ensure_media_player_service(self) -> None:

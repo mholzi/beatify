@@ -1480,3 +1480,133 @@ class TestSetPhaseSSOT:
             state._set_phase(GamePhase.PLAYING)
         assert "Unexpected phase transition" in caplog.text
         assert state.phase == GamePhase.PLAYING
+
+
+# ---------------------------------------------------------------------------
+# #1358: start_round must re-validate game identity / phase after awaits
+# ---------------------------------------------------------------------------
+
+
+class TestStartRoundGhostRoundGuard:
+    """#1358: start_round parks in long awaits (verify_responsive, play_song —
+    play_song waits a full Music Assistant timeout). If the game is torn down or
+    replaced while parked, start_round must NOT resume and stamp PLAYING onto a
+    dead/replaced game. The fix snapshots a monotonic _game_epoch at entry and
+    re-validates epoch + phase after the playback await, stopping the playback
+    it just started and bailing instead of committing the round.
+    """
+
+    def _setup(self) -> GameState:
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.add_player("Admin", MagicMock())
+        state.add_player("Bob", MagicMock())
+        state.set_admin("Admin")
+        state.start_game()  # LOBBY -> PLAYING (needs MIN_PLAYERS)
+        state.phase = GamePhase.PLAYING
+        # music_assistant platform skips the verify_responsive branch so the
+        # only await before _initialize_round is play_song.
+        state.platform = "music_assistant"
+        media = AsyncMock()
+        media.is_available = MagicMock(return_value=True)
+        state._media_player_service = media
+        state._ensure_media_player_service = MagicMock()  # keep our mock service
+        return state
+
+    @pytest.mark.asyncio
+    async def test_end_game_during_play_song_aborts_round(self):
+        """end_game() completing while start_round is parked in play_song must
+        not produce a ghost PLAYING round on a torn-down game."""
+        state = self._setup()
+        media = state._media_player_service
+
+        async def end_game_then_succeed(_song):
+            # Simulate the admin ending the game while play_song is parked.
+            await state.end_game()
+            return True
+
+        media.play_song.side_effect = end_game_then_succeed
+
+        result = await state.start_round()
+
+        assert result is False
+        # Game was torn down: must NOT be flipped to PLAYING.
+        assert state.phase != GamePhase.PLAYING
+        assert state.game_id is None
+        assert state.round == 0  # _initialize_round never ran
+        # The playback we kicked off must be stopped on the dead game.
+        media.stop.assert_awaited()
+
+    @pytest.mark.asyncio
+    async def test_concurrent_pause_during_play_song_not_overwritten(self):
+        """A concurrent pause_game (-> PAUSED) while parked in play_song must not
+        be silently overwritten back to PLAYING by _initialize_round."""
+        state = self._setup()
+        media = state._media_player_service
+
+        async def pause_then_succeed(_song):
+            await state.pause_game("admin_disconnected")
+            return True
+
+        media.play_song.side_effect = pause_then_succeed
+
+        result = await state.start_round()
+
+        assert result is False
+        assert state.phase == GamePhase.PAUSED
+        assert state.round == 0
+
+    @pytest.mark.asyncio
+    async def test_rematch_during_play_song_aborts_round(self):
+        """A rematch replacing the game identity mid-await must abort the round
+        even though the new game is also a valid (LOBBY) game."""
+        state = self._setup()
+        media = state._media_player_service
+
+        async def rematch_then_succeed(_song):
+            state.rematch_game()  # new epoch, new game_id, phase LOBBY
+            return True
+
+        media.play_song.side_effect = rematch_then_succeed
+
+        result = await state.start_round()
+
+        assert result is False
+        assert state.phase != GamePhase.PLAYING
+        assert state.round == 0
+        media.stop.assert_awaited()
+
+    @pytest.mark.asyncio
+    async def test_normal_round_still_starts(self):
+        """Guard must be inert on the happy path: no teardown during play_song,
+        the round commits to PLAYING as before."""
+        state = self._setup()
+        media = state._media_player_service
+        media.play_song.return_value = True
+
+        result = await state.start_round()
+
+        assert result is True
+        assert state.phase == GamePhase.PLAYING
+        assert state.round == 1
+
+    @pytest.mark.asyncio
+    async def test_epoch_bumped_by_lifecycle_boundaries(self):
+        """create_game / end_game / rematch_game each advance the epoch."""
+        state = make_game_state()
+        e0 = state._game_epoch
+        _create_fresh_game(state)
+        e1 = state._game_epoch
+        assert e1 > e0
+
+        state.add_player("Admin", MagicMock())
+        state.set_admin("Admin")
+        await state.end_game()
+        e2 = state._game_epoch
+        assert e2 > e1
+
+        _create_fresh_game(state)
+        state.add_player("Admin", MagicMock())
+        state.set_admin("Admin")
+        state.rematch_game()
+        assert state._game_epoch > e2

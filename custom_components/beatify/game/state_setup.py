@@ -156,6 +156,9 @@ class GameSetupMixin:
         # Clear any leftover sessions from previous/crashed game (Story 11.6)
         self.clear_all_sessions()
 
+        # #1358: a new game invalidates any start_round still parked in an
+        # await from a prior game/session.
+        self._game_epoch += 1
         self.game_id = secrets.token_urlsafe(8)
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self._set_phase(GamePhase.LOBBY)
@@ -302,6 +305,13 @@ class GameSetupMixin:
         # is still REVEAL there) and trigger the next song after the game ended.
         # advance_to_end() already does this; the HTTP/force-end path lands here.
         self._cancel_auto_advance()
+        # #1358: bump the game-identity epoch synchronously, BEFORE the awaits
+        # below (same rationale as the _cancel_auto_advance above). A start_round
+        # that's parked in play_song and resumes anytime during this teardown —
+        # even during disable_party_lights()/disable_tts(), while phase is still
+        # REVEAL/PLAYING — then sees the changed epoch and bails instead of
+        # stamping PLAYING onto the now-empty game.
+        self._game_epoch += 1
         # Issue #331: Restore lights before resetting
         await self.disable_party_lights()
         # Issue #447: Disable TTS
@@ -356,6 +366,9 @@ class GameSetupMixin:
         self.total_rounds = len(preserved["songs"])
 
         self._set_phase(GamePhase.LOBBY)
+        # #1358: a rematch replaces the game identity — invalidate any
+        # start_round still parked in an await from the finished game.
+        self._game_epoch += 1
         # Reset each player's game stats but keep them connected
         for player in self.players.values():
             player.reset_for_new_game()
