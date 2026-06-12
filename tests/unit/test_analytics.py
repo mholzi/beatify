@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import time
+from datetime import datetime, timezone
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -888,3 +889,198 @@ class TestLoadPrewarm:
             second = self.storage._get_playlist_display_names()
             assert second == {}
             assert mock_exists.call_count == calls_after_first
+
+
+# ---------------------------------------------------------------------------
+# TestMonthlySummaryErrorRate — updating a summary must update error_rate (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestMonthlySummaryErrorRate:
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.storage = AnalyticsStorage(self.hass)
+
+    def _old_games(self, count, *, ended_at, error_count):
+        return [
+            _make_game_record(
+                game_id=f"old-{ended_at}-{i}",
+                ended_at=ended_at + i,
+                player_count=3,
+                rounds_played=5,
+                error_count=error_count,
+            )
+            for i in range(count)
+        ]
+
+    @pytest.mark.asyncio
+    async def test_new_summary_records_total_errors(self):
+        now = int(time.time())
+        old_ts = now - (RETENTION_DAYS + 10) * 86400
+        games = self._old_games(10, ended_at=old_ts, error_count=2)
+        recent_ts = now - 3600
+        games += [
+            _make_game_record(game_id=f"recent-{i}", ended_at=recent_ts)
+            for i in range(MAX_DETAILED_RECORDS + 1)
+        ]
+        self.storage._data["games"] = games
+
+        await self.storage._prune_old_records()
+
+        summary = self.storage._data["monthly_summaries"][0]
+        assert summary["total_errors"] == 20
+        assert summary["error_rate"] == 2.0  # 20 errors / 10 games
+
+    @pytest.mark.asyncio
+    async def test_existing_summary_error_rate_recomputed(self):
+        """A second prune into the same month must update error_rate, not freeze
+        it at the first-write value (#1402)."""
+        now = int(time.time())
+        # Two distinct old months so each prune targets the same summary on the
+        # second pass. Use one fixed old month and prune twice.
+        old_ts = now - (RETENTION_DAYS + 40) * 86400
+
+        # First batch: 10 games, 0 errors -> error_rate 0.0
+        games = self._old_games(10, ended_at=old_ts, error_count=0)
+        recent = [
+            _make_game_record(game_id=f"r1-{i}", ended_at=now - 3600)
+            for i in range(MAX_DETAILED_RECORDS + 1)
+        ]
+        self.storage._data["games"] = games + recent
+        await self.storage._prune_old_records()
+
+        summary = next(
+            s
+            for s in self.storage._data["monthly_summaries"]
+            if s["month"]
+            == datetime.fromtimestamp(old_ts, tz=timezone.utc).strftime("%Y-%m")
+        )
+        assert summary["error_rate"] == 0.0
+        first_count = summary["games_count"]
+
+        # Second batch into the SAME month: 10 games, 5 errors each = 50 errors.
+        games2 = self._old_games(10, ended_at=old_ts + 100, error_count=5)
+        recent2 = [
+            _make_game_record(game_id=f"r2-{i}", ended_at=now - 3600)
+            for i in range(MAX_DETAILED_RECORDS + 1)
+        ]
+        self.storage._data["games"] = games2 + recent2
+        await self.storage._prune_old_records()
+
+        summary = next(
+            s
+            for s in self.storage._data["monthly_summaries"]
+            if s["month"]
+            == datetime.fromtimestamp(old_ts, tz=timezone.utc).strftime("%Y-%m")
+        )
+        # 0 + 50 errors over 20 games = 2.5
+        assert summary["games_count"] == first_count + 10
+        assert summary["total_errors"] == 50
+        assert summary["error_rate"] == 2.5
+
+    @pytest.mark.asyncio
+    async def test_existing_summary_without_total_errors_field_tolerated(self):
+        """Legacy summary lacking total_errors must not raise on merge (#1402)."""
+        now = int(time.time())
+        old_ts = now - (RETENTION_DAYS + 40) * 86400
+        month_key = datetime.fromtimestamp(old_ts, tz=timezone.utc).strftime("%Y-%m")
+        # Pre-seed a legacy summary with NO total_errors key.
+        self.storage._data["monthly_summaries"] = [
+            {
+                "month": month_key,
+                "games_count": 5,
+                "total_players": 15,
+                "avg_players_per_game": 3.0,
+                "total_rounds": 25,
+                "avg_rounds_per_game": 5.0,
+                "error_rate": 0.0,
+            }
+        ]
+        games = self._old_games(5, ended_at=old_ts, error_count=4)
+        recent = [
+            _make_game_record(game_id=f"r-{i}", ended_at=now - 3600)
+            for i in range(MAX_DETAILED_RECORDS + 1)
+        ]
+        self.storage._data["games"] = games + recent
+
+        await self.storage._prune_old_records()
+
+        summary = next(
+            s
+            for s in self.storage._data["monthly_summaries"]
+            if s["month"] == month_key
+        )
+        # 0 (legacy) + 20 new errors over 10 games = 2.0
+        assert summary["total_errors"] == 20
+        assert summary["error_rate"] == 2.0
+
+
+# ---------------------------------------------------------------------------
+# TestLoadUnreadableFile — OSError on read must not destroy the file (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadUnreadableFile:
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.storage = AnalyticsStorage(self.hass)
+
+    @pytest.mark.asyncio
+    async def test_oserror_on_read_starts_fresh_without_quarantine_or_save(self):
+        save_mock = AsyncMock()
+        replace_calls: list[tuple] = []
+
+        def _exec(fn, *args):
+            if getattr(fn, "__name__", "") == "replace":
+                replace_calls.append(args)
+                return None
+            return fn(*args)
+
+        def _boom():
+            raise OSError("permission denied")
+
+        with (
+            patch.object(self.storage, "_save", save_mock),
+            patch.object(self.storage, "_get_playlist_display_names", return_value={}),
+        ):
+            self.storage._path = MagicMock()
+            self.storage._path.exists.return_value = True
+            self.storage._path.read_text.side_effect = _boom
+            self.hass.async_add_executor_job = AsyncMock(side_effect=_exec)
+            # Must not raise.
+            await self.storage.load()
+
+        # Fresh in-memory store, but the file was NOT quarantined or overwritten.
+        assert self.storage._data == self.storage._empty_data()
+        assert replace_calls == []
+        save_mock.assert_not_awaited()
+
+
+# ---------------------------------------------------------------------------
+# TestGamesOverTimeWeeklyClamp — old games folded into oldest bucket (#1402)
+# ---------------------------------------------------------------------------
+
+
+class TestGamesOverTimeWeeklyClamp:
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.storage = AnalyticsStorage(self.hass)
+
+    def test_weekly_chart_sum_matches_total_games(self):
+        """No game in the period may be silently dropped from the weekly chart.
+
+        A game older than the oldest week bucket previously vanished; it must
+        now be clamped into the oldest bucket so sum(values) == len(games)."""
+        now = int(time.time())
+        # One recent game (this week) and one game well before the oldest of
+        # the 13 weekly buckets for the 90d period.
+        recent = _make_game_record(game_id="recent", ended_at=now - 3600)
+        very_old = _make_game_record(game_id="veryold", ended_at=now - 200 * 86400)
+        games = [recent, very_old]
+
+        chart = self.storage.compute_games_over_time(games, "90d")
+
+        assert chart["granularity"] == "week"
+        assert sum(chart["values"]) == len(games)
+        # The very-old game landed in the oldest (first) bucket.
+        assert chart["values"][0] >= 1

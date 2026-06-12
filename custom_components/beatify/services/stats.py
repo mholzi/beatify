@@ -19,6 +19,13 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+# Cap on detailed game entries kept in stats.json. Older games are folded into
+# the all_time aggregates incrementally as they age out, so the per-save
+# json.dumps cost (and file size) stays bounded instead of growing forever as
+# more games are recorded (#1402). The all_time average is maintained from a
+# running weighted sum, so dropping detailed entries does not skew it.
+MAX_DETAILED_GAMES = 500
+
 
 class StatsService:
     """Service for tracking game statistics."""
@@ -39,6 +46,10 @@ class StatsService:
         self._all_time_avg_cache: float | None = None
         self._save_task: asyncio.Task | None = None
         self._save_lock = asyncio.Lock()
+        # Dirty flag: set on every schedule_save(); the save's done-callback
+        # re-schedules if it was set again while a save was in flight, so
+        # mutations made during a save are never silently dropped (#1402).
+        self._save_dirty = False
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -66,6 +77,11 @@ class StatsService:
                 "games_played": 0,
                 "highest_avg_score": 0.0,
                 "highest_avg_game_id": None,
+                # Running weighted score sums so all_time_avg survives the
+                # detailed-games cap: when a game ages out of the detailed list
+                # its weighted contribution is folded in here (#1402).
+                "total_weighted_score": 0.0,
+                "total_weight": 0,
             },
             "songs": {},  # Song difficulty tracking (Story 15.1)
         }
@@ -86,6 +102,15 @@ class StatsService:
             else:
                 _LOGGER.debug("No stats file found, starting fresh")
                 self._stats = self._empty_stats()
+        except OSError as err:
+            # The file exists but cannot be read (permissions, transient I/O
+            # error). Start fresh in memory so startup is not blocked, but do
+            # NOT persist an empty file — that would destroy the unreadable
+            # (possibly recoverable) history. A later successful save can still
+            # overwrite it once whatever blocked the read clears (#1402).
+            _LOGGER.error("Stats file unreadable, starting fresh in memory: %s", err)
+            self._stats = self._empty_stats()
+            self._all_time_avg_cache = None
         except (json.JSONDecodeError, KeyError, TypeError) as err:
             _LOGGER.warning("Stats file corrupted, recreating: %s", err)
             self._stats = self._empty_stats()
@@ -112,16 +137,23 @@ class StatsService:
                     self._stats_file.parent.mkdir, 0o755, True, True
                 )
 
-                # Write to temp file first, then atomically rename into place
-                temp_path = self._stats_file.with_suffix(".json.tmp")
-                content = json.dumps(self._stats, indent=2)
+                # Snapshot the stats dict, then do the (potentially expensive)
+                # json.dumps AND the file write together in the executor thread
+                # so neither blocks the event loop. With unbounded history the
+                # serialization alone could stall the loop on every save
+                # (#1402). The snapshot is a shallow copy taken on the loop
+                # thread so the executor serializes a stable view.
+                stats_path = self._stats_file
+                temp_path = stats_path.with_suffix(".json.tmp")
+                snapshot = self._stats
 
-                def _write_atomic() -> None:
+                def _serialize_and_write() -> None:
+                    content = json.dumps(snapshot, indent=2)
                     temp_path.write_text(content)
                     # Atomic rename (POSIX guarantees atomicity)
-                    os.replace(temp_path, self._stats_file)
+                    os.replace(temp_path, stats_path)
 
-                await self._hass.async_add_executor_job(_write_atomic)
+                await self._hass.async_add_executor_job(_serialize_and_write)
                 _LOGGER.debug("Stats saved to %s", self._stats_file)
             except OSError as err:
                 _LOGGER.error("Failed to save stats: %s", err)
@@ -131,18 +163,28 @@ class StatsService:
         Schedule non-blocking save.
 
         Uses fire-and-forget pattern to avoid blocking game operations.
-        Coalesces rapid calls: if a save is already in flight, the next
-        save() will pick up whatever mutations happened in between.
+        Coalesces rapid calls: if a save is already in flight, the call sets a
+        dirty flag and the in-flight save's done-callback re-schedules a fresh
+        save. Without this, the save task snapshots ``self._stats`` at the
+        moment it runs and any mutation made AFTER that snapshot but before the
+        task finishes would be silently dropped until the next unrelated save
+        (#1402).
         """
         if self._save_task is not None and not self._save_task.done():
+            self._save_dirty = True
             return
+        self._save_dirty = False
         self._save_task = asyncio.create_task(self.save())
-        self._save_task.add_done_callback(self._handle_save_error)
+        self._save_task.add_done_callback(self._handle_save_done)
 
-    def _handle_save_error(self, task: asyncio.Task) -> None:
-        """Log exceptions from fire-and-forget save tasks."""
+    def _handle_save_done(self, task: asyncio.Task) -> None:
+        """Log save-task errors and re-schedule if mutated mid-save (#1402)."""
         if (exc := task.exception()) is not None:
             _LOGGER.error("Unhandled error in stats save task: %s", exc)
+        # A schedule_save() arrived while this save was in flight — its
+        # mutations may not be on disk yet, so kick off another save.
+        if self._save_dirty:
+            self.schedule_save()
 
     async def record_game(self, game_summary: dict, difficulty: str = "normal") -> dict:
         """
@@ -234,21 +276,52 @@ class StatsService:
                 "times_played": 0,
                 "total_rounds": 0,
                 "avg_score_per_round": 0.0,
+                # Weighted score accumulators so avg_score_per_round can be
+                # maintained instead of staying a permanent 0.0 (#1402).
+                "total_weighted_score": 0.0,
+                "total_weight": 0,
             }
 
         playlist_stats = self._stats["playlists"][playlist_key]
         playlist_stats["times_played"] += 1
         playlist_stats["total_rounds"] += rounds
+        # Maintain avg_score_per_round as a rounds*players-weighted mean,
+        # matching the all_time weighting (#1402).
+        weight = rounds * player_count
+        playlist_stats["total_weighted_score"] = (
+            playlist_stats.get("total_weighted_score", 0.0)
+            + avg_score_per_round * weight
+        )
+        playlist_stats["total_weight"] = playlist_stats.get("total_weight", 0) + weight
+        if playlist_stats["total_weight"] > 0:
+            playlist_stats["avg_score_per_round"] = round(
+                playlist_stats["total_weighted_score"] / playlist_stats["total_weight"],
+                2,
+            )
 
         # Update all-time stats
         all_time = self._stats["all_time"]
         all_time["games_played"] += 1
+        # Maintain the running weighted score sum that backs all_time_avg, so
+        # the average is correct even after old games are folded out of the
+        # detailed list by the cap below (#1402).
+        all_time["total_weighted_score"] = (
+            all_time.get("total_weighted_score", 0.0) + avg_score_per_round * weight
+        )
+        all_time["total_weight"] = all_time.get("total_weight", 0) + weight
 
         # Check for new high score
         if avg_score_per_round > all_time["highest_avg_score"]:
             all_time["highest_avg_score"] = round(avg_score_per_round, 2)
             all_time["highest_avg_game_id"] = game_id
             comparison["is_new_record"] = True
+
+        # Cap the detailed games list: the running aggregates above already
+        # capture every game's contribution, so older entries can be dropped to
+        # bound file size and per-save json.dumps cost (#1402).
+        games_list = self._stats["games"]
+        if len(games_list) > MAX_DETAILED_GAMES:
+            del games_list[:-MAX_DETAILED_GAMES]
 
         # Schedule deferred save (non-blocking)
         self.schedule_save()
@@ -343,6 +416,17 @@ class StatsService:
         """
         if self._all_time_avg_cache is not None:
             return self._all_time_avg_cache
+
+        all_time = self._stats.get("all_time", {})
+        # Prefer the maintained running aggregates: the detailed games list is
+        # capped (#1402) so it no longer represents full history, but the
+        # all_time weighted sums do. Fall back to recomputing from the games
+        # list for legacy stats files written before these fields existed.
+        stored_weight = all_time.get("total_weight", 0)
+        if stored_weight:
+            result = all_time.get("total_weighted_score", 0.0) / stored_weight
+            self._all_time_avg_cache = result
+            return result
 
         games = self._stats.get("games", [])
         if not games:
