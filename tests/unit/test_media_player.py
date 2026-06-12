@@ -832,7 +832,12 @@ class TestMAProviderFallback:
         assert candidates[0][1] == "deezer://track/12345"
 
     def test_candidates_learned_preference_within_same_provider(self):
-        """Cached preferred field is honored when it belongs to current provider."""
+        """Cached preferred field is honored, but ordered behind `_resolved_uri`.
+
+        #1379: `_resolved_uri` is the storefront-resolved primary and must
+        ALWAYS be tried first; the learned preference only orders the remaining
+        alternates (here the legacy `uri` field), so it comes right after.
+        """
         hass = _make_hass()
         svc = MediaPlayerService(
             hass,
@@ -848,10 +853,10 @@ class TestMAProviderFallback:
             "_resolved_uri": "spotify:track:canonical",
         }
         candidates = svc._get_ma_uri_candidates(song)
-        # Cached field's URI is first (before _resolved_uri).
-        assert candidates[0] == ("uri", "spotify:track:legacy")
-        # Primary still present after.
-        assert (None, "spotify:track:canonical") in candidates
+        # Primary (`_resolved_uri`) is always first.
+        assert candidates[0] == (None, "spotify:track:canonical")
+        # Cached field is ordered ahead of the other alternates, behind primary.
+        assert candidates[1] == ("uri", "spotify:track:legacy")
 
     def test_candidates_learned_preference_ignored_across_providers(self):
         """Cached preferred field from a different provider is not honored.
@@ -883,6 +888,72 @@ class TestMAProviderFallback:
         hass = _make_hass()
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         assert svc._get_ma_uri_candidates({"title": "x", "artist": "y"}) == []
+
+    def test_candidates_skip_legacy_us_field_when_regional_map_present(self):
+        """#1379: non-US Apple-Music user must NOT get the legacy US ID appended.
+
+        The song carries `uri_apple_music_by_region` (so `get_song_uri` already
+        resolved `_resolved_uri` storefront-aware to the DE track). The legacy
+        `uri_apple_music` field holds the wrong-storefront US ID and must be
+        dropped — appending it re-introduces the #808 wrong-storefront timeout.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
+        song = {
+            "uri_apple_music": "applemusic://track/US111",  # legacy US ID
+            "uri_apple_music_by_region": {"de": "applemusic://track/DE222"},
+            "_resolved_uri": "applemusic://track/DE222",  # DE-resolved
+        }
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        # Only the storefront-resolved DE URI is tried; the US legacy ID is gone.
+        assert uris == ["apple_music://track/DE222"]
+        assert "apple_music://track/US111" not in uris
+
+    def test_candidates_legacy_field_kept_without_regional_map(self):
+        """#1379: with no regional map, the legacy field is still a valid
+        alternate (storefront resolution doesn't apply — single-URI playlist).
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
+        song = {
+            "uri_apple_music": "applemusic://track/111",
+            "_resolved_uri": "applemusic://track/111",
+        }
+        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        assert uris == ["apple_music://track/111"]
+
+    def test_candidates_learned_us_field_never_outranks_resolved_uri(self):
+        """#1379 core: even with `uri_apple_music` learned as preferred, it must
+        not be ordered ahead of the storefront-resolved `_resolved_uri`, and for
+        a song with a regional map it must not appear at all.
+        """
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="apple_music",
+        )
+        # A prior song without a regional map "learned" the legacy US field.
+        svc._ma_preferred_uri_field = "uri_apple_music"
+        song = {
+            "uri_apple_music": "applemusic://track/US111",  # wrong storefront
+            "uri_apple_music_by_region": {"de": "applemusic://track/DE222"},
+            "_resolved_uri": "applemusic://track/DE222",  # DE-resolved
+        }
+        candidates = svc._get_ma_uri_candidates(song)
+        # Storefront-resolved URI first; learned US field dropped entirely.
+        assert candidates == [(None, "apple_music://track/DE222")]
 
     def test_candidates_unknown_provider_warns_and_falls_back(self, caplog):
         """#1276: an unmapped provider logs a warning and falls back to _resolved_uri.
@@ -1029,8 +1100,15 @@ class TestMAProviderFallback:
         assert svc._ma_preferred_uri_field is None
 
     @pytest.mark.asyncio
-    async def test_learned_preference_used_on_next_song(self):
-        """Within Spotify: after legacy `uri` succeeds, next song tries it first."""
+    async def test_learned_preference_orders_alternates_behind_primary(self):
+        """Within Spotify: after legacy `uri` succeeds, it's learned and ordered
+        ahead of OTHER alternates on the next song — but #1379 keeps the
+        storefront-resolved `_resolved_uri` primary tried first regardless.
+
+        Here `song_b` has a third distinct alternate (`uri_spotify` ==
+        `_resolved_uri` is the primary; legacy `uri` is the learned alternate).
+        The learned legacy field must come right after the primary.
+        """
         hass = _make_hass()
         svc = MediaPlayerService(
             hass,
@@ -1063,11 +1141,14 @@ class TestMAProviderFallback:
             assert await svc._play_via_music_assistant(song_a) is True
             assert await svc._play_via_music_assistant(song_b) is True
 
-        # Song A: canonical fails, legacy succeeds (2 calls)
-        # Song B: legacy tried first (cached), succeeds (1 call)
+        # Song A: canonical (primary) fails, legacy succeeds → learns "uri".
+        # Song B: #1379 — primary `_resolved_uri` is STILL tried first (fails),
+        #   then the learned legacy field (succeeds). The learned preference no
+        #   longer skips the storefront-resolved primary.
         assert calls == [
             "spotify:track:a-canonical",
             "spotify:track:a-legacy",
+            "spotify:track:b-canonical",
             "spotify:track:b-legacy",
         ]
 

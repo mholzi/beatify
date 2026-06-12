@@ -401,9 +401,17 @@ class MediaPlayerService:
         the user said "Apple Music only" just buys 15s timeouts per
         unsupported provider before MA reports `MediaNotFoundError`.
 
-        Order: previously-successful field (if any) first, then the user's
-        selected URI (`_resolved_uri`), then any remaining provider URI
-        fields. URIs are converted for MA and deduped by their converted form.
+        Order: the user's selected URI (`_resolved_uri`, storefront-resolved by
+        the caller) ALWAYS first, then the previously-successful field (if any),
+        then any remaining provider URI fields. URIs are converted for MA and
+        deduped by their converted form.
+
+        For apple_music, the legacy `uri_apple_music` field (a single,
+        historically US-storefront ID) is dropped from the alternates whenever
+        the song carries a `uri_apple_music_by_region` map — otherwise a non-US
+        user would re-pay the wrong-storefront timeout #808 eliminated, and a
+        cross-storefront-lucky US hit could become the learned preferred field
+        and bypass region-correct resolution for the rest of the session (#1379).
 
         Returns:
             List of `(field_name, converted_uri)`. `field_name` is `None` for
@@ -441,21 +449,45 @@ class MediaPlayerService:
             seen.add(converted)
             candidates.append((field, converted))
 
+        # #1379: storefront-unaware fallback guard. For apple_music, the legacy
+        # `uri_apple_music` field holds a single (historically US-storefront)
+        # track ID. The caller (`get_song_uri`) already resolves `_resolved_uri`
+        # storefront-aware from `uri_apple_music_by_region` when that map exists.
+        # Appending the legacy US field as an alternate for a non-US user
+        # re-introduces exactly the wrong-storefront 15s stale-title timeout that
+        # #808 eliminated — and if that US ID ever resolves cross-storefront, it
+        # becomes the learned preferred field and systematically outranks the
+        # region-correct URI for the rest of the session. When a regional map is
+        # present, drop the legacy field entirely so only `_resolved_uri` (the
+        # region-correct ID, or None when unavailable) is tried.
+        skip_legacy_apple = self._provider == "apple_music" and bool(
+            song.get("uri_apple_music_by_region")
+        )
+
+        def _field_eligible(field: str) -> bool:
+            return not (skip_legacy_apple and field == "uri_apple_music")
+
+        # #1379: `_resolved_uri` is ALWAYS tried first — it is the URI Beatify
+        # resolved for the user's selected provider AND storefront. The learned
+        # preference must never outrank it (a US ID that resolved once must not
+        # systematically bypass storefront-correct resolution); the preference is
+        # used only to order the REMAINING alternates below.
+        _add(None, song.get("_resolved_uri"))
+
         # Learned preference — but only if it's a field belonging to the
         # current provider (the cache survives across games where provider
-        # may have changed).
+        # may have changed) and not a legacy field we're skipping for storefront
+        # reasons (#1379). Ordered ahead of the other alternates, behind primary.
         if (
             self._ma_preferred_uri_field
             and self._ma_preferred_uri_field in provider_fields
+            and _field_eligible(self._ma_preferred_uri_field)
         ):
             _add(self._ma_preferred_uri_field, song.get(self._ma_preferred_uri_field))
 
-        # Primary: the URI Beatify picked based on the user's selected provider.
-        _add(None, song.get("_resolved_uri"))
-
         # Remaining alternates within the same provider.
         for field in provider_fields:
-            if field != self._ma_preferred_uri_field:
+            if field != self._ma_preferred_uri_field and _field_eligible(field):
                 _add(field, song.get(field))
 
         return candidates
