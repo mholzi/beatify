@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING
 
 import aiohttp
 from aiohttp import web
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from custom_components.beatify.const import (
     ARTIST_BONUS_POINTS,
@@ -56,6 +57,8 @@ from custom_components.beatify.server.serializers import (
 )
 
 if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+
     from custom_components.beatify.server.websocket import BeatifyWebSocketHandler
 
 _LOGGER = logging.getLogger(__name__)
@@ -1878,8 +1881,12 @@ async def handle_report_data(
     except (OSError, ValueError):
         _LOGGER.warning("Failed to write data quality report to %s", reports_path)
 
-    asyncio.ensure_future(
-        _create_gh_issue(artist, title, year, playlist_file, player.name)
+    # #1384: track the follow-up via HA's background-task registry so it can't
+    # be garbage-collected mid-flight and is cancelled on integration unload —
+    # instead of a bare asyncio.ensure_future that HA never sees.
+    handler.hass.async_create_background_task(
+        _create_gh_issue(handler.hass, artist, title, year, playlist_file, player.name),
+        name="beatify-report-data",
     )
 
     await ws.send_json({"type": "report_data_ack"})
@@ -1889,33 +1896,39 @@ _WORKER_URL = "https://beatify-api.mholzi.workers.dev"
 
 
 async def _create_gh_issue(
+    hass: HomeAssistant,
     artist: str,
     title: str,
     year: int | None,
     playlist_file: str,
     reporter: str,
 ) -> None:
-    """Report data quality issue via Cloudflare Worker (best-effort)."""
+    """Report data quality issue via Cloudflare Worker (best-effort).
+
+    #1384: reuses HA's shared aiohttp ClientSession via
+    ``async_get_clientsession(hass)`` rather than spinning up (and tearing down)
+    a fresh ``aiohttp.ClientSession`` per call.
+    """
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(
-                f"{_WORKER_URL}/report-data",
-                json={
-                    "artist": artist,
-                    "title": title,
-                    "year": year,
-                    "playlist_file": playlist_file,
-                    "reporter": reporter,
-                },
-                timeout=aiohttp.ClientTimeout(total=15),
-            ) as resp:
-                if resp.status not in (200, 201):
-                    _LOGGER.debug(
-                        "Worker /report-data returned %s for %s — %s",
-                        resp.status,
-                        artist,
-                        title,
-                    )
+        session = async_get_clientsession(hass)
+        async with session.post(
+            f"{_WORKER_URL}/report-data",
+            json={
+                "artist": artist,
+                "title": title,
+                "year": year,
+                "playlist_file": playlist_file,
+                "reporter": reporter,
+            },
+            timeout=aiohttp.ClientTimeout(total=15),
+        ) as resp:
+            if resp.status not in (200, 201):
+                _LOGGER.debug(
+                    "Worker /report-data returned %s for %s — %s",
+                    resp.status,
+                    artist,
+                    title,
+                )
     except (aiohttp.ClientError, asyncio.TimeoutError, OSError):
         _LOGGER.debug(
             "Worker /report-data call failed (non-critical) for %s — %s", artist, title
