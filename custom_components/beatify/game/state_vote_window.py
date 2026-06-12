@@ -48,6 +48,9 @@ The mixin relies on attributes / methods the host class owns and that live on
   deferred scoring pass runs under it.
 * ``self._score_all_players`` — the shared per-player scoring loop (stays on
   ``GameState`` so the round-end and vote-window paths cannot drift).
+* ``self._append_round_results`` — the shared round_results classifier (owned by
+  :class:`RoundScoringMixin`); called after the deferred scoring pass so the
+  share grid reflects the resolved title/artist field statuses (#1373).
 * ``self.players`` / ``self.current_song`` / ``self.phase`` — round state read
   while the window is open.
 * ``self._on_round_end`` — the async broadcast callback fired after expiry.
@@ -174,6 +177,10 @@ class VoteWindowMixin:
         correct_year = self.current_song.get("year") if self.current_song else None
         all_players = list(self.players.values())
         self._score_all_players(correct_year, all_players)
+        # #1373: append round_results here for the deferred title/artist path —
+        # the main scoring pass skipped it so this classifies the resolved
+        # field statuses (years_off is None in this mode) instead of "missed".
+        self._append_round_results()
 
     async def resolve_title_artist_if_pending(self) -> None:
         """Finalize an open vote window early (host advanced) (#1180 P4).

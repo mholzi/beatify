@@ -42,6 +42,9 @@ The mixin relies on attributes / methods the host class owns and that live on
   ``self.round_start_time`` — round state read while scoring.
 * ``self.title_artist_mode`` / ``self.has_near_misses`` — gate the deferred
   title/artist scoring path (#1180 Phase 4).
+* ``self._challenge_manager`` — :class:`ChallengeManager`; its
+  ``title_artist_round_result`` classifies ``round_results`` from the resolved
+  field statuses in title/artist mode (#1373).
 * ``self.closest_wins_mode`` / ``self.difficulty`` — Closest-Wins + scoring
   config selection.
 * ``self.calculate_round_analytics`` — Story 13.3 analytics (delegates to
@@ -125,33 +128,55 @@ class RoundScoringMixin:
                 )
 
         # Issue #120: Track round results for shareable result cards.
-        # #816: defensive wrap so a corrupt player.years_off doesn't block
-        # the round-end transition.
-        if correct_year is not None:
-            scoring_cfg = DIFFICULTY_SCORING.get(
-                self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT]
-            )
-            close_range = scoring_cfg["close_range"]
-            near_range = scoring_cfg["near_range"]
-            for player in self.players.values():
-                try:
-                    if player.submitted and player.years_off is not None:
-                        if player.years_off == 0:
-                            player.round_results.append("exact")
-                        elif close_range > 0 and player.years_off <= close_range:
-                            player.round_results.append("scored")
-                        elif near_range > 0 and player.years_off <= near_range:
-                            player.round_results.append("close")
-                        else:
-                            player.round_results.append("missed")
+        # #1373: in title/artist mode with deferred near-miss scoring, the field
+        # statuses aren't final until _finalize_title_artist_window — defer the
+        # round_results append to that path too, so it classifies the resolved
+        # statuses instead of marking the round "missed".
+        if correct_year is not None and not defer_title_artist:
+            self._append_round_results()
+
+    def _append_round_results(self) -> None:
+        """Append one round_results entry per player (#120, #1373).
+
+        Year mode classifies from player.years_off; title/artist mode classifies
+        from the resolved field statuses (years_off is always None there, which
+        would otherwise mark every round "missed" — #1373). Called from the main
+        scoring pass for year / non-deferred rounds, and from
+        _finalize_title_artist_window once deferred near-misses are resolved.
+
+        #816: each player is wrapped so a corrupt player state doesn't block the
+        round-end transition.
+        """
+        title_artist_mode = self.title_artist_mode
+        manager = self._challenge_manager if title_artist_mode else None
+        scoring_cfg = DIFFICULTY_SCORING.get(
+            self.difficulty, DIFFICULTY_SCORING[DIFFICULTY_DEFAULT]
+        )
+        close_range = scoring_cfg["close_range"]
+        near_range = scoring_cfg["near_range"]
+        for player in self.players.values():
+            try:
+                if title_artist_mode and manager is not None:
+                    player.round_results.append(
+                        manager.title_artist_round_result(player.name)
+                    )
+                elif player.submitted and player.years_off is not None:
+                    if player.years_off == 0:
+                        player.round_results.append("exact")
+                    elif close_range > 0 and player.years_off <= close_range:
+                        player.round_results.append("scored")
+                    elif near_range > 0 and player.years_off <= near_range:
+                        player.round_results.append("close")
                     else:
                         player.round_results.append("missed")
-                except (AttributeError, TypeError) as err:
-                    _LOGGER.error(
-                        "round_results append failed for player %s: %s",
-                        getattr(player, "name", "?"),
-                        err,
-                    )
+                else:
+                    player.round_results.append("missed")
+            except (AttributeError, TypeError) as err:
+                _LOGGER.error(
+                    "round_results append failed for player %s: %s",
+                    getattr(player, "name", "?"),
+                    err,
+                )
 
     async def _record_round_stats(self, correct_year: int | None) -> None:
         """Record highlights, round analytics and song-result stats (#1272).

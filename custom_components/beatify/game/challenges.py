@@ -817,6 +817,32 @@ class ChallengeManager:
             return "skipped"
         return guess[f"{field}_status"]
 
+    def title_artist_round_result(self, player_name: str) -> str:
+        """Classify a player's title/artist round for the share grid (#1373).
+
+        Returns one of "exact" / "scored" / "close" / "missed" from the stored
+        field statuses, mirroring _field_points scoring:
+
+        * "exact"  — both fields exact.
+        * "scored" — at least one field earned full points (exact or fuzzy).
+        * "close"  — only accepted near-miss(es) earned partial points.
+        * "missed" — nothing earned points.
+
+        In title/artist mode player.years_off is always None, so the year-mode
+        round_results classifier in _score_round marks every round "missed".
+        This routes round_results off the field statuses instead.
+        """
+        title_status = self.title_artist_status(player_name, "title")
+        artist_status = self.title_artist_status(player_name, "artist")
+        full = (STATUS_EXACT, STATUS_FUZZY)
+        if title_status == STATUS_EXACT and artist_status == STATUS_EXACT:
+            return "exact"
+        if title_status in full or artist_status in full:
+            return "scored"
+        if STATUS_NEAR_MISS_ACCEPTED in (title_status, artist_status):
+            return "close"
+        return "missed"
+
     @staticmethod
     def _field_points(status: str, full: int, partial: int) -> int:
         """Map a stored field status to awarded points."""
