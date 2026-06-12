@@ -10,8 +10,10 @@
  *   - buildWsUrl(location)   — ws:/wss: URL builder from a location-like object
  *   - reconnectDelay(attempt) — exponential backoff (1-based), capped at 30s
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import { buildWsUrl, reconnectDelay } from '../admin/api.js';
+
+const tick = () => new Promise((r) => setTimeout(r, 0));
 
 describe('buildWsUrl', () => {
     it('uses wss: on an https location', () => {
@@ -56,5 +58,75 @@ describe('reconnectDelay', () => {
         expect(reconnectDelay(6)).toBe(30000);
         expect(reconnectDelay(10)).toBe(30000);
         expect(reconnectDelay(100)).toBe(30000);
+    });
+});
+
+/**
+ * #1393 — the admin WS UNAUTHORIZED recovery-exhaustion path must NOT bounce
+ * Companion bypass-mode users to OAuth (which lands on the Invalid-redirect-URI
+ * screen). Instead it surfaces an actionable local-network hint and stops.
+ *
+ * The live WS lifecycle is otherwise untested (see the file header), but the
+ * message-dispatch branch is a pure switch over `data` + injected `deps` +
+ * the global `BeatifyAuth`, so we can drive it directly. MAX recoveries = 2,
+ * so the 3rd UNAUTHORIZED hits the exhaustion branch.
+ */
+describe('handleAdminWsMessage UNAUTHORIZED recovery exhaustion (#1393)', () => {
+    afterEach(() => {
+        delete globalThis.BeatifyAuth;
+        delete globalThis.window;
+    });
+
+    // Fresh module per test so the module-private adminWsAuthRecoveryAttempts
+    // counter starts at 0 (it is intentionally not exported/resettable).
+    async function setup(bypass) {
+        vi.resetModules();
+        const api = await import('../admin/api.js');
+        const calls = { showError: [], logout: 0, login: 0, rejections: 0, api };
+        api.initAdminApi({ showError: (m) => calls.showError.push(m), debug: () => {} });
+        globalThis.window = {
+            location: { protocol: 'https:', host: 'ha.example' },
+            BeatifyI18n: undefined,
+        };
+        globalThis.BeatifyAuth = {
+            isCompanionBypassMode: () => bypass,
+            // In bypass mode handleServerRejection resolves null without nav;
+            // here we just mirror that so the recovery .then runs and clears
+            // the recovering flag between attempts.
+            handleServerRejection: () => { calls.rejections++; return Promise.resolve(null); },
+            getAccessToken: () => Promise.resolve(null),
+            logout: () => { calls.logout++; },
+            login: () => { calls.login++; },
+        };
+        return calls;
+    }
+
+    // Drive N UNAUTHORIZED messages, awaiting the microtask between each so the
+    // in-flight handleServerRejection().then() clears adminWsAuthRecovering.
+    async function fireUnauthorized(api, n) {
+        for (let i = 0; i < n; i++) {
+            api.handleAdminWsMessage({ type: 'error', code: 'UNAUTHORIZED', message: 'nope' });
+            await tick();
+        }
+    }
+
+    it('Companion bypass mode: shows local-network hint, never calls logout()/login()', async () => {
+        const calls = await setup(true);
+        await fireUnauthorized(calls.api, 3); // attempts 1,2 recover; 3rd exhausts
+        expect(calls.login).toBe(0);
+        expect(calls.logout).toBe(0);
+        expect(calls.showError).toHaveLength(1);
+        expect(calls.showError[0]).toMatch(/local network access from the Companion app/i);
+    });
+
+    it('Normal browser: exhaustion still bounces to OAuth re-login (no regression)', async () => {
+        const calls = await setup(false);
+        await fireUnauthorized(calls.api, 3);
+        expect(calls.logout).toBe(1);
+        expect(calls.login).toBe(1);
+        // The exhaustion toast uses the wsAuthFailed/HA-rejected wording, not
+        // the Companion hint.
+        expect(calls.showError).toHaveLength(1);
+        expect(calls.showError[0]).toMatch(/rejected the access token/i);
     });
 });

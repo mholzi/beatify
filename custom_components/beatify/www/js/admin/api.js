@@ -284,6 +284,28 @@ export function handleAdminWsMessage(data) {
                     break;
                 }
                 if (adminWsAuthRecoveryAttempts >= MAX_ADMIN_WS_AUTH_RECOVERIES) {
+                    // #1393: in Companion bypass mode the server authorizes via
+                    // UA+RFC1918, so an exhausted recovery means the request
+                    // reached Beatify over a non-local address — re-login via
+                    // OAuth can't fix that and BeatifyAuth.login()'s
+                    // /auth/authorize redirect would land the Companion WebView
+                    // on the Invalid-redirect-URI screen (#1153). Surface an
+                    // actionable local-network hint and stop, no redirect.
+                    if (BeatifyAuth.isCompanionBypassMode()) {
+                        console.warn(
+                            '[Admin WS] Auth recovery exhausted in Companion ' +
+                            'bypass mode — Beatify was reached over a non-local ' +
+                            'address; OAuth re-login would hit the ' +
+                            'Invalid-redirect-URI screen. Surfacing local-network hint.'
+                        );
+                        var companionMsg =
+                            (window.BeatifyI18n && BeatifyI18n.t('admin.companionLocalNetworkRequired')) ||
+                            'Beatify admin requires local network access from the ' +
+                            'Companion app — open Beatify in an external browser, ' +
+                            'or connect to your home Wi-Fi.';
+                        try { deps.showError(companionMsg); } catch (e) { /* showError may not be in scope on early load */ }
+                        break;
+                    }
                     // Refreshed access token still rejected. Sessions are
                     // wedged — bounce to HA login. rc6 (#1120): surface a
                     // visible toast first so the user knows what's

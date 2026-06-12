@@ -573,6 +573,66 @@ describe('Companion bypass mode (#1131 — UA + RFC1918 trust on server)', () =>
         expect(token).toBeNull();
         expect(loginCalls).toBe(0); // no /auth/authorize navigation
     });
+
+    it('handleServerRejection() resolves null in bypass mode WITHOUT refresh or OAuth redirect (#1393)', async () => {
+        // #1393: when the server rejects a bypass-mode connection (Companion
+        // reached Beatify over a non-RFC1918 address), handleServerRejection()
+        // previously ran refreshAccess() then login() → window.location.replace
+        // to /auth/authorize → the Invalid-redirect-URI / #1153 screen with no
+        // recovery. The guard must resolve null without ANY fetch (refresh) or
+        // location.replace (OAuth redirect).
+        let fetchCalls = 0;
+        let replaceCalls = 0;
+        const fetchFn = async () => {
+            fetchCalls += 1;
+            return { ok: false, status: 401 };
+        };
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({
+            fetchFn,
+            userAgent: COMPANION_UA,
+        });
+        const _origReplace = sandboxWindow.location.replace;
+        sandboxWindow.location.replace = function (url) {
+            replaceCalls += 1;
+            return _origReplace.call(this, url);
+        };
+        const token = await BeatifyAuth.handleServerRejection();
+        expect(token).toBeNull();
+        expect(fetchCalls).toBe(0);   // no refreshAccess() bridge/HTTP attempt
+        expect(replaceCalls).toBe(0); // no /auth/authorize navigation
+    });
+
+    it('handleServerRejection() in a NORMAL browser still refreshes + redirects (no regression)', async () => {
+        // Desktop / non-Companion: the guard must NOT change the existing
+        // recovery — a server rejection still forces a refresh and, when that
+        // fails, an OAuth redirect.
+        let replaceUrl = null;
+        const fetchFn = async () => ({ ok: false, status: 401 }); // refresh fails
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({
+            fetchFn,
+            userAgent: 'Mozilla/5.0 (Macintosh) Safari/605',
+        });
+        sandboxWindow.location.replace = (url) => { replaceUrl = url; };
+        // The returned promise never resolves (navigating away) — assert the
+        // side effect instead, after a tick lets refreshAccess reject.
+        BeatifyAuth.handleServerRejection();
+        await new Promise((r) => setTimeout(r, 0));
+        expect(replaceUrl).toContain('/auth/authorize');
+    });
+
+    it('login() is suppressed in bypass mode — no /auth/authorize redirect (#1393)', () => {
+        // #1393 defensive guard: a direct login() call in bypass mode must NOT
+        // window.location.replace to /auth/authorize (the Invalid-redirect-URI
+        // screen). It logs an actionable hint and returns.
+        let replaceCalls = 0;
+        const { BeatifyAuth, sandboxWindow } = loadHaAuth({
+            userAgent: COMPANION_UA,
+        });
+        sandboxWindow.location.replace = () => { replaceCalls += 1; };
+        BeatifyAuth.login();
+        expect(replaceCalls).toBe(0);
+        expect(sandboxWindow.location._lastReplace).toBeUndefined();
+    });
 });
 
 describe('login() OAuth redirect', () => {

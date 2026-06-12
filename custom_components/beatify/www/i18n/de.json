@@ -352,6 +352,8 @@
     "stop": "Stop",
     "stopSong": "Song stoppen",
     "connectionLost": "Verbindung verloren — wird reconnected...",
+    "wsAuthFailed": "Home Assistant hat den Zugriffstoken abgelehnt. Erneute Anmeldung…",
+    "companionLocalNetworkRequired": "Beatify-Admin benötigt lokalen Netzwerkzugriff aus der Companion-App — öffne Beatify in einem externen Browser oder verbinde dich mit deinem Heim-WLAN.",
     "confirmIntro": "Runde starten",
     "next": "Weiter",
     "nextRound": "Nächste Runde",
