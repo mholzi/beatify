@@ -238,6 +238,9 @@ class GameSetupMixin:
         # REVEAL auto-advance and double-scores a round. Reset them explicitly.
         self._title_artist_voting_open = False
         self._title_artist_vote_deadline = None
+        # #1371: clear the pause snapshot of the vote window too.
+        self._paused_vote_open = False
+        self._paused_vote_deadline = None
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None

@@ -1122,6 +1122,72 @@ class TestResumeGame:
         assert self.state.reveal_started_at is None
 
     @pytest.mark.asyncio
+    async def test_resume_to_reveal_rearms_auto_advance(self):
+        """#1371: a pause during REVEAL cancels the auto-advance task; resume
+        must re-arm it, otherwise the game stalls on REVEAL forever (the very
+        admin-disconnect pause unattended mode is meant to survive)."""
+        self.state.phase = GamePhase.REVEAL
+        # A round where someone submitted → auto-advance (not idle-halt).
+        for p in self.state.players.values():
+            p.submitted = True
+        await self.state.pause_game("admin_disconnected")
+        assert self.state._auto_advance_task is None  # pause cancelled it
+        with patch.object(self.state, "_schedule_song_end_auto_advance") as rearm:
+            result = await self.state.resume_game()
+        assert result is True
+        assert self.state.phase == GamePhase.REVEAL
+        rearm.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_resume_to_reveal_rearms_idle_halt_when_no_guesses(self):
+        """#1371: zero-guess REVEAL must re-arm via the same scheduler helper
+        (which picks idle-halt when nobody submitted)."""
+        self.state.phase = GamePhase.REVEAL
+        for p in self.state.players.values():
+            p.submitted = False
+        await self.state.pause_game("admin_disconnected")
+        with patch.object(self.state, "_schedule_song_end_auto_advance") as rearm:
+            await self.state.resume_game()
+        rearm.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_resume_to_playing_does_not_rearm_reveal(self):
+        """#1371 guard: a resume-to-PLAYING must NOT touch the REVEAL re-arm."""
+        with patch.object(self.state, "_schedule_song_end_auto_advance") as rearm:
+            await self.state.pause_game("admin_disconnected")  # from PLAYING
+            await self.state.resume_game()
+        rearm.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_resume_to_reveal_respawns_open_vote_window(self):
+        """#1371: a vote window open at pause with time left is re-opened for
+        the remaining seconds — voting_open True again with a fresh deadline."""
+        self.state.phase = GamePhase.REVEAL
+        self.state._title_artist_voting_open = True
+        self.state._title_artist_vote_deadline = self.state._now() + 20
+        await self.state.pause_game("admin_disconnected")
+        # pause snapshotted the window even though cancel may reset live flags.
+        assert self.state._paused_vote_open is True
+        with patch.object(self.state, "_title_artist_vote_window", new=AsyncMock()):
+            await self.state.resume_game()
+        assert self.state._title_artist_voting_open is True
+        assert self.state._title_artist_vote_deadline is not None
+        # Snapshot consumed.
+        assert self.state._paused_vote_open is False
+
+    @pytest.mark.asyncio
+    async def test_resume_to_reveal_finalizes_elapsed_vote_window(self):
+        """#1371: a vote window whose deadline elapsed during the pause is
+        finalized on resume (no zombie 0s-window) instead of respawned."""
+        self.state.phase = GamePhase.REVEAL
+        self.state._title_artist_voting_open = True
+        self.state._title_artist_vote_deadline = self.state._now() - 5  # elapsed
+        await self.state.pause_game("admin_disconnected")
+        self.state._finalize_title_artist_window = AsyncMock()
+        await self.state.resume_game()
+        self.state._finalize_title_artist_window.assert_awaited_once()
+
+    @pytest.mark.asyncio
     async def test_resume_not_paused(self):
         result = await self.state.resume_game()
         assert result is False
