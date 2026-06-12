@@ -50,12 +50,33 @@ from custom_components.beatify.const import (
 )
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.companion_auth import is_companion_trusted_meta
-from custom_components.beatify.server.serializers import build_state_message
+from custom_components.beatify.server.serializers import (
+    build_state_message,
+    redact_state_for_player,
+)
 
 if TYPE_CHECKING:
     from custom_components.beatify.server.websocket import BeatifyWebSocketHandler
 
 _LOGGER = logging.getLogger(__name__)
+
+
+async def _send_state_to(
+    ws: web.WebSocketResponse, state_msg: dict, game_state: GameState
+) -> None:
+    """Send a ``state`` message to a single recipient, redacted for players.
+
+    #1366: ``state`` frames carry the round's answers (admin_song year;
+    song.artist/title in title_artist_mode). Only the spectator admin WS
+    (``game_state._admin_ws``) may receive them unfiltered; every other
+    connection — including an admin who joined as a *participant* — gets a
+    redacted copy, matching the per-recipient filtering in
+    ``BeatifyWebSocketHandler.broadcast``.
+    """
+    payload = state_msg
+    if ws is not game_state._admin_ws:
+        payload = redact_state_for_player(state_msg)
+    await ws.send_json(payload)
 
 
 # ---------------------------------------------------------------------------
@@ -326,12 +347,12 @@ async def handle_join(
                 }
             )
 
-        # Send full state to newly joined player
+        # Send state to newly joined player (redacted — #1366)
         state_msg = build_state_message(game_state)
         if not state_msg:
             return
         try:
-            await ws.send_json(state_msg)
+            await _send_state_to(ws, state_msg, game_state)
         except (ConnectionError, RuntimeError) as err:
             _LOGGER.warning("Failed to send state to new player: %s", err)
             return
@@ -443,7 +464,7 @@ async def handle_get_state(
     """Handle dashboard/observer state request (Story 10.4)."""
     state_msg = build_state_message(game_state)
     if state_msg:
-        await ws.send_json(state_msg)
+        await _send_state_to(ws, state_msg, game_state)
 
 
 async def handle_round_timeout(
@@ -1215,7 +1236,7 @@ async def handle_reconnect(
 
     state_msg = build_state_message(game_state)
     if state_msg:
-        await ws.send_json(state_msg)
+        await _send_state_to(ws, state_msg, game_state)
 
     await handler.broadcast_state()
 
