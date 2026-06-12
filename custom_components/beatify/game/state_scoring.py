@@ -114,7 +114,9 @@ class RoundScoringMixin:
         # #816: same defensive wrap as above.
         if self.closest_wins_mode and correct_year is not None:
             try:
-                ScoringService.apply_closest_wins(all_players, correct_year)
+                ScoringService.apply_closest_wins(
+                    all_players, correct_year, self.streak_achievements
+                )
             except (KeyError, AttributeError, TypeError, ValueError) as err:
                 _LOGGER.error(
                     "apply_closest_wins failed in round %d: %s — round still ends",

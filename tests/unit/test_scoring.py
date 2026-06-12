@@ -329,7 +329,12 @@ class TestApplyClosestWins:
         assert p1.round_scores == [10]
 
     def test_streak_break_for_non_closest(self):
-        """Non-closest player's streak resets to 0."""
+        """Non-closest player's streak resets to 0.
+
+        The streak value on the loser is the *incremented* streak that
+        _apply_streak produced for this (now-voided) scoring round, so
+        previous_streak rolls back to the pre-round value (streak - 1), #1375.
+        """
         p1 = _make_player("Alice", 2000, 10, streak=3, streak_bonus=20)
         p1.score = 10 + 20  # round_score + streak_bonus already added
         p2 = _make_player("Bob", 1990, 5, streak=4, streak_bonus=0)
@@ -339,11 +344,113 @@ class TestApplyClosestWins:
         # Winner keeps streak
         assert p1.streak == 3
         assert p1.streak_bonus == 20
-        # Loser's streak is broken
+        # Loser's streak is broken; previous_streak = pre-round value (4 - 1).
         assert p2.streak == 0
         assert p2.streak_bonus == 0
-        assert p2.previous_streak == 4
+        assert p2.previous_streak == 3
         assert p2.round_score == 0
+
+    def test_best_streak_rolled_back_when_round_voided(self):
+        """A voided streak round must not leave best_streak inflated (#1375)."""
+        # Alice wins; Bob scored this round (streak 3) and set best_streak=3.
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player("Bob", 1990, 5, streak=3, best_streak=3)
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        # The streak Bob built this round is revoked, so the record it set is
+        # rolled back to the pre-round value.
+        assert p2.streak == 0
+        assert p2.best_streak == 2
+
+    def test_best_streak_kept_when_earlier_peak_higher(self):
+        """best_streak from an earlier, higher peak survives the rollback."""
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player("Bob", 1990, 5, streak=3, best_streak=7)
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        assert p2.streak == 0
+        assert p2.best_streak == 7  # untouched — earlier round peaked higher
+
+    def test_milestone_counter_decremented(self):
+        """A voided round that hit a milestone decrements the shared counter."""
+        # Bob's streak reached 3, ticking the streak_3 milestone last round.
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player("Bob", 1990, 5, streak=3)
+        achievements = {"streak_3": 1, "streak_5": 0}
+
+        ScoringService.apply_closest_wins([p1, p2], 2000, achievements)
+
+        assert achievements["streak_3"] == 0
+        assert achievements["streak_5"] == 0
+
+    def test_milestone_counter_not_below_zero(self):
+        """No milestone bucket for this streak → counter untouched, no crash."""
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player("Bob", 1990, 5, streak=2)  # streak_2 not a milestone
+        achievements = {"streak_3": 1}
+
+        ScoringService.apply_closest_wins([p1, p2], 2000, achievements)
+
+        assert achievements["streak_3"] == 1  # unrelated bucket untouched
+
+    def test_steal_unlock_revoked_when_newly_unlocked(self):
+        """Steal unlocked by the voided streak round is revoked (#1375)."""
+        from custom_components.beatify.const import STEAL_UNLOCK_STREAK
+
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player(
+            "Bob",
+            1990,
+            5,
+            streak=STEAL_UNLOCK_STREAK,
+            steal_available=True,
+            steal_used=False,
+        )
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        assert p2.streak == 0
+        assert p2.steal_available is False
+
+    def test_used_steal_not_revoked(self):
+        """An already-USED steal stays used; only the credit can be revoked."""
+        from custom_components.beatify.const import STEAL_UNLOCK_STREAK
+
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player(
+            "Bob",
+            1990,
+            5,
+            streak=STEAL_UNLOCK_STREAK,
+            steal_available=False,
+            steal_used=True,
+        )
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        assert p2.steal_used is True
+        assert p2.steal_available is False
+
+    def test_previous_streak_preserved_for_zero_score_player(self):
+        """A player who scored 0 this round keeps their real previous_streak.
+
+        _apply_streak already broke their streak and saved the pre-break value
+        in previous_streak; apply_closest_wins must not overwrite it with 0
+        (which would break the "lost X-streak" reveal display), #1375.
+        """
+        p1 = _make_player("Alice", 2000, 10)
+        # Bob guessed badly, scored 0, _apply_streak set streak=0 and saved
+        # previous_streak=6 ("lost a 6-streak"). He's also non-closest here.
+        p2 = _make_player("Bob", 1980, 0, streak=0, previous_streak=6)
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        assert p2.round_score == 0
+        assert p2.streak == 0
+        # Real previous_streak preserved — NOT clobbered to 0.
+        assert p2.previous_streak == 6
 
 
 # ---------------------------------------------------------------------------
