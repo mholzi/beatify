@@ -1214,20 +1214,34 @@ class MediaPlayerService:
             return False, msg
 
         try:
-            # Use volume_set with current volume as a lightweight ping
-            # This wakes up sleeping speakers without changing anything
-            current_volume = self.get_volume()
+            # Read the *real* reported volume — NOT get_volume(), which masks
+            # an unreported volume_level as a hard-coded 0.5. Writing that 0.5
+            # back via volume_set would physically blast an idle speaker (the
+            # very speakers this ping targets) to 50%, instead of being the
+            # promised no-op (#1382).
+            reported_volume = state.attributes.get("volume_level")
 
             async with async_timeout(PREFLIGHT_TIMEOUT):
-                await self._hass.services.async_call(
-                    "media_player",
-                    "volume_set",
-                    {
-                        "entity_id": self._entity_id,
-                        "volume_level": current_volume,
-                    },
-                    blocking=True,
-                )
+                if reported_volume is not None:
+                    # Genuine no-op ping: re-set the speaker to its own volume.
+                    await self._hass.services.async_call(
+                        "media_player",
+                        "volume_set",
+                        {
+                            "entity_id": self._entity_id,
+                            "volume_level": float(reported_volume),
+                        },
+                        blocking=True,
+                    )
+                else:
+                    # No volume reported (sleeping/idle speaker): use a truly
+                    # read-only refresh as the ping so we never change volume.
+                    await self._hass.services.async_call(
+                        "homeassistant",
+                        "update_entity",
+                        {"entity_id": self._entity_id},
+                        blocking=True,
+                    )
             _LOGGER.debug("Media player %s is responsive", self._entity_id)
             self._preflight_verified = True
             return True, ""
