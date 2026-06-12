@@ -2050,3 +2050,58 @@ class TestWaitForMetadataUpdateCrossProvider:
             result = await task
 
         assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
+
+
+class TestAlexaContentType:
+    """#1402: Alexa dispatch must map provider -> content_type explicitly and
+    warn on an unexpected provider instead of silently treating everything as
+    Apple Music."""
+
+    @staticmethod
+    def _service(provider: str):
+        hass = _make_hass("playing")
+        svc = MediaPlayerService(
+            hass, "media_player.echo", platform="alexa_media", provider=provider
+        )
+        return svc, hass
+
+    @pytest.mark.asyncio
+    async def test_spotify_maps_to_spotify(self):
+        svc, hass = self._service("spotify")
+        await svc._play_via_alexa(_make_song())
+        call = hass.services.async_call.call_args
+        assert call[0][2]["media_content_type"] == "SPOTIFY"
+
+    @pytest.mark.asyncio
+    async def test_amazon_maps_to_amazon_music(self):
+        svc, hass = self._service("amazon_music")
+        await svc._play_via_alexa(_make_song())
+        call = hass.services.async_call.call_args
+        assert call[0][2]["media_content_type"] == "AMAZON_MUSIC"
+
+    @pytest.mark.asyncio
+    async def test_apple_music_maps_to_apple_music_no_warning(self):
+        svc, hass = self._service("apple_music")
+        with patch(
+            "custom_components.beatify.services.media_player._LOGGER"
+        ) as mock_log:
+            await svc._play_via_alexa(_make_song())
+        call = hass.services.async_call.call_args
+        assert call[0][2]["media_content_type"] == "APPLE_MUSIC"
+        assert not any(
+            "unexpected provider" in str(c) for c in mock_log.warning.call_args_list
+        )
+
+    @pytest.mark.asyncio
+    async def test_unexpected_provider_falls_back_and_warns(self):
+        """A provider with no Alexa mapping (e.g. deezer) falls back to
+        APPLE_MUSIC but logs a warning naming the provider (#1402)."""
+        svc, hass = self._service("deezer")
+        with patch(
+            "custom_components.beatify.services.media_player._LOGGER"
+        ) as mock_log:
+            await svc._play_via_alexa(_make_song())
+        call = hass.services.async_call.call_args
+        assert call[0][2]["media_content_type"] == "APPLE_MUSIC"
+        warnings = [str(c) for c in mock_log.warning.call_args_list]
+        assert any("unexpected provider" in w and "deezer" in w for w in warnings)

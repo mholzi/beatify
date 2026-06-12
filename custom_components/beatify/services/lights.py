@@ -161,6 +161,13 @@ class PartyLightsService:
                     "brightness": state.attributes.get("brightness"),
                     "rgb_color": state.attributes.get("rgb_color"),
                     "color_temp_kelvin": state.attributes.get("color_temp_kelvin"),
+                    # #1402: remember which color attribute was actually active.
+                    # A light reports BOTH rgb_color and color_temp_kelvin in its
+                    # attributes (the inactive one lingers), so restore must only
+                    # replay the attribute matching the active color_mode — sending
+                    # both in one turn_on is contradictory and the light picks one
+                    # nondeterministically.
+                    "color_mode": state.attributes.get("color_mode"),
                 }
 
         # #1402 B2: a prior service handed us the genuine pre-party states.
@@ -401,10 +408,27 @@ class PartyLightsService:
                     restore_data: dict[str, Any] = {"entity_id": entity_id}
                     if saved.get("brightness") is not None:
                         restore_data["brightness"] = saved["brightness"]
-                    if saved.get("rgb_color") is not None:
-                        restore_data["rgb_color"] = list(saved["rgb_color"])
-                    if saved.get("color_temp_kelvin") is not None:
-                        restore_data["color_temp_kelvin"] = saved["color_temp_kelvin"]
+                    # #1402: restore only the color attribute matching the
+                    # active color_mode. Sending rgb_color AND color_temp_kelvin
+                    # in the same turn_on is contradictory; the light resolves it
+                    # nondeterministically and the original color is not reliably
+                    # restored. color_temp mode → color_temp_kelvin only; any
+                    # rgb/hs/xy mode → rgb_color only. When color_mode is unknown
+                    # (older/partial states), fall back to rgb_color if present,
+                    # else color_temp_kelvin — never both.
+                    color_mode = saved.get("color_mode")
+                    rgb = saved.get("rgb_color")
+                    ct = saved.get("color_temp_kelvin")
+                    if color_mode == "color_temp":
+                        if ct is not None:
+                            restore_data["color_temp_kelvin"] = ct
+                    elif color_mode in ("rgb", "rgbw", "rgbww", "hs", "xy"):
+                        if rgb is not None:
+                            restore_data["rgb_color"] = list(rgb)
+                    elif rgb is not None:
+                        restore_data["rgb_color"] = list(rgb)
+                    elif ct is not None:
+                        restore_data["color_temp_kelvin"] = ct
                     await self._hass.services.async_call(
                         "light",
                         "turn_on",
