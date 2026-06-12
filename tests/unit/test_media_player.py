@@ -635,6 +635,199 @@ class TestMANonBlockingPlayback:
 
         assert result is True
 
+    @pytest.mark.asyncio
+    async def test_fast_path_rejects_unrelated_auto_advance_title(self):
+        """#1381: the requested URI fails to resolve in MA, but the speaker's
+        prior queue naturally auto-advances to its NEXT track within the wait
+        window. The new title is unrelated (different song, different artist),
+        so fast-path Path 2 must NOT instant-confirm it as our track.
+
+        The old code accepted ANY title != title_before with fresh position →
+        a round ran with the wrong audio, silently (the #795 failure class).
+        """
+        before = _make_state(
+            "playing",
+            media_title="Bohemian Rhapsody",
+            media_position=120,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        # Prior queue auto-advanced to its own next track — unrelated to ours.
+        auto_advanced = _make_state(
+            "playing",
+            media_title="Another One Bites the Dust",
+            media_position=2,
+            media_position_updated_at="2020-01-01T00:00:01+00:00",  # fresh
+        )
+        auto_advanced.attributes["media_artist"] = "Queen"
+
+        hass = _make_hass("playing", media_title="Bohemian Rhapsody")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        call_count = 0
+
+        def progression(*_args):
+            nonlocal call_count
+            call_count += 1
+            return before if call_count <= 1 else auto_advanced
+
+        hass.states.get = MagicMock(side_effect=progression)
+
+        # No state-change events fire; force the wait to time out instantly so
+        # the test does not block for MA_PLAYBACK_TIMEOUT.
+        async def _instant_timeout(awaitable=None, *_a, **_k):
+            if awaitable is not None and asyncio.iscoroutine(awaitable):
+                awaitable.close()  # don't leak an un-awaited coroutine
+            raise asyncio.TimeoutError
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.wait_for",
+            new=_instant_timeout,
+        ):
+            confirmed = await svc._try_ma_play(
+                "spotify:track:our-song", "Sweet Child O' Mine", "Guns N' Roses"
+            )
+
+        # The fast-path (Path 2) must NOT have confirmed this unrelated track.
+        # (It falls through to the post-timeout #345 tolerance, path 0.)
+        assert svc._last_confirm_path != 2
+        # And whatever the final outcome, an unrelated auto-advance must never
+        # be learned as a working URI field.
+        assert confirmed is True  # #345 tolerance still returns True post-timeout
+        assert svc._last_confirm_path == 0
+
+    @pytest.mark.asyncio
+    async def test_fast_path_accepts_title_token_overlap(self):
+        """#1381: a punctuation/word-order mismatch where the exact substring
+        (Path 1) fails but the titles share a significant token must still
+        fast-path confirm via Path 2's similarity gate. Expected
+        "Sweet Child O' Mine" vs MA's "Sweet Child o Mine (Remaster)" — the
+        apostrophe/casing breaks the substring, tokens still overlap."""
+        before = _make_state(
+            "playing",
+            media_title="Old Track",
+            media_position=120,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        current = _make_state(
+            "playing",
+            media_title="Sweet Child o Mine (Remaster)",
+            media_position=2,
+            media_position_updated_at="2020-01-01T00:00:01+00:00",
+        )
+        current.attributes["media_artist"] = "Some Cover Artist"
+
+        hass = _make_hass("playing", media_title="Old Track")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        hass.states.get = MagicMock(side_effect=[before, current])
+
+        confirmed = await svc._try_ma_play(
+            "spotify:track:x", "Sweet Child O' Mine", "Different Artist"
+        )
+
+        assert confirmed is True
+        assert svc._last_confirm_path == 2
+
+    @pytest.mark.asyncio
+    async def test_fast_path_accepts_artist_match_on_title_mismatch(self):
+        """#1381: 'Das Modell' vs MA's 'The Model' share no title token, but the
+        expected artist matches media_artist → Path 2 confirms (Levtos case)."""
+        before = _make_state(
+            "playing",
+            media_title="Manhattan Skyline",
+            media_position=120,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        current = _make_state(
+            "playing",
+            media_title="The Model",
+            media_position=2,
+            media_position_updated_at="2020-01-01T00:00:01+00:00",
+        )
+        current.attributes["media_artist"] = "Kraftwerk"
+
+        hass = _make_hass("playing", media_title="Manhattan Skyline")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        hass.states.get = MagicMock(side_effect=[before, current])
+
+        confirmed = await svc._try_ma_play("spotify:track:x", "Das Modell", "Kraftwerk")
+
+        assert confirmed is True
+        assert svc._last_confirm_path == 2
+
+    @pytest.mark.asyncio
+    async def test_preferred_uri_field_not_learned_on_path2_confirmation(self):
+        """#1381: a fallback candidate that only confirmed via Path 2 (weaker
+        similarity gate, not an expected-title substring) must NOT be promoted
+        to _ma_preferred_uri_field — doing so reorders future candidates wrongly
+        for a field that never proved it resolved our track."""
+        hass = _make_hass()
+        svc = MediaPlayerService(
+            hass,
+            "media_player.test",
+            platform="music_assistant",
+            provider="spotify",
+        )
+        song = {
+            "title": "Song",
+            "artist": "Artist",
+            "uri": "spotify:track:legacy",
+            "uri_spotify": "spotify:track:canonical",
+            "_resolved_uri": "spotify:track:canonical",
+        }
+
+        async def fake_try(
+            uri: str, expected_title: str, expected_artist: str = ""
+        ) -> bool:
+            ok = uri == "spotify:track:legacy"
+            if ok:
+                svc._last_confirm_path = 2  # weak (similarity-gate) confirmation
+            return ok
+
+        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
+            result = await svc._play_via_music_assistant(song)
+
+        assert result is True
+        # Path-2-only confirmation must not learn the field.
+        assert svc._ma_preferred_uri_field is None
+
+
+class TestTitleSimilarityGate:
+    """#1381: unit tests for the fast-path Path 2 similarity helpers."""
+
+    def test_token_overlap_matches_suffix(self):
+        from custom_components.beatify.services.media_player import (
+            _titles_plausibly_match,
+        )
+
+        assert _titles_plausibly_match("Hallelujah", "Hallelujah - Live")
+        assert _titles_plausibly_match("Sweet Child O' Mine", "Sweet Child o Mine")
+
+    def test_prefix_matches_remaster_suffix(self):
+        from custom_components.beatify.services.media_player import (
+            _titles_plausibly_match,
+        )
+
+        assert _titles_plausibly_match("Africa", "Africa (Remastered 2020)")
+
+    def test_unrelated_titles_do_not_match(self):
+        from custom_components.beatify.services.media_player import (
+            _titles_plausibly_match,
+        )
+
+        assert not _titles_plausibly_match(
+            "Sweet Child O' Mine", "Another One Bites the Dust"
+        )
+        # Short noise words alone never bridge two unrelated titles.
+        assert not _titles_plausibly_match("Go", "No")
+
+    def test_artist_match_helper(self):
+        from custom_components.beatify.services.media_player import _artist_matches
+
+        assert _artist_matches("Kraftwerk", "Kraftwerk")
+        assert _artist_matches("The Beatles", "Beatles")
+        assert not _artist_matches("Queen", "Guns N' Roses")
+        assert not _artist_matches("", "Queen")
+
 
 class TestAvailabilityCheck:
     """Tests for is_available() used in state.py pre-flight."""
@@ -973,9 +1166,16 @@ class TestMAProviderFallback:
 
         calls: list[str] = []
 
-        async def fake_try(uri: str, expected_title: str) -> bool:
+        async def fake_try(
+            uri: str, expected_title: str, expected_artist: str = ""
+        ) -> bool:
             calls.append(uri)
-            return uri == "spotify:track:legacy"  # primary fails, legacy succeeds
+            ok = uri == "spotify:track:legacy"  # primary fails, legacy succeeds
+            if ok:
+                # Simulate a Path-1 (expected-title substring) confirmation —
+                # the only path strong enough to learn a preferred URI field.
+                svc._last_confirm_path = 1
+            return ok
 
         with patch.object(svc, "_try_ma_play", side_effect=fake_try):
             result = await svc._play_via_music_assistant(song)
@@ -1054,10 +1254,15 @@ class TestMAProviderFallback:
 
         calls: list[str] = []
 
-        async def fake_try(uri: str, expected_title: str) -> bool:
+        async def fake_try(
+            uri: str, expected_title: str, expected_artist: str = ""
+        ) -> bool:
             calls.append(uri)
             # Canonical never works in this user's setup; legacy always does.
-            return uri.endswith("-legacy")
+            ok = uri.endswith("-legacy")
+            if ok:
+                svc._last_confirm_path = 1  # Path-1 confirmation learns the field
+            return ok
 
         with patch.object(svc, "_try_ma_play", side_effect=fake_try):
             assert await svc._play_via_music_assistant(song_a) is True

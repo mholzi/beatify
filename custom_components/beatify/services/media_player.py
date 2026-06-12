@@ -101,6 +101,62 @@ PLAYBACK_TIMEOUT = 8.0
 # advanced before the track had actually swapped on the speaker.
 MA_PLAYBACK_TIMEOUT = 15.0
 
+# #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
+# instant-accept an *arbitrary* title change. If a requested URI fails to
+# resolve in MA while the speaker's prior queue naturally auto-advances to its
+# next track within the wait window, the title changes to an unrelated song and
+# the old code confirmed it as success in ~1s — silently running a round whose
+# audio is the wrong track (the #795 failure class). Path 2 now requires cheap
+# evidence that the new title is plausibly OUR track: either a token overlap
+# with the expected title (remaster/translation tolerance, e.g. "Das Modell"
+# vs "The Model" share no tokens but the artist matches) OR the expected artist
+# appearing in the speaker's media_artist. The unbounded "any new title"
+# acceptance is reserved for the post-timeout #345 branch, where it is logged.
+_TITLE_TOKEN_MIN_LEN = 3
+
+
+def _normalize_for_match(text: str) -> str:
+    """Lower-case and strip non-alphanumeric to ASCII-ish tokens for matching."""
+    return "".join(c if c.isalnum() else " " for c in text.lower())
+
+
+def _title_tokens(text: str) -> set[str]:
+    """Significant word tokens of a title (drops short noise words/suffixes)."""
+    return {
+        tok
+        for tok in _normalize_for_match(text).split()
+        if len(tok) >= _TITLE_TOKEN_MIN_LEN
+    }
+
+
+def _titles_plausibly_match(expected_title: str, current_title: str) -> bool:
+    """Cheap similarity gate for fast-path Path 2 (#1381).
+
+    True when the two titles share at least one significant token, or one
+    normalized title is a prefix of the other (covers "(Remastered)" suffixes
+    and minor punctuation differences). False for genuinely unrelated titles
+    (e.g. the prior queue auto-advancing to a different song).
+    """
+    exp_norm = _normalize_for_match(expected_title).strip()
+    cur_norm = _normalize_for_match(current_title).strip()
+    if not exp_norm or not cur_norm:
+        return False
+    if cur_norm.startswith(exp_norm) or exp_norm.startswith(cur_norm):
+        return True
+    return bool(_title_tokens(expected_title) & _title_tokens(current_title))
+
+
+def _artist_matches(expected_artist: str, media_artist: str) -> bool:
+    """True when the expected artist is plausibly present in media_artist (#1381)."""
+    exp = _normalize_for_match(expected_artist).strip()
+    cur = _normalize_for_match(media_artist).strip()
+    if not exp or not cur:
+        return False
+    if exp in cur or cur in exp:
+        return True
+    return bool(_title_tokens(expected_artist) & _title_tokens(media_artist))
+
+
 # Timeout for waiting for metadata to update after playing (seconds)
 # Wait up to 2s for MA to push fresh metadata (album art, etc.) after a
 # playback transition. Reduced from 5s — that earlier value was the
@@ -207,6 +263,11 @@ class MediaPlayerService:
         # candidate list so subsequent songs don't pay the primary-attempt
         # timeout on every round (#768).
         self._ma_preferred_uri_field: str | None = None
+        # #1381: which acceptance path confirmed the most recent successful
+        # _try_ma_play. 1 = expected-title substring (Path 1, strongest), 2 =
+        # similarity/artist gate (Path 2), 0 = post-timeout #345 tolerance.
+        # Only Path 1 is strong enough to promote a URI field to preferred.
+        self._last_confirm_path: int = 0
         # #808 follow-up: classify the most recent failure mode so the
         # caller (game/state.py:start_round) can decide whether to count
         # this against MAX_SONG_RETRIES (real failure) or skip silently
@@ -492,6 +553,7 @@ class MediaPlayerService:
             return False
 
         expected_title = song.get("title") or ""
+        expected_artist = song.get("artist") or ""
         if not expected_title:
             _LOGGER.warning(
                 "MA playback: no expected title — skipping title verification"
@@ -505,9 +567,20 @@ class MediaPlayerService:
                     len(candidates),
                     uri,
                 )
-            success = await self._try_ma_play(uri, expected_title)
+            success = await self._try_ma_play(uri, expected_title, expected_artist)
             if success:
-                if field and field != self._ma_preferred_uri_field:
+                # #1381: only learn a candidate's URI field as the new preferred
+                # one when an EXPECTED-TITLE substring match (Path 1) confirmed
+                # it. A weaker confirmation (artist/token gate, or the
+                # post-timeout #345 tolerance) is not strong enough proof that
+                # THIS field actually resolved our track — promoting it would
+                # reorder future candidates wrongly for a field that never
+                # really worked.
+                if (
+                    field
+                    and field != self._ma_preferred_uri_field
+                    and self._last_confirm_path == 1
+                ):
                     _LOGGER.debug("MA preferred URI field now: %s (#768)", field)
                     self._ma_preferred_uri_field = field
                 self.last_failure_reason = None
@@ -523,7 +596,9 @@ class MediaPlayerService:
         # _try_ma_play attempt (set by that method); start_round reads it.
         return False
 
-    async def _try_ma_play(self, uri: str, expected_title: str) -> bool:
+    async def _try_ma_play(
+        self, uri: str, expected_title: str, expected_artist: str = ""
+    ) -> bool:
         """
         Attempt a single MA `play_media` call and wait for playback confirmation.
 
@@ -532,6 +607,10 @@ class MediaPlayerService:
         URI. Returns True both when playback is confirmed AND when the speaker
         is showing ambiguous-but-changing state (MA may still be buffering —
         preserving the #345 tolerance so we don't chase flaky retries).
+
+        `expected_artist` (#1381) feeds the fast-path Path 2 similarity gate so
+        an arbitrary title change from the prior queue auto-advancing is not
+        instant-accepted as our track.
         """
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
@@ -584,8 +663,9 @@ class MediaPlayerService:
 
             Two acceptance paths:
               1. Title contains expected (substring) — the strongest signal.
-              2. Title moved to ANYTHING different from before the call — MA
-                 is making progress on a new track, accept it.
+              2. Title moved to a *plausibly-our-track* new title — MA is
+                 making progress on a new track that shares a token with the
+                 expected title, or whose artist matches the expected artist.
 
             Path 2 was previously only reachable via the 15-second slow-buffer
             tolerance below. Levtos reported that pressing "next" caused the
@@ -596,6 +676,17 @@ class MediaPlayerService:
             the wait timed out. With path 2 in the fast-path, the UI now
             returns within ~1s of MA actually starting playback.
 
+            #1381 tightened Path 2: it used to accept ANY title that differed
+            from `title_before`. If the requested URI failed to resolve in MA
+            while the speaker's prior queue auto-advanced to its next track
+            during the 15s window, that unrelated title was instant-confirmed
+            as success — the #795 "guess the year of SongX with no SongX audio"
+            class, but silently. Path 2 now requires a cheap similarity gate
+            (token overlap / normalized-prefix vs expected_title, OR expected
+            artist present in media_artist). The unbounded "any new title"
+            acceptance is reserved for the post-timeout #345 branch, where it
+            is logged.
+
             #795 invariant still holds: if the title is unchanged from
             before the call (`title_before`), neither path fires and we
             fall through to the title-must-advance hard-failure check.
@@ -604,23 +695,34 @@ class MediaPlayerService:
                 return False
             try:
                 current_title = state.attributes.get("media_title", "") or ""
+                current_artist = state.attributes.get("media_artist", "") or ""
                 position_updated = state.attributes.get("media_position_updated_at")
 
                 position_fresh = position_updated != position_updated_before
                 if not position_fresh:
                     return False
 
-                # Path 1: exact-ish title match (substring).
+                # Path 1: exact-ish title match (substring) — strongest signal,
+                # the only path strong enough to learn a preferred URI field.
                 if expected_lower and expected_lower in current_title.lower():
+                    self._last_confirm_path = 1
                     return True
                 # If no expected title was supplied, position-fresh alone is
                 # all the signal we have — accept (matches old behavior).
                 if not expected_lower:
+                    self._last_confirm_path = 2
                     return True
 
-                # Path 2: title moved to something different from before.
+                # Path 2 (#1381): title moved to a DIFFERENT title AND that
+                # title is plausibly our track (shared token / prefix) OR the
+                # artist matches. A bare "any different title" no longer
+                # qualifies — that is the prior-queue auto-advance trap.
                 if current_title and current_title != title_before:
-                    return True
+                    if _titles_plausibly_match(
+                        expected_title, current_title
+                    ) or _artist_matches(expected_artist, current_artist):
+                        self._last_confirm_path = 2
+                        return True
 
                 return False
             except (AttributeError, KeyError):
@@ -796,6 +898,10 @@ class MediaPlayerService:
             title_before,
             title_after,
         )
+        # #1381: a post-timeout #345 tolerance confirmation is the weakest
+        # acceptance — it must NOT promote this candidate's URI field to
+        # preferred (it never proved THIS field actually resolved our track).
+        self._last_confirm_path = 0
         return True
 
     async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
