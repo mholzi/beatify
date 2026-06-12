@@ -150,6 +150,50 @@ class TestTitleArtistPoints:
         assert mgr.title_artist_points("Nobody") == (0, 0)
 
 
+class TestTitleArtistRoundResult:
+    """title_artist_round_result classifies the share-grid cell (#1373).
+
+    exact / scored / close / missed, mirroring _field_points scoring.
+    """
+
+    def test_both_exact_is_exact(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess("Alice", "Bohemian Rhapsody", "Queen", ts=1.0)
+        assert mgr.title_artist_round_result("Alice") == "exact"
+
+    def test_title_exact_artist_wrong_is_scored(self):
+        mgr = _make_manager()
+        mgr.submit_title_artist_guess(
+            "Alice", "Bohemian Rhapsody", "Totally Different", ts=1.0
+        )
+        assert mgr.title_artist_round_result("Alice") == "scored"
+
+    def test_fuzzy_field_is_scored(self):
+        mgr = _make_manager()
+        # fuzzy title earns full points -> "scored" (not "exact").
+        mgr.submit_title_artist_guess("Bob", "Bohemian Rhapsdy", "Queen", ts=1.0)
+        assert mgr.title_artist_round_result("Bob") == "scored"
+
+    def test_accepted_near_miss_only_is_close(self):
+        mgr = _make_manager()
+        # Near-miss title accepted, artist wrong -> only partial points -> close.
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Totally Different", ts=1.0)
+        mgr.set_title_artist_override("Dan:title", accept=True)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_round_result("Dan") == "close"
+
+    def test_unaccepted_near_miss_is_missed(self):
+        mgr = _make_manager()
+        # Near-miss both, no votes/override -> rejected -> 0 points -> missed.
+        mgr.submit_title_artist_guess("Dan", "Bohemian", "Queen Rock", ts=1.0)
+        mgr.resolve_title_artist()
+        assert mgr.title_artist_round_result("Dan") == "missed"
+
+    def test_no_guess_is_missed(self):
+        mgr = _make_manager()
+        assert mgr.title_artist_round_result("Nobody") == "missed"
+
+
 class TestNearMisses:
     """get_near_misses / has_near_misses surface near-miss fields."""
 

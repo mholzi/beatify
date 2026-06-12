@@ -302,6 +302,121 @@ class TestVoteWindowScoring:
         assert alice.rounds_played == 1
 
 
+class TestRoundResultsShareGrid:
+    """#1373: the share-card emoji grid must reflect title/artist results.
+
+    Before the fix, round_results was classified solely from player.years_off,
+    which is always None in title/artist mode — so every round was appended as
+    "missed" and the end-of-game share card showed an all-red grid + "0/N
+    correct" even for a player who nailed every title and artist. These assert
+    round_results is now classified from the resolved field statuses, on both
+    the immediate-resolve and the deferred vote-window paths.
+    """
+
+    async def test_all_exact_grid_is_not_missed(self):
+        """Immediate-resolve path: both fields exact -> 'exact', not 'missed'."""
+        gs = make_game_state()
+        await _start_round(gs)
+        await gs.start_round()
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        assert gs.is_title_artist_voting_open() is False
+        for p in gs.players.values():
+            assert p.round_results == ["exact"]
+        gs._cancel_auto_advance()
+
+    async def test_title_only_correct_is_scored(self):
+        """One field exact, other wrong (no near-miss) -> 'scored'."""
+        gs = make_game_state()
+        await _start_round(gs)
+        await gs.start_round()
+        # Exact title, clearly-wrong artist (not a near-miss -> immediate resolve).
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", gs.current_song["title"], "Totally Different Band", 1.0
+        )
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        assert gs.is_title_artist_voting_open() is False
+        assert gs.players["Alice"].round_results == ["scored"]
+        assert gs.players["Bob"].round_results == ["exact"]
+        gs._cancel_auto_advance()
+
+    async def test_accepted_near_miss_is_close_deferred_path(self):
+        """Deferred vote-window path: accepted near-miss title -> 'close'.
+
+        Alice has a near-miss title + exact artist; an override accepts it. The
+        round_results append must run AFTER the window resolves so it sees the
+        promoted near_miss_accepted status.
+        """
+        gs = make_game_state()
+        await _start_round(gs)
+        await gs.start_round()
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Real Mismatch", gs.current_song["artist"], 1.0
+        )
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        # Deferred — no round_results banked yet while the window is open.
+        assert gs.players["Alice"].round_results == []
+        gs.set_title_artist_override("Alice:title", True)
+        await gs.resolve_title_artist_if_pending()
+        # Alice: accepted near-miss title (partial) + exact artist -> "scored"
+        # (artist is exact, which earns full points). Bob exact/exact -> "exact".
+        assert gs.players["Alice"].round_results == ["scored"]
+        assert gs.players["Bob"].round_results == ["exact"]
+
+    async def test_rejected_near_miss_only_is_close(self):
+        """A near-miss accepted with no other full-points field -> 'close'."""
+        gs = make_game_state()
+        await _start_round(gs)
+        await gs.start_round()
+        # Alice: near-miss title AND wrong artist -> only the accepted title
+        # earns (partial) points, so the round classifies as "close".
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Real Mismatch", "Totally Different Band", 1.0
+        )
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        gs.set_title_artist_override("Alice:title", True)
+        await gs.resolve_title_artist_if_pending()
+        assert gs.players["Alice"].round_results == ["close"]
+
+    async def test_no_submission_is_missed(self):
+        """A player who didn't guess in title/artist mode -> 'missed'."""
+        gs = make_game_state()
+        await _start_round(gs)
+        await gs.start_round()
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        gs.players["Bob"].submitted = True
+        # Alice never submits.
+        await gs.end_round()
+        assert gs.is_title_artist_voting_open() is False
+        assert gs.players["Alice"].round_results == ["missed"]
+        assert gs.players["Bob"].round_results == ["exact"]
+        gs._cancel_auto_advance()
+
+
 class TestVoteWindowFlagReset:
     """#1359: the vote-window flags must not leak past a game's lifecycle.
 
