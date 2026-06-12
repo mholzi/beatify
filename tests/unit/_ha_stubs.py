@@ -56,6 +56,24 @@ class _ConfigFlow:
         return {"type": "form", **kwargs}
 
 
+class _OptionsFlow:
+    """OptionsFlow stand-in for the #1357 companion-bypass toggle.
+
+    Mirrors :class:`_ConfigFlow`'s helpers and carries a ``config_entry``
+    attribute (real HA injects the entry into the OptionsFlow instance) so
+    ``async_step_init`` can read ``self.config_entry.options``.
+    """
+
+    hass: Any = None
+    config_entry: Any = None
+
+    def async_create_entry(self, **kwargs: Any) -> dict[str, Any]:
+        return {"type": "create_entry", **kwargs}
+
+    def async_show_form(self, **kwargs: Any) -> dict[str, Any]:
+        return {"type": "form", **kwargs}
+
+
 def install() -> None:
     """Force-install real HA stubs needed by the B6 platform modules."""
     core = _module("homeassistant.core")
@@ -67,6 +85,7 @@ def install() -> None:
     ce.ConfigEntry = object  # type: ignore[attr-defined]
     ce.ConfigFlowResult = dict  # type: ignore[attr-defined]
     ce.ConfigFlow = _ConfigFlow  # type: ignore[attr-defined]
+    ce.OptionsFlow = _OptionsFlow  # type: ignore[attr-defined]
 
     # Base entity classes expose a no-op async_write_ha_state so _on_state_changed
     # can be invoked directly in tests.
@@ -92,3 +111,15 @@ def install() -> None:
     # (empty) data schema, so a passthrough callable is enough.
     vol = _module("voluptuous")
     vol.Schema = lambda schema=None, **kwargs: schema  # type: ignore[attr-defined]
+    # #1357: the OptionsFlow schema uses ``vol.Optional(key, default=...)`` as a
+    # dict key and ``cv.boolean`` as its value. The stub only needs the import
+    # to resolve and ``async_step_init`` to build *a* schema object — identity /
+    # passthrough callables are enough (no real validation happens in tests).
+    vol.Optional = lambda key, **kwargs: key  # type: ignore[attr-defined]
+
+    # ``config_flow`` does ``from homeassistant.helpers import
+    # config_validation as cv`` (#1357) and references ``cv.boolean`` as the
+    # voluptuous validator for the toggle. config_validation is not installed in
+    # the minimal CI env, so stub the module with a passthrough ``boolean``.
+    cv = _module("homeassistant.helpers.config_validation")
+    cv.boolean = lambda value: value  # type: ignore[attr-defined]

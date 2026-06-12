@@ -12,5 +12,19 @@
         "abort": {
             "already_configured": "Beatify is already configured."
         }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Beatify options",
+                "description": "Advanced authentication settings. Leave these at their defaults unless you know you need them.",
+                "data": {
+                    "enable_companion_auth_bypass": "Enable HA Android Companion auth bypass"
+                },
+                "data_description": {
+                    "enable_companion_auth_bypass": "OFF by default. When on, requests from the HA Android Companion app on your local network are treated as the host without a login. This weakens authentication and should stay OFF unless the Companion app genuinely cannot authenticate. Do NOT enable it if Beatify is reachable through Home Assistant Cloud (Nabu Casa) or a reverse proxy that does not forward the real client IP — in those setups it could let an internet visitor host games without credentials."
+                }
+            }
+        }
     }
 }
