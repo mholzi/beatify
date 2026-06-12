@@ -475,8 +475,25 @@ def get_song_uri(
         # For Deezer, only use uri_deezer
         return song.get("uri_deezer") or None
     if provider == PROVIDER_AMAZON_MUSIC:
-        # Amazon Music uses Alexa text search — no URI needed; all songs are playable.
-        return PROVIDER_AMAZON_MUSIC
+        # Amazon Music uses Alexa text search — there is no real per-track URI.
+        # We still must return a *distinct* identity per song, because the
+        # PlaylistManager uses this value both as the dedup key (__init__) and
+        # as the played-tracking key (mark_played). Returning a single constant
+        # for every song collapsed the whole playlist to one playable track and
+        # ended every Alexa game after round 1 (#1361). Derive a stable key from
+        # the song's artist+title so each track survives dedup and is tracked
+        # independently. `_resolved_uri` is only ever consumed for Alexa
+        # text-search (artist+title), never as a real media URI, so this
+        # synthetic key is purely internal.
+        artist = (song.get("artist") or "").strip().casefold()
+        title = (song.get("title") or "").strip().casefold()
+        if artist or title:
+            return f"amazon:{artist}|{title}"
+        # No metadata at all — fall back to the song's id so it stays distinct.
+        song_id = song.get("id")
+        if song_id is not None:
+            return f"amazon:id:{song_id}"
+        return None
     return None
 
 

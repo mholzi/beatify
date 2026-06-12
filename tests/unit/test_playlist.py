@@ -10,6 +10,7 @@ runtime never even tries to play them.
 from __future__ import annotations
 
 from custom_components.beatify.const import (
+    PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_SPOTIFY,
 )
@@ -201,3 +202,85 @@ class TestPlaylistManagerStorefrontFiltering:
         picked = pm.get_next_song()
         assert picked is not None
         assert picked["_resolved_uri"] == "applemusic://track/legacy"
+
+
+# ---------------------------------------------------------------------------
+# Amazon Music — per-song identity (regression for #1361)
+# ---------------------------------------------------------------------------
+#
+# Amazon Music plays via Alexa text-search, so there is no real per-track URI.
+# Previously ``get_song_uri`` returned the constant ``"amazon_music"`` for every
+# song. Because PlaylistManager uses that value both as the dedup key (in
+# ``__init__``) AND as the played-tracking key (``mark_played``), the whole
+# playlist collapsed to a single playable track and every Alexa game ended after
+# round 1. These tests pin the per-song identity behavior so that never
+# regresses.
+
+
+def _amazon_song(artist: str, title: str, year: int = 1990) -> dict:
+    """Minimal Amazon-Music-style song (no URI fields — Alexa text-search)."""
+    return {"artist": artist, "title": title, "year": year}
+
+
+class TestGetSongUriAmazonMusic:
+    def test_distinct_songs_get_distinct_keys(self):
+        a = get_song_uri(_amazon_song("ABBA", "Waterloo"), PROVIDER_AMAZON_MUSIC)
+        b = get_song_uri(
+            _amazon_song("Queen", "Bohemian Rhapsody"), PROVIDER_AMAZON_MUSIC
+        )
+        assert a != b
+        assert a is not None and b is not None
+
+    def test_key_is_stable_for_same_song(self):
+        song = _amazon_song("ABBA", "Waterloo")
+        assert get_song_uri(song, PROVIDER_AMAZON_MUSIC) == get_song_uri(
+            song, PROVIDER_AMAZON_MUSIC
+        )
+
+    def test_key_is_case_insensitive(self):
+        assert get_song_uri(
+            _amazon_song("ABBA", "Waterloo"), PROVIDER_AMAZON_MUSIC
+        ) == get_song_uri(_amazon_song("abba", "waterloo"), PROVIDER_AMAZON_MUSIC)
+
+    def test_falls_back_to_id_when_no_metadata(self):
+        key = get_song_uri({"id": 42}, PROVIDER_AMAZON_MUSIC)
+        assert key == "amazon:id:42"
+
+
+class TestPlaylistManagerAmazonMusic:
+    def test_full_playlist_survives_dedup(self):
+        """#1361: all 10 distinct songs survive — not collapsed to one."""
+        songs = [_amazon_song(f"Artist {i}", f"Title {i}") for i in range(10)]
+        pm = PlaylistManager(songs, provider=PROVIDER_AMAZON_MUSIC)
+        assert pm.get_total_count() == 10
+
+    def test_ten_successive_rounds_play_all_songs(self):
+        """#1361: a 10-song Amazon game must run 10 rounds, not end after 1.
+
+        Mirrors the runtime loop: get_next_song() then
+        mark_played(_resolved_uri). With the old constant URI, mark_played
+        poisoned the whole pool after round 1 and get_next_song returned None.
+        """
+        songs = [_amazon_song(f"Artist {i}", f"Title {i}") for i in range(10)]
+        pm = PlaylistManager(songs, provider=PROVIDER_AMAZON_MUSIC)
+
+        played: list[str] = []
+        for _ in range(10):
+            song = pm.get_next_song()
+            assert song is not None, "game ended early — pool collapsed"
+            played.append(song["_resolved_uri"])
+            pm.mark_played(song["_resolved_uri"])
+
+        # All 10 rounds played distinct songs, and the pool is now exhausted.
+        assert len(set(played)) == 10
+        assert pm.get_next_song() is None
+        assert pm.get_remaining_count() == 0
+
+    def test_true_duplicate_songs_are_deduped(self):
+        """Identical artist+title genuinely collapse (intended dedup)."""
+        songs = [
+            _amazon_song("ABBA", "Waterloo"),
+            _amazon_song("ABBA", "Waterloo"),
+        ]
+        pm = PlaylistManager(songs, provider=PROVIDER_AMAZON_MUSIC)
+        assert pm.get_total_count() == 1
