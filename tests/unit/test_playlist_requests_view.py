@@ -46,12 +46,21 @@ def _view() -> PlaylistRequestsView:
     return PlaylistRequestsView(hass)
 
 
+def _authorized():
+    """Patch is_authorized_http to allow the POST through (#1367)."""
+    return mock.patch(
+        "custom_components.beatify.server.playlist_views.is_authorized_http",
+        new=AsyncMock(return_value=True),
+    )
+
+
 class TestPlaylistRequestsPost:
     """POST must accept a valid JSON body — it 400'd unconditionally before #937."""
 
     async def test_valid_empty_body_is_saved(self):
         request = _request_with_body(b'{"requests": [], "last_poll": null}')
-        resp = await _view().post(request)
+        with _authorized():
+            resp = await _view().post(request)
         # Regression: this returned 400 "Invalid JSON" for ALL bodies because
         # request.json(content_type=None) raised TypeError on aiohttp 3.11+.
         assert resp.status == 200
@@ -62,16 +71,49 @@ class TestPlaylistRequestsPost:
         request = _request_with_body(
             json.dumps({"requests": [item], "last_poll": None}).encode()
         )
-        resp = await _view().post(request)
+        with _authorized():
+            resp = await _view().post(request)
         assert resp.status == 200
         assert json.loads(resp.body)["requests"][0]["issue_number"] == 1
 
     async def test_malformed_json_still_returns_400(self):
         # A genuinely broken body must still be rejected — that 400 is correct.
         request = _request_with_body(b"{not valid json")
-        resp = await _view().post(request)
+        with _authorized():
+            resp = await _view().post(request)
         assert resp.status == 400
         assert json.loads(resp.body)["error"] == "INVALID_REQUEST"
+
+
+class TestPlaylistRequestsPostAuth:
+    """#1367: POST rewrites the whole requests file, so it must require auth.
+
+    Before the fix any unauthenticated client on the LAN (or via the Nabu Casa
+    remote URL) could POST {"requests": []} to wipe every household request, or
+    inject arbitrary entries — only IP rate limiting stood in the way.
+    """
+
+    async def test_unauthorized_post_is_rejected_401(self):
+        request = _request_with_body(b'{"requests": [], "last_poll": null}')
+        view = _view()
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.is_authorized_http",
+            new=AsyncMock(return_value=False),
+        ):
+            resp = await view.post(request)
+        assert resp.status == 401
+        assert json.loads(resp.body)["error"] == "UNAUTHORIZED"
+
+    async def test_unauthorized_post_does_not_write_to_disk(self):
+        # The wipe must be blocked before _save_requests is ever reached.
+        request = _request_with_body(b'{"requests": [], "last_poll": null}')
+        view = _view()
+        with mock.patch(
+            "custom_components.beatify.server.playlist_views.is_authorized_http",
+            new=AsyncMock(return_value=False),
+        ):
+            await view.post(request)
+        view.hass.async_add_executor_job.assert_not_called()
 
 
 # ---------------------------------------------------------------------------
