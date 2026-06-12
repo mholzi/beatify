@@ -14,8 +14,10 @@ from custom_components.beatify.const import (
     LOBBY_DISCONNECT_GRACE_PERIOD,
 )
 from custom_components.beatify.server.serializers import (
+    REDACTED_PLACEHOLDER,
     build_state_message,
     get_game_state,
+    redact_state_for_player,
 )
 from custom_components.beatify.server.ws_handlers import (
     handle_admin,
@@ -292,15 +294,53 @@ class BeatifyWebSocketHandler:
         if not targets:
             return
 
+        # #1366: the broadcast payload carries the round's answers (admin_song
+        # year; song.artist/title in title_artist_mode) for the spectator admin
+        # / TV. Sent unfiltered, any player could read them off the WebSocket
+        # before guessing. Redact per-recipient: only the spectator admin WS
+        # gets the answers; every player connection gets a redacted copy.
+        player_message = self._redact_for_player(message, game_state)
+
+        admin_ws = game_state._admin_ws if game_state else None
+
         # Build list of send tasks for all open connections
         tasks = []
         for ws in list(targets):
             if not ws.closed:
-                tasks.append(self._safe_send(ws, message))
+                payload = message if ws is admin_ws else player_message
+                tasks.append(self._safe_send(ws, payload))
 
         # Execute all sends in parallel
         if tasks:
             await asyncio.gather(*tasks)
+
+    @staticmethod
+    def _redact_for_player(message: dict, game_state) -> dict:  # noqa: ANN001
+        """Return the player-safe variant of an answer-bearing broadcast (#1366).
+
+        Returns ``message`` unchanged for payloads that carry no answers.
+        ``metadata_update`` frames (sent mid-PLAYING when song metadata lands)
+        have no ``phase`` / ``title_artist_mode`` of their own, so the
+        title_artist context is taken from ``game_state``.
+        """
+        msg_type = message.get("type")
+        if msg_type == "state":
+            return redact_state_for_player(message)
+        if msg_type == "metadata_update" and game_state is not None:
+            from custom_components.beatify.game.state import (  # noqa: PLC0415
+                GamePhase,
+            )
+
+            if (
+                game_state.title_artist_mode
+                and game_state.phase == GamePhase.PLAYING
+                and isinstance(message.get("song"), dict)
+            ):
+                song = dict(message["song"])
+                song["artist"] = REDACTED_PLACEHOLDER
+                song["title"] = REDACTED_PLACEHOLDER
+                return {**message, "song": song}
+        return message
 
     async def _safe_send(self, ws: web.WebSocketResponse, message: dict) -> None:
         """

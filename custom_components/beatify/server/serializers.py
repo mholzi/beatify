@@ -50,6 +50,54 @@ def build_state_message(game_state: GameState) -> dict[str, Any] | None:
     return {"type": "state", **state}
 
 
+# Placeholder shown to players for an answer field that is hidden until REVEAL.
+REDACTED_PLACEHOLDER = "???"
+
+
+def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
+    """Return a player-safe copy of a ``state`` / ``metadata_update`` message.
+
+    The full broadcast payload built by :func:`build_state_message` (and the
+    ``metadata_update`` payload) carries the round's answers so the spectator
+    admin / TV can display them. Those frames are broadcast identically to
+    every connection, so a player can read the answer straight off the
+    WebSocket before guessing (#1366). This strips the answers for non-admin
+    recipients:
+
+    * ``admin_song`` (the year answer + fun facts) is removed entirely — it is
+      never meant for players in any mode.
+    * When ``title_artist_mode`` is active and the game is still ``PLAYING``,
+      ``song.artist`` / ``song.title`` ARE the answers being guessed, so they
+      are replaced with a placeholder. ``album_art`` is left intact (players
+      need it to play along). The REVEAL payload is untouched — by then the
+      answers are public.
+
+    The input is not mutated; only the keys that need changing are shallow
+    copied.
+    """
+    if not isinstance(message, dict):
+        return message
+
+    # Nothing to redact if neither answer-bearing key is present.
+    has_admin_song = "admin_song" in message
+    redact_song = (
+        message.get("title_artist_mode")
+        and message.get("phase") == "PLAYING"
+        and isinstance(message.get("song"), dict)
+    )
+    if not has_admin_song and not redact_song:
+        return message
+
+    redacted = dict(message)
+    redacted.pop("admin_song", None)
+    if redact_song:
+        song = dict(redacted["song"])
+        song["artist"] = REDACTED_PLACEHOLDER
+        song["title"] = REDACTED_PLACEHOLDER
+        redacted["song"] = song
+    return redacted
+
+
 def build_status_response(
     hass: HomeAssistant,
     *,
