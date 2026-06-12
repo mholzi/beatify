@@ -759,7 +759,14 @@ class ScoringService:
                 player.streak_bonus = 0
                 player.bet_outcome = None
                 player.artist_bonus = 0
-                player.movie_bonus = 0
+                # #1376: the movie quiz is an independent guess that stacks on
+                # top of the year/title-artist score. A player who skipped the
+                # title/artist guess but answered the movie quiz correctly must
+                # still earn its points and the movie_bonus_total increment
+                # (Film Buff superlative) — mirroring the year-mode missed
+                # branch below. Previously this was hard-zeroed, silently
+                # dropping the earned bonus.
+                _score_movie_challenge(player, movie_challenge, add_to_score=True)
                 player.intro_bonus = 0
                 player.rounds_played += 1
                 player.round_scores.append(0)
