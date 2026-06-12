@@ -300,3 +300,107 @@ class TestVoteWindowScoring:
         assert alice.score == 10
         assert alice.round_scores == [10]
         assert alice.rounds_played == 1
+
+
+class TestVoteWindowFlagReset:
+    """#1359: the vote-window flags must not leak past a game's lifecycle.
+
+    These flags live on GameState (not in GameStateConfig), so a force-end
+    while the 30s window is open used to leak _title_artist_voting_open=True
+    into the next game — which then lost REVEAL auto-advance and double-scored
+    a round on host-advance. end_game / create_game / rematch must reset them.
+    """
+
+    async def _open_window(self, gs):
+        """Drive a title/artist game into an OPEN vote window in REVEAL."""
+        await _start_round(gs)
+        await gs.start_round()
+        gs._challenge_manager.submit_title_artist_guess(
+            "Alice", "Real Mismatch", gs.current_song["artist"], 1.0
+        )
+        gs._challenge_manager.submit_title_artist_guess(
+            "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
+        )
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        assert gs.is_title_artist_voting_open() is True
+
+    async def test_end_game_clears_open_vote_flag(self):
+        """Force-ending while the window is open must reset the flag."""
+        gs = make_game_state()
+        await self._open_window(gs)
+        # Admin force-ends the game mid vote-window.
+        await gs.end_game()
+        assert gs._title_artist_voting_open is False
+        assert gs._title_artist_vote_deadline is None
+
+    async def test_create_game_clears_leaked_vote_flag(self):
+        """A leaked flag from a prior game must be cleared by create_game.
+
+        Simulates the pre-fix leak directly (flag stuck True with no reset)
+        and asserts the next create_game scrubs it, so the new game keeps its
+        REVEAL auto-advance and never double-scores.
+        """
+        gs = make_game_state()
+        # Pretend a prior game leaked the flag.
+        gs._title_artist_voting_open = True
+        gs._title_artist_vote_deadline = 123.0
+        gs.create_game(
+            playlists=["t.json"],
+            songs=_ta_songs(3),
+            media_player="media_player.x",
+            base_url="http://h",
+            title_artist_mode=False,  # plain year mode — must NOT inherit the flag
+        )
+        assert gs._title_artist_voting_open is False
+        assert gs._title_artist_vote_deadline is None
+
+    async def test_cancelled_window_task_clears_flag(self):
+        """Cancelling the window task (defense in depth) clears the flag."""
+        gs = make_game_state()
+        await self._open_window(gs)
+        # Let the freshly-created window task actually enter its try-block so
+        # the cancellation lands inside the except handler (not before start).
+        await asyncio.sleep(0)
+        # Cancel the pending window task exactly as end_game/next_round do.
+        task = gs._auto_advance_task
+        gs._cancel_auto_advance()
+        if task is not None:
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+        assert gs._title_artist_voting_open is False
+        assert gs._title_artist_vote_deadline is None
+
+    async def test_next_year_game_keeps_reveal_auto_advance(self):
+        """End-to-end: after a force-end mid-window, a plain year game still
+        schedules REVEAL auto-advance (the leak previously disabled it)."""
+        gs = make_game_state()
+        await self._open_window(gs)
+        await gs.end_game()
+        # Start a fresh plain year-mode game.
+        gs._media_player_service = _stub_media_service()
+        gs.create_game(
+            playlists=["t.json"],
+            songs=make_songs(3),
+            media_player="media_player.x",
+            base_url="http://h",
+            title_artist_mode=False,
+            reveal_auto_advance=5,
+        )
+        gs.platform = "music_assistant"
+        gs.add_player("Alice", MagicMock())
+        for p in gs.players.values():
+            p.connected = True
+        # The reveal-advance scheduler short-circuits when voting_open is True;
+        # with the flag cleared it must run and arm an auto-advance task.
+        assert gs._title_artist_voting_open is False
+        await gs.start_round()
+        for p in gs.players.values():
+            p.submitted = True
+        await gs.end_round()
+        assert gs.phase == GamePhase.REVEAL
+        assert gs._auto_advance_task is not None
+        gs._cancel_auto_advance()

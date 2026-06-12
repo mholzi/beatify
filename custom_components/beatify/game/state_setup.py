@@ -221,8 +221,20 @@ class GameSetupMixin:
         # #1012: REVEAL auto-advance — seconds to wait in REVEAL before
         # starting the next round automatically (0 = off / manual only).
         self.reveal_auto_advance = reveal_auto_advance
-        self._auto_advance_task = None
+        # #1359: cancel any leftover auto-advance / vote-window task from a
+        # prior game instead of just dropping the handle — a bare
+        # ``self._auto_advance_task = None`` would orphan a still-running
+        # vote-window task that could mutate the new game's state.
+        self._cancel_auto_advance()
         self.reveal_started_at = None  # #1048
+
+        # #1359: the title/artist vote-window flags live on GameState and are
+        # NOT managed by GameStateConfig, so _apply_config()/_reset_game_internals
+        # don't touch them. A force-ended title/artist game can leak
+        # _title_artist_voting_open=True into the next game, which then loses
+        # REVEAL auto-advance and double-scores a round. Reset them explicitly.
+        self._title_artist_voting_open = False
+        self._title_artist_vote_deadline = None
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
@@ -280,6 +292,14 @@ class GameSetupMixin:
 
         # Issue #464: Rebuild config-managed fields from defaults
         self._apply_config(self._default_config)
+
+        # #1359: the title/artist vote-window flags are NOT config-managed, so
+        # _apply_config above does not touch them. Without this, a force-ended
+        # title/artist game (end_game) or a rematch leaks
+        # _title_artist_voting_open=True into the next game — disabling REVEAL
+        # auto-advance and double-scoring the round on host-advance.
+        self._title_artist_voting_open = False
+        self._title_artist_vote_deadline = None
 
         # Issue #351: Reset power-up state
         self._powerup_manager.reset()

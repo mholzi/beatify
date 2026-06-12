@@ -134,6 +134,14 @@ class VoteWindowMixin:
                 except (ConnectionError, OSError, TypeError) as err:
                     _LOGGER.error("Vote-window broadcast failed: %s", err)
         except asyncio.CancelledError:
+            # #1359: defense in depth — when end_game/next_round/pause cancels
+            # this task mid-window, clear the vote-window flags so they can't
+            # leak True into the next game (where they'd disable REVEAL
+            # auto-advance and double-score a round). end_game/create_game also
+            # reset these, but clearing here keeps the flag honest for any path
+            # that cancels without a full reset.
+            self._title_artist_voting_open = False
+            self._title_artist_vote_deadline = None
             _LOGGER.debug("Title/artist vote window cancelled")
             raise
 
