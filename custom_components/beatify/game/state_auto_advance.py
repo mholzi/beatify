@@ -94,6 +94,14 @@ class RevealAutoAdvanceMixin:
         The song keeps playing through REVEAL; when the track ends the
         media player drops out of "playing", which is the song-end
         signal for the auto-advance.
+
+        #1374: a transient ``"unavailable"``/``None`` read (Sonos/Cast
+        network handoff, Music Assistant reload — common during the
+        multi-minute REVEAL dwell) is NOT a song-end. Treating it as one
+        would make the auto-advance jump to the next round mid-song (or
+        the idle-halt silence the speaker). Mirror the conservative
+        exception branch below and stay on "still playing" for an unknown
+        state — the hard cap still guarantees the game can never stall.
         """
         if not self._media_player_service:
             return False
@@ -104,6 +112,13 @@ class RevealAutoAdvanceMixin:
                 "song-finished poll: get_playback_state raised; treating as "
                 "still playing",
                 exc_info=True,
+            )
+            return False
+        if pstate is None or pstate == "unavailable":
+            _LOGGER.debug(
+                "song-finished poll: player state %r — transient blip, "
+                "treating as still playing (#1374)",
+                pstate,
             )
             return False
         return pstate not in ("playing", "buffering")
