@@ -287,6 +287,13 @@ class GameState(
         # open vote window, so the serializer publishes an authoritative
         # vote_seconds_remaining (no client clock-skew). None when not voting.
         self._title_artist_vote_deadline: float | None = None
+        # #1371: pause snapshot of the open vote window. pause_game() cancels the
+        # vote-window task, whose CancelledError handler async-resets
+        # _title_artist_voting_open / _title_artist_vote_deadline before
+        # resume_game() runs — so the live flags are unreliable at resume time.
+        # These capture the window state at pause so resume can re-arm it.
+        self._paused_vote_open: bool = False
+        self._paused_vote_deadline: float | None = None
         # #1048: ms timestamp REVEAL was entered — clients compute remaining
         # countdown vs Date.now(). None outside REVEAL.
         self.reveal_started_at: int | None = None
@@ -745,16 +752,28 @@ class GameState(
         if self.title_artist_mode:
             self._schedule_title_artist_vote_window()
         if not self._title_artist_voting_open:
-            if any(p.submitted for p in self.players.values()):
-                self._auto_advance_task = asyncio.create_task(
-                    self._reveal_auto_advance(self.reveal_auto_advance)
-                )
-            else:
-                _LOGGER.info(
-                    "Round %d ended with zero guesses — holding after song-end",
-                    self.round,
-                )
-                self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
+            self._schedule_song_end_auto_advance()
+
+    def _schedule_song_end_auto_advance(self) -> None:
+        """Spawn the song-end auto-advance / idle-halt task (#1012).
+
+        The non-vote-window tail of :meth:`_schedule_reveal_advance`: if anyone
+        submitted a guess, arm the song-end auto-advance; otherwise the party is
+        idle, so arm the idle-halt (let the song finish, stop, hold on REVEAL).
+        Assumes the caller already cancelled any prior task and that no vote
+        window owns the ``_auto_advance_task`` slot. Reused by
+        ``resume_game`` (#1371) to re-arm a REVEAL that was paused mid-dwell.
+        """
+        if any(p.submitted for p in self.players.values()):
+            self._auto_advance_task = asyncio.create_task(
+                self._reveal_auto_advance(self.reveal_auto_advance)
+            )
+        else:
+            _LOGGER.info(
+                "Round %d ended with zero guesses — holding after song-end",
+                self.round,
+            )
+            self._auto_advance_task = asyncio.create_task(self._reveal_idle_halt())
 
     # ------------------------------------------------------------------
     # REVEAL transition (_transition_to_reveal / _apply_reveal_lights), the

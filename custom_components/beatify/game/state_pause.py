@@ -112,6 +112,15 @@ class PauseResumeMixin:
                 self.disconnected_admin_name = player.name
                 break
 
+        # #1371: snapshot the open title/artist vote window BEFORE cancelling.
+        # _cancel_auto_advance() cancels the vote-window task, whose
+        # CancelledError handler async-resets _title_artist_voting_open /
+        # _title_artist_vote_deadline before resume_game() runs — so resume
+        # cannot trust the live flags. Capture them here so a resume-to-REVEAL
+        # can re-arm the window (or finalize it if its deadline elapsed).
+        self._paused_vote_open = self._title_artist_voting_open
+        self._paused_vote_deadline = self._title_artist_vote_deadline
+
         # #1012: a pause stops the unattended REVEAL auto-advance too.
         self._cancel_auto_advance()
 
@@ -217,6 +226,79 @@ class PauseResumeMixin:
         self.disconnected_admin_name = None
         self._previous_phase = None
 
+        # #1371: a resume-to-REVEAL must re-arm the REVEAL task that pause_game()
+        # cancelled — otherwise the auto-advance / idle-halt / title-artist
+        # vote-window silently never fires and the game stalls on REVEAL forever
+        # (the very admin-disconnect pause unattended mode is meant to survive).
+        # The phase is now REVEAL again, so the re-armed tasks' phase-checks pass.
+        if previous == GamePhase.REVEAL:
+            await self._rearm_reveal_after_resume()
+
         _LOGGER.info("Game resumed to phase: %s", previous.value)
 
         return True
+
+    async def _rearm_reveal_after_resume(self) -> None:
+        """Re-arm the REVEAL task cancelled by the pause (#1371).
+
+        ``pause_game`` cancels whichever REVEAL task was running
+        (``_reveal_auto_advance`` / ``_reveal_idle_halt`` / the title-artist
+        ``_title_artist_vote_window``). ``resume_game`` restores the REVEAL
+        phase but, before this, never rescheduled any of them — so the
+        auto-advance died and an open vote window stayed ``voting_open`` with an
+        elapsed deadline, rendering a 0s window forever and never scoring.
+
+        Using the pause snapshot (``_paused_vote_*`` — the live flags are
+        unreliable, see ``pause_game``):
+
+        * **Vote window was open:** if its deadline still has time left, respawn
+          ``_title_artist_vote_window`` with the *remaining* seconds (restoring
+          ``voting_open`` + a fresh deadline); if it already elapsed during the
+          pause, finalize the window now (resolve near-misses + score).
+        * **No vote window:** re-arm the song-end auto-advance / idle-halt.
+        """
+        from custom_components.beatify.game.round_manager import (  # noqa: PLC0415
+            _log_timer_task_failure,
+        )
+
+        # Consume the snapshot regardless of branch.
+        paused_vote_open = self._paused_vote_open
+        paused_vote_deadline = self._paused_vote_deadline
+        self._paused_vote_open = False
+        self._paused_vote_deadline = None
+
+        if paused_vote_open:
+            remaining = (
+                (paused_vote_deadline - self._now())
+                if paused_vote_deadline is not None
+                else 0.0
+            )
+            if remaining > 0:
+                # Window still has time — re-open it for the remaining seconds.
+                self._title_artist_voting_open = True
+                self._title_artist_vote_deadline = self._now() + remaining
+                self._cancel_auto_advance()
+                self._auto_advance_task = asyncio.create_task(
+                    self._title_artist_vote_window(remaining)
+                )
+                self._auto_advance_task.add_done_callback(_log_timer_task_failure)
+                _LOGGER.info(
+                    "Vote window re-armed with %.1fs remaining after resume",
+                    remaining,
+                )
+            else:
+                # Deadline elapsed during the pause — finalize now (resolve
+                # near-misses + run the deferred scoring pass). _finalize is
+                # guarded by _title_artist_voting_open, so restore it first.
+                self._title_artist_voting_open = True
+                self._title_artist_vote_deadline = paused_vote_deadline
+                _LOGGER.info(
+                    "Vote window deadline elapsed during pause — finalizing on resume"
+                )
+                await self._finalize_title_artist_window()
+            return
+
+        # No vote window was open — re-arm the song-end auto-advance / idle-halt.
+        self._cancel_auto_advance()
+        self._schedule_song_end_auto_advance()
+        _LOGGER.info("REVEAL auto-advance re-armed after resume")
