@@ -474,6 +474,70 @@ class TestMANonBlockingPlayback:
         assert result is True
 
     @pytest.mark.asyncio
+    async def test_ma_idle_after_cascade_stop_is_unavailable_not_error(self):
+        """#1363: when Beatify itself stopped the speaker after a same-song
+        stale-title detect, the NEXT candidate timing out into 'idle' must be
+        classified 'unavailable' (storefront gap → skip silently), NOT 'error'
+        (systemic → pause the whole game). This is the #805/#808 regression for
+        any provider whose candidate list has >=2 entries.
+        """
+        hass = _make_hass("idle", media_title="Old Song")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        # Simulate the prior candidate's media_stop having already fired.
+        svc._stopped_for_cascade = True
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            with patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ):
+                result = await svc._try_ma_play("apple_music://track/302229811", "X")
+
+        assert result is False
+        assert svc.last_failure_reason == "unavailable"
+
+    @pytest.mark.asyncio
+    async def test_ma_idle_without_cascade_stop_is_error(self):
+        """#1363 guard: a genuinely idle speaker that Beatify did NOT stop
+        (offline speaker / unauthenticated provider) must still classify as
+        'error' so MAX_SONG_RETRIES + the recovery banner kick in.
+        """
+        hass = _make_hass("idle", media_title="Old Song")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        assert svc._stopped_for_cascade is False
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            with patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ):
+                result = await svc._try_ma_play("apple_music://track/302229811", "X")
+
+        assert result is False
+        assert svc.last_failure_reason == "error"
+
+    @pytest.mark.asyncio
+    async def test_ma_cascade_stop_flag_reset_each_song(self):
+        """#1363: the cascade-stop flag must not leak across songs. A stop on
+        song A must not make song B's idle-failure look like a storefront gap.
+        """
+        hass = _make_hass("idle", media_title="Old Song")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+        svc._stopped_for_cascade = True  # leftover from a prior song
+
+        # _play_via_music_assistant must reset the flag before the cascade.
+        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=False)):
+            await svc._play_via_music_assistant(_make_song())
+
+        assert svc._stopped_for_cascade is False
+
+    @pytest.mark.asyncio
     async def test_sonos_still_uses_blocking_true(self):
         """Non-MA platforms should still use blocking=True."""
         hass = _make_hass("playing")
