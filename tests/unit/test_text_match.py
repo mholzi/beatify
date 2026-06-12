@@ -7,7 +7,11 @@ dependency-free; they back per-field classification in later phases.
 from __future__ import annotations
 
 
-from custom_components.beatify.const import FUZZY_MAX_EDITS, FUZZY_MIN_LEN
+from custom_components.beatify.const import (
+    FUZZY_MAX_EDITS,
+    FUZZY_MIN_LEN,
+    MAX_GUESS_LEN,
+)
 from custom_components.beatify.game.text_match import (
     STATUS_EXACT,
     STATUS_FUZZY,
@@ -275,3 +279,42 @@ class TestFuzzyBudgetScaling:
             len(truth_norm)
         )
         assert classify_field(guess, truth) == STATUS_FUZZY
+
+
+# ---------------------------------------------------------------------------
+# Guess length bound (Issue #1362)
+# ---------------------------------------------------------------------------
+
+
+class TestGuessLengthBound:
+    """classify_field must bound the guess before the O(n*m) Levenshtein DP.
+
+    An unbounded guess (aiohttp accepts WS messages up to 4 MB) would otherwise
+    drive tens of millions of pure-Python inner-loop iterations synchronously on
+    the HA event loop, freezing the whole instance (#1362).
+    """
+
+    def test_oversized_guess_is_classified_quickly_as_wrong(self):
+        # A multi-megabyte guess against a normal truth must not blow up.
+        guess = "a" * 4_000_000
+        assert classify_field(guess, "Bohemian Rhapsody") == STATUS_WRONG
+
+    def test_truncation_uses_only_the_capped_prefix(self):
+        # The truth equals the first MAX_GUESS_LEN chars of the guess, so once the
+        # guess is truncated to MAX_GUESS_LEN it matches exactly. If no cap were
+        # applied the trailing junk would push it off an exact match.
+        truth = "x" * MAX_GUESS_LEN
+        guess = truth + ("y" * 100_000)
+        assert classify_field(guess, truth) == STATUS_EXACT
+
+    def test_normal_guesses_unaffected_by_the_cap(self):
+        # Guesses well under the cap are classified exactly as before.
+        assert classify_field("Bohemian Rhapsody", "Bohemian Rhapsody") == STATUS_EXACT
+        assert classify_field("Bohemian Rapsody", "Bohemian Rhapsody") == STATUS_FUZZY
+        assert classify_field("Beatles", "Queen") == STATUS_WRONG
+        assert classify_field("", "Queen") == STATUS_SKIPPED
+
+    def test_at_cap_length_guess_is_not_truncated(self):
+        # A guess exactly MAX_GUESS_LEN chars is preserved in full.
+        truth = "z" * MAX_GUESS_LEN
+        assert classify_field(truth, truth) == STATUS_EXACT
