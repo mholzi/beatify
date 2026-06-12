@@ -1788,6 +1788,22 @@ async def handle_title_artist_override(
 # ---------------------------------------------------------------------------
 
 
+def _write_report(reports_path: Path, report: dict) -> None:
+    """Append a data quality report to the JSON file (blocking I/O).
+
+    Runs in the executor (see ``handle_report_data``) so the mkdir/read/write
+    never blocks the HA event loop (Issue #1372).
+    """
+    reports_path.parent.mkdir(parents=True, exist_ok=True)
+    existing: list = []
+    if reports_path.exists():
+        existing = json.loads(reports_path.read_text(encoding="utf-8"))
+    existing.append(report)
+    reports_path.write_text(
+        json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+
+
 async def handle_report_data(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -1835,14 +1851,9 @@ async def handle_report_data(
         Path(handler.hass.config.path("beatify")) / "data_quality_reports.json"
     )
     try:
-        reports_path.parent.mkdir(parents=True, exist_ok=True)
-        existing: list = []
-        if reports_path.exists():
-            existing = json.loads(reports_path.read_text(encoding="utf-8"))
-        existing.append(report)
-        reports_path.write_text(
-            json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
-        )
+        # Filesystem I/O is blocking and must not run on the HA event loop
+        # (Issue #1372) — offload the read-append-write to the executor.
+        await handler.hass.async_add_executor_job(_write_report, reports_path, report)
     except (OSError, ValueError):
         _LOGGER.warning("Failed to write data quality report to %s", reports_path)
 
