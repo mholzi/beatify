@@ -335,6 +335,17 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Save a validated playlist JSON to the user/ subfolder."""
+        # #1368: this handler persists a caller-supplied JSON document to disk
+        # under <config>/beatify/playlists/user/<slug>.json and creates a new
+        # non-clobbering file on every save. Without an auth gate any
+        # unauthenticated client on the LAN (or via the Nabu Casa remote URL)
+        # could repeatedly POST distinct playlists to exhaust the HA config
+        # volume (disk-exhaustion DoS) and pollute the Community playlist tab.
+        # Mirror the StartGameView / #1367 PlaylistRequestsView pattern: require
+        # a valid HA Bearer token (or the Companion trust fallback) before
+        # touching disk.
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
             return _json_error("Too many requests", 429, code="RATE_LIMITED")
