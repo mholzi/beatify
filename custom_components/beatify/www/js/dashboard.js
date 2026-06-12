@@ -25,7 +25,11 @@
     // WebSocket connection
     var ws = null;
     var reconnectAttempts = 0;
-    var MAX_RECONNECT_ATTEMPTS = 20;
+    // #1398: the dashboard is a passive, read-only always-on TV display. It must
+    // reconnect FOREVER (capped backoff), never giving up — a router reboot or
+    // HA restart longer than the old ~8 min / 20-attempt cap used to brick the
+    // screen until someone physically woke the tab (visibilitychange never fires
+    // on an always-on TV). There is intentionally no max-attempt cap any more.
     var MAX_RECONNECT_DELAY_MS = 30000;
 
     // State tracking
@@ -45,11 +49,19 @@
     }
 
     /**
-     * Get reconnection delay with exponential backoff
+     * Get reconnection delay with capped exponential backoff (#1398).
+     * Delegates to the shared, unit-tested BeatifyUtils.reconnectBackoffDelay so
+     * the policy lives in one place. `reconnectAttempts` is 1-based here (it is
+     * incremented before this is called); the helper never overflows for large
+     * attempt counts, so an indefinitely-retrying display stays at the 30s cap.
      * @returns {number} Delay in milliseconds
      */
     function getReconnectDelay() {
-        return Math.min(1000 * Math.pow(2, reconnectAttempts), MAX_RECONNECT_DELAY_MS);
+        if (utils.reconnectBackoffDelay) {
+            return utils.reconnectBackoffDelay(reconnectAttempts, { maxDelay: MAX_RECONNECT_DELAY_MS });
+        }
+        // Fallback if utils failed to load: same capped backoff, 1-based attempt.
+        return Math.min(1000 * Math.pow(2, reconnectAttempts - 1), MAX_RECONNECT_DELAY_MS);
     }
 
     /**
@@ -79,14 +91,15 @@
 
         ws.onclose = function() {
             debug('[Dashboard] WebSocket closed');
-            if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-                reconnectAttempts++;
-                var delay = getReconnectDelay();
-                debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
-                setTimeout(connectWebSocket, delay);
-            } else {
-                showView('dashboard-no-game');
-            }
+            // #1398: retry forever with capped backoff. Show the "no game" view
+            // as an interim status while we keep trying — it is NOT a terminal
+            // state any more, so the TV recovers on its own once the network /
+            // HA comes back, even after an outage far longer than ~8 minutes.
+            reconnectAttempts++;
+            showView('dashboard-no-game');
+            var delay = getReconnectDelay();
+            debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
+            setTimeout(connectWebSocket, delay);
         };
 
         ws.onerror = function(err) {

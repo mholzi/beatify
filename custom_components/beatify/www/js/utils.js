@@ -325,6 +325,33 @@ window.BeatifyUtils = (function() {
     }
 
     /**
+     * Capped exponential-backoff reconnect delay (#1398).
+     *
+     * Pure helper so the spectator dashboard (a passive always-on TV display)
+     * can retry FOREVER with a bounded delay instead of giving up. The previous
+     * dashboard logic stopped after 20 attempts (~8 min), so a router reboot or
+     * HA restart longer than that bricked the screen until someone physically
+     * woke the tab (visibilitychange) — which never fires on an always-on TV.
+     *
+     * Delay = base * 2^attempt, capped at maxDelay. `attempt` is the 1-based
+     * retry count; it is NOT clamped, so very large values still return maxDelay
+     * (no overflow / NaN) — the caller may keep incrementing indefinitely.
+     *
+     * @param {number} attempt - 1-based reconnect attempt number
+     * @param {Object} [opts] - { baseDelay=1000, maxDelay=30000 }
+     * @returns {number} delay in ms, in [baseDelay, maxDelay]
+     */
+    function reconnectBackoffDelay(attempt, opts) {
+        opts = opts || {};
+        var baseDelay = opts.baseDelay || 1000;
+        var maxDelay = opts.maxDelay || 30000;
+        var n = (typeof attempt === 'number' && attempt > 0) ? attempt : 1;
+        // Math.pow can overflow to Infinity for huge n; Math.min collapses that
+        // to maxDelay, so the result is always a finite number in range.
+        return Math.min(baseDelay * Math.pow(2, n - 1), maxDelay);
+    }
+
+    /**
      * Title & Artist verdict label for a resolved near-miss (#1180).
      * @param {boolean} accepted - whether the close call was accepted
      * @param {number} points - points awarded (only shown when accepted)
@@ -377,6 +404,7 @@ window.BeatifyUtils = (function() {
         // WebSocket
         createWebSocket: createWebSocket,
         buildWebSocketUrl: buildWebSocketUrl,
+        reconnectBackoffDelay: reconnectBackoffDelay,
 
         // URL utilities
         getQueryParam: getQueryParam
