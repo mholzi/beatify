@@ -97,6 +97,14 @@ let adminReconnectAttempts = 0;
 // the refreshed token is *also* rejected — bounce to HA login.
 let adminWsAuthRecovering = false;
 let adminWsAuthRecoveryAttempts = 0;
+// #1395: coalesce overlapping connectAdminWebSocket() calls. The function
+// awaits getAccessToken() before it can assign adminWs, so two concurrent
+// callers (visibilitychange, onclose backoff, sendAdminCommand reconnect,
+// handleAdminJoin poll) could both pass the pre-await guard and each create a
+// socket. This flag is set synchronously the moment a connect is in flight and
+// cleared once the socket is assigned (or the attempt bails), so a second
+// caller returns immediately instead of opening a duplicate, orphaned socket.
+let adminWsConnecting = false;
 
 // --- WS accessors (used by admin.js view code instead of touching adminWs) -
 
@@ -142,82 +150,124 @@ export function resetReconnectAttempts() {
  * #998: authenticates via admin_connect with a Home Assistant access token.
  */
 export async function connectAdminWebSocket() {
-    // #998: the admin WS is gated by HA login. getAccessToken() refreshes a
-    // stale token transparently; null means the host is not logged in.
-    var token = await BeatifyAuth.getAccessToken();
-    // rc13 (#1131): in Companion bypass mode there is no OAuth token but the
-    // WS must still open — server-side admin_connect accepts the request on
-    // UA+RFC1918 signature when ha_token is falsy. Without this short-circuit
-    // the admin WS never opens on Android Companion (no `[WS-Debug] upgrade`
-    // log fires either, which is what surfaced the bug on rc12).
-    if (!token && !BeatifyAuth.isCompanionBypassMode()) return;
-
-    // Close existing connection if any
-    if (adminWs && adminWs.readyState === WebSocket.OPEN) {
-        return; // Already connected
+    // #1395: guard BEFORE the token await. An existing socket that is OPEN *or*
+    // still CONNECTING means a connection is already established/in progress —
+    // returning here stops a concurrent caller from overwriting `adminWs` with
+    // a second socket and orphaning the first (the old check ran AFTER the
+    // await and only matched OPEN, so a CONNECTING socket slipped through). The
+    // `adminWsConnecting` flag covers the window where a connect is awaiting its
+    // token and has not yet assigned adminWs.
+    if (adminWsConnecting) return;
+    if (adminWs &&
+        (adminWs.readyState === WebSocket.OPEN ||
+         adminWs.readyState === WebSocket.CONNECTING)) {
+        return; // Already connected or connecting
     }
 
-    var wsUrl = buildWsUrl(window.location);
-
+    adminWsConnecting = true;
     try {
-        adminWs = new WebSocket(wsUrl);
-    } catch (err) {
-        console.error('[Admin WS] Failed to create WebSocket:', err);
-        return;
-    }
+        // #998: the admin WS is gated by HA login. getAccessToken() refreshes a
+        // stale token transparently; null means the host is not logged in.
+        var token = await BeatifyAuth.getAccessToken();
+        // rc13 (#1131): in Companion bypass mode there is no OAuth token but the
+        // WS must still open — server-side admin_connect accepts the request on
+        // UA+RFC1918 signature when ha_token is falsy. Without this short-circuit
+        // the admin WS never opens on Android Companion (no `[WS-Debug] upgrade`
+        // log fires either, which is what surfaced the bug on rc12).
+        if (!token && !BeatifyAuth.isCompanionBypassMode()) return;
 
-    adminWs.onopen = function() {
-        // rc6 (#1120 diagnostics): log token characteristics so chrome://inspect
-        // captures whether force=true bridge calls actually return different
-        // tokens across recovery cycles. Prefix only — first 12 chars, safe
-        // to share; HA tokens are JWT so prefix is just the header.
-        deps.debug(
-            '[Admin WS] Connected, sending admin_connect (token: len=' +
-            (token ? token.length : 0) +
-            ', prefix=' +
-            (token ? token.slice(0, 12) : 'null') +
-            ', recoveryAttempt=' +
-            adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
-            ')'
-        );
-        adminReconnectAttempts = 0;
-        adminWs.send(JSON.stringify({
-            type: 'admin_connect',
-            ha_token: token
-        }));
-    };
+        // Re-check after the await: another flow (e.g. zombie-auth recovery)
+        // may have opened/started a socket while getAccessToken() was pending.
+        if (adminWs &&
+            (adminWs.readyState === WebSocket.OPEN ||
+             adminWs.readyState === WebSocket.CONNECTING)) {
+            return; // Already connected or connecting
+        }
 
-    adminWs.onmessage = function(event) {
+        var wsUrl = buildWsUrl(window.location);
+
         try {
-            var data = JSON.parse(event.data);
-            handleAdminWsMessage(data);
+            adminWs = new WebSocket(wsUrl);
         } catch (err) {
-            console.error('[Admin WS] Message parse error:', err);
+            console.error('[Admin WS] Failed to create WebSocket:', err);
+            return;
         }
-    };
+        var ws = adminWs;
 
-    adminWs.onclose = function() {
-        deps.debug('[Admin WS] Disconnected');
-        adminWs = null;
-        // Issue #550: Re-enable lobby polling while WS is down so
-        // spectator admin still sees player join/leave updates
-        if (deps.getCurrentView() === 'lobby') {
-            deps.startLobbyPolling();
-        }
-        // Zombie-auth recovery owns the reconnect during refresh — skipping
-        // the backoff path here avoids two parallel WSes racing admin_connect.
-        if (adminWsAuthRecovering) return;
-        // Auto-reconnect with backoff
-        if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && deps.getCurrentGame()) {
-            adminReconnectAttempts++;
-            var delay = reconnectDelay(adminReconnectAttempts);
-            setTimeout(connectAdminWebSocket, delay);
-        }
-    };
+        ws.onopen = function() {
+            // #1395: ignore a late onopen from a socket that is no longer the
+            // active one (it was superseded/closed); it must not reset counters
+            // or send admin_connect on behalf of the current connection.
+            if (ws !== adminWs) return;
+            // rc6 (#1120 diagnostics): log token characteristics so chrome://inspect
+            // captures whether force=true bridge calls actually return different
+            // tokens across recovery cycles. Prefix only — first 12 chars, safe
+            // to share; HA tokens are JWT so prefix is just the header.
+            deps.debug(
+                '[Admin WS] Connected, sending admin_connect (token: len=' +
+                (token ? token.length : 0) +
+                ', prefix=' +
+                (token ? token.slice(0, 12) : 'null') +
+                ', recoveryAttempt=' +
+                adminWsAuthRecoveryAttempts + '/' + MAX_ADMIN_WS_AUTH_RECOVERIES +
+                ')'
+            );
+            adminReconnectAttempts = 0;
+            ws.send(JSON.stringify({
+                type: 'admin_connect',
+                ha_token: token
+            }));
+        };
 
-    adminWs.onerror = function(err) {
-        console.error('[Admin WS] Error:', err);
-    };
+        ws.onmessage = function(event) {
+            // #1395: drop messages from a stale socket — they belong to a
+            // connection we have already replaced and must not drive dispatch.
+            if (ws !== adminWs) return;
+            try {
+                var data = JSON.parse(event.data);
+                handleAdminWsMessage(data);
+            } catch (err) {
+                console.error('[Admin WS] Message parse error:', err);
+            }
+        };
+
+        ws.onclose = function() {
+            // #1395: only act if THIS socket is still the shared adminWs. After
+            // closeAdminWs()+reconnect or the UNAUTHORIZED recovery (which nulls
+            // adminWs and opens a fresh socket), the dead socket's deferred
+            // onclose would otherwise null the module variable even though it now
+            // points at the healthy replacement — isAdminWsOpen() would then
+            // report disconnected and leak the live socket. Bail for orphans.
+            if (ws !== adminWs) return;
+            deps.debug('[Admin WS] Disconnected');
+            adminWs = null;
+            // Issue #550: Re-enable lobby polling while WS is down so
+            // spectator admin still sees player join/leave updates
+            if (deps.getCurrentView() === 'lobby') {
+                deps.startLobbyPolling();
+            }
+            // Zombie-auth recovery owns the reconnect during refresh — skipping
+            // the backoff path here avoids two parallel WSes racing admin_connect.
+            if (adminWsAuthRecovering) return;
+            // Auto-reconnect with backoff
+            if (adminReconnectAttempts < MAX_ADMIN_RECONNECT && deps.getCurrentGame()) {
+                adminReconnectAttempts++;
+                var delay = reconnectDelay(adminReconnectAttempts);
+                setTimeout(connectAdminWebSocket, delay);
+            }
+        };
+
+        ws.onerror = function(err) {
+            // #1395: an orphaned socket's error must not be treated as the
+            // active connection's; the identity check keeps logs attributable.
+            if (ws !== adminWs) return;
+            console.error('[Admin WS] Error:', err);
+        };
+    } finally {
+        // Released synchronously here: the socket (if any) is now assigned to
+        // adminWs, so the CONNECTING/OPEN guard above takes over coalescing.
+        adminWsConnecting = false;
+    }
 }
 
 /**
