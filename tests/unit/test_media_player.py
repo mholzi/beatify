@@ -1558,3 +1558,54 @@ class TestWaitForMetadataUpdateAlbumArt:
 
         assert result["title"] == "New"
         assert result["album_art"] == "/beatify/static/img/no-artwork.svg"
+
+
+class TestVerifyResponsivePing:
+    """Pre-flight ping must never raise an idle speaker's volume (#1382)."""
+
+    @pytest.mark.asyncio
+    async def test_unreported_volume_does_not_set_volume(self):
+        """volume_level is None -> NO volume_set (no absolute 50% blast)."""
+        hass = _make_hass(initial_state="idle")
+        state = hass.states.get("media_player.test")
+        state.attributes["volume_level"] = None
+
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+
+        ok, detail = await svc.verify_responsive()
+
+        assert ok is True
+        assert detail == ""
+
+        calls = hass.services.async_call.await_args_list
+        # No volume_set at all when volume is unreported.
+        assert all(call.args[1] != "volume_set" for call in calls), (
+            f"verify_responsive must not call volume_set on unreported volume: {calls}"
+        )
+        # Used a read-only refresh ping instead.
+        assert any(
+            call.args[0] == "homeassistant" and call.args[1] == "update_entity"
+            for call in calls
+        ), f"expected homeassistant.update_entity ping, got: {calls}"
+
+    @pytest.mark.asyncio
+    async def test_reported_volume_pings_with_exact_value(self):
+        """A real reported volume is echoed back unchanged via volume_set."""
+        hass = _make_hass(initial_state="idle")
+        state = hass.states.get("media_player.test")
+        state.attributes["volume_level"] = 0.12
+
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+
+        ok, detail = await svc.verify_responsive()
+
+        assert ok is True
+        assert detail == ""
+
+        vol_calls = [
+            call
+            for call in hass.services.async_call.await_args_list
+            if call.args[:2] == ("media_player", "volume_set")
+        ]
+        assert len(vol_calls) == 1
+        assert vol_calls[0].args[2]["volume_level"] == 0.12
