@@ -174,6 +174,63 @@ class TestRevealAutoAdvance:
             await state._reveal_auto_advance(0)
         state.start_round.assert_not_awaited()
 
+    async def test_unattended_final_round_runs_end_ceremony_and_broadcasts(self):
+        """#1360 regression: when the auto-advance carries the FINAL round and
+        start_round() exhausts the playlist, it flips phase to END and returns
+        False (a bare _set_phase(END), bypassing advance_to_end). Previously the
+        broadcast only fired `if success`, so the game ended with no winner
+        ceremony AND no broadcast — every client frozen on REVEAL.
+
+        The unattended end must mirror the manual admin_next_round game-end: run
+        advance_to_end() (party-light celebration + winner/podium TTS) AND fire
+        the broadcast so the END state reaches clients.
+        """
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.REVEAL
+        state._song_finished = MagicMock(return_value=True)
+
+        # Simulate playlist exhaustion: start_round() flips to END + returns
+        # False, exactly like the bare _set_phase(GamePhase.END) exhaustion
+        # branch in RoundLifecycleMixin.start_round.
+        async def exhausted_start_round(*_args, **_kwargs):
+            state.phase = GamePhase.END
+            return False
+
+        state.start_round = AsyncMock(side_effect=exhausted_start_round)
+
+        # Spy on the terminal ceremony + the broadcast callback.
+        state.advance_to_end = AsyncMock()
+        broadcast = AsyncMock()
+        state.set_round_end_callback(broadcast)
+
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_auto_advance(0)
+
+        # Ceremony ran (winner/podium TTS + party lights) and END was broadcast.
+        state.advance_to_end.assert_awaited_once()
+        broadcast.assert_awaited_once()
+
+    async def test_advance_broadcasts_after_normal_next_round(self):
+        """Counterpart to #1360: a NON-final auto-advance (start_round succeeds)
+        must still broadcast the new PLAYING state, and must NOT run the
+        game-end ceremony.
+        """
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.phase = GamePhase.REVEAL
+        state._song_finished = MagicMock(return_value=True)
+        state.start_round = AsyncMock(return_value=True)
+        state.advance_to_end = AsyncMock()
+        broadcast = AsyncMock()
+        state.set_round_end_callback(broadcast)
+
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await state._reveal_auto_advance(0)
+
+        broadcast.assert_awaited_once()
+        state.advance_to_end.assert_not_awaited()
+
     async def test_idle_halt_stops_playback_and_does_not_advance(self):
         """Zero-guess round: song-end stops the speaker, no new round."""
         state = make_game_state()
