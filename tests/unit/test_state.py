@@ -154,6 +154,36 @@ class TestRevealAutoAdvance:
         state._media_player_service = None
         assert state._song_finished() is False
 
+    def test_song_finished_false_when_transiently_unavailable(self):
+        # #1374: a transient "unavailable" blip (Sonos/Cast handoff, MA
+        # reload during the REVEAL dwell) must NOT be read as song-end.
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = MagicMock()
+        state._media_player_service.get_playback_state.return_value = "unavailable"
+        assert state._song_finished() is False
+
+    def test_song_finished_false_when_state_none(self):
+        # #1374: get_playback_state() returns None when the entity is
+        # unavailable — same conservative handling as "unavailable".
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = MagicMock()
+        state._media_player_service.get_playback_state.return_value = None
+        assert state._song_finished() is False
+
+    def test_song_finished_true_after_unavailable_recovers_to_idle(self):
+        # #1374: a transient blip followed by a genuine song-end (player
+        # back to "idle") still advances — the fix only suppresses the
+        # blip itself, not a real track end.
+        state = make_game_state()
+        _create_fresh_game(state)
+        state._media_player_service = MagicMock()
+        state._media_player_service.get_playback_state.return_value = "unavailable"
+        assert state._song_finished() is False
+        state._media_player_service.get_playback_state.return_value = "idle"
+        assert state._song_finished() is True
+
     async def test_advances_on_song_end(self):
         state = make_game_state()
         _create_fresh_game(state)
