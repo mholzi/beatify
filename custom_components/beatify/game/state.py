@@ -271,6 +271,12 @@ class GameState(
         self._hass: HomeAssistant | None = None
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
+        # #1358: monotonic game-identity epoch. Bumped by create_game /
+        # end_game / rematch_game so a long-running start_round can detect that
+        # the game it was launched for has been torn down or replaced while it
+        # was parked inside an await (verify_responsive / play_song), and bail
+        # instead of stamping PLAYING onto a game with game_id=None / no players.
+        self._game_epoch: int = 0
         self.phase: GamePhase = GamePhase.LOBBY
         # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
         self.reveal_auto_advance: int = 0
