@@ -7,9 +7,9 @@ from typing import Any
 
 import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
-from homeassistant.helpers import entity_registry as er
 
 from .const import DOMAIN
+from .services.media_player import async_get_media_players
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,25 +24,29 @@ class BeatifyConfigFlow(ConfigFlow, domain=DOMAIN):
         user_input: dict[str, Any] | None = None,
     ) -> ConfigFlowResult:
         """Handle a flow initialized by the user."""
-        # Prevent multiple instances
-        await self.async_set_unique_id(DOMAIN)
-        self._abort_if_unique_id_configured()
+        # Single-instance enforcement is declared via `single_config_entry` in
+        # manifest.json (#1402 B6); HA aborts a second entry before this step
+        # runs, so no unique-id dance is needed here.
 
-        # Check for available media players
-        media_players = self._get_media_player_entities()
+        # Check for available media players using the SAME discovery that
+        # async_setup_entry runs (#1402 B6). The previous registry-only scan
+        # disagreed with runtime discovery — it counted disabled and
+        # capability-unsupported (raw Cast) players the setup path filters out,
+        # so the wizard could promise "✓ Found N media player(s)" for players
+        # Beatify can't actually use. async_get_media_players reads live states,
+        # skips unsupported platforms, and is async-safe.
+        media_players = await async_get_media_players(self.hass)
         has_media_players = len(media_players) > 0
 
         if user_input is not None:
-            # User confirmed setup - create entry regardless of media player status
-            # Store whether media players were available at setup time
-            return self.async_create_entry(
-                title="Beatify",
-                data={"has_media_players": has_media_players},
-            )
+            # User confirmed setup - create entry regardless of media player
+            # status. No entry data needed (the previously-stored
+            # "has_media_players" flag was never read back — dead field, #1402).
+            return self.async_create_entry(title="Beatify", data={})
 
         # Build description with warning if no media players
         if not has_media_players:
-            _LOGGER.warning("No media_player entities found in Home Assistant")
+            _LOGGER.warning("No compatible media_player entities found")
             warning_msg = (
                 "⚠️ No media players found. Beatify requires at least one "
                 "media_player entity to play music. You can proceed, but "
@@ -64,31 +68,3 @@ class BeatifyConfigFlow(ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema({}),
             description_placeholders=description_placeholders,
         )
-
-    def _get_media_player_entities(self) -> list[dict[str, str]]:
-        """
-        Get list of available media_player entities with friendly names.
-
-        Returns a list of dicts with entity_id and friendly_name for all
-        media_player entities registered in Home Assistant.
-        """
-        entity_reg = er.async_get(self.hass)
-        media_players = []
-
-        for entry in entity_reg.entities.values():
-            if entry.domain == "media_player":
-                # Get friendly name from entity registry or fall back to entity_id
-                friendly_name = entry.name or entry.original_name or entry.entity_id
-                media_players.append(
-                    {
-                        "entity_id": entry.entity_id,
-                        "friendly_name": friendly_name,
-                    }
-                )
-
-        _LOGGER.debug(
-            "Found %d media_player entities: %s",
-            len(media_players),
-            [p["entity_id"] for p in media_players],
-        )
-        return media_players

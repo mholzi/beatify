@@ -15,5 +15,6 @@
   "requirements": [
     "num2words==0.5.14"
   ],
+  "single_config_entry": true,
   "version": "4.0.0"
 }

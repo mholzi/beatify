@@ -97,8 +97,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Beatify from a config entry."""
     _LOGGER.debug("Setting up Beatify integration")
 
-    # Initialize domain data storage
-    hass.data.setdefault(DOMAIN, {})
+    # hass.data[DOMAIN] is assigned wholesale below once discovery + game
+    # infrastructure are built, so an early setdefault here is redundant (#1402
+    # B6). The only reader before that assignment is _read_manifest_version,
+    # which doesn't touch hass.data.
 
     # Read version from manifest.json once at setup (#784). Done in executor
     # because HA 2026.2+ flags blocking I/O at module level — but doing it

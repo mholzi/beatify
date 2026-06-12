@@ -16,9 +16,11 @@ from typing import Any
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import DOMAIN
+from .device import build_device_info
 from .game.state import GamePhase, GameState
 
 _LOGGER = logging.getLogger(__name__)
@@ -31,13 +33,14 @@ async def async_setup_entry(
 ) -> None:
     """Set up Beatify sensor entities from a config entry."""
     game_state: GameState = hass.data[DOMAIN]["game"]
+    device_info = build_device_info(hass, entry.entry_id)
 
     entities = [
-        BeatifyCurrentRoundSensor(game_state, entry.entry_id),
-        BeatifyLeaderSensor(game_state, entry.entry_id),
-        BeatifyTopScoreSensor(game_state, entry.entry_id),
-        BeatifyPlayerCountSensor(game_state, entry.entry_id),
-        BeatifyCurrentSongSensor(game_state, entry.entry_id),
+        BeatifyCurrentRoundSensor(game_state, entry.entry_id, device_info),
+        BeatifyLeaderSensor(game_state, entry.entry_id, device_info),
+        BeatifyTopScoreSensor(game_state, entry.entry_id, device_info),
+        BeatifyPlayerCountSensor(game_state, entry.entry_id, device_info),
+        BeatifyCurrentSongSensor(game_state, entry.entry_id, device_info),
     ]
     async_add_entities(entities)
 
@@ -48,9 +51,14 @@ class BeatifySensorBase(SensorEntity):
     _attr_should_poll = False
     _attr_has_entity_name = True
 
-    def __init__(self, game_state: GameState, entry_id: str) -> None:
+    def __init__(
+        self, game_state: GameState, entry_id: str, device_info: DeviceInfo
+    ) -> None:
         self._game_state = game_state
         self._attr_unique_id = f"{entry_id}_{self._sensor_key}"
+        # #1402 B6: attach every entity to a single Beatify device so the six
+        # sensors don't float without a device in the registry.
+        self._attr_device_info = device_info
 
     @property
     def _sensor_key(self) -> str:
@@ -164,27 +172,38 @@ class BeatifyCurrentSongSensor(BeatifySensorBase):
     _attr_icon = "mdi:music-note"
     _sensor_key = "current_song"
 
-    def __init__(self, game_state: GameState, entry_id: str) -> None:
-        super().__init__(game_state, entry_id)
+    def __init__(
+        self, game_state: GameState, entry_id: str, device_info: DeviceInfo
+    ) -> None:
+        super().__init__(game_state, entry_id, device_info)
         self._last_title: str | None = None
         self._last_artist: str | None = None
         self._last_year: int | None = None
 
-    @property
-    def native_value(self) -> str | None:
+    @callback
+    def _on_state_changed(self) -> None:
+        """Refresh the cached song before writing state (#1402 B6).
+
+        The cache update used to be a side effect of reading ``native_value``,
+        which made an HA property impure — repeated reads (or a read that never
+        happened) could leave the cache out of sync. The cache is now refreshed
+        exactly once per game-state change, here, before ``async_write_ha_state``
+        re-reads the now-pure properties.
+        """
         phase = self._game_state.phase
         song = self._game_state.current_song
-
-        # Update cache when song info is available during non-PLAYING phases
         if song and phase != GamePhase.PLAYING:
             self._last_title = song.get("title")
             self._last_artist = song.get("artist")
             self._last_year = song.get("year")
+        super()._on_state_changed()
 
-        # Hidden during PLAYING phase
-        if phase == GamePhase.PLAYING:
+    @property
+    def native_value(self) -> str | None:
+        # Pure read: caching happens in _on_state_changed (#1402 B6).
+        if self._game_state.phase == GamePhase.PLAYING:
+            # Hidden during PLAYING phase
             return None
-
         return self._last_title
 
     @property

@@ -12,9 +12,11 @@ from typing import Any
 from homeassistant.components.binary_sensor import BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import DOMAIN
+from .device import build_device_info
 from .game.state import GamePhase, GameState
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,7 +29,10 @@ async def async_setup_entry(
 ) -> None:
     """Set up Beatify binary sensor entities from a config entry."""
     game_state: GameState = hass.data[DOMAIN]["game"]
-    async_add_entities([BeatifyGameActiveSensor(game_state, entry.entry_id)])
+    device_info = build_device_info(hass, entry.entry_id)
+    async_add_entities(
+        [BeatifyGameActiveSensor(game_state, entry.entry_id, device_info)]
+    )
 
 
 class BeatifyGameActiveSensor(BinarySensorEntity):
@@ -38,9 +43,13 @@ class BeatifyGameActiveSensor(BinarySensorEntity):
     _attr_name = "Beatify game active"
     _attr_icon = "mdi:gamepad-variant"
 
-    def __init__(self, game_state: GameState, entry_id: str) -> None:
+    def __init__(
+        self, game_state: GameState, entry_id: str, device_info: DeviceInfo
+    ) -> None:
         self._game_state = game_state
         self._attr_unique_id = f"{entry_id}_game_active"
+        # #1402 B6: share the single Beatify device with the sensor platform.
+        self._attr_device_info = device_info
 
     async def async_added_to_hass(self) -> None:
         """Register state callback when entity is added."""
@@ -65,11 +74,11 @@ class BeatifyGameActiveSensor(BinarySensorEntity):
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
-        players = self._game_state.players
-        leader_name = None
-        if players:
-            leader = max(players.values(), key=lambda p: p.score)
-            leader_name = leader.name
+        # #1402 B6: reuse GameState.leader instead of recomputing the max() —
+        # the property already owns the leader-selection logic (and its
+        # empty-players guard), so duplicating it here risked divergence.
+        leader = self._game_state.leader
+        leader_name = leader.name if leader else None
 
         return {
             "phase": self._game_state.phase.value,
