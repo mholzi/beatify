@@ -4,10 +4,6 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.1.0-rc1] - 2026-06-12
-
-Pre-release candidate for 4.1.0 — Amazon Music as a fifth provider plus a broad reliability pass (wake-lock, TV reconnect, login loop, connection cleanup), Apple Music storefront-aware playback, Title & Artist polish, party-light fixes, new playlists, and a large security + code-quality cleanup. Full notes: docs/release-notes-v4.1.0.md.
-
 ### Fixed
 - **Asset cache-buster no longer depends on a hand-edited version (#1266).** Static assets were busted by a version string hardcoded in `admin/analytics/dashboard/player` HTML and `sw.js`, so a reused or forgotten bump left the marker identical and browsers / the service worker kept serving stale CSS/JS/i18n (the #824 class). The `?v=` params, the SW `CACHE_VERSION`, and the i18n-JSON fetch now derive from a fingerprint of the `www/css|js|i18n` files, so any asset change invalidates caches automatically. The displayed version stays the clean semantic version; the manifest remains the single source of truth.
 - Regenerated a stale `admin.min.js` left by #1263 — the Amazon Music admin UI changes were in `admin.js` but missing from the served minified bundle.
