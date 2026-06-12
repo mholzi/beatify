@@ -7,7 +7,7 @@ import logging
 import time
 from typing import TYPE_CHECKING
 
-from aiohttp import WSMsgType, web
+from aiohttp import WSCloseCode, WSMsgType, web
 
 from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
@@ -506,6 +506,41 @@ class BeatifyWebSocketHandler:
         self._admin_disconnect_task = None
 
         _LOGGER.debug("Cleaned up all pending game tasks")
+
+    async def async_close_all(self) -> None:
+        """Cancel pending tasks and close every open WebSocket on unload (#1391).
+
+        ``async_unload_entry`` previously left this handler's tasks
+        (``_pending_removals``, ``_admin_disconnect_task``,
+        ``_broadcast_debounce_task``) running and every player/admin WebSocket
+        open, pinning the orphaned handler + GameState after the integration was
+        torn down. This cancels all of them and sends each client a going-away
+        close so they reconnect cleanly to a fresh handler after reload.
+        """
+        # Reuse the existing pending-task cleanup (_pending_removals +
+        # _admin_disconnect_task), then additionally cancel the debounce task
+        # that cleanup_game_tasks does not cover.
+        await self.cleanup_game_tasks()
+        if self._broadcast_debounce_task and not self._broadcast_debounce_task.done():
+            self._broadcast_debounce_task.cancel()
+        self._broadcast_debounce_task = None
+
+        # Close every open connection with a going-away code. Snapshot the set
+        # first: ws.close() resolves the handle() finally-block which discards
+        # from self.connections, mutating it mid-iteration otherwise.
+        for ws in list(self.connections):
+            if not ws.closed:
+                try:
+                    await ws.close(
+                        code=WSCloseCode.GOING_AWAY, message=b"beatify-unload"
+                    )
+                except Exception:  # noqa: BLE001 — best-effort teardown
+                    _LOGGER.debug(
+                        "Error closing WebSocket during unload", exc_info=True
+                    )
+        self.connections.clear()
+
+        _LOGGER.debug("Closed all WebSocket connections on unload")
 
     def cancel_pending_removal(self, player_name: str) -> None:
         """

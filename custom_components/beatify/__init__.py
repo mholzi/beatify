@@ -276,6 +276,27 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     except KeyError:
         _LOGGER.debug("Beatify sidebar panel was not registered, skipping removal")
 
+    # #1391: tear down the live game infrastructure BEFORE popping hass.data,
+    # otherwise running game tasks/timers and open WebSockets keep operating on
+    # an orphaned GameState/handler (and race a fresh GameState after reload —
+    # two timers driving one media player). Best-effort so a teardown error here
+    # never blocks the unload.
+    domain_data = hass.data.get(DOMAIN, {})
+    game_state = domain_data.get("game")
+    if game_state is not None:
+        try:
+            game_state.async_shutdown()
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning("Error shutting down game state on unload", exc_info=True)
+    ws_handler = domain_data.get("ws_handler")
+    if ws_handler is not None:
+        try:
+            await ws_handler.async_close_all()
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning(
+                "Error closing WebSocket connections on unload", exc_info=True
+            )
+
     # Clean up domain data
     if DOMAIN in hass.data:
         domain_data = hass.data.pop(DOMAIN)

@@ -386,6 +386,31 @@ class GameState(
         for cb in self._state_callbacks:
             cb()
 
+    def async_shutdown(self) -> None:
+        """Cancel every running game task/timer on integration unload (#1391).
+
+        ``async_unload_entry`` pops ``hass.data[DOMAIN]`` but never tore down the
+        live game infrastructure. If a game was active at unload, the round-timer
+        task (``_timer_task``), the intro auto-stop timer (``_intro_stop_task``),
+        the background metadata task (``_metadata_task``), the REVEAL
+        ``_auto_advance_task`` and the fire-and-forget ``_bg_tasks`` (#391) all
+        kept running against an orphaned GameState — firing media_player service
+        calls and racing a fresh GameState after reload (two timers driving one
+        media player). This cancels them all idempotently.
+        """
+        # Round timer, intro timer, and background metadata task all live on the
+        # RoundManager (their cancel helpers are defensive no-ops when idle).
+        self._round_manager.cancel_timer()
+        self._round_manager._cancel_intro_timer()
+        self._round_manager._cancel_metadata_task()
+        # REVEAL auto-advance task (#1012).
+        self._cancel_auto_advance()
+        # Fire-and-forget party-light / media / TTS tasks (#391).
+        for task in list(self._bg_tasks):
+            if not task.done():
+                task.cancel()
+        self._bg_tasks.clear()
+
     # ------------------------------------------------------------------
     # Phase transitions — Single Source of Truth (Issue #1273)
     # ------------------------------------------------------------------
