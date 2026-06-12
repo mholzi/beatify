@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import os
 import time
 import uuid
 from datetime import datetime, timezone
@@ -37,6 +38,7 @@ class StatsService:
         self._game_start_time: int | None = None
         self._all_time_avg_cache: float | None = None
         self._save_task: asyncio.Task | None = None
+        self._save_lock = asyncio.Lock()
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -91,20 +93,38 @@ class StatsService:
             await self.save()
 
     async def save(self) -> None:
-        """Persist stats to file."""
-        try:
-            # Ensure directory exists
-            await self._hass.async_add_executor_job(
-                self._stats_file.parent.mkdir, 0o755, True, True
-            )
-            # Write stats
-            content = json.dumps(self._stats, indent=2)
-            await self._hass.async_add_executor_job(
-                self._stats_file.write_text, content
-            )
-            _LOGGER.debug("Stats saved to %s", self._stats_file)
-        except OSError as err:
-            _LOGGER.error("Failed to save stats: %s", err)
+        """
+        Persist stats to file with a crash-safe atomic write.
+
+        Mirrors the temp-file + os.replace pattern used by
+        ``AnalyticsStorage._save``: the JSON is written to ``stats.json.tmp``
+        first and then atomically renamed over ``stats.json``. A crash or
+        power loss mid-write leaves the previous (valid) stats.json intact
+        instead of a truncated file that load() would discard, wiping all
+        game history (#1386). The lock serializes concurrent saves (e.g. a
+        directly-awaited save from load()'s corruption path interleaving with
+        a scheduled save task).
+        """
+        async with self._save_lock:
+            try:
+                # Ensure directory exists
+                await self._hass.async_add_executor_job(
+                    self._stats_file.parent.mkdir, 0o755, True, True
+                )
+
+                # Write to temp file first, then atomically rename into place
+                temp_path = self._stats_file.with_suffix(".json.tmp")
+                content = json.dumps(self._stats, indent=2)
+
+                def _write_atomic() -> None:
+                    temp_path.write_text(content)
+                    # Atomic rename (POSIX guarantees atomicity)
+                    os.replace(temp_path, self._stats_file)
+
+                await self._hass.async_add_executor_job(_write_atomic)
+                _LOGGER.debug("Stats saved to %s", self._stats_file)
+            except OSError as err:
+                _LOGGER.error("Failed to save stats: %s", err)
 
     def schedule_save(self) -> None:
         """
