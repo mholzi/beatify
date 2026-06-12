@@ -28,6 +28,8 @@ function loadHaAuth({
     userAgent = '',
     externalApp = null,
     externalAppV2 = null,
+    sessionStorageData = {},
+    withDomBody = false,
 } = {}) {
     const storage = (initial) => {
         const map = new Map(Object.entries(initial));
@@ -39,14 +41,46 @@ function loadHaAuth({
         };
     };
     const ls = storage(localStorageData);
-    const ss = storage({});
+    const ss = storage(sessionStorageData);
 
     // Mutable cookie jar — JS reads via document.cookie, our shim allows
     // tests to seed an initial value and inspect mutations. Honors
     // Max-Age=0 by actually removing the entry, matching browsers.
     const cookieJar = { value: cookie };
+    // Minimal DOM shim so #1394's _renderAuthError() can mount its error card.
+    // Only created when withDomBody is set; otherwise document has no body and
+    // _renderAuthError() short-circuits (matching a not-yet-painted page).
+    let bodyShim = null;
+    if (withDomBody) {
+        const makeEl = () => {
+            const el = {
+                style: { cssText: '' },
+                children: [],
+                _listeners: {},
+                setAttribute() {},
+                set innerHTML(html) { this._html = html; },
+                get innerHTML() { return this._html || ''; },
+                appendChild(c) { this.children.push(c); return c; },
+                addEventListener(ev, fn) { this._listeners[ev] = fn; },
+                querySelector() { return makeEl(); },
+            };
+            return el;
+        };
+        bodyShim = makeEl();
+    }
     const documentShim = {
         title: 'test',
+        body: bodyShim,
+        createElement: bodyShim ? () => ({
+            style: { cssText: '' },
+            _listeners: {},
+            id: '',
+            setAttribute() {},
+            set innerHTML(html) { this._html = html; },
+            get innerHTML() { return this._html || ''; },
+            appendChild() {},
+            querySelector() { return { addEventListener: () => {} }; },
+        }) : undefined,
         get cookie() { return cookieJar.value; },
         set cookie(v) {
             const name = v.split('=')[0];
@@ -108,6 +142,9 @@ function loadHaAuth({
         BeatifyAuth: sandboxWindow.BeatifyAuth,
         cookieJar,
         localStorage: ls,
+        sessionStorage: ss,
+        documentShim,
+        bodyShim,
         sandboxWindow,
     };
 }
@@ -265,6 +302,97 @@ describe('init() auth callback handling', () => {
         ]);
         expect(result).toBe('LOGIN_NAVIGATED');
         expect(cookieJar.value).not.toContain('beatify_access=');
+    });
+});
+
+describe('bounded login loop on persistent OAuth failure (#1394)', () => {
+    const K = 'beatify_login_attempts';
+
+    function failingCallback(attemptsSoFar) {
+        // Each "page load" arrives back from the server with ?auth_error= and
+        // carries forward the attempt counter in sessionStorage (which survives
+        // the redirect in a real browser).
+        return loadHaAuth({
+            fetchFn: async () => ({ ok: false, status: 401, json: async () => ({}) }),
+            sessionStorageData: attemptsSoFar > 0 ? { [K]: String(attemptsSoFar) } : {},
+            withDomBody: true,
+        });
+    }
+
+    it('keeps redirecting while under the attempt budget, incrementing the counter', async () => {
+        // First failed callback: counter 0 -> 1, still redirects.
+        const ctx = failingCallback(0);
+        ctx.sandboxWindow.location.search = '?auth_error=exchange_failed';
+        const result = await Promise.race([
+            ctx.BeatifyAuth.init({ requireAuth: true }),
+            new Promise((r) => setTimeout(() => r('LOGIN_NAVIGATED'), 5)),
+        ]);
+        expect(result).toBe('LOGIN_NAVIGATED');
+        expect(ctx.sandboxWindow.location._lastReplace).toContain('/auth/authorize');
+        expect(ctx.sessionStorage.getItem(K)).toBe('1');
+    });
+
+    it('stops redirecting and renders an error once the budget is exhausted', async () => {
+        // Arrive back on the page with the counter already at the max (3 prior
+        // failed login redirects). The 4th callback must NOT redirect again.
+        const ctx = failingCallback(3);
+        ctx.sandboxWindow.location.search = '?auth_error=exchange_failed';
+        const result = await ctx.BeatifyAuth.init({ requireAuth: true });
+        // init() resolves (does NOT hang on a never-resolving login redirect).
+        expect(result).toBe(false);
+        // No new /auth/authorize redirect was issued.
+        expect(ctx.sandboxWindow.location._lastReplace).toBeUndefined();
+        // A user-visible error card was mounted instead of looping.
+        expect(ctx.bodyShim.children.length).toBe(1);
+    });
+
+    it('drives the full loop to a bounded stop (no infinite redirect)', async () => {
+        // Simulate consecutive page loads, carrying the counter forward each
+        // time exactly as a real browser would across the redirect bounce.
+        let attempts = 0;
+        let redirects = 0;
+        for (let i = 0; i < 10; i++) {
+            const ctx = failingCallback(attempts);
+            ctx.sandboxWindow.location.search = '?auth_error=exchange_failed';
+            const result = await Promise.race([
+                ctx.BeatifyAuth.init({ requireAuth: true }),
+                new Promise((r) => setTimeout(() => r('LOGIN_NAVIGATED'), 5)),
+            ]);
+            const next = ctx.sessionStorage.getItem(K);
+            attempts = next ? parseInt(next, 10) : attempts;
+            if (result === 'LOGIN_NAVIGATED') redirects += 1;
+            else break; // budget exhausted — loop terminated
+        }
+        // Loop is bounded: at most MAX_LOGIN_ATTEMPTS (3) redirects, then stop.
+        expect(redirects).toBe(3);
+    });
+
+    it('resets the counter after a successful callback so later sessions get a fresh budget', async () => {
+        const farFuture = Math.floor(Date.now() / 1000) + 3600;
+        const ctx = loadHaAuth({
+            cookie: cookieFor('beatify_access', { access_token: 'freshly-set', expires_at: farFuture }),
+            sessionStorageData: { [K]: '2' }, // two prior failures
+            withDomBody: true,
+        });
+        ctx.sandboxWindow.sessionStorage.setItem('beatify_ha_oauth_state', 'state-ok');
+        ctx.sandboxWindow.location.search = '?auth_state=state-ok';
+        const ok = await ctx.BeatifyAuth.init({ requireAuth: true });
+        expect(ok).toBe(true);
+        // Counter cleared on the successful callback.
+        expect(ctx.sessionStorage.getItem(K)).toBeNull();
+    });
+
+    it('also bounds the refresh-failed branch (no callback, refresh keeps failing)', async () => {
+        // No ?auth_error in the URL: init() falls through to refreshAccess(),
+        // which 401s. With the counter at max, it must stop instead of looping.
+        const ctx = loadHaAuth({
+            fetchFn: async () => ({ ok: false, status: 401, json: async () => ({}) }),
+            sessionStorageData: { [K]: '3' },
+            withDomBody: true,
+        });
+        const result = await ctx.BeatifyAuth.init({ requireAuth: true });
+        expect(result).toBe(false);
+        expect(ctx.sandboxWindow.location._lastReplace).toBeUndefined();
     });
 });
 

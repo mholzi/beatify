@@ -57,6 +57,15 @@
   // sessionStorage: CSRF state lives only for the duration of one redirect.
   var K_STATE = 'beatify_ha_oauth_state';
 
+  // sessionStorage: consecutive login() redirects that ended in a failed
+  // server-side OAuth exchange (?auth_error=) or state mismatch. Cleared on a
+  // successful callback. Bounds the admin → /auth/authorize → callback?auth_error
+  // → login() loop so a persistently-broken exchange (e.g. the rc15 loopback
+  // HTTP exchange misconfigured) surfaces an error instead of redirecting
+  // forever (#1394). Mirrors the WS path's MAX_ADMIN_WS_AUTH_RECOVERIES.
+  var K_LOGIN_ATTEMPTS = 'beatify_login_attempts';
+  var MAX_LOGIN_ATTEMPTS = 3;
+
   // Old rc8–rc14 localStorage keys. We clear them once on init so a user
   // upgrading from a previous RC doesn't carry forward dead state that
   // could confuse a future debugger.
@@ -517,6 +526,91 @@
     window.location.replace(url);
   }
 
+  // -- bounded login loop guard (#1394) ------------------------------------
+
+  function _loginAttempts() {
+    try {
+      return parseInt(sessionStorage.getItem(K_LOGIN_ATTEMPTS), 10) || 0;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  function _clearLoginAttempts() {
+    try {
+      sessionStorage.removeItem(K_LOGIN_ATTEMPTS);
+    } catch (e) {
+      /* ignore — best-effort */
+    }
+  }
+
+  /**
+   * Render a terminal auth-error state into the page instead of redirecting
+   * again. Called once the bounded retry budget is exhausted (#1394) so a
+   * persistently-failing server-side OAuth exchange stops the redirect loop
+   * and shows the user what happened.
+   */
+  function _renderAuthError() {
+    try {
+      console.error(
+        '[BeatifyAuth] OAuth exchange failed ' +
+          MAX_LOGIN_ATTEMPTS +
+          ' times in a row — stopping the login loop (#1394)'
+      );
+    } catch (e) { /* ignore */ }
+    try {
+      if (typeof document === 'undefined' || !document.body) return;
+      var box = document.createElement('div');
+      box.id = 'beatify-auth-error';
+      box.setAttribute('role', 'alert');
+      box.style.cssText =
+        'position:fixed;inset:0;z-index:2147483647;display:flex;' +
+        'align-items:center;justify-content:center;padding:24px;' +
+        'background:#1c1c1e;color:#fff;font:16px/1.5 system-ui,sans-serif;' +
+        'text-align:center;';
+      box.innerHTML =
+        '<div style="max-width:420px">' +
+        '<h2 style="margin:0 0 12px">Anmeldung fehlgeschlagen</h2>' +
+        '<p style="margin:0 0 20px;opacity:.85">Die Verbindung zu Home ' +
+        'Assistant konnte nicht hergestellt werden. Bitte pr&uuml;fe die ' +
+        'Beatify-Konfiguration (interne URL / SSL) und versuche es erneut.</p>' +
+        '<button type="button" style="padding:10px 20px;border:0;' +
+        'border-radius:8px;background:#0a84ff;color:#fff;font-size:16px;' +
+        'cursor:pointer">Erneut versuchen</button>' +
+        '</div>';
+      var btn = box.querySelector('button');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          _clearLoginAttempts();
+          login();
+        });
+      }
+      document.body.appendChild(box);
+    } catch (e) {
+      /* ignore — error UI is best-effort */
+    }
+  }
+
+  /**
+   * Begin the OAuth redirect, but stop after MAX_LOGIN_ATTEMPTS consecutive
+   * failed callbacks and render an error instead. Returns true if a redirect
+   * was issued, false if the budget was exhausted (caller should stop).
+   */
+  function _attemptLogin() {
+    var attempts = _loginAttempts();
+    if (attempts >= MAX_LOGIN_ATTEMPTS) {
+      _renderAuthError();
+      return false;
+    }
+    try {
+      sessionStorage.setItem(K_LOGIN_ATTEMPTS, String(attempts + 1));
+    } catch (e) {
+      /* ignore — counting is best-effort if storage is unavailable */
+    }
+    login();
+    return true;
+  }
+
   function login() {
     // #1393: defensive guard. Every getAccessToken()/ensureAuthenticated()/
     // handleServerRejection() caller now short-circuits in bypass mode before
@@ -595,6 +689,8 @@
       _clearAccessCookie();
       return false;
     }
+    // Successful callback — reset the bounded login-loop counter (#1394).
+    _clearLoginAttempts();
     return true;
   }
 
@@ -778,8 +874,11 @@
     // In either case the cookies are not usable; jump straight to login.
     if (callbackResult === false) {
       if (options.requireAuth) {
-        login();
-        return new Promise(function () {});
+        // Bounded retry: a persistently-failing server-side exchange must not
+        // loop admin → /auth/authorize → callback?auth_error → login() forever
+        // (#1394). _attemptLogin() renders an error once the budget is spent.
+        if (_attemptLogin()) return new Promise(function () {});
+        return Promise.resolve(false);
       }
       return Promise.resolve(false);
     }
@@ -787,6 +886,8 @@
     if (accessFresh()) {
       // Cookie has a fresh access token (either from the just-completed
       // callback, or a returning session within the cookie's lifetime).
+      // A usable session means the loop is broken — reset the counter (#1394).
+      _clearLoginAttempts();
       return Promise.resolve(true);
     }
 
@@ -794,10 +895,15 @@
     // refresh cookie may still be valid even if the access cookie has
     // already expired (different lifetimes by design).
     return refreshAccess().then(function (token) {
-      if (token) return true;
+      if (token) {
+        _clearLoginAttempts();
+        return true;
+      }
       if (!options.requireAuth) return false;
-      login();
-      return new Promise(function () {});
+      // Same bounded-loop guard as the failed-callback branch (#1394): if
+      // login() keeps producing auth_error callbacks, stop and show an error.
+      if (_attemptLogin()) return new Promise(function () {});
+      return false;
     });
   }
 
