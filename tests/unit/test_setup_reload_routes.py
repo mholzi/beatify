@@ -205,3 +205,32 @@ async def test_ws_route_503_when_handler_missing(mock_hass):
 
     response = await ws_dispatch(MagicMock())
     assert response.status == 503
+
+
+@pytest.mark.asyncio
+async def test_unload_entry_returns_true_and_cleans_up_on_success(mock_hass):
+    """#1392: when platform unload succeeds, cleanup runs and True propagates."""
+    entry = _make_entry()
+    await beatify_init.async_setup_entry(mock_hass, entry)
+    assert DOMAIN in mock_hass.data
+
+    mock_hass.config_entries.async_unload_platforms = AsyncMock(return_value=True)
+
+    assert await beatify_init.async_unload_entry(mock_hass, entry) is True
+    # On success the domain data is popped (full teardown).
+    assert DOMAIN not in mock_hass.data
+
+
+@pytest.mark.asyncio
+async def test_unload_entry_returns_false_and_skips_cleanup_on_failure(mock_hass):
+    """#1392: when platform unload fails, the failure propagates and cleanup is
+    skipped so HA does not treat the entry as fully unloaded."""
+    entry = _make_entry()
+    await beatify_init.async_setup_entry(mock_hass, entry)
+    assert DOMAIN in mock_hass.data
+
+    mock_hass.config_entries.async_unload_platforms = AsyncMock(return_value=False)
+
+    assert await beatify_init.async_unload_entry(mock_hass, entry) is False
+    # On failure the domain data must remain in place (entities still exist).
+    assert DOMAIN in mock_hass.data

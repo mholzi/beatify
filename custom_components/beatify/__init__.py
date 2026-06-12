@@ -266,44 +266,58 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     _LOGGER.debug("Unloading Beatify integration")
 
-    # Issue #441: Unload sensor and binary_sensor platforms
-    await hass.config_entries.async_unload_platforms(entry, ["sensor", "binary_sensor"])
+    # Issue #441: Unload sensor and binary_sensor platforms.
+    # Issue #1392: gate cleanup on the platform-unload result and propagate it.
+    # If a platform unload fails, leave the panel and hass.data[DOMAIN] in place
+    # so HA does not treat the entry as fully unloaded while entities (and their
+    # _game_state callbacks) still exist.
+    unload_ok = await hass.config_entries.async_unload_platforms(
+        entry, ["sensor", "binary_sensor"]
+    )
 
-    # Remove sidebar panel (Story 10.3)
-    try:
-        async_remove_panel(hass, "beatify")
-        _LOGGER.debug("Beatify sidebar panel removed")
-    except KeyError:
-        _LOGGER.debug("Beatify sidebar panel was not registered, skipping removal")
-
-    # #1391: tear down the live game infrastructure BEFORE popping hass.data,
-    # otherwise running game tasks/timers and open WebSockets keep operating on
-    # an orphaned GameState/handler (and race a fresh GameState after reload —
-    # two timers driving one media player). Best-effort so a teardown error here
-    # never blocks the unload.
-    domain_data = hass.data.get(DOMAIN, {})
-    game_state = domain_data.get("game")
-    if game_state is not None:
+    if unload_ok:
+        # Remove sidebar panel (Story 10.3)
         try:
-            game_state.async_shutdown()
-        except Exception:  # noqa: BLE001
-            _LOGGER.warning("Error shutting down game state on unload", exc_info=True)
-    ws_handler = domain_data.get("ws_handler")
-    if ws_handler is not None:
-        try:
-            await ws_handler.async_close_all()
-        except Exception:  # noqa: BLE001
-            _LOGGER.warning(
-                "Error closing WebSocket connections on unload", exc_info=True
-            )
+            async_remove_panel(hass, "beatify")
+            _LOGGER.debug("Beatify sidebar panel removed")
+        except KeyError:
+            _LOGGER.debug("Beatify sidebar panel was not registered, skipping removal")
 
-    # Clean up domain data
-    if DOMAIN in hass.data:
-        domain_data = hass.data.pop(DOMAIN)
-        # Flush any pending debounced analytics error save before teardown (#1388)
-        analytics = domain_data.get("analytics")
-        if analytics is not None:
-            await analytics.async_shutdown()
+        # #1391: tear down the live game infrastructure BEFORE popping hass.data,
+        # otherwise running game tasks/timers and open WebSockets keep operating on
+        # an orphaned GameState/handler (and race a fresh GameState after reload —
+        # two timers driving one media player). Best-effort so a teardown error here
+        # never blocks the unload.
+        domain_data = hass.data.get(DOMAIN, {})
+        game_state = domain_data.get("game")
+        if game_state is not None:
+            try:
+                game_state.async_shutdown()
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning(
+                    "Error shutting down game state on unload", exc_info=True
+                )
+        ws_handler = domain_data.get("ws_handler")
+        if ws_handler is not None:
+            try:
+                await ws_handler.async_close_all()
+            except Exception:  # noqa: BLE001
+                _LOGGER.warning(
+                    "Error closing WebSocket connections on unload", exc_info=True
+                )
 
-    _LOGGER.info("Beatify integration unloaded")
-    return True
+        # Clean up domain data
+        if DOMAIN in hass.data:
+            domain_data = hass.data.pop(DOMAIN)
+            # Flush any pending debounced analytics error save before teardown (#1388)
+            analytics = domain_data.get("analytics")
+            if analytics is not None:
+                await analytics.async_shutdown()
+
+        _LOGGER.info("Beatify integration unloaded")
+    else:
+        _LOGGER.warning(
+            "Beatify platform unload failed; leaving panel and domain data in place"
+        )
+
+    return unload_ok
