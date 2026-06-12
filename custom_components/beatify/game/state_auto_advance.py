@@ -54,6 +54,11 @@ The mixin relies on attributes / methods the host class owns and that live on
 * ``self.start_round`` — the next-round trigger the auto-advance fires.
 * ``self._on_round_end`` — the async WebSocket broadcast callback mirrored after
   the auto-advance ``start_round`` so the new PLAYING state reaches clients.
+* ``self.advance_to_end`` — the terminal game-end ceremony (party-light
+  celebration + winner/podium TTS + END transition; lives on
+  ``RevealTransitionMixin``). Run when the auto-advance carries the final round
+  and ``start_round`` exhausts the playlist (#1360), so the unattended end fires
+  the same ceremony + broadcast as the manual ``admin_next_round`` game-end.
 
 It carries no state of its own. ``GamePhase`` is imported lazily inside the
 methods that need it (``# noqa: PLC0415``) to avoid a top-level circular import
@@ -137,13 +142,32 @@ class RevealAutoAdvanceMixin:
                 elapsed,
             )
             success = await self.start_round()
+            # #1360: when the playlist is exhausted, start_round() flips the
+            # phase to END and returns False (a bare _set_phase(END), NOT the
+            # advance_to_end() terminal path). On this unattended final round
+            # the manual admin_next_round game-end ceremony never runs, so
+            # without intervention here the game ends with: no party-light
+            # celebration, no announce_winner/announce_podium TTS, and — because
+            # success is False — no broadcast, leaving every client frozen on
+            # REVEAL. Run the proper terminal ceremony so the unattended end
+            # mirrors the manual end. advance_to_end() re-sets END idempotently
+            # (a same-phase write), celebrates the lights and fires the winner /
+            # podium announcements; the broadcast below then pushes END.
+            if not success and self.phase == GamePhase.END:
+                _LOGGER.info(
+                    "REVEAL auto-advance reached the final round — running "
+                    "game-end ceremony"
+                )
+                await self.advance_to_end()
+                success = True
             # start_round() only fires sync state-callbacks via
             # _notify_state_callbacks; the async WebSocket broadcast
             # (`_on_round_end` = ws_handler.broadcast_state) is what actually
-            # pushes the new PLAYING state to clients. The manual
+            # pushes the new PLAYING (or END) state to clients. The manual
             # admin_next_round path explicitly awaits handler.broadcast_state()
-            # after start_round — mirror that here, otherwise music starts but
-            # the admin + player UIs stay frozen on REVEAL.
+            # after start_round / advance_to_end — mirror that here, otherwise
+            # music starts (or the game ends) but the admin + player UIs stay
+            # frozen on REVEAL.
             if success and self._on_round_end:
                 try:
                     await self._on_round_end()
