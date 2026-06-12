@@ -170,7 +170,15 @@ class PartyLightsService:
             await self.stop_beat_loop()
 
         if phase_name == "END":
-            # END phase triggers celebration via separate call
+            # END phase triggers the rainbow celebration via a separate
+            # celebrate() call. In WLED mode, though, the user-configured END
+            # preset must still fire here — celebrate() only drives raw rgb
+            # colors and skips WLED entities (#1390).
+            if self._light_mode == "wled" and self._wled_entities:
+                preset_id = self._wled_presets.get("END")
+                if preset_id is not None:
+                    for entity_id in self._wled_entities:
+                        await self._apply_wled(entity_id, preset_id)
             return
 
         # WLED mode: activate preset instead of setting colors
@@ -300,6 +308,16 @@ class PartyLightsService:
             return
 
         _LOGGER.info("Party Lights celebration sequence started")
+        # In WLED mode the END preset is applied by set_phase(); the rainbow
+        # cycle only drives raw rgb, so skip WLED entities to preserve their
+        # configured END preset (#1390).
+        if self._light_mode == "wled":
+            entities = [e for e in self._entity_ids if e not in self._wled_entities]
+        else:
+            entities = list(self._entity_ids)
+        if not entities:
+            return
+
         if self._intensity == "subtle":
             offset = int(SUBTLE_BRIGHTNESS_OFFSETS["END"] * 255)
             brightness = min(self._base_brightness + offset, 255)
@@ -309,7 +327,7 @@ class PartyLightsService:
             if not self._active:
                 break
             await self._apply(
-                self._entity_ids,
+                entities,
                 {"rgb_color": color, "brightness": brightness},
                 transition=0.3,
             )

@@ -490,6 +490,104 @@ class TestCelebrate:
 
 
 # ---------------------------------------------------------------------------
+# WLED END preset reachability (#1390)
+# ---------------------------------------------------------------------------
+
+
+class TestWledEndPreset:
+    """The configured END WLED preset must fire despite the END early-return."""
+
+    @pytest.mark.asyncio
+    async def test_set_phase_end_applies_wled_preset(self):
+        """END in wled mode applies the configured END preset, not raw rgb."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip"])
+        # Configure wled mode + a WLED entity (detection happens in start()
+        # via the entity registry; emulate the configured result here).
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        hass.services.async_call.reset_mock()
+
+        with patch.object(svc, "_apply_wled", new_callable=AsyncMock) as apply_wled:
+            phase = _make_phase("END")
+            await svc.set_phase(phase)
+
+        assert svc._current_phase == "END"
+        # END preset default is 6.
+        apply_wled.assert_awaited_once_with("light.wled_strip", 6)
+        # No raw rgb commands to lights for the WLED entity.
+        hass.services.async_call.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_set_phase_end_honors_custom_end_preset(self):
+        """A user-configured END preset overrides the default."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(
+            ["light.wled_strip"],
+            light_mode="wled",
+            wled_presets={"END": 12},
+        )
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        hass.services.async_call.reset_mock()
+
+        with patch.object(svc, "_apply_wled", new_callable=AsyncMock) as apply_wled:
+            await svc.set_phase(_make_phase("END"))
+
+        apply_wled.assert_awaited_once_with("light.wled_strip", 12)
+
+    @pytest.mark.asyncio
+    async def test_set_phase_end_non_wled_mode_skips_wled(self):
+        """In non-wled mode END stays an early-return no-op (celebrate handles it)."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.living_room"])
+        hass.services.async_call.reset_mock()
+
+        with patch.object(svc, "_apply_wled", new_callable=AsyncMock) as apply_wled:
+            await svc.set_phase(_make_phase("END"))
+
+        apply_wled.assert_not_awaited()
+        hass.services.async_call.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_celebrate_skips_wled_entities_in_wled_mode(self):
+        """Rainbow celebration must not overwrite the WLED END preset."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip", "light.living_room"])
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.celebrate()
+
+        # Every rainbow command targets only the non-WLED entity.
+        targeted = {
+            call[0][2]["entity_id"] for call in hass.services.async_call.call_args_list
+        }
+        assert targeted == {"light.living_room"}
+
+    @pytest.mark.asyncio
+    async def test_celebrate_wled_only_setup_is_noop(self):
+        """If every entity is WLED, celebrate sends no raw rgb at all."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip"])
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.celebrate()
+
+        hass.services.async_call.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
 # _get_capability
 # ---------------------------------------------------------------------------
 
