@@ -16,6 +16,7 @@ from custom_components.beatify.const import (
     FUZZY_EXTRA_EDIT_LENGTHS,
     FUZZY_MAX_EDITS,
     FUZZY_MIN_LEN,
+    MAX_GUESS_LEN,
     NEAR_MISS_MAX_RATIO,
 )
 
@@ -143,6 +144,11 @@ def classify_field(guess: str, truth: str) -> str:
     """
     if not guess or not guess.strip():
         return STATUS_SKIPPED
+
+    # Defensive length cap (#1362): the WS ingest handler already truncates, but
+    # bound here too so any direct caller cannot drive the O(n*m) Levenshtein DP
+    # with an unbounded string and freeze the HA event loop.
+    guess = guess[:MAX_GUESS_LEN]
 
     guess_norm = normalize(guess)
     truth_norm = normalize(truth)
