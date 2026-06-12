@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -476,5 +476,65 @@ describe('resolveGameLanguageDefault', () => {
     it('falls back to the current default when nothing resolves', () => {
         expect(resolveGameLanguageDefault(null, null, 'en')).toBe('en');
         expect(resolveGameLanguageDefault(() => '', {}, 'en')).toBe('en');
+    });
+});
+
+// ------------------------------------------------------------------
+// buildTtsPayload — wizard finish must NOT wipe admin-owned keys (#1401)
+// ------------------------------------------------------------------
+describe('buildTtsPayload (#1401 — preserve tts_pre_round_delay)', () => {
+    // Minimal stand-in for window.BeatifyTtsPresets (tts-settings.js).
+    const presets = {
+        KEYS: ['announce_game_start', 'announce_round_start'],
+        presetValues: (name) => name === 'minimal'
+            ? { announce_game_start: true, announce_round_start: false }
+            : { announce_game_start: true, announce_round_start: true },
+    };
+
+    it('carries over an existing tts_pre_round_delay (#1211) on a preset finish', () => {
+        // Admin had configured a 3s pre-round delay via tts-settings.js.
+        const prev = { tts_pre_round_delay: 3, announce_game_start: false };
+        const out = buildTtsPayload(prev, {
+            enabled: true, entityId: 'tts.google', preset: 'standard', presets,
+        });
+        // The #1211 setting survives the wizard rebuild...
+        expect(out.tts_pre_round_delay).toBe(3);
+        // ...and the preset booleans are still applied.
+        expect(out.enabled).toBe(true);
+        expect(out.entity_id).toBe('tts.google');
+        expect(out.preset).toBe('standard');
+        expect(out.announce_game_start).toBe(true);
+    });
+
+    it('carries over tts_pre_round_delay on a custom-preset finish', () => {
+        const prev = { tts_pre_round_delay: 1.5, announce_round_start: false };
+        const out = buildTtsPayload(prev, {
+            enabled: true, entityId: 'tts.google', preset: 'custom', presets,
+        });
+        expect(out.tts_pre_round_delay).toBe(1.5);
+        // custom keeps hand-tuned booleans from prev
+        expect(out.announce_round_start).toBe(false);
+    });
+
+    it('preserves a zero delay (0 is a valid configured value, not "unset")', () => {
+        const out = buildTtsPayload({ tts_pre_round_delay: 0 }, {
+            enabled: false, entityId: '', preset: 'minimal', presets,
+        });
+        expect(out.tts_pre_round_delay).toBe(0);
+    });
+
+    it('omits the key entirely when none was previously stored', () => {
+        const out = buildTtsPayload({}, {
+            enabled: true, entityId: 'tts.google', preset: 'standard', presets,
+        });
+        expect('tts_pre_round_delay' in out).toBe(false);
+    });
+
+    it('tolerates a null prev (private mode / first run)', () => {
+        const out = buildTtsPayload(null, {
+            enabled: true, entityId: 'tts.google', preset: 'standard', presets,
+        });
+        expect('tts_pre_round_delay' in out).toBe(false);
+        expect(out.preset).toBe('standard');
     });
 });

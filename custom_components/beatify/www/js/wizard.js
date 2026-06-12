@@ -1326,6 +1326,42 @@ function _renderLevelUp() {
     });
 }
 
+/**
+ * Build the beatify_tts localStorage payload the wizard writes on finish.
+ *
+ * Pure + exported so it can be unit-tested. `prevTts` is the previously stored
+ * beatify_tts object (parse of localStorage); `presets` is window.BeatifyTtsPresets.
+ *
+ * #1401: the admin TTS panel (tts-settings.js) writes `tts_pre_round_delay`
+ * (the #1211 setting) into beatify_tts, but the wizard rebuilt the payload from
+ * scratch — silently wiping the delay back to 0 whenever the wizard was
+ * finished. Carry over any previously-stored keys the wizard doesn't manage
+ * (at minimum tts_pre_round_delay) so finishing the wizard never clobbers them.
+ */
+export function buildTtsPayload(prevTts, { enabled, entityId, preset, presets }) {
+    const prev = prevTts || {};
+    const ttsPayload = {
+        enabled,
+        entity_id: entityId,
+        preset,
+    };
+    if (presets && preset !== 'custom') {
+        const vals = presets.presetValues(preset);
+        presets.KEYS.forEach((k) => { ttsPayload[k] = vals[k]; });
+    } else if (presets && preset === 'custom') {
+        // Preserve hand-tuned toggles from the admin panel — don't clobber.
+        presets.KEYS.forEach((k) => {
+            if (typeof prev[k] === 'boolean') ttsPayload[k] = prev[k];
+        });
+    }
+    // #1401: preserve unmanaged keys the admin TTS panel owns. The wizard never
+    // edits tts_pre_round_delay (#1211), so carry the previous value over.
+    if (prev.tts_pre_round_delay !== undefined) {
+        ttsPayload.tts_pre_round_delay = prev.tts_pre_round_delay;
+    }
+    return ttsPayload;
+}
+
 function _persistLevelUpDetails() {
     try {
         if (chosenLevelUps.lights) {
@@ -1348,22 +1384,13 @@ function _persistLevelUpDetails() {
         // Write a complete config: enabled + entity + preset + all 23
         // announce_* booleans, so the admin TTS panel and game engine read a
         // consistent state. BeatifyTtsPresets is exposed by tts-settings.js.
-        const ttsPayload = {
+        const prevTts = JSON.parse(localStorage.getItem('beatify_tts') || '{}');
+        const ttsPayload = buildTtsPayload(prevTts, {
             enabled: chosenLevelUps.tts,
-            entity_id: chosenTtsEntityId,
+            entityId: chosenTtsEntityId,
             preset: chosenTtsPreset,
-        };
-        const presets = window.BeatifyTtsPresets;
-        if (presets && chosenTtsPreset !== 'custom') {
-            const vals = presets.presetValues(chosenTtsPreset);
-            presets.KEYS.forEach((k) => { ttsPayload[k] = vals[k]; });
-        } else if (presets && chosenTtsPreset === 'custom') {
-            // Preserve hand-tuned toggles from the admin panel — don't clobber.
-            const prev = JSON.parse(localStorage.getItem('beatify_tts') || '{}');
-            presets.KEYS.forEach((k) => {
-                if (typeof prev[k] === 'boolean') ttsPayload[k] = prev[k];
-            });
-        }
+            presets: window.BeatifyTtsPresets,
+        });
         localStorage.setItem('beatify_tts', JSON.stringify(ttsPayload));
     } catch (e) { /* private mode */ }
 }
