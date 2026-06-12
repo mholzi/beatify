@@ -23,6 +23,7 @@ from custom_components.beatify.server.base import (
     RateLimitMixin,
     _json_error,
 )
+from custom_components.beatify.server.companion_auth import is_authorized_http
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -234,6 +235,14 @@ class PlaylistRequestsView(RateLimitMixin, HomeAssistantView):
 
     async def post(self, request: web.Request) -> web.Response:
         """Save playlist requests (replaces all data)."""
+        # #1367: this handler rewrites the ENTIRE persisted requests file with
+        # the caller-supplied array. Without an auth gate any unauthenticated
+        # client on the LAN (or via the Nabu Casa remote URL) could POST
+        # {"requests": []} to wipe every household request, or inject arbitrary
+        # entries. Mirror the StartGameView pattern: require a valid HA Bearer
+        # token (or the Companion trust fallback) before touching disk.
+        if not await is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
         # Rate limiting
         client_ip = request.remote or "unknown"
         if not self._check_rate_limit(client_ip):
