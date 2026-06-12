@@ -65,6 +65,13 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+# hass.data key (outside DOMAIN, so it survives async_unload_entry popping
+# hass.data[DOMAIN]) guarding one-time HTTP route registration. aiohttp routes
+# cannot be unregistered, so views/WS/static paths must be registered exactly
+# once per HA run — re-registering on a config-entry reload would shadow the
+# new handlers with stale duplicates (#1364).
+_ROUTES_REGISTERED = f"{DOMAIN}_routes_registered"
+
 
 def _read_manifest_version() -> str:
     """Read the integration version from manifest.json (executor-safe).
@@ -168,46 +175,75 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         entry, ["sensor", "binary_sensor"]
     )
 
-    # Register HTTP views
-    hass.http.register_view(AdminView(hass))
-    hass.http.register_view(LauncherView(hass))
-    # Safari 18 /auth/token workaround — server-side OAuth handling, the
-    # frontend never POSTs to auth endpoints (rc15+).
-    hass.http.register_view(BeatifyAuthCallbackView(hass))
-    hass.http.register_view(BeatifyAuthRefreshView(hass))
-    hass.http.register_view(StatusView(hass))
-    hass.http.register_view(CapabilitiesView(hass))
-    hass.http.register_view(LightsView(hass))  # Issue #331
-    hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
-    hass.http.register_view(PreviewLightsView(hass))  # Issue #408
-    hass.http.register_view(TtsEntitiesView(hass))  # Issue #1073
-    hass.http.register_view(TtsTestView(hass))
-    hass.http.register_view(StartGameView(hass))
-    hass.http.register_view(StartGameplayView(hass))
-    hass.http.register_view(EndGameView(hass))
-    hass.http.register_view(
-        ForceResetView(hass)
-    )  # #777 follow-up — stuck-state escape hatch
-    hass.http.register_view(RematchGameView(hass))  # Issue #108
-    hass.http.register_view(PlayerView(hass))
-    hass.http.register_view(
-        SwJsView(hass)
-    )  # #780 — SW at /beatify/sw.js for /beatify/ scope
-    hass.http.register_view(GameStatusView(hass))
-    hass.http.register_view(DashboardView(hass))
-    hass.http.register_view(StatsView(hass))
-    hass.http.register_view(AnalyticsView(hass))
-    hass.http.register_view(AnalyticsPageView(hass))
-    hass.http.register_view(SongStatsView(hass))  # Story 19.7
-    hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
-    hass.http.register_view(SavePlaylistView(hass))  # #1057
-    hass.http.register_view(UsageView(hass))  # v3.3 Playlist Hub local stats
+    # Register HTTP views, the WebSocket route, and static paths exactly ONCE
+    # per HA run (#1364). aiohttp's router cannot unregister resources, and its
+    # dispatcher resolves to the FIRST matching resource — so re-registering on
+    # a config-entry reload (unload + setup) would leave stale handlers serving
+    # while the freshly-wired game state's callbacks point at the new, empty
+    # handler. All views resolve their state from hass.data at request time, and
+    # the WS route below dispatches to the *current* handler in hass.data, so a
+    # single registration keeps working across reloads.
+    if not hass.data.get(_ROUTES_REGISTERED):
+        hass.http.register_view(AdminView(hass))
+        hass.http.register_view(LauncherView(hass))
+        # Safari 18 /auth/token workaround — server-side OAuth handling, the
+        # frontend never POSTs to auth endpoints (rc15+).
+        hass.http.register_view(BeatifyAuthCallbackView(hass))
+        hass.http.register_view(BeatifyAuthRefreshView(hass))
+        hass.http.register_view(StatusView(hass))
+        hass.http.register_view(CapabilitiesView(hass))
+        hass.http.register_view(LightsView(hass))  # Issue #331
+        hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
+        hass.http.register_view(PreviewLightsView(hass))  # Issue #408
+        hass.http.register_view(TtsEntitiesView(hass))  # Issue #1073
+        hass.http.register_view(TtsTestView(hass))
+        hass.http.register_view(StartGameView(hass))
+        hass.http.register_view(StartGameplayView(hass))
+        hass.http.register_view(EndGameView(hass))
+        hass.http.register_view(
+            ForceResetView(hass)
+        )  # #777 follow-up — stuck-state escape hatch
+        hass.http.register_view(RematchGameView(hass))  # Issue #108
+        hass.http.register_view(PlayerView(hass))
+        hass.http.register_view(
+            SwJsView(hass)
+        )  # #780 — SW at /beatify/sw.js for /beatify/ scope
+        hass.http.register_view(GameStatusView(hass))
+        hass.http.register_view(DashboardView(hass))
+        hass.http.register_view(StatsView(hass))
+        hass.http.register_view(AnalyticsView(hass))
+        hass.http.register_view(AnalyticsPageView(hass))
+        hass.http.register_view(SongStatsView(hass))  # Story 19.7
+        hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
+        hass.http.register_view(SavePlaylistView(hass))  # #1057
+        hass.http.register_view(UsageView(hass))  # v3.3 Playlist Hub local stats
 
-    # Register WebSocket endpoint
-    hass.http.app.router.add_get("/beatify/ws", ws_handler.handle)
+        # Register WebSocket endpoint via a stable dispatch closure that
+        # resolves the *current* handler from hass.data at call time (#1364).
+        # Binding ws_handler.handle directly would pin the route to the handler
+        # created in THIS setup; after a reload the new game state's callbacks
+        # would target a new handler while clients kept landing in the old one's
+        # (now empty) connection set, freezing round-end broadcasts.
+        async def _ws_dispatch(request):
+            handler = hass.data.get(DOMAIN, {}).get("ws_handler")
+            if handler is None:
+                from aiohttp import web  # noqa: PLC0415
 
-    # Register static file paths
-    await async_register_static_paths(hass)
+                return web.Response(status=503, text="Beatify not ready")
+            return await handler.handle(request)
+
+        hass.http.app.router.add_get("/beatify/ws", _ws_dispatch)
+
+        # Register static file paths
+        await async_register_static_paths(hass)
+
+        hass.data[_ROUTES_REGISTERED] = True
+        _LOGGER.debug("Beatify HTTP routes registered (once per HA run)")
+    else:
+        _LOGGER.debug(
+            "Beatify HTTP routes already registered this HA run — skipping "
+            "re-registration on reload (#1364)"
+        )
 
     # Register sidebar panel (Story 10.3)
     # Points to launcher page which opens game in a new tab (fullscreen, no HA chrome)
