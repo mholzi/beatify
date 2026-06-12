@@ -71,6 +71,49 @@ class TestTitleArtistChallengeModel:
         assert mgr.title_artist_challenge is None
 
 
+class TestConfigureForcesArtistChallengeOffInTaMode:
+    """#1402 B3: TA mode must disable the artist multiple-choice challenge
+    server-side, so the broadcast options never leak the correct artist."""
+
+    def test_artist_challenge_forced_off_when_ta_mode_on(self):
+        mgr = ChallengeManager()
+        # Even if the caller (or stale admin UI) requests artist challenge,
+        # TA mode wins and the flag is forced off.
+        mgr.configure(
+            artist_challenge_enabled=True,
+            movie_quiz_enabled=False,
+            title_artist_mode=True,
+        )
+        assert mgr.artist_challenge_enabled is False
+
+    def test_init_round_builds_no_artist_challenge_in_ta_mode(self):
+        mgr = ChallengeManager()
+        mgr.configure(
+            artist_challenge_enabled=True,
+            movie_quiz_enabled=False,
+            title_artist_mode=True,
+        )
+        mgr.init_round(
+            {
+                "title": "Bohemian Rhapsody",
+                "artist": "Queen",
+                "alt_artists": ["ABBA", "Blur"],
+            }
+        )
+        # No artist challenge object -> options never reach clients.
+        assert mgr.artist_challenge is None
+        assert mgr.get_artist_challenge_dict(include_answer=False) is None
+
+    def test_artist_challenge_still_works_without_ta_mode(self):
+        mgr = ChallengeManager()
+        mgr.configure(
+            artist_challenge_enabled=True,
+            movie_quiz_enabled=False,
+            title_artist_mode=False,
+        )
+        assert mgr.artist_challenge_enabled is True
+
+
 class TestSubmitTitleArtistGuess:
     """submit_title_artist_guess classifies and stores per field."""
 

@@ -878,6 +878,39 @@ class TestBuildArtistOptions:
         options = build_artist_options(song)
         assert "ABBA" in options
 
+    def test_dedups_alt_equal_to_correct_artist(self):
+        # #1402 B3: an alt_artist matching the correct artist (any case) must
+        # never produce a duplicated correct answer in the options.
+        song = {
+            "artist": "Queen",
+            "alt_artists": ["queen", "QUEEN", "David Bowie"],
+        }
+        options = build_artist_options(song)
+        assert options is not None
+        assert options.count("Queen") == 1
+        assert "David Bowie" in options
+        assert len(options) == 2
+
+    def test_dedups_duplicate_alts_case_insensitively(self):
+        # #1402 B3: repeated decoys collapse to a single option.
+        song = {
+            "artist": "Madonna",
+            "alt_artists": ["Cher", "cher", "CHER"],
+        }
+        options = build_artist_options(song)
+        assert options is not None
+        assert options.count("Cher") == 1
+        assert len(options) == 2
+
+    def test_returns_none_when_only_decoy_is_the_correct_artist(self):
+        # #1402 B3: if every alt collapses to the correct artist, no distinct
+        # decoy remains -> the challenge would be trivial, so return None.
+        song = {
+            "artist": "U2",
+            "alt_artists": ["u2", "U2"],
+        }
+        assert build_artist_options(song) is None
+
 
 # ---------------------------------------------------------------------------
 # GameState.finalize_game

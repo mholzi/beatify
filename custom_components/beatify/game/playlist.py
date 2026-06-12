@@ -74,7 +74,7 @@ class PlaylistManager:
         self._provider = provider
         self._storefront = storefront
         total_count = len(songs)
-        filtered_songs, _ = filter_songs_for_provider(songs, provider)
+        filtered_songs, _ = filter_songs_for_provider(songs, provider, storefront)
         self._played_uris: set[str] = set()
 
         # Group songs into per-playlist buckets, deduplicating by URI.
@@ -287,21 +287,32 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
     # Bundled playlists are in custom_components/beatify/playlists/
     bundled_dir = Path(__file__).parent.parent / "playlists"
 
-    if not bundled_dir.exists():
+    loop = asyncio.get_running_loop()
+
+    # #1402 B3: `exists()` is a blocking syscall — run it (and the glob) in the
+    # executor instead of on the event loop.
+    if not await loop.run_in_executor(None, bundled_dir.exists):
         return
 
     def _copy_file(src: Path, dst: Path) -> None:
-        """Copy file contents (runs in executor)."""
+        """Copy file contents, creating parent dirs (runs in executor).
+
+        #1402 B3: folds the previously-on-event-loop ``mkdir`` in here.
+        """
+        dst.parent.mkdir(parents=True, exist_ok=True)
         content = src.read_text(encoding="utf-8")
         dst.write_text(content, encoding="utf-8")
 
-    def _get_versions(src: Path, dst: Path) -> tuple[str, str]:
-        """Get versions from both files (runs in executor)."""
-        bundled_ver = _get_playlist_version(src)
-        existing_ver = _get_playlist_version(dst) if dst.exists() else "0.0"
-        return bundled_ver, existing_ver
+    def _get_versions(src: Path, dst: Path) -> tuple[str, str, bool]:
+        """Get versions from both files + whether dst exists (runs in executor).
 
-    loop = asyncio.get_running_loop()
+        #1402 B3: returns ``dst_exists`` so the caller reuses this single stat
+        instead of re-running a blocking ``dst.exists()`` on the event loop.
+        """
+        bundled_ver = _get_playlist_version(src)
+        dst_exists = dst.exists()
+        existing_ver = _get_playlist_version(dst) if dst_exists else "0.0"
+        return bundled_ver, existing_ver, dst_exists
 
     # Offload blocking glob to executor to avoid scandir in event loop (#516)
     playlist_files = await loop.run_in_executor(
@@ -311,14 +322,13 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
         # Preserve relative path (e.g. community/greatest-metal-songs.json)
         rel = playlist_file.relative_to(bundled_dir)
         dest_file = dest_dir / rel
-        dest_file.parent.mkdir(parents=True, exist_ok=True)
         try:
-            # Get versions
-            bundled_ver, existing_ver = await loop.run_in_executor(
+            # Get versions (+ existence, reused below — _copy_file makes the dir)
+            bundled_ver, existing_ver, dest_exists = await loop.run_in_executor(
                 None, _get_versions, playlist_file, dest_file
             )
 
-            if not dest_file.exists():
+            if not dest_exists:
                 # New playlist - copy it
                 await loop.run_in_executor(None, _copy_file, playlist_file, dest_file)
                 _LOGGER.info(
@@ -498,7 +508,9 @@ def get_song_uri(
 
 
 def filter_songs_for_provider(
-    songs: list[dict[str, Any]], provider: str
+    songs: list[dict[str, Any]],
+    provider: str,
+    storefront: str | None = None,
 ) -> tuple[list[dict[str, Any]], int]:
     """
     Filter songs to only those available for the specified provider.
@@ -506,6 +518,11 @@ def filter_songs_for_provider(
     Args:
         songs: List of song dictionaries
         provider: Provider identifier (PROVIDER_SPOTIFY or PROVIDER_APPLE_MUSIC)
+        storefront: For Apple Music, the user's regional storefront code. Must
+            be threaded through to ``get_song_uri`` so storefront-only tracks
+            (present in ``uri_apple_music_by_region`` but absent from the legacy
+            ``uri_apple_music`` field) are kept instead of dropped by a
+            storefront-blind pre-filter (#1402 B3). Other providers ignore it.
 
     Returns:
         Tuple of (filtered_songs, skipped_count)
@@ -515,7 +532,7 @@ def filter_songs_for_provider(
     skipped = 0
 
     for song in songs:
-        uri = get_song_uri(song, provider)
+        uri = get_song_uri(song, provider, storefront)
         if uri:
             filtered.append(song)
         else:
@@ -533,15 +550,16 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     playlist_dir = get_playlist_directory(hass)
     playlists: list[dict] = []
 
-    if not playlist_dir.exists():
+    loop = asyncio.get_running_loop()
+
+    # #1402 B3: `exists()` is a blocking syscall — run it in the executor.
+    if not await loop.run_in_executor(None, playlist_dir.exists):
         _LOGGER.debug("Playlist directory does not exist: %s", playlist_dir)
         return playlists
 
     def _read_file(path: Path) -> str:
         """Read file contents (runs in executor)."""
         return path.read_text(encoding="utf-8")
-
-    loop = asyncio.get_running_loop()
 
     # Offload blocking glob to executor to avoid scandir in event loop (#516)
     json_files = await loop.run_in_executor(
@@ -666,7 +684,10 @@ async def async_load_and_validate_playlist(
     """Load and validate a playlist file."""
     path = Path(path)
 
-    if not path.exists():
+    loop = asyncio.get_running_loop()
+
+    # #1402 B3: `exists()` is a blocking syscall — run it in the executor.
+    if not await loop.run_in_executor(None, path.exists):
         return (None, [f"File not found: {path}"])
 
     def _read_file(p: Path) -> str:
@@ -674,9 +695,7 @@ async def async_load_and_validate_playlist(
         return p.read_text(encoding="utf-8")
 
     try:
-        content = await asyncio.get_running_loop().run_in_executor(
-            None, _read_file, path
-        )
+        content = await loop.run_in_executor(None, _read_file, path)
         data = json.loads(content)
     except json.JSONDecodeError as e:
         return (None, [f"Invalid JSON: {e}"])
