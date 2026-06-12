@@ -370,7 +370,17 @@ class _FakeTitleArtistManager:
         return self._title_status.get(player_name, "skipped")
 
 
-def _score_title_artist(player, manager):
+class _FakeMovieChallenge:
+    """Minimal stand-in exposing the get_player_bonus surface."""
+
+    def __init__(self, bonus_by_player):
+        self._bonus = bonus_by_player
+
+    def get_player_bonus(self, player_name):
+        return self._bonus.get(player_name, 0)
+
+
+def _score_title_artist(player, manager, movie_challenge=None):
     """Invoke score_player_round in title/artist mode with sane defaults."""
     ScoringService.score_player_round(
         player,
@@ -379,7 +389,7 @@ def _score_title_artist(player, manager):
         round_duration=30.0,
         difficulty="normal",
         artist_challenge=None,
-        movie_challenge=None,
+        movie_challenge=movie_challenge,
         is_intro_round=False,
         intro_round_start_time=None,
         all_players=[player],
@@ -463,6 +473,43 @@ class TestTitleArtistScoring:
         assert p.missed_round is True
         assert p.streak == 0
         assert p.round_scores == [0]
+
+    def test_not_submitted_no_movie_challenge_keeps_zero_bonus(self):
+        # Regression guard: when there is no movie challenge, a skipped TA
+        # guess must still record a zero movie bonus.
+        mgr = _FakeTitleArtistManager({}, {})
+        p = self._player()
+        p.submitted = False
+        _score_title_artist(p, mgr, movie_challenge=None)
+        assert p.movie_bonus == 0
+        assert p.movie_bonus_total == 0
+        assert p.score == 0
+
+    def test_not_submitted_preserves_earned_movie_bonus(self):
+        # #1376: skipping the title/artist guess must NOT forfeit a correctly
+        # earned movie-quiz bonus — it stacks independently of the TA score.
+        mgr = _FakeTitleArtistManager({}, {})
+        movie = _FakeMovieChallenge({"Alice": 30})
+        p = self._player()
+        p.submitted = False
+        _score_title_artist(p, mgr, movie_challenge=movie)
+        assert p.round_score == 0  # TA guess still missed
+        assert p.missed_round is True
+        assert p.movie_bonus == 30  # earned bonus surfaced
+        assert p.score == 30  # and added to the score
+        assert p.movie_bonus_total == 30  # Film Buff superlative credited
+
+    def test_not_submitted_no_movie_win_keeps_score_zero(self):
+        # A skipped TA guess with a movie challenge present but no win for this
+        # player leaves the score and totals untouched.
+        mgr = _FakeTitleArtistManager({}, {})
+        movie = _FakeMovieChallenge({"Bob": 30})  # Alice did not win
+        p = self._player()
+        p.submitted = False
+        _score_title_artist(p, mgr, movie_challenge=movie)
+        assert p.movie_bonus == 0
+        assert p.movie_bonus_total == 0
+        assert p.score == 0
 
 
 class TestTitleArtistSuperlativeCounters:
