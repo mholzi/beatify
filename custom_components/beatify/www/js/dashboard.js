@@ -30,6 +30,19 @@
     // HA restart longer than the old ~8 min / 20-attempt cap used to brick the
     // screen until someone physically woke the tab (visibilitychange never fires
     // on an always-on TV). There is intentionally no max-attempt cap any more.
+    // #1397: guards the pending exponential-backoff reconnect timer. An
+    // out-of-band reconnect (visibilitychange) cancels it before opening its
+    // own socket — otherwise the backoff timer fires later and opens a second
+    // parallel WebSocket (double renders + reconnect storm). Falls back to a
+    // tiny inline shim if utils.js failed to load.
+    var reconnectGuard = (utils.createReconnectGuard && utils.createReconnectGuard()) || (function() {
+        var t = null;
+        return {
+            schedule: function(fn, d) { if (t !== null) { clearTimeout(t); } t = setTimeout(function() { t = null; fn(); }, d); },
+            cancel: function() { if (t !== null) { clearTimeout(t); t = null; } },
+            isPending: function() { return t !== null; }
+        };
+    })();
     var MAX_RECONNECT_DELAY_MS = 30000;
 
     // State tracking
@@ -68,6 +81,17 @@
      * Connect to WebSocket as read-only observer (AC 10.4.1)
      */
     function connectWebSocket() {
+        // #1397: cancel any pending backoff-timer reconnect so it can't fire
+        // after this call and open a second parallel socket.
+        reconnectGuard.cancel();
+        // Detach the previous socket's handlers before replacing it. Without
+        // this, an orphaned (still-open or closing) socket keeps rendering
+        // broadcasts and re-scheduling reconnects via its onclose. (#1397)
+        if (ws) {
+            ws.onopen = ws.onmessage = ws.onclose = ws.onerror = null;
+            try { ws.close(); } catch (e) { /* already closed */ }
+        }
+
         var wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
         var wsUrl = wsProtocol + '//' + window.location.host + '/beatify/ws';
 
@@ -91,15 +115,15 @@
 
         ws.onclose = function() {
             debug('[Dashboard] WebSocket closed');
-            // #1398: retry forever with capped backoff. Show the "no game" view
-            // as an interim status while we keep trying — it is NOT a terminal
-            // state any more, so the TV recovers on its own once the network /
-            // HA comes back, even after an outage far longer than ~8 minutes.
+            // #1398 + #1397: retry FOREVER with capped backoff, scheduled through
+            // the dedup guard so a visibilitychange reconnect can cancel the
+            // pending timer instead of racing it into a second socket. The
+            // "no game" view is an interim status, never a terminal give-up.
             reconnectAttempts++;
             showView('dashboard-no-game');
             var delay = getReconnectDelay();
             debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
-            setTimeout(connectWebSocket, delay);
+            reconnectGuard.schedule(connectWebSocket, delay);
         };
 
         ws.onerror = function(err) {
