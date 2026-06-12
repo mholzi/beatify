@@ -1,9 +1,11 @@
 """Tests for BeatifyAuthCallbackView — server-side OAuth code exchange (rc15).
 
 The browser arrives here via /auth/authorize's redirect carrying ?code= and
-?state=. The view exchanges the code over loopback HTTP and sets the
-beatify_access (JS-readable JSON) + beatify_refresh (HttpOnly) cookies
-before redirecting to /beatify/admin with state echoed for CSRF validation.
+?state=. The view exchanges the code over loopback HTTP and sets ONLY the
+HttpOnly beatify_refresh cookie before redirecting to /beatify/admin with
+state echoed for CSRF validation. Per #1369 the HA access token is never
+written to a JS-readable cookie — the frontend mints it in memory from
+GET /beatify/auth/refresh on the post-callback page load.
 """
 
 from __future__ import annotations
@@ -95,7 +97,10 @@ class TestBeatifyAuthCallbackView:
         assert "client_id=http%3A%2F%2Fha.local%3A8123%2Fbeatify%2F" in call_body
 
     @pytest.mark.asyncio
-    async def test_successful_exchange_sets_cookies_and_redirects(self):
+    async def test_successful_exchange_sets_refresh_cookie_only(self):
+        # #1369: the access token must NOT be persisted in a JS-readable
+        # cookie. Only the HttpOnly refresh cookie is set; the access token
+        # never appears in a live Set-Cookie value.
         view = BeatifyAuthCallbackView(_hass())
         mock_session = MagicMock()
         mock_session.post = MagicMock(
@@ -122,25 +127,20 @@ class TestBeatifyAuthCallbackView:
         # auth_error must NOT be present on success.
         assert "auth_error" not in location
 
-        # Verify both cookies were set. aiohttp Response.cookies is a
-        # SimpleCookie-like mapping.
-        assert "beatify_access" in resp.cookies
+        # The HttpOnly refresh cookie is the sole persistent credential.
         assert "beatify_refresh" in resp.cookies
-
-        access_morsel = resp.cookies["beatify_access"]
-        # JS reads this — must NOT be HttpOnly.
-        assert access_morsel["httponly"] in (False, "")
-        # Scoped to /beatify to avoid leaking to the wider HA app.
-        assert access_morsel["path"] == "/beatify"
-        # The cookie body is the URL-encoded JSON. aiohttp leaves the
-        # raw value alone, so we can just check for the access token.
-        assert "new-access" in access_morsel.value
-
         refresh_morsel = resp.cookies["beatify_refresh"]
-        # Refresh token MUST be HttpOnly — JS must never see it.
         assert refresh_morsel["httponly"] is True
         assert refresh_morsel["path"] == "/beatify"
         assert refresh_morsel.value == "new-refresh"
+
+        # The access token must never ride out in a live access cookie.
+        # del_cookie emits a beatify_access morsel, but it MUST be an
+        # expiry (max-age=0 / empty value), not a real token.
+        access_morsel = resp.cookies.get("beatify_access")
+        if access_morsel is not None:
+            assert "new-access" not in access_morsel.value
+            assert str(access_morsel["max-age"]) == "0"
 
     @pytest.mark.asyncio
     async def test_ha_rejection_redirects_with_exchange_error(self):
@@ -210,7 +210,8 @@ class TestBeatifyAuthCallbackView:
         ):
             resp = await view.get(forwarded_request)
 
-        assert resp.cookies["beatify_access"]["secure"] is True
+        # #1369: only the refresh cookie is set; its Secure flag must follow
+        # what the browser saw (HTTPS via X-Forwarded-Proto).
         assert resp.cookies["beatify_refresh"]["secure"] is True
 
         # And client_id / redirect_uri in the exchange body must use the

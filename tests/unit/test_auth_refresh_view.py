@@ -1,9 +1,11 @@
 """Tests for BeatifyAuthRefreshView — silent server-side refresh (rc15).
 
-The frontend calls ``GET /beatify/auth/refresh`` when its access cookie is
-about to expire. The view reads the HttpOnly ``beatify_refresh`` cookie,
-posts the refresh grant to HA over loopback, updates the access cookie,
-and returns JSON so ha-auth.js can immediately use the new token.
+The frontend calls ``GET /beatify/auth/refresh`` when its in-memory access
+token is about to expire (and once on every page load to bootstrap it). The
+view reads the HttpOnly ``beatify_refresh`` cookie, posts the refresh grant
+to HA over loopback, and returns the fresh access token in the JSON body so
+ha-auth.js can hold it in memory. Per #1369 the access token is never put
+back into a JS-readable cookie.
 """
 
 from __future__ import annotations
@@ -92,18 +94,23 @@ class TestBeatifyAuthRefreshView:
 
         assert resp.status == 200
         body = json.loads(resp.body)
+        # #1369: the JSON body is the SOLE carrier of the access token —
+        # the frontend caches it in memory, never in a cookie.
         assert body["access_token"] == "refreshed-access"
         assert body["expires_in"] == 1800
         # Browser caches MUST NOT keep an auth response around.
         assert resp.headers.get("Cache-Control") == "no-store"
 
-        # Access cookie reissued.
-        access = resp.cookies["beatify_access"]
-        assert "refreshed-access" in access.value
-        assert access["path"] == "/beatify"
-        # Crucially, the refresh cookie is NOT touched — HA's refresh
-        # grant doesn't return a new refresh_token, so we leave the
-        # existing long-lived one in place.
+        # The access token must NOT be reissued in a live JS-readable cookie.
+        # del_cookie may emit a beatify_access morsel, but it must be an
+        # expiry (max-age=0), never a token-bearing value.
+        access = resp.cookies.get("beatify_access")
+        if access is not None:
+            assert "refreshed-access" not in access.value
+            assert str(access["max-age"]) == "0"
+        # The refresh cookie is NOT touched — HA's refresh grant doesn't
+        # return a new refresh_token, so we leave the existing long-lived
+        # one in place.
         assert "beatify_refresh" not in resp.cookies
 
     @pytest.mark.asyncio
