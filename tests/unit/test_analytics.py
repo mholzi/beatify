@@ -368,6 +368,146 @@ class TestPruneOldData:
 
 
 # ---------------------------------------------------------------------------
+# TestLoadResilience (#1385)
+# ---------------------------------------------------------------------------
+
+
+class TestLoadResilience:
+    """A single corrupt/schema-drifted record must not wipe the whole file."""
+
+    def setup_method(self):
+        self.hass = _mock_hass()
+        self.storage = AnalyticsStorage(self.hass)
+
+    @pytest.mark.asyncio
+    async def test_schema_drifted_record_does_not_wipe_valid_records(self):
+        """One record missing required keys is tolerated; valid history survives.
+
+        Forces a prune (games > MAX_DETAILED_RECORDS) so the prune path that
+        previously did ``game["ended_at"]`` runs against a record missing that
+        key. The whole store must NOT be reset to empty.
+        """
+        now = int(time.time())
+        recent_ts = now - 3600
+        old_ts = now - (RETENTION_DAYS + 30) * 86400
+
+        games = [
+            _make_game_record(game_id=f"recent-{i}", ended_at=recent_ts)
+            for i in range(MAX_DETAILED_RECORDS)
+        ]
+        # Enough old games to push over the limit and trigger summarization.
+        for i in range(20):
+            games.append(_make_game_record(game_id=f"old-{i}", ended_at=old_ts))
+        # A schema-drifted record: missing 'ended_at', 'player_count', etc.
+        games.append({"game_id": "broken", "started_at": old_ts})
+
+        payload = {
+            "version": 1,
+            "games": games,
+            "errors": [{"timestamp": now - 100, "type": "ERR", "message": "keep"}],
+            "monthly_summaries": [],
+        }
+
+        save_mock = AsyncMock()
+        with (
+            patch.object(self.storage, "_save", save_mock),
+            patch.object(self.storage, "_get_playlist_display_names", return_value={}),
+        ):
+            self.storage._path = MagicMock()
+            self.storage._path.exists.return_value = True
+            self.storage._path.read_text.return_value = json.dumps(payload)
+            self.hass.async_add_executor_job = AsyncMock(
+                side_effect=lambda fn, *args: fn(*args)
+            )
+            await self.storage.load()
+
+        # The store was NOT wiped: recent games survive.
+        assert len(self.storage._data["games"]) == MAX_DETAILED_RECORDS
+        assert any(
+            g.get("game_id", "").startswith("recent-")
+            for g in self.storage._data["games"]
+        )
+        # Old + broken records were summarized, not discarded as a full reset.
+        assert len(self.storage._data["monthly_summaries"]) > 0
+        # Valid error record preserved.
+        assert len(self.storage._data["errors"]) == 1
+
+    @pytest.mark.asyncio
+    async def test_bad_json_quarantines_instead_of_destroying(self):
+        """Unparseable JSON renames the file to .corrupt rather than wiping it."""
+        save_mock = AsyncMock()
+        replace_calls: list[tuple] = []
+
+        def _exec(fn, *args):
+            # Intercept os.replace so we don't touch the real filesystem.
+            if getattr(fn, "__name__", "") == "replace":
+                replace_calls.append(args)
+                return None
+            return fn(*args)
+
+        with patch.object(self.storage, "_save", save_mock):
+            self.storage._path = MagicMock()
+            self.storage._path.exists.return_value = True
+            self.storage._path.read_text.return_value = "{not valid json"
+            self.storage._path.suffix = ".json"
+            self.storage._path.with_suffix.return_value = "analytics.json.corrupt"
+            self.hass.async_add_executor_job = AsyncMock(side_effect=_exec)
+            await self.storage.load()
+
+        # File was moved aside (quarantined), not silently overwritten.
+        assert len(replace_calls) == 1
+        # Fresh empty store in memory + persisted.
+        assert self.storage._data == self.storage._empty_data()
+        save_mock.assert_awaited_once()
+
+    @pytest.mark.asyncio
+    async def test_non_dict_root_quarantines(self):
+        """A JSON file whose root is a list (not dict) is treated as corrupt."""
+        save_mock = AsyncMock()
+        replace_calls: list[tuple] = []
+
+        def _exec(fn, *args):
+            if getattr(fn, "__name__", "") == "replace":
+                replace_calls.append(args)
+                return None
+            return fn(*args)
+
+        with patch.object(self.storage, "_save", save_mock):
+            self.storage._path = MagicMock()
+            self.storage._path.exists.return_value = True
+            self.storage._path.read_text.return_value = "[1, 2, 3]"
+            self.storage._path.suffix = ".json"
+            self.storage._path.with_suffix.return_value = "analytics.json.corrupt"
+            self.hass.async_add_executor_job = AsyncMock(side_effect=_exec)
+            await self.storage.load()
+
+        assert len(replace_calls) == 1
+        assert self.storage._data == self.storage._empty_data()
+
+    @pytest.mark.asyncio
+    async def test_prune_tolerates_record_missing_keys(self):
+        """_prune_old_records skips bad records without raising KeyError."""
+        now = int(time.time())
+        recent_ts = now - 3600
+        old_ts = now - (RETENTION_DAYS + 30) * 86400
+
+        games = [
+            _make_game_record(game_id=f"recent-{i}", ended_at=recent_ts)
+            for i in range(MAX_DETAILED_RECORDS)
+        ]
+        for i in range(10):
+            games.append(_make_game_record(game_id=f"old-{i}", ended_at=old_ts))
+        # Record missing every aggregated field.
+        games.append({"game_id": "broken"})
+        self.storage._data["games"] = games
+
+        # Must not raise.
+        await self.storage._prune_old_records()
+
+        assert len(self.storage._data["games"]) == MAX_DETAILED_RECORDS
+
+
+# ---------------------------------------------------------------------------
 # TestComputeMetrics
 # ---------------------------------------------------------------------------
 
