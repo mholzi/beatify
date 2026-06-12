@@ -389,6 +389,49 @@ class MediaPlayerService:
         # spotify:track:<id> and https:// URLs are passed through unchanged
         return uri
 
+    @classmethod
+    def _uri_match_tokens(cls, uri: str) -> list[str]:
+        """Tokens to look for in MA's media_content_id to confirm playback.
+
+        Issue #1380: the raw Beatify-internal URI is not what MA reports in
+        media_content_id — MA echoes the _convert_uri_for_ma form. To reliably
+        detect that the requested track started, match against BOTH the
+        MA-converted URI and the bare track ID (last path/ID segment), which is
+        identical across the internal and the MA-converted form for every
+        provider (Spotify, Apple Music, Tidal, YT Music, Deezer).
+
+        Args:
+            uri: The Beatify-internal URI that was requested.
+
+        Returns:
+            Ordered, deduped, non-empty substring tokens.
+
+        """
+        tokens: list[str] = []
+
+        def _add(token: str | None) -> None:
+            if token and token not in tokens:
+                tokens.append(token)
+
+        # The form MA actually reports.
+        _add(cls._convert_uri_for_ma(uri))
+        # The raw form too, in case a provider echoes the internal URI verbatim.
+        _add(uri)
+
+        # Bare track ID — stable across both forms.
+        if uri.startswith("spotify:"):
+            _add(uri.split(":")[-1])
+        elif "watch?v=" in uri:
+            # https://music.youtube.com/watch?v=<id>[&extra]
+            _add(uri.split("watch?v=", 1)[-1].split("&", 1)[0])
+        elif "://" in uri:
+            # applemusic://track/<id>, tidal://track/<id>, deezer://track/<id>,
+            # and plain https URLs — the bare ID is the last "/"-segment.
+            tail = uri.rstrip("/").rsplit("/", 1)[-1]
+            _add(tail.split("?", 1)[0])
+
+        return tokens
+
     def _get_ma_uri_candidates(
         self, song: dict[str, Any]
     ) -> list[tuple[str | None, str]]:
@@ -911,11 +954,16 @@ class MediaPlayerService:
             Dict with artist, title, album_art keys
 
         """
-        # Extract track ID from URI — Issue #422: platform-aware parsing
-        if uri.startswith("spotify:"):
-            track_id = uri.split(":")[-1]
-        else:
-            track_id = uri
+        # Build the substring tokens to look for in MA's media_content_id.
+        # Issue #1380: for non-Spotify providers the raw Beatify-internal URI
+        # (applemusic://track/123, tidal://track/123,
+        # https://music.youtube.com/watch?v=ABC) never appears in MA's
+        # content_id, because MA reports its own form derived from
+        # _convert_uri_for_ma (apple_music://track/123,
+        # https://tidal.com/browse/track/123, ytmusic://track/ABC). Match
+        # against the MA-converted URI AND the bare track ID (the last path/ID
+        # segment), which is stable across both forms.
+        match_tokens = self._uri_match_tokens(uri)
 
         # Get initial state for comparison
         initial_state = self._hass.states.get(self._entity_id)
@@ -939,7 +987,7 @@ class MediaPlayerService:
             if not state:
                 return False
             content_id = state.attributes.get("media_content_id", "")
-            if track_id in content_id:
+            if any(token in content_id for token in match_tokens):
                 return True
             current_title = state.attributes.get("media_title")
             return bool(current_title and current_title != initial_title)
@@ -989,6 +1037,16 @@ class MediaPlayerService:
                         song_matched.wait(), timeout=METADATA_WAIT_TIMEOUT
                     )
                 except asyncio.TimeoutError:
+                    # Issue #1380: if entity_picture already advanced to a real
+                    # new cover during the wait, honor that captured metadata
+                    # (the #1260 two-phase freshness) instead of discarding it.
+                    if art_changed.is_set():
+                        _LOGGER.warning(
+                            "Song match not detected within %.1fs, but new album "
+                            "art arrived — using captured metadata",
+                            METADATA_WAIT_TIMEOUT,
+                        )
+                        return art_metadata
                     _LOGGER.warning(
                         "Metadata not updated within %.1fs, using current state",
                         METADATA_WAIT_TIMEOUT,
@@ -1002,7 +1060,11 @@ class MediaPlayerService:
                 if current_state
                 else ""
             )
-            reason = "matched track ID" if track_id in content_id else "title changed"
+            reason = (
+                "matched track ID"
+                if any(token in content_id for token in match_tokens)
+                else "title changed"
+            )
             _LOGGER.debug("Song started after %.1fs (%s)", elapsed, reason)
 
             # ── Phase 2: wait for entity_picture to also update ───────────
