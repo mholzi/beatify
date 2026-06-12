@@ -141,7 +141,16 @@ def _patch_heavy_helpers(monkeypatch):
 
 
 def _make_entry(entry_id: str = "entry-1"):
-    return SimpleNamespace(entry_id=entry_id)
+    # #1357: async_setup_entry now reads ``entry.options`` for the Companion
+    # auth-bypass toggle and registers an options-update listener via
+    # ``add_update_listener`` / ``async_on_unload``. Provide inert stand-ins so
+    # these route-registration reload tests stay focused on routing.
+    return SimpleNamespace(
+        entry_id=entry_id,
+        options={},
+        add_update_listener=MagicMock(return_value=lambda: None),
+        async_on_unload=MagicMock(),
+    )
 
 
 @pytest.mark.asyncio

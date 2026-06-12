@@ -6,9 +6,20 @@ import logging
 from typing import Any
 
 import voluptuous as vol
-from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
+from homeassistant.config_entries import (
+    ConfigEntry,
+    ConfigFlow,
+    ConfigFlowResult,
+    OptionsFlow,
+)
+from homeassistant.core import callback
+from homeassistant.helpers import config_validation as cv
 
-from .const import DOMAIN
+from .const import (
+    CONF_ENABLE_COMPANION_AUTH_BYPASS,
+    DEFAULT_ENABLE_COMPANION_AUTH_BYPASS,
+    DOMAIN,
+)
 from .services.media_player import async_get_media_players
 
 _LOGGER = logging.getLogger(__name__)
@@ -18,6 +29,12 @@ class BeatifyConfigFlow(ConfigFlow, domain=DOMAIN):
     """Config flow for Beatify."""
 
     VERSION = 1
+
+    @staticmethod
+    @callback
+    def async_get_options_flow(config_entry: ConfigEntry) -> BeatifyOptionsFlow:
+        """Return the options flow handler for Beatify (#1357)."""
+        return BeatifyOptionsFlow()
 
     async def async_step_user(
         self,
@@ -68,3 +85,34 @@ class BeatifyConfigFlow(ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema({}),
             description_placeholders=description_placeholders,
         )
+
+
+class BeatifyOptionsFlow(OptionsFlow):
+    """Options flow for Beatify (#1357).
+
+    Exposes the single ``enable_companion_auth_bypass`` toggle. The bypass is
+    OFF by default; enabling it weakens auth on the local network and should
+    stay off unless the HA Android Companion app genuinely cannot authenticate.
+    """
+
+    async def async_step_init(
+        self,
+        user_input: dict[str, Any] | None = None,
+    ) -> ConfigFlowResult:
+        """Manage the Beatify options."""
+        if user_input is not None:
+            return self.async_create_entry(title="", data=user_input)
+
+        current = self.config_entry.options.get(
+            CONF_ENABLE_COMPANION_AUTH_BYPASS,
+            DEFAULT_ENABLE_COMPANION_AUTH_BYPASS,
+        )
+        data_schema = vol.Schema(
+            {
+                vol.Optional(
+                    CONF_ENABLE_COMPANION_AUTH_BYPASS,
+                    default=current,
+                ): cv.boolean,
+            }
+        )
+        return self.async_show_form(step_id="init", data_schema=data_schema)

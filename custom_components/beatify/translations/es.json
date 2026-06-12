@@ -12,5 +12,19 @@
         "abort": {
             "already_configured": "Beatify ya está configurado."
         }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Opciones de Beatify",
+                "description": "Ajustes avanzados de autenticación. Déjalos con sus valores predeterminados a menos que sepas que los necesitas.",
+                "data": {
+                    "enable_companion_auth_bypass": "Activar el bypass de autenticación de la app HA Android Companion"
+                },
+                "data_description": {
+                    "enable_companion_auth_bypass": "Desactivado de forma predeterminada. Cuando está activado, las solicitudes de la app HA Android Companion en tu red local se tratan como el anfitrión sin necesidad de iniciar sesión. Esto debilita la autenticación y debería permanecer DESACTIVADO salvo que la app Companion realmente no pueda autenticarse. NO lo actives si Beatify es accesible a través de Home Assistant Cloud (Nabu Casa) o un proxy inverso que no reenvíe la IP real del cliente: en esos casos podría permitir que un visitante de Internet organice partidas sin credenciales."
+                }
+            }
+        }
     }
 }

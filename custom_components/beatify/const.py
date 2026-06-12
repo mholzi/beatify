@@ -2,6 +2,14 @@
 
 DOMAIN = "beatify"
 
+# Companion auth-bypass opt-in (#1357). The HA Android Companion bypass in
+# server/companion_auth.py grants admin access on a UA + private-IP match with
+# zero credentials. That is unsafe behind Nabu Casa / reverse proxies, so the
+# bypass is OFF by default and only takes effect when the user explicitly
+# enables this option in the integration's options flow.
+CONF_ENABLE_COMPANION_AUTH_BYPASS = "enable_companion_auth_bypass"
+DEFAULT_ENABLE_COMPANION_AUTH_BYPASS = False
+
 # Game configuration
 MAX_PLAYERS = 20
 MIN_PLAYERS = 2

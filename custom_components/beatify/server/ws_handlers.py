@@ -115,7 +115,7 @@ def _is_ha_authenticated(
     """
     token = data.get("ha_token")
     if not token or not isinstance(token, str):
-        if _ws_companion_trusted(ws):
+        if _ws_companion_trusted(ws, handler.hass):
             _LOGGER.info(
                 "[WS auth] admin_connect: ha_token missing — accepting via "
                 "Companion bypass (UA+RFC1918 match on upgrade request)"
@@ -130,7 +130,7 @@ def _is_ha_authenticated(
     try:
         result = handler.hass.auth.async_validate_access_token(token)
     except Exception as err:  # noqa: BLE001 — any decode/validation error means "no"
-        if _ws_companion_trusted(ws):
+        if _ws_companion_trusted(ws, handler.hass):
             _LOGGER.info(
                 "[WS auth] admin_connect: ha_token unparseable (%s) — accepting "
                 "via Companion bypass",
@@ -145,7 +145,7 @@ def _is_ha_authenticated(
         )
         return False
     if result is None:
-        if _ws_companion_trusted(ws):
+        if _ws_companion_trusted(ws, handler.hass):
             _LOGGER.info(
                 "[WS auth] admin_connect: ha_token did not resolve to a refresh "
                 "token — accepting via Companion bypass"
@@ -163,12 +163,14 @@ def _is_ha_authenticated(
     return True
 
 
-def _ws_companion_trusted(ws: web.WebSocketResponse | None) -> bool:
+def _ws_companion_trusted(
+    ws: web.WebSocketResponse | None, hass: HomeAssistant
+) -> bool:
     """Check the request-meta stashed by ``BeatifyWebSocketHandler.handle``."""
     if ws is None:
         return False
     meta = getattr(ws, "beatify_request_meta", None)
-    return is_companion_trusted_meta(meta)
+    return is_companion_trusted_meta(meta, hass)
 
 
 # ---------------------------------------------------------------------------

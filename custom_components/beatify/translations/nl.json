@@ -12,5 +12,19 @@
     "abort": {
       "already_configured": "Beatify is al geconfigureerd."
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Beatify-opties",
+        "description": "Geavanceerde authenticatie-instellingen. Laat deze op de standaardwaarden staan tenzij je zeker weet dat je ze nodig hebt.",
+        "data": {
+          "enable_companion_auth_bypass": "Auth-bypass voor de HA Android Companion-app inschakelen"
+        },
+        "data_description": {
+          "enable_companion_auth_bypass": "Standaard UIT. Indien ingeschakeld worden verzoeken van de HA Android Companion-app op je lokale netwerk zonder login als host behandeld. Dit verzwakt de authenticatie en moet UIT blijven tenzij de Companion-app echt niet kan authenticeren. Schakel dit NIET in als Beatify bereikbaar is via Home Assistant Cloud (Nabu Casa) of een reverse proxy die het echte client-IP niet doorgeeft — in die opstellingen zou een bezoeker van internet zonder inloggegevens spellen kunnen hosten."
+        }
+      }
+    }
   }
 }

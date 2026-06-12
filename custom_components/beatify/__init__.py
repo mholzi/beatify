@@ -18,7 +18,11 @@ from homeassistant.components.frontend import (
 )
 
 from .analytics import AnalyticsStorage
-from .const import DOMAIN
+from .const import (
+    CONF_ENABLE_COMPANION_AUTH_BYPASS,
+    DEFAULT_ENABLE_COMPANION_AUTH_BYPASS,
+    DOMAIN,
+)
 from .game.playlist import (
     async_discover_playlists,
     async_ensure_playlist_directory,
@@ -158,6 +162,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Issue #603/#609: Create GameService facade
     game_service = GameService(hass, game_state)
 
+    # #1357: Companion auth-bypass opt-in. Read once at setup; the auth helper
+    # in server/companion_auth.py reads this live from hass.data per request,
+    # so the options-update listener below can flip it without a full reload.
+    companion_auth_bypass_enabled = entry.options.get(
+        CONF_ENABLE_COMPANION_AUTH_BYPASS, DEFAULT_ENABLE_COMPANION_AUTH_BYPASS
+    )
+
     # Store discovery results and game infrastructure
     hass.data[DOMAIN] = {
         "entry_id": entry.entry_id,
@@ -170,7 +181,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "ws_handler": ws_handler,
         "stats": stats_service,
         "analytics": analytics,
+        "companion_auth_bypass_enabled": companion_auth_bypass_enabled,
     }
+
+    # #1357: refresh the bypass flag in place when the options change. No full
+    # reload is needed — companion_auth.py reads hass.data live per request.
+    entry.async_on_unload(entry.add_update_listener(_async_update_options))
 
     # Issue #441: Forward sensor and binary_sensor platforms
     await hass.config_entries.async_forward_entry_setups(
@@ -262,6 +278,25 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     _LOGGER.info("Beatify integration setup complete")
     return True
+
+
+async def _async_update_options(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Refresh in-place state when the integration options change (#1357).
+
+    Currently this only mirrors the ``enable_companion_auth_bypass`` toggle into
+    ``hass.data[DOMAIN]``. The auth helper reads that value live per request, so
+    flipping the option takes effect immediately without reloading the entry.
+    """
+    domain_data = hass.data.get(DOMAIN)
+    if not isinstance(domain_data, dict):
+        return
+    domain_data["companion_auth_bypass_enabled"] = entry.options.get(
+        CONF_ENABLE_COMPANION_AUTH_BYPASS, DEFAULT_ENABLE_COMPANION_AUTH_BYPASS
+    )
+    _LOGGER.debug(
+        "Beatify options updated: companion_auth_bypass_enabled=%s",
+        domain_data["companion_auth_bypass_enabled"],
+    )
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
