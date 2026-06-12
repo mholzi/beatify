@@ -278,7 +278,11 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Clean up domain data
     if DOMAIN in hass.data:
-        hass.data.pop(DOMAIN)
+        domain_data = hass.data.pop(DOMAIN)
+        # Flush any pending debounced analytics error save before teardown (#1388)
+        analytics = domain_data.get("analytics")
+        if analytics is not None:
+            await analytics.async_shutdown()
 
     _LOGGER.info("Beatify integration unloaded")
     return True
