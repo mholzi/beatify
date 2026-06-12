@@ -661,6 +661,8 @@
     "round": "Manche {current}/{total}",
     "rounds": "manches",
     "players": "Joueurs",
+    "playersJoined": "{n} joueurs ont rejoint",
+    "playersJoinedOne": "{n} joueur a rejoint",
     "topGuesses": "Meilleures réponses de cette manche",
     "submissions": "Réponses",
     "timeRemaining": "Temps",

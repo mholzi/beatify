@@ -401,10 +401,26 @@
         // Must re-render after language loads to update dynamic content
         // Guard: skip if i18n unavailable
         if (typeof BeatifyI18n !== 'undefined' && data.language && data.language !== BeatifyI18n.getLanguage()) {
-            BeatifyI18n.setLanguage(data.language).then(function() {
+            // #1402-B8: setLanguage() normalizes an unsupported code to 'en' and
+            // resolves with the EFFECTIVELY-APPLIED code. We must re-render only
+            // when the applied locale actually differs from what we'd compare on
+            // re-entry — otherwise a state carrying an unsupported language (e.g.
+            // 'pt') loops forever: getLanguage() can never equal 'pt', so each
+            // re-render re-enters this branch. Re-render with applied locale and
+            // guard the recursion against the resolved (not requested) code.
+            BeatifyI18n.setLanguage(data.language).then(function(appliedLang) {
                 BeatifyI18n.initPageTranslations();
-                // Re-render current view with correct language
-                handleStateUpdate(data);
+                if (appliedLang === BeatifyI18n.getLanguage()) {
+                    // Re-render current view with correct language. The branch
+                    // above won't re-fire because data.language is now stale vs
+                    // the applied locale check below — but to be safe against an
+                    // unsupported code (data.language !== appliedLang) we mutate
+                    // the local copy so the recursive call's comparison settles.
+                    if (data.language !== appliedLang) {
+                        data = Object.assign({}, data, { language: appliedLang });
+                    }
+                    handleStateUpdate(data);
+                }
             });
             // Don't render yet - wait for language to load
             return;
@@ -466,10 +482,16 @@
         renderGameSettings(data);
 
         // Update player count
+        // #1402-B8: was hardcoded English ("N players joined") on an otherwise
+        // localized TV dashboard. Use an i18n key with {n} interpolation plus a
+        // singular variant; utils.t() falls back to the English literal if the
+        // key is missing from a locale.
         var countEl = document.getElementById('dashboard-player-count');
         if (countEl) {
             var count = players.length;
-            countEl.textContent = count + ' player' + (count !== 1 ? 's' : '') + ' joined';
+            var joinedKey = count === 1 ? 'dashboard.playersJoinedOne' : 'dashboard.playersJoined';
+            var joinedFallback = count + ' player' + (count !== 1 ? 's' : '') + ' joined';
+            countEl.textContent = utils.t(joinedKey, joinedFallback).replace(/\{n\}/g, count);
         }
 
         // Render player list with slide-in animation
@@ -1261,7 +1283,10 @@
             var nameEl = document.getElementById('end-podium-' + place + '-name');
             var scoreEl = document.getElementById('end-podium-' + place + '-score');
 
-            if (nameEl) nameEl.textContent = player ? utils.escapeHtml(player.name) : '---';
+            // #1402-B8: textContent already neutralizes markup, so feeding it
+            // escapeHtml() output double-escapes — a name like "A&B" rendered
+            // as "A&amp;B" on the podium. Assign the raw name directly.
+            if (nameEl) nameEl.textContent = player ? player.name : '---';
             if (scoreEl) scoreEl.textContent = player ? player.score : '0';
         });
 

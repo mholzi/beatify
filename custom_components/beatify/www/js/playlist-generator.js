@@ -33,11 +33,16 @@
     // and English is the strongest instruction-following channel.
     // -----------------------------------------------------------------
     function _t(key, fallback, args) {
+        // #1402-B8: BeatifyI18n.t(key, params) takes a PARAMS OBJECT, not a
+        // fallback string, and returns the key itself (truthy) when missing.
+        // Passing `fallback` as the second arg did nothing and `if (got)` let
+        // the raw key through, so a missing key surfaced "playlistGenerator.xyz"
+        // verbatim in the modal. Compare against the key to detect a real hit.
         let val = fallback;
         try {
             if (window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
-                const got = window.BeatifyI18n.t(key, fallback);
-                if (got) val = got;
+                const got = window.BeatifyI18n.t(key);
+                if (got && got !== key) val = got;
             }
         } catch (e) { /* i18n not ready */ }
         if (args && typeof val === 'string') {
@@ -1116,6 +1121,14 @@ __JSON__
         // request-modal flow uses (BACKEND_API = /beatify/api/playlist-requests).
         // POST replaces the full list; we GET first so we don't drop existing
         // requests on append.
+        //
+        // #1402-B8 (KNOWN, intentionally not fixed in this frontend bundle):
+        // this GET-then-POST is a read-modify-write that overwrites the WHOLE
+        // store, so two concurrent submissions race and the later POST can drop
+        // the earlier one (lost update). A robust fix needs a server-side
+        // append/merge-by-issue_number endpoint (out of scope for a frontend-
+        // only batch); a client-side lock/retry would be fragile. Tracked under
+        // #1402 finding 7 as SKIPPED — needs a backend endpoint.
         const getResp = await fetch('/beatify/api/playlist-requests');
         let store = { requests: [], last_poll: null };
         if (getResp.ok) {
@@ -1183,15 +1196,27 @@ __JSON__
         });
     }
 
+    // #1402-B8: reset all per-session state so a reopened modal starts clean.
+    // Without this, "Saved as foo.json" or a pending issue-paste / captured-issue
+    // banner from the last open carried over and rendered stale on reopen.
+    // Pure (mutates the passed object only) → unit-tested via _internals.
+    function _resetSessionState(st) {
+        st.lastValidation = null;
+        st.lastJsonText = '';
+        st.guideOpen = true;
+        st.savedFilename = null;
+        st.pendingSubmission = null;
+        st.capturedIssueNumber = null;
+        return st;
+    }
+
     function open() {
         if (state.rootEl) return; // already open
         const host = document.createElement('div');
         host.className = 'plg-host';
         document.body.appendChild(host);
         state.rootEl = host;
-        state.lastValidation = null;
-        state.lastJsonText = '';
-        state.guideOpen = true;
+        _resetSessionState(state);
         _renderModal();
         host.addEventListener('click', _onClick);
         document.addEventListener('keydown', _onKeyDown, true);
@@ -1227,6 +1252,8 @@ __JSON__
             parseSpotifyPlaylistId,
             parseIssueNumberFromUrl,
             slugify,
+            _t,
+            _resetSessionState,
         },
     };
 })();

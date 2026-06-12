@@ -661,6 +661,8 @@
     "round": "Ronda {current}/{total}",
     "rounds": "rondas",
     "players": "Jugadores",
+    "playersJoined": "{n} jugadores se unieron",
+    "playersJoinedOne": "{n} jugador se unió",
     "topGuesses": "Mejores respuestas de esta ronda",
     "submissions": "Respuestas",
     "timeRemaining": "Tiempo",

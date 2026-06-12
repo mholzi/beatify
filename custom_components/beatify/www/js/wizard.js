@@ -196,6 +196,22 @@ export function resolveGameLanguageDefault(detectFn, saved, current = 'en') {
     return resolved || current;
 }
 
+/**
+ * #1402-B8: decide whether the lights level-up should hydrate as ON from the
+ * stored `beatify_party_lights` shape. An EXPLICIT `enabled:false` must stay
+ * off — the old logic re-enabled lights whenever entities were still
+ * configured, silently turning party lights back on after the user disabled
+ * them. Mirrors the TTS rule: only "entities present with no explicit flag"
+ * counts as implied-on.
+ * @param {{enabled?: boolean, lights?: any}|null} s - parsed party-lights store
+ * @returns {boolean}
+ */
+export function lightsLevelUpEnabledFromStored(s) {
+    if (!s) return false;
+    if (s.enabled === true) return true;
+    return s.enabled === undefined && Array.isArray(s.lights) && s.lights.length > 0;
+}
+
 // ------------------------------------------------------------------
 // DOM-driven controller (browser-only below this line)
 // ------------------------------------------------------------------
@@ -315,7 +331,12 @@ function _hydrateLevelUpDetails() {
             // so _persistLevelUpDetails skips the lights branch and the
             // `enabled: true` fix from PR #1031 never gets written to
             // localStorage. Mirror of the TTS hydration on line below.
-            if (s.enabled === true || (Array.isArray(s.lights) && s.lights.length > 0)) {
+            // #1402-B8: respect an EXPLICIT disable. The old condition re-enabled
+            // lights whenever entities were still configured (s.lights non-empty),
+            // even after the user set s.enabled=false — so re-entering the wizard
+            // silently turned party lights back on. Mirror the TTS hydrate below:
+            // only treat "entities present, no explicit flag" as implied-on.
+            if (lightsLevelUpEnabledFromStored(s)) {
                 chosenLevelUps.lights = true;
             }
         }
