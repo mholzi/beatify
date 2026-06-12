@@ -1609,3 +1609,158 @@ class TestVerifyResponsivePing:
         ]
         assert len(vol_calls) == 1
         assert vol_calls[0].args[2]["volume_level"] == 0.12
+
+
+class TestUriMatchTokens:
+    """#1380: confirmation must match MA's content_id form, not the raw URI.
+
+    MA echoes the _convert_uri_for_ma form in media_content_id, so the raw
+    Beatify-internal URI is never a substring for Apple/Tidal/YT Music. The
+    match tokens must therefore include the MA-converted URI and the bare
+    track ID (which is stable across both forms).
+    """
+
+    @pytest.mark.parametrize(
+        ("uri", "ma_content_id", "bare_id"),
+        [
+            # Spotify — unchanged form, bare id is the last ":" segment.
+            ("spotify:track:ABC123", "spotify:track:ABC123", "ABC123"),
+            # Apple Music — internal applemusic:// vs MA apple_music://.
+            ("applemusic://track/123", "apple_music://track/123", "123"),
+            # Tidal — internal tidal:// vs MA https://tidal.com/browse/track.
+            ("tidal://track/456", "https://tidal.com/browse/track/456", "456"),
+            # YT Music — internal watch?v= URL vs MA ytmusic://track form.
+            (
+                "https://music.youtube.com/watch?v=XYZ",
+                "ytmusic://track/XYZ",
+                "XYZ",
+            ),
+            # Deezer — passed through unchanged by _convert_uri_for_ma.
+            ("deezer://track/789", "deezer://track/789", "789"),
+        ],
+    )
+    def test_tokens_match_ma_content_id_and_bare_id(self, uri, ma_content_id, bare_id):
+        tokens = MediaPlayerService._uri_match_tokens(uri)
+        # The MA-converted form is always reproducible in content_id.
+        assert any(tok in ma_content_id for tok in tokens), (
+            f"{uri!r} tokens {tokens!r} don't match MA content_id {ma_content_id!r}"
+        )
+        # The bare track ID is present as a token.
+        assert bare_id in tokens
+
+    def test_youtube_watch_url_strips_extra_query_params(self):
+        tokens = MediaPlayerService._uri_match_tokens(
+            "https://music.youtube.com/watch?v=XYZ&list=PL1"
+        )
+        assert "XYZ" in tokens
+        assert "XYZ&list=PL1" not in tokens
+
+    def test_empty_uri_yields_no_tokens(self):
+        assert MediaPlayerService._uri_match_tokens("") == []
+
+
+class TestWaitForMetadataUpdateCrossProvider:
+    """#1380: Phase-1 song-match must fire for non-Spotify providers, and a
+    Phase-1 timeout that nonetheless captured new art must return that art."""
+
+    @staticmethod
+    def _service_with_states(initial_state):
+        hass = MagicMock()
+        box = {"current": initial_state}
+        hass.states.get = MagicMock(side_effect=lambda *a, **k: box["current"])
+        svc = MediaPlayerService(hass, "media_player.test")
+        return svc, box
+
+    @pytest.mark.parametrize(
+        ("uri", "ma_content_id"),
+        [
+            ("applemusic://track/123", "apple_music://track/123"),
+            ("tidal://track/456", "https://tidal.com/browse/track/456"),
+            (
+                "https://music.youtube.com/watch?v=XYZ",
+                "ytmusic://track/XYZ",
+            ),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_song_match_fires_for_provider_content_id(self, uri, ma_content_id):
+        """The new song is detected via content_id even though MA reports its
+        own converted URI form — not the raw Beatify-internal URI. Title is
+        deliberately unchanged so ONLY the content_id path can match."""
+        same_title = "Same Title"
+        old = _art_state(
+            title=same_title,
+            content_id="apple_music://track/OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with patch(_TRACK_PATH, side_effect=_fake_track):
+            task = asyncio.create_task(svc.wait_for_metadata_update(uri))
+            await asyncio.sleep(0)
+
+            # Song started: content_id is MA's converted form, title unchanged,
+            # new cover present in the same event.
+            started = _art_state(
+                title=same_title,
+                content_id=ma_content_id,
+                entity_picture="/api/media_player_proxy/x?token=NEW",
+            )
+            box["current"] = started
+            captured["cb"](_event(started))
+
+            result = await task
+
+        # Must return the NEW art (proves content_id match, not a 2s timeout
+        # fall-through to get_metadata()).
+        assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
+
+    @pytest.mark.asyncio
+    async def test_phase1_timeout_returns_captured_art(self):
+        """#1380: if the song-match never fires but a real new cover arrived
+        during the wait, return the captured art metadata instead of
+        discarding it and falling back to the current state."""
+        old = _art_state(
+            title="Old",
+            content_id="apple_music://track/OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, box = self._service_with_states(old)
+
+        captured: dict = {}
+
+        def _fake_track(hass, entity_ids, cb):
+            captured["cb"] = cb
+            return MagicMock()
+
+        with (
+            patch(_TRACK_PATH, side_effect=_fake_track),
+            patch(
+                "custom_components.beatify.services.media_player.METADATA_WAIT_TIMEOUT",
+                0.05,
+            ),
+        ):
+            task = asyncio.create_task(
+                svc.wait_for_metadata_update("applemusic://track/UNMATCHED")
+            )
+            await asyncio.sleep(0)
+
+            # New cover arrives, but content_id/title NEVER match the requested
+            # track (simulating the dead-fallback scenario from the issue).
+            art_only = _art_state(
+                title="Old",
+                content_id="apple_music://track/OLD",
+                entity_picture="/api/media_player_proxy/x?token=NEW",
+            )
+            box["current"] = art_only
+            captured["cb"](_event(art_only))
+
+            result = await task
+
+        assert result["album_art"] == "/api/media_player_proxy/x?token=NEW"
