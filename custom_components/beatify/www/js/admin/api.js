@@ -105,6 +105,11 @@ let adminWsAuthRecoveryAttempts = 0;
 // cleared once the socket is assigned (or the attempt bails), so a second
 // caller returns immediately instead of opening a duplicate, orphaned socket.
 let adminWsConnecting = false;
+// #1402 B7: true between sending `start_game` and the next server `state`
+// message. Only while pending should a WS `error` be treated as a start
+// failure (reset the home button + blocking error). Unrelated mid-game command
+// errors (set_volume, stop_song, …) must NOT rewrite the home button.
+let startPending = false;
 
 // --- WS accessors (used by admin.js view code instead of touching adminWs) -
 
@@ -124,6 +129,12 @@ export function isAdminWsOpen() {
  */
 export function sendAdminWs(payload) {
     if (isAdminWsOpen()) {
+        // #1402 B7: arm start-failure handling only for the actual start_game
+        // command. Cleared on the next `state` message (start succeeded) or by
+        // the error handler (start rejected).
+        if (payload && payload.action === 'start_game') {
+            startPending = true;
+        }
         adminWs.send(JSON.stringify(payload));
         return true;
     }
@@ -285,6 +296,10 @@ export function handleAdminWsMessage(data) {
             break;
 
         case 'state':
+            // #1402 B7: a state broadcast means the start (if any) went through;
+            // disarm start-failure handling so a later unrelated command error
+            // doesn't get mistaken for a start failure.
+            startPending = false;
             deps.handleAdminStateUpdate(data);
             break;
 
@@ -400,14 +415,23 @@ export function handleAdminWsMessage(data) {
                     joinBtn.disabled = false;
                     joinBtn.textContent = BeatifyI18n.t('admin.join');
                 }
-            } else {
-                // #949: a start_game / next_round rejection — MEDIA_PLAYER_UNAVAILABLE,
+            } else if (startPending) {
+                // #949: a start_game rejection — MEDIA_PLAYER_UNAVAILABLE,
                 // GAME_NOT_STARTED, NO_SONGS_REMAINING, INVALID_ACTION, … startGameplay()
                 // left the home "Start game" button on "⏳ Starting…" and returned to
                 // wait for a broadcast. Un-stick the button and surface the message so
                 // the host is not staring at a frozen "Starting…".
+                // #1402 B7: gated on startPending so only a genuine start failure
+                // resets the home button. Cleared here either way.
+                startPending = false;
                 deps.resetHomeStartButton();
                 deps.showError(data.message);
+            } else {
+                // #1402 B7: an error for some other mid-game command
+                // (set_volume, stop_song, next_round, …). The home "Start game"
+                // button is irrelevant here — do NOT reset it or pop a blocking
+                // error dialog. Surface a non-blocking console warning instead.
+                console.warn('[Admin WS] Command error:', data.code, data.message);
             }
             break;
 

@@ -21,6 +21,9 @@ import { adminState } from './admin/state.js';
 // #1279 step 4b: shared constants (localStorage keys) extracted so both this
 // core and the setup-section modules import the same literals.
 import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js';
+// #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
+// document keydown listeners; adds Escape to the reset + request modals).
+import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
 
 import {
     setCurrentGameResolver,
@@ -667,6 +670,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('end-game')?.addEventListener('click', endGame);
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
 
+    // #1402 B7: one document-level Escape handler for all registered modals.
+    // Wire it before the per-modal setups so their registerModalClose() calls
+    // land in the registry it reads.
+    setupModalEscapeHandler();
+
     // QR modal close/backdrop/escape — wired once at init so the home-view
     // tap-to-enlarge and the admin-playing-view both share the same modal.
     setupQRModal();
@@ -976,11 +984,8 @@ function setupQRModal() {
     if (backdrop) backdrop.addEventListener('click', closeQRModal);
     if (closeBtn) closeBtn.addEventListener('click', closeQRModal);
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-            closeQRModal();
-        }
-    });
+    // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
+    registerModalClose('qr-modal', closeQRModal);
 }
 
 // ==========================================
@@ -1326,6 +1331,9 @@ function setupResetModal() {
     document.getElementById('reset-confirm-btn')?.addEventListener('click', confirmReset);
     document.getElementById('reset-cancel-btn')?.addEventListener('click', closeResetModal);
     document.querySelector('#reset-modal .modal-backdrop')?.addEventListener('click', closeResetModal);
+
+    // #1402 B7: reset modal previously had no Escape support — register it now.
+    registerModalClose('reset-modal', closeResetModal);
 }
 
 // ==========================================
@@ -1423,15 +1431,8 @@ function setupRematchModal() {
     cancelBtn?.addEventListener('click', closeRematchModal);
     backdrop?.addEventListener('click', closeRematchModal);
 
-    // Also handle Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            var rematchModal = document.getElementById('rematch-modal');
-            if (rematchModal && !rematchModal.classList.contains('hidden')) {
-                closeRematchModal();
-            }
-        }
-    });
+    // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
+    registerModalClose('rematch-modal', closeRematchModal);
 }
 
 /**
@@ -1528,20 +1529,11 @@ function setupAdminJoin() {
 
     joinBtn?.addEventListener('click', handleAdminJoin);
 
-    // Close modals on Escape (Story 9.10: also handles end-game-modal)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const adminModal = document.getElementById('admin-join-modal');
-            const endGameModal = document.getElementById('end-game-modal');
-
-            if (adminModal && !adminModal.classList.contains('hidden')) {
-                closeAdminJoinModal();
-            }
-            if (endGameModal && !endGameModal.classList.contains('hidden')) {
-                closeEndGameModal();
-            }
-        }
-    });
+    // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
+    // (Story 9.10: end-game-modal kept here too.) Each closes only the topmost
+    // visible modal now, so a single Escape no longer fires both close fns.
+    registerModalClose('admin-join-modal', closeAdminJoinModal);
+    registerModalClose('end-game-modal', closeEndGameModal);
 }
 
 /**
@@ -2080,6 +2072,10 @@ function setupPlaylistRequests() {
     requestModal?.querySelector('.modal-backdrop')?.addEventListener('click', () => {
         closeRequestModal();
     });
+
+    // #1402 B7: request modal previously had no Escape support — register it
+    // (closeRequestModal is a hoisted fn declaration further down this scope).
+    registerModalClose('request-modal', closeRequestModal);
 
     // URL input validation
     urlInput?.addEventListener('input', () => {
