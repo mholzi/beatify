@@ -865,8 +865,17 @@
         if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
         if (yearEl) yearEl.textContent = song.year || '????';
 
+        // Lower-third announce: the YEAR is the hero in year mode; in Title &
+        // Artist mode the year row hides and the TA banner carries the answer.
+        var taMode = !!data.title_artist_mode;
+        var yearRow = document.getElementById('reveal-year-row');
+        if (yearRow) yearRow.classList.toggle('hidden', taMode);
+
         // Title & Artist mode (#1180): show truth banner + voting status on TV.
         renderDashboardTitleArtist(data);
+
+        // Year mode: the guess-the-artist mini-game result (🎤 who got it).
+        renderDashboardArtistChallenge(taMode ? null : data.artist_challenge);
 
         // Render fun fact (Story 16.4)
         renderFunFact(song);
@@ -1006,6 +1015,38 @@
                 outcomesEl.classList.add('hidden');
             }
         }
+    }
+
+    /**
+     * Year-mode artist-challenge result on the TV (the guess-the-artist
+     * mini-game). Shows "🎤 The artist: <name>" + who got it (winner +bonus,
+     * or a muted "nobody guessed"). Hidden when the challenge isn't active.
+     * @param {Object|null} ac - data.artist_challenge { correct_artist, winner, bonus_points }
+     */
+    function renderDashboardArtistChallenge(ac) {
+        var el = document.getElementById('reveal-artist-challenge');
+        if (!el) return;
+        if (!ac || !ac.correct_artist) {
+            el.classList.add('hidden');
+            el.innerHTML = '';
+            return;
+        }
+        var label = utils.t('artistChallenge.theArtistWas', 'The artist');
+        var resultHtml;
+        if (ac.winner) {
+            var pts = ac.bonus_points || 5;
+            resultHtml = '<span class="reveal-ac-result reveal-ac-result--won">' +
+                utils.escapeHtml(ac.winner) + ' +' + pts + '</span>';
+        } else {
+            resultHtml = '<span class="reveal-ac-result reveal-ac-result--none">' +
+                utils.escapeHtml(utils.t('artistChallenge.noWinner', 'Nobody guessed it')) + '</span>';
+        }
+        el.innerHTML =
+            '<span class="reveal-ac-ic" aria-hidden="true">🎤</span>' +
+            '<span class="reveal-ac-label">' + utils.escapeHtml(label) + '</span>' +
+            '<span class="reveal-ac-name">' + utils.escapeHtml(ac.correct_artist) + '</span>' +
+            resultHtml;
+        el.classList.remove('hidden');
     }
 
     // Local countdown ticker for the TV live-vote view. Anchored to the server's
