@@ -15798,3 +15798,119 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-success-neon);
 }
 #reveal-view .rstand-delta--zero { color: var(--color-text-neon-muted); }
+
+/* ==========================================================================
+   Reveal artist-result + fun-fact (design-shotgun B: inline artist chip +
+   badges-first fun fact)
+   --------------------------------------------------------------------------
+   The artist-challenge result folds into the song-strip card as a slim inline
+   row (no standalone card). The fun-fact card leads with the chart/cert/award
+   badges as prominent tiles, then a trimmed (2-line) prose hook. Scoped under
+   #reveal-view. renderArtistReveal still drives #artist-reveal-* element ids.
+   ========================================================================== */
+/* Song strip becomes a column: main identity row + optional artist row. */
+#reveal-view .song-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#reveal-view .song-strip-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-sm);
+}
+/* Inline artist-challenge result row (relocated #artist-reveal-section). */
+#reveal-view .artist-guess-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px var(--space-md) 9px var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+#reveal-view .artist-guess-row.hidden { display: none; }
+#reveal-view .artist-guess-ic { font-size: 14px; flex-shrink: 0; }
+#reveal-view .artist-guess-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-text-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+#reveal-view .artist-reveal-winner {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+}
+#reveal-view .artist-reveal-winner.hidden { display: none; }
+#reveal-view .artist-reveal-winner.is-you,
+#reveal-view .artist-reveal-winner.is-other {
+    color: var(--color-success-neon);
+    background: rgba(57, 255, 20, 0.12);
+    border: 1px solid rgba(57, 255, 20, 0.4);
+}
+#reveal-view .artist-reveal-winner.is-you {
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
+}
+#reveal-view .artist-reveal-winner.artist-reveal-no-winner {
+    color: var(--color-text-neon-muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Fun fact: badges as prominent tiles first, prose trimmed below. */
+#reveal-view #fun-fact-container .section-content-padded {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+#reveal-view .song-rich-info .song-badges-row {
+    display: flex;
+    gap: 8px;
+}
+#reveal-view .song-rich-info .song-badge {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 11px 6px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+}
+#reveal-view .song-rich-info .song-badge .song-badge-icon { font-size: 20px; }
+#reveal-view .song-rich-info .song-badges-more {
+    flex: 0 0 auto;
+    align-self: center;
+    font-size: 11px;
+    color: var(--color-text-neon-muted);
+}
+#reveal-view #fun-fact .fun-fact-text,
+#reveal-view .fun-fact-text {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-neon-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
