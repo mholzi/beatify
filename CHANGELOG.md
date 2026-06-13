@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc4] - 2026-06-13
+
+### Changed
+- **Reveal standings redesigned as a "Round-Delta Ledger" (design-shotgun).** The reveal's Standings card no longer shows a plain rank · name · total list. Each row now fuses the overall standing with the round outcome: rank + movement arrow (▲/▼/–), a player-coloured avatar, the player's name with a "YOU" tag, their guessed year and accuracy ("1985 · 3 off", or "Exact!" in green), event chips (🔥 streak, 🥷/🎯 steal, 🎲 bet), and a big cumulative total with this round's +delta beneath it in neon green. Standing-first emphasis; lower ranks taper-dim; the current player's row is pink-rimmed; everyone is shown (no scroll box). A reveal-scoped `renderRevealStandings()` + `.rstand-*` styles replace the shared leaderboard renderer for the reveal surface only — the in-game leaderboard and TV dashboard are untouched.
+
 ## [4.1.0-rc3] - 2026-06-13
 
 ### Fixed

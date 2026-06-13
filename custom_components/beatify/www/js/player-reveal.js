@@ -7,11 +7,11 @@ import {
     state, escapeHtml,
     prefersReducedMotion, animateValue, animateScoreChange, showPointsPopup,
     previousState, isPreviousStateInitialized, isStreakMilestone,
-    AnimationUtils,
+    AnimationUtils, updatePreviousState,
     triggerConfetti, stopConfetti
 } from './player-utils.js';
 
-import { updateLeaderboard, renderArtistReveal, renderMovieReveal } from './player-game.js';
+import { renderArtistReveal, renderMovieReveal } from './player-game.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -197,7 +197,7 @@ export function updateRevealView(data) {
     }
 
     if (data.leaderboard) {
-        updateLeaderboard(data, 'reveal-leaderboard-list', true);
+        renderRevealStandings(data);
     }
 
     // Show admin controls if admin
@@ -1058,6 +1058,124 @@ function renderScoreRow(player) {
             subEl.textContent = utils.t(key, { years: yo }) || (yo + ' years off');
         }
     }
+}
+
+// ---------- Reveal standings (Round-Delta Ledger, design-shotgun A) ----------
+
+/**
+ * Deterministic avatar gradient from a player name — same name always maps to
+ * the same brand-palette pair so a player keeps their colour across rounds.
+ */
+function _revStandGradient(name) {
+    var palettes = [
+        ['#ff2d6a', '#ff6600'], ['#00f5ff', '#7a5cff'], ['#39ff14', '#00f5ff'],
+        ['#ff6600', '#ff0040'], ['#7a5cff', '#b3b3c2'], ['#ff2d6a', '#7a5cff']
+    ];
+    var h = 0;
+    for (var i = 0; i < name.length; i++) { h = (h * 31 + name.charCodeAt(i)) >>> 0; }
+    var p = palettes[h % palettes.length];
+    return 'linear-gradient(135deg,' + p[0] + ',' + p[1] + ')';
+}
+
+/**
+ * Render the reveal standings as the "Round-Delta Ledger" (design-shotgun A):
+ * one ranked row per player fusing the OVERALL standing (rank, movement arrow,
+ * big total) with THIS ROUND's outcome (guessed year + years-off, streak /
+ * steal / bet chips, and the +round delta). Standing-first: the cumulative
+ * total is the loud number, the round delta rides along beneath it.
+ *
+ * Merges data.leaderboard (server-ranked, with rank_change + total) with
+ * data.players (per-round detail) by name. Replaces the shared updateLeaderboard
+ * renderer for the REVEAL surface only; the in-game leaderboard still uses it.
+ *
+ * @param {Object} data - REVEAL state payload (leaderboard[] + players[])
+ */
+export function renderRevealStandings(data) {
+    var listEl = document.getElementById('reveal-leaderboard-list');
+    if (!listEl) return;
+
+    var leaderboard = data.leaderboard || [];
+    var players = data.players || [];
+    var byName = {};
+    players.forEach(function(p) { byName[p.name] = p; });
+
+    var youLabel = (utils.t('analytics.youMarker') || 'YOU').replace(/[()]/g, '');
+
+    var html = '';
+    leaderboard.forEach(function(entry, idx) {
+        var p = byName[entry.name] || {};
+        var isMe = entry.name === state.playerName;
+        var initial = ((entry.name || '?').trim().charAt(0) || '?').toUpperCase();
+
+        // Rank movement (server-provided signed delta; positive = climbed).
+        var rc = entry.rank_change || 0;
+        var moveCls = rc > 0 ? 'up' : (rc < 0 ? 'down' : 'flat');
+        var moveTxt = rc > 0 ? ('▲' + rc) : (rc < 0 ? ('▼' + Math.abs(rc)) : '–');
+
+        // Guessed year + accuracy (year-mode only; absent in Title & Artist).
+        var guessHtml = '';
+        if (!p.missed_round && p.years_off != null && p.guess != null && p.guess !== '') {
+            var yo = p.years_off;
+            var offHtml = yo === 0
+                ? '<span class="rstand-exact">' + escapeHtml(utils.t('reveal.exact') || 'Exact!') + '</span>'
+                : escapeHtml(utils.t('reveal.shortOff', { years: yo }) || (yo + ' off'));
+            guessHtml = '<div class="rstand-guess">' + escapeHtml(String(p.guess)) + ' · ' + offHtml + '</div>';
+        }
+
+        // Round-event chips: streak, steal (gave/received), bet outcome.
+        var chips = [];
+        if (p.streak && p.streak >= 2) {
+            chips.push('<span class="rstand-chip rstand-chip--fire">🔥 ' + p.streak + '</span>');
+        }
+        if (p.stole_from) {
+            chips.push('<span class="rstand-chip rstand-chip--steal">🥷 ' +
+                escapeHtml(utils.t('steal.stolenFrom', { name: p.stole_from }) || ('stole ' + p.stole_from)) + '</span>');
+        } else if (p.was_stolen_by && p.was_stolen_by.length) {
+            chips.push('<span class="rstand-chip">🎯 ' +
+                escapeHtml(utils.t('steal.stolenBy', { name: p.was_stolen_by.join(', ') }) || 'stolen') + '</span>');
+        }
+        if (p.bet_outcome === 'won') {
+            chips.push('<span class="rstand-chip rstand-chip--steal">🎲 ' +
+                escapeHtml(utils.t('reveal.chip.betWon') || 'Bet won') + '</span>');
+        } else if (p.bet_outcome === 'lost') {
+            chips.push('<span class="rstand-chip">🎲 ' +
+                escapeHtml(utils.t('reveal.chip.betLost') || 'Bet lost') + '</span>');
+        }
+        var chipsHtml = chips.length ? '<div class="rstand-chips">' + chips.join('') + '</div>' : '';
+
+        // Round delta = the round's contribution to the total, matching the
+        // "You earned" score-row (base + streak + artist + movie + intro).
+        var delta = computeTotalPoints(p);
+        var deltaCls = delta > 0 ? '' : ' rstand-delta--zero';
+        var deltaTxt = (delta >= 0 ? '+' : '') + delta;
+
+        var taperCls = idx >= 4 ? ' rstand-row--taper2' : (idx >= 3 ? ' rstand-row--taper1' : '');
+        var meCls = isMe ? ' rstand-row--you' : '';
+        var youTag = isMe ? ' <span class="rstand-you">' + escapeHtml(youLabel) + '</span>' : '';
+
+        html +=
+            '<div class="rstand-row' + meCls + taperCls + '">' +
+                '<div class="rstand-rankcell">' +
+                    '<span class="rstand-rank num">' + entry.rank + '</span>' +
+                    '<span class="rstand-move rstand-move--' + moveCls + ' num">' + moveTxt + '</span>' +
+                '</div>' +
+                '<div class="rstand-avatar" style="background:' + _revStandGradient(entry.name || '') + '">' + escapeHtml(initial) + '</div>' +
+                '<div class="rstand-ident">' +
+                    '<div class="rstand-name">' + escapeHtml(entry.name || '?') + youTag + '</div>' +
+                    guessHtml +
+                    chipsHtml +
+                '</div>' +
+                '<div class="rstand-score">' +
+                    '<span class="rstand-total num">' + (entry.score || 0) + '</span>' +
+                    '<span class="rstand-delta' + deltaCls + ' num">' + deltaTxt + '</span>' +
+                '</div>' +
+            '</div>';
+    });
+    listEl.innerHTML = html;
+
+    // Preserve the bookkeeping the old updateLeaderboard call did at REVEAL
+    // (previousState powers the in-game score count-up + streak milestone).
+    updatePreviousState(players, leaderboard);
 }
 
 // ---------- Points breakdown sheet ----------

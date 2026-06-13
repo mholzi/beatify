@@ -15632,3 +15632,169 @@ body.theme-dark .your-result-stats .stat-value {
     backdrop-filter: blur(20px);
     border-radius: var(--radius-full);
 }
+
+/* ==========================================================================
+   Reveal standings — "Round-Delta Ledger" (design-shotgun A)
+   --------------------------------------------------------------------------
+   Replaces the plain leaderboard list inside the reveal's Standings card with
+   rows that fuse the overall standing (rank + movement + big total) with this
+   round's outcome (guessed year, streak/steal/bet chips, +round delta). Own
+   `rstand-` prefix + `#reveal-view` scope so the shared `.leaderboard-entry`
+   styling (used by the in-game leaderboard + dashboard) is untouched.
+   Rendered by renderRevealStandings() in player-reveal.js.
+   ========================================================================== */
+#reveal-view #reveal-leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* The reveal standings show every player (taper-dim lower ranks), so undo
+       the shared .leaderboard-list scroll box (max-height:200px; overflow:auto)
+       the in-game lazy leaderboard uses — otherwise rows 4+ get clipped. */
+    max-height: none;
+    overflow: visible;
+}
+#reveal-view .rstand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+#reveal-view .rstand-row--you {
+    border: 1px solid var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.06);
+    box-shadow: 0 0 16px rgba(255, 45, 106, 0.22);
+}
+/* Taper-dim lower ranks (matches the Arcade taper grammar). */
+#reveal-view .rstand-row--taper1 { opacity: 0.85; }
+#reveal-view .rstand-row--taper2 { opacity: 0.68; }
+
+#reveal-view .rstand-rankcell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 26px;
+    flex-shrink: 0;
+}
+#reveal-view .rstand-rank {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-text-white);
+}
+#reveal-view .rstand-row--taper1 .rstand-rank,
+#reveal-view .rstand-row--taper2 .rstand-rank { font-size: 18px; }
+#reveal-view .rstand-move {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 3px;
+}
+#reveal-view .rstand-move--up { color: var(--color-success-neon); }
+#reveal-view .rstand-move--down { color: var(--color-error-neon); }
+#reveal-view .rstand-move--flat { color: var(--color-text-neon-muted); }
+
+#reveal-view .rstand-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--color-text-white);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#reveal-view .rstand-ident { flex: 1; min-width: 0; }
+#reveal-view .rstand-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-white);
+}
+#reveal-view .rstand-you {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.15);
+    border: 1px solid rgba(255, 45, 106, 0.4);
+    border-radius: 6px;
+    padding: 2px 5px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+#reveal-view .rstand-guess {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-neon-muted);
+    line-height: 1.2;
+    margin-top: 3px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#reveal-view .rstand-guess .rstand-exact { color: var(--color-success-neon); font-weight: 600; }
+#reveal-view .rstand-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+#reveal-view .rstand-chip {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-text-neon-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 2px 7px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+#reveal-view .rstand-chip--fire { color: var(--color-warning-alt); border-color: rgba(255, 102, 0, 0.3); background: rgba(255, 102, 0, 0.08); }
+#reveal-view .rstand-chip--steal { color: var(--color-success-neon); border-color: rgba(57, 255, 20, 0.28); background: rgba(57, 255, 20, 0.07); }
+
+#reveal-view .rstand-score {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+#reveal-view .rstand-total {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-text-white);
+    letter-spacing: -0.01em;
+}
+#reveal-view .rstand-row--taper1 .rstand-total { font-size: 20px; }
+#reveal-view .rstand-row--taper2 .rstand-total { font-size: 19px; }
+#reveal-view .rstand-delta {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 4px;
+    color: var(--color-success-neon);
+}
+#reveal-view .rstand-delta--zero { color: var(--color-text-neon-muted); }
