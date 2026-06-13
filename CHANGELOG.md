@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc9] - 2026-06-13
+
+### Changed
+- **Consolidated the user-facing v4.1.0 release notes.** The release notes now cover the whole 4.1.0 line in one place — the Spotlight Stage / Round-Delta / Podium Stage / Broadcast Lower-Third reveal-and-dashboard redesign (rc1–rc8) alongside the Amazon Music provider, the screen-wake / TV-reconnect / login-loop reliability pass, the storefront-aware Apple Music fix, the Title & Artist polish (including the "Name the Song" start fix), and the security pass. This is the release candidate for stable 4.1.0; no functional code change since rc8.
+
 ## [4.1.0-rc8] - 2026-06-13
 
 ### Changed
