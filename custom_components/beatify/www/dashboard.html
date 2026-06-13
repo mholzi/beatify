@@ -320,15 +320,15 @@
                 </div>
             </div>
 
-            <div class="dashboard-reveal-content">
-                <!-- Left side: Hero year + song info + fun fact -->
-                <div class="reveal-left-section">
-                    <div class="reveal-year-row">
-                        <span class="reveal-year-label" data-i18n="game.yearLabel">Year</span>
-                        <div id="reveal-year" class="reveal-year">1984</div>
-                    </div>
-
-                    <div class="reveal-art-row">
+            <!-- "Broadcast Lower-Third" reveal (design-shotgun C): upper stage
+                 (now-revealing card + standings + this-round results), with a
+                 full-width lower-third band that announces the answer — the
+                 YEAR (year mode) or the TITLE + ARTIST (Name the Tune). Element
+                 IDs are preserved so the existing renderers keep working. -->
+            <div class="dashboard-reveal-content reveal-broadcast">
+                <div class="reveal-stage">
+                    <!-- Now-revealing card: cinematic cover + song identity -->
+                    <div class="reveal-nowcard">
                         <div class="dashboard-album-container dashboard-album-container--reveal">
                             <img id="reveal-album-art"
                                  src="/beatify/static/img/no-artwork.svg"
@@ -336,10 +336,42 @@
                                  class="dashboard-album-art dashboard-album-art--reveal">
                         </div>
                         <div class="reveal-song-info">
+                            <div class="reveal-nowkicker" data-i18n="dashboard.nowRevealing">Now revealing</div>
                             <div id="reveal-title" class="reveal-title">Unknown Song</div>
                             <div id="reveal-artist" class="reveal-artist">Unknown Artist</div>
                             <div id="song-difficulty" class="song-difficulty hidden"></div>
+                            <!-- Year-mode artist-challenge result (🎤 who guessed the artist) -->
+                            <div id="reveal-artist-challenge" class="reveal-artist-challenge hidden"></div>
                         </div>
+                    </div>
+
+                    <!-- Standings card (top-right) -->
+                    <div class="reveal-standings-card">
+                        <h2 class="leaderboard-title" data-i18n="leaderboard.standings">Standings</h2>
+                        <div id="reveal-leaderboard" class="dashboard-leaderboard">
+                            <!-- Leaderboard entries rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- This round: per-player results + (TA board) + fun fact -->
+                    <div class="reveal-results">
+                        <h2 class="top-guesses-title" data-i18n="dashboard.topGuesses">Top Guesses This Round</h2>
+                        <div id="reveal-top-guesses-list" class="top-guesses-list">
+                            <!-- Top guesses rendered by JS -->
+                        </div>
+                        <div id="dashboard-fun-fact" class="dashboard-fun-fact hidden">
+                            <span class="fun-fact-icon">&#128161;</span>
+                            <span id="dashboard-fun-fact-text" class="fun-fact-text"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower-third announce band. Year mode → the year hero.
+                     Name the Tune → the title+artist answer + Crowd Court. -->
+                <div class="reveal-lowerthird">
+                    <div id="reveal-year-row" class="reveal-year-row">
+                        <span class="reveal-year-label" data-i18n="game.yearLabel">Year</span>
+                        <div id="reveal-year" class="reveal-year">1984</div>
                     </div>
 
                     <!-- Title & Artist mode banner (#1180) -->
@@ -352,29 +384,6 @@
                         <div id="dashboard-ta-voting" class="dashboard-ta-voting hidden" data-i18n="titleArtist.dashboardVoting">Voting on close calls…</div>
                         <div id="dashboard-ta-live" class="dashboard-ta-live hidden"></div>
                         <div id="dashboard-ta-outcomes" class="dashboard-ta-outcomes hidden"></div>
-                    </div>
-
-                    <!-- Fun Fact (Story 16.4) -->
-                    <div id="dashboard-fun-fact" class="dashboard-fun-fact hidden">
-                        <span class="fun-fact-icon">&#128161;</span>
-                        <span id="dashboard-fun-fact-text" class="fun-fact-text"></span>
-                    </div>
-                </div>
-
-                <!-- Right side: Top guesses + standings -->
-                <div class="reveal-right-section">
-                    <!-- Top 3 this round -->
-                    <div class="reveal-top-guesses">
-                        <h2 class="top-guesses-title" data-i18n="dashboard.topGuesses">Top Guesses This Round</h2>
-                        <div id="reveal-top-guesses-list" class="top-guesses-list">
-                            <!-- Top 3 rendered by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Full leaderboard -->
-                    <h2 class="leaderboard-title" data-i18n="leaderboard.standings">Standings</h2>
-                    <div id="reveal-leaderboard" class="dashboard-leaderboard">
-                        <!-- Leaderboard entries rendered by JS -->
                     </div>
                 </div>
             </div>

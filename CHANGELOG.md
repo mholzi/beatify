@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc8] - 2026-06-13
+
+### Changed
+- **TV dashboard reveal redesigned as "Broadcast Lower-Third" (design-shotgun).** The spectator reveal screen is rebuilt to match the shipped Spotlight/Podium language: a now-revealing card (cinematic cover + title/artist), this-round results, a standings card, and a full-width lower-third band that announces the answer. In year mode the band is the big pink→cyan year hero AND a "🎤 the artist — <winner> +5" chip now surfaces the guess-the-artist mini-game result (it was never shown on the TV before). In "Name the Tune" mode the year hides and the band announces the title + artist with the Crowd Court "close calls decided" verdicts. Element ids are preserved so the existing renderers (leaderboard, top guesses, TA voting, fun fact, difficulty, countdown) keep working; a new `renderDashboardArtistChallenge` adds the year-mode artist result. Scoped under `#dashboard-reveal .reveal-broadcast`.
+
 ## [4.1.0-rc7] - 2026-06-13
 
 ### Fixed

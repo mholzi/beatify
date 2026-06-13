@@ -2349,3 +2349,184 @@
 .end-stage-layout .superlative-player { grid-area: player; align-self: start; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.1; }
 .end-stage-layout .superlative-value { grid-area: value; font-size: 15px; color: #b3b3c2; font-weight: 600; font-variant-numeric: tabular-nums; }
 
+
+/* ==========================================================================
+   "Broadcast Lower-Third" TV reveal (design-shotgun C)
+   --------------------------------------------------------------------------
+   Upper stage (now-revealing card · this-round results · standings card) with
+   a full-width lower-third band that announces the answer: the YEAR (year
+   mode) or the TITLE + ARTIST (Name the Tune). Scoped under
+   #dashboard-reveal .reveal-broadcast so it overrides the older two-column
+   reveal layout; reuses the existing renderers' element ids/classes.
+   ========================================================================== */
+#dashboard-reveal .reveal-broadcast {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    padding: 0;
+}
+#dashboard-reveal .reveal-broadcast .reveal-stage {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1.45fr 0.9fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "now standings" "results standings";
+    gap: 24px;
+}
+#dashboard-reveal .reveal-nowcard { grid-area: now; }
+#dashboard-reveal .reveal-results { grid-area: results; min-height: 0; }
+#dashboard-reveal .reveal-standings-card { grid-area: standings; min-height: 0; }
+
+/* --- Now-revealing card: cinematic cover + identity --- */
+#dashboard-reveal .reveal-nowcard {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 24px 28px;
+}
+#dashboard-reveal .reveal-broadcast .dashboard-album-container--reveal {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 60px rgba(0, 245, 255, 0.18);
+}
+#dashboard-reveal .reveal-broadcast .dashboard-album-art--reveal {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: none;
+}
+#dashboard-reveal .reveal-broadcast .reveal-song-info { min-width: 0; }
+#dashboard-reveal .reveal-nowkicker {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 800; font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-secondary, #00f5ff);
+    margin-bottom: 6px;
+}
+#dashboard-reveal .reveal-broadcast .reveal-title {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 900; font-size: 52px; line-height: 1.02; color: #fff;
+    letter-spacing: -0.01em;
+}
+#dashboard-reveal .reveal-broadcast .reveal-artist {
+    font-size: 30px; font-weight: 600; color: var(--color-text-neon-muted, #b3b3c2); margin-top: 4px;
+}
+/* Year-mode artist-challenge chip */
+#dashboard-reveal .reveal-artist-challenge {
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 14px; padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 102, 0, 0.4);
+    border-radius: 999px;
+    font-size: 18px; font-weight: 600; color: var(--color-text-white, #fff);
+}
+#dashboard-reveal .reveal-artist-challenge.hidden { display: none; }
+#dashboard-reveal .reveal-ac-ic { font-size: 20px; }
+#dashboard-reveal .reveal-ac-label { color: var(--color-text-neon-muted, #b3b3c2); text-transform: uppercase; font-size: 13px; letter-spacing: 0.1em; font-weight: 700; }
+#dashboard-reveal .reveal-ac-name { font-weight: 700; }
+#dashboard-reveal .reveal-ac-result { padding: 3px 12px; border-radius: 999px; font-weight: 700; font-variant-numeric: tabular-nums; }
+#dashboard-reveal .reveal-ac-result--won { color: var(--color-success-neon, #39ff14); background: rgba(57, 255, 20, 0.12); border: 1px solid rgba(57, 255, 20, 0.4); }
+#dashboard-reveal .reveal-ac-result--none { color: var(--color-text-neon-muted, #b3b3c2); background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); }
+
+/* --- Standings card --- */
+#dashboard-reveal .reveal-standings-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 20px 22px;
+    display: flex; flex-direction: column;
+}
+#dashboard-reveal .reveal-standings-card .leaderboard-title {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 800; font-size: 24px; color: #fff; margin: 0 0 14px;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard {
+    flex: 1; min-height: 0; overflow: hidden;
+    display: flex; flex-direction: column; gap: 8px;
+}
+
+/* --- This-round results strip --- */
+#dashboard-reveal .reveal-results {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 18px 22px;
+    display: flex; flex-direction: column;
+}
+#dashboard-reveal .reveal-results .top-guesses-title {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 800; font-size: 22px; color: #fff; margin: 0 0 12px;
+}
+#dashboard-reveal .reveal-results .top-guesses-list {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+#dashboard-reveal .reveal-results .top-guess-entry {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px; padding: 10px 16px;
+    font-size: 22px;
+}
+#dashboard-reveal .reveal-results .top-guess-rank { font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; color: var(--color-text-neon-muted, #b3b3c2); }
+#dashboard-reveal .reveal-results .top-guess-name { font-weight: 700; color: #fff; }
+#dashboard-reveal .reveal-results .top-guess-year { color: var(--color-text-neon-muted, #b3b3c2); font-weight: 500; margin-left: 6px; font-variant-numeric: tabular-nums; }
+#dashboard-reveal .reveal-results .top-guess-points { color: var(--color-success-neon, #39ff14); font-weight: 800; font-variant-numeric: tabular-nums; }
+#dashboard-reveal .reveal-results .dashboard-fun-fact { margin-top: 14px; font-size: 18px; color: var(--color-text-neon-muted, #b3b3c2); display: flex; gap: 8px; }
+#dashboard-reveal .reveal-results .dashboard-fun-fact.hidden { display: none; }
+
+/* --- Lower-third announce band --- */
+#dashboard-reveal .reveal-lowerthird {
+    flex-shrink: 0;
+    border-radius: 24px;
+    padding: 18px 36px;
+    background:
+        linear-gradient(90deg, rgba(255, 45, 106, 0.14), rgba(0, 245, 255, 0.14)),
+        rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+#dashboard-reveal .reveal-lowerthird::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+    background: linear-gradient(180deg, #ff2d6a, #00f5ff);
+}
+/* Year hero */
+#dashboard-reveal .reveal-broadcast .reveal-year-row {
+    display: flex; align-items: center; gap: 28px;
+}
+#dashboard-reveal .reveal-broadcast .reveal-year-row.hidden { display: none; }
+#dashboard-reveal .reveal-broadcast .reveal-year-label {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 800; font-size: 22px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-text-neon-muted, #b3b3c2);
+}
+#dashboard-reveal .reveal-broadcast .reveal-year {
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 900; font-size: 150px; line-height: 1; letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #ff2d6a, #00f5ff);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    font-variant-numeric: tabular-nums;
+}
+/* TA answer in the band */
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-banner { width: 100%; }
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-banner.hidden { display: none; }
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-answer {
+    display: flex; align-items: baseline; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-title {
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; font-size: 72px; line-height: 1;
+    background: linear-gradient(90deg, #ff2d6a, #00f5ff);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+}
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-sep { font-size: 40px; color: var(--color-text-neon-muted, #b3b3c2); }
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-artist { font-size: 40px; font-weight: 700; color: #fff; }
