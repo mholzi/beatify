@@ -382,61 +382,92 @@
 
         <!-- End view (AC 10.4.5) -->
         <div id="dashboard-end" class="dashboard-view hidden">
-            <div class="dashboard-end-content">
+            <!-- "Podium Stage" game-over layout (design-shotgun A): header, a
+                 3-column stage (full standings · winner podium · highlights
+                 reel), and a superlatives award row. No Share Results card —
+                 sharing is a player-phone action. -->
+            <div class="dashboard-end-content end-stage-layout">
                 <header class="end-header">
                     <h1 class="end-title" data-i18n="leaderboard.gameOver">Game Over</h1>
-                    <p class="end-subtitle" data-i18n="leaderboard.finalResults">Final Results</p>
-                </header>
-
-                <!-- Podium (AC 10.4.5 - with medal emojis) -->
-                <div class="dashboard-podium">
-                    <div class="podium-place podium-2">
-                        <div class="podium-medal">🥈</div>
-                        <div class="podium-name" id="end-podium-2-name">---</div>
-                        <div class="podium-score" id="end-podium-2-score">0</div>
-                        <div class="podium-stand">2</div>
+                    <div class="end-meta">
+                        <span id="end-meta-rounds">🎵 0</span>
+                        <span class="end-meta-dot" aria-hidden="true"></span>
+                        <span id="end-meta-players">👥 0</span>
                     </div>
-                    <div class="podium-place podium-1">
-                        <div class="podium-medal">🥇</div>
-                        <div class="podium-name" id="end-podium-1-name">---</div>
-                        <div class="podium-score" id="end-podium-1-score">0</div>
-                        <div class="podium-stand">1</div>
-                    </div>
-                    <div class="podium-place podium-3">
-                        <div class="podium-medal">🥉</div>
-                        <div class="podium-name" id="end-podium-3-name">---</div>
-                        <div class="podium-score" id="end-podium-3-score">0</div>
-                        <div class="podium-stand">3</div>
-                    </div>
-                </div>
-
-                <!-- Shareable Result Cards (Issue #216, #227) — directly under podium -->
-                <div id="dashboard-share-container" class="dashboard-share-container hidden">
-                    <h2 class="leaderboard-title">📤 Share Results</h2>
-                    <div id="dashboard-share-grids" class="dashboard-share-grids">
-                        <!-- All players' emoji grids rendered by JS -->
-                    </div>
-                </div>
-
-                <!-- Stats comparison (Story 14.4) -->
-                <div id="end-stats-comparison" class="stats-comparison hidden">
-                    <div class="stats-comparison-content">
+                    <!-- Stats comparison (Story 14.4) — slim pill in the header -->
+                    <div id="end-stats-comparison" class="stats-comparison hidden">
                         <span class="stats-comparison-icon"></span>
                         <span class="stats-comparison-text"></span>
                     </div>
+                </header>
+
+                <div class="end-stage">
+                    <!-- LEFT: full standings -->
+                    <section class="end-panel end-panel--standings">
+                        <h2 class="end-panel-title">
+                            <span class="end-panel-ic" aria-hidden="true">📋</span>
+                            <span data-i18n="leaderboard.fullRankings">Full Rankings</span>
+                        </h2>
+                        <div id="end-leaderboard" class="dashboard-leaderboard dashboard-leaderboard--final">
+                            <!-- Final leaderboard entries rendered by JS -->
+                        </div>
+                    </section>
+
+                    <!-- CENTER: winner podium (AC 10.4.5) -->
+                    <div class="end-podium-wrap">
+                        <div class="dashboard-podium">
+                            <div class="podium-place podium-2">
+                                <div class="podium-info">
+                                    <div class="podium-avatar" id="end-podium-2-avatar" aria-hidden="true"></div>
+                                    <div class="podium-name" id="end-podium-2-name">---</div>
+                                    <div class="podium-score"><span id="end-podium-2-score">0</span><span class="podium-pts">PTS</span></div>
+                                </div>
+                                <div class="podium-stand">
+                                    <span class="podium-medal">🥈</span>
+                                    <span class="podium-place-lbl">2</span>
+                                </div>
+                            </div>
+                            <div class="podium-place podium-1">
+                                <div class="podium-info">
+                                    <div class="podium-crown" aria-hidden="true">👑</div>
+                                    <div class="podium-avatar" id="end-podium-1-avatar" aria-hidden="true"></div>
+                                    <div class="podium-name" id="end-podium-1-name">---</div>
+                                    <div class="podium-score"><span id="end-podium-1-score">0</span><span class="podium-pts">PTS</span></div>
+                                </div>
+                                <div class="podium-stand">
+                                    <span class="podium-medal">🥇</span>
+                                    <span class="podium-place-lbl">1</span>
+                                </div>
+                            </div>
+                            <div class="podium-place podium-3">
+                                <div class="podium-info">
+                                    <div class="podium-avatar" id="end-podium-3-avatar" aria-hidden="true"></div>
+                                    <div class="podium-name" id="end-podium-3-name">---</div>
+                                    <div class="podium-score"><span id="end-podium-3-score">0</span><span class="podium-pts">PTS</span></div>
+                                </div>
+                                <div class="podium-stand">
+                                    <span class="podium-medal">🥉</span>
+                                    <span class="podium-place-lbl">3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: game highlights reel (Issue #75) -->
+                    <section class="end-panel end-panel--highlights">
+                        <h2 class="end-panel-title">
+                            <span class="end-panel-ic" aria-hidden="true">🎬</span>
+                            <span data-i18n="highlights.highlightsTab">Highlights</span>
+                        </h2>
+                        <div id="end-highlights" class="end-highlights">
+                            <!-- Rendered by JS: highlight cards -->
+                        </div>
+                    </section>
                 </div>
 
-                <!-- Superlatives / Fun Awards (Story 15.2) -->
+                <!-- BOTTOM: superlatives / fun awards (Story 15.2) -->
                 <div id="superlatives-container" class="superlatives-container hidden">
                     <!-- Rendered by JS: award cards with emoji, title, player name, value -->
-                </div>
-
-                <!-- Full leaderboard -->
-                <div class="end-leaderboard-section">
-                    <h2 class="leaderboard-title" data-i18n="leaderboard.fullRankings">Full Rankings</h2>
-                    <div id="end-leaderboard" class="dashboard-leaderboard dashboard-leaderboard--final">
-                        <!-- Final leaderboard entries rendered by JS -->
-                    </div>
                 </div>
             </div>
         </div>
