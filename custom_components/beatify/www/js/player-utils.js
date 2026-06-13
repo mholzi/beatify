@@ -58,8 +58,13 @@ export function showView(viewId) {
     // Hide the outer .player-header when either is active so the logo doesn't
     // double up with the ready wordmark + clutter the tour header.
     var isLearningScreen = viewId === 'tour-view' || viewId === 'ready-view';
+    // During active play (guessing round + reveal) hide the outer wordmark
+    // header — it's redundant chrome there; the game/reveal cards carry the
+    // context. Branding stays on join/lobby/end.
+    var isInGame = viewId === 'game-view' || viewId === 'reveal-view';
     if (document.body) {
         document.body.classList.toggle('is-learning-screen', isLearningScreen);
+        document.body.classList.toggle('is-ingame', isInGame);
     }
 
     // Set calm energy for entry screens (Story 9.9)

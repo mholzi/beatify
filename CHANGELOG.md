@@ -4,6 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc2] - 2026-06-13
+
+### Fixed
+- **Spotlight Stage reveal: no more bright album-art band below the year cards.** The album-art backdrop was capped in height but scaled and blurred, so its tail poked out below the scrim as a hard, brightly-coloured band under the duel cards (yellow for a yellow cover, etc.). The backdrop now fades to transparent via a mask before its box ends and is toned down (lower opacity), so the glow dissolves cleanly into the dark stage as intended.
+- **Hide the big Beatify wordmark during active play.** The 72px header wordmark is redundant chrome on the guessing round and the reveal — it just ate vertical space above the game cards. It's now hidden on `game-view` and `reveal-view` (via a `body.is-ingame` toggle in `showView`, mirroring the existing `is-learning-screen` pattern); branding stays on the join / lobby / end screens.
+
 ## [4.1.0-rc1] - 2026-06-13
 
 ### Headline
