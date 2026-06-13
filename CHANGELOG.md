@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc3] - 2026-06-13
+
+### Fixed
+- **Spotlight Stage reveal: removed the large empty gap below the year cards.** The rc1 skin's "lift content above the backdrop" rule (`#reveal-view .reveal-container--duel > *`) also matched the full-screen confetti `<canvas>`, overriding its `position: fixed` to `relative` — so the canvas dropped into normal flow and added ~180px of empty space between the duel and the score card. The rule now excludes `.confetti-canvas`, so the score card sits directly below the year cards again.
+
 ## [4.1.0-rc2] - 2026-06-13
 
 ### Fixed

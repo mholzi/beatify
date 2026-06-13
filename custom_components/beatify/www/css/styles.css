@@ -15440,8 +15440,11 @@ body.theme-dark .your-result-stats .stat-value {
     background: radial-gradient(ellipse 320px 360px at 50% 24%,
         rgba(0, 245, 255, 0.13) 0%, rgba(0, 245, 255, 0) 62%);
 }
-/* Lift every real child above the backdrop/scrim. */
-#reveal-view .reveal-container--duel > *:not(.reveal-backdrop):not(.reveal-scrim) {
+/* Lift every real child above the backdrop/scrim — but NOT the confetti
+   canvas, which must keep its own `position: fixed` (full-screen overlay).
+   Without this exclusion the canvas drops into normal flow and adds a tall
+   empty gap between the duel and the score row. */
+#reveal-view .reveal-container--duel > *:not(.reveal-backdrop):not(.reveal-scrim):not(.confetti-canvas) {
     position: relative;
     z-index: 1;
 }
