@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc6] - 2026-06-13
+
+### Changed
+- **Reveal artist-result + fun-fact tightened (design-shotgun).** Two tall stacked cards on the year-mode reveal collapse into less scroll. The artist-challenge result no longer gets its own card — it folds into the song-strip card as a slim inline row (🎤 artist + a green "got it" / muted "nobody guessed" chip). The Fun Fact card now leads with the chart/cert/award badges as prominent tiles (📊 / 💿 / 🏆) and demotes the prose to a trimmed two-line hook, so it reads at a glance before auto-advance instead of as a wall of text. HTML + `#reveal-view`-scoped CSS only; `renderArtistReveal` is unchanged (same element ids, relocated).
+
 ## [4.1.0-rc5] - 2026-06-13
 
 ### Changed

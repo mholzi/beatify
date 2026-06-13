@@ -613,15 +613,25 @@
                     </div>
                 </div>
 
-                <!-- Song strip: cover + title + artist -->
+                <!-- Song strip: cover + title + artist. When the artist
+                     challenge is on, its result folds in here as an inline row
+                     (#artist-reveal-section) instead of a separate card. -->
                 <div class="song-strip">
-                    <img id="reveal-album-cover"
-                         src="/beatify/static/img/no-artwork.svg"
-                         alt=""
-                         class="song-strip-cover">
-                    <div class="song-strip-info">
-                        <div id="song-title" class="song-strip-title" data-i18n="reveal.unknownSong">Unknown Song</div>
-                        <div id="song-artist" class="song-strip-artist" data-i18n="reveal.unknownArtist">Unknown Artist</div>
+                    <div class="song-strip-main">
+                        <img id="reveal-album-cover"
+                             src="/beatify/static/img/no-artwork.svg"
+                             alt=""
+                             class="song-strip-cover">
+                        <div class="song-strip-info">
+                            <div id="song-title" class="song-strip-title" data-i18n="reveal.unknownSong">Unknown Song</div>
+                            <div id="song-artist" class="song-strip-artist" data-i18n="reveal.unknownArtist">Unknown Artist</div>
+                        </div>
+                    </div>
+                    <!-- Artist Challenge result — inline row, populated by renderArtistReveal -->
+                    <div id="artist-reveal-section" class="artist-guess-row hidden">
+                        <span class="artist-guess-ic" aria-hidden="true">🎤</span>
+                        <span id="artist-reveal-name" class="artist-guess-name"></span>
+                        <span id="artist-reveal-winner" class="artist-reveal-winner hidden"></span>
                     </div>
                 </div>
 
@@ -667,18 +677,6 @@
                     </div>
                 </div>
 
-                <!-- Artist Challenge Reveal (conditional) -->
-                <section id="artist-reveal-section" class="card-section artist-reveal-section hidden">
-                    <h2 class="section-header">
-                        <span class="section-icon" aria-hidden="true">🎤</span>
-                        <span data-i18n="artistChallenge.theArtistWas">The artist was</span>
-                    </h2>
-                    <div class="section-content-padded">
-                        <div id="artist-reveal-name" class="artist-reveal-name"></div>
-                        <div id="artist-reveal-winner" class="artist-reveal-winner hidden"></div>
-                    </div>
-                </section>
-
                 <!-- Title & Artist Reveal + Voting (#1180) -->
                 <section id="ta-reveal-section" class="card-section ta-reveal-section hidden">
                     <h2 class="section-header">
@@ -717,10 +715,11 @@
                         <span data-i18n="reveal.funFact">Fun Fact</span>
                     </h2>
                     <div class="section-content-padded">
-                        <div id="fun-fact" class="fun-fact-text"></div>
+                        <!-- Badges-first: chart/cert/award tiles lead, prose follows (trimmed) -->
                         <div id="song-rich-info" class="song-rich-info">
                             <!-- Populated by JavaScript: chart info, certifications, awards -->
                         </div>
+                        <div id="fun-fact" class="fun-fact-text"></div>
                     </div>
                 </section>
 
