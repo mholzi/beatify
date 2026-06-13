@@ -10844,6 +10844,11 @@ body.home-mode .home-view {
    tour/ready screens so they run full-screen — the ready view has its own
    wordmark hero and the tour has its own step-progress header. */
 body.is-learning-screen .player-header { display: none; }
+/* During active play (the guessing round + the reveal) the big wordmark is
+   redundant chrome and just eats vertical space, so hide the outer header —
+   the game/reveal cards carry their own context. Branding stays on the
+   join / lobby / end screens. */
+body.is-ingame .player-header { display: none; }
 
 /* Tour view — full-screen takeover, dark stage + dual-radial glow */
 #tour-view.view:not(.hidden) {
@@ -15387,16 +15392,21 @@ body.theme-dark .your-result-stats .stat-value {
     top: 0;
     left: 0;
     right: 0;
-    height: 360px;
+    height: 340px;
     z-index: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(48px) saturate(1.2);
-    transform: scale(1.3);
+    filter: blur(46px) saturate(1.15);
+    transform: scale(1.15);
     transform-origin: top center;
-    opacity: 0.9;
+    opacity: 0.5;
     pointer-events: none;
+    /* Fade the art to nothing well before its box ends, so the blurred/scaled
+       tail never reads as a hard bright band below the duel cards (the rc1
+       #1462 regression mholzi flagged). The glow dissolves into the stage. */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 70%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 70%);
 }
 /* Synthetic fallback when album art is missing or its proxy URL has expired. */
 #reveal-view .reveal-backdrop--synthetic {
