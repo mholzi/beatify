@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc7] - 2026-06-13
+
+### Fixed
+- **"Name the Song" (Title & Artist) mode no longer starts as a year-guess game.** The wizard saved the chosen mode, but the admin home→start hydration path (`admin.js` `hydrateFromStorage`) copied every game-mode flag from saved settings into `adminState` *except* `titleArtistMode`, so the start payload sent `title_artist_mode: false` and players got the year input instead of the title/artist text fields. The settings→`adminState` mapping is now a single shared helper (`applyStoredGameSettings` in `admin/util.js`) covering all five mode flags, with unit tests — so a new mode flag can't be dropped on this path again.
+
+### Changed
+- **Reveal host buttons are now equal-sized.** "Invite Players" and "Next Round" share the same box metrics (width + height); only their colour differs (pink primary vs ghost).
+
 ## [4.1.0-rc6] - 2026-06-13
 
 ### Changed

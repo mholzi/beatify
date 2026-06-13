@@ -35,6 +35,7 @@ import {
     buildRequestRowHtml,
     escapeHtml,
     acquireWakeLockFirst,
+    applyStoredGameSettings,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -340,15 +341,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
                 if (raw) {
                     const s = JSON.parse(raw);
-                    if (s.language) adminState.selectedLanguage = s.language;
-                    if (s.duration) adminState.selectedDuration = s.duration;
-                    if (typeof s.revealAutoAdvance === 'number') adminState.revealAutoAdvance = s.revealAutoAdvance;
-                    if (s.difficulty) adminState.selectedDifficulty = s.difficulty;
-                    if (s.provider) adminState.selectedProvider = s.provider;
-                    if (typeof s.artistChallenge === 'boolean') adminState.artistChallengeEnabled = s.artistChallenge;
-                    if (typeof s.movieQuiz === 'boolean') adminState.movieQuizEnabled = s.movieQuiz;
-                    if (typeof s.introMode === 'boolean') adminState.introModeEnabled = s.introMode;
-                    if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
+                    // Single source of truth for the settings→adminState mapping
+                    // (incl. title_artist_mode — its omission here shipped "name
+                    // the song" as a year game, #1180). Playlists stay inline
+                    // below since they need adminState.playlistData.
+                    applyStoredGameSettings(adminState, s);
                     const wizPaths = Array.isArray(s.selectedPlaylists)
                         ? s.selectedPlaylists.map((p) => (typeof p === 'string' ? p : p.path)).filter(Boolean)
                         : [];

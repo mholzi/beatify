@@ -132,3 +132,29 @@ export function acquireWakeLockFirst(requestWakeLock, action) {
     if (typeof requestWakeLock === 'function') requestWakeLock();
     return typeof action === 'function' ? action() : undefined;
 }
+
+/**
+ * Hydrate the scalar game-settings flags from a parsed `beatify_game_settings`
+ * object into `adminState`, in place. Single source of truth for the
+ * localStorage(camelCase) → adminState mapping so a new mode flag can't be
+ * added to the wizard + start payload but silently dropped on the home→start
+ * hydration path (that gap shipped `title_artist_mode` as a year game — #1180).
+ *
+ * Playlist hydration stays in the caller — it needs adminState.playlistData.
+ *
+ * @param {Object} adminState - the shared admin state object (mutated)
+ * @param {Object} s - parsed settings (may be partial / from an older build)
+ */
+export function applyStoredGameSettings(adminState, s) {
+    if (!adminState || !s || typeof s !== 'object') return;
+    if (s.language) adminState.selectedLanguage = s.language;
+    if (s.duration) adminState.selectedDuration = s.duration;
+    if (typeof s.revealAutoAdvance === 'number') adminState.revealAutoAdvance = s.revealAutoAdvance;
+    if (s.difficulty) adminState.selectedDifficulty = s.difficulty;
+    if (s.provider) adminState.selectedProvider = s.provider;
+    if (typeof s.artistChallenge === 'boolean') adminState.artistChallengeEnabled = s.artistChallenge;
+    if (typeof s.movieQuiz === 'boolean') adminState.movieQuizEnabled = s.movieQuiz;
+    if (typeof s.introMode === 'boolean') adminState.introModeEnabled = s.introMode;
+    if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
+    if (typeof s.titleArtistMode === 'boolean') adminState.titleArtistModeEnabled = s.titleArtistMode;
+}

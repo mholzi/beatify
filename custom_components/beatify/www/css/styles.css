@@ -15632,6 +15632,23 @@ body.theme-dark .your-result-stats .stat-value {
     backdrop-filter: blur(20px);
     border-radius: var(--radius-full);
 }
+/* Equalise the two footer buttons — same box metrics + equal width, so
+   "Spieler einladen" and "Nächste Runde" match (only their colour differs). */
+#reveal-view .reveal-admin-buttons { align-items: stretch; }
+#reveal-view .reveal-admin-buttons .invite-btn,
+#reveal-view .reveal-admin-buttons .next-round-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 260px;
+    min-height: 56px;
+    padding: 12px 20px;
+    font-size: var(--font-size-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    text-align: center;
+}
 
 /* ==========================================================================
    Reveal standings — "Round-Delta Ledger" (design-shotgun A)

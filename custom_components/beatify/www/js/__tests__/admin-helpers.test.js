@@ -24,6 +24,7 @@ import {
     groupPlayersByPlatform,
     escapeHtml,
     buildRequestRowHtml,
+    applyStoredGameSettings,
 } from '../admin/util.js';
 
 // --- minimal localStorage / sessionStorage stub ----------------------------
@@ -241,5 +242,59 @@ describe('admin/util.js pure helpers — buildRequestRowHtml (#1279 step 2)', ()
     it('renders the placeholder thumbnail when no thumbnail_url is set', () => {
         const html = buildRequestRowHtml({ status: 'pending', playlist_name: 'P' });
         expect(html).toContain('request-item-thumbnail-placeholder');
+    });
+});
+
+describe('applyStoredGameSettings — settings → adminState hydration', () => {
+    // Regression for #1180: the wizard saved titleArtistMode:true but the
+    // home→start hydration path dropped it, so "name the song" started as a
+    // year game (players got the year input instead of title/artist fields).
+    it('hydrates title_artist_mode (the missed flag) from saved settings', () => {
+        const adminState = { titleArtistModeEnabled: false };
+        applyStoredGameSettings(adminState, { titleArtistMode: true });
+        expect(adminState.titleArtistModeEnabled).toBe(true);
+    });
+
+    it('hydrates every game-mode flag from saved settings', () => {
+        const adminState = {
+            artistChallengeEnabled: false, movieQuizEnabled: false,
+            introModeEnabled: false, closestWinsModeEnabled: false,
+            titleArtistModeEnabled: false,
+        };
+        applyStoredGameSettings(adminState, {
+            artistChallenge: true, movieQuiz: true, introMode: true,
+            closestWinsMode: true, titleArtistMode: true,
+        });
+        expect(adminState).toMatchObject({
+            artistChallengeEnabled: true, movieQuizEnabled: true,
+            introModeEnabled: true, closestWinsModeEnabled: true,
+            titleArtistModeEnabled: true,
+        });
+    });
+
+    it('hydrates scalar settings (language, duration, difficulty, provider, autoadvance)', () => {
+        const adminState = {};
+        applyStoredGameSettings(adminState, {
+            language: 'de', duration: 45, revealAutoAdvance: 30,
+            difficulty: 'hard', provider: 'spotify',
+        });
+        expect(adminState).toMatchObject({
+            selectedLanguage: 'de', selectedDuration: 45, revealAutoAdvance: 30,
+            selectedDifficulty: 'hard', selectedProvider: 'spotify',
+        });
+    });
+
+    it('leaves flags untouched for absent / wrong-typed keys (partial / legacy payloads)', () => {
+        const adminState = { titleArtistModeEnabled: true, artistChallengeEnabled: true };
+        applyStoredGameSettings(adminState, { titleArtistMode: 'yes' /* not boolean */ });
+        expect(adminState.titleArtistModeEnabled).toBe(true);   // unchanged
+        expect(adminState.artistChallengeEnabled).toBe(true);   // absent key, unchanged
+    });
+
+    it('is a no-op for null / non-object input', () => {
+        const adminState = { titleArtistModeEnabled: false };
+        applyStoredGameSettings(adminState, null);
+        applyStoredGameSettings(null, { titleArtistMode: true });
+        expect(adminState.titleArtistModeEnabled).toBe(false);
     });
 });
