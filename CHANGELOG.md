@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc5] - 2026-06-13
+
+### Changed
+- **TV dashboard game-over screen redesigned as "Podium Stage" (design-shotgun).** Removed the "Share Results" emoji-grid card (sharing is a player-phone action, not a shared-TV one) and rebuilt the end screen as a one-glance broadcast finale: a gradient "GAME OVER" header with a rounds/players meta line, a three-column stage — full standings (places 4+, with the in-game leaderboard scroll-box override so everyone shows) · a crowned gold winner podium with player-coloured avatars · a **Game Highlights reel** — and a superlatives award row across the bottom. The highlights data (Issue #75: exact-year calls, streaks, photo-finishes, heartbreakers) was always sent by the server but never rendered on the TV; it now drives the reel, localised. The stats-comparison ("vs all-time average") survives as a slim header pill. All scoped under `.end-stage-layout` so the in-game leaderboard and reveal are untouched.
+
 ## [4.1.0-rc4] - 2026-06-13
 
 ### Changed

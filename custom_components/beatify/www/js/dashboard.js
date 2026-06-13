@@ -1277,24 +1277,40 @@
     function renderEndView(data) {
         var leaderboard = data.leaderboard || [];
 
-        // Update podium (AC 10.4.5)
+        // Update podium (AC 10.4.5) — name, score, and a colour-keyed avatar.
         [1, 2, 3].forEach(function(place) {
             var player = leaderboard.find(function(p) { return p.rank === place; });
             var nameEl = document.getElementById('end-podium-' + place + '-name');
             var scoreEl = document.getElementById('end-podium-' + place + '-score');
+            var avatarEl = document.getElementById('end-podium-' + place + '-avatar');
 
             // #1402-B8: textContent already neutralizes markup, so feeding it
             // escapeHtml() output double-escapes — a name like "A&B" rendered
             // as "A&amp;B" on the podium. Assign the raw name directly.
             if (nameEl) nameEl.textContent = player ? player.name : '---';
             if (scoreEl) scoreEl.textContent = player ? player.score : '0';
+            if (avatarEl) {
+                var nm = player ? player.name : '';
+                avatarEl.textContent = nm ? nm.trim().charAt(0).toUpperCase() : '';
+                avatarEl.style.background = nm ? endAvatarGradient(nm) : 'transparent';
+            }
         });
+
+        // Header meta — rounds + players (icon-led so it needs no translation).
+        var stats = data.game_stats || {};
+        var roundsEl = document.getElementById('end-meta-rounds');
+        var playersEl = document.getElementById('end-meta-players');
+        if (roundsEl) roundsEl.textContent = '🎵 ' + (stats.total_rounds != null ? stats.total_rounds : leaderboard.length && data.round || 0);
+        if (playersEl) playersEl.textContent = '👥 ' + (stats.total_players != null ? stats.total_players : leaderboard.length);
 
         // Render stats comparison (Story 14.4)
         renderStatsComparison(data.game_performance);
 
         // Render superlatives / fun awards (Story 15.2)
         renderSuperlatives(data.superlatives);
+
+        // Issue #75: Game highlights reel (data was always sent, never shown).
+        renderHighlights(data.highlights);
 
         // Story 14.5 (AC3, AC7): Trigger winner confetti on dashboard
         // H2 fix: Only trigger if there's a valid winner with score > 0
@@ -1303,11 +1319,16 @@
             triggerConfetti('winner');
         }
 
-        // Render full leaderboard (Story 11.4: disconnected styling)
+        // Full standings panel — the players BELOW the podium (rank 4+). The
+        // podium already celebrates the top 3; this completes the ranking.
+        // Fallback to the whole board for small games (<=3 players) so the
+        // panel is never empty.
         var container = document.getElementById('end-leaderboard');
         if (container) {
+            var rest = leaderboard.filter(function(e) { return e.rank > 3; });
+            var rows = rest.length ? rest : leaderboard;
             var html = '';
-            leaderboard.forEach(function(entry) {
+            rows.forEach(function(entry) {
                 var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
                 var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
                 var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
@@ -1321,58 +1342,62 @@
 
             container.innerHTML = html;
         }
-
-        // Render shareable result cards (Issue #216)
-        renderDashboardShare(data.share_data, leaderboard);
     }
 
     /**
-     * Render shareable result cards on dashboard end screen (Issue #216)
-     * Shows all players' emoji grids prominently on the TV screen
-     * @param {Object|null} shareData - Share data with emoji_grids, playlist_name
-     * @param {Array} leaderboard - Leaderboard for ordering players
+     * Deterministic avatar gradient from a player name (matches the player
+     * reveal standings palette).
+     * @param {string} name
+     * @returns {string} CSS gradient
      */
-    function renderDashboardShare(shareData, leaderboard) {
-        var container = document.getElementById('dashboard-share-container');
-        var gridsEl = document.getElementById('dashboard-share-grids');
-        if (!container || !gridsEl) return;
+    function endAvatarGradient(name) {
+        var palettes = [
+            ['#ff2d6a', '#ff6600'], ['#00f5ff', '#7a5cff'], ['#39ff14', '#00f5ff'],
+            ['#ff6600', '#ff0040'], ['#7a5cff', '#b3b3c2'], ['#ff2d6a', '#7a5cff']
+        ];
+        var h = 0;
+        for (var i = 0; i < name.length; i++) { h = (h * 31 + name.charCodeAt(i)) >>> 0; }
+        var p = palettes[h % palettes.length];
+        return 'linear-gradient(140deg,' + p[0] + ',' + p[1] + ')';
+    }
 
-        if (!shareData || !shareData.emoji_grids || Object.keys(shareData.emoji_grids).length === 0) {
+    /**
+     * Render the game highlights reel (Issue #75). The server always sent
+     * data.highlights (top ~3 moments) but nothing rendered it on the TV.
+     * Each highlight: { type, round, player, emoji, description (i18n key),
+     * description_params }. Localised via the "highlights.<description>" key.
+     * @param {Array|null} highlights
+     */
+    function renderHighlights(highlights) {
+        var container = document.getElementById('end-highlights');
+        if (!container) return;
+        if (!highlights || highlights.length === 0) {
+            container.innerHTML = '';
             container.classList.add('hidden');
             return;
         }
-
-        var emojiGrids = shareData.emoji_grids;
-
-        // Order by leaderboard rank, then show remaining
-        var orderedPlayers = [];
-        leaderboard.forEach(function(entry) {
-            if (emojiGrids[entry.name]) {
-                orderedPlayers.push(entry.name);
-            }
-        });
-        // Add any players not in leaderboard
-        Object.keys(emojiGrids).forEach(function(name) {
-            if (orderedPlayers.indexOf(name) === -1) {
-                orderedPlayers.push(name);
-            }
-        });
-
-        // Render each player's grid
+        // Per-type accent for the card's left border.
+        var accents = {
+            exact_match: '#00f5ff', streak: '#ff6600', bet_win: '#39ff14',
+            heartbreaker: '#ff2d6a', speed_record: '#00f5ff', comeback: '#39ff14',
+            photo_finish: '#ffd34d'
+        };
         var html = '';
-        orderedPlayers.forEach(function(playerName, index) {
-            var grid = emojiGrids[playerName];
-            var gridLines = grid.split('\n').map(function(line) {
-                return '<div class="emoji-grid-line">' + utils.escapeHtml(line) + '</div>';
-            }).join('');
-
-            html += '<div class="dashboard-share-card" style="animation-delay: ' + (index * 0.1) + 's">' +
-                '<div class="dashboard-share-player-name">' + utils.escapeHtml(playerName) + '</div>' +
-                '<div class="emoji-grid-preview">' + gridLines + '</div>' +
+        highlights.forEach(function(h, index) {
+            var accent = accents[h.type] || '#ff2d6a';
+            var text = utils.t('highlights.' + h.description, h.description_params || {}) || '';
+            var roundBadge = h.round
+                ? '<div class="hcard-round">' + (utils.t('game.roundLabel') || 'Round') + ' ' + h.round + '</div>'
+                : '';
+            html += '<div class="hcard" style="border-left-color:' + accent + ';animation-delay:' + (index * 0.12) + 's">' +
+                '<div class="hcard-icon" aria-hidden="true">' + (h.emoji || '✨') + '</div>' +
+                '<div class="hcard-body">' +
+                    '<div class="hcard-text">' + utils.escapeHtml(text) + '</div>' +
+                    roundBadge +
+                '</div>' +
             '</div>';
         });
-
-        gridsEl.innerHTML = html;
+        container.innerHTML = html;
         container.classList.remove('hidden');
     }
 
