@@ -575,6 +575,12 @@
         <!-- Reveal View (Story 4.6) -->
         <div id="reveal-view" class="view hidden">
             <div class="reveal-container reveal-container--duel">
+                <!-- Spotlight Stage: blurred album art behind the top of the
+                     reveal acts as the stage; scrim keeps content legible.
+                     JS sets the backdrop image from the song's album art and
+                     falls back to a synthetic gradient when it is missing. -->
+                <div class="reveal-backdrop reveal-backdrop--synthetic" id="reveal-backdrop" aria-hidden="true"></div>
+                <div class="reveal-scrim" aria-hidden="true"></div>
                 <!-- #1012 follow-up: Idle-halt banner — shown when a round
                      ended with zero guesses and the game is holding here. -->
                 <div id="reveal-idle-halt" class="idle-halt-banner hidden" role="status">
@@ -622,22 +628,24 @@
                 <!-- Chip row: bet / streak / other mode indicators (conditional) -->
                 <div id="reveal-chip-row" class="chip-row hidden"></div>
 
-                <!-- Duel: your guess × gap × correct year with emotion above -->
+                <!-- Duel: your guess vs. correct year as two facing tickets,
+                     with the gap as a delta pill overlapping their base and the
+                     emotion headline above. -->
                 <div class="duel">
                     <div id="reveal-emotion" class="duel-emotion hidden" aria-live="polite" aria-atomic="true"></div>
-                    <div class="duel-row">
-                        <div class="duel-side">
+                    <div class="duel-tickets">
+                        <div class="duel-ticket duel-ticket--you">
                             <div class="duel-label" data-i18n="reveal.duel.youSaid">You said</div>
                             <div id="duel-your-year" class="duel-year mine">—</div>
+                        </div>
+                        <div class="duel-ticket duel-ticket--truth">
+                            <div class="duel-label" data-i18n="reveal.duel.actually">Actually</div>
+                            <div id="correct-year" class="duel-year correct">1984</div>
                         </div>
                         <div class="duel-gap">
                             <span class="duel-gap-x" aria-hidden="true">×</span>
                             <span id="duel-gap-count" class="duel-gap-n">0</span>
                             <span id="duel-gap-unit" class="duel-gap-unit" data-i18n="reveal.duel.yearsUnit">years</span>
-                        </div>
-                        <div class="duel-side">
-                            <div class="duel-label" data-i18n="reveal.duel.actually">Actually</div>
-                            <div id="correct-year" class="duel-year correct">1984</div>
                         </div>
                     </div>
                 </div>

@@ -15359,3 +15359,263 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-success-neon);
 }
 .ta-input-ack.hidden { display: none; }
+
+/* ==========================================================================
+   Spotlight Stage — player reveal skin
+   --------------------------------------------------------------------------
+   A frosted-glass reskin of the reveal view: the song's album art, blurred,
+   acts as a "stage" behind the top of the screen; every panel floats on
+   frosted glass; the duel is two facing tickets bridged by a delta pill.
+
+   EVERYTHING here is scoped under #reveal-view on purpose. Several classes
+   used on this screen (.card-section, .section-header, .info-btn, .chip,
+   .leaderboard-list) are shared with the launcher, lobby, end and admin
+   surfaces — scoping keeps those untouched. Source order + the #id give
+   these rules the specificity to win over the base reveal styles above.
+   ========================================================================== */
+
+/* Stage: own stacking context + clip the backdrop's blur bleed. */
+#reveal-view .reveal-container--duel {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* --- Album-art backdrop + scrim (scrolls with the content) --- */
+#reveal-view .reveal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 360px;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(48px) saturate(1.2);
+    transform: scale(1.3);
+    transform-origin: top center;
+    opacity: 0.9;
+    pointer-events: none;
+}
+/* Synthetic fallback when album art is missing or its proxy URL has expired. */
+#reveal-view .reveal-backdrop--synthetic {
+    background-image:
+        radial-gradient(circle at 28% 22%, rgba(168, 32, 84, 0.95) 0%, rgba(168, 32, 84, 0) 42%),
+        radial-gradient(circle at 78% 14%, rgba(96, 28, 150, 0.9) 0%, rgba(96, 28, 150, 0) 46%),
+        radial-gradient(circle at 18% 82%, rgba(34, 40, 120, 0.9) 0%, rgba(34, 40, 120, 0) 50%),
+        conic-gradient(from 210deg at 52% 48%,
+            #1a1038 0deg, #4a1240 70deg, #7a1e3c 130deg,
+            #2a1454 200deg, #131642 280deg, #1a1038 360deg);
+    filter: blur(54px) saturate(1.25);
+}
+#reveal-view .reveal-scrim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 380px;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+        rgba(10, 10, 18, 0.78) 0%,
+        rgba(10, 10, 18, 0.88) 55%,
+        var(--color-bg-primary) 100%);
+}
+/* One cyan spotlight from the upper centre. */
+#reveal-view .reveal-scrim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 320px 360px at 50% 24%,
+        rgba(0, 245, 255, 0.13) 0%, rgba(0, 245, 255, 0) 62%);
+}
+/* Lift every real child above the backdrop/scrim. */
+#reveal-view .reveal-container--duel > *:not(.reveal-backdrop):not(.reveal-scrim) {
+    position: relative;
+    z-index: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+    #reveal-view .reveal-backdrop {
+        transition: background-image 0.4s ease;
+    }
+}
+
+/* --- Frosted-glass recipe for the floating panels --- */
+#reveal-view .song-strip,
+#reveal-view .score-row,
+#reveal-view .card-section,
+#reveal-view .duel-ticket {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border-radius: var(--radius-lg);
+}
+/* Keep the glass on hover (base .card-section:hover changes the background). */
+#reveal-view .card-section:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* --- Top chrome floats, no panel (already borderless; just sits on top) --- */
+#reveal-view .reveal-header-v2 {
+    margin-bottom: var(--space-sm);
+}
+
+/* --- Song identity strip --- */
+#reveal-view .song-strip {
+    padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-sm);
+}
+#reveal-view .song-strip-cover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* --- Center stage: emotion headline + duel tickets --- */
+#reveal-view .duel-emotion {
+    font-size: 30px;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+}
+#reveal-view .duel {
+    padding: var(--space-md) var(--space-xs) var(--space-lg);
+}
+#reveal-view .duel-tickets {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--space-md);
+    padding-bottom: 20px;
+}
+#reveal-view .duel-ticket {
+    flex: 1 1 0;
+    max-width: 170px;
+    padding: var(--space-md) var(--space-sm) var(--space-lg);
+    text-align: center;
+}
+#reveal-view .duel-ticket--you {
+    transform: rotate(-3deg) translateY(4px);
+    border-color: rgba(255, 45, 106, 0.35);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 45, 106, 0.12);
+}
+#reveal-view .duel-ticket--truth {
+    transform: rotate(3deg) translateY(4px);
+    border-color: rgba(0, 245, 255, 0.4);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 34px rgba(0, 245, 255, 0.18);
+}
+#reveal-view .duel-ticket .duel-label {
+    padding-bottom: var(--space-sm);
+    margin: 0 6px var(--space-sm);
+    border-bottom: 1.5px dashed rgba(255, 255, 255, 0.18);
+}
+#reveal-view .duel-ticket .duel-year {
+    font-size: clamp(40px, 13vw, 54px);
+}
+#reveal-view .duel-ticket--you .duel-year.mine {
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 18px rgba(255, 45, 106, 0.45);
+}
+#reveal-view .duel-ticket--truth .duel-year.correct {
+    color: var(--color-accent-secondary);
+    text-shadow: 0 0 14px rgba(0, 245, 255, 0.9), 0 0 38px rgba(0, 245, 255, 0.45);
+}
+/* The gap becomes a delta pill overlapping the tickets' base. */
+#reveal-view .duel-gap {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+    min-width: 0;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 102, 0, 0.16);
+    border: 1px solid rgba(255, 102, 0, 0.55);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 102, 0, 0.2);
+    white-space: nowrap;
+    z-index: 3;
+}
+#reveal-view .duel-gap-x {
+    font-size: var(--font-size-md);
+    color: var(--color-warning-alt);
+    opacity: 0.9;
+}
+#reveal-view .duel-gap-n {
+    font-size: var(--font-size-lg);
+    color: var(--color-warning-alt);
+    text-shadow: none;
+}
+#reveal-view .duel-gap-unit {
+    margin-top: 0;
+    font-size: 10px;
+    color: var(--color-warning-alt);
+}
+#reveal-view .duel-gap--exact {
+    background: rgba(57, 255, 20, 0.16);
+    border-color: rgba(57, 255, 20, 0.55);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(57, 255, 20, 0.22);
+}
+#reveal-view .duel-gap--exact .duel-gap-x,
+#reveal-view .duel-gap--exact .duel-gap-n,
+#reveal-view .duel-gap--exact .duel-gap-unit {
+    color: var(--color-success-neon);
+}
+#reveal-view .duel-gap--wrong {
+    background: rgba(255, 0, 64, 0.14);
+    border-color: rgba(255, 0, 64, 0.5);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 0, 64, 0.2);
+}
+#reveal-view .duel-gap--wrong .duel-gap-x,
+#reveal-view .duel-gap--wrong .duel-gap-n,
+#reveal-view .duel-gap--wrong .duel-gap-unit {
+    color: var(--color-error-neon);
+}
+
+/* --- Score / points bar: green gain per DESIGN.md, glass surface --- */
+#reveal-view .score-row {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+#reveal-view .score-row-pts {
+    color: var(--color-success-neon);
+    text-shadow: 0 0 16px rgba(57, 255, 20, 0.5);
+    font-size: 32px;
+}
+
+/* --- Title & Artist vote cards float as glass chips --- */
+#reveal-view .ta-vote-card,
+#reveal-view .ta-outcome-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+/* --- Footer: pink primary CTA, ghost-glass invite --- */
+#reveal-view .next-round-btn {
+    background: linear-gradient(135deg, #ff2d6a 0%, #ff4f86 100%);
+    border-radius: var(--radius-full);
+    box-shadow: 0 8px 24px rgba(255, 45, 106, 0.45), 0 0 18px rgba(255, 45, 106, 0.3);
+}
+#reveal-view .next-round-btn:hover {
+    background: linear-gradient(135deg, #ff4f86 0%, #ff2d6a 100%);
+}
+#reveal-view .next-round-btn.is-final {
+    background: linear-gradient(135deg, #39ff14 0%, #00f5ff 100%);
+    color: var(--color-bg-primary);
+}
+#reveal-view .invite-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-full);
+}

@@ -83,6 +83,31 @@ export function updateRevealView(data) {
         albumCover.src = song.album_art || '/beatify/static/img/no-artwork.svg';
     }
 
+    // Spotlight Stage backdrop: blur the album art behind the top of the
+    // reveal. song.album_art can be a stale/expired media-proxy URL, so probe
+    // it with an off-DOM Image first — only swap in the art on a successful
+    // load, otherwise keep the synthetic gradient fallback (the same reason
+    // the cover <img> has an onerror handler above).
+    var backdrop = document.getElementById('reveal-backdrop');
+    if (backdrop) {
+        var art = song.album_art;
+        if (art) {
+            var probe = new Image();
+            probe.onload = function() {
+                backdrop.style.backgroundImage = 'url("' + art + '")';
+                backdrop.classList.remove('reveal-backdrop--synthetic');
+            };
+            probe.onerror = function() {
+                backdrop.style.backgroundImage = '';
+                backdrop.classList.add('reveal-backdrop--synthetic');
+            };
+            probe.src = art;
+        } else {
+            backdrop.style.backgroundImage = '';
+            backdrop.classList.add('reveal-backdrop--synthetic');
+        }
+    }
+
     var correctYear = document.getElementById('correct-year');
     if (correctYear) {
         correctYear.textContent = song.year || '????';

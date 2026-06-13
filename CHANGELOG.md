@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0-rc1] - 2026-06-13
+
+### Headline
+- **"Spotlight Stage" player reveal redesign.** The every-round reveal screen on the player's phone is reskinned end to end: the song's album art, blurred, sits behind the top of the screen as a stage (with a synthetic-gradient fallback when the art URL is missing or expired), content floats on frosted-glass panels, and the year duel is now two facing tickets — your guess in pink, the truth in glowing cyan — bridged by a colour-coded delta pill. Points read in neon green per the design system, and the Title & Artist voting state inherits the same glass treatment. Built in `player.html` + a `#reveal-view`-scoped skin in `styles.css` so the shared `.card-section`/`.chip`/`.leaderboard-list` classes on other surfaces stay untouched; `player-reveal.js` feeds the real album art into the backdrop. Direction approved via `/design-shotgun`.
+
 ### Fixed
 - **Asset cache-buster no longer depends on a hand-edited version (#1266).** Static assets were busted by a version string hardcoded in `admin/analytics/dashboard/player` HTML and `sw.js`, so a reused or forgotten bump left the marker identical and browsers / the service worker kept serving stale CSS/JS/i18n (the #824 class). The `?v=` params, the SW `CACHE_VERSION`, and the i18n-JSON fetch now derive from a fingerprint of the `www/css|js|i18n` files, so any asset change invalidates caches automatically. The displayed version stays the clean semantic version; the manifest remains the single source of truth.
 - Regenerated a stale `admin.min.js` left by #1263 — the Amazon Music admin UI changes were in `admin.js` but missing from the served minified bundle.
