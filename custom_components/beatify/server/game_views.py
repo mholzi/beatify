@@ -591,6 +591,24 @@ class StartGameplayView(BeatifyAdminView):
         if game_state.phase != GamePhase.LOBBY:
             return _json_error("Game already started", 409, code="INVALID_PHASE")
 
+        # Issue #827: Sudden Death requires >=3 players. Players join the LOBBY
+        # *after* create_game (which clears sessions), so the floor can only be
+        # enforced here, at the LOBBY->PLAYING transition. The wizard also
+        # disables the toggle client-side; this is the server-side backstop for
+        # direct API callers. Auto-disable rather than block the start so the
+        # host isn't stuck — surface a warning instead.
+        sudden_death_warning = None
+        if game_state.sudden_death_mode:
+            connected_count = sum(
+                1 for p in game_state.players.values() if p.connected
+            )
+            if connected_count < 3:
+                game_state.set_sudden_death(False)
+                sudden_death_warning = (
+                    "Sudden Death needs at least 3 players — "
+                    "starting without it."
+                )
+
         # Set round end callback for broadcasting
         ws_handler = data.get("ws_handler")
         if ws_handler:
@@ -609,7 +627,11 @@ class StartGameplayView(BeatifyAdminView):
         if ws_handler:
             await ws_handler.broadcast_state()
 
-        return web.json_response({"success": True, "phase": game_state.phase.value})
+        response: dict[str, Any] = {"success": True, "phase": game_state.phase.value}
+        if sudden_death_warning:  # Issue #827
+            response["warnings"] = [sudden_death_warning]
+            response["sudden_death_disabled"] = True
+        return web.json_response(response)
 
 
 class SetSuddenDeathView(BeatifyAdminView):
