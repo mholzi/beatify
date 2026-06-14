@@ -256,6 +256,9 @@
                         <span id="dashboard-submissions">0/0</span>
                     </div>
                 </div>
+                <!-- Issue #827: Sudden-Death FINAL banner (design S5-C) — shown by
+                     dashboard.js when exactly 2 players remain in Sudden Death. -->
+                <div id="sd-final-banner-playing" class="sd-final-banner hidden"></div>
             </div>
             <!-- Legacy round-stats block — hidden via CSS but JS still writes to IDs -->
             <div id="dashboard-round-stats" class="dashboard-round-stats" aria-hidden="true">
@@ -318,6 +321,9 @@
                     </span>
                     <span class="chip-countdown-label" data-i18n="dashboard.autoAdvance">Auto-Weiter</span>
                 </div>
+                <!-- Issue #827: Sudden-Death FINAL banner (design S5-C) — shown by
+                     dashboard.js when exactly 2 players remain in Sudden Death. -->
+                <div id="sd-final-banner-reveal" class="sd-final-banner hidden"></div>
             </div>
 
             <!-- "Broadcast Lower-Third" reveal (design-shotgun C): upper stage
@@ -396,6 +402,13 @@
                  reel), and a superlatives award row. No Share Results card —
                  sharing is a player-phone action. -->
             <div class="dashboard-end-content end-stage-layout">
+                <!-- Issue #827: "Last One Standing" hero (design S6-C) — prepended
+                     above the podium by dashboard.js only in Sudden Death mode. -->
+                <div id="sd-last-standing" class="sd-last-standing hidden">
+                    <div class="sd-last-standing__trophy" aria-hidden="true">🏆</div>
+                    <div class="sd-last-standing__headline"></div>
+                    <div id="sd-last-standing-winner" class="sd-last-standing__winner"></div>
+                </div>
                 <header class="end-header">
                     <h1 class="end-title" data-i18n="leaderboard.gameOver">Game Over</h1>
                     <div class="end-meta">
@@ -512,6 +525,15 @@
 
     <!-- Reaction Container (Story 18.9) - floating reactions from players -->
     <div id="reaction-container" class="reaction-container"></div>
+
+    <!-- Issue #827: Full-bleed "OUT" takeover (design S4-C) — shown briefly on
+         REVEAL when a player is eliminated in Sudden Death mode. Driven by
+         dashboard.js (adds/removes .show); the underlying reveal is never
+         permanently blocked. -->
+    <div id="sd-out-overlay" class="sd-out-overlay">
+        <div class="sd-out__word">OUT</div>
+        <div class="sd-out__name"><span class="sd-out__skull">💀</span><span id="sd-out-name"></span></div>
+    </div>
 
     <script src="/beatify/static/js/vendor/qrcode.min.js?v={{ASSET_VER}}"></script>
     <!-- Story 18.4: Use minified JS in production with fallback to source -->

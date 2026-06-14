@@ -133,6 +133,11 @@ export function updateGameView(data) {
         albumCover.src = newSrc;
     }
 
+    // Issue #827: Sudden Death — gate the play UI on whether the current
+    // player is eliminated. Must run before syncing the chip row / submission
+    // tracker so the eliminated-view album art and locked state are consistent.
+    applySuddenDeathState(data);
+
     // Arcade chip row — hide the wrapper when every child chip is hidden
     syncArcChipRow();
 
@@ -258,6 +263,94 @@ function syncNoBonusFiller(data) {
     filler.classList.toggle('hidden', hasArtist || hasMovie || taMode);
 }
 
+// Issue #827: Sudden Death — true when the current player ("me") is eliminated.
+// Used to defensively block submissions and drive the eliminated view.
+var meEliminated = false;
+
+/**
+ * Find the current player ("me") in a players array. Matches the existing
+ * convention used everywhere in this file: player.name === state.playerName.
+ * @param {Array} players - Array of player objects
+ * @returns {Object|null} The current player object, or null
+ */
+function findMe(players) {
+    if (!state.playerName || !players) return null;
+    return players.find(function(p) {
+        return p.name === state.playerName;
+    }) || null;
+}
+
+/**
+ * Issue #827: Sudden Death — apply elimination state for the current player.
+ * When `sudden_death_mode` is on AND the current player is eliminated, hide the
+ * normal play UI (slider, year display, bet, submit, challenges) and show the
+ * #eliminated-view. Otherwise restore the normal UI and keep the view hidden.
+ * Guarded so a non-Sudden-Death game is completely unaffected.
+ * @param {Object} data - State data from server
+ */
+function applySuddenDeathState(data) {
+    var eliminatedView = document.getElementById('eliminated-view');
+    if (!eliminatedView) return;
+
+    var suddenDeath = !!(data && data.sudden_death_mode);
+    var me = findMe(data && data.players);
+    var amOut = suddenDeath && !!(me && me.eliminated);
+
+    meEliminated = amOut;
+
+    // Elements that make up the normal active-play UI.
+    var playEls = [
+        document.getElementById('year-selector-container'),
+        document.getElementById('year-display-arc'),
+        document.getElementById('bet-toggle'),
+        document.getElementById('submit-btn'),
+        document.getElementById('title-artist-container'),
+        document.getElementById('submitted-banner')
+    ];
+
+    if (amOut) {
+        // Hide the active-play UI and show the blackout view.
+        playEls.forEach(function(el) {
+            if (el) el.classList.add('hidden');
+        });
+        eliminatedView.classList.remove('hidden');
+
+        // Mirror the normal album art into the eliminated orb.
+        var albumCover = document.getElementById('album-cover');
+        var elimCover = document.getElementById('eliminated-album-cover');
+        if (elimCover && albumCover && albumCover.src) {
+            elimCover.src = albumCover.src;
+        }
+
+        // "Eliminated · Round N" — prefer the round they went out on.
+        var subEl = document.getElementById('eliminated-sub');
+        if (subEl) {
+            var round = (me && me.eliminated_round != null)
+                ? me.eliminated_round
+                : (data && data.round) || '';
+            subEl.textContent = utils.t('game.eliminatedRound', { round: round })
+                || ('Eliminated · Round ' + round);
+        }
+    } else {
+        // Restore the normal UI. Only un-hide the year-based play controls when
+        // NOT in Title & Artist mode (renderTitleArtistInput owns that toggle);
+        // submit-btn is always part of play. Defer to those owners by simply
+        // removing the hidden class we added — renderTitleArtistInput runs after
+        // this in updateGameView and re-hides the year UI when TA mode is on.
+        playEls.forEach(function(el) {
+            if (el) el.classList.remove('hidden');
+        });
+        eliminatedView.classList.add('hidden');
+
+        // submitted-banner visibility is owned by handleSubmitAck/reset — it
+        // should stay hidden unless this player has submitted. We removed the
+        // hidden class above only to undo a prior elimination; re-hide it here
+        // since restoring it is the tracker/ack's job, not ours.
+        var banner = document.getElementById('submitted-banner');
+        if (banner && !hasSubmitted) banner.classList.add('hidden');
+    }
+}
+
 function renderSubmissionTracker(players) {
     var tracker = document.getElementById('submission-tracker');
     var container = document.getElementById('submitted-players');
@@ -266,10 +359,16 @@ function renderSubmissionTracker(players) {
     if (!tracker || !container) return;
 
     var playerList = players || [];
-    var submittedCount = playerList.filter(function(p) {
+    // Issue #827: Sudden Death — eliminated players are out of the round and
+    // must not count toward the "submitted / waiting" totals. activeList is the
+    // set still in play; counts derive from it.
+    var activeList = playerList.filter(function(p) {
+        return !p.eliminated;
+    });
+    var submittedCount = activeList.filter(function(p) {
         return p.submitted;
     }).length;
-    var totalCount = playerList.length;
+    var totalCount = activeList.length;
 
     var allSubmitted = submittedCount === totalCount && totalCount > 0;
     tracker.classList.toggle('all-submitted', allSubmitted);
@@ -303,25 +402,41 @@ function renderSubmissionTracker(players) {
         var initials = getInitials(player.name);
         var isCurrentPlayer = player.name === state.playerName;
         var isDisconnected = player.connected === false;
+        var isEliminated = !!player.eliminated;  // Issue #827
         var classes = [
             'player-indicator',
-            player.submitted ? 'is-submitted' : '',
+            // Issue #827: eliminated chips never read as "submitted".
+            (player.submitted && !isEliminated) ? 'is-submitted' : '',
             isCurrentPlayer ? 'is-current-player' : '',
-            isDisconnected ? 'player-indicator--disconnected' : ''
+            isDisconnected ? 'player-indicator--disconnected' : '',
+            isEliminated ? 'is-eliminated' : ''
         ].filter(Boolean).join(' ');
 
         var badges = '';
-        if (player.steal_used) {
-            badges += '<span class="player-badge player-badge--steal">🥷</span>';
+        // Issue #827: eliminated players show only the "Out · R{round}" badge,
+        // not steal/bet badges (they're no longer playing this round).
+        if (isEliminated) {
+            var round = (player.eliminated_round != null) ? player.eliminated_round : '';
+            var outText = utils.t('game.outRound', { round: round }) || ('Out · R' + round);
+            badges += '<span class="player-out-badge">' + escapeHtml(outText) + '</span>';
+        } else {
+            if (player.steal_used) {
+                badges += '<span class="player-badge player-badge--steal">🥷</span>';
+            }
+            if (player.bet) {
+                badges += '<span class="player-badge player-badge--bet">🎲</span>';
+            }
         }
-        if (player.bet) {
-            badges += '<span class="player-badge player-badge--bet">🎲</span>';
-        }
+
+        // Issue #827: skull replaces the avatar initials for eliminated players.
+        var avatarInner = isEliminated
+            ? '<span class="eliminated-skull" aria-hidden="true">💀</span>'
+            : '<span class="player-initials">' + escapeHtml(initials) + '</span>';
 
         return '<div class="' + classes + '">' +
             badges +
             '<div class="player-avatar">' +
-                '<span class="player-initials">' + escapeHtml(initials) + '</span>' +
+                avatarInner +
             '</div>' +
             '<span class="player-name">' + escapeHtml(player.name) + '</span>' +
         '</div>';
@@ -573,6 +688,7 @@ export function initYearSelector() {
     yearSelectorInitialized = true;  // #854 — set only after DOM was found
 
     slider.addEventListener('input', function() {
+        if (meEliminated) return;  // Issue #827: eliminated players can't change the year
         yearDisplay.textContent = this.value;
     });
 
@@ -597,7 +713,7 @@ export function initYearSelector() {
         var longPressTimeoutId = null;
 
         btn.addEventListener('pointerdown', function(e) {
-            if (hasSubmitted) return;
+            if (hasSubmitted || meEliminated) return;  // Issue #827
             e.preventDefault();
             adjustYear(delta);
             longPressTimeoutId = setTimeout(function() {
@@ -615,7 +731,7 @@ export function initYearSelector() {
 
         // Keyboard fallback (Space / Enter when the button has focus)
         btn.addEventListener('keydown', function(e) {
-            if (hasSubmitted) return;
+            if (hasSubmitted || meEliminated) return;  // Issue #827
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 adjustYear(delta);
@@ -694,6 +810,7 @@ export function initYearSelector() {
  */
 export function handleSubmitGuess() {
     if (hasSubmitted) return;
+    if (meEliminated) return;  // Issue #827: eliminated players can't submit
 
     var slider = document.getElementById('year-slider');
     var submitBtn = document.getElementById('submit-btn');
@@ -902,6 +1019,7 @@ export function renderTitleArtistInput(data) {
  */
 export function handleTitleArtistSubmit() {
     if (hasSubmitted) return;
+    if (meEliminated) return;  // Issue #827: eliminated players can't submit
 
     var titleInput = document.getElementById('ta-title-input');
     var artistInput = document.getElementById('ta-artist-input');

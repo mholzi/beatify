@@ -134,6 +134,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
+        sudden_death_mode = bool(body.get("sudden_death_mode", False))  # Issue #827
         title_artist_mode = body.get("title_artist_mode", False)  # #1180
         reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
@@ -324,6 +325,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
             "intro_mode_enabled": intro_mode_enabled,  # Issue #23
             "closest_wins_mode": closest_wins_mode,  # Issue #442
+            "sudden_death_mode": sudden_death_mode,  # Issue #827
             "title_artist_mode": title_artist_mode,  # #1180
             "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
@@ -608,6 +610,46 @@ class StartGameplayView(BeatifyAdminView):
             await ws_handler.broadcast_state()
 
         return web.json_response({"success": True, "phase": game_state.phase.value})
+
+
+class SetSuddenDeathView(BeatifyAdminView):
+    """Toggle Sudden Death mode live during a game (Issue #827).
+
+    The host flips Sudden Death on/off from the reveal-screen control bar.
+    Turning it ON arms eliminations from the next round; turning it OFF stops
+    further cuts (already-eliminated players stay out).
+    """
+
+    url = "/beatify/api/sudden-death"
+    name = "beatify:api:sudden-death"
+    # Match the other control-bar actions: auth handled in-handler so the
+    # Companion-bypass path works (#1131).
+    requires_auth = False
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Set the live Sudden Death flag and rebroadcast state."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+
+        enabled = bool(body.get("enabled", False))
+
+        data = self.hass.data.get(DOMAIN, {})
+        game_state = data.get("game")
+        if not game_state or not game_state.game_id:
+            return _json_error("No active game", 404, code="GAME_NOT_FOUND")
+
+        new_state = game_state.set_sudden_death(enabled)
+
+        ws_handler = data.get("ws_handler")
+        if ws_handler:
+            await ws_handler.broadcast_state()
+
+        return web.json_response({"success": True, "sudden_death_mode": new_state})
 
 
 class GameStatusView(HomeAssistantView):

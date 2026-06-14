@@ -74,6 +74,10 @@ class PlayerSession:
     # Leaderboard tracking (Story 5.5)
     previous_rank: int | None = None  # Rank before last update
 
+    # Sudden Death tracking (Issue #827) - CUMULATIVE, NOT reset in reset_round()
+    eliminated: bool = False  # True once eliminated; stays out for the rest of the game
+    eliminated_round: int | None = None  # Round number the player was eliminated in
+
     # Final stats tracking (Story 5.6) - CUMULATIVE, NOT reset in reset_round()
     best_streak: int = 0  # Highest streak achieved during game
     rounds_played: int = 0  # Rounds the player participated in
@@ -201,6 +205,10 @@ class PlayerSession:
 
         # Reset intro mode cumulative tracking (Issue #23)
         self.intro_speed_bonuses = 0
+
+        # Reset Sudden Death state (Issue #827)
+        self.eliminated = False
+        self.eliminated_round = None
 
         # Reset movie bonus cumulative tracking (Issue #28)
         self.movie_bonus_total = 0

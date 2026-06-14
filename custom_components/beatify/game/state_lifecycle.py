@@ -166,6 +166,19 @@ class RoundLifecycleMixin:
             _LOGGER.error("No playlist manager configured")
             return False
 
+        # Issue #827: Sudden Death — when only one player is left standing, the
+        # game is over. Carry the just-finished round's REVEAL through to END
+        # rather than starting another round. round >= 2 guards against ending
+        # a fresh game (round 1 never eliminates).
+        if (
+            self.sudden_death_mode
+            and self.round >= 2
+            and len(self.non_eliminated_players()) <= 1
+        ):
+            _LOGGER.info("Sudden Death: one player remains — ending game")
+            self._set_phase(GamePhase.END)
+            return False
+
         # Get next playable song (skip songs without URI for selected provider)
         song = self._playlist_manager.get_next_song()
         if not song:

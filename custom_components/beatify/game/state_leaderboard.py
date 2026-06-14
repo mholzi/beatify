@@ -70,6 +70,9 @@ class LeaderboardMixin:
                 "is_admin": player.is_admin,
                 "rank_change": rank_change,
                 "connected": player.connected,
+                # Issue #827: Sudden Death cut-line rendering
+                "eliminated": player.eliminated,
+                "eliminated_round": player.eliminated_round,
             }
             leaderboard.append(entry)
 
@@ -125,6 +128,9 @@ class LeaderboardMixin:
                 "best_streak": player.best_streak,
                 "rounds_played": player.rounds_played,
                 "bets_won": player.bets_won,
+                # Issue #827: Sudden Death
+                "eliminated": player.eliminated,
+                "eliminated_round": player.eliminated_round,
             }
             leaderboard.append(entry)
 

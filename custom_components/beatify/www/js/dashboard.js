@@ -49,6 +49,11 @@
     var previousPlayers = [];
     var countdownInterval = null;
     var lastQRCodeUrl = null;
+    // Issue #827: dedup key for the full-bleed "OUT" takeover so it only fires
+    // once per elimination (re-renders / re-broadcasts of the same REVEAL must
+    // not re-trigger it). Format: "<round>:<joined names>".
+    var sdLastOutKey = null;
+    var sdOutTimer = null;
 
     // Utility functions from BeatifyUtils
     // waitForI18n, t, getLocalizedSongField, escapeHtml moved to BeatifyUtils
@@ -664,6 +669,9 @@
 
         // Update round statistics (Story 16.4)
         renderRoundStats(data, players);
+
+        // Issue #827: Sudden-Death FINAL banner (2 players left).
+        renderSuddenDeathFinalBanner(data, 'sd-final-banner-playing');
     }
 
     /**
@@ -792,6 +800,11 @@
             var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
             var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
+            // Issue #827: Sudden-Death — eliminated players render dimmed with a
+            // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
+            var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
+            var skullPrefix = entry.eliminated ? '💀 ' : '';
+
             // Rank change indicator (AC 10.4.4 - with arrows)
             var changeIndicator = '';
             if (entry.rank_change > 0) {
@@ -820,9 +833,9 @@
                 submittedIndicator = '<div class="entry-submitted ' + (isSubmitted ? 'is-submitted' : '') + '"></div>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
+                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
@@ -885,6 +898,11 @@
 
         // Render leaderboard with position changes
         renderRevealLeaderboard(data.leaderboard || []);
+
+        // Issue #827: Sudden-Death — full-bleed "OUT" takeover for this round's
+        // eliminations + FINAL banner (2 players left).
+        renderSuddenDeathOut(data);
+        renderSuddenDeathFinalBanner(data, 'sd-final-banner-reveal');
 
         // Render motivational message (Story 14.4)
         renderMotivationalMessage(data.game_performance);
@@ -1278,6 +1296,11 @@
             var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
             var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
+            // Issue #827: Sudden-Death — eliminated players render dimmed with a
+            // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
+            var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
+            var skullPrefix = entry.eliminated ? '💀 ' : '';
+
             // Position change indicator (AC 10.4.4 - with arrows)
             var changeHtml = '';
             if (entry.rank_change > 0) {
@@ -1293,9 +1316,9 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + '">' +
+            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
+                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeHtml +
@@ -1317,6 +1340,9 @@
      */
     function renderEndView(data) {
         var leaderboard = data.leaderboard || [];
+
+        // Issue #827: Sudden-Death "Last One Standing" hero above the podium.
+        renderSuddenDeathLastStanding(data);
 
         // Update podium (AC 10.4.5) — name, score, and a colour-keyed avatar.
         [1, 2, 3].forEach(function(place) {
@@ -1374,9 +1400,14 @@
                 var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
                 var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
-                html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
+                // Issue #827: Sudden-Death — eliminated players render dimmed with
+                // a 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
+                var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
+                var skullPrefix = entry.eliminated ? '💀 ' : '';
+
+                html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                     '<span class="entry-rank">#' + entry.rank + '</span>' +
-                    '<span class="entry-name">' + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
+                    '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
                     '<span class="entry-score">' + entry.score + '</span>' +
                 '</div>';
             });
@@ -1534,6 +1565,111 @@
 
         container.innerHTML = html;
         container.classList.remove('hidden');
+    }
+
+    // ============================================
+    // Sudden Death (Issue #827)
+    // ============================================
+
+    /**
+     * Issue #827: full-bleed "OUT" takeover (design S4-C). Called on REVEAL.
+     * When sudden_death_mode is on and the state carries a non-empty
+     * eliminated_this_round, flash the overlay with the eliminated name(s) for
+     * ~2.5s. Deduped per (round, names) so re-renders/re-broadcasts of the same
+     * REVEAL don't re-trigger it. This is a TV display — the overlay auto-hides
+     * so it never permanently blocks the underlying reveal.
+     * @param {Object} data - REVEAL state data
+     */
+    function renderSuddenDeathOut(data) {
+        var overlay = document.getElementById('sd-out-overlay');
+        if (!overlay) return;
+
+        var names = data.sudden_death_mode ? (data.eliminated_this_round || []) : [];
+        if (!names.length) {
+            // No elimination this round — make sure the key resets so a future
+            // elimination with the same names (different round) still fires.
+            return;
+        }
+
+        var key = (data.round || 0) + ':' + names.join(',');
+        if (key === sdLastOutKey) return;  // already shown for this elimination
+        sdLastOutKey = key;
+
+        // Big word uses the localized game.out (uppercased).
+        var wordEl = overlay.querySelector('.sd-out__word');
+        if (wordEl) wordEl.textContent = (utils.t('game.out', 'OUT') || 'OUT').toUpperCase();
+
+        var nameEl = document.getElementById('sd-out-name');
+        if (nameEl) nameEl.textContent = names.join(', ');
+
+        overlay.classList.add('show');
+        if (sdOutTimer) clearTimeout(sdOutTimer);
+        sdOutTimer = setTimeout(function() {
+            overlay.classList.remove('show');
+            sdOutTimer = null;
+        }, 2500);
+    }
+
+    /**
+     * Issue #827: Sudden-Death FINAL banner (design S5-C). Shown in the
+     * PLAYING and REVEAL chip strips when exactly 2 players are still in the
+     * game (non-eliminated) AND sudden_death_mode is on. Hidden otherwise.
+     * @param {Object} data - State data
+     * @param {string} bannerId - id of the banner element for this phase
+     */
+    function renderSuddenDeathFinalBanner(data, bannerId) {
+        var banner = document.getElementById(bannerId);
+        if (!banner) return;
+
+        var players = data.players || [];
+        var alive = players.filter(function(p) { return !p.eliminated; });
+
+        if (data.sudden_death_mode && alive.length === 2) {
+            banner.textContent = '💀 ' + utils.t('game.finalShowdown', 'FINAL — SUDDEN DEATH');
+            banner.classList.remove('hidden');
+        } else {
+            banner.classList.add('hidden');
+        }
+    }
+
+    /**
+     * Issue #827: END "Last One Standing" hero (design S6-C). Shown above the
+     * podium/superlatives only in Sudden Death mode. The survivor is the single
+     * non-eliminated entry in the final leaderboard, or — failing that — the
+     * player_name from the last_one_standing superlative.
+     * @param {Object} data - END state data
+     */
+    function renderSuddenDeathLastStanding(data) {
+        var hero = document.getElementById('sd-last-standing');
+        if (!hero) return;
+
+        if (!data.sudden_death_mode) {
+            hero.classList.add('hidden');
+            return;
+        }
+
+        var leaderboard = data.leaderboard || [];
+        var survivors = leaderboard.filter(function(e) { return !e.eliminated; });
+        var winner = survivors.length ? survivors[0].name : null;
+
+        // Fallback to the last_one_standing superlative's player_name.
+        if (!winner && data.superlatives) {
+            var award = data.superlatives.find(function(a) { return a.id === 'last_one_standing'; });
+            if (award) winner = award.player_name;
+        }
+
+        if (!winner) {
+            hero.classList.add('hidden');
+            return;
+        }
+
+        var headlineEl = hero.querySelector('.sd-last-standing__headline');
+        if (headlineEl) headlineEl.textContent = utils.t('game.lastOneStanding', 'Last One Standing');
+
+        var winnerEl = document.getElementById('sd-last-standing-winner');
+        if (winnerEl) winnerEl.textContent = winner;
+
+        hero.classList.remove('hidden');
     }
 
     // ============================================

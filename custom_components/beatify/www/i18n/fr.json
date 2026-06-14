@@ -116,7 +116,18 @@
     "stop": "Stop",
     "ending": "Fin...",
     "starting": "Démarrage...",
-    "joining": "Rejoindre..."
+    "joining": "Rejoindre...",
+    "suddenDeath": "MORT SUBITE",
+    "youreOut": "Tu es éliminé",
+    "eliminated": "Éliminé",
+    "eliminatedRound": "Éliminé · Manche {round}",
+    "watchingSidelines": "Tu regardes depuis le banc",
+    "lastOneStanding": "Dernier en Lice",
+    "cutLine": "LIGNE DE COUPE",
+    "outRound": "Sorti · M{round}",
+    "finalShowdown": "FINALE — MORT SUBITE",
+    "winnerTakesAll": "Le gagnant rafle tout",
+    "out": "ÉLIMINÉ"
   },
   "steal": {
     "available": "Vol disponible !",
@@ -559,7 +570,11 @@
       "needPlayerToStart": "Rejoins la partie (ou demande à un invité de scanner le QR) avant de commencer.",
       "wsReconnecting": "Reconnexion au serveur de jeu — réessaie.",
       "waitingForGuests": "En attente des invités…"
-    }
+    },
+    "suddenDeathMode": "Mort Subite",
+    "suddenDeathModeHint": "Le dernier de chaque manche est éliminé. Le dernier en lice gagne.",
+    "suddenDeathDisabledTooltip": "La Mort Subite nécessite au moins 3 joueurs.",
+    "suddenDeathLive": "Mort Subite"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

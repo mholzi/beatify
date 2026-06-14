@@ -2230,3 +2230,239 @@ class TestConfigurePartyLightsPreservesStates:
             await state.configure_party_lights(["light.a"], "medium")
 
         assert captured["inherited"] is None
+
+
+# ---------------------------------------------------------------------------
+# Sudden Death mode (Issue #827)
+# ---------------------------------------------------------------------------
+
+
+def _add_live_player(state: GameState, name: str) -> None:
+    """Add a player whose WebSocket reads as genuinely connected (is_active)."""
+    ws = AsyncMock()
+    ws.closed = False
+    state.add_player(name, ws)
+    state.players[name].connected = True
+
+
+class TestSuddenDeathElimination:
+    """Core elimination logic for Sudden Death (#827)."""
+
+    def setup_method(self):
+        self.state = make_game_state()
+        _create_fresh_game(self.state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol", "Dave"):
+            _add_live_player(self.state, n)
+
+    def _set_round_scores(self, scores: dict[str, int]) -> None:
+        for name, sc in scores.items():
+            self.state.players[name].round_score = sc
+
+    def test_sudden_death_skips_round_1(self):
+        """Round 1 never eliminates anyone."""
+        self.state.round = 1
+        self._set_round_scores({"Alice": 0, "Bob": 5, "Carol": 9, "Dave": 3})
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == []
+        assert all(not p.eliminated for p in self.state.players.values())
+
+    def test_sudden_death_eliminates_lowest_round_score(self):
+        """From round 2 on, the lowest *round* score is eliminated."""
+        self.state.round = 2
+        self._set_round_scores({"Alice": 8, "Bob": 2, "Carol": 9, "Dave": 5})
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == ["Bob"]
+        assert self.state.players["Bob"].eliminated is True
+        assert self.state.players["Bob"].eliminated_round == 2
+        # Everyone else survives.
+        assert not self.state.players["Alice"].eliminated
+        assert not self.state.players["Carol"].eliminated
+        assert not self.state.players["Dave"].eliminated
+
+    def test_sudden_death_uses_round_delta_not_cumulative(self):
+        """A high cumulative leader with the worst *round* is the one cut."""
+        self.state.round = 3
+        self.state.players["Alice"].score = 100  # cumulative leader
+        self.state.players["Bob"].score = 5
+        self._set_round_scores({"Alice": 0, "Bob": 7, "Carol": 4, "Dave": 6})
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == ["Alice"]
+
+    def test_sudden_death_tie_break_uses_last_submission(self):
+        """Tie for last → the slowest (latest) submitter is eliminated."""
+        self.state.round = 2
+        self._set_round_scores({"Alice": 1, "Bob": 1, "Carol": 9, "Dave": 9})
+        self.state.players["Alice"].submission_time = 10.0  # earlier = faster
+        self.state.players["Bob"].submission_time = 25.0  # later = slower → out
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == ["Bob"]
+        assert self.state.players["Alice"].eliminated is False
+
+    def test_sudden_death_non_submitter_is_slowest(self):
+        """A non-submitter (submission_time None) loses a last-place tie."""
+        self.state.round = 2
+        self._set_round_scores({"Alice": 0, "Bob": 0, "Carol": 5, "Dave": 5})
+        self.state.players["Alice"].submission_time = 12.0
+        self.state.players["Bob"].submission_time = None  # never submitted → out
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == ["Bob"]
+
+    def test_sudden_death_no_elimination_with_one_survivor(self):
+        """Never eliminate the last player standing."""
+        self.state.round = 5
+        for n in ("Bob", "Carol", "Dave"):
+            self.state.players[n].eliminated = True
+        self._set_round_scores({"Alice": 0})
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == []
+        assert self.state.players["Alice"].eliminated is False
+
+    def test_sudden_death_disabled_no_elimination(self):
+        """With the mode off, scoring never eliminates anyone."""
+        self.state.sudden_death_mode = False
+        self.state.round = 4
+        self._set_round_scores({"Alice": 0, "Bob": 1, "Carol": 2, "Dave": 3})
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert eliminated == []
+
+    def test_already_eliminated_excluded_from_next_cut(self):
+        """An eliminated player is not re-eliminated and not considered."""
+        self.state.round = 3
+        self.state.players["Bob"].eliminated = True
+        self.state.players["Bob"].eliminated_round = 2
+        self._set_round_scores({"Alice": 9, "Bob": -99, "Carol": 1, "Dave": 8})
+        eliminated = self.state._apply_sudden_death_elimination()
+        # Bob already out and ignored; Carol is the lowest live score.
+        assert eliminated == ["Carol"]
+        assert self.state.players["Bob"].eliminated_round == 2
+
+
+class TestSuddenDeathSubmissionTracker:
+    """all_submitted ignores eliminated players (#827)."""
+
+    def test_all_submitted_ignores_eliminated(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        # Carol is out and will never submit again.
+        state.players["Carol"].eliminated = True
+        state.players["Alice"].submitted = True
+        state.players["Bob"].submitted = True
+        state.players["Carol"].submitted = False
+        assert state.all_submitted() is True
+
+
+class TestSuddenDeathAutoEnd:
+    """start_round ends the game when one player remains (#827)."""
+
+    @pytest.mark.asyncio
+    async def test_sudden_death_auto_ends_at_one_remaining(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.players["Bob"].eliminated = True
+        state.players["Carol"].eliminated = True
+        state.round = 4
+        state.phase = GamePhase.PLAYING
+        started = await state.start_round()
+        assert started is False
+        assert state.phase == GamePhase.END
+
+    @pytest.mark.asyncio
+    async def test_no_auto_end_when_two_remain(self):
+        """Two survivors → start_round must NOT end the game on the guard."""
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.players["Carol"].eliminated = True
+        state.round = 3
+        state.phase = GamePhase.PLAYING
+        # Stub playback so start_round can proceed past the guard without media.
+        with patch.object(state, "_ensure_media_player_service"):
+            state._media_player_service = None
+            await state.start_round()
+        # The auto-end guard did not fire (phase is not END from the guard).
+        assert state.phase != GamePhase.END
+
+
+class TestSuddenDeathPersistence:
+    """eliminated state survives a round but resets for a new game (#827)."""
+
+    def test_reset_round_preserves_eliminated(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        _add_live_player(state, "Alice")
+        p = state.players["Alice"]
+        p.eliminated = True
+        p.eliminated_round = 2
+        p.reset_round()
+        assert p.eliminated is True
+        assert p.eliminated_round == 2
+
+    def test_reset_for_new_game_clears_eliminated(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        _add_live_player(state, "Alice")
+        p = state.players["Alice"]
+        p.eliminated = True
+        p.eliminated_round = 2
+        p.reset_for_new_game()
+        assert p.eliminated is False
+        assert p.eliminated_round is None
+
+    @pytest.mark.asyncio
+    async def test_pause_resume_preserves_eliminated(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.phase = GamePhase.PLAYING
+        state.players["Carol"].eliminated = True
+        state.players["Carol"].eliminated_round = 2
+        await state.pause_game("test_pause")
+        await state.resume_game()
+        assert state.players["Carol"].eliminated is True
+        assert state.players["Carol"].eliminated_round == 2
+
+
+class TestSuddenDeathLiveToggle:
+    """The reveal-screen live toggle (#827)."""
+
+    def test_set_sudden_death_toggles_flag(self):
+        state = make_game_state()
+        _create_fresh_game(state)  # default off
+        assert state.sudden_death_mode is False
+        assert state.set_sudden_death(True) is True
+        assert state.sudden_death_mode is True
+        assert state.set_sudden_death(False) is False
+        assert state.sudden_death_mode is False
+
+
+class TestSuddenDeathSuperlative:
+    """Last One Standing superlative (#827)."""
+
+    def test_last_one_standing_awarded_to_survivor(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.players["Bob"].eliminated = True
+        state.players["Carol"].eliminated = True
+        state.round = 4
+        awards = state.calculate_superlatives()
+        last = [a for a in awards if a["id"] == "last_one_standing"]
+        assert len(last) == 1
+        assert last[0]["player_name"] == "Alice"
+        assert last[0]["value"] == 2  # two eliminated
+
+    def test_no_last_one_standing_when_mode_off(self):
+        state = make_game_state()
+        _create_fresh_game(state)  # sudden death off
+        for n in ("Alice", "Bob"):
+            _add_live_player(state, n)
+        state.round = 4
+        awards = state.calculate_superlatives()
+        assert not any(a["id"] == "last_one_standing" for a in awards)

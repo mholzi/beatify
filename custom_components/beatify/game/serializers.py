@@ -48,6 +48,9 @@ class GameStateSerializer:
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
             "closest_wins_mode": gs.closest_wins_mode,
+            # Issue #827: Sudden Death mode (drives wizard chip, player view,
+            # leaderboard cut-line, admin live toggle)
+            "sudden_death_mode": gs.sudden_death_mode,
             # #1180: Title & Artist guessing mode (player UI renders inputs)
             "title_artist_mode": gs.title_artist_mode,
             "is_intro_round": gs.is_intro_round,
@@ -154,6 +157,14 @@ class GameStateSerializer:
             }
         # Include reveal-specific player data (guesses, round_score, missed)
         state["players"] = GameStateSerializer.get_reveal_players_state(gs)
+        # Issue #827: Sudden Death — names eliminated *this* round drive the
+        # TV "OUT" takeover + the admin elimination highlight card.
+        if gs.sudden_death_mode:
+            state["eliminated_this_round"] = [
+                p.name
+                for p in gs.players.values()
+                if p.eliminated and p.eliminated_round == gs.round
+            ]
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
         # Round analytics (Story 13.3 AC4)
@@ -269,6 +280,9 @@ class GameStateSerializer:
                 "stole_from": p.stole_from,
                 "was_stolen_by": p.was_stolen_by.copy() if p.was_stolen_by else [],
                 "steal_available": p.steal_available,
+                # Issue #827: Sudden Death state
+                "eliminated": p.eliminated,
+                "eliminated_round": p.eliminated_round,
             }
             # Story 20.4: Add artist bonus if challenge is enabled
             if gs.artist_challenge_enabled:
