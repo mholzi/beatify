@@ -116,6 +116,7 @@ class GameSetupMixin:
         movie_quiz_enabled: bool = True,
         intro_mode_enabled: bool = False,
         closest_wins_mode: bool = False,
+        sudden_death_mode: bool = False,
         title_artist_mode: bool = False,
         reveal_auto_advance: int = 0,
     ) -> dict[str, Any]:
@@ -281,6 +282,8 @@ class GameSetupMixin:
 
         # Issue #442: Set closest wins mode
         self.closest_wins_mode = closest_wins_mode
+        # Issue #827: Set sudden death mode
+        self.sudden_death_mode = sudden_death_mode
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -416,6 +419,7 @@ class GameSetupMixin:
             "movie_quiz_enabled": self.movie_quiz_enabled,
             "intro_mode_enabled": self.intro_mode_enabled,
             "closest_wins_mode": self.closest_wins_mode,
+            "sudden_death_mode": self.sudden_death_mode,
             "title_artist_mode": self.title_artist_mode,
         }
 

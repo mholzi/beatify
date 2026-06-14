@@ -1082,6 +1082,21 @@ async function startGame() {
             ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, adminState.titleArtistModeEnabled)
             : { ...rawBonusFlags, ...(adminState.titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
 
+        // Issue #827: Sudden Death is the host's wizard choice, persisted to
+        // beatify_game_settings.suddenDeathMode (mirrors how closestWinsMode is
+        // stored). The admin submodules don't hydrate a dedicated adminState
+        // field for it, so read it straight from localStorage here. Default false.
+        var suddenDeathMode = false;
+        try {
+            var _sdRaw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+            if (_sdRaw) {
+                var _sdSettings = JSON.parse(_sdRaw);
+                if (_sdSettings && typeof _sdSettings.suddenDeathMode === 'boolean') {
+                    suddenDeathMode = _sdSettings.suddenDeathMode;
+                }
+            }
+        } catch (e) { /* private mode / malformed — keep default false */ }
+
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1097,6 +1112,7 @@ async function startGame() {
                 movie_quiz_enabled: bonusFlags.movie_quiz_enabled,  // #947 (#1180: suppressed in TA mode)
                 intro_mode_enabled: bonusFlags.intro_mode_enabled,  // Issue #23 (#1180: suppressed in TA mode)
                 closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
+                sudden_death_mode: suddenDeathMode,  // Issue #827
                 title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
@@ -2582,11 +2598,127 @@ function showAdminRevealView(data) {
         }
     }
 
+    // Issue #827: Sudden Death — live toggle on the control bar (S7-A) +
+    // elimination/final highlight chips in the reveal header (S4-B / S5-B).
+    // Guarded so non-Sudden-Death games are wholly unaffected.
+    _renderSuddenDeathLiveToggle(data);
+    _renderSuddenDeathRevealChips(data);
+
     // All guesses grid (player-style result cards)
     renderAdminResultCards(data.players, data.closest_wins_mode, data.song ? data.song.year : null);
 
     // Leaderboard (player-style entries)
     renderAdminLeaderboard(data.leaderboard);
+}
+
+/**
+ * Issue #827: Sudden Death live toggle (design S7-A) on the REVEAL control bar.
+ * Lets the host arm/disarm Sudden Death between rounds. POSTs to the live
+ * endpoint via the authed BeatifyAuth.fetch helper (same as Start/End game),
+ * then lets the WS broadcast drive the UI — no optimistic desync. Disabled
+ * when fewer than 3 non-eliminated players remain (arming is pointless there).
+ */
+function _renderSuddenDeathLiveToggle(data) {
+    var controlBar = document.getElementById('admin-control-bar');
+    if (!controlBar) return;
+
+    var existing = document.getElementById('admin-sudden-death-toggle');
+
+    if (!data) {
+        if (existing) existing.remove();
+        return;
+    }
+
+    // S7-A is a *live* control: the host arms or disarms Sudden Death between
+    // rounds, so the toggle is always present on the reveal control bar. Its
+    // .is-on state mirrors the top-level WS flag `sudden_death_mode`.
+    var players = data.players || [];
+    var remaining = players.filter(function(p) { return !p.eliminated; }).length;
+    var isOn = !!data.sudden_death_mode;
+    var label = (BeatifyI18n.t && BeatifyI18n.t('admin.suddenDeathLive')) || 'Sudden Death';
+
+    var btn = existing;
+    if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'admin-sudden-death-toggle';
+        btn.type = 'button';
+        btn.className = 'sd-live-toggle';
+        // POST the inverse of the *current server* state, then wait for the WS
+        // broadcast to repaint. We snapshot on click to avoid stale-closure bugs.
+        btn.addEventListener('click', function() {
+            if (btn.disabled) return;
+            var enable = !(btn.classList.contains('is-on'));
+            btn.disabled = true;  // debounce until the broadcast lands
+            BeatifyAuth.fetch('/beatify/api/sudden-death', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: enable })
+            }).catch(function(err) {
+                console.warn('[Admin] Sudden Death toggle failed:', err);
+                btn.disabled = false;  // re-enable so the host can retry
+            });
+        });
+        controlBar.appendChild(btn);
+    }
+
+    btn.innerHTML = '💀 <span class="control-label">' + escapeHtml(label) +
+        '</span><span class="sd-live-toggle__switch"></span>';
+    btn.classList.toggle('is-on', isOn);
+    // Arming below 3 survivors is pointless (2 left = final already / 1 = winner).
+    btn.disabled = remaining < 3;
+}
+
+/**
+ * Issue #827: Reveal-header highlight chips for Sudden Death.
+ *  - S4-B: red elimination chip when players were eliminated THIS round.
+ *  - S5-B: pink FINAL chip when exactly 2 survivors remain.
+ * Both live in a dynamically-created `.arc-chip-row` inside the reveal header.
+ */
+function _renderSuddenDeathRevealChips(data) {
+    var section = document.getElementById('admin-reveal-section');
+    if (!section) return;
+
+    var row = document.getElementById('admin-reveal-arc-chip-row');
+
+    // Non-Sudden-Death game → no chips; clear any stale row.
+    if (!data || !data.sudden_death_mode) {
+        if (row) row.remove();
+        return;
+    }
+
+    if (!row) {
+        row = document.createElement('div');
+        row.id = 'admin-reveal-arc-chip-row';
+        row.className = 'arc-chip-row';
+        // Place it just under the reveal header so chips read as round context.
+        var header = section.querySelector('.reveal-header-compact');
+        if (header && header.parentNode) {
+            header.parentNode.insertBefore(row, header.nextSibling);
+        } else {
+            section.appendChild(row);
+        }
+    }
+
+    var chips = '';
+
+    // S4-B: elimination chip (prepended). eliminated_this_round is only present
+    // in REVEAL state and only when sudden_death_mode is on.
+    var elim = data.eliminated_this_round || [];
+    if (elim.length > 0) {
+        chips += '<span class="arc-chip arc-chip--elim">💀 Eliminated: ' +
+            escapeHtml(elim.join(', ')) + '</span>';
+    }
+
+    // S5-B: final chip when exactly 2 players are still in it.
+    var players = data.players || [];
+    var remaining = players.filter(function(p) { return !p.eliminated; }).length;
+    if (remaining === 2) {
+        var finalLabel = (BeatifyI18n.t && BeatifyI18n.t('game.finalShowdown')) || 'FINAL — SUDDEN DEATH';
+        chips += '<span class="arc-chip arc-chip--final">🔥 ' + escapeHtml(finalLabel) + '</span>';
+    }
+
+    row.innerHTML = chips;
+    row.classList.toggle('hidden', chips === '');
 }
 
 /**

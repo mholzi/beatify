@@ -116,7 +116,18 @@
     "stop": "Stop",
     "ending": "Terminando...",
     "starting": "Iniciando...",
-    "joining": "Uniéndose..."
+    "joining": "Uniéndose...",
+    "suddenDeath": "MUERTE SÚBITA",
+    "youreOut": "Estás fuera",
+    "eliminated": "Eliminado",
+    "eliminatedRound": "Eliminado · Ronda {round}",
+    "watchingSidelines": "Mirando desde la banda",
+    "lastOneStanding": "Último en Pie",
+    "cutLine": "LÍNEA DE CORTE",
+    "outRound": "Fuera · R{round}",
+    "finalShowdown": "FINAL — MUERTE SÚBITA",
+    "winnerTakesAll": "El ganador se lo lleva todo",
+    "out": "FUERA"
   },
   "steal": {
     "available": "Robo disponible!",
@@ -584,8 +595,11 @@
     "seasonalReasonSummer": "Llegó el verano — 100 himnos para la fiesta en el jardín.",
     "seasonalBadge": "Sugerencia de la temporada",
     "seasonalAdd": "Añadir",
-    "seasonalDismiss": "Descartar sugerencia de temporada"
-  },
+    "seasonalDismiss": "Descartar sugerencia de temporada",
+    "suddenDeathMode": "Muerte Súbita",
+    "suddenDeathModeHint": "El último de cada ronda queda eliminado. Gana el último en pie.",
+    "suddenDeathDisabledTooltip": "Muerte Súbita necesita al menos 3 jugadores.",
+    "suddenDeathLive": "Muerte Súbita"  },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",
     "subtitle": "Estadisticas",

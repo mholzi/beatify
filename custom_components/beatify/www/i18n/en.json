@@ -116,7 +116,18 @@
     "stop": "Stop",
     "ending": "Ending...",
     "starting": "Starting...",
-    "joining": "Joining..."
+    "joining": "Joining...",
+    "suddenDeath": "SUDDEN DEATH",
+    "youreOut": "You're out",
+    "eliminated": "Eliminated",
+    "eliminatedRound": "Eliminated · Round {round}",
+    "watchingSidelines": "Watching from the sidelines",
+    "lastOneStanding": "Last One Standing",
+    "cutLine": "CUT LINE",
+    "outRound": "Out · R{round}",
+    "finalShowdown": "FINAL — SUDDEN DEATH",
+    "winnerTakesAll": "Winner Takes All",
+    "out": "OUT"
   },
   "steal": {
     "available": "Steal Available!",
@@ -606,8 +617,11 @@
     "seasonalReasonSummer": "Summer is on — 100 anthems for the garden party.",
     "seasonalBadge": "Suggestion of the season",
     "seasonalAdd": "Add",
-    "seasonalDismiss": "Dismiss seasonal suggestion"
-  },
+    "seasonalDismiss": "Dismiss seasonal suggestion",
+    "suddenDeathMode": "Sudden Death",
+    "suddenDeathModeHint": "Last-place player is eliminated each round. Last one standing wins.",
+    "suddenDeathDisabledTooltip": "Sudden Death needs at least 3 players.",
+    "suddenDeathLive": "Sudden Death"  },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
     "subtitle": "Analytics",

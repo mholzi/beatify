@@ -232,6 +232,7 @@ let chosenArtistChallenge = true;
 let chosenMovieQuiz = true;
 let chosenIntroMode = false;
 let chosenClosestWins = false;
+let chosenSuddenDeath = true; // Issue #827 — default ON (unlike the other bonuses); gated to >=3 players
 let chosenTitleArtistMode = false; // #1180
 const chosenLevelUps = { lights: false, tts: false };
 // Details the user sets when a level-up is toggled on
@@ -920,7 +921,31 @@ const GAME_MODES = [
         get: () => chosenClosestWins,
         set: (v) => { _setGameModeToggle('closest', v); },
     },
+    // Issue #827 — Sudden Death. Standalone toggle (not part of the
+    // year-round/TA precedence group), so it sets chosenSuddenDeath directly.
+    // Defaults ON, but is gated to >=3 connected players (see _renderGameModes).
+    {
+        key: 'suddenDeath',
+        icon: '💀',
+        titleKey: 'admin.suddenDeathMode',
+        titleFallback: 'Sudden Death',
+        hintKey: 'admin.suddenDeathModeHint',
+        hintFallback: 'When the timer runs out, the lowest-scoring player is eliminated. Last player standing wins. Requires at least 3 players.',
+        get: () => chosenSuddenDeath,
+        set: (v) => { chosenSuddenDeath = v; },
+    },
 ];
+
+// Issue #827 — Sudden Death needs at least 3 connected players to be playable.
+// The wizard already fetches /beatify/api/status into cachedStatus; an active
+// game's connected players live under active_game.players (built by
+// build_status_response → game_state.get_state()). No game / no players ⇒ 0.
+const SUDDEN_DEATH_MIN_PLAYERS = 3;
+function _connectedPlayerCount() {
+    const game = cachedStatus && cachedStatus.active_game;
+    const players = game && Array.isArray(game.players) ? game.players : [];
+    return players.length;
+}
 
 // Core game mode — exactly one selected. Backed by the chosenTitleArtistMode
 // boolean (Jahr = false, Titel & Interpret = true). Clicking routes through the
@@ -983,6 +1008,11 @@ function _renderCoreMode() {
 function _renderGameModes() {
     const el = document.getElementById('wiz-modes');
     if (!el) return;
+    // Issue #827 — Sudden Death is only playable with >=3 connected players.
+    // When below that, force the choice off so a <3-player game never starts in
+    // Sudden Death, and render the card disabled (dimmed, non-interactive).
+    const suddenDeathDisabled = _connectedPlayerCount() < SUDDEN_DEATH_MIN_PLAYERS;
+    if (suddenDeathDisabled) chosenSuddenDeath = false;
     el.innerHTML = GAME_MODES.map((m) => {
         const on = m.get();
         // #1180: hide modes incompatible with Title & Artist mode (artist
@@ -990,7 +1020,13 @@ function _renderGameModes() {
         if (chosenTitleArtistMode && (m.key === 'artist' || m.key === 'closest')) {
             return '';
         }
-        return `<div class="wiz-mode-card ${on ? 'on' : ''}" data-mode="${m.key}" role="button" tabindex="0">
+        // Issue #827 — disabled Sudden Death card: dimmed, non-interactive, with
+        // a tooltip explaining the >=3 player requirement.
+        const disabled = m.key === 'suddenDeath' && suddenDeathDisabled;
+        const titleAttr = disabled
+            ? ` title="${escapeAttr(_t('admin.suddenDeathDisabledTooltip', 'Needs at least 3 players'))}"`
+            : '';
+        return `<div class="wiz-mode-card ${on ? 'on' : ''}${disabled ? ' disabled' : ''}" data-mode="${m.key}" role="button" tabindex="0" aria-disabled="${disabled}"${titleAttr}>
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
             <div class="wiz-mode-body">
                 <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>
@@ -1003,6 +1039,8 @@ function _renderGameModes() {
         card.addEventListener('click', () => {
             const mode = GAME_MODES.find((m) => m.key === card.dataset.mode);
             if (!mode) return;
+            // Issue #827 — the disabled Sudden Death card must not be flippable on.
+            if (mode.key === 'suddenDeath' && suddenDeathDisabled) return;
             mode.set(!mode.get());
             _renderGameModes();
         });
@@ -1484,7 +1522,7 @@ function _playlistName(id) {
 }
 
 // Merge wizard choices into beatify_game_settings so admin.js picks them up on load.
-// Preserves existing keys (artistChallenge, introMode, closestWinsMode) the wizard doesn't touch.
+// Preserves existing keys (artistChallenge, introMode, closestWinsMode, suddenDeathMode) the wizard doesn't touch.
 function _persistGameSettings() {
     try {
         const raw = localStorage.getItem(LS_GAME_SETTINGS);
@@ -1500,6 +1538,7 @@ function _persistGameSettings() {
             movieQuiz: chosenMovieQuiz,
             introMode: chosenIntroMode,
             closestWinsMode: chosenClosestWins,
+            suddenDeathMode: chosenSuddenDeath,  // Issue #827
             titleArtistMode: chosenTitleArtistMode,  // #1180
         };
         if (chosenPlaylists.size > 0) {
@@ -1569,6 +1608,7 @@ export async function show(stepOverride) {
             if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
+            if (typeof s.suddenDeathMode === 'boolean') chosenSuddenDeath = s.suddenDeathMode;  // Issue #827
             if (typeof s.titleArtistMode === 'boolean') chosenTitleArtistMode = s.titleArtistMode;
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
