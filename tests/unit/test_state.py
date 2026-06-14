@@ -2545,3 +2545,63 @@ class TestSuddenDeathSuperlative:
         state.round = 4
         awards = state.calculate_superlatives()
         assert not any(a["id"] == "last_one_standing" for a in awards)
+
+
+class TestSuddenDeathWinner:
+    """Survivor is the winner + finish order reflects survival (#827 follow-ups)."""
+
+    def _game(self):
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        return state
+
+    def test_survivor_wins_despite_lower_score(self):
+        """The last one standing wins even with a lower cumulative score."""
+        state = self._game()
+        state.players["Alice"].score = 10  # survivor, fewer points
+        state.players["Bob"].score = 99
+        state.players["Bob"].eliminated = True
+        state.players["Bob"].eliminated_round = 3
+        state.players["Carol"].score = 50
+        state.players["Carol"].eliminated = True
+        state.players["Carol"].eliminated_round = 2
+        winners, top = state.compute_winners()
+        assert [w.name for w in winners] == ["Alice"]
+        assert top == 10
+
+    def test_winner_falls_back_to_score_without_elimination(self):
+        """No eliminations yet → normal top-score winner."""
+        state = self._game()
+        state.players["Alice"].score = 5
+        state.players["Bob"].score = 20
+        state.players["Carol"].score = 12
+        winners, top = state.compute_winners()
+        assert [w.name for w in winners] == ["Bob"]
+        assert top == 20
+
+    def test_final_leaderboard_orders_by_survival(self):
+        """Survivor 1st, then reverse elimination order — not by score."""
+        state = self._game()
+        state.players["Alice"].score = 10  # survivor
+        state.players["Bob"].score = 99
+        state.players["Bob"].eliminated = True
+        state.players["Bob"].eliminated_round = 2  # out earliest → last place
+        state.players["Carol"].score = 40
+        state.players["Carol"].eliminated = True
+        state.players["Carol"].eliminated_round = 3  # out latest → runner-up
+        lb = state.get_final_leaderboard()
+        assert [e["name"] for e in lb] == ["Alice", "Carol", "Bob"]
+        assert [e["rank"] for e in lb] == [1, 2, 3]
+
+    def test_final_leaderboard_score_order_when_mode_off(self):
+        """Non-Sudden-Death game keeps the score-based final order."""
+        state = make_game_state()
+        _create_fresh_game(state)  # mode off
+        for n in ("Alice", "Bob"):
+            _add_live_player(state, n)
+        state.players["Alice"].score = 3
+        state.players["Bob"].score = 30
+        lb = state.get_final_leaderboard()
+        assert [e["name"] for e in lb] == ["Bob", "Alice"]

@@ -359,6 +359,11 @@ function applySuddenDeathState(data) {
             subEl.textContent = utils.t('game.eliminatedRound', { round: round })
                 || ('Eliminated · Round ' + round);
         }
+
+        // Issue #827: eliminated players are spectators — surface the existing
+        // reaction bar during PLAYING (it normally only shows in REVEAL) so they
+        // can still cheer the active players. Piggybacks the live-reaction system.
+        showReactionBar();
     } else {
         // Restore the normal UI. Only un-hide the year-based play controls when
         // NOT in Title & Artist mode (renderTitleArtistInput owns that toggle);
