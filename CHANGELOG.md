@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added 70 tracks to Iskelmäklassikot community playlist (#1476).
+
 ## [4.1.0-rc9] - 2026-06-13
 
 ### Changed
