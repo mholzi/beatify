@@ -3,6 +3,7 @@
 All notable changes to Beatify are documented here. For detailed release notes, see the individual files in `docs/` or the [Releases page](https://github.com/mholzi/beatify/releases).
 
 ## [Unreleased]
+- Added 100 tracks to Iskelmä 🎶🇫🇮 Suomi Klassikot (suomi-iskelma-klassikot) (#1477).
 
 ## [4.1.0-rc9] - 2026-06-13
 
