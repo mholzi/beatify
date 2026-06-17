@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **New community playlist "Finnish Iskelmä Classics 🇫🇮" (295 songs).** Consolidates four overlapping Finnish iskelmä submissions (#1476/#1477/#1478/#1480) into one canonical playlist, deduplicated by ISRC (325 → 295 unique, 30 duplicates removed). Covers iskelmä/schlager from the 1950s to today (Olavi Virta, Katri Helena, Eino Grön, Tapio Rautavaara …). The broader "Suomihittiä ja Iskelmää 1970–2026" submission (#1479) is intentionally kept separate. Note: 15 songs still lack a release year and need a year backfill before they are year-mode ready.
+
 ## [4.1.0-rc9] - 2026-06-13
 
 ### Changed
