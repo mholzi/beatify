@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added 55 tracks to Vanhat Suomi-iskelmät (Finnish iskelma classics 1969–2018) (#1480).
+
 ## [4.1.0-rc9] - 2026-06-13
 
 ### Changed
