@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "finnish",
     "iskelma",
@@ -3613,7 +3613,7 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/714055460",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kF1l2qSGnrc",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3497893",
       "awards_nl": [],
@@ -5473,8 +5473,8 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/961337523",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=n7oq5U2upq8",
+      "uri_apple_music": "applemusic://track/1442543256",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=v4EJFh9I2VU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/62903830",
       "isrc": "FIAAJ8300307",
@@ -8382,7 +8382,7 @@
         "it": null
       },
       "uri_deezer": "132195124",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KNOqfDlcezE",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "alt_artists": [
         "Samuli Edelmann",
@@ -9339,7 +9339,7 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1299104106",
+      "uri_apple_music": "applemusic://track/1442543234",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8wVJ8gxvHcw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6981854",
@@ -9406,7 +9406,7 @@
         "it": "https://music.apple.com/it/album/vanha-liekki/1302170088?i=1302172466&uo=4"
       },
       "uri_deezer": "422496752",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=xCWJojTVPbY",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0TaYJCWlH-Y",
       "uri_tidal": null,
       "alt_artists": [
         "Anne Mattila",
