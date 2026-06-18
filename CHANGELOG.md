@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- Added 66 tracks to new community playlist "HITSTER - Brasil 🇧🇷" (#1495).
+
 ## [4.1.0] - 2026-06-18
 
 Stable cut of the 4.1.0 line ("Rock Solid, New Look (Now on Amazon Music)") — see [docs/release-notes-v4.1.0.md](docs/release-notes-v4.1.0.md) for the user-facing notes covering the Spotlight Stage / Podium Stage reveal redesign, the Amazon Music provider, the screen-wake / TV-reconnect / login-loop reliability pass, the storefront-aware Apple Music fix, the Title & Artist polish, party-light fixes, and the security pass (detailed per rc below).
