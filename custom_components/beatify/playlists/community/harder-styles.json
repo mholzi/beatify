@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -3030,9 +3030,9 @@
         "nl": "applemusic://track/937886274",
         "it": "applemusic://track/937886274"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1OsjKuuVgd4",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lk2SaW4TeuQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/79491870",
+      "uri_deezer": "deezer://track/591971012",
       "alt_artists": [
         "Alpha²",
         "Digital Punk"
@@ -4331,19 +4331,19 @@
       "year": 2022,
       "isrc": "QZHNA2214824",
       "uri": "spotify:track:4tZULb84s9ELGycuPWGa2k",
-      "uri_apple_music": "applemusic://track/1646936824",
+      "uri_apple_music": "applemusic://track/1646936817",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1646936824",
-        "de": "applemusic://track/1646936824",
-        "gb": "applemusic://track/1646936824",
-        "fr": "applemusic://track/1646936824",
-        "es": "applemusic://track/1646936824",
-        "nl": "applemusic://track/1646936824",
-        "it": "applemusic://track/1646936824"
+        "us": "applemusic://track/1646936817",
+        "de": "applemusic://track/1646936817",
+        "gb": "applemusic://track/1646936817",
+        "fr": "applemusic://track/1646936817",
+        "es": "applemusic://track/1646936817",
+        "nl": "applemusic://track/1646936817",
+        "it": "applemusic://track/1646936817"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8Jw41oS_scU",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/1951186317",
+      "uri_deezer": null,
       "fun_fact": "A hardstyle / hardcore track (2022).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2022).",
       "fun_fact_es": "Un tema de hardstyle / hardcore (2022).",
