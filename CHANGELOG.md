@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.0] - 2026-06-18
+
+Stable cut of the 4.1.0 line ("Rock Solid, New Look (Now on Amazon Music)") — see [docs/release-notes-v4.1.0.md](docs/release-notes-v4.1.0.md) for the user-facing notes covering the Spotlight Stage / Podium Stage reveal redesign, the Amazon Music provider, the screen-wake / TV-reconnect / login-loop reliability pass, the storefront-aware Apple Music fix, the Title & Artist polish, party-light fixes, and the security pass (detailed per rc below).
+
+### Added
+- **New community playlist "Finnish Schlager Classics 🇫🇮" (293 songs).** Consolidates several overlapping Finnish iskelmä submissions (#1476/#1477/#1478/#1480/#1481/#1482) into one canonical playlist, deduplicated by ISRC then by Spotify URI (325 → 293 unique). Covers iskelmä/schlager from Olavi Virta to today (1949–2026). All 293 songs carry a verified original release year (the final 15 missing years were backfilled from Wikipedia/Discogs/Pomus sources rather than the unreliable ISRC year code) and a verified ISRC, so the playlist is year-mode ready. Songs are sorted ascending by year.
+
 ## [4.1.0-rc9] - 2026-06-13
 
 ### Changed
