@@ -815,7 +815,9 @@ class GameState(
         cuts but already-eliminated players stay out.
         """
         self.sudden_death_mode = bool(enabled)
-        _LOGGER.info("Sudden Death mode set to %s (live toggle)", self.sudden_death_mode)
+        _LOGGER.info(
+            "Sudden Death mode set to %s (live toggle)", self.sudden_death_mode
+        )
         return self.sudden_death_mode
 
     def _schedule_reveal_advance(self) -> None:

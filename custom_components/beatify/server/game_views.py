@@ -599,14 +599,11 @@ class StartGameplayView(BeatifyAdminView):
         # host isn't stuck — surface a warning instead.
         sudden_death_warning = None
         if game_state.sudden_death_mode:
-            connected_count = sum(
-                1 for p in game_state.players.values() if p.connected
-            )
+            connected_count = sum(1 for p in game_state.players.values() if p.connected)
             if connected_count < 3:
                 game_state.set_sudden_death(False)
                 sudden_death_warning = (
-                    "Sudden Death needs at least 3 players — "
-                    "starting without it."
+                    "Sudden Death needs at least 3 players — starting without it."
                 )
 
         # Set round end callback for broadcasting

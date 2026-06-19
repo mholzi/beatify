@@ -148,9 +148,7 @@ class StateSerializationMixin:
         # ended without resolving (e.g. force-ended early).
         if self.sudden_death_mode:
             survivors = [p for p in self.players.values() if not p.eliminated]
-            if len(survivors) == 1 and any(
-                p.eliminated for p in self.players.values()
-            ):
+            if len(survivors) == 1 and any(p.eliminated for p in self.players.values()):
                 return survivors, survivors[0].score
         top_score = max(p.score for p in self.players.values())
         winners = [p for p in self.players.values() if p.score == top_score]
