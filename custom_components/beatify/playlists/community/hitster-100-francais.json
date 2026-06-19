@@ -11,7 +11,7 @@
   "language": "fr",
   "author": "Beatify Community",
   "added_date": "2026-06-19",
-  "description": "100 French-language hits across six decades — chanson, pop, rap and Eurodance, from Jacques Dutronc and Notre-Dame de Paris to Aya Nakamura and Bosh. Sourced from the community 'HITSTER - 100% Français' request (#1496). Years and ISRCs enriched via the Deezer API; cross-provider URIs (Apple Music / YouTube Music / Tidal) and fun-facts pending a follow-up enrichment pass.",
+  "description": "100 French-language hits across six decades — chanson, pop, rap and Eurodance, from Jacques Dutronc and Notre-Dame de Paris to Aya Nakamura and Bosh. Sourced from the community 'HITSTER - 100% Français' request (#1496). Years and ISRCs enriched via the Deezer API; cross-provider URIs (Apple Music / YouTube Music / Tidal) pending a follow-up enrichment pass.",
   "songs": [
     {
       "artist": "Amel Bent",
@@ -33,11 +33,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1386410842",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Amel Bent, a 2004 'Nouvelle Star' finalist, became one of France's most enduring R&B-pop voices.",
+      "fun_fact_de": "Amel Bent, Finalistin der 'Nouvelle Star' 2004, wurde zu einer der beständigsten R&B-Pop-Stimmen Frankreichs.",
+      "fun_fact_es": "Amel Bent, finalista de 'Nouvelle Star' en 2004, se volvió una de las voces R&B-pop más duraderas de Francia.",
+      "fun_fact_fr": "Amel Bent, finaliste de la 'Nouvelle Star' 2004, est devenue l'une des voix R&B-pop les plus durables de France.",
+      "fun_fact_nl": "Amel Bent, finaliste van 'Nouvelle Star' in 2004, werd een van Frankrijks meest duurzame R&B-popstemmen."
     },
     {
       "artist": "Nèg' Marrons",
@@ -59,11 +59,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/895161",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Nèg' Marrons emerged from the 1990s French ragga-rap scene around the Secteur Ä collective.",
+      "fun_fact_de": "Nèg' Marrons entstammten der französischen Ragga-Rap-Szene der 1990er rund um das Kollektiv Secteur Ä.",
+      "fun_fact_es": "Nèg' Marrons surgieron de la escena francesa de ragga-rap de los años 90 en torno al colectivo Secteur Ä.",
+      "fun_fact_fr": "Les Nèg' Marrons sont issus de la scène ragga-rap française des années 1990 autour du collectif Secteur Ä.",
+      "fun_fact_nl": "Nèg' Marrons kwamen voort uit de Franse ragga-rapscene van de jaren 90 rond het collectief Secteur Ä."
     },
     {
       "artist": "Ilona Mitrecey",
@@ -85,11 +85,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2728101101",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Ilona Mitrecey was only 11 when 'Un monde parfait' topped the French chart in 2005.",
+      "fun_fact_de": "Ilona Mitrecey war erst 11, als 'Un monde parfait' 2005 die französischen Charts anführte.",
+      "fun_fact_es": "Ilona Mitrecey tenía solo 11 años cuando 'Un monde parfait' encabezó las listas francesas en 2005.",
+      "fun_fact_fr": "Ilona Mitrecey n'avait que 11 ans quand 'Un monde parfait' a dominé les charts français en 2005.",
+      "fun_fact_nl": "Ilona Mitrecey was pas 11 toen 'Un monde parfait' in 2005 de Franse hitlijst aanvoerde."
     },
     {
       "artist": "Bosh",
@@ -111,11 +111,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/943928002",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Bosh's 'Djomb' was one of the biggest French rap hits of 2020, its 'bien ou quoi' hook going viral.",
+      "fun_fact_de": "Boshs 'Djomb' war einer der größten französischen Rap-Hits 2020, der 'bien ou quoi'-Hook ging viral.",
+      "fun_fact_es": "'Djomb' de Bosh fue uno de los mayores éxitos del rap francés de 2020, con su gancho 'bien ou quoi' viral.",
+      "fun_fact_fr": "'Djomb' de Bosh fut l'un des plus gros tubes du rap français de 2020, son refrain 'bien ou quoi' devenu viral.",
+      "fun_fact_nl": "Bosh' 'Djomb' was een van de grootste Franse raphits van 2020, met de virale 'bien ou quoi'-hook."
     },
     {
       "artist": "Jacques Dutronc",
@@ -137,11 +137,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/539702",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Jacques Dutronc's 1966 'Les cactus' is a sardonic slice of French 1960s yéyé-pop.",
+      "fun_fact_de": "Jacques Dutroncs 'Les cactus' (1966) ist ein süffisantes Stück französischer Yéyé-Pop der 60er.",
+      "fun_fact_es": "'Les cactus' (1966) de Jacques Dutronc es una pieza sardónica del yéyé-pop francés de los 60.",
+      "fun_fact_fr": "'Les cactus' (1966) de Jacques Dutronc est un morceau narquois du yéyé-pop français des sixties.",
+      "fun_fact_nl": "'Les cactus' (1966) van Jacques Dutronc is een spotlustig stukje Franse yéyé-pop uit de sixties."
     },
     {
       "artist": "Nino Ferrer",
@@ -163,11 +163,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/823182022",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Nino Ferrer wrote 'La Rua Madureira' inspired by his childhood years in Brazil.",
+      "fun_fact_de": "Nino Ferrer schrieb 'La Rua Madureira' inspiriert von seinen Kindheitsjahren in Brasilien.",
+      "fun_fact_es": "Nino Ferrer escribió 'La Rua Madureira' inspirado en su infancia en Brasil.",
+      "fun_fact_fr": "Nino Ferrer a écrit 'La Rua Madureira' inspiré par son enfance au Brésil.",
+      "fun_fact_nl": "Nino Ferrer schreef 'La Rua Madureira' geïnspireerd door zijn jeugd in Brazilië."
     },
     {
       "artist": "La Compagnie Créole",
@@ -189,11 +189,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/13025822",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "La Compagnie Créole turned Caribbean zouk-pop into French party staples in the 1980s.",
+      "fun_fact_de": "La Compagnie Créole machte karibischen Zouk-Pop in den 80ern zu französischen Party-Klassikern.",
+      "fun_fact_es": "La Compagnie Créole convirtió el zouk-pop caribeño en clásicos de fiesta franceses en los 80.",
+      "fun_fact_fr": "La Compagnie Créole a fait du zouk-pop antillais des classiques de fête français dans les années 80.",
+      "fun_fact_nl": "La Compagnie Créole maakte van Caribische zouk-pop in de jaren 80 Franse feestklassiekers."
     },
     {
       "artist": "Alliage",
@@ -215,11 +215,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3986529121",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Alliage was a late-1990s French boy band featuring a young Steaphan/Steevy-era teen-pop sound.",
+      "fun_fact_de": "Alliage war eine französische Boyband der späten 1990er im Teen-Pop-Sound.",
+      "fun_fact_es": "Alliage fue una boy band francesa de finales de los 90 con sonido teen-pop.",
+      "fun_fact_fr": "Alliage était un boys band français de la fin des années 1990 au son teen-pop.",
+      "fun_fact_nl": "Alliage was een Franse boyband uit de late jaren 90 met een teen-popgeluid."
     },
     {
       "artist": "Teri Moïse",
@@ -241,11 +241,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/886919302",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Teri Moïse's 'Je serai là' was a gentle 1996 hit from the Los Angeles-born French singer.",
+      "fun_fact_de": "Teri Moïses 'Je serai là' war ein sanfter Hit 1996 der in Los Angeles geborenen Sängerin.",
+      "fun_fact_es": "'Je serai là' de Teri Moïse fue un suave éxito de 1996 de la cantante nacida en Los Ángeles.",
+      "fun_fact_fr": "'Je serai là' de Teri Moïse fut un doux succès de 1996 de la chanteuse née à Los Angeles.",
+      "fun_fact_nl": "'Je serai là' van Teri Moïse was een zachte hit uit 1996 van de in Los Angeles geboren zangeres."
     },
     {
       "artist": "PZK",
@@ -267,11 +267,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4306044",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "PZK was a French teen-pop duo that scored hits in the late 2000s.",
+      "fun_fact_de": "PZK war ein französisches Teen-Pop-Duo mit Hits Ende der 2000er.",
+      "fun_fact_es": "PZK fue un dúo teen-pop francés con éxitos a finales de los 2000.",
+      "fun_fact_fr": "PZK était un duo teen-pop français à succès à la fin des années 2000.",
+      "fun_fact_nl": "PZK was een Frans teen-popduo met hits eind jaren 2000."
     },
     {
       "artist": "Keen' V",
@@ -293,11 +293,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/126846197",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Keen'V is a Normandy-born singer who built huge streaming numbers with feel-good pop-ragga.",
+      "fun_fact_de": "Keen'V, geboren in der Normandie, sammelte mit Gute-Laune-Pop-Ragga riesige Streaming-Zahlen.",
+      "fun_fact_es": "Keen'V, nacido en Normandía, logró enormes cifras de streaming con su pop-ragga alegre.",
+      "fun_fact_fr": "Keen'V, originaire de Normandie, a accumulé d'énormes chiffres de streaming avec son pop-ragga bon enfant.",
+      "fun_fact_nl": "Keen'V, geboren in Normandië, behaalde enorme streamingcijfers met zijn vrolijke pop-ragga."
     },
     {
       "artist": "Bruno Pelletier",
@@ -319,11 +319,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/226740",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Le temps des cathédrales' opens the 1998 musical 'Notre-Dame de Paris', a global stage phenomenon.",
+      "fun_fact_de": "'Le temps des cathédrales' eröffnet das Musical 'Notre-Dame de Paris' (1998), ein Welterfolg.",
+      "fun_fact_es": "'Le temps des cathédrales' abre el musical 'Notre-Dame de Paris' (1998), un fenómeno mundial.",
+      "fun_fact_fr": "'Le temps des cathédrales' ouvre la comédie musicale 'Notre-Dame de Paris' (1998), un phénomène mondial.",
+      "fun_fact_nl": "'Le temps des cathédrales' opent de musical 'Notre-Dame de Paris' (1998), een wereldwijd fenomeen."
     },
     {
       "artist": "Indochine",
@@ -345,11 +345,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/870090",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Indochine's 'J'ai demandé à la lune' (2002) was co-written with Mickael Furnon of Mickey 3D.",
+      "fun_fact_de": "Indochines 'J'ai demandé à la lune' (2002) entstand mit Mickael Furnon von Mickey 3D.",
+      "fun_fact_es": "'J'ai demandé à la lune' (2002) de Indochine se coescribió con Mickael Furnon de Mickey 3D.",
+      "fun_fact_fr": "'J'ai demandé à la lune' (2002) d'Indochine a été coécrit avec Mickael Furnon de Mickey 3D.",
+      "fun_fact_nl": "'J'ai demandé à la lune' (2002) van Indochine werd mede geschreven door Mickael Furnon van Mickey 3D."
     },
     {
       "artist": "Carla Bruni",
@@ -371,11 +371,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/78749541",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Carla Bruni's 'Quelqu'un m'a dit' (2002) launched the model's parallel career as a chanson singer.",
+      "fun_fact_de": "Carla Brunis 'Quelqu'un m'a dit' (2002) startete die Chanson-Karriere des Models.",
+      "fun_fact_es": "'Quelqu'un m'a dit' (2002) lanzó la carrera de Carla Bruni como cantante de chanson.",
+      "fun_fact_fr": "'Quelqu'un m'a dit' (2002) a lancé la carrière de chanteuse de Carla Bruni.",
+      "fun_fact_nl": "'Quelqu'un m'a dit' (2002) lanceerde Carla Bruni's carrière als chansonzangeres."
     },
     {
       "artist": "Céline Dion",
@@ -397,11 +397,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4762933",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Pour que tu m'aimes encore' was written by Jean-Jacques Goldman and became Céline Dion's French signature.",
+      "fun_fact_de": "'Pour que tu m'aimes encore', geschrieben von Jean-Jacques Goldman, wurde Céline Dions französisches Markenzeichen.",
+      "fun_fact_es": "'Pour que tu m'aimes encore', escrita por Jean-Jacques Goldman, se volvió el sello francés de Céline Dion.",
+      "fun_fact_fr": "'Pour que tu m'aimes encore', écrit par Jean-Jacques Goldman, est devenu la signature française de Céline Dion.",
+      "fun_fact_nl": "'Pour que tu m'aimes encore', geschreven door Jean-Jacques Goldman, werd Céline Dions Franse handtekening."
     },
     {
       "artist": "TRUST",
@@ -423,11 +423,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/606908",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "TRUST's 'Antisocial' (1980) is a landmark of French hard rock, later covered by Anthrax.",
+      "fun_fact_de": "TRUSTs 'Antisocial' (1980) ist ein Meilenstein des französischen Hardrock, später von Anthrax gecovert.",
+      "fun_fact_es": "'Antisocial' (1980) de TRUST es un hito del hard rock francés, luego versionado por Anthrax.",
+      "fun_fact_fr": "'Antisocial' (1980) de TRUST est un jalon du hard rock français, repris plus tard par Anthrax.",
+      "fun_fact_nl": "'Antisocial' (1980) van TRUST is een mijlpaal van de Franse hardrock, later gecoverd door Anthrax."
     },
     {
       "artist": "SNIPER",
@@ -449,11 +449,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/15044236",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Sniper were among the most prominent French rap groups of the 2000s.",
+      "fun_fact_de": "Sniper gehörten zu den prägendsten französischen Rap-Gruppen der 2000er.",
+      "fun_fact_es": "Sniper fue uno de los grupos de rap franceses más destacados de los 2000.",
+      "fun_fact_fr": "Sniper a été l'un des groupes de rap français les plus marquants des années 2000.",
+      "fun_fact_nl": "Sniper was een van de meest prominente Franse rapgroepen van de jaren 2000."
     },
     {
       "artist": "Lââm",
@@ -475,11 +475,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1495554532",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Lââm's 'Chanter' was a major 1998 French-pop hit built on a soaring chorus.",
+      "fun_fact_de": "Lââms 'Chanter' war 1998 ein großer französischer Pop-Hit mit mächtigem Refrain.",
+      "fun_fact_es": "'Chanter' de Lââm fue un gran éxito del pop francés de 1998 con un estribillo elevado.",
+      "fun_fact_fr": "'Chanter' de Lââm fut un grand tube de la pop française de 1998 au refrain envolé.",
+      "fun_fact_nl": "'Chanter' van Lââm was een grote Franse pophit uit 1998 met een meeslepend refrein."
     },
     {
       "artist": "Jean Ferrat",
@@ -501,11 +501,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6683159",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Jean Ferrat's 'La montagne' (1964) is a beloved ode to rural France and its disappearing way of life.",
+      "fun_fact_de": "Jean Ferrats 'La montagne' (1964) ist eine geliebte Hymne an das ländliche, verschwindende Frankreich.",
+      "fun_fact_es": "'La montagne' (1964) de Jean Ferrat es una querida oda a la Francia rural que desaparece.",
+      "fun_fact_fr": "'La montagne' (1964) de Jean Ferrat est une ode aimée à la France rurale et son monde qui disparaît.",
+      "fun_fact_nl": "'La montagne' (1964) van Jean Ferrat is een geliefde ode aan het verdwijnende landelijke Frankrijk."
     },
     {
       "artist": "Kofs, Soso Maness, Elams, Jul, SCH, Naps, Solda, Houari, 13 Organisé",
@@ -527,11 +527,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1049999812",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Bande organisée' united Marseille rappers in 2020 and became a runaway national phenomenon.",
+      "fun_fact_de": "'Bande organisée' vereinte 2020 Marseiller Rapper und wurde ein landesweites Phänomen.",
+      "fun_fact_es": "'Bande organisée' unió a raperos de Marsella en 2020 y se volvió un fenómeno nacional.",
+      "fun_fact_fr": "'Bande organisée' a réuni les rappeurs marseillais en 2020 et est devenu un phénomène national.",
+      "fun_fact_nl": "'Bande organisée' verenigde in 2020 rappers uit Marseille en werd een nationaal fenomeen."
     },
     {
       "artist": "Gilbert Bécaud",
@@ -553,11 +553,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/14406696",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Gilbert Bécaud's 'Et maintenant' (1961) became the worldwide standard 'What Now My Love'.",
+      "fun_fact_de": "Gilbert Bécauds 'Et maintenant' (1961) wurde als 'What Now My Love' zum Welt-Standard.",
+      "fun_fact_es": "'Et maintenant' (1961) de Gilbert Bécaud se volvió el estándar mundial 'What Now My Love'.",
+      "fun_fact_fr": "'Et maintenant' (1961) de Gilbert Bécaud est devenu le standard mondial 'What Now My Love'.",
+      "fun_fact_nl": "'Et maintenant' (1961) van Gilbert Bécaud werd de wereldstandard 'What Now My Love'."
     },
     {
       "artist": "Yves Montand",
@@ -579,11 +579,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2296224",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Yves Montand turned 'À bicyclette' into one of the tenderest chansons about youth and friendship.",
+      "fun_fact_de": "Yves Montand machte 'À bicyclette' zu einem der zärtlichsten Chansons über Jugend und Freundschaft.",
+      "fun_fact_es": "Yves Montand convirtió 'À bicyclette' en una de las chansons más tiernas sobre juventud y amistad.",
+      "fun_fact_fr": "Yves Montand a fait d'À bicyclette l'une des chansons les plus tendres sur la jeunesse et l'amitié.",
+      "fun_fact_nl": "Yves Montand maakte van 'À bicyclette' een van de tederste chansons over jeugd en vriendschap."
     },
     {
       "artist": "Yseult",
@@ -605,11 +605,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/770961742",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Yseult's stripped-back 'Corps' won her the 2020 Victoire de la musique breakthrough award.",
+      "fun_fact_de": "Yseults reduziertes 'Corps' brachte ihr 2020 den Victoire-de-la-musique-Durchbruchspreis.",
+      "fun_fact_es": "'Corps', muy desnudo, le dio a Yseult el premio revelación de los Victoires de la musique 2020.",
+      "fun_fact_fr": "'Corps', très épuré, a valu à Yseult la révélation aux Victoires de la musique 2020.",
+      "fun_fact_nl": "Het sobere 'Corps' leverde Yseult in 2020 de doorbraakprijs van de Victoires de la musique op."
     },
     {
       "artist": "Maxime Le Forestier",
@@ -631,11 +631,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2439440",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Maxime Le Forestier's 'San Francisco' (1972) immortalised a real blue house in the California city.",
+      "fun_fact_de": "Maxime Le Forestiers 'San Francisco' (1972) verewigte ein echtes blaues Haus in Kalifornien.",
+      "fun_fact_es": "'San Francisco' (1972) de Maxime Le Forestier inmortalizó una casa azul real en California.",
+      "fun_fact_fr": "'San Francisco' (1972) de Maxime Le Forestier a immortalisé une vraie maison bleue en Californie.",
+      "fun_fact_nl": "'San Francisco' (1972) van Maxime Le Forestier vereeuwigde een echt blauw huis in Californië."
     },
     {
       "artist": "Christophe Rippert",
@@ -657,11 +657,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6534185",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Christophe Rippert is associated with light French summer-pop of the 'génération Club Dorothée' era.",
+      "fun_fact_de": "Christophe Rippert steht für leichte französische Sommer-Pop der 'Club Dorothée'-Ära.",
+      "fun_fact_es": "Christophe Rippert se asocia al ligero pop veraniego francés de la era 'Club Dorothée'.",
+      "fun_fact_fr": "Christophe Rippert est associé à la pop estivale légère de la génération 'Club Dorothée'.",
+      "fun_fact_nl": "Christophe Rippert wordt geassocieerd met lichte Franse zomerpop uit de 'Club Dorothée'-tijd."
     },
     {
       "artist": "Francky Vincent",
@@ -683,11 +683,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/915362462",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Francky Vincent is the king of cheeky French Caribbean party songs full of double-entendre.",
+      "fun_fact_de": "Francky Vincent ist der König frecher französisch-karibischer Party-Songs voller Zweideutigkeit.",
+      "fun_fact_es": "Francky Vincent es el rey de los pícaros temas de fiesta francocaribeños llenos de doble sentido.",
+      "fun_fact_fr": "Francky Vincent est le roi des chansons de fête antillaises coquines pleines de double sens.",
+      "fun_fact_nl": "Francky Vincent is de koning van ondeugende Frans-Caribische feestliedjes vol dubbelzinnigheid."
     },
     {
       "artist": "Nino Ferrer",
@@ -709,11 +709,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2628773",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Mirza' (1965) was Nino Ferrer's breezy R&B-flavoured debut hit, named after a dog.",
+      "fun_fact_de": "'Mirza' (1965) war Nino Ferrers lockerer R&B-Debüthit, benannt nach einem Hund.",
+      "fun_fact_es": "'Mirza' (1965) fue el desenfadado debut R&B de Nino Ferrer, nombrado por un perro.",
+      "fun_fact_fr": "'Mirza' (1965) fut le premier succès R&B insouciant de Nino Ferrer, nommé d'après un chien.",
+      "fun_fact_nl": "'Mirza' (1965) was Nino Ferrers luchtige R&B-debuuthit, vernoemd naar een hond."
     },
     {
       "artist": "Le Roi Soleil, Emmanuel Moire, Anne-Laure Girbal",
@@ -735,11 +735,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/778351",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Je fais de toi mon essentiel' comes from the hit musical 'Le Roi Soleil' (2005).",
+      "fun_fact_de": "'Je fais de toi mon essentiel' stammt aus dem Erfolgsmusical 'Le Roi Soleil' (2005).",
+      "fun_fact_es": "'Je fais de toi mon essentiel' proviene del exitoso musical 'Le Roi Soleil' (2005).",
+      "fun_fact_fr": "'Je fais de toi mon essentiel' est tiré de la comédie musicale à succès 'Le Roi Soleil' (2005).",
+      "fun_fact_nl": "'Je fais de toi mon essentiel' komt uit de succesmusical 'Le Roi Soleil' (2005)."
     },
     {
       "artist": "Vladimir Cosma, Guy Marchand",
@@ -761,11 +761,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/93115076",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Destinée' is Guy Marchand's signature, with music by film composer Vladimir Cosma.",
+      "fun_fact_de": "'Destinée' ist Guy Marchands Markenzeichen, mit Musik von Filmkomponist Vladimir Cosma.",
+      "fun_fact_es": "'Destinée' es el sello de Guy Marchand, con música del compositor de cine Vladimir Cosma.",
+      "fun_fact_fr": "'Destinée' est la signature de Guy Marchand, sur une musique du compositeur Vladimir Cosma.",
+      "fun_fact_nl": "'Destinée' is het handelsmerk van Guy Marchand, met muziek van filmcomponist Vladimir Cosma."
     },
     {
       "artist": "Jena Lee",
@@ -787,11 +787,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2591053472",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Jena Lee was a late-2000s French pop-R&B star known for emotional, autotuned ballads.",
+      "fun_fact_de": "Jena Lee war Ende der 2000er ein französischer Pop-R&B-Star emotionaler Autotune-Balladen.",
+      "fun_fact_es": "Jena Lee fue una estrella del pop-R&B francés de finales de los 2000, de baladas con autotune.",
+      "fun_fact_fr": "Jena Lee fut une star du pop-R&B français de la fin des années 2000, aux ballades autotunées.",
+      "fun_fact_nl": "Jena Lee was eind jaren 2000 een Franse pop-R&B-ster van emotionele autotune-ballads."
     },
     {
       "artist": "Laurent Voulzy",
@@ -813,11 +813,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/632222",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Laurent Voulzy's 'Rockollection' is a medley paying homage to the rock'n'roll of his youth.",
+      "fun_fact_de": "Laurent Voulzys 'Rockollection' ist ein Medley als Hommage an den Rock'n'Roll seiner Jugend.",
+      "fun_fact_es": "'Rockollection' de Laurent Voulzy es un popurrí en homenaje al rock'n'roll de su juventud.",
+      "fun_fact_fr": "'Rockollection' de Laurent Voulzy est un medley hommage au rock'n'roll de sa jeunesse.",
+      "fun_fact_nl": "'Rockollection' van Laurent Voulzy is een medley als eerbetoon aan de rock-'n-roll van zijn jeugd."
     },
     {
       "artist": "KeBlack",
@@ -839,11 +839,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/140744901",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "KeBlack is a French-Congolese singer central to the late-2010s afro-pop wave.",
+      "fun_fact_de": "KeBlack ist ein französisch-kongolesischer Sänger der Afro-Pop-Welle der späten 2010er.",
+      "fun_fact_es": "KeBlack es un cantante franco-congoleño clave en la ola afro-pop de finales de los 2010.",
+      "fun_fact_fr": "KeBlack est un chanteur franco-congolais central de la vague afro-pop de la fin des années 2010.",
+      "fun_fact_nl": "KeBlack is een Frans-Congolese zanger, centraal in de afro-popgolf van de late jaren 2010."
     },
     {
       "artist": "Tribal King",
@@ -865,11 +865,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/561630982",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Tribal King's 'Façon Sex' (2005) was a club-pop hit blending R&B and dance.",
+      "fun_fact_de": "Tribal Kings 'Façon Sex' (2005) war ein Club-Pop-Hit zwischen R&B und Dance.",
+      "fun_fact_es": "'Façon Sex' (2005) de Tribal King fue un éxito de club-pop entre R&B y dance.",
+      "fun_fact_fr": "'Façon Sex' (2005) de Tribal King fut un tube club-pop entre R&B et dance.",
+      "fun_fact_nl": "'Façon Sex' (2005) van Tribal King was een club-pophit tussen R&B en dance."
     },
     {
       "artist": "L'Algérino",
@@ -891,11 +891,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7509647",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "L'Algérino is a Marseille rapper of Algerian descent with crossover pop-rap hits.",
+      "fun_fact_de": "L'Algérino ist ein Marseiller Rapper algerischer Herkunft mit Crossover-Pop-Rap-Hits.",
+      "fun_fact_es": "L'Algérino es un rapero de Marsella de origen argelino con éxitos de pop-rap cruzado.",
+      "fun_fact_fr": "L'Algérino est un rappeur marseillais d'origine algérienne aux tubes pop-rap grand public.",
+      "fun_fact_nl": "L'Algérino is een rapper uit Marseille van Algerijnse afkomst met crossover pop-raphits."
     },
     {
       "artist": "1995",
@@ -917,11 +917,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/16488723",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "1995 was an influential French boom-bap rap collective featuring Nekfeu and Alpha Wann.",
+      "fun_fact_de": "1995 war ein einflussreiches französisches Boom-Bap-Rap-Kollektiv mit Nekfeu und Alpha Wann.",
+      "fun_fact_es": "1995 fue un influyente colectivo francés de boom-bap con Nekfeu y Alpha Wann.",
+      "fun_fact_fr": "1995 était un collectif de rap boom-bap français influent réunissant Nekfeu et Alpha Wann.",
+      "fun_fact_nl": "1995 was een invloedrijk Frans boom-bap-rapcollectief met Nekfeu en Alpha Wann."
     },
     {
       "artist": "Renan Luce",
@@ -943,11 +943,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/371636691",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Renan Luce's witty 'Les voisines' won over France with its literate, playful chanson style.",
+      "fun_fact_de": "Renan Luces witziges 'Les voisines' eroberte Frankreich mit verspieltem Chanson-Stil.",
+      "fun_fact_es": "El ingenioso 'Les voisines' de Renan Luce conquistó Francia con su estilo chanson juguetón.",
+      "fun_fact_fr": "Le malicieux 'Les voisines' de Renan Luce a conquis la France par son style chanson enjoué.",
+      "fun_fact_nl": "Het gevatte 'Les voisines' van Renan Luce veroverde Frankrijk met zijn speelse chansonstijl."
     },
     {
       "artist": "Moos",
@@ -969,11 +969,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2424143",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Moos's 'Au nom de la rose' was a 1990s French pop hit with a folk-pop lilt.",
+      "fun_fact_de": "Moos' 'Au nom de la rose' war ein französischer Pop-Hit der 1990er mit Folk-Anklang.",
+      "fun_fact_es": "'Au nom de la rose' de Moos fue un éxito pop francés de los 90 con aire folk.",
+      "fun_fact_fr": "'Au nom de la rose' de Moos fut un tube pop français des années 90 aux accents folk.",
+      "fun_fact_nl": "'Au nom de la rose' van Moos was een Franse pophit uit de jaren 90 met een folktoets."
     },
     {
       "artist": "Superbus",
@@ -995,11 +995,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3198384621",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Superbus, led by Jennifer Ayache, were one of France's biggest 2000s pop-rock bands.",
+      "fun_fact_de": "Superbus um Jennifer Ayache waren eine der größten französischen Pop-Rock-Bands der 2000er.",
+      "fun_fact_es": "Superbus, con Jennifer Ayache, fueron una de las grandes bandas de pop-rock francesas de los 2000.",
+      "fun_fact_fr": "Superbus, mené par Jennifer Ayache, fut l'un des plus grands groupes pop-rock français des années 2000.",
+      "fun_fact_nl": "Superbus, met Jennifer Ayache, was een van de grootste Franse pop-rockbands van de jaren 2000."
     },
     {
       "artist": "Jean-Louis Aubert",
@@ -1021,11 +1021,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3088341",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Jean-Louis Aubert co-founded the legendary rock band Téléphone before his solo career.",
+      "fun_fact_de": "Jean-Louis Aubert war Mitgründer der legendären Rockband Téléphone vor seiner Solokarriere.",
+      "fun_fact_es": "Jean-Louis Aubert cofundó la legendaria banda de rock Téléphone antes de su carrera en solitario.",
+      "fun_fact_fr": "Jean-Louis Aubert a cofondé le légendaire groupe Téléphone avant sa carrière solo.",
+      "fun_fact_nl": "Jean-Louis Aubert was medeoprichter van de legendarische rockband Téléphone vóór zijn solocarrière."
     },
     {
       "artist": "Françoise Hardy",
@@ -1047,11 +1047,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3466724961",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Le temps de l'amour' is forever tied to Françoise Hardy and the early-1960s yéyé era.",
+      "fun_fact_de": "'Le temps de l'amour' ist für immer mit Françoise Hardy und der frühen Yéyé-Ära verbunden.",
+      "fun_fact_es": "'Le temps de l'amour' está ligado para siempre a Françoise Hardy y la era yéyé temprana.",
+      "fun_fact_fr": "'Le temps de l'amour' reste à jamais lié à Françoise Hardy et au début de l'ère yéyé.",
+      "fun_fact_nl": "'Le temps de l'amour' is voorgoed verbonden met Françoise Hardy en het vroege yéyé-tijdperk."
     },
     {
       "artist": "KOD",
@@ -1073,11 +1073,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/367753611",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "KOD's 'Chacun sa route' featured on the 1994 soundtrack of the film 'Un indien dans la ville'.",
+      "fun_fact_de": "KODs 'Chacun sa route' war 1994 auf dem Soundtrack von 'Un indien dans la ville'.",
+      "fun_fact_es": "'Chacun sa route' de KOD figuró en la banda sonora de 1994 de 'Un indien dans la ville'.",
+      "fun_fact_fr": "'Chacun sa route' de KOD figurait sur la bande originale de 1994 d'Un indien dans la ville.",
+      "fun_fact_nl": "'Chacun sa route' van KOD stond op de soundtrack uit 1994 van 'Un indien dans la ville'."
     },
     {
       "artist": "Axelle Red",
@@ -1099,11 +1099,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/811201102",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Belgian singer Axelle Red is one of francophone pop's most successful soul-pop voices.",
+      "fun_fact_de": "Die belgische Sängerin Axelle Red ist eine der erfolgreichsten Soul-Pop-Stimmen der Frankophonie.",
+      "fun_fact_es": "La cantante belga Axelle Red es una de las voces soul-pop más exitosas de la francofonía.",
+      "fun_fact_fr": "La chanteuse belge Axelle Red est l'une des voix soul-pop les plus à succès de la francophonie.",
+      "fun_fact_nl": "De Belgische zangeres Axelle Red is een van de succesvolste soul-popstemmen van de francofonie."
     },
     {
       "artist": "La Caution",
@@ -1125,11 +1125,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/94400936",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "La Caution's 'Thé à la menthe' featured in the chase scene of the film 'Ocean's Twelve'.",
+      "fun_fact_de": "La Cautions 'Thé à la menthe' lief in der Verfolgungsjagd des Films 'Ocean's Twelve'.",
+      "fun_fact_es": "'Thé à la menthe' de La Caution apareció en la escena de persecución de 'Ocean's Twelve'.",
+      "fun_fact_fr": "'Thé à la menthe' de La Caution figure dans la scène de poursuite du film 'Ocean's Twelve'.",
+      "fun_fact_nl": "'Thé à la menthe' van La Caution kwam voor in de achtervolgingsscène van 'Ocean's Twelve'."
     },
     {
       "artist": "Léopold Nord & Vous",
@@ -1151,11 +1151,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2417379575",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Léopold Nord & Vous's 'C'est l'amour' was a cheeky 1987 Belgian-French pop hit.",
+      "fun_fact_de": "Léopold Nord & Vous' 'C'est l'amour' war ein frecher belgisch-französischer Pop-Hit von 1987.",
+      "fun_fact_es": "'C'est l'amour' de Léopold Nord & Vous fue un pícaro éxito pop belga-francés de 1987.",
+      "fun_fact_fr": "'C'est l'amour' de Léopold Nord & Vous fut un tube pop belgo-français malicieux de 1987.",
+      "fun_fact_nl": "'C'est l'amour' van Léopold Nord & Vous was een ondeugende Belgisch-Franse pophit uit 1987."
     },
     {
       "artist": "Polo & Pan",
@@ -1177,11 +1177,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/350055571",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Polo & Pan craft sun-dappled French electronic pop; 'Canopée' became their breakout.",
+      "fun_fact_de": "Polo & Pan schaffen sonnigen französischen Electronic-Pop; 'Canopée' war ihr Durchbruch.",
+      "fun_fact_es": "Polo & Pan crean un pop electrónico francés soleado; 'Canopée' fue su gran despegue.",
+      "fun_fact_fr": "Polo & Pan créent une pop électronique française ensoleillée ; 'Canopée' fut leur révélation.",
+      "fun_fact_nl": "Polo & Pan maken zonnige Franse electronicpop; 'Canopée' werd hun doorbraak."
     },
     {
       "artist": "Alain Bashung",
@@ -1203,11 +1203,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2238913",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Alain Bashung's 'Vertige de l'amour' (1981) is a cornerstone of arty French rock.",
+      "fun_fact_de": "Alain Bashungs 'Vertige de l'amour' (1981) ist ein Eckpfeiler des kunstvollen französischen Rock.",
+      "fun_fact_es": "'Vertige de l'amour' (1981) de Alain Bashung es una piedra angular del rock francés artístico.",
+      "fun_fact_fr": "'Vertige de l'amour' (1981) d'Alain Bashung est une pierre angulaire du rock français arty.",
+      "fun_fact_nl": "'Vertige de l'amour' (1981) van Alain Bashung is een hoeksteen van de artistieke Franse rock."
     },
     {
       "artist": "Colonel Reyel",
@@ -1229,11 +1229,11 @@
       "uri_tidal": null,
       "uri_deezer": null,
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Colonel Reyel rode a wave of French pop-ragga success in the early 2010s.",
+      "fun_fact_de": "Colonel Reyel ritt Anfang der 2010er eine Welle französischen Pop-Raggas zum Erfolg.",
+      "fun_fact_es": "Colonel Reyel cabalgó una ola de éxito del pop-ragga francés a principios de los 2010.",
+      "fun_fact_fr": "Colonel Reyel a surfé sur une vague de succès du pop-ragga français au début des années 2010.",
+      "fun_fact_nl": "Colonel Reyel surfte begin jaren 2010 op een golf van Frans pop-raggasucces."
     },
     {
       "artist": "Mecano",
@@ -1255,11 +1255,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3786029842",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Mecano's 'Une femme avec une femme' was a Spanish band's francophone-era hit on same-sex love.",
+      "fun_fact_de": "Mecanos 'Une femme avec une femme' war der frankophone Hit der spanischen Band über gleichgeschlechtliche Liebe.",
+      "fun_fact_es": "'Une femme avec une femme' de Mecano fue el éxito en francés de la banda española sobre el amor entre mujeres.",
+      "fun_fact_fr": "'Une femme avec une femme' de Mecano fut le tube francophone du groupe espagnol sur l'amour entre femmes.",
+      "fun_fact_nl": "'Une femme avec une femme' van Mecano was de Franstalige hit van de Spaanse band over liefde tussen vrouwen."
     },
     {
       "artist": "Patrick Bruel",
@@ -1281,11 +1281,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/5403417",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Patrick Bruel's 'Au café des délices' (1999) nods to his Tunisian roots and childhood.",
+      "fun_fact_de": "Patrick Bruels 'Au café des délices' (1999) verweist auf seine tunesischen Wurzeln und Kindheit.",
+      "fun_fact_es": "'Au café des délices' (1999) de Patrick Bruel evoca sus raíces tunecinas y su infancia.",
+      "fun_fact_fr": "'Au café des délices' (1999) de Patrick Bruel évoque ses racines tunisiennes et son enfance.",
+      "fun_fact_nl": "'Au café des délices' (1999) van Patrick Bruel verwijst naar zijn Tunesische wortels en jeugd."
     },
     {
       "artist": "Ottawan",
@@ -1307,11 +1307,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1436238632",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Ottawan, of 'D.I.S.C.O.' fame, were a French disco act masterminded by the Daniel Vangarde team.",
+      "fun_fact_de": "Ottawan, bekannt für 'D.I.S.C.O.', war ein französisches Disco-Projekt des Daniel-Vangarde-Teams.",
+      "fun_fact_es": "Ottawan, famosos por 'D.I.S.C.O.', fueron un proyecto disco francés del equipo de Daniel Vangarde.",
+      "fun_fact_fr": "Ottawan, connu pour 'D.I.S.C.O.', était un projet disco français de l'équipe de Daniel Vangarde.",
+      "fun_fact_nl": "Ottawan, bekend van 'D.I.S.C.O.', was een Frans discoproject van het team van Daniel Vangarde."
     },
     {
       "artist": "PLK",
@@ -1333,11 +1333,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2222984647",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "PLK is one of the most-streamed French rappers of the early 2020s.",
+      "fun_fact_de": "PLK ist einer der meistgestreamten französischen Rapper der frühen 2020er.",
+      "fun_fact_es": "PLK es uno de los raperos franceses más escuchados de principios de los 2020.",
+      "fun_fact_fr": "PLK est l'un des rappeurs français les plus écoutés du début des années 2020.",
+      "fun_fact_nl": "PLK is een van de meest gestreamde Franse rappers van begin jaren 2020."
     },
     {
       "artist": "Brigitte Bardot",
@@ -1359,11 +1359,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1093562",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Brigitte Bardot's 'La madrague' evokes her famous Saint-Tropez retreat.",
+      "fun_fact_de": "Brigitte Bardots 'La madrague' beschwört ihr berühmtes Refugium in Saint-Tropez.",
+      "fun_fact_es": "'La madrague' de Brigitte Bardot evoca su famoso refugio en Saint-Tropez.",
+      "fun_fact_fr": "'La madrague' de Brigitte Bardot évoque son célèbre refuge de Saint-Tropez.",
+      "fun_fact_nl": "'La madrague' van Brigitte Bardot roept haar beroemde toevluchtsoord in Saint-Tropez op."
     },
     {
       "artist": "Daniel Guichard",
@@ -1385,11 +1385,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2541557",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Daniel Guichard's 'Mon vieux' is a tear-jerking chanson tribute to a working father.",
+      "fun_fact_de": "Daniel Guichards 'Mon vieux' ist eine rührende Chanson-Hommage an einen arbeitenden Vater.",
+      "fun_fact_es": "'Mon vieux' de Daniel Guichard es una conmovedora chanson homenaje a un padre trabajador.",
+      "fun_fact_fr": "'Mon vieux' de Daniel Guichard est une chanson hommage bouleversante à un père ouvrier.",
+      "fun_fact_nl": "'Mon vieux' van Daniel Guichard is een ontroerend chanson-eerbetoon aan een werkende vader."
     },
     {
       "artist": "Louisy Joseph",
@@ -1411,11 +1411,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/809639",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Louisy Joseph rose from the group L5 before her solo French-pop career.",
+      "fun_fact_de": "Louisy Joseph stieg aus der Gruppe L5 zu ihrer Solo-Pop-Karriere auf.",
+      "fun_fact_es": "Louisy Joseph saltó del grupo L5 a su carrera pop en solitario.",
+      "fun_fact_fr": "Louisy Joseph est passée du groupe L5 à sa carrière pop en solo.",
+      "fun_fact_nl": "Louisy Joseph stapte van de groep L5 over naar haar solo-popcarrière."
     },
     {
       "artist": "Thierry Pastor",
@@ -1437,11 +1437,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/137092518",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Thierry Pastor's 'Le coup de folie' was a 1982 French new-wave-pop hit.",
+      "fun_fact_de": "Thierry Pastors 'Le coup de folie' war 1982 ein französischer New-Wave-Pop-Hit.",
+      "fun_fact_es": "'Le coup de folie' de Thierry Pastor fue un éxito new-wave-pop francés de 1982.",
+      "fun_fact_fr": "'Le coup de folie' de Thierry Pastor fut un tube new-wave-pop français de 1982.",
+      "fun_fact_nl": "'Le coup de folie' van Thierry Pastor was een Franse new-wave-pophit uit 1982."
     },
     {
       "artist": "François Valéry, Michaele, Pierre Delanoë",
@@ -1463,11 +1463,11 @@
       "uri_tidal": null,
       "uri_deezer": null,
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "François Valéry is a prolific French pop songwriter and performer since the 1970s.",
+      "fun_fact_de": "François Valéry ist seit den 1970ern ein produktiver französischer Pop-Songschreiber und -Sänger.",
+      "fun_fact_es": "François Valéry es un prolífico compositor e intérprete del pop francés desde los años 70.",
+      "fun_fact_fr": "François Valéry est un prolifique auteur-compositeur et interprète de la pop française depuis les années 70.",
+      "fun_fact_nl": "François Valéry is sinds de jaren 70 een productief Frans popauteur en -uitvoerder."
     },
     {
       "artist": "Mike Brant",
@@ -1489,11 +1489,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3121388",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Mike Brant's 'Laisse-moi t'aimer' (1970) made the Israeli-French singer an overnight star.",
+      "fun_fact_de": "Mike Brants 'Laisse-moi t'aimer' (1970) machte den israelisch-französischen Sänger über Nacht zum Star.",
+      "fun_fact_es": "'Laisse-moi t'aimer' (1970) de Mike Brant hizo del cantante israelí-francés una estrella de la noche a la mañana.",
+      "fun_fact_fr": "'Laisse-moi t'aimer' (1970) de Mike Brant a fait du chanteur israélo-français une star du jour au lendemain.",
+      "fun_fact_nl": "'Laisse-moi t'aimer' (1970) van Mike Brant maakte de Israëlisch-Franse zanger in één klap een ster."
     },
     {
       "artist": "Philippe Lafontaine",
@@ -1515,11 +1515,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/17426509",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Philippe Lafontaine's 'Cœur de loup' (1989) is a much-loved francophone pop earworm.",
+      "fun_fact_de": "Philippe Lafontaines 'Cœur de loup' (1989) ist ein vielgeliebter frankophoner Pop-Ohrwurm.",
+      "fun_fact_es": "'Cœur de loup' (1989) de Philippe Lafontaine es un querido pegadizo del pop francófono.",
+      "fun_fact_fr": "'Cœur de loup' (1989) de Philippe Lafontaine est un tube pop francophone très aimé.",
+      "fun_fact_nl": "'Cœur de loup' (1989) van Philippe Lafontaine is een geliefde Franstalige popoorwurm."
     },
     {
       "artist": "Marcel Zanini",
@@ -1541,11 +1541,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/137047046",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Tu veux ou tu veux pas' is jazzman Marcel Zanini's playful, much-sampled signature.",
+      "fun_fact_de": "'Tu veux ou tu veux pas' ist das verspielte, oft gesampelte Markenzeichen des Jazzers Marcel Zanini.",
+      "fun_fact_es": "'Tu veux ou tu veux pas' es el juguetón y muy sampleado sello del jazzista Marcel Zanini.",
+      "fun_fact_fr": "'Tu veux ou tu veux pas' est la signature enjouée et très samplée du jazzman Marcel Zanini.",
+      "fun_fact_nl": "'Tu veux ou tu veux pas' is het speelse, veel gesamplede handelsmerk van jazzman Marcel Zanini."
     },
     {
       "artist": "Julien Doré",
@@ -1567,11 +1567,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/70785260",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Julien Doré, a 2007 'Nouvelle Star' winner, became a major French indie-pop figure.",
+      "fun_fact_de": "Julien Doré, 'Nouvelle Star'-Sieger 2007, wurde zu einer großen französischen Indie-Pop-Figur.",
+      "fun_fact_es": "Julien Doré, ganador de 'Nouvelle Star' 2007, se volvió una gran figura del indie-pop francés.",
+      "fun_fact_fr": "Julien Doré, vainqueur de la 'Nouvelle Star' 2007, est devenu une grande figure de l'indie-pop français.",
+      "fun_fact_nl": "Julien Doré, winnaar van 'Nouvelle Star' 2007, werd een grote figuur van de Franse indiepop."
     },
     {
       "artist": "Dadju",
@@ -1593,11 +1593,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/429974992",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Dadju, brother of Gims, is a leading voice of late-2010s French R&B.",
+      "fun_fact_de": "Dadju, Bruder von Gims, ist eine Leitstimme des französischen R&B der späten 2010er.",
+      "fun_fact_es": "Dadju, hermano de Gims, es una voz líder del R&B francés de finales de los 2010.",
+      "fun_fact_fr": "Dadju, frère de Gims, est une voix majeure du R&B français de la fin des années 2010.",
+      "fun_fact_nl": "Dadju, broer van Gims, is een leidende stem van de Franse R&B uit de late jaren 2010."
     },
     {
       "artist": "Sheryfa Luna",
@@ -1619,11 +1619,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/579936282",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Sheryfa Luna emerged from TV talent show 'Popstars' as a French R&B singer.",
+      "fun_fact_de": "Sheryfa Luna ging aus der TV-Castingshow 'Popstars' als französische R&B-Sängerin hervor.",
+      "fun_fact_es": "Sheryfa Luna surgió del concurso televisivo 'Popstars' como cantante de R&B francés.",
+      "fun_fact_fr": "Sheryfa Luna est sortie du télécrochet 'Popstars' comme chanteuse de R&B français.",
+      "fun_fact_nl": "Sheryfa Luna kwam uit de tv-talentenjacht 'Popstars' als Franse R&B-zangeres."
     },
     {
       "artist": "Discobitch",
@@ -1645,11 +1645,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1136200",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Discobitch's 'C'est beau la bourgeoisie' was a tongue-in-cheek 2009 electro-house hit.",
+      "fun_fact_de": "Discobitchs 'C'est beau la bourgeoisie' war 2009 ein augenzwinkernder Electro-House-Hit.",
+      "fun_fact_es": "'C'est beau la bourgeoisie' de Discobitch fue un irónico éxito electro-house de 2009.",
+      "fun_fact_fr": "'C'est beau la bourgeoisie' de Discobitch fut un tube electro-house ironique de 2009.",
+      "fun_fact_nl": "'C'est beau la bourgeoisie' van Discobitch was een ironische electro-househit uit 2009."
     },
     {
       "artist": "Georges Moustaki",
@@ -1671,11 +1671,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1732021867",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Georges Moustaki's 'Le métèque' (1969) is a proud anthem of the outsider and immigrant.",
+      "fun_fact_de": "Georges Moustakis 'Le métèque' (1969) ist eine stolze Hymne des Außenseiters und Einwanderers.",
+      "fun_fact_es": "'Le métèque' (1969) de Georges Moustaki es un orgulloso himno del extranjero y el inmigrante.",
+      "fun_fact_fr": "'Le métèque' (1969) de Georges Moustaki est un hymne fier de l'étranger et de l'immigré.",
+      "fun_fact_nl": "'Le métèque' (1969) van Georges Moustaki is een trots volkslied van de buitenstaander en immigrant."
     },
     {
       "artist": "Renaud",
@@ -1697,11 +1697,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/128093263",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Renaud's 'Hexagone' (1975) is a biting, satirical tour through France month by month.",
+      "fun_fact_de": "Renauds 'Hexagone' (1975) ist eine bissige, satirische Reise durch Frankreich Monat für Monat.",
+      "fun_fact_es": "'Hexagone' (1975) de Renaud es un mordaz recorrido satírico por Francia mes a mes.",
+      "fun_fact_fr": "'Hexagone' (1975) de Renaud est une traversée satirique mordante de la France, mois après mois.",
+      "fun_fact_nl": "'Hexagone' (1975) van Renaud is een bijtende, satirische tocht door Frankrijk, maand na maand."
     },
     {
       "artist": "Barbara",
@@ -1723,11 +1723,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3783892842",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Barbara's 'Dis, quand reviendras-tu?' is one of the most poignant chansons of longing.",
+      "fun_fact_de": "Barbaras 'Dis, quand reviendras-tu?' ist eines der ergreifendsten Chansons der Sehnsucht.",
+      "fun_fact_es": "'Dis, quand reviendras-tu?' de Barbara es una de las chansons más conmovedoras de la añoranza.",
+      "fun_fact_fr": "'Dis, quand reviendras-tu ?' de Barbara est l'une des chansons les plus poignantes du manque.",
+      "fun_fact_nl": "'Dis, quand reviendras-tu?' van Barbara is een van de meest aangrijpende chansons over gemis."
     },
     {
       "artist": "Louise Attaque",
@@ -1749,11 +1749,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/983242",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Louise Attaque's 'Ton invitation' (1997) is a violin-driven French rock anthem.",
+      "fun_fact_de": "Louise Attaques 'Ton invitation' (1997) ist eine geigengetriebene französische Rock-Hymne.",
+      "fun_fact_es": "'Ton invitation' (1997) de Louise Attaque es un himno de rock francés impulsado por el violín.",
+      "fun_fact_fr": "'Ton invitation' (1997) de Louise Attaque est un hymne du rock français porté par le violon.",
+      "fun_fact_nl": "'Ton invitation' (1997) van Louise Attaque is een door viool gedreven Frans rockanthem."
     },
     {
       "artist": "Gérard Blanc",
@@ -1775,11 +1775,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1009243502",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Gérard Blanc's 'Une autre histoire' (1987) remains a karaoke and radio staple in France.",
+      "fun_fact_de": "Gérard Blancs 'Une autre histoire' (1987) bleibt in Frankreich ein Karaoke- und Radioklassiker.",
+      "fun_fact_es": "'Une autre histoire' (1987) de Gérard Blanc sigue siendo un clásico de karaoke y radio en Francia.",
+      "fun_fact_fr": "'Une autre histoire' (1987) de Gérard Blanc reste un classique du karaoké et de la radio en France.",
+      "fun_fact_nl": "'Une autre histoire' (1987) van Gérard Blanc blijft in Frankrijk een karaoke- en radioklassieker."
     },
     {
       "artist": "Faudel",
@@ -1801,11 +1801,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/391533052",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Faudel was dubbed the 'little prince of raï' during the 1990s French raï boom.",
+      "fun_fact_de": "Faudel wurde im französischen Raï-Boom der 1990er der 'kleine Prinz des Raï' genannt.",
+      "fun_fact_es": "A Faudel lo apodaron el 'pequeño príncipe del raï' durante el auge del raï francés de los 90.",
+      "fun_fact_fr": "Faudel fut surnommé le 'petit prince du raï' pendant le boom du raï français des années 90.",
+      "fun_fact_nl": "Faudel werd tijdens de Franse raï-boom van de jaren 90 de 'kleine prins van de raï' genoemd."
     },
     {
       "artist": "Il Etait Une Fois",
@@ -1827,11 +1827,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/17099424",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Il était une fois's 'J'ai encore rêvé d'elle' (1976) is a tender French soft-rock classic.",
+      "fun_fact_de": "Il était une fois' 'J'ai encore rêvé d'elle' (1976) ist ein zarter französischer Softrock-Klassiker.",
+      "fun_fact_es": "'J'ai encore rêvé d'elle' (1976) de Il était une fois es un tierno clásico del soft-rock francés.",
+      "fun_fact_fr": "'J'ai encore rêvé d'elle' (1976) d'Il était une fois est un tendre classique du soft-rock français.",
+      "fun_fact_nl": "'J'ai encore rêvé d'elle' (1976) van Il était une fois is een tedere Franse softrockklassieker."
     },
     {
       "artist": "Alain Barrière, Noëlle Cordier",
@@ -1853,11 +1853,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3782949292",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Tu t'en vas' was Alain Barrière and Noëlle Cordier's beloved 1975 duet.",
+      "fun_fact_de": "'Tu t'en vas' war 1975 das vielgeliebte Duett von Alain Barrière und Noëlle Cordier.",
+      "fun_fact_es": "'Tu t'en vas' fue el querido dúo de 1975 de Alain Barrière y Noëlle Cordier.",
+      "fun_fact_fr": "'Tu t'en vas' fut le duo très aimé de 1975 d'Alain Barrière et Noëlle Cordier.",
+      "fun_fact_nl": "'Tu t'en vas' was het geliefde duet uit 1975 van Alain Barrière en Noëlle Cordier."
     },
     {
       "artist": "Fanny J",
@@ -1879,11 +1879,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/97850736",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Fanny J is a French singer from the Antilles known for zouk-R&B ballads.",
+      "fun_fact_de": "Fanny J ist eine französische Sängerin von den Antillen, bekannt für Zouk-R&B-Balladen.",
+      "fun_fact_es": "Fanny J es una cantante francesa de las Antillas conocida por sus baladas zouk-R&B.",
+      "fun_fact_fr": "Fanny J est une chanteuse française des Antilles connue pour ses ballades zouk-R&B.",
+      "fun_fact_nl": "Fanny J is een Franse zangeres van de Antillen, bekend om haar zouk-R&B-ballads."
     },
     {
       "artist": "Nolwenn Leroy",
@@ -1905,11 +1905,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1095798",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Nolwenn Leroy won 'Star Academy' in 2002 before 'Cassé' and a long pop career.",
+      "fun_fact_de": "Nolwenn Leroy gewann 2002 die 'Star Academy', bevor 'Cassé' und eine lange Pop-Karriere folgten.",
+      "fun_fact_es": "Nolwenn Leroy ganó 'Star Academy' en 2002 antes de 'Cassé' y una larga carrera pop.",
+      "fun_fact_fr": "Nolwenn Leroy a gagné la 'Star Academy' en 2002 avant 'Cassé' et une longue carrière pop.",
+      "fun_fact_nl": "Nolwenn Leroy won in 2002 'Star Academy', vóór 'Cassé' en een lange popcarrière."
     },
     {
       "artist": "GAULOIS, Ninho",
@@ -1931,11 +1931,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2097303087",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Jolie' pairs newcomer Gaulois with chart-topping rapper Ninho.",
+      "fun_fact_de": "'Jolie' bringt den Newcomer Gaulois mit dem Chart-Rapper Ninho zusammen.",
+      "fun_fact_es": "'Jolie' junta al novato Gaulois con el rapero número uno Ninho.",
+      "fun_fact_fr": "'Jolie' associe le nouveau venu Gaulois au rappeur numéro un Ninho.",
+      "fun_fact_nl": "'Jolie' koppelt nieuwkomer Gaulois aan toprapper Ninho."
     },
     {
       "artist": "Frank Alamo",
@@ -1957,11 +1957,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/75873488",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Frank Alamo was a 1960s French yéyé idol who adapted many Anglo-American hits.",
+      "fun_fact_de": "Frank Alamo war ein Yéyé-Idol der 1960er, das viele angloamerikanische Hits adaptierte.",
+      "fun_fact_es": "Frank Alamo fue un ídolo yéyé francés de los 60 que adaptó muchos éxitos angloamericanos.",
+      "fun_fact_fr": "Frank Alamo fut une idole yéyé des années 60 qui a adapté de nombreux tubes anglo-américains.",
+      "fun_fact_nl": "Frank Alamo was een Frans yéyé-idool uit de jaren 60 dat veel Anglo-Amerikaanse hits bewerkte."
     },
     {
       "artist": "Lilicub",
@@ -1983,11 +1983,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2432858",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Lilicub's 'Voyage en Italie' (1996) is a wistful French indie-pop favourite.",
+      "fun_fact_de": "Lilicubs 'Voyage en Italie' (1996) ist ein wehmütiger französischer Indie-Pop-Favorit.",
+      "fun_fact_es": "'Voyage en Italie' (1996) de Lilicub es un melancólico favorito del indie-pop francés.",
+      "fun_fact_fr": "'Voyage en Italie' (1996) de Lilicub est un favori mélancolique de l'indie-pop français.",
+      "fun_fact_nl": "'Voyage en Italie' (1996) van Lilicub is een weemoedige favoriet van de Franse indiepop."
     },
     {
       "artist": "Vitaa",
@@ -2009,11 +2009,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/715881832",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Vitaa is one of the most successful French R&B-pop singers of her generation.",
+      "fun_fact_de": "Vitaa ist eine der erfolgreichsten französischen R&B-Pop-Sängerinnen ihrer Generation.",
+      "fun_fact_es": "Vitaa es una de las cantantes de R&B-pop francesas más exitosas de su generación.",
+      "fun_fact_fr": "Vitaa est l'une des chanteuses de R&B-pop françaises les plus à succès de sa génération.",
+      "fun_fact_nl": "Vitaa is een van de succesvolste Franse R&B-popzangeressen van haar generatie."
     },
     {
       "artist": "Diam's, Vitaa",
@@ -2035,11 +2035,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3113145",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Confessions nocturnes' paired rapper Diam's with singer Vitaa for a 2006 smash.",
+      "fun_fact_de": "'Confessions nocturnes' vereinte 2006 die Rapperin Diam's mit der Sängerin Vitaa zum Hit.",
+      "fun_fact_es": "'Confessions nocturnes' unió en 2006 a la rapera Diam's con la cantante Vitaa en un exitazo.",
+      "fun_fact_fr": "'Confessions nocturnes' a réuni en 2006 la rappeuse Diam's et la chanteuse Vitaa pour un carton.",
+      "fun_fact_nl": "'Confessions nocturnes' bracht in 2006 rapper Diam's en zangeres Vitaa samen voor een monsterhit."
     },
     {
       "artist": "Khaled",
@@ -2061,11 +2061,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/54790571",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Khaled's 'C'est la vie' (2012) brought his raï-pop to a new global audience.",
+      "fun_fact_de": "Khaleds 'C'est la vie' (2012) brachte seinen Raï-Pop einem neuen Weltpublikum.",
+      "fun_fact_es": "'C'est la vie' (2012) de Khaled llevó su raï-pop a un nuevo público mundial.",
+      "fun_fact_fr": "'C'est la vie' (2012) de Khaled a porté son raï-pop vers un nouveau public mondial.",
+      "fun_fact_nl": "'C'est la vie' (2012) van Khaled bracht zijn raï-pop naar een nieuw wereldpubliek."
     },
     {
       "artist": "Jean-Luc Lahaye",
@@ -2087,11 +2087,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/15631060",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Jean-Luc Lahaye's 'Femme que j'aime' was a huge 1980s French pop ballad.",
+      "fun_fact_de": "Jean-Luc Lahayes 'Femme que j'aime' war eine riesige französische Pop-Ballade der 1980er.",
+      "fun_fact_es": "'Femme que j'aime' de Jean-Luc Lahaye fue una enorme balada pop francesa de los 80.",
+      "fun_fact_fr": "'Femme que j'aime' de Jean-Luc Lahaye fut une énorme ballade pop française des années 80.",
+      "fun_fact_nl": "'Femme que j'aime' van Jean-Luc Lahaye was een enorme Franse popballad uit de jaren 80."
     },
     {
       "artist": "Aya Nakamura",
@@ -2113,11 +2113,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2104287777",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Aya Nakamura is the most-streamed French-language artist in the world.",
+      "fun_fact_de": "Aya Nakamura ist die weltweit meistgestreamte französischsprachige Künstlerin.",
+      "fun_fact_es": "Aya Nakamura es la artista en lengua francesa más escuchada del mundo.",
+      "fun_fact_fr": "Aya Nakamura est l'artiste de langue française la plus écoutée au monde.",
+      "fun_fact_nl": "Aya Nakamura is de meest gestreamde Franstalige artiest ter wereld."
     },
     {
       "artist": "Renaud, Axelle Red",
@@ -2139,11 +2139,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/624630922",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'Manhattan-Kaboul' paired Renaud and Axelle Red in a 2002 anti-war duet.",
+      "fun_fact_de": "'Manhattan-Kaboul' vereinte 2002 Renaud und Axelle Red zu einem Antikriegs-Duett.",
+      "fun_fact_es": "'Manhattan-Kaboul' unió a Renaud y Axelle Red en un dúo antibélico de 2002.",
+      "fun_fact_fr": "'Manhattan-Kaboul' a réuni Renaud et Axelle Red dans un duo antiguerre de 2002.",
+      "fun_fact_nl": "'Manhattan-Kaboul' bracht Renaud en Axelle Red samen in een antioorlogsduet uit 2002."
     },
     {
       "artist": "Claude Nougaro",
@@ -2165,11 +2165,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1101590",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Claude Nougaro's 'Armstrong' is his jazz-infused homage to Louis Armstrong.",
+      "fun_fact_de": "Claude Nougaros 'Armstrong' ist seine jazzige Hommage an Louis Armstrong.",
+      "fun_fact_es": "'Armstrong' de Claude Nougaro es su homenaje con tintes de jazz a Louis Armstrong.",
+      "fun_fact_fr": "'Armstrong' de Claude Nougaro est son hommage jazz à Louis Armstrong.",
+      "fun_fact_nl": "'Armstrong' van Claude Nougaro is zijn jazzy eerbetoon aan Louis Armstrong."
     },
     {
       "artist": "Jj Lionel",
@@ -2191,11 +2191,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/254954",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "'La danse des canards' (the Chicken Dance) became an inescapable French party novelty.",
+      "fun_fact_de": "'La danse des canards' (der Ententanz) wurde zur unausweichlichen französischen Party-Novelty.",
+      "fun_fact_es": "'La danse des canards' (el baile del pato) se volvió una inevitable novelty de fiesta francesa.",
+      "fun_fact_fr": "'La danse des canards' est devenue une incontournable nouveauté de fête française.",
+      "fun_fact_nl": "'La danse des canards' (de eendendans) werd een onontkoombare Franse feestnovelty."
     },
     {
       "artist": "Pow Wow",
@@ -2217,11 +2217,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2149986",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Pow woW's a cappella 'Le lion est mort ce soir' reworked 'The Lion Sleeps Tonight' in 1992.",
+      "fun_fact_de": "Pow woWs A-cappella 'Le lion est mort ce soir' war 1992 eine Version von 'The Lion Sleeps Tonight'.",
+      "fun_fact_es": "El a cappella 'Le lion est mort ce soir' de Pow woW reversionó 'The Lion Sleeps Tonight' en 1992.",
+      "fun_fact_fr": "L'a cappella 'Le lion est mort ce soir' de Pow woW a revisité 'The Lion Sleeps Tonight' en 1992.",
+      "fun_fact_nl": "Pow woWs a-capella 'Le lion est mort ce soir' bewerkte 'The Lion Sleeps Tonight' in 1992."
     },
     {
       "artist": "Enrico Macias",
@@ -2243,11 +2243,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3453418",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Enrico Macias's songs of Mediterranean exile made him a French-Algerian icon.",
+      "fun_fact_de": "Enrico Macias' Lieder vom mediterranen Exil machten ihn zur französisch-algerischen Ikone.",
+      "fun_fact_es": "Las canciones de exilio mediterráneo de Enrico Macias lo hicieron un ícono franco-argelino.",
+      "fun_fact_fr": "Les chansons d'exil méditerranéen d'Enrico Macias en ont fait une icône franco-algérienne.",
+      "fun_fact_nl": "De liederen over mediterrane ballingschap maakten Enrico Macias tot een Frans-Algerijns icoon."
     },
     {
       "artist": "MC Solaar",
@@ -2269,11 +2269,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1490805692",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "MC Solaar's 'Nouveau western' samples Serge Gainsbourg over jazzy French hip-hop.",
+      "fun_fact_de": "MC Solaars 'Nouveau western' sampelt Serge Gainsbourg über jazzigem französischem Hip-Hop.",
+      "fun_fact_es": "'Nouveau western' de MC Solaar samplea a Serge Gainsbourg sobre un hip-hop francés jazzístico.",
+      "fun_fact_fr": "'Nouveau western' de MC Solaar sample Serge Gainsbourg sur un hip-hop français jazzy.",
+      "fun_fact_nl": "'Nouveau western' van MC Solaar samplet Serge Gainsbourg over jazzy Franse hiphop."
     },
     {
       "artist": "Stromae",
@@ -2295,11 +2295,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1839225277",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Stromae's 'Mon amour' (2022) marked the Belgian star's celebrated comeback era.",
+      "fun_fact_de": "Stromaes 'Mon amour' (2022) markierte das gefeierte Comeback des belgischen Stars.",
+      "fun_fact_es": "'Mon amour' (2022) de Stromae marcó la celebrada etapa de regreso de la estrella belga.",
+      "fun_fact_fr": "'Mon amour' (2022) de Stromae a marqué le grand retour salué de la star belge.",
+      "fun_fact_nl": "'Mon amour' (2022) van Stromae markeerde de bejubelde comeback van de Belgische ster."
     },
     {
       "artist": "Slaï",
@@ -2321,11 +2321,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/604505",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Slaï is a French Antillean singer known for zouk-love ballads.",
+      "fun_fact_de": "Slaï ist ein französisch-antillischer Sänger, bekannt für Zouk-Love-Balladen.",
+      "fun_fact_es": "Slaï es un cantante franco-antillano conocido por sus baladas de zouk-love.",
+      "fun_fact_fr": "Slaï est un chanteur franco-antillais connu pour ses ballades zouk-love.",
+      "fun_fact_nl": "Slaï is een Frans-Antilliaanse zanger bekend om zijn zouk-love-ballads."
     },
     {
       "artist": "Khaled",
@@ -2347,11 +2347,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/921886",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Khaled's 'Aïcha', written by Jean-Jacques Goldman, became a worldwide raï anthem.",
+      "fun_fact_de": "Khaleds 'Aïcha', geschrieben von Jean-Jacques Goldman, wurde zur weltweiten Raï-Hymne.",
+      "fun_fact_es": "'Aïcha' de Khaled, escrita por Jean-Jacques Goldman, se volvió un himno raï mundial.",
+      "fun_fact_fr": "'Aïcha' de Khaled, écrite par Jean-Jacques Goldman, est devenue un hymne raï mondial.",
+      "fun_fact_nl": "'Aïcha' van Khaled, geschreven door Jean-Jacques Goldman, werd een wereldwijd raï-anthem."
     },
     {
       "artist": "Magic System, Bob Sinclar",
@@ -2373,11 +2373,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/482681782",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Magic System's 'Premier Gaou' grew from an Ivorian hit to a French summer phenomenon.",
+      "fun_fact_de": "Magic Systems 'Premier Gaou' wuchs von einem ivorischen Hit zum französischen Sommer-Phänomen.",
+      "fun_fact_es": "'Premier Gaou' de Magic System pasó de éxito marfileño a fenómeno veraniego francés.",
+      "fun_fact_fr": "'Premier Gaou' de Magic System est passé d'un tube ivoirien à un phénomène de l'été français.",
+      "fun_fact_nl": "'Premier Gaou' van Magic System groeide van een Ivoriaanse hit tot een Frans zomerfenomeen."
     },
     {
       "artist": "Fauve",
@@ -2399,11 +2399,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3110786941",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Fauve were an anonymous French collective whose spoken-word rock became a cult sensation.",
+      "fun_fact_de": "Fauve war ein anonymes französisches Kollektiv, dessen Spoken-Word-Rock Kult wurde.",
+      "fun_fact_es": "Fauve fue un colectivo francés anónimo cuyo rock de spoken-word se volvió de culto.",
+      "fun_fact_fr": "Fauve était un collectif français anonyme dont le rock spoken-word est devenu culte.",
+      "fun_fact_nl": "Fauve was een anoniem Frans collectief waarvan de spoken-word-rock een cultsensatie werd."
     },
     {
       "artist": "Florent Pagny",
@@ -2425,11 +2425,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/984192",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Florent Pagny's 'Savoir aimer' (1997) is one of his most cherished French ballads.",
+      "fun_fact_de": "Florent Pagnys 'Savoir aimer' (1997) ist eine seiner meistgeliebten französischen Balladen.",
+      "fun_fact_es": "'Savoir aimer' (1997) de Florent Pagny es una de sus baladas francesas más queridas.",
+      "fun_fact_fr": "'Savoir aimer' (1997) de Florent Pagny est l'une de ses ballades françaises les plus chéries.",
+      "fun_fact_nl": "'Savoir aimer' (1997) van Florent Pagny is een van zijn meest geliefde Franse ballads."
     },
     {
       "artist": "Licence IV",
@@ -2451,11 +2451,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/56114631",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Licence IV's 'Viens boire un p'tit coup' is a perennial French drinking-song singalong.",
+      "fun_fact_de": "Licence IVs 'Viens boire un p'tit coup' ist ein ewiges französisches Trinklied zum Mitsingen.",
+      "fun_fact_es": "'Viens boire un p'tit coup' de Licence IV es una eterna canción de taberna francesa para corear.",
+      "fun_fact_fr": "'Viens boire un p'tit coup' de Licence IV est une éternelle chanson à boire reprise en chœur.",
+      "fun_fact_nl": "'Viens boire un p'tit coup' van Licence IV is een eeuwig Frans drinklied om mee te zingen."
     },
     {
       "artist": "De Palmas",
@@ -2477,11 +2477,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3435031",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "De Palmas's 'Sur la route' is a road-trip French pop-rock favourite from 'Marcher dans le sable'.",
+      "fun_fact_de": "De Palmas' 'Sur la route' ist ein Roadtrip-Favorit aus 'Marcher dans le sable'.",
+      "fun_fact_es": "'Sur la route' de De Palmas es un favorito de carretera del pop-rock francés de 'Marcher dans le sable'.",
+      "fun_fact_fr": "'Sur la route' de De Palmas est un favori de road-trip du pop-rock français de 'Marcher dans le sable'.",
+      "fun_fact_nl": "'Sur la route' van De Palmas is een roadtripfavoriet van de Franse pop-rock uit 'Marcher dans le sable'."
     },
     {
       "artist": "Sylvie Vartan",
@@ -2503,11 +2503,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3786102562",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Sylvie Vartan's 'Comme un garçon' (1967) is a defining record of the French yéyé era.",
+      "fun_fact_de": "Sylvie Vartans 'Comme un garçon' (1967) ist eine prägende Platte der französischen Yéyé-Ära.",
+      "fun_fact_es": "'Comme un garçon' (1967) de Sylvie Vartan es un disco definitorio de la era yéyé francesa.",
+      "fun_fact_fr": "'Comme un garçon' (1967) de Sylvie Vartan est un disque emblématique de l'ère yéyé française.",
+      "fun_fact_nl": "'Comme un garçon' (1967) van Sylvie Vartan is een bepalende plaat van het Franse yéyé-tijdperk."
     },
     {
       "artist": "François Feldman",
@@ -2529,11 +2529,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/929610",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "François Feldman's 'Les valses de Vienne' was a chart-topping 1989 French pop hit.",
+      "fun_fact_de": "François Feldmans 'Les valses de Vienne' war 1989 ein französischer Nummer-eins-Pop-Hit.",
+      "fun_fact_es": "'Les valses de Vienne' de François Feldman fue un éxito pop francés número uno de 1989.",
+      "fun_fact_fr": "'Les valses de Vienne' de François Feldman fut un tube pop français numéro un de 1989.",
+      "fun_fact_nl": "'Les valses de Vienne' van François Feldman was een Franse nummer-één-pophit uit 1989."
     },
     {
       "artist": "Kamini",
@@ -2555,11 +2555,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/105966812",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Kamini's 'Marly-Gomont' (2006) put his tiny Picardy village on the map with witty rap.",
+      "fun_fact_de": "Kaminis 'Marly-Gomont' (2006) setzte sein winziges Dorf in der Picardie mit witzigem Rap auf die Karte.",
+      "fun_fact_es": "'Marly-Gomont' (2006) de Kamini puso en el mapa su minúsculo pueblo de Picardía con rap ingenioso.",
+      "fun_fact_fr": "'Marly-Gomont' (2006) de Kamini a fait connaître son minuscule village picard par un rap malicieux.",
+      "fun_fact_nl": "'Marly-Gomont' (2006) van Kamini zette zijn piepkleine Picardische dorp met gevatte rap op de kaart."
     },
     {
       "artist": "Daniel Balavoine",
@@ -2581,11 +2581,11 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/886301",
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Daniel Balavoine's 'Le chanteur' (1978) is a poignant self-portrait of a singer's dreams.",
+      "fun_fact_de": "Daniel Balavoines 'Le chanteur' (1978) ist ein ergreifendes Selbstporträt der Träume eines Sängers.",
+      "fun_fact_es": "'Le chanteur' (1978) de Daniel Balavoine es un conmovedor autorretrato de los sueños de un cantante.",
+      "fun_fact_fr": "'Le chanteur' (1978) de Daniel Balavoine est un autoportrait poignant des rêves d'un chanteur.",
+      "fun_fact_nl": "'Le chanteur' (1978) van Daniel Balavoine is een aangrijpend zelfportret van de dromen van een zanger."
     },
     {
       "artist": "Linkup",
@@ -2607,11 +2607,11 @@
       "uri_tidal": null,
       "uri_deezer": null,
       "alt_artists": [],
-      "fun_fact": "",
-      "fun_fact_de": "",
-      "fun_fact_es": "",
-      "fun_fact_fr": "",
-      "fun_fact_nl": ""
+      "fun_fact": "Linkup were a French teen-pop group whose 'Mon étoile' charted in 2005.",
+      "fun_fact_de": "Linkup war eine französische Teen-Pop-Gruppe, deren 'Mon étoile' 2005 in den Charts war.",
+      "fun_fact_es": "Linkup fue un grupo teen-pop francés cuyo 'Mon étoile' entró en listas en 2005.",
+      "fun_fact_fr": "Linkup était un groupe teen-pop français dont 'Mon étoile' a figuré au classement en 2005.",
+      "fun_fact_nl": "Linkup was een Franse teen-popgroep wier 'Mon étoile' in 2005 de hitlijst haalde."
     }
   ]
 }
