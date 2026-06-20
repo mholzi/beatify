@@ -4,8 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.1] - 2026-06-20
+
+Content release — two new community playlists. See [docs/release-notes-v4.1.1.md](docs/release-notes-v4.1.1.md) for the user-facing notes.
+
 ### Added
-- Added 66 tracks to new community playlist "HITSTER - Brasil 🇧🇷" (#1495).
+- **New community playlist "100% Brasil 🇧🇷" (66 songs).** Brazilian hits across the decades, year-mode ready (verified original release year + ISRC per track) with multi-provider URIs — Apple Music, Deezer, YouTube Music and Tidal alongside Spotify (#1495).
+- **New community playlist "100% Français 🇫🇷" (100 songs).** French hits across the eras (chanson, pop, rap, variété), same enrichment: verified release year + ISRC per track, multi-provider URIs, and fun facts in five languages (#1496).
+
+### Changed
+- Renamed the country playlist packs to the "100% &lt;Country&gt;" scheme — "100% Brasil" and "100% Français" — dropping the previous third-party game name, matching the existing "100% en Español".
+
+### Fixed
+- Corrected the Lady Gaga – "RUNWAY" release year (2021 → 2026) in EDM Anthems (#1499, #1501).
+- Fixed an invalid empty `certifications` value (`{}` → `[]`) in Finnish Schlager Classics that broke the playlist JSON schema gate (#1504).
+- Cleaned up stale/incorrect track URIs in Trance Classics (#1503), Harder Styles (#1494) and Finnish Iskelmä Classics (#1492).
 
 ## [4.1.0] - 2026-06-18
 
