@@ -1,5 +1,5 @@
 {
-  "name": "HITSTER 100% Français 🇫🇷",
+  "name": "100% Français 🇫🇷",
   "version": "0.1",
   "tags": [
     "french",
@@ -498,7 +498,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YW2UXieHWfg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/132377483",
       "uri_deezer": "deezer://track/6683159",
       "alt_artists": [],
       "fun_fact": "Jean Ferrat's 'La montagne' (1964) is a beloved ode to rural France and its disappearing way of life.",
@@ -524,7 +524,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-CVn3-3g_BI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/152089547",
       "uri_deezer": "deezer://track/1049999812",
       "alt_artists": [],
       "fun_fact": "'Bande organisée' united Marseille rappers in 2020 and became a runaway national phenomenon.",
@@ -550,7 +550,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7F6ej4pHweE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13163342",
       "uri_deezer": "deezer://track/14406696",
       "alt_artists": [],
       "fun_fact": "Gilbert Bécaud's 'Et maintenant' (1961) became the worldwide standard 'What Now My Love'.",
@@ -576,7 +576,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l919je_mW5M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4874525",
       "uri_deezer": "deezer://track/2296224",
       "alt_artists": [],
       "fun_fact": "Yves Montand turned 'À bicyclette' into one of the tenderest chansons about youth and friendship.",
@@ -602,7 +602,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XbQpgFsJ_Co",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/119726353",
       "uri_deezer": "deezer://track/770961742",
       "alt_artists": [],
       "fun_fact": "Yseult's stripped-back 'Corps' won her the 2020 Victoire de la musique breakthrough award.",
@@ -628,7 +628,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9-XkBwoiAog",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21689303",
       "uri_deezer": "deezer://track/2439440",
       "alt_artists": [],
       "fun_fact": "Maxime Le Forestier's 'San Francisco' (1972) immortalised a real blue house in the California city.",
@@ -654,7 +654,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rs9k5k7hXOw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16344908",
       "uri_deezer": "deezer://track/6534185",
       "alt_artists": [],
       "fun_fact": "Christophe Rippert is associated with light French summer-pop of the 'génération Club Dorothée' era.",
@@ -680,7 +680,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cx453ggSNd0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/135670100",
       "uri_deezer": "deezer://track/915362462",
       "alt_artists": [],
       "fun_fact": "Francky Vincent is the king of cheeky French Caribbean party songs full of double-entendre.",
@@ -706,7 +706,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Jn9NowV7Q_8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4853668",
       "uri_deezer": "deezer://track/2628773",
       "alt_artists": [],
       "fun_fact": "'Mirza' (1965) was Nino Ferrer's breezy R&B-flavoured debut hit, named after a dog.",
@@ -732,7 +732,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o7bUl9yhhH8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/175148",
       "uri_deezer": "deezer://track/778351",
       "alt_artists": [],
       "fun_fact": "'Je fais de toi mon essentiel' comes from the hit musical 'Le Roi Soleil' (2005).",
@@ -758,7 +758,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=c9uawhuuZQc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/39683738",
       "uri_deezer": "deezer://track/93115076",
       "alt_artists": [],
       "fun_fact": "'Destinée' is Guy Marchand's signature, with music by film composer Vladimir Cosma.",
@@ -784,7 +784,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_T2cU0TA9hE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/335964419",
       "uri_deezer": "deezer://track/2591053472",
       "alt_artists": [],
       "fun_fact": "Jena Lee was a late-2000s French pop-R&B star known for emotional, autotuned ballads.",
@@ -810,7 +810,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KqtaDsTTjvU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/513504",
       "uri_deezer": "deezer://track/632222",
       "alt_artists": [],
       "fun_fact": "Laurent Voulzy's 'Rockollection' is a medley paying homage to the rock'n'roll of his youth.",
@@ -836,7 +836,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vQfiMUoFs6w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69769587",
       "uri_deezer": "deezer://track/140744901",
       "alt_artists": [],
       "fun_fact": "KeBlack is a French-Congolese singer central to the late-2010s afro-pop wave.",
@@ -862,7 +862,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zxxzjHpivmA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/95901008",
       "uri_deezer": "deezer://track/561630982",
       "alt_artists": [],
       "fun_fact": "Tribal King's 'Façon Sex' (2005) was a club-pop hit blending R&B and dance.",
@@ -888,7 +888,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Q2FFJ5Ik-uw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14515852",
       "uri_deezer": "deezer://track/7509647",
       "alt_artists": [],
       "fun_fact": "L'Algérino is a Marseille rapper of Algerian descent with crossover pop-rap hits.",
@@ -914,7 +914,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=blWw7bM6TS0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13609485",
       "uri_deezer": "deezer://track/16488723",
       "alt_artists": [],
       "fun_fact": "1995 was an influential French boom-bap rap collective featuring Nekfeu and Alpha Wann.",
@@ -940,7 +940,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hSdpfzS_Y1g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74902714",
       "uri_deezer": "deezer://track/371636691",
       "alt_artists": [],
       "fun_fact": "Renan Luce's witty 'Les voisines' won over France with its literate, playful chanson style.",
@@ -966,7 +966,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BWLfGQbqNWY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13143149",
       "uri_deezer": "deezer://track/2424143",
       "alt_artists": [],
       "fun_fact": "Moos's 'Au nom de la rose' was a 1990s French pop hit with a folk-pop lilt.",
@@ -1642,7 +1642,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QKVQ2r-_zQk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11770630",
       "uri_deezer": "deezer://track/1136200",
       "alt_artists": [],
       "fun_fact": "Discobitch's 'C'est beau la bourgeoisie' was a tongue-in-cheek 2009 electro-house hit.",
@@ -1668,7 +1668,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WI5mld3uDz8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/226374387",
       "uri_deezer": "deezer://track/1732021867",
       "alt_artists": [],
       "fun_fact": "Georges Moustaki's 'Le métèque' (1969) is a proud anthem of the outsider and immigrant.",
@@ -1694,7 +1694,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=v9j7oWUuH18",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21316017",
       "uri_deezer": "deezer://track/128093263",
       "alt_artists": [],
       "fun_fact": "Renaud's 'Hexagone' (1975) is a biting, satirical tour through France month by month.",
@@ -1720,7 +1720,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nUE80DTNxK4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22993717",
       "uri_deezer": "deezer://track/3783892842",
       "alt_artists": [],
       "fun_fact": "Barbara's 'Dis, quand reviendras-tu?' is one of the most poignant chansons of longing.",
@@ -1746,7 +1746,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ApWnXUavKOc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3679318",
       "uri_deezer": "deezer://track/983242",
       "alt_artists": [],
       "fun_fact": "Louise Attaque's 'Ton invitation' (1997) is a violin-driven French rock anthem.",
@@ -1772,7 +1772,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qkUAm9GaMt8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/147215969",
       "uri_deezer": "deezer://track/1009243502",
       "alt_artists": [],
       "fun_fact": "Gérard Blanc's 'Une autre histoire' (1987) remains a karaoke and radio staple in France.",
@@ -1798,7 +1798,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kj3vSLy4Wl4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77597191",
       "uri_deezer": "deezer://track/391533052",
       "alt_artists": [],
       "fun_fact": "Faudel was dubbed the 'little prince of raï' during the 1990s French raï boom.",
@@ -1824,7 +1824,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jGRaXdT2-58",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1494036",
       "uri_deezer": "deezer://track/17099424",
       "alt_artists": [],
       "fun_fact": "Il était une fois's 'J'ai encore rêvé d'elle' (1976) is a tender French soft-rock classic.",
@@ -1850,7 +1850,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O0FV3JAHMKo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/39501763",
       "uri_deezer": "deezer://track/3782949292",
       "alt_artists": [],
       "fun_fact": "'Tu t'en vas' was Alain Barrière and Noëlle Cordier's beloved 1975 duet.",
@@ -1876,7 +1876,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kHX4vr4k7H8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/44418507",
       "uri_deezer": "deezer://track/97850736",
       "alt_artists": [],
       "fun_fact": "Fanny J is a French singer from the Antilles known for zouk-R&B ballads.",
@@ -1902,7 +1902,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eIjL4khJxk4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3676860",
       "uri_deezer": "deezer://track/1095798",
       "alt_artists": [],
       "fun_fact": "Nolwenn Leroy won 'Star Academy' in 2002 before 'Cassé' and a long pop career.",
@@ -1928,7 +1928,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5KueN5MIX2Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/270725694",
       "uri_deezer": "deezer://track/2097303087",
       "alt_artists": [],
       "fun_fact": "'Jolie' pairs newcomer Gaulois with chart-topping rapper Ninho.",
@@ -1954,7 +1954,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=H12tiEelF1I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/41386575",
       "uri_deezer": "deezer://track/75873488",
       "alt_artists": [],
       "fun_fact": "Frank Alamo was a 1960s French yéyé idol who adapted many Anglo-American hits.",
@@ -1980,7 +1980,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bse02AUNP_o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/590024",
       "uri_deezer": "deezer://track/2432858",
       "alt_artists": [],
       "fun_fact": "Lilicub's 'Voyage en Italie' (1996) is a wistful French indie-pop favourite.",
@@ -2006,7 +2006,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=H-DosCwPCNA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4129858",
       "uri_deezer": "deezer://track/715881832",
       "alt_artists": [],
       "fun_fact": "Vitaa is one of the most successful French R&B-pop singers of her generation.",
@@ -2032,7 +2032,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TwhoaPgBwI8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1530068",
       "uri_deezer": "deezer://track/3113145",
       "alt_artists": [],
       "fun_fact": "'Confessions nocturnes' paired rapper Diam's with singer Vitaa for a 2006 smash.",
@@ -2058,7 +2058,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5dWeeUIZFgA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16677233",
       "uri_deezer": "deezer://track/54790571",
       "alt_artists": [],
       "fun_fact": "Khaled's 'C'est la vie' (2012) brought his raï-pop to a new global audience.",
@@ -2084,7 +2084,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Dq9WLrLEjUU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/171969116",
       "uri_deezer": "deezer://track/15631060",
       "alt_artists": [],
       "fun_fact": "Jean-Luc Lahaye's 'Femme que j'aime' was a huge 1980s French pop ballad.",
@@ -2110,7 +2110,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JKveC4CaGC8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/270942643",
       "uri_deezer": "deezer://track/2104287777",
       "alt_artists": [],
       "fun_fact": "Aya Nakamura is the most-streamed French-language artist in the world.",
