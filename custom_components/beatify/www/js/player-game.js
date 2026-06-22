@@ -1001,6 +1001,18 @@ export function renderTitleArtistInput(data) {
     var yearXxl = document.getElementById('year-display-arc');
     var betToggle = document.getElementById('bet-toggle');
 
+    // Issue #827: eliminated players are spectators. applySuddenDeathState runs
+    // before this in updateGameView and has hidden the play UI + shown the
+    // blackout view; don't re-show any year/TA/bet control here regardless of
+    // mode, or the controls leak in next to the eliminated-view.
+    if (meEliminated) {
+        if (taContainer) taContainer.classList.add('hidden');
+        if (yearWrap) yearWrap.classList.add('hidden');
+        if (yearXxl) yearXxl.classList.add('hidden');
+        if (betToggle) betToggle.classList.add('hidden');
+        return;
+    }
+
     if (taContainer) taContainer.classList.toggle('hidden', !on);
 
     // Hide the year-specific UI when TA mode is on.
