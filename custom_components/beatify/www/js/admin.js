@@ -2705,7 +2705,8 @@ function _renderSuddenDeathRevealChips(data) {
     // in REVEAL state and only when sudden_death_mode is on.
     var elim = data.eliminated_this_round || [];
     if (elim.length > 0) {
-        chips += '<span class="arc-chip arc-chip--elim">💀 Eliminated: ' +
+        chips += '<span class="arc-chip arc-chip--elim">💀 ' +
+            escapeHtml(utils.t('game.eliminated', 'Eliminated')) + ': ' +
             escapeHtml(elim.join(', ')) + '</span>';
     }
 

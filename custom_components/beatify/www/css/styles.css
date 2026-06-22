@@ -10659,6 +10659,13 @@ body.home-mode .home-view {
     transition: var(--transition-fast);
 }
 .wiz-mode-card:hover { background: var(--color-dark-surface-hover); }
+/* Issue #827: a mode card disabled by an unmet requirement (e.g. Sudden Death
+   below the 3-player floor) is dimmed and non-interactive. */
+.wiz-mode-card.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .wiz-mode-card.on {
     background: rgba(255, 45, 106, 0.08);
     border-color: var(--color-accent-primary);

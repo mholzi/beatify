@@ -944,7 +944,10 @@ const SUDDEN_DEATH_MIN_PLAYERS = 3;
 function _connectedPlayerCount() {
     const game = cachedStatus && cachedStatus.active_game;
     const players = game && Array.isArray(game.players) ? game.players : [];
-    return players.length;
+    // Count only genuinely connected players — the backend keeps disconnected
+    // players in the list with connected:false, and the ≥3 floor is about who
+    // can actually play (mirrors the server-side connected check in #827).
+    return players.filter(function (p) { return p && p.connected !== false; }).length;
 }
 
 // Core game mode — exactly one selected. Backed by the chosenTitleArtistMode
