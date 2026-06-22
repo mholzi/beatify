@@ -4,8 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.2] - 2026-06-22
+
+Content release — new German Disney playlist with the guess-the-film bonus. See [docs/release-notes-v4.1.2.md](docs/release-notes-v4.1.2.md) for the user-facing notes.
+
 ### Added
-- Added 97 tracks to new community playlist "Disney Hits Deutschland 🇩🇪" (#1505).
+- **New community playlist "Disney Hits Deutschland 🇩🇪" (97 songs).** German-language Disney songs across the decades (Das Dschungelbuch 1967 → Mufasa 2024), year-mode ready with a verified film year per track and multi-provider URIs (Apple Music, Deezer, YouTube Music, Spotify). The guess-the-film bonus is enabled — each track carries its Disney/Pixar film plus two decoy choices, across 40 distinct films. Movie assignments, years and fun-facts were cross-checked by a multi-agent verification pass (#1505).
 
 ## [4.1.1] - 2026-06-20
 
