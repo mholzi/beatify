@@ -77,7 +77,7 @@
       ]
     },
     {
-      "year": 2003,
+      "year": 1994,
       "artist": "Jocelyn B. Smith",
       "title": "Der Ewige Kreis",
       "uri": "spotify:track:7H4I3hONEjaBeyLKnXvIpP",
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "year": 2002,
+      "year": 1967,
       "artist": "Edgar Ott",
       "title": "Probier’s mal mit Gemütlichkeit",
       "uri": "spotify:track:4Xr3CnyAeKXXXr4ZAP3zyF",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "year": 2024,
+      "year": 2025,
       "artist": "Toni Wegewitz, Bryan Abubakari, Arne Stephan, Wincent Weiss",
       "title": "Ich wollte immer einen Bruder",
       "uri": "spotify:track:2x1dkjz30TxRRKb5wYbDZx",
@@ -467,15 +467,15 @@
       "uri_deezer": "deezer://track/3275734341",
       "uri_youtube_music": "https://music.youtube.com/watch?v=diQinqs5DMc",
       "uri_tidal": null,
-      "fun_fact": "This German Disney song expresses a wish, a recurring theme in many Disney films.",
-      "fun_fact_de": "Dieser deutsche Disney-Song bringt einen Wunsch zum Ausdruck, ein wiederkehrendes Motiv vieler Disney-Filme.",
-      "fun_fact_es": "Esta canción alemana de Disney expresa un deseo, un tema recurrente en muchas películas de Disney.",
-      "fun_fact_fr": "Cette chanson allemande de Disney exprime un souhait, un thème récurrent dans de nombreux films Disney.",
-      "fun_fact_nl": "Dit Duitse Disney-lied verwoordt een wens, een terugkerend thema in veel Disney-films.",
-      "movie": "Wish",
+      "fun_fact": "The German version of 'Waiting on a Wish' from Disney's 2025 live-action 'Snow White'.",
+      "fun_fact_de": "Die deutsche Fassung von 'Waiting on a Wish' aus Disneys Realverfilmung 'Schneewittchen' (2025).",
+      "fun_fact_es": "La versión alemana de 'Waiting on a Wish', de la película de acción real 'Blancanieves' (2025) de Disney.",
+      "fun_fact_fr": "La version allemande de « Waiting on a Wish », du film en prises de vues réelles « Blanche-Neige » (2025) de Disney.",
+      "fun_fact_nl": "De Duitse versie van 'Waiting on a Wish' uit Disney's live-action 'Sneeuwwitje' (2025).",
+      "movie": "Schneewittchen",
       "movie_choices": [
+        "Schneewittchen",
         "Wish",
-        "Vaiana",
         "Die Eiskönigin"
       ]
     },
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "year": 2003,
+      "year": 1994,
       "artist": "Manuel Straube, Ilja Richter, Rainer Basedow, Cusch Jung",
       "title": "Hakuna Matata",
       "uri": "spotify:track:2LzHS1XsclUlk388WnJB2p",
@@ -635,7 +635,7 @@
       ]
     },
     {
-      "year": 2003,
+      "year": 1994,
       "artist": "Alexandra Wilcke, Jocelyn B. Smith, Ilja Richter, Rainer Basedow, Cusch Jung",
       "title": "Kann Es Wirklich Liebe Sein",
       "uri": "spotify:track:1IBLAoAUzkqacEU9AFJ1SE",
@@ -759,7 +759,7 @@
       ]
     },
     {
-      "year": 2011,
+      "year": 1994,
       "artist": "Manuel Straube, Uwe Paulsen, Magdalena Turba",
       "title": "Ich Will Jetzt Gleich Konig Sein",
       "uri": "spotify:track:3g87XDPkpwDNnTK2MCewB9",
@@ -790,7 +790,7 @@
       ]
     },
     {
-      "year": 2018,
+      "year": 1999,
       "artist": "Phil Collins",
       "title": "You'll Be In My Heart",
       "uri": "spotify:track:4Y8vb1uy9IjM2V1hqvrAid",
@@ -883,7 +883,7 @@
       ]
     },
     {
-      "year": 2015,
+      "year": 1999,
       "artist": "Phil Collins",
       "title": "So Ein Mann",
       "uri": "spotify:track:21ZNWDTrPiuNwIe5IQ8vnI",
@@ -963,14 +963,14 @@
       "uri_deezer": "deezer://track/682625402",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zh3sAS7HbHo",
       "uri_tidal": null,
-      "fun_fact": "\"Ich werd niemals schweigen (Teil 2)\" is the German version of the reprise of \"Into the Unknown\" theme from Frozen 2.",
-      "fun_fact_de": "\"Ich werd niemals schweigen (Teil 2)\" ist die deutsche Fassung eines Songs aus Die Eiskönigin 2.",
-      "fun_fact_es": "\"Ich werd niemals schweigen (Teil 2)\" es la versión alemana de una canción de Frozen 2.",
-      "fun_fact_fr": "\"Ich werd niemals schweigen (Teil 2)\" est la version allemande d'une chanson de La Reine des neiges 2.",
-      "fun_fact_nl": "\"Ich werd niemals schweigen (Teil 2)\" is de Duitse versie van een lied uit Frozen 2.",
-      "movie": "Wish",
+      "fun_fact": "From the German soundtrack of 'Frozen 2' (2019), Elsa's soaring second-act number.",
+      "fun_fact_de": "Aus dem deutschen Soundtrack von 'Die Eiskönigin 2' (2019) — Elsas großer Moment im zweiten Akt.",
+      "fun_fact_es": "Del soundtrack alemán de 'Frozen 2' (2019), el gran número de Elsa en el segundo acto.",
+      "fun_fact_fr": "Issu de la bande originale allemande de « La Reine des neiges 2 » (2019), le grand moment d'Elsa.",
+      "fun_fact_nl": "Uit de Duitse soundtrack van 'Frozen 2' (2019), Elsa's grote nummer in het tweede bedrijf.",
+      "movie": "Die Eiskönigin 2",
       "movie_choices": [
-        "Wish",
+        "Die Eiskönigin 2",
         "Die Eiskönigin",
         "Vaiana"
       ]
@@ -1025,11 +1025,11 @@
       "uri_deezer": "deezer://track/3190828",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2AVtegeNIwE",
       "uri_tidal": null,
-      "fun_fact": "\"Ich bin unterwegs\" is the German version of \"Strangers Like Me\"-era Phil Collins material from Tarzan.",
-      "fun_fact_de": "\"Ich bin unterwegs\" ist die deutsche Fassung eines Phil-Collins-Songs aus Tarzan.",
-      "fun_fact_es": "\"Ich bin unterwegs\" es la versión alemana de una canción de Phil Collins de Tarzán.",
-      "fun_fact_fr": "\"Ich bin unterwegs\" est la version allemande d'une chanson de Phil Collins de Tarzan.",
-      "fun_fact_nl": "\"Ich bin unterwegs\" is de Duitse versie van een Phil Collins-lied uit Tarzan.",
+      "fun_fact": "The German version of Phil Collins' 'On My Way' from Disney's 'Brother Bear' (2003).",
+      "fun_fact_de": "Die deutsche Fassung von Phil Collins' 'On My Way' aus Disneys 'Bärenbrüder' (2003).",
+      "fun_fact_es": "La versión alemana de 'On My Way' de Phil Collins, de 'Hermano Oso' (2003) de Disney.",
+      "fun_fact_fr": "La version allemande de « On My Way » de Phil Collins, tirée de « Frère des ours » (2003).",
+      "fun_fact_nl": "De Duitse versie van Phil Collins' 'On My Way' uit Disney's 'Brother Bear' (2003).",
       "movie": "Bärenbrüder",
       "movie_choices": [
         "Bärenbrüder",
@@ -1459,16 +1459,16 @@
       "uri_deezer": "deezer://track/5644074",
       "uri_youtube_music": "https://music.youtube.com/watch?v=oSySG4O8gqQ",
       "uri_tidal": null,
-      "fun_fact": "\"Ganz nah dran\" is the German version of a song from a Disney film, sung by Cassandra Steen.",
-      "fun_fact_de": "\"Ganz nah dran\" ist die deutsche Fassung eines Disney-Songs, gesungen von Cassandra Steen.",
-      "fun_fact_es": "\"Ganz nah dran\" es la versión alemana de una canción de Disney, interpretada por Cassandra Steen.",
-      "fun_fact_fr": "\"Ganz nah dran\" est la version allemande d'une chanson Disney, chantée par Cassandra Steen.",
-      "fun_fact_nl": "\"Ganz nah dran\" is de Duitse versie van een Disney-lied, gezongen door Cassandra Steen.",
-      "movie": "Verwünscht",
+      "fun_fact": "The German version of Ne-Yo's 'Never Knew I Needed' from 'The Princess and the Frog' (2009).",
+      "fun_fact_de": "Die deutsche Fassung von Ne-Yos 'Never Knew I Needed' aus 'Küss den Frosch' (2009).",
+      "fun_fact_es": "La versión alemana de 'Never Knew I Needed' de Ne-Yo, de 'Tiana y el sapo' (2009).",
+      "fun_fact_fr": "La version allemande de « Never Knew I Needed » de Ne-Yo, tirée de « La Princesse et la Grenouille » (2009).",
+      "fun_fact_nl": "De Duitse versie van Ne-Yo's 'Never Knew I Needed' uit 'De prinses en de kikker' (2009).",
+      "movie": "Küss den Frosch",
       "movie_choices": [
-        "Verwünscht",
-        "Rapunzel – Neu verföhnt",
-        "Die Eiskönigin"
+        "Küss den Frosch",
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest"
       ]
     },
     {
@@ -1503,7 +1503,7 @@
       ]
     },
     {
-      "year": 2009,
+      "year": 1964,
       "artist": "Monica Dahlberg, Karin Rother, Frank Turba, Harry Wüstenhagen",
       "title": "Superkalifragilisticexpialegetisch",
       "uri": "spotify:track:02tBGtOmXkjIJWsLEjmW7l",
@@ -1534,7 +1534,7 @@
       ]
     },
     {
-      "year": 2015,
+      "year": 1999,
       "artist": "Phil Collins",
       "title": "Fremde Wie Ich",
       "uri": "spotify:track:5N48Hz55eJZZ3AtTD3lbtV",
@@ -1645,17 +1645,11 @@
       "uri_deezer": "deezer://track/1386333512",
       "uri_youtube_music": "https://music.youtube.com/watch?v=J8CgkbJA5zQ",
       "uri_tidal": null,
-      "fun_fact": "\"Ich flieg' los\" is the German version of a Disney song about setting out on an adventure.",
-      "fun_fact_de": "\"Ich flieg' los\" ist die deutsche Fassung eines Disney-Songs über den Aufbruch zu einem Abenteuer.",
-      "fun_fact_es": "\"Ich flieg' los\" es la versión alemana de una canción de Disney sobre lanzarse a una aventura.",
-      "fun_fact_fr": "\"Ich flieg' los\" est la version allemande d'une chanson Disney sur le départ vers l'aventure.",
-      "fun_fact_nl": "\"Ich flieg' los\" is de Duitse versie van een Disney-lied over het beginnen van een avontuur.",
-      "movie": "Vaiana",
-      "movie_choices": [
-        "Vaiana",
-        "Die Eiskönigin",
-        "Rapunzel – Neu verföhnt"
-      ]
+      "fun_fact": "Leslie Clio's German take on 'Starting Now', the 2021 Disney Princess campaign anthem — not from a single film.",
+      "fun_fact_de": "Leslie Clios deutsche Version von 'Starting Now', dem Disney-Prinzessinnen-Kampagnensong von 2021 — kein einzelner Film.",
+      "fun_fact_es": "La versión alemana de Leslie Clio de 'Starting Now', el himno de la campaña Princesas Disney de 2021.",
+      "fun_fact_fr": "La version allemande par Leslie Clio de « Starting Now », l'hymne de la campagne Princesses Disney de 2021.",
+      "fun_fact_nl": "Leslie Clio's Duitse versie van 'Starting Now', de Disney Princess-campagnesong uit 2021."
     },
     {
       "year": 2013,
@@ -1751,7 +1745,7 @@
       ]
     },
     {
-      "year": 2008,
+      "year": 1995,
       "artist": "Klaus Lage",
       "title": "Du hast'n Freund in Mir",
       "uri": "spotify:track:5LF5Eq6ouBonZgrZRMrAbJ",
@@ -1782,7 +1776,7 @@
       ]
     },
     {
-      "year": 1992,
+      "year": 1950,
       "artist": "Sabine Hettlich, Peter Fessler",
       "title": "Ein Traum wird wahr",
       "uri": "spotify:track:38FOWSrospmIHnwt1E1cqR",
@@ -2030,7 +2024,7 @@
       ]
     },
     {
-      "year": 2015,
+      "year": 1999,
       "artist": "Phil Collins",
       "title": "Zwei Welten",
       "uri": "spotify:track:64cAExEpDVyCopVDRSXLER",
@@ -2061,7 +2055,7 @@
       ]
     },
     {
-      "year": 2003,
+      "year": 1994,
       "artist": "Thomas Fritsch, Hella von Sinnen",
       "title": "Seid Bereit",
       "uri": "spotify:track:7JLseD59a1JQksxy1lJp3a",
@@ -2172,16 +2166,16 @@
       "uri_deezer": "deezer://track/3136593681",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hXJKNcwdRp4",
       "uri_tidal": null,
-      "fun_fact": "This German Disney song about togetherness features pop singer Wincent Weiss.",
-      "fun_fact_de": "Dieser deutsche Disney-Song über Zusammenhalt wird unter anderem von Popsänger Wincent Weiss gesungen.",
-      "fun_fact_es": "Esta canción alemana de Disney sobre la unión cuenta con el cantante pop Wincent Weiss.",
-      "fun_fact_fr": "Cette chanson allemande de Disney sur l'union met en vedette le chanteur pop Wincent Weiss.",
-      "fun_fact_nl": "Dit Duitse Disney-lied over saamhorigheid wordt mede gezongen door popzanger Wincent Weiss.",
-      "movie": "Lilo & Stitch",
+      "fun_fact": "From the German soundtrack of 'Mufasa: The Lion King' (2024).",
+      "fun_fact_de": "Aus dem deutschen Soundtrack von 'Mufasa: Der König der Löwen' (2024).",
+      "fun_fact_es": "Del soundtrack alemán de 'Mufasa: El Rey León' (2024).",
+      "fun_fact_fr": "Issu de la bande originale allemande de « Mufasa : Le Roi Lion » (2024).",
+      "fun_fact_nl": "Uit de Duitse soundtrack van 'Mufasa: The Lion King' (2024).",
+      "movie": "Mufasa: Der König der Löwen",
       "movie_choices": [
-        "Lilo & Stitch",
-        "Vaiana",
-        "Encanto"
+        "Mufasa: Der König der Löwen",
+        "Der König der Löwen",
+        "Vaiana 2"
       ]
     },
     {
@@ -2340,7 +2334,7 @@
       ]
     },
     {
-      "year": 2007,
+      "year": 1967,
       "artist": "Klaus Havenstein",
       "title": "Ich Wäre Gern Wie DU",
       "uri": "spotify:track:1ee7q9SEsYYKnw0C2De4xY",
@@ -2619,7 +2613,7 @@
       ]
     },
     {
-      "year": 2022,
+      "year": 1940,
       "artist": "Pia Allgaier",
       "title": "Wenn ein Stern vom Himmel fällt",
       "uri": "spotify:track:5Ze2qW9hz682kg6ZhXsACq",
@@ -2885,16 +2879,16 @@
       "uri_deezer": "deezer://track/3191548",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3gpGpdHRD6s",
       "uri_tidal": null,
-      "fun_fact": "\"Ich will keinen Mann\" is the German version of \"Honor to Us All\"-era Mulan material about expectations on women.",
-      "fun_fact_de": "\"Ich will keinen Mann\" ist die deutsche Fassung eines Mulan-Songs über die Erwartungen an junge Frauen.",
-      "fun_fact_es": "\"Ich will keinen Mann\" es la versión alemana de una canción de Mulán sobre las expectativas hacia las jóvenes.",
-      "fun_fact_fr": "\"Ich will keinen Mann\" est la version allemande d'une chanson de Mulan sur les attentes envers les jeunes femmes.",
-      "fun_fact_nl": "\"Ich will keinen Mann\" is de Duitse versie van een Mulan-lied over de verwachtingen aan jonge vrouwen.",
-      "movie": "Der König der Löwen",
+      "fun_fact": "The German version of 'I Won't Say (I'm in Love)' from Disney's 'Hercules' (1997).",
+      "fun_fact_de": "Die deutsche Fassung von 'I Won't Say (I'm in Love)' aus Disneys 'Hercules' (1997).",
+      "fun_fact_es": "La versión alemana de 'I Won't Say (I'm in Love)', de 'Hércules' (1997) de Disney.",
+      "fun_fact_fr": "La version allemande de « I Won't Say (I'm in Love) », tirée de « Hercule » (1997) de Disney.",
+      "fun_fact_nl": "De Duitse versie van 'I Won't Say (I'm in Love)' uit Disney's 'Hercules' (1997).",
+      "movie": "Hercules",
       "movie_choices": [
-        "Der König der Löwen",
-        "Tarzan",
-        "Pocahontas"
+        "Hercules",
+        "Mulan",
+        "Der König der Löwen"
       ]
     },
     {
