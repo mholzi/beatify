@@ -37,7 +37,13 @@
       "fun_fact_de": "Shakira leiht der Popstar-Gazelle Gazelle aus dem Zoomania-Universum ihre Stimme und ihren Gesang.",
       "fun_fact_es": "Shakira pone voz y canto a Gazelle, la estrella pop del universo de Zootrópolis.",
       "fun_fact_fr": "Shakira prête sa voix et son chant à Gazelle, la pop-star de l'univers Zootopie.",
-      "fun_fact_nl": "Shakira is de stem en zang van Gazelle, de popster uit het Zootropolis-universum."
+      "fun_fact_nl": "Shakira is de stem en zang van Gazelle, de popster uit het Zootropolis-universum.",
+      "movie": "Zoomania 2",
+      "movie_choices": [
+        "Zoomania 2",
+        "Zoomania",
+        "Vaiana"
+      ]
     },
     {
       "year": 1989,
@@ -62,7 +68,13 @@
       "fun_fact_de": "\"Unten im Meer\" ist die deutsche Fassung von \"Under the Sea\" aus Arielle, die den Oscar als bester Song gewann.",
       "fun_fact_es": "\"Unten im Meer\" es la versión alemana de \"Under the Sea\" de La Sirenita, ganadora del Oscar a mejor canción.",
       "fun_fact_fr": "\"Unten im Meer\" est la version allemande de \"Under the Sea\" de La Petite Sirène, oscarisée de la meilleure chanson.",
-      "fun_fact_nl": "\"Unten im Meer\" is de Duitse versie van \"Under the Sea\" uit De Kleine Zeemeermin, dat een Oscar won."
+      "fun_fact_nl": "\"Unten im Meer\" is de Duitse versie van \"Under the Sea\" uit De Kleine Zeemeermin, dat een Oscar won.",
+      "movie": "Arielle, die Meerjungfrau",
+      "movie_choices": [
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest",
+        "Aladdin"
+      ]
     },
     {
       "year": 2003,
@@ -87,7 +99,13 @@
       "fun_fact_de": "\"Der Ewige Kreis\" ist der deutsche Titel von \"Circle of Life\", dem Eröffnungssong des Königs der Löwen von Elton John.",
       "fun_fact_es": "\"Der Ewige Kreis\" es el título alemán de \"Circle of Life\", la canción inicial de El Rey León compuesta por Elton John.",
       "fun_fact_fr": "\"Der Ewige Kreis\" est le titre allemand de \"Circle of Life\", la chanson d'ouverture du Roi Lion signée Elton John.",
-      "fun_fact_nl": "\"Der Ewige Kreis\" is de Duitse titel van \"Circle of Life\", het openingslied van The Lion King van Elton John."
+      "fun_fact_nl": "\"Der Ewige Kreis\" is de Duitse titel van \"Circle of Life\", het openingslied van The Lion King van Elton John.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Das Dschungelbuch",
+        "Tarzan"
+      ]
     },
     {
       "year": 2025,
@@ -112,7 +130,13 @@
       "fun_fact_de": "\"Hawaiian Roller Coaster Ride\" ist die fröhliche Surf-Hymne aus Lilo & Stitch, teils auf Hawaiianisch gesungen.",
       "fun_fact_es": "\"Hawaiian Roller Coaster Ride\" es el alegre himno surfero de Lilo & Stitch, cantado en parte en hawaiano.",
       "fun_fact_fr": "\"Hawaiian Roller Coaster Ride\" est l'hymne surf joyeux de Lilo & Stitch, chanté en partie en hawaïen.",
-      "fun_fact_nl": "\"Hawaiian Roller Coaster Ride\" is het vrolijke surflied uit Lilo & Stitch, deels in het Hawaïaans gezongen."
+      "fun_fact_nl": "\"Hawaiian Roller Coaster Ride\" is het vrolijke surflied uit Lilo & Stitch, deels in het Hawaïaans gezongen.",
+      "movie": "Lilo & Stitch",
+      "movie_choices": [
+        "Lilo & Stitch",
+        "Vaiana",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2002,
@@ -137,7 +161,13 @@
       "fun_fact_de": "\"Probier's mal mit Gemütlichkeit\" ist die deutsche Fassung von \"The Bare Necessities\" aus Das Dschungelbuch.",
       "fun_fact_es": "\"Probier's mal mit Gemütlichkeit\" es la versión alemana de \"The Bare Necessities\" de El Libro de la Selva.",
       "fun_fact_fr": "\"Probier's mal mit Gemütlichkeit\" est la version allemande de \"The Bare Necessities\" du Livre de la Jungle.",
-      "fun_fact_nl": "\"Probier's mal mit Gemütlichkeit\" is de Duitse versie van \"The Bare Necessities\" uit Jungle Book."
+      "fun_fact_nl": "\"Probier's mal mit Gemütlichkeit\" is de Duitse versie van \"The Bare Necessities\" uit Jungle Book.",
+      "movie": "Das Dschungelbuch",
+      "movie_choices": [
+        "Das Dschungelbuch",
+        "Der König der Löwen",
+        "Susi und Strolch"
+      ]
     },
     {
       "year": 2006,
@@ -162,7 +192,13 @@
       "fun_fact_de": "\"Breaking Free\" ist das große Duett aus High School Musical, gesungen von den Figuren Troy und Gabriella.",
       "fun_fact_es": "\"Breaking Free\" es el dúo culminante de High School Musical cantado por los personajes Troy y Gabriella.",
       "fun_fact_fr": "\"Breaking Free\" est le grand duo de High School Musical chanté par les personnages Troy et Gabriella.",
-      "fun_fact_nl": "\"Breaking Free\" is het hoogtepunt-duet uit High School Musical, gezongen door Troy en Gabriella."
+      "fun_fact_nl": "\"Breaking Free\" is het hoogtepunt-duet uit High School Musical, gezongen door Troy en Gabriella.",
+      "movie": "High School Musical",
+      "movie_choices": [
+        "High School Musical",
+        "Camp Rock",
+        "Hannah Montana"
+      ]
     },
     {
       "year": 1999,
@@ -187,7 +223,13 @@
       "fun_fact_de": "\"Dir gehört mein Herz\" ist die deutsche Fassung von Phil Collins' \"You'll Be in My Heart\" aus Tarzan, einem Oscar-Gewinner.",
       "fun_fact_es": "\"Dir gehört mein Herz\" es la versión alemana de \"You'll Be in My Heart\" de Phil Collins en Tarzán, ganadora del Oscar.",
       "fun_fact_fr": "\"Dir gehört mein Herz\" est la version allemande de \"You'll Be in My Heart\" de Phil Collins dans Tarzan, oscarisée.",
-      "fun_fact_nl": "\"Dir gehört mein Herz\" is de Duitse versie van Phil Collins' \"You'll Be in My Heart\" uit Tarzan, een Oscarwinnaar."
+      "fun_fact_nl": "\"Dir gehört mein Herz\" is de Duitse versie van Phil Collins' \"You'll Be in My Heart\" uit Tarzan, een Oscarwinnaar.",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "Der König der Löwen",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2016,
@@ -212,7 +254,13 @@
       "fun_fact_de": "Der deutsche Sänger Andreas Bourani wirkte am deutschen Soundtrack von Vaiana mit.",
       "fun_fact_es": "El cantante alemán Andreas Bourani participó en la banda sonora alemana de Vaiana (Moana).",
       "fun_fact_fr": "Le chanteur allemand Andreas Bourani a participé à la bande originale allemande de Vaiana (Moana).",
-      "fun_fact_nl": "De Duitse zanger Andreas Bourani werkte mee aan de Duitse soundtrack van Vaiana (Moana)."
+      "fun_fact_nl": "De Duitse zanger Andreas Bourani werkte mee aan de Duitse soundtrack van Vaiana (Moana).",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2024,
@@ -237,7 +285,13 @@
       "fun_fact_de": "An diesem deutschen Song wirkt Popsänger Wincent Weiss mit, der seine Stimme Disney-Soundtracks leiht.",
       "fun_fact_es": "Esta canción alemana cuenta con el cantante pop Wincent Weiss, que presta su voz a bandas sonoras de Disney.",
       "fun_fact_fr": "Cette chanson allemande met en vedette le chanteur pop Wincent Weiss, prêtant sa voix à des B.O. Disney.",
-      "fun_fact_nl": "In dit Duitse lied zingt popzanger Wincent Weiss, die zijn stem leent aan Disney-soundtracks."
+      "fun_fact_nl": "In dit Duitse lied zingt popzanger Wincent Weiss, die zijn stem leent aan Disney-soundtracks.",
+      "movie": "Lilo & Stitch",
+      "movie_choices": [
+        "Lilo & Stitch",
+        "Vaiana",
+        "Encanto"
+      ]
     },
     {
       "year": 2016,
@@ -262,7 +316,13 @@
       "fun_fact_de": "\"Try Everything\" ist der schwungvolle Titelsong von Zoomania, gesungen von Shakira als Gazelle.",
       "fun_fact_es": "\"Try Everything\" es el tema animado de Zootrópolis, interpretado por Shakira en el papel de Gazelle.",
       "fun_fact_fr": "\"Try Everything\" est le thème entraînant de Zootopie, interprété par Shakira dans le rôle de Gazelle.",
-      "fun_fact_nl": "\"Try Everything\" is het opzwepende themalied van Zootropolis, gezongen door Shakira als Gazelle."
+      "fun_fact_nl": "\"Try Everything\" is het opzwepende themalied van Zootropolis, gezongen door Shakira als Gazelle.",
+      "movie": "Zoomania",
+      "movie_choices": [
+        "Zoomania",
+        "Vaiana",
+        "Die Eiskönigin"
+      ]
     },
     {
       "year": 2017,
@@ -287,7 +347,13 @@
       "fun_fact_de": "\"Un Poco Loco\" ist ein temporeicher Song aus Pixars Coco, gesungen beim Talentwettbewerb auf dem Platz.",
       "fun_fact_es": "\"Un Poco Loco\" es una canción animada de Coco de Pixar, interpretada en el concurso de talentos de la plaza.",
       "fun_fact_fr": "\"Un Poco Loco\" est une chanson rythmée de Coco de Pixar, interprétée lors du concours de talents sur la place.",
-      "fun_fact_nl": "\"Un Poco Loco\" is een energiek lied uit Pixars Coco, gezongen tijdens de talentenshow op het plein."
+      "fun_fact_nl": "\"Un Poco Loco\" is een energiek lied uit Pixars Coco, gezongen tijdens de talentenshow op het plein.",
+      "movie": "Coco",
+      "movie_choices": [
+        "Coco",
+        "Encanto",
+        "Vaiana"
+      ]
     },
     {
       "year": 2013,
@@ -312,7 +378,13 @@
       "fun_fact_de": "\"Let It Go\" aus Die Eiskönigin, gesungen von Idina Menzel, gewann 2014 den Oscar als bester Filmsong.",
       "fun_fact_es": "\"Let It Go\" de Frozen, interpretada por Idina Menzel, ganó el Oscar a la mejor canción original en 2014.",
       "fun_fact_fr": "\"Let It Go\" de La Reine des neiges, chantée par Idina Menzel, a remporté l'Oscar de la meilleure chanson en 2014.",
-      "fun_fact_nl": "\"Let It Go\" uit Frozen, gezongen door Idina Menzel, won in 2014 de Oscar voor beste originele lied."
+      "fun_fact_nl": "\"Let It Go\" uit Frozen, gezongen door Idina Menzel, won in 2014 de Oscar voor beste originele lied.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 1995,
@@ -337,7 +409,13 @@
       "fun_fact_de": "\"Das Farbenspiel des Winds\" ist die deutsche Fassung von \"Colors of the Wind\" aus Pocahontas, einem Oscar-Gewinner.",
       "fun_fact_es": "\"Das Farbenspiel des Winds\" es la versión alemana de \"Colors of the Wind\" de Pocahontas, ganadora del Oscar.",
       "fun_fact_fr": "\"Das Farbenspiel des Winds\" est la version allemande de \"Colors of the Wind\" de Pocahontas, oscarisée.",
-      "fun_fact_nl": "\"Das Farbenspiel des Winds\" is de Duitse versie van \"Colors of the Wind\" uit Pocahontas, een Oscarwinnaar."
+      "fun_fact_nl": "\"Das Farbenspiel des Winds\" is de Duitse versie van \"Colors of the Wind\" uit Pocahontas, een Oscarwinnaar.",
+      "movie": "Pocahontas",
+      "movie_choices": [
+        "Pocahontas",
+        "Mulan",
+        "Vaiana"
+      ]
     },
     {
       "year": 2025,
@@ -362,7 +440,13 @@
       "fun_fact_de": "Dieser deutsche Song wurde vom Weltraum-Abenteuer Elio von Pixar inspiriert.",
       "fun_fact_es": "Esta canción alemana se inspiró en Elio, la aventura espacial de Pixar.",
       "fun_fact_fr": "Cette chanson allemande s'inspire d'Elio, l'aventure spatiale de Pixar.",
-      "fun_fact_nl": "Dit Duitse lied is geïnspireerd op Elio, het ruimteavontuur van Pixar."
+      "fun_fact_nl": "Dit Duitse lied is geïnspireerd op Elio, het ruimteavontuur van Pixar.",
+      "movie": "Elio",
+      "movie_choices": [
+        "Elio",
+        "Oben",
+        "Coco"
+      ]
     },
     {
       "year": 2025,
@@ -387,7 +471,13 @@
       "fun_fact_de": "Dieser deutsche Disney-Song bringt einen Wunsch zum Ausdruck, ein wiederkehrendes Motiv vieler Disney-Filme.",
       "fun_fact_es": "Esta canción alemana de Disney expresa un deseo, un tema recurrente en muchas películas de Disney.",
       "fun_fact_fr": "Cette chanson allemande de Disney exprime un souhait, un thème récurrent dans de nombreux films Disney.",
-      "fun_fact_nl": "Dit Duitse Disney-lied verwoordt een wens, een terugkerend thema in veel Disney-films."
+      "fun_fact_nl": "Dit Duitse Disney-lied verwoordt een wens, een terugkerend thema in veel Disney-films.",
+      "movie": "Wish",
+      "movie_choices": [
+        "Wish",
+        "Vaiana",
+        "Die Eiskönigin"
+      ]
     },
     {
       "year": 2003,
@@ -412,7 +502,13 @@
       "fun_fact_de": "\"He's a Pirate\" ist das treibende Thema aus Fluch der Karibik, komponiert von Klaus Badelt und Hans Zimmer.",
       "fun_fact_es": "\"He's a Pirate\" es el tema vibrante de Piratas del Caribe, compuesto por Klaus Badelt y Hans Zimmer.",
       "fun_fact_fr": "\"He's a Pirate\" est le thème entraînant de Pirates des Caraïbes, composé par Klaus Badelt et Hans Zimmer.",
-      "fun_fact_nl": "\"He's a Pirate\" is het stuwende thema uit Pirates of the Caribbean, gecomponeerd door Klaus Badelt en Hans Zimmer."
+      "fun_fact_nl": "\"He's a Pirate\" is het stuwende thema uit Pirates of the Caribbean, gecomponeerd door Klaus Badelt en Hans Zimmer.",
+      "movie": "Fluch der Karibik",
+      "movie_choices": [
+        "Fluch der Karibik",
+        "Die Schöne und das Biest",
+        "Aladdin"
+      ]
     },
     {
       "year": 2003,
@@ -437,7 +533,13 @@
       "fun_fact_de": "\"Hakuna Matata\" aus Der König der Löwen bedeutet auf Swahili \"keine Sorgen\" und war Oscar-nominiert.",
       "fun_fact_es": "\"Hakuna Matata\" de El Rey León significa \"sin preocupaciones\" en suajili y fue nominada al Oscar.",
       "fun_fact_fr": "\"Hakuna Matata\" du Roi Lion signifie \"pas de souci\" en swahili et fut nommée aux Oscars.",
-      "fun_fact_nl": "\"Hakuna Matata\" uit The Lion King betekent \"geen zorgen\" in het Swahili en was Oscar-genomineerd."
+      "fun_fact_nl": "\"Hakuna Matata\" uit The Lion King betekent \"geen zorgen\" in het Swahili en was Oscar-genomineerd.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Das Dschungelbuch",
+        "Tarzan"
+      ]
     },
     {
       "year": 2016,
@@ -462,7 +564,13 @@
       "fun_fact_de": "\"Ich bin bereit\" ist die deutsche Fassung von \"How Far I'll Go\", dem Titelsong von Vaiana.",
       "fun_fact_es": "\"Ich bin bereit\" es la versión alemana de \"How Far I'll Go\", la canción insignia de Vaiana (Moana).",
       "fun_fact_fr": "\"Ich bin bereit\" est la version allemande de \"How Far I'll Go\", la chanson phare de Vaiana (Moana).",
-      "fun_fact_nl": "\"Ich bin bereit\" is de Duitse versie van \"How Far I'll Go\", het titellied van Vaiana (Moana)."
+      "fun_fact_nl": "\"Ich bin bereit\" is de Duitse versie van \"How Far I'll Go\", het titellied van Vaiana (Moana).",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2010,
@@ -487,7 +595,13 @@
       "fun_fact_de": "\"Endlich sehe ich das Licht\" ist die deutsche Fassung von \"I See the Light\" aus Rapunzel, dem Laternen-Duett.",
       "fun_fact_es": "\"Endlich sehe ich das Licht\" es la versión alemana de \"I See the Light\" de Enredados, el dúo de las linternas.",
       "fun_fact_fr": "\"Endlich sehe ich das Licht\" est la version allemande de \"I See the Light\" de Raiponce, le duo des lanternes.",
-      "fun_fact_nl": "\"Endlich sehe ich das Licht\" is de Duitse versie van \"I See the Light\" uit Tangled, het lantaarnduet."
+      "fun_fact_nl": "\"Endlich sehe ich das Licht\" is de Duitse versie van \"I See the Light\" uit Tangled, het lantaarnduet.",
+      "movie": "Rapunzel – Neu verföhnt",
+      "movie_choices": [
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2023,
@@ -512,7 +626,13 @@
       "fun_fact_de": "\"Steal the Show\" von Lauv ist der Originalsong aus Pixars Elemental.",
       "fun_fact_es": "\"Steal the Show\" de Lauv es la canción original de Elemental de Pixar.",
       "fun_fact_fr": "\"Steal the Show\" de Lauv est la chanson originale du film Élémentaire de Pixar.",
-      "fun_fact_nl": "\"Steal the Show\" van Lauv is het originele lied uit Pixars Elemental."
+      "fun_fact_nl": "\"Steal the Show\" van Lauv is het originele lied uit Pixars Elemental.",
+      "movie": "Elemental",
+      "movie_choices": [
+        "Elemental",
+        "Oben",
+        "Coco"
+      ]
     },
     {
       "year": 2003,
@@ -537,7 +657,13 @@
       "fun_fact_de": "\"Kann es wirklich Liebe sein\" ist die deutsche Fassung von \"Can You Feel the Love Tonight\" aus Der König der Löwen.",
       "fun_fact_es": "\"Kann es wirklich Liebe sein\" es la versión alemana de \"Can You Feel the Love Tonight\" de El Rey León.",
       "fun_fact_fr": "\"Kann es wirklich Liebe sein\" est la version allemande de \"Can You Feel the Love Tonight\" du Roi Lion.",
-      "fun_fact_nl": "\"Kann es wirklich Liebe sein\" is de Duitse versie van \"Can You Feel the Love Tonight\" uit The Lion King."
+      "fun_fact_nl": "\"Kann es wirklich Liebe sein\" is de Duitse versie van \"Can You Feel the Love Tonight\" uit The Lion King.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Das Dschungelbuch",
+        "Tarzan"
+      ]
     },
     {
       "year": 2006,
@@ -562,7 +688,13 @@
       "fun_fact_de": "\"Life is a Highway\" von Rascal Flatts war in Pixars Cars zu hören, ein Cover des Hits von Tom Cochrane.",
       "fun_fact_es": "\"Life is a Highway\" de Rascal Flatts apareció en Cars de Pixar, versión del éxito de Tom Cochrane.",
       "fun_fact_fr": "\"Life is a Highway\" de Rascal Flatts figure dans Cars de Pixar, reprise du tube de Tom Cochrane.",
-      "fun_fact_nl": "\"Life is a Highway\" van Rascal Flatts klonk in Pixars Cars, een cover van Tom Cochranes hit."
+      "fun_fact_nl": "\"Life is a Highway\" van Rascal Flatts klonk in Pixars Cars, een cover van Tom Cochranes hit.",
+      "movie": "Cars",
+      "movie_choices": [
+        "Cars",
+        "Toy Story",
+        "Oben"
+      ]
     },
     {
       "year": 2024,
@@ -587,7 +719,13 @@
       "fun_fact_de": "\"Red\" stammt aus Descendants: The Rise of Red, dem vierten Film von Disneys Descendants-Reihe.",
       "fun_fact_es": "\"Red\" pertenece a Descendientes: El Ascenso de Red, la cuarta película de la saga Descendientes de Disney.",
       "fun_fact_fr": "\"Red\" provient de Descendants: The Rise of Red, le quatrième film de la saga Descendants de Disney.",
-      "fun_fact_nl": "\"Red\" komt uit Descendants: The Rise of Red, de vierde film van Disneys Descendants-reeks."
+      "fun_fact_nl": "\"Red\" komt uit Descendants: The Rise of Red, de vierde film van Disneys Descendants-reeks.",
+      "movie": "Descendants: The Rise of Red",
+      "movie_choices": [
+        "Descendants: The Rise of Red",
+        "High School Musical",
+        "Camp Rock"
+      ]
     },
     {
       "year": 2021,
@@ -612,7 +750,13 @@
       "fun_fact_de": "\"Nur kein Wort über Bruno\" ist die deutsche Fassung von \"We Don't Talk About Bruno\" aus Encanto.",
       "fun_fact_es": "\"Nur kein Wort über Bruno\" es la versión alemana de \"We Don't Talk About Bruno\" de Encanto.",
       "fun_fact_fr": "\"Nur kein Wort über Bruno\" est la version allemande de \"We Don't Talk About Bruno\" d'Encanto.",
-      "fun_fact_nl": "\"Nur kein Wort über Bruno\" is de Duitse versie van \"We Don't Talk About Bruno\" uit Encanto."
+      "fun_fact_nl": "\"Nur kein Wort über Bruno\" is de Duitse versie van \"We Don't Talk About Bruno\" uit Encanto.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 2011,
@@ -637,7 +781,13 @@
       "fun_fact_de": "\"Ich will jetzt gleich König sein\" ist die deutsche Fassung von \"I Just Can't Wait to Be King\" aus Der König der Löwen.",
       "fun_fact_es": "\"Ich will jetzt gleich König sein\" es la versión alemana de \"I Just Can't Wait to Be King\" de El Rey León.",
       "fun_fact_fr": "\"Ich will jetzt gleich König sein\" est la version allemande de \"I Just Can't Wait to Be King\" du Roi Lion.",
-      "fun_fact_nl": "\"Ich will jetzt gleich König sein\" is de Duitse versie van \"I Just Can't Wait to Be King\" uit The Lion King."
+      "fun_fact_nl": "\"Ich will jetzt gleich König sein\" is de Duitse versie van \"I Just Can't Wait to Be King\" uit The Lion King.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Das Dschungelbuch",
+        "Tarzan"
+      ]
     },
     {
       "year": 2018,
@@ -662,7 +812,13 @@
       "fun_fact_de": "\"You'll Be in My Heart\" von Phil Collins aus Tarzan gewann 2000 den Oscar als bester Filmsong.",
       "fun_fact_es": "\"You'll Be in My Heart\" de Phil Collins en Tarzán ganó el Oscar a la mejor canción original en 2000.",
       "fun_fact_fr": "\"You'll Be in My Heart\" de Phil Collins dans Tarzan a remporté l'Oscar de la meilleure chanson en 2000.",
-      "fun_fact_nl": "\"You'll Be in My Heart\" van Phil Collins uit Tarzan won in 2000 de Oscar voor beste originele lied."
+      "fun_fact_nl": "\"You'll Be in My Heart\" van Phil Collins uit Tarzan won in 2000 de Oscar voor beste originele lied.",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "Der König der Löwen",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2024,
@@ -687,7 +843,13 @@
       "fun_fact_de": "\"Beyond\" ist ein Song aus Vaiana 2, in dem Auli'i Cravalho erneut Vaiana ihre Stimme leiht.",
       "fun_fact_es": "\"Beyond\" es una canción de Vaiana 2 (Moana 2), con Auli'i Cravalho de nuevo como voz de Moana.",
       "fun_fact_fr": "\"Beyond\" est une chanson de Vaiana 2 (Moana 2), avec Auli'i Cravalho de retour comme voix de Vaiana.",
-      "fun_fact_nl": "\"Beyond\" is een lied uit Vaiana 2 (Moana 2), met Auli'i Cravalho weer als stem van Vaiana."
+      "fun_fact_nl": "\"Beyond\" is een lied uit Vaiana 2 (Moana 2), met Auli'i Cravalho weer als stem van Vaiana.",
+      "movie": "Vaiana 2",
+      "movie_choices": [
+        "Vaiana 2",
+        "Vaiana",
+        "Die Eiskönigin 2"
+      ]
     },
     {
       "year": 2013,
@@ -712,7 +874,13 @@
       "fun_fact_de": "\"Lass jetzt los\" ist die deutsche Fassung von \"Let It Go\" aus Die Eiskönigin, gesungen von Willemijn Verkaik.",
       "fun_fact_es": "\"Lass jetzt los\" es la versión alemana de \"Let It Go\" de Frozen, aquí interpretada por Willemijn Verkaik.",
       "fun_fact_fr": "\"Lass jetzt los\" est la version allemande de \"Let It Go\" de La Reine des neiges, chantée par Willemijn Verkaik.",
-      "fun_fact_nl": "\"Lass jetzt los\" is de Duitse versie van \"Let It Go\" uit Frozen, hier gezongen door Willemijn Verkaik."
+      "fun_fact_nl": "\"Lass jetzt los\" is de Duitse versie van \"Let It Go\" uit Frozen, hier gezongen door Willemijn Verkaik.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2015,
@@ -737,7 +905,13 @@
       "fun_fact_de": "\"So ein Mann\" ist die deutsche Fassung von \"Son of Man\" von Phil Collins aus Tarzan.",
       "fun_fact_es": "\"So ein Mann\" es la versión alemana de \"Son of Man\" de Phil Collins en Tarzán.",
       "fun_fact_fr": "\"So ein Mann\" est la version allemande de \"Son of Man\" de Phil Collins dans Tarzan.",
-      "fun_fact_nl": "\"So ein Mann\" is de Duitse versie van \"Son of Man\" van Phil Collins uit Tarzan."
+      "fun_fact_nl": "\"So ein Mann\" is de Duitse versie van \"Son of Man\" van Phil Collins uit Tarzan.",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "Der König der Löwen",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2019,
@@ -762,7 +936,13 @@
       "fun_fact_de": "\"All I Want\" von Olivia Rodrigo ist ein Song aus der Disney+-Serie High School Musical: The Musical: The Series.",
       "fun_fact_es": "\"All I Want\" de Olivia Rodrigo es una canción de la serie de Disney+ High School Musical: The Musical: The Series.",
       "fun_fact_fr": "\"All I Want\" d'Olivia Rodrigo est une chanson de la série Disney+ High School Musical: The Musical: The Series.",
-      "fun_fact_nl": "\"All I Want\" van Olivia Rodrigo komt uit de Disney+-serie High School Musical: The Musical: The Series."
+      "fun_fact_nl": "\"All I Want\" van Olivia Rodrigo komt uit de Disney+-serie High School Musical: The Musical: The Series.",
+      "movie": "High School Musical",
+      "movie_choices": [
+        "High School Musical",
+        "Camp Rock",
+        "Hannah Montana"
+      ]
     },
     {
       "year": 2019,
@@ -787,7 +967,13 @@
       "fun_fact_de": "\"Ich werd niemals schweigen (Teil 2)\" ist die deutsche Fassung eines Songs aus Die Eiskönigin 2.",
       "fun_fact_es": "\"Ich werd niemals schweigen (Teil 2)\" es la versión alemana de una canción de Frozen 2.",
       "fun_fact_fr": "\"Ich werd niemals schweigen (Teil 2)\" est la version allemande d'une chanson de La Reine des neiges 2.",
-      "fun_fact_nl": "\"Ich werd niemals schweigen (Teil 2)\" is de Duitse versie van een lied uit Frozen 2."
+      "fun_fact_nl": "\"Ich werd niemals schweigen (Teil 2)\" is de Duitse versie van een lied uit Frozen 2.",
+      "movie": "Wish",
+      "movie_choices": [
+        "Wish",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2013,
@@ -812,7 +998,13 @@
       "fun_fact_de": "\"Willst du einen Schneemann bauen?\" ist die deutsche Fassung von \"Do You Want to Build a Snowman?\" aus Die Eiskönigin.",
       "fun_fact_es": "\"Willst du einen Schneemann bauen?\" es la versión alemana de \"Do You Want to Build a Snowman?\" de Frozen.",
       "fun_fact_fr": "\"Willst du einen Schneemann bauen?\" est la version allemande de \"Do You Want to Build a Snowman?\" de Frozen.",
-      "fun_fact_nl": "\"Willst du einen Schneemann bauen?\" is de Duitse versie van \"Do You Want to Build a Snowman?\" uit Frozen."
+      "fun_fact_nl": "\"Willst du einen Schneemann bauen?\" is de Duitse versie van \"Do You Want to Build a Snowman?\" uit Frozen.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2003,
@@ -837,7 +1029,13 @@
       "fun_fact_de": "\"Ich bin unterwegs\" ist die deutsche Fassung eines Phil-Collins-Songs aus Tarzan.",
       "fun_fact_es": "\"Ich bin unterwegs\" es la versión alemana de una canción de Phil Collins de Tarzán.",
       "fun_fact_fr": "\"Ich bin unterwegs\" est la version allemande d'une chanson de Phil Collins de Tarzan.",
-      "fun_fact_nl": "\"Ich bin unterwegs\" is de Duitse versie van een Phil Collins-lied uit Tarzan."
+      "fun_fact_nl": "\"Ich bin unterwegs\" is de Duitse versie van een Phil Collins-lied uit Tarzan.",
+      "movie": "Bärenbrüder",
+      "movie_choices": [
+        "Bärenbrüder",
+        "Tarzan",
+        "Der König der Löwen"
+      ]
     },
     {
       "year": 2016,
@@ -862,7 +1060,13 @@
       "fun_fact_de": "\"Wir kennen den Weg\" ist die deutsche Fassung von \"We Know the Way\" aus Vaiana, mitgeschrieben von Lin-Manuel Miranda.",
       "fun_fact_es": "\"Wir kennen den Weg\" es la versión alemana de \"We Know the Way\" de Vaiana, coescrita por Lin-Manuel Miranda.",
       "fun_fact_fr": "\"Wir kennen den Weg\" est la version allemande de \"We Know the Way\" de Vaiana, coécrite par Lin-Manuel Miranda.",
-      "fun_fact_nl": "\"Wir kennen den Weg\" is de Duitse versie van \"We Know the Way\" uit Vaiana, mede geschreven door Lin-Manuel Miranda."
+      "fun_fact_nl": "\"Wir kennen den Weg\" is de Duitse versie van \"We Know the Way\" uit Vaiana, mede geschreven door Lin-Manuel Miranda.",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2010,
@@ -887,7 +1091,13 @@
       "fun_fact_de": "\"Something That I Want\" von Grace Potter läuft im Abspann von Rapunzel - Neu verföhnt.",
       "fun_fact_es": "\"Something That I Want\" de Grace Potter suena en los créditos finales de Enredados.",
       "fun_fact_fr": "\"Something That I Want\" de Grace Potter accompagne le générique de fin de Raiponce.",
-      "fun_fact_nl": "\"Something That I Want\" van Grace Potter klinkt tijdens de aftiteling van Tangled."
+      "fun_fact_nl": "\"Something That I Want\" van Grace Potter klinkt tijdens de aftiteling van Tangled.",
+      "movie": "Rapunzel – Neu verföhnt",
+      "movie_choices": [
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 1992,
@@ -912,7 +1122,13 @@
       "fun_fact_de": "\"Arabische Nächte\" ist die deutsche Fassung von \"Arabian Nights\", dem Eröffnungssong von Aladdin.",
       "fun_fact_es": "\"Arabische Nächte\" es la versión alemana de \"Arabian Nights\", la canción inicial de Aladdín.",
       "fun_fact_fr": "\"Arabische Nächte\" est la version allemande de \"Arabian Nights\", la chanson d'ouverture d'Aladdin.",
-      "fun_fact_nl": "\"Arabische Nächte\" is de Duitse versie van \"Arabian Nights\", het openingslied van Aladdin."
+      "fun_fact_nl": "\"Arabische Nächte\" is de Duitse versie van \"Arabian Nights\", het openingslied van Aladdin.",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau"
+      ]
     },
     {
       "year": 1989,
@@ -937,7 +1153,13 @@
       "fun_fact_de": "\"In deiner Welt\" ist die deutsche Fassung von \"Part of Your World\" aus Arielle, die Meerjungfrau.",
       "fun_fact_es": "\"In deiner Welt\" es la versión alemana de \"Part of Your World\" de La Sirenita.",
       "fun_fact_fr": "\"In deiner Welt\" est la version allemande de \"Part of Your World\" de La Petite Sirène.",
-      "fun_fact_nl": "\"In deiner Welt\" is de Duitse versie van \"Part of Your World\" uit De Kleine Zeemeermin."
+      "fun_fact_nl": "\"In deiner Welt\" is de Duitse versie van \"Part of Your World\" uit De Kleine Zeemeermin.",
+      "movie": "Arielle, die Meerjungfrau",
+      "movie_choices": [
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest",
+        "Aladdin"
+      ]
     },
     {
       "year": 2009,
@@ -962,7 +1184,13 @@
       "fun_fact_de": "\"The Climb\" von Miley Cyrus ist ein zentraler Song aus dem Disney-Film Hannah Montana: Der Film.",
       "fun_fact_es": "\"The Climb\" de Miley Cyrus es una canción clave de la película de Disney Hannah Montana: La Película.",
       "fun_fact_fr": "\"The Climb\" de Miley Cyrus est une chanson phare du film Disney Hannah Montana, le film.",
-      "fun_fact_nl": "\"The Climb\" van Miley Cyrus is een belangrijk lied uit de Disney-film Hannah Montana: The Movie."
+      "fun_fact_nl": "\"The Climb\" van Miley Cyrus is een belangrijk lied uit de Disney-film Hannah Montana: The Movie.",
+      "movie": "Hannah Montana",
+      "movie_choices": [
+        "Hannah Montana",
+        "High School Musical",
+        "Camp Rock"
+      ]
     },
     {
       "year": 2022,
@@ -987,7 +1215,13 @@
       "fun_fact_de": "\"An meiner Seite\" ist die deutsche Fassung eines Disney-Liebeslieds, gesungen von Joy Denalane.",
       "fun_fact_es": "\"An meiner Seite\" es la versión alemana de una canción romántica de Disney, interpretada por Joy Denalane.",
       "fun_fact_fr": "\"An meiner Seite\" est la version allemande d'une chanson d'amour Disney, chantée par Joy Denalane.",
-      "fun_fact_nl": "\"An meiner Seite\" is de Duitse versie van een Disney-liefdeslied, gezongen door Joy Denalane."
+      "fun_fact_nl": "\"An meiner Seite\" is de Duitse versie van een Disney-liefdeslied, gezongen door Joy Denalane.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Tarzan",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2021,
@@ -1012,7 +1246,13 @@
       "fun_fact_de": "\"Familie Madrigal\" ist die deutsche Fassung von \"The Family Madrigal\", der Eröffnungsnummer von Encanto.",
       "fun_fact_es": "\"Familie Madrigal\" es la versión alemana de \"The Family Madrigal\", el número inicial de Encanto.",
       "fun_fact_fr": "\"Familie Madrigal\" est la version allemande de \"The Family Madrigal\", l'ouverture d'Encanto.",
-      "fun_fact_nl": "\"Familie Madrigal\" is de Duitse versie van \"The Family Madrigal\", het openingsnummer van Encanto."
+      "fun_fact_nl": "\"Familie Madrigal\" is de Duitse versie van \"The Family Madrigal\", het openingsnummer van Encanto.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 2016,
@@ -1037,7 +1277,13 @@
       "fun_fact_de": "\"Wo du bist\" ist ein deutscher Song aus dem Vaiana-Soundtrack.",
       "fun_fact_es": "\"Wo du bist\" es una canción alemana de la banda sonora de Vaiana (Moana).",
       "fun_fact_fr": "\"Wo du bist\" est une chanson allemande de la bande originale de Vaiana (Moana).",
-      "fun_fact_nl": "\"Wo du bist\" is een Duits lied uit de soundtrack van Vaiana (Moana)."
+      "fun_fact_nl": "\"Wo du bist\" is een Duits lied uit de soundtrack van Vaiana (Moana).",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 1991,
@@ -1062,7 +1308,13 @@
       "fun_fact_de": "\"Die Schöne und das Biest\" ist der deutsche Titelsong des gleichnamigen Films, der einen Oscar gewann.",
       "fun_fact_es": "\"Die Schöne und das Biest\" es la canción título alemana de La Bella y la Bestia, ganadora de un Oscar.",
       "fun_fact_fr": "\"Die Schöne und das Biest\" est la chanson-titre allemande de La Belle et la Bête, oscarisée.",
-      "fun_fact_nl": "\"Die Schöne und das Biest\" is het Duitse titellied van Beauty and the Beast, dat een Oscar won."
+      "fun_fact_nl": "\"Die Schöne und das Biest\" is het Duitse titellied van Beauty and the Beast, dat een Oscar won.",
+      "movie": "Die Schöne und das Biest",
+      "movie_choices": [
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau",
+        "Aladdin"
+      ]
     },
     {
       "year": 2024,
@@ -1087,7 +1339,13 @@
       "fun_fact_de": "\"Ich wag den Schritt\" ist ein deutscher Song aus Vaiana 2.",
       "fun_fact_es": "\"Ich wag den Schritt\" es una canción alemana de Vaiana 2 (Moana 2).",
       "fun_fact_fr": "\"Ich wag den Schritt\" est une chanson allemande de Vaiana 2 (Moana 2).",
-      "fun_fact_nl": "\"Ich wag den Schritt\" is een Duits lied uit Vaiana 2 (Moana 2)."
+      "fun_fact_nl": "\"Ich wag den Schritt\" is een Duits lied uit Vaiana 2 (Moana 2).",
+      "movie": "Vaiana 2",
+      "movie_choices": [
+        "Vaiana 2",
+        "Vaiana",
+        "Die Eiskönigin 2"
+      ]
     },
     {
       "year": 2013,
@@ -1112,7 +1370,13 @@
       "fun_fact_de": "\"Kaltes Herz\" ist die deutsche Fassung von \"Frozen Heart\", dem Eröffnungslied der Eismänner aus Die Eiskönigin.",
       "fun_fact_es": "\"Kaltes Herz\" es la versión alemana de \"Frozen Heart\", la canción inicial de los cortadores de hielo de Frozen.",
       "fun_fact_fr": "\"Kaltes Herz\" est la version allemande de \"Frozen Heart\", le chant d'ouverture des coupeurs de glace de Frozen.",
-      "fun_fact_nl": "\"Kaltes Herz\" is de Duitse versie van \"Frozen Heart\", het openingslied van de ijssnijders uit Frozen."
+      "fun_fact_nl": "\"Kaltes Herz\" is de Duitse versie van \"Frozen Heart\", het openingslied van de ijssnijders uit Frozen.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2009,
@@ -1137,7 +1401,13 @@
       "fun_fact_de": "\"Almost There\" ist Tianas Traumlied aus Küss den Frosch, gesungen von Anika Noni Rose.",
       "fun_fact_es": "\"Almost There\" es la canción del sueño de Tiana en Tiana y el Sapo, interpretada por Anika Noni Rose.",
       "fun_fact_fr": "\"Almost There\" est la chanson du rêve de Tiana dans La Princesse et la Grenouille, chantée par Anika Noni Rose.",
-      "fun_fact_nl": "\"Almost There\" is Tiana's droomlied uit The Princess and the Frog, gezongen door Anika Noni Rose."
+      "fun_fact_nl": "\"Almost There\" is Tiana's droomlied uit The Princess and the Frog, gezongen door Anika Noni Rose.",
+      "movie": "Küss den Frosch",
+      "movie_choices": [
+        "Küss den Frosch",
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest"
+      ]
     },
     {
       "year": 2024,
@@ -1162,7 +1432,13 @@
       "fun_fact_de": "\"Milele\" ist ein Song aus Mufasa: Der König der Löwen; der Titel bedeutet auf Swahili \"für immer\".",
       "fun_fact_es": "\"Milele\" es una canción de Mufasa: El Rey León; el título significa \"para siempre\" en suajili.",
       "fun_fact_fr": "\"Milele\" est une chanson de Mufasa : Le Roi Lion ; le titre signifie \"pour toujours\" en swahili.",
-      "fun_fact_nl": "\"Milele\" is een lied uit Mufasa: The Lion King; de titel betekent \"voor altijd\" in het Swahili."
+      "fun_fact_nl": "\"Milele\" is een lied uit Mufasa: The Lion King; de titel betekent \"voor altijd\" in het Swahili.",
+      "movie": "Mufasa: Der König der Löwen",
+      "movie_choices": [
+        "Mufasa: Der König der Löwen",
+        "Der König der Löwen",
+        "Vaiana 2"
+      ]
     },
     {
       "year": 2009,
@@ -1187,7 +1463,13 @@
       "fun_fact_de": "\"Ganz nah dran\" ist die deutsche Fassung eines Disney-Songs, gesungen von Cassandra Steen.",
       "fun_fact_es": "\"Ganz nah dran\" es la versión alemana de una canción de Disney, interpretada por Cassandra Steen.",
       "fun_fact_fr": "\"Ganz nah dran\" est la version allemande d'une chanson Disney, chantée par Cassandra Steen.",
-      "fun_fact_nl": "\"Ganz nah dran\" is de Duitse versie van een Disney-lied, gezongen door Cassandra Steen."
+      "fun_fact_nl": "\"Ganz nah dran\" is de Duitse versie van een Disney-lied, gezongen door Cassandra Steen.",
+      "movie": "Verwünscht",
+      "movie_choices": [
+        "Verwünscht",
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin"
+      ]
     },
     {
       "year": 2012,
@@ -1212,7 +1494,13 @@
       "fun_fact_de": "\"Touch the Sky\" von Julie Fowlis ist Meridas Freiheitshymne aus Pixars Merida - Legende der Highlands.",
       "fun_fact_es": "\"Touch the Sky\" de Julie Fowlis es el himno de libertad de Mérida en Brave de Pixar.",
       "fun_fact_fr": "\"Touch the Sky\" de Julie Fowlis est l'hymne de liberté de Merida dans Rebelle de Pixar.",
-      "fun_fact_nl": "\"Touch the Sky\" van Julie Fowlis is Merida's vrijheidslied uit Pixars Brave."
+      "fun_fact_nl": "\"Touch the Sky\" van Julie Fowlis is Merida's vrijheidslied uit Pixars Brave.",
+      "movie": "Merida – Legende der Highlands",
+      "movie_choices": [
+        "Merida – Legende der Highlands",
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin"
+      ]
     },
     {
       "year": 2009,
@@ -1237,7 +1525,13 @@
       "fun_fact_de": "\"Superkalifragilisticexpialegetisch\" ist die deutsche Fassung des berühmten Zungenbrecher-Songs aus Mary Poppins.",
       "fun_fact_es": "\"Superkalifragilisticexpialegetisch\" es la versión alemana del famoso trabalenguas musical de Mary Poppins.",
       "fun_fact_fr": "\"Superkalifragilisticexpialegetisch\" est la version allemande du célèbre virelangue chanté de Mary Poppins.",
-      "fun_fact_nl": "\"Superkalifragilisticexpialegetisch\" is de Duitse versie van het beroemde tongbreker-lied uit Mary Poppins."
+      "fun_fact_nl": "\"Superkalifragilisticexpialegetisch\" is de Duitse versie van het beroemde tongbreker-lied uit Mary Poppins.",
+      "movie": "Mary Poppins",
+      "movie_choices": [
+        "Mary Poppins",
+        "Susi und Strolch",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2015,
@@ -1262,7 +1556,13 @@
       "fun_fact_de": "\"Fremde wie ich\" ist die deutsche Fassung von \"Strangers Like Me\" von Phil Collins aus Tarzan.",
       "fun_fact_es": "\"Fremde wie ich\" es la versión alemana de \"Strangers Like Me\" de Phil Collins en Tarzán.",
       "fun_fact_fr": "\"Fremde wie ich\" est la version allemande de \"Strangers Like Me\" de Phil Collins dans Tarzan.",
-      "fun_fact_nl": "\"Fremde wie ich\" is de Duitse versie van \"Strangers Like Me\" van Phil Collins uit Tarzan."
+      "fun_fact_nl": "\"Fremde wie ich\" is de Duitse versie van \"Strangers Like Me\" van Phil Collins uit Tarzan.",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "Der König der Löwen",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2021,
@@ -1287,7 +1587,13 @@
       "fun_fact_de": "\"Oruguitas\" ist der emotionale spanischsprachige Song aus Encanto, über Raupen, die zu Schmetterlingen werden.",
       "fun_fact_es": "\"Oruguitas\" es la emotiva canción en español de Encanto, sobre orugas que se convierten en mariposas.",
       "fun_fact_fr": "\"Oruguitas\" est la chanson émouvante en espagnol d'Encanto, sur des chenilles devenant papillons.",
-      "fun_fact_nl": "\"Oruguitas\" is het ontroerende Spaanstalige lied uit Encanto, over rupsen die vlinders worden."
+      "fun_fact_nl": "\"Oruguitas\" is het ontroerende Spaanstalige lied uit Encanto, over rupsen die vlinders worden.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 2010,
@@ -1312,7 +1618,13 @@
       "fun_fact_de": "\"Wann fängt mein Leben an?\" ist die deutsche Fassung von \"When Will My Life Begin?\" aus Rapunzel.",
       "fun_fact_es": "\"Wann fängt mein Leben an?\" es la versión alemana de \"When Will My Life Begin?\" de Enredados.",
       "fun_fact_fr": "\"Wann fängt mein Leben an?\" est la version allemande de \"When Will My Life Begin?\" de Raiponce.",
-      "fun_fact_nl": "\"Wann fängt mein Leben an?\" is de Duitse versie van \"When Will My Life Begin?\" uit Tangled."
+      "fun_fact_nl": "\"Wann fängt mein Leben an?\" is de Duitse versie van \"When Will My Life Begin?\" uit Tangled.",
+      "movie": "Rapunzel – Neu verföhnt",
+      "movie_choices": [
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2021,
@@ -1337,7 +1649,13 @@
       "fun_fact_de": "\"Ich flieg' los\" ist die deutsche Fassung eines Disney-Songs über den Aufbruch zu einem Abenteuer.",
       "fun_fact_es": "\"Ich flieg' los\" es la versión alemana de una canción de Disney sobre lanzarse a una aventura.",
       "fun_fact_fr": "\"Ich flieg' los\" est la version allemande d'une chanson Disney sur le départ vers l'aventure.",
-      "fun_fact_nl": "\"Ich flieg' los\" is de Duitse versie van een Disney-lied over het beginnen van een avontuur."
+      "fun_fact_nl": "\"Ich flieg' los\" is de Duitse versie van een Disney-lied over het beginnen van een avontuur.",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2013,
@@ -1362,7 +1680,13 @@
       "fun_fact_de": "\"Liebe öffnet Tür'n\" ist die deutsche Fassung von \"Love Is an Open Door\", dem Duett aus Die Eiskönigin.",
       "fun_fact_es": "\"Liebe öffnet Tür'n\" es la versión alemana de \"Love Is an Open Door\", el dúo de Frozen.",
       "fun_fact_fr": "\"Liebe öffnet Tür'n\" est la version allemande de \"Love Is an Open Door\", le duo de Frozen.",
-      "fun_fact_nl": "\"Liebe öffnet Tür'n\" is de Duitse versie van \"Love Is an Open Door\", het duet uit Frozen."
+      "fun_fact_nl": "\"Liebe öffnet Tür'n\" is de Duitse versie van \"Love Is an Open Door\", het duet uit Frozen.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2022,
@@ -1387,7 +1711,13 @@
       "fun_fact_de": "\"Nobody Like U\" stammt von der fiktiven Boyband 4*Town aus Pixars Rot, geschrieben von Billie Eilish und Finneas.",
       "fun_fact_es": "\"Nobody Like U\" la interpreta la banda ficticia 4*Town en Red de Pixar, escrita por Billie Eilish y Finneas.",
       "fun_fact_fr": "\"Nobody Like U\" est interprété par le boys band fictif 4*Town dans Alerte rouge de Pixar, écrit par Billie Eilish et Finneas.",
-      "fun_fact_nl": "\"Nobody Like U\" wordt gezongen door de fictieve boyband 4*Town uit Pixars Turning Red, geschreven door Billie Eilish en Finneas."
+      "fun_fact_nl": "\"Nobody Like U\" wordt gezongen door de fictieve boyband 4*Town uit Pixars Turning Red, geschreven door Billie Eilish en Finneas.",
+      "movie": "Rot",
+      "movie_choices": [
+        "Rot",
+        "Alles steht Kopf",
+        "Coco"
+      ]
     },
     {
       "year": 2021,
@@ -1412,7 +1742,13 @@
       "fun_fact_de": "\"Druck\" ist die deutsche Fassung von \"Surface Pressure\" aus Encanto, Luisas Song über Druck und Stärke.",
       "fun_fact_es": "\"Druck\" es la versión alemana de \"Surface Pressure\" de Encanto, la canción de Luisa sobre la presión y la fuerza.",
       "fun_fact_fr": "\"Druck\" est la version allemande de \"Surface Pressure\" d'Encanto, la chanson de Luisa sur la pression et la force.",
-      "fun_fact_nl": "\"Druck\" is de Duitse versie van \"Surface Pressure\" uit Encanto, Luisa's lied over druk en kracht."
+      "fun_fact_nl": "\"Druck\" is de Duitse versie van \"Surface Pressure\" uit Encanto, Luisa's lied over druk en kracht.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 2008,
@@ -1437,7 +1773,13 @@
       "fun_fact_de": "\"Du hast'n Freund in mir\" ist die deutsche Fassung von \"You've Got a Friend in Me\" von Randy Newman aus Toy Story.",
       "fun_fact_es": "\"Du hast'n Freund in mir\" es la versión alemana de \"You've Got a Friend in Me\" de Randy Newman en Toy Story.",
       "fun_fact_fr": "\"Du hast'n Freund in mir\" est la version allemande de \"You've Got a Friend in Me\" de Randy Newman dans Toy Story.",
-      "fun_fact_nl": "\"Du hast'n Freund in mir\" is de Duitse versie van \"You've Got a Friend in Me\" van Randy Newman uit Toy Story."
+      "fun_fact_nl": "\"Du hast'n Freund in mir\" is de Duitse versie van \"You've Got a Friend in Me\" van Randy Newman uit Toy Story.",
+      "movie": "Toy Story",
+      "movie_choices": [
+        "Toy Story",
+        "Cars",
+        "Oben"
+      ]
     },
     {
       "year": 1992,
@@ -1462,7 +1804,13 @@
       "fun_fact_de": "\"Ein Traum wird wahr\" ist die deutsche Fassung eines Disney-Songs über Wünsche und Träume.",
       "fun_fact_es": "\"Ein Traum wird wahr\" es la versión alemana de una canción de Disney sobre deseos y sueños.",
       "fun_fact_fr": "\"Ein Traum wird wahr\" est la version allemande d'une chanson Disney sur les vœux et les rêves.",
-      "fun_fact_nl": "\"Ein Traum wird wahr\" is de Duitse versie van een Disney-lied over wensen en dromen."
+      "fun_fact_nl": "\"Ein Traum wird wahr\" is de Duitse versie van een Disney-lied over wensen en dromen.",
+      "movie": "Cinderella",
+      "movie_choices": [
+        "Cinderella",
+        "Dornröschen",
+        "Schneewittchen"
+      ]
     },
     {
       "year": 2016,
@@ -1487,7 +1835,13 @@
       "fun_fact_de": "\"Glänzend\" ist die deutsche Fassung von \"Shiny\", dem schillernden Bösewicht-Song der Krabbe Tamatoa aus Vaiana.",
       "fun_fact_es": "\"Glänzend\" es la versión alemana de \"Shiny\", la extravagante canción del cangrejo Tamatoa en Vaiana (Moana).",
       "fun_fact_fr": "\"Glänzend\" est la version allemande de \"Shiny\", la chanson flamboyante du crabe Tamatoa dans Vaiana (Moana).",
-      "fun_fact_nl": "\"Glänzend\" is de Duitse versie van \"Shiny\", het uitbundige schurkenlied van krab Tamatoa uit Vaiana (Moana)."
+      "fun_fact_nl": "\"Glänzend\" is de Duitse versie van \"Shiny\", het uitbundige schurkenlied van krab Tamatoa uit Vaiana (Moana).",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2010,
@@ -1512,7 +1866,13 @@
       "fun_fact_de": "\"Kingdom Dance\" ist ein Instrumentalstück von Alan Menken aus Rapunzel, das den lebhaften Dorftanz untermalt.",
       "fun_fact_es": "\"Kingdom Dance\" es una pieza instrumental de Alan Menken en Enredados, que acompaña el animado baile del pueblo.",
       "fun_fact_fr": "\"Kingdom Dance\" est un morceau instrumental d'Alan Menken dans Raiponce, illustrant la danse animée du village.",
-      "fun_fact_nl": "\"Kingdom Dance\" is een instrumentaal stuk van Alan Menken uit Tangled, dat de levendige dorpsdans begeleidt."
+      "fun_fact_nl": "\"Kingdom Dance\" is een instrumentaal stuk van Alan Menken uit Tangled, dat de levendige dorpsdans begeleidt.",
+      "movie": "Rapunzel – Neu verföhnt",
+      "movie_choices": [
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 1995,
@@ -1537,7 +1897,13 @@
       "fun_fact_de": "\"You've Got a Friend in Me\" von Randy Newman ist das ikonische Thema der Toy-Story-Filme von Pixar.",
       "fun_fact_es": "\"You've Got a Friend in Me\" de Randy Newman es el tema icónico de las películas Toy Story de Pixar.",
       "fun_fact_fr": "\"You've Got a Friend in Me\" de Randy Newman est le thème emblématique des films Toy Story de Pixar.",
-      "fun_fact_nl": "\"You've Got a Friend in Me\" van Randy Newman is het iconische thema van Pixars Toy Story-films."
+      "fun_fact_nl": "\"You've Got a Friend in Me\" van Randy Newman is het iconische thema van Pixars Toy Story-films.",
+      "movie": "Toy Story",
+      "movie_choices": [
+        "Toy Story",
+        "Cars",
+        "Oben"
+      ]
     },
     {
       "year": 2013,
@@ -1562,7 +1928,13 @@
       "fun_fact_de": "\"Zum ersten Mal\" ist die deutsche Fassung von \"For the First Time in Forever\", dem Schwestern-Duett aus Die Eiskönigin.",
       "fun_fact_es": "\"Zum ersten Mal\" es la versión alemana de \"For the First Time in Forever\", el dúo de las hermanas de Frozen.",
       "fun_fact_fr": "\"Zum ersten Mal\" est la version allemande de \"For the First Time in Forever\", le duo des sœurs de Frozen.",
-      "fun_fact_nl": "\"Zum ersten Mal\" is de Duitse versie van \"For the First Time in Forever\", het zustersduet uit Frozen."
+      "fun_fact_nl": "\"Zum ersten Mal\" is de Duitse versie van \"For the First Time in Forever\", het zustersduet uit Frozen.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2021,
@@ -1587,7 +1959,13 @@
       "fun_fact_de": "\"We Don't Talk About Bruno\" aus Encanto stürmte die Charts und wurde zu einem der größten Disney-Songhits.",
       "fun_fact_es": "\"We Don't Talk About Bruno\" de Encanto encabezó las listas y se volvió uno de los mayores éxitos de Disney.",
       "fun_fact_fr": "\"We Don't Talk About Bruno\" d'Encanto a dominé les charts, devenant l'un des plus grands tubes Disney.",
-      "fun_fact_nl": "\"We Don't Talk About Bruno\" uit Encanto stond bovenaan de hitlijsten en werd een van Disneys grootste hits."
+      "fun_fact_nl": "\"We Don't Talk About Bruno\" uit Encanto stond bovenaan de hitlijsten en werd een van Disneys grootste hits.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 2015,
@@ -1612,7 +1990,13 @@
       "fun_fact_de": "\"If Only\" ist Mals Song aus dem Disney-Channel-Film Descendants, gesungen von Dove Cameron.",
       "fun_fact_es": "\"If Only\" es la canción de Mal en la película de Disney Channel Descendientes, interpretada por Dove Cameron.",
       "fun_fact_fr": "\"If Only\" est la chanson de Mal dans le film Disney Channel Descendants, interprétée par Dove Cameron.",
-      "fun_fact_nl": "\"If Only\" is Mal's lied uit de Disney Channel-film Descendants, gezongen door Dove Cameron."
+      "fun_fact_nl": "\"If Only\" is Mal's lied uit de Disney Channel-film Descendants, gezongen door Dove Cameron.",
+      "movie": "Descendants",
+      "movie_choices": [
+        "Descendants",
+        "High School Musical",
+        "Camp Rock"
+      ]
     },
     {
       "year": 2019,
@@ -1637,7 +2021,13 @@
       "fun_fact_de": "\"Zeige dich\" ist die deutsche Fassung von \"Show Yourself\", Elsas emotionalem Song aus Die Eiskönigin 2.",
       "fun_fact_es": "\"Zeige dich\" es la versión alemana de \"Show Yourself\", la emotiva canción de Elsa en Frozen 2.",
       "fun_fact_fr": "\"Zeige dich\" est la version allemande de \"Show Yourself\", la chanson émouvante d'Elsa dans Frozen 2.",
-      "fun_fact_nl": "\"Zeige dich\" is de Duitse versie van \"Show Yourself\", Elsa's ontroerende lied uit Frozen 2."
+      "fun_fact_nl": "\"Zeige dich\" is de Duitse versie van \"Show Yourself\", Elsa's ontroerende lied uit Frozen 2.",
+      "movie": "Die Eiskönigin 2",
+      "movie_choices": [
+        "Die Eiskönigin 2",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2015,
@@ -1662,7 +2052,13 @@
       "fun_fact_de": "\"Zwei Welten\" ist die deutsche Fassung von \"Two Worlds\" von Phil Collins, dem Eröffnungssong von Tarzan.",
       "fun_fact_es": "\"Zwei Welten\" es la versión alemana de \"Two Worlds\" de Phil Collins, la canción inicial de Tarzán.",
       "fun_fact_fr": "\"Zwei Welten\" est la version allemande de \"Two Worlds\" de Phil Collins, la chanson d'ouverture de Tarzan.",
-      "fun_fact_nl": "\"Zwei Welten\" is de Duitse versie van \"Two Worlds\" van Phil Collins, het openingslied van Tarzan."
+      "fun_fact_nl": "\"Zwei Welten\" is de Duitse versie van \"Two Worlds\" van Phil Collins, het openingslied van Tarzan.",
+      "movie": "Tarzan",
+      "movie_choices": [
+        "Tarzan",
+        "Der König der Löwen",
+        "Das Dschungelbuch"
+      ]
     },
     {
       "year": 2003,
@@ -1687,7 +2083,13 @@
       "fun_fact_de": "\"Seid bereit\" ist die deutsche Fassung von \"Be Prepared\", dem Song des Bösewichts Scar aus Der König der Löwen.",
       "fun_fact_es": "\"Seid bereit\" es la versión alemana de \"Be Prepared\", la canción del villano Scar en El Rey León.",
       "fun_fact_fr": "\"Seid bereit\" est la version allemande de \"Be Prepared\", la chanson du méchant Scar dans Le Roi Lion.",
-      "fun_fact_nl": "\"Seid bereit\" is de Duitse versie van \"Be Prepared\", het lied van schurk Scar uit The Lion King."
+      "fun_fact_nl": "\"Seid bereit\" is de Duitse versie van \"Be Prepared\", het lied van schurk Scar uit The Lion King.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Das Dschungelbuch",
+        "Tarzan"
+      ]
     },
     {
       "year": 2017,
@@ -1712,7 +2114,13 @@
       "fun_fact_de": "\"Die Welt ist meine Familia\" ist die deutsche Fassung von \"El Mundo Es Mi Familia\" aus Pixars Coco.",
       "fun_fact_es": "\"Die Welt ist meine Familia\" es la versión alemana de \"El Mundo Es Mi Familia\" de Coco de Pixar.",
       "fun_fact_fr": "\"Die Welt ist meine Familia\" est la version allemande de \"El Mundo Es Mi Familia\" de Coco de Pixar.",
-      "fun_fact_nl": "\"Die Welt ist meine Familia\" is de Duitse versie van \"El Mundo Es Mi Familia\" uit Pixars Coco."
+      "fun_fact_nl": "\"Die Welt ist meine Familia\" is de Duitse versie van \"El Mundo Es Mi Familia\" uit Pixars Coco.",
+      "movie": "Coco",
+      "movie_choices": [
+        "Coco",
+        "Encanto",
+        "Vaiana"
+      ]
     },
     {
       "year": 2006,
@@ -1737,7 +2145,13 @@
       "fun_fact_de": "\"The Best of Both Worlds\" ist der Titelsong der Disney-Channel-Serie Hannah Montana.",
       "fun_fact_es": "\"The Best of Both Worlds\" es la canción principal de la serie de Disney Channel Hannah Montana.",
       "fun_fact_fr": "\"The Best of Both Worlds\" est la chanson-thème de la série Disney Channel Hannah Montana.",
-      "fun_fact_nl": "\"The Best of Both Worlds\" is het titellied van de Disney Channel-serie Hannah Montana."
+      "fun_fact_nl": "\"The Best of Both Worlds\" is het titellied van de Disney Channel-serie Hannah Montana.",
+      "movie": "Hannah Montana",
+      "movie_choices": [
+        "Hannah Montana",
+        "High School Musical",
+        "Camp Rock"
+      ]
     },
     {
       "year": 2024,
@@ -1762,7 +2176,13 @@
       "fun_fact_de": "Dieser deutsche Disney-Song über Zusammenhalt wird unter anderem von Popsänger Wincent Weiss gesungen.",
       "fun_fact_es": "Esta canción alemana de Disney sobre la unión cuenta con el cantante pop Wincent Weiss.",
       "fun_fact_fr": "Cette chanson allemande de Disney sur l'union met en vedette le chanteur pop Wincent Weiss.",
-      "fun_fact_nl": "Dit Duitse Disney-lied over saamhorigheid wordt mede gezongen door popzanger Wincent Weiss."
+      "fun_fact_nl": "Dit Duitse Disney-lied over saamhorigheid wordt mede gezongen door popzanger Wincent Weiss.",
+      "movie": "Lilo & Stitch",
+      "movie_choices": [
+        "Lilo & Stitch",
+        "Vaiana",
+        "Encanto"
+      ]
     },
     {
       "year": 1995,
@@ -1787,7 +2207,13 @@
       "fun_fact_de": "\"Was das nächste Ufer bringt\" ist die deutsche Fassung von \"Just Around the Riverbend\" aus Pocahontas.",
       "fun_fact_es": "\"Was das nächste Ufer bringt\" es la versión alemana de \"Just Around the Riverbend\" de Pocahontas.",
       "fun_fact_fr": "\"Was das nächste Ufer bringt\" est la version allemande de \"Just Around the Riverbend\" de Pocahontas.",
-      "fun_fact_nl": "\"Was das nächste Ufer bringt\" is de Duitse versie van \"Just Around the Riverbend\" uit Pocahontas."
+      "fun_fact_nl": "\"Was das nächste Ufer bringt\" is de Duitse versie van \"Just Around the Riverbend\" uit Pocahontas.",
+      "movie": "Pocahontas",
+      "movie_choices": [
+        "Pocahontas",
+        "Mulan",
+        "Vaiana"
+      ]
     },
     {
       "year": 1992,
@@ -1812,7 +2238,13 @@
       "fun_fact_de": "\"Nur'n kleiner Freundschaftsdienst\" ist die deutsche Fassung von \"Friend Like Me\", dem Song des Dschinni aus Aladdin.",
       "fun_fact_es": "\"Nur'n kleiner Freundschaftsdienst\" es la versión alemana de \"Friend Like Me\", la canción del Genio en Aladdín.",
       "fun_fact_fr": "\"Nur'n kleiner Freundschaftsdienst\" est la version allemande de \"Friend Like Me\", la chanson du Génie dans Aladdin.",
-      "fun_fact_nl": "\"Nur'n kleiner Freundschaftsdienst\" is de Duitse versie van \"Friend Like Me\", het lied van de Geest uit Aladdin."
+      "fun_fact_nl": "\"Nur'n kleiner Freundschaftsdienst\" is de Duitse versie van \"Friend Like Me\", het lied van de Geest uit Aladdin.",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau"
+      ]
     },
     {
       "year": 2023,
@@ -1837,7 +2269,13 @@
       "fun_fact_de": "\"Ich hab diesen Wunsch\" ist die deutsche Fassung von \"This Wish\", dem Hauptsong von Disneys Wish.",
       "fun_fact_es": "\"Ich hab diesen Wunsch\" es la versión alemana de \"This Wish\", la canción principal de Wish de Disney.",
       "fun_fact_fr": "\"Ich hab diesen Wunsch\" est la version allemande de \"This Wish\", la chanson principale de Wish de Disney.",
-      "fun_fact_nl": "\"Ich hab diesen Wunsch\" is de Duitse versie van \"This Wish\", het hoofdlied van Disneys Wish."
+      "fun_fact_nl": "\"Ich hab diesen Wunsch\" is de Duitse versie van \"This Wish\", het hoofdlied van Disneys Wish.",
+      "movie": "Wish",
+      "movie_choices": [
+        "Wish",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 1998,
@@ -1862,7 +2300,13 @@
       "fun_fact_de": "\"Wer bin ich?\" ist die deutsche Fassung von \"Reflection\", Mulans Identitätslied aus dem Film Mulan.",
       "fun_fact_es": "\"Wer bin ich?\" es la versión alemana de \"Reflection\", la canción de identidad de Mulán en la película Mulán.",
       "fun_fact_fr": "\"Wer bin ich?\" est la version allemande de \"Reflection\", la chanson identitaire de Mulan dans le film Mulan.",
-      "fun_fact_nl": "\"Wer bin ich?\" is de Duitse versie van \"Reflection\", Mulans identiteitslied uit de film Mulan."
+      "fun_fact_nl": "\"Wer bin ich?\" is de Duitse versie van \"Reflection\", Mulans identiteitslied uit de film Mulan.",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Pocahontas",
+        "Vaiana"
+      ]
     },
     {
       "year": 1991,
@@ -1887,7 +2331,13 @@
       "fun_fact_de": "\"Belles Lied: Unsere Stadt\" ist die deutsche Fassung von \"Belle\", der lebhaften Eröffnungsnummer von Die Schöne und das Biest.",
       "fun_fact_es": "\"Belles Lied: Unsere Stadt\" es la versión alemana de \"Belle\", el animado número inicial de La Bella y la Bestia.",
       "fun_fact_fr": "\"Belles Lied: Unsere Stadt\" est la version allemande de \"Belle\", l'ouverture animée de La Belle et la Bête.",
-      "fun_fact_nl": "\"Belles Lied: Unsere Stadt\" is de Duitse versie van \"Belle\", het levendige openingsnummer van Beauty and the Beast."
+      "fun_fact_nl": "\"Belles Lied: Unsere Stadt\" is de Duitse versie van \"Belle\", het levendige openingsnummer van Beauty and the Beast.",
+      "movie": "Die Schöne und das Biest",
+      "movie_choices": [
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau",
+        "Aladdin"
+      ]
     },
     {
       "year": 2007,
@@ -1912,7 +2362,13 @@
       "fun_fact_de": "\"Ich wäre gern wie du\" ist die deutsche Fassung von \"I Wan'na Be Like You\", King Louies Swing-Song aus Das Dschungelbuch.",
       "fun_fact_es": "\"Ich wäre gern wie du\" es la versión alemana de \"I Wan'na Be Like You\", la canción swing del Rey Louie en El Libro de la Selva.",
       "fun_fact_fr": "\"Ich wäre gern wie du\" est la version allemande de \"I Wan'na Be Like You\", la chanson swing du roi Louie du Livre de la Jungle.",
-      "fun_fact_nl": "\"Ich wäre gern wie du\" is de Duitse versie van \"I Wan'na Be Like You\", King Louie's swinglied uit Jungle Book."
+      "fun_fact_nl": "\"Ich wäre gern wie du\" is de Duitse versie van \"I Wan'na Be Like You\", King Louie's swinglied uit Jungle Book.",
+      "movie": "Das Dschungelbuch",
+      "movie_choices": [
+        "Das Dschungelbuch",
+        "Der König der Löwen",
+        "Susi und Strolch"
+      ]
     },
     {
       "year": 1998,
@@ -1937,7 +2393,13 @@
       "fun_fact_de": "\"Sei ein Mann\" ist die deutsche Fassung von \"I'll Make a Man Out of You\", dem Trainingssong aus Mulan.",
       "fun_fact_es": "\"Sei ein Mann\" es la versión alemana de \"I'll Make a Man Out of You\", la canción de entrenamiento de Mulán.",
       "fun_fact_fr": "\"Sei ein Mann\" est la version allemande de \"I'll Make a Man Out of You\", la chanson d'entraînement de Mulan.",
-      "fun_fact_nl": "\"Sei ein Mann\" is de Duitse versie van \"I'll Make a Man Out of You\", het trainingslied uit Mulan."
+      "fun_fact_nl": "\"Sei ein Mann\" is de Duitse versie van \"I'll Make a Man Out of You\", het trainingslied uit Mulan.",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Pocahontas",
+        "Hercules"
+      ]
     },
     {
       "year": 2009,
@@ -1962,7 +2424,13 @@
       "fun_fact_de": "\"Married Life\" von Michael Giacchino untermalt die berührende Eröffnungsmontage von Pixars Oben.",
       "fun_fact_es": "\"Married Life\" de Michael Giacchino acompaña el emotivo montaje inicial de Up de Pixar.",
       "fun_fact_fr": "\"Married Life\" de Michael Giacchino illustre le montage d'ouverture émouvant de Là-haut de Pixar.",
-      "fun_fact_nl": "\"Married Life\" van Michael Giacchino begeleidt de ontroerende openingsmontage van Pixars Up."
+      "fun_fact_nl": "\"Married Life\" van Michael Giacchino begeleidt de ontroerende openingsmontage van Pixars Up.",
+      "movie": "Oben",
+      "movie_choices": [
+        "Oben",
+        "Coco",
+        "Alles steht Kopf"
+      ]
     },
     {
       "year": 2021,
@@ -1987,7 +2455,13 @@
       "fun_fact_de": "\"Colombia, Mi Encanto\" von Carlos Vives ist ein feierlicher spanischsprachiger Song aus Encanto.",
       "fun_fact_es": "\"Colombia, Mi Encanto\" de Carlos Vives es una canción festiva en español de Encanto.",
       "fun_fact_fr": "\"Colombia, Mi Encanto\" de Carlos Vives est une chanson festive en espagnol d'Encanto.",
-      "fun_fact_nl": "\"Colombia, Mi Encanto\" van Carlos Vives is een feestelijk Spaanstalig lied uit Encanto."
+      "fun_fact_nl": "\"Colombia, Mi Encanto\" van Carlos Vives is een feestelijk Spaanstalig lied uit Encanto.",
+      "movie": "Encanto",
+      "movie_choices": [
+        "Encanto",
+        "Coco",
+        "Vaiana"
+      ]
     },
     {
       "year": 1989,
@@ -2012,7 +2486,13 @@
       "fun_fact_de": "\"Nur ein Kuss\" ist die deutsche Fassung von \"Kiss the Girl\" aus Arielle, die Meerjungfrau.",
       "fun_fact_es": "\"Nur ein Kuss\" es la versión alemana de \"Kiss the Girl\" de La Sirenita.",
       "fun_fact_fr": "\"Nur ein Kuss\" est la version allemande de \"Kiss the Girl\" de La Petite Sirène.",
-      "fun_fact_nl": "\"Nur ein Kuss\" is de Duitse versie van \"Kiss the Girl\" uit De Kleine Zeemeermin."
+      "fun_fact_nl": "\"Nur ein Kuss\" is de Duitse versie van \"Kiss the Girl\" uit De Kleine Zeemeermin.",
+      "movie": "Arielle, die Meerjungfrau",
+      "movie_choices": [
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest",
+        "Aladdin"
+      ]
     },
     {
       "year": 2013,
@@ -2037,7 +2517,13 @@
       "fun_fact_de": "\"Im Sommer\" ist die deutsche Fassung von \"In Summer\", dem komischen Song des Schneemanns Olaf aus Die Eiskönigin.",
       "fun_fact_es": "\"Im Sommer\" es la versión alemana de \"In Summer\", la cómica canción del muñeco de nieve Olaf en Frozen.",
       "fun_fact_fr": "\"Im Sommer\" est la version allemande de \"In Summer\", la chanson comique du bonhomme de neige Olaf dans Frozen.",
-      "fun_fact_nl": "\"Im Sommer\" is de Duitse versie van \"In Summer\", het komische lied van sneeuwpop Olaf uit Frozen."
+      "fun_fact_nl": "\"Im Sommer\" is de Duitse versie van \"In Summer\", het komische lied van sneeuwpop Olaf uit Frozen.",
+      "movie": "Die Eiskönigin",
+      "movie_choices": [
+        "Die Eiskönigin",
+        "Vaiana",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2019,
@@ -2062,7 +2548,13 @@
       "fun_fact_de": "\"Es kommt zu dir\" ist die deutsche Fassung von \"Into the Unknown\" aus Die Eiskönigin 2.",
       "fun_fact_es": "\"Es kommt zu dir\" es la versión alemana de \"Into the Unknown\" de Frozen 2.",
       "fun_fact_fr": "\"Es kommt zu dir\" est la version allemande de \"Into the Unknown\" de Frozen 2.",
-      "fun_fact_nl": "\"Es kommt zu dir\" is de Duitse versie van \"Into the Unknown\" uit Frozen 2."
+      "fun_fact_nl": "\"Es kommt zu dir\" is de Duitse versie van \"Into the Unknown\" uit Frozen 2.",
+      "movie": "Die Eiskönigin 2",
+      "movie_choices": [
+        "Die Eiskönigin 2",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2009,
@@ -2087,7 +2579,13 @@
       "fun_fact_de": "\"Dig a Little Deeper\" ist Mama Odies Gospel-Song aus Küss den Frosch.",
       "fun_fact_es": "\"Dig a Little Deeper\" es la canción gospel de Mamá Odie en Tiana y el Sapo.",
       "fun_fact_fr": "\"Dig a Little Deeper\" est la chanson gospel de Mama Odie dans La Princesse et la Grenouille.",
-      "fun_fact_nl": "\"Dig a Little Deeper\" is het gospellied van Mama Odie uit The Princess and the Frog."
+      "fun_fact_nl": "\"Dig a Little Deeper\" is het gospellied van Mama Odie uit The Princess and the Frog.",
+      "movie": "Küss den Frosch",
+      "movie_choices": [
+        "Küss den Frosch",
+        "Arielle, die Meerjungfrau",
+        "Die Schöne und das Biest"
+      ]
     },
     {
       "year": 2023,
@@ -2112,7 +2610,13 @@
       "fun_fact_de": "\"Stiehl mir die Show\" ist die deutsche Fassung von \"Steal the Show\" aus Pixars Elemental, hier mit Wincent Weiss.",
       "fun_fact_es": "\"Stiehl mir die Show\" es la versión alemana de \"Steal the Show\" de Elemental de Pixar, aquí con Wincent Weiss.",
       "fun_fact_fr": "\"Stiehl mir die Show\" est la version allemande de \"Steal the Show\" d'Élémentaire de Pixar, ici avec Wincent Weiss.",
-      "fun_fact_nl": "\"Stiehl mir die Show\" is de Duitse versie van \"Steal the Show\" uit Pixars Elemental, hier met Wincent Weiss."
+      "fun_fact_nl": "\"Stiehl mir die Show\" is de Duitse versie van \"Steal the Show\" uit Pixars Elemental, hier met Wincent Weiss.",
+      "movie": "Elemental",
+      "movie_choices": [
+        "Elemental",
+        "Oben",
+        "Coco"
+      ]
     },
     {
       "year": 2022,
@@ -2137,7 +2641,13 @@
       "fun_fact_de": "\"Wenn ein Stern vom Himmel fällt\" ist ein deutscher Disney-Song über das Wünschen bei einer Sternschnuppe.",
       "fun_fact_es": "\"Wenn ein Stern vom Himmel fällt\" es una canción alemana de Disney sobre pedir un deseo a una estrella fugaz.",
       "fun_fact_fr": "\"Wenn ein Stern vom Himmel fällt\" est une chanson allemande de Disney sur les vœux faits à une étoile filante.",
-      "fun_fact_nl": "\"Wenn ein Stern vom Himmel fällt\" is een Duits Disney-lied over een wens doen bij een vallende ster."
+      "fun_fact_nl": "\"Wenn ein Stern vom Himmel fällt\" is een Duits Disney-lied over een wens doen bij een vallende ster.",
+      "movie": "Pinocchio",
+      "movie_choices": [
+        "Pinocchio",
+        "Cinderella",
+        "Dumbo"
+      ]
     },
     {
       "year": 2010,
@@ -2162,7 +2672,13 @@
       "fun_fact_de": "\"Ich hab 'nen Traum\" ist die deutsche Fassung von \"I've Got a Dream\", dem Wirtshaus-Mitsing-Song aus Rapunzel.",
       "fun_fact_es": "\"Ich hab 'nen Traum\" es la versión alemana de \"I've Got a Dream\", la canción de la taberna en Enredados.",
       "fun_fact_fr": "\"Ich hab 'nen Traum\" est la version allemande de \"I've Got a Dream\", la chanson de la taverne de Raiponce.",
-      "fun_fact_nl": "\"Ich hab 'nen Traum\" is de Duitse versie van \"I've Got a Dream\", het herberglied uit Tangled."
+      "fun_fact_nl": "\"Ich hab 'nen Traum\" is de Duitse versie van \"I've Got a Dream\", het herberglied uit Tangled.",
+      "movie": "Rapunzel – Neu verföhnt",
+      "movie_choices": [
+        "Rapunzel – Neu verföhnt",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 2008,
@@ -2187,7 +2703,13 @@
       "fun_fact_de": "\"This Is Me\" ist das große Duett aus dem Disney-Channel-Film Camp Rock, mit Demi Lovato und Joe Jonas.",
       "fun_fact_es": "\"This Is Me\" es el dúo destacado de la película de Disney Channel Camp Rock, con Demi Lovato y Joe Jonas.",
       "fun_fact_fr": "\"This Is Me\" est le grand duo du film Disney Channel Camp Rock, avec Demi Lovato et Joe Jonas.",
-      "fun_fact_nl": "\"This Is Me\" is het uitgelichte duet uit de Disney Channel-film Camp Rock, met Demi Lovato en Joe Jonas."
+      "fun_fact_nl": "\"This Is Me\" is het uitgelichte duet uit de Disney Channel-film Camp Rock, met Demi Lovato en Joe Jonas.",
+      "movie": "Camp Rock",
+      "movie_choices": [
+        "Camp Rock",
+        "High School Musical",
+        "Hannah Montana"
+      ]
     },
     {
       "year": 2016,
@@ -2212,7 +2734,13 @@
       "fun_fact_de": "\"How Far I'll Go\" ist Vaianas Titelsong, geschrieben von Lin-Manuel Miranda und Oscar-nominiert.",
       "fun_fact_es": "\"How Far I'll Go\" es la canción insignia de Vaiana, escrita por Lin-Manuel Miranda y nominada al Oscar.",
       "fun_fact_fr": "\"How Far I'll Go\" est la chanson phare de Vaiana, écrite par Lin-Manuel Miranda et nommée aux Oscars.",
-      "fun_fact_nl": "\"How Far I'll Go\" is Vaiana's titellied, geschreven door Lin-Manuel Miranda en Oscar-genomineerd."
+      "fun_fact_nl": "\"How Far I'll Go\" is Vaiana's titellied, geschreven door Lin-Manuel Miranda en Oscar-genomineerd.",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 1992,
@@ -2237,7 +2765,13 @@
       "fun_fact_de": "\"Prince Ali\" ist die große Auftrittsnummer aus Aladdin, im Original vom Dschinni Robin Williams gesungen.",
       "fun_fact_es": "\"Prince Ali\" es el gran número de entrada de Aladdín, en el original a cargo del Genio Robin Williams.",
       "fun_fact_fr": "\"Prince Ali\" est la grande chanson d'entrée d'Aladdin, dans l'original interprétée par le Génie Robin Williams.",
-      "fun_fact_nl": "\"Prince Ali\" is het grootse entreelied uit Aladdin, in het origineel gezongen door de Geest Robin Williams."
+      "fun_fact_nl": "\"Prince Ali\" is het grootse entreelied uit Aladdin, in het origineel gezongen door de Geest Robin Williams.",
+      "movie": "Aladdin",
+      "movie_choices": [
+        "Aladdin",
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau"
+      ]
     },
     {
       "year": 2006,
@@ -2262,7 +2796,13 @@
       "fun_fact_de": "\"We're All in This Together\" ist die mitreißende Finalnummer aus High School Musical.",
       "fun_fact_es": "\"We're All in This Together\" es el enérgico número final de High School Musical.",
       "fun_fact_fr": "\"We're All in This Together\" est le grand final entraînant de High School Musical.",
-      "fun_fact_nl": "\"We're All in This Together\" is het energieke slotnummer van High School Musical."
+      "fun_fact_nl": "\"We're All in This Together\" is het energieke slotnummer van High School Musical.",
+      "movie": "High School Musical",
+      "movie_choices": [
+        "High School Musical",
+        "Camp Rock",
+        "Hannah Montana"
+      ]
     },
     {
       "year": 2016,
@@ -2287,7 +2827,13 @@
       "fun_fact_de": "\"Wer du bist\" ist die deutsche Fassung von \"Know Who You Are\" aus Vaiana.",
       "fun_fact_es": "\"Wer du bist\" es la versión alemana de \"Know Who You Are\" de Vaiana (Moana).",
       "fun_fact_fr": "\"Wer du bist\" est la version allemande de \"Know Who You Are\" de Vaiana (Moana).",
-      "fun_fact_nl": "\"Wer du bist\" is de Duitse versie van \"Know Who You Are\" uit Vaiana (Moana)."
+      "fun_fact_nl": "\"Wer du bist\" is de Duitse versie van \"Know Who You Are\" uit Vaiana (Moana).",
+      "movie": "Vaiana",
+      "movie_choices": [
+        "Vaiana",
+        "Die Eiskönigin",
+        "Rapunzel – Neu verföhnt"
+      ]
     },
     {
       "year": 2019,
@@ -2312,7 +2858,13 @@
       "fun_fact_de": "\"Wo noch niemand war\" ist die deutsche Fassung von \"Into the Unknown\" aus Die Eiskönigin 2, mit AURORA.",
       "fun_fact_es": "\"Wo noch niemand war\" es la versión alemana de \"Into the Unknown\" de Frozen 2, con AURORA.",
       "fun_fact_fr": "\"Wo noch niemand war\" est la version allemande de \"Into the Unknown\" de Frozen 2, avec AURORA.",
-      "fun_fact_nl": "\"Wo noch niemand war\" is de Duitse versie van \"Into the Unknown\" uit Frozen 2, met AURORA."
+      "fun_fact_nl": "\"Wo noch niemand war\" is de Duitse versie van \"Into the Unknown\" uit Frozen 2, met AURORA.",
+      "movie": "Die Eiskönigin 2",
+      "movie_choices": [
+        "Die Eiskönigin 2",
+        "Die Eiskönigin",
+        "Vaiana"
+      ]
     },
     {
       "year": 1997,
@@ -2337,7 +2889,13 @@
       "fun_fact_de": "\"Ich will keinen Mann\" ist die deutsche Fassung eines Mulan-Songs über die Erwartungen an junge Frauen.",
       "fun_fact_es": "\"Ich will keinen Mann\" es la versión alemana de una canción de Mulán sobre las expectativas hacia las jóvenes.",
       "fun_fact_fr": "\"Ich will keinen Mann\" est la version allemande d'une chanson de Mulan sur les attentes envers les jeunes femmes.",
-      "fun_fact_nl": "\"Ich will keinen Mann\" is de Duitse versie van een Mulan-lied over de verwachtingen aan jonge vrouwen."
+      "fun_fact_nl": "\"Ich will keinen Mann\" is de Duitse versie van een Mulan-lied over de verwachtingen aan jonge vrouwen.",
+      "movie": "Der König der Löwen",
+      "movie_choices": [
+        "Der König der Löwen",
+        "Tarzan",
+        "Pocahontas"
+      ]
     },
     {
       "year": 1991,
@@ -2362,7 +2920,13 @@
       "fun_fact_de": "\"Sei hier Gast\" ist die deutsche Fassung von \"Be Our Guest\", Lumieres prunkvollem Song aus Die Schöne und das Biest.",
       "fun_fact_es": "\"Sei hier Gast\" es la versión alemana de \"Be Our Guest\", la fastuosa canción de Lumière en La Bella y la Bestia.",
       "fun_fact_fr": "\"Sei hier Gast\" est la version allemande de \"Be Our Guest\", la somptueuse chanson de Lumière dans La Belle et la Bête.",
-      "fun_fact_nl": "\"Sei hier Gast\" is de Duitse versie van \"Be Our Guest\", Lumière's weelderige lied uit Beauty and the Beast."
+      "fun_fact_nl": "\"Sei hier Gast\" is de Duitse versie van \"Be Our Guest\", Lumière's weelderige lied uit Beauty and the Beast.",
+      "movie": "Die Schöne und das Biest",
+      "movie_choices": [
+        "Die Schöne und das Biest",
+        "Arielle, die Meerjungfrau",
+        "Aladdin"
+      ]
     },
     {
       "year": 2006,
@@ -2387,7 +2951,13 @@
       "fun_fact_de": "\"Start of Something New\" ist das erste Duett zwischen Troy und Gabriella in High School Musical.",
       "fun_fact_es": "\"Start of Something New\" es el primer dúo entre Troy y Gabriella en High School Musical.",
       "fun_fact_fr": "\"Start of Something New\" est le premier duo entre Troy et Gabriella dans High School Musical.",
-      "fun_fact_nl": "\"Start of Something New\" is het eerste duet tussen Troy en Gabriella in High School Musical."
+      "fun_fact_nl": "\"Start of Something New\" is het eerste duet tussen Troy en Gabriella in High School Musical.",
+      "movie": "High School Musical",
+      "movie_choices": [
+        "High School Musical",
+        "Camp Rock",
+        "Hannah Montana"
+      ]
     },
     {
       "year": 1998,
@@ -2412,7 +2982,13 @@
       "fun_fact_de": "\"Ehre für das Haus\" ist die deutsche Fassung von \"Honor to Us All\", dem Heiratsvermittlerin-Song aus Mulan.",
       "fun_fact_es": "\"Ehre für das Haus\" es la versión alemana de \"Honor to Us All\", la canción de la casamentera en Mulán.",
       "fun_fact_fr": "\"Ehre für das Haus\" est la version allemande de \"Honor to Us All\", la chanson de la marieuse dans Mulan.",
-      "fun_fact_nl": "\"Ehre für das Haus\" is de Duitse versie van \"Honor to Us All\", het koppelaarster-lied uit Mulan."
+      "fun_fact_nl": "\"Ehre für das Haus\" is de Duitse versie van \"Honor to Us All\", het koppelaarster-lied uit Mulan.",
+      "movie": "Mulan",
+      "movie_choices": [
+        "Mulan",
+        "Pocahontas",
+        "Vaiana"
+      ]
     },
     {
       "year": 1997,
@@ -2437,7 +3013,14 @@
       "fun_fact_de": "\"Zero to Hero\" ist die schwungvolle Nummer der Musen, die Hercules' Aufstieg zum Helden im Film Hercules besingt.",
       "fun_fact_es": "\"Zero to Hero\" es el animado número de las Musas que narra el ascenso de Hércules en Hércules.",
       "fun_fact_fr": "\"Zero to Hero\" est le numéro entraînant des Muses retraçant l'ascension d'Hercule dans Hercule.",
-      "fun_fact_nl": "\"Zero to Hero\" is het opzwepende nummer van de Muzen over Hercules' opkomst in Hercules."
+      "fun_fact_nl": "\"Zero to Hero\" is het opzwepende nummer van de Muzen over Hercules' opkomst in Hercules.",
+      "movie": "Hercules",
+      "movie_choices": [
+        "Hercules",
+        "Aladdin",
+        "Mulan"
+      ]
     }
-  ]
+  ],
+  "movie_quiz_enabled": true
 }
