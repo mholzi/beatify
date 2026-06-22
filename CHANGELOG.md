@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- Added 97 tracks to new community playlist "Disney Hits Deutschland 🇩🇪" (#1505).
+
 ## [4.1.1] - 2026-06-20
 
 Content release — two new community playlists. See [docs/release-notes-v4.1.1.md](docs/release-notes-v4.1.1.md) for the user-facing notes.
