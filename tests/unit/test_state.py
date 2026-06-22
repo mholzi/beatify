@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
 from custom_components.beatify.const import (
+    DOMAIN,
     ERR_CANNOT_STEAL_SELF,
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
@@ -27,6 +29,7 @@ from custom_components.beatify.game.state import (
     build_artist_options,
     build_movie_options,
 )
+from custom_components.beatify.server.game_views import StartGameplayView
 from tests.conftest import make_game_state, make_songs
 
 
@@ -2321,7 +2324,7 @@ def _add_live_player(state: GameState, name: str) -> None:
     ws = AsyncMock()
     ws.closed = False
     state.add_player(name, ws)
-    state.players[name].connected = True
+    state.get_player(name).connected = True
 
 
 class TestSuddenDeathElimination:
@@ -2335,7 +2338,7 @@ class TestSuddenDeathElimination:
 
     def _set_round_scores(self, scores: dict[str, int]) -> None:
         for name, sc in scores.items():
-            self.state.players[name].round_score = sc
+            self.state.get_player(name).round_score = sc
 
     def test_sudden_death_skips_round_1(self):
         """Round 1 never eliminates anyone."""
@@ -2351,18 +2354,18 @@ class TestSuddenDeathElimination:
         self._set_round_scores({"Alice": 8, "Bob": 2, "Carol": 9, "Dave": 5})
         eliminated = self.state._apply_sudden_death_elimination()
         assert eliminated == ["Bob"]
-        assert self.state.players["Bob"].eliminated is True
-        assert self.state.players["Bob"].eliminated_round == 2
+        assert self.state.get_player("Bob").eliminated is True
+        assert self.state.get_player("Bob").eliminated_round == 2
         # Everyone else survives.
-        assert not self.state.players["Alice"].eliminated
-        assert not self.state.players["Carol"].eliminated
-        assert not self.state.players["Dave"].eliminated
+        assert not self.state.get_player("Alice").eliminated
+        assert not self.state.get_player("Carol").eliminated
+        assert not self.state.get_player("Dave").eliminated
 
     def test_sudden_death_uses_round_delta_not_cumulative(self):
         """A high cumulative leader with the worst *round* is the one cut."""
         self.state.round = 3
-        self.state.players["Alice"].score = 100  # cumulative leader
-        self.state.players["Bob"].score = 5
+        self.state.get_player("Alice").score = 100  # cumulative leader
+        self.state.get_player("Bob").score = 5
         self._set_round_scores({"Alice": 0, "Bob": 7, "Carol": 4, "Dave": 6})
         eliminated = self.state._apply_sudden_death_elimination()
         assert eliminated == ["Alice"]
@@ -2371,18 +2374,18 @@ class TestSuddenDeathElimination:
         """Tie for last → the slowest (latest) submitter is eliminated."""
         self.state.round = 2
         self._set_round_scores({"Alice": 1, "Bob": 1, "Carol": 9, "Dave": 9})
-        self.state.players["Alice"].submission_time = 10.0  # earlier = faster
-        self.state.players["Bob"].submission_time = 25.0  # later = slower → out
+        self.state.get_player("Alice").submission_time = 10.0  # earlier = faster
+        self.state.get_player("Bob").submission_time = 25.0  # later = slower → out
         eliminated = self.state._apply_sudden_death_elimination()
         assert eliminated == ["Bob"]
-        assert self.state.players["Alice"].eliminated is False
+        assert self.state.get_player("Alice").eliminated is False
 
     def test_sudden_death_non_submitter_is_slowest(self):
         """A non-submitter (submission_time None) loses a last-place tie."""
         self.state.round = 2
         self._set_round_scores({"Alice": 0, "Bob": 0, "Carol": 5, "Dave": 5})
-        self.state.players["Alice"].submission_time = 12.0
-        self.state.players["Bob"].submission_time = None  # never submitted → out
+        self.state.get_player("Alice").submission_time = 12.0
+        self.state.get_player("Bob").submission_time = None  # never submitted → out
         eliminated = self.state._apply_sudden_death_elimination()
         assert eliminated == ["Bob"]
 
@@ -2390,11 +2393,11 @@ class TestSuddenDeathElimination:
         """Never eliminate the last player standing."""
         self.state.round = 5
         for n in ("Bob", "Carol", "Dave"):
-            self.state.players[n].eliminated = True
+            self.state.get_player(n).eliminated = True
         self._set_round_scores({"Alice": 0})
         eliminated = self.state._apply_sudden_death_elimination()
         assert eliminated == []
-        assert self.state.players["Alice"].eliminated is False
+        assert self.state.get_player("Alice").eliminated is False
 
     def test_sudden_death_disabled_no_elimination(self):
         """With the mode off, scoring never eliminates anyone."""
@@ -2407,13 +2410,46 @@ class TestSuddenDeathElimination:
     def test_already_eliminated_excluded_from_next_cut(self):
         """An eliminated player is not re-eliminated and not considered."""
         self.state.round = 3
-        self.state.players["Bob"].eliminated = True
-        self.state.players["Bob"].eliminated_round = 2
+        self.state.get_player("Bob").eliminated = True
+        self.state.get_player("Bob").eliminated_round = 2
         self._set_round_scores({"Alice": 9, "Bob": -99, "Carol": 1, "Dave": 8})
         eliminated = self.state._apply_sudden_death_elimination()
         # Bob already out and ignored; Carol is the lowest live score.
         assert eliminated == ["Carol"]
-        assert self.state.players["Bob"].eliminated_round == 2
+        assert self.state.get_player("Bob").eliminated_round == 2
+
+    def test_sudden_death_multi_tie_eliminates_exactly_one(self):
+        """3+ players tied for last (all non-submitters) → exactly ONE is cut.
+
+        Guards the ``max()`` single-winner behaviour: a mass tie must not wipe
+        out the whole tied group in one round.
+        """
+        self.state.round = 4
+        # Alice, Bob, Carol all tie at the minimum with no submission_time;
+        # only Dave is clearly ahead.
+        self._set_round_scores({"Alice": 0, "Bob": 0, "Carol": 0, "Dave": 7})
+        for n in ("Alice", "Bob", "Carol"):
+            self.state.get_player(n).submission_time = None
+        eliminated = self.state._apply_sudden_death_elimination()
+        assert len(eliminated) == 1
+        assert sum(p.eliminated for p in self.state.players.values()) == 1
+        assert not self.state.get_player("Dave").eliminated
+
+    def test_sudden_death_multi_tie_is_deterministic(self):
+        """The same tied board cuts the same player across independent games."""
+        outcomes = set()
+        for _ in range(2):
+            state = make_game_state()
+            _create_fresh_game(state, sudden_death_mode=True)
+            for n in ("Alice", "Bob", "Carol", "Dave"):
+                _add_live_player(state, n)
+            state.round = 4
+            for n in ("Alice", "Bob", "Carol"):
+                state.get_player(n).round_score = 0
+                state.get_player(n).submission_time = None
+            state.get_player("Dave").round_score = 7
+            outcomes.add(tuple(state._apply_sudden_death_elimination()))
+        assert len(outcomes) == 1  # identical input → identical single cut
 
 
 class TestSuddenDeathSubmissionTracker:
@@ -2425,10 +2461,10 @@ class TestSuddenDeathSubmissionTracker:
         for n in ("Alice", "Bob", "Carol"):
             _add_live_player(state, n)
         # Carol is out and will never submit again.
-        state.players["Carol"].eliminated = True
-        state.players["Alice"].submitted = True
-        state.players["Bob"].submitted = True
-        state.players["Carol"].submitted = False
+        state.get_player("Carol").eliminated = True
+        state.get_player("Alice").submitted = True
+        state.get_player("Bob").submitted = True
+        state.get_player("Carol").submitted = False
         assert state.all_submitted() is True
 
 
@@ -2441,8 +2477,8 @@ class TestSuddenDeathAutoEnd:
         _create_fresh_game(state, sudden_death_mode=True)
         for n in ("Alice", "Bob", "Carol"):
             _add_live_player(state, n)
-        state.players["Bob"].eliminated = True
-        state.players["Carol"].eliminated = True
+        state.get_player("Bob").eliminated = True
+        state.get_player("Carol").eliminated = True
         state.round = 4
         state.phase = GamePhase.PLAYING
         started = await state.start_round()
@@ -2456,7 +2492,7 @@ class TestSuddenDeathAutoEnd:
         _create_fresh_game(state, sudden_death_mode=True)
         for n in ("Alice", "Bob", "Carol"):
             _add_live_player(state, n)
-        state.players["Carol"].eliminated = True
+        state.get_player("Carol").eliminated = True
         state.round = 3
         state.phase = GamePhase.PLAYING
         # Stub playback so start_round can proceed past the guard without media.
@@ -2474,7 +2510,7 @@ class TestSuddenDeathPersistence:
         state = make_game_state()
         _create_fresh_game(state, sudden_death_mode=True)
         _add_live_player(state, "Alice")
-        p = state.players["Alice"]
+        p = state.get_player("Alice")
         p.eliminated = True
         p.eliminated_round = 2
         p.reset_round()
@@ -2485,7 +2521,7 @@ class TestSuddenDeathPersistence:
         state = make_game_state()
         _create_fresh_game(state, sudden_death_mode=True)
         _add_live_player(state, "Alice")
-        p = state.players["Alice"]
+        p = state.get_player("Alice")
         p.eliminated = True
         p.eliminated_round = 2
         p.reset_for_new_game()
@@ -2499,12 +2535,12 @@ class TestSuddenDeathPersistence:
         for n in ("Alice", "Bob", "Carol"):
             _add_live_player(state, n)
         state.phase = GamePhase.PLAYING
-        state.players["Carol"].eliminated = True
-        state.players["Carol"].eliminated_round = 2
+        state.get_player("Carol").eliminated = True
+        state.get_player("Carol").eliminated_round = 2
         await state.pause_game("test_pause")
         await state.resume_game()
-        assert state.players["Carol"].eliminated is True
-        assert state.players["Carol"].eliminated_round == 2
+        assert state.get_player("Carol").eliminated is True
+        assert state.get_player("Carol").eliminated_round == 2
 
 
 class TestSuddenDeathLiveToggle:
@@ -2519,6 +2555,101 @@ class TestSuddenDeathLiveToggle:
         assert state.set_sudden_death(False) is False
         assert state.sudden_death_mode is False
 
+    def test_enable_mid_game_arms_eliminations(self):
+        """Turning the mode ON mid-game arms cuts; while off, none happen.
+
+        Models the documented semantics: with the mode off a finished round
+        eliminates nobody (the result stands); once the host flips it on, the
+        next scoring pass starts cutting.
+        """
+        state = make_game_state()
+        _create_fresh_game(state)  # starts OFF
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.round = 3
+        for name, sc in {"Alice": 2, "Bob": 9, "Carol": 7}.items():
+            state.get_player(name).round_score = sc
+
+        # Off: this round's results stand, nobody is cut.
+        assert state._apply_sudden_death_elimination() == []
+        assert all(not p.eliminated for p in state.players.values())
+
+        # Host flips it on from the reveal screen → next pass arms the cut.
+        state.set_sudden_death(True)
+        assert state._apply_sudden_death_elimination() == ["Alice"]
+
+    def test_disable_stops_further_cuts_but_keeps_eliminated(self):
+        """Turning the mode OFF stops new cuts; already-out players stay out."""
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):
+            _add_live_player(state, n)
+        state.round = 2
+        for name, sc in {"Alice": 1, "Bob": 8, "Carol": 6}.items():
+            state.get_player(name).round_score = sc
+        assert state._apply_sudden_death_elimination() == ["Alice"]
+
+        # Host turns it off — no further eliminations next round...
+        state.set_sudden_death(False)
+        state.round = 3
+        for name, sc in {"Bob": 2, "Carol": 9}.items():
+            state.get_player(name).round_score = sc
+        assert state._apply_sudden_death_elimination() == []
+        # ...but Alice, already eliminated, stays out.
+        assert state.get_player("Alice").eliminated is True
+
+
+class TestSuddenDeathStartFloor:
+    """The >=3-connected-player floor enforced in StartGameplayView (#827)."""
+
+    def _hass(self, state: GameState) -> MagicMock:
+        hass = MagicMock()
+        hass.data = {DOMAIN: {"game": state}}  # no ws_handler
+        return hass
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_below_floor_auto_disables_sudden_death(self, _auth):
+        """Starting gameplay with <3 connected players turns the mode off."""
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)  # phase = LOBBY
+        for n in ("Alice", "Bob"):  # only 2 connected
+            _add_live_player(state, n)
+        # Skip the real first-round machinery; we only assert the floor logic.
+        state.start_round = AsyncMock(return_value=True)
+
+        view = StartGameplayView(self._hass(state))
+        resp = await view.post(MagicMock())
+        body = json.loads(resp.body)
+
+        assert resp.status == 200
+        assert state.sudden_death_mode is False
+        assert body.get("sudden_death_disabled") is True
+        assert body.get("warnings")
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_at_floor_keeps_sudden_death(self, _auth):
+        """With 3 connected players the mode survives the start, no warning."""
+        state = make_game_state()
+        _create_fresh_game(state, sudden_death_mode=True)
+        for n in ("Alice", "Bob", "Carol"):  # exactly 3 connected
+            _add_live_player(state, n)
+        state.start_round = AsyncMock(return_value=True)
+
+        view = StartGameplayView(self._hass(state))
+        resp = await view.post(MagicMock())
+        body = json.loads(resp.body)
+
+        assert resp.status == 200
+        assert state.sudden_death_mode is True
+        assert "sudden_death_disabled" not in body
+        assert "warnings" not in body
+
 
 class TestSuddenDeathSuperlative:
     """Last One Standing superlative (#827)."""
@@ -2528,8 +2659,8 @@ class TestSuddenDeathSuperlative:
         _create_fresh_game(state, sudden_death_mode=True)
         for n in ("Alice", "Bob", "Carol"):
             _add_live_player(state, n)
-        state.players["Bob"].eliminated = True
-        state.players["Carol"].eliminated = True
+        state.get_player("Bob").eliminated = True
+        state.get_player("Carol").eliminated = True
         state.round = 4
         awards = state.calculate_superlatives()
         last = [a for a in awards if a["id"] == "last_one_standing"]
@@ -2560,13 +2691,13 @@ class TestSuddenDeathWinner:
     def test_survivor_wins_despite_lower_score(self):
         """The last one standing wins even with a lower cumulative score."""
         state = self._game()
-        state.players["Alice"].score = 10  # survivor, fewer points
-        state.players["Bob"].score = 99
-        state.players["Bob"].eliminated = True
-        state.players["Bob"].eliminated_round = 3
-        state.players["Carol"].score = 50
-        state.players["Carol"].eliminated = True
-        state.players["Carol"].eliminated_round = 2
+        state.get_player("Alice").score = 10  # survivor, fewer points
+        state.get_player("Bob").score = 99
+        state.get_player("Bob").eliminated = True
+        state.get_player("Bob").eliminated_round = 3
+        state.get_player("Carol").score = 50
+        state.get_player("Carol").eliminated = True
+        state.get_player("Carol").eliminated_round = 2
         winners, top = state.compute_winners()
         assert [w.name for w in winners] == ["Alice"]
         assert top == 10
@@ -2574,9 +2705,9 @@ class TestSuddenDeathWinner:
     def test_winner_falls_back_to_score_without_elimination(self):
         """No eliminations yet → normal top-score winner."""
         state = self._game()
-        state.players["Alice"].score = 5
-        state.players["Bob"].score = 20
-        state.players["Carol"].score = 12
+        state.get_player("Alice").score = 5
+        state.get_player("Bob").score = 20
+        state.get_player("Carol").score = 12
         winners, top = state.compute_winners()
         assert [w.name for w in winners] == ["Bob"]
         assert top == 20
@@ -2584,13 +2715,13 @@ class TestSuddenDeathWinner:
     def test_final_leaderboard_orders_by_survival(self):
         """Survivor 1st, then reverse elimination order — not by score."""
         state = self._game()
-        state.players["Alice"].score = 10  # survivor
-        state.players["Bob"].score = 99
-        state.players["Bob"].eliminated = True
-        state.players["Bob"].eliminated_round = 2  # out earliest → last place
-        state.players["Carol"].score = 40
-        state.players["Carol"].eliminated = True
-        state.players["Carol"].eliminated_round = 3  # out latest → runner-up
+        state.get_player("Alice").score = 10  # survivor
+        state.get_player("Bob").score = 99
+        state.get_player("Bob").eliminated = True
+        state.get_player("Bob").eliminated_round = 2  # out earliest → last place
+        state.get_player("Carol").score = 40
+        state.get_player("Carol").eliminated = True
+        state.get_player("Carol").eliminated_round = 3  # out latest → runner-up
         lb = state.get_final_leaderboard()
         assert [e["name"] for e in lb] == ["Alice", "Carol", "Bob"]
         assert [e["rank"] for e in lb] == [1, 2, 3]
@@ -2601,7 +2732,7 @@ class TestSuddenDeathWinner:
         _create_fresh_game(state)  # mode off
         for n in ("Alice", "Bob"):
             _add_live_player(state, n)
-        state.players["Alice"].score = 3
-        state.players["Bob"].score = 30
+        state.get_player("Alice").score = 3
+        state.get_player("Bob").score = 30
         lb = state.get_final_leaderboard()
         assert [e["name"] for e in lb] == ["Bob", "Alice"]
