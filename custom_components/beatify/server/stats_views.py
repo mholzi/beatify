@@ -44,7 +44,9 @@ class DashboardView(HomeAssistantView):
             _LOGGER.error("Dashboard page not found: %s", html_path)
             return web.Response(text="Dashboard page not found", status=500)
         return web.Response(
-            text=_apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass),
+            text=_apply_html_lang(
+                _apply_cache_tokens(html_content, self.hass), self.hass
+            ),
             content_type="text/html",
         )
 
