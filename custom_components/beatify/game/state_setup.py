@@ -195,6 +195,15 @@ class GameSetupMixin:
         self.playlists = playlists
         self.songs = songs
         self.media_player = media_player
+        # A new game brings fresh media_player/platform/provider from the wizard.
+        # The lazily-built MediaPlayerService captures these at construction time
+        # (services/media_player.py __init__) — without nulling it here, the next
+        # _ensure_media_player_service() call recycles the previous game's service
+        # because of its `not self._media_player_service` guard. Result: playback
+        # ignores the new selection and routes via the old entity_id/platform/
+        # provider until HA itself restarts. rematch_game() intentionally preserves
+        # these values, so this reset stays scoped to create_game.
+        self._media_player_service = None
         self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
         self.players = {}
 
