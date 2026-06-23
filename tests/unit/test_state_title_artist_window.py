@@ -32,9 +32,6 @@ def _stub_media_service() -> MagicMock:
 
 
 async def _start_round(gs):
-    # Inject a stub service (truthy) so the lazy _ensure_media_player_service
-    # is a no-op and real playback never runs.
-    gs._media_player_service = _stub_media_service()
     gs.create_game(
         playlists=["t.json"],
         songs=_ta_songs(3),
@@ -42,6 +39,11 @@ async def _start_round(gs):
         base_url="http://h",
         title_artist_mode=True,
     )
+    # Inject a stub service (truthy) so the lazy _ensure_media_player_service
+    # is a no-op and real playback never runs. Must come *after* create_game,
+    # which now nulls _media_player_service so a fresh game rebuilds it with the
+    # new selection (#1526) — injecting before would be wiped out by that reset.
+    gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     gs.add_player("Alice", MagicMock())
     gs.add_player("Bob", MagicMock())
@@ -496,7 +498,6 @@ class TestVoteWindowFlagReset:
         await self._open_window(gs)
         await gs.end_game()
         # Start a fresh plain year-mode game.
-        gs._media_player_service = _stub_media_service()
         gs.create_game(
             playlists=["t.json"],
             songs=make_songs(3),
@@ -505,6 +506,8 @@ class TestVoteWindowFlagReset:
             title_artist_mode=False,
             reveal_auto_advance=5,
         )
+        # Stub the service after create_game, which nulls it for a fresh game (#1526).
+        gs._media_player_service = _stub_media_service()
         gs.platform = "music_assistant"
         gs.add_player("Alice", MagicMock())
         for p in gs.players.values():
