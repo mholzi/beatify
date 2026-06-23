@@ -162,7 +162,11 @@ def _resolve_page_language(hass: HomeAssistant) -> str:
         lang = getattr(game_state, "language", None)
         if lang:
             return lang
-    cfg_lang = getattr(hass.config, "language", None)
+    # `hass.config` exists on a real HomeAssistant but may be absent on a bare
+    # test/stub hass — guard the attribute access so the helper degrades to "en"
+    # instead of raising while serving a page.
+    cfg = getattr(hass, "config", None)
+    cfg_lang = getattr(cfg, "language", None)
     if cfg_lang:
         return cfg_lang
     return "en"
