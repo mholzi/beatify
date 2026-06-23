@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Speaker volume is restored when the game ends (#1516).** If the host adjusts the speaker volume during a game, Beatify now hands the speaker back at its original pre-game level when the game ends — no more manually resetting the volume after every round. Complements the existing party-lights state restore (#331/#1402).
+
 ## [4.1.2] - 2026-06-22
 
 Content release — new German Disney playlist with the guess-the-film bonus. See [docs/release-notes-v4.1.2.md](docs/release-notes-v4.1.2.md) for the user-facing notes.
