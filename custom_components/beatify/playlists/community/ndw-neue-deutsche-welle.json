@@ -1,0 +1,1791 @@
+{
+  "name": "NDW – Neue Deutsche Welle",
+  "version": "0.1",
+  "tags": [
+    "ndw",
+    "neue deutsche welle",
+    "german new wave",
+    "80s",
+    "deutsch",
+    "classic"
+  ],
+  "language": "de",
+  "author": "community",
+  "added_date": "2026-06-24",
+  "description": "Die Neue Deutsche Welle — German New Wave at its finest. 50 essential tracks from the movement that defined early-80s German pop culture, from Falco's Mozart tribute to Nena's anti-war balloon anthem.",
+  "songs": [
+    {
+      "year": 1982,
+      "uri": "spotify:track:3pR29mXC5gp0UjJSRePU2f",
+      "artist": "Peter Schilling",
+      "alt_artists": [
+        "Falco",
+        "Hubert Kah",
+        "Joachim Witt"
+      ],
+      "title": "Major Tom (Völlig losgelöst)",
+      "chart_info": {
+        "de_peak": 1,
+        "at_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Peter Schilling's 'Major Tom (Völlig losgelöst)' reached #1 in Germany and became one of the defining NDW anthems. It was inspired by David Bowie's 'Space Oddity' and tells the story from Major Tom's perspective — choosing to stay in space rather than return to Earth.",
+      "fun_fact_de": "Peter Schillings 'Major Tom' erreichte Platz 1 in Deutschland und wurde zu einer der prägendsten NDW-Hymnen. Das Lied wurde von David Bowies 'Space Oddity' inspiriert.",
+      "fun_fact_es": "El 'Major Tom' de Peter Schilling alcanzó el número 1 en Alemania. La canción fue inspirada por 'Space Oddity' de David Bowie.",
+      "fun_fact_fr": "Le 'Major Tom' de Peter Schilling atteignit la première place en Allemagne, inspiré de 'Space Oddity' de David Bowie.",
+      "fun_fact_nl": "Peter Schillings 'Major Tom' bereikte nummer 1 in Duitsland, geïnspireerd op David Bowies 'Space Oddity'.",
+      "uri_apple_music": "applemusic://track/1550643320",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=KQRaj1vcnrs",
+      "uri_tidal": null,
+      "uri_deezer": "122357172",
+      "isrc": "DEK890500100",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1550643320",
+        "de": "applemusic://track/1550643318",
+        "gb": "applemusic://track/1550643320",
+        "fr": "applemusic://track/1550643320",
+        "es": "applemusic://track/1550643320",
+        "nl": "applemusic://track/1550643320",
+        "it": "applemusic://track/1550643320"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:7JM1dFLOa1kI5MqGnDufiY",
+      "artist": "Münchener Freiheit",
+      "alt_artists": [
+        "Peter Schilling",
+        "Hubert Kah",
+        "Klaus Lage"
+      ],
+      "title": "Ohne Dich (schlaf' ich heut Nacht nicht ein)",
+      "chart_info": {
+        "de_peak": 2
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Münchener Freiheit's 'Ohne Dich' became a Schlager-leaning NDW crossover hit. The band from Munich perfectly bridged the gap between traditional German pop and the new wave movement of the early 1980s.",
+      "fun_fact_de": "Münchener Freiheits 'Ohne Dich' wurde ein NDW-Crossover-Hit, der die Lücke zwischen traditionellem deutschen Pop und der New-Wave-Bewegung überbrückte.",
+      "fun_fact_es": "'Ohne Dich' de Münchener Freiheit fue un éxito crossover entre el Schlager y el NDW.",
+      "fun_fact_fr": "'Ohne Dich' de Münchener Freiheit fut un succès crossover entre le Schlager et le NDW.",
+      "fun_fact_nl": "'Ohne Dich' van Münchener Freiheit was een crossover hit die traditionele Duitse pop en new wave verbond.",
+      "uri_apple_music": "applemusic://track/275609053",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=SkGlB3ethO8",
+      "uri_tidal": null,
+      "uri_deezer": "630374",
+      "isrc": "DEE868500072",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/275609053",
+        "de": "applemusic://track/275609053",
+        "gb": "applemusic://track/275609053",
+        "fr": "applemusic://track/209594066",
+        "es": "applemusic://track/275609053",
+        "nl": "applemusic://track/275609053",
+        "it": "applemusic://track/211486891"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:0DfG1ltJnZyq4Tx3ZLL7ZU",
+      "artist": "Falco",
+      "alt_artists": [
+        "Peter Schilling",
+        "Markus",
+        "Joachim Witt"
+      ],
+      "title": "Rock Me Amadeus",
+      "chart_info": {
+        "us_peak": 1,
+        "uk_peak": 1,
+        "de_peak": 1,
+        "at_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Falco's 'Rock Me Amadeus' was the first (and so far only) German-language single to reach #1 on the US Billboard Hot 100. The track celebrates Mozart and turned Falco into an international superstar.",
+      "fun_fact_de": "Falcos 'Rock Me Amadeus' war die erste und bisher einzige deutschsprachige Single, die Platz 1 der US Billboard Hot 100 erreichte.",
+      "fun_fact_es": "'Rock Me Amadeus' de Falco fue el primer sencillo en alemán en llegar al número 1 en el Billboard Hot 100 de EE. UU.",
+      "fun_fact_fr": "'Rock Me Amadeus' de Falco fut le premier single en langue allemande à atteindre la première place du Billboard Hot 100 aux États-Unis.",
+      "fun_fact_nl": "Falco's 'Rock Me Amadeus' was de eerste Duitstalige single die #1 bereikte in de VS Billboard Hot 100.",
+      "uri_apple_music": "applemusic://track/398483947",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=y-H895vrIU8",
+      "uri_tidal": null,
+      "uri_deezer": "542016",
+      "isrc": "ATB158500018",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/398483947",
+        "de": "applemusic://track/326130278",
+        "gb": "applemusic://track/270787390",
+        "fr": "applemusic://track/1095422678",
+        "es": "applemusic://track/355893644",
+        "nl": "applemusic://track/1080798632",
+        "it": "applemusic://track/355893644"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:26kXONuhWX8sutaxnmcpPg",
+      "artist": "Spider Murphy Gang",
+      "alt_artists": [
+        "Markus",
+        "Münchener Freiheit",
+        "Felix De Luxe"
+      ],
+      "title": "Skandal im Sperrbezirk",
+      "chart_info": {
+        "de_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spider Murphy Gang's 'Skandal im Sperrbezirk' is a tongue-in-cheek song about Munich's red-light district. Written in Bavarian dialect, it became one of the quirkiest NDW hits and reached #1 in Germany.",
+      "fun_fact_de": "Spider Murphy Gangs 'Skandal im Sperrbezirk' handelt humorvoll vom Münchner Rotlichtviertel, im bayerischen Dialekt geschrieben.",
+      "fun_fact_es": "'Skandal im Sperrbezirk' de Spider Murphy Gang es una canción irónica sobre el barrio rojo de Múnich, escrita en dialecto bávaro.",
+      "fun_fact_fr": "'Skandal im Sperrbezirk' de Spider Murphy Gang parle avec humour du quartier rouge de Munich, écrit en dialecte bavarois.",
+      "fun_fact_nl": "'Skandal im Sperrbezirk' van Spider Murphy Gang gaat humoristisch over de rosse buurt van München, geschreven in Beiers dialect.",
+      "uri_apple_music": "applemusic://track/1759068503",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=oESfa8jt0p8",
+      "uri_tidal": null,
+      "uri_deezer": "3123329",
+      "isrc": "DEA348101056",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1759068503",
+        "de": "applemusic://track/1736653322",
+        "gb": "applemusic://track/1639192928",
+        "fr": "applemusic://track/688919857",
+        "es": "applemusic://track/688919857",
+        "nl": "applemusic://track/688919857",
+        "it": "applemusic://track/712949305"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:7sgbBeINoJ4TDUDIloK9li",
+      "artist": "Joachim Witt",
+      "alt_artists": [
+        "Peter Schilling",
+        "Ideal",
+        "Extrabreit"
+      ],
+      "title": "Goldener Reiter",
+      "chart_info": {
+        "de_peak": 2,
+        "at_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Joachim Witt's 'Goldener Reiter' is one of the most iconic NDW anthems. Its martial beats and Witt's dramatic vocal delivery made it a defining moment for the movement in 1980.",
+      "fun_fact_de": "Joachim Witts 'Goldener Reiter' ist eine der ikonischsten NDW-Hymnen. Die martialischen Beats und Witts dramatische Stimme machten es 1980 zum Schlüsselmoment.",
+      "fun_fact_es": "'Goldener Reiter' de Joachim Witt es uno de los himnos más icónicos del NDW.",
+      "fun_fact_fr": "'Goldener Reiter' de Joachim Witt est l'un des hymnes les plus emblématiques du NDW.",
+      "fun_fact_nl": "'Goldener Reiter' van Joachim Witt is een van de meest iconische NDW-hymnes.",
+      "uri_apple_music": "applemusic://track/41257757",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=DTFh2dnYy8Q",
+      "uri_tidal": null,
+      "uri_deezer": "700835",
+      "isrc": "DEA629262331",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/41257757",
+        "de": "applemusic://track/1337651802",
+        "gb": "applemusic://track/41257757",
+        "fr": "applemusic://track/41257757",
+        "es": "applemusic://track/41257757",
+        "nl": "applemusic://track/41257757",
+        "it": "applemusic://track/41257757"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:79hX0z70ufkP63Ocr4Jz4K",
+      "artist": "Hubert Kah",
+      "alt_artists": [
+        "Münchener Freiheit",
+        "Purple Schulz",
+        "Klaus Lage"
+      ],
+      "title": "Sternenhimmel",
+      "chart_info": {
+        "de_peak": 3
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Hubert Kah's 'Sternenhimmel' with its romantic synthesizer melody became a classic of the NDW era. Its dreamy quality distinguished Kah from more abrasive punk-influenced NDW acts.",
+      "fun_fact_de": "Hubert Kahs 'Sternenhimmel' mit seiner romantischen Synthesizer-Melodie wurde zum NDW-Klassiker.",
+      "fun_fact_es": "'Sternenhimmel' de Hubert Kah con su romántica melodía de sintetizador se convirtió en un clásico del NDW.",
+      "fun_fact_fr": "'Sternenhimmel' de Hubert Kah avec sa mélodie de synthétiseur romantique est devenu un classique du NDW.",
+      "fun_fact_nl": "'Sternenhimmel' van Hubert Kah met zijn romantische synthesizer melodie werd een NDW klassieker.",
+      "uri_apple_music": "applemusic://track/901876738",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Krr2nWif65Q",
+      "uri_tidal": null,
+      "uri_deezer": "65461711",
+      "isrc": "DEF068205320",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/901876738",
+        "de": "applemusic://track/1639199965",
+        "gb": "applemusic://track/901876738",
+        "fr": "applemusic://track/1444021231",
+        "es": "applemusic://track/901876738",
+        "nl": "applemusic://track/1444021231",
+        "it": "applemusic://track/1444021231"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:3CtuGidVS3Tt6vDG25rRdz",
+      "artist": "Paso Doble",
+      "alt_artists": [
+        "Ideal",
+        "Fehlfarben",
+        "Extrabreit"
+      ],
+      "title": "Computerliebe (Die Module spielen verrückt)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Paso Doble's 'Computerliebe' was an early ode to digital romance, predating the internet age. The Vienna duo perfectly captured NDW's fascination with technology and modern alienation.",
+      "fun_fact_de": "Paso Doblers 'Computerliebe' war eine frühe Ode an die digitale Liebe, noch vor dem Internetzeitalter.",
+      "fun_fact_es": "'Computerliebe' de Paso Doble fue una de las primeras canciones sobre el amor digital.",
+      "fun_fact_fr": "'Computerliebe' de Paso Doble était une ode précoce à l'amour numérique, bien avant l'ère d'internet.",
+      "fun_fact_nl": "Paso Doble's 'Computerliebe' was een vroege ode aan digitale liefde, lang voor het internettijdperk.",
+      "uri_apple_music": "applemusic://track/209082354",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=7NnSpff_VqA",
+      "uri_tidal": null,
+      "uri_deezer": "728386",
+      "isrc": "DEA620100681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/209082354",
+        "de": null,
+        "gb": "applemusic://track/209082354",
+        "fr": null,
+        "es": "applemusic://track/209082354",
+        "nl": null,
+        "it": "applemusic://track/209082354"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:3TBRJsLCcwroEkA3tD4u2N",
+      "artist": "Falco",
+      "alt_artists": [
+        "Peter Schilling",
+        "Markus",
+        "Joachim Witt"
+      ],
+      "title": "Der Kommissar",
+      "chart_info": {
+        "de_peak": 1,
+        "at_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Falco's 'Der Kommissar' was actually his debut hit in 1982, before 'Rock Me Amadeus'. It reached #1 in Germany and was later covered in English by After the Fire, reaching the top 5 in multiple countries.",
+      "fun_fact_de": "Falcos 'Der Kommissar' war sein Debüt-Hit 1982 und wurde später auf Englisch von After the Fire gecovert.",
+      "fun_fact_es": "'Der Kommissar' de Falco fue su primer gran éxito en 1982, versionada en inglés por After the Fire.",
+      "fun_fact_fr": "'Der Kommissar' de Falco était son premier grand succès en 1982, repris en anglais par After the Fire.",
+      "fun_fact_nl": "Falco's 'Der Kommissar' was zijn debuuthit in 1982, later gecoverd in het Engels door After the Fire.",
+      "uri_apple_music": "applemusic://track/1080465882",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=dPCu8mQZWqU",
+      "uri_tidal": null,
+      "uri_deezer": "142334565",
+      "isrc": "ATB158200018",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1080465882",
+        "de": null,
+        "gb": "applemusic://track/1080465882",
+        "fr": null,
+        "es": null,
+        "nl": "applemusic://track/1080465882",
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:752q3k1ds8JckA7tIakICn",
+      "artist": "Peter Schilling",
+      "alt_artists": [
+        "Falco",
+        "Joachim Witt",
+        "Hubert Kah"
+      ],
+      "title": "Terra Titanic",
+      "chart_info": {
+        "de_peak": 4
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Peter Schilling's 'Terra Titanic' was a follow-up to 'Major Tom', again dealing with catastrophe and space themes. It demonstrated Schilling's unique narrative-driven approach to NDW.",
+      "fun_fact_de": "Peter Schillings 'Terra Titanic' war die Nachfolgesingle zu 'Major Tom', erneut mit Katastrophen- und Weltraumthemen.",
+      "fun_fact_es": "'Terra Titanic' de Peter Schilling fue la continuación de 'Major Tom', tratando temas de catástrofes.",
+      "fun_fact_fr": "'Terra Titanic' de Peter Schilling était la suite de 'Major Tom', traitant à nouveau de catastrophes.",
+      "fun_fact_nl": "'Terra Titanic' van Peter Schilling was de opvolger van 'Major Tom' met catastrofethema's.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=m212MgaibXY",
+      "uri_tidal": null,
+      "uri_deezer": "3605282",
+      "isrc": "DEA629253500",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:3VwLD5o1r0YBLkjUfgSEYg",
+      "artist": "Kraftwerk",
+      "alt_artists": [
+        "Ideal",
+        "Fehlfarben",
+        "Grauzone"
+      ],
+      "title": "Das Modell",
+      "chart_info": {
+        "uk_peak": 1,
+        "de_peak": 25
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Kraftwerk's 'Das Modell' was originally on the 1978 'The Man-Machine' album. Re-released as a single in 1981, it reached #1 in the UK — one of Kraftwerk's biggest commercial successes.",
+      "fun_fact_de": "Kraftwerks 'Das Modell' erschien ursprünglich 1978 auf 'The Man-Machine'. Als Single 1981 wiederveröffentlicht, erreichte es Platz 1 in Großbritannien.",
+      "fun_fact_es": "'Das Modell' de Kraftwerk alcanzó el número 1 en el Reino Unido al ser relanzado como single en 1981.",
+      "fun_fact_fr": "'Das Modell' de Kraftwerk atteignit la première place au Royaume-Uni lors de sa réédition en 1981.",
+      "fun_fact_nl": "Kraftwerks 'Das Modell' bereikte nummer 1 in het VK bij heruitgave als single in 1981.",
+      "uri_apple_music": "applemusic://track/693113326",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=GEnx9xS79Lc",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "isrc": "",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/693113326",
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:4Hg99jQ6zjks47xaH8eK40",
+      "artist": "Rio Reiser",
+      "alt_artists": [
+        "Udo Lindenberg",
+        "Fehlfarben",
+        "Spliff"
+      ],
+      "title": "König von Deutschland",
+      "chart_info": {
+        "de_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Rio Reiser's 'König von Deutschland' was a satirical anthem about a fictional German king. Reiser, former frontman of protest band Ton Steine Scherben, brought a political edge to the NDW scene.",
+      "fun_fact_de": "Rio Reisers 'König von Deutschland' war eine satirische Hymne über einen fiktiven deutschen König. Reiser war ehemaliger Frontsänger von Ton Steine Scherben.",
+      "fun_fact_es": "'König von Deutschland' de Rio Reiser es un himno satírico sobre un rey alemán ficticio con un toque político único.",
+      "fun_fact_fr": "'König von Deutschland' de Rio Reiser est un hymne satirique sur un roi allemand fictif avec une dimension politique.",
+      "fun_fact_nl": "'König von Deutschland' van Rio Reiser is een satirisch lied over een fictieve Duitse koning.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=BzGHhaMUqSQ",
+      "uri_tidal": null,
+      "uri_deezer": "869747",
+      "isrc": "DEE868600120",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:1LAdc8CC4UZibUnkIbVfX3",
+      "artist": "EAV (Erste Allgemeine Verunsicherung)",
+      "alt_artists": [
+        "Falco",
+        "Dschinghis Khan",
+        "Markus"
+      ],
+      "title": "Ba-Ba Banküberfall",
+      "chart_info": {
+        "de_peak": 5,
+        "at_peak": 2
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "EAV's 'Ba-Ba Banküberfall' is a comedic Austrian NDW gem. The Erste Allgemeine Verunsicherung (First General Bewilderment) became famous for their humorous, absurdist approach to pop music.",
+      "fun_fact_de": "EAVs 'Ba-Ba Banküberfall' ist ein österreichisches NDW-Kabinettstückchen. Die 'Erste Allgemeine Verunsicherung' wurde für ihren absurdistischen Ansatz bekannt.",
+      "fun_fact_es": "'Ba-Ba Banküberfall' de EAV es una joya cómica del NDW austriaco, conocido por su enfoque humorístico y absurdista.",
+      "fun_fact_fr": "'Ba-Ba Banküberfall' de l'EAV est un bijou comique du NDW autrichien célèbre pour son humour absurde.",
+      "fun_fact_nl": "EAV's 'Ba-Ba Banküberfall' is een Oostenrijkse NDW-parel, bekend om hun humoristische aanpak.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=rXUlmP5MvnE",
+      "uri_tidal": null,
+      "uri_deezer": "3444759",
+      "isrc": "ATE068500030",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:5LeHzi6zItFT81Ik2EwCWo",
+      "artist": "Döf",
+      "alt_artists": [
+        "EAV",
+        "Bärchen und die Milchbubis",
+        "Markus"
+      ],
+      "title": "Codo (...düse im Sauseschritt)",
+      "chart_info": {
+        "de_peak": 1,
+        "at_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Döf's 'Codo' was an Austrian NDW novelty hit that topped the charts in Germany and Austria. The song's nonsensical story about a rocket man became one of NDW's most beloved absurdist classics.",
+      "fun_fact_de": "Döfs 'Codo' war ein österreichischer NDW-Novelty-Hit, der die Charts anführte. Die Geschichte um einen Raketenmann wurde zum absurdistischen NDW-Klassiker.",
+      "fun_fact_es": "'Codo' de Döf fue un hit de novedad del NDW austriaco que encabezó las listas en Alemania y Austria.",
+      "fun_fact_fr": "'Codo' de Döf fut un hit novateur du NDW autrichien ayant atteint le sommet des charts.",
+      "fun_fact_nl": "Döf's 'Codo' was een Oostenrijkse NDW-novelty hit die de hitlijsten aanvoerde.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=HaPAqh37NTk",
+      "uri_tidal": null,
+      "uri_deezer": "2851298",
+      "isrc": "ATB158300073",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:6lhzUwb3Ggfi1tPR3YoIh6",
+      "artist": "Karat",
+      "alt_artists": [
+        "City",
+        "Puhdys",
+        "Rio Reiser"
+      ],
+      "title": "Über sieben Brücken musst du gehn",
+      "chart_info": {
+        "de_peak": 4
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Karat's 'Über sieben Brücken musst du gehn' is a 1979 East German rock ballad that became beloved across both sides of the Iron Curtain. Peter Maffay's 1980 cover made it even more famous in West Germany.",
+      "fun_fact_de": "Karats 'Über sieben Brücken musst du gehn' ist eine ostdeutsche Rockballade von 1979, die auf beiden Seiten des Eisernen Vorhangs geliebt wurde.",
+      "fun_fact_es": "'Über sieben Brücken' de Karat es una balada rock de 1979 de Alemania del Este amada a ambos lados del Telón de Acero.",
+      "fun_fact_fr": "'Über sieben Brücken' de Karat est une ballade rock est-allemande de 1979 aimée des deux côtés du Rideau de Fer.",
+      "fun_fact_nl": "'Über sieben Brücken' van Karat is een Oost-Duitse rockballade uit 1979 geliefd aan beide zijden van het IJzeren Gordijn.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=28MMYPoG8ag",
+      "uri_tidal": null,
+      "uri_deezer": "987947",
+      "isrc": "DEC719400666",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:6dO3t1e3pb7sxyDQbDyVNX",
+      "artist": "Grauzone",
+      "alt_artists": [
+        "Ideal",
+        "Fehlfarben",
+        "Lilli Berlin"
+      ],
+      "title": "Eisbär",
+      "chart_info": {
+        "ch_peak": 1,
+        "de_peak": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Grauzone's 'Eisbär' is one of the most important Swiss NDW/post-punk recordings. Released in 1981, the simple yet haunting song about wanting to be a polar bear became an unlikely cult classic.",
+      "fun_fact_de": "Grauzones 'Eisbär' ist eine der wichtigsten Schweizer NDW/Post-Punk-Aufnahmen. Das einfache Lied über den Wunsch, ein Eisbär zu sein, wurde 1981 zum Kultklassiker.",
+      "fun_fact_es": "'Eisbär' de Grauzone es una de las grabaciones más importantes del NDW suizo, un clásico de culto sobre el deseo de ser un oso polar.",
+      "fun_fact_fr": "'Eisbär' de Grauzone est l'une des plus importantes œuvres suisses du NDW, une chanson envoûtante sur l'envie d'être un ours polaire.",
+      "fun_fact_nl": "Grauzone's 'Eisbär' is een van de belangrijkste Zwitserse NDW-opnames, een cultklassieker over het willen zijn van een ijsbeer.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=bIIGKV27FaY",
+      "uri_tidal": null,
+      "uri_deezer": "594253182",
+      "isrc": "DETB31800774",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4LI4YCdKH2fLjyhtbtHXrY",
+      "artist": "Extrabreit",
+      "alt_artists": [
+        "Ideal",
+        "Fehlfarben",
+        "Spider Murphy Gang"
+      ],
+      "title": "Hurra, hurra, die Schule brennt",
+      "chart_info": {
+        "de_peak": 15
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Extrabreit's 'Hurra, hurra, die Schule brennt' is one of NDW's most rebellious anthems. The song's provocative school-burning fantasy perfectly captured NDW's anti-establishment spirit.",
+      "fun_fact_de": "Extrabreits 'Hurra, hurra, die Schule brennt' ist eine der rebellischsten NDW-Hymnen, die perfekt den antiestablishment Geist des NDW verkörpert.",
+      "fun_fact_es": "'Hurra, hurra, die Schule brennt' de Extrabreit es uno de los himnos más rebeldes del NDW.",
+      "fun_fact_fr": "'Hurra, hurra, die Schule brennt' d'Extrabreit est l'un des hymnes NDW les plus rebelles.",
+      "fun_fact_nl": "'Hurra, hurra, die Schule brennt' van Extrabreit is een van de meest rebelse NDW-hymnes.",
+      "uri_apple_music": "applemusic://track/1442237032",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "1140801",
+      "isrc": "DEF088025220",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": "applemusic://track/1442237032"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:4NHO1vwPG2Do1Y3gByphbV",
+      "artist": "Markus",
+      "alt_artists": [
+        "Falco",
+        "Spider Murphy Gang",
+        "Dschinghis Khan"
+      ],
+      "title": "Ich will Spaß",
+      "chart_info": {
+        "de_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Markus' 'Ich will Spaß' was one of NDW's most commercially successful party anthems. The carefree hedonism and energetic performance made it a staple of German pop radio in 1982.",
+      "fun_fact_de": "Markus' 'Ich will Spaß' war eine der kommerziell erfolgreichsten Party-Hymnen des NDW und ein fester Bestandteil des deutschen Pop-Radios.",
+      "fun_fact_es": "'Ich will Spaß' de Markus fue uno de los himnos de fiesta más exitosos del NDW.",
+      "fun_fact_fr": "'Ich will Spaß' de Markus était l'un des hymnes festifs les plus commercialement réussis du NDW.",
+      "fun_fact_nl": "'Ich will Spaß' van Markus was een van de meest commercieel succesvolle feestaanstichters van het NDW.",
+      "uri_apple_music": "applemusic://track/317319209",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=UW7lB7p0Eow",
+      "uri_tidal": null,
+      "uri_deezer": "663173602",
+      "isrc": "DEE869700768",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/317319209",
+        "de": "applemusic://track/306312074",
+        "gb": "applemusic://track/471092832",
+        "fr": "applemusic://track/471092832",
+        "es": "applemusic://track/471092832",
+        "nl": "applemusic://track/317319209",
+        "it": "applemusic://track/317319209"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:4IALADnQ5JO3LbRxFMRM9S",
+      "artist": "Felix De Luxe",
+      "alt_artists": [
+        "Frl. Menke",
+        "Purple Schulz",
+        "Münchener Freiheit"
+      ],
+      "title": "Taxi nach Paris",
+      "chart_info": {
+        "de_peak": 20
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Felix De Luxe's 'Taxi nach Paris' captured NDW's fascination with cosmopolitan travel and bohemian dreams. The Hamburg-based group became a cult act of the early NDW scene.",
+      "fun_fact_de": "Felix De Luxes 'Taxi nach Paris' verkörperte die NDW-Faszination für kosmopolitisches Reisen und Bohème-Träume.",
+      "fun_fact_es": "'Taxi nach Paris' de Felix De Luxe capturó la fascinación del NDW por los viajes cosmopolitas.",
+      "fun_fact_fr": "'Taxi nach Paris' de Felix De Luxe capturait la fascination NDW pour les voyages cosmopolites.",
+      "fun_fact_nl": "'Taxi nach Paris' van Felix De Luxe verbeeldde de NDW-fascinatie voor kosmopolitisch reizen.",
+      "uri_apple_music": "applemusic://track/1759068708",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=A-pJ3-Ozwbo",
+      "uri_tidal": null,
+      "uri_deezer": "2282876",
+      "isrc": "DEF068404740",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1759068708",
+        "de": "applemusic://track/1442709690",
+        "gb": "applemusic://track/1712963862",
+        "fr": "applemusic://track/1712963862",
+        "es": "applemusic://track/1712963862",
+        "nl": "applemusic://track/1759068708",
+        "it": "applemusic://track/1759068708"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:05MArDzHlmGFezNMU2BR3S",
+      "artist": "Puhdys",
+      "alt_artists": [
+        "Karat",
+        "City",
+        "Rio Reiser"
+      ],
+      "title": "Alt wie ein Baum",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Puhdys' 'Alt wie ein Baum' is a pre-NDW classic from East Germany's most popular rock band. Released in 1976, this timeless ballad became one of the most beloved German rock songs ever.",
+      "fun_fact_de": "Puhdys' 'Alt wie ein Baum' ist ein Vorläufer-Klassiker der beliebtesten ostdeutschen Rockband aus dem Jahr 1976.",
+      "fun_fact_es": "'Alt wie ein Baum' de Puhdys es un clásico pre-NDW de 1976 de la banda de rock más popular de Alemania del Este.",
+      "fun_fact_fr": "'Alt wie ein Baum' des Puhdys est un classique pré-NDW de 1976 du groupe de rock le plus populaire d'Allemagne de l'Est.",
+      "fun_fact_nl": "'Alt wie ein Baum' van Puhdys is een pre-NDW klassieker uit 1976 van de populairste rockband van Oost-Duitsland.",
+      "uri_apple_music": "applemusic://track/1135900558",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "569144",
+      "isrc": "DEC719400252",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1135900558",
+        "de": "applemusic://track/402460518",
+        "gb": "applemusic://track/1103285651",
+        "fr": "applemusic://track/1135900558",
+        "es": "applemusic://track/1135900558",
+        "nl": "applemusic://track/1103285651",
+        "it": "applemusic://track/317319135"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:0ksebE6LrZocf2L5f4N1q7",
+      "artist": "Dschinghis Khan",
+      "alt_artists": [
+        "Markus",
+        "EAV",
+        "Döf"
+      ],
+      "title": "Dschinghis Khan",
+      "chart_info": {
+        "de_peak": 5,
+        "eurovision_position": 4
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dschinghis Khan's 'Dschinghis Khan' was West Germany's entry to Eurovision 1979, finishing 4th. The bombastic tribute to the Mongol conqueror became a global novelty hit with a distinctive choreography.",
+      "fun_fact_de": "Dschinghis Khans Titelsong war der deutsche Beitrag zum Eurovision 1979 (4. Platz) und wurde mit seiner charakteristischen Choreografie zum globalen Novelty-Hit.",
+      "fun_fact_es": "'Dschinghis Khan' fue la entrada de Alemania Occidental al Eurovisión 1979, quedando en 4º lugar.",
+      "fun_fact_fr": "'Dschinghis Khan' était l'entrée de l'Allemagne de l'Ouest à l'Eurovision 1979, finissant 4ème.",
+      "fun_fact_nl": "'Dschinghis Khan' was West-Duitslands inzending voor het Eurovisie Songfestival 1979, eindigend op de 4e plaats.",
+      "uri_apple_music": "applemusic://track/1308712711",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=1AXlVZRpweI",
+      "uri_tidal": null,
+      "uri_deezer": "1104837",
+      "isrc": "DEUM70703330",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1308712711",
+        "de": "applemusic://track/253921794",
+        "gb": "applemusic://track/1443318921",
+        "fr": "applemusic://track/1443318921",
+        "es": "applemusic://track/1443318921",
+        "nl": "applemusic://track/1443318921",
+        "it": "applemusic://track/1443318921"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:5nshHPZBuAn0kndDRsjeX5",
+      "artist": "Extrabreit",
+      "alt_artists": [
+        "Ideal",
+        "Joachim Witt",
+        "Fehlfarben"
+      ],
+      "title": "Flieger, grüß mir die Sonne",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Extrabreit's 'Flieger, grüß mir die Sonne' is a militaristic NDW anthem that deliberately played with imagery from the Nazi era — a provocative and controversial artistic choice that sparked debate.",
+      "fun_fact_de": "Extrabreits 'Flieger, grüß mir die Sonne' spielte bewusst mit Bildern aus der NS-Zeit — eine provokante künstlerische Entscheidung.",
+      "fun_fact_es": "'Flieger, grüß mir die Sonne' de Extrabreit es un himno militarista que deliberadamente jugó con imágenes de la era nazi.",
+      "fun_fact_fr": "'Flieger, grüß mir die Sonne' d'Extrabreit est un hymne militariste jouant délibérément avec des images de l'ère nazie.",
+      "fun_fact_nl": "'Flieger, grüß mir die Sonne' van Extrabreit speelde bewust met beelden uit het nazi-tijdperk.",
+      "uri_apple_music": "applemusic://track/1442228307",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=7e61KF2eH3g",
+      "uri_tidal": null,
+      "uri_deezer": "1140787",
+      "isrc": "DEF088025210",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442228307",
+        "de": "applemusic://track/1442228307",
+        "gb": "applemusic://track/1442228307",
+        "fr": "applemusic://track/1442237036",
+        "es": "applemusic://track/1442228307",
+        "nl": "applemusic://track/1442228307",
+        "it": "applemusic://track/1442228307"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2pCPSNMAsw0R5FQkkvr6ry",
+      "artist": "Ideal",
+      "alt_artists": [
+        "Fehlfarben",
+        "Extrabreit",
+        "Grauzone"
+      ],
+      "title": "Blaue Augen",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ideal's 'Blaue Augen' is a 1980 post-punk NDW classic from Berlin. The band, with vocalist Annette Humpe, was one of the most critically acclaimed NDW acts and helped define the Berlin sound.",
+      "fun_fact_de": "Ideals 'Blaue Augen' ist ein Berliner NDW-Klassiker von 1980 mit Sängerin Annette Humpe, einem der angesehensten NDW-Acts.",
+      "fun_fact_es": "'Blaue Augen' de Ideal es un clásico del NDW post-punk de Berlín de 1980 con la vocalista Annette Humpe.",
+      "fun_fact_fr": "'Blaue Augen' d'Ideal est un classique NDW post-punk berlinois de 1980 avec la chanteuse Annette Humpe.",
+      "fun_fact_nl": "'Blaue Augen' van Ideal is een post-punk NDW klassieker uit Berlijn uit 1980 met zangeres Annette Humpe.",
+      "uri_apple_music": "applemusic://track/41255576",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=zbaTJDnDRuY",
+      "uri_tidal": null,
+      "uri_deezer": "725925",
+      "isrc": "DEA629260600",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/41255576",
+        "de": null,
+        "gb": "applemusic://track/41255576",
+        "fr": "applemusic://track/41255576",
+        "es": null,
+        "nl": null,
+        "it": "applemusic://track/41255576"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:2PgzS3iVWHXBW8sBwQC4Ug",
+      "artist": "Karat",
+      "alt_artists": [
+        "Puhdys",
+        "City",
+        "Karat"
+      ],
+      "title": "Der blaue Planet",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Karat's 'Der blaue Planet' is a 1982 environmental anthem from East Germany. Unlike most NDW tracks, it carried a serious ecological message about Earth's fragility, making it unique within the genre.",
+      "fun_fact_de": "Karats 'Der blaue Planet' ist eine Umwelt-Hymne aus Ostdeutschland von 1982 mit einer ernsthaften ökologischen Botschaft.",
+      "fun_fact_es": "'Der blaue Planet' de Karat es un himno medioambiental de 1982 de Alemania del Este con un mensaje ecológico único.",
+      "fun_fact_fr": "'Der blaue Planet' de Karat est un hymne écologique de 1982 provenant d'Allemagne de l'Est, unique dans le genre NDW.",
+      "fun_fact_nl": "'Der blaue Planet' van Karat is een ecologisch lied uit 1982 uit Oost-Duitsland met een unieke milieuboodschap.",
+      "uri_apple_music": "applemusic://track/1442504247",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=FJp2JaskW7E",
+      "uri_tidal": null,
+      "uri_deezer": "987946",
+      "isrc": "DEC730000071",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442504247",
+        "de": "applemusic://track/253718847",
+        "gb": "applemusic://track/1442504247",
+        "fr": null,
+        "es": null,
+        "nl": "applemusic://track/209462547",
+        "it": "applemusic://track/281770852"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0Ivmp9TKs3lupVoqygFaIS",
+      "artist": "City",
+      "alt_artists": [
+        "Karat",
+        "Puhdys",
+        "Münchener Freiheit"
+      ],
+      "title": "Am Fenster",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "City's 'Am Fenster' is a 1977 East German rock ballad featuring a soaring saxophone that became legendary. Often considered a precursor to NDW, it remains one of the most beloved German rock songs ever recorded.",
+      "fun_fact_de": "Citys 'Am Fenster' ist eine ostdeutsche Rockballade aus dem Jahr 1977 mit einem legendären Saxophonsolo, oft als Vorläufer des NDW betrachtet.",
+      "fun_fact_es": "'Am Fenster' de City es una balada rock de 1977 de Alemania del Este con un saxofón legendario, considerada precursora del NDW.",
+      "fun_fact_fr": "'Am Fenster' de City est une ballade rock est-allemande de 1977 avec un saxophone légendaire, souvent considérée comme un précurseur du NDW.",
+      "fun_fact_nl": "'Am Fenster' van City is een Oost-Duitse rockballade uit 1977 met een legendarisch saxofoon, beschouwd als voorloper van het NDW.",
+      "uri_apple_music": "applemusic://track/1485754934",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=e6oDrXOLs8w",
+      "uri_tidal": null,
+      "uri_deezer": "1060585",
+      "isrc": "DEC730300509",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1485754934",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:4LYvl2jiB2EkCpZzTA8vxS",
+      "artist": "Hubert Kah",
+      "alt_artists": [
+        "Münchener Freiheit",
+        "Peter Schilling",
+        "Purple Schulz"
+      ],
+      "title": "Rosemarie",
+      "chart_info": {
+        "de_peak": 10
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Hubert Kah's 'Rosemarie' is another synth-pop gem from the same artist who gave us 'Sternenhimmel'. Kah's romantic style and slick production made him one of the more polished acts of the NDW scene.",
+      "fun_fact_de": "Hubert Kahs 'Rosemarie' ist ein weiteres Synth-Pop-Kleinod desselben Künstlers, der uns 'Sternenhimmel' bescherte.",
+      "fun_fact_es": "'Rosemarie' de Hubert Kah es otra joya del synth-pop del mismo artista que nos dio 'Sternenhimmel'.",
+      "fun_fact_fr": "'Rosemarie' de Hubert Kah est un autre joyau synth-pop de l'artiste qui nous a donné 'Sternenhimmel'.",
+      "fun_fact_nl": "'Rosemarie' van Hubert Kah is een andere synth-pop parel van dezelfde artiest die 'Sternenhimmel' maakte.",
+      "uri_apple_music": "applemusic://track/901876736",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "2446108",
+      "isrc": "DEF068200820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/901876736",
+        "de": "applemusic://track/1444138379",
+        "gb": null,
+        "fr": "applemusic://track/1444138379",
+        "es": "applemusic://track/1444138379",
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:3OQFhcQYcCUGVExGaNPrUf",
+      "artist": "Ina Deter",
+      "alt_artists": [
+        "Ideal",
+        "Frl. Menke",
+        "Lilli Berlin"
+      ],
+      "title": "Neue Männer braucht das Land",
+      "chart_info": {
+        "de_peak": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ina Deter's 'Neue Männer braucht das Land' was one of NDW's most explicitly feminist anthems. The Hamburg singer's playful critique of toxic masculinity resonated widely in early 1980s Germany.",
+      "fun_fact_de": "Ina Deters 'Neue Männer braucht das Land' war eine der explizit feministischen NDW-Hymnen — eine verspielte Kritik an toxischer Männlichkeit.",
+      "fun_fact_es": "'Neue Männer braucht das Land' de Ina Deter fue uno de los himnos feministas más explícitos del NDW.",
+      "fun_fact_fr": "'Neue Männer braucht das Land' d'Ina Deter était l'un des hymnes féministes les plus explicites du NDW.",
+      "fun_fact_nl": "'Neue Männer braucht das Land' van Ina Deter was een van de meest expliciete feministische hymnes van het NDW.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=GK51vq95j1s",
+      "uri_tidal": null,
+      "uri_deezer": "1156605",
+      "isrc": "DEF078202050",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:6mMUoEgOl1yuGMJ6dfHzh6",
+      "artist": "Fehlfarben",
+      "alt_artists": [
+        "Ideal",
+        "Extrabreit",
+        "Lilli Berlin"
+      ],
+      "title": "Ein Jahr (Es geht voran)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Fehlfarben's 'Ein Jahr (Es geht voran)' is one of the most politically charged NDW tracks. The Düsseldorf punk band used irony to critique West German society in the early 1980s.",
+      "fun_fact_de": "Fehlfarben's 'Ein Jahr (Es geht voran)' ist einer der politisch aufgeladensten NDW-Tracks der Düsseldorfer Punk-Band.",
+      "fun_fact_es": "'Ein Jahr (Es geht voran)' de Fehlfarben es uno de los temas más cargados políticamente del NDW.",
+      "fun_fact_fr": "'Ein Jahr (Es geht voran)' de Fehlfarben est l'un des titres NDW les plus politiquement chargés.",
+      "fun_fact_nl": "'Ein Jahr (Es geht voran)' van Fehlfarben is een van de meest politiek geladen NDW nummers.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Kvek60dvq50",
+      "uri_tidal": null,
+      "uri_deezer": "357738071",
+      "isrc": "DEA349000536",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:0MVrs90dQpFmSIkPiNCV3N",
+      "artist": "Udo Lindenberg & Das Panik-Orchester",
+      "alt_artists": [
+        "Rio Reiser",
+        "Fehlfarben",
+        "Peter Schilling"
+      ],
+      "title": "Sonderzug nach Pankow",
+      "chart_info": {
+        "de_peak": 5
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Udo Lindenberg's 'Sonderzug nach Pankow' was an open letter to East German leader Erich Honecker, requesting permission to perform in East Germany. A bold political statement at the height of the Cold War.",
+      "fun_fact_de": "Udo Lindenbergs 'Sonderzug nach Pankow' war ein offener Brief an DDR-Chef Erich Honecker, in dem er um Erlaubnis bat, in der DDR aufzutreten.",
+      "fun_fact_es": "'Sonderzug nach Pankow' de Udo Lindenberg fue una carta abierta al líder de Alemania del Este Erich Honecker.",
+      "fun_fact_fr": "'Sonderzug nach Pankow' d'Udo Lindenberg était une lettre ouverte au dirigeant est-allemand Erich Honecker.",
+      "fun_fact_nl": "'Sonderzug nach Pankow' van Udo Lindenberg was een open brief aan DDR-leider Erich Honecker.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=b-NSfmhiTBg",
+      "uri_tidal": null,
+      "uri_deezer": "136432688",
+      "isrc": "DEA621601757",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:7HyAIKz7frBvOVtjIUZlzA",
+      "artist": "Andreas Dorau",
+      "alt_artists": [
+        "Bärchen und die Milchbubis",
+        "Markus",
+        "Frl. Menke"
+      ],
+      "title": "Fred vom Jupiter",
+      "chart_info": {
+        "de_peak": 18
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Andreas Dorau's 'Fred vom Jupiter' was recorded when Dorau was just 17 years old, performed with school friends under the name Die Marinas. It became one of NDW's most charming youth-driven hits.",
+      "fun_fact_de": "Andreas Doraus 'Fred vom Jupiter' wurde aufgenommen, als Dorau erst 17 Jahre alt war, mit Schulfreunden als Die Marinas.",
+      "fun_fact_es": "'Fred vom Jupiter' de Andreas Dorau fue grabado cuando Dorau tenía solo 17 años, con amigos del colegio como Die Marinas.",
+      "fun_fact_fr": "'Fred vom Jupiter' d'Andreas Dorau a été enregistré quand Dorau n'avait que 17 ans, avec des amis d'école sous le nom Die Marinas.",
+      "fun_fact_nl": "'Fred vom Jupiter' van Andreas Dorau werd opgenomen toen Dorau slechts 17 jaar oud was, met schoolvrienden als Die Marinas.",
+      "uri_apple_music": "applemusic://track/79336558",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=fS4NPhnfVSM",
+      "uri_tidal": null,
+      "uri_deezer": "494600042",
+      "isrc": "DEK336400021",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/79336558",
+        "gb": "applemusic://track/79336558",
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:1HEv8TneVZHKhtZxSvctDp",
+      "artist": "Markus",
+      "alt_artists": [
+        "Hubert Kah",
+        "Peter Schilling",
+        "Purple Schulz"
+      ],
+      "title": "Kleine Taschenlampe brenn'",
+      "chart_info": {
+        "de_peak": 7
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Markus' 'Kleine Taschenlampe brenn'' showed the softer, more romantic side of the same singer who gave us the party anthem 'Ich will Spaß'. It demonstrated NDW's wide range of emotional expression.",
+      "fun_fact_de": "Markus' 'Kleine Taschenlampe brenn'' zeigte die sanftere, romantischere Seite des Sängers hinter 'Ich will Spaß'.",
+      "fun_fact_es": "'Kleine Taschenlampe brenn'' de Markus mostró el lado más romántico del cantante que creó 'Ich will Spaß'.",
+      "fun_fact_fr": "'Kleine Taschenlampe brenn'' de Markus montrait le côté plus romantique du chanteur derrière 'Ich will Spaß'.",
+      "fun_fact_nl": "'Kleine Taschenlampe brenn'' van Markus toonde de zachtere kant van de zanger achter 'Ich will Spaß'.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=ev8ZHJyx-bg",
+      "uri_tidal": null,
+      "uri_deezer": "95661492",
+      "isrc": "DEE868200069",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:7Ibka09YMWKIDMql9c98Pl",
+      "artist": "Münchener Freiheit",
+      "alt_artists": [
+        "City",
+        "Hubert Kah",
+        "Peter Schilling"
+      ],
+      "title": "Tausendmal Du",
+      "chart_info": {
+        "de_peak": 3
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Münchener Freiheit's 'Tausendmal Du' is a heartfelt love ballad showing the group's evolution beyond NDW into mainstream German pop. It remains one of their most enduring songs.",
+      "fun_fact_de": "Münchener Freiheits 'Tausendmal Du' ist eine herzliche Liebesballade, die die Entwicklung der Gruppe in den deutschen Mainstream-Pop zeigt.",
+      "fun_fact_es": "'Tausendmal Du' de Münchener Freiheit es una romántica balada que muestra la evolución del grupo hacia el pop convencional.",
+      "fun_fact_fr": "'Tausendmal Du' de Münchener Freiheit est une chanson d'amour sincère montrant l'évolution du groupe vers le pop grand public.",
+      "fun_fact_nl": "'Tausendmal Du' van Münchener Freiheit is een oprechte liefdessong die de evolutie van de band naar mainstream pop toont.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=zF5XQmy2aII",
+      "uri_tidal": null,
+      "uri_deezer": "627690",
+      "isrc": "DEE868600081",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:6HWNxAIbnZ2UkrV5HesviU",
+      "artist": "Spider Murphy Gang",
+      "alt_artists": [
+        "Münchener Freiheit",
+        "Felix De Luxe",
+        "Markus"
+      ],
+      "title": "Ich schau' dich an (Peep Peep)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spider Murphy Gang's 'Ich schau' dich an (Peep Peep)' continued the Munich band's tradition of playful, Bavarian-flavored pop. The flirtatious energy and catchy hook made it another crowd-pleasing NDW single.",
+      "fun_fact_de": "Spider Murphy Gangs 'Ich schau' dich an' setzte die Tradition der Band mit verspieltem, bayerisch gefärbtem Pop fort.",
+      "fun_fact_es": "'Ich schau' dich an' de Spider Murphy Gang continuó la tradición de pop playful con sabor bávaro de la banda.",
+      "fun_fact_fr": "'Ich schau' dich an' de Spider Murphy Gang a poursuivi la tradition du groupe de pop ludique à saveur bavaroise.",
+      "fun_fact_nl": "'Ich schau' dich an' van Spider Murphy Gang zette de Beierse-getinte pop traditie van de band voort.",
+      "uri_apple_music": null,
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "3123341",
+      "isrc": "DEA348200177",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:46fLCB8cIhNlL2o097sXop",
+      "artist": "Ideal",
+      "alt_artists": [
+        "Fehlfarben",
+        "Lilli Berlin",
+        "Extrabreit"
+      ],
+      "title": "Berlin",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ideal's 'Berlin' is a dark, atmospheric tribute to the divided city. Released in 1980, the song captured the unique tension and creative energy of West Berlin, a hotbed of the NDW and new wave movements.",
+      "fun_fact_de": "Ideals 'Berlin' ist ein dunkles, atmosphärisches Tribut an das geteilte Berlin, das 1980 die einzigartige Spannung und kreative Energie der Stadt einfing.",
+      "fun_fact_es": "'Berlin' de Ideal es un tributo oscuro y atmosférico a la ciudad dividida, capturando la tensión única del Berlín Occidental.",
+      "fun_fact_fr": "'Berlin' d'Ideal est un hommage sombre et atmosphérique à la ville divisée, capturant la tension unique du Berlin-Ouest.",
+      "fun_fact_nl": "'Berlin' van Ideal is een donker, atmosferisch eerbetoon aan het verdeelde Berlijn.",
+      "uri_apple_music": "applemusic://track/41255570",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=J6YRKs_hKFQ",
+      "uri_tidal": null,
+      "uri_deezer": "725907",
+      "isrc": "DEA620100958",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/41255570",
+        "de": "applemusic://track/41255570",
+        "gb": "applemusic://track/41255570",
+        "fr": "applemusic://track/41255570",
+        "es": "applemusic://track/41255570",
+        "nl": "applemusic://track/41255570",
+        "it": "applemusic://track/41255570"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:1zwQD4iVzmqgDBUZwVggbf",
+      "artist": "Frl. Menke",
+      "alt_artists": [
+        "Ina Deter",
+        "Lilli Berlin",
+        "Ideal"
+      ],
+      "title": "Tretboot in Seenot",
+      "chart_info": {
+        "de_peak": 13
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Frl. Menke's 'Tretboot in Seenot' was a quirky NDW hit from the Hamburg scene. The playful maritime imagery and catchy melody made it a perfect summer NDW single with a distinctive charm.",
+      "fun_fact_de": "Frl. Menkes 'Tretboot in Seenot' war ein skurriler NDW-Hit aus der Hamburger Szene mit verspielter maritimer Bildsprache.",
+      "fun_fact_es": "'Tretboot in Seenot' de Frl. Menke fue un hit peculiar del NDW de la escena de Hamburgo.",
+      "fun_fact_fr": "'Tretboot in Seenot' de Frl. Menke était un single NDW fantaisiste de la scène hambourgeoise.",
+      "fun_fact_nl": "'Tretboot in Seenot' van Frl. Menke was een eigenaardig NDW-hit uit de Hamburgse scene.",
+      "uri_apple_music": "applemusic://track/1442362984",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=RAsaTHEcnEA",
+      "uri_tidal": null,
+      "uri_deezer": "140344155",
+      "isrc": "DEF068207900",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442362984",
+        "de": "applemusic://track/1442362984",
+        "gb": "applemusic://track/1442362984",
+        "fr": "applemusic://track/1759068936",
+        "es": "applemusic://track/1442362984",
+        "nl": "applemusic://track/1442362984",
+        "it": "applemusic://track/1442362984"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:7p5hKfwynPA6exrzXz0yKM",
+      "artist": "Joachim Witt",
+      "alt_artists": [
+        "EAV",
+        "Döf",
+        "Markus"
+      ],
+      "title": "Tri Tra Trullala (Herbergsvater)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Joachim Witt's 'Tri Tra Trullala' was a playful change of pace from his earlier, more serious NDW work. The children's rhyme in the title masked a more adult, sardonic commentary on conformity.",
+      "fun_fact_de": "Joachim Witts 'Tri Tra Trullala' war ein spielerischer Stimmungswechsel gegenüber seinem früheren, ernsteren NDW-Werk.",
+      "fun_fact_es": "'Tri Tra Trullala' de Joachim Witt fue un cambio lúdico respecto a su trabajo NDW más serio.",
+      "fun_fact_fr": "'Tri Tra Trullala' de Joachim Witt était un changement de rythme ludique par rapport à son travail NDW antérieur.",
+      "fun_fact_nl": "'Tri Tra Trullala' van Joachim Witt was een speelse koerswijziging ten opzichte van zijn eerdere NDW-werk.",
+      "uri_apple_music": "applemusic://track/1828632891",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "2683151",
+      "isrc": "DEA629660020",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1828632891",
+        "de": "applemusic://track/1731353326",
+        "gb": "applemusic://track/1828632891",
+        "fr": "applemusic://track/1828632891",
+        "es": "applemusic://track/1768818608",
+        "nl": "applemusic://track/1828632891",
+        "it": "applemusic://track/1828632891"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4pb3BjxWxXr67rUJNlItEt",
+      "artist": "Foyer Des Arts",
+      "alt_artists": [
+        "Andreas Dorau",
+        "Bärchen und die Milchbubis",
+        "Döf"
+      ],
+      "title": "Wissenswertes über Erlangen",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Foyer Des Arts' 'Wissenswertes über Erlangen' is one of NDW's most absurdist songs — a deadpan travelogue about a minor Bavarian town. It perfectly captured NDW's post-Dada sensibility.",
+      "fun_fact_de": "Foyer Des Arts' 'Wissenswertes über Erlangen' ist eines der absurdistischsten NDW-Lieder — ein nüchterner Reisebericht über eine kleine bayerische Stadt.",
+      "fun_fact_es": "'Wissenswertes über Erlangen' de Foyer Des Arts es uno de los temas más absurdistas del NDW sobre una pequeña ciudad bávara.",
+      "fun_fact_fr": "'Wissenswertes über Erlangen' de Foyer Des Arts est l'une des chansons NDW les plus absurdes — un guide touristique pince-sans-rire.",
+      "fun_fact_nl": "'Wissenswertes über Erlangen' van Foyer Des Arts is een van de meest absurdistische NDW-liedjes over een kleine Beierse stad.",
+      "uri_apple_music": "applemusic://track/298768453",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Z4Ic1mzzAiI",
+      "uri_tidal": null,
+      "uri_deezer": "753182",
+      "isrc": "DEA629252210",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/298768453",
+        "de": "applemusic://track/298768453",
+        "gb": "applemusic://track/298768453",
+        "fr": "applemusic://track/298768453",
+        "es": "applemusic://track/298768453",
+        "nl": "applemusic://track/298768453",
+        "it": "applemusic://track/298768453"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:6hvQQGEA9qmkci6MTdVWRa",
+      "artist": "Karat",
+      "alt_artists": [
+        "City",
+        "Puhdys",
+        "Münchener Freiheit"
+      ],
+      "title": "Jede Stunde",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Karat's 'Jede Stunde' is a deeply personal East German ballad about love and the passage of time. Its simplicity and emotional sincerity stood in contrast to the more flamboyant West German NDW acts.",
+      "fun_fact_de": "Karats 'Jede Stunde' ist eine persönliche ostdeutsche Ballade über Liebe und Zeit, deren Schlichtheit im Kontrast zu den westdeutschen NDW-Acts stand.",
+      "fun_fact_es": "'Jede Stunde' de Karat es una balada personal de Alemania del Este sobre el amor y el paso del tiempo.",
+      "fun_fact_fr": "'Jede Stunde' de Karat est une ballade personnelle d'Allemagne de l'Est sur l'amour et le passage du temps.",
+      "fun_fact_nl": "'Jede Stunde' van Karat is een persoonlijke Oost-Duitse ballade over liefde en het verstrijken van de tijd.",
+      "uri_apple_music": "applemusic://track/253718776",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=o1JEFeVq5aQ",
+      "uri_tidal": null,
+      "uri_deezer": "1048689",
+      "isrc": "DEC719400352",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253718776",
+        "de": "applemusic://track/253718776",
+        "gb": "applemusic://track/253718776",
+        "fr": "applemusic://track/253718776",
+        "es": "applemusic://track/209463079",
+        "nl": "applemusic://track/253718776",
+        "it": "applemusic://track/253718776"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:1zYWHAaAxcuACnPVCEdEFq",
+      "artist": "Niko",
+      "alt_artists": [
+        "Purple Schulz",
+        "Münchener Freiheit",
+        "Hubert Kah"
+      ],
+      "title": "Am weißen Strand von Helgoland",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Niko's 'Am weißen Strand von Helgoland' is a nostalgic NDW ode to the North Sea island. The wistful longing for escape from everyday life captured a mood shared by many in early 1980s Germany.",
+      "fun_fact_de": "Nikos 'Am weißen Strand von Helgoland' ist eine nostalgische NDW-Ode an die Nordsee-Insel und die wehmütige Sehnsucht nach Flucht.",
+      "fun_fact_es": "'Am weißen Strand von Helgoland' de Niko es una oda nostálgica del NDW a la isla del Mar del Norte.",
+      "fun_fact_fr": "'Am weißen Strand von Helgoland' de Niko est une ode nostalgique NDW à l'île de la mer du Nord.",
+      "fun_fact_nl": "'Am weißen Strand von Helgoland' van Niko is een nostalgische NDW-ode aan het Noordzee-eiland.",
+      "uri_apple_music": "applemusic://track/472803327",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=FpJ3I6HR_dI",
+      "uri_tidal": null,
+      "uri_deezer": "2851299",
+      "isrc": "DEA818300011",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/472803327",
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:2XWHBAqnTThOH60c2XuZEE",
+      "artist": "Frl. Menke",
+      "alt_artists": [
+        "Ina Deter",
+        "Lilli Berlin",
+        "Purple Schulz"
+      ],
+      "title": "Hohe Berge",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Frl. Menke's 'Hohe Berge' continued the Hamburg singer's career after 'Tretboot in Seenot'. The mountain imagery and alpine themes gave the song a distinctive character within the urban NDW scene.",
+      "fun_fact_de": "Frl. Menkes 'Hohe Berge' setzte die Karriere der Hamburger Sängerin nach 'Tretboot in Seenot' fort mit alpiner Bildsprache.",
+      "fun_fact_es": "'Hohe Berge' de Frl. Menke continuó la carrera de la cantante hamburgesa tras 'Tretboot in Seenot'.",
+      "fun_fact_fr": "'Hohe Berge' de Frl. Menke a poursuivi la carrière de la chanteuse hambourgeoise après 'Tretboot in Seenot'.",
+      "fun_fact_nl": "'Hohe Berge' van Frl. Menke zette de carrière van de Hamburgse zangeres voort na 'Tretboot in Seenot'.",
+      "uri_apple_music": "applemusic://track/1360780894",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=7Ae-IsVhSp0",
+      "uri_tidal": null,
+      "uri_deezer": "140344157",
+      "isrc": "DEF068200830",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": "applemusic://track/1360780894",
+        "es": null,
+        "nl": "applemusic://track/1442362987",
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:69PQyRYSP5NYue7aOafkqa",
+      "artist": "Spliff",
+      "alt_artists": [
+        "Nena",
+        "Ideal",
+        "Fehlfarben"
+      ],
+      "title": "Radio",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spliff's 'Radio' is a satirical ode to broadcast media from the Berlin band that also spawned Nena. The song's commentary on radio as both escape and propaganda was notably ahead of its time.",
+      "fun_fact_de": "Spliffs 'Radio' ist eine satirische Ode an Rundfunkmedien von der Berliner Band, aus der auch Nena hervorging.",
+      "fun_fact_es": "'Radio' de Spliff es una oda satírica a los medios de radiodifusión de la banda berlinesa de la que también surgió Nena.",
+      "fun_fact_fr": "'Radio' de Spliff était une ode satirique aux médias diffusés du groupe berlinois dont est issue Nena.",
+      "fun_fact_nl": "'Radio' van Spliff is een satirische ode aan omroepmedia van de Berlijnse band waaruit ook Nena voortkwam.",
+      "uri_apple_music": "applemusic://track/400341812",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=QPAHVS-e1NM",
+      "uri_tidal": null,
+      "uri_deezer": "582492",
+      "isrc": "DEE869700854",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/400341812",
+        "de": null,
+        "gb": "applemusic://track/275681490",
+        "fr": "applemusic://track/277124038",
+        "es": "applemusic://track/275681490",
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:6FI5ZqtJj0NanmKMHAxZOM",
+      "artist": "Lilli Berlin",
+      "alt_artists": [
+        "Ideal",
+        "Grauzone",
+        "Fehlfarben"
+      ],
+      "title": "Ostberlin - Wahnsinn",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Lilli Berlin's 'Ostberlin - Wahnsinn' captured the absurdity of divided Berlin from a perspective rarely heard in NDW. The song is a rare artifact of the alternative Berlin scene of the early 1980s.",
+      "fun_fact_de": "Lilli Berlins 'Ostberlin - Wahnsinn' fing die Absurdität des geteilten Berlins aus einer selten gehörten Perspektive ein.",
+      "fun_fact_es": "'Ostberlin - Wahnsinn' de Lilli Berlin capturó el absurdo del Berlín dividido desde una perspectiva raramente escuchada.",
+      "fun_fact_fr": "'Ostberlin - Wahnsinn' de Lilli Berlin a capturé l'absurdité du Berlin divisé depuis une perspective rarement entendue.",
+      "fun_fact_nl": "'Ostberlin - Wahnsinn' van Lilli Berlin ving de absurditeit van het verdeelde Berlijn vanuit een zelden gehoord perspectief.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=BUnzv6cgFb0",
+      "uri_tidal": null,
+      "uri_deezer": "15563784",
+      "isrc": "DEC730800325",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4aOV5P83rKf9289GkoKNfM",
+      "artist": "Foyer Des Arts",
+      "alt_artists": [
+        "Andreas Dorau",
+        "Döf",
+        "EAV"
+      ],
+      "title": "Eine Königin mit Rädern untendran",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Foyer Des Arts' 'Eine Königin mit Rädern untendran' continued the group's tradition of cheerfully nonsensical NDW. The whimsical imagery matched NDW's dadaist playfulness perfectly.",
+      "fun_fact_de": "Foyer Des Arts' 'Eine Königin mit Rädern untendran' setzte die Tradition verspielter NDW-Absurdität der Gruppe fort.",
+      "fun_fact_es": "'Eine Königin mit Rädern untendran' de Foyer Des Arts continuó la tradición del grupo de crear absurdidad NDW.",
+      "fun_fact_fr": "'Eine Königin mit Rädern untendran' de Foyer Des Arts a poursuivi la tradition du groupe de NDW absurde.",
+      "fun_fact_nl": "'Eine Königin mit Rädern untendran' van Foyer Des Arts zette de groepstraditie van vrolijke NDW-absurditeit voort.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Jt9L777q4p0",
+      "uri_tidal": null,
+      "uri_deezer": "753143",
+      "isrc": "DEA629252270",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:6J7ZeLHfUNBb6rqCHVROSr",
+      "artist": "Bärchen und die Milchbubis",
+      "alt_artists": [
+        "Andreas Dorau",
+        "Foyer Des Arts",
+        "Felix De Luxe"
+      ],
+      "title": "Ich will nicht älter werden",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bärchen und die Milchbubis' 'Ich will nicht älter werden' is a charming piece of Kindermusik-meets-NDW quirk. The group's whimsical, childlike aesthetic was unique in the NDW landscape.",
+      "fun_fact_de": "Bärchen und die Milchbubis' 'Ich will nicht älter werden' verbindet charmant Kindermusik mit NDW-Skurrilität.",
+      "fun_fact_es": "'Ich will nicht älter werden' de Bärchen und die Milchbubis es una encantadora pieza de NDW con estética infantil.",
+      "fun_fact_fr": "'Ich will nicht älter werden' de Bärchen und die Milchbubis est une pièce charmante de NDW à l'esthétique enfantine.",
+      "fun_fact_nl": "'Ich will nicht älter werden' van Bärchen und die Milchbubis verbindt kinderlijke esthetiek met NDW-eigenzinnigheid.",
+      "uri_apple_music": "applemusic://track/1634090932",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=PsFl4UUCGnY",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "isrc": "",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": "applemusic://track/1634090932",
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:0njsF2DCEwCNrDcO4isIJ0",
+      "artist": "Purple Schulz",
+      "alt_artists": [
+        "Hubert Kah",
+        "Münchener Freiheit",
+        "Niko"
+      ],
+      "title": "Verliebte Jungs",
+      "chart_info": {
+        "de_peak": 9
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Purple Schulz's 'Verliebte Jungs' is a dreamy synth-pop ballad that showed the softer side of NDW. The Cologne artist became known for melancholic, atmospheric pop bridging NDW and adult contemporary.",
+      "fun_fact_de": "Purple Schulz' 'Verliebte Jungs' ist eine verträumte Synth-Pop-Ballade, die den weicheren NDW widerspiegelt.",
+      "fun_fact_es": "'Verliebte Jungs' de Purple Schulz es una balada de synth-pop soñadora que mostró el lado más suave del NDW.",
+      "fun_fact_fr": "'Verliebte Jungs' de Purple Schulz est une ballade synth-pop rêveuse montrant le côté plus doux du NDW.",
+      "fun_fact_nl": "'Verliebte Jungs' van Purple Schulz is een dromerige synth-pop ballade die de zachtere kant van het NDW liet zien.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=3sUNZTLL_t4",
+      "uri_tidal": null,
+      "uri_deezer": "13460740",
+      "isrc": "DEA348500348",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:4ZhPLoMzZwewHLLjV1J15c",
+      "artist": "Nena",
+      "alt_artists": [
+        "Peter Schilling",
+        "Falco",
+        "Spliff"
+      ],
+      "title": "99 Luftballons",
+      "chart_info": {
+        "de_peak": 1,
+        "us_peak": 2,
+        "uk_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Nena's '99 Luftballons' became one of the most successful German-language songs internationally. Released in 1983, the anti-war song about toy balloons triggering a nuclear war reached #2 in the US and #1 in the UK.",
+      "fun_fact_de": "Nenas '99 Luftballons' wurde einer der international erfolgreichsten deutschsprachigen Songs und erreichte Platz 2 in den USA sowie Platz 1 in Großbritannien.",
+      "fun_fact_es": "'99 Luftballons' de Nena se convirtió en una de las canciones en alemán más exitosas internacionalmente, alcanzando el puesto 2 en EE. UU. y el 1 en el Reino Unido.",
+      "fun_fact_fr": "'99 Luftballons' de Nena est l'une des chansons en allemand les plus populaires à l'international, atteignant la 2e place aux États-Unis et la 1re au Royaume-Uni.",
+      "fun_fact_nl": "Nena's '99 Luftballons' bereikte nummer 2 in de VS en nummer 1 in het VK, een van de meest succesvolle Duitstalige nummers internationaal.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Fpu5a0Bl8eY",
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "isrc": "",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0E2wzv8tj8ZX9C126QLW5a",
+      "artist": "Stahlnetz",
+      "alt_artists": [
+        "Ideal",
+        "Fehlfarben",
+        "Grauzone"
+      ],
+      "title": "Vor all den Jahren",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Stahlnetz's 'Vor all den Jahren' is a melancholic NDW gem from Hamburg. The group's introspective style and atmospheric production made them one of the more artistically ambitious acts of the scene.",
+      "fun_fact_de": "Stahlnetz' 'Vor all den Jahren' ist ein melancholisches NDW-Kleinod aus Hamburg mit introspektivem Stil.",
+      "fun_fact_es": "'Vor all den Jahren' de Stahlnetz es una joya melancólica del NDW de Hamburgo.",
+      "fun_fact_fr": "'Vor all den Jahren' de Stahlnetz est un bijou mélancolique du NDW de Hambourg.",
+      "fun_fact_nl": "'Vor all den Jahren' van Stahlnetz is een melancholische NDW parel uit Hamburg.",
+      "uri_apple_music": null,
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "3724778042",
+      "isrc": "DEGE92000085",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:52jP6hYf7FQxYiyK493YRb",
+      "artist": "Klaus Lage",
+      "alt_artists": [
+        "Münchener Freiheit",
+        "Peter Schilling",
+        "Hubert Kah"
+      ],
+      "title": "1000 und 1 Nacht",
+      "chart_info": {
+        "de_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Klaus Lage's '1000 und 1 Nacht' became one of the biggest German hits of 1984. The Hannover musician's blend of pop, rock, and NDW influences gave him a crossover appeal that most pure NDW acts lacked.",
+      "fun_fact_de": "Klaus Lages '1000 und 1 Nacht' wurde einer der größten deutschen Hits von 1984. Die Mischung aus Pop, Rock und NDW verschaffte ihm eine besondere Crossover-Anziehungskraft.",
+      "fun_fact_es": "'1000 und 1 Nacht' de Klaus Lage se convirtió en uno de los mayores éxitos alemanes de 1984.",
+      "fun_fact_fr": "'1000 und 1 Nacht' de Klaus Lage fut l'un des plus grands succès allemands de 1984.",
+      "fun_fact_nl": "'1000 und 1 Nacht' van Klaus Lage werd een van de grootste Duitse hits van 1984.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=Ug3HFmW8AVA",
+      "uri_tidal": null,
+      "uri_deezer": "13460739",
+      "isrc": "DEA348400330",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:7MU1uNaZzTkwHQV8sRNB3l",
+      "artist": "Spliff",
+      "alt_artists": [
+        "Nena",
+        "Ideal",
+        "Fehlfarben"
+      ],
+      "title": "Carbonara",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spliff's 'Carbonara' was a cheerfully absurdist ode to the Italian pasta dish. The Berlin band — whose members included future Nena bandmate Carlo Karges — brought wry humor to the NDW scene.",
+      "fun_fact_de": "Spliffs 'Carbonara' war eine fröhlich absurdistische Ode an das italienische Nudelgericht, von der Band, zu der auch Nenas späterer Mitstreiter Carlo Karges gehörte.",
+      "fun_fact_es": "'Carbonara' de Spliff fue una oda absurdista al plato de pasta italiano. La banda de Berlín incluía al futuro compañero de Nena, Carlo Karges.",
+      "fun_fact_fr": "'Carbonara' de Spliff était une ode absurde au plat de pâtes italien. Le groupe berlinois comprenait Carlo Karges, futur partenaire de Nena.",
+      "fun_fact_nl": "'Carbonara' van Spliff was een vrolijk absurdistische ode aan het Italiaanse pastagerecht, van de band met toekomstig Nena-lid Carlo Karges.",
+      "uri_apple_music": null,
+      "uri_youtube_music": "https://www.youtube.com/watch?v=A1cMbolFc-A",
+      "uri_tidal": null,
+      "uri_deezer": "582479",
+      "isrc": "DEE868200104",
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:2jWCLuhLinumCeHiCGONu3",
+      "artist": "Geier Sturzflug",
+      "alt_artists": [
+        "Rio Reiser",
+        "Fehlfarben",
+        "Udo Lindenberg"
+      ],
+      "title": "Bruttosozialprodukt",
+      "chart_info": {
+        "de_peak": 8
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Geier Sturzflug's 'Bruttosozialprodukt' was a satirical look at West Germany's economic miracle. The Cologne band used the language of economics to mock consumerism in a way that resonated deeply in 1983.",
+      "fun_fact_de": "Geier Sturzflugs 'Bruttosozialprodukt' war ein satirischer Blick auf das westdeutsche Wirtschaftswunder, in dem die Sprache der Wirtschaft genutzt wurde, um den Konsumerismus zu verspotten.",
+      "fun_fact_es": "'Bruttosozialprodukt' de Geier Sturzflug fue una visión satírica del milagro económico de Alemania Occidental.",
+      "fun_fact_fr": "'Bruttosozialprodukt' de Geier Sturzflug était une vision satirique du miracle économique ouest-allemand.",
+      "fun_fact_nl": "'Bruttosozialprodukt' van Geier Sturzflug was een satirische blik op het West-Duitse economische wonder.",
+      "uri_apple_music": "applemusic://track/205477661",
+      "uri_youtube_music": "https://www.youtube.com/watch?v=7Df3vRcoA50",
+      "uri_tidal": null,
+      "uri_deezer": "6417948",
+      "isrc": "DEA760605107",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/205477661",
+        "de": "applemusic://track/463718521",
+        "gb": "applemusic://track/463718521",
+        "fr": "applemusic://track/463718521",
+        "es": "applemusic://track/463718521",
+        "nl": "applemusic://track/463718521",
+        "it": "applemusic://track/463718521"
+      },
+      "awards_nl": []
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:5i30V8zohIAzKiu617O3cL",
+      "artist": "Nena",
+      "alt_artists": [
+        "Peter Schilling",
+        "Falco",
+        "Spliff"
+      ],
+      "title": "Irgendwie, irgendwo, irgendwann",
+      "chart_info": {
+        "de_peak": 1
+      },
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Nena's 'Irgendwie, irgendwo, irgendwann' was written by guitarist Carlo Karges, who also wrote '99 Luftballons'. Released in 1984, it became another major hit and remains a timeless German pop classic.",
+      "fun_fact_de": "Nenas 'Irgendwie, irgendwo, irgendwann' wurde von Gitarrist Carlo Karges geschrieben, der auch '99 Luftballons' verfasst hatte.",
+      "fun_fact_es": "'Irgendwie, irgendwo, irgendwann' de Nena fue escrita por el guitarrista Carlo Karges, quien también escribió '99 Luftballons'.",
+      "fun_fact_fr": "'Irgendwie, irgendwo, irgendwann' de Nena a été écrite par le guitariste Carlo Karges, qui a aussi écrit '99 Luftballons'.",
+      "fun_fact_nl": "'Irgendwie, irgendwo, irgendwann' van Nena werd geschreven door gitarist Carlo Karges, die ook '99 Luftballons' schreef.",
+      "uri_apple_music": "applemusic://track/1446021377",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "3806147312",
+      "isrc": "DEE869901718",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1446021377",
+        "de": "applemusic://track/1710210288",
+        "gb": "applemusic://track/1446021377",
+        "fr": "applemusic://track/1446021377",
+        "es": "applemusic://track/1446021377",
+        "nl": "applemusic://track/1523572092",
+        "it": "applemusic://track/1446021377"
+      },
+      "awards_nl": []
+    }
+  ]
+}
