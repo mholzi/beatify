@@ -354,11 +354,13 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 4,340 songs across 39 curated playlists:
+Beatify comes with 5,161 songs across 46 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
+- 🇧🇷 **100% Brasil** — 66 Brazilian hits across the decades
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
+- 🇫🇷 **100% Français** — 100 French hits across the eras (chanson, pop, rap, variété)
 - 🎵 **2000s Pop Anthems** — 182 essential pop hits from the 2000s
 - 🎵 **2010s & 2020s Hits** — 71 chart hits closing the modern-decade gap
 - 🎶 **40s & 50s Classics** — 152 swing, crooner and early rock 'n' roll standards
@@ -375,22 +377,27 @@ Beatify comes with 4,340 songs across 39 curated playlists:
 - 🇩🇪 **Deutschpop Klassiker** — 107 German pop classics, incl. the 90s / NDW canon
 - 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
 - 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
+- 🇩🇪 **Disney Hits Deutschland** — 97 German-language Disney songs, with a guess-the-film bonus across 40 films
 - 🎸 **Divorced Dad Rock** — 107 post-grunge, nu-metal and 2000s radio-rock tracks
 - 🎧 **EDM Anthems** — 126 festival and mainstream EDM tracks (2009–2024)
 - 🎸 **Essential Alternative** — 100 90s/2000s alternative rock essentials
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
 - 🏆 **Eurovision Winners (1956–2025)** — 72 winning songs
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🇫🇮 **Finnish Schlager Classics** — 293 Finnish iskelmä classics
 - 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 🎯 **Greatest Hits of All Time** — 182 chart-toppers across four decades
 - 🤘 **Greatest Metal Songs** — 61 legendary tracks across all major metal subgenres
 - 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
 - 🎬 **ICONIC Movie Songs** — 72 songs from the movies, with a dedicated movie-quiz mode
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
+- 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
 - 🇩🇪 **Schlager Classics** — 60 German schlager classics
+- 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
+- ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
 - 🇳🇱 **Top 100 Dutch Classics** — 100 Nederlandstalig tracks
 - 🌀 **Trance Classics** — 120 classic trance anthems
 - 🌍 **World Cup Anthems** — 26 official FIFA World Cup songs, 1962–2026
