@@ -356,6 +356,10 @@ class GameSetupMixin:
         # is still REVEAL there) and trigger the next song after the game ended.
         # advance_to_end() already does this; the HTTP/force-end path lands here.
         self._cancel_auto_advance()
+        # #1540 review: cancel a still-running LOBBY media-player pre-warm so it
+        # can't keep probing the speaker after the game ended (analogous to the
+        # auto-advance cancel above).
+        self._cancel_prewarm()
         # #1358: bump the game-identity epoch synchronously, BEFORE the awaits
         # below (same rationale as the _cancel_auto_advance above). A start_round
         # that's parked in play_song and resumes anytime during this teardown —

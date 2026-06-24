@@ -410,41 +410,64 @@ class RoundLifecycleMixin:
         if not (self._hass and self.media_player):
             return
 
+        # #1540 review: supersede any still-running pre-warm from a prior
+        # create_game before scheduling a new one, so a stale warm-up can't
+        # race the fresh game's first round.
+        self._cancel_prewarm()
+
         async def _runner() -> None:
             try:
                 await self.prewarm_media_player_service()
+            except asyncio.CancelledError:
+                # A game reset/recreate cancelled the warm-up — expected, not a
+                # failure. Re-raise so the task is marked cancelled, not errored.
+                raise
             except Exception as err:  # noqa: BLE001 — pre-warm must never raise
-                _LOGGER.debug("Media player pre-warm failed (best-effort): %s", err)
+                # #1540 review: warn (not debug) so a permanently offline
+                # speaker surfaces in the log instead of being silently masked.
+                _LOGGER.warning("Media player pre-warm failed (best-effort): %s", err)
 
         # Use HA's tracked task helper when available so the warm-up is tied to
         # the integration's lifecycle; fall back to a bare task otherwise (e.g.
-        # the slimmed-down hass stub used in unit tests).
+        # the slimmed-down hass stub used in unit tests). Keep the handle so the
+        # reset path can cancel it.
         creator = getattr(self._hass, "async_create_background_task", None)
         if callable(creator):
-            creator(_runner(), name="beatify_media_player_prewarm")
+            self._prewarm_task = creator(_runner(), name="beatify_media_player_prewarm")
         else:
-            asyncio.create_task(_runner())  # noqa: RUF006 — fire-and-forget warm-up
+            self._prewarm_task = asyncio.create_task(_runner())
+
+    def _cancel_prewarm(self) -> None:
+        """Cancel the pending LOBBY media-player pre-warm task, if any (#1540)."""
+        if self._prewarm_task is not None:
+            self._prewarm_task.cancel()
+            self._prewarm_task = None
 
     async def prewarm_media_player_service(self) -> None:
-        """Construct + lightly probe the MediaPlayerService ahead of Round 1.
+        """Construct + warm the MediaPlayerService ahead of Round 1.
 
         Builds the service via the idempotent :meth:`_ensure_media_player_service`
-        (so a later round-path call recycles this instance), then issues the same
-        cheap, read-only availability probe (``verify_responsive``) the round path
-        would otherwise pay on its first call — caching it so the first real
-        playback isn't the cold one. Any probe failure is swallowed: the round
-        path re-checks availability and surfaces real errors there.
+        (so a later round-path call recycles this instance). For non-Music-
+        Assistant players it then issues ``verify_responsive`` — a *blocking*
+        speaker service call — so the first real playback isn't the cold one,
+        mirroring the round path (``start_round``), which only probes non-MA
+        players. For Music Assistant it deliberately skips the probe: firing a
+        speaker service call in the LOBBY would be a wasted (and potentially
+        wake-on-LAN-triggering) call, and the round path doesn't probe MA
+        either. Any probe failure propagates to the runner, which warns; the
+        round path re-checks availability and surfaces real errors there.
         """
         self._ensure_media_player_service()
         service = self._media_player_service
         if service is None:
             return
+        # #1540 review: match the round path — only non-MA players get the
+        # blocking verify_responsive probe.
+        if self.platform == "music_assistant":
+            return
         probe = getattr(service, "verify_responsive", None)
         if callable(probe):
-            try:
-                await probe()
-            except Exception as err:  # noqa: BLE001 — probe is best-effort only
-                _LOGGER.debug("Media player pre-warm probe failed: %s", err)
+            await probe()
 
     def _prepare_intro_round(self, song: dict) -> bool:
         """Determine if this is an intro round. Delegates to RoundManager."""

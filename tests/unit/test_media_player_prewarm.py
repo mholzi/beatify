@@ -104,21 +104,112 @@ async def test_prewarm_is_idempotent_with_ensure() -> None:
 
 
 @pytest.mark.asyncio
-async def test_prewarm_swallows_probe_errors() -> None:
-    """A failing probe never propagates out of the pre-warm (best-effort)."""
+async def test_prewarm_runner_swallows_probe_errors_with_warning(caplog) -> None:
+    """#1540 review (Fix 3): a failing probe is caught + warned in the runner.
+
+    The inner best-effort catch was removed; the probe error now propagates out
+    of ``prewarm_media_player_service`` and is swallowed (and logged at WARNING)
+    by the ``_runner`` wrapper in ``schedule_media_player_prewarm``.
+    """
+    state = make_game_state()
+    fake_service = MagicMock()
+    fake_service.verify_responsive = AsyncMock(side_effect=RuntimeError("boom"))
+    state._media_player_service = fake_service
+    state.platform = "sonos"  # non-MA -> probe runs
+
+    # The method itself now propagates (no inner swallow).
+    with pytest.raises(RuntimeError, match="boom"):
+        await state.prewarm_media_player_service()
+
+    # The runner wrapper must swallow it (best-effort) and warn so a permanently
+    # offline speaker is visible.
+    hass = MagicMock(spec=[])  # no async_create_background_task -> bare task path
+    state.set_hass(hass)
+    state.media_player = "media_player.test"
+
+    async def _run() -> None:
+        with caplog.at_level("WARNING"):
+            state.schedule_media_player_prewarm()
+            await asyncio.sleep(0)  # let the fire-and-forget runner execute
+
+    await _run()
+    assert any("pre-warm failed" in r.message for r in caplog.records)
+
+
+@pytest.mark.asyncio
+async def test_prewarm_music_assistant_skips_probe() -> None:
+    """#1540 review (Fix 1): MA players must NOT get the blocking probe.
+
+    verify_responsive is a blocking speaker service call; the round path only
+    issues it for non-MA players. The pre-warm must mirror that so it doesn't
+    fire a speaker service call in the LOBBY for Music Assistant.
+    """
+    state = make_game_state()
+    hass = MagicMock()
+    hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
+    state.set_hass(hass)
+    _create_game(state, platform="music_assistant")
+
+    fake_service = MagicMock()
+    fake_service.verify_responsive = AsyncMock(return_value=(True, ""))
+    state._media_player_service = fake_service
+
+    await state.prewarm_media_player_service()
+
+    fake_service.verify_responsive.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_prewarm_non_ma_runs_probe() -> None:
+    """#1540 review (Fix 1): non-MA players still get the probe (counterpart)."""
+    state = make_game_state()
+    hass = MagicMock()
+    hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
+    state.set_hass(hass)
+    _create_game(state, platform="sonos")
+
+    fake_service = MagicMock()
+    fake_service.verify_responsive = AsyncMock(return_value=(True, ""))
+    state._media_player_service = fake_service
+
+    await state.prewarm_media_player_service()
+
+    fake_service.verify_responsive.assert_awaited_once()
+
+
+@pytest.mark.asyncio
+async def test_end_game_cancels_running_prewarm() -> None:
+    """#1540 review (Fix 2): end_game cancels a still-running pre-warm task."""
     state = make_game_state()
     hass = MagicMock()
     hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
     state.set_hass(hass)
     _create_game(state)
 
-    fake_service = MagicMock()
-    fake_service.verify_responsive = AsyncMock(side_effect=RuntimeError("boom"))
-    state._media_player_service = fake_service
+    fake_task = MagicMock()
+    state._prewarm_task = fake_task
 
-    # Should not raise.
-    await state.prewarm_media_player_service()
-    fake_service.verify_responsive.assert_awaited_once()
+    await state.end_game()
+
+    fake_task.cancel.assert_called_once()
+    assert state._prewarm_task is None
+
+
+def test_create_game_cancels_prior_prewarm() -> None:
+    """#1540 review (Fix 2): a new create_game cancels the prior pre-warm task."""
+    state = make_game_state()
+    hass = MagicMock()
+    hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
+    state.set_hass(hass)
+    _create_game(state)
+
+    stale_task = MagicMock()
+    state._prewarm_task = stale_task
+
+    # A second create_game (e.g. host starts a fresh game) must supersede it.
+    _create_game(state)
+
+    stale_task.cancel.assert_called_once()
 
 
 def test_schedule_falls_back_to_create_task_without_helper() -> None:
