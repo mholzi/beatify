@@ -4,10 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.1.3] - 2026-06-24
+
+Content + reliability release — two new German community playlists plus speaker and Android-translate fixes. See [docs/release-notes-v4.1.3.md](docs/release-notes-v4.1.3.md) for the user-facing notes.
+
 ### Added
 - **Speaker volume is restored when the game ends (#1516).** If the host adjusts the speaker volume during a game, Beatify now hands the speaker back at its original pre-game level when the game ends — no more manually resetting the volume after every round. Complements the existing party-lights state restore (#331/#1402).
 - Added 60 tracks to new community playlist "Sommerklassiker ☀️" — international summer hits spanning 1978–2023 (#1519).
 - Added 50 tracks to new community playlist "NDW – Neue Deutsche Welle" — German New Wave hits spanning 1976–1986 (#1517).
+
+### Fixed
+- **Speaker selection now applies immediately (#1526).** Choosing a different speaker in the wizard takes effect right away instead of routing playback through the previous selection until Home Assistant restarts.
+- **Android Chrome no longer auto-translates the UI (#1527).** The page language is rendered server-side so the initial HTML already matches the locale, stopping the browser from re-translating the already-correct German strings.
 
 ## [4.1.2] - 2026-06-22
 
