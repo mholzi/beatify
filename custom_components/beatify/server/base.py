@@ -139,6 +139,48 @@ def _apply_cache_tokens(text: str, hass: HomeAssistant) -> str:
     return text.replace(_VERSION_TOKEN, version)
 
 
+# #1177 follow-up: PR #1179 set documentElement.lang inside setLanguage(), but
+# on Android Chrome auto-translate runs against the *initial* HTML, before the
+# WebSocket state arrives and triggers setLanguage('de'). The static
+# <html lang="en"> in the page sources then causes the browser to auto-translate
+# the already-correct German strings ("Tipp abgeben" -> "Trinkgeld abgeben",
+# "Fun Facts" -> "Wissenswertes"). Patching the attribute server-side, before
+# the bytes leave the integration, eliminates the race entirely.
+def _resolve_page_language(hass: HomeAssistant) -> str:
+    """Resolve the locale to render into ``<html lang>`` for HTML pages.
+
+    Priority:
+    1. Active game's language (the wizard selection wins for player/dashboard
+       pages, which are the surfaces that show the per-game translated UI).
+    2. Home Assistant's configured UI language (covers admin/launcher visits
+       outside an active game — matches what the wizard would default to).
+    3. ``"en"`` as last resort.
+    """
+    data = hass.data.get(DOMAIN, {})
+    game_state = data.get("game")
+    if game_state is not None:
+        lang = getattr(game_state, "language", None)
+        if lang:
+            return lang
+    # `hass.config` exists on a real HomeAssistant but may be absent on a bare
+    # test/stub hass — guard the attribute access so the helper degrades to "en"
+    # instead of raising while serving a page.
+    cfg = getattr(hass, "config", None)
+    cfg_lang = getattr(cfg, "language", None)
+    if cfg_lang:
+        return cfg_lang
+    return "en"
+
+
+def _apply_html_lang(text: str, hass: HomeAssistant) -> str:
+    """Rewrite ``<html lang="en">`` to the active locale before serving."""
+    lang = _resolve_page_language(hass)
+    # All Beatify HTML files ship with the literal `<html lang="en">`; a plain
+    # string replace stays predictable (no regex-escaping the locale value) and
+    # is a no-op if a future template lands with a different default.
+    return text.replace('<html lang="en">', f'<html lang="{lang}">', 1)
+
+
 _html_cache: dict[str, str] = {}
 
 
