@@ -1,6 +1,6 @@
 {
   "name": "40s & 50s Classics",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "1940s",
     "1950s",
@@ -30,7 +30,7 @@
         "it": "applemusic://track/1434878503"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pCgyKVxSkuw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/122089871",
       "uri_deezer": "deezer://track/542807362",
       "fun_fact": "Billie Holiday — one of the most influential jazz singers of all time.",
       "fun_fact_de": "Billie Holiday — eine der einflussreichsten Jazzsängerinnen aller Zeiten.",
@@ -55,7 +55,7 @@
         "it": "applemusic://track/1814188169"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=njCoOSJSDTI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/122089884",
       "uri_deezer": "deezer://track/593692922",
       "fun_fact": "Billie Holiday — one of the most influential jazz singers of all time.",
       "fun_fact_de": "Billie Holiday — eine der einflussreichsten Jazzsängerinnen aller Zeiten.",
@@ -80,7 +80,7 @@
         "it": "applemusic://track/1837486323"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KFtI42u88LI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/99351999",
       "uri_deezer": "deezer://track/541542932",
       "fun_fact": "Billie Holiday — one of the most influential jazz singers of all time.",
       "fun_fact_de": "Billie Holiday — eine der einflussreichsten Jazzsängerinnen aller Zeiten.",
@@ -105,7 +105,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FArD1hJMmPA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/99999861",
       "uri_deezer": "deezer://track/62794564",
       "fun_fact": "Billie Holiday — one of the most influential jazz singers of all time.",
       "fun_fact_de": "Billie Holiday — eine der einflussreichsten Jazzsängerinnen aller Zeiten.",
@@ -130,7 +130,7 @@
         "it": "applemusic://track/1760714172"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nZeyY0NSTW4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1308225",
       "uri_deezer": "deezer://track/609537",
       "fun_fact": "A 1940s classic (1949).",
       "fun_fact_de": "Ein 40er-Klassiker (1949).",
@@ -155,7 +155,7 @@
         "it": "applemusic://track/1467439589"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2kVNTB9dJXQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/94445466",
       "uri_deezer": "deezer://track/547739802",
       "fun_fact": "A 1940s classic (1949).",
       "fun_fact_de": "Ein 40er-Klassiker (1949).",
@@ -180,7 +180,7 @@
         "it": "applemusic://track/1467439395"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ry_-p-0stx4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/94445460",
       "uri_deezer": "deezer://track/548862852",
       "fun_fact": "A 1940s classic (1949).",
       "fun_fact_de": "Ein 40er-Klassiker (1949).",
@@ -205,7 +205,7 @@
         "it": "applemusic://track/181567834"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-91ZKvNiiJc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3559045",
       "uri_deezer": "deezer://track/5690691",
       "fun_fact": "A 1940s classic (1949).",
       "fun_fact_de": "Ein 40er-Klassiker (1949).",
