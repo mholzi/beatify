@@ -60,14 +60,6 @@ export const SEASONAL_OCCASIONS = [
         reason: 'Eurovision time — play the winners from 1956 to today.',
     },
     {
-        id: 'summer',
-        filename: 'summer-party-anthems.json',
-        emoji: '☀️',
-        start: '06-01',
-        end: '08-31',
-        reason: 'Summer is on — 100 anthems for the garden party.',
-    },
-    {
         id: 'worldcup',
         filename: 'world-cup-anthems.json',
         emoji: '⚽',
@@ -75,6 +67,14 @@ export const SEASONAL_OCCASIONS = [
         start: '06-11',
         end: '07-19',
         reason: 'World Cup fever — anthems for every match-day party.',
+    },
+    {
+        id: 'summer',
+        filename: 'summer-party-anthems.json',
+        emoji: '☀️',
+        start: '06-01',
+        end: '08-31',
+        reason: 'Summer is on — 100 anthems for the garden party.',
     },
 ];
 
