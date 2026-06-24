@@ -80,6 +80,24 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n")
 
 
+def _bump_version(version) -> str:
+    """Bump a playlist ``MAJOR.MINOR`` version (minor +1).
+
+    Catalogue versions are strings like ``"1.8"`` / ``"1.11"`` / ``"0.2"`` —
+    the minor part is an integer, not a decimal, so 1.9 -> 1.10. Falls back to
+    appending ``.1`` for odd/missing values so the bump never crashes a wave.
+    """
+    if not isinstance(version, str) or not version:
+        return "1.1"
+    parts = version.split(".")
+    if len(parts) >= 2 and parts[-1].isdigit():
+        parts[-1] = str(int(parts[-1]) + 1)
+        return ".".join(parts)
+    if version.isdigit():
+        return f"{version}.1"
+    return f"{version}.1"
+
+
 def find_playlists(args_files: list[str]) -> list[Path]:
     if args_files:
         return [Path(f).resolve() for f in args_files]
@@ -204,12 +222,17 @@ def main() -> int:
         if outcome == "hit":
             track["uri_tidal"] = tidal_uri
             state[track["uri"]] = {"status": "hit", "tried_at": _now_iso()}
+            doc = files_cache[pf]
+            # Bump the playlist version once per file per run, on its first hit,
+            # so any wave that changes a playlist also advances its version.
+            if pf not in dirty:
+                old_v = doc.get("version")
+                doc["version"] = _bump_version(old_v)
+                print(f"  version  {pf.name}: {old_v} -> {doc['version']}")
             dirty.add(pf)
             hits += 1
             # incremental save so a later crash/429 wall never loses progress
-            pf.write_text(
-                json.dumps(files_cache[pf], ensure_ascii=False, indent=2) + "\n"
-            )
+            pf.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n")
             save_state(state)
             print(
                 f"  OK  {pf.name}: {track.get('artist')} – {track.get('title')} -> {tidal_uri}"
