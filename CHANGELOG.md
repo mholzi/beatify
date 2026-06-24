@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc1] - 2026-06-24
+
+Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a faster first round. See [docs/release-notes-v4.2.0-rc1.md](docs/release-notes-v4.2.0-rc1.md) for the user-facing notes.
+
+### Added
+- **Smart Playlist Mixer (#1538).** A new "Mix" tab in the playlist picker assembles a de-duplicated set on the fly from any combination of decade / style / region / special tags and a target size (30 / 50 / 100 songs). Optionally save the result as a community playlist.
+- **Seasonal playlist suggestions in the setup UI (#1539).** The setup screen surfaces a dismissible "suggestion of the season" chip (Carnival, Eurovision, World Cup, Summer) that adds the matching playlist in one tap; dismissed per season.
+
+### Changed
+- **Faster first round (#1540).** The media player service is now pre-warmed during the lobby, removing the cold-start lag at the start of Round 1 (follow-up to #803).
+
 ## [4.1.3] - 2026-06-24
 
 Content + reliability release — two new German community playlists plus speaker and Android-translate fixes. See [docs/release-notes-v4.1.3.md](docs/release-notes-v4.1.3.md) for the user-facing notes.
