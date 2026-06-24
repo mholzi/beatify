@@ -687,6 +687,94 @@ body.theme-dark .media-player-item.is-selected {
     border-left: 3px solid var(--color-accent-secondary);
 }
 
+/* Seasonal playlist suggestion chip (#1539, design option 2) —
+   highlighted first tile inside the playlist list. */
+.seasonal-suggestion {
+    position: relative;
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background:
+        linear-gradient(135deg, rgba(255, 45, 106, 0.14) 0%, rgba(99, 102, 241, 0.14) 100%),
+        #12121c;
+    border: 1px solid rgba(255, 45, 106, 0.45);
+    box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.08), 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.seasonal-suggestion__badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary, #00f5ff);
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+}
+
+.seasonal-suggestion__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.seasonal-suggestion__reason {
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 12px;
+}
+
+.seasonal-suggestion__add {
+    /* inherits .btn .btn-primary; just ensure it sits inline-block at the bottom */
+    display: inline-block;
+}
+
+.seasonal-suggestion__dismiss {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    line-height: 1;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.seasonal-suggestion__dismiss:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Light theme fallback (admin defaults to dark, but keep it legible if not). */
+body:not(.theme-dark) .seasonal-suggestion {
+    background:
+        linear-gradient(135deg, rgba(255, 45, 106, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%),
+        #fff;
+    border: 1px solid rgba(255, 45, 106, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+body:not(.theme-dark) .seasonal-suggestion__title {
+    color: #111;
+}
+
+body:not(.theme-dark) .seasonal-suggestion__reason {
+    color: #555;
+}
+
+body:not(.theme-dark) .seasonal-suggestion__dismiss {
+    color: #888;
+}
+
 /* Hide native checkbox, use row selection state */
 .playlist-checkbox {
     position: absolute;
