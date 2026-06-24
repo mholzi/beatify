@@ -385,6 +385,21 @@
                     </div>
                 </header>
 
+                <!-- Issue #827: Sudden Death — eliminated player view (S2-A "Stark Blackout").
+                     Shown in place of the normal play UI when the current player is out.
+                     Hidden by default; player-game.js toggles it. -->
+                <div id="eliminated-view" class="eliminated-view hidden" aria-live="polite">
+                    <div class="eliminated-orb" aria-hidden="true">
+                        <img id="eliminated-album-cover"
+                             src="/beatify/static/img/no-artwork.svg"
+                             alt="">
+                        <span class="eliminated-skull" aria-hidden="true">💀</span>
+                    </div>
+                    <div class="eliminated-title" id="eliminated-title" data-i18n="game.youreOut">You're out</div>
+                    <div class="eliminated-sub" id="eliminated-sub"></div>
+                    <div class="eliminated-hint" id="eliminated-hint" data-i18n="game.watchingSidelines">Watching from the sidelines</div>
+                </div>
+
                 <!-- Chip row: steal unlocked · closest-wins · intro · final round (conditional) -->
                 <div id="arc-chip-row" class="arc-chip-row hidden" aria-live="polite">
                     <span id="game-difficulty-badge" class="stat-badge stat-badge--difficulty hidden"></span>

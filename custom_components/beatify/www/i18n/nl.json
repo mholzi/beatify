@@ -116,7 +116,18 @@
     "stop": "Stop",
     "ending": "Bezig met beëindigen...",
     "starting": "Bezig met starten...",
-    "joining": "Bezig met deelnemen..."
+    "joining": "Bezig met deelnemen...",
+    "suddenDeath": "SUDDEN DEATH",
+    "youreOut": "Je ligt eruit",
+    "eliminated": "Afgevallen",
+    "eliminatedRound": "Afgevallen · Ronde {round}",
+    "watchingSidelines": "Je kijkt vanaf de zijlijn",
+    "lastOneStanding": "Laatste Overgeblevene",
+    "cutLine": "AFVALLIJN",
+    "outRound": "Eruit · R{round}",
+    "finalShowdown": "FINALE — SUDDEN DEATH",
+    "winnerTakesAll": "Winnaar pakt alles",
+    "out": "ERUIT"
   },
   "steal": {
     "available": "Stelen beschikbaar!",
@@ -559,7 +570,11 @@
       "needPlayerToStart": "Doe mee als speler (of laat een gast de QR scannen) voordat je begint.",
       "wsReconnecting": "Opnieuw verbinden met de spelserver — probeer het opnieuw.",
       "waitingForGuests": "Wacht op gasten…"
-    }
+    },
+    "suddenDeathMode": "Sudden Death",
+    "suddenDeathModeHint": "De laatste van elke ronde valt af. Wie overblijft, wint.",
+    "suddenDeathDisabledTooltip": "Sudden Death heeft minstens 3 spelers nodig.",
+    "suddenDeathLive": "Sudden Death"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -141,6 +141,15 @@ class StateSerializationMixin:
         """
         if not self.players:
             return [], 0
+        # Issue #827: in Sudden Death the winner is the last player standing,
+        # regardless of cumulative score — provided the game actually ran to its
+        # conclusion (at least one elimination and exactly one survivor). Falls
+        # through to the score-based winner when Sudden Death is off or the game
+        # ended without resolving (e.g. force-ended early).
+        if self.sudden_death_mode:
+            survivors = [p for p in self.players.values() if not p.eliminated]
+            if len(survivors) == 1 and any(p.eliminated for p in self.players.values()):
+                return survivors, survivors[0].score
         top_score = max(p.score for p in self.players.values())
         winners = [p for p in self.players.values() if p.score == top_score]
         return winners, top_score

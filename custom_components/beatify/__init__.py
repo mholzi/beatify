@@ -52,6 +52,7 @@ from .server.views import (
     SavePlaylistView,
     SwJsView,
     RematchGameView,
+    SetSuddenDeathView,
     SongStatsView,
     StartGameplayView,
     StartGameView,
@@ -217,6 +218,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(TtsTestView(hass))
         hass.http.register_view(StartGameView(hass))
         hass.http.register_view(StartGameplayView(hass))
+        hass.http.register_view(SetSuddenDeathView(hass))  # Issue #827
         hass.http.register_view(EndGameView(hass))
         hass.http.register_view(
             ForceResetView(hass)

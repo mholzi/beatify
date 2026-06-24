@@ -134,6 +134,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         movie_quiz_enabled = body.get("movie_quiz_enabled", True)  # Issue #28
         intro_mode_enabled = body.get("intro_mode_enabled", False)  # Issue #23
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
+        sudden_death_mode = bool(body.get("sudden_death_mode", False))  # Issue #827
         title_artist_mode = body.get("title_artist_mode", False)  # #1180
         reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
@@ -324,6 +325,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
             "intro_mode_enabled": intro_mode_enabled,  # Issue #23
             "closest_wins_mode": closest_wins_mode,  # Issue #442
+            "sudden_death_mode": sudden_death_mode,  # Issue #827
             "title_artist_mode": title_artist_mode,  # #1180
             "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
@@ -589,6 +591,21 @@ class StartGameplayView(BeatifyAdminView):
         if game_state.phase != GamePhase.LOBBY:
             return _json_error("Game already started", 409, code="INVALID_PHASE")
 
+        # Issue #827: Sudden Death requires >=3 players. Players join the LOBBY
+        # *after* create_game (which clears sessions), so the floor can only be
+        # enforced here, at the LOBBY->PLAYING transition. The wizard also
+        # disables the toggle client-side; this is the server-side backstop for
+        # direct API callers. Auto-disable rather than block the start so the
+        # host isn't stuck — surface a warning instead.
+        sudden_death_warning = None
+        if game_state.sudden_death_mode:
+            connected_count = sum(1 for p in game_state.players.values() if p.connected)
+            if connected_count < 3:
+                game_state.set_sudden_death(False)
+                sudden_death_warning = (
+                    "Sudden Death needs at least 3 players — starting without it."
+                )
+
         # Set round end callback for broadcasting
         ws_handler = data.get("ws_handler")
         if ws_handler:
@@ -607,7 +624,51 @@ class StartGameplayView(BeatifyAdminView):
         if ws_handler:
             await ws_handler.broadcast_state()
 
-        return web.json_response({"success": True, "phase": game_state.phase.value})
+        response: dict[str, Any] = {"success": True, "phase": game_state.phase.value}
+        if sudden_death_warning:  # Issue #827
+            response["warnings"] = [sudden_death_warning]
+            response["sudden_death_disabled"] = True
+        return web.json_response(response)
+
+
+class SetSuddenDeathView(BeatifyAdminView):
+    """Toggle Sudden Death mode live during a game (Issue #827).
+
+    The host flips Sudden Death on/off from the reveal-screen control bar.
+    Turning it ON arms eliminations from the next round; turning it OFF stops
+    further cuts (already-eliminated players stay out).
+    """
+
+    url = "/beatify/api/sudden-death"
+    name = "beatify:api:sudden-death"
+    # Match the other control-bar actions: auth handled in-handler so the
+    # Companion-bypass path works (#1131).
+    requires_auth = False
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Set the live Sudden Death flag and rebroadcast state."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+
+        enabled = bool(body.get("enabled", False))
+
+        data = self.hass.data.get(DOMAIN, {})
+        game_state = data.get("game")
+        if not game_state or not game_state.game_id:
+            return _json_error("No active game", 404, code="GAME_NOT_FOUND")
+
+        new_state = game_state.set_sudden_death(enabled)
+
+        ws_handler = data.get("ws_handler")
+        if ws_handler:
+            await ws_handler.broadcast_state()
+
+        return web.json_response({"success": True, "sudden_death_mode": new_state})
 
 
 class GameStatusView(HomeAssistantView):

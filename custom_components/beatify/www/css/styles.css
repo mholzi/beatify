@@ -10585,6 +10585,13 @@ body.home-mode .home-view {
     transition: var(--transition-fast);
 }
 .wiz-mode-card:hover { background: var(--color-dark-surface-hover); }
+/* Issue #827: a mode card disabled by an unmet requirement (e.g. Sudden Death
+   below the 3-player floor) is dimmed and non-interactive. */
+.wiz-mode-card.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .wiz-mode-card.on {
     background: rgba(255, 45, 106, 0.08);
     border-color: var(--color-accent-primary);
@@ -15930,4 +15937,204 @@ body.theme-dark .your-result-stats .stat-value {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* =====================================================================
+   Sudden Death mode (Issue #827)
+   ===================================================================== */
+
+/* --- Admin reveal: elimination + final arc chips --- */
+.arc-chip--elim {
+    color: var(--color-error-neon);
+    background: rgba(255, 0, 64, 0.12);
+    border: 1px solid rgba(255, 0, 64, 0.5);
+    text-transform: uppercase;
+}
+
+/* --- Admin control-bar live toggle (S7-A) --- */
+.sd-live-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-white);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.sd-live-toggle:disabled { opacity: 0.4; cursor: not-allowed; }
+.sd-live-toggle.is-on {
+    border-color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.08);
+    box-shadow: var(--glow-primary);
+}
+.sd-live-toggle__switch {
+    position: relative;
+    width: 30px; height: 17px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.15);
+    flex: none;
+}
+.sd-live-toggle.is-on .sd-live-toggle__switch {
+    background: var(--color-accent-primary);
+}
+.sd-live-toggle__switch::after {
+    content: ""; position: absolute;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: #fff; top: 2px; left: 2px;
+    transition: left var(--transition-fast);
+}
+.sd-live-toggle.is-on .sd-live-toggle__switch::after { left: 15px; }
+
+/* --- Player eliminated view (S2-A Stark Blackout) --- */
+.eliminated-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-sm);
+    min-height: 60vh;
+    padding: var(--space-xl) var(--space-md);
+}
+.eliminated-orb {
+    width: 120px; height: 120px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    filter: grayscale(1) brightness(0.5);
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #2a2540, #16131f);
+    margin-bottom: var(--space-md);
+    position: relative;
+}
+.eliminated-orb img { width: 100%; height: 100%; object-fit: cover; }
+.eliminated-skull { font-size: 46px; position: absolute; }
+.eliminated-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-4xl);
+    color: var(--color-text-white);
+    letter-spacing: -0.02em;
+}
+.eliminated-sub { color: var(--color-text-neon-muted); font-size: var(--font-size-base); }
+.eliminated-hint { color: var(--color-text-dim); font-size: var(--font-size-sm); margin-top: var(--space-md); }
+
+/* --- Player leaderboard cut line (S3-A) --- */
+.cut-line {
+    position: relative;
+    height: 0;
+    border-top: 2px solid var(--color-accent-primary);
+    box-shadow: 0 0 12px rgba(255, 45, 106, 0.7);
+    margin: var(--space-md) 0;
+}
+.cut-line__label {
+    position: absolute;
+    top: -9px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bg-primary);
+    padding: 0 10px;
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-accent-primary);
+}
+.player-indicator.is-eliminated,
+.leaderboard-entry.is-eliminated { opacity: 0.45; }
+.player-out-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text-dim);
+    letter-spacing: 0.04em;
+}
+
+/* --- Spectator TV: full-bleed "OUT" takeover (S4-C) --- */
+.sd-out-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 6, 12, 0.96);
+}
+.sd-out-overlay.show { display: flex; animation: sd-out-in var(--transition-slow) ease-out; }
+.sd-out__word {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(120px, 26vw, 360px);
+    line-height: 0.85;
+    color: var(--color-error-neon);
+    text-shadow: 0 0 40px rgba(255, 0, 64, 0.7);
+}
+.sd-out__name {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: var(--space-md);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-4xl);
+    color: var(--color-text-white);
+}
+.sd-out__skull { font-size: 40px; }
+@keyframes sd-out-in {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Spectator TV: FINAL banner (S5-C arena) --- */
+.sd-final-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.12);
+    border: 1px solid rgba(255, 45, 106, 0.5);
+    box-shadow: 0 0 16px rgba(255, 45, 106, 0.3);
+}
+
+/* --- END: Last One Standing superlative + trophy hero (S6-C) --- */
+.superlative-card--last_one_standing {
+    box-shadow: 0 0 18px rgba(255, 45, 106, 0.3);
+    border-color: rgba(255, 45, 106, 0.4);
+}
+.sd-last-standing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+.sd-last-standing__trophy { font-size: 40px; }
+.sd-last-standing__headline {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-hero);
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255, 45, 106, 0.5);
+}
+.sd-last-standing__winner {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    color: var(--color-text-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sd-out-overlay.show { animation: none; }
 }

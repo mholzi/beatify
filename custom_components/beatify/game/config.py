@@ -50,6 +50,9 @@ class GameStateConfig:
 
     # Mode flags
     closest_wins_mode: bool = False
+    # Issue #827: Sudden Death — last-place player eliminated each round.
+    # Can be set at game start (wizard) or toggled live from the reveal screen.
+    sudden_death_mode: bool = False
     # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
     # listed here for reset symmetry. GameState exposes a delegation property,
     # and _apply_config skips manager-delegated names (see field_names()).

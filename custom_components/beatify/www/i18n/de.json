@@ -116,7 +116,18 @@
     "stop": "Stop",
     "ending": "Beenden...",
     "starting": "Starten...",
-    "joining": "Beitreten..."
+    "joining": "Beitreten...",
+    "suddenDeath": "SUDDEN DEATH",
+    "youreOut": "Du bist raus",
+    "eliminated": "Ausgeschieden",
+    "eliminatedRound": "Ausgeschieden · Runde {round}",
+    "watchingSidelines": "Du schaust von der Seitenlinie zu",
+    "lastOneStanding": "Letzter Überlebender",
+    "cutLine": "SCHNITTLINIE",
+    "outRound": "Raus · R{round}",
+    "finalShowdown": "FINALE — SUDDEN DEATH",
+    "winnerTakesAll": "Alles oder nichts",
+    "out": "RAUS"
   },
   "steal": {
     "available": "Klauen verfügbar!",
@@ -561,7 +572,11 @@
       "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt.",
       "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen.",
       "waitingForGuests": "Warte auf Gäste…"
-    }
+    },
+    "suddenDeathMode": "Sudden Death",
+    "suddenDeathModeHint": "Der Letzte jeder Runde scheidet aus. Wer übrig bleibt, gewinnt.",
+    "suddenDeathDisabledTooltip": "Sudden Death braucht mindestens 3 Spieler.",
+    "suddenDeathLive": "Sudden Death"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
