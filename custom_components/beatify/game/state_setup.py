@@ -292,6 +292,13 @@ class GameSetupMixin:
 
         _LOGGER.info("Game created: %s with %d songs", self.game_id, len(songs))
 
+        # #1540: pre-warm the MediaPlayerService during LOBBY so Round 1 doesn't
+        # pay the construction + cold first-call (preflight) latency that #803
+        # tracked. Fire-and-forget / best-effort — must NOT block create_game.
+        # _ensure_media_player_service() stays the idempotent fallback if this
+        # didn't run (or hasn't finished) by the time the first round starts.
+        self.schedule_media_player_prewarm()
+
         return {
             "game_id": self.game_id,
             "join_url": self.join_url,
@@ -349,6 +356,10 @@ class GameSetupMixin:
         # is still REVEAL there) and trigger the next song after the game ended.
         # advance_to_end() already does this; the HTTP/force-end path lands here.
         self._cancel_auto_advance()
+        # #1540 review: cancel a still-running LOBBY media-player pre-warm so it
+        # can't keep probing the speaker after the game ended (analogous to the
+        # auto-advance cancel above).
+        self._cancel_prewarm()
         # #1358: bump the game-identity epoch synchronously, BEFORE the awaits
         # below (same rationale as the _cancel_auto_advance above). A start_round
         # that's parked in play_song and resumes anytime during this teardown —

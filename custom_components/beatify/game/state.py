@@ -281,6 +281,10 @@ class GameState(
         # #1012: REVEAL auto-advance (seconds; 0 = manual) + its task handle
         self.reveal_auto_advance: int = 0
         self._auto_advance_task: asyncio.Task | None = None
+        # #1540 review: handle for the LOBBY media-player pre-warm task so a
+        # game reset/recreate can cancel a still-running warm-up (analogous to
+        # _auto_advance_task) instead of orphaning it.
+        self._prewarm_task: asyncio.Task | None = None
         # #1180 Phase 4: title/artist near-miss vote window is open in REVEAL.
         self._title_artist_voting_open: bool = False
         # #1180: server-owned wall-clock deadline (in self._now units) for the
