@@ -119,3 +119,6 @@ scripts/.env
 
 # Local design mockups / scratch HTML — not tracked
 mockups/
+
+# Tidal backfill local state (scripts/backfill_tidal.py)
+scripts/.tidal-backfill-state.json
