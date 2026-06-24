@@ -37,6 +37,7 @@ const playlist = (filename, name, is_valid = true) => ({
 const CARNIVAL = playlist('koelner-karneval.json', 'Cologne Carnival');
 const SUMMER = playlist('summer-party-anthems.json', '100 Summer Anthems');
 const FILLER = playlist('80er-hits.json', '80er Hits');
+const WORLDCUP = playlist('world-cup-anthems.json', 'World Cup Anthems');
 
 beforeEach(() => {
     for (const k of Object.keys(store)) delete store[k];
@@ -98,5 +99,35 @@ describe('#1539 seasonal occasion calendar', () => {
         const now = new Date('2026-07-04T12:00:00');
         const pick = pickSeasonalSuggestion([SUMMER, FILLER], now);
         expect(pick?.occasion.id).toBe('summer');
+    });
+});
+
+describe('#1539 occasion priority during overlapping windows', () => {
+    // Summer (06-01–08-31) and World Cup (06-11–07-19) overlap in Jun/Jul.
+    // The picker returns the FIRST matching occasion in array order, and
+    // worldcup is ordered before summer — so World Cup wins the overlap.
+    it('prefers World Cup over Summer inside the overlap window', () => {
+        const now = new Date('2026-06-15T12:00:00');
+        const pick = pickSeasonalSuggestion([SUMMER, WORLDCUP, FILLER], now);
+        expect(pick?.occasion.id).toBe('worldcup');
+        expect(pick?.playlist.filename).toBe('world-cup-anthems.json');
+    });
+
+    it('still prefers World Cup on the overlap boundary days', () => {
+        const start = pickSeasonalSuggestion([SUMMER, WORLDCUP], new Date('2026-06-11T12:00:00'));
+        expect(start?.occasion.id).toBe('worldcup'); // World Cup window opens
+        const end = pickSeasonalSuggestion([SUMMER, WORLDCUP], new Date('2026-07-19T12:00:00'));
+        expect(end?.occasion.id).toBe('worldcup'); // last World Cup day
+    });
+
+    it('falls back to Summer once the World Cup window has closed', () => {
+        const now = new Date('2026-07-20T12:00:00'); // day after World Cup ends
+        const pick = pickSeasonalSuggestion([SUMMER, WORLDCUP, FILLER], now);
+        expect(pick?.occasion.id).toBe('summer');
+    });
+
+    it('shows World Cup even if its playlist is the only seasonal one present', () => {
+        const now = new Date('2026-06-15T12:00:00');
+        expect(pickSeasonalSuggestion([WORLDCUP, FILLER], now)?.occasion.id).toBe('worldcup');
     });
 });
