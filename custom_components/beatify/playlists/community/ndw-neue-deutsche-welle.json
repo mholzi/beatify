@@ -367,7 +367,6 @@
       "uri_youtube_music": "https://www.youtube.com/watch?v=GEnx9xS79Lc",
       "uri_tidal": null,
       "uri_deezer": null,
-      "isrc": "",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/693113326",
@@ -1525,7 +1524,6 @@
       "uri_youtube_music": "https://www.youtube.com/watch?v=PsFl4UUCGnY",
       "uri_tidal": null,
       "uri_deezer": null,
-      "isrc": "",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1599,7 +1597,6 @@
       "uri_youtube_music": "https://www.youtube.com/watch?v=Fpu5a0Bl8eY",
       "uri_tidal": null,
       "uri_deezer": null,
-      "isrc": "",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
