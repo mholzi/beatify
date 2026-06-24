@@ -12,11 +12,12 @@ Design goals (kept deliberately minimal-invasive):
   the *existing* ``/beatify/api/start-game`` flow exactly like any hand-picked
   playlist. So all the validated start-game logic (provider checks, platform
   capabilities, PlaylistManager dedup/selection) is reused untouched.
-* Transient mixes land in ``<config>/beatify/playlists/mix/__mix__.json`` and
-  are overwritten on every run — they are an implementation detail, not a
-  saved artefact. The ``mix/`` folder is treated as ``bundled`` by discovery
-  (only ``community``/``user`` count as community), so a transient mix never
-  pollutes the Community tab.
+* Transient mixes land in ``<config>/beatify/playlists/mix/__mix__-<uuid>.json``
+  with a UNIQUE stem per run (so two parallel games never clobber each other —
+  #1547) — they are an implementation detail, not a saved artefact. Stale
+  transient files are best-effort cleaned up on each write. The ``mix/`` folder
+  is treated as ``bundled`` by discovery (only ``community``/``user`` count as
+  community), so a transient mix never pollutes the Community tab.
 * When the host ticks "save as community playlist" the assembled set is instead
   persisted into ``user/<slug>.json`` (the same place ``SavePlaylistView`` uses)
   so ``async_discover_playlists`` surfaces it in the Community tab on refresh.
@@ -27,6 +28,7 @@ from __future__ import annotations
 import json
 import logging
 import random
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
@@ -36,6 +38,8 @@ from homeassistant.components.http import HomeAssistantView
 
 from custom_components.beatify.const import PROVIDER_DEFAULT
 from custom_components.beatify.game.playlist import (
+    MIN_YEAR,
+    _max_year,
     async_discover_playlists,
     get_playlist_directory,
     get_song_uri,
@@ -63,8 +67,31 @@ DEFAULT_TARGET_COUNT = 50
 # is far smaller).
 MAX_TAGS = 40
 
-# Filename stem for the transient (non-saved) mix. Overwritten every run.
-TRANSIENT_MIX_STEM = "__mix__"
+# Filename-stem prefix for transient (non-saved) mixes. Each mix run gets a
+# UNIQUE stem (``__mix__-<short-uuid>.json``) so two games started in parallel
+# never clobber each other's transient file (#1547 — was a fixed
+# ``__mix__.json`` with last-writer-wins). Anything whose name starts with this
+# prefix — OR lives in the ``mix/`` subdir — is treated as a transient mix and
+# excluded from re-mixing / the Community tab.
+TRANSIENT_MIX_PREFIX = "__mix__"
+# Subdirectory (under the playlist dir) that holds transient mixes.
+TRANSIENT_MIX_SUBDIR = "mix"
+
+
+def _is_transient_mix(path: str) -> bool:
+    """True if ``path`` points at a transient mix file.
+
+    Matches on the ``mix/`` parent dir OR a ``__mix__``-prefixed filename so
+    EVERY uniquely-named transient mix (``__mix__-<uuid>.json``) is recognised,
+    not just the legacy fixed ``__mix__.json``. Used to keep transient mixes out
+    of the re-mix source set (and, defensively, out of any name-based filter).
+    """
+    if not path:
+        return False
+    p = Path(path)
+    return p.parent.name == TRANSIENT_MIX_SUBDIR or p.name.startswith(
+        TRANSIENT_MIX_PREFIX
+    )
 
 
 def _assemble_mix_songs(
@@ -94,9 +121,11 @@ def _assemble_mix_songs(
         tags = set(meta.get("tags") or [])
         if not (tags & selected_tags):
             continue
-        # Never re-mix a previous transient mix into a new one.
+        # Never re-mix a previous transient mix into a new one. Match on the
+        # mix/ dir or the __mix__ prefix so EVERY uniquely-named transient file
+        # is excluded, not just the legacy fixed __mix__.json (#1547).
         path = meta.get("path") or ""
-        if Path(path).name == f"{TRANSIENT_MIX_STEM}.json":
+        if _is_transient_mix(path):
             continue
 
         full_path = Path(path)
@@ -107,13 +136,20 @@ def _assemble_mix_songs(
             continue
 
         matched += 1
+        max_year = _max_year()
         for song in data.get("songs", []):
             if not isinstance(song, dict):
                 continue
-            # Must have a year and at least one usable URI for the selected
-            # provider — otherwise it can never play and only wastes a slot.
-            if "year" not in song:
+            # Apply the SAME int/range year check as validate_playlist (#1547):
+            # a song with a non-int or out-of-range year (e.g. "year": "abc")
+            # must be skipped INDIVIDUALLY here — otherwise it survives into the
+            # assembled doc and makes validate_playlist fail the WHOLE set with a
+            # 500 MIX_INVALID, sinking dozens of good songs over one bad row.
+            year = song.get("year")
+            if not isinstance(year, int) or not (MIN_YEAR <= year <= max_year):
                 continue
+            # Must have at least one usable URI for the selected provider —
+            # otherwise it can never play and only wastes a slot.
             if not get_song_uri(song, provider):
                 continue
             candidates.append(song)
@@ -154,7 +190,7 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
         {
             "success": true,
             "path": "<abs path under beatify/playlists/...>",
-            "filename": "__mix__.json",
+            "filename": "__mix__-a1b2c3d4.json",
             "name": "Smart Mix · 80s, 90s, Pop",
             "song_count": 50,
             "playlist_count": 6,
@@ -274,9 +310,21 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
 
         # --- Persist ------------------------------------------------------
         def _write_transient() -> Path:
-            mix_dir = playlist_dir / "mix"
+            mix_dir = playlist_dir / TRANSIENT_MIX_SUBDIR
             mix_dir.mkdir(parents=True, exist_ok=True)
-            target = mix_dir / f"{TRANSIENT_MIX_STEM}.json"
+            # Unique stem per run so two games started in parallel never clobber
+            # each other's transient file (#1547). The returned path is what gets
+            # fed into start-game, so it always points at THIS run's file.
+            target = mix_dir / f"{TRANSIENT_MIX_PREFIX}-{uuid.uuid4().hex[:8]}.json"
+            # Best-effort cleanup of stale transient mixes so the mix/ folder
+            # does not grow unbounded. Never let a cleanup failure block the
+            # write — the freshly-written file below is all start-game needs.
+            try:
+                for old in mix_dir.glob(f"{TRANSIENT_MIX_PREFIX}*.json"):
+                    if old != target:
+                        old.unlink()
+            except OSError as cleanup_err:  # pragma: no cover - best-effort I/O
+                _LOGGER.debug("Mix cleanup skipped: %s", cleanup_err)
             target.write_text(
                 json.dumps(playlist_doc, indent=2, ensure_ascii=False),
                 encoding="utf-8",
