@@ -84,6 +84,15 @@ import {
     updateStartButtonState,
 } from './admin/sections/playlists.js';
 
+// mix.js (#1538): Smart Playlist Mixer "Mix" tab. initMixTab() is wired once at
+// admin init with the core startGame injected (the mixer reuses the validated
+// start-game path); renderMixChipCloud() is re-run after each playlist (re)load
+// so the chip-cloud reflects the live catalogue.
+import {
+    initMixTab,
+    renderMixChipCloud,
+} from './admin/sections/mix.js';
+
 // media-players.js: speaker list render + radio-selection + platform-capability
 // gate (updateProviderOptions toggles the music-service provider chips). No
 // window shim: the no-players empty state's inline onclick="loadStatus()" resolves
@@ -664,6 +673,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('start-game')?.addEventListener('click', startGame);
     document.getElementById('print-qr')?.addEventListener('click', printQRCode);
 
+    // #1538: Smart Playlist Mixer "Mix" tab. Inject startGame so the mixer
+    // funnels through the validated start-game path after assembling its set.
+    initMixTab({ startGame });
+
     document.getElementById('end-game')?.addEventListener('click', endGame);
     document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
 
@@ -783,6 +796,7 @@ async function loadStatus() {
         }
         renderMediaPlayers(status.media_players);
         renderPlaylists(status.playlists, status.playlist_dir);
+        renderMixChipCloud();  // #1538: refresh Mix-tab chips from live catalogue
         updateStartButtonState();
 
         // Check for active game and show appropriate view

@@ -338,20 +338,74 @@
         <!-- Playlists Section - Always expanded -->
         <section id="playlists" class="card-section">
             <h2 class="section-header"><span class="section-icon" aria-hidden="true">🎵</span><span data-i18n="admin.playlists">Playlists</span></h2>
-            <!-- Tag Filter Bar (Issue #70) -->
-            <div id="playlist-filter-bar" class="playlist-filter-bar hidden">
-                <button type="button" class="filter-tag active" data-tag="all" data-i18n="admin.filterAll">All</button>
+            <!-- #1538: Playlist / Mix tab strip. "Playlists" = the existing
+                 list+filter picker; "Mix" = the Smart Playlist Mixer (chip-cloud). -->
+            <div class="playlist-tabs" role="tablist" aria-label="Playlist source">
+                <button type="button" class="playlist-tab active" role="tab" aria-selected="true" data-playlist-tab="list" data-i18n="admin.playlistTabList">Playlists</button>
+                <button type="button" class="playlist-tab" role="tab" aria-selected="false" data-playlist-tab="mix">
+                    <span aria-hidden="true">🎚️</span> <span data-i18n="admin.playlistTabMix">Mix</span>
+                </button>
             </div>
-            <div id="playlists-list" class="skeleton-list" aria-busy="true">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
+
+            <!-- Tab panel: existing playlist list -->
+            <div id="playlist-panel-list" class="playlist-panel" role="tabpanel">
+                <!-- Tag Filter Bar (Issue #70) -->
+                <div id="playlist-filter-bar" class="playlist-filter-bar hidden">
+                    <button type="button" class="filter-tag active" data-tag="all" data-i18n="admin.filterAll">All</button>
                 </div>
-            <div id="playlist-summary" class="selection-summary hidden">
-                <span data-i18n="admin.selected">Selected:</span> <span id="selected-count">0</span> <span data-i18n="admin.playlistsLabel">playlists,</span>
-                <span id="total-songs">0</span> <span data-i18n="admin.songsLabel">songs</span>
-                <p class="setting-hint" data-i18n="admin.roundsHint">Total number of rounds in the game, based on the selected playlists.</p>
+                <div id="playlists-list" class="skeleton-list" aria-busy="true">
+                        <div class="skeleton skeleton-card"></div>
+                        <div class="skeleton skeleton-card"></div>
+                        <div class="skeleton skeleton-card"></div>
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                <div id="playlist-summary" class="selection-summary hidden">
+                    <span data-i18n="admin.selected">Selected:</span> <span id="selected-count">0</span> <span data-i18n="admin.playlistsLabel">playlists,</span>
+                    <span id="total-songs">0</span> <span data-i18n="admin.songsLabel">songs</span>
+                    <p class="setting-hint" data-i18n="admin.roundsHint">Total number of rounds in the game, based on the selected playlists.</p>
+                </div>
+            </div>
+
+            <!-- Tab panel: Smart Playlist Mixer (#1538, chip-cloud) -->
+            <div id="playlist-panel-mix" class="playlist-panel hidden" role="tabpanel">
+                <div class="mix-card">
+                    <div class="mix-card-head">
+                        <span class="mix-card-icon" aria-hidden="true">🎚️</span>
+                        <h3 class="mix-card-title" data-i18n="admin.mixTitle">Smart Playlist Mixer</h3>
+                    </div>
+                    <p class="mix-card-sub" data-i18n="admin.mixSubtitle">Pick tags — Beatify assembles a de-duplicated set from your catalogue on the fly.</p>
+
+                    <!-- Chip-cloud rows: rendered by admin/sections/mix.js from the
+                         tags actually present across the discovered playlists. -->
+                    <div id="mix-chip-cloud" class="mix-chip-cloud"></div>
+
+                    <div class="mix-divider"></div>
+
+                    <div class="mix-count-row">
+                        <span class="mix-count-label" data-i18n="admin.mixTargetCount">Target songs</span>
+                        <div class="mix-segmented" role="radiogroup" aria-label="Target song count">
+                            <button type="button" class="mix-seg" role="radio" aria-checked="false" data-mix-count="30">30</button>
+                            <button type="button" class="mix-seg active" role="radio" aria-checked="true" data-mix-count="50">50</button>
+                            <button type="button" class="mix-seg" role="radio" aria-checked="false" data-mix-count="100">100</button>
+                        </div>
+                    </div>
+
+                    <div id="mix-preview" class="mix-preview" aria-live="polite">
+                        <span class="mix-preview-dot" aria-hidden="true"></span>
+                        <span id="mix-preview-text" data-i18n="admin.mixPreviewEmpty">Select tags to preview your mix.</span>
+                    </div>
+
+                    <div class="mix-actions">
+                        <button type="button" id="mix-start" class="btn btn-primary" disabled>
+                            <span aria-hidden="true">▶</span> <span data-i18n="admin.mixStart">Start mix</span>
+                        </button>
+                        <label class="mix-save-label">
+                            <input type="checkbox" id="mix-save-community">
+                            <span data-i18n="admin.mixSaveCommunity">Save as community playlist</span>
+                        </label>
+                    </div>
+                    <p id="mix-error" class="validation-msg hidden"></p>
+                </div>
             </div>
         </section>
 
