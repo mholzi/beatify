@@ -21,6 +21,7 @@
 
 import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS, TAG_CATEGORIES } from '../constants.js';
+import { seasonalSuggestionHtml, wireSeasonalSuggestion } from './seasonal-suggestion.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -91,7 +92,12 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
         return;
     }
 
-    container.innerHTML = filteredPlaylists.map(playlist => {
+    // #1539: seasonal suggestion chip (option 2) — rendered as the FIRST element
+    // of the list when an occasion window is active, its playlist is present, and
+    // the host hasn't dismissed it this season. Empty string otherwise.
+    const seasonalHtml = seasonalSuggestionHtml(filteredPlaylists);
+
+    container.innerHTML = seasonalHtml + filteredPlaylists.map(playlist => {
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
@@ -180,6 +186,10 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
             }
         });
     });
+
+    // #1539: wire the seasonal chip's Add/Dismiss buttons (no-op if no chip).
+    // handlePlaylistToggle is passed in to keep selection state single-sourced.
+    wireSeasonalSuggestion(container, handlePlaylistToggle);
 
     // Restore valid selections when preserving (provider change)
     if (preserveSelection && previousSelections.length > 0) {
