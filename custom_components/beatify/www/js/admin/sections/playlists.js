@@ -244,6 +244,13 @@ export function handlePlaylistToggle(checkbox) {
     const item = checkbox.closest('.playlist-item');
 
     if (checkbox.checked) {
+        // #1538: ticking a real playlist supersedes a built Smart Mix — the two
+        // selection modes are mutually exclusive at start-game time.
+        if (adminState.mixSongs) {
+            adminState.mixSongs = null;
+            const mixResult = document.getElementById('smart-mixer-result');
+            if (mixResult) mixResult.classList.add('hidden');
+        }
         // Prevent duplicate selections
         if (!adminState.selectedPlaylists.some(p => p.path === path)) {
             adminState.selectedPlaylists.push({ path, songCount: providerCount });
@@ -389,8 +396,14 @@ export function updateSelectionSummary() {
         return;
     }
 
-    if (adminState.selectedPlaylists.length === 0) {
+    // #1538: a built Smart Mix is a valid selection even with no playlists ticked.
+    const mixCount = (adminState.mixSongs || []).length;
+    if (adminState.selectedPlaylists.length === 0 && mixCount === 0) {
         summary.classList.add('hidden');
+    } else if (mixCount > 0) {
+        summary.classList.remove('hidden');
+        selectedCount.textContent = '1 (Smart Mix)';
+        totalSongs.textContent = mixCount;
     } else {
         summary.classList.remove('hidden');
         selectedCount.textContent = adminState.selectedPlaylists.length;
@@ -412,7 +425,9 @@ export function updateStartButtonState() {
         return;
     }
 
-    const noPlaylist = adminState.selectedPlaylists.length === 0;
+    // #1538: a built Smart Mix counts as a playlist selection.
+    const hasMix = (adminState.mixSongs || []).length > 0;
+    const noPlaylist = adminState.selectedPlaylists.length === 0 && !hasMix;
     const noMediaPlayer = adminState.selectedMediaPlayer === null;
 
     // Disable button if either selection is missing

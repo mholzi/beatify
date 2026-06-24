@@ -43,6 +43,7 @@ from .server.views import (
     ForceResetView,
     GameStatusView,
     LauncherView,
+    MixPlaylistsView,
     LightsView,
     PreviewLightsView,
     TtsEntitiesView,
@@ -227,6 +228,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             SwJsView(hass)
         )  # #780 — SW at /beatify/sw.js for /beatify/ scope
         hass.http.register_view(GameStatusView(hass))
+        hass.http.register_view(MixPlaylistsView(hass))  # Issue #1538: Smart Mixer
         hass.http.register_view(DashboardView(hass))
         hass.http.register_view(StatsView(hass))
         hass.http.register_view(AnalyticsView(hass))

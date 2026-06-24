@@ -27,6 +27,10 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from custom_components.beatify.game.playlist import (
+    async_discover_playlists,
+    mix_playlist_songs,
+)
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -172,7 +176,19 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     "Invalid round duration value", 400, code="INVALID_REQUEST"
                 )
 
-        if not playlist_paths:
+        # #1538: Smart Playlist Mixer produces a transient, de-duplicated song
+        # set that is never written to disk. When the wizard sends it inline via
+        # `mix_songs`, play it directly instead of loading playlist files. A
+        # synthetic playlist label keeps create_game / serializers happy and lets
+        # the lobby show where the songs came from.
+        mix_songs = body.get("mix_songs")
+
+        if mix_songs:
+            if not isinstance(mix_songs, list):
+                return _json_error(
+                    "Invalid mix_songs payload", 400, code="INVALID_REQUEST"
+                )
+        elif not playlist_paths:
             return _json_error("No playlists selected", 400, code="INVALID_REQUEST")
 
         if not media_player:
@@ -192,7 +208,32 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         warnings: list[str] = []
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
 
-        for playlist_path in playlist_paths:
+        # #1538: transient mix path — accept the pre-assembled song set as-is,
+        # applying the same admission rule (year + at least one usable URI) the
+        # file path uses below.
+        if mix_songs:
+            for song in mix_songs:
+                if not isinstance(song, dict):
+                    continue
+                has_uri = any(
+                    song.get(k)
+                    for k in (
+                        "uri",
+                        "uri_spotify",
+                        "uri_youtube_music",
+                        "uri_tidal",
+                        "uri_deezer",
+                        "uri_apple_music",
+                    )
+                )
+                if "year" in song and has_uri:
+                    tagged = dict(song)
+                    tagged.setdefault("_playlist_source", "Smart Mix")
+                    songs.append(tagged)
+            # Label the synthetic playlist for create_game / lobby display.
+            playlist_paths = playlist_paths or ["Smart Mix"]
+
+        for playlist_path in [] if mix_songs else playlist_paths:
             try:
                 full_path = playlist_dir / playlist_path
                 # Security: Prevent path traversal attacks
@@ -632,3 +673,93 @@ class GameStatusView(HomeAssistantView):
         game_state = get_game_state(self.hass)
 
         return web.json_response(build_game_status_response(game_state, game_id))
+
+
+class MixPlaylistsView(RateLimitMixin, HomeAssistantView):
+    """Smart Playlist Mixer (#1538).
+
+    Assembles a transient, de-duplicated song set from every catalogue playlist
+    matching the host-selected tags, capped at a target count. The result is
+    returned inline (never written to disk) and handed back to start-game via the
+    ``mix_songs`` field, so the mix plays through the unchanged game pipeline.
+    """
+
+    url = "/beatify/api/mix-playlists"
+    name = "beatify:api:mix-playlists"
+    requires_auth = False  # auth handled in-handler (mirrors StartGameView, #1131)
+
+    RATE_LIMIT_REQUESTS = 10
+    RATE_LIMIT_WINDOW = 60  # seconds
+
+    # Allowed target sizes for the mix (slider presets in the wizard). Caps the
+    # work and keeps the transient payload sane.
+    MIX_COUNT_MIN = 10
+    MIX_COUNT_MAX = 200
+    MIX_COUNT_DEFAULT = 50
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+        self._init_rate_limits()
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Build and return a transient mix from the requested tags."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        client_ip = request.remote or "unknown"
+        if not self._check_rate_limit(client_ip):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+
+        raw_tags = body.get("tags", [])
+        if not isinstance(raw_tags, list):
+            return _json_error("Invalid tags", 400, code="INVALID_REQUEST")
+        tags = [str(t) for t in raw_tags if t]
+
+        try:
+            target_count = int(body.get("count", self.MIX_COUNT_DEFAULT))
+        except (ValueError, TypeError):
+            return _json_error("Invalid count", 400, code="INVALID_REQUEST")
+        target_count = max(self.MIX_COUNT_MIN, min(self.MIX_COUNT_MAX, target_count))
+
+        # Discover playlists (metadata only) to learn which ones match the tags,
+        # then load the songs for the matches. async_discover_playlists omits the
+        # song arrays, so we read the matching files directly.
+        discovered = await async_discover_playlists(self.hass)
+
+        wanted = {t for t in tags if t}
+        playlists_with_songs: list[dict[str, Any]] = []
+        matched_names: list[str] = []
+
+        for meta in discovered:
+            if not meta.get("is_valid"):
+                continue
+            playlist_tags = set(meta.get("tags") or [])
+            if wanted and not wanted.issubset(playlist_tags):
+                continue
+            path = Path(meta["path"])
+            try:
+                content = await self.hass.async_add_executor_job(_read_file, path)
+                data = json.loads(content)
+            except (OSError, ValueError):
+                continue
+            playlists_with_songs.append(
+                {"tags": list(playlist_tags), "songs": data.get("songs", [])}
+            )
+            matched_names.append(meta.get("name", path.stem))
+
+        songs = mix_playlist_songs(playlists_with_songs, tags, target_count)
+
+        return web.json_response(
+            {
+                "songs": songs,
+                "count": len(songs),
+                "requested_count": target_count,
+                "tags": tags,
+                "matched_playlists": matched_names,
+            }
+        )

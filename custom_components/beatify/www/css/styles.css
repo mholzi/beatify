@@ -1453,6 +1453,57 @@ body.theme-dark .filter-clear {
     color: rgba(255, 255, 255, 0.6);
 }
 
+/* Smart Playlist Mixer (#1538) */
+.smart-mixer {
+    margin: 0.5rem 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 6px);
+    background: var(--color-surface);
+}
+
+.smart-mixer-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+}
+
+.smart-mixer-summary::-webkit-details-marker {
+    display: none;
+}
+
+.smart-mixer-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+}
+
+.smart-mixer-count {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.smart-mixer-result {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary, #666);
+}
+
+body.theme-dark .smart-mixer {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.theme-dark .smart-mixer-result {
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* Legacy filter-tag styles (kept for backwards compatibility) */
 .filter-tag {
     display: inline-flex;

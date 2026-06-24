@@ -84,6 +84,13 @@ import {
     updateStartButtonState,
 } from './admin/sections/playlists.js';
 
+// smart-mixer.js: Smart Playlist Mixer (#1538) — tag multi-select + count → a
+// transient de-duplicated song set held in adminState.mixSongs.
+import {
+    initSmartMixer,
+    renderSmartMixer,
+} from './admin/sections/smart-mixer.js';
+
 // media-players.js: speaker list render + radio-selection + platform-capability
 // gate (updateProviderOptions toggles the music-service provider chips). No
 // window shim: the no-players empty state's inline onclick="loadStatus()" resolves
@@ -284,6 +291,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.BeatifyWizard && typeof window.BeatifyWizard.init === 'function') {
         try { await window.BeatifyWizard.init(); } catch (e) { console.warn('[Beatify] wizard init failed:', e); }
     }
+
+    // #1538: wire the Smart Playlist Mixer build button (idempotent).
+    initSmartMixer();
 
     // Expose loadStatus so wizard.js can ask admin to refresh after completion
     window.loadStatus = loadStatus;
@@ -783,6 +793,7 @@ async function loadStatus() {
         }
         renderMediaPlayers(status.media_players);
         renderPlaylists(status.playlists, status.playlist_dir);
+        renderSmartMixer(status.playlists);  // #1538
         updateStartButtonState();
 
         // Check for active game and show appropriate view
@@ -1046,6 +1057,7 @@ async function startGame() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 playlists: adminState.selectedPlaylists.map(p => p.path),
+                mix_songs: adminState.mixSongs || null,  // #1538: transient Smart Mix
                 media_player: adminState.selectedMediaPlayer?.entityId,
                 language: adminState.selectedLanguage,
                 round_duration: adminState.selectedDuration,  // Story 13.1

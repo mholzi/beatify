@@ -342,6 +342,31 @@
             <div id="playlist-filter-bar" class="playlist-filter-bar hidden">
                 <button type="button" class="filter-tag active" data-tag="all" data-i18n="admin.filterAll">All</button>
             </div>
+            <!-- Smart Playlist Mixer (Issue #1538) -->
+            <details id="smart-mixer" class="smart-mixer hidden">
+                <summary class="smart-mixer-summary">
+                    <span class="section-icon" aria-hidden="true">🎚️</span>
+                    <span data-i18n="admin.smartMixer">Smart Mix</span>
+                </summary>
+                <div class="smart-mixer-body">
+                    <p class="setting-hint" data-i18n="admin.smartMixerHint">Pick tags and a song count — Beatify assembles a de-duplicated set from matching playlists (not saved).</p>
+                    <div id="smart-mixer-tags" class="filter-dropdowns"></div>
+                    <label class="smart-mixer-count">
+                        <span data-i18n="admin.smartMixerCount">Songs</span>
+                        <select id="smart-mixer-count">
+                            <option value="30">30</option>
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                            <option value="150">150</option>
+                        </select>
+                    </label>
+                    <button type="button" id="smart-mixer-build" class="btn btn-secondary btn-full-width">
+                        <span aria-hidden="true">✨</span>
+                        <span data-i18n="admin.smartMixerBuild">Build mix</span>
+                    </button>
+                    <p id="smart-mixer-result" class="smart-mixer-result hidden"></p>
+                </div>
+            </details>
             <div id="playlists-list" class="skeleton-list" aria-busy="true">
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>

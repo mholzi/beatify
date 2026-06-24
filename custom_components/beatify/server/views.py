@@ -47,6 +47,7 @@ from custom_components.beatify.server.game_views import (  # noqa: F401
     EndGameView,
     ForceResetView,
     GameStatusView,
+    MixPlaylistsView,
     RematchGameView,
     StartGameplayView,
     StartGameView,

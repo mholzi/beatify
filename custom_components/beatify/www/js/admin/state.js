@@ -43,6 +43,9 @@ export const adminState = {
     mediaPlayerDocsUrl: '',
     // Active filter state per category (Issue #70 filter bar)
     activeFilters: { decade: '', style: '', region: '', special: '' },
+    // Smart Playlist Mixer (Issue #1538): transient song set built from tags.
+    // When non-null it overrides selectedPlaylists for the start-game payload.
+    mixSongs: null,                     // null | array of song dicts
 
     // --- view / game ---
     currentView: 'setup',

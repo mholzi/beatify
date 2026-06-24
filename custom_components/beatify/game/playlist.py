@@ -545,6 +545,107 @@ def filter_songs_for_provider(
     return (filtered, skipped)
 
 
+def _song_dedup_key(song: dict[str, Any]) -> str | None:
+    """Return a stable identity key for a song, preferring ``uri``.
+
+    Issue #1538: the Smart Playlist Mixer dedupes across catalogue playlists by
+    ``uri``. Songs may carry the canonical ``uri`` field or only a
+    provider-specific URI; we walk the same field order the start-game view uses
+    so the same track from two playlists collapses into one. Falls back to a
+    case-insensitive artist/title pair when no URI is present, so URI-less
+    duplicates are still caught.
+    """
+    for field in (
+        "uri",
+        "uri_spotify",
+        "uri_youtube_music",
+        "uri_tidal",
+        "uri_deezer",
+        "uri_apple_music",
+    ):
+        value = song.get(field)
+        if isinstance(value, str) and value:
+            return value
+    artist = str(song.get("artist", "")).strip().lower()
+    title = str(song.get("title", "")).strip().lower()
+    if artist or title:
+        return f"{artist}::{title}"
+    return None
+
+
+def mix_playlist_songs(
+    playlists: list[dict[str, Any]],
+    filter_tags: list[str],
+    target_count: int,
+    *,
+    rng: random.Random | None = None,
+) -> list[dict[str, Any]]:
+    """Assemble a de-duplicated transient song set from tag-matched playlists.
+
+    Issue #1538 (Smart Playlist Mixer). Pure, side-effect-free helper so the
+    assembly/dedup logic is unit-testable without HA or the filesystem.
+
+    Args:
+        playlists: Discovered playlist dicts. Each must carry a ``tags`` list and
+            a ``songs`` list (raw song dicts). Invalid playlists are tolerated:
+            missing keys are treated as empty.
+        filter_tags: Tags the host selected. A playlist matches when it contains
+            **all** of these tags (AND logic, mirroring the filter bar in
+            ``admin/sections/playlists.js``). An empty list matches every
+            playlist.
+        target_count: Cap on the returned song count. ``<= 0`` returns nothing.
+        rng: Optional ``random.Random`` for deterministic shuffling in tests. The
+            assembled candidates are shuffled so the cap yields a varied mix
+            instead of always the first N from the first matching playlist.
+
+    Returns:
+        A list of song dicts, de-duplicated by :func:`_song_dedup_key`, capped at
+        ``target_count``. Only songs with a ``year`` and at least one usable URI
+        are kept (same admission rule as the start-game view).
+
+    """
+    if target_count <= 0:
+        return []
+
+    wanted = {t for t in filter_tags if t}
+    candidates: list[dict[str, Any]] = []
+
+    for playlist in playlists:
+        tags = set(playlist.get("tags") or [])
+        if wanted and not wanted.issubset(tags):
+            continue
+        for song in playlist.get("songs") or []:
+            has_uri = any(
+                song.get(k)
+                for k in (
+                    "uri",
+                    "uri_spotify",
+                    "uri_youtube_music",
+                    "uri_tidal",
+                    "uri_deezer",
+                    "uri_apple_music",
+                )
+            )
+            if "year" in song and has_uri:
+                candidates.append(song)
+
+    if rng is not None:
+        rng.shuffle(candidates)
+
+    seen: set[str] = set()
+    mixed: list[dict[str, Any]] = []
+    for song in candidates:
+        key = _song_dedup_key(song)
+        if key is None or key in seen:
+            continue
+        seen.add(key)
+        mixed.append(song)
+        if len(mixed) >= target_count:
+            break
+
+    return mixed
+
+
 async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     """Discover all playlist files in the playlist directory."""
     playlist_dir = get_playlist_directory(hass)
