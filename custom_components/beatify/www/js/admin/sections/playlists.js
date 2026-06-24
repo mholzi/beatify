@@ -21,6 +21,7 @@
 
 import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS, TAG_CATEGORIES } from '../constants.js';
+import { renderSeasonalSuggestion } from './seasonal-suggestions.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -231,6 +232,10 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
     // Initialize summary as hidden
     updateSelectionSummary();
     updateStartButtonState();
+
+    // #1539: surface a seasonal playlist suggestion once the checkboxes exist in
+    // the DOM (the banner's "Add" action targets the matching checkbox).
+    renderSeasonalSuggestion();
 }
 
 /**

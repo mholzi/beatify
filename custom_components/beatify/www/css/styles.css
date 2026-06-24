@@ -15931,3 +15931,66 @@ body.theme-dark .your-result-stats .stat-value {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* ==========================================
+   Seasonal playlist suggestion (#1539)
+   ========================================== */
+.seasonal-suggestion {
+    margin-bottom: var(--space-md);
+}
+.seasonal-suggestion.hidden {
+    display: none;
+}
+.seasonal-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-accent-brand);
+    border-radius: var(--radius-lg);
+    background: var(--color-accent-brand-bg);
+}
+.seasonal-banner__emoji {
+    font-size: 24px;
+    line-height: 1;
+    flex: 0 0 auto;
+}
+.seasonal-banner__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.seasonal-banner__title {
+    font-size: 14px;
+    color: var(--color-text-primary);
+}
+.seasonal-banner__sub {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+.seasonal-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex: 0 0 auto;
+}
+.seasonal-banner__add {
+    white-space: nowrap;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 13px;
+}
+.seasonal-banner__dismiss {
+    border: none;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 var(--space-xs);
+    border-radius: var(--radius-sm);
+}
+.seasonal-banner__dismiss:hover {
+    color: var(--color-text-primary);
+}
