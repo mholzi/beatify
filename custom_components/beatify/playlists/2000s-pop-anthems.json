@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "2000s",
     "pop",
@@ -6938,7 +6938,7 @@
         "it": "applemusic://track/1443760448"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o_ZBzGlYS6g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/578434",
       "uri_deezer": "deezer://track/1399345572",
       "fun_fact": "A chart hit by Safri Duo (2021).",
       "fun_fact_de": "Ein Chart-Hit von Safri Duo (2021).",
@@ -6963,7 +6963,7 @@
         "it": "applemusic://track/1584857947"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=w60C081sLtI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/44814701",
       "uri_deezer": "deezer://track/98981562",
       "fun_fact": "A chart hit by S Club (2015).",
       "fun_fact_de": "Ein Chart-Hit von S Club (2015).",
@@ -6980,7 +6980,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=JhulBGMA7G4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1550549",
       "uri_deezer": null,
       "fun_fact": "A chart hit by Daft Punk (2022).",
       "fun_fact_de": "Ein Chart-Hit von Daft Punk (2022).",
@@ -7005,7 +7005,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QWBMCtIllEM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111279010",
       "uri_deezer": "deezer://track/3477676331",
       "fun_fact": "A chart hit by Daddy DJ (2022).",
       "fun_fact_de": "Ein Chart-Hit von Daddy DJ (2022).",
@@ -7030,7 +7030,7 @@
         "it": "applemusic://track/1681137250"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ogJJoVqfXHY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/50421567",
       "uri_deezer": "deezer://track/2321097235",
       "fun_fact": "A chart hit by Girls Aloud (2023).",
       "fun_fact_de": "Ein Chart-Hit von Girls Aloud (2023).",
@@ -7055,7 +7055,7 @@
         "it": "applemusic://track/1691419161"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GEo7W-uJNkc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71943313",
       "uri_deezer": "deezer://track/145425722",
       "fun_fact": "A chart hit by Counting Crows (2017).",
       "fun_fact_de": "Ein Chart-Hit von Counting Crows (2017).",
@@ -7080,7 +7080,7 @@
         "it": "applemusic://track/1700327230"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ey8BvkgO4bk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/8296025",
       "uri_deezer": "deezer://track/14194027",
       "fun_fact": "A chart hit by Alphabeat (2013).",
       "fun_fact_de": "Ein Chart-Hit von Alphabeat (2013).",
@@ -7105,7 +7105,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oGDjI40SjrA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79783653",
       "uri_deezer": "deezer://track/3305815511",
       "fun_fact": "A chart hit by Alex Gaudino (2025).",
       "fun_fact_de": "Ein Chart-Hit von Alex Gaudino (2025).",
@@ -7130,7 +7130,7 @@
         "it": "applemusic://track/1823040456"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kj0wBAtCN5o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/103536544",
       "uri_deezer": "deezer://track/3432957681",
       "fun_fact": "A chart hit by Akcent (2025).",
       "fun_fact_de": "Ein Chart-Hit von Akcent (2025).",
@@ -7155,7 +7155,7 @@
         "it": "applemusic://track/1269627144"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WFGhOkCzp2g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77267276",
       "uri_deezer": "deezer://track/393003352",
       "fun_fact": "A chart hit by Rednex (2017).",
       "fun_fact_de": "Ein Chart-Hit von Rednex (2017).",
@@ -7180,7 +7180,7 @@
         "it": "applemusic://track/1793821664"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ChNc3td4YQw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/415034837",
       "uri_deezer": "deezer://track/3212563591",
       "alt_artists": [
         "BT"
