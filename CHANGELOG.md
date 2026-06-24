@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- - Added 60 tracks to new community playlist "Sommerklassiker ☀️" — international summer hits spanning 1978–2023 (#1519).
+
 ## [4.1.2] - 2026-06-22
 
 Content release — new German Disney playlist with the guess-the-film bonus. See [docs/release-notes-v4.1.2.md](docs/release-notes-v4.1.2.md) for the user-facing notes.
