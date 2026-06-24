@@ -5,7 +5,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
-- - Added 60 tracks to new community playlist "Sommerklassiker ☀️" — international summer hits spanning 1978–2023 (#1519).
+- **Speaker volume is restored when the game ends (#1516).** If the host adjusts the speaker volume during a game, Beatify now hands the speaker back at its original pre-game level when the game ends — no more manually resetting the volume after every round. Complements the existing party-lights state restore (#331/#1402).
+- Added 60 tracks to new community playlist "Sommerklassiker ☀️" — international summer hits spanning 1978–2023 (#1519).
 
 ## [4.1.2] - 2026-06-22
 

@@ -26,6 +26,7 @@ from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
     RateLimitMixin,
     _apply_cache_tokens,
+    _apply_html_lang,
     _get_html,
     _get_version,
     _json_error,
@@ -117,7 +118,9 @@ class AdminView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
-        return _html_response(_apply_cache_tokens(html_content, self.hass))
+        return _html_response(
+            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+        )
 
 
 class LauncherView(HomeAssistantView):
@@ -138,7 +141,9 @@ class LauncherView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Launcher page not found: %s", html_path)
             return web.Response(text="Launcher page not found", status=500)
-        return _html_response(_apply_cache_tokens(html_content, self.hass))
+        return _html_response(
+            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+        )
 
 
 class PlayerView(HomeAssistantView):
@@ -159,7 +164,9 @@ class PlayerView(HomeAssistantView):
         if html_content is None:
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
-        return _html_response(_apply_cache_tokens(html_content, self.hass))
+        return _html_response(
+            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+        )
 
 
 # ---------------------------------------------------------------------------

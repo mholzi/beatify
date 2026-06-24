@@ -2105,3 +2105,71 @@ class TestAlexaContentType:
         assert call[0][2]["media_content_type"] == "APPLE_MUSIC"
         warnings = [str(c) for c in mock_log.warning.call_args_list]
         assert any("unexpected provider" in w and "deezer" in w for w in warnings)
+
+
+class TestVolumeSaveRestore:
+    """#1516: capture the host's pre-game volume and restore it at game end."""
+
+    @pytest.mark.asyncio
+    async def test_save_volume_captures_current_level(self):
+        """save_volume snapshots the speaker's current volume_level."""
+        hass = _make_hass(initial_state="playing")
+        hass.states.get("media_player.test").attributes["volume_level"] = 0.4
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+
+        svc.save_volume()
+
+        assert svc._saved_volume == 0.4
+
+    @pytest.mark.asyncio
+    async def test_save_volume_is_idempotent(self):
+        """Only the FIRST save sticks — later in-game changes don't overwrite it."""
+        hass = _make_hass(initial_state="playing")
+        state = hass.states.get("media_player.test")
+        state.attributes["volume_level"] = 0.4
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+
+        svc.save_volume()
+        # Speaker volume drifts (Beatify lowered it); a second save must not
+        # overwrite the genuine pre-game 0.4.
+        state.attributes["volume_level"] = 0.1
+        svc.save_volume()
+
+        assert svc._saved_volume == 0.4
+
+    @pytest.mark.asyncio
+    async def test_restore_volume_applies_and_clears(self):
+        """restore_volume sets the saved level via volume_set and clears it."""
+        hass = _make_hass(initial_state="playing")
+        hass.states.get("media_player.test").attributes["volume_level"] = 0.4
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+        svc.save_volume()
+        hass.services.async_call.reset_mock()
+
+        result = await svc.restore_volume()
+
+        assert result is True
+        vol_calls = [
+            call
+            for call in hass.services.async_call.await_args_list
+            if call.args[:2] == ("media_player", "volume_set")
+        ]
+        assert len(vol_calls) == 1
+        assert vol_calls[0].args[2]["volume_level"] == 0.4
+        # Cleared so the next game re-captures fresh and a re-call is a no-op.
+        assert svc._saved_volume is None
+        assert await svc.restore_volume() is False
+
+    @pytest.mark.asyncio
+    async def test_restore_volume_noop_when_untouched(self):
+        """No save → restore is a no-op (no volume_set, returns False)."""
+        hass = _make_hass(initial_state="playing")
+        svc = MediaPlayerService(hass, "media_player.test", platform="sonos")
+
+        result = await svc.restore_volume()
+
+        assert result is False
+        assert all(
+            call.args[:2] != ("media_player", "volume_set")
+            for call in hass.services.async_call.await_args_list
+        )

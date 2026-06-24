@@ -426,6 +426,35 @@ class TestRevealAutoAdvance:
         state.start_round.assert_not_awaited()
         assert state.phase == GamePhase.LOBBY
 
+    @pytest.mark.asyncio
+    async def test_end_game_restores_speaker_volume(self):
+        """#1516: end_game hands the speaker back at its pre-game volume."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        media = MagicMock()
+        media.set_volume = AsyncMock(return_value=True)
+        media.restore_volume = AsyncMock(return_value=True)
+        media.save_volume = MagicMock()
+        state._media_player_service = media
+
+        await state.end_game()
+
+        media.restore_volume.assert_awaited_once()
+
+    @pytest.mark.asyncio
+    async def test_set_volume_on_player_captures_pre_game_volume(self):
+        """#1516: the first in-game volume change snapshots the original level."""
+        state = make_game_state()
+        media = MagicMock()
+        media.set_volume = AsyncMock(return_value=True)
+        media.save_volume = MagicMock()
+        state._media_player_service = media
+
+        await state.set_volume_on_player(0.8)
+
+        media.save_volume.assert_called_once()
+        media.set_volume.assert_awaited_once_with(0.8)
+
 
 # ---------------------------------------------------------------------------
 # REVEAL countdown surface (#1048)

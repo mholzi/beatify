@@ -324,6 +324,39 @@ class MediaPlayerService:
         # systemic 'error' (which pauses the game). Reset before each song.
         self._stopped_for_cascade: bool = False
 
+        # #1516: the speaker's volume as it was BEFORE Beatify first changed it
+        # this game. Captured once (via save_volume) on the first in-game volume
+        # change so the host's original listening level can be handed back at
+        # game end. None = nothing to restore (Beatify never touched the volume).
+        self._saved_volume: float | None = None
+
+    def save_volume(self) -> None:
+        """Remember the speaker's current volume for later restore (#1516).
+
+        Idempotent: only the FIRST call per game captures a value. Subsequent
+        calls are no-ops so that repeated in-game volume adjustments don't
+        overwrite the genuine pre-game level with an already-Beatify-altered
+        one. ``restore_volume`` clears the capture, so the next game re-captures
+        fresh.
+        """
+        if self._saved_volume is None:
+            self._saved_volume = self.get_volume()
+
+    async def restore_volume(self) -> bool:
+        """Restore the volume captured by :meth:`save_volume` (#1516).
+
+        Returns:
+            True if a saved volume was applied, False if there was nothing to
+            restore (Beatify never changed the volume this game).
+        """
+        if self._saved_volume is None:
+            return False
+        level = self._saved_volume
+        # Clear BEFORE the await so a re-entrant call can't double-restore, and
+        # so the next game starts from a clean (uncaptured) slate.
+        self._saved_volume = None
+        return await self.set_volume(level)
+
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
         Set analytics storage for error recording (Story 19.1 AC: #2).
