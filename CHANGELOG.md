@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added 20 tracks to new community playlist "🌪️ Funk Carioca" — Brazilian baile funk hits spanning 2000–2018 (#1554).
+
 ## [4.2.0-rc1] - 2026-06-24
 
 Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a faster first round. See [docs/release-notes-v4.2.0-rc1.md](docs/release-notes-v4.2.0-rc1.md) for the user-facing notes.
