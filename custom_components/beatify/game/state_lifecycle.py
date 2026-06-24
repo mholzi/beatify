@@ -369,7 +369,13 @@ class RoundLifecycleMixin:
         return True
 
     def _ensure_media_player_service(self) -> None:
-        """Create MediaPlayerService lazily on first round."""
+        """Create MediaPlayerService lazily on first round.
+
+        Idempotent: if the service was already built (e.g. by the #1540 LOBBY
+        pre-warm — see :meth:`prewarm_media_player_service`), the
+        ``not self._media_player_service`` guard makes this a no-op, so the
+        round path keeps working unchanged whether or not the pre-warm ran.
+        """
         # Lazy import: only the concrete class for instantiation; type hints
         # use MediaPlayerProtocol (module-level) to keep the import graph acyclic.
         from custom_components.beatify.services.media_player import (  # noqa: PLC0415
@@ -386,6 +392,59 @@ class RoundLifecycleMixin:
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
                 self._media_player_service.set_analytics(self._stats_service._analytics)
+
+    def schedule_media_player_prewarm(self) -> None:
+        """Pre-warm the MediaPlayerService during LOBBY (#1540).
+
+        Follow-up to #803: ``_ensure_media_player_service`` builds the service
+        lazily on the first round, so on a cold Music Assistant start the first
+        round pays the construction + first-call (preflight) latency. This kicks
+        that work off in the background as soon as ``create_game`` has a media
+        player selected, so Round 1 starts without the cold-start lag.
+
+        Best-effort and non-blocking: ``create_game`` MUST NOT wait on this.
+        Requires ``_hass`` (the event loop owner) and a selected media player;
+        otherwise it silently no-ops and the lazy round path stays the fallback.
+        The actual warming runs in :meth:`prewarm_media_player_service`.
+        """
+        if not (self._hass and self.media_player):
+            return
+
+        async def _runner() -> None:
+            try:
+                await self.prewarm_media_player_service()
+            except Exception as err:  # noqa: BLE001 — pre-warm must never raise
+                _LOGGER.debug("Media player pre-warm failed (best-effort): %s", err)
+
+        # Use HA's tracked task helper when available so the warm-up is tied to
+        # the integration's lifecycle; fall back to a bare task otherwise (e.g.
+        # the slimmed-down hass stub used in unit tests).
+        creator = getattr(self._hass, "async_create_background_task", None)
+        if callable(creator):
+            creator(_runner(), name="beatify_media_player_prewarm")
+        else:
+            asyncio.create_task(_runner())  # noqa: RUF006 — fire-and-forget warm-up
+
+    async def prewarm_media_player_service(self) -> None:
+        """Construct + lightly probe the MediaPlayerService ahead of Round 1.
+
+        Builds the service via the idempotent :meth:`_ensure_media_player_service`
+        (so a later round-path call recycles this instance), then issues the same
+        cheap, read-only availability probe (``verify_responsive``) the round path
+        would otherwise pay on its first call — caching it so the first real
+        playback isn't the cold one. Any probe failure is swallowed: the round
+        path re-checks availability and surfaces real errors there.
+        """
+        self._ensure_media_player_service()
+        service = self._media_player_service
+        if service is None:
+            return
+        probe = getattr(service, "verify_responsive", None)
+        if callable(probe):
+            try:
+                await probe()
+            except Exception as err:  # noqa: BLE001 — probe is best-effort only
+                _LOGGER.debug("Media player pre-warm probe failed: %s", err)
 
     def _prepare_intro_round(self, song: dict) -> bool:
         """Determine if this is an intro round. Delegates to RoundManager."""

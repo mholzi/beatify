@@ -292,6 +292,13 @@ class GameSetupMixin:
 
         _LOGGER.info("Game created: %s with %d songs", self.game_id, len(songs))
 
+        # #1540: pre-warm the MediaPlayerService during LOBBY so Round 1 doesn't
+        # pay the construction + cold first-call (preflight) latency that #803
+        # tracked. Fire-and-forget / best-effort — must NOT block create_game.
+        # _ensure_media_player_service() stays the idempotent fallback if this
+        # didn't run (or hasn't finished) by the time the first round starts.
+        self.schedule_media_player_prewarm()
+
         return {
             "game_id": self.game_id,
             "join_url": self.join_url,
