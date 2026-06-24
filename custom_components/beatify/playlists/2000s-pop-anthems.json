@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "2000s",
     "pop",
@@ -1682,7 +1682,8 @@
         "es": "applemusic://track/1749002902",
         "nl": "applemusic://track/1749002902",
         "it": "applemusic://track/1749002902"
-      }
+      },
+      "uri_tidal": "tidal://track/23267439"
     },
     {
       "year": 2006,
@@ -6288,7 +6289,7 @@
         "it": "applemusic://track/1653454753"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0UTUAPJ1G-4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74210303",
       "uri_deezer": "deezer://track/662713",
       "fun_fact": "A chart hit by Sean Paul (2005).",
       "fun_fact_de": "Ein Chart-Hit von Sean Paul (2005).",
@@ -6313,7 +6314,7 @@
         "it": "applemusic://track/291805255"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-_t7YnKZOUc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11010228",
       "uri_deezer": "deezer://track/2200214",
       "fun_fact": "A chart hit by Peter Fox (2008).",
       "fun_fact_de": "Ein Chart-Hit von Peter Fox (2008).",
@@ -6338,7 +6339,7 @@
         "it": "applemusic://track/1834497088"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lKtmF_JQ98k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1219375",
       "uri_deezer": "deezer://track/953606",
       "fun_fact": "A chart hit by MIKA (2007).",
       "fun_fact_de": "Ein Chart-Hit von MIKA (2007).",
@@ -6363,7 +6364,7 @@
         "it": "applemusic://track/1699431226"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JmHXXf3p9lI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43419928",
       "uri_deezer": "deezer://track/71608366",
       "fun_fact": "A chart hit by Manu Chao (2008).",
       "fun_fact_de": "Ein Chart-Hit von Manu Chao (2008).",
@@ -6388,7 +6389,7 @@
         "it": "applemusic://track/908949044"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g_V6wqBlADw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/555115",
       "uri_deezer": "deezer://track/15489383",
       "alt_artists": [
         "Timbaland"
@@ -6416,7 +6417,7 @@
         "it": "applemusic://track/1308728510"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cn3HqvVkFj4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/9063123",
       "uri_deezer": "deezer://track/886889672",
       "fun_fact": "A chart hit by Steps (2001).",
       "fun_fact_de": "Ein Chart-Hit von Steps (2001).",
@@ -6433,7 +6434,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=wU26xVT_vBU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/124215",
       "uri_deezer": null,
       "fun_fact": "A chart hit by Daft Punk (2002).",
       "fun_fact_de": "Ein Chart-Hit von Daft Punk (2002).",
@@ -6458,7 +6459,7 @@
         "it": "applemusic://track/1539215862"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Aivzwnexylg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/161301486",
       "uri_deezer": "deezer://track/1134280742",
       "fun_fact": "A chart hit by Fedde Le Grand (2006).",
       "fun_fact_de": "Ein Chart-Hit von Fedde Le Grand (2006).",
@@ -6483,7 +6484,7 @@
         "it": "applemusic://track/1670727807"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=usvTbqTHwyw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1919425",
       "uri_deezer": "deezer://track/3169161",
       "fun_fact": "A chart hit by Katy Perry (2008).",
       "fun_fact_de": "Ein Chart-Hit von Katy Perry (2008).",
@@ -6508,7 +6509,7 @@
         "it": "applemusic://track/1755762817"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=q5GQ3IFqOUA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/235080211",
       "uri_deezer": "deezer://track/1802244787",
       "fun_fact": "A chart hit by Vengaboys (2000).",
       "fun_fact_de": "Ein Chart-Hit von Vengaboys (2000).",
@@ -6533,7 +6534,7 @@
         "it": "applemusic://track/1771109022"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=h_7P0O-RSiE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3990148",
       "uri_deezer": "deezer://track/2635211862",
       "alt_artists": [
         "Gary Pine"
@@ -6561,7 +6562,7 @@
         "it": "applemusic://track/1689511710"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uUL8a7eJCk8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1653995",
       "uri_deezer": "deezer://track/717358",
       "alt_artists": [
         "T-Pain"
@@ -6581,7 +6582,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=YZo-cb6GNS0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36507114",
       "uri_deezer": null,
       "fun_fact": "A chart hit by MadHouse (2000).",
       "fun_fact_de": "Ein Chart-Hit von MadHouse (2000).",
@@ -6606,7 +6607,7 @@
         "it": "applemusic://track/1559115647"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7BdJ06RfKJQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/579059",
       "uri_deezer": "deezer://track/1104527",
       "fun_fact": "A chart hit by Sugababes (2002).",
       "fun_fact_de": "Ein Chart-Hit von Sugababes (2002).",
@@ -6631,7 +6632,7 @@
         "it": "applemusic://track/1739511485"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8vfY1Y369OE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5121510",
       "uri_deezer": "deezer://track/62417689",
       "fun_fact": "A chart hit by Christina Aguilera (2006).",
       "fun_fact_de": "Ein Chart-Hit von Christina Aguilera (2006).",
@@ -6656,7 +6657,7 @@
         "it": "applemusic://track/1691654012"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ahZv0523mYM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/229701914",
       "uri_deezer": "deezer://track/1098747",
       "fun_fact": "A chart hit by Juanes (2002).",
       "fun_fact_de": "Ein Chart-Hit von Juanes (2002).",
@@ -6681,7 +6682,7 @@
         "it": "applemusic://track/1711666094"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=m2zUrruKjDQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23273347",
       "uri_deezer": "deezer://track/953097",
       "fun_fact": "A chart hit by The Killers (2007).",
       "fun_fact_de": "Ein Chart-Hit von The Killers (2007).",
@@ -6706,7 +6707,7 @@
         "it": "applemusic://track/1308508647"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xV1Kt9M5ON8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5128263",
       "uri_deezer": "deezer://track/4006939",
       "fun_fact": "A chart hit by Destiny's Child (2001).",
       "fun_fact_de": "Ein Chart-Hit von Destiny's Child (2001).",
