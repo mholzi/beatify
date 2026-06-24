@@ -35,9 +35,6 @@ def _stub_media_service() -> MagicMock:
 def _make_handler_game():
     mock_hass = MagicMock()
     gs = make_game_state()
-    # Inject a truthy stub service so the lazy _ensure_media_player_service is a
-    # no-op and real (hass-less) playback never runs during start_round.
-    gs._media_player_service = _stub_media_service()
     gs.create_game(
         playlists=["t.json"],
         songs=_ta_songs(3),
@@ -45,6 +42,10 @@ def _make_handler_game():
         base_url="http://h",
         title_artist_mode=True,
     )
+    # Inject a truthy stub service so the lazy _ensure_media_player_service is a
+    # no-op and real (hass-less) playback never runs during start_round. Must be
+    # after create_game, which nulls _media_player_service for a fresh game (#1526).
+    gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     mock_hass.data = {DOMAIN: {"game": gs}}
     handler = BeatifyWebSocketHandler(mock_hass)
