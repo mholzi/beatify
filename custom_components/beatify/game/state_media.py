@@ -59,7 +59,21 @@ class MediaControlMixin:
             True if successful, False if failed or no media player.
         """
         if self._media_player_service:
+            # #1516: capture the host's pre-game volume the first time Beatify
+            # changes it, so end_game can hand the speaker back at the user's
+            # original level. Idempotent — only the first call this game sticks.
+            self._media_player_service.save_volume()
             return await self._media_player_service.set_volume(level)
+        return False
+
+    async def restore_player_volume(self) -> bool:
+        """Restore the speaker to its pre-game volume (#1516).
+
+        No-op (returns False) when there is no media player or when Beatify
+        never changed the volume this game.
+        """
+        if self._media_player_service:
+            return await self._media_player_service.restore_volume()
         return False
 
     async def seek_forward(self, seconds: int) -> bool:

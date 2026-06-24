@@ -361,6 +361,10 @@ class GameSetupMixin:
         async with self._score_lock:
             # Issue #331: Restore lights before resetting
             await self.disable_party_lights()
+            # #1516: restore the speaker volume to its pre-game level (the host
+            # had to manually reset it after every game otherwise). No-op if
+            # Beatify never changed the volume this game.
+            await self.restore_player_volume()
             # Issue #447: Disable TTS
             await self.disable_tts()
             self._reset_game_internals()
