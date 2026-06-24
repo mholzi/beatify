@@ -49,6 +49,7 @@ from .server.views import (
     TtsTestView,
     PlayerView,
     PlaylistRequestsView,
+    MixPlaylistView,
     SavePlaylistView,
     SwJsView,
     RematchGameView,
@@ -234,6 +235,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(SongStatsView(hass))  # Story 19.7
         hass.http.register_view(PlaylistRequestsView(hass))  # Story 44
         hass.http.register_view(SavePlaylistView(hass))  # #1057
+        hass.http.register_view(MixPlaylistView(hass))  # #1538 — Smart Playlist Mixer
         hass.http.register_view(UsageView(hass))  # v3.3 Playlist Hub local stats
 
         # Register WebSocket endpoint via a stable dispatch closure that

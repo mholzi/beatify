@@ -15931,3 +15931,254 @@ body.theme-dark .your-result-stats .stat-value {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* ==========================================================================
+   Smart Playlist Mixer — "Mix" tab (#1538, design option 1 "chip-cloud")
+   Reuses the Beatify dark look (bg #0a0a12, pink #ff2d6a, cyan #00f5ff,
+   indigo #6366f1). Tokens: --color-accent-primary/secondary/brand,
+   --color-surface-dark, --color-border-neon, --color-text-neon-muted.
+   ========================================================================== */
+
+/* Playlist / Mix tab strip (sits above the playlist panels). */
+.playlist-tabs {
+    display: flex;
+    gap: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-neon);
+    margin-bottom: var(--space-md);
+}
+
+.playlist-tab {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 10px 2px;
+    margin-bottom: -1px;
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text-neon-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.playlist-tab:hover {
+    color: var(--color-text-white);
+}
+
+.playlist-tab.active {
+    color: var(--color-accent-secondary);
+    border-bottom-color: var(--color-accent-secondary);
+}
+
+.playlist-panel.hidden {
+    display: none;
+}
+
+/* Mix card */
+.mix-card {
+    background: var(--color-surface-dark);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+.mix-card-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.mix-card-icon {
+    font-size: 1.25rem;
+}
+
+.mix-card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text-white);
+}
+
+.mix-card-sub {
+    margin: 6px 0 var(--space-lg);
+    color: var(--color-text-neon-muted);
+    font-size: 0.9rem;
+}
+
+/* Chip-cloud rows (Decade / Style / Region / Special) */
+.mix-chip-cloud {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.mix-chip-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mix-chip-rowlabel {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+
+.mix-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mix-chip {
+    appearance: none;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-neon);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text-neon-muted);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mix-chip:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--color-text-white);
+}
+
+/* Active accents per category, matching the option-1 mockup. */
+.mix-chip-group[data-accent="cyan"] .mix-chip.active {
+    background: rgba(0, 245, 255, 0.15);
+    border-color: var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+}
+
+.mix-chip-group[data-accent="pink"] .mix-chip.active {
+    background: rgba(255, 45, 106, 0.15);
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+}
+
+.mix-chip-group[data-accent="indigo"] .mix-chip.active {
+    background: rgba(99, 102, 241, 0.18);
+    border-color: var(--color-accent-brand);
+    color: #a5b4fc;
+}
+
+.mix-empty {
+    color: var(--color-text-neon-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.mix-divider {
+    height: 1px;
+    background: var(--color-border-neon);
+    margin: var(--space-lg) 0;
+}
+
+/* Target-count segmented control (30 / 50 / 100) */
+.mix-count-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.mix-count-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+
+.mix-segmented {
+    display: inline-flex;
+    padding: 4px;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-neon);
+    border-radius: 10px;
+}
+
+.mix-seg {
+    appearance: none;
+    min-width: 56px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--color-text-neon-muted);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mix-seg:hover {
+    color: var(--color-text-white);
+}
+
+.mix-seg.active {
+    background: var(--color-accent-brand);
+    color: var(--color-text-white);
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.5);
+}
+
+/* Live preview line */
+.mix-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: var(--space-md) 0 var(--space-lg);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    background: rgba(0, 245, 255, 0.06);
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    color: var(--color-text-white);
+    font-size: 0.9rem;
+}
+
+.mix-preview-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1ed760;
+    box-shadow: 0 0 8px rgba(30, 215, 96, 0.8);
+    flex-shrink: 0;
+}
+
+/* Actions row */
+.mix-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.mix-actions .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.mix-save-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--color-text-neon-muted);
+    cursor: pointer;
+}
+
+#mix-error {
+    margin-top: var(--space-md);
+}

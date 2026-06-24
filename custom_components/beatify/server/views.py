@@ -58,6 +58,11 @@ from custom_components.beatify.server.playlist_views import (  # noqa: F401
     SavePlaylistView,
 )
 
+# Re-export mix view (#1538 — Smart Playlist Mixer)
+from custom_components.beatify.server.mix_views import (  # noqa: F401
+    MixPlaylistView,
+)
+
 # Re-export stats views
 from custom_components.beatify.server.stats_views import (  # noqa: F401
     AnalyticsPageView,
