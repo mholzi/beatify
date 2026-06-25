@@ -3838,23 +3838,8 @@ body.theme-dark .setting-hint {
     color: var(--color-text-neon-muted);
 }
 
-.ha-entity-list {
-    list-style: none;
-    padding: 0;
-    margin: var(--space-xs) 0 0 calc(var(--space-xs) + 24px);
-    font-size: 0.8rem;
-}
-
-.ha-entity-list li {
-    padding: 2px 0;
-    color: var(--color-text-muted);
-}
-
-.ha-entity-list code {
-    font-family: monospace;
-    font-size: 0.75rem;
-    opacity: 0.85;
-}
+/* #1138 cleanup: .ha-entity-list rules removed with the legacy flat
+   #ha-entities info section (deleted from admin.html). */
 
 .setting-label {
     display: flex;
@@ -10353,14 +10338,14 @@ body.wizard-active .modal { z-index: calc(var(--z-overlay) + 10); }
 /* When body is in home-mode: show the home-view card, hide only the setup/config sections.
    Runtime views (#admin-playing-*, #admin-reveal-*, #admin-end-*) stay untouched —
    home-mode is exited before any of those show anyway. */
+/* #1138 cleanup: #my-requests + #ha-entities selectors removed — those legacy
+   flat sections were deleted from admin.html. */
 body.home-mode #media-players,
 body.home-mode #music-service,
 body.home-mode #playlists,
-body.home-mode #my-requests,
 body.home-mode #game-settings,
 body.home-mode #party-lights,
 body.home-mode #tts-settings,
-body.home-mode #ha-entities,
 body.home-mode .admin-content > .admin-actions {
     display: none !important;
 }
