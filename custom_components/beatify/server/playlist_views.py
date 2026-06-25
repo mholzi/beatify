@@ -377,8 +377,7 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
             # ``rejected_songs`` the admin UI can render per track.
             if rejected_songs:
                 _LOGGER.info(
-                    "Playlist import '%s' rejected: %d song(s) failed "
-                    "validation: %s",
+                    "Playlist import '%s' rejected: %d song(s) failed validation: %s",
                     playlist.get("name", "?"),
                     len(rejected_songs),
                     summarize_rejected_songs(rejected_songs),
