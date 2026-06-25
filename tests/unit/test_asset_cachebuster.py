@@ -9,6 +9,7 @@ identical, so browsers / the service worker kept serving stale assets.
 from __future__ import annotations
 
 import re
+import threading
 from pathlib import Path
 
 import pytest
@@ -114,6 +115,52 @@ class TestAssetVersion:
     def test_apply_cache_tokens_passthrough_without_tokens(self) -> None:
         hass = _FakeHass("9.9.9")
         assert _apply_cache_tokens("no tokens here", hass) == "no tokens here"
+
+
+class TestAssetVersionThreadSafety:
+    """The fingerprint cache is read/written from the event loop AND HA
+    executor threads, so concurrent first-access must not race (#1592)."""
+
+    def setup_method(self) -> None:
+        base._ASSET_FP_CACHE = None
+
+    def test_concurrent_first_access_yields_one_consistent_fingerprint(
+        self, tmp_path
+    ) -> None:
+        _write(tmp_path, "css", "styles.css", "a {}")
+        _write(tmp_path, "js", "admin.js", "x")
+
+        n = 16
+        barrier = threading.Barrier(n)
+        results: list[str] = []
+        errors: list[BaseException] = []
+        lock = threading.Lock()
+
+        def worker() -> None:
+            try:
+                # Line all threads up so they hit the empty cache together.
+                barrier.wait()
+                av = _get_asset_version("9.9.9", tmp_path)
+            except BaseException as exc:  # noqa: BLE001 — surface any race crash
+                with lock:
+                    errors.append(exc)
+            else:
+                with lock:
+                    results.append(av)
+
+        threads = [threading.Thread(target=worker) for _ in range(n)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+
+        assert not errors, f"concurrent access raised: {errors}"
+        assert len(results) == n
+        # All threads must observe one identical fingerprint.
+        assert len(set(results)) == 1, results
+        assert results[0].startswith("9.9.9-")
+        # And the cache ends up populated exactly once.
+        assert base._ASSET_FP_CACHE is not None
 
 
 class TestServedPagesHaveNoUnresolvedTokens:
