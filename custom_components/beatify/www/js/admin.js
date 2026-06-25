@@ -261,8 +261,10 @@ let revealAdvanceOrigIcon = null;
 // STORAGE keys are still read here (BeatifyHome hydrate, force-reset cleanup);
 // PLATFORM_LABELS moved entirely into media-players.js with its renderer.
 
-// Setup sections to hide/show as a group
-const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'my-requests', 'party-lights', 'tts-settings', 'ha-entities'];
+// Setup sections to hide/show as a group.
+// #1138 cleanup: 'my-requests' + 'ha-entities' removed — those legacy flat
+// sections were deleted from admin.html (dead UI hidden under body.home-mode).
+const setupSections = ['media-players', 'music-service', 'playlists', 'game-settings', 'admin-actions', 'party-lights', 'tts-settings'];
 
 // Alias BeatifyUtils for convenience
 const utils = window.BeatifyUtils || {};
@@ -2066,13 +2068,10 @@ function setupPlaylistRequests() {
     const urlError = document.getElementById('spotify-url-error');
     const submitBtn = document.getElementById('request-submit-btn');
 
-    // Open request modal from button
-    document.getElementById('request-playlist-btn')?.addEventListener('click', () => {
-        if (requestModal) {
-            requestModal.classList.remove('hidden');
-            urlInput?.focus();
-        }
-    });
+    // #1138 cleanup: the #request-playlist-btn open-modal listener was removed
+    // along with the legacy flat #my-requests section that hosted the button.
+    // The Request Custom Playlist modal is opened by the live wizard
+    // (#wiz-request-playlist) and the Playlist Hub (onRequestClick) instead.
 
     // Close request modal
     document.getElementById('request-cancel-btn')?.addEventListener('click', () => {
