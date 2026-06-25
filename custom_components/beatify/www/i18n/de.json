@@ -577,7 +577,27 @@
       "needPlayerToStart": "Als Spieler beitreten (oder Gäste lassen den QR-Code scannen), bevor das Spiel beginnt.",
       "wsReconnecting": "Verbindung zum Spielserver wird wiederhergestellt – bitte erneut versuchen.",
       "waitingForGuests": "Warte auf Gäste…"
-    }
+    },
+    "startRematchFailed": "Neustart konnte nicht gestartet werden",
+    "startGameplayFailed": "Spiel konnte nicht gestartet werden",
+    "noPlaylistsFoundHint": "Keine Playlisten gefunden. Füge Playlist-JSON-Dateien hinzu unter:",
+    "howToCreatePlaylists": "Playlisten erstellen",
+    "noPlaylistsMatchFilter": "Keine Playlisten passen zum gewählten Filter.",
+    "clearFilters": "Filter zurücksetzen",
+    "noCompatiblePlayersTitle": "🎵 Keine kompatiblen Player gefunden",
+    "noCompatiblePlayersDesc": "Beatify funktioniert mit Music Assistant, Sonos und Alexa Playern.",
+    "recommendedLabel": "Empfohlen:",
+    "installMusicAssistant": "Installiere Music Assistant für das beste Erlebnis mit jedem Lautsprecher.",
+    "musicAssistantSetupGuide": "📖 Music Assistant Einrichtungsanleitung",
+    "refresh": "🔄 Aktualisieren",
+    "requestStatusPending": "⏳ Ausstehend",
+    "requestStatusReady": "✅ Bereit",
+    "requestStatusInstalled": "✓ Installiert",
+    "requestStatusDeclined": "❌ Abgelehnt",
+    "seasonalReasonCarnival": "Karnevalszeit — Kölsche Hits für Weiberfastnacht & Rosenmontag.",
+    "seasonalReasonEurovision": "Eurovision-Zeit — spiele die Gewinner von 1956 bis heute.",
+    "seasonalReasonWorldCup": "WM-Fieber — Hymnen für jede Spieltags-Party.",
+    "seasonalReasonSummer": "Der Sommer ist da — 100 Hymnen für die Gartenparty."
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

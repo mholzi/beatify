@@ -19,6 +19,7 @@
  */
 
 import { adminState } from '../state.js';
+import { tr } from '../util.js';
 
 const utils = () => window.BeatifyUtils || {};
 
@@ -47,7 +48,9 @@ export const SEASONAL_OCCASIONS = [
         // pragmatic approximation that comfortably brackets the typical dates.
         start: '01-20',
         end: '02-20',
-        // Short reason shown under the title; English to match GitHub/UI copy.
+        // Short reason shown under the title. `reasonKey` routes through i18n
+        // (#1577); `reason` is the English fallback when i18n is unavailable.
+        reasonKey: 'admin.seasonalReasonCarnival',
         reason: 'Carnival season is here — Kölsche hits for Weiberfastnacht & Rosenmontag.',
     },
     {
@@ -57,6 +60,7 @@ export const SEASONAL_OCCASIONS = [
         // ESC grand final is mid-May; surface it for the weeks around it.
         start: '04-25',
         end: '05-20',
+        reasonKey: 'admin.seasonalReasonEurovision',
         reason: 'Eurovision time — play the winners from 1956 to today.',
     },
     {
@@ -66,6 +70,7 @@ export const SEASONAL_OCCASIONS = [
         // FIFA World Cup 2026 runs mid-June to mid-July.
         start: '06-11',
         end: '07-19',
+        reasonKey: 'admin.seasonalReasonWorldCup',
         reason: 'World Cup fever — anthems for every match-day party.',
     },
     {
@@ -74,6 +79,7 @@ export const SEASONAL_OCCASIONS = [
         emoji: '☀️',
         start: '06-01',
         end: '08-31',
+        reasonKey: 'admin.seasonalReasonSummer',
         reason: 'Summer is on — 100 anthems for the garden party.',
     },
 ];
@@ -164,7 +170,7 @@ export function seasonalSuggestionHtml(filteredPlaylists, now = new Date()) {
             <button type="button" class="seasonal-suggestion__dismiss"
                     aria-label="Dismiss seasonal suggestion">×</button>
             <div class="seasonal-suggestion__title">${esc(playlist.name)}</div>
-            <div class="seasonal-suggestion__reason">${esc(occasion.reason)}</div>
+            <div class="seasonal-suggestion__reason">${esc(tr(occasion.reasonKey, occasion.reason))}</div>
             <button type="button" class="seasonal-suggestion__add btn btn-primary">Add</button>
         </div>
     `;

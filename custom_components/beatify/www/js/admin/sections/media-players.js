@@ -22,6 +22,7 @@
 import { adminState } from '../state.js';
 import { STORAGE_LAST_PLAYER, PLATFORM_LABELS } from '../constants.js';
 import { updateStartButtonState } from './playlists.js';
+import { tr } from '../util.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -64,16 +65,16 @@ export function renderMediaPlayers(players) {
         // No compatible players found - show setup message with MA link
         container.innerHTML = `
             <div class="no-players-message">
-                <h3>🎵 No Compatible Players Found</h3>
-                <p>Beatify works with Music Assistant, Sonos, and Alexa players.</p>
-                <p><strong>Recommended:</strong> Install Music Assistant for the best experience with any speaker.</p>
+                <h3>${tr('admin.noCompatiblePlayersTitle', '🎵 No Compatible Players Found')}</h3>
+                <p>${tr('admin.noCompatiblePlayersDesc', 'Beatify works with Music Assistant, Sonos, and Alexa players.')}</p>
+                <p><strong>${tr('admin.recommendedLabel', 'Recommended:')}</strong> ${tr('admin.installMusicAssistant', 'Install Music Assistant for the best experience with any speaker.')}</p>
                 <div class="button-group">
                     <a href="https://music-assistant.io/getting-started/"
                        target="_blank" class="btn btn-secondary">
-                        📖 Music Assistant Setup Guide
+                        ${tr('admin.musicAssistantSetupGuide', '📖 Music Assistant Setup Guide')}
                     </a>
                     <button onclick="loadStatus()" class="btn btn-primary">
-                        🔄 Refresh
+                        ${tr('admin.refresh', '🔄 Refresh')}
                     </button>
                 </div>
             </div>
