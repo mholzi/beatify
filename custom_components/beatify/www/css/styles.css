@@ -16267,3 +16267,94 @@ body.theme-dark .your-result-stats .stat-value {
 #mix-error {
     margin-top: var(--space-md);
 }
+
+/* Tracklist preview (#1586) */
+.mix-tracklist-row {
+    margin: var(--space-sm) 0;
+}
+
+.mix-tracklist-row .btn-sm {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+}
+
+.mix-tracklist {
+    margin: var(--space-sm) 0 var(--space-md);
+    max-height: 280px;
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    background: rgba(0, 245, 255, 0.04);
+}
+
+.mix-tracklist.hidden {
+    display: none;
+}
+
+.mix-tracklist-head {
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+    border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+    position: sticky;
+    top: 0;
+    background: rgba(10, 12, 24, 0.92);
+}
+
+.mix-tracklist-empty {
+    margin: 0;
+    padding: 14px;
+    font-size: 0.9rem;
+    color: var(--color-text-neon-muted);
+}
+
+.mix-track-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    counter-reset: mix-track;
+}
+
+.mix-track {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 14px;
+    font-size: 0.88rem;
+    color: var(--color-text-white);
+}
+
+.mix-track::before {
+    counter-increment: mix-track;
+    content: counter(mix-track);
+    flex-shrink: 0;
+    min-width: 1.8em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-neon-muted);
+    opacity: 0.7;
+}
+
+.mix-track-title {
+    font-weight: 500;
+}
+
+.mix-track-artist {
+    color: var(--color-text-neon-muted);
+}
+
+.mix-track-artist::before {
+    content: "— ";
+}
+
+.mix-track-year {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--color-text-neon-muted);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.7;
+}

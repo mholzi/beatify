@@ -20,7 +20,20 @@
 import { adminState } from '../state.js';
 import { TAG_CATEGORIES } from '../constants.js';
 
-const utils = window.BeatifyUtils || {};
+const utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
+
+/**
+ * HTML-escape for the data-driven tracklist preview (#1586). Prefers the shared
+ * BeatifyUtils.escapeHtml when present (browser), but falls back to a pure
+ * regex escape so the markup builders stay testable in the DOM-less vitest env.
+ */
+const escapeHtml = (value) => {
+    if (utils && typeof utils.escapeHtml === 'function') return utils.escapeHtml(value);
+    return String(value === null || value === undefined ? '' : value)
+        .replace(/[&<>"']/g, (ch) => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+        ));
+};
 
 // Module-local mixer selection (does not cross a module boundary).
 const mixState = {
@@ -31,8 +44,8 @@ const mixState = {
 };
 
 const t = (key, fallback) =>
-    (window.BeatifyI18n && BeatifyI18n.t)
-        ? (BeatifyI18n.t(key) !== key ? BeatifyI18n.t(key) : fallback)
+    (typeof window !== 'undefined' && window.BeatifyI18n && window.BeatifyI18n.t)
+        ? (window.BeatifyI18n.t(key) !== key ? window.BeatifyI18n.t(key) : fallback)
         : fallback;
 
 /**
@@ -136,12 +149,22 @@ function setTargetCount(count) {
 function updateMixPreview() {
     const textEl = document.getElementById('mix-preview-text');
     const startBtn = document.getElementById('mix-start');
+    const previewBtn = document.getElementById('mix-preview-btn');
     if (!textEl) return;
+
+    // Any selection change makes a previously-fetched tracklist stale — collapse
+    // it so the host never sees a preview that no longer matches the chips.
+    hideMixTracklist();
+
+    const enableActions = (on) => {
+        if (startBtn) startBtn.disabled = !on;
+        if (previewBtn) previewBtn.disabled = !on;
+    };
 
     const tags = mixState.selectedTags;
     if (tags.size === 0) {
         textEl.textContent = t('admin.mixPreviewEmpty', 'Select tags to preview your mix.');
-        if (startBtn) startBtn.disabled = true;
+        enableActions(false);
         return;
     }
 
@@ -157,7 +180,7 @@ function updateMixPreview() {
 
     if (matchedPlaylists === 0) {
         textEl.textContent = t('admin.mixPreviewNone', 'No playlists match these tags.');
-        if (startBtn) startBtn.disabled = true;
+        enableActions(false);
         return;
     }
 
@@ -166,12 +189,125 @@ function updateMixPreview() {
     textEl.textContent = tmpl
         .replace('{songs}', String(est))
         .replace('{playlists}', String(matchedPlaylists));
-    if (startBtn) startBtn.disabled = false;
+    enableActions(true);
 }
 
 function scheduleMixPreview() {
     clearTimeout(mixState._previewTimer);
     mixState._previewTimer = setTimeout(updateMixPreview, 60);
+}
+
+/**
+ * Build the tracklist-preview markup from the backend's `preview` response
+ * (#1586). Pure (no DOM / no globals beyond the i18n + escape helpers) so it
+ * stays unit-testable in the DOM-less vitest env. `tracks` is the array of
+ * `{ title, artist, year }` the mix endpoint returns for `preview: true`.
+ */
+export function _mixTracklistHtml(tracks) {
+    const list = Array.isArray(tracks) ? tracks : [];
+    if (list.length === 0) {
+        return `<p class="mix-tracklist-empty">${escapeHtml(
+            t('admin.mixTracklistEmpty', 'No tracks to preview.'),
+        )}</p>`;
+    }
+
+    const heading = t('admin.mixTracklistHeading', '{count} tracks in this mix')
+        .replace('{count}', String(list.length));
+
+    const items = list.map((track) => {
+        const title = escapeHtml(track.title || '');
+        const artist = escapeHtml(track.artist || '');
+        const year = track.year
+            ? ` <span class="mix-track-year">${escapeHtml(String(track.year))}</span>`
+            : '';
+        return `<li class="mix-track">`
+            + `<span class="mix-track-title">${title}</span>`
+            + `<span class="mix-track-artist">${artist}</span>${year}</li>`;
+    }).join('');
+
+    return `<p class="mix-tracklist-head">${escapeHtml(heading)}</p>`
+        + `<ol class="mix-track-list">${items}</ol>`;
+}
+
+/** Render (and reveal) the tracklist preview into the hub-rendered container. */
+function renderMixTracklist(tracks) {
+    const el = document.getElementById('mix-tracklist');
+    if (!el) return;
+    el.innerHTML = _mixTracklistHtml(tracks);
+    el.classList.remove('hidden');
+    document.getElementById('mix-preview-btn')?.setAttribute('aria-expanded', 'true');
+}
+
+/** Collapse + empty the tracklist preview (selection changed / not yet fetched). */
+function hideMixTracklist() {
+    const el = document.getElementById('mix-tracklist');
+    if (!el) return;
+    el.classList.add('hidden');
+    el.innerHTML = '';
+    document.getElementById('mix-preview-btn')?.setAttribute('aria-expanded', 'false');
+}
+
+/**
+ * "Preview tracklist": ask the backend to assemble + de-dupe the mix in
+ * preview mode (no file written) and render the resulting tracklist so the host
+ * sees exactly which songs land in the mix before committing (#1586). Reuses
+ * the same `/beatify/api/playlists/mix` endpoint + payload as `startMix`, only
+ * with `preview: true`.
+ */
+async function previewMixTracklist() {
+    clearMixError();
+    const btn = document.getElementById('mix-preview-btn');
+
+    if (mixState.selectedTags.size === 0) {
+        showMixError(t('admin.mixNoTagsSelected', 'Select at least one tag.'));
+        return;
+    }
+
+    const origText = btn ? btn.textContent : '';
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = t('admin.mixPreviewLoading', 'Loading preview…');
+    }
+
+    try {
+        const auth = window.BeatifyAuth;
+        const fetcher = (auth && typeof auth.fetch === 'function')
+            ? auth.fetch.bind(auth)
+            : window.fetch.bind(window);
+
+        const response = await fetcher('/beatify/api/playlists/mix', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                tags: Array.from(mixState.selectedTags),
+                target_count: mixState.targetCount,
+                provider: adminState.selectedProvider,
+                preview: true,
+            }),
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            let msg = data.message || t('admin.mixFailed', 'Failed to assemble mix.');
+            if (data.code && window.BeatifyI18n) {
+                const key = 'errors.' + String(data.code).toUpperCase();
+                const tr = BeatifyI18n.t(key);
+                if (tr && tr !== key) msg = tr;
+            }
+            showMixError(msg);
+            return;
+        }
+
+        renderMixTracklist(data.tracks || []);
+    } catch (err) {
+        console.error('[Beatify] previewMixTracklist failed:', err);
+        showMixError(t('admin.mixFailed', 'Failed to assemble mix.'));
+    } finally {
+        if (btn) {
+            btn.textContent = origText;
+            btn.disabled = false;
+        }
+    }
 }
 
 /** Provider-specific song count for a playlist (mirrors playlists.js logic). */
@@ -305,6 +441,7 @@ export function bindMixPanel() {
         seg.addEventListener('click', () => setTargetCount(parseInt(seg.dataset.mixCount, 10)));
     });
     startBtn.addEventListener('click', startMix);
+    document.getElementById('mix-preview-btn')?.addEventListener('click', previewMixTracklist);
 
     // Chips populate once loadStatus() has filled adminState.playlistData;
     // renderMixChipCloud is also called from admin.js on each (re)load and by
