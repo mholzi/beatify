@@ -205,3 +205,53 @@ export function wireSeasonalSuggestion(container, onToggle, now = new Date()) {
         chip.remove();
     });
 }
+
+/**
+ * #1570: hub-friendly variant of wireSeasonalSuggestion for the Playlist Hub
+ * (playlist-hub.js), which owns its own selection model instead of the flat
+ * #playlists-list checkboxes. The flat list is dead UI since rc11/#1138, so the
+ * chip never surfaced on the live wizard step-3 picker — the same mount gap the
+ * Mix tab hit (#1568/#1569).
+ *
+ * Identical to wireSeasonalSuggestion except the Add path delegates to the
+ * supplied `onAdd(path)` callback (the hub adds the path to its selection and
+ * re-renders) rather than toggling a checkbox. The occasion calendar, chip
+ * markup and the per-season dismiss logic are shared verbatim with the flat
+ * list — only the selection coupling differs.
+ *
+ * @param {HTMLElement} container  the element holding the rendered chip
+ * @param {(path: string) => void} onAdd  hub selection hook
+ * @param {Date} [now]
+ */
+export function wireSeasonalSuggestionHub(container, onAdd, now = new Date()) {
+    const chip = container?.querySelector('.seasonal-suggestion');
+    if (!chip) return;
+    const occasionId = chip.dataset.occasion;
+    const occasion = SEASONAL_OCCASIONS.find((o) => o.id === occasionId);
+    const path = chip.dataset.playlistPath;
+
+    const addBtn = chip.querySelector('.seasonal-suggestion__add');
+    addBtn?.addEventListener('click', () => {
+        if (path && typeof onAdd === 'function') onAdd(path); // hub selection API
+        chip.remove();
+    });
+
+    const dismissBtn = chip.querySelector('.seasonal-suggestion__dismiss');
+    dismissBtn?.addEventListener('click', () => {
+        if (occasion) markDismissed(occasion, now);
+        chip.remove();
+    });
+}
+
+// #1570: the Playlist Hub (playlist-hub.js) is loaded as a standalone <script
+// type="module"> and can't import this bundled module without duplicating
+// admin/state.js. Expose the seasonal API on window — the same cross-module
+// bridge the Smart Playlist Mixer uses (window.BeatifyMixPanel, #1568/#1569) —
+// so the hub can render + wire the chip from its own (filtered) playlist set.
+if (typeof window !== 'undefined') {
+    window.BeatifySeasonal = {
+        pickSeasonalSuggestion,
+        seasonalSuggestionHtml,
+        wireSeasonalSuggestionHub,
+    };
+}

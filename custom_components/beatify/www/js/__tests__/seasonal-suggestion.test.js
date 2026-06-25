@@ -22,7 +22,7 @@ vi.mock('../admin/state.js', () => ({
     adminState: { selectedPlaylists: [] },
 }));
 
-const { pickSeasonalSuggestion, SEASONAL_OCCASIONS } = await import(
+const { pickSeasonalSuggestion, SEASONAL_OCCASIONS, wireSeasonalSuggestionHub } = await import(
     '../admin/sections/seasonal-suggestion.js'
 );
 const { adminState } = await import('../admin/state.js');
@@ -129,5 +129,62 @@ describe('#1539 occasion priority during overlapping windows', () => {
     it('shows World Cup even if its playlist is the only seasonal one present', () => {
         const now = new Date('2026-06-15T12:00:00');
         expect(pickSeasonalSuggestion([WORLDCUP, FILLER], now)?.occasion.id).toBe('worldcup');
+    });
+});
+
+describe('#1570 hub-friendly wiring (wireSeasonalSuggestionHub)', () => {
+    // vitest env is `node` (no DOM): build minimal fakes for just the surface
+    // wireSeasonalSuggestionHub touches — querySelector + addEventListener +
+    // dataset + remove(). Verifies the Add path delegates to onAdd(path)
+    // (hub selection model) and the Dismiss path reuses the per-season flag.
+    const fakeBtn = () => {
+        const node = { _click: null, addEventListener: (ev, fn) => { if (ev === 'click') node._click = fn; }, click: () => node._click && node._click() };
+        return node;
+    };
+    const fakeChip = (occasionId, path) => {
+        const add = fakeBtn();
+        const dismiss = fakeBtn();
+        const chip = {
+            dataset: { occasion: occasionId, playlistPath: path },
+            removed: false,
+            remove() { this.removed = true; },
+            querySelector(sel) {
+                if (sel === '.seasonal-suggestion__add') return add;
+                if (sel === '.seasonal-suggestion__dismiss') return dismiss;
+                return null;
+            },
+        };
+        return { chip, add, dismiss };
+    };
+    const fakeContainer = (chip) => ({ querySelector: (sel) => (sel === '.seasonal-suggestion' ? chip : null) });
+
+    it('exports the hub variant', () => {
+        expect(typeof wireSeasonalSuggestionHub).toBe('function');
+    });
+
+    it('Add delegates to onAdd(path) and removes the chip', () => {
+        const { chip, add } = fakeChip('carnival', CARNIVAL.path);
+        const added = [];
+        wireSeasonalSuggestionHub(fakeContainer(chip), (p) => added.push(p), new Date('2026-02-10T12:00:00'));
+        add.click();
+        expect(added).toEqual([CARNIVAL.path]);
+        expect(chip.removed).toBe(true);
+    });
+
+    it('Dismiss writes the per-season flag and removes the chip', () => {
+        const { chip, dismiss } = fakeChip('carnival', CARNIVAL.path);
+        const now = new Date('2026-02-10T12:00:00');
+        wireSeasonalSuggestionHub(fakeContainer(chip), () => {}, now);
+        dismiss.click();
+        expect(store['beatify_seasonal_dismissed_carnival_2026']).toBe('1');
+        expect(chip.removed).toBe(true);
+        // The same flag the picker honours → chip won't re-suggest this season.
+        expect(pickSeasonalSuggestion([CARNIVAL], now)).toBeNull();
+    });
+
+    it('is a no-op when no chip is present', () => {
+        let called = false;
+        expect(() => wireSeasonalSuggestionHub(fakeContainer(null), () => { called = true; })).not.toThrow();
+        expect(called).toBe(false);
     });
 });
