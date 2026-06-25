@@ -111,11 +111,14 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Lint JS (ESLint)
+        run: npm run lint
+
       - name: Verify min.js bundles match source
         run: npm run build:check
 
-      - name: Run JS unit tests (vitest)
-        run: npm test
+      - name: Run JS unit tests with coverage (vitest)
+        run: npm run test:coverage
 
   # ==========================================================================
   # STAGE 2: TEST
