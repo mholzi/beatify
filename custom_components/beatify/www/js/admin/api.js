@@ -407,13 +407,18 @@ export function handleAdminWsMessage(data) {
                     connectAdminWebSocket();
                 });
             } else if (data.code === 'NAME_TAKEN' || data.code === 'NAME_INVALID') {
+                // #1579: the join was rejected — un-stick the modal so the host
+                // can retry cleanly. The modal may already be closed (the join is
+                // sent optimistically), in which case openAdminJoinModal() also
+                // resets on reopen; this handles the case where it is still open.
                 deps.showError(data.message);
                 deps.setIsPlaying(false);
                 deps.setAdminPlayerName(null);
                 var joinBtn = document.getElementById('admin-join-btn');
                 if (joinBtn) {
                     joinBtn.disabled = false;
-                    joinBtn.textContent = BeatifyI18n.t('admin.join');
+                    joinBtn.textContent =
+                        (window.BeatifyI18n && BeatifyI18n.t('admin.join')) || 'Join';
                 }
             } else if (startPending) {
                 // #949: a start_game rejection — MEDIA_PLAYER_UNAVAILABLE,

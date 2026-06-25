@@ -1492,8 +1492,35 @@ function openAdminJoinModal() {
 
     const modal = document.getElementById('admin-join-modal');
     if (modal) {
+        // #1579: always reopen in the idle state. Without this, a button left
+        // disabled on "Joining…"/"Connecting…" by a prior attempt (NAME_TAKEN /
+        // NAME_INVALID error, or a WS reconnect that closed the modal mid-join)
+        // stayed visible on the next open, so the user couldn't retry cleanly.
+        resetAdminJoinModalState();
         modal.classList.remove('hidden');
         document.getElementById('admin-name-input')?.focus();
+    }
+}
+
+/**
+ * #1579: Reset the join button + label + inline error back to the idle state.
+ * Single source of truth for "idle" so open, close and the error path all agree:
+ * label is "Join", and the button is enabled only when the current input holds a
+ * valid name (non-empty, ≤20 chars). Does NOT clear the typed name — the caller
+ * decides that (close clears it; open/error-retry keeps it so the user can edit).
+ */
+function resetAdminJoinModalState() {
+    const nameInput = document.getElementById('admin-name-input');
+    const joinBtn = document.getElementById('admin-join-btn');
+    const errorMsg = document.getElementById('admin-name-error');
+    if (joinBtn) {
+        joinBtn.textContent = BeatifyI18n.t('admin.join');
+        const name = nameInput ? nameInput.value.trim() : '';
+        joinBtn.disabled = !name || name.length > 20;
+    }
+    if (errorMsg) {
+        errorMsg.classList.add('hidden');
+        errorMsg.textContent = '';
     }
 }
 
@@ -1505,16 +1532,10 @@ function closeAdminJoinModal() {
     if (modal) {
         modal.classList.add('hidden');
     }
-    // Reset form
+    // Reset form — clear the name, then converge on the shared idle state.
     const nameInput = document.getElementById('admin-name-input');
-    const joinBtn = document.getElementById('admin-join-btn');
-    const errorMsg = document.getElementById('admin-name-error');
     if (nameInput) nameInput.value = '';
-    if (joinBtn) {
-        joinBtn.disabled = true;
-        joinBtn.textContent = BeatifyI18n.t('admin.join');
-    }
-    if (errorMsg) errorMsg.classList.add('hidden');
+    resetAdminJoinModalState();
 }
 
 /**
