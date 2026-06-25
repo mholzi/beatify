@@ -577,7 +577,27 @@
       "needPlayerToStart": "Join as player (or ask a guest to scan the QR) before starting.",
       "wsReconnecting": "Reconnecting to game server — please try again.",
       "waitingForGuests": "Waiting for guests…"
-    }
+    },
+    "startRematchFailed": "Failed to start rematch",
+    "startGameplayFailed": "Failed to start gameplay",
+    "noPlaylistsFoundHint": "No playlists found. Add playlist JSON files to:",
+    "howToCreatePlaylists": "How to create playlists",
+    "noPlaylistsMatchFilter": "No playlists match the selected filter.",
+    "clearFilters": "Clear Filters",
+    "noCompatiblePlayersTitle": "🎵 No Compatible Players Found",
+    "noCompatiblePlayersDesc": "Beatify works with Music Assistant, Sonos, and Alexa players.",
+    "recommendedLabel": "Recommended:",
+    "installMusicAssistant": "Install Music Assistant for the best experience with any speaker.",
+    "musicAssistantSetupGuide": "📖 Music Assistant Setup Guide",
+    "refresh": "🔄 Refresh",
+    "requestStatusPending": "⏳ Pending",
+    "requestStatusReady": "✅ Ready",
+    "requestStatusInstalled": "✓ Installed",
+    "requestStatusDeclined": "❌ Declined",
+    "seasonalReasonCarnival": "Carnival season is here — Kölsche hits for Weiberfastnacht & Rosenmontag.",
+    "seasonalReasonEurovision": "Eurovision time — play the winners from 1956 to today.",
+    "seasonalReasonWorldCup": "World Cup fever — anthems for every match-day party.",
+    "seasonalReasonSummer": "Summer is on — 100 anthems for the garden party."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

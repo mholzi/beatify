@@ -1182,7 +1182,7 @@ async function startGameplay() {
         const data = await response.json();
 
         if (!response.ok) {
-            showError(data.message || 'Failed to start gameplay');
+            showError(data.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startGameplayFailed')) || 'Failed to start gameplay');
             return;
         }
 
@@ -1417,11 +1417,11 @@ async function confirmRematch() {
             await loadStatus();
         } else {
             var errData = await response.json();
-            alert(errData.message || 'Failed to start rematch');
+            alert(errData.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
         }
     } catch (error) {
         console.error('Rematch failed:', error);
-        alert('Failed to start rematch');
+        alert((window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
     } finally {
         rematchInProgress = false;
         // Restore button state (in case of error)

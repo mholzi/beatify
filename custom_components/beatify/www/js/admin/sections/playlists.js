@@ -22,6 +22,7 @@
 import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS, TAG_CATEGORIES } from '../constants.js';
 import { seasonalSuggestionHtml, wireSeasonalSuggestion } from './seasonal-suggestion.js';
+import { tr } from '../util.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -67,11 +68,11 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
     if (!adminState.playlistData || adminState.playlistData.length === 0) {
         // AC2: No playlists error with documentation link
         const docsLink = adminState.playlistDocsUrl
-            ? `<a href="${utils.escapeHtml(adminState.playlistDocsUrl)}" target="_blank" rel="noopener">How to create playlists</a>`
+            ? `<a href="${utils.escapeHtml(adminState.playlistDocsUrl)}" target="_blank" rel="noopener">${tr('admin.howToCreatePlaylists', 'How to create playlists')}</a>`
             : '';
         container.innerHTML = `
             <div class="empty-state">
-                <p class="status-error">No playlists found. Add playlist JSON files to:</p>
+                <p class="status-error">${tr('admin.noPlaylistsFoundHint', 'No playlists found. Add playlist JSON files to:')}</p>
                 <p style="font-size: 14px;"><code>${utils.escapeHtml(playlistDir)}</code></p>
                 ${docsLink ? `<p style="margin-top: 12px;">${docsLink}</p>` : ''}
             </div>
@@ -85,8 +86,8 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
     if (filteredPlaylists.length === 0) {
         container.innerHTML = `
             <div class="empty-state">
-                <p>No playlists match the selected filter.</p>
-                <button type="button" class="btn btn-secondary" onclick="clearPlaylistFilters()">Clear Filters</button>
+                <p>${tr('admin.noPlaylistsMatchFilter', 'No playlists match the selected filter.')}</p>
+                <button type="button" class="btn btn-secondary" onclick="clearPlaylistFilters()">${tr('admin.clearFilters', 'Clear Filters')}</button>
             </div>
         `;
         return;

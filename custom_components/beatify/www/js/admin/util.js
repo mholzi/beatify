@@ -66,7 +66,28 @@ export function groupPlayersByPlatform(players) {
     return groups;
 }
 
+// --- i18n helper -----------------------------------------------------------
+/**
+ * Resolve a translation key via the global BeatifyI18n module, falling back to
+ * the supplied English string when i18n is unavailable (e.g. in unit tests /
+ * before the module loads) or the key is missing. BeatifyI18n.t() returns the
+ * key itself for a missing translation, so we treat that as "not found".
+ * @param {string} key
+ * @param {string} fallback
+ * @returns {string}
+ */
+export function tr(key, fallback) {
+    const m = (typeof window !== 'undefined') && window.BeatifyI18n;
+    if (m && typeof m.t === 'function') {
+        const v = m.t(key);
+        if (typeof v === 'string' && v && v !== key) return v;
+    }
+    return fallback;
+}
+
 // --- request-row rendering -------------------------------------------------
+// English fallbacks (with status emoji). The live label is resolved through
+// i18n at render time so German-first hosts don't see hard English (#1577).
 export const REQUEST_STATUS_LABELS = {
     pending: '⏳ Pending',
     ready: '✅ Ready',
@@ -74,11 +95,21 @@ export const REQUEST_STATUS_LABELS = {
     declined: '❌ Declined',
 };
 
+const REQUEST_STATUS_I18N_KEYS = {
+    pending: 'admin.requestStatusPending',
+    ready: 'admin.requestStatusReady',
+    installed: 'admin.requestStatusInstalled',
+    declined: 'admin.requestStatusDeclined',
+};
+
 /**
  * Build the HTML for one request row (legacy #my-requests-list card).
  */
 export function buildRequestRowHtml(request) {
-    const statusLabel = REQUEST_STATUS_LABELS[request.status] || request.status;
+    const i18nKey = REQUEST_STATUS_I18N_KEYS[request.status];
+    const statusLabel = i18nKey
+        ? tr(i18nKey, REQUEST_STATUS_LABELS[request.status])
+        : (REQUEST_STATUS_LABELS[request.status] || request.status);
     const playlistName = escapeHtml(request.playlist_name || request.name || 'Untitled request');
     const relativeTime = request.relative_time || '';
     const updateBtn = (request.status === 'ready' && request.update_available)

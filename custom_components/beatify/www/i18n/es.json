@@ -559,7 +559,27 @@
       "needPlayerToStart": "Únete como jugador (o pide a un invitado que escanee el QR) antes de empezar.",
       "wsReconnecting": "Reconectando con el servidor del juego — inténtalo de nuevo.",
       "waitingForGuests": "Esperando a los invitados…"
-    }
+    },
+    "startRematchFailed": "No se pudo iniciar la revancha",
+    "startGameplayFailed": "No se pudo iniciar el juego",
+    "noPlaylistsFoundHint": "No se encontraron listas. Añade archivos JSON de listas en:",
+    "howToCreatePlaylists": "Cómo crear listas de reproducción",
+    "noPlaylistsMatchFilter": "Ninguna lista coincide con el filtro seleccionado.",
+    "clearFilters": "Borrar filtros",
+    "noCompatiblePlayersTitle": "🎵 No se encontraron reproductores compatibles",
+    "noCompatiblePlayersDesc": "Beatify funciona con reproductores Music Assistant, Sonos y Alexa.",
+    "recommendedLabel": "Recomendado:",
+    "installMusicAssistant": "Instala Music Assistant para la mejor experiencia con cualquier altavoz.",
+    "musicAssistantSetupGuide": "📖 Guía de configuración de Music Assistant",
+    "refresh": "🔄 Actualizar",
+    "requestStatusPending": "⏳ Pendiente",
+    "requestStatusReady": "✅ Listo",
+    "requestStatusInstalled": "✓ Instalado",
+    "requestStatusDeclined": "❌ Rechazado",
+    "seasonalReasonCarnival": "Llega el Carnaval — éxitos de Colonia para Weiberfastnacht y Rosenmontag.",
+    "seasonalReasonEurovision": "Es hora de Eurovisión — pon los ganadores desde 1956 hasta hoy.",
+    "seasonalReasonWorldCup": "Fiebre del Mundial — himnos para cada fiesta de partido.",
+    "seasonalReasonSummer": "Llegó el verano — 100 himnos para la fiesta en el jardín."
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",

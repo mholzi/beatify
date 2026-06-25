@@ -559,7 +559,27 @@
       "needPlayerToStart": "Doe mee als speler (of laat een gast de QR scannen) voordat je begint.",
       "wsReconnecting": "Opnieuw verbinden met de spelserver — probeer het opnieuw.",
       "waitingForGuests": "Wacht op gasten…"
-    }
+    },
+    "startRematchFailed": "Kan rematch niet starten",
+    "startGameplayFailed": "Kan het spel niet starten",
+    "noPlaylistsFoundHint": "Geen afspeellijsten gevonden. Voeg playlist-JSON-bestanden toe aan:",
+    "howToCreatePlaylists": "Afspeellijsten maken",
+    "noPlaylistsMatchFilter": "Geen afspeellijsten komen overeen met het geselecteerde filter.",
+    "clearFilters": "Filters wissen",
+    "noCompatiblePlayersTitle": "🎵 Geen compatibele spelers gevonden",
+    "noCompatiblePlayersDesc": "Beatify werkt met Music Assistant-, Sonos- en Alexa-spelers.",
+    "recommendedLabel": "Aanbevolen:",
+    "installMusicAssistant": "Installeer Music Assistant voor de beste ervaring met elke speaker.",
+    "musicAssistantSetupGuide": "📖 Music Assistant installatiegids",
+    "refresh": "🔄 Vernieuwen",
+    "requestStatusPending": "⏳ In behandeling",
+    "requestStatusReady": "✅ Klaar",
+    "requestStatusInstalled": "✓ Geïnstalleerd",
+    "requestStatusDeclined": "❌ Geweigerd",
+    "seasonalReasonCarnival": "Carnaval is begonnen — Keulse hits voor Weiberfastnacht & Rosenmontag.",
+    "seasonalReasonEurovision": "Eurovisietijd — speel de winnaars van 1956 tot nu.",
+    "seasonalReasonWorldCup": "WK-koorts — hymnes voor elk wedstrijdfeest.",
+    "seasonalReasonSummer": "De zomer is begonnen — 100 hymnes voor het tuinfeest."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
