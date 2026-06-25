@@ -9,7 +9,7 @@ import re
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from aiohttp import ClientError, web
 from homeassistant.components.http import HomeAssistantView
@@ -17,6 +17,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from custom_components.beatify.game.playlist import (
     get_playlist_directory,
+    summarize_rejected_songs,
     validate_playlist,
 )
 from custom_components.beatify.server.base import (
@@ -368,12 +369,24 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
                 f"Too many songs (max {self.MAX_SONGS})", 400, code="TOO_LARGE"
             )
 
-        is_valid, errors = validate_playlist(playlist)
+        rejected_songs: list[dict[str, Any]] = []
+        is_valid, errors = validate_playlist(playlist, rejected_songs=rejected_songs)
         if not is_valid:
+            # #1576: surface *which* tracks dropped and *why* to the host —
+            # both as a human-readable summary in the message and as structured
+            # ``rejected_songs`` the admin UI can render per track.
+            if rejected_songs:
+                _LOGGER.info(
+                    "Playlist import '%s' rejected: %d song(s) failed validation: %s",
+                    playlist.get("name", "?"),
+                    len(rejected_songs),
+                    summarize_rejected_songs(rejected_songs),
+                )
             return _json_error(
                 "Playlist validation failed: " + "; ".join(errors[:5]),
                 400,
                 code="INVALID_PLAYLIST",
+                details={"errors": errors, "rejected_songs": rejected_songs},
             )
 
         slug = _slugify_playlist_name(playlist.get("name", ""))
