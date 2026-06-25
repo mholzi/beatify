@@ -13321,6 +13321,18 @@ body.theme-dark .your-result-stats .stat-value {
     box-shadow: 0 0 16px rgba(255, 45, 106, 0.45);
 }
 
+/* #1569 follow-up: the Playlists/Mix tab-panel wrappers must fill the hub's
+   remaining height (under the sticky tab strip) so their inner .plh-body can
+   scroll. Without this they size to content and overflow .plh-root
+   (height:100%; overflow:hidden), clipping everything below the fold. */
+.plh-list-view,
+.plh-mix-view {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .plh-body {
     position: relative;
     z-index: 1;
