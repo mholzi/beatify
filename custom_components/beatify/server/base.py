@@ -196,7 +196,13 @@ async def _get_html(hass: HomeAssistant, path: Path) -> str | None:
     return content
 
 
-def _json_error(message: str, status: int, *, code: str = "ERROR") -> web.Response:
+def _json_error(
+    message: str,
+    status: int,
+    *,
+    code: str = "ERROR",
+    details: dict[str, Any] | None = None,
+) -> web.Response:
     """Return a consistent JSON error response.
 
     rc16 (#1097): the body now puts the machine-readable code under
@@ -213,10 +219,16 @@ def _json_error(message: str, status: int, *, code: str = "ERROR") -> web.Respon
 
     The ``error`` key is kept too so anything still reading it from
     older builds doesn't break — drop after a few releases.
+
+    ``details`` (optional) carries extra machine-readable context that the
+    admin UI can render — e.g. the structured per-song rejections from a
+    failed playlist import (#1576). Merged into the body under their own keys
+    so clients ignoring them are unaffected.
     """
-    return web.json_response(
-        {"code": code, "error": code, "message": message}, status=status
-    )
+    body: dict[str, Any] = {"code": code, "error": code, "message": message}
+    if details:
+        body.update(details)
+    return web.json_response(body, status=status)
 
 
 class RateLimitMixin:

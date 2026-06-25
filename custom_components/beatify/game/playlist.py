@@ -353,8 +353,29 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
             )
 
 
-def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
-    """Validate playlist structure. Returns (is_valid, list_of_errors)."""
+def validate_playlist(
+    data: dict[str, Any],
+    *,
+    rejected_songs: list[dict[str, Any]] | None = None,
+) -> tuple[bool, list[str]]:
+    """Validate playlist structure. Returns (is_valid, list_of_errors).
+
+    Args:
+        data: The parsed playlist document.
+        rejected_songs: Optional out-param. When a list is passed, it is
+            populated in place with one structured record per song that has
+            at least one validation problem::
+
+                {"index": 1, "title": "...", "artist": "...",
+                 "reasons": ["year 1500 out of range", "no valid URI"]}
+
+            This lets callers surface *which* tracks dropped and *why* to the
+            host (#1576) instead of the positional ``errors`` strings alone.
+            ``title``/``artist`` are ``None`` when missing. Passing this param
+            never changes which songs/playlists are accepted or rejected — it
+            only makes the existing rejections observable.
+
+    """
     errors: list[str] = []
     max_year = _max_year()
 
@@ -374,22 +395,36 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
     for i, song in enumerate(songs):
         if not isinstance(song, dict):
             errors.append(f"Song {i + 1}: not a valid object")
+            if rejected_songs is not None:
+                rejected_songs.append(
+                    {
+                        "index": i + 1,
+                        "title": None,
+                        "artist": None,
+                        "reasons": ["not a valid object"],
+                    }
+                )
             continue
+
+        # Per-song reasons collected without the "Song N:" prefix so callers
+        # can render them per track. The prefixed variant is appended to the
+        # flat ``errors`` list below to keep the legacy string output identical.
+        song_reasons: list[str] = []
 
         # #697: title and artist are required for gameplay (challenge + reveal).
         title = song.get("title")
         if not isinstance(title, str) or not title.strip():
-            errors.append(f"Song {i + 1}: missing or empty 'title'")
+            song_reasons.append("missing or empty 'title'")
         artist = song.get("artist")
         if not isinstance(artist, str) or not artist.strip():
-            errors.append(f"Song {i + 1}: missing or empty 'artist'")
+            song_reasons.append("missing or empty 'artist'")
 
         # Check year
         year = song.get("year")
         if not isinstance(year, int):
-            errors.append(f"Song {i + 1}: missing or invalid 'year' (must be integer)")
+            song_reasons.append("missing or invalid 'year' (must be integer)")
         elif not (MIN_YEAR <= year <= max_year):
-            errors.append(f"Song {i + 1}: year {year} out of range")
+            song_reasons.append(f"year {year} out of range")
 
         # Check URIs - validate patterns and ensure at least one valid URI exists
         has_valid_uri = False
@@ -399,24 +434,22 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                 if re.match(pattern, value):
                     has_valid_uri = True
                 else:
-                    errors.append(
-                        f"Song {i + 1}: '{field}' invalid (expected {expected})"
-                    )
+                    song_reasons.append(f"'{field}' invalid (expected {expected})")
 
         # Error if no valid URI found
         if not has_valid_uri:
-            errors.append(f"Song {i + 1}: no valid URI")
+            song_reasons.append("no valid URI")
 
         # Story 20.2: Validate alt_artists if present (optional field)
         alt_artists = song.get("alt_artists")
         if alt_artists is not None:
             if not isinstance(alt_artists, list):
-                errors.append(f"Song {i + 1}: 'alt_artists' must be an array")
+                song_reasons.append("'alt_artists' must be an array")
             else:
                 for j, alt in enumerate(alt_artists):
                     if not isinstance(alt, str) or not alt.strip():
-                        errors.append(
-                            f"Song {i + 1}: 'alt_artists[{j}]' must be non-empty string"
+                        song_reasons.append(
+                            f"'alt_artists[{j}]' must be non-empty string"
                         )
                 # Log warning if fewer than 2 alternatives (weak challenge)
                 valid_alts = [
@@ -429,7 +462,54 @@ def validate_playlist(data: dict[str, Any]) -> tuple[bool, list[str]]:
                         len(valid_alts),
                     )
 
+        # Flush this song's reasons into the flat error list (prefixed, in the
+        # same order as before) and, if requested, into the structured out-param.
+        for reason in song_reasons:
+            errors.append(f"Song {i + 1}: {reason}")
+        if song_reasons and rejected_songs is not None:
+            rejected_songs.append(
+                {
+                    "index": i + 1,
+                    "title": title if isinstance(title, str) else None,
+                    "artist": artist if isinstance(artist, str) else None,
+                    "reasons": song_reasons,
+                }
+            )
+
     return (len(errors) == 0, errors)
+
+
+def summarize_rejected_songs(
+    rejected_songs: list[dict[str, Any]],
+    *,
+    limit: int = 5,
+) -> str:
+    """Render the structured rejections from :func:`validate_playlist`.
+
+    Produces a short, host-readable one-liner such as::
+
+        "Bohemian Rhapsody — Queen (year 1500 out of range); Song #4 (no
+        valid URI); +3 more"
+
+    Used for the INFO load summary (#1576) and the import error response so a
+    host loading a flawed playlist sees *which* tracks dropped and *why*.
+    """
+    parts: list[str] = []
+    for song in rejected_songs[:limit]:
+        title = song.get("title")
+        artist = song.get("artist")
+        if title and artist:
+            label = f"{title} — {artist}"
+        elif title:
+            label = str(title)
+        else:
+            label = f"Song #{song.get('index', '?')}"
+        reasons = ", ".join(song.get("reasons", [])) or "invalid"
+        parts.append(f"{label} ({reasons})")
+    remaining = len(rejected_songs) - limit
+    if remaining > 0:
+        parts.append(f"+{remaining} more")
+    return "; ".join(parts)
 
 
 def get_song_uri(
@@ -593,7 +673,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
             )
             content = await loop.run_in_executor(None, _read_file, json_file)
             data = json.loads(content)
-            is_valid, errors = validate_playlist(data)
+            rejected_songs: list[dict[str, Any]] = []
+            is_valid, errors = validate_playlist(data, rejected_songs=rejected_songs)
 
             # Count songs per provider (Story 17.1), validating URI patterns (#708).
             songs = data.get("songs", [])
@@ -656,6 +737,10 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "amazon_music_count": amazon_music_count,
                     "is_valid": is_valid,
                     "errors": errors,
+                    # #1576: structured per-song rejections so the playlist
+                    # browser can show *which* tracks dropped and why, not just
+                    # the positional "Song N: ..." strings.
+                    "rejected_songs": rejected_songs,
                 }
             )
         except json.JSONDecodeError as e:
@@ -689,6 +774,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "amazon_music_count": 0,
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
+                    "rejected_songs": [],
                 }
             )
 
@@ -718,8 +804,21 @@ async def async_load_and_validate_playlist(
     except json.JSONDecodeError as e:
         return (None, [f"Invalid JSON: {e}"])
 
-    is_valid, errors = validate_playlist(data)
+    rejected_songs: list[dict[str, Any]] = []
+    is_valid, errors = validate_playlist(data, rejected_songs=rejected_songs)
 
     if is_valid:
         return (data, [])
+
+    # #1576: a host loading a flawed playlist used to get zero feedback on
+    # which tracks dropped (per-song problems were DEBUG-only). Log a concise
+    # INFO summary naming the offending songs + reasons so it is visible in
+    # the HA log without flipping the integration to DEBUG.
+    if rejected_songs:
+        _LOGGER.info(
+            "Playlist %s: %d song(s) failed validation: %s",
+            path.name,
+            len(rejected_songs),
+            summarize_rejected_songs(rejected_songs),
+        )
     return (None, errors)
