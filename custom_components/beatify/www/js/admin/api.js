@@ -238,7 +238,27 @@ export async function connectAdminWebSocket() {
                 var data = JSON.parse(event.data);
                 handleAdminWsMessage(data);
             } catch (err) {
-                console.error('[Admin WS] Message parse error:', err);
+                // #1580: a malformed/unparseable WS frame (truncated payload,
+                // or a server/client version mismatch sending a shape we can't
+                // read) previously only hit console.error — state sync stalled
+                // silently with zero user feedback. Log a warning WITH the raw
+                // payload context, surface a reload hint to the admin, and skip
+                // this frame so the connection keeps handling later well-formed
+                // messages instead of breaking sync.
+                console.warn(
+                    '[Admin WS] Skipping malformed message:',
+                    err,
+                    '| raw:',
+                    typeof event.data === 'string'
+                        ? event.data.slice(0, 200)
+                        : event.data
+                );
+                try {
+                    deps.showError(
+                        BeatifyI18n.t('admin.connectionDisrupted') ||
+                        'Connection disrupted — please reload the page.'
+                    );
+                } catch (e) { /* showError / i18n may not be ready on early load */ }
             }
         };
 
