@@ -199,18 +199,6 @@ function clearMixError() {
     document.getElementById('mix-error')?.classList.add('hidden');
 }
 
-/** Switch between the "Playlists" (list) and "Mix" tab panels. */
-function switchTab(tab) {
-    document.querySelectorAll('.playlist-tab').forEach((btn) => {
-        const active = btn.dataset.playlistTab === tab;
-        btn.classList.toggle('active', active);
-        btn.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    document.getElementById('playlist-panel-list')?.classList.toggle('hidden', tab !== 'list');
-    document.getElementById('playlist-panel-mix')?.classList.toggle('hidden', tab !== 'mix');
-    if (tab === 'mix') renderMixChipCloud();
-}
-
 /**
  * "Start mix": ask the backend to assemble + de-dupe the mix, then start the
  * game through the existing admin-core start path. We deliberately funnel
@@ -297,6 +285,34 @@ async function startMix() {
 }
 
 /**
+ * Bind the Mix-panel controls to whatever markup is currently in the DOM.
+ *
+ * #1568: the Mix panel markup is owned + rendered by the Playlist Hub
+ * (playlist-hub.js) so it appears in EVERY hub mount — including the wizard
+ * step-3 picker, which is the live first-run surface. The old flat
+ * `#playlist-panel-mix` in admin.html was dead UI (the flat-setup sections are
+ * `display:none` since rc11/#1138), so the Mix tab was unreachable. This binds
+ * the target-count segmented control + the Start button and (re)builds the chip
+ * cloud against the hub-rendered markup. Tab-switching is now owned by the hub
+ * (no more `.playlist-tab` wiring here). Safe to call when the panel isn't
+ * mounted yet — it no-ops.
+ */
+export function bindMixPanel() {
+    const startBtn = document.getElementById('mix-start');
+    if (!startBtn) return; // panel not in the DOM yet
+
+    document.querySelectorAll('.mix-seg').forEach((seg) => {
+        seg.addEventListener('click', () => setTargetCount(parseInt(seg.dataset.mixCount, 10)));
+    });
+    startBtn.addEventListener('click', startMix);
+
+    // Chips populate once loadStatus() has filled adminState.playlistData;
+    // renderMixChipCloud is also called from admin.js on each (re)load and by
+    // the hub when the Mix tab is shown.
+    renderMixChipCloud();
+}
+
+/**
  * Wire the Mix tab once at admin init.
  * @param {{ startGame: Function }} deps - admin-core startGame, injected so the
  *   mixer reuses the validated start-game path without duplicating its payload.
@@ -304,15 +320,13 @@ async function startMix() {
 export function initMixTab(deps = {}) {
     mixState._startGame = deps.startGame || null;
 
-    document.querySelectorAll('.playlist-tab').forEach((btn) => {
-        btn.addEventListener('click', () => switchTab(btn.dataset.playlistTab));
-    });
-    document.querySelectorAll('.mix-seg').forEach((seg) => {
-        seg.addEventListener('click', () => setTargetCount(parseInt(seg.dataset.mixCount, 10)));
-    });
-    document.getElementById('mix-start')?.addEventListener('click', startMix);
+    // The Mix panel now lives inside the component-owned Playlist Hub, which
+    // renders its markup on mount — long after admin init runs. Expose the
+    // binder + chip-cloud refresher on a global so the hub can wire the panel
+    // once it has rendered the markup (mirrors window.PlaylistRequests etc.).
+    window.BeatifyMixPanel = { bind: bindMixPanel, renderChips: renderMixChipCloud };
 
-    // Initial render (chips populate once loadStatus() has filled playlistData;
-    // renderMixChipCloud is also called from playlists.js on each (re)render).
-    renderMixChipCloud();
+    // Bind now in case the panel is already present (defensive — normally the
+    // hub calls bind() after it renders).
+    bindMixPanel();
 }
