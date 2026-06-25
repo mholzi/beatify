@@ -189,3 +189,83 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
     if (typeof s.titleArtistMode === 'boolean') adminState.titleArtistModeEnabled = s.titleArtistMode;
 }
+
+// --- WS-broadcast render coalescing (#1584) --------------------------------
+/**
+ * Default frame scheduler: coalesce onto the next animation frame so a burst of
+ * WS `state` broadcasts collapses into a single paint. Falls back to a ~16ms
+ * timeout where `requestAnimationFrame` is unavailable (background tab, unit
+ * tests, no DOM).
+ */
+function _defaultSchedule(cb) {
+    if (typeof requestAnimationFrame === 'function') return requestAnimationFrame(cb);
+    return setTimeout(cb, 16);
+}
+
+/**
+ * Wrap a (potentially expensive) `render(data)` so that rapid calls coalesce
+ * into ONE render per animation frame, and only the LATEST payload of a burst
+ * is rendered — the final state of a burst is never dropped (#1584:
+ * `handleAdminStateUpdate` rebuilt leaderboard + result cards + reveal on every
+ * single `state` broadcast, janking weak hosts under fast updates).
+ *
+ * Returns a `push(data)` function (the drop-in replacement for the bare
+ * `render`). Two coalescing mechanisms, both behaviour-preserving:
+ *   1. Throttle: while a flush is already scheduled, extra pushes just swap in
+ *      the newer payload instead of scheduling another render.
+ *   2. Dirty-check (optional `isEqual`): if the incoming payload equals the one
+ *      already on screen (and nothing is pending), skip the repaint entirely.
+ *
+ * `push.flush()` renders any pending payload synchronously (e.g. before
+ * navigating away); `push.cancel()` drops a pending render without rendering.
+ *
+ * @param {(data:any)=>void} render          the heavy render to coalesce
+ * @param {Object} [options]
+ * @param {(cb:Function)=>any} [options.schedule] frame scheduler (default rAF)
+ * @param {(a:any,b:any)=>boolean} [options.isEqual] cheap "unchanged?" check
+ * @returns {((data:any)=>void) & {flush:Function, cancel:Function}}
+ */
+export function createRenderCoalescer(render, options) {
+    const opts = options || {};
+    const schedule = typeof opts.schedule === 'function' ? opts.schedule : _defaultSchedule;
+    const isEqual = typeof opts.isEqual === 'function' ? opts.isEqual : null;
+
+    let pending = false;     // a flush is scheduled
+    let hasLatest = false;   // we hold an un-rendered payload
+    let latest;              // newest payload of the burst (last wins)
+    let lastRendered;        // payload currently on screen (dirty-check ref)
+    let hasRendered = false;
+
+    function flush() {
+        pending = false;
+        if (!hasLatest) return;
+        const data = latest;
+        hasLatest = false;
+        latest = undefined;
+        lastRendered = data;
+        hasRendered = true;
+        render(data);
+    }
+
+    function push(data) {
+        // Dirty-check: identical to what's already painted and nothing queued →
+        // skip the repaint (and the render's idempotent side-effects).
+        if (isEqual && hasRendered && !hasLatest && isEqual(data, lastRendered)) {
+            return;
+        }
+        latest = data;       // coalesce: newest payload wins
+        hasLatest = true;
+        if (!pending) {
+            pending = true;
+            schedule(flush);
+        }
+    }
+
+    push.flush = flush;
+    push.cancel = function cancel() {
+        pending = false;
+        hasLatest = false;
+        latest = undefined;
+    };
+    return push;
+}
