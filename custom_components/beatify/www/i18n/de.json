@@ -598,7 +598,10 @@
     "seasonalReasonCarnival": "Karnevalszeit — Kölsche Hits für Weiberfastnacht & Rosenmontag.",
     "seasonalReasonEurovision": "Eurovision-Zeit — spiele die Gewinner von 1956 bis heute.",
     "seasonalReasonWorldCup": "WM-Fieber — Hymnen für jede Spieltags-Party.",
-    "seasonalReasonSummer": "Der Sommer ist da — 100 Hymnen für die Gartenparty."
+    "seasonalReasonSummer": "Der Sommer ist da — 100 Hymnen für die Gartenparty.",
+    "seasonalBadge": "Vorschlag der Saison",
+    "seasonalAdd": "Hinzufügen",
+    "seasonalDismiss": "Saisonvorschlag schließen"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

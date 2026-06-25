@@ -598,7 +598,10 @@
     "seasonalReasonCarnival": "Carnival season is here — Kölsche hits for Weiberfastnacht & Rosenmontag.",
     "seasonalReasonEurovision": "Eurovision time — play the winners from 1956 to today.",
     "seasonalReasonWorldCup": "World Cup fever — anthems for every match-day party.",
-    "seasonalReasonSummer": "Summer is on — 100 anthems for the garden party."
+    "seasonalReasonSummer": "Summer is on — 100 anthems for the garden party.",
+    "seasonalBadge": "Suggestion of the season",
+    "seasonalAdd": "Add",
+    "seasonalDismiss": "Dismiss seasonal suggestion"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
