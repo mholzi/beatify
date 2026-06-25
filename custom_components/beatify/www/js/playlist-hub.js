@@ -612,6 +612,14 @@ export function _mixPanelHtml() {
                 <span id="mix-preview-text" data-i18n="admin.mixPreviewEmpty">Select tags to preview your mix.</span>
             </div>
 
+            <div class="mix-tracklist-row">
+                <button type="button" id="mix-preview-btn" class="btn btn-secondary btn-sm" disabled
+                        aria-expanded="false" aria-controls="mix-tracklist">
+                    <span aria-hidden="true">🎵</span> <span data-i18n="admin.mixPreviewTracks">Preview tracklist</span>
+                </button>
+            </div>
+            <div id="mix-tracklist" class="mix-tracklist hidden" aria-live="polite"></div>
+
             <div class="mix-actions">
                 <button type="button" id="mix-start" class="btn btn-primary" disabled>
                     <span aria-hidden="true">▶</span> <span data-i18n="admin.mixStart">Start mix</span>

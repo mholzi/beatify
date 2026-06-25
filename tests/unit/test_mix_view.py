@@ -275,6 +275,42 @@ class TestMixPlaylistView:
         saved = json.loads(written.read_text())
         assert len(saved["songs"]) == 4
 
+    async def test_preview_returns_tracklist_without_writing(self, tmp_path):
+        """#1586: a preview request returns the assembled tracklist and writes
+        nothing — the host sees which songs land in the mix before committing."""
+        view = _view_with_catalogue(tmp_path)
+        body = json.dumps(
+            {
+                "tags": ["pop"],
+                "target_count": 50,
+                "provider": "spotify",
+                "preview": True,
+            }
+        ).encode()
+        resp = await view.post(_request_with_body(body))
+        assert resp.status == 200
+        data = json.loads(resp.body)
+        assert data["success"] is True
+        assert data["preview"] is True
+        assert data["playlist_count"] == 2
+        assert data["song_count"] == 4  # de-duplicated, same as a real run
+        assert len(data["tracks"]) == 4
+        # Each track carries just title / artist / year for the preview UI.
+        for track in data["tracks"]:
+            assert set(track) == {"title", "artist", "year"}
+        # No transient mix file is written for a preview.
+        mix_dir = tmp_path / "beatify" / "playlists" / "mix"
+        assert not mix_dir.exists() or not list(mix_dir.glob("*.json"))
+        # "path"/"filename" only exist on a committed run.
+        assert "path" not in data
+
+    async def test_preview_empty_match_returns_404(self, tmp_path):
+        view = _view_with_catalogue(tmp_path)
+        body = json.dumps({"tags": ["nonexistent-tag"], "preview": True}).encode()
+        resp = await view.post(_request_with_body(body))
+        assert resp.status == 404
+        assert json.loads(resp.body)["code"] == "EMPTY_MIX"
+
     async def test_transient_mix_unique_stem_per_run(self, tmp_path):
         """#1547: two mix runs must NOT clobber each other's transient file.
 

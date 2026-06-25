@@ -255,6 +255,11 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
         if not isinstance(provider, str):
             provider = PROVIDER_DEFAULT
         save_as_community = bool(body.get("save_as_community", False))
+        # #1586: a "preview" request assembles + de-dupes exactly like a real
+        # run but returns the resulting tracklist WITHOUT writing any file, so
+        # the host can see which songs land in the mix before committing to
+        # "Start mix" / "Save as community playlist".
+        preview = bool(body.get("preview", False))
 
         # --- Discover + assemble ------------------------------------------
         playlists_meta = await async_discover_playlists(self.hass)
@@ -275,6 +280,30 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
                 "No songs match the selected tags for this provider",
                 404,
                 code="EMPTY_MIX",
+            )
+
+        # --- Preview short-circuit (#1586) --------------------------------
+        # Return the assembled tracklist without persisting anything. The shape
+        # is intentionally light (title / artist / year) — just enough for the
+        # Mix tab to render its expandable preview. ``song_count`` /
+        # ``playlist_count`` mirror the real-run response so the same UI can
+        # show the totals.
+        if preview:
+            return web.json_response(
+                {
+                    "success": True,
+                    "preview": True,
+                    "tracks": [
+                        {
+                            "title": song.get("title", ""),
+                            "artist": song.get("artist", ""),
+                            "year": song.get("year"),
+                        }
+                        for song in songs
+                    ],
+                    "song_count": len(songs),
+                    "playlist_count": matched,
+                }
             )
 
         # --- Build the playlist document ----------------------------------
