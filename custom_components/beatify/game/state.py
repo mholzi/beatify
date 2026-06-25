@@ -750,6 +750,17 @@ class GameState(
                 _LOGGER.debug("Round_end callback completed successfully")
             except (ConnectionError, OSError, TypeError) as err:
                 _LOGGER.error("Round_end callback failed: %s", err)
+            except Exception:  # noqa: BLE001 — a broadcast error must not strand REVEAL
+                # #1575: any unexpected error in the broadcast callback must not
+                # escape — the round has already transitioned to REVEAL above, so
+                # swallowing it here keeps the game state consistent and avoids a
+                # frozen client. Log with traceback so the failure stays visible.
+                _LOGGER.error(
+                    "Round_end callback raised unexpectedly — REVEAL state may not "
+                    "have been broadcast (round %d)",
+                    self.round,
+                    exc_info=True,
+                )
         else:
             _LOGGER.warning(
                 "No round_end callback set - REVEAL state will not be broadcast!"

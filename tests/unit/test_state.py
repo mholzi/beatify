@@ -1503,6 +1503,24 @@ class TestEndRoundResilience:
         assert self.state.phase == GamePhase.REVEAL
         broadcast.assert_awaited_once()
 
+    @pytest.mark.asyncio
+    async def test_end_round_does_not_strand_when_broadcast_raises_arbitrary(self):
+        """#1575: an unexpected exception type from the broadcast callback (one
+        outside the historic ``(ConnectionError, OSError, TypeError)`` tuple)
+        must not escape `_end_round_unlocked`. The round has already
+        transitioned to REVEAL by the time the callback fires, so a raising
+        broadcast must be swallowed + logged rather than stranding the round.
+        """
+        broadcast = AsyncMock(side_effect=RuntimeError("simulated broadcast bug"))
+        self.state.set_round_end_callback(broadcast)
+
+        # Must NOT raise — the arbitrary exception is caught defensively.
+        await self.state.end_round()
+
+        # Phase still transitioned and the callback was actually invoked.
+        assert self.state.phase == GamePhase.REVEAL
+        broadcast.assert_awaited_once()
+
 
 # ---------------------------------------------------------------------------
 # Timer-task self-cancellation (#1029)
