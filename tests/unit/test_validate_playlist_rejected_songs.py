@@ -111,8 +111,8 @@ class TestErrorsBackCompat:
 
     def test_validity_verdict_unchanged_by_out_param(self):
         doc = _playlist(VALID_SONG)
-        assert validate_playlist(doc)[0] == (
-            validate_playlist(doc, rejected_songs=[])[0]
+        assert (
+            validate_playlist(doc)[0] == (validate_playlist(doc, rejected_songs=[])[0])
         )
 
 
@@ -136,8 +136,7 @@ class TestSummarizeRejectedSongs:
         ]
         out = summarize_rejected_songs(rejected)
         assert out == (
-            "Bohemian Rhapsody — Queen "
-            "(year 1500 out of range, no valid URI)"
+            "Bohemian Rhapsody — Queen (year 1500 out of range, no valid URI)"
         )
 
     def test_falls_back_to_song_index_label_when_no_title(self):
