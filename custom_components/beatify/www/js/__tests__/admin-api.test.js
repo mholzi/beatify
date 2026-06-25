@@ -236,3 +236,53 @@ describe('handleAdminWsMessage start-failure gating (#1402 B7)', () => {
         expect(warn).toHaveBeenCalled();
     });
 });
+
+/**
+ * #1579 — a NAME_TAKEN / NAME_INVALID join rejection must un-stick the join
+ * button (re-enable + restore the "Join" label) so the host can retry cleanly,
+ * and must clear the optimistic play state (isPlaying / adminPlayerName). The
+ * companion view-side fix (openAdminJoinModal resetting on reopen) lives in
+ * admin.js and is exercised by the mandatory manual device QA; here we cover
+ * the WS error branch, which is the pure, injectable half of the lifecycle.
+ */
+describe('handleAdminWsMessage join rejection reset (#1579)', () => {
+    afterEach(() => {
+        delete globalThis.window;
+        delete globalThis.BeatifyI18n;
+        delete globalThis.document;
+        vi.restoreAllMocks();
+    });
+
+    async function setup() {
+        vi.resetModules();
+        vi.spyOn(console, 'error').mockImplementation(() => {});
+        const i18n = { t: (k) => (k === 'admin.join' ? 'Join' : '') };
+        globalThis.window = { location: { protocol: 'https:', host: 'ha.local' }, BeatifyI18n: i18n };
+        globalThis.BeatifyI18n = i18n;
+        // The error branch left the button on "Joining…" + disabled from the
+        // optimistic handleAdminJoin(); start from that stuck state.
+        const joinBtn = { disabled: true, textContent: 'Joining…' };
+        globalThis.document = { getElementById: (id) => (id === 'admin-join-btn' ? joinBtn : null) };
+        const api = await import('../admin/api.js?ts=' + Math.random());
+        const calls = { showError: [], isPlaying: [], adminPlayerName: [] };
+        api.initAdminApi({
+            showError: (m) => calls.showError.push(m),
+            setIsPlaying: (v) => calls.isPlaying.push(v),
+            setAdminPlayerName: (v) => calls.adminPlayerName.push(v),
+            debug: () => {},
+        });
+        return { api, calls, joinBtn };
+    }
+
+    for (const code of ['NAME_TAKEN', 'NAME_INVALID']) {
+        it(`${code} re-enables the join button + restores the "Join" label`, async () => {
+            const { api, calls, joinBtn } = await setup();
+            api.handleAdminWsMessage({ type: 'error', code, message: 'that name is taken' });
+            expect(joinBtn.disabled).toBe(false);
+            expect(joinBtn.textContent).toBe('Join');
+            expect(calls.showError).toContain('that name is taken');
+            expect(calls.isPlaying).toContain(false);
+            expect(calls.adminPlayerName).toContain(null);
+        });
+    }
+});
