@@ -16,11 +16,16 @@
  *     ~8-minute give-up point (i.e. it never "gives up").
  */
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
 // utils.js assigns to window.BeatifyUtils at eval; stub the global first.
 global.window = global.window || {};
 await import('../utils.js');
 const U = global.window.BeatifyUtils;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('BeatifyUtils.reconnectBackoffDelay (#1398)', () => {
     it('is exported by BeatifyUtils', () => {
@@ -79,5 +84,31 @@ describe('BeatifyUtils.reconnectBackoffDelay (#1398)', () => {
         expect(total).toBeGreaterThan(7 * 60 * 1000);
         // Attempt 21 (which the old code never reached) still returns a delay.
         expect(U.reconnectBackoffDelay(21)).toBe(30000);
+    });
+});
+
+describe('reconnect indicator i18n key (#1578)', () => {
+    // The always-on TV display now shows a visible "Reconnecting…" badge while
+    // the WebSocket is down (dashboard.js onclose) and hides it on reconnect
+    // (onopen). The badge text is supplied via data-i18n="dashboard.reconnecting"
+    // resolved by BeatifyI18n at load — guard that EVERY shipped locale defines
+    // the key so no display falls back to the raw key string.
+    const LOCALES = ['en', 'de', 'es', 'fr', 'nl'];
+
+    it('dashboard.reconnecting is present and non-empty in every locale', () => {
+        for (const l of LOCALES) {
+            const json = JSON.parse(
+                readFileSync(join(__dirname, '..', '..', 'i18n', `${l}.json`), 'utf8')
+            );
+            expect(json.dashboard, `${l}.json has a dashboard block`).toBeTruthy();
+            expect(
+                typeof json.dashboard.reconnecting,
+                `${l}.json dashboard.reconnecting is a string`
+            ).toBe('string');
+            expect(
+                json.dashboard.reconnecting.trim().length,
+                `${l}.json dashboard.reconnecting is non-empty`
+            ).toBeGreaterThan(0);
+        }
     });
 });

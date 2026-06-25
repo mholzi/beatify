@@ -670,7 +670,8 @@
     "wakeLockTitle": "¿Mantener la pantalla encendida?",
     "wakeLockBody": "Evita que la pantalla del TV se apague durante la partida.",
     "wakeLockActivate": "Activar",
-    "wakeLockDismiss": "Cerrar"
+    "wakeLockDismiss": "Cerrar",
+    "reconnecting": "Reconectando…"
   },
   "launcher": {
     "title": "Beatify",

@@ -688,7 +688,8 @@
     "wakeLockTitle": "Keep screen awake?",
     "wakeLockBody": "Prevents the TV display from turning off during the game.",
     "wakeLockActivate": "Activate",
-    "wakeLockDismiss": "Dismiss"
+    "wakeLockDismiss": "Dismiss",
+    "reconnecting": "Reconnecting…"
   },
   "launcher": {
     "title": "Beatify",
