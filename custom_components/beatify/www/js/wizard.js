@@ -613,7 +613,10 @@ function _renderProviders() {
         if (active && supported) classes.push('active');
         if (!supported) classes.push('disabled');
         const lock = supported ? '' : CHIP_LOCK_ICON;
-        const aria = supported ? '' : 'aria-disabled="true"';
+        // #1583: aria-pressed conveys the single-select state to screen readers
+        // (these are native <button>s, so role + Enter/Space activation are native).
+        const pressed = active && supported ? 'true' : 'false';
+        const aria = supported ? `aria-pressed="${pressed}"` : 'aria-pressed="false" aria-disabled="true"';
         return `<button type="button" class="${classes.join(' ')}" data-provider="${p.id}" ${aria}><span>${p.label}</span>${lock}</button>`;
     }).join('');
     list.querySelectorAll('[data-provider]').forEach((btn) => {

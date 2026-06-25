@@ -27,6 +27,25 @@ import { STORAGE_GAME_SETTINGS } from '../constants.js';
 import { renderPlaylists } from './playlists.js';
 
 /**
+ * #1583: Single-select chip a11y. The chips are native `<button>`s, so role,
+ * focusability and Enter/Space activation are already provided by the browser —
+ * the missing piece was `aria-pressed`, without which a screen reader can't tell
+ * which chip in a group is selected. This helper syncs `aria-pressed` in lockstep
+ * with the visual `chip--active` class so the two never drift, and is reused by
+ * both the click handlers and the load-from-storage path.
+ *
+ * @param {string} groupSelector  selector matching every chip in the group
+ * @param {(chip: Element) => boolean} isActive  true for the chip to mark selected
+ */
+export function selectChip(groupSelector, isActive) {
+    document.querySelectorAll(groupSelector).forEach((chip) => {
+        const active = isActive(chip);
+        chip.classList.toggle('chip--active', active);
+        chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+}
+
+/**
  * Setup game settings controls (chips for language, timer, difficulty, toggle for artist challenge)
  */
 export function setupGameSettings() {
@@ -34,8 +53,7 @@ export function setupGameSettings() {
     document.querySelectorAll('.chip[data-lang]').forEach(chip => {
         chip.addEventListener('click', async function() {
             const lang = this.dataset.lang;
-            document.querySelectorAll('.chip[data-lang]').forEach(c => c.classList.remove('chip--active'));
-            this.classList.add('chip--active');
+            selectChip('.chip[data-lang]', (c) => c === this);
             adminState.selectedLanguage = lang;
             if (window.BeatifyI18n) {
                 await BeatifyI18n.setLanguage(lang);
@@ -50,8 +68,7 @@ export function setupGameSettings() {
     document.querySelectorAll('.chip[data-duration]').forEach(chip => {
         chip.addEventListener('click', function() {
             const duration = parseInt(this.dataset.duration, 10);
-            document.querySelectorAll('.chip[data-duration]').forEach(c => c.classList.remove('chip--active'));
-            this.classList.add('chip--active');
+            selectChip('.chip[data-duration]', (c) => c === this);
             adminState.selectedDuration = duration;
             updateGameSettingsSummary();
             saveGameSettings();
@@ -62,8 +79,7 @@ export function setupGameSettings() {
     document.querySelectorAll('.chip[data-reveal-advance]').forEach(chip => {
         chip.addEventListener('click', function() {
             adminState.revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
-            document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => c.classList.remove('chip--active'));
-            this.classList.add('chip--active');
+            selectChip('.chip[data-reveal-advance]', (c) => c === this);
             saveGameSettings();
         });
     });
@@ -72,8 +88,7 @@ export function setupGameSettings() {
     document.querySelectorAll('.chip[data-difficulty]').forEach(chip => {
         chip.addEventListener('click', function() {
             const difficulty = this.dataset.difficulty;
-            document.querySelectorAll('.chip[data-difficulty]').forEach(c => c.classList.remove('chip--active'));
-            this.classList.add('chip--active');
+            selectChip('.chip[data-difficulty]', (c) => c === this);
             adminState.selectedDifficulty = difficulty;
             updateGameSettingsSummary();
             saveGameSettings();
@@ -124,8 +139,7 @@ export function setupGameSettings() {
                 return;
             }
             const provider = this.dataset.provider;
-            document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-            this.classList.add('chip--active');
+            selectChip('.chip[data-provider]', (c) => c === this);
             adminState.selectedProvider = provider;
             updateGameSettingsSummary();
             saveGameSettings();
@@ -149,9 +163,7 @@ export async function loadSavedSettings() {
             // Apply language
             if (settings.language) {
                 adminState.selectedLanguage = settings.language;
-                document.querySelectorAll('.chip[data-lang]').forEach(c => {
-                    c.classList.toggle('chip--active', c.dataset.lang === settings.language);
-                });
+                selectChip('.chip[data-lang]', (c) => c.dataset.lang === settings.language);
                 if (window.BeatifyI18n) {
                     await BeatifyI18n.setLanguage(settings.language);
                     BeatifyI18n.initPageTranslations();
@@ -161,25 +173,19 @@ export async function loadSavedSettings() {
             // Apply timer
             if (settings.duration) {
                 adminState.selectedDuration = settings.duration;
-                document.querySelectorAll('.chip[data-duration]').forEach(c => {
-                    c.classList.toggle('chip--active', parseInt(c.dataset.duration, 10) === settings.duration);
-                });
+                selectChip('.chip[data-duration]', (c) => parseInt(c.dataset.duration, 10) === settings.duration);
             }
 
             // Apply reveal auto-advance (#1012)
             if (typeof settings.revealAutoAdvance === 'number') {
                 adminState.revealAutoAdvance = settings.revealAutoAdvance;
-                document.querySelectorAll('.chip[data-reveal-advance]').forEach(c => {
-                    c.classList.toggle('chip--active', parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
-                });
+                selectChip('.chip[data-reveal-advance]', (c) => parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
             }
 
             // Apply difficulty
             if (settings.difficulty) {
                 adminState.selectedDifficulty = settings.difficulty;
-                document.querySelectorAll('.chip[data-difficulty]').forEach(c => {
-                    c.classList.toggle('chip--active', c.dataset.difficulty === settings.difficulty);
-                });
+                selectChip('.chip[data-difficulty]', (c) => c.dataset.difficulty === settings.difficulty);
             }
 
             // Apply artist challenge
@@ -221,9 +227,7 @@ export async function loadSavedSettings() {
             // Apply provider
             if (settings.provider) {
                 adminState.selectedProvider = settings.provider;
-                document.querySelectorAll('.chip[data-provider]').forEach(c => {
-                    c.classList.toggle('chip--active', c.dataset.provider === settings.provider);
-                });
+                selectChip('.chip[data-provider]', (c) => c.dataset.provider === settings.provider);
             }
         }
     } catch (e) {
