@@ -748,6 +748,50 @@ function _renderTabBody() {
         case 'mine': _renderMine(host); break;
         default: _renderBundled(host);
     }
+    _renderSeasonalChip(host);
+}
+
+/**
+ * #1570: surface the seasonal "Suggestion of the season" chip (#1539) at the
+ * TOP of the live Bundled picker. The chip used to render only into the flat
+ * #playlists-list, which is dead UI since rc11/#1138 — the same mount gap the
+ * Mix tab hit (#1568/#1569), so it never appeared on the live wizard step-3
+ * surface. seasonal-suggestion.js exposes its API on window.BeatifySeasonal
+ * (it's a bundled module the standalone hub can't import directly — same bridge
+ * as window.BeatifyMixPanel).
+ *
+ * Gated to the Bundled tab, over the hub's current (search + genre) filtered
+ * set minus already-selected playlists, plus the per-season dismiss state. Add
+ * delegates to the hub's selection model; Dismiss reuses the per-season
+ * localStorage flag.
+ */
+function _renderSeasonalChip(host) {
+    if (!host || state.currentTab !== 'bundled') return;
+    const api = (typeof window !== 'undefined') ? window.BeatifySeasonal : null;
+    if (!api || typeof api.seasonalSuggestionHtml !== 'function') return;
+    // Mirror _renderBundled's filtered set, then drop already-selected paths so
+    // the chip vanishes once its playlist is added: the hub owns selection, so
+    // pickSeasonalSuggestion's adminState.selectedPlaylists check never sees the
+    // hub's picks — pre-filtering here is what makes "skip if selected" hold.
+    const all = (state.playlists || []).filter((p) => p.source !== 'community');
+    const filtered = filterByGenre(all.filter((p) => matchesSearch(p, state.searchQuery)), state.genreFilter);
+    const candidates = filtered.filter((p) => !state.selectedPaths.has(p.path || p.filename || p.name));
+    let chipHtml = '';
+    try { chipHtml = api.seasonalSuggestionHtml(candidates) || ''; }
+    catch (e) { console.warn('[PlaylistHub] seasonal chip render failed:', e); return; }
+    if (!chipHtml) return;
+    host.insertAdjacentHTML('afterbegin', chipHtml);
+    try {
+        if (typeof api.wireSeasonalSuggestionHub === 'function') {
+            api.wireSeasonalSuggestionHub(host, (path) => {
+                if (!path || state.selectedPaths.has(path)) return;
+                state.selectedPaths.add(path);   // hub selection model (getSelection/setSelection-backed)
+                _emitSelectionChange();
+                _renderTabBody();
+                _renderCtaBar();
+            });
+        }
+    } catch (e) { console.warn('[PlaylistHub] seasonal chip wire failed:', e); }
 }
 
 // ---------- Bundled view ----------
