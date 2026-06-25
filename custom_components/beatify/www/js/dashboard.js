@@ -77,6 +77,22 @@
         return Math.min(1000 * Math.pow(2, reconnectAttempts - 1), MAX_RECONNECT_DELAY_MS);
     }
 
+    // Reconnect indicator (#1578): a passive always-on TV display can lose its
+    // WebSocket overnight and the old code reconnected silently — nothing on the
+    // screen showed the connection had dropped. Surface a small, unobtrusive
+    // "Reconnecting…" badge while the socket is down so a glance at the display
+    // reveals the connection is being re-established; hide it once reconnected.
+    // The badge is a fixed corner overlay, so it never blocks the TV content.
+    function _showReconnectIndicator() {
+        var el = document.getElementById('dashboard-reconnect-indicator');
+        if (el) el.classList.remove('hidden');
+    }
+
+    function _hideReconnectIndicator() {
+        var el = document.getElementById('dashboard-reconnect-indicator');
+        if (el) el.classList.add('hidden');
+    }
+
     /**
      * Connect to WebSocket as read-only observer (AC 10.4.1)
      */
@@ -100,6 +116,8 @@
         ws.onopen = function() {
             debug('[Dashboard] WebSocket connected');
             reconnectAttempts = 0;
+            // #1578: connection is back — drop the "Reconnecting…" badge.
+            _hideReconnectIndicator();
             // Request current state as read-only observer
             ws.send(JSON.stringify({ type: 'get_state' }));
         };
@@ -121,6 +139,8 @@
             // "no game" view is an interim status, never a terminal give-up.
             reconnectAttempts++;
             showView('dashboard-no-game');
+            // #1578: surface the reconnect attempt visibly on the TV display.
+            _showReconnectIndicator();
             var delay = getReconnectDelay();
             debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
             reconnectGuard.schedule(connectWebSocket, delay);

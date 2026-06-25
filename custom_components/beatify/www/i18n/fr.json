@@ -670,7 +670,8 @@
     "wakeLockTitle": "Garder l'écran allumé ?",
     "wakeLockBody": "Empêche l'écran TV de s'éteindre pendant la partie.",
     "wakeLockActivate": "Activer",
-    "wakeLockDismiss": "Fermer"
+    "wakeLockDismiss": "Fermer",
+    "reconnecting": "Reconnexion…"
   },
   "launcher": {
     "title": "Beatify",

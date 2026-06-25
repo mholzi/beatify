@@ -135,9 +135,53 @@
             background: rgba(255, 255, 255, 0.12);
             color: #fff;
         }
+        /* Reconnect indicator (#1578): small unobtrusive top-right badge shown
+           while the dashboard WebSocket is down and reconnecting. Same dark
+           surface + brand tokens as the wake-lock banner; a fixed corner overlay
+           so it never blocks the TV content. */
+        .dashboard-reconnect-indicator {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 2147483600;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            background: rgba(20, 20, 28, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-full, 9999px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            animation: dashboard-reconnect-in 320ms ease-out;
+        }
+        .dashboard-reconnect-indicator.hidden { display: none; }
+        @keyframes dashboard-reconnect-in {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .dashboard-reconnect-spinner {
+            flex: 0 0 auto;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.22);
+            border-top-color: var(--color-accent-primary, #ff2d6a);
+            animation: dashboard-reconnect-spin 0.8s linear infinite;
+        }
+        @keyframes dashboard-reconnect-spin {
+            to { transform: rotate(360deg); }
+        }
         @media (prefers-reduced-motion: reduce) {
             .dashboard-wakelock-banner { animation: none; }
             .dashboard-wakelock-activate { transition: none; }
+            .dashboard-reconnect-indicator { animation: none; }
+            .dashboard-reconnect-spinner { animation: none; }
         }
     </style>
 </head>
@@ -508,6 +552,15 @@
         </div>
         <button id="dashboard-wakelock-activate" type="button" class="dashboard-wakelock-activate" data-i18n="dashboard.wakeLockActivate">Aktivieren</button>
         <button id="dashboard-wakelock-dismiss" type="button" class="dashboard-wakelock-dismiss" data-i18n-title="dashboard.wakeLockDismiss" title="Schließen" aria-label="Schließen">&times;</button>
+    </div>
+
+    <!-- Reconnect indicator (#1578): hidden by default; dashboard.js reveals it
+         while the WebSocket is down (onclose) and hides it on reconnect (onopen)
+         so an always-on TV display visibly shows it is re-establishing the
+         connection instead of dropping silently. -->
+    <div id="dashboard-reconnect-indicator" class="dashboard-reconnect-indicator hidden" role="status" aria-live="polite">
+        <span class="dashboard-reconnect-spinner" aria-hidden="true"></span>
+        <span data-i18n="dashboard.reconnecting">Reconnecting…</span>
     </div>
 
     <!-- Reaction Container (Story 18.9) - floating reactions from players -->

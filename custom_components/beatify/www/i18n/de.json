@@ -688,7 +688,8 @@
     "wakeLockTitle": "Bildschirm wachhalten?",
     "wakeLockBody": "Verhindert, dass sich das TV-Display während des Spiels abschaltet.",
     "wakeLockActivate": "Aktivieren",
-    "wakeLockDismiss": "Schließen"
+    "wakeLockDismiss": "Schließen",
+    "reconnecting": "Verbinde erneut…"
   },
   "launcher": {
     "title": "Beatify",

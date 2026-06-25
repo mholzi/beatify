@@ -670,7 +670,8 @@
     "wakeLockTitle": "Scherm wakker houden?",
     "wakeLockBody": "Voorkomt dat het tv-scherm tijdens het spel uitschakelt.",
     "wakeLockActivate": "Activeren",
-    "wakeLockDismiss": "Sluiten"
+    "wakeLockDismiss": "Sluiten",
+    "reconnecting": "Opnieuw verbinden…"
   },
   "launcher": {
     "title": "Beatify",
