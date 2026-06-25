@@ -114,6 +114,9 @@ jobs:
       - name: Verify min.js bundles match source
         run: npm run build:check
 
+      - name: Run JS unit tests (vitest)
+        run: npm test
+
   # ==========================================================================
   # STAGE 2: TEST
   # ==========================================================================
