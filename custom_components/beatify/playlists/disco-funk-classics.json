@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "1970s",
     "1980s",
@@ -1069,7 +1069,7 @@
     },
     {
       "year": 1975,
-      "uri": "spotify:track:6cHtnVvgIMqxIChRmraeTP",
+      "uri": "spotify:track:13YapKOKLsSCIHagJy4TZt",
       "artist": "Gloria Gaynor",
       "alt_artists": [
         "Donna Summer",
@@ -1090,7 +1090,7 @@
       "fun_fact_es": "La versión disco de Gloria Gaynor del clásico de Frankie Valli de 1967 transformó una balada doo-wop en un himno pulsante de pista de baile. El original de Frankie Valli llegó al #2 del Billboard Hot 100 y ha sido versionada por más de 200 artistas.",
       "fun_fact_fr": "La version disco de Gloria Gaynor du classique de Frankie Valli de 1967 a transformé une ballade doo-wop en un hymne de piste de danse pulsant. L'original de Frankie Valli avait atteint la 2e place du Billboard Hot 100 et a été repris par plus de 200 artistes.",
       "uri_apple_music": "applemusic://track/1838865894",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-R0EjDM5YFg",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=usccCsOdkM4",
       "uri_tidal": "tidal://track/45751156",
       "uri_deezer": "deezer://track/360910551",
       "fun_fact_nl": "Gloria Gaynors discoversie van Frankie Valli's klassieker uit 1967 transformeerde een doo-wopballade in een pulserende dansklassieker. Het origineel van Frankie Valli bereikte nummer 2 op de Billboard Hot 100 en is gecoverd door meer dan 200 artiesten.",
@@ -3671,9 +3671,9 @@
       "fun_fact_es": "Llegó al #1 en EE. UU., Reino Unido y una docena de países más en 1979; originalmente era un tema más lento con tintes reggae hasta que el productor Mike Chapman empujó a Blondie hacia el disco.",
       "fun_fact_fr": "Numéro 1 aux États-Unis, au Royaume-Uni et dans une douzaine d'autres pays en 1979 ; à l'origine un morceau plus lent aux accents reggae, jusqu'à ce que le producteur Mike Chapman pousse Blondie vers le disco.",
       "fun_fact_nl": "Bereikte in 1979 #1 in de VS, het VK en een tiental andere landen; oorspronkelijk een langzamer reggae-getint nummer tot producer Mike Chapman Blondie richting disco duwde.",
-      "uri_apple_music": "applemusic://track/725824490",
+      "uri_apple_music": "applemusic://track/1440930363",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/725824490",
+        "us": "applemusic://track/1440930363",
         "de": null,
         "gb": null,
         "fr": null,
@@ -3846,9 +3846,9 @@
       "fun_fact_es": "Edit nu-disco publicado en PornoStar Records en 2023; retoma un gancho pop conocido sobre un groove four-on-the-floor pensado para festivales.",
       "fun_fact_fr": "Edit nu-disco sorti sur PornoStar Records en 2023, réinjectant un hook pop connu sur un groove four-on-the-floor pensé pour les festivals.",
       "fun_fact_nl": "Nu-disco-edit uit 2023 op PornoStar Records; bouwt een bekende pop-hook uit boven een festival-vriendelijke four-on-the-floor-groove.",
-      "uri_apple_music": "applemusic://track/1692136761",
+      "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1692136761",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
