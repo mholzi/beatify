@@ -12,6 +12,7 @@ from aiohttp import WSCloseCode, WSMsgType, web
 from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
     LOBBY_DISCONNECT_GRACE_PERIOD,
+    MAX_GUESS_LEN,
 )
 from custom_components.beatify.server.serializers import (
     REDACTED_PLACEHOLDER,
@@ -47,6 +48,13 @@ if TYPE_CHECKING:
     from custom_components.beatify.analytics import AnalyticsStorage
 
 _LOGGER = logging.getLogger(__name__)
+
+# Free-text guess fields that must be length-capped at the ingest boundary
+# (#1581). aiohttp accepts WS frames up to 4 MB; an unbounded guess would feed a
+# multi-megabyte string into the O(n*m) Levenshtein DP and freeze the HA event
+# loop. Truncating here — before the message is dispatched, classified, stored,
+# or re-broadcast — keeps any oversized payload from flowing through the backend.
+_GUESS_TEXT_FIELDS = ("title", "artist", "movie")
 
 
 class BeatifyWebSocketHandler:
@@ -242,6 +250,14 @@ class BeatifyWebSocketHandler:
 
         """
         msg_type = data.get("type")
+
+        # Truncate free-text guesses at the ingest boundary (#1581), before the
+        # message is dispatched to a handler, classified, stored, or rebroadcast.
+        for field in _GUESS_TEXT_FIELDS:
+            value = data.get(field)
+            if isinstance(value, str) and len(value) > MAX_GUESS_LEN:
+                data[field] = value[:MAX_GUESS_LEN]
+
         game_state = get_game_state(self.hass)
 
         # Heartbeat ping: answer before the active-game guard so the client

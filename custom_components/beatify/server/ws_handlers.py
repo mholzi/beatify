@@ -45,7 +45,6 @@ from custom_components.beatify.const import (
     ERR_SESSION_NOT_FOUND,
     ERR_SESSION_TAKEOVER,
     ERR_UNAUTHORIZED,
-    MAX_GUESS_LEN,
     YEAR_MAX,
     YEAR_MIN,
 )
@@ -1601,12 +1600,9 @@ async def handle_title_artist_guess(
         title = ""
     if not isinstance(artist, str):
         artist = ""
-    # Cap guess length before it is matched, stored, and re-broadcast (#1362).
-    # aiohttp accepts WS messages up to 4 MB; an unbounded guess would feed a
-    # multi-megabyte string into the O(n*m) Levenshtein DP and freeze the HA
-    # event loop. A real title/artist never approaches MAX_GUESS_LEN.
-    title = title[:MAX_GUESS_LEN]
-    artist = artist[:MAX_GUESS_LEN]
+    # Guess length is capped at the WS ingest boundary (#1581) before dispatch,
+    # so title/artist already fit MAX_GUESS_LEN here. classify_field truncates
+    # again defensively.
 
     guess_time = game_state.current_time()
     result = game_state.submit_title_artist_guess(

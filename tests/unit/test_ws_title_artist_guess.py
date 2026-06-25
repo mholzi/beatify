@@ -14,6 +14,7 @@ from unittest.mock import AsyncMock, MagicMock
 from custom_components.beatify.const import (
     ARTIST_POINTS,
     DOMAIN,
+    MAX_GUESS_LEN,
     TITLE_POINTS,
 )
 from custom_components.beatify.game.state import GamePhase
@@ -152,5 +153,60 @@ class TestTitleArtistGuessMarksSubmitted:
         assert gs.players["Alice"].submitted is True
         assert gs.players["Bob"].submitted is True
         assert gs.check_all_guesses_complete() is True
+
+        gs._cancel_auto_advance()
+
+
+class TestGuessTruncatedAtIngest:
+    """#1581: oversized guesses must be capped at the WS ingest boundary,
+    before _handle_message dispatches to any guess handler — so a multi-MB
+    string never flows through classification / storage / rebroadcast.
+    """
+
+    async def test_oversized_title_artist_truncated_before_dispatch(self):
+        handler, gs = _make_handler_game()
+        ws = _ws()
+        gs.add_player("Alice", ws)
+        gs.players["Alice"].connected = True
+        await gs.start_round()
+
+        # Capture what the dispatched handler actually receives.
+        received: dict = {}
+
+        async def _spy(_handler, _ws, data, _gs):
+            received["title"] = data["title"]
+            received["artist"] = data["artist"]
+
+        handler._message_handlers["title_artist_guess"] = _spy
+
+        await handler._handle_message(
+            ws,
+            {
+                "type": "title_artist_guess",
+                "title": "x" * (MAX_GUESS_LEN + 5000),
+                "artist": "y" * (MAX_GUESS_LEN + 5000),
+            },
+        )
+
+        # The handler saw the already-truncated values — capping happened at ingest.
+        assert len(received["title"]) == MAX_GUESS_LEN
+        assert len(received["artist"]) == MAX_GUESS_LEN
+
+        gs._cancel_auto_advance()
+
+    async def test_at_cap_guess_passed_through_unchanged(self):
+        handler, gs = _make_handler_game()
+        ws = _ws()
+        gs.add_player("Alice", ws)
+        gs.players["Alice"].connected = True
+        await gs.start_round()
+
+        exact = "z" * MAX_GUESS_LEN
+        data = {"type": "title_artist_guess", "title": exact, "artist": "short"}
+        await handler._handle_message(ws, data)
+
+        # A guess exactly at the cap (and a short one) are left untouched.
+        assert data["title"] == exact
+        assert data["artist"] == "short"
 
         gs._cancel_auto_advance()
