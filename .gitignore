@@ -39,6 +39,7 @@ requirements.txt
 .coverage
 coverage.xml
 htmlcov/
+coverage/
 .tox/
 .nox/
 
