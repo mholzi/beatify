@@ -1,6 +1,6 @@
 {
   "name": "ICONIC movie songs 🎬",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "movies",
     "soundtracks",
@@ -14,7 +14,7 @@
   "description": "The songs that defined the movies — from Over the Rainbow and Moon River to Eye of the Tiger, My Heart Will Go On, Let It Go and Shallow. Musicals, soundtracks and the anthems you can't watch a film without.",
   "songs": [
     {
-      "year": 2011,
+      "year": 2008,
       "uri": "spotify:track:4hjuUelurEBKlqpJPJ77Iw",
       "artist": "Natasha Bedingfield",
       "alt_artists": [
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "year": 2008,
+      "year": 1985,
       "uri": "spotify:track:4K21nchEz8gMXTuW5vAd1c",
       "artist": "Simple Minds",
       "alt_artists": [
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "year": 2006,
+      "year": 1982,
       "uri": "spotify:track:2KH16WveTQWT6KOG9Rg6e2",
       "artist": "Survivor",
       "alt_artists": [
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "year": 2008,
+      "year": 1997,
       "uri": "spotify:track:7F1yVPuJ4xRdrDvf8OL0HF",
       "artist": "Céline Dion, James Horner",
       "alt_artists": [
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "year": 2024,
+      "year": 1961,
       "uri": "spotify:track:1XwAKjAZ1xDZOcuyZoqce4",
       "artist": "Audrey Hepburn",
       "alt_artists": [
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "year": 2009,
+      "year": 1939,
       "uri": "spotify:track:3wAIcORchxdSkWv6v5AkaU",
       "artist": "Judy Garland",
       "alt_artists": [
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "year": 2006,
+      "year": 1991,
       "uri": "spotify:track:2rJFFUEl1LURkV0b0OARXx",
       "artist": "Angela Lansbury, Disney",
       "alt_artists": [
@@ -414,7 +414,7 @@
       ]
     },
     {
-      "year": 2019,
+      "year": 1978,
       "uri": "spotify:track:5BUq9bdtsm3LWw5laJeJ4R",
       "artist": "Olivia Newton-John",
       "alt_artists": [
@@ -454,7 +454,7 @@
       ]
     },
     {
-      "year": 2025,
+      "year": 1940,
       "uri": "spotify:track:1WrPa4lrIddctGWAIYYfP9",
       "artist": "Cliff Edwards, Disney Studio Chorus",
       "alt_artists": [
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "year": 2021,
+      "year": 1965,
       "uri": "spotify:track:702fAWRsLomCKFROeMfKZd",
       "artist": "Julie Andrews, Charmian Carr, Heather Menzies, Nicholas Hammond, Duane Chase, Angela Cartwright, Debbie Turner, Kym Karath",
       "alt_artists": [
@@ -534,7 +534,7 @@
       ]
     },
     {
-      "year": 2006,
+      "year": 1985,
       "uri": "spotify:track:2olVm1lHicpveMAo4AUDRB",
       "artist": "Huey Lewis & The News",
       "alt_artists": [
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "year": 2021,
+      "year": 1965,
       "uri": "spotify:track:6aNMGfwdGyELNGCuqs5ldU",
       "artist": "Julie Andrews, Nicholas Hammond, Debbie Turner, Duane Chase, Heather Menzies, Angela Cartwright, Kym Karath, Charmian Carr",
       "alt_artists": [
@@ -734,7 +734,7 @@
       ]
     },
     {
-      "year": 2010,
+      "year": 1957,
       "uri": "spotify:track:4gphxUgq0JSFv2BCLhNDiE",
       "artist": "Elvis Presley",
       "alt_artists": [
@@ -814,7 +814,7 @@
       ]
     },
     {
-      "year": 2010,
+      "year": 1953,
       "uri": "spotify:track:4GKpEXCbrjJRH6K3M5B662",
       "artist": "Marilyn Monroe",
       "alt_artists": [
@@ -854,7 +854,7 @@
       ]
     },
     {
-      "year": 2016,
+      "year": 1977,
       "uri": "spotify:track:3mRM4NM8iO7UBqrSigCQFH",
       "artist": "Bee Gees",
       "alt_artists": [
@@ -894,7 +894,7 @@
       ]
     },
     {
-      "year": 2021,
+      "year": 1965,
       "uri": "spotify:track:1O6e8ewSwx8ijeMoVUrW5I",
       "artist": "Charmian Carr, Heather Menzies, Nicholas Hammond, Duane Chase, Angela Cartwright, Debbie Turner, Kym Karath, Bill Lee",
       "alt_artists": [
@@ -934,7 +934,7 @@
       ]
     },
     {
-      "year": 2012,
+      "year": 2011,
       "uri": "spotify:track:0z9UVN8VBHJ9HdfYsOuuNf",
       "artist": "Taylor Swift, The Civil Wars",
       "alt_artists": [
@@ -1134,7 +1134,7 @@
       ]
     },
     {
-      "year": 2017,
+      "year": 2004,
       "uri": "spotify:track:7FQSD5JjWqGtS1BaQQiT6V",
       "artist": "Counting Crows",
       "alt_artists": [
@@ -1214,7 +1214,7 @@
       ]
     },
     {
-      "year": 2014,
+      "year": 2013,
       "uri": "spotify:track:60nZcImufyMA1MKQY3dcCH",
       "artist": "Pharrell Williams",
       "alt_artists": [
@@ -1414,7 +1414,7 @@
       ]
     },
     {
-      "year": 2023,
+      "year": 1989,
       "uri": "spotify:track:7tUSJY4nsDBJTjd1UXKRsT",
       "artist": "Alan Menken, Howard Ashman, Jodi Benson, Disney, J.A.C. Redford",
       "alt_artists": [
@@ -1934,7 +1934,7 @@
       ]
     },
     {
-      "year": 2008,
+      "year": 1985,
       "uri": "spotify:track:6yEAAIEHu4GcUFptg5W9kI",
       "artist": "Simple Minds",
       "alt_artists": [
@@ -2214,7 +2214,7 @@
       ]
     },
     {
-      "year": 2007,
+      "year": 1964,
       "uri": "spotify:track:05miM6U3bpqzG5BRr0C8FF",
       "artist": "Julie Andrews, Dick Van Dyke, The Pearlie Chorus",
       "alt_artists": [
@@ -2254,7 +2254,7 @@
       ]
     },
     {
-      "year": 2019,
+      "year": 1978,
       "uri": "spotify:track:5CyZPkmTBmq61SunRDysna",
       "artist": "John Travolta, Olivia Newton-John",
       "alt_artists": [
@@ -2414,7 +2414,7 @@
       ]
     },
     {
-      "year": 2006,
+      "year": 1995,
       "uri": "spotify:track:15tHagkk8z306XkyOHqiip",
       "artist": "The Rembrandts",
       "alt_artists": [
@@ -2574,7 +2574,7 @@
       ]
     },
     {
-      "year": 2021,
+      "year": 1982,
       "uri": "spotify:track:6vBMTR37tnbCE0lApwor1d",
       "artist": "Aileen Quinn, ORPHANS",
       "alt_artists": [
@@ -2614,7 +2614,7 @@
       ]
     },
     {
-      "year": 2021,
+      "year": 1982,
       "uri": "spotify:track:3UvRjs5eyTkqB9MYWBqbuZ",
       "artist": "Aileen Quinn, Toni Ann Gisondi",
       "alt_artists": [
@@ -2814,7 +2814,7 @@
       ]
     },
     {
-      "year": 2006,
+      "year": 1998,
       "uri": "spotify:track:28UMEtwyUUy5u0UWOVHwiI",
       "artist": "Donny Osmond, Chorus - Mulan, Disney",
       "alt_artists": [
