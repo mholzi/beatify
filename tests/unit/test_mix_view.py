@@ -306,9 +306,7 @@ class TestMixPlaylistView:
 
     async def test_preview_empty_match_returns_404(self, tmp_path):
         view = _view_with_catalogue(tmp_path)
-        body = json.dumps(
-            {"tags": ["nonexistent-tag"], "preview": True}
-        ).encode()
+        body = json.dumps({"tags": ["nonexistent-tag"], "preview": True}).encode()
         resp = await view.post(_request_with_body(body))
         assert resp.status == 404
         assert json.loads(resp.body)["code"] == "EMPTY_MIX"
