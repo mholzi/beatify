@@ -43,7 +43,7 @@ from .challenges import (
 from .config import GameStateConfig
 from .highlights import HighlightsTracker
 from .player import PlayerSession
-from .playlist import PlaylistManager
+from .playlist import PlaylistManager, get_playback_uri
 from .player_registry import PlayerRegistry
 from .powerups import PowerUpManager
 from .round_manager import RoundManager
@@ -635,9 +635,7 @@ class GameState(
             # Artist/title are authoritative from playlist data — media player
             # state can report stale/wrong track info (especially Sonos + Spotify).
             if self.current_song:
-                current_uri = self.current_song.get(
-                    "_resolved_uri"
-                ) or self.current_song.get("uri")
+                current_uri = get_playback_uri(self.current_song)
                 if current_uri == uri:
                     self.current_song["album_art"] = metadata.get(
                         "album_art", "/beatify/static/img/no-artwork.svg"

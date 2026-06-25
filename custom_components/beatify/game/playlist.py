@@ -507,6 +507,24 @@ def get_song_uri(
     return None
 
 
+def get_playback_uri(song: dict[str, Any]) -> str | None:
+    """
+    Get the URI a song is currently played back with.
+
+    Prefers the provider-resolved URI (``_resolved_uri``, set once the song
+    has been resolved against the active provider/storefront) and falls back
+    to the song's generic ``uri`` field.
+
+    Args:
+        song: Song dictionary.
+
+    Returns:
+        The resolved playback URI, the generic URI, or None if neither set.
+
+    """
+    return song.get("_resolved_uri") or song.get("uri")
+
+
 def filter_songs_for_provider(
     songs: list[dict[str, Any]],
     provider: str,

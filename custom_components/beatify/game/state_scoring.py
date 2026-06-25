@@ -72,6 +72,7 @@ from custom_components.beatify.const import (
     STREAK_MILESTONES,
 )
 
+from .playlist import get_playback_uri
 from .scoring import ScoringService
 
 _LOGGER = logging.getLogger(__name__)
@@ -211,9 +212,7 @@ class RoundScoringMixin:
         # Extended for song statistics (Story 19.7)
         # Wrapped in try/catch to ensure round transition completes even if stats fail
         if self._stats_service and self.current_song:
-            song_uri = self.current_song.get("_resolved_uri") or self.current_song.get(
-                "uri"
-            )
+            song_uri = get_playback_uri(self.current_song)
             if song_uri:
                 try:
                     # Build player results list for song difficulty calculation

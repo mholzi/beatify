@@ -13,6 +13,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
+from .playlist import get_playback_uri
+
 if TYPE_CHECKING:
     from .state import GameState
 
@@ -165,9 +167,7 @@ class GameStateSerializer:
             state["game_performance"] = game_performance
         # Song difficulty rating (Story 15.1 AC1, AC4)
         if gs.current_song:
-            song_uri = gs.current_song.get("_resolved_uri") or gs.current_song.get(
-                "uri"
-            )
+            song_uri = get_playback_uri(gs.current_song)
             if song_uri:
                 difficulty = gs.get_song_difficulty(song_uri)
                 if difficulty:
