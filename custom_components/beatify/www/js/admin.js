@@ -36,6 +36,7 @@ import {
     escapeHtml,
     acquireWakeLockFirst,
     applyStoredGameSettings,
+    createRenderCoalescer,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -2320,8 +2321,17 @@ async function renderRequestsList() {
 // notably handleAdminStateUpdate below.)
 /**
  * Handle game state update from WebSocket — route to correct phase view.
+ *
+ * #1584: this rebuilds leaderboard + result cards + reveal in one shot, so a
+ * burst of `state` broadcasts (many players / fast rounds) used to repaint the
+ * whole view on every frame and janked weak hosts. The public entry point is
+ * now the thin `handleAdminStateUpdate` wrapper below — it coalesces a burst
+ * onto the next animation frame (rendering only the LATEST payload, so the
+ * final state is never dropped) and skips the repaint when the payload is
+ * byte-identical to what's already on screen. The heavy render itself is
+ * unchanged.
  */
-function handleAdminStateUpdate(data) {
+function renderAdminState(data) {
     adminState.currentGame = data;
 
     // Restore adminState.isPlaying state from player list (survives page reload)
@@ -2414,6 +2424,38 @@ function handleAdminStateUpdate(data) {
         default:
             showSetupView();
     }
+}
+
+// #1584: cheap "unchanged?" check for the dirty-check skip. Both payloads are
+// the server's own JSON serialization of the game state, so key order is
+// stable and a string compare is a sound (and far cheaper than the DOM
+// rebuild) equality test. Any failure falls back to "changed" → render.
+function _adminStateEqual(a, b) {
+    try {
+        return JSON.stringify(a) === JSON.stringify(b);
+    } catch (e) {
+        return false;
+    }
+}
+
+// #1584: coalesce bursts of state broadcasts into one render/frame, latest
+// payload wins (final state always rendered), and skip when nothing changed.
+const _scheduleAdminRender = createRenderCoalescer(renderAdminState, {
+    isEqual: _adminStateEqual,
+});
+
+/**
+ * Public entry point for a game-state update (WS `state` broadcast or a
+ * programmatic refresh). Coalesces the heavy `renderAdminState` — see its
+ * doc-comment for the #1584 rationale.
+ */
+function handleAdminStateUpdate(data) {
+    // Keep the live game-state pointer fresh synchronously (other async code
+    // reads adminState.currentGame between broadcasts); only the heavy DOM
+    // render is deferred and coalesced. renderAdminState re-assigns the same
+    // value when it flushes — idempotent.
+    adminState.currentGame = data;
+    _scheduleAdminRender(data);
 }
 
 // ---- #660: Playing mode banner + switch button ----
