@@ -62,6 +62,7 @@ files = [
     "custom_components/beatify/game/protocols.py",
     "custom_components/beatify/game/powerups.py",
     "custom_components/beatify/game/playlist.py",
+    "custom_components/beatify/game/player_registry.py",
     "custom_components/beatify/game/player.py",
     "custom_components/beatify/game/highlights.py",
     "custom_components/beatify/game/config.py",
@@ -80,8 +81,10 @@ files = [
 #   game/scoring.py         (~13 errors: Optional year math, sort/key Optionals)
 #   game/serializers.py     (~3 errors: GameState.language attr, sort key)
 #   game/round_manager.py   (~2 errors: Awaitable vs Coroutine in create_task)
-#   game/player_registry.py (~2 errors: bare `callable` used as a type)
 #   services/stats.py       (~2 errors: Optional dict passed to _format_song)
+#
+# Fixed & promoted into the gate:
+#   game/player_registry.py (#1587 — bare `callable` annotation → Callable[[], int])
 #
 # Next strictness steps once the above are clean:
 #   1. Replace `files` with whole-package check of game/ + services/.
