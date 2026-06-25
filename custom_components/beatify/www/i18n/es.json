@@ -580,7 +580,10 @@
     "seasonalReasonCarnival": "Llega el Carnaval — éxitos de Colonia para Weiberfastnacht y Rosenmontag.",
     "seasonalReasonEurovision": "Es hora de Eurovisión — pon los ganadores desde 1956 hasta hoy.",
     "seasonalReasonWorldCup": "Fiebre del Mundial — himnos para cada fiesta de partido.",
-    "seasonalReasonSummer": "Llegó el verano — 100 himnos para la fiesta en el jardín."
+    "seasonalReasonSummer": "Llegó el verano — 100 himnos para la fiesta en el jardín.",
+    "seasonalBadge": "Sugerencia de la temporada",
+    "seasonalAdd": "Añadir",
+    "seasonalDismiss": "Descartar sugerencia de temporada"
   },
   "analyticsDashboard": {
     "title": "Estadisticas de Beatify",

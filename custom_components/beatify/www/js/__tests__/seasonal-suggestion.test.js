@@ -7,7 +7,10 @@
  * DOM render/wire is intentionally NOT covered here (no jsdom); it's a thin
  * shell over the existing checkbox/handlePlaylistToggle path.
  */
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 // Pure-ish module: it reads adminState.selectedPlaylists and localStorage.
 // Provide minimal stand-ins before importing.
@@ -22,7 +25,7 @@ vi.mock('../admin/state.js', () => ({
     adminState: { selectedPlaylists: [] },
 }));
 
-const { pickSeasonalSuggestion, SEASONAL_OCCASIONS, wireSeasonalSuggestionHub } = await import(
+const { pickSeasonalSuggestion, SEASONAL_OCCASIONS, seasonalSuggestionHtml, wireSeasonalSuggestionHub } = await import(
     '../admin/sections/seasonal-suggestion.js'
 );
 const { adminState } = await import('../admin/state.js');
@@ -186,5 +189,75 @@ describe('#1570 hub-friendly wiring (wireSeasonalSuggestionHub)', () => {
         let called = false;
         expect(() => wireSeasonalSuggestionHub(fakeContainer(null), () => { called = true; })).not.toThrow();
         expect(called).toBe(false);
+    });
+});
+
+describe('#1585 data-driven occasions + i18n', () => {
+    const LOCALES = ['en', 'de', 'es', 'fr', 'nl'];
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const i18nDir = path.resolve(here, '../../i18n');
+    const locale = (code) =>
+        JSON.parse(readFileSync(path.join(i18nDir, `${code}.json`), 'utf8'));
+
+    // Shared chrome labels (badge / add / dismiss) + every occasion's reason
+    // key must resolve to a non-empty string in ALL five locales — otherwise
+    // tr() would silently fall back to English and a "data-driven" entry would
+    // ship untranslated.
+    it('resolves every occasion reasonKey in all 5 locales', () => {
+        for (const code of LOCALES) {
+            const admin = locale(code).admin || {};
+            for (const o of SEASONAL_OCCASIONS) {
+                expect(o.reasonKey, `${o.id} has a reasonKey`).toMatch(/^admin\./);
+                const subKey = o.reasonKey.replace(/^admin\./, '');
+                expect(typeof admin[subKey], `${code}:${o.reasonKey}`).toBe('string');
+                expect(admin[subKey].length, `${code}:${o.reasonKey} non-empty`).toBeGreaterThan(0);
+            }
+        }
+    });
+
+    it('resolves the shared chrome labels in all 5 locales', () => {
+        for (const code of LOCALES) {
+            const admin = locale(code).admin || {};
+            for (const key of ['seasonalBadge', 'seasonalAdd', 'seasonalDismiss']) {
+                expect(typeof admin[key], `${code}:admin.${key}`).toBe('string');
+                expect(admin[key].length, `${code}:admin.${key} non-empty`).toBeGreaterThan(0);
+            }
+        }
+    });
+
+    // seasonalSuggestionHtml routes labels through window.BeatifyI18n.t(); with a
+    // German stub installed it must emit the localized strings (data-driven, not
+    // hardcoded English).
+    describe('seasonalSuggestionHtml routes labels through i18n', () => {
+        beforeEach(() => {
+            const de = locale('de').admin;
+            globalThis.window = {
+                BeatifyUtils: { escapeHtml: (s) => String(s) },
+                BeatifyI18n: { t: (key) => de[key.replace(/^admin\./, '')] ?? key },
+            };
+        });
+        afterEach(() => { delete globalThis.window; });
+
+        it('emits the localized badge, reason and add label for the active occasion', () => {
+            const now = new Date('2026-02-10T12:00:00'); // carnival window
+            const html = seasonalSuggestionHtml([CARNIVAL], now);
+            const de = locale('de').admin;
+            expect(html).toContain(de.seasonalBadge);
+            expect(html).toContain(de.seasonalReasonCarnival);
+            expect(html).toContain(de.seasonalAdd);
+            expect(html).toContain(de.seasonalDismiss);
+            // English literals must NOT leak through when i18n resolves.
+            expect(html).not.toContain('Suggestion of the season');
+            expect(html).not.toContain('>Add<');
+        });
+
+        it('falls back to the English reason when i18n lacks the key', () => {
+            globalThis.window.BeatifyI18n = { t: (key) => key }; // nothing resolves
+            const now = new Date('2026-02-10T12:00:00');
+            const html = seasonalSuggestionHtml([CARNIVAL], now);
+            const carnival = SEASONAL_OCCASIONS.find((o) => o.id === 'carnival');
+            expect(html).toContain(carnival.reason); // English fallback
+            expect(html).toContain('Suggestion of the season');
+        });
     });
 });

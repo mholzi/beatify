@@ -26,6 +26,12 @@ const utils = () => window.BeatifyUtils || {};
 /**
  * Occasion calendar — date window → bundled playlist filename.
  *
+ * THIS TABLE IS THE ONLY EDIT POINT for seasonal suggestions (#1585): to add a
+ * new occasion, append one entry here plus matching `admin.seasonalReason<Id>`
+ * keys in every `www/i18n/*.json` locale — no render/wiring code changes. All
+ * chrome labels (badge / add / dismiss) are localized separately and shared
+ * across every occasion.
+ *
  * Only occasions whose playlist actually ships are listed; if a filename isn't
  * present in the rendered list at runtime the occasion silently does nothing,
  * so this stays safe even if a playlist is later renamed/removed.
@@ -163,15 +169,20 @@ export function seasonalSuggestionHtml(filteredPlaylists, now = new Date()) {
     if (!pick) return '';
     const { occasion, playlist } = pick;
     const esc = utils().escapeHtml || ((s) => s);
+    // All chrome labels route through i18n (#1585); the English literals are the
+    // fallback when i18n isn't ready/missing so the chip never shows a raw key.
+    const badge = tr('admin.seasonalBadge', 'Suggestion of the season');
+    const dismissLabel = tr('admin.seasonalDismiss', 'Dismiss seasonal suggestion');
+    const addLabel = tr('admin.seasonalAdd', 'Add');
     return `
         <div class="seasonal-suggestion" data-occasion="${esc(occasion.id)}"
              data-playlist-path="${esc(playlist.path)}">
-            <div class="seasonal-suggestion__badge">${esc(occasion.emoji)} Suggestion of the season</div>
+            <div class="seasonal-suggestion__badge">${esc(occasion.emoji)} ${esc(badge)}</div>
             <button type="button" class="seasonal-suggestion__dismiss"
-                    aria-label="Dismiss seasonal suggestion">×</button>
+                    aria-label="${esc(dismissLabel)}">×</button>
             <div class="seasonal-suggestion__title">${esc(playlist.name)}</div>
             <div class="seasonal-suggestion__reason">${esc(tr(occasion.reasonKey, occasion.reason))}</div>
-            <button type="button" class="seasonal-suggestion__add btn btn-primary">Add</button>
+            <button type="button" class="seasonal-suggestion__add btn btn-primary">${esc(addLabel)}</button>
         </div>
     `;
 }

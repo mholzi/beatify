@@ -580,7 +580,10 @@
     "seasonalReasonCarnival": "Carnaval is begonnen — Keulse hits voor Weiberfastnacht & Rosenmontag.",
     "seasonalReasonEurovision": "Eurovisietijd — speel de winnaars van 1956 tot nu.",
     "seasonalReasonWorldCup": "WK-koorts — hymnes voor elk wedstrijdfeest.",
-    "seasonalReasonSummer": "De zomer is begonnen — 100 hymnes voor het tuinfeest."
+    "seasonalReasonSummer": "De zomer is begonnen — 100 hymnes voor het tuinfeest.",
+    "seasonalBadge": "Suggestie van het seizoen",
+    "seasonalAdd": "Toevoegen",
+    "seasonalDismiss": "Seizoenssuggestie sluiten"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
