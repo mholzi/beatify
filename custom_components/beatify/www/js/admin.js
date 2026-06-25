@@ -115,6 +115,22 @@ import {
     loadSavedSettings,
 } from './admin/sections/game-settings.js';
 
+// #1589 (continuation of #1279 step 4b): two fully self-contained "modal
+// wiring" slices lifted out of the admin.js god file with no behavior change.
+// qr-modal.js: the tap-to-enlarge join-QR modal. admin.js init calls
+// setupQRModal() once; the home-view handlers call openQRModal() (still behind
+// their `typeof openQRModal === 'function'` guards). closeQRModal is internal.
+import {
+    openQRModal,
+    setupQRModal,
+} from './admin/sections/qr-modal.js';
+// force-reset.js: the emergency #777 recovery modal (no admin token needed).
+// Only setupResetModal() crosses the module boundary (admin.js init); show/
+// close/confirm are wired internally.
+import {
+    setupResetModal,
+} from './admin/sections/force-reset.js';
+
 // Token helpers in util.js need the live `currentGame`. The resolver reads it
 // off the shared `adminState` object (#1279 step 5), so it stays in sync across
 // every `adminState.currentGame = …` without touching each assignment site.
@@ -933,70 +949,9 @@ function showLobbyView(gameData) {
     }
 }
 
-// ==========================================
-// QR Modal Functions (tap to enlarge)
-// ==========================================
-
-/**
- * Open QR modal with enlarged code
- */
-function openQRModal() {
-    if (!adminState.cachedQRUrl) return;
-
-    var modal = document.getElementById('qr-modal');
-    var modalCode = document.getElementById('qr-modal-code');
-    if (!modal || !modalCode) return;
-
-    // Clear and render larger QR
-    modalCode.innerHTML = '';
-
-    if (typeof QRCode !== 'undefined') {
-        new QRCode(modalCode, {
-            text: adminState.cachedQRUrl,
-            width: 280,
-            height: 280,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.M
-        });
-    }
-
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-
-    // Focus close button for accessibility
-    var closeBtn = document.getElementById('qr-modal-close');
-    if (closeBtn) closeBtn.focus();
-}
-
-/**
- * Close QR modal
- */
-function closeQRModal() {
-    var modal = document.getElementById('qr-modal');
-    if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-    }
-}
-
-/**
- * Wire the QR modal once at init. The modal itself is shared between the
- * home-view tap-to-enlarge (BeatifyHome triggers openQRModal) and the
- * admin-playing view's QR preview, so only backdrop/close/escape are wired
- * here — the triggers live with each view.
- */
-function setupQRModal() {
-    var modal = document.getElementById('qr-modal');
-    var backdrop = modal ? modal.querySelector('.qr-modal-backdrop') : null;
-    var closeBtn = document.getElementById('qr-modal-close');
-
-    if (backdrop) backdrop.addEventListener('click', closeQRModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeQRModal);
-
-    // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
-    registerModalClose('qr-modal', closeQRModal);
-}
+// QR Modal Functions (tap to enlarge) — extracted to
+// ./admin/sections/qr-modal.js (#1589). openQRModal + setupQRModal are imported
+// above; closeQRModal is now internal to that module.
 
 // ==========================================
 // Game Control Functions (Story 2.3)
@@ -1271,80 +1226,10 @@ function setupEndGameModal() {
     // ESC key handling added to global handler below
 }
 
-// ==========================================
-// Force-Reset Modal (#777 follow-up)
-// ==========================================
-
-// localStorage keys Beatify writes — cleared on force-reset.
-// Add new keys here if you introduce more, otherwise stuck state survives.
-const _BEATIFY_LS_KEYS = [
-    'beatify_wizard_state',
-    'beatify_last_player',
-    'beatify_game_settings',
-    'beatify_party_lights',
-    'beatify_tts',
-    'beatify_admin_token',
-    'beatify_admin_token_game_id',
-];
-
-function showResetModal() {
-    document.getElementById('reset-modal')?.classList.remove('hidden');
-}
-
-function closeResetModal() {
-    document.getElementById('reset-modal')?.classList.add('hidden');
-}
-
-/**
- * Force-reset Beatify: end any active game on the server, clear local
- * Beatify state, unregister the service worker, and reload. Designed to
- * recover from any stuck state — does NOT require an admin token. The
- * server endpoint is rate-limited per IP (3 per hour). On endpoint
- * failure we still clear local state + reload, because most stuck
- * symptoms are client-side and a reload often clears them anyway.
- */
-async function confirmReset() {
-    closeResetModal();
-
-    // 1. Hit the server, but don't block local cleanup on its result.
-    try {
-        await BeatifyAuth.fetch('/beatify/api/force-reset', { method: 'POST' });
-    } catch (err) {
-        console.warn('[Reset] force-reset POST failed (continuing with local cleanup):', err);
-    }
-
-    // 2. Clear Beatify-owned localStorage entries.
-    try {
-        _BEATIFY_LS_KEYS.forEach((k) => localStorage.removeItem(k));
-    } catch (err) {
-        console.warn('[Reset] localStorage clear failed:', err);
-    }
-
-    // 3. Unregister the SW so a fresh registration happens on next load
-    //    (matters since #780 fixed SW activation — stale caches can now
-    //    actually exist).
-    try {
-        if ('serviceWorker' in navigator) {
-            const regs = await navigator.serviceWorker.getRegistrations();
-            await Promise.all(regs.map((r) => r.unregister()));
-        }
-    } catch (err) {
-        console.warn('[Reset] SW unregister failed:', err);
-    }
-
-    // 4. Reload onto the admin entry point.
-    window.location.replace('/beatify/admin');
-}
-
-function setupResetModal() {
-    document.getElementById('reset-btn')?.addEventListener('click', showResetModal);
-    document.getElementById('reset-confirm-btn')?.addEventListener('click', confirmReset);
-    document.getElementById('reset-cancel-btn')?.addEventListener('click', closeResetModal);
-    document.querySelector('#reset-modal .modal-backdrop')?.addEventListener('click', closeResetModal);
-
-    // #1402 B7: reset modal previously had no Escape support — register it now.
-    registerModalClose('reset-modal', closeResetModal);
-}
+// Force-Reset Modal (#777 follow-up) — extracted to
+// ./admin/sections/force-reset.js (#1589). setupResetModal is imported above;
+// show/close/confirm + the _BEATIFY_LS_KEYS list are now internal to that
+// module.
 
 // ==========================================
 // Rematch Functions (Issue #108)
