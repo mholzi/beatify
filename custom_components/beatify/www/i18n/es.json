@@ -352,6 +352,7 @@
     "stop": "Detener",
     "stopSong": "Detener canción",
     "connectionLost": "Conexión perdida — reconectando...",
+    "connectionDisrupted": "Conexión interrumpida — recarga la página.",
     "confirmIntro": "Iniciar ronda",
     "next": "Siguiente",
     "nextRound": "Siguiente ronda",

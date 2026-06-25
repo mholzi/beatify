@@ -352,6 +352,7 @@
     "stop": "Stop",
     "stopSong": "Stop nummer",
     "connectionLost": "Verbinding verloren — opnieuw verbinden...",
+    "connectionDisrupted": "Verbinding verstoord — herlaad de pagina.",
     "confirmIntro": "Ronde starten",
     "next": "Volgende",
     "nextRound": "Volgende ronde",
