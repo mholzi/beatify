@@ -100,7 +100,7 @@ from custom_components.beatify.const import (
     MIN_PLAYERS,
 )
 
-from .playlist import get_song_uri
+from .playlist import get_playback_uri, get_song_uri
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -241,9 +241,7 @@ class RoundLifecycleMixin:
                 failure_reason = getattr(
                     self._media_player_service, "last_failure_reason", None
                 )
-                self._playlist_manager.mark_played(
-                    song.get("_resolved_uri") or song.get("uri")
-                )
+                self._playlist_manager.mark_played(get_playback_uri(song))
 
                 if failure_reason == "unavailable":
                     _LOGGER.info(

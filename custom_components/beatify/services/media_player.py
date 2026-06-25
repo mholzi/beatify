@@ -15,6 +15,8 @@ from urllib.parse import quote
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
+from custom_components.beatify.game.playlist import get_playback_uri
+
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
@@ -432,7 +434,7 @@ class MediaPlayerService:
             True if playback started successfully, False otherwise
 
         """
-        uri = song.get("_resolved_uri") or song.get("uri")
+        uri = get_playback_uri(song)
         if not uri:
             _LOGGER.error(
                 "Song has no URI to play: %s - %s",
