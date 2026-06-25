@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "1970s",
     "classic-rock",
@@ -30,7 +30,7 @@
         "it": "applemusic://track/1688481173"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pa2j0Bh83ms",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1771758",
       "uri_deezer": "deezer://track/884041",
       "fun_fact": "ABBA were a Swedish quartet — one of the best-selling pop acts in history.",
       "fun_fact_de": "ABBA waren ein schwedisches Quartett — einer der meistverkauften Pop-Acts der Geschichte.",
@@ -55,7 +55,7 @@
         "it": "applemusic://track/159293419"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OvzJZTkWYoY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19994076",
       "uri_deezer": "deezer://track/15586286",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -80,7 +80,7 @@
         "it": "applemusic://track/594061856"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5oWyMakvQew",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/215115417",
       "uri_deezer": "deezer://track/63480987",
       "fun_fact": "Fleetwood Mac's 'Rumours'-era line-up made them one of the 70s' defining bands.",
       "fun_fact_de": "Fleetwood Mac wurden in der 'Rumours'-Ära zu einer der prägenden Bands der 70er.",
@@ -105,7 +105,7 @@
         "it": "applemusic://track/1685073147"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=B2mmDEv0OEk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106028079",
       "uri_deezer": "deezer://track/487484142",
       "fun_fact": "Earth, Wind & Fire fused funk, soul and disco into era-defining anthems.",
       "fun_fact_de": "Earth, Wind & Fire verschmolzen Funk, Soul und Disco zu epochalen Hymnen.",
