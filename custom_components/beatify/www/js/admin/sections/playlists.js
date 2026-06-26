@@ -29,6 +29,75 @@ import { tr } from '../util.js';
 const utils = window.BeatifyUtils || {};
 
 /**
+ * #1590: number of playable songs a playlist has for the given provider.
+ *
+ * Single source of truth for the per-provider count. Previously this logic
+ * lived ONLY inline in the render loop, baked into the checkbox's
+ * `data-provider-count` attribute — which made the rendered flat-admin DOM the
+ * de-facto data store: selection-restore read the count back out of the
+ * checkbox dataset. Extracting it lets the selection be restored straight from
+ * `adminState.playlistData` (the real data store) without that DOM round-trip.
+ *
+ * Behaviour is identical to the old inline block (spotify falls back to the
+ * raw song_count for legacy playlists; amazon_music uses Alexa text-search so
+ * every song is playable; unknown providers get the full song_count).
+ *
+ * @param {object} playlist  a playlist entry from adminState.playlistData
+ * @param {string} provider  adminState.selectedProvider
+ * @returns {number}
+ */
+export function providerCountForPlaylist(playlist, provider) {
+    const songCount = playlist.song_count || 0;
+    switch (provider) {
+        case 'spotify':       return playlist.spotify_count || songCount;
+        case 'apple_music':   return playlist.apple_music_count || 0;
+        case 'youtube_music': return playlist.youtube_music_count || 0;
+        case 'tidal':         return playlist.tidal_count || 0;
+        case 'deezer':        return playlist.deezer_count || 0;
+        case 'amazon_music':  return playlist.amazon_music_count || songCount;
+        default:              return songCount;
+    }
+}
+
+/**
+ * #1590: restore `adminState.selectedPlaylists` from the in-memory data store
+ * (`adminState.playlistData` + localStorage) WITHOUT reading the flat-admin
+ * checkbox DOM. Used when `#playlists-list` is absent (the dead flat section
+ * has been removed, or simply never mounted on this view). Mirrors the
+ * DOM-based restore in renderPlaylists exactly: only valid playlists with a
+ * positive provider count are eligible, dedup by path, preserve-selection
+ * (provider switch) takes precedence over the localStorage fallback.
+ *
+ * @param {Array} previousSelections  selections to preserve across a re-render
+ */
+function restorePlaylistSelectionFromData(previousSelections) {
+    const provider = adminState.selectedProvider;
+    const pushIfEligible = (path) => {
+        const pl = adminState.playlistData.find((p) => p && p.path === path);
+        if (!pl || !pl.is_valid) return;
+        const providerCount = providerCountForPlaylist(pl, provider);
+        if (providerCount > 0 && !adminState.selectedPlaylists.some((p) => p.path === path)) {
+            adminState.selectedPlaylists.push({ path, songCount: providerCount });
+        }
+    };
+
+    // Preserve across provider-switch re-render (matches the DOM path's first pass)
+    previousSelections.forEach((prev) => pushIfEligible(prev.path));
+
+    // localStorage fallback — only when nothing was preserved (matches DOM path)
+    if (adminState.selectedPlaylists.length === 0) {
+        try {
+            const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+            const saved = raw ? JSON.parse(raw) : null;
+            const savedPaths = Array.isArray(saved?.selectedPlaylists)
+                ? saved.selectedPlaylists.map((p) => (typeof p === 'string' ? p : p.path)).filter(Boolean)
+                : [];
+            savedPaths.forEach((path) => pushIfEligible(path));
+        } catch (e) { console.warn('[Beatify] restore saved playlists failed:', e); }
+    }
+}
+
+/**
  * Render playlists list with checkboxes for valid playlists
  * @param {Array} playlists
  * @param {string} playlistDir
@@ -47,6 +116,21 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
     // Reset selection state
     adminState.selectedPlaylists = [];
     adminState.playlistData = playlists || [];
+
+    // #1590: decouple the selection data store from the dead flat-admin DOM.
+    // The flat #playlists section is dead UI (hidden via body.home-mode since
+    // rc11/#1138) but still load-bearing because selection-restore read the
+    // per-provider count back out of the rendered checkbox dataset. When the
+    // list element is absent, restore the selection from adminState.playlistData
+    // (the real data store) instead of throwing on `container.innerHTML`. When
+    // the list IS present the existing DOM render + restore path below runs
+    // unchanged, so production behaviour is identical.
+    if (!container) {
+        restorePlaylistSelectionFromData(previousSelections);
+        updateSelectionSummary();
+        updateStartButtonState();
+        return;
+    }
 
     // Render filter bar (Issue #70)
     renderPlaylistFilterBar(adminState.playlistData);
@@ -102,29 +186,9 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
         if (playlist.is_valid) {
             // AC1: Valid playlists with checkbox
             const songCount = playlist.song_count || 0;
-            const spotifyCount = playlist.spotify_count || 0;
-            const appleMusicCount = playlist.apple_music_count || 0;
-            const youtubeMusicCount = playlist.youtube_music_count || 0;
-            const tidalCount = playlist.tidal_count || 0;
-            const deezerCount = playlist.deezer_count || 0;
-            // Amazon Music uses Alexa text search — all songs are playable.
-            const amazonMusicCount = playlist.amazon_music_count || songCount;
-
-            // Get provider count based on selected provider
-            let providerCount = songCount;
-            if (adminState.selectedProvider === 'spotify') {
-                providerCount = spotifyCount || songCount; // fallback for legacy playlists
-            } else if (adminState.selectedProvider === 'apple_music') {
-                providerCount = appleMusicCount;
-            } else if (adminState.selectedProvider === 'youtube_music') {
-                providerCount = youtubeMusicCount;
-            } else if (adminState.selectedProvider === 'tidal') {
-                providerCount = tidalCount;
-            } else if (adminState.selectedProvider === 'deezer') {
-                providerCount = deezerCount;
-            } else if (adminState.selectedProvider === 'amazon_music') {
-                providerCount = amazonMusicCount;
-            }
+            // #1590: per-provider count now comes from the shared pure helper so
+            // the render markup and the DOM-free selection-restore stay in sync.
+            const providerCount = providerCountForPlaylist(playlist, adminState.selectedProvider);
 
             // Disable playlist if no songs for selected provider
             const isDisabled = providerCount === 0;
