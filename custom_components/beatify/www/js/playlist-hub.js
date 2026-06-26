@@ -554,7 +554,9 @@ function _renderAll() {
             <div class="plh-sheet-host" data-plh-sheet></div>
         </div>
         <div class="playlist-panel plh-mix-view ${state.topTab === 'mix' ? '' : 'hidden'}" data-plh-mix-view role="tabpanel">
-            ${_mixPanelHtml()}
+            <div class="plh-body plh-mix-body">
+                ${_mixPanelHtml()}
+            </div>
         </div>
     `;
     _renderHeader();
