@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import threading
 import time
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
@@ -81,6 +82,10 @@ _ASSET_SUBDIRS = ("css", "js", "i18n")
 # burst of player.html loads at game start doesn't re-walk per request.
 _ASSET_FP_TTL_NS = 5 * 1_000_000_000  # 5s
 _ASSET_FP_CACHE: tuple[int, str] | None = None  # (monotonic_ns, fingerprint)
+# Guards _ASSET_FP_CACHE: it's read/written from both the event loop and HA
+# executor threads, so concurrent first-access could otherwise race and recompute
+# the fingerprint twice (#1592). Double-checked inside the lock below.
+_ASSET_FP_LOCK = threading.Lock()
 
 
 def _compute_asset_fingerprint(www_dir: Path) -> str:
@@ -119,11 +124,20 @@ def _get_asset_version(version: str, www_dir: Path) -> str:
     """
     global _ASSET_FP_CACHE  # noqa: PLW0603
     now = time.monotonic_ns()
-    if _ASSET_FP_CACHE is not None and now - _ASSET_FP_CACHE[0] < _ASSET_FP_TTL_NS:
-        fingerprint = _ASSET_FP_CACHE[1]
-    else:
-        fingerprint = _compute_asset_fingerprint(www_dir)
-        _ASSET_FP_CACHE = (now, fingerprint)
+    # Fast path: a fresh cache entry needs no lock (tuple reads are atomic).
+    cache = _ASSET_FP_CACHE
+    if cache is not None and now - cache[0] < _ASSET_FP_TTL_NS:
+        return f"{version}-{cache[1]}"
+    # Slow path: serialize recompute so concurrent first-access (event loop +
+    # executor threads) hashes once, not once-per-thread (#1592). Re-check the
+    # cache inside the lock — another thread may have just populated it.
+    with _ASSET_FP_LOCK:
+        cache = _ASSET_FP_CACHE
+        if cache is not None and now - cache[0] < _ASSET_FP_TTL_NS:
+            fingerprint = cache[1]
+        else:
+            fingerprint = _compute_asset_fingerprint(www_dir)
+            _ASSET_FP_CACHE = (time.monotonic_ns(), fingerprint)
     return f"{version}-{fingerprint}"
 
 
