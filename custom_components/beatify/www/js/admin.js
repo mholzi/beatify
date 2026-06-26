@@ -674,14 +674,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Wire event listeners
     document.getElementById('start-game')?.addEventListener('click', startGame);
-    document.getElementById('print-qr')?.addEventListener('click', printQRCode);
 
     // #1538: Smart Playlist Mixer "Mix" tab. Inject startGame so the mixer
     // funnels through the validated start-game path after assembling its set.
     initMixTab({ startGame });
-
-    document.getElementById('end-game')?.addEventListener('click', endGame);
-    document.getElementById('end-game-lobby')?.addEventListener('click', endGame);
 
     // #1402 B7: one document-level Escape handler for all registered modals.
     // Wire it before the per-modal setups so their registerModalClose() calls
@@ -1393,14 +1389,6 @@ async function confirmRematch() {
     // idempotent re-affirm (guarded by _noSleepActive).
     acquireWakeLockFirst(_requestWakeLock);
 
-    // F8 fix: Show loading state on rematch button
-    var rematchBtn = document.getElementById('rematch-game');
-    var originalText = rematchBtn ? rematchBtn.textContent : '';
-    if (rematchBtn) {
-        rematchBtn.disabled = true;
-        rematchBtn.textContent = '⏳';
-    }
-
     closeRematchModal();
 
     // Issue #477: Prefer WS for rematch
@@ -1425,11 +1413,6 @@ async function confirmRematch() {
         alert((window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
     } finally {
         rematchInProgress = false;
-        // Restore button state (in case of error)
-        if (rematchBtn) {
-            rematchBtn.disabled = false;
-            rematchBtn.textContent = originalText;
-        }
     }
 }
 
@@ -1447,13 +1430,6 @@ function setupRematchModal() {
 
     // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
     registerModalClose('rematch-modal', closeRematchModal);
-}
-
-/**
- * Print QR code
- */
-function printQRCode() {
-    window.print();
 }
 
 /**
@@ -1791,13 +1767,6 @@ function setTimerDuration(duration) {
 // Difficulty Selector Functions (Story 14.1)
 // ==========================================
 
-// Mapping of difficulty levels to their description i18n keys
-const difficultyDescriptions = {
-    easy: 'admin.difficultyEasyDesc',
-    normal: 'admin.difficultyNormalDesc',
-    hard: 'admin.difficultyHardDesc'
-};
-
 /**
  * Setup difficulty selector buttons
  */
@@ -1843,17 +1812,6 @@ function setDifficulty(difficulty) {
 
     adminState.selectedDifficulty = difficulty;
     updateDifficultyButtons(difficulty);
-
-    // Update description text
-    var descriptionEl = document.getElementById('difficulty-description');
-    if (descriptionEl) {
-        var descKey = difficultyDescriptions[difficulty];
-        descriptionEl.setAttribute('data-i18n', descKey);
-        // Use i18n translation if available
-        if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.t) {
-            descriptionEl.textContent = BeatifyI18n.t(descKey);
-        }
-    }
 }
 
 /**
@@ -1911,130 +1869,12 @@ function setupArtistChallengeToggle() {
  * @param {Array} players - Array of player objects from game state
  */
 function renderLobbyPlayers(players) {
-    var listEl = document.getElementById('lobby-players');
-    var countEl = document.getElementById('lobby-player-count');
-    var summaryEl = document.getElementById('admin-players-summary');
-    var emptyEl = document.getElementById('lobby-players-empty');
-
     players = players || [];
 
     // Mirror live player updates into the home-view pill row. If BeatifyHome
     // is active, this keeps the Variant A landing in sync with the real lobby.
     if (window.BeatifyHome && typeof window.BeatifyHome.renderPlayers === 'function') {
         window.BeatifyHome.renderPlayers(players);
-    }
-
-    if (!listEl) return;
-
-    // Update player count (stat card value - just the number)
-    if (countEl) {
-        countEl.textContent = players.length;
-    }
-
-    // Update players section summary badge
-    if (summaryEl) {
-        summaryEl.textContent = players.length;
-    }
-
-    // Handle empty state visibility
-    if (players.length === 0) {
-        listEl.innerHTML = '';
-        if (emptyEl) emptyEl.classList.remove('hidden');
-        var startBtn = document.getElementById("start-gameplay-btn");
-        if (startBtn) startBtn.classList.add("hidden");
-        adminState.previousLobbyPlayers = [];
-        return;
-    }
-
-    // Hide empty state when we have players
-    if (emptyEl) emptyEl.classList.add('hidden');
-
-    // Sort: connected first, disconnected last
-    var sortedPlayers = players.slice().sort(function(a, b) {
-        if (a.connected !== b.connected) {
-            return a.connected ? -1 : 1;
-        }
-        return 0;
-    });
-
-    // Find new players by comparing with previous list
-    var previousNames = adminState.previousLobbyPlayers.map(function(p) { return p.name; });
-    var newNames = sortedPlayers
-        .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
-        .map(function(p) { return p.name; });
-
-    // Render player cards (grid layout)
-    listEl.innerHTML = sortedPlayers.map(function(player) {
-        var isNew = newNames.indexOf(player.name) !== -1;
-        var isDisconnected = player.connected === false;
-        var isAdmin = player.is_admin === true;
-        var canKick = isDisconnected && !isAdmin;
-        var classes = [
-            'player-card',
-            isNew ? 'is-new' : '',
-            isDisconnected ? 'player-card--disconnected' : ''
-        ].filter(Boolean).join(' ');
-
-        // Crown badge for admin
-        var adminBadge = isAdmin ? '<span class="admin-badge">👑</span>' : '';
-        // Badge for disconnected players
-        var awayBadge = isDisconnected ? '<span class="away-badge">' + utils.t('lobby.away', 'away') + '</span>' : '';
-        // Kick button for disconnected non-admin players (#659)
-        var kickBtn = canKick
-            ? '<button class="kick-player-btn" data-player="' + utils.escapeHtml(player.name) + '" title="' + (BeatifyI18n.t('admin.kickPlayerTitle') || 'Remove player') + '">×</button>'
-            : '';
-
-        return '<div class="' + classes + '" data-player="' + utils.escapeHtml(player.name) + '">' +
-            '<span class="player-name">' +
-                utils.escapeHtml(player.name) +
-                adminBadge +
-            '</span>' +
-            awayBadge +
-            kickBtn +
-        '</div>';
-    }).join('');
-
-    // Wire up kick buttons (#659)
-    listEl.querySelectorAll('.kick-player-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            handleKickPlayer(btn.dataset.player);
-        });
-    });
-
-    // Remove .is-new class after animation
-    setTimeout(function() {
-        var newCards = listEl.querySelectorAll('.is-new');
-        for (var i = 0; i < newCards.length; i++) {
-            newCards[i].classList.remove('is-new');
-        }
-    }, 2000);
-
-    // Show Start button when there are players. The admin page IS the admin
-    // control surface — the host should always be able to start the game,
-    // whether they joined as a player or not.
-    var startBtn = document.getElementById("start-gameplay-btn");
-    if (startBtn) {
-        startBtn.classList.remove("hidden");
-    }
-
-    adminState.previousLobbyPlayers = players.slice();
-}
-
-/**
- * Handle kick player action — remove disconnected player from lobby (#659)
- */
-function handleKickPlayer(playerName) {
-    var message = (BeatifyI18n.t('admin.kickPlayerConfirm') || 'Remove {name} from the lobby?')
-        .replace('{name}', playerName);
-    if (!confirm(message)) return;
-
-    if (isAdminWsOpen()) {
-        sendAdminWs({
-            type: 'admin',
-            action: 'kick_player',
-            player_name: playerName
-        });
     }
 }
 
@@ -2218,32 +2058,13 @@ async function initPlaylistRequests() {
  * Render the list of playlist requests
  */
 async function renderRequestsList() {
-    if (!window.PlaylistRequests) {
-        document.getElementById('my-requests')?.classList.add('hidden');
-        return;
-    }
+    if (!window.PlaylistRequests) return;
 
-    // Load requests from backend (async)
-    const requests = await window.PlaylistRequests.getRequestsForDisplayAsync();
-
-    // Legacy #my-requests section — null-safe so the section can be deleted later
-    const section = document.getElementById('my-requests');
-    const listContainer = document.getElementById('my-requests-list');
-    const emptyState = document.getElementById('my-requests-empty');
-    const summary = document.getElementById('my-requests-summary');
-
-    if (!section || !listContainer) return; // section deleted from DOM — home-view modal carries the load
-
-    if (adminState.currentView === 'setup') section.classList.remove('hidden');
-    if (summary) summary.textContent = requests.length.toString();
-
-    if (requests.length === 0) {
-        listContainer.innerHTML = '';
-        emptyState?.classList.remove('hidden');
-    } else {
-        emptyState?.classList.add('hidden');
-        listContainer.innerHTML = requests.map((r) => buildRequestRowHtml(r)).join('');
-    }
+    // #1589 dead-selector cleanup: the legacy flat #my-requests section
+    // (list / empty-state / summary) was removed from admin.html; the home-view
+    // request modal is now the sole surface. The backend load is kept for its
+    // refresh side-effect; all DOM rendering below the old null guard was dead.
+    await window.PlaylistRequests.getRequestsForDisplayAsync();
 }
 
 // ============================================
