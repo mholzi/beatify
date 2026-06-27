@@ -6,6 +6,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 - Added 20 tracks to new community playlist "🌪️ Funk Carioca" — Brazilian baile funk hits spanning 2000–2018 (#1554).
 
+## [4.2.0-rc6] - 2026-06-27
+
+Pre-release — fixes a Smart Playlist Mixer blocker reported from the field, plus a Tidal catalogue top-up. See [docs/release-notes-v4.2.0-rc6.md](docs/release-notes-v4.2.0-rc6.md) for the user-facing notes.
+
+### Fixed
+- **Mix tab no longer blocks with "Select a media player first" inside the setup wizard (#1619).** The wizard saves the chosen speaker to local storage, but the Mix tab wasn't reading it there, so "Mix starten" wrongly demanded a media player even after one was picked in step 1. It now resolves the speaker from the same source as the rest of the app.
+
+### Changed
+- **A re-render no longer drops a still-valid speaker selection (#1619 follow-up).** A routine status refresh (e.g. a speaker briefly going unavailable) used to silently clear the selection; it is now kept as long as the player is still present.
+- **+55 Tidal URIs** backfilled across the catalogue (three backfill waves, #1616 / #1617 / #1622).
+
 ## [4.2.0-rc1] - 2026-06-24
 
 Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a faster first round. See [docs/release-notes-v4.2.0-rc1.md](docs/release-notes-v4.2.0-rc1.md) for the user-facing notes.
