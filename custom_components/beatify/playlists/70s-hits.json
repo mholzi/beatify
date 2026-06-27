@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "1970s",
     "classic-rock",
@@ -130,7 +130,7 @@
         "it": "applemusic://track/1692224581"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0X2mn7Sk9lQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1771757",
       "uri_deezer": "deezer://track/884040",
       "fun_fact": "ABBA were a Swedish quartet — one of the best-selling pop acts in history.",
       "fun_fact_de": "ABBA waren ein schwedisches Quartett — einer der meistverkauften Pop-Acts der Geschichte.",
@@ -155,7 +155,7 @@
         "it": "applemusic://track/6762960807"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xwy-3aI435o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77701512",
       "uri_deezer": "deezer://track/883644",
       "fun_fact": "Creedence Clearwater Revival defined American roots-rock.",
       "fun_fact_de": "Creedence Clearwater Revival prägten den amerikanischen Roots-Rock.",
@@ -180,7 +180,7 @@
         "it": "applemusic://track/574044008"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ikFFVfObwss",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35986116",
       "uri_deezer": "deezer://track/92719900",
       "fun_fact": "AC/DC are an Australian hard-rock band, loud and unmistakable since the 70s.",
       "fun_fact_de": "AC/DC sind eine australische Hard-Rock-Band — laut und unverwechselbar seit den 70ern.",
@@ -205,7 +205,7 @@
         "it": "applemusic://track/1831762909"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iLC-tHvkNvI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20501436",
       "uri_deezer": "deezer://track/63480992",
       "fun_fact": "Fleetwood Mac's 'Rumours'-era line-up made them one of the 70s' defining bands.",
       "fun_fact_de": "Fleetwood Mac wurden in der 'Rumours'-Ära zu einer der prägenden Bands der 70er.",
@@ -230,7 +230,7 @@
         "it": "applemusic://track/159293312"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n3qQtSRmHxo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19994075",
       "uri_deezer": "deezer://track/15586296",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -255,7 +255,7 @@
         "it": "applemusic://track/1690867826"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YkLLcIKhJ64",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1771745",
       "uri_deezer": "deezer://track/884025",
       "fun_fact": "ABBA were a Swedish quartet — one of the best-selling pop acts in history.",
       "fun_fact_de": "ABBA waren ein schwedisches Quartett — einer der meistverkauften Pop-Acts der Geschichte.",
@@ -280,7 +280,7 @@
         "it": "applemusic://track/1689087125"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0mCb41XUcTg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/277901",
       "uri_deezer": "deezer://track/720737",
       "fun_fact": "A 70s classic (1976).",
       "fun_fact_de": "Ein 70er-Klassiker (1976).",
@@ -305,7 +305,7 @@
         "it": "applemusic://track/6762706418"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LB5uhCKrzVI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/631304",
       "uri_deezer": "deezer://track/908011",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -330,7 +330,7 @@
         "it": "applemusic://track/309646673"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RAkOm7XLoQQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2767843",
       "uri_deezer": "deezer://track/3599559",
       "fun_fact": "Fleetwood Mac's 'Rumours'-era line-up made them one of the 70s' defining bands.",
       "fun_fact_de": "Fleetwood Mac wurden in der 'Rumours'-Ära zu einer der prägenden Bands der 70er.",
@@ -355,7 +355,7 @@
         "it": "applemusic://track/1440912581"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cF3OWCYLLVQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/622359",
       "uri_deezer": "deezer://track/2263033",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -380,7 +380,7 @@
         "it": "applemusic://track/1626468524"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LLbew85exp0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/8631995",
       "uri_deezer": "deezer://track/14333215",
       "fun_fact": "A 70s classic (1973).",
       "fun_fact_de": "Ein 70er-Klassiker (1973).",
@@ -405,7 +405,7 @@
         "it": "applemusic://track/1801925575"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mSZXWdKSQNM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/212211808",
       "uri_deezer": "deezer://track/727720",
       "fun_fact": "A 70s classic (1971).",
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
@@ -430,7 +430,7 @@
         "it": "applemusic://track/1802959266"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CczcMarUoVk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6851486",
       "uri_deezer": "deezer://track/12209331",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -455,7 +455,7 @@
         "it": "applemusic://track/1443233007"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MEqjpgwPjVM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/529738",
       "uri_deezer": "deezer://track/1143625",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -480,7 +480,7 @@
         "it": "applemusic://track/1626469917"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8jjbhrR15Y8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2098894",
       "uri_deezer": "deezer://track/2312047",
       "fun_fact": "A 70s classic (1971).",
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
@@ -505,7 +505,7 @@
         "it": "applemusic://track/1625989511"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=irl89Gmcv8c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1809083",
       "uri_deezer": "deezer://track/968746",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
