@@ -1,6 +1,6 @@
 {
   "name": "40s & 50s Classics",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1940s",
     "1950s",
@@ -3555,7 +3555,7 @@
         "it": "applemusic://track/46592268"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8U3DT2nypv8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/218779",
       "uri_deezer": "deezer://track/3658386",
       "fun_fact": "A 1950s classic (1959).",
       "fun_fact_de": "Ein 50er-Klassiker (1959).",
@@ -3580,7 +3580,7 @@
         "it": "applemusic://track/1746325119"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=EONn2gj1ngA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/306886",
       "uri_deezer": "deezer://track/682214",
       "fun_fact": "A 1950s classic (1959).",
       "fun_fact_de": "Ein 50er-Klassiker (1959).",
