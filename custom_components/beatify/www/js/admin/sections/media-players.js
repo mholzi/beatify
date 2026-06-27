@@ -40,6 +40,25 @@ export function updateMediaPlayerSummary(playerName) {
 }
 
 /**
+ * #1619-followup: decide whether a re-render should keep the current selection.
+ *
+ * `renderMediaPlayers()` used to blindly null `adminState.selectedMediaPlayer`
+ * on every call, then re-derive it from localStorage. That silently dropped a
+ * still-valid choice whenever it wasn't re-derivable — e.g. a speaker that is
+ * transiently `unavailable` (filtered out of the rendered list) during a routine
+ * status-poll re-render. We keep the selection as long as the chosen player is
+ * still present in the incoming payload (available OR unavailable); only a player
+ * that has actually disappeared clears it.
+ *
+ * @param {string|null} prevSelectedId - entityId of the current selection (or null)
+ * @param {Array} players - raw players payload (before the unavailable filter)
+ * @returns {boolean}
+ */
+export function _shouldKeepSelection(prevSelectedId, players) {
+    return !!prevSelectedId && (players || []).some((p) => p.entity_id === prevSelectedId);
+}
+
+/**
  * Render media players list grouped by platform with capability info
  * Filters out unavailable players
  * @param {Array} players
@@ -52,8 +71,15 @@ export function renderMediaPlayers(players) {
     container?.classList.remove('skeleton-list');
     const totalPlayers = players ? players.length : 0;
 
-    // Reset selection state
-    adminState.selectedMediaPlayer = null;
+    // #1619-followup: only drop the selection when the chosen player is actually
+    // gone from the new payload. A blind reset here silently lost a still-valid
+    // choice (e.g. a transiently-unavailable speaker) across status-poll
+    // re-renders. The localStorage auto-select below still re-derives it when the
+    // player is back in the available list.
+    const prevSelectedId = adminState.selectedMediaPlayer?.entityId || null;
+    if (!_shouldKeepSelection(prevSelectedId, players)) {
+        adminState.selectedMediaPlayer = null;
+    }
 
     // Filter out unavailable players
     const availablePlayers = (players || []).filter(p => p.state !== 'unavailable');
