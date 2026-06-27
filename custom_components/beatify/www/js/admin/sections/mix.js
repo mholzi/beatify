@@ -336,6 +336,42 @@ function clearMixError() {
 }
 
 /**
+ * #1619: Resolve the active media player into `adminState.selectedMediaPlayer`
+ * from the same unified source the rest of the app uses, before the start gate.
+ *
+ * Inside the setup wizard the chosen speaker lives only in
+ * `localStorage.beatify_last_player` (`chosenSpeaker` in wizard.js); the wizard
+ * never writes the legacy admin global, and `BeatifyHome.hydrateFromStorage()`
+ * only runs in the post-wizard Home view — not at wizard step 3 where the Mix
+ * tab is rendered. Without this, "Mix starten" inside the wizard falsely reports
+ * "Select a media player first" even though a speaker was picked in step 1.
+ *
+ * Idempotent: only fills the gap when the global is empty. Uses `globalThis`
+ * (=== window in the browser) so it stays unit-testable in the node test env.
+ */
+export function ensureMediaPlayerHydrated() {
+    if (adminState.selectedMediaPlayer && adminState.selectedMediaPlayer.entityId) {
+        return;
+    }
+    // Prefer the tested admin bridge when present (also wires the radio + caps).
+    try {
+        globalThis.BeatifyHome?.hydrateFromStorage?.();
+    } catch (e) { /* noop — fall through to the storage fallback */ }
+    if (adminState.selectedMediaPlayer && adminState.selectedMediaPlayer.entityId) {
+        return;
+    }
+    // Fallback: minimal stub from the wizard's saved speaker. Capability flags
+    // default to false; the backend validates the player at start.
+    let lastPlayerId = null;
+    try {
+        lastPlayerId = globalThis.localStorage?.getItem('beatify_last_player') || null;
+    } catch (e) { /* private mode / no storage */ }
+    if (lastPlayerId) {
+        adminState.selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
+    }
+}
+
+/**
  * "Start mix": ask the backend to assemble + de-dupe the mix, then start the
  * game through the existing admin-core start path. We deliberately funnel
  * through `startGame()` so every validated start-game concern (provider checks,
@@ -349,6 +385,9 @@ async function startMix() {
         showMixError(t('admin.mixNoTagsSelected', 'Select at least one tag.'));
         return;
     }
+    // #1619: hydrate the wizard's saved speaker before gating, so the Mix tab
+    // works at wizard step 3 (not just in the post-wizard Home view).
+    ensureMediaPlayerHydrated();
     if (!adminState.selectedMediaPlayer) {
         showMixError(t('admin.mixNoMediaPlayer', 'Select a media player first.'));
         return;
