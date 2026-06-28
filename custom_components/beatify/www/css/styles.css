@@ -14418,6 +14418,13 @@ body.theme-dark .your-result-stats .stat-value {
 
 /* Bottom CTA bar */
 
+/* #1625: the Mix tab reuses the sticky CTA bar (Back + "Weiter →") so the setup
+   wizard can advance from a built mix. It renders empty outside the wizard
+   (no onContinue) — collapse it so no bare floating bar shows. */
+.plh-mix-cta:empty {
+    display: none;
+}
+
 .plh-cta-bar {
     position: absolute;
     left: 12px;
