@@ -440,6 +440,19 @@ async function _assembleMix() {
  * wake-lock acquisition) is reused untouched.
  */
 async function startMix() {
+    clearMixError();
+
+    // #1619: hydrate the wizard's saved speaker before gating, so the Mix tab
+    // works at wizard step 3 (not just in the post-wizard Home view). startMix
+    // launches the game, so it KEEPS the media-player gate — and gates BEFORE
+    // assembly so a missing player never leaves an orphan transient mix file
+    // (or burns a wasted POST) behind a client-side failure.
+    ensureMediaPlayerHydrated();
+    if (!adminState.selectedMediaPlayer) {
+        showMixError(t('admin.mixNoMediaPlayer', 'Select a media player first.'));
+        return;
+    }
+
     const btn = document.getElementById('mix-start');
     const origText = btn ? btn.textContent : '';
     if (btn) {
@@ -450,15 +463,6 @@ async function startMix() {
     try {
         const result = await _assembleMix();
         if (!result) return;
-
-        // #1619: hydrate the wizard's saved speaker before gating, so the Mix
-        // tab works at wizard step 3 (not just in the post-wizard Home view).
-        // startMix launches the game, so it KEEPS the media-player gate.
-        ensureMediaPlayerHydrated();
-        if (!adminState.selectedMediaPlayer) {
-            showMixError(t('admin.mixNoMediaPlayer', 'Select a media player first.'));
-            return;
-        }
 
         // Feed the assembled playlist into the existing selection + start path.
         adminState.selectedPlaylists = [
