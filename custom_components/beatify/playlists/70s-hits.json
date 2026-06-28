@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "1970s",
     "classic-rock",
@@ -980,7 +980,7 @@
         "it": "applemusic://track/1412175625"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=S3ta4T9tIUM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4077471",
       "uri_deezer": "deezer://track/775032",
       "fun_fact": "A 70s classic (1972).",
       "fun_fact_de": "Ein 70er-Klassiker (1972).",
@@ -1005,7 +1005,7 @@
         "it": "applemusic://track/952586871"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9fNrJMkTWEE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1273648",
       "uri_deezer": "deezer://track/855863",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -1030,7 +1030,7 @@
         "it": "applemusic://track/1496696599"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=co2FK0WbXX0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/574545",
       "uri_deezer": "deezer://track/2293791",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -1055,7 +1055,7 @@
         "it": "applemusic://track/1757708487"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tnV7dTXlXxs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/186824867",
       "uri_deezer": "deezer://track/727733",
       "fun_fact": "A 70s classic (1972).",
       "fun_fact_de": "Ein 70er-Klassiker (1972).",
@@ -1080,7 +1080,7 @@
         "it": "applemusic://track/1441164738"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=atLK2RIZzWk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/55130739",
       "uri_deezer": "deezer://track/116348656",
       "fun_fact": "A 70s classic (1970).",
       "fun_fact_de": "Ein 70er-Klassiker (1970).",
@@ -1105,7 +1105,7 @@
         "it": "applemusic://track/1567623707"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FT3D1Cu6g10",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/470072",
       "uri_deezer": "deezer://track/880181",
       "fun_fact": "Elton John is a British singer-songwriter and one of pop's biggest careers.",
       "fun_fact_de": "Elton John ist ein britischer Singer-Songwriter mit einer der größten Pop-Karrieren.",
@@ -1130,7 +1130,7 @@
         "it": "applemusic://track/1892485401"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WMl1xKJeuuQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3958004",
       "uri_deezer": "deezer://track/2525861",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -1155,7 +1155,7 @@
         "it": "applemusic://track/1718589636"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KMViJKmAV4M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1771748",
       "uri_deezer": "deezer://track/884030",
       "fun_fact": "ABBA were a Swedish quartet — one of the best-selling pop acts in history.",
       "fun_fact_de": "ABBA waren ein schwedisches Quartett — einer der meistverkauften Pop-Acts der Geschichte.",
@@ -1180,7 +1180,7 @@
         "it": "applemusic://track/1760523407"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lnc2ljZA3bk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2871015",
       "uri_deezer": "deezer://track/3169190",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -1205,7 +1205,7 @@
         "it": "applemusic://track/1600098678"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y8OtzJtp-EM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30349437",
       "uri_deezer": "deezer://track/78652582",
       "fun_fact": "Led Zeppelin were a British band that shaped the sound of hard rock.",
       "fun_fact_de": "Led Zeppelin waren eine britische Band, die den Sound des Hard Rock prägte.",
@@ -1230,7 +1230,7 @@
         "it": "applemusic://track/1452666614"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aqlGlaNlcWE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77652434",
       "uri_deezer": "deezer://track/1151503",
       "fun_fact": "Elton John is a British singer-songwriter and one of pop's biggest careers.",
       "fun_fact_de": "Elton John ist ein britischer Singer-Songwriter mit einer der größten Pop-Karrieren.",
@@ -1255,7 +1255,7 @@
         "it": "applemusic://track/1680763015"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PC2HkP5gR2g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/636411",
       "uri_deezer": "deezer://track/1581601",
       "fun_fact": "A 70s classic (1975).",
       "fun_fact_de": "Ein 70er-Klassiker (1975).",
@@ -1280,7 +1280,7 @@
         "it": "applemusic://track/1562846160"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xrR8LT2LX_w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/207292",
       "uri_deezer": "deezer://track/3616306",
       "fun_fact": "A 70s classic (1976).",
       "fun_fact_de": "Ein 70er-Klassiker (1976).",
@@ -1305,7 +1305,7 @@
         "it": "applemusic://track/1889970941"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tsTH9TpxU_Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6836313",
       "uri_deezer": "deezer://track/12206933",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -1330,7 +1330,7 @@
         "it": "applemusic://track/6767663130"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RlV-ZFyVH3c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10212763",
       "uri_deezer": "deezer://track/14458095",
       "fun_fact": "The Rolling Stones are the archetypal British rock'n'roll band.",
       "fun_fact_de": "The Rolling Stones sind die archetypische britische Rock'n'Roll-Band.",
@@ -1355,7 +1355,7 @@
         "it": "applemusic://track/1652668818"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZBUW433Porw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77611091",
       "uri_deezer": "deezer://track/75859735",
       "fun_fact": "Elton John is a British singer-songwriter and one of pop's biggest careers.",
       "fun_fact_de": "Elton John ist ein britischer Singer-Songwriter mit einer der größten Pop-Karrieren.",
@@ -1380,7 +1380,7 @@
         "it": "applemusic://track/1567623701"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rAn-AWXtHv0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4505189",
       "uri_deezer": "deezer://track/7193834",
       "fun_fact": "A 70s classic (1971).",
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
@@ -1405,7 +1405,7 @@
         "it": "applemusic://track/1631229312"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ln7Vn_WKkWU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89377441",
       "uri_deezer": "deezer://track/1577612",
       "fun_fact": "A 70s classic (1972).",
       "fun_fact_de": "Ein 70er-Klassiker (1972).",
