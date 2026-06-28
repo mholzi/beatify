@@ -38,7 +38,10 @@ from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_state_message,
 )
-from custom_components.beatify.services.media_player import get_platform_capabilities
+from custom_components.beatify.services.media_player import (
+    async_get_native_twin_remap,
+    get_platform_capabilities,
+)
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -177,6 +180,24 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         if not media_player:
             return _json_error("No media player selected", 400, code="INVALID_REQUEST")
+
+        # #1627 follow-up: heal a stale selection that points at the native twin
+        # of a Music Assistant speaker. #1628 hides such twins from the picker,
+        # but a saved selection (wizard localStorage, admin auto-restore, or a
+        # direct API call) can still carry the native entity_id (e.g.
+        # media_player.unnamed_room) — playing on it routes provider URIs to a
+        # player that can't resolve them (UPnP Error 800), pausing the game with
+        # media_player_error. Remap to the MA twin (same physical speaker) BEFORE
+        # any validation/platform detection so every start path heals uniformly.
+        twin_remap = await async_get_native_twin_remap(self.hass)
+        if media_player in twin_remap:
+            ma_twin = twin_remap[media_player]
+            _LOGGER.info(
+                "Remapped native-twin media player %s → MA twin %s (#1627)",
+                media_player,
+                ma_twin,
+            )
+            media_player = ma_twin
 
         # Validate media player entity exists
         media_player_state = self.hass.states.get(media_player)

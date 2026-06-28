@@ -41,6 +41,8 @@ export const adminState = {
     activeFilterTags: ['all'],          // Tag filter state (Issue #70)
     selectedMediaPlayer: null,          // { entityId, state } or null
     mediaPlayerDocsUrl: '',
+    mediaPlayers: [],                   // #1627: raw players payload from /api/status
+    mediaPlayerTwinRemap: {},            // #1627: native entity_id → MA twin entity_id
     // Active filter state per category (Issue #70 filter bar)
     activeFilters: { decade: '', style: '', region: '', special: '' },
 

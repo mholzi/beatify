@@ -173,3 +173,142 @@ class TestTitleArtistModeStartFlag:
 
         game_state = hass.data[DOMAIN]["game"]
         assert game_state.title_artist_mode is False
+
+
+# ---------------------------------------------------------------------------
+# #1627 follow-up: game-start safety remap of a stale native-twin selection
+# ---------------------------------------------------------------------------
+
+
+def _twin_registry_entry(entity_id: str, platform: str, unique_id: str) -> MagicMock:
+    """Fake entity-registry entry (mirrors the #1628 test helper style)."""
+    entry = MagicMock()
+    entry.entity_id = entity_id
+    entry.platform = platform
+    entry.unique_id = unique_id
+    entry.domain = "media_player"
+    return entry
+
+
+def _twin_start_game_env(media_player: str, entries: list[MagicMock]):
+    """A StartGameView whose entity registry serves both the twin remap
+    (``.entities.values()``) and per-entity platform lookup (``.async_get``).
+
+    Returns a context-manager-style generator yielding ``(view, hass, body)``;
+    the caller drives it with ``next(...)``. The registry is shared by
+    ``async_get_native_twin_remap`` (patched on
+    ``homeassistant.helpers.entity_registry.async_get``) and the view's own
+    platform detection (patched on ``game_views.er.async_get``).
+    """
+    by_id = {e.entity_id: e for e in entries}
+
+    game_state = GameState()
+    hass = MagicMock()
+    hass.data = {DOMAIN: {"game": game_state}}
+
+    media_state = MagicMock()
+    media_state.state = "playing"
+    hass.states.get.return_value = media_state
+    hass.config.path.return_value = "/tmp/beatify/playlists"
+
+    async def _executor(func, *args):
+        return _VALID_PLAYLIST
+
+    hass.async_add_executor_job = AsyncMock(side_effect=_executor)
+
+    body = {"playlists": ["test.json"], "media_player": media_player}
+
+    registry = MagicMock()
+    registry.entities.values = MagicMock(return_value=list(entries))
+    registry.async_get = MagicMock(side_effect=lambda eid: by_id.get(eid))
+
+    return game_state, hass, body, registry
+
+
+class TestNativeTwinRemapAtStart:
+    """StartGameView remaps a stale native-twin selection to its MA twin (#1627)."""
+
+    async def test_native_twin_id_remapped_to_ma_twin(self):
+        entries = [
+            _twin_registry_entry(
+                "media_player.esszimmer", "music_assistant", "RINCON_X"
+            ),
+            _twin_registry_entry("media_player.unnamed_room", "sonos", "RINCON_X"),
+        ]
+        game_state, hass, body, registry = _twin_start_game_env(
+            "media_player.unnamed_room", entries
+        )
+
+        with (
+            patch(
+                "custom_components.beatify.server.game_views.is_authorized_http",
+                new=MagicMock(return_value=True),
+            ),
+            patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
+            patch(
+                "custom_components.beatify.server.game_views.er.async_get",
+                return_value=registry,
+            ),
+            patch(
+                "homeassistant.helpers.entity_registry.async_get",
+                return_value=registry,
+            ),
+        ):
+            mock_path = MagicMock()
+            full_path = MagicMock()
+            full_path.resolve.return_value = full_path
+            full_path.is_relative_to.return_value = True
+            full_path.exists.return_value = True
+            mock_path.resolve.return_value = mock_path
+            mock_path.__truediv__.return_value = full_path
+            mock_path_cls.return_value = mock_path
+
+            view = StartGameView(hass)
+            resp = await view.post(_make_request(hass, body))
+
+        assert resp.status == 200
+        # The stale native twin was healed to the MA twin before create_game.
+        assert game_state.media_player == "media_player.esszimmer"
+        assert game_state.platform == "music_assistant"
+
+    async def test_normal_id_untouched(self):
+        entries = [
+            _twin_registry_entry(
+                "media_player.esszimmer", "music_assistant", "RINCON_X"
+            ),
+            _twin_registry_entry("media_player.kitchen", "sonos", "RINCON_Y"),
+        ]
+        game_state, hass, body, registry = _twin_start_game_env(
+            "media_player.esszimmer", entries
+        )
+
+        with (
+            patch(
+                "custom_components.beatify.server.game_views.is_authorized_http",
+                new=MagicMock(return_value=True),
+            ),
+            patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
+            patch(
+                "custom_components.beatify.server.game_views.er.async_get",
+                return_value=registry,
+            ),
+            patch(
+                "homeassistant.helpers.entity_registry.async_get",
+                return_value=registry,
+            ),
+        ):
+            mock_path = MagicMock()
+            full_path = MagicMock()
+            full_path.resolve.return_value = full_path
+            full_path.is_relative_to.return_value = True
+            full_path.exists.return_value = True
+            mock_path.resolve.return_value = mock_path
+            mock_path.__truediv__.return_value = full_path
+            mock_path_cls.return_value = mock_path
+
+            view = StartGameView(hass)
+            resp = await view.post(_make_request(hass, body))
+
+        assert resp.status == 200
+        # A normal (non-twin) MA entity_id is used as-is.
+        assert game_state.media_player == "media_player.esszimmer"

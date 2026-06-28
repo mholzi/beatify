@@ -366,7 +366,42 @@ export function ensureMediaPlayerHydrated() {
     try {
         lastPlayerId = globalThis.localStorage?.getItem('beatify_last_player') || null;
     } catch (e) { /* private mode / no storage */ }
-    if (lastPlayerId) {
+    if (!lastPlayerId) {
+        return;
+    }
+
+    // #1627 follow-up: a saved id may point at the now-hidden NATIVE twin of a
+    // Music Assistant speaker (e.g. media_player.unnamed_room). #1628 hides such
+    // twins from the picker, but a stale localStorage selection still carries
+    // the native id — playing on it routes provider URIs to a player that can't
+    // resolve them (UPnP Error 800) and pauses the game. Heal it here before the
+    // start gate; the backend (game_views.py) has the same remap as a net.
+    const remap = adminState.mediaPlayerTwinRemap || {};
+    const players = adminState.mediaPlayers || [];
+
+    // 1. Stale native twin → remap to the MA twin AND self-heal localStorage so
+    //    the next render/start uses the correct id straight away.
+    if (Object.prototype.hasOwnProperty.call(remap, lastPlayerId)) {
+        const mapped = remap[lastPlayerId];
+        adminState.selectedMediaPlayer = { entityId: mapped, state: 'unknown', platform: 'unknown' };
+        try {
+            globalThis.localStorage?.setItem('beatify_last_player', mapped);
+        } catch (e) { /* private mode / no storage — selection still applied */ }
+        return;
+    }
+
+    // 2. Saved id is a known, available player → use it as before.
+    if (players.some((p) => p && p.entity_id === lastPlayerId)) {
+        adminState.selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
+        return;
+    }
+
+    // 3. Saved id is neither a known player nor a remappable twin. When the
+    //    players list is known (non-empty), the id is genuinely stale → leave
+    //    the selection unset so the user must pick. When the list is unavailable
+    //    (status not loaded yet) we can't validate, so preserve the prior
+    //    behaviour and trust the backend start-time validation/remap net.
+    if (players.length === 0) {
         adminState.selectedMediaPlayer = { entityId: lastPlayerId, state: 'unknown', platform: 'unknown' };
     }
 }

@@ -104,11 +104,18 @@ def build_status_response(
     version: str,
     media_players: list[dict[str, Any]],
     playlists: list[dict[str, Any]],
+    media_player_twin_remap: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     """Build the admin ``/api/status`` JSON payload.
 
     Centralises the status dict so the admin view and any future consumer
     assemble the same shape.
+
+    ``media_player_twin_remap`` (#1627 follow-up) maps each native-platform
+    media_player entity_id to the Music Assistant twin for the same physical
+    speaker. The admin frontend uses it to heal a stale saved selection that
+    points at a now-hidden native twin (see ``ensureMediaPlayerHydrated`` in
+    ``mix.js``). Defaults to an empty map.
     """
     data = hass.data.get(DOMAIN, {})
     game_state: GameState | None = data.get("game")
@@ -125,6 +132,7 @@ def build_status_response(
     return {
         "version": version,
         "media_players": media_players,
+        "media_player_twin_remap": media_player_twin_remap or {},
         "playlists": playlists,
         "playlist_dir": data.get("playlist_dir", ""),
         "playlist_docs_url": PLAYLIST_DOCS_URL,

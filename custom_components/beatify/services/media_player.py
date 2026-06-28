@@ -1630,3 +1630,49 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
 
     _LOGGER.debug("Found %d compatible media players", len(media_players))
     return media_players
+
+
+async def async_get_native_twin_remap(hass: HomeAssistant) -> dict[str, str]:
+    """Map each native-platform media_player entity_id to the Music Assistant
+    entity_id for the same physical speaker (same unique_id). #1627 follow-up.
+
+    #1628 made :func:`async_get_media_players` *hide* the native-platform twin
+    of a Music Assistant speaker from the picker (a native ``sonos`` entity and
+    a ``music_assistant`` entity that share a ``unique_id`` are the same physical
+    speaker; only the MA twin can stream provider URIs — the native one throws
+    "UPnP Error 800"). That fixes the live picker list, but NOT a *saved*
+    selection (``localStorage.beatify_last_player`` or a direct API call) that
+    still points at the now-hidden native twin. This map lets the wizard
+    hydration AND the game-start path heal such a stale id by substituting the
+    MA twin.
+
+    Returns:
+        ``{native_entity_id: ma_entity_id}`` for every twin pair found. Empty
+        when no Music Assistant twins exist.
+    """
+    # Late import: mirrors async_get_media_players — entity_registry is not
+    # importable in the unit-test env without a full HA setup. (noqa: PLC0415)
+    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+    ent_reg = er.async_get(hass)
+
+    # unique_id → MA media_player entity_id for every MA-owned media_player.
+    ma_by_unique_id = {
+        entry.unique_id: entry.entity_id
+        for entry in ent_reg.entities.values()
+        if entry.domain == "media_player"
+        and entry.platform == "music_assistant"
+        and entry.unique_id
+    }
+
+    remap: dict[str, str] = {}
+    for entry in ent_reg.entities.values():
+        if (
+            entry.domain == "media_player"
+            and entry.platform != "music_assistant"
+            and entry.unique_id
+            and entry.unique_id in ma_by_unique_id
+        ):
+            remap[entry.entity_id] = ma_by_unique_id[entry.unique_id]
+
+    return remap
