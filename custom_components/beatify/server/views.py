@@ -40,6 +40,7 @@ from custom_components.beatify.services.lights import PartyLightsService
 from custom_components.beatify.services.media_player import (
     album_art_signature_is_valid,
     async_get_media_players,
+    async_get_native_twin_remap,
 )
 
 # Re-export game views
@@ -526,6 +527,10 @@ class StatusView(HomeAssistantView):
         # Fetch media players fresh (not cached) - Story 8-2
         media_players = await async_get_media_players(self.hass)
 
+        # #1627 follow-up: native→MA twin map so the admin frontend can heal a
+        # stale saved selection pointing at a now-hidden native twin.
+        media_player_twin_remap = await async_get_native_twin_remap(self.hass)
+
         # Fetch playlists fresh (not cached) - Issue #135
         playlists = await async_discover_playlists(self.hass)
         self.hass.data.setdefault(DOMAIN, {})["playlists"] = playlists
@@ -535,6 +540,7 @@ class StatusView(HomeAssistantView):
             version=_get_version(self.hass),
             media_players=media_players,
             playlists=playlists,
+            media_player_twin_remap=media_player_twin_remap,
         )
 
         return web.json_response(status)

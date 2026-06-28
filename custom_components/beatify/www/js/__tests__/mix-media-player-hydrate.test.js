@@ -25,12 +25,16 @@ function mockLocalStorage(store) {
 
 beforeEach(() => {
     adminState.selectedMediaPlayer = null;
+    adminState.mediaPlayers = [];
+    adminState.mediaPlayerTwinRemap = {};
     delete globalThis.localStorage;
     delete globalThis.BeatifyHome;
 });
 
 afterEach(() => {
     adminState.selectedMediaPlayer = null;
+    adminState.mediaPlayers = [];
+    adminState.mediaPlayerTwinRemap = {};
     delete globalThis.localStorage;
     delete globalThis.BeatifyHome;
 });
@@ -86,5 +90,56 @@ describe('#1619 ensureMediaPlayerHydrated', () => {
 
         expect(() => ensureMediaPlayerHydrated()).not.toThrow();
         expect(adminState.selectedMediaPlayer).toBeNull();
+    });
+});
+
+describe('#1627 ensureMediaPlayerHydrated — stale native-twin healing', () => {
+    it('remaps a saved native-twin id to its MA twin and self-heals localStorage', () => {
+        const store = { beatify_last_player: 'media_player.unnamed_room' };
+        mockLocalStorage(store);
+        adminState.mediaPlayerTwinRemap = {
+            'media_player.unnamed_room': 'media_player.esszimmer',
+        };
+        adminState.mediaPlayers = [
+            { entity_id: 'media_player.esszimmer', state: 'idle' },
+        ];
+
+        ensureMediaPlayerHydrated();
+
+        // Selection points at the MA twin, not the stale native id.
+        expect(adminState.selectedMediaPlayer.entityId).toBe('media_player.esszimmer');
+        // localStorage is rewritten so the next render/start uses the MA twin.
+        expect(store.beatify_last_player).toBe('media_player.esszimmer');
+    });
+
+    it('keeps a valid saved id that matches an available player', () => {
+        mockLocalStorage({ beatify_last_player: 'media_player.esszimmer' });
+        adminState.mediaPlayerTwinRemap = {};
+        adminState.mediaPlayers = [
+            { entity_id: 'media_player.esszimmer', state: 'idle' },
+            { entity_id: 'media_player.kitchen', state: 'idle' },
+        ];
+
+        ensureMediaPlayerHydrated();
+
+        expect(adminState.selectedMediaPlayer.entityId).toBe('media_player.esszimmer');
+    });
+
+    it('clears a saved id that is neither a known player nor a remappable twin', () => {
+        const store = { beatify_last_player: 'media_player.gone' };
+        mockLocalStorage(store);
+        adminState.mediaPlayerTwinRemap = {
+            'media_player.unnamed_room': 'media_player.esszimmer',
+        };
+        adminState.mediaPlayers = [
+            { entity_id: 'media_player.esszimmer', state: 'idle' },
+        ];
+
+        ensureMediaPlayerHydrated();
+
+        // Genuinely stale id with a known list → no selection; user must pick.
+        expect(adminState.selectedMediaPlayer).toBeNull();
+        // localStorage is left untouched (only a twin remap rewrites it).
+        expect(store.beatify_last_player).toBe('media_player.gone');
     });
 });

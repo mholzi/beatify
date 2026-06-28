@@ -801,6 +801,9 @@ async function loadStatus() {
 
         adminState.playlistDocsUrl = status.playlist_docs_url || '';
         adminState.mediaPlayerDocsUrl = status.media_player_docs_url || '';
+        // #1627 follow-up: native→MA twin map used by ensureMediaPlayerHydrated()
+        // to heal a stale saved selection that points at a now-hidden native twin.
+        adminState.mediaPlayerTwinRemap = status.media_player_twin_remap || {};
         // Set Music Assistant availability from backend (not based on entity names)
         adminState.hasMusicAssistant = status.has_music_assistant === true;
         // Display version in footer and expose globally (Story 44.5)
@@ -809,6 +812,10 @@ async function loadStatus() {
             versionEl.textContent = 'v' + status.version;
             window.BEATIFY_VERSION = status.version;
         }
+        // #1627 follow-up: stash the raw players payload so the wizard-path
+        // ensureMediaPlayerHydrated() can validate a saved selection against the
+        // live list (the Mix tab renders before the media-players list exists).
+        adminState.mediaPlayers = status.media_players || [];
         renderMediaPlayers(status.media_players);
         renderPlaylists(status.playlists, status.playlist_dir);
         renderMixChipCloud();  // #1538: refresh Mix-tab chips from live catalogue

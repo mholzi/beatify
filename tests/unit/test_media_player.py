@@ -10,6 +10,7 @@ import pytest
 from custom_components.beatify.services.media_player import (
     MediaPlayerService,
     async_get_media_players,
+    async_get_native_twin_remap,
     proxy_album_art,
 )
 
@@ -2297,3 +2298,82 @@ class TestNativeTwinFiltering:
 
         ids = {p["entity_id"] for p in result}
         assert ids == {"media_player.ma_box", "media_player.legacy_sonos"}
+
+
+class TestNativeTwinRemap:
+    """async_get_native_twin_remap maps native twins → their MA twin (#1627)."""
+
+    @pytest.mark.asyncio
+    async def test_twin_pair_maps_native_to_ma(self):
+        """A sonos + music_assistant pair sharing a unique_id → native→MA entry."""
+        entries = [
+            _make_registry_entry(
+                "media_player.esszimmer",
+                "music_assistant",
+                "RINCON_C43875ED053801400",
+            ),
+            _make_registry_entry(
+                "media_player.unnamed_room",
+                "sonos",
+                "RINCON_C43875ED053801400",
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            remap = await async_get_native_twin_remap(hass)
+
+        assert remap == {"media_player.unnamed_room": "media_player.esszimmer"}
+
+    @pytest.mark.asyncio
+    async def test_no_twins_returns_empty(self):
+        """Standalone players with distinct unique_ids → empty remap."""
+        entries = [
+            _make_registry_entry(
+                "media_player.living_ma",
+                "music_assistant",
+                "RINCON_AAAA",
+            ),
+            _make_registry_entry(
+                "media_player.kitchen_sonos",
+                "sonos",
+                "RINCON_BBBB",
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            remap = await async_get_native_twin_remap(hass)
+
+        assert remap == {}
+
+    @pytest.mark.asyncio
+    async def test_none_unique_id_native_is_ignored(self):
+        """A native player with unique_id=None must not produce a remap entry."""
+        entries = [
+            _make_registry_entry(
+                "media_player.ma_box",
+                "music_assistant",
+                "RINCON_AAAA",
+            ),
+            _make_registry_entry(
+                "media_player.legacy_sonos",
+                "sonos",
+                None,
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            remap = await async_get_native_twin_remap(hass)
+
+        assert remap == {}
