@@ -1559,6 +1559,22 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
     # Get entity registry to check which platform created each entity
     ent_reg = er.async_get(hass)
 
+    # #1627: A speaker exposed through Music Assistant appears in the registry
+    # twice with the SAME unique_id — once on its native platform (e.g. sonos)
+    # and once on music_assistant. Both are the same physical speaker, but only
+    # the MA twin can stream Beatify's provider URIs (spotify:track:… etc.); the
+    # native twin throws "UPnP Error 800" and the game pauses with
+    # media_player_error. Collect the unique_ids owned by an MA media_player so
+    # we can drop the native twins below (even when the native platform — sonos
+    # — is itself "supported").
+    ma_unique_ids = {
+        entry.unique_id
+        for entry in ent_reg.entities.values()
+        if entry.domain == "media_player"
+        and entry.platform == "music_assistant"
+        and entry.unique_id
+    }
+
     media_players = []
     for state in hass.states.async_all("media_player"):
         entity_entry = ent_reg.async_get(state.entity_id)
@@ -1574,6 +1590,24 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
                 state.entity_id,
                 platform,
                 capabilities.get("reason", "unknown"),
+            )
+            continue
+
+        # #1627: Skip the native-platform twin of a Music Assistant speaker.
+        # Runs independently of the supported-platform check above so a native
+        # twin is dropped even when its own platform (sonos) is supported —
+        # picking it would route provider URIs to a player that can't resolve
+        # them (UPnP Error 800). The MA twin (same unique_id) is kept.
+        if (
+            platform != "music_assistant"
+            and entity_entry is not None
+            and entity_entry.unique_id in ma_unique_ids
+        ):
+            _LOGGER.debug(
+                "Skipping native twin of MA player: %s (platform=%s, unique_id=%s)",
+                state.entity_id,
+                platform,
+                entity_entry.unique_id,
             )
             continue
 

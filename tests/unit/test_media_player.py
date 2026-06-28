@@ -9,6 +9,7 @@ import pytest
 
 from custom_components.beatify.services.media_player import (
     MediaPlayerService,
+    async_get_media_players,
     proxy_album_art,
 )
 
@@ -2173,3 +2174,126 @@ class TestVolumeSaveRestore:
             call.args[:2] != ("media_player", "volume_set")
             for call in hass.services.async_call.await_args_list
         )
+
+
+def _make_registry_entry(
+    entity_id: str, platform: str, unique_id: str | None, domain: str = "media_player"
+) -> MagicMock:
+    """Build a fake entity-registry entry (mirrors HA's RegistryEntry attrs)."""
+    entry = MagicMock()
+    entry.entity_id = entity_id
+    entry.platform = platform
+    entry.unique_id = unique_id
+    entry.domain = domain
+    return entry
+
+
+def _make_player_state(entity_id: str) -> MagicMock:
+    """Build a fake media_player state object for async_all()."""
+    state = MagicMock()
+    state.entity_id = entity_id
+    state.state = "idle"
+    state.attributes = {"friendly_name": entity_id}
+    return state
+
+
+def _make_discovery_hass(entries: list[MagicMock]) -> tuple[MagicMock, MagicMock]:
+    """Wire a hass + fake entity registry from a list of registry entries.
+
+    Returns (hass, registry). `hass.states.async_all` yields a state per entry;
+    the registry resolves entity_id → entry and exposes `.entities.values()`.
+    """
+    by_id = {e.entity_id: e for e in entries}
+
+    hass = MagicMock()
+    hass.states.async_all = MagicMock(
+        return_value=[_make_player_state(e.entity_id) for e in entries]
+    )
+
+    registry = MagicMock()
+    registry.entities.values = MagicMock(return_value=list(entries))
+    registry.async_get = MagicMock(side_effect=lambda eid: by_id.get(eid))
+    return hass, registry
+
+
+class TestNativeTwinFiltering:
+    """async_get_media_players hides native-platform twins of MA speakers (#1627)."""
+
+    @pytest.mark.asyncio
+    async def test_native_sonos_twin_of_ma_player_is_hidden(self):
+        """Same unique_id on sonos + music_assistant → only the MA twin shows."""
+        entries = [
+            _make_registry_entry(
+                "media_player.esszimmer",
+                "music_assistant",
+                "RINCON_C43875ED053801400",
+            ),
+            _make_registry_entry(
+                "media_player.unnamed_room",
+                "sonos",
+                "RINCON_C43875ED053801400",
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            result = await async_get_media_players(hass)
+
+        ids = {p["entity_id"] for p in result}
+        assert "media_player.esszimmer" in ids
+        assert "media_player.unnamed_room" not in ids
+
+    @pytest.mark.asyncio
+    async def test_standalone_sonos_without_ma_twin_is_kept(self):
+        """A native sonos player with a unique unique_id must NOT be filtered."""
+        entries = [
+            _make_registry_entry(
+                "media_player.living_ma",
+                "music_assistant",
+                "RINCON_AAAA",
+            ),
+            _make_registry_entry(
+                "media_player.kitchen_sonos",
+                "sonos",
+                "RINCON_BBBB",
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            result = await async_get_media_players(hass)
+
+        ids = {p["entity_id"] for p in result}
+        assert ids == {"media_player.living_ma", "media_player.kitchen_sonos"}
+
+    @pytest.mark.asyncio
+    async def test_player_with_none_unique_id_is_unaffected(self):
+        """unique_id=None must not collide with the MA set (None never matches)."""
+        entries = [
+            _make_registry_entry(
+                "media_player.ma_box",
+                "music_assistant",
+                "RINCON_AAAA",
+            ),
+            _make_registry_entry(
+                "media_player.legacy_sonos",
+                "sonos",
+                None,
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            result = await async_get_media_players(hass)
+
+        ids = {p["entity_id"] for p in result}
+        assert ids == {"media_player.ma_box", "media_player.legacy_sonos"}
