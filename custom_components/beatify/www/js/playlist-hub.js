@@ -496,6 +496,17 @@ function _onClick(e) {
         }
         return;
     }
+    const mixContinue = e.target.closest('[data-plh-action="mix-continue"]');
+    if (mixContinue) {
+        // #1625: assemble the mix, then hand its path to the wizard's onContinue
+        // (same advance path the list "Continue" uses). mix.js owns assembly +
+        // the busy state on the #mix-continue button.
+        const opts = state.options || {};
+        if (window.BeatifyMixPanel && typeof window.BeatifyMixPanel.continueInWizard === 'function') {
+            window.BeatifyMixPanel.continueInWizard(opts.onContinue);
+        }
+        return;
+    }
     const back = e.target.closest('[data-plh-action="back"]');
     if (back) {
         const opts = state.options || {};
@@ -545,6 +556,10 @@ function _renderAll() {
     // step-3 picker — the live first-run surface). "Playlists" = the existing
     // Bundled/Community/Mine picker; "Mix" = the component-owned Mix panel.
     // Reuses the global .playlist-tabs/.playlist-tab/.playlist-panel styles.
+    // #1625: in the wizard the hub gets an `onContinue` callback (it owns the
+    // "advance" step). The Mix tab must then offer the same "Weiter →" CTA — and
+    // hide its standalone "Start mix" button, which launches the game directly.
+    const inWizard = !!(state.options && state.options.onContinue);
     state.root.innerHTML = `
         ${_topTabsHtml(state.topTab)}
         <div class="playlist-panel plh-list-view ${state.topTab === 'mix' ? 'hidden' : ''}" data-plh-list-view role="tabpanel">
@@ -555,14 +570,16 @@ function _renderAll() {
         </div>
         <div class="playlist-panel plh-mix-view ${state.topTab === 'mix' ? '' : 'hidden'}" data-plh-mix-view role="tabpanel">
             <div class="plh-body plh-mix-body">
-                ${_mixPanelHtml()}
+                ${_mixPanelHtml(inWizard)}
             </div>
+            <div class="plh-cta-bar plh-mix-cta" data-plh-mix-cta></div>
         </div>
     `;
     _renderHeader();
     _renderChips();
     _renderTabBody();
     _renderCtaBar();
+    _renderMixCtaBar();
     _bindMixPanel();
     _applyI18n();
 }
@@ -587,7 +604,14 @@ export function _topTabsHtml(activeTab) {
  * wired by admin/sections/mix.js via window.BeatifyMixPanel.bind(). Pure (no
  * DOM) — exported for unit tests.
  */
-export function _mixPanelHtml() {
+export function _mixPanelHtml(inWizard = false) {
+    // #1625: in the wizard the standalone "Start mix" button (which launches the
+    // game immediately, bypassing the rest of the wizard) is omitted — the hub's
+    // "Weiter →" CTA bar carries the assembled mix into the next wizard step.
+    const startBtn = inWizard ? '' : `
+                <button type="button" id="mix-start" class="btn btn-primary" disabled>
+                    <span aria-hidden="true">▶</span> <span data-i18n="admin.mixStart">Start mix</span>
+                </button>`;
     return `
         <div class="mix-card">
             <div class="mix-card-head">
@@ -622,10 +646,7 @@ export function _mixPanelHtml() {
             </div>
             <div id="mix-tracklist" class="mix-tracklist hidden" aria-live="polite"></div>
 
-            <div class="mix-actions">
-                <button type="button" id="mix-start" class="btn btn-primary" disabled>
-                    <span aria-hidden="true">▶</span> <span data-i18n="admin.mixStart">Start mix</span>
-                </button>
+            <div class="mix-actions">${startBtn}
                 <label class="mix-save-label">
                     <input type="checkbox" id="mix-save-community">
                     <span data-i18n="admin.mixSaveCommunity">Save as community playlist</span>
@@ -1455,4 +1476,36 @@ function _renderCtaBar() {
             <svg class="plh-cta-start-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
     `;
+}
+
+/**
+ * #1625: sticky "Weiter →" CTA markup for the Mix tab. Mirrors `_renderCtaBar`'s
+ * Back + primary-start buttons so the wizard can advance from a built mix —
+ * but deliberately WITHOUT the request FAB (playlists-specific) and WITHOUT a
+ * count chip (a mix has no selected-playlist count). Returns '' unless the host
+ * passed an `onContinue` callback (i.e. the hub is running inside the wizard),
+ * so standalone mounts show no Mix CTA. Pure (no DOM) — exported for unit tests.
+ */
+export function _mixCtaBarHtml(opts = {}) {
+    if (typeof opts.onContinue !== 'function') return '';
+    const backBtn = opts.showBack
+        ? `<button class="plh-cta-back" data-plh-action="back" aria-label="${_escape(opts.backLabel || _t('playlistHub.cta.back', 'Back'))}">
+               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+               <span>${_escape(opts.backLabel || _t('playlistHub.cta.back', 'Back'))}</span>
+           </button>`
+        : '';
+    return `
+        ${backBtn}
+        <button class="plh-cta-start" data-plh-action="mix-continue" id="mix-continue">
+            <span class="plh-cta-start-label">${_escape(_t('playlistHub.cta.start', 'Continue'))}</span>
+            <svg class="plh-cta-start-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+    `;
+}
+
+/** #1625: populate the Mix tab's sticky CTA host from the pure builder. */
+function _renderMixCtaBar() {
+    const host = state.root && state.root.querySelector('[data-plh-mix-cta]');
+    if (!host) return;
+    host.innerHTML = _mixCtaBarHtml(state.options || {});
 }

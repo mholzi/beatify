@@ -372,33 +372,29 @@ export function ensureMediaPlayerHydrated() {
 }
 
 /**
- * "Start mix": ask the backend to assemble + de-dupe the mix, then start the
- * game through the existing admin-core start path. We deliberately funnel
- * through `startGame()` so every validated start-game concern (provider checks,
- * platform capabilities, wake-lock acquisition) is reused untouched.
+ * Assemble (+ de-dupe) the mix on the backend and return its transient playlist.
+ *
+ * Factored out of `startMix()` (#1625) so the SAME assembly path can power both
+ * the standalone "Start mix" button (which then launches the game) AND the
+ * wizard "Weiter →" CTA (which carries the built mix into the next wizard step).
+ *
+ * Validates ≥1 tag (shows the existing error + returns `null` if none), reads
+ * the save-as-community checkbox, POSTs `/beatify/api/playlists/mix` exactly as
+ * before, and handles errors exactly as before. It deliberately does NOT start
+ * the game and does NOT mutate `adminState` — that stays with the callers, so
+ * `continueMixInWizard` can advance without the media-player gate.
+ *
+ * @returns {Promise<{ path: string, songCount: number }|null>}
  */
-async function startMix() {
+async function _assembleMix() {
     clearMixError();
-    const btn = document.getElementById('mix-start');
 
     if (mixState.selectedTags.size === 0) {
         showMixError(t('admin.mixNoTagsSelected', 'Select at least one tag.'));
-        return;
-    }
-    // #1619: hydrate the wizard's saved speaker before gating, so the Mix tab
-    // works at wizard step 3 (not just in the post-wizard Home view).
-    ensureMediaPlayerHydrated();
-    if (!adminState.selectedMediaPlayer) {
-        showMixError(t('admin.mixNoMediaPlayer', 'Select a media player first.'));
-        return;
+        return null;
     }
 
     const saveAsCommunity = !!document.getElementById('mix-save-community')?.checked;
-    const origText = btn ? btn.textContent : '';
-    if (btn) {
-        btn.disabled = true;
-        btn.textContent = t('admin.mixAssembling', 'Assembling…');
-    }
 
     try {
         const auth = window.BeatifyAuth;
@@ -426,20 +422,56 @@ async function startMix() {
                 if (tr && tr !== key) msg = tr;
             }
             showMixError(msg);
+            return null;
+        }
+
+        return { path: data.path, songCount: data.song_count || 0 };
+    } catch (err) {
+        console.error('[Beatify] _assembleMix failed:', err);
+        showMixError(t('admin.mixFailed', 'Failed to assemble mix.'));
+        return null;
+    }
+}
+
+/**
+ * "Start mix": assemble the mix, then start the game through the existing
+ * admin-core start path. We deliberately funnel through `startGame()` so every
+ * validated start-game concern (provider checks, platform capabilities,
+ * wake-lock acquisition) is reused untouched.
+ */
+async function startMix() {
+    const btn = document.getElementById('mix-start');
+    const origText = btn ? btn.textContent : '';
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = t('admin.mixAssembling', 'Assembling…');
+    }
+
+    try {
+        const result = await _assembleMix();
+        if (!result) return;
+
+        // #1619: hydrate the wizard's saved speaker before gating, so the Mix
+        // tab works at wizard step 3 (not just in the post-wizard Home view).
+        // startMix launches the game, so it KEEPS the media-player gate.
+        ensureMediaPlayerHydrated();
+        if (!adminState.selectedMediaPlayer) {
+            showMixError(t('admin.mixNoMediaPlayer', 'Select a media player first.'));
             return;
         }
 
         // Feed the assembled playlist into the existing selection + start path.
         adminState.selectedPlaylists = [
-            { path: data.path, songCount: data.song_count || 0 },
+            { path: result.path, songCount: result.songCount },
         ];
 
+        const saveAsCommunity = !!document.getElementById('mix-save-community')?.checked;
         if (saveAsCommunity && typeof window.loadStatus === 'function') {
             // Refresh so the new community playlist appears in the list tab.
             try { await window.loadStatus(); } catch (e) { /* non-fatal */ }
             // loadStatus re-renders playlists and would reset selection — re-apply.
             adminState.selectedPlaylists = [
-                { path: data.path, songCount: data.song_count || 0 },
+                { path: result.path, songCount: result.songCount },
             ];
         }
 
@@ -448,12 +480,42 @@ async function startMix() {
         } else {
             showMixError(t('admin.mixStartUnavailable', 'Mix assembled but the game could not be started.'));
         }
-    } catch (err) {
-        console.error('[Beatify] startMix failed:', err);
-        showMixError(t('admin.mixFailed', 'Failed to assemble mix.'));
     } finally {
         if (btn) {
             btn.textContent = origText;
+            btn.disabled = false;
+        }
+    }
+}
+
+/**
+ * #1625: wizard "Weiter →" CTA. Assemble the mix and carry its transient
+ * playlist path forward into the next wizard step via the hub's `onContinue`
+ * callback — WITHOUT requiring (or gating on) a media player, because the
+ * speaker is chosen in a LATER wizard step. The game starts later with this
+ * assembled path. Drives the busy/disabled state + label on the hub-rendered
+ * "Weiter" button (`#mix-continue`) if present.
+ *
+ * @param {(paths: string[]) => void} onContinue - hub callback; receives the
+ *   assembled playlist path so the wizard adds it to chosenPlaylists + advances.
+ */
+async function continueMixInWizard(onContinue) {
+    const btn = document.getElementById('mix-continue');
+    const origHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = t('admin.mixAssembling', 'Assembling…');
+    }
+
+    try {
+        const result = await _assembleMix();
+        if (!result) return;
+        if (typeof onContinue === 'function') {
+            onContinue([result.path]);
+        }
+    } finally {
+        if (btn) {
+            btn.innerHTML = origHtml;
             btn.disabled = false;
         }
     }
@@ -473,13 +535,17 @@ async function startMix() {
  * mounted yet — it no-ops.
  */
 export function bindMixPanel() {
-    const startBtn = document.getElementById('mix-start');
-    if (!startBtn) return; // panel not in the DOM yet
+    // #1625: the panel renders in two flavours — standalone (with #mix-start)
+    // and wizard (start button omitted, "Weiter →" CTA owned by the hub). Key
+    // the "is the panel mounted?" guard off the chip cloud, which is present in
+    // BOTH, so the segmented control + chips still bind in the wizard.
+    const panel = document.getElementById('mix-chip-cloud');
+    if (!panel) return; // panel not in the DOM yet
 
     document.querySelectorAll('.mix-seg').forEach((seg) => {
         seg.addEventListener('click', () => setTargetCount(parseInt(seg.dataset.mixCount, 10)));
     });
-    startBtn.addEventListener('click', startMix);
+    document.getElementById('mix-start')?.addEventListener('click', startMix);
     document.getElementById('mix-preview-btn')?.addEventListener('click', previewMixTracklist);
 
     // Chips populate once loadStatus() has filled adminState.playlistData;
@@ -500,7 +566,7 @@ export function initMixTab(deps = {}) {
     // renders its markup on mount — long after admin init runs. Expose the
     // binder + chip-cloud refresher on a global so the hub can wire the panel
     // once it has rendered the markup (mirrors window.PlaylistRequests etc.).
-    window.BeatifyMixPanel = { bind: bindMixPanel, renderChips: renderMixChipCloud };
+    window.BeatifyMixPanel = { bind: bindMixPanel, renderChips: renderMixChipCloud, continueInWizard: continueMixInWizard };
 
     // Bind now in case the panel is already present (defensive — normally the
     // hub calls bind() after it renders).
