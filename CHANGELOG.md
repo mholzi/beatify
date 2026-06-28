@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc9] - 2026-06-28
+
+Pre-release — completes the speaker-twin fix so a previously-saved selection can't strand you on a non-streaming speaker. See [docs/release-notes-v4.2.0-rc9.md](docs/release-notes-v4.2.0-rc9.md) for the user-facing notes.
+
+### Fixed
+- **A saved speaker that points at the native duplicate of a Music Assistant speaker is now healed automatically (#1627 follow-up).** rc8 hid the native twin from the picker, but a selection saved earlier (e.g. from a prior session) still pointed at it, so the game could fail to start ("Media player not responding"). Beatify now remaps a saved native-twin selection to its Music Assistant twin (same `unique_id`) — both in the setup/Mix flow and as a safety net at game-start, so every path heals — and clears a saved selection that no longer exists.
+
 ## [4.2.0-rc8] - 2026-06-28
 
 Pre-release — fixes a speaker-picker footgun that could send playback to the wrong (non-streaming) entity. See [docs/release-notes-v4.2.0-rc8.md](docs/release-notes-v4.2.0-rc8.md) for the user-facing notes.
