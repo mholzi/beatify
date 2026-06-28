@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc8] - 2026-06-28
+
+Pre-release — fixes a speaker-picker footgun that could send playback to the wrong (non-streaming) entity. See [docs/release-notes-v4.2.0-rc8.md](docs/release-notes-v4.2.0-rc8.md) for the user-facing notes.
+
+### Fixed
+- **Speaker picker no longer lists the native duplicate of a Music Assistant speaker (#1627).** When a Sonos (or similar) speaker is exposed both natively and through Music Assistant, Home Assistant shows two entities for the same physical speaker. Picking the native one broke playback (`UPnP Error 800` — it can't resolve provider URIs) and paused the game. Beatify now hides the native twin when a Music Assistant entity with the same `unique_id` exists, so only the streamable speaker is offered.
+
 ## [4.2.0-rc7] - 2026-06-28
 
 Pre-release — the Smart Playlist Mixer now flows through the full setup wizard, plus more Tidal coverage and a data fix. See [docs/release-notes-v4.2.0-rc7.md](docs/release-notes-v4.2.0-rc7.md) for the user-facing notes.
