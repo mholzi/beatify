@@ -4,7 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-- Added 20 tracks to new community playlist "🌪️ Funk Carioca" — Brazilian baile funk hits spanning 2000–2018 (#1554).
+## [4.2.0-rc7] - 2026-06-28
+
+Pre-release — the Smart Playlist Mixer now flows through the full setup wizard, plus more Tidal coverage and a data fix. See [docs/release-notes-v4.2.0-rc7.md](docs/release-notes-v4.2.0-rc7.md) for the user-facing notes.
+
+### Added
+- **New community playlist "🌪️ Funk Carioca" (#1554).** 20 Brazilian baile funk hits spanning 2000–2018.
+
+### Fixed
+- **The Mix tab can now continue into the setup wizard (#1625).** Building a mix in the wizard's Mix tab left you stuck — the only action was "Mix starten", which started the game immediately and skipped the rest of setup. The Mix tab now shows a "Weiter →" button that carries your built mix into the next setup step, exactly like picking a playlist.
+- **schweizer-hits: repaired 3 broken track URIs.**
+
+### Changed
+- **+36 Tidal URIs** backfilled across the catalogue (two waves, #1623 / #1624).
 
 ## [4.2.0-rc6] - 2026-06-27
 
