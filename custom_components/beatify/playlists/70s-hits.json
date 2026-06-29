@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "1970s",
     "classic-rock",
@@ -1880,7 +1880,7 @@
         "it": "applemusic://track/1434900942"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kBhSh7y_IkM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33490093",
       "uri_deezer": "deezer://track/4188290",
       "fun_fact": "A 70s classic (1970).",
       "fun_fact_de": "Ein 70er-Klassiker (1970).",
@@ -1905,7 +1905,7 @@
         "it": "applemusic://track/1682123474"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PKVXSo9ROpg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/514060949",
       "uri_deezer": "deezer://track/14458087",
       "fun_fact": "The Rolling Stones are the archetypal British rock'n'roll band.",
       "fun_fact_de": "The Rolling Stones sind die archetypische britische Rock'n'Roll-Band.",
@@ -1930,7 +1930,7 @@
         "it": "applemusic://track/1746161615"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=x8hUwP_5Qc4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21844149",
       "uri_deezer": "deezer://track/67503801",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
