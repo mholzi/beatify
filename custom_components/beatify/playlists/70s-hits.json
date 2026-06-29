@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "1970s",
     "classic-rock",
@@ -2330,7 +2330,7 @@
         "it": "applemusic://track/471655057"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=p6v6wWmEYvY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1274617",
       "uri_deezer": "deezer://track/1080638",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -2355,7 +2355,7 @@
         "it": "applemusic://track/1388908357"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1r08Ca8fk5Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77646605",
       "uri_deezer": "deezer://track/3121463",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -2380,7 +2380,7 @@
         "it": "applemusic://track/6767680037"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=r-3NvDp28U4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77625024",
       "uri_deezer": "deezer://track/781563052",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -2405,7 +2405,7 @@
         "it": "applemusic://track/1712860074"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lJZTgynPGT8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19373769",
       "uri_deezer": "deezer://track/65445466",
       "fun_fact": "A 70s classic (1971).",
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
@@ -2430,7 +2430,7 @@
         "it": "applemusic://track/6767399173"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ETFvmkIA6S4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79419398",
       "uri_deezer": "deezer://track/538709322",
       "fun_fact": "A 70s classic (1976).",
       "fun_fact_de": "Ein 70er-Klassiker (1976).",
@@ -2455,7 +2455,7 @@
         "it": "applemusic://track/1308659903"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wWk-uDrGxL0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30265305",
       "uri_deezer": "deezer://track/550518",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -2480,7 +2480,7 @@
         "it": "applemusic://track/1676895183"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=a0T4nyB9k88",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4077812",
       "uri_deezer": "deezer://track/977934",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -2505,7 +2505,7 @@
         "it": "applemusic://track/1705280424"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=e__Pp4FxsjU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77625025",
       "uri_deezer": "deezer://track/781563062",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -2530,7 +2530,7 @@
         "it": "applemusic://track/1650358104"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qMkwuz0iXQg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70046409",
       "uri_deezer": "deezer://track/143042822",
       "fun_fact": "A 70s classic (1975).",
       "fun_fact_de": "Ein 70er-Klassiker (1975).",
@@ -2555,7 +2555,7 @@
         "it": "applemusic://track/147664822"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=r1UkZLT20TI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/82358708",
       "uri_deezer": "deezer://track/404691712",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -2580,7 +2580,7 @@
         "it": "applemusic://track/1872499019"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rbaoKL1Ei0c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1326412",
       "uri_deezer": "deezer://track/3325466",
       "fun_fact": "A 70s classic (1975).",
       "fun_fact_de": "Ein 70er-Klassiker (1975).",
@@ -2605,7 +2605,7 @@
         "it": "applemusic://track/1711847823"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aVLBF-UKevY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3043602",
       "uri_deezer": "deezer://track/4124759",
       "fun_fact": "The Rolling Stones are the archetypal British rock'n'roll band.",
       "fun_fact_de": "The Rolling Stones sind die archetypische britische Rock'n'Roll-Band.",
@@ -2630,7 +2630,7 @@
         "it": "applemusic://track/1445669633"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=z2qoihbzc3E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/78700076",
       "uri_deezer": "deezer://track/139138743",
       "fun_fact": "The Bee Gees were the falsetto-driven heart of the disco era.",
       "fun_fact_de": "Die Bee Gees waren mit ihrem Falsett das Herz der Disco-Ära.",
@@ -2655,7 +2655,7 @@
         "it": "applemusic://track/1729271215"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=po6QU0z1rSs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20767341",
       "uri_deezer": "deezer://track/426703702",
       "fun_fact": "The Eagles are one of the best-selling American rock bands of all time.",
       "fun_fact_de": "Die Eagles zählen zu den meistverkauften amerikanischen Rockbands aller Zeiten.",
@@ -2680,7 +2680,7 @@
         "it": "applemusic://track/380590584"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=B1V1varByWI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4157864",
       "uri_deezer": "deezer://track/6581143",
       "fun_fact": "A 70s classic (1975).",
       "fun_fact_de": "Ein 70er-Klassiker (1975).",
@@ -2705,7 +2705,7 @@
         "it": "applemusic://track/1647072740"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qGBohd0V2Mo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2531405",
       "uri_deezer": "deezer://track/2509817",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -2730,7 +2730,7 @@
         "it": "applemusic://track/1737859376"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Wu4_zVxmufY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22761223",
       "uri_deezer": "deezer://track/132635408",
       "fun_fact": "A 70s classic (1975).",
       "fun_fact_de": "Ein 70er-Klassiker (1975).",
@@ -2755,7 +2755,7 @@
         "it": "applemusic://track/158816077"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dBqyX0UUzVQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1809081",
       "uri_deezer": "deezer://track/988630",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
