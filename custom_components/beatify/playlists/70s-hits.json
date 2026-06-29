@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1970s",
     "classic-rock",
@@ -3255,7 +3255,7 @@
         "it": "applemusic://track/321974262"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mMP3xaBslAY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3029677",
       "uri_deezer": "deezer://track/3821908",
       "fun_fact": "A 70s classic (1970).",
       "fun_fact_de": "Ein 70er-Klassiker (1970).",
@@ -3280,7 +3280,7 @@
         "it": "applemusic://track/688795488"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XN7iEFVLf5c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21785494",
       "uri_deezer": "deezer://track/69924599",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -3305,7 +3305,7 @@
         "it": "applemusic://track/1593686602"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Enzxdvo8NOk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/51161422",
       "uri_deezer": "deezer://track/107474522",
       "fun_fact": "David Bowie was a British artist who reinvented rock again and again.",
       "fun_fact_de": "David Bowie war ein britischer Künstler, der Rock immer wieder neu erfand.",
@@ -3330,7 +3330,7 @@
         "it": "applemusic://track/6766355695"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=56b4TTT609c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5244675",
       "uri_deezer": "deezer://track/1101200",
       "fun_fact": "A 70s classic (1976).",
       "fun_fact_de": "Ein 70er-Klassiker (1976).",
@@ -3355,7 +3355,7 @@
         "it": "applemusic://track/1892521978"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=low6Coqrw9Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1111197",
       "uri_deezer": "deezer://track/7087537",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -3380,7 +3380,7 @@
         "it": "applemusic://track/890507498"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HX_oR3qwwro",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31007049",
       "uri_deezer": "deezer://track/1081145",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -3405,7 +3405,7 @@
         "it": "applemusic://track/1716610378"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WFd-Yk73U_o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68493632",
       "uri_deezer": "deezer://track/350027801",
       "fun_fact": "The Bee Gees were the falsetto-driven heart of the disco era.",
       "fun_fact_de": "Die Bee Gees waren mit ihrem Falsett das Herz der Disco-Ära.",
@@ -3430,7 +3430,7 @@
         "it": "applemusic://track/1825151125"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oI9bmlbuekM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1785215",
       "uri_deezer": "deezer://track/846327",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -3455,7 +3455,7 @@
         "it": "applemusic://track/1814188181"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Aa9YmR8SdeA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92240779",
       "uri_deezer": "deezer://track/529915671",
       "fun_fact": "A 70s classic (1973).",
       "fun_fact_de": "Ein 70er-Klassiker (1973).",
@@ -3480,7 +3480,7 @@
         "it": "applemusic://track/1463652199"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=voGvFWXPYx8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/650233",
       "uri_deezer": "deezer://track/13174766",
       "fun_fact": "A 70s classic (1970).",
       "fun_fact_de": "Ein 70er-Klassiker (1970).",
@@ -3505,7 +3505,7 @@
         "it": "applemusic://track/1388006144"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O6yeLNNVa4A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18152389",
       "uri_deezer": "deezer://track/1175620",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -3530,7 +3530,7 @@
         "it": "applemusic://track/6768427700"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ciLNMesqPh0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77637906",
       "uri_deezer": "deezer://track/3166507",
       "fun_fact": "A 70s classic (1971).",
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
@@ -3555,7 +3555,7 @@
         "it": "applemusic://track/570745447"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rA6wmf-MUP8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1277189",
       "uri_deezer": "deezer://track/364966",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -3580,7 +3580,7 @@
         "it": "applemusic://track/410731495"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QBTJf1txjC4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5217110",
       "uri_deezer": "deezer://track/8014760",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -3605,7 +3605,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DJxCsVcZL2I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69761304",
       "uri_deezer": "deezer://track/141819823",
       "fun_fact": "David Bowie was a British artist who reinvented rock again and again.",
       "fun_fact_de": "David Bowie war ein britischer Künstler, der Rock immer wieder neu erfand.",
@@ -3630,7 +3630,7 @@
         "it": "applemusic://track/1632384111"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LzXz6-RXXgc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45163294",
       "uri_deezer": "deezer://track/75765949",
       "fun_fact": "A 70s classic (1976).",
       "fun_fact_de": "Ein 70er-Klassiker (1976).",
@@ -3655,7 +3655,7 @@
         "it": "applemusic://track/338756305"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Pbg66_KdJ5Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30234400",
       "uri_deezer": "deezer://track/1026366",
       "fun_fact": "A 70s classic (1977).",
       "fun_fact_de": "Ein 70er-Klassiker (1977).",
@@ -3680,7 +3680,7 @@
         "it": "applemusic://track/1286118699"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nvF5imxSaLI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/650231",
       "uri_deezer": "deezer://track/13174764",
       "fun_fact": "A 70s classic (1970).",
       "fun_fact_de": "Ein 70er-Klassiker (1970).",
@@ -3705,7 +3705,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vwFz3EThGMU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52973783",
       "uri_deezer": "deezer://track/104348252",
       "fun_fact": "Led Zeppelin were a British band that shaped the sound of hard rock.",
       "fun_fact_de": "Led Zeppelin waren eine britische Band, die den Sound des Hard Rock prägte.",
