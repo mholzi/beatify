@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.9",
+  "version": "2.10",
   "tags": [
     "1980s",
     "pop",
@@ -214,7 +214,8 @@
         "es": "applemusic://track/1581879147",
         "nl": "applemusic://track/1581879147",
         "it": "applemusic://track/1581879147"
-      }
+      },
+      "uri_tidal": "tidal://track/77637963"
     },
     {
       "year": 1980,
@@ -376,7 +377,8 @@
         "es": "applemusic://track/310527535",
         "nl": "applemusic://track/310527535",
         "it": "applemusic://track/310527535"
-      }
+      },
+      "uri_tidal": "tidal://track/2772257"
     },
     {
       "year": 1981,
@@ -605,7 +607,8 @@
         "es": "applemusic://track/1794229794",
         "nl": "applemusic://track/1794229794",
         "it": "applemusic://track/1794229794"
-      }
+      },
+      "uri_tidal": "tidal://track/107691286"
     },
     {
       "year": 1982,
@@ -1109,7 +1112,8 @@
         "es": "applemusic://track/1084058324",
         "nl": "applemusic://track/1084058324",
         "it": "applemusic://track/1084058324"
-      }
+      },
+      "uri_tidal": "tidal://track/68665882"
     },
     {
       "year": 1982,
@@ -2272,7 +2276,8 @@
         "es": "applemusic://track/1641781005",
         "nl": "applemusic://track/1641781005",
         "it": "applemusic://track/1641781005"
-      }
+      },
+      "uri_tidal": "tidal://track/1781812"
     },
     {
       "year": 1983,
@@ -2476,7 +2481,8 @@
       "awards": [],
       "uri_deezer": "deezer://track/1090634",
       "fun_fact_nl": "Oorspronkelijk uitgebracht in 1982 en opnieuw opgenomen voor het album 'The Hurting', gaat het nummer over emotionele verwaarlozing in de kindertijd, geïnspireerd door Arthur Janovs primaire therapie.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/22936962"
     },
     {
       "year": 1983,
@@ -2651,7 +2657,8 @@
         "es": "applemusic://track/1023759237",
         "nl": "applemusic://track/1023759237",
         "it": "applemusic://track/1023759237"
-      }
+      },
+      "uri_tidal": "tidal://track/38762"
     },
     {
       "year": 1983,
@@ -2874,7 +2881,8 @@
         "es": "applemusic://track/1692216411",
         "nl": "applemusic://track/1692216411",
         "it": "applemusic://track/1692216411"
-      }
+      },
+      "uri_tidal": "tidal://track/24385357"
     },
     {
       "year": 1984,
@@ -3392,7 +3400,8 @@
         "es": "applemusic://track/1647073443",
         "nl": "applemusic://track/1647073443",
         "it": "applemusic://track/1647073443"
-      }
+      },
+      "uri_tidal": "tidal://track/3288206"
     },
     {
       "year": 1984,
@@ -4300,7 +4309,8 @@
         "es": "applemusic://track/1802857118",
         "nl": "applemusic://track/1802857118",
         "it": "applemusic://track/1622293311"
-      }
+      },
+      "uri_tidal": "tidal://track/21651813"
     },
     {
       "year": 1985,
@@ -4644,7 +4654,8 @@
         "es": "applemusic://track/1088551720",
         "nl": "applemusic://track/1088551720",
         "it": "applemusic://track/1088551720"
-      }
+      },
+      "uri_tidal": "tidal://track/58929343"
     },
     {
       "year": 1985,
@@ -4682,7 +4693,8 @@
         "es": "applemusic://track/1148642435",
         "nl": "applemusic://track/1148642435",
         "it": "applemusic://track/1148642435"
-      }
+      },
+      "uri_tidal": "tidal://track/58929339"
     },
     {
       "year": 1985,

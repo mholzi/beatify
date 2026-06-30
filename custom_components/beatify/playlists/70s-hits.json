@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1970s",
     "classic-rock",
@@ -4055,7 +4055,7 @@
         "it": "applemusic://track/1794723628"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CnwPgQ_tw0U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1499711",
       "uri_deezer": "deezer://track/3301433",
       "fun_fact": "A 70s classic (1978).",
       "fun_fact_de": "Ein 70er-Klassiker (1978).",
@@ -4080,7 +4080,7 @@
         "it": "applemusic://track/1438182713"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UAH-OlHWT6Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13361122",
       "uri_deezer": "deezer://track/2437951",
       "fun_fact": "A 70s classic (1973).",
       "fun_fact_de": "Ein 70er-Klassiker (1973).",
