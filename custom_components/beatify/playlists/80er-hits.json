@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.11",
+  "version": "2.12",
   "tags": [
     "1980s",
     "pop",
@@ -4835,7 +4835,8 @@
         "es": "applemusic://track/1631301659",
         "nl": "applemusic://track/1870541724",
         "it": "applemusic://track/1631301659"
-      }
+      },
+      "uri_tidal": "tidal://track/100577988"
     },
     {
       "year": 1985,
@@ -5473,7 +5474,8 @@
         "es": "applemusic://track/1888548782",
         "nl": "applemusic://track/1888548782",
         "it": "applemusic://track/1888548782"
-      }
+      },
+      "uri_tidal": "tidal://track/614764"
     },
     {
       "year": 1986,
@@ -5901,7 +5903,8 @@
         "es": "applemusic://track/1294750451",
         "nl": "applemusic://track/1294750451",
         "it": "applemusic://track/1294750451"
-      }
+      },
+      "uri_tidal": "tidal://track/271200"
     },
     {
       "year": 1987,
@@ -6042,7 +6045,8 @@
         "es": "applemusic://track/1469573442",
         "nl": "applemusic://track/1442921368",
         "it": "applemusic://track/1469573442"
-      }
+      },
+      "uri_tidal": "tidal://track/35716399"
     },
     {
       "year": 1987,
@@ -6343,7 +6347,8 @@
         "es": "applemusic://track/1329359020",
         "nl": "applemusic://track/1329359020",
         "it": "applemusic://track/1329359020"
-      }
+      },
+      "uri_tidal": "tidal://track/82842804"
     },
     {
       "year": 1987,
@@ -6461,7 +6466,8 @@
         "es": "applemusic://track/6762970661",
         "nl": "applemusic://track/6762970661",
         "it": "applemusic://track/6762970661"
-      }
+      },
+      "uri_tidal": "tidal://track/21884076"
     },
     {
       "year": 1988,
@@ -6730,7 +6736,8 @@
         "es": "applemusic://track/1796180237",
         "nl": "applemusic://track/1796180237",
         "it": "applemusic://track/1796180237"
-      }
+      },
+      "uri_tidal": "tidal://track/1548945"
     },
     {
       "year": 1988,
@@ -6872,7 +6879,8 @@
         "es": "applemusic://track/890507762",
         "nl": "applemusic://track/890507762",
         "it": "applemusic://track/890507762"
-      }
+      },
+      "uri_tidal": "tidal://track/1886377"
     },
     {
       "year": 1988,
@@ -7397,7 +7405,8 @@
         "es": "applemusic://track/1714984620",
         "nl": "applemusic://track/1714984620",
         "it": "applemusic://track/1714984620"
-      }
+      },
+      "uri_tidal": "tidal://track/2060835"
     },
     {
       "year": 1989,
@@ -7709,7 +7718,7 @@
         "it": "applemusic://track/1797543617"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LXZFtJceQC4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2938882",
       "uri_deezer": "deezer://track/3929350",
       "fun_fact": "A chart hit by The B-52's (1989).",
       "fun_fact_de": "Ein Chart-Hit von The B-52's (1989).",
@@ -7734,7 +7743,7 @@
         "it": "applemusic://track/1891813116"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iX_TFkut1PM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1325625",
       "uri_deezer": "deezer://track/3166505",
       "fun_fact": "A chart hit by Don McLean (1987).",
       "fun_fact_de": "Ein Chart-Hit von Don McLean (1987).",
@@ -7759,7 +7768,7 @@
         "it": "applemusic://track/1445835892"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y9mPp5IZbrY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1127288",
       "uri_deezer": "deezer://track/3168234",
       "fun_fact": "A chart hit by The J. Geils Band (1989).",
       "fun_fact_de": "Ein Chart-Hit von The J. Geils Band (1989).",
@@ -7784,7 +7793,7 @@
         "it": "applemusic://track/1666655533"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lQuln0tbgDA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2909308",
       "uri_deezer": "deezer://track/3164587",
       "fun_fact": "A chart hit by George Harrison (1987).",
       "fun_fact_de": "Ein Chart-Hit von George Harrison (1987).",
@@ -7809,7 +7818,7 @@
         "it": "applemusic://track/1512944833"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Sik6eDQ18WE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/141174374",
       "uri_deezer": "deezer://track/958716392",
       "fun_fact": "A chart hit by Gipsy Kings (2012).",
       "fun_fact_de": "Ein Chart-Hit von Gipsy Kings (2012).",
@@ -7834,7 +7843,7 @@
         "it": "applemusic://track/906486219"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ruauz315oms",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45973475",
       "uri_deezer": "deezer://track/14750330",
       "fun_fact": "A chart hit by Bandolero (2011).",
       "fun_fact_de": "Ein Chart-Hit von Bandolero (2011).",
@@ -7859,7 +7868,7 @@
         "it": "applemusic://track/1882033162"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZTGOAFXUEyI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/503876008",
       "uri_deezer": "deezer://track/3878886741",
       "fun_fact": "A chart hit by Eddy Grant (2026).",
       "fun_fact_de": "Ein Chart-Hit von Eddy Grant (2026).",
@@ -7884,7 +7893,7 @@
         "it": "applemusic://track/1769118265"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kgbxH-Ii6dM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37378724",
       "uri_deezer": "deezer://track/89339263",
       "fun_fact": "A chart hit by T.S. Monk (2014).",
       "fun_fact_de": "Ein Chart-Hit von T.S. Monk (2014).",
@@ -7909,7 +7918,7 @@
         "it": "applemusic://track/1444173794"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4ERFvbvUJRE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/319063690",
       "uri_deezer": "deezer://track/121588468",
       "fun_fact": "A chart hit by Central Line (2015).",
       "fun_fact_de": "Ein Chart-Hit von Central Line (2015).",
@@ -7934,7 +7943,7 @@
         "it": "applemusic://track/994361949"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GYiIzez8LrM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/122120386",
       "uri_deezer": "deezer://track/540503442",
       "fun_fact": "A chart hit by Peter Gabriel (2012).",
       "fun_fact_de": "Ein Chart-Hit von Peter Gabriel (2012).",
@@ -8437,7 +8446,7 @@
         "it": "applemusic://track/1692882776"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uKWgYKa2Fh0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34004256",
       "uri_deezer": "deezer://track/2233196",
       "fun_fact": "A chart hit by Glenn Frey (2009).",
       "fun_fact_de": "Ein Chart-Hit von Glenn Frey (2009).",
