@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.10",
+  "version": "2.11",
   "tags": [
     "1980s",
     "pop",
@@ -7959,7 +7959,7 @@
         "it": "applemusic://track/559334751"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-DlMoJ2V6uk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16951562",
       "uri_deezer": "deezer://track/59509531",
       "fun_fact": "A chart hit by Michael Jackson (2012).",
       "fun_fact_de": "Ein Chart-Hit von Michael Jackson (2012).",
@@ -7984,7 +7984,7 @@
         "it": "applemusic://track/1700309643"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yvXFGUWBMHY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188224023",
       "uri_deezer": "deezer://track/1408780112",
       "fun_fact": "A chart hit by Michael McDonald (2021).",
       "fun_fact_de": "Ein Chart-Hit von Michael McDonald (2021).",
@@ -8009,7 +8009,7 @@
         "it": "applemusic://track/1445227982"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QsppPGDrNdg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/93788078",
       "uri_deezer": "deezer://track/541624382",
       "fun_fact": "A chart hit by Kool & The Gang (2018).",
       "fun_fact_de": "Ein Chart-Hit von Kool & The Gang (2018).",
@@ -8034,7 +8034,7 @@
         "it": "applemusic://track/712911374"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_-zk_dWBmAg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14644058",
       "uri_deezer": "deezer://track/18111574",
       "fun_fact": "A chart hit by Matia Bazar (2012).",
       "fun_fact_de": "Ein Chart-Hit von Matia Bazar (2012).",
@@ -8059,7 +8059,7 @@
         "it": "applemusic://track/1760798546"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pqlZQIsRdmQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92066640",
       "uri_deezer": "deezer://track/518970902",
       "fun_fact": "A chart hit by Pino D'Angiò (2011).",
       "fun_fact_de": "Ein Chart-Hit von Pino D'Angiò (2011).",
@@ -8084,7 +8084,7 @@
         "it": "applemusic://track/559334762"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aUD0juRwb3I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16953809",
       "uri_deezer": "deezer://track/59509611",
       "fun_fact": "A chart hit by Michael Jackson (2012).",
       "fun_fact_de": "Ein Chart-Hit von Michael Jackson (2012).",
@@ -8109,7 +8109,7 @@
         "it": "applemusic://track/209953751"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DPm3qb-zDqs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33966386",
       "uri_deezer": "deezer://track/9437107",
       "fun_fact": "A chart hit by Miami Sound Machine (2011).",
       "fun_fact_de": "Ein Chart-Hit von Miami Sound Machine (2011).",
@@ -8134,7 +8134,7 @@
         "it": "applemusic://track/908640278"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UhLDA4Wr2GU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3493390",
       "uri_deezer": "deezer://track/5503498",
       "fun_fact": "A chart hit by Matthew Wilder (2010).",
       "fun_fact_de": "Ein Chart-Hit von Matthew Wilder (2010).",
@@ -8159,7 +8159,7 @@
         "it": "applemusic://track/1441026535"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xLq0JpDk8po",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/491296838",
       "uri_deezer": "deezer://track/3785971252",
       "fun_fact": "A chart hit by Kylie Minogue (2006).",
       "fun_fact_de": "Ein Chart-Hit von Kylie Minogue (2006).",
@@ -8184,7 +8184,7 @@
         "it": "applemusic://track/825319966"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VVRHtUes7go",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1287428",
       "uri_deezer": "deezer://track/565055",
       "alt_artists": [
         "Gloria Estefan"
@@ -8212,7 +8212,7 @@
         "it": "applemusic://track/1290563059"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CfUuamLRsbE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5114336",
       "uri_deezer": "deezer://track/13200806",
       "fun_fact": "A chart hit by Tom Browne (2009).",
       "fun_fact_de": "Ein Chart-Hit von Tom Browne (2009).",
@@ -8237,7 +8237,7 @@
         "it": "applemusic://track/725785285"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k-6EWSnagDM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/126218",
       "uri_deezer": "deezer://track/3116051",
       "fun_fact": "A chart hit by Huey Lewis & The News (2006).",
       "fun_fact_de": "Ein Chart-Hit von Huey Lewis & The News (2006).",
@@ -8262,7 +8262,7 @@
         "it": "applemusic://track/254813986"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-69Hhh-ez8o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102314",
       "uri_deezer": "deezer://track/565049",
       "fun_fact": "A chart hit by Gloria Estefan (2006).",
       "fun_fact_de": "Ein Chart-Hit von Gloria Estefan (2006).",
@@ -8287,7 +8287,7 @@
         "it": "applemusic://track/1817295288"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tykf2xYPNdc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1335096",
       "uri_deezer": "deezer://track/3104486",
       "fun_fact": "A chart hit by Blondie (2003).",
       "fun_fact_de": "Ein Chart-Hit von Blondie (2003).",
@@ -8312,7 +8312,7 @@
         "it": "applemusic://track/1692152831"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=i893TotpH0o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3392907",
       "uri_deezer": "deezer://track/1132667092",
       "fun_fact": "A chart hit by Shakin' Stevens (2005).",
       "fun_fact_de": "Ein Chart-Hit von Shakin' Stevens (2005).",
@@ -8337,7 +8337,7 @@
         "it": "applemusic://track/1393964798"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O-4OQ03mU58",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2972600",
       "uri_deezer": "deezer://track/3500793",
       "fun_fact": "A chart hit by Jaki Graham (2009).",
       "fun_fact_de": "Ein Chart-Hit von Jaki Graham (2009).",
@@ -8362,7 +8362,7 @@
         "it": "applemusic://track/329064716"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=h_r620DGoiE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/496064056",
       "uri_deezer": "deezer://track/3824997421",
       "fun_fact": "A chart hit by Madonna (2009).",
       "fun_fact_de": "Ein Chart-Hit von Madonna (2009).",
@@ -8387,7 +8387,7 @@
         "it": "applemusic://track/1719041756"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VOiZC020nl0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3728807",
       "uri_deezer": "deezer://track/2168095",
       "fun_fact": "A chart hit by Billy Ocean (2005).",
       "fun_fact_de": "Ein Chart-Hit von Billy Ocean (2005).",
@@ -8412,7 +8412,7 @@
         "it": "applemusic://track/580182060"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LPM1_OvqIA0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1846772",
       "uri_deezer": "deezer://track/582418",
       "fun_fact": "A chart hit by Paul Young (2003).",
       "fun_fact_de": "Ein Chart-Hit von Paul Young (2003).",
