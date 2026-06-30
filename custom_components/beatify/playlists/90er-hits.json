@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1990s",
     "pop",
@@ -125,7 +125,8 @@
         "es": "applemusic://track/1687229538",
         "nl": "applemusic://track/1687229538",
         "it": "applemusic://track/1687229538"
-      }
+      },
+      "uri_tidal": "tidal://track/272643"
     },
     {
       "year": 1992,
@@ -164,7 +165,8 @@
         "es": "applemusic://track/1871618419",
         "nl": "applemusic://track/1871618419",
         "it": "applemusic://track/1871618419"
-      }
+      },
+      "uri_tidal": "tidal://track/126624134"
     },
     {
       "year": 1992,
@@ -203,7 +205,8 @@
         "es": "applemusic://track/266234578",
         "nl": "applemusic://track/266234578",
         "it": "applemusic://track/266234578"
-      }
+      },
+      "uri_tidal": "tidal://track/5120357"
     },
     {
       "year": 1993,
@@ -242,7 +245,8 @@
         "es": "applemusic://track/1731434189",
         "nl": "applemusic://track/1731434189",
         "it": "applemusic://track/1731434189"
-      }
+      },
+      "uri_tidal": "tidal://track/492802426"
     },
     {
       "year": 1994,
@@ -281,7 +285,8 @@
         "es": "applemusic://track/272899288",
         "nl": "applemusic://track/272899288",
         "it": "applemusic://track/272899288"
-      }
+      },
+      "uri_tidal": "tidal://track/356344488"
     },
     {
       "year": 1994,
@@ -398,7 +403,8 @@
         "es": "applemusic://track/1890512928",
         "nl": "applemusic://track/1697155301",
         "it": "applemusic://track/1697155301"
-      }
+      },
+      "uri_tidal": "tidal://track/23495818"
     },
     {
       "year": 1995,
@@ -436,7 +442,8 @@
         "es": "applemusic://track/1443833241",
         "nl": "applemusic://track/1443833241",
         "it": "applemusic://track/1526639885"
-      }
+      },
+      "uri_tidal": "tidal://track/1192615"
     },
     {
       "year": 1995,
@@ -474,7 +481,8 @@
         "es": "applemusic://track/1637173347",
         "nl": "applemusic://track/1637173347",
         "it": "applemusic://track/1637173347"
-      }
+      },
+      "uri_tidal": "tidal://track/40409748"
     },
     {
       "year": 1995,
@@ -512,7 +520,8 @@
         "es": "applemusic://track/1847889648",
         "nl": "applemusic://track/1847889648",
         "it": "applemusic://track/1847889648"
-      }
+      },
+      "uri_tidal": "tidal://track/490862247"
     },
     {
       "year": 1995,
@@ -551,7 +560,8 @@
         "es": "applemusic://track/1777307809",
         "nl": "applemusic://track/1777307809",
         "it": "applemusic://track/1777307809"
-      }
+      },
+      "uri_tidal": "tidal://track/1104151"
     },
     {
       "year": 1996,
@@ -590,7 +600,8 @@
         "es": "applemusic://track/1706251973",
         "nl": "applemusic://track/1706251973",
         "it": "applemusic://track/1706251973"
-      }
+      },
+      "uri_tidal": "tidal://track/31782835"
     },
     {
       "year": 1996,
