@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "1990s",
     "pop",
@@ -2168,7 +2168,7 @@
         "it": "applemusic://track/1776875105"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cPw9cSM3zCM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63163488",
       "uri_deezer": "deezer://track/3065901421",
       "alt_artists": [],
       "fun_fact": "A happy-hardcore anthem from the Dutch duo, covered many times since.",
@@ -2768,7 +2768,7 @@
         "it": "applemusic://track/276609794"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xIp1qppUOio",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14635323",
       "uri_deezer": "deezer://track/2208313",
       "alt_artists": [],
       "fun_fact": "The German act's dark, choir-driven Eurodance hit.",
@@ -2798,7 +2798,7 @@
         "it": "applemusic://track/1835522437"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g4BGP7Hei_c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/235077797",
       "uri_deezer": "deezer://track/1802256287",
       "alt_artists": [],
       "fun_fact": "The Dutch group's holiday anthem, built on Typically Tropical's 1975 song.",
@@ -2828,7 +2828,7 @@
         "it": "applemusic://track/1442266778"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Q7uiJcxIsK4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35971918",
       "uri_deezer": "deezer://track/24246391",
       "alt_artists": [],
       "fun_fact": "Gwen Stefani's heartbreak ballad about the band's own romance — their breakthrough hit.",
@@ -2858,7 +2858,7 @@
         "it": "applemusic://track/1437353056"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yYfzC8cY4j8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/491283204",
       "uri_deezer": "deezer://track/3785942552",
       "alt_artists": [],
       "fun_fact": "One of the best-selling singles of the 90s and a Eurodance cornerstone.",
@@ -2888,7 +2888,7 @@
         "it": "applemusic://track/1821521803"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=523Lqlk4fm8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35465609",
       "uri_deezer": "deezer://track/89748393",
       "alt_artists": [],
       "fun_fact": "The American band's cheeky, innuendo-packed novelty hit.",
@@ -3033,7 +3033,7 @@
         "it": "applemusic://track/1669406231"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TLYdt-uIe-U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3718218",
       "uri_deezer": "deezer://track/2133777737",
       "alt_artists": [
         "Jocelyn Brown"
@@ -3061,7 +3061,7 @@
         "it": "applemusic://track/478013623"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tR4vamT51Nw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11016866",
       "uri_deezer": "deezer://track/142393497",
       "fun_fact": "A chart hit by Die Toten Hosen (2011).",
       "fun_fact_de": "Ein Chart-Hit von Die Toten Hosen (2011).",
@@ -3086,7 +3086,7 @@
         "it": "applemusic://track/726418680"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GX1Y7ri_0zU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/131246",
       "uri_deezer": "deezer://track/89388951",
       "fun_fact": "A chart hit by Roxette (2014).",
       "fun_fact_de": "Ein Chart-Hit von Roxette (2014).",
@@ -3111,7 +3111,7 @@
         "it": "applemusic://track/1508311027"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SGeDy6txc2k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/136025744",
       "uri_deezer": "deezer://track/918091092",
       "fun_fact": "A chart hit by DJ BoBo (2017).",
       "fun_fact_de": "Ein Chart-Hit von DJ BoBo (2017).",
@@ -3153,7 +3153,7 @@
         "it": "applemusic://track/1893463652"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BepGmpLT9HA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67367328",
       "uri_deezer": "deezer://track/137233982",
       "fun_fact": "A chart hit by The Offspring (2016).",
       "fun_fact_de": "Ein Chart-Hit von The Offspring (2016).",
@@ -3178,7 +3178,7 @@
         "it": "applemusic://track/685311338"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gMKC5OfNJfs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31499183",
       "uri_deezer": "deezer://track/12169961",
       "fun_fact": "A chart hit by Rozalla (2010).",
       "fun_fact_de": "Ein Chart-Hit von Rozalla (2010).",
@@ -3203,7 +3203,7 @@
         "it": "applemusic://track/1641440790"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3gEyEfMtZOE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/91519909",
       "uri_deezer": "deezer://track/1880251197",
       "alt_artists": [
         "The Mad Stuntman",
@@ -3232,7 +3232,7 @@
         "it": "applemusic://track/1692345562"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TcfxxUVc20M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/279179198",
       "uri_deezer": "deezer://track/2168791217",
       "fun_fact": "A chart hit by Scooter (2013).",
       "fun_fact_de": "Ein Chart-Hit von Scooter (2013).",
@@ -3257,7 +3257,7 @@
         "it": "applemusic://track/1840884443"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=q-UPoJxfW0A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/461018685",
       "uri_deezer": "deezer://track/3558361541",
       "fun_fact": "A chart hit by Fettes Brot (2016).",
       "fun_fact_de": "Ein Chart-Hit von Fettes Brot (2016).",
@@ -3282,7 +3282,7 @@
         "it": "applemusic://track/925643803"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=X4UGPCR3zEQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/40845613",
       "uri_deezer": "deezer://track/73219903",
       "fun_fact": "A chart hit by The Bucketheads (2013).",
       "fun_fact_de": "Ein Chart-Hit von The Bucketheads (2013).",
@@ -3307,7 +3307,7 @@
         "it": "applemusic://track/394874967"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K_t1xV6PEOU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4673711",
       "uri_deezer": "deezer://track/7395378",
       "fun_fact": "A chart hit by Tokyo Ghetto Pussy (2010).",
       "fun_fact_de": "Ein Chart-Hit von Tokyo Ghetto Pussy (2010).",
@@ -3415,7 +3415,7 @@
         "it": "applemusic://track/1495923562"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uWyun5JpwaU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10395309",
       "uri_deezer": "deezer://track/857730702",
       "fun_fact": "A chart hit by Aswad (2009).",
       "fun_fact_de": "Ein Chart-Hit von Aswad (2009).",
@@ -3440,7 +3440,7 @@
         "it": "applemusic://track/1549264424"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NqThf-MpCjs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35708638",
       "uri_deezer": "deezer://track/907649",
       "fun_fact": "Released in 1991 as Crystal Waters' debut single, inspired by a homeless woman she saw daily near her Washington D.C. apartment. The 'la da dee, la da da' hook propelled it to the top of European charts and to #8 on the Billboard Hot 100.",
       "fun_fact_de": "1991 als Crystal Waters' Debut-Single erschienen, inspiriert von einer obdachlosen Frau, die sie täglich in der Nähe ihrer Wohnung in Washington D.C. sah. Der „la da dee, la da da\"-Hook brachte den Song an die Spitze europäischer Charts und auf Platz 8 der Billboard Hot 100.",
@@ -3465,7 +3465,7 @@
         "it": "applemusic://track/1730509612"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LCp77Yf54_k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/151322",
       "uri_deezer": "deezer://track/3102138",
       "fun_fact": "A chart hit by Blur (2000).",
       "fun_fact_de": "Ein Chart-Hit von Blur (2000).",
@@ -3490,7 +3490,7 @@
         "it": "applemusic://track/715809044"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YQmrQzirOR4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16389909",
       "uri_deezer": "deezer://track/45523761",
       "fun_fact": "A chart hit by Spice Girls (2007).",
       "fun_fact_de": "Ein Chart-Hit von Spice Girls (2007).",
@@ -3515,7 +3515,7 @@
         "it": "applemusic://track/1807404008"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SA130vlAPTE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1838950",
       "uri_deezer": "deezer://track/3159507",
       "fun_fact": "A chart hit by Shaggy (2008).",
       "fun_fact_de": "Ein Chart-Hit von Shaggy (2008).",
@@ -3540,7 +3540,7 @@
         "it": "applemusic://track/958426231"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tli9j-MUVGI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/109643",
       "uri_deezer": "deezer://track/13138714",
       "alt_artists": [
         "Steve Mac"
