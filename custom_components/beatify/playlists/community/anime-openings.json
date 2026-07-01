@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "anime",
     "japanese",
@@ -29,7 +29,7 @@
         "it": "applemusic://track/1837658529"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cb0JZhdmjtg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/458404972",
       "uri_deezer": "deezer://track/3540533651",
       "fun_fact": "Theme song for the 2025 film 'Chainsaw Man – The Movie: Reze Arc'.",
       "fun_fact_de": "Titelsong des Films 'Chainsaw Man – The Movie: Reze Arc' (2025).",
@@ -79,7 +79,7 @@
         "it": "applemusic://track/1795912065"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o4rpy5gaUJw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/404540555",
       "uri_deezer": "deezer://track/3126427261",
       "alt_artists": [
         "Felix"
@@ -107,7 +107,7 @@
         "it": "applemusic://track/1857886416"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yzvFG03sSwM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/407570434",
       "uri_deezer": "deezer://track/3155594841",
       "fun_fact": "Anime opening by singer-songwriter Lilas Ikuta (also half of the duo YOASOBI's vocalist Ikura).",
       "fun_fact_de": "Anime-Opening von Singer-Songwriterin Lilas Ikuta (zugleich YOASOBI-Sängerin Ikura).",
@@ -132,7 +132,7 @@
         "it": "applemusic://track/1821087731"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ntRVm85--b4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/451846525",
       "uri_deezer": "deezer://track/3402450951",
       "fun_fact": "Anime opening by AiNA THE END, former vocalist of the alt-idol group BiSH.",
       "fun_fact_de": "Anime-Opening von AiNA THE END, ehemalige Sängerin der Alt-Idol-Gruppe BiSH.",
@@ -157,7 +157,7 @@
         "it": "applemusic://track/1581481510"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wNjvuRZtQeI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/113039187",
       "uri_deezer": null,
       "fun_fact": "Opening 1 of 'Fire Force' (2019) — one of Mrs. GREEN APPLE's signature hits.",
       "fun_fact_de": "Opening 1 von 'Fire Force' (2019) — einer der Signature-Hits von Mrs. GREEN APPLE.",
@@ -182,7 +182,7 @@
         "it": "applemusic://track/1759899365"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NMA_isZYsYQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/252167040",
       "uri_deezer": "deezer://track/1946911957",
       "fun_fact": "Opening of 'Chainsaw Man' (2022) — the first anime song to be certified Gold by the RIAA in the US.",
       "fun_fact_de": "Opening von 'Chainsaw Man' (2022) — der erste Anime-Song mit RIAA-Gold-Auszeichnung in den USA.",
@@ -232,7 +232,7 @@
         "it": "applemusic://track/1808582681"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L96bDUNaRVI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/430166616",
       "uri_deezer": "deezer://track/3325137991",
       "alt_artists": [
         "Naeleck"
@@ -260,7 +260,7 @@
         "it": "applemusic://track/1674062563"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o7fgFaXKVa0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/205642483",
       "uri_deezer": "deezer://track/1557745322",
       "fun_fact": "Opening of the cult 1998 series 'Serial Experiments Lain' — bôa's enduring signature song.",
       "fun_fact_de": "Opening der Kultserie 'Serial Experiments Lain' (1998) — bôas bis heute bekanntester Song.",
