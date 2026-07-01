@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "1990s",
     "pop",
@@ -640,7 +640,8 @@
         "es": "applemusic://track/843678544",
         "nl": "applemusic://track/843678544",
         "it": "applemusic://track/843678544"
-      }
+      },
+      "uri_tidal": "tidal://track/2985865"
     },
     {
       "year": 1997,
@@ -679,7 +680,8 @@
         "es": "applemusic://track/1512941086",
         "nl": "applemusic://track/1512941086",
         "it": "applemusic://track/1512941086"
-      }
+      },
+      "uri_tidal": "tidal://track/169082"
     },
     {
       "year": 1997,
@@ -717,7 +719,8 @@
         "es": "applemusic://track/1584859582",
         "nl": "applemusic://track/1584859582",
         "it": "applemusic://track/1584859582"
-      }
+      },
+      "uri_tidal": "tidal://track/5254633"
     },
     {
       "year": 1997,
@@ -836,7 +839,8 @@
         "es": "applemusic://track/1689821388",
         "nl": "applemusic://track/1689821388",
         "it": "applemusic://track/1689821388"
-      }
+      },
+      "uri_tidal": "tidal://track/251355813"
     },
     {
       "year": 1997,
@@ -874,7 +878,8 @@
         "es": "applemusic://track/1692115822",
         "nl": "applemusic://track/1692115822",
         "it": "applemusic://track/1692115822"
-      }
+      },
+      "uri_tidal": "tidal://track/631814"
     },
     {
       "year": 1997,
@@ -912,7 +917,8 @@
         "es": "applemusic://track/1635638730",
         "nl": "applemusic://track/1635638730",
         "it": "applemusic://track/285296230"
-      }
+      },
+      "uri_tidal": "tidal://track/500426"
     },
     {
       "year": 1997,
@@ -950,7 +956,8 @@
         "es": "applemusic://track/1442885469",
         "nl": "applemusic://track/1442885469",
         "it": "applemusic://track/1442885469"
-      }
+      },
+      "uri_tidal": "tidal://track/2876035"
     },
     {
       "year": 1997,
@@ -989,7 +996,8 @@
         "es": "applemusic://track/309484308",
         "nl": "applemusic://track/309484308",
         "it": "applemusic://track/309484308"
-      }
+      },
+      "uri_tidal": "tidal://track/4916778"
     },
     {
       "year": 1998,
@@ -1027,7 +1035,8 @@
         "es": "applemusic://track/1612523682",
         "nl": "applemusic://track/1443364301",
         "it": "applemusic://track/1612523682"
-      }
+      },
+      "uri_tidal": "tidal://track/5254618"
     },
     {
       "year": 1998,
@@ -1105,7 +1114,8 @@
         "es": "applemusic://track/211424460",
         "nl": "applemusic://track/829669334",
         "it": "applemusic://track/211424460"
-      }
+      },
+      "uri_tidal": "tidal://track/488529"
     },
     {
       "year": 1998,
@@ -1144,7 +1154,8 @@
         "es": "applemusic://track/1616963931",
         "nl": "applemusic://track/1616963931",
         "it": "applemusic://track/1616963931"
-      }
+      },
+      "uri_tidal": "tidal://track/81069399"
     },
     {
       "year": 1999,
@@ -1183,7 +1194,8 @@
         "es": "applemusic://track/1799780289",
         "nl": "applemusic://track/1799780289",
         "it": "applemusic://track/1799780289"
-      }
+      },
+      "uri_tidal": "tidal://track/674625"
     },
     {
       "year": 1999,
@@ -1210,7 +1222,8 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=_ElORM9O-0U",
       "uri_deezer": "deezer://track/623469",
       "fun_fact_nl": "Zoon van Randy Bachman (Bachman-Turner Overdrive). Deze eenaggers vergeleek zijn crush met Cleopatra, Jeanne d'Arc en Aphrodite.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/1311156"
     },
     {
       "year": 1999,
@@ -1239,7 +1252,8 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=kxZD0VQvfqU",
       "uri_deezer": "deezer://track/962260",
       "fun_fact_nl": "Geschreven door Wyclef Jean. De titelsong van haar comeback-album toonde een volwassenere, minder popdiva Whitney. Het nummer gaat over onvoorwaardelijke liefde.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/517436"
     },
     {
       "artist": "Captain Hollywood Project",
@@ -1258,7 +1272,7 @@
         "it": "applemusic://track/1210900245"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qOaqT7lfx2A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70979182",
       "uri_deezer": "deezer://track/143157064",
       "fun_fact": "A chart hit by Captain Hollywood Project (1994).",
       "fun_fact_de": "Ein Chart-Hit von Captain Hollywood Project (1994).",
@@ -1283,7 +1297,7 @@
         "it": "applemusic://track/6762969228"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TMgcQUD-oxM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2529172",
       "uri_deezer": "deezer://track/2510626",
       "fun_fact": "A chart hit by The Mavericks (1999).",
       "fun_fact_de": "Ein Chart-Hit von The Mavericks (1999).",
@@ -2904,7 +2918,7 @@
         "it": "applemusic://track/218434179"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QFGMQZyvnmY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3834238",
       "uri_deezer": "deezer://track/61639624",
       "alt_artists": [],
       "fun_fact": "André Tanneberger's guitar-riff trance track, a UK number one and his breakthrough.",
@@ -2934,7 +2948,7 @@
         "it": "applemusic://track/1703698474"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ck0LO6b6OQc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47469776",
       "uri_deezer": "deezer://track/1802291377",
       "alt_artists": [],
       "fun_fact": "The Dutch trance-pop hit that started life as a DJ Jurgen instrumental.",
@@ -2964,7 +2978,7 @@
         "it": "applemusic://track/585659458"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nzQDQcELNuU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1843333",
       "uri_deezer": "deezer://track/1044489",
       "alt_artists": [],
       "fun_fact": "The Latin-pop trio's worldwide hit from the Eurodance hitmakers behind Real McCoy.",
@@ -2994,7 +3008,7 @@
         "it": "applemusic://track/1498447546"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fUwf21uaVvw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/490882871",
       "uri_deezer": "deezer://track/3802703102",
       "fun_fact": "A chart hit by SNAP! (2026).",
       "fun_fact_de": "Ein Chart-Hit von SNAP! (2026).",
