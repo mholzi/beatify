@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "1990s",
     "pop",
@@ -1720,7 +1720,7 @@
         "it": "applemusic://track/1630278728"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jTJF0FTe_B0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74192305",
       "uri_deezer": "deezer://track/363760591",
       "fun_fact": "A chart hit by The Kelly Family (1996).",
       "fun_fact_de": "Ein Chart-Hit von The Kelly Family (1996).",
@@ -1745,7 +1745,7 @@
         "it": "applemusic://track/697243024"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=X6klWgHxTns",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67327039",
       "uri_deezer": "deezer://track/3151319",
       "alt_artists": [
         "The Sunshine Band"
@@ -1773,7 +1773,7 @@
         "it": "applemusic://track/1893188079"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XE5w3b_Nmzc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/633693",
       "uri_deezer": "deezer://track/1115046",
       "fun_fact": "A chart hit by Aqua (1997).",
       "fun_fact_de": "Ein Chart-Hit von Aqua (1997).",
@@ -1798,7 +1798,7 @@
         "it": "applemusic://track/1825391722"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5Oxu6G34qus",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/636496",
       "uri_deezer": "deezer://track/1182485",
       "fun_fact": "A chart hit by The Osmonds (1996).",
       "fun_fact_de": "Ein Chart-Hit von The Osmonds (1996).",
@@ -1823,7 +1823,7 @@
         "it": "applemusic://track/200008030"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cTfNA_M8yiE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1743534",
       "uri_deezer": "deezer://track/1056919",
       "fun_fact": "A chart hit by The Bangles (1990).",
       "fun_fact_de": "Ein Chart-Hit von The Bangles (1990).",
@@ -1848,7 +1848,7 @@
         "it": "applemusic://track/255672947"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8INT8crRqhk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19614",
       "uri_deezer": "deezer://track/991963",
       "fun_fact": "A chart hit by Middle Of The Road (1992).",
       "fun_fact_de": "Ein Chart-Hit von Middle Of The Road (1992).",
@@ -1873,7 +1873,7 @@
         "it": "applemusic://track/1695886340"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yILr8KdTPsU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2045052",
       "uri_deezer": "deezer://track/1067076",
       "fun_fact": "A chart hit by Wild Cherry (1990).",
       "fun_fact_de": "Ein Chart-Hit von Wild Cherry (1990).",
@@ -1898,7 +1898,7 @@
         "it": "applemusic://track/384919391"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZuY2s58bRrE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63545799",
       "uri_deezer": "deezer://track/61419158",
       "alt_artists": [],
       "fun_fact": "Gigi D'Agostino's hypnotic 1999 cover of Nik Kershaw's 1984 song, a Lento Violento landmark.",
@@ -1928,7 +1928,7 @@
         "it": "applemusic://track/1857765665"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wxb2ZXAOWWQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/489946237",
       "uri_deezer": "deezer://track/3776251662",
       "alt_artists": [],
       "fun_fact": "The German band's biggest hit, built on a swirling organ riff inescapable on 90s radio.",
@@ -1958,7 +1958,7 @@
         "it": "applemusic://track/330241516"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Eht9W25tDZo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15214695",
       "uri_deezer": "deezer://track/99360002",
       "alt_artists": [],
       "fun_fact": "John Larkin turned his lifelong stutter into rapid-fire scat singing — a worldwide novelty smash.",
@@ -2018,7 +2018,7 @@
         "it": "applemusic://track/505475126"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VAmq5-wcLHE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14237868",
       "uri_deezer": "deezer://track/17347911",
       "alt_artists": [],
       "fun_fact": "One of the biggest Eurodance hits of 1993, number one in over a dozen countries.",
@@ -2048,7 +2048,7 @@
         "it": "applemusic://track/1877135727"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_Jl-QpJNKiQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/498818578",
       "uri_deezer": "deezer://track/3843390961",
       "alt_artists": [],
       "fun_fact": "The German group's tropical Eurodance smash, a summer-party staple ever since.",
@@ -2078,7 +2078,7 @@
         "it": "applemusic://track/1614485368"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Q266UWljhlc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/490900616",
       "uri_deezer": "deezer://track/3801448032",
       "alt_artists": [],
       "fun_fact": "The Nigerian-Swedish artist's signature hit, a Eurodance anthem of self-determination.",
@@ -2108,7 +2108,7 @@
         "it": "applemusic://track/1614485367"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sUYa5FZTyBk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/490902836",
       "uri_deezer": "deezer://track/3801341602",
       "alt_artists": [],
       "fun_fact": "A gospel-tinged Eurodance hit produced by Denniz Pop, an early Cheiron Studios success.",
@@ -2138,7 +2138,7 @@
         "it": "applemusic://track/1675507902"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gne9jY-EDm4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/159124166",
       "uri_deezer": "deezer://track/134706074",
       "alt_artists": [],
       "fun_fact": "The Dutch duo's 'techno techno' chant dominated European charts for weeks.",
@@ -2198,7 +2198,7 @@
         "it": "applemusic://track/1803633859"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=maPrpcHwXsc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/305653802",
       "uri_deezer": "deezer://track/3289112261",
       "alt_artists": [],
       "fun_fact": "The German act's breakthrough — happy hardcore that crossed into the mainstream charts.",
@@ -2228,7 +2228,7 @@
         "it": "applemusic://track/1692345571"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OMfZE53YoEU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/279179207",
       "uri_deezer": "deezer://track/2168791307",
       "alt_artists": [],
       "fun_fact": "The 1994 debut single that launched German rave act Scooter, shouting out fellow DJs by name.",
@@ -2258,7 +2258,7 @@
         "it": "applemusic://track/1443342983"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=B6GdsRIbTSk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/634519",
       "uri_deezer": "deezer://track/2184743",
       "alt_artists": [],
       "fun_fact": "Linda Perry's raw-voiced anthem — the band's only hit, but an enduring one.",
@@ -2288,7 +2288,7 @@
         "it": "applemusic://track/1517449902"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hpSrLjc5SMs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/156876007",
       "uri_deezer": "deezer://track/985745702",
       "alt_artists": [],
       "fun_fact": "Noel Gallagher's most famous song and Britpop's defining singalong.",
@@ -2318,7 +2318,7 @@
         "it": "applemusic://track/512526688"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FpkawF5GWMI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38963629",
       "uri_deezer": "deezer://track/94676692",
       "alt_artists": [],
       "fun_fact": "The Swedish group's reggae-pop breakthrough, a worldwide number one.",
@@ -2348,7 +2348,7 @@
         "it": "applemusic://track/260655284"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GWtSamzbGOs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3381203",
       "uri_deezer": "deezer://track/5363024",
       "alt_artists": [],
       "fun_fact": "The Finnish act's breakbeat hit, immortalised by its phone-rewinding music video.",
@@ -2378,7 +2378,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LL8zTK1Ffu0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/441956660",
       "uri_deezer": "deezer://track/1428926582",
       "alt_artists": [],
       "fun_fact": "The Italian Eurodance classic fronted by Olga Souza's soaring vocals.",
@@ -2408,7 +2408,7 @@
         "it": "applemusic://track/1673414301"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_SQy6X5g7JU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1291238",
       "uri_deezer": "deezer://track/13166572",
       "alt_artists": [],
       "fun_fact": "The German-American duo's signature Eurodance hit.",
@@ -2438,7 +2438,7 @@
         "it": "applemusic://track/1827554491"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-5qqrMu_AZc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/219775152",
       "uri_deezer": "deezer://track/763300",
       "alt_artists": [],
       "fun_fact": "Built on a Stevie Wonder sample, 1995's biggest hit and an Oscar-nominated soundtrack song.",
@@ -2468,7 +2468,7 @@
         "it": "applemusic://track/1714235527"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Qvu033SBMYU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70681623",
       "uri_deezer": "deezer://track/6177415",
       "alt_artists": [],
       "fun_fact": "The Italian singer's dance anthem, revived decades later as a football-terrace chant.",
@@ -2498,7 +2498,7 @@
         "it": "applemusic://track/6763237471"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_UWOHofs0kA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77892506",
       "uri_deezer": "deezer://track/432946922",
       "alt_artists": [],
       "fun_fact": "The sweeping Britpop classic, famous for the lawsuit over its orchestral sample.",
@@ -2528,7 +2528,7 @@
         "it": "applemusic://track/1893192107"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yW5oTzftgjY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2893885",
       "uri_deezer": "deezer://track/651773022",
       "alt_artists": [],
       "fun_fact": "The British anarchist collective's 'I get knocked down' anthem, an unlikely global smash.",
@@ -2558,7 +2558,7 @@
         "it": "applemusic://track/1606222112"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DMJgiky90pE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74123548",
       "uri_deezer": "deezer://track/91348522",
       "alt_artists": [],
       "fun_fact": "The Italian producer's dream-house instrumental, written to calm ravers at the end of a night.",
@@ -2588,7 +2588,7 @@
         "it": "applemusic://track/1626933600"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NruQh0QDTTM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1291239",
       "uri_deezer": "deezer://track/4096754",
       "alt_artists": [],
       "fun_fact": "The duo's biggest US hit and a Eurodance dancefloor staple.",
@@ -2618,7 +2618,7 @@
         "it": "applemusic://track/147109214"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=e_s49nGBrgQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70687210",
       "uri_deezer": "deezer://track/76714937",
       "alt_artists": [],
       "fun_fact": "The British-Italian Eurodance hit with its instantly recognisable vocal hook.",
@@ -2648,7 +2648,7 @@
         "it": "applemusic://track/1210811729"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WS_uN8ggab8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63261250",
       "uri_deezer": "deezer://track/105891914",
       "alt_artists": [],
       "fun_fact": "A melancholic Italo-dance classic from his landmark album 'L'Amour Toujours'.",
@@ -2678,7 +2678,7 @@
         "it": "applemusic://track/1764524416"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A9jzKnbNcu0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/98426487",
       "uri_deezer": "deezer://track/2960513391",
       "alt_artists": [],
       "fun_fact": "The British DJ's euphoric dance-pop crossover, a delayed worldwide number one.",
@@ -2708,7 +2708,7 @@
         "it": "applemusic://track/1160733023"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xXahlXQhMF4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65545333",
       "uri_deezer": "deezer://track/133204794",
       "alt_artists": [],
       "fun_fact": "The German act's globe-trotting Eurodance hit featuring vocalist Rodriguez.",
@@ -2738,7 +2738,7 @@
         "it": "applemusic://track/1890587723"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gM65SDMiXBE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/235077794",
       "uri_deezer": "deezer://track/1802253167",
       "alt_artists": [],
       "fun_fact": "The Dutch group's cheerfully relentless party anthem.",
