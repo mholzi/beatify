@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "anime",
     "japanese",
@@ -54,7 +54,7 @@
         "it": "applemusic://track/1771603031"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=W0dsUNS4RT8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/390601678",
       "uri_deezer": null,
       "fun_fact": "Opening theme of 'Dandadan' (2024) — Creepy Nuts following up their viral 'Bling-Bang-Bang-Born'.",
       "fun_fact_de": "Opening von 'Dandadan' (2024) — Creepy Nuts' Nachfolger zum viralen 'Bling-Bang-Bang-Born'.",

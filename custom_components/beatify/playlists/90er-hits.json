@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "1990s",
     "pop",
@@ -1322,7 +1322,7 @@
         "it": "applemusic://track/1443923780"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xc68sRFZ650",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/632622",
       "uri_deezer": "deezer://track/2276583",
       "fun_fact": "A chart hit by Oleta Adams (1993).",
       "fun_fact_de": "Ein Chart-Hit von Oleta Adams (1993).",
@@ -1347,7 +1347,7 @@
         "it": "applemusic://track/204001889"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KP3sd-Fyw0s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38036096",
       "uri_deezer": "deezer://track/13211888",
       "fun_fact": "A chart hit by iNi Kamoze (1995).",
       "fun_fact_de": "Ein Chart-Hit von iNi Kamoze (1995).",
@@ -1372,7 +1372,7 @@
         "it": "applemusic://track/1891837843"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=w3fRBzRngdc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1111508",
       "uri_deezer": "deezer://track/2447245",
       "fun_fact": "A chart hit by Bachman-Turner Overdrive (1990).",
       "fun_fact_de": "Ein Chart-Hit von Bachman-Turner Overdrive (1990).",
@@ -1397,7 +1397,7 @@
         "it": "applemusic://track/285140604"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Pdbg44M37Q4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/40186742",
       "uri_deezer": "deezer://track/93851026",
       "fun_fact": "A chart hit by Ace of Base (1993).",
       "fun_fact_de": "Ein Chart-Hit von Ace of Base (1993).",
@@ -1422,7 +1422,7 @@
         "it": "applemusic://track/190367461"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rmOAVfEDyhA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13196742",
       "uri_deezer": "deezer://track/15273623",
       "alt_artists": [
         "The World"
@@ -1450,7 +1450,7 @@
         "it": "applemusic://track/1443097885"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8zWhI5ZjkDY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/50750906",
       "uri_deezer": "deezer://track/106737988",
       "fun_fact": "A chart hit by Salt-N-Pepa (1992).",
       "fun_fact_de": "Ein Chart-Hit von Salt-N-Pepa (1992).",
@@ -1475,7 +1475,7 @@
         "it": "applemusic://track/1668462471"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=t2wh9gkcG5g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/273106248",
       "uri_deezer": "deezer://track/2126822947",
       "fun_fact": "A chart hit by Right Said Fred (1991).",
       "fun_fact_de": "Ein Chart-Hit von Right Said Fred (1991).",
@@ -1500,7 +1500,7 @@
         "it": "applemusic://track/1644749134"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=56b4TTT609c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5244675",
       "uri_deezer": "deezer://track/1101200",
       "fun_fact": "A chart hit by Thin Lizzy (1996).",
       "fun_fact_de": "Ein Chart-Hit von Thin Lizzy (1996).",
@@ -1525,7 +1525,7 @@
         "it": "applemusic://track/1812635294"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-1hbR_Y9gE0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10905690",
       "uri_deezer": "deezer://track/3884974",
       "fun_fact": "A chart hit by Snow (1992).",
       "fun_fact_de": "Ein Chart-Hit von Snow (1992).",
@@ -1550,7 +1550,7 @@
         "it": "applemusic://track/253940644"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ro9PcVa8q9Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/538935",
       "uri_deezer": "deezer://track/1048185",
       "fun_fact": "A chart hit by Sailor (1993).",
       "fun_fact_de": "Ein Chart-Hit von Sailor (1993).",
@@ -1575,7 +1575,7 @@
         "it": "applemusic://track/712869766"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tdBDFwL3pyI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1838936",
       "uri_deezer": "deezer://track/3133926",
       "fun_fact": "A chart hit by Ziggy Marley & The Melody Makers (1997).",
       "fun_fact_de": "Ein Chart-Hit von Ziggy Marley & The Melody Makers (1997).",
@@ -1600,7 +1600,7 @@
         "it": "applemusic://track/1842243063"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Uj9y8MKP5y0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/72501769",
       "uri_deezer": "deezer://track/347192701",
       "fun_fact": "A chart hit by Funkstar De Luxe (1999).",
       "fun_fact_de": "Ein Chart-Hit von Funkstar De Luxe (1999).",
@@ -1625,7 +1625,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RUBvqz3ozv8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/81794041",
       "uri_deezer": "deezer://track/434625962",
       "fun_fact": "A chart hit by Lou Bega (1999).",
       "fun_fact_de": "Ein Chart-Hit von Lou Bega (1999).",
@@ -1642,7 +1642,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=g6nthFTiPiI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38036078",
       "uri_deezer": null,
       "alt_artists": [
         "Jason Nevins"
@@ -1670,7 +1670,7 @@
         "it": "applemusic://track/1744492452"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=91Niv2q4gvc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1631745",
       "uri_deezer": "deezer://track/540175",
       "fun_fact": "A chart hit by Britney Spears (1999).",
       "fun_fact_de": "Ein Chart-Hit von Britney Spears (1999).",
@@ -1695,7 +1695,7 @@
         "it": "applemusic://track/1308691199"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XLkHOnm0LIs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23093",
       "uri_deezer": "deezer://track/604846",
       "fun_fact": "A chart hit by Eros Ramazzotti (1997).",
       "fun_fact_de": "Ein Chart-Hit von Eros Ramazzotti (1997).",
