@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "anime",
     "japanese",
@@ -844,7 +844,7 @@
         "it": "applemusic://track/1593439939"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k0g04t7ZeSw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/165503615",
       "uri_deezer": "deezer://track/1171495792",
       "fun_fact": "Opening 2 of 'Beastars' (2021) by YOASOBI.",
       "fun_fact_de": "Opening 2 von 'Beastars' (2021) von YOASOBI.",
@@ -869,7 +869,7 @@
         "it": "applemusic://track/1661623946"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4qqeafI9kXM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/156747592",
       "uri_deezer": "deezer://track/1093607442",
       "alt_artists": [
         "AKLO"
@@ -922,7 +922,7 @@
         "it": "applemusic://track/1537757136"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dOVWGxU5YsU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/91842914",
       "uri_deezer": "deezer://track/526633962",
       "fun_fact": "Opening of 'My Hero Academia' Season 3 (2018) by UVERworld.",
       "fun_fact_de": "Opening von 'My Hero Academia' Staffel 3 (2018) von UVERworld.",
@@ -972,7 +972,7 @@
         "it": "applemusic://track/1677340392"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=weGtT2hxFvg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/149317240",
       "uri_deezer": "deezer://track/976022032",
       "fun_fact": "Opening of 'Haikyu!!' (2016) by BURNOUT SYNDROMES.",
       "fun_fact_de": "Opening von 'Haikyu!!' (2016) von BURNOUT SYNDROMES.",
@@ -1022,7 +1022,7 @@
         "it": "applemusic://track/1535768529"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fMU6nclDzNs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/149297746",
       "uri_deezer": null,
       "fun_fact": "Opening of 'My Hero Academia' Season 4 (2019) by BLUE ENCOUNT.",
       "fun_fact_de": "Opening von 'My Hero Academia' Staffel 4 (2019) von BLUE ENCOUNT.",
@@ -1047,7 +1047,7 @@
         "it": "applemusic://track/1440166936"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=B_Bm36MqxWU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/136823691",
       "uri_deezer": "deezer://track/560996512",
       "alt_artists": [
         "Naeleck",
@@ -1076,7 +1076,7 @@
         "it": "applemusic://track/551273032"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3SqhXiimlrg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/504161436",
       "uri_deezer": "deezer://track/2665357712",
       "fun_fact": "Opening 1 of 'Hunter x Hunter' (2011) — Masatoshi Ono's high-energy anthem.",
       "fun_fact_de": "Opening 1 von 'Hunter x Hunter' (2011) — Masatoshi Onos energiegeladene Hymne.",
@@ -1101,7 +1101,7 @@
         "it": "applemusic://track/1542182776"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=by4SYYWlhEs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/124449196",
       "uri_deezer": "deezer://track/824731152",
       "fun_fact": "YOASOBI's breakout debut single (2019), based on a short story — over a billion streams.",
       "fun_fact_de": "YOASOBIs Durchbruch-Debütsingle (2019), basierend auf einer Kurzgeschichte — über eine Milliarde Streams.",
@@ -1126,7 +1126,7 @@
         "it": "applemusic://track/1538276685"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GA9Yw5t-Mto",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144446114",
       "uri_deezer": "deezer://track/1024962302",
       "fun_fact": "Opening of 'The Promised Neverland' (2019) by UVERworld.",
       "fun_fact_de": "Opening von 'The Promised Neverland' (2019) von UVERworld.",
@@ -1151,7 +1151,7 @@
         "it": "applemusic://track/1770552813"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=csVeFCLhmAM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/145213302",
       "uri_deezer": "deezer://track/3000818931",
       "fun_fact": "Opening 6 of 'Naruto Shippuden' (2008) by FLOW.",
       "fun_fact_de": "Opening 6 von 'Naruto Shippuden' (2008) von FLOW.",
@@ -1226,7 +1226,7 @@
         "it": "applemusic://track/1763092108"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DO_aopUeFnw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/355408037",
       "uri_deezer": null,
       "fun_fact": "Opening of 'Frieren: Beyond Journey's End' (2024) by Mrs. GREEN APPLE.",
       "fun_fact_de": "Opening von 'Frieren: Beyond Journey's End' (2024) von Mrs. GREEN APPLE.",
