@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "anime",
     "japanese",
@@ -616,7 +616,7 @@
         "it": "applemusic://track/1611734944"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=b4vc629T4b8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/504137276",
       "uri_deezer": "deezer://track/2665292502",
       "fun_fact": "Opening 1 of 'Death Note' (2006) by visual-kei band NIGHTMARE.",
       "fun_fact_de": "Opening 1 von 'Death Note' (2006) von der Visual-Kei-Band NIGHTMARE.",
@@ -666,7 +666,7 @@
         "it": "applemusic://track/1838917398"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=IHaUGQVrBa8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/460934402",
       "uri_deezer": "deezer://track/3628584642",
       "fun_fact": "Opening 2 of 'Noragami Aragoto' (2015) by THE ORAL CIGARETTES.",
       "fun_fact_de": "Opening 2 von 'Noragami Aragoto' (2015) von THE ORAL CIGARETTES.",
@@ -691,7 +691,7 @@
         "it": "applemusic://track/1614421257"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Sdy5fSHz6t4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/209819560",
       "uri_deezer": null,
       "alt_artists": [
         "Naeleck"
@@ -719,7 +719,7 @@
         "it": "applemusic://track/1616586639"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=EZy_vHyFedw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/233415499",
       "uri_deezer": "deezer://track/1701852587",
       "fun_fact": "Opening of 'Spy x Family' (2022) by OFFICIAL HIGE DANDISM.",
       "fun_fact_de": "Opening von 'Spy x Family' (2022) von OFFICIAL HIGE DANDISM.",
@@ -744,7 +744,7 @@
         "it": "applemusic://track/1538157315"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zqKrpw36xnU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144783680",
       "uri_deezer": null,
       "fun_fact": "Opening 16 of 'Naruto Shippuden' (2014) by KANA-BOON.",
       "fun_fact_de": "Opening 16 von 'Naruto Shippuden' (2014) von KANA-BOON.",
@@ -769,7 +769,7 @@
         "it": "applemusic://track/1617909669"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=URR_Nv-6MZs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/331641748",
       "uri_deezer": "deezer://track/2128227357",
       "fun_fact": "Theme song from 'Spy x Family' (2022), written and performed by Gen Hoshino.",
       "fun_fact_de": "Titelsong aus 'Spy x Family' (2022), geschrieben und gesungen von Gen Hoshino.",
