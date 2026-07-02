@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "anime",
     "japanese",
@@ -1301,7 +1301,7 @@
         "it": "applemusic://track/551273033"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CyIoNt2m1Gw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/330339430",
       "uri_deezer": "deezer://track/2665262582",
       "fun_fact": "Opening of 'Hunter x Hunter' (2011) by power-metal band GALNERYUS.",
       "fun_fact_de": "Opening von 'Hunter x Hunter' (2011) von der Power-Metal-Band GALNERYUS.",
@@ -1379,7 +1379,7 @@
         "it": "applemusic://track/1537452458"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mAENQIa-MtM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/82599645",
       "uri_deezer": "deezer://track/442437862",
       "fun_fact": "Opening of 'The Seven Deadly Sins' (2015) by MAN WITH A MISSION.",
       "fun_fact_de": "Opening von 'The Seven Deadly Sins' (2015) von MAN WITH A MISSION.",
@@ -1404,7 +1404,7 @@
         "it": "applemusic://track/1538285855"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=F9GXgPHeKfA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144815604",
       "uri_deezer": "deezer://track/976378422",
       "fun_fact": "Opening 1 of 'Sword Art Online' (2012) — LiSA's breakthrough anime song.",
       "fun_fact_de": "Opening 1 von 'Sword Art Online' (2012) — LiSAs Durchbruch-Anime-Song.",
@@ -1429,7 +1429,7 @@
         "it": "applemusic://track/1538275660"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9aJVr5tTTWk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/192157851",
       "uri_deezer": null,
       "fun_fact": "Opening of 'My Hero Academia' Season 2 (2017) by Kenshi Yonezu.",
       "fun_fact_de": "Opening von 'My Hero Academia' Staffel 2 (2017) von Kenshi Yonezu.",
@@ -1479,7 +1479,7 @@
         "it": "applemusic://track/1045437112"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4dOw3TpoHtk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/330340239",
       "uri_deezer": "deezer://track/2665262552",
       "fun_fact": "Opening of 'Parasyte -the maxim-' (2014) by Fear, and Loathing in Las Vegas.",
       "fun_fact_de": "Opening von 'Parasyte -the maxim-' (2014) von Fear, and Loathing in Las Vegas.",
@@ -1504,7 +1504,7 @@
         "it": "applemusic://track/1097861770"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Lt8AfIeJOxw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58990512",
       "uri_deezer": "deezer://track/138539973",
       "fun_fact": "Radiohead's 1997 classic, used as the ending theme of the 2006 anime 'Ergo Proxy'.",
       "fun_fact_de": "Radioheads Klassiker von 1997, verwendet als Ending-Theme des Animes 'Ergo Proxy' (2006).",
@@ -1554,7 +1554,7 @@
         "it": "applemusic://track/1650882057"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=M8w716ZKYY0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/459692287",
       "uri_deezer": null,
       "fun_fact": "Opening 1 of 'Noragami' (2014) by Hello Sleepwalkers.",
       "fun_fact_de": "Opening 1 von 'Noragami' (2014) von Hello Sleepwalkers.",
@@ -1579,7 +1579,7 @@
         "it": "applemusic://track/1538286188"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GWysc_zFTIA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144671543",
       "uri_deezer": "deezer://track/1355425922",
       "fun_fact": "Theme of the film 'Sword Art Online: Ordinal Scale' (2017) by LiSA.",
       "fun_fact_de": "Titelsong des Films 'Sword Art Online: Ordinal Scale' (2017) von LiSA.",
@@ -1604,7 +1604,7 @@
         "it": "applemusic://track/1740667526"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5etD8mRAsio",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/90835236",
       "uri_deezer": "deezer://track/1124776602",
       "fun_fact": "Opening 4 of 'Naruto' (2004) by FLOW — among the most famous Naruto openings.",
       "fun_fact_de": "Opening 4 von 'Naruto' (2004) von FLOW — eines der berühmtesten Naruto-Openings.",
@@ -1629,7 +1629,7 @@
         "it": "applemusic://track/1538109174"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4vZUSkshCg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/149296852",
       "uri_deezer": "deezer://track/1024952482",
       "fun_fact": "Opening of 'Tokyo Ghoul:re' (2018) by Cö shu Nie.",
       "fun_fact_de": "Opening von 'Tokyo Ghoul:re' (2018) von Cö shu Nie.",
@@ -1729,7 +1729,7 @@
         "it": "applemusic://track/1535548886"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N0ixzrZe--0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/145124039",
       "uri_deezer": null,
       "fun_fact": "Opening of 'Darling in the Franxx' (2018), produced by HYDE of L'Arc-en-Ciel.",
       "fun_fact_de": "Opening von 'Darling in the Franxx' (2018), produziert von HYDE (L'Arc-en-Ciel).",
