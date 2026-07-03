@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "1990s",
     "pop",
@@ -1988,7 +1988,7 @@
         "it": "applemusic://track/257425447"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NrVqLGQlieA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/539111445",
       "uri_deezer": "deezer://track/89629797",
       "alt_artists": [],
       "fun_fact": "The Italian trio's everything-is-blue earworm topped charts across the globe.",

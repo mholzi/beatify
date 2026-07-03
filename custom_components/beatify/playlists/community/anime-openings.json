@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "anime",
     "japanese",
@@ -3008,7 +3008,7 @@
         "it": "applemusic://track/1482123622"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BYtIrAZWVtM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/119312420",
       "uri_deezer": "deezer://track/767814512",
       "fun_fact": "Opening theme for My Hero Academia season 4; Miura Jam's powerful vocal performance on hero-themed rock",
       "fun_fact_de": "Eröffnungsthema für My Hero Academia Staffel 4; Miura Jams kraftvolle Gesangsleistung im Helden-Rock",
@@ -3033,7 +3033,7 @@
         "it": "applemusic://track/1537756480"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UEqL_I0G7qU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144303944",
       "uri_deezer": "deezer://track/975949182",
       "fun_fact": "UVERworld's ODD FUTURE served as ending theme for My Hero Academia season 3, demonstrating band versatility",
       "fun_fact_de": "UVERworlds ODD FUTURE war Endthema für My Hero Academia Staffel 3, zeigt Bandvielseitigkeit",
