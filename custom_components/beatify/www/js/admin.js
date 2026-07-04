@@ -2139,23 +2139,14 @@ function renderAdminState(data) {
     }
 }
 
-// #1584: cheap "unchanged?" check for the dirty-check skip. Both payloads are
-// the server's own JSON serialization of the game state, so key order is
-// stable and a string compare is a sound (and far cheaper than the DOM
-// rebuild) equality test. Any failure falls back to "changed" → render.
-function _adminStateEqual(a, b) {
-    try {
-        return JSON.stringify(a) === JSON.stringify(b);
-    } catch (e) {
-        return false;
-    }
-}
-
 // #1584: coalesce bursts of state broadcasts into one render/frame, latest
-// payload wins (final state always rendered), and skip when nothing changed.
-const _scheduleAdminRender = createRenderCoalescer(renderAdminState, {
-    isEqual: _adminStateEqual,
-});
+// payload wins (final state always rendered).
+// #1659: the previous dirty-check used JSON.stringify for equality. Because
+// the state payload carries wall-clock timestamp fields (deadline, reveal_started_at)
+// the stringify comparison would differ even for logically-identical payloads, so
+// the skip never fired. Dropping isEqual lets the coalescer rely solely on
+// frame-throttling (still correct — the final state always wins).
+const _scheduleAdminRender = createRenderCoalescer(renderAdminState);
 
 /**
  * Public entry point for a game-state update (WS `state` broadcast or a
