@@ -5,8 +5,12 @@
  * local to this cluster.
  *
  * #1273 AC#3 — FE holds no authoritative timer state. The countdown is derived
- * purely from the server's `deadline` (epoch-ms wall clock, serialized in every
- * state_update). When a fresh state_update carries a DIFFERENT deadline mid-round
+ * from the server's authoritative timer. #1662: to stay immune to a wrong client
+ * clock, it anchors to the server's *relative* `seconds_remaining` (re-anchored
+ * to the client's own Date.now() on each state_update) rather than subtracting
+ * the server wall-clock `deadline` from the client clock; the absolute `deadline`
+ * is retained as a back-compat fallback and for the smooth-correct ease below.
+ * When a fresh state_update carries a DIFFERENT deadline mid-round
  * (network jitter, reconnect, tab refresh, pre-round-TTS deadline shift), the
  * displayed seconds would otherwise hard-jump. "V1 Smooth Correct": instead of
  * snapping, the effective deadline EASES from the old value to the authoritative
@@ -54,8 +58,23 @@ function _easeOutCubic(t) {
 /**
  * Start countdown timer
  * @param {number} deadline - Server deadline timestamp in milliseconds
+ * @param {number} [secondsRemaining] - Server-computed *relative* seconds left
+ *   (skew-immune). #1662: when present, the countdown re-anchors to the CLIENT's
+ *   own clock (deadline := Date.now() + secondsRemaining·1000) instead of
+ *   comparing the server wall-clock `deadline` to a possibly-wrong client
+ *   `Date.now()`. Mirrors the TA-vote timer (player-reveal.js). Absent → fall
+ *   back to the raw server `deadline` (older server / unit tests).
  */
-export function startCountdown(deadline) {
+export function startCountdown(deadline, secondsRemaining) {
+    // #1662: derive a CLIENT-LOCAL deadline from the server's relative remaining
+    // seconds so a wrong client clock can't skew the countdown. Everything below
+    // (drift-compare, smooth-correct ease, watchdog) then operates on a deadline
+    // that lives entirely in the client's own Date.now() frame.
+    var effectiveDeadline =
+        (typeof secondsRemaining === 'number' && isFinite(secondsRemaining))
+            ? Date.now() + secondsRemaining * 1000
+            : deadline;
+
     // #1273: smooth-correct path. If a countdown is already live and this push
     // carries a *different* authoritative deadline, glide to it instead of the
     // hard stop+restart below — but only when the drift is real (> threshold)
@@ -65,13 +84,13 @@ export function startCountdown(deadline) {
         activeDeadline !== null &&
         typeof requestAnimationFrame === 'function'
     ) {
-        var drift = Math.abs(deadline - activeDeadline);
+        var drift = Math.abs(effectiveDeadline - activeDeadline);
         if (drift <= DRIFT_THRESHOLD_MS) {
             // Within jitter noise — adopt the server value silently, keep ticking.
-            activeDeadline = deadline;
+            activeDeadline = effectiveDeadline;
             return;
         }
-        if (_smoothCorrectTo(deadline)) return;
+        if (_smoothCorrectTo(effectiveDeadline)) return;
         // _smoothCorrectTo returned false (DOM gone) → fall through to a clean restart.
     }
 
@@ -98,7 +117,7 @@ export function startCountdown(deadline) {
     // #1273: this is now the deadline the screen renders toward. updateCountdown
     // reads activeDeadline (not the captured param) so the smooth-correct ease
     // can retarget it live without tearing down the interval.
-    activeDeadline = deadline;
+    activeDeadline = effectiveDeadline;
 
     // Watchdog tick counter — counts updateCountdown ticks spent past the
     // deadline so the round_timeout nudge can retry instead of firing once.

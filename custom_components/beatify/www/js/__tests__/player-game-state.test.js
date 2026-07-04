@@ -192,6 +192,31 @@ describe('startCountdown / stopCountdown', () => {
         delete els.timer;
         expect(() => startCountdown(Date.now() + 5000)).not.toThrow();
     });
+
+    // #1662 — clock-skew immunity. The countdown must derive remaining time from
+    // the server's *relative* secondsRemaining anchored to the CLIENT's own
+    // clock, NOT from subtracting the server wall-clock `deadline` from a
+    // possibly-wrong client Date.now(). We simulate a badly skewed client: the
+    // server's absolute deadline, if used directly, reads as long expired — yet
+    // the server also reports 30s remaining, so the timer must show 30.
+    it('derives remaining from server secondsRemaining, immune to a wrong client clock (#1662)', () => {
+        // Client clock is 5 minutes AHEAD of the server: the server's real
+        // deadline is 30s out, but expressed in the client's skewed frame it
+        // looks 4.5 min in the PAST. Old code (deadline − Date.now()) → 0.
+        const skewedServerDeadline = Date.now() - 5 * 60_000;
+        startCountdown(skewedServerDeadline, 30);
+        // Anchored to the relative 30s, not the bogus absolute deadline.
+        expect(els.timer.textContent).toBe(30);
+        // …and it still ticks down normally from the anchored value.
+        vi.advanceTimersByTime(3000);
+        expect(els.timer.textContent).toBe(27);
+    });
+
+    it('without secondsRemaining still honours the absolute deadline (back-compat)', () => {
+        // No relative field → fall back to the server wall-clock deadline.
+        startCountdown(Date.now() + 20_000);
+        expect(els.timer.textContent).toBe(20);
+    });
 });
 
 // #1273 AC#3 — V1 Smooth Correct. When a fresh state_update re-pushes a

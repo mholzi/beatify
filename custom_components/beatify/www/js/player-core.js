@@ -644,7 +644,9 @@ function handleServerMessage(data) {
                 renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
             if (data.deadline) {
-                startCountdown(data.deadline);
+                // #1662: pass the server's relative seconds_remaining so the
+                // countdown anchors to the client's own clock (skew-immune).
+                startCountdown(data.deadline, data.seconds_remaining);
             }
             initYearSelector();
             setupLeaderboardToggle();
