@@ -140,7 +140,7 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
     # rc9 diagnostic: log every HTTP trust check so #1131 / #1120 reports can
     # be correlated with the actual UA + remote that reaches the server.
     # Remove once Companion auth lands stable.
-    _LOGGER.info(
+    _LOGGER.debug(
         "[Companion-Debug] HTTP path=%s ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
         request.path,
         (ua[:200] if isinstance(ua, str) else ua),
@@ -172,14 +172,14 @@ def is_companion_trusted_meta(meta: dict | None, hass: HomeAssistant) -> bool:
         return False
 
     if not isinstance(meta, dict):
-        _LOGGER.info("[Companion-Debug] WS meta=None (no signature collected)")
+        _LOGGER.debug("[Companion-Debug] WS meta=None (no signature collected)")
         return False
     ua = meta.get("ua")
     remote = meta.get("remote")
     ua_match = is_companion_ua(ua)
     ip_match = is_local_remote(remote)
     trusted = ua_match and ip_match
-    _LOGGER.info(
+    _LOGGER.debug(
         "[Companion-Debug] WS ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
         (ua[:200] if isinstance(ua, str) else ua),
         remote,
@@ -214,13 +214,13 @@ def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
             bearer_present = True
             result = hass.auth.async_validate_access_token(token)
             if result is not None:
-                _LOGGER.info(
+                _LOGGER.debug(
                     "[Companion-Debug] HTTP path=%s bearer_valid=True (bypass not consulted)",
                     request.path,
                 )
                 return True
     if bearer_present:
-        _LOGGER.info(
+        _LOGGER.debug(
             "[Companion-Debug] HTTP path=%s bearer_present=True bearer_valid=False (falling back to bypass)",
             request.path,
         )

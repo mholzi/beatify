@@ -50,7 +50,7 @@ async def handle_join(
     # see exactly which path the player-join takes when "Reconnecting"
     # surfaces on the client. Remove once #1131 lands stable.
     meta = getattr(ws, "beatify_request_meta", None)
-    _LOGGER.info(
+    _LOGGER.debug(
         "[WS-Debug] join name=%r is_admin=%s ha_token_present=%s phase=%s meta=%s",
         name,
         is_admin,
@@ -67,7 +67,7 @@ async def handle_join(
     was_existing_player = game_state.get_player(name) is not None
 
     success, error_code = game_state.add_player(name, ws)
-    _LOGGER.info(
+    _LOGGER.debug(
         "[WS-Debug] join add_player name=%r success=%s error_code=%s was_existing=%s",
         name,
         success,
@@ -83,7 +83,7 @@ async def handle_join(
             # Normal players join with no auth — only the admin claim is
             # gated. add_player() already ran, so undo it on rejection.
             authed = _is_ha_authenticated(handler, data, ws)
-            _LOGGER.info(
+            _LOGGER.debug(
                 "[WS-Debug] join is_admin=True _is_ha_authenticated=%s",
                 authed,
             )
