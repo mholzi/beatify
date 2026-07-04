@@ -991,7 +991,7 @@ __JSON__
                 _setHint('Could not parse JSON for save: ' + err.message);
                 return;
             }
-            _saveLocally(data).catch((err) => {
+            _runActionButton('save-local', () => _saveLocally(data)).catch((err) => {
                 _setHint(_t(
                     'playlistGenerator.saveLocal.error',
                     'Save failed: {error}',
@@ -1001,7 +1001,7 @@ __JSON__
             return;
         }
         if (action === 'capture-issue') {
-            _captureIssueSubmission().catch((err) => {
+            _runActionButton('capture-issue', () => _captureIssueSubmission()).catch((err) => {
                 _setFollowupHint(_t(
                     'playlistGenerator.submit.captureError',
                     'Could not record submission: {error}',
@@ -1063,6 +1063,65 @@ __JSON__
     }
 
     // -----------------------------------------------------------------
+    // Auth-aware fetch (#1513)
+    //
+    // The backend endpoints this module talks to — /playlists/save (#1368)
+    // and /playlist-requests (#1367) — are guarded by is_authorized_http(),
+    // which needs an HA Bearer token (or the Companion trust fallback). A
+    // bare fetch() sends no Authorization header, so a normal browser (e.g.
+    // via the Nabu Casa remote URL) gets 401 "Unauthorized" — the bug in
+    // discussion #1513. Route every call through window.BeatifyAuth.fetch,
+    // which attaches the Bearer token (and skips it in Companion bypass
+    // mode). Mirrors the admin mix.js pattern; falls back to window.fetch
+    // if BeatifyAuth is somehow unavailable.
+    //
+    // NOTE (#1655 review): on an *unauthenticated* session BeatifyAuth.fetch
+    // kicks off a login() redirect and returns a promise that never settles
+    // (by design — the redirect is the intended outcome). So `await _authFetch`
+    // in a caller may never resolve; its `.catch` error path is only reached
+    // for genuine errors (network / validation / a rejection *after* auth). The
+    // action-button busy state below therefore uses a watchdog so it can never
+    // stay stuck on that never-resolving path.
+    // -----------------------------------------------------------------
+
+    function _authFetch(url, opts) {
+        const auth = window.BeatifyAuth;
+        const fetcher = (auth && typeof auth.fetch === 'function')
+            ? auth.fetch.bind(auth)
+            : window.fetch.bind(window);
+        return fetcher(url, opts);
+    }
+
+    // Run an async action tied to a toolbar button: disable + relabel the
+    // button while it runs, restore it when the promise settles, and — as a
+    // watchdog for the never-resolving login-redirect path (see _authFetch) —
+    // restore it after a timeout too, so it can never get permanently stuck.
+    // Returns the underlying promise so callers keep their `.catch`.
+    function _runActionButton(action, work) {
+        const btn = state.rootEl
+            && state.rootEl.querySelector('[data-plg-action="' + action + '"]');
+        const orig = btn ? btn.textContent : '';
+        let restored = false;
+        const restore = () => {
+            if (restored) return;
+            restored = true;
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = orig;
+            }
+        };
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = _t('playlistGenerator.actions.working', 'Working…');
+        }
+        const watchdog = setTimeout(restore, 12000);
+        return work().finally(() => {
+            clearTimeout(watchdog);
+            restore();
+        });
+    }
+
+    // -----------------------------------------------------------------
     // Save locally (#1057)
     //
     // POST the validated playlist to /beatify/api/playlists/save. The
@@ -1072,7 +1131,7 @@ __JSON__
     // -----------------------------------------------------------------
 
     async function _saveLocally(playlist) {
-        const resp = await fetch('/beatify/api/playlists/save', {
+        const resp = await _authFetch('/beatify/api/playlists/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ playlist }),
@@ -1129,7 +1188,7 @@ __JSON__
         // append/merge-by-issue_number endpoint (out of scope for a frontend-
         // only batch); a client-side lock/retry would be fragile. Tracked under
         // #1402 finding 7 as SKIPPED — needs a backend endpoint.
-        const getResp = await fetch('/beatify/api/playlist-requests');
+        const getResp = await _authFetch('/beatify/api/playlist-requests');
         let store = { requests: [], last_poll: null };
         if (getResp.ok) {
             try { store = await getResp.json(); } catch (e) { /* keep default */ }
@@ -1157,7 +1216,7 @@ __JSON__
             store.requests.push(record);
         }
 
-        const postResp = await fetch('/beatify/api/playlist-requests', {
+        const postResp = await _authFetch('/beatify/api/playlist-requests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(store),
@@ -1254,6 +1313,13 @@ __JSON__
             slugify,
             _t,
             _resetSessionState,
+            _authFetch,
+            _saveLocally,
+            _captureIssueSubmission,
+            _runActionButton,
+            // Live internal state object — test seam only (set pendingSubmission
+            // / rootEl before exercising the async action handlers).
+            get _state() { return state; },
         },
     };
 })();
