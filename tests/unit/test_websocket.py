@@ -687,9 +687,7 @@ class TestArtistGuess:
         player.has_artist_guess = True
         game_state.submit_artist_guess = MagicMock()
 
-        await handler._handle_message(
-            ws, {"type": "artist_guess", "artist": "B"}
-        )
+        await handler._handle_message(ws, {"type": "artist_guess", "artist": "B"})
 
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
