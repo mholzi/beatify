@@ -25,6 +25,7 @@ import pytest
 from aiohttp import StreamReader
 from aiohttp.test_utils import make_mocked_request
 
+from custom_components.beatify.const import PROVIDER_DEEZER, PROVIDER_DEFAULT
 from custom_components.beatify.server.base import _read_file
 from custom_components.beatify.server.mix_views import (
     MixPlaylistView,
@@ -453,6 +454,38 @@ class TestMixPlaylistView:
         data = json.loads(resp.body)
         # 4 unique songs available, default cap 50 → all 4 returned, no crash.
         assert data["song_count"] == 4
+
+    @pytest.mark.parametrize(
+        ("sent_provider", "expected"),
+        [
+            ("totally-bogus", PROVIDER_DEFAULT),
+            ("spotify'; DROP TABLE songs;--", PROVIDER_DEFAULT),
+            ("", PROVIDER_DEFAULT),
+            (None, PROVIDER_DEFAULT),
+            (123, PROVIDER_DEFAULT),
+            ({"nested": "obj"}, PROVIDER_DEFAULT),
+            ("deezer", PROVIDER_DEEZER),  # whitelisted → passes through
+        ],
+    )
+    async def test_provider_validated_against_whitelist(
+        self, tmp_path, sent_provider, expected
+    ):
+        """#1658: unknown/non-string providers coerce to the default; a
+        whitelisted provider passes through unchanged — checked *before* the
+        value reaches ``get_song_uri`` / mix assembly."""
+        view = _view_with_catalogue(tmp_path)
+        body = json.dumps(
+            {"tags": ["pop"], "provider": sent_provider, "preview": True}
+        ).encode()
+        spy = MagicMock(return_value=([_song("0001")], 1))
+        with mock.patch(
+            "custom_components.beatify.server.mix_views._assemble_mix_songs",
+            new=spy,
+        ):
+            resp = await view.post(_request_with_body(body))
+        assert resp.status == 200
+        # provider is the 4th positional arg passed to _assemble_mix_songs.
+        assert spy.call_args.args[3] == expected
 
     async def test_unauthorized_returns_401(self, tmp_path):
         view = _view_with_catalogue(tmp_path)

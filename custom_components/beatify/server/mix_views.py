@@ -52,6 +52,7 @@ from custom_components.beatify.server.base import (
     _read_file,
 )
 from custom_components.beatify.server.companion_auth import is_authorized_http
+from custom_components.beatify.server.game_views import _validate_provider
 from custom_components.beatify.server.playlist_views import _slugify_playlist_name
 
 if TYPE_CHECKING:
@@ -256,9 +257,16 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
         if target_count not in ALLOWED_TARGET_COUNTS:
             target_count = DEFAULT_TARGET_COUNT
 
-        provider = body.get("provider") or PROVIDER_DEFAULT
-        if not isinstance(provider, str):
-            provider = PROVIDER_DEFAULT
+        # #1658: validate the provider against the shared whitelist
+        # (game_views._validate_provider is the single source of truth) so an
+        # unknown/hostile provider string can't flow into get_song_uri / mix
+        # assembly unchecked — it coerces to PROVIDER_DEFAULT instead.
+        raw_provider = body.get("provider")
+        provider = _validate_provider(
+            raw_provider
+            if isinstance(raw_provider, str) and raw_provider
+            else PROVIDER_DEFAULT
+        )
         save_as_community = bool(body.get("save_as_community", False))
         # #1586: a "preview" request assembles + de-dupes exactly like a real
         # run but returns the resulting tracklist WITHOUT writing any file, so
