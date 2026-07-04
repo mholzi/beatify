@@ -190,6 +190,68 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.titleArtistMode === 'boolean') adminState.titleArtistModeEnabled = s.titleArtistMode;
 }
 
+// --- admin-state dirty-check (#1584 / #1659) -------------------------------
+/**
+ * Keys the server re-stamps with wall-clock timestamps rather than logical
+ * state. Both are in the server's `_now()` units:
+ *   - `deadline`          — PLAYING round timer end (serializers.py L96)
+ *   - `reveal_started_at` — REVEAL entry epoch-ms (serializers.py L203, #1048)
+ *
+ * They can differ between two otherwise-identical broadcasts (e.g. a resume
+ * re-stamp) and are consumed only by CLIENT-side 1-Hz countdown timers that
+ * re-read the value on their own tick — NOT by the per-broadcast DOM render.
+ * So a payload that differs ONLY in these must still dirty-skip the repaint.
+ * Excluding them is safe: a real state change (new round / phase) always also
+ * changes non-volatile fields (`round`, `phase`, `song`, `players`, …), so the
+ * projection can never mask a genuine change into a false "equal".
+ * @type {string[]}
+ */
+export const ADMIN_STATE_VOLATILE_KEYS = ['deadline', 'reveal_started_at'];
+
+/**
+ * Shallow projection of an admin-state payload with the known-volatile keys
+ * removed. Returns the input untouched when none are present (the common case:
+ * LOBBY/END frames carry no timestamp, and same-phase bursts share the same
+ * key set), so no allocation happens on the hot path.
+ * @param {any} state
+ * @returns {any}
+ */
+function _projectAdminState(state) {
+    if (!state || typeof state !== 'object') return state;
+    let hasVolatile = false;
+    for (let i = 0; i < ADMIN_STATE_VOLATILE_KEYS.length; i++) {
+        if (ADMIN_STATE_VOLATILE_KEYS[i] in state) { hasVolatile = true; break; }
+    }
+    if (!hasVolatile) return state;
+    const projected = Object.assign({}, state);
+    for (let i = 0; i < ADMIN_STATE_VOLATILE_KEYS.length; i++) {
+        delete projected[ADMIN_STATE_VOLATILE_KEYS[i]];
+    }
+    return projected;
+}
+
+/**
+ * Cheap "unchanged?" check for the render coalescer's dirty-skip (#1584).
+ *
+ * Both payloads are the server's own stable-key-order JSON serialization of the
+ * game state, so a string compare is a sound (and far cheaper than the DOM
+ * rebuild) equality test. #1659: the volatile timestamp keys
+ * (`ADMIN_STATE_VOLATILE_KEYS`) are stripped from BOTH sides first, so two
+ * logically-equal states that differ only by a re-stamped timestamp still
+ * dirty-skip instead of forcing a wasted repaint. Any failure (e.g. a cyclic
+ * payload) falls back to "changed" → render.
+ * @param {any} a
+ * @param {any} b
+ * @returns {boolean}
+ */
+export function adminStateEqual(a, b) {
+    try {
+        return JSON.stringify(_projectAdminState(a)) === JSON.stringify(_projectAdminState(b));
+    } catch (e) {
+        return false;
+    }
+}
+
 // --- WS-broadcast render coalescing (#1584) --------------------------------
 /**
  * Default frame scheduler: coalesce onto the next animation frame so a burst of

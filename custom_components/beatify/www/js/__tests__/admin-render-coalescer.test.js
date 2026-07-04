@@ -12,7 +12,11 @@
  * deterministic and don't depend on requestAnimationFrame timing.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createRenderCoalescer } from '../admin/util.js';
+import {
+    createRenderCoalescer,
+    adminStateEqual,
+    ADMIN_STATE_VOLATILE_KEYS,
+} from '../admin/util.js';
 
 // A manual frame scheduler: schedule() queues the callback; frame() runs all
 // callbacks queued so far (one animation frame).
@@ -142,5 +146,82 @@ describe('createRenderCoalescer', () => {
         sched.frame();
 
         expect(calls).toHaveLength(0);
+    });
+});
+
+// #1659: the admin dirty-check must ignore the server's volatile timestamp keys
+// so a broadcast that ticks only `deadline` / `reveal_started_at` (both in the
+// server's _now() units, consumed by client-side countdown timers, not the DOM
+// render) still dirty-skips instead of forcing a wasted full repaint.
+describe('adminStateEqual (#1659 volatile-key projection)', () => {
+    let calls;
+    let render;
+    let sched;
+
+    beforeEach(() => {
+        calls = [];
+        render = (data) => calls.push(data);
+        sched = makeFrameScheduler();
+    });
+
+    it('lists the server timestamp keys as volatile', () => {
+        expect(ADMIN_STATE_VOLATILE_KEYS).toContain('deadline');
+        expect(ADMIN_STATE_VOLATILE_KEYS).toContain('reveal_started_at');
+    });
+
+    it('treats two payloads that differ ONLY in volatile fields as equal (PLAYING deadline)', () => {
+        const a = { phase: 'PLAYING', round: 3, song: { title: 'x' }, deadline: 1000.0 };
+        const b = { phase: 'PLAYING', round: 3, song: { title: 'x' }, deadline: 1234.5 };
+        expect(adminStateEqual(a, b)).toBe(true);
+    });
+
+    it('treats two payloads that differ ONLY in reveal_started_at as equal (REVEAL)', () => {
+        const a = { phase: 'REVEAL', round: 2, reveal_started_at: 1700000000000 };
+        const b = { phase: 'REVEAL', round: 2, reveal_started_at: 1700000009999 };
+        expect(adminStateEqual(a, b)).toBe(true);
+    });
+
+    it('treats a payload with a real change as UNEQUAL even when volatile fields match', () => {
+        const a = { phase: 'PLAYING', round: 3, song: { title: 'x' }, deadline: 1000 };
+        const b = { phase: 'PLAYING', round: 4, song: { title: 'x' }, deadline: 1000 };
+        expect(adminStateEqual(a, b)).toBe(false);
+    });
+
+    it('treats a real change AND a volatile change together as UNEQUAL', () => {
+        const a = { phase: 'PLAYING', round: 3, deadline: 1000 };
+        const b = { phase: 'PLAYING', round: 4, deadline: 2000 };
+        expect(adminStateEqual(a, b)).toBe(false);
+    });
+
+    it('is a no-op projection when neither payload carries a volatile key (LOBBY)', () => {
+        expect(adminStateEqual({ phase: 'LOBBY', join_url: 'u' }, { phase: 'LOBBY', join_url: 'u' })).toBe(true);
+        expect(adminStateEqual({ phase: 'LOBBY', join_url: 'u' }, { phase: 'LOBBY', join_url: 'v' })).toBe(false);
+    });
+
+    it('does not mutate the input payloads', () => {
+        const a = { phase: 'PLAYING', round: 1, deadline: 500 };
+        const b = { phase: 'PLAYING', round: 1, deadline: 900 };
+        adminStateEqual(a, b);
+        expect(a).toHaveProperty('deadline', 500);
+        expect(b).toHaveProperty('deadline', 900);
+    });
+
+    it('drives the coalescer dirty-skip: a deadline-only tick does not repaint', () => {
+        const push = createRenderCoalescer(render, { schedule: sched.schedule, isEqual: adminStateEqual });
+
+        push({ phase: 'PLAYING', round: 1, deadline: 1000 });
+        sched.frame();
+        expect(calls).toHaveLength(1);
+
+        // Same logical state, deadline re-stamped → skip (no frame, no render).
+        push({ phase: 'PLAYING', round: 1, deadline: 1500 });
+        expect(sched.pending()).toBe(0);
+        sched.frame();
+        expect(calls).toHaveLength(1);
+
+        // A genuine round change DOES repaint.
+        push({ phase: 'PLAYING', round: 2, deadline: 1500 });
+        sched.frame();
+        expect(calls).toHaveLength(2);
     });
 });
