@@ -28,6 +28,7 @@ from __future__ import annotations
 import json
 import logging
 import random
+import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -76,6 +77,10 @@ MAX_TAGS = 40
 TRANSIENT_MIX_PREFIX = "__mix__"
 # Subdirectory (under the playlist dir) that holds transient mixes.
 TRANSIENT_MIX_SUBDIR = "mix"
+# Transient mixes older than this are removed on the next write. Must comfortably
+# exceed the POST /mix → start-game gap so a concurrent run's fresh file is never
+# cleaned out from under it (#1657).
+TRANSIENT_MIX_MAX_AGE_S = 3600
 
 
 def _is_transient_mix(path: str) -> bool:
@@ -345,15 +350,22 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
             # each other's transient file (#1547). The returned path is what gets
             # fed into start-game, so it always points at THIS run's file.
             target = mix_dir / f"{TRANSIENT_MIX_PREFIX}-{uuid.uuid4().hex[:8]}.json"
-            # Best-effort cleanup of stale transient mixes so the mix/ folder
-            # does not grow unbounded. Never let a cleanup failure block the
-            # write — the freshly-written file below is all start-game needs.
-            try:
-                for old in mix_dir.glob(f"{TRANSIENT_MIX_PREFIX}*.json"):
-                    if old != target:
+            # Best-effort cleanup of STALE transient mixes so the mix/ folder
+            # does not grow unbounded. Only remove files older than
+            # TRANSIENT_MIX_MAX_AGE_S — a sibling run started in parallel has a
+            # freshly-written file, and deleting "everything except my target"
+            # would clobber it in the window between its POST /mix and its
+            # start-game (#1657), defeating the #1547 unique-stem guarantee.
+            # Never let a cleanup failure block the write.
+            cutoff = time.time() - TRANSIENT_MIX_MAX_AGE_S
+            for old in mix_dir.glob(f"{TRANSIENT_MIX_PREFIX}*.json"):
+                if old == target:
+                    continue
+                try:
+                    if old.stat().st_mtime < cutoff:
                         old.unlink()
-            except OSError as cleanup_err:  # pragma: no cover - best-effort I/O
-                _LOGGER.debug("Mix cleanup skipped: %s", cleanup_err)
+                except OSError as cleanup_err:  # pragma: no cover - best-effort I/O
+                    _LOGGER.debug("Mix cleanup skipped %s: %s", old.name, cleanup_err)
             target.write_text(
                 json.dumps(playlist_doc, indent=2, ensure_ascii=False),
                 encoding="utf-8",
