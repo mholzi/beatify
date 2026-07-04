@@ -37,6 +37,7 @@ import {
     acquireWakeLockFirst,
     applyStoredGameSettings,
     createRenderCoalescer,
+    adminStateEqual,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -2139,22 +2140,13 @@ function renderAdminState(data) {
     }
 }
 
-// #1584: cheap "unchanged?" check for the dirty-check skip. Both payloads are
-// the server's own JSON serialization of the game state, so key order is
-// stable and a string compare is a sound (and far cheaper than the DOM
-// rebuild) equality test. Any failure falls back to "changed" → render.
-function _adminStateEqual(a, b) {
-    try {
-        return JSON.stringify(a) === JSON.stringify(b);
-    } catch (e) {
-        return false;
-    }
-}
-
 // #1584: coalesce bursts of state broadcasts into one render/frame, latest
 // payload wins (final state always rendered), and skip when nothing changed.
+// #1659: the dirty-check is `adminStateEqual` (admin/util.js) — it strips the
+// volatile timestamp keys before comparing, so a broadcast that differs only
+// by a re-stamped `deadline` / `reveal_started_at` still skips the repaint.
 const _scheduleAdminRender = createRenderCoalescer(renderAdminState, {
-    isEqual: _adminStateEqual,
+    isEqual: adminStateEqual,
 });
 
 /**
