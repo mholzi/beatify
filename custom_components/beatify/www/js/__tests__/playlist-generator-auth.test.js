@@ -24,10 +24,14 @@ function load(win) {
     const code = fs.readFileSync(SRC, 'utf8');
     const ctx = {
         window: win,
-        document: { addEventListener() {}, removeEventListener() {} },
+        document: { addEventListener() {}, removeEventListener() {}, createElement: () => ({}) },
         navigator: {},
         URLSearchParams,
         URL,
+        // Delegate to the *current* test-realm timers so vi.useFakeTimers()
+        // (which swaps globalThis.setTimeout) intercepts the module's watchdog.
+        setTimeout: (...a) => globalThis.setTimeout(...a),
+        clearTimeout: (...a) => globalThis.clearTimeout(...a),
     };
     vm.createContext(ctx);
     vm.runInContext(code, ctx);
@@ -89,5 +93,83 @@ describe('#1513 playlist-generator auth transport', () => {
         await api._authFetch('/y', { method: 'POST' });
 
         expect(bareFetch).toHaveBeenCalledWith('/y', { method: 'POST' });
+    });
+});
+
+const REQUESTS_URL = '/beatify/api/playlist-requests';
+
+describe('#1655 _captureIssueSubmission auth transport', () => {
+    it('routes both the GET and the POST through window.BeatifyAuth.fetch', async () => {
+        const authFetch = vi.fn((url, opts) => {
+            if (opts && opts.method === 'POST') {
+                return Promise.resolve({ ok: true, json: async () => ({}) });
+            }
+            return Promise.resolve({ ok: true, json: async () => ({ requests: [], last_poll: null }) });
+        });
+        const bareFetch = vi.fn(() => Promise.resolve(okResponse()));
+        const win = { BeatifyAuth: { fetch: authFetch }, fetch: bareFetch };
+        const { api } = load(win);
+
+        // Test seam: set the state the handler reads before firing.
+        api._state.pendingSubmission = { spotify_url: '', playlist_name: 'X' };
+        api._state.rootEl = {
+            querySelector(sel) {
+                if (sel.indexOf('issue_url') >= 0) {
+                    return { value: 'https://github.com/mholzi/beatify/issues/123' };
+                }
+                return { innerHTML: '', value: '' };
+            },
+        };
+
+        await api._captureIssueSubmission();
+
+        expect(authFetch).toHaveBeenCalledTimes(2);
+        expect(authFetch.mock.calls[0][0]).toBe(REQUESTS_URL);      // GET
+        expect(authFetch.mock.calls[1][0]).toBe(REQUESTS_URL);      // POST
+        expect(authFetch.mock.calls[1][1]).toMatchObject({ method: 'POST' });
+        expect(bareFetch).not.toHaveBeenCalled();
+        expect(api._state.capturedIssueNumber).toBe(123);
+    });
+});
+
+describe('#1655 _runActionButton busy state + watchdog', () => {
+    function fakeRoot(button) {
+        return { querySelector: (sel) => (sel.indexOf('data-plg-action') >= 0 ? button : null) };
+    }
+
+    it('disables + relabels the button while running, restores it on settle', async () => {
+        const { api } = load({});
+        const button = { disabled: false, textContent: 'Save locally' };
+        api._state.rootEl = fakeRoot(button);
+
+        const p = api._runActionButton('save-local', () => Promise.resolve('ok'));
+        // Busy while the work is in flight.
+        expect(button.disabled).toBe(true);
+        expect(button.textContent).not.toBe('Save locally');
+
+        await p;
+        // Restored on settle.
+        expect(button.disabled).toBe(false);
+        expect(button.textContent).toBe('Save locally');
+    });
+
+    it('restores the button via watchdog even if the work never settles (login redirect)', async () => {
+        vi.useFakeTimers();
+        try {
+            const { api } = load({});
+            const button = { disabled: false, textContent: 'Save locally' };
+            api._state.rootEl = fakeRoot(button);
+
+            // A never-resolving promise mimics BeatifyAuth.fetch's login-redirect path.
+            api._runActionButton('save-local', () => new Promise(() => {}));
+            expect(button.disabled).toBe(true);
+
+            vi.advanceTimersByTime(12000);
+            // Watchdog restored the button — it never stays permanently stuck.
+            expect(button.disabled).toBe(false);
+            expect(button.textContent).toBe('Save locally');
+        } finally {
+            vi.useRealTimers();
+        }
     });
 });
