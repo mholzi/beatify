@@ -1063,6 +1063,28 @@ __JSON__
     }
 
     // -----------------------------------------------------------------
+    // Auth-aware fetch (#1513)
+    //
+    // The backend endpoints this module talks to — /playlists/save (#1368)
+    // and /playlist-requests (#1367) — are guarded by is_authorized_http(),
+    // which needs an HA Bearer token (or the Companion trust fallback). A
+    // bare fetch() sends no Authorization header, so a normal browser (e.g.
+    // via the Nabu Casa remote URL) gets 401 "Unauthorized" — the bug in
+    // discussion #1513. Route every call through window.BeatifyAuth.fetch,
+    // which attaches the Bearer token (and skips it in Companion bypass
+    // mode). Mirrors the admin mix.js pattern; falls back to window.fetch
+    // if BeatifyAuth is somehow unavailable.
+    // -----------------------------------------------------------------
+
+    function _authFetch(url, opts) {
+        const auth = window.BeatifyAuth;
+        const fetcher = (auth && typeof auth.fetch === 'function')
+            ? auth.fetch.bind(auth)
+            : window.fetch.bind(window);
+        return fetcher(url, opts);
+    }
+
+    // -----------------------------------------------------------------
     // Save locally (#1057)
     //
     // POST the validated playlist to /beatify/api/playlists/save. The
@@ -1072,7 +1094,7 @@ __JSON__
     // -----------------------------------------------------------------
 
     async function _saveLocally(playlist) {
-        const resp = await fetch('/beatify/api/playlists/save', {
+        const resp = await _authFetch('/beatify/api/playlists/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ playlist }),
@@ -1129,7 +1151,7 @@ __JSON__
         // append/merge-by-issue_number endpoint (out of scope for a frontend-
         // only batch); a client-side lock/retry would be fragile. Tracked under
         // #1402 finding 7 as SKIPPED — needs a backend endpoint.
-        const getResp = await fetch('/beatify/api/playlist-requests');
+        const getResp = await _authFetch('/beatify/api/playlist-requests');
         let store = { requests: [], last_poll: null };
         if (getResp.ok) {
             try { store = await getResp.json(); } catch (e) { /* keep default */ }
@@ -1157,7 +1179,7 @@ __JSON__
             store.requests.push(record);
         }
 
-        const postResp = await fetch('/beatify/api/playlist-requests', {
+        const postResp = await _authFetch('/beatify/api/playlist-requests', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(store),
