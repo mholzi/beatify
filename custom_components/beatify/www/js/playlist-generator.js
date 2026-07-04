@@ -1276,6 +1276,8 @@ __JSON__
             slugify,
             _t,
             _resetSessionState,
+            _authFetch,
+            _saveLocally,
         },
     };
 })();
