@@ -520,7 +520,7 @@ That's it. No mDNS, no broadcast, no additional ports.
 ### Requirements
 - **Home Assistant** 2024.1+
 - **Supported media player** (see [Supported Speakers](#supported-speakers) above)
-- **A music service** — Spotify, Apple Music, YouTube Music, Tidal or Deezer, each with a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)).
+- **A music service** — Spotify, Apple Music, YouTube Music, Tidal or Deezer, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)).
 - **HACS** (recommended) or manual installation
 
 ### How It Works
