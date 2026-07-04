@@ -281,6 +281,22 @@ async def handle_artist_guess(
         )
         return
 
+    # One artist attempt per player per round. The artist challenge is
+    # multiple-choice and the options are broadcast, so without this guard a
+    # player could submit each option in turn and is guaranteed to hit the
+    # correct one (brute-force the bonus). Unlike the movie flow,
+    # ``submit_artist_guess`` only dedupes the *global* winner, not per-player
+    # attempts — so the lock has to live here. (#1660)
+    if player.has_artist_guess:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Artist already guessed this round",
+            }
+        )
+        return
+
     artist = data.get("artist", "").strip()
     if not artist:
         await ws.send_json(

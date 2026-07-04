@@ -670,6 +670,30 @@ class TestArtistGuess:
         assert ack["correct"] is True
         assert ack["first"] is True
 
+    async def test_artist_guess_already_guessed(self):
+        """A second artist guess in the same round is rejected (#1660).
+
+        The challenge is multiple-choice with broadcast options, so without a
+        one-guess-per-player guard a player could brute-force the bonus. The
+        guard must short-circuit before scoring.
+        """
+        handler, game_state, ws = _make_handler_and_game()
+        game_state.add_player("Alice", ws)
+        game_state.phase = GamePhase.PLAYING
+        game_state.artist_challenge = ArtistChallenge(
+            correct_artist="A", options=["A", "B"]
+        )
+        player = game_state.get_player_by_ws(ws)
+        player.has_artist_guess = True
+        game_state.submit_artist_guess = MagicMock()
+
+        await handler._handle_message(ws, {"type": "artist_guess", "artist": "B"})
+
+        msg = ws.send_json.call_args[0][0]
+        assert msg["type"] == "error"
+        assert msg["code"] == ERR_INVALID_ACTION
+        game_state.submit_artist_guess.assert_not_called()
+
 
 # ---------------------------------------------------------------------------
 # Movie guess
