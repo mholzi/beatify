@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "anime",
     "japanese",
@@ -3358,7 +3358,7 @@
         "it": "applemusic://track/1536115701"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RCbjLfpCbhQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144480268",
       "uri_deezer": "deezer://track/976145962",
       "fun_fact": "J-rock band Long Shot Party's 2010 anime opening/ending theme",
       "fun_fact_de": "2010 Anime-Opening/Ending-Theme der J-Rock-Band Long Shot Party",
