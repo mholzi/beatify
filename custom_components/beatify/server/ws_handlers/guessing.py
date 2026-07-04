@@ -260,6 +260,19 @@ async def handle_artist_guess(
         )
         return
 
+    # #1662: reject late guesses in the window between deadline expiry and the
+    # end_round phase flip — mirrors the year handler's guard so Artist/Movie/
+    # Title&Artist challenges can't bank points/bonus after time is up.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
+            }
+        )
+        return
+
     player = game_state.get_player_by_ws(ws)
     if not player:
         await ws.send_json(
@@ -357,6 +370,19 @@ async def handle_movie_guess(
         )
         return
 
+    # #1662: reject late guesses in the window between deadline expiry and the
+    # end_round phase flip — mirrors the year handler's guard so Artist/Movie/
+    # Title&Artist challenges can't bank points/bonus after time is up.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
+            }
+        )
+        return
+
     player = game_state.get_player_by_ws(ws)
     if not player:
         await ws.send_json(
@@ -435,6 +461,19 @@ async def handle_title_artist_guess(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Can only guess during PLAYING phase",
+            }
+        )
+        return
+
+    # #1662: reject late guesses in the window between deadline expiry and the
+    # end_round phase flip — mirrors the year handler's guard so Artist/Movie/
+    # Title&Artist challenges can't bank points/bonus after time is up.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
             }
         )
         return
