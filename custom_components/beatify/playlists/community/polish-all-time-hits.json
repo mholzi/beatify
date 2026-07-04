@@ -515,7 +515,7 @@
       "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": null,
-      "isrc": null,
+      "isrc": "QZWFL2654531",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6763656555",
         "de": "applemusic://track/6763656555",
@@ -1541,7 +1541,7 @@
       "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": "deezer://track/62213305",
-      "isrc": null,
+      "isrc": "PLI368259260",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
