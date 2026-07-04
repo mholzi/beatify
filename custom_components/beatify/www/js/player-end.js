@@ -226,11 +226,23 @@ function renderHighlights(highlights) {
 
     var html = '';
     highlights.forEach(function(h, index) {
-        var text = utils.t('highlights.' + h.description, h.description_params) || h.description;
-        if (text === h.description && h.description_params) {
-            text = utils.t('highlights.' + h.description) || h.description;
+        // #1661: interpolated values (player names, song titles) are
+        // attacker-controllable and end up in innerHTML below. i18n.t()
+        // interpolates params RAW, so escape them first — once, and reuse in
+        // both the resolved and the missing-key fallback path (the fallback
+        // already escaped; the primary path did not).
+        var safeParams = null;
+        if (h.description_params) {
+            safeParams = {};
             Object.keys(h.description_params).forEach(function(key) {
-                text = text.replace('{' + key + '}', escapeHtml(h.description_params[key]));
+                safeParams[key] = escapeHtml(h.description_params[key]);
+            });
+        }
+        var text = utils.t('highlights.' + h.description, safeParams) || h.description;
+        if (text === h.description && safeParams) {
+            text = utils.t('highlights.' + h.description) || h.description;
+            Object.keys(safeParams).forEach(function(key) {
+                text = text.replace('{' + key + '}', safeParams[key]);
             });
         }
 
