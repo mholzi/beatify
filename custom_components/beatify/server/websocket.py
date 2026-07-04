@@ -180,13 +180,8 @@ class BeatifyWebSocketHandler:
         await ws.prepare(request)
 
         self.connections.add(ws)
-        # rc11 diagnostic (#1131 follow-up, player-join "Reconnecting" issue):
-        # the HTTP bypass works (admin loads) but the WS player-join fails.
-        # Log every WS upgrade with the *exact* UA + remote the server saw at
-        # upgrade time so we can confirm whether the WS path sees the same
-        # Companion signature the HTTP path does, or whether the upgrade
-        # arrives with a different UA / through a different proxy hop.
-        _LOGGER.info(
+        # #1662: demoted to DEBUG — fires on every WS upgrade and floods INFO logs.
+        _LOGGER.debug(
             "[WS-Debug] upgrade path=%s remote=%s ua=%r total=%d",
             request.path,
             request.remote,
@@ -199,7 +194,7 @@ class BeatifyWebSocketHandler:
                 if msg.type == WSMsgType.TEXT:
                     try:
                         parsed = msg.json()
-                        _LOGGER.info(
+                        _LOGGER.debug(
                             "[WS-Debug] recv type=%s keys=%s",
                             parsed.get("type") if isinstance(parsed, dict) else "?",
                             list(parsed.keys()) if isinstance(parsed, dict) else None,
@@ -217,7 +212,7 @@ class BeatifyWebSocketHandler:
 
                     self._record_error(ERROR_WEBSOCKET_DISCONNECT, err_msg)
                 else:
-                    _LOGGER.info(
+                    _LOGGER.debug(
                         "[WS-Debug] non-text msg type=%s",
                         msg.type,
                     )
@@ -225,7 +220,7 @@ class BeatifyWebSocketHandler:
         finally:
             self.connections.discard(ws)
             await self._handle_disconnect(ws)
-            _LOGGER.info(
+            _LOGGER.debug(
                 "[WS-Debug] disconnect path=%s remote=%s total=%d ws_closed=%s close_code=%s",
                 request.path,
                 request.remote,
