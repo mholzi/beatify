@@ -503,6 +503,38 @@ class TestRevealStartedAt:
         assert payload["reveal_auto_advance"] == 0
         assert "reveal_started_at" not in payload
 
+    def test_serializer_includes_relative_seconds_remaining_in_playing(self):
+        """#1662: PLAYING payload carries the server-computed *relative*
+        seconds_remaining (skew-immune) alongside the absolute deadline, so the
+        client can anchor its countdown to its own clock."""
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        now = 1_700_000_000.0
+        state = make_game_state(time_fn=lambda: now)
+        _create_fresh_game(state)
+        state.phase = GamePhase.PLAYING
+        state.deadline = int(now * 1000) + 30_000  # 30s out in server time
+        state.add_player("Alice", MagicMock())
+
+        payload = GameStateSerializer.serialize(state)
+        assert payload["deadline"] == int(now * 1000) + 30_000
+        assert payload["seconds_remaining"] == 30
+
+    def test_serializer_seconds_remaining_floors_at_zero_when_expired(self):
+        """#1662: an already-expired deadline serializes seconds_remaining == 0,
+        never a negative value."""
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        now = 1_700_000_000.0
+        state = make_game_state(time_fn=lambda: now)
+        _create_fresh_game(state)
+        state.phase = GamePhase.PLAYING
+        state.deadline = int(now * 1000) - 5_000  # 5s in the past
+        state.add_player("Alice", MagicMock())
+
+        payload = GameStateSerializer.serialize(state)
+        assert payload["seconds_remaining"] == 0
+
 
 # ---------------------------------------------------------------------------
 # GameState.add_player

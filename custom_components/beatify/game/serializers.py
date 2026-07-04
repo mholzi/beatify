@@ -94,6 +94,14 @@ class GameStateSerializer:
         state["round"] = gs.round
         state["total_rounds"] = gs.total_rounds
         state["deadline"] = gs.deadline
+        # #1662: also expose the server-computed *relative* remaining seconds so
+        # clients can anchor their countdown to their OWN clock instead of
+        # subtracting a server wall-clock epoch (`deadline`) from a possibly
+        # skewed client `Date.now()`. Mirrors the TA-vote timer's
+        # ``vote_seconds_remaining``. The absolute ``deadline`` is kept for
+        # back-compat and the client-side smooth-correct ease (#1273).
+        if gs.deadline is not None:
+            state["seconds_remaining"] = max(0, round(gs.deadline / 1000 - gs._now()))
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
         # Submission tracking (Story 4.4)

@@ -676,7 +676,9 @@
 
         // Start countdown
         if (data.deadline) {
-            startCountdown(data.deadline);
+            // #1662: pass the server's relative seconds_remaining so the
+            // countdown anchors to the client's own clock (skew-immune).
+            startCountdown(data.deadline, data.seconds_remaining);
         }
 
         // Render leaderboard with submission indicators and bet badges
@@ -715,7 +717,12 @@
         // Time remaining is already shown in the main timer, but we update the stat too
         var timeEl = document.getElementById('dashboard-time-remaining');
         if (timeEl && data.deadline) {
-            var remaining = Math.max(0, Math.ceil((data.deadline - Date.now()) / 1000));
+            // #1662: prefer the server's relative seconds_remaining (skew-immune)
+            // over subtracting the server wall-clock deadline from a possibly
+            // wrong client clock. Fall back to the absolute deadline if absent.
+            var remaining = (typeof data.seconds_remaining === 'number')
+                ? Math.max(0, data.seconds_remaining)
+                : Math.max(0, Math.ceil((data.deadline - Date.now()) / 1000));
             timeEl.textContent = remaining + 's';
         }
     }
@@ -723,8 +730,13 @@
     /**
      * Start countdown timer (AC 10.4.3)
      * @param {number} deadline - Server deadline timestamp in milliseconds
+     * @param {number} [secondsRemaining] - Server-computed *relative* seconds
+     *   left. #1662: when present, the countdown re-anchors to the CLIENT's own
+     *   clock (skew-immune) instead of subtracting the server wall-clock
+     *   `deadline` from a possibly-wrong client `Date.now()`. Mirrors the
+     *   TA-vote timer (player-reveal.js). Absent → fall back to raw `deadline`.
      */
-    function startCountdown(deadline) {
+    function startCountdown(deadline, secondsRemaining) {
         stopCountdown();
 
         var timerElement = document.getElementById('dashboard-timer');
@@ -733,9 +745,16 @@
 
         timerElement.classList.remove('timer--warning', 'timer--critical');
 
+        // #1662: derive a CLIENT-LOCAL deadline from the server's relative
+        // remaining seconds so a wrong client clock can't skew the countdown.
+        var effectiveDeadline =
+            (typeof secondsRemaining === 'number' && isFinite(secondsRemaining))
+                ? Date.now() + secondsRemaining * 1000
+                : deadline;
+
         function updateCountdown() {
             var now = Date.now();
-            var remaining = Math.max(0, Math.ceil((deadline - now) / 1000));
+            var remaining = Math.max(0, Math.ceil((effectiveDeadline - now) / 1000));
 
             timerElement.textContent = remaining;
 
