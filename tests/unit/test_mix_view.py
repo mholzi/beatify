@@ -331,6 +331,43 @@ class TestMixPlaylistView:
         assert Path(path1).name.startswith("__mix__-")
         assert Path(path2).name.startswith("__mix__-")
 
+    async def test_transient_mix_cleanup_preserves_fresh_siblings(self, tmp_path):
+        """#1657: a concurrent run's fresh transient file must survive cleanup.
+
+        The old cleanup deleted every ``__mix__*.json`` except the current
+        target, so run A's file vanished the moment run B wrote its own —
+        breaking the #1547 parallel-safety guarantee. Only *stale* files
+        (older than TRANSIENT_MIX_MAX_AGE_S) should be removed.
+        """
+        import os
+        import time as _time
+
+        from custom_components.beatify.server.mix_views import (
+            TRANSIENT_MIX_MAX_AGE_S,
+        )
+
+        view = _view_with_catalogue(tmp_path)
+        body = json.dumps(
+            {"tags": ["pop"], "target_count": 50, "provider": "spotify"}
+        ).encode()
+
+        resp1 = await view.post(_request_with_body(body))
+        path1 = Path(json.loads(resp1.body)["path"])
+
+        # A second (parallel) run must NOT delete run 1's fresh file.
+        resp2 = await view.post(_request_with_body(body))
+        path2 = Path(json.loads(resp2.body)["path"])
+        assert path1.exists(), "fresh sibling transient was clobbered"
+        assert path2.exists()
+
+        # A genuinely stale transient IS cleaned up on the next write.
+        stale = path1.parent / "__mix__-staaaale.json"
+        stale.write_text("{}", encoding="utf-8")
+        old = _time.time() - (TRANSIENT_MIX_MAX_AGE_S + 60)
+        os.utime(stale, (old, old))
+        await view.post(_request_with_body(body))
+        assert not stale.exists(), "stale transient should have been removed"
+
     async def test_save_as_community_writes_to_user_subdir(self, tmp_path):
         view = _view_with_catalogue(tmp_path)
         body = json.dumps(
