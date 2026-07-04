@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "schlager",
     "party",
@@ -30,7 +30,7 @@
         "it": "applemusic://track/1664954218"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RfZ8fIY2RmY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/88460352",
       "uri_deezer": "deezer://track/497124582",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -55,7 +55,7 @@
         "it": "applemusic://track/1878167478"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5qNhCWy5-xs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999669",
       "uri_deezer": "deezer://track/2598561312",
       "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
       "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
@@ -80,7 +80,7 @@
         "it": "applemusic://track/408204871"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DIpNMWGUiA4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15413835",
       "uri_deezer": "deezer://track/61750163",
       "fun_fact": "Almklausi is a Mallorca party-Schlager singer, best known for the 2018 hit \"Mama Laudaaa\".",
       "fun_fact_de": "Almklausi ist ein Mallorca-Party-Schlager-Sänger, bekannt vor allem durch den 2018er-Hit \"Mama Laudaaa\".",
@@ -105,7 +105,7 @@
         "it": "applemusic://track/1066840782"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0ZKnBGrTUd0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/40592392",
       "uri_deezer": "deezer://track/2598567132",
       "fun_fact": "A Mallorca / Ballermann party hit (2015).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2015).",
@@ -130,7 +130,7 @@
         "it": "applemusic://track/1691276284"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SWsVQF7ZUos",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/298902074",
       "uri_deezer": "deezer://track/2319577355",
       "fun_fact": "A Mallorca / Ballermann party hit (2020).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2020).",
@@ -155,7 +155,7 @@
         "it": "applemusic://track/1686543229"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iQ6-280aIzs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/293152283",
       "uri_deezer": "deezer://track/2270184257",
       "alt_artists": [
         "DJ Juanjo"
@@ -183,7 +183,7 @@
         "it": "applemusic://track/1649047735"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rmlEOnidHHs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/254760561",
       "uri_deezer": "deezer://track/1951584357",
       "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
       "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
@@ -208,7 +208,7 @@
         "it": "applemusic://track/1721259858"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tDL_KqkHWzo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999098",
       "uri_deezer": "deezer://track/2598561232",
       "alt_artists": [
         "Julian Benz"
@@ -236,7 +236,7 @@
         "it": "applemusic://track/6768698316"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DW__F_sePo0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/61998101",
       "uri_deezer": "deezer://track/2598564572",
       "fun_fact": "A Mallorca / Ballermann party hit (2016).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2016).",
@@ -261,7 +261,7 @@
         "it": "applemusic://track/886569636"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SNrHhfjg5vQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30631798",
       "uri_deezer": "deezer://track/81423068",
       "fun_fact": "A Mallorca / Ballermann party hit (2014).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2014).",
@@ -286,7 +286,7 @@
         "it": "applemusic://track/1878166009"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n6tBIIQQplE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/453630625",
       "uri_deezer": "deezer://track/3504651201",
       "fun_fact": "A Mallorca / Ballermann party hit (2026).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2026).",
