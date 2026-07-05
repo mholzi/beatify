@@ -665,6 +665,8 @@
         // so it must never be a single point of failure.
         var joinUrlEl = document.getElementById('dashboard-join-url');
         if (joinUrlEl) {
+            // #1756: localize the aria-label (was a hardcoded English "Join address").
+            joinUrlEl.setAttribute('aria-label', utils.t('dashboard.joinAddressLabel', 'Join address'));
             if (data.join_url) {
                 joinUrlEl.textContent = data.join_url;
                 joinUrlEl.classList.remove('hidden');
