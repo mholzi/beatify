@@ -82,4 +82,28 @@ describe('renderRoundStatsSheet — dot-axis wiring (#1184)', () => {
         renderRoundStatsSheet();
         expect(statsContentEl.innerHTML).not.toContain('dotaxis-wrap');
     });
+
+    // #1663 item 3 (A11y — Icon+Text status): each legend row carries an
+    // accuracy chip (glyph + word), so the reveal result no longer relies on the
+    // dot colour alone. Exact (years_off 0) → exact chip; scored-but-not-exact →
+    // near chip.
+    it('adds icon+text accuracy chips to each legend row (#1663)', () => {
+        renderRoundStatsSheet();
+        // Alice = exact (years_off 0); Bob scored 4 but years_off 3 = near.
+        expect(statsContentEl.innerHTML).toContain('dotaxis-legend-acc--exact');
+        expect(statsContentEl.innerHTML).toContain('dotaxis-legend-acc--near');
+        // The glyph is aria-hidden and paired with the word (colour is secondary).
+        expect(statsContentEl.innerHTML).toContain('dotaxis-legend-acc-glyph');
+        // Dots expose the accuracy word to screen readers via aria-label.
+        expect(statsContentEl.innerHTML).toContain('role="img"');
+        expect(statsContentEl.innerHTML).toContain('aria-label=');
+    });
+
+    it('marks a zero-score, non-exact guess as "off" (#1663)', () => {
+        mockState.lastRevealContext.analytics.all_guesses = [
+            { name: 'Alice', guess: 1970, years_off: 20, round_score: 0 },
+        ];
+        renderRoundStatsSheet();
+        expect(statsContentEl.innerHTML).toContain('dotaxis-legend-acc--off');
+    });
 });

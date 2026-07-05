@@ -25,6 +25,11 @@ import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
 
+// #1663 item 1: non-blocking notices replace the old blocking alert(). Transient
+// notices → neon top-toast; setup/validation errors → inline panel-banner docked
+// above the home Start button.
+import { showToast, showBanner, clearBanner } from './notify.js';
+
 import {
     setCurrentGameResolver,
     _getAdminToken,
@@ -637,6 +642,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // before any await; the later calls are idempotent re-affirms
         // (guarded by _noSleepActive).
         _requestWakeLock();
+        // #1663 item 1: clear any stale setup-error banner from a previous
+        // rejected start so the host isn't left staring at an outdated error.
+        clearBanner('home-start-banner');
         // Home-mode auto-creates the LOBBY session on enter, so the user's Start
         // button triggers the actual "begin rounds" action (startGameplay).
         // #935: adminState.currentGame is null until the async loadStatus() fetch returns,
@@ -657,7 +665,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (players.length === 0) {
                 const msg = (window.BeatifyI18n && BeatifyI18n.t('admin.home.needPlayerToStart')) ||
                     'Join as player (or ask a guest to scan the QR) before starting.';
-                showError(msg);
+                // #1663 item 1: setup/validation error → inline banner above Start.
+                showSetupError(msg);
                 return;
             }
             // Onboarding v2: confirm if any non-admin player is still on tour.
@@ -1123,7 +1132,9 @@ async function startGame() {
                 const t = BeatifyI18n.t(key, data);
                 if (t && t !== key && !/\{[a-z_]+\}/i.test(t)) msg = t;
             }
-            showError(msg);
+            // #1663 item 1: start rejected (e.g. provider not supported) is a
+            // setup/validation error → inline banner above Start, not a toast.
+            showSetupError(msg);
             return;
         }
 
@@ -1207,7 +1218,8 @@ async function startGameplay() {
         const data = await response.json();
 
         if (!response.ok) {
-            showError(data.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startGameplayFailed')) || 'Failed to start gameplay');
+            // #1663 item 1: gameplay-start rejection is a setup/validation error.
+            showSetupError(data.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startGameplayFailed')) || 'Failed to start gameplay');
             return;
         }
 
@@ -1364,11 +1376,12 @@ async function confirmRematch() {
             await loadStatus();
         } else {
             var errData = await response.json();
-            alert(errData.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
+            // #1663 item 1: transient failure → toast (was blocking alert()).
+            showToast(errData.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
         }
     } catch (error) {
         console.error('Rematch failed:', error);
-        alert((window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
+        showToast((window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
     } finally {
         rematchInProgress = false;
     }
@@ -1391,12 +1404,37 @@ function setupRematchModal() {
 }
 
 /**
- * Show error message to user
+ * Show a transient error to the user (#1663 item 1).
+ * Was a blocking native alert(); now a non-blocking neon top-toast so the admin
+ * can keep interacting. Setup/validation errors that need to stay put use
+ * showSetupError() (inline panel-banner) instead.
  * @param {string} message
  */
 function showError(message) {
-    // Simple alert for now - can be enhanced with toast notifications
-    alert(message);
+    showToast(message, { type: 'error' });
+}
+
+/**
+ * Show a persistent setup/validation error docked above the home Start button
+ * (#1663 item 1, Variant C inline panel-banner). Used for errors the host must
+ * act on before a game can start (no players, provider not supported, …) — it
+ * stays in the screen-reader flow and next to the control that failed, unlike
+ * the transient toast.
+ * @param {string} message
+ */
+function showSetupError(message) {
+    var anchor = document.getElementById('home-start-game');
+    if (!anchor) {
+        // No start button in view (e.g. mid-game) — fall back to a toast.
+        showToast(message, { type: 'error' });
+        return;
+    }
+    showBanner(message, {
+        anchor: anchor,
+        id: 'home-start-banner',
+        title: (window.BeatifyI18n && BeatifyI18n.t('errors.startNotPossible')) || 'Cannot start',
+        type: 'error',
+    });
 }
 
 

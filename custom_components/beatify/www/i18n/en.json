@@ -884,6 +884,7 @@
     "UNAUTHORIZED": "You’re not authorized to do that.",
     "UNKNOWN": "An error occurred",
     "askHostNewGame": "Ask the host to start a new game.",
+    "startNotPossible": "Cannot start",
     "askHostQr": "Ask the host for a new QR code.",
     "checkNetwork": "Make sure you're connected to the network",
     "connectionLost": "Connection lost. Please refresh.",

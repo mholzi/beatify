@@ -381,6 +381,13 @@
                         </span>
                     </div>
                     <div id="timer-neon" class="timer-neon" role="timer" aria-live="polite" aria-label="Time remaining">
+                        <!-- #1663 item 4 (Depleting Ring-Countdown): SVG ring drains
+                             cyan→red as the round runs out, mirroring the reveal
+                             auto-advance ring. Driven from player-game/timer.js. -->
+                        <svg class="timer-neon-ring" viewBox="0 0 72 72" aria-hidden="true">
+                            <circle class="timer-neon-ring-bg" cx="36" cy="36" r="33"></circle>
+                            <circle class="timer-neon-ring-fg" cx="36" cy="36" r="33"></circle>
+                        </svg>
                         <span id="timer" class="timer">30</span>
                     </div>
                 </header>

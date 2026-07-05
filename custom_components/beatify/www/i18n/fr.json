@@ -857,6 +857,7 @@
     "SESSION_TAKEOVER": "Session reprise par un autre onglet",
     "UNKNOWN": "Une erreur est survenue",
     "askHostNewGame": "Demande à l'hôte de lancer une nouvelle partie.",
+    "startNotPossible": "Démarrage impossible",
     "askHostQr": "Demande à l'hôte un nouveau code QR.",
     "checkNetwork": "Vérifie que tu es connecté au réseau",
     "connectionLost": "Connexion perdue. Veuillez recharger.",

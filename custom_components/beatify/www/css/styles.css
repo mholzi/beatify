@@ -132,6 +132,7 @@
     --z-reaction-bar: 101;  /* Story 18.9: Above control bar */
     --z-modal: 1000;
     --z-overlay: 1100;
+    --z-toast: 1200;  /* #1663 item 1: neon top-toast — above overlays/modals */
 }
 
 /* ==========================================
@@ -16364,4 +16365,286 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-text-neon-muted);
     font-variant-numeric: tabular-nums;
     opacity: 0.7;
+}
+
+/* ==========================================================================
+   #1663 item 1 — Non-blocking notices (Toast + Inline Banner)
+   Replaces the old blocking alert(). Neon top-toast for transient notices,
+   inline panel-banner for setup/validation errors. Dark-neon tokens only.
+   ========================================================================== */
+
+/* --- Neon Top-Toast (Variant A): top-center, auto-dismiss, glowing bar --- */
+.beatify-toast-container {
+    position: fixed;
+    top: var(--space-md);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    width: min(92vw, 440px);
+    pointer-events: none;  /* let taps fall through the gaps; toasts re-enable */
+}
+
+.beatify-toast {
+    pointer-events: auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    background: rgba(20, 20, 34, 0.96);
+    border: 1px solid var(--color-error-neon);
+    box-shadow: 0 0 20px rgba(255, 0, 64, 0.45), 0 8px 32px rgba(0, 0, 0, 0.45);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    /* Enter/leave transition (gated under reduced-motion below). */
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+.beatify-toast--in { opacity: 1; transform: translateY(0); }
+.beatify-toast--leaving { opacity: 0; transform: translateY(-12px); }
+
+.beatify-toast--info {
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4), 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+.beatify-toast--success {
+    border-color: var(--color-success-neon);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.4), 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.beatify-toast-body {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.beatify-toast-icon { font-size: var(--font-size-lg); line-height: 1.3; flex-shrink: 0; }
+.beatify-toast-text { line-height: 1.35; word-break: break-word; }
+
+.beatify-toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 var(--space-xs);
+    transition: color var(--transition-fast);
+}
+.beatify-toast-close:hover { color: var(--color-text-white); }
+
+/* Glowing progress bar that drains over the auto-dismiss window. */
+.beatify-toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    transform-origin: left center;
+    background: var(--color-error-neon);
+    box-shadow: 0 0 8px var(--color-error-neon);
+    animation: beatify-toast-drain linear forwards;
+}
+.beatify-toast--info .beatify-toast-progress {
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 8px var(--color-accent-secondary);
+}
+.beatify-toast--success .beatify-toast-progress {
+    background: var(--color-success-neon);
+    box-shadow: 0 0 8px var(--color-success-neon);
+}
+@keyframes beatify-toast-drain {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+}
+
+/* --- Inline Panel-Banner (Variant C): docked above the primary action --- */
+.beatify-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 0, 64, 0.08);
+    border: 1px solid var(--color-error-neon);
+    box-shadow: inset 0 0 16px rgba(255, 0, 64, 0.12);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    text-align: left;
+}
+.beatify-banner--warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--color-warning);
+    box-shadow: inset 0 0 16px rgba(245, 158, 11, 0.12);
+}
+.beatify-banner--info {
+    background: rgba(0, 245, 255, 0.08);
+    border-color: var(--color-accent-secondary);
+    box-shadow: inset 0 0 16px rgba(0, 245, 255, 0.12);
+}
+.beatify-banner-icon { font-size: var(--font-size-lg); line-height: 1.2; flex-shrink: 0; }
+.beatify-banner-content { flex: 1 1 auto; min-width: 0; }
+.beatify-banner-title {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 2px;
+    color: var(--color-error-neon);
+}
+.beatify-banner--warning .beatify-banner-title { color: var(--color-warning); }
+.beatify-banner--info .beatify-banner-title { color: var(--color-accent-secondary); }
+.beatify-banner-text { line-height: 1.4; color: var(--color-text-neon-muted); word-break: break-word; }
+.beatify-banner-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 var(--space-xs);
+    transition: color var(--transition-fast);
+}
+.beatify-banner-close:hover { color: var(--color-text-white); }
+
+@media (prefers-reduced-motion: reduce) {
+    .beatify-toast { transition: none; opacity: 1; transform: none; }
+    .beatify-toast-progress { animation: none; }
+}
+
+/* ==========================================================================
+   #1663 item 2 — Steal modal Mini-Leaderboard-Row (Variant B)
+   Each steal target becomes a rank + name + score row; the overall leader
+   (rank 1) gets a crown + glow. Extends the existing .steal-target-btn.
+   ========================================================================== */
+.steal-target-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: left;
+}
+.steal-target-rank {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
+.steal-target-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: var(--font-weight-semibold);
+}
+.steal-target-score {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-secondary);
+    text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+.steal-target-crown { flex-shrink: 0; font-size: var(--font-size-md); line-height: 1; }
+.steal-target-row--leader {
+    border-color: var(--color-warning);
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.35), inset 0 0 10px rgba(245, 158, 11, 0.12);
+}
+.steal-target-row--leader .steal-target-rank {
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+.steal-target-row--leader .steal-target-score {
+    color: var(--color-warning);
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+/* ==========================================================================
+   #1663 item 3 — A11y: Icon+Text accuracy chips on the reveal dot-axis legend
+   Glyph + word per state (◎ exact / ≈ near / ✕ off); colour is reinforcement.
+   ========================================================================== */
+.dotaxis-legend-acc {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 4px;
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border: 1px solid currentColor;
+    white-space: nowrap;
+}
+.dotaxis-legend-acc-glyph { font-size: 0.95em; line-height: 1; }
+.dotaxis-legend-acc--exact { color: var(--color-accent-secondary); }
+.dotaxis-legend-acc--near  { color: var(--color-warning); }
+.dotaxis-legend-acc--off   { color: var(--color-text-neon-muted); }
+
+/* Lobby away chip: glyph + word (A11y — not colour/border alone). */
+.player-tile-away { display: inline-flex; align-items: center; gap: 3px; }
+.player-tile-away-glyph { font-size: 0.9em; line-height: 1; }
+
+/* ==========================================================================
+   #1663 item 4 — Depleting Ring-Countdown (Variant C)
+   SVG ring inside the arcade neon timer that drains cyan→red as time runs out,
+   mirroring the reveal auto-advance ring. Additive to the existing frame; the
+   number's warning/critical classes (arc-urgency) are untouched.
+   ========================================================================== */
+.timer-neon { position: relative; }
+.timer-neon-ring {
+    position: absolute;
+    inset: 3px;               /* sit just inside the neon frame */
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    transform: rotate(-90deg);  /* start the drain from 12 o'clock */
+    pointer-events: none;
+}
+.timer-neon-ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 4;
+}
+.timer-neon-ring-fg {
+    fill: none;
+    stroke: var(--color-accent-secondary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.6));
+    transition: stroke-dashoffset 1s linear, stroke var(--transition-normal);
+}
+.timer-neon--warn .timer-neon-ring-fg,
+.timer-neon-ring--warn .timer-neon-ring-fg {
+    stroke: var(--color-warning);
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
+}
+.timer-neon-ring--critical .timer-neon-ring-fg {
+    stroke: var(--color-error-neon);
+    filter: drop-shadow(0 0 7px rgba(255, 0, 64, 0.8));
+}
+@media (prefers-reduced-motion: reduce) {
+    /* Opt-out: keep the numeric+colour cue, drop the animated drain. */
+    .timer-neon-ring-fg { transition: none; }
 }

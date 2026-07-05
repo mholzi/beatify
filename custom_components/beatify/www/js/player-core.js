@@ -47,6 +47,9 @@ import {
     setupTour, isActive as isTourActive, updateReadyCount
 } from './player-tour.js';
 
+// #1663 item 1: non-blocking toast replaces the blocking alert() (host-cannot-leave).
+import { showToast } from './notify.js';
+
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
 
@@ -760,7 +763,8 @@ function handleServerMessage(data) {
         }
         if (data.code === 'ADMIN_CANNOT_LEAVE') {
             state.intentionalLeave = false;
-            alert(data.message || 'Host cannot leave. End the game instead.');
+            // #1663 item 1: non-blocking toast (was blocking alert()).
+            showToast(data.message || 'Host cannot leave. End the game instead.');
             return;
         }
         if (data.code === 'INVALID_ACTION' && data.message === 'No song playing') {
@@ -854,7 +858,8 @@ async function handleLeaveGame() {
     }
 
     if (state.isAdmin) {
-        alert(utils.t('player.hostCannotLeave'));
+        // #1663 item 1: non-blocking toast (was blocking alert()).
+        showToast(utils.t('player.hostCannotLeave'));
         return;
     }
 

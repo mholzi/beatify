@@ -107,8 +107,15 @@ export function renderPlayerList(players) {
                 escapeHtml(utils.t('leaderboard.you')) + '">YOU</span>';
         }
 
+        // #1663 item 3 (A11y — Icon+Text Status): the "away" state now pairs a
+        // pause glyph with the word (⏸ + "away") and carries an aria-label, so a
+        // disconnected player isn't signalled by the greyed-out border colour
+        // alone.
         var awayBadge = isDisconnected
-            ? '<span class="player-tile-away" aria-hidden="true">' + utils.t('lobby.away') + '</span>'
+            ? '<span class="player-tile-away" role="img" aria-label="' + escapeHtml(utils.t('lobby.away')) + '">' +
+                  '<span class="player-tile-away-glyph" aria-hidden="true">⏸</span>' +
+                  escapeHtml(utils.t('lobby.away')) +
+              '</span>'
             : '';
 
         return '<div class="' + classes.join(' ') + '" data-player="' + escapeHtml(raw) + '">' +

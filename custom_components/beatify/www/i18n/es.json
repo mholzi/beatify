@@ -857,6 +857,7 @@
     "SESSION_TAKEOVER": "Sesion tomada por otra pestana",
     "UNKNOWN": "Ocurrio un error",
     "askHostNewGame": "Pide al anfitrion que inicie un nuevo juego.",
+    "startNotPossible": "No se puede iniciar",
     "askHostQr": "Pide al anfitrion un nuevo codigo QR.",
     "checkNetwork": "Asegurate de estar conectado a la red",
     "connectionLost": "Conexión perdida. Por favor, recarga.",
