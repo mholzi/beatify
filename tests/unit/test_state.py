@@ -2769,3 +2769,42 @@ class TestSuddenDeathWinner:
         state.get_player("Bob").score = 30
         lb = state.get_final_leaderboard()
         assert [e["name"] for e in lb] == ["Bob", "Alice"]
+
+    def test_winner_is_top_survivor_with_multiple_survivors(self):
+        """#1749: SD ends by round exhaustion with >=2 survivors and a
+        late-eliminated high scorer → the winner is the top-scoring *survivor*,
+        matching the leaderboard's #1, NOT the higher-scoring eliminated player.
+        """
+        state = self._game()
+        # Bob was early-dominant but got eliminated last with the highest total.
+        state.get_player("Bob").score = 99
+        state.get_player("Bob").eliminated = True
+        state.get_player("Bob").eliminated_round = 4
+        # Two survivors remain (game ran out of rounds); Alice tops Carol.
+        state.get_player("Alice").score = 40  # survivor, top score among survivors
+        state.get_player("Carol").score = 25  # survivor
+
+        winners, top = state.compute_winners()
+        assert [w.name for w in winners] == ["Alice"]
+        assert top == 40
+        # The banner must agree with the leaderboard's #1 (deckungsgleich).
+        lb = state.get_final_leaderboard()
+        assert lb[0]["name"] == "Alice"
+        assert winners[0].name == lb[0]["name"]
+        # The high-scoring eliminated player is NOT the winner and sits below.
+        assert "Bob" not in {w.name for w in winners}
+        assert lb[-1]["name"] == "Bob"
+
+    def test_winner_ties_among_survivors(self):
+        """#1749: two survivors sharing the top survivor score → both win,
+        the eliminated high scorer is still excluded."""
+        state = self._game()
+        state.get_player("Bob").score = 200
+        state.get_player("Bob").eliminated = True
+        state.get_player("Bob").eliminated_round = 3
+        state.get_player("Alice").score = 30  # survivor
+        state.get_player("Carol").score = 30  # survivor, tie with Alice
+
+        winners, top = state.compute_winners()
+        assert {w.name for w in winners} == {"Alice", "Carol"}
+        assert top == 30
