@@ -55,10 +55,12 @@ class PowerUpManager:
             List of player names who have submitted this round, excluding self
 
         """
+        # #1664 PR-2: ``players`` is keyed by player_id now, so match on the
+        # display name attribute rather than the dict key.
         return [
-            name
-            for name, player in players.items()
-            if name != stealer_name and player.submitted
+            player.name
+            for player in players.values()
+            if player.name != stealer_name and player.submitted
         ]
 
     def use_steal(
@@ -84,8 +86,18 @@ class PowerUpManager:
         """
         from .state import GamePhase  # noqa: PLC0415 — avoid circular import
 
-        stealer = players.get(stealer_name)
-        target = players.get(target_name)
+        # #1664 PR-2: ``players`` is keyed by player_id now; steal targeting is
+        # still name-based input (from get_steal_targets), so resolve by the
+        # display name attribute. Name uniqueness is enforced at add_player, so
+        # the first match is the intended player.
+        def _by_name(wanted: str) -> PlayerSession | None:
+            for candidate in players.values():
+                if candidate.name == wanted:
+                    return candidate
+            return None
+
+        stealer = _by_name(stealer_name)
+        target = _by_name(target_name)
 
         # Validations
         if not stealer:

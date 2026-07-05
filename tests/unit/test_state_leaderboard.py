@@ -41,7 +41,7 @@ def _create_fresh_game(state) -> None:
 def _add(state, name: str, score: int = 0, **attrs) -> None:
     """Add a player and force-set leaderboard-relevant attributes."""
     state.add_player(name, MagicMock())
-    player = state.players[name]
+    player = state.get_player(name)
     player.score = score
     for key, value in attrs.items():
         setattr(player, key, value)
@@ -64,9 +64,9 @@ class TestStorePreviousRanks:
 
         self.state._store_previous_ranks()
 
-        assert self.state.players["Alice"].previous_rank == 1
-        assert self.state.players["Bob"].previous_rank == 2
-        assert self.state.players["Carol"].previous_rank == 3
+        assert self.state.get_player("Alice").previous_rank == 1
+        assert self.state.get_player("Bob").previous_rank == 2
+        assert self.state.get_player("Carol").previous_rank == 3
 
     def test_tied_players_share_previous_rank_and_skip(self):
         # scores [100, 80, 80, 50] -> ranks [1, 2, 2, 4]
@@ -77,7 +77,7 @@ class TestStorePreviousRanks:
 
         self.state._store_previous_ranks()
 
-        ranks = {n: p.previous_rank for n, p in self.state.players.items()}
+        ranks = {p.name: p.previous_rank for p in self.state.players.values()}
         assert ranks == {"Alice": 1, "Bob": 2, "Carol": 2, "Dave": 4}
 
     def test_overwrites_stale_previous_rank(self):
@@ -87,8 +87,8 @@ class TestStorePreviousRanks:
         self.state._store_previous_ranks()
 
         # Bob leads now; both stale 99s replaced with the fresh snapshot.
-        assert self.state.players["Bob"].previous_rank == 1
-        assert self.state.players["Alice"].previous_rank == 2
+        assert self.state.get_player("Bob").previous_rank == 1
+        assert self.state.get_player("Alice").previous_rank == 2
 
 
 # ---------------------------------------------------------------------------
@@ -141,8 +141,8 @@ class TestLeaderboardRankChange:
         self.state._store_previous_ranks()
 
         # Alice surges to the top, Carol drops to the bottom.
-        self.state.players["Alice"].score = 100
-        self.state.players["Carol"].score = 5
+        self.state.get_player("Alice").score = 100
+        self.state.get_player("Carol").score = 5
 
         lb = {e["name"]: e for e in self.state.get_leaderboard()}
 

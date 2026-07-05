@@ -85,8 +85,9 @@ def build_share_data(game_state: Any) -> dict[str, Any]:
     total_rounds = game_state.round
 
     emoji_grids: dict[str, str] = {}
-    for name, player in game_state.players.items():
-        emoji_grids[name] = build_emoji_grid(player, playlist_name, total_rounds)
+    # #1664 PR-2: players keyed by player_id — key the grid by display name
+    for player in game_state.players.values():
+        emoji_grids[player.name] = build_emoji_grid(player, playlist_name, total_rounds)
 
     return {
         "emoji_grids": emoji_grids,

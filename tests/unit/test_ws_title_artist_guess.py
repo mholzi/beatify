@@ -84,7 +84,7 @@ class TestTitleArtistGuessMarksSubmitted:
         handler, gs = _make_handler_game()
         ws = _ws()
         gs.add_player("Alice", ws)
-        gs.players["Alice"].connected = True
+        gs.get_player("Alice").connected = True
         await gs.start_round()
         assert gs.phase == GamePhase.PLAYING
 
@@ -101,7 +101,7 @@ class TestTitleArtistGuessMarksSubmitted:
             },
         )
 
-        player = gs.players["Alice"]
+        player = gs.get_player("Alice")
         assert player.has_title_artist_guess is True
         # The bug: the handler never set these, so scoring + early reveal break.
         assert player.submitted is True
@@ -150,8 +150,8 @@ class TestTitleArtistGuessMarksSubmitted:
                 "artist": truth_artist,
             },
         )
-        assert gs.players["Alice"].submitted is True
-        assert gs.players["Bob"].submitted is True
+        assert gs.get_player("Alice").submitted is True
+        assert gs.get_player("Bob").submitted is True
         assert gs.check_all_guesses_complete() is True
 
         gs._cancel_auto_advance()
@@ -167,7 +167,7 @@ class TestGuessTruncatedAtIngest:
         handler, gs = _make_handler_game()
         ws = _ws()
         gs.add_player("Alice", ws)
-        gs.players["Alice"].connected = True
+        gs.get_player("Alice").connected = True
         await gs.start_round()
 
         # Capture what the dispatched handler actually receives.
@@ -198,7 +198,7 @@ class TestGuessTruncatedAtIngest:
         handler, gs = _make_handler_game()
         ws = _ws()
         gs.add_player("Alice", ws)
-        gs.players["Alice"].connected = True
+        gs.get_player("Alice").connected = True
         await gs.start_round()
 
         exact = "z" * MAX_GUESS_LEN

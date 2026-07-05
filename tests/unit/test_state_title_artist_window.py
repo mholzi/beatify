@@ -210,8 +210,8 @@ class TestVoteWindowScoring:
         gs.set_title_artist_override("Alice:title", True)
         await gs.resolve_title_artist_if_pending()
 
-        alice = gs.players["Alice"]
-        bob = gs.players["Bob"]
+        alice = gs.get_player("Alice")
+        bob = gs.get_player("Bob")
         # Alice: accepted near-miss title (partial 5) + exact artist (5) = 10.
         assert alice.score == 10
         assert alice.round_score == 10
@@ -229,7 +229,7 @@ class TestVoteWindowScoring:
         # No vote and no override -> default reject on resolve.
         await gs.resolve_title_artist_if_pending()
 
-        alice = gs.players["Alice"]
+        alice = gs.get_player("Alice")
         # Rejected title (0) + exact artist (5) = 5.
         assert alice.score == 5
         assert alice.round_scores == [5]
@@ -243,7 +243,7 @@ class TestVoteWindowScoring:
         gs.register_title_artist_vote("Bob", "Alice:title", True)
         await gs.resolve_title_artist_if_pending()
 
-        alice = gs.players["Alice"]
+        alice = gs.get_player("Alice")
         assert alice.score == 10
         assert alice.round_scores == [10]
         assert alice.rounds_played == 1
@@ -262,7 +262,7 @@ class TestVoteWindowScoring:
         finally:
             state_mod.TITLE_ARTIST_VOTE_WINDOW_SECONDS = orig
 
-        alice = gs.players["Alice"]
+        alice = gs.get_player("Alice")
         assert alice.score == 10
         assert alice.round_scores == [10]
         assert alice.rounds_played == 1
@@ -300,7 +300,7 @@ class TestVoteWindowScoring:
         await gs.resolve_title_artist_if_pending()
         await gs._finalize_title_artist_window()
 
-        alice = gs.players["Alice"]
+        alice = gs.get_player("Alice")
         assert alice.score == 10
         assert alice.round_scores == [10]
         assert alice.rounds_played == 1
@@ -352,8 +352,8 @@ class TestRoundResultsShareGrid:
             p.submitted = True
         await gs.end_round()
         assert gs.is_title_artist_voting_open() is False
-        assert gs.players["Alice"].round_results == ["scored"]
-        assert gs.players["Bob"].round_results == ["exact"]
+        assert gs.get_player("Alice").round_results == ["scored"]
+        assert gs.get_player("Bob").round_results == ["exact"]
         gs._cancel_auto_advance()
 
     async def test_accepted_near_miss_is_close_deferred_path(self):
@@ -376,13 +376,13 @@ class TestRoundResultsShareGrid:
             p.submitted = True
         await gs.end_round()
         # Deferred — no round_results banked yet while the window is open.
-        assert gs.players["Alice"].round_results == []
+        assert gs.get_player("Alice").round_results == []
         gs.set_title_artist_override("Alice:title", True)
         await gs.resolve_title_artist_if_pending()
         # Alice: accepted near-miss title (partial) + exact artist -> "scored"
         # (artist is exact, which earns full points). Bob exact/exact -> "exact".
-        assert gs.players["Alice"].round_results == ["scored"]
-        assert gs.players["Bob"].round_results == ["exact"]
+        assert gs.get_player("Alice").round_results == ["scored"]
+        assert gs.get_player("Bob").round_results == ["exact"]
 
     async def test_rejected_near_miss_only_is_close(self):
         """A near-miss accepted with no other full-points field -> 'close'."""
@@ -402,7 +402,7 @@ class TestRoundResultsShareGrid:
         await gs.end_round()
         gs.set_title_artist_override("Alice:title", True)
         await gs.resolve_title_artist_if_pending()
-        assert gs.players["Alice"].round_results == ["close"]
+        assert gs.get_player("Alice").round_results == ["close"]
 
     async def test_no_submission_is_missed(self):
         """A player who didn't guess in title/artist mode -> 'missed'."""
@@ -412,12 +412,12 @@ class TestRoundResultsShareGrid:
         gs._challenge_manager.submit_title_artist_guess(
             "Bob", gs.current_song["title"], gs.current_song["artist"], 1.0
         )
-        gs.players["Bob"].submitted = True
+        gs.get_player("Bob").submitted = True
         # Alice never submits.
         await gs.end_round()
         assert gs.is_title_artist_voting_open() is False
-        assert gs.players["Alice"].round_results == ["missed"]
-        assert gs.players["Bob"].round_results == ["exact"]
+        assert gs.get_player("Alice").round_results == ["missed"]
+        assert gs.get_player("Bob").round_results == ["exact"]
         gs._cancel_auto_advance()
 
 
