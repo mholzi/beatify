@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import time
 from unittest.mock import AsyncMock, MagicMock
 
@@ -912,6 +913,36 @@ class TestAdminConnect:
         game_state._reset_game_internals()
 
         assert game_state._admin_ws is None
+
+
+class TestBroadcastDebounceSupersede:
+    """#1763: an immediate broadcast supersedes any pending debounced one."""
+
+    async def test_immediate_broadcast_cancels_pending_debounce(self):
+        # A queued in-round progress frame must not land a redundant broadcast
+        # right after a phase-transition frame fires an immediate one.
+        handler, game_state, ws = _make_handler_and_game()
+        await handler.debounced_broadcast_state()
+        pending = handler._broadcast_debounce_task
+        assert pending is not None and not pending.done()
+
+        await handler.broadcast_state()
+        # Let the loop process the requested cancellation.
+        await asyncio.sleep(0)
+
+        assert pending.cancelled()
+
+    async def test_debounced_task_completes_without_self_cancel(self):
+        # The supersede-cancel in broadcast_state must guard against cancelling
+        # the debounce task from inside its own run — otherwise the delayed
+        # broadcast would cancel itself and never send.
+        handler, game_state, ws = _make_handler_and_game()
+        handler._broadcast_debounce_delay = 0
+        await handler.debounced_broadcast_state()
+        task = handler._broadcast_debounce_task
+        await asyncio.sleep(0)  # let the delayed broadcast run
+        await task
+        assert task.done() and not task.cancelled()
 
 
 class TestPlayerOnboarded:

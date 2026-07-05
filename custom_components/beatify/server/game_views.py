@@ -28,6 +28,9 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from custom_components.beatify.game.playlist import (
+    async_discover_playlists_detailed,
+)
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -216,30 +219,41 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         warnings: list[str] = []
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
 
+        # #1766: discovery already read+parsed every playlist file (memoised,
+        # off-loop, and refreshed by the /api/status poll seconds before the
+        # Start tap). Reuse that parse instead of re-reading + re-parsing each
+        # ~600-song document on the event loop at this latency-sensitive moment.
+        # ``songs_by_path`` is keyed by the same unresolved glob path the picker
+        # sends, so a hit is a plain dict lookup; only a playlist added since the
+        # last discovery walk (a cache miss) falls back to an executor read.
+        _metas, songs_by_path = await async_discover_playlists_detailed(self.hass)
+
         for playlist_path in playlist_paths:
             try:
                 full_path = playlist_dir / playlist_path
                 # Security: Prevent path traversal attacks
                 try:
-                    full_path = full_path.resolve()
-                    if not full_path.is_relative_to(playlist_dir.resolve()):
+                    if not full_path.resolve().is_relative_to(playlist_dir.resolve()):
                         warnings.append(f"Invalid playlist path: {playlist_path}")
                         continue
                 except ValueError:
                     warnings.append(f"Invalid playlist path: {playlist_path}")
                     continue
 
-                if not full_path.exists():
-                    warnings.append(f"Playlist not found: {playlist_path}")
-                    continue
+                playlist_songs = songs_by_path.get(str(full_path))
+                if playlist_songs is None:
+                    # Cache miss (added since the last discovery walk) — fall back
+                    # to the executor read + parse so the loop stays unblocked.
+                    resolved = full_path.resolve()
+                    if not resolved.exists():
+                        warnings.append(f"Playlist not found: {playlist_path}")
+                        continue
+                    file_content = await self.hass.async_add_executor_job(
+                        _read_file, resolved
+                    )
+                    playlist_songs = json.loads(file_content).get("songs", [])
 
-                # Read file in executor to avoid blocking event loop
-                file_content = await self.hass.async_add_executor_job(
-                    _read_file, full_path
-                )
-                playlist_data = json.loads(file_content)
-
-                for song in playlist_data.get("songs", []):
+                for song in playlist_songs:
                     has_uri = any(
                         song.get(k)
                         for k in (
