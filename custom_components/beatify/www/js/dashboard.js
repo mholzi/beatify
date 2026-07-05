@@ -55,6 +55,138 @@
     var sdLastOutKey = null;
     var sdOutTimer = null;
 
+    // #1705: track the countdown's active deadline so the 1Hz timer is torn
+    // down + recreated ONLY when the round's deadline actually changes — not on
+    // every state broadcast (a submission/score update re-renders the view but
+    // the clock is unchanged, so the running timer must be left ticking).
+    var lastCountdownDeadline = null;
+
+    // --- #1705: WS-broadcast render coalescing ------------------------------
+    // Mirrors admin's createRenderCoalescer (#1584): the dashboard used to push
+    // EVERY `state` broadcast straight into a full re-render (leaderboard
+    // innerHTML rebuild + countdown restart). A 20-player round fires ~20
+    // broadcasts → O(N^2) DOM re-parses + timer churn on the weakest TV hardware
+    // (Chromecast / Fire TV). Coalesce a burst into one paint per animation
+    // frame (latest payload wins, final state never dropped) and skip the paint
+    // entirely when nothing visible changed. Inlined here because dashboard.js
+    // ships as a standalone IIFE (not the admin ES-module bundle) so it can't
+    // import admin/util.js.
+    function _defaultRenderSchedule(cb) {
+        if (typeof requestAnimationFrame === 'function') return requestAnimationFrame(cb);
+        return setTimeout(cb, 16);
+    }
+    function createRenderCoalescer(render, options) {
+        var opts = options || {};
+        var schedule = typeof opts.schedule === 'function' ? opts.schedule : _defaultRenderSchedule;
+        var isEqual = typeof opts.isEqual === 'function' ? opts.isEqual : null;
+        var pending = false, hasLatest = false, latest, lastRendered, hasRendered = false;
+        function flush() {
+            pending = false;
+            if (!hasLatest) return;
+            var data = latest;
+            hasLatest = false; latest = undefined;
+            lastRendered = data; hasRendered = true;
+            render(data);
+        }
+        function push(data) {
+            // Dirty-check: identical to what's on screen and nothing queued → skip.
+            if (isEqual && hasRendered && !hasLatest && isEqual(data, lastRendered)) return;
+            latest = data; hasLatest = true;   // coalesce: newest payload wins
+            if (!pending) { pending = true; schedule(flush); }
+        }
+        push.flush = flush;
+        push.cancel = function() { pending = false; hasLatest = false; latest = undefined; };
+        return push;
+    }
+
+    // #1705: dirty-check that strips the volatile countdown-only fields. A
+    // broadcast that differs ONLY by a re-stamped `deadline` / `seconds_remaining`
+    // / `reveal_started_at` (the values the local 1Hz tickers already animate
+    // from the client clock) must NOT force a repaint. Mirrors admin's
+    // adminStateEqual (#1659).
+    function _stateRenderKey(data) {
+        if (!data) return '';
+        var clone = {};
+        for (var k in data) {
+            if (!Object.prototype.hasOwnProperty.call(data, k)) continue;
+            if (k === 'deadline' || k === 'seconds_remaining' || k === 'reveal_started_at') continue;
+            clone[k] = data[k];
+        }
+        // Also drop the live-vote re-anchor field nested in the TA challenge.
+        if (clone.title_artist_challenge && typeof clone.title_artist_challenge === 'object') {
+            var ta = {};
+            for (var tk in clone.title_artist_challenge) {
+                if (!Object.prototype.hasOwnProperty.call(clone.title_artist_challenge, tk)) continue;
+                if (tk === 'vote_seconds_remaining') continue;
+                ta[tk] = clone.title_artist_challenge[tk];
+            }
+            clone.title_artist_challenge = ta;
+        }
+        try { return JSON.stringify(clone); } catch (e) { return null; }
+    }
+    function _stateRenderEqual(a, b) {
+        var ka = _stateRenderKey(a);
+        return ka !== null && ka === _stateRenderKey(b);
+    }
+
+    // #1705: keyed row reconciler — replaces the full `container.innerHTML = …`
+    // leaderboard rebuild on every broadcast. Each desired row carries a stable
+    // `key` (player name) and its full outer-HTML string as the signature; rows
+    // whose signature is unchanged keep their existing DOM node (no re-parse, no
+    // re-triggered CSS animation), changed rows are swapped in place, stale rows
+    // are removed, and the child order is synced to `rows`.
+    function _reconcileRows(container, rows) {
+        var existing = {};
+        var child = container.firstElementChild;
+        while (child) {
+            var ek = child.getAttribute('data-row-key');
+            if (ek != null) existing[ek] = child;
+            child = child.nextElementSibling;
+        }
+        var prevSig = container._beatifyRowSigs || {};
+        var newSig = {};
+        var desired = [];
+        rows.forEach(function(row) {
+            var el = existing[row.key];
+            if (!el || prevSig[row.key] !== row.html) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = row.html;
+                el = tmp.firstElementChild;
+                if (el) el.setAttribute('data-row-key', row.key);
+            }
+            if (el) { newSig[row.key] = row.html; desired.push(el); }
+        });
+        // Remove nodes that are no longer desired.
+        var desiredKeys = {};
+        desired.forEach(function(n) { desiredKeys[n.getAttribute('data-row-key')] = true; });
+        child = container.firstElementChild;
+        while (child) {
+            var next = child.nextElementSibling;
+            var ck = child.getAttribute('data-row-key');
+            if (ck == null || !desiredKeys[ck]) container.removeChild(child);
+            child = next;
+        }
+        // Sync order / insert new nodes.
+        for (var i = 0; i < desired.length; i++) {
+            if (container.children[i] !== desired[i]) {
+                container.insertBefore(desired[i], container.children[i] || null);
+            }
+        }
+        container._beatifyRowSigs = newSig;
+    }
+
+    // #1712: dim/undim the frozen last frame while the socket is down so the
+    // room can tell the connection dropped without the game being wiped.
+    function _setDisconnectedDim(on) {
+        var root = document.querySelector('.dashboard-container');
+        if (root) root.classList.toggle('dashboard-disconnected', !!on);
+    }
+
+    // #1705: coalesced entry point — the heavy DOM render runs at most once per
+    // frame and only when the visible state changed. Assigned here (both the
+    // renderer and the coalescer factory are hoisted function declarations).
+    var _scheduleRender = createRenderCoalescer(_applyStateRender, { isEqual: _stateRenderEqual });
+
     // Utility functions from BeatifyUtils
     // waitForI18n, t, getLocalizedSongField, escapeHtml moved to BeatifyUtils
 
@@ -123,6 +255,10 @@
             reconnectAttempts = 0;
             // #1578: connection is back — drop the "Reconnecting…" badge.
             _hideReconnectIndicator();
+            // #1712: un-dim the frozen last frame; the server's next `state`
+            // broadcast is what decides whether we stay on the live view or
+            // switch to the confirmed "No active game" screen.
+            _setDisconnectedDim(false);
             // Request current state as read-only observer
             ws.send(JSON.stringify({ type: 'get_state' }));
         };
@@ -140,10 +276,15 @@
             debug('[Dashboard] WebSocket closed');
             // #1398 + #1397: retry FOREVER with capped backoff, scheduled through
             // the dedup guard so a visibilitychange reconnect can cancel the
-            // pending timer instead of racing it into a second socket. The
-            // "no game" view is an interim status, never a terminal give-up.
+            // pending timer instead of racing it into a second socket.
             reconnectAttempts++;
-            showView('dashboard-no-game');
+            // #1712: a transient mid-game WS drop must NOT wipe the live game.
+            // Keep whatever view is currently rendered (leaderboard / round /
+            // art / scores) frozen and dimmed, and surface ONLY the reconnect
+            // badge. The "No active game" screen is reserved for a
+            // server-CONFIRMED no-game state (handleStateUpdate), never a
+            // dropped socket — that used to read as a crash to the whole room.
+            _setDisconnectedDim(true);
             // #1578: surface the reconnect attempt visibly on the TV display.
             _showReconnectIndicator();
             var delay = getReconnectDelay();
@@ -420,8 +561,6 @@
      * @param {Object} data - State data
      */
     function handleStateUpdate(data) {
-        var phase = data.phase;
-
         // Apply language from game state (Story 12.5, 16.3)
         // Must re-render after language loads to update dynamic content
         // Guard: skip if i18n unavailable
@@ -451,8 +590,24 @@
             return;
         }
 
+        // #1705: hand the payload to the coalescer instead of rendering inline.
+        // A burst of broadcasts now collapses to one render per frame and an
+        // unchanged state skips the render entirely.
+        _scheduleRender(data);
+    }
+
+    /**
+     * Apply a state payload to the DOM (the heavy render). Invoked by the
+     * #1705 coalescer at most once per animation frame with the latest payload
+     * of a burst — never call this directly from the WS handler.
+     * @param {Object} data - State data
+     */
+    function _applyStateRender(data) {
+        var phase = data.phase;
+
         if (!phase || phase === 'END' && !data.game_id) {
-            // No active game
+            // No active game (server-CONFIRMED — see #1712: a dropped socket
+            // does NOT reach here, so it never shows this screen).
             showView('dashboard-no-game');
             stopCountdown();
             return;
@@ -501,6 +656,22 @@
         // Render QR code
         if (data.join_url) {
             renderQRCode(data.join_url);
+        }
+
+        // #1713: always surface the join URL as large, readable text beneath the
+        // QR so a guest whose camera can't lock the code (or who prefers to type
+        // it) has a fallback — and so there's a real address on screen if the QR
+        // library itself fails to load. Single most important join affordance,
+        // so it must never be a single point of failure.
+        var joinUrlEl = document.getElementById('dashboard-join-url');
+        if (joinUrlEl) {
+            if (data.join_url) {
+                joinUrlEl.textContent = data.join_url;
+                joinUrlEl.classList.remove('hidden');
+            } else {
+                joinUrlEl.textContent = '';
+                joinUrlEl.classList.add('hidden');
+            }
         }
 
         // Render game settings indicator (top-right corner)
@@ -565,7 +736,12 @@
                 correctLevel: QRCode.CorrectLevel.M
             });
         } else {
-            container.innerHTML = '<p>QR code unavailable</p>';
+            // #1713: QR library failed to load — don't dead-end on "unavailable".
+            // The readable join URL rendered beneath the QR (renderLobbyView) is
+            // the fallback, so point the guest at it.
+            container.innerHTML = '<p class="dashboard-qr-fallback">' +
+                utils.escapeHtml(utils.t('dashboard.qrUnavailable', 'Scan unavailable — enter the web address below')) +
+                '</p>';
         }
     }
 
@@ -679,8 +855,12 @@
             };
         }
 
-        // Start countdown
-        if (data.deadline) {
+        // Start countdown — #1705: (re)start ONLY when the round's deadline
+        // actually changes. On a plain re-render (a submission/score update that
+        // reuses the same deadline) the running 1Hz timer must keep ticking
+        // instead of being torn down + recreated on every broadcast.
+        if (data.deadline && data.deadline !== lastCountdownDeadline) {
+            lastCountdownDeadline = data.deadline;
             // #1662: pass the server's relative seconds_remaining so the
             // countdown anchors to the client's own clock (skew-immune).
             startCountdown(data.deadline, data.seconds_remaining);
@@ -799,6 +979,9 @@
             clearInterval(countdownInterval);
             countdownInterval = null;
         }
+        // #1705: forget the tracked deadline so the next PLAYING round always
+        // (re)starts its countdown, even if it happens to reuse the same value.
+        lastCountdownDeadline = null;
     }
 
     /**
@@ -823,8 +1006,9 @@
             });
         }
 
-        var html = '';
-        leaderboard.forEach(function(entry) {
+        // #1705: build keyed rows and diff them into the DOM instead of blowing
+        // away the whole N-row list with innerHTML on every broadcast.
+        var rows = leaderboard.map(function(entry) {
             var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
 
             // Rank change animation class
@@ -872,7 +1056,7 @@
                 submittedIndicator = '<div class="entry-submitted ' + (isSubmitted ? 'is-submitted' : '') + '"></div>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
+            var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
                 '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
                 '<span class="entry-meta">' +
@@ -882,9 +1066,10 @@
                 '<span class="entry-score">' + entry.score + '</span>' +
                 submittedIndicator +
             '</div>';
+            return { key: String(entry.name), html: html };
         });
 
-        container.innerHTML = html;
+        _reconcileRows(container, rows);
     }
 
     // ============================================
@@ -1319,8 +1504,8 @@
         var container = document.getElementById('reveal-leaderboard');
         if (!container) return;
 
-        var html = '';
-        leaderboard.forEach(function(entry) {
+        // #1705: keyed row diff (reveal can re-broadcast during live TA voting).
+        var rows = leaderboard.map(function(entry) {
             var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
 
             // Rank change animation
@@ -1355,7 +1540,7 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
-            html += '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
+            var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
                 '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
                 '<span class="entry-meta">' +
@@ -1364,9 +1549,10 @@
                 '</span>' +
                 '<span class="entry-score">' + entry.score + '</span>' +
             '</div>';
+            return { key: String(entry.name), html: html };
         });
 
-        container.innerHTML = html;
+        _reconcileRows(container, rows);
     }
 
     // ============================================
