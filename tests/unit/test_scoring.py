@@ -452,6 +452,139 @@ class TestApplyClosestWins:
         # Real previous_streak preserved — NOT clobbered to 0.
         assert p2.previous_streak == 6
 
+    def test_accurate_non_closest_keeps_streak(self):
+        """#1721: an accurate (base_score>0) non-closest player keeps the streak.
+
+        Closest-Wins still voids the round POINTS, but the streak, its milestone
+        counter, the Steal unlock and best_streak survive so streaks/Steal/🔥 are
+        reachable in this mode.
+        """
+        from custom_components.beatify.const import STEAL_UNLOCK_STREAK
+
+        p1 = _make_player("Alice", 2000, 10)  # 0 off — closest
+        # Bob is 2 off (accurate — base_score 5) but not closest.
+        p2 = _make_player(
+            "Bob",
+            1998,
+            8,
+            base_score=5,
+            streak=STEAL_UNLOCK_STREAK,
+            streak_bonus=20,
+            best_streak=STEAL_UNLOCK_STREAK,
+            steal_available=True,
+            steal_used=False,
+            score=8 + 20,
+        )
+        achievements = {f"streak_{STEAL_UNLOCK_STREAK}": 1}
+
+        ScoringService.apply_closest_wins([p1, p2], 2000, achievements)
+
+        # Points voided …
+        assert p2.round_score == 0
+        assert p2.score == 0
+        assert p2.streak_bonus == 0
+        # … but the streak and everything it unlocked survive.
+        assert p2.streak == STEAL_UNLOCK_STREAK
+        assert p2.best_streak == STEAL_UNLOCK_STREAK
+        assert p2.steal_available is True
+        assert achievements[f"streak_{STEAL_UNLOCK_STREAK}"] == 1
+
+    def test_inaccurate_non_closest_breaks_streak(self):
+        """#1721: a wrong (base_score==0) non-closest player still loses streak.
+
+        Mirrors real play where _apply_streak already zeroed a wrong guess; the
+        streak preservation is gated strictly on positive accuracy.
+        """
+        p1 = _make_player("Alice", 2000, 10)
+        p2 = _make_player("Bob", 1990, 5, base_score=0, streak=3, streak_bonus=20)
+        p2.score = 5 + 20
+
+        ScoringService.apply_closest_wins([p1, p2], 2000)
+
+        assert p2.round_score == 0
+        assert p2.streak == 0
+        assert p2.streak_bonus == 0
+        assert p2.previous_streak == 2  # pre-round value (streak - 1)
+
+
+# ---------------------------------------------------------------------------
+# Intro-round speed bonus (Issue #23, correctness gate #1720)
+# ---------------------------------------------------------------------------
+
+
+# Epoch-like base so intro_round_start_time is truthy (0.0 is falsy in the
+# guard, matching real gameplay where these are wall-clock timestamps).
+_INTRO_ROUND_START = 1000.0
+
+
+def _intro_player(name: str, guess: int, offset: float) -> PlayerSession:
+    """A submitted player for intro-round tests; ``offset`` seconds after start."""
+    p = PlayerSession(name=name, ws=MagicMock())
+    p.submitted = True
+    p.current_guess = guess
+    p.submission_time = _INTRO_ROUND_START + offset
+    return p
+
+
+def _score_intro_year(
+    players: list[PlayerSession], correct_year: int = 2000, difficulty: str = "normal"
+) -> None:
+    """Score every player for a year-mode intro round via score_player_round."""
+    achievements: dict[str, int] = {}
+    bets = {"total_bets": 0, "bets_won": 0}
+    for p in players:
+        ScoringService.score_player_round(
+            p,
+            correct_year=correct_year,
+            round_start_time=_INTRO_ROUND_START,
+            round_duration=30.0,
+            difficulty=difficulty,
+            artist_challenge=None,
+            movie_challenge=None,
+            is_intro_round=True,
+            intro_round_start_time=_INTRO_ROUND_START,
+            all_players=players,
+            streak_achievements=achievements,
+            bet_tracking=bets,
+            title_artist_manager=None,
+        )
+
+
+class TestIntroBonusCorrectnessGate:
+    """#1720: the tiered intro speed bonus is gated on answer correctness."""
+
+    def test_fast_wrong_gets_no_bonus_correct_does(self):
+        """A fast-but-wrong tap earns nothing; a slower-but-correct guess does."""
+        wrong_fast = _intro_player("Wrong", 1950, 0.5)  # 50 off → base_score 0
+        right = _intro_player("Right", 2000, 1.0)  # exact
+        _score_intro_year([wrong_fast, right])
+
+        assert wrong_fast.intro_bonus == 0
+        assert wrong_fast.intro_speed_bonuses == 0
+        assert right.intro_bonus == 5
+        assert right.intro_speed_bonuses == 1
+
+    def test_fast_wrong_does_not_displace_correct_ranking(self):
+        """Ranking runs among the qualified only — a faster wrong tap can't push
+        a correct recognizer down a tier."""
+        wrong_fastest = _intro_player("Wrong", 1950, 0.5)
+        alice = _intro_player("Alice", 2000, 1.0)  # exact, fastest correct
+        carol = _intro_player("Carol", 2001, 2.0)  # 1 off → accurate, 2nd correct
+        # Score Alice first to prove order-independence of the rank calc.
+        _score_intro_year([alice, wrong_fastest, carol])
+
+        assert wrong_fastest.intro_bonus == 0
+        assert alice.intro_bonus == 5  # rank 0 among qualified
+        assert carol.intro_bonus == 3  # rank 1 among qualified
+
+    def test_correct_after_cutoff_gets_no_bonus(self):
+        """A correct guess after the 15s intro cutoff earns no intro bonus."""
+        late = _intro_player("Late", 2000, 20.0)  # correct but past 15s cutoff
+        _score_intro_year([late])
+
+        assert late.intro_bonus == 0
+        assert late.intro_speed_bonuses == 0
+
 
 # ---------------------------------------------------------------------------
 # Title & Artist mode scoring (Issue #1180)
