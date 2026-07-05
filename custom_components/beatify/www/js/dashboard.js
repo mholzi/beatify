@@ -605,6 +605,17 @@
     function _applyStateRender(data) {
         var phase = data.phase;
 
+        // #1765: re-attach the per-player fields the server no longer duplicates
+        // into every slim in-round leaderboard entry (score/connected/eliminated/
+        // …) from data.players by name, so the TV rows/podium render unchanged.
+        // Hydrate into a shallow COPY so the coalescer's retained payload keeps
+        // its on-the-wire (slim) shape for equality checks (#1705).
+        if (data.leaderboard) {
+            data = Object.assign({}, data, {
+                leaderboard: utils.hydrateLeaderboard(data.leaderboard, data.players)
+            });
+        }
+
         if (!phase || phase === 'END' && !data.game_id) {
             // No active game (server-CONFIRMED — see #1712: a dropped socket
             // does NOT reach here, so it never shows this screen).

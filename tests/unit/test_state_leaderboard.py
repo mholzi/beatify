@@ -164,7 +164,12 @@ class TestLeaderboardPayload:
         self.state = make_game_state()
         _create_fresh_game(self.state)
 
-    def test_entry_carries_live_fields(self):
+    def test_entry_is_slim_rank_name_change_only(self):
+        # #1765: the in-round leaderboard carries ONLY {rank, name, rank_change}.
+        # The per-player fields (score, streak, is_admin, connected, eliminated,
+        # eliminated_round) are already in the frame's players array and are
+        # re-attached client-side (BeatifyUtils.hydrateLeaderboard) — they must
+        # NOT be duplicated here.
         _add(
             self.state,
             "Alice",
@@ -176,11 +181,16 @@ class TestLeaderboardPayload:
 
         (entry,) = self.state.get_leaderboard()
 
-        assert entry["name"] == "Alice"
-        assert entry["score"] == 42
-        assert entry["streak"] == 3
-        assert entry["is_admin"] is True
-        assert entry["connected"] is False
+        assert entry == {"rank": 1, "name": "Alice", "rank_change": 0}
+        for dropped in (
+            "score",
+            "streak",
+            "is_admin",
+            "connected",
+            "eliminated",
+            "eliminated_round",
+        ):
+            assert dropped not in entry
 
     def test_ties_break_by_name_for_stable_display(self):
         # Equal scores -> alphabetical name order, equal rank.

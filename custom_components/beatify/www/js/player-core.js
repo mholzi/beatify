@@ -626,6 +626,17 @@ function handleServerMessage(data) {
     var nameInput = document.getElementById('name-input');
 
     if (data.type === 'state') {
+        // #1765: the server sends a slim in-round leaderboard ({rank, name,
+        // rank_change}). Re-attach each player's score/streak/connected/… from
+        // data.players by name once, here (into a shallow copy), so every
+        // downstream consumer (standings, previous-state snapshot, cached
+        // lastLeaderboard, steal modal) sees full entries with no per-callsite
+        // change.
+        if (data.leaderboard) {
+            data = Object.assign({}, data, {
+                leaderboard: utils.hydrateLeaderboard(data.leaderboard, data.players)
+            });
+        }
         var players = data.players || [];
         var currentPlayer = players.find(function(p) { return p.name === state.playerName; });
         if (currentPlayer) {

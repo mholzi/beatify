@@ -33,10 +33,19 @@ class LeaderboardMixin:
 
     def get_leaderboard(self) -> list[dict[str, Any]]:
         """
-        Get leaderboard sorted by score (Story 5.5).
+        Get the in-round leaderboard sorted by score (Story 5.5).
+
+        #1765: entries carry ONLY ``{rank, name, rank_change}``. Every other
+        per-player field (score, streak, is_admin, connected, eliminated,
+        eliminated_round) is already present in the ``players`` array of the
+        same broadcast frame, so duplicating it here shipped ~30-40% redundant
+        bytes on every PLAYING/REVEAL frame (and serialized it twice). Clients
+        re-attach those fields from ``players`` by name on receipt
+        (``BeatifyUtils.hydrateLeaderboard``). ``get_final_leaderboard`` (END
+        phase, sent once) keeps the full stat block.
 
         Returns:
-            List of player data with rank and movement info.
+            List of ``{rank, name, rank_change}`` sorted by score, then name.
             Note: is_current is set client-side based on playerName.
 
         """
@@ -62,19 +71,13 @@ class LeaderboardMixin:
             if player.previous_rank is not None:
                 rank_change = player.previous_rank - current_rank
 
-            entry = {
-                "rank": current_rank,
-                "name": player.name,
-                "score": player.score,
-                "streak": player.streak,
-                "is_admin": player.is_admin,
-                "rank_change": rank_change,
-                "connected": player.connected,
-                # Issue #827: Sudden Death cut-line rendering
-                "eliminated": player.eliminated,
-                "eliminated_round": player.eliminated_round,
-            }
-            leaderboard.append(entry)
+            leaderboard.append(
+                {
+                    "rank": current_rank,
+                    "name": player.name,
+                    "rank_change": rank_change,
+                }
+            )
 
         return leaderboard
 
