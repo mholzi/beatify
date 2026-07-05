@@ -1376,6 +1376,20 @@
         </div>
     </div>
 
+    <!-- #1758: "Start anyway?" onboarding gate — styled modal replacing the
+         native window.confirm() so it matches the neon theme + focus mgmt. -->
+    <div id="start-anyway-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="start-anyway-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="start-anyway-title" data-i18n="onboarding.startAnywayTitle">Start anyway?</h2>
+            <p id="start-anyway-message">Some players are still learning the rules.</p>
+            <div class="modal-actions">
+                <button id="start-anyway-confirm-btn" class="btn btn-primary" data-i18n="onboarding.startAnywayConfirm">Start anyway</button>
+                <button id="start-anyway-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Force-reset confirmation modal (#777 follow-up — emergency escape hatch) -->
     <div id="reset-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
         <div class="modal-backdrop"></div>

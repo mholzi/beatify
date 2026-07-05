@@ -81,6 +81,8 @@ vi.mock('../player-utils.js', () => ({
     setEnergyLevel: () => {},
     triggerConfetti: () => {},
     stopConfetti: () => {},
+    isTitleArtistMode: () => false,
+    createModalFocusTrap: () => ({ activate: () => {}, deactivate: () => {} }),
 }));
 vi.mock('../notify.js', () => ({ showToast: () => {}, showBanner: () => {}, clearBanner: () => {} }));
 

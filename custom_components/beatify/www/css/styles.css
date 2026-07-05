@@ -750,6 +750,18 @@ body.theme-dark .media-player-item.is-selected {
     cursor: pointer;
 }
 
+/* #1759: 44px tap target (visual stays 28px) so dismissing the banner doesn't
+   risk hitting the banner CTA underneath. */
+.seasonal-suggestion__dismiss::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+}
+
 .seasonal-suggestion__dismiss:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.08);
@@ -3413,6 +3425,7 @@ body.theme-dark .admin-controls {
 
 /* Kick player button for disconnected players (#659) */
 .kick-player-btn {
+    position: relative;
     background: none;
     border: 1px solid var(--color-border-dark);
     color: var(--color-text-muted);
@@ -3428,6 +3441,18 @@ body.theme-dark .admin-controls {
     margin-top: var(--space-xs);
     padding: 0;
     transition: all 0.15s ease;
+}
+
+/* #1759: expand the tap target to the 44px iOS/Android guideline without
+   growing the 24px visual, so it's reliably hittable inside the tappable row. */
+.kick-player-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
 }
 
 .kick-player-btn:hover {
@@ -7792,6 +7817,19 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-bar {
 
 .reaction-btn:active {
     transform: scale(0.9);
+}
+
+/* #1757: used-state feedback. Once a reaction is spent this phase the whole bar
+   is disabled; the chosen emoji stays lit so the player sees what they sent. */
+.reaction-btn:disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.reaction-btn.is-used {
+    opacity: 1;
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 12px var(--color-accent-primary);
 }
 
 /* Neon glow effect on tap */
@@ -12521,10 +12559,23 @@ body.is-ingame .player-header { display: none; }
 }
 /* #851 coarse-step variant: smaller +5/-5 buttons next to the main +/-. */
 .slider-btn-year--coarse {
+    position: relative;
     width: 36px; height: 36px;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: -0.02em;
+}
+/* #1759: mid-round +/-5 buttons sit next to 44px fine-step siblings under time
+   pressure; expand the hit target to 44px (visual stays 36px) so a mis-tap
+   doesn't land on the fine button and cost points. */
+.slider-btn-year--coarse::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
 }
 .slider-arcade { gap: 8px; }  /* tighten gap so 5 children fit on narrow screens */
 .slider-arcade-track { flex: 1; display: flex; align-items: center; }

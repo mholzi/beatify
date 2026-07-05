@@ -5,10 +5,15 @@
 
 import {
     state, escapeHtml, virtualPlayerList,
-    initVirtualPlayerList, setVirtualPlayerListItems
+    initVirtualPlayerList, setVirtualPlayerListItems,
+    createModalFocusTrap
 } from './player-utils.js';
 
 var utils = window.BeatifyUtils || {};
+
+// #1760: focus traps for the QR + invite dialogs (lazily created once each).
+var _qrTrap = null;
+var _inviteTrap = null;
 
 // ============================================
 // Player List Rendering (Story 3.3)
@@ -256,8 +261,12 @@ function openQRModal() {
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
+    // #1760: trap focus in the dialog, Escape closes, focus restores on close.
     var closeBtn = document.getElementById('qr-modal-close');
-    if (closeBtn) closeBtn.focus();
+    _qrTrap = _qrTrap || createModalFocusTrap(modal, {
+        contentSelector: '.qr-modal-content'
+    });
+    _qrTrap.activate({ initialFocus: closeBtn, onEscape: closeQRModal });
 }
 
 function closeQRModal() {
@@ -266,6 +275,7 @@ function closeQRModal() {
         modal.classList.add('hidden');
         document.body.style.overflow = '';
     }
+    if (_qrTrap) _qrTrap.deactivate(); // #1760
 }
 
 /**
@@ -324,8 +334,12 @@ export function openInviteModal() {
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
+    // #1760: trap focus in the dialog, Escape closes, focus restores on close.
     var closeBtn = document.getElementById('invite-modal-close');
-    if (closeBtn) closeBtn.focus();
+    _inviteTrap = _inviteTrap || createModalFocusTrap(modal, {
+        contentSelector: '.invite-modal-content'
+    });
+    _inviteTrap.activate({ initialFocus: closeBtn, onEscape: closeInviteModal });
 }
 
 export function closeInviteModal() {
@@ -336,6 +350,7 @@ export function closeInviteModal() {
     }
     var feedback = document.getElementById('invite-copy-feedback');
     if (feedback) feedback.classList.add('hidden');
+    if (_inviteTrap) _inviteTrap.deactivate(); // #1760
 }
 
 function copyJoinUrl() {

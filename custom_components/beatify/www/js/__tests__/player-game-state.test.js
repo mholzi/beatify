@@ -103,6 +103,8 @@ const {
     resetSongStoppedState,
     handleNextRound,
     resetNextRoundPending,
+    setupReactionBar,
+    resetReactionButtons,
 } = await import('../player-game.js');
 
 // helper: build a control button with a nested .control-label (+ optional icon)
@@ -416,5 +418,81 @@ describe('handleNextRound / resetNextRoundPending debounce (#534)', () => {
     it('does nothing when the socket is not open', () => {
         utilsMod.state.ws = { readyState: WebSocket.CLOSED, send: () => { throw new Error('no send'); } };
         expect(() => handleNextRound()).not.toThrow();
+    });
+});
+
+// ---------------------------------------------------------------------------
+// #1757: reaction bar — spend the one-per-phase budget only on a successful
+// send, and reflect the used state on the buttons.
+// ---------------------------------------------------------------------------
+
+function makeReactionBtn(emoji) {
+    const classes = new Set();
+    let clickHandler = null;
+    return {
+        disabled: false,
+        _attrs: { 'data-emoji': emoji },
+        classList: {
+            add: (c) => classes.add(c),
+            remove: (c) => classes.delete(c),
+            contains: (c) => classes.has(c),
+            toggle: (c, on) => { if (on) classes.add(c); else classes.delete(c); return classes.has(c); },
+        },
+        getAttribute: function (k) { return this._attrs[k]; },
+        setAttribute: function (k, v) { this._attrs[k] = v; },
+        addEventListener: (type, fn) => { if (type === 'click') clickHandler = fn; },
+        click: () => { if (clickHandler) clickHandler(); },
+    };
+}
+
+describe('reaction bar (#1757)', () => {
+    let buttons;
+
+    beforeEach(() => {
+        buttons = [makeReactionBtn('🔥'), makeReactionBtn('😂')];
+        const bar = { querySelectorAll: () => buttons };
+        els['reaction-bar'] = bar;
+        utilsMod.state.hasReactedThisPhase = false;
+    });
+
+    it('does NOT burn the budget or disable buttons when the socket is closed', () => {
+        utilsMod.state.ws = { readyState: WebSocket.CLOSED, send: () => { throw new Error('no send'); } };
+        setupReactionBar();
+        buttons[0].click();
+        expect(utilsMod.state.hasReactedThisPhase).toBe(false); // still allowed
+        expect(buttons[0].disabled).toBe(false);
+        expect(buttons[0].classList.contains('is-used')).toBe(false);
+    });
+
+    it('spends the budget on a successful send and marks the used button', () => {
+        const sent = [];
+        utilsMod.state.ws = { readyState: WebSocket.OPEN, send: (m) => sent.push(JSON.parse(m)) };
+        setupReactionBar();
+        buttons[0].click();
+
+        expect(sent).toEqual([{ type: 'reaction', emoji: '🔥' }]);
+        expect(utilsMod.state.hasReactedThisPhase).toBe(true);
+        // whole bar disabled; chosen emoji lit + aria-pressed
+        expect(buttons[0].disabled).toBe(true);
+        expect(buttons[1].disabled).toBe(true);
+        expect(buttons[0].classList.contains('is-used')).toBe(true);
+        expect(buttons[0].getAttribute('aria-pressed')).toBe('true');
+        expect(buttons[1].getAttribute('aria-pressed')).toBe('false');
+
+        // a second tap is a silent no-op (budget already spent)
+        buttons[1].click();
+        expect(sent).toHaveLength(1);
+    });
+
+    it('resetReactionButtons re-enables the bar for a fresh round', () => {
+        utilsMod.state.ws = { readyState: WebSocket.OPEN, send: () => {} };
+        setupReactionBar();
+        buttons[0].click();
+        expect(buttons[0].disabled).toBe(true);
+
+        resetReactionButtons();
+        expect(buttons[0].disabled).toBe(false);
+        expect(buttons[0].classList.contains('is-used')).toBe(false);
+        expect(buttons[0].getAttribute('aria-pressed')).toBe('false');
     });
 });

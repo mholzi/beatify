@@ -687,7 +687,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ? BeatifyI18n.t(key, { count })
                     : fallback;
                 const msg = (rawMsg === key) ? fallback : rawMsg;
-                if (!window.confirm(msg)) return;
+                // #1758: styled in-page modal (focus-managed) instead of native
+                // window.confirm() — which blocks the thread, clashes with the
+                // neon theme, and is silently suppressed in some Android
+                // WebView/PWA contexts (auto-returns false → Start looks dead).
+                showStartAnywayModal(msg, startGameplay);
+                return;
             }
             startGameplay();
         } else {
@@ -1333,6 +1338,45 @@ function deactivateModalFocus(modalId) {
         document.contains(state.prevFocus)) {
         state.prevFocus.focus();
     }
+}
+
+/**
+ * #1758: styled "Start anyway?" confirmation, replacing window.confirm() on the
+ * onboarding gate. Mirrors the #1719 modal pattern (Tab-trap + focus restore
+ * via activate/deactivateModalFocus). One-shot listeners so repeated opens
+ * don't stack handlers.
+ * @param {string} message
+ * @param {Function} onConfirm invoked only when the host confirms
+ */
+function showStartAnywayModal(message, onConfirm) {
+    const modal = document.getElementById('start-anyway-modal');
+    if (!modal) {
+        // Fallback keeps Start working if the markup is somehow absent.
+        if (window.confirm(message)) onConfirm();
+        return;
+    }
+    const msgEl = document.getElementById('start-anyway-message');
+    if (msgEl) msgEl.textContent = message;
+    const confirmBtn = document.getElementById('start-anyway-confirm-btn');
+    const cancelBtn = document.getElementById('start-anyway-cancel-btn');
+    const backdrop = modal.querySelector('.modal-backdrop');
+
+    function close() {
+        modal.classList.add('hidden');
+        deactivateModalFocus('start-anyway-modal');
+        confirmBtn.removeEventListener('click', onYes);
+        cancelBtn.removeEventListener('click', onNo);
+        if (backdrop) backdrop.removeEventListener('click', onNo);
+    }
+    function onYes() { close(); onConfirm(); }
+    function onNo() { close(); }
+
+    confirmBtn.addEventListener('click', onYes);
+    cancelBtn.addEventListener('click', onNo);
+    if (backdrop) backdrop.addEventListener('click', onNo);
+
+    modal.classList.remove('hidden');
+    activateModalFocus('start-anyway-modal', 'start-anyway-cancel-btn');
 }
 
 /**

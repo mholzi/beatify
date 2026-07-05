@@ -29,7 +29,7 @@ import {
     handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
     handleStealAck, handleStealTargets,
     showAdminControlBar, hideAdminControlBar,
-    showReactionBar, hideReactionBar, setupReactionBar,
+    showReactionBar, hideReactionBar, setupReactionBar, resetReactionButtons,
     showFloatingReaction,
     updateControlBarState, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
@@ -765,7 +765,15 @@ function handleServerMessage(data) {
             setupRevealLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('REVEAL');
-            state.hasReactedThisPhase = false;
+            // #1757: reset the one-per-reveal reaction budget + button used-
+            // state only when a NEW reveal round begins, not on every REVEAL
+            // re-broadcast (vote tallies etc.), so the used-state feedback
+            // persists through the phase.
+            if (state._reactionRevealRound !== data.round) {
+                state._reactionRevealRound = data.round;
+                state.hasReactedThisPhase = false;
+                resetReactionButtons();
+            }
             showReactionBar();
         } else if (data.phase === 'PAUSED') {
             stopCountdown();
