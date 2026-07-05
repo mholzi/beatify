@@ -12,6 +12,12 @@
 var CACHE_VERSION = 'beatify-v{{ASSET_VER}}';
 var MAX_CACHE_ITEMS = 50;
 
+// #1761: a tiny precached fallback page so a network-first miss (first visit
+// offline, or the page evicted by the prune) resolves to a styled "offline"
+// screen instead of undefined — which would reject respondWith and dump the
+// player onto the browser's raw network-error page.
+var OFFLINE_URL = '/beatify/static/offline.html';
+
 // Gated debug logging (#1280). Service workers run without window/localStorage,
 // so the BeatifyDebug runtime flag isn't reachable here; gate on a build-time
 // constant instead. Flip to true when debugging SW caching. console.warn/error
@@ -34,7 +40,8 @@ var PRECACHE_ASSETS = [
     '/beatify/static/img/no-artwork.svg',
     '/beatify/static/site.webmanifest',
     '/beatify/static/img/icon-256.png',
-    '/beatify/static/img/icon-512.png'
+    '/beatify/static/img/icon-512.png',
+    OFFLINE_URL
 ];
 
 // Files that must NEVER be served from cache. The cache-buster on script tags
@@ -196,8 +203,12 @@ function networkFirst(request) {
             return response;
         })
         .catch(function() {
-            // Network failed, try cache
-            return caches.match(request);
+            // Network failed, try cache; #1761: fall back to the precached
+            // offline page when the request itself was never cached (first
+            // visit or evicted) so respondWith always gets a real Response.
+            return caches.match(request).then(function(cached) {
+                return cached || caches.match(OFFLINE_URL);
+            });
         });
 }
 
@@ -208,9 +219,26 @@ function pruneCache() {
     caches.open(CACHE_VERSION)
         .then(function(cache) {
             cache.keys().then(function(keys) {
-                if (keys.length > MAX_CACHE_ITEMS) {
-                    // Delete oldest entries (FIFO)
-                    var toDelete = keys.slice(0, keys.length - MAX_CACHE_ITEMS);
+                // #1761: only prune runtime image entries (album art). Never
+                // evict the precached app shell / offline page or cached HTML
+                // pages — otherwise heavy album-art churn could drop the shell
+                // and the FIFO count (which previously included precache) made
+                // that happen well before 50 real images accrued.
+                var prunable = keys.filter(function(req) {
+                    var path;
+                    try {
+                        path = new URL(req.url).pathname;
+                    } catch (e) {
+                        path = req.url;
+                    }
+                    if (PRECACHE_ASSETS.indexOf(path) !== -1) return false;
+                    if (req.mode === 'navigate') return false;
+                    if (/\.html?($|\?|#)/i.test(path)) return false;
+                    return true;
+                });
+                if (prunable.length > MAX_CACHE_ITEMS) {
+                    // Delete oldest prunable entries (FIFO).
+                    var toDelete = prunable.slice(0, prunable.length - MAX_CACHE_ITEMS);
                     Promise.all(
                         toDelete.map(function(key) {
                             return cache.delete(key);

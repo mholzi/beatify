@@ -12,8 +12,14 @@ import {
     initLeaderboardObserver, renderLazyLeaderboardRange,
     renderLeaderboardEntry, calculateInitialVisibleRange,
     setupLeaderboardResizeHandler, setEnergyLevel,
-    triggerConfetti, stopConfetti, isTitleArtistMode
+    triggerConfetti, stopConfetti, isTitleArtistMode,
+    createModalFocusTrap
 } from './player-utils.js';
+
+// #1760: focus traps for the steal + intro-splash dialogs (lazily created once
+// per dialog element). Trap Tab within the dialog and restore focus on close.
+var _stealTrap = null;
+var _introSplashTrap = null;
 
 // #1279 step 6/6: self-contained game clusters extracted to ./player-game/.
 // player-game.js stays the public face and re-exports their consumer-facing
@@ -1279,6 +1285,11 @@ function openStealModal(targets, leaderboard) {
     }
 
     modal.classList.remove('hidden');
+    // #1760: trap focus in the steal dialog; Escape / backdrop close it.
+    _stealTrap = _stealTrap || createModalFocusTrap(modal, {
+        contentSelector: '.steal-modal-content'
+    });
+    _stealTrap.activate({ onEscape: closeStealModal });
 }
 
 /**
@@ -1315,6 +1326,7 @@ function buildStealTargetAria(name, entry, isLeader) {
 function closeStealModal() {
     var modal = document.getElementById('steal-modal');
     if (modal) modal.classList.add('hidden');
+    if (_stealTrap) _stealTrap.deactivate(); // #1760: restore focus to trigger
 }
 
 /**
@@ -1477,22 +1489,61 @@ export function hideReactionBar() {
 }
 
 /**
- * Send reaction via WebSocket (fire-and-forget)
+ * Send reaction via WebSocket.
  * @param {string} emoji - The emoji to send
+ * @param {HTMLElement} [btn] - The tapped button, marked used on success
  */
-function sendReaction(emoji) {
+function sendReaction(emoji, btn) {
     if (state.hasReactedThisPhase) {
         return;
     }
 
-    state.hasReactedThisPhase = true;
-
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-        state.ws.send(JSON.stringify({
-            type: 'reaction',
-            emoji: emoji
-        }));
+    // #1757: don't burn the one-per-phase budget if the socket is mid-
+    // reconnect — the reaction would be silently dropped and the player would
+    // get zero feedback and no retry. Leave the buttons active so they can
+    // react once the socket is back.
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        return;
     }
+
+    state.ws.send(JSON.stringify({
+        type: 'reaction',
+        emoji: emoji
+    }));
+
+    // Only now is the reaction actually spent — reflect it in the UI.
+    state.hasReactedThisPhase = true;
+    markReactionUsed(btn);
+}
+
+/**
+ * #1757: reflect the spent reaction — mark the tapped button used and disable
+ * the whole bar so further taps aren't silent no-ops.
+ * @param {HTMLElement} [usedBtn]
+ */
+function markReactionUsed(usedBtn) {
+    var bar = document.getElementById('reaction-bar');
+    if (!bar) return;
+    bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
+        btn.disabled = true;
+        var isUsed = btn === usedBtn;
+        btn.setAttribute('aria-pressed', isUsed ? 'true' : 'false');
+        btn.classList.toggle('is-used', isUsed);
+    });
+}
+
+/**
+ * #1757: re-enable the reaction bar for a fresh reveal round (called when the
+ * one-per-phase budget resets in player-core).
+ */
+export function resetReactionButtons() {
+    var bar = document.getElementById('reaction-bar');
+    if (!bar) return;
+    bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
+        btn.disabled = false;
+        btn.classList.remove('is-used');
+        btn.setAttribute('aria-pressed', 'false');
+    });
 }
 
 /**
@@ -1507,7 +1558,7 @@ export function setupReactionBar() {
         btn.addEventListener('click', function() {
             var emoji = btn.getAttribute('data-emoji');
             if (emoji) {
-                sendReaction(emoji);
+                sendReaction(emoji, btn);
             }
         });
     });
@@ -1936,6 +1987,16 @@ export function showIntroSplashModal(isAdmin) {
             if (waitingMsg) waitingMsg.classList.remove('hidden');
         }
     }
+
+    // #1760: trap focus in the splash + restore on close. No onEscape — the
+    // splash is a server-driven game gate, not a user-dismissable dialog.
+    _introSplashTrap = _introSplashTrap || createModalFocusTrap(modal, {
+        contentSelector: '.intro-splash-modal-content'
+    });
+    _introSplashTrap.activate({
+        initialFocus: (confirmBtn && !confirmBtn.classList.contains('hidden'))
+            ? confirmBtn : null
+    });
 }
 
 /**
@@ -1945,4 +2006,5 @@ export function hideIntroSplashModal() {
     var modal = document.getElementById('intro-splash-modal');
     if (!modal) return;
     modal.classList.add('hidden');
+    if (_introSplashTrap) _introSplashTrap.deactivate(); // #1760
 }

@@ -8,7 +8,8 @@ import {
     prefersReducedMotion, animateValue, animateScoreChange, showPointsPopup,
     previousState, isPreviousStateInitialized, isStreakMilestone,
     AnimationUtils, updatePreviousState,
-    triggerConfetti, stopConfetti, isTitleArtistMode
+    triggerConfetti, stopConfetti, isTitleArtistMode,
+    createModalFocusTrap
 } from './player-utils.js';
 
 import { renderArtistReveal, renderMovieReveal } from './player-game.js';
@@ -1516,20 +1517,31 @@ export function renderRoundStatsSheet() {
 
 // ---------- Sheet open/close wiring ----------
 
+var _sheetTraps = {};
+
 function openSheet(id, populate) {
     var sheet = document.getElementById(id);
     if (!sheet) return;
     if (typeof populate === 'function') populate();
     sheet.classList.remove('hidden');
-    // Trap focus lightly: move focus to the close button if present
+    // #1760: real focus trap (Tab-cycle + Escape close + focus restore) instead
+    // of just moving focus to the close button once. The sheets declared
+    // aria-modal=true but kept focus in the background before this.
     var closeBtn = sheet.querySelector('.sheet-close');
-    if (closeBtn) closeBtn.focus();
+    var trap = _sheetTraps[id] || (_sheetTraps[id] = createModalFocusTrap(sheet, {
+        contentSelector: '.sheet-content'
+    }));
+    trap.activate({
+        initialFocus: closeBtn,
+        onEscape: function() { closeSheet(id); }
+    });
 }
 
 function closeSheet(id) {
     var sheet = document.getElementById(id);
     if (!sheet) return;
     sheet.classList.add('hidden');
+    if (_sheetTraps[id]) _sheetTraps[id].deactivate(); // #1760
 }
 
 /**
