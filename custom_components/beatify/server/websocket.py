@@ -440,6 +440,15 @@ class BeatifyWebSocketHandler:
 
     async def broadcast_state(self) -> None:
         """Broadcast current game state to all connected players."""
+        # #1763: an immediate broadcast supersedes any pending debounced one —
+        # cancel it so a queued in-round progress frame can't land a redundant
+        # (or momentarily stale) broadcast right after a phase-transition frame.
+        # Guard against cancelling the debounce task from inside its own run
+        # (delayed_broadcast calls this method).
+        task = self._broadcast_debounce_task
+        if task and not task.done() and task is not asyncio.current_task():
+            task.cancel()
+
         game_state = get_game_state(self.hass)
         if not game_state:
             _LOGGER.warning("broadcast_state: No game state found in hass.data")
@@ -511,8 +520,12 @@ class BeatifyWebSocketHandler:
             "Player disconnected: %s (is_admin: %s)", player_name, player.is_admin
         )
 
-        # Broadcast disconnect state immediately
-        await self.broadcast_state()
+        # #1763: route the disconnect flag through the debounce — a mass Wi-Fi
+        # blip drops N players near-simultaneously and each drop previously
+        # forced a full back-to-back broadcast. The debounce coalesces them into
+        # one frame; a disconnect that actually completes the round still gets an
+        # immediate phase-transition broadcast from trigger_early_reveal below.
+        await self.debounced_broadcast_state()
 
         # #928: a mid-round disconnect can itself complete the round. If
         # everyone still active has already submitted, the departing player

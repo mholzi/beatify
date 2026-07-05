@@ -312,3 +312,79 @@ class TestNativeTwinRemapAtStart:
         assert resp.status == 200
         # A normal (non-twin) MA entity_id is used as-is.
         assert game_state.media_player == "media_player.esszimmer"
+
+
+# ---------------------------------------------------------------------------
+# #1766: start-game reuses discovery's already-parsed songs instead of
+# re-reading + re-parsing the playlist files on the event loop.
+# ---------------------------------------------------------------------------
+
+
+class TestStartGameReusesDiscoveryParse:
+    """StartGameView must serve the parse discovery already did (#1766)."""
+
+    async def test_cache_hit_skips_executor_read(self, tmp_path):
+        # Discovery walked + parsed the playlist seconds ago (via /api/status)
+        # and cached the songs keyed by the picker's path. Start must reuse that
+        # parse — no second read + json.loads of the whole document on the loop.
+        playlist_dir = tmp_path / "beatify" / "playlists"
+        playlist_dir.mkdir(parents=True)
+        selected_key = str(playlist_dir / "test.json")
+        parsed_songs = [
+            {
+                "year": 1985,
+                "title": "Cached Song",
+                "artist": "Cached Artist",
+                "uri": "spotify:track:0000000000000000000009",
+            }
+        ]
+
+        game_state = GameState()
+        hass = MagicMock()
+        hass.data = {DOMAIN: {"game": game_state}}
+        media_state = MagicMock()
+        media_state.state = "playing"
+        hass.states.get.return_value = media_state
+        hass.config.path.return_value = str(playlist_dir)
+        # If Start reused the cache, this executor read must NEVER be awaited.
+        hass.async_add_executor_job = AsyncMock(
+            side_effect=AssertionError("executor read must not run on a cache hit")
+        )
+
+        body = {"playlists": ["test.json"], "media_player": "media_player.test"}
+
+        async def _fake_discovery(_hass):
+            return [], {selected_key: parsed_songs}
+
+        with (
+            patch(
+                "custom_components.beatify.server.game_views.is_authorized_http",
+                new=MagicMock(return_value=True),
+            ),
+            patch(
+                "custom_components.beatify.server.game_views."
+                "async_discover_playlists_detailed",
+                new=AsyncMock(side_effect=_fake_discovery),
+            ),
+            patch(
+                "custom_components.beatify.server.game_views.er.async_get"
+            ) as mock_async_get,
+            patch(
+                "custom_components.beatify.server.game_views.get_platform_capabilities",
+                return_value={"supported": True},
+            ),
+            patch(
+                "custom_components.beatify.server.game_views."
+                "async_get_native_twin_remap",
+                new=AsyncMock(return_value={}),
+            ),
+        ):
+            entity_entry = MagicMock()
+            entity_entry.platform = "music_assistant"
+            mock_async_get.return_value.async_get.return_value = entity_entry
+
+            view = StartGameView(hass)
+            resp = await view.post(_make_request(hass, body))
+
+        assert resp.status == 200
+        hass.async_add_executor_job.assert_not_awaited()

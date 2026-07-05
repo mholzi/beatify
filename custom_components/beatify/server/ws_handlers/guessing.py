@@ -128,7 +128,9 @@ async def handle_submit(
     # transition to REVEAL and broadcast via the round_end callback,
     # avoiding a redundant double broadcast.
     if not game_state.check_all_guesses_complete():
-        await handler.broadcast_state()
+        # #1763: in-round submit progress → debounce (coalesces the per-player
+        # burst); the completing submit skips this and phase-transitions below.
+        await handler.debounced_broadcast_state()
 
     _LOGGER.debug(
         "Early reveal check: phase=%s, artist_challenge=%s",
@@ -254,7 +256,8 @@ async def handle_steal(
         # Issue #842 Phase 4: announce the steal (use case 23).
         await game_state.announce_steal_used(player.name, result["target"])
         if not game_state.check_all_guesses_complete():
-            await handler.broadcast_state()
+            # #1763: in-round progress → debounce.
+            await handler.debounced_broadcast_state()
         await game_state.trigger_early_reveal_if_complete()
     else:
         await ws.send_json(
@@ -386,7 +389,8 @@ async def handle_artist_guess(
     await ws.send_json(response)
 
     if result.get("first"):
-        await handler.broadcast_state()
+        # #1763: in-round progress (first-correct flag) → debounce.
+        await handler.debounced_broadcast_state()
 
     await game_state.trigger_early_reveal_if_complete()
 
@@ -603,7 +607,8 @@ async def handle_title_artist_guess(
     # when the early-reveal path is about to broadcast via the round_end
     # callback. Only broadcast here when the round is NOT yet complete.
     if not game_state.check_all_guesses_complete():
-        await handler.broadcast_state()
+        # #1763: in-round progress → debounce.
+        await handler.debounced_broadcast_state()
 
     await game_state.trigger_early_reveal_if_complete()
 
@@ -699,7 +704,9 @@ async def handle_title_artist_vote(
     _LOGGER.debug(
         "Title/artist vote by %s on %s -> %s", player.name, nearmiss_id, accept
     )
-    await handler.broadcast_state()
+    # #1763: REVEAL-phase vote tallies are the same per-player burst as guesses
+    # — coalesce them through the debounce rather than a full frame per vote.
+    await handler.debounced_broadcast_state()
 
 
 async def handle_title_artist_override(
@@ -770,4 +777,5 @@ async def handle_title_artist_override(
 
     game_state.set_title_artist_override(nearmiss_id, accept)
     _LOGGER.info("Title/artist override on %s -> %s", nearmiss_id, accept)
-    await handler.broadcast_state()
+    # #1763: an override is a non-phase-changing in-round tally update — debounce.
+    await handler.debounced_broadcast_state()
