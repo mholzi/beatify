@@ -9,7 +9,7 @@
 Turn any gathering into an unforgettable music trivia experience.
 Guests scan, songs play, everyone competes. It's that simple.
 
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Version](https://img.shields.io/github/v/release/mholzi/beatify?style=for-the-badge&color=ff00ff&label=Version)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
@@ -41,7 +41,7 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 **Two Ways to Play** — Guess the release year, or switch to **Title & Artist** mode and type the song title (+10) and artist (+5) in free text, with typo-forgiving partial credit. Close calls go to a live 👍/👎 vote — *Crowd Court* — that the whole room watches on the TV.
 
-**Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer playlists. Curated song packs included. Create your own.
+**Your Music, Your Vibe** — Spotify, Apple Music, YouTube Music, Tidal, Deezer, or Amazon Music (Alexa) playlists. Curated song packs included. Create your own.
 
 **Runs Locally** — No cloud, no Beatify account, no data leaves your network. Free and open-source. (You bring your own music-streaming subscription — see [Requirements](#requirements).)
 
@@ -139,7 +139,7 @@ play with zero friction.
 **First time?** Beatify drops you into a 5-step first-run wizard that walks you through the whole setup:
 
 1. **Speakers** — Only [supported speakers](#supported-speakers) appear
-2. **Music service** — Spotify, Apple Music, YouTube Music, Tidal, or Deezer (filtered by speaker)
+2. **Music service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer, or Amazon Music (filtered by speaker; Amazon Music is offered only on Alexa)
 3. **Playlist** — Pick one or more curated packs
 4. **Game mode** — Difficulty, round timer, announcement language, Artist Challenge / Intro Mode / Closest Wins toggles
 5. **Lights & Voice** (optional) — Party Lights mode + WLED presets, TTS announcements (only shown if Home Assistant has the entities)
@@ -354,7 +354,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 5,161 songs across 46 curated playlists:
+Beatify comes with 5,381 songs across 49 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -385,20 +385,23 @@ Beatify comes with 5,161 songs across 46 curated playlists:
 - 🏆 **Eurovision Winners (1956–2025)** — 72 winning songs
 - 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
 - 🇫🇮 **Finnish Schlager Classics** — 293 Finnish iskelmä classics
+- 🌪️ **Funk Carioca** — 20 Brazilian baile funk hits spanning 2000–2018
 - 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
-- 🎯 **Greatest Hits of All Time** — 182 chart-toppers across four decades
+- 🎯 **Greatest Hits of All Time** — 236 chart-toppers across four decades
 - 🤘 **Greatest Metal Songs** — 61 legendary tracks across all major metal subgenres
 - 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
 - 🎬 **ICONIC Movie Songs** — 72 songs from the movies, with a dedicated movie-quiz mode
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
+- 🇵🇱 **Polski Rock** — 100 Polish rock tracks
+- 🇵🇱 **Polskie przeboje wszech czasów** — 100 all-time Polish hits
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
 - 🇩🇪 **Schlager Classics** — 60 German schlager classics
 - 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
 - ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
-- 🇳🇱 **Top 100 Dutch Classics** — 100 Nederlandstalig tracks
+- 🇳🇱 **Top 100 Dutch Classics** — 104 Nederlandstalig tracks
 - 🌀 **Trance Classics** — 120 classic trance anthems
 - 🌍 **World Cup Anthems** — 26 official FIFA World Cup songs, 1962–2026
 - ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
@@ -409,36 +412,67 @@ Custom playlists are stored in: `config/beatify/playlists/`
 
 See [Creating Playlists](#creating-playlists) for the JSON format.
 
+### Mix Your Own
+
+Don't want to pick whole packs? The **Mix** tab in the playlist picker builds a fresh set on the fly from the tags you care about — no JSON editing required.
+
+1. Open the **Mix** tab in the playlist screen.
+2. Pick any combination of tags across four categories — **decade**, **style**, **region**, and **special** (the same taxonomy as the playlist filter bar).
+3. Choose a target size: **30**, **50**, or **100** songs.
+4. Beatify pulls every track from playlists matching your tags, de-duplicates across packs, and assembles a set at your chosen size.
+
+By default a mix is **transient** — it's built for that one game and isn't saved. Tick **"save as community playlist"** before building and the assembled set is written to `config/beatify/playlists/user/<slug>.json`, where it shows up in the **Community** tab on the next refresh like any other playlist. (Unsaved mixes live in an internal `playlists/mix/` folder and are cleaned up automatically — they never clutter your Community tab.)
+
+You can carry a built mix straight into the setup wizard with **"Weiter → / Continue"**, exactly like selecting a curated pack.
+
 ---
 
 <br>
 
 ## Creating Playlists
 
-Beatify uses simple JSON playlists stored in `config/beatify/playlists/`.
+Beatify uses JSON playlists stored in `config/beatify/playlists/`. The full, authoritative format lives in [`scripts/playlist_schema.json`](scripts/playlist_schema.json) (validated in CI by `scripts/validate_playlists.py`). Here is a schema-accurate example:
 
 ```json
 {
   "name": "80s Classics",
+  "version": "1.0",
+  "tags": ["decade:80s", "style:pop"],
   "songs": [
     {
+      "artist": "Michael Jackson",
+      "title": "Billie Jean",
       "year": 1983,
       "uri": "spotify:track:4cOdK2wGLETKBW3PvgPWqT",
-      "fun_fact": "Spent 8 weeks at #1"
-    },
-    {
-      "year": 1985,
-      "uri": "spotify:track:2374M0fQpWi3dLnB54qaLX",
-      "fun_fact": "Written in just 10 minutes"
+      "uri_apple_music": "https://music.apple.com/us/album/_/269572838?i=269573364",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "alt_artists": ["MJ"],
+      "fun_fact": "Spent 7 weeks at #1 on the Billboard Hot 100.",
+      "fun_fact_de": "Stand 7 Wochen auf Platz 1 der Billboard Hot 100.",
+      "fun_fact_es": "Estuvo 7 semanas en el nº 1 del Billboard Hot 100.",
+      "fun_fact_fr": "7 semaines à la 1re place du Billboard Hot 100.",
+      "fun_fact_nl": "Stond 7 weken op nummer 1 in de Billboard Hot 100."
     }
   ]
 }
 ```
 
+**Required fields**
+- Playlist level: `name`, `version`, `tags`, `songs`.
+- Per song: `artist`, `title` (both mandatory — songs missing either are **silently skipped at load**, #697, so you can't play Title & Artist mode and the track never appears), `year`, `uri`, and the fun-fact set `fun_fact` + `fun_fact_de` / `fun_fact_es` / `fun_fact_fr` / `fun_fact_nl`.
+
+**Optional fields**
+- Extra provider URIs — `uri_apple_music`, `uri_youtube_music`, `uri_tidal`, `uri_deezer` (and `uri_apple_music_by_region` for storefront-specific Apple Music IDs). A song with only a `spotify:` URI plays on Spotify but is skipped on the other services.
+- `alt_artists` (accepted spellings for the Artist Challenge), `isrc`, `chart_info`, `certifications`, `awards` (+ localized `awards_de/es/fr/nl`), and the movie-quiz fields `movie` / `movie_choices` (playlist-level `movie_quiz_enabled: true` to turn the mode on).
+
+> The `uri` must be a Spotify track URI (`spotify:track:<22 chars>`) or `null`. Invalid or incomplete songs are dropped silently rather than failing the whole playlist — check the Home Assistant log if a track doesn't show up.
+
 **Playlist Tips:**
 - Mix decades for variety
 - Include recognizable songs (obscure = frustrating)
-- Add fun facts for the reveal screen
+- Add fun facts for the reveal screen — one per language
 - 10-20 songs per playlist works great
 
 Sample playlists are included to get you started immediately.
@@ -467,13 +501,15 @@ Select during game setup. All players see the chosen language. Fun facts and awa
 
 Beatify works with specific Home Assistant integrations that support music playback:
 
-| Integration | Supported | Spotify | Apple Music | YouTube Music | Tidal | Deezer | How It Works |
-|-------------|-----------|---------|-------------|---------------|-------|--------|--------------|
-| **[Music Assistant](https://music-assistant.io/)** | ✅ Yes | ✅ | ✅ | ✅ | ✅ | ✅ | Direct URI playback to any connected speaker |
-| **Sonos** | ✅ Yes | ✅ | ❌ | ❌ | ❌ | ❌ | Direct Spotify playback via Sonos integration |
-| **Alexa Media Player** | ✅ Yes | ✅ | ✅ | ❌ | ❌ | ❌ | Voice search playback ("Play [song] on Spotify") |
-| **Cast (Chromecast/Nest/Google TV)** | ❌ No | — | — | — | — | — | Use Music Assistant instead |
-| **HomePod** | ❌ No | — | — | — | — | — | Use Music Assistant instead |
+| Integration | Supported | Spotify | Apple Music | YouTube Music | Tidal | Deezer | Amazon Music | How It Works |
+|-------------|-----------|---------|-------------|---------------|-------|--------|--------------|--------------|
+| **[Music Assistant](https://music-assistant.io/)** | ✅ Yes | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | Direct URI playback to any connected speaker |
+| **Sonos** | ✅ Yes | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | Direct Spotify playback via Sonos integration |
+| **Alexa Media Player** | ✅ Yes | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | Voice-search playback ("Play [song] on [service]") |
+| **Cast (Chromecast/Nest/Google TV)** | ❌ No | — | — | — | — | — | — | Use Music Assistant instead |
+| **HomePod** | ❌ No | — | — | — | — | — | — | Use Music Assistant instead |
+
+> **Amazon Music is Alexa-only and uses text search.** Amazon has no direct-URI playback path, so Beatify asks Alexa to play each track by name (`artist` + `title`) rather than by a fixed track ID. This works well for well-tagged songs but has one caveat: Alexa occasionally picks the wrong version of a track (a live/remaster/cover) when several share a title — the round still plays, it just may not be the exact recording the playlist author intended. For pinpoint accuracy on those tracks, pick a URI-based service (Spotify/Apple Music/etc.) via Music Assistant instead.
 
 ### Why Some Speakers Don't Work Directly
 
@@ -518,9 +554,9 @@ That's it. No mDNS, no broadcast, no additional ports.
 ## Technical Details
 
 ### Requirements
-- **Home Assistant** 2024.1+
+- **Home Assistant** 2025.1+ (matches the `homeassistant` floor declared in `hacs.json`)
 - **Supported media player** (see [Supported Speakers](#supported-speakers) above)
-- **A music service** — Spotify, Apple Music, YouTube Music, Tidal or Deezer, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)).
+- **A music service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)). Amazon Music playback is Alexa-only (text search — see [Supported Speakers](#supported-speakers)).
 - **HACS** (recommended) or manual installation
 
 ### How It Works
@@ -588,13 +624,13 @@ Game pauses automatically. Reconnect and continue exactly where you left off.
 <details>
 <summary><strong>What music services work?</strong></summary>
 <br>
-Spotify, Apple Music, YouTube Music, Tidal, and Deezer. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details.
+Spotify, Apple Music, YouTube Music, Tidal, Deezer, and Amazon Music. Support depends on your speaker platform—see the <a href="#supported-speakers">Supported Speakers</a> table for details. Amazon Music is available on Alexa speakers only and plays via voice/text search rather than fixed track URIs.
 </details>
 
 <details>
 <summary><strong>Do I need a paid music subscription? Does Beatify work with free Spotify?</strong></summary>
 <br>
-Yes. Beatify plays a specific song on demand each round, and on every provider—Spotify, Apple Music, YouTube Music, Tidal and Deezer—that requires a <strong>paid</strong> plan. <strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect), and <strong>a free YouTube Music account does not work either</strong>—playback runs through Music Assistant, whose <a href="https://www.music-assistant.io/music-providers/youtube-music/">YouTube Music provider</a> supports Premium accounts only. This is a streaming-service limitation, not a Beatify one. The curated playlists carry URIs for all five services.
+Yes. Beatify plays a specific song on demand each round, and on every provider—Spotify, Apple Music, YouTube Music, Tidal, Deezer and Amazon Music—that requires a <strong>paid</strong> plan. <strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect), and <strong>a free YouTube Music account does not work either</strong>—playback runs through Music Assistant, whose <a href="https://www.music-assistant.io/music-providers/youtube-music/">YouTube Music provider</a> supports Premium accounts only. This is a streaming-service limitation, not a Beatify one. The curated playlists carry URIs for the five URI-based services; Amazon Music (Alexa-only) plays those same tracks by text search (<code>artist</code> + <code>title</code>) rather than a fixed URI.
 </details>
 
 <details>
@@ -620,6 +656,32 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v4.1.3 — Content & Reliability ☀️
+- **Speaker volume is restored when the game ends (#1516)** — if the host bumps the volume mid-game, Beatify hands the speaker back at its original level, complementing the party-lights state restore
+- **Speaker selection now applies immediately (#1526)** — switching speakers in the wizard takes effect right away instead of routing through the previous pick until a Home Assistant restart
+- **Android Chrome no longer auto-translates the UI (#1527)** — the page language is rendered server-side so the initial HTML already matches the locale
+- **Two new German playlists** — Sommerklassiker ☀️ (60) and NDW – Neue Deutsche Welle (50)
+- 6 music platforms, 5 languages
+
+### v4.1.2 — Disney auf Deutsch 🏰
+- **New community playlist "Disney Hits Deutschland 🇩🇪" (97 songs)** — German-language Disney songs across the decades, year-mode ready with multi-provider URIs and the guess-the-film bonus across 40 films (#1505)
+- 6 music platforms, 5 languages
+
+### v4.1.1 — Around the World 🌍
+- **Two new community playlists** — 100% Brasil 🇧🇷 (66) and 100% Français 🇫🇷 (100), each year-mode ready with verified release years, ISRCs and multi-provider URIs
+- **Country packs renamed to the "100% <Country>" scheme** — matching the existing 100% en Español
+- Data fixes across EDM Anthems, Trance Classics, Harder Styles and Finnish Schlager Classics
+- 6 music platforms, 5 languages
+
+### v4.1.0 — Rock Solid, New Look (Now on Amazon Music) 🛒
+- **Amazon Music is the sixth music provider** — play through Alexa speakers via voice/text search (`artist` + `title`), no fixed track URI needed. Alexa-only; see [Supported Speakers](#supported-speakers) for the text-search caveat
+- **Reveal & dashboard redesigned — Spotlight Stage / Podium Stage** — the round reveal, round-delta standings ledger, TV broadcast lower-third and end-game podium were rebuilt into one cinematic broadcast language, with the guess-the-artist result and Game Highlights reel finally shown on the TV
+- **Party-night reliability pass** — screen-wake, TV auto-reconnect and a fixed admin login-loop keep long parties alive
+- **Storefront-aware Apple Music fix** — per-region Apple Music IDs resolve against your Home Assistant country so the right catalog track plays
+- **Security pass** across the import and request flows
+- **New community playlist "Finnish Schlager Classics 🇫🇮" (293 songs)** — deduplicated iskelmä from 1949–2026, year-mode ready
+- 6 music platforms, 5 languages
 
 ### v4.0.0 — Name That Tune 🎵
 - **A whole new game mode: Title & Artist** — instead of guessing the year, answer in free text: song title (**+10**) and artist (**+5**), each scored on its own. Small typos and near spellings earn partial credit, with forgiveness that scales to the title's length. Movie and Intro bonuses still stack. Built by @jgossen01, from an idea by @Hendrik0123 (#1180)
