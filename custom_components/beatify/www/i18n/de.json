@@ -380,6 +380,8 @@
     "newGame": "Neues Spiel",
     "newGameTitle": "Neues Spiel?",
     "newGameConfirm": "Ein neues Spiel starten?",
+    "newGameConfirmTitle": "Neues Spiel starten?",
+    "newGameConfirmMessage": "Lautsprecher + Playlists verwerfen und neu einrichten?",
     "startNewGame": "Neues Spiel starten",
     "stop": "Stop",
     "stopSong": "Song stoppen",

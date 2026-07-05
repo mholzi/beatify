@@ -380,6 +380,8 @@
     "newGame": "Nieuw spel",
     "newGameTitle": "Nieuw spel?",
     "newGameConfirm": "Een nieuw spel starten?",
+    "newGameConfirmTitle": "Nieuw spel starten?",
+    "newGameConfirmMessage": "Speaker + afspeellijsten vergeten en opnieuw instellen?",
     "startNewGame": "Nieuw spel starten",
     "stop": "Stop",
     "stopSong": "Stop nummer",
