@@ -135,8 +135,35 @@ class RoundLifecycleMixin:
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
 
+    def _get_round_start_lock(self) -> asyncio.Lock:
+        """Get (lazily creating) the #1697 round-start serialization lock.
+
+        The lock is not created in ``GameState.__init__`` (that file owns the
+        attribute set but the mixin must stay self-contained); it is built on
+        first use instead. Creation is a plain ``getattr``/``setattr`` pair with
+        no ``await`` in between, so two coroutines entering ``start_round`` in the
+        same event-loop tick still share a single lock instance.
+        """
+        lock = getattr(self, "_round_start_lock", None)
+        if lock is None:
+            lock = asyncio.Lock()
+            self._round_start_lock = lock
+        return lock
+
     async def start_round(self, _retry_count: int = 0) -> bool:
         """Start a new round with song playback (#390).
+
+        #1697: serialized behind ``_round_start_lock`` so a manual
+        ``admin_next_round`` and the REVEAL ``_reveal_auto_advance`` (which both
+        call this method) can never drive a round-start concurrently. Before the
+        lock existed, the auto-advance parked in ``start_round``'s long awaits
+        while the phase was still REVEAL, and an admin tapping "Next" passed its
+        own REVEAL check and launched a second concurrent ``start_round`` — two
+        songs pulled/marked played, the round incremented twice, two
+        ``play_media`` calls, an orphaned timer cutting the round short. Holding
+        the lock also serializes the internal skip/retry recursion (it stays a
+        single logical round-start). After acquiring, a phase re-check makes the
+        losing caller a no-op if the winner already reached PLAYING.
 
         Args:
             _retry_count: Internal counter for failed song attempts (max 3)
@@ -144,6 +171,36 @@ class RoundLifecycleMixin:
         Returns:
             True if round started successfully, False otherwise
 
+        """
+        from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
+        # Snapshot the phase BEFORE we contend for the lock. The double-advance
+        # bug is specifically: this caller entered while the phase was still
+        # REVEAL (or LOBBY for round 1), parked waiting for the lock, and the
+        # race winner flipped it to PLAYING in the meantime. Bailing only when
+        # the phase changed to PLAYING *under us* keeps legitimate PLAYING-phase
+        # entries working (e.g. the Sudden-Death auto-end check runs inside
+        # start_round, and the #1358 ghost-round guard tests drive it directly).
+        entry_phase = self.phase
+        async with self._get_round_start_lock():
+            if (
+                _retry_count == 0
+                and entry_phase != GamePhase.PLAYING
+                and self.phase == GamePhase.PLAYING
+            ):
+                _LOGGER.info(
+                    "start_round: race winner already advanced to PLAYING while "
+                    "we held for the lock — skipping duplicate round-start (#1697)"
+                )
+                return True
+            return await self._start_round_locked(_retry_count)
+
+    async def _start_round_locked(self, _retry_count: int = 0) -> bool:
+        """Round-start orchestration body, run under ``_round_start_lock`` (#1697).
+
+        Carries the exact pre-#1697 ``start_round`` logic. The skip/retry paths
+        recurse into *this* method (not the public ``start_round``) so the
+        non-reentrant lock is acquired once per logical round-start.
         """
         from .state import GamePhase  # noqa: PLC0415 — avoid circular import
 
@@ -201,7 +258,7 @@ class RoundLifecycleMixin:
                 )
                 await self.pause_game("no_songs_available")
                 return False
-            return await self.start_round(_retry_count + 1)
+            return await self._start_round_locked(_retry_count + 1)
 
         self.last_round = self._playlist_manager.get_remaining_count() <= 1
         self._ensure_media_player_service()
@@ -263,7 +320,7 @@ class RoundLifecycleMixin:
                         song.get("title") or song.get("uri"),
                     )
                     await asyncio.sleep(0.2)
-                    return await self.start_round(_retry_count)
+                    return await self._start_round_locked(_retry_count)
 
                 # #949: a systemic playback failure — the speaker stayed idle,
                 # or the Music Assistant provider is unauthenticated — does not
