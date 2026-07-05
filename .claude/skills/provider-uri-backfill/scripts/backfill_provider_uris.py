@@ -267,7 +267,16 @@ def fetch_odesli(
     getter: Callable[[str], dict] = _http_get_json,
     sleeper: Callable[[float], None] = time.sleep,
 ) -> dict | None:
-    """Call Odesli for one Spotify track. Throttles + backs off on HTTP 429."""
+    """Call Odesli for one Spotify track. Throttles + backs off on HTTP 429.
+
+    Returns the parsed JSON on success, or ``None`` when the track can't be
+    resolved right now (429 that exhausts its backoff retries, 404, any other
+    HTTP status, or a transient network/parse error). It **never raises** — a
+    raise here would abort the whole run, discard all partial progress and
+    never reach the independent YouTube phase (#1687). A ``None`` simply skips
+    Odesli for this song; the next wave retries it (idempotent, matching
+    ``scripts/backfill_tidal.py``).
+    """
     spotify_url = f"https://open.spotify.com/track/{spotify_id}"
     api = "https://api.song.link/v1-alpha.1/links?url=" + urllib.parse.quote(
         spotify_url, safe=""
@@ -281,9 +290,12 @@ def fetch_odesli(
                 sleeper(backoff)
                 backoff *= 2
                 continue
-            if e.code == 404:
-                return None
-            raise
+            # 429 with retries exhausted, 404, or any other HTTP status: skip
+            # this provider for this song (do NOT raise / abort the run).
+            return None
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
+            # Transient network / parse error → skip, retry next wave.
+            return None
     return None
 
 
@@ -338,6 +350,23 @@ def rel_name(root: Path, path: Path) -> str:
     return str(path.relative_to(base))
 
 
+def bump_version(version: Any) -> str:
+    """Bump a playlist ``MAJOR.MINOR`` version (minor +1).
+
+    Catalogue versions are strings like ``"1.8"`` / ``"1.11"`` / ``"0.1"`` — the
+    minor part is an integer, not a decimal, so ``1.9 -> 1.10``. Falls back to
+    appending ``.1`` for odd/missing values so the bump never crashes a run.
+    Identical logic to ``scripts/backfill_tidal.py`` for catalogue consistency.
+    """
+    if not isinstance(version, str) or not version:
+        return "1.1"
+    parts = version.split(".")
+    if len(parts) >= 2 and parts[-1].isdigit():
+        parts[-1] = str(int(parts[-1]) + 1)
+        return ".".join(parts)
+    return f"{version}.1"
+
+
 # ---------------------------------------------------------------------------
 # Orchestration
 # ---------------------------------------------------------------------------
@@ -378,7 +407,7 @@ def run(args: argparse.Namespace) -> int:
         songs = data.get("songs", [])
         cov = coverage_for_playlist(rel_name(root, path), str(path), songs)
         cov.filled_this_run = {p: 0 for p in PROVIDER_FIELDS}
-        dirty = False
+        version_bumped = False
 
         for song in songs:
             this_global_idx = global_idx
@@ -388,28 +417,34 @@ def run(args: argparse.Namespace) -> int:
             if not sid or not gaps:
                 continue
 
+            song_dirty = False
+
             # ---- Odesli (apple/tidal/deezer) ----
             non_yt_gaps = [g for g in gaps if g != "youtube_music"]
             if non_yt_gaps:
+                # payload is None when Odesli is unavailable (429 exhausted /
+                # error) — skip Odesli for this song but keep going so the
+                # independent YouTube phase below still runs (#1687).
                 payload = fetch_odesli(sid, sleep=args.odesli_sleep)
-                resolved = odesli_to_uris(payload or {})
-                for prov in non_yt_gaps:
-                    val = resolved.get(prov)
-                    if val:
-                        song[PROVIDER_FIELDS[prov]] = val
-                        cov.filled_this_run[prov] += 1
-                        dirty = True
-                # Deezer secondary verify via ISRC if Odesli missed it.
-                if (
-                    "deezer" in non_yt_gaps
-                    and not song.get("uri_deezer")
-                    and song.get("isrc")
-                ):
-                    did = fetch_deezer_isrc(song["isrc"])
-                    if did:
-                        song["uri_deezer"] = deezer_uri(did)
-                        cov.filled_this_run["deezer"] += 1
-                        dirty = True
+                if payload is not None:
+                    resolved = odesli_to_uris(payload)
+                    for prov in non_yt_gaps:
+                        val = resolved.get(prov)
+                        if val:
+                            song[PROVIDER_FIELDS[prov]] = val
+                            cov.filled_this_run[prov] += 1
+                            song_dirty = True
+                    # Deezer secondary verify via ISRC if Odesli missed it.
+                    if (
+                        "deezer" in non_yt_gaps
+                        and not song.get("uri_deezer")
+                        and song.get("isrc")
+                    ):
+                        did = fetch_deezer_isrc(song["isrc"])
+                        if did:
+                            song["uri_deezer"] = deezer_uri(did)
+                            cov.filled_this_run["deezer"] += 1
+                            song_dirty = True
                 time.sleep(args.odesli_sleep)
 
             # ---- YouTube Data API (resume-cursor + daily budget) ----
@@ -430,11 +465,20 @@ def run(args: argparse.Namespace) -> int:
                 if vid:
                     song["uri_youtube_music"] = youtube_uri(vid)
                     cov.filled_this_run["youtube_music"] += 1
-                    dirty = True
+                    song_dirty = True
+
+            # Incremental flush: persist after every song that changed
+            # something, so a later crash / 429 wall never discards prior
+            # progress (matching backfill_tidal.py's per-hit save). The
+            # playlist ``version`` is bumped once per file on its first write.
+            if song_dirty and args.apply:
+                if not version_bumped:
+                    old_v = data.get("version")
+                    data["version"] = bump_version(old_v)
+                    version_bumped = True
+                path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
         coverages.append(cov)
-        if dirty and args.apply:
-            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
     if yt_key:
         save_state(state_path, yt_state)

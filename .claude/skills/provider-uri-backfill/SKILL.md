@@ -55,7 +55,7 @@ catalog (main + community) — expect this to take a long time because of the
 |---|---|---|
 | `--repo-root` | `.` | Beatify repo root |
 | `--playlist` | all | Process one playlist (basename or `community/<name>`) |
-| `--apply` | off | Write filled URIs back to JSON (else dry-run report only) |
+| `--apply` | off | Write filled URIs back to JSON + bump each modified playlist's `version` (minor +1); else dry-run report only |
 | `--output` | `docs/provider-coverage.md` | Coverage report path |
 | `--state` | `skill/.backfill-state.json` | YouTube resume-cursor + daily-budget state |
 | `--odesli-sleep` | `6.0` | Seconds between Odesli calls (free tier ~10/min) |
@@ -81,7 +81,11 @@ a provider, it **skips** that provider for that song (it never guesses a format)
 One `GET https://api.song.link/v1-alpha.1/links?url=<spotify-url>` per track maps
 the Spotify URI to all providers at once. Keyless, free, ~10 req/min — the script
 sleeps `--odesli-sleep` (6 s) between calls and retries HTTP 429 with exponential
-backoff.
+backoff. If the backoff is exhausted (or any other Odesli error), the track is
+**skipped** for this wave (never raised — that would abort the run and lose
+partial progress); the next wave retries it. Under `--apply` progress is flushed
+to disk after every resolved song, so a mid-run 429 wall keeps everything already
+written, and the independent YouTube phase runs regardless of Odesli's state.
 
 **Known limitation:** Odesli's keyless responses frequently omit Apple Music
 entirely (observed live for multiple mainstream tracks, 2026-06). Tidal + Deezer
