@@ -60,7 +60,7 @@ var debug = utils.debug || function() {};
 // Constants
 // ============================================
 
-var MAX_RECONNECT_ATTEMPTS = 10;
+var MAX_RECONNECT_ATTEMPTS = 7;
 var MAX_RECONNECT_DELAY_MS = 30000;
 var MAX_NAME_LENGTH = 20;
 // #1663: how long a guest may sit on "Joining…" before we surface a retry.
@@ -180,9 +180,72 @@ function getStoredLanguage() {
 // ============================================
 
 function getReconnectDelay() {
-    // #646: First 3 attempts are fast (500ms), then linear ramp to cap
-    if (state.reconnectAttempts <= 3) return 500;
-    return Math.min(1000 * (state.reconnectAttempts - 2), MAX_RECONNECT_DELAY_MS);
+    // #1662: unified capped-exponential backoff shared with the spectator
+    // dashboard via BeatifyUtils.reconnectBackoffDelay, so the reconnect policy
+    // lives in ONE place instead of a bespoke linear ramp here (was #646:
+    // 500ms x3 then linear) and an exponential curve on the dashboard.
+    // state.reconnectAttempts is 1-based here (it is incremented in the onclose
+    // handler BEFORE this is called); the helper never overflows for large
+    // attempt counts, so the delay simply saturates at the 30s cap.
+    if (utils.reconnectBackoffDelay) {
+        return utils.reconnectBackoffDelay(state.reconnectAttempts, { maxDelay: MAX_RECONNECT_DELAY_MS });
+    }
+    // Fallback if utils failed to load: same capped exponential, 1-based attempt.
+    return Math.min(1000 * Math.pow(2, state.reconnectAttempts - 1), MAX_RECONNECT_DELAY_MS);
+}
+
+/**
+ * Build the shared WebSocket onclose handler (#1662).
+ *
+ * Both WS setups (connectWithSession / connectWebSocket) previously carried a
+ * near-identical onclose block that diverged only in how it rescheduled the
+ * reconnect. They now share the single, unit-tested orchestration in
+ * BeatifyUtils.createWsCloseHandler; only the reconnect target differs and is
+ * passed in as `scheduleReconnect`, so the guard/UI/backoff side effects stay
+ * identical across both sockets.
+ *
+ * @param {Function} scheduleReconnect - performs the actual reconnect call.
+ * @returns {Function} a WebSocket onclose handler.
+ */
+function makeSocketCloseHandler(scheduleReconnect) {
+    var deps = {
+        state: state,
+        maxAttempts: MAX_RECONNECT_ATTEMPTS,
+        getDelay: getReconnectDelay,
+        scheduleReconnect: scheduleReconnect,
+        stopHeartbeat: stopHeartbeat,
+        onReconnecting: function(attempt, delay) {
+            showReconnectingOverlay();
+            updateReconnectStatus(attempt);
+            debug('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + attempt + ')');
+        },
+        onGiveUp: function() {
+            hideReconnectingOverlay();
+            showConnectionLostView();
+        }
+    };
+    if (utils.createWsCloseHandler) {
+        return utils.createWsCloseHandler(deps);
+    }
+    // Fallback if utils failed to load: inline the same contract so a missing
+    // shared helper degrades to (not diverges from) the canonical behaviour.
+    return function() {
+        deps.stopHeartbeat();
+        if (state.intentionalLeave) {
+            state.intentionalLeave = false;
+            return;
+        }
+        if (state.playerName && state.reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+            state.isReconnecting = true;
+            state.reconnectAttempts++;
+            var delay = getReconnectDelay();
+            deps.onReconnecting(state.reconnectAttempts, delay);
+            setTimeout(scheduleReconnect, delay);
+        } else if (state.reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+            state.isReconnecting = false;
+            deps.onGiveUp();
+        }
+    };
 }
 
 function showConnectionIndicator() {
@@ -391,32 +454,15 @@ function connectWithSession() {
         }
     };
 
-    state.ws.onclose = function() {
-        stopHeartbeat();
-        if (state.intentionalLeave) {
-            state.intentionalLeave = false;
-            return;
+    // #1662: shared onclose orchestration. This socket prefers the session
+    // reconnect while the cookie exists, else falls back to a name-based join.
+    state.ws.onclose = makeSocketCloseHandler(function() {
+        if (getSessionCookie()) {
+            connectWithSession();
+        } else {
+            connectWebSocket(state.playerName);
         }
-        if (state.playerName && state.reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-            state.isReconnecting = true;
-            state.reconnectAttempts++;
-            showReconnectingOverlay();
-            updateReconnectStatus(state.reconnectAttempts);
-
-            var delay = getReconnectDelay();
-            debug('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + state.reconnectAttempts + ')');
-            // #646: Keep using session reconnect while cookie exists
-            if (getSessionCookie()) {
-                setTimeout(connectWithSession, delay);
-            } else {
-                setTimeout(function() { connectWebSocket(state.playerName); }, delay);
-            }
-        } else if (state.reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
-            state.isReconnecting = false;
-            hideReconnectingOverlay();
-            showConnectionLostView();
-        }
-    };
+    });
 
     state.ws.onerror = function(err) {
         console.error('WebSocket error:', err);
@@ -489,27 +535,11 @@ function connectWebSocket(name) {
         }
     };
 
-    state.ws.onclose = function() {
-        stopHeartbeat();
-        if (state.intentionalLeave) {
-            state.intentionalLeave = false;
-            return;
-        }
-        if (state.playerName && state.reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-            state.isReconnecting = true;
-            state.reconnectAttempts++;
-            showReconnectingOverlay();
-            updateReconnectStatus(state.reconnectAttempts);
-
-            var delay = getReconnectDelay();
-            debug('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + state.reconnectAttempts + ')');
-            setTimeout(function() { connectWebSocket(state.playerName); }, delay);
-        } else if (state.reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
-            state.isReconnecting = false;
-            hideReconnectingOverlay();
-            showConnectionLostView();
-        }
-    };
+    // #1662: shared onclose orchestration. The name-based join reconnects by
+    // rejoining under the same name (its original, unchanged behaviour).
+    state.ws.onclose = makeSocketCloseHandler(function() {
+        connectWebSocket(state.playerName);
+    });
 
     state.ws.onerror = function(err) {
         console.error('WebSocket error:', err);

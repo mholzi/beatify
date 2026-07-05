@@ -392,6 +392,72 @@ window.BeatifyUtils = (function() {
     }
 
     /**
+     * Build a WebSocket `onclose` reconnect handler (#1662).
+     *
+     * The player page carried TWO near-identical onclose blocks (session
+     * reconnect vs. name-based join) that diverged only in HOW they rescheduled
+     * the next attempt. They also each open-coded a bespoke LINEAR backoff while
+     * the spectator dashboard used the capped-exponential
+     * {@link reconnectBackoffDelay}. This factory captures the shared reconnect
+     * contract ONCE — DOM-free and dependency-injected — so the call sites can
+     * no longer drift and the behaviour is unit-testable:
+     *
+     *   1. stop the heartbeat (always),
+     *   2. honour a one-shot intentional leave (clear the flag, do NOT reconnect),
+     *   3. while a session identity exists AND we are under the attempt cap:
+     *      flag reconnecting, bump the 1-based attempt counter, compute the
+     *      backoff delay, run the `onReconnecting(attempt, delay)` UI hook and
+     *      schedule the caller-supplied reconnect after that delay,
+     *   4. once the cap is hit: clear the reconnecting flag and run `onGiveUp()`.
+     *
+     * Every DOM/socket/timer touch is injected, so the returned handler is pure
+     * with respect to this module (see __tests__/player-ws-close.test.js).
+     *
+     * @param {Object} deps
+     * @param {Object} deps.state - shared state object; reads/writes
+     *   `intentionalLeave`, `isReconnecting`, `reconnectAttempts`, `playerName`.
+     * @param {number} deps.maxAttempts - reconnect attempt cap (inclusive give-up).
+     * @param {Function} deps.getDelay - () => next backoff delay in ms.
+     * @param {Function} deps.scheduleReconnect - () => void, performs the reconnect.
+     * @param {Function} [deps.stopHeartbeat] - teardown run on every close.
+     * @param {Function} [deps.onReconnecting] - (attempt, delay) => void UI hook.
+     * @param {Function} [deps.onGiveUp] - () => void UI hook at the cap.
+     * @param {Function} [deps.setTimeoutFn] - injectable timer (defaults to setTimeout).
+     * @returns {Function} a WebSocket onclose handler.
+     */
+    function createWsCloseHandler(deps) {
+        deps = deps || {};
+        var state = deps.state;
+        var maxAttempts = deps.maxAttempts;
+        var getDelay = deps.getDelay;
+        var scheduleReconnect = deps.scheduleReconnect;
+        var stopHeartbeat = deps.stopHeartbeat || function() {};
+        var onReconnecting = deps.onReconnecting || function() {};
+        var onGiveUp = deps.onGiveUp || function() {};
+        var setTimeoutFn = deps.setTimeoutFn
+            || (typeof setTimeout === 'function' ? setTimeout : function() {});
+
+        return function onClose() {
+            stopHeartbeat();
+            // Deliberate leave/rejoin: consume the one-shot flag and stay closed.
+            if (state.intentionalLeave) {
+                state.intentionalLeave = false;
+                return;
+            }
+            if (state.playerName && state.reconnectAttempts < maxAttempts) {
+                state.isReconnecting = true;
+                state.reconnectAttempts++;
+                var delay = getDelay();
+                onReconnecting(state.reconnectAttempts, delay);
+                setTimeoutFn(scheduleReconnect, delay);
+            } else if (state.reconnectAttempts >= maxAttempts) {
+                state.isReconnecting = false;
+                onGiveUp();
+            }
+        };
+    }
+
+    /**
      * Title & Artist verdict label for a resolved near-miss (#1180).
      * @param {boolean} accepted - whether the close call was accepted
      * @param {number} points - points awarded (only shown when accepted)
@@ -446,6 +512,7 @@ window.BeatifyUtils = (function() {
         buildWebSocketUrl: buildWebSocketUrl,
         reconnectBackoffDelay: reconnectBackoffDelay,
         createReconnectGuard: createReconnectGuard,
+        createWsCloseHandler: createWsCloseHandler,
 
         // URL utilities
         getQueryParam: getQueryParam
