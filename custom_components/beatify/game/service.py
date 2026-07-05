@@ -97,6 +97,14 @@ class GameService:
         where ``finalize_game()`` + ``stats_service.record_game()``
         are called together.
         """
+        # #1698: In title/artist mode scoring is deferred until the vote window
+        # is finalized. The REST/service finalize path (used by REST + service
+        # end-game callers) must resolve an open window *before* finalize_game/
+        # record_game, mirroring admin_end_game / admin_next_round in
+        # server/ws_handlers/admin.py — otherwise ending during REVEAL with the
+        # window still open persists totals missing the entire last round.
+        await self._game_state.resolve_title_artist_if_pending()
+
         stats = self.stats_service
         if stats:
             game_summary = self._game_state.finalize_game()

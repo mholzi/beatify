@@ -380,6 +380,8 @@
     "newGame": "Nuevo juego",
     "newGameTitle": "¿Nuevo juego?",
     "newGameConfirm": "¿Iniciar un nuevo juego?",
+    "newGameConfirmTitle": "¿Iniciar un nuevo juego?",
+    "newGameConfirmMessage": "¿Olvidar tu altavoz + listas y empezar la configuración de cero?",
     "startNewGame": "Iniciar nuevo juego",
     "stop": "Detener",
     "stopSong": "Detener canción",

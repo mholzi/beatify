@@ -380,6 +380,8 @@
     "newGame": "Nouvelle partie",
     "newGameTitle": "Nouvelle partie ?",
     "newGameConfirm": "Lancer une nouvelle partie ?",
+    "newGameConfirmTitle": "Lancer une nouvelle partie ?",
+    "newGameConfirmMessage": "Oublier votre enceinte + playlists et repartir de zéro ?",
     "startNewGame": "Lancer une nouvelle partie",
     "stop": "Arrêter",
     "stopSong": "Arrêter chanson",

@@ -134,6 +134,28 @@ play with zero friction.
 > Any Home Assistant user account can host — Beatify does not distinguish
 > between HA admin and non-admin users.
 
+### Options (Settings → Devices & Services → Beatify → Configure)
+
+Beatify exposes a single option in its options flow:
+
+**Enable HA Android Companion auth bypass** — OFF by default.
+
+Some setups hit a login loop when opening Beatify from the **Home Assistant
+Companion app on Android**: the host page keeps bouncing back to the login
+screen and never reaches the admin UI, so you can't host from the phone. When
+this toggle is ON, requests coming from the HA Android Companion app on your
+**local network** are treated as the host without a separate login, which
+breaks that loop.
+
+> ⚠️ **Security warning.** This weakens host authentication. Leave it **OFF**
+> unless the Companion app genuinely cannot authenticate. **Do NOT enable it**
+> if Beatify is reachable through **Home Assistant Cloud (Nabu Casa)** or a
+> **reverse proxy that does not forward the real client IP** — in those setups
+> every request can look like it comes from your local network, so an internet
+> visitor could host games, control your speakers/lights, and end games
+> **without any credentials**. Players joining at `/beatify/play` are never
+> affected either way.
+
 ### Starting a Game
 
 **First time?** Beatify drops you into a 5-step first-run wizard that walks you through the whole setup:
@@ -905,6 +927,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 - Improve lighting on the display
 - Try the "Print QR" feature for a physical copy
 - Use a dedicated QR scanner app
+
+**Can't host from the HA Companion app on Android?**
+- Opening Beatify from the Android Companion app can loop back to the login screen and never reach the admin UI
+- First try opening `/beatify/admin` in the phone's browser and logging in there once — the Companion webview often picks up the session afterwards
+- If it still loops, enable **Settings → Devices & Services → Beatify → Configure → Enable HA Android Companion auth bypass** — see [Options](#options-settings--devices--services--beatify--configure) for the full explanation
+- ⚠️ Only enable the bypass on a **local, non-forwarding** setup. Do **NOT** enable it if Beatify is reachable via **Nabu Casa** or a **reverse proxy that doesn't forward the real client IP** — it would let internet visitors host without a login
 
 ---
 

@@ -34,6 +34,7 @@ def game_state():
     gs.end_game = AsyncMock()
     gs.stop_media = AsyncMock()
     gs.trigger_early_reveal_if_complete = AsyncMock()
+    gs.resolve_title_artist_if_pending = AsyncMock()  # #1698
     gs.create_game.return_value = {"game_id": "abc", "phase": "LOBBY"}
     gs.submit_artist_guess.return_value = {"correct": True, "first": True}
     gs.submit_movie_guess.return_value = {"correct": False, "already_guessed": False}
@@ -106,6 +107,8 @@ class TestFinalizeAndRecordStats:
 
         await service.finalize_and_record_stats()
 
+        # #1698: an open title/artist vote window is resolved before finalize.
+        game_state.resolve_title_artist_if_pending.assert_awaited_once()
         game_state.finalize_game.assert_called_once()
         mock_stats.record_game.assert_awaited_once_with(
             {"winner": "Alice", "rounds": 3}, difficulty="normal"
@@ -115,6 +118,8 @@ class TestFinalizeAndRecordStats:
     async def test_skips_when_no_stats_service(self, service, game_state):
         await service.finalize_and_record_stats()
         game_state.finalize_game.assert_not_called()
+        # #1698: resolve runs regardless of stats availability (mirrors admin.py).
+        game_state.resolve_title_artist_if_pending.assert_awaited_once()
 
 
 class TestNextRound:

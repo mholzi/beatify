@@ -380,6 +380,8 @@
     "newGame": "New Game",
     "newGameTitle": "New Game?",
     "newGameConfirm": "Start a new game?",
+    "newGameConfirmTitle": "Start New Game?",
+    "newGameConfirmMessage": "Forget your speaker + playlists and start fresh setup?",
     "startNewGame": "Start New Game",
     "stop": "Stop",
     "stopSong": "Stop Song",
