@@ -177,6 +177,31 @@
         @keyframes dashboard-reconnect-spin {
             to { transform: rotate(360deg); }
         }
+        /* #1717: the ~13px reconnect badge is illegible from 3-5m. On a TV
+           (1400px+) upscale it into a large, centered top banner so the room can
+           see the display is re-establishing its connection. Base styles live in
+           this inline block, so the TV override must live here too (it would
+           otherwise lose to the inline rule on source order). Centered via
+           auto-margins — no transform — so the intro keyframe still runs clean. */
+        @media (min-width: 1400px) {
+            .dashboard-reconnect-indicator {
+                top: 28px;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                width: max-content;
+                max-width: calc(100vw - 48px);
+                gap: 16px;
+                padding: 16px 32px;
+                font-size: 1.6rem;
+            }
+            .dashboard-reconnect-spinner {
+                width: 26px;
+                height: 26px;
+                border-width: 3px;
+            }
+        }
         @media (prefers-reduced-motion: reduce) {
             .dashboard-wakelock-banner { animation: none; }
             .dashboard-wakelock-activate { transition: none; }
@@ -263,6 +288,12 @@
                     <div id="dashboard-qr-code" class="dashboard-qr-code">
                         <!-- QR code rendered here -->
                     </div>
+                    <!-- #1713: human-readable join address beneath the QR — the
+                         fallback for guests whose camera can't lock the code or
+                         when the QR library fails to load. Populated by
+                         dashboard.js (renderLobbyView); hidden until a join_url
+                         arrives. -->
+                    <p id="dashboard-join-url" class="dashboard-join-url hidden" aria-label="Join address"></p>
                     <p id="dashboard-player-count" class="dashboard-player-count">0 players joined</p>
                 </div>
                 <!-- Player List Section (right) -->

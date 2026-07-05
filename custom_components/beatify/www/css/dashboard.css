@@ -1417,18 +1417,28 @@
     transition: width 300ms ease;
 }
 .chip-meter .chip-meter-label {
+    /* #1717: was #fff text sitting directly on the cyan fill (~1.4:1, vanishing
+       as the meter filled toward the label). A shrink-wrapped dark pill keeps
+       the label at ~15:1 over BOTH the dark track and the cyan fill, at any
+       fill level. Centered without stretching (inset:0 → auto-sized pill). */
     position: absolute;
-    inset: 0;
-    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
+    padding: 5px 16px;
+    border-radius: 999px;
+    background: rgba(4, 10, 16, 0.72);
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--color-text-white);
+    white-space: nowrap;
+    color: #ffffff;
 }
 
 .chip-motivator {
@@ -2544,3 +2554,67 @@
 }
 #dashboard-reveal .reveal-lowerthird .dashboard-ta-sep { font-size: 40px; color: var(--color-text-neon-muted, #b3b3c2); }
 #dashboard-reveal .reveal-lowerthird .dashboard-ta-artist { font-size: 40px; font-weight: 700; color: #fff; }
+
+/* ==========================================================================
+   #1712 / #1713 / #1717 — TV legibility for the long-lived non-game states
+   ========================================================================== */
+
+/* #1712: while the WebSocket is down, dashboard.js freezes the last live frame
+   and toggles .dashboard-disconnected on the container — dim it (never wipe it
+   to "No active game") so the room can tell the connection dropped without the
+   game reading as a crash. */
+.dashboard-container.dashboard-disconnected {
+    filter: brightness(0.55) saturate(0.85);
+    transition: filter 240ms ease;
+}
+
+/* #1713: human-readable join address beneath the lobby QR — large + wrapping so
+   a guest can read or type it, and the on-screen fallback when the QR library
+   fails to load. */
+.dashboard-join-url {
+    margin-top: var(--space-md);
+    max-width: min(90vw, 640px);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: var(--color-text-white);
+    text-align: center;
+    word-break: break-all;
+}
+.dashboard-join-url.hidden { display: none; }
+
+/* #1713: QR-load-failure notice inside the (white) QR box — dark text points
+   guests at the join URL shown beneath it. */
+.dashboard-qr-fallback {
+    margin: 0;
+    padding: var(--space-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-bg, #12121a);
+    text-align: center;
+}
+
+/* #1717: TV breakpoint — upscale the states the display sits on for long
+   stretches (loading / no-game / paused / join URL / meter label) so they read
+   from the couch (3-5m). Appended last so it wins on source order without
+   bumping selector specificity. */
+@media (min-width: 1400px) {
+    .loading-text {
+        font-size: 28px;
+    }
+    .dashboard-message {
+        font-size: 52px;
+    }
+    .dashboard-hint {
+        font-size: 28px;
+    }
+    .dashboard-join-url {
+        font-size: var(--font-size-2xl);
+        max-width: min(80vw, 760px);
+    }
+    .chip-meter .chip-meter-label {
+        font-size: 22px;
+        padding: 7px 22px;
+    }
+}
