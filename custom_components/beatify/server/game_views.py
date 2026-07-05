@@ -290,9 +290,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # details. Fall back to the entity_id if the state carries no friendly
         # name. PROVIDER_LABELS gives each provider a human, translatable-free
         # display name.
-        speaker_name = (
-            media_player_state.name if media_player_state else media_player
-        )
+        speaker_name = media_player_state.name if media_player_state else media_player
 
         # Validate platform is supported
         capabilities = get_platform_capabilities(platform)

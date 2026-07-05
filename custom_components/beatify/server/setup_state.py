@@ -54,6 +54,4 @@ def write_setup(hass: HomeAssistant, blob: dict[str, Any]) -> None:
     """Persist the setup blob to disk (blocking I/O)."""
     path = _setup_path(hass)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(blob, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    path.write_text(json.dumps(blob, indent=2, ensure_ascii=False), encoding="utf-8")
