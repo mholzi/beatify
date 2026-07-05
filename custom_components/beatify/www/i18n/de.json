@@ -285,7 +285,8 @@
     "weeksShort": "Wo.",
     "moreAwards": "weitere",
     "playerNotFound": "Spieler nicht gefunden",
-    "autoAdvanceAria": "Countdown bis zur nächsten Runde"
+    "autoAdvanceAria": "Countdown bis zur nächsten Runde",
+    "reportBtnError": "Meldung konnte nicht gesendet werden — bitte erneut versuchen."
   },
   "leaderboard": {
     "title": "Rangliste",
@@ -894,7 +895,10 @@
     "gameNotFoundHint": "Dieses Spiel existiert nicht oder der Link ist falsch.",
     "submissionFailed": "Übertragung fehlgeschlagen",
     "thanksForPlaying": "Danke fürs Mitspielen!",
-    "timesUp": "Zeit abgelaufen!"
+    "timesUp": "Zeit abgelaufen!",
+    "PROVIDER_NOT_SUPPORTED": "{speaker} kann {provider} nicht abspielen. Wechsle zu einem Music-Assistant-Lautsprecher.",
+    "UNSUPPORTED_PLAYER": "{speaker} ist kein unterstützter Lautsprecher-Typ. Nutze Music Assistant.",
+    "joinTimeout": "Verbindung fehlgeschlagen. Bitte versuche es erneut."
   },
   "highlights": {
     "highlight_exact_match": "{player} hat '{song}' genagelt — {year}!",

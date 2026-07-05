@@ -1523,6 +1523,30 @@ function _resetReportBtn() {
     if (!btn) return;
     btn.textContent = utils.t('reveal.reportBtn') || '🚩 Wrong year?';
     btn.disabled = false;
+    _clearReportError();
+}
+
+// #1663: the report submit used to fail silently (a dead WS just returned).
+// Surface an inline error next to the button so the user knows to retry.
+// Reuses the existing `.validation-msg` styling so no CSS change is needed.
+function _showReportError() {
+    var row = document.querySelector('.reveal-report-row');
+    if (!row) return;
+    var err = document.getElementById('reveal-report-error');
+    if (!err) {
+        err = document.createElement('p');
+        err.id = 'reveal-report-error';
+        err.className = 'validation-msg reveal-report-error';
+        err.setAttribute('role', 'alert');
+        row.appendChild(err);
+    }
+    err.textContent = utils.t('reveal.reportBtnError') || "Couldn't send report — please try again.";
+    err.classList.remove('hidden');
+}
+
+function _clearReportError() {
+    var err = document.getElementById('reveal-report-error');
+    if (err) err.classList.add('hidden');
 }
 
 /**
@@ -1534,15 +1558,26 @@ export function setupRevealReportBtn() {
     if (!btn) return;
     btn.addEventListener('click', function() {
         var ctx = state.lastRevealContext;
-        if (!ctx || !ctx.song) return;
-        if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+        if (!ctx || !ctx.song) return;  // nothing to report — leave button idle
+        // #1663: a closed/absent socket previously returned silently. Tell the
+        // user instead of pretending nothing happened.
+        if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+            _showReportError();
+            return;
+        }
 
-        state.ws.send(JSON.stringify({
-            type: 'report_data',
-            artist: ctx.song.artist || '',
-            title: ctx.song.title || '',
-            year: ctx.song.year || null,
-        }));
+        _clearReportError();
+        try {
+            state.ws.send(JSON.stringify({
+                type: 'report_data',
+                artist: ctx.song.artist || '',
+                title: ctx.song.title || '',
+                year: ctx.song.year || null,
+            }));
+        } catch (e) {
+            _showReportError();
+            return;
+        }
 
         btn.textContent = utils.t('reveal.reportBtnDone') || '✓ Reported — thanks!';
         btn.disabled = true;

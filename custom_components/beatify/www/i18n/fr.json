@@ -285,7 +285,8 @@
     "weeksShort": "sem",
     "moreAwards": "plus",
     "playerNotFound": "Joueur introuvable",
-    "autoAdvanceAria": "Compte à rebours avant la prochaine manche"
+    "autoAdvanceAria": "Compte à rebours avant la prochaine manche",
+    "reportBtnError": "Impossible d'envoyer le signalement — reessaie."
   },
   "leaderboard": {
     "title": "Classement",
@@ -867,7 +868,10 @@
     "gameNotFoundHint": "Cette partie n'existe pas ou le lien est incorrect.",
     "submissionFailed": "Échec de l'envoi",
     "thanksForPlaying": "Merci d'avoir joué à Beatify !",
-    "timesUp": "Temps écoulé !"
+    "timesUp": "Temps écoulé !",
+    "PROVIDER_NOT_SUPPORTED": "{speaker} ne peut pas lire {provider}. Passe a une enceinte Music Assistant.",
+    "UNSUPPORTED_PLAYER": "{speaker} n'est pas un type d'enceinte pris en charge. Utilise Music Assistant.",
+    "joinTimeout": "Connexion impossible. Reessaie."
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",

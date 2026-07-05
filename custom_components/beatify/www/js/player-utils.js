@@ -18,6 +18,7 @@ export var state = {
     intentionalLeave: false,
     hasReactedThisPhase: false,
     currentRoundNumber: 0,
+    joinTimeoutId: null,  // #1663: initial-join watchdog timer id
     gameId: new URLSearchParams(window.location.search).get('game'),
     // Connection functions set by core module (avoids circular deps)
     connectWithSession: null,

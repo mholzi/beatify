@@ -1647,6 +1647,12 @@ async function _advance() {
         if (typeof window !== 'undefined' && typeof window.loadSavedSettings === 'function') {
             try { await window.loadSavedSettings(); } catch (e) { /* non-fatal */ }
         }
+        // #1663: persist the freshly-completed setup server-side so the host is
+        // recognised as configured on any other device — even before the first
+        // game starts. Best-effort; localStorage still drives this device.
+        if (typeof window !== 'undefined' && typeof window.BeatifyPersistSetup === 'function') {
+            try { await window.BeatifyPersistSetup(); } catch (e) { /* non-fatal */ }
+        }
         if (typeof window !== 'undefined' && typeof window.loadStatus === 'function') {
             window.loadStatus();
         }

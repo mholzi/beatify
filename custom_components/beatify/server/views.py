@@ -36,6 +36,7 @@ from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_status_response,
 )
+from custom_components.beatify.server.setup_state import read_setup, write_setup
 from custom_components.beatify.services.lights import PartyLightsService
 from custom_components.beatify.services.media_player import (
     album_art_signature_is_valid,
@@ -535,12 +536,18 @@ class StatusView(HomeAssistantView):
         playlists = await async_discover_playlists(self.hass)
         self.hass.data.setdefault(DOMAIN, {})["playlists"] = playlists
 
+        # #1663: server-side "setup complete" flag + saved picks so a configured
+        # instance stays configured on a new device/browser. Disk read offloaded
+        # to the executor (blocking I/O off the event loop).
+        saved_setup = await self.hass.async_add_executor_job(read_setup, self.hass)
+
         status = build_status_response(
             self.hass,
             version=_get_version(self.hass),
             media_players=media_players,
             playlists=playlists,
             media_player_twin_remap=media_player_twin_remap,
+            saved_setup=saved_setup,
         )
 
         return web.json_response(status)
@@ -574,6 +581,52 @@ class CapabilitiesView(HomeAssistantView):
                 "tts_service_count": len(tts_services),
             }
         )
+
+
+class SetupView(HomeAssistantView):
+    """Persist the host's "setup complete" blob server-side (#1663).
+
+    The first-run wizard stores the host's picks in ``localStorage`` only, so a
+    configured instance looks unconfigured on a new device. The admin frontend
+    POSTs its setup blob here after the wizard finishes / a game starts; the
+    blob is stored verbatim and surfaced back via ``/beatify/api/status``
+    (``setup_complete`` + ``saved_setup``) so any device can re-hydrate it.
+    """
+
+    url = "/beatify/api/setup"
+    name = "beatify:api:setup"
+    # requires_auth=False + in-handler check, matching CapabilitiesView so the
+    # HA Companion app (which can't reliably attach a Bearer token) still works.
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the setup view."""
+        self.hass = hass
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Persist the setup blob sent by the admin frontend."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        try:
+            body = await request.json()
+        except (json.JSONDecodeError, ValueError):
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+        if not isinstance(body, dict):
+            return _json_error("Invalid setup payload", 400, code="INVALID_REQUEST")
+
+        # Store only the two keys the frontend re-hydrates. Everything is opaque
+        # to the server — it never parses the client-side settings schema.
+        blob = {
+            "last_player": body.get("last_player"),
+            "game_settings": body.get("game_settings"),
+        }
+        try:
+            await self.hass.async_add_executor_job(write_setup, self.hass, blob)
+        except OSError:
+            return _json_error(
+                "Failed to persist setup", 500, code="SETUP_WRITE_FAILED"
+            )
+        return web.json_response({"ok": True})
 
 
 class LightsView(HomeAssistantView):

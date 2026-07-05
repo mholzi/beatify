@@ -23,7 +23,7 @@ import {
 import {
     startCountdown, stopCountdown,
     updateGameView, handleMetadataUpdate,
-    updateLeaderboard, setupLeaderboardToggle,
+    updateLeaderboard, setupLeaderboardToggle, resetLeaderboardSummary,
     initYearSelector, handleSubmitAck, handleSubmitError,
     resetSubmissionState,
     handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
@@ -57,6 +57,10 @@ var debug = utils.debug || function() {};
 var MAX_RECONNECT_ATTEMPTS = 10;
 var MAX_RECONNECT_DELAY_MS = 30000;
 var MAX_NAME_LENGTH = 20;
+// #1663: how long a guest may sit on "Joining…" before we surface a retry.
+// The join WS has no server-side ack timeout, so a dead/slow socket would
+// otherwise hang the spinner forever.
+var JOIN_TIMEOUT_MS = 10000;
 var STORAGE_KEY_NAME = 'beatify_player_name';
 var STORAGE_KEY_GAME_ID = 'beatify_game_id';
 var STORAGE_KEY_LANGUAGE = 'beatify_language';
@@ -517,6 +521,10 @@ function handleServerMessage(data) {
         return;
     }
 
+    // #1663: the server answered, so the initial join isn't hanging — cancel the
+    // join watchdog before it can wrongly reset a join that actually succeeded.
+    clearJoinTimeout();
+
     // #1287: cold-start bridge. The admin pressed start; the server fires this
     // the moment it begins connecting the Music Assistant speaker + loading
     // round 1 (~10-15s of otherwise-empty wait). Show the animated vinyl-disc
@@ -792,6 +800,7 @@ function handleServerMessage(data) {
         debug('[Player] Rematch started - transitioning to lobby');
         AnimationQueue.clear();
         stopConfetti();
+        resetLeaderboardSummary();  // #1663: drop the previous game's leader badge
         showView('lobby-view');
         // Reset any rematch button spinner (in case admin triggered this)
         var rematchBtn = document.getElementById('player-rematch-btn');
@@ -945,6 +954,45 @@ function handleJoinClick() {
     }
 
     connectWebSocket(result.name);
+    startJoinTimeout();
+}
+
+// #1663: guard the initial guest join. connectWebSocket() opens a WS but the
+// join only "succeeds" once the server answers (join_ack / first state frame).
+// If the socket stalls, the join button stays a disabled "Joining…" spinner
+// forever. Arm a timer on join; clearJoinTimeout() cancels it the moment any
+// server message arrives (see handleServerMessage).
+function startJoinTimeout() {
+    clearJoinTimeout();
+    state.joinTimeoutId = setTimeout(handleJoinTimeout, JOIN_TIMEOUT_MS);
+}
+
+function clearJoinTimeout() {
+    if (state.joinTimeoutId) {
+        clearTimeout(state.joinTimeoutId);
+        state.joinTimeoutId = null;
+    }
+}
+
+function handleJoinTimeout() {
+    state.joinTimeoutId = null;
+
+    // Tear the stalled socket down so "Try again" starts from a clean slate
+    // (and the onclose reconnect ladder doesn't fire behind our back).
+    if (state.ws) {
+        state.intentionalLeave = true;
+        try { state.ws.close(); } catch (e) { /* ignore */ }
+        state.ws = null;
+    }
+
+    // Re-enable the join form and surface the retry affordance.
+    var joinBtn = document.getElementById('join-btn');
+    if (joinBtn) {
+        joinBtn.disabled = false;
+        joinBtn.textContent = utils.t('join.joinButton') || 'Join Game';
+    }
+    showJoinError(utils.t('errors.joinTimeout') || "Couldn't connect. Please try again.");
+    showView('join-view');
 }
 
 function setupJoinForm() {

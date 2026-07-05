@@ -285,6 +285,15 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         entity_entry = ent_reg.async_get(media_player)
         platform = entity_entry.platform if entity_entry else "unknown"
 
+        # #1663: the admin UI renders setup errors concretely ("Speaker X can't
+        # play Apple Music") by interpolating {speaker}/{provider} from these
+        # details. Fall back to the entity_id if the state carries no friendly
+        # name. PROVIDER_LABELS gives each provider a human, translatable-free
+        # display name.
+        speaker_name = (
+            media_player_state.name if media_player_state else media_player
+        )
+
         # Validate platform is supported
         capabilities = get_platform_capabilities(platform)
         if not capabilities.get("supported"):
@@ -292,6 +301,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 capabilities.get("reason", "This player type is not supported"),
                 400,
                 code="UNSUPPORTED_PLAYER",
+                details={"speaker": speaker_name},
             )
 
         # Validate provider is supported by platform
@@ -300,6 +310,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "Apple Music is not supported on this speaker. Use Music Assistant.",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
+                details={"speaker": speaker_name, "provider": "Apple Music"},
             )
 
         if provider == PROVIDER_YOUTUBE_MUSIC and not capabilities.get("youtube_music"):
@@ -307,6 +318,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "YouTube Music is not supported on this speaker. Use Music Assistant.",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
+                details={"speaker": speaker_name, "provider": "YouTube Music"},
             )
 
         if provider == PROVIDER_TIDAL and not capabilities.get("tidal"):
@@ -314,6 +326,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "Tidal is not supported on this speaker. Use Music Assistant.",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
+                details={"speaker": speaker_name, "provider": "Tidal"},
             )
 
         if provider == PROVIDER_DEEZER and not capabilities.get("deezer"):
@@ -321,6 +334,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "Deezer is not supported on this speaker. Use Music Assistant.",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
+                details={"speaker": speaker_name, "provider": "Deezer"},
             )
 
         if provider == PROVIDER_AMAZON_MUSIC and not capabilities.get("amazon_music"):
@@ -328,6 +342,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "Amazon Music is not supported on this speaker. Use an Amazon Echo (alexa_media).",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
+                details={"speaker": speaker_name, "provider": "Amazon Music"},
             )
 
         # Build create_game kwargs with optional round_duration (Story 13.1),
