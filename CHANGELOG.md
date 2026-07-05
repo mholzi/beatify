@@ -4,8 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc10] - 2026-07-05
+
+Pre-release — adds the Sudden Death game mode and a broad reliability / performance / accessibility pass on top of the Mix & Match cycle. See the GitHub release for the user-facing notes.
+
 ### Added
 - **Sudden Death mode (#827, #1472).** An opt-in elimination format: after each round (from round 2 on), the surviving player with the lowest round score is knocked out for the rest of the game — last one standing wins. Ties for last go to the slowest submitter. Requires at least 3 players, and can be armed in the setup wizard or toggled live from the reveal screen. The TV shows an "OUT" takeover for players eliminated that round.
+- **Three new community playlists** — "🌪️ Funk Carioca" (20 Brazilian baile funk hits), "🇵🇱 Polish All-Time Hits" and "🇵🇱 Polish Rock", all year-mode ready with multi-provider URIs.
+
+### Changed
+- **Fairer speed bonus (#1722).** The speed multiplier now holds its full value through an opening grace window (the first third of the round) before decaying to the deadline, so taking a moment to actually recognise the song no longer costs the bonus; scores round rather than truncate, so the 1-point tier keeps its bonus too.
+- **Faster, lighter gameplay.** Game start no longer re-parses the playlist on the event loop (#1766), in-round broadcasts are debounced (#1763), and the per-frame leaderboard payload was slimmed and re-hydrated client-side (#1765) — smoother in busy, many-player rooms.
+- **More Tidal coverage** backfilled across the catalogue over the cycle.
+
+### Fixed
+- **Reaction feedback (#1757).** A reaction attempted while the socket is reconnecting no longer silently burns the one-per-round budget, and the chosen emoji now lights up as used.
+- **Styled "Start anyway?" gate (#1758)** replaces the native confirm dialog, which was silently suppressed in some Android WebView / PWA contexts.
+- **Bigger tap targets (#1759)** on the kick, seasonal-dismiss and coarse year-step buttons (44px), and **keyboard focus is now trapped and restored** across every player dialog (#1760).
+- **Offline fallback (#1761).** A dropped network now shows a friendly offline page instead of the browser's raw error screen; the service-worker cache prune no longer evicts the app shell.
+- **~40 additional review findings** across scoring, round-end handling and Sudden Death interactions were fixed in the same pass.
 
 ## [4.2.0-rc9] - 2026-06-28
 
