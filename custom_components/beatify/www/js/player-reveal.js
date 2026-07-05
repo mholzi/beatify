@@ -18,6 +18,14 @@ var utils = window.BeatifyUtils || {};
 var VOTE_WINDOW_SECONDS = 30;  // mirrors TITLE_ARTIST_VOTE_WINDOW_SECONDS
 var _taVoteCountdownTimer = null;
 
+// #1706: cache the last art URL applied to the reveal cover + backdrop. REVEAL
+// broadcasts fire for every reaction/vote/override; without these guards each
+// one re-assigned <img>.src and allocated a fresh Image() to re-decode the same
+// backdrop, causing repeated decodes/repaints during the most interactive phase.
+// Reset on stopRevealCountdown (phase leaves REVEAL) so a new round re-probes.
+var _lastRevealCoverSrc = null;
+var _lastBackdropArt = null;
+
 // ============================================
 // Reveal View (Story 4.6)
 // ============================================
@@ -77,10 +85,16 @@ export function updateRevealView(data) {
         // entity gone, MA-side hiccup). Fallback to the precached no-artwork
         // SVG so the cover slot always renders something — without onerror the
         // .song-strip-cover gradient bleeds through and looks intentional.
-        albumCover.onerror = function() {
-            albumCover.src = '/beatify/static/img/no-artwork.svg';
-        };
-        albumCover.src = song.album_art || '/beatify/static/img/no-artwork.svg';
+        var coverSrc = song.album_art || '/beatify/static/img/no-artwork.svg';
+        // #1706: only reassign when the URL actually changed — a re-broadcast
+        // with the same art must not re-trigger a decode/repaint.
+        if (coverSrc !== _lastRevealCoverSrc) {
+            albumCover.onerror = function() {
+                albumCover.src = '/beatify/static/img/no-artwork.svg';
+            };
+            albumCover.src = coverSrc;
+            _lastRevealCoverSrc = coverSrc;
+        }
     }
 
     // Spotlight Stage backdrop: blur the album art behind the top of the
@@ -90,21 +104,29 @@ export function updateRevealView(data) {
     // the cover <img> has an onerror handler above).
     var backdrop = document.getElementById('reveal-backdrop');
     if (backdrop) {
-        var art = song.album_art;
-        if (art) {
-            var probe = new Image();
-            probe.onload = function() {
-                backdrop.style.backgroundImage = 'url("' + art + '")';
-                backdrop.classList.remove('reveal-backdrop--synthetic');
-            };
-            probe.onerror = function() {
+        var art = song.album_art || null;
+        // #1706: early-return when the backdrop art is unchanged — skip the new
+        // Image() allocation, the URL reload and the backgroundImage reassign
+        // (the expensive decode+repaint) on every re-broadcast of the same song.
+        if (art !== _lastBackdropArt) {
+            _lastBackdropArt = art;
+            if (art) {
+                var probe = new Image();
+                probe.onload = function() {
+                    backdrop.style.backgroundImage = 'url("' + art + '")';
+                    backdrop.classList.remove('reveal-backdrop--synthetic');
+                };
+                probe.onerror = function() {
+                    // Reset the cache so a later retry with the same URL re-probes.
+                    if (_lastBackdropArt === art) _lastBackdropArt = null;
+                    backdrop.style.backgroundImage = '';
+                    backdrop.classList.add('reveal-backdrop--synthetic');
+                };
+                probe.src = art;
+            } else {
                 backdrop.style.backgroundImage = '';
                 backdrop.classList.add('reveal-backdrop--synthetic');
-            };
-            probe.src = art;
-        } else {
-            backdrop.style.backgroundImage = '';
-            backdrop.classList.add('reveal-backdrop--synthetic');
+            }
         }
     }
 
@@ -242,6 +264,10 @@ export function stopRevealCountdown() {
     }
     var chip = document.getElementById('player-reveal-countdown');
     if (chip) chip.classList.add('hidden');
+    // #1706: leaving REVEAL — drop the cover/backdrop caches so the NEXT round's
+    // REVEAL re-applies the (new) art even if the DOM was reused.
+    _lastRevealCoverSrc = null;
+    _lastBackdropArt = null;
 }
 
 /**

@@ -43,8 +43,10 @@ var revealView = document.getElementById('reveal-view');
 var pausedView = document.getElementById('paused-view');
 var endView = document.getElementById('end-view');
 var connectionLostView = document.getElementById('connection-lost-view');
+// #1718: SESSION_TAKEOVER gets its own view (not the misleading connection-lost one).
+var sessionTakeoverView = document.getElementById('session-takeover-view');
 
-var allViews = [loadingView, startingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView];
+var allViews = [loadingView, startingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView, sessionTakeoverView];
 
 /**
  * Show a specific view and hide all others
@@ -71,7 +73,8 @@ export function showView(viewId) {
     // Set calm energy for entry screens (Story 9.9)
     if (viewId === 'join-view' || viewId === 'loading-view' ||
         viewId === 'not-found-view' || viewId === 'ended-view' ||
-        viewId === 'in-progress-view' || viewId === 'connection-lost-view') {
+        viewId === 'in-progress-view' || viewId === 'connection-lost-view' ||
+        viewId === 'session-takeover-view') {
         setEnergyLevel('calm');
     }
 
@@ -81,6 +84,98 @@ export function showView(viewId) {
             if (nameInput) nameInput.focus();
         }, 100);
     }
+}
+
+// ============================================
+// Modal Focus Management (#1716)
+// ============================================
+
+/**
+ * #1716: accessible focus management for aria-modal dialogs. On activate() we
+ * move focus into the dialog, trap Tab within its `.modal-content`, and close
+ * on Escape; deactivate() restores focus to whatever held it before the dialog
+ * opened. Kept DOM-injectable (reads the modal's ownerDocument) so it is pure
+ * with respect to this module and unit-testable without a real browser
+ * (see __tests__/modal-focus-trap.test.js).
+ *
+ * @param {Element} modal - the dialog root (`.hidden` toggled by the caller).
+ * @param {Object} [options]
+ * @param {string} [options.contentSelector='.modal-content'] - focus-trap scope.
+ * @returns {{activate:Function, deactivate:Function}}
+ */
+export function createModalFocusTrap(modal, options) {
+    var opts = options || {};
+    var contentSelector = opts.contentSelector || '.modal-content';
+    var doc = (modal && modal.ownerDocument) ||
+        (typeof document !== 'undefined' ? document : null);
+    var previouslyFocused = null;
+    var keydownHandler = null;
+    var activeOnEscape = null;
+
+    var FOCUSABLE = 'button, [href], input, select, textarea, ' +
+        '[tabindex]:not([tabindex="-1"])';
+
+    function focusable() {
+        var scope = (modal && modal.querySelector(contentSelector)) || modal;
+        if (!scope || !scope.querySelectorAll) return [];
+        var nodes = scope.querySelectorAll(FOCUSABLE);
+        return Array.prototype.filter.call(nodes, function(el) {
+            // Skip disabled / explicitly hidden nodes; keep everything else so a
+            // minimal test DOM (no layout) still yields the trap targets.
+            return !el.disabled && el.getAttribute('aria-hidden') !== 'true';
+        });
+    }
+
+    function onKeydown(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            if (typeof activeOnEscape === 'function') {
+                if (e.preventDefault) e.preventDefault();
+                activeOnEscape();
+            }
+            return;
+        }
+        if (e.key !== 'Tab') return;
+        var f = focusable();
+        if (f.length === 0) { if (e.preventDefault) e.preventDefault(); return; }
+        var first = f[0];
+        var last = f[f.length - 1];
+        var active = doc ? doc.activeElement : null;
+        var idx = Array.prototype.indexOf.call(f, active);
+        if (e.shiftKey) {
+            if (idx <= 0) { if (e.preventDefault) e.preventDefault(); last.focus(); }
+        } else if (idx === -1 || idx === f.length - 1) {
+            if (e.preventDefault) e.preventDefault();
+            first.focus();
+        }
+    }
+
+    function activate(activateOpts) {
+        activateOpts = activateOpts || {};
+        activeOnEscape = typeof activateOpts.onEscape === 'function'
+            ? activateOpts.onEscape : null;
+        previouslyFocused = doc ? doc.activeElement : null;
+        var f = focusable();
+        var initial = activateOpts.initialFocus || f[0];
+        if (initial && typeof initial.focus === 'function') initial.focus();
+        keydownHandler = onKeydown;
+        if (doc && doc.addEventListener) {
+            doc.addEventListener('keydown', keydownHandler, true);
+        }
+    }
+
+    function deactivate() {
+        if (keydownHandler && doc && doc.removeEventListener) {
+            doc.removeEventListener('keydown', keydownHandler, true);
+        }
+        keydownHandler = null;
+        activeOnEscape = null;
+        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+            previouslyFocused.focus();
+        }
+        previouslyFocused = null;
+    }
+
+    return { activate: activate, deactivate: deactivate };
 }
 
 // ============================================
@@ -113,13 +208,21 @@ export function showConfirmModal(title, message, confirmText, cancelText) {
         yesBtn.textContent = confirmText || utils.t('common.confirm') || 'Confirm';
         noBtn.textContent = cancelText || utils.t('common.cancel') || 'Cancel';
 
+        var backdrop = modal.querySelector('.modal-backdrop');
+        // #1716: focus management — trap Tab in .modal-content, Escape cancels,
+        // focus restores to the trigger on close.
+        var trap = createModalFocusTrap(modal);
+
         modal.classList.remove('hidden');
+        // Cancel is the safe default focus target for a destructive confirm.
+        trap.activate({ initialFocus: noBtn, onEscape: onCancel });
 
         function cleanup() {
             modal.classList.add('hidden');
             yesBtn.removeEventListener('click', onConfirm);
             noBtn.removeEventListener('click', onCancel);
-            backdrop.removeEventListener('click', onCancel);
+            if (backdrop) backdrop.removeEventListener('click', onCancel);
+            trap.deactivate();
         }
 
         function onConfirm() {
@@ -131,8 +234,6 @@ export function showConfirmModal(title, message, confirmText, cancelText) {
             cleanup();
             resolve(false);
         }
-
-        var backdrop = modal.querySelector('.modal-backdrop');
 
         yesBtn.addEventListener('click', onConfirm);
         noBtn.addEventListener('click', onCancel);

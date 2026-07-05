@@ -182,15 +182,19 @@ export function startCountdown(deadline, secondsRemaining) {
         // #1663 item 4: drain the depleting ring in lock-step with the number.
         _paintRing(remaining);
 
-        // ARIA announcements at key moments (Story 9.7)
-        if (remaining === 10) {
-            timerElement.setAttribute('aria-label', '10 seconds remaining');
-        } else if (remaining === 5) {
-            timerElement.setAttribute('aria-label', '5 seconds!');
-        } else if (remaining === 0) {
-            timerElement.setAttribute('aria-label', 'Time is up!');
-        } else {
-            timerElement.setAttribute('aria-label', 'Time remaining: ' + remaining + ' seconds');
+        // #1714: milestone-only screen-reader cues. The timer is no longer an
+        // aria-live region (a polite region rewritten every second made a screen
+        // reader speak "30..29..28.." continuously, drowning out submission acks,
+        // emotion results and score updates). Announce ONLY at 10s / 5s / time-up
+        // via the dedicated assertive #timer-announcer node — one utterance each,
+        // since aria-live only speaks on a text change.
+        if (remaining === 10 || remaining === 5 || remaining === 0) {
+            var announcer = document.getElementById('timer-announcer');
+            if (announcer) {
+                announcer.textContent = remaining === 0
+                    ? "Time's up!"
+                    : remaining + ' seconds remaining';
+            }
         }
 
         if (remaining <= 0) {
