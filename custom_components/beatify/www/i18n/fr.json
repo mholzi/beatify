@@ -88,13 +88,13 @@
     "timeRemaining": "{seconds}s restantes",
     "bet": "Quitte ou triple",
     "betShort": "×3",
+    "betActive": "Pari actif !",
     "noBonusThisRound": "Pas de bonus ce tour — trouve l'année",
     "lockedIn": "Verrouillé · en attente des autres",
     "lockedInWaitingCount": "Verrouillé · en attente de {count} joueur(s)",
     "lockedInAllSubmitted": "Verrouillé · tout le monde a envoyé",
     "waitingForOthers": "En attente des autres",
     "allSubmitted": "Tous prêts",
-    "betActive": "Pari actif !",
     "guessArtist": "Devine l'artiste",
     "artistPlaceholder": "Nom de l'artiste",
     "paused": "Partie en pause",
@@ -324,6 +324,26 @@
     "skipRound": "Passer",
     "mediaPlayers": "Lecteurs",
     "playlists": "Playlists",
+    "playlistTabList": "Playlists",
+    "playlistTabMix": "Mix",
+    "mixTitle": "Mixeur intelligent de playlists",
+    "mixSubtitle": "Choisis des tags — Beatify compose à la volée un ensemble dédupliqué à partir de ton catalogue.",
+    "mixTargetCount": "Nombre de titres visé",
+    "mixPreviewEmpty": "Sélectionne des tags pour prévisualiser ton mix.",
+    "mixPreviewNone": "Aucune playlist ne correspond à ces tags.",
+    "mixPreview": "≈ {songs} titres de {playlists} playlists · doublons supprimés",
+    "mixPreviewTracks": "Voir la liste des titres",
+    "mixPreviewLoading": "Chargement de l'aperçu…",
+    "mixTracklistHeading": "{count} titres dans ce mix",
+    "mixTracklistEmpty": "Aucun titre à afficher.",
+    "mixStart": "Démarrer le mix",
+    "mixAssembling": "Composition…",
+    "mixSaveCommunity": "Enregistrer comme playlist de la communauté",
+    "mixNoTags": "Aucune playlist taguée à mixer trouvée.",
+    "mixNoTagsSelected": "Sélectionne au moins un tag.",
+    "mixNoMediaPlayer": "Sélectionne d'abord un lecteur multimédia.",
+    "mixFailed": "Impossible de composer le mix.",
+    "mixStartUnavailable": "Mix composé, mais la partie n'a pas pu démarrer.",
     "selectPlaylist": "Choisir une playlist",
     "selectMediaPlayer": "Choisir une enceinte",
     "selectMediaPlayerHint": "Sélectionne un lecteur",
@@ -365,6 +385,8 @@
     "stopSong": "Arrêter chanson",
     "connectionLost": "Connexion perdue — reconnexion...",
     "connectionDisrupted": "Connexion interrompue — veuillez recharger la page.",
+    "wsAuthFailed": "Home Assistant a rejeté le jeton d'accès. Nouvelle authentification…",
+    "companionLocalNetworkRequired": "L'admin Beatify nécessite un accès au réseau local depuis l'app Companion — ouvre Beatify dans un navigateur externe, ou connecte-toi à ton wifi domestique.",
     "confirmIntro": "Lancer la manche",
     "next": "Suivant",
     "nextRound": "Manche suivante",
@@ -599,7 +621,8 @@
     "suddenDeathMode": "Mort Subite",
     "suddenDeathModeHint": "Le dernier de chaque manche est éliminé. Le dernier en lice gagne.",
     "suddenDeathDisabledTooltip": "La Mort Subite nécessite au moins 3 joueurs.",
-    "suddenDeathLive": "Mort Subite"  },
+    "suddenDeathLive": "Mort Subite"
+  },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
     "subtitle": "Statistiques",
@@ -849,6 +872,7 @@
     "ADMIN_EXISTS": "L'hôte existe déjà",
     "ALREADY_SUBMITTED": "Tu as déjà envoyé ta réponse",
     "CONNECTION_LOST": "Connexion perdue",
+    "EMPTY_MIX": "Aucun titre ne correspond aux tags sélectionnés pour ce fournisseur. Essaie avec moins de tags ou d'autres tags.",
     "GAME_ALREADY_STARTED": "Une partie est déjà en cours. Termine-la avant d'en lancer une nouvelle.",
     "GAME_ENDED": "La partie est terminée",
     "GAME_FULL": "La partie est complète",
@@ -858,17 +882,21 @@
     "INVALID_ACTION": "Action invalide",
     "INVALID_FORMAT": "Cela ne ressemble pas à une URL valide de playlist Spotify.",
     "MEDIA_PLAYER_UNAVAILABLE": "Lecteur indisponible",
+    "MIX_INVALID": "Le mix composé n'a pas passé la validation. Réessaie avec d'autres tags.",
     "NAME_INVALID": "Nom invalide",
     "NAME_TAKEN": "Nom déjà utilisé",
     "NOT_ADMIN": "Accès administrateur requis",
     "NOT_IN_GAME": "Tu n'es pas dans la partie",
     "NO_SONGS_REMAINING": "Plus de chansons restantes",
+    "NO_TAGS": "Choisis au moins un tag pour créer un mix.",
     "PLAYLIST_NOT_FOUND": "Playlist introuvable. L’URL est-elle correcte et la playlist publique ?",
     "RATE_LIMITED": "Trop de requêtes — patiente une minute et réessaye.",
     "RECONNECTING": "Reconnexion...",
     "ROUND_EXPIRED": "La manche a expiré",
+    "SAVE_FAILED": "Impossible d'enregistrer le mix. Réessaie.",
     "SESSION_NOT_FOUND": "Session expirée",
     "SESSION_TAKEOVER": "Session reprise par un autre onglet",
+    "UNAUTHORIZED": "Tu n'es pas autorisé à faire ça.",
     "UNKNOWN": "Une erreur est survenue",
     "askHostNewGame": "Demande à l'hôte de lancer une nouvelle partie.",
     "startNotPossible": "Démarrage impossible",
@@ -1065,6 +1093,166 @@
     "titleArtistTitle": "Trouve le titre",
     "titleArtistCaption": "Parfois : tape le titre & l’artiste",
     "titleArtistHint": "Presque ? La salle vote 👍/👎."
+  },
+  "playlistHub": {
+    "title": "Hub des playlists",
+    "loading": "Chargement…",
+    "close": "Fermer",
+    "retry": "Réessayer",
+    "seeAll": "Tout voir",
+    "by": "par",
+    "bundledBy": "Équipe Beatify",
+    "songs": "titres",
+    "played": "jouée",
+    "players": "joueurs",
+    "min": "min",
+    "local": "Locale",
+    "search": {
+      "placeholder": "Rechercher playlists, artistes, années…"
+    },
+    "tabs": {
+      "bundled": "Incluses",
+      "community": "Communauté",
+      "mine": "Les miennes"
+    },
+    "chips": {
+      "all": "Tous les genres",
+      "pop": "Pop",
+      "rock": "Rock",
+      "hiphop": "Hip-Hop",
+      "metal": "Metal",
+      "jazz": "Jazz",
+      "electronic": "Électronique",
+      "latin": "Latino",
+      "schlager": "Schlager",
+      "soul": "Soul / R&B",
+      "other": "Autres"
+    },
+    "shelves": {
+      "yourMostPlayed": "Tes plus jouées",
+      "recentlyPlayed": "Jouées récemment",
+      "editorsPicks": "Sélection de la rédaction",
+      "fromCommunity": "De la communauté",
+      "popularIn": "Populaires en",
+      "recentlyAdded": "Ajoutées récemment",
+      "regional": "Régional et spécialités",
+      "searchResults": "Résultats"
+    },
+    "community": {
+      "tag": "COMMUNAUTÉ",
+      "banner": {
+        "title": "Rien pour toi ici ? Demande une playlist.",
+        "sub": "Décris le genre, l'époque, l'ambiance. Un mainteneur la livre en 24–48 h."
+      }
+    },
+    "mine": {
+      "requests": "DEMANDES",
+      "done": "TERMINÉ",
+      "inFlight": "EN COURS",
+      "untitled": "Demande sans titre",
+      "submitted": "Envoyée",
+      "empty": {
+        "title": "Pas encore de demandes",
+        "body": "Il manque un genre, une époque ou une scène régionale ? Demande-le. Un mainteneur l'ajoute en 24–48 h."
+      },
+      "request": {
+        "title": "Demander une playlist",
+        "sub": "Colle l'URL d'une playlist Spotify et envoie.",
+        "cta": "Lancer une demande"
+      },
+      "newRequest": {
+        "title": "Demander une autre playlist",
+        "sub": "Colle une URL Spotify, on s'occupe du reste."
+      },
+      "meanwhile": {
+        "title": "En attendant, explore les playlists de la communauté",
+        "sub": "Sélections des utilisateurs, installables en un tap."
+      },
+      "generator": {
+        "title": "Ou crée la tienne avec une IA",
+        "sub": "URL Spotify → copie le prompt → lance-le dans ton IA → recolle → valide → envoie.",
+        "subShort": "URL Spotify → prompt → JSON → valider → envoyer."
+      },
+      "step": {
+        "submitted": "Envoyée",
+        "reviewed": "Examinée",
+        "building": "En cours",
+        "inBundled": "Livrée"
+      }
+    },
+    "status": {
+      "pending": "En attente",
+      "building": "En cours",
+      "done": "Terminée",
+      "declined": "Refusée"
+    },
+    "detail": {
+      "add": "Ajouter à la manche",
+      "remove": "Retirer de la manche",
+      "added": "Ajoutée",
+      "language": "Langue",
+      "tags": "Tags",
+      "streaming": "Couverture streaming"
+    },
+    "sources": {
+      "bundled": "Incluses",
+      "community": "Communauté"
+    },
+    "empty": {
+      "noSearch": {
+        "title": "Aucun résultat pour",
+        "body": "Rien ne correspond ici. Essaie une autre recherche, ou consulte l'autre onglet.",
+        "searchOther": "Rechercher",
+        "request": "Demander cette playlist",
+        "clear": "Effacer la recherche"
+      },
+      "noFilter": {
+        "title": "Aucune playlist ne correspond",
+        "body": "Essaie de retirer le filtre ou de demander ce genre.",
+        "clear": "Effacer le filtre de genre",
+        "request": "Demander ce genre"
+      },
+      "communityEmpty": {
+        "title": "Aucune playlist de la communauté installée",
+        "body": "Les playlists de la communauté sont fournies avec Beatify. Mets à jour l'intégration pour obtenir les dernières."
+      }
+    },
+    "error": {
+      "title": "Impossible de charger les playlists"
+    },
+    "time": {
+      "justNow": "à l'instant",
+      "minutesAgo": "il y a {n} min",
+      "hoursAgo": "il y a {n} h",
+      "daysAgo": "il y a {n} j",
+      "weeksAgo": "il y a {n} sem"
+    },
+    "cta": {
+      "start": "Continuer",
+      "pickSome": "Choisis-en →",
+      "back": "Retour"
+    },
+    "pill": {
+      "add": "Ajouter",
+      "added": "Ajoutée",
+      "ariaAdd": "Ajouter à la manche",
+      "ariaRemove": "Retirer de la manche"
+    },
+    "sections": {
+      "byCountry": "Par pays",
+      "byStyle": "Par style",
+      "countries": "pays",
+      "styles": "styles"
+    },
+    "selected": {
+      "title": "Tes playlists sélectionnées",
+      "subtitleOne": "1 playlist sélectionnée",
+      "subtitleN": "{n} playlists sélectionnées",
+      "empty": "Aucune playlist sélectionnée pour l'instant",
+      "remove": "Retirer",
+      "removeAria": "Retirer {name}",
+      "openAria": "Afficher les playlists sélectionnées"
+    }
   },
   "playlistGenerator": {
     "title": "Générateur de playlists",

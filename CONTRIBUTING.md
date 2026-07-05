@@ -181,10 +181,12 @@ Notes:
 ## Translations
 
 Config-flow / setup strings live in `custom_components/beatify/translations/`
-(`de`, `en`, `es`, `fr`, `nl`). The in-app UI strings are handled in
-`custom_components/beatify/www/js/i18n.js`. To add or fix a language, update the
-matching JSON / i18n entries and keep keys in sync across all languages. After
-editing `i18n.js`, rebuild (`npm run build`) so `i18n.min.js` stays current.
+(`de`, `en`, `es`, `fr`, `nl`). The in-app UI strings live in
+`custom_components/beatify/www/i18n/<locale>.json` (one file per locale:
+`en.json`, `de.json`, `es.json`, `fr.json`, `nl.json`). `en.json` is the
+canonical source — add new keys there first, then mirror them into every other
+locale, keeping the exact same key structure and nesting across all languages.
+No build step is required for these JSON files; they are loaded at runtime.
 
 ---
 
