@@ -88,6 +88,7 @@ class PlayerRegistry:
         ws: web.WebSocketResponse,
         phase: GamePhase,
         average_score_fn: Callable[[], int],
+        current_round: int = 0,
     ) -> tuple[bool, str | None]:
         """
         Add a player to the game.
@@ -100,6 +101,9 @@ class PlayerRegistry:
             ws: WebSocket connection
             phase: Current game phase
             average_score_fn: Callable returning current average score for late joiners
+            current_round: The round in progress (#1752). Recorded as
+                ``joined_round`` for late joiners so Sudden Death can grant them
+                one grace round (excluded from that round's elimination pool).
 
         Returns:
             (success, error_code) - error_code is None on success
@@ -159,9 +163,16 @@ class PlayerRegistry:
         # Calculate initial score (late joiners get average)
         initial_score = average_score_fn() if joined_late else 0
 
-        # Add new player
+        # Add new player. #1752: record the round a late joiner entered so
+        # Sudden Death excludes them from that round's elimination pool (one
+        # grace round); LOBBY joins leave joined_round None.
         player = PlayerSession(
-            name=name, ws=ws, score=initial_score, streak=0, joined_late=joined_late
+            name=name,
+            ws=ws,
+            score=initial_score,
+            streak=0,
+            joined_late=joined_late,
+            joined_round=current_round if joined_late else None,
         )
         # #1664 PR-2: key by player_id (== session_id), not the display name.
         self._players[player.player_id] = player

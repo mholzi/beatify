@@ -110,7 +110,10 @@ class RoundScoringMixin:
         # resolve) so the leaderboard reflects accepted near-misses without the
         # main loop and the rescore double-counting. With no near-misses the
         # challenge resolves immediately, so scoring here is already final.
-        defer_title_artist = self.title_artist_mode and self.has_near_misses()
+        # #1747: shared predicate with the Sudden Death elimination gate in
+        # _end_round_unlocked so the two paths never disagree on whether scores
+        # are final yet.
+        defer_title_artist = self._title_artist_scoring_deferred()
         if not defer_title_artist:
             self._score_all_players(correct_year, all_players)
 

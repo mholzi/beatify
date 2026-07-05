@@ -77,6 +77,11 @@ class PlayerSession:
     # Sudden Death tracking (Issue #827) - CUMULATIVE, NOT reset in reset_round()
     eliminated: bool = False  # True once eliminated; stays out for the rest of the game
     eliminated_round: int | None = None  # Round number the player was eliminated in
+    # #1752: round number a late joiner entered the game in. None for LOBBY joins
+    # (and after reset_for_new_game). Used to grant a mid-round joiner one grace
+    # round — they are excluded from the Sudden Death elimination candidate pool
+    # for the round they join, since they never played it.
+    joined_round: int | None = None
 
     # Final stats tracking (Story 5.6) - CUMULATIVE, NOT reset in reset_round()
     best_streak: int = 0  # Highest streak achieved during game
@@ -221,6 +226,9 @@ class PlayerSession:
         # Reset Sudden Death state (Issue #827)
         self.eliminated = False
         self.eliminated_round = None
+        # #1752: clear late-join grace tracking so a rematch/new game never
+        # grants a carried-over player Sudden Death grace on a stale round number.
+        self.joined_round = None
 
         # Reset movie bonus cumulative tracking (Issue #28)
         self.movie_bonus_total = 0

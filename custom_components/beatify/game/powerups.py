@@ -57,10 +57,14 @@ class PowerUpManager:
         """
         # #1664 PR-2: ``players`` is keyed by player_id now, so match on the
         # display name attribute rather than the dict key.
+        # #1748: an eliminated player (Sudden Death) is out of the game — their
+        # guess must not be a steal target.
         return [
             player.name
             for player in players.values()
-            if player.name != stealer_name and player.submitted
+            if player.name != stealer_name
+            and player.submitted
+            and not player.eliminated
         ]
 
     def use_steal(

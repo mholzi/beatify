@@ -141,6 +141,7 @@ ERR_NO_ARTIST_CHALLENGE = "NO_ARTIST_CHALLENGE"  # Story 20.3 - no artist challe
 ERR_NO_MOVIE_CHALLENGE = "NO_MOVIE_CHALLENGE"  # Issue #28 - no movie quiz this round
 ERR_NO_TITLE_ARTIST_CHALLENGE = "NO_TITLE_ARTIST_CHALLENGE"  # #1180 - no T&A this round
 ERR_UNAUTHORIZED = "UNAUTHORIZED"  # Issue #477 - invalid admin token
+ERR_ELIMINATED = "ELIMINATED"  # #1748 - Sudden Death: eliminated player may not act
 
 # Song difficulty rating constants (Story 15.1)
 MIN_PLAYS_FOR_DIFFICULTY = 3  # Minimum plays before showing difficulty rating

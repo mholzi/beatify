@@ -15,6 +15,7 @@ from aiohttp import web
 from custom_components.beatify.const import (
     ARTIST_BONUS_POINTS,
     ERR_ALREADY_SUBMITTED,
+    ERR_ELIMINATED,
     ERR_INVALID_ACTION,
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
@@ -52,6 +53,18 @@ async def handle_submit(
                 "type": "error",
                 "code": ERR_NOT_IN_GAME,
                 "message": "Not in game",
+            }
+        )
+        return
+
+    # #1748: a Sudden Death eliminated player is out of the game — reject any
+    # server-side guess so a stale client can't keep banking score.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
             }
         )
         return
@@ -152,6 +165,17 @@ async def handle_get_steal_targets(
         )
         return
 
+    # #1748: an eliminated player (Sudden Death) may not use a banked steal.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
+            }
+        )
+        return
+
     if not player.steal_available:
         await ws.send_json(
             {
@@ -190,6 +214,17 @@ async def handle_steal(
                 "type": "error",
                 "code": ERR_NOT_IN_GAME,
                 "message": "Not in game",
+            }
+        )
+        return
+
+    # #1748: an eliminated player (Sudden Death) may not execute a banked steal.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
             }
         )
         return
@@ -280,6 +315,17 @@ async def handle_artist_guess(
                 "type": "error",
                 "code": ERR_NOT_IN_GAME,
                 "message": "Not in game",
+            }
+        )
+        return
+
+    # #1748: reject guesses from a Sudden Death eliminated player.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
             }
         )
         return
@@ -394,6 +440,17 @@ async def handle_movie_guess(
         )
         return
 
+    # #1748: reject guesses from a Sudden Death eliminated player.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
+            }
+        )
+        return
+
     if not game_state.movie_challenge:
         await ws.send_json(
             {
@@ -485,6 +542,17 @@ async def handle_title_artist_guess(
                 "type": "error",
                 "code": ERR_NOT_IN_GAME,
                 "message": "Not in game",
+            }
+        )
+        return
+
+    # #1748: reject guesses from a Sudden Death eliminated player.
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
             }
         )
         return

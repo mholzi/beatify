@@ -136,6 +136,15 @@ class VoteWindowMixin:
                     await self._on_round_end()
                 except (ConnectionError, OSError, TypeError) as err:
                     _LOGGER.error("Vote-window broadcast failed: %s", err)
+            # #1755: opening the vote window took over the _auto_advance_task
+            # slot, so REVEAL is now parked with no song-end advance armed. Re-arm
+            # it so an unattended title/artist near-miss round still advances at
+            # song-end (never-stall invariant #1012) — and a final unattended
+            # round still reaches END — instead of holding on REVEAL until the
+            # host taps Next. Only re-arm while still in REVEAL (a manual advance
+            # or end during the broadcast would have moved the phase on).
+            if self.phase == GamePhase.REVEAL:
+                self._schedule_song_end_auto_advance()
         except asyncio.CancelledError:
             # #1359: defense in depth — when end_game/next_round/pause cancels
             # this task mid-window, clear the vote-window flags so they can't
@@ -164,6 +173,12 @@ class VoteWindowMixin:
         self._challenge_manager.resolve_title_artist()
         async with self._score_lock:
             await self._score_title_artist_round()
+            # #1747: the deferred title/artist scores are now final, so run the
+            # Sudden Death cut that _end_round_unlocked deferred for this path.
+            # Guarded by voting_open above so it runs exactly once per round (the
+            # host-advance and window-expiry races both resolve through here).
+            # Caller-held _score_lock is required by _apply_sudden_death_elimination.
+            self._apply_sudden_death_elimination()
 
     async def _score_title_artist_round(self) -> None:
         """Run the deferred title/artist scoring pass. Caller holds the lock.

@@ -113,7 +113,7 @@ class PlayerLifecycleMixin:
     ) -> tuple[bool, str | None]:
         """Add a player to the game. Delegates to PlayerRegistry."""
         return self._player_registry.add_player(
-            name, ws, self.phase, self.get_average_score
+            name, ws, self.phase, self.get_average_score, self.round
         )
 
     def get_player(self, name: str) -> PlayerSession | None:
