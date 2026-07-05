@@ -126,37 +126,50 @@ export function updateGameView(data) {
     var albumLoading = document.getElementById('album-loading');
 
     if (albumCover && data.song) {
-        if (albumLoading) albumLoading.classList.remove('hidden');
-
         var newSrc = data.song.album_art || '/beatify/static/img/no-artwork.svg';
 
-        // #1664 item 3: clean up the load/error listeners on every re-render.
-        // updateGameView() runs on each state_update, so without deregistering
-        // we either leak listeners (addEventListener) or leave a handler wired
-        // to a stale closure. Hold the refs on the element and remove any left
-        // from a previous render before re-attaching; `once` auto-removes the
-        // one that actually fires (the other is cleared by the next render).
-        if (albumCover._beatifyOnLoad) {
-            albumCover.removeEventListener('load', albumCover._beatifyOnLoad);
+        // #1707: unchanged-src short-circuit (mirrors handleMetadataUpdate).
+        // updateGameView runs on EVERY PLAYING broadcast — each submission by any
+        // player re-showed the spinner and reassigned albumCover.src for the SAME
+        // art, flashing the loader mid-round on all phones. Track the last
+        // requested URL on the element (data.song.album_art can be relative, so
+        // comparing the resolved albumCover.src is unreliable) and skip the whole
+        // decode/spinner path when it hasn't changed.
+        if (albumCover._beatifyRequestedSrc !== newSrc) {
+            albumCover._beatifyRequestedSrc = newSrc;
+
+            if (albumLoading) albumLoading.classList.remove('hidden');
+
+            // #1664 item 3: clean up the load/error listeners on every re-render.
+            // updateGameView() runs on each state_update, so without deregistering
+            // we either leak listeners (addEventListener) or leave a handler wired
+            // to a stale closure. Hold the refs on the element and remove any left
+            // from a previous render before re-attaching; `once` auto-removes the
+            // one that actually fires (the other is cleared by the next render).
+            if (albumCover._beatifyOnLoad) {
+                albumCover.removeEventListener('load', albumCover._beatifyOnLoad);
+            }
+            if (albumCover._beatifyOnError) {
+                albumCover.removeEventListener('error', albumCover._beatifyOnError);
+            }
+
+            var onAlbumLoad = function() {
+                if (albumLoading) albumLoading.classList.add('hidden');
+            };
+            var onAlbumError = function() {
+                // Reset so a later retry with the same URL re-attempts the load.
+                albumCover._beatifyRequestedSrc = null;
+                albumCover.src = '/beatify/static/img/no-artwork.svg';
+                if (albumLoading) albumLoading.classList.add('hidden');
+            };
+
+            albumCover._beatifyOnLoad = onAlbumLoad;
+            albumCover._beatifyOnError = onAlbumError;
+            albumCover.addEventListener('load', onAlbumLoad, { once: true });
+            albumCover.addEventListener('error', onAlbumError, { once: true });
+
+            albumCover.src = newSrc;
         }
-        if (albumCover._beatifyOnError) {
-            albumCover.removeEventListener('error', albumCover._beatifyOnError);
-        }
-
-        var onAlbumLoad = function() {
-            if (albumLoading) albumLoading.classList.add('hidden');
-        };
-        var onAlbumError = function() {
-            albumCover.src = '/beatify/static/img/no-artwork.svg';
-            if (albumLoading) albumLoading.classList.add('hidden');
-        };
-
-        albumCover._beatifyOnLoad = onAlbumLoad;
-        albumCover._beatifyOnError = onAlbumError;
-        albumCover.addEventListener('load', onAlbumLoad, { once: true });
-        albumCover.addEventListener('error', onAlbumError, { once: true });
-
-        albumCover.src = newSrc;
     }
 
     // Issue #827: Sudden Death — gate the play UI on whether the current

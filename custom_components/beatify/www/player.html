@@ -380,7 +380,11 @@
                             <span data-i18n="game.ofLabel">of</span>
                         </span>
                     </div>
-                    <div id="timer-neon" class="timer-neon" role="timer" aria-live="polite" aria-label="Time remaining">
+                    <!-- #1714: role=timer WITHOUT aria-live — a polite live region
+                         re-announced "30..29..28.." every second, burying submission
+                         acks / score updates for screen-reader users. Milestone-only
+                         announcements go through #timer-announcer below instead. -->
+                    <div id="timer-neon" class="timer-neon" role="timer" aria-label="Time remaining">
                         <!-- #1663 item 4 (Depleting Ring-Countdown): SVG ring drains
                              cyan→red as the round runs out, mirroring the reveal
                              auto-advance ring. Driven from player-game/timer.js. -->
@@ -390,6 +394,8 @@
                         </svg>
                         <span id="timer" class="timer">30</span>
                     </div>
+                    <!-- #1714: milestone-only assertive announcements (10s / 5s / time up). -->
+                    <div id="timer-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
                 </header>
 
                 <!-- Issue #827: Sudden Death — eliminated player view (S2-A "Stark Blackout").
@@ -970,6 +976,19 @@
             <p data-i18n="errors.connectionLostHint">We couldn't reconnect to the game server.</p>
             <button id="retry-connection-btn" class="btn btn-primary btn-glow" data-i18n="common.retry">Try Again</button>
             <p class="connection-lost-hint" data-i18n="errors.checkNetwork">Make sure you're connected to the network</p>
+        </div>
+    </div>
+
+    <!-- Session Takeover View (#1718) — shown when this session is claimed by
+         another device/tab. Distinct from Connection Lost: it is NOT a network
+         failure, so it carries no "check your network" hint and no blind retry
+         (retrying just races the takeover again). Offers a fresh join instead. -->
+    <div id="session-takeover-view" class="view hidden">
+        <div class="connection-lost-container">
+            <div class="connection-lost-icon">📱</div>
+            <h1 data-i18n="errors.sessionTakeoverTitle">You joined on another device</h1>
+            <p data-i18n="errors.sessionTakeoverHint">This screen is now inactive because you opened the game on another device or tab.</p>
+            <button id="session-rejoin-btn" class="btn btn-primary btn-glow" data-i18n="errors.sessionTakeoverJoin">Join here again</button>
         </div>
     </div>
 
