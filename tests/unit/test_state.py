@@ -1456,6 +1456,39 @@ class TestResumeGame:
         mock_media.play.assert_awaited_once_with()
 
     @pytest.mark.asyncio
+    async def test_resume_during_pending_intro_splash_no_timer_no_play(self):
+        """#1699: pause/resume while an intro splash is still pending must NOT
+        start the round timer or call play().
+
+        An intro-splash round flips to PLAYING and stamps a placeholder deadline
+        in initialize_round but defers BOTH the timer and the play() to
+        confirm_intro_splash. Before the fix, resume_game saw previous==PLAYING
+        with a truthy deadline and (a) started the round timer and (b) called
+        play() — un-pausing whatever was last on the speaker (the WRONG media)
+        and counting down a round the host never confirmed. resume_game must
+        instead just restore the PLAYING phase and leave the round waiting.
+        """
+        mock_media = AsyncMock()
+        self.state._media_player_service = mock_media
+        self.state.current_song = {"title": "Test", "uri": "spotify:track:test"}
+        # Simulate an intro-splash round awaiting confirmation.
+        self.state._round_manager._intro_splash_pending = True
+        assert self.state.intro_splash_pending is True
+
+        await self.state.pause_game("admin_disconnected")
+        result = await self.state.resume_game()
+
+        assert result is True
+        # Phase restored, but playback + timer stay deferred to the splash confirm.
+        assert self.state.phase == GamePhase.PLAYING
+        assert self.state.intro_splash_pending is True
+        mock_media.play.assert_not_awaited()
+        assert self.state._round_manager._timer_task is None
+        # Pause bookkeeping still cleared as on any resume.
+        assert self.state.pause_reason is None
+        assert self.state._previous_phase is None
+
+    @pytest.mark.asyncio
     async def test_resume_expired_timer_ends_round(self):
         """When timer expired during pause, round should end immediately."""
         self.state.deadline = int(self.state._now() * 1000) - 1000  # expired

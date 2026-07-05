@@ -173,6 +173,28 @@ class PauseResumeMixin:
 
         previous = self._previous_phase
 
+        # #1699: a round paused while its intro splash was still pending has NOT
+        # started its round timer or begun playback — initialize_round flips to
+        # PLAYING and stamps a placeholder deadline but defers BOTH the timer and
+        # the play() to confirm_intro_splash. The generic resume path below sees
+        # previous==PLAYING with a truthy deadline and would (a) start the round
+        # timer and (b) call play() — un-pausing whatever was last on the speaker
+        # rather than the deferred song, and counting down a round the host never
+        # confirmed. So short-circuit here: restore the PLAYING phase but leave
+        # the round waiting for confirm_intro_splash to start the timer + play
+        # the deferred song.
+        if self.intro_splash_pending:
+            self._set_phase(previous, restore=True)
+            self.pause_reason = None
+            self.disconnected_admin_name = None
+            self._previous_phase = None
+            _LOGGER.info(
+                "Game resumed to phase %s — intro splash still pending, timer "
+                "and playback deferred to confirm_intro_splash",
+                previous.value,
+            )
+            return True
+
         # Restart timer if resuming to PLAYING and deadline still valid
         if previous == GamePhase.PLAYING and self.deadline:
             now_ms = int(self._now() * 1000)

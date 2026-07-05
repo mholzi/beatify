@@ -166,6 +166,17 @@ class RoundManager:
 
     def is_deadline_passed(self) -> bool:
         """Return True if the round deadline has passed."""
+        # #1699: while an intro splash is still pending, the deadline stamped by
+        # initialize_round is only a placeholder — the round timer has NOT
+        # started counting down (that is deferred to confirm_intro_splash, which
+        # recomputes the deadline from the moment the deferred song plays). Until
+        # then the round has not really begun, so report the deadline as
+        # not-passed. This closes the same blind spot in the client watchdog
+        # (handle_round_timeout gates on is_deadline_passed): otherwise a splash
+        # left unconfirmed past round_duration would let a client nudge end_round
+        # on a round whose song never even played.
+        if self._intro_splash_pending:
+            return False
         if self.deadline is None:
             return False
         now_ms = int(self._now() * 1000)

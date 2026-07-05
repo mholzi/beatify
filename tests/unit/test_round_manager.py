@@ -66,6 +66,21 @@ class TestIsDeadlinePassed:
         rm.deadline = int((now + 30) * 1000)
         assert rm.is_deadline_passed() is False
 
+    def test_pending_intro_splash_never_passed(self):
+        """#1699: while an intro splash is pending the stamped deadline is only a
+        placeholder (the timer starts on confirm_intro_splash). Report it as
+        not-passed so the client watchdog can't end_round a round whose song
+        never played, even if the placeholder deadline has 'elapsed'.
+        """
+        now = 1_000_000.0
+        rm = _make_rm(time_fn=lambda: now)
+        rm.deadline = int((now - 10) * 1000)  # would be 'passed' normally
+        rm._intro_splash_pending = True
+        assert rm.is_deadline_passed() is False
+        # Once the splash is confirmed the deadline is honoured again.
+        rm._intro_splash_pending = False
+        assert rm.is_deadline_passed() is True
+
 
 # ---------------------------------------------------------------------------
 # RoundManager.cancel_timer

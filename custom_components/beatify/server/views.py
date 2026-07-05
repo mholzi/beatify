@@ -40,8 +40,7 @@ from custom_components.beatify.server.setup_state import read_setup, write_setup
 from custom_components.beatify.services.lights import PartyLightsService
 from custom_components.beatify.services.media_player import (
     album_art_signature_is_valid,
-    async_get_media_players,
-    async_get_native_twin_remap,
+    async_get_media_players_with_remap,
 )
 
 # Re-export game views
@@ -526,14 +525,20 @@ class StatusView(HomeAssistantView):
 
     async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
         """Return current status as JSON."""
-        # Fetch media players fresh (not cached) - Story 8-2
-        media_players = await async_get_media_players(self.hass)
+        # Fetch media players fresh (not cached) - Story 8-2.
+        # #1704: the player list and the native→MA twin remap (#1627: lets the
+        # admin frontend heal a stale saved selection pointing at a now-hidden
+        # native twin) come from a SINGLE entity-registry walk instead of two
+        # back-to-back walks (async_get_media_players +
+        # async_get_native_twin_remap), via the #1739 combined helper.
+        (
+            media_players,
+            media_player_twin_remap,
+        ) = await async_get_media_players_with_remap(self.hass)
 
-        # #1627 follow-up: native→MA twin map so the admin frontend can heal a
-        # stale saved selection pointing at a now-hidden native twin.
-        media_player_twin_remap = await async_get_native_twin_remap(self.hass)
-
-        # Fetch playlists fresh (not cached) - Issue #135
+        # Discover playlists (#1704: memoised — reuses the parsed corpus unless a
+        # file changed on disk; the heavy json.loads/validate/count now runs in
+        # the executor, not on the event loop, on every /api/status request).
         playlists = await async_discover_playlists(self.hass)
         self.hass.data.setdefault(DOMAIN, {})["playlists"] = playlists
 

@@ -41,7 +41,7 @@ from custom_components.beatify.const import PROVIDER_DEFAULT
 from custom_components.beatify.game.playlist import (
     MIN_YEAR,
     _max_year,
-    async_discover_playlists,
+    async_discover_playlists_detailed,
     get_playlist_directory,
     get_song_uri,
     validate_playlist,
@@ -49,7 +49,6 @@ from custom_components.beatify.game.playlist import (
 from custom_components.beatify.server.base import (
     RateLimitMixin,
     _json_error,
-    _read_file,
 )
 from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.game_views import _validate_provider
@@ -105,8 +104,7 @@ def _assemble_mix_songs(
     selected_tags: set[str],
     target_count: int,
     provider: str,
-    read_file,
-    playlist_dir: Path,
+    songs_by_path: dict[str, list[dict[str, Any]]],
 ) -> tuple[list[dict[str, Any]], int]:
     """Collect, de-dupe and cap candidate songs from tag-matching playlists.
 
@@ -115,6 +113,10 @@ def _assemble_mix_songs(
     80s, the 90s OR pop, then dedupe. Songs are de-duplicated by their
     provider-resolved URI (``get_song_uri``) — the same key the in-game
     PlaylistManager uses — then shuffled and capped at ``target_count``.
+
+    #1704: the songs come pre-parsed from discovery (``songs_by_path``) rather
+    than being re-read + re-parsed from disk here — discovery already read and
+    parsed every file, so a second per-file pass was pure waste.
 
     Returns ``(songs, matched_playlist_count)``.
     """
@@ -134,16 +136,13 @@ def _assemble_mix_songs(
         if _is_transient_mix(path):
             continue
 
-        full_path = Path(path)
-        try:
-            data = json.loads(read_file(full_path))
-        except (OSError, ValueError) as err:  # pragma: no cover - I/O edge
-            _LOGGER.debug("Mix: skipping unreadable playlist %s: %s", path, err)
+        songs = songs_by_path.get(path)
+        if not songs:  # pragma: no cover - meta/parse desync edge
             continue
 
         matched += 1
         max_year = _max_year()
-        for song in data.get("songs", []):
+        for song in songs:
             if not isinstance(song, dict):
                 continue
             # Apply the SAME int/range year check as validate_playlist (#1547):
@@ -275,7 +274,11 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
         preview = bool(body.get("preview", False))
 
         # --- Discover + assemble ------------------------------------------
-        playlists_meta = await async_discover_playlists(self.hass)
+        # #1704: reuse discovery's already-parsed songs (songs_by_path) so the
+        # mixer no longer re-reads + re-parses every tag file a second time.
+        playlists_meta, songs_by_path = await async_discover_playlists_detailed(
+            self.hass
+        )
         playlist_dir = get_playlist_directory(self.hass)
 
         songs, matched = await self.hass.async_add_executor_job(
@@ -284,8 +287,7 @@ class MixPlaylistView(RateLimitMixin, HomeAssistantView):
             selected_tags,
             target_count,
             provider,
-            _read_file,
-            playlist_dir,
+            songs_by_path,
         )
 
         if not songs:
